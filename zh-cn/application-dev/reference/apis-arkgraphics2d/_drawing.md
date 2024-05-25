@@ -2865,6 +2865,10 @@ OH_Drawing_Brush* OH_Drawing_BrushCopy (OH_Drawing_Brush* brush)
 
 创建一个画刷对象副本[OH_Drawing_Brush](#oh_drawing_brush)，用于拷贝一个已有画刷对象。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+brush为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 12
@@ -2873,7 +2877,7 @@ OH_Drawing_Brush* OH_Drawing_BrushCopy (OH_Drawing_Brush* brush)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| OH_Drawing_Brush | 指向画刷对象的指针。 | 
+| brush | 指向画刷对象的指针。 | 
 
 **返回：**
 
@@ -2890,6 +2894,10 @@ void OH_Drawing_FilterSetImageFilter (OH_Drawing_Filter* , OH_Drawing_ImageFilte
 **描述**
 
 为滤波器对象设置图像滤波器对象。
+
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Filter为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -2924,7 +2932,7 @@ OH_Drawing_ImageFilter* OH_Drawing_ImageFilterCreateBlur (float sigmaX, float si
 | sigmaX | 表示沿x轴方向上高斯模糊的方差。 | 
 | sigmaY | 表示沿y轴方向上高斯模糊的方差。 | 
 | OH_Drawing_TileMode | 图像滤波器效果平铺模式类型，支持可选的具体模式可见**OH_Drawing_TileMoe**枚举。 | 
-| OH_Drawing_ImageFilter | 表示将要和当前图像滤波器叠加的输入滤波器, 如果为NULL，表示直接将当前图像滤波器作用于原始图像。 | 
+| input | 表示将要和当前图像滤波器叠加的输入滤波器, 如果为NULL，表示直接将当前图像滤波器作用于原始图像。 | 
 
 **返回：**
 
@@ -2941,6 +2949,10 @@ OH_Drawing_ImageFilter* OH_Drawing_ImageFilterCreateFromColorFilter (OH_Drawing_
 
 创建具有颜色变换效果的图像滤波器。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+colorFilter为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 12
@@ -2949,8 +2961,8 @@ OH_Drawing_ImageFilter* OH_Drawing_ImageFilterCreateFromColorFilter (OH_Drawing_
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| OH_Drawing_ColorFilter | 指向具有颜色变换效果的颜色滤波器对象[OH_Drawing_ColorFilter](#oh_drawing_colorfilter)。 | 
-| OH_Drawing_ImageFilter | 表示将要和当前图像滤波器叠加的输入滤波器, 如果为NULL，表示直接将当前图像滤波器作用于原始图像。 | 
+| colorFilter | 指向具有颜色变换效果的颜色滤波器对象[OH_Drawing_ColorFilter](#oh_drawing_colorfilter)。 | 
+| input | 表示将要和当前图像滤波器叠加的输入滤波器, 如果为NULL，表示直接将当前图像滤波器作用于原始图像。 | 
 
 **返回：**
 
@@ -2988,6 +3000,10 @@ void OH_Drawing_MatrixMapPoints (const OH_Drawing_Matrix* , const OH_Drawing_Poi
 
 通过矩阵变换将源点数组映射到目标点数组。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Matrix、src、dst任意一个为NULL或者count小于等于0时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 12
@@ -3011,6 +3027,10 @@ bool OH_Drawing_MatrixMapRect (const OH_Drawing_Matrix* , const OH_Drawing_Rect*
 **描述**
 
 将目标矩形设置为一个新的矩形，该矩形是能够包围源矩形的四个顶点通过矩阵变换映射后形成的新顶点的最小矩形。
+
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Matrix、src、dst任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -3039,6 +3059,10 @@ void OH_Drawing_PathAddPolygon (OH_Drawing_Path* path, const OH_Drawing_Point2D*
 
 向路径添加多边形。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+path、points任意一个为NULL或者count等于0时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 12
@@ -3062,6 +3086,12 @@ void OH_Drawing_PathAddCircle (OH_Drawing_Path* path, float x, float y, float ra
 **描述**
 
 按指定方向，向路径添加圆形。
+
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+path为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER；
+
+radius小于等于0时返回OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -3087,6 +3117,10 @@ bool OH_Drawing_PathBuildFromSvgString (OH_Drawing_Path* path, const char* str )
 **描述**
 
 解析SVG字符串表示的路径。
+
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+path、str任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -3114,6 +3148,10 @@ void OH_Drawing_PathGetBounds (OH_Drawing_Path* , OH_Drawing_Rect*  )
 
 获取包含路径的最小边界框。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Path、OH_Drawing_Rect任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 12
@@ -3135,6 +3173,10 @@ bool OH_Drawing_PathIsClosed (OH_Drawing_Path* path, bool forceClosed )
 **描述**
 
 获取路径是否闭合。
+
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+path为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -3161,6 +3203,10 @@ bool OH_Drawing_PathGetPositionTangent (OH_Drawing_Path* path, bool forceClosed,
 **描述**
 
 获取距路径起始点指定距离的坐标点和切线值。
+
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+path、position、tangent任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -3191,6 +3237,10 @@ bool OH_Drawing_PathOp (OH_Drawing_Path* path, const OH_Drawing_Path* srcPath, O
 
 将两个路径按照指定的路径操作类型合并。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+path、srcPath任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 12
@@ -3217,6 +3267,10 @@ bool OH_Drawing_PathGetMatrix (OH_Drawing_Path* path, bool forceClosed, float di
 **描述**
 
 获取距路径起始点指定距离的相应变换矩阵。
+
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+path、matrix任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -3247,6 +3301,10 @@ bool OH_Drawing_PenGetFillPath (OH_Drawing_Pen* , const OH_Drawing_Path* src, OH
 
 获取使用画笔绘制的源路径轮廓，并用目标路径表示。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Pen、src、dst任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 12
@@ -3276,6 +3334,10 @@ OH_Drawing_Pen* OH_Drawing_PenCopy (OH_Drawing_Pen* pen)
 
 创建一个画笔对象副本[OH_Drawing_Pen](#oh_drawing_pen)，用于拷贝一个已有画笔对象。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+pen为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 12
@@ -3284,7 +3346,7 @@ OH_Drawing_Pen* OH_Drawing_PenCopy (OH_Drawing_Pen* pen)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| OH_Drawing_Pen | 指向画笔对象的指针。 | 
+| pen | 指向画笔对象的指针。 | 
 
 **返回：**
 
@@ -3372,6 +3434,10 @@ bool OH_Drawing_RectJoin (OH_Drawing_Rect* rect, const OH_Drawing_Rect* other )
 
 将两个矩形取并集。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+rect、other任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 12
@@ -3397,6 +3463,10 @@ bool OH_Drawing_RegionContains (OH_Drawing_Region* region, int32_t x, int32_t y 
 **描述**
 
 判断区域是否包含指定坐标点。
+
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+region为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -3425,6 +3495,10 @@ bool OH_Drawing_RegionOp (OH_Drawing_Region* region, const OH_Drawing_Region* ds
 
 将两个区域按照指定的区域操作类型合并。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+region、dst任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 12
@@ -3451,6 +3525,10 @@ bool OH_Drawing_RegionSetPath (OH_Drawing_Region* region, const OH_Drawing_Path*
 **描述**
 
 给区域对象设置为指定区域内路径表示的范围。
+
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+region、path、clip任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -3504,6 +3582,10 @@ OH_Drawing_ShaderEffect* OH_Drawing_ShaderEffectCreateLinearGradientWithLocalMat
 
 创建着色器，在两个指定点之间生成线性渐变。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+startPt、endPt、colors任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 12
@@ -3535,6 +3617,10 @@ OH_Drawing_ShaderEffect* OH_Drawing_ShaderEffectCreateRadialGradientWithLocalMat
 
 创建着色器，在给定圆心和半径的情况下生成径向渐变。 从起点到终点颜色从内到外进行圆形渐变（从中间向外拉）被称为径向渐变。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+centerPt、colors任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 12
@@ -3565,6 +3651,10 @@ OH_Drawing_ShaderEffect* OH_Drawing_ShaderEffectCreateTwoPointConicalGradient (c
 **描述**
 
 创建着色器，在给定两个圆之间生成渐变。
+
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+startPt、endPt、colors任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -3600,6 +3690,10 @@ uint32_t OH_Drawing_TextBlobUniqueID (const OH_Drawing_TextBlob* )
 
 获取文本的标识符，该标识符是唯一的非零值。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_TextBlob为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 12
@@ -3625,6 +3719,10 @@ void OH_Drawing_PenSetShadowLayer (OH_Drawing_Pen* , OH_Drawing_ShadowLayer* )
 
 设置画笔阴影层效果，为空表示清空阴影层效果，当前仅对文字生效。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Pen为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 12
@@ -3646,6 +3744,10 @@ void OH_Drawing_BrushSetShadowLayer (OH_Drawing_Brush* , OH_Drawing_ShadowLayer*
 **描述**
 
 为画刷设置阴影层，为空表示清空阴影层效果，当前仅对文字生效。
+
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Brush为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -3718,6 +3820,10 @@ void OH_Drawing_FontSetBaselineSnap (OH_Drawing_Font* , bool baselineSnap )
 
 当前画布矩阵轴对齐时，将字形基线设置为是否与像素对齐。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Font为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 12
@@ -3739,6 +3845,10 @@ bool OH_Drawing_FontIsBaselineSnap (const OH_Drawing_Font* )
 **描述**
 
 当前画布矩阵轴对齐时，获取字形基线是否与像素对齐。
+
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Font为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -3765,6 +3875,10 @@ void OH_Drawing_FontSetEdging (OH_Drawing_Font* , OH_Drawing_FontEdging  )
 
 用于设置字形边缘效果。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Font为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 12
@@ -3786,6 +3900,10 @@ OH_Drawing_FontEdging OH_Drawing_FontGetEdging (const OH_Drawing_Font* )
 **描述**
 
 获取字形边缘效果。
+
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Font为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -3813,6 +3931,10 @@ void OH_Drawing_FontSetForceAutoHinting (OH_Drawing_Font* , bool isForceAutoHint
 
 用于设置是否自动调整字形轮廓。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Font为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 12
@@ -3834,6 +3956,10 @@ bool OH_Drawing_FontIsForceAutoHinting (const OH_Drawing_Font* )
 **描述**
 
 获取字形轮廓是否自动调整。
+
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Font为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -3860,6 +3986,10 @@ void OH_Drawing_FontSetSubpixel (OH_Drawing_Font* , bool isSubpixel )
 
 设置字形是否使用次像素渲染。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Font为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 12
@@ -3881,6 +4011,10 @@ bool OH_Drawing_FontIsSubpixel (const OH_Drawing_Font* )
 **描述**
 
 获取字形是否使用次像素渲染。
+
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Font为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -3907,6 +4041,10 @@ float OH_Drawing_FontGetTextSize (const OH_Drawing_Font* )
 
 获取字形文本大小。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Font为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 12
@@ -3931,6 +4069,10 @@ uint32_t OH_Drawing_FontTextToGlyphs (const OH_Drawing_Font* , const void* text,
 **描述**
 
 用于将文本转换为字形索引。
+
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Font、text、glyphs任意一个为NULL或者byteLength等于0或者maxGlyphCount小于等于0时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -3962,6 +4104,10 @@ void OH_Drawing_FontGetWidths (const OH_Drawing_Font* , const uint16_t* glyphs, 
 
 用于获取字符串中每个字符的宽度。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Font、glyphs、widths任意一个为NULL或者count小于等于0时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 12
@@ -3985,6 +4131,10 @@ bool OH_Drawing_FontIsLinearText (const OH_Drawing_Font* )
 **描述**
 
 获取字形是否使用线性缩放。
+
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Font为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -4011,6 +4161,10 @@ float OH_Drawing_FontGetTextSkewX (const OH_Drawing_Font* )
 
 获取字形文本在x轴上的倾斜度。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Font为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 12
@@ -4035,6 +4189,10 @@ bool OH_Drawing_FontIsFakeBoldText (const OH_Drawing_Font* )
 **描述**
 
 获取是否增加笔画宽度以接近粗体字形。
+
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Font为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -4061,6 +4219,10 @@ void OH_Drawing_FontSetScaleX (OH_Drawing_Font* , float scaleX )
 
 用于设置字形对象在x轴上的缩放比例。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Font为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 12
@@ -4082,6 +4244,10 @@ float OH_Drawing_FontGetScaleX (const OH_Drawing_Font* )
 **描述**
 
 获取字形对象在x轴上的缩放比例。
+
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Font为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -4108,6 +4274,10 @@ void OH_Drawing_FontSetHinting (OH_Drawing_Font* , OH_Drawing_FontHinting  )
 
 用于设置字形轮廓效果。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Font为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 12
@@ -4129,6 +4299,10 @@ OH_Drawing_FontHinting OH_Drawing_FontGetHinting (const OH_Drawing_Font* )
 **描述**
 
 获取字形轮廓效果枚举类型。
+
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Font为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -4155,6 +4329,10 @@ void OH_Drawing_FontSetEmbeddedBitmaps (OH_Drawing_Font* , bool isEmbeddedBitmap
 
 用于设置字形是否转换成位图处理。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Font为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 12
@@ -4176,6 +4354,10 @@ bool OH_Drawing_FontIsEmbeddedBitmaps (const OH_Drawing_Font* )
 **描述**
 
 获取字形是否转换成位图处理。
+
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Font为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -4201,6 +4383,10 @@ void OH_Drawing_BitmapBuild (OH_Drawing_Bitmap* , const uint32_t width, const ui
 **描述**
 
 用于初始化位图对象的宽度和高度，并且为该位图设置像素格式。
+
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Bitmap、OH_Drawing_BitmapFormat任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -4244,6 +4430,10 @@ OH_Drawing_Bitmap* OH_Drawing_BitmapCreateFromPixels (OH_Drawing_Image_Info* , v
 **描述**
 
 用于创建一个位图对象，并将位图像素存储内存地址设置为开发者申请内存的地址。
+
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Image_Info、pixels任意一个为NULL或者rowBytes等于0时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -4293,6 +4483,10 @@ OH_Drawing_AlphaFormat OH_Drawing_BitmapGetAlphaFormat (OH_Drawing_Bitmap* )
 
 用于获取指定位图的像素透明度分量。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Bitmap为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 12
@@ -4317,6 +4511,10 @@ OH_Drawing_ColorFormat OH_Drawing_BitmapGetColorFormat (OH_Drawing_Bitmap* )
 **描述**
 
 用于获取指定位图的像素存储格式。
+
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Bitmap为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -4343,6 +4541,10 @@ uint32_t OH_Drawing_BitmapGetHeight (OH_Drawing_Bitmap* )
 
 用于获取指定位图的高度。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Bitmap为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 8
@@ -4368,6 +4570,10 @@ void OH_Drawing_BitmapGetImageInfo (OH_Drawing_Bitmap* , OH_Drawing_Image_Info* 
 
 用于获取指定位图的信息。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Bitmap、OH_Drawing_Image_Info任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 12
@@ -4389,6 +4595,10 @@ void* OH_Drawing_BitmapGetPixels (OH_Drawing_Bitmap* )
 **描述**
 
 用于获取指定位图的像素地址，可以通过像素地址获取到位图的像素数据。
+
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Bitmap为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -4415,6 +4625,10 @@ uint32_t OH_Drawing_BitmapGetWidth (OH_Drawing_Bitmap* )
 
 用于获取指定位图的宽度。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Bitmap为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 8
@@ -4438,6 +4652,10 @@ bool OH_Drawing_BitmapReadPixels (OH_Drawing_Bitmap* , const OH_Drawing_Image_In
 **描述**
 
 将位图中的矩形区域像素数据读取到指定的内存缓冲区中。
+
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Bitmap、dstInfo、dstPixels任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -4509,6 +4727,10 @@ uint8_t OH_Drawing_BrushGetAlpha (const OH_Drawing_Brush* )
 
 获取画刷的透明度值。画刷在填充形状时透明通道会使用该值。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Brush为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 11
@@ -4533,6 +4755,10 @@ uint32_t OH_Drawing_BrushGetColor (const OH_Drawing_Brush* )
 **描述**
 
 用于获取画刷的颜色属性，颜色属性描述了画刷填充图形时使用的颜色，用一个32位（ARGB）的变量表示。
+
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Brush为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -4559,6 +4785,10 @@ void OH_Drawing_BrushGetFilter (OH_Drawing_Brush* , OH_Drawing_Filter*  )
 
 从画刷获取滤波器[OH_Drawing_Filter](#oh_drawing_filter)。滤波器是一个容器，可以承载蒙版滤波器和颜色滤波器。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Brush、OH_Drawing_Filter任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 12
@@ -4580,6 +4810,10 @@ bool OH_Drawing_BrushIsAntiAlias (const OH_Drawing_Brush* )
 **描述**
 
 用于获取画刷是否设置抗锯齿属性，如果为真则说明画刷会启用抗锯齿功能，在绘制图形时会对图形的边缘像素进行半透明的模糊处理。
+
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Brush为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -4606,6 +4840,10 @@ void OH_Drawing_BrushReset (OH_Drawing_Brush* )
 
 将画刷重置至初始状态，清空所有已设置的属性。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Brush为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 12
@@ -4626,6 +4864,10 @@ void OH_Drawing_BrushSetAlpha (OH_Drawing_Brush* , uint8_t alpha )
 **描述**
 
 为画刷设置透明度值。画刷在填充形状时透明通道会使用该值。
+
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Brush为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -4649,6 +4891,10 @@ void OH_Drawing_BrushSetAntiAlias (OH_Drawing_Brush* , bool  )
 
 用于设置画刷的抗锯齿属性，设置为真则画刷在绘制图形时会对图形的边缘像素进行半透明的模糊处理。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Brush为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 8
@@ -4670,6 +4916,10 @@ void OH_Drawing_BrushSetBlendMode (OH_Drawing_Brush* , OH_Drawing_BlendMode  )
 **描述**
 
 为画刷设置一个混合器，该混合器实现了指定的混合模式枚举。
+
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Brush为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -4693,6 +4943,10 @@ void OH_Drawing_BrushSetColor (OH_Drawing_Brush* , uint32_t color )
 
 用于设置画刷的颜色属性，颜色属性描述了画刷填充图形时使用的颜色，用一个32位（ARGB）的变量表示。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Brush为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 8
@@ -4714,6 +4968,10 @@ void OH_Drawing_BrushSetFilter (OH_Drawing_Brush* , OH_Drawing_Filter*  )
 **描述**
 
 为画刷设置滤波器[OH_Drawing_Filter](#oh_drawing_filter)。滤波器是一个容器，可以承载蒙版滤波器和颜色滤波器。
+
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Brush为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -4737,6 +4995,10 @@ void OH_Drawing_BrushSetShaderEffect (OH_Drawing_Brush* , OH_Drawing_ShaderEffec
 
 为画刷设置着色器效果。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Brush为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 11
@@ -4758,6 +5020,10 @@ void OH_Drawing_CanvasAttachBrush (OH_Drawing_Canvas* , const OH_Drawing_Brush* 
 **描述**
 
 用于设置画刷给画布，画布将会使用设置的画刷样式和颜色去填充绘制的图形形状。
+
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Canvas、OH_Drawing_Brush任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -4781,6 +5047,10 @@ void OH_Drawing_CanvasAttachPen (OH_Drawing_Canvas* , const OH_Drawing_Pen*  )
 
 用于设置画笔给画布，画布将会使用设置画笔的样式和颜色去绘制图形形状的轮廓。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Canvas、OH_Drawing_Pen任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 8
@@ -4802,6 +5072,10 @@ void OH_Drawing_CanvasBind (OH_Drawing_Canvas* , OH_Drawing_Bitmap*  )
 **描述**
 
 用于将一个位图对象绑定到画布中，使得画布绘制的内容输出到位图中（即CPU渲染）。
+
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Canvas、OH_Drawing_Bitmap任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -4825,6 +5099,10 @@ void OH_Drawing_CanvasClear (OH_Drawing_Canvas* , uint32_t color )
 
 用于使用指定颜色去清空画布。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Canvas为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 8
@@ -4846,6 +5124,10 @@ void OH_Drawing_CanvasClipPath (OH_Drawing_Canvas* , const OH_Drawing_Path* , OH
 **描述**
 
 用于裁剪一个自定义路径。
+
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Canvas、OH_Drawing_Path任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -4871,6 +5153,10 @@ void OH_Drawing_CanvasClipRect (OH_Drawing_Canvas* , const OH_Drawing_Rect* , OH
 
 用于裁剪一个矩形。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Canvas、OH_Drawing_Rect任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 11
@@ -4894,6 +5180,10 @@ void OH_Drawing_CanvasClipRoundRect (OH_Drawing_Canvas* , const OH_Drawing_Round
 
 用于裁剪一个圆角矩形。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Canvas、OH_Drawing_RoundRect任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 12
@@ -4916,6 +5206,10 @@ void OH_Drawing_CanvasConcatMatrix (OH_Drawing_Canvas* , OH_Drawing_Matrix*  )
 **描述**
 
 画布现有矩阵左乘以传入矩阵，不影响该接口之前的绘制操作。
+
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Canvas、OH_Drawing_Matrix任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -4979,6 +5273,10 @@ void OH_Drawing_CanvasDetachBrush (OH_Drawing_Canvas* )
 
 用于去除掉画布中的画刷，使用后画布将不去填充图形形状。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Canvas为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 8
@@ -5000,6 +5298,10 @@ void OH_Drawing_CanvasDetachPen (OH_Drawing_Canvas* )
 
 用于去除掉画布中的画笔，使用后画布将不去绘制图形形状的轮廓。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Canvas为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 8
@@ -5020,6 +5322,10 @@ void OH_Drawing_CanvasDrawArc (OH_Drawing_Canvas* , const OH_Drawing_Rect* , flo
 **描述**
 
 用于画一个弧。
+
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Canvas、OH_Drawing_Rect任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -5045,6 +5351,10 @@ void OH_Drawing_CanvasDrawBackground (OH_Drawing_Canvas* , const OH_Drawing_Brus
 
 用于画一个背景，此背景以画刷填充。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Canvas、OH_Drawing_Brush任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 12
@@ -5066,6 +5376,10 @@ void OH_Drawing_CanvasDrawBitmap (OH_Drawing_Canvas* , const OH_Drawing_Bitmap* 
 **描述**
 
 用于画一个位图，位图又称为点阵图像、像素图或栅格图像，是由像素（图片元素）的单个点组成。
+
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Canvas、OH_Drawing_Bitmap任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -5090,6 +5404,10 @@ void OH_Drawing_CanvasDrawBitmapRect (OH_Drawing_Canvas* , const OH_Drawing_Bitm
 **描述**
 
 将位图的指定区域绘制到画布的指定区域。
+
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Canvas、OH_Drawing_Bitmap、dst任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -5116,6 +5434,12 @@ void OH_Drawing_CanvasDrawCircle (OH_Drawing_Canvas* , const OH_Drawing_Point* ,
 
 用于画一个圆形。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Canvas、OH_Drawing_Point任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER；
+
+radius小于等于0时返回OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 11
@@ -5139,6 +5463,10 @@ void OH_Drawing_CanvasDrawImageRect (OH_Drawing_Canvas* , OH_Drawing_Image* , OH
 
 将图片绘制到画布的指定区域上。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Canvas、OH_Drawing_Image、dst任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 12
@@ -5149,7 +5477,7 @@ void OH_Drawing_CanvasDrawImageRect (OH_Drawing_Canvas* , OH_Drawing_Image* , OH
 | -------- | -------- |
 | OH_Drawing_Canvas | 指向画布对象[OH_Drawing_Canvas](#oh_drawing_canvas)的指针。 | 
 | OH_Drawing_Image | 指向图片对象[OH_Drawing_Image](#oh_drawing_image)的指针。 | 
-| OH_Drawing_Rect | 指向矩形对象[OH_Drawing_Rect](#oh_drawing_rect)的指针。 | 
+| dst | 指向矩形对象[OH_Drawing_Rect](#oh_drawing_rect)的指针。 | 
 | OH_Drawing_SamplingOptions | 指向采样选项对象[OH_Drawing_SamplingOptions](#oh_drawing_samplingoptions)的指针。 | 
 
 
@@ -5162,6 +5490,10 @@ void OH_Drawing_CanvasDrawImageRectWithSrc (OH_Drawing_Canvas* , const OH_Drawin
 **描述**
 
 将图片绘制到画布的指定区域上，源矩形选定的区域会缩放平移到目标矩形。
+
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Canvas、OH_Drawing_Image、src、dst任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -5189,6 +5521,10 @@ void OH_Drawing_CanvasDrawLine (OH_Drawing_Canvas* , float x1, float y1, float x
 
 用于画一条直线段。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Canvas为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 8
@@ -5214,6 +5550,10 @@ void OH_Drawing_CanvasDrawOval (OH_Drawing_Canvas* , const OH_Drawing_Rect*  )
 
 用于画一个椭圆。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Canvas、OH_Drawing_Rect任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 11
@@ -5236,6 +5576,10 @@ void OH_Drawing_CanvasDrawPath (OH_Drawing_Canvas* , const OH_Drawing_Path*  )
 
 用于画一个自定义路径。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Canvas、OH_Drawing_Path任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 8
@@ -5257,6 +5601,10 @@ void OH_Drawing_CanvasDrawPixelMapRect (OH_Drawing_Canvas* , OH_Drawing_PixelMap
 **描述**
 
 用于将像素图的指定区域绘制到画布的指定区域。
+
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Canvas、OH_Drawing_PixelMap、dst任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -5283,6 +5631,10 @@ void OH_Drawing_CanvasDrawPoints (OH_Drawing_Canvas* , OH_Drawing_PointMode mode
 
 用于画多个点，绘制方式分为绘制单独的点、绘制成线段或绘制成开放多边形。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Canvas、OH_Drawing_Point2D任意一个为NULL或者count等于0时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 12
@@ -5307,6 +5659,10 @@ void OH_Drawing_CanvasDrawRect (OH_Drawing_Canvas* , const OH_Drawing_Rect*  )
 
 用于画一个矩形。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Canvas、OH_Drawing_Rect任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 11
@@ -5328,6 +5684,10 @@ void OH_Drawing_CanvasDrawRegion (OH_Drawing_Canvas* , const OH_Drawing_Region* 
 **描述**
 
 用于画一块区域。
+
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Canvas、OH_Drawing_Region任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -5351,6 +5711,10 @@ void OH_Drawing_CanvasDrawRoundRect (OH_Drawing_Canvas* , const OH_Drawing_Round
 
 用于画一个圆角矩形。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Canvas、OH_Drawing_RoundRect任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 11
@@ -5372,6 +5736,12 @@ void OH_Drawing_CanvasDrawShadow (OH_Drawing_Canvas* , OH_Drawing_Path* , OH_Dra
 **描述**
 
 绘制射灯类型阴影，使用路径描述环境光阴影的轮廓。
+
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Canvas、OH_Drawing_Path任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER；
+
+flag不在枚举范围内返回OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -5401,6 +5771,10 @@ void OH_Drawing_CanvasDrawTextBlob (OH_Drawing_Canvas* , const OH_Drawing_TextBl
 
 用于画一段文字。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Canvas、OH_Drawing_TextBlob任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 11
@@ -5424,6 +5798,10 @@ void OH_Drawing_CanvasDrawVertices (OH_Drawing_Canvas* , OH_Drawing_VertexMode v
 **描述**
 
 用于画顶点数组描述的三角网格。
+
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Canvas、positions、texs、colors、indices任意一个为NULL或者vertexCount、indexCount任意一个小于0时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -5454,6 +5832,10 @@ int32_t OH_Drawing_CanvasGetHeight (OH_Drawing_Canvas* )
 
 获取画布高度。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Canvas为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 12
@@ -5479,6 +5861,10 @@ void OH_Drawing_CanvasGetLocalClipBounds (OH_Drawing_Canvas* , OH_Drawing_Rect* 
 
 获取画布裁剪区域的边界。该接口不可用于录制类型画布。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Canvas、OH_Drawing_Rect任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 12
@@ -5500,6 +5886,10 @@ uint32_t OH_Drawing_CanvasGetSaveCount (OH_Drawing_Canvas* )
 **描述**
 
 用于获取栈中保存的画布状态（画布矩阵）的数量。
+
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Canvas为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -5526,6 +5916,10 @@ void OH_Drawing_CanvasGetTotalMatrix (OH_Drawing_Canvas* , OH_Drawing_Matrix*  )
 
 获取画布3x3矩阵。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Canvas、OH_Drawing_Matrix任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 12
@@ -5547,6 +5941,10 @@ int32_t OH_Drawing_CanvasGetWidth (OH_Drawing_Canvas* )
 **描述**
 
 获取画布宽度。
+
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Canvas为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -5572,6 +5970,10 @@ bool OH_Drawing_CanvasReadPixels (OH_Drawing_Canvas* , OH_Drawing_Image_Info* , 
 **描述**
 
 从画布中拷贝像素数据到指定地址。该接口不可用于录制类型画布。
+
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Canvas、OH_Drawing_Image_Info、dstPixels任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -5603,6 +6005,10 @@ bool OH_Drawing_CanvasReadPixelsToBitmap (OH_Drawing_Canvas* , OH_Drawing_Bitmap
 
 从画布拷贝像素数据到位图中。该接口不可用于录制类型画布。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Canvas、OH_Drawing_Bitmap任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 12
@@ -5631,6 +6037,10 @@ void OH_Drawing_CanvasResetMatrix (OH_Drawing_Canvas* )
 
 重置当前画布的矩阵为单位矩阵。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Canvas为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 12
@@ -5651,6 +6061,10 @@ void OH_Drawing_CanvasRestore (OH_Drawing_Canvas* )
 **描述**
 
 用于恢复保存在栈顶的画布状态（画布矩阵）。
+
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Canvas为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -5673,6 +6087,10 @@ void OH_Drawing_CanvasRestoreToCount (OH_Drawing_Canvas* , uint32_t saveCount )
 
 用于恢复到指定数量的画布状态（画布矩阵）。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Canvas为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 11
@@ -5694,6 +6112,10 @@ void OH_Drawing_CanvasRotate (OH_Drawing_Canvas* , float degrees, float px, floa
 **描述**
 
 用于画布旋转一定的角度，正数表示顺时针旋转，负数反之。
+
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Canvas为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -5719,6 +6141,10 @@ void OH_Drawing_CanvasSave (OH_Drawing_Canvas* )
 
 用于保存当前画布的状态（画布矩阵）到一个栈顶。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Canvas为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 8
@@ -5739,6 +6165,10 @@ void OH_Drawing_CanvasSaveLayer (OH_Drawing_Canvas* , const OH_Drawing_Rect* , c
 **描述**
 
 保存矩阵和裁剪区域，为后续绘制分配位图。调用恢复接口 [OH_Drawing_CanvasRestore](#oh_drawing_canvasrestore)将放弃对矩阵和剪切区域所做的更改，并绘制位图。
+
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Canvas为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -5763,6 +6193,10 @@ void OH_Drawing_CanvasScale (OH_Drawing_Canvas* , float sx, float sy )
 
 用于画布缩放。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Canvas为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 11
@@ -5786,6 +6220,10 @@ void OH_Drawing_CanvasSetMatrix (OH_Drawing_Canvas* , OH_Drawing_Matrix*  )
 
 设置画布的矩阵状态。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Canvas、OH_Drawing_Matrix任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 12
@@ -5807,6 +6245,10 @@ void OH_Drawing_CanvasSkew (OH_Drawing_Canvas* , float sx, float sy )
 **描述**
 
 用于画布倾斜变换，包括水平轴和垂直轴上的偏移。
+
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Canvas为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -5830,6 +6272,10 @@ void OH_Drawing_CanvasTranslate (OH_Drawing_Canvas* , float dx, float dy )
 **描述**
 
 用于平移画布一段距离。
+
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Canvas为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -5880,6 +6326,10 @@ OH_Drawing_ColorFilter* OH_Drawing_ColorFilterCreateCompose (OH_Drawing_ColorFil
 
 将两个颜色滤波器合成一个新的颜色滤波器。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+colorFilter1、colorFilter2任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 11
@@ -5888,8 +6338,8 @@ OH_Drawing_ColorFilter* OH_Drawing_ColorFilterCreateCompose (OH_Drawing_ColorFil
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| OH_Drawing_ColorFilter | 指向颜色滤波器对象一的指针。 | 
-| OH_Drawing_ColorFilter | 指向颜色滤波器对象二的指针。 | 
+| colorFilter1 | 指向颜色滤波器对象一的指针。 | 
+| colorFilter2 | 指向颜色滤波器对象二的指针。 | 
 
 **返回：**
 
@@ -5943,6 +6393,10 @@ OH_Drawing_ColorFilter* OH_Drawing_ColorFilterCreateMatrix (const float matrix[2
 **描述**
 
 创建具有5x4颜色矩阵的颜色滤波器。
+
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+matrix为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -6095,6 +6549,10 @@ OH_Drawing_PathEffect* OH_Drawing_CreateDashPathEffect (float* intervals, int co
 **描述**
 
 创建一个虚线效果的路径效果对象。虚线效果由一组虚线开的间隔、虚线关的间隔数据决定。
+
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+intervals为NULL或者count小于等于0时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -6642,6 +7100,10 @@ void OH_Drawing_FilterGetColorFilter (OH_Drawing_Filter* , OH_Drawing_ColorFilte
 
 从滤波器对象获取颜色滤波器对象。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Filter、OH_Drawing_ColorFilter任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 12
@@ -6663,6 +7125,10 @@ void OH_Drawing_FilterSetColorFilter (OH_Drawing_Filter* , OH_Drawing_ColorFilte
 **描述**
 
 为滤波器对象设置颜色滤波器对象。
+
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Filter为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -6686,6 +7152,10 @@ void OH_Drawing_FilterSetMaskFilter (OH_Drawing_Filter* , OH_Drawing_MaskFilter*
 
 为滤波器对象设置蒙板滤波器对象。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Filter为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 11
@@ -6707,6 +7177,10 @@ int OH_Drawing_FontCountText (OH_Drawing_Font* , const void* text, size_t byteLe
 **描述**
 
 获取文本所表示的字符数量。
+
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Font、text任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -6772,6 +7246,10 @@ float OH_Drawing_FontGetMetrics (OH_Drawing_Font* , OH_Drawing_Font_Metrics*  )
 
 获取字体度量信息。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Font、OH_Drawing_Font_Metrics任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 12
@@ -6797,6 +7275,10 @@ OH_Drawing_Typeface* OH_Drawing_FontGetTypeface (OH_Drawing_Font* )
 **描述**
 
 获取字形对象。
+
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Font为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -7117,6 +7599,10 @@ void OH_Drawing_FontSetFakeBoldText (OH_Drawing_Font* , bool isFakeBoldText )
 
 用于设置增加描边宽度以近似粗体字体效果。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Font为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 11
@@ -7138,6 +7624,10 @@ void OH_Drawing_FontSetLinearText (OH_Drawing_Font* , bool isLinearText )
 **描述**
 
 用于设置线性可缩放字体。
+
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Font为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -7161,6 +7651,10 @@ void OH_Drawing_FontSetTextSize (OH_Drawing_Font* , float textSize )
 
 用于给字体设置文字大小。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Font为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 11
@@ -7183,6 +7677,10 @@ void OH_Drawing_FontSetTextSkewX (OH_Drawing_Font* , float skewX )
 
 用于给字体设置文本倾斜。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Font为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 11
@@ -7204,6 +7702,10 @@ void OH_Drawing_FontSetTypeface (OH_Drawing_Font* , OH_Drawing_Typeface*  )
 **描述**
 
 用于给字体设置字形。
+
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Font为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -7678,6 +8180,10 @@ bool OH_Drawing_ImageBuildFromBitmap (OH_Drawing_Image* , OH_Drawing_Bitmap*  )
 
 从位图构造图片对象内容，共享或复制位图像素。如果位图被标记为不可变状态， 像素内存是共享的，不是复制。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Image、OH_Drawing_Bitmap任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 12
@@ -7744,6 +8250,10 @@ int32_t OH_Drawing_ImageGetHeight (OH_Drawing_Image* )
 
 获取图片高度，即像素行数。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Image为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 12
@@ -7769,6 +8279,10 @@ void OH_Drawing_ImageGetImageInfo (OH_Drawing_Image* , OH_Drawing_Image_Info*  )
 
 获取图片信息。调用该接口后，传入的图片信息对象被填充。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Image、OH_Drawing_Image_Info任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 12
@@ -7790,6 +8304,10 @@ int32_t OH_Drawing_ImageGetWidth (OH_Drawing_Image* )
 **描述**
 
 获取图片宽度，即每行的像素个数。
+
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Image为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -7888,6 +8406,10 @@ void OH_Drawing_MatrixConcat (OH_Drawing_Matrix* total, const OH_Drawing_Matrix*
 **描述**
 
 将矩阵total设置为矩阵a乘以矩阵b。
+
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+total、a、b任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -8033,6 +8555,12 @@ float OH_Drawing_MatrixGetValue (OH_Drawing_Matrix* , int index )
 
 获取矩阵给定索引位的值。索引范围0-8。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Matrix为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER；
+
+index小于0或者大于8时返回OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 12
@@ -8058,6 +8586,10 @@ bool OH_Drawing_MatrixInvert (OH_Drawing_Matrix* , OH_Drawing_Matrix* inverse )
 **描述**
 
 将矩阵inverse设置为矩阵的倒数，并返回结果。
+
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Matrix、inverse任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -8085,6 +8617,10 @@ bool OH_Drawing_MatrixIsEqual (OH_Drawing_Matrix* , OH_Drawing_Matrix* other )
 
 判断两个矩阵是否相等。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Matrix、other任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 12
@@ -8111,6 +8647,10 @@ bool OH_Drawing_MatrixIsIdentity (OH_Drawing_Matrix* )
 
 判断矩阵是否是单位矩阵。 
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Matrix为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 12
@@ -8136,6 +8676,10 @@ void OH_Drawing_MatrixPostRotate (OH_Drawing_Matrix* , float degree, float px, f
 
 将矩阵设置为矩阵右乘围绕轴心点旋转一定角度的单位矩阵后得到的矩阵。 
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Matrix为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 12
@@ -8159,6 +8703,10 @@ void OH_Drawing_MatrixPostScale (OH_Drawing_Matrix* , float sx, float sy, float 
 **描述**
 
 将矩阵设置为矩阵右乘围绕轴心点按一定缩放因子缩放后的单位矩阵后得到的矩阵。
+
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Matrix为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
@@ -8186,6 +8734,10 @@ void OH_Drawing_MatrixPostTranslate (OH_Drawing_Matrix* , float dx, float dy )
 
 将矩阵设置为矩阵右乘平移一定距离后的单位矩阵后得到的矩阵。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Matrix为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -8209,6 +8761,10 @@ void OH_Drawing_MatrixPreRotate (OH_Drawing_Matrix* , float degree, float px, fl
 **描述**
 
 将矩阵设置为矩阵左乘围绕轴心点旋转一定角度的单位矩阵后得到的矩阵。 
+
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Matrix为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
@@ -8234,6 +8790,10 @@ void OH_Drawing_MatrixPreScale (OH_Drawing_Matrix* , float sx, float sy, float p
 **描述**
 
 将矩阵设置为矩阵左乘围绕轴心点按一定缩放因子缩放后的单位矩阵后得到的矩阵。
+
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Matrix为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
@@ -8261,6 +8821,10 @@ void OH_Drawing_MatrixPreTranslate (OH_Drawing_Matrix* , float dx, float dy )
 
 将矩阵设置为矩阵左乘平移一定距离后的单位矩阵后得到的矩阵。 
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Matrix为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 12
@@ -8284,6 +8848,10 @@ void OH_Drawing_MatrixReset (OH_Drawing_Matrix* )
 
 重置当前矩阵为单位矩阵: | 1 0 0 | | 0 1 0 | | 0 0 1 |。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Matrix为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 12
@@ -8304,6 +8872,10 @@ void OH_Drawing_MatrixRotate (OH_Drawing_Matrix* , float degree, float px, float
 **描述**
 
 设置矩阵为单位矩阵，并围绕位于(px, py)的旋转轴点进行旋转。
+
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Matrix为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -8329,6 +8901,10 @@ void OH_Drawing_MatrixScale (OH_Drawing_Matrix* , float sx, float sy, float px, 
 
 设置矩阵为单位矩阵，并围绕位于(px, py)的旋转轴点，以sx和sy进行缩放。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Matrix为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 12
@@ -8353,6 +8929,10 @@ void OH_Drawing_MatrixSetMatrix (OH_Drawing_Matrix* , float scaleX, float skewX,
 **描述**
 
 用于给矩阵对象设置参数。
+
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Matrix为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -8384,6 +8964,12 @@ bool OH_Drawing_MatrixSetPolyToPoly (OH_Drawing_Matrix* , const OH_Drawing_Point
 
 通过设置源点以及目标点，生成对应的变换矩阵。 源点以及目标点的个数要大于等于0，小于等于4。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Matrix为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER；
+
+count小于0或者大于4时返回OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 12
@@ -8412,6 +8998,10 @@ bool OH_Drawing_MatrixSetRectToRect (OH_Drawing_Matrix* , const OH_Drawing_Rect*
 
 将矩阵以缩放方式适配目标矩阵。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Matrix、src、dst任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 12
@@ -8439,6 +9029,10 @@ void OH_Drawing_MatrixTranslate (OH_Drawing_Matrix* , float dx, float dy )
 
 设置矩阵为单位矩阵，并平移(dx, dy)。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Matrix为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 12
@@ -8461,6 +9055,10 @@ OH_Drawing_MemoryStream* OH_Drawing_MemoryStreamCreate (const void* data, size_t
 **描述**
 
 创建一个内存流对象。
+
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+data为NULL或者length等于0时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -8510,6 +9108,10 @@ void OH_Drawing_PathAddArc (OH_Drawing_Path* , const OH_Drawing_Rect* , float st
 
 将圆弧添加到路径中，作为新轮廓的起点。从起始角度到扫掠角度添加弧， 添加的弧是椭圆边界椭圆的一部分，单位为度。正扫掠表示按顺时针方向延长弧， 负扫掠表示按逆时针方向延长弧。如果扫掠角度&lt;= -360°，或扫掠角度&gt;= 360°， 并且起始角度对90取模接近于0，则添加椭圆而不是弧。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Path、OH_Drawing_Rect任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 12
@@ -8533,6 +9135,10 @@ void OH_Drawing_PathAddOval (OH_Drawing_Path* , const OH_Drawing_Rect* , OH_Draw
 
 按指定方向，向路径添加椭圆。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Path、OH_Drawing_Rect任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 12
@@ -8554,6 +9160,10 @@ void OH_Drawing_PathAddOvalWithInitialPoint (OH_Drawing_Path* , const OH_Drawing
 **描述**
 
 将椭圆添加到路径中，其中矩形对象作为椭圆的外切矩形区域，绘制方向用来指定绘制时是顺时针或者逆时针方向。
+
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Path、OH_Drawing_Rect任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -8579,6 +9189,10 @@ void OH_Drawing_PathAddPath (OH_Drawing_Path* , const OH_Drawing_Path* src, cons
 
 将源路径矩阵变换后，添加到当前路径中。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Path、src任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 12
@@ -8601,6 +9215,10 @@ void OH_Drawing_PathAddPathWithMatrixAndMode (OH_Drawing_Path* path, const OH_Dr
 **描述**
 
 将源路径矩阵变换后，以规定模式添加到当前路径中。
+
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+path、src任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -8626,6 +9244,10 @@ void OH_Drawing_PathAddPathWithMode (OH_Drawing_Path* path, const OH_Drawing_Pat
 
 将源路径以规定模式添加到当前路径中。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+path、src任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 12
@@ -8648,6 +9270,10 @@ void OH_Drawing_PathAddPathWithOffsetAndMode (OH_Drawing_Path* path, const OH_Dr
 **描述**
 
 将源路径偏移后，以规定模式添加到当前路径中。
+
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+path、src任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -8673,6 +9299,12 @@ void OH_Drawing_PathAddRect (OH_Drawing_Path* , float left, float top, float rig
 **描述**
 
 按指定方向，向路径添加矩形轮廓。
+
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Path为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER；
+
+OH_Drawing_PathDirection不在枚举范围内返回OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -8700,6 +9332,12 @@ void OH_Drawing_PathAddRectWithInitialCorner (OH_Drawing_Path* , const OH_Drawin
 
 按指定方向，向路径添加矩形轮廓。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Path、OH_Drawing_Rect任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER；
+
+OH_Drawing_PathDirection不在枚举范围内返回OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 12
@@ -8724,6 +9362,12 @@ void OH_Drawing_PathAddRoundRect (OH_Drawing_Path* , const OH_Drawing_RoundRect*
 
 按指定方向，向路径添加圆角矩形轮廓。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Path、roundRect任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER；
+
+OH_Drawing_PathDirection不在枚举范围内返回OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 12
@@ -8733,7 +9377,7 @@ void OH_Drawing_PathAddRoundRect (OH_Drawing_Path* , const OH_Drawing_RoundRect*
 | 名称 | 描述 | 
 | -------- | -------- |
 | OH_Drawing_Path | 指向路径对象[OH_Drawing_Path](#oh_drawing_path)的指针。 | 
-| OH_Drawing_RoundRect | 指向圆角矩形对象[OH_Drawing_RoundRect](#oh_drawing_roundrect)的指针。 | 
+| roundRect | 指向圆角矩形对象[OH_Drawing_RoundRect](#oh_drawing_roundrect)的指针。 | 
 | OH_Drawing_PathDirection | 路径方向[OH_Drawing_PathDirection](#oh_drawing_pathdirection)。 | 
 
 
@@ -8746,6 +9390,10 @@ void OH_Drawing_PathArcTo (OH_Drawing_Path* , float x1, float y1, float x2, floa
 **描述**
 
 用于给路径添加一段弧线，绘制弧线的方式为角度弧，该方式首先会指定一个矩形边框，矩形边框会包裹椭圆， 然后会指定一个起始角度和扫描度数，从起始角度扫描截取的椭圆周长一部分即为绘制的弧线。另外会默认添加一条从路径的最后点位置到弧线起始点位置的线段。
+
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Path为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -8774,6 +9422,10 @@ void OH_Drawing_PathClose (OH_Drawing_Path* )
 
 用于闭合路径，会添加一条从路径起点位置到最后点位置的线段。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Path为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 8
@@ -8794,6 +9446,10 @@ void OH_Drawing_PathConicTo (OH_Drawing_Path* , float ctrlX, float ctrlY, float 
 **描述**
 
 在当前路径上添加一个二次贝塞尔曲线段，其控制点为 (ctrlX, ctrlY)，结束点为 (endX, endY)。
+
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Path为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -8821,6 +9477,10 @@ bool OH_Drawing_PathContains (OH_Drawing_Path* , float x, float y )
 
 判断指定坐标点是否被路径包含。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Path为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 12
@@ -8847,6 +9507,10 @@ OH_Drawing_Path* OH_Drawing_PathCopy (OH_Drawing_Path* )
 **描述**
 
 创建一个路径对象副本[OH_Drawing_Path](#oh_drawing_path)，用于拷贝一个已有路径对象。
+
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Path为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -8891,6 +9555,10 @@ void OH_Drawing_PathCubicTo (OH_Drawing_Path* , float ctrlX1, float ctrlY1, floa
 **描述**
 
 用于添加一条从路径最后点位置到目标点位置的三阶贝塞尔圆滑曲线。
+
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Path为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -8961,6 +9629,10 @@ float OH_Drawing_PathGetLength (OH_Drawing_Path* , bool forceClosed )
 
 获取当前路径的长度。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Path为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 12
@@ -8987,6 +9659,10 @@ void OH_Drawing_PathLineTo (OH_Drawing_Path* , float x, float y )
 
 用于添加一条从路径的最后点位置到目标点位置的线段。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Path为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 8
@@ -9009,6 +9685,10 @@ void OH_Drawing_PathMoveTo (OH_Drawing_Path* , float x, float y )
 **描述**
 
 用于设置自定义路径的起始点位置。
+
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Path为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -9033,6 +9713,10 @@ void OH_Drawing_PathOffset (OH_Drawing_Path* path, OH_Drawing_Path* dst, float d
 
 将路径中的所有点沿着x轴和y轴方向偏移一定距离，并将结果存储到目标路径对象中。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+path为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 12
@@ -9056,6 +9740,10 @@ void OH_Drawing_PathQuadTo (OH_Drawing_Path* , float ctrlX, float ctrlY, float e
 **描述**
 
 用于添加一条从路径最后点位置到目标点位置的二阶贝塞尔圆滑曲线。
+
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Path为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -9082,6 +9770,10 @@ void OH_Drawing_PathRConicTo (OH_Drawing_Path* , float ctrlX, float ctrlY, float
 
 使用相对位置在当前路径上添加一条当前路径终点到目标点位置的圆锥曲线。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Path为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 12
@@ -9107,6 +9799,10 @@ void OH_Drawing_PathRCubicTo (OH_Drawing_Path* , float ctrlX1, float ctrlY1, flo
 **描述**
 
 使用相对位置在当前路径上添加一条当前路径终点到目标点位置的三阶贝塞尔圆滑曲线。
+
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Path为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -9135,6 +9831,10 @@ void OH_Drawing_PathReset (OH_Drawing_Path* )
 
 用于重置自定义路径数据。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Path为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 8
@@ -9155,6 +9855,10 @@ void OH_Drawing_PathRLineTo (OH_Drawing_Path* , float x, float y )
 **描述**
 
 使用相对位置在当前路径上添加一条当前路径终点到目标点位置的线段。
+
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Path为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -9179,6 +9883,10 @@ void OH_Drawing_PathRMoveTo (OH_Drawing_Path* , float x, float y )
 
 用于设置一个相对于当前路径终点的路径起始点位置。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Path为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 12
@@ -9201,6 +9909,10 @@ void OH_Drawing_PathRQuadTo (OH_Drawing_Path* , float ctrlX, float ctrlY, float 
 **描述**
 
 使用相对位置在当前路径上添加一条当前路径终点到目标点位置的二阶贝塞尔圆滑曲线。
+
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Path为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -9227,6 +9939,12 @@ void OH_Drawing_PathSetFillType (OH_Drawing_Path* , OH_Drawing_PathFillType  )
 
 设置填充路径的规则。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Path为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER；
+
+OH_Drawing_PathFillType不在枚举范围内返回OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 12
@@ -9249,6 +9967,10 @@ void OH_Drawing_PathTransform (OH_Drawing_Path* , const OH_Drawing_Matrix*  )
 
 对路径进行矩阵变换。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Path、OH_Drawing_Matrix任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 12
@@ -9270,6 +9992,10 @@ void OH_Drawing_PathTransformWithPerspectiveClip (OH_Drawing_Path* src, const OH
 **描述**
 
 对路径进行矩阵变换。用转换后的路径替换目标路径，如果目标路径为空，则替换源路径。
+
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+src、OH_Drawing_Matrix任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -9335,6 +10061,10 @@ uint8_t OH_Drawing_PenGetAlpha (const OH_Drawing_Pen* )
 
 获取画笔的透明度值。画笔在勾勒图形时透明通道会使用该值。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Pen为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 11
@@ -9359,6 +10089,10 @@ OH_Drawing_PenLineCapStyle OH_Drawing_PenGetCap (const OH_Drawing_Pen* )
 **描述**
 
 用于获取画笔笔帽的样式。
+
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Pen为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -9385,6 +10119,10 @@ uint32_t OH_Drawing_PenGetColor (const OH_Drawing_Pen* )
 
 用于获取画笔的颜色属性，颜色属性描述了画笔绘制图形轮廓时使用的颜色，用一个32位（ARGB）的变量表示。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Pen为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 8
@@ -9410,6 +10148,10 @@ void OH_Drawing_PenGetFilter (OH_Drawing_Pen* , OH_Drawing_Filter*  )
 
 从画笔获取滤波器[OH_Drawing_Filter](#oh_drawing_filter)。滤波器是一个容器，可以承载蒙版滤波器和颜色滤波器。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Pen为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 12
@@ -9431,6 +10173,10 @@ OH_Drawing_PenLineJoinStyle OH_Drawing_PenGetJoin (const OH_Drawing_Pen* )
 **描述**
 
 用于获取画笔绘制折线转角的样式。
+
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Pen为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -9455,6 +10201,10 @@ float OH_Drawing_PenGetMiterLimit (const OH_Drawing_Pen* )
 **描述**
 
 用于获取折线尖角的限制值，当画笔绘制一条折线，转角类型设置为尖角时，那么此时该属性用于限制出现尖角的长度范围，如果超出则平角显示，不超出依然为尖角。
+
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Pen为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -9481,6 +10231,10 @@ float OH_Drawing_PenGetWidth (const OH_Drawing_Pen* )
 
 用于获取画笔的厚度属性，厚度属性描述了画笔绘制图形轮廓的宽度。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Pen为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 8
@@ -9505,6 +10259,10 @@ bool OH_Drawing_PenIsAntiAlias (const OH_Drawing_Pen* )
 **描述**
 
 用于获取画笔是否设置抗锯齿属性，如果为真则说明画笔会启用抗锯齿功能，在绘制图形时会对图形的边缘像素进行半透明的模糊处理。
+
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Pen为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -9531,6 +10289,10 @@ void OH_Drawing_PenReset (OH_Drawing_Pen* )
 
 将画笔重置至初始值。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Pen为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 12
@@ -9551,6 +10313,10 @@ void OH_Drawing_PenSetAlpha (OH_Drawing_Pen* , uint8_t alpha )
 **描述**
 
 为画笔设置透明度值。画笔在勾勒图形时透明通道会使用该值。
+
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Pen为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -9574,6 +10340,10 @@ void OH_Drawing_PenSetAntiAlias (OH_Drawing_Pen* , bool  )
 
 用于设置画笔的抗锯齿属性，设置为真则画笔在绘制图形时会对图形的边缘像素进行半透明的模糊处理。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Pen为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 8
@@ -9595,6 +10365,10 @@ void OH_Drawing_PenSetBlendMode (OH_Drawing_Pen* , OH_Drawing_BlendMode  )
 **描述**
 
 为画笔设置一个混合器，该混合器实现了指定的混合模式枚举。
+
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Pen为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -9618,6 +10392,10 @@ void OH_Drawing_PenSetCap (OH_Drawing_Pen* , OH_Drawing_PenLineCapStyle  )
 
 用于设置画笔笔帽样式。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Pen为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 8
@@ -9639,6 +10417,10 @@ void OH_Drawing_PenSetColor (OH_Drawing_Pen* , uint32_t color )
 **描述**
 
 用于设置画笔的颜色属性，颜色属性描述了画笔绘制图形轮廓时使用的颜色，用一个32位（ARGB）的变量表示。
+
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Pen为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -9662,6 +10444,10 @@ void OH_Drawing_PenSetFilter (OH_Drawing_Pen* , OH_Drawing_Filter*  )
 
 设置画笔滤波器。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Pen为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 11
@@ -9683,6 +10469,10 @@ void OH_Drawing_PenSetJoin (OH_Drawing_Pen* , OH_Drawing_PenLineJoinStyle  )
 **描述**
 
 用于设置画笔绘制转角的样式。
+
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Pen为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -9706,6 +10496,10 @@ void OH_Drawing_PenSetMiterLimit (OH_Drawing_Pen* , float miter )
 
 用于设置折线尖角的限制值，当画笔绘制一条折线，转角类型设置为尖角时，那么此时该属性用于限制出现尖角的长度范围，如果超出则平角显示，不超出依然为尖角。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Pen为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 8
@@ -9727,6 +10521,10 @@ void OH_Drawing_PenSetPathEffect (OH_Drawing_Pen* , OH_Drawing_PathEffect*  )
 **描述**
 
 设置画笔路径效果。
+
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Pen为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -9750,6 +10548,10 @@ void OH_Drawing_PenSetShaderEffect (OH_Drawing_Pen* , OH_Drawing_ShaderEffect*  
 
 设置画笔着色器效果。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Pen为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 11
@@ -9771,6 +10573,10 @@ void OH_Drawing_PenSetWidth (OH_Drawing_Pen* , float width )
 **描述**
 
 用于设置画笔的厚度属性，厚度属性描述了画笔绘制图形轮廓的宽度。
+
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Pen为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -9840,6 +10646,10 @@ void OH_Drawing_RectCopy (OH_Drawing_Rect* sRect, OH_Drawing_Rect* dRect )
 **描述**
 
 用于将源矩形对象复制到目标矩形对象。
+
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+sRect、dRect任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -9912,6 +10722,10 @@ float OH_Drawing_RectGetBottom (OH_Drawing_Rect* )
 
 用于获取矩形右下角的纵坐标。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Rect为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 12
@@ -9936,6 +10750,10 @@ float OH_Drawing_RectGetHeight (OH_Drawing_Rect* )
 **描述**
 
 用于获取矩形对象高度。
+
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Rect为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -9962,6 +10780,10 @@ float OH_Drawing_RectGetLeft (OH_Drawing_Rect* )
 
 用于获取矩形左上角的横坐标。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Rect为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 12
@@ -9986,6 +10808,10 @@ float OH_Drawing_RectGetRight (OH_Drawing_Rect* )
 **描述**
 
 用于获取矩形右下角的横坐标。
+
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Rect为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -10012,6 +10838,10 @@ float OH_Drawing_RectGetTop (OH_Drawing_Rect* )
 
 用于获取矩形左上角的纵坐标。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Rect为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 12
@@ -10037,6 +10867,10 @@ float OH_Drawing_RectGetWidth (OH_Drawing_Rect* )
 
 用于获取矩形对象的宽度。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Rect为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 12
@@ -10061,6 +10895,10 @@ bool OH_Drawing_RectIntersect (OH_Drawing_Rect* rect, const OH_Drawing_Rect* oth
 **描述**
 
 用于判断两个矩形是否相交。
+
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+rect、other任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -10088,6 +10926,10 @@ void OH_Drawing_RectSetBottom (OH_Drawing_Rect* rect, float bottom )
 
 用于设置矩形右下角的纵坐标。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+rect为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 12
@@ -10109,6 +10951,10 @@ void OH_Drawing_RectSetLeft (OH_Drawing_Rect* rect, float left )
 **描述**
 
 用于设置矩形左上角的横坐标。
+
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+rect为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -10132,6 +10978,10 @@ void OH_Drawing_RectSetRight (OH_Drawing_Rect* rect, float right )
 
 用于设置矩形右下角的横坐标。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+rect为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 12
@@ -10153,6 +11003,10 @@ void OH_Drawing_RectSetTop (OH_Drawing_Rect* rect, float top )
 **描述**
 
 用于设置矩形左上角的纵坐标。
+
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+rect为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -10216,6 +11070,10 @@ bool OH_Drawing_RegionSetRect (OH_Drawing_Region* region, const OH_Drawing_Rect*
 
 用于尝试给区域对象设置矩形边界。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+region、rect任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 12
@@ -10224,8 +11082,8 @@ bool OH_Drawing_RegionSetRect (OH_Drawing_Region* region, const OH_Drawing_Rect*
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| OH_Drawing_Region | 指向区域对象的指针。 | 
-| OH_Drawing_Rect | 指向矩形对象的指针。 | 
+| region | 指向区域对象的指针。 | 
+| rect | 指向矩形对象的指针。 | 
 
 **返回：**
 
@@ -10345,6 +11203,10 @@ OH_Drawing_Corner_Radii OH_Drawing_RoundRectGetCorner (OH_Drawing_RoundRect* , O
 
 用于获取圆角矩形中指定圆角位置的圆角半径。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_RoundRect为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 12
@@ -10370,6 +11232,10 @@ void OH_Drawing_RoundRectSetCorner (OH_Drawing_RoundRect* , OH_Drawing_CornerPos
 **描述**
 
 用于设置圆角矩形中指定圆角位置的圆角半径。
+
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_RoundRect为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -11520,6 +12386,10 @@ OH_Drawing_ShaderEffect* OH_Drawing_ShaderEffectCreateImageShader (OH_Drawing_Im
 
 创建图像着色器。此接口不建议用于录制类型的画布，会影响性能。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Image、OH_Drawing_SamplingOptions任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 12
@@ -11548,6 +12418,10 @@ OH_Drawing_ShaderEffect* OH_Drawing_ShaderEffectCreateLinearGradient (const OH_D
 **描述**
 
 创建着色器，在两个指定点之间生成线性渐变。
+
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+startPt、endPt、colors任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -11579,6 +12453,10 @@ OH_Drawing_ShaderEffect* OH_Drawing_ShaderEffectCreateRadialGradient (const OH_D
 
 创建着色器，在给定圆心和半径的情况下生成径向渐变。 从起点到终点颜色从内到外进行圆形渐变（从中间向外拉）被称为径向渐变。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+centerPt、colors任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 11
@@ -11608,6 +12486,10 @@ OH_Drawing_ShaderEffect* OH_Drawing_ShaderEffectCreateSweepGradient (const OH_Dr
 **描述**
 
 创建着色器，在给定中心的情况下生成扇形渐变。颜色从0°到360°渐变被称为扇形渐变。
+
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+centerPt、colors任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -11659,6 +12541,10 @@ OH_Drawing_Surface* OH_Drawing_SurfaceCreateFromGpuContext (OH_Drawing_GpuContex
 
 使用图形处理器上下文创建一个surface对象，用于管理画布绘制的内容。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_GpuContext为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 12
@@ -11707,6 +12593,10 @@ OH_Drawing_Canvas* OH_Drawing_SurfaceGetCanvas (OH_Drawing_Surface* )
 
 通过surface对象获取画布对象。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_Surface为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 12
@@ -11731,6 +12621,10 @@ const OH_Drawing_RunBuffer* OH_Drawing_TextBlobBuilderAllocRunPos (OH_Drawing_Te
 **描述**
 
 申请一块内存，用于存储文字和位置信息。返回的指针无需调用者管理， 当调用[OH_Drawing_TextBlobBuilderMake](#oh_drawing_textblobbuildermake)后禁止使用。
+
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_TextBlobBuilder、OH_Drawing_Font任意一个为NULL或者count小于等于0时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -11796,6 +12690,10 @@ OH_Drawing_TextBlob* OH_Drawing_TextBlobBuilderMake (OH_Drawing_TextBlobBuilder*
 
 用于从文本构造器中创建文本对象。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_TextBlobBuilder为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 11
@@ -11820,6 +12718,12 @@ OH_Drawing_TextBlob* OH_Drawing_TextBlobCreateFromPosText (const void * text, si
 **描述**
 
 从文本和文本的位置中创建一个文本对象。
+
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+text、OH_Drawing_Point2D、OH_Drawing_Font任意一个为NULL或byteLength等于0时返回OH_DRAWING_ERROR_INVALID_PARAMETER；
+
+OH_Drawing_TextEncoding不在枚举范围内返回OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -11850,6 +12754,12 @@ OH_Drawing_TextBlob* OH_Drawing_TextBlobCreateFromString (const char* str, const
 
 从字符串中创建文本对象。
 
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+str、OH_Drawing_Font任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER；
+
+OH_Drawing_TextEncoding不在枚举范围内返回OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
 **起始版本：** 12
@@ -11876,6 +12786,12 @@ OH_Drawing_TextBlob* OH_Drawing_TextBlobCreateFromText (const void * text, size_
 **描述**
 
 从文本中创建一个文本对象。
+
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+text、OH_Drawing_Font任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER；
+
+OH_Drawing_TextEncoding不在枚举范围内返回OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -11925,6 +12841,10 @@ void OH_Drawing_TextBlobGetBounds (OH_Drawing_TextBlob* , OH_Drawing_Rect*  )
 **描述**
 
 获取文本对象的边界范围。
+
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_TextBlob、OH_Drawing_Rect任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -12885,6 +13805,10 @@ OH_Drawing_Typeface* OH_Drawing_TypefaceCreateFromStream (OH_Drawing_MemoryStrea
 **描述**
 
 通过内存流创建一个字形对象。如果内存流是无效的字体文件，返回空指针。 内存流传入后，所有权转移，开发者不能再释放它。
+
+本接口可能会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
+
+OH_Drawing_MemoryStream为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
