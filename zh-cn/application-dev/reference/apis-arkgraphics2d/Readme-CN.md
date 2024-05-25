@@ -24,6 +24,7 @@
     - [drawing_color.h](drawing__color_8h.md)
     - [drawing_color_filter.h](drawing__color__filter_8h.md)
     - [drawing_color_space.h](drawing__color__space_8h.md)
+    - [drawing_error_code.h](drawing__error__code_8h.md)
     - [drawing_filter.h](drawing__filter_8h.md)
     - [drawing_font.h](drawing__font_8h.md)
     - [drawing_font_collection.h](drawing__font__collection_8h.md)
