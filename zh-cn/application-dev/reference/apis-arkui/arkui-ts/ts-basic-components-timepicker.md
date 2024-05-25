@@ -166,6 +166,14 @@ onChange(callback:&nbsp;(value:&nbsp;TimePickerResult )&nbsp;=&gt;&nbsp;void)
 | ------ | --------------------------------------------- | ---- | -------------- |
 | value  | [TimePickerResult](#timepickerresult对象说明) | 是   | 24小时制时间。 |
 
+### enableHapticFeedback
+
+enableHapticFeedback(enable: boolean)
+
+| 参数名 | 类型                                          | 必填 | 说明                  |
+| ------ | --------------------------------------------- |---|---------------------|
+| enableHapticFeedback  | boolean | 否 | true, 默认开启, 支持触控反馈。 |
+
 ## TimePickerResult对象说明
 
 返回值为24小时制时间。
