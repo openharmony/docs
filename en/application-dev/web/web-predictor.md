@@ -40,7 +40,7 @@ You can also use [initializeBrowserEngine()](../reference/apis-arkweb/js-apis-we
   In the following example, the web kernel is initialized in advance and the home page is preconnected in **onCreate** of the UIAbility.
 
 ```ts
-// xxx.ts
+// xxx.ets
 import UIAbility from '@ohos.app.ability.UIAbility';
 import web_webview from '@ohos.web.webview';
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';

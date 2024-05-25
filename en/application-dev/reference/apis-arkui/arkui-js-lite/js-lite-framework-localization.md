@@ -8,7 +8,7 @@ You only need to perform operations in [Defining Resource Files](#defining-resou
 
 Resource files store application content in multiple languages. This framework uses JSON files to store resource definitions.
 
-Place the resource definition file of each locale in the **i18n** folder specified in [Directory Structure](js-framework-file.md). Name the resource files in _language-region_.json format. For example, name the resource file for English (United States) **en-US.json**. If there is no resource file of the locale that matches the system language, content in the **en-US.json** file will be used by default.
+Place the resource definition file of each locale in the **i18n** folder specified in [Directory Structure](js-lite-framework-file.md). Name the resource files in _language-region_.json format. For example, name the resource file for English (United States) **en-US.json**. If there is no resource file of the locale that matches the system language, content in the **en-US.json** file will be used by default.
 
 The format of the resource file content is as follows:
 

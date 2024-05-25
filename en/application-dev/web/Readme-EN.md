@@ -1,5 +1,4 @@
 # ArkWeb
-
 - [Introduction to ArkWeb](web-component-overview.md)
 - [Default User Agent String](web-default-userAgent.md)
 - [Loading Pages by Using the Web Component](web-page-loading-with-web-components.md)
@@ -10,7 +9,7 @@
   - [Managing Location Permissions](web-geolocation-permission.md)
   - [Using Incognito Mode](web-incognito-mode.md)
   - [Implementing Nested Scrolling](web-nested-scrolling.md)
-- Using Frontend Page JavaScript Code on the Application
+- Mutual Invoking Between the Application Side and Frontend Pages
   - [Invoking Frontend Page Functions on the Application](web-in-app-frontend-page-function-invoking.md)
   - [Invoking Application Functions on the Frontend Page](web-in-page-app-function-invoking.md)
   - [Establishing a Data Channel Between the Application and Frontend Page](web-app-page-data-channel.md)
@@ -20,4 +19,7 @@
 - [Printing Frontend Pages](web-print.md)
 - [Downloading Files](web-download.md)
 - [Accelerating Web Page Access with Preconnecting and Prefetching](web-predictor.md)
+- [Rendering and Drawing XComponent+AVPlayer and Button Components at the Same Layer](web-same-layer.md)
+- [Starting a Camera and Microphone with WebRTC](web-rtc.md)
+- [Resolving Cross-Origin Resource Access](web-cross-origin.md)
 - [Debugging Frontend Pages by Using DevTools](web-debugging-with-devtools.md)

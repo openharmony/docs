@@ -34,14 +34,14 @@ Not supported
   | change | { checked:true \| false } | Triggered when the checked status of the **checkbox** or **radio** button changes.|
   | click | - | Triggered when the component is clicked. |
   | longpress | - | Triggered when the component is long pressed. |
-  | swipe<sup>5+</sup> | [SwipeEvent](js-common-events.md) | Triggered when a user quickly swipes on the component. |
+  | swipe<sup>5+</sup> | [SwipeEvent](js-lite-common-events.md) | Triggered when a user quickly swipes on the component. |
 
 - When **type** is set to **button**, the following events are supported.
     | Name| Parameter| Description|
   | -------- | -------- | -------- |
   | click | - | Triggered when the component is clicked. |
   | longpress | - | Triggered when the component is long pressed. |
-  | swipe<sup>5+</sup> | [SwipeEvent](js-common-events.md) | Triggered when a user quickly swipes on the component. |
+  | swipe<sup>5+</sup> | [SwipeEvent](js-lite-common-events.md) | Triggered when a user quickly swipes on the component. |
 
 
 ## Styles

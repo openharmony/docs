@@ -1,12 +1,13 @@
 # Invoking Application Functions on the Frontend Page
 
 
-You can use the **Web** component to register application code with frontend pages. After the registration is done, frontend pages can use the registered object names to call application functions.
+You can use the **\<Web>** component to register application code with frontend pages. After the registration is done, frontend pages can use the registered object names to call application functions.
 
 Two methods are available for registering the application code:
 
-- Call [javaScriptProxy()](../reference/apis-arkweb/ts-basic-components-web.md#javascriptproxy) during **Web** component initialization.
-- Call [registerJavaScriptProxy()](../reference/apis-arkweb/js-apis-webview.md#registerjavascriptproxy) after **Web** component initialization.
+- Call [javaScriptProxy()](../reference/apis-arkweb/ts-basic-components-web.md#javascriptproxy) during **\<Web>** component initialization.
+
+- Call [registerJavaScriptProxy()](../reference/apis-arkweb/js-apis-webview.md#registerjavascriptproxy) after **\<Web>** component initialization.
 
 
 The following example registers the **test()** function with the frontend page. This way, the **test()** function can be triggered and run on the frontend page.
@@ -51,7 +52,7 @@ The following example registers the **test()** function with the frontend page. 
   ```
 
 
-- Sample code for using [registerJavaScriptProxy()](../reference/apis/js-apis-webview.md#registerjavascriptproxy):
+- Sample code for using [registerJavaScriptProxy()](../reference/apis-arkweb/js-apis-webview.md#registerjavascriptproxy):
 
   ```ts
   // xxx.ets
@@ -343,7 +344,7 @@ The following example registers the **test()** function with the frontend page. 
   class testClass {
     constructor() {
     }
-
+    
     test(param: ESObject): void {
       param.hello("call obj func");
     }

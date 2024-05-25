@@ -19,10 +19,10 @@ This API can be used in ArkTS widgets since API version 9.
 
 **Parameters**
 
-| Name  | Type        | Mandatory| Description                                                    |
-| -------- | ---------------- | ---- | ------------------------------------------------------------ |
-| width    | number \| string | No  | Width of the rectangle where the path is located.<br>Default value: **0**<br>**NOTE**<br>An invalid value is handled as the default value.|
-| height   | number \| string | No  | Height of the rectangle where the path is located.<br>Default value: **0**<br>**NOTE**<br>An invalid value is handled as the default value.|
+| Name                                            | Type        | Mandatory| Description                                                    |
+| -------------------------------------------------- | ---------------- | ---- | ------------------------------------------------------------ |
+| width                                              | number \| string | No  | Width of the rectangle where the path is located.<br>**NOTE**<br>If the value is invalid or the default value is used, the width required for the content is used.|
+| height                                             | number \| string | No  | Height of the rectangle where the path is located.<br>**NOTE**<br>If the value is invalid or the default value is used, the height required for the content is used.|
 | [commands](ts-drawing-components-path.md#commands) | string           | No  | Command for drawing the path.<br>Default value: **''**<br>**NOTE**<br>An invalid value is handled as the default value.|
 
 

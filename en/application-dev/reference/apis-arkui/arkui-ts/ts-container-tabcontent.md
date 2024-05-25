@@ -13,7 +13,7 @@ This component supports only one child component.
 
 >  **NOTE**
 >
->  Built-in components and custom components are allowed, with support for ([if/else](../../quick-start/arkts-rendering-control-ifelse.md), [ForEach](../../quick-start/arkts-rendering-control-foreach.md), and [LazyForEach](../../quick-start/arkts-rendering-control-lazyforeach.md)) rendering control.
+>  Built-in components and custom components are allowed, with support for ([if/else](../../../quick-start/arkts-rendering-control-ifelse.md), [ForEach](../../../quick-start/arkts-rendering-control-foreach.md), and [LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md)) rendering control.
 
 
 ## APIs
@@ -39,11 +39,11 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 ## SubTabBarStyle<sup>9+</sup>
 
-Implements the subtab style.
+Implements the subtab style. When this attribute is enabled, the transition animation is played when the user switches between tabs.
 
 ### constructor
 
-constructor(content: string | Resource)
+constructor(content: ResourceStr)
 
 Constructor used to create a **SubTabBarStyle** instance.
 
@@ -51,7 +51,7 @@ Constructor used to create a **SubTabBarStyle** instance.
 
 | Name| Type        | Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| content | string \| [Resource](ts-types.md#resource) | Yes| Text for the tab. Since API version 10, the type of **content** is **ResourceStr**.|
+| content | [ResourceStr](ts-types.md#resourcestr) | Yes| Text for the tab.|
 
 ### of<sup>10+</sup>
 
@@ -117,7 +117,7 @@ Implements the bottom and side tab style.
 
 ### constructor
 
-constructor(icon: string | Resource, text: string | Resource)
+constructor(icon: ResourceStr, text: ResourceStr)
 
 A constructor used to create a **BottomTabBarStyle** instance.
 
@@ -125,8 +125,8 @@ A constructor used to create a **BottomTabBarStyle** instance.
 
 | Name| Type        | Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| icon | string \| [Resource](ts-types.md#resource) | Yes| Image for the tab. Since API version 10, the type of **icon** is **ResourceStr**.|
-| text | string \| [Resource](ts-types.md#resource) | Yes| Text for the tab. Since API version 10, the type of **text** is **ResourceStr**.|
+| icon | [ResourceStr](ts-types.md#resourcestr) | Yes| Image for the tab.|
+| text | [ResourceStr](ts-types.md#resourcestr) | Yes| Text for the tab.|
 
 ### of<sup>10+</sup>
 
@@ -670,39 +670,67 @@ struct TabsTextOverflow {
   @State message: string = 'Hello World'
   private controller: TabsController = new TabsController()
   @State subTabOverflowOpaque: boolean = true;
+
   build() {
     Column() {
       Tabs({ barPosition: BarPosition.Start, controller: this.controller }) {
         TabContent() {
-          Column(){
+          Column() {
             Text('Use an ellipsis').fontSize(30).fontColor(0xFF000000)
           }.width('100%').height('100%').backgroundColor(Color.Pink)
-        }.tabBar (SubTabBarStyle.of ('Start [Use an ellipsis] End')
-          .labelStyle({ overflow: TextOverflow.Ellipsis, maxLines: 1, minFontSize: 10, heightAdaptivePolicy: TextHeightAdaptivePolicy.MAX_LINES_FIRST,
-            font: { size: 20 } }))
+        }
+        .tabBar(SubTabBarStyle.of('Start [Use an ellipsis; Use an ellipsis] End')
+          .labelStyle({
+            overflow: TextOverflow.Ellipsis,
+            maxLines: 1,
+            minFontSize: 10,
+            heightAdaptivePolicy: TextHeightAdaptivePolicy.MAX_LINES_FIRST,
+            font: { size: 20 }
+          }))
+
         TabContent() {
-          Column()
-          {
+          Column() {
             Text('Scale down and then clip').fontSize(30).fontColor(0xFF000000)
           }.width('100%').height('100%').backgroundColor(Color.Pink)
-        }.tabBar (SubTabBarStyle.of ('Start [Scale down and then clip; Scale down and then clip] End')
-          .labelStyle({ overflow: TextOverflow.Clip, maxLines: 1, minFontSize: 15, maxFontSize: 15, heightAdaptivePolicy: TextHeightAdaptivePolicy.MIN_FONT_SIZE_FIRST,
-            font: { size: 20 } }))
+        }
+        .tabBar(SubTabBarStyle.of('Start [Scale down and then clip; Scale down and then clip] End')
+          .labelStyle({
+            overflow: TextOverflow.Clip,
+            maxLines: 1,
+            minFontSize: 15,
+            maxFontSize: 15,
+            heightAdaptivePolicy: TextHeightAdaptivePolicy.MIN_FONT_SIZE_FIRST,
+            font: { size: 20 }
+          }))
+
         TabContent() {
-          Column(){
+          Column() {
             Text('Scale down, start a new line, and then clip').fontSize(30).fontColor(0xFF000000)
           }.width('100%').height('100%').backgroundColor(Color.Pink)
-        }.tabBar (SubTabBarStyle.of ('Start [Scale down, start a new line, and then clip; Scale down, start a new line, and then clip] End')
-          .labelStyle({ overflow: TextOverflow.Clip, maxLines: 2, minFontSize: 15, maxFontSize: 15, heightAdaptivePolicy: TextHeightAdaptivePolicy.MIN_FONT_SIZE_FIRST,
-            font: { size: 20 } }))
+        }
+        .tabBar(SubTabBarStyle.of('Start [Scale down, start a new line, and then clip; Scale down, start a new line, and then clip] End')
+          .labelStyle({
+            overflow: TextOverflow.Clip,
+            maxLines: 2,
+            minFontSize: 15,
+            maxFontSize: 15,
+            heightAdaptivePolicy: TextHeightAdaptivePolicy.MIN_FONT_SIZE_FIRST,
+            font: { size: 20 }
+          }))
+
         TabContent() {
           Column() {
             Text('Start a new line').fontSize(30).fontColor(0xFF000000)
           }
           .width('100%').height('100%').backgroundColor(Color.Pink)
         }.tabBar(SubTabBarStyle.of('Start [Start a new line; Start a new line; Start a new line; Start a new line; Start a new line] End')
-          .labelStyle({ overflow: TextOverflow.Clip, maxLines: 10, minFontSize: 10, heightAdaptivePolicy: TextHeightAdaptivePolicy.MAX_LINES_FIRST,
-            font: { size: 20 } }))
+          .labelStyle({
+            overflow: TextOverflow.Clip,
+            maxLines: 10,
+            minFontSize: 10,
+            heightAdaptivePolicy: TextHeightAdaptivePolicy.MAX_LINES_FIRST,
+            font: { size: 20 }
+          }))
       }
       .vertical(true).scrollable(true)
       .barMode(BarMode.Fixed)
@@ -794,7 +822,7 @@ struct TabContentExample6 {
             this.layoutMode = LayoutMode.VERTICAL;
           })
           .margin({ right: '6%', bottom: '12vp' })
-        Button ("horizontal Layout")
+        Button ("Horizontal Layout")
           .width('47%')
           .height(50)
           .margin({ top: 5 })

@@ -102,7 +102,7 @@ Not supported
 | ------------------ | --------------------------------- | ----------- |
 | click              | -                                 | Triggered when the component is clicked. |
 | longpress          | -                                 | Triggered when the component is long pressed. |
-| swipe<sup>5+</sup> | [SwipeEvent](js-common-events.md) | Triggered when a user quickly swipes on the component.|
+| swipe<sup>5+</sup> | [SwipeEvent](js-lite-common-events.md) | Triggered when a user quickly swipes on the component.|
 
 
 ## Styles
