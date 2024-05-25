@@ -2079,6 +2079,7 @@ on(type: 'skipToQueueItem', callback: (itemId: number) => void): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -2149,6 +2150,7 @@ on(type: 'outputDeviceChange', callback: (state: ConnectionState, device: Output
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -2231,6 +2233,7 @@ off(type: 'play', callback?: () => void): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -2263,6 +2266,7 @@ off(type: 'pause', callback?: () => void): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -2295,6 +2299,7 @@ off(type: 'stop', callback?: () => void): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -2327,6 +2332,7 @@ off(type: 'playNext', callback?: () => void): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -2359,6 +2365,7 @@ off(type: 'playPrevious', callback?: () => void): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
