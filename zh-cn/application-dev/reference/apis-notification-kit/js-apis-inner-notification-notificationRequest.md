@@ -47,6 +47,7 @@
 | removalWantAgent<sup>9+<sup>  | [WantAgent](../apis-ability-kit/js-apis-wantAgent.md)            |   否  | 否  | 当移除通知时，通知将被重定向到的WantAgent实例。当前不支持跳转UIAbility，只支持发布公共事件及跳转系统Service能力（WantAgent的OperationType >= 3）。                                          |
 | badgeNumber<sup>9+<sup>       | number                                                   |   否  | 否  | 应用程序图标上显示的通知数。                                                        |
 | appMessageId<sup>12+<sup>       | string                                                   |   否  | 否  | 应用发送通知携带的唯一标识字段, 用于通知去重。如果同一应用通过本地和云端等不同途径发布携带相同appMessageId的通知，设备只展示一条消息，之后收到的重复通知会被静默去重，不展示、不提醒。去重标识仅在通知发布的24小时内有效，超过24小时或者设备重启失效。                                                        |
+| sound                      | string                                                   |   否  | 否  | 通知的提示音资源路径。                                                               |
 
 ## DistributedOptions
 
