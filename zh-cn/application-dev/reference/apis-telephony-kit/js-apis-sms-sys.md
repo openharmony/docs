@@ -53,7 +53,7 @@ sendMms\(context: Context, mmsParams: MmsParams, callback: AsyncCallback&lt;void
 **示例：**
 
 FA模型示例：
-
+<!--code_no_check_fa-->
 ```ts
 import { sms } from '@kit.TelephonyKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -168,7 +168,7 @@ sendMms\(context: Context, mmsParams: MmsParams\): Promise&lt;void&gt;
 **示例：**
 
 FA模型示例：
-
+<!--code_no_check_fa-->
 ```ts
 import { sms } from '@kit.TelephonyKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -276,7 +276,7 @@ downloadMms\(context: Context, mmsParams: MmsParams, callback: AsyncCallback&lt;
 **示例：**
 
 FA模型示例：
-
+<!--code_no_check_fa-->
 ```ts
 import { sms } from '@kit.TelephonyKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -344,7 +344,7 @@ let mmsPars: sms.MmsParams = {
 
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage: window.WindowStage) {
-    mms.downloadMms(this.context, mmsPars, async(err: BusinessError) =>{
+    sms.downloadMms(this.context, mmsPars, async(err: BusinessError) =>{
         if (err) {
             console.error(`downloadMms fail, err : ${JSON.stringify(err)}`);
             return;
@@ -397,7 +397,7 @@ downloadMms\(context: Context, mmsParams: MmsParams\): Promise&lt;void&gt;
 **示例：**
 
 FA模型示例：
-
+<!--code_no_check_fa-->
 ```ts
 import { sms } from '@kit.TelephonyKit';
 import { BusinessError } from '@kit.BasicServicesKit';
