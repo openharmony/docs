@@ -38,6 +38,9 @@ sppListen(name: string, options: SppOptions, callback: AsyncCallback&lt;number&g
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
 |2900004 | Profile is not supported.                |
@@ -88,6 +91,8 @@ sppAccept(serverSocket: number, callback: AsyncCallback&lt;number&gt;): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
+|401 | Invalid parameter.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
 |2900004 | Profile is not supported.                |
@@ -141,6 +146,9 @@ sppConnect(deviceId: string, options: SppOptions, callback: AsyncCallback&lt;num
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
 |2900004 | Profile is not supported.                |
@@ -191,6 +199,8 @@ sppCloseServerSocket(socket: number): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
+|401 | Invalid parameter.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900099 | Operation failed.                        |
 
@@ -227,6 +237,8 @@ sppCloseClientSocket(socket: number): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
+|401 | Invalid parameter.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900099 | Operation failed.                        |
 
@@ -264,6 +276,8 @@ sppWrite(clientSocket: number, data: ArrayBuffer): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
+|401 | Invalid parameter.                 |
+|801 | Capability not supported.          |
 |2901054 | IO error.                                |
 |2900099 | Operation failed.                        |
 
@@ -305,6 +319,8 @@ on(type: 'sppRead', clientSocket: number, callback: Callback&lt;ArrayBuffer&gt;)
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
+|401 | Invalid parameter.                 |
+|801 | Capability not supported.          |
 |2901054 | IO error.                                |
 |2900099 | Operation failed.                        |
 
@@ -340,6 +356,15 @@ off(type: 'sppRead', clientSocket: number, callback?: Callback&lt;ArrayBuffer&gt
 | type         | string                      | 是    | 填写"sppRead"字符串，表示spp读请求事件。               |
 | clientSocket | number                      | 是    | 客户端Socket的id。                            |
 | callback     | Callback&lt;ArrayBuffer&gt; | 否    | 表示取消订阅spp读请求事件上报。不填该参数则取消订阅该type对应的所有回调。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|401 | Invalid parameter.                 |
+|801 | Capability not supported.          |
 
 **示例：**
 
