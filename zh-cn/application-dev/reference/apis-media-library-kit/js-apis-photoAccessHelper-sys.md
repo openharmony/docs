@@ -3737,6 +3737,51 @@ async function example() {
 }
 ```
 
+### setCameraShotKey<sup>12+</sup>
+
+setCameraShotKey(cameraShotKey: string): void
+
+修改锁屏相机拍照或录像的标记字段。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名        | 类型      | 必填   | 说明                                 |
+| ---------- | ------- | ---- | ---------------------------------- |
+| cameraShotKey | string | 是   | 锁屏相机拍照或录像的标记字段（仅开放给系统相机，其key值由系统相机定义）。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 202        |  Called by non-system application.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
+| 14000011       | System inner fail.         |
+
+**示例：**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example(asset: photoAccessHelper.PhotoAsset) {
+  console.info('setCameraShotKeyDemo');
+  try {
+    let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest(asset);
+    let cameraShotKey: string = 'test_MediaAssetChangeRequest_setCameraShotKey';
+    assetChangeRequest.setCameraShotKey(cameraShotKey);
+    await phAccessHelper.applyChanges(assetChangeRequest);
+    console.info('apply setCameraShotKey successfully');
+  } catch (err) {
+    console.error(`apply setCameraShotKey failed with error: ${err.code}, ${err.message}`);
+  }
+}
+```
+
 ## MediaAssetsChangeRequest<sup>11+</sup>
 
 批量资产变更请求。
