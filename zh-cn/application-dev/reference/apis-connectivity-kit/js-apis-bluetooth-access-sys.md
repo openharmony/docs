@@ -39,6 +39,10 @@ factoryReset(callback: AsyncCallback&lt;void&gt;): void
 
 |错误码ID   | 错误信息           |
 | -------- | ------------------ |
+|201 | Permission denied.                 |
+|202 | Non-system applications are not allowed to use system APIs. |
+|401 | Invalid parameter.                 |
+|801 | Capability not supported.          |
 |2900001   | Service stopped.   |
 |2900099   | Operation failed.  |
 
@@ -82,6 +86,9 @@ factoryReset(): Promise&lt;void&gt;
 
 |错误码ID   | 错误信息           |
 | -------- | ------------------ |
+|201 | Permission denied.                 |
+|202 | Non-system applications are not allowed to use system APIs. |
+|801 | Capability not supported.          |
 |2900001   | Service stopped.   |
 |2900099   | Operation failed.  |
 
@@ -123,6 +130,9 @@ getLocalAddress(): string;
 
 |错误码ID   | 错误信息           |
 | -------- | ------------------ |
+|201 | Permission denied.                 |
+|202 | Non-system applications are not allowed to use system APIs. |
+|801 | Capability not supported.          |
 |2900001   | Service stopped.   |
 |2900099   | Operation failed.  |
 
