@@ -9,7 +9,7 @@ The **\<list>** component provides a list container that presents a series of li
 
 ## Child Components
 
-Only [\<list-item>](js-components-container-list-item.md) is supported.
+Only [\<list-item>](js-lite-components-container-list-item.md) is supported.
 
 
 ## Attributes
@@ -29,7 +29,7 @@ Only [\<list-item>](js-components-container-list-item.md) is supported.
 | scrollend | - | Triggered when the list stops scrolling.|
 | click | - | Triggered when the list is clicked. |
 | longpress | - | Triggered when the list is long pressed. |
-| swipe<sup>5+</sup> | [SwipeEvent](js-common-events.md) | Triggered when a user quickly swipes on the list. |
+| swipe<sup>5+</sup> | [SwipeEvent](js-lite-common-events.md) | Triggered when a user quickly swipes on the list. |
 | scrolltop<sup>8+</sup> | - | Triggered when the list is scrolled to the top.|
 | scrollbottom<sup>8+</sup> | - | Triggered when the list is scrolled to the bottom.|
 
