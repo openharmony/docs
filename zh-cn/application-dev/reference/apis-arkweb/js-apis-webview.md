@@ -13360,6 +13360,24 @@ getRequestResourceType(): WebResourceType
 
 完整示例代码参考[onRequestStart](#onrequeststart12)。
 
+### getFrameUrl<sup>12+</sup>
+
+getFrameUrl(): string
+
+获取触发此请求的Frame的URL。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型     | 说明            |
+| ------ | ------------- |
+| string | 返回触发此请求的Frame的URL。 |
+
+**示例：**
+
+完整示例代码参考[onRequestStart](#onrequeststart12)。
+
 ## WebSchemeHandlerResponse<sup>12+</sup>
 
 请求的响应，可以为被拦截的请求创建一个Response并填充自定义的内容返回给Web组件。
@@ -13890,6 +13908,7 @@ struct WebComponent {
                 console.log("[schemeHandler] onRequestStart hasGesture:" + request.hasGesture())
                 console.log("[schemeHandler] onRequestStart header size:" + request.getHeader().length)
                 console.log("[schemeHandler] onRequestStart resource type:" + request.getRequestResourceType())
+                console.log("[schemeHandler] onRequestStart frame url:" + request.getFrameUrl())
                 let header = request.getHeader();
                 for (let i = 0; i < header.length; i++) {
                   console.log("[schemeHandler] onRequestStart header:" + header[i].headerKey + " " + header[i].headerValue);
