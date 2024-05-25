@@ -463,6 +463,58 @@ struct Index {
   }
 }
 ```
+该示例定义了弹窗样式，如宽度、高度、背景色、阴影等等
+```ts
+import promptAction from '@ohos.promptAction'
+@Builder
+function customDialogBuilder() {
+  Column() {
+    Text('Custom dialog Message').fontSize(10)
+    Row() {
+      Button("确认").onClick(() => {
+        promptAction.closeCustomDialog(0)
+      })
+      Blank().width(50)
+      Button("取消").onClick(() => {
+        promptAction.closeCustomDialog(0)
+      })
+    }
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  @State message: string = 'Hello World'
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+          .onClick(() => {
+            promptAction.openCustomDialog({
+              builder: customDialogBuilder.bind(this),
+              showInSubWindow: false,
+              offset:{ dx: 5, dy: 5},
+              backgroundColor: 0xd9ffffff,
+              cornerRadius: 20,
+              width: '80%',
+              height: 200,
+              borderWidth: 1,
+              borderStyle: BorderStyle.Dashed,//使用borderStyle属性，需要和borderWidth属性一起使用
+              borderColor: Color.Blue,//使用borderColor属性，需要和borderWidth属性一起使用
+              shadow: ({ radius: 20, color: Color.Grey, offsetX: 50, offsetY: 0}),
+            })
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+![zh-cn_image_0007](figures/zh-cn_image_0007.gif)
 
 ## promptAction.closeCustomDialog<sup>11+</sup>
 
