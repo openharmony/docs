@@ -31,6 +31,14 @@ URLParams的构造函数。
 | -------- | -------- | -------- | -------- |
 | init | string[][] \| Record&lt;string, string&gt; \| string \| URLParams | 否 | 入参对象。<br/>- string[][]：字符串二维数组<br/>- Record&lt;string, string&gt;：对象列表<br/>- string：字符串<br/>- URLParams：对象<br/>- 默认值：null。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
 **示例：**
 
 ```ts
@@ -66,6 +74,14 @@ append(name: string, value: string): void
 | name | string | 是 | 需要插入搜索参数的键名。 |
 | value | string | 是 | 需要插入搜索参数的值。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例：**
 
 ```ts
@@ -90,6 +106,14 @@ delete(name: string): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | name | string | 是 | 需要删除的键值名称。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -121,6 +145,14 @@ getAll(name: string): string[]
 | 类型 | 说明 |
 | -------- | -------- |
 | string[] | 返回指定名称的所有键对应值的集合。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -185,11 +217,19 @@ forEach(callbackFn: (value: string, key: string, searchParams: URLParams) => voi
 | key | string | 是 | 当前遍历到的键名。 |
 | searchParams | [URLParams](#urlparams9) | 是 | 当前调用forEach方法的实例对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例：**
 
 ```ts
-const myURLObject = url.URL.parseURL('https://developer.exampleUrl/?fod=1&bard=2'); 
-myURLObject.params.forEach((value, name, searchParams) => {  
+const myURLObject = url.URL.parseURL('https://developer.exampleUrl/?fod=1&bard=2');
+myURLObject.params.forEach((value, name, searchParams) => {
     console.log(name, value, myURLObject.params === searchParams);
 });
 ```
@@ -218,11 +258,19 @@ get(name: string): string | null
 | string | 返回第一个值。 |
 | null | 如果没找到，返回 null。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例：**
 
 ```ts
-let paramsObject = new url.URLParams('name=Jonathan&age=18'); 
-let name = paramsObject.get("name"); // is the string "Jonathan" 
+let paramsObject = new url.URLParams('name=Jonathan&age=18');
+let name = paramsObject.get("name"); // is the string "Jonathan"
 let age = paramsObject.get("age"); // is the string "18"
 ```
 
@@ -249,11 +297,19 @@ has(name: string): boolean
 | -------- | -------- |
 | boolean | 是否存在相对应的key值，存在返回true，否则返回false。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
 **示例：**
 
 ```ts
 let urlObject = url.URL.parseURL('https://developer.exampleUrl/?fod=1&bard=2');
-let paramsObject = new url.URLParams(urlObject.search.slice(1)); 
+let paramsObject = new url.URLParams(urlObject.search.slice(1));
 let result = paramsObject.has('bard');
 ```
 
@@ -274,6 +330,14 @@ set(name: string, value: string): void
 | -------- | -------- | -------- | -------- |
 | name | string | 是 | 将要设置的参数的键值名。 |
 | value | string | 是 | 所要设置的参数值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -404,8 +468,8 @@ toString(): string
 **示例：**
 
 ```ts
-let url = url.URL.parseURL('https://developer.exampleUrl/?fod=1&bard=2');
-let params = new url.URLParams(url.search.slice(1)); 
+let urlObject = url.URL.parseURL('https://developer.exampleUrl/?fod=1&bard=2');
+let params = new url.URLParams(urlObject.search.slice(1));
 params.append('fod', '3');
 console.log(params.toString());
 ```
@@ -520,19 +584,19 @@ URL静态成员函数。
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200002 | Invalid url string. |
-
 
 **示例：**
 
 ```ts
 let mm = 'https://username:password@host:8080';
-let url = url.URL.parseURL(mm); 
-let result = url.toString(); // Output 'https://username:password@host:8080/'
+let urlObject = url.URL.parseURL(mm);
+let result = urlObject.toString(); // Output 'https://username:password@host:8080/'
 ```
 
 ### toString
@@ -554,8 +618,8 @@ toString(): string
 **示例：**
 
 ```ts
-const url = url.URL.parseURL('https://username:password@host:8080/directory/file?query=pppppp#qwer=da');
-let result = url.toString();
+const urlObject = url.URL.parseURL('https://username:password@host:8080/directory/file?query=pppppp#qwer=da');
+let result = urlObject.toString();
 ```
 
 ### toJSON
@@ -576,8 +640,8 @@ toJSON(): string
 
 **示例：**
 ```ts
-const url = url.URL.parseURL('https://username:password@host:8080/directory/file?query=pppppp#qwer=da');
-let result = url.toJSON();
+const urlObject = url.URL.parseURL('https://username:password@host:8080/directory/file?query=pppppp#qwer=da');
+let result = urlObject.toJSON();
 ```
 
 ## URLSearchParams<sup>(deprecated)</sup>
@@ -601,6 +665,14 @@ URLSearchParams的构造函数。
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | init | string[][] \| Record&lt;string, string&gt; \| string \| URLSearchParams | 否 | 入参对象。<br/>- string[][]：字符串二维数组<br/>- Record&lt;string, string&gt;：对象列表<br/>- string：字符串<br/>- URLSearchParams：对象<br/>- 默认值：null。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -758,8 +830,8 @@ forEach(callbackFn: (value: string, key: string, searchParams: URLSearchParams) 
 **示例：**
 
 ```ts
-const myURLObject = new url.URL('https://developer.exampleUrl/?fod=1&bard=2'); 
-myURLObject.searchParams.forEach((value, name, searchParams) => {  
+const myURLObject = new url.URL('https://developer.exampleUrl/?fod=1&bard=2');
+myURLObject.searchParams.forEach((value, name, searchParams) => {
     console.log(name, value, myURLObject.searchParams === searchParams);
 });
 ```
@@ -827,7 +899,7 @@ has(name: string): boolean
 
 ```ts
 let urlObject = new url.URL('https://developer.exampleUrl/?fod=1&bard=2');
-let paramsObject = new url.URLSearchParams(urlObject.search.slice(1)); 
+let paramsObject = new url.URLSearchParams(urlObject.search.slice(1));
 paramsObject.has('bard') === true;
 ```
 
@@ -989,8 +1061,8 @@ toString(): string
 **示例：**
 
 ```ts
-let url = new url.URL('https://developer.exampleUrl/?fod=1&bard=2');
-let params = new url.URLSearchParams(url.search.slice(1)); 
+let urlObject = new url.URL('https://developer.exampleUrl/?fod=1&bard=2');
+let params = new url.URLSearchParams(urlObject.search.slice(1));
 params.append('fod', '3');
 console.log(params.toString());
 ```

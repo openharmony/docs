@@ -63,10 +63,11 @@ ThreadWorker构造函数。
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200003 | Worker initialization failure. |
 | 10200007 | The worker file patch is invalid path. |
 
@@ -106,10 +107,11 @@ postMessage(message: Object, transfer: ArrayBuffer[]): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                |
 | -------- | ----------------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200004 | Worker instance is not running.           |
 | 10200006 | An exception occurred during serialization. |
 
@@ -141,10 +143,11 @@ postMessage(message: Object, options?: PostMessageOptions): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                |
 | -------- | ----------------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200004 | Worker instance is not running.           |
 | 10200006 | An exception occurred during serialization. |
 
@@ -179,10 +182,11 @@ postMessageWithSharedSendable(message: Object, transfer?: ArrayBuffer[]): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                |
 | -------- | ----------------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200004 | Worker instance is not running.           |
 | 10200006 | An exception occurred during serialization. |
 
@@ -243,10 +247,11 @@ on(type: string, listener: WorkerEventListener): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                   |
 | -------- | -------------------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200004 | Worker instance is not running.              |
 | 10200005 | The invoked API is not supported in workers. |
 
@@ -277,10 +282,11 @@ once(type: string, listener: WorkerEventListener): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                   |
 | -------- | -------------------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200004 | Worker instance is not running.              |
 | 10200005 | The invoked API is not supported in workers. |
 
@@ -311,10 +317,11 @@ off(type: string, listener?: WorkerEventListener): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                   |
 | -------- | -------------------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200004 | Worker instance is not running.              |
 | 10200005 | The invoked API is not supported in workers. |
 
@@ -343,10 +350,11 @@ registerGlobalCallObject(instanceName: string, globalCallObject: Object): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                |
 | -------- | ----------------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200004 | Worker instance is not running.           |
 
 **示例：**
@@ -383,11 +391,12 @@ unregisterGlobalCallObject(instanceName?: string): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                |
 | -------- | ----------------------------------------- |
-| 10200004 | Worker instance is not running.           |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 10200004 | Worker instance is not running. |
 
 **示例：**
 ```ts
@@ -448,10 +457,11 @@ onexit?: (code: number) =&gt; void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                   |
 | -------- | -------------------------------------------- |
+| 401      | Parameter error. Possible causes: 1.Incorrect parameter types. |
 | 10200004 | Worker instance is not running.              |
 | 10200005 | The invoked API is not supported in workers. |
 
@@ -484,10 +494,11 @@ onerror?: (err: ErrorEvent) =&gt; void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                   |
 | -------- | -------------------------------------------- |
+| 401      | Parameter error. Possible causes: 1.Incorrect parameter types. |
 | 10200004 | Worker instance is not running.              |
 | 10200005 | The invoked API is not supported in workers. |
 
@@ -515,10 +526,11 @@ onmessage?: (event: MessageEvents) =&gt; void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                   |
 | -------- | -------------------------------------------- |
+| 401      | Parameter error. Possible causes: 1.Incorrect parameter types. |
 | 10200004 | Worker instance is not running.              |
 | 10200005 | The invoked API is not supported in workers. |
 
@@ -548,10 +560,11 @@ onmessageerror?: (event: MessageEvents) =&gt; void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                   |
 | -------- | -------------------------------------------- |
+| 401      | Parameter error. Possible causes: 1.Incorrect parameter types. |
 | 10200004 | Worker instance is not running.              |
 | 10200005 | The invoked API is not supported in workers. |
 
@@ -583,10 +596,11 @@ addEventListener(type: string, listener: WorkerEventListener): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                   |
 | -------- | -------------------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200004 | Worker instance is not running.              |
 | 10200005 | The invoked API is not supported in workers. |
 
@@ -617,10 +631,11 @@ removeEventListener(type: string, callback?: WorkerEventListener): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息                      |
 | -------- | ------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200004 | Worker instance is not running. |
 
 **示例：**
@@ -656,10 +671,11 @@ dispatchEvent(event: Event): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息                      |
 | -------- | ------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200004 | Worker instance is not running. |
 
 **示例：**
@@ -762,10 +778,11 @@ addEventListener(type: string, listener: WorkerEventListener): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                   |
 | -------- | -------------------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200004 | Worker instance is not running.              |
 | 10200005 | The invoked API is not supported in workers. |
 
@@ -800,6 +817,7 @@ removeEventListener(type: string, callback?: WorkerEventListener): void
 
 | 错误码ID | 错误信息                      |
 | -------- | ------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200004 | Worker instance is not running. |
 
 **示例：**
@@ -835,10 +853,11 @@ dispatchEvent(event: Event): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息                      |
 | -------- | ------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200004 | Worker instance is not running. |
 
 **示例：**
@@ -944,10 +963,11 @@ Worker线程通过转移对象所有权的方式向宿主线程发送消息。
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                |
 | -------- | ----------------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200004 | Worker instance is not running.           |
 | 10200006 | An exception occurred during serialization. |
 
@@ -994,10 +1014,11 @@ Worker线程通过转移对象所有权或者拷贝数据的方式向宿主线�
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                |
 | -------- | ----------------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200004 | Worker instance is not running.           |
 | 10200006 | An exception occurred during serialization. |
 
@@ -1044,10 +1065,11 @@ Worker线程向宿主线程发送消息，消息中的Sendable对象通过引用
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                |
 | -------- | ----------------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200004 | Worker instance is not running.           |
 | 10200006 | An exception occurred during serialization. |
 
@@ -1119,10 +1141,11 @@ Worker线程调用注册在宿主线程上某个对象的指定方法，调用�
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                |
 | -------- | ----------------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200004 | Worker instance is not running.           |
 | 10200006 | An exception occurred during serialization. |
 | 10200019 | The globalCallObject is not registered. |
@@ -1205,10 +1228,11 @@ onmessage?: (this: ThreadWorkerGlobalScope, ev: MessageEvents) =&gt; void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                   |
 | -------- | -------------------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Incorrect parameter types. |
 | 10200004 | Worker instance is not running.              |
 | 10200005 | The invoked API is not supported in workers. |
 
@@ -1245,10 +1269,11 @@ onmessageerror?: (this: ThreadWorkerGlobalScope, ev: MessageEvents) =&gt; void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                   |
 | -------- | -------------------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Incorrect parameter types. |
 | 10200004 | Worker instance is not running.              |
 | 10200005 | The invoked API is not supported in workers. |
 
@@ -1294,10 +1319,11 @@ workerPort.onmessageerror = (err: MessageEvents) => {
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                   |
 | -------- | -------------------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200004 | Worker instance is not running.              |
 | 10200005 | The invoked API is not supported in workers. |
 
@@ -1388,10 +1414,11 @@ RestrictedWorker构造函数。使用以下方法前，均需先构造Restricted
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200003 | Worker initialization failure. |
 | 10200007 | The worker file patch is invalid path. |
 
