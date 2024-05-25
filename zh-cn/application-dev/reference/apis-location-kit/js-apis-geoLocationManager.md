@@ -486,9 +486,9 @@ on(type: 'locationChange', request: LocationRequest | ContinuousLocationRequest,
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-|201 | Permission denied.                 |
-|401 | Parameter error.                 |
-|801 | Capability not supported.          |
+|201 | Permission verification failed. The application does not have the permission required to call the API.                 |
+|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
+|801 | Capability not supported. Failed to call ${geoLocationManager.on('locationChange')} due to limited device capabilities.          |
 |3301000 | The location service is unavailable.                                           |
 |3301100 | The location switch is off.                                                 |
 |3301200 | Failed to obtain the geographical location.                                       |
@@ -498,7 +498,7 @@ on(type: 'locationChange', request: LocationRequest | ContinuousLocationRequest,
   ```ts
   import { geoLocationManager } from '@kit.LocationKit';
 
-  //方式一：使用LocationRequest作为入参
+  // 方式一：使用LocationRequest作为入参
   let requestInfo:geoLocationManager.LocationRequest = {'priority': geoLocationManager.LocationRequestPriority.FIRST_FIX, 'scenario': geoLocationManager.LocationRequestScenario.UNSET, 'timeInterval': 1, 'distanceInterval': 0, 'maxAccuracy': 0};
   let locationChange = (location:geoLocationManager.Location):void => {
       console.log('locationChanger: data: ' + JSON.stringify(location));
@@ -509,7 +509,7 @@ on(type: 'locationChange', request: LocationRequest | ContinuousLocationRequest,
       console.error("errCode:" + JSON.stringify(err));
   }
 
-  //方式二：使用ContinuousLocationRequest作为入参
+  // 方式二：使用ContinuousLocationRequest作为入参
   let request:geoLocationManager.ContinuousLocationRequest = {'interval': 1, 'locationScenario': geoLocationManager.UserActivityScenario.NAVIGATION};
   let locationCallback = (location:geoLocationManager.Location):void => {
       console.log('locationCallback: data: ' + JSON.stringify(location));
@@ -547,9 +547,9 @@ off(type: 'locationChange', callback?: Callback&lt;Location&gt;): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-|201 | Permission denied.                 |
-|401 | Parameter error.                 |
-|801 | Capability not supported.          |
+|201 | Permission verification failed. The application does not have the permission required to call the API.                 |
+|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
+|801 | Capability not supported. Failed to call ${geoLocationManager.off('locationChange')} due to limited device capabilities.          |
 |3301000 | The location service is unavailable.                                           |
 |3301100 | The location switch is off.                                                 |
 |3301200 | Failed to obtain the geographical location.                                       |
@@ -597,9 +597,9 @@ on(type: 'locationError', callback: Callback&lt;LocationError&gt;): void;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-|201 | Permission denied.                 |
-|401 | Parameter error.                 |
-|801 | Capability not supported.          |
+|201 | Permission verification failed. The application does not have the permission required to call the API.                 |
+|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
+|801 | Capability not supported. Failed to call ${geoLocationManager.on('locationError')} due to limited device capabilities.          |
 |3301000 | The location service is unavailable.                                           |
 
 **示例**
@@ -654,9 +654,9 @@ off(type: 'locationError', callback?: Callback&lt;LocationError&gt;): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-|201 | Permission denied.                 |
-|401 | Parameter error.                 |
-|801 | Capability not supported.          |
+|201 | Permission verification failed. The application does not have the permission required to call the API.                 |
+|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
+|801 | Capability not supported. Failed to call ${geoLocationManager.off('locationError')} due to limited device capabilities.          |
 |3301000 | The location service is unavailable.                                           |
 
 **示例**
@@ -697,8 +697,8 @@ on(type: 'locationEnabledChange', callback: Callback&lt;boolean&gt;): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-|401 | Parameter error.                 |
-|801 | Capability not supported.          |
+|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
+|801 | Capability not supported. Failed to call ${geoLocationManager.on('locationEnabledChange')} due to limited device capabilities.          |
 |3301000 | The location service is unavailable.                                           |
 
 **示例**
@@ -738,8 +738,8 @@ off(type: 'locationEnabledChange', callback?: Callback&lt;boolean&gt;): void;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-|401 | Parameter error.                 |
-|801 | Capability not supported.          |
+|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
+|801 | Capability not supported. Failed to call ${geoLocationManager.off('locationEnabledChange')} due to limited device capabilities.          |
 |3301000 | The location service is unavailable.                                           |
 
 **示例**
@@ -783,9 +783,9 @@ on(type: 'cachedGnssLocationsChange', request: CachedGnssLocationsRequest, callb
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-|201 | Permission denied.                 |
-|401 | Parameter error.                 |
-|801 | Capability not supported.          |
+|201 | Permission verification failed. The application does not have the permission required to call the API.                 |
+|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
+|801 | Capability not supported. Failed to call ${geoLocationManager.on('cachedGnssLocationsChange')} due to limited device capabilities.          |
 |3301000 | The location service is unavailable.                                           |
 |3301100 | The location switch is off.                                                 |
 |3301200 | Failed to obtain the geographical location.                                       |
@@ -830,9 +830,9 @@ off(type: 'cachedGnssLocationsChange', callback?: Callback&lt;Array&lt;Location&
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-|201 | Permission denied.                 |
-|401 | Parameter error.                 |
-|801 | Capability not supported.          |
+|201 | Permission verification failed. The application does not have the permission required to call the API.                 |
+|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
+|801 | Capability not supported. Failed to call ${geoLocationManager.off('cachedGnssLocationsChange')} due to limited device capabilities.          |
 |3301000 | The location service is unavailable.                                           |
 |3301100 | The location switch is off.                                                 |
 |3301200 | Failed to obtain the geographical location.                                       |
@@ -878,9 +878,9 @@ on(type: 'satelliteStatusChange', callback: Callback&lt;SatelliteStatusInfo&gt;)
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-|201 | Permission denied.                 |
-|401 | Parameter error.                 |
-|801 | Capability not supported.          |
+|201 | Permission verification failed. The application does not have the permission required to call the API.                 |
+|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
+|801 | Capability not supported. Failed to call ${geoLocationManager.on('satelliteStatusChange')} due to limited device capabilities.          |
 |3301000 | The location service is unavailable.                                           |
 |3301100 | The location switch is off.                                                 |
 
@@ -924,9 +924,9 @@ off(type: 'satelliteStatusChange', callback?: Callback&lt;SatelliteStatusInfo&gt
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-|201 | Permission denied.                 |
-|401 | Parameter error.                 |
-|801 | Capability not supported.          |
+|201 | Permission verification failed. The application does not have the permission required to call the API.                 |
+|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
+|801 | Capability not supported. Failed to call ${geoLocationManager.off('satelliteStatusChange')} due to limited device capabilities.          |
 |3301000 | The location service is unavailable.                                           |
 |3301100 | The location switch is off.                                                 |
 
@@ -971,9 +971,9 @@ on(type: 'nmeaMessage', callback: Callback&lt;string&gt;): void;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-|201 | Permission denied.                 |
-|401 | Parameter error.                 |
-|801 | Capability not supported.          |
+|201 | Permission verification failed. The application does not have the permission required to call the API.                 |
+|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
+|801 | Capability not supported. Failed to call ${geoLocationManager.on('nmeaMessage')} due to limited device capabilities.          |
 |3301000 | The location service is unavailable.                                           |
 |3301100 | The location switch is off.                                                 |
 
@@ -1018,9 +1018,9 @@ off(type: 'nmeaMessage', callback?: Callback&lt;string&gt;): void;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-|201 | Permission denied.                 |
-|401 | Parameter error.                 |
-|801 | Capability not supported.          |
+|201 | Permission verification failed. The application does not have the permission required to call the API.                 |
+|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
+|801 | Capability not supported. Failed to call ${geoLocationManager.off('nmeaMessage')} due to limited device capabilities.          |
 |3301000 | The location service is unavailable.                                           |
 |3301100 | The location switch is off.                                                 |
 
@@ -1067,9 +1067,9 @@ on(type: 'gnssFenceStatusChange', request: GeofenceRequest, want: WantAgent): vo
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-|201 | Permission denied.                 |
-|401 | Parameter error.                 |
-|801 | Capability not supported.          |
+|201 | Permission verification failed. The application does not have the permission required to call the API.                 |
+|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
+|801 | Capability not supported. Failed to call ${geoLocationManager.on('gnssFenceStatusChange')} due to limited device capabilities.          |
 |3301000 | The location service is unavailable.                                           |
 |3301100 | The location switch is off.                                                 |
 |3301600 | Failed to operate the geofence.                                     |
@@ -1129,9 +1129,9 @@ off(type: 'gnssFenceStatusChange', request: GeofenceRequest, want: WantAgent): v
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-|201 | Permission denied.                 |
-|401 | Parameter error.                 |
-|801 | Capability not supported.          |
+|201 | Permission verification failed. The application does not have the permission required to call the API.                 |
+|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
+|801 | Capability not supported. Failed to call ${geoLocationManager.off('gnssFenceStatusChange')} due to limited device capabilities.          |
 |3301000 | The location service is unavailable.                                           |
 |3301100 | The location switch is off.                                                 |
 |3301600 | Failed to operate the geofence.                                     |
@@ -1189,8 +1189,8 @@ on(type: 'countryCodeChange', callback: Callback&lt;CountryCode&gt;): void;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-|401 | Parameter error.                 |
-|801 | Capability not supported.          |
+|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
+|801 | Capability not supported. Failed to call ${geoLocationManager.on('countryCodeChange')} due to limited device capabilities.          |
 |3301000 | The location service is unavailable.                                           |
 |3301500 | Failed to query the area information.                                       |
 
@@ -1233,8 +1233,8 @@ off(type: 'countryCodeChange', callback?: Callback&lt;CountryCode&gt;): void;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-|401 | Parameter error.                 |
-|801 | Capability not supported.          |
+|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
+|801 | Capability not supported. Failed to call ${geoLocationManager.off('countryCodeChange')} due to limited device capabilities.          |
 |3301000 | The location service is unavailable.                                           |
 |3301500 | Failed to query the area information.                                       |
 
@@ -1281,9 +1281,9 @@ getCurrentLocation(request: CurrentLocationRequest | SingleLocationRequest, call
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-|201 | Permission denied.                 |
-|401 | Parameter error.                 |
-|801 | Capability not supported.          |
+|201 | Permission verification failed. The application does not have the permission required to call the API.                 |
+|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
+|801 | Capability not supported. Failed to call ${geoLocationManager.getCurrentLocation} due to limited device capabilities.          |
 |3301000 | The location service is unavailable.                                           |
 |3301100 | The location switch is off.                                                 |
 |3301200 | Failed to obtain the geographical location.  |
@@ -1293,7 +1293,7 @@ getCurrentLocation(request: CurrentLocationRequest | SingleLocationRequest, call
   ```ts
   import { geoLocationManager } from '@kit.LocationKit';
   import { BusinessError } from '@kit.BasicServicesKit'
-  //方式一：使用CurrentLocationRequest作为入参
+  // 方式一：使用CurrentLocationRequest作为入参
   let requestInfo:geoLocationManager.CurrentLocationRequest = {'priority': geoLocationManager.LocationRequestPriority.FIRST_FIX, 'scenario': geoLocationManager.LocationRequestScenario.UNSET,'maxAccuracy': 0};
   let locationChange = (err:BusinessError, location:geoLocationManager.Location):void => {
       if (err) {
@@ -1310,7 +1310,7 @@ getCurrentLocation(request: CurrentLocationRequest | SingleLocationRequest, call
       console.error("errCode:" + JSON.stringify(err));
   }
   
-  //方式二：使用SingleLocationRequest作为入参
+  // 方式二：使用SingleLocationRequest作为入参
   let request:geoLocationManager.SingleLocationRequest = {'locatingTimeoutMs': 10000, 'locatingPriority': geoLocationManager.LocatingPriority.PRIORITY_ACCURACY};
   let locationCallback = (err:BusinessError, location:geoLocationManager.Location):void => {
       if (err) {
@@ -1352,9 +1352,9 @@ getCurrentLocation(callback: AsyncCallback&lt;Location&gt;): void;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-|201 | Permission denied.                 |
-|401 | Parameter error.                 |
-|801 | Capability not supported.          |
+|201 | Permission verification failed. The application does not have the permission required to call the API.                 |
+|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
+|801 | Capability not supported. Failed to call ${geoLocationManager.getCurrentLocation} due to limited device capabilities.          |
 |3301000 | The location service is unavailable.                                           |
 |3301100 | The location switch is off.                                                 |
 |3301200 | Failed to obtain the geographical location.  |
@@ -1410,9 +1410,9 @@ getCurrentLocation(request?: CurrentLocationRequest | SingleLocationRequest): Pr
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-|201 | Permission denied.                 |
-|401 | Parameter error.                 |
-|801 | Capability not supported.          |
+|201 | Permission verification failed. The application does not have the permission required to call the API.                 |
+|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
+|801 | Capability not supported. Failed to call ${geoLocationManager.getCurrentLocation} due to limited device capabilities.          |
 |3301000 | The location service is unavailable.                                           |
 |3301100 | The location switch is off.                                                 |
 |3301200 | Failed to obtain the geographical location.  |
@@ -1423,7 +1423,7 @@ getCurrentLocation(request?: CurrentLocationRequest | SingleLocationRequest): Pr
   import { geoLocationManager } from '@kit.LocationKit';
   import { BusinessError } from '@kit.BasicServicesKit'
 
-  //方式一：使用CurrentLocationRequest作为入参
+  // 方式一：使用CurrentLocationRequest作为入参
   let requestInfo:geoLocationManager.CurrentLocationRequest = {'priority': geoLocationManager.LocationRequestPriority.FIRST_FIX, 'scenario': geoLocationManager.LocationRequestScenario.UNSET,'maxAccuracy': 0};
   try {
       geoLocationManager.getCurrentLocation(requestInfo).then((result) => {
@@ -1436,7 +1436,7 @@ getCurrentLocation(request?: CurrentLocationRequest | SingleLocationRequest): Pr
       console.error("errCode:" + JSON.stringify(err));
   }
   
-  //方式二：使用SingleLocationRequest作为入参
+  // 方式二：使用SingleLocationRequest作为入参
   let request:geoLocationManager.SingleLocationRequest = {'locatingTimeoutMs': 10000, 'locatingPriority': geoLocationManager.LocatingPriority.PRIORITY_ACCURACY};
   try {
       geoLocationManager.getCurrentLocation(request).then((result) => {
@@ -1475,8 +1475,8 @@ getLastLocation(): Location
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-|201 | Permission denied.                 |
-|801 | Capability not supported.          |
+|201 | Permission verification failed. The application does not have the permission required to call the API.                 |
+|801 | Capability not supported. Failed to call ${geoLocationManager.getLastLocation} due to limited device capabilities.          |
 |3301000 | The location service is unavailable. |
 |3301100 | The location switch is off.  |
 |3301200 |Failed to obtain the geographical location.  |
@@ -1515,7 +1515,7 @@ isLocationEnabled(): boolean
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-|801 | Capability not supported.          |
+|801 | Capability not supported. Failed to call ${geoLocationManager.isLocationEnabled} due to limited device capabilities.          |
 |3301000 | The location service is unavailable. |
 
 **示例**
@@ -1551,8 +1551,8 @@ getAddressesFromLocation(request: ReverseGeoCodeRequest, callback: AsyncCallback
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-|401 | Parameter error.                 |
-|801 | Capability not supported.          |
+|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
+|801 | Capability not supported. Failed to call ${geoLocationManager.getAddressesFromLocation} due to limited device capabilities.          |
 |3301000 | The location service is unavailable.  |
 |3301300 | Reverse geocoding query failed.   |
 
@@ -1602,8 +1602,8 @@ getAddressesFromLocation(request: ReverseGeoCodeRequest): Promise&lt;Array&lt;Ge
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-|401 | Parameter error.                 |
-|801 | Capability not supported.          |
+|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
+|801 | Capability not supported. Failed to call ${geoLocationManager.getAddressesFromLocation} due to limited device capabilities.          |
 |3301000 | The location service is unavailable.  |
 |3301300 | Reverse geocoding query failed.   |
 
@@ -1647,8 +1647,8 @@ getAddressesFromLocationName(request: GeoCodeRequest, callback: AsyncCallback&lt
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-|401 | Parameter error.                 |
-|801 | Capability not supported.          |
+|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
+|801 | Capability not supported. Failed to call ${geoLocationManager.getAddressesFromLocationName} due to limited device capabilities.          |
 |3301000 | The location service is unavailable.  |
 |3301400 | Geocoding query failed.   |
 
@@ -1699,8 +1699,8 @@ getAddressesFromLocationName(request: GeoCodeRequest): Promise&lt;Array&lt;GeoAd
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-|401 | Parameter error.                 |
-|801 | Capability not supported.          |
+|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
+|801 | Capability not supported. Failed to call ${geoLocationManager.getAddressesFromLocationName} due to limited device capabilities.          |
 |3301000 | The location service is unavailable.  |
 |3301400 | Geocoding query failed.   |
 
@@ -1742,7 +1742,7 @@ isGeocoderAvailable(): boolean;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-|801 | Capability not supported.          |
+|801 | Capability not supported. Failed to call ${geoLocationManager.isGeocoderAvailable} due to limited device capabilities.          |
 |3301000 | The location service is unavailable.  |
 
 **示例**
@@ -1779,9 +1779,9 @@ getCachedGnssLocationsSize(callback: AsyncCallback&lt;number&gt;): void;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-|201 | Permission denied.                 |
-|401 | Parameter error.                 |
-|801 | Capability not supported.          |
+|201 | Permission verification failed. The application does not have the permission required to call the API.                 |
+|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
+|801 | Capability not supported. Failed to call ${geoLocationManager.getCachedGnssLocationsSize} due to limited device capabilities.          |
 |3301000 | The location service is unavailable.  |
 |3301100 | The location switch is off.   |
 
@@ -1827,8 +1827,8 @@ getCachedGnssLocationsSize(): Promise&lt;number&gt;;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-|201 | Permission denied.                 |
-|801 | Capability not supported.          |
+|201 | Permission verification failed. The application does not have the permission required to call the API.                 |
+|801 | Capability not supported. Failed to call ${geoLocationManager.getCachedGnssLocationsSize} due to limited device capabilities.          |
 |3301000 | The location service is unavailable.  |
 |3301100 | The location switch is off.   |
 
@@ -1872,9 +1872,9 @@ flushCachedGnssLocations(callback: AsyncCallback&lt;void&gt;): void;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-|201 | Permission denied.                 |
-|401 | Parameter error.                 |
-|801 | Capability not supported.          |
+|201 | Permission verification failed. The application does not have the permission required to call the API.                 |
+|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
+|801 | Capability not supported. Failed to call ${geoLocationManager.flushCachedGnssLocations} due to limited device capabilities.          |
 |3301000 | The location service is unavailable.  |
 |3301100 | The location switch is off.   |
 |3301200 | Failed to obtain the geographical location.   |
@@ -1918,8 +1918,8 @@ flushCachedGnssLocations(): Promise&lt;void&gt;;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-|201 | Permission denied.                 |
-|801 | Capability not supported.          |
+|201 | Permission verification failed. The application does not have the permission required to call the API.                 |
+|801 | Capability not supported. Failed to call ${geoLocationManager.flushCachedGnssLocations} due to limited device capabilities.          |
 |3301000 | The location service is unavailable.  |
 |3301100 | The location switch is off.   |
 |3301200 | Failed to obtain the geographical location.   |
@@ -1963,8 +1963,8 @@ sendCommand(command: LocationCommand, callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-|401 | Parameter error.                 |
-|801 | Capability not supported.          |
+|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
+|801 | Capability not supported. Failed to call ${geoLocationManager.sendCommand} due to limited device capabilities.          |
 |3301000 | The location service is unavailable.  |
 
 **示例**
@@ -2011,8 +2011,8 @@ sendCommand(command: LocationCommand): Promise&lt;void&gt;;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-|401 | Parameter error.                 |
-|801 | Capability not supported.          |
+|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
+|801 | Capability not supported. Failed to call ${geoLocationManager.sendCommand} due to limited device capabilities.          |
 |3301000 | The location service is unavailable.                                           |
 
 **示例**
@@ -2054,8 +2054,8 @@ getCountryCode(callback: AsyncCallback&lt;CountryCode&gt;): void;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-|401 | Parameter error.                 |
-|801 | Capability not supported.          |
+|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
+|801 | Capability not supported. Failed to call ${geoLocationManager.getCountryCode} due to limited device capabilities.          |
 |3301000 | The location service is unavailable.                                           |
 |3301500 | Failed to query the area information.|
 
@@ -2099,7 +2099,7 @@ getCountryCode(): Promise&lt;CountryCode&gt;;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-|801 | Capability not supported.          |
+|801 | Capability not supported. Failed to call ${geoLocationManager.getCountryCode} due to limited device capabilities.          |
 |3301000 | The location service is unavailable.                                           |
 |3301500 | Failed to query the area information.|
 
@@ -2153,9 +2153,9 @@ GNSS地理围栏功能依赖GNSS定位芯片（仅部分型号支持），如果
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-|201 | Permission denied.                 |
-|401 | Parameter error.                 |
-|801 | Capability not supported.          |
+|201 | Permission verification failed. The application does not have the permission required to call the API.                 |
+|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
+|801 | Capability not supported. Failed to call ${geoLocationManager.addGnssGeofence} due to limited device capabilities.          |
 |3301000 | The location service is unavailable.|
 |3301100  | The location switch is off.|
 |3301601   | The number of geofences exceeds the maximum.|
@@ -2266,9 +2266,9 @@ GNSS地理围栏功能依赖GNSS定位芯片（仅部分型号支持），如果
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-|201 | Permission denied.                 |
-|401 | Parameter error.                 |
-|801 | Capability not supported.          |
+|201 | Permission verification failed. The application does not have the permission required to call the API.                 |
+|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
+|801 | Capability not supported. Failed to call ${geoLocationManager.removeGnssGeofence} due to limited device capabilities.          |
 |3301000 | The location service is unavailable. |
 |3301602 | Failed to delete a geofence due to an incorrect ID. |
 
@@ -2311,7 +2311,7 @@ getGeofenceSupportedCoordTypes(): Array&lt;CoordinateSystemType&gt;;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-|801 | Capability not supported.          |
+|801 | Capability not supported. Failed to call ${geoLocationManager.getGeofenceSupportedCoordTypes} due to limited device capabilities.          |
 |3301000 | The location service is unavailable. |
 
 **示例**
