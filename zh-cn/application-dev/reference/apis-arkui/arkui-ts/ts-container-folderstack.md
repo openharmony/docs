@@ -42,7 +42,7 @@ alignContent(value: Alignment)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：** 
+**参数：**
 
 | 参数名 | 类型                                        | 必填 | 说明                                                    |
 | ------ | ------------------------------------------- | ---- | ------------------------------------------------------- |
@@ -58,7 +58,7 @@ enableAnimation(value: boolean)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：** 
+**参数：**
 
 | 参数名 | 类型                                        | 必填 | 说明                                |
 | ------ | ------------------------------------------- | ---- | ----------------------------------- |
@@ -74,7 +74,7 @@ autoHalfFold(value: boolean)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：** 
+**参数：**
 
 | 参数名 | 类型    | 必填 | 说明                                |
 | ------ | ------- | ---- | ----------------------------------- |
@@ -96,11 +96,29 @@ onFolderStateChange(callback: (event: { foldStatus: FoldStatus }) => void)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：** 
+**参数：**
 
 | 参数名     | 类型                                            | 必填 | 说明                 |
 | ---------- | ----------------------------------------------- | ---- | -------------------- |
 | foldStatus | [FoldStatus](ts-appendix-enums.md#foldstatus11) | 是   | 当前设备的折叠状态。 |
+
+
+### onHoverStatusChange<sup>12+</sup>
+
+onHoverStatusChange(callback: (event: { foldStatus: FoldStatus,isHoverMode:boolean,appRotation:AppRotation,windowMode:WindowMode }) => void)
+
+当悬停状态改变的时候回调
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名              | 类型                                                          | 必填 | 说明         |
+|------------------|-------------------------------------------------------------| --- |------------|
+| foldStatus       | [FoldStatus](ts-appendix-enums.md#foldstatus11)             | 是   | 当前设备的折叠状态。 |
+| isHoverMode      | boolean                                                     | 是   | 当前是否悬停模式。  |
+| appRotation      | [AppRotation](ts-appendix-enums.md#approtation12)           | 是   | 当前应用方向。    |
+| windowMode       | [WindowMode](../js-apis-window-sys.md#windowmode7)          | 是   | 当前屏幕模式。    |
 
 ## 示例
 
@@ -152,6 +170,13 @@ struct Index {
         } else {
           // .............
         }
+      })
+      // hoverStatusChange回调 当悬停状态改变时回调
+      .onHoverStatusChange((msg) => {
+        console.log('this foldStatus:' +msg.foldStatus);
+        console.log('this isHoverMode:' +msg.isHoverMode);
+        console.log('this appRotation:' +msg.appRotation);
+        console.log('this windowMode:' +msg.windowMode);
       })
       // folderStack如果不撑满页面全屏，作为普通Stack使用
       .alignContent(Alignment.Bottom)
