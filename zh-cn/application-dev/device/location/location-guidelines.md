@@ -70,19 +70,19 @@ Location Kit接口对权限的要求参见：[Location Kit](../../reference/apis
 2. 导入geoLocationManager模块，所有与基础定位能力相关的功能API，都是通过该模块提供的。
    
    ```ts
-   import geoLocationManager from '@ohos.geoLocationManager';
+   import { geoLocationManager } from '@kit.LocationKit';
    ```
 3. 获取历史定位结果。
 
    如果应用使用场景不需要实时的设备位置，可以获取系统缓存的最近一次历史定位结果。
 
    ```ts
-   import geoLocationManager from '@ohos.geoLocationManager';
-   import BusinessError from "@ohos.base";
+   import { geoLocationManager } from '@kit.LocationKit';
+   import { BusinessError } from '@kit.BasicServicesKit'
    try {
        let location = geoLocationManager.getLastLocation();
    } catch (err) {
-       console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
+       console.error("errCode:" + JSON.stringify(err));
    }
    ```
    
@@ -197,8 +197,8 @@ Location Kit接口对权限的要求参见：[Location Kit](../../reference/apis
    [CurrentLocationRequest](../../reference/apis-location-kit/js-apis-geoLocationManager.md#currentlocationrequest)的实例化可以参考步骤4。
 
    ```ts
-   import geoLocationManager from '@ohos.geoLocationManager';
-   import BusinessError from "@ohos.base";
+   import { geoLocationManager } from '@kit.LocationKit';
+   import { BusinessError } from '@kit.BasicServicesKit'
    //实例化CurrentLocationRequest对象，指定快速定位优先策略，指定定位超时时间为5秒。
    let requestInfo:geoLocationManager.CurrentLocationRequest = {'priority': geoLocationManager.LocationRequestPriority.FIRST_FIX, 'scenario': geoLocationManager.LocationRequestScenario.UNSET, 'timeoutMs': 5000};
    try {
@@ -209,7 +209,7 @@ Location Kit接口对权限的要求参见：[Location Kit](../../reference/apis
            console.error('promise, getCurrentLocation: error=' + JSON.stringify(error));
        });
    } catch (err) {
-       console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
+       console.error("errCode:" + JSON.stringify(err));
    }
    ```
 
@@ -246,19 +246,19 @@ Location Kit接口对权限的要求参见：[Location Kit](../../reference/apis
 1. 导入geoLocationManager模块，所有与地理编码转化&逆地理编码转化能力相关的功能API，都是通过该模块提供的。
    
    ```ts
-   import geoLocationManager from '@ohos.geoLocationManager';
+   import { geoLocationManager } from '@kit.LocationKit';
    ```
 
 2. 查询地理编码与逆地理编码服务是否可用。
    - 调用isGeoServiceAvailable查询地理编码与逆地理编码服务是否可用，如果服务可用再继续进行步骤3。如果服务不可用，说明该设备不具备地理编码与逆地理编码能力，请勿使用相关接口。
      
       ```ts
-      import geoLocationManager from '@ohos.geoLocationManager';
-      import BusinessError from "@ohos.base";
+      import { geoLocationManager } from '@kit.LocationKit';
+      import { BusinessError } from '@kit.BasicServicesKit'
       try {
           let isAvailable = geoLocationManager.isGeocoderAvailable();
       } catch (err) {
-          console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
+          console.error("errCode:" + JSON.stringify(err));
       }
       ```
 
@@ -276,7 +276,7 @@ Location Kit接口对权限的要求参见：[Location Kit](../../reference/apis
               }
           });
       } catch (err) {
-          console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
+          console.error("errCode:" + JSON.stringify(err));
       }
       ```
 
@@ -293,7 +293,7 @@ Location Kit接口对权限的要求参见：[Location Kit](../../reference/apis
               }
           });
       } catch (err) {
-          console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
+          console.error("errCode:" + JSON.stringify(err));
       }
       ```
 
@@ -330,9 +330,9 @@ Location Kit接口对权限的要求参见：[Location Kit](../../reference/apis
 2. 导入geoLocationManager模块、wantAgent模块和BusinessError模块。
    
    ```ts
-   import geoLocationManager from '@ohos.geoLocationManager';
-   import wantAgent, {WantAgent as _wantAgent} from '@ohos.app.ability.wantAgent';
-   import BusinessError from "@ohos.base";
+   import { geoLocationManager } from '@kit.LocationKit';
+   import { wantAgent } from '@kit.AbilityKit';
+   import { BusinessError } from '@kit.BasicServicesKit'
    ```
 
 3. 创建WantAgentInfo信息。
@@ -397,7 +397,7 @@ Location Kit接口对权限的要求参见：[Location Kit](../../reference/apis
        try {
            geoLocationManager.on('gnssFenceStatusChange', requestInfo, wantAgentObj);
        } catch (err) {
-           console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
+           console.error("errCode:" + JSON.stringify(err));
        }
    });
    ```
