@@ -163,7 +163,7 @@ struct Child {
 
 onWillApplyTheme?(theme: Theme): void
 
-onWillApplyTheme函数在创建自定义组件的新实例后，在执行其build()函数之前执行。onWillApplyTheme用于获取当前使用的Theme对象，允许在onWillApplyTheme函数中改变状态变量，更改将在后续执行build()函数中生效。
+onWillApplyTheme函数用于获取当前使用的Theme对象，在创建自定义组件的新实例后，在执行其build()函数之前执行。允许在onWillApplyTheme函数中改变状态变量，更改将在后续执行build()函数中生效。
 
 **元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
@@ -190,7 +190,8 @@ class PageCustomTheme implements CustomTheme {
   }
 }
 const BlueColorsTheme = new PageCustomTheme(new BlueColors());
-// 在页面build之前执行ThemeControl.setDefaultTheme,将BlueColorsTheme设置为当前默认Theme，在onWillApplyTheme中可获取。
+// setDefaultTheme应该在应用入口页面调用或者在Ability中调用。
+// 在入口页面处统一设置，需要在页面build前执行ThemeControl。 其中，onWillApplyTheme回调函数用于自定义组件获取当前生效的Theme对象。
 ThemeControl.setDefaultTheme(BlueColorsTheme);
 
 @Entry
