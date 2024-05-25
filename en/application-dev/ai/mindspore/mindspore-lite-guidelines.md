@@ -254,7 +254,7 @@ The development process consists of the following main steps:
 
     target_link_libraries(
             demo
-            mindspore-lite.huawei
+            mindspore_lite_ndk
             pthread
             dl
     )

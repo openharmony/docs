@@ -164,7 +164,7 @@ let streamInfo: http.HttpRequestOptions = {
   header: {
     'Content-Type': 'application/json'
   },
-  //When a POST request is used, this field is used to transfer the request body content. The specific format is negotiated with the server.
+  // This field is used to transfer the request body when a POST request is used. Its format needs to be negotiated with the server.
   extraData: "data to send",
   expectDataType: http.HttpDataType.STRING, // Optional. This field specifies the type of the return data.
   usingCache: true, // Optional. The default value is true.
@@ -193,3 +193,4 @@ httpRequest.requestInStream(
 }
 );
 ```
+

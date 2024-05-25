@@ -27,7 +27,7 @@ getType(options?: {<br>
 &nbsp;&nbsp;complete?: () => void;<br>
 }): void
 
-Obtains the network type of this device.
+Obtains the network type.
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
@@ -36,10 +36,10 @@ Obtains the network type of this device.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | success | Function | No| Called when the API call is successful. The return value is defined by [NetworkResponse](#networkresponse3).|
-| fail | Function | No| Called when an API call fails.|
-| complete | Function | No| Called when an API call is complete.|
+| fail | Function | No| Called when API call has failed.|
+| complete | Function | No| Called when the API call is complete.|
 
-Error codes:
+One of the following error codes will be returned if the API call has failed.
 
 | Error Code| Description|
 | -------- | -------- |
@@ -48,17 +48,14 @@ Error codes:
 **Example**
 
 ```
-export default {    
-  getType() {        
-    network.getType({            
-      success: function(data) {                
-        console.log('success get network type:' + data.type);            
-      },            
-      fail: function(data, code) {                
-        console.log('fail to get network type code:' + code + ', data:' + data);            
-      },
-    });    
-  },
+export default class Network {
+  getType() {
+    network.getType({
+      success: (data) => {
+        console.log('success get network type:' + data.type);
+      }
+    });
+  }
 }
 ```
 
@@ -70,7 +67,7 @@ subscribe(options?:{<br>
 &nbsp;&nbsp;fail?: (data: any, code: number) => void;<br>
   }): void
 
-Listens to the network connection state of this device. If this API is called multiple times, the last call takes effect.
+Listens to the network connection state. If this method is called multiple times, the last call takes effect.
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
@@ -79,9 +76,9 @@ Listens to the network connection state of this device. If this API is called mu
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | success | Function | No| Called when the network state changes. The return value is defined by [NetworkResponse](#networkresponse3).|
-| fail | Function | No| Called when an API call fails.|
+| fail | Function | No| Called when API call has failed.|
 
-Error codes:
+One of the following error codes will be returned if the API call has failed.
 
 | Error Code| Description|
 | -------- | -------- |
@@ -91,17 +88,14 @@ Error codes:
 **Example**
 
 ```
-export default {    
-  subscribe() {        
-    network.subscribe({            
-      success: function(data) {                
-        console.log('network type change type:' + data.type);            
-      },            
-      fail: function(data, code) {                
-        console.log('fail to subscribe network, code:' + code + ', data:' + data);            
-      },
-    });    
-  },
+export default class Network {
+  subscribe() {
+    network.subscribe({
+      success: (data) => {
+        console.log('success get network type:' + data.type);
+      }
+    });
+  }
 }
 ```
 
@@ -110,18 +104,16 @@ export default {
 
 unsubscribe(): void
 
-Cancels listening to the network connection state of this device.
+Cancels listening to the network connection state.
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
 **Example**
 
 ```
-export default {    
-  unsubscribe() {        
-    network.unsubscribe();    
-  },
-}
+import network from '@system.network';
+
+network.unsubscribe();
 ```
 
 

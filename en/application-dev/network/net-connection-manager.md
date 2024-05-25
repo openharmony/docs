@@ -105,7 +105,7 @@ let conn = connection.createNetConnection(netSpecifier, timeout);
 
 // Register an observer for network status changes.
 conn.register((err: BusinessError, data: void) => {
-  console.log(JSON.stringify(error));
+  console.log(JSON.stringify(err));
 });
 
 // Listen to network status change events. If the network is available, an on_netAvailable event is returned.
