@@ -37,7 +37,7 @@ getRadioTech\(slotId: number, callback: AsyncCallback<[NetworkRadioTech](#networ
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -88,7 +88,7 @@ getRadioTech\(slotId: number\): Promise\<[NetworkRadioTech](#networkradiotech11)
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -131,7 +131,7 @@ getNetworkState\(callback: AsyncCallback\<NetworkState\>\): void
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -176,7 +176,7 @@ getNetworkState\(slotId: number, callback: AsyncCallback\<NetworkState\>\): void
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -227,7 +227,7 @@ getNetworkState\(slotId?: number\): Promise\<NetworkState\>
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -268,7 +268,7 @@ getNetworkSelectionMode\(slotId: number, callback: AsyncCallback\<NetworkSelecti
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -316,7 +316,7 @@ getNetworkSelectionMode\(slotId: number\): Promise\<NetworkSelectionMode\>
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -357,7 +357,7 @@ getISOCountryCodeForNetwork\(slotId: number, callback: AsyncCallback\<string\>\)
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -405,7 +405,7 @@ getISOCountryCodeForNetwork\(slotId: number\): Promise\<string\>
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -474,7 +474,7 @@ getPrimarySlotId\(callback: AsyncCallback\<number\>\): void
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -553,7 +553,7 @@ getSignalInformation\(slotId: number, callback: AsyncCallback\<Array\<SignalInfo
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -601,7 +601,7 @@ getSignalInformation\(slotId: number\): Promise\<Array\<SignalInformation\>\>
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -781,7 +781,7 @@ isRadioOn\(callback: AsyncCallback\<boolean\>\): void
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -826,7 +826,7 @@ isRadioOn\(slotId: number, callback: AsyncCallback\<boolean\>\): void
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -877,7 +877,7 @@ isRadioOn\(slotId?: number\): Promise\<boolean\>
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -918,7 +918,7 @@ getOperatorName\(slotId: number, callback: AsyncCallback\<string\>\): void
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -966,7 +966,7 @@ getOperatorName\(slotId: number\): Promise\<string\>
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
