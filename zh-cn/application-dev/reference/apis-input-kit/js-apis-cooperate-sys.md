@@ -33,7 +33,7 @@ enable(enable: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 **错误码**：
 
-以下错误码的详细介绍请参见[ohos.devicestatus错误码](errorcode-devicestatus.md)。
+以下错误码的详细介绍请参见[ohos.devicestatus错误码](../apis-distributedservice-kit/errorcode-devicestatus.md)。
 
 | 错误码ID | 错误信息          |
 | -------- | -----------------|

@@ -122,6 +122,6 @@ try {
 
 | 名称      | 类型                                       |只读   | 可选  |说明                    |
 | --------  | ------------------------                  |-------|------ |--------               |
-| action    | [FingerprintAction](#fingerprintaction)   | 是    |  否   |按键事件类型。           |
+| action    | [FingerprintAction](#fingerprintaction12)   | 是    |  否   |按键事件类型。           |
 | distanceX | number                                    | 是    |  否   |相对于光标位置的x轴偏移量（正数表示向右移动，负数表示向左移动）。 |
 | distanceY | number                                    | 是    |  否   |相对于光标位置的y轴偏移量（正数表示向上移动，负数表示向下移动）。 |
