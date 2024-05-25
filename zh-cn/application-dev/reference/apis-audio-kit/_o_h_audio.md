@@ -42,6 +42,7 @@
 | typedef struct [OH_AudioCapturer_Callbacks_Struct](_o_h___audio_capturer___callbacks___struct.md) [OH_AudioCapturer_Callbacks](#oh_audiocapturer_callbacks) | 声明输入音频流的回调函数指针。 | 
 | typedef void(\* [OH_AudioRenderer_OutputDeviceChangeCallback](#oh_audiorenderer_outputdevicechangecallback)) ([OH_AudioRenderer](#oh_audiorenderer) \*renderer, void \*userData, [OH_AudioStream_DeviceChangeReason](#oh_audiostream_devicechangereason) reason) | 输出音频流设备变更的回调函数。 | 
 | typedef void(\* [OH_AudioRenderer_OnMarkReachedCallback](#oh_audiorenderer_onmarkreachedcallback)) ([OH_AudioRenderer](#oh_audiorenderer) \*renderer, uint32_t samplePos, void \*userData) | 到达标记位置时回调。  | 
+| typedef int32_t(\* [OH_AudioRenderer_WriteDataWithMetadataCallback](#oh_audiorenderer_writedatawithmetadatacallback)) ([OH_AudioRenderer](#oh_audiorenderer) \*renderer, void \*userData, void \*audioData, int32_t audioDataSize, void \*metadata, int32_t metadataSize) | 该函数指针将指向用于同时写入音频数据和元数据的回调函数。  | 
 
 
 ### 枚举
@@ -51,7 +52,7 @@
 | [OH_AudioStream_Result](#oh_audiostream_result) {<br/>AUDIOSTREAM_SUCCESS = 0,<br/>AUDIOSTREAM_ERROR_INVALID_PARAM = 1,<br/>AUDIOSTREAM_ERROR_ILLEGAL_STATE = 2,<br/>AUDIOSTREAM_ERROR_SYSTEM = 3<br/>} | 音频错误码。 | 
 | [OH_AudioStream_Type](#oh_audiostream_type) {<br/>AUDIOSTREAM_TYPE_RERNDERER = 1,<br/>AUDIOSTREAM_TYPE_CAPTURER = 2<br/>} | 音频流类型。 | 
 | [OH_AudioStream_SampleFormat](#oh_audiostream_sampleformat) {<br/>AUDIOSTREAM_SAMPLE_U8 = 0,<br/>AUDIOSTREAM_SAMPLE_S16LE = 1,<br/>AUDIOSTREAM_SAMPLE_S24LE = 2,<br/>AUDIOSTREAM_SAMPLE_S32LE = 3<br/>} | 定义音频流采样格式。 | 
-| [OH_AudioStream_EncodingType](#oh_audiostream_encodingtype) {<br/>AUDIOSTREAM_ENCODING_TYPE_RAW = 0<br/>} | 定义音频流编码类型。 | 
+| [OH_AudioStream_EncodingType](#oh_audiostream_encodingtype) { <br/>AUDIOSTREAM_ENCODING_TYPE_RAW = 0, <br/>AUDIOSTREAM_ENCODING_TYPE_AUDIOVIVID = 1 <br/>} | 定义音频流编码类型。  | 
 | [OH_AudioStream_Usage](#oh_audiostream_usage) {<br/>AUDIOSTREAM_USAGE_UNKNOWN = 0,<br/>AUDIOSTREAM_USAGE_MUSIC = 1,<br/>AUDIOSTREAM_USAGE_COMMUNICATION = 2,<br/>AUDIOSTREAM_USAGE_VOICE_ASSISTANT = 3,<br/>AUDIOSTREAM_USAGE_ALARM = 4,<br/>AUDIOSTREAM_USAGE_VOICE_MESSAGE = 5,<br/>AUDIOSTREAM_USAGE_RINGTONE = 6,<br/>AUDIOSTREAM_USAGE_NOTIFICATION = 7,<br/>AUDIOSTREAM_USAGE_ACCESSIBILITY = 8,<br/>AUDIOSTREAM_USAGE_MOVIE = 10,<br/>AUDIOSTREAM_USAGE_GAME = 11,<br/>AUDIOSTREAM_USAGE_AUDIOBOOK = 12,<br/>AUDIOSTREAM_USAGE_NAVIGATION = 13<br/>} | 定义音频流使用场景。 | 
 | [OH_AudioStream_LatencyMode](#oh_audiostream_latencymode) {<br/>AUDIOSTREAM_LATENCY_MODE_NORMAL = 0,<br/>AUDIOSTREAM_LATENCY_MODE_FAST = 1<br/>} | 定义音频时延模式。 | 
 | [OH_AudioStream_State](#oh_audiostream_state) {<br/>AUDIOSTREAM_STATE_INVALID = -1,<br/>AUDIOSTREAM_STATE_NEW = 0,<br/>AUDIOSTREAM_STATE_PREPARED = 1,<br/>AUDIOSTREAM_STATE_RUNNING = 2,<br/>AUDIOSTREAM_STATE_STOPPED = 3,<br/>AUDIOSTREAM_STATE_RELEASED = 4,<br/>AUDIOSTREAM_STATE_PAUSED = 5<br/>} | 定义音频流的状态。 | 
@@ -60,6 +61,7 @@
 | [OH_AudioInterrupt_ForceType](#oh_audiointerrupt_forcetype) {<br/>AUDIOSTREAM_INTERRUPT_FORCE = 0,<br/>AUDIOSTREAM_INTERRUPT_SHARE = 1<br/>} | 定义音频中断类型。 | 
 | [OH_AudioInterrupt_Hint](#oh_audiointerrupt_hint) {<br/>AUDIOSTREAM_INTERRUPT_HINT_NONE = 0,<br/>AUDIOSTREAM_INTERRUPT_HINT_RESUME = 1,<br/>AUDIOSTREAM_INTERRUPT_HINT_PAUSE = 2,<br/>AUDIOSTREAM_INTERRUPT_HINT_STOP = 3,<br/>AUDIOSTREAM_INTERRUPT_HINT_DUCK = 4,<br/>AUDIOSTREAM_INTERRUPT_HINT_UNDUCK = 5<br/>} | 定义音频中断类型。 | 
 | [OH_AudioInterrupt_Mode](#oh_audiointerrupt_mode) {<br/> AUDIOSTREAM_INTERRUPT_MODE_SHARE = 0, <br/>AUDIOSTREAM_INTERRUPT_MODE_INDEPENDENT = 1 <br/>} | 定义音频中断模式。  | 
+| [OH_AudioStream_AudioEffectMode](#oh_audiostream_audioeffectmode) { <br/>EFFECT_NONE = 0, <br/>EFFECT_DEFAULT = 1 <br/>} | 定义音效模式。  | 
 | [OH_AudioStream_DeviceChangeReason](#oh_audiostream_devicechangereason) {<br/>REASON_UNKNOWN = 0,<br/>REASON_NEW_DEVICE_AVAILABLE = 1,<br/>REASON_OLD_DEVICE_UNAVAILABLE = 2,<br/>REASON_OVERRODE = 3<br/>} | 流设备变更原因。 | 
 
 
@@ -108,6 +110,9 @@
 | [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioRenderer_SetVolumeWithRamp](#oh_audiorenderer_setvolumewithramp) ([OH_AudioRenderer](#oh_audiorenderer) \*renderer, float volume, int32_t durationMs) | 在指定时间范围内使用渐变更改音量。  | 
 | [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioRenderer_GetVolume](#oh_audiorenderer_getvolume) ([OH_AudioRenderer](#oh_audiorenderer) \*renderer, float \*volume) | 获取当前音频流音量值。  | 
 | [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioRenderer_GetUnderflowCount](#oh_audiorenderer_getunderflowcount) ([OH_AudioRenderer](#oh_audiorenderer) \*renderer, uint32_t \*count) | 查询当前播放音频流欠载数。  | 
+| [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioRenderer_GetChannelLayout](#oh_audiorenderer_getchannellayout) ([OH_AudioRenderer](#oh_audiorenderer) \*renderer, [OH_AudioChannelLayout](../apis-avcodec-kit/_core.md#oh_audiochannellayout-1) \*channelLayout) | 查询当前音频流声道布局。  | 
+| [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioRenderer_GetEffectMode](#oh_audiorenderer_geteffectmode) ([OH_AudioRenderer](#oh_audiorenderer) \*renderer, [OH_AudioStream_AudioEffectMode](#oh_audiostream_audioeffectmode) \*effectMode) | 查询当前音频流音效模式。  | 
+| [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioRenderer_SetEffectMode](#oh_audiorenderer_seteffectmode) ([OH_AudioRenderer](#oh_audiorenderer) \*renderer, [OH_AudioStream_AudioEffectMode](#oh_audiostream_audioeffectmode) effectMode) | 设置当前音频流音效模式。  | 
 | [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioStreamBuilder_Create](#oh_audiostreambuilder_create)([OH_AudioStreamBuilder](#oh_audiostreambuilder) \*\*builder, [OH_AudioStream_Type](#oh_audiostream_type) type)                        | 创建一个输入或者输出类型的音频流构造器。 | 
 | [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioStreamBuilder_Destroy](#oh_audiostreambuilder_destroy)([OH_AudioStreamBuilder](#oh_audiostreambuilder) \*builder)                                                                        | 销毁一个音频流构造器。 | 
 | [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioStreamBuilder_SetSamplingRate](#oh_audiostreambuilder_setsamplingrate)([OH_AudioStreamBuilder](#oh_audiostreambuilder) \*builder, int32_t rate)                                          | 设置音频流的采样率属性。 | 
@@ -115,11 +120,13 @@
 | [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioStreamBuilder_SetSampleFormat](#oh_audiostreambuilder_setsampleformat)([OH_AudioStreamBuilder](#oh_audiostreambuilder) \*builder, [OH_AudioStream_SampleFormat](#oh_audiostream_sampleformat) format) | 设置音频流的采样格式属性。 | 
 | [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioStreamBuilder_SetEncodingType](#oh_audiostreambuilder_setencodingtype)([OH_AudioStreamBuilder](#oh_audiostreambuilder) \*builder, [OH_AudioStream_EncodingType](#oh_audiostream_encodingtype) encodingType) | 设置音频流的编码类型属性。 | 
 | [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioStreamBuilder_SetLatencyMode](#oh_audiostreambuilder_setlatencymode)([OH_AudioStreamBuilder](#oh_audiostreambuilder) \*builder, [OH_AudioStream_LatencyMode](#oh_audiostream_latencymode) latencyMode) | 设置音频流的时延模式。 | 
+| [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioStreamBuilder_SetChannelLayout](#oh_audiostreambuilder_setchannellayout) ([OH_AudioStreamBuilder](#oh_audiostreambuilder) \*builder, [OH_AudioChannelLayout](../apis-avcodec-kit/_core.md#oh_audiochannellayout-1) channelLayout) | 设置音频流的声道布局。  | 
 | [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioStreamBuilder_SetRendererInfo](#oh_audiostreambuilder_setrendererinfo)([OH_AudioStreamBuilder](#oh_audiostreambuilder) \*builder, [OH_AudioStream_Usage](#oh_audiostream_usage) usage)   | 设置输出音频流的工作场景。 | 
 | [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioStreamBuilder_SetCapturerInfo](#oh_audiostreambuilder_setcapturerinfo)([OH_AudioStreamBuilder](#oh_audiostreambuilder) \*builder, [OH_AudioStream_SourceType](#oh_audiostream_sourcetype) sourceType) | 设置输入音频流的工作场景。 | 
 | [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioStreamBuilder_SetRendererCallback](#oh_audiostreambuilder_setrenderercallback)([OH_AudioStreamBuilder](#oh_audiostreambuilder) \*builder, [OH_AudioRenderer_Callbacks](#oh_audiorenderer_callbacks) callbacks, void \*userData) | 设置输出音频流的回调。 | 
 | [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioStreamBuilder_SetRendererOutputDeviceChangeCallback](#oh_audiostreambuilder_setrendereroutputdevicechangecallback) ([OH_AudioStreamBuilder](#oh_audiostreambuilder) \*builder, [OH_AudioRenderer_OutputDeviceChangeCallback](#oh_audiorenderer_outputdevicechangecallback) callback, void \*userData) | 设置输出音频流设备变更的回调。 |
 | [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioStreamBuilder_SetCapturerCallback](#oh_audiostreambuilder_setcapturercallback)([OH_AudioStreamBuilder](#oh_audiostreambuilder) \*builder, [OH_AudioCapturer_Callbacks](#oh_audiocapturer_callbacks) callbacks, void \*userData) | 设置输入音频流的回调。 | 
+| [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioStreamBuilder_SetWriteDataWithMetadataCallback](#oh_audiostreambuilder_setwritedatawithmetadatacallback) ([OH_AudioStreamBuilder](#oh_audiostreambuilder) \*builder, [OH_AudioRenderer_WriteDataWithMetadataCallback](#oh_audiorenderer_writedatawithmetadatacallback) callback, void \*userData) | 设置同时写入音频数据和元数据的回调。  | 
 | [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioStreamBuilder_GenerateRenderer](#oh_audiostreambuilder_generaterenderer)([OH_AudioStreamBuilder](#oh_audiostreambuilder) \*builder, [OH_AudioRenderer](#oh_audiorenderer) \*\*audioRenderer) | 创建输出音频流实例。 | 
 | [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioStreamBuilder_GenerateCapturer](#oh_audiostreambuilder_generatecapturer)([OH_AudioStreamBuilder](#oh_audiostreambuilder) \*builder, [OH_AudioCapturer](#oh_audiocapturer) \*\*audioCapturer) | 创建输入音频流实例。 | 
 | [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioStreamBuilder_SetFrameSizeInCallback](#oh_audiostreambuilder_setframesizeincallback)([OH_AudioStreamBuilder](#oh_audiostreambuilder) \*builder, int32_t frameSize)                       | 设置每次回调的帧长，帧长至少为音频硬件一次处理的数据大小，并且小于内部缓冲容量的一半。 | 
@@ -235,6 +242,38 @@ typedef void(* OH_AudioRenderer_OutputDeviceChangeCallback) (OH_AudioRenderer *r
 | reason | 流设备变更原因。 | 
 
 
+### OH_AudioRenderer_WriteDataWithMetadataCallback
+
+```
+typedef int32_t(* OH_AudioRenderer_WriteDataWithMetadataCallback) (OH_AudioRenderer *renderer, void *userData, void *audioData, int32_t audioDataSize, void *metadata, int32_t metadataSize)
+```
+
+**描述**
+
+该函数指针将指向用于同时写入音频数据和元数据的回调函数。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| renderer | 指向[OH_AudioStreamBuilder_GenerateRenderer](#oh_audiostreambuilder_generaterenderer)创建的音频流实例。 | 
+| userData | 指向通过回调函数传递的应用数据指针。 | 
+| audioData | 指向用户写入的音频数据的指针。 | 
+| audioDataSize | 用户写入的音频数据的数据长度，以字节为单位。 | 
+| metadata | 指向用户写入的元数据的指针。 | 
+| metadataSize | 用户写入的元数据的数据长度，以字节为单位。 | 
+
+**返回：**
+
+用户返回的回调函数的错误码。
+
+
+
+
 ### OH_AudioStreamBuilder
 
 ```
@@ -323,6 +362,26 @@ enum OH_AudioInterrupt_Mode
 | AUDIOSTREAM_INTERRUPT_MODE_INDEPENDENT  | 独立模式。| 
 
 
+### OH_AudioStream_AudioEffectMode
+
+```
+enum OH_AudioStream_AudioEffectMode
+```
+
+**描述**
+
+定义音效模式。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
+
+**起始版本：** 12
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| EFFECT_NONE | 无音效模式。 | 
+| EFFECT_DEFAULT | 默认音效模式。 | 
+
+
 ### OH_AudioStream_DeviceChangeReason
 
 ```
@@ -362,6 +421,7 @@ enum OH_AudioStream_EncodingType
 | 枚举值 | 描述 | 
 | -------- | -------- |
 | AUDIOSTREAM_ENCODING_TYPE_RAW | PCM编码。 | 
+| AUDIOSTREAM_ENCODING_TYPE_AUDIOVIVID  | AudioVivid编码。<br/>**起始版本：** 12 | 
 
 
 ### OH_AudioStream_Event
@@ -1080,6 +1140,32 @@ OH_AudioStream_Result OH_AudioRenderer_GetChannelCount(OH_AudioRenderer *rendere
 AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
 
 
+### OH_AudioRenderer_GetChannelLayout()
+
+```
+OH_AudioStream_Result OH_AudioRenderer_GetChannelLayout (OH_AudioRenderer *renderer, OH_AudioChannelLayout *channelLayout)
+```
+
+**描述**
+
+查询当前音频流声道布局。
+
+**起始版本：** 12
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| renderer | 指向[OH_AudioStreamBuilder_GenerateRenderer](#oh_audiostreambuilder_generaterenderer)创建的音频流实例。  | 
+| channelLayout | 指向一个用来接收音频流声道布局的变量的指针，具体参考[OH_AudioChannelLayout](../apis-avcodec-kit/_core.md#oh_audiochannellayout-1)。  | 
+
+**返回：**
+
+AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
+
+
 ### OH_AudioRenderer_GetCurrentState()
 
 ```
@@ -1099,7 +1185,33 @@ OH_AudioStream_Result OH_AudioRenderer_GetCurrentState(OH_AudioRenderer *rendere
 | 名称 | 描述 | 
 | -------- | -------- |
 | renderer | 指向[OH_AudioStreamBuilder_GenerateRenderer](#oh_audiostreambuilder_generaterenderer)创建的音频流实例。 | 
-| state | 指向一个用来接收音频流状态的变量。 | 
+| state | 指向一个用来接收音频流状态的变量。 |
+
+**返回：**
+
+AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
+
+
+### OH_AudioRenderer_GetEffectMode()
+
+```
+OH_AudioStream_Result OH_AudioRenderer_GetEffectMode (OH_AudioRenderer *renderer, OH_AudioStream_AudioEffectMode *effectMode)
+```
+
+**描述**
+
+查询当前音频流音效模式。
+
+**起始版本：** 12
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| renderer | 指向[OH_AudioStreamBuilder_GenerateRenderer](#oh_audiostreambuilder_generaterenderer)创建的音频流实例。 | 
+| effectMode | 指向一个用来接收音频流音效模式的变量的指针。 | 
 
 **返回：**
 
@@ -1464,6 +1576,31 @@ OH_AudioStream_Result OH_AudioRenderer_Release(OH_AudioRenderer *renderer)
 AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
 
 
+### OH_AudioRenderer_SetEffectMode()
+
+```
+OH_AudioStream_Result OH_AudioRenderer_SetEffectMode (OH_AudioRenderer *renderer, OH_AudioStream_AudioEffectMode effectMode)
+```
+
+**描述**
+
+设置当前音频流音效模式。
+
+**起始版本：** 12
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| renderer | 指向[OH_AudioStreamBuilder_GenerateRenderer](#oh_audiostreambuilder_generaterenderer)创建的音频流实例。 | 
+| effectMode | 设置当前音频流的目标音效模式。 | 
+
+**返回：**
+
+AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
+
 
 ### OH_AudioRenderer_SetMarkPosition()
 
@@ -1802,6 +1939,32 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetChannelCount(OH_AudioStreamBuilde
 AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
 
 
+### OH_AudioStreamBuilder_SetChannelLayout()
+
+```
+OH_AudioStream_Result OH_AudioStreamBuilder_SetChannelLayout (OH_AudioStreamBuilder *builder, OH_AudioChannelLayout channelLayout)
+```
+
+**描述**
+
+设置音频流的声道布局。
+
+**起始版本：** 12
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| builder | 指向OH_AudioStreamBuilder_Create()创建的构造器实例。  | 
+| channelLayout | 音频流声道布局，具体参考[OH_AudioChannelLayout](../apis-avcodec-kit/_core.md#oh_audiochannellayout-1)。  | 
+
+**返回：**
+
+AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
+
+
 ### OH_AudioStreamBuilder_SetEncodingType()
 
 ```
@@ -1821,7 +1984,7 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetEncodingType(OH_AudioStreamBuilde
 | 名称 | 描述 | 
 | -------- | -------- |
 | builder | 指向OH_AudioStreamBuilder_Create()创建的构造器实例。 | 
-| encodingType | 音频流编码类型, **AUDIOSTREAM_ENCODING_PCM** | 
+| encodingType | 音频流编码类型。 | 
 
 **返回：**
 
@@ -2037,3 +2200,32 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetSamplingRate(OH_AudioStreamBuilde
 **返回：**
 
 AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
+
+
+### OH_AudioStreamBuilder_SetWriteDataWithMetadataCallback()
+
+```
+OH_AudioStream_Result OH_AudioStreamBuilder_SetWriteDataWithMetadataCallback (OH_AudioStreamBuilder *builder, OH_AudioRenderer_WriteDataWithMetadataCallback callback, void *userData)
+```
+
+**描述**
+
+设置同时写入音频数据和元数据的回调。
+
+**起始版本：** 12
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| builder | 指向OH_AudioStreamBuilder_Create()创建的构造器实例。 | 
+| callback | 将被用来同时写入音频数据和元数据的回调函数。 | 
+| userData | 指向通过回调函数传递的应用数据指针。 | 
+
+**返回：**
+
+AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
+
+
