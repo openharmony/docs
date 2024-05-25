@@ -1,6 +1,6 @@
 # Node-API常见问题
 
-## ArkTS/JS侧import xxx from libxxx.so后，使用xxx报错显示undefined/not callable
+## ArkTS/JS侧import xxx from libxxx.so后，使用xxx报错显示undefined/not callable或明确的Error message
 
 1. 排查.cpp文件在注册模块时的模块名称与so的名称匹配一致。
    如模块名为entry，则so的名字为libentry.so，napi_module中nm_modname字段应为entry，大小写与模块名保持一致。
@@ -22,6 +22,15 @@
 | module $SO is in blocklist, loading prohibited | $SO表示模块名。受卡片或者Extension管控，该模块在黑名单内，不允许加载，建议用户删除该模块。 |
 | load module failed. $ERRMSG | 动态库加载失败。$ERRMSG表示加载失败原因，一般常见原因是so文件不存在、依赖的so文件不存在或者符号未定义，需根据加载失败原因具体分析。 |
 | try to load abc file from $FILEPATH failed. | 通常加载动态库和abc文件为二选一：如果是要加载动态库并且加载失败，该告警可以忽略；如果是要加载abc文件，则该错误打印的原因是abc文件不存在，$FILEPATH表示模块路径。 |
+
+5. 如果有明确的Error message，可以通过Error message判断当前问题。
+| **Error message** | **修改建议** |
+| -------- | -------- |
+| First attempt: $ERRMSG | 首先加载后缀不拼接'_napi'的模块名为'xxx'的so，如果加载失败会有该错误信息，$ERRMSG表示具体加载时的错误信息。 |
+| Second attempt: $ERRMSG | 第二次加载后缀拼接'_napi'的模块名为'xxx_napi'的so，如果加载失败会有该错误信息，$ERRMSG表示具体加载时的错误信息。 |
+| try to load abc file from xxx failed | 第三次加载名字为'xxx'的abc文件，如果加载失败会有该错误信息。 |
+| module xxx is not allowed to load in restricted runtime. | 该模块不允许在受限运行时中使用，xxx表示模块名，建议用户删除该模块。 |
+| module xxx is in blocklist, loading prohibited. | 该模块不允许在当前extension下使用，xxx表示模块名，建议用户删除该模块。 |
 
 ## 接口执行结果非预期，日志显示occur exception need return
 
