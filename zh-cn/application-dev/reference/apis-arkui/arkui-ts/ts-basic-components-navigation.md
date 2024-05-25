@@ -1950,7 +1950,7 @@ class resultClass {
 }
 
 @Builder
-export function PageTwoBuilder(name: string, pram: Object) {
+export function PageTwoBuilder() {
   PageTwo()
 }
 
