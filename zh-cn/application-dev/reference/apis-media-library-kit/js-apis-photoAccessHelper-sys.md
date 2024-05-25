@@ -3741,7 +3741,7 @@ async function example() {
 
 setCameraShotKey(cameraShotKey: string): void
 
-修改锁屏相机拍照或录像的标记字段。
+设置锁屏相机拍照或录像的标记字段。
 
 **系统接口**：此接口为系统接口。
 
