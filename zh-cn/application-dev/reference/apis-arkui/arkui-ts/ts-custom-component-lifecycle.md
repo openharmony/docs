@@ -191,7 +191,6 @@ class PageCustomTheme implements CustomTheme {
 }
 const BlueColorsTheme = new PageCustomTheme(new BlueColors());
 // setDefaultTheme应该在应用入口页面调用或者在Ability中调用。
-// 在入口页面处统一设置，需要在页面build前执行ThemeControl。其中，onWillApplyTheme回调函数用于获取当前组件上下文的Theme对象。
 ThemeControl.setDefaultTheme(BlueColorsTheme);
 
 @Entry
