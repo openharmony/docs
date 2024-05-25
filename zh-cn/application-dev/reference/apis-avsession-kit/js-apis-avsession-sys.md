@@ -378,6 +378,7 @@ createController(sessionId: string, callback: AsyncCallback\<AVSessionController
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 201 | permission denied. |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -1459,7 +1460,6 @@ on(type: 'deviceOffline', callback: (deviceId: string) => void): void
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 201 | permission denied. |
-| 202 | Not System App. |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 
 **示例：**
