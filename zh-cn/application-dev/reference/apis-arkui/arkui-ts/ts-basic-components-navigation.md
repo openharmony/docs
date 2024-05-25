@@ -913,7 +913,7 @@ constructor(name: string, param: unknown)
 | 名称    | 类型      | 必填   | 描述                    |
 | ----- | ------- | ---- | --------------------- |
 | name  | string  | 是    | NavDestination页面名称。   |
-| param | unknown | 是    | NavDestination页面详细参数。 |
+| param | unknown | 否    | NavDestination页面详细参数。 |
 | onPop<sup>11+</sup> | import('../api/@ohos.base').Callback\<[PopInfo](#popinfo11)> | 否 | NavDestination页面触发pop时返回的回调。 |
 
 ## PopInfo<sup>11+</sup>
@@ -1589,8 +1589,8 @@ export function PageTwoBuilder(name: string, param: Object) {
 }
 
 @Component
-export struct PageTwoTemp {
-  pathInfo: NavPathStack = new NavPathStack()
+export struct PageTwo {
+  pageInfos: NavPathStack = new NavPathStack()
   @State x: number = 300
   pageId: number = 0
 
@@ -2287,6 +2287,10 @@ struct PageOneComponent {
     .onDisAppear(() => { this.eventStr += "<onDisAppear>"; })
     .onShown(() => { this.eventStr += "<onShown>"; })
     .onHidden(() => { this.eventStr += "<onHidden>"; })
+    .onWillAppear(() => { this.eventStr += "<onWillAppear>"; })
+    .onWillDisappear(() => { this.eventStr += "<onWillDisappear>"; })
+    .onWillShow(() => { this.eventStr += "<onWillShow>"; })
+    .onWillHide(() => { this.eventStr += "<onWillHide>"; })
     // onReady会在onAppear之前调用
     .onReady((ctx: NavDestinationContext) => {
       try {

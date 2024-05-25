@@ -217,6 +217,7 @@ isPanelShown(panelInfo: PanelInfo): boolean
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types.           |
 | 12800008 | input method manager service error. |
 
 **示例：**

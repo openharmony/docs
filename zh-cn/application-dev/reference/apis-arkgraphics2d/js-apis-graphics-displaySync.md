@@ -168,14 +168,29 @@ backDisplaySync?.start()
 **示例：**
 
 ```ts
-import { UIContext } from '@ohos.arkui.UIContext';
+import { displaySync } from '@kit.ArkGraphics2D';
+import { UIContext } from '@kit.ArkUI';
 
-let uiContext: UIContext = this.getUIContext()
+// xxx.ets
+@Entry
+@Component
+struct Index {
+  // 创建DisplaySync实例
+  backDisplaySync: displaySync.DisplaySync = displaySync.create();
 
-// 在当前UI上下文中执行DisplaySync的start接口
-uiContext?.runScopedTask(() => {
-  backDisplaySync?.start()
-})
+  aboutToAppear() {
+    // 获取UIContext实例
+    let uiContext: UIContext = this.getUIContext();
+    // 在当前UI上下文中执行DisplaySync的start接口
+    uiContext?.runScopedTask(() => {
+      this.backDisplaySync?.start();
+    })
+  }
+
+  build() {
+    // ...
+  }
+}
 
 ```
 

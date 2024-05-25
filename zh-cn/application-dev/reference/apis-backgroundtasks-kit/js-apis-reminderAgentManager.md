@@ -620,6 +620,140 @@ reminderAgentManager.getAllValidReminders().then((reminders: Array<reminderAgent
 }); 
 ```
 
+## reminderAgentManager.addExcludeDate<sup>12+</sup>
+
+addExcludeDate(reminderId: number, date: Date): Promise\<void>
+
+为指定id的日历添加不提醒日期，即在设定的日期范围内不提醒。使用Promise异步回调。
+
+**系统能力**： SystemCapability.Notification.ReminderAgent
+
+**参数**：
+
+| 参数名     | 类型   | 必填 | 说明                         |
+| ---------- | ------ | ---- | ---------------------------- |
+| reminderId | number | 是   | 需要添加不提醒日期的日历Id。 |
+| date       | Date   | 是   | 不提醒的日期。               |
+
+**返回值**：
+
+| 类型           | 说明                      |
+| -------------- | ------------------------- |
+| Promise\<void> | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[reminderAgentManager错误码](errorcode-reminderAgentManager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                        |
+| -------- | ------------------------------- |
+| 201      | Permission verification failed. |
+| 401      | Parameter error.                |
+| 1700003  | The reminder does not exist.    |
+
+**示例**：
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+let reminderId: number = 1;
+let date = new Date();
+reminderAgentManager.addExcludeDate(reminderId, date).then(() => {
+  console.log("addExcludeDate promise");
+}).catch((err: BusinessError) => {
+  console.error("promise err code:" + err.code + " message:" + err.message);
+});
+```
+
+## reminderAgentManager.deleteExcludeDates<sup>12+</sup>
+
+deleteExcludeDates(reminderId: number): Promise\<void>
+
+删除日历设置的所有不提醒日期，通过Id指定具体日历。使用Promise异步回调。
+
+**系统能力**： SystemCapability.Notification.ReminderAgent
+
+**参数**：
+
+| 参数名     | 类型   | 必填 | 说明                         |
+| ---------- | ------ | ---- | ---------------------------- |
+| reminderId | number | 是   | 需要删除不提醒日期的日历Id。 |
+
+**返回值**：
+
+| 类型           | 说明                      |
+| -------------- | ------------------------- |
+| Promise\<void> | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[reminderAgentManager错误码](errorcode-reminderAgentManager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                        |
+| -------- | ------------------------------- |
+| 201      | Permission verification failed. |
+| 401      | Parameter error.                |
+| 1700003  | The reminder does not exist.    |
+
+**示例**：
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+let reminderId: number = 1;
+reminderAgentManager.deleteExcludeDates(reminderId).then(() => {
+  console.log("deleteExcludeDates promise");
+}).catch((err: BusinessError) => {
+  console.error("promise err code:" + err.code + " message:" + err.message);
+});
+```
+
+## reminderAgentManager.getExcludeDates<sup>12+</sup>
+
+getExcludeDates(reminderId: number): Promise\<Array\<Date>>
+
+查询日历设置的所有不提醒日期，通过Id指定具体日历。使用Promise异步回调。
+
+**系统能力**： SystemCapability.Notification.ReminderAgent
+
+**参数**：
+
+| 参数名     | 类型   | 必填 | 说明                         |
+| ---------- | ------ | ---- | ---------------------------- |
+| reminderId | number | 是   | 需要查询不提醒日期的日历Id。 |
+
+**返回值**：
+
+| 类型                   | 说明                              |
+| ---------------------- | --------------------------------- |
+| Promise\<Array\<Date>> | Promise对象。返回特定日历设置的所有不提醒日期。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[reminderAgentManager错误码](errorcode-reminderAgentManager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                        |
+| -------- | ------------------------------- |
+| 201      | Permission verification failed. |
+| 401      | Parameter error.                |
+| 1700003  | The reminder does not exist.    |
+
+**示例**：
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+let reminderId: number = 1;
+reminderAgentManager.getExcludeDates(reminderId).then((dates) => {
+  console.log("getExcludeDates promise length: " + dates.length);
+  for (let i = 0; i < dates.length; i++) {
+	console.log("getExcludeDates promise date is: " + dates[i].toString());
+  }
+}).catch((err: BusinessError) => {
+  console.error("promise err code:" + err.code + " message:" + err.message);
+});
+```
+
 ## ActionButtonType
 
 按钮的类型。
@@ -780,4 +914,3 @@ ReminderRequestTimer extends ReminderRequest
 | ----------- | ----------------------------------- | ---- | --------------------- |
 | reminderId  | number                              | 否   | 发布提醒后返回的 Id。 |
 | reminderReq | [ReminderRequest](#reminderrequest) | 否   | 代理提醒对象。        |
-

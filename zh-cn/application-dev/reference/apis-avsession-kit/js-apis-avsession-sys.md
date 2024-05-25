@@ -1528,7 +1528,7 @@ startCasting(session: SessionToken, device: OutputDeviceInfo, callback: AsyncCal
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 6600101  | Session service exception. |
-| 6600108 | Device connecting failed.       |
+| 6600108 | Device connection failed.       |
 
 **示例：**
 
@@ -1587,7 +1587,7 @@ startCasting(session: SessionToken, device: OutputDeviceInfo): Promise\<void>
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 6600101  | Session service exception. |
-| 6600108 | Device connecting failed.       |
+| 6600108 | Device connection failed.      |
 
 **示例：**
 

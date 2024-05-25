@@ -301,6 +301,8 @@ static keys(): IterableIterator&lt;string&gt;
 
 返回AppStorage中所有的属性名。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：**
@@ -780,8 +782,8 @@ constructor(initializingProperties?: Object)
 创建一个新的LocalStorage实例。使用Object.keys(initializingProperties)返回的属性和其数值，初始化LocalStorage实例。
 
 > **说明：**<br/>
-> **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
-> **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+> 从API version 9开始，该接口支持在ArkTS卡片中使用。
+> 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -828,8 +830,8 @@ has(propName: string): boolean
 判断propName对应的属性是否在LocalStorage中存在。
 
 > **说明：**<br/>
-> **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
-> **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+> 从API version 9开始，该接口支持在ArkTS卡片中使用。
+> 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -860,8 +862,8 @@ get&lt;T&gt;(propName: string): T | undefined
 获取propName在LocalStorage中对应的属性值。
 
 > **说明：**<br/>
-> **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
-> **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+> 从API version 9开始，该接口支持在ArkTS卡片中使用。
+> 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -894,7 +896,7 @@ set&lt;T&gt;(propName: string, newValue: T): boolean
 > **说明：**<br/>
 > 从API version 9开始，该接口支持在ArkTS卡片中使用。
 > 从API version 12开始，LocalStorage支持Map、Set、Date类型，支持null、undefined以及联合类型。
-> **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+> 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -931,7 +933,7 @@ setOrCreate&lt;T&gt;(propName: string, newValue: T): boolean
 > **说明：**<br/>
 > 从API version 9开始，该接口支持在ArkTS卡片中使用。
 > 从API version 12开始，LocalStorage支持Map、Set、Date类型，支持null、undefined以及联合类型。
-> **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+> 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -970,8 +972,8 @@ link&lt;T&gt;(propName: string): SubscribedAbstractProperty&lt;T&gt;
 如果LocalStorage中不存在propName，则返回undefined。
 
 > **说明：**<br/>
-> **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
-> **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+> 从API version 9开始，该接口支持在ArkTS卡片中使用。
+> 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1006,7 +1008,7 @@ setAndLink&lt;T&gt;(propName: string, defaultValue: T): SubscribedAbstractProper
 > **说明：**<br/>
 > 从API version 9开始，该接口支持在ArkTS卡片中使用。
 > 从API version 12开始，LocalStorage支持Map、Set、Date类型，支持null、undefined以及联合类型。
-> **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+> 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1039,8 +1041,8 @@ prop&lt;S&gt;(propName: string): SubscribedAbstractProperty&lt;S&gt;
 如果给定的propName在LocalStorage中存在，则返回与LocalStorage中propName对应属性的单向绑定数据。如果LocalStorage中不存在propName，则返回undefined。单向绑定数据的修改不会被同步回LocalStorage中。
 
 > **说明：**<br/>
-> **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
-> **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+> 从API version 9开始，该接口支持在ArkTS卡片中使用。
+> 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1075,7 +1077,7 @@ setAndProp&lt;S&gt;(propName: string, defaultValue: S): SubscribedAbstractProper
 > **说明：**<br/>
 > 从API version 9开始，该接口支持在ArkTS卡片中使用。
 > 从API version 12开始，LocalStorage支持Map、Set、Date类型，支持null、undefined以及联合类型。
-> **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+> 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1110,8 +1112,8 @@ delete(propName: string): boolean
 属性的订阅者为link，prop等接口绑定的propName，以及\@LocalStorageLink('propName')和\@LocalStorageProp('propName')。如果自定义组件中使用\@LocalStorageLink('propName')和\@LocalStorageProp('propName')或者SubscribedAbstractProperty实例（link和prop接口的返回类型）依旧对propName有同步关系，则该属性不能从LocalStorage中删除。
 
 > **说明：**<br/>
-> **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
-> **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+> 从API version 9开始，该接口支持在ArkTS卡片中使用。
+> 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1146,8 +1148,8 @@ keys(): IterableIterator&lt;string&gt;
 返回LocalStorage中所有的属性名。
 
 > **说明：**<br/>
-> **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
-> **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+> 从API version 9开始，该接口支持在ArkTS卡片中使用。
+> 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1172,8 +1174,8 @@ size(): number
 返回LocalStorage中的属性数量。
 
 > **说明：**<br/>
-> **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
-> **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+> 从API version 9开始，该接口支持在ArkTS卡片中使用。
+> 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1200,8 +1202,8 @@ clear(): boolean
 订阅者的含义参考[delete](#delete9)
 
 > **说明：**<br/>
-> **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
-> **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+> 从API version 9开始，该接口支持在ArkTS卡片中使用。
+> 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1257,8 +1259,8 @@ abstract get(): T
 读取从AppStorage/LocalStorage同步属性的数据。
 
 > **说明：**<br/>
-> **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
-> **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+> 从API version 9开始，该接口支持在ArkTS卡片中使用。
+> 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1286,7 +1288,7 @@ abstract set(newValue: T): void
 > 从API version 9开始，该接口支持在ArkTS卡片中使用。
 >
 > 从API version 12开始，AppStorage/LocalStorage支持Map、Set、Date类型，支持null、undefined以及联合类型。
-> **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+> 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1534,8 +1536,6 @@ static Keys(): Array&lt;string&gt;
 > **说明：**<br/>
 > 从API version 10开始废弃，推荐使用[keys10+](#keys10-1)替代。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：**
@@ -1628,6 +1628,8 @@ Environment.envProps([{ key: 'accessibilityEnabled', defaultValue: 'default' }, 
 static keys(): Array&lt;string&gt;
 
 返回环境变量的属性key的数组。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1744,8 +1746,8 @@ let keys: Array<string> = Environment.Keys(); // accessibilityEnabled, languageC
 | key                  | 类型            | 说明                                                         |
 | -------------------- | --------------- | ------------------------------------------------------------ |
 | accessibilityEnabled | string          | 无障碍屏幕朗读是否启用。当无法获取环境变量中的accessibilityEnabled的值时，将通过envProp、envProps等接口传入的开发者指定的默认值添加到AppStorage中。 |
-| colorMode            | ColorMode       | 深浅色模式，可选值为：<br/>-&nbsp;ColorMode.LIGHT：浅色模式；<br/>-&nbsp;ColorMode.DARK：深色模式。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| fontScale            | number          | 字体大小比例。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。                                               |
+| colorMode            | ColorMode       | 深浅色模式，可选值为：<br/>-&nbsp;ColorMode.LIGHT：浅色模式；<br/>-&nbsp;ColorMode.DARK：深色模式。|
+| fontScale            | number          | 字体大小比例。 |
 | fontWeightScale      | number          | 字重比例。                                                   |
-| layoutDirection      | LayoutDirection | 布局方向类型，可选值为：<br/>-&nbsp;LayoutDirection.LTR：从左到右；<br/>-&nbsp;LayoutDirection.RTL：从右到左。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| layoutDirection      | LayoutDirection | 布局方向类型，可选值为：<br/>-&nbsp;LayoutDirection.LTR：从左到右；<br/>-&nbsp;LayoutDirection.RTL：从右到左。 |
 | languageCode         | string          | 当前系统语言，小写字母，例如zh。                             |

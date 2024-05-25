@@ -36,93 +36,93 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController, 
 
 加载在线网页。
 
-  ```ts
-  // xxx.ets
-  import web_webview from '@ohos.web.webview'
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
 
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    build() {
-      Column() {
-        Web({ src: 'www.example.com', controller: this.controller })
-      }
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController()
+  build() {
+    Column() {
+      Web({ src: 'www.example.com', controller: this.controller })
     }
   }
-  ```
+}
+```
 
 隐私模式Webview加载在线网页。
  
-   ```ts
-  // xxx.ets
-  import web_webview from '@ohos.web.webview'
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
 
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    build() {
-      Column() {
-        Web({ src: 'www.example.com', controller: this.controller, incognitoMode: true })
-      }
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController()
+  build() {
+    Column() {
+      Web({ src: 'www.example.com', controller: this.controller, incognitoMode: true })
     }
   }
-  ```
+}
+```
 
 Web组件统一渲染模式。
 
-   ```ts
-  // xxx.ets
-  import web_webview from '@ohos.web.webview'
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
 
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    build() {
-      Column() {
-        Web({ src: 'www.example.com', controller: this.controller, renderMode: RenderMode.SYNC_RENDER })
-      }
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController()
+  build() {
+    Column() {
+      Web({ src: 'www.example.com', controller: this.controller, renderMode: RenderMode.SYNC_RENDER })
     }
   }
-  ```
+}
+```
 
 加载本地网页。
 
-  ```ts
-  // xxx.ets
-  import web_webview from '@ohos.web.webview'
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
 
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    build() {
-      Column() {
-        // 通过$rawfile加载本地资源文件。
-        Web({ src: $rawfile("index.html"), controller: this.controller })
-      }
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController()
+  build() {
+    Column() {
+      // 通过$rawfile加载本地资源文件。
+      Web({ src: $rawfile("index.html"), controller: this.controller })
     }
   }
-  ```
+}
+```
 
-  ```ts
-  // xxx.ets
-  import web_webview from '@ohos.web.webview'
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
 
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    build() {
-      Column() {
-        // 通过resource协议加载本地资源文件。
-        Web({ src: "resource://rawfile/index.html", controller: this.controller })
-      }
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController()
+  build() {
+    Column() {
+      // 通过resource协议加载本地资源文件。
+      Web({ src: "resource://rawfile/index.html", controller: this.controller })
     }
   }
-  ```
+}
+```
 
 加载沙箱路径下的本地资源文件。
 
@@ -1574,7 +1574,7 @@ javaScriptOnDocumentStart(scripts: Array\<ScriptItem>)
 
 | 参数名     | 参数类型                                | 必填   | 默认值  | 参数描述               |
 | ------- | ----------------------------------- | ---- | ---- | ------------------ |
-| scripts | Array\<[ScriptItem](#scriptitem11)> | 是    | -    | 需要注入的的ScriptItem数组 |
+| scripts | Array\<[ScriptItem](#scriptitem11)> | 是    | -    | 需要注入的ScriptItem数组 |
 
 **ets示例：**
 
@@ -1645,7 +1645,7 @@ javaScriptOnDocumentEnd(scripts: Array\<ScriptItem>)
 
 | 参数名     | 参数类型                                | 必填   | 默认值  | 参数描述               |
 | ------- | ----------------------------------- | ---- | ---- | ------------------ |
-| scripts | Array\<[ScriptItem](#scriptitem11)> | 是    | -    | 需要注入的的ScriptItem数组 |
+| scripts | Array\<[ScriptItem](#scriptitem11)> | 是    | -    | 需要注入的ScriptItem数组 |
 
 **示例：**
 
@@ -1797,6 +1797,36 @@ enableNativeEmbedMode(mode: boolean)
     }
   }
   ```
+### registerNativeEmbedRule<sup>12+</sup>
+registerNativeEmbedRule(tag: string, type: string)
+
+注册使用同层渲染的HTML标签名和类型。标签名仅支持使用object和embed。标签类型可使用任意非空字串，不区分大小写。若标准类型与object或embed的标准类型相同，ArkWeb内核将其识别为非同层标签。本接口同样受enableNativeEmbedMode接口控制，在未使能同层渲染时本接口无效。在不使用本接口的情况下，ArkWeb内核默认将"native/"前缀类型的embed标签识别为同层标签。
+
+**参数：**
+
+| 参数名  | 参数类型   | 必填   | 默认值  | 参数描述             |
+|------|--------| ---- |------|------------------|
+| tag  | string | 是    | ""   | 标签名。             |
+| type | string | 是    | ""   | 标签类型,内核使用前缀匹配此参数。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .enableNativeEmbedMode(true)
+          .registerNativeEmbedRule("object", "application/view")
+      }
+    }
+  }
+  ```
 ### defaultTextEncodingFormat<sup>12+</sup>
 
 defaultTextEncodingFormat(textEncodingFormat: string)
@@ -1924,7 +1954,9 @@ struct WebComponent {
   ```
 ### enableNativeMediaPlayer<sup>12+</sup>
 
-开启应用接管网页媒体播放功能。
+enableNativeMediaPlayer(config: NativeMediaPlayerConfig)
+
+开启[应用接管网页媒体播放功能](../../web/app-takeovers-web-media.md)。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -5105,7 +5137,7 @@ exitFullScreen(): void
 
 ## ControllerHandler<sup>9+</sup>
 
-设置用户新建web组件的的WebviewController对象。示例代码参考[onWindowNew事件](#onwindownew9)。
+设置用户新建web组件的WebviewController对象。示例代码参考[onWindowNew事件](#onwindownew9)。
 
 ### setWebController<sup>9+</sup>
 
@@ -6039,8 +6071,8 @@ Web屏幕捕获的配置。
 
 | 名称             | 类型               | 描述                   |
 | -------------- | ---------------- | -------------------- |
-| scrollForward  | NestedScrollMode | 可滚动组件往末尾端滚动时的嵌套滚动选项。 |
-| scrollBackward | NestedScrollMode | 可滚动组件往起始端滚动时的嵌套滚动选项。 |
+| scrollForward  | [NestedScrollMode](#nestedscrollmode11枚举说明) | 可滚动组件往末尾端滚动时的嵌套滚动选项。 |
+| scrollBackward | [NestedScrollMode](#nestedscrollmode11枚举说明) | 可滚动组件往起始端滚动时的嵌套滚动选项。 |
 
 ## NestedScrollMode<sup>11+</sup>枚举说明
 
@@ -6988,6 +7020,7 @@ type OnSslErrorEventCallback = (sslErrorEvent: SslErrorEvent) => void
 | url | string                              | 否    | Embed标签的url信息。  |
 | tag<sup>12+</sup> | string              | 否    | 标签名，统一为大写字符。              |
 | params<sup>12+</sup>            | map<string, string> | 否    | object标签包含的param标签键值对列表。  |
+| position<sup>12+</sup>          | Position            | 否    | 同层标签在屏幕坐标系中相对于web组件的位置信息，此处区别于标准Position，单位为px。 |
 
 ## NativeEmbedDataInfo<sup>11+</sup>
 
@@ -7100,10 +7133,7 @@ onOverrideUrlLoading的回调。
 
 ## NativeMediaPlayerConfig<sup>12+</sup>
 
-type NativeMediaPlayerConfig = {
-  enable: boolean,
-  shouldOverlay: boolean
-}
+type NativeMediaPlayerConfig = { enable: boolean, shouldOverlay: boolean }
 
 用于[开启应用接管网页媒体播放功能](#enablenativemediaplayer12)的配置信息。
 

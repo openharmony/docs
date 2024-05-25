@@ -33,13 +33,14 @@
     - arkui
       - [BuilderNode](js-apis-arkui-builderNode.md)
       - [ComponentContent](js-apis-arkui-ComponentContent.md)
-      - [ContentSlot](js-apis-arkui-contentSlot.md)
       - [FrameNode](js-apis-arkui-frameNode.md)
       - [Graphics](js-apis-arkui-graphics.md)
       - [NodeController](js-apis-arkui-nodeController.md)
       - [RenderNode](js-apis-arkui-renderNode.md)
       - [XComponentNode](js-apis-arkui-xcomponentNode.md)
       - [AttributeUpdater](js-apis-arkui-AttributeUpdater.md)
+      - [Content](js-apis-arkui-Content.md)
+      - [NodeContent](js-apis-arkui-NodeContent.md)
   - 图形图像
     - [@ohos.display (屏幕属性)](js-apis-display.md)
     - [@ohos.PiPWindow (画中画窗口)](js-apis-pipWindow.md)
@@ -247,6 +248,8 @@
       - [OffscreenCanvas](arkui-ts/ts-components-offscreencanvas.md)
       - [OffscreenCanvasRenderingContext2D](arkui-ts/ts-offscreencanvasrenderingcontext2d.md)
       - [Path2D](arkui-ts/ts-components-canvas-path2d.md)
+    - 渲染组件
+      - [ContentSlot](arkui-ts/ts-components-contentSlot.md)
     - 高级组件
       - [@ohos.arkui.advanced.Chip (操作块)](arkui-ts/ohos-arkui-advanced-Chip.md)
       - [@ohos.arkui.advanced.ComposeListItem (列表)](arkui-ts/ohos-arkui-advanced-ComposeListItem.md)
@@ -322,6 +325,7 @@
     - [WindowManager_NativeMoudle](_window_manager___native_moudle.md)
   - 头文件和结构体
     - 头文件
+      - [drawable_descriptor.h](drawable__descriptor_8h.md)
       - [native_animate.h](native__animate_8h.md)
       - [native_dialog.h](native__dialog_8h.md)
       - [native_event.h](native__event_8h.md)
@@ -332,6 +336,7 @@
       - [native_node_napi.h](native__node__napi_8h.md)
       - [native_type.h](native__type_8h.md)
       - [native_xcomponent_key_event.h](native__xcomponent__key__event_8h.md)
+      - [styled_string.h](styled__string_8h.md)
       - [ui_input_event.h](ui__input__event_8h.md)
       - [oh_window_comm.h](oh__window__comm_8h.md)
       - [oh_window_event_filter.h](oh__window__event__filter_8h.md)

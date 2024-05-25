@@ -2742,7 +2742,7 @@ postMessage(name: string, ports: Array\<WebMessagePort>, uri: string): void
 | 参数名 | 类型                   | 必填 | 说明                             |
 | ------ | ---------------------- | ---- | :------------------------------- |
 | name   | string                 | 是   | 要发送的消息名称。            |
-| ports  | Array\<WebMessagePort> | 是   | 要发送的消息端口。            |
+| ports  | Array\<[WebMessagePort](#webmessageport)> | 是   | 要发送的消息端口。            |
 | uri    | string                 | 是   | 接收该消息的URI。                |
 
 **错误码：**
@@ -3283,7 +3283,7 @@ getPageHeight(): number
 
 | 类型   | 说明                 |
 | ------ | -------------------- |
-| number | 当前网页的页面高度。 |
+| number | 当前网页的页面高度。单位：px。 |
 
 **错误码：**
 
@@ -5000,6 +5000,7 @@ static prefetchResource(request: RequestInfo, additionalHeaders?: Array\<WebHead
 
 | 错误码ID  | 错误信息                                                      |
 | -------- | ------------------------------------------------------------ |
+| 401      | Invalid input parameter.Possible causes: 1. Mandatory parameters are left unspecified.2. Incorrect parameter types.3. Parameter verification failed. |
 | 17100002 | Invalid url.                                                 |
 
 **示例：**
@@ -6646,7 +6647,7 @@ setWebSchemeHandler(scheme: string, handler: WebSchemeHandler): void
 | 参数名 | 类型   | 必填 | 说明                      |
 | ------ | ------ | ---- | :------------------------ |
 | scheme    | string | 是   | 要拦截的协议。 |
-| handler    | WebSchemeHandler | 是   | 拦截此协议的拦截器。 |
+| handler    | [WebSchemeHandler](#webschemehandler12) | 是   | 拦截此协议的拦截器。 |
 
 **错误码：**
 
@@ -7006,8 +7007,8 @@ precompileJavaScript(url: string, script: string | Uint8Array, cacheOptions: Cac
 
 | 参数名  | 类型    | 必填 | 说明                  |
 | ------- | ------ | ---- | :-------------------- |
-| url | string | 是   | 本地JavaScript文件对应的网络地址，即业务网页请求该文件的服务器版本时使用的网络地址。网络地址仅支持http或https协议。如果该网络地址对应的缓存失效，则业务网页将通过网络请求对应的资源。      |
-| script | string \| Uint8Array | 是   | 本地JavaScript的文本内容。      |
+| url | string | 是   | 本地JavaScript文件对应的网络地址，即业务网页请求该文件的服务器版本时使用的网络地址。网络地址仅支持http或https协议，长度不超过2048。如果该网络地址对应的缓存失效，则业务网页将通过网络请求对应的资源。      |
+| script | string \| Uint8Array | 是   | 本地JavaScript的文本内容。内容不能为空。      |
 | cacheOptions | [CacheOptions](#cacheoptions12) | 是   | 用于控制字节码缓存更新。      |
 
 **返回值：**
@@ -7022,6 +7023,7 @@ precompileJavaScript(url: string, script: string | Uint8Array, cacheOptions: Cac
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
+| 401      | Invalid input parameter.Possible causes: 1. Mandatory parameters are left unspecified.2. Incorrect parameter types.3. Parameter verification failed.                                     |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
@@ -9947,7 +9949,7 @@ getArray(): Array\<string | number | boolean\>
 
 ## WebMessageExt<sup>10+</sup>
 
-[webMessagePort](#webmessageport)接口接收、发送的的数据对象。
+[webMessagePort](#webmessageport)接口接收、发送的数据对象。
 
 ### getType<sup>10+</sup>
 
@@ -13412,7 +13414,7 @@ onRequestStart(callback: (request: WebSchemeHandlerRequest, handler: WebResource
 
 | 参数名   | 类型                 | 必填 | 说明       |
 | -------- | -------------------- | ---- | ---------- |
-| callback   | (request: WebSchemeHandlerRequest, handler: WebResourceHandler) => boolean | 是 | 拦截对应scheme请求开始时触发的回调。request为请求，handler用于提供自定义的返回头以及返回体给Web组件，返回值表示该请求是否拦截。 |
+| callback   | (request: [WebSchemeHandlerRequest](#webschemehandlerrequest12), handler: [WebResourceHandler](#webresourcehandler12)) => boolean | 是 | 拦截对应scheme请求开始时触发的回调。request为请求，handler用于提供自定义的返回头以及返回体给Web组件，返回值表示该请求是否拦截。 |
 
 **示例：**
 
@@ -13526,7 +13528,7 @@ onRequestStop(callback: Callback\<WebSchemeHandlerRequest\>): void
 
 | 参数名   | 类型                 | 必填 | 说明       |
 | -------- | -------------------- | ---- | ---------- |
-| callback | Callback\<WebSchemeHandlerRequest\> | 是   | 对应请求结束的回调函数。 |
+| callback | Callback\<[WebSchemeHandlerRequest](#webschemehandlerrequest12)\> | 是   | 对应请求结束的回调函数。 |
 
 **示例：**
 

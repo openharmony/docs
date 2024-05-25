@@ -39,7 +39,7 @@ DataPanel(options: DataPanelOptions)
 
 ## DataPanelType<sup>8+</sup>枚举说明
 
-**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
@@ -139,6 +139,7 @@ trackShadow(value: DataPanelShadowOptions)
 contentModifier(modifier: ContentModifier\<DataPanelConfiguration>)
 
 定制DataPanel内容区的方法。
+
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full

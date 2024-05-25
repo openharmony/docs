@@ -3099,7 +3099,7 @@ imageSourceApi.getImageProperty("BitsPerSample", property, (error: BusinessError
 
 ### getImageProperties<sup>12+</sup>
 
-getImageProperties(key: Array<PropertyKey>): Promise<Record<PropertyKey, string|null>>
+getImageProperties(key: Array&#60;PropertyKey&#62;): Promise<Record<PropertyKey, string|null>>
 
 批量获取图片中给定索引处图像的指定属性键的值，用Promise形式返回结果。支持JPEG、PNG文件，且需要包含exif信息。
 
@@ -5400,7 +5400,7 @@ PixelMap的初始化选项。
 | 名称              |   值                    | 说明                     |
 | ----------------- | ----------------------- | ------------------------ |
 | BITS_PER_SAMPLE                           | "BitsPerSample"              | 每个像素比特数。                            |
-| ORIENTATION                               | "Orientation"                | 图片方向。                                  |
+| ORIENTATION                               | "Orientation"                | 图片方向。<br/>- Top-left，图像未旋转。<br/>- Top-right，镜像水平翻转。<br/>- Bottom-right，图像旋转180°。<br/>- Bottom-left，镜像垂直翻转。<br/>- Left-top，镜像水平翻转再顺时针旋转270°。<br/>- Right-top，顺时针旋转90°。<br/>- Right-bottom，镜像垂直翻转再顺时针旋转90°。<br/>- Left-bottom，顺时针旋转270°。<br/>- 未定义值返回Unknown Value|
 | IMAGE_LENGTH                              | "ImageLength"                | 图片长度。                                  |
 | IMAGE_WIDTH                               | "ImageWidth"                 | 图片宽度。                                  |
 | GPS_LATITUDE                              | "GPSLatitude"                | 图片纬度。                                  |
@@ -5570,6 +5570,7 @@ PixelMap的初始化选项。
 | FRONT_CAMERA <sup>12+</sup> | "HwMnoteFrontCamera" | 是否是前置相机自拍。 |
 | SCENE_POINTER <sup>12+</sup> | "HwMnoteScenePointer" | 场景指针。 |
 | SCENE_VERSION <sup>12+</sup> | "HwMnoteSceneVersion" | 场景算法版本信息。 |
+| GIF_LOOP_COUNT <sup>12+</sup> | "GIFLoopCount" | GIF图片循环次数。 |
 
 ## ImageFormat<sup>9+</sup>
 

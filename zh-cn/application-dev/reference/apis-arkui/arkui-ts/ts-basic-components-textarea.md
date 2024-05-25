@@ -191,7 +191,7 @@ showCounter(value: boolean, options?: InputCounterOptions)
 
 style(value: TextContentStyle)
 
-设置文本框多态样式。
+设置文本框多态样式，内联输入风格只支持TextAreaType.Normal类型。
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
