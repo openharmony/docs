@@ -117,12 +117,12 @@ Location Kit接口对权限的要求参见：[Location Kit](../../reference/apis
 
    ```ts
        export enum LocationRequestScenario {
-            UNSET = 0x300,//默认值
-            NAVIGATION,//导航场景
-            TRAJECTORY_TRACKING,//轨迹跟踪场景
-            CAR_HAILING,//出行约车场景
-            DAILY_LIFE_SERVICE,//生活服务场景
-            NO_POWER,//无功耗场景
+            UNSET = 0x300, // 默认值 
+            NAVIGATION, // 导航场景
+            TRAJECTORY_TRACKING, // 轨迹跟踪场景
+            CAR_HAILING, // 出行约车场景
+            DAILY_LIFE_SERVICE, // 生活服务场景
+            NO_POWER, // 无功耗场景
         }
    ```
 
@@ -153,10 +153,10 @@ Location Kit接口对权限的要求参见：[Location Kit](../../reference/apis
       
    ```ts
        export enum LocationRequestPriority {
-            UNSET = 0x200,//默认值
-            ACCURACY,//定位精度优先策略
-            LOW_POWER,//低功耗定位优先策略
-            FIRST_FIX,//快速定位优先策略
+            UNSET = 0x200, // 默认值
+            ACCURACY, // 定位精度优先策略
+            LOW_POWER, // 低功耗定位优先策略
+            FIRST_FIX, // 快速定位优先策略
         }
    ```
 
@@ -199,13 +199,13 @@ Location Kit接口对权限的要求参见：[Location Kit](../../reference/apis
    ```ts
    import { geoLocationManager } from '@kit.LocationKit';
    import { BusinessError } from '@kit.BasicServicesKit'
-   //实例化CurrentLocationRequest对象，指定快速定位优先策略，指定定位超时时间为5秒。
+   // 实例化CurrentLocationRequest对象，指定快速定位优先策略，指定定位超时时间为5秒。
    let requestInfo:geoLocationManager.CurrentLocationRequest = {'priority': geoLocationManager.LocationRequestPriority.FIRST_FIX, 'scenario': geoLocationManager.LocationRequestScenario.UNSET, 'timeoutMs': 5000};
    try {
-       geoLocationManager.getCurrentLocation(requestInfo).then((result) => {//调用getCurrentLocation获取当前设备位置，通过promise接收上报的位置
+       geoLocationManager.getCurrentLocation(requestInfo).then((result) => { // 调用getCurrentLocation获取当前设备位置，通过promise接收上报的位置
            console.log('current location: ' + JSON.stringify(result));
        })  
-       .catch((error:BusinessError.BusinessError) => {//接收上报的错误码
+       .catch((error:BusinessError.BusinessError) => { // 接收上报的错误码
            console.error('promise, getCurrentLocation: error=' + JSON.stringify(error));
        });
    } catch (err) {
