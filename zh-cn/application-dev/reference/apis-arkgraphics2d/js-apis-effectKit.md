@@ -91,7 +91,7 @@ createColorPicker(source: image.PixelMap): Promise\<ColorPicker>
 
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 401      | Parameter error. Possible causes: Input parameter error.             |
 
 **示例：**
 
@@ -150,7 +150,7 @@ createColorPicker(source: image.PixelMap, region: Array\<number>): Promise\<Colo
 
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 401      | Parameter error. Possible causes: Input parameter error.              |
 
 **示例：**
 
@@ -203,7 +203,7 @@ createColorPicker(source: image.PixelMap, callback: AsyncCallback\<ColorPicker>)
 
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 401      | Parameter error. Possible causes: Input parameter error.             |
 
 **示例：**
 
@@ -257,7 +257,7 @@ createColorPicker(source: image.PixelMap, region:Array\<number>, callback: Async
 
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 401      | Parameter error. Possible causes: Input parameter error.             |
 
 **示例：**
 
@@ -767,7 +767,7 @@ setColorMatrix(colorMatrix: Array\<number>): Filter
 
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------ |
-| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
+| 401      | Parameter error. Possible causes: Input parameter error.             |
 
 **示例：**
 
