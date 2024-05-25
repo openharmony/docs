@@ -82,6 +82,14 @@ result = object->RemoveDeathRecipient(deathRecipient); // 移除消亡通知
 
 ## ArkTS侧接口
 
+> **说明：**
+>
+> - 此文档中的示例代码描述的是系统应用跨进程通信。
+>
+> - 当前不支持三方应用实现ServiceExtensionAbility，三方应用的UIAbility组件可以通过Context连接系统提供的ServiceExtensionAbility。
+>
+> - 当前使用场景： 仅限客户端是三方应用，服务端是系统应用。
+
 | 接口名                                                       | 返回值类型 | 功能描述                                                     |
 | ------------------------------------------------------------ | ---------- | ------------------------------------------------------------ |
 | [registerDeathRecipient](../reference/apis-ipc-kit/js-apis-rpc.md#registerdeathrecipient9-1) | void       | 注册用于接收远程对象消亡通知的回调，增加 proxy 对象上的消亡通知。 |
