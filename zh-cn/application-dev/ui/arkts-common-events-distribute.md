@@ -94,7 +94,13 @@ API链接：zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-att
 
 ARKUI包含如下安全控件：   
 
-https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-security-components-locationbutton.md   [zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-security-components-pastebutton.md · OpenHarmony/docs - Gitee.com](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-security-components-pastebutton.md)   https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-security-components-savebutton.md   安全控件当前对触摸测试影响：如果有控件z序比安全控件靠前，且遮盖安全控件，则安全控件事件直接返回到父节点继续触摸测试
+[zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-security-components-locationbutton.md · OpenHarmony/docs - Gitee.com](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-security-components-locationbutton.md)
+
+[zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-security-components-pastebutton.md · OpenHarmony/docs - Gitee.com](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-security-components-pastebutton.md)[zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-security-components-pastebutton.md · OpenHarmony/docs - Gitee.com](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-security-components-pastebutton.md)
+
+[zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-security-components-savebutton.md · OpenHarmony/docs - Gitee.com](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-security-components-savebutton.md)https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-security-components-savebutton.md
+
+安全控件当前对触摸测试影响：如果有控件z序比安全控件靠前，且遮盖安全控件，则安全控件事件直接返回到父节点继续触摸测试
 
 ### 其他属性影响
 
@@ -115,7 +121,7 @@ node.TouchTest
 
 响应链收集举例，按下图的控件树，hitTestBehavior属性均为默认，用户点按的动作如果发生在控件5上
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210701092640808.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzIxNDQ5NDcz,size_16,color_FFFFFF,t_70)
+<img src="file:///C:/Users/aaa/AppData/Roaming/marktext/images/2024-05-26-19-30-55-image.png" title="" alt="" data-align="center">
 
 则最终收集到的响应链，以及先后关系是5，3，1
 
