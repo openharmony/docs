@@ -48,7 +48,7 @@ touch与mouse的区分，主要是输入源的不同，touch类的输入源包�
 
 <center>TouchTest流程
 
-- TouchTest从根节点开始
+- TouchTest的触发时机由每次点按的按下动作发起，默认由控件树的根节点TouchTest方法作为入口
 
 - hitTestBehavior可以由InterceptTouch事件变更
 
@@ -58,7 +58,7 @@ touch与mouse的区分，主要是输入源的不同，touch类的输入源包�
 
 API链接：[zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-hit-test-behavior.md · OpenHarmony/docs - Gitee.com](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-hit-test-behavior.md)
 
-- 触摸测试命中：触点的点按范围在控件范围内，且收集到控件/子控件的事件
+- 命中：触摸测试成功收集到当前控件/子控件的事件
 
 - 子组件对父组件触摸测试的影响，取决于最后一个没有被阻塞触摸测试的子组件
 
