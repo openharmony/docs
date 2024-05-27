@@ -4603,15 +4603,11 @@ async function example() {
 
 ### dismiss<sup>12+</sup>
 
-dismiss(): Promise&lt;void&gt;
+dismiss(): void
 
-删除合影相册，使用Promise方式返回结果。
-
-删除相册前需先确保相册存在，只能删除合影相册。
+删除合影相册。
 
 **系统接口**：此接口为系统接口。
-
-**需要权限**：ohos.permission.WRITE\_IMAGEVIDEO
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
