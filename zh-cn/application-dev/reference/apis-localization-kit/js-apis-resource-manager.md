@@ -48,12 +48,13 @@ getResourceManager(callback: AsyncCallback&lt;ResourceManager&gt;): void
 
 **示例：** 
   ```js
+  <!--code_no_check_fa-->
   resourceManager.getResourceManager((error, mgr) => {
     if (error != null) {
       console.error("error is " + error);
       return;
     }
-    mgr.getStringValue($r('app.string.text').id, (error: BusinessError, value: string) => {
+    mgr.getStringValue($r('app.string.test').id, (error: BusinessError, value: string) => {
       if (error != null) {
         console.error("error is " + error);
       } else {
@@ -83,6 +84,7 @@ getResourceManager(bundleName: string, callback: AsyncCallback&lt;ResourceManage
 **示例：** 
 
   ```js
+  <!--code_no_check_fa-->
   resourceManager.getResourceManager("com.example.myapplication", (error, mgr) => {
   });
   ```
@@ -105,11 +107,12 @@ getResourceManager(): Promise&lt;ResourceManager&gt;
 
 **示例：** 
   ```js
+  <!--code_no_check_fa-->
   import resourceManager from '@ohos.resourceManager';
   import { BusinessError } from '@ohos.base';
 
   resourceManager.getResourceManager().then((mgr: resourceManager.ResourceManager) => {
-    mgr.getStringValue($r('app.string.text').id, (error: BusinessError, value: string) => {
+    mgr.getStringValue($r('app.string.test').id, (error: BusinessError, value: string) => {
       if (error != null) {
         console.error("error is " + error);
       } else {
@@ -145,6 +148,7 @@ getResourceManager(bundleName: string): Promise&lt;ResourceManager&gt;
 
 **示例：** 
   ```js
+  <!--code_no_check_fa-->
   import resourceManager from '@ohos.resourceManager';
   import { BusinessError } from '@ohos.base';
 
