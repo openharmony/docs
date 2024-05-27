@@ -13,7 +13,7 @@ The **inputMonitor** module implements listening for events of input devices, in
 ## Modules to Import
 
 ```js
-import inputMonitor from '@ohos.multimodalInput.inputMonitor';
+import inputMonitor from '@kit.InputKit';
 ```
 
 ## inputMonitor.on('touch')
@@ -45,7 +45,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-import { TouchEvent } from '@ohos.multimodalInput.touchEvent';
+import { TouchEvent } from '@kit.InputKit';
 try {
   inputMonitor.on('touch', (touchEvent: TouchEvent) => {
     console.log(`Monitor on success ${JSON.stringify(touchEvent)}`);
@@ -85,7 +85,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-import { MouseEvent } from '@ohos.multimodalInput.mouseEvent';
+import { MouseEvent } from '@kit.InputKit';
 
 try {
   inputMonitor.on('mouse', (mouseEvent: MouseEvent) => {
@@ -128,9 +128,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-import { MouseEvent } from '@ohos.multimodalInput.mouseEvent';
-import promptAction from '@ohos.promptAction'
-import display from '@ohos.display';
+import { MouseEvent } from '@kit.InputKit';
+import promptAction from '@kit.ArkUI'
+import display from '@kit.ArkUI'
 
 /**
  * Callback triggered when the mouse pointer moves to the specified rectangular area.
@@ -194,7 +194,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-import { TouchEvent } from '@ohos.multimodalInput.touchEvent';
+import { TouchEvent } from '@kit.InputKit';
 // Disable listening for a single callback.
 let callback = (touchEvent: TouchEvent) => {
   console.log(`Monitor on success ${JSON.stringify(touchEvent)}`);
@@ -210,7 +210,7 @@ try {
 ```
 
 ```js
-import { TouchEvent } from '@ohos.multimodalInput.touchEvent';
+import { TouchEvent } from '@kit.InputKit';
 // Cancel listening for all callbacks.
 let callback = (touchEvent: TouchEvent) => {
   console.log(`Monitor on success ${JSON.stringify(touchEvent)}`);
@@ -254,7 +254,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-import { MouseEvent } from '@ohos.multimodalInput.mouseEvent';
+import { MouseEvent } from '@kit.InputKit';
 // Disable listening for a single callback.
 let callback = (mouseEvent: MouseEvent) => {
   console.log(`Monitor on success ${JSON.stringify(mouseEvent)}`);
@@ -270,7 +270,7 @@ try {
 ```
 
 ```js
-import { MouseEvent } from '@ohos.multimodalInput.mouseEvent';
+import { MouseEvent } from '@kit.InputKit';
 // Cancel listening for all callbacks.
 let callback = (mouseEvent: MouseEvent) => {
   console.log(`Monitor on success ${JSON.stringify(mouseEvent)}`);
@@ -310,7 +310,7 @@ Defines the callback for touch (touchscreen) events.
 **Example**
 
 ```js
-import { TouchEvent } from '@ohos.multimodalInput.touchEvent';
+import { TouchEvent } from '@kit.InputKit';
 try {
   inputMonitor.on('touch', touchEvent => {
     if (touchEvent.touches.length == 3) {// Three fingers are pressed.
@@ -353,7 +353,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-import type { Pinch } from '@ohos.multimodalInput.gestureEvent';
+import type { Pinch } from '@kit.InputKit';
 try {
   inputMonitor.on('pinch', (pinchEvent) => {
     console.log(`Monitor on success ${JSON.stringify(pinchEvent)}`);
@@ -395,7 +395,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```js
 // Disable listening for a single callback.
-import { Pinch } from '@ohos.multimodalInput.gestureEvent';
+import { Pinch } from '@kit.InputKit';
 
 let callback = (pinchEvent: Pinch) => {
   console.log(`Monitor on success ${JSON.stringify(pinchEvent)}`);
@@ -412,7 +412,7 @@ try {
 
 ```js
 // Cancel listening for all callbacks.
-import { Pinch } from '@ohos.multimodalInput.gestureEvent';
+import { Pinch } from '@kit.InputKit';
 
 let callback = (pinchEvent: Pinch) => {
   console.log(`Monitor on success ${JSON.stringify(pinchEvent)}`);
@@ -498,7 +498,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```js
 // Disable listening for a single callback.
-import { ThreeFingersSwipe } from '@ohos.multimodalInput.gestureEvent';
+import { ThreeFingersSwipe } from '@kit.InputKit';
 
 let callback = (threeFingersSwipe: ThreeFingersSwipe) => {
   console.log(`Monitor on success ${JSON.stringify(threeFingersSwipe)}`);
@@ -515,7 +515,7 @@ try {
 
 ```js
 // Cancel listening for all callbacks.
-import { ThreeFingersSwipe } from '@ohos.multimodalInput.gestureEvent';
+import { ThreeFingersSwipe } from '@kit.InputKit';
 
 let callback = (threeFingersSwipe: ThreeFingersSwipe) => {
   console.log(`Monitor on success ${JSON.stringify(threeFingersSwipe)}`);
@@ -601,7 +601,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```js
 // Disable listening for a single callback.
-import { FourFingersSwipe } from '@ohos.multimodalInput.gestureEvent';
+import { FourFingersSwipe } from '@kit.InputKit';
 
 let callback = (fourFingersSwipe: FourFingersSwipe) => {
   console.log(`Monitor on success ${JSON.stringify(fourFingersSwipe)}`);
@@ -618,7 +618,7 @@ try {
 
 ```js
 // Cancel listening for all callbacks.
-import { FourFingersSwipe } from '@ohos.multimodalInput.gestureEvent';
+import { FourFingersSwipe } from '@kit.InputKit';
 
 let callback = (fourFingersSwipe: FourFingersSwipe) => {
   console.log(`Monitor on success ${JSON.stringify(fourFingersSwipe)}`);
@@ -664,7 +664,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-import type { Rotate } from '@ohos.multimodalInput.gestureEvent';
+import type { Rotate } from '@kit.InputKit';
 try {
   inputMonitor.on('rotate', 2, (rotateEvent: Rotate) => {
     console.log(`Monitor on success ${JSON.stringify(rotateEvent)}`);
@@ -707,7 +707,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```js
 // Disable listening for a single callback.
-import { Rotate } from '@ohos.multimodalInput.gestureEvent';
+import type { Rotate } from '@kit.InputKit';
 
 let callback = (rotateEvent: Rotate) => {
   console.log(`Monitor on success ${JSON.stringify(rotateEvent)}`);
@@ -724,7 +724,7 @@ try {
 
 ```js
 // Cancel listening for all callbacks.
-import { Rotate } from '@ohos.multimodalInput.gestureEvent';
+import type { Rotate } from '@kit.InputKit';
 
 let callback = (rotateEvent: Rotate) => {
   console.log(`Monitor on success ${JSON.stringify(rotateEvent)}`);
@@ -770,7 +770,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-import type { Pinch } from '@ohos.multimodalInput.gestureEvent';
+import type { Pinch } from '@kit.InputKit';
 try {
   inputMonitor.on('pinch', 2, (pinchEvent: Pinch) => {
     console.log(`Monitor on success ${JSON.stringify(pinchEvent)}`);
@@ -813,7 +813,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```js
 // Disable listening for a single callback.
-import { Pinch } from '@ohos.multimodalInput.gestureEvent';
+import type { Pinch } from '@kit.InputKit';
 
 let callback = (pinchEvent: Pinch) => {
   console.log(`Monitor on success ${JSON.stringify(pinchEvent)}`);
@@ -830,7 +830,7 @@ try {
 
 ```js
 // Cancel listening for all callbacks.
-import { Pinch } from '@ohos.multimodalInput.gestureEvent';
+import { Pinch } from '@kit.InputKit';
 
 let callback = (pinchEvent: Pinch) => {
   console.log(`Monitor on success ${JSON.stringify(pinchEvent)}`);
@@ -917,8 +917,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-import type { FingerprintEvent } from './@ohos.multimodalInput.shortKey';
-import inputMonitor from '@ohos.multimodalInput.inputMonitor'
+import type { FingerprintEvent } from '@kit.InputKit';
+import inputMonitor from '@kit.InputKit';
 
 try {
   inputMonitor.on('fingerprint', (fingerprint) => {
@@ -962,7 +962,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```js
 // Disable listening for a single callback.
-import { ThreeFingersTap } from '@ohos.multimodalInput.gestureEvent';
+import { ThreeFingersTap } from '@kit.InputKit';
 
 let callback = (threeFingersTap: ThreeFingersTap) => {
   console.log(`Monitor on success ${JSON.stringify(threeFingersTap)}`);
@@ -979,7 +979,7 @@ try {
 
 ```js
 // Cancel listening for all callbacks.
-import { ThreeFingersTap } from '@ohos.multimodalInput.gestureEvent';
+import { ThreeFingersTap } from '@kit.InputKit';
 
 let callback = (threeFingersTap: ThreeFingersTap) => {
   console.log(`Monitor on success ${JSON.stringify(threeFingersTap)}`);
@@ -1026,8 +1026,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-import type { FingerprintEvent } from './@ohos.multimodalInput.shortKey';
-import inputMonitor from '@ohos.multimodalInput.inputMonitor'
+import type { FingerprintEvent } from '@kit.InputKit';
+import inputMonitor from '@kit.InputKit';
 
 let callback = (fingerprint: FingerprintEvent) => {
   console.log(`Monitor on success ${JSON.stringify(fingerprint)}`);
