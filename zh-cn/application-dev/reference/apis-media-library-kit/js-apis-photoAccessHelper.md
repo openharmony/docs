@@ -4517,11 +4517,12 @@ title参数规格为：
 
 **系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-| 名称  |  值 |  说明 |
-| ----- |  ---- | ---- |
-| IMAGE_TYPE  |  'image/*' | 图片类型。 |
-| VIDEO_TYPE |  'video/*' | 视频类型。 |
-| IMAGE_VIDEO_TYPE |  '\*/*' | 图片和视频类型。 |
+| 名称                      | 值                   | 说明       |
+|-------------------------|---------------------|----------|
+| IMAGE_TYPE              | 'image/*'           | 图片类型。    |
+| VIDEO_TYPE              | 'video/*'           | 视频类型。    |
+| IMAGE_VIDEO_TYPE        | '\*/*'              | 图片和视频类型。 |
+| MOVING_PHOTO_IMAGE_TYPE<sup>12+</sup> | 'image/movingPhoto' | 动态照片类型。  |
 
 ## RecommendationType<sup>11+</sup>
 
