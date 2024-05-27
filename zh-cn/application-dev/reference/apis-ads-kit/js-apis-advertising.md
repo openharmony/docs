@@ -96,13 +96,13 @@ function requestAd(context: common.Context): void {
     adId: "testy63txaom8",
   };
   const adOptions: advertising.AdOptions = {
-    // 设置广告内容分级上限
-    adContentClassification: 'A',
     // 可选自定义参数，设置是否允许使用流量下载广告素材 0：不允许，1：允许
     allowMobileTraffic: 0,
-    // 是否希望根据 COPPA 的规定将您的内容视为面向儿童的内容，: -1默认值，不确定 0不希望 1希望
+    // 设置广告内容分级上限： w:3+,所有受众 PI：7+，家长指导 J：12+，青少年 A：16+/18+,成人受众
+    adContentClassification: 'A',
+    // 是否希望根据 COPPA 的规定将您的内容视为面向儿童的内容: -1默认值，不确定 0不希望 1希望
     tagForChildProtection: -1,
-    // 是否希望按适合未达到法定承诺年龄的欧洲经济区 (EEA) 用户的方式处理该广告请求 -1默认值,不确定 0不希望 1希望
+    // 是否希望按适合未达到法定承诺年龄的欧洲经济区 (EEA) 用户的方式处理该广告请求: -1默认值,不确定 0不希望 1希望
     tagForUnderAgeOfPromise: -1,
   };
   // 广告请求回调监听
@@ -180,11 +180,11 @@ function requestMultiAd(context: common.Context): void {
     } as advertising.AdRequestParams
   ];
   const adOptions: advertising.AdOptions = {
-    //设置广告内容分级上限
-    adContentClassification: 'A',
     // 可选自定义参数，设置是否允许使用流量下载广告素材 0：不允许，1：允许
     allowMobileTraffic: 0,
-    // 是否希望根据 COPPA 的规定将您的内容视为面向儿童的内容，: -1默认值，不确定 0不希望 1希望
+    // 设置广告内容分级上限： w:3+,所有受众 PI：7+，家长指导 J：12+，青少年 A：16+/18+,成人受众
+    adContentClassification: 'A',
+    // 是否希望根据 COPPA 的规定将您的内容视为面向儿童的内容: -1默认值，不确定 0不希望 1希望
     tagForChildProtection: -1,
     // 是否希望按适合未达到法定承诺年龄的欧洲经济区 (EEA) 用户的方式处理该广告请求 -1默认值,不确定 0不希望 1希望
     tagForUnderAgeOfPromise: -1,
@@ -295,8 +295,8 @@ export struct ShowAd {
 
 | 名称 | 类型 | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
-| tagForChildProtection | number | 否 | 设置儿童保护标签。<br/>- -1：您不希望表明您的广告内容是否需要符合COPPA的规定。<br/>- 0：表明您的广告内容不需要符合COPPA的规定。<br/>- 1：表明您的广告内容需要符合COPPA的规定（该广告请求无法获取到任何广告）。默认-1 | 
-| adContentClassification | string | 否 | 设置广告内容分级上限。<br/>- W：适合幼儿及以上年龄段观众的内容。<br/>- PI：适合少儿及以上年龄段观众的内容。<br/>- J：适合青少年及以上年龄段观众的内容。<br/>- A：仅适合成人观众的内容。 默认为""| 
+| tagForChildProtection | number | 否 | 设置儿童保护标签，否希望根据 COPPA 的规定将您的内容视为面向儿童的内容。<br/>- -1：默认值，不确定。<br/>- 0：不希望。<br/>- 1：希望。默认-1 | 
+| adContentClassification | string | 否 | 设置广告内容分级上限。<br/>- W：3+,所有受众。<br/>- PI：7+，家长指导。<br/>- J：12+，青少年。<br/>- A：16+/18+,成人受众。 默认为""| 
 | nonPersonalizedAd | number | 否 | 设置是否只请求非个性化广告。<br/>- 0：请求个性化广告与非个性化广告。<br/>- 1：只请求非个性化广告。不填以业务逻辑为准。 | 
 | [key: string] | number \| boolean \| string \| undefined | 否 | 自定义参数。<br/> - totalDuration：类型number，单位：s。贴片广告必填自定义参数，用于设置贴片广告展示时长。<br/> - placementAdCountDownDesc：类型string。贴片广告可选自定义参数，用于设置贴片广告倒计时文案，该参数需要使用encodeURI()方法编码。填写了该参数，则展示倒计时文案，否则只展示倒计时。<br/> - allowMobileTraffic：类型number。可选自定义参数，设置是否允许使用流量下载广告素材。0：不允许，1：允许 <br/> - tagForUnderAgeOfPromise：类型number。非必填参数，用于设置未成年保护标签，表示是否希望按适合未达到法定承诺年龄的欧洲经济区 (EEA) 用户的方式处理该广告请求。-1：默认值不确定 0：不希望 1：希望|
 
@@ -515,6 +515,12 @@ getAdRequestBody(adParams: AdRequestParams[], adOptions: AdOptions): Promise<str
 
 **系统能力：** SystemCapability.Advertising.Ads
 
+**返回值：**
+
+| 类型 | 说明 | 
+| -------- | -------- |
+| Promise&lt;string&gt; | Promise对象，返回字符类型的广告数据。| 
+
 **参数：**
 | **参数名** | **类型** | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
@@ -550,9 +556,14 @@ function getAdRequestBody(): void {
 
   adReqParamsListForRequest.push(adReqParams as advertising.AdRequestParams);
   const adOption: Record<string, Object> = {
+    // 设置广告内容分级上限 w:3+,所有受众 PI：7+，家长指导 J：12+，青少年 A：16+/18+,成人受众
     'adContentClassification': 'A',
+    // 设置是否只请求非个性化广告 0：请求个性化广告与非个性化广告 1：只请求非个性化广告。不填以业务逻辑为准
     'nonPersonalizedAd': 0,
+    // 是否希望根据 COPPA 的规定将您的内容视为面向儿童的内容，: -1默认值，不确定 0不希望 1希望
     'tagForChildProtection': 1,
+    // 是否希望按适合未达到法定承诺年龄的欧洲经济区 (EEA) 用户的方式处理该广告请求 -1默认值,不确定 0不希望 1希望
+    'tagForUnderAgeOfPromise': -1,
   };
   advertising.getAdRequestBody(adReqParamsListForRequest, adOption as advertising.AdOptions).then((data) => {
     hilog.info(0x0000, 'testTag', '%{public}s', `succeeded in getting AdRequestBody by promise: ${data}`);
@@ -682,7 +693,8 @@ struct Index {
           try {
             advertising.registerWebAdInterface(this.webController, this.context);
           } catch (err) {
-            hilog.error(0x0000, 'testTag', '%{public}s', `register web ad interface error: ${err.code}, ${err.message}`);
+            hilog.error(0x0000, 'testTag', '%{public}s', 
+              `register web ad interface error: ${err.code}, ${err.message}`);
           }
         })
 
