@@ -4389,6 +4389,8 @@ private keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string
 
 **系统能力：** SystemCapability.Multimedia.AVSession.ExtendedDisplayCast
 
+| 名称            | 类型                      | 必填 | 可选 | 说明                                                                  |
+| --------------- |-------------------------| ---- | ---- |---------------------------------------------------------------------|
 | id            | number                  | 否    | 否    | 投播显示设备的ID，该参数应为整数。  |
 | name     | string                  | 否    | 否  | 投播显示设备的名称。           |
 | state          | [CastDisplayState](#castdisplaystate12)          | 否    | 否    |投播显示设备状态。            |
