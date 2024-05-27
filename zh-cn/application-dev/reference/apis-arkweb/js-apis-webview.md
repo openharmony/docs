@@ -4527,11 +4527,7 @@ static customizeSchemes(schemes: Array\<WebCustomScheme\>): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-<<<<<<< HEAD
 |  401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.    |
-=======
-|  401 | Invalid input parameter.    |
->>>>>>> e985bef738d0da6b5c5ae6ea4594b0019c2a4ae8
 | 17100020 | Failed to register custom schemes. |
 
 **示例：**
@@ -13781,11 +13777,7 @@ didReceiveResponse(response: WebSchemeHandlerResponse): void
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
-<<<<<<< HEAD
 |  401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.    |
-=======
-|  401 | Invalid input parameter.    |
->>>>>>> e985bef738d0da6b5c5ae6ea4594b0019c2a4ae8
 | 17100021 | The resource handler is invalid. |
 
 **示例：**
