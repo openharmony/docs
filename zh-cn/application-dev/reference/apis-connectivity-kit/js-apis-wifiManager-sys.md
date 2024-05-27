@@ -134,10 +134,6 @@ setScanAlwaysAllowed(isScanAlwaysAllowed: boolean): void
 
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-|201 | Permission denied.                 |
-|202 | System API is not allowed called by Non-system application. |
-|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-|801 | Capability not supported.          |
 | isScanAlwaysAllowed | boolean | 是 | 是否始终允许扫描。 |
 
 **错误码：**
@@ -146,6 +142,10 @@ setScanAlwaysAllowed(isScanAlwaysAllowed: boolean): void
 
 | **错误码ID** | **错误信息** |
   | -------- | -------- |
+|201 | Permission denied.                 |
+|202 | System API is not allowed called by Non-system application. |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+|801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
 ```ts
@@ -1038,6 +1038,18 @@ getDisconnectedReason(): DisconnectedReason
 | DISC_REASON_DEFAULT  | 0 | 默认原因。 |
 | DISC_REASON_WRONG_PWD  | 1 | 密码错误。 |
 | DISC_REASON_CONNECTION_FULL  | 2 | 路由器的连接数已达到最大数量限制。 |
+
+## WifiCategory<sup>12+</sup>
+
+表示热点支持的最高wifi类别。
+
+**系统能力：** SystemCapability.Communication.WiFi.STA
+
+| 名称 | 值 | 说明 |
+| -------- | -------- | -------- |
+| DEFAULT | 1 | Default。Wifi6以下的wifi类别。 |
+| WIFI6 | 2 | Wifi6。 |
+| WIFI6_PLUS | 3 | Wifi6+。 |
 
 ## wifiManager.startPortalCertification<sup>11+</sup>
 

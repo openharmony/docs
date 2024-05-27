@@ -508,20 +508,6 @@ WLAN配置信息。
 | PHASE2_AKA | 6 | AKA类型。 |
 | PHASE2_AKA_PRIME | 7 | AKA Prime类型。 |
 
-## WifiCategory<sup>12+</sup>
-
-表示热点支持的最高wifi类别。
-
-**系统能力：** SystemCapability.Communication.WiFi.STA
-
-| 名称 | 值 | 说明 |
-| -------- | -------- | -------- |
-| DEFAULT | 1 | Default。Wifi6以下的wifi类别。 |
-| WIFI6 | 2 | Wifi6。 |
-| WIFI6_PLUS | 3 | Wifi6+。 |
-
-
-
 ## wifiManager.addCandidateConfig<sup>9+</sup>
 
 addCandidateConfig(config: WifiDeviceConfig): Promise&lt;number&gt;
