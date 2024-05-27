@@ -47,7 +47,7 @@
 | removalWantAgent<sup>9+<sup>  | [WantAgent](../apis-ability-kit/js-apis-wantAgent.md)            |   否  | 否  | 当移除通知时，通知将被重定向到的WantAgent实例。当前不支持跳转UIAbility，只支持发布公共事件及跳转系统Service能力（WantAgent的OperationType >= 3）。                                          |
 | badgeNumber<sup>9+<sup>       | number                                                   |   否  | 否  | 应用程序图标上显示的通知数。                                                        |
 | appMessageId<sup>12+<sup>       | string                                                   |   否  | 否  | 应用发送通知携带的唯一标识字段, 用于通知去重。如果同一应用通过本地和云端等不同途径发布携带相同appMessageId的通知，设备只展示一条消息，之后收到的重复通知会被静默去重，不展示、不提醒。去重标识仅在通知发布的24小时内有效，超过24小时或者设备重启失效。
-| sound<sup>12+<sup>            | string                                                   |   否  | 否  | 应用通知自定义铃声，需通过Push云侧获取发送自定义铃声权限后，该字段才会生效。                                                        |
+| sound<sup>12+<sup>            | string                                                   |   否  | 否  | 应用通知自定义铃声，<!--RP1-->该字段需要由具有[ohos.permission.NOTIFICATION_AGENT_CONTROLLER](../../security/AccessToken/permissions-for-system-apps.md#ohospermissionnotification_agent_controller)权限的系统应用调用接口[notificationManager.setAdditionalConfig](./js-apis-notificationManager-sys.md#notificationmanagersetadditionalconfig12)进行配置生效<!--RP1End-->。                                                        |
 
 ## DistributedOptions
 
