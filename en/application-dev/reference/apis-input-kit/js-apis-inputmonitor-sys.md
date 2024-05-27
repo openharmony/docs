@@ -707,7 +707,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```js
 // Disable listening for a single callback.
-import type { Rotate } from '@kit.InputKit';
+import { Rotate } from '@kit.InputKit';
 
 let callback = (rotateEvent: Rotate) => {
   console.log(`Monitor on success ${JSON.stringify(rotateEvent)}`);
@@ -724,7 +724,7 @@ try {
 
 ```js
 // Cancel listening for all callbacks.
-import type { Rotate } from '@kit.InputKit';
+import { Rotate } from '@kit.InputKit';
 
 let callback = (rotateEvent: Rotate) => {
   console.log(`Monitor on success ${JSON.stringify(rotateEvent)}`);
@@ -813,7 +813,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```js
 // Disable listening for a single callback.
-import type { Pinch } from '@kit.InputKit';
+import { Pinch } from '@kit.InputKit';
 
 let callback = (pinchEvent: Pinch) => {
   console.log(`Monitor on success ${JSON.stringify(pinchEvent)}`);
