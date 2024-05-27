@@ -12,7 +12,7 @@ The **Sensor** module provides APIs for obtaining the sensor list and subscribin
 ## Modules to Import
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 ```
 
 ## sensor.on
@@ -39,15 +39,17 @@ Subscribes to data of the color sensor.
 
 For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
-| ID| Error Message          |
-| -------- | ------------------ |
-| 14500101 | Service exception. |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 202      | Permission check failed. A non-system application uses the system API. |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+| 14500101 | Service exception.                                           |
 
 **Example**
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try{
   sensor.on(sensor.SensorId.COLOR, (data: sensor.ColorResponse) => {
@@ -58,7 +60,7 @@ try{
         sensor.off(sensor.SensorId.COLOR);
   }, 500);
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -85,15 +87,17 @@ Subscribes to data of the Sodium Adsorption Ratio (SAR) sensor.
 
 For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
-| ID| Error Message          |
-| -------- | ------------------ |
-| 14500101 | Service exception. |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 202      | Permission check failed. A non-system application uses the system API. |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+| 14500101 | Service exception.                                           |
 
 **Example**
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   sensor.on(sensor.SensorId.SAR, (data: sensor.SarResponse) => {
@@ -103,7 +107,7 @@ try {
     sensor.off(sensor.SensorId.SAR);
   }, 500);
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -127,11 +131,21 @@ Unsubscribes from data of the color sensor.
 | type     | [SensorId](#sensorid9).COLOR                      | Yes  | Sensor type. The value is fixed at **SensorId.COLOR**.                      |
 | callback | Callback&lt;[ColorResponse](#colorresponse10)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
 
+**Error codes**
+
+For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 202      | Permission check failed. A non-system application uses the system API. |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+| 14500101 | Service exception.                                           |
+
 **Example**
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function callback1(data: object) {
   console.info('Succeeded in getting callback1 data: ' + JSON.stringify(data));
@@ -149,7 +163,7 @@ try {
   // Unsubscribe from all callbacks of the SensorId.COLOR type.
   sensor.off(sensor.SensorId.COLOR);
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke off. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -171,11 +185,21 @@ Unsubscribes from data of the SAR sensor.
 | type     | [SensorId](#sensorid9).SAR                    | Yes  | Sensor type. The value is fixed at **SensorId.SAR**.                        |
 | callback | Callback&lt;[SarResponse](#sarresponse10)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
 
+**Error codes**
+
+For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 202      | Permission check failed. A non-system application uses the system API. |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+| 14500101 | Service exception.                                           |
+
 **Example**
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function callback1(data: object) {
   console.info('Succeeded in getting callback1 data: ' + JSON.stringify(data));
@@ -193,7 +217,7 @@ try {
   // Unsubscribe from all callbacks of the SensorId.SAR type.
   sensor.off(sensor.SensorId.SAR);
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke off. Code: ${e.code}, message: ${e.message}`);
 }
 ```

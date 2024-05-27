@@ -33,6 +33,16 @@ getPaymentServices(): [AbilityInfo](../apis-ability-kit/js-apis-bundleManager-ab
 | ------- | ------------------------------------ |
 | [AbilityInfo](../apis-ability-kit/js-apis-bundleManager-abilityInfo.md)[] | 返回所有支付类型的服务。 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|202 | Non-system applications are not allowed to use system APIs. |
+|801 | Capability not supported.          |
+
 **示例：**
 ```js
 import cardEmulation from '@ohos.nfc.cardEmulation';

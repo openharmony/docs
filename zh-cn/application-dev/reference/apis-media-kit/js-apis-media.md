@@ -18,7 +18,7 @@
 ## 导入模块
 
 ```ts
-import media from '@kit.MediaKit';
+import { media } from '@kit.MediaKit';
 ```
 
 ## media.createAVPlayer<sup>9+</sup>
@@ -310,7 +310,7 @@ createSoundPool(maxStreams: number, audioRenderInfo: audio.AudioRendererInfo, ca
 **示例：**
 
 ```js
-import audio from '@kit.AudioKit';
+import { audio } from '@kit.AudioKit';
 
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
@@ -361,7 +361,7 @@ createSoundPool(maxStreams: number, audioRenderInfo: audio.AudioRendererInfo): P
 **示例：**
 
 ```js
-import audio from '@kit.AudioKit';
+import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let soundPool: media.SoundPool;
@@ -727,7 +727,7 @@ setMediaSource(src:MediaSource, strategy?: PlaybackStrategy): Promise\<void>
 **示例：**
 
 ```ts
-import media from '@kit.MediaKit';
+import { media } from '@kit.MediaKit';
 
 let player = await media.createAVPlayer();
 let header: Record<string, string> = {"User-Agent" : "User-Agent-Value"};
@@ -1289,7 +1289,7 @@ selectTrack(index: number): Promise\<void>
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import media from '@kit.MediaKit';
+import { media } from '@kit.MediaKit';
 
 let avPlayer: media.AVPlayer | undefined = undefined;
 media.createAVPlayer((err: BusinessError, player: media.AVPlayer) => {
@@ -1350,7 +1350,7 @@ deselectTrack(index: number): Promise\<void>
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import media from '@kit.MediaKit';
+import { media } from '@kit.MediaKit';
 
 let avPlayer: media.AVPlayer | undefined = undefined;
 media.createAVPlayer((err: BusinessError, player: media.AVPlayer) => {
@@ -2081,7 +2081,7 @@ on(type: 'audioInterrupt', callback: (info: audio.InterruptEvent) => void): void
 **示例：**
 
 ```ts
-import audio from '@kit.AudioKit';
+import { audio } from '@kit.AudioKit';
 
 avPlayer.on('audioInterrupt', (info: audio.InterruptEvent) => {
   console.info('audioInterrupt success,and InterruptEvent info is:' + info)
@@ -2132,7 +2132,7 @@ on(type: 'audioOutputDeviceChangeWithInfo', callback: Callback\<audio.AudioStrea
 **示例：**
 
 ```ts
-import audio from '@kit.AudioKit';
+import { audio } from '@kit.AudioKit';
 
 avPlayer.on('audioOutputDeviceChangeWithInfo', (data: audio.AudioStreamDeviceChangeInfo) => {
   console.info(`${JSON.stringify(data)}`);
@@ -2269,7 +2269,7 @@ avPlayer.off('audioOutputDeviceChangeWithInfo');
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import media from '@kit.MediaKit';
+import { media } from '@kit.MediaKit';
 
 function printfItemDescription(obj: media.MediaDescription, key: string) {
   let property: Object = obj[key];
@@ -3808,7 +3808,7 @@ fetchAlbumCover(callback: AsyncCallback\<image.PixelMap>): void
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import image from '@kit.ImageKit';
+import { image } from '@kit.ImageKit';
 
 let pixel_map : image.PixelMap | undefined = undefined;
 
@@ -3848,7 +3848,7 @@ fetchAlbumCover(): Promise\<image.PixelMap>
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import image from '@kit.ImageKit';
+import { image } from '@kit.ImageKit';
 
 let pixel_map : image.PixelMap | undefined = undefined;
 
@@ -4378,7 +4378,7 @@ on(type: 'play' | 'pause' | 'stop' | 'reset' | 'dataLoad' | 'finish' | 'volumeCh
 **示例：**
 
 ```ts
-import fileIo from '@kit.CoreFileKit';
+import { fileIo } from '@kit.CoreFileKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let audioPlayer: media.AudioPlayer = media.createAudioPlayer();  //创建一个音频播放实例
@@ -4486,7 +4486,7 @@ on(type: 'audioInterrupt', callback: (info: audio.InterruptEvent) => void): void
 **示例：**
 
 ```ts
-import audio from '@kit.AudioKit';
+import { audio } from '@kit.AudioKit';
 
 audioPlayer.on('audioInterrupt', (info: audio.InterruptEvent) => {
   console.info('audioInterrupt success,and InterruptEvent info is:' + info)
@@ -5488,7 +5488,7 @@ on(type: 'audioInterrupt', callback: (info: audio.InterruptEvent) => void): void
 **示例：**
 
 ```ts
-import audio from '@kit.AudioKit';
+import { audio } from '@kit.AudioKit';
 
 videoPlayer.on('audioInterrupt', (info: audio.InterruptEvent) => {
   console.info('audioInterrupt success,and InterruptEvent info is:' + info)
@@ -5986,8 +5986,8 @@ fetchFrameByTime(timeUs: number, options: AVImageQueryOptions, param: PixelMapPa
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import media from '@kit.MediaKit';
-import image from '@kit.ImageKit';
+import { media } from '@kit.MediaKit';
+import { image } from '@kit.ImageKit';
 
 let avImageGenerator: media.AVImageGenerator | undefined = undefined;
 let pixel_map : image.PixelMap | undefined = undefined;
@@ -6055,8 +6055,8 @@ fetchFrameByTime(timeUs: number, options: AVImageQueryOptions, param: PixelMapPa
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import media from '@kit.MediaKit';
-import image from '@kit.ImageKit';
+import { media } from '@kit.MediaKit';
+import { image } from '@kit.ImageKit';
 
 let avImageGenerator: media.AVImageGenerator | undefined = undefined;
 let pixel_map : image.PixelMap | undefined = undefined;
@@ -6113,7 +6113,7 @@ release(callback: AsyncCallback\<void>): void
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import media from '@kit.MediaKit';
+import { media } from '@kit.MediaKit';
 
 let avImageGenerator: media.AVImageGenerator | undefined = undefined;
 
@@ -6161,7 +6161,7 @@ release(): Promise\<void>
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import media from '@kit.MediaKit';
+import { media } from '@kit.MediaKit';
 
 let avImageGenerator: media.AVImageGenerator | undefined = undefined;
 
@@ -6239,7 +6239,7 @@ createMediaSourceWithUrl(url: string, headers?: Record\<string, string>): MediaS
 **示例1：**
 
 ```ts
-import {media} from '@kit.MediaKit';
+import { media } from '@kit.MediaKit';
 
 let header: Record<string, string> = {"User-Agent" : "User-Agent-Value"};
 let mediaSource : media.MediaSource = media.createMediaSourceWithUrl("http://xxx",  header);
@@ -6248,8 +6248,8 @@ let mediaSource : media.MediaSource = media.createMediaSourceWithUrl("http://xxx
 **示例2：**
 
 ```ts
-import {media} from '@kit.MediaKit';
-import {resourceManager} from '@kit.LocalizationKit';
+import { media } from '@kit.MediaKit';
+import { resourceManager } from '@kit.LocalizationKit';
 
 private mgr: resourceManager.ResourceManager | null = null;
 mrg = ctx.resourceManager;
@@ -6402,7 +6402,7 @@ let avCaptureConfig: media.AVScreenCaptureRecordConfig = {
 
 avScreenCaptureRecorder.init(avCaptureConfig).then(() => {
     console.info('avScreenCaptureRecorder init success');
-}).catch((err: BussinessError) => {
+}).catch((err: BusinessError) => {
     console.info('avScreenCaptureRecorder init failed, error: ' + err.message);
 })
 ```
@@ -6433,7 +6433,7 @@ startRecording(): Promise\<void>
 ```ts
 avScreenCaptureRecorder.startRecording().then(() => {
     console.info('avScreenCaptureRecorder start success');
-}).catch((err: BussinessError) => {
+}).catch((err: BusinessError) => {
     console.info('avScreenCaptureRecorder start failed, error: ' + err.message);
 })
 ```
@@ -6464,7 +6464,7 @@ stopRecording(): Promise\<void>
 ```ts
 avScreenCaptureRecorder.stopRecording().then(() => {
     console.info('avScreenCaptureRecorder stop success');
-}).catch((err: BussinessError) => {
+}).catch((err: BusinessError) => {
     console.info('avScreenCaptureRecorder stop failed, error: ' + err.message);
 })
 ```
@@ -6501,7 +6501,7 @@ setMicEnabled(enable: boolean): Promise\<void>
 ```ts
 avScreenCaptureRecorder.setMicEnabled(true).then(() => {
     console.info('avScreenCaptureRecorder setMicEnabled success');
-}).catch((err: BussinessError) => {
+}).catch((err: BusinessError) => {
     console.info('avScreenCaptureRecorder setMicEnabled failed, error: ' + err.message);
 })
 ```
@@ -6532,7 +6532,7 @@ release(): Promise\<void>
 ```ts
 avScreenCaptureRecorder.release().then(() => {
     console.info('avScreenCaptureRecorder release success');
-}).catch((err: BussinessError) => {
+}).catch((err: BusinessError) => {
     console.info('avScreenCaptureRecorder release failed, error: ' + err.message);
 })
 ```

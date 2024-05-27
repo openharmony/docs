@@ -10,15 +10,15 @@ The **http** module provides the HTTP data request capability. An application ca
 ## Modules to Import
 
 ```ts
-import http from '@ohos.net.http';
+import { http } from '@kit.NetworkKit';
 ```
 
 ## Example
 
 ```ts
 // Import the http namespace.
-import http from '@ohos.net.http';
-import { BusinessError } from '@ohos.base';
+import { http } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Each httpRequest corresponds to an HTTP request task and cannot be reused.
 let httpRequest = http.createHttp();
@@ -121,7 +121,7 @@ Creates an HTTP request. You can use this API to initiate or destroy an HTTP req
 **Example**
 
 ```ts
-import http from '@ohos.net.http';
+import { http } from '@kit.NetworkKit';
 
 let httpRequest = http.createHttp();
 ```
@@ -195,7 +195,7 @@ Initiates an HTTP request to a given URL. This API uses an asynchronous callback
 **Example**
 
 ```ts
-import http from '@ohos.net.http';
+import { http } from '@kit.NetworkKit';
 
 let httpRequest = http.createHttp();
 httpRequest.request("EXAMPLE_URL", (err: Error, data: http.HttpResponse) => {
@@ -277,7 +277,7 @@ Initiates an HTTP request containing specified options to a given URL. This API 
 **Example**
 
 ```ts
-import http from '@ohos.net.http';
+import { http } from '@kit.NetworkKit';
 
 class Header {
   public contentType: string;
@@ -387,7 +387,7 @@ Initiates an HTTP request containing specified options to a given URL. This API 
 **Example**
 
 ```ts
-import http from '@ohos.net.http';
+import { http } from '@kit.NetworkKit';
 
 class Header {
   public contentType: string;
@@ -430,7 +430,7 @@ Destroys an HTTP request.
 **Example**
 
 ```ts
-import http from '@ohos.net.http';
+import { http } from '@kit.NetworkKit';
 let httpRequest = http.createHttp();
 
 httpRequest.destroy();
@@ -496,8 +496,8 @@ Initiates an HTTP request containing specified options to a given URL. This API 
 **Example**
 
 ```ts
-import http from '@ohos.net.http';
-import { BusinessError } from '@ohos.base';
+import { http } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let httpRequest = http.createHttp();
 httpRequest.requestInStream("EXAMPLE_URL", (err: BusinessError, data: number) => {
@@ -570,8 +570,8 @@ Initiates an HTTP request containing specified options to a given URL. This API 
 **Example**
 
 ```ts
-import http from '@ohos.net.http';
-import { BusinessError } from '@ohos.base';
+import { http } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class Header {
   public contentType: string;
@@ -671,7 +671,7 @@ Initiates an HTTP request containing specified options to a given URL. This API 
 **Example**
 
 ```ts
-import http from '@ohos.net.http';
+import { http } from '@kit.NetworkKit';
 
 class Header {
   public contentType: string;
@@ -716,8 +716,8 @@ Registers an observer for HTTP Response Header events.
 **Example**
 
 ```ts
-import http from '@ohos.net.http';
-import { BusinessError } from '@ohos.base';
+import { http } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let httpRequest = http.createHttp();
 httpRequest.on("headerReceive", (data: BusinessError) => {
@@ -749,7 +749,7 @@ Unregisters the observer for HTTP Response Header events.
 **Example**
 
 ```ts
-import http from '@ohos.net.http';
+import { http } from '@kit.NetworkKit';
 
 let httpRequest = http.createHttp();
 httpRequest.off("headerReceive");
@@ -775,7 +775,7 @@ Registers an observer for HTTP Response Header events.
 **Example**
 
 ```ts
-import http from '@ohos.net.http';
+import { http } from '@kit.NetworkKit';
 
 let httpRequest = http.createHttp();
 httpRequest.on("headersReceive", (header: Object) => {
@@ -807,7 +807,7 @@ Unregisters the observer for HTTP Response Header events.
 **Example**
 
 ```ts
-import http from '@ohos.net.http';
+import { http } from '@kit.NetworkKit';
 
 let httpRequest = http.createHttp();
 httpRequest.on("headersReceive", (header: Object) => {
@@ -834,7 +834,7 @@ Registers a one-time observer for HTTP Response Header events. Once triggered, t
 **Example**
 
 ```ts
-import http from '@ohos.net.http';
+import { http } from '@kit.NetworkKit';
 
 let httpRequest = http.createHttp();
 httpRequest.once("headersReceive", (header: Object) => {
@@ -863,7 +863,7 @@ Registers an observer for events indicating receiving of HTTP streaming response
 **Example**
 
 ```ts
-import http from '@ohos.net.http';
+import { http } from '@kit.NetworkKit';
 
 let httpRequest = http.createHttp();
 httpRequest.on("dataReceive", (data: ArrayBuffer) => {
@@ -893,7 +893,7 @@ Unregisters the observer for events indicating receiving of HTTP streaming respo
 **Example**
 
 ```ts
-import http from '@ohos.net.http';
+import { http } from '@kit.NetworkKit';
 
 let httpRequest = http.createHttp();
 httpRequest.on("dataReceive", (data: ArrayBuffer) => {
@@ -923,7 +923,7 @@ Registers an observer for events indicating completion of receiving HTTP streami
 **Example**
 
 ```ts
-import http from '@ohos.net.http';
+import { http } from '@kit.NetworkKit';
 
 let httpRequest = http.createHttp();
 httpRequest.on("dataEnd", () => {
@@ -953,7 +953,7 @@ Unregisters the observer for events indicating completion of receiving HTTP stre
 **Example**
 
 ```ts
-import http from '@ohos.net.http';
+import { http } from '@kit.NetworkKit';
 
 let httpRequest = http.createHttp();
 httpRequest.on("dataEnd", () => {
@@ -983,7 +983,7 @@ Registers an observer for events indicating progress of receiving HTTP streaming
 **Example**
 
 ```ts
-import http from '@ohos.net.http';
+import { http } from '@kit.NetworkKit';
 
 let httpRequest = http.createHttp();
 httpRequest.on("dataReceiveProgress", (data: http.DataReceiveProgressInfo) => {
@@ -1013,7 +1013,7 @@ Unregisters the observer for events indicating progress of receiving HTTP stream
 **Example**
 
 ```ts
-import http from '@ohos.net.http';
+import { http } from '@kit.NetworkKit';
 
 let httpRequest = http.createHttp();
 httpRequest.on("dataReceiveProgress", (data: http.DataReceiveProgressInfo) => {
@@ -1040,7 +1040,7 @@ Registers an observer for events indicating progress of sending HTTP requests.
 **Example**
 
 ```ts
-import http from '@ohos.net.http';
+import { http } from '@kit.NetworkKit';
 
 let httpRequest = http.createHttp();
 httpRequest.on("dataSendProgress", (data: http.DataSendProgressInfo) => {
@@ -1070,7 +1070,7 @@ Unregisters the observer for events indicating progress of sending HTTP requests
 **Example**
 
 ```ts
-import http from '@ohos.net.http';
+import { http } from '@kit.NetworkKit';
 
 let httpRequest = http.createHttp();
 httpRequest.on("dataSendProgress", (data: http.DataSendProgressInfo) => {
@@ -1280,7 +1280,7 @@ Creates an **HttpResponseCache** object that stores the response data of HTTP re
 **Example**
 
 ```ts
-import http from '@ohos.net.http';
+import { http } from '@kit.NetworkKit';
 
 let httpResponseCache = http.createHttpResponseCache();
 ```
@@ -1344,8 +1344,8 @@ Flushes data in the cache to the file system so that the cached data can be acce
 **Example**
 
 ```ts
-import http from '@ohos.net.http';
-import { BusinessError } from '@ohos.base';
+import { http } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let httpResponseCache = http.createHttpResponseCache();
 let httpRequest = http.createHttp();
@@ -1385,8 +1385,8 @@ Flushes data in the cache to the file system so that the cached data can be acce
 **Example**
 
 ```ts
-import http from '@ohos.net.http';
-import { BusinessError } from '@ohos.base';
+import { http } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let httpRequest = http.createHttp();
 let httpResponseCache = http.createHttpResponseCache();
@@ -1422,8 +1422,8 @@ Disables the cache and deletes the data in it. This API uses an asynchronous cal
 **Example**
 
 ```ts
-import http from '@ohos.net.http';
-import { BusinessError } from '@ohos.base';
+import { http } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let httpRequest = http.createHttp();
 httpRequest.request("EXAMPLE_URL").then(data => {
@@ -1464,8 +1464,8 @@ Disables the cache and deletes the data in it. This API uses a promise to return
 **Example**
 
 ```ts
-import http from '@ohos.net.http';
-import { BusinessError } from '@ohos.base';
+import { http } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let httpRequest = http.createHttp();
 httpRequest.request("EXAMPLE_URL").then(data => {

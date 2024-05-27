@@ -51,7 +51,7 @@ newSEService(type: 'serviceState', callback: Callback<[ServiceState](#secureelem
 **返回值：**
 
 | **类型**  | **说明**   |
-| :-------- | :--------- |
+| -------- | --------- |
 | SEService | SE服务实例。 |
 
 **示例：**
@@ -75,6 +75,45 @@ function secureElementDemo() {
         hilog.error(0x0000, 'testTag', 'secure element service disconnected.');
         return;
     }
+}
+```
+
+## secureElement.createService
+
+createService(): Promise\<SEService>;
+
+建立一个可用于连接到系统中所有可用SE的新连接（服务）。连接过程较为耗时，所以此方法仅提供异步方式进行的。
+
+仅当[isConnected](#seserviceisconnected)方法返回true时，该返回SEService对象是可用的。
+
+**系统能力：**  SystemCapability.Communication.SecureElement
+
+**返回值：**
+
+| **类型**  | **说明**   |
+| :-------- | :--------- |
+| Promise\<SEService> | 以Promise形式异步返回可用的SE服务实例。 |
+
+**示例：**
+
+```js
+import secureElement from '@ohos.secureElement';
+import { BusinessError } from '@ohos.base';
+import hilog from '@ohos.hilog';
+
+let seService : secureElement.SEService;
+
+function secureElementDemo() {
+    secureElement.createService().then((data) => {
+        seService = data;
+        if (seService == undefined || !seService.isConnected()) {
+            hilog.error(0x0000, 'testTag', 'seservice state disconnected');
+            return;
+        }
+        hilog.info(0x0000, 'testTag', 'seservice state connected');
+    }).catch((error : BusinessError)=> {
+        hilog.error(0x0000, 'testTag', 'createService error %{public}s', JSON.stringify(error));
+    });
 }
 ```
 

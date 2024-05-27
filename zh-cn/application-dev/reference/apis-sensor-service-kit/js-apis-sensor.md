@@ -36,7 +36,7 @@ on(type: SensorId.ACCELEROMETER, callback: Callback&lt;AccelerometerResponse&gt;
 
 **错误码：**  
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -85,7 +85,7 @@ on(type: SensorId.ACCELEROMETER_UNCALIBRATED, callback: Callback&lt;Acceleromete
 
 **错误码：**   
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -135,7 +135,7 @@ on(type: SensorId.AMBIENT_LIGHT, callback: Callback&lt;LightResponse&gt;, option
 
 **错误码：** 
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -179,7 +179,7 @@ on(type: SensorId.AMBIENT_TEMPERATURE, callback: Callback&lt;AmbientTemperatureR
 
 **错误码：** 
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -223,7 +223,7 @@ on(type: SensorId.BAROMETER, callback: Callback&lt;BarometerResponse&gt;, option
 
 **错误码：** 
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -267,7 +267,7 @@ on(type: SensorId.GRAVITY, callback: Callback&lt;GravityResponse&gt;, options?: 
 
 **错误码：** 
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -317,7 +317,7 @@ on(type: SensorId.GYROSCOPE, callback: Callback&lt;GyroscopeResponse&gt;, option
 
 **错误码：** 
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -367,7 +367,7 @@ on(type: SensorId.GYROSCOPE_UNCALIBRATED, callback: Callback&lt;GyroscopeUncalib
 
 **错误码：** 
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -418,7 +418,7 @@ on(type: SensorId.HALL, callback: Callback&lt;HallResponse&gt;, options?: Option
 
 **错误码：** 
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -465,7 +465,7 @@ on(type: SensorId.HEART_RATE, callback: Callback&lt;HeartRateResponse&gt;, optio
 
 **错误码：** 
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -510,7 +510,7 @@ on(type: SensorId.HUMIDITY, callback: Callback&lt;HumidityResponse&gt;, options?
 
 **错误码：** 
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -557,7 +557,7 @@ on(type: SensorId.LINEAR_ACCELEROMETER, callback: Callback&lt;LinearAcceleromete
 
 **错误码：** 
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -604,7 +604,7 @@ on(type: SensorId.MAGNETIC_FIELD, callback: Callback&lt;MagneticFieldResponse&gt
 
 **错误码：** 
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -650,7 +650,7 @@ on(type: SensorId.MAGNETIC_FIELD_UNCALIBRATED, callback: Callback&lt;MagneticFie
 
 **错误码：** 
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -693,7 +693,7 @@ on(type: SensorId.ORIENTATION, callback: Callback&lt;OrientationResponse&gt;, op
 
 **错误码：** 
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -741,7 +741,7 @@ on(type: SensorId.PEDOMETER, callback: Callback&lt;PedometerResponse&gt;, option
 
 **错误码：** 
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -797,7 +797,7 @@ on(type: SensorId.PEDOMETER_DETECTION, callback: Callback&lt;PedometerDetectionR
 
 **错误码：** 
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -842,7 +842,7 @@ on(type: SensorId.PROXIMITY, callback: Callback&lt;ProximityResponse&gt;, option
 
 **错误码：** 
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -887,7 +887,7 @@ on(type: SensorId.ROTATION_VECTOR, callback: Callback&lt;RotationVectorResponse&
 
 **错误码：** 
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -935,7 +935,7 @@ on(type: SensorId.SIGNIFICANT_MOTION, callback: Callback&lt;SignificantMotionRes
 
 **错误码：** 
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -980,7 +980,7 @@ on(type: SensorId.WEAR_DETECTION, callback: Callback&lt;WearDetectionResponse&gt
 
 **错误码：** 
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1027,7 +1027,7 @@ once(type: SensorId.ACCELEROMETER, callback: Callback&lt;AccelerometerResponse&g
 
 **错误码：** 
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1072,7 +1072,7 @@ once(type: SensorId.ACCELEROMETER_UNCALIBRATED, callback: Callback&lt;Accelerome
 
 **错误码：** 
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1118,7 +1118,7 @@ once(type: SensorId.AMBIENT_LIGHT, callback: Callback&lt;LightResponse&gt;): voi
 
 **错误码：** 
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1158,7 +1158,7 @@ once(type: SensorId.AMBIENT_TEMPERATURE, callback: Callback&lt;AmbientTemperatur
 
 **错误码：** 
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1198,7 +1198,7 @@ once(type: SensorId.BAROMETER, callback: Callback&lt;BarometerResponse&gt;): voi
 
 **错误码：** 
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1238,7 +1238,7 @@ once(type: SensorId.GRAVITY, callback: Callback&lt;GravityResponse&gt;): void
 
 **错误码：** 
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1282,7 +1282,7 @@ once(type: SensorId.GYROSCOPE, callback: Callback&lt;GyroscopeResponse&gt;): voi
 
 **错误码：** 
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1327,7 +1327,7 @@ once(type: SensorId.GYROSCOPE_UNCALIBRATED, callback: Callback&lt;GyroscopeUncal
 
 **错误码：** 
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1373,7 +1373,7 @@ once(type: SensorId.HALL, callback: Callback&lt;HallResponse&gt;): void
 
 **错误码：** 
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1415,7 +1415,7 @@ once(type: SensorId.HEART_RATE, callback: Callback&lt;HeartRateResponse&gt;): vo
 
 **错误码：** 
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1456,7 +1456,7 @@ once(type: SensorId.HUMIDITY, callback: Callback&lt;HumidityResponse&gt;): void
 
 **错误码：** 
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1498,7 +1498,7 @@ once(type: SensorId.LINEAR_ACCELEROMETER, callback: Callback&lt;LinearAccelerome
 
 **错误码：** 
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1541,7 +1541,7 @@ once(type: SensorId.MAGNETIC_FIELD, callback: Callback&lt;MagneticFieldResponse&
 
 **错误码：** 
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1583,7 +1583,7 @@ once(type: SensorId.MAGNETIC_FIELD_UNCALIBRATED, callback: Callback&lt;MagneticF
 
 **错误码：** 
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1628,7 +1628,7 @@ once(type: SensorId.ORIENTATION, callback: Callback&lt;OrientationResponse&gt;):
 
 **错误码：** 
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1672,7 +1672,7 @@ once(type: SensorId.PEDOMETER, callback: Callback&lt;PedometerResponse&gt;): voi
 
 **错误码：** 
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1715,7 +1715,7 @@ once(type: SensorId.PEDOMETER_DETECTION, callback: Callback&lt;PedometerDetectio
 
 **错误码：** 
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1756,7 +1756,7 @@ once(type: SensorId.PROXIMITY, callback: Callback&lt;ProximityResponse&gt;): voi
 
 **错误码：** 
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1796,7 +1796,7 @@ once(type: SensorId.ROTATION_VECTOR, callback: Callback&lt;RotationVectorRespons
 
 **错误码：** 
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1839,7 +1839,7 @@ once(type: SensorId.SIGNIFICANT_MOTION, callback: Callback&lt;SignificantMotionR
 
 **错误码：** 
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1879,7 +1879,7 @@ once(type: SensorId.WEAR_DETECTION, callback: Callback&lt;WearDetectionResponse&
 
 **错误码：** 
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1925,7 +1925,7 @@ off(type: SensorId.ACCELEROMETER, callback?: Callback&lt;AccelerometerResponse&g
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1979,7 +1979,7 @@ off(type: SensorId.ACCELEROMETER_UNCALIBRATED, callback?: Callback&lt;Accelerome
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2031,7 +2031,7 @@ off(type: SensorId.AMBIENT_LIGHT, callback?: Callback&lt;LightResponse&gt;): voi
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2082,7 +2082,7 @@ off(type: SensorId.AMBIENT_TEMPERATURE, callback?: Callback&lt;AmbientTemperatur
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2133,7 +2133,7 @@ off(type: SensorId.BAROMETER, callback?: Callback&lt;BarometerResponse&gt;): voi
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2184,7 +2184,7 @@ off(type: SensorId.GRAVITY, callback?: Callback&lt;GravityResponse&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2240,7 +2240,7 @@ off(type: SensorId.GYROSCOPE, callback?: Callback&lt;GyroscopeResponse&gt;): voi
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2294,7 +2294,7 @@ off(type: SensorId.GYROSCOPE_UNCALIBRATED, callback?: Callback&lt;GyroscopeUncal
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2346,7 +2346,7 @@ off(type: SensorId.HALL, callback?: Callback&lt;HallResponse&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2399,7 +2399,7 @@ off(type: SensorId.HEART_RATE, callback?: Callback&lt;HeartRateResponse&gt;): vo
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2451,7 +2451,7 @@ off(type: SensorId.HUMIDITY, callback?: Callback&lt;HumidityResponse&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2504,7 +2504,7 @@ off(type: SensorId.LINEAR_ACCELEROMETER, callback?: Callback&lt;LinearAccelerome
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2556,7 +2556,7 @@ off(type: SensorId.MAGNETIC_FIELD, callback?: Callback&lt;MagneticFieldResponse&
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2607,7 +2607,7 @@ off(type: SensorId.MAGNETIC_FIELD_UNCALIBRATED, callback?: Callback&lt;MagneticF
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2660,7 +2660,7 @@ off(type: SensorId.ORIENTATION, callback?: Callback&lt;OrientationResponse&gt;):
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2713,7 +2713,7 @@ off(type: SensorId.PEDOMETER, callback?: Callback&lt;PedometerResponse&gt;): voi
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2767,7 +2767,7 @@ off(type: SensorId.PEDOMETER_DETECTION, callback?: Callback&lt;PedometerDetectio
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2819,7 +2819,7 @@ off(type: SensorId.PROXIMITY, callback?: Callback&lt;ProximityResponse&gt;): voi
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2870,7 +2870,7 @@ off(type: SensorId.ROTATION_VECTOR, callback?: Callback&lt;RotationVectorRespons
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2921,7 +2921,7 @@ off(type: SensorId.SIGNIFICANT_MOTION, callback?: Callback&lt;SignificantMotionR
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2972,7 +2972,7 @@ off(type: SensorId.WEAR_DETECTION, callback?: Callback&lt;WearDetectionResponse&
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3024,7 +3024,7 @@ getGeomagneticInfo(locationOptions: LocationOptions, timeMillis: number, callbac
 
 **错误码：** 
 
-以下错误码的详细介绍请参见 [ohos.sensor(传感器)错误码](errorcode-sensor.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3081,7 +3081,7 @@ getGeomagneticInfo(locationOptions: LocationOptions, timeMillis: number): Promis
 
 **错误码：** 
 
-以下错误码的详细介绍请参见 [sensor.getGeomagneticInfo错误码](errorcode-sensor.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3131,7 +3131,7 @@ getDeviceAltitude(seaPressure: number, currentPressure: number, callback: AsyncC
 
 **错误码：** 
 
-以下错误码的详细介绍请参见 [sensor.getDeviceAltitude错误码](errorcode-sensor.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3183,7 +3183,7 @@ getDeviceAltitude(seaPressure: number, currentPressure: number): Promise&lt;numb
 
 **错误码：** 
 
-以下错误码的详细介绍请参见 [sensor.getDeviceAltitude错误码](errorcode-sensor.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3228,7 +3228,7 @@ getInclination(inclinationMatrix: Array&lt;number&gt;, callback: AsyncCallback&l
 
 **错误码：** 
 
-以下错误码的详细介绍请参见 [sensor.getInclination错误码](errorcode-sensor.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3283,7 +3283,7 @@ try {
 
 **错误码：** 
 
-以下错误码的详细介绍请参见 [sensor.getInclination错误码](errorcode-sensor.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3334,7 +3334,7 @@ try {
 
 **错误码：** 
 
-以下错误码的详细介绍请参见 [sensor.getAngleVariation错误码](errorcode-sensor.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3400,7 +3400,7 @@ getAngleVariation(currentRotationMatrix: Array&lt;number&gt;, preRotationMatrix:
 
 **错误码：** 
 
-以下错误码的详细介绍请参见 [sensor.getAngleVariation错误码](errorcode-sensor.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3459,7 +3459,7 @@ getRotationMatrix(rotationVector: Array&lt;number&gt;, callback: AsyncCallback&l
 
 **错误码：** 
 
-以下错误码的详细介绍请参见 [sensor.getRotationMatrix错误码](errorcode-sensor.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3511,7 +3511,7 @@ getRotationMatrix(rotationVector: Array&lt;number&gt;): Promise&lt;Array&lt;numb
 
 **错误码：** 
 
-以下错误码的详细介绍请参见 [sensor.getRotationMatrix错误码](errorcode-sensor.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3559,7 +3559,7 @@ transformRotationMatrix(inRotationVector: Array&lt;number&gt;, coordinates: Coor
 
 **错误码：** 
 
-以下错误码的详细介绍请参见 [sensor.transformRotationMatrix错误码](errorcode-sensor.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3616,7 +3616,7 @@ transformRotationMatrix(inRotationVector: Array&lt;number&gt;, coordinates: Coor
 
 **错误码：** 
 
-以下错误码的详细介绍请参见 [sensor.transformRotationMatrix错误码](errorcode-sensor.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3666,7 +3666,7 @@ getQuaternion(rotationVector: Array&lt;number&gt;, callback: AsyncCallback&lt;Ar
 
 **错误码：** 
 
-以下错误码的详细介绍请参见 [sensor.getQuaternion错误码](errorcode-sensor.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3718,7 +3718,7 @@ getQuaternion(rotationVector: Array&lt;number&gt;): Promise&lt;Array&lt;number&g
 
 **错误码：** 
 
-以下错误码的详细介绍请参见 [sensor.getQuaternion错误码](errorcode-sensor.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3764,7 +3764,7 @@ getOrientation(rotationMatrix: Array&lt;number&gt;, callback: AsyncCallback&lt;A
 
 **错误码：** 
 
-以下错误码的详细介绍请参见 [sensor.getOrientation错误码](errorcode-sensor.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3823,7 +3823,7 @@ getOrientation(rotationMatrix: Array&lt;number&gt;): Promise&lt;Array&lt;number&
 
 **错误码：** 
 
-以下错误码的详细介绍请参见 [sensor.getOrientation错误码](errorcode-sensor.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3874,7 +3874,7 @@ getRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&gt;
 
 **错误码：** 
 
-以下错误码的详细介绍请参见 [sensor.getRotationMatrix错误码](errorcode-sensor.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3926,7 +3926,7 @@ getRotationMatrix(gravity: Array&lt;number&gt;, geomagnetic: Array&lt;number&gt;
 
 **错误码：** 
 
-以下错误码的详细介绍请参见 [sensor.getRotationMatrix错误码](errorcode-sensor.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3970,7 +3970,7 @@ getSensorList(callback: AsyncCallback&lt;Array&lt;Sensor&gt;&gt;): void
 
 **错误码：** 
 
-以下错误码的详细介绍请参见 [sensor.getSensorList错误码](errorcode-sensor.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -4015,7 +4015,7 @@ try {
 
 **错误码：** 
 
-以下错误码的详细介绍请参见 [sensor.getSensorList错误码](errorcode-sensor.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -4058,7 +4058,7 @@ getSensorListSync(): Array&lt;Sensor&gt;
 
 **错误码：** 
 
-以下错误码的详细介绍请参见 [sensor.getSensorList错误码](errorcode-sensor.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
@@ -4098,7 +4098,7 @@ getSingleSensor(type: SensorId, callback: AsyncCallback&lt;Sensor&gt;): void
 
 **错误码：** 
 
-以下错误码的详细介绍请参见 [sensor.getSingleSensor错误码](errorcode-sensor.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -4148,7 +4148,7 @@ try {
 
 **错误码：** 
 
-以下错误码的详细介绍请参见 [sensor.getSingleSensor错误码](errorcode-sensor.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -4196,7 +4196,7 @@ getSingleSensorSync(type: SensorId): Sensor
 
 **错误码：** 
 
-以下错误码的详细介绍请参见 [sensor.getSingleSensor错误码](errorcode-sensor.md)。
+以下错误码的详细介绍请参见[传感器错误码](errorcode-sensor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |

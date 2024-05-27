@@ -30,6 +30,7 @@ Select(options: Array\<[SelectOption](#selectoption对象说明)\>)
 | ------ | ----------------------------------- | ---- | -------------- |
 | value  | [ResourceStr](ts-types.md#resourcestr) | 是   | 下拉选项内容。 |
 | icon   | [ResourceStr](ts-types.md#resourcestr) | 否   | 下拉选项图片。 |
+| symbolIcon<sup>12+</sup>  | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 否   | 下拉选项Symbol图片。<br/>symbolIcon优先级高于icon。|
 
 ## 属性
 
@@ -386,6 +387,7 @@ menuBackgroundBlurStyle(value: BlurStyle)
 | ------ | -------------------------------------------- | ---- | ------------------------------------------------------------ |
 | value  | [ResourceStr](ts-types.md#resourcestr) | 是   | 下拉菜单项的文本内容。 |
 | icon  | [ResourceStr](ts-types.md#resourcestr) | 否   | 下拉菜单项的图片内容。 |
+| symbolIcon<sup>12+</sup>  | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 否   | 下拉选项Symbol图片内容。|
 | selected  | boolean | 是   | 下拉菜单项是否被选中。<br/>默认值：false |
 | index  | number | 是   | 下拉菜单项的索引。 |
 | triggerSelect  | (index: number, value: string) => void | 是   | 下拉菜单选中某一项的回调函数。<br/>index: 选中菜单项的索引。<br/>value: 选中菜单项的文本。<br/>说明: index会赋值给事件[onSelect](#onselect)回调中的索引参数； value会返回给Select组件显示，同时会赋值给事件[onSelect](#onselect)回调中的文本参数。 |
@@ -510,3 +512,117 @@ struct SelectExample {
 }
 ```
 ![](figures/selectBuilderExample.png)
+
+##  示例3
+该示例实现了一个下拉菜单中图片为Symbol的Select组件。
+
+```ts
+// xxx.ets
+import { SymbolGlyphModifier } from '@ohos.arkui.modifier'
+
+@Entry
+@Component
+struct SelectExample {
+  @State text: string = "TTTTT"
+  @State index: number = 2
+  @State space: number = 8
+  @State arrowPosition: ArrowPosition = ArrowPosition.END
+  @State symbolModifier1: SymbolGlyphModifier = new SymbolGlyphModifier($r('sys.symbol.ohos_wifi')).fontColor([Color.Green]);
+  @State symbolModifier2: SymbolGlyphModifier = new SymbolGlyphModifier($r('sys.symbol.ohos_star')).fontColor([Color.Red]);
+  @State symbolModifier3: SymbolGlyphModifier = new SymbolGlyphModifier($r('sys.symbol.ohos_trash')).fontColor([Color.Gray]);
+  @State symbolModifier4: SymbolGlyphModifier = new SymbolGlyphModifier($r('sys.symbol.exposure')).fontColor([Color.Gray]);
+  build() {
+    Column() {
+      Select([{ value: 'aaa', symbolIcon: this.symbolModifier1 },
+        { value: 'bbb', symbolIcon: this.symbolModifier2 },
+        { value: 'ccc', symbolIcon: this.symbolModifier3 },
+        { value: 'ddd', symbolIcon: this.symbolModifier4 }])
+        .selected(this.index)
+        .value(this.text)
+        .font({ size: 16, weight: 500 })
+        .fontColor('#182431')
+        .selectedOptionFont({ size: 16, weight: 400 })
+        .optionFont({ size: 16, weight: 400 })
+        .space(this.space)
+        .arrowPosition(this.arrowPosition)
+        .menuAlign(MenuAlignType.START, {dx:0, dy:0})
+        .onSelect((index:number, text?: string | undefined)=>{
+          console.info('Select:' + index)
+          this.index = index;
+          if(text){
+            this.text = text;
+          }
+        })
+    }.width('100%')
+  }
+}
+```
+
+![](figures/SelectSymbol.png)
+
+##  示例4
+该示例实现了一个自定义下拉菜选项的Select组件。自定义下拉菜单选项样式为“文本 + Symbol图片 + 空白间隔 + 文本 + 绘制三角形”，点击菜单选项后Select组件显示菜单选项的文本内容。
+
+```ts
+import { MenuItemModifier, SymbolGlyphModifier } from '@ohos.arkui.modifier'
+
+class MyMenuItemContentModifier implements ContentModifier<MenuItemConfiguration> {
+  modifierText: string = ""
+  constructor(text: string) {
+    this.modifierText = text;
+  }
+  applyContent(): WrappedBuilder<[MenuItemConfiguration]> {
+    return wrapBuilder(MenuItemBuilder)
+  }
+}
+
+@Builder
+function MenuItemBuilder(configuration: MenuItemConfiguration) {
+  Row() {
+    Text(configuration.value)
+    Blank()
+    if (configuration.symbolIcon) {
+      SymbolGlyph().attributeModifier(configuration.symbolIcon).fontSize(24)
+    } else if (configuration.icon) {
+      Image(configuration.icon).size({ width: 24, height: 24 })
+    }
+    Blank(30)
+    Text((configuration.contentModifier as MyMenuItemContentModifier).modifierText)
+    Blank(30)
+    Path()
+      .width('100px')
+      .height('150px')
+      .commands('M40 0 L80 100 L0 100 Z')
+      .fillOpacity(0)
+      .stroke(Color.Black)
+      .strokeWidth(3)
+  }
+  .onClick(() => {
+    configuration.triggerSelect(configuration.index, configuration.value.valueOf().toString())
+  })
+}
+
+@Entry
+@Component
+struct SelectExample {
+  @State text: string = "Content Modifier Select"
+  @State symbolModifier1: SymbolGlyphModifier = new SymbolGlyphModifier($r('sys.symbol.ohos_trash')).fontColor([Color.Gray]);
+  @State symbolModifier2: SymbolGlyphModifier = new SymbolGlyphModifier($r('sys.symbol.exposure')).fontColor([Color.Gray]);
+  build() {
+    Column() {
+      Row() {
+        Select([{ value: 'item1', icon: $r('app.media.icon'), symbolIcon: this.symbolModifier1 },
+          { value: 'item1', icon: $r('app.media.icon'), symbolIcon: this.symbolModifier2 }])
+          .value(this.text)
+          .onSelect((index:number, text?: string)=>{
+            console.info('Select index:' + index)
+            console.info('Select text:' + text)
+          })
+          .menuItemContentModifier(new MyMenuItemContentModifier("Content Modifier"))
+
+      }.alignItems(VerticalAlign.Center).height('50%')
+    }
+  }
+}
+```
+![](figures/SelectBuilderSymbol.png)

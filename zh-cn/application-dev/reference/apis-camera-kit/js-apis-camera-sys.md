@@ -51,6 +51,7 @@ import camera from '@ohos.multimedia.camera';
 | SLOW_MOTION_VIDEO<sup>12+</sup>        | 7   | 慢动作模式。**系统接口：** 此接口为系统接口。  |
 | MACRO_PHOTO<sup>12+</sup>        | 8      | 超级微距拍照模式。**系统接口：** 此接口为系统接口。             |
 | MACRO_VIDEO<sup>12+</sup>        | 9      | 超级微距录像模式。**系统接口：** 此接口为系统接口。             |
+| HIGH_RESOLUTION_PHOTO<sup>12+</sup>        | 11     | 高像素拍照模式。 **系统接口：** 此接口为系统接口。          |
 
 ## SlowMotionStatus<sup>12+</sup>
 
@@ -1487,7 +1488,7 @@ function enableSceneFeature(photoSession: camera.PhotoSession): void {
     photoSession.addOutput(previewOutput);
     photoSession.commitConfig();
 
-    photoSession.on('featureDetectionStatus', camera.SceneFeatureType.MOON_CAPTURE_BOOST,
+    photoSession.on('featureDetection', camera.SceneFeatureType.MOON_CAPTURE_BOOST,
       (err, statusObject) => {
         console.info(
           `on featureDetectionStatus featureType:${statusObject.featureType} detected:${statusObject.detected}`);
@@ -2487,9 +2488,9 @@ function unregisterMacroStatusChanged(photoSession: camera.PhotoSession): void {
 }
 ```
 
-### on('featureDetectionStatus')<sup>12+</sup>
+### on('featureDetection')<sup>12+</sup>
 
-on(type: 'featureDetectionStatus', featureType: camera.SceneFeatureType, callback: AsyncCallback\<camera.SceneFeatureDetectionResult\>): void
+on(type: 'featureDetection', featureType: camera.SceneFeatureType, callback: AsyncCallback\<camera.SceneFeatureDetectionResult\>): void
 
 监听相机特性检测状态变化。
 
@@ -2501,7 +2502,7 @@ on(type: 'featureDetectionStatus', featureType: camera.SceneFeatureType, callbac
 
 | 参数名     | 类型                                      | 必填 | 说明                       |
 | -------- | ----------------------------------------- | ---- | ------------------------ |
-| type     | string      | 是   | 监听事件，固定为'featureDetectionStatus'，photoSession创建成功可监听。 |
+| type     | string      | 是   | 监听事件，固定为'featureDetection'，photoSession创建成功可监听。 |
 | featureType     | [SceneFeatureType](#scenefeaturetype12)      | 是   | 监听指定特性。 |
 | callback | AsyncCallback\<[SceneFeatureDetectionResult](#scenefeaturedetectionresult12)\>     | 是   | 回调函数，用于获取当前监听的特性的状态。  |
 
@@ -2516,13 +2517,13 @@ function callback(err: BusinessError, result: camera.SceneFeatureDetectionResult
 }
 
 function registerFeatureDetectionStatus(photoSession: camera.PhotoSession, featureType: camera.SceneFeatureType): void {
-  photoSession.on('featureDetectionStatus', featureType, callback);
+  photoSession.on('featureDetection', featureType, callback);
 }
 ```
 
-### off('featureDetectionStatus')<sup>12+</sup>
+### off('featureDetection')<sup>12+</sup>
 
-off(type: 'featureDetectionStatus', featureType: camera.SceneFeatureType, callback?: AsyncCallback\<camera.SceneFeatureDetectionResult\>): void
+off(type: 'featureDetection', featureType: camera.SceneFeatureType, callback?: AsyncCallback\<camera.SceneFeatureDetectionResult\>): void
 
 注销监听相机特性检测状态变化。
 
@@ -2534,21 +2535,21 @@ off(type: 'featureDetectionStatus', featureType: camera.SceneFeatureType, callba
 
 | 参数名    | 类型                     | 必填 | 说明                       |
 | -------- | ------------------------ | ---- | ------------------------ |
-| type     | string                   | 是   | 监听事件，固定为'featureDetectionStatus'，session创建成功可取消监听。|
+| type     | string                   | 是   | 监听事件，固定为'featureDetection'，session创建成功可取消监听。|
 | featureType     | [SceneFeatureType](#scenefeaturetype12)      | 是   | 指定特性。 |
-| callback | AsyncCallback\<[SceneFeatureDetectionResult](#scenefeaturedetectionresult12)\> | 否   | 回调函数，可选，有就是匹配on('featureDetectionStatus') callback（callback对象不可是匿名函数）。 |
+| callback | AsyncCallback\<[SceneFeatureDetectionResult](#scenefeaturedetectionresult12)\> | 否   | 回调函数，可选，有就是匹配on('featureDetection') callback（callback对象不可是匿名函数）。 |
 
 **示例：**
 
 ```ts
 function unregisterFeatureDetectionStatus(photoSession: camera.PhotoSession, featureType: camera.SceneFeatureType): void {
-  photoSession.off('featureDetectionStatus', featureType);
+  photoSession.off('featureDetection', featureType);
 }
 ```
 
 ## VideoSessionForSys<sup>11+</sup>
 
-VideoSessionForSys extends VideoSession, Beauty, ColorEffect, ColorManagement, Macro, SceneDetection
+VideoSessionForSys extends VideoSession, Beauty, ColorEffect, ColorManagement, Macro
 
 提供给系统应用的VideoSession，普通录像模式会话类，继承自[Session](js-apis-camera.md#session11)，用于设置普通录像模式的参数以及保存所需要的所有资源[CameraInput](js-apis-camera.md#camerainput)、[CameraOutput](js-apis-camera.md#cameraoutput)。
 
@@ -2615,65 +2616,6 @@ off(type: 'macroStatusChanged', callback?: AsyncCallback\<boolean\>): void
 ```ts
 function unregisterMacroStatusChanged(videoSession: camera.VideoSession): void {
   videoSession.off('macroStatusChanged');
-}
-```
-
-### on('featureDetectionStatus')<sup>12+</sup>
-
-on(type: 'featureDetectionStatus', featureType: camera.SceneFeatureType, callback: AsyncCallback\<camera.SceneFeatureDetectionResult\>): void
-
-监听相机特性检测状态变化。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力：** SystemCapability.Multimedia.Camera.Core
-
-**参数：**
-
-| 参数名     | 类型                                      | 必填 | 说明                       |
-| -------- | ----------------------------------------- | ---- | ------------------------ |
-| type     | string      | 是   | 监听事件，固定为'featureDetectionStatus'，videoSession创建成功可监听。 |
-| featureType     | [SceneFeatureType](#scenefeaturetype12)      | 是   | 监听指定特性。 |
-| callback | AsyncCallback\<[SceneFeatureDetectionResult](#scenefeaturedetectionresult12)\>     | 是   | 回调函数，用于获取当前监听的特性的状态。  |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@ohos.base';
-
-function callback(err: BusinessError, result: camera.SceneFeatureDetectionResult): void {
-  console.info(`feature type: ${result.featureType}`);
-  console.info(`feature status: ${result.detected}`);
-}
-
-function registerFeatureDetectionStatus(videoSession: camera.VideoSession, featureType: camera.SceneFeatureType): void {
-  videoSession.on('featureDetectionStatus', featureType, callback);
-}
-```
-
-### off('featureDetectionStatus')<sup>12+</sup>
-
-off(type: 'featureDetectionStatus', featureType: camera.SceneFeatureType, callback?: AsyncCallback\<camera.SceneFeatureDetectionResult\>): void
-
-注销监听相机特性检测状态变化。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力：** SystemCapability.Multimedia.Camera.Core
-
-**参数：**
-
-| 参数名    | 类型                     | 必填 | 说明                       |
-| -------- | ------------------------ | ---- | ------------------------ |
-| type     | string                   | 是   | 监听事件，固定为'featureDetectionStatus'，session创建成功可取消监听。|
-| featureType     | [SceneFeatureType](#scenefeaturetype12)      | 是   | 指定特性。 |
-| callback | AsyncCallback\<[SceneFeatureDetectionResult](#scenefeaturedetectionresult12)\> | 否   | 回调函数，可选，有就是匹配on('featureDetectionStatus') callback（callback对象不可是匿名函数）。 |
-
-**示例：**
-
-```ts
-function unregisterFeatureDetectionStatus(videoSession: camera.VideoSession, featureType: camera.SceneFeatureType): void {
-  videoSession.off('featureDetectionStatus', featureType);
 }
 ```
 
@@ -3022,6 +2964,122 @@ off(type: 'smoothZoomInfoAvailable', callback?: AsyncCallback\<SmoothZoomInfo\>)
 ```ts
 function unregisterSmoothZoomInfo(nightPhotoSession: camera.NightPhotoSession): void {
   nightPhotoSession.off('smoothZoomInfoAvailable');
+}
+```
+## HighResolutionPhotoSession<sup>12+</sup>
+
+HighResolutionPhotoSession extends Session, AutoExposure, Focus
+
+高像素拍照模式会话类，继承自[Session](js-apis-camera.md#session11)，用于设置高像素拍照模式的参数以及保存所需要的所有资源[CameraInput](js-apis-camera.md#camerainput)、[CameraOutput](js-apis-camera.md#cameraoutput)。
+
+### on('error')<sup>12+</sup>
+
+on(type: 'error', callback: ErrorCallback): void
+
+监听高像素拍照会话的错误事件，通过注册回调函数获取结果。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型        | 必填 | 说明                           |
+| -------- | --------------------------------- | ---- | ------------------------------ |
+| type     | string                               | 是   | 监听事件，固定为'error'，session创建成功之后可监听该接口。session调用相关接口出现错误时会触发该事件，比如调用[beginConfig](js-apis-camera.md#beginconfig11)，[commitConfig](js-apis-camera.md#commitconfig11-1)，[addInput](js-apis-camera.md#addinput11)等接口发生错误时返回错误信息。 |
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback)| 是   | 回调函数，用于获取错误信息。返回错误码，错误码类型[CameraErrorCode](js-apis-camera.md#cameraerrorcode)。        |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+function callback(err: BusinessError): void {
+  console.error(`High resolution photo session error code: ${err.code}`);
+}
+
+function registerSessionError(highResolutionPhotoSession: camera.HighResolutionPhotoSession): void {
+  highResolutionPhotoSession.on('error', callback);
+}
+```
+### off('error')<sup>12+</sup>
+
+off(type: 'error', callback?: ErrorCallback): void
+
+注销监听高像素拍照会话的错误事件，通过注册回调函数获取结果。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型                        | 必填 | 说明                           |
+| -------- | ------------------------ | ---- | ------------------------------ |
+| type     | string    | 是   | 监听事件，固定为'error'，session创建成功之后可监听该接口。 |
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback)| 否   | 回调函数，可选，有就是匹配on('error') callback（callback对象不可是匿名函数）。       |
+
+**示例：**
+
+```ts
+function unregisterSessionError(highResolutionPhotoSession: camera.HighResolutionPhotoSession): void {
+  highResolutionPhotoSession.off('error');
+}
+```
+
+### on('focusStateChange')<sup>12+</sup>
+
+on(type: 'focusStateChange', callback: AsyncCallback\<FocusState\>): void
+
+监听相机聚焦的状态变化，通过注册回调函数获取结果。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型                    | 必填 | 说明                       |
+| -------- | ---------------- | ---- | ------------------------ |
+| type     | string                                    | 是   | 监听事件，固定为'focusStateChange'，session创建成功可监听。仅当自动对焦模式时，且相机对焦状态发生改变时可触发该事件。 |
+| callback | AsyncCallback\<[FocusState](js-apis-camera.md#focusstate)\> | 是   | 回调函数，用于获取当前对焦状态。  |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+function callback(err: BusinessError, focusState: camera.FocusState): void {
+  console.info(`Focus state: ${focusState}`);
+}
+
+function registerFocusStateChange(highResolutionPhotoSession: camera.HighResolutionPhotoSession): void {
+  highResolutionPhotoSession.on('focusStateChange', callback);
+}
+```
+
+### off('focusStateChange')<sup>12+</sup>
+
+off(type: 'focusStateChange', callback?: AsyncCallback\<FocusState\>): void
+
+注销监听相机聚焦的状态变化。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型                                      | 必填 | 说明                       |
+| -------- | ----------------------------------------- | ---- | ------------------------ |
+| type     | string                                    | 是   | 监听事件，固定为'focusStateChange'，session创建成功可监听。 |
+| callback | AsyncCallback\<[FocusState](js-apis-camera.md#focusstate)\> | 否   | 回调函数，可选，有就是匹配on('focusStateChange') callback（callback对象不可是匿名函数）。  |
+
+**示例：**
+
+```ts
+function unregisterFocusStateChange(highResolutionPhotoSession: camera.HighResolutionPhotoSession): void {
+  highResolutionPhotoSession.off('focusStateChange');
 }
 ```
 

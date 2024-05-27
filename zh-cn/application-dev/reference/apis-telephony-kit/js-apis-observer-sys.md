@@ -42,7 +42,7 @@ on\(type: \'cellInfoChange\', callback: Callback\<Array\<CellInformation\>\>\): 
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -87,7 +87,7 @@ on\(type: \'cellInfoChange\', options: ObserverOptions, callback: Callback\<Arra
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -135,7 +135,7 @@ off\(type: \'cellInfoChange\', callback?: Callback\<Array\<CellInformation\>\>\)
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |

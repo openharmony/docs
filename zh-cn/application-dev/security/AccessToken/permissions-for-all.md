@@ -425,7 +425,7 @@
 
 允许应用获取设备位置信息。
 
-**申请条件**：需要先申请模糊位置权限[ohos.permission.APPROXIMATELY_LOCATION](#ohospermissionapproximately_location)，才可申请此权限。
+**申请条件**：需要与模糊位置权限[ohos.permission.APPROXIMATELY_LOCATION](#ohospermissionapproximately_location)一起，才可申请此权限。
 
 **权限级别**：normal
 
