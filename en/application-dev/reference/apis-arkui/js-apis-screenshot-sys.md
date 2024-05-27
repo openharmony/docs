@@ -4,9 +4,8 @@ The **Screenshot** module provides APIs for you to set information such as the r
 
 >  **NOTE**
 >
-> - The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
->
-> - The APIs provided by this module are system APIs.
+> The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+
 
 ## Modules to Import
 
@@ -18,8 +17,9 @@ import screenshot from '@ohos.screenshot';
 
 Describes screenshot options.
 
-**System capability**: SystemCapability.WindowManager.WindowManager.Core
+**System API**: This is a system API.
 
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
 
 | Name                | Type         | Mandatory| Description                                                        |
 | ---------------------- | ------------- | ---- | ------------------------------------------------------------ |
@@ -32,6 +32,8 @@ Describes screenshot options.
 ## Rect
 
 Describes the region of the screen to capture.
+
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -47,6 +49,8 @@ Describes the region of the screen to capture.
 
 Describes the size of the screen region to capture.
 
+**System API**: This is a system API.
+
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
 | Name| Type  | Mandatory| Description                                                        |
@@ -59,6 +63,8 @@ Describes the size of the screen region to capture.
 save(options: ScreenshotOptions, callback: AsyncCallback&lt;image.PixelMap&gt;): void
 
 Takes a screenshot and saves it as a **PixelMap** object. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -117,6 +123,8 @@ save(callback: AsyncCallback&lt;image.PixelMap&gt;): void
 
 Takes a screenshot and saves it as a **PixelMap** object. This API uses an asynchronous callback to return the result.
 
+**System API**: This is a system API.
+
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
 **Required permissions**: ohos.permission.CAPTURE_SCREEN (available only to system applications)
@@ -152,6 +160,8 @@ try {
 save(options?: ScreenshotOptions): Promise&lt;image.PixelMap&gt;
 
 Takes a screenshot and saves it as a **PixelMap** object. This API uses a promise to return the result.
+
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
