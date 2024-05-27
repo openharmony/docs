@@ -3152,7 +3152,7 @@ try {
 
 getMaxAmplitudeForInputDevice(inputDevice: AudioDeviceDescriptor): Promise&lt;number&gt;
 
-获取输入设备音频流的最大电平值，大小取值在0-1之间，最小为0。
+获取输入设备音频流的最大电平值，大小取值在0-1之间，最小为0，使用Promise方式异步返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -3203,7 +3203,7 @@ audioRoutingManager.getPreferredInputDeviceForCapturerInfo(capturerInfo).then((d
 
 getMaxAmplitudeForOutputDevice(outputDevice: AudioDeviceDescriptor): Promise&lt;number&gt;
 
-获取输出设备音频流的最大电平值，大小取值在0-1之间，最小为0。
+获取输出设备音频流的最大电平值，大小取值在0-1之间，最小为0，使用Promise方式异步返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 

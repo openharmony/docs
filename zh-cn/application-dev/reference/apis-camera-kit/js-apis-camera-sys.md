@@ -51,6 +51,7 @@ import camera from '@ohos.multimedia.camera';
 | SLOW_MOTION_VIDEO<sup>12+</sup>        | 7   | 慢动作模式。**系统接口：** 此接口为系统接口。  |
 | MACRO_PHOTO<sup>12+</sup>        | 8      | 超级微距拍照模式。**系统接口：** 此接口为系统接口。             |
 | MACRO_VIDEO<sup>12+</sup>        | 9      | 超级微距录像模式。**系统接口：** 此接口为系统接口。             |
+| HIGH_RESOLUTION_PHOTO<sup>12+</sup>        | 11     | 高像素拍照模式。 **系统接口：** 此接口为系统接口。          |
 
 ## SlowMotionStatus<sup>12+</sup>
 
@@ -1603,6 +1604,19 @@ function enableSceneFeature(photoSession: camera.PhotoSession): void {
 }
 ```
 
+## ZoomPointInfo<sup>12+</sup>
+
+等效焦距信息。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+| 名称     | 类型        |   只读   |   必填   | 说明       |
+| -------- | ---------- | -------- | -------- | ---------- |
+| zoomRatio |   number   |   是     |    是    | 可变焦距比。 |
+| equivalentFocalLength |   number   |   是     |    是    | 当前焦距比对应的等效焦距值。 |
+
 ## Zoom<sup>11+</sup>
 
 变焦类，对设备变焦操作。
@@ -1673,6 +1687,48 @@ function unprepareZoom(sessionExtendsZoom: camera.Zoom): void {
     // 失败返回错误码error.code并处理
     let err = error as BusinessError;
     console.error(`The unprepareZoom call failed. error code: ${err.code}`);
+  }
+}
+```
+
+### getZoomPointInfos<sup>12+</sup>
+
+getZoomPointInfos(): Array\<ZoomPointInfo\>
+
+获取当前模式的等效焦距信息列表。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**返回值：**
+
+| 类型                | 说明                                                  |
+| ----------          | -----------------------------                         |
+|  Array\<[ZoomPointInfo](#zoompointinfo12)\>| 获取当前模式的等效焦距信息列表。                   |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 202                    |  Not System Application.                      |
+| 7400103                |  Session not config.                          |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+function getZoomPointInfos(): Array<ZoomPointInfo> {
+  try {
+    let zoomPointInfos: Array<ZoomPointInfo> = sessionExtendsZoom.getZoomPointInfos();
+	return zoomPointInfos;
+  } catch (error) {
+    // 失败返回错误码error.code并处理
+    let err = error as BusinessError;
+    console.error(`The getZoomPointInfos call failed. error code: ${err.code}`);
   }
 }
 ```
@@ -3110,6 +3166,122 @@ off(type: 'smoothZoomInfoAvailable', callback?: AsyncCallback\<SmoothZoomInfo\>)
 ```ts
 function unregisterSmoothZoomInfo(nightPhotoSession: camera.NightPhotoSession): void {
   nightPhotoSession.off('smoothZoomInfoAvailable');
+}
+```
+## HighResolutionPhotoSession<sup>12+</sup>
+
+HighResolutionPhotoSession extends Session, AutoExposure, Focus
+
+高像素拍照模式会话类，继承自[Session](js-apis-camera.md#session11)，用于设置高像素拍照模式的参数以及保存所需要的所有资源[CameraInput](js-apis-camera.md#camerainput)、[CameraOutput](js-apis-camera.md#cameraoutput)。
+
+### on('error')<sup>12+</sup>
+
+on(type: 'error', callback: ErrorCallback): void
+
+监听高像素拍照会话的错误事件，通过注册回调函数获取结果。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型        | 必填 | 说明                           |
+| -------- | --------------------------------- | ---- | ------------------------------ |
+| type     | string                               | 是   | 监听事件，固定为'error'，session创建成功之后可监听该接口。session调用相关接口出现错误时会触发该事件，比如调用[beginConfig](js-apis-camera.md#beginconfig11)，[commitConfig](js-apis-camera.md#commitconfig11-1)，[addInput](js-apis-camera.md#addinput11)等接口发生错误时返回错误信息。 |
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback)| 是   | 回调函数，用于获取错误信息。返回错误码，错误码类型[CameraErrorCode](js-apis-camera.md#cameraerrorcode)。        |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+function callback(err: BusinessError): void {
+  console.error(`High resolution photo session error code: ${err.code}`);
+}
+
+function registerSessionError(highResolutionPhotoSession: camera.HighResolutionPhotoSession): void {
+  highResolutionPhotoSession.on('error', callback);
+}
+```
+### off('error')<sup>12+</sup>
+
+off(type: 'error', callback?: ErrorCallback): void
+
+注销监听高像素拍照会话的错误事件，通过注册回调函数获取结果。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型                        | 必填 | 说明                           |
+| -------- | ------------------------ | ---- | ------------------------------ |
+| type     | string    | 是   | 监听事件，固定为'error'，session创建成功之后可监听该接口。 |
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback)| 否   | 回调函数，可选，有就是匹配on('error') callback（callback对象不可是匿名函数）。       |
+
+**示例：**
+
+```ts
+function unregisterSessionError(highResolutionPhotoSession: camera.HighResolutionPhotoSession): void {
+  highResolutionPhotoSession.off('error');
+}
+```
+
+### on('focusStateChange')<sup>12+</sup>
+
+on(type: 'focusStateChange', callback: AsyncCallback\<FocusState\>): void
+
+监听相机聚焦的状态变化，通过注册回调函数获取结果。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型                    | 必填 | 说明                       |
+| -------- | ---------------- | ---- | ------------------------ |
+| type     | string                                    | 是   | 监听事件，固定为'focusStateChange'，session创建成功可监听。仅当自动对焦模式时，且相机对焦状态发生改变时可触发该事件。 |
+| callback | AsyncCallback\<[FocusState](js-apis-camera.md#focusstate)\> | 是   | 回调函数，用于获取当前对焦状态。  |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+function callback(err: BusinessError, focusState: camera.FocusState): void {
+  console.info(`Focus state: ${focusState}`);
+}
+
+function registerFocusStateChange(highResolutionPhotoSession: camera.HighResolutionPhotoSession): void {
+  highResolutionPhotoSession.on('focusStateChange', callback);
+}
+```
+
+### off('focusStateChange')<sup>12+</sup>
+
+off(type: 'focusStateChange', callback?: AsyncCallback\<FocusState\>): void
+
+注销监听相机聚焦的状态变化。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型                                      | 必填 | 说明                       |
+| -------- | ----------------------------------------- | ---- | ------------------------ |
+| type     | string                                    | 是   | 监听事件，固定为'focusStateChange'，session创建成功可监听。 |
+| callback | AsyncCallback\<[FocusState](js-apis-camera.md#focusstate)\> | 否   | 回调函数，可选，有就是匹配on('focusStateChange') callback（callback对象不可是匿名函数）。  |
+
+**示例：**
+
+```ts
+function unregisterFocusStateChange(highResolutionPhotoSession: camera.HighResolutionPhotoSession): void {
+  highResolutionPhotoSession.off('focusStateChange');
 }
 ```
 
