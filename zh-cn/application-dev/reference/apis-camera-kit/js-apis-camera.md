@@ -2271,8 +2271,7 @@ function onPhotoOutputPhotoAssetAvailable(photoOutput: camera.PhotoOutput): void
       return;
     }
     console.info('photoOutPutCallBack photoAssetAvailable');
-    // 保存或使用照片，需开发者实现
-    photoAsset.saveCameraPhoto();
+    // 开放者可通过photoAsset获取图片相关信息
   });
 }
 ```
@@ -6903,7 +6902,7 @@ getActiveColorSpace(): colorSpaceManager.ColorSpace
 import { BusinessError } from '@ohos.base';
 import colorSpaceManager from '@ohos.graphics.colorSpaceManager';
 
-function getActiveColorSpace(session: camera.PhotoSession): colorSpaceManager.ColorSpace {
+function getActiveColorSpace(session: camera.PhotoSession): colorSpaceManager.ColorSpace | undefined {
   let colorSpace: colorSpaceManager.ColorSpace | undefined = undefined;
   try {
     colorSpace = session.getActiveColorSpace();
