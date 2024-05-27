@@ -4540,6 +4540,7 @@ title参数规格为：
 | BANK_CARD<sup>12+</sup> |  7 | 银行卡。 |
 | DRIVER_LICENSE<sup>12+</sup> |  8 | 驾驶证。 |
 | DRIVING_LICENSE<sup>12+</sup> |  9 | 行驶证。 |
+| FEATURED_SINGLE_PORTRAIT<sup>12+</sup> |  10 | 精选单人像。 |
 
 **示例：**
 
