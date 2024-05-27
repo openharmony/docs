@@ -4288,6 +4288,8 @@ on(type: 'keyRequest', callback: KeyRequestCallback): void
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名 | 类型   | 必填 | 说明                                      |
@@ -4321,6 +4323,8 @@ off(type: 'keyRequest', callback?: KeyRequestCallback): void
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名 | 类型   | 必填 | 说明                                      |
@@ -4347,6 +4351,8 @@ type KeyRequestCallback = (assetId: string, requestData: Uint8Array) => void
 许可证请求事件的回调函数。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
