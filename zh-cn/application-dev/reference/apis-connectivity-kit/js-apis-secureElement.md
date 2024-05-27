@@ -51,7 +51,7 @@ newSEService(type: 'serviceState', callback: Callback<[ServiceState](#secureelem
 **返回值：**
 
 | **类型**  | **说明**   |
-| :-------- | :--------- |
+| -------- | --------- |
 | SEService | SE服务实例。 |
 
 **示例：**
