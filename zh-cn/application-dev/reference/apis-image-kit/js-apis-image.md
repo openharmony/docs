@@ -3599,6 +3599,7 @@ createPixelMapList(options?: DecodingOptions): Promise<Array\<PixelMap>>
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
+| 401 | The parameter check failed.             |
 | 62980096| The operation failed.              |
 | 62980099 | The shared memory data is abnormal. |
 | 62980101 | The image data is abnormal. |
@@ -3657,6 +3658,7 @@ createPixelMapList(callback: AsyncCallback<Array\<PixelMap>>): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
+| 401 | The parameter check failed.             |
 | 62980096 | The operation failed.             |
 | 62980099 | The shared memory data is abnormal.  |
 | 62980101 | The image data is abnormal.          |
@@ -3710,6 +3712,7 @@ createPixelMapList(options: DecodingOptions, callback: AsyncCallback<Array\<Pixe
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
+| 401 | The parameter check failed.             |
 | 62980096 | The operation failed.            |
 | 62980099 | The shared memory data is abnormal.  |
 | 62980101 | The image data is abnormal.         |
@@ -3770,6 +3773,7 @@ getDelayTimeList(callback: AsyncCallback<Array\<number>>): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
+| 401 | The parameter check failed.             |
 | 62980096| The operation failed.              |
 | 62980110| The image source data is incorrect.             |
 | 62980111| The image source data is incomplete.            |
@@ -3816,6 +3820,7 @@ getDelayTimeList(): Promise<Array\<number>>
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
+| 401 | The parameter check failed.             |
 | 62980096 | The operation failed.             |
 | 62980110 | The image source data is incorrect.      |
 | 62980111 | The image source data is incomplete. |
@@ -3860,6 +3865,7 @@ getFrameCount(callback: AsyncCallback\<number>): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
+| 401 | The parameter check failed.             |
 | 62980096| The operation failed.              |
 | 62980110| The image source data is incorrect. |
 | 62980111| The image source data is incomplete. |
@@ -3905,6 +3911,7 @@ getFrameCount(): Promise\<number>
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
+| 401 | The parameter check failed.             |
 | 62980096 | The operation failed.             |
 | 62980110 | The image source data is incorrect.      |
 | 62980111 | The image source data is incomplete. |
@@ -5586,6 +5593,7 @@ PixelMap的初始化选项。
 | FRONT_CAMERA <sup>12+</sup> | "HwMnoteFrontCamera" | 是否是前置相机自拍。 |
 | SCENE_POINTER <sup>12+</sup> | "HwMnoteScenePointer" | 场景指针。 |
 | SCENE_VERSION <sup>12+</sup> | "HwMnoteSceneVersion" | 场景算法版本信息。 |
+| GIF_LOOP_COUNT <sup>12+</sup> | "GIFLoopCount" | GIF图片循环次数。 |
 
 ## ImageFormat<sup>9+</sup>
 

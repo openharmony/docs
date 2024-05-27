@@ -30,16 +30,19 @@ publish(request: NotificationRequest, userId: number, callback: AsyncCallback\<v
 
 | 参数名     | 类型                                        | 必填 | 说明                                        |
 | -------- | ----------------------------------------- | ---- | ------------------------------------------- |
-| request  | [NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest) | 是   | 用于设置要发布通知的内容和相关配置信息。 |
+| request  | [NotificationRequest](js-apis-inner-notification-notificationRequest-sys.md#notificationrequest) | 是   | 用于设置要发布通知的内容和相关配置信息。 |
 | userId   | number                                      | 是   | 用户ID。                           |
 | callback | AsyncCallback\<void\>                       | 是   | 被指定的回调方法。                           |
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                              |
 | -------- | ---------------------------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401      | parameter error.                                     | 
 | 1600001  | Internal error.                                      |
 | 1600002  | Marshalling or unmarshalling error.                  |
 | 1600003  | Failed to connect service.                           |
@@ -100,7 +103,7 @@ publish(request: NotificationRequest, userId: number): Promise\<void\>
 
 | 参数名     |  类型                                        | 必填 | 说明                                        |
 | -------- | ----------------------------------------- | ---- | ------------------------------------------- |
-| request  | [NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest) | 是   | 用于设置要发布通知的内容和相关配置信息。 |
+| request  | [NotificationRequest](js-apis-inner-notification-notificationRequest-sys.md#notificationrequest) | 是   | 用于设置要发布通知的内容和相关配置信息。 |
 | userId   | number                                      | 是   | 用户ID。                           |
 
 **返回值：**
@@ -111,10 +114,13 @@ publish(request: NotificationRequest, userId: number): Promise\<void\>
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                              |
 | -------- | ---------------------------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401      | parameter error.                                     | 
 | 1600001  | Internal error.                                      |
 | 1600002  | Marshalling or unmarshalling error.                  |
 | 1600003  | Failed to connect service.                           |
@@ -176,10 +182,13 @@ addSlot(slot: NotificationSlot, callback: AsyncCallback\<void\>): void
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401      | parameter error.                                     | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -231,10 +240,13 @@ addSlot(slot: NotificationSlot): Promise\<void\>
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401      | parameter error.                                     | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -277,10 +289,13 @@ addSlots(slots: Array\<NotificationSlot\>, callback: AsyncCallback\<void\>): voi
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401      | parameter error.                                     | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -336,10 +351,13 @@ addSlots(slots: Array\<NotificationSlot\>): Promise\<void\>
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401      | parameter error.                                     | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -388,10 +406,13 @@ setNotificationEnable(bundle: BundleOption, enable: boolean, callback: AsyncCall
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401      | parameter error.                                     | 
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
@@ -442,10 +463,13 @@ setNotificationEnable(bundle: BundleOption, enable: boolean): Promise\<void\>
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401      | parameter error.                                     | 
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
@@ -468,7 +492,7 @@ notificationManager.setNotificationEnable(bundle, false).then(() => {
 
 ## notificationManager.getAllNotificationEnabledBundles<sup>12+</sup>
 
-getAllNotificationEnabledBundles(): Promise<Array<BundleOption>>;
+getAllNotificationEnabledBundles(): Promise<Array<BundleOption\>>;
 
 获取允许通知的应用程序列表。使用Promise异步回调。
 
@@ -480,10 +504,12 @@ getAllNotificationEnabledBundles(): Promise<Array<BundleOption>>;
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -525,10 +551,13 @@ isNotificationEnabled(bundle: BundleOption, callback: AsyncCallback\<boolean\>):
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401      | parameter error.                                     | 
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
@@ -580,10 +609,13 @@ isNotificationEnabled(bundle: BundleOption): Promise\<boolean\>
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401      | parameter error.                                     | 
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
@@ -625,10 +657,13 @@ isNotificationEnabled(userId: number, callback: AsyncCallback\<boolean\>): void
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401      | parameter error.                                     | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -678,10 +713,13 @@ isNotificationEnabled(userId: number): Promise\<boolean\>
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401      | parameter error.                                     |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
@@ -723,10 +761,13 @@ displayBadge(bundle: BundleOption, enable: boolean, callback: AsyncCallback\<voi
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401      | parameter error.                                     | 
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
@@ -777,10 +818,13 @@ displayBadge(bundle: BundleOption, enable: boolean): Promise\<void\>
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401      | parameter error.                                     | 
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
@@ -822,10 +866,13 @@ isBadgeDisplayed(bundle: BundleOption, callback: AsyncCallback\<boolean\>): void
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401      | parameter error.                                     | 
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
@@ -875,10 +922,13 @@ isBadgeDisplayed(bundle: BundleOption): Promise\<boolean\>
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401      | parameter error.                                     |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
@@ -927,10 +977,13 @@ setSlotFlagsByBundle(bundle: BundleOption, slotFlags: number): Promise\<void\>
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401      | parameter error.                                     |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
@@ -976,10 +1029,13 @@ setSlotByBundle(bundle: BundleOption, slot: NotificationSlot, callback: AsyncCal
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401      | parameter error.                                     |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
@@ -1033,10 +1089,13 @@ setSlotByBundle(bundle: BundleOption, slot: NotificationSlot): Promise\<void\>
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401      | parameter error.                                     |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
@@ -1088,10 +1147,13 @@ getSlotFlagsByBundle(bundle: BundleOption): Promise\<number\>
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401      | parameter error.                                     |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
@@ -1133,10 +1195,13 @@ getSlotsByBundle(bundle: BundleOption, callback: AsyncCallback\<Array\<Notificat
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401      | parameter error.                                     |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
@@ -1186,10 +1251,13 @@ getSlotsByBundle(bundle: BundleOption): Promise\<Array\<NotificationSlot>>
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401      | parameter error.                                     |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
@@ -1232,10 +1300,13 @@ getSlotNumByBundle(bundle: BundleOption, callback: AsyncCallback\<number\>): voi
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401      | parameter error.                                     |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
@@ -1287,10 +1358,13 @@ getSlotNumByBundle(bundle: BundleOption): Promise\<number\>
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401      | parameter error.                                     |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
@@ -1329,14 +1403,17 @@ getAllActiveNotifications(callback: AsyncCallback\<Array\<NotificationRequest>>)
 
 | 参数名     | 类型                                                         | 必填 | 说明                 |
 | -------- | ------------------------------------------------------------ | ---- | -------------------- |
-| callback | AsyncCallback\<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest)>> | 是   | 获取活动通知回调函数。 |
+| callback | AsyncCallback\<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest-sys.md#notificationrequest)>> | 是   | 获取活动通知回调函数。 |
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401      | parameter error.                                     |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -1359,7 +1436,7 @@ notificationManager.getAllActiveNotifications(getAllActiveNotificationsCallback)
 
 ## notificationManager.getAllActiveNotifications
 
-getAllActiveNotifications(): Promise\<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest)\>\>
+getAllActiveNotifications(): Promise\<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest-sys.md#notificationrequest)\>\>
 
 获取当前未删除的所有通知。使用Promise异步回调。
 
@@ -1373,14 +1450,17 @@ getAllActiveNotifications(): Promise\<Array\<[NotificationRequest](js-apis-inner
 
 | 类型                                                        | 说明                                                         |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest)\>\> | 以Promise形式返回获取活动通知。 |
+| Promise\<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest-sys.md#notificationrequest)\>\> | 以Promise形式返回获取活动通知。 |
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401      | parameter error.                                     |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -1415,14 +1495,15 @@ getActiveNotificationByFilter(filter: NotificationFilter, callback: AsyncCallbac
 | 参数名     | 类型                                                         | 必填 | 说明                           |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------ |
 | filter   | [NotificationFilter](js-apis-inner-notification-notificationRequest-sys.md#notificationfilter11) | 是   | 查询普通实况窗的过滤条件。 |
-| callback | AsyncCallback\<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest)>> | 是   | 获取满足条件的普通实况通知信息的回调函数。 |
+| callback | AsyncCallback\<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest-sys.md#notificationrequest)>> | 是   | 获取满足条件的普通实况通知信息的回调函数。 |
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                  |
-| -------- | ---------------------------------------- |
+| -------- | ---------------------------------------- | 
+| 401      | parameter error.                                     |
 | 1600007  | The notification is not exist.           |
 | 17700001 | The specified bundle name was not found. |
 
@@ -1477,14 +1558,15 @@ getActiveNotificationByFilter(filter: NotificationFilter): Promise\<Notification
 
 | 类型                                                         | 说明                                    |
 | ------------------------------------------------------------ | --------------------------------------- |
-| Promise\<[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest)\> | 以Promise形式返回获取的满足条件的普通实况通知信息。 |
+| Promise\<[NotificationRequest](js-apis-inner-notification-notificationRequest-sys.md#notificationrequest)\> | 以Promise形式返回获取的满足条件的普通实况通知信息。 |
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                  |
-| -------- | ---------------------------------------- |
+| -------- | ---------------------------------------- | 
+| 401      | parameter error.                                     |
 | 1600007  | The notification is not exist.           |
 | 17700001 | The specified bundle name was not found. |
 
@@ -1535,10 +1617,13 @@ removeGroupByBundle(bundle: BundleOption, groupName: string, callback: AsyncCall
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401      | parameter error.                                     |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
@@ -1590,10 +1675,13 @@ removeGroupByBundle(bundle: BundleOption, groupName: string): Promise\<void\>
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401      | parameter error.                                     |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
@@ -1635,10 +1723,13 @@ setDoNotDisturbDate(date: DoNotDisturbDate, callback: AsyncCallback\<void\>): vo
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401      | parameter error.                                     |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -1693,10 +1784,13 @@ setDoNotDisturbDate(date: DoNotDisturbDate): Promise\<void\>
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401      | parameter error.                                     |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -1742,10 +1836,13 @@ setDoNotDisturbDate(date: DoNotDisturbDate, userId: number, callback: AsyncCallb
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401      | parameter error.                                     |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -1803,10 +1900,13 @@ setDoNotDisturbDate(date: DoNotDisturbDate, userId: number): Promise\<void\>
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401      | parameter error.                                     |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -1854,10 +1954,13 @@ getDoNotDisturbDate(callback: AsyncCallback\<DoNotDisturbDate\>): void
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401      | parameter error.                                     |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -1899,10 +2002,13 @@ getDoNotDisturbDate(): Promise\<DoNotDisturbDate\>
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401      | parameter error.                                     |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -1942,10 +2048,13 @@ getDoNotDisturbDate(userId: number, callback: AsyncCallback\<DoNotDisturbDate\>)
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401      | parameter error.                                     |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -1996,10 +2105,13 @@ getDoNotDisturbDate(userId: number): Promise\<DoNotDisturbDate\>
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401      | parameter error.                                     |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -2041,10 +2153,13 @@ notificationManager.getDoNotDisturbDate(userId).then((data: notificationManager.
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                             |
 | -------- | ----------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401      | parameter error.                                     |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -2085,10 +2200,13 @@ isSupportDoNotDisturbMode(): Promise\<boolean\>
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401      | parameter error.                                     |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -2126,10 +2244,13 @@ setDistributedEnable(enable: boolean, callback: AsyncCallback\<void\>): void
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401      | parameter error.                                     |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -2177,10 +2298,13 @@ setDistributedEnable(enable: boolean): Promise\<void>
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401      | parameter error.                                     |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -2221,10 +2345,13 @@ setDistributedEnableByBundle(bundle: BundleOption, enable: boolean, callback: As
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401      | parameter error.                                     |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
@@ -2279,10 +2406,13 @@ setDistributedEnableByBundle(bundle: BundleOption, enable: boolean): Promise\<vo
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401      | parameter error.                                     |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
@@ -2326,10 +2456,13 @@ isDistributedEnabledByBundle(bundle: BundleOption, callback: AsyncCallback\<bool
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401      | parameter error.                                     |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
@@ -2380,10 +2513,13 @@ isDistributedEnabledByBundle(bundle: BundleOption): Promise\<boolean>
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401      | parameter error.                                     |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
@@ -2426,10 +2562,13 @@ getDeviceRemindType(callback: AsyncCallback\<DeviceRemindType\>): void
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401      | parameter error.                                     |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -2469,10 +2608,13 @@ getDeviceRemindType(): Promise\<DeviceRemindType\>
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401      | parameter error.                                     |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -2506,17 +2648,20 @@ publishAsBundle(request: NotificationRequest, representativeBundle: string, user
 
 | 参数名               | 类型                                        | 必填 | 说明                                     |
 | -------------------- | ------------------------------------------- | ---- | ---------------------------------------- |
-| request              | [NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest) | 是   | 用于设置要发布通知的内容和相关配置信息。 |
+| request              | [NotificationRequest](js-apis-inner-notification-notificationRequest-sys.md#notificationrequest) | 是   | 用于设置要发布通知的内容和相关配置信息。 |
 | representativeBundle | string                                      | 是   | 被代理应用的包名。                       |
 | userId               | number                                      | 是   | 用户ID。                                 |
 | callback             | AsyncCallback\<void\>                        | 是   | 发布代理通知的回调方法。                 |
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401      | parameter error.                                     |
 | 1600001  | Internal error.                           |
 | 1600002  | Marshalling or unmarshalling error.       |
 | 1600003  | Failed to connect service.                |
@@ -2575,7 +2720,7 @@ publishAsBundle(request: NotificationRequest, representativeBundle: string, user
 
 | 参数名               | 类型                                        | 必填 | 说明                                          |
 | -------------------- | ------------------------------------------- | ---- | --------------------------------------------- |
-| request              | [NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest) | 是   | 用于设置要发布通知的内容和相关配置信息。 |
+| request              | [NotificationRequest](js-apis-inner-notification-notificationRequest-sys.md#notificationrequest) | 是   | 用于设置要发布通知的内容和相关配置信息。 |
 | representativeBundle | string                                      | 是   | 被代理应用的包名。                            |
 | userId               | number                                      | 是   | 用户ID。                            |
 
@@ -2587,10 +2732,13 @@ publishAsBundle(request: NotificationRequest, representativeBundle: string, user
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401      | parameter error.                                     |
 | 1600001  | Internal error.                           |
 | 1600002  | Marshalling or unmarshalling error.       |
 | 1600003  | Failed to connect service.                |
@@ -2646,7 +2794,7 @@ publishAsBundle(representativeBundle: BundleOption, request: NotificationRequest
 | 参数名               | 类型                                        | 必填 | 说明                                          |
 |----------------------|--------------------------------------------|------|-----------------------------------------------|
 | representativeBundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)  | 是   | 被代理应用的包信息。                            |
-| request              | [NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest) | 是   | 用于设置要发布通知的内容和相关配置信息。 |
+| request              | [NotificationRequest](js-apis-inner-notification-notificationRequest-sys.md#notificationrequest) | 是   | 用于设置要发布通知的内容和相关配置信息。 |
 
 **返回值：**
 
@@ -2656,10 +2804,13 @@ publishAsBundle(representativeBundle: BundleOption, request: NotificationRequest
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401      | parameter error.                                     |
 | 1600001  | Internal error.                           |
 | 1600002  | Marshalling or unmarshalling error.       |
 | 1600003  | Failed to connect service.                |
@@ -2720,10 +2871,13 @@ cancelAsBundle(id: number, representativeBundle: string, userId: number, callbac
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401      | parameter error.                                     |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -2778,10 +2932,13 @@ cancelAsBundle(id: number, representativeBundle: string, userId: number): Promis
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401      | parameter error.                                     |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -2833,10 +2990,13 @@ cancelAsBundle(representativeBundle: BundleOption, id: number): Promise\<void\>
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401      | parameter error.                                     |
 | 1600001  | Internal error.                           |
 | 1600002  | Marshalling or unmarshalling error.       |
 | 1600003  | Failed to connect service.                |
@@ -2885,10 +3045,12 @@ cancel(representativeBundle: BundleOption, id: number): Promise\<void\>
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
-| -------- | ----------------------------------- |
+| -------- | ----------------------------------- |  
+| 202      | not system app.                                      |  
+| 401      | parameter error.                                     |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -2935,10 +3097,13 @@ setNotificationEnableSlot(bundle: BundleOption, type: SlotType, enable: boolean,
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401      | parameter error.                                     |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
@@ -2989,10 +3154,13 @@ setNotificationEnableSlot(bundle: BundleOption, type: SlotType, enable: boolean,
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401      | parameter error.                                     |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
@@ -3043,10 +3211,13 @@ setNotificationEnableSlot(bundle: BundleOption, type: SlotType, enable: boolean,
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401      | parameter error.                                     |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
@@ -3091,10 +3262,13 @@ isNotificationSlotEnabled(bundle: BundleOption, type: SlotType, callback: AsyncC
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401      | parameter error.                                     |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
@@ -3147,10 +3321,13 @@ isNotificationSlotEnabled(bundle: BundleOption, type: SlotType): Promise\<boolea
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401      | parameter error.                                     |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
@@ -3193,10 +3370,13 @@ setSyncNotificationEnabledWithoutApp(userId: number, enable: boolean, callback: 
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401      | parameter error.                                     |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -3247,10 +3427,13 @@ setSyncNotificationEnabledWithoutApp(userId: number, enable: boolean): Promise\<
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401      | parameter error.                                     |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -3292,10 +3475,13 @@ getSyncNotificationEnabledWithoutApp(userId: number, callback: AsyncCallback\<bo
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401      | parameter error.                                     |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -3344,10 +3530,13 @@ getSyncNotificationEnabledWithoutApp(userId: number): Promise\<boolean>
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401      | parameter error.                                     |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -3387,10 +3576,12 @@ on(type: 'checkNotification', callback: (checkInfo: NotificationCheckInfo) => No
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
-| -------- | ----------------------------------- |
+| -------- | ----------------------------------- | 
+| 202      | not system app.                                      |  
+| 401      | parameter error.                                     |
 | 1600001  | Internal error.                     |
 
 **示例：**
@@ -3437,10 +3628,13 @@ on(type: 'checkNotification', checkRequest: NotificationCheckRequest, callback: 
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401      | parameter error.                                     |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
@@ -3485,10 +3679,12 @@ off(type: 'checkNotification', callback?: (checkInfo: NotificationCheckInfo) => 
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 202      | not system app.                                      |  
+| 401      | parameter error.                                     |
 | 1600001  | Internal error.                     |
 
 **示例：**
@@ -3531,10 +3727,13 @@ triggerSystemLiveView(bundle: BundleOption, notificationId: number, buttonOption
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401      | parameter error.                                     |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -3588,10 +3787,12 @@ subscribeSystemLiveView(subscriber: SystemLiveViewSubscriber): Promise\<void>;
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
-| -------- | ----------------------------------- |
+| -------- | ----------------------------------- |  
+| 202      | not system app.                                      |  
+| 401      | parameter error.                                     |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -3617,7 +3818,7 @@ notificationManager.subscribeSystemLiveView(subscriber).then(() => {
 
 ## notificationManager.setDistributedEnabledByBundle<sup>12+</sup>
 
-setDistributedEnabledByBundle(bundle: BundleOption, deviceType: string, enable: boolean): Promise<void>
+setDistributedEnabledByBundle(bundle: BundleOption, deviceType: string, enable: boolean): Promise<void\>
 
 设置指定应用是否支持跨设备协同。使用Promise异步回调。
 
@@ -3643,10 +3844,13 @@ setDistributedEnabledByBundle(bundle: BundleOption, deviceType: string, enable: 
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401      | parameter error.                                     |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
@@ -3673,7 +3877,7 @@ notificationManager.setDistributedEnabledByBundle(bundle, deviceType, enable).th
 
 ## notificationManager.isDistributedEnabledByBundle<sup>12+</sup>
 
-isDistributedEnabledByBundle(bundle: BundleOption, deviceType: string): Promise<boolean>
+isDistributedEnabledByBundle(bundle: BundleOption, deviceType: string): Promise<boolean\>
 
 获取指定应用是否支持跨设备协同。使用Promise异步回调。
 
@@ -3698,10 +3902,13 @@ isDistributedEnabledByBundle(bundle: BundleOption, deviceType: string): Promise<
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401      | parameter error.                                     |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
@@ -3727,7 +3934,7 @@ notificationManager.isDistributedEnabledByBundle(bundle, deviceType).then((data:
 
 ## notificationManager.setSmartReminderEnabled<sup>12+</sup>
 
-setSmartReminderEnabled(deviceType: string, enable: boolean): Promise<void>
+setSmartReminderEnabled(deviceType: string, enable: boolean): Promise<void\>
 
 设置设备是否与其他设备协同智能提醒。使用Promise异步回调。
 
@@ -3752,10 +3959,13 @@ setSmartReminderEnabled(deviceType: string, enable: boolean): Promise<void>
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401      | parameter error.                                     |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
@@ -3778,7 +3988,7 @@ notificationManager.setSmartReminderEnabled(deviceType, enable).then(() => {
 
 ## notificationManager.isSmartReminderEnabled<sup>12+</sup>
 
-isSmartReminderEnabled(deviceType: string): Promise<boolean>
+isSmartReminderEnabled(deviceType: string): Promise<boolean\>
 
 获取设备是否与其他设备协同智能提醒。使用Promise异步回调。
 
@@ -3802,10 +4012,13 @@ isSmartReminderEnabled(deviceType: string): Promise<boolean>
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401      | parameter error.                                     |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
@@ -3827,7 +4040,7 @@ notificationManager.isSmartReminderEnabled(deviceType).then((data: boolean) => {
 
 ## notificationManager.setBadgeNumberByBundle<sup>12+</sup>
 
-setBadgeNumberByBundle(bundle: bundleOption, badgeNumber: number): Promise\<void\>
+setBadgeNumberByBundle(bundle: BundleOption, badgeNumber: number): Promise\<void\>
 
 代理其他应用设定角标个数。使用Promise异步回调。
 
@@ -3850,10 +4063,12 @@ setBadgeNumberByBundle(bundle: bundleOption, badgeNumber: number): Promise\<void
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
-| -------- | ----------------------------------- |
+| -------- | ----------------------------------- |  
+| 202      | not system app.                                      |  
+| 401      | parameter error.                                     |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -3880,7 +4095,7 @@ notificationManager.setBadgeNumberByBundle(bundle, badgeNumber).then(() => {
 
 ## notificationManager.getSlotByBundle<sup>12+</sup>
 
-getSlotByBundle(bundle: BundleOption, slotType: SlotType): Promise\<Array\<NotificationSlot>>
+getSlotByBundle(bundle: BundleOption, slotType: SlotType): Promise\<NotificationSlot>
 
 获取指定应用指定类型的通知渠道。使用Promise异步回调。
 
@@ -3905,13 +4120,17 @@ getSlotByBundle(bundle: BundleOption, slotType: SlotType): Promise\<Array\<Notif
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401      | parameter error.                                     |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
+| 1600012  | No memory space.                         |
 | 17700001 | The specified bundle name was not found. |
 
 **示例：**
@@ -4097,10 +4316,13 @@ addDoNotDisturbProfile(templates: Array\<[DoNotDisturbProfile](#donotdisturbprof
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401      | parameter error.                                     |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -4162,10 +4384,13 @@ removeDoNotDisturbProfile(templates: Array\<[DoNotDisturbProfile](#donotdisturbp
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                                      |  
+| 401      | parameter error.                                     |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -4217,7 +4442,7 @@ setAdditionalConfig(key: string, value: string): Promise\<number\>
 
 | 参数名   | 类型             | 必填 | 说明           |
 | ------ | ---------------- | ---- | -------------- |
-| key   | string | 是  | 附加配置键。目前仅支持`RING_TRUSTLIST_PKG`，表示应用支持使用[自定义铃声](./js-apis-inner-notification-notificationRequest.md#notificationrequest-1)。 |
+| key   | string | 是  | 附加配置键。目前仅支持`RING_TRUSTLIST_PKG`，表示应用支持使用[自定义铃声](./js-apis-inner-notification-notificationRequest-sys.md#notificationrequest-1)。 |
 | value   | string | 是  | 附加配置值。参数示例：[bundleName1,bundleName2]。 |
 
 **返回值：**
@@ -4228,7 +4453,7 @@ setAdditionalConfig(key: string, value: string): Promise\<number\>
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-notification](./errorcode-notification.md)。
+以下错误码的详细介绍请参见[通知错误码](./errorcode-notification.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
