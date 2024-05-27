@@ -47,33 +47,29 @@ plainTextData.addRecord(plainText);
 3. 向系统剪贴板中存入一条PlainText数据。
    
 ```ts
-globalThis.SetDelayPlainText = (() => {
-    plainTextData.properties.shareOptions = unifiedDataChannel.ShareOptions.CROSS_APP;
-    // 跨应用使用时设置为CROSS_APP，本应用内使用时设置为IN_APP
-    pasteboard.getSystemPasteboard().setUnifiedData(plainTextData).then(()=>{
-    // 存入成功，处理正常场景
-    }).catch((error: BusinessError) => {
-    // 处理异常场景
-    });
-})
+plainTextData.properties.shareOptions = unifiedDataChannel.ShareOptions.CROSS_APP;
+// 跨应用使用时设置为CROSS_APP，本应用内使用时设置为IN_APP
+pasteboard.getSystemPasteboard().setUnifiedData(plainTextData).then(()=>{
+// 存入成功，处理正常场景
+}).catch((error: BusinessError) => {
+// 处理异常场景
+});
 ```
 
 4. 从系统剪贴板中读取这条text数据。
    
 ```ts
-globalThis.GetPlainTextUnifiedData = (() => {
-    pasteboard.getSystemPasteboard().getUnifiedData().then((data) => {
+pasteboard.getSystemPasteboard().getUnifiedData().then((data) => {
     let outputData = data;
     let records = outputData.getRecords();
     if (records[0].getType() == uniformTypeDescriptor.UniformDataType.PLAIN_TEXT) {
         let record = records[0] as unifiedDataChannel.PlainText;
-        globalThis.setLog('GetPlainText success, type:' + records[0].getType + ', details:' +
-        JSON.stringify(record.details) + ', textContent:' + record.textContent + ', abstract:' + record.abstract);
+        console.log('GetPlainText success, type:' + records[0].getType + ', details:' +
+            JSON.stringify(record.details) + ', textContent:' + record.textContent + ', abstract:' + record.abstract);
     } else {
-        globalThis.setLog('Get Plain Text Data No Success, Type is: ' + records[0].getType());
+        console.log('Get Plain Text Data No Success, Type is: ' + records[0].getType());
     }
-    }).catch((error: BusinessError) => {
-    //处理异常场景
-    })
+}).catch((error: BusinessError) => {
+//处理异常场景
 })
 ```
