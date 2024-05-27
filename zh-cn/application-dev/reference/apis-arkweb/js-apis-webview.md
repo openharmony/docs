@@ -5974,7 +5974,7 @@ createWebPrintDocumentAdapter(jobName: string): print.PrintDocumentAdapter
 
 | 错误码ID | 错误信息                                                                    |
 | -------- | -------------------------------------------------------------------------- |
-| 401 | Invalid input parameter.                                                        |
+| 401      | Invalid input parameter.Possible causes: 1. Mandatory parameters are left unspecified.2. Incorrect parameter types.3. Parameter verification failed. |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
@@ -6126,7 +6126,7 @@ setScrollable(enable: boolean): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-|  401 | Invalid input parameter. |
+| 401      | Invalid input parameter.Possible causes: 1. Mandatory parameters are left unspecified.2. Incorrect parameter types.3. Parameter verification failed. |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
@@ -6230,7 +6230,7 @@ setPrintBackground(enable: boolean): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401 | Invalid input parameter.                                           |
+| 401      | Invalid input parameter.Possible causes: 1. Mandatory parameters are left unspecified.2. Incorrect parameter types.3. Parameter verification failed. |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
@@ -7784,7 +7784,7 @@ static setHostIP(hostName: string, address: string, aliveTime: number): void
 
 | 错误码ID | 错误信息                 |
 | -------- | ------------------------ |
-| 401      | Invalid input parameter. |
+| 401      | Invalid input parameter.Possible causes: 1. Mandatory parameters are left unspecified.2. Incorrect parameter types.3. Parameter verification failed. |
 
 **示例：**
 
@@ -7810,7 +7810,7 @@ static clearHostIP(hostName: string): void
 
 | 错误码ID | 错误信息                 |
 | -------- | ------------------------ |
-| 401      | Invalid input parameter. |
+| 401      | Invalid input parameter.Possible causes: 1. Mandatory parameters are left unspecified.2. Incorrect parameter types.3. Parameter verification failed. |
 
 **示例：**
 
@@ -7997,7 +7997,7 @@ static fetchCookie(url: string, callback: AsyncCallback\<string>): void
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
-| 401 | Invalid input parameter.                                           |
+| 401      | Invalid input parameter.Possible causes: 1. Mandatory parameters are left unspecified.2. Incorrect parameter types.3. Parameter verification failed. |
 | 17100002 | Invalid url.                                           |
 
 **示例：**
@@ -8064,7 +8064,7 @@ static fetchCookie(url: string): Promise\<string>
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
-| 401 | Invalid input parameter.                                           |
+| 401      | Invalid input parameter.Possible causes: 1. Mandatory parameters are left unspecified.2. Incorrect parameter types.3. Parameter verification failed. |
 | 17100002 | Invalid url.                                           |
 
 **示例：**
@@ -8242,7 +8242,7 @@ static configCookie(url: string, value: string, callback: AsyncCallback\<void>):
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
-| 401      | Invalid input parameter.                               |
+| 401      | Invalid input parameter.Possible causes: 1. Mandatory parameters are left unspecified.2. Incorrect parameter types.3. Parameter verification failed. |
 | 17100002 | Invalid url.                                           |
 | 17100005 | Invalid cookie value.                                  |
 
@@ -8307,7 +8307,7 @@ static configCookie(url: string, value: string): Promise\<void>
 
 | 错误码ID | 错误信息                                                |
 | -------- | ------------------------------------------------------ |
-| 401      | Invalid input parameter.                               |
+| 401      | Invalid input parameter.Possible causes: 1. Mandatory parameters are left unspecified.2. Incorrect parameter types.3. Parameter verification failed. |
 | 17100002 | Invalid url.                                           |
 | 17100005 | Invalid cookie value.                                  |
 
