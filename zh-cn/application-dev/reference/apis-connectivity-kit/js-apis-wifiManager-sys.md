@@ -185,7 +185,6 @@ getScanAlwaysAllowed(): boolean
 | -------- | -------- |
 |201 | Permission denied.                 |
 |202 | Non-system applications are not allowed to use system APIs. |
-|401 | Invalid parameter.                 |
 |801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
@@ -1101,6 +1100,9 @@ enableHiLinkHandshake(isHiLinkEnable: boolean, bssid: string, config: WifiDevice
 
 | **错误码ID** | **错误信息** |
   | -------- | -------- |
+|201 | Permission denied.                 |
+|202 | Non-system applications are not allowed to use system APIs. |
+|801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
 **示例：**
@@ -1594,6 +1596,10 @@ getHotspotBlockList(): Array&lt;StationInfo&gt;
 
 | **错误码ID** | **错误信息** |
   | -------- | -------- |
+|201 | Permission denied.                 |
+|202 | Non-system applications are not allowed to use system APIs. |
+|401 | Invalid parameter.                 |
+|801 | Capability not supported.          |
 | 2601000  | Operation failed.|
 
 **示例：**

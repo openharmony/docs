@@ -2362,6 +2362,7 @@ on(type: "hotspotStateChange", callback: Callback&lt;number&gt;): void
 | **错误码ID** | **错误信息** |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
+|202 | Non-system applications are not allowed to use system APIs. |
 |401 | Invalid parameter.                 |
 |801 | Capability not supported.          |
 | 2601000  | Operation failed.|
@@ -2390,6 +2391,7 @@ off(type: "hotspotStateChange", callback?: Callback&lt;number&gt;): void
 | **错误码ID** | **错误信息** |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
+|202 | Non-system applications are not allowed to use system APIs. |
 |401 | Invalid parameter.                 |
 |801 | Capability not supported.          |
 | 2601000  | Operation failed.|
