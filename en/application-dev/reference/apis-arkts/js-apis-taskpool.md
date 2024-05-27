@@ -658,11 +658,10 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 **Example**
 
 ```ts
-import taskpool from '@ohos.taskpool'
-import { BusinessError } from '@ohos.base'
-
+// sendable.ets
+// Define two Sendable classes: BaseClass and its child class DeriveClass.
 @Sendable
-class BaseClass {
+export class BaseClass {
   private str: string = "sendable: BaseClass";
   static num :number = 10;
   str1: string = "sendable: this is BaseClass's string";
@@ -701,7 +700,7 @@ class BaseClass {
 }
 
 @Sendable
-class DeriveClass extends BaseClass {
+export class DeriveClass extends BaseClass {
   name: string = "sendable: this is DeriveClass";
   printName() {
     console.info(this.name);
@@ -710,6 +709,15 @@ class DeriveClass extends BaseClass {
     super();
   }
 }
+```
+
+
+```ts
+// index.ets
+// The main thread calls the methods of BaseClass and DeriveClass in the task pool thread and accesses their attributes.
+import taskpool from '@ohos.taskpool'
+import { BusinessError } from '@ohos.base'
+import { BaseClass, DeriveClass } from './sendable'
 
 @Concurrent
 function testFunc(arr: Array<BaseClass>, num: number): number {
@@ -1277,7 +1285,7 @@ The following sequenceable data types are supported: All Primitive Type (excludi
 ```ts
 // Common functions are supported, and variables passed in by input parameters are also supported.
 @Concurrent
-function printArgs(args: number): number {
+function printArgs(args: string): string {
   console.info("func: " + args);
   return args;
 }

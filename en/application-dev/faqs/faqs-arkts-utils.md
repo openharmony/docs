@@ -101,7 +101,7 @@ for (let i: number = 0; i < allCount; i+=3) { // 3: Three tasks are executed eac
 
 [Priority](../reference/apis-arkts/js-apis-taskpool.md)
 
-## How do I convert the implementation in the Java-like thread model (memory sharing) to the implementation in the ArkTS thread model (memory isolation)? (API version 11)
+## How do I convert the implementation of the memory-sharing thread model into the implementation of the ArkTS thread model (memory isolation)? (API version 11)
 
 Use **TaskPool** APIs for conversion in the following scenarios:
 
@@ -412,7 +412,7 @@ Subthreads support priority setting, and the priority affects their scheduling.
 1. [@ohos.taskpool (Using the Task Pool)](../reference/apis-arkts/js-apis-taskpool.md)
 2. [@ohos.worker (Worker Startup)](../reference/apis-arkts/js-apis-worker.md)
 
-## Does ArkTS support multithreading development using a Java-like shared memory model? (API version 10)
+## Does ArkTS support multithreading development using the shared memory model? (API version 10)
 
 Multiple threads cannot perform operations on the same memory object simultaneously by locking the memory object. ArkTS is an actor model that supports cross-thread memory isolation. Currently, only SharedArrayBuffer or native-layer objects can be shared.
 
@@ -497,7 +497,7 @@ They are thread safe.
 
 If I/O operations are not involved, asynchronous tasks of ArkTS APIs are triggered at the microtask execution time of the main thread and still occupy the main thread. You are advised to use **TaskPool** to distribute the tasks to the background task pool.
 
-##  How do I implement synchronous function calls in ArkTS as easily as using **synchronized** in Java methods? (API version 10)
+##  How do I implement synchronous function calls? (API version 10)
 
 Currently, the use of **synchronized** is not supported. In the future, the AsyncLock synchronization mechanism will be supported, where code blocks to be synchronized can be placed in asynchronous code blocks.
 
@@ -607,3 +607,13 @@ To address the problem that a large number of threads are required, you are advi
 **References**
 
 [Comparison Between TaskPool and Worker](../arkts-utils/taskpool-vs-worker.md)
+
+## Can long-time listening interfaces, such as **emitter.on**, be used in a TaskPool thread?
+
+Not recommended.
+
+**Principle Clarification**
+
+1. Long-time listening may adversely affect thread recycling or reuse.
+2. If a thread is reclaimed, the thread callback becomes invalid or an unexpected error occurs.
+3. If a task function is executed for multiple times, listening may be generated in different threads. Consequently, the result may fail to meet your expectation.
