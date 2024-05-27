@@ -9,7 +9,7 @@ The **keyEvent** module provides key events reported by a device. It is inherite
 ## Modules to Import
 
 ```js
-import {Action, Key, KeyEvent} from '@kit.InputKit.d.ts';
+import {Action, Key, KeyEvent} from '@kit.InputKit';
 ```
 
 ## Action

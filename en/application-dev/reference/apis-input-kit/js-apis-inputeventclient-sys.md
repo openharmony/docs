@@ -11,7 +11,7 @@ The **inputEventClient** module implements the input event injection capability.
 ## Modules to Import
 
 ```js
-import inputEventClient from '@kit.InputKit.d.ts';
+import inputEventClient from '@kit.InputKit';
 ```
 
 ## inputEventClient.injectEvent
@@ -155,7 +155,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-import mouseEvent from '@kit.InputKit.d.ts';
+import mouseEvent from '@kit.InputKit';
 
 try {
   let mouseButtonUpData: mouseEvent.MouseEvent = {
@@ -255,7 +255,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-import touchEvent from '@kit.InputKit.d.ts';
+import touchEvent from '@kit.InputKit';
 
 try {
   let touchEvent: touchEvent.Touch = {

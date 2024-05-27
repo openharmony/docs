@@ -11,7 +11,7 @@ The **shortKey** module provides APIs to set the delay for starting an ability u
 ##  Modules to Import
 
 ```js
-import shortKey from '@kit.InputKit.d.ts';
+import shortKey from '@kit.InputKit';
 ```
 
 ##  shortKey.setKeyDownDuration
@@ -42,7 +42,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-import shortKey from '@kit.InputKit.d.ts';
+import shortKey from '@kit.InputKit';
 try {
   shortKey.setKeyDownDuration("screenshot", 500, (error) => {
     if (error) {
@@ -89,7 +89,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-import shortKey from '@kit.InputKit.d.ts';
+import shortKey from '@kit.InputKit';
 try {
   shortKey.setKeyDownDuration("screenshot", 500).then(() => {
     console.log(`Set key down duration success`);

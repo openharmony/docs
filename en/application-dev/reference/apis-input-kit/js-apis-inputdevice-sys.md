@@ -14,7 +14,7 @@ The **inputDevice** module allows you to listen for hot swap events of input dev
 ## Modules to Import
 
 ```js
-import inputDevice from '@kit.InputKit.d.ts';
+import inputDevice from '@kit.InputKit';
 ```
 
 ## inputDevice.setKeyboardRepeatDelay<sup>10+</sup>

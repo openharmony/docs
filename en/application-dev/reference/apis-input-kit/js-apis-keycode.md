@@ -9,7 +9,7 @@ The **keyCode** module provides keycode values for key devices, such as the keyb
 ## Modules to Import
 
 ```js
-import {KeyCode} from '@kit.InputKit.d.ts';
+import {KeyCode} from '@kit.InputKit';
 ```
 
 ## KeyCode

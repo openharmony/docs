@@ -11,7 +11,7 @@ The **pointer** module provides APIs related to pointer attribute management.
 ## Modules to Import
 
 ```js
-import pointer from '@kit.InputKit.d.ts';
+import pointer from '@kit.InputKit';
 ```
 
 ## pointer.setPointerSpeed

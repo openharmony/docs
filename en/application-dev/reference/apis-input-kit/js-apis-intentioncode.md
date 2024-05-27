@@ -9,7 +9,7 @@ The **intentionCode** module maps the original events of the keyboard to intenti
 ## Modules to Import
 
 ```js
-import IntentionCode from '@kit.InputKit.d.ts';
+import IntentionCode from '@kit.InputKit';
 ```
 
 ## IntentionCode
