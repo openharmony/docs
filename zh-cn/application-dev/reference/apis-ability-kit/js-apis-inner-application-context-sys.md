@@ -38,6 +38,16 @@ createBundleContext(bundleName: string): Context
 | -------- | -------- |
 | Context | 安装包的上下文。 |
 
+**错误码：**
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 201      | Permission denied. |
+| 202      | Permission denied, non-system app called system api. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
 **示例：**
 
 ```ts
@@ -79,6 +89,14 @@ createModuleContext(bundleName: string, moduleName: string): Context
 | 类型 | 说明 |
 | -------- | -------- |
 | Context | 模块的上下文。 |
+
+**错误码：**
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -124,6 +142,16 @@ createModuleResourceManager(bundleName: string, moduleName: string): resmgr.Reso
 | -------- | -------- |
 | resmgr.ResourceManager | 资源管理对象。 |
 
+**错误码：**
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 201      | Permission denied. |
+| 202      | Permission denied, non-system app called system api. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
 **示例：**
 
 ```ts
@@ -165,8 +193,8 @@ createSystemHspModuleResourceManager(bundleName: string, moduleName: string): re
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed. |
-| 16400001 | The specified ability does not exist. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 16400001 | If the input bundleName is not system hsp. |
 
 
 

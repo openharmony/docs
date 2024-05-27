@@ -9,6 +9,8 @@
 
 ## MissionCallback.notifyMissionsChanged
 
+notifyMissionsChanged(deviceId: string): void
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
 **系统接口**：该接口为系统接口。
@@ -44,6 +46,8 @@ distributedMissionManager.registerMissionListener(
 ```
 
 ## MissionCallback.notifySnapshot
+
+notifySnapshot(deviceId: string, mission: number): void
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
@@ -81,6 +85,8 @@ distributedMissionManager.registerMissionListener(
 ```
 
 ## MissionCallback.notifyNetDisconnect
+
+notifyNetDisconnect(deviceId: string, state: number): void
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 

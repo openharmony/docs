@@ -26,6 +26,8 @@ import { appManager } from '@kit.AbilityKit';
 | onProcessCreated                 | AsyncCallback\<void>   | 是   | 否   | 进程创建时执行的回调函数。传入参数类型是[ProcessData](js-apis-inner-application-processData-sys.md)。          |
 | onProcessDied                     | AsyncCallback\<void>   | 是   | 否   | 进程销毁时执行的回调函数。传入参数类型是[ProcessData](js-apis-inner-application-processData-sys.md)。          |
 | onProcessStateChanged<sup>9+</sup> | AsyncCallback\<void>   | 是   | 否   | 进程状态更新时执行的回调函数。传入参数类型是[ProcessData](js-apis-inner-application-processData-sys.md)。        |
+| onAppStarted<sup>12+</sup>       | AsyncCallback\<void>   | 是   | 否   | 应用第一个进程创建时执行的回调函数。传入参数类型是[AppStateData](js-apis-inner-application-appStateData-sys.md)。     |
+| onAppStopped<sup>12+</sup>       | AsyncCallback\<void>   | 是   | 否   | 应用最后一个进程销毁时执行的回调函数。传入参数类型是[AppStateData](js-apis-inner-application-appStateData-sys.md)。     |
 
 **示例：**
 ```ts
