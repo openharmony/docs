@@ -1693,7 +1693,7 @@ register(callback: AsyncCallback\<void>): void
 | 401     | Parameter error.             |
 | 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
-| 2101008 | The callback does not exist.     |
+| 2101008 | The callback already exists.     |
 | 2101022 | The number of requests exceeded the maximum allowed. |
 
 **示例：**
@@ -1730,7 +1730,7 @@ unregister(callback: AsyncCallback\<void>): void
 | 401 | Parameter error.         |
 | 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error.         |
-| 2101007 | The callback is not exists.      |
+| 2101007 | The callback does not exist.      |
 
 **示例：**
 
