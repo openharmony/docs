@@ -1090,32 +1090,32 @@ class MyNodeController extends NodeController {
   }
   getPositionToWindow()
   {
-    let positionToWindow = this.frameNode?.getPositionToWindow();
+    let positionToWindow = this.rootNode?.getPositionToWindow();
     console.log(TEST_TAG + JSON.stringify(positionToWindow));
   }
   getPositionToParent()
   {
-    let positionToParent = this.frameNode?.getPositionToParent();
+    let positionToParent = this.rootNode?.getPositionToParent();
     console.log(TEST_TAG + JSON.stringify(positionToParent));
   }
   getPositionToScreen()
   {
-    let positionToScreen = this.frameNode?.getPositionToScreen();
+    let positionToScreen = this.rootNode?.getPositionToScreen();
     console.log(TEST_TAG + JSON.stringify(positionToScreen));
   }
   getPositionToWindowWithTransform()
   {
-    let positionToWindowWithTransform = this.frameNode?.getPositionToWindowWithTransform();
+    let positionToWindowWithTransform = this.rootNode?.getPositionToWindowWithTransform();
     console.log(TEST_TAG + JSON.stringify(positionToWindowWithTransform));
   }
   getPositionToParentWithTransform()
   {
-    let positionToParentWithTransform = this.frameNode?.getPositionToParentWithTransform();
+    let positionToParentWithTransform = this.rootNode?.getPositionToParentWithTransform();
     console.log(TEST_TAG + JSON.stringify(positionToParentWithTransform));
   }
   getPositionToScreenWithTransform()
   {
-    let positionToScreenWithTransform = this.frameNode?.getPositionToScreenWithTransform();
+    let positionToScreenWithTransform = this.rootNode?.getPositionToScreenWithTransform();
     console.log(TEST_TAG + JSON.stringify(positionToScreenWithTransform));
   }
   getMeasuredSize()
