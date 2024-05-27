@@ -1582,6 +1582,42 @@ function unprepareZoom(sessionExtendsZoom: camera.Zoom): void {
 }
 ```
 
+### getZoomPointInfos<sup>12+</sup>
+
+getZoomPointInfos(): Array<ZoomPointInfo>
+
+获取当前模式的等效焦距。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 202                    |  Not System Application.                      |
+| 7400103                |  Session not config.                          |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+function getZoomPointInfos(): Array<ZoomPointInfo> {
+  try {
+    let zoomPointInfos: Array<ZoomPointInfo> = sessionExtendsZoom.getZoomPointInfos();
+	return zoomPointInfos;
+  } catch (error) {
+    // 失败返回错误码error.code并处理
+    let err = error as BusinessError;
+    console.error(`The getZoomPointInfos call failed. error code: ${err.code}`);
+  }
+}
+```
+
 ## ZoomRange<sup>11+</sup>
 
 获取支持的变焦范围。变焦范围为[min, max)，即包括最小值，不包括最大值。
