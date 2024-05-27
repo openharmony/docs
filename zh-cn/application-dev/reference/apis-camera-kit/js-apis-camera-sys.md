@@ -1509,6 +1509,19 @@ function enableSceneFeature(photoSession: camera.PhotoSession): void {
 }
 ```
 
+## ZoomPointInfo<sup>12+</sup>
+
+等效焦距信息。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+| 名称     | 类型        |   只读   |   必填   | 说明       |
+| -------- | ---------- | -------- | -------- | ---------- |
+| zoomRatio |   number   |   是     |    是    | 可变焦距比。 |
+| equivalentFocalLength |   number   |   是     |    是    | 当前焦距比对应的等效焦距值。 |
+
 ## Zoom<sup>11+</sup>
 
 变焦类，对设备变焦操作。
@@ -1579,6 +1592,48 @@ function unprepareZoom(sessionExtendsZoom: camera.Zoom): void {
     // 失败返回错误码error.code并处理
     let err = error as BusinessError;
     console.error(`The unprepareZoom call failed. error code: ${err.code}`);
+  }
+}
+```
+
+### getZoomPointInfos<sup>12+</sup>
+
+getZoomPointInfos(): Array\<ZoomPointInfo\>
+
+获取当前模式的等效焦距信息列表。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**返回值：**
+
+| 类型                | 说明                                                  |
+| ----------          | -----------------------------                         |
+|  Array\<[ZoomPointInfo](#zoompointinfo12)\>| 获取当前模式的等效焦距信息列表。                   |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 202                    |  Not System Application.                      |
+| 7400103                |  Session not config.                          |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+function getZoomPointInfos(): Array<ZoomPointInfo> {
+  try {
+    let zoomPointInfos: Array<ZoomPointInfo> = sessionExtendsZoom.getZoomPointInfos();
+	return zoomPointInfos;
+  } catch (error) {
+    // 失败返回错误码error.code并处理
+    let err = error as BusinessError;
+    console.error(`The getZoomPointInfos call failed. error code: ${err.code}`);
   }
 }
 ```
