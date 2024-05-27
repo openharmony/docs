@@ -110,10 +110,10 @@ Describes the properties of the status bar and navigation bar.
 | -------------------------------------- | -------- | ---- | ------------------------------------------------------------ |
 | statusBarColor                         | string   |  No  | Background color of the status bar. The value is a hexadecimal RGB or ARGB color code and is case insensitive, for example, **#00FF00** or **#FF00FF00**. The default value is **#0x66000000**.|
 | isStatusBarLightIcon<sup>7+</sup>      | boolean  |  No  | Whether any icon on the status bar is highlighted. The value **true** means that the icon is highlighted, and **false** means the opposite. The default value is **false**.|
-| statusBarContentColor<sup>8+</sup>     | string   |  No  | Color of the text on the status bar. After this property is set, the setting of **isStatusBarLightIcon** is invalid. The default value is **0xE5FFFFFF**.|
+| statusBarContentColor<sup>8+</sup>     | string   |  No  | Color of the text on the status bar. After this property is set, the setting of **isStatusBarLightIcon** is invalid. The default value is **#0xE5FFFFFF**.|
 | navigationBarColor                     | string   |  No  | Background color of the navigation bar. The value is a hexadecimal RGB or ARGB color code and is case insensitive, for example, **#00FF00** or **#FF00FF00**. The default value is **#0x66000000**.|
 | isNavigationBarLightIcon<sup>7+</sup>  | boolean  |  No  | Whether any icon on the navigation bar is highlighted. The value **true** means that the icon is highlighted, and **false** means the opposite. The default value is **false**.|
-| navigationBarContentColor<sup>8+</sup> | string   |  No  | Color of the text on the navigation bar. After this property is set, the setting of **isNavigationBarLightIcon** is invalid. The default value is **0xE5FFFFFF**.|
+| navigationBarContentColor<sup>8+</sup> | string   |  No  | Color of the text on the navigation bar. After this property is set, the setting of **isNavigationBarLightIcon** is invalid. The default value is **#0xE5FFFFFF**.|
 
 ## Orientation<sup>9+</sup>
 
@@ -188,10 +188,10 @@ Describes the rectangular area of the window.
 
 | Name  | Type| Readable| Writable| Description              |
 | ------ | -------- | ---- | ---- | ------------------ |
-| left   | number   | Yes  | Yes  | Left boundary of the rectangle, in pixels. The value must be an integer.|
-| top    | number   | Yes  | Yes  | Top boundary of the rectangle, in pixels. The value must be an integer.|
-| width  | number   | Yes  | Yes  | Width of the rectangle, in pixels. The value must be an integer.|
-| height | number   | Yes  | Yes  | Height of the rectangle, in pixels. The value must be an integer.|
+| left   | number   | Yes  | Yes  | Left boundary of the rectangle, in px. The value must be an integer.|
+| top    | number   | Yes  | Yes  | Top boundary of the rectangle, in px. The value must be an integer.|
+| width  | number   | Yes  | Yes  | Width of the rectangle, in px. The value must be an integer.|
+| height | number   | Yes  | Yes  | Height of the rectangle, in px. The value must be an integer.|
 
 ## AvoidArea<sup>7+</sup>
 
@@ -215,8 +215,8 @@ Describes the window size.
 
 | Name  | Type| Readable| Writable| Description      |
 | ------ | -------- | ---- | ---- | ---------- |
-| width  | number   | Yes  | Yes  | Window width, in pixels. The value must be an integer.|
-| height | number   | Yes  | Yes  | Window height, in pixels. The value must be an integer.|
+| width  | number   | Yes  | Yes  | Window width, in px. The value must be an integer.|
+| height | number   | Yes  | Yes  | Window height, in px. The value must be an integer.|
 
 ## WindowProperties
 
@@ -259,12 +259,12 @@ Describes the scale parameters.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-| Name  | Type| Readable| Writable| Description                                        |
-| ------ | -------- | ---- | ---- |--------------------------------------------|
-| x      | number   | No  | Yes  | Scale factor along the x-axis. The value is a floating point number, and the default value is **1.0**.                  |
-| y      | number   | No  | Yes  | Scale factor along the y-axis. The value is a floating point number, and the default value is **1.0**.                  |
-| pivotX | number   | No  | Yes  | X coordinate of the scale center. The value is a floating point number in the range [0.0, 1.0], and the default value is **0.5**.|
-| pivotY | number   | No  | Yes  | Y coordinate of the scale center. The value is a floating point number in the range [0.0, 1.0], and the default value is **0.5**.|
+| Name  | Type| Read Only| Mandatory| Description                                        |
+| ------ | -------- | ---- | ---- | --------------------------------------------|
+| x      | number   | No  | No  | Scale factor along the x-axis. The value is a floating point number, and the default value is **1.0**.                  |
+| y      | number   | No  | No  | Scale factor along the y-axis. The value is a floating point number, and the default value is **1.0**.                  |
+| pivotX | number   | No  | No  | X coordinate of the scale center. The value is a floating point number in the range [0.0, 1.0], and the default value is **0.5**.|
+| pivotY | number   | No  | No  | Y coordinate of the scale center. The value is a floating point number in the range [0.0, 1.0], and the default value is **0.5**.|
 
 ## RotateOptions<sup>9+</sup>
 
@@ -274,13 +274,13 @@ Describes the rotation parameters.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-| Name  | Type| Readable| Writable| Description                                         |
-| ------ | -------- | ---- | ---- |---------------------------------------------|
-| x      | number   | No  | Yes  | Rotation angle around the x-axis. The value is a floating point number, and the default value is **0.0**.                  |
-| y      | number   | No  | Yes  | Rotation angle around the y-axis. The value is a floating point number, and the default value is **0.0**.                  |
-| z      | number   | No  | Yes  | Rotation angle around the z-axis. The value is a floating point number, and the default value is **0.0**.                  |
-| pivotX | number   | No  | Yes  | X coordinate of the rotation center. The value is a floating point number in the range [0.0, 1.0], and the default value is **0.5**.|
-| pivotY | number   | No  | Yes  | Y coordinate of the rotation center. The value is a floating point number in the range [0.0, 1.0], and the default value is **0.5**. |
+| Name  | Type| Read Only| Mandatory| Description                                         |
+| ------ | -------- | ---- |---- |---------------------------------------------|
+| x      | number   | No  | No | Rotation angle around the x-axis. The value is a floating point number, and the default value is **0.0**.                  |
+| y      | number   | No  | No | Rotation angle around the y-axis. The value is a floating point number, and the default value is **0.0**.                  |
+| z      | number   | No  | No | Rotation angle around the z-axis. The value is a floating point number, and the default value is **0.0**.                  |
+| pivotX | number   | No  | No | X coordinate of the rotation center. The value is a floating point number in the range [0.0, 1.0], and the default value is **0.5**.|
+| pivotY | number   | No  | No | Y coordinate of the rotation center. The value is a floating point number in the range [0.0, 1.0], and the default value is **0.5**. |
 
 ## TranslateOptions<sup>9+</sup>
 
@@ -290,11 +290,11 @@ Describes the translation parameters.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
-| Name| Type| Readable| Writable| Description                        |
+| Name| Type| Read Only| Mandatory| Description                        |
 | ---- | -------- | ---- | ---- | ---------------------------- |
-| x    | number   | No  | Yes  | Distance to translate along the x-axis. The value is a floating point number, the default value is 0.0, and the unit is px.|
-| y    | number   | No  | Yes  | Distance to translate along the y-axis. The value is a floating point number, the default value is 0.0, and the unit is px.|
-| z    | number   | No  | Yes  | Distance to translate along the z-axis. The value is a floating point number, the default value is 0.0, and the unit is px.|
+| x    | number   | No  | No | Distance to translate along the x-axis. The value is a floating point number, the default value is 0.0, and the unit is px.|
+| y    | number   | No  | No | Distance to translate along the y-axis. The value is a floating point number, the default value is 0.0, and the unit is px.|
+| z    | number   | No  | No | Distance to translate along the z-axis. The value is a floating point number, the default value is 0.0, and the unit is px.|
 
 ## WindowEventType<sup>10+</sup>
 
@@ -429,7 +429,7 @@ Finds a window based on the name.
 
 | Name| Type  | Mandatory| Description    |
 | ------ | ------ | ---- | -------- |
-| name   | string | Yes  | Window ID.|
+| name   | string | Yes  | Window name, that is, the value of **name** in [Configuration](#configuration9).|
 
 **Return value**
 
@@ -1263,7 +1263,7 @@ Creates a subwindow. This API uses an asynchronous callback to return the result
 
 | Name  | Type                                  | Mandatory| Description                                |
 | -------- | -------------------------------------- | ---- | ------------------------------------ |
-| id       | string                                 | Yes  | Window ID.                            |
+| id       | string                                 | Yes  | Window name, that is, the value of **name** in [Configuration](#configuration9).                            |
 | type     | [WindowType](#windowtype7)              | Yes  | Window type.                          |
 | callback | AsyncCallback&lt;[Window](#window)&gt; | Yes  | Callback used to return the subwindow created.|
 
@@ -1302,7 +1302,7 @@ Creates a subwindow. This API uses a promise to return the result.
 
 | Name| Type                     | Mandatory| Description      |
 | ------ | ------------------------- | ---- | ---------- |
-| id     | string                    | Yes  | Window ID.  |
+| id     | string                    | Yes  | Window name, that is, the value of **name** in [Configuration](#configuration9).  |
 | type   | [WindowType](#windowtype7) | Yes  | Window type.|
 
 **Return value**
@@ -1343,7 +1343,7 @@ Creates a system window. This API uses an asynchronous callback to return the re
 | Name  | Type                                                   | Mandatory| Description                                |
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------ |
 | ctx      | [BaseContext](js-apis-inner-application-baseContext.md) | Yes  | Current application context.                |
-| id       | string                                                  | Yes  | Window ID.                            |
+| id       | string                                                  | Yes  | Window name, that is, the value of **name** in [Configuration](#configuration9).                            |
 | type     | [WindowType](#windowtype7)                              | Yes  | Window type.                          |
 | callback | AsyncCallback&lt;[Window](#window)&gt;                  | Yes  | Callback used to return the subwindow created.|
 
@@ -1382,7 +1382,7 @@ Creates a system window. This API uses a promise to return the result.
 | Name| Type                     | Mandatory| Description                                                        |
 | ------ | ------------------------- | ---- | ------------------------------------------------------------ |
 | ctx    | [BaseContext](js-apis-inner-application-baseContext.md) | Yes  | Current application context.|
-| id     | string                    | Yes  | Window ID.                                                    |
+| id     | string                    | Yes  | Window name, that is, the value of **name** in [Configuration](#configuration9).                                                    |
 | type   | [WindowType](#windowtype7) | Yes  | Window type.                                                  |
 
 **Return value**
@@ -1422,7 +1422,7 @@ Finds a window based on the ID. This API uses an asynchronous callback to return
 
 | Name  | Type                                  | Mandatory| Description                                |
 | -------- | -------------------------------------- | ---- | ------------------------------------ |
-| id       | string                                 | Yes  | Window ID.                            |
+| id       | string                                 | Yes  | Window name, that is, the value of **name** in [Configuration](#configuration9).                            |
 | callback | AsyncCallback&lt;[Window](#window)&gt; | Yes  | Callback used to return the window found.|
 
 **Example**
@@ -1458,7 +1458,7 @@ Finds a window based on the ID. This API uses a promise to return the result.
 
 | Name| Type  | Mandatory| Description    |
 | ------ | ------ | ---- | -------- |
-| id     | string | Yes  | Window ID.|
+| id     | string | Yes  | Window name, that is, the value of **name** in [Configuration](#configuration9).|
 
 **Return value**
 
@@ -2044,8 +2044,8 @@ This operation is not supported in a window in full-screen mode.
 
 | Name| Type| Mandatory| Description|
 | -------- | ------------------------- | -- | --------------------------------------------- |
-| x        | number                    | Yes| Distance that the window moves along the x-axis, in pixels. A positive value indicates that the window moves to the right. The value must be an integer.|
-| y        | number                    | Yes| Distance that the window moves along the y-axis, in pixels. A positive value indicates that the window moves downwards. The value must be an integer.|
+| x        | number                    | Yes| Distance that the window moves along the x-axis, in px. A positive value indicates that the window moves to the right. The value must be an integer. If a floating point number is passed in, the value is rounded down.|
+| y        | number                    | Yes| Distance that the window moves along the y-axis, in px. A positive value indicates that the window moves downwards. The value must be an integer. If a floating point number is passed in, the value is rounded down.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.                                    |
 
 **Error codes**
@@ -2090,8 +2090,8 @@ This operation is not supported in a window in full-screen mode.
 
 | Name| Type| Mandatory| Description|
 | -- | ----- | -- | --------------------------------------------- |
-| x | number | Yes| Distance that the window moves along the x-axis, in pixels. A positive value indicates that the window moves to the right. The value must be an integer.|
-| y | number | Yes| Distance that the window moves along the y-axis, in pixels. A positive value indicates that the window moves downwards. The value must be an integer.|
+| x | number | Yes| Distance that the window moves along the x-axis, in px. A positive value indicates that the window moves to the right. The value must be an integer. If a floating point number is passed in, the value is rounded down.|
+| y | number | Yes| Distance that the window moves along the y-axis, in px. A positive value indicates that the window moves downwards. The value must be an integer. If a floating point number is passed in, the value is rounded down.|
 
 **Return value**
 
@@ -2148,8 +2148,8 @@ This operation is not supported in a window in full-screen mode.
 
 | Name| Type| Mandatory| Description|
 | -------- | ------------------------- | -- | ------------------------ |
-| width    | number                    | Yes| New width of the window, in px. The value must be an integer.|
-| height   | number                    | Yes| New height of the window, in px. The value must be an integer.|
+| width    | number                    | Yes| New width of the window, in px. The value must be an integer. If a floating point number is passed in, the value is rounded down. A negative value is invalid.|
+| height   | number                    | Yes| New height of the window, in px. The value must be an integer. If a floating point number is passed in, the value is rounded down. A negative value is invalid.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.               |
 
 **Error codes**
@@ -2204,8 +2204,8 @@ This operation is not supported in a window in full-screen mode.
 
 | Name| Type| Mandatory| Description|
 | ------ | ------ | -- | ------------------------ |
-| width  | number | Yes| New width of the window, in px. The value must be an integer.|
-| height | number | Yes| New height of the window, in px. The value must be an integer.|
+| width  | number | Yes| New width of the window, in px. The value must be an integer. If a floating point number is passed in, the value is rounded down. A negative value is invalid.|
+| height | number | Yes| New height of the window, in px. The value must be an integer. If a floating point number is passed in, the value is rounded down. A negative value is invalid.|
 
 **Return value**
 
@@ -3320,7 +3320,7 @@ Subscribes to the screenshot event.
 
 | Name  | Type               | Mandatory| Description                                                        |
 | -------- | ------------------- | ---- | ------------------------------------------------------------ |
-| type     | string              | Yes  | Event type. The value is fixed at **'screenshot'**, indicating the screenshot event.|
+| type     | string              | Yes  | Event type. The value is fixed at **'screenshot'**, indicating the screenshot event, which can be initiated from the Control Panel, by running hdc commands, or by calling the screenshot interfaces.|
 | callback | Callback&lt;void&gt; | Yes  | Callback invoked when a screenshot event occurs.                              |
 
 **Example**
@@ -3374,7 +3374,7 @@ try {
 
 on(type: 'dialogTargetTouch', callback: Callback&lt;void&gt;): void
 
-Subscribes to the click event of the target window in the modal window mode.
+Subscribes to click or touch events in a window covered by a modal window.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -3382,8 +3382,8 @@ Subscribes to the click event of the target window in the modal window mode.
 
 | Name  | Type                | Mandatory| Description                                                         |
 | -------- | ------------------- | ---- | ------------------------------------------------------------ |
-| type     | string              | Yes  | Event type. The value is fixed at **'dialogTargetTouch'**, indicating the click event of the target window in the modal window mode.|
-| callback | Callback&lt;void&gt;| Yes  | Callback invoked when the click event occurs in the target window of the modal window mode.|
+| type     | string              | Yes  | Event type. The value is fixed at **'dialogTargetTouch'**, indicating the click or touch event in a window covered by a modal window.|
+| callback | Callback&lt;void&gt;| Yes  | Callback used to when a click or touch event occurs in the window covered by the modal window.|
 
 **Example**
 
@@ -4120,7 +4120,7 @@ try {
 
 setWindowFocusable(isFocusable: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-Sets whether this window can gain focus. This API uses an asynchronous callback to return the result.
+Sets whether this window is focusable, that is, whether the window can gain focus after it is being clicked or using other methods. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -4164,7 +4164,7 @@ try {
 
 setWindowFocusable(isFocusable: boolean): Promise&lt;void&gt;
 
-Sets whether this window can gain focus. This API uses a promise to return the result.
+Sets whether this window is focusable, that is, whether the window can gain focus after it is being clicked or using other methods. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -5035,8 +5035,8 @@ Sets the shadow for the window borders.
 | ------- | ------ | --------- | ------------------------------------------------------------ |
 | radius  | number | Yes       | Radius of the shadow. The value is a floating point number greater than or equal to 0.0, in px. The value **0.0** means that the shadow is disabled for the window borders. |
 | color   | string | No        | Color of the shadow. The value is a hexadecimal RGB or ARGB color code and is case insensitive, for example, **#00FF00** or **#FF00FF00**. |
-| offsetX | number | No        | Offset of the shadow along the x-axis, in pixels. The value is a floating point number. |
-| offsetY | number | No        | Offset of the shadow along the y-axis, in pixels. The value is a floating point number. |
+| offsetX | number | No        | Offset of the shadow along the x-axis, in px. The value is a floating point number. |
+| offsetY | number | No        | Offset of the shadow along the y-axis, in px. The value is a floating point number. |
 
 **Error codes**
 
@@ -5208,18 +5208,31 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
 import { BusinessError } from '@ohos.base';
 
-try {
-  let ratio = 1.0;
-  let promise = windowClass.setAspectRatio(ratio);
-  promise.then(() => {
-    console.info('Succeeded in setting aspect ratio of window.');
-  }).catch((err: BusinessError) => {
-    console.error('Failed to set the aspect ratio of window. Cause:' + JSON.stringify(err));
-  });
-} catch (exception) {
-  console.error('Failed to set the aspect ratio of window. Cause: ' + JSON.stringify(exception));
+export default class EntryAbility extends UIAbility {
+
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window = windowStage.getMainWindowSync(); // Obtain the main window of the application.
+    if (!windowClass) {
+      console.info('windowClass is null');
+    }
+    try {
+      let ratio = 1.0;
+      let promise = windowClass.setAspectRatio(ratio);
+      promise.then(() => {
+        console.info('Succeeded in setting aspect ratio of window.');
+      }).catch((err: BusinessError) => {
+        console.error(`Failed to set the aspect ratio of window. Cause code: ${err.code}, message: ${err.message}`);
+      });
+    } catch (exception) {
+      console.error(`Failed to set the aspect ratio of window. Cause code: ${exception.code}, message: ${exception.message}`);
+    }
+  }
 }
 ```
 
@@ -5252,20 +5265,33 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
 import { BusinessError } from '@ohos.base';
 
-try {
-  let ratio = 1.0;
-  windowClass.setAspectRatio(ratio, (err: BusinessError) => {
-    const errCode: number = err.code;
-    if (errCode) {
-      console.error('Failed to set the aspect ratio of window. Cause:' + JSON.stringify(err));
-      return;
+export default class EntryAbility extends UIAbility {
+
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window = windowStage.getMainWindowSync(); // Obtain the main window of the application.
+    if (!windowClass) {
+      console.info('Failed to load the content. Cause: windowClass is null');
     }
-    console.info('Succeeded in setting the aspect ratio of window.');
-  });
-} catch (exception) {
-  console.error('Failed to set the aspect ratio of window. Cause: ' + JSON.stringify(exception));
+    try {
+      let ratio = 1.0;
+      windowClass.setAspectRatio(ratio, (err: BusinessError) => {
+        const errCode: number = err.code;
+        if (errCode) {
+          console.error(`Failed to set the aspect ratio of window. Cause code: ${err.code}, message: ${err.message}`);
+          return;
+        }
+        console.info('Succeeded in setting the aspect ratio of window.');
+      });
+    } catch (exception) {
+      console.error(`Failed to set the aspect ratio of window. Cause code: ${exception.code}, message: ${exception.message}`);
+    }
+  }
 }
 ```
 
@@ -5297,17 +5323,30 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
 import { BusinessError } from '@ohos.base';
 
-try {
-  let promise = windowClass.resetAspectRatio();
-  promise.then(() => {
-    console.info('Succeeded in resetting aspect ratio of window.');
-  }).catch((err: BusinessError) => {
-    console.error('Failed to reset the aspect ratio of window. Cause:' + JSON.stringify(err));
-  });
-} catch (exception) {
-  console.error('Failed to reset the aspect ratio of window. Cause: ' + JSON.stringify(exception));
+export default class EntryAbility extends UIAbility {
+
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window = windowStage.getMainWindowSync(); // Obtain the main window of the application.
+    if (!windowClass) {
+      console.info('Failed to load the content. Cause: windowClass is null');
+    }
+    try {
+      let promise = windowClass.resetAspectRatio();
+      promise.then(() => {
+        console.info('Succeeded in resetting aspect ratio of window.');
+      }).catch((err: BusinessError) => {
+        console.error(`Failed to reset the aspect ratio of window. Cause code: ${err.code}, message: ${err.message}`);
+      });
+    } catch (exception) {
+      console.error(`Failed to reset the aspect ratio of window. Cause code: ${exception.code}, message: ${exception.message}`);
+    }
+  }
 }
 ```
 
@@ -5339,19 +5378,32 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
 import { BusinessError } from '@ohos.base';
 
-try {
-  windowClass.resetAspectRatio((err: BusinessError) => {
-    const errCode: number = err.code;
-    if (errCode) {
-      console.error('Failed to reset the aspect ratio of window. Cause:' + JSON.stringify(err));
-      return;
+export default class EntryAbility extends UIAbility {
+
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window = windowStage.getMainWindowSync(); // Obtain the main window of the application.
+    if (!windowClass) {
+      console.info('Failed to load the content. Cause: windowClass is null');
     }
-    console.info('Succeeded in resetting aspect ratio of window.');
-  });
-} catch (exception) {
-  console.error('Failed to reset the aspect ratio of window. Cause: ' + JSON.stringify(exception));
+    try {
+      windowClass.resetAspectRatio((err: BusinessError) => {
+        const errCode: number = err.code;
+        if (errCode) {
+          console.error(`Failed to reset the aspect ratio of window. Cause code: ${err.code}, message: ${err.message}`);
+          return;
+        }
+        console.info('Succeeded in resetting aspect ratio of window.');
+      });
+    } catch (exception) {
+      console.error(`Failed to reset the aspect ratio of window. Cause code: ${exception.code}, message: ${exception.message}`);
+    }
+  }
 }
 ```
 
@@ -5585,7 +5637,6 @@ windowClass.setRaiseByClickEnabled(enabled, (err) => {
   }
   console.info('Succeeded in disabling the raise-by-click function.');
 });
-
 ```
 
 ### setRaiseByClickEnabled<sup>10+</sup>
@@ -5685,7 +5736,7 @@ export default class EntryAbility extends UIAbility {
       }
       mainWindow = data;
       console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
-    // Call minimize.
+      // Call minimize.
       mainWindow.minimize((err) => {
         if (err.code) {
           console.error('Failed to minimize the app main window. Cause: ' + JSON.stringify(err));
@@ -5748,7 +5799,7 @@ export default class EntryAbility extends UIAbility {
       }
       mainWindow = data;
       console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
-    // Promise object of the minimize API.
+      // Promise object of the minimize API.
       let promise = mainWindow.minimize();
       promise.then(()=> {
         console.info('Successfully minimized app main window.');
@@ -5814,7 +5865,7 @@ export default class EntryAbility extends UIAbility {
       console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
 
       let enabled = false;
-    // Call setResizeByDragEnabled.
+      // Call setResizeByDragEnabled.
       mainWindow.setResizeByDragEnabled(enabled, (err) => {
         if (err.code) {
           console.error('Failed to set the function of disabling the resize by dragg window. Cause: ' + JSON.stringify(err));
@@ -5885,7 +5936,7 @@ export default class EntryAbility extends UIAbility {
       console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
 
       let enabled = false;
-    // Promise object of the setResizeByDragEnabled API.
+      // Promise object of the setResizeByDragEnabled API.
       let promise = mainWindow.setResizeByDragEnabled(enabled);
       promise.then(()=> {
         console.info('Succeeded in setting the function of disabling the resize by dragg window.');
@@ -6043,8 +6094,8 @@ This operation is not supported in a window in full-screen mode.
 
 | Name     | Type                      | Mandatory | Description                                                  |
 | -------- | ------------------------- | --------- | ------------------------------------------------------------ |
-| x        | number                    | Yes       | Distance that the window moves along the x-axis, in pixels. A positive value indicates that the window moves to the right. The value must be an integer. |
-| y        | number                    | Yes       | Distance that the window moves along the y-axis, in pixels. A positive value indicates that the window moves downwards. The value must be an integer. |
+| x        | number                    | Yes       | Distance that the window moves along the x-axis, in px. A positive value indicates that the window moves to the right. The value must be an integer. If a floating point number is passed in, the value is rounded down. |
+| y        | number                    | Yes       | Distance that the window moves along the y-axis, in px. A positive value indicates that the window moves downwards. The value must be an integer. If a floating point number is passed in, the value is rounded down. |
 | callback | AsyncCallback&lt;void&gt; | Yes       | Callback used to return the result.                          |
 
 **Example**
@@ -6080,8 +6131,8 @@ This operation is not supported in a window in full-screen mode.
 
 | Name | Type   | Mandatory | Description                                                  |
 | ---- | ------ | --------- | ------------------------------------------------------------ |
-| x    | number | Yes       | Distance that the window moves along the x-axis, in pixels. A positive value indicates that the window moves to the right. The value must be an integer. |
-| y    | number | Yes       | Distance that the window moves along the y-axis, in pixels. A positive value indicates that the window moves downwards. The value must be an integer. |
+| x    | number | Yes       | Distance that the window moves along the x-axis, in px. A positive value indicates that the window moves to the right. The value must be an integer. If a floating point number is passed in, the value is rounded down. |
+| y    | number | Yes       | Distance that the window moves along the y-axis, in px. A positive value indicates that the window moves downwards. The value must be an integer. If a floating point number is passed in, the value is rounded down. |
 
 **Return value**
 
@@ -6109,6 +6160,7 @@ resetSize(width: number, height: number, callback: AsyncCallback&lt;void&gt;): v
 Changes the size of this window. This API uses an asynchronous callback to return the result.
 
 The main window and subwindow have the following default size limits: [320, 2560] in width and [240, 2560] in height, both in units of vp.
+
 The minimum width and height of the main window and subwindow of the application depends on the configuration on the product side.
 
 The system window has the following size limits: [0, 2560] in width and [0, 2560] in height, both in units of vp.
@@ -6129,8 +6181,8 @@ This operation is not supported in a window in full-screen mode.
 
 | Name     | Type                      | Mandatory | Description                                                  |
 | -------- | ------------------------- | --------- | ------------------------------------------------------------ |
-| width    | number                    | Yes       | New width of the window, in px. The value must be an integer. |
-| height   | number                    | Yes       | New height of the window, in px. The value must be an integer. |
+| width    | number                    | Yes       | New width of the window, in px. The value must be an integer. If a floating point number is passed in, the value is rounded down. A negative value is invalid. |
+| height   | number                    | Yes       | New height of the window, in px. The value must be an integer. If a floating point number is passed in, the value is rounded down. A negative value is invalid. |
 | callback | AsyncCallback&lt;void&gt; | Yes       | Callback used to return the result.                          |
 
 **Example**
@@ -6175,8 +6227,8 @@ This operation is not supported in a window in full-screen mode.
 
 | Name   | Type   | Mandatory | Description                                                  |
 | ------ | ------ | --------- | ------------------------------------------------------------ |
-| width  | number | Yes       | New width of the window, in px. The value must be an integer. |
-| height | number | Yes       | New height of the window, in px. The value must be an integer. |
+| width  | number | Yes       | New width of the window, in px. The value must be an integer. If a floating point number is passed in, the value is rounded down. A negative value is invalid. |
+| height | number | Yes       | New height of the window, in px. The value must be an integer. If a floating point number is passed in, the value is rounded down. A negative value is invalid. |
 
 **Return value**
 
@@ -6416,8 +6468,8 @@ promise.then((data) => {
 setFullScreen(isFullScreen: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 Sets whether the window is in full-screen mode. This API uses an asynchronous callback to return the result.
-In full-screen mode, the window is displayed in full screen, and the status bar and navigation bar are not displayed.
-In non-full-screen mode, the status bar and navigation bar are displayed, and the window size does not overlap the positions of the status bar and navigation bar.
+- In full-screen mode, the window is displayed in full screen, and the status bar and navigation bar are not displayed.
+- In non-full-screen mode, the status bar and navigation bar are displayed, and the window size does not overlap the positions of the status bar and navigation bar.
 
 > **NOTE**
 >
@@ -6453,8 +6505,8 @@ windowClass.setFullScreen(isFullScreen, (err: BusinessError) => {
 setFullScreen(isFullScreen: boolean): Promise&lt;void&gt;
 
 Sets whether the window is in full-screen mode. This API uses a promise to return the result.
-In full-screen mode, the window is displayed in full screen, and the status bar and navigation bar are not displayed.
-In non-full-screen mode, the status bar and navigation bar are displayed, and the window size does not overlap the positions of the status bar and navigation bar.
+- In full-screen mode, the window is displayed in full screen, and the status bar and navigation bar are not displayed.
+- In non-full-screen mode, the status bar and navigation bar are displayed, and the window size does not overlap the positions of the status bar and navigation bar.
 
 > **NOTE**
 >
@@ -7336,7 +7388,7 @@ promise.then(() => {
 
 setFocusable(isFocusable: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-Sets whether this window can gain focus. This API uses an asynchronous callback to return the result.
+Sets whether this window is focusable, that is, whether the window can gain focus after it is being clicked or using other methods. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
@@ -7371,7 +7423,7 @@ windowClass.setFocusable(isFocusable, (err: BusinessError) => {
 
 setFocusable(isFocusable: boolean): Promise&lt;void&gt;
 
-Sets whether this window can gain focus. This API uses a promise to return the result.
+Sets whether this window is focusable, that is, whether the window can gain focus after it is being clicked or using other methods. This API uses a promise to return the result.
 
 > **NOTE**
 >
