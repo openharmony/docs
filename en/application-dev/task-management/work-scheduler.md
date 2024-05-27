@@ -74,8 +74,8 @@ The table below lists the APIs used for developing deferred tasks. For details a
 | Name| Type| Description.|
 | -------- | -------- | -------- |
 | workId | number | ID of a deferred task. This parameter is mandatory.|
-| bundleName | string | Bundle name of the application that requests the deferred task.|
-| abilityName | string | Name of the ability to be notified by a deferred task scheduling callback. This parameter is mandatory.|
+| bundleName | string | Bundle name of the application where the deferred task is located. This parameter is mandatory.|
+| abilityName | string | Ability name in the bundle. This parameter is mandatory.|
 | networkType | [NetworkType](../reference/apis/js-apis-resourceschedule-workScheduler.md#networktype) | Network type.|
 | isCharging | boolean | Whether the device needs to enter the charging state to trigger deferred task scheduling.|
 | chargerType | [ChargingType](../reference/apis/js-apis-resourceschedule-workScheduler.md#chargingtype) | Charging type.|
