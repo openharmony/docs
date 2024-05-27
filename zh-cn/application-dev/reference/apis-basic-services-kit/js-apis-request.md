@@ -325,7 +325,7 @@ on(type: 'progress', callback:(uploadedSize: number, totalSize: number) =&gt; vo
 
 on(type: 'headerReceive', callback:  (header: object) =&gt; void): void
 
-订阅上传任务HTTP标头事件，异步方法，使用callback形式返回结果。
+订阅上传任务HTTP响应事件，异步方法，使用callback形式返回结果。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -335,14 +335,14 @@ on(type: 'headerReceive', callback:  (header: object) =&gt; void): void
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | type | string | 是 | 订阅的事件类型，取值为'headerReceive'（接收响应头）。 |
-  | callback | function | 是 | HTTP&nbsp;Response&nbsp;Header事件的回调函数。 |
+  | type | string | 是 | 订阅的事件类型，取值为'headerReceive'（接收响应）。 |
+  | callback | function | 是 | HTTP&nbsp;Response事件的回调函数。 |
 
   回调函数的参数：
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| header | object | 是 | HTTP&nbsp;Response&nbsp;Header。 |
+| header | object | 是 | HTTP&nbsp;Response。 |
 
 **示例：**
 
@@ -435,7 +435,7 @@ off(type:  'progress',  callback?: (uploadedSize: number, totalSize: number) =&g
 
 off(type: 'headerReceive', callback?: (header: object) =&gt; void): void
 
-取消订阅上传任务HTTP标头事件。
+取消订阅上传任务HTTP响应事件。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -445,7 +445,7 @@ off(type: 'headerReceive', callback?: (header: object) =&gt; void): void
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | type | string | 是 | 取消订阅的事件类型，取值为'headerReceive'（接收响应头）。 |
+  | type | string | 是 | 取消订阅的事件类型，取值为'headerReceive'（接收响应）。 |
   | callback | function | 否 | 需要取消订阅的回调函数。若无此参数，则取消订阅当前类型的所有回调函数。 |
 
 **示例：**
