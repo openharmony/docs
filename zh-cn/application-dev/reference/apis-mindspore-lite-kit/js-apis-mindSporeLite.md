@@ -556,33 +556,14 @@ getAllNNRTDeviceDescriptions() : NNRTDeviceDescription[]
 
 下例API示例中都需先使用[loadModelFromFile()](#mindsporeliteloadmodelfromfile)、[loadModelFromBuffer()](#mindsporeliteloadmodelfrombuffer)、[loadModelFromFd()](#mindsporeliteloadmodelfromfd)中的任一方法获取到Model实例，再通过此实例调用对应方法。
 
-### learningRate<sup>12+</sup>
-
-learningRate: number
-
-训练模型的学习率。
+### 属性
 
 **系统能力：** SystemCapability.AI.MindSporeLite
 
-**返回值：**
-
-| 类型     | 说明     |
-| ------ | ------ |
-| number | 返回学习率。 |
-
-### trainMode<sup>12+</sup>
-
-trainMode: boolean
-
-模型的运行模式。
-
-**系统能力：** SystemCapability.AI.MindSporeLite
-
-**返回值：**
-
-| 类型      | 说明         |
-| ------- | ---------- |
-| boolean | 返回是否是训练模式。 |
+| 名称                       | 类型    | 必填 | 说明               |
+| -------------------------- | ------- | ---- | ------------------ |
+| learningRate<sup>12+</sup> | number  | 否   | 训练模型的学习率。 |
+| trainMode<sup>12+</sup>    | boolean | 否   | 模型的运行模式。   |
 
 ### getInputs
 

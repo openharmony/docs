@@ -374,6 +374,7 @@ getTrustedDeviceListSync(isRefresh: boolean): Array&lt;DeviceInfo&gt;
 | -------- | --------------------------------------------------------------- |
 | 201 | Permission verify failed.                                            |
 | 202 | The caller is not a system application.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. |
 | 11600101 | Failed to execute the function.                                 |
 
 **示例：**
@@ -464,7 +465,6 @@ getTrustedDeviceList(): Promise&lt;Array&lt;DeviceInfo&gt;&gt;
 | 错误码ID | 错误信息                                                         |
 | -------- | --------------------------------------------------------------- |
 | 202 | The caller is not a system application.                              |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. |
 
 **示例：**
 
