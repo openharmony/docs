@@ -18,7 +18,7 @@
 ## 导入模块
 
 ```ts
-import media from '@ohos.multimedia.media';
+import { media } from '@kit.MediaKit';
 ```
 
 ## media.createAVPlayer<sup>9+</sup>
@@ -30,8 +30,8 @@ createAVPlayer(callback: AsyncCallback\<AVPlayer>): void
 > **说明：**
 >
 > - 可创建的视频播放实例不能超过13个。
-> - 可创建的音视频播放实例（即音频、视频、音视频三类相加）不能超过16个。
-> - 可创建的音视频播放实例数量依赖于设备芯片的支持情况，如芯片支持创建的数量少于上述情况，请以芯片规格为准。如RK3568仅支持创建6个以内的视频播放实例。
+> - 可创建的音视频播放实例（即音频、视频、音视频三类相加）不能超过16个。<!--Del-->
+> - 可创建的音视频播放实例数量依赖于设备芯片的支持情况，如芯片支持创建的数量少于上述情况，请以芯片规格为准。如RK3568仅支持创建6个以内的视频播放实例。<!--DelEnd-->
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -54,7 +54,7 @@ createAVPlayer(callback: AsyncCallback\<AVPlayer>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let avPlayer: media.AVPlayer;
 media.createAVPlayer((error: BusinessError, video: media.AVPlayer) => {
@@ -76,8 +76,8 @@ createAVPlayer(): Promise\<AVPlayer>
 > **说明：**
 >
 > - 可创建的视频播放实例不能超过13个。
-> - 可创建的音视频播放实例（即音频、视频、音视频三类相加）不能超过16个。
-> - 可创建的音视频播放实例数量依赖于设备芯片的支持情况，如芯片支持创建的数量少于上述情况，请以芯片规格为准。如RK3568仅支持创建6个以内的视频播放实例。
+> - 可创建的音视频播放实例（即音频、视频、音视频三类相加）不能超过16个。<!--Del-->
+> - 可创建的音视频播放实例数量依赖于设备芯片的支持情况，如芯片支持创建的数量少于上述情况，请以芯片规格为准。如RK3568仅支持创建6个以内的视频播放实例。<!--DelEnd-->
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -100,7 +100,7 @@ createAVPlayer(): Promise\<AVPlayer>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let avPlayer: media.AVPlayer;
 media.createAVPlayer().then((video: media.AVPlayer) => {
@@ -145,7 +145,7 @@ createAVRecorder(callback: AsyncCallback\<AVRecorder>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 let avRecorder: media.AVRecorder;
 
 media.createAVRecorder((error: BusinessError, recorder: media.AVRecorder) => {
@@ -190,7 +190,7 @@ createAVRecorder(): Promise\<AVRecorder>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let avRecorder: media.AVRecorder;
 media.createAVRecorder().then((recorder: media.AVRecorder) => {
@@ -230,7 +230,7 @@ createAVMetadataExtractor(callback: AsyncCallback\<AVMetadataExtractor>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let avMetadataExtractor: media.AVMetadataExtractor;
 media.createAVMetadataExtractor((error: BusinessError, extractor: media.AVMetadataExtractor) => {
@@ -268,7 +268,7 @@ createAVMetadataExtractor(): Promise\<AVMetadataExtractor>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let avMetadataExtractor: media.AVMetadataExtractor;
 media.createAVMetadataExtractor().then((extractor: media.AVMetadataExtractor) => {
@@ -310,7 +310,7 @@ createSoundPool(maxStreams: number, audioRenderInfo: audio.AudioRendererInfo, ca
 **示例：**
 
 ```js
-import audio from '@ohos.multimedia.audio'
+import { audio } from '@kit.AudioKit';
 
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
@@ -361,8 +361,8 @@ createSoundPool(maxStreams: number, audioRenderInfo: audio.AudioRendererInfo): P
 **示例：**
 
 ```js
-import audio from '@ohos.multimedia.audio'
-import { BusinessError } from '@ohos.base';
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
@@ -405,7 +405,7 @@ createAVScreenCaptureRecorder(): Promise\<AVScreenCaptureRecorder>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let avScreenCaptureRecorder: media.AVScreenCaptureRecorder;
 media.createAVScreenCaptureRecorder().then((captureRecorder: media.AVScreenCaptureRecorder) => {
@@ -664,7 +664,7 @@ on(type: 'error', callback: ErrorCallback): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avPlayer.on('error', (error: BusinessError) => {
   console.info('error happened,and error message is :' + error.message)
@@ -727,7 +727,7 @@ setMediaSource(src:MediaSource, strategy?: PlaybackStrategy): Promise\<void>
 **示例：**
 
 ```ts
-import media from '@ohos.multimedia.media'
+import { media } from '@kit.MediaKit';
 
 let player = await media.createAVPlayer();
 let header: Record<string, string> = {"User-Agent" : "User-Agent-Value"};
@@ -764,7 +764,7 @@ prepare(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avPlayer.prepare((err: BusinessError) => {
   if (err == null) {
@@ -803,7 +803,7 @@ prepare(): Promise\<void>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avPlayer.prepare().then(() => {
   console.info('prepare success');
@@ -839,7 +839,7 @@ play(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avPlayer.play((err: BusinessError) => {
   if (err == null) {
@@ -877,7 +877,7 @@ play(): Promise\<void>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avPlayer.play().then(() => {
   console.info('play success');
@@ -913,7 +913,7 @@ pause(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avPlayer.pause((err: BusinessError) => {
   if (err == null) {
@@ -951,7 +951,7 @@ pause(): Promise\<void>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avPlayer.pause().then(() => {
   console.info('pause success');
@@ -987,7 +987,7 @@ stop(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avPlayer.stop((err: BusinessError) => {
   if (err == null) {
@@ -1025,7 +1025,7 @@ stop(): Promise\<void>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avPlayer.stop().then(() => {
   console.info('stop success');
@@ -1061,7 +1061,7 @@ reset(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avPlayer.reset((err: BusinessError) => {
   if (err == null) {
@@ -1099,7 +1099,7 @@ reset(): Promise\<void>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avPlayer.reset().then(() => {
   console.info('reset success');
@@ -1135,7 +1135,7 @@ release(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avPlayer.release((err: BusinessError) => {
   if (err == null) {
@@ -1173,7 +1173,7 @@ release(): Promise\<void>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avPlayer.release().then(() => {
   console.info('release success');
@@ -1209,7 +1209,7 @@ getTrackDescription(callback: AsyncCallback\<Array\<MediaDescription>>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avPlayer.getTrackDescription((error: BusinessError, arrList: Array<media.MediaDescription>) => {
   if ((arrList) != null) {
@@ -1247,7 +1247,7 @@ getTrackDescription(): Promise\<Array\<MediaDescription>>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avPlayer.getTrackDescription().then((arrList: Array<media.MediaDescription>) => {
   console.info('getTrackDescription success');
@@ -1288,8 +1288,8 @@ selectTrack(index: number): Promise\<void>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import media from '@ohos.multimedia.media';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
 
 let avPlayer: media.AVPlayer | undefined = undefined;
 media.createAVPlayer((err: BusinessError, player: media.AVPlayer) => {
@@ -1349,8 +1349,8 @@ deselectTrack(index: number): Promise\<void>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import media from '@ohos.multimedia.media';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
 
 let avPlayer: media.AVPlayer | undefined = undefined;
 media.createAVPlayer((err: BusinessError, player: media.AVPlayer) => {
@@ -2081,7 +2081,7 @@ on(type: 'audioInterrupt', callback: (info: audio.InterruptEvent) => void): void
 **示例：**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
+import { audio } from '@kit.AudioKit';
 
 avPlayer.on('audioInterrupt', (info: audio.InterruptEvent) => {
   console.info('audioInterrupt success,and InterruptEvent info is:' + info)
@@ -2132,7 +2132,7 @@ on(type: 'audioOutputDeviceChangeWithInfo', callback: Callback\<audio.AudioStrea
 **示例：**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
+import { audio } from '@kit.AudioKit';
 
 avPlayer.on('audioOutputDeviceChangeWithInfo', (data: audio.AudioStreamDeviceChangeInfo) => {
   console.info(`${JSON.stringify(data)}`);
@@ -2220,13 +2220,11 @@ avPlayer.off('audioOutputDeviceChangeWithInfo');
 
 **系统能力：** SystemCapability.Multimedia.Media.Core
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
-
 | 名称           | 值   | 说明                                                         |
 | -------------- | ---- | ------------------------------------------------------------ |
-| SEEK_NEXT_SYNC | 0    | 表示跳转到指定时间点的下一个关键帧，建议向后快进的时候用这个枚举值。 |
-| SEEK_PREV_SYNC | 1    | 表示跳转到指定时间点的上一个关键帧，建议向前快进的时候用这个枚举值。 |
-| SEEK_CLOSEST<sup>12+</sup> | 2    | 表示跳转到距离指定时间点最近的帧，建议精准跳转进度的时候用这个枚举值。 |
+| SEEK_NEXT_SYNC | 0    | 表示跳转到指定时间点的下一个关键帧，建议向后快进的时候用这个枚举值。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| SEEK_PREV_SYNC | 1    | 表示跳转到指定时间点的上一个关键帧，建议向前快进的时候用这个枚举值。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| SEEK_CLOSEST<sup>12+</sup> | 2    | 表示跳转到距离指定时间点最近的帧，建议精准跳转进度的时候用这个枚举值。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
 
 ## PlaybackSpeed<sup>8+</sup>
 
@@ -2270,8 +2268,8 @@ avPlayer.off('audioOutputDeviceChangeWithInfo');
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import media from '@ohos.multimedia.media';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
 
 function printfItemDescription(obj: media.MediaDescription, key: string) {
   let property: Object = obj[key];
@@ -2352,7 +2350,7 @@ prepare(config: AVRecorderConfig, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // 配置参数以实际硬件设备支持的范围为准
 let avRecorderProfile: media.AVRecorderProfile = {
@@ -2427,7 +2425,7 @@ prepare(config: AVRecorderConfig): Promise\<void>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // 配置参数以实际硬件设备支持的范围为准
 let avRecorderProfile: media.AVRecorderProfile = {
@@ -2489,7 +2487,7 @@ getInputSurface(callback: AsyncCallback\<string>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 let surfaceID: string; // 该surfaceID用于传递给相机接口创造videoOutput
 
 avRecorder.getInputSurface((err: BusinessError, surfaceId: string) => {
@@ -2534,7 +2532,7 @@ getInputSurface(): Promise\<string>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 let surfaceID: string; // 该surfaceID用于传递给相机接口创造videoOutput
 
 avRecorder.getInputSurface().then((surfaceId: string) => {
@@ -2581,7 +2579,7 @@ updateRotation(rotation: number): Promise\<void>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let rotation = 90
 
@@ -2621,7 +2619,7 @@ start(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avRecorder.start((err: BusinessError) => {
   if (err == null) {
@@ -2663,7 +2661,7 @@ start(): Promise\<void>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avRecorder.start().then(() => {
   console.info('start AVRecorder success');
@@ -2701,7 +2699,7 @@ pause(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avRecorder.pause((err: BusinessError) => {
   if (err == null) {
@@ -2743,7 +2741,7 @@ pause(): Promise\<void>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avRecorder.pause().then(() => {
   console.info('pause AVRecorder success');
@@ -2781,7 +2779,7 @@ resume(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avRecorder.resume((err: BusinessError) => {
   if (err == null) {
@@ -2823,7 +2821,7 @@ resume(): Promise\<void>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avRecorder.resume().then(() => {
   console.info('resume AVRecorder success');
@@ -2863,7 +2861,7 @@ stop(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avRecorder.stop((err: BusinessError) => {
   if (err == null) {
@@ -2907,7 +2905,7 @@ stop(): Promise\<void>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avRecorder.stop().then(() => {
   console.info('stop AVRecorder success');
@@ -2944,7 +2942,7 @@ reset(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avRecorder.reset((err: BusinessError) => {
   if (err == null) {
@@ -2983,7 +2981,7 @@ reset(): Promise\<void>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avRecorder.reset().then(() => {
   console.info('reset AVRecorder success');
@@ -3019,7 +3017,7 @@ release(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avRecorder.release((err: BusinessError) => {
   if (err == null) {
@@ -3059,7 +3057,7 @@ release(): Promise\<void>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avRecorder.release().then(() => {
   console.info('release AVRecorder success');
@@ -3333,7 +3331,7 @@ getAVRecorderConfig(callback: AsyncCallback\<AVRecorderConfig>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let AVRecorderConfig: AVRecorderConfig;
 
@@ -3376,7 +3374,7 @@ getAVRecorderConfig(): Promise\<AVRecorderConfig>;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let AVRecorderConfig: AVRecorderConfig;
 
@@ -3483,7 +3481,7 @@ on(type: 'error', callback: ErrorCallback): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avRecorder.on('error', (err: BusinessError) => {
   console.info('case avRecorder.on(error) called, errMessage is ' + err.message);
@@ -3594,14 +3592,15 @@ avRecorder.off('audioCapturerChange');
 
 | 名称            | 类型                                     | 必填 | 说明                                                         |
 | --------------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
-| audioSourceType | [AudioSourceType](#audiosourcetype9)     | 否   | 选择录制的音频源类型。选择音频录制时必填。 <br> **元服务API：** 从API version 12 开始，该接口支持在元服务中使用。                  |
+| audioSourceType | [AudioSourceType](#audiosourcetype9)     | 否   | 选择录制的音频源类型。选择音频录制时必填。<br> **元服务API：** 从API version 12 开始，该接口支持在元服务中使用。|
 | videoSourceType | [VideoSourceType](#videosourcetype9)     | 否   | 选择录制的视频源类型。选择视频录制时必填。                   |
-| profile         | [AVRecorderProfile](#avrecorderprofile9) | 是   | 录制的profile，必要参数。 <br> **元服务API：** 从API version 12 开始，该接口支持在元服务中使用。                                   |
+| profile         | [AVRecorderProfile](#avrecorderprofile9) | 是   | 录制的profile，必要参数。<br> **元服务API：** 从API version 12 开始，该接口支持在元服务中使用。|
 | url             | string                                   | 是   | 录制输出URL：fd://xx (fd number) ![img](figures/zh-cn_image_url.png)，必要参数。 <br> **元服务API：** 从API version 12 开始，该接口支持在元服务中使用。 |
 | rotation<sup>(deprecated)</sup>        | number                                   | 否   | 录制的视频旋转角度，mp4格式支持0，90，180，270，默认值为0。<br>从API version 6开始支持，从API version 12开始废弃。建议使用[AVMetadata](#avmetadata11).videoOrientation替代。如果同时设置两个值，将会采用[AVMetadata](#avmetadata11).videoOrientation。     |
 | location<sup>(deprecated)</sup>        | [Location](#location)                    | 否   | 录制的地理位置，默认不记录地理位置信息。<br>从API version 6开始支持，从API version 12开始废弃。建议使用 [AVMetadata](#avmetadata11).location。如果同时设置两个值，将会采用[AVMetadata](#avmetadata11).location。 |
 | metadata<sup>12+</sup>        | [AVMetadata](#avmetadata11)              | 否   | 设置元数据信息。详情见 [AVMetadata](#avmetadata11)。                  |
 
+<!--RP1-->
 ## AVRecorderProfile<sup>9+</sup>
 
 音视频录制的配置文件。
@@ -3622,6 +3621,7 @@ avRecorder.off('audioCapturerChange');
 | videoFrameRate   | number                                       | 否   | 视频帧率，选择视频录制时必填，支持范围[1 - 30]。             |
 | isHdr<sup>11+</sup>            | boolean                        | 否   | HDR编码，选择视频录制时选填，isHdr默认为false，对应编码格式没有要求，isHdr为true时，对应的编码格式必须为video/hevc。|
 | enableTemporalScale<sup>12+</sup>            | boolean                        | 否   | 视频录制是否支持时域分层编码功能，选择视频录制时选填，enableTemporalScale默认为false。设置为true时，编码输出的码流中部分帧可以支持跳过不编码。|
+<!--RP1End-->
 
 ## AudioSourceType<sup>9+</sup>
 
@@ -3738,7 +3738,7 @@ fetchMetadata(callback: AsyncCallback\<AVMetadata>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avMetadataExtractor.fetchMetadata((error: BusinessError, metadata: media.AVMetadata) => {
   if (error) {
@@ -3775,7 +3775,7 @@ fetchMetadata(): Promise\<AVMetadata>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avMetadataExtractor.fetchMetadata().then((metadata: media.AVMetadata) => {
   console.info(`fetchMetadata callback success, genre: ${metadata.genre}`)
@@ -3810,8 +3810,8 @@ fetchAlbumCover(callback: AsyncCallback\<image.PixelMap>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import image from '@ohos.multimedia.image';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { image } from '@kit.ImageKit';
 
 let pixel_map : image.PixelMap | undefined = undefined;
 
@@ -3850,8 +3850,8 @@ fetchAlbumCover(): Promise\<image.PixelMap>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import image from '@ohos.multimedia.image';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { image } from '@kit.ImageKit';
 
 let pixel_map : image.PixelMap | undefined = undefined;
 
@@ -3887,7 +3887,7 @@ release(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avMetadataExtractor.release((error: BusinessError) => {
   if (error) {
@@ -3923,7 +3923,7 @@ release(): Promise\<void>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avMetadataExtractor.release().then(() => {
   console.info(`release success.`);
@@ -4004,7 +4004,7 @@ createVideoPlayer(callback: AsyncCallback\<VideoPlayer>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let videoPlayer: media.VideoPlayer;
 media.createVideoPlayer((error: BusinessError, video: media.VideoPlayer) => {
@@ -4037,7 +4037,7 @@ createVideoPlayer(): Promise\<VideoPlayer>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let videoPlayer: media.VideoPlayer;
 media.createVideoPlayer().then((video: media.VideoPlayer) => {
@@ -4293,7 +4293,7 @@ getTrackDescription(callback: AsyncCallback\<Array\<MediaDescription>>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioPlayer.getTrackDescription((error: BusinessError, arrList: Array<media.MediaDescription>) => {
   if (arrList != null) {
@@ -4324,7 +4324,7 @@ getTrackDescription(): Promise\<Array\<MediaDescription>>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioPlayer.getTrackDescription().then((arrList: Array<media.MediaDescription>) => {
   console.info('audio getTrackDescription success');
@@ -4381,8 +4381,8 @@ on(type: 'play' | 'pause' | 'stop' | 'reset' | 'dataLoad' | 'finish' | 'volumeCh
 **示例：**
 
 ```ts
-import fs from '@ohos.file.fs';
-import { BusinessError } from '@ohos.base';
+import { fileIo } from '@kit.CoreFileKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let audioPlayer: media.AudioPlayer = media.createAudioPlayer();  //创建一个音频播放实例
 audioPlayer.on('dataLoad', () => {            //设置'dataLoad'事件回调，src属性设置成功后，触发此回调
@@ -4426,7 +4426,7 @@ audioPlayer.on('error', (error: BusinessError) => {  //设置'error'事件回调
 let fdPath = 'fd://';
 // path路径的码流可通过"hdc file send D:\xxx\01.mp3 /data/accounts/account_0/appdata" 命令，将其推送到设备上
 let path = '/data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp3';
-fs.open(path).then((file) => {
+fileIo.open(path).then((file) => {
   fdPath = fdPath + '' + file.fd;
   console.info('open fd success fd is' + fdPath);
   audioPlayer.src = fdPath;  //设置src属性，并触发'dataLoad'事件回调
@@ -4489,7 +4489,7 @@ on(type: 'audioInterrupt', callback: (info: audio.InterruptEvent) => void): void
 **示例：**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
+import { audio } from '@kit.AudioKit';
 
 audioPlayer.on('audioInterrupt', (info: audio.InterruptEvent) => {
   console.info('audioInterrupt success,and InterruptEvent info is:' + info)
@@ -4517,7 +4517,7 @@ on(type: 'error', callback: ErrorCallback): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioPlayer.on('error', (error: BusinessError) => {  //设置'error'事件回调
   console.error(`audio error called, error: ${error}`);
@@ -4589,7 +4589,7 @@ setDisplaySurface(surfaceId: string, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let surfaceId: string = '';
 videoPlayer.setDisplaySurface(surfaceId, (err: BusinessError) => {
@@ -4629,7 +4629,7 @@ setDisplaySurface(surfaceId: string): Promise\<void>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let surfaceId: string = '';
 videoPlayer.setDisplaySurface(surfaceId).then(() => {
@@ -4659,7 +4659,7 @@ prepare(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 videoPlayer.prepare((err: BusinessError) => {
   if (err == null) {
@@ -4690,7 +4690,7 @@ prepare(): Promise\<void>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 videoPlayer.prepare().then(() => {
   console.info('prepare success');
@@ -4719,7 +4719,7 @@ play(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 videoPlayer.play((err: BusinessError) => {
   if (err == null) {
@@ -4750,7 +4750,7 @@ play(): Promise\<void>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 videoPlayer.play().then(() => {
   console.info('play success');
@@ -4779,7 +4779,7 @@ pause(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 videoPlayer.pause((err: BusinessError) => {
   if (err == null) {
@@ -4810,7 +4810,7 @@ pause(): Promise\<void>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 videoPlayer.pause().then(() => {
   console.info('pause success');
@@ -4839,7 +4839,7 @@ stop(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 videoPlayer.stop((err: BusinessError) => {
   if (err == null) {
@@ -4870,7 +4870,7 @@ stop(): Promise\<void>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 videoPlayer.stop().then(() => {
   console.info('stop success');
@@ -4899,7 +4899,7 @@ reset(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 videoPlayer.reset((err: BusinessError) => {
   if (err == null) {
@@ -4930,7 +4930,7 @@ reset(): Promise\<void>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 videoPlayer.reset().then(() => {
   console.info('reset success');
@@ -4960,7 +4960,7 @@ seek(timeMs: number, callback: AsyncCallback\<number>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let videoPlayer: media.VideoPlayer;
 media.createVideoPlayer((error: BusinessError, video: media.VideoPlayer) => {
@@ -5004,7 +5004,7 @@ seek(timeMs: number, mode:SeekMode, callback: AsyncCallback\<number>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let videoPlayer: media.VideoPlayer | null = null;
 media.createVideoPlayer((error: BusinessError, video: media.VideoPlayer) => {
@@ -5054,7 +5054,7 @@ seek(timeMs: number, mode?:SeekMode): Promise\<number>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let videoPlayer: media.VideoPlayer | null = null;
 media.createVideoPlayer((error: BusinessError, video: media.VideoPlayer) => {
@@ -5102,7 +5102,7 @@ setVolume(vol: number, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let vol: number = 0.5;
 videoPlayer.setVolume(vol, (err: BusinessError) => {
@@ -5140,7 +5140,7 @@ setVolume(vol: number): Promise\<void>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let vol: number = 0.5;
 videoPlayer.setVolume(vol).then(() => {
@@ -5170,7 +5170,7 @@ release(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 videoPlayer.release((err: BusinessError) => {
   if (err == null) {
@@ -5201,7 +5201,7 @@ release(): Promise\<void>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 videoPlayer.release().then(() => {
   console.info('release success');
@@ -5230,7 +5230,7 @@ getTrackDescription(callback: AsyncCallback\<Array\<MediaDescription>>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 videoPlayer.getTrackDescription((error: BusinessError, arrList: Array<media.MediaDescription>) => {
   if ((arrList) != null) {
@@ -5261,7 +5261,7 @@ getTrackDescription(): Promise\<Array\<MediaDescription>>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 videoPlayer.getTrackDescription().then((arrList: Array<media.MediaDescription>) => {
   if (arrList != null) {
@@ -5295,7 +5295,7 @@ setSpeed(speed: number, callback: AsyncCallback\<number>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let videoPlayer: media.VideoPlayer | null = null;
 media.createVideoPlayer((error: BusinessError, video: media.VideoPlayer) => {
@@ -5344,7 +5344,7 @@ setSpeed(speed: number): Promise\<number>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let videoPlayer: media.VideoPlayer | null = null;
 media.createVideoPlayer((error: BusinessError, video: media.VideoPlayer) => {
@@ -5491,7 +5491,7 @@ on(type: 'audioInterrupt', callback: (info: audio.InterruptEvent) => void): void
 **示例：**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
+import { audio } from '@kit.AudioKit';
 
 videoPlayer.on('audioInterrupt', (info: audio.InterruptEvent) => {
   console.info('audioInterrupt success,and InterruptEvent info is:' + info)
@@ -5519,7 +5519,7 @@ on(type: 'error', callback: ErrorCallback): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 videoPlayer.on('error', (error: BusinessError) => {  // 设置'error'事件回调
   console.error(`video error called, error: ${error}`);
@@ -5733,7 +5733,7 @@ on(type: 'prepare' | 'start' | 'pause' | 'resume' | 'stop' | 'release' | 'reset'
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let audioRecorder: media.AudioRecorder = media.createAudioRecorder();  // 创建一个音频录制实例
 let audioRecorderConfig: media.AudioRecorderConfig = {
@@ -5794,7 +5794,7 @@ on(type: 'error', callback: ErrorCallback): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let audioRecorderConfig: media.AudioRecorderConfig = {
   audioEncoder : media.AudioEncoder.AAC_LC,
@@ -5892,7 +5892,7 @@ createAVImageGenerator(callback: AsyncCallback\<AVImageGenerator>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let avImageGenerator: media.AVImageGenerator;
 media.createAVImageGenerator((error: BusinessError, generator: media.AVImageGenerator) => {
@@ -5930,7 +5930,7 @@ createAVImageGenerator(): Promise\<AVImageGenerator>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let avImageGenerator: media.AVImageGenerator;
 media.createAVImageGenerator().then((generator: media.AVImageGenerator) => {
@@ -5988,9 +5988,9 @@ fetchFrameByTime(timeUs: number, options: AVImageQueryOptions, param: PixelMapPa
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import media from '@ohos.multimedia.media';
-import image from '@ohos.multimedia.image';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
+import { image } from '@kit.ImageKit';
 
 let avImageGenerator: media.AVImageGenerator | undefined = undefined;
 let pixel_map : image.PixelMap | undefined = undefined;
@@ -6057,9 +6057,9 @@ fetchFrameByTime(timeUs: number, options: AVImageQueryOptions, param: PixelMapPa
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import media from '@ohos.multimedia.media';
-import image from '@ohos.multimedia.image';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
+import { image } from '@kit.ImageKit';
 
 let avImageGenerator: media.AVImageGenerator | undefined = undefined;
 let pixel_map : image.PixelMap | undefined = undefined;
@@ -6115,8 +6115,8 @@ release(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import media from '@ohos.multimedia.media';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
 
 let avImageGenerator: media.AVImageGenerator | undefined = undefined;
 
@@ -6163,8 +6163,8 @@ release(): Promise\<void>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import media from '@ohos.multimedia.media';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
 
 let avImageGenerator: media.AVImageGenerator | undefined = undefined;
 
@@ -6221,7 +6221,7 @@ createMediaSourceWithUrl(url: string, headers?: Record\<string, string>): MediaS
 
 | 参数名   | 类型     | 必填 | 说明                 |
 | -------- | -------- | ---- | -------------------- |
-| url | string | 是   | 流媒体预下载媒体来源url，支持的流媒体格式：HLS、HTTP-FLV、Dash、Https。  |
+| url | string | 是   | - 流媒体预下载媒体来源url，支持的流媒体格式：HLS、HTTP-FLV、Dash、Https。<br> - 本地m3u8的fd路径。  |
 | header | Record\<string, string> | 否   | 支持流媒体预下载HttpHeader自定义。 |
 
 **返回值：**
@@ -6239,13 +6239,36 @@ createMediaSourceWithUrl(url: string, headers?: Record\<string, string>): MediaS
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 5400101  | No memory. Return by callback. |
 
-**示例：**
+**示例1：**
 
 ```ts
-import media from '@ohos.multimedia.media'
+import { media } from '@kit.MediaKit';
 
 let header: Record<string, string> = {"User-Agent" : "User-Agent-Value"};
 let mediaSource : media.MediaSource = media.createMediaSourceWithUrl("http://xxx",  header);
+```
+
+**示例2：**
+
+```ts
+import { media } from '@kit.MediaKit';
+import { resourceManager } from '@kit.LocalizationKit';
+
+private mgr: resourceManager.ResourceManager | null = null;
+mrg = ctx.resourceManager;
+this.fileDescriptor = await this.mgr.getRawFd("xxx.m3u8");
+
+let fd:string = this.fileDescriptor.fd.toString();
+let offset:string = this.fileDescriptor.offset.toString();
+let length:string = this.fileDescriptor.length.toString();
+let fdUrl:string = "fd://" + "?offset=" + offset + "&size=" + length;
+
+let header: Record<string, string> = {"User-Agent" : "User-Agent-Value"};
+let mediaSource : media.MediaSource = media.createMediaSourceWithUrl(fdUrl,  header);
+
+let mimeType = media.AVMimeTypes = media.AVMimeTypes.APPLICATION_M3U8;
+mediaSource.setMimeType(mimeType);
+
 ```
 
 ## MediaSource<sup>12+</sup>
@@ -6253,6 +6276,30 @@ let mediaSource : media.MediaSource = media.createMediaSourceWithUrl("http://xxx
 媒体数据信息。来源自[createMediaSourceWithUrl](#mediacreatemediasourcewithurl12)。
 
 **系统能力：** SystemCapability.Multimedia.Media.Core
+
+### setMimeType<sup>12+</sup>
+
+setMimeType(mimeType: AVMimeTypes): void
+
+设置媒体MIME类型，以帮助播放器处理扩展的媒体源。
+
+**参数：**
+
+| 参数名   | 类型     | 必填 | 说明                 |
+| -------- | -------- | ---- | -------------------- |
+| mimeType | [AVMimeTypes](#mediasource12) | 是   | 媒体MIME类型。 |
+
+## AVMimeTypes<sup>12+</sup>
+
+媒体MIME类型，通过[setMimeType](#setmimetype12)设置。
+
+**系统能力：** SystemCapability.Multimedia.Media.Core
+
+
+| 名称       | 值   | 说明                                                         |
+| ---------- | ---- | ------------------------------------------------------------ |
+| APPLICATION       | application/m3u8    | 表示m3u8本地文件。 |
+
 
 ## PlaybackStrategy<sup>12+</sup>
 
@@ -6358,7 +6405,7 @@ let avCaptureConfig: media.AVScreenCaptureRecordConfig = {
 
 avScreenCaptureRecorder.init(avCaptureConfig).then(() => {
     console.info('avScreenCaptureRecorder init success');
-}).catch((err: BussinessError) => {
+}).catch((err: BusinessError) => {
     console.info('avScreenCaptureRecorder init failed, error: ' + err.message);
 })
 ```
@@ -6389,7 +6436,7 @@ startRecording(): Promise\<void>
 ```ts
 avScreenCaptureRecorder.startRecording().then(() => {
     console.info('avScreenCaptureRecorder start success');
-}).catch((err: BussinessError) => {
+}).catch((err: BusinessError) => {
     console.info('avScreenCaptureRecorder start failed, error: ' + err.message);
 })
 ```
@@ -6420,7 +6467,7 @@ stopRecording(): Promise\<void>
 ```ts
 avScreenCaptureRecorder.stopRecording().then(() => {
     console.info('avScreenCaptureRecorder stop success');
-}).catch((err: BussinessError) => {
+}).catch((err: BusinessError) => {
     console.info('avScreenCaptureRecorder stop failed, error: ' + err.message);
 })
 ```
@@ -6457,7 +6504,7 @@ setMicEnabled(enable: boolean): Promise\<void>
 ```ts
 avScreenCaptureRecorder.setMicEnabled(true).then(() => {
     console.info('avScreenCaptureRecorder setMicEnabled success');
-}).catch((err: BussinessError) => {
+}).catch((err: BusinessError) => {
     console.info('avScreenCaptureRecorder setMicEnabled failed, error: ' + err.message);
 })
 ```
@@ -6488,7 +6535,7 @@ release(): Promise\<void>
 ```ts
 avScreenCaptureRecorder.release().then(() => {
     console.info('avScreenCaptureRecorder release success');
-}).catch((err: BussinessError) => {
+}).catch((err: BusinessError) => {
     console.info('avScreenCaptureRecorder release failed, error: ' + err.message);
 })
 ```

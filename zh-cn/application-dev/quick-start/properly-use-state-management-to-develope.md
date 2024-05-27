@@ -600,7 +600,7 @@ struct Page {
 - 经常被同时使用的属性可以被拆分进同一个新类，即示例中的NeedRenderScale、NeedRenderTranslate、NeedRenderPos、NeedRenderSize。适用于属性经常成对出现，或者被作用在同一个样式上的情况，例如.translate、.position、.scale等（这些样式通常会接收一个对象作为参数）。
 - 可能被用在多个组件上或相对较独立的属性应该被单独拆分进一个新类，即示例中的NeedRenderAlpha，NeedRenderBorderRadius、NeedRenderFontSize。适用于一个属性作用在多个组件上或者与其他属性没有联系的情况，例如.opacity、.borderRadius等（这些样式通常相对独立）。
 
-属性拆分的原理和属性合并类似，都是在嵌套场景下，状态管理无法观测二层以上的属性变化，所以不会因为二层的数据变化导致一层关联的其他属性被刷新，同时利用@Observed和@ObjectLink在父子节点间传递二层的对象，从而在子组件中正常的观测二层的数据变化，实现精准刷新。关于属性拆分的详细内容，可以查看[精准控制组件的更新范围](../performance/precisely-control-render-scope.md)。
+属性拆分的原理和属性合并类似，都是在嵌套场景下，状态管理无法观测二层以上的属性变化，所以不会因为二层的数据变化导致一层关联的其他属性被刷新，同时利用@Observed和@ObjectLink在父子节点间传递二层的对象，从而在子组件中正常的观测二层的数据变化，实现精准刷新。<!--Del-->关于属性拆分的详细内容，可以查看[精准控制组件的更新范围](../performance/precisely-control-render-scope.md)。<!--DelEnd-->
 
 使用@Track装饰器则无需做属性拆分，也能达到同样控制组件更新范围的作用。
 
@@ -1100,7 +1100,7 @@ ChildList类型在定义的时候使用了@Observed进行装饰，所以用new�
 
 ### 减少使用LazyForEach的重建机制刷新UI
 
-开发过程中通常会将LazyForEach和状态变量结合起来使用。
+开发过程中通常会将[LazyForEach](arkts-rendering-control-lazyforeach.md)和状态变量结合起来使用。
 
 ```typescript
 class BasicDataSource implements IDataSource {
@@ -1387,7 +1387,7 @@ struct ChildComponent {
 
 ### 在ForEach中使用自定义组件搭配对象数组
 
-开发过程中经常会使用对象数组和ForEach结合起来使用，但是写法不当的话会出现UI不刷新的情况。
+开发过程中经常会使用对象数组和[ForEach](arkts-rendering-control-foreach.md)结合起来使用，但是写法不当的话会出现UI不刷新的情况。
 
 ```typescript
 @Observed

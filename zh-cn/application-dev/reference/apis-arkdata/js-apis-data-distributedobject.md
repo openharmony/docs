@@ -45,7 +45,7 @@ create(context: Context, source: object): DataObject
 **示例：**
 
 FA模型示例：
-
+<!--code_no_check_fa-->
 ```ts
 // 导入模块
 import distributedObject from '@ohos.data.distributedDataObject';

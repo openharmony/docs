@@ -10,7 +10,7 @@
 ## 导入模块
 
 ```ts
-import media from '@ohos.multimedia.media';
+import { media } from '@kit.MediaKit';
 ```
 
 ## media.createVideoRecorder<sup>9+</sup>
@@ -41,7 +41,7 @@ createVideoRecorder(callback: AsyncCallback\<VideoRecorder>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let videoRecorder: media.VideoRecorder;
 media.createVideoRecorder((error: BusinessError, video: media.VideoRecorder) => {
@@ -82,7 +82,7 @@ createVideoRecorder(): Promise\<VideoRecorder>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let videoRecorder: media.VideoRecorder;
 media.createVideoRecorder().then((video: media.VideoRecorder) => {
@@ -126,7 +126,7 @@ reportAVScreenCaptureUserChoice(sessionId: number, choice: string): Promise\<voi
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let sessionId: number = 0; // 替换成拉起此进程的sessionId
 let choice: string = 'false'; // 替换成用户的选择内容
@@ -224,7 +224,7 @@ prepare(config: VideoRecorderConfig, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // 配置参数以实际硬件设备支持的范围为准
 let videoProfile: media.VideoRecorderProfile = {
@@ -297,7 +297,7 @@ prepare(config: VideoRecorderConfig): Promise\<void>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // 配置参数以实际硬件设备支持的范围为准
 let videoProfile: media.VideoRecorderProfile = {
@@ -363,7 +363,7 @@ getInputSurface(callback: AsyncCallback\<string>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // asyncallback
 let surfaceID: string; // 传递给外界的surfaceID
@@ -410,7 +410,7 @@ getInputSurface(): Promise\<string>;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // promise
 let surfaceID: string; // 传递给外界的surfaceID
@@ -453,7 +453,7 @@ start(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // asyncallback
 videoRecorder.start((err: BusinessError) => {
@@ -496,7 +496,7 @@ start(): Promise\<void>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // promise
 videoRecorder.start().then(() => {
@@ -537,7 +537,7 @@ pause(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // asyncallback
 videoRecorder.pause((err: BusinessError) => {
@@ -580,7 +580,7 @@ pause(): Promise\<void>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // promise
 videoRecorder.pause().then(() => {
@@ -619,7 +619,7 @@ resume(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // asyncallback
 videoRecorder.resume((err: BusinessError) => {
@@ -660,7 +660,7 @@ resume(): Promise\<void>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // promise
 videoRecorder.resume().then(() => {
@@ -701,7 +701,7 @@ stop(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // asyncallback
 videoRecorder.stop((err: BusinessError) => {
@@ -744,7 +744,7 @@ stop(): Promise\<void>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // promise
 videoRecorder.stop().then(() => {
@@ -781,7 +781,7 @@ release(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // asyncallback
 videoRecorder.release((err: BusinessError) => {
@@ -820,7 +820,7 @@ release(): Promise\<void>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // promise
 videoRecorder.release().then(() => {
@@ -860,7 +860,7 @@ reset(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // asyncallback
 videoRecorder.reset((err: BusinessError) => {
@@ -902,7 +902,7 @@ reset(): Promise\<void>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // promise
 videoRecorder.reset().then(() => {
@@ -941,7 +941,7 @@ on(type: 'error', callback: ErrorCallback): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // 当获取videoRecordState接口出错时通过此订阅事件上报
 videoRecorder.on('error', (error: BusinessError) => { // 设置'error'事件回调

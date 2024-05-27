@@ -6,11 +6,31 @@
 >
 > 从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
-## clip
+## clip<sup>12+</sup>
+
+clip(value: boolean)
+
+是否对当前组件进行裁剪。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                                         | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | boolean | 是   | 参数为boolean类型，设置是否按照父容器边缘轮廓进行裁剪。<br/>默认值：false |
+
+## clip<sup>(deprecated)</sup>
 
 clip(value: boolean | CircleAttribute | EllipseAttribute | PathAttribute | RectAttribute)
 
 按指定的形状对当前组件进行裁剪。
+
+> **说明：**  
+>
+> 从API version 7开始支持，从API version 17开始废弃。建议使用[clip](#clip12)和[clipShape](#clipshape12)替代。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -22,11 +42,47 @@ clip(value: boolean | CircleAttribute | EllipseAttribute | PathAttribute | RectA
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | value  | boolean&nbsp;\|&nbsp;[CircleAttribute](ts-drawing-components-circle.md)&nbsp;\|&nbsp;[EllipseAttribute](ts-drawing-components-ellipse.md)&nbsp;\|&nbsp;[PathAttribute](ts-drawing-components-path.md)&nbsp;\|&nbsp;[RectAttribute](ts-drawing-components-rect.md) | 是   | 参数为相应类型的组件，按指定的形状对当前组件进行裁剪；参数为boolean类型时，设置是否按照父容器边缘轮廓进行裁剪。<br/>默认值：false |
 
-## mask
+## clipShape<sup>12+</sup>
+
+clipShape(value: CircleShape | EllipseShape | PathShape | RectShape)
+
+按指定的形状对当前组件进行裁剪。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                                         | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [CircleShape](../js-apis-arkui-shape.md#circleshape)&nbsp;\|&nbsp;[EllipseShape](../js-apis-arkui-shape.md#ellipseshape)&nbsp;\|&nbsp;[PathShape](../js-apis-arkui-shape.md#pathshape)&nbsp;\|&nbsp;[RectShape](../js-apis-arkui-shape.md#rectshape) | 是   | 参数为相应类型的组件，按指定的形状对当前组件进行裁剪。|
+
+## mask<sup>12+</sup>
+
+mask(value: ProgressMask)
+
+为组件上添加指定形状的遮罩。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                                         | 必填 | 说明                             |
+| ------ | ------------------------------------------------------------ | ---- | -------------------------------- |
+| value  | [ProgressMask](#progressmask10) | 是   | 在当前组件上加上可动态设置进度、最大值和颜色的遮罩。 |
+
+## mask<sup>(deprecated)</sup>
 
 mask(value: CircleAttribute | EllipseAttribute | PathAttribute | RectAttribute | ProgressMask)
 
 为组件上添加指定形状的遮罩。
+
+> **说明：**  
+>
+> 从API version 7开始支持，从API version 17开始废弃。建议使用[mask](#mask12)和[maskShape](#maskshape12)替代。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -37,6 +93,22 @@ mask(value: CircleAttribute | EllipseAttribute | PathAttribute | RectAttribute |
 | 参数名 | 类型                                                         | 必填 | 说明                             |
 | ------ | ------------------------------------------------------------ | ---- | -------------------------------- |
 | value  | [CircleAttribute](ts-drawing-components-circle.md)&nbsp;\|&nbsp;[EllipseAttribute](ts-drawing-components-ellipse.md)&nbsp;\|&nbsp;[PathAttribute](ts-drawing-components-path.md)&nbsp;\|&nbsp;[RectAttribute](ts-drawing-components-rect.md) \|&nbsp;[ProgressMask](#progressmask10)<sup>10+</sup> | 是   | 在当前组件上加上指定形状的遮罩。 |
+
+## maskShape<sup>12+</sup>
+
+mask(value: CircleShape | EllipseShape | PathShape | RectShape)
+
+为组件上添加指定形状的遮罩。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                                         | 必填 | 说明                             |
+| ------ | ------------------------------------------------------------ | ---- | -------------------------------- |
+| value  | [CircleShape](../js-apis-arkui-shape.md#circleshape)&nbsp;\|&nbsp;[EllipseShape](../js-apis-arkui-shape.md#ellipseshape)&nbsp;\|&nbsp;[PathShape](../js-apis-arkui-shape.md#pathshape)&nbsp;\|&nbsp;[RectShape](../js-apis-arkui-shape.md#rectshape) | 是   | 在当前组件上加上指定形状的遮罩。 |
 
 ## ProgressMask<sup>10+</sup>
 
@@ -215,3 +287,40 @@ struct ProgressMaskExample {
 ```
 
 ![progressMask](figures/progressMask.gif)
+
+
+### 示例3
+
+```ts
+import { CircleShape, EllipseShape, PathShape, RectShape } from "@ohos.arkui.shape"
+
+@Entry
+@Component
+struct ShapeExample {
+  build() {
+    Column({ space: 15 }) {
+      Text('CircleShape, position').fontSize(20).width('75%').fontColor('#DCDCDC')
+      Image($r('app.media.startIcon'))
+        .clipShape(new CircleShape({ width: '280px', height: '280px' }).position({ x: '20px', y: '20px' }))
+        .width('500px').height('280px')
+
+      Text('EllipseShape, offset').fontSize(20).width('75%').fontColor('#DCDCDC')
+      Image($r('app.media.startIcon'))
+        .clipShape(new EllipseShape({ width: '350px', height: '280px' }).offset({ x: '10px', y: '10px' }))
+        .width('500px').height('280px')
+
+      Text('PathShape, fill').fontSize(20).width('75%').fontColor('#DCDCDC')
+      Image($r('app.media.startIcon'))
+        .maskShape(new PathShape().commands('M100 0 L200 240 L0 240 Z').fill(Color.Red))
+        .width('500px').height('280px')
+    
+      Text('RectShape, width, height, fill').fontSize(20).width('75%').fontColor('#DCDCDC')
+      Image($r('app.media.startIcon'))
+        .maskShape(new RectShape().width('350px').height('280px').fill(Color.Red))
+        .width('500px').height('280px')
+    }
+    .width('100%')
+    .margin({ top: 15 })
+  }
+}
+```

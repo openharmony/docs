@@ -22,7 +22,7 @@ To implement a driver, create a DriverExtensionAbility in the DevEco Studio proj
 3. Open the **DriverExtAbility.ets** file, import the [RPC module](../../reference/apis-ipc-kit/js-apis-rpc.md), and overload the **onRemoteMessageRequest()** method to receive messages from the application and return the processing result to the application. **REQUEST_VALUE** is used to verify the service request code sent by the application.
    
    ```ts
-   import rpc from '@ohos.rpc';
+   import { rpc } from '@kit.IPCKit';
    
    const REQUEST_CODE = 99;
    
@@ -52,9 +52,9 @@ To implement a driver, create a DriverExtensionAbility in the DevEco Studio proj
 4. In the **DriverExtAbility.ets** file, import the dependency package [DriverExtensionAbility](../../reference/apis-driverdevelopment-kit/js-apis-app-ability-driverExtensionAbility.md), which provides the **onInit()**, **onRelease()**, **onConnect()**, and **onDisconnect()** lifecycle callbacks. Then, customize a class to inherit from [DriverExtensionAbility](../../reference/apis-driverdevelopment-kit/js-apis-app-ability-driverExtensionAbility.md) and override the lifecycle callbacks as required.
    
    ```ts
-   import DriverExtensionAbility from '@ohos.app.ability.DriverExtensionAbility';
-   import Want from '@ohos.app.ability.Want';
-   import rpc from '@ohos.rpc';
+   import { DriverExtensionAbility } from '@kit.DriverDevelopmentKit';
+   import { Want } from '@kit.AbilityKit';
+   import { rpc } from '@kit.IPCKit';
    
    const TAG: string = '[Example].[Entry].[DriverExtAbility]';
    const REQUEST_CODE = 99;

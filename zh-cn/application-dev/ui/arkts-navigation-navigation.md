@@ -1,8 +1,10 @@
-# Navigation
+# 组件导航 (Navigation)
 
-[Navigation](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md)组件一般作为页面的根容器，包括单页面、分栏和自适应三种显示模式。Navigation组件适用于模块内页面切换，[一次开发，多端部署](../key-features/multi-device-app-dev/introduction.md)场景。通过组件级路由能力实现更加自然流畅的转场体验，并提供多种标题栏样式来呈现更好的标题和内容联动效果。[一次开发，多端部署](../key-features/multi-device-app-dev/introduction.md)场景下，Navigation组件能够自动适配窗口显示大小，在窗口较大的场景下自动切换分栏展示效果。
+[Navigation](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md)是路由容器组件，一般作为首页的根容器，包括单栏(Stack)、分栏(Split)和自适应(Auto)三种显示模式。Navigation组件适用于模块内和跨模块的路由切换，[一次开发，多端部署](../key-features/multi-device-app-dev/introduction.md)场景。通过组件级路由能力实现更加自然流畅的转场体验，并提供多种标题栏样式来呈现更好的标题和内容联动效果。在不同尺寸的设备上，Navigation组件能够自适应显示大小，自动切换分栏展示效果。
 
-推荐使用Navigation路由栈[NavPathStack](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#navpathstack10)控制页面跳转，当前NavRouter作为Navigation子组件进行页面跳转的方式不做推荐。Navigation跳转子组件为[NavDestination](../reference/apis-arkui/arkui-ts/ts-basic-components-navdestination.md),NavDestination组件单独使用则不具备页面跳转能力。
+Navigation组件主要包含​导航页(NavBar)和子页(NavDestination)。导航页由标题栏(Titlebar，包含菜单栏menu)、内容区(Navigation子组件)和工具栏(Toolbar)组成，其中导航页可以通过[hideNavBar](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#hidenavbar9)属性进行隐藏，导航页不存在页面栈中，导航页和子页，以及子页之间可以通过路由操作进行切换。
+
+在API Version 9上，需要配合[NavRouter](../reference/apis-arkui/arkui-ts/ts-basic-components-navrouter.md)组件实现页面路由，从API Version 10开始，推荐使用[NavPathStack](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#navpathstack10)实现页面路由。
 
 
 ## 设置页面显示模式
@@ -11,7 +13,7 @@ Navigation组件通过mode属性设置页面的显示模式。
 
 - 自适应模式
 
-  Navigation组件默认为自适应模式，此时mode属性为NavigationMode.Auto。自适应模式下，当设备宽度大于520vp时，Navigation组件采用分栏模式，反之采用单页面模式。
+  Navigation组件默认为自适应模式，此时mode属性为NavigationMode.Auto。自适应模式下，当页面宽度大于等于一定阈值( API version 9及以前：520vp，API version 10及以后：600vp )时，Navigation组件采用分栏模式，反之采用单栏模式。
 
 
   ```
@@ -112,6 +114,7 @@ Navigation组件通过mode属性设置页面的显示模式。
 标题栏在界面顶部，用于呈现界面名称和操作入口，Navigation组件通过titleMode属性设置标题栏模式。
 
 - Mini模式
+
   普通型标题栏，用于一级页面不需要突出标题的场景。
 
   **图3** Mini模式标题栏  
@@ -128,6 +131,7 @@ Navigation组件通过mode属性设置页面的显示模式。
 
 
 - Full模式
+
   强调型标题栏，用于一级页面需要突出标题的场景。
 
     **图4** Full模式标题栏  
@@ -207,264 +211,539 @@ Navigation() {
 .toolbarConfiguration(TooBar)
 ```
 
-## 设置子页面的类型
+## 路由操作
 
-NavDestination作为子页面的根容器，用于显示Navigation的内容区，其mode属性可以设置子页面的类型。
+Navigation路由相关的操作都是基于页面栈[NavPathStack](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#navpathstack10)提供的方法进行，每个Navigation都需要创建并传入一个NavPathStack对象，用于管理页面。主要涉及页面跳转、页面返回、页面替换、页面删除、参数获取、路由拦截等功能。
+
+从API version 12开始，页面栈允许被继承。开发者可以在派生类中自定义属性和方法，也可以重写父类的方法。派生类对象可以替代基类NavPathStack对象使用。具体示例代码参见：[页面栈继承示例代码](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#示例10)。
+
+```ts
+@Entry
+@Component
+struct Index {
+  // 创建一个页面栈对象并传入Navigation
+  pageStack: NavPathStack = new NavPathStack()
+
+  build() {
+    Navigation(this.pageStack) {
+    }
+    .title('Main')
+  }
+}
+```
+
+### 页面跳转
+
+NavPathStack通过Push相关的接口去实现页面跳转的功能，主要分为以下三类:
+
+1. 普通跳转，通过页面的name去跳转，并可以携带param。
+
+    ```ts
+    this.pageStack.pushPath({ name: "PageOne", param: "PageOne Param" })
+    this.pageStack.pushPathByName("PageOne", "PageOne Param")
+    ```
+
+2. 带返回回调的跳转，跳转时添加onPop回调，能在页面出栈时获取返回信息，并进行处理。
+
+    ```ts
+    this.pageStack.pushPathByName('PageOne', "PageOne Param", (popInfo) => {
+    console.log('Pop page name is: ' + popInfo.info.name + ', result: ' + JSON.stringify(popInfo.result))
+    });
+    ```
+
+3. 带错误码的跳转，跳转结束会触发异步回调，返回错误码信息。
+
+    ```ts
+    this.pageStack.pushDestinationByName('PageOne', "PageOne Param")
+    .catch((error: BusinessError) => {
+        console.error(`Push destination failed, error code = ${error.code}, error.message = ${error.message}.`);
+    }).then(() => {
+    console.error('Push destination succeed.');
+    });
+    ```
+
+### 页面返回
+
+NavPathStack通过Pop相关接口去实现页面返回功能。
+
+```ts
+// 返回到上一页
+this.pageStack.pop()
+// 返回到上一个PageOne页面
+this.pageStack.popToName("PageOne")
+// 返回到索引为1的页面
+this.pageStack.popToIndex(1)
+// 返回到根首页（清除栈中所有页面）
+this.pageStack.clear()
+```
+
+### 页面替换
+
+NavPathStack通过Replace相关接口去实现页面替换功能。
+
+```ts
+// 将栈顶页面替换为PageOne
+this.pageStack.replacePath({ name: "PageOne", param: "PageOne Param" })
+this.pageStack.replacePathByName("PageOne", "PageOne Param")
+```
+
+### 页面删除
+
+NavPathStack通过Remove相关接口去实现删除页面栈中特定页面的功能。
+
+```ts
+// 删除栈中name为PageOne的所有页面
+this.pageStack.removeByName("PageOne")
+// 删除指定索引的页面
+this.pageStack.removeByIndexes([1,3,5])
+```
+
+### 参数获取
+
+NavPathStack通过Get相关接口去获取页面的一些参数。
+
+```ts
+// 获取栈中所有页面name集合
+this.pageStack.getAllPathName()
+// 获取索引为1的页面参数
+this.pageStack.getParamByIndex(1)
+// 获取PageOne页面的参数
+this.pageStack.getParamByName("PageOne")
+// 获取PageOne页面的索引集合
+this.pageStack.getIndexByName("PageOne")
+```
+
+### 路由拦截
+
+NavPathStack提供了[setInterception](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#setinterception12)方法，用于设置Navigation页面跳转拦截回调。该方法需要传入一个NavigationInterception对象，该对象包含三个回调函数：
+
+| 名称       | 描述                                                 |
+| ------------ | ------------------------------------------------------ |
+| willShow   | 页面跳转前回调，允许操作栈，在当前跳转生效。       |
+| didShow    | 页面跳转后回调，在该回调中操作栈会在下一次跳转生效。 |
+| modeChange | Navigation单双栏显示状态发生变更时触发该回调。  |
+
+> **说明：**
+>
+> 无论是哪个回调，在进入回调时页面栈都已经发生了变化。
+
+开发者可以在willShow回调中通过修改路由栈来实现路由拦截重定向的能力。
+
+```ts
+this.pageStack.setInterception({
+  willShow: (from: NavDestinationContext | "navBar", to: NavDestinationContext | "navBar",
+    operation: NavigationOperation, animated: boolean) => {
+    if (typeof to === "string") {
+      console.log("target page is navigation home page.");
+      return;
+    }
+    // 将跳转到PageTwo的路由重定向到PageOne
+    let target: NavDestinationContext = to as NavDestinationContext;
+    if (target.pathInfo.name === 'PageTwo') {
+      target.pathStack.pop();
+      target.pathStack.pushPathByName('PageOne', null);
+    }
+  }
+})
+```
+
+## 子页面
+
+[NavDestination](../reference/apis-arkui/arkui-ts/ts-basic-components-navdestination.md)是Navigation子页面的根容器，用于承载子页面的一些特殊属性以及生命周期等。NavDestination可以设置独立的标题栏和菜单栏等属性，使用方法与Navigation相同。NavDestination也可以通过mode属性设置不同的显示类型，用于满足不同页面的诉求。
+
+### 页面显示类型
 
 - 标准类型
 
-  NavDestination组件默认为标准类型，此时mode属性为NavDestinationMode.STANDARD。标准类型NavDestination的生命周期跟随NavPathStack栈中标准Destination变化而改变。
+  NavDestination组件默认为标准类型，此时mode属性为NavDestinationMode.STANDARD。标准类型的NavDestination的生命周期跟随其在NavPathStack页面栈中的位置变化而改变。
 
 - 弹窗类型
-
-  **图8** 弹窗类型的页面示意图
-
-  ![dialog_navdes_1](figures/dialog_navdes_1.png)
-
-  将mode属性设置为NavDestinationMode.DIALOG，此时NavDestination组件是弹窗类型，整个组件透明。通过给组件添加背景等，实现想要的弹窗效果。
-
+  
+  NavDestination设置mode为NavDestinationMode.DIALOG弹窗类型，此时整个NavDestination默认透明显示。弹窗类型的NavDestination显示和消失时不会影响下层标准类型的NavDestination的显示和生命周期，两者可以同时显示。
+  
   ```ts
-  // Index.ets
-  @Component
-  struct Page01 {
-
-    @Consume('pageInfos') pageInfos: NavPathStack;
-
-    build() {
-      NavDestination() {
-        Button('push Page01')
-          .width('80%')
-          .onClick(() => {
-            this.pageInfos.pushPathByName('Page01', '');
-          })
-          .margin({top: 10, bottom: 10})
-        Button('push Dialog01')
-          .width('80%')
-          .onClick(() => {
-            this.pageInfos.pushPathByName('Dialog01', '');
-          })
-          .margin({top: 10, bottom: 10})
-      }
-      .title('Page01')
-    }
-  }
-
-  @Component
-  struct Dialog01 {
-
-    @Consume('pageInfos') pageInfos: NavPathStack;
-
-    build() {
-      NavDestination() {
-        Stack() {
-          Column()
-            .width('100%')
-            .height('100%')
-            .backgroundColor(Color.Gray)
-            .opacity(0.1)
-            .onClick(() => {
-              this.pageInfos.pop();
-            })
-          // Add controls for business processing
-          Column() {
-            Text('Dialog01')
-              .fontSize(30)
-              .fontWeight(2)
-            Button('push Page01')
-              .width('80%')
-              .onClick(() => {
-                this.pageInfos.pushPathByName('Page01', '');
-              })
-              .margin({top: 10, bottom: 10})
-            Button('push Dialog01')
-              .width('80%')
-              .onClick(() => {
-                this.pageInfos.pushPathByName('Dialog01', '');
-              })
-              .margin({top: 10, bottom: 10})
-            Button('pop')
-              .width('80%')
-              .onClick(() => {
-                this.pageInfos.pop();
-              })
-              .margin({top: 10, bottom: 10})
-          }
-          .padding(10)
-          .width(250)
-          .backgroundColor(Color.White)
-          .borderRadius(10)
-        }
-      }
-      .hideTitleBar(true)
-      // Set the mode property of this NavDestination to DIALOG
-      .mode(NavDestinationMode.DIALOG)
-    }
-  }
-
+  // Dialog NavDestination
   @Entry
   @Component
-  struct Index {
-    @Provide('pageInfos') pageInfos: NavPathStack = new NavPathStack()
-    isLogin: boolean = false;
+   struct Index {
+     @Provide('NavPathStack') pageStack: NavPathStack = new NavPathStack()
+  
+     @Builder
+     PagesMap(name: string) {
+       if (name == 'DialogPage') {
+         DialogPage()
+       }
+     }
+  
+     build() {
+       Navigation(this.pageStack) {
+         Button('Push DialogPage')
+           .margin(20)
+           .width('80%')
+           .onClick(() => {
+             this.pageStack.pushPathByName('DialogPage', '');
+           })
+       }
+       .mode(NavigationMode.Stack)
+       .title('Main')
+       .navDestination(this.PagesMap)
+     }
+   }
+  
+   @Component
+   export struct DialogPage {
+     @Consume('NavPathStack') pageStack: NavPathStack;
+  
+     build() {
+       NavDestination() {
+         Stack({ alignContent: Alignment.Center }) {
+           Column() {
+             Text("Dialog NavDestination")
+               .fontSize(20)
+               .margin({ bottom: 100 })
+             Button("Close").onClick(() => {
+               this.pageStack.pop()
+             }).width('30%')
+           }
+           .justifyContent(FlexAlign.Center)
+           .backgroundColor(Color.White)
+           .borderRadius(10)
+           .height('30%')
+           .width('80%')
+         }.height("100%").width('100%')
+       }
+       .backgroundColor('rgba(0,0,0,0.5)')
+       .hideTitleBar(true)
+       .mode(NavDestinationMode.DIALOG)
+     }
+   }
+  ```
+  ![dialog_navdestination](figures/dialog_navdestination.png)
 
-    @Builder
-    PagesMap(name: string) {
-      if (name == 'Page01') {
-        Page01()
-      } else if (name == 'Dialog01') {
-        Dialog01()
-      }
-    }
+### 页面生命周期
 
-    build() {
-      Navigation(this.pageInfos) {
-        Button('push Page01')
-          .width('80%')
-          .onClick(() => {
-            this.pageInfos.pushPathByName('Page01', '');
-          })
-      }
-      .mode(NavigationMode.Stack)
-      .titleMode(NavigationTitleMode.Mini)
-      .title('主页')
-      .navDestination(this.PagesMap)
-    }
-  }
+Navigation作为路由容器，其生命周期承载在NavDestination组件上，以组件事件的形式开放。
+
+其生命周期大致可分为三类，自定义组件生命周期、通用组件生命周期和自有生命周期（其中aboutToAppear和aboutToDisappear是[自定义组件的生命周期](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md)。如果NavDestination外层包含自定义组件时则存在；OnAppear和OnDisappear是组件的[通用生命周期](../reference/apis-arkui/arkui-ts/ts-universal-events-show-hide.md)，剩下的六个生命周期为NavDestination独有）。
+
+生命周期时序如下图所示：
+
+![navigation_lifecycle](figures/navigation_lifecycle.png)
+
+- **aboutToAppear**：在创建自定义组件后，执行其build()函数之前执行（NavDestination创建之前），允许在该方法中改变状态变量，更改将在后续执行build()函数中生效。
+- **onWillAppear**：NavDestination创建后，挂载到组件树之前执行，在该方法中更改状态变量会在当前帧显示生效。
+- **onAppear**：通用生命周期事件，NavDestination组件挂载到组件树时执行。
+- **onWillShow**：NavDestination组件布局显示之前执行，此时页面不可见（应用切换到前台不会触发）。
+- **onShown**：NavDestination组件布局显示之后执行，此时页面已完成布局。
+- **onWillHide**：NavDestination组件触发隐藏之前执行（应用切换到后台不会触发）。
+- **onHidden**：NavDestination组件触发隐藏后执行（非栈顶页面push进栈，栈顶页面pop出栈或应用切换到后台）。
+- **onWillAppear**：NavDestination组件即将销毁之前执行，如果有转场动画，会在动画前触发（栈顶页面pop出栈）。
+- **onDisappear**：通用生命周期事件，NavDestination组件从组件树上卸载销毁时执行。
+- **aboutToDisappear**：自定义组件析构销毁之前执行，不允许在该方法中改变状态变量。
+
+### 页面监听和查询
+
+为了方便组件跟页面解耦，在NavDestination子页面内部的自定义组件可以通过全局方法监听或查询到页面的一些状态信息。
+
+- 页面信息查询
+
+  自定义组件提供[queryNavDestinationInfo](../reference/apis-arkui/arkui-ts/ts-custom-component-api.md#querynavdestinationinfo)方法，可以在NavDestination内部查询到当前所属页面的信息，返回值为[NavDestinationInfo](../reference/apis-arkui/js-apis-arkui-observer.md#navdestinationinfo)，若查询不到则返回undefined。
+  
+  ```ts
+   import observer from '@ohos.arkui.observer';
+  
+   // NavDestination内的自定义组件
+   @Component
+   struct MyComponent {
+     navDesInfo: observer.NavDestinationInfo | undefined
+  
+     aboutToAppear(): void {
+       this.navDesInfo = this.queryNavDestinationInfo();
+     }
+  
+     build() {
+         Column() {
+           Text("所属页面Name: " + this.navDesInfo?.name)
+         }.width('100%').height('100%')
+     }
+   }
+  ```
+- 页面状态监听
+  
+  通过[@ohos.arkui.observer](../reference/apis-arkui/js-apis-arkui-observer.md#observeronnavdestinationupdate)提供的注册接口可以注册NavDestination生命周期变化的监听，使用方式如下：
+  
+  ```ts
+  observer.on('navDestinationUpdate', (info) => {
+       console.info('NavDestination state update', JSON.stringify(info));
+   });
+  ```
+  
+  也可以注册页面切换的状态回调，能在页面发生路由切换的时候拿到对应的页面信息[NavDestinationSwitchInfo](..//reference/apis-arkui/js-apis-arkui-observer.md#navdestinationswitchinfo12)，并且提供了UIAbilityContext和UIContext不同范围的监听：
+  
+  ```ts
+   // 在UIAbility中使用
+   import observer from '@ohos.arkui.observer';
+   import { UIContext } from '@ohos.arkui.UIContext';
+  
+   // callBackFunc 是开发者定义的监听回调函数
+   function callBackFunc(info: observer.NavDestinationSwitchInfo) {}
+   observer.on('navDestinationSwitch', this.context, callBackFunc);
+  
+   // 可以通过窗口的getUIContext()方法获取对应的UIContent
+   uiContext: UIContext | null = null;
+   observer.on('navDestinationSwitch', this.uiContext, callBackFunc);
   ```
 
-  ![dialog_navdes_2](figures/dialog_navdes_2.png)
+## 页面转场
 
-## 使用系统路由表
+Navigation默认提供了页面切换的转场动画，通过页面栈操作时，会触发不同的转场效果（Dialog类型的页面默认无转场动画），Navigation也提供了关闭系统转场、自定义转场以及共享元素转场的能力。
 
-针对通过Navigation的navDestination属性配置页面跳转的方式。跳转到其他模块(hsp/har)的页面中，首先需要将跳转目标模块依赖项配置到主工程的module.json5文件中，然后将跳转目标页面通过import的方式导入。这种方式容易造成不同模块依赖耦合的问题，以及首页加载时间长的问题。使用系统路由表的方式，可以不用配置不同跳转模块间的依赖，并且当发生页面跳转时，未跳转页面不会加载，已经加载过的页面不会再次加载。
+### 关闭转场
+
+- 全局关闭
+  
+  Navigation通过NavPathStack中提供的[disableAnimation](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#disableanimation11)方法可以在当前Navigation中关闭或打开所有转场动画。
+  ```ts
+  pageStack: NavPathStack = new NavPathStack()
+  
+  aboutToAppear(): void {
+    this.pageStack.disableAnimation(true)
+  }
+  ```
+- 单次关闭
+  
+  NavPathStack中提供的Push、Pop、Replace等接口中可以设置animated参数，默认为true表示有转场动画，需要单次关闭转场动画可以置为false，不影响下次转场动画。
+  ```ts
+  pageStack: NavPathStack = new NavPathStack()
+  
+  this.pageStack.pushPath({ name: "PageOne" }, false)
+  this.pageStack.pop(false)
+  ```
+
+### 自定义转场
+
+Navigation通过[customNavContentTransition](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#customnavcontenttransition11)事件提供自定义转场动画的能力，通过如下三步可以定义一个自定义的转场动画。
+
+1. 构建一个自定义转场动画工具类CustomNavigationUtils，通过一个Map管理各个页面自定义动画对象CustomTransition，页面在创建的时候将自己的自定义转场动画对象注册进去，销毁的时候解注册；
+2. 实现一个转场协议对象[NavigationAnimatedTransition](..//reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#navigationanimatedtransition11)，其中timeout属性表示转场结束的超时时间，默认为1000ms，tansition属性为自定义的转场动画方法，开发者要在这里实现自己的转场动画逻辑，系统会在转场开始时调用该方法，onTransitionEnd为转场结束时的回调。
+3. 调用customNavContentTransition方法，返回实现的转场协议对象，如果返回undefined，则使用系统默认转场。
+
+具体示例代码可以参考[Navigation自定义转场示例](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#示例3)。
+
+### 共享元素转场
+
+NavDestination之间切换时可以通过[geometryTransition](../reference/apis-arkui/arkui-ts/ts-transition-animation-geometrytransition.md)实现共享元素转场。配置了共享元素转场的页面同时需要关闭系统默认的转场动画。
+1. 为需要实现共享元素转场的组件添加geometryTransition属性，id参数必须在两个NavDestination之间保持一致。
+
+    ```ts
+    // 起始页配置共享元素id
+    NavDestination() {
+    Column() {
+        ...
+        Image($r('app.media.startIcon'))
+        .geometryTransition('sharedId')
+        .width(100)
+        .height(100)
+    }
+    }
+    .title('FromPage')
+
+    // 目的页配置共享元素id
+    NavDestination() {
+    Column() {
+        ...
+        Image($r('app.media.startIcon'))
+        .geometryTransition('sharedId')
+        .width(200)
+        .height(200)
+    }
+    }
+    .title('ToPage')
+    ```
+
+2. 将页面路由的操作，放到animateTo动画闭包中，配置对应的动画参数以及关闭系统默认的转场。
+
+    ```ts
+    NavDestination() {
+    Column() {
+        Button('跳转目的页')
+        .width('80%')
+        .height(40)
+        .margin(20)
+        .onClick(() => {
+            animateTo({ duration: 1000 }, () => {
+            this.pageStack.pushPath({ name: 'ToPage' }, false)
+            })
+        })
+    }
+    }
+    .title('FromPage')
+    ```
+
+## 跨包动态路由
+
+通过静态import页面再进行路由跳转的方式会造成不同模块之间的依赖耦合，以及首页加载时间长等问题。
+
+动态路由设计的目的就是为了解决多个模块（HAR/HSP）之间可以复用相同的业务，各个业务模块之间解耦和路由功能扩展整合。
+
+**动态路由的优势：**
+
+- 路由定义除了跳转的URL以外，可以丰富的配置扩展信息，如横竖屏默认模式，是否需要鉴权等等，做路由跳转时统一处理。
+- 给每个路由页面设置一个名字，按照名称进行跳转而不是文件路径。
+- 页面的加载可以使用动态Import（按需加载），防止首个页面加载大量代码导致卡顿。
+
+### 系统路由表
+
+从API version 12开始，Navigation支持使用系统路由表的方式进行动态路由。各业务模块（HSP/HAR）中需要独立配置router_map.json文件，在触发路由跳转时，应用只需要通过NavPactStack提供的路由方法，传入需要路由的页面配置名称，此时系统会自动完成路由模块的动态加载、页面组件构建，并完成路由跳转，从而实现了开发层面的模块解耦。其主要步骤如下：
 
 1. 在跳转目标模块的配置文件module.json5添加路由表配置：
+   
+   ```json
+     {
+       "module" : {
+         "routerMap": "$profile:route_map"
+       }
+     }
+   ```
+2. 添加完路由配置文件地址后，需要在工程resources/base/profile中创建route_map.json文件。添加如下配置信息：
+   
+   ```json
+     {
+       "routerMap": [
+         {
+           "name": "PageOne",
+           "pageSourceFile": "src/main/ets/pages/PageOne.ets",
+           "buildFunction": "PageOneBuilder",
+           "data": {
+             "description" : "this is PageOne"
+           }
+         }
+       ]
+     }
+   ```
 
-    ```json
-      {
-        "module" : {
-          "routerMap": "$profile:route_map"
-        }
-      }
-    ```
-
-2. 添加完路由配置文件地址后，需要在工程resources/base/profile中创建route_map.json文件。文件内容如下所示：
-
-    ```json
-      {
-        "routerMap": [
-          {
-            "name": "PageOne",
-            "pageSourceFile": "src/main/ets/pages/PageOne.ets",
-            "buildFunction": "PageOneBuilder",
-            "data": {
-              "description" : "this is PageOne"
-            }
-          }
-        ]
-      }
-    ```
+    配置说明如下：
 
     | 配置项 | 说明 |
     |---|---|
     | name | 跳转页面名称。|
-    | pageSourceFile | 跳转目标页在包内的路径，相对src目录的相 对路径。|
+    | pageSourceFile | 跳转目标页在包内的路径，相对src目录的相对路径。|
     | buildFunction | 跳转目标页的入口函数名称，必须以@Builder修饰。 |
     | data | 应用自定义字段。可以通过配置项读取接口getConfigInRouteMap获取。|
 
-3. 在跳转目标页面中，需要配置入口Builder函数，函数名称需要和router_map.json配置文件中的buildFunction保持一致，否则在编译时会报错。通过pushPathByName(name, param)等接口进行页面跳转，入口Builder函数会将跳转参数name,param作为执行函数入参。
+3. 在跳转目标页面中，需要配置入口Builder函数，函数名称需要和router_map.json配置文件中的buildFunction保持一致，否则在编译时会报错。
+   
+   ```ts
+     // 跳转页面入口函数
+     @Builder
+     export function PageOneBuilder() {
+       PageOne()
+     }
+   
+     @Component
+     struct PageOne {
+       pathStack: NavPathStack = new NavPathStack()
+   
+       build() {
+         NavDestination() {
+         }
+         .title('PageOne')
+         .onReady((context: NavDestinationContext) => {
+            this.pathStack = context.pathStack
+         })
+       }
+     }
+   ```
+4. 通过pushPathByName等路由接口进行页面跳转。(注意：此时Navigation中可以不用配置navDestination属性)
+   
+   ```ts
+     @Entry
+     @Component
+     struct Index {
+       pageStack : NavPathStack = new NavPathStack();
+   
+       build() {
+         Navigation(this.pageStack){
+         }.onAppear(() => {
+           this.pageStack.pushPathByName("PageOne", null, false);
+         })
+         .hideNavBar(true)
+       }
+     }
+   ```
 
-    ```ts
-      // 跳转页面入口函数
-      @Builder
-      export function PageOneBuilder(name: string,param: Object) {
-        PageOne({name: string, pram: param})
-      }
+### 自定义路由表
 
-      @Component
-      struct PageOne {
-        name: string = "";
-        param: Object;
-        build() {
-          NavDestination() {}
-        }
-      }
-    ```
-
-应用通过调用pushDestinationByName等方式，可以获取跳转目标页面的错误信息。
-
-## 自定义路由表跳转
+除了上述系统路由表方式外，开发者还可以通过自定义路由表的方式来实现跨包动态路由。
 
 1. 定义配置路由加载项，在加载项中配置对应加载项的页面名称，模块名称和模块路径。
-
-    ```ts
-      class RouteItem {
-        name: string;
-        pageModule: string;
-        pagePath: string;
-      }
-    ```
-
+   
+   ```ts
+     class RouteItem {
+       name: string;
+       pageModule: string;
+       pagePath: string;
+     }
+   ```
 2. 也可以将上述配置项配置在资源文件中，通过资源管理[@ohos.resourceManager](../reference/apis-localization-kit/js-apis-resource-manager.md)将文件读取后解析出对应字段。
-
 3. 将路由表中的页面配置到Navigation定义页所在工程的依赖配置文件oh_packages.json5中。
-
-    ```json
-      {
-        "dependency": {
-          "dynamicRouter": "file:../dynamicRouter", // 外部依赖配置项
-          ...
-        }
-      }
-    ```
-
+   
+   ```json
+     {
+       "dependency": {
+         "dynamicRouter": "file:../dynamicRouter", // 外部依赖配置项
+         ...
+       }
+     }
+   ```
 4. 将路由表中的依赖动态加载的文件配置到oh-packages.json中，可以参考如下配置：
-
-    ```json
-      {
-        "buildOption": {
-          "sourceOption": {
-            "dynamicImport": [
-              './PageOne', // 本包的文件路径
-              "dynamicRouter" // 跨包的名称
-            ]
-          }
-        }
-      }
-    ```
-
+   
+   ```json
+     {
+       "buildOption": {
+         "sourceOption": {
+           "dynamicImport": [
+             './PageOne', // 本包的文件路径
+             "dynamicRouter" // 跨包的名称
+           ]
+         }
+       }
+     }
+   ```
 5. 提供路由管理类，注册WrapBuilder方法。
-
-    ```ts
-      registerRouteMap(name: string, builder: WrapperBuilder<[object]>)
-      {
-        DynamicRouter.builderMap.set(name, builder);
-      }
-
-      async push(info: RouterInfo, param?: string)
-      {
-        try {
-          let result = await import(info.moduleName);
-          result.harInit(info.pageName);
-          DynamicRouter.getNavPathStack().pushPathByName(info.name);
-        } catch(err) {
-          logger.error(LOGGER_TAG, err);
-        }
-      }
-    ```
-
+   
+   ```ts
+     registerRouteMap(name: string, builder: WrapperBuilder<[object]>)
+     {
+       DynamicRouter.builderMap.set(name, builder);
+     }
+   
+     async push(info: RouterInfo, param?: string)
+     {
+       try {
+         let result = await import(info.moduleName);
+         result.harInit(info.pageName);
+         DynamicRouter.getNavPathStack().pushPathByName(info.name);
+       } catch(err) {
+         logger.error(LOGGER_TAG, err);
+       }
+     }
+   ```
 6. 针对跳转目标页面，需要调用注册函数将页面注册到页面跳转列表中。
+   
+   ```ts
+     @Builder
+     export function getVibrateEffectView() {
+       VibrateEffectView()
+     }
+   
+     DynamicRouter.registerRouterMap(RouterInfo.VIBRATE_EFFECT, wrapBuilder(getVibrateEffectView));
+   ```
 
-    ```ts
-      @Builder
-      export function getVibrateEffectView() {
-        VibrateEffectView()
-      }
-
-      DynamicRouter.registerRouterMap(RouterInfo.VIBRATE_EFFECT, wrapBuilder(getVibrateEffectView));
-    ```
-
+<!--RP1--><!--RP1End-->   
+   
 ## 相关实例
-自定义路由表开发可以参考如下示例Sample：
 
-- [动态路由 (ArkTS) (Full SDK) API(12) ](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/ApplicationModels/DynamicRouter)
+基于Navigation，可参考以下实例：
+   
+- [Navigation自定义动态路由 (ArkTS) (Full SDK) API(12) ](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/ApplicationModels/DynamicRouter)

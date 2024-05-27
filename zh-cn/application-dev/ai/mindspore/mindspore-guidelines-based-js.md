@@ -33,8 +33,8 @@
 4. 执行推理并读取输出。使用predict接口进行模型推理。
 
 ```ts
-import mindSporeLite from '@ohos.ai.mindSporeLite';
-import common from '@ohos.app.ability.common';
+import { mindSporeLite } from '@kit.MindSporeLiteKit'
+import { common } from '@kit.AbilityKit'
 let inputBuffer : ArrayBuffer | null = null;
 let inputName: string = 'mnet_caffemodel_nhwc.bin';
 

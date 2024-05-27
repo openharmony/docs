@@ -868,9 +868,10 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
 setRate(streamID: number, rate: audio.AudioRendererRate, callback: AsyncCallback\<void>): void
 
 设置音频流播放速率。使用callback方式异步获取返回值。
-
+<!--RP1-->
 > **说明：**
 > 该接口在4.0版本开放，功能实现受设备影响有所区别(当前RK3568开发板支持倍速，其他设备暂不支持)。
+<!--RP1End-->
 
 **系统能力：** SystemCapability.Multimedia.Media.SoundPool
 
@@ -931,8 +932,10 @@ setRate(streamID: number, rate: audio.AudioRendererRate): Promise\<void>
 
 设置音频流的播放速率。使用Promise方式异步获取返回值。
 
+<!--RP1-->
 > **说明：**
 > 该接口在4.0版本开放，功能实现受设备影响有所区别(当前RK3568开发板支持倍速，其他设备暂不支持)。
+<!--RP1End-->
 
 **系统能力：** SystemCapability.Multimedia.Media.SoundPool
 

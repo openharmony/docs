@@ -855,7 +855,7 @@ enum OH_NN_TensorType
 | OH_NN_DEPTH_TO_SPACE_MODE<sup>12+</sup> | 当张量作为DepthToSpace算子的mode参数时，使用本枚举值。 | 
 | OH_NN_RANGE_START<sup>12+</sup> | 当张量作为Range算子的start参数时，使用本枚举值。 | 
 | OH_NN_RANGE_LIMIT<sup>12+</sup> | 当张量作为Range算子的limit参数时，使用本枚举值。 | 
-| OH_NN_RANGE_DELTA | 当张量作为Range算子的delta参数时，使用本枚举值。 | 
+| OH_NN_RANGE_DELTA<sup>12+</sup> | 当张量作为Range算子的delta参数时，使用本枚举值。 | 
 | OH_NN_CONSTANT_OF_SHAPE_DATA_TYPE<sup>12+</sup> | 当张量作为ConstantOfShape算子的dataType参数时，使用本枚举值。 | 
 | OH_NN_CONSTANT_OF_SHAPE_VALUE<sup>12+</sup> | 当张量作为ConstantOfShape算子的value参数时，使用本枚举值。 | 
 | OH_NN_BROADCAST_TO_SHAPE<sup>12+</sup> | 当张量作为BroadcastTo算子的shape参数时，使用本枚举值。 | 

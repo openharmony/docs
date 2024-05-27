@@ -29,6 +29,16 @@ createHidHostProfile(): HidHostProfile
 | ----------------------------- | ---------- |
 | HidHostProfile | 返回该profile的实例。 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|401 | Invalid parameter.                 |
+|801 | Capability not supported.          |
+
+
 **示例：**
 
 ```js

@@ -176,6 +176,8 @@ getNfcA(tagInfo: [TagInfo](#taginfo)): [NfcATag](js-apis-nfctech.md#nfcatag)
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+| 801  | Capability not supported. |
 | 3100201  | Tag running state is abnormal in service. |
 
 ## tag.getNfcBTag<sup>(deprecated)</sup>
@@ -229,6 +231,8 @@ getNfcB(tagInfo: [TagInfo](#taginfo)): [NfcBTag](js-apis-nfctech.md#nfcbtag)
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+| 801  | Capability not supported. |
 | 3100201  | Tag running state is abnormal in service. |
 
 ## tag.getNfcFTag<sup>(deprecated)</sup>
@@ -282,6 +286,8 @@ getNfcF(tagInfo: [TagInfo](#taginfo)): [NfcFTag](js-apis-nfctech.md#nfcftag)
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+| 801  | Capability not supported. |
 | 3100201  | Tag running state is abnormal in service. |
 
 ## tag.getNfcVTag<sup>(deprecated)</sup>
@@ -335,6 +341,8 @@ getNfcV(tagInfo: [TagInfo](#taginfo)): [NfcVTag](js-apis-nfctech.md#nfcvtag)
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+| 801  | Capability not supported. |
 | 3100201  | Tag running state is abnormal in service. |
 
 ## tag.getIsoDep<sup>9+</sup>
@@ -365,6 +373,8 @@ getIsoDep(tagInfo: [TagInfo](#taginfo)): [IsoDepTag](js-apis-nfctech.md#isoDepTa
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+| 801  | Capability not supported. |
 | 3100201  | Tag running state is abnormal in service. |
 
 ## tag.getNdef<sup>9+</sup>
@@ -425,6 +435,8 @@ getMifareClassic(tagInfo: [TagInfo](#taginfo)): [MifareClassicTag](js-apis-nfcte
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+| 801  | Capability not supported. |
 | 3100201  | Tag running state is abnormal in service. |
 
 ## tag.getMifareUltralight<sup>9+</sup>
@@ -454,6 +466,8 @@ getMifareUltralight(tagInfo: [TagInfo](#taginfo)): [MifareUltralightTag](js-apis
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+| 801  | Capability not supported. |
 | 3100201  | Tag running state is abnormal in service. |
 
 ## tag.getNdefFormatable<sup>9+</sup>
@@ -478,11 +492,13 @@ getNdefFormatable(tagInfo: [TagInfo](#taginfo)): [NdefFormatableTag](js-apis-nfc
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+| 801  | Capability not supported. |
 | 3100201  | Tag running state is abnormal in service. |
 
 ## tag.getTagInfo<sup>9+</sup>
 
-getTagInfo(want: [Want](../apis-ability-kit/js-apis-app-ability-want.md#Want)): [TagInfo](#taginfo)
+getTagInfo(want: [Want](../apis-ability-kit/js-apis-app-ability-want.md#want)): [TagInfo](#taginfo)
 
 从Want中获取TagInfo，Want是被NFC服务初始化，包含了TagInfo所需的属性值。
 
@@ -494,13 +510,22 @@ getTagInfo(want: [Want](../apis-ability-kit/js-apis-app-ability-want.md#Want)): 
 
 | 参数名 | 类型                                     | 必填 | 说明                                                |
 | ------ | ---------------------------------------- | ---- | --------------------------------------------------- |
-| want   | [Want](../apis-ability-kit/js-apis-app-ability-want.md#Want) | 是   | 分发Ability时，在系统onCreate入口函数的参数中获取。 |
+| want   | [Want](../apis-ability-kit/js-apis-app-ability-want.md#want) | 是   | 分发Ability时，在系统onCreate入口函数的参数中获取。 |
 
 **返回值：**
 
 | **类型**            | **说明**                                     |
 | ------------------- | -------------------------------------------- |
 | [TagInfo](#taginfo) | TagInfo对象，用于获取不同技术类型的Tag对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
+
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+| 801  | Capability not supported. |
 
 ## tag.registerForegroundDispatch<sup>10+</sup>
 
@@ -521,6 +546,17 @@ registerForegroundDispatch(elementName: [ElementName](../apis-ability-kit/js-api
 | elementName   |  [ElementName](../apis-ability-kit/js-apis-bundleManager-elementName.md)   | 是   | 所属应用读卡的页面信息（至少包含bundleName、abilityName这两项的赋值），不可以为空。          |
 | discTech         |  number[]   | 是   | 前台应用指定的NFC读卡技术类型，不可以为空，至少指定一种读卡技术类型。每个number值表示所支持技术类型的常量值型，根据number值设置NFC读卡轮询的Tag技术类型（仅包含[NFC_A](#技术类型定义), [NFC_B](#技术类型定义), [NFC_F](#技术类型定义), [NFC_V](#技术类型定义)中的一种或多种）。 |
 | callback | AsyncCallback&lt;[TagInfo](#taginfo)&gt; | 是   | 前台读卡监听回调函数，返回读到的Tag信息，不可以为空。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
+
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 201  | Permission denied. |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+| 801  | Capability not supported. |
+| 3100201  | Tag running state is abnormal in service. |
 
 **示例：**
 
@@ -543,6 +579,16 @@ unregisterForegroundDispatch(elementName: [ElementName](../apis-ability-kit/js-a
 | 参数名       | 类型     | 必填 | 说明                                                    |
 | ------------ | -------- | ---- | ------------------------------------------------------- |
 | elementName   |  [ElementName](../apis-ability-kit/js-apis-bundleManager-elementName.md)   | 是   | 所属应用读卡的页面信息（至少包含bundleName、abilityName这两项的赋值），不可以为空。           |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
+
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 201  | Permission denied. |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+| 801  | Capability not supported. |
 
 **示例：**
 
@@ -636,6 +682,9 @@ on(type: 'readerMode', elementName: [ElementName](../apis-ability-kit/js-apis-bu
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
+| 201  | Permission denied. |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+| 801  | Capability not supported. |
 | 3100202  | The element state is invalid. |
 
 **示例：**
@@ -668,6 +717,9 @@ off(type: 'readerMode', elementName: [ElementName](../apis-ability-kit/js-apis-b
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
+| 201  | Permission denied. |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+| 801  | Capability not supported. |
 | 3100203  | The off() can be called only when the on() has been called. |
 
 **示例：**
@@ -758,6 +810,14 @@ makeUriRecord(uri: string): [NdefRecord](#ndefrecord9)
 | -------------------------- | ------------------------------------------------------------ |
 | [NdefRecord](#ndefrecord9) | NDEF标签的Record，详见NDEF技术规范《NFCForum-TS-NDEF_1.0》。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
+
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+
 **示例：**
 
 ```js
@@ -799,6 +859,14 @@ makeTextRecord(text: string, locale: string): [NdefRecord](#ndefrecord9)
 | **类型**                   | **说明**                                                     |
 | -------------------------- | ------------------------------------------------------------ |
 | [NdefRecord](#ndefrecord9) | NDEF标签的Record，详见NDEF技术规范《NFCForum-TS-NDEF_1.0》。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
+
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 
 **示例：**
 
@@ -844,6 +912,14 @@ makeMimeRecord(mimeType: string, mimeData: number[]): [NdefRecord](#ndefrecord9)
 | -------------------------- | ------------------------------------------------------------ |
 | [NdefRecord](#ndefrecord9) | NDEF标签的Record，详见NDEF技术规范《NFCForum-TS-NDEF_1.0》。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
+
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+
 **示例：**
 
 ```js
@@ -886,6 +962,14 @@ makeExternalRecord(domainName: string, type: string, externalData: number[]): [N
 | **类型**                   | **说明**                                                     |
 | -------------------------- | ------------------------------------------------------------ |
 | [NdefRecord](#ndefrecord9) | NDEF标签的Record，详见NDEF技术规范《NFCForum-TS-NDEF_1.0》。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
+
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 
 **示例：**
 
@@ -930,6 +1014,14 @@ messageToBytes(ndefMessage: [NdefMessage](js-apis-nfctech.md#ndefmessage9)): num
 | -------- | ------------------------------------------------------------------------------------- |
 | number[] | NDEF消息数据对象，所转换成的字节格式的数据。每个number十六进制表示，范围是0x00~0xFF。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
+
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+
 **示例：**
 
 ```js
@@ -967,6 +1059,14 @@ createNdefMessage(data: number[]): [NdefMessage](js-apis-nfctech.md#ndefmessage9
 | ---------------------------------------------- | ------------------------------------------------------------- |
 | [NdefMessage](js-apis-nfctech.md#ndefmessage9) | NDEF标签的Message，详见NDEF技术规范《NFCForum-TS-NDEF_1.0》。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
+
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+
 **示例：**
 ```js
 import tag from '@ohos.nfc.tag';
@@ -1001,6 +1101,14 @@ createNdefMessage(ndefRecords: NdefRecord[]): [NdefMessage](js-apis-nfctech.md#n
 | **类型**                                       | **说明**                                                      |
 | ---------------------------------------------- | ------------------------------------------------------------- |
 | [NdefMessage](js-apis-nfctech.md#ndefmessage9) | NDEF标签的Message，详见NDEF技术规范《NFCForum-TS-NDEF_1.0》。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
+
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 
 **示例：**
 

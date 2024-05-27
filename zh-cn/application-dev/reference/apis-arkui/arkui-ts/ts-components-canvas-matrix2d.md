@@ -8,9 +8,15 @@
 
 ## 接口
 
-Matrix2D()
+Matrix2D(unit?: LengthMetricsUnit)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**参数：**
+
+| 参数名 | 参数类型 | 必填 | 默认值 | 参数描述                              |
+| ------ | -------- | ---- | ------ | ------------------------------------- |
+| unit<sup>12+</sup>  | [LengthMetricsUnit](ts-canvasrenderingcontext2d.md#lengthmetricsunit12) | 否   | DEFAULT | 用来配置Matrix2D对象的单位模式，配置后无法动态更改，配置方法同CanvasRenderingContext2D。<br> DEFAULT: vp模式 <br> PX: px模式|
 
 ## 属性
 
@@ -24,8 +30,8 @@ Matrix2D()
 | [scaleY](#scaley)         | number | 垂直缩放系数。           |
 | [rotateX](#rotatex)       | number | 水平倾斜系数。           |
 | [rotateY](#rotatey)       | number | 垂直倾斜系数。           |
-| [translateX](#translatex) | number | 水平平移距离，单位为vp。 |
-| [translateY](#translatey) | number | 垂直平移距离，单位为vp。 |
+| [translateX](#translatex) | number | 水平平移距离，默认单位为vp。 |
+| [translateY](#translatey) | number | 垂直平移距离，默认单位为vp。 |
 
 >  **说明：**
 >  
@@ -435,8 +441,8 @@ rotate(rx?: number, ry?: number): Matrix2D
 
 | 参数 | 类型   | 必填 | 默认值 | 描述                             |
 | ---- | ------ | ---- | ------ | -------------------------------- |
-| rx   | number | 否   | 0      | 旋转点的水平方向坐标，单位为vp。 |
-| ry   | number | 否   | 0      | 旋转点的垂直方向坐标，单位为vp。 |
+| rx   | number | 否   | 0      | 旋转点的水平方向坐标，默认单位为vp。 |
+| ry   | number | 否   | 0      | 旋转点的垂直方向坐标，默认单位为vp。 |
 
 **返回值：**
 
@@ -500,8 +506,8 @@ rotate(degree: number, rx?: number, ry?: number): Matrix2D
 | 参数   | 类型   | 必填 | 默认值 | 描述                                                         |
 | ------ | ------ | ---- | ------ | ------------------------------------------------------------ |
 | degree | number | 是   | 0      | 旋转角度，单位为弧度。顺时针方向为正角度，可以通过Math.PI&nbsp;/&nbsp;180将角度转换为弧度值。 |
-| rx     | number | 否   | 0      | 旋转点的水平方向坐标，单位为vp。                             |
-| ry     | number | 否   | 0      | 旋转点的垂直方向坐标，单位为vp。                             |
+| rx     | number | 否   | 0      | 旋转点的水平方向坐标，默认单位为vp。                             |
+| ry     | number | 否   | 0      | 旋转点的垂直方向坐标，默认单位为vp。                             |
 
 **返回值：**
 
@@ -564,8 +570,8 @@ translate(tx?: number, ty?: number): Matrix2D
 
 | 参数 | 类型   | 必填 | 默认值 | 描述                         |
 | ---- | ------ | ---- | ------ | ---------------------------- |
-| tx   | number | 否   | 0      | 水平方向平移距离，单位为vp。 |
-| ty   | number | 否   | 0      | 垂直方向平移距离，单位为vp。 |
+| tx   | number | 否   | 0      | 水平方向平移距离，默认单位为vp。 |
+| ty   | number | 否   | 0      | 垂直方向平移距离，默认单位为vp。 |
 
 **返回值：**
 

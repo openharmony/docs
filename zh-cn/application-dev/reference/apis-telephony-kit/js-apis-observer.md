@@ -10,7 +10,7 @@
 ## 导入模块
 
 ```ts
-import observer from '@ohos.telephony.observer';
+import { observer } from '@kit.TelephonyKit';
 ```
 
 ## observer.on('networkStateChange')
@@ -37,7 +37,7 @@ on\(type: \'networkStateChange\', callback: Callback\<NetworkState\>\): void
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -77,7 +77,7 @@ on\(type: \'networkStateChange\', options: ObserverOptions, callback: Callback\<
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -120,7 +120,7 @@ off\(type: \'networkStateChange\', callback?: Callback\<NetworkState\>\): void
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -159,7 +159,7 @@ on\(type: \'signalInfoChange\', callback: Callback\<Array\<SignalInformation\>\>
 
 | 错误码ID |                  错误信息                     |
 | -------- | -------------------------------------------- |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -168,7 +168,7 @@ on\(type: \'signalInfoChange\', callback: Callback\<Array\<SignalInformation\>\>
 **示例：**
 
 ```ts
-import radio from '@ohos.telephony.radio';
+import { radio } from '@kit.TelephonyKit';
 
 observer.on('signalInfoChange', (data: Array<radio.SignalInformation>) => {
     console.log("on signalInfoChange, data:" + JSON.stringify(data));
@@ -198,7 +198,7 @@ on\(type: \'signalInfoChange\', options: ObserverOptions, callback: Callback\<Ar
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -207,7 +207,7 @@ on\(type: \'signalInfoChange\', options: ObserverOptions, callback: Callback\<Ar
 **示例：**
 
 ```ts
-import radio from '@ohos.telephony.radio';
+import { radio } from '@kit.TelephonyKit';
 
 let options: observer.ObserverOptions = {
     slotId: 0
@@ -243,7 +243,7 @@ off\(type: \'signalInfoChange\', callback?: Callback\<Array\<SignalInformation\>
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -252,7 +252,7 @@ off\(type: \'signalInfoChange\', callback?: Callback\<Array\<SignalInformation\>
 **示例：**
 
 ```ts
-import radio from '@ohos.telephony.radio';
+import { radio } from '@kit.TelephonyKit';
 
 let callback: (data: Array<radio.SignalInformation>) => void = (data: Array<radio.SignalInformation>) => {
     console.log("on signalInfoChange, data:" + JSON.stringify(data));
@@ -285,7 +285,7 @@ on(type: 'callStateChange', callback: Callback\<CallStateInfo\>): void
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -322,7 +322,7 @@ on(type: 'callStateChange', options: ObserverOptions, callback: Callback\<CallSt
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -365,7 +365,7 @@ off(type: 'callStateChange', callback?: Callback\<CallStateInfo\>): void
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -405,7 +405,7 @@ on\(type: 'cellularDataConnectionStateChange', callback: Callback\<DataConnectio
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -442,7 +442,7 @@ on\(type: 'cellularDataConnectionStateChange', options: ObserverOptions, callbac
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -485,7 +485,7 @@ off\(type: 'cellularDataConnectionStateChange',  callback?: Callback\<DataConnec
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -525,7 +525,7 @@ on\(type: 'cellularDataFlowChange', callback: Callback\<DataFlowType\>\): void
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -534,7 +534,7 @@ on\(type: 'cellularDataFlowChange', callback: Callback\<DataFlowType\>\): void
 **示例：**
 
 ```ts
-import data from '@ohos.telephony.data';
+import { data } from '@kit.TelephonyKit';
 
 observer.on('cellularDataFlowChange', (data: data.DataFlowType) => {
     console.log("on cellularDataFlowChange, data:" + JSON.stringify(data));
@@ -564,7 +564,7 @@ on\(type: 'cellularDataFlowChange', options: ObserverOptions,  callback: Callbac
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -573,7 +573,7 @@ on\(type: 'cellularDataFlowChange', options: ObserverOptions,  callback: Callbac
 **示例：**
 
 ```ts
-import data from '@ohos.telephony.data';
+import { data } from '@kit.TelephonyKit';
 
 let options: observer.ObserverOptions = {
     slotId: 0
@@ -609,7 +609,7 @@ off\(type: 'cellularDataFlowChange', callback?: Callback\<DataFlowType\>\): void
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -618,7 +618,7 @@ off\(type: 'cellularDataFlowChange', callback?: Callback\<DataFlowType\>\): void
 **示例：**
 
 ```ts
-import data from '@ohos.telephony.data';
+import { data } from '@kit.TelephonyKit';
 
 let callback: (data: data.DataFlowType) => void = (data: data.DataFlowType) => {
     console.log("on cellularDataFlowChange, data:" + JSON.stringify(data));
@@ -651,7 +651,7 @@ on\(type: 'simStateChange', callback: Callback\<SimStateData\>\): void
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -688,7 +688,7 @@ on\(type: 'simStateChange', options: ObserverOptions, callback: Callback\<SimSta
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -731,7 +731,7 @@ off\(type: 'simStateChange', callback?: Callback\<SimStateData\>\): void
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -770,7 +770,7 @@ on\(type: 'iccAccountInfoChange', callback: Callback\<void\>\): void
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -810,7 +810,7 @@ off\(type: 'iccAccountInfoChange', callback?: Callback\<void\>\): void
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |

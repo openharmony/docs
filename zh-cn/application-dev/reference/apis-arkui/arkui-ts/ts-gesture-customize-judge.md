@@ -43,8 +43,8 @@ onGestureJudgeBegin(callback: (gestureInfo: GestureInfo, event: BaseGestureEvent
 | titleX | number | 手写笔在设备平面上的投影与设备平面X轴的夹角。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。  |
 | titleY | number | 手写笔在设备平面上的投影与设备平面Y轴的夹角。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。  |
 | sourceTool | [SourceTool](ts-gesture-settings.md#sourcetool枚举说明9) | 事件输入源。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。  |
-| axisHorizontal<sup>12+</sup> | number | 水平轴值。  |
-| axisVertical<sup>12+</sup> | number | 垂直轴值。  |
+| axisHorizontal<sup>12+</sup> | number | 水平轴值。<br/>**说明：**<br/>当前仅在由鼠标滚轮或者触控板双指滑动场景下触发的Pan手势中可以获取。|
+| axisVertical<sup>12+</sup> | number | 垂直轴值。<br/>**说明：**<br/>当前仅在由鼠标滚轮或者触控板双指滑动场景下触发的Pan手势中可以获取。 |
 
 ## BaseGestureEvent对象说明
 继承于[BaseEvent](#baseevent对象说明)。

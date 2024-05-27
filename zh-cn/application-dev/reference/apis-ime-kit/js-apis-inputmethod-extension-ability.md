@@ -41,7 +41,7 @@ Extension生命周期回调，在拉起Extension输入法应用时调用，执�
 
 | 错误码ID | 错误信息                                                |
 | -------- | ------------------------------------------------------- |
-| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
+| 401          | Parameter verification failed.  |
 
 **示例：**
 

@@ -14,7 +14,7 @@ import { huks } from '@kit.UniversalKeystoreKit'
 
 ## huks.generateKeyItemAsUser
 
-generateKeyItemAsUser(userId: number, keyAlias: string, options: HuksOptions) : Promise\<void>
+generateKeyItemAsUser(userId: number, keyAlias: string, huksOptions: HuksOptions) : Promise\<void>
 
 指定用户身份生成密钥，使用Promise方式异步返回结果。基于密钥不出TEE原则，通过promise不会返回密钥材料内容，只用于表示此次调用是否成功。
 
@@ -54,7 +54,7 @@ generateKeyItemAsUser(userId: number, keyAlias: string, options: HuksOptions) : 
 **示例：**
 
 - 以下代码示例接口调用的前置条件：
-  
+
   调用方必须是运行在User0~99（包含0和99）用户身份下的系统应用，同时需要申请ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS权限。允许应用安装到User0的配置指导，请参考[singleton|bool|false|是否允许应用安装到单用户下(U0)](../../../../zh-cn/device-dev/subsystems/subsys-app-privilege-config-guide.md#可由设备厂商配置的特权)
 
 ```ts
@@ -108,7 +108,7 @@ export default function HuksAsUserTest() {
 
 ## huks.deleteKeyItemAsUser
 
-deleteKeyItemAsUser(userId: number, keyAlias: string, options: HuksOptions) : Promise\<void>
+deleteKeyItemAsUser(userId: number, keyAlias: string, huksOptions: HuksOptions) : Promise\<void>
 
 指定用户身份删除密钥，使用Promise方式异步返回结果。
 
@@ -213,7 +213,7 @@ export default function HuksAsUserTest() {
 
 ## huks.importKeyItemAsUser
 
-importKeyItemAsUser(userId: number, keyAlias: string, options: HuksOptions) : Promise\<void>
+importKeyItemAsUser(userId: number, keyAlias: string, huksOptions: HuksOptions) : Promise\<void>
 
 指定用户身份导入明文密钥，使用Promise方式异步返回结果。
 
@@ -311,7 +311,7 @@ export default function HuksAsUserTest() {
 
 ## huks.attestKeyItemAsUser
 
-attestKeyItemAsUser(userId: number, keyAlias: string, options: HuksOptions) : Promise\<HuksReturnResult>
+attestKeyItemAsUser(userId: number, keyAlias: string, huksOptions: HuksOptions) : Promise\<HuksReturnResult>
 
 指定用户身份获取密钥证书，使用Promise方式异步返回结果 。
 
@@ -464,7 +464,7 @@ export default function HuksAsUserTest() {
 
 ## huks.anonAttestKeyItemAsUser
 
-anonAttestKeyItemAsUser(userId: number, keyAlias: string, options: HuksOptions) : Promise\<HuksReturnResult>
+anonAttestKeyItemAsUser(userId: number, keyAlias: string, huksOptions: HuksOptions) : Promise\<HuksReturnResult>
 
 指定用户身份获取匿名化密钥证书，使用Promise方式异步返回结果。
 
@@ -620,7 +620,7 @@ export default function HuksAsUserTest() {
 
 ## huks.importWrappedKeyItemAsUser
 
-importWrappedKeyItemAsUser(userId: number, keyAlias: string, wrappingKeyAlias: string, options: HuksOptions) : Promise\<void>
+importWrappedKeyItemAsUser(userId: number, keyAlias: string, wrappingKeyAlias: string, huksOptions: HuksOptions) : Promise\<void>
 
 指定用户身份导入加密密钥，使用Promise方式异步返回结果。
 
@@ -1276,7 +1276,7 @@ export default function HuksAsUserTest() {
 
 ## huks.exportKeyItemAsUser
 
-exportKeyItemAsUser(userId: number, keyAlias: string, options: HuksOptions) : Promise\<HuksReturnResult>
+exportKeyItemAsUser(userId: number, keyAlias: string, huksOptions: HuksOptions) : Promise\<HuksReturnResult>
 
 指定用户身份导出密钥，使用Promise方式回调异步返回的结果。
 
@@ -1395,7 +1395,7 @@ export default function HuksAsUserTest() {
 
 ## huks.getKeyItemPropertiesAsUser
 
-getKeyItemPropertiesAsUser(userId: number, keyAlias: string, options: HuksOptions) : Promise\<HuksReturnResult>
+getKeyItemPropertiesAsUser(userId: number, keyAlias: string, huksOptions: HuksOptions) : Promise\<HuksReturnResult>
 
 指定用户身份获取密钥属性，使用Promise回调异步返回结果。
 
@@ -1511,7 +1511,7 @@ export default function HuksAsUserTest() {
 
 ## huks.hasKeyItemAsUser
 
-hasKeyItemAsUser(userId: number, keyAlias: string, options: HuksOptions) : Promise\<boolean>
+hasKeyItemAsUser(userId: number, keyAlias: string, huksOptions: HuksOptions) : Promise\<boolean>
 
 指定用户身份判断密钥是否存在，使用Promise回调异步返回结果 。
 
@@ -1624,7 +1624,7 @@ export default function HuksAsUserTest() {
 
 ## huks.initSessionAsUser
 
-initSessionAsUser(userId: number, keyAlias: string, options: HuksOptions) : Promise\<HuksSessionHandle>
+initSessionAsUser(userId: number, keyAlias: string, huksOptions: HuksOptions) : Promise\<HuksSessionHandle>
 
 指定用户身份操作密钥接口，使用Promise方式异步返回结果。huks.initSessionAsUser, huks.updateSession, huks.finishSession为三段式接口，需要一起使用。
 

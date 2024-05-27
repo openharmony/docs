@@ -1,6 +1,6 @@
 # @ohos.telephony.sim (SIM卡管理)
 
-SIM卡管理模块提供了SIM卡管理的基础能力，包括获取指定卡槽SIM卡的名称、号码、ISO国家码、归属PLMN号、服务提供商名称、SIM卡状态、卡类型、是否插卡、是否激活、锁状态，设置指定卡槽SIM卡显示的名称、号码、锁状态，激活、禁用指定卡槽SIM卡，更改Pin密码，以及解锁指定卡槽SIM卡密码、SIM卡密码的解锁密码等。
+SIM卡管理模块提供了SIM卡管理的基础能力，包括获取指定卡槽SIM卡的ISO国家码、归属PLMN号、服务提供商名称、SIM卡状态、卡类型、是否插卡、是否激活等。
 
 >**说明：** 
 >
@@ -10,7 +10,7 @@ SIM卡管理模块提供了SIM卡管理的基础能力，包括获取指定卡�
 ## 导入模块
 
 ```ts
-import sim from '@ohos.telephony.sim';
+import { sim } from '@kit.TelephonyKit';
 ```
 
 ## sim.isSimActive<sup>7+</sup>
@@ -31,8 +31,8 @@ isSimActive\(slotId: number, callback: AsyncCallback\<boolean\>\): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.isSimActive(0, (err: BusinessError, data: boolean) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
@@ -63,8 +63,8 @@ isSimActive\(slotId: number\): Promise\<boolean\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.isSimActive(0).then((data: boolean) => {
     console.log(`isSimActive success, promise: data->${JSON.stringify(data)}`);
@@ -96,7 +96,7 @@ isSimActiveSync\(slotId: number\): boolean
 **示例：**
 
 ```ts
-import sim from '@ohos.telephony.sim';
+import { sim } from '@kit.TelephonyKit';
 
 let isSimActive: boolean = sim.isSimActiveSync(0);
 console.log(`the sim is active:` + isSimActive);
@@ -120,8 +120,8 @@ getDefaultVoiceSlotId\(callback: AsyncCallback\<number\>\): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.getDefaultVoiceSlotId((err: BusinessError, data: number) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
@@ -145,8 +145,8 @@ getDefaultVoiceSlotId\(\): Promise\<number\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.getDefaultVoiceSlotId().then((data: number) => {
     console.log(`getDefaultVoiceSlotId success, promise: data->${JSON.stringify(data)}`);
@@ -176,7 +176,7 @@ hasOperatorPrivileges\(slotId: number, callback: AsyncCallback\<boolean\>\): voi
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -185,8 +185,8 @@ hasOperatorPrivileges\(slotId: number, callback: AsyncCallback\<boolean\>\): voi
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.hasOperatorPrivileges(0, (err: BusinessError, data: boolean) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
@@ -219,7 +219,7 @@ hasOperatorPrivileges\(slotId: number\): Promise\<boolean\>
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -228,8 +228,8 @@ hasOperatorPrivileges\(slotId: number\): Promise\<boolean\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.hasOperatorPrivileges(0).then((data: boolean) => {
     console.log(`hasOperatorPrivileges success, promise: data->${JSON.stringify(data)}`);
@@ -259,7 +259,7 @@ getISOCountryCodeForSim\(slotId: number, callback: AsyncCallback\<string\>\): vo
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -269,8 +269,8 @@ getISOCountryCodeForSim\(slotId: number, callback: AsyncCallback\<string\>\): vo
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.getISOCountryCodeForSim(0, (err: BusinessError, data: string) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
@@ -304,7 +304,7 @@ getISOCountryCodeForSim\(slotId: number\): Promise\<string\>
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -314,8 +314,8 @@ getISOCountryCodeForSim\(slotId: number\): Promise\<string\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.getISOCountryCodeForSim(0).then((data: string) => {
     console.log(`getISOCountryCodeForSim success, promise: data->${JSON.stringify(data)}`);
@@ -348,7 +348,7 @@ getISOCountryCodeForSimSync\(slotId: number\): string
 **示例：**
 
 ```ts
-import sim from '@ohos.telephony.sim';
+import { sim } from '@kit.TelephonyKit';
 
 let countryCode: string = sim.getISOCountryCodeForSimSync(0);
 console.log(`the country ISO is:` + countryCode);
@@ -376,7 +376,7 @@ getSimOperatorNumeric\(slotId: number, callback: AsyncCallback\<string\>\): void
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -386,8 +386,8 @@ getSimOperatorNumeric\(slotId: number, callback: AsyncCallback\<string\>\): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.getSimOperatorNumeric(0, (err: BusinessError, data: string) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
@@ -421,7 +421,7 @@ getSimOperatorNumeric\(slotId: number\): Promise\<string\>
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -431,8 +431,8 @@ getSimOperatorNumeric\(slotId: number\): Promise\<string\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.getSimOperatorNumeric(0).then((data: string) => {
     console.log(`getSimOperatorNumeric success, promise: data->${JSON.stringify(data)}`);
@@ -465,7 +465,7 @@ getSimOperatorNumericSync\(slotId: number\): string
 **示例：**
 
 ```ts
-import sim from '@ohos.telephony.sim';
+import { sim } from '@kit.TelephonyKit';
 
 let numeric: string = sim.getSimOperatorNumericSync(0);
 console.log(`the sim operator numeric is:` + numeric);
@@ -493,7 +493,7 @@ getSimSpn\(slotId: number, callback: AsyncCallback\<string\>\): void
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -503,8 +503,8 @@ getSimSpn\(slotId: number, callback: AsyncCallback\<string\>\): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.getSimSpn(0, (err: BusinessError, data: string) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
@@ -538,7 +538,7 @@ getSimSpn\(slotId: number\): Promise\<string\>
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -548,8 +548,8 @@ getSimSpn\(slotId: number\): Promise\<string\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.getSimSpn(0).then((data: string) => {
     console.log(`getSimSpn success, promise: data->${JSON.stringify(data)}`);
@@ -582,7 +582,7 @@ getSimSpnSync\(slotId: number\): string
 **示例：**
 
 ```ts
-import sim from '@ohos.telephony.sim';
+import { sim } from '@kit.TelephonyKit';
 
 let spn: string = sim.getSimSpnSync(0);
 console.log(`the sim card spn is:` + spn);
@@ -610,7 +610,7 @@ getSimState\(slotId: number, callback: AsyncCallback\<SimState\>\): void
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -619,8 +619,8 @@ getSimState\(slotId: number, callback: AsyncCallback\<SimState\>\): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.getSimState(0, (err: BusinessError, data: sim.SimState) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
@@ -654,7 +654,7 @@ getSimState\(slotId: number\): Promise\<SimState\>
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -663,8 +663,8 @@ getSimState\(slotId: number\): Promise\<SimState\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.getSimState(0).then((data: sim.SimState) => {
     console.log(`getSimState success, promise: data->${JSON.stringify(data)}`);
@@ -697,7 +697,7 @@ getSimStateSync\(slotId: number\): SimState
 **示例：**
 
 ```ts
-import sim from '@ohos.telephony.sim';
+import { sim } from '@kit.TelephonyKit';
 
 let simState: sim.SimState = sim.getSimStateSync(0);
 console.log(`The sim state is:` + simState);
@@ -724,7 +724,7 @@ getCardType\(slotId: number, callback: AsyncCallback\<CardType\>\): void
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -734,8 +734,8 @@ getCardType\(slotId: number, callback: AsyncCallback\<CardType\>\): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.getCardType(0, (err: BusinessError, data: sim.CardType) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
@@ -769,7 +769,7 @@ getCardType\(slotId: number\): Promise\<CardType\>
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -779,8 +779,8 @@ getCardType\(slotId: number\): Promise\<CardType\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.getCardType(0).then((data: sim.CardType) => {
     console.log(`getCardType success, promise: data->${JSON.stringify(data)}`);
@@ -813,7 +813,7 @@ getCardTypeSync\(slotId: number\): CardType
 **示例：**
 
 ```ts
-import sim from '@ohos.telephony.sim';
+import { sim } from '@kit.TelephonyKit';
 
 let cardType: sim.CardType = sim.getCardTypeSync(0);
 console.log(`the card type is:` + cardType);
@@ -841,7 +841,7 @@ hasSimCard\(slotId: number, callback: AsyncCallback\<boolean\>\): void
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -850,8 +850,8 @@ hasSimCard\(slotId: number, callback: AsyncCallback\<boolean\>\): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.hasSimCard(0, (err: BusinessError, data: boolean) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
@@ -885,7 +885,7 @@ hasSimCard\(slotId: number\): Promise\<boolean\>
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -894,8 +894,8 @@ hasSimCard\(slotId: number\): Promise\<boolean\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.hasSimCard(0).then((data: boolean) => {
     console.log(`hasSimCard success, promise: data->${JSON.stringify(data)}`);
@@ -927,7 +927,7 @@ hasSimCardSync\(slotId: number\): boolean
 **示例：**
 
 ```ts
-import sim from '@ohos.telephony.sim';
+import { sim } from '@kit.TelephonyKit';
 
 let hasSimCard: boolean = sim.hasSimCardSync(0);
 console.log(`has sim card: ` + hasSimCard);
@@ -960,7 +960,7 @@ getSimAccountInfo\(slotId: number, callback: AsyncCallback\<IccAccountInfo\>\): 
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -971,8 +971,8 @@ getSimAccountInfo\(slotId: number, callback: AsyncCallback\<IccAccountInfo\>\): 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.getSimAccountInfo(0, (err:BusinessError , data: sim.IccAccountInfo) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
@@ -1012,7 +1012,7 @@ getSimAccountInfo\(slotId: number\): Promise\<IccAccountInfo\>
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -1023,8 +1023,8 @@ getSimAccountInfo\(slotId: number\): Promise\<IccAccountInfo\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.getSimAccountInfo(0).then((data: sim.IccAccountInfo) => {
     console.log(`getSimAccountInfo success, promise: data->${JSON.stringify(data)}`);
@@ -1059,7 +1059,7 @@ getActiveSimAccountInfoList\(callback: AsyncCallback\<Array\<IccAccountInfo\>\>\
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -1069,8 +1069,8 @@ getActiveSimAccountInfoList\(callback: AsyncCallback\<Array\<IccAccountInfo\>\>\
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.getActiveSimAccountInfoList((err: BusinessError, data: Array<sim.IccAccountInfo>) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
@@ -1094,7 +1094,7 @@ getMaxSimCount\(\): number
 **示例：**
 
 ```ts
-import sim from '@ohos.telephony.sim';
+import { sim } from '@kit.TelephonyKit';
 
 console.log("Result: "+ sim.getMaxSimCount());
 ```
@@ -1134,8 +1134,8 @@ getActiveSimAccountInfoList\(\): Promise\<Array\<IccAccountInfo\>\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.getActiveSimAccountInfoList().then((data: Array<sim.IccAccountInfo>) => {
     console.log(`getActiveSimAccountInfoList success, promise: data->${JSON.stringify(data)}`);
@@ -1166,7 +1166,7 @@ getOpKey\(slotId: number, callback: AsyncCallback\<string\>): void
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1176,8 +1176,8 @@ getOpKey\(slotId: number, callback: AsyncCallback\<string\>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 try {
     sim.getOpKey(0, (err: BusinessError, data: string) => {
@@ -1219,7 +1219,7 @@ getOpKey\(slotId: number\): Promise\<string\>
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1229,8 +1229,8 @@ getOpKey\(slotId: number\): Promise\<string\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.getOpKey(0).then((data: string) => {
     console.log(`getOpKey success, promise: data->${JSON.stringify(data)}`);
@@ -1263,7 +1263,7 @@ getOpKeySync\(slotId: number\): string
 **示例：**
 
 ```ts
-import sim from '@ohos.telephony.sim';
+import { sim } from '@kit.TelephonyKit';
 
 let data: string = sim.getOpKeySync(0);
 console.log(`getOpKey success, promise: data->${JSON.stringify(data)}`);
@@ -1290,7 +1290,7 @@ getOpName\(slotId: number, callback: AsyncCallback\<string\>\): void
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1300,8 +1300,8 @@ getOpName\(slotId: number, callback: AsyncCallback\<string\>\): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 try {
     sim.getOpName(0, (err: BusinessError, data: string) => {
@@ -1343,7 +1343,7 @@ getOpName\(slotId: number\): Promise\<string\>
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 801      | Capability not supported.                    |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1353,8 +1353,8 @@ getOpName\(slotId: number\): Promise\<string\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.getOpName(0).then((data: string) => {
     console.log(`getOpName success, promise: data->${JSON.stringify(data)}`);
@@ -1387,7 +1387,7 @@ getOpNameSync\(slotId: number\): string
 **示例：**
 
 ```ts
-import sim from '@ohos.telephony.sim';
+import { sim } from '@kit.TelephonyKit';
 
 let data: string = sim.getOpNameSync(0);
 console.log(`getOpName success, promise: data->${JSON.stringify(data)}`);
@@ -1413,7 +1413,7 @@ getDefaultVoiceSimId\(callback: AsyncCallback\<number\>\): void
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -1424,8 +1424,8 @@ getDefaultVoiceSimId\(callback: AsyncCallback\<number\>\): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.getDefaultVoiceSimId((err: BusinessError, data: number) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
@@ -1462,8 +1462,8 @@ getDefaultVoiceSimId\(\): Promise\<number\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 let promise = sim.getDefaultVoiceSimId();
 promise.then((data: number) => {

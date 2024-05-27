@@ -13,6 +13,18 @@
 
 申请流程可参考[选择申请权限的方式](determine-application-mode.md)。
 
+### ohos.permission.MANAGE_SETTINGS
+
+允许应用设置SettingsData中设备级配置数据表和用户级配置数据表。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
 ### ohos.permission.SYSTEM_FLOAT_WINDOW
 
 允许应用使用悬浮窗的能力。
@@ -204,6 +216,18 @@
 **ACL使能**：true
 
 **起始版本**：8
+
+### ohos.permission.ASSIST_DEVICE_UPDATE
+
+允许拉起升级服务对其他设备做辅助、协同升级。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
 
 ### ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
@@ -2033,6 +2057,42 @@
 
 **起始版本**：12
 
+### ohos.permission.EXEMPT_CAMERA_PRIVACY_INDICATOR
+
+允许应用在使用相机权限时不呈现提醒。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.EXEMPT_MICROPHONE_PRIVACY_INDICATOR
+
+允许应用在使用麦克风权限时不呈现提醒。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.EXEMPT_LOCATION_PRIVACY_INDICATOR
+
+允许应用在使用位置权限时不呈现提醒。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
 ### ohos.permission.GET_SUPER_PRIVACY
 
 允许获取超级隐私模式的状态。
@@ -2936,6 +2996,54 @@
 ### ohos.permission.ACCESS_SHADER_CACHE_DIR
 
 允许系统应用访问shader_cache主目录。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.INSTALL_CLONE_BUNDLE
+
+允许应用安装应用分身。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.UNINSTALL_CLONE_BUNDLE
+
+允许应用卸载应用分身。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.ACCESS_DEVICE_COLLABORATION_PRIVATE_ABILITY
+
+允许系统服务或系统应用访问多屏协同私有应用能力。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.ACCESS_RINGTONE_RESOURCE
+
+允许系统应用访问和写入铃音数据公共目录的权限。
 
 **权限级别**：system_core
 

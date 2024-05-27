@@ -34,7 +34,7 @@ static show(value: ActionSheetOptions)
 | subtitle<sup>10+</sup> | [ResourceStr](ts-types.md#resourcestr) | 否 | 弹窗副标题。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 | message    | [Resource](ts-types.md#resource)&nbsp;\|&nbsp;string | 是     | 弹窗内容。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。  |
 | autoCancel | boolean                           | 否     | 点击遮障层时，是否关闭弹窗。<br>默认值：true<br>值为true时，点击遮障层关闭弹窗，值为false时，点击遮障层不关闭弹窗。 <br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
-| confirm    | {<br/>enabled<sup>10+</sup>?: boolean,<br/>defaultFocus<sup>10+</sup>?: boolean,<br />style<sup>10+</sup>?: [DialogButtonStyle](#dialogbuttonstyle10枚举说明),<br />value:&nbsp;[Resource](ts-types.md#resource)&nbsp;\|&nbsp;string,<br/>action:&nbsp;()&nbsp;=&gt;&nbsp;void<br/>} | 否  | 确认Button的使能状态、默认焦点、按钮风格、文本内容和点击回调。在弹窗获焦且未进行tab键走焦时，该按钮默认响应Enter键。<br>enabled：点击Button是否响应，true表示Button可以响应，false表示Button不可以响应。<br />默认值：true<br />defaultFocus：设置Button是否是默认焦点，true表示Button是默认焦点，false表示Button不是默认焦点。<br />默认值：false<br />style：设置Button的风格样式。<br />默认值：DialogButtonStyle.DEFAULT<br/>value：Button文本内容。<br/>action:&nbsp;Button选中时的回调。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| confirm    | {<br/>enabled<sup>10+</sup>?: boolean,<br/>defaultFocus<sup>10+</sup>?: boolean,<br />style<sup>10+</sup>?: [DialogButtonStyle](#dialogbuttonstyle10枚举说明),<br />value:&nbsp;[Resource](ts-types.md#resource)&nbsp;\|&nbsp;string,<br/>action:&nbsp;()&nbsp;=&gt;&nbsp;void<br/>} | 否  | 确认Button的使能状态、默认焦点、按钮风格、文本内容和点击回调。在弹窗获焦且未进行tab键走焦时，该按钮默认响应Enter键，且多重弹窗可自动获焦连续响应。默认响应Enter键能力在defaultFocus为true时不生效。<br>enabled：点击Button是否响应，true表示Button可以响应，false表示Button不可以响应。<br />默认值：true<br />defaultFocus：设置Button是否是默认焦点，true表示Button是默认焦点，false表示Button不是默认焦点。<br />默认值：false<br />style：设置Button的风格样式。<br />默认值：DialogButtonStyle.DEFAULT<br/>value：Button文本内容。<br/>action:&nbsp;Button选中时的回调。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 | cancel     | ()&nbsp;=&gt;&nbsp;void           | 否     | 点击遮障层关闭dialog时的回调。  <br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。  |
 | alignment  | [DialogAlignment](ts-methods-alert-dialog-box.md#dialogalignment枚举说明) | 否     |  弹窗在竖直方向上的对齐方式。<br>默认值：DialogAlignment.Bottom  <br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。<br/>**说明**：<br/>若在UIExtension中设置showInSubWindow为true, 弹窗将基于UIExtension的宿主窗口对齐。|
 | offset     | {<br/>dx:&nbsp;number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource),<br/>dy:&nbsp;number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource)<br/>} | 否      | 弹窗相对alignment所在位置的偏移量。<br/>默认值：<br/>1.alignment设置为Top、TopStart、TopEnd时默认值为{dx:&nbsp;0,dy:&nbsp;"40vp"} <br/>2.alignment设置为其他时默认值为{dx:&nbsp;0,dy:&nbsp;"-40vp"} <br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
@@ -268,3 +268,78 @@ struct ActionSheetExample {
 ```
 
 ![zh-cn_image_action_animation](figures/zh-cn_image_action_animation.gif)
+
+### 示例4
+该示例定义了ActionSheet的样式，如宽度、高度、背景色、阴影等等
+```ts
+@Entry
+@Component
+struct ActionSheetExample {
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Button('Click to Show ActionSheet')
+        .onClick(() => {
+          ActionSheet.show({
+            title: 'ActionSheet title',
+            subtitle: 'ActionSheet subtitle',
+            message: 'message',
+            autoCancel: true,
+            width: 300,
+            height: 350,
+            cornerRadius: 20,
+            borderWidth: 1,
+            borderStyle: BorderStyle.Solid,//使用borderStyle属性，需要和borderWidth属性一起使用
+            borderColor: Color.Blue,//使用borderColor属性，需要和borderWidth属性一起使用
+            backgroundColor: Color.White,
+            shadow: ({ radius: 20, color: Color.Grey, offsetX: 50, offsetY: 0}),
+            confirm: {
+              defaultFocus: true,
+              value: 'Confirm button',
+              action: () => {
+                console.log('Get Alert Dialog handled')
+              }
+            },
+            cancel: () => {
+              console.log('actionSheet canceled')
+            },
+            onWillDismiss:(dismissDialogAction: DismissDialogAction)=> {
+              console.info("reason=" + JSON.stringify(dismissDialogAction.reason))
+              console.log("dialog onWillDismiss")
+              if (dismissDialogAction.reason == DismissReason.PRESS_BACK) {
+                dismissDialogAction.dismiss()
+              }
+              if (dismissDialogAction.reason == DismissReason.TOUCH_OUTSIDE) {
+                dismissDialogAction.dismiss()
+              }
+            },
+            alignment: DialogAlignment.Bottom,
+            offset: { dx: 0, dy: -10 },
+            sheets: [
+              {
+                title: 'apples',
+                action: () => {
+                  console.log('apples')
+                }
+              },
+              {
+                title: 'bananas',
+                action: () => {
+                  console.log('bananas')
+                }
+              },
+              {
+                title: 'pears',
+                action: () => {
+                  console.log('pears')
+                }
+              }
+            ]
+          })
+        })
+    }.width('100%')
+    .height('100%')
+  }
+}
+```
+
+![zh-cn_image_action_style](figures/zh-cn_image_action_style.gif)

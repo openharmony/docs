@@ -10,6 +10,8 @@
     - [@ohos.arkui.inspector (布局回调)](js-apis-arkui-inspector.md)
     - [@ohos.arkui.node(自定义节点)](js-apis-arkui-node.md)
     - [@ohos.arkui.observer (无感监听)](js-apis-arkui-observer.md)
+    - [@ohos.arkui.shape(形状)](js-apis-arkui-shape.md)
+    - [@ohos.arkui.Theme(主题换肤)](js-apis-arkui-theme.md)
     - [@ohos.arkui.UIContext (UIContext)](js-apis-arkui-UIContext.md)
     - [@ohos.arkui.uiExtension (uiExtension)](js-apis-arkui-uiExtension.md)
     - [@ohos.curves (插值计算)](js-apis-curve.md)
@@ -22,6 +24,7 @@
     - [@ohos.router (页面路由)](js-apis-router.md)
     - [getContext](js-apis-getContext.md)
     - [postCardAction](js-apis-postCardAction.md)
+    <!--Del-->
     - [@ohos.arkui.drawableDescriptor (DrawableDescriptor)(系统接口)](js-apis-arkui-drawableDescriptor-sys.md)
     - [@ohos.arkui.performanceMonitor (性能监测)(系统接口)](js-apis-arkui-performancemonitor-sys.md)  
     - [@ohos.arkui.uiExtension (uiExtension)(系统接口)](js-apis-arkui-uiExtension-sys.md)
@@ -30,6 +33,7 @@
     - [@ohos.uiAppearance (用户界面外观)(系统接口)](js-apis-uiappearance-sys.md)
     - [@ohos.uiExtensionHost (系统接口)](js-apis-uiExtensionHost-sys.md)
     - [@ohos.arkui.UIContext (UIContext)(系统接口)](js-apis-arkui-UIContext-sys.md)
+    <!--DelEnd-->
     - arkui
       - [BuilderNode](js-apis-arkui-builderNode.md)
       - [ComponentContent](js-apis-arkui-ComponentContent.md)
@@ -38,10 +42,14 @@
       - [NodeController](js-apis-arkui-nodeController.md)
       - [RenderNode](js-apis-arkui-renderNode.md)
       - [XComponentNode](js-apis-arkui-xcomponentNode.md)
+      - [AttributeUpdater](js-apis-arkui-AttributeUpdater.md)
+      - [Content](js-apis-arkui-Content.md)
+      - [NodeContent](js-apis-arkui-NodeContent.md)
   - 图形图像
     - [@ohos.display (屏幕属性)](js-apis-display.md)
     - [@ohos.PiPWindow (画中画窗口)](js-apis-pipWindow.md)
     - [@ohos.window (窗口)](js-apis-window.md)
+    <!--Del-->
     - [@ohos.animation.windowAnimationManager (窗口动画管理)(系统接口)](js-apis-windowAnimationManager-sys.md)
     - [@ohos.application.WindowExtensionAbility (窗口扩展能力)(系统接口)](js-apis-application-windowExtensionAbility-sys.md)
     - [@ohos.display (屏幕属性)(系统接口)](js-apis-display-sys.md)
@@ -49,6 +57,7 @@
     - [@ohos.screenshot (屏幕截图)(系统接口)](js-apis-screenshot-sys.md)
     - [@ohos.window (窗口)(系统接口)](js-apis-window-sys.md)
     - [WindowExtensionContext (系统接口)](js-apis-inner-application-windowExtensionContext-sys.md)
+    <!--DelEnd-->
   - 已停止维护的接口
     - [@ohos.prompt (弹窗)](js-apis-prompt.md)
     - [@system.app (应用上下文)](js-apis-system-app.md)
@@ -126,7 +135,6 @@
         - [事件独占控制](arkui-ts/ts-universal-attributes-monopolize-events.md)
         - [鼠标光标控制](arkui-ts/ts-universal-attributes-cursor.md)
         - [特效绘制合并](arkui-ts/ts-universal-attributes-use-effect.md)
-        - [属性直通更新 (系统接口)](arkui-ts/ts-universal-attributes-attribute-updater-sys.md)
       - 手势处理
         - [绑定手势方法](arkui-ts/ts-gesture-settings.md)
         - 基础手势
@@ -188,6 +196,7 @@
       - [TimePicker](arkui-ts/ts-basic-components-timepicker.md)
       - [Toggle](arkui-ts/ts-basic-components-toggle.md)
       - [XComponent](arkui-ts/ts-basic-components-xcomponent.md)
+      <!--Del-->
       - [Component3D (系统接口)](arkui-ts/ts-basic-components-component3d-sys.md)
       - [FormComponent (系统接口)](arkui-ts/ts-basic-components-formcomponent-sys.md)
       - [Image (系统接口)](arkui-ts/ts-basic-components-image-sys.md)
@@ -195,6 +204,7 @@
       - [PluginComponent (系统接口)](arkui-ts/ts-basic-components-plugincomponent-sys.md)
       - [RemoteWindow (系统接口)](arkui-ts/ts-basic-components-remotewindow-sys.md)
       - [TextInput (系统接口)](arkui-ts/ts-basic-components-textinput-sys.md)
+      <!--DelEnd-->
     - 容器组件
       - [Badge](arkui-ts/ts-container-badge.md)
       - [Column](arkui-ts/ts-container-column.md)
@@ -225,9 +235,12 @@
       - [Tabs](arkui-ts/ts-container-tabs.md)
       - [TabContent](arkui-ts/ts-container-tabcontent.md)
       - [WaterFlow](arkui-ts/ts-container-waterflow.md)
+      - [WithTheme](arkui-ts/ts-container-with-theme.md)
+      <!--Del-->
       - [EffectComponent (系统接口)](arkui-ts/ts-container-effectcomponent-sys.md)
       - [List (系统接口)](arkui-ts/ts-container-list-sys.md)
       - [UIExtensionComponent (系统接口)](arkui-ts/ts-container-ui-extension-component-sys.md)
+      <!--DelEnd-->
     - 媒体组件
       - [Video](arkui-ts/ts-media-components-video.md)
     - 绘制组件
@@ -251,6 +264,8 @@
       - [OffscreenCanvas](arkui-ts/ts-components-offscreencanvas.md)
       - [OffscreenCanvasRenderingContext2D](arkui-ts/ts-offscreencanvasrenderingcontext2d.md)
       - [Path2D](arkui-ts/ts-components-canvas-path2d.md)
+    - 渲染组件
+      - [ContentSlot](arkui-ts/ts-components-contentSlot.md)
     - 高级组件
       - [@ohos.arkui.advanced.Chip (操作块)](arkui-ts/ohos-arkui-advanced-Chip.md)
       - [@ohos.arkui.advanced.ChipGroup (操作块组)](arkui-ts/ohos-arkui-advanced-ChipGroup.md)
@@ -308,13 +323,16 @@
     - 类型定义
       - [基础类型定义](arkui-ts/ts-types.md)
       - [图像类型定义](arkui-ts/ts-image-common.md)
+      - [文本类型定义](arkui-ts/ts-text-common.md)
     - [应用级变量的状态管理](arkui-ts/ts-state-management.md)
     - [像素单位](arkui-ts/ts-pixel-units.md)
     - [枚举说明](arkui-ts/ts-appendix-enums.md)
     - [设置事件回调](arkui-ts/ts-uicommonevent.md)
     - [属性字符串](arkui-ts/ts-universal-styled-string.md)
     - 已停止维护的组件
+      <!--Del-->
       - [AbilityComponent (系统接口)](arkui-ts/ts-container-ability-component-sys.md)
+      <!--DelEnd-->
       - [GridContainer](arkui-ts/ts-container-gridcontainer.md)
       - [Panel](arkui-ts/ts-container-panel.md)
     - 已停止维护的接口
@@ -330,6 +348,7 @@
     - [WindowManager_NativeMoudle](_window_manager___native_moudle.md)
   - 头文件和结构体
     - 头文件
+      - [drawable_descriptor.h](drawable__descriptor_8h.md)
       - [native_animate.h](native__animate_8h.md)
       - [native_dialog.h](native__dialog_8h.md)
       - [native_gesture.h](native__gesture_8h.md)
@@ -339,6 +358,7 @@
       - [native_node_napi.h](native__node__napi_8h.md)
       - [native_type.h](native__type_8h.md)
       - [native_xcomponent_key_event.h](native__xcomponent__key__event_8h.md)
+      - [styled_string.h](styled__string_8h.md)
       - [ui_input_event.h](ui__input__event_8h.md)
       - [oh_window_comm.h](oh__window__comm_8h.md)
       - [oh_window_event_filter.h](oh__window__event__filter_8h.md)
@@ -375,6 +395,7 @@
     - [用户界面外观服务错误码](errorcode-uiappearance.md)
     - [拖拽事件错误码](errorcode-drag-event.md)
     - [图像AI分析错误码](errorcode-image-analyzer.md)
+    - [焦点错误码](errorcode-focus.md)
   - 图形图像
     - [屏幕错误码](errorcode-display.md)
     - [窗口错误码](errorcode-window.md)

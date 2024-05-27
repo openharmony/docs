@@ -99,9 +99,9 @@ class InputMethodExtnAbility extends InputMethodExtensionAbility {
 }
 ```
 
-## InputMethodExtensionContext.startAbility
+## InputMethodExtensionContext.startAbility<sup>12+</sup>
 
-startAbility(want: Want): Promise<**void**>;
+startAbility(want: Want): Promise<void>;
 
 拉起目标应用。使用Promise异步回调。
 
@@ -127,14 +127,17 @@ startAbility(want: Want): Promise<**void**>;
 | -------- | ------------------------------------------------------- |
 | 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
 | 16000001 | The specified ability does not exist.                   |
+| 16000002 | Incorrect Ability type.                                 |
 | 16000004 | Can not start invisible component.                      |
 | 16000005 | The specified process does not have the permission.     |
 | 16000006 | Cross-user operations are not allowed.                  |
 | 16000008 | The crowdtesting application expires.                   |
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
+| 16000010 | The call with the continuation flag is forbidden.       |
 | 16000011 | The context does not exist.                             |
 | 16000012 | The application is controlled.                          |
 | 16000013 | The application is controlled by EDM.                   |
+| 16000019 | Can not match any component.                            |
 | 16000050 | Internal error.                                         |
 | 16000053 | The ability is not on the top of the UI.                |
 | 16000055 | Installation-free timed out.                            |
@@ -149,17 +152,15 @@ import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
 
 try {
-  this.context.startAbility(want).then((err) => {
-    if (err !== undefined) {
-      this.addLog(`startAbility error: ${err} `);
-    }
+  this.context.startAbility(want).then(() => {
+    console.log(`startAbility success`);
   }).catch((err) => {
     let error = err as BusinessError;
-    this.addLog(`startAbility error: ${error.code} ${error.message}`);
+    console.log(`startAbility error: ${error.code} ${error.message}`);
   })
 } catch (err) {
   let error = err as BusinessError;
-  this.addLog(`startAbility error: ${error.code} ${error.message}`);
+  console.log(`startAbility error: ${error.code} ${error.message}`);
 }
 ```
 

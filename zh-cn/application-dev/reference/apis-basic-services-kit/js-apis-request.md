@@ -311,6 +311,14 @@ on(type: 'progress', callback:(uploadedSize: number, totalSize: number) =&gt; vo
 | uploadedSize | number | 是 | 当前已上传文件大小，单位为B。 |
 | totalSize | number | 是 | 上传文件的总大小，单位为B。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+
 **示例：**
 
   ```ts
@@ -325,7 +333,7 @@ on(type: 'progress', callback:(uploadedSize: number, totalSize: number) =&gt; vo
 
 on(type: 'headerReceive', callback:  (header: object) =&gt; void): void
 
-订阅上传任务HTTP标头事件，异步方法，使用callback形式返回结果。
+订阅上传任务HTTP响应事件，异步方法，使用callback形式返回结果。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -335,14 +343,22 @@ on(type: 'headerReceive', callback:  (header: object) =&gt; void): void
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | type | string | 是 | 订阅的事件类型，取值为'headerReceive'（接收响应头）。 |
-  | callback | function | 是 | HTTP&nbsp;Response&nbsp;Header事件的回调函数。 |
+  | type | string | 是 | 订阅的事件类型，取值为'headerReceive'（接收响应）。 |
+  | callback | function | 是 | HTTP&nbsp;Response事件的回调函数。 |
 
   回调函数的参数：
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| header | object | 是 | HTTP&nbsp;Response&nbsp;Header。 |
+| header | object | 是 | HTTP&nbsp;Response。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
 
 **示例：**
 
@@ -376,6 +392,14 @@ on(type: 'headerReceive', callback:  (header: object) =&gt; void): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | taskstates | Array&lt;[TaskState](#taskstate9)&gt; | 是 | 上传任务返回结果 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
 
 **示例：**
 
@@ -413,6 +437,14 @@ off(type:  'progress',  callback?: (uploadedSize: number, totalSize: number) =&g
   | type | string | 是 | 取消订阅的事件类型，取值为'progress'（上传的进度信息）。 |
   | callback | function | 否 | 需要取消订阅的回调函数。若无此参数，则取消订阅当前类型的所有回调函数。<br/>uploadedSize：当前已上传文件的大小，单位为B。<br/>totalSize：上传文件的总大小，单位为B。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+
 **示例：**
 
   ```ts
@@ -435,7 +467,7 @@ off(type:  'progress',  callback?: (uploadedSize: number, totalSize: number) =&g
 
 off(type: 'headerReceive', callback?: (header: object) =&gt; void): void
 
-取消订阅上传任务HTTP标头事件。
+取消订阅上传任务HTTP响应事件。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -445,8 +477,16 @@ off(type: 'headerReceive', callback?: (header: object) =&gt; void): void
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | type | string | 是 | 取消订阅的事件类型，取值为'headerReceive'（接收响应头）。 |
+  | type | string | 是 | 取消订阅的事件类型，取值为'headerReceive'（接收响应）。 |
   | callback | function | 否 | 需要取消订阅的回调函数。若无此参数，则取消订阅当前类型的所有回调函数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
 
 **示例：**
 
@@ -481,6 +521,14 @@ off(type: 'headerReceive', callback?: (header: object) =&gt; void): void
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 订阅的事件类型，取值为'complete'，表示上传任务完成；取值为'fail'，表示上传任务失败。|
   | callback | Callback&lt;Array&lt;TaskState&gt;&gt; | 否 | 需要取消订阅的回调函数。若无此参数，则取消订阅当前类型的所有回调函数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
 
 **示例：**
 
@@ -539,6 +587,15 @@ delete(): Promise&lt;boolean&gt;
   | -------- | -------- |
   | Promise&lt;boolean&gt; | 使用Promise方式，异步返回移除任务是否成功。true：成功，false：不成功。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 201 | the permissions check fails |
+  | 401 | the parameters check fails |
+
 **示例：**
 
   ```ts
@@ -548,6 +605,10 @@ delete(): Promise&lt;boolean&gt;
     console.error(`Failed to delete the upload task. Code: ${err.code}, message: ${err.message}`);
   });
   ```
+
+> **说明：**
+>
+> 由于不存在401报错场景，在 api12 中 `401 the parameters check fails` 这个错误码被移除。
 
 
 ### delete<sup>9+</sup>
@@ -566,6 +627,15 @@ delete(callback: AsyncCallback&lt;boolean&gt;): void
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数，异步返回移除任务是否成功。true：成功，false：不成功。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 201 | the permissions check fails |
+  | 401 | the parameters check fails |
+
 **示例：**
 
   ```ts
@@ -577,6 +647,10 @@ delete(callback: AsyncCallback&lt;boolean&gt;): void
     console.info('Succeeded in deleting the upload task.');
   });
   ```
+
+> **说明：**
+>
+> 由于不存在401报错场景，在 api12 中 `401 the parameters check fails` 这个错误码被移除。
 
 
 ### remove<sup>(deprecated)</sup>
@@ -949,6 +1023,14 @@ on(type: 'progress', callback:(receivedSize: number, totalSize: number) =&gt; vo
 | receivedSize | number | 是 | 当前下载的进度，单位为B。 |
 | totalSize | number | 是 | 下载文件的总大小，单位为B。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+
 **示例：**
 
   ```ts
@@ -987,6 +1069,14 @@ off(type: 'progress', callback?: (receivedSize: number, totalSize: number) =&gt;
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 取消订阅的事件类型，取值为'progress'（下载的进度信息）。 |
   | callback | function | 否 | 需要取消订阅的回调函数。若无此参数，则取消订阅当前类型的所有回调函数。 <br/>receivedSize：当前下载任务的进度；<br/>totalSize：下载文件的总大小。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
 
 **示例：**
 
@@ -1034,6 +1124,14 @@ on(type: 'complete'|'pause'|'remove', callback:() =&gt; void): void
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 订阅的事件类型。<br>- 取值为'complete'，表示下载任务完成；<br/>- 取值为'pause'，表示下载任务暂停；<br/>- 取值为'remove'，表示下载任务移除。 |
   | callback | function | 是 | 下载任务相关的回调函数。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
 
 **示例：**
 
@@ -1083,6 +1181,14 @@ off(type: 'complete'|'pause'|'remove', callback?:() =&gt; void): void
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 取消订阅的事件类型。<br/>- 取值为'complete'，表示下载任务完成；<br/>- 取值为'pause'，表示下载任务暂停；<br/>- 取值为'remove'，表示下载任务移除。 |
   | callback | function | 否 | 需要取消订阅的回调函数。若无此参数，则取消订阅当前类型的所有回调函数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
 
 **示例：**
 
@@ -1164,6 +1270,14 @@ on(type: 'fail', callback: (err: number) =&gt; void): void
 | -------- | -------- | -------- | -------- |
 | err | number | 是 | 下载失败的错误码，错误原因见[下载任务的错误码](#下载任务的错误码)。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+
 **示例：**
 
   ```ts
@@ -1202,6 +1316,14 @@ off(type: 'fail', callback?: (err: number) =&gt; void): void
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 取消订阅的事件类型，取值为'fail'（下载失败）。 |
   | callback | function | 否 | 需要取消订阅的回调函数。若无此参数，则取消订阅当前类型的所有回调函数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
 
 **示例：**
 
@@ -1248,6 +1370,15 @@ delete(): Promise&lt;boolean&gt;
   | -------- | -------- |
   | Promise&lt;boolean&gt; | 使用promise方式，异步返回移除任务是否成功。true：成功，false：不成功。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 201 | the permissions check fails |
+  | 401 | the parameters check fails |
+
 **示例：**
 
   ```ts
@@ -1270,6 +1401,10 @@ try {
 }
   ```
 
+> **说明：**
+>
+> 由于不存在401报错场景，在 api12 中 `401 the parameters check fails` 这个错误码被移除。
+
 
 ### delete<sup>9+</sup>
 
@@ -1286,6 +1421,15 @@ delete(callback: AsyncCallback&lt;boolean&gt;): void
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数，异步返回移除任务是否成功。true：成功，false：不成功。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 201 | the permissions check fails |
+  | 401 | the parameters check fails |
 
 **示例：**
 
@@ -1311,6 +1455,10 @@ try {
 }
   ```
 
+> **说明：**
+>
+> 由于不存在401报错场景，在 api12 中 `401 the parameters check fails` 这个错误码被移除。
+
 
 ### getTaskInfo<sup>9+</sup>
 
@@ -1327,6 +1475,15 @@ getTaskInfo(): Promise&lt;DownloadInfo&gt;
   | 类型 | 说明 |
   | -------- | -------- |
   | Promise&lt;[DownloadInfo](#downloadinfo7)&gt; |  使用promise方式，异步返回下载任务信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 201 | the permissions check fails |
+  | 401 | the parameters check fails |
 
 **示例：**
 
@@ -1350,6 +1507,10 @@ try {
 } 
   ```
 
+> **说明：**
+>
+> 由于不存在401报错场景，在 api12 中 `401 the parameters check fails` 这个错误码被移除。
+
 
 ### getTaskInfo<sup>9+</sup>
 
@@ -1366,6 +1527,15 @@ getTaskInfo(callback: AsyncCallback&lt;DownloadInfo&gt;): void
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;[DownloadInfo](#downloadinfo7)&gt; | 是 | 回调函数，异步返回下载任务信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 201 | the permissions check fails |
+  | 401 | the parameters check fails |
 
 **示例：**
 
@@ -1391,6 +1561,10 @@ try {
 }
   ```
 
+> **说明：**
+>
+> 由于不存在401报错场景，在 api12 中 `401 the parameters check fails` 这个错误码被移除。
+
 
 ### getTaskMimeType<sup>9+</sup>
 
@@ -1407,6 +1581,15 @@ getTaskMimeType(): Promise&lt;string&gt;
   | 类型 | 说明 |
   | -------- | -------- |
   | Promise&lt;string&gt; | 使用promise方式，异步返回下载任务的MimeType。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 201 | the permissions check fails |
+  | 401 | the parameters check fails |
 
 **示例：**
 
@@ -1430,6 +1613,10 @@ try {
 }
   ```
 
+> **说明：**
+>
+> 由于不存在401报错场景，在 api12 中 `401 the parameters check fails` 这个错误码被移除。
+
 
 ### getTaskMimeType<sup>9+</sup>
 
@@ -1446,6 +1633,15 @@ getTaskMimeType(callback: AsyncCallback&lt;string&gt;): void;
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;string&gt; | 是 | 回调函数，异步返回下载任务的MimeType。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 201 | the permissions check fails |
+  | 401 | the parameters check fails |
 
 **示例：**
 
@@ -1471,6 +1667,10 @@ try {
 }
   ```
 
+> **说明：**
+>
+> 由于不存在401报错场景，在 api12 中 `401 the parameters check fails` 这个错误码被移除。
+
 
 ### suspend<sup>9+</sup>
 
@@ -1487,6 +1687,15 @@ suspend(): Promise&lt;boolean&gt;
   | 类型 | 说明 |
   | -------- | -------- |
   | Promise&lt;boolean&gt; | 使用promise方式，异步返回暂停下载任务是否成功。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 201 | the permissions check fails |
+  | 401 | the parameters check fails |
 
 **示例：**
 
@@ -1510,6 +1719,10 @@ try {
 }
   ```
 
+> **说明：**
+>
+> 由于不存在401报错场景，在 api12 中 `401 the parameters check fails` 这个错误码被移除。
+
 
 ### suspend<sup>9+</sup>
 
@@ -1526,6 +1739,15 @@ suspend(callback: AsyncCallback&lt;boolean&gt;): void
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数，异步返回暂停下载任务是否成功。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 201 | the permissions check fails |
+  | 401 | the parameters check fails |
 
 **示例：**
 
@@ -1551,6 +1773,10 @@ try {
 }
   ```
 
+> **说明：**
+>
+> 由于不存在401报错场景，在 api12 中 `401 the parameters check fails` 这个错误码被移除。
+
 
 ### restore<sup>9+</sup>
 
@@ -1567,6 +1793,15 @@ restore(): Promise&lt;boolean&gt;
   | 类型 | 说明 |
   | -------- | -------- |
   | Promise&lt;boolean&gt; | 使用promise方式，异步返回重新启动暂停的下载任务是否成功。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 201 | the permissions check fails |
+  | 401 | the parameters check fails |
 
 **示例：**
 
@@ -1590,6 +1825,10 @@ try {
 }
   ```
 
+> **说明：**
+>
+> 由于不存在401报错场景，在 api12 中 `401 the parameters check fails` 这个错误码被移除。
+
 
 ### restore<sup>9+</sup>
 
@@ -1606,6 +1845,15 @@ restore(callback: AsyncCallback&lt;boolean&gt;): void
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数，异步返回重新启动暂停的下载任务是否成功。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 201 | the permissions check fails |
+  | 401 | the parameters check fails |
 
 **示例：**
 
@@ -1630,6 +1878,10 @@ try {
   console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
 }
   ```
+
+> **说明：**
+>
+> 由于不存在401报错场景，在 api12 中 `401 the parameters check fails` 这个错误码被移除。
 
 
 ### remove<sup>(deprecated)</sup>
@@ -2042,7 +2294,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 
 使用 CommonEventData 类型传输公共事件相关数据。成员的内容填写和 [CommonEventData介绍](js-apis-inner-commonEvent-commonEventData.md) 介绍的有所区别，其中 CommonEventData.code 表示任务的状态，目前为 0x40 COMPLETE 或 0x41 FAILED; CommonEventData.data 表示任务的 taskId。
 
-事件配置信息请参考[静态订阅公共事件](../../basic-services/common-event/common-event-static-subscription.md)。
+<!--Del-->事件配置信息请参考[静态订阅公共事件](../../basic-services/common-event/common-event-static-subscription.md)。<!--DelEnd-->
 
 **系统能力**: SystemCapability.Request.FileTransferAgent
 
@@ -2254,6 +2506,7 @@ on(event: 'progress', callback: (progress: Progress) =&gt; void): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
   | 21900005 | task mode error. |
 
 **示例：**
@@ -2304,6 +2557,7 @@ on(event: 'progress', callback: (progress: Progress) =&gt; void): void
 > **说明：**
 >
 > 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+> 在 api11 中 `21900005 task mode error` 这个错误码被移除。
 
 ### on('completed')<sup>10+</sup>
 
@@ -2328,6 +2582,7 @@ on(event: 'completed', callback: (progress: Progress) =&gt; void): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
   | 21900005 | task mode error. |
 
 **示例：**
@@ -2378,6 +2633,7 @@ on(event: 'completed', callback: (progress: Progress) =&gt; void): void
 > **说明：**
 >
 > 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+> 在 api11 中 `21900005 task mode error` 这个错误码被移除。
 
 ### on('failed')<sup>10+</sup>
 
@@ -2402,6 +2658,7 @@ on(event: 'failed', callback: (progress: Progress) =&gt; void): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
   | 21900005 | task mode error. |
 
 **示例：**
@@ -2452,6 +2709,7 @@ on(event: 'failed', callback: (progress: Progress) =&gt; void): void
 > **说明：**
 >
 > 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+> 在 api11 中 `21900005 task mode error` 这个错误码被移除。
 
 ### on('pause')<sup>11+</sup>
 
@@ -2471,6 +2729,10 @@ on(event: 'pause', callback: (progress: Progress) =&gt; void): void
 **错误码：**
 
 以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
 
 **示例：**
 
@@ -2540,6 +2802,10 @@ on(event: 'resume', callback: (progress: Progress) =&gt; void): void
 
 以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
 
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+
 **示例：**
 
   ```ts
@@ -2608,6 +2874,10 @@ on(event: 'remove', callback: (progress: Progress) =&gt; void): void
 
 以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
 
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+
 **示例：**
 
   ```ts
@@ -2675,6 +2945,10 @@ on(event: 'response', callback: Callback&lt;HttpResponse&gt;): void
 **错误码：**
 
 以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
 
 **示例：**
 
@@ -2748,6 +3022,7 @@ off(event: 'progress', callback?: (progress: Progress) =&gt; void): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
   | 21900005 | task mode error. |
 
 **示例：**
@@ -2806,6 +3081,7 @@ off(event: 'progress', callback?: (progress: Progress) =&gt; void): void
 > **说明：**
 >
 > 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+> 在 api11 中 `21900005 task mode error` 这个错误码被移除。
 
 ### off('completed')<sup>10+</sup>
 
@@ -2830,6 +3106,7 @@ off(event: 'completed', callback?: (progress: Progress) =&gt; void): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
   | 21900005 | task mode error. |
 
 **示例：**
@@ -2888,6 +3165,7 @@ off(event: 'completed', callback?: (progress: Progress) =&gt; void): void
 > **说明：**
 >
 > 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+> 在 api11 中 `21900005 task mode error` 这个错误码被移除。
 
 ### off('failed')<sup>10+</sup>
 
@@ -2912,6 +3190,7 @@ off(event: 'failed', callback?: (progress: Progress) =&gt; void): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
   | 21900005 | task mode error. |
 
 **示例：**
@@ -2970,6 +3249,7 @@ off(event: 'failed', callback?: (progress: Progress) =&gt; void): void
 > **说明：**
 >
 > 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+> 在 api11 中 `21900005 task mode error` 这个错误码被移除。
 
 ### off('pause')<sup>11+</sup>
 
@@ -2989,6 +3269,10 @@ off(event: 'pause', callback?: (progress: Progress) =&gt; void): void
 **错误码：**
 
 以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
 
 **示例：**
 
@@ -3066,6 +3350,10 @@ off(event: 'resume', callback?: (progress: Progress) =&gt; void): void
 
 以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
 
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+
 **示例：**
 
   ```ts
@@ -3141,6 +3429,10 @@ off(event: 'remove', callback?: (progress: Progress) =&gt; void): void
 **错误码：**
 
 以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
 
 **示例：**
 
@@ -3218,6 +3510,10 @@ off(event: 'response', callback?: Callback&lt;HttpResponse&gt;): void
 
 以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
 
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+
 **示例：**
 
   ```ts
@@ -3279,7 +3575,9 @@ off(event: 'response', callback?: Callback&lt;HttpResponse&gt;): void
 
 start(callback: AsyncCallback&lt;void&gt;): void
 
-启动任务，无法启动已初始化的任务。可以启动一个已失败或已停止的下载任务，从上次的进度开始续传。使用callback异步回调。
+以下状态的任务可以被启动：
+1. 刚被 request.agent.create 接口创建的任务
+2. 使用 request.agent.create 接口创建的已经失败或者停止的下载任务
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -3299,6 +3597,7 @@ start(callback: AsyncCallback&lt;void&gt;): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 201 | Permission denied. |
   | 13400003 | task service ability error. |
   | 21900007 | task state error. |
 
@@ -3349,7 +3648,9 @@ start(callback: AsyncCallback&lt;void&gt;): void
 
 start(): Promise&lt;void&gt;
 
-启动任务，无法启动已初始化的任务。可以启动一个已失败或已停止的下载任务，从上次的进度开始续传。使用Promise异步回调。
+以下状态的任务可以被启动：
+1. 刚被 request.agent.create 接口创建的任务
+2. 使用 request.agent.create 接口创建的已经失败或者停止的下载任务
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -3369,6 +3670,7 @@ start(): Promise&lt;void&gt;
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 201 | Permission denied. |
   | 13400003 | task service ability error. |
   | 21900007 | task state error. |
 
@@ -3464,7 +3766,7 @@ pause(callback: AsyncCallback&lt;void&gt;): void
   };
   request.agent.create(getContext(), config).then((task: request.agent.Task) => {
     task.start();
-    for(var t = Date.now(); Date.now() - t <= 1000;); // 等待1秒再执行下一步操作，以防异步乱序
+    for(let t = Date.now(); Date.now() - t <= 1000;); // 等待1秒再执行下一步操作，以防异步乱序
     task.pause((err: BusinessError) => {
       if (err) {
         console.error(`Failed to pause the download task, Code: ${err.code}, message: ${err.message}`);
@@ -3533,7 +3835,7 @@ pause(): Promise&lt;void&gt;
   };
   request.agent.create(getContext(), config).then((task: request.agent.Task) => {
     task.start();
-    for(var t = Date.now(); Date.now() - t <= 1000;); // 等待1秒再执行下一步操作，以防异步乱序
+    for(let t = Date.now(); Date.now() - t <= 1000;); // 等待1秒再执行下一步操作，以防异步乱序
     task.pause().then(() => {
       console.info(`Succeeded in pausing a download task. `);
     }).catch((err: BusinessError) => {
@@ -3571,6 +3873,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 201 | Permission denied. |
   | 13400003 | task service ability error. |
   | 21900005 | task mode error. |
   | 21900007 | task state error. |
@@ -3602,9 +3905,9 @@ resume(callback: AsyncCallback&lt;void&gt;): void
   };
   request.agent.create(getContext(), config).then((task: request.agent.Task) => {
     task.start();
-    for(var t = Date.now(); Date.now() - t <= 1000;); // 等待1秒再执行下一步操作，以防异步乱序
+    for(let t = Date.now(); Date.now() - t <= 1000;); // 等待1秒再执行下一步操作，以防异步乱序
     task.pause();
-    for(var t = Date.now(); Date.now() - t <= 1000;); // 等待1秒再执行下一步操作，以防异步乱序
+    for(let t = Date.now(); Date.now() - t <= 1000;); // 等待1秒再执行下一步操作，以防异步乱序
     task.resume((err: BusinessError) => {
       if (err) {
         console.error(`Failed to resume the download task, Code: ${err.code}, message: ${err.message}`);
@@ -3645,6 +3948,7 @@ resume(): Promise&lt;void&gt;
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 201 | Permission denied. |
   | 13400003 | task service ability error. |
   | 21900005 | task mode error. |
   | 21900007 | task state error. |
@@ -3676,9 +3980,9 @@ resume(): Promise&lt;void&gt;
   };
   request.agent.create(getContext(), config).then((task: request.agent.Task) => {
     task.start();
-    for(var t = Date.now(); Date.now() - t <= 1000;); // 等待1秒再执行下一步操作，以防异步乱序
+    for(let t = Date.now(); Date.now() - t <= 1000;); // 等待1秒再执行下一步操作，以防异步乱序
     task.pause();
-    for(var t = Date.now(); Date.now() - t <= 1000;); // 等待1秒再执行下一步操作，以防异步乱序
+    for(let t = Date.now(); Date.now() - t <= 1000;); // 等待1秒再执行下一步操作，以防异步乱序
     task.resume().then(() => {
       console.info(`Succeeded in resuming a download task. `);
     }).catch((err: BusinessError) => {
@@ -3747,7 +4051,7 @@ stop(callback: AsyncCallback&lt;void&gt;): void
   };
   request.agent.create(getContext(), config).then((task: request.agent.Task) => {
     task.start();
-    for(var t = Date.now(); Date.now() - t <= 1000;); // 等待1秒再执行下一步操作，以防异步乱序
+    for(let t = Date.now(); Date.now() - t <= 1000;); // 等待1秒再执行下一步操作，以防异步乱序
     task.stop((err: BusinessError) => {
       if (err) {
         console.error(`Failed to stop the download task, Code: ${err.code}, message: ${err.message}`);
@@ -3814,7 +4118,7 @@ stop(): Promise&lt;void&gt;
   };
   request.agent.create(getContext(), config).then((task: request.agent.Task) => {
     task.start();
-    for(var t = Date.now(); Date.now() - t <= 1000;); // 等待1秒再执行下一步操作，以防异步乱序
+    for(let t = Date.now(); Date.now() - t <= 1000;); // 等待1秒再执行下一步操作，以防异步乱序
     task.stop().then(() => {
       console.info(`Succeeded in stopping a download task. `);
     }).catch((err: BusinessError) => {
@@ -3830,7 +4134,7 @@ stop(): Promise&lt;void&gt;
 
 create(context: BaseContext, config: Config, callback: AsyncCallback&lt;Task&gt;): void
 
-创建要上传或下载的任务，并将其排入队列，每个应用最多支持创建10个未完成的任务。使用callback异步回调。
+创建要上传或下载的任务，并将其排入队列。使用callback异步回调。
 
 
 **需要权限**：ohos.permission.INTERNET
@@ -3911,7 +4215,7 @@ create(context: BaseContext, config: Config, callback: AsyncCallback&lt;Task&gt;
 
 create(context: BaseContext, config: Config): Promise&lt;Task&gt;
 
-创建要上传或下载的任务，并将其排入队列，每个应用最多支持创建10个未完成的任务。使用Promise异步回调。
+创建要上传或下载的任务，并将其排入队列。使用Promise异步回调。
 
 
 **需要权限**：ohos.permission.INTERNET
@@ -4019,7 +4323,7 @@ getTask(context: BaseContext, id: string, token?: string): Promise&lt;Task&gt;
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | the parameters check fails.Possible causes: 1. Parameter verification failed |
+  | 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
   | 13400003 | task service ability error. |
   | 21900006 | task not found error. |
 
@@ -4027,7 +4331,7 @@ getTask(context: BaseContext, id: string, token?: string): Promise&lt;Task&gt;
 
   ```ts
   request.agent.getTask(context, "123456").then((task: request.agent.Task) => {
-    console.info(`Succeeded in querying a upload task. result: ${task.uid}`);
+    console.info(`Succeeded in querying a upload task. result: ${task.tid}`);
   }).catch((err: BusinessError) => {
     console.error(`Failed to query a upload task, Code: ${err.code}, message: ${err.message}`);
   });
@@ -4056,6 +4360,7 @@ remove(id: string, callback: AsyncCallback&lt;void&gt;): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type |
   | 13400003 | task service ability error. |
   | 21900006 | task not found error. |
 
@@ -4100,6 +4405,7 @@ remove(id: string): Promise&lt;void&gt;
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type |
   | 13400003 | task service ability error. |
   | 21900006 | task not found error. |
 
@@ -4134,6 +4440,7 @@ show(id: string, callback: AsyncCallback&lt;TaskInfo&gt;): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type |
   | 13400003 | task service ability error. |
   | 21900006 | task not found error. |
 
@@ -4175,6 +4482,7 @@ show(id: string): Promise&lt;TaskInfo&gt;
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type |
   | 13400003 | task service ability error. |
   | 21900006 | task not found error. |
 
@@ -4210,7 +4518,7 @@ touch(id: string, token: string, callback: AsyncCallback&lt;TaskInfo&gt;): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | the parameters check fails.Possible causes: 1. Parameter verification failed |
+  | 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
   | 13400003 | task service ability error. |
   | 21900006 | task not found error. |
 
@@ -4253,7 +4561,7 @@ touch(id: string, token: string): Promise&lt;TaskInfo&gt;
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | the parameters check fails.Possible causes: 1. Parameter verification failed |
+  | 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
   | 13400003 | task service ability error. |
   | 21900006 | task not found error. |
 
@@ -4286,6 +4594,7 @@ search(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401 | the parameters check fails.Possible causes: 1. Incorrect parameter type 2. Parameter verification failed |
   | 13400003 | task service ability error. |
 
 **示例：**
@@ -4320,6 +4629,7 @@ search(filter: Filter, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401 | the parameters check fails.Possible causes: 1. Incorrect parameter type 2. Parameter verification failed |
   | 13400003 | task service ability error. |
 
 **示例：**
@@ -4365,6 +4675,7 @@ search(filter?: Filter): Promise&lt;Array&lt;string&gt;&gt;
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401 | the parameters check fails.Possible causes: 1. Incorrect parameter type 2. Parameter verification failed |
   | 13400003 | task service ability error. |
 
 **示例：**

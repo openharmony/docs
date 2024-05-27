@@ -113,6 +113,76 @@ struct PopupExample22 {
 ![zh-cn_other_0000001500740342](figures/zh-cn_other_0000001500740342.jpeg)
 
 
+## 气泡的动画
+
+气泡通过定义transition控制气泡的进场和出场动画效果。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct PopupExample {
+  @State handlePopup: boolean = false
+  @State customPopup: boolean = false
+
+  // popup构造器定义弹框内容
+  @Builder popupBuilder() {
+    Row() {
+      Text('Custom Popup with transitionEffect').fontSize(10)
+    }.height(50).padding(5)
+  }
+
+  build() {
+    Flex({ direction: FlexDirection.Column }) {
+      // PopupOptions 类型设置弹框内容
+      Button('PopupOptions')
+        .onClick(() => {
+          this.handlePopup = !this.handlePopup
+        })
+        .bindPopup(this.handlePopup, {
+          message: 'This is a popup with transitionEffect',
+          placementOnTop: true,
+          showInSubWindow: false,
+          onStateChange: (e) => {
+            console.info(JSON.stringify(e.isVisible))
+            if (!e.isVisible) {
+              this.handlePopup = false
+            }
+          },
+          // 设置弹窗显示动效为透明度动效与平移动效的组合效果，无退出动效
+          transition:TransitionEffect.asymmetric(
+            TransitionEffect.OPACITY.animation({ duration: 1000, curve: Curve.Ease }).combine(
+              TransitionEffect.translate({ x: 50, y: 50 })),
+            TransitionEffect.IDENTITY)
+        })
+        .position({ x: 100, y: 150 })
+
+      // CustomPopupOptions 类型设置弹框内容
+      Button('CustomPopupOptions')
+        .onClick(() => {
+          this.customPopup = !this.customPopup
+        })
+        .bindPopup(this.customPopup, {
+          builder: this.popupBuilder,
+          placement: Placement.Top,
+          showInSubWindow: false,
+          onStateChange: (e) => {
+            if (!e.isVisible) {
+              this.customPopup = false
+            }
+          },
+          // 设置弹窗显示动效与退出动效为缩放动效
+          transition:TransitionEffect.scale({ x: 1, y: 0 }).animation({ duration: 500, curve: Curve.Ease })
+        })
+        .position({ x: 80, y: 300 })
+    }.width('100%').padding({ top: 5 })
+  }
+}
+```
+
+![popup_transition](figures/popup_transition.gif)
+
+
 ## 自定义气泡
 
 开发者可以使用构建器CustomPopupOptions创建自定义气泡，\@Builder中可以放自定义的内容。除此之外，还可以通过popupColor等参数控制气泡样式。

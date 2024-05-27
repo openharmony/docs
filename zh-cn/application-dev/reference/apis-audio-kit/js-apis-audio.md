@@ -764,7 +764,7 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 | ----------------------------------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | streamInfo                          | [AudioStreamInfo](#audiostreaminfo8)                      | 是   | 表示音频流信息。 <br/>**系统能力：** SystemCapability.Multimedia.Audio.Capturer   |
 | capturerInfo                        | [AudioCapturerInfo](#audiocapturerinfo8)                   | 是   | 表示采集器信息。 <br/>**系统能力：** SystemCapability.Multimedia.Audio.Capturer        |
-| playbackCaptureConfig<sup>10+</sup> | [AudioPlaybackCaptureConfig](#audioplaybackcaptureconfig10) | 否   | 音频内录的配置信息。<br/>**系统能力：** SystemCapability.Multimedia.Audio.PlaybackCapture |
+| playbackCaptureConfig<sup>(deprecated)</sup> | [AudioPlaybackCaptureConfig](#audioplaybackcaptureconfigdeprecated) | 否   | 音频内录的配置信息。<br/>**系统能力：** SystemCapability.Multimedia.Audio.PlaybackCapture。<br/> 从API version 10 开始支持，从 API version 12 开始废弃。Audio不再提供内录接口，请通过[录屏接口AVScreenCapture](../apis-media-kit/_a_v_screen_capture.md)进行内录。 |
 
 ## AudioCapturerInfo<sup>8+</sup>
 
@@ -786,23 +786,29 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 | SOURCE_TYPE_INVALID                          | -1     | 无效的音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core  |
 | SOURCE_TYPE_MIC                              | 0      | Mic音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core |
 | SOURCE_TYPE_VOICE_RECOGNITION<sup>9+</sup>   | 1      | 语音识别源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core  |
-| SOURCE_TYPE_PLAYBACK_CAPTURE<sup>10+</sup>   | 2 | 播放音频流（内录）录制音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.PlaybackCapture |
+| SOURCE_TYPE_PLAYBACK_CAPTURE<sup>(deprecated)</sup>   | 2 | 播放音频流（内录）录制音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.PlaybackCapture。<br/> 从API version 10 开始支持，从 API version 12 开始废弃。Audio不再提供内录接口，请通过[录屏接口AVScreenCapture](../apis-media-kit/_a_v_screen_capture.md)进行内录。 |
 | SOURCE_TYPE_VOICE_COMMUNICATION              | 7      | 语音通话场景的音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core |
 | SOURCE_TYPE_VOICE_MESSAGE<sup>12+</sup>      | 10     | 短语音消息的音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core |
 
-## AudioPlaybackCaptureConfig<sup>10+</sup>
+## AudioPlaybackCaptureConfig<sup>(deprecated)</sup>
 
 播放音频流录制（内录）的配置信息。
+
+> **说明：**
+> 从 API version 10 开始支持，从 API version 12 开始废弃。Audio不再提供内录接口，请通过[录屏接口AVScreenCapture](../apis-media-kit/_a_v_screen_capture.md)进行内录。
 
 **系统能力：** SystemCapability.Multimedia.Audio.PlaybackCapture
 
 | 名称          | 类型                                          | 必填 | 说明                             |
 | ------------- | --------------------------------------------- | ---- | -------------------------------- |
-| filterOptions | [CaptureFilterOptions](#capturefilteroptions10) | 是   | 需要录制的播放音频流的筛选信息。 |
+| filterOptions | [CaptureFilterOptions](#capturefilteroptionsdeprecated) | 是   | 需要录制的播放音频流的筛选信息。 |
 
-## CaptureFilterOptions<sup>10+</sup>
+## CaptureFilterOptions<sup>(deprecated)</sup>
 
 待录制的播放音频流的筛选信息。
+
+> **说明：**
+> 从 API version 10 开始支持，从 API version 12 开始废弃。Audio不再提供内录接口，请通过[录屏接口AVScreenCapture](../apis-media-kit/_a_v_screen_capture.md)进行内录。
 
 **需要权限：**
 
@@ -3177,23 +3183,20 @@ getMaxAmplitudeForInputDevice(inputDevice: AudioDeviceDescriptor): Promise&lt;nu
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let inputDeviceDesc: audio.AudioDeviceDescriptor;
-
-let capturerInfo = {
-  content : audio.ContentType.CONTENT_TYPE_MUSIC,
-  usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
-  capturerFlags : 0 }
-
-audioRoutingManager.getPreferredInputDeviceForCapturerInfo(capturerInfo).then(
-  (desc) => {
-    inputDeviceDesc = desc;
-  }).catch((err) => {
-    console.error("get outputDeviceId error" + JSON.stringify(err));
-    return;
-  });
-audioVolumeGroupManager.getMaxAmplitudeForInputDevice(inputDeviceDesc).then(value: number) {
-  console.info(`mic volatileume amplitude is: ${value}`);
+let capturerInfo: audio.AudioCapturerInfo = {
+  source: audio.SourceType.SOURCE_TYPE_MIC,
+  capturerFlags: 0
 }
+
+audioRoutingManager.getPreferredInputDeviceForCapturerInfo(capturerInfo).then((data) => {
+  audioVolumeGroupManager.getMaxAmplitudeForInputDevice(data[0]).then((value) => {
+    console.info(`mic volatileume amplitude is: ${value}`);
+  }).catch((err: BusinessError) => {
+    console.error("getMaxAmplitudeForInputDevice error" + JSON.stringify(err));
+  })
+}).catch((err: BusinessError) => {
+  console.error("get outputDeviceId error" + JSON.stringify(err));
+})
 ```
 
 ### getMaxAmplitudeForOutputDevice<sup>12+</sup>
@@ -3231,24 +3234,20 @@ getMaxAmplitudeForOutputDevice(outputDevice: AudioDeviceDescriptor): Promise&lt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let outputDeviceDesc: audio.AudioDeviceDescriptor;
-
-let rendererInfo = {
-  content : audio.ContentType.CONTENT_TYPE_MUSIC,
-  usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
-  rendererFlags : 0 }
-
-audioRoutingManager.getPreferredOutputDeviceForRendererInfo(rendererInfo).then(
-  (desc) => {
-    outputDeviceDesc = desc;
-  }).catch((err) => {
-    console.error("get outputDeviceId error" + JSON.stringify(err));
-    return;
-  });
-
-audioVolumeGroupManager.getMaxAmplitudeForOutputDevice(outputDeviceDesc).then(value: number) {
-  console.info(`speaker volatileume amplitude is: ${value}`);
+let rendererInfo: audio.AudioRendererInfo = {
+  usage : audio.StreamUsage.STREAM_USAGE_MUSIC,
+  rendererFlags : 0
 }
+
+audioRoutingManager.getPreferOutputDeviceForRendererInfo(rendererInfo).then((data) => {
+  audioVolumeGroupManager.getMaxAmplitudeForOutputDevice(data[0]).then((value) => {
+    console.info(`mic volatileume amplitude is: ${value}`);
+  }).catch((err: BusinessError) => {
+    console.error("getMaxAmplitudeForOutputDevice error" + JSON.stringify(err));
+  })
+}).catch((err: BusinessError) => {
+  console.error("getPreferOutputDeviceForRendererInfo error" + JSON.stringify(err));
+})
 ```
 
 ## AudioStreamManager<sup>9+</sup>

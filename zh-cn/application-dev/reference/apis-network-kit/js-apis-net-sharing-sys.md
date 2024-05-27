@@ -10,7 +10,7 @@
 ## 导入模块
 
 ```js
-import sharing from '@ohos.net.sharing';
+import { sharing } from '@kit.NetworkKit';
 ```
 
 ## sharing.isSharingSupported
@@ -44,8 +44,8 @@ isSharingSupported(callback: AsyncCallback\<boolean>): void
 **示例：**
 
 ```js
-import sharing from '@ohos.net.sharing';
-import { BusinessError } from '@ohos.base';
+import { sharing } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 sharing.isSharingSupported((error: BusinessError, data: boolean) => {
   console.log(JSON.stringify(error));
@@ -84,8 +84,8 @@ isSharingSupported(): Promise\<boolean>
 **示例：**
 
 ```js
-import sharing from '@ohos.net.sharing';
-import { BusinessError } from '@ohos.base';
+import { sharing } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 sharing
   .isSharingSupported()
@@ -128,8 +128,8 @@ isSharing(callback: AsyncCallback\<boolean>): void
 **示例：**
 
 ```js
-import sharing from '@ohos.net.sharing';
-import { BusinessError } from '@ohos.base';
+import { sharing } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 sharing.isSharing((error: BusinessError, data: boolean) => {
   console.log(JSON.stringify(error));
@@ -168,8 +168,8 @@ isSharing(): Promise\<boolean>
 **示例：**
 
 ```js
-import sharing from '@ohos.net.sharing';
-import { BusinessError } from '@ohos.base';
+import { sharing } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 sharing
   .isSharing()
@@ -219,8 +219,8 @@ startSharing(type: SharingIfaceType, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
-import sharing from '@ohos.net.sharing';
-import { BusinessError } from '@ohos.base';
+import { sharing } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let SHARING_WIFI = 0;
 sharing.startSharing(SHARING_WIFI, (error: BusinessError) => {
@@ -271,8 +271,8 @@ startSharing(type: SharingIfaceType): Promise\<void>
 **示例：**
 
 ```js
-import sharing from '@ohos.net.sharing';
-import { BusinessError } from '@ohos.base';
+import { sharing } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let SHARING_WIFI = 0;
 sharing
@@ -322,8 +322,8 @@ stopSharing(type: SharingIfaceType, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
-import sharing from '@ohos.net.sharing';
-import { BusinessError } from '@ohos.base';
+import { sharing } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let SHARING_WIFI = 0;
 sharing.stopSharing(SHARING_WIFI, (error: BusinessError) => {
@@ -373,8 +373,8 @@ stopSharing(type: SharingIfaceType): Promise\<void>
 **示例：**
 
 ```js
-import sharing from '@ohos.net.sharing';
-import { BusinessError } from '@ohos.base';
+import { sharing } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let SHARING_WIFI = 0;
 sharing
@@ -418,8 +418,8 @@ getStatsRxBytes(callback: AsyncCallback\<number>): void
 **示例：**
 
 ```js
-import sharing from '@ohos.net.sharing';
-import { BusinessError } from '@ohos.base';
+import { sharing } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 sharing.getStatsRxBytes((error: BusinessError, data: number) => {
   console.log(JSON.stringify(error));
@@ -458,8 +458,8 @@ getStatsRxBytes(): Promise\<number>
 **示例：**
 
 ```js
-import sharing from '@ohos.net.sharing';
-import { BusinessError } from '@ohos.base';
+import { sharing } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 sharing
   .getStatsRxBytes()
@@ -502,8 +502,8 @@ getStatsTxBytes(callback: AsyncCallback\<number>): void
 **示例：**
 
 ```js
-import sharing from '@ohos.net.sharing';
-import { BusinessError } from '@ohos.base';
+import { sharing } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 sharing.getStatsTxBytes((error: BusinessError, data: number) => {
   console.log(JSON.stringify(error));
@@ -542,8 +542,8 @@ getStatsTxBytes(): Promise\<number>
 **示例：**
 
 ```js
-import sharing from '@ohos.net.sharing';
-import { BusinessError } from '@ohos.base';
+import { sharing } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 sharing
   .getStatsTxBytes()
@@ -586,8 +586,8 @@ getStatsTotalBytes(callback: AsyncCallback\<number>): void
 **示例：**
 
 ```js
-import sharing from '@ohos.net.sharing';
-import { BusinessError } from '@ohos.base';
+import { sharing } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 sharing.getStatsTotalBytes((error: BusinessError, data: number) => {
   console.log(JSON.stringify(error));
@@ -626,8 +626,8 @@ getStatsTotalBytes(): Promise\<number>
 **示例：**
 
 ```js
-import sharing from '@ohos.net.sharing';
-import { BusinessError } from '@ohos.base';
+import { sharing } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 sharing
   .getStatsTotalBytes()
@@ -672,8 +672,8 @@ getSharingIfaces(state: SharingIfaceState, callback: AsyncCallback\<Array\<strin
 **示例：**
 
 ```js
-import sharing from '@ohos.net.sharing';
-import { BusinessError } from '@ohos.base';
+import { sharing } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let SHARING_BLUETOOTH = 2;
 sharing.getSharingIfaces(SHARING_BLUETOOTH, (error: BusinessError, data: string[]) => {
@@ -720,8 +720,8 @@ getSharingIfaces(state: SharingIfaceState): Promise\<Array\<string>>
 **示例：**
 
 ```js
-import sharing from '@ohos.net.sharing';
-import { BusinessError } from '@ohos.base';
+import { sharing } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let SHARING_BLUETOOTH = 2;
 sharing
@@ -767,8 +767,8 @@ getSharingState(type: SharingIfaceType, callback: AsyncCallback\<SharingIfaceSta
 **示例：**
 
 ```js
-import sharing from '@ohos.net.sharing';
-import { BusinessError } from '@ohos.base';
+import { sharing } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let SHARING_WIFI = 0;
 sharing.getSharingState(SHARING_WIFI, (error: BusinessError, data: sharing.SharingIfaceState) => {
@@ -815,8 +815,8 @@ getSharingState(type: SharingIfaceType): Promise\<SharingIfaceState\>
 **示例：**
 
 ```js
-import sharing from '@ohos.net.sharing';
-import { BusinessError } from '@ohos.base';
+import { sharing } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let SHARING_WIFI = 0;
 sharing
@@ -862,8 +862,8 @@ getSharableRegexes(type: SharingIfaceType, callback: AsyncCallback\<Array\<strin
 **示例：**
 
 ```js
-import sharing from '@ohos.net.sharing';
-import { BusinessError } from '@ohos.base';
+import { sharing } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let SHARING_WIFI = 0;
 sharing.getSharableRegexes(SHARING_WIFI, (error: BusinessError, data: string[]) => {
@@ -910,8 +910,8 @@ getSharableRegexes(type: SharingIfaceType): Promise\<Array\<string>>
 **示例：**
 
 ```js
-import sharing from '@ohos.net.sharing';
-import { BusinessError } from '@ohos.base';
+import { sharing } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let SHARING_WIFI = 0;
 sharing
@@ -954,7 +954,7 @@ on(type: 'sharingStateChange', callback: Callback\<boolean>): void
 **示例：**
 
 ```js
-import sharing from '@ohos.net.sharing';
+import { sharing } from '@kit.NetworkKit';
 
 sharing.on('sharingStateChange', (data: boolean) => {
   console.log('on sharingStateChange: ' + JSON.stringify(data));
@@ -991,7 +991,7 @@ off(type: 'sharingStateChange', callback?: Callback\<boolean>): void
 **示例：**
 
 ```js
-import sharing from '@ohos.net.sharing';
+import { sharing } from '@kit.NetworkKit';
 
 sharing.off('sharingStateChange', (data: boolean) => {
   console.log(JSON.stringify(data));
@@ -1028,7 +1028,7 @@ on(type: 'interfaceSharingStateChange', callback: Callback\<InterfaceSharingStat
 **示例：**
 
 ```js
-import sharing from '@ohos.net.sharing';
+import { sharing } from '@kit.NetworkKit';
 
 sharing.on('interfaceSharingStateChange', (data: object) => {
   console.log('on interfaceSharingStateChange:' + JSON.stringify(data));
@@ -1065,7 +1065,7 @@ off(type: 'interfaceSharingStateChange', callback?: Callback\<InterfaceSharingSt
 **示例：**
 
 ```js
-import sharing from '@ohos.net.sharing';
+import { sharing } from '@kit.NetworkKit';
 
 sharing.off('interfaceSharingStateChange', (data: object) => {
   console.log(JSON.stringify(data));
@@ -1102,7 +1102,7 @@ on(type: 'sharingUpstreamChange', callback: Callback\<NetHandle>): void
 **示例：**
 
 ```js
-import sharing from '@ohos.net.sharing';
+import { sharing } from '@kit.NetworkKit';
 
 sharing.on('sharingUpstreamChange', (data: object) => {
   console.log('on sharingUpstreamChange:' + JSON.stringify(data));
@@ -1139,7 +1139,7 @@ off(type: 'sharingUpstreamChange', callback?: Callback\<NetHandle>): void
 **示例：**
 
 ```js
-import sharing from '@ohos.net.sharing';
+import { sharing } from '@kit.NetworkKit';
 
 sharing.off('sharingUpstreamChange', (data: object) => {
   console.log(JSON.stringify(data));

@@ -11,6 +11,7 @@
   - [代码开发概述](develop-code-overview.md)
   - C/C++标准库
     - [C/C++标准库机制概述](c-cpp-overview.md)
+    - [fdsan使用指导](fdsan.md)
   - 使用Node-API实现跨语言交互
     - [Node-API简介](napi-introduction.md)
     - [Node-API支持的数据类型和接口](napi-data-types-interfaces.md)
@@ -26,7 +27,7 @@
       - [使用扩展的Node-API接口在异步线程中运行和停止事件循环](use-napi-event-loop.md)
       - [使用Node-API接口进行模块加载](use-napi-load-module-with-info.md)
       - [使用Node-API接口从异步线程向ArkTS线程投递指定优先级和入队方式的的任务](use-call-threadsafe-function-with-priority.md)
-      - [Node-API扩展能力接口](use-napi-about-extension.md)
+      - [使用Node-API扩展能力接口](use-napi-about-extension.md)
     - [Node-API常见问题](use-napi-faqs.md)
   - 使用JSVM-API实现JS与C/C++语言交互
     - [JSVM-API简介](jsvm-introduction.md)

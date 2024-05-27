@@ -183,6 +183,12 @@ let applicationStateObserver: appManager.ApplicationStateObserver = {
     },
     onProcessStateChanged(processData) {
         console.log(`[appManager] onProcessStateChanged: ${JSON.stringify(processData)}`);
+    },
+    onAppStarted(appStateData) {
+        console.log(`[appManager] onAppStarted: ${JSON.stringify(appStateData)}`);
+    },
+    onAppStopped(appStateData) {
+        console.log(`[appManager] onAppStopped: ${JSON.stringify(appStateData)}`);
     }
 };
 try {
@@ -253,6 +259,12 @@ let applicationStateObserver: appManager.ApplicationStateObserver = {
     },
     onProcessStateChanged(processData) {
         console.log(`[appManager] onProcessStateChanged: ${JSON.stringify(processData)}`);
+    },
+    onAppStarted(appStateData) {
+        console.log(`[appManager] onAppStarted: ${JSON.stringify(appStateData)}`);
+    },
+    onAppStopped(appStateData) {
+        console.log(`[appManager] onAppStopped: ${JSON.stringify(appStateData)}`);
     }
 };
 let bundleNameList = ['bundleName1', 'bundleName2'];
@@ -419,6 +431,12 @@ let applicationStateObserver: appManager.ApplicationStateObserver = {
     },
     onProcessStateChanged(processData) {
         console.log(`[appManager] onProcessStateChanged: ${JSON.stringify(processData)}`);
+    },
+    onAppStarted(appStateData) {
+        console.log(`[appManager] onAppStarted: ${JSON.stringify(appStateData)}`);
+    },
+    onAppStopped(appStateData) {
+        console.log(`[appManager] onAppStopped: ${JSON.stringify(appStateData)}`);
     }
 };
 let bundleNameList = ['bundleName1', 'bundleName2'];
@@ -508,6 +526,12 @@ let applicationStateObserver: appManager.ApplicationStateObserver = {
     },
     onProcessStateChanged(processData) {
         console.log(`[appManager] onProcessStateChanged: ${JSON.stringify(processData)}`);
+    },
+    onAppStarted(appStateData) {
+        console.log(`[appManager] onAppStarted: ${JSON.stringify(appStateData)}`);
+    },
+    onAppStopped(appStateData) {
+        console.log(`[appManager] onAppStopped: ${JSON.stringify(appStateData)}`);
     }
 };
 let bundleNameList = ['bundleName1', 'bundleName2'];
@@ -1539,6 +1563,8 @@ try {
 ```
 
 ## appManager.preloadApplication<sup>12+</sup>
+
+preloadApplication(bundleName: string, userId: number, mode: PreloadMode, appIndex?: number): Promise\<void>
 
 预加载应用进程。接口返回成功并不代表预加载成功，具体结果以目标应用进程是否创建成功为准。使用Promise异步回调。
 

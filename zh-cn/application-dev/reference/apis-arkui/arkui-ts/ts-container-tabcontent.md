@@ -88,7 +88,7 @@ SubTabBarStyle的构造函数。
 
 | 参数名 | 参数类型         | 必填 | 参数描述 |
 | -------- | -------- | -------- | -------- |
-| content | [ResourceStr](ts-types.md#resourcestr) \| ComponentContent<sup>12+</sup> | 是 | 页签内的文字内容。从API version 10开始，content类型为ResourceStr。从API version 12开始，支持ComponentContent设置自定义内容。<br />**说明：**<br />1.自定义内容不支持labelStyle属性。<br />2.自定义内容超出页签范围，则不显示超出部分。<br />3.自定义内容小于页签范围，则会居中对齐。<br />4.自定义内容异常或无可用显示组件，则显示空白。 |
+| content | [ResourceStr](ts-types.md#resourcestr) \| [ComponentContent<sup>12+</sup>](../js-apis-arkui-ComponentContent.md) | 是 | 页签内的文字内容。从API version 10开始，content类型为ResourceStr。从API version 12开始，支持ComponentContent设置自定义内容。<br />**说明：**<br />1.自定义内容不支持labelStyle属性。<br />2.自定义内容超出页签范围，则不显示超出部分。<br />3.自定义内容小于页签范围，则会居中对齐。<br />4.自定义内容异常或无可用显示组件，则显示空白。 |
 
 ### of<sup>10+</sup>
 
@@ -102,7 +102,7 @@ SubTabBarStyle的静态构造函数。
 
 | 参数名  | 参数类型                                   | 必填 | 参数描述           |
 | ------- | ------------------------------------------ | ---- | ------------------ |
-| content | [ResourceStr](ts-types.md#resourcestr) \| ComponentContent<sup>12+</sup> | 是   | 页签内的文字内容。从API version 12开始，支持ComponentContent设置自定义内容。<br />**说明：**<br />1.自定义内容不支持labelStyle属性。<br />2.自定义内容超出页签范围，则不显示超出部分。<br />3.自定义内容小于页签范围，则会居中对齐。<br />4.自定义内容异常或无可用显示组件，则显示空白。 |
+| content | [ResourceStr](ts-types.md#resourcestr) \| [ComponentContent<sup>12+</sup>](../js-apis-arkui-ComponentContent.md) | 是   | 页签内的文字内容。从API version 12开始，支持ComponentContent设置自定义内容。<br />**说明：**<br />1.自定义内容不支持labelStyle属性。<br />2.自定义内容超出页签范围，则不显示超出部分。<br />3.自定义内容小于页签范围，则会居中对齐。<br />4.自定义内容异常或无可用显示组件，则显示空白。 |
 
 ### 属性
 
@@ -180,7 +180,7 @@ BottomTabBarStyle的构造函数。
 
 ### of<sup>10+</sup>
 
-static of(icon: ResourceStr, text: ResourceStr)
+static of(icon: ResourceStr | TabBarSymbol, text: ResourceStr)
 
 BottomTabBarStyle的静态构造函数。
 
@@ -196,8 +196,8 @@ BottomTabBarStyle的静态构造函数。
 ## TabBarSymbol<sup>12+</sup>
 | 参数名 | 参数类型         | 必填 | 参数描述 |
 | -------- | -------- | -------- | -------- |
-| normal | [SymbolGlphModifier](ts-universal-attributes-attribute-modifier.md) | 是 | 页签内symbol图标普通态样式。 |
-| selected | [SymbolGlphModifier](ts-universal-attributes-attribute-modifier.md) | 否 | 页签内symbol图标选中态样式。 |
+| normal | [SymbolGlphModifier](ts-universal-attributes-attribute-modifier.md) | 是 | 页签内symbol图标普通态样式。<br/>默认值：fontColor：#66182431，renderingStrategy：SymbolRenderingStrategy.MULTIPLE_OPACITY，fontSize：24vp |
+| selected | [SymbolGlphModifier](ts-universal-attributes-attribute-modifier.md) | 否 | 页签内symbol图标选中态样式。<br/>默认值：fontColor：#ff007dff，renderingStrategy：SymbolRenderingStrategy.MULTIPLE_OPACITY，fontSize：24vp |
 ### 属性
 
 支持以下属性：
@@ -210,7 +210,7 @@ BottomTabBarStyle的静态构造函数。
 | symmetricExtensible<sup>10+</sup> |  boolean | 设置底部页签的图片、文字是否可以对称借左右底部页签的空余位置中的最小值，仅fixed水平模式下在底部页签之间有效。<br/>默认值：false<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 | labelStyle<sup>10+</sup> | [LabelStyle](#labelstyle10对象说明) | 设置底部页签的label文本和字体的样式。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 | id<sup>11+</sup> | string | 设置底部页签的[id](ts-universal-attributes-component-id.md#属性)。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
-| iconStyle<sup>12+</sup> | [IconStyle](#iconstyle12对象说明) | 设置底部页签的label图标的样式。 |
+| iconStyle<sup>12+</sup> | [TabBarIconStyle](#tabbariconstyle12对象说明) | 设置底部页签的label图标的样式。 |
 
 ## LayoutMode<sup>10+</sup>枚举说明
 
@@ -222,7 +222,7 @@ BottomTabBarStyle的静态构造函数。
 | VERTICAL    | 页签内容上下排布。 |
 | HORIZONAL   | 页签内容左右排布。 |
 
-## IconStyle<sup>12+</sup>对象说明
+## TabBarIconStyle<sup>12+</sup>对象说明
 
 | 名称                 | 参数类型                                                     | 必填 | 描述                                                         |
 | -------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |

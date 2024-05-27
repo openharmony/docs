@@ -41,7 +41,7 @@ showToast(options: ShowToastOptions): void
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
-| 100001    | if UI execution context not found. |
+| 100001    | Internal error. |
 
 **示例：**
 
@@ -108,7 +108,7 @@ showDialog(options: ShowDialogOptions): Promise&lt;ShowDialogSuccessResponse&gt;
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
-| 100001    | if UI execution context not found. |
+| 100001    | Internal error. |
 
 **示例：**
 
@@ -169,7 +169,7 @@ showDialog(options: ShowDialogOptions, callback: AsyncCallback&lt;ShowDialogSucc
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
-| 100001    | if UI execution context not found. |
+| 100001    | Internal error. |
 
 **示例：**
 
@@ -269,7 +269,7 @@ showActionMenu(options: ActionMenuOptions, callback: AsyncCallback&lt;ActionMenu
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
-| 100001    | if UI execution context not found. |
+| 100001    | Internal error. |
 
 **示例：**
 
@@ -334,7 +334,7 @@ showActionMenu(options: ActionMenuOptions): Promise&lt;ActionMenuSuccessResponse
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
-| 100001    | if UI execution context not found. |
+| 100001    | Internal error. |
 
 **示例：**
 
@@ -405,7 +405,7 @@ openCustomDialog(options: CustomDialogOptions): Promise&lt;number&gt;
 | 错误码ID | 错误信息                           |
 | -------- | ---------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
-| 100001   | if UI execution context not found. |
+| 100001   | Internal error. |
 
 **示例：**
 
@@ -463,6 +463,58 @@ struct Index {
   }
 }
 ```
+该示例定义了弹窗样式，如宽度、高度、背景色、阴影等等
+```ts
+import promptAction from '@ohos.promptAction'
+@Builder
+function customDialogBuilder() {
+  Column() {
+    Text('Custom dialog Message').fontSize(10)
+    Row() {
+      Button("确认").onClick(() => {
+        promptAction.closeCustomDialog(0)
+      })
+      Blank().width(50)
+      Button("取消").onClick(() => {
+        promptAction.closeCustomDialog(0)
+      })
+    }
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  @State message: string = 'Hello World'
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+          .onClick(() => {
+            promptAction.openCustomDialog({
+              builder: customDialogBuilder.bind(this),
+              showInSubWindow: false,
+              offset:{ dx: 5, dy: 5},
+              backgroundColor: 0xd9ffffff,
+              cornerRadius: 20,
+              width: '80%',
+              height: 200,
+              borderWidth: 1,
+              borderStyle: BorderStyle.Dashed,//使用borderStyle属性，需要和borderWidth属性一起使用
+              borderColor: Color.Blue,//使用borderColor属性，需要和borderWidth属性一起使用
+              shadow: ({ radius: 20, color: Color.Grey, offsetX: 50, offsetY: 0}),
+            })
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+![zh-cn_image_0007](figures/zh-cn_image_0007.gif)
 
 ## promptAction.closeCustomDialog<sup>11+</sup>
 
@@ -487,7 +539,7 @@ closeCustomDialog(dialogId: number): void
 | 错误码ID | 错误信息                           |
 | -------- | ---------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
-| 100001   | if UI execution context not found. |
+| 100001   | Internal error. |
 
 **示例：**
 
@@ -503,7 +555,7 @@ closeCustomDialog(dialogId: number): void
 | ----------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | message                 | string&nbsp;\|&nbsp;[Resource](arkui-ts/ts-types.md#resource类型)<sup>9+</sup> | 是   | 显示的文本信息。<br>**说明：** <br/>默认字体为'Harmony Sans'，不支持设置其他字体。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 | duration                | number                                                       | 否   | 默认值1500ms，取值区间：1500ms-10000ms。若小于1500ms则取默认值，若大于10000ms则取上限值10000ms。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| bottom                  | string&nbsp;\|&nbsp;number                                   | 否   | 设置弹窗边框距离屏幕底部的位置。<br>默认值：80vp<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| bottom                  | string&nbsp;\|&nbsp;number                                   | 否   | 设置弹窗边框距离屏幕底部的位置。<br>默认值：80vp，设置了Alignment后不生效。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 | showMode<sup>11+</sup>  | [ToastShowMode](#toastshowmode11)                            | 否   | 设置弹窗是否显示在应用之上。<br>默认值：ToastShowMode.DEFAULT，默认显示在应用内。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
 | alignment<sup>12+</sup> | [Alignment](arkui-ts/ts-appendix-enums.md#alignment)         | 否   | 对齐方式。<br/>默认值：undefined，默认底部偏上位置。         |
 | offset<sup>12+</sup>    | [Offset](arkui-ts/ts-types.md#offset)                        | 否   | 在对齐方式上的偏移。<br/>默认值：{dx:0, dy:0}，默认没有偏移。 |
@@ -535,8 +587,8 @@ closeCustomDialog(dialogId: number): void
 | alignment<sup>10+</sup>           | [DialogAlignment](arkui-ts/ts-methods-alert-dialog-box.md#dialogalignment枚举说明) | 否   | 弹窗在竖直方向上的对齐方式。<br/>默认值：DialogAlignment.Default<br/>**说明**：<br/>若在UIExtension中设置showInSubWindow为true, 弹窗将基于UIExtension的宿主窗口对齐。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 | offset<sup>10+</sup>              | [Offset](arkui-ts/ts-types.md#offset)                        | 否   | 弹窗相对alignment所在位置的偏移量。<br/>默认值：{&nbsp;dx:&nbsp;0&nbsp;,&nbsp;dy:&nbsp;0&nbsp;}<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 | maskRect<sup>10+</sup>            | [Rectangle](arkui-ts/ts-methods-alert-dialog-box.md#rectangle8类型说明) | 否   | 弹窗遮蔽层区域，在遮蔽层区域内的事件不透传，在遮蔽层区域外的事件透传。<br/>默认值：{ x: 0, y: 0, width: '100%', height: '100%' } <br/>**说明：**<br/>showInSubWindow为true时，maskRect不生效。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| showInSubWindow<sup>11+</sup>     | boolean                                                      | 否   | 某弹框需要显示在主窗口之外时，是否在子窗口显示此弹窗。<br/>默认值：false，弹窗显示在应用内，而非独立子窗口。<br/>**说明**：showInSubWindow为true的弹窗无法触发显示另一个showInSubWindow为true的弹窗。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| isModal<sup>11+</sup>             | boolean                                                      | 否   | 弹窗是否为模态窗口，模态窗口有蒙层，非模态窗口无蒙层。<br/>默认值：true，此时弹窗有蒙层。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| showInSubWindow<sup>11+</sup>     | boolean                                                      | 否   | 某弹框需要显示在主窗口之外时，是否在子窗口显示此弹窗。<br/>默认值：false，弹窗显示在应用内，而非独立子窗口。<br/>**说明**：showInSubWindow为true的弹窗无法触发显示另一个showInSubWindow为true的弹窗。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| isModal<sup>11+</sup>             | boolean                                                      | 否   | 弹窗是否为模态窗口，模态窗口有蒙层，非模态窗口无蒙层。<br/>默认值：true，此时弹窗有蒙层。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
 | backgroundColor<sup>12+</sup>     | [ResourceColor](arkui-ts/ts-types.md#resourcecolor)          | 否   | 弹窗背板颜色。<br/>默认值：Color.Transparent                 |
 | backgroundBlurStyle<sup>12+</sup> | [BlurStyle](arkui-ts/ts-appendix-enums.md#blurstyle9)        | 否   | 弹窗背板模糊材质。<br/>默认值：BlurStyle.COMPONENT_ULTRA_THICK |
 | shadow<sup>12+</sup>              | [ShadowOptions](arkui-ts/ts-universal-attributes-image-effect.md#shadowoptions对象说明)&nbsp;\|&nbsp;[ShadowStyle](arkui-ts/ts-universal-attributes-image-effect.md#shadowstyle10枚举说明) | 否   | 设置弹窗背板的阴影。<br /> 当设备为2in1时，默认场景下获焦阴影值为ShadowStyle.OUTER_FLOATING_MD，失焦为ShadowStyle.OUTER_FLOATING_SM |
@@ -610,7 +662,7 @@ closeCustomDialog(dialogId: number): void
 | offset          | [Offset](arkui-ts/ts-types.md#offset)                     | 否   | 弹窗相对alignment所在位置的偏移量。<br/>默认值：{&nbsp;dx:&nbsp;0&nbsp;,&nbsp;dy:&nbsp;0&nbsp;}<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
 | isModal         | boolean                                                      | 否   | 弹窗是否为模态窗口，模态窗口有蒙层，非模态窗口无蒙层。<br/>默认值：true，此时弹窗有蒙层。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
 | showInSubWindow | boolean                                                      | 否   | 某弹框需要显示在主窗口之外时，是否在子窗口显示此弹窗。<br/>默认值：false，弹窗显示在应用内，而非独立子窗口。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
-| onWillDismiss<sup>12+</sup> | Callback<[DismissDialogAction](arkui-ts/ts-methods-alert-dialog-box.md#dismissdialogaction12类型说明)> | 否 | 交互式关闭回调函数。<br/>**说明：**<br/>1.当用户执行点击遮障层关闭、左滑/右滑、三键back、键盘ESC关闭交互操作时，如果注册该回调函数，则不会立刻关闭弹窗。在回调函数中可以通过reason得到阻拦关闭弹窗的操作类型，从而根据原因选择是否能关闭弹窗。当前组件返回的reason中，暂不支持CLOSE_BUTTON的枚举值。<br/>2.在onWillDismiss回调中，不能再做onWillDismiss拦截。 |
+| onWillDismiss<sup>12+</sup> | Callback<[DismissDialogAction](#dismissdialogaction12类型说明)> | 否 | 交互式关闭回调函数。<br/>**说明：**<br/>1.当用户执行点击遮障层关闭、左滑/右滑、三键back、键盘ESC关闭交互操作时，如果注册该回调函数，则不会立刻关闭弹窗。在回调函数中可以通过reason得到阻拦关闭弹窗的操作类型，从而根据原因选择是否能关闭弹窗。当前组件返回的reason中，暂不支持CLOSE_BUTTON的枚举值。<br/>2.在onWillDismiss回调中，不能再做onWillDismiss拦截。 |
 |  autoCancel<sup>12+</sup> |       boolean                                   | 否   | 点击遮障层时，是否关闭弹窗，true表示关闭弹窗。false表示不关闭弹窗。<br/>默认值：true |
 |  maskColor<sup>12+</sup> |        [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否    | 自定义蒙层颜色。<br>默认值: 0x33000000              |
 | transition<sup>12+</sup>          | [TransitionEffect](arkui-ts/ts-transition-animation-component.md#transitioneffect10) | 否   | 设置弹窗显示和退出的过渡效果。<br/>**说明：**<br/> 1.如果不设置，则使用默认的显示/退出动效。<br/> 2.显示动效中按back键，打断显示动效，执行退出动效，动画效果为显示动效与退出动效的曲线叠加后的效果。<br/> 3.退出动效中按back键，不会打断退出动效，退出动效继续执行，继续按back键退出应用。                               |
@@ -618,6 +670,21 @@ closeCustomDialog(dialogId: number): void
 | OnDidDisappear<sup>12+</sup> | () => void | 否 | 弹窗消失时的事件回调。<br />**说明：**<br />正常时序依次为：OnWillAppear>>onDidAppear>>(onDateAccept/onCancel/onDateChange)>>OnWillDisappear>>OnDidDisappear。 |
 | OnWillAppear<sup>12+</sup> | () => void | 否 | 弹窗显示动效前的事件回调。<br />**说明：**<br />1.正常时序依次为：OnWillAppear>>onDidAppear>>(onDateAccept/onCancel/onDateChange)>>OnWillDisappear>>OnDidDisappear。<br />2.在OnWillAppear内设置改变弹窗显示效果的回调事件，二次弹出生效。 |
 | OnWillDisappear<sup>12+</sup> | () => void | 否 | 弹窗退出动效前的事件回调。<br />**说明：**<br />1.正常时序依次为：OnWillAppear>>onDidAppear>>(onDateAccept/onCancel/onDateChange)>>OnWillDisappear>>OnDidDisappear。<br />2.快速点击弹出，消失弹窗时，存在OnWillDisappear在onDidAppear前生效。 |
+
+## DismissDialogAction<sup>12+</sup>类型说明
+
+| 名称    | 类型                                      | 必填 | 描述                                                         |
+| ------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
+| dismiss | Callback&lt;void&gt;                      | 是   | Dialog关闭回调函数。开发者需要退出时调用，不需要退出时无需调用。 |
+| reason  | [DismissReason](#dismissreason12枚举说明) | 是   | Dialog无法关闭原因。根据开发者需要选择不同操作下，Dialog是否需要关闭。 |
+
+## DismissReason<sup>12+</sup>枚举说明
+
+| 名称          | 描述                               |
+| ------------- | ---------------------------------- |
+| PRESS_BACK    | 点击三键back、左滑/右滑、键盘ESC。 |
+| TOUCH_OUTSIDE | 点击遮障层时。                     |
+| CLOSE_BUTTON  | 点击关闭按钮。                     |
 
 ## Button
 
@@ -631,4 +698,4 @@ closeCustomDialog(dialogId: number): void
 | ----- | ---------------------------------------- | ---- | ------- |
 | text  | string&nbsp;\|&nbsp; [Resource](arkui-ts/ts-types.md#resource类型)<sup>9+</sup> | 是    | 按钮文本内容。 |
 | color | string&nbsp;\| &nbsp;[Resource](arkui-ts/ts-types.md#resource类型)<sup>9+</sup> | 是    | 按钮文本颜色。 |
-| primary<sup>12+</sup> | boolean | 否    | 在弹窗获焦且未进行tab键走焦时，按钮是否默认响应Enter键。多个Button时，只允许一个Button的该字段配置为true,否则所有Button均不响应。 |
+| primary<sup>12+</sup> | boolean | 否    | 在弹窗获焦且未进行tab键走焦时，按钮是否默认响应Enter键。多个Button时，只允许一个Button的该字段配置为true，否则所有Button均不响应。多重弹窗可自动获焦连续响应。 |

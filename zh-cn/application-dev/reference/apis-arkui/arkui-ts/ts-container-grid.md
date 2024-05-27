@@ -54,7 +54,7 @@ Grid(scroller?: Scroller, layoutOptions?: GridLayoutOptions)
 | ----- | ------- | ---- | --------------------- |
 | regularSize  | [number, number]  | 是    | 大小规则的GridItem在Grid中占的行数和列数，只支持占1行1列即[1, 1]。 <br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。  |
 | irregularIndexes | number[] | 否    | 指定的GridItem索引在Grid中的大小是不规则的。当不设置onGetIrregularSizeByIndex时，irregularIndexes中GridItem的默认大小为垂直滚动Grid的一整行或水平滚动Grid的一整列。 <br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| onGetIrregularSizeByIndex | (index: number) => [number, number] | 否    | 配合irregularIndexes使用，设置不规则GridItem占用的行数和列数。开发者可为irregularIndexes中指明的index对应的GridItem设置占用的行数和列数。垂直滚动Grid不支持GridItem占多行，水平滚动Grid不支持GridItem占多列。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| onGetIrregularSizeByIndex | (index: number) => [number, number] | 否    | 配合irregularIndexes使用，设置不规则GridItem占用的行数和列数。开发者可为irregularIndexes中指明的index对应的GridItem设置占用的行数和列数。在API version 12之前，垂直滚动Grid不支持GridItem占多行，水平滚动Grid不支持GridItem占多列。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 | onGetRectByIndex<sup>11+</sup> | (index: number) => [number, number,number,number] | 否  | 设置指定索引index对应的GridItem的位置及大小[rowStart,columnStart,rowSpan,columnSpan]。 <br/>其中rowStart为行起始位置，columnStart为列起始位置，无单位。 <br/>rowSpan为GridItem占用的行数，columnSpan为GridItem占用的列数，无单位。 <br/>rowStart和columnStart取大于等于0的自然数，若取负数时，rowStart和columnStart默认为0。 <br/>rowSpan和columnSpan取大于等于1的自然数，若取小数则向下取整，若小于1则按1计算。<br/>**说明：** <br/>第一种情况：某个GridItem发现给它指定的起始位置被占据了，则从起始位置[0,0]开始按顺序从左到右，从上到下寻找起始的放置位置。<br/>第二种情况：如果起始位置没有被占据，但其他位置被占据了，无法显示全部的GridItem大小，则只会布局一部分。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
 
 ## 属性
@@ -223,7 +223,7 @@ scrollBarWidth(value: number | string)
 
 cachedCount(value: number)
 
-设置预加载的GridItem的数量，只在[LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md)中生效。设置为小于0的值时，按默认值显示。具体使用可参考[减少应用白块说明](../../../performance/arkts-performance-improvement-recommendation.md#减少应用滑动白块)。
+设置预加载的GridItem的数量，只在[LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md)中生效。设置为小于0的值时，按默认值显示。<!--Del-->具体使用可参考[减少应用白块说明](../../../performance/arkts-performance-improvement-recommendation.md#减少应用滑动白块)。<!--DelEnd-->
 
 设置缓存后会在Grid显示区域上下各缓存cachedCount*列数个GridItem。
 
@@ -594,23 +594,6 @@ onScrollBarUpdate(event: (index: number, offset: number) => ComputedBarAttribute
 | ----------------------------------------------------- | -------------------- |
 | [ComputedBarAttribute](#computedbarattribute对象说明) | 滚动条的位置及长度。 |
 
-### onScroll<sup>10+</sup>
-
-onScroll(event: (scrollOffset: number, scrollState: ScrollState) => void)
-
-网格滑动时触发。
-
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：** 
-
-| 参数名       | 类型                                                    | 必填 | 说明                                                         |
-| ------------ | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| scrollOffset | number                                                  | 是   | 每帧滚动的偏移量，Grid的内容向上滚动时偏移量为正，向下滚动时偏移量为负，单位vp。 |
-| scrollState  | [ScrollState](ts-container-list.md#scrollstate枚举说明) | 是   | 当前滑动状态。                                               |
-
 ### onReachStart<sup>10+</sup>
 
 onReachStart(event: () => void)
@@ -688,6 +671,8 @@ onScroll(event: (scrollOffset: number, scrollState: [ScrollState](ts-container-l
 从API version 10开始使用。
 
 从API version 12开始废弃不再使用，建议使用[onDidScroll](#ondidscroll12)替代。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -885,7 +870,7 @@ struct GridExample {
         console.info("XXX" + 'Grid onScrollBarUpdate,index : ' + index.toString() + ",offset" + offset.toString())
         return { totalOffset: (index / 5) * (80 + 10) - offset, totalLength: 80 * 5 + 10 * 4 }
       })  //只适用于当前示例代码数据源，如果数据源有变化，则需要修改该部分代码，或者删掉此属性
-      .onScroll((scrollOffset: number, scrollState: ScrollState) => {
+      .onDidScroll((scrollOffset: number, scrollState: ScrollState) => {
         console.info(scrollOffset.toString())
         console.info(scrollState.toString())
       })

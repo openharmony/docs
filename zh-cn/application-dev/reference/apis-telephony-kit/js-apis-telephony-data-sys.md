@@ -1,17 +1,18 @@
 # @ohos.telephony.data (蜂窝数据)（系统接口）
 
-蜂窝数据提供了移动数据管理能力，包括获取、设置默认移动数据的SIM卡，获取蜂窝数据业务的上下行和分组交换域（PS域）的连接状态，以及检查蜂窝数据业务和漫游是否启用等。
+蜂窝数据提供了移动数据管理能力，包括设置默认移动数据的SIM卡，启用、禁用蜂窝数据服务和蜂窝数据漫游。
 
 >**说明：**
 >
->本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。 
-> 当前页面仅包含本模块的系统接口，其他公开接口参见[@ohos.telephony.data (蜂窝数据)](js-apis-telephony-data.md)
+>本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+>
+>当前页面仅包含本模块的系统接口，其他公开接口参见[@ohos.telephony.data (蜂窝数据)](js-apis-telephony-data.md)
 
 
 ## 导入模块
 
 ```ts
-import data from '@ohos.telephony.data';
+import { data } from '@kit.TelephonyKit';
 ```
 
 
@@ -42,7 +43,7 @@ setDefaultCellularDataSlotId(slotId: number, callback: AsyncCallback\<void\>): v
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -53,8 +54,8 @@ setDefaultCellularDataSlotId(slotId: number, callback: AsyncCallback\<void\>): v
 **示例：**
 
 ```ts
-import data from '@ohos.telephony.data';
-import { BusinessError } from '@ohos.base';
+import { data } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 data.setDefaultCellularDataSlotId(0, (err: BusinessError) => {
     if(err){
@@ -97,7 +98,7 @@ setDefaultCellularDataSlotId(slotId: number): Promise\<void\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                            |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -108,8 +109,8 @@ setDefaultCellularDataSlotId(slotId: number): Promise\<void\>
 **示例：**
 
 ```ts
-import data from '@ohos.telephony.data';
-import { BusinessError } from '@ohos.base';
+import { data } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 data.setDefaultCellularDataSlotId(0).then(() => {
     console.log(`setDefaultCellularDataSlotId success.`);
@@ -145,7 +146,7 @@ enableCellularData(callback: AsyncCallback\<void\>): void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -154,8 +155,8 @@ enableCellularData(callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```ts
-import data from '@ohos.telephony.data';
-import { BusinessError } from '@ohos.base';
+import { data } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 data.enableCellularData((err: BusinessError) => {
     if(err){
@@ -199,8 +200,8 @@ enableCellularData(): Promise\<void\>
 **示例：**
 
 ```ts
-import data from '@ohos.telephony.data';
-import { BusinessError } from '@ohos.base';
+import { data } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 data.enableCellularData().then(() => {
     console.log(`enableCellularData success.`);
@@ -235,7 +236,7 @@ disableCellularData(callback: AsyncCallback\<void\>): void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -244,8 +245,8 @@ disableCellularData(callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```ts
-import data from '@ohos.telephony.data';
-import { BusinessError } from '@ohos.base';
+import { data } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 data.disableCellularData((err: BusinessError) => {
     if(err){
@@ -289,8 +290,8 @@ disableCellularData(): Promise\<void\>
 **示例：**
 
 ```ts
-import data from '@ohos.telephony.data';
-import { BusinessError } from '@ohos.base';
+import { data } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 data.disableCellularData().then(() => {
     console.log(`disableCellularData success.`);
@@ -326,7 +327,7 @@ enableCellularDataRoaming(slotId: number, callback: AsyncCallback\<void\>): void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -335,8 +336,8 @@ enableCellularDataRoaming(slotId: number, callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```ts
-import data from '@ohos.telephony.data';
-import { BusinessError } from '@ohos.base';
+import { data } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 data.enableCellularDataRoaming(0, (err: BusinessError) => {
     if(err){
@@ -379,7 +380,7 @@ enableCellularDataRoaming(slotId: number): Promise\<void\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -388,8 +389,8 @@ enableCellularDataRoaming(slotId: number): Promise\<void\>
 **示例：**
 
 ```ts
-import data from '@ohos.telephony.data';
-import { BusinessError } from '@ohos.base';
+import { data } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 data.enableCellularDataRoaming(0).then(() => {
     console.log(`enableCellularDataRoaming success.`);
@@ -425,7 +426,7 @@ disableCellularDataRoaming(slotId: number, callback: AsyncCallback\<void\>): voi
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -434,8 +435,8 @@ disableCellularDataRoaming(slotId: number, callback: AsyncCallback\<void\>): voi
 **示例：**
 
 ```ts
-import data from '@ohos.telephony.data';
-import { BusinessError } from '@ohos.base';
+import { data } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 data.disableCellularDataRoaming(0, (err: BusinessError) => {
     if(err){
@@ -478,7 +479,7 @@ disableCellularDataRoaming(slotId: number): Promise\<void\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -487,8 +488,8 @@ disableCellularDataRoaming(slotId: number): Promise\<void\>
 **示例：**
 
 ```ts
-import data from '@ohos.telephony.data';
-import { BusinessError } from '@ohos.base';
+import { data } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 data.disableCellularDataRoaming(0).then(() => {
     console.log(`disableCellularDataRoaming success.`);

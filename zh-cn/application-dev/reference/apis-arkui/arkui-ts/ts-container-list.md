@@ -125,7 +125,7 @@ scrollBar(value: BarState)
 
 cachedCount(value: number)
 
-设置列表中ListItem/ListItemGroup的预加载数量，只在[LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md)中生效，其中ListItemGroup将作为一个整体进行计算，ListItemGroup中的所有ListItem会一次性全部加载出来。具体使用可参考[减少应用白块说明](../../../performance/arkts-performance-improvement-recommendation.md#减少应用滑动白块)。
+设置列表中ListItem/ListItemGroup的预加载数量，只在[LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md)中生效，其中ListItemGroup将作为一个整体进行计算，ListItemGroup中的所有ListItem会一次性全部加载出来。<!--Del-->具体使用可参考[减少应用白块说明](../../../performance/arkts-performance-improvement-recommendation.md#减少应用滑动白块)。<!--DelEnd-->
 
 单列模式下，会在List显示的ListItem前后各缓存cachedCount个ListItem。
 
@@ -1059,7 +1059,7 @@ get childDefaultSize(): number
 
 ### splice<sup>12+</sup>
 
-splice(start: number, deleteCount?: number, childrenSize?: Array<number>): void
+splice(start: number, deleteCount?: number, childrenSize?: Array\<number>): void
 
 批量增删改子组件在主轴方向的大小信息。
 
@@ -1069,7 +1069,7 @@ splice(start: number, deleteCount?: number, childrenSize?: Array<number>): void
 | ---- | ----------------------------- | ---- | -------------------- |
 | start | number | 是    | 从0开始计算的索引值，表示要开始修改子组件在主轴方向大小信息的位置。<br/>**说明：** <br/>1. 必须是有限的非负数值，否则抛出异常。<br/>2. 非整数会被截断为整数。<br/>3. 超过最大索引值不生效。 |
 | deleteCount | number | 否    | 从start开始删除的大小信息的数量。<br/>**说明：** <br/>1.  必须是有限的非负数值，否则处理为0。<br/>2. 非整数会被截断为整数。<br/>3. start + deleteCount - 1可以超过最大索引值，会删除索引值start开始之后的所有子组件的大小信息。 |
-| childrenSize | Array< number > | 否    | 要在start位置插入的所有子组件的主轴方向的大小。<br/>Array中各个数值单位：vp <br/>**说明：** <br/>1.数组中数值如果是有限的非负值，则认为是指定的大小，后续不随默认大小的变化而变化。<br/>2. 数组中数值如果不是有限的非负值，会被处理成默认大小，后续会随默认大小的变化而变化。  |
+| childrenSize | Array\<number > | 否    | 要在start位置插入的所有子组件的主轴方向的大小。<br/>Array中各个数值单位：vp <br/>**说明：** <br/>1.数组中数值如果是有限的非负值，则认为是指定的大小，后续不随默认大小的变化而变化。<br/>2. 数组中数值如果不是有限的非负值，会被处理成默认大小，后续会随默认大小的变化而变化。  |
 
 
 **错误码**：
@@ -1149,7 +1149,7 @@ struct ListExample {
                     ' end item group area: ' + end.itemGroupArea +
                     ' end index in group: ' + end.itemIndexInGroup)
       })
-      .onScroll((scrollOffset: number, scrollState: ScrollState) => {
+      .onDidScroll((scrollOffset: number, scrollState: ScrollState) => {
         console.info(`onScroll scrollState = ScrollState` + scrollState + `, scrollOffset = ` + scrollOffset)
       })
       .width('90%')

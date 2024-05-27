@@ -1267,12 +1267,13 @@ setMissionContinueState(state: AbilityConstant.ContinueState, callback: AsyncCal
 
 **错误码：**
 
+错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 401      | Params error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
-
-错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -1314,12 +1315,13 @@ setMissionContinueState(state: AbilityConstant.ContinueState): Promise&lt;void&g
 
 **错误码：**
 
+错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 401      | Params error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
-
-错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -1648,7 +1650,7 @@ startAbilityByType(type: string, wantParam: Record<string, Object>,
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| type | string | 是 | 显示拉起的UIExtensionAbility类型，取值详见[通过startAbilityByType拉起特定场景的意图面板](../../../application-dev/application-models/start-intent-panel.md#接口说明)。 |
+| type | string | 是 | 显示拉起的UIExtensionAbility类型<!--Del-->，取值详见[通过startAbilityByType拉起特定场景的意图面板](../../../application-dev/application-models/start-intent-panel.md#接口说明)<!--DelEnd-->。 |
 | wantParam | Record&lt;string,&nbsp;Object&gt; | 是 | 表示扩展参数。 |
 | abilityStartCallback | [AbilityStartCallback](js-apis-inner-application-abilityStartCallback.md) | 是 | 执行结果回调函数。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，返回接口调用是否成功的结果。 |
@@ -1657,12 +1659,7 @@ startAbilityByType(type: string, wantParam: Record<string, Object>,
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 16000001 | The specified ability does not exist. |
-| 16000002 | Incorrect ability type. |
-| 16000004 | Can not start invisible component. |
-| 16000018 | The application is not allow jumping to other applications. |
 | 16000050 | Internal error. |
-| 16200001 | The caller has been released. |
 
 错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
@@ -1712,7 +1709,7 @@ startAbilityByType(type: string, wantParam: Record<string, Object>,
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| type | string | 是 | 显示拉起的UIExtensionAbility类型，取值详见[通过startAbilityByType拉起特定场景的意图面板](../../../application-dev/application-models/start-intent-panel.md#接口说明)。 |
+| type | string | 是 | 显示拉起的UIExtensionAbility类型<!--Del-->，取值详见[通过startAbilityByType拉起特定场景的意图面板](../../../application-dev/application-models/start-intent-panel.md#接口说明)<!--DelEnd-->。 |
 | wantParam | Record&lt;string,&nbsp;Object&gt; | 是 | 表示扩展参数。 |
 | abilityStartCallback | [AbilityStartCallback](js-apis-inner-application-abilityStartCallback.md) | 是 | 执行结果回调函数。 |
 
@@ -1726,12 +1723,7 @@ startAbilityByType(type: string, wantParam: Record<string, Object>,
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 16000001 | The specified ability does not exist. |
-| 16000002 | Incorrect ability type. |
-| 16000004 | Can not start invisible component. |
-| 16000018 | The application is not allow jumping to other applications. |
 | 16000050 | Internal error. |
-| 16200001 | The caller has been released. |
 
 错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
@@ -2029,9 +2021,9 @@ openAtomicService(appId: string, options?: AtomicServiceOptions): Promise&lt;Abi
 
 跳出式启动[EmbeddableUIAbility](js-apis-app-ability-embeddableUIAbility.md)，并返回结果。使用Promise异步回调。
 分为以下几种情况：
- - 正常情况下可通过调用[terminateSelfWithResult](js-apis-inner-application-EmbeddableUIAbilityContext.md#embeddableuiabilitycontextterminateselfwithresult-1)接口使之终止并且返回结果给调用方。
+ - 正常情况下可通过调用[terminateSelfWithResult](#uiabilitycontextterminateselfwithresult)接口使之终止并且返回结果给调用方。
  - 异常情况下比如杀死EmbeddableUIAbility会返回异常信息给调用方，异常信息中resultCode为-1。
- - 如果不同应用多次调用该接口启动同一个EmbeddableUIAbility，当这个EmbeddableUIAbility调用[terminateSelfWithResult](js-apis-inner-application-EmbeddableUIAbilityContext.md#embeddableuiabilitycontextterminateselfwithresult-1)接口使之终止时，只将正常结果返回给最后一个调用方, 其它调用方返回异常信息，异常信息中resultCode为-1。
+ - 如果不同应用多次调用该接口启动同一个EmbeddableUIAbility，当这个EmbeddableUIAbility调用[terminateSelfWithResult](#uiabilitycontextterminateselfwithresult)接口使之终止时，只将正常结果返回给最后一个调用方, 其它调用方返回异常信息，异常信息中resultCode为-1。
 
 > **说明：**
 >

@@ -116,7 +116,7 @@ Checks whether a device supports the absolute volume capability. This API uses a
 | Name   | Type    | Mandatory  | Description     |
 | ------ | ------ | ---- | ------- |
 | deviceId | string | Yes   | Address of the device to check. |
-| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback invoked to return the result. If the device supports absolute volume, **supported** is returned.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. If the device supports absolute volume, **supported** is returned.|
 
 
 **Error codes**
@@ -208,7 +208,7 @@ Checks whether the absolute volume capability is enabled for a device. This API 
 | Name   | Type    | Mandatory  | Description     |
 | ------ | ------ | ---- | ------- |
 | deviceId | string | Yes   | Address of the device to check. |
-| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback invoked to return the result. If absolute volume is enabled, **enabled** is returned.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. If absolute volume is enabled, **enabled** is returned.|
 
 
 **Error codes**
@@ -300,7 +300,7 @@ Enables the absolute volume capability for a device. This API uses an asynchrono
 | Name   | Type    | Mandatory  | Description     |
 | ------ | ------ | ---- | ------- |
 | deviceId | string | Yes   | Address of the target device. |
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 
 **Error codes**
@@ -395,7 +395,7 @@ Disables the absolute volume capability for a device. This API uses an asynchron
 | Name   | Type    | Mandatory  | Description     |
 | ------ | ------ | ---- | ------- |
 | deviceId | string | Yes   | Address of the target device. |
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 
 **Error codes**
@@ -560,6 +560,155 @@ try {
         codecSampleRate: 1,
     }
     a2dpSrc.setCurrentCodecInfo('XX:XX:XX:XX:XX:XX', codecInfo);
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```
+
+
+### disableAutoPlay<sup>12+</sup>
+
+disableAutoPlay(deviceId: string, duration: number): Promise&lt;void&gt;
+
+Disables auto play of music for the specified duration after a device is connected.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH and ohos.permission.MANAGE_BLUETOOTH
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+**Parameters**
+
+| Name   | Type    | Mandatory  | Description     |
+| ------ | ------ | ---- | ------- |
+| deviceId | string | Yes   | Address of the remote device, for example, **11:22:33:AA:BB:FF**.|
+| duration | number | Yes   | Duration for which auto play is disabled, in ms.|
+
+**Return value**
+
+| Type                           | Description        |
+| ----------------------------- | ---------- |
+| Promise&lt;void&gt; | Promise used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900099 | Operation failed.                        |
+
+**Example**
+
+```js
+import { BusinessError } from '@ohos.base';
+try {
+    let a2dpSrc = a2dp.createA2dpSrcProfile();
+    let durationNumber = 1000;
+    a2dpSrc.disableAutoPlay('XX:XX:XX:XX:XX:XX', durationNumber).then(() => {
+        console.info("disableAutoPlay");
+    });
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```
+
+
+### enableAutoPlay<sup>12+</sup>
+
+enableAutoPlay(deviceId: string): Promise&lt;void&gt;
+
+Enables auto play of music after a device is connected.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH and ohos.permission.MANAGE_BLUETOOTH
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+**Parameters**
+
+| Name   | Type    | Mandatory  | Description     |
+| ------ | ------ | ---- | ------- |
+| deviceId | string | Yes   | Address of the remote device, for example, **11:22:33:AA:BB:FF**.|
+
+**Return value**
+
+| Type                           | Description        |
+| ----------------------------- | ---------- |
+| Promise&lt;void&gt; | Promise used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900099 | Operation failed.                        |
+
+**Example**
+
+```js
+import { BusinessError } from '@ohos.base';
+try {
+    let a2dpSrc = a2dp.createA2dpSrcProfile();
+    a2dpSrc.enableAutoPlay('XX:XX:XX:XX:XX:XX').then(() => {
+        console.info("enableAutoPlay");
+    });
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```
+
+
+### getAutoPlayDisabledDuration<sup>12+</sup>
+
+getAutoPlayDisabledDuration(deviceId: string): Promise&lt;number&gt;
+
+Obtains the auto-play disabled duration or auto play switch.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH and ohos.permission.MANAGE_BLUETOOTH
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+**Parameters**
+
+| Name   | Type    | Mandatory  | Description     |
+| ------ | ------ | ---- | ------- |
+| deviceId | string | Yes   | Address of the remote device, for example, **11:22:33:AA:BB:FF**.|
+
+**Return value**
+
+| Type                           | Description        |
+| ----------------------------- | ---------- |
+| Promise&lt;number&gt; | Promise used to return the result. **number** indicates the auto-play disabled duration, in ms. If **-1** is returned, the device is allowed to automatically play music once connected.|
+
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900099 | Operation failed.                        |
+
+**Example**
+
+```js
+import { BusinessError } from '@ohos.base';
+try {
+    let a2dpSrc = a2dp.createA2dpSrcProfile();
+    a2dpSrc.getAutoPlayDisabledDuration('XX:XX:XX:XX:XX:XX').then((data: number) => {
+        console.info('number' + JSON.stringify(data));
+    });
 } catch (err) {
     console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }

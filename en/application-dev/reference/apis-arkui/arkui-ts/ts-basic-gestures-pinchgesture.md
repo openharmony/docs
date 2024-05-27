@@ -11,6 +11,8 @@
 
 PinchGesture(value?: { fingers?: number, distance?: number })
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **Parameters**
 
 | Name| Type| Mandatory| Description|
@@ -23,10 +25,10 @@ PinchGesture(value?: { fingers?: number, distance?: number })
 
 | Name| Description|
 | -------- | -------- |
-| onActionStart(event:(event: [GestureEvent](ts-gesture-settings.md#gestureevent)) =&gt; void) | Triggered when a pinch gesture is recognized.|
-| onActionUpdate(event:(event: [GestureEvent](ts-gesture-settings.md#gestureevent)) =&gt; void) | Triggered when the user moves the finger in the pinch gesture on the screen.|
-| onActionEnd(event:(event: [GestureEvent](ts-gesture-settings.md#gestureevent)) =&gt; void) | Triggered when the finger used for the pinch gesture is lift.|
-| onActionCancel(event: () =&gt; void) | Triggered when a tap cancellation event is received after the pinch gesture is recognized.<br>**NOTE**<br>This event is triggered when the window loses focus.|
+| onActionStart(event:(event: [GestureEvent](ts-gesture-settings.md#gestureevent)) =&gt; void) | Triggered when a pinch gesture is recognized.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| onActionUpdate(event:(event: [GestureEvent](ts-gesture-settings.md#gestureevent)) =&gt; void) | Triggered when the user moves the finger in the pinch gesture on the screen.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| onActionEnd(event:(event: [GestureEvent](ts-gesture-settings.md#gestureevent)) =&gt; void) | Triggered when the finger used for the pinch gesture is lift.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| onActionCancel(event: () =&gt; void) | Triggered when a tap cancellation event is received after the pinch gesture is recognized.<br>**NOTE**<br>This event is triggered when the window loses focus.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 
 ## Attributes
 

@@ -10,7 +10,7 @@ SIM卡管理模块提供了SIM卡管理的基础能力，包括获取指定卡�
 ## 导入模块
 
 ```ts
-import sim from '@ohos.telephony.sim';
+import { sim } from '@kit.TelephonyKit';
 ```
 
 ## sim.isOperatorSimCard<sup>11+</sup>
@@ -43,7 +43,7 @@ isOperatorSimCard\(slotId: number, operator: OperatorSimCard\): boolean
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -53,7 +53,7 @@ isOperatorSimCard\(slotId: number, operator: OperatorSimCard\): boolean
 **示例：**
 
 ```ts
-import sim from '@ohos.telephony.sim';
+import { sim } from '@kit.TelephonyKit';
 
 let slotId : number = 0;
 let operator : sim.OperatorSimCard = sim.OperatorSimCard.CHINA_TELECOM_CARD;
@@ -92,7 +92,7 @@ setDefaultVoiceSlotId\(slotId: number, callback: AsyncCallback\<void\>\): void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -103,8 +103,8 @@ setDefaultVoiceSlotId\(slotId: number, callback: AsyncCallback\<void\>\): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.setDefaultVoiceSlotId(0, (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
@@ -144,7 +144,7 @@ setDefaultVoiceSlotId\(slotId: number\): Promise\<void\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -155,8 +155,8 @@ setDefaultVoiceSlotId\(slotId: number\): Promise\<void\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.setDefaultVoiceSlotId(0).then(() => {
     console.log(`setDefaultVoiceSlotId success.`);
@@ -193,7 +193,7 @@ setShowName\(slotId: number, name: string, callback: AsyncCallback\<void\>\): vo
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -203,8 +203,8 @@ setShowName\(slotId: number, name: string, callback: AsyncCallback\<void\>\): vo
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 let name: string = "ShowName";
 sim.setShowName(0, name, (err: BusinessError) => {
@@ -245,7 +245,7 @@ setShowName\(slotId: number, name: string\): Promise\<void\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -255,8 +255,8 @@ setShowName\(slotId: number, name: string\): Promise\<void\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 let name: string = "ShowName";
 sim.setShowName(0, name).then(() => {
@@ -293,7 +293,7 @@ getShowName\(slotId: number, callback: AsyncCallback\<string\>\): void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -303,8 +303,8 @@ getShowName\(slotId: number, callback: AsyncCallback\<string\>\): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.getShowName(0, (err: BusinessError, data: string) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
@@ -344,7 +344,7 @@ getShowName\(slotId: number\): Promise\<string\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -354,8 +354,8 @@ getShowName\(slotId: number\): Promise\<string\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.getShowName(0).then((data: string) => {
     console.log(`getShowName success, promise: data->${JSON.stringify(data)}`);
@@ -392,7 +392,7 @@ setShowNumber\(slotId: number, number: string, callback: AsyncCallback\<void\>\)
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -402,8 +402,8 @@ setShowNumber\(slotId: number, number: string, callback: AsyncCallback\<void\>\)
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 let number: string = '+861xxxxxxxxxx';
 sim.setShowNumber(0, number, (err: BusinessError) => {
@@ -445,7 +445,7 @@ setShowNumber\(slotId: number, number: string\): Promise\<void\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -455,8 +455,8 @@ setShowNumber\(slotId: number, number: string\): Promise\<void\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 let number: string = '+861xxxxxxxxxx';
 sim.setShowNumber(0, number).then(() => {
@@ -493,7 +493,7 @@ getShowNumber\(slotId: number, callback: AsyncCallback\<string\>): void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -503,8 +503,8 @@ getShowNumber\(slotId: number, callback: AsyncCallback\<string\>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.getShowNumber(0, (err: BusinessError, data: string) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
@@ -544,7 +544,7 @@ getShowNumber\(slotId: number\): Promise\<string\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -554,8 +554,8 @@ getShowNumber\(slotId: number\): Promise\<string\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.getShowNumber(0).then((data: string) => {
     console.log(`getShowNumber success, promise: data->${JSON.stringify(data)}`);
@@ -591,7 +591,7 @@ activateSim\(slotId: number, callback: AsyncCallback\<void\>\): void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -601,8 +601,8 @@ activateSim\(slotId: number, callback: AsyncCallback\<void\>\): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.activateSim(0, (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
@@ -642,7 +642,7 @@ activateSim\(slotId: number\): Promise\<void\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -652,8 +652,8 @@ activateSim\(slotId: number\): Promise\<void\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.activateSim(0).then(() => {
     console.log(`activateSim success.`);
@@ -689,7 +689,7 @@ deactivateSim\(slotId: number, callback: AsyncCallback\<void\>\): void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -699,8 +699,8 @@ deactivateSim\(slotId: number, callback: AsyncCallback\<void\>\): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.deactivateSim(0, (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
@@ -740,7 +740,7 @@ deactivateSim\(slotId: number\): Promise\<void\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -750,8 +750,8 @@ deactivateSim\(slotId: number\): Promise\<void\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.deactivateSim(0).then(() => {
     console.log(`deactivateSim success.`);
@@ -788,7 +788,7 @@ setLockState\(slotId: number, options: LockInfo, callback: AsyncCallback\<LockSt
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -799,8 +799,8 @@ setLockState\(slotId: number, options: LockInfo, callback: AsyncCallback\<LockSt
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 let lockInfo: sim.LockInfo = {
     lockType: sim.LockType.PIN_LOCK,
@@ -846,7 +846,7 @@ setLockState\(slotId: number, options: LockInfo\): Promise\<LockStatusResponse\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -857,8 +857,8 @@ setLockState\(slotId: number, options: LockInfo\): Promise\<LockStatusResponse\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 let lockInfo: sim.LockInfo = {
     lockType: sim.LockType.PIN_LOCK,
@@ -900,7 +900,7 @@ getLockState\(slotId: number, lockType: LockType, callback: AsyncCallback\<LockS
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -911,8 +911,8 @@ getLockState\(slotId: number, lockType: LockType, callback: AsyncCallback\<LockS
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.getLockState(0, 1, (err: BusinessError, data: sim.LockState) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
@@ -953,7 +953,7 @@ getLockState\(slotId: number, lockType: LockType\): Promise\<LockState\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -964,8 +964,8 @@ getLockState\(slotId: number, lockType: LockType\): Promise\<LockState\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.getLockState(0, 1).then((data: sim.LockState) => {
     console.log(`getLockState success, promise: data->${JSON.stringify(data)}`);
@@ -1003,7 +1003,7 @@ alterPin\(slotId: number, newPin: string, oldPin: string, callback: AsyncCallbac
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -1014,8 +1014,8 @@ alterPin\(slotId: number, newPin: string, oldPin: string, callback: AsyncCallbac
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.alterPin(0, "1234", "0000", (err: BusinessError, data: sim.LockStatusResponse) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
@@ -1057,7 +1057,7 @@ alterPin\(slotId: number, newPin: string, oldPin: string\): Promise\<LockStatusR
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -1068,8 +1068,8 @@ alterPin\(slotId: number, newPin: string, oldPin: string\): Promise\<LockStatusR
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.alterPin(0, "1234", "0000").then((data: sim.LockStatusResponse) => {
     console.log(`alterPin success, promise: data->${JSON.stringify(data)}`);
@@ -1107,7 +1107,7 @@ alterPin2\(slotId: number, newPin2: string, oldPin2: string, callback: AsyncCall
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -1118,8 +1118,8 @@ alterPin2\(slotId: number, newPin2: string, oldPin2: string, callback: AsyncCall
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.alterPin2(0, "1234", "0000", (err: BusinessError, data: sim.LockStatusResponse) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
@@ -1161,7 +1161,7 @@ alterPin2\(slotId: number, newPin2: string, oldPin2: string\): Promise\<LockStat
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -1172,8 +1172,8 @@ alterPin2\(slotId: number, newPin2: string, oldPin2: string\): Promise\<LockStat
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.alterPin2(0, "1234", "0000").then((data: sim.LockStatusResponse) => {
     console.log(`alterPin2 success, promise: data->${JSON.stringify(data)}`);
@@ -1210,7 +1210,7 @@ unlockPin\(slotId: number, pin: string, callback: AsyncCallback\<LockStatusRespo
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -1221,8 +1221,8 @@ unlockPin\(slotId: number, pin: string, callback: AsyncCallback\<LockStatusRespo
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 let pin: string = '1234';
 sim.unlockPin(0, pin, (err: BusinessError, data: sim.LockStatusResponse) => {
@@ -1264,7 +1264,7 @@ unlockPin\(slotId: number, pin: string\): Promise\<LockStatusResponse\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -1275,8 +1275,8 @@ unlockPin\(slotId: number, pin: string\): Promise\<LockStatusResponse\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 let pin: string = '1234';
 sim.unlockPin(0, pin).then((data: sim.LockStatusResponse) => {
@@ -1315,7 +1315,7 @@ unlockPuk\(slotId: number, newPin: string, puk: string, callback: AsyncCallback\
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -1326,8 +1326,8 @@ unlockPuk\(slotId: number, newPin: string, puk: string, callback: AsyncCallback\
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 let puk: string = '1xxxxxxx';
 let newPin: string = '1235';
@@ -1371,7 +1371,7 @@ unlockPuk\(slotId: number, newPin: string, puk: string\): Promise\<LockStatusRes
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -1382,8 +1382,8 @@ unlockPuk\(slotId: number, newPin: string, puk: string\): Promise\<LockStatusRes
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 let puk: string = '1xxxxxxx';
 let newPin: string = '1235';
@@ -1422,7 +1422,7 @@ unlockPin2\(slotId: number, pin2: string, callback: AsyncCallback\<LockStatusRes
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -1433,8 +1433,8 @@ unlockPin2\(slotId: number, pin2: string, callback: AsyncCallback\<LockStatusRes
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 let pin2: string = '1234';
 sim.unlockPin2(0, pin2, (err: BusinessError, data: sim.LockStatusResponse) => {
@@ -1476,7 +1476,7 @@ unlockPin2\(slotId: number, pin2: string\): Promise\<LockStatusResponse\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -1487,8 +1487,8 @@ unlockPin2\(slotId: number, pin2: string\): Promise\<LockStatusResponse\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 let pin2: string = '1234';
 sim.unlockPin2(0, pin2).then((data: sim.LockStatusResponse) => {
@@ -1527,7 +1527,7 @@ unlockPuk2\(slotId: number, newPin2: string, puk2: string, callback: AsyncCallba
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -1538,8 +1538,8 @@ unlockPuk2\(slotId: number, newPin2: string, puk2: string, callback: AsyncCallba
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 let puk2: string = '1xxxxxxx';
 let newPin2: string = '1235';
@@ -1583,7 +1583,7 @@ unlockPuk2\(slotId: number, newPin2: string, puk2: string\): Promise\<LockStatus
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -1594,8 +1594,8 @@ unlockPuk2\(slotId: number, newPin2: string, puk2: string\): Promise\<LockStatus
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 let puk2: string = '1xxxxxxx';
 let newPin2: string = '1235';
@@ -1633,7 +1633,7 @@ getSimIccId\(slotId: number, callback: AsyncCallback\<string\>\): void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -1643,8 +1643,8 @@ getSimIccId\(slotId: number, callback: AsyncCallback\<string\>\): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.getSimIccId(0, (err: BusinessError, data: string) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
@@ -1684,7 +1684,7 @@ getSimIccId\(slotId: number\): Promise\<string\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -1694,8 +1694,8 @@ getSimIccId\(slotId: number\): Promise\<string\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.getSimIccId(0).then((data:string) => {
     console.log(`getSimIccId success, promise: data->${JSON.stringify(data)}`);
@@ -1731,7 +1731,7 @@ getVoiceMailIdentifier\(slotId: number, callback: AsyncCallback\<string\>\): voi
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -1741,8 +1741,8 @@ getVoiceMailIdentifier\(slotId: number, callback: AsyncCallback\<string\>\): voi
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.getVoiceMailIdentifier(0, (err: BusinessError, data: string) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
@@ -1782,7 +1782,7 @@ getVoiceMailIdentifier\(slotId: number\): Promise\<string\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -1792,8 +1792,8 @@ getVoiceMailIdentifier\(slotId: number\): Promise\<string\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.getVoiceMailIdentifier(0).then((data: string) => {
     console.log(`getVoiceMailIdentifier success, promise: data->${JSON.stringify(data)}`);
@@ -1829,7 +1829,7 @@ getVoiceMailNumber\(slotId: number, callback: AsyncCallback\<string\>): void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -1839,8 +1839,8 @@ getVoiceMailNumber\(slotId: number, callback: AsyncCallback\<string\>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.getVoiceMailNumber(0, (err: BusinessError, data: string) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
@@ -1880,7 +1880,7 @@ getVoiceMailNumber\(slotId: number\): Promise\<string\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -1890,8 +1890,8 @@ getVoiceMailNumber\(slotId: number\): Promise\<string\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.getVoiceMailNumber(0).then((data: string) => {
     console.log(`getVoiceMailNumber success, promise: data->${JSON.stringify(data)}`);
@@ -1930,7 +1930,7 @@ setVoiceMailInfo\(slotId: number, mailName: string, mailNumber: string, callback
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -1941,8 +1941,8 @@ setVoiceMailInfo\(slotId: number, mailName: string, mailNumber: string, callback
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.setVoiceMailInfo(0, "mail", "xxx@xxx.com", (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
@@ -1984,7 +1984,7 @@ setVoiceMailInfo\(slotId: number, mailName: string, mailNumber: string\): Promis
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -1995,8 +1995,8 @@ setVoiceMailInfo\(slotId: number, mailName: string, mailNumber: string\): Promis
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.setVoiceMailInfo(0, "mail", "xxx@xxx.com").then(() => {
     console.log(`setVoiceMailInfo success.`);
@@ -2032,7 +2032,7 @@ getSimTelephoneNumber\(slotId: number, callback: AsyncCallback\<string\>\): void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -2042,8 +2042,8 @@ getSimTelephoneNumber\(slotId: number, callback: AsyncCallback\<string\>\): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.getSimTelephoneNumber(0, (err: BusinessError, data: string) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
@@ -2083,7 +2083,7 @@ getSimTelephoneNumber\(slotId: number\): Promise\<string\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -2093,8 +2093,8 @@ getSimTelephoneNumber\(slotId: number\): Promise\<string\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.getSimTelephoneNumber(0).then((data: string) => {
     console.log(`getSimTelephoneNumber success, promise: data->${JSON.stringify(data)}`);
@@ -2130,7 +2130,7 @@ getSimGid1\(slotId: number, callback: AsyncCallback\<string\>\): void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -2140,8 +2140,8 @@ getSimGid1\(slotId: number, callback: AsyncCallback\<string\>\): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.getSimGid1(0, (err: BusinessError, data: string) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
@@ -2181,7 +2181,7 @@ getSimGid1\(slotId: number\): Promise\<string\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -2191,8 +2191,8 @@ getSimGid1\(slotId: number\): Promise\<string\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.getSimGid1(0).then((data: string) => {
     console.log(`getSimGid1 success, promise: data->${JSON.stringify(data)}`);
@@ -2228,7 +2228,7 @@ getIMSI\(slotId: number, callback: AsyncCallback\<string\>\): void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -2238,8 +2238,8 @@ getIMSI\(slotId: number, callback: AsyncCallback\<string\>\): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.getIMSI(0, (err: BusinessError, data: string) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
@@ -2279,7 +2279,7 @@ getIMSI\(slotId: number\): Promise\<string\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -2289,8 +2289,8 @@ getIMSI\(slotId: number\): Promise\<string\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.getIMSI(0).then((data: string) => {
     console.log(`getIMSI success, promise: data->${JSON.stringify(data)}`);
@@ -2326,7 +2326,7 @@ getOperatorConfigs\(slotId: number, callback: AsyncCallback\<Array\<OperatorConf
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -2335,8 +2335,8 @@ getOperatorConfigs\(slotId: number, callback: AsyncCallback\<Array\<OperatorConf
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.getOperatorConfigs(0, (err: BusinessError, data: Array<sim.OperatorConfig>) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
@@ -2376,7 +2376,7 @@ getOperatorConfigs\(slotId: number\): Promise\<Array\<OperatorConfig\>\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -2385,8 +2385,8 @@ getOperatorConfigs\(slotId: number\): Promise\<Array\<OperatorConfig\>\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.getOperatorConfigs(0).then((data: Array<sim.OperatorConfig>) => {
     console.log(`getOperatorConfigs success, promise: data->${JSON.stringify(data)}`);
@@ -2428,7 +2428,7 @@ queryIccDiallingNumbers\(slotId: number, type: ContactType, callback: AsyncCallb
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -2439,8 +2439,8 @@ queryIccDiallingNumbers\(slotId: number, type: ContactType, callback: AsyncCallb
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.queryIccDiallingNumbers(0, 1, (err: BusinessError, data: Array<sim.DiallingNumbersInfo>) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
@@ -2486,7 +2486,7 @@ queryIccDiallingNumbers\(slotId: number, type: ContactType\): Promise\<Array\<Di
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -2497,8 +2497,8 @@ queryIccDiallingNumbers\(slotId: number, type: ContactType\): Promise\<Array\<Di
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.queryIccDiallingNumbers(0, 1).then((data:  Array<sim.DiallingNumbersInfo>) => {
     console.log(`queryIccDiallingNumbers success, promise: data->${JSON.stringify(data)}`);
@@ -2541,7 +2541,7 @@ addIccDiallingNumbers\(slotId: number, type: ContactType, diallingNumbers: Diall
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -2552,8 +2552,8 @@ addIccDiallingNumbers\(slotId: number, type: ContactType, diallingNumbers: Diall
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 let diallingNumbersInof: sim.DiallingNumbersInfo = {
     alphaTag: "alpha",
@@ -2605,7 +2605,7 @@ addIccDiallingNumbers\(slotId: number, type: ContactType, diallingNumbers: Diall
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -2616,8 +2616,8 @@ addIccDiallingNumbers\(slotId: number, type: ContactType, diallingNumbers: Diall
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 let diallingNumbersInof: sim.DiallingNumbersInfo = {
     alphaTag: "alpha",
@@ -2664,7 +2664,7 @@ delIccDiallingNumbers\(slotId: number, type: ContactType, diallingNumbers: Diall
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -2675,8 +2675,8 @@ delIccDiallingNumbers\(slotId: number, type: ContactType, diallingNumbers: Diall
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 let diallingNumbersInof: sim.DiallingNumbersInfo = {
     alphaTag: "alpha",
@@ -2729,7 +2729,7 @@ delIccDiallingNumbers\(slotId: number, type: ContactType, diallingNumbers: Diall
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -2740,8 +2740,8 @@ delIccDiallingNumbers\(slotId: number, type: ContactType, diallingNumbers: Diall
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 let diallingNumbersInof: sim.DiallingNumbersInfo = {
     alphaTag: "alpha",
@@ -2788,7 +2788,7 @@ updateIccDiallingNumbers\(slotId: number, type: ContactType, diallingNumbers: Di
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -2799,8 +2799,8 @@ updateIccDiallingNumbers\(slotId: number, type: ContactType, diallingNumbers: Di
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 let diallingNumbersInof: sim.DiallingNumbersInfo = {
     alphaTag: "alpha",
@@ -2853,7 +2853,7 @@ updateIccDiallingNumbers\(slotId: number, type: ContactType, diallingNumbers: Di
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -2864,8 +2864,8 @@ updateIccDiallingNumbers\(slotId: number, type: ContactType, diallingNumbers: Di
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 let diallingNumbersInof: sim.DiallingNumbersInfo = {
     alphaTag: "alpha",
@@ -2907,7 +2907,7 @@ sendEnvelopeCmd\(slotId: number, cmd: string, callback: AsyncCallback\<void\>\):
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -2917,8 +2917,8 @@ sendEnvelopeCmd\(slotId: number, cmd: string, callback: AsyncCallback\<void\>\):
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.sendEnvelopeCmd(0, "ls", (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
@@ -2959,7 +2959,7 @@ sendEnvelopeCmd\(slotId: number, cmd: string\): Promise\<void\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -2969,8 +2969,8 @@ sendEnvelopeCmd\(slotId: number, cmd: string\): Promise\<void\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.sendEnvelopeCmd(0, "ls").then(() => {
     console.log(`sendEnvelopeCmd success.`);
@@ -3007,7 +3007,7 @@ sendTerminalResponseCmd\(slotId: number, cmd: string, callback: AsyncCallback\<v
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -3017,8 +3017,8 @@ sendTerminalResponseCmd\(slotId: number, cmd: string, callback: AsyncCallback\<v
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.sendTerminalResponseCmd(0, "ls", (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
@@ -3059,7 +3059,7 @@ sendTerminalResponseCmd\(slotId: number, cmd: string\): Promise\<void\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -3069,8 +3069,8 @@ sendTerminalResponseCmd\(slotId: number, cmd: string\): Promise\<void\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.sendTerminalResponseCmd(0, "ls").then(() => {
     console.log(`sendTerminalResponseCmd success.`);
@@ -3108,7 +3108,7 @@ unlockSimLock\(slotId: number, lockInfo: PersoLockInfo, callback: AsyncCallback\
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -3119,8 +3119,8 @@ unlockSimLock\(slotId: number, lockInfo: PersoLockInfo, callback: AsyncCallback\
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 let persoLockInfo: sim.PersoLockInfo = {
     lockType: sim.PersoLockType.PN_PIN_LOCK,
@@ -3165,7 +3165,7 @@ unlockSimLock\(slotId: number, lockInfo: PersoLockInfo\): Promise\<LockStatusRes
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -3176,8 +3176,8 @@ unlockSimLock\(slotId: number, lockInfo: PersoLockInfo\): Promise\<LockStatusRes
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 let persoLockInfo: sim.PersoLockInfo = {
     lockType: sim.PersoLockType.PN_PIN_LOCK,
@@ -3216,7 +3216,7 @@ getDsdsMode\(callback: AsyncCallback\<DsdsMode\>\): void
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
 | 8300999  | Unknown error code.                          |
@@ -3224,8 +3224,8 @@ getDsdsMode\(callback: AsyncCallback\<DsdsMode\>\): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.getDsdsMode((err: BusinessError, data: sim.DsdsMode) => {
     if (err) {
@@ -3262,7 +3262,7 @@ getDsdsMode\(\): Promise\<DsdsMode\>
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
 | 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
 | 8300999  | Unknown error code.                          |
@@ -3270,8 +3270,8 @@ getDsdsMode\(\): Promise\<DsdsMode\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 let promise = sim.getDsdsMode();
 promise.then((data: sim.DsdsMode) => {

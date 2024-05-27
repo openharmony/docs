@@ -47,7 +47,7 @@ Incorrect Ability type.
 **处理步骤**
 
 1. 检查want中的bundleName、moduleName和abilityName是否正确。
-2. 根据Ability类型调用不同接口，如ServiceExtensionAbility应使用[startServiceExtensionAbility](js-apis-inner-application-uiAbilityContext-sys.md#uiabilitycontextstartserviceextensionability)方法启动或[connectServiceExtensionAbility()](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectserviceextensionability)方法连接。
+2. 根据Ability类型调用不同接口，如ServiceExtensionAbility应使用<!--Del-->[startServiceExtensionAbility](js-apis-inner-application-uiAbilityContext-sys.md#uiabilitycontextstartserviceextensionability)方法启动或<!--DelEnd-->[connectServiceExtensionAbility()](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectserviceextensionability)方法连接。
 
 ## 16000003 指定的ID不存在
 
@@ -284,7 +284,7 @@ The previous ability is starting, wait start later.
 
 无需处理，等待启动即可。
 
-## 16000018 限制API11以上版本三方应用跳转
+## 16000018 限制API 11以上版本三方应用跳转
 
 **错误信息**
 
@@ -772,6 +772,24 @@ wangAgent object has been canceled.
 **处理步骤**
 
 检查触发的wantAgent对象是否已取消。
+
+## 16000200 应用缓存后快速启动支持状态设置超过1次
+
+**错误信息**
+
+The supported process cache state cannot be set more than once.
+
+**错误描述**
+
+在单个进程实例的生命周期中，应用缓存后快速启动支持状态设置成功1次后，再次设置方法将返回错误码。
+
+**可能原因**
+
+应用缓存后快速启动支持状态设置超过1次。
+
+**处理步骤**
+
+检查应用缓存后快速启动支持状态是否设置超过1次。
 
 ## 16100001 指定Uri的Ability不存在
 

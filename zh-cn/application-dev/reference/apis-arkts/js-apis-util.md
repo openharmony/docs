@@ -10,7 +10,7 @@
 ## 导入模块
 
 ```ts
-import util from '@ohos.util';
+import { util } from '@kit.ArkTS';
 ```
 ## util.format<sup>9+</sup>
 
@@ -51,7 +51,7 @@ format(format: string,  ...args: Object[]): string
 **示例：**
 
 ```ts
-import util from '@ohos.util';
+import { util } from '@kit.ArkTS';
 
 interface utilAddresstype {
   city: string;
@@ -435,7 +435,11 @@ getHash(object: object): number
 **示例：**
 
 ```ts
-let obj = {};
+interface Person {
+  name: string,
+  age: number
+}
+let obj: Person = { name: 'Dany', age: 20 };
 let result1 = util.getHash(obj);
 console.info('result1 is ' + result1);
 let result2 = util.getHash(obj);
@@ -890,7 +894,7 @@ TextEncoder用于将字符串编码为字节数组，支持多种编码格式。
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| encoding | string | 是 | 否 |  编码格式。<br/>-&nbsp;支持格式：utf-8、UTF-8、GBK、GB2312、gb2312、GB18030、gb18030、ibm866、iso-8859-2、iso-8859-3、iso-8859-4、iso-8859-5、iso-8859-6、iso-8859-7、iso-8859-8、iso-8859-8-i、iso-8859-10、iso-8859-13、iso-8859-14、iso-8859-15、koi8-r、koi8-u、macintosh、windows-874、windows-1250、windows-1251、windows-1252、windows-1253、windows-1254、windows-1255、windows-1256、windows-1257、windows-1258、gbk、big5、euc-jp、iso-2022-jp、shift_jis、euc-kr、x-mac-cyrillic、utf-16be、utf-16le。 <br/>-&nbsp; 默认值是：'utf-8'。 |
+| encoding | string | 是 | 否 |  编码格式。<br/>-&nbsp;支持格式：utf-8、UTF-8、GBK、GB2312、gb2312、GB18030、gb18030、ibm866、iso-8859-1、iso-8859-2、iso-8859-3、iso-8859-4、iso-8859-5、iso-8859-6、iso-8859-7、iso-8859-8、iso-8859-8-i、iso-8859-10、iso-8859-13、iso-8859-14、iso-8859-15、koi8-r、koi8-u、macintosh、windows-874、windows-1250、windows-1251、windows-1252、windows-1253、windows-1254、windows-1255、windows-1256、windows-1257、windows-1258、gbk、big5、euc-jp、iso-2022-jp、shift_jis、euc-kr、x-mac-cyrillic、utf-16be、utf-16le。 <br/>-&nbsp; 默认值是：'utf-8'。 |
 
 
 ### constructor
@@ -2929,6 +2933,8 @@ constructor(encoding?: string)
 
 StringDecoder的构造函数。
 
+**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -2948,6 +2954,8 @@ StringDecoder的构造函数。
 write(chunk: string | Uint8Array): string
 
 返回一个解码后的字符串，确保Uint8Array末尾的任何不完整的多字节字符从返回的字符串中被过滤，并保存在一个内部的buffer中用于下次调用。
+
+**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2977,6 +2985,10 @@ write(chunk: string | Uint8Array): string
 end(chunk?: string | Uint8Array): string
 
 结束解码过程，以字符串形式返回存储在内部缓冲区中的任何剩余输入。
+
+**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -4133,7 +4145,7 @@ isModuleNamespaceObject(value: Object): boolean
 
   ```ts
   // 本接口不支持在.ets文件中使用。
-  import url from '@ohos.url'
+  import { url } from '@kit.ArkTS';
   let that = new util.types();
   let result = that.isModuleNamespaceObject(url);
   ```

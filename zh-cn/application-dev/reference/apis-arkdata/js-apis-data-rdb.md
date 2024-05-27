@@ -338,7 +338,7 @@ inDevices(devices: Array&lt;string&gt;): RdbPredicates
 
 > **说明：**
 >
-> 其中devices通过调用[deviceManager.getTrustedDeviceListSync](../apis-distributedservice-kit/js-apis-device-manager-sys.md#gettrusteddevicelistsync)方法得到。deviceManager模块的接口均为系统接口，仅系统应用可用。
+> 其中devices通过调用<!--RP2-->[deviceManager.getTrustedDeviceListSync](../apis-distributedservice-kit/js-apis-device-manager-sys.md#gettrusteddevicelistsync)方法得到。<!--RP2End-->deviceManager模块的接口均为系统接口，仅系统应用可用。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1740,7 +1740,7 @@ executeSql(sql: string, bindArgs?: Array&lt;ValueType&gt;):Promise&lt;void&gt;
 
 ```ts
 const SQL_DELETE_TABLE = "DELETE FROM test WHERE name = 'zhangsan'"
-let promise: void = rdbStore.executeSql(SQL_DELETE_TABLE)
+let promise = rdbStore.executeSql(SQL_DELETE_TABLE)
 promise.then(() => {
   console.info('Delete table done.')
 }).catch((err: BusinessError) => {
@@ -1934,7 +1934,7 @@ obtainDistributedTableName(device: string, table: string, callback: AsyncCallbac
 
 > **说明：**
 >
-> 其中device通过调用[deviceManager.getTrustedDeviceListSync](../apis-distributedservice-kit/js-apis-device-manager-sys.md#gettrusteddevicelistsync)方法得到。deviceManager模块的接口均为系统接口，仅系统应用可用。
+> 其中device通过调用<!--RP1-->[deviceManager.getTrustedDeviceListSync](../apis-distributedservice-kit/js-apis-device-manager-sys.md#gettrusteddevicelistsync)方法得到。<!--RP1End-->deviceManager模块的接口均为系统接口，仅系统应用可用。
 
 **需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -1982,7 +1982,7 @@ rdbStore.obtainDistributedTableName(deviceId, "EMPLOYEE", (err: BusinessError, t
 
 > **说明：**
 >
-> 其中device通过调用[deviceManager.getTrustedDeviceListSync](../apis-distributedservice-kit/js-apis-device-manager-sys.md#gettrusteddevicelistsync)方法得到。deviceManager模块的接口均为系统接口，仅系统应用可用。
+> 其中device通过调用<!--RP1-->[deviceManager.getTrustedDeviceListSync](../apis-distributedservice-kit/js-apis-device-manager-sys.md#gettrusteddevicelistsync)方法得到。<!--RP1End-->deviceManager模块的接口均为系统接口，仅系统应用可用。
 
 **需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
 
