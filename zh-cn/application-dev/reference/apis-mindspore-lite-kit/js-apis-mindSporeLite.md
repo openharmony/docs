@@ -22,10 +22,10 @@ import { mindSporeLite } from '@kit.MindSporeLiteKit';
 
 **系统能力：** SystemCapability.AI.MindSporeLite
 
-| 名称                            | 类型              | 必填 | 说明                 |
-| ------------------------------- | ----------------- | ---- | -------------------- |
-| lossName<sup>12+</sup>          | string[]          | 是   | 损失函数的名称列表。 |
-| optimizationLevel<sup>12+</sup> | OptimizationLevel | 否   | 训练配置的优化等级。 |
+| 名称                            | 类型                                    | 必填 | 说明                 |
+| ------------------------------- | --------------------------------------- | ---- | -------------------- |
+| lossName<sup>12+</sup>          | string[]                                | 是   | 损失函数的名称列表。 |
+| optimizationLevel<sup>12+</sup> | [OptimizationLevel](#optimizationlevel) | 否   | 训练配置的优化等级。 |
 
 ### OptimizationLevel
 
@@ -110,12 +110,12 @@ Neural Network Runtime表示神经网络运行时，简称NNRt。作为中间桥
 
 **系统能力：** SystemCapability.AI.MindSporeLite
 
-| 名称                          | 类型                | 必填 | 说明                     |
-| ----------------------------- | ------------------- | ---- | ------------------------ |
-| deviceID<sup>12+</sup>        | bigint              | 是   | NNRT设备ID。             |
-| performanceMode<sup>12+</sup> | [PerformanceMode]() | 否   | NNRT设备的工作性能模式。 |
-| priority<sup>12+</sup>        | [Priority]()        | 否   | NNRT推理任务优先级。     |
-| extensions<sup>12+</sup>      | Extension[]         | 否   | NNRT设备的扩展配置。     |
+| 名称                          | 类型                                | 必填 | 说明                     |
+| ----------------------------- | ----------------------------------- | ---- | ------------------------ |
+| deviceID<sup>12+</sup>        | bigint                              | 是   | NNRT设备ID。             |
+| performanceMode<sup>12+</sup> | [PerformanceMode](#performancemode) | 否   | NNRT设备的工作性能模式。 |
+| priority<sup>12+</sup>        | [Priority](#priority)               | 否   | NNRT推理任务优先级。     |
+| extensions<sup>12+</sup>      | Extension[]                         | 否   | NNRT设备的扩展配置。     |
 
 
 
@@ -166,11 +166,11 @@ NNRT设备信息描述，包含设备ID，设备名称等信息。
 
 **系统能力：** SystemCapability.AI.MindSporeLite
 
-| 名称                     | 类型               | 必填 | 说明                     |
-| ------------------------ | ------------------ | ---- | ------------------------ |
-| deviceID<sup>12+</sup>   | bigint             | 是   | NNRT设备ID。             |
-| deviceType<sup>12+</sup> | [NNRTDeviceType]() | 否   | NNRT设备的工作性能模式。 |
-| deviceName<sup>12+</sup> | string             | 否   | NNRT设备名称。           |
+| 名称                     | 类型                              | 必填 | 说明                     |
+| ------------------------ | --------------------------------- | ---- | ------------------------ |
+| deviceID<sup>12+</sup>   | bigint                            | 是   | NNRT设备ID。             |
+| deviceType<sup>12+</sup> | [NNRTDeviceType](#nnrtdevicetype) | 否   | NNRT设备的工作性能模式。 |
+| deviceName<sup>12+</sup> | string                            | 否   | NNRT设备名称。           |
 
 ## NNRTDeviceType
 
@@ -747,7 +747,7 @@ mindSporeLite.loadModelFromFile(model_file).then((mindSporeLiteModel : mindSpore
 
 runStep(inputs: MSTensor[]): boolean
 
-逐步训练模型。
+获取是否逐步训练模型。
 
 **系统能力：** SystemCapability.AI.MindSporeLite
 
