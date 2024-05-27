@@ -14,8 +14,6 @@ Allows an application to access Bluetooth configurations.
 
 **Authorization mode**: system_grant
 
-**Enable via ACL**: true
-
 **Valid since**: 8
 
 ### ohos.permission.GET_BUNDLE_INFO
@@ -25,8 +23,6 @@ Allows an application to obtain basic information about another application.
 **Permission level**: normal
 
 **Authorization mode**: system_grant
-
-**Enable via ACL**: true
 
 **Valid since**: 7
 
@@ -38,8 +34,6 @@ Allows an application to perform customized actions before being terminated.
 
 **Authorization mode**: system_grant
 
-**Enable via ACL**: true
-
 **Valid since**: 10
 
 ### ohos.permission.PRINT
@@ -49,8 +43,6 @@ Allows an application to obtain the print framework capability.
 **Permission level**: normal
 
 **Authorization mode**: system_grant
-
-**Enable via ACL**: true
 
 **Valid since**: 10
 
@@ -62,8 +54,6 @@ Allows an application to configure Bluetooth on a device, initiate or cancel a s
 
 **Authorization mode**: system_grant
 
-**Enable via ACL**: true
-
 **Valid since**: 8
 
 ### ohos.permission.ACCELEROMETER
@@ -73,8 +63,6 @@ Allows an application to read data from an acceleration sensor, uncalibrated acc
 **Permission level**: normal
 
 **Authorization mode**: system_grant
-
-**Enable via ACL**: true
 
 **Valid since**: 7
 
@@ -86,19 +74,17 @@ Allows an application to use biometric recognition for identity authentication.
 
 **Authorization mode**: system_grant
 
-**Enable via ACL**: true
-
 **Valid since**: 6
 
 ### ohos.permission.ACCESS_NOTIFICATION_POLICY
 
 Allows an application to access the notification policy on the device.
 
+This permission is required only when the ringtone needs to be changed from mute to unmute.
+
 **Permission level**: normal
 
 **Authorization mode**: system_grant
-
-**Enable via ACL**: false
 
 **Valid since**: 7
 
@@ -110,8 +96,6 @@ Allows an application to obtain network information.
 
 **Authorization mode**: system_grant
 
-**Enable via ACL**: true
-
 **Valid since**: 8
 
 ### ohos.permission.GET_WIFI_INFO
@@ -121,8 +105,6 @@ Allows an application to obtain Wi-Fi information.
 **Permission level**: normal
 
 **Authorization mode**: system_grant
-
-**Enable via ACL**: true
 
 **Valid since**: 8
 
@@ -134,8 +116,6 @@ Allows an application to read data from a gyroscope sensor or uncalibrated gyros
 
 **Authorization mode**: system_grant
 
-**Enable via ACL**: true
-
 **Valid since**: 7
 
 ### ohos.permission.INTERNET
@@ -145,8 +125,6 @@ Allows an application to access the Internet.
 **Permission level**: normal
 
 **Authorization mode**: system_grant
-
-**Enable via ACL**: true
 
 **Valid since**: 9
 
@@ -158,8 +136,6 @@ Allows a Service ability to keep running in the background.
 
 **Authorization mode**: system_grant
 
-**Enable via ACL**: true
-
 **Valid since**: 8
 
 ### ohos.permission.NFC_CARD_EMULATION
@@ -169,8 +145,6 @@ Allows an application to implement card emulation.
 **Permission level**: normal
 
 **Authorization mode**: system_grant
-
-**Enable via ACL**: false
 
 **Valid since**: 8
 
@@ -182,8 +156,6 @@ Allows an application to read and write NFC tags.
 
 **Authorization mode**: system_grant
 
-**Enable via ACL**: false
-
 **Valid since**: 7
 
 ### ohos.permission.PRIVACY_WINDOW
@@ -193,8 +165,6 @@ Allows an application to set screens that cannot be captured or recorded.
 **Permission level**: system_basic for API versions 9 to 10; normal for API version 11 and later
 
 **Authorization mode**: system_grant
-
-**Enable via ACL**: true
 
 **Valid since**: 9
 
@@ -206,8 +176,6 @@ Allows an application to use agent-powered reminders.
 
 **Authorization mode**: system_grant
 
-**Enable via ACL**: true
-
 **Valid since**: 7
 
 ### ohos.permission.SET_WIFI_INFO
@@ -217,8 +185,6 @@ Allows an application to set a Wi-Fi device.
 **Permission level**: normal
 
 **Authorization mode**: system_grant
-
-**Enable via ACL**: true
 
 **Valid since**: 8
 
@@ -230,8 +196,6 @@ Allows an application to control vibration.
 
 **Authorization mode**: system_grant
 
-**Enable via ACL**: true
-
 **Valid since**: 7
 
 ### ohos.permission.CLEAN_BACKGROUND_PROCESSES
@@ -241,8 +205,6 @@ Allows an application to clear background processes based on their bundle names.
 **Permission level**: normal
 
 **Authorization mode**: system_grant
-
-**Enable via ACL**: true
 
 **Valid since**: 7
 
@@ -254,8 +216,6 @@ Allows an application to publish sticky common events.
 
 **Authorization mode**: system_grant
 
-**Enable via ACL**: true
-
 **Valid since**: 7
 
 ### ohos.permission.MODIFY_AUDIO_SETTINGS
@@ -265,8 +225,6 @@ Allows an application to modify audio settings.
 **Permission level**: normal
 
 **Authorization mode**: system_grant
-
-**Enable via ACL**: true
 
 **Valid since**: 8
 
@@ -278,8 +236,6 @@ Allows an application to obtain a running lock.
 
 **Authorization mode**: system_grant
 
-**Enable via ACL**: true
-
 **Valid since**: 7
 
 ### ohos.permission.SET_WALLPAPER
@@ -289,8 +245,6 @@ Allows an application to set wallpapers.
 **Permission level**: normal
 
 **Authorization mode**: system_grant
-
-**Enable via ACL**: true
 
 **Valid since**: 7
 
@@ -302,8 +256,6 @@ Allows an application to query certificates and private credentials.
 
 **Authorization mode**: system_grant
 
-**Enable via ACL**: false
-
 **Valid since**: 9
 
 ### ohos.permission.hsdr.HSDR_ACCESS
@@ -313,8 +265,6 @@ Allows an application to access OpenHarmony Security Detection and Response Fram
 **Permission level**: normal
 
 **Authorization mode**: system_grant
-
-**Enable via ACL**: false
 
 **Valid since**: 10
 
@@ -326,8 +276,6 @@ Allows an application to run dynamic code.
 
 **Authorization mode**: system_grant
 
-**Enable via ACL**: false
-
 **Valid since**: 11
 
 ### ohos.permission.READ_CLOUD_SYNC_CONFIG
@@ -337,8 +285,6 @@ Allows an application that has accessed the cloud to obtain its device-cloud syn
 **Permission level**: normal
 
 **Authorization mode**: system_grant
-
-**Enable via ACL**: true
 
 **Valid since**: 11
 
@@ -350,8 +296,6 @@ Allows an application to store persistent data. The persistent data will be clea
 
 **Authorization mode**: system_grant
 
-**Enable via ACL**: false
-
 **Valid since**: 11
 
 ### ohos.permission.ACCESS_EXTENSIONAL_DEVICE_DRIVER
@@ -361,8 +305,6 @@ Allows an application to use enhanced functions of the devices connected to this
 **Permission level**: normal
 
 **Authorization mode**: system_grant
-
-**Enable via ACL**: false
 
 **Valid since**: 11
 
@@ -378,8 +320,6 @@ Allows an application to access Bluetooth and use Bluetooth capabilities, such a
 
 **Authorization mode**: user_grant
 
-**Enable via ACL**: false
-
 **Valid since**: 10
 
 ### ohos.permission.MEDIA_LOCATION
@@ -389,8 +329,6 @@ Allows an application to access geographical locations in the user's media file.
 **Permission level**: normal
 
 **Authorization mode**: user_grant
-
-**Enable via ACL**: true
 
 **Valid since**: 7
 
@@ -402,8 +340,6 @@ Allows an application to read the open anonymous device identifier (OAID).
 
 **Authorization mode**: user_grant
 
-**Enable via ACL**: true
-
 **Valid since**: 9
 
 ### ohos.permission.ACTIVITY_MOTION
@@ -413,8 +349,6 @@ Allows an application to read the current workout status of the user, such as de
 **Permission level**: normal
 
 **Authorization mode**: user_grant
-
-**Enable via ACL**: true
 
 **Valid since**: 7
 
@@ -426,8 +360,6 @@ Allows an application to use the camera.
 
 **Authorization mode**: user_grant
 
-**Enable via ACL**: true
-
 **Valid since**: 9
 
 ### ohos.permission.DISTRIBUTED_DATASYNC
@@ -438,15 +370,13 @@ Allows the application data to be exchanged between devices.
 
 **Authorization mode**: user_grant
 
-**Enable via ACL**: true
-
 **Valid since**: 7
 
 ### ohos.permission.LOCATION_IN_BACKGROUND
 
 Allows an application running in the background to obtain the device location.
 
-For security purposes, this permission cannot be granted to applications in a dialog box. If an application needs this permission, guide the user to manually grant this permission on the **Settings** screen.
+For security purposes, this permission cannot be granted to applications in a dialog box. If an application needs this permission, direct the user to manually grant this permission on the **Settings** screen.
 
 **Procedure**:
 
@@ -460,8 +390,6 @@ For security purposes, this permission cannot be granted to applications in a di
 
 **Authorization mode**: user_grant
 
-**Enable via ACL**: false
-
 **Valid since**: 7
 
 ### ohos.permission.LOCATION
@@ -474,8 +402,6 @@ Allows an application to obtain the device location.
 
 **Authorization mode**: user_grant
 
-**Enable via ACL**: true
-
 **Valid since**: 7
 
 ### ohos.permission.APPROXIMATELY_LOCATION
@@ -485,8 +411,6 @@ Allows an application to obtain the approximate location information of a device
 **Permission level**: normal
 
 **Authorization mode**: user_grant
-
-**Enable via ACL**: false
 
 **Valid since**: 9
 
@@ -498,8 +422,6 @@ Allows an application to access the microphone.
 
 **Authorization mode**: user_grant
 
-**Enable via ACL**: true
-
 **Valid since**: 8
 
 ### ohos.permission.READ_CALENDAR
@@ -509,8 +431,6 @@ Allows an application to read Calendar data.
 **Permission level**: normal
 
 **Authorization mode**: user_grant
-
-**Enable via ACL**: true
 
 **Valid since**: 8
 
@@ -522,8 +442,6 @@ Allows an application to read the health data of the user.
 
 **Authorization mode**: user_grant
 
-**Enable via ACL**: true
-
 **Valid since**: 7
 
 ### ohos.permission.READ_MEDIA
@@ -533,8 +451,6 @@ Allows an application to read media files from the user's external storage.
 **Permission level**: normal
 
 **Authorization mode**: user_grant
-
-**Enable via ACL**: true
 
 **Valid since**: 7
 
@@ -546,8 +462,6 @@ Allows an application to add, remove, and modify Calendar events.
 
 **Authorization mode**: user_grant
 
-**Enable via ACL**: true
-
 **Valid since**: 8
 
 ### ohos.permission.WRITE_MEDIA
@@ -558,12 +472,4 @@ Allows an application to read media files from and write media files into the us
 
 **Authorization mode**: user_grant
 
-**Enable via ACL**: true
-
 **Valid since**: 7
-
-
-
-
-
-
