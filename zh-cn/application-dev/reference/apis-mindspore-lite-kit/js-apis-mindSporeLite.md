@@ -14,6 +14,45 @@ MindSpore Lite是一款AI引擎，它提供了面向不同硬件设备AI模型�
 import { mindSporeLite } from '@kit.MindSporeLiteKit';
 ```
 
+## TrainCfg
+
+定义训练环境的配置信息。
+
+### 属性
+
+**系统能力：** SystemCapability.AI.MindSporeLite
+
+| 名称                            | 类型                                    | 必填 | 说明                 |
+| ------------------------------- | --------------------------------------- | ---- | -------------------- |
+| lossName<sup>12+</sup>          | string[]                                | 是   | 损失函数的名称列表。 |
+| optimizationLevel<sup>12+</sup> | [OptimizationLevel](#optimizationlevel) | 否   | 训练配置的优化等级。 |
+
+### OptimizationLevel
+
+训练配置的优化等级。
+
+**系统能力：** SystemCapability.AI.MindSporeLite
+
+| 名称               | 值   | 说明                                                       |
+| ------------------ | ---- | ---------------------------------------------------------- |
+| O0<sup>12+</sup>   | 0    | 无优化等级。                                               |
+| O2<sup>12+</sup>   | 2    | 将网络转换为float16, 保持批量归一化层和损失函数为float32。 |
+| O3<sup>12+</sup>   | 3    | 将网络转换为float16, 包括批量归一化层。                    |
+| AUTO<sup>12+</sup> | 4    | 根据设备选择优化等级。                                     |
+
+## Extension
+
+定义NNRT设备的扩展信息。
+
+### 属性
+
+**系统能力：** SystemCapability.AI.MindSporeLite
+
+| 名称                | 类型        | 必填 | 说明             |
+| ------------------- | ----------- | ---- | ---------------- |
+| name<sup>12+</sup>  | string      | 是   | 扩展名称。       |
+| value<sup>12+</sup> | ArrayBuffer | 否   | 包含扩展的内存。 |
+
 ## Context
 
 定义运行环境的配置信息。
@@ -71,6 +110,13 @@ Neural Network Runtime表示神经网络运行时，简称NNRt。作为中间桥
 
 **系统能力：** SystemCapability.AI.MindSporeLite
 
+| 名称                          | 类型                                | 必填 | 说明                     |
+| ----------------------------- | ----------------------------------- | ---- | ------------------------ |
+| deviceID<sup>12+</sup>        | bigint                              | 是   | NNRT设备ID。             |
+| performanceMode<sup>12+</sup> | [PerformanceMode](#performancemode) | 否   | NNRT设备的工作性能模式。 |
+| priority<sup>12+</sup>        | [Priority](#priority)               | 否   | NNRT推理任务优先级。     |
+| extensions<sup>12+</sup>      | Extension[]                         | 否   | NNRT设备的扩展配置。     |
+
 ## ThreadAffinityMode
 
 设置运行时的CPU绑核策略模式，有效值为0-2，0为默认不绑核，1为绑大核，2为绑中核。
@@ -81,7 +127,59 @@ Neural Network Runtime表示神经网络运行时，简称NNRt。作为中间桥
 | ------------------ | ---- | ------------ |
 | NO_AFFINITIES      | 0    | 不绑核。     |
 | BIG_CORES_FIRST    | 1    | 绑大核优先。 |
-| LITTLE_CORES_FIRST | 2    | 绑小核优先。 |
+| LITTLE_CORES_FIRST | 2    | 绑中核优先。 |
+
+## PerformanceMode
+
+NNRT设备的工作性能模式。
+
+**系统能力：** SystemCapability.AI.MindSporeLite
+
+| 名称                              | 值   | 说明                |
+| --------------------------------- | ---- | ------------------- |
+| PERFORMANCE_NONE<sup>12+</sup>    | 0    | 无特殊设置。        |
+| PERFORMANCE_LOW<sup>12+</sup>     | 1    | 低功耗模式。        |
+| PERFORMANCE_MEDIUM<sup>12+</sup>  | 2    | 功耗-性能均衡模式。 |
+| PERFORMANCE_HIGH<sup>12+</sup>    | 3    | 高性能模式。        |
+| PERFORMANCE_EXTREME<sup>12+</sup> | 4    | 极致性能模式。      |
+
+## Priority
+
+NNRT推理任务优先级。
+
+**系统能力：** SystemCapability.AI.MindSporeLite
+
+| 名称                          | 值   | 说明           |
+| ----------------------------- | ---- | -------------- |
+| PRIORITY_NONE<sup>12+</sup>   | 0    | 无优先级偏好。 |
+| PRIORITY_LOW<sup>12+</sup>    | 1    | 低优先级任务。 |
+| PRIORITY_MEDIUM<sup>12+</sup> | 2    | 中优先级任务。 |
+| PRIORITY_HIGH<sup>12+</sup>   | 3    | 高优先级。     |
+
+## NNRTDeviceDescription
+
+NNRT设备信息描述，包含设备ID，设备名称等信息。
+
+**系统能力：** SystemCapability.AI.MindSporeLite
+
+| 名称                     | 类型                              | 必填 | 说明                     |
+| ------------------------ | --------------------------------- | ---- | ------------------------ |
+| deviceID<sup>12+</sup>   | bigint                            | 是   | NNRT设备ID。             |
+| deviceType<sup>12+</sup> | [NNRTDeviceType](#nnrtdevicetype) | 否   | NNRT设备的工作性能模式。 |
+| deviceName<sup>12+</sup> | string                            | 否   | NNRT设备名称。           |
+
+## NNRTDeviceType
+
+NNRT设备类型。
+
+**系统能力：** SystemCapability.AI.MindSporeLite
+
+| 名称                                 | 值   | 说明                                |
+| ------------------------------------ | ---- | ----------------------------------- |
+| NNRTDEVICE_OTHERS<sup>12+</sup>      | 0    | 设备类型不属于以下3种，则属于其它。 |
+| NNRTDEVICE_CPU<sup>12+</sup>         | 1    | CPU设备。                           |
+| NNRTDEVICE_GPU<sup>12+</sup>         | 2    | GPU设备。                           |
+| NNRTDEVICE_ACCELERATOR<sup>12+</sup> | 3    | 特定的加速设备。                    |
 
 ## mindSporeLite.loadModelFromFile
 
@@ -367,11 +465,124 @@ let mindSporeLiteModel : mindSporeLite.Model = await mindSporeLite.loadModelFrom
 let modelInputs : mindSporeLite.MSTensor[] = mindSporeLiteModel.getInputs();
 console.log(modelInputs[0].name);
 ```
+
+## mindSporeLite.loadTrainModelFromFile<sup>12+</sup>
+
+loadTrainModelFromFile(model: string, trainCfg?: TrainCfg, context?: Context): Promise&lt;Model&gt;
+
+根据路径读取加载训练模型文件。使用Promise异步函数。
+
+**系统能力：** SystemCapability.AI.MindSporeLite
+
+**参数：**
+
+| 参数名   | 类型                | 必填 | 说明                 |
+| -------- | ------------------- | ---- | -------------------- |
+| model    | string              | 是   | 模型的完整输入路径。 |
+| trainCfg | TrainCfg            | 否   | 模型训练配置。       |
+| context  | [Context](#context) | 否   | 运行环境的配置信息。 |
+
+**返回值：**
+
+| 类型                       | 说明                   |
+| ------------------------ | -------------------- |
+| Promise<[Model](#model)> | Promise对象。返回Model对象。 |
+
+
+
+## mindSporeLite.loadTrainModelFromBuffer<sup>12+</sup>
+
+loadTrainModelFromBuffer(model: ArrayBuffer, trainCfg?: TrainCfg, context?: Context): Promise&lt;Model&gt;
+
+从内存加载训练模型文件。使用Promise异步函数。
+
+**系统能力：** SystemCapability.AI.MindSporeLite
+
+**参数：**
+
+| 参数名   | 类型                | 必填 | 说明                 |
+| -------- | ------------------- | ---- | -------------------- |
+| model    | ArrayBuffer         | 是   | 包含训练模型的内存。 |
+| trainCfg | TrainCfg            | 否   | 模型训练配置。       |
+| context  | [Context](#context) | 否   | 运行环境的配置信息。 |
+
+**返回值：**
+
+| 类型                       | 说明                   |
+| ------------------------ | -------------------- |
+| Promise<[Model](#model)> | Promise对象。返回Model对象。 |
+
+
+
+## mindSporeLite.loadTrainModelFromFd<sup>12+</sup>
+
+loadTrainModelFromFd(model: number, trainCfg?: TrainCfg, context?: Context): Promise&lt;Model&gt;
+
+从文件描述符加载训练模型文件。使用Promise异步函数。
+
+**系统能力：** SystemCapability.AI.MindSporeLite
+
+**参数：**
+
+| 参数名   | 类型                | 必填 | 说明                   |
+| -------- | ------------------- | ---- | ---------------------- |
+| model    | number              | 是   | 训练模型的文件描述符。 |
+| trainCfg | TrainCfg            | 否   | 模型训练配置。         |
+| context  | [Context](#context) | 否   | 运行环境的配置信息。   |
+
+**返回值：**
+
+| 类型                     | 说明                         |
+| ------------------------ | ---------------------------- |
+| Promise<[Model](#model)> | Promise对象。返回Model对象。 |
+
+## mindSporeLite.getAllNNRTDeviceDescriptions<sup>12+</sup>
+
+getAllNNRTDeviceDescriptions() : NNRTDeviceDescription[]
+
+获取NNRT中的所有设备描述。
+
+**系统能力：** SystemCapability.AI.MindSporeLite
+
+**返回值：**
+
+| 类型                    | 说明                   |
+| ----------------------- | ---------------------- |
+| NNRTDeviceDescription[] | NNRT设备描述信息数组。 |
+
 ## Model
 
 模型实例。描述Model对象的属性和方法。
 
 下例API示例中都需先使用[loadModelFromFile()](#mindsporeliteloadmodelfromfile)、[loadModelFromBuffer()](#mindsporeliteloadmodelfrombuffer)、[loadModelFromFd()](#mindsporeliteloadmodelfromfd)中的任一方法获取到Model实例，再通过此实例调用对应方法。
+
+### learningRate<sup>12+</sup>
+
+learningRate: number
+
+训练模型的学习率。
+
+**系统能力：** SystemCapability.AI.MindSporeLite
+
+**返回值：**
+
+| 类型     | 说明     |
+| ------ | ------ |
+| number | 返回学习率。 |
+
+### trainMode<sup>12+</sup>
+
+trainMode: boolean
+
+模型的运行模式。
+
+**系统能力：** SystemCapability.AI.MindSporeLite
+
+**返回值：**
+
+| 类型      | 说明         |
+| ------- | ---------- |
+| boolean | 返回是否是训练模式。 |
 
 ### getInputs
 
@@ -523,6 +734,140 @@ mindSporeLite.loadModelFromFile(model_file).then((mindSporeLiteModel : mindSpore
   mindSporeLiteModel.resize(modelInputs, new_dim);
 })
 ```
+
+### runStep<sup>12+</sup>
+
+runStep(inputs: MSTensor[]): boolean
+
+获取是否逐步训练模型。
+
+**系统能力：** SystemCapability.AI.MindSporeLite
+
+**参数：**
+
+| 参数名    | 类型                      | 必填  | 说明       |
+| ------ | ----------------------- | --- | -------- |
+| inputs | [MSTensor](#mstensor)[] | 是   | 模型的输入列表。 |
+
+**返回值：**
+
+| 类型      | 说明          |
+| ------- | ----------- |
+| boolean | 返回是否逐步训练模型。 |
+
+### getWeights<sup>12+</sup>
+
+getWeights(): MSTensor[]
+
+获取模型的所有权重。
+
+**系统能力：** SystemCapability.AI.MindSporeLite
+
+**返回值：**
+
+| 类型                      | 说明         |
+| ----------------------- | ---------- |
+| [MSTensor](#mstensor)[] | 返回模型的权重张量。 |
+
+### updateWeights<sup>12+</sup>
+
+updateWeights(weights: MSTensor[]): boolean
+
+更新模型的权重。
+
+**系统能力：** SystemCapability.AI.MindSporeLite
+
+**参数：**
+
+| 参数名     | 类型                      | 必填  | 说明       |
+| ------- | ----------------------- | --- | -------- |
+| weights | [MSTensor](#mstensor)[] | 是   | 模型的输入列表。 |
+
+**返回值：**
+
+| 类型      | 说明            |
+| ------- | ------------- |
+| boolean | 返回是否更新权重操作成功。 |
+
+### setupVirtualBatch<sup>12+</sup>
+
+setupVirtualBatch(virtualBatchMultiplier: number, lr: number, momentum: number): boolean
+
+使用虚拟批次设置训练。
+
+**系统能力：** SystemCapability.AI.MindSporeLite
+
+**参数：**
+
+| 参数名                 | 类型   | 必填 | 说明                                         |
+| ---------------------- | ------ | ---- | -------------------------------------------- |
+| virtualBatchMultiplier | number | 是   | 虚拟批量乘法器，小于1的任意数字禁用。        |
+| lr                     | number | 是   | 用于虚拟批处理的学习率，-1用于内部配置。     |
+| momentum               | number | 是   | 用于虚拟批处理的批范数动量，-1用于内部配置。 |
+
+**返回值：**
+
+| 类型      | 说明        |
+| ------- | --------- |
+| boolean | 返回是否操作成功。 |
+
+### exportModel<sup>12+</sup>
+
+exportModel(modelFile: string, quantizationType?: QuantizationType, exportInferenceOnly?: boolean, outputTensorName?: string[]): boolean
+
+导出训练模型。
+
+**系统能力：** SystemCapability.AI.MindSporeLite
+
+**参数：**
+
+| 参数名              | 类型                                  | 必填 | 说明                                             |
+| ------------------- | ------------------------------------- | ---- | ------------------------------------------------ |
+| modelFile           | string                                | 是   | 模型文件路径。                                   |
+| quantizationType    | [QuantizationType](#quantizationtype) | 否   | 量化类型，默认为NO_quant。                       |
+| exportInferenceOnly | boolean                               | 否   | 是否导出仅推理模型，默认为true。                 |
+| outputTensorName    | string[]                              | 否   | 设置导出模型的输出Tensor，默认为空表示全量导出。 |
+
+**返回值：**
+
+| 类型      | 说明        |
+| ------- | --------- |
+| boolean | 返回是否操作成功。 |
+
+### QuantizationType
+
+量化类型信息，有效值为0-2。
+
+**系统能力：** SystemCapability.AI.MindSporeLite
+
+| 名称                       | 值   | 说明       |
+| -------------------------- | ---- | ---------- |
+| NO_QUANT<sup>12+</sup>     | 0    | 不做量化。 |
+| WEIGHT_QUANT<sup>12+</sup> | 1    | 权重量化。 |
+| FULL_QUANT<sup>12+</sup>   | 2    | 全量化。   |
+
+### exportWeightsCollaborateWithMicro<sup>12+</sup>
+
+exportWeightsCollaborateWithMicro(weightFile: string, isInference?: boolean, enableFp16?: boolean, changeableWeightsName?: string[]): boolean;
+
+导出模型权重，只能用于micro推理，仅用于端侧训练。
+
+**系统能力：** SystemCapability.AI.MindSporeLite
+
+**参数：**
+
+| 参数名                | 类型     | 必填 | 说明                                                     |
+| --------------------- | -------- | ---- | -------------------------------------------------------- |
+| weightFile            | string   | 是   | 权重文件路径。                                           |
+| isInference           | boolean  | 否   | 是否从推理模型中导出权重，目前只支持`true`，默认为true。 |
+| enableFp16            | boolean  | 否   | 是否以float16格式保存，默认为false。                     |
+| changeableWeightsName | string[] | 否   | 可变权重名称。                                           |
+
+**返回值：**
+
+| 类型      | 说明        |
+| ------- | --------- |
+| boolean | 返回是否操作成功。 |
 
 ## MSTensor
 
