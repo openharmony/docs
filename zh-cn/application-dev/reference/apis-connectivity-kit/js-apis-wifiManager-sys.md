@@ -136,7 +136,7 @@ setScanAlwaysAllowed(isScanAlwaysAllowed: boolean): void
 | -------- | -------- | -------- | -------- |
 |201 | Permission denied.                 |
 |202 | Non-system applications are not allowed to use system APIs. |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 |801 | Capability not supported.          |
 | isScanAlwaysAllowed | boolean | 是 | 是否始终允许扫描。 |
 
@@ -233,7 +233,8 @@ addDeviceConfig(config: WifiDeviceConfig): Promise&lt;number&gt;
 | -------- | -------- |
 |201 | Permission denied.                 |
 |202 | Non-system applications are not allowed to use system APIs. |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.
+    2. Incorrect parameter types. 3.Parameter verification failed. |
 |801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
@@ -366,7 +367,8 @@ addDeviceConfig(config: WifiDeviceConfig, callback: AsyncCallback&lt;number&gt;)
 | -------- | -------- |
 |201 | Permission denied.                 |
 |202 | Non-system applications are not allowed to use system APIs. |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.
+    2. Incorrect parameter types. 3.Parameter verification failed. |
 |801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
@@ -416,7 +418,8 @@ connectToNetwork(networkId: number): void
 | -------- | -------- |
 |201 | Permission denied.                 |
 |202 | Non-system applications are not allowed to use system APIs. |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.
+    2. Incorrect parameter types. 3.Parameter verification failed. |
 |801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 | 2501001  | Wifi is closed.|
@@ -461,7 +464,8 @@ connectToDevice(config: WifiDeviceConfig): void
 | -------- | -------- |
 |201 | Permission denied.                 |
 |202 | Non-system applications are not allowed to use system APIs. |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.
+    2. Incorrect parameter types. 3.Parameter verification failed. |
 |801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 | 2501001  | Wifi is closed.|
@@ -806,7 +810,8 @@ updateNetwork(config: WifiDeviceConfig): number
 | -------- | -------- |
 |201 | Permission denied.                 |
 |202 | Non-system applications are not allowed to use system APIs. |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.
+    2. Incorrect parameter types. 3.Parameter verification failed. |
 |801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
@@ -853,7 +858,8 @@ disableNetwork(netId: number): void
 | -------- | -------- |
 |201 | Permission denied.                 |
 |202 | Non-system applications are not allowed to use system APIs. |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.
+    2. Incorrect parameter types. 3.Parameter verification failed. |
 |801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
@@ -929,7 +935,8 @@ removeDevice(id: number): void
 | -------- | -------- |
 |201 | Permission denied.                 |
 |202 | Non-system applications are not allowed to use system APIs. |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.
+    2. Incorrect parameter types. 3.Parameter verification failed. |
 |801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
@@ -1335,7 +1342,7 @@ setHotspotConfig(config: HotspotConfig): void
 | -------- | -------- |
 |201 | Permission denied.                 |
 |202 | Non-system applications are not allowed to use system APIs. |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameters. Possible causes: 1. Incorrect parameter types. 2.Parameter verification failed. |
 |801 | Capability not supported.          |
 | 2601000  | Operation failed.|
 
@@ -1503,7 +1510,7 @@ addHotspotBlockList(stationInfo: StationInfo)
 | -------- | -------- |
 |201 | Permission denied.                 |
 |202 | Non-system applications are not allowed to use system APIs. |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameters. Possible causes: 1. Incorrect parameter types. 2.Parameter verification failed. |
 |801 | Capability not supported.          |
 | 2601000  | Operation failed.|
 
@@ -1551,7 +1558,7 @@ delHotspotBlockList(stationInfo: StationInfo)
 | -------- | -------- |
 |201 | Permission denied.                 |
 |202 | Non-system applications are not allowed to use system APIs. |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameters. Possible causes: 1. Incorrect parameter types. 2.Parameter verification failed. |
 |801 | Capability not supported.          |
 | 2601000  | Operation failed.|
 
@@ -1598,7 +1605,7 @@ getHotspotBlockList(): Array&lt;StationInfo&gt;
   | -------- | -------- |
 |201 | Permission denied.                 |
 |202 | Non-system applications are not allowed to use system APIs. |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. |
 |801 | Capability not supported.          |
 | 2601000  | Operation failed.|
 
@@ -1642,7 +1649,7 @@ deletePersistentGroup(netId: number): void
 | -------- | -------- |
 |201 | Permission denied.                 |
 |202 | Non-system applications are not allowed to use system APIs. |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameters. Possible causes: 1. Incorrect parameter types. |
 |801 | Capability not supported.          |
 | 2801000  | Operation failed.|
 
@@ -1769,7 +1776,8 @@ setDeviceName(devName: string): void
 | -------- | -------- |
 |201 | Permission denied.                 |
 |202 | Non-system applications are not allowed to use system APIs. |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.
+    2. Incorrect parameter types. 3.Parameter verification failed. |
 |801 | Capability not supported.          |
 | 2801000  | Operation failed.|
 
@@ -1813,7 +1821,7 @@ on(type: "streamChange", callback: Callback&lt;number&gt;): void
 | -------- | -------- |
 |201 | Permission denied.                 |
 |202 | Non-system applications are not allowed to use system APIs. |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 |801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
@@ -1844,7 +1852,7 @@ off(type: "streamChange", callback?: Callback&lt;number&gt;): void
 | -------- | -------- |
 |201 | Permission denied.                 |
 |202 | Non-system applications are not allowed to use system APIs. |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 |801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
@@ -1890,7 +1898,7 @@ on(type: "deviceConfigChange", callback: Callback&lt;number&gt;): void
 | -------- | -------- |
 |201 | Permission denied.                 |
 |202 | Non-system applications are not allowed to use system APIs. |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 |801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
@@ -1921,7 +1929,7 @@ off(type: "deviceConfigChange", callback?: Callback&lt;number&gt;): void
 | -------- | -------- |
 |201 | Permission denied.                 |
 |202 | Non-system applications are not allowed to use system APIs. |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 |801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
@@ -1968,7 +1976,7 @@ on(type: "hotspotStaJoin", callback: Callback&lt;StationInfo&gt;): void
 | -------- | -------- |
 |201 | Permission denied.                 |
 |202 | Non-system applications are not allowed to use system APIs. |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 |801 | Capability not supported.          |
 | 2601000  | Operation failed.|
 
@@ -1999,7 +2007,7 @@ off(type: "hotspotStaJoin", callback?: Callback&lt;StationInfo&gt;): void
 | -------- | -------- |
 |201 | Permission denied.                 |
 |202 | Non-system applications are not allowed to use system APIs. |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 |801 | Capability not supported.          |
 | 2601000  | Operation failed.|
 
@@ -2046,7 +2054,7 @@ on(type: "hotspotStaLeave", callback: Callback&lt;StationInfo&gt;): void
 | -------- | -------- |
 |201 | Permission denied.                 |
 |202 | Non-system applications are not allowed to use system APIs. |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 |801 | Capability not supported.          |
 | 2601000  | Operation failed.|
 
@@ -2077,7 +2085,7 @@ off(type: "hotspotStaLeave", callback?: Callback&lt;StationInfo&gt;): void
 | -------- | -------- |
 |201 | Permission denied.                 |
 |202 | Non-system applications are not allowed to use system APIs. |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 |801 | Capability not supported.          |
 | 2601000  | Operation failed.|
 
