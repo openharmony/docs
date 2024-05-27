@@ -200,17 +200,6 @@ Describes the DRM information of a media source.
 | uuid   | string | Yes | Unique ID of the DRM plug-in.     |
 | pssh     | Uint8Array                 | Yes | Protection Scheme Specific Header (PSSH) in the DRM information.      |
 
-## MediaKeySystemDescription<sup>12+</sup>
-
-Describes the information about the DRM plug-in supported by the device.
-
-**System capability**: SystemCapability.Multimedia.Drm.Core
-
-| Name     | Type                          | Mandatory| Description        |
-| -------- | ----------------------------- |---- | ------------- |
-| name   | string | Yes | Name of the DRM plug-in.     |
-| uuid   | string | Yes | Unique ID of the DRM plug-in.     |
-
 ## drm.createMediaKeySystem
 
 createMediaKeySystem(name: string): MediaKeySystem
@@ -390,49 +379,6 @@ try {
   console.error(`isMediaKeySystemSupported ERROR: ${error}`);
 }
 
-```
-
-## drm.getMediaKeySystems<sup>12+</sup>
-
-getMediaKeySystems(): MediaKeySystemDescription[]
-
-Obtains the names and UUIDs of the DRM plug-ins supported by the device.
-
-**System capability**: SystemCapability.Multimedia.Drm.Core
-
-**Parameters**
-
-| Name    | Type                                            | Mandatory| Description                          |
-| -------- | ----------------------------------------------- | ---- | ---------------------------- |
-| name  | string     | Yes  | Name of the DRM plug-in.                  |
-| uuid  | string     | Yes  | Unique ID of the DRM plug-in.                  |
-
-**Return value**
-
-| Type                                            | Description                          |
-| ----------------------------------------------- | ---------------------------- |
-| [MediaKeySystemDescription[]](#mediakeysystemdescription12)           | DRM plug-in information, including the plug-in name and UUID.                  |
-
-**Error codes**
-
-For details about the error codes, see [DRM Error Codes](errorcode-drm.md).
-
-| ID        | Error Message       |
-| --------------- | --------------- |
-| 24700101                |  All unknown errors                  |
-| 24700201                |  Service fatal error e.g. service died                  |
-
-**Example**
-
-```ts
-import drm from '@ohos.multimedia.drm';
-import { BusinessError } from '@ohos.base';
-try {
-  let description: drm.MediaKeySystemDescription[] = drm.getMediaKeySystems();
-} catch (err) {
-  let error = err as BusinessError;
-  console.error(`getMediaKeySystems ERROR: ${error}`);  
-}
 ```
 
 ## MediaKeySystem

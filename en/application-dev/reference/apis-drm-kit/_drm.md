@@ -15,10 +15,10 @@ The Digital Rights Management (DRM) module provides APIs to implement digital ri
 
 | Name| Description| 
 | -------- | -------- |
-| [native_drm_common.h](native__drm__common_8h.md) | Declares the DRM data types.<br>**File to include**: &lt;multimedia/drm_framework/native_drm_common.h&gt;<br>**Library**: libnative_drm.z.so| 
-| [native_drm_err.h](native__drm__err_8h.md) | Declares the DRM error codes.<br>**File to include**: &lt;multimedia/drm_framework/native_drm_err.h&gt;<br>**Library**: libnative_drm.z.so| 
-| [native_mediakeysession.h](native__mediakeysession_8h.md) | Declares the **MediaKeySession** API.<br>**File to include**: &lt;multimedia/drm_framework/native_mediakeysession.h&gt;<br>**Library**: libnative_drm.z.so| 
-| [native_mediakeysystem.h](native__mediakeysystem_8h.md) | Declares the **MediaKeySystem** API.<br>**File to include**: &lt;multimedia/drm_framework/native_mediakeysystem.h&gt;<br>**Library**: libnative_drm.z.so| 
+| [native_drm_common.h](native__drm__common_8h.md) | Declares the DRM data types.<br>**File to include**: &lt;multimedia/drm_framework/native_drm_common.h&gt;<br>**Library**: libnative_drm.so| 
+| [native_drm_err.h](native__drm__err_8h.md) | Declares the DRM error codes.<br>**File to include**: &lt;multimedia/drm_framework/native_drm_err.h&gt;<br>**Library**: libnative_drm.so| 
+| [native_mediakeysession.h](native__mediakeysession_8h.md) | Declares the **MediaKeySession** API.<br>**File to include**: &lt;multimedia/drm_framework/native_mediakeysession.h&gt;<br>**Library**: libnative_drm.so| 
+| [native_mediakeysystem.h](native__mediakeysystem_8h.md) | Declares the **MediaKeySystem** API.<br>**File to include**: &lt;multimedia/drm_framework/native_mediakeysystem.h&gt;<br>**Library**: libnative_drm.so| 
 
 
 ### Structs
@@ -34,7 +34,6 @@ The Digital Rights Management (DRM) module provides APIs to implement digital ri
 | struct&nbsp;&nbsp;[DRM_PsshInfo](_d_r_m___pssh_info.md) | Describes the Protection Scheme Specific Header (PSSH) information of the UUID.| 
 | struct&nbsp;&nbsp;[DRM_MediaKeySystemInfo](_d_r_m___media_key_system_info.md) | Describes the media key system information obtained from a media source.| 
 | struct&nbsp;&nbsp;[MediaKeySession_Callback](_media_key_session___callback.md) | Describes the callback used to listen for events such as media key expiry or change.| 
-| struct&nbsp;&nbsp;[DRM_MediaKeySystemDescription](_d_r_m___media_key_system_description.md) | Describes the name and UUID of a DRM plug-in. | 
 
 
 ### Macros
@@ -62,8 +61,6 @@ The Digital Rights Management (DRM) module provides APIs to implement digital ri
 | [DRM_UUID_LEN](#drm_uuid_len)&nbsp;&nbsp;&nbsp;16 | UUID length.| 
 | [MAX_PSSH_DATA_LEN](#max_pssh_data_len)&nbsp;&nbsp;&nbsp;2048 | Maximum length of PSSH data.| 
 | [MAX_PSSH_INFO_COUNT](#max_pssh_info_count)&nbsp;&nbsp;&nbsp;8 | Maximum number of pieces of PSSH information.| 
-| [MAX_MEDIA_KEY_SYSTEM_NAME_LEN](#max_media_key_system_name_len)&nbsp;&nbsp;&nbsp;128 | Maximum length of a media key system name. | 
-| [MAX_MEDIA_KEY_SYSTEM_NUM](#max_media_key_system_num)&nbsp;&nbsp;&nbsp;8 | Maximum number of supported media key systems. | 
 
 
 ### Types
@@ -84,7 +81,6 @@ The Digital Rights Management (DRM) module provides APIs to implement digital ri
 | typedef struct [DRM_MediaKeyStatus](_d_r_m___media_key_status.md) [DRM_MediaKeyStatus](#drm_mediakeystatus) | Defines a struct for the media key status.| 
 | typedef struct [DRM_PsshInfo](_d_r_m___pssh_info.md) [DRM_PsshInfo](#drm_psshinfo) | Defines a struct for the PSSH information of the UUID.| 
 | typedef struct [DRM_MediaKeySystemInfo](_d_r_m___media_key_system_info.md) [DRM_MediaKeySystemInfo](#drm_mediakeysysteminfo) | Defines a struct for the media key system information obtained from a media source.| 
-| typedef struct [DRM_MediaKeySystemDescription](_d_r_m___media_key_system_description.md) [DRM_MediaKeySystemDescription](#drm_mediakeysystemdescription) | Defines a struct for the name and UUID of a DRM plug-in. | 
 | typedef void(\* [DRM_MediaKeySystemInfoCallback](#drm_mediakeysysteminfocallback)) ([DRM_MediaKeySystemInfo](_d_r_m___media_key_system_info.md) \*mediaKeySystemInfo) | Defines the callback used to obtain media key system information from a media source.| 
 | typedef struct [MediaKeySystem](#mediakeysystem) [MediaKeySystem](#mediakeysystem) | Defines a struct for a media key system.| 
 | typedef struct [MediaKeySession](#mediakeysession) [MediaKeySession](#mediakeysession) | Defines a struct for a media key session.| 
@@ -171,13 +167,11 @@ The Digital Rights Management (DRM) module provides APIs to implement digital ri
 | uint32_t [DRM_MediaKeyStatus::statusCount](#statuscount) | Number of media key statuses.| 
 | char [DRM_MediaKeyStatus::statusName](#statusname) [[MAX_MEDIA_KEY_STATUS_COUNT](#max_media_key_status_count)][[MAX_MEDIA_KEY_STATUS_NAME_LEN](#max_media_key_status_name_len)] | Array of status names.| 
 | char [DRM_MediaKeyStatus::statusValue](#statusvalue-22) [[MAX_MEDIA_KEY_STATUS_COUNT](#max_media_key_status_count)][[MAX_MEDIA_KEY_STATUS_VALUE_LEN](#max_media_key_status_value_len)] | Array of status values.| 
-| uint8_t [DRM_PsshInfo::uuid](#uuid-12) [[DRM_UUID_LEN](#drm_uuid_len)] | UUID.| 
+| uint8_t [DRM_PsshInfo::uuid](#uuid) [[DRM_UUID_LEN](#drm_uuid_len)] | UUID.| 
 | int32_t [DRM_PsshInfo::dataLen](#datalen-22) | PSSH data length.| 
 | uint8_t [DRM_PsshInfo::data](#data-22) [[MAX_PSSH_DATA_LEN](#max_pssh_data_len)] | uint8_t PSSH data.| 
 | uint32_t [DRM_MediaKeySystemInfo::psshCount](#psshcount) | Number of pieces of PSSH data.| 
 | [DRM_PsshInfo](_d_r_m___pssh_info.md) [DRM_MediaKeySystemInfo::psshInfo](#psshinfo) [[MAX_PSSH_INFO_COUNT](#max_pssh_info_count)] | PSSH information.| 
-| char [DRM_MediaKeySystemDescription::name](#name) [[MAX_MEDIA_KEY_SYSTEM_NAME_LEN](#max_media_key_system_name_len)] | Name of the DRM plug-in. | 
-| uint8_t [DRM_MediaKeySystemDescription::uuid](#uuid-22) [[DRM_UUID_LEN](#drm_uuid_len)] | UUID of the DRM plug-in. | 
 | [MediaKeySession_EventCallback](#mediakeysession_eventcallback) [MediaKeySession_Callback::eventCallback](#eventcallback) | Event callback, for example, a media key expiry event.| 
 | [MediaKeySession_KeyChangeCallback](#mediakeysession_keychangecallback) [MediaKeySession_Callback::keyChangeCallback](#keychangecallback) | Callback of the media key change event.| 
 
@@ -353,29 +347,6 @@ Maximum length of a media key status value.
 
 **Since**: 11
 
-
-### MAX_MEDIA_KEY_SYSTEM_NAME_LEN
-
-```
-#define MAX_MEDIA_KEY_SYSTEM_NAME_LEN   128
-```
-**Description**
-
-Maximum length of a media key system name.
-
-**Since**: 12
-
-
-### MAX_MEDIA_KEY_SYSTEM_NUM
-
-```
-#define MAX_MEDIA_KEY_SYSTEM_NUM   8
-```
-**Description**
-
-Maximum number of supported media key systems.
-
-**Since**: 12
 
 
 ### MAX_MIMETYPE_LEN
@@ -608,18 +579,6 @@ typedef struct DRM_MediaKeyStatus DRM_MediaKeyStatus
 Defines a struct for the media key status.
 
 **Since**: 11
-
-
-### DRM_MediaKeySystemDescription
-
-```
-typedef struct DRM_MediaKeySystemDescription DRM_MediaKeySystemDescription
-```
-**Description**
-
-Defines a struct for the name and UUID of a DRM plug-in.
-
-**Since**: 12
 
 
 ### DRM_MediaKeySystemInfo
@@ -1504,29 +1463,6 @@ Obtains the media key system with the maximum content protection level supported
 Returns **DRM_ERR_OK** is the call is successful; returns **DRM_ERR_INVALID_VAL** if the parameter check fails.
 
 
-### OH_MediaKeySystem_GetMediaKeySystems()
-
-```
-Drm_ErrCode OH_MediaKeySystem_GetMediaKeySystems (DRM_MediaKeySystemDescription * infos, uint32_t * count )
-```
-**Description**
-
-Obtains the names and UUIDs of the supported media key systems.
-
-**Since**: 12
-
-**Parameters**
-
-| Name| Description| 
-| -------- | -------- |
-| infos | Array holding the names and UUIDs of the media key systems. | 
-| count | Number of the DRM_MediaKeySystemMapInfo structs. | 
-
-**Returns**
-
-Returns **DRM_ERR_OK** is the call is successful; returns **DRM_ERR_INVALID_VAL** if the parameter check fails.
-
-
 ### OH_MediaKeySystem_GetOfflineMediaKeyIds()
 
 ```
@@ -1940,15 +1876,6 @@ char DRM_MediaKeyRequestInfo::mimeType[MAX_MIMETYPE_LEN]
 MIME type of the media context.
 
 
-### name
-
-```
-char DRM_MediaKeySystemDescription::name[MAX_MEDIA_KEY_SYSTEM_NAME_LEN]
-```
-**Description**
-Name of the DRM plug-in.
-
-
 ### optionData
 
 ```
@@ -2103,22 +2030,12 @@ DRM_MediaKeyRequestType DRM_MediaKeyRequest::type
 Type of a media key request.
 
 
-### uuid [1/2]
+### uuid
 
 ```
 uint8_t DRM_PsshInfo::uuid[DRM_UUID_LEN]
 ```
 
-**Description**
-
-UUID.
-
-
-### uuid [2/2]
-
-```
-uint8_t DRM_MediaKeySystemDescription::uuid[DRM_UUID_LEN]
-```
 **Description**
 
 UUID.

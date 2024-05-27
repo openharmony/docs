@@ -57,7 +57,6 @@ To implement background playback, the application must also use [Background Task
 
 Media playback applications must request a continuous task of the [AUDIO_PLAYBACK](../../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-backgroundTaskManager.md#backgroundmode) background mode.
 
-
 ## Setting Metadata
 
 ### Setting Common Metadata
@@ -105,12 +104,11 @@ async function setListener() {
     assetId: '0',
     lyric: 'http://www.test.lyric',
   };
-  session.setAVMetadata(metadata).then(() => {
+   session.setAVMetadata(metadata).then(() => {
     console.info(`SetAVMetadata successfully`);
   }).catch((err: BusinessError) => {
     console.error(`Failed to set AVMetadata. Code: ${err.code}, message: ${err.message}`);
   });
-
 }
 ```
 
@@ -168,7 +166,7 @@ async function setSessionInfo() {
     isFavorite:false
   };
   session.setAVPlaybackState(playbackState, (err: BusinessError) => {
-   if (err) {
+    if (err) {
       console.error(`Failed to set AVPlaybackState. Code: ${err.code}, message: ${err.message}`);
     } else {
       console.info(`SetAVPlaybackState successfully`);
@@ -224,7 +222,7 @@ Certain special processing is required when setting the progress bar.
 
     If a VIP song can be previewed, the application should set the preview duration of the song, rather than the total duration.
 
-    If only the preview duration is set, when the user triggers progress control in the controller, the application receives the relative timestamp within the preview duration, rather than that within the total duration. The application needs to calculate the absolute timestamp from the very beginning of the song.
+    In this case, when the user performs progress control in the controller, the application receives the relative timestamp within the preview duration, rather than that within the total duration. The application needs to calculate the absolute timestamp from the very beginning of the song.
 
 2. Songs that do not support preview
 
@@ -310,7 +308,7 @@ async function unregisterSessionListener() {
   // Set the supported fast-forward or rewind duration for AVSession.
   let metadata: AVSessionManager.AVMetadata = {
     assetId: '0', // Specified by the application, used to identify the media asset in the application media library.
-    skipIntervals: SkipIntervals.SECONDS_10,
+    skipIntervals: AVSessionManager.SkipIntervals.SECONDS_10,
   };
   session.setAVMetadata(metadata).then(() => {
     console.info(`SetAVMetadata successfully`);
@@ -339,24 +337,23 @@ import { BusinessError } from '@ohos.base';
 
 let context: Context = getContext(this);
 async function setListener() {
- // It is assumed that an AVSession object has been created. For details about how to create an AVSession object, see the node snippet above.
- let type: AVSessionManager.AVSessionType = 'audio';
- let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', type);
- session.on('toggleFavorite', (assetId) => {
-   console.info(`on toggleFavorite `);
-   // The application receives the toggleFavorite command and favorites or unfavorites the media asset.
+  // It is assumed that an AVSession object has been created. For details about how to create an AVSession object, see the node snippet above.
+  let type: AVSessionManager.AVSessionType = 'audio';
+  let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', type);
+  session.on('toggleFavorite', (assetId) => {
+    console.info(`on toggleFavorite `);
+    // The application receives the toggleFavorite command and favorites or unfavorites the media asset.
 
-   // Set the new state to AVSession after the application finishes favoriting or unfavoriting.
-   let playbackState: AVSessionManager.AVPlaybackState = {
-     isFavorite:true,
-   };
-   session.setAVPlaybackState(playbackState).then(() => {
-     console.info(`SetAVPlaybackState successfully`);
-   }).catch((err: BusinessError) => {
-     console.info(`SetAVPlaybackState BusinessError: code: ${err.code}, message: ${err.message}`);
-   });
-
- });
+    // Set the new state to AVSession after the application finishes favoriting or unfavoriting.
+    let playbackState: AVSessionManager.AVPlaybackState = {
+      isFavorite:true,
+    };
+    session.setAVPlaybackState(playbackState).then(() => {
+      console.info(`SetAVPlaybackState successfully`);
+    }).catch((err: BusinessError) => {
+      console.info(`SetAVPlaybackState BusinessError: code: ${err.code}, message: ${err.message}`);
+    });
+  });
 }
 ```
 
@@ -372,26 +369,25 @@ import { BusinessError } from '@ohos.base';
 
 let context: Context = getContext(this);
 async function setListener() {
- // It is assumed that an AVSession object has been created. For details about how to create an AVSession object, see the node snippet above.
- let type: AVSessionManager.AVSessionType = 'audio';
- let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', type);
+  // It is assumed that an AVSession object has been created. For details about how to create an AVSession object, see the node snippet above.
+  let type: AVSessionManager.AVSessionType = 'audio';
+  let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', type);
 
- // When the application starts, it sets the loop mode to AVSession.
- let playBackState: AVSessionManager.AVPlayBackState = {
-   loopMode: AVSessionManager.LoopMode.LOOP_MODE_SINGLE,
- };
- session.setAVPlayBackState(playBackState).then(() => {
-   console.info(`set AVPlayBackState successfully`);
- }).catch((err: BusinessError) => {
-   console.error(`Failed to set AVPlayBackState. Code: ${err.code}, message: ${err.message}`);
- });
+  // When the application starts, it sets the loop mode to AVSession.
+  let playBackState: AVSessionManager.AVPlaybackState= {
+    loopMode: AVSessionManager.LoopMode.LOOP_MODE_SINGLE,
+  };
+  session.setAVPlaybackState(playBackState).then(() => {
+    console.info(`set AVPlaybackStatesuccessfully`);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to set AVPlaybackState. Code: ${err.code}, message: ${err.message}`);
+  });
 
- // The application listens for loop mode changes.
- session.on('setLoopMode', (mode) => {
-   console.info(`on setLoopMode ${mode}`);
-   // After receiving the setLoopMode command, the application switches to the corresponding loop mode.
- });
-
+  // The application listens for loop mode changes.
+  session.on('setLoopMode', (mode) => {
+    console.info(`on setLoopMode ${mode}`);
+    // After receiving the setLoopMode command, the application switches to the corresponding loop mode.
+  });
 }
 ```
 

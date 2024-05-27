@@ -306,8 +306,8 @@ Sets extended audio parameters. This API uses a promise to return the result.
 
 For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 
-| ID| Error Message|
-| ------- | -------------------------|
+| ID| Error Message                                                                                                      |
+|-----|------------------------------------------------------------------------------------------------------------|
 | 6800101 | Invalid parameter error. |
 
 **Example**
@@ -354,7 +354,7 @@ Obtains the value of an audio parameter. This API uses a promise to return the r
 For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
-| ------- | -------------------------|
+| ------ | -------------------------|
 | 6800101 | Invalid parameter error. |
 
 **Example**
@@ -1627,7 +1627,7 @@ Checks whether a device supports spatial audio rendering. This API returns the r
 
 | Name    | Type                                                        | Mandatory| Description                |
 | ---------- | ------------------------------------------------------------ | ---- | -------------------- |
-| deviceDescriptor | [AudioDeviceDescriptor](#audiodevicedescriptor)         | Yes  | Descriptor of the device.    |
+| deviceDescriptor | [AudioDeviceDescriptor](./js-apis-audio.md#audiodevicedescriptor)         | Yes  | Descriptor of the device.    |
 
 **Return value**
 
@@ -1725,7 +1725,7 @@ Checks whether a device supports head tracking. This API returns the result sync
 
 | Name    | Type                                                        | Mandatory| Description                |
 | ---------- | ------------------------------------------------------------ | ---- | -------------------- |
-| deviceDescriptor | [AudioDeviceDescriptor](#audiodevicedescriptor)         | Yes  | Descriptor of the device.    |
+| deviceDescriptor | [AudioDeviceDescriptor](./js-apis-audio.md#audiodevicedescriptor)         | Yes  | Descriptor of the device.    |
 
 **Return value**
 
