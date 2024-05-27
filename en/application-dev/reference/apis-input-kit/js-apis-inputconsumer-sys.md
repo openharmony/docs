@@ -11,7 +11,7 @@ The **inputConsumer** module implements listening for combination key events.
 ## Modules to Import
 
 ```js
-import inputConsumer from '@ohos.multimodalInput.inputConsumer';
+import inputConsumer from '@kit.InputKit.d.ts';
 ```
 
 ## inputConsumer.on

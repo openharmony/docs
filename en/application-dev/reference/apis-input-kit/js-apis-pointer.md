@@ -9,7 +9,7 @@ The **pointer** module provides APIs related to pointer attribute management.
 ## Modules to Import
 
 ```js
-import pointer from '@ohos.multimodalInput.pointer';
+import pointer from '@kit.InputKit.d.ts';
 ```
 
 ## pointer.setPointerVisible
@@ -239,8 +239,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-import { BusinessError }  from '@ohos.base';
-import window from '@ohos.window';
+import { BusinessError }  from '@kit.BasicServicesKit.d.ts';
+import window from '@kit.ArkUI.d.ts';
 
 let context = getContext(this);
 window.getLastWindow(context, (error: BusinessError, win: window.Window) => {
@@ -294,8 +294,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-import window from '@ohos.window';
-import { BusinessError }  from '@ohos.base';
+import { BusinessError }  from '@kit.BasicServicesKit.d.ts';
+import window from '@kit.ArkUI.d.ts';
 
 let context = getContext(this);
 window.getLastWindow(context, (error: BusinessError, win: window.Window) => {
@@ -384,8 +384,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-import window from '@ohos.window';
-import { BusinessError }  from '@ohos.base';
+import { BusinessError }  from '@kit.BasicServicesKit.d.ts';
+import window from '@kit.ArkUI.d.ts';
 
 window.getLastWindow(getContext(), (error: BusinessError, win: window.Window) => {
   if (error.code) {
@@ -433,8 +433,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-import window from '@ohos.window';
-import { BusinessError }  from '@ohos.base';
+import { BusinessError }  from '@kit.BasicServicesKit.d.ts';
+import window from '@kit.ArkUI.d.ts';
 
 window.getLastWindow(getContext(), (error: BusinessError, win: window.Window) => {
   if (error.code) {
@@ -481,8 +481,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 ```js
-import window from '@ohos.window';
-import { BusinessError }  from '@ohos.base';
+import { BusinessError }  from '@kit.BasicServicesKit.d.ts';
+import window from '@kit.ArkUI.d.ts';
 
 window.getLastWindow(getContext(), (error: BusinessError, win: window.Window) => {
   if (error.code) {
@@ -613,9 +613,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-import image from '@ohos.multimedia.image';
-import window from '@ohos.window';
-import { BusinessError } from '@ohos.base';
+import image from '@kit.ImageKit.d.ts';
+import { BusinessError }  from '@kit.BasicServicesKit.d.ts';
+import window from '@kit.ArkUI.d.ts';
+
 getContext().resourceManager.getMediaContent($r("app.media.app_icon")).then((svgFileData) => {
   const svgBuffer: ArrayBuffer = svgFileData.buffer.slice(0);
   let svgImagesource: image.ImageSource = image.createImageSource(svgBuffer);
@@ -663,9 +664,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-import image from '@ohos.multimedia.image';
-import window from '@ohos.window';
-import { BusinessError } from '@ohos.base';
+import image from '@kit.ImageKit.d.ts';
+import { BusinessError }  from '@kit.BasicServicesKit.d.ts';
+import window from '@kit.ArkUI.d.ts';
+
 const svgFileData = getContext().resourceManager.getMediaContent($r("app.media.app_icon")).then((svgFileData) => {
   const svgBuffer: ArrayBuffer = svgFileData.buffer.slice(0);
   let svgImagesource: image.ImageSource = image.createImageSource(svgBuffer);
