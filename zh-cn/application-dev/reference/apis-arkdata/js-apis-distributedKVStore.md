@@ -339,6 +339,11 @@ export default class EntryAbility extends UIAbility {
       let error = e as BusinessError;
       console.error(`Failed to create KVManager.code is ${error.code},message is ${error.message}`);
     }
+    if (kvManager !== undefined) {
+      kvManager = kvManager as distributedKVStore.KVManager;
+      // 进行后续创建数据库等相关操作
+      // ...
+    }
   }
 }
 ```
@@ -346,6 +351,7 @@ export default class EntryAbility extends UIAbility {
 FA模型下的示例：
 
 ```ts
+<--no-check>
 import featureAbility from '@ohos.ability.featureAbility';
 import { BusinessError } from '@ohos.base';
 
@@ -361,6 +367,11 @@ try {
 } catch (e) {
   let error = e as BusinessError;
   console.error(`Failed to create KVManager.code is ${error.code},message is ${error.message}`);
+}
+if (kvManager !== undefined) {
+  kvManager = kvManager as distributedKVStore.KVManager;
+  // 进行后续创建数据库等相关操作
+  // ...
 }
 ```
 
@@ -420,6 +431,11 @@ try {
 } catch (e) {
   let error = e as BusinessError;
   console.error(`An unexpected error occurred.code is ${error.code},message is ${error.message}`);
+}
+if (kvStore !== undefined) {
+     kvStore = kvStore as distributedKVStore.SingleKVStore;
+       // 进行后续相关数据操作，包括数据的增、删、改、查、订阅数据变化等操作
+       // ...
 }
 ```
 
