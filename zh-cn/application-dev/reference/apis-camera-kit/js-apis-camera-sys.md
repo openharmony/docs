@@ -1508,6 +1508,19 @@ function enableSceneFeature(photoSession: camera.PhotoSession): void {
 }
 ```
 
+## ZoomPointInfo<sup>12+</sup>
+
+等效焦距信息。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+| 名称     | 类型        |   只读   |   必填   | 说明       |
+| -------- | ---------- | -------- | -------- | ---------- |
+| zoomRatio |   number   |   是     |    是    | 可变焦距比。 |
+| equivalentFocalLength |   number   |   是     |    是    | 等效焦距值。 |
+
 ## Zoom<sup>11+</sup>
 
 变焦类，对设备变焦操作。
