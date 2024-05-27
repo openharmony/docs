@@ -2787,7 +2787,6 @@ update(values: ValuesBucket, predicates: RdbPredicates, callback: AsyncCallback&
 
 | **错误码ID** | **错误信息**                                                 |
 |-----------| ------------------------------------------------------------ |
-| 202       | Permission verification failed, application which is not a system application uses system API. |
 | 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 14800000  | Inner error. |
 | 14800011  | Database corrupted. |
@@ -4372,7 +4371,6 @@ executeSync(sql: string, args?: Array&lt;ValueType&gt;): ValueType
 | **错误码ID** | **错误信息**                                                 |
 | ------------ | ------------------------------------------------------------ |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 801          | Capability not supported the sql(attach,begin,commit,rollback etc.). |
 | 14800000     | Inner error.                                                 |
 | 14800011     | Database corrupted.                                          |
 | 14800014     | Already closed.                                              |
@@ -4404,7 +4402,7 @@ if(store != undefined) {
   try {
     let data = (store as relationalStore.RdbStore).executeSync(SQL_CHECK_INTEGRITY)
     console.info(`check result: ${data}`);
-  } catch (err: BusinessError) {
+  } catch (err) {
     console.error(`check failed, code is ${err.code}, message is ${err.message}`);
   }
 }
@@ -4415,7 +4413,7 @@ if(store != undefined) {
   try {
     let data = (store as relationalStore.RdbStore).executeSync(SQL_DELETE_TABLE)
     console.info(`delete result: ${data}`);
-  } catch (err: BusinessError) {
+  } catch (err) {
     console.error(`delete failed, code is ${err.code}, message is ${err.message}`);
   }
 }
@@ -4604,15 +4602,17 @@ let value2 = 18;
 let value3 = 100.5;
 let value4 = new Uint8Array([1, 2, 3]);
 
-store.beginTransaction();
-const valueBucket: ValuesBucket = {
-  'NAME': value1,
-  'AGE': value2,
-  'SALARY': value3,
-  'CODES': value4,
-};
-store.insert("test", valueBucket);
-store.commit();
+if(store != undefined) {
+  store.beginTransaction();
+  const valueBucket: ValuesBucket = {
+    'NAME': value1,
+    'AGE': value2,
+    'SALARY': value3,
+    'CODES': value4,
+  };
+  store.insert("test", valueBucket);
+  store.commit();
+}
 ```
 
 ### beginTrans<sup>12+</sup>
@@ -4727,15 +4727,17 @@ let value2 = 18;
 let value3 = 100.5;
 let value4 = new Uint8Array([1, 2, 3]);
 
-store.beginTransaction();
-const valueBucket: ValuesBucket = {
-  'NAME': value1,
-  'AGE': value2,
-  'SALARY': value3,
-  'CODES': value4,
-};
-store.insert("test", valueBucket);
-store.commit();
+if(store != undefined) {
+  store.beginTransaction();
+  const valueBucket: ValuesBucket = {
+    'NAME': value1,
+    'AGE': value2,
+    'SALARY': value3,
+    'CODES': value4,
+  };
+  store.insert("test", valueBucket);
+  store.commit();
+}
 ```
 
 ### commit<sup>12+</sup>
@@ -4851,21 +4853,23 @@ let value2 = 18;
 let value3 = 100.5;
 let value4 = new Uint8Array([1, 2, 3]);
 
-try {
-  store.beginTransaction()
-  const valueBucket: ValuesBucket = {
-    'NAME': value1,
-    'AGE': value2,
-    'SALARY': value3,
-    'CODES': value4,
-  };
-  store.insert("test", valueBucket);
-  store.commit();
-} catch (err) {
-  let code = (err as BusinessError).code;
-  let message = (err as BusinessError).message
-  console.error(`Transaction failed, code is ${code},message is ${message}`);
-  store.rollBack();
+if(store != undefined) {
+  try {
+    store.beginTransaction()
+    const valueBucket: ValuesBucket = {
+      'NAME': value1,
+      'AGE': value2,
+      'SALARY': value3,
+      'CODES': value4,
+    };
+    store.insert("test", valueBucket);
+    store.commit();
+  } catch (err) {
+    let code = (err as BusinessError).code;
+    let message = (err as BusinessError).message
+    console.error(`Transaction failed, code is ${code},message is ${message}`);
+    store.rollBack();
+  }
 }
 ```
 
@@ -6621,7 +6625,7 @@ relationalStore.getRdbStore(context, STORE_CONFIG1).then(async (rdbStore: relati
 })
 
 if(store != undefined) {
-    (store as relationalStore.RdbStore).attach(context, STORE_CONFIG1, "attachDB").then((number: number) => {
+    (store as relationalStore.RdbStore).attach(this.context, STORE_CONFIG1, "attachDB").then((number: number) => {
         console.info(`attach succeeded, number is ${number}`);
     }).catch ((err: BusinessError) => {
         console.error(`attach failed, code is ${err.code},message is ${err.message}`);
@@ -6651,7 +6655,7 @@ relationalStore.getRdbStore(context, STORE_CONFIG2).then(async (rdbStore: relati
 })
 
 if(store != undefined) {
-    (store as relationalStore.RdbStore).attach(context, STORE_CONFIG2, "attachDB2", 10).then((number: number) => {
+    (store as relationalStore.RdbStore).attach(this.context, STORE_CONFIG2, "attachDB2", 10).then((number: number) => {
         console.info(`attach succeeded, number is ${number}`);
     }).catch ((err: BusinessError) => {
         console.error(`attach failed, code is ${err.code},message is ${err.message}`);
