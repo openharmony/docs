@@ -1519,7 +1519,7 @@ function enableSceneFeature(photoSession: camera.PhotoSession): void {
 | 名称     | 类型        |   只读   |   必填   | 说明       |
 | -------- | ---------- | -------- | -------- | ---------- |
 | zoomRatio |   number   |   是     |    是    | 可变焦距比。 |
-| equivalentFocalLength |   number   |   是     |    是    | 等效焦距值。 |
+| equivalentFocalLength |   number   |   是     |    是    | 当前焦距比对应的等效焦距值。 |
 
 ## Zoom<sup>11+</sup>
 
@@ -1597,13 +1597,19 @@ function unprepareZoom(sessionExtendsZoom: camera.Zoom): void {
 
 ### getZoomPointInfos<sup>12+</sup>
 
-getZoomPointInfos(): Array<ZoomPointInfo>
+getZoomPointInfos(): Array\<ZoomPointInfo\>
 
-获取当前模式的等效焦距。
+获取当前模式的等效焦距信息列表。
 
 **系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**返回值：**
+
+| 类型                | 说明                                                  |
+| ----------          | -----------------------------                         |
+|  Array\<[ZoomPointInfo](#ZoomPointInfo)\>| 获取当前模式的等效焦距信息列表。                   |
 
 **错误码：**
 
