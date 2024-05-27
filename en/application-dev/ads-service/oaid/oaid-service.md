@@ -8,10 +8,12 @@ An OAID is a 32-bit Universally Unique Identifier (UUID) generated using a Huawe
 
 The OAID has the following features:
 - The OAID is device specific. Different applications on the same device obtain the same OAID.
-- The OAID obtained depends on the tracing function of the application. When tracing of the application is enabled, the application obtains a valid OAID. When tracing is disabled, the application obtains an all-zero OAID.
+- The OAID obtained depends on the tracing function of the application. When tracing of the application is enabled, the application obtains a OAID. When tracing is disabled, the application obtains an all-zero OAID.
 - An OAID is generated when any application on the device enables tracking for the first time.
 
-The OAID changes when the user restores the factory settings of the device.
+The OAID changes in the following scenarios:
+- A user restores the factory settings of the device.
+- A user resets the OAID.
 
 ## Available APIs
 
@@ -29,7 +31,7 @@ The OAID changes when the user restores the factory settings of the device.
 
 
 ## How to Develop
-1. In the **module.json5** file of the module, configure the permission [ohos.permission.APP_TRACKING_CONSENT](../../security/AccessToken/permissions-for-all.md#ohospermissionapp_tracking_consent), which is a user_grant permission. In this case, the **reason** and **abilities** fields are mandatory. For details about the configuration, see [requestPermissions](../../quick-start/module-configuration-file.md#requestpermissions). 
+1. In the **module.json5** file of the module, configure the permission [ohos.permission.APP_TRACKING_CONSENT](../../security/AccessToken/permissions-for-all.md#ohospermissionapp_tracking_consent), which is a user_grant permission. In this case, the **reason** and **abilities** fields are mandatory. For details about the configuration, see [requestPermissions](../../quick-start/module-configuration-file.md#requestpermissions).
    
    The sample code is as follows:
    
@@ -48,10 +50,10 @@ The OAID changes when the user restores the factory settings of the device.
            }
          }
        ]
-  }
+     }
    }
    ```
-   
+
 2. Display a dialog box during application startup to request authorization from the user, and call **getOAID** to obtain the OAID information after user authorization is obtained. For details about how to obtain the context, see [Context](../../application-models/application-context-stage.md). 
 
    The sample code is as follows:
@@ -71,12 +73,12 @@ The OAID changes when the user restores the factory settings of the device.
          if (data.authResults[0] == 0) {
            hilog.info(0x0000, 'testTag', '%{public}s', 'request permission success');
            identifier.getOAID((err: BusinessError, data: string) => {
-   		 if (err.code) {
-   		   hilog.error(0x0000, 'testTag', '%{public}s', `get oaid failed, error: ${err.code} ${err.message}`);
-   		 } else {
-   		   const oaid: string = data;
-   		   hilog.info(0x0000, 'testTag', '%{public}s', `get oaid by callback success, oaid: ${oaid}`);
-   		 }
+			 if (err.code) {
+			   hilog.error(0x0000, 'testTag', '%{public}s', `get oaid failed, error: ${err.code} ${err.message}`);
+			 } else {
+			   const oaid: string = data;
+			   hilog.info(0x0000, 'testTag', '%{public}s', `get oaid by callback success, oaid: ${oaid}`);
+			 }
            });
          } else {
            hilog.error(0x0000, 'testTag', '%{public}s', 'user rejected');

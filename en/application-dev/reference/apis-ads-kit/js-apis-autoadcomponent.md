@@ -20,12 +20,11 @@ import { AutoAdComponent } from '@ohos.advertising.AutoAdComponent';
 
 AutoAdComponent(adParam: advertising.AdRequestParams, adOptions: advertising.AdOptions, displayOptions: advertising.AdDisplayOptions, interactionListener: advertising.AdInteractionListener): void
 
-Shows a non-full-screen ad.
+Component used to automatically play ads.
 
 **System capability**: SystemCapability.Advertising.Ads
 
 **Since**: 11
-
 
 **Parameters**
 
