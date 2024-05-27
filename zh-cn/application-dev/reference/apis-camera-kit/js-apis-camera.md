@@ -210,6 +210,7 @@ function getCameraManager(context: common.BaseContext): camera.CameraManager | u
 | CONFLICT_CAMERA            | 7400107    | 设备重复打开返回。     |
 | DEVICE_DISABLED            | 7400108    | 安全原因摄像头被禁用。     |
 | DEVICE_PREEMPTED           | 7400109    | 相机被抢占导致无法使用。     |
+| UNRESOLVED_CONFLICTS_WITH_CURRENT_CONFIGURATIONS<sup>12+</sup> | 7400110   | 与当前配置存在冲突。     |
 | SERVICE_FATAL_ERROR        | 7400201    | 相机服务错误返回。     |
 
 ## CameraManager
@@ -1698,6 +1699,81 @@ function unregisterPreviewOutputError(previewOutput: camera.PreviewOutput): void
 }
 ```
 
+### getSupportedFrameRates<sup>12+</sup>
+
+ getSupportedFrameRates(): Array<FrameRateRange>
+
+查询支持的帧率范围。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+|      类型      |     说明     |
+| -------------  | ------------ |
+| Array<[FrameRateRange](#frameraterange)> | 支持的帧率范围列表 |
+
+**示例：**
+
+```ts
+function getSupportedFrameRates(previewOutput: camera.PreviewOutput): Array<FrameRateRange> {
+  let supportedFrameRatesArray: Array<camera.FrameRateRange> = previewOutput.getSupportedFrameRates();
+  return supportedFrameRatesArray;
+}
+```
+
+### setFrameRate<sup>12+</sup>
+
+setFrameRate(minFps: number, maxFps: number): void
+
+设置预览流帧率范围，设置的范围必须在支持的帧率范围内。
+进行设置前，可通过[getSupportedFrameRates](#getsupportedframerates12)查询支持的帧率范围。
+
+> **说明：**
+> 仅在[VideoSession](#videosession11)模式下支持。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型         | 必填 | 说明                       |
+| -------- | --------------| ---- | ------------------------ |
+| minFps   | number        | 是   | 最小帧率 |
+| maxFps   | number        | 是   | 最大帧率 |
+
+**示例：**
+
+```ts
+function setFrameRateRange(previewOutput: camera.PreviewOutput, frameRateRange: Array<number>): void {
+  previewOutput.setFrameRate(frameRateRange[0], frameRateRange[1]);
+}
+```
+
+### getActiveFrameRate<sup>12+</sup>
+
+getActiveFrameRate(): FrameRateRange
+
+获取已设置的帧率范围。
+
+使用[setFrameRate](#setframerate12)对预览流设置过帧率后可查询。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**返回值：**
+
+|      类型      |     说明     |
+| -------------  | ------------ |
+| [FrameRateRange](#frameraterange) | 帧率范围 |
+
+**示例：**
+
+```ts
+function getActiveFrameRate(previewOutput: camera.PreviewOutput): FrameRateRange {
+  let activeFrameRate: camera.FrameRateRange = previewOutput.getActiveFrameRate();
+  return activeFrameRate;
+}
+```
+
 ## ImageRotation
 
 枚举，图片旋转角度。
@@ -2931,6 +3007,83 @@ function unregisterVideoOutputError(videoOutput: camera.VideoOutput): void {
   videoOutput.off('error');
 }
 ```
+
+### getSupportedFrameRates<sup>12+</sup>
+
+getSupportedFrameRates(): Array\<FrameRateRange>
+
+查询支持的帧率范围。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+|      类型      |     说明     |
+| -------------  | ------------ |
+| Array<[FrameRateRange](#frameraterange)> | 支持的帧率范围列表 |
+
+**示例：**
+
+```ts
+function getSupportedFrameRates(videoOutput: camera.VideoOutput): Array<FrameRateRange> {
+  let supportedFrameRatesArray: Array<camera.FrameRateRange> = videoOutput.getSupportedFrameRates();
+  return supportedFrameRatesArray;
+}
+```
+
+### setFrameRate<sup>12+</sup>
+
+setFrameRate(minFps: number, maxFps: number): void
+
+设置预览流帧率范围，设置的范围必须在支持的帧率范围内。
+
+进行设置前，可通过[getSupportedFrameRates](#getsupportedframerates12-1)查询支持的帧率范围。
+
+> **说明：**
+> 仅在[VideoSession](#videosession11)模式下支持。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型         | 必填 | 说明                       |
+| -------- | --------------| ---- | ------------------------ |
+| minFps   | number        | 是   | 最小帧率 |
+| maxFps   | number        | 是   | 最大帧率 |
+
+**示例：**
+
+```ts
+function setFrameRateRange(videoOutput: camera.VideoOutput, frameRateRange: Array<number>): void {
+  videoOutput.setFrameRate(frameRateRange[0], frameRateRange[1]);
+}
+```
+
+### getActiveFrameRate<sup>12+</sup>
+
+getActiveFrameRate(): FrameRateRange
+
+获取已设置的帧率范围。
+
+使用[setFrameRate](#setframerate12-1)对预览流设置过帧率后可查询。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**返回值：**
+
+|      类型      |     说明     |
+| -------------  | ------------ |
+| [FrameRateRange](#frameraterange) | 帧率范围 |
+
+**示例：**
+
+```ts
+function getActiveFrameRate(videoOutput: camera.VideoOutput): FrameRateRange {
+  let activeFrameRate: camera.FrameRateRange = videoOutput.getActiveFrameRate();
+  return activeFrameRate;
+}
+```
+
 
 ## MetadataOutput
 
