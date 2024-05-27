@@ -18,7 +18,7 @@ Path2D(unit?: LengthMetricsUnit)
 
 | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 |
 | ------ | -------- | ---- | ------ | ----- |
-| unit<sup>12+</sup>  | [LengthMetricsUnit](ts-canvasrenderingcontext2d.md#lengthmetricsunit12) | 否 | DEFAULT | 用来配置Path2D对象的单位模式，配置后无法动态更改，配置方法同CanvasRenderingContext2D。<br> DEFAULT: vp模式 <br> PX: px模式|
+| unit<sup>12+</sup>  | [LengthMetricsUnit](../js-apis-arkui-graphics.md#lengthmetricsunit12) | 否 | DEFAULT | 用来配置Path2D对象的单位模式，配置后无法动态更改，配置方法同[CanvasRenderingContext2D](ts-canvasrenderingcontext2d.md#lengthmetricsunit12)。|
 
 Path2D(description: string, unit?: LengthMetricsUnit)
 
@@ -31,7 +31,7 @@ Path2D(description: string, unit?: LengthMetricsUnit)
 | 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 |
 | ------ | -------- | ---- | ------ | ----- |
 | description | string | 是 | - | 符合 SVG 路径描述规范的路径字符串 |
-| unit<sup>12+</sup>  | [LengthMetricsUnit](ts-canvasrenderingcontext2d.md#lengthmetricsunit12) | 否 | DEFAULT | 用来配置Path2D对象的单位模式，配置后无法动态更改，配置方法同CanvasRenderingContext2D。<br> DEFAULT: vp模式 <br> PX: px模式|
+| unit<sup>12+</sup>  | [LengthMetricsUnit](../js-apis-arkui-graphics.md#lengthmetricsunit12) | 否 | DEFAULT | 用来配置Path2D对象的单位模式，配置后无法动态更改，配置方法同[CanvasRenderingContext2D](ts-canvasrenderingcontext2d.md#lengthmetricsunit12)。|
 
 ## addPath
 
