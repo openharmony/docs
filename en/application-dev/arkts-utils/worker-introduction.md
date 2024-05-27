@@ -28,6 +28,8 @@ The thread that creates the worker thread is referred to as the host thread (not
 
 - You must register the **onerror** API in the main thread to listen for worker thread errors, which might cause a JavaScript crash.
 
+- Worker thread files cannot be used across HAPs.
+
 
 ### Precautions for File Paths
 

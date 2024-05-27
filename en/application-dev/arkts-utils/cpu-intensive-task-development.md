@@ -164,22 +164,22 @@ The following uses the training of a region-specific house price prediction mode
 6. After the task is completed in the worker thread, destroy the worker thread. The worker thread can be destroyed by itself or the host thread. Then, call [onexit()](../reference/apis/js-apis-worker.md#onexit9) in the host thread to define the processing logic after the worker thread is destroyed.
 
     ```ts
-// After the worker thread is destroyed, execute the onexit() callback.
+    // After the worker thread is destroyed, execute the onexit() callback.
     workerInstance.onexit = (): void => {
      console.info("main thread terminate");
     }
     ```
-    
+
     Method 1: In the host thread, call [terminate()](../reference/apis/js-apis-worker.md#terminate9) to destroy the worker thread and stop the worker thread from receiving messages.
 
     ```ts
-// Destroy the worker thread.
+    // Destroy the worker thread.
     workerInstance.terminate();
     ```
-    
+
     Method 2: In the worker thread, call [close()](../reference/apis/js-apis-worker.md#close9) to destroy the worker thread and stop the worker thread from receiving messages.
 
     ```ts
-// Destroy the worker thread.
+    // Destroy the worker thread.
     workerPort.close();
     ```

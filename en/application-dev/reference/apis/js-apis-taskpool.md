@@ -685,7 +685,7 @@ The following sequenceable data types are supported: All Primitive Type (excludi
 ```ts
 // Common functions are supported, and variables passed in by input parameters are also supported.
 @Concurrent
-function printArgs(args: number): number {
+function printArgs(args: string): string {
   console.log("func: " + args);
   return args;
 }
