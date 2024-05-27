@@ -1,11 +1,11 @@
 # System Common Events
 
 This document provides indexes for system common events defined in OpenHarmony.
-For details about the definition of a system common event, see [Support in @ohos.commonEventManager (Common Event)](./js-apis-commonEventManager.md#support).
+For details about the definition of a system common event, see [Support in @ohos.commonEventManager (Common Event)](../js-apis-commonEventManager.md#support).
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
-* [COMMON_EVENT_BOOT_COMPLETED](./common_event/commonEvent-ability.md#common_event_boot_completed)
+* [COMMON_EVENT_BOOT_COMPLETED](../common_event/commonEvent-ability.md#common_event_boot_completed)
 Indicates that the user has finished the boot process.
 
 * COMMON_EVENT_LOCKED_BOOT_COMPLETED
@@ -13,31 +13,31 @@ Indicates that the user has finished the boot process.
   - Value: **usual.event.LOCKED_BOOT_COMPLETED**
   - Required subscriber permissions: ohos.permission.RECEIVER_STARTUP_COMPLETED
 
-* [COMMON_EVENT_SHUTDOWN](./common_event/commonEvent-powermgr.md#common_event_shutdown)
+* [COMMON_EVENT_SHUTDOWN](../common_event/commonEvent-powermgr.md#common_event_shutdown)
 Indicates that the device is being shut down and the final shutdown will proceed.
 
-* [COMMON_EVENT_BATTERY_CHANGED](./common_event/commonEvent-powermgr.md#common_event_battery_changed)
+* [COMMON_EVENT_BATTERY_CHANGED](../common_event/commonEvent-powermgr.md#common_event_battery_changed)
 Indicates that the charging state, level, and other information about the battery have changed.
 
-* [COMMON_EVENT_BATTERY_LOW](./common_event/commonEvent-powermgr.md#common_event_battery_low)
+* [COMMON_EVENT_BATTERY_LOW](../common_event/commonEvent-powermgr.md#common_event_battery_low)
 Indicates that the battery level is low.
 
-* [COMMON_EVENT_BATTERY_OKAY](./common_event/commonEvent-powermgr.md#common_event_battery_okay)
+* [COMMON_EVENT_BATTERY_OKAY](../common_event/commonEvent-powermgr.md#common_event_battery_okay)
 Indicates that the battery level is normal.
 
-* [COMMON_EVENT_POWER_CONNECTED](./common_event/commonEvent-powermgr.md#common_event_power_connected)
+* [COMMON_EVENT_POWER_CONNECTED](../common_event/commonEvent-powermgr.md#common_event_power_connected)
 Indicates that the device is connected to an external power supply.
 
-* [COMMON_EVENT_POWER_DISCONNECTED](./common_event/commonEvent-powermgr.md#common_event_power_disconnected)
+* [COMMON_EVENT_POWER_DISCONNECTED](../common_event/commonEvent-powermgr.md#common_event_power_disconnected)
 Indicates that the device is disconnected from the external power supply.
 
-* [COMMON_EVENT_SCREEN_OFF](./common_event/commonEvent-powermgr.md#common_event_screen_off)
+* [COMMON_EVENT_SCREEN_OFF](../common_event/commonEvent-powermgr.md#common_event_screen_off)
 Indicates that the device screen is off and the device is in sleep mode.
 
-* [COMMON_EVENT_SCREEN_ON](./common_event/commonEvent-powermgr.md#common_event_screen_on)
+* [COMMON_EVENT_SCREEN_ON](../common_event/commonEvent-powermgr.md#common_event_screen_on)
 Indicates that the device screen is on and the device is in the active state.
 
-* [COMMON_EVENT_THERMAL_LEVEL_CHANGED](./common_event/commonEvent-powermgr.md#common_event_thermal_level_changed)
+* [COMMON_EVENT_THERMAL_LEVEL_CHANGED](../common_event/commonEvent-powermgr.md#common_event_thermal_level_changed)
 Indicates that the device's thermal level has changed.
 
 * COMMON_EVENT_USER_PRESENT<sup>(deprecated)</sup>
@@ -47,12 +47,12 @@ Indicates that the device's thermal level has changed.
   > **NOTE**
   >
   > This API is deprecated since API version 10.
-  > You are advised to use [COMMON_EVENT_SCREEN_UNLOCKED<sup>10+</sup>](./common_event/commonEvent-screenlock.md#common_event_screen_unlocked) instead.
+  > You are advised to use [COMMON_EVENT_SCREEN_UNLOCKED<sup>10+</sup>](../common_event/commonEvent-screenlock.md#common_event_screen_unlocked) instead.
 
-* [COMMON_EVENT_TIME_TICK](./common_event/commonEvent-time.md#common_event_time_tick)
+* [COMMON_EVENT_TIME_TICK](../common_event/commonEvent-time.md#common_event_time_tick)
 Indicates that the system time has changed as time ticks by.
 
-* [COMMON_EVENT_TIME_CHANGED](./common_event/commonEvent-time.md#common_event_time_changed)
+* [COMMON_EVENT_TIME_CHANGED](../common_event/commonEvent-time.md#common_event_time_changed)
 Indicates that the system time is set.
 
 * COMMON_EVENT_DATE_CHANGED
@@ -60,7 +60,7 @@ Indicates that the system time is set.
   - Value: **usual.event.DATE_CHANGED**
   - Required subscriber permissions: none
 
-* [COMMON_EVENT_TIMEZONE_CHANGED](./common_event/commonEvent-time.md#common_event_timezone_changed)
+* [COMMON_EVENT_TIMEZONE_CHANGED](../common_event/commonEvent-time.md#common_event_timezone_changed)
 Indicates that the system time zone has changed.
 
 * COMMON_EVENT_CLOSE_SYSTEM_DIALOGS
@@ -68,7 +68,7 @@ Indicates that the system time zone has changed.
   - Value: **usual.event.CLOSE_SYSTEM_DIALOGS**
   - Required subscriber permissions: none
 
-* [COMMON_EVENT_PACKAGE_ADDED](./common_event/commonEvent-bundleManager.md#common_event_package_added)
+* [COMMON_EVENT_PACKAGE_ADDED](../common_event/commonEvent-bundleManager.md#common_event_package_added)
 Indicates that a new application package has been installed on the device.
 * COMMON_EVENT_PACKAGE_REPLACED
   (Reserved, not supported yet) Indicates that a later version of an installed application package has replaced the previous one on the device.
@@ -80,7 +80,7 @@ Indicates that a new application package has been installed on the device.
   - Value: **usual.event.MY_PACKAGE_REPLACED**
   - Required subscriber permissions: none
 
-* [COMMON_EVENT_PACKAGE_REMOVED](./common_event/commonEvent-bundleManager.md#common_event_package_removed)
+* [COMMON_EVENT_PACKAGE_REMOVED](../common_event/commonEvent-bundleManager.md#common_event_package_removed)
 Indicates that an installed application has been uninstalled from the device with the application data retained.
 * COMMON_EVENT_BUNDLE_REMOVED
   (Reserved, not supported yet) Indicates that an installed bundle has been uninstalled from the device with the application data retained. 
@@ -92,15 +92,15 @@ Indicates that an installed application has been uninstalled from the device wit
   - Value: **usual.event.PACKAGE_FULLY_REMOVED**
   - Required subscriber permissions: none
 
-* [COMMON_EVENT_PACKAGE_CHANGED](./common_event/commonEvent-bundleManager.md#common_event_package_changed)
+* [COMMON_EVENT_PACKAGE_CHANGED](../common_event/commonEvent-bundleManager.md#common_event_package_changed)
 Indicates that an application package has been changed (for example, an ability in the package has been enabled or disabled).
-* [COMMON_EVENT_PACKAGE_RESTARTED](./common_event/commonEvent-ability.md#common_event_package_restarted)
+* [COMMON_EVENT_PACKAGE_RESTARTED](../common_event/commonEvent-ability.md#common_event_package_restarted)
 Indicates that the user closed all processes of the application and restarted the application.
 
-* [COMMON_EVENT_PACKAGE_DATA_CLEARED](./common_event/commonEvent-ability.md#common_event_package_data_cleared)
+* [COMMON_EVENT_PACKAGE_DATA_CLEARED](../common_event/commonEvent-ability.md#common_event_package_data_cleared)
 Indicates that the user cleared the application package data.
 
-* [COMMON_EVENT_PACKAGE_CACHE_CLEARED<sup>9+</sup>](./common_event/commonEvent-bundleManager.md#common_event_package_cache_cleared)
+* [COMMON_EVENT_PACKAGE_CACHE_CLEARED<sup>9+</sup>](../common_event/commonEvent-bundleManager.md#common_event_package_cache_cleared)
 Indicates that the user cleared the application package cache.
 * COMMON_EVENT_PACKAGES_SUSPENDED
   (Reserved, not supported yet) Indicates that application HAP files are suspended.
@@ -157,7 +157,7 @@ Indicates that the user cleared the application package cache.
   - Value: **usual.event.CONFIGURATION_CHANGED**
   - Required subscriber permissions: none
 
-* [COMMON_EVENT_LOCALE_CHANGED<sup>11+</sup>](./common_event/commonEvent-locale.md#common_event_locale_changed11)
+* [COMMON_EVENT_LOCALE_CHANGED<sup>11+</sup>](../common_event/commonEvent-locale.md#common_event_locale_changed11)
   Indicates that the device locale has changed.
   - Value: **usual.event.LOCALE_CHANGED**
   - Required subscriber permissions: none
@@ -197,14 +197,14 @@ Indicates that the user cleared the application package cache.
   - Value: **usual.event.USER_FOREGROUND**
   - Required subscriber permissions: none
 
-* [COMMON_EVENT_USER_SWITCHED](./common_event/commonEvent-account.md#common_event_user_switched)
+* [COMMON_EVENT_USER_SWITCHED](../common_event/commonEvent-account.md#common_event_user_switched)
 Indicates that user switching is in progress.
 * COMMON_EVENT_USER_STARTING
   (Reserved, not supported yet) Indicates that the user is being started.
   - Value: **usual.event.USER_STARTING**
   - Required subscriber permissions: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
-* [COMMON_EVENT_USER_UNLOCKED](./common_event/commonEvent-account.md#common_event_user_unlocked)
+* [COMMON_EVENT_USER_UNLOCKED](../common_event/commonEvent-account.md#common_event_user_unlocked)
   Indicates that the credential-encrypted storage has been unlocked for the current user after the device is restarted.
   - Value: **usual.event.USER_UNLOCKED**
   - Required subscriber permissions: none
@@ -219,58 +219,58 @@ Indicates that user switching is in progress.
   - Value: **usual.event.USER_STOPPED**
   - Required subscriber permissions: none
 
-* [COMMON_EVENT_DISTRIBUTED_ACCOUNT_LOGIN](./common_event/commonEvent-account.md#common_event_distributed_account_login)
+* [COMMON_EVENT_DISTRIBUTED_ACCOUNT_LOGIN](../common_event/commonEvent-account.md#common_event_distributed_account_login)
 (Reserved, not supported yet) Indicates a successful login to a distributed account.
-* [COMMON_EVENT_DISTRIBUTED_ACCOUNT_LOGOUT](./common_event/commonEvent-account.md#common_event_distributed_account_logout)
+* [COMMON_EVENT_DISTRIBUTED_ACCOUNT_LOGOUT](../common_event/commonEvent-account.md#common_event_distributed_account_logout)
 (Reserved, not supported yet) Indicates a successful logout of a distributed account.
-* [COMMON_EVENT_DISTRIBUTED_ACCOUNT_TOKEN_INVALID](./common_event/commonEvent-account.md#common_event_distributed_account_token_invalid)
+* [COMMON_EVENT_DISTRIBUTED_ACCOUNT_TOKEN_INVALID](../common_event/commonEvent-account.md#common_event_distributed_account_token_invalid)
 (Reserved, not supported yet) Indicates the token of a distributed account is invalid.
-* [COMMON_EVENT_DISTRIBUTED_ACCOUNT_LOGOFF](./common_event/commonEvent-account.md#common_event_distributed_account_logoff)
+* [COMMON_EVENT_DISTRIBUTED_ACCOUNT_LOGOFF](../common_event/commonEvent-account.md#common_event_distributed_account_logoff)
 (Reserved, not supported yet) Indicates that a distributed account is deregistered.
 
-* [COMMON_EVENT_WIFI_POWER_STATE](./common_event/commonEvent-wifi.md#common_event_wifi_power_state)
+* [COMMON_EVENT_WIFI_POWER_STATE](../common_event/commonEvent-wifi.md#common_event_wifi_power_state)
 Indicates that the Wi-Fi state has changed, for example, enabled or disabled.
 
-* [COMMON_EVENT_WIFI_SCAN_FINISHED](./common_event/commonEvent-wifi.md#common_event_wifi_scan_finished)
+* [COMMON_EVENT_WIFI_SCAN_FINISHED](../common_event/commonEvent-wifi.md#common_event_wifi_scan_finished)
 Indicates that the Wi-Fi access point has been detected and proven to be available.
 
-* [COMMON_EVENT_WIFI_SCAN_STATE](./common_event/commonEvent-wifi.md#common_event_wifi_scan_state)
+* [COMMON_EVENT_WIFI_SCAN_STATE](../common_event/commonEvent-wifi.md#common_event_wifi_scan_state)
 Indicates that the Wi-Fi access point state has changed.
 
-* [COMMON_EVENT_WIFI_RSSI_VALUE](./common_event/commonEvent-wifi.md#common_event_wifi_rssi_value)
+* [COMMON_EVENT_WIFI_RSSI_VALUE](../common_event/commonEvent-wifi.md#common_event_wifi_rssi_value)
 Indicates that the Wi-Fi signal strength (RSSI) has changed.
 
-* [COMMON_EVENT_WIFI_CONN_STATE](./common_event/commonEvent-wifi.md#common_event_wifi_conn_state)
+* [COMMON_EVENT_WIFI_CONN_STATE](../common_event/commonEvent-wifi.md#common_event_wifi_conn_state)
 Indicates that the Wi-Fi connection state has changed.
 
-* [COMMON_EVENT_WIFI_HOTSPOT_STATE](./common_event/commonEvent-wifi.md#common_event_wifi_hotspot_state)
+* [COMMON_EVENT_WIFI_HOTSPOT_STATE](../common_event/commonEvent-wifi.md#common_event_wifi_hotspot_state)
 Indicates that the Wi-Fi hotspot state has changed, for example, enabled or disabled.
 
-* [COMMON_EVENT_WIFI_AP_STA_JOIN](./common_event/commonEvent-wifi.md#common_event_wifi_ap_sta_join)
+* [COMMON_EVENT_WIFI_AP_STA_JOIN](../common_event/commonEvent-wifi.md#common_event_wifi_ap_sta_join)
 Indicates that a client has joined the Wi-Fi hotspot of the current device.
 
-* [COMMON_EVENT_WIFI_AP_STA_LEAVE](./common_event/commonEvent-wifi.md#common_event_wifi_ap_sta_leave)
+* [COMMON_EVENT_WIFI_AP_STA_LEAVE](../common_event/commonEvent-wifi.md#common_event_wifi_ap_sta_leave)
 Indicates that a client has disconnected from the Wi-Fi hotspot of the current device.
 
-* [COMMON_EVENT_WIFI_MPLINK_STATE_CHANGE](./common_event/commonEvent-wifi.md#common_event_wifi_mplink_state_change)
+* [COMMON_EVENT_WIFI_MPLINK_STATE_CHANGE](../common_event/commonEvent-wifi.md#common_event_wifi_mplink_state_change)
 Indicates that the state of MPLINK (an enhanced Wi-Fi feature) has changed.
 
-* [COMMON_EVENT_WIFI_P2P_CONN_STATE](./common_event/commonEvent-wifi.md#common_event_wifi_p2p_conn_state)
+* [COMMON_EVENT_WIFI_P2P_CONN_STATE](../common_event/commonEvent-wifi.md#common_event_wifi_p2p_conn_state)
 Indicates that the Wi-Fi P2P connection state has changed.
 
-* [COMMON_EVENT_WIFI_P2P_STATE_CHANGED](./common_event/commonEvent-wifi.md#common_event_wifi_p2p_state_changed)
+* [COMMON_EVENT_WIFI_P2P_STATE_CHANGED](../common_event/commonEvent-wifi.md#common_event_wifi_p2p_state_changed)
 Indicates that the Wi-Fi P2P state has changed, for example, enabled or disabled.
 
-* [COMMON_EVENT_WIFI_P2P_PEERS_STATE_CHANGED](./common_event/commonEvent-wifi.md#common_event_wifi_p2p_peers_state_changed)
+* [COMMON_EVENT_WIFI_P2P_PEERS_STATE_CHANGED](../common_event/commonEvent-wifi.md#common_event_wifi_p2p_peers_state_changed)
 Indicates that the state of the Wi-Fi P2P peer device has changed.
 
-* [COMMON_EVENT_WIFI_P2P_PEERS_DISCOVERY_STATE_CHANGED](./common_event/commonEvent-wifi.md#common_event_wifi_p2p_peers_discovery_state_changed)
+* [COMMON_EVENT_WIFI_P2P_PEERS_DISCOVERY_STATE_CHANGED](../common_event/commonEvent-wifi.md#common_event_wifi_p2p_peers_discovery_state_changed)
 Indicates that the Wi-Fi P2P discovery state has changed.
 
-* [COMMON_EVENT_WIFI_P2P_CURRENT_DEVICE_STATE_CHANGED](./common_event/commonEvent-wifi.md#common_event_wifi_p2p_current_device_state_changed)
+* [COMMON_EVENT_WIFI_P2P_CURRENT_DEVICE_STATE_CHANGED](../common_event/commonEvent-wifi.md#common_event_wifi_p2p_current_device_state_changed)
 Indicates that the state of the Wi-Fi P2P local device has changed.
 
-* [COMMON_EVENT_WIFI_P2P_GROUP_STATE_CHANGED](./common_event/commonEvent-wifi.md#common_event_wifi_p2p_group_state_changed)
+* [COMMON_EVENT_WIFI_P2P_GROUP_STATE_CHANGED](../common_event/commonEvent-wifi.md#common_event_wifi_p2p_group_state_changed)
 Indicates that the Wi-Fi P2P group information has changed.
 
 * COMMON_EVENT_BLUETOOTH_HANDSFREE_AG_CONNECT_STATE_UPDATE
@@ -458,33 +458,33 @@ Indicates that the Wi-Fi P2P group information has changed.
   - Value: **usual.event.bluetooth.a2dpsink.AUDIO_STATE_UPDATE**
   - Required subscriber permissions: ohos.permission.USE_BLUETOOTH
 
-* [COMMON_EVENT_NFC_ACTION_ADAPTER_STATE_CHANGED](./common_event/commonEvent-nfc.md#common_event_nfc_action_adapter_state_changed)
+* [COMMON_EVENT_NFC_ACTION_ADAPTER_STATE_CHANGED](../common_event/commonEvent-nfc.md#common_event_nfc_action_adapter_state_changed)
 Indicates that the state of the device NFC adapter has changed.
 
-* [COMMON_EVENT_NFC_ACTION_RF_FIELD_ON_DETECTED](./common_event/commonEvent-nfc.md#common_event_nfc_action_rf_field_on_detected)
+* [COMMON_EVENT_NFC_ACTION_RF_FIELD_ON_DETECTED](../common_event/commonEvent-nfc.md#common_event_nfc_action_rf_field_on_detected)
 Indicates that the NFC RF field is on.
 
-* [COMMON_EVENT_NFC_ACTION_RF_FIELD_OFF_DETECTED](./common_event/commonEvent-nfc.md#common_event_nfc_action_rf_field_off_detected)
+* [COMMON_EVENT_NFC_ACTION_RF_FIELD_OFF_DETECTED](../common_event/commonEvent-nfc.md#common_event_nfc_action_rf_field_off_detected)
 Indicates that the NFC RF field is off.
 
-* [COMMON_EVENT_DISCHARGING](./common_event/commonEvent-powermgr.md#common_event_discharging)
+* [COMMON_EVENT_DISCHARGING](../common_event/commonEvent-powermgr.md#common_event_discharging)
 Indicates that the system stops charging the battery.
 
-* [COMMON_EVENT_CHARGING](./common_event/commonEvent-powermgr.md#common_event_charging)
+* [COMMON_EVENT_CHARGING](../common_event/commonEvent-powermgr.md#common_event_charging)
 Indicates that the system starts charging the battery.
 
-* [COMMON_EVENT_CHARGE_IDLE_MODE_CHANGED](./common_event/commonEvent-powermgr.md#common_event_charge_idle_mode_changed)
+* [COMMON_EVENT_CHARGE_IDLE_MODE_CHANGED](../common_event/commonEvent-powermgr.md#common_event_charge_idle_mode_changed)
 Indicates that the device enters the charging idle mode.
 
-* [COMMON_EVENT_DEVICE_IDLE_MODE_CHANGED](./common_event/commonEvent-resourceschedule.md#common_event_device_idle_mode_changed)
+* [COMMON_EVENT_DEVICE_IDLE_MODE_CHANGED](../common_event/commonEvent-resourceschedule.md#common_event_device_idle_mode_changed)
 Indicates that the system idle mode has changed.
 
-* [COMMON_EVENT_POWER_SAVE_MODE_CHANGED](./common_event/commonEvent-powermgr.md#common_event_power_save_mode_changed)
+* [COMMON_EVENT_POWER_SAVE_MODE_CHANGED](../common_event/commonEvent-powermgr.md#common_event_power_save_mode_changed)
 Indicates that the system power saving mode has changed.
 
-* [COMMON_EVENT_USER_ADDED](./common_event/commonEvent-account.md#common_event_user_added)
+* [COMMON_EVENT_USER_ADDED](../common_event/commonEvent-account.md#common_event_user_added)
 Indicates that a user has been added to the system.
-* [COMMON_EVENT_USER_REMOVED](./common_event/commonEvent-account.md#common_event_user_removed)
+* [COMMON_EVENT_USER_REMOVED](../common_event/commonEvent-account.md#common_event_user_removed)
 Indicates that a user has been removed from the system.
 * COMMON_EVENT_ABILITY_ADDED
   (Reserved, not supported yet) Indicates that an ability has been added.
@@ -561,22 +561,22 @@ Indicates that a user has been removed from the system.
   - Value: **common.event.IVI_ACTIVE**
   - Required subscriber permissions: none
 
-* [COMMON_EVENT_USB_STATE<sup>9+</sup>](common_event/commonEvent-usb.md#common_event_usb_state)
+* [COMMON_EVENT_USB_STATE<sup>9+</sup>](../common_event/commonEvent-usb.md#common_event_usb_state)
 Indicates that the USB device state has changed.
 
-* [COMMON_EVENT_USB_PORT_CHANGED<sup>9+</sup>](./common_event/commonEvent-usb.md#common_event_usb_port_changed)
+* [COMMON_EVENT_USB_PORT_CHANGED<sup>9+</sup>](../common_event/commonEvent-usb.md#common_event_usb_port_changed)
 Indicates that the USB port state of the device has changed.
 
-* [COMMON_EVENT_USB_DEVICE_ATTACHED](./common_event/commonEvent-usb.md#common_event_usb_device_attached)
+* [COMMON_EVENT_USB_DEVICE_ATTACHED](../common_event/commonEvent-usb.md#common_event_usb_device_attached)
 Indicates that a USB device has been attached to the device functioning as a USB host.
 
-* [COMMON_EVENT_USB_DEVICE_DETACHED](./common_event/commonEvent-usb.md#common_event_usb_device_detached)
+* [COMMON_EVENT_USB_DEVICE_DETACHED](../common_event/commonEvent-usb.md#common_event_usb_device_detached)
 Indicates that a USB device has been detached from the device functioning as a USB host.
 
-* [COMMON_EVENT_USB_ACCESSORY_ATTACHED](./common_event/commonEvent-usb.md#common_event_usb_accessory_attached)
+* [COMMON_EVENT_USB_ACCESSORY_ATTACHED](../common_event/commonEvent-usb.md#common_event_usb_accessory_attached)
 (Reserved, not supported yet) Indicates that a USB accessory was attached.
 
-* [COMMON_EVENT_USB_ACCESSORY_DETACHED](./common_event/commonEvent-usb.md#common_event_usb_accessory_detached)
+* [COMMON_EVENT_USB_ACCESSORY_DETACHED](../common_event/commonEvent-usb.md#common_event_usb_accessory_detached)
 (Reserved, not supported yet) Indicates that a USB accessory was detached.
 
 * COMMON_EVENT_DISK_REMOVED
@@ -609,19 +609,19 @@ Indicates that a USB device has been detached from the device functioning as a U
   - Value: **usual.event.data.DISK_EJECT**
   - Required subscriber permissions: ohos.permission.STORAGE_MANAGER
 
-* [COMMON_EVENT_VOLUME_REMOVED<sup>9+</sup> ](./common_event/commonEvent-filemanagement.md#common_event_volume_removed9)
+* [COMMON_EVENT_VOLUME_REMOVED<sup>9+</sup> ](../common_event/commonEvent-filemanagement.md#common_event_volume_removed9)
 Indicates that an external storage device was removed.
 
-* [COMMON_EVENT_VOLUME_UNMOUNTED<sup>9+</sup> ](./common_event/commonEvent-filemanagement.md#common_event_volume_unmounted9)
+* [COMMON_EVENT_VOLUME_UNMOUNTED<sup>9+</sup> ](../common_event/commonEvent-filemanagement.md#common_event_volume_unmounted9)
 Indicates that an external storage device was unmounted.
 
-* [COMMON_EVENT_VOLUME_MOUNTED<sup>9+</sup> ](./common_event/commonEvent-filemanagement.md#common_event_volume_mounted9)
+* [COMMON_EVENT_VOLUME_MOUNTED<sup>9+</sup> ](../common_event/commonEvent-filemanagement.md#common_event_volume_mounted9)
 Indicates that an external storage device was mounted.
 
-* [COMMON_EVENT_VOLUME_BAD_REMOVAL<sup>9+</sup> ](./common_event/commonEvent-filemanagement.md#common_event_volume_bad_removal9)
+* [COMMON_EVENT_VOLUME_BAD_REMOVAL<sup>9+</sup> ](../common_event/commonEvent-filemanagement.md#common_event_volume_bad_removal9)
 Indicates that an external storage device was removed without being unmounted.
 
-* [COMMON_EVENT_VOLUME_EJECT<sup>9+</sup> ](./common_event/commonEvent-filemanagement.md#common_event_volume_eject9)
+* [COMMON_EVENT_VOLUME_EJECT<sup>9+</sup> ](../common_event/commonEvent-filemanagement.md#common_event_volume_eject9)
 Indicates that an external storage device was ejected (at the software level).
 
 * COMMON_EVENT_VISIBLE_ACCOUNTS_UPDATED
@@ -649,14 +649,14 @@ Indicates that an external storage device was ejected (at the software level).
   - Value: **usual.event.SPLIT_SCREEN**
   - Required subscriber permissions: ohos.permission.RECEIVER_SPLIT_SCREEN
 
-* [COMMON_EVENT_SLOT_CHANGE<sup>9+</sup> ](./common_event/commonEvent-ans.md#common_event_slot_change)
+* [COMMON_EVENT_SLOT_CHANGE<sup>9+</sup> ](../common_event/commonEvent-ans.md#common_event_slot_change)
 Indicates that the notification slot has been updated.
 * COMMON_EVENT_SPN_INFO_CHANGED <sup>9+</sup> 
   Indicates that the SPN displayed has been updated.
   - Value: **usual.event.SPN_INFO_CHANGED**
   - Required subscriber permissions: none
 
-* [COMMON_EVENT_QUICK_FIX_APPLY_RESULT<sup>9+</sup> ](./common_event/commonEvent-ability.md#common_event_quick_fix_apply_result9)
+* [COMMON_EVENT_QUICK_FIX_APPLY_RESULT<sup>9+</sup> ](../common_event/commonEvent-ability.md#common_event_quick_fix_apply_result9)
 Indicates the result of applying a quick fix to the application.
 * COMMON_EVENT_HTTP_PROXY_CHANGE<sup>10+</sup> 
 Indicates that the HTTP proxy configuration has changed.
@@ -664,80 +664,82 @@ Indicates that the HTTP proxy configuration has changed.
   - Value: **usual.event.HTTP_PROXY_CHANGE**
   - Required subscriber permissions: none
   
-* [COMMON_EVENT_DOMAIN_ACCOUNT_STATUS_CHANGED<sup>10+</sup> ](./common_event/commonEvent-account.md#common_event_domain_account_status_changed10)
+* [COMMON_EVENT_DOMAIN_ACCOUNT_STATUS_CHANGED<sup>10+</sup> ](../common_event/commonEvent-account.md#common_event_domain_account_status_changed10)
 Indicates that the domain account status has changed.
-* [COMMON_EVENT_SIM_STATE_CHANGED<sup>10+</sup> ](./common_event/commonEvent-telephony.md#common_event_sim_state_changed)
+* [COMMON_EVENT_SIM_STATE_CHANGED<sup>10+</sup> ](../common_event/commonEvent-telephony.md#common_event_sim_state_changed)
 Indicates that the SIM card state has changed.
-* [COMMON_EVENT_SMS_RECEIVED_COMPLETED<sup>10+</sup> ](./common_event/commonEvent-telephony.md#common_event_sms_received_completed)
+* [COMMON_EVENT_SMS_RECEIVED_COMPLETED<sup>10+</sup> ](../common_event/commonEvent-telephony.md#common_event_sms_received_completed)
 Indicates that the SMS message is received.
-* [COMMON_EVENT_SMS_EMERGENCY_CB_RECEIVE_COMPLETED<sup>10+</sup> ](./common_event/commonEvent-telephony.md#common_event_sms_emergency_cb_receive_completed)
+* [COMMON_EVENT_SMS_EMERGENCY_CB_RECEIVE_COMPLETED<sup>10+</sup> ](../common_event/commonEvent-telephony.md#common_event_sms_emergency_cb_receive_completed)
 Indicates that an emergency cell broadcast message is received.
-* [COMMON_EVENT_SMS_CB_RECEIVE_COMPLETED<sup>10+</sup> ](./common_event/commonEvent-telephony.md#common_event_sms_cb_receive_completed)
+* [COMMON_EVENT_SMS_CB_RECEIVE_COMPLETED<sup>10+</sup> ](../common_event/commonEvent-telephony.md#common_event_sms_cb_receive_completed)
 Indicates that a cell broadcast message is received.
-* [COMMON_EVENT_STK_COMMAND<sup>10+</sup> ](./common_event/commonEvent-telephony.md#common_event_stk_command)
+* [COMMON_EVENT_STK_COMMAND<sup>10+</sup> ](../common_event/commonEvent-telephony.md#common_event_stk_command)
 (Reserved, not supported yet) Indicates the STK command.
-* [COMMON_EVENT_STK_SESSION_END<sup>10+</sup> ](./common_event/commonEvent-telephony.md#common_event_stk_session_end)
+* [COMMON_EVENT_STK_SESSION_END<sup>10+</sup> ](../common_event/commonEvent-telephony.md#common_event_stk_session_end)
 (Reserved, not supported yet) Indicates that an STK session ends.
-* [COMMON_EVENT_STK_CARD_STATE_CHANGED<sup>10+</sup> ](./common_event/commonEvent-telephony.md#common_event_stk_card_state_changed)
+* [COMMON_EVENT_STK_CARD_STATE_CHANGED<sup>10+</sup> ](../common_event/commonEvent-telephony.md#common_event_stk_card_state_changed)
 (Reserved, not supported yet) Indicates that the STK card state has changed.
-* [COMMON_EVENT_STK_ALPHA_IDENTIFIER<sup>10+</sup> ](./common_event/commonEvent-telephony.md#common_event_stk_alpha_identifier)
+* [COMMON_EVENT_STK_ALPHA_IDENTIFIER<sup>10+</sup> ](../common_event/commonEvent-telephony.md#common_event_stk_alpha_identifier)
 (Reserved, not supported yet) Indicates the STK alpha indicator.
-* [COMMON_EVENT_SMS_WAPPUSH_RECEIVE_COMPLETED<sup>10+</sup> ](./common_event/commonEvent-telephony.md#common_event_sms_wappush_receive_completed)
+* [COMMON_EVENT_SMS_WAPPUSH_RECEIVE_COMPLETED<sup>10+</sup> ](../common_event/commonEvent-telephony.md#common_event_sms_wappush_receive_completed)
 Indicates that a WAP push message is received.
-* [COMMON_EVENT_OPERATOR_CONFIG_CHANGED<sup>10+</sup> ](./common_event/commonEvent-telephony.md#common_event_operator_config_changed)
+* [COMMON_EVENT_OPERATOR_CONFIG_CHANGED<sup>10+</sup> ](../common_event/commonEvent-telephony.md#common_event_operator_config_changed)
 Indicates that the carrier configuration has been updated.
-* [COMMON_EVENT_SIM_CARD_DEFAULT_SMS_SUBSCRIPTION_CHANGED<sup>10+</sup> ](./common_event/commonEvent-telephony.md#common_event_sim_card_default_sms_subscription_changed)
+* [COMMON_EVENT_SIM_CARD_DEFAULT_SMS_SUBSCRIPTION_CHANGED<sup>10+</sup> ](../common_event/commonEvent-telephony.md#common_event_sim_card_default_sms_subscription_changed)
 Indicates that the default SIM card for the SMS service has changed.
-* [COMMON_EVENT_SIM_CARD_DEFAULT_DATA_SUBSCRIPTION_CHANGED<sup>10+</sup> ](./common_event/commonEvent-telephony.md#common_event_sim_card_default_data_subscription_changed)
+* [COMMON_EVENT_SIM_CARD_DEFAULT_DATA_SUBSCRIPTION_CHANGED<sup>10+</sup> ](../common_event/commonEvent-telephony.md#common_event_sim_card_default_data_subscription_changed)
 Indicates that the default SIM card for the mobile data service has changed.
-* [COMMON_EVENT_SIM_CARD_DEFAULT_MAIN_SUBSCRIPTION_CHANGED<sup>10+</sup> ](./common_event/commonEvent-telephony.md#common_event_sim_card_default_main_subscription_changed)
+* [COMMON_EVENT_SIM_CARD_DEFAULT_MAIN_SUBSCRIPTION_CHANGED<sup>10+</sup> ](../common_event/commonEvent-telephony.md#common_event_sim_card_default_main_subscription_changed)
 Indicates that the default primary SIM card has changed.
-* [COMMON_EVENT_SIM_CARD_DEFAULT_VOICE_SUBSCRIPTION_CHANGED<sup>10+</sup> ](./common_event/commonEvent-telephony.md#common_event_sim_card_default_voice_subscription_changed)
+* [COMMON_EVENT_SIM_CARD_DEFAULT_VOICE_SUBSCRIPTION_CHANGED<sup>10+</sup> ](../common_event/commonEvent-telephony.md#common_event_sim_card_default_voice_subscription_changed)
 Indicates that the default SIM card for the voice service has changed.
-* [COMMON_EVENT_CALL_STATE_CHANGED<sup>10+</sup> ](./common_event/commonEvent-telephony.md#common_event_call_state_changed)
+* [COMMON_EVENT_CALL_STATE_CHANGED<sup>10+</sup> ](../common_event/commonEvent-telephony.md#common_event_call_state_changed)
 Indicates that the call state has changed.
-* [COMMON_EVENT_CELLULAR_DATA_STATE_CHANGED<sup>10+</sup> ](./common_event/commonEvent-telephony.md#common_event_cellular_data_state_changed)
+* [COMMON_EVENT_CELLULAR_DATA_STATE_CHANGED<sup>10+</sup> ](../common_event/commonEvent-telephony.md#common_event_cellular_data_state_changed)
 Indicates that the cellular data state has changed.
-* [COMMON_EVENT_NETWORK_STATE_CHANGED<sup>10+</sup> ](./common_event/commonEvent-telephony.md#common_event_network_state_changed)
+* [COMMON_EVENT_NETWORK_STATE_CHANGED<sup>10+</sup> ](../common_event/commonEvent-telephony.md#common_event_network_state_changed)
 Indicates that the network state has changed.
-* [COMMON_EVENT_SIGNAL_INFO_CHANGED<sup>10+</sup> ](./common_event/commonEvent-telephony.md#common_event_signal_info_changed)
+* [COMMON_EVENT_SIGNAL_INFO_CHANGED<sup>10+</sup> ](../common_event/commonEvent-telephony.md#common_event_signal_info_changed)
 Indicates that the signal information is updated.
-* [COMMON_EVENT_INCOMING_CALL_MISSED<sup>10+</sup> ](./common_event/commonEvent-telephony.md#common_event_incoming_call_missed)
+* [COMMON_EVENT_INCOMING_CALL_MISSED<sup>10+</sup> ](../common_event/commonEvent-telephony.md#common_event_incoming_call_missed)
 Indicates a missed call.
-* [COMMON_EVENT_RADIO_STATE_CHANGE<sup>10+</sup> ](./common_event/commonEvent-telephony.md#common_event_radio_state_change)
+* [COMMON_EVENT_RADIO_STATE_CHANGE<sup>10+</sup> ](../common_event/commonEvent-telephony.md#common_event_radio_state_change)
 Indicates that the power-on and power-off status of the modem has changed.
-* [COMMON_EVENT_SCREEN_LOCKED <sup>10+</sup> ](./common_event/commonEvent-screenlock.md#common_event_screen_locked)
+* [COMMON_EVENT_SCREEN_LOCKED <sup>10+</sup> ](../common_event/commonEvent-screenlock.md#common_event_screen_locked)
 Indicates that the screen is locked.
   
-* [COMMON_EVENT_SCREEN_UNLOCKED<sup>10+</sup> ](./common_event/commonEvent-screenlock.md#common_event_screen_unlocked)
+* [COMMON_EVENT_SCREEN_UNLOCKED<sup>10+</sup> ](../common_event/commonEvent-screenlock.md#common_event_screen_unlocked)
 Indicates that the screen is unlocked.
 
-* [COMMON_EVENT_QUICK_FIX_REVOKE_RESULT<sup>10+</sup> ](./common_event/commonEvent-ability.md#common_event_quick_fix_revoke_result10)
+* [COMMON_EVENT_QUICK_FIX_REVOKE_RESULT<sup>10+</sup> ](../common_event/commonEvent-ability.md#common_event_quick_fix_revoke_result10)
 Indicates the result of revoking a quick fix to the application.
 
-* [COMMON_EVENT_DISTRIBUTED_ACCOUNT_LOGIN](./common_event/commonEvent-account.md#common_event_distributed_account_login)
+* [COMMON_EVENT_DISTRIBUTED_ACCOUNT_LOGIN](../common_event/commonEvent-account.md#common_event_distributed_account_login)
 (Reserved, not supported yet) Indicates a successful login to a distributed account.
 
-* [COMMON_EVENT_DISTRIBUTED_ACCOUNT_LOGOUT](./common_event/commonEvent-account.md#common_event_distributed_account_logout)
+* [COMMON_EVENT_DISTRIBUTED_ACCOUNT_LOGOUT](../common_event/commonEvent-account.md#common_event_distributed_account_logout)
 (Reserved, not supported yet) Indicates a successful logout of a distributed account.
 
-* [COMMON_EVENT_DISTRIBUTED_ACCOUNT_TOKEN_INVALID](./common_event/commonEvent-account.md#common_event_distributed_account_token_invalid)
+* [COMMON_EVENT_DISTRIBUTED_ACCOUNT_TOKEN_INVALID](../common_event/commonEvent-account.md#common_event_distributed_account_token_invalid)
 (Reserved, not supported yet) Indicates the token of a distributed account is invalid.
 
-* [COMMON_EVENT_DISTRIBUTED_ACCOUNT_LOGOFF](./common_event/commonEvent-account.md#common_event_distributed_account_logoff)
+* [COMMON_EVENT_DISTRIBUTED_ACCOUNT_LOGOFF](../common_event/commonEvent-account.md#common_event_distributed_account_logoff)
 (Reserved, not supported yet) Indicates that a distributed account is deregistered.
 
-* [COMMON_EVENT_USER_INFO_UPDATED<sup>9+</sup> ](./common_event/commonEvent-account.md#common_event_user_info_updated9)
+* [COMMON_EVENT_USER_INFO_UPDATED<sup>9+</sup> ](../common_event/commonEvent-account.md#common_event_user_info_updated9)
 Indicates that the user information has been updated.
 
-* [COMMON_EVENT_AUDIO_QUALITY_CHANGE](./common_event/commonEvent-telephony.md#common_event_audio_quality_change)
+* [COMMON_EVENT_AUDIO_QUALITY_CHANGE](../common_event/commonEvent-telephony.md#common_event_audio_quality_change)
 Indicates that the audio quality has changed.
 
-* [COMMON_EVENT_HTTP_PROXY_CHANGE<sup>10+</sup> ](./common_event/commonEvent-netmanager.md#common_event_http_proxy_change10)
+* [COMMON_EVENT_HTTP_PROXY_CHANGE<sup>10+</sup> ](../common_event/commonEvent-netmanager.md#common_event_http_proxy_change10)
 Indicates that the HTTP proxy configuration has changed.
 
-* [COMMON_EVENT_AIRPLANE_MODE_CHANGED<sup>10+</sup> ](./common_event/commonEvent-netmanager.md#common_event_airplane_mode_changed10)
+* [COMMON_EVENT_AIRPLANE_MODE_CHANGED<sup>10+</sup> ](../common_event/commonEvent-netmanager.md#common_event_airplane_mode_changed10)
 Indicates that the airplane mode state has changed.
 
-* [COMMON_EVENT_CONNECTIVITY_CHANGE<sup>10+</sup> ](./common_event/commonEvent-netmanager.md#common_event_connectivity_change10)
+* [COMMON_EVENT_CONNECTIVITY_CHANGE<sup>10+</sup> ](../common_event/commonEvent-netmanager.md#common_event_connectivity_change10)
 Indicates that the network connection state has changed.
+
+<!--no_check-->
