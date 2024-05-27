@@ -398,6 +398,8 @@ createCameraInput(camera: CameraDevice): CameraInput
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
 | 7400101                |  Parameter missing or parameter type incorrect.               |
+| 7400102                |  Operation not allowed.               |
+| 7400201                |  Camera service fatal error.               |
 
 **示例：**
 
@@ -447,6 +449,8 @@ createCameraInput(position: CameraPosition, type: CameraType): CameraInput
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
 | 7400101                |  Parameter missing or parameter type incorrect.               |
+| 7400102                |  Operation not allowed.               |
+| 7400201                |  Camera service fatal error.               |
 
 **示例：**
 
@@ -496,6 +500,7 @@ createPreviewOutput(profile: Profile, surfaceId: string): PreviewOutput
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
 | 7400101                |  Parameter missing or parameter type incorrect.               |
+| 7400201                |  Camera service fatal error.               |
 
 **示例：**
 
@@ -592,6 +597,7 @@ createPhotoOutput(profile: Profile): PhotoOutput
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
 | 7400101                |  Parameter missing or parameter type incorrect.               |
+| 7400201                |  Camera service fatal error.               |
 
 **示例：**
 
@@ -640,6 +646,7 @@ createVideoOutput(profile: VideoProfile, surfaceId: string): VideoOutput
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
 | 7400101                |  Parameter missing or parameter type incorrect.               |
+| 7400201                |  Camera service fatal error.               |
 
 **示例：**
 
@@ -687,6 +694,7 @@ createMetadataOutput(metadataObjectTypes: Array\<MetadataObjectType\>): Metadata
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
 | 7400101                |  Parameter missing or parameter type incorrect.               |
+| 7400201                |  Camera service fatal error.               |
 
 **示例：**
 
@@ -945,6 +953,8 @@ setTorchMode(mode: TorchMode): void
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
 | 7400101 | Parameter missing or parameter type incorrect. |
+| 7400102 | Operation not allowed. |
+| 7400201 | Camera service fatal error. |
 
 **示例：**
 
@@ -2095,7 +2105,7 @@ isMovingPhotoSupported(): boolean
 以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
 
 | 错误码ID         | 错误信息        |
-| --------------- | --------------- |                               |
+| --------------- | --------------- |     
 | 7400201                |  Camera service fatal error. |
 
 **示例：**
@@ -2122,6 +2132,8 @@ enableMovingPhoto(enabled: boolean): void
 
 使能动态照片拍照。
 
+**需要权限：** ohos.permission.MICROPHONE
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
@@ -2136,6 +2148,7 @@ enableMovingPhoto(enabled: boolean): void
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |     
+| 201                    |  permission denied.        |
 | 7400101                |  Parameter missing or parameter type incorrect.        |
 | 7400201                |  Camera service fatal error. |
 
@@ -3281,6 +3294,7 @@ beginConfig(): void
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
 | 7400105                |  Session config locked.               |
+| 7400201                |  Camera service fatal error.               |
 
 **示例：**
 
@@ -3430,6 +3444,7 @@ addInput(cameraInput: CameraInput): void
 | 7400101                |  Parameter missing or parameter type incorrect.        |
 | 7400102                |  Operation not allowed.                                  |
 | 7400103                |  Session not config.                                   |
+| 7400201                |  Camera service fatal error.                                   |
 
 **示例：**
 
@@ -3470,6 +3485,7 @@ removeInput(cameraInput: CameraInput): void
 | 7400101                |  Parameter missing or parameter type incorrect.        |
 | 7400102                |  Operation not allowed.                                  |
 | 7400103                |  Session not config.                                   |
+| 7400201                |  Camera service fatal error.                                   |
 
 **示例：**
 
@@ -3541,6 +3557,7 @@ addOutput(cameraOutput: CameraOutput): void
 | 7400101                |  Parameter missing or parameter type incorrect.        |
 | 7400102                |  Operation not allowed.                                  |
 | 7400103                |  Session not config.                                   |
+| 7400201                |  Camera service fatal error.                                   |
 
 **示例：**
 
@@ -3581,6 +3598,7 @@ removeOutput(cameraOutput: CameraOutput): void
 | 7400101                |  Parameter missing or parameter type incorrect.        |
 | 7400102                |  Operation not allowed.                                  |
 | 7400103                |  Session not config.                                   |
+| 7400201                |  Camera service fatal error.                                   |
 
 **示例：**
 
@@ -3618,6 +3636,7 @@ start(callback: AsyncCallback\<void\>): void
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
+| 7400102                |  Operation not allowed.                                |
 | 7400103                |  Session not config.                                   |
 | 7400201                |  Camera service fatal error.                           |
 
@@ -3657,6 +3676,7 @@ start(): Promise\<void\>
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
+| 7400102                |  Operation not allowed.                                |
 | 7400103                |  Session not config.                                   |
 | 7400201                |  Camera service fatal error.                           |
 
@@ -4267,6 +4287,7 @@ setExposureBias(exposureBias: number): void
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
+| 7400102                |  Operation not allowed.                                |
 | 7400103                |  Session not config.                                   |
 
 **示例：**
@@ -4706,6 +4727,7 @@ getZoomRatio(): number
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
 | 7400103                |  Session not config.                                   |
+| 7400201                |  Camera service fatal error.                           |
 
 **示例：**
 
@@ -6676,8 +6698,10 @@ setColorSpace(colorSpace: colorSpaceManager.ColorSpace): void
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
+| 7400101         |  Parameter missing or parameter type incorrect.     |
 | 7400102         |  The colorSpace does not match the format.     |
 | 7400103         |  Session not config.                           |
+| 7400201         |  Camera service fatal error.                   |
 
 **示例：**
 
