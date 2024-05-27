@@ -594,7 +594,7 @@ onAboutToAppear(进场NavDestination页面)->onAppear(进场NavDestination页面
 
 **变更原因**
 
-Select下拉按钮样式风格增强，通过设置ControlSize，来实现Select下拉按钮小型化。
+提供小型化Select组件下拉按钮，相比于正常尺寸更小，以满足开发者在不同场景下的需求，获得更好的用户体验。
 
 **变更影响**
 
