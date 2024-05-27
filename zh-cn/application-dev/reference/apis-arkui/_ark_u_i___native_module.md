@@ -5080,7 +5080,7 @@ int32_t OH_ArkUI_GetContextFromNapiValue (napi_env env, napi_value value, ArkUI_
 
 **返回：**
 
-错误码。 ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常
+ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常
 
 
 ### OH_ArkUI_GetDrawableDescriptorFromNapiValue()
@@ -5104,7 +5104,7 @@ int32_t OH_ArkUI_GetDrawableDescriptorFromNapiValue (napi_env env, napi_value va
 
 **返回：**
 
-错误码。 ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常
+ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常
 
 
 ### OH_ArkUI_GetDrawableDescriptorFromResourceNapiValue()
@@ -5128,7 +5128,7 @@ int32_t OH_ArkUI_GetDrawableDescriptorFromResourceNapiValue (napi_env env, napi_
 
 **返回：**
 
-错误码。 ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常
+ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常
 
 
 ### OH_ArkUI_GetNodeHandleFromNapiValue()
@@ -5152,7 +5152,7 @@ int32_t OH_ArkUI_GetNodeHandleFromNapiValue (napi_env env, napi_value frameNode,
 
 **返回：**
 
-错误码。 ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常
+ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常
 
 
 ### OH_ArkUI_GuidelineOption_Create()
@@ -5952,7 +5952,7 @@ int32_t OH_ArkUI_List_CloseAllSwipeActions (ArkUI_NodeHandle node, void * userDa
 
 **返回：**
 
-错误码。 ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。 ARKUI_ERROR_CODE_ATTRIBUTE_OR_EVENT_NOT_SUPPORTED 组件不支持该事件。
+ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。 ARKUI_ERROR_CODE_ATTRIBUTE_OR_EVENT_NOT_SUPPORTED 组件不支持该事件。
 
 
 ### OH_ArkUI_ListChildrenMainSizeOption_Create()
@@ -6073,7 +6073,7 @@ int32_t OH_ArkUI_ListChildrenMainSizeOption_SetDefaultMainSize (ArkUI_ListChildr
 
 **返回：**
 
-错误码。 ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
+ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
 
 
 ### OH_ArkUI_ListChildrenMainSizeOption_Splice()
@@ -6098,7 +6098,7 @@ int32_t OH_ArkUI_ListChildrenMainSizeOption_Splice (ArkUI_ListChildrenMainSize *
 
 **返回：**
 
-错误码。 ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
+ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
 
 
 ### OH_ArkUI_ListChildrenMainSizeOption_UpdateSize()
@@ -6122,7 +6122,7 @@ int32_t OH_ArkUI_ListChildrenMainSizeOption_UpdateSize (ArkUI_ListChildrenMainSi
 
 **返回：**
 
-错误码。 ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
+ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
 
 
 ### OH_ArkUI_ListItemSwipeActionItem_Create()
@@ -6602,7 +6602,7 @@ int32_t OH_ArkUI_NodeAdapter_GetAllItems (ArkUI_NodeAdapterHandle handle, ArkUI_
 
 **返回：**
 
-错误码。 ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
+ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
 
 
 ### OH_ArkUI_NodeAdapter_GetTotalNodeCount()
@@ -6648,7 +6648,7 @@ int32_t OH_ArkUI_NodeAdapter_InsertItem (ArkUI_NodeAdapterHandle handle, uint32_
 
 **返回：**
 
-错误码。 ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
+ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
 
 
 ### OH_ArkUI_NodeAdapter_MoveItem()
@@ -6672,7 +6672,7 @@ int32_t OH_ArkUI_NodeAdapter_MoveItem (ArkUI_NodeAdapterHandle handle, uint32_t 
 
 **返回：**
 
-错误码。 ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
+ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
 
 
 ### OH_ArkUI_NodeAdapter_RegisterEventReceiver()
@@ -6696,7 +6696,7 @@ int32_t OH_ArkUI_NodeAdapter_RegisterEventReceiver (ArkUI_NodeAdapterHandle hand
 
 **返回：**
 
-错误码。 ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
+ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
 
 
 ### OH_ArkUI_NodeAdapter_ReloadAllItems()
@@ -6718,7 +6718,7 @@ int32_t OH_ArkUI_NodeAdapter_ReloadAllItems (ArkUI_NodeAdapterHandle handle)
 
 **返回：**
 
-错误码。 ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
+ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
 
 
 ### OH_ArkUI_NodeAdapter_ReloadItem()
@@ -6742,7 +6742,7 @@ int32_t OH_ArkUI_NodeAdapter_ReloadItem (ArkUI_NodeAdapterHandle handle, uint32_
 
 **返回：**
 
-错误码。 ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
+ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
 
 ### OH_ArkUI_NodeAdapter_RemoveItem()
 
@@ -6765,7 +6765,7 @@ int32_t OH_ArkUI_NodeAdapter_RemoveItem (ArkUI_NodeAdapterHandle handle, uint32_
 
 **返回：**
 
-错误码。 ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
+ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
 
 
 ### OH_ArkUI_NodeAdapter_SetTotalNodeCount()
@@ -6788,7 +6788,7 @@ int32_t OH_ArkUI_NodeAdapter_SetTotalNodeCount (ArkUI_NodeAdapterHandle handle, 
 
 **返回：**
 
-错误码。 ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
+ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
 
 
 ### OH_ArkUI_NodeAdapter_UnregisterEventReceiver()
@@ -6828,7 +6828,7 @@ ArkUI_NodeHandle OH_ArkUI_NodeAdapterEvent_GetHostNode (ArkUI_NodeAdapterEvent *
 
 **返回：**
 
-错误码。 ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
+ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
 
 
 ### OH_ArkUI_NodeAdapterEvent_GetItemIndex()
@@ -6935,7 +6935,7 @@ int32_t OH_ArkUI_NodeAdapterEvent_SetItem (ArkUI_NodeAdapterEvent * event, ArkUI
 
 **返回：**
 
-错误码。 ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
+ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
 
 
 ### OH_ArkUI_NodeAdapterEvent_SetNodeId()
@@ -6958,7 +6958,7 @@ int32_t OH_ArkUI_NodeAdapterEvent_SetNodeId (ArkUI_NodeAdapterEvent * event, int
 
 **返回：**
 
-错误码。 ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
+ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
 
 
 ### OH_ArkUI_NodeCustomEvent_GetDrawContextInDraw()
@@ -7293,7 +7293,7 @@ int32_t OH_ArkUI_NodeUtils_GetLayoutPosition (ArkUI_NodeHandle node, ArkUI_IntOf
 
 **返回：**
 
-错误码。 ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
+ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
 
 
 ### OH_ArkUI_NodeUtils_GetLayoutPositionInScreen()
@@ -7316,7 +7316,7 @@ int32_t OH_ArkUI_NodeUtils_GetLayoutPositionInScreen (ArkUI_NodeHandle node, Ark
 
 **返回：**
 
-错误码。 ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
+ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
 
 
 ### OH_ArkUI_NodeUtils_GetLayoutPositionInWindow()
@@ -7339,7 +7339,7 @@ int32_t OH_ArkUI_NodeUtils_GetLayoutPositionInWindow (ArkUI_NodeHandle node, Ark
 
 **返回：**
 
-错误码。 ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
+ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
 
 
 ### OH_ArkUI_NodeUtils_GetLayoutSize()
@@ -7362,7 +7362,7 @@ int32_t OH_ArkUI_NodeUtils_GetLayoutSize (ArkUI_NodeHandle node, ArkUI_IntSize *
 
 **返回：**
 
-错误码。 ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
+ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
 
 
 ### OH_ArkUI_NodeUtils_GetPositionWithTranslateInScreen()
@@ -7385,7 +7385,7 @@ int32_t OH_ArkUI_NodeUtils_GetPositionWithTranslateInScreen (ArkUI_NodeHandle no
 
 **返回：**
 
-错误码。 ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
+ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
 
 
 ### OH_ArkUI_NodeUtils_GetPositionWithTranslateInWindow()
@@ -7408,7 +7408,7 @@ int32_t OH_ArkUI_NodeUtils_GetPositionWithTranslateInWindow (ArkUI_NodeHandle no
 
 **返回：**
 
-错误码。 ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
+ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
 
 
 ### OH_ArkUI_PanGesture_GetOffsetX()
