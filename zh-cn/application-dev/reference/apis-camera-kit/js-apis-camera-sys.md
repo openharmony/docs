@@ -1609,7 +1609,7 @@ getZoomPointInfos(): Array\<ZoomPointInfo\>
 
 | 类型                | 说明                                                  |
 | ----------          | -----------------------------                         |
-|  Array\<[ZoomPointInfo](#ZoomPointInfo)\>| 获取当前模式的等效焦距信息列表。                   |
+|  Array\<[ZoomPointInfo](#zoomPointInfo12)\>| 获取当前模式的等效焦距信息列表。                   |
 
 **错误码：**
 
