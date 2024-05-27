@@ -390,7 +390,7 @@ async function publicUpdateSessionFunction(handle: number, HuksOptions: huks.Huk
     let inDataSegPosition = 0;
     let isFinished = false;
     let outData: number[] = [];
-    
+
     while (inDataSegPosition <= lastInDataPosition) {
         if (inDataSegPosition + maxUpdateSize > lastInDataPosition) {
             isFinished = true;
@@ -572,8 +572,8 @@ async function ImportWrappedKey() {
      */
 
     /* 2. Generate an asymmetric key pair Wrapping_Key (public key Wrapping_Pk and private key Wrapping_Sk) with the purpose of HUKS_KEY_PURPOSE_UNWRAP for device B, export the public key Wrapping_Pk of Wrapping_Key, and save it to huksPubKey. */
-    const srcKeyAliesWrap = 'HUKS_Basic_Capability_Import_0200';
-    await generateAndExportPublicKey(srcKeyAliesWrap, genWrappingKeyParams, false);
+    const srcKeyAliasWrap = 'HUKS_Basic_Capability_Import_0200';
+    await generateAndExportPublicKey(srcKeyAliasWrap, genWrappingKeyParams, false);
 
     /* 3. Use the same algorithm to generate an asymmetric key pair Caller_Key (public key Caller_Pk and private key Caller_Sk) with the purpose of HUKS_KEY_PURPOSE_UNWRAP for device A, export the public key Caller_Pk of Caller_Key, save it to callerSelfPublicKey. */
     await generateAndExportPublicKey(callerKeyAlias, genCallerEcdhParams, true);
@@ -583,22 +583,22 @@ async function ImportWrappedKey() {
      * 5. Perform key agreement with the private key Caller_Sk in Caller_Key of device A and the public key Wrapping_Pk in Wrapping_Key of device B to yield a Shared_Key.
      */
     await ImportKekAndAgreeSharedSecret(callerKekAliasAes256, importParamsCallerKek, callerKeyAlias, huksPubKey, callerAgreeParams);
-    
+
     /**
      * 6. Use Caller_Kek to encrypt To_Import_Key of device A and generate To_Import_Key_Enc.
      * 7. Use Shared_Key to encrypt Caller_Kek of device A and generate Caller_Kek_Enc.
      */
     await EncryptImportedPlainKeyAndKek(importedAes192PlainKey);
-   
+
     /* 8. Encapsulate the key material Caller_Pk, To_Import_Key_Enc, and Caller_Kek_Enc of device A, and sends it to device B. In this example, Caller_Pk is placed in callerSelfPublicKey, To_Import_Key_Enc in PlainKeyEncData, and Caller_Kek_Enc in KekEncData. */
     let wrappedData = await BuildWrappedDataAndImportWrappedKey(importedAes192PlainKey);
     importWrappedAes192Params.inData = wrappedData;
-    
+
     /* 9. Import the encapsulated key material to device B. */
-    await publicImportWrappedKeyFunc(importedKeyAliasAes192, srcKeyAliesWrap, importWrappedAes192Params);
-    
+    await publicImportWrappedKeyFunc(importedKeyAliasAes192, srcKeyAliasWrap, importWrappedAes192Params);
+
     /* 10. Delete the intermediate keys (keys used for encrypting the key to import) from devices A and B. */
-    await publicDeleteKeyItemFunc(srcKeyAliesWrap, genWrappingKeyParams);
+    await publicDeleteKeyItemFunc(srcKeyAliasWrap, genWrappingKeyParams);
     await publicDeleteKeyItemFunc(callerKeyAlias, genCallerEcdhParams);
     await publicDeleteKeyItemFunc(importedKeyAliasAes192, importWrappedAes192Params);
     await publicDeleteKeyItemFunc(callerKekAliasAes256, callerAgreeParams);
