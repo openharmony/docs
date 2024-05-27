@@ -367,7 +367,6 @@ getHostContext(): Context | undefined
 **示例：**
 
 ```ts
-// xxx.ets
 @Entry
 @Component
 struct Index {
@@ -376,15 +375,14 @@ struct Index {
   build() {
     Row() {
       Column() {
-        Text("cacheDir="+this.uiContext?.getHostContext().cacheDir).fontSize(25)
-        Text("bundleCodeDir="+this.uiContext?.getHostContext().bundleCodeDir).fontSize(25)
+        Text("cacheDir='"+this.uiContext?.getHostContext()?.cacheDir+"'").fontSize(25)
+        Text("bundleCodeDir='"+this.uiContext?.getHostContext()?.bundleCodeDir+"'").fontSize(25)
       }
       .width('100%')
     }
     .height('100%')
   }
 }
-
 ```
 
 ### getFrameNodeById<sup>12+</sup>

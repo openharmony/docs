@@ -117,8 +117,6 @@ Neural Network Runtime表示神经网络运行时，简称NNRt。作为中间桥
 | priority<sup>12+</sup>        | [Priority](#priority)               | 否   | NNRT推理任务优先级。     |
 | extensions<sup>12+</sup>      | Extension[]                         | 否   | NNRT设备的扩展配置。     |
 
-
-
 ## ThreadAffinityMode
 
 设置运行时的CPU绑核策略模式，有效值为0-2，0为默认不绑核，1为绑大核，2为绑中核。
@@ -158,8 +156,6 @@ NNRT推理任务优先级。
 | PRIORITY_MEDIUM<sup>12+</sup> | 2    | 中优先级任务。 |
 | PRIORITY_HIGH<sup>12+</sup>   | 3    | 高优先级。     |
 
-
-
 ## NNRTDeviceDescription
 
 NNRT设备信息描述，包含设备ID，设备名称等信息。
@@ -184,8 +180,6 @@ NNRT设备类型。
 | NNRTDEVICE_CPU<sup>12+</sup>         | 1    | CPU设备。                           |
 | NNRTDEVICE_GPU<sup>12+</sup>         | 2    | GPU设备。                           |
 | NNRTDEVICE_ACCELERATOR<sup>12+</sup> | 3    | 特定的加速设备。                    |
-
-
 
 ## mindSporeLite.loadModelFromFile
 
@@ -556,41 +550,20 @@ getAllNNRTDeviceDescriptions() : NNRTDeviceDescription[]
 | ----------------------- | ---------------------- |
 | NNRTDeviceDescription[] | NNRT设备描述信息数组。 |
 
-
-
 ## Model
 
 模型实例。描述Model对象的属性和方法。
 
 下例API示例中都需先使用[loadModelFromFile()](#mindsporeliteloadmodelfromfile)、[loadModelFromBuffer()](#mindsporeliteloadmodelfrombuffer)、[loadModelFromFd()](#mindsporeliteloadmodelfromfd)中的任一方法获取到Model实例，再通过此实例调用对应方法。
 
-### learningRate<sup>12+</sup>
-
-learningRate: number
-
-训练模型的学习率。
+### 属性
 
 **系统能力：** SystemCapability.AI.MindSporeLite
 
-**返回值：**
-
-| 类型     | 说明     |
-| ------ | ------ |
-| number | 返回学习率。 |
-
-### trainMode<sup>12+</sup>
-
-trainMode: boolean
-
-模型的运行模式。
-
-**系统能力：** SystemCapability.AI.MindSporeLite
-
-**返回值：**
-
-| 类型      | 说明         |
-| ------- | ---------- |
-| boolean | 返回是否是训练模式。 |
+| 名称                       | 类型    | 必填 | 说明               |
+| -------------------------- | ------- | ---- | ------------------ |
+| learningRate<sup>12+</sup> | number  | 否   | 训练模型的学习率。 |
+| trainMode<sup>12+</sup>    | boolean | 否   | 模型的运行模式。   |
 
 ### getInputs
 
@@ -807,11 +780,11 @@ setupVirtualBatch(virtualBatchMultiplier: number, lr: number, momentum: number):
 
 **参数：**
 
-| 参数名                 | 类型   | 必填 | 说明                                       |
-| ---------------------- | ------ | ---- | ------------------------------------------ |
-| virtualBatchMultiplier | number | 是   | 虚拟批量乘法器，小于1的任意数字禁用。      |
-| lr                     | number | 是   | 用于虚拟批处理的学习率，-1用于内部配置     |
-| momentum               | number | 是   | 用于虚拟批处理的批范数动量，-1用于内部配置 |
+| 参数名                 | 类型   | 必填 | 说明                                         |
+| ---------------------- | ------ | ---- | -------------------------------------------- |
+| virtualBatchMultiplier | number | 是   | 虚拟批量乘法器，小于1的任意数字禁用。        |
+| lr                     | number | 是   | 用于虚拟批处理的学习率，-1用于内部配置。     |
+| momentum               | number | 是   | 用于虚拟批处理的批范数动量，-1用于内部配置。 |
 
 **返回值：**
 

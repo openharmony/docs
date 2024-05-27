@@ -10,7 +10,7 @@
 ## 导入模块
 
 ```ts
-import media from '@kit.MediaKit';
+import { media } from '@kit.MediaKit';
 ```
 
 ## media.createVideoRecorder<sup>9+</sup>
