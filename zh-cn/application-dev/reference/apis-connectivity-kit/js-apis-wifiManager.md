@@ -553,8 +553,7 @@ addCandidateConfig(config: WifiDeviceConfig): Promise&lt;number&gt;
 | **错误码ID** | **错误信息** |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.
-    2. Incorrect parameter types. 3.Parameter verification failed. |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3.Parameter verification failed. |
 |801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
@@ -602,8 +601,7 @@ addCandidateConfig(config: WifiDeviceConfig, callback: AsyncCallback&lt;number&g
 | **错误码ID** | **错误信息** |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.
-    2. Incorrect parameter types. 3.Parameter verification failed. |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3.Parameter verification failed. |
 |801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
@@ -656,8 +654,7 @@ removeCandidateConfig(networkId: number): Promise&lt;void&gt;
 | **错误码ID** | **错误信息** |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.
-    2. Incorrect parameter types. 3.Parameter verification failed. |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3.Parameter verification failed. |
 |801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
@@ -702,8 +699,7 @@ removeCandidateConfig(networkId: number, callback: AsyncCallback&lt;void&gt;): v
 | **错误码ID** | **错误信息** |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.
-    2. Incorrect parameter types. 3.Parameter verification failed. |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3.Parameter verification failed. |
 |801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
@@ -800,8 +796,7 @@ connectToCandidateConfig(networkId: number): void
 | **错误码ID** | **错误信息** |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.
-    2. Incorrect parameter types. 3.Parameter verification failed. |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3.Parameter verification failed. |
 |801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 | 2501001  | Wifi is closed.|
@@ -896,7 +891,7 @@ getLinkedInfo(): Promise&lt;WifiLinkedInfo&gt;
 | **错误码ID** | **错误信息** |
 | -------- | -------- |
 |201 | Permission denied.                 |
-|202 | Non-system applications are not allowed to use system APIs. |
+|202 | System API is not allowed called by Non-system application. |
 |801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 | 2501001  | Wifi is closed.|
@@ -926,7 +921,7 @@ getLinkedInfo(callback: AsyncCallback&lt;WifiLinkedInfo&gt;): void
 | **错误码ID** | **错误信息** |
 | -------- | -------- |
 |201 | Permission denied.                 |
-|202 | Non-system applications are not allowed to use system APIs. |
+|202 | System API is not allowed called by Non-system application. |
 |801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 | 2501001  | Wifi is closed.|
@@ -1022,7 +1017,7 @@ isConnected(): boolean
 | **错误码ID** | **错误信息** |
 | -------- | -------- |
 |201 | Permission denied.                 |
-|202 | Non-system applications are not allowed to use system APIs. |
+|202 | System API is not allowed called by Non-system application. |
 |801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
@@ -2367,7 +2362,7 @@ on(type: "hotspotStateChange", callback: Callback&lt;number&gt;): void
 | **错误码ID** | **错误信息** |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|202 | Non-system applications are not allowed to use system APIs. |
+|202 | System API is not allowed called by Non-system application. |
 |401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 |801 | Capability not supported.          |
 | 2601000  | Operation failed.|
@@ -2396,7 +2391,7 @@ off(type: "hotspotStateChange", callback?: Callback&lt;number&gt;): void
 | **错误码ID** | **错误信息** |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|202 | Non-system applications are not allowed to use system APIs. |
+|202 | System API is not allowed called by Non-system application. |
 |401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 |801 | Capability not supported.          |
 | 2601000  | Operation failed.|
