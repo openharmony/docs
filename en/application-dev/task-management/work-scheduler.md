@@ -137,6 +137,8 @@ The development of deferred task scheduling consists of two steps: implementing 
      // Callback invoked when the system starts scheduling the deferred task.
      onWorkStart(workInfo: workScheduler.WorkInfo) {
        console.info(`onWorkStart, workInfo = ${JSON.stringify(workInfo)}`);
+       // Print the parameter, for example, key1, in parameters.
+       // console.info(`work info parameters: ${JSON.parse(workInfo.parameters?.toString()).key1}`)
      }
    
      // Callback invoked when the system stops scheduling the deferred task.
