@@ -74,7 +74,7 @@ app.json5配置文件包含以下标签。
 | GWPAsanEnabled | 标识应用程序是否开启GWP-asan堆内存检测工具，用于对内存越界、内存释放后使用等内存破坏问题进行分析。<br/>-&nbsp;true：当前工程开启GWP-asan检测。<br/>-&nbsp;false：当前工程不开启GWP-asan检测。 | 布尔值 | 该标签可缺省, 缺省值为false。 |
 | [appEnvironments](#appenvironments标签) | 标识当前模块配置的应用环境变量。 | 对象数组 | 该标签可缺省，缺省值为空。 |
 | maxChildProcess | 标识当前应用自身可创建的子进程的最大个数，取值范围为0到512，0表示不限制，当应用有多个模块时，以entry模块的配置为准。 | 数值 | 该标签可缺省，缺省时使用系统配置的默认值。 |
-| [multiAppMode](#multiappmode标签) | 标识当前应用配置的多开模式。 | 对象 | 该标签可缺省，缺省值为空。 |
+| [multiAppMode](#multiappmode标签) | 标识当前应用配置的多开模式。仅bundleType为app的应用的entry或feature模块配置有效，存在多个模块时，以entry模块的配置为准。 | 对象 | 该标签可缺省，缺省值为空。 |
 
 ## appEnvironments标签
 

@@ -354,6 +354,7 @@ buffer数组的列表。
 | ocspResponses | Uint8Array | 否   | 表示用于OCSP服务器响应的备选数据。 |
 | crlDownloadURI | string | 否   | 表示用于CRL请求的备选下载地址。 |
 | options | Array\<[RevocationCheckOption](#revocationcheckoption12)> | 否   | 表示证书吊销状态查询的策略组合。 |
+| ocspDigest | string | 否   | 表示OCSP通信时创建证书ID使用的哈希算法。默认为SHA256，支持可配置MD5、SHA1、SHA224、SHA256、SHA384、SHA512算法。 |
 
 ## CertChainValidationParameters<sup>11+</sup>
 

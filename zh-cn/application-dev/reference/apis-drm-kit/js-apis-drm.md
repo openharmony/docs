@@ -1886,7 +1886,9 @@ import drm from '@ohos.multimedia.drm';
 
 function registerkeysChange(mediaKeysession: drm.MediaKeySession): void {
     mediaKeysession.on('keysChange', (keyInfo: drm.KeysInfo[], newKeyAvailable: boolean) => {
-        console.log('keysChange' + 'keyId:' + keyInfo.keyId + ' data:' + keyInfo.value);
+        for (let i = 0; i < keyInfo.length; i++) {
+            console.log('keysChange' + 'keyId:' + keyInfo[i].keyId + ' data:' + keyInfo[i].value);
+        }
     });
 }
 ```

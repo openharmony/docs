@@ -1,4 +1,4 @@
-# 图片编码native(C/C++)
+# 图片编码Native(C/C++)
 
 图像打包类，用于创建以及释放ImagePacker实例。
 
