@@ -190,7 +190,7 @@ setSessionId(sessionId: string, callback: AsyncCallback&lt;void&gt;): void
   | 15400001 | Create table failed. |
 
 **示例：**
-<!--code_no_check_fa-->
+
 ```ts
 // g_object加入分布式组网
 g_object.setSessionId(distributedObject.genSessionId(), ()=>{
@@ -229,7 +229,7 @@ setSessionId(callback: AsyncCallback&lt;void&gt;): void
   | 15400001 | Create table failed. |
 
 **示例：**
-<!--code_no_check_fa-->
+
 ```ts
 // g_object加入分布式组网
 g_object.setSessionId(distributedObject.genSessionId(), ()=>{
@@ -274,7 +274,7 @@ setSessionId(sessionId?: string): Promise&lt;void&gt;
   | 15400001 | Create table failed. |
 
 **示例：**
-<!--code_no_check_fa-->
+
 ```ts
 // g_object加入分布式组网
 g_object.setSessionId(distributedObject.genSessionId()).then (()=>{
@@ -314,7 +314,7 @@ on(type: 'change', callback: (sessionId: string, fields: Array&lt;string&gt;) =>
   | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
-<!--code_no_check_fa-->
+
 ```ts
 g_object.on("change", (sessionId: string, fields: Array<string>) => {
     console.info("change" + sessionId);
@@ -350,7 +350,7 @@ off(type: 'change', callback?: (sessionId: string, fields: Array&lt;string&gt;) 
   | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
-<!--code_no_check_fa-->
+
 ```ts
 // 删除数据变更回调changeCallback
 g_object.off("change", (sessionId: string, fields: Array<string>) => {
@@ -389,7 +389,7 @@ on(type: 'status', callback: (sessionId: string, networkId: string, status: 'onl
   | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
-<!--code_no_check_fa-->
+
 ```ts
 g_object.on("status", (sessionId: string, networkId: string, status: 'online' | 'offline') => {
     console.info("status changed " + sessionId + " " + status + " " + networkId);
@@ -420,7 +420,7 @@ off(type: 'status', callback?:(sessionId: string, networkId: string, status: 'on
   | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
-<!--code_no_check_fa-->
+
 ```ts
 // 删除上下线回调changeCallback
 g_object.off("status", (sessionId: string, networkId: string, status: 'online' | 'offline') => {
@@ -463,7 +463,7 @@ save(deviceId: string, callback: AsyncCallback&lt;SaveSuccessResponse&gt;): void
   | 801      | Capability not supported. |
 
 **示例：**
-<!--code_no_check_fa-->
+
 ```ts
 g_object.setSessionId("123456");
 g_object.save("local", (err: BusinessError, result:distributedObject.SaveSuccessResponse) => {
@@ -517,7 +517,7 @@ save(deviceId: string): Promise&lt;SaveSuccessResponse&gt;
   | 801      | Capability not supported. |
 
 **示例：**
-<!--code_no_check_fa-->
+
 ```ts
 g_object.setSessionId("123456");
 g_object.save("local").then((result: distributedObject.SaveSuccessResponse) => {
@@ -558,7 +558,7 @@ revokeSave(callback: AsyncCallback&lt;RevokeSaveSuccessResponse&gt;): void
   | 801      | Capability not supported. |
 
 **示例：**
-<!--code_no_check_fa-->
+
 ```ts
 g_object.setSessionId("123456");
 // 持久化数据
@@ -611,7 +611,7 @@ revokeSave(): Promise&lt;RevokeSaveSuccessResponse&gt;
   | 801      | Capability not supported. |
 
 **示例：**
-<!--code_no_check_fa-->
+
 ```ts
 g_object.setSessionId("123456");
 // 持久化数据
