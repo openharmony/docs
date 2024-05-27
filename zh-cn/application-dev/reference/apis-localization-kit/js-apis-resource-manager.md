@@ -47,8 +47,8 @@ getResourceManager(callback: AsyncCallback&lt;ResourceManager&gt;): void
 | callback | AsyncCallback&lt;[ResourceManager](#resourcemanager)&gt; | 是    |返回资源管理ResourceManager对象。 |
 
 **示例：** 
-  ```js
   <!--code_no_check_fa-->
+  ```js
   resourceManager.getResourceManager((error, mgr) => {
     if (error != null) {
       console.error("error is " + error);
@@ -82,9 +82,8 @@ getResourceManager(bundleName: string, callback: AsyncCallback&lt;ResourceManage
 | callback   | AsyncCallback&lt;[ResourceManager](#resourcemanager)&gt; | 是    | 返回资源管理ResourceManager对象。 |
 
 **示例：** 
-
-  ```js
   <!--code_no_check_fa-->
+  ```js
   resourceManager.getResourceManager("com.example.myapplication", (error, mgr) => {
   });
   ```
@@ -106,8 +105,8 @@ getResourceManager(): Promise&lt;ResourceManager&gt;
 | Promise&lt;[ResourceManager](#resourcemanager)&gt; | 返回资源管理ResourceManager对象。 |
 
 **示例：** 
-  ```js
   <!--code_no_check_fa-->
+  ```js
   import resourceManager from '@ohos.resourceManager';
   import { BusinessError } from '@ohos.base';
 
@@ -147,8 +146,8 @@ getResourceManager(bundleName: string): Promise&lt;ResourceManager&gt;
 | Promise&lt;[ResourceManager](#resourcemanager)&gt; | 返回资源管理ResourceManager对象。 |
 
 **示例：** 
-  ```js
   <!--code_no_check_fa-->
+  ```js
   import resourceManager from '@ohos.resourceManager';
   import { BusinessError } from '@ohos.base';
 
