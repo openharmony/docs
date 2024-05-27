@@ -227,9 +227,9 @@ on(type: 'locatingRequiredDataChange', config: LocatingRequiredDataConfig, callb
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-|201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
-|801 | Capability not supported.          |
+|201 | Permission verification failed. The application does not have the permission required to call the API.                 |
+|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
+|801 | Capability not supported. Failed to call ${geoLocationManager.on('locatingRequiredDataChange')} due to limited device capabilities.          |
 |3301800 | Failed to start WiFi or Bluetooth scanning.                            |
 
 **示例**
@@ -274,9 +274,9 @@ off(type: 'locatingRequiredDataChange', callback?: Callback&lt;Array&lt;Locating
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-|201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
-|801 | Capability not supported.          |
+|201 | Permission verification failed. The application does not have the permission required to call the API.                 |
+|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
+|801 | Capability not supported. Failed to call ${geoLocationManager.off('locatingRequiredDataChange')} due to limited device capabilities.          |
 
 **示例**
 
@@ -319,10 +319,10 @@ enableLocation(callback: AsyncCallback&lt;void&gt;): void;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-|201 | Permission denied.                 |
-|202 | System API is not allowed called by third HAP. |
-|401 | Parameter error.                 |
-|801 | Capability not supported.          |
+|201 | Permission verification failed. The application does not have the permission required to call the API.                 |
+|202 | Permission verification failed. A non-system application calls a system API. |
+|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
+|801 | Capability not supported. Failed to call ${geoLocationManager.enableLocation} due to limited device capabilities.          |
 |3301000 | The location service is unavailable.                                              |
 
 **示例**
@@ -366,9 +366,9 @@ enableLocation(): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-|201 | Permission denied.                 |
-|202 | System API is not allowed called by third HAP. |
-|801 | Capability not supported.          |
+|201 | Permission verification failed. The application does not have the permission required to call the API.                 |
+|202 | Permission verification failed. A non-system application calls a system API. |
+|801 | Capability not supported. Failed to call ${geoLocationManager.enableLocation} due to limited device capabilities.          |
 |3301000 | The location service is unavailable.                                            |
 
 **示例**
@@ -406,9 +406,9 @@ disableLocation(): void;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-|201 | Permission denied.                 |
-|202 | System API is not allowed called by third HAP. |
-|801 | Capability not supported.          |
+|201 | Permission verification failed. The application does not have the permission required to call the API.                 |
+|202 | Permission verification failed. A non-system application calls a system API. |
+|801 | Capability not supported. Failed to call ${geoLocationManager.disableLocation} due to limited device capabilities.          |
 |3301000 | The location service is unavailable.                                            |
 
 **示例**
@@ -438,8 +438,8 @@ enableLocationMock(): void;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-|202 | System API is not allowed called by third HAP. |
-|801 | Capability not supported.          |
+|202 | Permission verification failed. A non-system application calls a system API. |
+|801 | Capability not supported. Failed to call ${geoLocationManager.enableLocationMock} due to limited device capabilities.          |
 |3301000 | The location service is unavailable.                                            |
 |3301100 | The location switch is off.|
 
@@ -471,8 +471,8 @@ disableLocationMock(): void;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-|202 | System API is not allowed called by third HAP. |
-|801 | Capability not supported.          |
+|202 | Permission verification failed. A non-system application calls a system API. |
+|801 | Capability not supported. Failed to call ${geoLocationManager.disableLocationMock} due to limited device capabilities.          |
 |3301000 | The location service is unavailable.                                            |
 |3301100 | The location switch is off.|
 
@@ -512,8 +512,8 @@ setMockedLocations(config: LocationMockConfig): void;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-|401 | Parameter error.                 |
-|801 | Capability not supported.          |
+|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
+|801 | Capability not supported. Failed to call ${geoLocationManager.setMockedLocations} due to limited device capabilities.          |
 |3301000 | The location service is unavailable.                                            |
 |3301100 | The location switch is off.|
 
@@ -554,8 +554,8 @@ enableReverseGeocodingMock(): void;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-|202 | System API is not allowed called by third HAP. |
-|801 | Capability not supported.          |
+|202 | Permission verification failed. A non-system application calls a system API. |
+|801 | Capability not supported. Failed to call ${geoLocationManager.enableReverseGeocodingMock} due to limited device capabilities.          |
 |3301000 | The location service is unavailable.                                            |
 
 **示例**
@@ -586,8 +586,8 @@ disableReverseGeocodingMock(): void;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-|202 | System API is not allowed called by third HAP. |
-|801 | Capability not supported.          |
+|202 | Permission verification failed. A non-system application calls a system API. |
+|801 | Capability not supported. Failed to call ${geoLocationManager.disableReverseGeocodingMock} due to limited device capabilities.          |
 |3301000 | The location service is unavailable.                                            |
 
 **示例**
@@ -626,9 +626,9 @@ setReverseGeocodingMockInfo(mockInfos: Array&lt;ReverseGeocodingMockInfo&gt;): v
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-|202 | System API is not allowed called by third HAP. |
-|401 | Parameter error.                 |
-|801 | Capability not supported.          |
+|202 | Permission verification failed. A non-system application calls a system API. |
+|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
+|801 | Capability not supported. Failed to call ${geoLocationManager.setReverseGeocodingMockInfo} due to limited device capabilities.          |
 |3301000 | The location service is unavailable.                                            |
 
 **示例**
@@ -679,9 +679,9 @@ isLocationPrivacyConfirmed(type: LocationPrivacyType): boolean;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-|202 | System API is not allowed called by third HAP. |
-|401 | Parameter error.                 |
-|801 | Capability not supported.          |
+|202 | Permission verification failed. A non-system application calls a system API. |
+|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
+|801 | Capability not supported. Failed to call ${geoLocationManager.isLocationPrivacyConfirmed} due to limited device capabilities.          |
 |3301000 | The location service is unavailable.                                            |
 
 **示例**
@@ -721,10 +721,10 @@ setLocationPrivacyConfirmStatus(type: LocationPrivacyType, isConfirmed: boolean)
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-|201 | Permission denied.                 |
-|202 | System API is not allowed called by third HAP. |
-|401 | Parameter error.                 |
-|801 | Capability not supported.          |
+|201 | Permission verification failed. The application does not have the permission required to call the API.                 |
+|202 | Permission verification failed. A non-system application calls a system API. |
+|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
+|801 | Capability not supported. Failed to call ${geoLocationManager.setLocationPrivacyConfirmStatus} due to limited device capabilities.          |
 |3301000 | The location service is unavailable.                                            |
 
 **示例**
@@ -769,9 +769,9 @@ getLocatingRequiredData(config: LocatingRequiredDataConfig): Promise&lt;Array&lt
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-|201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
-|801 | Capability not supported.          |
+|201 | Permission verification failed. The application does not have the permission required to call the API.                 |
+|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
+|801 | Capability not supported. Failed to call ${geoLocationManager.getLocatingRequiredData} due to limited device capabilities.          |
 |3301800  | Failed to start WiFi or Bluetooth scanning.                    |
 
 **示例**
@@ -816,8 +816,8 @@ on(type: 'locationIconStatusChange', callback: Callback&lt;LocationIconStatus&gt
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-|401 | Parameter error.                 |
-|801 | Capability not supported.          |
+|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
+|801 | Capability not supported. Failed to call ${geoLocationManager.on('locationIconStatusChange')} due to limited device capabilities.          |
 |3301000 | The location service is unavailable.                        |
 
 **示例**
@@ -858,8 +858,8 @@ off(type: 'locationIconStatusChange', callback?: Callback&lt;LocationIconStatus&
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-|401 | Parameter error.                 |
-|801 | Capability not supported.          |
+|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.                 |
+|801 | Capability not supported. Failed to call ${geoLocationManager.off('locationIconStatusChange')} due to limited device capabilities.          |
 |3301000 | The location service is unavailable.        |
 
 **示例**
@@ -900,7 +900,7 @@ getLocationIconStatus(): LocationIconStatus;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-|801 | Capability not supported.          |
+|801 | Capability not supported. Failed to call ${geoLocationManager.getLocationIconStatus} due to limited device capabilities.          |
 |3301000  | The location service is unavailable.                  |
 
 **示例**

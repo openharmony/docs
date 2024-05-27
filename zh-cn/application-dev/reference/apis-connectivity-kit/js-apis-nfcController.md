@@ -80,6 +80,8 @@ enableNfc(): void
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 | 3100101 | NFC state is abnormal in service. |
 
 ## controller.closeNfc<sup>(deprecated)</sup>
@@ -117,6 +119,8 @@ disableNfc(): void
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 | 3100101 | NFC state is abnormal in service. |
 
 ## controller.isNfcOpen
