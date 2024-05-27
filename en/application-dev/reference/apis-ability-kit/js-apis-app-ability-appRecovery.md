@@ -100,7 +100,7 @@ In API version 10, the ability specified by [setRestartWant](#apprecoverysetrest
 - If multiple abilities that support recovery is running in the foreground, only the last ability is started.
 - If no ability is running in the foreground, none of them is started.
 
-This API can be used together with the APIs of [errorManager](js-apis-app-ability-errorManager.md).
+This API can be used together with the APIs of [errorManager](js-apis-app-ability-errorManager.md). The interval between two restarts must be greater than one minute. If this API is called repeatedly within one minute, the application exits but does not restart. The behavior of automatic restart is the same as that of proactive restart.
 
 **Model restriction**: This API can be used only in the stage model.
 
