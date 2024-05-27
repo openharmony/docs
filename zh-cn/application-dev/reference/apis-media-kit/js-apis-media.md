@@ -3467,6 +3467,9 @@ on(type: 'error', callback: ErrorCallback): void
 
 | 错误码ID | 错误信息                                   |
 | -------- | ------------------------------------------ |
+| 201      | Permission denied.     |
+| 401      | The Parameter check faild. |
+| 801      | Capability not supported. |
 | 5400101  | No memory. Return by callback.             |
 | 5400102  | Operation not allowed. Return by callback. |
 | 5400103  | I/O error. Return by callback.             |
