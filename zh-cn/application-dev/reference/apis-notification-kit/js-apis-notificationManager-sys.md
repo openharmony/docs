@@ -30,7 +30,7 @@ publish(request: NotificationRequest, userId: number, callback: AsyncCallback\<v
 
 | 参数名     | 类型                                        | 必填 | 说明                                        |
 | -------- | ----------------------------------------- | ---- | ------------------------------------------- |
-| request  | [NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest) | 是   | 用于设置要发布通知的内容和相关配置信息。 |
+| request  | [NotificationRequest](js-apis-inner-notification-notificationRequest-sys.md#notificationrequest) | 是   | 用于设置要发布通知的内容和相关配置信息。 |
 | userId   | number                                      | 是   | 用户ID。                           |
 | callback | AsyncCallback\<void\>                       | 是   | 被指定的回调方法。                           |
 
@@ -103,7 +103,7 @@ publish(request: NotificationRequest, userId: number): Promise\<void\>
 
 | 参数名     |  类型                                        | 必填 | 说明                                        |
 | -------- | ----------------------------------------- | ---- | ------------------------------------------- |
-| request  | [NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest) | 是   | 用于设置要发布通知的内容和相关配置信息。 |
+| request  | [NotificationRequest](js-apis-inner-notification-notificationRequest-sys.md#notificationrequest) | 是   | 用于设置要发布通知的内容和相关配置信息。 |
 | userId   | number                                      | 是   | 用户ID。                           |
 
 **返回值：**
@@ -1403,7 +1403,7 @@ getAllActiveNotifications(callback: AsyncCallback\<Array\<NotificationRequest>>)
 
 | 参数名     | 类型                                                         | 必填 | 说明                 |
 | -------- | ------------------------------------------------------------ | ---- | -------------------- |
-| callback | AsyncCallback\<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest)>> | 是   | 获取活动通知回调函数。 |
+| callback | AsyncCallback\<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest-sys.md#notificationrequest)>> | 是   | 获取活动通知回调函数。 |
 
 **错误码：**
 
@@ -1436,7 +1436,7 @@ notificationManager.getAllActiveNotifications(getAllActiveNotificationsCallback)
 
 ## notificationManager.getAllActiveNotifications
 
-getAllActiveNotifications(): Promise\<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest)\>\>
+getAllActiveNotifications(): Promise\<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest-sys.md#notificationrequest)\>\>
 
 获取当前未删除的所有通知。使用Promise异步回调。
 
@@ -1450,7 +1450,7 @@ getAllActiveNotifications(): Promise\<Array\<[NotificationRequest](js-apis-inner
 
 | 类型                                                        | 说明                                                         |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest)\>\> | 以Promise形式返回获取活动通知。 |
+| Promise\<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest-sys.md#notificationrequest)\>\> | 以Promise形式返回获取活动通知。 |
 
 **错误码：**
 
@@ -1495,7 +1495,7 @@ getActiveNotificationByFilter(filter: NotificationFilter, callback: AsyncCallbac
 | 参数名     | 类型                                                         | 必填 | 说明                           |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------ |
 | filter   | [NotificationFilter](js-apis-inner-notification-notificationRequest-sys.md#notificationfilter11) | 是   | 查询普通实况窗的过滤条件。 |
-| callback | AsyncCallback\<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest)>> | 是   | 获取满足条件的普通实况通知信息的回调函数。 |
+| callback | AsyncCallback\<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest-sys.md#notificationrequest)>> | 是   | 获取满足条件的普通实况通知信息的回调函数。 |
 
 **错误码：**
 
@@ -1558,7 +1558,7 @@ getActiveNotificationByFilter(filter: NotificationFilter): Promise\<Notification
 
 | 类型                                                         | 说明                                    |
 | ------------------------------------------------------------ | --------------------------------------- |
-| Promise\<[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest)\> | 以Promise形式返回获取的满足条件的普通实况通知信息。 |
+| Promise\<[NotificationRequest](js-apis-inner-notification-notificationRequest-sys.md#notificationrequest)\> | 以Promise形式返回获取的满足条件的普通实况通知信息。 |
 
 **错误码：**
 
@@ -2648,7 +2648,7 @@ publishAsBundle(request: NotificationRequest, representativeBundle: string, user
 
 | 参数名               | 类型                                        | 必填 | 说明                                     |
 | -------------------- | ------------------------------------------- | ---- | ---------------------------------------- |
-| request              | [NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest) | 是   | 用于设置要发布通知的内容和相关配置信息。 |
+| request              | [NotificationRequest](js-apis-inner-notification-notificationRequest-sys.md#notificationrequest) | 是   | 用于设置要发布通知的内容和相关配置信息。 |
 | representativeBundle | string                                      | 是   | 被代理应用的包名。                       |
 | userId               | number                                      | 是   | 用户ID。                                 |
 | callback             | AsyncCallback\<void\>                        | 是   | 发布代理通知的回调方法。                 |
@@ -2720,7 +2720,7 @@ publishAsBundle(request: NotificationRequest, representativeBundle: string, user
 
 | 参数名               | 类型                                        | 必填 | 说明                                          |
 | -------------------- | ------------------------------------------- | ---- | --------------------------------------------- |
-| request              | [NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest) | 是   | 用于设置要发布通知的内容和相关配置信息。 |
+| request              | [NotificationRequest](js-apis-inner-notification-notificationRequest-sys.md#notificationrequest) | 是   | 用于设置要发布通知的内容和相关配置信息。 |
 | representativeBundle | string                                      | 是   | 被代理应用的包名。                            |
 | userId               | number                                      | 是   | 用户ID。                            |
 
@@ -2794,7 +2794,7 @@ publishAsBundle(representativeBundle: BundleOption, request: NotificationRequest
 | 参数名               | 类型                                        | 必填 | 说明                                          |
 |----------------------|--------------------------------------------|------|-----------------------------------------------|
 | representativeBundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)  | 是   | 被代理应用的包信息。                            |
-| request              | [NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest) | 是   | 用于设置要发布通知的内容和相关配置信息。 |
+| request              | [NotificationRequest](js-apis-inner-notification-notificationRequest-sys.md#notificationrequest) | 是   | 用于设置要发布通知的内容和相关配置信息。 |
 
 **返回值：**
 
@@ -4442,7 +4442,7 @@ setAdditionalConfig(key: string, value: string): Promise\<number\>
 
 | 参数名   | 类型             | 必填 | 说明           |
 | ------ | ---------------- | ---- | -------------- |
-| key   | string | 是  | 附加配置键。目前仅支持`RING_TRUSTLIST_PKG`，表示应用支持使用[自定义铃声](./js-apis-inner-notification-notificationRequest.md#notificationrequest-1)。 |
+| key   | string | 是  | 附加配置键。目前仅支持`RING_TRUSTLIST_PKG`，表示应用支持使用[自定义铃声](./js-apis-inner-notification-notificationRequest-sys.md#notificationrequest-1)。 |
 | value   | string | 是  | 附加配置值。参数示例：[bundleName1,bundleName2]。 |
 
 **返回值：**
