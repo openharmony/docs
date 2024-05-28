@@ -20,6 +20,7 @@ import StartOptions from '@ohos.app.ability.StartOptions';
 
 | 名称 | 类型 | 只读 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
+| windowMode<sup>12+<sup> | number | 否 | 否 | 启动Ability时的窗口模式，详见[WindowMode](./js-apis-app-ability-abilityConstant.md#abilityconstantwindowmode12)。 |
 | displayId | number | 否 | 否 | 屏幕ID模式。默认是0，表示当前屏幕。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 | withAnimation<sup>11+</sup> | boolean | 否 | 否 | Ability是否具有动画效果。 |
 | windowLeft<sup>11+</sup> | number | 否 | 否 | 窗口左边的位置。 |
