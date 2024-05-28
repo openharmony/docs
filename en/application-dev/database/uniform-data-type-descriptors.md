@@ -5,7 +5,7 @@
 
 The Uniform Type Descriptor (UTD) module resolves data type ambiguity in the system, that is, the same data type described in different ways, such as the MIME type and file name extension. For example, the JPG/JPEG image can be represented by image/jpeg, .jpg, .jpeg, or image/picture.
 
-When these types of data is transmitted across applications or devices, the target application or device may fail to identify the data or can process the data after lots of adaptation.
+When data of these types is transmitted across applications or devices, the target application or device may fail to identify the data or can process the data after lots of adaptation.
 
 The uniform data types can be classified into [predefined uniform data types](#predefined-uniform-data-types) and [custom uniform data types](#custom-uniform-data-types). In addition, conversion between uniform data types are supported. For example, the file name extension and MIME type can be converted into uniform data types.
 
@@ -45,11 +45,11 @@ However, not all data formats have two dimensions. For example, **general.calend
 
 A Uniform Type Descriptor (UTD) consists of the following fields:
 
-+ **typeId**: unique ID of the data type.
-+ **belongingToTypes**: types to which the data type belongs. A data type can belong to multiple types.
-+ **description**: brief description of the data type.
-+ **referenceURL**: URL of the data type reference, which provides detailed information about the data type.
-+ **iconFile**: path of the default icon file for the data type. If the data type has no default icon, it is an empty string. The application can determine whether to use the default icon.
++ **TypeId**: unique ID of the data type.
++ **BelongingToTypes**: types to which the data type belongs. A data type can belong to multiple types.
++ **Description**: brief description of the data type.
++ **ReferenceURL**: URL of the data type reference, which provides detailed information about the data type.
++ **IconFile**: path of the default icon file for the data type. If the data type has no default icon, it is an empty string. The application can determine whether to use the default icon.
 
 ## Predefined Uniform Data Types
 
@@ -74,53 +74,53 @@ custom uniform data types can be read. The custom uniform data types of other ap
 
 The fields of a custom UTD must comply with the following requirements:
 
-+ **typeId**: ID of the custom uniform data type to define. The value must be unique and consist of the application bundle name and data type name. It cannot be left blank. The value can contain digits, uppercase and lowercase letters, hyphens (-), and periods (.).
++ **TypeId**: ID of the custom uniform data type to define. The value must be unique and consist of the application bundle name and data type name. It cannot be left blank. The value can contain digits, uppercase and lowercase letters, hyphens (-), and periods (.).
 
-+ **belongingToTypes**: types to which this data type belongs. Multiple types are allowed, but the types specified must be existing
++ **BelongingToTypes**: types to which this data type belongs. Multiple types are allowed, but the types specified must be existing
   predefined or custom uniform data types. The value cannot be empty or the custom uniform data type itself, or form a ring dependency structure with the existing uniform data types or newly added custom uniform data types.
 
 + **FilenameExtensions**: file name extensions associated with the custom uniform data type. It can be left blank. One or more file name extensions are allowed. Each file name extension starts with a period (.) and cannot exceed 127 characters.
 
-+ **mimeTypes**: web message data types associated with the custom uniform data type. It can be left blank. One or more MIME types are allowed. Each MIME type cannot exceed 127 characters.
++ **MIMETypes**: web message data types associated with the custom uniform data type. It can be left blank. One or more MIME types are allowed. Each MIME type cannot exceed 127 characters.
 
-+ **description**: description of the custom uniform data type. The value cannot exceed 255 characters. It can be left blank.
++ **Description**: description of the custom uniform data type. The value cannot exceed 255 characters. It can be left blank.
 
-+ **referenceURL**: URL of the data type reference, which provides detailed information about the data type. The value cannot exceed 255 characters. It can be left blank.
++ **ReferenceURL**: URL of the data type reference, which provides detailed information about the data type. The value cannot exceed 255 characters. It can be left blank.
 
 
 ### How to Develop
 
 The following walks you through on who to define a custom uniform data type for media files.
 
-1. Create the **utd.json5** file in the **entry\src\main\resources\rawfile\arkdata\utd\** directory of the application, for example, application A.
+1. Create the **utd.json5** file in the **entry\src\main\resources\rawfile\arkdata\utd\** directory of your application, for example, application A.
 
 2. Add a custom uniform data type in the **utd.json5** file.
    ```json
    {
         "UniformDataTypeDeclarations": [
             {
-                "typeId": "com.example.myFirstHap.image",
-                "belongingToTypes": ["general.image"],
+                "TypeId": "com.example.myFirstHap.image",
+                "BelongingToTypes": ["general.image"],
                 "FilenameExtensions": [".myImage", ".khImage"],
-                "mimeTypes": ["application/myImage", "application/khImage"],
-                "description": "My Image.",
-                "referenceURL": ""
+                "MIMETypes": ["application/myImage", "application/khImage"],
+                "Description": "My Image.",
+                "ReferenceURL": ""
             },
             {
-                "typeId": "com.example.myFirstHap.audio",
-                "belongingToTypes": ["general.audio"],
+                "TypeId": "com.example.myFirstHap.audio",
+                "BelongingToTypes": ["general.audio"],
                 "FilenameExtensions": [".myAudio", ".khAudio"],
-                "mimeTypes": ["application/myAudio", "application/khAudio"],
-                "description": "My audio.",
-                "referenceURL": ""
+                "MIMETypes": ["application/myAudio", "application/khAudio"],
+                "Description": "My audio.",
+                "ReferenceURL": ""
             },
             {
-                "typeId": "com.example.myFirstHap.video",
-                "belongingToTypes": ["general.video"],
+                "TypeId": "com.example.myFirstHap.video",
+                "BelongingToTypes": ["general.video"],
                 "FilenameExtensions": [".myVideo", ".khVideo"],
-                "mimeTypes": ["application/myVideo", "application/khVideo"],
-                "description": "My video.",
-                "referenceURL": ""
+                "MIMETypes": ["application/myVideo", "application/khVideo"],
+                "Description": "My video.",
+                "ReferenceURL": ""
             }
         ]
    }
@@ -134,29 +134,29 @@ The following walks you through on who to define a custom uniform data type for 
    {
        "ReferenceUniformDataTypeDeclarations": [
             {
-                "typeId": "com.example.myFirstHap.image",
-                "belongingToTypes": ["general.image"],
+                "TypeId": "com.example.myFirstHap.image",
+                "BelongingToTypes": ["general.image"],
                 "FilenameExtensions": [".myImage", ".khImage"],
-                "mimeTypes": ["application/myImage", "application/khImage"],
-                "description": "My Image.",
-                "referenceURL": ""
+                "MIMETypes": ["application/myImage", "application/khImage"],
+                "Description": "My Image.",
+                "ReferenceURL": ""
             }
        ]
    }
    ```
 
-4. Add custom uniform data types based on the referenced custom uniform data types for application B. Configuration in **utd.json5** file:
+4. You can also create the **utd.json5** template for other applications in DevEco Studio, reference the custom data types of the current application in the template, and customize the data types as required. DevEco Studio verifies the formats of the fields in the **utd.json5** file. The following is an example of the **utd.json5** file.
 
    ```json
    {
        "UniformDataTypeDeclarations": [
            {
-               "typeId": "com.example.mySecondHap.image",
-               "belongingToTypes": ["com.example.myFirstHap.image"],
+               "TypeId": "com.example.mySecondHap.image",
+               "BelongingToTypes": ["com.example.myFirstHap.image"],
                "FilenameExtensions": [".myImageEx", ".khImageEx"],
-               "mimeTypes": ["application/my-ImageEx", "application/khImageEx"],
-               "description": "My Image extension.",
-               "referenceURL": ""
+               "MIMETypes": ["application/my-ImageEx", "application/khImageEx"],
+               "Description": "My Image extension.",
+               "ReferenceURL": ""
            }
        ]
    }
@@ -168,7 +168,7 @@ The following table describes the commonly used APIs, which are applicable to bo
 
 | API                                                    | Description                                                        |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| UniformDataType                                              | Enumerates OpenHarmony uniform data types. The enums are not provided here.|
+| UniformDataType                                              | Enumerates the uniform data types. The enums are not provided here.|
 | belongsTo(type: string): boolean                             | Checks whether this data type belongs to the specified data type.      |
 | isLowerLevelType(type: string): boolean                      | Checks whether this data type is a lower-level type of the specified data type.|
 | isHigherLevelType(type: string): boolean                     | Checks whether this data type is a higher-level type of the specified data type.|
@@ -226,3 +226,4 @@ try {
   console.error('err message:' + err.message + ', err code:' + err.code);
 }
 ```
+

@@ -25,23 +25,23 @@ The unified data object (**UnifiedData**) is uniquely identified by a URI in the
 
 Currently, the UDMF provides the public data channel for cross-application data sharing.
 
-**Public data channel**: allows applications to write and read data. The corresponding **intention** is **DATA_HUB**.
+The public data channel is a data channel shared by applications. All applications can write data to the channel. The data provider can update, delete, and query data based on the unique identifier generated when the data is written. The data consumer can read only the full data in the public data channel. The intention type of the public data channel is **DATA_HUB**.
 
 ## Available APIs
 
 The following table lists the UDMF APIs. All of them are executed asynchronously in callback or promise mode. In the following table, callback-based APIs are used as an example. For details about more APIs and their usage, see [Unified Data Channel](../reference/apis-arkdata/js-apis-data-unifiedDataChannel.md) and [Standard Data Definition and Description](../reference/apis-arkdata/js-apis-data-uniformTypeDescriptor.md).
 
-| API                                                                                   | Description                                         | 
+| API                                                                                   | Description                                         |
 |-----------------------------------------------------------------------------------------|---------------------------------------------|
-| insertData(options: Options, data: UnifiedData, callback: AsyncCallback\<string>): void | Inserts data to the UDMF public data channel. A unique data identifier is returned.| 
-| updateData(options: Options, data: UnifiedData, callback: AsyncCallback\<void>): void   | Updates the data in the UDMF public data channel.          | 
-| queryData(options: Options, callback: AsyncCallback\<Array\<UnifiedData>>): void        | Queries data in the UDMF public data channel.              | 
+| insertData(options: Options, data: UnifiedData, callback: AsyncCallback\<string>): void | Inserts data to the UDMF public data channel. A unique data identifier is returned.|
+| updateData(options: Options, data: UnifiedData, callback: AsyncCallback\<void>): void   | Updates the data in the UDMF public data channel.          |
+| queryData(options: Options, callback: AsyncCallback\<Array\<UnifiedData>>): void        | Queries data in the UDMF public data channel.              |
 | deleteData(options: Options, callback: AsyncCallback\<Array\<UnifiedData>>): void       | Deletes data from the UDMF public data channel. The deleted data set is returned.|
 
 
 ## How to Develop
 
-The following example describes how to implement many-to-many data sharing. The data provider writes data to the UMDF public data channel, and updates and deletes the data. The data consumer obtains the data shared by the data provider.
+The following example describes how to implement many-to-many data sharing. The data provider calls **insertData()** provided by the UMDF to write data to the public data channel. The return value (unique identifier of the data written) can be used to update or delete the data. The data consumer uses the query() APIs provided by the UDMF to obtain full data in the public data channel.
 
 ### Data Provider
 
@@ -142,7 +142,7 @@ The following example describes how to implement many-to-many data sharing. The 
    import unifiedDataChannel from '@ohos.data.unifiedDataChannel';
    import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
    ```
-2. Query the **UnifiedData** object in the UDMF public data channel.
+2. Query the full data in the UDMF public data channel.
 
    ```ts
    import { BusinessError } from '@ohos.base';

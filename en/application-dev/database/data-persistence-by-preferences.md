@@ -33,7 +33,7 @@ The following table lists the APIs used for persisting user preference data. For
 | API                                                    | Description                                                        |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | getPreferencesSync(context: Context, options: Options): Preferences | Obtains a **Preferences** instance. This API returns the result synchronously.<br/> An asynchronous API is also provided.                   |
-| putSync(key: string, value: ValueType): void                 | Writes data to the **Preferences** instance. This API returns the result synchronously. An asynchronous API is also provided.<br/>You can use **flush()** to persist the **Preferences** instance data. |
+| putSync(key: string, value: ValueType): void                 | Writes data to the **Preferences** instance. This API returns the result synchronously. An asynchronous API is also provided.<br/>You can use **flush()** to persist the **Preferences** instance data.|
 | hasSync(key: string): void                                   | Checks whether the **Preferences** instance contains a KV pair with the given key. The key cannot be empty. This API returns the result synchronously.<br/> An asynchronous API is also provided.|
 | getSync(key: string, defValue: ValueType): void              | Obtains the value of the specified key. If the value is null or not of the default value type, **defValue** is returned. This API returns the result synchronously.<br/> An asynchronous API is also provided.|
 | deleteSync(key: string): void                                | Deletes a KV pair from the **Preferences** instance. This API returns the result synchronously.<br/> An asynchronous API is also provided.|
@@ -54,22 +54,22 @@ The following table lists the APIs used for persisting user preference data. For
 2. Obtain a **Preferences** instance.
 
    Stage model:
-
-
-   ```ts
-   import UIAbility from '@ohos.app.ability.UIAbility';
-   import { BusinessError } from '@ohos.base';
-   import window from '@ohos.window';
-
-   let preferences: dataPreferences.Preferences | null = null;
-
-   class EntryAbility extends UIAbility {
-     onWindowStageCreate(windowStage: window.WindowStage) {
-       let options: dataPreferences.Options = { name: 'myStore' };
-       preferences = dataPreferences.getPreferencesSync(this.context, options);
-     }
-   }
-   ```
+   
+   
+      ```ts
+      import UIAbility from '@ohos.app.ability.UIAbility';
+      import { BusinessError } from '@ohos.base';
+      import window from '@ohos.window';
+   
+      let preferences: dataPreferences.Preferences | null = null;
+   
+      class EntryAbility extends UIAbility {
+        onWindowStageCreate(windowStage: window.WindowStage) {
+          let options: dataPreferences.Options = { name: 'myStore' };
+          preferences = dataPreferences.getPreferencesSync(this.context, options);
+        }
+      }
+      ```
 
    FA model:
 
@@ -90,7 +90,7 @@ The following table lists the APIs used for persisting user preference data. For
 
    > **NOTE**
    >
-   > If the specified key already exists, the **putSync()** method changes the value. You can use **hasSync()** to check whether the KV pair exists.
+   > If the key already exists, **putSync()** overwrites the value. You can use **hasSync()** to check whether the KV pair exists.
 
    Example:
 
@@ -199,3 +199,4 @@ The following table lists the APIs used for persisting user preference data. For
        console.info('Succeeded in deleting preferences.');
    })
    ```
+
