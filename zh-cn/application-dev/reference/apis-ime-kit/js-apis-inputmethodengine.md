@@ -764,7 +764,7 @@ createPanel(ctx: BaseContext, info: PanelInfo, callback: AsyncCallback\<Panel>):
 
 | 错误码ID   | 错误信息                       |
 | ---------- | ----------------------------- |
-| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types.           |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800004   | not an input method extension. |
 
 **示例：**
@@ -814,7 +814,7 @@ createPanel(ctx: BaseContext, info: PanelInfo): Promise\<Panel>
 
 | 错误码ID   | 错误信息                       |
 | ---------- | ----------------------------- |
-| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types.           |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800004   | not an input method extension. |
 
 **示例：**
@@ -851,11 +851,11 @@ destroyPanel(panel: Panel, callback: AsyncCallback\<void>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                |
 | -------- | ------------------------------------------------------- |
-| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 
 **示例：**
 
@@ -916,11 +916,11 @@ destroyPanel(panel: Panel): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                |
 | -------- | ------------------------------------------------------- |
-| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 
 **示例：**
 
@@ -1331,11 +1331,11 @@ setUiContent(path: string, callback: AsyncCallback\<void>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                |
 | -------- | ------------------------------------------------------- |
-| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 
 **示例：**
 
@@ -1377,11 +1377,11 @@ setUiContent(path: string): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                |
 | -------- | ------------------------------------------------------- |
-| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 
 **示例：**
 
@@ -1417,11 +1417,11 @@ setUiContent(path: string, storage: LocalStorage, callback: AsyncCallback\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                |
 | -------- | ------------------------------------------------------- |
-| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 
 **示例：**
 
@@ -1466,11 +1466,11 @@ setUiContent(path: string, storage: LocalStorage): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                |
 | -------- | ------------------------------------------------------- |
-| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 
 **示例：**
 
@@ -1512,11 +1512,11 @@ resize(width: number, height: number, callback: AsyncCallback\<void>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                |
 | -------- | ------------------------------------------------------- |
-| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 
 **示例：**
 
@@ -1563,11 +1563,11 @@ resize(width: number, height: number): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                |
 | -------- | ------------------------------------------------------- |
-| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 
 **示例：**
 
@@ -1603,11 +1603,11 @@ moveTo(x: number, y: number, callback: AsyncCallback\<void>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                |
 | -------- | ------------------------------------------------------- |
-| 401          |  1.Mandatory parameters are left unspecified; 2.Incorrect parameter types.  |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 
 **示例：**
 
@@ -1650,11 +1650,11 @@ moveTo(x: number, y: number): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                |
 | -------- | ------------------------------------------------------- |
-| 401          |  1.Mandatory parameters are left unspecified; 2.Incorrect parameter types.  |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 
 **示例：**
 
@@ -1924,11 +1924,11 @@ off(type: 'show', callback?: () => void): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                |
 | -------- | ------------------------------------------------------- |
-| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 
 **示例：**
 
@@ -1957,11 +1957,11 @@ off(type: 'hide', callback?: () => void): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                |
 | -------- | ------------------------------------------------------- |
-| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 
 **示例：**
 
@@ -2017,11 +2017,11 @@ changeFlag(flag: PanelFlag): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                |
 | -------- | ------------------------------------------------------- |
-| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 
 **示例：**
 
@@ -2052,11 +2052,12 @@ setPrivacyMode(isPrivacyMode: boolean): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                |
 | -------- | ------------------------------------------------------- |
-| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types.  |
+| 201      | permissions check fails.  |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 
 **示例：**
 
@@ -2356,11 +2357,11 @@ sendKeyFunction(action:number, callback: AsyncCallback&lt;boolean&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
-| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types         |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800003 | input method client error. |
 
  **示例：**
@@ -2408,11 +2409,11 @@ sendKeyFunction(action: number): Promise&lt;boolean&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
-| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types          |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800003 | input method client error. |
 
 **示例：**
@@ -2453,11 +2454,11 @@ getForward(length:number, callback: AsyncCallback&lt;string&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                     |
 | -------- | ------------------------------ |
-| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types.           |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800003 | input method client error.     |
 | 12800006 | Input method controller error. |
 
@@ -2502,11 +2503,11 @@ getForward(length:number): Promise&lt;string&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                     |
 | -------- | ------------------------------ |
-| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types.           |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800003 | input method client error.     |
 | 12800006 | Input method controller error. |
 
@@ -2549,11 +2550,11 @@ getForwardSync(length:number): string
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------ |
-| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.           |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800003 | input method client error.     |
 | 12800006 | input method controller error. |
 
@@ -2586,11 +2587,11 @@ getBackward(length:number, callback: AsyncCallback&lt;string&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                     |
 | -------- | ------------------------------ |
-| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types.           |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800003 | input method client error.     |
 | 12800006 | Input method controller error. |
 
@@ -2635,11 +2636,11 @@ getBackward(length:number): Promise&lt;string&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                     |
 | -------- | ------------------------------ |
-| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types.           |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800003 | input method client error.     |
 | 12800006 | Input method controller error. |
 
@@ -2682,11 +2683,11 @@ getBackwardSync(length:number): string
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------ |
-| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.           |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800003 | input method client error.     |
 | 12800006 | input method controller error. |
 
@@ -2719,11 +2720,11 @@ deleteForward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
-| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types.         |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800002 | Input method engine error. |
 | 12800003 | input method client error. |
 
@@ -2772,11 +2773,11 @@ deleteForward(length:number): Promise&lt;boolean&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
-| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types.        |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800002 | Input method engine error. |
 | 12800003 | input method client error. |
 
@@ -2817,11 +2818,11 @@ deleteForwardSync(length:number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                   |
 | -------- | -------------------------- |
-| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.         |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800002 | input method engine error. |
 | 12800003 | input method client error. |
 
@@ -2854,11 +2855,11 @@ deleteBackward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
-| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types.           |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800002 | Input method engine error. |
 | 12800003 | input method client error. |
 
@@ -2907,11 +2908,11 @@ deleteBackward(length:number): Promise&lt;boolean&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
-| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types.           |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800002 | Input method engine error. |
 | 12800003 | input method client error. |
 
@@ -2948,11 +2949,11 @@ deleteBackwardSync(length:number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                   |
 | -------- | -------------------------- |
-| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.          |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800002 | input method engine error. |
 | 12800003 | input method client error. |
 
@@ -2985,11 +2986,11 @@ insertText(text:string, callback: AsyncCallback&lt;boolean&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
-| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types.           |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800002 | Input method engine error. |
 | 12800003 | input method client error. |
 
@@ -3033,11 +3034,11 @@ insertText(text:string): Promise&lt;boolean&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
-| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types.           |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800002 | Input method engine error. |
 | 12800003 | input method client error. |
 
@@ -3077,11 +3078,11 @@ insertTextSync(text: string): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                   |
 | -------- | -------------------------- |
-| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types.           |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800002 | input method engine error. |
 | 12800003 | input method client error. |
 
@@ -3222,11 +3223,11 @@ moveCursor(direction: number, callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
-| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.           |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800003 | input method client error. |
 
 **示例：**
@@ -3269,11 +3270,11 @@ moveCursor(direction: number): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
-| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.           |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800003 | input method client error. |
 
 **示例：**
@@ -3308,11 +3309,11 @@ moveCursorSync(direction: number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                   |
 | -------- | -------------------------- |
-| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.           |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800003 | input method client error. |
 
 **示例：**
@@ -3343,11 +3344,11 @@ selectByRange(range: Range, callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                   |
 | -------- | -------------------------- |
-| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.           |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800003 | input method client error. |
 
 **示例：**
@@ -3391,11 +3392,11 @@ selectByRange(range: Range): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                   |
 | -------- | -------------------------- |
-| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.           |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800003 | input method client error. |
 
 **示例：**
@@ -3431,11 +3432,11 @@ selectByRangeSync(range: Range): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                   |
 | -------- | -------------------------- |
-| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.           |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800003 | input method client error. |
 
 **示例：**
@@ -3467,11 +3468,11 @@ selectByMovement(movement: Movement, callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                   |
 | -------- | -------------------------- |
-| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.           |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800003 | input method client error. |
 
 **示例：**
@@ -3515,11 +3516,11 @@ selectByMovement(movement: Movement): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                   |
 | -------- | -------------------------- |
-| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.           |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800003 | input method client error. |
 
 **示例：**
@@ -3555,11 +3556,11 @@ selectByMovementSync(movement: Movement): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                   |
 | -------- | -------------------------- |
-| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.           |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800003 | input method client error. |
 
 **示例：**
@@ -3701,11 +3702,11 @@ sendExtendAction(action: ExtendAction, callback: AsyncCallback&lt;void&gt;): voi
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------ |
-| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types.           |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800003 | input method client error.     |
 | 12800006 | Input method controller error. |
 
@@ -3753,11 +3754,11 @@ sendExtendAction(action: ExtendAction): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------ |
-| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types.           |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800003 | input method client error.     |
 | 12800006 | Input method controller error. |
 
@@ -3804,11 +3805,11 @@ sendPrivateCommand(commandData: Record&lt;string, CommandDataType&gt;): Promise&
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                       |
 | -------- | ---------------------------------------------- |
-| 401 | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.                   |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800003 | input method client error.                     |
 | 12800010 | not default input method configured by system. |
 
@@ -3907,11 +3908,11 @@ setPreviewText(text: string, range: Range): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800003 | input method client error.                                   |
 | 12800011 | text preview is not supported.                               |
 
@@ -3949,11 +3950,11 @@ setPreviewTextSync(text: string, range: Range): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800003 | input method client error.                                   |
 | 12800011 | text preview is not supported.                               |
 
