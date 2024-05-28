@@ -170,7 +170,7 @@ CustomContentDialog({controller: CustomDialogController, contentBuilder: () => v
 | secondaryTitle | [ResourceStr](ts-types.md#resourcestr) | 否 | 弹出框辅助文本。 |
 | contentAreaPadding | [Padding](ts-types.md#padding) | 否 | 弹出框内容区内边距。 |
 | buttons | Array<[ButtonOptions](#buttonoptions)> | 否 | 弹出框操作区按钮，最多支持4个按钮。 |
-| theme<sup>12+</sup> | Theme \| CustomTheme | 否 | 主题信息，可以是CustomTheme或从onWillApplyTheme中获取的Theme实例。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| theme | Theme \| CustomTheme | 否 | 主题信息，可以是CustomTheme或从onWillApplyTheme中获取的Theme实例。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
 
 
 ## ButtonOptions
