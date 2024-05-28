@@ -398,7 +398,7 @@ Installation-free service is busy, please wait and try again later.
 
 **可能原因**
 
-已有相同免安装任务在执行。
+已有相同原子化服务的下载安装任务在执行。
 
 **处理步骤**
 
@@ -1275,3 +1275,21 @@ The target bundle does not exist.
 **处理步骤**
 
 检查传入的bundleName、userId和appIndex参数是否正确。
+
+## 16300007 指定的原子化服务的下载安装任务信息不存在。
+
+**错误信息**
+
+The target free install task does not exist.
+
+**错误描述**
+
+为原子化服务窗口打开窗口时，指定的原子化服务的下载安装任务不存在时，方法将返回该错误码。
+
+**可能原因**
+
+传入的bundleName、moduleName、abilityName或startTime错误，导致查询不到相关原子化服务原子化服务的下载安装任务信息。
+
+**处理步骤**
+
+检查传入的bundleName、moduleName、abilityName或startTime参数是否正确。
