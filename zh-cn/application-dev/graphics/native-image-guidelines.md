@@ -180,7 +180,7 @@ libnative_buffer.so
    GLuint textureId;
    glGenTextures(1, &textureId);
    // 创建 NativeImage 实例，关联 OpenGL 纹理
-   OH_NativeImage* image = OH_NativeImage_Create(textureId, GL_TEXTURE_2D);
+   OH_NativeImage* image = OH_NativeImage_Create(textureId, GL_TEXTURE_EXTERNAL_OES);
    ```
    
 3. **获取对应的数据生产者端NativeWindow**。
