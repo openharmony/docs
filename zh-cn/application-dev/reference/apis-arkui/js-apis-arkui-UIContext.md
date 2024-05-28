@@ -1354,6 +1354,94 @@ struct Index {
 }
 ```
 
+### postFrameCallback<sup>12+</sup>
+
+注册一个在下一帧进行渲染时执行的回调。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                    |
+| ------ | ------ | ---- | --------------------------------------- |
+| frameCallback | [FrameCallback](#framecallback12) | 是   | 下一帧需要执行的回调。 |
+
+**示例：**
+
+```ts
+import { FrameCallback } from '@ohos.arkui.UIContext';
+
+class MyFrameCallback extends FrameCallback {
+  private tag: string;
+
+  constructor(tag: string) {
+    super()
+    this.tag = tag;
+  }
+
+  onFrame(frameTimeNanos: number) {
+    console.info('MyFrameCallback ' + this.tag + ' ' + frameTimeNanos.toString());
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Button('点击触发postFrameCallback')
+        .onClick(() => {
+          this.getUIContext().postFrameCallback(new MyFrameCallback("normTask"));
+        })
+    }
+  }
+}
+```
+
+## postDelayedFrameCallback<sup>12+</sup>
+
+注册一个回调，在延迟一段时间后的下一帧进行渲染时执行。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                    |
+| ------ | ------ | ---- | --------------------------------------- |
+| frameCallback | [FrameCallback](#framecallback12) | 是   | 下一帧需要执行的回调。 |
+| delayTime | number | 是   | 延迟的时间，以毫秒为单位。 |
+
+**示例：**
+
+```ts
+import { FrameCallback } from '@ohos.arkui.UIContext';
+
+class MyFrameCallback extends FrameCallback {
+  private tag: string;
+
+  constructor(tag: string) {
+    super()
+    this.tag = tag;
+  }
+
+  onFrame(frameTimeNanos: number) {
+    console.info('MyFrameCallback ' + this.tag + ' ' + frameTimeNanos.toString());
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Button('点击触发postFrameCallback')
+        .onClick(() => {
+          this.getUIContext().postDelayedFrameCallback(new MyFrameCallback("delayTask"), 5);
+        })
+    }
+  }
+}
+```
 
 ## Font
 
@@ -5839,6 +5927,58 @@ struct ComponentSnapshotExample {
         .width(200)
         .border({ color: Color.Black, width: 2 })
     }.width('100%').margin({ left: 10, top: 5, bottom: 5 }).height(300)
+  }
+}
+```
+
+## FrameCallback<sup>12+</sup>
+
+用于设置下一帧渲染时需要执行的任务。需要配合[UIContext](#uicontext)中的[postFrameCallback](#postframecallback12)和[postDelayedFrameCallback](#postdelayedframecallback12)使用。开发者需要继承该类并重写[onFrame](#onframe12)方法，实现具体的业务逻辑。
+
+### onFrame<sup>12+</sup>
+
+在下一帧进行渲染时，该方法将被执行。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                                                 | 必填 | 说明                                                    |
+| ------- | ---------------------------------------------------- | ---- | ------------------------------------------------------- |
+| frameTimeInNano | number | 是   | 下一帧渲染开始执行的时间，以纳秒为单位。 |
+
+**示例：**
+
+```ts
+import { FrameCallback } from '@ohos.arkui.UIContext';
+
+class MyFrameCallback extends FrameCallback {
+  private tag: string;
+
+  constructor(tag: string) {
+    super()
+    this.tag = tag;
+  }
+
+  onFrame(frameTimeNanos: number) {
+    console.info('MyFrameCallback ' + this.tag + ' ' + frameTimeNanos.toString());
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Button('点击触发postFrameCallback')
+        .onClick(() => {
+          this.getUIContext().postFrameCallback(new MyFrameCallback("normTask"));
+        })
+      Button('点击触发postFrameCallback')
+        .onClick(() => {
+          this.getUIContext().postDelayedFrameCallback(new MyFrameCallback("delayTask"), 5);
+        })
+    }
   }
 }
 ```
