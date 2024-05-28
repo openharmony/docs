@@ -104,7 +104,15 @@ onRestoreEx返回值不能为空字符串，若onRestoreEx返回值为空字符�
   import { BundleVersion } from '@ohos.application.BackupExtensionAbility';
 
   class BackupExt extends BackupExtension {
-    async onRestoreEx(bundleVersion : BundleVersion, bundleInfo: string): string | Promise<string> {
+    // 异步实现
+    async onRestoreEx(bundleVersion : BundleVersion, bundleInfo: string): Promise<string> {
+      console.log(`onRestoreEx ok ${JSON.stringify(bundleVersion)}`);
+      let info = "app diy info";
+      return info;
+    }
+
+    // 同步实现
+    onRestoreEx(bundleVersion : BundleVersion, bundleInfo: string): string {
       console.log(`onRestoreEx ok ${JSON.stringify(bundleVersion)}`);
       let info = "app diy info";
       return info;
