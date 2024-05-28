@@ -77,7 +77,7 @@ To fully understand the preceding example, a knowledge of the following concepts
 
 - [Rules for Custom Component Parameters](#rules-for-custom-component-parameters)
 
-- [build() Function](#build-function)
+- [build Function](#build-function)
 
 - [Universal Style of a Custom Component](#universal-style-of-a-custom-component)
 
@@ -89,12 +89,12 @@ To fully understand the preceding example, a knowledge of the following concepts
   >
   > The name or its class or function name of a custom component must be different from that of any built-in components.
 
-- \@Component: The \@Component decorator can decorate only the structs declared by the **struct** keyword. After being decorated by \@Component, a struct has the componentization capability. It must implement the **build** function to describe the UI. Each struct can be decorated by only one \@Component.  
+- \@Component: The \@Component decorator can decorate only the structs declared by the **struct** keyword. When being decorated by \@Component, a struct has the componentization capability. You must implement the **build** function for it to describe the UI. Each struct can be decorated by only one \@Component. \@Component can accept an optional parameter of the Boolean type.
   > **NOTE**
   >
-  > Since API version 9, this decorator is supported in ArkTS widgets.
+  > This decorator can be used in ArkTS widgets since API version 9.
   > 
-  > Since API version 11, \@Component can accept an optional parameter of the Boolean type.
+  > \@Component can accept an optional parameter of the Boolean type since API version 11.
 
   ```ts
   @Component
@@ -125,13 +125,13 @@ To fully understand the preceding example, a knowledge of the following concepts
   }
   ```
 
-- \@Entry: A custom component decorated with \@Entry is used as the default entry component of the page. Only one component can be decorated with \@Entry in a single source file. The \@Entry decorator accepts an optional parameter of type [LocalStorage](arkts-localstorage.md).
+- \@Entry: A custom component decorated with \@Entry is used as the default entry component of the page. Only one component can be decorated with \@Entry in a single page. The \@Entry decorator accepts an optional parameter of type [LocalStorage](arkts-localstorage.md).
 
   > **NOTE**
   >
-  > Since API version 9, this decorator is supported in ArkTS widgets.
+  > This decorator can be used in ArkTS widgets since API version 9.
   >
-  > Since API version 10, the \@Entry decorator accepts an optional parameter of type [LocalStorage](arkts-localstorage.md) or type [EntryOptions](#entryoptions10).
+  > Since API version 10, the \@Entry decorator accepts an optional parameter of type [LocalStorage](arkts-localstorage.md) or type [EntryOptions](#entryOptions).
 
   ```ts
   @Entry
@@ -216,6 +216,44 @@ struct ParentComponent {
 }
 ```
 
+In the following example, a function in the parent component is passed to the child component and called therein.
+
+```ts
+@Entry
+@Component
+struct Parent {
+  @State cnt: number = 0
+  submit: () => void = () => {
+    this.cnt++;
+  }
+
+  build() {
+    Column() {
+      Text(`${this.cnt}`)
+      Son({ submitArrow: this.submit })
+    }
+  }
+}
+
+@Component
+struct Son {
+  submitArrow?: () => void
+
+  build() {
+    Row() {
+      Button('add')
+        .width(80)
+        .onClick(() => {
+          if (this.submitArrow) {
+            this.submitArrow()
+          }
+        })
+    }
+    .justifyContent(FlexAlign.SpaceBetween)
+    .height(56)
+  }
+}
+```
 
 ## build() Function
 

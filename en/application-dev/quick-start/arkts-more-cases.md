@@ -1623,7 +1623,7 @@ class Test {
 
 ​	Mode (ii): **prop?:A**
 
-​	Mode 3 (iii): **prop: A | undefined = undefined**
+​	Mode (iii): **prop: A | undefined = undefined**
 
 - From the perspective of performance, the **null** type is used only for type check during compilation and has no impact on VM performance. In contrast, **undefined | A** is treated as a union type and may result in additional overhead at run time.
 - In terms of code readability and simplicity, **prop?:A** is the syntax sugar of **prop: A | undefined = undefined**. You are advised to use optional attributes.

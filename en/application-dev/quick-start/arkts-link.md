@@ -6,7 +6,7 @@ An \@Link decorated variable creates two-way synchronization with a variable of 
 
 > **NOTE**
 >
-> Since API version 9, this decorator is supported in ArkTS widgets.
+> This decorator can be used in ArkTS widgets since API version 9.
 
 
 ## Overview
@@ -23,10 +23,10 @@ An \@Link decorated variable in a child component shares the same value with a v
 
 | \@Link Decorator                                            | Description                                                        |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| Decorator parameters                                                  | None.                                                          |
-| Synchronization type                                                    | Two-way:<br>from an \@State, \@StorageLink, or \@Link decorated variable in the parent component to this variable; and the other way around.|
-| Allowed variable types                                          | Object, class, string, number, Boolean, enum, and array of these types.<br>Date type.<br>(Applicable to API version 11 or later) Map and Set types. For details about the scenarios of supported types, see [Observed Changes](#observed-changes).<br>(Applicable to API version 11 and later versions) Union type of the preceding types, for example, string \| number, string \| undefined or ClassA \| null. For details, see [Union Type @Link](#union-type-link).<br>**NOTE**<br>When **undefined** or **null** is used, you are advised to explicitly specify the type to pass the TypeScript type check. For example, **@Link a: string \| undefined**. The union types defined by the ArkUI framework, including Length, ResourceStr, and ResourceColor, are supported.<br>The type must be specified and must be the same as that of the counterpart variable of the parent component.<br>**any** is not supported.|                                                              |
-| Initial value for the decorated variable                                          | Forbidden.                                        |
+| Decorator parameters                                                    | None.                                                          |
+| Synchronization type                                                    | Two-way: from an \@State, \@StorageLink, or \@Link decorated variable in the parent component to this variable; and the other way around.|
+| Allowed variable types                                                  | Object, class, string, number, Boolean, enum, and array of these types.<br>Date type.<br>(Applicable to API version 11 or later) Map and Set types. For details about the scenarios of supported types, see [Observed Changes](#observed-changes).<br>(Applicable to API version 11 and later versions) Union type of the preceding types, for example, string \| number, string \| undefined or ClassA \| null. For details, see [Union Type @Link](#union-type-link).<br>**NOTE**<br>When **undefined** or **null** is used, you are advised to explicitly specify the type to pass the TypeScript type check. For example, **@Link a: string \| undefined**. The union types defined by the ArkUI framework, including Length, ResourceStr, and ResourceColor, are supported.<br>The type must be specified and must be the same as that of the counterpart variable of the parent component.<br>**any** is not supported.|                                                              |
+| Initial value for the decorated variable                                | Forbidden.                                        |
 
 
 ## Variable Transfer/Access Rules
@@ -457,7 +457,7 @@ struct Index {
 
 When using \@Link to decorate a state variable in a child component, ensure that the variable type is the same as the source type, and the source is a state variable decorated by a decorator such as \@State.
 
-[Nonexample]
+[Incorrect Use]
 
 ```ts
 @Observed
@@ -481,24 +481,24 @@ struct LinkChild {
 @Entry
 @Component
 struct Parent {
-  @State testNum: ClassA[] = [new ClassA(1)];
+  @State testNum: ClassA = new ClassA(1);
 
   build() {
     Column() {
-      Text(`Parent testNum ${this.testNum[0].c}`)
+      Text(`Parent testNum ${this.testNum.c}`)
         .onClick(() => {
-          this.testNum[0].c += 1;
+          this.testNum.c += 1;
         })
       // The type of the @Link decorated variable must be the same as that of the @State decorated data source.
-      LinkChild({ testNum: this.testNum[0].c })
+      LinkChild({ testNum: this.testNum.c })
     }
   }
 }
 ```
 
-In the example, the type of **\@Link testNum: number** and the initialization from the parent component **LinkChild ({testNum:this.testNum.c})** are incorrect. The data source of \@Link must be a decorated state variable. The \@Link decorated variables must be of the same type as the data source, for example, \@Link: T and \@State: T. Therefore, the value should be changed to **\@Link testNum: ClassA**, and the initialization from the parent component should be **LinkChild({testNum: $testNum})**.
+In the example, the type of **\@Link testNum: number** and the initialization from the parent component **LinkChild ({testNum:this.testNum.c})** are incorrect. The data source of \@Link must be a decorated state variable. The \@Link decorated variables must be of the same type as the data source, for example, \@Link: T and \@State: T. Therefore, the value should be changed to **\@Link testNum: ClassA**, and the initialization from the parent component should be **LinkChild({testNum: this.testNum})**.
 
-[Example]
+[Correct Use]
 
 ```ts
 @Observed
@@ -512,26 +512,29 @@ class ClassA {
 
 @Component
 struct LinkChild {
-  @Link testNum: ClassA[];
+  @Link testNum: ClassA;
 
   build() {
-    Text(`LinkChild testNum ${this.testNum[0]?.c}`)
+    Text(`LinkChild testNum ${this.testNum?.c}`)
+      .onClick(() => {
+        this.testNum.c += 1;
+      })
   }
 }
 
 @Entry
 @Component
 struct Parent {
-  @State testNum: ClassA[] = [new ClassA(1)];
+  @State testNum: ClassA = new ClassA(1);
 
   build() {
     Column() {
-      Text(`Parent testNum ${this.testNum[0].c}`)
+      Text(`Parent testNum ${this.testNum.c}`)
         .onClick(() => {
-          this.testNum[0].c += 1;
+          this.testNum.c += 1;
         })
       // The type of the @Link decorated variable must be the same as that of the @State decorated data source.
-      LinkChild({ testNum: $testNum })
+      LinkChild({ testNum: this.testNum })
     }
   }
 }
