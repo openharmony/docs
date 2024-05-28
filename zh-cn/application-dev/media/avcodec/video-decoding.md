@@ -139,62 +139,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     // 配置异步回调
     int32_t ret = OH_VideoDecoder_RegisterCallback(videoDec, cb, NULL);
     ```
-
-4. 调用OH_VideoDecoder_Configure()配置解码器。
-
-    详细可配置选项的说明请参考[视频专有键值对](../../reference/apis-avcodec-kit/_codec_base.md#媒体数据键值对)。
-    
-    参数校验规则请参考[OH_VideoDecoder_Configure() 参考文档](../../reference/apis-avcodec-kit/_video_decoder.md#oh_videodecoder_configure)。
-    
-    目前支持的所有格式都必须配置以下选项：视频帧宽度、视频帧高度。示例中的变量如下：
-
-    - DEFAULT_WIDTH：320像素宽度；
-    - DEFAULT_HEIGHT：240像素高度；
-    - DEFAULT_PIXELFORMAT： 颜色格式，因为示例需要保存的YUV文件颜色格式是NV12，所以设置为 AV_PIXEL_FORMAT_NV12。
-
-    ```c++
-    // 配置视频帧宽度（必须）
-    constexpr int32_t DEFAULT_WIDTH = 320; 
-    // 配置视频帧高度（必须）
-    constexpr int32_t DEFAULT_HEIGHT = 240;
-    // 配置视频颜色格式（必须）
-    constexpr OH_AVPixelFormat DEFAULT_PIXELFORMAT = AV_PIXEL_FORMAT_NV12;
-
-    OH_AVFormat *format = OH_AVFormat_Create();
-    // 写入format
-    OH_AVFormat_SetIntValue(format, OH_MD_KEY_WIDTH, DEFAULT_WIDTH);
-    OH_AVFormat_SetIntValue(format, OH_MD_KEY_HEIGHT, DEFAULT_HEIGHT);
-    OH_AVFormat_SetIntValue(format, OH_MD_KEY_PIXEL_FORMAT, DEFAULT_PIXELFORMAT);
-    // 配置解码器
-    int32_t ret = OH_VideoDecoder_Configure(videoDec, format);
-    if (ret != AV_ERR_OK) {
-        // 异常处理
-    }
-    OH_AVFormat_Destroy(format);
-    ```
-
-5. 设置Surface。本例中的nativeWindow，需要从XComponent组件获取，获取方式请参考 [XComponent](../../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)。
-
-    Surface模式，开发者可以在解码过程中执行该步骤，即动态切换Surface。
-
-    ```c++
-    // 配置送显窗口参数
-    int32_t ret = OH_VideoDecoder_SetSurface(videoDec, window);    // 从 XComponent 获取 window
-    ```
-
-6. （可选）OH_VideoDecoder_SetParameter()动态配置解码器surface参数。
-    详细可配置选项的说明请参考[视频专有键值对](../../reference/apis-avcodec-kit/_codec_base.md#媒体数据键值对)。
-
-    ```c++
-    OH_AVFormat *format = OH_AVFormat_Create();
-    // 配置显示旋转角度
-    OH_AVFormat_SetIntValue(format, OH_MD_KEY_ROTATION, 90);
-    // 配置视频与显示屏匹配模式（缩放与显示窗口适配，裁剪与显示窗口适配）
-    OH_AVFormat_SetIntValue(format, OH_MD_KEY_SCALING_MODE, SCALING_MODE_SCALE_CROP);
-    int32_t ret = OH_VideoDecoder_SetParameter(videoDec, format);
-    OH_AVFormat_Destroy(format);
-    ```
-7. （可选）OH_VideoDecoder_SetDecryptionConfig设置解密配置。当获取到DRM信息(参考[音视频解封装](audio-video-demuxer.md)开发步骤第3步)后，通过此接口进行解密配置。DRM相关接口详见[DRM API文档](../../reference/apis-drm-kit/_drm.md)。此接口需在Prepare前调用。
+4. （可选）OH_VideoDecoder_SetDecryptionConfig设置解密配置。当获取到DRM信息(参考[音视频解封装](audio-video-demuxer.md)开发步骤第3步)后，通过此接口进行解密配置。DRM相关接口详见[DRM API文档](../../reference/apis-drm-kit/_drm.md)。此接口需在Prepare前调用。
 
     添加头文件
 
@@ -232,6 +177,61 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     // 设置解密配置, 即将解密会话、安全视频通路标志设置到解码器中。
     bool secureVideoPath = false;
     ret = OH_VideoDecoder_SetDecryptionConfig(videoDec, session, secureVideoPath);
+    ```
+
+5. 调用OH_VideoDecoder_Configure()配置解码器。
+
+    详细可配置选项的说明请参考[视频专有键值对](../../reference/apis-avcodec-kit/_codec_base.md#媒体数据键值对)。
+    
+    参数校验规则请参考[OH_VideoDecoder_Configure() 参考文档](../../reference/apis-avcodec-kit/_video_decoder.md#oh_videodecoder_configure)。
+    
+    目前支持的所有格式都必须配置以下选项：视频帧宽度、视频帧高度。示例中的变量如下：
+
+    - DEFAULT_WIDTH：320像素宽度；
+    - DEFAULT_HEIGHT：240像素高度；
+    - DEFAULT_PIXELFORMAT： 颜色格式，因为示例需要保存的YUV文件颜色格式是NV12，所以设置为 AV_PIXEL_FORMAT_NV12。
+
+    ```c++
+    // 配置视频帧宽度（必须）
+    constexpr int32_t DEFAULT_WIDTH = 320; 
+    // 配置视频帧高度（必须）
+    constexpr int32_t DEFAULT_HEIGHT = 240;
+    // 配置视频颜色格式（必须）
+    constexpr OH_AVPixelFormat DEFAULT_PIXELFORMAT = AV_PIXEL_FORMAT_NV12;
+
+    OH_AVFormat *format = OH_AVFormat_Create();
+    // 写入format
+    OH_AVFormat_SetIntValue(format, OH_MD_KEY_WIDTH, DEFAULT_WIDTH);
+    OH_AVFormat_SetIntValue(format, OH_MD_KEY_HEIGHT, DEFAULT_HEIGHT);
+    OH_AVFormat_SetIntValue(format, OH_MD_KEY_PIXEL_FORMAT, DEFAULT_PIXELFORMAT);
+    // 配置解码器
+    int32_t ret = OH_VideoDecoder_Configure(videoDec, format);
+    if (ret != AV_ERR_OK) {
+        // 异常处理
+    }
+    OH_AVFormat_Destroy(format);
+    ```
+
+6. 设置Surface。本例中的nativeWindow，需要从XComponent组件获取，获取方式请参考 [XComponent](../../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)。
+
+    Surface模式，开发者可以在解码过程中执行该步骤，即动态切换Surface。
+
+    ```c++
+    // 配置送显窗口参数
+    int32_t ret = OH_VideoDecoder_SetSurface(videoDec, window);    // 从 XComponent 获取 window
+    ```
+
+7. （可选）OH_VideoDecoder_SetParameter()动态配置解码器surface参数。
+    详细可配置选项的说明请参考[视频专有键值对](../../reference/apis-avcodec-kit/_codec_base.md#媒体数据键值对)。
+
+    ```c++
+    OH_AVFormat *format = OH_AVFormat_Create();
+    // 配置显示旋转角度
+    OH_AVFormat_SetIntValue(format, OH_MD_KEY_ROTATION, 90);
+    // 配置视频与显示屏匹配模式（缩放与显示窗口适配，裁剪与显示窗口适配）
+    OH_AVFormat_SetIntValue(format, OH_MD_KEY_SCALING_MODE, SCALING_MODE_SCALE_CROP);
+    int32_t ret = OH_VideoDecoder_SetParameter(videoDec, format);
+    OH_AVFormat_Destroy(format);
     ```
 
 8. 调用OH_VideoDecoder_Prepare()解码器就绪。
@@ -511,7 +511,47 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     int32_t ret = OH_VideoDecoder_RegisterCallback(videoDec, cb, NULL);
     ```
 
-4. 调用OH_VideoDecoder_Configure()配置解码器。
+4. （可选）OH_VideoDecoder_SetDecryptionConfig设置解密配置。当获取到DRM信息(参考[音视频解封装](audio-video-demuxer.md)开发步骤第3步)后，通过此接口进行解密配置。DRM相关接口详见[DRM API文档](../../reference/apis-drm-kit/_drm.md)。此接口需在Prepare前调用。
+
+    添加头文件
+
+    ```c++
+    #include <multimedia/drm_framework/native_mediakeysystem.h>
+    #include <multimedia/drm_framework/native_mediakeysession.h>
+    #include <multimedia/drm_framework/native_drm_err.h>
+    #include <multimedia/drm_framework/native_drm_common.h>
+    ```
+    在 CMake 脚本中链接动态库
+
+    ``` cmake
+    target_link_libraries(sample PUBLIC libnative_drm.so)
+    ```
+
+    使用示例
+    ```c++
+    // 根据DRM信息创建指定的DRM系统, 以创建"com.clearplay.drm"为例
+    MediaKeySystem *system = nullptr;
+    int32_t ret = OH_MediaKeySystem_Create("com.clearplay.drm", &system);
+    if (system == nullptr) {
+        printf("create media key system failed");
+        return;
+    }
+    // 进行Provision认证
+    // 创建解密会话
+    MediaKeySession *session = nullptr;
+    DRM_ContentProtectionLevel contentProtectionLevel = CONTENT_PROTECTION_LEVEL_SW_CRYPTO;
+    ret = OH_MediaKeySystem_CreateMediaKeySession(system, &contentProtectionLevel, &session);
+    if (session == nullptr) {
+        printf("create media key session failed");
+        return;
+    }
+    // 获取许可证请求、设置许可证响应等
+    // 设置解密配置, 即将解密会话、安全视频通路标志设置到解码器中。
+    bool secureVideoPath = false;
+    ret = OH_VideoDecoder_SetDecryptionConfig(videoDec, session, secureVideoPath);
+    ```
+
+5. 调用OH_VideoDecoder_Configure()配置解码器。
 
     与surface模式相同，此处不再赘述。
 
@@ -536,7 +576,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     OH_AVFormat_Destroy(format);
     ```
 
-5. 调用OH_VideoDecoder_Prepare()解码器就绪。
+6. 调用OH_VideoDecoder_Prepare()解码器就绪。
 
     该接口将在解码器运行前进行一些数据的准备工作。
 
@@ -547,7 +587,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     }
     ```
 
-6. 调用OH_VideoDecoder_Start()启动解码器。
+7. 调用OH_VideoDecoder_Start()启动解码器。
 
     ```c++
     std::string_view inputFilePath = "/*yourpath*.h264";
@@ -563,7 +603,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     }
     ```
 
-7. 调用OH_VideoDecoder_PushInputBuffer()写入解码码流。
+8. 调用OH_VideoDecoder_PushInputBuffer()写入解码码流。
 
     与surface模式相同，此处不再赘述。
 
@@ -586,7 +626,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     }
     ```
 
-8. 调用OH_VideoDecoder_FreeOutputBuffer()释放解码帧。
+9. 调用OH_VideoDecoder_FreeOutputBuffer()释放解码帧。
 
     以下示例中：
 

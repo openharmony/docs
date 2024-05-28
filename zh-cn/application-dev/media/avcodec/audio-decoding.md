@@ -150,8 +150,48 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
         // 异常处理
     }
     ```
-   
-4. 调用OH_AudioCodec_Configure()配置解码器。
+
+4. （可选）OH_AudioCodec_SetDecryptionConfig设置解密配置。当获取到DRM信息(参考[音视频解封装](audio-video-demuxer.md)开发步骤第3步)后，通过此接口进行解密配置。DRM相关接口详见[DRM API文档](../../reference/apis-drm-kit/_drm.md)。此接口需在Prepare前调用。
+
+    添加头文件
+
+    ```c++
+    #include <multimedia/drm_framework/native_mediakeysystem.h>
+    #include <multimedia/drm_framework/native_mediakeysession.h>
+    #include <multimedia/drm_framework/native_drm_err.h>
+    #include <multimedia/drm_framework/native_drm_common.h>
+    ```
+    在 CMake 脚本中链接动态库
+
+    ``` cmake
+    target_link_libraries(sample PUBLIC libnative_drm.so)
+    ```
+
+    使用示例
+    ```c++
+    // 根据DRM信息创建指定的DRM系统, 以创建"com.clearplay.drm"为例
+    MediaKeySystem *system = nullptr;
+    int32_t ret = OH_MediaKeySystem_Create("com.clearplay.drm", &system);
+    if (system == nullptr) {
+        printf("create media key system failed");
+        return;
+    }
+    // 进行Provision认证
+    // 创建解密会话
+    MediaKeySession *session = nullptr;
+    DRM_ContentProtectionLevel contentProtectionLevel = CONTENT_PROTECTION_LEVEL_SW_CRYPTO;
+    ret = OH_MediaKeySystem_CreateMediaKeySession(system, &contentProtectionLevel, &session);
+    if (session == nullptr) {
+        printf("create media key session failed");
+        return;
+    }
+    // 获取许可证请求、设置许可证响应等
+    // 设置解密配置, 即将解密会话、安全通路标志(当前音频解密不支持安全通路，应设置为false)设置到解码器中。
+    bool secureAudio = false;
+    ret = OH_AudioCodec_SetDecryptionConfig(audioDec_, session, secureAudio);
+    ```
+
+5. 调用OH_AudioCodec_Configure()配置解码器。
    配置选项key值说明：
 
    |                              |                             描述                             |                AAC                 | Flac |               Vorbis               | MPEG |       G711mu        |          AMR(amrnb、amrwb)         |
@@ -193,7 +233,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
    }
    ```
    
-5. 调用OH_AudioCodec_Prepare()，解码器就绪。
+6. 调用OH_AudioCodec_Prepare()，解码器就绪。
 
    ```cpp
    ret = OH_AudioCodec_Prepare(audioDec_);
@@ -202,7 +242,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
    }
    ```
    
-6. 调用OH_AudioCodec_Start()启动解码器，进入运行态。
+7. 调用OH_AudioCodec_Start()启动解码器，进入运行态。
 
     ```c++
     unique_ptr<ifstream> inputFile_ = make_unique<ifstream>();
@@ -218,7 +258,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     }
     ```
    
-7. 调用OH_AudioCodec_PushInputBuffer()，写入待解码的数据。
+8. 调用OH_AudioCodec_PushInputBuffer()，写入待解码的数据。
 
    如果是结束，需要对flag标识成AVCODEC_BUFFER_FLAGS_EOS。
 
@@ -245,7 +285,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     }
     ```
    
-8. 调用OH_AudioCodec_FreeOutputBuffer()，输出解码后的PCM码流。
+9. 调用OH_AudioCodec_FreeOutputBuffer()，输出解码后的PCM码流。
 
     <!--RP2-->
     ```c++
@@ -269,7 +309,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     ```
     <!--RP2End-->
 
-9. （可选）调用OH_AudioCodec_Flush()刷新解码器。
+10. （可选）调用OH_AudioCodec_Flush()刷新解码器。
    调用OH_AudioCodec_Flush()后，解码器仍处于运行态，但会将当前队列清空，将已解码的数据释放。
    此时需要调用OH_AudioCodec_Start()重新开始解码。
    使用情况：
@@ -290,7 +330,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     }
     ```
 
-10. （可选）调用OH_AudioCodec_Reset()重置解码器。
+11. （可选）调用OH_AudioCodec_Reset()重置解码器。
     调用OH_AudioCodec_Reset()后，解码器回到初始化的状态，需要调用OH_AudioCodec_Configure()重新配置，然后调用OH_AudioCodec_Start()重新开始解码。
 
     ```c++
@@ -306,7 +346,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     }
     ```
 
-11. 调用OH_AudioCodec_Stop()停止解码器。
+12. 调用OH_AudioCodec_Stop()停止解码器。
 
     ```c++
     // 终止解码器 audioDec_
@@ -316,7 +356,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     }
     ```
 
-12. 调用OH_AudioCodec_Destroy()销毁解码器实例，释放资源。
+13. 调用OH_AudioCodec_Destroy()销毁解码器实例，释放资源。
 
     > **说明：**
     >不要重复销毁解码器
