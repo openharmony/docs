@@ -3138,33 +3138,23 @@ getImageProperties(key: Array&#60;PropertyKey&#62;): Promise<Record<PropertyKey,
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 401  | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed;     |
-| 62980123| Images in EXIF format are not supported.             |
-| 62980133| The EXIF data is out of range.            |
-| 62980135| The EXIF value is invalid.            |
-| 62980146| The EXIF data failed to be written to the file.            |
+| 62980096| The operation failed.             |
+| 62980110| The image source data is incorrect.            |
+| 62980113| Unknown image format.            |
+| 62980116| Failed to decode the image.            |
 
 **示例：**
 
 ```ts
 import image from "@ohos.multimedia.image";
-import fileio from "@ohos.fileio";
-import featureAbility from "@ohos.ability.featureAbility";
 
-let filePath;
-let context = await featureAbility.getContext();
-await context.getFilesDir().then((data) => {
-    filePath = data + "/" + "test_exif1.jpg";
-    console.info("image case filePath is " + filePath);
-});
-let key = ["ImageWidth","ImageLength"];
-let imageSourceApi = image.createImageSource(filePath);
-if (imageSourceApi == undefined) {
-    console.info(`create image source failed`);
-} else {
-    imageSourceApi.getImageProperties(key)
-        .then((data) => {console.info(JSON.stringify(data));})
-        .catch((error) => {console.log(error);});
-}
+let key = [image.PropertyKey.IMAGE_WIDTH, image.PropertyKey.IMAGE_LENGTH];
+imageSourceApi.getImageProperties(key).then((data) => {
+    console.info(JSON.stringify(data));
+    })
+    .catch((error) => {
+        console.error(error);
+    });
 ```
 
 ### modifyImageProperty<sup>11+</sup>
@@ -3303,7 +3293,7 @@ modifyImageProperties(records: Record<PropertyKey, string|null>): Promise\<void>
 
 | 参数名  | 类型   | 必填 | 说明         |
 | ------- | ------ | ---- | ------------ |
-| records     | [Record<[PropertyKey](#propertykey7), string \| null>]   | 是   | 包含图片属性名和属性值的数组。 |
+| records     | Record<[PropertyKey](#propertykey7), string \| null>   | 是   | 包含图片属性名和属性值的数组。 |
 
 **返回值：**
 
@@ -3327,30 +3317,19 @@ modifyImageProperties(records: Record<PropertyKey, string|null>): Promise\<void>
 
 ```ts
 import image from "@ohos.multimedia.image";
-import fileio from "@ohos.fileio";
-import featureAbility from "@ohos.ability.featureAbility";
 
-let filePath;
-let context = await featureAbility.getContext();
-await context.getFilesDir().then((data) => {
-    filePath = data + "/" + "test_exif1.jpg";
-    console.info("image case filePath is " + filePath);
-});
-let imageSourceApi = image.createImageSource(filePath);
-let key = {"ImageWidth": "1024", "ImageLength": "2048"};
-let checkKey = ["ImageWidth","ImageLength"];
-if (imageSourceApi == undefined) {
-    console.info(`create image source failed`);
-} else {
-    imageSourceApi.modifyImageProperties(key)
-        .then(() => {
-            imageSourceApi.getImageProperties(checkKey)
-                .then((data) => {console.info(JSON.stringify(data));})
-                .catch((err) => {console.info(err);});})
+let key = {image.PropertyKey.IMAGE_WIDTH:"1024", image.PropertyKey.IMAGE_LENGTH:"2048"};
+let checkKey = [image.PropertyKey.IMAGE_WIDTH, image.PropertyKey.IMAGE_LENGTH];
+imageSourceApi.modifyImageProperties(key).then(() => {
+    imageSourceApi.getImageProperties(checkKey).then((data) => {
+        console.info(JSON.stringify(data));
+        })
         .catch((err) => {
-            console.info(err);
-        });
-}
+            console.error(err);});
+        })
+    .catch((err) => {
+        console.error(err);
+    });
 ```
 
 ### updateData<sup>9+</sup>
