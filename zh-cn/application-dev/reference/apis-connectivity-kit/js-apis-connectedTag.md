@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```js
-import connectedTag from '@ohos.connectedTag';
+import { connectedTag } from '@kit.ConnectivityKit';
 ```
 
 ## connectedTag.init
@@ -101,8 +101,8 @@ readNdefTag(): Promise&lt;string&gt;
 **示例：**
 
 ```js
-import connectedTag from '@ohos.connectedTag';
-import { BusinessError } from '@ohos.base';
+import { connectedTag } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 connectedTag.readNdefTag().then((data) => {
     console.log("connectedTag readNdefTag Promise data = " + data);
@@ -139,8 +139,8 @@ read(): Promise&lt;number[]&gt;
 **示例：**
 
 ```js
-import connectedTag from '@ohos.connectedTag';
-import { BusinessError } from '@ohos.base';
+import { connectedTag } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 connectedTag.read().then((data) => {
     console.log("connectedTag read Promise data = " + data);
@@ -168,7 +168,7 @@ readNdefTag(callback: AsyncCallback&lt;string&gt;): void
 **示例：**
 
 ```js
-import connectedTag from '@ohos.connectedTag';
+import { connectedTag } from '@kit.ConnectivityKit';
 
 connectedTag.readNdefTag((err, data)=> {
     if (err) {
@@ -207,7 +207,7 @@ read(callback: AsyncCallback&lt;number[]&gt;): void
 **示例：**
 
 ```js
-import connectedTag from '@ohos.connectedTag';
+import { connectedTag } from '@kit.ConnectivityKit';
 
 connectedTag.read((err, data)=> {
     if (err) {
@@ -243,8 +243,8 @@ writeNdefTag(data: string): Promise&lt;void&gt;
 **示例：**
 
 ```js
-import connectedTag from '@ohos.connectedTag';
-import { BusinessError } from '@ohos.base';
+import { connectedTag } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let rawData = "010203"; // change it to be correct.
 connectedTag.writeNdefTag(rawData).then(() => {
@@ -289,8 +289,8 @@ write(data: number[]): Promise&lt;void&gt;
 **示例：**
 
 ```js
-import connectedTag from '@ohos.connectedTag';
-import { BusinessError } from '@ohos.base';
+import { connectedTag } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let rawData = [0x01, 0x02, 0x03]; // change it to be correct.
 connectedTag.write(rawData).then(() => {
@@ -320,7 +320,7 @@ writeNdefTag(data: string, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```js
-import connectedTag from '@ohos.connectedTag';
+import { connectedTag } from '@kit.ConnectivityKit';
 
 let rawData = "010203"; // change it to be correct.
 connectedTag.writeNdefTag(rawData, (err)=> {
@@ -362,7 +362,7 @@ write(data: number[], callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```js
-import connectedTag from '@ohos.connectedTag';
+import { connectedTag } from '@kit.ConnectivityKit';
 
 let rawData = [0x01, 0x02, 0x03]; // change it to be correct.
 connectedTag.write(rawData, (err)=> {
@@ -411,7 +411,7 @@ off(type: "notify", callback?: Callback&lt;number&gt;): void
 **示例：**
 
 ```js
-import connectedTag from '@ohos.connectedTag';
+import { connectedTag } from '@kit.ConnectivityKit';
 
 // Register event
 connectedTag.on("notify", (rfState : number)=> {
