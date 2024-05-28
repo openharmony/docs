@@ -49,11 +49,11 @@ WebGL的全称为Web Graphic Library（网页图形库），主要用于交互�
 | GLbyte     | byte               | 纹理八位（一个字节），2的补码表示的有符号整数。                |
 | GLshort    | short              | 16位2的补码表示的有符号整数。                             |
 | GLint      | long               | 32位2的补码表示的有符号整数。                           |
-| GLsizei    | long               | 用来描述尺寸（例如：绘画缓冲drawing buffe 的宽和高）。      |
+| GLsizei    | long               | 用来描述尺寸（例如：绘画缓冲drawing buffer 的宽和高）。      |
 | GLintptr   | long long          | 用来表示指针的特殊类型。                                      |
 | GLsizeiptr | long long          | 用来表示指针的特殊类型。                                      |
 | GLubyte    | octet              | 八位（一个字节）2的补码表示的无符号整数。                 |
-| GLushort   | unsigned short     | 16位的补码表示的无符号整数。                          |
+| GLushort   | unsigned short     | 16位2的补码表示的无符号整数。                          |
 | GLuint    | unsigned short     | 32位2的补码表示的有符号整数。                        |
 | GLfloat   | unrestricted float | 32位的IEEE标准的浮点数。                             |
 | GLclampf   | unrestricted float | 限值32位IEEE浮点数。                                      |
@@ -92,7 +92,7 @@ WebGL的全称为Web Graphic Library（网页图形库），主要用于交互�
 
    - JavaScript 代码中的 main() 函数将会在文档加载完成之后被调用。它的任务是设置WebGL上下文并开始渲染内容。
 
-   - 当获取到canvas之后，会调用getContext函数并向它传递 "webgl" 参数，来尝试获取WebGLRenderingContext。如果浏览器不支持WebGL， getContext将会返回nul，如果WebGL上下文成功初始化，变量'gl'会用来引用该上下文。
+   - 当获取到canvas之后，会调用getContext函数并向它传递 "webgl" 参数，来尝试获取WebGLRenderingContext。如果浏览器不支持WebGL， getContext将会返回null，如果WebGL上下文成功初始化，变量'gl'会用来引用该上下文。
 
    ```js
    function main() {
