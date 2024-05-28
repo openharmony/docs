@@ -27,8 +27,6 @@
     - [JSVM-API开发规范](jsvm-guidelines.md)
   - 资源管理
     - [Rawfile开发指导](rawfile-guidelines.md)
-  - 资源调度
-    - [FFRT开发指导](ffrt-guidelines.md)
   - 内存管理
     - [Purgeable memory开发指导](purgeable-memory-guidelines.md)
   - 设备管理
