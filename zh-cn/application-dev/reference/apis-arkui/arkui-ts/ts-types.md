@@ -694,3 +694,16 @@ VisibleAreaChangeCallback = (isVisible: boolean, currentRatio: number) => void
 | [FP](#fp10) | 2 | 长度类型，用于描述以fp像素单位为单位的长度。 |
 | [PERCENT](#percentage10) | 3 | 长度类型，用于描述以%像素单位为单位的长度。 |
 | [LPX](#lpx10) | 4 | 长度类型，用于描述以lpx像素单位为单位的长度。 |
+
+## DividerStyleOptions<sup>12+</sup>
+
+分割线样式属性集合, 用于描述分割线相关信息。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称     | 类型                                      | 必填   | 说明     |
+| ------ | --------------------------------------- | ---- |--------|
+| strokeWidth  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup>  |      | 描边宽度。  |
+| color  | [ResourceColor](#resourcecolor) |      | 分割线颜色。 |
+| startMargin | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> |       | 起始边距。  |
+| endMargin  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup>|       | 末边距。   |
