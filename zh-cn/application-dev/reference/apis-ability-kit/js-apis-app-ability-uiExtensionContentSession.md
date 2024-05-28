@@ -240,3 +240,66 @@ startAbilityByType(type: string, wantParam: Record<string, Object>,
 | ------- | -------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16000050 | Internal error. |
+
+## UIExtensionContentSession.getUIExtensionWindowProxy<sup>12+</sup>
+
+getUIExtensionWindowProxy(): uiExtension.WindowProxy
+
+获取UIExtension窗口代理。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| uiExtension.WindowProxy | 返回UIExtension的窗口代理。 |
+
+**错误码：**
+
+以下错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 16000050 | Internal error. |
+
+**示例：**
+
+```ts
+// Index.ets
+import { UIExtensionContentSession } from '@kit.AbilityKit';
+import uiExtension from '@ohos.arkui.uiExtension';
+
+let storage = LocalStorage.getShared();
+
+@Entry(storage)
+@Component
+struct Extension {
+  @State message: string = 'EmbeddedUIExtensionAbility Index';
+  private session: UIExtensionContentSession | undefined = storage.get<UIExtensionContentSession>('session');
+  private extensionWindow: uiExtension.WindowProxy | undefined = this.session?.getUIExtensionWindowProxy();
+
+  aboutToAppear(): void {
+    this.extensionWindow?.on('windowSizeChange', (size) => {
+      console.info(`size = ${JSON.stringify(size)}`);
+    });
+    this.extensionWindow?.on('avoidAreaChange', (info) => {
+      console.info(`type = ${JSON.stringify(info.type)}, area = ${JSON.stringify(info.area)}`);
+    });
+  }
+
+  aboutToDisappear(): void {
+    this.extensionWindow?.off('windowSizeChange');
+    this.extensionWindow?.off('avoidAreaChange');
+  }
+
+  build() {
+    Column() {
+      Text(this.message)
+        .fontSize(20)
+        .fontWeight(FontWeight.Bold)
+    }
+    .width('100%')
+  }
+}
+```
