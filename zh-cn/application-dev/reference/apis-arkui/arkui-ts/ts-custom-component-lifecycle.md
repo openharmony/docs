@@ -158,3 +158,86 @@ struct Child {
   }
 }
 ```
+
+## onWillApplyTheme<sup>12+</sup>
+
+onWillApplyTheme?(theme: Theme): void
+
+onWillApplyTheme函数用于获取当前组件上下文的Theme对象，在创建自定义组件的新实例后，在执行其build()函数之前执行。允许在onWillApplyTheme函数中改变状态变量，更改将在后续执行build()函数中生效。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**参数：**
+
+| 参数名    | 类型                                       | 说明         |
+|--------|------------------------------------------|------------|
+| theme | [Theme](../js-apis-arkui-theme.md#theme) | 自定义组件当前生效的Theme对象。|
+
+```ts
+// xxx.ets
+import { CustomTheme, CustomColors, Theme, ThemeControl } from '@ohos.arkui.theme';
+
+class BlueColors implements CustomColors {
+  fontPrimary = Color.White;
+  backgroundPrimary = Color.Blue;
+}
+
+class PageCustomTheme implements CustomTheme {
+  colors?: CustomColors;
+
+  constructor(colors: CustomColors) {
+    this.colors = colors;
+  }
+}
+const BlueColorsTheme = new PageCustomTheme(new BlueColors());
+// setDefaultTheme应该在应用入口页面调用或者在Ability中调用。
+ThemeControl.setDefaultTheme(BlueColorsTheme);
+
+@Entry
+@Component
+struct IndexComponent {
+  @State textColor: ResourceColor = $r('sys.color.font_primary');
+  @State columBgColor: ResourceColor = $r('sys.color.background_primary');
+  
+  // onWillApplyTheme中可获取当前组件上下文的Theme对象。此处在onWillApplyTheme中将状态变量textColor、columBgColor，赋值为当前使用的Theme对象（BlueColorsTheme）中的配色。
+  onWillApplyTheme(theme: Theme) {
+    this.textColor = theme.colors.fontPrimary;
+    this.columBgColor = theme.colors.backgroundPrimary;
+    console.info('IndexComponent onWillApplyTheme');
+  }
+
+  build() {
+    Column() {
+      // 组件初始值配色样式
+      Column() {
+        Text('Hello World')
+          .fontColor($r('sys.color.font_primary'))
+          .fontSize(30)
+      }
+      .width('100%')
+      .height('25%')
+      .borderRadius('10vp')
+      .backgroundColor($r('sys.color.background_primary'))
+      
+      // 组件颜色生效为onWillApplyTheme中配置颜色。
+      Column() {
+        Text('onWillApplyTheme')
+          .fontColor(this.textColor)
+          .fontSize(30)
+        Text('Hello World')
+          .fontColor(this.textColor)
+          .fontSize(30)
+      }
+      .width('100%')
+      .height('25%')
+      .borderRadius('10vp')
+      .backgroundColor(this.columBgColor)
+    }
+    .padding('16vp')
+    .backgroundColor('#dcdcdc')
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+![onWillApplyThemePage](figures/onWillApplyTheme.png)

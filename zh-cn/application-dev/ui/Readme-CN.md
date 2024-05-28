@@ -14,6 +14,7 @@
       - [创建列表 (List)](arkts-layout-development-create-list.md)
       - [创建网格 (Grid/GridItem)](arkts-layout-development-create-grid.md)
       - [创建轮播 (Swiper)](arkts-layout-development-create-looping.md)
+      - [选项卡 (Tabs)](arkts-navigation-tabs.md)
   - 添加组件
     - 添加常用组件
       - [按钮 (Button)](arkts-common-components-button.md)
@@ -30,10 +31,8 @@
     - 添加气泡和菜单
       - [气泡提示 (Popup)](arkts-popup-and-menu-components-popup.md)
       - [菜单 (Menu)](arkts-popup-and-menu-components-menu.md)
-  - 设置页面路由和组件导航
-    - 组件导航
-      - [Navigation](arkts-navigation-navigation.md)
-      - [Tabs](arkts-navigation-tabs.md)
+  - 设置组件导航和页面路由
+    - [组件导航 (Navigation)](arkts-navigation-navigation.md)
     - [页面路由 (@ohos.router)](arkts-routing.md)
   - 显示图形
     - [绘制几何图形 (Shape)](arkts-geometric-shape-drawing.md)
@@ -64,6 +63,7 @@
   - 支持交互事件
     - [交互事件概述](arkts-event-overview.md)
     - 使用通用事件
+      - [事件分发](arkts-common-events-distribute.md)
       - [触屏事件](arkts-common-events-touch-screen-event.md)
       - [键鼠事件](arkts-common-events-device-input-event.md)
       - [焦点事件](arkts-common-events-focus-event.md)
@@ -147,4 +147,5 @@
         - [动画动效](ui-js-animate-dynamic-effects.md)
         - [动画帧](ui-js-animate-frame.md)
   - [自定义组件](ui-js-custom-components.md)
+  - [WebGL](../webgl/Readme-CN.md)
 - [窗口管理](../windowmanager/Readme-CN.md)

@@ -21,7 +21,7 @@ CanvasRenderingContext2D(settings?: RenderingContextSettings, unit?: LengthMetri
 | 参数名      | 参数类型                                     | 必填   | 参数描述                                     |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | settings | [RenderingContextSettings](#renderingcontextsettings) | 否    | 用来配置CanvasRenderingContext2D对象的参数，见[RenderingContextSettings](#renderingcontextsettings)。 |
-| unit<sup>12+</sup>  | [LengthMetricsUnit](#lengthmetricsunit12) | 否    | 用来配置CanvasRenderingContext2D对象的单位模式，配置后无法更改，见[LengthMetricsUnit](#lengthmetricsunit12)。 |
+| unit<sup>12+</sup>  | [LengthMetricsUnit](../js-apis-arkui-graphics.md#lengthmetricsunit12) | 否    | 用来配置CanvasRenderingContext2D对象的单位模式，配置后无法更改，见[LengthMetricsUnit](#lengthmetricsunit12)。 |
 
 
 ### RenderingContextSettings
@@ -39,6 +39,51 @@ RenderingContextSettings(antialias?: boolean)
 | 参数名       | 参数类型    | 必填   | 参数描述                          |
 | --------- | ------- | ---- | ----------------------------- |
 | antialias | boolean | 否    | 表明canvas是否开启抗锯齿。<br>默认值：false |
+
+### LengthMetricsUnit<sup>12+</sup>
+
+用来配置CanvasRenderingContext2D对象的单位模式，配置后无法动态更改。
+
+**示例：**
+
+```ts
+// xxx.ets
+import { LengthMetricsUnit, LengthMetrics} from '@ohos.arkui.node'
+
+@Entry
+@Component
+struct LengthMetricsUnitDemo {
+  private settings: RenderingContextSettings = new RenderingContextSettings(true);
+  private contextPX: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings, LengthMetricsUnit.PX);
+  private contextVP: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Canvas(this.contextPX)
+        .width('100%')
+        .height(150)
+        .backgroundColor('#ffff00')
+        .onReady(() => {
+          this.contextPX.fillRect(10,10,100,100)
+          this.contextPX.clearRect(10,10,50,50)
+        })
+
+      Canvas(this.contextVP)
+        .width('100%')
+        .height(150)
+        .backgroundColor('#ffff00')
+        .onReady(() => {
+          this.contextVP.fillRect(10,10,100,100)
+          this.contextVP.clearRect(10,10,50,50)
+        })
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+
+![CanvasContext2DUnitMode](figures/CanvasContext2DUnitMode.png)
 
 ## 属性
 
@@ -2003,6 +2048,62 @@ reset(): void
   ![zh-cn_image_0000001239032460](figures/zh-cn_image_0000001239032460.png)
 
 
+### saveLayer<sup>12+</sup>
+
+saveLayer(): void
+
+创建一个图层。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct saveLayer {
+  private settings: RenderingContextSettings = new RenderingContextSettings(true)
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Canvas(this.context)
+        .width('100%')
+        .height('100%')
+        .backgroundColor('#ffff00')
+        .onReady(() =>{
+          this.context.fillStyle = "#0000ff"
+          this.context.fillRect(50,100,300,100)
+          this.context.fillStyle = "#00ffff"
+          this.context.fillRect(50,150,300,100)
+          this.context.globalCompositeOperation = 'destination-over'
+          this.context.saveLayer()
+          this.context.globalCompositeOperation = 'source-over'
+          this.context.fillStyle = "#ff0000"
+          this.context.fillRect(100,50,100,300)
+          this.context.fillStyle = "#00ff00"
+          this.context.fillRect(150,50,100,300)
+          this.context.restoreLayer()
+        })
+    }
+    .width('100%')
+    .height('100%')
+  }
+  }
+
+  ```
+   ![zh-cn_image_CanvasSavelayer](figures/zh-cn_image_CanvasSavelayer.png)
+
+### restoreLayer<sup>12+</sup>
+
+restoreLayer(): void
+
+恢复图像变换和裁剪状态至saveLayer前的状态，并将图层绘制在canvas上。restoreLayer示例同saveLayer。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+
 ### resetTransform
 
 resetTransform(): void
@@ -3186,6 +3287,8 @@ stopImageAnalyzer(): void
 
 ```ts
 // xxx.ets
+import { BusinessError } from '@ohos.base';
+
 @Entry
 @Component
 struct ImageAnalyzerExample {
@@ -3217,8 +3320,8 @@ struct ImageAnalyzerExample {
           this.context.stopImageAnalyzer()
         })
       Canvas(this.context)
-        .width(80)
-        .height(80)
+        .width(200)
+        .height(200)
         .enableAnalyzer(true)
         .onReady(() => {
           this.context.drawImage(this.img, 0, 0, 200, 200)
@@ -3317,56 +3420,6 @@ struct ImageAnalyzerExample {
 | low    | 低画质  |
 | medium | 中画质  |
 | high   | 高画质  |
-
-## LengthMetricsUnit<sup>12+</sup>
-
-用来配置CanvasRenderingContext2D对象的单位模式，设置后无法动态更改。
-
-| 名称    | 描述   |
-| ------- | -----  |
-| DEFAULT | vp模式 |
-| PX      | px模式 |
-
-**示例：**
-
-```ts
-// xxx.ets
-import { LengthMetricsUnit, LengthMetrics} from '@ohos.arkui.node'
-
-@Entry
-@Component
-struct LengthMetricsUnitDemo {
-  private settings: RenderingContextSettings = new RenderingContextSettings(true);
-  private contextPX: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings, LengthMetricsUnit.PX);
-  private contextVP: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
-
-  build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
-      Canvas(this.contextPX)
-        .width('100%')
-        .height(150)
-        .backgroundColor('#ffff00')
-        .onReady(() => {
-          this.contextPX.fillRect(10,10,100,100)
-          this.contextPX.clearRect(10,10,50,50)
-        })
-
-      Canvas(this.contextVP)
-        .width('100%')
-        .height(150)
-        .backgroundColor('#ffff00')
-        .onReady(() => {
-          this.contextVP.fillRect(10,10,100,100)
-          this.contextVP.clearRect(10,10,50,50)
-        })
-    }
-    .width('100%')
-    .height('100%')
-  }
-}
-```
-
-![CanvasContext2DUnitMode](figures/CanvasContext2DUnitMode.png)
 
 ## TextMetrics
 

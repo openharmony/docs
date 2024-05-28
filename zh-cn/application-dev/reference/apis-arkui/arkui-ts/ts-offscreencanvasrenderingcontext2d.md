@@ -21,7 +21,7 @@ OffscreenCanvasRenderingContext2D(width: number, height: number, settings?: Rend
 | width    | number                                   | 是    | 离屏画布的宽度，默认单位：vp。                        |
 | height   | number                                   | 是    | 离屏画布的高度，默认单位：vp。                        |
 | settings | [RenderingContextSettings](ts-canvasrenderingcontext2d.md#renderingcontextsettings) | 否    | 用来配置OffscreenCanvasRenderingContext2D对象的参数，见RenderingContextSettings接口描述。 |
-| unit<sup>12+</sup> | [LengthMetricsUnit](ts-canvasrenderingcontext2d.md#lengthmetricsunit12) | 否 | 用来配置OffscreenCanvasRenderingContext2D对象的单位模式，配置后无法动态更改，配置方法同CanvasRenderingContext2D。<br> DEFAULT: vp模式 <br> PX: px模式|
+| unit<sup>12+</sup> | [LengthMetricsUnit](../js-apis-arkui-graphics.md#lengthmetricsunit12) | 否 | 用来配置OffscreenCanvasRenderingContext2D对象的单位模式，配置后无法动态更改，配置方法同[CanvasRenderingContext2D](ts-canvasrenderingcontext2d.md#lengthmetricsunit12)。|
 
 ## 属性
 
@@ -2158,6 +2158,63 @@ reset(): void
 
   ![zh-cn_image_0000001239032460](figures/zh-cn_image_0000001239032460.png)
 
+### saveLayer<sup>12+</sup>
+
+saveLayer(): void
+
+创建一个图层。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct offCanvasSaveLayer {
+    private settings: RenderingContextSettings = new RenderingContextSettings(true)
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+    private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600)
+
+    build() {
+      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+        Canvas(this.context)
+          .width('100%')
+          .height('100%')
+          .backgroundColor('#ffff00')
+          .onReady(() =>{
+            let offContext = this.offCanvas.getContext("2d", this.settings)
+            offContext.fillStyle = "#0000ff"
+            offContext.fillRect(50,100,300,100)
+            offContext.fillStyle = "#00ffff"
+            offContext.fillRect(50,150,300,100)
+            offContext.globalCompositeOperation = 'destination-over'
+            offContext.saveLayer()
+            offContext.globalCompositeOperation = 'source-over'
+            offContext.fillStyle = "#ff0000"
+            offContext.fillRect(100,50,100,300)
+            offContext.fillStyle = "#00ff00"
+            offContext.fillRect(150,50,100,300)
+            offContext.restoreLayer()
+            let image = this.offCanvas.transferToImageBitmap()
+            this.context.transferFromImageBitmap(image)
+          })
+      }
+      .width('100%')
+      .height('100%')
+    }
+  }
+  ```
+   ![zh-cn_image_CanvasSavelayer](figures/zh-cn_image_CanvasSavelayer.png)
+
+### restoreLayer<sup>12+</sup>
+
+restoreLayer(): void
+
+恢复图像变换和裁剪状态至saveLayer前的状态，并将图层绘制在canvas上。restoreLayer示例同saveLayer。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
 ### resetTransform
  

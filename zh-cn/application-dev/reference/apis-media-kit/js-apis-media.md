@@ -18,7 +18,7 @@
 ## 导入模块
 
 ```ts
-import media from '@kit.MediaKit';
+import { media } from '@kit.MediaKit';
 ```
 
 ## media.createAVPlayer<sup>9+</sup>
@@ -310,7 +310,7 @@ createSoundPool(maxStreams: number, audioRenderInfo: audio.AudioRendererInfo, ca
 **示例：**
 
 ```js
-import audio from '@kit.AudioKit';
+import { audio } from '@kit.AudioKit';
 
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
@@ -361,7 +361,7 @@ createSoundPool(maxStreams: number, audioRenderInfo: audio.AudioRendererInfo): P
 **示例：**
 
 ```js
-import audio from '@kit.AudioKit';
+import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let soundPool: media.SoundPool;
@@ -727,7 +727,7 @@ setMediaSource(src:MediaSource, strategy?: PlaybackStrategy): Promise\<void>
 **示例：**
 
 ```ts
-import media from '@kit.MediaKit';
+import { media } from '@kit.MediaKit';
 
 let player = await media.createAVPlayer();
 let header: Record<string, string> = {"User-Agent" : "User-Agent-Value"};
@@ -1289,7 +1289,7 @@ selectTrack(index: number): Promise\<void>
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import media from '@kit.MediaKit';
+import { media } from '@kit.MediaKit';
 
 let avPlayer: media.AVPlayer | undefined = undefined;
 media.createAVPlayer((err: BusinessError, player: media.AVPlayer) => {
@@ -1350,7 +1350,7 @@ deselectTrack(index: number): Promise\<void>
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import media from '@kit.MediaKit';
+import { media } from '@kit.MediaKit';
 
 let avPlayer: media.AVPlayer | undefined = undefined;
 media.createAVPlayer((err: BusinessError, player: media.AVPlayer) => {
@@ -2081,7 +2081,7 @@ on(type: 'audioInterrupt', callback: (info: audio.InterruptEvent) => void): void
 **示例：**
 
 ```ts
-import audio from '@kit.AudioKit';
+import { audio } from '@kit.AudioKit';
 
 avPlayer.on('audioInterrupt', (info: audio.InterruptEvent) => {
   console.info('audioInterrupt success,and InterruptEvent info is:' + info)
@@ -2132,7 +2132,7 @@ on(type: 'audioOutputDeviceChangeWithInfo', callback: Callback\<audio.AudioStrea
 **示例：**
 
 ```ts
-import audio from '@kit.AudioKit';
+import { audio } from '@kit.AudioKit';
 
 avPlayer.on('audioOutputDeviceChangeWithInfo', (data: audio.AudioStreamDeviceChangeInfo) => {
   console.info(`${JSON.stringify(data)}`);
@@ -2269,7 +2269,7 @@ avPlayer.off('audioOutputDeviceChangeWithInfo');
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import media from '@kit.MediaKit';
+import { media } from '@kit.MediaKit';
 
 function printfItemDescription(obj: media.MediaDescription, key: string) {
   let property: Object = obj[key];
@@ -3467,6 +3467,9 @@ on(type: 'error', callback: ErrorCallback): void
 
 | 错误码ID | 错误信息                                   |
 | -------- | ------------------------------------------ |
+| 201      | Permission denied.     |
+| 401      | The Parameter check faild. |
+| 801      | Capability not supported. |
 | 5400101  | No memory. Return by callback.             |
 | 5400102  | Operation not allowed. Return by callback. |
 | 5400103  | I/O error. Return by callback.             |
@@ -3808,7 +3811,7 @@ fetchAlbumCover(callback: AsyncCallback\<image.PixelMap>): void
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import image from '@kit.ImageKit';
+import { image } from '@kit.ImageKit';
 
 let pixel_map : image.PixelMap | undefined = undefined;
 
@@ -3848,7 +3851,7 @@ fetchAlbumCover(): Promise\<image.PixelMap>
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import image from '@kit.ImageKit';
+import { image } from '@kit.ImageKit';
 
 let pixel_map : image.PixelMap | undefined = undefined;
 
@@ -3955,8 +3958,20 @@ avMetadataExtractor.release().then(() => {
 | videoHeight | string | 否   | 视频的高度，单位为像素。当前版本为只读参数。 |
 | videoWidth | string | 否   | 视频的宽度，单位为像素。当前版本为只读参数。 |
 | videoOrientation | string | 否   | 视频的旋转方向，单位为度（°）。|
+| hdrType<sup>12+</sup> | [HdrType](#hdrtype12) | 否   | 媒体资源的HDR类型。 |
 | location<sup>12+</sup> | [Location](#location) | 否 | 视频的地理位置信息。 |
 | customInfo<sup>12+</sup> | Record<string, string> | 否 | 从moov.meta.list 获取的自定义参数键值映射。|
+
+## HdrType<sup>12+</sup>
+
+表示视频HDR类型的枚举。
+
+**系统能力：** SystemCapability.Multimedia.Media.Core
+
+| 名称                      | 值   | 说明                   |
+| ------------------------- | ---- | ---------------------- |
+| AV_HDR_TYPE_NONE          | 0    | 表示无HDR类型。 |
+| AV_HDR_TYPE_VIVID         | 1    | 表示为HDR VIVID类型。 |
 
 ## media.createAudioPlayer<sup>(deprecated)</sup>
 
@@ -4378,7 +4393,7 @@ on(type: 'play' | 'pause' | 'stop' | 'reset' | 'dataLoad' | 'finish' | 'volumeCh
 **示例：**
 
 ```ts
-import fileIo from '@kit.CoreFileKit';
+import { fileIo } from '@kit.CoreFileKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let audioPlayer: media.AudioPlayer = media.createAudioPlayer();  //创建一个音频播放实例
@@ -4486,7 +4501,7 @@ on(type: 'audioInterrupt', callback: (info: audio.InterruptEvent) => void): void
 **示例：**
 
 ```ts
-import audio from '@kit.AudioKit';
+import { audio } from '@kit.AudioKit';
 
 audioPlayer.on('audioInterrupt', (info: audio.InterruptEvent) => {
   console.info('audioInterrupt success,and InterruptEvent info is:' + info)
@@ -5488,7 +5503,7 @@ on(type: 'audioInterrupt', callback: (info: audio.InterruptEvent) => void): void
 **示例：**
 
 ```ts
-import audio from '@kit.AudioKit';
+import { audio } from '@kit.AudioKit';
 
 videoPlayer.on('audioInterrupt', (info: audio.InterruptEvent) => {
   console.info('audioInterrupt success,and InterruptEvent info is:' + info)
@@ -5986,8 +6001,8 @@ fetchFrameByTime(timeUs: number, options: AVImageQueryOptions, param: PixelMapPa
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import media from '@kit.MediaKit';
-import image from '@kit.ImageKit';
+import { media } from '@kit.MediaKit';
+import { image } from '@kit.ImageKit';
 
 let avImageGenerator: media.AVImageGenerator | undefined = undefined;
 let pixel_map : image.PixelMap | undefined = undefined;
@@ -6055,8 +6070,8 @@ fetchFrameByTime(timeUs: number, options: AVImageQueryOptions, param: PixelMapPa
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import media from '@kit.MediaKit';
-import image from '@kit.ImageKit';
+import { media } from '@kit.MediaKit';
+import { image } from '@kit.ImageKit';
 
 let avImageGenerator: media.AVImageGenerator | undefined = undefined;
 let pixel_map : image.PixelMap | undefined = undefined;
@@ -6113,7 +6128,7 @@ release(callback: AsyncCallback\<void>): void
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import media from '@kit.MediaKit';
+import { media } from '@kit.MediaKit';
 
 let avImageGenerator: media.AVImageGenerator | undefined = undefined;
 
@@ -6161,7 +6176,7 @@ release(): Promise\<void>
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import media from '@kit.MediaKit';
+import { media } from '@kit.MediaKit';
 
 let avImageGenerator: media.AVImageGenerator | undefined = undefined;
 
@@ -6218,7 +6233,7 @@ createMediaSourceWithUrl(url: string, headers?: Record\<string, string>): MediaS
 
 | 参数名   | 类型     | 必填 | 说明                 |
 | -------- | -------- | ---- | -------------------- |
-| url | string | 是   | 流媒体预下载媒体来源url，支持的流媒体格式：HLS、HTTP-FLV、Dash、Https。  |
+| url | string | 是   | - 流媒体预下载媒体来源url，支持的流媒体格式：HLS、HTTP-FLV、Dash、Https。<br> - 本地m3u8的fd路径。  |
 | header | Record\<string, string> | 否   | 支持流媒体预下载HttpHeader自定义。 |
 
 **返回值：**
@@ -6236,13 +6251,36 @@ createMediaSourceWithUrl(url: string, headers?: Record\<string, string>): MediaS
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 5400101  | No memory. Return by callback. |
 
-**示例：**
+**示例1：**
 
 ```ts
-import media from '@kit.MediaKit';
+import { media } from '@kit.MediaKit';
 
 let header: Record<string, string> = {"User-Agent" : "User-Agent-Value"};
 let mediaSource : media.MediaSource = media.createMediaSourceWithUrl("http://xxx",  header);
+```
+
+**示例2：**
+
+```ts
+import { media } from '@kit.MediaKit';
+import { resourceManager } from '@kit.LocalizationKit';
+
+private mgr: resourceManager.ResourceManager | null = null;
+mrg = ctx.resourceManager;
+this.fileDescriptor = await this.mgr.getRawFd("xxx.m3u8");
+
+let fd:string = this.fileDescriptor.fd.toString();
+let offset:string = this.fileDescriptor.offset.toString();
+let length:string = this.fileDescriptor.length.toString();
+let fdUrl:string = "fd://" + "?offset=" + offset + "&size=" + length;
+
+let header: Record<string, string> = {"User-Agent" : "User-Agent-Value"};
+let mediaSource : media.MediaSource = media.createMediaSourceWithUrl(fdUrl,  header);
+
+let mimeType = media.AVMimeTypes = media.AVMimeTypes.APPLICATION_M3U8;
+mediaSource.setMimeType(mimeType);
+
 ```
 
 ## MediaSource<sup>12+</sup>
@@ -6250,6 +6288,30 @@ let mediaSource : media.MediaSource = media.createMediaSourceWithUrl("http://xxx
 媒体数据信息。来源自[createMediaSourceWithUrl](#mediacreatemediasourcewithurl12)。
 
 **系统能力：** SystemCapability.Multimedia.Media.Core
+
+### setMimeType<sup>12+</sup>
+
+setMimeType(mimeType: AVMimeTypes): void
+
+设置媒体MIME类型，以帮助播放器处理扩展的媒体源。
+
+**参数：**
+
+| 参数名   | 类型     | 必填 | 说明                 |
+| -------- | -------- | ---- | -------------------- |
+| mimeType | [AVMimeTypes](#mediasource12) | 是   | 媒体MIME类型。 |
+
+## AVMimeTypes<sup>12+</sup>
+
+媒体MIME类型，通过[setMimeType](#setmimetype12)设置。
+
+**系统能力：** SystemCapability.Multimedia.Media.Core
+
+
+| 名称       | 值   | 说明                                                         |
+| ---------- | ---- | ------------------------------------------------------------ |
+| APPLICATION       | application/m3u8    | 表示m3u8本地文件。 |
+
 
 ## PlaybackStrategy<sup>12+</sup>
 
@@ -6355,7 +6417,7 @@ let avCaptureConfig: media.AVScreenCaptureRecordConfig = {
 
 avScreenCaptureRecorder.init(avCaptureConfig).then(() => {
     console.info('avScreenCaptureRecorder init success');
-}).catch((err: BussinessError) => {
+}).catch((err: BusinessError) => {
     console.info('avScreenCaptureRecorder init failed, error: ' + err.message);
 })
 ```
@@ -6386,7 +6448,7 @@ startRecording(): Promise\<void>
 ```ts
 avScreenCaptureRecorder.startRecording().then(() => {
     console.info('avScreenCaptureRecorder start success');
-}).catch((err: BussinessError) => {
+}).catch((err: BusinessError) => {
     console.info('avScreenCaptureRecorder start failed, error: ' + err.message);
 })
 ```
@@ -6417,7 +6479,7 @@ stopRecording(): Promise\<void>
 ```ts
 avScreenCaptureRecorder.stopRecording().then(() => {
     console.info('avScreenCaptureRecorder stop success');
-}).catch((err: BussinessError) => {
+}).catch((err: BusinessError) => {
     console.info('avScreenCaptureRecorder stop failed, error: ' + err.message);
 })
 ```
@@ -6454,7 +6516,7 @@ setMicEnabled(enable: boolean): Promise\<void>
 ```ts
 avScreenCaptureRecorder.setMicEnabled(true).then(() => {
     console.info('avScreenCaptureRecorder setMicEnabled success');
-}).catch((err: BussinessError) => {
+}).catch((err: BusinessError) => {
     console.info('avScreenCaptureRecorder setMicEnabled failed, error: ' + err.message);
 })
 ```
@@ -6485,7 +6547,7 @@ release(): Promise\<void>
 ```ts
 avScreenCaptureRecorder.release().then(() => {
     console.info('avScreenCaptureRecorder release success');
-}).catch((err: BussinessError) => {
+}).catch((err: BusinessError) => {
     console.info('avScreenCaptureRecorder release failed, error: ' + err.message);
 })
 ```

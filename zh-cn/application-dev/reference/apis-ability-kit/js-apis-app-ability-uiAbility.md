@@ -90,6 +90,36 @@ onWindowStageCreate(windowStage: window.WindowStage): void
   ```
 
 
+## UIAbility.onWindowStageWillDestroy<sup>12+</sup>
+
+onWindowStageWillDestroy(windowStage: window.WindowStage): void
+
+当WindowStage即将销毁时调用。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| windowStage | [window.WindowStage](../apis-arkui/js-apis-window.md#windowstage9) | 是 | WindowStage相关信息。 |
+
+**示例：**
+
+  ```ts
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  import window from '@ohos.window';
+
+  class MyUIAbility extends UIAbility {
+      onWindowStageWillDestroy(windowStage: window.WindowStage) {
+          console.log('onWindowStageWillDestroy');
+      }
+  }
+  ```
+
+
 ## UIAbility.onWindowStageDestroy
 
 onWindowStageDestroy(): void
@@ -1140,8 +1170,6 @@ off(method: string): void
 
 ## OnReleaseCallback
 
-### (msg: string)
-
 (msg: string): void
 
 注册通用组件服务端Stub（桩）断开监听通知的回调函数类型。
@@ -1156,8 +1184,6 @@ off(method: string): void
  
 ## OnRemoteStateChangeCallback<sup>10+</sup>
 
-### (msg: string)
-
 (msg: string): void
 
 注册协同场景下跨设备组件状态变化监听通知的回调函数类型。
@@ -1171,8 +1197,6 @@ off(method: string): void
 | msg | string | 是 | 用于传递释放消息。 | 
  
 ## CalleeCallback
-
-### (indata: rpc.MessageSequence)
 
 (indata: rpc.MessageSequence): rpc.Parcelable
 

@@ -31,6 +31,13 @@ enable(enable: boolean, callback: AsyncCallback&lt;void&gt;): void
 | enable   | boolean                   | 是   | 键鼠穿越使能状态。 |
 | callback | AsyncCallback&lt;void&gt;  | 是  |回调函数，异步返回键鼠穿越开启、关闭结果。   |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[ohos.devicestatus错误码](../apis-distributedservice-kit/errorcode-devicestatus.md)。
+
+| 错误码ID | 错误信息          |
+| -------- | -----------------|
+| 401 | Parameter error.      |
 
 
 **示例**：
@@ -75,6 +82,14 @@ enable(enable: boolean): Promise&lt;void&gt;
 | ------------------- | ------------------------------- |
 | Promise&lt;void&gt;      | Promise对象，异步返回键鼠穿越开启、关闭结果。        |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+
+| 错误码ID | 错误信息          |
+| -------- | -----------------|
+| 401 | Parameter error.      |
 
 
 **示例**：
@@ -110,12 +125,13 @@ start(sinkDeviceDescriptor: string, srcInputDeviceId: number, callback: AsyncCal
 | srcInputDeviceId     | number                       |  是   | 键鼠穿越待穿越外设标识符。           |
 | callback             | AsyncCallback\<void>         |  是    | 回调函数，异步返回键鼠穿越启动、停止状态。|
 
-**错误码：**
+**错误码**：
 
-以下错误码的详细介绍请参见[ohos.multimodalinput错误码](errorcode-multimodalinput.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.multimodalinput错误码](errorcode-multimodalinput.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401      | Parameter error.    |
 | 4400001  | Incorrect descriptor for the target device.                |
 | 4400002  | Screen hop failed.    |
 
@@ -205,6 +221,13 @@ stop(callback: AsyncCallback\<void>): void
 | --------             | ---------------------------- | ----  | ----------------------------   |
 | callback             | AsyncCallback\<void>         |  是   | 回调函数，异步返回停止键鼠穿越结果。        |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息           |
+| -------- | ----------------- |
+| 401      | Parameter error.  |
 
 
 **示例**：
@@ -272,6 +295,16 @@ getState(deviceDescriptor: string, callback: AsyncCallback<{ state: boolean }>):
 | deviceDescriptor     | string                       |  是    | 键鼠穿越目标设备描述符。             |
 | callback             | AsyncCallback<{ state: boolean }> |  是    | 回调函数，异步返回键鼠穿越开关状态。        |
 
+
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息          |
+| -------- | ----------------- |
+| 401      | Parameter error.  |
+
+
 **示例**：
 
 ```ts
@@ -314,6 +347,13 @@ getState(deviceDescriptor: string): Promise<{ state: boolean }>
 | -------------------        | ------------------------------- |
 | Promise<{ state: boolean }>| Promise对象，异步返回键鼠穿越开关状态。        |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息          |
+| -------- | ----------------- |
+| 401      | Parameter error.  |
 
 
 **示例**：
@@ -349,6 +389,13 @@ on(type: 'cooperation', callback: AsyncCallback<{ deviceDescriptor: string, even
 | type                 | string                                                          |  是  | 注册类型，取值”cooperation“。         |
 | callback             | AsyncCallback<{ deviceDescriptor: string, eventMsg: [EventMsg](#eventmsg) }> |  是  | 回调函数，异步返回键鼠穿越事件。    |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息          |
+| -------- | ----------------- |
+| 401      | Parameter error.  |
 
 
 **示例**：
@@ -382,6 +429,13 @@ off(type: 'cooperation', callback?: AsyncCallback\<void>): void
 | type                 | string                                                           |  是    | 注册类型，取值“cooperation”。         |
 | callback             | AsyncCallback\<void> |  否  | 需要取消注册的回调函数，若无此参数，则取消当前应用注册的所有回调函数。 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息          |
+| -------- | ----------------- |
+| 401      | Parameter error.  |
 
 
 **示例**：

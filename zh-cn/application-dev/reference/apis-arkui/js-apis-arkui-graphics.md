@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```ts
-import { DrawContext, Size, Offset, Position, Pivot, Scale, Translation, Matrix4, Rotation, Frame } from "@ohos.arkui.node";
+import { DrawContext, Size, Offset, Position, Pivot, Scale, Translation, Matrix4, Rotation, Frame, LengthMetricsUnit } from "@ohos.arkui.node";
 ```
 
 ## Size
@@ -281,9 +281,20 @@ SizeT\<T>
 | width   | T    | 是   | 是   | 宽度的属性。 |
 | height    | T    | 是   | 是   | 高度的属性。 |
 
+## LengthMetricsUnit<sup>12+</sup>
+
+长度属性单位枚举。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 值 | 说明 |
+| -------- | -------- | -------- |
+| DEFAULT | 0 | 长度类型，用于描述以默认的vp像素单位为单位的长度。 |
+| PX | 1 | 长度类型，用于描述以px像素单位为单位的长度。 |
+
 ## LengthMetrics<sup>12+</sup>
 
-用于设置长度属性。
+用于设置长度属性，当长度单位为[PERCENT](arkui-ts/ts-types.md#percentage10)时，值为1表示100%。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

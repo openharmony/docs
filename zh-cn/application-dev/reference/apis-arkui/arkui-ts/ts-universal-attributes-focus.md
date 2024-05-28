@@ -113,6 +113,8 @@ requestFocus(value: string): boolean
 
 方法语句中可使用的全局接口，调用此接口可以主动让焦点转移至参数指定的组件上。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 名称 | 类型 | 必填 | 描述 |
@@ -409,6 +411,8 @@ focusBox示例代码：
 
 使用focusBox修改组件的焦点框样式示例代码：使焦点框变为红色/加粗/内边框。
 ```ts
+import { ColorMetrics, LengthMetrics } from '@ohos.arkui.node'
+
 @Entry
 @Component
 struct RequestFocusExample {

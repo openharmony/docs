@@ -24,10 +24,6 @@ getDevices(): Array&lt;Readonly&lt;USBDevice&gt;&gt;
 
 以下错误码的详细介绍请参见[USB服务错误码](errorcode-usb.md)。
 
-| 错误码ID | 错误信息                                     |
-| -------- | -------------------------------------------- |
-| 401      | Parameter error. No parameters are required. |
-
 **返回值：**
 
 | 类型                                                   | 说明      |
@@ -317,10 +313,6 @@ releaseInterface(pipe: USBDevicePipe, iface: USBInterface): number
 **错误码：**
 
 以下错误码的详细介绍请参见[USB服务错误码](errorcode-usb.md)。
-
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
-| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified.2.Incorrect parameter types |
 
 **返回值：**
 

@@ -150,7 +150,7 @@ float.json文件的内容如下：
             "name":"font_hello",
             "value":"28.0fp"
         },
-	{
+	      {
             "name":"font_world",
             "value":"20.0fp"
         }
@@ -167,18 +167,18 @@ string.json文件的内容如下：
             "name":"string_hello",
             "value":"Hello"
         },
-	{
+	      {
             "name":"string_world",
             "value":"World"
         },
-	{
+	      {
             "name":"message_arrive",
             "value":"We will arrive at %1$s."
         },
-  {
+        {
             "name":"message_notification",
             "value":"Hello, %1$s!,You have %2$d new messages."
-  }
+        }
     ]
 }
 ```
@@ -369,7 +369,7 @@ string资源配置attr属性示例如下：
 
 ### 系统资源
 
-除了自定义资源，开发者也可以使用系统中预定义的资源，统一应用的视觉风格。可以查看[应用UX设计中关于资源的介绍](../../design/ux-design/design-resources.md)，获取支持的系统资源ID及其在不同配置下的取值。
+除了自定义资源，开发者也可以使用系统中预定义的资源，统一应用的视觉风格。可以查看[应用UX设计中关于资源的介绍](https://docs.openharmony.cn/pages/v4.0/zh-cn/design/ux-design/design-resources.md)，获取支持的系统资源ID及其在不同配置下的取值。
 
 在开发过程中，分层参数的用法与资源限定词基本一致。对于系统资源，可以通过```“$r('sys.type.resource_id')”```的形式引用。其中，sys为系统资源；type为资源类型，取值包括“color”、“float”、“string”、“media”；resource_id为资源id。
 
@@ -405,7 +405,7 @@ Image($r('sys.media.ohos_app_icon'))
 
 应用使用某资源时，系统会根据当前设备状态优先从相匹配的限定词目录中寻找该资源。只有当resources目录中没有与设备状态匹配的限定词目录，或者在限定词目录中找不到该资源时，才会去base目录中查找。rawfile是原始文件目录，不会根据设备状态去匹配不同的资源。
 
-**限定词目录与设备状态的匹配规则**
+### 限定词目录与设备状态的匹配规则
 
 - 在为设备匹配对应的资源文件时，限定词目录匹配的优先级从高到低依次为：移动国家码和移动网络码 > 区域（可选组合：语言、语言_文字、语言_国家或地区、语言_文字_国家或地区）> 横竖屏 > 设备类型 > 颜色模式 > 屏幕密度。
 
@@ -413,7 +413,116 @@ Image($r('sys.media.ohos_app_icon'))
 
 应用界面加载资源规则，更多请参考国际化和本地化文档。
 
-**overlay机制**
+### 获取指定配置的资源
+
+#### 基本概念
+
+开发者可以在工程的resource目录下添加[限定词目录](#限定词目录)，满足多语言、深浅色模式等不同类型的系统设置。然而，在获取资源时，由于限定词目录匹配规则，只能筛选出最匹配的资源，无法获取其它目录资源。
+
+应用如果有获取指定配置的资源的诉求，可以通过以下方法进行获取。
+
+#### 接口说明
+
+| 接口名                                                       | 描述                                                         |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| [getOverrideResourceManager](../reference/apis-localization-kit/js-apis-resource-manager.md#getoverrideresourcemanager12)(configuration?: [Configuration](../reference/apis-localization-kit/js-apis-resource-manager.md#configuration)) : [ResourceManager](../reference/apis-localization-kit/js-apis-resource-manager.md#resourcemanager) | 获取可以加载指定配置的资源的资源管理对象，使用同步方式返回。 |
+| [getOverrideConfiguration](../reference/apis-localization-kit/js-apis-resource-manager.md#getoverrideconfiguration12)() : [Configuration](../reference/apis-localization-kit/js-apis-resource-manager.md#configuration) | 获取指定的配置，使用同步方式返回                             |
+| [updateOverrideConfiguration](../reference/apis-localization-kit/js-apis-resource-manager.md#updateoverrideconfiguration12)(configuration: [Configuration](../reference/apis-localization-kit/js-apis-resource-manager.md#configuration)) : void | 更新指定的配置                                               |
+
+#### 示例
+
+以获取非当前系统语言的资源为例，说明如何获取指定配置的资源，假设工程中中文、英文、德文的资源目录定义了如下同名资源：
+
+- entry/src/main/resources/zh_CN/element/string.json
+
+```json
+{
+  "string": [
+    {
+      "name": "greetings",
+      "value": "你好，世界"
+    }
+  ]
+}
+```
+
+- entry/src/main/resources/en_US/element/string.json
+
+```json
+{
+  "string": [
+    {
+      "name": "greetings",
+      "value": "Hello, world"
+    }
+  ]
+}
+```
+
+- entry/src/main/resources/de_DE/element/string.json
+
+```json
+{
+  "string": [
+    {
+      "name": "greetings",
+      "value": "Hallo, Welt"
+    }
+  ]
+}
+```
+
+在Index.ets中，分别获取三种语言的资源并显示在文本框中，运行设备当前系统语言为中文，entry/src/main/ets/pages/Index.ets的代码如下：
+
+```ts
+@Entry
+@Component
+struct Index {
+  @State englishString: string = ""
+  @State germanString: string = ""
+
+  getString(): string {
+    let resMgr = getContext().resourceManager
+    let resId = $r('app.string.greetings').id
+
+    //获取符合当前系统语言地区、颜色模式、分辨率等配置的资源
+    let currentLanguageString = resMgr.getStringSync(resId)
+
+    //获取符合当前系统颜色模式、分辨率等配置的英文资源
+    let overrideConfig = resMgr.getOverrideConfiguration()
+    overrideConfig.locale = "en_US" //指定资源的语言为英语，地区为美国
+    let overrideResMgr = resMgr.getOverrideResourceManager(overrideConfig)
+    this.englishString = overrideResMgr.getStringSync(resId)
+
+    //获取符合当前系统颜色模式、分辨率等配置的德文资源
+    overrideConfig.locale = "de_DE" //指定资源的语言为德语，地区为德国
+    overrideResMgr.updateOverrideConfiguration(overrideConfig) //等效于resMgr.updateOverrideConfiguration(overrideConfig)
+    this.germanString = overrideResMgr.getStringSync(resId)
+
+    return currentLanguageString
+  }
+
+  build() {
+    Row() {
+      Column() {
+        Text(this.getString())
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+        Text(this.englishString)
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+        Text(this.germanString)
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+### overlay机制
 
 overylay是一种资源替换机制，针对不同品牌、产品的显示风格，开发者可以在不重新打包业务逻辑hap的情况下，通过配置和使用overlay资源包，实现应用界面风格变换。overlay资源包只包含资源文件、资源索引文件和配置文件。
 
@@ -453,6 +562,7 @@ overylay是一种资源替换机制，针对不同品牌、产品的显示风格
 
 <!--Del-->
 包间overlay资源包中的配置文件module.json5中支持的字段，仅对系统应用开放：
+
 ```{
   "app":{
     "bundleName": "com.example.myapplication.overlay",

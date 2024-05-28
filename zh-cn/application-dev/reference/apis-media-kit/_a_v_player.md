@@ -84,8 +84,8 @@
 | [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_DeselectTrack](#oh_avplayer_deselecttrack) (OH_AVPlayer \*player, int32_t index) | 取消选择当前音频或字幕轨道。 | 
 | [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_GetCurrentTrack](#oh_avplayer_getcurrenttrack) (OH_AVPlayer \*player, int32_t trackType, int32_t \*index) | 获取当前有效的轨道索引。 | 
 | [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_SetMediaKeySystemInfoCallback](#oh_avplayer_setmediakeysysteminfocallback) (OH_AVPlayer \*player, Player_MediaKeySystemInfoCallback callback) | 设置播放器媒体密钥系统信息回调的方法。 | 
-| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_GetMediaKeySystemInfo](#oh_avplayer_getmediakeysysteminfo) (OH_AVPlayer \*player, [DRM_MediaKeySystemInfo](_d_r_m___media_key_system_info.md) \*mediaKeySystemInfo) | 获取媒体密钥系统信息以创建媒体密钥会话。 | 
-| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_SetDecryptionConfig](#oh_avplayer_setdecryptionconfig) (OH_AVPlayer \*player, [MediaKeySession](_drm.md#mediakeysession) \*mediaKeySession, bool secureVideoPath) | 设置解密信息。 | 
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_GetMediaKeySystemInfo](#oh_avplayer_getmediakeysysteminfo) (OH_AVPlayer \*player, DRM_MediaKeySystemInfo \*mediaKeySystemInfo) | 获取媒体密钥系统信息以创建媒体密钥会话。 | 
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_SetDecryptionConfig](#oh_avplayer_setdecryptionconfig) (OH_AVPlayer \*player, MediaKeySession \*mediaKeySession, bool secureVideoPath) | 设置解密信息。 | 
 
 
 ### 变量
@@ -351,7 +351,12 @@ OH_AVPlayer* OH_AVPlayer_Create (void )
 
 **返回：**
 
-返回指向OH_AVPlayer实例的指针
+如果创建成功返回指向OH_AVPlayer实例的指针，否则返回空指针。
+
+可能的失败原因：
+
+1. PlayerFactory::CreatePlayer执行失败；
+2. new PlayerObject执行失败。
 
 
 ### OH_AVPlayer_DeselectTrack()
@@ -377,7 +382,11 @@ OH_AVErrCode OH_AVPlayer_DeselectTrack (OH_AVPlayer * player, int32_t index )
 
 **返回：**
 
-如果成功返回**AV_ERR_OK**；否则返回在[native_averrors.h](../apis-avcodec-kit/native__averrors_8h.md)中定义的错误代码[OH_AvErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)。
+函数结果代码[OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)：
+
+AV_ERR_OK：成功取消。
+
+AV_ERR_INVALID_VAL：输入player为空指针、player DeselectTrack执行失败。
 
 
 ### OH_AVPlayer_GetCurrentTime()
@@ -403,7 +412,11 @@ OH_AVErrCode OH_AVPlayer_GetCurrentTime (OH_AVPlayer * player, int32_t * current
 
 **返回：**
 
-如果获取当前位置，则返回**AV_ERR_OK**；否则返回在[native_averrors.h](../apis-avcodec-kit/native__averrors_8h.md)中定义的错误代码[OH_AvErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)。
+函数结果代码[OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)：
+
+AV_ERR_OK：获取当前位置。
+
+AV_ERR_INVALID_VAL：输入player为空指针、player GetCurrentTime执行失败。
 
 
 ### OH_AVPlayer_GetCurrentTrack()
@@ -432,7 +445,11 @@ OH_AVErrCode OH_AVPlayer_GetCurrentTrack (OH_AVPlayer * player, int32_t trackTyp
 
 **返回：**
 
-成功返回**AV_ERR_OK**，否则返回在[native_averrors.h](../apis-avcodec-kit/native__averrors_8h.md)中定义的错误代码[OH_AvErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)。
+函数结果代码[OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)：
+
+AV_ERR_OK：成功获取。
+
+AV_ERR_INVALID_VAL：输入player为空指针、player GetCurrentTrack执行失败。
 
 
 ### OH_AVPlayer_GetDuration()
@@ -458,7 +475,11 @@ OH_AVErrCode OH_AVPlayer_GetDuration (OH_AVPlayer * player, int32_t * duration )
 
 **返回：**
 
-如果获取当前时长，则返回**AV_ERR_OK**，否则返回在[native_averrors.h](../apis-avcodec-kit/native__averrors_8h.md)中定义的错误代码[OH_AvErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)。
+函数结果代码[OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)：
+
+AV_ERR_OK：获取当前时长。
+
+AV_ERR_INVALID_VAL：输入player为空指针、player GetDuration执行失败。
 
 
 ### OH_AVPlayer_GetMediaKeySystemInfo()
@@ -484,8 +505,11 @@ OH_AVErrCode OH_AVPlayer_GetMediaKeySystemInfo (OH_AVPlayer * player, DRM_MediaK
 
 **返回：**
 
-如果成功获取，则返回**AV_ERR_OK**，否则返回在[native_averrors.h](../apis-avcodec-kit/native__averrors_8h.md)中定义的错误代码[OH_AvErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)。
+函数结果代码[OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)：
 
+AV_ERR_OK：成功设置。
+
+AV_ERR_INVALID_VAL：输入player为空指针、内存不足。
 
 ### OH_AVPlayer_GetPlaybackSpeed()
 
@@ -510,7 +534,11 @@ OH_AVErrCode OH_AVPlayer_GetPlaybackSpeed (OH_AVPlayer * player, AVPlaybackSpeed
 
 **返回：**
 
-获取播放速率成功返回**AV_ERR_OK**，否则返回在[native_averrors.h](../apis-avcodec-kit/native__averrors_8h.md)中定义的错误代码[OH_AvErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)。
+函数结果代码[OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)：
+
+AV_ERR_OK：成功获取播放速率。
+
+AV_ERR_INVALID_VAL：输入player为空指针、player GetPlaybackSpeed执行失败。
 
 
 ### OH_AVPlayer_GetState()
@@ -536,7 +564,11 @@ OH_AVErrCode OH_AVPlayer_GetState (OH_AVPlayer * player, AVPlayerState * state )
 
 **返回：**
 
-如果获取当前播放状态，则返回**AV_ERR_OK**；否则返回在[native_averrors.h](../apis-avcodec-kit/native__averrors_8h.md)中定义的错误代码[OH_AvErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)。
+函数结果代码[OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)：
+
+AV_ERR_OK：获取当前播放状态。
+
+AV_ERR_INVALID_VAL：输入player为空指针、player GetState执行失败。
 
 
 ### OH_AVPlayer_GetVideoHeight()
@@ -562,7 +594,11 @@ OH_AVErrCode OH_AVPlayer_GetVideoHeight (OH_AVPlayer * player, int32_t * videoHe
 
 **返回：**
 
-如果获取视频高度，则返回**AV_ERR_OK**；否则返回在[native_averrors.h](../apis-avcodec-kit/native__averrors_8h.md)中定义的错误代码[OH_AvErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)。
+函数结果代码[OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)：
+
+AV_ERR_OK：成功获取视频高度。
+
+AV_ERR_INVALID_VAL：输入player为空指针。
 
 
 ### OH_AVPlayer_GetVideoWidth()
@@ -588,7 +624,11 @@ OH_AVErrCode OH_AVPlayer_GetVideoWidth (OH_AVPlayer * player, int32_t * videoWid
 
 **返回：**
 
-如果获取视频宽度，则返回**AV_ERR_OK**；否则返回在[native_averrors.h](../apis-avcodec-kit/native__averrors_8h.md)中定义的错误代码[OH_AvErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)。
+函数结果代码[OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)：
+
+AV_ERR_OK：成功获取视频宽度。
+
+AV_ERR_INVALID_VAL：输入player为空指针。
 
 
 ### OH_AVPlayer_IsLooping()
@@ -613,7 +653,7 @@ bool OH_AVPlayer_IsLooping (OH_AVPlayer * player)
 
 **返回：**
 
-如果循环播放，则返回true，否则返回false。
+如果循环播放，则返回true；如果不是循环播放或者输入player为空指针则返回false。
 
 
 ### OH_AVPlayer_IsPlaying()
@@ -638,7 +678,7 @@ bool OH_AVPlayer_IsPlaying (OH_AVPlayer * player)
 
 **返回：**
 
-如果正在播放，则返回true，否则返回false
+如果正在播放，则返回true；如果不在播放或者输入player为空指针则返回false。
 
 
 ### OH_AVPlayer_Pause()
@@ -663,7 +703,11 @@ OH_AVErrCode OH_AVPlayer_Pause (OH_AVPlayer * player)
 
 **返回：**
 
-如果成功将**Pause**添加到任务队列中，则返回**AV_ERR_OK**；否则返回在[native_averrors.h](../apis-avcodec-kit/native__averrors_8h.md)中定义的错误代码[OH_AvErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)。
+函数结果代码[OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)：
+
+AV_ERR_OK：成功将**Pause**添加到任务队列中。
+
+AV_ERR_INVALID_VAL：输入player为空指针、player Pause执行失败。
 
 
 ### OH_AVPlayer_Play()
@@ -690,7 +734,11 @@ OH_AVErrCode OH_AVPlayer_Play (OH_AVPlayer * player)
 
 **返回：**
 
-如果开始播放，则返回**AV_ERR_OK**，否则返回在[native_averrors.h](../apis-avcodec-kit/native__averrors_8h.md)中定义的错误代码[OH_AvErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)。
+函数结果代码[OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)：
+
+AV_ERR_OK：开始播放。
+
+AV_ERR_INVALID_VAL：输入player为空指针、player Play执行失败。
 
 
 ### OH_AVPlayer_Prepare()
@@ -717,7 +765,11 @@ OH_AVErrCode OH_AVPlayer_Prepare (OH_AVPlayer * player)
 
 **返回：**
 
-如果成功将**Prepare**添加到任务队列中，则返回**AV_ERR_OK**；否则返回在[native_averrors.h](../apis-avcodec-kit/native__averrors_8h.md)中定义的错误代码[OH_AvErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)
+函数结果代码[OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)：
+
+AV_ERR_OK：成功将**Prepare**添加到任务队列中。
+
+AV_ERR_INVALID_VAL：输入player为空指针、player Prepare执行失败。
 
 
 ### OH_AVPlayer_Release()
@@ -744,7 +796,11 @@ OH_AVErrCode OH_AVPlayer_Release (OH_AVPlayer * player)
 
 **返回：**
 
-如果成功将**Release**添加到任务队列中，则返回**AV_ERR_OK**；否则返回在[native_averrors.h](../apis-avcodec-kit/native__averrors_8h.md)中定义的错误代码[OH_AvErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)。
+函数结果代码[OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)：
+
+AV_ERR_OK：成功将**Release**添加到任务队列中。
+
+AV_ERR_INVALID_VAL：输入player为空指针、player Release执行失败。
 
 
 ### OH_AVPlayer_ReleaseSync()
@@ -757,7 +813,7 @@ OH_AVErrCode OH_AVPlayer_ReleaseSync (OH_AVPlayer * player)
 
 同步释放播放器资源。
 
-同步过程保证了播放画面的surfacebuffer释放，但这个界面会花费很长时间（发动机非怠速状态时），要求调用者自己设计异步机制。
+同步过程保证了播放画面的显示缓存释放，但这个过程花费时间较长，要求调用者自己设计异步机制。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -771,8 +827,11 @@ OH_AVErrCode OH_AVPlayer_ReleaseSync (OH_AVPlayer * player)
 
 **返回：**
 
-如果播放被释放返回**AV_ERR_OK**，否则返回在[native_averrors.h](../apis-avcodec-kit/native__averrors_8h.md)中定义的错误代码[OH_AvErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)。
+函数结果代码[OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)：
 
+AV_ERR_OK：播放被释放。
+
+AV_ERR_INVALID_VAL：输入player为空指针、player ReleaseSync执行失败。
 
 ### OH_AVPlayer_Reset()
 
@@ -798,7 +857,11 @@ OH_AVErrCode OH_AVPlayer_Reset (OH_AVPlayer * player)
 
 **返回：**
 
-如果成功将**reset**添加到任务队列，则返回**AV_ERR_OK**；否则返回在[native_averrors.h](../apis-avcodec-kit/native__averrors_8h.md)中定义的错误代码[OH_AvErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)。
+函数结果代码[OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)：
+
+AV_ERR_OK：成功将**reset**添加到任务队列。
+
+AV_ERR_INVALID_VAL：输入player为空指针、player Reset执行失败。
 
 
 ### OH_AVPlayer_Seek()
@@ -822,6 +885,14 @@ OH_AVErrCode OH_AVPlayer_Seek (OH_AVPlayer * player, int32_t mSeconds, AVPlayerS
 | player | 指向OH_AVPlayer实例的指针。 | 
 | mSeconds | 播放目标位置，精确到毫秒。 | 
 | mode | 播放器的跳转模式。具体请参考[AVPlayerSeekMode](#avplayerseekmode)。 | 
+
+**返回：**
+
+函数结果代码[OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)：
+
+AV_ERR_OK：完成跳转。
+
+AV_ERR_INVALID_VAL：输入player为空指针、player Seek执行失败。
 
 
 ### OH_AVPlayer_SelectBitRate()
@@ -849,7 +920,13 @@ OH_AVErrCode OH_AVPlayer_SelectBitRate (OH_AVPlayer * player, uint32_t bitRate )
 
 **返回：**
 
-设置码率成功返回**AV_ERR_OK**，否则返回在[native_averrors.h](../apis-avcodec-kit/native__averrors_8h.md)中定义的错误代码[OH_AvErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)。
+**返回：**
+
+函数结果代码[OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)：
+
+AV_ERR_OK：设置码率成功。
+
+AV_ERR_INVALID_VAL：输入player为空指针、player SelectBitRate执行失败。
 
 
 ### OH_AVPlayer_SelectTrack()
@@ -877,8 +954,11 @@ OH_AVErrCode OH_AVPlayer_SelectTrack (OH_AVPlayer * player, int32_t index )
 
 **返回：**
 
-如果成功选择返回**AV_ERR_OK**；否则返回在[native_averrors.h](../apis-avcodec-kit/native__averrors_8h.md)中定义的错误代码[OH_AvErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)。
+函数结果代码[OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)：
 
+AV_ERR_OK：成功选择。
+
+AV_ERR_INVALID_VAL：输入player为空指针、player SelectTrack执行失败。
 
 ### OH_AVPlayer_SetDecryptionConfig()
 
@@ -904,7 +984,11 @@ OH_AVErrCode OH_AVPlayer_SetDecryptionConfig (OH_AVPlayer * player, MediaKeySess
 
 **返回：**
 
-如果成功设置返回**AV_ERR_OK**；否则返回在[native_averrors.h](../apis-avcodec-kit/native__averrors_8h.md)中定义的错误代码[OH_AvErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)。
+函数结果代码[OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)：
+
+AV_ERR_OK：成功设置。
+
+AV_ERR_INVALID_VAL：输入player为空指针、player SetDecryptionConfig执行失败。
 
 
 ### OH_AVPlayer_SetFDSource()
@@ -932,7 +1016,11 @@ OH_AVErrCode OH_AVPlayer_SetFDSource (OH_AVPlayer * player, int32_t fd, int64_t 
 
 **返回：**
 
-如果fd设置成功返回**AV_ERR_OK**，否则返回在[native_averrors.h](../apis-avcodec-kit/native__averrors_8h.md)中定义的错误代码[OH_AvErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)。
+函数结果代码[OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)：
+
+AV_ERR_OK：fd设置成功。
+
+AV_ERR_INVALID_VAL：输入player为空指针、player SetFdSource执行失败。
 
 
 ### OH_AVPlayer_SetLooping()
@@ -958,7 +1046,11 @@ OH_AVErrCode OH_AVPlayer_SetLooping (OH_AVPlayer * player, bool loop )
 
 **返回：**
 
-如果设置了循环，则返回**AV_ERR_OK**；否则返回在[native_averrors.h](../apis-avcodec-kit/native__averrors_8h.md)中定义的错误代码[OH_AvErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)。
+函数结果代码[OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)：
+
+AV_ERR_OK：循环播放设置成功。
+
+AV_ERR_INVALID_VAL：输入player为空指针、player SetLooping执行失败。
 
 
 ### OH_AVPlayer_SetMediaKeySystemInfoCallback()
@@ -984,7 +1076,11 @@ OH_AVErrCode OH_AVPlayer_SetMediaKeySystemInfoCallback (OH_AVPlayer * player, Pl
 
 **返回：**
 
-如果设置成功，则返回**AV_ERR_OK**；否则返回在[native_averrors.h](../apis-avcodec-kit/native__averrors_8h.md)中定义的错误代码[OH_AvErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)。
+函数结果代码[OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)：
+
+AV_ERR_OK：设置成功。
+
+AV_ERR_INVALID_VAL：输入player为空指针、callback为空指针、player SetDrmSystemInfoCallback，SetDrmSystemInfoCallback或SetDrmSystemInfoCallback执行失败。
 
 
 ### OH_AVPlayer_SetPlaybackSpeed()
@@ -1005,6 +1101,14 @@ OH_AVErrCode OH_AVPlayer_SetPlaybackSpeed (OH_AVPlayer * player, AVPlaybackSpeed
 | -------- | -------- |
 | player | 指向OH_AVPlayer实例的指针 | 
 | speed | 可以设置速率模式[AVPlaybackSpeed](#avplaybackspeed) | 
+
+**返回：**
+
+函数结果代码[OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)：
+
+AV_ERR_OK：成功设置播放速率。
+
+AV_ERR_INVALID_VAL：输入player为空指针。
 
 
 ### OH_AVPlayer_SetPlayerCallback()
@@ -1030,7 +1134,11 @@ OH_AVErrCode OH_AVPlayer_SetPlayerCallback (OH_AVPlayer * player, AVPlayerCallba
 
 **返回：**
 
-如果设置了播放器回调，则返回**AV_ERR_OK**；否则返回在[native_averrors.h](../apis-avcodec-kit/native__averrors_8h.md)中定义的错误代码[OH_AvErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)。
+函数结果代码[OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)：
+
+AV_ERR_OK：成功设置播放器回调。
+
+AV_ERR_INVALID_VAL：输入player为空指针、callback.onInfo或onError为空、player SetPlayerCallback执行失败。
 
 
 ### OH_AVPlayer_SetURLSource()
@@ -1056,7 +1164,11 @@ OH_AVErrCode OH_AVPlayer_SetURLSource (OH_AVPlayer * player, const char * url )
 
 **返回：**
 
-如果url设置成功返回**AV_ERR_OK**，否则返回在[native_averrors.h](../apis-avcodec-kit/native__averrors_8h.md)中定义的错误代码[OH_AvErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)。
+函数结果代码[OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)：
+
+AV_ERR_OK：设置成功。
+
+AV_ERR_INVALID_VAL：输入player为空指针、url为空、player SetUrlSource执行失败。
 
 
 ### OH_AVPlayer_SetVideoSurface()
@@ -1077,6 +1189,14 @@ OH_AVErrCode OH_AVPlayer_SetVideoSurface (OH_AVPlayer * player, OHNativeWindow *
 | -------- | -------- |
 | player | 指向OH_AVPlayer实例的指针 | 
 | window | 指向OHNativeWindow实例的指针 | 
+
+**返回：**
+
+函数结果代码[OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)：
+
+AV_ERR_OK：设置播放画面窗口成功。
+
+AV_ERR_INVALID_VAL：输入player为空指针、输入window为空指针、player SetVideoSurface执行失败。
 
 
 ### OH_AVPlayer_SetVolume()
@@ -1105,7 +1225,11 @@ OH_AVErrCode OH_AVPlayer_SetVolume (OH_AVPlayer * player, float leftVolume, floa
 
 **返回：**
 
-如果设置了音量，则返回**AV_ERR_OK**；否则返回在[native_averrors.h](../apis-avcodec-kit/native__averrors_8h.md)中定义的错误代码[OH_AvErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)，
+函数结果代码[OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)：
+
+AV_ERR_OK：设置音量成功。
+
+AV_ERR_INVALID_VAL：输入player为空指针、player SetVolume执行失败。
 
 
 ### OH_AVPlayer_Stop()
@@ -1130,7 +1254,11 @@ OH_AVErrCode OH_AVPlayer_Stop (OH_AVPlayer * player)
 
 **返回：**
 
-如果成功将**stop**添加到任务队列，则返回**AV_ERR_OK**；否则返回在[native_averrors.h](../apis-avcodec-kit/native__averrors_8h.md)中定义的错误代码[OH_AvErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)。
+函数结果代码[OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)：
+
+AV_ERR_OK：成功将**stop**添加到任务队列。
+
+AV_ERR_INVALID_VAL：输入player为空指针、player Stop执行失败。
 
 
 ## 变量说明

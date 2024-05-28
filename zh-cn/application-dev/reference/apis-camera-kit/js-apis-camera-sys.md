@@ -48,6 +48,25 @@ import camera from '@ohos.multimedia.camera';
 | ----------------------- | --------- | ------------ |
 | PORTRAIT_PHOTO       | 3      | 人像拍照模式。**系统接口：** 此接口为系统接口。            |
 | NIGHT_PHOTO        | 4      | 夜景拍照模式。**系统接口：** 此接口为系统接口。             |
+| SLOW_MOTION_VIDEO<sup>12+</sup>        | 7   | 慢动作模式。**系统接口：** 此接口为系统接口。  |
+| MACRO_PHOTO<sup>12+</sup>        | 8      | 超级微距拍照模式。**系统接口：** 此接口为系统接口。             |
+| MACRO_VIDEO<sup>12+</sup>        | 9      | 超级微距录像模式。**系统接口：** 此接口为系统接口。             |
+| HIGH_RESOLUTION_PHOTO<sup>12+</sup>        | 11     | 高像素拍照模式。 **系统接口：** 此接口为系统接口。          |
+
+## SlowMotionStatus<sup>12+</sup>
+
+枚举，慢动作状态。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+| 名称             | 值   | 说明            |
+|----------------|-----|---------------|
+| DISABLED       | 0   | 慢动作关闭状态。      |
+| READY          | 1   | 慢动作就绪状态。      |
+| VIDEO_START    | 2   | 慢动作视频开始状态。    |
+| VIDEO_DONE     | 3   | 慢动作视频完成状态。    |
+| FINISHED       | 4   | 慢动作结束状态。      |
+
 
 ## CameraManager
 
@@ -194,6 +213,7 @@ isPrelaunchSupported(camera: CameraDevice): boolean
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
+| 202 | Not System Application. |
 | 7400101 | Parameter missing or parameter type incorrect. |
 
 **示例：**
@@ -240,8 +260,10 @@ setPrelaunchConfig(prelaunchConfig: PrelaunchConfig): void
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
+| 202 | Not System Application. |
 | 7400101 | Parameter missing or parameter type incorrect. |
 | 7400102 | Operation not allowed. |
+| 7400201 | Camera service fatal error. |
 
 **示例：**
 
@@ -321,7 +343,8 @@ createDeferredPreviewOutput(profile: Profile): PreviewOutput
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
-| 7400101 | Parameter missing or parameter type incorrect. |
+| 202         	  |  Not System Application.       |
+| 7400101 	      |  Parameter missing or parameter type incorrect. |
 
 **示例：**
 
@@ -357,7 +380,9 @@ preSwitchCamera(cameraId: string): void
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
+| 202 | Not System Application. |
 | 7400101 | Parameter missing or parameter type incorrect. |
+| 7400201 | Camera service fatal error. |
 
 **示例：**
 
@@ -486,6 +511,14 @@ isSketchSupported(): boolean
 | -------------- | ----------------------- |
 | boolean | 返回是否支持画中画。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 202             |  Not System Application.                  |
+
 **示例：**
 
 ```ts
@@ -551,8 +584,10 @@ enableSketch(enabled: boolean): void
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
-| 7400103         |  Session not config.                      |
 | 202             |  Not System Application.                  |
+| 7400102         |  Operation not allowed.                   |
+| 7400103         |  Session not config.                      |
+| 7400201         |  Camera service fatal error.              |
 
 **示例：**
 
@@ -596,8 +631,10 @@ attachSketchSurface(surfaceId: string): void
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
-| 7400103         |  Session not config.                      |
 | 202             |  Not System Application.                  |
+| 7400101         |  Parameter missing or parameter type incorrect.                      |
+| 7400103         |  Session not config.                      |
+| 7400201         |  Camera service fatal error.                      |
 
 **示例：**
 
@@ -637,6 +674,14 @@ on(type: 'sketchStatusChanged', callback: AsyncCallback\<SketchStatusData\>): vo
 | type     | string                 | 是   | 监听事件，固定为'sketchStatusChanged'，画中画流创建成功后可监听。底层画中画的状态启停以及画中画Zoom值变更会回调该接口。 |
 | callback | AsyncCallback\<[SketchStatusData](#sketchstatusdata11)\> | 是   | 使用callback的方式获取SketchStatusData。            |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 202         	  |  Not System Application.       |
+
 **示例：**
 
 ```ts
@@ -667,6 +712,14 @@ off(type: 'sketchStatusChanged', callback?: AsyncCallback\<SketchStatusData\>): 
 | -------- | ---------------------- | ---- | ------------------------------------------ |
 | type     | string                 | 是   | 监听事件，固定为'sketchStatusChanged'，画中画流创建成功后可监听。 |
 | callback | AsyncCallback\<[SketchStatusData](#sketchstatusdata11)\> | 否   | 回调函数，可选，有就是匹配on('sketchStatusChanged') callback（callback对象不可是匿名函数）。           |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 202         	  |  Not System Application.       |
 
 **示例：**
 
@@ -710,6 +763,14 @@ getThumbnail(): Promise<image.PixelMap>
 | -------------- | ----------------------- |
 | Promise\<image.PixelMap\> | 缩略图 PixelMap。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 202         	  |  Not System Application.       |
+
 **示例：**
 
 ```ts
@@ -737,6 +798,14 @@ release(): Promise\<void\>
 | 类型            | 说明                     |
 | -------------- | ----------------------- |
 | Promise\<void\> | 使用Promise的方式获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](js-apis-camera.md#cameraerrorcode)。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 202         	  |  Not System Application.       |
 
 **示例：**
 
@@ -766,6 +835,7 @@ confirmCapture()
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
+| 202         	  |  Not System Application.       |
 | 7400104         |  Session not running.          |
 | 7400201         |  Camera service fatal error.   |
 
@@ -922,6 +992,14 @@ on(type: 'deferredPhotoProxyAvailable', callback: AsyncCallback\<DeferredPhotoPr
 | type     | string     | 是   | 监听事件，固定为'deferredPhotoProxyAvailable'，photoOutput创建成功后可监听。 |
 | callback | AsyncCallback\<[DeferredPhotoProxy](#deferredphotoproxy11)\> | 是   | 回调函数，用于获取相关信息。用于监听缩略图上报。|
 
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 202         	  |  Not System Application.       |
+
 **示例：**
 
 ```ts
@@ -955,6 +1033,14 @@ off(type: 'deferredPhotoProxyAvailable', callback?: AsyncCallback\<DeferredPhoto
 | -------- | ---------------------- | ---- | ------------------------------------------ |
 | type     | string                 | 是   | 监听事件，固定为'deferredPhotoProxyAvailable'，photoOutput创建成功后可监听。 |
 | callback | AsyncCallback\<[DeferredPhotoProxy](#deferredphotoproxy11)\> | 否   | 回调函数，可选，有就是匹配on('deferredPhotoProxyAvailable') callback（callback对象不可是匿名函数）。            |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 202         	  |  Not System Application.       |
 
 **示例：**
 
@@ -997,6 +1083,7 @@ isQuickThumbnailSupported(): boolean
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
+| 202                	 |  Not System Application.        |
 | 7400104                |  session is not running.        |
 
 **示例：**
@@ -1047,7 +1134,10 @@ enableQuickThumbnail(enabled: boolean): void
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
+| 202                	 |  Not System Application.        |
+| 7400101                |  Parameter missing or parameter type incorrect.        |
 | 7400104                |  session is not running.        |
+| 7400201                |  Camera service fatal error.        |
 
 **示例：**
 
@@ -1231,7 +1321,9 @@ getSupportedExposureRange(): Array\<number\>
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
-| 7400103                |  Session not config.  |
+| 202                |  Not System Application.  |
+| 7400101            |  Parameter missing or parameter type incorrect.  |
+| 7400103            |  Session not config, only throw in session usage.  |
 
  **示例：**
 
@@ -1263,6 +1355,8 @@ getExposure(): number
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
+| 202                    |  Not System Application.                               |
+| 7400101                |  Parameter missing or parameter type incorrect.        |
 | 7400103                |  Session not config.                                   |
 
 **示例：**
@@ -1298,7 +1392,9 @@ setExposure(exposure: number): void
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
-| 7400103                |  Session not config.  |
+| 202                	 |  Not System Application.  |
+| 7400102                |  Operation not allowed.   |
+| 7400103                |  Session not config.      |
 
 ```ts
 function setExposure(nightPhotoSession: camera.NightPhotoSession): void {
@@ -1329,6 +1425,14 @@ isMacroSupported(): boolean
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
 |   boolean  | 返回是否支持微距能力。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 202             |  Not System Application.                  |
 
 **示例：**
 
@@ -1362,6 +1466,7 @@ enableMacro(enabled: boolean): void
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
 | 202             |  Not System Application.                  |
+| 7400102         |  Operation not allowed.                   |
 | 7400103         |  Session not config.                      |
 
 **示例：**
@@ -1374,6 +1479,143 @@ function enableMacro(photoSession: camera.PhotoSessionForSys): void {
   }
 }
 ```
+
+## SceneFeatureType<sup>12+</sup>
+
+枚举，场景特性枚举。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+| 名称                     | 值        | 说明         |
+| ----------------------- | --------- | ------------ |
+| MOON_CAPTURE_BOOST       | 0      | 月亮场景。**系统接口：** 此接口为系统接口。            |
+
+## SceneFeatureDetectionResult<sup>12+</sup>
+
+场景检测结果信息。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+| 名称     | 类型        |   只读   |   必填   | 说明       |
+| -------- | ---------- | -------- | -------- | ---------- |
+| featureType |   [SceneFeatureType](#scenefeaturetype12)   |   是     |    是    | 特性类型。 |
+| detected |   boolean   |   是     |    是    | 检测结果。true为检测到指定特性场景。 |
+
+## SceneDetection<sup>12+</sup>
+
+场景检测能力。
+
+### isSceneFeatureSupported<sup>12+</sup>
+
+isSceneFeatureSupported(featureType: camera.SceneFeatureType): boolean
+
+查询是否支持指定特性。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型         | 必填 | 说明                       |
+| -------- | --------------| ---- | ------------------------ |
+| featureType | [SceneFeatureType](#scenefeaturetype12) | 是 | 指定对应的场景特性。|
+
+**返回值：**
+
+| 类型            | 说明                     |
+| -------------- | ----------------------- |
+| boolean | 返回是否支持指定特性。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 202             |  Not System Application.                  |
+| 7400101         |  Parameter missing or parameter type incorrect.                      |
+
+**示例：**
+
+```ts
+function isSceneFeatureSupported(photoSession: camera.PhotoSession, featureType: camera.SceneFeatureType): boolean {
+  let isSupported: boolean = photoSession.isSceneFeatureSupported(featureType);
+  return isSupported;
+}
+```
+
+### enableSceneFeature<sup>12+</sup>
+
+enableSceneFeature(featureType: camera.SceneFeatureType, enabled: boolean): void
+
+使能指定特性，该接口应当在收到对应场景检测回调结果[SceneFeatureDetectionResult](#scenefeaturedetectionresult12)之后调用。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型         | 必填 | 说明                       |
+| -------- | --------------| ---- | ------------------------ |
+| featureType | [SceneFeatureType](#scenefeaturetype12) | 是 | 指定需要开启或关闭的特性。|
+| enabled | boolean | 是 | true表明开启指定特性，false表明关闭指定特性。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 202             |  Not System Application.                  |
+| 7400101         |  Parameter missing or parameter type incorrect.                      |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+function enableSceneFeature(photoSession: camera.PhotoSession): void {
+  try {
+    photoSession.beginConfig();
+    photoSession.addInput(cameraInput);
+    photoSession.addOutput(previewOutput);
+    photoSession.commitConfig();
+
+    photoSession.on('featureDetection', camera.SceneFeatureType.MOON_CAPTURE_BOOST,
+      (err, statusObject) => {
+        console.info(
+          `on featureDetection featureType:${statusObject.featureType} detected:${statusObject.detected}`);
+        if (statusObject.featureType === camera.SceneFeatureType.MOON_CAPTURE_BOOST) {
+          try {
+            photoSession.enableSceneFeature(statusObject.featureType, statusObject.detected);
+          } catch (error) {
+            return false;
+          }
+        }
+      });
+
+  } catch (error) {
+    // 失败返回错误码error.code并处理
+    let err = error as BusinessError;
+    console.error(`The enableSceneFeature call failed. error code: ${err.code}`);
+  }
+}
+```
+
+## ZoomPointInfo<sup>12+</sup>
+
+等效焦距信息。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+| 名称     | 类型        |   只读   |   必填   | 说明       |
+| -------- | ---------- | -------- | -------- | ---------- |
+| zoomRatio |   number   |   是     |    是    | 可变焦距比。 |
+| equivalentFocalLength |   number   |   是     |    是    | 当前焦距比对应的等效焦距值。 |
 
 ## Zoom<sup>11+</sup>
 
@@ -1449,6 +1691,48 @@ function unprepareZoom(sessionExtendsZoom: camera.Zoom): void {
 }
 ```
 
+### getZoomPointInfos<sup>12+</sup>
+
+getZoomPointInfos(): Array\<ZoomPointInfo\>
+
+获取当前模式的等效焦距信息列表。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**返回值：**
+
+| 类型                | 说明                                                  |
+| ----------          | -----------------------------                         |
+|  Array\<[ZoomPointInfo](#zoompointinfo12)\>| 获取当前模式的等效焦距信息列表。                   |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 202                    |  Not System Application.                      |
+| 7400103                |  Session not config.                          |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+function getZoomPointInfos(): Array<ZoomPointInfo> {
+  try {
+    let zoomPointInfos: Array<ZoomPointInfo> = sessionExtendsZoom.getZoomPointInfos();
+	return zoomPointInfos;
+  } catch (error) {
+    // 失败返回错误码error.code并处理
+    let err = error as BusinessError;
+    console.error(`The getZoomPointInfos call failed. error code: ${err.code}`);
+  }
+}
+```
+
 ## ZoomRange<sup>11+</sup>
 
 获取支持的变焦范围。变焦范围为[min, max)，即包括最小值，不包括最大值。
@@ -1488,6 +1772,7 @@ getSupportedBeautyTypes(): Array\<BeautyType\>
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
+| 202                |  Not System Application.                                   |
 | 7400103                |  Session not config.                                   |
 
 **示例：**
@@ -1534,6 +1819,7 @@ getSupportedBeautyRange(type: BeautyType): Array\<number\>
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
+| 202                |  Not System Application.                                   |
 | 7400103                |  Session not config.                                   |
 
 **示例：**
@@ -1572,6 +1858,7 @@ setBeauty(type: BeautyType, value: number): void
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
+| 202                |  Not System Application.                                   |
 | 7400103                |  Session not config.                                   |
 
 **示例：**
@@ -1617,6 +1904,7 @@ getBeauty(type: BeautyType): number
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
+| 202                |  Not System Application.                                   |
 | 7400103                |  Session not config.                                   |
 
 **示例：**
@@ -2284,7 +2572,7 @@ function getBeauty(captureSession: camera.CaptureSession): number {
 
 ## PhotoSessionForSys<sup>11+</sup>
 
-PhotoSessionForSys extends PhotoSession, Beauty, ColorEffect, ColorManagement, Macro
+PhotoSessionForSys extends PhotoSession, Beauty, ColorEffect, ColorManagement, Macro, SceneDetection
 
 提供给系统应用的PhotoSession，普通拍照模式会话类，继承自[Session](js-apis-camera.md#session11)，用于设置普通拍照模式的参数以及保存所需要的所有资源[CameraInput](js-apis-camera.md#camerainput)、[CameraOutput](js-apis-camera.md#cameraoutput)。
 
@@ -2314,6 +2602,14 @@ on(type: 'macroStatusChanged', callback: AsyncCallback\<boolean\>): void
 | -------- | ----------------------------------------- | ---- | ------------------------ |
 | type     | string      | 是   | 监听事件，固定为'macroStatusChanged'，session创建成功可监听。 |
 | callback | AsyncCallback\<boolean\>     | 是   | 回调函数，用于获取当前微距状态。  |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 202         	  |  Not System Application.       |
 
 **示例：**
 
@@ -2346,11 +2642,94 @@ off(type: 'macroStatusChanged', callback?: AsyncCallback\<boolean\>): void
 | type     | string                   | 是   | 监听事件，固定为'macroStatusChanged'，session创建成功可监听。|
 | callback | AsyncCallback\<boolean\> | 否   | 回调函数，可选，有就是匹配on('macroStatusChanged') callback（callback对象不可是匿名函数）。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 202         	  |  Not System Application.       |
+
 **示例：**
 
 ```ts
 function unregisterMacroStatusChanged(photoSession: camera.PhotoSession): void {
   photoSession.off('macroStatusChanged');
+}
+```
+
+### on('featureDetection')<sup>12+</sup>
+
+on(type: 'featureDetection', featureType: camera.SceneFeatureType, callback: AsyncCallback\<camera.SceneFeatureDetectionResult\>): void
+
+监听相机特性检测状态变化。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型                                      | 必填 | 说明                       |
+| -------- | ----------------------------------------- | ---- | ------------------------ |
+| type     | string      | 是   | 监听事件，固定为'featureDetection'，photoSession创建成功可监听。 |
+| featureType     | [SceneFeatureType](#scenefeaturetype12)      | 是   | 监听指定特性。 |
+| callback | AsyncCallback\<[SceneFeatureDetectionResult](#scenefeaturedetectionresult12)\>     | 是   | 回调函数，用于获取当前监听的特性的状态。  |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 202         	  |  Not System Application.       |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+function callback(err: BusinessError, result: camera.SceneFeatureDetectionResult): void {
+  console.info(`feature type: ${result.featureType}`);
+  console.info(`feature status: ${result.detected}`);
+}
+
+function registerFeatureDetectionStatus(photoSession: camera.PhotoSession, featureType: camera.SceneFeatureType): void {
+  photoSession.on('featureDetection', featureType, callback);
+}
+```
+
+### off('featureDetection')<sup>12+</sup>
+
+off(type: 'featureDetection', featureType: camera.SceneFeatureType, callback?: AsyncCallback\<camera.SceneFeatureDetectionResult\>): void
+
+注销监听相机特性检测状态变化。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名    | 类型                     | 必填 | 说明                       |
+| -------- | ------------------------ | ---- | ------------------------ |
+| type     | string                   | 是   | 监听事件，固定为'featureDetection'，session创建成功可取消监听。|
+| featureType     | [SceneFeatureType](#scenefeaturetype12)      | 是   | 指定特性。 |
+| callback | AsyncCallback\<[SceneFeatureDetectionResult](#scenefeaturedetectionresult12)\> | 否   | 回调函数，可选，有就是匹配on('featureDetection') callback（callback对象不可是匿名函数）。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 202         	  |  Not System Application.       |
+
+**示例：**
+
+```ts
+function unregisterFeatureDetectionStatus(photoSession: camera.PhotoSession, featureType: camera.SceneFeatureType): void {
+  photoSession.off('featureDetection', featureType);
 }
 ```
 
@@ -2387,6 +2766,14 @@ on(type: 'macroStatusChanged', callback: AsyncCallback\<boolean\>): void
 | type     | string      | 是   | 监听事件，固定为'macroStatusChanged'，session创建成功可监听。 |
 | callback | AsyncCallback\<boolean\>     | 是   | 回调函数，用于获取当前微距状态。  |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 202         	  |  Not System Application.       |
+
 **示例：**
 
 ```ts
@@ -2417,6 +2804,14 @@ off(type: 'macroStatusChanged', callback?: AsyncCallback\<boolean\>): void
 | -------- | ------------------------ | ---- | ------------------------ |
 | type     | string                   | 是   | 监听事件，固定为'macroStatusChanged'，session创建成功可监听。|
 | callback | AsyncCallback\<boolean\> | 否   | 回调函数，可选，有就是匹配on('macroStatusChanged') callback（callback对象不可是匿名函数）。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 202         	  |  Not System Application.       |
 
 **示例：**
 
@@ -2773,6 +3168,122 @@ function unregisterSmoothZoomInfo(nightPhotoSession: camera.NightPhotoSession): 
   nightPhotoSession.off('smoothZoomInfoAvailable');
 }
 ```
+## HighResolutionPhotoSession<sup>12+</sup>
+
+HighResolutionPhotoSession extends Session, AutoExposure, Focus
+
+高像素拍照模式会话类，继承自[Session](js-apis-camera.md#session11)，用于设置高像素拍照模式的参数以及保存所需要的所有资源[CameraInput](js-apis-camera.md#camerainput)、[CameraOutput](js-apis-camera.md#cameraoutput)。
+
+### on('error')<sup>12+</sup>
+
+on(type: 'error', callback: ErrorCallback): void
+
+监听高像素拍照会话的错误事件，通过注册回调函数获取结果。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型        | 必填 | 说明                           |
+| -------- | --------------------------------- | ---- | ------------------------------ |
+| type     | string                               | 是   | 监听事件，固定为'error'，session创建成功之后可监听该接口。session调用相关接口出现错误时会触发该事件，比如调用[beginConfig](js-apis-camera.md#beginconfig11)，[commitConfig](js-apis-camera.md#commitconfig11-1)，[addInput](js-apis-camera.md#addinput11)等接口发生错误时返回错误信息。 |
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback)| 是   | 回调函数，用于获取错误信息。返回错误码，错误码类型[CameraErrorCode](js-apis-camera.md#cameraerrorcode)。        |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+function callback(err: BusinessError): void {
+  console.error(`High resolution photo session error code: ${err.code}`);
+}
+
+function registerSessionError(highResolutionPhotoSession: camera.HighResolutionPhotoSession): void {
+  highResolutionPhotoSession.on('error', callback);
+}
+```
+### off('error')<sup>12+</sup>
+
+off(type: 'error', callback?: ErrorCallback): void
+
+注销监听高像素拍照会话的错误事件，通过注册回调函数获取结果。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型                        | 必填 | 说明                           |
+| -------- | ------------------------ | ---- | ------------------------------ |
+| type     | string    | 是   | 监听事件，固定为'error'，session创建成功之后可监听该接口。 |
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback)| 否   | 回调函数，可选，有就是匹配on('error') callback（callback对象不可是匿名函数）。       |
+
+**示例：**
+
+```ts
+function unregisterSessionError(highResolutionPhotoSession: camera.HighResolutionPhotoSession): void {
+  highResolutionPhotoSession.off('error');
+}
+```
+
+### on('focusStateChange')<sup>12+</sup>
+
+on(type: 'focusStateChange', callback: AsyncCallback\<FocusState\>): void
+
+监听相机聚焦的状态变化，通过注册回调函数获取结果。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型                    | 必填 | 说明                       |
+| -------- | ---------------- | ---- | ------------------------ |
+| type     | string                                    | 是   | 监听事件，固定为'focusStateChange'，session创建成功可监听。仅当自动对焦模式时，且相机对焦状态发生改变时可触发该事件。 |
+| callback | AsyncCallback\<[FocusState](js-apis-camera.md#focusstate)\> | 是   | 回调函数，用于获取当前对焦状态。  |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+function callback(err: BusinessError, focusState: camera.FocusState): void {
+  console.info(`Focus state: ${focusState}`);
+}
+
+function registerFocusStateChange(highResolutionPhotoSession: camera.HighResolutionPhotoSession): void {
+  highResolutionPhotoSession.on('focusStateChange', callback);
+}
+```
+
+### off('focusStateChange')<sup>12+</sup>
+
+off(type: 'focusStateChange', callback?: AsyncCallback\<FocusState\>): void
+
+注销监听相机聚焦的状态变化。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型                                      | 必填 | 说明                       |
+| -------- | ----------------------------------------- | ---- | ------------------------ |
+| type     | string                                    | 是   | 监听事件，固定为'focusStateChange'，session创建成功可监听。 |
+| callback | AsyncCallback\<[FocusState](js-apis-camera.md#focusstate)\> | 否   | 回调函数，可选，有就是匹配on('focusStateChange') callback（callback对象不可是匿名函数）。  |
+
+**示例：**
+
+```ts
+function unregisterFocusStateChange(highResolutionPhotoSession: camera.HighResolutionPhotoSession): void {
+  highResolutionPhotoSession.off('focusStateChange');
+}
+```
 
 ## SketchStatusData<sup>11+</sup>
 
@@ -2786,3 +3297,392 @@ function unregisterSmoothZoomInfo(nightPhotoSession: camera.NightPhotoSession): 
 | ------------- | -------- | ---- | ---- | ---------- |
 | status        | number   | 否   | 是   | 画中画当前的状态。0：已停止，1：已启动，2：停止中，3：启动中。|
 | sketchRatio   | number   | 否   | 是   | 画中画画面的Zoom倍率。|
+
+
+## SlowMotionVideoSession<sup>12+</sup>
+
+SlowMotionVideoSession extends Session, Flash, AutoExposure, Focus, Zoom, ColorEffect
+
+慢动作录像模式会话类，继承自[Session](js-apis-camera.md#session11)，用于设置人像拍照模式的参数以及保存所需要的所有资源[CameraInput](js-apis-camera.md#camerainput)、[CameraOutput](js-apis-camera.md#cameraoutput)。
+
+> **说明：**
+> 慢动作模式下只能添加预览流和录像流。
+### on('error')<sup>12+</sup>
+
+on(type: 'error', callback: ErrorCallback): void
+
+监听人像拍照会话的错误事件，通过注册回调函数获取结果。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型        | 必填 | 说明                           |
+| -------- | --------------------------------- | ---- | ------------------------------ |
+| type     | string                               | 是   | 监听事件，固定为'error'，session创建成功之后可监听该接口。session调用相关接口出现错误时会触发该事件，比如调用[beginConfig](js-apis-camera.md#beginconfig11)，[commitConfig](js-apis-camera.md#commitconfig11-1)，[addInput](js-apis-camera.md#addinput11)等接口发生错误时返回错误信息。 |
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback)| 是   | 回调函数，用于获取错误信息。返回错误码，错误码类型[CameraErrorCode](js-apis-camera.md#cameraerrorcode)。        |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID   | 错误信息        |
+|---------| --------------- |
+| 202     |  Not System Application. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+function callback(err: BusinessError): void {
+  console.error(`Portrait photo session error code: ${err.code}`);
+}
+
+function registerSessionError(slowMotionVideoSession: camera.SlowMotionVideoSession): void {
+  slowMotionVideoSession.on('error', callback);
+}
+```
+
+### off('error')<sup>12+</sup>
+
+off(type: 'error', callback?: ErrorCallback): void
+
+注销监听人像拍照会话的错误事件，通过注册回调函数获取结果。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型        | 必填 | 说明                           |
+| -------- | -------------------------- | ---- | ------------------------------ |
+| type     | string                     | 是   | 监听事件，固定为'error'，session创建成功之后可监听该接口。 |
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback)| 否   | 回调函数，可选，有就是匹配on('error') callback（callback对象不可是匿名函数）。    |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID   | 错误信息        |
+|---------| --------------- |
+| 202     |  Not System Application. |
+
+**示例：**
+
+```ts
+function unregisterSessionError(slowMotionVideoSession: camera.SlowMotionVideoSession): void {
+  slowMotionVideoSession.off('error');
+}
+```
+
+### on('focusStateChange')<sup>12+</sup>
+
+on(type: 'focusStateChange', callback: AsyncCallback\<FocusState\>): void
+
+监听相机聚焦的状态变化，通过注册回调函数获取结果。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型                    | 必填 | 说明                       |
+| -------- | ---------------- | ---- | ------------------------ |
+| type     | string                                    | 是   | 监听事件，固定为'focusStateChange'，session创建成功可监听。仅当自动对焦模式时，且相机对焦状态发生改变时可触发该事件。 |
+| callback | AsyncCallback\<[FocusState](js-apis-camera.md#focusstate)\> | 是   | 回调函数，用于获取当前对焦状态。  |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID   | 错误信息        |
+|---------| --------------- |
+| 202     |  Not System Application. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+function callback(err: BusinessError, focusState: camera.FocusState): void {
+  console.info(`Focus state: ${focusState}`);
+}
+
+function registerFocusStateChange(slowMotionVideoSession: camera.SlowMotionVideoSession): void {
+  slowMotionVideoSession.on('focusStateChange', callback);
+}
+```
+
+### off('focusStateChange')<sup>12+</sup>
+
+off(type: 'focusStateChange', callback?: AsyncCallback\<FocusState\>): void
+
+注销监听相机聚焦的状态变化。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型                                      | 必填 | 说明                       |
+| -------- | ----------------------------------------- | ---- | ------------------------ |
+| type     | string                                    | 是   | 监听事件，固定为'focusStateChange'，session创建成功可监听。 |
+| callback | AsyncCallback\<[FocusState](js-apis-camera.md#focusstate)\> | 否   | 回调函数，可选，有就是匹配on('focusStateChange') callback（callback对象不可是匿名函数）。  |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID   | 错误信息        |
+|---------| --------------- |
+| 202     |  Not System Application. |
+
+**示例：**
+
+```ts
+function unregisterFocusStateChange(slowMotionVideoSession: camera.SlowMotionVideoSession): void {
+  slowMotionVideoSession.off('focusStateChange');
+}
+```
+
+### on('smoothZoomInfoAvailable')<sup>12+</sup>
+
+on(type: 'smoothZoomInfoAvailable', callback: AsyncCallback\<SmoothZoomInfo\>): void
+
+监听相机平滑变焦的状态变化，通过注册回调函数获取结果。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型                   | 必填 | 说明                       |
+| -------- | ----------------------- | ---- | ------------------------ |
+| type     | string                  | 是   | 监听事件，固定为'smoothZoomInfoAvailable'，session创建成功可监听。|
+| callback | AsyncCallback\<[SmoothZoomInfo](js-apis-camera.md#smoothzoominfo11)\> | 是   | 回调函数，用于获取当前平滑变焦状态。  |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID   | 错误信息        |
+|---------| --------------- |
+| 202     |  Not System Application. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+function callback(err: BusinessError, smoothZoomInfo: camera.SmoothZoomInfo): void {
+  console.info(`The duration of smooth zoom: ${smoothZoomInfo.duration}`);
+}
+
+function registerSmoothZoomInfo(slowMotionVideoSession: camera.SlowMotionVideoSession): void {
+  slowMotionVideoSession.on('smoothZoomInfoAvailable', callback);
+}
+```
+
+### off('smoothZoomInfoAvailable')<sup>12+</sup>
+
+off(type: 'smoothZoomInfoAvailable', callback?: AsyncCallback\<SmoothZoomInfo\>): void
+
+注销监听相机平滑变焦的状态变化。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型                                      | 必填 | 说明                       |
+| -------- | ----------------------------------------- | ---- | ------------------------ |
+| type     | string              | 是   | 监听事件，固定为'smoothZoomInfoAvailable'，session创建成功可监听。|
+| callback | AsyncCallback\<[SmoothZoomInfo](js-apis-camera.md#smoothzoominfo11)\> | 否   | 回调函数，可选，有就是匹配on('smoothZoomInfoAvailable') callback（callback对象不可是匿名函数）。  |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID   | 错误信息        |
+|---------| --------------- |
+| 202     |  Not System Application. |
+
+**示例：**
+
+```ts
+function unregisterSmoothZoomInfo(slowMotionVideoSession: camera.SlowMotionVideoSession): void {
+  slowMotionVideoSession.off('smoothZoomInfoAvailable');
+}
+```
+
+### on('slowMotionStatus')<sup>12+</sup>
+
+on(type: 'slowMotionStatus', callback: AsyncCallback\<SlowMotionStatus\>): void
+
+监听慢动作状态变化，通过注册回调函数获取结果。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型                                                                        | 必填 | 说明                                         |
+| -------- |---------------------------------------------------------------------------| ---- |--------------------------------------------|
+| type     | string                                                                    | 是   | 监听事件，固定为'slowMotionStatus'，session创建成功可监听。 |
+| callback | AsyncCallback\<[SlowMotionStatus](#slowmotionstatus12)\> | 是   | 回调函数，用于获取当前慢动作状态。当慢动作状态发生变动时，此回调函数也会被执行。   |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID   | 错误信息        |
+|---------| --------------- |
+| 202     |  Not System Application. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+function callback(err: BusinessError, slowMotionStatus: camera.SlowMotionStatus): void {
+  console.info(`The slow motion status: ${slowMotionStatus}`);
+}
+
+function registerSlowMotionStatus(slowMotionVideoSession: camera.SlowMotionVideoSession): void {
+  slowMotionVideoSession.on('slowMotionStatus', callback);
+}
+```
+
+### off('slowMotionStatus')<sup>12+</sup>
+
+off(type: 'slowMotionStatus', callback?: AsyncCallback\<SlowMotionStatus\>): void
+
+注销慢动作状态变化。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型                                      | 必填 | 说明                       |
+| -------- | ----------------------------------------- | ---- | ------------------------ |
+| type     | string              | 是   | 监听事件，固定为'slowMotionStatus'，session创建成功可监听。|
+| callback | AsyncCallback\<[SlowMotionStatus](#slowmotionstatus12)\> | 否   | 回调函数，可选，有就是匹配on('slowMotionStatus') callback（callback对象不可是匿名函数）。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](js-apis-camera.md#cameraerrorcode)。  |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID   | 错误信息        |
+|---------| --------------- |
+| 202     |  Not System Application.                               |
+
+**示例：**
+
+```ts
+function unregisterSlowMotionStatus(slowMotionVideoSession: camera.SlowMotionVideoSession): void {
+  slowMotionVideoSession.off('slowMotionStatus');
+}
+```
+### isSlowMotionDetectionSupported<sup>12+</sup>
+
+isSlowMotionDetectionSupported(): boolean;
+
+查询当前设备是否支持慢动作检测功能。
+
+> **说明：**
+> 该接口需要在[commitConfig](js-apis-camera.md#commitconfig11-1)之后调用。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**返回值：**
+
+| 类型        | 说明                                                                                     |
+| ---------- |----------------------------------------------------------------------------------------|
+| boolean    | 返回true表示支持慢动作检测功能，false表示不支持。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](js-apis-camera.md#cameraerrorcode)。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID   | 错误信息        |
+|---------| --------------- |
+| 202     |  Not System Application.                               |
+| 7400103 |  Session not config.                                   |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+function isSlowMotionDetectionSupported(slowMotionVideoSession: camera.SlowMotionVideoSession): boolean {
+  let isSupported: boolean = false;
+  try {
+    isSupported = slowMotionVideoSession.isSlowMotionDetectionSupported();
+  } catch (error) {
+    // 失败返回错误码error.code并处理
+    let err = error as BusinessError;
+    console.error(`The isFocusModeSupported call failed. error code: ${err.code}`);
+  }
+  return isSupported;
+}
+```
+
+### setSlowMotionDetectionArea<sup>12+</sup>
+
+setSlowMotionDetectionArea(area: Rect): void;
+
+设置一个进行慢动作检测的区域。
+
+> **说明：**
+> 在调用该方法之前，先调用[isSlowMotionDetectionSupported](#isslowmotiondetectionsupported12)确认设备是否支持慢动作检测功能, 确认支持下并且调用[enableMotionDetection](#enablemotiondetection12)接口使能，才能保证其他相关方法的正常运行。 
+该接口需要在[commitConfig](js-apis-camera.md#commitconfig11-1)之后调用。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型                                            | 必填 | 说明                          |
+| -------- | ---------------------------------------------- | ---- | --------------------------- |
+| area  | [Rect](js-apis-camera.md#rect)      | 是   | 矩形定义。                   |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID   | 错误信息        |
+|---------| --------------- |
+| 202     |  Not System Application.                            |
+| 7400101 |  Parameter missing or parameter type incorrect.     |
+| 7400103 |  Session not config.                                |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+function setSlowMotionDetectionArea(slowMotionVideoSession: camera.SlowMotionVideoSession): void {
+  try {
+    slowMotionVideoSession.setSlowMotionDetectionArea({topLeftX: 0.1, topLeftY: 0.1, width: 0.8, height: 0.8});
+  } catch (error) {
+    // 失败返回错误码error.code并处理
+    let err = error as BusinessError;
+    console.error(`The setSlowMotionDetectionArea call failed. error code: ${err.code}`);
+  }
+  return status;
+}
+```

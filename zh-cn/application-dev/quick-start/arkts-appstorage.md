@@ -28,8 +28,9 @@ AppStorage中的属性可以被双向同步，数据可以是存在于本地或�
 当自定义组件初始化的时候，会使用AppStorage中对应key的属性值将\@StorageProp(key)/\@StorageLink(key)装饰的变量初始化。由于应用逻辑的差异，无法确认是否在组件初始化之前向AppStorage实例中存入了对应的属性，所以AppStorage不一定存在key对应的属性，因此\@StorageProp(key)/\@StorageLink(key)装饰的变量进行本地初始化是必要的。
 
 \@StorageProp(key)是和AppStorage中key对应的属性建立单向数据同步，允许本地改变，但是对于\@StorageProp，本地的修改永远不会同步回AppStorage中，相反，如果AppStorage给定key的属性发生改变，改变会被同步给\@StorageProp，并覆盖掉本地的修改。
-
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+> **说明：**
+>
+> 从API version 11开始，该装饰器支持在元服务中使用。
 
 ### 装饰器使用规则说明
 
@@ -88,7 +89,9 @@ AppStorage中的属性可以被双向同步，数据可以是存在于本地或�
 
 ## \@StorageLink
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+> **说明：**
+>
+> 从API version 11开始，该装饰器支持在元服务中使用。
 
 \@StorageLink(key)是和AppStorage中key对应的属性建立双向数据同步：
 

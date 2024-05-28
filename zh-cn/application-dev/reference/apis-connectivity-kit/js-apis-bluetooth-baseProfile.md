@@ -66,6 +66,8 @@ getConnectedDevices(): Array&lt;string&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
 |2900004 | Profile is not supported.                |
@@ -113,6 +115,9 @@ getConnectionState(deviceId: string): ProfileConnectionState
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
 |2900004 | Profile is not supported.                |
@@ -149,6 +154,16 @@ on(type: 'connectionStateChange', callback: Callback&lt;StateChangeParam&gt;): v
 | type     | string                                   | 是    | 填写"connectionStateChange"字符串，表示连接状态变化事件。 |
 | callback | Callback&lt;[StateChangeParam](#statechangeparam)&gt; | 是    | 表示回调函数的入参。                               |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter.                 |
+|801 | Capability not supported.          |
+
 **示例：**
 
 ```js
@@ -182,6 +197,16 @@ off(type: 'connectionStateChange', callback?: Callback&lt;[StateChangeParam](#st
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | 是    | 填写"connectionStateChange"字符串，表示连接状态变化事件。 |
 | callback | Callback&lt;[StateChangeParam](#statechangeparam)&gt; | 否    | 表示回调函数的入参。                               |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter.                 |
+|801 | Capability not supported.          |
 
 **示例：**
 

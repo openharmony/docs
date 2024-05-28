@@ -192,7 +192,7 @@ showCounter(value: boolean, options?: InputCounterOptions)
 
 style(value: TextContentStyle)
 
-设置文本框多态样式。
+设置文本框多态样式，内联输入风格只支持TextAreaType.Normal类型。
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
@@ -470,7 +470,7 @@ caretStyle(value: CaretStyle)
 
 | 参数名 | 类型                                | 必填 | 说明         |
 | ------ | ----------------------------------- | ---- | ------------ |
-| value  | [CaretStyle](ts-basic-components-textinput.md#caretstyle10对象说明) | 是   | 光标的风格。 |
+| value  | [CaretStyle](ts-text-common.md#caretstyle10) | 是   | 光标的风格。 |
 
 ### textIndent<sup>12+</sup>
 

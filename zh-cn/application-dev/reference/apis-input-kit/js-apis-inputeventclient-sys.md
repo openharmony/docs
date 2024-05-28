@@ -317,6 +317,44 @@ try {
 }
 ```
 
+## inputEventClient.permitInjection<sup>12+</sup>
+
+permitInjection(result: boolean): void
+
+允许事件注入权限。
+
+**系统能力：** SystemCapability.MultimodalInput.Input.InputSimulator
+
+**参数：**
+
+| 参数名    | 类型    | 必填   | 说明        |
+| -------- | ------  | ----   | --------- |
+| result   | boolean | 是     | 授权结果（true表示：允许事件注入，false表示：不允许事件注入）。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
+
+**示例：**
+
+```ts
+import inputEventClient from '@ohos.multimodalInput.inputEventClient';
+
+try {
+  let result = true;
+  inputEventClient.permitInjection(result);
+}catch(error){
+  console.error("failed:" + JSON.stringify(error));
+}
+```
+
+
 ## KeyEvent
 
 按键注入描述信息。

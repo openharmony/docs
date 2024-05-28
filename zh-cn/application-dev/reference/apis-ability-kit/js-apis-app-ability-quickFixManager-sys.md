@@ -283,8 +283,8 @@ revokeQuickFix(bundleName: string, callback: AsyncCallback\<void>): void;
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
-| 201      | Permission denied. |
-| 202      | Not system application. |
+| 201      | The application does not have permission to call the interface. |
+| 202      | The application is not system-app, can not use system-api. |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 18500001 | The bundle is not exist or no patch has applied. |
 | 18500009 | The application has a apply quick fix task that is being processed. |
@@ -332,8 +332,8 @@ revokeQuickFix(bundleName: string): Promise\<void>;
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
-| 201      | Permission denied. |
-| 202      | Not system application. |
+| 201      | The application does not have permission to call the interface. |
+| 202      | The application is not system-app, can not use system-api. |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 18500001 | The bundle is not exist or no patch has applied. |
 | 18500009 | The application has a apply quick fix task that is being processed. |

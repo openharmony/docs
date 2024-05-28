@@ -30,7 +30,7 @@ registerApplicationStateObserver(observer: ApplicationStateObserver): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| observer | [ApplicationStateObserver (系统接口)](js-apis-inner-application-applicationStateObserver-sys.md) | 是 | 表示程序状态观测器，用于观测应用的生命周期变化。 |
+| observer | [ApplicationStateObserver](js-apis-inner-application-applicationStateObserver-sys.md) | 是 | 表示程序状态观测器，用于观测应用的生命周期变化。 |
 
 **返回值：**
 
@@ -45,19 +45,25 @@ registerApplicationStateObserver(observer: ApplicationStateObserver): number
 
   const observerCode = appManager.registerApplicationStateObserver({
     onForegroundApplicationChanged(appStateData) {
-        console.log('------------ onForegroundApplicationChanged -----------', appStateData);
+      console.log('------------ onForegroundApplicationChanged -----------', appStateData);
     },
     onAbilityStateChanged(abilityStateData) {
-        console.log('------------ onAbilityStateChanged -----------', abilityStateData);
+      console.log('------------ onAbilityStateChanged -----------', abilityStateData);
     },
     onProcessCreated(processData) {
-        console.log('------------ onProcessCreated -----------', processData);
+      console.log('------------ onProcessCreated -----------', processData);
     },
     onProcessDied(processData) {
-        console.log('------------ onProcessDied -----------', processData);
+      console.log('------------ onProcessDied -----------', processData);
     },
     onProcessStateChanged(processData) {
-        console.log('------------ onProcessStateChanged -----------', processData);
+      console.log('------------ onProcessStateChanged -----------', processData);
+    },
+    onAppStarted(appStateData) {
+      console.log('------------ onAppStarted -----------', appStateData);
+    },
+    onAppStopped(appStateData) {
+      console.log('------------ onAppStopped -----------', appStateData);
     }
   });
   console.log('-------- observerCode: ---------', observerCode);

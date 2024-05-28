@@ -28,8 +28,8 @@
   - 学习ArkTS语言
     - [初识ArkTS语言](quick-start/arkts-get-started.md)
     - [ArkTS语言介绍](quick-start/introduction-to-arkts.md)
-    - [方舟字节码文件格式](quick-start/arkts-bytecode-file-format.md)
     - [方舟字节码基本原理](quick-start/arkts-bytecode-fundamentals.md)
+    - [方舟字节码文件格式](quick-start/arkts-bytecode-file-format.md)
     - 从TypeScript到ArkTS的适配指导
       - [ArkTS语法适配背景](quick-start/arkts-migration-background.md)
       - [从TypeScript到ArkTS的适配规则](quick-start/typescript-to-arkts-migration-guide.md)
@@ -132,6 +132,9 @@
           - [多端协同](application-models/hop-multi-device-collaboration.md)
         <!--DelEnd-->
         - [订阅系统环境变量的变化](application-models/subscribe-system-environment-variable-changes.md)
+      - 应用间跳转
+        - 通用意图跳转
+          - [通过startAbilityByType拉起垂类应用](application-models/start-intent-panel.md)
       - [进程模型](application-models/process-model-stage.md)
       - [线程模型](application-models/thread-model-stage.md)
       <!--Del-->
@@ -227,8 +230,8 @@
         - 申请应用权限
           - [选择申请权限的方式](security/AccessToken/determine-application-mode.md)
           - [声明权限](security/AccessToken/declare-permissions.md)
-          - [声明ACL权限](security/AccessToken/declare-permissions-in-acl.md)
           - [向用户申请授权](security/AccessToken/request-user-authorization.md)
+          - [申请使用受控权限](security/AccessToken/declare-permissions-in-acl.md)
         - 应用权限列表
           - [对所有应用开放](security/AccessToken/permissions-for-all.md)
           <!--Del-->
@@ -245,11 +248,11 @@
   - Accessibility Kit（无障碍开发服务）
       - [Accessibility Kit简介](accessibility/accessibilityKit.md)
       - [AccessibilityExtensionAbility](accessibility/accessibilityextensionability.md)
+  <!--Del-->
   - Ads Kit（广告服务）
-    - [广告标识服务](ads-service/oaid/oaid-service.md)
-    <!--Del-->
+    - [广告标识服务](ads-service/oaid/oaid-service.md)   
     - [重置OAID信息（仅对系统应用开放）](ads-service/oaid/oaid-service-sys.md)
-    <!--DelEnd-->
+  <!--DelEnd-->
   - ArkData（方舟数据管理）
     - [ArkData简介](database/data-mgmt-overview.md)
     - 标准化数据定义
@@ -349,6 +352,7 @@
           - [创建列表 (List)](ui/arkts-layout-development-create-list.md)
           - [创建网格 (Grid/GridItem)](ui/arkts-layout-development-create-grid.md)
           - [创建轮播 (Swiper)](ui/arkts-layout-development-create-looping.md)
+          - [选项卡（Tabs）](ui/arkts-navigation-tabs.md)
       - 添加组件
         - 添加常用组件
           - [按钮 (Button)](ui/arkts-common-components-button.md)
@@ -365,10 +369,8 @@
         - 添加气泡和菜单
           - [气泡提示 (Popup)](ui/arkts-popup-and-menu-components-popup.md)
           - [菜单 (Menu)](ui/arkts-popup-and-menu-components-menu.md)
-      - 设置页面路由和组件导航
-        - 组件导航
-          - [Navigation](ui/arkts-navigation-navigation.md)
-          - [Tabs](ui/arkts-navigation-tabs.md)
+      - 设置组件导航和页面路由
+        - [组件导航（Navigation）](ui/arkts-navigation-navigation.md)
         - [页面路由 (@ohos.router)](ui/arkts-routing.md)
       - 显示图形
         - [绘制几何图形 (Shape)](ui/arkts-geometric-shape-drawing.md)
@@ -408,6 +410,8 @@
           - [单一手势](ui/arkts-gesture-events-single-gesture.md)
           - [组合手势](ui/arkts-gesture-events-combined-gestures.md)
           - [多层级手势事件](ui/arkts-gesture-events-multi-level-gesture.md)
+      - 主题设置
+        - [设置主题换肤](ui/theme_skinning.md)
     - UI开发 (兼容JS的类Web开发范式)
       - [UI开发 (兼容JS的类Web开发范式)概述](ui/ui-js-overview.md)
       - 框架说明
@@ -480,12 +484,15 @@
             - [动画动效](ui/ui-js-animate-dynamic-effects.md)
             - [动画帧](ui/ui-js-animate-frame.md)
       - [自定义组件](ui/ui-js-custom-components.md)
+      - WebGL
+        - [使用WebGL绘制图形](webgl/webgl-2d-guidelines.md)
     - 窗口管理
       - [窗口开发概述](windowmanager/window-overview.md)
       - [管理应用窗口（Stage模型）](windowmanager/application-window-stage.md)
       - [管理应用窗口（FA模型）](windowmanager/application-window-fa.md)
       <!--Del-->
       - [管理系统窗口（仅Stage模型支持）](windowmanager/system-window-stage.md)
+      - [WindowExtensionAbility（仅对系统应用开放）](windowmanager/windowextensionability.md)
       <!--DelEnd-->
       - [使用NaitveWindowEventFilter过滤多模输入事件（C/C++）](windowmanager/native-window-event-filter.md)
   - ArkWeb（方舟Web）
@@ -636,16 +643,12 @@
       - 线程间通信
           - [使用Emitter进行线程间通信](basic-services/common-event/itc-with-emitter.md)
     - 帐号管理
-      - [帐号管理概述](basic-services/account/account-overview.md)
-      - 系统帐号
-        <!--Del-->
-        - [管理系统帐号（仅对系统应用开放）](basic-services/account/manage-os-account.md)
-        <!--DelEnd-->
-        - [使用约束管控系统帐号](basic-services/account/control-os-account-by-constraints.md)
-        <!--Del-->
-        - [管理系统帐号凭据（仅对系统应用开放）](basic-services/account/manage-os-account-credential.md)
-        <!--DelEnd-->
       <!--Del-->
+      - [帐号管理概述](basic-services/account/account-overview.md)
+      - 系统帐号        
+        - [管理系统帐号（仅对系统应用开放）](basic-services/account/manage-os-account.md)
+        - [使用约束管控系统帐号](basic-services/account/control-os-account-by-constraints.md)
+        - [管理系统帐号凭据（仅对系统应用开放）](basic-services/account/manage-os-account-credential.md)
       - 域帐号（仅对系统应用开放）
         - [管理域帐号](basic-services/account/manage-domain-account.md)
         - [认证域帐号](basic-services/account/auth-domain-account.md)
@@ -727,7 +730,6 @@
       - 应用文件访问与管理
         - [应用文件访问(ArkTS)](file-management/app-file-access.md)
         - [应用文件访问(C/C++)](file-management/native-fileio-guidelines.md)
-        - [应用文件上传下载](file-management/app-file-upload-download.md)
         - [应用及文件系统空间统计](file-management/app-fs-space-statistics.md)
       <!--Del-->
       - [向应用沙箱推送文件](file-management/send-file-to-app-sandbox.md)
@@ -1212,6 +1214,7 @@
       - [代码开发概述](napi/develop-code-overview.md)
       - C/C++标准库
         - [C/C++标准库机制概述](napi/c-cpp-overview.md)
+        - [fdsan使用指导](napi/fdsan.md)
       - 使用Node-API实现跨语言交互
         - [Node-API简介](napi/napi-introduction.md)
         - [Node-API支持的数据类型和接口](napi/napi-data-types-interfaces.md)
@@ -1349,9 +1352,11 @@
         - [@ohos.app.ability.wantConstant (wantConstant)(系统接口)](reference/apis-ability-kit/js-apis-app-ability-wantConstant-sys.md)
         - [@ohos.app.businessAbilityRouter (业务路由模块)(系统接口)](reference/apis-ability-kit/js-apis-businessAbilityRouter-sys.md)
         - [@ohos.application.uriPermissionManager (URI权限管理)(系统接口)](reference/apis-ability-kit/js-apis-uripermissionmanager-sys.md)
+        <!--DelEnd-->
         - [@ohos.bundle.bundleManager (bundleManager模块)](reference/apis-ability-kit/js-apis-bundleManager.md)
         - [@ohos.bundle.defaultAppManager (默认应用管理)](reference/apis-ability-kit/js-apis-defaultAppManager.md)
         - [@ohos.bundle.overlay (overlay模块)](reference/apis-ability-kit/js-apis-overlay.md)
+        <!--Del-->
         - [@ohos.bundle.appControl (appControl模块)(系统接口)](reference/apis-ability-kit/js-apis-appControl-sys.md)
         - [@ohos.bundle.bundleManager (bundleManager模块(系统接口))](reference/apis-ability-kit/js-apis-bundleManager-sys.md)
         - [@ohos.bundle.bundleMonitor (bundleMonitor模块)(系统接口)](reference/apis-ability-kit/js-apis-bundleMonitor-sys.md)
@@ -1439,6 +1444,7 @@
           - [hapModuleInfo](reference/apis-ability-kit/js-apis-bundleManager-hapModuleInfo.md)
           - [metadata](reference/apis-ability-kit/js-apis-bundleManager-metadata.md)
           - [OverlayModuleInfo](reference/apis-ability-kit/js-apis-bundleManager-overlayModuleInfo.md)
+          - [Skill](reference/apis-ability-kit/js-apis-bundleManager-skill.md)
           <!--Del-->
           - [AppProvisionInfo (系统接口)](reference/apis-ability-kit/js-apis-bundleManager-AppProvisionInfo-sys.md)
           - [BundlePackInfo (系统接口)](reference/apis-ability-kit/js-apis-bundleManager-BundlePackInfo-sys.md)
@@ -1461,6 +1467,8 @@
         - wantAgent
           - [triggerInfo](reference/apis-ability-kit/js-apis-inner-wantAgent-triggerInfo.md)
           - [wantAgentInfo](reference/apis-ability-kit/js-apis-inner-wantAgent-wantAgentInfo.md)
+        - skill
+          - [Skill](reference/apis-ability-kit/js-apis-bundleManager-skill.md) 
       - 已停止维护的接口
         - [@ohos.ability.dataUriUtils (DataUriUtils模块)](reference/apis-ability-kit/js-apis-ability-dataUriUtils.md)
         - [@ohos.ability.errorCode (ErrorCode)](reference/apis-ability-kit/js-apis-ability-errorCode.md)
@@ -1476,7 +1484,9 @@
         - [@ohos.application.appManager (appManager)(系统接口)](reference/apis-ability-kit/js-apis-application-appManager-sys.md)
         - [@ohos.application.missionManager (missionManager)(系统接口)](reference/apis-ability-kit/js-apis-application-missionManager-sys.md)
         - [@ohos.wantAgent (WantAgent模块)(系统接口)](reference/apis-ability-kit/js-apis-wantAgent-sys.md)
+        <!--DelEnd-->
         - [@ohos.bundle (Bundle模块)](reference/apis-ability-kit/js-apis-Bundle.md)
+        <!--Del-->
         - [@ohos.bundle (Bundle模块)(系统接口)](reference/apis-ability-kit/js-apis-Bundle-sys.md)
         - [@ohos.bundle.innerBundleManager (innerBundleManager模块)(系统接口)](reference/apis-ability-kit/js-apis-Bundle-InnerBundleManager-sys.md)
         - [@ohos.distributedBundle (分布式包管理)(系统接口)](reference/apis-ability-kit/js-apis-Bundle-distributedBundle-sys.md)
@@ -1522,20 +1532,20 @@
       <!--DelEnd-->
     - 错误码
       - [无障碍子系统错误码](reference/apis-accessibility-kit/errorcode-accessibility.md)
+  <!--Del-->
   - Ads Kit API参考
     - ArkTS API
       - [@ohos.advertising (广告服务框架)](reference/apis-ads-kit/js-apis-advertising.md)
       - [@ohos.identifier.oaid (广告标识服务)](reference/apis-ads-kit/js-apis-oaid.md)
-      <!--Del-->
       - [@ohos.advertising.AdsServiceExtensionAbility (广告扩展服务)(系统接口)](reference/apis-ads-kit/js-apis-adsserviceextensionability-sys.md)
       - [@ohos.identifier.oaid (广告标识服务)(系统接口)](reference/apis-ads-kit/js-apis-oaid-sys.md)
-      <!--DelEnd-->
     - ArkTS组件
       - [@ohos.advertising.AdComponent (非全屏广告展示组件)](reference/apis-ads-kit/js-apis-adcomponent.md)
       - [@ohos.advertising.AutoAdComponent (轮播广告展示组件)](reference/apis-ads-kit/js-apis-autoadcomponent.md)
     - 错误码
       - [广告服务框架错误码](reference/apis-ads-kit/errorcode-ads.md)
       - [广告标识服务错误码](reference/apis-ads-kit/errorcode-oaid.md)
+  <!--DelEnd-->
   - ArkData API参考
     - ArkTS API 
       - [@ohos.data.commonType (数据通用类型)](reference/apis-arkdata/js-apis-data-commonType.md)
@@ -1544,6 +1554,7 @@
       - [@ohos.data.distributedDataObject (分布式数据对象)](reference/apis-arkdata/js-apis-data-distributedobject.md)
       - [@ohos.data.distributedKVStore (分布式键值数据库)](reference/apis-arkdata/js-apis-distributedKVStore.md)
       - [@ohos.data.preferences (用户首选项)](reference/apis-arkdata/js-apis-data-preferences.md)
+      - [@ohos.data.sendablePreferences (共享用户首选项)](reference/apis-arkdata/js-apis-data-sendablePreferences.md)
       - [@ohos.data.relationalStore (关系型数据库)](reference/apis-arkdata/js-apis-data-relationalStore.md)
       - [@ohos.data.unifiedDataChannel (标准化数据通路)](reference/apis-arkdata/js-apis-data-unifiedDataChannel.md)
       - [@ohos.data.uniformDataStruct (标准化数据结构)](reference/apis-arkdata/js-apis-data-uniformDataStruct.md)
@@ -1551,8 +1562,10 @@
       - [@ohos.data.ValuesBucket (数据集)](reference/apis-arkdata/js-apis-data-valuesBucket.md)
       <!--Del-->
       - [@ohos.application.DataShareExtensionAbility (数据共享扩展能力)(系统接口)](reference/apis-arkdata/js-apis-application-dataShareExtensionAbility-sys.md)
-      - [@ohos.data.cloudData (端云协同)](reference/apis-arkdata/js-apis-data-cloudData.md)
-      - [@ohos.data.cloudData (端云协同)(系统接口)](reference/apis-arkdata/js-apis-data-cloudData-sys.md)
+      <!--DelEnd-->
+      - [@ohos.data.cloudData (端云服务)](reference/apis-arkdata/js-apis-data-cloudData.md)
+      <!--Del-->
+      - [@ohos.data.cloudData (端云服务)(系统接口)](reference/apis-arkdata/js-apis-data-cloudData-sys.md)
       - [@ohos.data.cloudExtension (端云共享Extension)(系统接口)](reference/apis-arkdata/js-apis-data-cloudExtension-sys.md)
       - [@ohos.data.dataShare (数据共享)(系统接口)](reference/apis-arkdata/js-apis-data-dataShare-sys.md)
       - [@ohos.data.dataSharePredicates (数据共享谓词)(系统接口)](reference/apis-arkdata/js-apis-data-dataSharePredicates-sys.md)
@@ -1606,6 +1619,7 @@
     - ArkTS API 
       - [@ohos.effectKit (图像效果)](reference/apis-arkgraphics2d/js-apis-effectKit.md)
       - [@ohos.graphics.colorSpaceManager (色彩管理)](reference/apis-arkgraphics2d/js-apis-colorSpaceManager.md)
+      - [@ohos.graphics.sendableColorSpaceManager (可共享的色彩管理)](reference/apis-arkgraphics2d/js-apis-sendableColorSpaceManager.md)
       - [@ohos.graphics.common2D (2D图形通用数据类型)](reference/apis-arkgraphics2d/js-apis-graphics-common2D.md)
       - [@ohos.graphics.displaySync (可变帧率)](reference/apis-arkgraphics2d/js-apis-graphics-displaySync.md)
       - [@ohos.graphics.drawing (绘制模块)](reference/apis-arkgraphics2d/js-apis-graphics-drawing.md)
@@ -1632,12 +1646,14 @@
         - [drawing_font_mgr.h](reference/apis-arkgraphics2d/drawing__font__mgr_8h.md)
         - [drawing_gpu_context.h](reference/apis-arkgraphics2d/drawing__gpu__context_8h.md)
         - [drawing_image.h](reference/apis-arkgraphics2d/drawing__image_8h.md)
+        - [drawing_image_filter.h](reference/apis-arkgraphics2d/drawing__image__filter_8h.md)
         - [drawing_mask_filter.h](reference/apis-arkgraphics2d/drawing__mask__filter_8h.md)
         - [drawing_matrix.h](reference/apis-arkgraphics2d/drawing__matrix_8h.md)
         - [drawing_memory_stream.h](reference/apis-arkgraphics2d/drawing__memory__stream_8h.md)
         - [drawing_path.h](reference/apis-arkgraphics2d/drawing__path_8h.md)
         - [drawing_path_effect.h](reference/apis-arkgraphics2d/drawing__path__effect_8h.md)
         - [drawing_pen.h](reference/apis-arkgraphics2d/drawing__pen_8h.md)
+        - [drawing_pixel_map.h](reference/apis-arkgraphics2d/drawing__pixel__map_8h.md)
         - [drawing_point.h](reference/apis-arkgraphics2d/drawing__point_8h.md)
         - [drawing_rect.h](reference/apis-arkgraphics2d/drawing__rect_8h.md)
         - [drawing_region.h](reference/apis-arkgraphics2d/drawing__region_8h.md)
@@ -1744,6 +1760,7 @@
         - [@ohos.arkui.inspector (布局回调)](reference/apis-arkui/js-apis-arkui-inspector.md)
         - [@ohos.arkui.node(自定义节点)](reference/apis-arkui/js-apis-arkui-node.md)
         - [@ohos.arkui.observer (无感监听)](reference/apis-arkui/js-apis-arkui-observer.md)
+        - [@ohos.arkui.Theme (主题换肤)](reference/apis-arkui/js-apis-arkui-theme.md)
         - [@ohos.arkui.UIContext (UIContext)](reference/apis-arkui/js-apis-arkui-UIContext.md)
         - [@ohos.arkui.uiExtension (uiExtension)](reference/apis-arkui/js-apis-arkui-uiExtension.md)
         - [@ohos.curves (插值计算)](reference/apis-arkui/js-apis-curve.md)
@@ -1769,13 +1786,14 @@
         - arkui
           - [BuilderNode](reference/apis-arkui/js-apis-arkui-builderNode.md)
           - [ComponentContent](reference/apis-arkui/js-apis-arkui-ComponentContent.md)
-          - [ContentSlot](reference/apis-arkui/js-apis-arkui-contentSlot.md)
           - [FrameNode](reference/apis-arkui/js-apis-arkui-frameNode.md)
           - [Graphics](reference/apis-arkui/js-apis-arkui-graphics.md)
           - [NodeController](reference/apis-arkui/js-apis-arkui-nodeController.md)
           - [RenderNode](reference/apis-arkui/js-apis-arkui-renderNode.md)
           - [XComponentNode](reference/apis-arkui/js-apis-arkui-xcomponentNode.md)
           - [AttributeUpdater](reference/apis-arkui/js-apis-arkui-AttributeUpdater.md)
+          - [Content](reference/apis-arkui/js-apis-arkui-Content.md)
+          - [NodeContent](reference/apis-arkui/js-apis-arkui-NodeContent.md)
       - 图形图像
         - [@ohos.display (屏幕属性)](reference/apis-arkui/js-apis-display.md)
         - [@ohos.PiPWindow (画中画窗口)](reference/apis-arkui/js-apis-pipWindow.md)
@@ -1927,6 +1945,7 @@
           - [TimePicker](reference/apis-arkui/arkui-ts/ts-basic-components-timepicker.md)
           - [Toggle](reference/apis-arkui/arkui-ts/ts-basic-components-toggle.md)
           - [XComponent](reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)
+          - [WithTheme](reference/apis-arkui/arkui-ts/ts-container-with-theme.md)
           <!--Del-->
           - [Component3D (系统接口)](reference/apis-arkui/arkui-ts/ts-basic-components-component3d-sys.md)
           - [FormComponent (系统接口)](reference/apis-arkui/arkui-ts/ts-basic-components-formcomponent-sys.md)
@@ -1994,6 +2013,8 @@
           - [OffscreenCanvas](reference/apis-arkui/arkui-ts/ts-components-offscreencanvas.md)
           - [OffscreenCanvasRenderingContext2D](reference/apis-arkui/arkui-ts/ts-offscreencanvasrenderingcontext2d.md)
           - [Path2D](reference/apis-arkui/arkui-ts/ts-components-canvas-path2d.md)
+        - 渲染组件
+          - [ContentSlot](reference/apis-arkui/arkui-ts/ts-components-contentSlot.md)
         - 高级组件
           - [@ohos.arkui.advanced.Chip (操作块)](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-Chip.md)
           - [@ohos.arkui.advanced.ChipGroup (操作块组)](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-ChipGroup.md)
@@ -2051,15 +2072,16 @@
         - 类型定义
           - [基础类型定义](reference/apis-arkui/arkui-ts/ts-types.md)
           - [图像类型定义](reference/apis-arkui/arkui-ts/ts-image-common.md)
+          - [文本类型定义](reference/apis-arkui/arkui-ts/ts-text-common.md)
         - [应用级变量的状态管理](reference/apis-arkui/arkui-ts/ts-state-management.md)
         - [像素单位](reference/apis-arkui/arkui-ts/ts-pixel-units.md)
         - [枚举说明](reference/apis-arkui/arkui-ts/ts-appendix-enums.md)
         - [设置事件回调](reference/apis-arkui/arkui-ts/ts-uicommonevent.md)
         - [属性字符串](reference/apis-arkui/arkui-ts/ts-universal-styled-string.md)
-        <!--Del-->
-        - 已停止维护的组件          
+        - 已停止维护的组件 
+          <!--Del-->         
           - [AbilityComponent (系统接口)](reference/apis-arkui/arkui-ts/ts-container-ability-component-sys.md)
-        <!--DelEnd-->
+          <!--DelEnd-->
           - [GridContainer](reference/apis-arkui/arkui-ts/ts-container-gridcontainer.md)
           - [Panel](reference/apis-arkui/arkui-ts/ts-container-panel.md)
         - 已停止维护的接口
@@ -2295,6 +2317,7 @@
         - [用户界面外观服务错误码](reference/apis-arkui/errorcode-uiappearance.md)
         - [拖拽事件错误码](reference/apis-arkui/errorcode-drag-event.md)
         - [图像AI分析错误码](reference/apis-arkui/errorcode-image-analyzer.md)
+        - [焦点错误码](reference/apis-arkui/errorcode-focus.md)    
       - 图形图像
         - [屏幕错误码](reference/apis-arkui/errorcode-display.md)
         - [窗口错误码](reference/apis-arkui/errorcode-window.md)
@@ -2993,22 +3016,6 @@
   - IPC Kit API参考
     - ArkTS API
       - [@ohos.rpc (RPC通信)](reference/apis-ipc-kit/js-apis-rpc.md)
-    - C API
-        - 模块
-            - [OHIPCParcel](reference/apis-ipc-kit/_o_h_i_p_c_parcel.md)
-            - [OHIPCRemoteObject](reference/apis-ipc-kit/_o_h_i_p_c_remote_object.md)
-            - [OHIPCSkeleton](reference/apis-ipc-kit/_o_h_i_p_c_skeleton.md)
-            - [OHIPCErrorCode](reference/apis-ipc-kit/_o_h_i_p_c_error_code.md)
-            - [IPCKit](reference/apis-ipc-kit/_i_p_c_kit.md)
-        - 头文件和结构体
-            - 头文件
-                - [ipc_cparcel.h](reference/apis-ipc-kit/ipc__cparcel_8h.md)
-                - [ipc_cremote_object.h](reference/apis-ipc-kit/ipc__cremote__object_8h.md)
-                - [ipc_cskeleton.h](reference/apis-ipc-kit/ipc__cskeleton_8h.md)
-                - [ipc_error_code.h](reference/apis-ipc-kit/ipc__error__code_8h.md)
-                - [ipc_kit.h](reference/apis-ipc-kit/ipc__kit_8h.md)
-            - 结构体
-                - [OH_IPC_MessageOption](reference/apis-ipc-kit/_o_h___i_p_c___message_option.md)
     - 错误码
       - [RPC错误码](reference/apis-ipc-kit/errorcode-rpc.md)
   - Localization Kit API参考
@@ -3445,6 +3452,7 @@
         - [JSVM_InitOptions](reference/common/_j_s_v_m___init_options.md)
         - [JSVM_PropertyDescriptor](reference/common/_j_s_v_m___property_descriptor.md)
         - [JSVM_PropertyHandlerConfigurationStruct](reference/common/_j_s_v_m___property_handler_configuration_struct.md)
+        - [JSVM_ScriptOrigin](reference/common/_j_s_v_m___script_origin.md)
         - [JSVM_TypeTag](reference/common/_j_s_v_m___type_tag.md)
         - [JSVM_VMInfo](reference/common/_j_s_v_m___v_m_info.md)
   - 标准库

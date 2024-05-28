@@ -4,7 +4,7 @@ param是为开发人员提供用于操作系统参数的工具，该工具只支
 
 ## 前置条件
 
-* 获取<!--Del-->[<!--DelEnd-->hdc工具<!--Del-->](../../device-dev/subsystems/subsys-toolchain-hdc-guide.md)<!--DelEnd-->，执行hdc shell。
+* 获取<!--RP1-->[hdc工具](../../device-dev/subsystems/subsys-toolchain-hdc-guide.md)<!--RP1End-->，执行hdc shell。
 * 正常连接设备。
 
 ## 命令行说明

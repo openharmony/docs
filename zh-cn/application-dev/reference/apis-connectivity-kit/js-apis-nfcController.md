@@ -80,6 +80,8 @@ enableNfc(): void
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 | 3100101 | NFC state is abnormal in service. |
 
 ## controller.closeNfc<sup>(deprecated)</sup>
@@ -117,6 +119,8 @@ disableNfc(): void
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 | 3100101 | NFC state is abnormal in service. |
 
 ## controller.isNfcOpen
@@ -197,7 +201,7 @@ controller.on("nfcStateChange", (nfcState : number)=> {
 
 // open nfc, require permission: ohos.permission.MANAGE_SECURE_SETTINGS（This permission can only be requested by system apps.）
 if (!controller.isNfcOpen()) {
-  let ret = controller.openNfc();
+  let ret: boolean = controller.openNfc();
   console.log("controller openNfc ret: " + ret);
 }
 
@@ -211,7 +215,7 @@ try {
 
 // close nfc, require permission: ohos.permission.MANAGE_SECURE_SETTINGS（This permission can only be requested by system apps.）
 if (controller.isNfcOpen()) {
-  let ret = controller.closeNfc();
+  let ret: boolean = controller.closeNfc();
   console.log("controller closeNfc ret: " + ret);
 }
 

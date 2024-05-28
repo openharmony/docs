@@ -38,6 +38,7 @@
 | 名称 | 描述 | 
 | -------- | -------- |
 | [OH_Drawing_Pen](_drawing.md#oh_drawing_pen) \* [OH_Drawing_PenCreate](_drawing.md#oh_drawing_pencreate) (void) | 用于创建一个画笔对象。 | 
+| [OH_Drawing_Pen](_drawing.md#oh_drawing_pen) \* [OH_Drawing_PenCopy](_drawing.md#oh_drawing_pencopy) ([OH_Drawing_Pen](_drawing.md#oh_drawing_pen) \*pen) | 创建一个画笔对象副本[OH_Drawing_Pen](_drawing.md#oh_drawing_pen)，用于拷贝一个已有画笔对象。 | 
 | void [OH_Drawing_PenDestroy](_drawing.md#oh_drawing_pendestroy) ([OH_Drawing_Pen](_drawing.md#oh_drawing_pen) \*) | 用于销毁画笔对象并回收该对象占有的内存。 | 
 | bool [OH_Drawing_PenIsAntiAlias](_drawing.md#oh_drawing_penisantialias) (const [OH_Drawing_Pen](_drawing.md#oh_drawing_pen) \*) | 用于获取画笔是否设置抗锯齿属性，如果为真则说明画笔会启用抗锯齿功能，在绘制图形时会对图形的边缘像素进行半透明的模糊处理。 | 
 | void [OH_Drawing_PenSetAntiAlias](_drawing.md#oh_drawing_pensetantialias) ([OH_Drawing_Pen](_drawing.md#oh_drawing_pen) \*, bool) | 用于设置画笔的抗锯齿属性，设置为真则画笔在绘制图形时会对图形的边缘像素进行半透明的模糊处理。 | 
@@ -59,4 +60,5 @@
 | void [OH_Drawing_PenSetFilter](_drawing.md#oh_drawing_pensetfilter) ([OH_Drawing_Pen](_drawing.md#oh_drawing_pen) \*, [OH_Drawing_Filter](_drawing.md#oh_drawing_filter) \*) | 设置画笔滤波器。 | 
 | void [OH_Drawing_PenGetFilter](_drawing.md#oh_drawing_pengetfilter) ([OH_Drawing_Pen](_drawing.md#oh_drawing_pen) \*, [OH_Drawing_Filter](_drawing.md#oh_drawing_filter) \*) | 从画笔获取滤波器[OH_Drawing_Filter](_drawing.md#oh_drawing_filter)。滤波器是一个容器，可以承载蒙版滤波器和颜色滤波器。 | 
 | void [OH_Drawing_PenSetBlendMode](_drawing.md#oh_drawing_pensetblendmode) ([OH_Drawing_Pen](_drawing.md#oh_drawing_pen) \*, [OH_Drawing_BlendMode](_drawing.md#oh_drawing_blendmode)) | 为画笔设置一个混合器，该混合器实现了指定的混合模式枚举。 | 
+| bool [OH_Drawing_PenGetFillPath](_drawing.md#oh_drawing_pengetfillpath) ([OH_Drawing_Pen](_drawing.md#oh_drawing_pen) \*, const [OH_Drawing_Path](_drawing.md#oh_drawing_path) \*src, [OH_Drawing_Path](_drawing.md#oh_drawing_path) \*dst, const [OH_Drawing_Rect](_drawing.md#oh_drawing_rect) \*, const [OH_Drawing_Matrix](_drawing.md#oh_drawing_matrix) \*) | 获取使用画笔绘制的源路径轮廓，并用目标路径表示。 | 
 | void [OH_Drawing_PenReset](_drawing.md#oh_drawing_penreset) ([OH_Drawing_Pen](_drawing.md#oh_drawing_pen) \*) | 将画笔重置至初始值。 | 

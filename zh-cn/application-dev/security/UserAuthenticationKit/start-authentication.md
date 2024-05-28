@@ -26,7 +26,9 @@
 
 认证控件的样式如图所示，通过[WidgetParam](../../reference/apis-user-authentication-kit/js-apis-useriam-userauth.md#widgetparam10)配置对应参数。
 
+<!--RP1-->
 ![zh-cn_image_0000001789150921](figures/zh-cn_image_0000001789150921.png)
+<!--RP1End-->
 
 - 标注1：用户认证界面的标题（WidgetParam.title），最大长度为500字符。应用可在此配置符合场景的字符串。
 
@@ -34,6 +36,7 @@
    
   当生物认证失败后，将出现该按钮，点击后从生物认证切换到应用自定义认证。
 
+<!--Del-->
 - 如图所示，认证控件的显示形式（WidgetParam.windowMode）为弹窗。
   
   认证控件分为弹窗、全屏两种显示形式，如下图所示，左侧为默认的弹窗样式，右侧为全屏样式。
@@ -41,6 +44,7 @@
   当前仅系统应用可以选择和使用全屏类型的认证界面。
 
   ![zh-cn_image_0000001742032002](figures/zh-cn_image_0000001742032002.png)
+<!--DelEnd-->
 
 当前支持使用认证控件的认证类型包括：
 

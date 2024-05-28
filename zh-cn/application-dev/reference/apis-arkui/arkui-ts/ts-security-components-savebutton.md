@@ -69,7 +69,7 @@ SaveButton(option:SaveButtonOptions)
 | DOWNLOAD_AND_SHARE | 5 | 保存按钮的文字描述为“下载分享”。 <br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
 | RECEIVE | 6 | 保存按钮的文字描述为“接收”。 <br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
 | CONTINUE_TO_RECEIVE | 7 | 保存按钮的文字描述为“继续接收”。 <br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
-| SAVE_TO_GALLERY<sup>12+</sup> | 8 | 保存按钮的文字描述为“保存到图库”。 <br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。|
+| SAVE_TO_GALLERY<sup>12+</sup> | 8 | 保存按钮的文字描述为“保存至图库”。 <br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。|
 
 
 ## SaveButtonOnClickResult枚举说明

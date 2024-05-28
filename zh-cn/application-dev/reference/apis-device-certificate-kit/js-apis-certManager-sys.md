@@ -47,6 +47,8 @@ getAllAppPrivateCertificates(callback: AsyncCallback\<CMResult>): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
+| 201 | The application has no permission to call the API. |
+| 202 | The application is not system app. |
 | 401      | The parameter check failed.Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 17500001 | There is an generic error occurred when calling the API.     |
 
@@ -96,6 +98,8 @@ getAllAppPrivateCertificates() : Promise\<CMResult>
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
+| 201 | The application has no permission to call the API. |
+| 202 | The application is not system app. |
 | 17500001 | There is an generic error occurred when calling the API. |
 
 **示例**：

@@ -489,9 +489,9 @@ enum OH_AI_DeviceType
 | 枚举值 | 描述 |
 | -------- | -------- |
 | OH_AI_DEVICETYPE_CPU | 设备类型是CPU |
-| OH_AI_DEVICETYPE_GPU | 设备类型是GPU |
-| OH_AI_DEVICETYPE_KIRIN_NPU | 设备类型是麒麟NPU |
-| OH_AI_DEVICETYPE_NNRT | 设备类型是NNRt<br/>OHOS设备范围是[60,80)。 |
+| OH_AI_DEVICETYPE_GPU | 设备类型是GPU<br/>该配置为上游开源社区选项，在OpenHarmony上不支持 |
+| OH_AI_DEVICETYPE_KIRIN_NPU | 设备类型是麒麟NPU<br/>该配置为上游开源社区选项，在OpenHarmony上不支持<br/>如需使用KIRIN_NPU请通过OH_AI_DEVICETYPE_NNRT配置 |
+| OH_AI_DEVICETYPE_NNRT | 设备类型是NNRt（Neural Network Runtime, 神经网络运行时是面向AI领域的跨芯片推理计算运行时）<br/>OHOS设备范围是[60,80)。 |
 | OH_AI_DEVICETYPE_INVALID | 设备类型无效 |
 
 

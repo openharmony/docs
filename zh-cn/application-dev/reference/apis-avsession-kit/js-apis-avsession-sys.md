@@ -45,6 +45,7 @@ getAllSessionDescriptors(): Promise\<Array\<Readonly\<AVSessionDescriptor>>>
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 201 | permission denied. |
 | 6600101  | Session service exception. |
 
 **示例：**
@@ -88,6 +89,7 @@ getAllSessionDescriptors(callback: AsyncCallback\<Array\<Readonly\<AVSessionDesc
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 201 | permission denied. |
 | 6600101  |Session service exception. |
 
 **示例：**
@@ -139,6 +141,7 @@ getHistoricalSessionDescriptors(maxSize?: number): Promise\<Array\<Readonly\<AVS
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 
 **示例：**
@@ -185,6 +188,7 @@ getHistoricalSessionDescriptors(maxSize: number, callback: AsyncCallback\<Array\
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  |Session service exception. |
 
 **示例：**
@@ -239,6 +243,7 @@ getHistoricalAVQueueInfos(maxSize: number, maxAppSize: number) : Promise\<Array\
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 
 **示例：**
@@ -279,6 +284,9 @@ getHistoricalAVQueueInfos(maxSize: number, maxAppSize: number, callback: AsyncCa
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 201 | permission denied. |
+| 202 | Not System App. |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  |Session service exception. |
 
 **示例：**
@@ -325,6 +333,8 @@ createController(sessionId: string): Promise\<AVSessionController>
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 201 | permission denied. |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -367,6 +377,8 @@ createController(sessionId: string, callback: AsyncCallback\<AVSessionController
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 201 | permission denied. |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -419,6 +431,8 @@ castAudio(session: SessionToken | 'all', audioDevices: Array<audio.AudioDeviceDe
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 201 | permission denied. |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 | 6600104  | The remote session connection failed. |
@@ -476,6 +490,8 @@ castAudio(session: SessionToken | 'all', audioDevices: Array<audio.AudioDeviceDe
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 201 | permission denied. |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 | 6600104  | The remote session connection failed. |
@@ -538,6 +554,9 @@ startAVPlayback(bundleName: string, assetId: string): Promise\<void>
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 201 | permission denied. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
 | 6600101  | Session service exception. |
 
 **示例：**
@@ -594,6 +613,8 @@ on(type: 'sessionCreate', callback: (session: AVSessionDescriptor) => void): voi
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 201 | permission denied. |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 
 **示例：**
@@ -632,6 +653,8 @@ on(type: 'sessionDestroy', callback: (session: AVSessionDescriptor) => void): vo
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 201 | permission denied. |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 
 **示例：**
@@ -669,6 +692,8 @@ on(type: 'topSessionChange', callback: (session: AVSessionDescriptor) => void): 
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 201 | permission denied. |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 
 **示例：**
@@ -706,6 +731,8 @@ off(type: 'sessionCreate', callback?: (session: AVSessionDescriptor) => void): v
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 201 | permission denied. |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 
 **示例：**
@@ -739,6 +766,8 @@ off(type: 'sessionDestroy', callback?: (session: AVSessionDescriptor) => void): 
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 201 | permission denied. |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 
 **示例：**
@@ -772,6 +801,8 @@ off(type: 'topSessionChange', callback?: (session: AVSessionDescriptor) => void)
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 201 | permission denied. |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 
 **示例：**
@@ -803,6 +834,8 @@ on(type: 'sessionServiceDie', callback: () => void): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 201 | permission denied. |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 
 **示例：**
@@ -836,6 +869,8 @@ off(type: 'sessionServiceDie', callback?: () => void): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 201 | permission denied. |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 
 **示例：**
@@ -869,6 +904,8 @@ sendSystemAVKeyEvent(event: KeyEvent, callback: AsyncCallback\<void>): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 201 | permission denied. |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600105  | Invalid session command. |
 
@@ -920,6 +957,8 @@ sendSystemAVKeyEvent(event: KeyEvent): Promise\<void>
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 201 | permission denied. |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600105  | Invalid session command. |
 
@@ -964,6 +1003,8 @@ sendSystemControlCommand(command: AVControlCommand, callback: AsyncCallback\<voi
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 201 | permission denied. |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600105  | Invalid session command. |
 | 6600107  | Too many commands or events. |
@@ -1026,6 +1067,8 @@ sendSystemControlCommand(command: AVControlCommand): Promise\<void>
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 201 | permission denied. |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600105  | Invalid session command. |
 | 6600107  | Too many commands or events. |
@@ -1116,6 +1159,13 @@ startCastDeviceDiscovery(filter: number, callback: AsyncCallback\<void>): void
 | filter | number | 是 | 进行设备发现的过滤条件，由ProtocolType的组合而成 |
 | callback | AsyncCallback\<void>                  | 是   | 回调函数。当命令发送成功并开始搜索，err为undefined，否则返回错误对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.multimedia.avsession(多媒体会话)错误码](errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 
 **示例：**
 
@@ -1154,6 +1204,15 @@ startCastDeviceDiscovery(filter?: number, drmSchemes?: Array\<string>): Promise\
 | 类型           | 说明                          |
 | -------------- | ----------------------------- |
 | Promise\<void> | Promise对象。当命令发送成功并开始搜索，无返回结果，否则返回错误对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.multimedia.avsession(多媒体会话)错误码](errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 202 | Not System App. |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 
 **示例：**
 
@@ -1245,6 +1304,13 @@ setDiscoverable(enable: boolean, callback: AsyncCallback\<void>): void
 | enable | boolean | 是 | 是否允许本设备被发现. true: 允许被发现， false：不允许被发现 |
 | callback | AsyncCallback\<void>                  | 是   | 回调函数。当设置成功，err为undefined，否则返回错误对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.multimedia.avsession(多媒体会话)错误码](errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 
 **示例：**
 
@@ -1275,6 +1341,14 @@ setDiscoverable(enable: boolean): Promise\<void>
 | 参数名   | 类型                                  | 必填 | 说明                                  |
 | -------- | ------------------------------------- | ---- | ------------------------------------- |
 | enable | boolean | 是 | 是否允许本设备被发现. true: 允许被发现， false：不允许被发现 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.multimedia.avsession(多媒体会话)错误码](errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 
 **返回值：**
 
@@ -1311,6 +1385,15 @@ on(type: 'deviceAvailable', callback: (device: OutputDeviceInfo) => void): void
 | type     | string               | 是   | 事件回调类型，支持事件`'deviceAvailable'`，有设备被发现时触发回调。 |
 | callback | (device: [OutputDeviceInfo](js-apis-avsession.md#outputdeviceinfo10)) => void | 是   | 回调函数。当监听事件注册成功，err为undefined，否则返回错误对象。                                |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.multimedia.avsession(多媒体会话)错误码](errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 201 | permission denied. |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+
 **示例：**
 
 ```ts
@@ -1338,6 +1421,15 @@ off(type: 'deviceAvailable', callback?: (device: OutputDeviceInfo) => void): voi
 | type     | string                 | 是    | 事件回调类型，支持事件`'deviceAvailable'`：设备发现回调。|
 | callback     | (device: [OutputDeviceInfo](js-apis-avsession.md#outputdeviceinfo10)) => void                 | 否    | 用于返回设备信息。|
 
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.multimedia.avsession(多媒体会话)错误码](errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 201 | permission denied. |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+
 **示例：**
 
 ```ts
@@ -1360,6 +1452,15 @@ on(type: 'deviceOffline', callback: (deviceId: string) => void): void
 | -------- | -------------------- | ---- | ------------------------------------------------------------ |
 | type     | string               | 是   | 事件回调类型，支持事件`'deviceOffline'`，有设备下线时触发回调。 |
 | callback | (deviceId: string) => void | 是   | 回调函数，参数deviceId是设备的ID。当监听事件注册成功，err为undefined，否则返回错误对象。  |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.multimedia.avsession(多媒体会话)错误码](errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 201 | permission denied. |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 
 **示例：**
 
@@ -1389,6 +1490,16 @@ off(type: 'deviceOffline', callback?: (deviceId: string) => void): void
 | ------   | ---------------------- | ---- | ------------------------------------------------------- |
 | type     | string                 | 是    | 事件回调类型，支持事件`'deviceOffline'`：设备下线回调。|
 | callback | (deviceId: string) => void | 否   | 回调函数，参数deviceId是设备的ID。当监听事件取消成功，err为undefined，否则返回错误对象。该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.multimedia.avsession(多媒体会话)错误码](errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 201 | permission denied. |
+| 202 | Not System App. |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 
 **示例：**
 
@@ -1423,6 +1534,8 @@ getAVCastController(sessionId: string, callback: AsyncCallback\<AVCastController
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 201 | permission denied. |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception |
 | 6600102  | session does not exist |
 
@@ -1479,6 +1592,8 @@ getAVCastController(sessionId: string): Promise\<AVCastController>
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 201 | permission denied. |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | server exception |
 | 6600102  | The session does not exist |
 
@@ -1527,6 +1642,8 @@ startCasting(session: SessionToken, device: OutputDeviceInfo, callback: AsyncCal
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 201 | permission denied. |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600108 | Device connecting failed.       |
 
@@ -1586,6 +1703,8 @@ startCasting(session: SessionToken, device: OutputDeviceInfo): Promise\<void>
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 201 | permission denied. |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600108 | Device connecting failed.       |
 
@@ -1634,6 +1753,7 @@ stopCasting(session: SessionToken, callback: AsyncCallback\<void>): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
 | 6600109  | The remote connection is not established. |
 
 **示例：**
@@ -1681,6 +1801,7 @@ stopCasting(session: SessionToken): Promise\<void>
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
 | 6600109  | The remote connection is not established. |
 
 **示例：**
@@ -1724,6 +1845,7 @@ setDisplaySurface(surfaceId: string): Promise\<void>
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600109  | The remote connection is not established. |
 
 **示例：**
@@ -1770,6 +1892,7 @@ setDisplaySurface(surfaceId: string, callback: AsyncCallback\<void>): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600109  | The remote connection is not established. |
 
 **示例：**
@@ -1820,6 +1943,7 @@ on(type: 'videoSizeChange', callback: (width:number, height:number) => void): vo
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 
 **示例：**
@@ -1853,6 +1977,7 @@ off(type: 'videoSizeChange'): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 
 **示例：**

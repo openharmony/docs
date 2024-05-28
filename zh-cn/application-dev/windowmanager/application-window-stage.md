@@ -456,14 +456,16 @@ export default class EntryAbility extends UIAbility {
 };
 ```
 
-## 设置悬浮窗
+## <!--RP2-->设置悬浮窗<!--RP2End-->
 
 悬浮窗可以在已有的任务基础上，创建一个始终在前台显示的窗口。即使创建悬浮窗的任务退至后台，悬浮窗仍然可以在前台显示。通常悬浮窗位于所有应用窗口之上；开发者可以创建悬浮窗，并对悬浮窗进行属性设置等操作。
 
 
 ### 开发步骤
 
+<!--RP1-->
 **前提条件：** 创建`WindowType.TYPE_FLOAT`即悬浮窗类型的窗口，需要申请`ohos.permission.SYSTEM_FLOAT_WINDOW`权限，配置方式请参见[申请应用权限](../security/AccessToken/determine-application-mode.md#system_basic等级的应用申请权限)。
+<!--RP1End-->
 
 1. 创建悬浮窗。
 

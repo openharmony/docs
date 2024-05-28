@@ -29,7 +29,6 @@ import StartOptions from '@ohos.app.ability.StartOptions';
 | windowHeight<sup>11+</sup> | number | 否 | 否 | 窗口的高度。 |
 | processMode<sup>12+</sup> | [contextConstant.ProcessMode](js-apis-app-ability-contextConstant.md#contextconstantprocessmode12) | 否 | 否 | 进程模式。<br>**约束：**<br>1.仅在平板类设备上生效。<br>2.仅在[UIAbilityContext.startAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability-1)中生效。<br>3.processMode和startupVisibility必须同时设置。 |
 | startupVisibility<sup>12+</sup> | [contextConstant.StartupVisibility](js-apis-app-ability-contextConstant.md#contextconstantstartupvisibility12) | 否 | 否 | Ability在新进程中启动后的可见性。<br>**约束：**<br>1.仅在平板类设备上生效。<br>2.仅在[UIAbilityContext.startAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability-1)中生效。<br>3.processMode和startupVisibility必须同时设置。 |
-| windowFocused<sup>12+</sup> | boolean | 否 | 否 | 窗口是否获焦。默认是true，表示窗口获焦。<br>**约束：**<br>1.仅在平板类设备上生效。<br>2.仅在[UIAbilityContext.startAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability-1)中生效。<br>3.仅在被拉起应用是冷启动时生效。 |
 
 **示例：**
 

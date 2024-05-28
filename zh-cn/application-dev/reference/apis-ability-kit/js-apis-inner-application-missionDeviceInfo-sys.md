@@ -18,6 +18,8 @@ import distributedMissionManager from '@ohos.distributedMissionManager';
 
 **系统接口**：该接口为系统接口。
 
+**需要权限**: ohos.permission.MANAGE_MISSIONS
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
 | 名称       | 类型   | 可读   | 可写   | 说明      |
