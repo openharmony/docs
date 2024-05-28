@@ -207,7 +207,7 @@ NNRT设备信息描述，包含设备ID，设备名称等信息。
 ### OH_AI_CallBackParam
 
 ```
-typedef struct OH_AI_CallBackParamOH_AI_CallBackParam
+typedef struct OH_AI_CallBackParam OH_AI_CallBackParam
 ```
 
 **描述**
@@ -233,7 +233,7 @@ Mindspore的上下文信息的指针，该指针会指向Context。
 ### OH_AI_DataType
 
 ```
-typedef enum OH_AI_DataTypeOH_AI_DataType
+typedef enum OH_AI_DataType OH_AI_DataType
 ```
 
 **描述**
@@ -259,7 +259,7 @@ Mindspore的运行设备信息的指针。
 ### OH_AI_DeviceType
 
 ```
-typedef enum OH_AI_DeviceTypeOH_AI_DeviceType
+typedef enum OH_AI_DeviceType OH_AI_DeviceType
 ```
 
 **描述**
@@ -272,7 +272,7 @@ typedef enum OH_AI_DeviceTypeOH_AI_DeviceType
 ### OH_AI_Format
 
 ```
-typedef enum OH_AI_FormatOH_AI_Format
+typedef enum OH_AI_Format OH_AI_Format
 ```
 
 **描述**
@@ -313,7 +313,7 @@ typedef void* OH_AI_ModelHandle
 ### OH_AI_ModelType
 
 ```
-typedef enum OH_AI_ModelTypeOH_AI_ModelType
+typedef enum OH_AI_ModelType OH_AI_ModelType
 ```
 
 **描述**
@@ -326,7 +326,7 @@ typedef enum OH_AI_ModelTypeOH_AI_ModelType
 ### OH_AI_NNRTDeviceType
 
 ```
-typedef enum OH_AI_NNRTDeviceTypeOH_AI_NNRTDeviceType
+typedef enum OH_AI_NNRTDeviceType OH_AI_NNRTDeviceType
 ```
 
 **描述**
@@ -339,7 +339,7 @@ NNRT管理的硬件设备类型
 ### OH_AI_PerformanceMode
 
 ```
-typedef enum OH_AI_PerformanceModeOH_AI_PerformanceMode
+typedef enum OH_AI_PerformanceMode OH_AI_PerformanceMode
 ```
 
 **描述**
@@ -352,7 +352,7 @@ NNRT硬件的工作性能模式
 ### OH_AI_Priority
 
 ```
-typedef enum OH_AI_PriorityOH_AI_Priority
+typedef enum OH_AI_Priority OH_AI_Priority
 ```
 
 **描述**
@@ -365,7 +365,7 @@ NNRT推理任务优先级
 ### OH_AI_Status
 
 ```
-typedef enum OH_AI_StatusOH_AI_Status
+typedef enum OH_AI_Status OH_AI_Status
 ```
 
 **描述**
@@ -391,7 +391,7 @@ typedef void* OH_AI_TensorHandle
 ### OH_AI_TensorHandleArray
 
 ```
-typedef struct OH_AI_TensorHandleArrayOH_AI_TensorHandleArray
+typedef struct OH_AI_TensorHandleArray OH_AI_TensorHandleArray
 ```
 
 **描述**
