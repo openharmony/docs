@@ -289,7 +289,7 @@ Subscribes to data changes of this distributed data object.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Event type. The value is **change**, which indicates data changes. |
-| callback | Function | Yes| Callback invoked to return the changes of the distributed data object.<br>**sessionId** indicates the session ID of the distributed data object.<br>**fields** indicates the changed attributes of the distributed data object.|
+| callback | Function | Yes| Callback used to return the changes of the distributed data object.<br>**sessionId** indicates the session ID of the distributed data object.<br>**fields** indicates the changed attributes of the distributed data object.|
 
 **Example**
 
@@ -349,7 +349,7 @@ Subscribes to status changes of this distributed data object.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Event type. The value is **status**, which indicates the status change (online or offline) of the distributed data object. |
-| callback | Function | Yes| Callback invoked to return the status change.<br>**sessionId** indicates the session ID of the distributed data object.<br>**networkId** identifies the device.<br>**status** indicates the object status, which can be online or offline.|
+| callback | Function | Yes| Callback used to return the status change.<br>**sessionId** indicates the session ID of the distributed data object.<br>**networkId** identifies the device.<br>**status** indicates the object status, which can be online or offline.|
 
 **Example**
 
@@ -407,7 +407,7 @@ The saved data will be released in the following cases:
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | deviceId | string | Yes| ID of the device where data is stored. The value **local** indicates a local device.|
-  | callback | AsyncCallback&lt;[SaveSuccessResponse](#savesuccessresponse9)&gt; | Yes| Callback invoked to return **SaveSuccessResponse**, which contains information such as session ID, version, and device ID.|
+  | callback | AsyncCallback&lt;[SaveSuccessResponse](#savesuccessresponse9)&gt; | Yes| Callback used to return **SaveSuccessResponse**, which contains information such as session ID, version, and device ID.|
 
 **Example**
 
@@ -484,7 +484,7 @@ If the object is stored on another device, the data on the local device will be 
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;[RevokeSaveSuccessResponse](#revokesavesuccessresponse9)&gt; | Yes| Callback invoked to return **RevokeSaveSuccessResponse**, which contains the session ID.|
+  | callback | AsyncCallback&lt;[RevokeSaveSuccessResponse](#revokesavesuccessresponse9)&gt; | Yes| Callback used to return **RevokeSaveSuccessResponse**, which contains the session ID.|
 
 **Example**
 
@@ -571,7 +571,7 @@ When an asset in a distributed object and an asset in an RDB store point to the 
   | -------- | ------------------------- | ---- | ---------------------------------------------------------------------------------- |
   | assetKey | string                    | Yes  | Key of the joint asset in the distributed data object.                                            |
   | bindInfo | [BindInfo](#bindinfo11)   | Yes  | Information about the joint asset in the RDB store, including the RDB store name, table name, primary key, column name, and asset name in the RDB store.|
-  | callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.                                                                |
+  | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                                                                |
 
 **Example**
 
@@ -823,7 +823,7 @@ Subscribes to data changes of this distributed data object.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Event type. The value is **change**, which indicates data changes. |
-| callback | Function | Yes| Callback invoked to return the changes of the distributed data object.<br>**sessionId** indicates the session ID of the distributed data object.<br>**fields** indicates the changed attributes of the distributed data object.|
+| callback | Function | Yes| Callback used to return the changes of the distributed data object.<br>**sessionId** indicates the session ID of the distributed data object.<br>**fields** indicates the changed attributes of the distributed data object.|
 
 **Example**
 
@@ -920,7 +920,7 @@ Subscribes to status changes of this distributed data object.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Event type. The value is **status**, which indicates the status change (online or offline) of the distributed data object. |
-| callback | Function | Yes| Callback invoked to return the status change.<br>**sessionId** indicates the session ID of the distributed data object.<br>**networkId** identifies the device.<br>**status** indicates the object status, which can be online or offline.|
+| callback | Function | Yes| Callback used to return the status change.<br>**sessionId** indicates the session ID of the distributed data object.<br>**networkId** identifies the device.<br>**status** indicates the object status, which can be online or offline.|
 
 **Example**
 

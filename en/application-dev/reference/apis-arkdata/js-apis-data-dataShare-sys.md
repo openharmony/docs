@@ -35,7 +35,7 @@ Creates a **DataShareHelper** instance. This API uses an asynchronous callback t
 | -------- | -------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | context  | [Context](../apis-ability-kit/js-apis-inner-application-context.md#context)        | Yes  | Context of the application.                                          |
 | uri      | string                                                   | Yes  | Uniform Resource Identifier (URI) of the server application to connect.                              |
-| callback | AsyncCallback&lt;[DataShareHelper](#datasharehelper)&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined** and **data** is the **DataShareHelper** instance created. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;[DataShareHelper](#datasharehelper)&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the **DataShareHelper** instance created. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -87,7 +87,7 @@ Creates a **DataShareHelper** instance. This API uses an asynchronous callback t
 | context  | [Context](../apis-ability-kit/js-apis-inner-application-context.md#context)        | Yes  | Context of the application.                                          |
 | uri      | string                                                   | Yes  | URI of the server application to connect.                              |
 | options | [DataShareHelperOptions](#datasharehelperoptions10)| Yes  | Configuration specifying whether [DataShareHelper](#datasharehelper) is in proxy mode.|
-| callback | AsyncCallback&lt;[DataShareHelper](#datasharehelper)&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined** and **data** is the **DataShareHelper** instance created. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;[DataShareHelper](#datasharehelper)&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the **DataShareHelper** instance created. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -371,7 +371,7 @@ Subscribes to the data change of the specified URI. After an observer is registe
 | -------- | -------------------- | ---- | ------------------------ |
 | type     | string               | Yes  | Event/callback type. The value is **dataChange**, which indicates data changes.|
 | uri      | string               | Yes  | URI of the data to be observed.|
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the data change. If the data is changed, **err** is **undefined**. Otherwise, this callback is not invoked or **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the data change. If the data is changed, **err** is **undefined**. Otherwise, this callback is not invoked or **err** is an error object.|
 
 **Example**
 
@@ -519,7 +519,7 @@ Subscribes to the changes of the data corresponding to the specified URI and tem
 | type      | string                           | Yes  | Event type. The value is **rdbDataChange**, which indicates the change of the RDB data. If **type** is any other value, there is no response to this API. |
 | uris    | Array&lt;string&gt;                | Yes  | URIs of the target data.          |
 | templateId | [TemplateId](#templateid10)       | Yes  | ID of the template that triggers the callback.          |
-| callback | AsyncCallback&lt;[RdbDataChangeNode](#rdbdatachangenode10)&gt;   | Yes  | Callback invoked to return the data change. If the operation is successful, **err** is **undefined** and **node** is the data changed. Otherwise, this callback is not invoked or **err** is an error object. |
+| callback | AsyncCallback&lt;[RdbDataChangeNode](#rdbdatachangenode10)&gt;   | Yes  | Callback used to return the data change. If the operation is successful, **err** is **undefined** and **node** is the data changed. Otherwise, this callback is not invoked or **err** is an error object. |
 
 **Return value**
 
@@ -596,7 +596,7 @@ Subscribes to the change of the published data.
 | type      | string                           | Yes  | Event type. The value is **publishedDataChange**, which indicates the change of the published data.|
 | uris    | Array&lt;string&gt;                | Yes  | URIs of the target data.          |
 | subscriberId | string                        | Yes  | Subscriber ID of the callback.          |
-| callback | AsyncCallback&lt;[PublishedDataChangeNode](#publisheddatachangenode10)&gt;   | Yes  | Callback invoked to return the data change. If the operation is successful, **err** is **undefined** and **node** is the data changed. Otherwise, this callback is not invoked or **err** is an error object. |
+| callback | AsyncCallback&lt;[PublishedDataChangeNode](#publisheddatachangenode10)&gt;   | Yes  | Callback used to return the data change. If the operation is successful, **err** is **undefined** and **node** is the data changed. Otherwise, this callback is not invoked or **err** is an error object. |
 
 **Return value**
 
@@ -682,7 +682,7 @@ Publishes data to the database.
 | data      | Array&lt;[PublishedItem](#publisheditem10)&gt;     | Yes  | Data to publish.  |
 | bundleName | string                                          | Yes  | Application of the data to publish. This parameter is valid only for the private data published. Only the application can read the data.          |
 | version | number                                             | Yes  | Version of the data to publish. A larger value indicates a later version. If the version of the data published is earlier than that of the data in the database, the data in the database will not be updated.|
-| callback | AsyncCallback&lt;Array&lt;[OperationResult](#operationresult10)&gt;&gt; | Yes  | Callback invoked to return the result. If data is published, **err** is **undefined**, and **result** is the data publish result. Otherwise, this callback is not triggered or **err** is an error object.   |
+| callback | AsyncCallback&lt;Array&lt;[OperationResult](#operationresult10)&gt;&gt; | Yes  | Callback used to return the result. If data is published, **err** is **undefined**, and **result** is the data publish result. Otherwise, this callback is not triggered or **err** is an error object.   |
 
 **Error codes**
 
@@ -727,7 +727,7 @@ Publishes data to the database.
 | -------- | ------------------------------------------------- | ---- | ---------------------------------- |
 | data      | Array&lt;[PublishedItem](#publisheditem10)&gt;                        | Yes  | Data to publish.  |
 | bundleName | string                                          | Yes  | Application of the data to publish. This parameter is valid only for the private data published. Only the application can read the data.      |
-| callback | AsyncCallback&lt;Array&lt;[OperationResult](#operationresult10)&gt;&gt; | Yes  | Callback invoked to return the result. If data is published, **err** is **undefined**, and **result** is the data publish result. Otherwise, this callback is not triggered or **err** is an error object.|
+| callback | AsyncCallback&lt;Array&lt;[OperationResult](#operationresult10)&gt;&gt; | Yes  | Callback used to return the result. If data is published, **err** is **undefined**, and **result** is the data publish result. Otherwise, this callback is not triggered or **err** is an error object.|
 
 **Example**
 
@@ -809,7 +809,7 @@ Obtains the published data of an application.
 | Name   | Type            | Mandatory| Description                          |
 | -------- | -----------------| ---- | ----------------------------- |
 | bundleName | string         | Yes  | Application to which the data belongs. |
-| callback | AsyncCallback&lt;Array&lt;[PublishedItem](#publisheditem10)&gt;&gt; | Yes  | Callback invoked to return the published data obtained.|
+| callback | AsyncCallback&lt;Array&lt;[PublishedItem](#publisheditem10)&gt;&gt; | Yes  | Callback used to return the published data obtained.|
 
 **Error codes**
 
@@ -882,7 +882,7 @@ Inserts a single data record into the database. This API uses an asynchronous ca
 | -------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | uri      | string                                                    | Yes  | URI of the data to insert.                                    |
 | value    | [ValuesBucket](js-apis-data-valuesBucket.md#valuesbucket) | Yes  | Data to insert. If this parameter is left empty, a blank row will be inserted.          |
-| callback | AsyncCallback&lt;number&gt;                               | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined** and **data** is the index of the inserted data record. Otherwise, **err** is an error object.<br>The data index is not returned if the APIs of the database in use, for example, the key-value database (KVDB), do not support the return of indexes.|
+| callback | AsyncCallback&lt;number&gt;                               | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the index of the inserted data record. Otherwise, **err** is an error object.<br>The data index is not returned if the APIs of the database in use, for example, the key-value database (KVDB), do not support the return of indexes.|
 
 **Example**
 
@@ -987,7 +987,7 @@ Deletes one or more data records from the database. This API uses an asynchronou
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | uri        | string                                                       | Yes  | URI of the data to delete.                                    |
 | predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | Conditions for deleting the data.<br>The predicate methods supported by **delete()** vary depending on the database in use. For example, the KVDB supports only **inKeys**. If this parameter is left empty, the entire table will be deleted by default.|
-| callback   | AsyncCallback&lt;number&gt;                                  | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined** and **data** is the number of deleted data records. Otherwise, **err** is an error object.<br>The number of deleted data records is not returned if the APIs of the database in use (for example, KVDB) do not support this return.|
+| callback   | AsyncCallback&lt;number&gt;                                  | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the number of deleted data records. Otherwise, **err** is an error object.<br>The number of deleted data records is not returned if the APIs of the database in use (for example, KVDB) do not support this return.|
 
 **Example**
 
@@ -1075,7 +1075,7 @@ Queries data in the database. This API uses an asynchronous callback to return t
 | uri        | string                                                       | Yes  | URI of the data to query.                                    |
 | predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | Conditions for querying the data.<br>The predicate methods supported by **query()** vary depending on the database used. For example, the KVDB supports only **inKeys** and **prefixKey**. If this parameter is left empty, the entire table will be queried by default.|
 | columns    | Array&lt;string&gt;                                          | Yes  | Column to query. If this parameter is left empty, all columns will be queried.              |
-| callback   | AsyncCallback&lt;[DataShareResultSet](js-apis-data-DataShareResultSet-sys.md#datashareresultset)&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined** and **data** is the result set obtained. Otherwise, **err** is an error object.|
+| callback   | AsyncCallback&lt;[DataShareResultSet](js-apis-data-DataShareResultSet-sys.md#datashareresultset)&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the result set obtained. Otherwise, **err** is an error object.|
 
 **Example**
 
@@ -1168,7 +1168,7 @@ Updates data in the database. This API uses an asynchronous callback to return t
 | uri        | string                                                       | Yes  | URI of the data to update.                                    |
 | predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | Conditions for updating the data.<br>The predicate methods supported by **update()** vary depending on the database in use. For example, only the relational database (RDB) supports predicates. If this parameter is left empty, the entire table will be updated by default.|
 | value      | [ValuesBucket](js-apis-data-valuesBucket.md#valuesbucket)    | Yes  | New data, which can be null.                                 |
-| callback   | AsyncCallback&lt;number&gt;                                  | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined** and **data** is the number of updated data records. Otherwise, **err** is an error object.<br>The number of updated data records is not returned if the APIs of the database in use (for example, KVDB) do not support this return.|
+| callback   | AsyncCallback&lt;number&gt;                                  | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the number of updated data records. Otherwise, **err** is an error object.<br>The number of updated data records is not returned if the APIs of the database in use (for example, KVDB) do not support this return.|
 
 **Example**
 
@@ -1280,7 +1280,7 @@ Batch inserts data into the database. This API uses an asynchronous callback to 
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | uri      | string                                                       | Yes  | URI of the data to insert.                                    |
 | values   | Array&lt;[ValuesBucket](js-apis-data-valuesBucket.md#valuesbucket)&gt; | Yes  | Data to insert.                                          |
-| callback | AsyncCallback&lt;number&gt;                                  | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined** and **data** is the number of data records inserted. Otherwise, **err** is an error object.<br>The number of inserted data records is not returned if the APIs of the database in use (for example, KVDB) do not support this return.|
+| callback | AsyncCallback&lt;number&gt;                                  | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the number of data records inserted. Otherwise, **err** is an error object.<br>The number of inserted data records is not returned if the APIs of the database in use (for example, KVDB) do not support this return.|
 
 **Example**
 
@@ -1386,7 +1386,7 @@ Normalizes a **DataShare** URI. The **DataShare** URI can be used only by the lo
 | Name    | Type                  | Mandatory| Description                                                    |
 | -------- | ---------------------- | ---- | -------------------------------------------------------- |
 | uri      | string                 | Yes  | [URI](../apis-arkts/js-apis-uri.md#uri) to normalize.     |
-| callback | AsyncCallback&lt;string&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined** and **data** is the normalized URI (if **null** is returned, URI normalization is not supported). Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;string&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the normalized URI (if **null** is returned, URI normalization is not supported). Otherwise, **err** is an error object.|
 
 **Example**
 
@@ -1453,7 +1453,7 @@ Denormalizes a URI. This API uses an asynchronous callback to return the result.
 | Name    | Type                  | Mandatory| Description                                               |
 | -------- | ---------------------- | ---- | --------------------------------------------------- |
 | uri      | string                 | Yes  | [URI](../apis-arkts/js-apis-uri.md#uri) to denormalize.|
-| callback | AsyncCallback&lt;string&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined** and **data** is the URI obtained. If the original URI is returned, denormalization is not required. If **null** is returned, denormalization is not supported. If the operation fails, **err** is an error object.|
+| callback | AsyncCallback&lt;string&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the URI obtained. If the original URI is returned, denormalization is not required. If **null** is returned, denormalization is not supported. If the operation fails, **err** is an error object.|
 
 **Example**
 
@@ -1520,7 +1520,7 @@ Notifies the registered observer of data changes. This API uses an asynchronous 
 | Name   | Type                | Mandatory| Description                    |
 | -------- | -------------------- | ---- | ------------------------ |
 | uri      | string               | Yes  | URI of the data.|
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result. If the observer is notified of the data changes, **err** is **undefined**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the observer is notified of the data changes, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Example**
 

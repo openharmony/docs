@@ -34,7 +34,7 @@ Obtains an RDB store. This API uses an asynchronous callback to return the resul
 | context  | Context                                    | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](../apis-ability-kit/js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-app-context.md).|
 | config   | [StoreConfig](#storeconfig)                | Yes  | Configuration of the RDB store.                               |
 | version  | number                                     | Yes  | RDB store version.<br>Currently, automatic RDB upgrades and downgrades performed based on **version** is not supported.                                                |
-| callback | AsyncCallback&lt;[RdbStore](#rdbstore)&gt; | Yes  | Callback invoked to return the RDB store obtained.                    |
+| callback | AsyncCallback&lt;[RdbStore](#rdbstore)&gt; | Yes  | Callback used to return the RDB store obtained.                    |
 
 **Example**
 
@@ -152,7 +152,7 @@ Deletes an RDB store. This API uses an asynchronous callback to return the resul
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
 | context  | Context                   | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](../apis-ability-kit/js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-app-context.md).|
 | name     | string                    | Yes  | Name of the RDB store to delete.                                                |
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.                                      |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                                      |
 
 **Example**
 
@@ -1182,7 +1182,7 @@ Inserts a row of data into a table. This API uses an asynchronous callback to re
 | -------- | -------- | -------- | -------- |
 | table | string | Yes| Name of the target table.|
 | values | [ValuesBucket](#valuesbucket) | Yes| Row of data to insert.|
-| callback | AsyncCallback&lt;number&gt; | Yes| Callback invoked to return the result. If the operation is successful, the row ID will be returned. Otherwise, **-1** will be returned.|
+| callback | AsyncCallback&lt;number&gt; | Yes| Callback used to return the result. If the operation is successful, the row ID will be returned. Otherwise, **-1** will be returned.|
 
 **Example**
 
@@ -1276,7 +1276,7 @@ Batch inserts data into a table. This API uses an asynchronous callback to retur
 | -------- | -------- | -------- | -------- |
 | table | string | Yes| Name of the target table.|
 | values | Array&lt;[ValuesBucket](#valuesbucket)&gt; | Yes| An array of data to insert.|
-| callback | AsyncCallback&lt;number&gt; | Yes| Callback invoked to return the result. If the operation is successful, the number of inserted data records is returned. Otherwise, **-1** is returned.|
+| callback | AsyncCallback&lt;number&gt; | Yes| Callback used to return the result. If the operation is successful, the number of inserted data records is returned. Otherwise, **-1** is returned.|
 
 **Example**
 
@@ -1412,7 +1412,7 @@ Updates data in the RDB store based on the specified **RdbPredicates** object. T
 | -------- | -------- | -------- | -------- |
 | values | [ValuesBucket](#valuesbucket) | Yes| Rows of data to update in the RDB store. The key-value pair is associated with the column name in the target table.|
 | predicates | [RdbPredicates](#rdbpredicates) | Yes| Update conditions specified by the **RdbPredicates** object.|
-| callback | AsyncCallback&lt;number&gt; | Yes| Callback invoked to return the number of rows updated.|
+| callback | AsyncCallback&lt;number&gt; | Yes| Callback used to return the number of rows updated.|
 
 **Example**
 
@@ -1509,7 +1509,7 @@ Deletes data from the RDB store based on the specified **RdbPredicates** object.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | predicates | [RdbPredicates](#rdbpredicates) | Yes| Conditions specified by the **RdbPredicates** object for deleting data.|
-| callback | AsyncCallback&lt;number&gt; | Yes| Callback invoked to return the number of rows updated.|
+| callback | AsyncCallback&lt;number&gt; | Yes| Callback used to return the number of rows updated.|
 
 **Example**
 
@@ -1572,7 +1572,7 @@ Queries data from the RDB store based on specified conditions. This API uses an 
 | -------- | -------- | -------- | -------- |
 | predicates | [RdbPredicates](#rdbpredicates) | Yes| Query conditions specified by the **RdbPredicates** object.|
 | columns | Array&lt;string&gt; | Yes| Columns to query. If this parameter is not specified, the query applies to all columns.|
-| callback | AsyncCallback&lt;[ResultSet](js-apis-data-resultset.md)&gt; | Yes| Callback invoked to return the result. If the operation is successful, a **ResultSet** object will be returned.|
+| callback | AsyncCallback&lt;[ResultSet](js-apis-data-resultset.md)&gt; | Yes| Callback used to return the result. If the operation is successful, a **ResultSet** object will be returned.|
 
 **Example**
 
@@ -1638,7 +1638,7 @@ Queries data in the RDB store using the specified SQL statement. This API uses a
 | -------- | -------- | -------- | -------- |
 | sql | string | Yes| SQL statement to run.|
 | bindArgs | Array&lt;[ValueType](#valuetype)&gt; | Yes| Arguments in the SQL statement. The value corresponds to the placeholders in the SQL parameter statement. If the SQL parameter statement is complete, the value of this parameter must be an empty array.|
-| callback | AsyncCallback&lt;[ResultSet](js-apis-data-resultset.md)&gt; | Yes| Callback invoked to return the result. If the operation is successful, a **ResultSet** object will be returned.|
+| callback | AsyncCallback&lt;[ResultSet](js-apis-data-resultset.md)&gt; | Yes| Callback used to return the result. If the operation is successful, a **ResultSet** object will be returned.|
 
 **Example**
 
@@ -1700,7 +1700,7 @@ Executes an SQL statement that contains specified arguments but returns no value
 | -------- | -------- | -------- | -------- |
 | sql | string | Yes| SQL statement to run.|
 | bindArgs | Array&lt;[ValueType](#valuetype)&gt; | Yes| Arguments in the SQL statement. The value corresponds to the placeholders in the SQL parameter statement. If the SQL parameter statement is complete, the value of this parameter must be an empty array.|
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback invoked to return the result.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Example**
 
@@ -1879,7 +1879,7 @@ Sets distributed tables. This API uses an asynchronous callback to return the re
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | tables | Array&lt;string&gt; | Yes| Names of the distributed tables to set.|
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback invoked to return the result.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Example**
 
@@ -1946,7 +1946,7 @@ Obtains the distributed table name of a remote device based on the local table n
 | -------- | -------- | -------- | -------- |
 | device | string | Yes| ID of the remote device.|
 | table | string | Yes| Local table name of the remote device.|
-| callback | AsyncCallback&lt;string&gt; | Yes| Callback invoked to return the result. If the operation succeeds, the distributed table name of the remote device is returned.|
+| callback | AsyncCallback&lt;string&gt; | Yes| Callback used to return the result. If the operation succeeds, the distributed table name of the remote device is returned.|
 
 **Example**
 
@@ -2042,7 +2042,7 @@ Synchronizes data between devices. This API uses an asynchronous callback to ret
 | -------- | -------- | -------- | -------- |
 | mode | [SyncMode](#syncmode8) | Yes| Data sync mode. The value can be **push** or **pull**.|
 | predicates | [RdbPredicates](#rdbpredicates) | Yes| **RdbPredicates** object that specifies the data and devices to synchronize.|
-| callback | AsyncCallback&lt;Array&lt;[string, number]&gt;&gt; | Yes| Callback invoked to send the sync result to the caller. <br>**string** indicates the device ID. <br>**number** indicates the sync status of that device. The value **0** indicates a successful sync. Other values indicate a sync failure. |
+| callback | AsyncCallback&lt;Array&lt;[string, number]&gt;&gt; | Yes| Callback used to send the sync result to the caller. <br>**string** indicates the device ID. <br>**number** indicates the sync status of that device. The value **0** indicates a successful sync. Other values indicate a sync failure. |
 
 **Example**
 

@@ -228,7 +228,7 @@ The relational database (RDB) store manages data based on relational models. The
 | [Rdb_SubscribeCallback::detailsObserver](#detailsobserver) | Callback used to return the details about the device-cloud data change.| 
 | [Rdb_SubscribeCallback::briefObserver](#briefobserver) | Callback used to return the device-cloud data change event.| 
 | [Rdb_DataObserver::context](#context-12) | Context of the data observer.| 
-| [Rdb_DataObserver::callback](#callback-12) | Callback invoked to return the result.| 
+| [Rdb_DataObserver::callback](#callback-12) | Callback used to return the result.| 
 | [Rdb_Statistic::total](#total) | Total number of rows to be synchronized between the device and cloud in the database table.| 
 | [Rdb_Statistic::successful](#successful) | Number of rows that are successfully synchronized between the device and cloud in the database table.| 
 | [Rdb_Statistic::failed](#failed) | Number of rows that failed to be synchronized between the device and cloud in the database table.| 
@@ -241,7 +241,7 @@ The relational database (RDB) store manages data based on relational models. The
 | [Rdb_ProgressDetails::code](#code) | Device-cloud sync state.| 
 | [Rdb_ProgressDetails::tableLength](#tablelength) | Number of the tables synchronized between the device and cloud.| 
 | [Rdb_ProgressObserver::context](#context-22) | Context of the device-cloud sync progress observer.| 
-| [Rdb_ProgressObserver::callback](#callback-22) | Callback invoked to return the device-cloud sync progress.| 
+| [Rdb_ProgressObserver::callback](#callback-22) | Callback used to return the device-cloud sync progress.| 
 
 
 ## Macro Description
