@@ -2446,6 +2446,8 @@ release():Promise\<void>
 
 释放PixelMap对象，使用Promise形式返回释放结果。
 
+ArkTS有内存回收机制，PixelMap对象不调用release方法，内存最终也会由系统统一释放。但图片使用的内存往往较大，为尽快释放内存，建议应用在使用完成后主动调用release方法提前释放内存。
+
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
@@ -2479,6 +2481,8 @@ async function Demo() {
 release(callback: AsyncCallback\<void>): void
 
 释放PixelMap对象，使用callback形式返回释放结果。
+
+ArkTS有内存回收机制，PixelMap对象不调用release方法，内存最终也会由系统统一释放。但图片使用的内存往往较大，为尽快释放内存，建议应用在使用完成后主动调用release方法提前释放内存。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -3978,6 +3982,8 @@ release(callback: AsyncCallback\<void>): void
 
 释放图片源实例，使用callback形式返回结果。
 
+ArkTS有内存回收机制，ImageSource对象不调用release方法，内存最终也会由系统统一释放。但图片使用的内存往往较大，为尽快释放内存，建议应用在使用完成后主动调用release方法提前释放内存。
+
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
 **参数：**
@@ -4005,6 +4011,8 @@ imageSourceApi.release((err: BusinessError) => {
 release(): Promise\<void>
 
 释放图片源实例，使用Promise形式返回结果。
+
+ArkTS有内存回收机制，ImageSource对象不调用release方法，内存最终也会由系统统一释放。但图片使用的内存往往较大，为尽快释放内存，建议应用在使用完成后主动调用release方法提前释放内存。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -4216,6 +4224,8 @@ release(callback: AsyncCallback\<void>): void
 
 释放图片打包实例，使用callback形式返回结果。
 
+ArkTS有内存回收机制，ImagePacker对象不调用release方法，内存最终也会由系统统一释放。但图片使用的内存往往较大，为尽快释放内存，建议应用在使用完成后主动调用release方法提前释放内存。
+
 **系统能力：** SystemCapability.Multimedia.Image.ImagePacker
 
 **参数：**
@@ -4243,6 +4253,8 @@ imagePackerApi.release((err: BusinessError)=>{
 release(): Promise\<void>
 
 释放图片打包实例，使用Promise形式返回释放结果。
+
+ArkTS有内存回收机制，ImagePacker对象不调用release方法，内存最终也会由系统统一释放。但图片使用的内存往往较大，为尽快释放内存，建议应用在使用完成后主动调用release方法提前释放内存。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImagePacker
 
@@ -4444,7 +4456,7 @@ createImageReceiver(size: Size, format: ImageFormat, capacity: number): ImageRec
 | 参数名   | 类型   | 必填 | 说明                   |
 | -------- | ------ | ---- | ---------------------- |
 | size    | [Size](#size)  | 是   | 图像的默认大小。       |
-| format   | [ImageFormat](#imageformat9) | 是   | 图像格式，取值为[ImageFormat](#imageformat9)常量（目前仅支持 ImageFormat:JPEG）。             |
+| format   | [ImageFormat](#imageformat9) | 是   | 图像格式，取值为[ImageFormat](#imageformat9)常量（目前仅支持 ImageFormat:JPEG，实际返回格式由生产者决定，如相机）。             |
 | capacity | number | 是   | 同时访问的最大图像数。 |
 
 **返回值：**
@@ -4489,7 +4501,7 @@ createImageReceiver(width: number, height: number, format: number, capacity: num
 | -------- | ------ | ---- | ---------------------- |
 | width    | number | 是   | 图像的默认宽度。       |
 | height   | number | 是   | 图像的默认高度。       |
-| format   | number | 是   | 图像格式，取值为[ImageFormat](#imageformat9)常量（目前仅支持 ImageFormat:JPEG）。  |
+| format   | number | 是   | 图像格式，取值为[ImageFormat](#imageformat9)常量（目前仅支持 ImageFormat:JPEG，实际返回格式由生产者决定，如相机）。  |
 | capacity | number | 是   | 同时访问的最大图像数。 |
 
 **返回值：**
@@ -4711,6 +4723,8 @@ release(callback: AsyncCallback\<void>): void
 
 释放ImageReceiver实例并使用回调返回结果。
 
+ArkTS有内存回收机制，ImageReceiver对象不调用release方法，内存最终也会由系统统一释放。但图片使用的内存往往较大，为尽快释放内存，建议应用在使用完成后主动调用release方法提前释放内存。
+
 **系统能力：** SystemCapability.Multimedia.Image.ImageReceiver
 
 **参数：**
@@ -4738,6 +4752,8 @@ receiver.release((err: BusinessError) => {
 release(): Promise\<void>
 
 释放ImageReceiver实例并使用promise返回结果。
+
+ArkTS有内存回收机制，ImageReceiver对象不调用release方法，内存最终也会由系统统一释放。但图片使用的内存往往较大，为尽快释放内存，建议应用在使用完成后主动调用release方法提前释放内存。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageReceiver
 
@@ -5023,6 +5039,8 @@ release(callback: AsyncCallback\<void>): void
 
 释放当前图像，并使用callback返回结果。
 
+ArkTS有内存回收机制，ImageCreator对象不调用release方法，内存最终也会由系统统一释放。但图片使用的内存往往较大，为尽快释放内存，建议应用在使用完成后主动调用release方法提前释放内存。
+
 **系统能力：** SystemCapability.Multimedia.Image.ImageCreator
 
 **参数：**
@@ -5049,6 +5067,8 @@ creator.release((err: BusinessError) => {
 release(): Promise\<void>
 
 释放当前图像，并使用promise返回结果。
+
+ArkTS有内存回收机制，ImageCreator对象不调用release方法，内存最终也会由系统统一释放。但图片使用的内存往往较大，为尽快释放内存，建议应用在使用完成后主动调用release方法提前释放内存。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageCreator
 
@@ -5097,7 +5117,7 @@ getComponent(componentType: ComponentType, callback: AsyncCallback\<Component>):
 
 | 参数名        | 类型                                    | 必填 | 说明                 |
 | ------------- | --------------------------------------- | ---- | -------------------- |
-| componentType | [ComponentType](#componenttype9)        | 是   | 图像的组件类型。     |
+| componentType | [ComponentType](#componenttype9)        | 是   | 图像的组件类型。（目前仅支持 ComponentType:JPEG，实际返回格式由生产者决定，如相机）    |
 | callback      | AsyncCallback<[Component](#component9)> | 是   | 回调函数，当返回组件缓冲区成功，err为undefined，data为获取到的组件缓冲区；否则为错误对象。  |
 
 **示例：**
@@ -5126,7 +5146,7 @@ getComponent(componentType: ComponentType): Promise\<Component>
 
 | 参数名        | 类型                             | 必填 | 说明             |
 | ------------- | -------------------------------- | ---- | ---------------- |
-| componentType | [ComponentType](#componenttype9) | 是   | 图像的组件类型。 |
+| componentType | [ComponentType](#componenttype9) | 是   | 图像的组件类型。（目前仅支持 ComponentType:JPEG，实际返回格式由生产者决定，如相机） |
 
 **返回值：**
 
@@ -5153,6 +5173,8 @@ release(callback: AsyncCallback\<void>): void
 释放当前图像并使用callback返回结果。
 
 在接收另一个图像前必须先释放对应资源。
+
+ArkTS有内存回收机制，Image对象不调用release方法，内存最终也会由系统统一释放。但图片使用的内存往往较大，为尽快释放内存，建议应用在使用完成后主动调用release方法提前释放内存。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -5183,6 +5205,8 @@ release(): Promise\<void>
 释放当前图像并使用Promise方式返回结果。
 
 在接收另一个图像前必须先释放对应资源。
+
+ArkTS有内存回收机制，Image对象不调用release方法，内存最终也会由系统统一释放。但图片使用的内存往往较大，为尽快释放内存，建议应用在使用完成后主动调用release方法提前释放内存。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -5383,7 +5407,7 @@ PixelMap的初始化选项。
 
 | 名称    | 类型   | 必填 | 说明                                                |
 | ------- | ------ | ---- | --------------------------------------------------- |
-| format  | string | 是   | 目标格式。</br>当前只支持jpg、webp 和 png。 |
+| format  | string | 是   | 目标格式。</br>当前只支持"image/jpeg"、"image/webp" 和 "image/png"。 |
 | quality | number | 是   | JPEG编码中设定输出图片质量的参数，取值范围为0-100。0质量最低，100质量最高，质量越高生成图片所占空间越大。 |
 | bufferSize<sup>9+</sup> | number | 否   | 接收编码数据的缓冲区大小，单位为Byte。默认为10MB。bufferSize需大于编码后图片大小。使用[packToFile](#packtofile11)不受此参数限制。 |
 | desiredDynamicRange<sup>12+</sup> | [PackingDynamicRange](#packingdynamicrange12) | 否   | 目标动态范围。默认值为SDR。 |
