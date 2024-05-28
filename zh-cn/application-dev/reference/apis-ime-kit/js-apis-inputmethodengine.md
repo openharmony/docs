@@ -1780,6 +1780,47 @@ panel.hide().then(() => {
 });
 ```
 
+### adjustPanelRect<sup>12+</sup>
+
+adjustPanelRect(flag: PanelFlag, rect: PanelRect): void
+
+预设置输入法应用横竖屏大小。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型                   | 必填 | 说明     |
+| -------- | ---------------------- | ---- | -------- |
+| flag | [PanelFlag](#panelflag10) | 是 | 目标面板状态类型。类型为FLG_FIXED或FLG_FLOATING |
+| rect | [PanelRect](#panelrect12) | 是   | 目标面板横屏状态及竖屏状态的横坐标，纵坐标，宽度以及高度。固定态：高度不能超过屏幕高度的70%，宽度不能超过屏幕宽度；悬浮态：高度不能超过屏幕高度，宽度不能超过屏幕宽度。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                                                |
+| -------- | ------------------------------------------------------- |
+| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
+| 12800013 | window manager service error. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+try {
+  let panelFlag = inputMethodEngine.PanelFlag.FLG_FIXED;
+  let panelRect:inputMethodEngine.PanelRect = {
+    landscapeRect:{left:100, top:100, width:400, height:400},
+    portraitRect:{left:200, top:200, width:300, height:300}
+  };
+  panel.adjustPanelRect(panelFlag, panelRect);
+} catch(err) {
+  console.error(`Failed to adjustPanelRect: ${JSON.stringify(err)}`);
+}
+```
+
 ### on('show')<sup>10+</sup>
 
 on(type: 'show', callback: () => void): void
@@ -1831,6 +1872,38 @@ try {
   });
 } catch(err) {
     console.error(`Failed to hide: ${JSON.stringify(err)}`);
+}
+```
+
+### on('sizeChange')<sup>12+</sup>
+
+on(type: 'sizeChange', callback: Callback&lt;window.Size&gt;): void;
+
+监听当前面板大小变化，使用callback异步回调。
+
+>**说明:**
+>
+> 仅用于SOFT_KEYBOARD类型，状态为FLG_FIXED或FLG_FLOATING的面板。由于输入法通过adjustPanelRect等接口对面板大小调节时，系统往往要根据一定规则校验计算得出最终的数值(例如超出屏幕等场景)，输入法应用可通过该回调做最终的面板布局刷新。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型                   | 必填 | 说明     |
+| -------- | ---------------------- | ---- | -------- |
+| type | string | 是 | 监听当前面板的大小是否产生变化，固定取值为'sizeChange'。 |
+| callback | Callback\<[window.Size](../apis-arkui/js-apis-window.md#Size7)> | 否   | 回调函数。返回当前软键盘面板的大小，包含宽度和高度值。 |
+
+**示例：**
+
+```ts
+import window from '@ohos.window';
+try {
+  panel.on('sizeChange', (windowSize: window.Size) => {
+    console.info(`panel is size changes, width: ${JSON.stringify(windowSize.width)}, height:${JSON.stringify(windowSize.width)}`);
+  });
+} catch(err) {
+  console.error(`Failed to sizeChange: ${JSON.stringify(err)}`);
 }
 ```
 
@@ -1897,6 +1970,34 @@ try {
   panel.off('hide');
 } catch(err) {
     console.error(`Failed to hide: ${JSON.stringify(err)}`);
+}
+```
+
+### off('sizeChange')<sup>12+</sup>
+
+off(type: 'sizeChange', callback?: Callback&lt;window.Size&gt;): void;
+
+取消监听当前面板大小变化，使用callback异步回调。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型                   | 必填 | 说明     |
+| -------- | ---------------------- | ---- | -------- |
+| type | string | 是 | 监听当前面板的大小是否产生变化，固定取值为'sizeChange'。 |
+| callback | Callback\<[window.Size](../apis-arkui/js-apis-window.md#Size7)> | 否   | 回调函数。返回当前软键盘面板的大小，包含宽度和高度值。 |
+
+**示例：**
+
+```ts
+import window from '@ohos.window';
+try {
+  panel.off('sizeChange', (windowSize: window.Size) => {
+    console.info(`panel is size changes, width: ${JSON.stringify(windowSize.width)}, height:${JSON.stringify(windowSize.width)}`);
+  });
+} catch(err) {
+    console.error(`Failed to sizeChange: ${JSON.stringify(err)}`);
 }
 ```
 
@@ -3998,6 +4099,17 @@ try {
 | --------- | -------- | ---- | ---- | ------------ |
 | type   	| number   | 是   | 是   | 面板的类型。 |
 | flag	    | number   | 是   | 是   | 面板的状态类型。 |
+
+## PanelRect<sup>12+</sup>
+
+输入法面板位置大小信息。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+| 名称         | 类型 | 可读 | 可写 | 说明               |
+| ------------ | -------- | ---- | ---- | ------------------ |
+| landscapeRect | [window.Rect](../apis-arkui/js-apis-window.md#rect7)   | 是   | 是   | 横屏状态时输入法面板窗口的位置大小。 |
+| portraitRect | [window.Rect](../apis-arkui/js-apis-window.md#rect7)   | 是   | 是   | 竖屏状态时输入法面板窗口的位置大小。 |
 
 ## WindowInfo<sup>12+</sup>
 
