@@ -2615,6 +2615,8 @@
       - [帐号管理错误码](reference/apis-basic-services-kit/errorcode-account.md)
       - [升级错误码](reference/apis-basic-services-kit/errorcode-update.md)
       - [锁屏服务错误码](reference/apis-basic-services-kit/errorcode-screenlock.md)
+      - [打印服务错误码](reference/apis-basic-services-kit/errorcode-print.md)
+      - [设备证明错误码](reference/apis-basic-services-kit/errorcode-deviceAttest.md)
   - Calendar Kit API参考
     - ArkTS API 
       - [@ohos.calendarManager（日程管理）](reference/apis-calendar-kit/js-apis-calendarManager.md)
@@ -3050,7 +3052,7 @@
     - C API
       - 模块
         - [Rawfile](reference/apis-localization-kit/rawfile.md)
-        - [Resourcemanager](reference/apis-localization-kit/resourcemanager.md)
+        - [Resourcemanager](reference/apis-localization-kit/Resourcemanager.md)
       - 头文件
         - [raw_dir.h](reference/apis-localization-kit/raw__dir_8h.md)
         - [raw_file_manager.h](reference/apis-localization-kit/raw__file__manager_8h.md)
