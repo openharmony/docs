@@ -1093,11 +1093,10 @@ class SharedClass {
   }
 }
 let sObj = new SharedClass();
-const myMap1 = new collections.Map<number, SharedClass>([[1, sObj]]);
-
-// Throw exception `Parameter error. Only accept sendable value`
+const myMap1: collections.Map<number, SharedClass> = new collections.Map<number, SharedClass>([[1, sObj]]);
+// Type arguments of generic "Sendable" type must be a "Sendable" data type (arkts-sendable-generic-types)
 let obj = new Object();
-const myMap2 = new collections.Map<number, Object>([[1, obj]]);
+const myMap2: collections.Map<number, Object> = new collections.Map<number, Object>([[1, obj]]);
 ```
 
 ### entries
@@ -1141,20 +1140,18 @@ console.info(iterator.next().value);
 
 ```ts
 // 例2：
-const myMap = new collections.Map<number, string>([
+const myMap: collections.Map<number, string> = new collections.Map<number, string>([
   [0, "one"],
   [1, "two"],
   [2, "three"],
   [3, "four"]
 ]);
-
-const entriesIter = myMap.entries();
+const entriesIter: IterableIterator<[number, string]> = myMap.entries();
 for (const entry of entriesIter) {
-    if (entry[1].startsWith('t')) {
-        myMap.delete(entry[0]);
-    }
+  if (entry[1].startsWith('t')) {
+    myMap.delete(entry[0]);
+  }
 }
-
 // Expected output: 2
 console.info("size:" + myMap.size);
 ```
@@ -1481,9 +1478,9 @@ myMap.set("foo", "bar")
 ```ts
 // 反例：
 let obj = new Object();
-const myMap = new collections.Map<string, Object>();
-// Throw exception `Parameter error. Only accept sendable value`
-myMap.set("foo", obj)
+const myMap: collections.Map<string, Object> = new collections.Map<string, Object>();
+// Type arguments of generic "Sendable" type must be a "Sendable" data type (arkts-sendable-generic-types)
+myMap.set("foo", obj);
 ```
 
 
@@ -1550,11 +1547,10 @@ class SharedClass {
 }
 
 let sObj = new SharedClass();
-const mySet1 = new collections.Set<number|SharedClass>([1, sObj]);
-
-// Throw exception `Parameter error. Only accept sendable value`
+const mySet1: collections.Set<number|SharedClass> = new collections.Set<number|SharedClass>([1, sObj]);
+// Type arguments of generic "Sendable" type must be a "Sendable" data type (arkts-sendable-generic-types)
 let obj = new Object();
-const mySet2 = new collections.Set<number|Object>([1, obj]);
+const mySet2: collections.Set<number|SharedClass> = new collections.Set<number|Object>([1, obj]);
 ```
 
 ### entries
@@ -1860,16 +1856,16 @@ add(value: T): Set\<T>
 
 ```ts
 // 正例：
-const mySet = new collections.Set<string>();
-mySet.add("foo", "bar")
+const mySet: collections.Set<string> = new collections.Set<string>();
+mySet.add("foo");
 ```
 
 ```ts
 // 反例：
 let obj = new Object();
-const mySet = new collections.Set<Object>();
-// Throw exception `Parameter error. Only accept sendable value`
-mySet.add(obj)
+const mySet: collections.Set<Object> = new collections.Set<Object>();
+// Type arguments of generic "Sendable" type must be a "Sendable" data type (arkts-sendable-generic-types)
+mySet.add(obj);
 ```
 
 ## collections.ArrayBuffer
