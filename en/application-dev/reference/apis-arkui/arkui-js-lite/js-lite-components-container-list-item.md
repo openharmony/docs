@@ -1,6 +1,6 @@
 # list-item
 
-**\<list-item>** is a child component of the **[\<list>](js-components-container-list.md)** component and is used to display items in a list.
+**\<list-item>** is a child component of the **[\<list>](js-lite-components-container-list.md)** component and is used to display items in a list.
 
 > **NOTE**
 >
@@ -28,7 +28,7 @@ Supported
 | -------- | -------- | -------- |
 | click | - | Triggered when the component is clicked.|
 | longpress | - | Triggered when the component is long pressed.|
-| swipe<sup>5+</sup> | [SwipeEvent](js-common-events.md) | Triggered when a user quickly swipes on the component.|
+| swipe<sup>5+</sup> | [SwipeEvent](js-lite-common-events.md) | Triggered when a user quickly swipes on the component.|
 
 
 ## Styles
@@ -50,4 +50,4 @@ Supported
 
 ## Example
 
-See **Example** in [list](js-components-container-list.md).
+See **Example** in [list](js-lite-components-container-list.md).

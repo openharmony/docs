@@ -27,7 +27,7 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController, 
 
 | Name       | Type                                    | Mandatory  | Description                                    |
 | ---------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| src        | [ResourceStr](../apis-arkui/arkui-ts/ts-types.md#resourcestr)   | Yes   | Address of a web page resource. To access local resource files, use the **$rawfile** or **resource** protocol. To load a local resource file in the sandbox outside of the application package, use **file://** to specify the path of the sandbox.|
+| src        | [ResourceStr](../apis-arkui/arkui-ts/ts-types.md#resourcestr)   | Yes   | Address of a web page resource. To access local resource files, use the **$rawfile** or **resource** protocol. To load a local resource file in the sandbox outside of the application package, use **file://** to specify the path of the sandbox. **src** cannot be dynamically changed through a state variable (for example, @State). To change the value, call [loadUrl()](js-apis-webview.md#loadurl).|
 | controller | [WebviewController<sup>9+</sup>](js-apis-webview.md#webviewcontroller) \| [WebController](#webcontroller) | Yes   | Controller. This API is deprecated since API version 9. You are advised to use **WebviewController** instead.|
 | incognitoMode<sup>11+</sup> | boolean | No| Whether to enable incognito mode. The value **true** means to enable incognito mode, and **false** means the opposite.<br> Default value: **false**|
 
@@ -110,7 +110,7 @@ Example of loading local resource files in the sandbox:
 1. Obtain the sandbox path through the constructed singleton object **GlobalContext**.
 
    ```ts
-   // GlobalContext.ts
+   // GlobalContext.ets
    export class GlobalContext {
      private constructor() {}
      private static instance: GlobalContext;
@@ -158,7 +158,7 @@ Example of loading local resource files in the sandbox:
    The following uses **filesDir** as an example to describe how to obtain the path of the sandbox. For details about how to obtain other paths, see [Obtaining Application File Paths](../../application-models/application-context-stage.md#obtaining-application-file-paths).
 
    ```ts
-   // xxx.ts
+   // xxx.ets
    import UIAbility from '@ohos.app.ability.UIAbility';
    import AbilityConstant from '@ohos.app.ability.AbilityConstant';
    import Want from '@ohos.app.ability.Want';
@@ -295,7 +295,7 @@ Registers a JavaScript object with the window. APIs of this object can then be i
 
 | Name       | Type                                    | Mandatory  | Default Value | Description                                    |
 | ---------- | ---------------------------------------- | ---- | ---- | ---------------------------------------- |
-| object     | object                                   | Yes   | -    | Object to be registered. Methods can be declared, but attributes cannot.                  |
+| object     | object                                   | Yes   | -    | Object to be registered. Methods and attributes can be declared, but cannot be directly called on HTML5.                 |
 | name       | string                                   | Yes   | -    | Name of the object to be registered, which is the same as that invoked in the window.               |
 | methodList | Array\<string\>                          | Yes   | -    | Methods of the JavaScript object to be registered at the application side.                |
 | controller | [WebviewController<sup>9+</sup>](js-apis-webview.md#webviewcontroller) \| [WebController](#webcontroller) | Yes   | -    | Controller. This API is deprecated since API version 9. You are advised to use **WebviewController** instead.|
@@ -1428,7 +1428,7 @@ allowWindowOpenMethod(flag: boolean)
 
 Sets whether to allow a new window to automatically open through JavaScript.
 
-When **flag** is set to **true**, a new window can automatically open through JavaScript. When **flag** is set to **false**, a new window can still automatically open through JavaScript for user behavior, but cannot for non-user behavior. The user behavior here refers to that a user requests to open a new window (**window.open**) within 5 seconds.
+When **flag** is set to **true**, a new window can automatically open through JavaScript. When **flag** is set to **false**, a new window can still automatically open through JavaScript for user behavior, but cannot for non-user behavior. The user behavior here refers to that a user requests to open a new window (**window.open**) within 5 seconds of operating the **\<Web>** component.
 
 This API takes effect only when [javaScriptAccess](#javascriptaccess) is enabled.
 
@@ -2165,19 +2165,38 @@ Called to notify the host application of a JavaScript console message.
 
     build() {
       Column() {
-        Web({ src: 'www.example.com', controller: this.controller })
+        Button('onconsole message')
+          .onClick(() => {
+            this.controller.runJavaScript('myFunction()');
+          })
+        Web({ src: $rawfile('index.html'), controller: this.controller })
           .onConsole((event) => {
             if (event) {
-              console.log('getMessage:' + event.message.getMessage())
-              console.log('getSourceId:' + event.message.getSourceId())
-              console.log('getLineNumber:' + event.message.getLineNumber())
-              console.log('getMessageLevel:' + event.message.getMessageLevel())
+              console.log('getMessage:' + event.message.getMessage());
+              console.log('getSourceId:' + event.message.getSourceId());
+              console.log('getLineNumber:' + event.message.getLineNumber());
+              console.log('getMessageLevel:' + event.message.getMessageLevel());
             }
-            return false
+            return false;
           })
       }
     }
   }
+  ```
+
+  HTML file to be loaded:
+  ```html
+  <!-- index.html -->
+  <!DOCTYPE html>
+  <html>
+  <body>
+  <script>
+      function myFunction() {
+          console.log("onconsole printf");
+      }
+  </script>
+  </body>
+  </html>
   ```
 
 ### onDownloadStart
@@ -2804,12 +2823,20 @@ Called when the **\<Web>** component is about to access a URL. This API is used 
             }
             let length = this.heads.push(head1)
             length = this.heads.push(head2)
-            this.responseweb.setResponseHeader(this.heads)
-            this.responseweb.setResponseData(this.webdata)
-            this.responseweb.setResponseEncoding('utf-8')
-            this.responseweb.setResponseMimeType('text/html')
-            this.responseweb.setResponseCode(200)
-            this.responseweb.setReasonMessage('OK')
+            const promise: Promise<String> = new Promise((resolve: Function, reject: Function) => {
+              this.responseweb.setResponseHeader(this.heads)
+              this.responseweb.setResponseData(this.webdata)
+              this.responseweb.setResponseEncoding('utf-8')
+              this.responseweb.setResponseMimeType('text/html')
+              this.responseweb.setResponseCode(200)
+              this.responseweb.setReasonMessage('OK')
+              resolve("success");
+            })
+            promise.then(() => {
+              console.log("prepare response ready")
+              this.responseweb.setResponseIsReady(true)
+            })
+            this.responseweb.setResponseIsReady(false)
             return this.responseweb
           })
       }
@@ -3002,7 +3029,7 @@ Called when an SSL client certificate request is received.
   1. Construct the singleton object **GlobalContext**.
 
      ```ts
-     // GlobalContext.ts
+     // GlobalContext.ets
      export class GlobalContext {
        private constructor() {}
        private static instance: GlobalContext;
@@ -3219,7 +3246,7 @@ Called when a permission request is received.
         audio: true
       };
       // Obtain the video camera area.
-      let video = document.getElementByld("video");
+      let video = document.getElementById("video");
       // Returned Promise object
       let promise = navigator.mediaDevices.getUserMedia(constraints);
       // then() is asynchronous. Invoke the MediaStream object as a parameter.
@@ -5100,7 +5127,7 @@ Obtains the origin of this web page.
 
 grant(config: ScreenCaptureConfig): void
 
-**Required permissions**: ohos.permission.MICROPHONE, ohos.permission.CAPTURE_SCREEN
+**Required permissions**: ohos.permission.MICROPHONE, ohos.permission.CAPTURE_SCREEN (for system applications only)
 
 Grants the screen capture permission.
 
@@ -5356,11 +5383,11 @@ Sets the geolocation permission status of a web page.
 
 | Name   | Value| Description   |
 | ----- | -- | ---- |
-| Debug | 0 | Debug level.|
-| Error | 1 | Error level.|
+| Debug | 1 | Debug level.|
+| Error | 4 | Error level.|
 | Info  | 2 | Information level.|
-| Log   | 3 | Log level.|
-| Warn  | 4 | Warning level.|
+| Log   | 5 | Log level.|
+| Warn  | 3 | Warning level.|
 
 ## RenderExitReason<sup>9+</sup>
 
@@ -5378,7 +5405,7 @@ Enumerates the reasons why the rendering process exits.
 
 | Name       | Value| Description                                |
 | ---------- | -- | ---------------------------------- |
-| All        | 0 | HTTP and HTTPS hybrid content can be loaded. This means that all insecure content can be loaded.|
+| All        | undefined | HTTP and HTTPS hybrid content can be loaded. This means that all insecure content can be loaded.|
 | Compatible | 1 | HTTP and HTTPS hybrid content can be loaded in compatibility mode. This means that some insecure content may be loaded.          |
 | None       | 2 | HTTP and HTTPS hybrid content cannot be loaded.              |
 
@@ -5485,8 +5512,8 @@ Provides the web screen capture configuration.
 
 | Name            | Type              | Description                  |
 | -------------- | ---------------- | -------------------- |
-| scrollForward  | NestedScrollMode | Nested scrolling options when the component scrolls forward.|
-| scrollBackward | NestedScrollMode | Nested scrolling options when the component scrolls backward.|
+| scrollForward  | [NestedScrollMode](#nestedscrollmode11) | Nested scrolling options when the component scrolls forward.|
+| scrollBackward | [NestedScrollMode](#nestedscrollmode11) | Nested scrolling options when the component scrolls backward.|
 
 ## NestedScrollMode<sup>11+</sup>
 

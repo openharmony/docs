@@ -188,7 +188,7 @@ struct WebComponent {
 
 | Name        | Type  | Readable| Writable| Description                                             |
 | ------------ | ------ | ---- | ---- | ------------------------------------------------|
-| isExtentionType | boolean | Yes  | No| Whether to use the extended interface when creating a **WebMessagePort** instance.  |
+| isExtentionType | boolean | Yes  | Yes| Whether to use the extended interface when creating a **WebMessagePort** instance.  |
 
 ### postMessageEventExt<sup>10+</sup>
 
@@ -593,6 +593,10 @@ constructor(webTag?: string)
 
 Constructor used to create a **WebviewController** object.
 
+> **NOTE**
+>
+> **webTag** represents a tag that you define and pass to the **\<Web>** component as a parameter of string type.
+
 **System capability**: SystemCapability.Web.Webview.Core
 
 **Parameters**
@@ -600,6 +604,76 @@ Constructor used to create a **WebviewController** object.
 | Name    | Type  | Mandatory| Description                              |
 | ---------- | ------ | ---- | -------------------------------- |
 | webTag   | string | No  | Name of the **\<Web>** component. The default value is **Empty**.|
+
+**Example**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
+
+class WebObj {
+  constructor() {
+  }
+
+  webTest(): string {
+    console.log('Web test');
+    return "Web test";
+  }
+
+  webString(): void {
+    console.log('Web test toString');
+  }
+}
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController()
+  @State webTestObj: WebObj = new WebObj();
+  build() {
+    Column() {
+      Button('refresh')
+        .onClick(() => {
+          try {
+            this.controller.refresh();
+          } catch (error) {
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: '', controller: this.controller })
+        .javaScriptAccess(true)
+        .onControllerAttached(() => {
+          this.controller.loadUrl($rawfile("index.html"));
+          this.controller.registerJavaScriptProxy(this.webTestObj, "objTestName", ["webTest", "webString"]);
+        })
+    }
+  }
+}
+```
+
+HTML file to be loaded:
+```html
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+    <meta charset="utf-8">
+    <body>
+      <button type="button" onclick="htmlTest()">Click Me!</button>
+      <p id="demo"></p>
+      <p id="webDemo"></p>
+    </body>
+    <script type="text/javascript">
+    function htmlTest() {
+      // This function call expects to return "Web test"
+      let webStr = objTestName.webTest();
+      document.getElementById("webDemo").innerHTML=webStr;
+      console.log('objTestName.webTest result:'+ webStr)
+    }
+</script>
+</html>
+```
 
 ### initializeWebEngine
 
@@ -614,7 +688,7 @@ Loads the dynamic link library (DLL) file of the web engine. This API can be cal
 The following code snippet exemplifies calling this API after the EntryAbility is created.
 
 ```ts
-// xxx.ts
+// xxx.ets
 import UIAbility from '@ohos.app.ability.UIAbility';
 import web_webview from '@ohos.web.webview';
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
@@ -647,7 +721,7 @@ Sets how the \<Web> component uses HTTPDNS for DNS resolution.
 **Example**
 
 ```ts
-// xxx.ts
+// xxx.ets
 import UIAbility from '@ohos.app.ability.UIAbility';
 import web_webview from '@ohos.web.webview';
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
@@ -891,6 +965,7 @@ Loads specified data.
 > 
 > To load a local image, you can assign a space to either **baseUrl** or **historyUrl**. For details, see the sample code.
 > In the scenario of loading a local image, **baseUrl** and **historyUrl** cannot be both empty. Otherwise, the image cannot be loaded.
+> If the rich text in HTML contains special characters such as #, you are advised to assign a space to both **baseUrl** and **historyUrl**.
 
 **Error codes**
 
@@ -1459,7 +1534,7 @@ Registers a JavaScript object with the window. APIs of this object can then be i
 
 | Name    | Type      | Mandatory| Description                                       |
 | ---------- | -------------- | ---- | ------------------------------------------------------------ |
-| object     | object         | Yes  | Application-side JavaScript object to be registered. Methods can be declared, but not attributes.<br><br>The parameter and return value can be any of the following types:<br>- String, number, or Boolean type<br>- Dictionary or Array type, with a maximum of 10 nested layers and 10,000 data records per layer.<br>Object, which must contain the **methodNameListForJsProxy:[fun1, fun2]** attribute, where **fun1** and **fun2** are methods that can be called.<br>The parameter can be a function or promise, but its callback cannot have return values.<br>The return value can be a promise, but its callback cannot have a return value.<br>For the example, see [Invoking Application Functions on the Frontend Page](../../web/web-in-page-app-function-invoking.md).|
+| object     | object         | Yes  | Application-side JavaScript object to be registered. Methods and attributes can be declared, but cannot be directly called on HTML5.<br>The parameter and return value can be any of the following types:<br>- String, number, or Boolean type<br>- Dictionary or Array type, with a maximum of 10 nested layers and 10,000 data records per layer.<br>Object, which must contain the **methodNameListForJsProxy:[fun1, fun2]** attribute, where **fun1** and **fun2** are methods that can be called.<br>The parameter can be a function or promise, but its callback cannot have return values.<br>The return value can be a promise, but its callback cannot have a return value.<br>For the example, see [Invoking Application Functions on the Frontend Page](../../web/web-in-page-app-function-invoking.md).|
 | name       | string         | Yes  | Name of the object to be registered, which is the same as that invoked in the window. After registration, the window can use this name to access the JavaScript object at the application side.|
 | methodList | Array\<string> | Yes  | Methods of the JavaScript object to be registered at the application side.                      |
 
@@ -3020,7 +3095,7 @@ Obtains the height of this web page.
 
 | Type  | Description                |
 | ------ | -------------------- |
-| number | Height of the current web page.|
+| number | Height of the current web page, in px.|
 
 **Error codes**
 
@@ -4126,7 +4201,7 @@ struct WebComponent {
 2. Modify the **EntryAbility.ets** file.
 Obtain the path of the application cache file.
 ```ts
-// xxx.ts
+// xxx.ets
 import UIAbility from '@ohos.app.ability.UIAbility';
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import Want from '@ohos.app.ability.Want';
@@ -4212,7 +4287,7 @@ struct WebComponent {
 2. Modify the **EntryAbility.ets** file.
 Obtain the path of the application cache file.
 ```ts
-// xxx.ts
+// xxx.ets
 import UIAbility from '@ohos.app.ability.UIAbility';
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import Want from '@ohos.app.ability.Want';
@@ -4229,7 +4304,7 @@ export default class EntryAbility extends UIAbility {
 
 static customizeSchemes(schemes: Array\<WebCustomScheme\>): void
 
-Customizes the URL schemes (also known as protocols). It is recommended that this API be called before any **\<Web>** component is initialized.
+Grants the cross-origin request and fetch request permissions for the specified URL schemes (also known as protocols) to the web kernel. A cross-origin fetch request for any of the specified URL schemes can be intercepted by the **onInterceptRequest** API, so that you can further process the request. It is recommended that this API be called before any **\<Web>** component is initialized.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -4733,7 +4808,7 @@ For details about the error codes, see [Webview Error Codes](errorcode-webview.m
 **Example**
 
 ```ts
-// xxx.ts
+// xxx.ets
 import UIAbility from '@ohos.app.ability.UIAbility';
 import web_webview from '@ohos.web.webview';
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
@@ -4755,7 +4830,12 @@ export default class EntryAbility extends UIAbility {
 
 setCustomUserAgent(userAgent: string): void
 
-Sets a custom user agent, which will overwrite the default user agent.
+Sets a custom user agent, which will overwrite the default user agent. You are advised to set the user agent in the **onControllerAttached** callback event instead of **onLoadIntercept**.
+
+> **NOTE**
+>
+> The user agent set through **setCustomUserAgent** takes effect only after web redirection. As a result, while the user has been redirected, the page stack associated with the new agent has only one page, and **webviewController.accessBackward()** always returns **false**.
+> In light of this, to the **setCustomUserAgent** API, append **this.controller.loadUrl(this.webUrl)**, where **webUrl** indicates the web page to be loaded. You can set **src** of the original **\<Web>** component to an empty string.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -5655,6 +5735,11 @@ static configCookieSync(url: string, value: string, incognito?: boolean): void
 
 Sets a cookie for the specified URL.
 
+> **NOTE**
+>
+> You can set **url** in **configCookie** to a domain name so that cookies are attached to requests on the page.
+> It is recommended that cookie syncing be completed before the webview is loaded.
+
 **System capability**: SystemCapability.Web.Webview.Core
 
 **Parameters**
@@ -5691,7 +5776,8 @@ struct WebComponent {
       Button('configCookieSync')
         .onClick(() => {
           try {
-            web_webview.WebCookieManager.configCookieSync('https://www.example.com', 'a=b');
+            // Use commas (,) to separate cookie values. No comma is required when you set a single cookie value.
+            web_webview.WebCookieManager.configCookieSync('https://www.example.com', 'a=b,c=d,e=f');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -7642,8 +7728,8 @@ Provides the element information of the area being clicked. For details about th
 
 | Name| Type| Readable| Writable| Description|
 | ---- | ---- | ---- | ---- |---- |
-| type | [WebHitTestType](#webhittesttype) | Yes| No| Element type of the area being clicked.|
-| extra | string        | Yes| No|Extra information of the area being clicked. If the area being clicked is an image or a link, the extra information is the URL of the image or link.|
+| type | [WebHitTestType](#webhittesttype) | Yes| Yes| Element type of the area being clicked.|
+| extra | string        | Yes| Yes|Extra information of the area being clicked. If the area being clicked is an image or a link, the extra information is the URL of the image or link.|
 
 ## WebMessage
 
@@ -8119,9 +8205,9 @@ Provides usage information of the Web SQL Database.
 
 | Name  | Type  | Readable| Writable| Description|
 | ------ | ------ | ---- | ---- | ---- |
-| origin | string | Yes | No| Index of the origin.|
-| usage  | number | Yes | No| Storage usage of the origin.    |
-| quota  | number | Yes | No| Storage quota of the origin.  |
+| origin | string | Yes | Yes | Index of the origin.|
+| usage  | number | Yes | Yes | Storage usage of the origin.    |
+| quota  | number | Yes | Yes | Storage quota of the origin.  |
 
 ## BackForwardList
 
@@ -8131,8 +8217,8 @@ Provides the historical information list of the current webview.
 
 | Name        | Type  | Readable| Writable| Description                                                        |
 | ------------ | ------ | ---- | ---- | ------------------------------------------------------------ |
-| currentIndex | number | Yes  | No  | Index of the current page in the page history stack.                                |
-| size         | number | Yes  | No  | Number of indexes in the history stack. The maximum value is 50. If this value is exceeded, the earliest index will be overwritten.|
+| currentIndex | number | Yes  | Yes  | Index of the current page in the page history stack.                                |
+| size         | number | Yes  | Yes  | Number of indexes in the history stack. The maximum value is 50. If this value is exceeded, the earliest index will be overwritten.|
 
 ### getItemAtIndex
 
@@ -8197,9 +8283,9 @@ Describes a historical page record.
 | Name         | Type                                  | Readable| Writable| Description                        |
 | ------------- | -------------------------------------- | ---- | ---- | ---------------------------- |
 | icon          | [PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | Yes  | No  | **PixelMap** object of the icon on the historical page.|
-| historyUrl    | string                                 | Yes  | No  | URL of the historical page.       |
-| historyRawUrl | string                                 | Yes  | No  | Original URL of the historical page.   |
-| title         | string                                 | Yes  | No  | Title of the historical page.          |
+| historyUrl    | string                                 | Yes  | Yes  | URL of the historical page.       |
+| historyRawUrl | string                                 | Yes  | Yes  | Original URL of the historical page.   |
+| title         | string                                 | Yes  | Yes  | Title of the historical page.          |
 
 ## WebCustomScheme
 
@@ -8633,7 +8719,7 @@ Obtains the download error code.
 
 | Type  | Description                     |
 | ------ | ------------------------- |
-| number | Error code returned when the download error occurs.|
+| [WebDownloadErrorCode](#webdownloaderrorcode11) | Error code returned when the download error occurs.|
 
 **Example**
 
@@ -9634,6 +9720,12 @@ Invoked to notify users before the download starts. **WebDownloadItem.start("xxx
 
 **System capability**: SystemCapability.Web.Webview.Core
 
+**Parameters**
+
+| Parameter  | Type   | Mandatory | Description           |
+| ------- | ------ | ---- | :------------- |
+| callback | Callback\<[WebDownloadItem](#webdownloaditem11)> | Yes   | Callback that triggers the download. |
+
 **Example**
 
 ```ts
@@ -9735,6 +9827,12 @@ onDownloadUpdated(callback: Callback\<WebDownloadItem>): void
 Invoked when the download progress is updated.
 
 **System capability**: SystemCapability.Web.Webview.Core
+
+**Parameters**
+
+| Parameter  | Type   | Mandatory | Description           |
+| ------- | ------ | ---- | :------------- |
+| callback | Callback\<[WebDownloadItem](#webdownloaditem11)> | Yes   | Callback in which the download progress is updated. |
 
 **Example**
 
@@ -9838,6 +9936,12 @@ Invoked when the download is complete.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
+**Parameters**
+
+| Parameter  | Type   | Mandatory | Description           |
+| ------- | ------ | ---- | :------------- |
+| callback | Callback\<[WebDownloadItem](#webdownloaditem11)> | Yes   | Callback in which the download is complete. |
+
 **Example**
 
 ```ts
@@ -9939,6 +10043,12 @@ onDownloadFailed(callback: Callback\<WebDownloadItem>): void
 Invoked when the download fails.
 
 **System capability**: SystemCapability.Web.Webview.Core
+
+**Parameters**
+
+| Parameter  | Type   | Mandatory | Description           |
+| ------- | ------ | ---- | :------------- |
+| callback | Callback\<[WebDownloadItem](#webdownloaditem11)> | Yes   | Callback in which the download fails. |
 
 **Example**
 
