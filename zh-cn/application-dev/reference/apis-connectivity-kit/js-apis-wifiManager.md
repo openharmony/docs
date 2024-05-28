@@ -508,20 +508,6 @@ WLAN配置信息。
 | PHASE2_AKA | 6 | AKA类型。 |
 | PHASE2_AKA_PRIME | 7 | AKA Prime类型。 |
 
-## WifiCategory<sup>12+</sup>
-
-表示热点支持的最高wifi类别。
-
-**系统能力：** SystemCapability.Communication.WiFi.STA
-
-| 名称 | 值 | 说明 |
-| -------- | -------- | -------- |
-| DEFAULT | 1 | Default。Wifi6以下的wifi类别。 |
-| WIFI6 | 2 | Wifi6。 |
-| WIFI6_PLUS | 3 | Wifi6+。 |
-
-
-
 ## wifiManager.addCandidateConfig<sup>9+</sup>
 
 addCandidateConfig(config: WifiDeviceConfig): Promise&lt;number&gt;
@@ -553,7 +539,7 @@ addCandidateConfig(config: WifiDeviceConfig): Promise&lt;number&gt;
 | **错误码ID** | **错误信息** |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3.Parameter verification failed. |
 |801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
@@ -601,7 +587,7 @@ addCandidateConfig(config: WifiDeviceConfig, callback: AsyncCallback&lt;number&g
 | **错误码ID** | **错误信息** |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3.Parameter verification failed. |
 |801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
@@ -654,7 +640,7 @@ removeCandidateConfig(networkId: number): Promise&lt;void&gt;
 | **错误码ID** | **错误信息** |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3.Parameter verification failed. |
 |801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
@@ -699,7 +685,7 @@ removeCandidateConfig(networkId: number, callback: AsyncCallback&lt;void&gt;): v
 | **错误码ID** | **错误信息** |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3.Parameter verification failed. |
 |801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
@@ -796,7 +782,7 @@ connectToCandidateConfig(networkId: number): void
 | **错误码ID** | **错误信息** |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3.Parameter verification failed. |
 |801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 | 2501001  | Wifi is closed.|
@@ -845,7 +831,7 @@ getSignalLevel(rssi: number, band: number): number
 | **错误码ID** | **错误信息** |
 | -------- | -------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 |801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
@@ -891,7 +877,7 @@ getLinkedInfo(): Promise&lt;WifiLinkedInfo&gt;
 | **错误码ID** | **错误信息** |
 | -------- | -------- |
 |201 | Permission denied.                 |
-|202 | Non-system applications are not allowed to use system APIs. |
+|202 | System API is not allowed called by Non-system application. |
 |801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 | 2501001  | Wifi is closed.|
@@ -921,7 +907,7 @@ getLinkedInfo(callback: AsyncCallback&lt;WifiLinkedInfo&gt;): void
 | **错误码ID** | **错误信息** |
 | -------- | -------- |
 |201 | Permission denied.                 |
-|202 | Non-system applications are not allowed to use system APIs. |
+|202 | System API is not allowed called by Non-system application. |
 |801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 | 2501001  | Wifi is closed.|
@@ -1017,7 +1003,7 @@ isConnected(): boolean
 | **错误码ID** | **错误信息** |
 | -------- | -------- |
 |201 | Permission denied.                 |
-|202 | Non-system applications are not allowed to use system APIs. |
+|202 | System API is not allowed called by Non-system application. |
 |801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
@@ -1079,7 +1065,7 @@ isFeatureSupported(featureId: number): boolean
 | **错误码ID** | **错误信息** |
   | -------- | -------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 |801 | Capability not supported.          |
 | 2401000  | Operation failed.|
 
@@ -1709,7 +1695,7 @@ createGroup(config: WifiP2PConfig): void
 | **错误码ID** | **错误信息** |
 | -------- | -------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameters. Possible causes: 1. Incorrect parameter types. 2.Parameter verification failed. |
 |801 | Capability not supported.          |
 | 2801000  | Operation failed.|
 
@@ -1819,7 +1805,7 @@ API 10起：ohos.permission.GET_WIFI_INFO
 | **错误码ID** | **错误信息** |
 | -------- | -------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameters. Possible causes: 1. Incorrect parameter types. 2.Parameter verification failed. |
 |801 | Capability not supported.          |
 | 2801000  | Operation failed.|
 
@@ -2034,7 +2020,7 @@ on(type: "wifiStateChange", callback: Callback&lt;number&gt;): void
 | **错误码ID** | **错误信息** |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 |801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
@@ -2074,7 +2060,7 @@ off(type: "wifiStateChange", callback?: Callback&lt;number&gt;): void
 | **错误码ID** | **错误信息** |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 |801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
@@ -2127,7 +2113,7 @@ on(type: "wifiConnectionChange", callback: Callback&lt;number&gt;): void
 | **错误码ID** | **错误信息** |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 |801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
@@ -2157,7 +2143,7 @@ off(type: "wifiConnectionChange", callback?: Callback&lt;number&gt;): void
 | **错误码ID** | **错误信息** |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 |801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
@@ -2209,7 +2195,7 @@ on(type: "wifiScanStateChange", callback: Callback&lt;number&gt;): void
 | **错误码ID** | **错误信息** |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 |801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
@@ -2239,7 +2225,7 @@ off(type: "wifiScanStateChange", callback?: Callback&lt;number&gt;): void
 | **错误码ID** | **错误信息** |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 |801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
@@ -2282,7 +2268,7 @@ on(type: "wifiRssiChange", callback: Callback&lt;number&gt;): void
 | **错误码ID** | **错误信息** |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 |801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
@@ -2310,7 +2296,7 @@ off(type: "wifiRssiChange", callback?: Callback&lt;number&gt;): void
 | **错误码ID** | **错误信息** |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 |801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
@@ -2362,7 +2348,8 @@ on(type: "hotspotStateChange", callback: Callback&lt;number&gt;): void
 | **错误码ID** | **错误信息** |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
+|202 | System API is not allowed called by Non-system application. |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 |801 | Capability not supported.          |
 | 2601000  | Operation failed.|
 
@@ -2390,7 +2377,8 @@ off(type: "hotspotStateChange", callback?: Callback&lt;number&gt;): void
 | **错误码ID** | **错误信息** |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
+|202 | System API is not allowed called by Non-system application. |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 |801 | Capability not supported.          |
 | 2601000  | Operation failed.|
 
@@ -2444,7 +2432,7 @@ on(type: "p2pStateChange", callback: Callback&lt;number&gt;): void
 | **错误码ID** | **错误信息** |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 |801 | Capability not supported.          |
 | 2801000  | Operation failed.|
 
@@ -2472,7 +2460,7 @@ off(type: "p2pStateChange", callback?: Callback&lt;number&gt;): void
 | **错误码ID** | **错误信息** |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 |801 | Capability not supported.          |
 | 2801000  | Operation failed.|
 
@@ -2515,7 +2503,7 @@ on(type: "p2pConnectionChange", callback: Callback&lt;WifiP2pLinkedInfo&gt;): vo
 | **错误码ID** | **错误信息** |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 |801 | Capability not supported.          |
 | 2801000  | Operation failed.|
 
@@ -2543,7 +2531,7 @@ off(type: "p2pConnectionChange", callback?: Callback&lt;WifiP2pLinkedInfo&gt;): 
 | **错误码ID** | **错误信息** |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 |801 | Capability not supported.          |
 | 2801000  | Operation failed.|
 
@@ -2590,7 +2578,7 @@ API 10起：ohos.permission.GET_WIFI_INFO
 | **错误码ID** | **错误信息** |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 |801 | Capability not supported.          |
 | 2801000  | Operation failed.|
 
@@ -2622,7 +2610,7 @@ API 10起：无
 | **错误码ID** | **错误信息** |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 |801 | Capability not supported.          |
 | 2801000  | Operation failed.|
 
@@ -2669,7 +2657,7 @@ API 10起：ohos.permission.GET_WIFI_INFO
 | **错误码ID** | **错误信息** |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 |801 | Capability not supported.          |
 | 2801000  | Operation failed.|
 
@@ -2701,7 +2689,7 @@ API 10起：无
 | **错误码ID** | **错误信息** |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 |801 | Capability not supported.          |
 | 2801000  | Operation failed.|
 
@@ -2744,7 +2732,7 @@ on(type: "p2pPersistentGroupChange", callback: Callback&lt;void&gt;): void
 | **错误码ID** | **错误信息** |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 |801 | Capability not supported.          |
 | 2801000  | Operation failed.|
 
@@ -2772,7 +2760,7 @@ off(type: "p2pPersistentGroupChange", callback?: Callback&lt;void&gt;): void
 | **错误码ID** | **错误信息** |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 |801 | Capability not supported.          |
 | 2801000  | Operation failed.|
 
@@ -2822,7 +2810,7 @@ on(type: "p2pDiscoveryChange", callback: Callback&lt;number&gt;): void
 | **错误码ID** | **错误信息** |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 |801 | Capability not supported.          |
 | 2801000  | Operation failed.|
 
@@ -2850,7 +2838,7 @@ off(type: "p2pDiscoveryChange", callback?: Callback&lt;number&gt;): void
 | **错误码ID** | **错误信息** |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 |801 | Capability not supported.          |
 | 2801000  | Operation failed.|
 
