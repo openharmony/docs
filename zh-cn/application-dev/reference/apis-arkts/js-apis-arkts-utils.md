@@ -9,10 +9,10 @@
 ## 导入模块
 
 ```ts
-import utils from '@arkts.utils';
+import { ArkTSUtils } from '@kit.ArkTS'
 ```
 
-## utils.locks
+## ArkTSUtils.locks
 
 为了解决多并发实例间的数据竞争问题，ArkTS语言基础库引入了异步锁能力。为了开发者的开发效率，AsyncLock对象支持跨并发实例引用传递。
 
@@ -47,21 +47,36 @@ type AsyncLockCallback\<T> = () => T | Promise\<T>
 **示例：**
 
 ```ts
+// 示例一：
 @Sendable
 class A {
-  // 暂不支持AsyncLock跨线程共享，因此@Sendable不能持有AsyncLock，只能用AsyncLock.request。
-  // 如下一行示例代码是错误的。
-  // static lock_: utils.locks.AsyncLock = new utils.locks.AsyncLock();
   count_: number = 0;
   async getCount(): Promise<number> {
-    let lock: utils.locks.AsyncLock = utils.locks.AsyncLock.request("lock_1");
+    let lock: ArkTSUtils.locks.AsyncLock = ArkTSUtils.locks.AsyncLock.request("lock_1");
     return lock.lockAsync(() => {
       return this.count_;
     })
   }
   async setCount(count: number) {
-    let lock: utils.locks.AsyncLock = utils.locks.AsyncLock.request("lock_1");
+    let lock: ArkTSUtils.locks.AsyncLock = ArkTSUtils.locks.AsyncLock.request("lock_1");
     await lock.lockAsync(() => {
+      this.count_ = count;
+    })
+  }
+}
+
+// 示例二：
+@Sendable
+class A {
+  count_: number = 0;
+  lock_: ArkTSUtils.locks.AsyncLock = new ArkTSUtils.locks.AsyncLock();
+  async getCount(): Promise<number> {
+    return this.lock_.lockAsync(() => {
+      return this.count_;
+    })
+  }
+  async setCount(count: number) {
+    await this.lock_.lockAsync(() => {
       this.count_ = count;
     })
   }
@@ -69,8 +84,7 @@ class A {
 
 @Concurrent
 async function foo(a: A) {
-  let unused = utils.locks.AsyncLock; // 4月版本临时规避代码，需要在@Concurrent函数中使用一下，否则后续逻辑使用异步锁会存在加载失败的异常问题。
-  await a.setNum(10)
+  await a.setCount(10)
 }
 ```
 
@@ -93,7 +107,7 @@ constructor()
 **示例：**
 
 ```ts
-let lock = new utils.locks.AsyncLock();
+let lock = new ArkTSUtils.locks.AsyncLock();
 ```
 
 #### request
@@ -122,7 +136,7 @@ static request(name: string): AsyncLock
 
 ```ts
 let lockName = 'isAvailableLock';
-let lock = utils.locks.AsyncLock.request(lockName);
+let lock = ArkTSUtils.locks.AsyncLock.request(lockName);
 ```
 
 #### query
@@ -159,13 +173,13 @@ static query(name: string): AsyncLockState
 
 ```ts
 // 你已经在别的地方创建了一个锁。
-// let lock = utils.locks.AsyncLock.request("queryTestLock");
-let state = utils.locks.AsyncLock.query('queryTestLock');
+// let lock = ArkTSUtils.locks.AsyncLock.request("queryTestLock");
+let state = ArkTSUtils.locks.AsyncLock.query('queryTestLock');
 if (!state) {
     throw new Error('测试失败：期望有效的状态，但得到的是 ' + state);
 }
-let pending: utils.locks.AsyncLockInfo[] = state.pending;
-let held: utils.locks.AsyncLockInfo[] = state.held;
+let pending: ArkTSUtils.locks.AsyncLockInfo[] = state.pending;
+let held: ArkTSUtils.locks.AsyncLockInfo[] = state.held;
 ```
 
 #### queryAll
@@ -187,7 +201,7 @@ static queryAll(): AsyncLockState[]
 **示例：**
 
 ```ts
-let states: utils.locks.AsyncLockState[] = utils.locks.AsyncLock.queryAll();
+let states: ArkTSUtils.locks.AsyncLockState[] = ArkTSUtils.locks.AsyncLock.queryAll();
 if (states.length == 0) {
     throw new Error('测试失败：期望至少有1个状态，但得到的是 ' + states.length);
 }
@@ -226,7 +240,7 @@ lockAsync\<T>(callback: AsyncLockCallback\<T>): Promise\<T>
 **示例：**
 
 ```ts
-let lock = new utils.locks.AsyncLock();
+let lock = new ArkTSUtils.locks.AsyncLock();
 let p1 = lock.lockAsync<void>(() => {
     // 执行某些操作
 });
@@ -266,10 +280,10 @@ lockAsync\<T>(callback: AsyncLockCallback\<T>, mode: AsyncLockMode): Promise\<T>
 **示例：**
 
 ```ts
-let lock = new utils.locks.AsyncLock();
+let lock = new ArkTSUtils.locks.AsyncLock();
 let p1 = lock.lockAsync<void>(() => {
     // 执行某些操作
-}, utils.locks.AsyncLockMode.EXCLUSIVE);
+}, ArkTSUtils.locks.AsyncLockMode.EXCLUSIVE);
 ```
 
 #### lockAsync
@@ -308,14 +322,14 @@ lockAsync\<T, U>(callback: AsyncLockCallback\<T>, mode: AsyncLockMode, options: 
 **示例：**
 
 ```ts
-let lock = new utils.locks.AsyncLock();
-let options = new utils.locks.AsyncLockOptions<void>();
+let lock = new ArkTSUtils.locks.AsyncLock();
+let options = new ArkTSUtils.locks.AsyncLockOptions<void>();
 options.timeout = 1000;
 let p: Promise<void> = lock.lockAsync<void, void>(
     () => {
         // 执行某些操作
     },
-    utils.locks.AsyncLockMode.EXCLUSIVE,
+    ArkTSUtils.locks.AsyncLockMode.EXCLUSIVE,
     options
 );
 ```
@@ -362,8 +376,8 @@ constructor()
 **示例：**
 
 ```ts
-let s: utils.locks.AbortSignal<string> = { aborted: false, reason: 'Aborted' };
-let options = new utils.locks.AsyncLockOptions<string>();
+let s: ArkTSUtils.locks.AbortSignal<string> = { aborted: false, reason: 'Aborted' };
+let options = new ArkTSUtils.locks.AsyncLockOptions<string>();
 options.isAvailable = false;
 options.signal = s;
 ```
@@ -380,46 +394,16 @@ options.signal = s;
 
 用于存储特定异步锁实例上当前执行的所有锁操作的信息的类。
 
+**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+#### 属性
+
 | 名称    | 类型                              | 可读 | 可写 | 说明             |
 | ------- | --------------------------------- | ---- | ---- | ---------------- |
 | held    | [AsyncLockInfo[]](#asynclockinfo) | 是   | 是   | 持有的锁信息。   |
 | pending | [AsyncLockInfo[]](#asynclockinfo) | 是   | 是   | 等待中的锁信息。 |
-
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
-
-**示例：**
-
-```ts
-function queryTest() {
-    let lockName = 'queryTestLock';
-    let lock = utils.locks.AsyncLock.request(lockName);
-    let state = utils.locks.AsyncLock.query(lock.name);
-    if (!state) {
-        throw new Error('测试失败：期望有效的状态，但得到的是 ' + state);
-    }
-    let p = lock.lockAsync<void>(async () => {
-        let states: utils.locks.AsyncLockState[] = utils.locks.AsyncLock.queryAll();
-        if (states.length == 0) {
-            throw new Error('测试失败：期望至少有1个状态，但得到的是 ' + states.length);
-        }
-        let state = utils.locks.AsyncLock.query(lock.name);
-        let pending: utils.locks.AsyncLockInfo[] = state.pending;
-        if (pending.length != 0) {
-            throw new Error('测试失败：期望 pending.length=0，但得到的是 ' + pending.length);
-        }
-        let held: utils.locks.AsyncLockInfo[] = state.held;
-        if (held.length != 1) {
-            throw new Error('测试失败：期望 held.length=1，但得到的是 ' + held.length);
-        }
-        if (held[0].name !== lockName) {
-            throw new Error('测试失败：期望 held[0].name=' + lockName + '，但得到的是 ' + held[0].name);
-        }
-        if (held[0].mode !== utils.locks.AsyncLockMode.EXCLUSIVE) {
-            throw new Error('测试失败：期望 held[0].mode=EXCLUSIVE，但得到的是 ' + held[0].mode);
-        }
-    }, utils.locks.AsyncLockMode.EXCLUSIVE);
-}
-```
 
 ### AsyncLockInfo
 
@@ -452,32 +436,88 @@ function queryTest() {
 | aborted | boolean | 是   | 是   | 设置为true以中止操作。                                           |
 | reason  | \<T>    | 是   | 是   | 中止的原因。此值将用于拒绝[lockAsync](#lockasync)返回的Promise。 |
 
+## ArkTSUtils.ASON
+
+为支持将JSON字符串解析成共享数据，ArkTS语言基础库新增了ASON工具。ASON支持开发者解析JSON字符串，并生成共享数据进行跨并发域传输，同时ASON也支持将共享数据转换成JSON字符串。
+
+### ISendable
+
+type ISendable = lang.ISendable
+
+ISendable是所有Sendable类型（除`null`和`undefined`）的父类型。自身没有任何必须的方法和属性。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+| 类型 | 说明   |
+| ------ | ------ |
+| [lang.ISendable](js-apis-arkts-lang.md#langisendable)   | 所有Sendable类型的父类型。 |
+
+### parse
+
+parse(text: string): ISendable | null
+
+用于解析JSON字符串生成Isendable数据或null。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明            |
+| ------ | ------ | ---- | --------------- |
+| text   | string | 是 | 有效的JSON字符串。|
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| [ISendable](#isendable) \| null | 返回Isendable数据或null。当入参是null时，返回null。|
+
 **示例：**
 
 ```ts
-function abortTest() {
-    let lock = new utils.locks.AsyncLock();
-    let s: utils.locks.AbortSignal<string> = { aborted: false, reason: 'Aborted' };
-    let options = new utils.locks.AsyncLockOptions<string>();
-    options.isAvailable = false;
-    options.signal = s;
-    let p: Promise<number | string> = lock.lockAsync<number, string>(
-        () => {
-            return 5;
-        },
-        utils.locks.AsyncLockMode.EXCLUSIVE,
-        options
-    );
-    s.aborted = true;
-    let p1 = p.then(
-        () => {
-            throw new Error('Test failed. Promise is fulfilled.');
-        },
-        (err: string) => {
-            if (err !== 'Aborted') {
-                throw new Error('Test failed. Wrong error value.');
-            }
-        }
-    );
-}
+let jsonText = '{"name": "John", "age": 30, "city": "ChongQing"}';
+let obj = ArkTSUtils.ASON.parse(jsonText);
+console.info(obj.name);
+// 期望输出: 'John'
+console.info(obj.age);
+// 期望输出: 30
+console.info(obj.city);
+// 期望输出: 'ChongQing'
+```
+
+### stringify
+
+stringify(value: ISendable): string
+
+该方法将ISendable数据转换为JSON字符串。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| value | [ISendable](#isendable)  | 是 | ISendable数据。|
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| string | 转换后的JSON字符串。|
+
+**示例：**
+
+```ts
+import { collections } from '@kit.ArkTS';
+
+let arr = new collections.Array(1, 2, 3);
+let str = ArkTSUtils.ASON.stringify(arr);
+console.info(str);
+// 期望输出: '[1,2,3]'
 ```

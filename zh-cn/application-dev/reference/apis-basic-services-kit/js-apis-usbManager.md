@@ -121,7 +121,7 @@ connectDevice(device: USBDevice): Readonly&lt;USBDevicePipe&gt;
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified.2.Incorrect parameter types |
-| 14400001 | Permission denied. Need call requestRight to get permission. |
+| 14400001 | Permission denied. Call requestRight to get the permission first. |
 
 **示例：**
 

@@ -2,8 +2,10 @@
 
 - ArkTS APIs
   - [@ohos.security.asset (Asset Store Service)](js-apis-asset.md)
+  <!--Del-->
   - [@ohos.security.asset (Asset Store Service) (System API)](js-apis-asset-sys.md)
-- C API
+  <!--DelEnd-->
+- C APIs
   - Modules
     - [AssetApi](_asset_api.md)
     - [AssetType](_asset_type.md)

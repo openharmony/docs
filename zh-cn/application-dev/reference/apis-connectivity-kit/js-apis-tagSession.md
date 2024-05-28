@@ -100,6 +100,8 @@ connect(): void;
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 | 3100201 | Tag running state is abnormal in service. |
 
 **示例：**
@@ -160,6 +162,8 @@ resetConnection(): void
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 | 3100201 | Tag running state is abnormal in service. |
 
 **示例：**
@@ -222,6 +226,15 @@ isConnected(): boolean
 | **类型** | **说明**                             |
 | ------------------ | --------------------------|
 | boolean  | 已建立连接返回 true，未建立连接返回false。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
+
+| 错误码ID | 错误信息|
+| ------- | -------|
+|801 | Capability not supported.          |
+
 
 **示例：**
 
@@ -291,6 +304,8 @@ getMaxTransmitSize(): number
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 | 3100201 | Tag running state is abnormal in service. |
 
 **示例：**
@@ -363,6 +378,8 @@ getTimeout(): number
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 | 3100201 | Tag running state is abnormal in service. |
 
 **示例：**
@@ -443,6 +460,9 @@ setTimeout(timeout: number): void
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+|201 | Permission denied.                 |
+|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.          |
+|801 | Capability not supported.          |
 | 3100201 | Tag running state is abnormal in service. |
 
 **示例：**
@@ -592,6 +612,9 @@ transmit(data: number[]): Promise<number[]>
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+|201 | Permission denied.                 |
+|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.          |
+|801 | Capability not supported.          |
 | 3100201 | Tag running state is abnormal in service. |
 | 3100204 | Tag I/O operation failed. |
 
@@ -654,6 +677,9 @@ transmit(data: number[], callback: AsyncCallback<number[]>): void
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+|201 | Permission denied.                 |
+|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.          |
+|801 | Capability not supported.          |
 | 3100201 | Tag running state is abnormal in service. |
 | 3100204 | Tag I/O operation failed. |
 

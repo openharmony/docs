@@ -13,13 +13,13 @@
 2. 导入系统帐号模块。
 
    ```ts
-   import account_osAccount from '@ohos.account.osAccount';
+   import { osAccount } from '@kit.BasicServicesKit';
    ```
 
 3. 获取系统帐号的单实例对象。
 
    ```ts
-   let accountManager = account_osAccount.getAccountManager();
+   let accountManager = osAccount.getAccountManager();
    ```
 
 ## 设置指定系统帐号的约束列表
@@ -39,7 +39,7 @@
 
    ```ts
    try {
-     let accountManager.setOsAccountConstraints(localId, [constraint], true);
+     accountManager.setOsAccountConstraints(localId, constraint, true);
      console.log('setOsAccountConstraints successfully');
    } catch (err) {
      console.log('setOsAccountConstraints failed, error: ' + JSON.stringify(err));

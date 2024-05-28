@@ -19,11 +19,11 @@
 ## 导入模块
 
 ```ts
-import deviceManager from '@ohos.distributedDeviceManager';
+import { distributedDeviceManager } from '@kit.DistributedServiceKit';
 ```
 
 
-## deviceManager.createDeviceManager
+## distributedDeviceManager.createDeviceManager
 
 createDeviceManager(bundleName: string): DeviceManager;
 
@@ -54,18 +54,18 @@ createDeviceManager(bundleName: string): DeviceManager;
 **示例：**
 
   ```ts
-  import deviceManager from '@ohos.distributedDeviceManager';
-  import { BusinessError } from '@ohos.base';
+  import { distributedDeviceManager } from '@kit.DistributedServiceKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    let dmInstance = deviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
+    let dmInstance = distributedDeviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
   } catch(err) {
     let e: BusinessError = err as BusinessError;
     console.error('createDeviceManager errCode:' + e.code + ',errMessage:' + e.message);
   }
   ```
 
-## deviceManager.releaseDeviceManager
+## distributedDeviceManager.releaseDeviceManager
 
 releaseDeviceManager(deviceManager: DeviceManager): void;
 
@@ -94,12 +94,12 @@ releaseDeviceManager(deviceManager: DeviceManager): void;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import deviceManager from '@ohos.distributedDeviceManager';
+  import { distributedDeviceManager } from '@kit.DistributedServiceKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    let dmInstance = deviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
-    deviceManager.releaseDeviceManager(dmInstance);
+    let dmInstance = distributedDeviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
+    distributedDeviceManager.releaseDeviceManager(dmInstance);
   } catch (err) {
     let e: BusinessError = err as BusinessError;
     console.error('release device manager errCode:' + e.code + ',errMessage:' + e.message);
@@ -168,13 +168,13 @@ getAvailableDeviceListSync(): Array&lt;DeviceBasicInfo&gt;;
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#distributeddevicemanagercreatedevicemanager)
   ```ts
-  import deviceManager from '@ohos.distributedDeviceManager';
-  import { BusinessError } from '@ohos.base';
+  import { distributedDeviceManager } from '@kit.DistributedServiceKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    let deviceInfoList: Array<deviceManager.DeviceBasicInfo> = dmInstance.getAvailableDeviceListSync();
+    let deviceInfoList: Array<distributedDeviceManager.DeviceBasicInfo> = dmInstance.getAvailableDeviceListSync();
   } catch (err) {
     let e: BusinessError = err as BusinessError;
     console.error('getAvailableDeviceListSync errCode:' + e.code + ',errMessage:' + e.message);
@@ -208,13 +208,13 @@ getAvailableDeviceList(callback:AsyncCallback&lt;Array&lt;DeviceBasicInfo&gt;&gt
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#distributeddevicemanagercreatedevicemanager)
   ```ts
-  import deviceManager from '@ohos.distributedDeviceManager';
-  import { BusinessError } from '@ohos.base';
+  import { distributedDeviceManager } from '@kit.DistributedServiceKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    dmInstance.getAvailableDeviceList((err: BusinessError, data: Array<deviceManager.DeviceBasicInfo>) => {
+    dmInstance.getAvailableDeviceList((err: BusinessError, data: Array<distributedDeviceManager.DeviceBasicInfo>) => {
       if (err) {
         console.error('getAvailableDeviceList errCode:' + err.code + ',errMessage:' + err.message);
         return;
@@ -254,12 +254,12 @@ getAvailableDeviceList(): Promise&lt;Array&lt;DeviceBasicInfo&gt;&gt;;
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#distributeddevicemanagercreatedevicemanager)
   ```ts
-  import deviceManager from '@ohos.distributedDeviceManager';
-  import { BusinessError } from '@ohos.base';
+  import { distributedDeviceManager } from '@kit.DistributedServiceKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
-  dmInstance.getAvailableDeviceList().then((data: Array<deviceManager.DeviceBasicInfo>) => {
+  dmInstance.getAvailableDeviceList().then((data: Array<distributedDeviceManager.DeviceBasicInfo>) => {
     console.log('get available device info: ' + JSON.stringify(data));
     }).catch((err: BusinessError) => {
       console.error('getAvailableDeviceList errCode:' + err.code + ',errMessage:' + err.message);
@@ -293,9 +293,9 @@ getLocalDeviceNetworkId(): string;
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#distributeddevicemanagercreatedevicemanager)
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     let deviceNetworkId: string = dmInstance.getLocalDeviceNetworkId();
@@ -333,9 +333,9 @@ getLocalDeviceName(): string;
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#distributeddevicemanagercreatedevicemanager)
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     let deviceName: string = dmInstance.getLocalDeviceName();
@@ -373,9 +373,9 @@ getLocalDeviceType(): number;
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#distributeddevicemanagercreatedevicemanager)
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     let deviceType: number = dmInstance.getLocalDeviceType();
@@ -413,9 +413,9 @@ getLocalDeviceId(): string;
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#distributeddevicemanagercreatedevicemanager)
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     let deviceId: string = dmInstance.getLocalDeviceId();
@@ -460,9 +460,9 @@ getDeviceName(networkId: string): string;
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#distributeddevicemanagercreatedevicemanager)
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     // 设备网络标识，可以从可信设备列表中获取
@@ -509,9 +509,9 @@ getDeviceType(networkId: string): number;
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#distributeddevicemanagercreatedevicemanager)
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     // 设备网络标识，可以从可信设备列表中获取
@@ -554,9 +554,9 @@ startDiscovering(discoverParam: {[key:&nbsp;string]:&nbsp;Object} , filterOption
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#distributeddevicemanagercreatedevicemanager)
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   interface DiscoverParam {
     discoverTargetType: number;
@@ -607,9 +607,9 @@ stopDiscovering(): void;
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#distributeddevicemanagercreatedevicemanager)
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     dmInstance.stopDiscovering();
@@ -650,9 +650,9 @@ bindTarget(deviceId: string, bindParam: {[key:&nbsp;string]:&nbsp;Object} , call
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#distributeddevicemanagercreatedevicemanager)
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   class Data {
     deviceId: string = '';
@@ -710,9 +710,9 @@ unbindTarget(deviceId: string): void;
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#distributeddevicemanagercreatedevicemanager)
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     let deviceId = 'XXXXXXXX';
@@ -751,14 +751,14 @@ on(type: 'deviceStateChange', callback: Callback&lt;{ action: DeviceStateChange,
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#distributeddevicemanagercreatedevicemanager)
   ```ts
-  import deviceManager from '@ohos.distributedDeviceManager';
-  import { BusinessError } from '@ohos.base';
+  import { distributedDeviceManager } from '@kit.DistributedServiceKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   class Data {
-    action: deviceManager.DeviceStateChange = 0;
-    device: deviceManager.DeviceBasicInfo = {
+    action: distributedDeviceManager.DeviceStateChange = 0;
+    device: distributedDeviceManager.DeviceBasicInfo = {
       deviceId: '',
       deviceName: '',
       deviceType: '',
@@ -804,14 +804,14 @@ off(type: 'deviceStateChange', callback?: Callback&lt;{ action: DeviceStateChang
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#distributeddevicemanagercreatedevicemanager)
   ```ts
-  import deviceManager from '@ohos.distributedDeviceManager';
-  import { BusinessError } from '@ohos.base';
+  import { distributedDeviceManager } from '@kit.DistributedServiceKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   class Data {
-    action: deviceManager.DeviceStateChange = 0;
-    device: deviceManager.DeviceBasicInfo = {
+    action: distributedDeviceManager.DeviceStateChange = 0;
+    device: distributedDeviceManager.DeviceBasicInfo = {
       deviceId: '',
       deviceName: '',
       deviceType: '',
@@ -857,13 +857,13 @@ on(type: 'discoverSuccess', callback: Callback&lt;{ device: DeviceBasicInfo }&gt
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#distributeddevicemanagercreatedevicemanager)
   ```ts
-  import deviceManager from '@ohos.distributedDeviceManager';
-  import { BusinessError } from '@ohos.base';
+  import { distributedDeviceManager } from '@kit.DistributedServiceKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   class Data {
-    device: deviceManager.DeviceBasicInfo = {
+    device: distributedDeviceManager.DeviceBasicInfo = {
       deviceId: '',
       deviceName: '',
       deviceType: '',
@@ -910,11 +910,11 @@ off(type: 'discoverSuccess', callback?: Callback&lt;{ device: DeviceBasicInfo }&
 **示例：**
 
   ```ts
-  import deviceManager from '@ohos.distributedDeviceManager';
-  import { BusinessError } from '@ohos.base';
+  import { distributedDeviceManager } from '@kit.DistributedServiceKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   class Data {
-    device: deviceManager.DeviceBasicInfo = {
+    device: distributedDeviceManager.DeviceBasicInfo = {
       deviceId: '',
       deviceName: '',
       deviceType: '',
@@ -960,9 +960,9 @@ on(type: 'deviceNameChange', callback: Callback&lt;{ deviceName: string }&gt;): 
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#distributeddevicemanagercreatedevicemanager)
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   class Data {
     deviceName: string = '';
@@ -1006,9 +1006,9 @@ off(type: 'deviceNameChange', callback?: Callback&lt;{ deviceName: string }&gt;)
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#distributeddevicemanagercreatedevicemanager)
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   class Data {
     deviceName: string = '';
@@ -1052,9 +1052,9 @@ on(type: 'discoverFailure', callback: Callback&lt;{ reason: number }&gt;): void;
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#distributeddevicemanagercreatedevicemanager)
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   class Data {
     reason: number = 0;
@@ -1098,9 +1098,9 @@ off(type: 'discoverFailure', callback?: Callback&lt;{ reason: number }&gt;): voi
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#distributeddevicemanagercreatedevicemanager)
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   class Data {
     reason: number = 0;
@@ -1144,9 +1144,9 @@ on(type: 'serviceDie', callback?: Callback&lt;{}&gt;): void;
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#distributeddevicemanagercreatedevicemanager)
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     dmInstance.on('serviceDie', () => {
@@ -1186,9 +1186,9 @@ off(type: 'serviceDie', callback?: Callback&lt;{}&gt;): void;
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](#distributeddevicemanagercreatedevicemanager)
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     dmInstance.off('serviceDie', () => {

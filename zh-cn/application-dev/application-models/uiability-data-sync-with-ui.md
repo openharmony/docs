@@ -69,88 +69,40 @@
         // 开发者可以根据实际的业务场景设计事件传递的参数
       }
 
-      build() {
-        Column() {
-          Row() {
-            Flex({ justifyContent: FlexAlign.Start, alignContent: FlexAlign.Center }) {
-              Text('DataSynchronization')
-                .fontSize(24)
-                .fontWeight(700)
-                .textAlign(TextAlign.Start)
-                .margin({ top: 12 , bottom: 11 , right: 24 , left: 24})
-            }
-          }
-          .width('100%')
-          .height(56)
-          .justifyContent(FlexAlign.Start)
-          .backgroundColor(Color.Gray)
-
-          List({ initialIndex: 0 }) {
-            ListItem() {
-              Row() {
-                Row(){
-                  Text('EventHubFuncA')
-                    .textAlign(TextAlign.Start)
-                    .fontWeight(500)
-                    .margin({ top: 13, bottom: 13, left: 0, right: 8 })
-                    .fontSize(16)
-                    .width(232)
-                    .height(22)
-                    .fontColor(Color.Black)
-                }
-                .height(48)
-                .width('100%')
-                .borderRadius(24)
-                .margin({ top: 4, bottom: 4, left: 12, right: 12 })
-              }
-              .onClick(() => {
-                this.eventHubFunc();
-                promptAction.showToast({
-                  message: 'EventHubFuncA'
-                });
-              })
-            }
-            .height(56)
-            .backgroundColor(Color.White)
-            .borderRadius(24)
-            .margin({ top: 8, right: 12, left: 12 })
-
-            ListItem() {
-              Row() {
-                Row(){
-                  Text('EventHubFuncB')
-                    .textAlign(TextAlign.Start)
-                    .fontWeight(500)
-                    .margin({ top: 13, bottom: 13, left: 0, right: 8 })
-                    .fontSize(16)
-                    .width(232)
-                    .height(22)
-                    .fontColor(Color.Black)
-                }
-                .height(48)
-                .width('100%')
-                .borderRadius(24)
-                .margin({ top: 4, bottom: 4, left: 12, right: 12 })
-              }
-              .onClick(() => {
-                this.context.eventHub.off('event1');
-                promptAction.showToast({
-                  message: 'EventHubFuncB'
-                });
-              })
-            }
-            .height(56)
-            .backgroundColor(Color.White)
-            .borderRadius(24)
-            .margin({ top: 12, right: 12, left: 12 })
-          }
-          .height('100%')
-          .backgroundColor(Color.Gray)
-        }
-        .width('100%')
-        .margin({ top: 8 })
-      }
-    }
+     build() {
+       Column() {
+         // ...
+         List({ initialIndex: 0 }) {
+           ListItem() {
+             Row() {
+               // ...
+             }
+             .onClick(() => {
+               this.eventHubFunc();
+               promptAction.showToast({
+                 message: $r('app.string.EventHubFuncA')
+               });
+             })
+           }
+           // ...
+           ListItem() {
+             Row() {
+               // ...
+             }
+             .onClick(() => {
+               this.context.eventHub.off('event1');
+               promptAction.showToast({
+                 message: $r('app.string.EventHubFuncB')
+               });
+             })
+           }
+           // ...
+         }
+         // ...
+       }
+       // ...
+     }
+   }
    ```
 
 3. 在UIAbility的注册事件回调中可以得到对应的触发事件结果，运行日志结果如下所示。

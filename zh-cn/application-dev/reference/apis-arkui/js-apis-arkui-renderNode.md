@@ -1768,6 +1768,9 @@ extern "C" __attribute__((constructor)) void RegisterEntryModule(void)
 ```
 
 修改工程中的`src/main/cpp/CMakeLists.txt`文件，添加如下内容：
+
+<!--code_no_check-->
+
 ```cmake
 # the minimum version of CMake.
 cmake_minimum_required(VERSION 3.4.1)
@@ -1785,6 +1788,9 @@ target_link_libraries(entry PUBLIC libnative_drawing.so)
 ```
 
 同时在工程中的`src/main/cpp/types/libentry/index.d.ts`文件中，添加自定义绘制函数在ArkTs侧的定义，如：
+
+<!--code_no_check-->
+
 ```ts
 import { DrawContext } from "@ohos.arkui.node"
 
@@ -1864,7 +1870,7 @@ set borderStyle(style: Edges\<BorderStyle>)
 
 | 参数名 | 类型                                                                                                   | 必填 | 说明                   |
 | ------ | ------------------------------------------------------------------------------------------------------ | ---- | ---------------------- |
-| style  | [Edges](./js-apis-arkui-graphics.md#edges12)<[BorderStyle](./arkui-ts/ts-appendix-enums.md#borderstyle)> | 是   | RenderNode的边框样式。 |
+| style  | [Edges](./js-apis-arkui-graphics.md#edgest12)<[BorderStyle](./arkui-ts/ts-appendix-enums.md#borderstyle)> | 是   | RenderNode的边框样式。 |
 
 get borderStyle(): Edges\<BorderStyle>
 
@@ -1876,7 +1882,7 @@ get borderStyle(): Edges\<BorderStyle>
 
 | 类型                                                                                                   | 说明                   |
 | ------------------------------------------------------------------------------------------------------ | ---------------------- |
-| [Edges](./js-apis-arkui-graphics.md#edges12)<[BorderStyle](./arkui-ts/ts-appendix-enums.md#borderstyle)> | RenderNode的边框样式。 |
+| [Edges](./js-apis-arkui-graphics.md#edgest12)<[BorderStyle](./arkui-ts/ts-appendix-enums.md#borderstyle)> | RenderNode的边框样式。 |
 
 **示例：**
 ```ts
@@ -1935,7 +1941,7 @@ set borderWidth(width: Edges\<number>)
 
 | 参数名 | 类型                                                | 必填 | 说明                   |
 | ------ | --------------------------------------------------- | ---- | ---------------------- |
-| width  | [Edges\<number>](./js-apis-arkui-graphics.md#edges12) | 是   | RenderNode的边框宽度，单位为vp。 |
+| width  | [Edges\<number>](./js-apis-arkui-graphics.md#edgest12) | 是   | RenderNode的边框宽度，单位为vp。 |
 
 get borderWidth(): Edges\<number>
 
@@ -1947,7 +1953,7 @@ get borderWidth(): Edges\<number>
 
 | 类型                                                | 说明                   |
 | --------------------------------------------------- | ---------------------- |
-| [Edges\<number>](./js-apis-arkui-graphics.md#edges12) | RenderNode的边框宽度，默认所有边框宽度为0vp。 |
+| [Edges\<number>](./js-apis-arkui-graphics.md#edgest12) | RenderNode的边框宽度，默认所有边框宽度为0vp。 |
 
 **示例：**
 
@@ -2001,7 +2007,7 @@ set borderColor(color: Edges\<number>)
 
 | 参数名 | 类型                                                | 必填 | 说明                   |
 | ------ | --------------------------------------------------- | ---- | ---------------------- |
-| color  | [Edges\<number>](./js-apis-arkui-graphics.md#edges12) | 是   | RenderNode的边框颜色。 |
+| color  | [Edges\<number>](./js-apis-arkui-graphics.md#edgest12) | 是   | RenderNode的边框颜色。 |
 
 get borderColor(): Edges\<number>
 
@@ -2013,7 +2019,7 @@ get borderColor(): Edges\<number>
 
 | 类型                                                | 说明                   |
 | --------------------------------------------------- | ---------------------- |
-| [Edges\<number>](./js-apis-arkui-graphics.md#edges12) | RenderNode的边框颜色，默认所有边框颜色为0XFF000000。 |
+| [Edges\<number>](./js-apis-arkui-graphics.md#edgest12) | RenderNode的边框颜色，默认所有边框颜色为0XFF000000。 |
 
 **示例：**
 
@@ -2229,7 +2235,7 @@ class MyNodeController extends NodeController {
   }
 
   disposeRenderNode() {
-    const rootRenderNode = this.rootNode.getRenderNode();
+    const rootRenderNode = this.rootNode!.getRenderNode();
     if (rootRenderNode !== null) {
       rootRenderNode.removeChild(renderNode);
     }

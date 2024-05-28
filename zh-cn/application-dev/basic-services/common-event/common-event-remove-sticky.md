@@ -23,8 +23,10 @@
    ```ts
    import Base from '@ohos.base';
    import commonEventManager from '@ohos.commonEventManager';
+   import hilog from '@ohos.hilog';
 
    const TAG: string = 'ProcessModel';
+   const DOMAIN_NUMBER: number = 0xFF00;
    ```
 
 3. 调用[`removeStickyCommonEvent()`](../../reference/apis-basic-services-kit/js-apis-commonEventManager-sys.md#commoneventmanagerremovestickycommonevent10)方法移除对应的粘性公共事件。
@@ -38,11 +40,11 @@
    commonEventManager.removeStickyCommonEvent('event', (err: Base.BusinessError) => {
      // sticky_event粘性公共事件名
      if (err) {
-       console.error(TAG, `Failed to remove sticky common event. Code is ${err.code}, message is ${err.message}`);
+       hilog.error(DOMAIN_NUMBER, TAG, `Failed to remove sticky common event. Code is ${err.code}, message is ${err.message}`);
        return;
      }
-     ...
-     console.info(TAG, `Succeeded in removeing sticky event.`);
+     //...
+     hilog.info(DOMAIN_NUMBER, TAG, `Succeeded in removeing sticky event.`);
    });
    ```
 

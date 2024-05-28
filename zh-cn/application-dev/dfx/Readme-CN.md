@@ -32,7 +32,11 @@
   - [使用HiTraceMeter跟踪性能（ArkTS/JS）](hitracemeter-guidelines-arkts.md)
   - [使用HiTraceMeter跟踪性能（C/C++）](hitracemeter-guidelines-ndk.md)
   - [查看HiTraceMeter日志](hitracemeter-view.md)
-- [HiTraceChain使用指导](hitracechain-guidelines.md)
+- HiTraceChain使用指导
+  - [使用HiTraceChain打点（ArkTS/JS）](hitracechain-guidelines-arkts.md)
+  - [使用HiTraceChain打点（C/C++）](hitracechain-guidelines-ndk.md)
+- HiChecker使用指导
+  - [使用HiChecker检测问题（ArkTS/JS）](hichecker-guidelines-arkts.md)
 - 错误管理
   - [错误管理开发指导](errormanager-guidelines.md)
   - [应用恢复开发指导](apprecovery-guidelines.md)
@@ -47,4 +51,6 @@
   - [hitrace](hitrace.md)
   - [hiperf](hiperf.md)
   - [hisysevent](hisysevent.md)
+  <!--Del-->
   - [uinput](uinput.md)
+  <!--DelEnd-->

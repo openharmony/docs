@@ -5,7 +5,7 @@
 
 
 ## 下载NDK开发包
-
+<!--RP1-->
 1. 推荐使用OpenHarmony正式发布的SDK包。下载链接请从OpenHarmony正式发布版本的 **版本说明** 中获取
 
 在Release Notes 对应正式版本的“从镜像站点获取” 章节下载。 
@@ -14,7 +14,7 @@
 
 
 2. 从DevEco Studio的OpenHarmony SDK Manager中下载。
-
+<!--RP1End-->
 
 ## 解压NDK开发包
 

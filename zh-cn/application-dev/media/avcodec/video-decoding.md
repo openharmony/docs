@@ -10,6 +10,8 @@
 
 视频解码软/硬件解码存在差异，基于MimeType创建解码器时，软解当前仅支持 H264 (OH_AVCODEC_MIMETYPE_VIDEO_AVC)，硬解则支持 H264 (OH_AVCODEC_MIMETYPE_VIDEO_AVC) 和 H265 (OH_AVCODEC_MIMETYPE_VIDEO_HEVC)。
 
+<!--RP1--><!--RP1End-->
+
 ## Surface输出与Buffer输出
 
 两者数据的输出方式不同。
@@ -23,6 +25,7 @@ Buffer输出是指经过解码的数据会以共享内存的方式输出。
 1. 在Surface模式下，可选择调用OH_VideoDecoder_FreeOutputBuffer()接口丢弃输出帧（不送显）；在Buffer模式下，应用必须调用OH_VideoDecoder_FreeOutputBuffer()释放数据。
 2. Surface模式下，应用在解码器就绪前，必须调用OH_VideoDecoder_SetSurface()设置OHNativeWindow，启动后，调用OH_VideoDecoder_RenderOutputBuffer()将解码数据送显；
 3. 输出回调传出的buffer，在Buffer模式下，可以获取共享内存的地址和数据信息；在Surface模式下，只能获取buffer的数据信息。
+4. buffer模式不支持10bit yuv的图像数据。
 
 两种模式的开发步骤详细说明请参考：[Surface模式](#surface模式)和[Buffer模式](#buffer模式)。
 
@@ -140,6 +143,9 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 4. 调用OH_VideoDecoder_Configure()配置解码器。
 
     详细可配置选项的说明请参考[视频专有键值对](../../reference/apis-avcodec-kit/_codec_base.md#媒体数据键值对)。
+    
+    参数校验规则请参考[OH_VideoDecoder_Configure() 参考文档](../../reference/apis-avcodec-kit/_video_decoder.md#oh_videodecoder_configure)。
+    
     目前支持的所有格式都必须配置以下选项：视频帧宽度、视频帧高度。示例中的变量如下：
 
     - DEFAULT_WIDTH：320像素宽度；
@@ -603,23 +609,21 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     }
     ```
 
-    硬件解码在处理buffer数据时（释放数据前），一般需要获取数据的宽高、跨距、像素格式来保证解码输出数据被正确的处理，请参考图形子系统 [OH_NativeBuffer](../../reference/apis-arkgraphics2d/_o_h___native_buffer.md)。
-
+    硬件解码在处理buffer数据时（释放数据前），输出回调用户收到的AVbuffer是宽高对齐后的图像数据。
+    一般需要获取数据的宽高、跨距、像素格式来保证解码输出数据被正确的处理。
     ```c++
-    // OH_NativeBuffer *可以通过图形模块的接口可以获取数据的宽高、跨距等信息。
-    OH_NativeBuffer *ohNativeBuffer = OH_AVBuffer_GetNativeBuffer(buffer);
-    if (ohNativeBuffer != nullptr) {
-        // 获取OH_NativeBuffer_Config结构体，包含OH_NativeBuffer的数据信息
-        OH_NativeBuffer_Config config;
-        OH_NativeBuffer_GetConfig(ohNativeBuffer, &config);
+        OH_AVFormat *format = OH_VideoDecoder_GetOutputDescription(videoDec);
+        int widthStride = 0;
+        int heightStride = 0;
 
-        // 释放ohNativeBuffer
-        ret = OH_NativeBuffer_Unreference(ohNativeBuffer);
+        int ret = OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_STRIDE, widthStride);
         if (ret != AV_ERR_OK) {
             // 异常处理
         }
-        ohNativeBuffer = nullptr;
-    }
+        ret = OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_SLICE_HEIGHT, heightStride);
+        if (ret != AV_ERR_OK) {
+            // 异常处理
+        }
+        OH_AVFormat_Destory(format);
     ```
-
 后续流程（包括刷新解码器、重置解码器、停止解码器、销毁解码器）与Surface模式基本一致，请参考[Surface模式](#surface模式)的步骤11-14。

@@ -17,14 +17,57 @@ This component supports only one child component.
 
 StepperItem()
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 ## Attributes
 
-| Name| Type| Description|
-| -------- | -------- | -------- |
-| prevLabel | string | Text label of the button on the left, which is not displayed on the first page. When the **\<Stepper>** contains more than one page, the default value for all pages except the first page is **Back**.|
-| nextLabel | string | Text label of the button on the right. The default value is **Start** for the last page and **Next** for the other pages.|
-| status | [ItemState](#itemstate) | Display status of **nextLabel** in the stepper. Optional.<br>Default value: **ItemState.Normal**|
+### prevLabel
+
+prevLabel(value: string)
+
+Sets the text label of the button on the left, which is not displayed on the first page. When the **\<Stepper>** contains more than one page, the default value for all pages except the first page is **Back**.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| value | string | Yes| Text label of the button on the left.|
+
+### nextLabel
+
+nextLabel(value: string)
+
+Sets the text label of the button on the right. The default value is **Start** for the last page and **Next** for the other pages.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                           | Mandatory| Description                                                        |
+| ------ | ------------------------------- | ---- | ------------------------------------------------------------ |
+| value  | string                          | Yes  | Text label of the button on the right.                                          |
+
+### status
+
+status(value?: ItemState)
+
+Sets the display status of **nextLabel** in the stepper.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                           | Mandatory| Description                                                        |
+| ------ | ------------------------------- | ---- | ------------------------------------------------------------ |
+| value  | [ItemState](#itemstate) | No  | Display status of **nextLabel** in the stepper.<br>Default value: **ItemState.Normal**|
 
 >  **NOTE**
 >
@@ -32,6 +75,8 @@ StepperItem()
 >  - The **\<StepperItem>** component does not support setting of the universal height attribute. Its height is the height of the parent **\<Stepper>** component minus the height of the label button.
 >  - The **\<StepperItem>** component does not support setting of the **aspectRadio** or **constrainSize** attribute, which may affect the length and width.
 ## ItemState
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 |   Name   | Description|
 | -------- |-------- |

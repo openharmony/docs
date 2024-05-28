@@ -9,7 +9,7 @@
 > 从API version 11开始对\@Prop/\@BuilderParam进行校验。
 >
 > 从API version 12开始对\@State/\@Provide/普通变量(无状态装饰器修饰的变量)进行校验。
-> 从API version 11开始，该接口支持在元服务中使用。
+> 从API version 11开始，该装饰器支持在元服务中使用。
 
 
 ## 概述
@@ -40,7 +40,7 @@ struct Index {
   build() {
     Row() {
       Child({ regular_value: this.message, state_value: this.message, provide_value: this.message, initMessage: this.message, message: this.message,
-        buildTest: this.buildTest, initbuildTest: this.buildTest })
+        buildTest: this.buildTest, initBuildTest: this.buildTest })
     }
   }
 }
@@ -57,7 +57,7 @@ struct Child {
   @Require @State state_value: string = "Hello";
   @Require @Provide provide_value: string = "Hello";
   @Require @BuilderParam buildTest: () => void;
-  @Require @BuilderParam initbuildTest: () => void = this.buildFuction;
+  @Require @BuilderParam initBuildTest: () => void = this.buildFuction;
   @Require @Prop initMessage: string = 'Hello';
   @Require @Prop message: string;
 
@@ -67,7 +67,7 @@ struct Child {
         .fontSize(30)
       Text(this.message)
         .fontSize(30)
-      this.initbuildTest();
+      this.initBuildTest();
       this.buildTest();
     }
     .width('100%')
@@ -112,14 +112,14 @@ struct Child {
   @Require regular_value: string = 'Hello';
   @Require @State state_value: string = "Hello";
   @Require @Provide provide_value: string = "Hello";
-  @Require @BuilderParam initbuildTest: () => void = this.buildFuction;
+  @Require @BuilderParam initBuildTest: () => void = this.buildFuction;
   @Require @Prop initMessage: string = 'Hello';
 
   build() {
     Column() {
       Text(this.initMessage)
         .fontSize(30)
-      this.initbuildTest();
+      this.initBuildTest();
     }
   }
 }

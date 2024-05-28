@@ -48,6 +48,10 @@ UIAbility实例创建完成之后，在进入Foreground之前，系统会创建�
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
+import hilog from '@ohos.hilog';
+
+const TAG: string = '[EntryAbility]';
+const DOMAIN_NUMBER: number = 0xFF00;
 
 export default class EntryAbility extends UIAbility {
   // ...
@@ -58,24 +62,25 @@ export default class EntryAbility extends UIAbility {
         let stageEventType: window.WindowStageEventType = data;
         switch (stageEventType) {
           case window.WindowStageEventType.SHOWN: // 切到前台
-            console.info('windowStage foreground.');
+            hilog.info(DOMAIN_NUMBER, TAG, 'windowStage foreground.');
             break;
           case window.WindowStageEventType.ACTIVE: // 获焦状态
-            console.info('windowStage active.');
+            hilog.info(DOMAIN_NUMBER, TAG, 'windowStage active.');
             break;
           case window.WindowStageEventType.INACTIVE: // 失焦状态
-            console.info('windowStage inactive.');
+            hilog.info(DOMAIN_NUMBER, TAG, 'windowStage inactive.');
             break;
           case window.WindowStageEventType.HIDDEN: // 切到后台
-            console.info('windowStage background.');
+            hilog.info(DOMAIN_NUMBER, TAG, 'windowStage background.');
             break;
           default:
             break;
         }
       });
     } catch (exception) {
-      console.error('Failed to enable the listener for window stage event changes. Cause:' + JSON.stringify(exception));
+      hilog.error(DOMAIN_NUMBER, TAG, 'Failed to enable the listener for window stage event changes. Cause:' + JSON.stringify(exception));
     }
+    hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', 'Ability onWindowStageCreate');
     // 设置UI加载
     windowStage.loadContent('pages/Index', (err, data) => {
       // ...
@@ -93,6 +98,11 @@ export default class EntryAbility extends UIAbility {
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
+import hilog from '@ohos.hilog';
+import type { BusinessError } from '@ohos.base';
+
+const TAG: string = '[EntryAbility]';
+const DOMAIN_NUMBER: number = 0xFF00;
 
 export default class EntryAbility extends UIAbility {
   windowStage: window.WindowStage | undefined = undefined;
@@ -103,9 +113,46 @@ export default class EntryAbility extends UIAbility {
   }
   onWindowStageDestroy() {
     // 释放UI资源
+    // 例如在onWindowStageDestroy()中注销获焦/失焦等WindowStage事件
+    try {
+      if (this.windowStage) {
+        this.windowStage.off('windowStageEvent');
+      }
+    } catch (err) {
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      hilog.error(DOMAIN_NUMBER, TAG, `Failed to disable the listener for windowStageEvent. Code is ${code}, message is ${message}`);
+    };
   }
 }
 ```
+
+### WindowStageWillDestroy状态
+对应`onWindowStageWillDestroy()`回调，在WindowStage销毁前执行，此时WindowStage可以使用。
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
+
+export default class EntryAbility extends UIAbility {
+  windowStage: window.WindowStage | undefined = undefined;
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    this.windowStage = windowStage;
+    // ...
+  }
+  onWindowStageWillDestroy(windowStage: window.WindowStage) {
+    // 释放通过windowStage对象获取的资源
+  }
+  onWindowStageDestroy() {
+    // 释放UI资源
+  }
+}
+```
+
+> **说明：**
+>
+> WindowStage的相关使用请参见[窗口开发指导](../windowmanager/application-window-stage.md)。
 
 
 ### Foreground和Background状态

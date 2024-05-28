@@ -30,6 +30,8 @@ enableBluetooth(): void
 
 | 错误码ID | 错误信息            |
 | -------- | ------------------ |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 |2900001   | Service stopped.   |
 |2900099   | Operation failed.  |
 
@@ -61,6 +63,8 @@ disableBluetooth(): void
 
 |错误码ID   | 错误信息           |
 | -------- | ------------------ |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 |2900001   | Service stopped.   |
 |2900099   | Operation failed.  |
 
@@ -100,6 +104,8 @@ getState(): BluetoothState
 
 |错误码ID   | 错误信息           |
 | -------- | ------------------ |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 |2900001   | Service stopped.   |
 |2900099   | Operation failed.  |
 
@@ -137,6 +143,9 @@ on(type: "stateChange", callback: Callback&lt;BluetoothState&gt;): void
 
 |错误码ID   | 错误信息           |
 | -------- | ------------------ |
+|201 | Permission denied.                 |
+|401 | Invalid parameter.                 |
+|801 | Capability not supported.          |
 |2900099   | Operation failed.  |
 
 **示例：**
@@ -177,6 +186,9 @@ off(type: "stateChange", callback?: Callback&lt;BluetoothState&gt;): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter.                 |
+|801 | Capability not supported.          |
 |2900099 | Operation failed.                        |
 
 **示例：**

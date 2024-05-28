@@ -8,7 +8,7 @@ Multicast DNS (MDNS) provides functions such as adding, removing, discovering, a
 ## Modules to Import
 
 ```ts
-import mdns from '@ohos.net.mdns'
+import { mdns } from '@kit.NetworkKit';
 ```
 
 ## mdns.addLocalService
@@ -34,11 +34,11 @@ Adds an MDNS service. This API uses an asynchronous callback to return the resul
 | ID     | Error Message|
 |---------|---|
 | 401     | Parameter error. |
-| 2100002 | Operation failed. Cannot connect to service. |
+| 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error. |
 | 2204003 | Callback duplicated. |
-| 2204008 | Service instance duplicated. |
-| 2204010 | Send packet failed. |
+| 2204008 | Failed to delete the service instance. |
+| 2204010 | Failed to send the message. |
 
 > **NOTE**
 > For details about the error codes, see [MDNS Error Codes](errorcode-net-mdns.md).
@@ -48,10 +48,10 @@ Adds an MDNS service. This API uses an asynchronous callback to return the resul
 Stage model:
 
 ```ts
-// Obtain the context.
-import mdns from '@ohos.net.mdns'
-import { BusinessError } from '@ohos.base';
+import { mdns } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
+// Obtain the context.
 let context = getContext(this) as Context;
 
 let localServiceInfo: mdns.LocalServiceInfo = {
@@ -98,11 +98,11 @@ Adds an MDNS service. This API uses a promise to return the result.
 | ID     | Error Message|
 |---------|---|
 | 401     | Parameter error. |
-| 2100002 | Operation failed. Cannot connect to service. |
+| 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error. |
 | 2204003 | Callback duplicated. |
-| 2204008 | Service instance duplicated. |
-| 2204010 | Send packet failed. |
+| 2204008 | Failed to delete the service instance. |
+| 2204010 | Failed to send the message. |
 
 > **NOTE**
 > For details about the error codes, see [MDNS Error Codes](errorcode-net-mdns.md).
@@ -112,10 +112,10 @@ Adds an MDNS service. This API uses a promise to return the result.
 Stage model:
 
 ```ts
-// Obtain the context.
-import mdns from '@ohos.net.mdns'
-import { BusinessError } from '@ohos.base';
+import { mdns } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
+// Obtain the context.
 let context = getContext(this) as Context;
 
 let localServiceInfo: mdns.LocalServiceInfo = {
@@ -156,11 +156,11 @@ Removes an MDNS service. This API uses an asynchronous callback to return the re
 | ID     | Error Message|
 |---------|---|
 | 401     | Parameter error. |
-| 2100002 | Operation failed. Cannot connect to service. |
+| 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error. |
 | 2204002 | Callback not found. |
-| 2204008 | Service instance not found. |
-| 2204010 | Send packet failed. |
+| 2204008 | Failed to delete the service instance. |
+| 2204010 | Failed to send the message. |
 
 > **NOTE**
 > For details about the error codes, see [MDNS Error Codes](errorcode-net-mdns.md).
@@ -170,10 +170,10 @@ Removes an MDNS service. This API uses an asynchronous callback to return the re
 Stage model:
 
 ```ts
-// Obtain the context.
-import mdns from '@ohos.net.mdns'
-import { BusinessError } from '@ohos.base';
+import { mdns } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
+// Obtain the context.
 let context = getContext(this) as Context;
 
 let localServiceInfo: mdns.LocalServiceInfo = {
@@ -220,11 +220,11 @@ Removes an MDNS service. This API uses a promise to return the result.
 | ID     | Error Message|
 |---------|---|
 | 401     | Parameter error. |
-| 2100002 | Operation failed. Cannot connect to service. |
+| 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error. |
 | 2204002 | Callback not found. |
-| 2204008 | Service instance not found. |
-| 2204010 | Send packet failed. |
+| 2204008 | Failed to delete the service instance. |
+| 2204010 | Failed to send the message. |
 
 > **NOTE**
 > For details about the error codes, see [MDNS Error Codes](errorcode-net-mdns.md).
@@ -234,8 +234,8 @@ Removes an MDNS service. This API uses a promise to return the result.
 Stage model:
 
 ```ts
-import mdns from '@ohos.net.mdns'
-import { BusinessError } from '@ohos.base';
+import { mdns } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let context = getContext(this) as Context;
 
@@ -288,10 +288,10 @@ Creates a **DiscoveryService** object, which is used to discover MDNS services o
 Stage model:
 
 ```ts
-// Obtain the context.
-import mdns from '@ohos.net.mdns'
-import { BusinessError } from '@ohos.base';
+import { mdns } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
+// Obtain the context.
 let context = getContext(this) as Context;
 
 let serviceType = "_print._tcp";
@@ -321,11 +321,11 @@ Resolves an MDNS service. This API uses an asynchronous callback to return the r
 | ID     | Error Message|
 |---------|----------------------------------------------|
 | 401     | Parameter error.                             |
-| 2100002 | Operation failed. Cannot connect to service. |
+| 2100002 | Failed to connect to the service.            |
 | 2100003 | System internal error.                       |
 | 2204003 | Callback duplicated.                         |
 | 2204006 | Request timeout.                |
-| 2204010 | Send packet failed.                          |
+| 2204010 | Failed to send the message.                  |
 
 > **NOTE**
 > For details about the error codes, see [MDNS Error Codes](errorcode-net-mdns.md).
@@ -335,10 +335,10 @@ Resolves an MDNS service. This API uses an asynchronous callback to return the r
 Stage model:
 
 ```ts
-// Obtain the context.
-import mdns from '@ohos.net.mdns'
-import { BusinessError } from '@ohos.base';
+import { mdns } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
+// Obtain the context.
 let context = getContext(this) as Context;
 
 let localServiceInfo: mdns.LocalServiceInfo = {
@@ -385,11 +385,11 @@ Resolves an MDNS service. This API uses a promise to return the result.
 | ID     | Error Message|
 |---------|----------------------------------------------|
 | 401     | Parameter error.                             |
-| 2100002 | Operation failed. Cannot connect to service. |
+| 2100002 | Failed to connect to the service.            |
 | 2100003 | System internal error.                       |
 | 2204003 | Callback duplicated.                         |
 | 2204006 | Request timeout.                |
-| 2204010 | Send packet failed.                          |
+| 2204010 | Failed to send the message.                  |
 
 > **NOTE**
 > For details about the error codes, see [MDNS Error Codes](errorcode-net-mdns.md).
@@ -399,10 +399,10 @@ Resolves an MDNS service. This API uses a promise to return the result.
 Stage model:
 
 ```ts
-// Obtain the context.
-import mdns from '@ohos.net.mdns'
-import { BusinessError } from '@ohos.base';
+import { mdns } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
+// Obtain the context.
 let context = getContext(this) as Context;
 
 let localServiceInfo: mdns.LocalServiceInfo = {
@@ -438,10 +438,10 @@ Searches for MDNS services on the LAN.
 Stage model:
 
 ```ts
-// Obtain the context.
-import mdns from '@ohos.net.mdns'
-import { BusinessError } from '@ohos.base';
+import { mdns } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
+// Obtain the context.
 let context = getContext(this) as Context;
 let serviceType = "_print._tcp";
 let discoveryService = mdns.createDiscoveryService(context, serviceType);
@@ -463,10 +463,10 @@ Stops searching for MDNS services on the LAN.
 Stage model:
 
 ```ts
-// Obtain the context.
-import mdns from '@ohos.net.mdns'
-import { BusinessError } from '@ohos.base';
+import { mdns } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
+// Obtain the context.
 let context = getContext(this) as Context;
 let serviceType = "_print._tcp";
 let discoveryService = mdns.createDiscoveryService(context, serviceType);
@@ -493,8 +493,8 @@ Enables listening for **discoveryStart** events.
 **Example**
 
 ```ts
-import mdns from '@ohos.net.mdns'
-import { BusinessError } from '@ohos.base';
+import { mdns } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // See mdns.createDiscoveryService.
 let context = getContext(this) as Context;
@@ -529,8 +529,8 @@ Disables listening for **discoveryStart** events.
 **Example**
 
 ```ts
-import mdns from '@ohos.net.mdns'
-import { BusinessError } from '@ohos.base';
+import { mdns } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // See mdns.createDiscoveryService.
 let context = getContext(this) as Context;
@@ -569,8 +569,8 @@ Enables listening for **discoveryStop** events.
 **Example**
 
 ```ts
-import mdns from '@ohos.net.mdns'
-import { BusinessError } from '@ohos.base';
+import { mdns } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // See mdns.createDiscoveryService.
 let context = getContext(this) as Context;
@@ -605,8 +605,8 @@ Disables listening for **discoveryStop** events.
 **Example**
 
 ```ts
-import mdns from '@ohos.net.mdns'
-import { BusinessError } from '@ohos.base';
+import { mdns } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // See mdns.createDiscoveryService.
 let context = getContext(this) as Context;
@@ -645,8 +645,8 @@ Enables listening for **serviceFound** events.
 **Example**
 
 ```ts
-import mdns from '@ohos.net.mdns'
-import { BusinessError } from '@ohos.base';
+import { mdns } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // See mdns.createDiscoveryService.
 let context = getContext(this) as Context;
@@ -681,8 +681,8 @@ Disables listening for **serviceFound** events.
 **Example**
 
 ```ts
-import mdns from '@ohos.net.mdns'
-import { BusinessError } from '@ohos.base';
+import { mdns } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // See mdns.createDiscoveryService.
 let context = getContext(this) as Context;
@@ -721,8 +721,8 @@ Enables listening for **serviceLost** events.
 **Example**
 
 ```ts
-import mdns from '@ohos.net.mdns'
-import { BusinessError } from '@ohos.base';
+import { mdns } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // See mdns.createDiscoveryService.
 let context = getContext(this) as Context;
@@ -757,8 +757,8 @@ Disables listening for **serviceLost** events.
 **Example**
 
 ```ts
-import mdns from '@ohos.net.mdns'
-import { BusinessError } from '@ohos.base';
+import { mdns } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // See mdns.createDiscoveryService.
 let context = getContext(this) as Context;

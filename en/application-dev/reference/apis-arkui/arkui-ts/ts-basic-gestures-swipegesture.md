@@ -11,6 +11,8 @@
 
 SwipeGesture(value?: { fingers?: number; direction?: SwipeDirection; speed?: number })
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **Parameters**
 
 | Name| Type| Mandatory| Description|
@@ -20,6 +22,8 @@ SwipeGesture(value?: { fingers?: number; direction?: SwipeDirection; speed?: num
 | speed | number | No| Minimum speed of the swipe gesture.<br>Default value: 100 vp/s<br>**NOTE**<br>If the value is less than or equal to 0, it will be converted to the default value.|
 
 ## SwipeDirection
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 | Name| Description|
 | -------- | -------- |
@@ -33,7 +37,7 @@ SwipeGesture(value?: { fingers?: number; direction?: SwipeDirection; speed?: num
 
 | Name| Description|
 | -------- | -------- |
-| onAction(event:(event: [GestureEvent](ts-gesture-settings.md#gestureevent)) =&gt; void) | Invoked when the swipe gesture is recognized.|
+| onAction(event:(event: [GestureEvent](ts-gesture-settings.md#gestureevent)) =&gt; void) | Invoked when the swipe gesture is recognized.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 
 ## Attributes
 

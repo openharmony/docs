@@ -27,7 +27,7 @@
 1. 导入剪贴板依赖。
    
    ```ts
-   import pasteboard from '@ohos.pasteboard';
+   import { pasteboard } from '@kit.BasicServicesKit';
    ```
 
 2. 添加输入框和粘贴控件。
@@ -39,8 +39,7 @@
    当前示例使用默认参数。具体请参见[PasteButton控件](../../reference/apis-arkui/arkui-ts/ts-security-components-pastebutton.md)。此外，所有安全控件都继承[安全控件通用属性](../../reference/apis-arkui/arkui-ts/ts-securitycomponent-attributes.md)，可用于定制样式。
    
    ```ts
-   import pasteboard from '@ohos.pasteboard';
-   import { BusinessError } from '@ohos.base';
+   import { pasteboard, BusinessError } from '@kit.BasicServicesKit';
    
    @Entry
    @Component

@@ -23,7 +23,7 @@ import systemDateTime from '@ohos.systemDateTime';
 | STARTUP | 0    | 自系统启动以来经过的毫秒数，包括深度睡眠时间。   |
 | ACTIVE  | 1    | 自系统启动以来经过的毫秒数，不包括深度睡眠时间。 |
 
-## systemDateTime.getCurrentTime
+## systemDateTime.getCurrentTime<sup>(deprecated)</sup>
 
 getCurrentTime(isNano: boolean, callback: AsyncCallback&lt;number&gt;): void
 
@@ -65,7 +65,7 @@ try {
 }
 ```
 
-## systemDateTime.getCurrentTime
+## systemDateTime.getCurrentTime<sup>(deprecated)</sup>
 
 getCurrentTime(callback: AsyncCallback&lt;number&gt;): void
 
@@ -106,7 +106,7 @@ try {
 }
 ```
 
-## systemDateTime.getCurrentTime
+## systemDateTime.getCurrentTime<sup>(deprecated)</sup>
 
 getCurrentTime(isNano?: boolean): Promise&lt;number&gt;
 
@@ -151,7 +151,7 @@ try {
 }
 ```
 
-## systemDateTime.getRealActiveTime
+## systemDateTime.getRealActiveTime<sup>(deprecated)</sup>
 
 getRealActiveTime(isNano: boolean, callback: AsyncCallback&lt;number&gt;): void
 
@@ -193,7 +193,7 @@ try {
 }
 ```
 
-## systemDateTime.getRealActiveTime
+## systemDateTime.getRealActiveTime<sup>(deprecated)</sup>
 
 getRealActiveTime(callback: AsyncCallback&lt;number&gt;): void
 
@@ -234,7 +234,7 @@ try {
 }
 ```
 
-## systemDateTime.getRealActiveTime
+## systemDateTime.getRealActiveTime<sup>(deprecated)</sup>
 
 getRealActiveTime(isNano?: boolean): Promise&lt;number&gt;
 
@@ -279,7 +279,7 @@ try {
 }
 ```
 
-## systemDateTime.getRealTime
+## systemDateTime.getRealTime<sup>(deprecated)</sup>
 
 getRealTime(isNano: boolean, callback: AsyncCallback&lt;number&gt;): void
 
@@ -321,7 +321,7 @@ try {
 }
 ```
 
-## systemDateTime.getRealTime
+## systemDateTime.getRealTime<sup>(deprecated)</sup>
 
 getRealTime(callback: AsyncCallback&lt;number&gt;): void
 
@@ -362,7 +362,7 @@ try {
 }
 ```
 
-## systemDateTime.getRealTime
+## systemDateTime.getRealTime<sup>(deprecated)</sup>
 
 getRealTime(isNano?: boolean): Promise&lt;number&gt;
 
@@ -458,6 +458,14 @@ getUptime(timeType: TimeType, isNanoseconds?: boolean): number
 | 类型   | 说明                       |
 | ------ | -------------------------- |
 | number | 自系统启动以来经过的时间。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[时间时区错误码](errorcode-time.md)。
+
+| 错误码ID | 错误信息                                                                                                           |
+| -------- |----------------------------------------------------------------------------------------------------------------|
+| 401       | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 
 **示例：**
 
@@ -572,14 +580,6 @@ getTimezone(callback: AsyncCallback&lt;string&gt;): void
 | -------- | --------- | ---- | ------------------------ |
 | callback | AsyncCallback&lt;string&gt; | 是   | 回调函数，返回系统时区。具体可见[支持的系统时区](#支持的系统时区) 。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[时间时区错误码](./errorcode-time.md)。
-
-| 错误码ID   | 错误信息                                                 |
-|---------|------------------------------------------------------|
-| 401      | Parameter error. Possible causes: 1.System error. |
-
 **示例：**
 
 ```ts
@@ -612,14 +612,6 @@ getTimezone(): Promise&lt;string&gt;
 | 类型                  | 说明                                  |
 | --------------------- | ------------------------------------- |
 | Promise&lt;string&gt; | Promise对象，返回系统时区。具体可见[支持的系统时区](#支持的系统时区) 。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[时间时区错误码](./errorcode-time.md)。
-
-| 错误码ID   | 错误信息                                                 |
-|---------|------------------------------------------------------|
-| 401      | Parameter error. Possible causes: 1.System error. |
 
 **示例：**
 

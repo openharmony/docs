@@ -45,10 +45,9 @@
 5. 获取指定socket实时流量数据。
 
 ```ts
-// 从@ohos.net.statistics中导入statistics命名空间
-import statistics from '@ohos.net.statistics';
-import { BusinessError } from '@ohos.base';
-import socket from "@ohos.net.socket";
+// 从@kit.NetworkKit中导入statistics命名空间
+import { statistics, socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // 获取指定网卡实时下行流量数据。
 statistics.getIfaceRxBytes('wlan0', (error: BusinessError, stats: number) => {
@@ -124,8 +123,8 @@ tcp.getSocketFd().then((sockfd: number) => {
 2. 获取指定应用历史流量信息。
 
 ```ts
-import statistics from '@ohos.net.statistics';
-import { BusinessError } from '@ohos.base';
+import { statistics } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class IfaceInfo {
   iface: string = "wlan0"
@@ -164,7 +163,8 @@ statistics.getTrafficStatsByUid(uidInfo, (error: BusinessError, statsInfo: stati
 2. 取消订阅流量改变事件通知。
 
 ```ts
-import statistics from '@ohos.net.statistics';
+import { statistics } from '@kit.NetworkKit';
+
 class Data {
   iface: string = ""
   uid?: number = 0

@@ -22,6 +22,8 @@ Supported
 
 SideBarContainer( type?: SideBarContainerType )
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **Parameters**
 
 | Name| Type| Mandatory| Description|
@@ -29,6 +31,8 @@ SideBarContainer( type?: SideBarContainerType )
 | type | [SideBarContainerType](#sidebarcontainertype) | No| Display type of the sidebar.<br>Default value: **SideBarContainerType.Embed**|
 
 ## SideBarContainerType
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 | Name| Description|
 | -------- | -------- |
@@ -48,6 +52,8 @@ Specifies whether to display the sidebar.
 
 Since API version 10, this attribute supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md).
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -61,6 +67,8 @@ Since API version 10, this attribute supports two-way binding through [$$](../..
 controlButton(value: ButtonStyle)
 
 Sets the attributes of the sidebar control button.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -76,6 +84,8 @@ showControlButton(value: boolean)
 
 Specifies whether to display the sidebar control button.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -89,6 +99,8 @@ Specifies whether to display the sidebar control button.
 sideBarWidth(value: number | Length)
 
 Sets the width of the sidebar. A value less than 0 evaluates to the default value. The value must comply with the width constraints. If it is not within the valid range, the valid value closest to the set one is used.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -106,6 +118,8 @@ Sets the minimum width of the sidebar. A value less than 0 evaluates to the defa
 
 **minSideBarWidth**, whether it is specified or kept at the default value, takes precedence over **minWidth** of the sidebar child components.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -122,6 +136,8 @@ Sets the maximum width of the sidebar. A value less than 0 evaluates to the defa
 
 **maxSideBarWidth**, whether it is specified or kept at the default value, takes precedence over **maxWidth** of the sidebar child components.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -136,7 +152,9 @@ autoHide(value: boolean)
 
 Specifies whether to automatically hide the sidebar when it is dragged to be smaller than the minimum width. The value is subject to the **minSideBarWidth** attribute method. If it is not set in **minSideBarWidth**, the default value is used.
 
-Whether the sidebar should be hidden is determined when it is being dragged. When its width is less than the minimum width, the damping effect is required to trigger hiding (a distance out of range).
+Whether the sidebar should be hidden is determined when it is being dragged. When it is dragged to be smaller than the minimum width, the damping effect is required to trigger hiding (a distance out of range).
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -152,6 +170,8 @@ sideBarPosition(value: SideBarPosition)
 
 Sets the position of the sidebar.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -166,13 +186,15 @@ divider(value: DividerStyle | null)
 
 Sets the divider style.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
 | Name| Type                                                     | Mandatory| Description                                                        |
 | ------ | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [DividerStyle](#dividerstyle10) \| null | Yes  | Divider style.<br>- **DividerStyle** (default): The divider is displayed.<br>- **null**: The divider is not displayed.|
+| value  | [DividerStyle](#dividerstyle10) \| null | Yes  | Divider style.<br>- **DividerStyle** (default): The divider is displayed.<br>- **null**: The divider is not displayed.<br>**undefined**: The behavior is not processed, and the divider style is at the default value.|
 
 ### minContentWidth<sup>10+</sup>
 
@@ -193,6 +215,8 @@ until its width reaches the value defined by **minSideBarWidth**; if the compone
 
 **minContentWidth**, whether it is specified or kept at the default value, takes precedence over **minSideBarWidth** and **sideBarWidth** of the sidebar.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -202,6 +226,8 @@ until its width reaches the value defined by **minSideBarWidth**; if the compone
 | value  | [Dimension](ts-types.md#dimension10) | Yes  | Minimum content area width of the sidebar container.<br>Default value: **360vp**<br>Unit: vp|
 
 ## ButtonStyle
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
@@ -213,12 +239,16 @@ until its width reaches the value defined by **minSideBarWidth**; if the compone
 
 ## SideBarPosition<sup>9+</sup>
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 | Name| Description|
 | -------- | -------- |
 | Start | The sidebar is on the left side of the container.|
 | End | The sidebar is on the right side of the container.|
 
 ## DividerStyle<sup>10+</sup>
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 | Name       | Type     | Mandatory| Description                                    |
 | ----------- | ------------- | ---- | ---------------------------------------- |
@@ -253,6 +283,8 @@ This event is triggered when any of the following conditions is met:
 2. The **showSideBar** attribute adapts to behavior changes.
 
 3. The **autoHide** API is triggered when the divider is dragged.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 

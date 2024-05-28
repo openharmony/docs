@@ -31,3 +31,5 @@
   - [XML解析](xml-parsing.md)
   - [XML转换](xml-conversion.md)
 - [代码混淆](source-obfuscation.md)
+- 内存管理
+  - [GC介绍](gc-introduction.md)

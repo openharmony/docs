@@ -8,35 +8,33 @@
 
 2. 在EntryFormAbility中的onAddForm生命周期回调中实现本地文件的刷新。
 
-   ```ts
-   import type Base from '@ohos.base';
-   import type fileFs from '@ohos.file.fs';
-   import formBindingData from '@ohos.app.form.formBindingData';
-   import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
-   import fs from '@ohos.file.fs';
-   import hilog from '@ohos.hilog';
-   import type Want from '@ohos.app.ability.Want';
-   
+  ```ts
+  import { Want } from '@kit.AbilityKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { fileIo } from '@kit.CoreFileKit';
+  import { formBindingData, FormExtensionAbility } from '@kit.FormKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+
    const TAG: string = 'WgtImgUpdateEntryFormAbility';
    const DOMAIN_NUMBER: number = 0xFF00;
-   
+
    export default class WgtImgUpdateEntryFormAbility extends FormExtensionAbility {
      // 在添加卡片时，打开一个本地图片并将图片内容传递给卡片页面显示
      onAddForm(want: Want): formBindingData.FormBindingData {
        // 假设在当前卡片应用的tmp目录下有一个本地图片：head.PNG
        let tempDir = this.context.getApplicationContext().tempDir;
-       // 打开本地图片并获取其打开后的fd
-       let file: fileFs.File;
+       hilog.info(DOMAIN_NUMBER, TAG, `tempDir: ${tempDir}`);
        let imgBear: Record<string, number>;
        try {
-         file = fs.openSync(tempDir + '/' + 'head.PNG');
+        // 打开本地图片并获取其打开后的fd
+        let file = fileIo.openSync(tempDir + '/' + 'head.PNG');
          imgBear = {
            'imgBear': file.fd
          };
        } catch (e) {
-         hilog.error(DOMAIN_NUMBER, TAG, `openSync failed: ${JSON.stringify(e as Base.BusinessError)}`);
+         hilog.error(DOMAIN_NUMBER, TAG, `openSync failed: ${JSON.stringify(e as BusinessError)}`);
        }
-   
+
        class FormDataClass {
          text: string = 'Image: Bear';
          imgName: string = 'imgBear';
@@ -49,21 +47,18 @@
        // 将fd封装在formData中并返回至卡片页面
        return formBindingData.createFormBindingData(formData);
      }
-     ...
+     //...
    }
    ```
 
 3. 在EntryFormAbility中的onFormEvent生命周期回调中实现网络文件的刷新。
 
-   ```ts
-   import type Base from '@ohos.base';
-   import type fileFs from '@ohos.file.fs';
-   import formBindingData from '@ohos.app.form.formBindingData';
-   import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
-   import formProvider from '@ohos.app.form.formProvider';
-   import fs from '@ohos.file.fs';
-   import hilog from '@ohos.hilog';
-   import http from '@ohos.net.http';
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { fileIo } from '@kit.CoreFileKit';
+  import { formBindingData, FormExtensionAbility, formProvider } from '@kit.FormKit';
+  import { http } from '@kit.NetworkKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
    
    const TAG: string = 'WgtImgUpdateEntryFormAbility';
    const DOMAIN_NUMBER: number = 0xFF00;
@@ -86,23 +81,22 @@
        let httpRequest = http.createHttp()
        httpRequest.request(netFile, (err, data) => {
          if (!err && data.responseCode == http.ResponseCode.OK) {
-           let imgFile = fs.openSync(tmpFile, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
-           fs.write(imgFile.fd, data.result as ArrayBuffer).then((writeLen: number) => {
+           let imgFile = fileIo.openSync(tmpFile, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
+           fileIo.write(imgFile.fd, data.result as ArrayBuffer).then((writeLen: number) => {
              hilog.info(DOMAIN_NUMBER, TAG, "write data to file succeed and size is:" + writeLen);
-           }).catch((err: Base.BusinessError) => {
+           }).catch((err: BusinessError) => {
              hilog.error(DOMAIN_NUMBER, TAG, "write data to file failed with error message: " + err.message + ", error code: " + err.code);
            }).finally(() => {
-             fs.closeSync(imgFile);
+             fileIo.closeSync(imgFile);
            });
    
            hilog.info(DOMAIN_NUMBER, TAG, 'ArkTSCard download complete: %{public}s', tmpFile);
-           let file: fileFs.File;
            let fileInfo: Record<string, string | number> = {};
            try {
-             file = fs.openSync(tmpFile);
+             let file = fileIo.openSync(tmpFile);
              fileInfo[fileName] = file.fd;
            } catch (e) {
-             hilog.error(DOMAIN_NUMBER, TAG, `openSync failed: ${JSON.stringify(e as Base.BusinessError)}`);
+             hilog.error(DOMAIN_NUMBER, TAG, `openSync failed: ${JSON.stringify(e as BusinessError)}`);
            }
    
            class FormDataClass {
@@ -116,7 +110,7 @@
            let formInfo = formBindingData.createFormBindingData(formData);
            formProvider.updateForm(formId, formInfo).then(() => {
              hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', 'FormAbility updateForm success.');
-           }).catch((error: Base.BusinessError) => {
+           }).catch((error: BusinessError) => {
              hilog.error(DOMAIN_NUMBER, TAG, `FormAbility updateForm failed: ${JSON.stringify(error)}`);
            });
          } else {
@@ -130,7 +124,7 @@
          httpRequest.destroy();
        })
      }
-     ...
+     //...
    }
    ```
 

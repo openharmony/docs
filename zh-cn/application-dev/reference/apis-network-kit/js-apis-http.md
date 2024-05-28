@@ -10,15 +10,15 @@
 ## 导入模块
 
 ```ts
-import http from '@ohos.net.http';
+import { http } from '@kit.NetworkKit';
 ```
 
 ## 完整示例
 
 ```ts
 // 引入包名
-import http from '@ohos.net.http';
-import { BusinessError } from '@ohos.base';
+import { http } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // 每一个httpRequest对应一个HTTP请求任务，不可复用
 let httpRequest = http.createHttp();
@@ -121,7 +121,7 @@ createHttp(): HttpRequest
 **示例：**
 
 ```ts
-import http from '@ohos.net.http';
+import { http } from '@kit.NetworkKit';
 
 let httpRequest = http.createHttp();
 ```
@@ -195,7 +195,7 @@ request(url: string, callback: AsyncCallback\<HttpResponse\>): void
 **示例：**
 
 ```ts
-import http from '@ohos.net.http';
+import { http } from '@kit.NetworkKit';
 
 let httpRequest = http.createHttp();
 httpRequest.request("EXAMPLE_URL", (err: Error, data: http.HttpResponse) => {
@@ -277,7 +277,7 @@ request(url: string, options: HttpRequestOptions, callback: AsyncCallback\<HttpR
 **示例：**
 
 ```ts
-import http from '@ohos.net.http';
+import { http } from '@kit.NetworkKit';
 
 class Header {
   public contentType: string;
@@ -387,7 +387,7 @@ request(url: string, options? : HttpRequestOptions): Promise\<HttpResponse\>
 **示例：**
 
 ```ts
-import http from '@ohos.net.http';
+import { http } from '@kit.NetworkKit';
 
 class Header {
   public contentType: string;
@@ -430,7 +430,7 @@ destroy(): void
 **示例：**
 
 ```ts
-import http from '@ohos.net.http';
+import { http } from '@kit.NetworkKit';
 let httpRequest = http.createHttp();
 
 httpRequest.destroy();
@@ -496,8 +496,8 @@ requestInStream(url: string, callback: AsyncCallback\<number\>): void
 **示例：**
 
 ```ts
-import http from '@ohos.net.http';
-import { BusinessError } from '@ohos.base';
+import { http } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let httpRequest = http.createHttp();
 httpRequest.requestInStream("EXAMPLE_URL", (err: BusinessError, data: number) => {
@@ -570,8 +570,8 @@ requestInStream(url: string, options: HttpRequestOptions, callback: AsyncCallbac
 **示例：**
 
 ```ts
-import http from '@ohos.net.http';
-import { BusinessError } from '@ohos.base';
+import { http } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class Header {
   public contentType: string;
@@ -671,7 +671,7 @@ requestInStream(url: string, options? : HttpRequestOptions): Promise\<number\>
 **示例：**
 
 ```ts
-import http from '@ohos.net.http';
+import { http } from '@kit.NetworkKit';
 
 class Header {
   public contentType: string;
@@ -716,8 +716,8 @@ on(type: "headerReceive", callback: AsyncCallback\<Object\>): void
 **示例：**
 
 ```ts
-import http from '@ohos.net.http';
-import { BusinessError } from '@ohos.base';
+import { http } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let httpRequest = http.createHttp();
 httpRequest.on("headerReceive", (data: BusinessError) => {
@@ -749,7 +749,7 @@ off(type: "headerReceive", callback?: AsyncCallback\<Object\>): void
 **示例：**
 
 ```ts
-import http from '@ohos.net.http';
+import { http } from '@kit.NetworkKit';
 
 let httpRequest = http.createHttp();
 httpRequest.off("headerReceive");
@@ -775,7 +775,7 @@ on(type: "headersReceive", callback: Callback\<Object\>): void
 **示例：**
 
 ```ts
-import http from '@ohos.net.http';
+import { http } from '@kit.NetworkKit';
 
 let httpRequest = http.createHttp();
 httpRequest.on("headersReceive", (header: Object) => {
@@ -807,7 +807,7 @@ off(type: "headersReceive", callback?: Callback\<Object\>): void
 **示例：**
 
 ```ts
-import http from '@ohos.net.http';
+import { http } from '@kit.NetworkKit';
 
 let httpRequest = http.createHttp();
 httpRequest.on("headersReceive", (header: Object) => {
@@ -834,7 +834,7 @@ once(type: "headersReceive", callback: Callback\<Object\>): void
 **示例：**
 
 ```ts
-import http from '@ohos.net.http';
+import { http } from '@kit.NetworkKit';
 
 let httpRequest = http.createHttp();
 httpRequest.once("headersReceive", (header: Object) => {
@@ -863,7 +863,7 @@ on(type: "dataReceive", callback: Callback\<ArrayBuffer\>): void
 **示例：**
 
 ```ts
-import http from '@ohos.net.http';
+import { http } from '@kit.NetworkKit';
 
 let httpRequest = http.createHttp();
 httpRequest.on("dataReceive", (data: ArrayBuffer) => {
@@ -893,7 +893,7 @@ off(type: "dataReceive", callback?: Callback\<ArrayBuffer\>): void
 **示例：**
 
 ```ts
-import http from '@ohos.net.http';
+import { http } from '@kit.NetworkKit';
 
 let httpRequest = http.createHttp();
 httpRequest.on("dataReceive", (data: ArrayBuffer) => {
@@ -923,7 +923,7 @@ on(type: "dataEnd", callback: Callback\<void\>): void
 **示例：**
 
 ```ts
-import http from '@ohos.net.http';
+import { http } from '@kit.NetworkKit';
 
 let httpRequest = http.createHttp();
 httpRequest.on("dataEnd", () => {
@@ -953,7 +953,7 @@ off(type: "dataEnd", callback?: Callback\<void\>): void
 **示例：**
 
 ```ts
-import http from '@ohos.net.http';
+import { http } from '@kit.NetworkKit';
 
 let httpRequest = http.createHttp();
 httpRequest.on("dataEnd", () => {
@@ -983,7 +983,7 @@ on(type: "dataReceiveProgress", callback: Callback\<DataReceiveProgressInfo\>): 
 **示例：**
 
 ```ts
-import http from '@ohos.net.http';
+import { http } from '@kit.NetworkKit';
 
 let httpRequest = http.createHttp();
 httpRequest.on("dataReceiveProgress", (data: http.DataReceiveProgressInfo) => {
@@ -1013,7 +1013,7 @@ off(type: "dataReceiveProgress", callback?: Callback\<DataReceiveProgressInfo\>)
 **示例：**
 
 ```ts
-import http from '@ohos.net.http';
+import { http } from '@kit.NetworkKit';
 
 let httpRequest = http.createHttp();
 httpRequest.on("dataReceiveProgress", (data: http.DataReceiveProgressInfo) => {
@@ -1040,7 +1040,7 @@ on(type: "dataSendProgress", callback: Callback\<DataSendProgressInfo\>): void
 **示例：**
 
 ```ts
-import http from '@ohos.net.http';
+import { http } from '@kit.NetworkKit';
 
 let httpRequest = http.createHttp();
 httpRequest.on("dataSendProgress", (data: http.DataSendProgressInfo) => {
@@ -1070,7 +1070,7 @@ off(type: "dataSendProgress", callback?: Callback\<DataSendProgressInfo\>): void
 **示例：**
 
 ```ts
-import http from '@ohos.net.http';
+import { http } from '@kit.NetworkKit';
 
 let httpRequest = http.createHttp();
 httpRequest.on("dataSendProgress", (data: http.DataSendProgressInfo) => {
@@ -1280,7 +1280,7 @@ createHttpResponseCache(cacheSize?: number): HttpResponseCache
 **示例：**
 
 ```ts
-import http from '@ohos.net.http';
+import { http } from '@kit.NetworkKit';
 
 let httpResponseCache = http.createHttpResponseCache();
 ```
@@ -1344,8 +1344,8 @@ flush(callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```ts
-import http from '@ohos.net.http';
-import { BusinessError } from '@ohos.base';
+import { http } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let httpResponseCache = http.createHttpResponseCache();
 let httpRequest = http.createHttp();
@@ -1385,8 +1385,8 @@ flush(): Promise\<void\>
 **示例：**
 
 ```ts
-import http from '@ohos.net.http';
-import { BusinessError } from '@ohos.base';
+import { http } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let httpRequest = http.createHttp();
 let httpResponseCache = http.createHttpResponseCache();
@@ -1422,8 +1422,8 @@ delete(callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```ts
-import http from '@ohos.net.http';
-import { BusinessError } from '@ohos.base';
+import { http } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let httpRequest = http.createHttp();
 httpRequest.request("EXAMPLE_URL").then(data => {
@@ -1464,8 +1464,8 @@ delete(): Promise\<void\>
 **示例：**
 
 ```ts
-import http from '@ohos.net.http';
-import { BusinessError } from '@ohos.base';
+import { http } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let httpRequest = http.createHttp();
 httpRequest.request("EXAMPLE_URL").then(data => {

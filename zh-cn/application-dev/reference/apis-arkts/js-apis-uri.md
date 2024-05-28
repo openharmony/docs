@@ -10,7 +10,7 @@
 ## 导入模块
 
 ```ts
-import uri from '@ohos.uri'
+import { uri } from '@kit.ArkTS';
 ```
 
 ## URI
@@ -132,10 +132,11 @@ constructor是URI的构造函数。
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200002 | Invalid uri string. |
 
 **示例：**
@@ -193,6 +194,14 @@ equalsTo(other: URI): boolean
 | 类型 | 说明 |
 | -------- | -------- |
 | boolean | 返回true表示相等，否则返回false。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -303,7 +312,7 @@ console.log(`${uriInstance1.checkOpaque()}`); // true
 
 checkHierarchical(): boolean
 
-判断此URI的方案特定部分是否以“/”开头，以“/”开头的URI为分层的URI。
+判断此URI的方案特定部分是否以“/”开头，以“/”开头的URI为分层的URI。相对URI也是分层的。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -342,6 +351,14 @@ getQueryValue(key:string): string
 | ------ | ----------------------------- |
 | string | 返回第一个此URI查询参数的值。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | The input parameters are invalid. |
+
 **示例：**
 
 ```ts
@@ -369,6 +386,14 @@ addQueryValue(key:string, value:string): URI
 | 类型 | 说明                             |
 | ---- | -------------------------------- |
 | [URI](#uri)  | 返回添加查询部分后的URI对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | The input parameters are invalid. |
 
 **示例：**
 
@@ -398,6 +423,14 @@ addSegment(pathSegment:string): URI
 | ---- | -------------------------------- |
 | [URI](#uri)  | 返回已追加字段的URI对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | The input parameters are invalid. |
+
 **示例：**
 
 ```ts
@@ -425,6 +458,14 @@ addEncodedSegment(pathSegment:string): URI
 | 类型 | 说明                             |
 | ---- | -------------------------------- |
 | [URI](#uri)  | 返回已追加字段的URI对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | The input parameters are invalid. |
 
 **示例：**
 
@@ -476,6 +517,14 @@ getQueryValues(key:string): string[]
 | -------- | ----------------------------------- |
 | string[] | 返回此URI中查询参数的所有值。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | The input parameters are invalid. |
+
 **示例：**
 
 ```ts
@@ -496,13 +545,21 @@ getBooleanQueryValue(key:string,defaultValue:boolean): boolean
 | 参数名       | 类型    | 必填 | 说明                                  |
 | ------------ | ------- | ---- | ------------------------------------- |
 | key          | string  | 是   | 要获取的查询参数的名称。               |
-| defaultValue | boolean | 是   | 当指定的查询参数不存在或者参数值无法被转换为布尔值时，返回的默认值。 |
+| defaultValue | boolean | 是   | 返回的默认值。 |
 
 **返回值：**
 
 | 类型    | 说明                                                                   |
 | ------- | ---------------------------------------------------------------------- |
-| boolean | 布尔类型的查询参数值，如果指定的查询参数不存在或者无法被转换为布尔值，则返回defaultValue。 |
+| boolean | 如果指定的查询参数不存在，则返回默认值；查询参数对应第一个值为“false”或者“0”返回false，否则返回true。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | The input parameters are invalid. |
 
 **示例：**
 
@@ -511,6 +568,10 @@ const uriInstance = new uri.URI("https://www.test.com/search?active=true");
 console.log(`${uriInstance.getBooleanQueryValue("active", false)}`); // true
 const uriInstance1 = new uri.URI("https://www.test.com/search");
 console.log(`${uriInstance1.getBooleanQueryValue("active", false)}`); // false
+const uriInstance2 = new uri.URI("https://www.test.com/search?active=aa&active=false");
+console.log(`${uriInstance2.getBooleanQueryValue("active", false)}`); // true
+const uriInstance3 = new uri.URI("https://www.test.com/search?active=0");
+console.log(`${uriInstance3.getBooleanQueryValue("active", true)}`); // false
 ```
 
 ### clearQuery<sup>12+</sup>
@@ -538,7 +599,7 @@ console.log(uriInstance.clearQuery().toString()); // https://www.test.com
 
 getLastSegment(): string
 
-获取此URI路径的最后一个段。每个段代表路径中的一个部分，通常通过“/”来进行分隔。
+获取此URI路径的最后一个段。每个段代表路径中的一个部分，通常通过“/”来进行分隔。对于以斜杠结尾的或者没有路径的不代表段。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -597,6 +658,14 @@ createFromParts(scheme: string, ssp: string, fragment: string): URI
 | 类型 | 说明                                              |
 | ---- | ------------------------------------------------- |
 | [URI](#uri)  | 返回创建的URI对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | The input parameters are invalid. |
 
 **示例：**
 

@@ -58,6 +58,112 @@
 - 卡片渲染服务：用于管理卡片渲染实例，渲染实例与卡片使用方上的卡片组件一一绑定。卡片渲染服务运行卡片页面代码widgets.abc进行渲染，并将渲染后的数据发送至卡片使用方对应的卡片组件。
 <!--DelEnd-->
 
+第六种：
+1. 创建audioVolumeGroupManager对象。
+     
+   ```ts
+   import audio from '@ohos.multimedia.audio';
+
+   let audioVolumeGroupManager: audio.AudioVolumeGroupManager;
+   async function loadVolumeGroupManager() { //创建audioVolumeGroupManager对象
+     const groupid = audio.DEFAULT_VOLUME_GROUP_ID;
+     audioVolumeGroupManager = await audio.getAudioManager().getVolumeManager().getVolumeGroupManager(groupid);
+     console.info('audioVolumeGroupManager create success.');
+   }
+   ```
+<!--Del-->
+2. **(仅对系统应用开放)** 调用on('micStateChange')监听麦克风状态变化，当麦克风静音状态发生变化时将通知应用。
+   
+   目前此订阅接口在单进程多AudioManager实例的使用场景下，仅最后一个实例的订阅生效，其他实例的订阅会被覆盖（即使最后一个实例没有进行订阅），因此推荐使用单一AudioManager实例进行开发。
+
+   ```ts
+   async function on() {   //监听麦克风状态变化
+     audioVolumeGroupManager.on('micStateChange', (micStateChange: audio.MicStateChangeEvent) => {
+       console.info(`Current microphone status is: ${micStateChange.mute} `);
+     });
+   }
+   ```
+<!--DelEnd-->
+
+3. 调用isMicrophoneMute查询麦克风当前静音状态，返回true为静音，false为非静音。
+     
+   ```ts
+   async function isMicrophoneMute() { //查询麦克风是否静音
+     await audioVolumeGroupManager.isMicrophoneMute().then((value: boolean) => {
+       console.info(`isMicrophoneMute is: ${value}.`);
+     });
+   }
+   ```
+<!--Del-->
+4. **(仅对系统应用开放)** 根据查询结果的实际情况，调用setMicrophoneMute设置麦克风静音状态，入参输入true为静音，false为非静音。
+     
+   ```ts
+   async function setMicrophoneMuteTrue() { //设置麦克风静音，入参为true
+     await audioVolumeGroupManager.setMicrophoneMute(true).then(() => {
+       console.info('setMicrophoneMute to mute.');
+     });
+   }
+   async function setMicrophoneMuteFalse() { //取消麦克风静音，入参为false
+     await audioVolumeGroupManager.setMicrophoneMute(false).then(() => {
+       console.info('setMicrophoneMute to not mute.');
+     });
+   }
+   ```
+<!--DelEnd-->
+
+第七种：
+1. 创建audioVolumeGroupManager对象。
+     
+   ```ts
+   import audio from '@ohos.multimedia.audio';
+
+   let audioVolumeGroupManager: audio.AudioVolumeGroupManager;
+   async function loadVolumeGroupManager() { //创建audioVolumeGroupManager对象
+     const groupid = audio.DEFAULT_VOLUME_GROUP_ID;
+     audioVolumeGroupManager = await audio.getAudioManager().getVolumeManager().getVolumeGroupManager(groupid);
+     console.info('audioVolumeGroupManager create success.');
+   }
+   ```<!--Del-->
+
+2. **(仅对系统应用开放)** 调用on('micStateChange')监听麦克风状态变化，当麦克风静音状态发生变化时将通知应用。
+   
+   目前此订阅接口在单进程多AudioManager实例的使用场景下，仅最后一个实例的订阅生效，其他实例的订阅会被覆盖（即使最后一个实例没有进行订阅），因此推荐使用单一AudioManager实例进行开发。
+
+   ```ts
+   async function on() {   //监听麦克风状态变化
+     audioVolumeGroupManager.on('micStateChange', (micStateChange: audio.MicStateChangeEvent) => {
+       console.info(`Current microphone status is: ${micStateChange.mute} `);
+     });
+   }
+   ```
+<!--DelEnd-->
+
+3. 调用isMicrophoneMute查询麦克风当前静音状态，返回true为静音，false为非静音。
+     
+   ```ts
+   async function isMicrophoneMute() { //查询麦克风是否静音
+     await audioVolumeGroupManager.isMicrophoneMute().then((value: boolean) => {
+       console.info(`isMicrophoneMute is: ${value}.`);
+     });
+   }
+   ``` <!--Del-->
+
+4. **(仅对系统应用开放)** 根据查询结果的实际情况，调用setMicrophoneMute设置麦克风静音状态，入参输入true为静音，false为非静音。
+     
+   ```ts
+   async function setMicrophoneMuteTrue() { //设置麦克风静音，入参为true
+     await audioVolumeGroupManager.setMicrophoneMute(true).then(() => {
+       console.info('setMicrophoneMute to mute.');
+     });
+   }
+   async function setMicrophoneMuteFalse() { //取消麦克风静音，入参为false
+     await audioVolumeGroupManager.setMicrophoneMute(false).then(() => {
+       console.info('setMicrophoneMute to not mute.');
+     });
+   }
+   ```
+<!--DelEnd-->
+
  **3、删除section和subsection** 
 
 第一种：删除subsection
@@ -150,8 +256,8 @@ photoAccessHelper提供用户相册相关的接口，供开发者创建、删除
 | -------- | -------- | -------- |
 | 应用组件开发 | 本章节介绍了如何使用Stage模型的UIAbility组件和ExtensionAbility组件开发应用。 | -&nbsp;应用/组件级配置<br/>-&nbsp;UIAbility组件<br/>-&nbsp;ExtensionAbility组件<br/>-&nbsp;AbilityStage组件容器<br/>-&nbsp;应用上下文Context<br/>-&nbsp;组件启动规则 |
 | 了解进程模型 | 本章节介绍了Stage模型的进程模型以及几种常用的进程间通信方式。 | 进程模型概述|
-| 了解线程模型 | 本章节介绍了Stage模型的线程模型以及几种常用的线程间通信方式。 | 线程模型概述 |
-| <!--Del-->任务管理 | 本章节介绍了Stage模型中任务管理的基本概念和典型场景。 | -&nbsp;任务管理场景介绍<br/>-&nbsp;任务管理与启动模式<br/>-&nbsp;页面栈和任务链 <!--DelEnd-->|
+| 了解线程模型 | 本章节介绍了Stage模型的线程模型以及几种常用的线程间通信方式。 | 线程模型概述 |<!--Del-->
+| 任务管理 | 本章节介绍了Stage模型中任务管理的基本概念和典型场景。 | -&nbsp;任务管理场景介绍<br/>-&nbsp;任务管理与启动模式<br/>-&nbsp;页面栈和任务链 |<!--DelEnd-->
 | 应用配置文件 | 本章节介绍Stage模型中应用配置文件的开发要求。 | Stage模型应用配置文件 |
 
 第二种：删除整个表格
@@ -174,6 +280,33 @@ photoAccessHelper提供用户相册相关的接口，供开发者创建、删除
 | 任务管理 | 本章节介绍了Stage模型中任务管理的基本概念和典型场景。 | -&nbsp;任务管理场景介绍<br/>-&nbsp;任务管理与启动模式<br/>-&nbsp;页面栈和任务链 |
 | 应用配置文件 | 本章节介绍Stage模型中应用配置文件的开发要求。 | Stage模型应用配置文件 |
 
+第四种:删除行和列【确认：列和行删除顺序】
+| 算法 | 支持的密钥长度 | API级别 | <!--DelCol4-->是否必选规格 | 
+| -------- | -------- | -------- | -------- |
+| AES | 128、192、256 | 8+ | 是 |<!--Del-->
+| RSA | 512、768、1024 | 8+ | 否 |<!--DelEnd-->
+| RSA | 2048、3072、4096 | 8+ | 是 | 
+| HMAC | 8-1024（含），必须是8的倍数 | 8+ | 是 |<!--Del-->
+| ECC | 224 | 8+ | 否 |<!--DelEnd-->
+| ECC | 256、384、521 | 8+ | 是 | 
+| ED25519 | 256 | 8+ | 是 | 
+| X25519 | 256 | 8+ | 是 |<!--Del-->
+| DSA | 512-1024（含），8的倍数 | 8+ | 否 |<!--DelEnd-->
+| DH | 2048 | 8+ | 是 |
+| DH | 3072、4096 | 8+ | 否 | 
+| SM2 | 256 | 9+ | 是 | 
+| SM4 | 128 | 9+ | 是 | 
+
+第五种：删除第一行
+第一种：删除行
+| 任务 | 简介 | 相关指导 |
+| -------- | -------- | -------- |
+| <!--Del-->应用组件开发 | 本章节介绍了如何使用Stage模型的UIAbility组件和ExtensionAbility组件开发应用。 | -&nbsp;应用/组件级配置<br/>-&nbsp;UIAbility组件<br/>-&nbsp;ExtensionAbility组件<br/>-&nbsp;AbilityStage组件容器<br/>-&nbsp;应用上下文Context<br/>-&nbsp;组件启动规则 |
+| 了解进程模型 | 本章节介绍了Stage模型的进程模型以及几种常用的进程间通信方式。 | 进程模型概述|
+| <!--Del-->了解线程模型 | 本章节介绍了Stage模型的线程模型以及几种常用的线程间通信方式。 | 线程模型概述 |<!--Del-->
+| 任务管理 | 本章节介绍了Stage模型中任务管理的基本概念和典型场景。 | -&nbsp;任务管理场景介绍<br/>-&nbsp;任务管理与启动模式<br/>-&nbsp;页面栈和任务链 |<!--DelEnd-->
+| <!--Del-->应用配置文件 | 本章节介绍Stage模型中应用配置文件的开发要求。 | Stage模型应用配置文件 |
+
 **5、相关实例**
 ## 相关实例
 
@@ -191,3 +324,19 @@ photoAccessHelper提供用户相册相关的接口，供开发者创建、删除
 > 说明第三行
 >
 > <!--Del-->说明第四行<!--DelEnd-->
+
+## 验证优化后的链接
+
+
+**参数：**
+
+| 参数名   | 类型   | 必填 | 说明                                                         |
+| -------- | ------ | ---- | ------------------------------------------------------------ |
+| type | string |  是  | 泄漏资源类型，共四种类型:pss_memory(native内存)、js_heap(js堆内存)、fd(文件描述符)或thread(线程) |
+| value | number |  是  | 对应泄漏资源类型的最大值。范围：pss_memory类型`[1024, 4 * 1024 * 1024](单位：KB)`, js_heap类型`[85, 95](分配给JS堆内存上限的85%~95%)`, fd类型`[10, 10000]`, thread类型`[1, 1000]` |
+| enableDebugLog | boolean |  是  | 是否启用外部调试日志，默认值为false，请仅在灰度版本中设置为true，因为收集调试日志会花费太多的cpu或内存 |
+| value | number |  是  | 对应泄漏资源类型的最大值。范围：pss_memory类型[1024, 4 * 1024 * 1024](单位：KB), js_heap类型[85, 95](分配给JS堆内存上限的85%~95%), fd类型[10, 10000], thread类型[1, 1000] |
+
+
+## 验证code中的断链
+和AppStorage不同的是，LocalStorage是页面级的，通常应用于页面内的数据共享。而AppStorage是应用级的全局状态共享，还相当于整个应用的“中枢”，`[持久化数据PersistentStorage](using-toneplayer-for-playback.md)`和[需要检查出断链--持久化数据PersistentStorage](using-toneplayer-for-playback.md)是通过AppStorage中转，才可以和UI交互。

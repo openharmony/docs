@@ -46,8 +46,8 @@
 /*
  *以下以X25519 256密钥的Promise操作使用为例
  */
- import huks from '@ohos.security.huks';
- import { BusinessError } from '@ohos.base';
+ import { huks } from "@kit.UniversalKeystoreKit";
+ import { BusinessError} from "@kit.BasicServicesKit"
  /*
   * 确定密钥别名和封装密钥属性参数集
   */
