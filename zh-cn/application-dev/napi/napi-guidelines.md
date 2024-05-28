@@ -160,6 +160,9 @@ void callbackTest(CallbackContext* context)
             CallbackContext* context = (CallbackContext*)work->data;
             napi_handle_scope scope = nullptr; napi_open_handle_scope(context->env, &scope);
             if (scope == nullptr) {
+                if (work != nullptr) {
+                    delete work;
+                }
                 return;
             }
             napi_value callback = nullptr;
