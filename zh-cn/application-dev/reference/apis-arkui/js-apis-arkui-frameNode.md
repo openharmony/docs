@@ -836,12 +836,12 @@ class MyNodeController extends NodeController {
   }
   getPositionToWindow()
   {
-    let positionToWindow = this.frameNode?.getPositionToWindow();
+    let positionToWindow = this.rootNode?.getPositionToWindow();
     console.log(TEST_TAG + JSON.stringify(positionToWindow));
   }
   getPositionToParent()
   {
-    let positionToParent = this.frameNode?.getPositionToWindow();
+    let positionToParent = this.rootNode?.getPositionToWindow();
     console.log(TEST_TAG + JSON.stringify(positionToParent));
   }
 
