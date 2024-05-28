@@ -729,7 +729,6 @@ publish(data: Array&lt;PublishedItem&gt;, bundleName: string, callback: AsyncCal
 | bundleName | string                                          | 是   | 表示要发布数据所属的APP，对发布的私有数据生效，仅该app可以读取数据。       |
 | callback | AsyncCallback&lt;Array&lt;[OperationResult](#operationresult10)&gt;&gt; | 是   | 回调函数。当发布数据时调用，err为undefined，result为发布数据结果；否则不被触发或为错误对象。 |
 
-**示例：**
 
 **错误码：**
 
@@ -738,6 +737,8 @@ publish(data: Array&lt;PublishedItem&gt;, bundleName: string, callback: AsyncCal
 | 错误码ID | 错误信息                    |
 | -------- | -------------------------- |
 | 15700012 | The data area is not exist.|
+
+**示例：**
 
 ```ts
 import { BusinessError } from '@ohos.base'
