@@ -23,8 +23,8 @@ napi_status napi_load_module(napi_env env,
 
 ## Constraints
 
-- Do not use this AP in non-main threads.
-- Do not use this API in the **Init()** function.
+- **napi_load_module** cannot be used in non-main threads.
+- **napi_load_module** cannot be used in the **Init()** function.
 - Do not load a file in the callback function of a thread-safe function.
 
 
