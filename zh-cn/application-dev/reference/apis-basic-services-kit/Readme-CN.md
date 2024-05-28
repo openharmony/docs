@@ -130,3 +130,5 @@
   - [帐号管理错误码](errorcode-account.md)
   - [升级错误码](errorcode-update.md)
   - [锁屏服务错误码](errorcode-screenlock.md)
+  - [打印服务错误码](errorcode-print.md)
+  - [设备证明错误码](errorcode-deviceAttest.md)
