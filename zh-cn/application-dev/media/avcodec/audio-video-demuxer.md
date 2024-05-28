@@ -162,7 +162,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    ```
 4. 注册[DRM信息监听函数](../../reference/apis-drm-kit/_drm.md#drm_mediakeysysteminfocallback)（可选，若非DRM码流或已获得[DRM信息](../../reference/apis-drm-kit/_drm.md#drm_mediakeysysteminfo)，可跳过此步）。
 
-   加入头文件
+   添加头文件
    ```c++
    #include <multimedia/drm_framework/native_drm_common.h>
    ```
@@ -311,17 +311,16 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    ```
 
 10. 销毁解封装实例。
-
-   ```c++
-   // 需要用户调用 OH_AVSource_Destroy 接口成功后，手动将对象置为 NULL，对同一对象重复调用 OH_AVSource_Destroy 会导致程序错误
-   if (OH_AVSource_Destroy(source) != AV_ERR_OK) {
-      printf("destroy source pointer error");
-   }
-   source = NULL;
-   // 需要用户调用 OH_AVDemuxer_Destroy 接口成功后，手动将对象置为 NULL，对同一对象重复调用 OH_AVDemuxer_Destroy 会导致程序错误
-   if (OH_AVDemuxer_Destroy(demuxer) != AV_ERR_OK) {
-      printf("destroy demuxer pointer error");
-   }
-   demuxer = NULL;
-   close(fd);
-   ```
+      ```c++
+      // 需要用户调用 OH_AVSource_Destroy 接口成功后，手动将对象置为 NULL，对同一对象重复调用 OH_AVSource_Destroy 会导致程序错误
+      if (OH_AVSource_Destroy(source) != AV_ERR_OK) {
+         printf("destroy source pointer error");
+      }
+      source = NULL;
+      // 需要用户调用 OH_AVDemuxer_Destroy 接口成功后，手动将对象置为 NULL，对同一对象重复调用 OH_AVDemuxer_Destroy 会导致程序错误
+      if (OH_AVDemuxer_Destroy(demuxer) != AV_ERR_OK) {
+         printf("destroy demuxer pointer error");
+      }
+      demuxer = NULL;
+      close(fd);
+      ```

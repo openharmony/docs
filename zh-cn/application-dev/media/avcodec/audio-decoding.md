@@ -176,7 +176,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
         printf("create media key system failed");
         return;
     }
-    // 进行Provision认证
+    // 进行DRM授权
     // 创建解密会话
     MediaKeySession *session = nullptr;
     DRM_ContentProtectionLevel contentProtectionLevel = CONTENT_PROTECTION_LEVEL_SW_CRYPTO;

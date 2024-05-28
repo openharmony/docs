@@ -536,7 +536,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
         printf("create media key system failed");
         return;
     }
-    // 进行Provision认证
+    // 进行DRM授权
     // 创建解密会话
     MediaKeySession *session = nullptr;
     DRM_ContentProtectionLevel contentProtectionLevel = CONTENT_PROTECTION_LEVEL_SW_CRYPTO;
@@ -666,4 +666,4 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
         }
         OH_AVFormat_Destory(format);
     ```
-后续流程（包括刷新解码器、重置解码器、停止解码器、销毁解码器）与Surface模式基本一致，请参考[Surface模式](#surface模式)的步骤11-14。
+后续流程（包括刷新解码器、重置解码器、停止解码器、销毁解码器）与Surface模式基本一致，请参考[Surface模式](#surface模式)的步骤12-15。

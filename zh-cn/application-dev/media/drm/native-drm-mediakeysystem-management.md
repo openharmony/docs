@@ -349,30 +349,30 @@ DRM系统管理（MediaKeySystem）支持MediaKeySystem实例管理、设备证�
 
 16. 调用MediaKeySystem类中的OH_MediaKeySystem_SetCallback方法设置MediaKeySystem监听回调。
 
-   ```c++
-    DRM_ErrCode TestSystemCallBackWithObj(MediaKeySystem *mediaKeySystem, DRM_EventType eventType,
-    uint8_t *info, int32_t infoLen, char *extra)
-    {
-        OH_LOG_INFO(LOG_APP, "TestSystemCallBackWithObj");
+    ```c++
+      DRM_ErrCode TestSystemCallBackWithObj(MediaKeySystem *mediaKeySystem, DRM_EventType eventType,
+      uint8_t *info, int32_t infoLen, char *extra)
+      {
+          OH_LOG_INFO(LOG_APP, "TestSystemCallBackWithObj");
+      }
+      DRM_ErrCode MediaKeySystem_SetMediaKeySystemCallbackWithObj()
+      {
+      MediaKeySystem *keySystem = NULL;
+      const char *name = "com.wiseplay.drm";
+      ret = OH_MediaKeySystem_Create(name, &keySystem);
+      if (ret != DRM_OK) {
+          OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_Create failed.");
+      }
+      ret = OH_MediaKeySystem_SetCallback(keySystem,
+          TestSystemCallBackWithObj);
+      if (ret != DRM_OK) {
+          OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_SetCallback failed.");
+      }
+      ret = OH_MediaKeySystem_Destroy(keySystem);
+      if (ret != DRM_OK) {
+      OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_Destroy failed.");
+      return ret;
+      }
+      return ret;
     }
-    DRM_ErrCode MediaKeySystem_SetMediaKeySystemCallbackWithObj()
-    {
-    MediaKeySystem *keySystem = NULL;
-    const char *name = "com.wiseplay.drm";
-    ret = OH_MediaKeySystem_Create(name, &keySystem);
-    if (ret != DRM_OK) {
-        OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_Create failed.");
-    }
-    ret = OH_MediaKeySystem_SetCallback(keySystem,
-        TestSystemCallBackWithObj);
-    if (ret != DRM_OK) {
-        OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_SetCallback failed.");
-    }
-    ret = OH_MediaKeySystem_Destroy(keySystem);
-    if (ret != DRM_OK) {
-     OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_Destroy failed.");
-     return ret;
-    }
-    return ret;
-   }
-   ```
+    ```
