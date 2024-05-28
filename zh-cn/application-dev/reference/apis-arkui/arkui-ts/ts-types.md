@@ -701,9 +701,9 @@ VisibleAreaChangeCallback = (isVisible: boolean, currentRatio: number) => void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称     | 类型                                      | 必填   | 说明     |
-| ------ | --------------------------------------- | ---- |--------|
-| strokeWidth  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup>  |      | 描边宽度。  |
-| color  | [ResourceColor](#resourcecolor) |      | 分割线颜色。 |
-| startMargin | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> |       | 起始边距。  |
-| endMargin  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup>|       | 末边距。   |
+| 名称     | 类型                                      | 必填 | 说明              |
+| ------ | --------------------------------------- |---|-----------------|
+| strokeWidth  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup>  | 否 | 分割线的线宽。         |
+| color  | [ResourceColor](#resourcecolor) | 否  | 分割线的颜色。         |
+| startMargin | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | 否  | 分割线与菜单侧边起始端的距离。 |
+| endMargin  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup>| 否  | 分割线与菜单侧边结束端的距离。 |
