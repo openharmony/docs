@@ -920,8 +920,6 @@ publish(data: Array&lt;PublishedItem&gt;, bundleName: string, callback: AsyncCal
 | bundleName | string                                          | 是   | 表示要发布数据所属的APP，对发布的私有数据生效，仅该app可以读取数据。       |
 | callback | AsyncCallback&lt;Array&lt;[OperationResult](#operationresult10)&gt;&gt; | 是   | 回调函数。当发布数据时调用，err为undefined，result为发布数据结果；否则不被触发或为错误对象。 |
 
-**示例：**
-
 **错误码：**
 
 以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
@@ -931,6 +929,8 @@ publish(data: Array&lt;PublishedItem&gt;, bundleName: string, callback: AsyncCal
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700012 | The data area is not exist.|
 | 15700013 | The DataShareHelper instance is already closed.|
+
+**示例：**
 
 ```ts
 import { BusinessError } from '@ohos.base'
