@@ -13,6 +13,18 @@
 
 申请流程可参考[选择申请权限的方式](determine-application-mode.md)。
 
+### ohos.permission.PRE_START_ATOMIC_SERVICE
+
+允许应用市场跳过loading弹框并为原子化服务提前打开窗口，并在窗口内部显示加载动效。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
 ### ohos.permission.MANAGE_SETTINGS
 
 允许应用设置SettingsData中设备级配置数据表和用户级配置数据表。
