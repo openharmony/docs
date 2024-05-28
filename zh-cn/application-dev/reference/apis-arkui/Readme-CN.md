@@ -135,6 +135,7 @@
         - [事件独占控制](arkui-ts/ts-universal-attributes-monopolize-events.md)
         - [鼠标光标控制](arkui-ts/ts-universal-attributes-cursor.md)
         - [特效绘制合并](arkui-ts/ts-universal-attributes-use-effect.md)
+        - [点光源设置 (系统接口)](arkui-ts/ts-universal-attributes-point-light-style-sys.md)
       - 手势处理
         - [绑定手势方法](arkui-ts/ts-gesture-settings.md)
         - 基础手势
@@ -237,8 +238,12 @@
       - [WaterFlow](arkui-ts/ts-container-waterflow.md)
       - [WithTheme](arkui-ts/ts-container-with-theme.md)
       <!--Del-->
+      - [Column (系统接口)](arkui-ts/ts-container-column-sys.md)
       - [EffectComponent (系统接口)](arkui-ts/ts-container-effectcomponent-sys.md)
+      - [Flex (系统接口)](arkui-ts/ts-container-flex-sys.md)
       - [List (系统接口)](arkui-ts/ts-container-list-sys.md)
+      - [Row (系统接口)](arkui-ts/ts-container-row-sys.md)
+      - [Stack (系统接口)](arkui-ts/ts-container-stack-sys.md)
       - [UIExtensionComponent (系统接口)](arkui-ts/ts-container-ui-extension-component-sys.md)
       <!--DelEnd-->
     - 媒体组件
@@ -289,6 +294,7 @@
       - [@ohos.arkui.advanced.TabTitleBar (页签型标题栏)](arkui-ts/ohos-arkui-advanced-TabTitleBar.md)
       - [@ohos.arkui.advanced.ToolBar (工具栏)](arkui-ts/ohos-arkui-advanced-ToolBar.md)
       - [@ohos.arkui.advanced.TreeView (树视图)](arkui-ts/ohos-arkui-advanced-TreeView.md)
+      - [@ohos.arkui.advanced.FormMenu (应用卡片加桌菜单)](arkui-ts/ohos-arkui-advanced-formmenu.md)
     - 安全控件
       - [安全控件通用属性](arkui-ts/ts-securitycomponent-attributes.md)
       - [LocationButton](arkui-ts/ts-security-components-locationbutton.md)
@@ -329,6 +335,7 @@
     - [枚举说明](arkui-ts/ts-appendix-enums.md)
     - [设置事件回调](arkui-ts/ts-uicommonevent.md)
     - [属性字符串](arkui-ts/ts-universal-styled-string.md)
+    - [枚举说明 (系统接口)](arkui-ts/ts-appendix-enums-sys.md)
     - 已停止维护的组件
       <!--Del-->
       - [AbilityComponent (系统接口)](arkui-ts/ts-container-ability-component-sys.md)

@@ -3041,6 +3041,18 @@
 
 **起始版本**：12
 
+### ohos.permission.ACCESS_FILE_CONTENT_SHARE
+
+允许系统服务或系统应用访问共享文件内容。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
 ### ohos.permission.ACCESS_RINGTONE_RESOURCE
 
 允许系统应用访问和写入铃音数据公共目录的权限。

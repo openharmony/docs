@@ -3967,8 +3967,20 @@ avMetadataExtractor.release().then(() => {
 | videoHeight | string | 否   | 视频的高度，单位为像素。当前版本为只读参数。 |
 | videoWidth | string | 否   | 视频的宽度，单位为像素。当前版本为只读参数。 |
 | videoOrientation | string | 否   | 视频的旋转方向，单位为度（°）。|
+| hdrType<sup>12+</sup> | [HdrType](#hdrtype12) | 否   | 媒体资源的HDR类型。 |
 | location<sup>12+</sup> | [Location](#location) | 否 | 视频的地理位置信息。 |
 | customInfo<sup>12+</sup> | Record<string, string> | 否 | 从moov.meta.list 获取的自定义参数键值映射。|
+
+## HdrType<sup>12+</sup>
+
+表示视频HDR类型的枚举。
+
+**系统能力：** SystemCapability.Multimedia.Media.Core
+
+| 名称                      | 值   | 说明                   |
+| ------------------------- | ---- | ---------------------- |
+| AV_HDR_TYPE_NONE          | 0    | 表示无HDR类型。 |
+| AV_HDR_TYPE_VIVID         | 1    | 表示为HDR VIVID类型。 |
 
 ## media.createAudioPlayer<sup>(deprecated)</sup>
 
