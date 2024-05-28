@@ -4517,11 +4517,12 @@ title参数规格为：
 
 **系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-| 名称  |  值 |  说明 |
-| ----- |  ---- | ---- |
-| IMAGE_TYPE  |  'image/*' | 图片类型。 |
-| VIDEO_TYPE |  'video/*' | 视频类型。 |
-| IMAGE_VIDEO_TYPE |  '\*/*' | 图片和视频类型。 |
+| 名称                                    |  值 | 说明       |
+|---------------------------------------|  ---- |----------|
+| IMAGE_TYPE                            |  'image/*' | 图片类型。    |
+| VIDEO_TYPE                            |  'video/*' | 视频类型。    |
+| IMAGE_VIDEO_TYPE                      |  '\*/*' | 图片和视频类型。 |
+| MOVING_PHOTO_IMAGE_TYPE<sup>12+</sup> |  'image/movingPhoto' | 动态照片类型。  |
 
 ## RecommendationType<sup>11+</sup>
 
@@ -4620,9 +4621,9 @@ async function example() {
 | recommendationType | [RecommendationType](#recommendationtype11)   | 否   | 如果需要根据枚举值推荐相应的图片，则配置此参数。 |
 | textContextInfo<sup>12+</sup> | [TextContextInfo](#textcontextinfo12)   | 否   | 如果需要根据文本信息推荐相应的图片，则配置此参数(如果同时配置了recommendationType，则仅textContextInfo生效)。 |
 
-## PhotoSelectOptions
+## BaseSelectOptions<sup>12+</sup>
 
-图库选择选项。
+图库选择选项基类。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -4631,10 +4632,19 @@ async function example() {
 | MIMEType              | [PhotoViewMIMETypes](#photoviewmimetypes)   | 否   | 可选择的媒体文件类型，若无此参数，则默认为图片和视频类型。 |
 | maxSelectNumber       | number | 否   | 选择媒体文件数量的最大值(默认值为50，最大值为500)。      |
 | isPhotoTakingSupported<sup>11+</sup> | boolean  | 否   | 支持拍照。 |
-| isEditSupported<sup>11+</sup>       | boolean | 否   | 支持编辑照片。      |
 | isSearchSupported<sup>11+</sup> | boolean  | 否   | 支持搜索。 |
 | recommendationOptions<sup>11+</sup>       | [RecommendationOptions](#recommendationoptions11)   | 否   | 支持图片推荐。      |
 | preselectedUris<sup>11+</sup> | Array&lt;string&gt;  | 否   | 预选择图片的uri数据。 |
+
+## PhotoSelectOptions
+
+图库选择选项子类，继承于BaseSelectOptions。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 名称                    | 类型                | 必填 | 说明                          |
+| ----------------------- | ------------------- | ---- | -------------------------------- |
+| isEditSupported<sup>11+</sup>       | boolean | 否   | 支持编辑照片。      |
 
 ## PhotoSelectResult
 
