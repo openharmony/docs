@@ -228,7 +228,9 @@
       - 应用权限管控
         - [应用权限管控概述](security/AccessToken/app-permission-mgmt-overview.md)
         - 申请应用权限
+          <!--Del-->
           - [选择申请权限的方式](security/AccessToken/determine-application-mode.md)
+          <!--DelEnd-->
           - [声明权限](security/AccessToken/declare-permissions.md)
           - [向用户申请授权](security/AccessToken/request-user-authorization.md)
           - [申请使用受控权限](security/AccessToken/declare-permissions-in-acl.md)
@@ -401,6 +403,7 @@
       - 支持交互事件
         - [交互事件概述](ui/arkts-event-overview.md)
         - 使用通用事件
+          - [事件分发](ui/arkts-common-events-distribute.md)
           - [触屏事件](ui/arkts-common-events-touch-screen-event.md)
           - [键鼠事件](ui/arkts-common-events-device-input-event.md)
           - [焦点事件](ui/arkts-common-events-focus-event.md)
@@ -1407,6 +1410,8 @@
           - [AbilityRunningInfo(系统接口)](reference/apis-ability-kit/js-apis-inner-application-abilityRunningInfo-sys.md)
           - [AbilityStateData(系统接口)](reference/apis-ability-kit/js-apis-inner-application-abilityStateData-sys.md)
           - [AppForegroundStateObserver(系统接口)](reference/apis-ability-kit/js-apis-inner-application-appForegroundStateObserver-sys.md)
+          - [ApplicationContext(系统接口)](reference/apis-ability-kit/js-apis-inner-application-applicationContext-sys.md)
+          - [AutoFillPopupConfig (系统接口)](reference/apis-ability-kit/js-apis-inner-application-autoFillPopupConfig-sys.md)
           - [ApplicationStateObserver(系统接口)](reference/apis-ability-kit/js-apis-inner-application-applicationStateObserver-sys.md)
           - [AppStateData(系统接口)](reference/apis-ability-kit/js-apis-inner-application-appStateData-sys.md)
           - [AutoFillExtensionContext(系统接口)](reference/apis-ability-kit/js-apis-inner-application-autoFillExtensionContext-sys.md)
@@ -1467,8 +1472,6 @@
         - wantAgent
           - [triggerInfo](reference/apis-ability-kit/js-apis-inner-wantAgent-triggerInfo.md)
           - [wantAgentInfo](reference/apis-ability-kit/js-apis-inner-wantAgent-wantAgentInfo.md)
-        - skill
-          - [Skill](reference/apis-ability-kit/js-apis-bundleManager-skill.md) 
       - 已停止维护的接口
         - [@ohos.ability.dataUriUtils (DataUriUtils模块)](reference/apis-ability-kit/js-apis-ability-dataUriUtils.md)
         - [@ohos.ability.errorCode (ErrorCode)](reference/apis-ability-kit/js-apis-ability-errorCode.md)
@@ -1640,6 +1643,7 @@
         - [drawing_color.h](reference/apis-arkgraphics2d/drawing__color_8h.md)
         - [drawing_color_filter.h](reference/apis-arkgraphics2d/drawing__color__filter_8h.md)
         - [drawing_color_space.h](reference/apis-arkgraphics2d/drawing__color__space_8h.md)
+        - [drawing_error_code.h](reference/apis-arkgraphics2d/drawing__error__code_8h.md)
         - [drawing_filter.h](reference/apis-arkgraphics2d/drawing__filter_8h.md)
         - [drawing_font.h](reference/apis-arkgraphics2d/drawing__font_8h.md)
         - [drawing_font_collection.h](reference/apis-arkgraphics2d/drawing__font__collection_8h.md)
@@ -1760,6 +1764,7 @@
         - [@ohos.arkui.inspector (布局回调)](reference/apis-arkui/js-apis-arkui-inspector.md)
         - [@ohos.arkui.node(自定义节点)](reference/apis-arkui/js-apis-arkui-node.md)
         - [@ohos.arkui.observer (无感监听)](reference/apis-arkui/js-apis-arkui-observer.md)
+        - [@ohos.arkui.shape(形状)](reference/apis-arkui/js-apis-arkui-shape.md)
         - [@ohos.arkui.Theme (主题换肤)](reference/apis-arkui/js-apis-arkui-theme.md)
         - [@ohos.arkui.UIContext (UIContext)](reference/apis-arkui/js-apis-arkui-UIContext.md)
         - [@ohos.arkui.uiExtension (uiExtension)](reference/apis-arkui/js-apis-arkui-uiExtension.md)
@@ -2281,6 +2286,7 @@
           - [native_node_napi.h](reference/apis-arkui/native__node__napi_8h.md)
           - [native_type.h](reference/apis-arkui/native__type_8h.md)
           - [native_xcomponent_key_event.h](reference/apis-arkui/native__xcomponent__key__event_8h.md)
+          - [styled_string.h](reference/apis-arkui/styled__string_8h.md)
           - [ui_input_event.h](reference/apis-arkui/ui__input__event_8h.md)
           - [oh_window_comm.h](reference/apis-arkui/oh__window__comm_8h.md)
           - [oh_window_event_filter.h](reference/apis-arkui/oh__window__event__filter_8h.md)
@@ -2609,6 +2615,8 @@
       - [帐号管理错误码](reference/apis-basic-services-kit/errorcode-account.md)
       - [升级错误码](reference/apis-basic-services-kit/errorcode-update.md)
       - [锁屏服务错误码](reference/apis-basic-services-kit/errorcode-screenlock.md)
+      - [打印服务错误码](reference/apis-basic-services-kit/errorcode-print.md)
+      - [设备证明错误码](reference/apis-basic-services-kit/errorcode-deviceAttest.md)
   - Calendar Kit API参考
     - ArkTS API 
       - [@ohos.calendarManager（日程管理）](reference/apis-calendar-kit/js-apis-calendarManager.md)
@@ -2927,14 +2935,16 @@
   - Image Kit API参考
     - ArkTS API
       - [@ohos.multimedia.image (图片处理)](reference/apis-image-kit/js-apis-image.md)
+      - [@ohos.multimedia.sendableImage (基于Sendable对象的图片处理)](reference/apis-image-kit/js-apis-sendableImage.md)
+      <!--Del-->
+      - [@ohos.multimedia.image (图片处理)(系统接口)](reference/apis-image-kit/js-apis-image-sys.md)
+      <!--DelEnd-->
     - C API
       - 模块
         - [Image](reference/apis-image-kit/image.md)
+        - [Image_NativeModule](reference/apis-image-kit/_image___native_module.md)
         - [ImageEffect](reference/apis-image-kit/_image_effect.md)
       - 头文件
-        - [image_effect.h](reference/apis-image-kit/image__effect_8h.md)
-        - [image_effect_errors.h](reference/apis-image-kit/image__effect__errors_8h.md)
-        - [image_effect_filter.h](reference/apis-image-kit/image__effect__filter_8h.md)
         - [image_mdk.h](reference/apis-image-kit/image__mdk_8h.md)
         - [image_mdk_common.h](reference/apis-image-kit/image__mdk__common_8h.md)
         - [image_packer_mdk.h](reference/apis-image-kit/image__packer__mdk_8h.md)
@@ -2942,13 +2952,16 @@
         - [image_pixel_map_napi.h](reference/apis-image-kit/image__pixel__map__napi_8h.md)
         - [image_receiver_mdk.h](reference/apis-image-kit/image__receiver__mdk_8h.md)
         - [image_source_mdk.h](reference/apis-image-kit/image__source__mdk_8h.md)
+        - [image_common.h](reference/apis-image-kit/image__common_8h.md)
+        - [image_native.h](reference/apis-image-kit/image__native_8h.md)
+        - [image_packer_native.h](reference/apis-image-kit/image__packer__native_8h.md)
+        - [image_receiver_native.h](reference/apis-image-kit/image__receiver__native_8h.md)
+        - [image_source_native.h](reference/apis-image-kit/image__source__native_8h.md)
+        - [pixelmap_native.h](reference/apis-image-kit/pixelmap__native_8h.md)
+        - [image_effect.h](reference/apis-image-kit/image__effect_8h.md)
+        - [image_effect_errors.h](reference/apis-image-kit/image__effect__errors_8h.md)
+        - [image_effect_filter.h](reference/apis-image-kit/image__effect__filter_8h.md)
       - 结构体
-        - [ImageEffect_Any](reference/apis-image-kit/_image_effect___any.md)
-        - [ImageEffect_DataValue](reference/apis-image-kit/union_image_effect___data_value.md)
-        - [ImageEffect_FilterDelegate](reference/apis-image-kit/_image_effect___filter_delegate.md)
-        - [ImageEffect_FilterNames](reference/apis-image-kit/_image_effect___filter_names.md)
-        - [ImageEffect_Region](reference/apis-image-kit/_image_effect___region.md)
-        - [ImageEffect_Size](reference/apis-image-kit/_image_effect___size.md)
         - [ImagePacker_Opts_](reference/apis-image-kit/_image_packer___opts__.md)
         - [OhosImageComponent](reference/apis-image-kit/_o_h_o_s_1_1_media_1_1_ohos_image_component.md)
         - [OhosImageRect](reference/apis-image-kit/_o_h_o_s_1_1_media_1_1_ohos_image_rect.md)
@@ -2967,6 +2980,15 @@
         - [OhosImageSourceUpdateData](reference/apis-image-kit/_ohos_image_source_update_data.md)
         - [OhosPixelMapCreateOps](reference/apis-image-kit/_ohos_pixel_map_create_ops.md)
         - [OhosPixelMapInfos](reference/apis-image-kit/_ohos_pixel_map_infos.md)
+        - [Image_Region](reference/apis-image-kit/_image___region.md)
+        - [Image_Size](reference/apis-image-kit/_image___size.md)
+        - [Image_String](reference/apis-image-kit/_image___string.md)
+        - [ImageEffect_Any](reference/apis-image-kit/_image_effect___any.md)
+        - [ImageEffect_DataValue](reference/apis-image-kit/union_image_effect___data_value.md)
+        - [ImageEffect_FilterDelegate](reference/apis-image-kit/_image_effect___filter_delegate.md)
+        - [ImageEffect_FilterNames](reference/apis-image-kit/_image_effect___filter_names.md)
+        - [ImageEffect_Region](reference/apis-image-kit/_image_effect___region.md)
+        - [ImageEffect_Size](reference/apis-image-kit/_image_effect___size.md)
     - 错误码
       - [图片错误码](reference/apis-image-kit/errorcode-image.md)
   - IME Kit API参考
@@ -2986,6 +3008,7 @@
   - Input Kit API参考
     - ArkTS API
       - [@ohos.multimodalInput.inputDevice (输入设备)](reference/apis-input-kit/js-apis-inputdevice.md)
+      - [@ohos.multimodalInput.infraredEmitter (红外管理)](reference/apis-input-kit/js-apis-infraredemitter.md)
       - [@ohos.multimodalInput.inputEvent (输入事件)](reference/apis-input-kit/js-apis-inputevent.md)
       - [@ohos.multimodalInput.intentionCode (意图事件)](reference/apis-input-kit/js-apis-intentioncode.md)
       - [@ohos.multimodalInput.keyCode (键值)](reference/apis-input-kit/js-apis-keycode.md)
@@ -3029,10 +3052,13 @@
     - C API
       - 模块
         - [Rawfile](reference/apis-localization-kit/rawfile.md)
+        - [Resourcemanager](reference/apis-localization-kit/Resourcemanager.md)
       - 头文件
         - [raw_dir.h](reference/apis-localization-kit/raw__dir_8h.md)
         - [raw_file_manager.h](reference/apis-localization-kit/raw__file__manager_8h.md)
         - [raw_file.h](reference/apis-localization-kit/raw__file_8h.md)
+        - [ohresmgr.h](reference/apis-localization-kit/ohresmgr_8h.md)
+        - [resmgr_common.h](reference/apis-localization-kit/resmgr__common_8h.md)
       - 结构体
         - [RawFileDescriptor](reference/apis-localization-kit/_raw_file_descriptor.md)
         - [RawFileDescriptor64](reference/apis-localization-kit/_raw_file_descriptor64.md)
