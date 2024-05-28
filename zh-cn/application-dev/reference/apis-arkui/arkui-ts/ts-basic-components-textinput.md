@@ -848,14 +848,14 @@ lineBreakStrategy(value: LineBreakStrategy)
 
 | 名称    | 参数类型                                                    | 必填 | 描述                                                         |
 | ------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| insertOffset  | number | 是   | 将要插入的值的位置信息。 |
+| insertOffset  | number | 是   | 插入的值的位置信息。 |
 | insertValue  | string | 是   | 插入的值。 |
 
 ## DeleteValue<sup>12+</sup>对象说明
 
 | 名称    | 参数类型                                                    | 必填 | 描述                                                         |
 | ------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| deleteOffset  | number | 是   | 将要删除的值的位置信息。 |
+| deleteOffset  | number | 是   | 删除的值的位置信息。 |
 | direction  | [TextDeleteDirection](ts-appendix-enums.md#textdeletedirection12) | 是   | 删除值的方向。 |
 | deleteValue  | string | 是   | 删除的值。 |
 
