@@ -114,6 +114,17 @@ static enableCloud(accountId: string, switches: Record<string, boolean>, callbac
 | switches  | Record<string, boolean>         | 是   | 各应用的端云协同开关信息，true为打开该应用端云开关，false为关闭该应用端云开关。 |
 | callback  | AsyncCallback&lt;void&gt;       | 是   | 回调函数。                                                   |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                             |
+| -------- | ---------------------------------------------------- |
+| 201      | Permission verification failed, usually the result returned by VerifyAccessToken.|
+| 202      | Permission verification failed, application which is not a system application uses system API.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+| 801      | Capability not supported.|
+
 **示例：**
 
 ```ts
@@ -158,6 +169,17 @@ static enableCloud(accountId: string, switches: Record<string, boolean>): Promis
 | ------------------- | ------------------------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                             |
+| -------- | ---------------------------------------------------- |
+| 201      | Permission verification failed, usually the result returned by VerifyAccessToken.|
+| 202      | Permission verification failed, application which is not a system application uses system API.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+| 801      | Capability not supported.|
+
 **示例：**
 
 ```ts
@@ -193,6 +215,17 @@ static disableCloud(accountId: string, callback: AsyncCallback&lt;void&gt;): voi
 | --------- | ------------------------- | ---- | -------------------- |
 | accountId | string                    | 是   | 具体打开的云帐号ID。 |
 | callback  | AsyncCallback&lt;void&gt; | 是   | 回调函数。           |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                             |
+| -------- | ---------------------------------------------------- |
+| 201      | Permission verification failed, usually the result returned by VerifyAccessToken.|
+| 202      | Permission verification failed, application which is not a system application uses system API.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+| 801      | Capability not supported.|
 
 **示例：**
 
@@ -236,6 +269,17 @@ static disableCloud(accountId: string): Promise&lt;void&gt;
 | ------------------- | ------------------------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                             |
+| -------- | ---------------------------------------------------- |
+| 201      | Permission verification failed, usually the result returned by VerifyAccessToken.|
+| 202      | Permission verification failed, application which is not a system application uses system API.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+| 801      | Capability not supported.|
+
 **示例：**
 
 ```ts
@@ -272,6 +316,17 @@ static changeAppCloudSwitch(accountId: string, bundleName: string, status: boole
 | bundleName| string                         | 是   | 应用名。 |
 | status    | boolean                        | 是   | 应用的端云协同开关信息，true为打开该应用端云开关，false为关闭该应用端云开关。 |
 | callback  | AsyncCallback&lt;void&gt;       | 是   | 回调函数。                   |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                             |
+| -------- | ---------------------------------------------------- |
+| 201      | Permission verification failed, usually the result returned by VerifyAccessToken.|
+| 202      | Permission verification failed, application which is not a system application uses system API.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+| 801      | Capability not supported.|
 
 **示例：**
 
@@ -318,6 +373,17 @@ static changeAppCloudSwitch(accountId: string, bundleName: string, status: boole
 | ------------------- | ------------------------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                             |
+| -------- | ---------------------------------------------------- |
+| 201      | Permission verification failed, usually the result returned by VerifyAccessToken.|
+| 202      | Permission verification failed, application which is not a system application uses system API.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+| 801      | Capability not supported.|
+
 **示例：**
 
 ```ts
@@ -354,6 +420,17 @@ static notifyDataChange(accountId: string, bundleName: string, callback: AsyncCa
 | accountId  | string                    | 是   | 具体打开的云帐号ID。 |
 | bundleName | string                    | 是   | 应用名。             |
 | callback   | AsyncCallback&lt;void&gt; | 是   | 回调函数。           |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                             |
+| -------- | ---------------------------------------------------- |
+| 201      | Permission verification failed, usually the result returned by VerifyAccessToken.|
+| 202      | Permission verification failed, application which is not a system application uses system API.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+| 801      | Capability not supported.|
 
 **示例：**
 
@@ -399,6 +476,17 @@ static notifyDataChange(accountId: string,bundleName: string): Promise&lt;void&g
 | ------------------- | ------------------------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                             |
+| -------- | ---------------------------------------------------- |
+| 201      | Permission verification failed, usually the result returned by VerifyAccessToken.|
+| 202      | Permission verification failed, application which is not a system application uses system API.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+| 801      | Capability not supported.|
+
 **示例：**
 
 ```ts
@@ -434,6 +522,17 @@ try {
 | -------- | ------------------------- | ---- | --------------------------------------- |
 | extInfo  | [ExtraData](#extradata11)   | 是   | 透传数据，包含通知数据变更后的应用信息。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。当数据变更通知成功，err为undefined，否则为错误对象。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                             |
+| -------- | ---------------------------------------------------- |
+| 201      | Permission verification failed, which is usually returned by <b>VerifyAccessToken</b>.|
+| 202      | Permission verification failed, application which is not a system application uses system API.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+| 801      | Capability not supported.|
 
 **示例：**
 
@@ -475,6 +574,19 @@ static notifyDataChange(extInfo: ExtraData, userId: number,callback: AsyncCallba
 | extInfo  | [ExtraData](#extradata11)   | 是   | 透传数据，包含通知数据变更后的应用信息。        |
 | userId   | number                    | 是   | 用户ID。对应为系统中现有的用户ID。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。当数据变更通知成功，err为undefined，否则为错误对象。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                             |
+| -------- | ---------------------------------------------------- |
+| 201      | Permission verification failed, which is usually returned by <b>VerifyAccessToken</b>.|
+| 202      | Permission verification failed, application which is not a system application uses system API.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+| 801      | Capability not supported.|
+
+**示例：**
 
 ```ts
 import { BusinessError } from '@ohos.base';
@@ -520,6 +632,17 @@ try {
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                             |
+| -------- | ---------------------------------------------------- |
+| 201      | Permission verification failed, which is usually returned by <b>VerifyAccessToken</b>.|
+| 202      | Permission verification failed, application which is not a system application uses system API.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+| 801      | Capability not supported.|
 
 **示例：**
 
@@ -567,6 +690,17 @@ static queryStatistics(accountId: string, bundleName: string, storeId?: string):
 |--------------------------------------------------------------------------------------| ------------------------ |
 | Promise&lt;Record&lt;string, Array&lt;[StatisticInfo](#statisticinfo12)&gt;&gt;&gt; | 返回表名以及统计信息结果集。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                             |
+| -------- | ---------------------------------------------------- |
+| 201      | Permission verification failed, usually the result returned by VerifyAccessToken.|
+| 202      | Permission verification failed, application which is not a system application uses system API.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+| 801      | Capability not supported.|
+
 **示例：**
 
 ```ts
@@ -606,6 +740,17 @@ static queryLastSyncInfo(accountId: string, bundleName: string, storeId?: string
 | 类型                                                         | 说明                                         |
 | ------------------------------------------------------------ | -------------------------------------------- |
 | Promise&lt;Record&lt;string, [SyncInfo](#syncinfo12)&gt;&gt; | 返回数据库名以及上一次端云同步的信息结果集。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                             |
+| -------- | ---------------------------------------------------- |
+| 201      | Permission verification failed, usually the result returned by VerifyAccessToken.|
+| 202      | Permission verification failed, application which is not a system application uses system API.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+| 801      | Capability not supported.|
 
 **示例：**
 
@@ -650,6 +795,17 @@ static setGlobalCloudStrategy(strategy: StrategyType, param?: Array&lt;commonTyp
 | ------------------- | ------------------------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                             |
+| -------- | ---------------------------------------------------- |
+| 201      | Permission verification failed, usually the result returned by VerifyAccessToken.|
+| 202      | Permission verification failed, application which is not a system application uses system API.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+| 801      | Capability not supported.|
+
 **示例：**
 
 ```ts
@@ -679,6 +835,17 @@ static clear(accountId: string, appActions: Record<string, ClearAction>,  callba
 | accountId  | string                                              | 是   | 具体打开的云帐号ID。             |
 | appActions | Record<string, [ClearAction](#clearaction)>         | 是   | 要清除数据的应用信息及清除规则。 |
 | callback   | AsyncCallback&lt;void&gt;                           | 是   | 回调函数。                       |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                             |
+| -------- | ---------------------------------------------------- |
+| 201      | Permission verification failed, usually the result returned by VerifyAccessToken.|
+| 202      | Permission verification failed, application which is not a system application uses system API.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+| 801      | Capability not supported.|
 
 **示例：**
 
@@ -727,6 +894,17 @@ static clear(accountId: string, appActions: Record<string, ClearAction>): Promis
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                             |
+| -------- | ---------------------------------------------------- |
+| 201      | Permission verification failed, usually the result returned by VerifyAccessToken.|
+| 202      | Permission verification failed, application which is not a system application uses system API.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+| 801      | Capability not supported.|
 
 **示例：**
 
@@ -865,6 +1043,16 @@ allocResourceAndShare(storeId: string, predicates: relationalStore.RdbPredicates
 | ------------------- | ------------------------- |
 | Promise&lt;[relationalStore.ResultSet](js-apis-data-relationalStore.md#resultset)&gt; | Promise对象，返回查询并共享的共享资源标识结果集。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                             |
+| -------- | ---------------------------------------------------- |
+| 202      | Permission verification failed, application which is not a system application uses system API.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+| 801      | Capability not supported.|
+
 **示例：**
 
 ```ts
@@ -919,6 +1107,16 @@ allocResourceAndShare(storeId: string, predicates: relationalStore.RdbPredicates
 | participants | Array&lt;[Participant](#participant11)&gt; | 是   | 端云共享的参与者。 |
 | columns      | Array&lt;string&gt;           | 是   | 表示要查找的列字段名。 |
 | callback     | AsyncCallback&lt;[relationalStore.ResultSet](js-apis-data-relationalStore.md#resultset)&gt;  | 是  | 回调函数。 返回查询并共享的共享资源标识结果集。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                             |
+| -------- | ---------------------------------------------------- |
+| 202      | Permission verification failed, application which is not a system application uses system API.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+| 801      | Capability not supported.|
 
 **示例：**
 
@@ -975,6 +1173,16 @@ allocResourceAndShare(storeId: string, predicates: relationalStore.RdbPredicates
 | predicates   | [relationalStore.RdbPredicates](js-apis-data-relationalStore.md#rdbpredicates) | 是   | 表示查找共享资源标识的数据的谓词条件。 |
 | participants | Array&lt;[Participant](#participant11)&gt; | 是   | 端云共享的参与者。 |
 | callback     | AsyncCallback&lt;[relationalStore.ResultSet](js-apis-data-relationalStore.md#resultset)&gt;  | 是   | 回调函数。返回查询并共享的共享资源标识结果集。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                             |
+| -------- | ---------------------------------------------------- |
+| 202      | Permission verification failed, application which is not a system application uses system API.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+| 801      | Capability not supported.|
 
 **示例：**
 
@@ -1036,6 +1244,16 @@ share(sharingResource: string, participants: Array&lt;Participant&gt;): Promise&
 | ------------------- | ------------------------- |
 | Promise&lt;[Result](#resultt11)&lt;Array&lt;[Result](#resultt11)&lt;[Participant](#participant11)&gt;&gt;&gt;&gt; | Promise对象，返回端云共享的结果。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                             |
+| -------- | ---------------------------------------------------- |
+| 202      | Permission verification failed, application which is not a system application uses system API.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+| 801      | Capability not supported.|
+
 **示例：**
 
 ```ts
@@ -1078,6 +1296,16 @@ share(sharingResource: string, participants: Array&lt;Participant&gt;, callback:
 | sharingResource  | string                                     | 是   | 端云共享数据的资源标识。 |
 | participants     | Array&lt;[Participant](#participant11)&gt; | 是   | 端云共享的参与者。 |
 | callback         | AsyncCallback&lt;[Result](#resultt11)&lt;Array&lt;[Result](#resultt11)&lt;[Participant](#participant11)&gt;&gt;&gt;&gt;  | 是   | 回调函数。返回端云共享的结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                             |
+| -------- | ---------------------------------------------------- |
+| 202      | Permission verification failed, application which is not a system application uses system API.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+| 801      | Capability not supported.|
 
 **示例：**
 
@@ -1129,6 +1357,16 @@ unshare(sharingResource: string, participants: Array&lt;Participant&gt;): Promis
 | ------------------- | ------------------------- |
 | Promise&lt;[Result](#resultt11)&lt;Array&lt;[Result](#resultt11)&lt;[Participant](#participant11)&gt;&gt;&gt;&gt; | Promise对象，返回取消共享的结果。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                             |
+| -------- | ---------------------------------------------------- |
+| 202      | Permission verification failed, application which is not a system application uses system API.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+| 801      | Capability not supported.|
+
 **示例：**
 
 ```ts
@@ -1171,6 +1409,16 @@ unshare(sharingResource: string, participants: Array&lt;Participant&gt;, callbac
 | sharingResource  | string                                     | 是   | 共享数据的资源标志。 |
 | participants     | Array&lt;[Participant](#participant11)&gt; | 是   | 共享参与者。 |
 | callback         | AsyncCallback&lt;[Result](#resultt11)&lt;Array&lt;[Result](#resultt11)&lt;[Participant](#participant11)&gt;&gt;&gt;&gt;  | 是   | 回调函数。返回取消共享的结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                             |
+| -------- | ---------------------------------------------------- |
+| 202      | Permission verification failed, application which is not a system application uses system API.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+| 801      | Capability not supported.|
 
 **示例：**
 
@@ -1221,6 +1469,16 @@ exit(sharingResource: string): Promise&lt;Result&lt;void&gt;&gt;
 | ------------------- | ------------------------- |
 | Promise&lt;[Result](#resultt11)&lt;void&gt;&gt; | Promise对象，返回退出端云共享的结果。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                             |
+| -------- | ---------------------------------------------------- |
+| 202      | Permission verification failed, application which is not a system application uses system API.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+| 801      | Capability not supported.|
+
 **示例：**
 
 ```ts
@@ -1248,6 +1506,16 @@ exit(sharingResource: string, callback: AsyncCallback&lt;Result&lt;void&gt;&gt;)
 | --------- | ------------------------------- | ---- | ---------------------------- |
 | sharingResource  | string                | 是   | 端云共享数据的资源标识。 |
 | callback         | AsyncCallback&lt;[Result](#resultt11)&lt;void&gt;&gt;  | 是   | 回调函数。返回退出共享的结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                             |
+| -------- | ---------------------------------------------------- |
+| 202      | Permission verification failed, application which is not a system application uses system API.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+| 801      | Capability not supported.|
 
 **示例：**
 
@@ -1284,6 +1552,16 @@ changePrivilege(sharingResource: string, participants: Array&lt;Participant&gt;)
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
 | Promise&lt;[Result](#resultt11)&lt;Array&lt;[Result](#resultt11)&lt;[Participant](#participant11)&gt;&gt;&gt;&gt; | Promise对象，返回更改共享参与者权限的结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                             |
+| -------- | ---------------------------------------------------- |
+| 202      | Permission verification failed, application which is not a system application uses system API.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+| 801      | Capability not supported.|
 
 **示例：**
 
@@ -1328,6 +1606,16 @@ changePrivilege(sharingResource: string, participants: Array&lt;Participant&gt;,
 | sharingResource  | string                | 是   | 端云共享数据的资源标识。 |
 | participants     | Array&lt;[Participant](#participant11)&gt;  | 是   | 端云共享的参与者。 |
 | callback         | callback: AsyncCallback&lt;[Result](#resultt11)&lt;Array&lt;[Result](#resultt11)&lt;[Participant](#participant11)&gt;&gt;&gt;&gt;  | 是   | 回调函数。返回更改权限的结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                             |
+| -------- | ---------------------------------------------------- |
+| 202      | Permission verification failed, application which is not a system application uses system API.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+| 801      | Capability not supported.|
 
 **示例：**
 
@@ -1379,6 +1667,16 @@ queryParticipants(sharingResource: string): Promise&lt;Result&lt;Array&lt;Partic
 | ------------------- | ------------------------- |
 | Promise&lt;[Result](#resultt11)&lt;Array&lt;[Participant](#participant11)&gt;&gt;&gt; | Promise对象，返回查询共享参与者的结果。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                             |
+| -------- | ---------------------------------------------------- |
+| 202      | Permission verification failed, application which is not a system application uses system API.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+| 801      | Capability not supported.|
+
 **示例：**
 
 ```ts
@@ -1406,6 +1704,16 @@ queryParticipants(sharingResource: string, callback: AsyncCallback&lt;Result&lt;
 | --------- | ------------------------------- | ---- | ---------------------------- |
 | sharingResource  | string                | 是   | 端云共享数据的资源标识。 |
 | callback         | AsyncCallback&lt;[Result](#resultt11)&lt;Array&lt;[Participant](#participant11)&gt;&gt;&gt;  | 是   | 回调函数。返回查找共享参与者的结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                             |
+| -------- | ---------------------------------------------------- |
+| 202      | Permission verification failed, application which is not a system application uses system API.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+| 801      | Capability not supported.|
 
 **示例：**
 
@@ -1442,6 +1750,16 @@ queryParticipantsByInvitation(invitationCode: string): Promise&lt;Result&lt;Arra
 | ------------------- | ------------------------- |
 | Promise&lt;[Result](#resultt11)&lt;Array&lt;[Participant](#participant11)&gt;&gt;&gt; | Promise对象，返回查找共享参与者的结果。|
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                             |
+| -------- | ---------------------------------------------------- |
+| 202      | Permission verification failed, application which is not a system application uses system API.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+| 801      | Capability not supported.|
+
 **示例：**
 
 ```ts
@@ -1469,6 +1787,16 @@ queryParticipantsByInvitation(invitationCode: string, callback: AsyncCallback&lt
 | --------- | ------------------------------- | ---- | ---------------------------- |
 | invitationCode  | string                | 是   | 端云共享的邀请码。 |
 | callback        | AsyncCallback&lt;[Result](#resultt11)&lt;Array&lt;[Participant](#participant11)&gt;&gt;&gt; | 是   | 回调函数。返回查找共享参与者的结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                             |
+| -------- | ---------------------------------------------------- |
+| 202      | Permission verification failed, application which is not a system application uses system API.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+| 801      | Capability not supported.|
 
 **示例：**
 
@@ -1506,6 +1834,16 @@ confirmInvitation(invitationCode: string, state: State): Promise&lt;Result&lt;st
 | ------------------- | ------------------------- |
 | Promise&lt;[Result](#resultt11)&lt;string&gt;&gt; | Promise对象，返回确认共享邀请的结果。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                             |
+| -------- | ---------------------------------------------------- |
+| 202      | Permission verification failed, application which is not a system application uses system API.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+| 801      | Capability not supported.|
+
 **示例：**
 
 ```ts
@@ -1536,6 +1874,16 @@ confirmInvitation(invitationCode: string, state: State, callback: AsyncCallback&
 | invitationCode  | string                | 是   | 端云共享的邀请码。 |
 | state           | [State](#state11)       | 是   | 确认邀请的状态。 |
 | callback        | AsyncCallback&lt;[Result](#resultt11)&lt;string&gt;&gt; | 是   | 回调函数。返回确认邀请的结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                             |
+| -------- | ---------------------------------------------------- |
+| 202      | Permission verification failed, application which is not a system application uses system API.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+| 801      | Capability not supported.|
 
 **示例：**
 
@@ -1575,6 +1923,16 @@ changeConfirmation(sharingResource: string, state: State): Promise&lt;Result&lt;
 | ------------------- | ------------------------- |
 | Promise&lt;[Result](#resultt11)&lt;void&gt;&gt; |  Promise对象，返回更改共享邀请状态的结果。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                             |
+| -------- | ---------------------------------------------------- |
+| 202      | Permission verification failed, application which is not a system application uses system API.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+| 801      | Capability not supported.|
+
 **示例：**
 
 ```ts
@@ -1603,6 +1961,16 @@ changeConfirmation(sharingResource: string, state: State, callback: AsyncCallbac
 | sharingResource   | string                 | 是   | 端云共享数据的资源标识。 |
 | state             | [State](#state11)        | 是   | 更改邀请的状态。 |
 | callback          | AsyncCallback&lt;[Result](#resultt11)&lt;void&gt;&gt; | 是   | 回调函数。返回更改邀请状态的结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                             |
+| -------- | ---------------------------------------------------- |
+| 202      | Permission verification failed, application which is not a system application uses system API.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+| 801      | Capability not supported.|
 
 **示例：**
 
