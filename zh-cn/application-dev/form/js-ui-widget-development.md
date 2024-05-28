@@ -110,7 +110,7 @@ const DOMAIN_NUMBER: number = 0xFF00;
 
    
 ```ts
-export default class JsCardFormAbility extends FormExtensionAbility {
+export default class EntryFormAbility extends FormExtensionAbility {
   onAddForm(want: Want): formBindingData.FormBindingData {
     hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onAddForm');
     // 使用方创建卡片时触发，提供方需要返回卡片数据绑定类
@@ -140,6 +140,7 @@ export default class JsCardFormAbility extends FormExtensionAbility {
   onChangeFormVisibility(newStatus: Record<string, number>): void {
     // 使用方发起可见或者不可见通知触发，提供方需要做相应的处理，仅系统应用生效
     hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onChangeFormVisibility');
+    //...
   }
   onFormEvent(formId: string, message: string): void {
     // 若卡片支持触发事件，则需要重写该方法并实现对事件的触发
@@ -148,6 +149,7 @@ export default class JsCardFormAbility extends FormExtensionAbility {
   onRemoveForm(formId: string): void {
     // 删除卡片实例数据
     hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onRemoveForm');
+    //...
   }
   onAcquireFormState(want: Want): formInfo.FormState {
     return formInfo.FormState.READY;
@@ -155,7 +157,7 @@ export default class JsCardFormAbility extends FormExtensionAbility {
 }
 ```
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > FormExtensionAbility不能常驻后台，即在卡片生命周期回调函数中无法处理长时间的任务。
 
 
@@ -619,10 +621,10 @@ export default class EntryFormAbility extends FormExtensionAbility {
   import Want from '@ohos.app.ability.Want';
   import hilog from '@ohos.hilog';
 
-  const TAG: string = 'JsCardEntryAbility';
+  const TAG: string = 'EtsCardEntryAbility';
   const DOMAIN_NUMBER: number = 0xFF00;
 
-  export default class EntryAbility extends UIAbility {
+  export default class EtsCardEntryAbility extends UIAbility {
     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
       if (want.parameters) {
         let params: Record<string, Object> = JSON.parse(JSON.stringify(want.parameters.params));
