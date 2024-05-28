@@ -58,7 +58,6 @@ newSEService(type: 'serviceState', callback: Callback<[ServiceState](#secureelem
 
 ```js
 import { omapi } from '@kit.ConnectivityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
 let seService : omapi.SEService;
@@ -105,7 +104,7 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 let seService : omapi.SEService;
 
 function secureElementDemo() {
-    secureElement.createService().then((data) => {
+    omapi.createService().then((data) => {
         seService = data;
         if (seService == undefined || !seService.isConnected()) {
             hilog.error(0x0000, 'testTag', 'seservice state disconnected');
@@ -136,7 +135,6 @@ getReaders(): Reader[]
 
 ```js
 import { omapi } from '@kit.ConnectivityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
 let seService : omapi.SEService;
