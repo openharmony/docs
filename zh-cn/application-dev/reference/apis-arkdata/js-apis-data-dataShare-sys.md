@@ -471,6 +471,7 @@ on(event: 'dataChange', type:SubscriptionType, uri: string, callback: AsyncCallb
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { BusinessError } from '@ohos.base'
 
@@ -550,6 +551,7 @@ off(event: 'dataChange', type:SubscriptionType, uri: string, callback?: AsyncCal
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { BusinessError } from '@ohos.base'
 
