@@ -1498,14 +1498,13 @@ marshalling(sequence: rpc.MessageSequence): void
 | 62980097 | IPC error.             |
 
 **示例：**
-
 ```ts
 import sendableImage from '@ohos.multimedia.sendableImage';
 import rpc from '@ohos.rpc';
 
 class MySequence implements rpc.Parcelable {
-    pixel_map: image.PixelMap;
-    constructor(conPixelMap : image.PixelMap) {
+    pixel_map: sendableImage.PixelMap;
+    constructor(conPixelMap : sendableImage.PixelMap) {
         this.pixel_map = conPixelMap;
     }
     marshalling(messageSequence : rpc.MessageSequence) {
@@ -1514,8 +1513,8 @@ class MySequence implements rpc.Parcelable {
         return true;
     }
     unmarshalling(messageSequence : rpc.MessageSequence) {
-      sendableImage.createPixelMap(new ArrayBuffer(96), {size: { height:4, width: 6}}).then((pixelParcel: image.PixelMap) => {
-        pixelParcel.unmarshalling(messageSequence).then(async (pixelMap: image.PixelMap) => {
+      sendableImage.createPixelMap(new ArrayBuffer(96), {size: { height:4, width: 6}}).then((pixelParcel: sendableImage.PixelMap) => {
+        pixelParcel.unmarshalling(messageSequence).then(async (pixelMap: sendableImage.PixelMap) => {
           this.pixel_map = pixelMap;
           pixelMap.getImageInfo().then((imageInfo: image.ImageInfo) => {
             console.info("unmarshalling information h:" + imageInfo.size.height + "w:" + imageInfo.size.width);
@@ -1537,7 +1536,7 @@ async function Demo() {
       size: { height: 4, width: 6 },
       alphaType: 3
    }
-   let pixelMap: image.PixelMap | undefined = undefined;
+   let pixelMap: sendableImage.PixelMap | undefined = undefined;
    sendableImage.createPixelMap(color, opts).then((srcPixelMap: sendableImage.PixelMap) => {
       pixelMap = srcPixelMap;
    })
@@ -1605,7 +1604,7 @@ class MySequence implements rpc.Parcelable {
       sendableImage.createPixelMap(new ArrayBuffer(96), {size: { height:4, width: 6}}).then((pixelParcel : sendableImage.PixelMap) => {
         pixelParcel.unmarshalling(messageSequence).then(async (pixelMap : sendableImage.PixelMap) => {
           this.pixel_map = pixelMap;
-          pixelMap.getImageInfo().then((imageInfo : sendableImage.ImageInfo) => {
+          pixelMap.getImageInfo().then((imageInfo : image.ImageInfo) => {
             console.info("unmarshalling information h:" + imageInfo.size.height + "w:" + imageInfo.size.width);
           })
         })
@@ -1625,7 +1624,7 @@ async function Demo() {
       size: { height: 4, width: 6 },
       alphaType: 3
    }
-   let pixelMap: image.PixelMap | undefined = undefined;
+   let pixelMap: sendableImage.PixelMap | undefined = undefined;
    sendableImage.createPixelMap(color, opts).then((srcPixelMap : sendableImage.PixelMap) => {
       pixelMap = srcPixelMap;
    })
