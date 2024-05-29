@@ -1075,6 +1075,17 @@ getActualTextRange(lineNumber: number, includeSpaces: boolean): [Range](#range);
 import { text } from "@kit.ArkGraphics2D";
 
 function Text() {
+  let myTextStyle: text.TextStyle = {
+    color: { alpha: 255, red: 255, green: 0, blue: 0 },
+    fontSize: 33,
+  };
+  let myParagraphStyle: text.ParagraphStyle = {
+    textStyle: myTextStyle,
+    align: 3,
+  };
+  let fontCollection = new text.FontCollection();
+  let ParagraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
+  let paragraph = ParagraphGraphBuilder.build();
   let rang = paragraph.getActualTextRange(0, true);
 }
 
@@ -1112,6 +1123,17 @@ getLineMetrics(): Array\<LineMetrics>;
 import { text } from "@kit.ArkGraphics2D";
 
 function Text() {
+  let myTextStyle: text.TextStyle = {
+    color: { alpha: 255, red: 255, green: 0, blue: 0 },
+    fontSize: 33,
+  };
+  let myParagraphStyle: text.ParagraphStyle = {
+    textStyle: myTextStyle,
+    align: 3,
+  };
+  let fontCollection = new text.FontCollection();
+  let ParagraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
+  let paragraph = ParagraphGraphBuilder.build();
   let arrLineMetrc =  paragraph.getLineMetrics();
 }
 
@@ -1155,6 +1177,17 @@ getLineMetrics(lineNumber: number): LineMetrics | undefined;
 import { text } from "@kit.ArkGraphics2D";
 
 function Text() {
+  let myTextStyle: text.TextStyle = {
+    color: { alpha: 255, red: 255, green: 0, blue: 0 },
+    fontSize: 33,
+  };
+  let myParagraphStyle: text.ParagraphStyle = {
+    textStyle: myTextStyle,
+    align: 3,
+  };
+  let fontCollection = new text.FontCollection();
+  let ParagraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
+  let paragraph = ParagraphGraphBuilder.build();
   let lineMetrics =  paragraph.getLineMetrics(0);
 }
 
