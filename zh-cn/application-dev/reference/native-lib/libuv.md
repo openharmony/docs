@@ -417,6 +417,8 @@ napi_status napi_release_threadsafe_function(napi_threadsafe_function function);
         <td>uv_queue_work</td>
     </tr>
 </table>
+
+
 ### 线程安全函数
 
 在libuv中，由于涉及到大量的异步任务，稍有不慎就会陷入到多线程问题中。在这里，我们对libuv中常见的线程安全函数和非线程安全函数做了汇总。若开发者在多线程编程中调用了非线程安全的函数，势必要对其进行加锁保护或者保证代码的正确运行时序。否则将陷入到crash问题中。
