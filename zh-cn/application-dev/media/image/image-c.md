@@ -1,4 +1,4 @@
-# 图像信息处理Native(C/C++)
+# 使用Image_NativeModule处理图像信息
 
 图像信息类，用于设置和读取图像的矩形大小、组件信息和像素信息。
 
@@ -14,7 +14,7 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libohimage.so libimage_rece
 
 ### Native接口调用
 
-具体接口说明请参考[API文档](../../reference/apis-image-kit/image.md)
+具体接口说明请参考[API文档](../../reference/apis-image-kit/_image___native_module.md)。
 
 在hello.cpp中实现C Native API接口调用逻辑，示例代码如下：
 
@@ -172,4 +172,3 @@ static void ImageNativeCTest()
     }
 }
 ```
-

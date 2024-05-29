@@ -1,4 +1,4 @@
-# 图片接收器Native(C/C++)
+# 使用Image_NativeModule完成图片接收器
 
 图像接收类，用于获取组件surface id，接收最新的图片和读取下一张图片，以及释放ImageReceiver实例。
 
@@ -14,7 +14,7 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libohimage.so libimage_rece
 
 ### Native接口调用
 
-具体接口说明请参考[API文档](../../reference/apis-image-kit/image.md)
+具体接口说明请参考[API文档](../../reference/apis-image-kit/_image___native_module.md)。
 
 在hello.cpp中实现C Native API接口调用逻辑，示例代码如下：
 
