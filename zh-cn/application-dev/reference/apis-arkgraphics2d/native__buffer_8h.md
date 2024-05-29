@@ -38,7 +38,7 @@
 | typedef enum [OH_NativeBuffer_ColorSpace](_o_h___native_buffer.md#oh_nativebuffer_colorspace)  [OH_NativeBuffer_ColorSpace](_o_h___native_buffer.md#oh_nativebuffer_colorspace) | OH_NativeBuffer的颜色空间  | 
 | typedef enum [OH_NativeBuffer_TransformType](_o_h___native_buffer.md#oh_nativebuffer_transformtype)  [OH_NativeBuffer_TransformType](_o_h___native_buffer.md#oh_nativebuffer_transformtype) | OH_NativeBuffer的转换类型。  | 
 | typedef enum [OH_NativeBuffer_ColorGamut](_o_h___native_buffer.md#oh_nativebuffer_colorgamut)  [OH_NativeBuffer_ColorGamut](_o_h___native_buffer.md#oh_nativebuffer_colorgamut) | OH_NativeBuffer的色域。  | 
-| typedef enum [OHNativeErrorCode](_o_h___native_buffer#ohnativeerrorcode) [OHNativeErrorCode](_o_h___native_buffer.md#ohnativeerrorcode) | 接口错误码说明（仅用于查询）。  | 
+| typedef enum [OHNativeErrorCode](_o_h___native_buffer.md#ohnativeerrorcode) [OHNativeErrorCode](_o_h___native_buffer.md#ohnativeerrorcode) | 接口错误码说明（仅用于查询）。  | 
 | typedef struct [OH_NativeBuffer_Config](_o_h___native_buffer___config.md)  [OH_NativeBuffer_Config](_o_h___native_buffer.md#oh_nativebuffer_config) | OH_NativeBuffer的属性配置，用于申请新的OH_NativeBuffer实例或查询现有实例的相关属性  | 
 | typedef struct [OH_NativeBuffer_Plane](_o_h___native_buffer___plane.md)  [OH_NativeBuffer_Plane](_o_h___native_buffer.md#oh_nativebuffer_plane) | 单个图像平面格式信息。  | 
 | typedef struct [OH_NativeBuffer_Planes](_o_h___native_buffer___planes.md)  [OH_NativeBuffer_Planes](_o_h___native_buffer.md#oh_nativebuffer_planes) | OH_NativeBuffer的图像平面格式信息。  |
