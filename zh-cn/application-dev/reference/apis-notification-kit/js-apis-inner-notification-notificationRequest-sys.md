@@ -20,7 +20,7 @@
 | source<sup>8+<sup>            | number                                                   |   是  | 否  | 通知源。<br>**系统接口**: 此接口为系统接口。                                |
 | deviceId<sup>8+<sup>          | string                                                   |   是  | 否  | 通知源的deviceId。<br>**系统接口**: 此接口为系统接口。                       |
 | representativeBundle<sup>12+<sup> | [BundleOption](js-apis-inner-notification-notificationCommonDef.md#bundleoption) | 否 | 否 | 被代理的包信息。<br>**系统接口**: 此接口为系统接口。 |
-| notificationControlFlags<sup>12+<sup>       | number                                                   |   否  | 否  | 通知提醒方式管控。可以通过此接口减少当前通知的提醒方式。与[NotificationControlFlagStatus](js-apis-notificationManager-sys.md#notificationcontrolflagstatus)的枚举进行按位或运算得到该参数。  <br>**系统接口**：此接口为系统接口。           |
+| notificationControlFlags<sup>12+<sup>       | number                                                   |   否  | 否  | 通知提醒方式管控。可以通过此接口减少当前通知的提醒方式。与[NotificationControlFlagStatus](js-apis-notificationManager-sys.md#notificationcontrolflagstatus12)的枚举进行按位或运算得到该参数。  <br>**系统接口**：此接口为系统接口。           |
 | unifiedGroupInfo<sup>12+<sup>       | [UnifiedGroupInfo](#unifiedgroupinfo12) |   否  | 否  |消息智能聚合信息字段。 <br>**系统接口**：此接口为系统接口。|
 
 ## DistributedOptions
