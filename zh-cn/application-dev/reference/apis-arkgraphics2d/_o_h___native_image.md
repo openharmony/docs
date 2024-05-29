@@ -35,13 +35,13 @@
 | typedef struct NativeWindow [OHNativeWindow](#ohnativewindow) | 提供对NativeWindow的访问功能。  | 
 | typedef void(\* [OH_OnFrameAvailable](#oh_onframeavailable)) (void \*context) | 有buffer可获取时触发的回调函数。  | 
 | typedef struct [OH_OnFrameAvailableListener](_o_h___on_frame_available_listener.md)  [OH_OnFrameAvailableListener](#oh_onframeavailablelistener) | 一个OH_NativeImage的监听者，通过{\@Link OH_NativeImage_SetOnFrameAvailableListener}接口注册 该监听结构体，当有buffer可获取时，将触发回调给用户。  | 
-| typedef enum [OHNativeErrorCode](ohnativeerrorcode)  [OHNativeErrorCode](#ohnativeerrorcode) | 接口错误码说明（仅用于查询）。  | 
+| typedef enum [OHNativeErrorCode](#ohnativeerrorcode)  [OHNativeErrorCode](#ohnativeerrorcode) | 接口错误码说明（仅用于查询）。  | 
 
 ### 枚举
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [OHNativeErrorCode](ohnativeerrorcode) {<br/>NATIVE_ERROR_OK = 0, NATIVE_ERROR_INVALID_ARGUMENTS = 40001000, NATIVE_ERROR_NO_PERMISSION = 40301000, NATIVE_ERROR_NO_BUFFER = 40601000,<br/>NATIVE_ERROR_NO_CONSUMER = 41202000, NATIVE_ERROR_NOT_INIT = 41203000, NATIVE_ERROR_CONSUMER_IS_CONNECTED = 41206000, NATIVE_ERROR_BUFFER_STATE_INVALID = 41207000,<br/>NATIVE_ERROR_BUFFER_IS_INCACHE = 41208000, NATIVE_ERROR_BUFFER_QUEUE_FULL = 41209000, NATIVE_ERROR_BUFFER_NOT_INCACHE = 41210000, NATIVE_ERROR_UNSUPPORT = 50102000,<br/>NATIVE_ERROR_UNKNOW = 50002000, NATIVE_ERROR_EGL_STATE_UNKNOW = 60001000, NATIVE_ERROR_EGL_API_FAILED = 60002000 | 接口错误码说明（仅用于查询）。  | 
+| [OHNativeErrorCode](ohnativeerrorcode) {<br/>NATIVE_ERROR_OK = 0, NATIVE_ERROR_INVALID_ARGUMENTS = 40001000, NATIVE_ERROR_NO_PERMISSION = 40301000, NATIVE_ERROR_NO_BUFFER = 40601000,<br/>NATIVE_ERROR_NO_CONSUMER = 41202000, NATIVE_ERROR_NOT_INIT = 41203000, NATIVE_ERROR_CONSUMER_CONNECTED = 41206000, NATIVE_ERROR_BUFFER_STATE_INVALID = 41207000,<br/>NATIVE_ERROR_BUFFER_IN_CACHE = 41208000, NATIVE_ERROR_BUFFER_QUEUE_FULL = 41209000, NATIVE_ERROR_BUFFER_NOT_IN_CACHE = 41210000, NATIVE_ERROR_UNSUPPORT = 50102000,<br/>NATIVE_ERROR_UNKNOWN = 50002000, NATIVE_ERROR_EGL_STATE_UNKNOWN = 60001000, NATIVE_ERROR_EGL_API_FAILED = 60002000 | 接口错误码说明（仅用于查询）。  | 
 
 ### 函数
 
@@ -157,14 +157,14 @@ enum OHNativeErrorCode
 | NATIVE_ERROR_NO_BUFFER  | 无空闲可用的buffer   | 
 | NATIVE_ERROR_NO_CONSUMER  | 消费端不存在   | 
 | NATIVE_ERROR_NOT_INIT  | 未初始化   | 
-| NATIVE_ERROR_CONSUMER_IS_CONNECTED  | 消费端已经被连接   | 
+| NATIVE_ERROR_CONSUMER_CONNECTED  | 消费端已经被连接   | 
 | NATIVE_ERROR_BUFFER_STATE_INVALID  | buffer状态不符合预期   | 
-| NATIVE_ERROR_BUFFER_IS_INCACHE  | buffer已在缓存队列中   | 
+| NATIVE_ERROR_BUFFER_IN_CACHE  | buffer已在缓存队列中   | 
 | NATIVE_ERROR_BUFFER_QUEUE_FULL  | 队列已满   | 
-| NATIVE_ERROR_BUFFER_NOT_INCACHE  | buffer不在缓存队列中   | 
+| NATIVE_ERROR_BUFFER_NOT_IN_CACHE  | buffer不在缓存队列中   | 
 | NATIVE_ERROR_UNSUPPORT  | 当前设备或平台不支持   | 
-| NATIVE_ERROR_UNKNOW  | 未知错误，请查看日志   | 
-| NATIVE_ERROR_EGL_STATE_UNKNOW  | egl环境状态异常   | 
+| NATIVE_ERROR_UNKNOWN  | 未知错误，请查看日志   | 
+| NATIVE_ERROR_EGL_STATE_UNKNOWN  | egl环境状态异常   | 
 | NATIVE_ERROR_EGL_API_FAILED  | egl接口调用失败   | 
 
 
