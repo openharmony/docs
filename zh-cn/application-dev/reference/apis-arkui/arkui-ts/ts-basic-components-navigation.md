@@ -917,6 +917,8 @@ setInterception(interception: NavigationInterception): void
 
 设置Navigation页面跳转拦截回调。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 名称    | 类型     | 必填   | 描述                     |
@@ -1004,6 +1006,8 @@ constructor(name: string, param: unknown)
 
 Navigation跳转拦截对象。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 | 名称    | 类型     | 必填 | 描述    |
 | ---- | ----- | ----- | ----   |
 | willShow | (from: [NavDestinationContext](ts-basic-components-navdestination.md#navdestinationcontext11类型说明) \|"navBar",<br> to: [NavDestinationContext](ts-basic-components-navdestination.md#navdestinationcontext11类型说明) \|"navBar",<br> operation: [NavigationOperation](#navigationoperation11枚举说明),<br> isAnimated: boolean) =&gt;void | 否 | 页面跳转前拦截，允许操作栈，在当前跳转中生效。<br> from: 页面跳转之前的栈顶页面信息。参数值为navBar，则表示跳转前的页面为Navigation首页。<br> to: 页面跳转之后的栈顶页面信息。参数值为navBar，则标题跳转的目标页面为Navigation首页。<br> operation: 当前页面跳转类型。<br> isAnimated: 页面跳转是否有动画。 |
@@ -1016,7 +1020,7 @@ Navigation跳转拦截对象。
 | ------ | ------------- | ---- | --------------- |
 | value  | string        | 是    | API Version 9: 显示菜单栏单个选项的文本。<br> API Version 10: 不显示菜单栏单个选项的文本。  <br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 | icon   | string        | 否    | 菜单栏单个选项的图标资源路径。 <br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| isEnabled<sup>12+</sup>   | boolean        | 否    | 使能状态，默认使能（false未使能，true使能）。 |
+| isEnabled<sup>12+</sup>   | boolean        | 否    | 使能状态，默认使能（false未使能，true使能）。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
 | action | () =&gt; void | 否    | 当前选项被选中的事件回调。   <br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 | symbolIcon<sup>12+</sup> |  [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md)  | 否    |菜单栏单个选项的symbol资源（优先级高于icon）。 |
 
@@ -1119,6 +1123,9 @@ Navigation跳转拦截对象。
 | REPLACE | 本次转场为页面替换。|
 
 ## BarStyle<sup>12+</sup>枚举说明
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 | 名称    | 描述  |
 |---------|------|
 |STANDARD | 标题栏与内容区采用上下布局。|
@@ -1132,7 +1139,7 @@ Navigation跳转拦截对象。
 | ------ | ------------- | ---- | --------------- |
 | backgroundColor | [ResourceColor](ts-types.md#resourcecolor)  | 否    | 标题栏背景颜色，不设置时为系统默认颜色。 |
 | backgroundBlurStyle   | [BlurStyle](ts-appendix-enums.md#blurstyle9)        | 否    | 标题栏背景模糊样式，不设置时关闭背景模糊效果。 |
-| barStyle<sup>12+</sup>   | [BarStyle](#barstyle12枚举说明)        | 否    | 标题栏布局方式设置。<br/>默认值：BarStyle.STANDARD |
+| barStyle<sup>12+</sup>   | [BarStyle](#barstyle12枚举说明)        | 否    | 标题栏布局方式设置。<br/>默认值：BarStyle.STANDARD<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
 
 ## NavigationToolbarOptions<sup>11+</sup>类型说明
 

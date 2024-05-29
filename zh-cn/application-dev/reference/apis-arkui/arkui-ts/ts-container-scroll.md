@@ -498,6 +498,8 @@ fling(velocity: number): void
 
 滚动类组件开启按传入的初始速度进行惯性滚动。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名   | 参数类型 | 必填 | 参数描述                                                     |
@@ -518,7 +520,7 @@ scrollPage(value:   ScrollPageOptions)
 
 滚动到下一页或者上一页。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
