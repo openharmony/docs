@@ -2108,15 +2108,3 @@ wifiManager.on("hotspotStaLeave", recvHotspotStaLeaveFunc);
 wifiManager.off("hotspotStaLeave", recvHotspotStaLeaveFunc);
 
 ```
-
-
-## WifiScanInfo<sup>9+</sup>
-
-WLAN热点信息。
-
-**系统能力：** SystemCapability.Communication.WiFi.STA
-
-
-| **名称** | **类型** | **可读** | **可写** | **说明** |
-| -------- | -------- | -------- | -------- | -------- |
-| supportedWifiCategory<sup>12+</sup> | [WifiCategory](#wificategory12) | 是 | 否| 热点支持的最高wifi类别。 |
