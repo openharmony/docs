@@ -2866,24 +2866,43 @@ off(type: 'avoidAreaChange', callback?: Callback&lt;AvoidAreaOptions&gt;): void
 **示例：**
 
 ```ts
-interface Param {
-  type: window.AvoidAreaType,
-  area: window.AvoidArea
-}
-const callback = (data: Param) => {
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class EntryAbility extends UIAbility {
   // ...
-}
-try {
-  windowClass.on('avoidAreaChange', callback);
-} catch (exception) {
-  console.error('Failed to enable the listener for system avoid area changes. Cause: ' + JSON.stringify(exception));
-}
-try {
-  windowClass.off('avoidAreaChange', callback);
-  // 如果通过on开启多个callback进行监听，同时关闭所有监听：
-  windowClass.off('avoidAreaChange');
-} catch (exception) {
-  console.error(`Failed to disable the listener for system avoid area changes. Cause code: ${exception.code}, message: ${exception.message}`);
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      windowClass = data;
+	  interface Param {
+		type: window.AvoidAreaType,
+		area: window.AvoidArea
+	  }
+	  const callback = (data: Param) => {
+		// ...
+	  }
+	  try {
+		windowClass.on('avoidAreaChange', callback);
+	  } catch (exception) {
+		console.error('Failed to enable the listener for system avoid area changes. Cause: ' + JSON.stringify(exception));
+	  }
+	  try {
+		windowClass.off('avoidAreaChange', callback);
+		// 如果通过on开启多个callback进行监听，同时关闭所有监听：
+		windowClass.off('avoidAreaChange');
+	  } catch (exception) {
+		console.error(`Failed to disable the listener for system avoid area changes. Cause code: ${exception.code}, message: ${exception.message}`);
+	  }
+    });
+  }
 }
 ```
 
