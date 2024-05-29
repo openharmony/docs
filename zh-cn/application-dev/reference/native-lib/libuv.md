@@ -392,8 +392,7 @@ napi_status napi_release_threadsafe_function(napi_threadsafe_function function);
     .main-font{
         font-size: 23px;
     }
-</style>
-<table>
+</style><table>
     <tr>
         <td><b>接口类型</b></td>
         <td><b>接口汇总</b></td>
