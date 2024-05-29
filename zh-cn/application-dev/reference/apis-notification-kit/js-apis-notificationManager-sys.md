@@ -379,7 +379,7 @@ notificationSlotArray[0] = notificationSlot;
 notificationManager.addSlots(notificationSlotArray).then(() => {
 	console.info("addSlots success");
 }).catch((err: Base.BusinessError) => {
-    console.error(`addSlot fail: ${JSON.stringify(err)}`);
+    console.error(`addSlots fail: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -425,9 +425,9 @@ import Base from '@ohos.base';
 
 let setNotificationEnableCallback = (err: Base.BusinessError): void => {
     if (err) {
-        console.error(`setNotificationEnableCallback failed, code is ${err.code}, message is ${err.message}`);
+        console.error(`setNotificationEnable failed, code is ${err.code}, message is ${err.message}`);
     } else {
-        console.info("setNotificationEnableCallback success");
+        console.info("setNotificationEnable success");
     }
 }
 let bundle: notificationManager.BundleOption = {
@@ -501,6 +501,12 @@ getAllNotificationEnabledBundles(): Promise<Array<BundleOption\>>;
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
 
 **系统接口**: 此接口为系统接口。
+
+**返回值：**
+
+| 类型      | 说明        | 
+|---------|-----------|
+| Promise<Array<BundleOption\>> | 返回允许通知的应用程序列表。 | 
 
 **错误码：**
 
@@ -2173,7 +2179,7 @@ let isSupportDoNotDisturbModeCallback = (err: Base.BusinessError, data: boolean)
     if (err) {
         console.error(`isSupportDoNotDisturbMode failed, code is ${err.code}, message is ${err.message}`);
     } else {
-        console.info("isSupportDoNotDisturbMode success");
+        console.info("isSupportDoNotDisturbMode success, data: " + JSON.stringify(data));
     }
 }
 
@@ -2217,9 +2223,9 @@ isSupportDoNotDisturbMode(): Promise\<boolean\>
 import Base from '@ohos.base';
 
 notificationManager.isSupportDoNotDisturbMode().then((data: boolean) => {
-	console.info("supportDoNotDisturbMode success, data: " + JSON.stringify(data));
+	console.info("isSupportDoNotDisturbMode success, data: " + JSON.stringify(data));
 }).catch((err: Base.BusinessError) => {
-    console.error(`supportDoNotDisturbMode fail: ${JSON.stringify(err)}`);
+    console.error(`isSupportDoNotDisturbMode fail: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -2367,7 +2373,7 @@ let setDistributedEnableByBundleCallback = (err: Base.BusinessError): void => {
     if (err) {
         console.error(`setDistributedEnableByBundle failed, code is ${err.code}, message is ${err.message}`);
     } else {
-        console.info("enableDistributedByBundle success");
+        console.info("setDistributedEnableByBundle success");
     }
 };
 let bundle: notificationManager.BundleOption = {
@@ -3279,8 +3285,8 @@ isNotificationSlotEnabled(bundle: BundleOption, type: SlotType, callback: AsyncC
 ```ts
 import Base from '@ohos.base';
 
-// isNotificationSlotEnabled
-let getEnableSlotCallback = (err: Base.BusinessError, data: boolean): void => {
+// isNotificationSlotEnabledCallback
+let isNotificationSlotEnabledCallback = (err: Base.BusinessError, data: boolean): void => {
     if (err) {
         console.error(`isNotificationSlotEnabled failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -3291,7 +3297,7 @@ let getEnableSlotCallback = (err: Base.BusinessError, data: boolean): void => {
 notificationManager.isNotificationSlotEnabled(
     { bundle: "ohos.samples.notification", },
     notificationManager.SlotType.SOCIAL_COMMUNICATION,
-    getEnableSlotCallback);
+    isNotificationSlotEnabledCallback);
 ```
 
 ## notificationManager.isNotificationSlotEnabled
@@ -3389,14 +3395,14 @@ import Base from '@ohos.base';
 
 let userId: number = 100;
 let enable: boolean = true;
-let callback = (err: Base.BusinessError): void => {
+let setSyncNotificationEnabledWithoutAppCallback = (err: Base.BusinessError): void => {
     if (err) {
         console.error(`setSyncNotificationEnabledWithoutApp failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("setSyncNotificationEnabledWithoutApp success");
     }
 }
-notificationManager.setSyncNotificationEnabledWithoutApp(userId, enable, callback);
+notificationManager.setSyncNotificationEnabledWithoutApp(userId, enable, setSyncNotificationEnabledWithoutAppCallback);
 ```
 
 
@@ -3495,9 +3501,9 @@ import Base from '@ohos.base';
 let userId: number = 100;
 let getSyncNotificationEnabledWithoutAppCallback = (err: Base.BusinessError, data: boolean): void => {
     if (err) {
-        console.info('getSyncNotificationEnabledWithoutAppCallback, err:' + err);
+        console.info(`getSyncNotificationEnabledWithoutAppCallback failed, code is ${err.code}, message is ${err.message}`);
     } else {
-        console.info('getSyncNotificationEnabledWithoutAppCallback, data:' + data);
+        console.info("getSyncNotificationEnabledWithoutAppCallback success, data: " + JSON.stringify(data));
     }
 }
 notificationManager.getSyncNotificationEnabledWithoutApp(userId, getSyncNotificationEnabledWithoutAppCallback);
@@ -3549,7 +3555,7 @@ import Base from '@ohos.base';
 
 let userId: number = 100;
 notificationManager.getSyncNotificationEnabledWithoutApp(userId).then((data: boolean) => {
-  console.info('getSyncNotificationEnabledWithoutApp, data:' + data);
+  console.info('getSyncNotificationEnabledWithoutApp, data: ' + JSON.stringify(data));
 }).catch((err: Base.BusinessError) => {
     console.error(`getSyncNotificationEnabledWithoutApp fail: ${JSON.stringify(err)}`);
 });
@@ -3804,7 +3810,7 @@ subscribeSystemLiveView(subscriber: SystemLiveViewSubscriber): Promise\<void>;
 import Base from '@ohos.base';
 
 let onResponseCallback = (id:number, option:notificationManager.ButtonOptions) => {
-    console.info("response callback: " + JSON.stringify(option) + "notificationId" + id);
+    console.info("onResponseCallback: " + JSON.stringify(option) + "notificationId" + id);
 }
 let subscriber: notificationManager.SystemLiveViewSubscriber  = {
     onResponse: onResponseCallback,
@@ -3926,7 +3932,7 @@ let bundle: notificationManager.BundleOption = {
 };
 let deviceType: string = "phone";
 notificationManager.isDistributedEnabledByBundle(bundle, deviceType).then((data: boolean) => {
-    console.info("isDistributedEnabledByBundle success, data:" + data);
+    console.info("isDistributedEnabledByBundle success, data: " + JSON.stringify(data));
 }).catch((err: Base.BusinessError) => {
     console.error(`isDistributedEnabledByBundle fail: ${JSON.stringify(err)}`);
 });
@@ -4352,9 +4358,9 @@ let templates: Array<notificationManager.DoNotDisturbProfile> = [
 ]
 
 notificationManager.addDoNotDisturbProfile(templates).then(() => {
-  console.info("Add do not disturb templates success.");
+  console.info("addDoNotDisturbProfile success.");
 }).catch((error: Base.BusinessError) => {
-  console.error(`Add do not disturb templates fail: ${JSON.stringify(error)}`);
+  console.error(`addDoNotDisturbProfile fail: ${JSON.stringify(error)}`);
 });
 ```
 
@@ -4408,9 +4414,9 @@ let templates: Array<notificationManager.DoNotDisturbProfile> = [
   }
 ]
 notificationManager.removeDoNotDisturbProfile(templates).then(() => {
-  console.info("Remove do not disturb templates success.");
+  console.info("removeDoNotDisturbProfile success.");
 }).catch((error: Base.BusinessError) => {
-  console.error(`Remove do not disturb templates fail: ${JSON.stringify(error)}`);
+  console.error(`removeDoNotDisturbProfile fail: ${JSON.stringify(error)}`);
 });
 ```
 
@@ -4466,9 +4472,9 @@ setAdditionalConfig(key: string, value: string): Promise\<number\>
 ```ts
 import Base from '@ohos.base';
 
-notificationManager.setAdditionalConfig('RING_TRUSTLIST_PKG','[bundleName1,bundleName2]').then((num: number) => {
-  console.info("Set Additional Config success.");
+notificationManager.setAdditionalConfig('RING_TRUSTLIST_PKG','[bundleName1,bundleName2]').then((data: number) => {
+  console.info("setAdditionalConfig success, data: " + JSON.stringify(data));
 }).catch((error: Base.BusinessError) => {
-  console.error(`Set Additional Config fail: ${JSON.stringify(error)}`);
+  console.error(`setAdditionalConfig fail: ${JSON.stringify(error)}`);
 });
 ```
