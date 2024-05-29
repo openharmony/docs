@@ -11,7 +11,7 @@
 ## 导入模块
 
 ```ts
-import Ability from '@ohos.app.ability.Ability';
+import { Ability } from '@kit.AbilityKit';
 ```
 
 ## Ability.onConfigurationUpdate
@@ -33,8 +33,7 @@ onConfigurationUpdate(newConfig: Configuration): void
 **示例：**
   ```ts
 // Ability是顶层基类，不支持开发者直接继承。故以派生类UIAbility举例说明。
-import UIAbility from '@ohos.app.ability.UIAbility';
-import { Configuration } from '@ohos.app.ability.Configuration';
+import { UIAbility, Configuration } from '@kit.AbilityKit';
 
 class MyUIAbility extends UIAbility {
     onConfigurationUpdate(config: Configuration) {
@@ -63,12 +62,11 @@ onMemoryLevel(level: AbilityConstant.MemoryLevel): void
 
   ```ts
 // Ability是顶层基类，不支持开发者直接继承。故以派生类UIAbility举例说明。
-import UIAbility from '@ohos.app.ability.UIAbility';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import { UIAbility, AbilityConstant } from '@kit.AbilityKit';
 
 class MyUIAbility extends UIAbility {
-    onMemoryLevel(level: AbilityConstant.MemoryLevel) {
-        console.log(`onMemoryLevel, level: ${JSON.stringify(level)}`);
-    } 
+  onMemoryLevel(level: AbilityConstant.MemoryLevel) {
+    console.log(`onMemoryLevel, level: ${JSON.stringify(level)}`);
+  }
 }
   ```

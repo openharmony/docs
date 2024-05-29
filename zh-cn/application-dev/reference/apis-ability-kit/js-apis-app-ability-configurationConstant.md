@@ -9,7 +9,7 @@ ConfigurationConstant模块提供配置信息枚举值定义的能力。
 ## 导入模块
 
 ```ts
-import ConfigurationConstant from '@ohos.app.ability.ConfigurationConstant';
+import { ConfigurationConstant } from '@kit.AbilityKit';
 ```
 
 ## ConfigurationConstant.ColorMode

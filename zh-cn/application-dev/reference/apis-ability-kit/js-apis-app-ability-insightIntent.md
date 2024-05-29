@@ -11,7 +11,7 @@
 ## 导入模块
 
 ```ts
-import insightIntent from '@ohos.app.ability.insightIntent';
+import { insightIntent } from '@kit.AbilityKit';
 ```
 
 ## ExecuteMode
