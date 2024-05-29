@@ -22,6 +22,8 @@ enableBluetooth(): void
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
+**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 **错误码**：
@@ -52,6 +54,8 @@ disableBluetooth(): void
 关闭蓝牙。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
+
+**元服务API**：从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -84,7 +88,7 @@ getState(): BluetoothState
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
-**元服务API**: 从API version 11开始，该接口支持在元服务中使用。
+**元服务API**：从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -121,6 +125,8 @@ on(type: "stateChange", callback: Callback&lt;BluetoothState&gt;): void
 订阅蓝牙设备开关状态事件。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
+
+**元服务API**：从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -161,6 +167,8 @@ off(type: "stateChange", callback?: Callback&lt;BluetoothState&gt;): void
 取消订阅蓝牙设备开关状态事件。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
+
+**元服务API**：从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 

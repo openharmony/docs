@@ -23,6 +23,8 @@ pairDevice(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
+**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 **参数：**
@@ -62,6 +64,8 @@ pairDevice(deviceId: string): Promise&lt;void&gt;
 发起蓝牙配对。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
+
+**元服务API**：从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -233,6 +237,8 @@ getPairedDevices(): Array&lt;string&gt;
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
+**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 **返回值：**
@@ -270,6 +276,8 @@ getPairState(deviceId: string): BondState
 获取蓝牙配对状态。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
+
+**元服务API**：从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -616,6 +624,8 @@ startBluetoothDiscovery(): void
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
+**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 **错误码**：
@@ -651,6 +661,8 @@ stopBluetoothDiscovery(): void
 关闭蓝牙扫描。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
+
+**元服务API**：从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -899,6 +911,8 @@ on(type: 'bluetoothDeviceFind', callback: Callback&lt;Array&lt;string&gt;&gt;): 
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
+**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 **参数：**
@@ -938,6 +952,8 @@ off(type: 'bluetoothDeviceFind', callback?: Callback&lt;Array&lt;string&gt;&gt;)
 取消订阅蓝牙设备发现上报事件。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
+
+**元服务API**：从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -1221,6 +1237,8 @@ try {
 ## BondState
 
 枚举，配对状态。
+
+**元服务API**：从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
