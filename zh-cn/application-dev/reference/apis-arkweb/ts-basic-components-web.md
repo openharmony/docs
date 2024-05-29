@@ -7106,7 +7106,7 @@ type OnSslErrorEventCallback = (sslErrorEvent: SslErrorEvent) => void
 | height            | number                              | 否    | Embed标签的高，单位为px。          |
 | url               | string                              | 否    | Embed标签的url信息。            |
 | tag<sup>12+</sup> | string              | 否    | 标签名，统一为大写字符。              |
-| params<sup>12+</sup>            | map<string, string> | 否    | object标签包含的param标签键值对列表。  |
+| params<sup>12+</sup>            | map<string, string> | 否    | object标签包含的param标签键值对列表，此map类型尚不完全具备标准map类型的功能，如不支持get(key)的使用等，建议参照Object类型的使用方式。  |
 | position<sup>12+</sup>          | Position            | 否    | 同层标签在屏幕坐标系中相对于web组件的位置信息，此处区别于标准Position，单位为px。 |
 
 ## NativeEmbedDataInfo<sup>11+</sup>
