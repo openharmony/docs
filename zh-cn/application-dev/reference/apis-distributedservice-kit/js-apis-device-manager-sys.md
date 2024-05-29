@@ -42,7 +42,7 @@ createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
-| 202 | The caller is not a system application. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **参数：**
@@ -281,8 +281,8 @@ release(): void
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
-| 201 | Permission verify failed.                                            |
-| 202 | The caller is not a system application.                              |
+| 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
 | 11600101 | Failed to execute the function.                                 |
 
 **示例：**
@@ -323,8 +323,8 @@ getTrustedDeviceListSync(): Array&lt;DeviceInfo&gt;
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
-| 201 | Permission verify failed.                                            |
-| 202 | The caller is not a system application.                              |
+| 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
 | 11600101 | Failed to execute the function.                                 |
 
 **示例：**
@@ -372,8 +372,8 @@ getTrustedDeviceListSync(isRefresh: boolean): Array&lt;DeviceInfo&gt;
 
 | 错误码ID | 错误信息                                                         |
 | -------- | --------------------------------------------------------------- |
-| 201 | Permission verify failed.                                            |
-| 202 | The caller is not a system application.                              |
+| 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. |
 | 11600101 | Failed to execute the function.                                 |
 
@@ -416,7 +416,7 @@ getTrustedDeviceList(callback:AsyncCallback&lt;Array&lt;DeviceInfo&gt;&gt;): voi
 
 | 错误码ID | 错误信息                                                         |
 | -------- | --------------------------------------------------------------- |
-| 202 | The caller is not a system application.                              |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. |
 
 **示例：**
@@ -464,7 +464,7 @@ getTrustedDeviceList(): Promise&lt;Array&lt;DeviceInfo&gt;&gt;
 
 | 错误码ID | 错误信息                                                         |
 | -------- | --------------------------------------------------------------- |
-| 202 | The caller is not a system application.                              |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
 
 **示例：**
 
@@ -504,8 +504,8 @@ getLocalDeviceInfoSync(): [DeviceInfo](#deviceinfo)
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
-| 201 | Permission verify failed.                                            |
-| 202 | The caller is not a system application.                              |
+| 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
 | 11600101 | Failed to execute the function.                                 |
 
 **示例：**
@@ -547,7 +547,7 @@ getLocalDeviceInfo(callback:AsyncCallback&lt;DeviceInfo&gt;): void
 
 | 错误码ID | 错误信息                                                         |
 | -------- | --------------------------------------------------------------- |
-| 202 | The caller is not a system application.                              |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. |
 
 **示例：**
@@ -596,7 +596,7 @@ getLocalDeviceInfo(): Promise&lt;DeviceInfo&gt;
 
 | 错误码ID | 错误信息                                                         |
 | -------- | --------------------------------------------------------------- |
-| 202 | The caller is not a system application.                              |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
 
 **示例：**
 
@@ -637,7 +637,7 @@ getDeviceInfo(networkId: string, callback:AsyncCallback&lt;DeviceInfo&gt;): void
 
 | 错误码ID | 错误信息                                                         |
 | -------- | --------------------------------------------------------------- |
-| 202 | The caller is not a system application.                              |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified networkId is greater than 255. |
 
 **示例：**
@@ -693,7 +693,7 @@ getDeviceInfo(networkId: string): Promise&lt;DeviceInfo&gt;
 
 | 错误码ID | 错误信息                                                         |
 | -------- | --------------------------------------------------------------- |
-| 202 | The caller is not a system application.                              |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified networkId is greater than 255. |
 
 **示例：**
@@ -736,8 +736,8 @@ startDeviceDiscovery(subscribeInfo: SubscribeInfo): void
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
-| 201 | Permission verify failed.                                            |
-| 202 | The caller is not a system application.                              |
+| 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified networkId is greater than 255. |
 | 11600101 | Failed to execute the function.                                 |
 | 11600104 | Discovery invalid.                                              |
@@ -802,8 +802,8 @@ startDeviceDiscovery(subscribeInfo: SubscribeInfo, filterOptions?: string): void
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
-| 201 | Permission verify failed.                                            |
-| 202 | The caller is not a system application.                              |
+| 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified networkId is greater than 255. |
 | 11600101 | Failed to execute the function.                                 |
 | 11600104 | Discovery invalid.                                              |
@@ -889,8 +889,8 @@ stopDeviceDiscovery(subscribeId: number): void
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
-| 201 | Permission verify failed.                                            |
-| 202 | The caller is not a system application.                              |
+| 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified networkId is greater than 255. |
 | 11600101 | Failed to execute the function.                                 |
 
@@ -934,8 +934,8 @@ publishDeviceDiscovery(publishInfo: PublishInfo): void
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
-| 201 | Permission verify failed.                                            |
-| 202 | The caller is not a system application.                              |
+| 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. |
 | 11600101 | Failed to execute the function.                                 |
 | 11600105 | Publish invalid.                                                |
@@ -994,8 +994,8 @@ unPublishDeviceDiscovery(publishId: number): void
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
-| 201 | Permission verify failed.                                            |
-| 202 | The caller is not a system application.                              |
+| 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. |
 | 11600101 | Failed to execute the function.                                 |
 
@@ -1041,7 +1041,7 @@ authenticateDevice(deviceInfo: DeviceInfo, authParam: AuthParam, callback: Async
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
-| 202 | The caller is not a system application.                              |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. |
 
 **示例：**
@@ -1134,8 +1134,8 @@ unAuthenticateDevice(deviceInfo: DeviceInfo): void
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
-| 201 | Permission verify failed.                                            |
-| 202 | The caller is not a system application.                              |
+| 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. |
 | 11600101 | Failed to execute the function.                                 |
 
@@ -1194,7 +1194,7 @@ verifyAuthInfo(authInfo: AuthInfo, callback: AsyncCallback&lt;{deviceId: string,
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
-| 202 | The caller is not a system application.                              |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. |
 
 **示例：**
@@ -1268,8 +1268,8 @@ setUserOperation(operateAction: number, params: string): void;
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
-| 201 | Permission verify failed.                                            |
-| 202 | The caller is not a system application.                              |
+| 201 | Permission verification failed. The application does not have the permission required to call the API.    |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified params is greater than 255.    |
 
 **示例：**
@@ -1320,7 +1320,7 @@ requestCredentialRegisterInfo(requestInfo: string, callback: AsyncCallback<{regi
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
-| 202 | The caller is not a system application.                              |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified params is greater than 255.    |
 
 **示例：**
@@ -1382,7 +1382,7 @@ importCredential(credentialInfo: string, callback: AsyncCallback<{resultInfo: st
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
-| 202 | The caller is not a system application.                              |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified credentialInfo is greater than 5999. |
 
 **示例：**
@@ -1477,7 +1477,7 @@ deleteCredential(queryInfo: string, callback: AsyncCallback<{resultInfo: string}
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
-| 202 | The caller is not a system application.                              |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified credentialInfo is greater than 5999. |
 
 **示例：**
@@ -1542,7 +1542,7 @@ ui状态变更回调。
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
-| 202 | The caller is not a system application.                              |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified eventType is greater than 255. |
 
 **示例：**
@@ -1597,7 +1597,7 @@ off(type: 'uiStateChange', callback?: Callback&lt;{ param: string}&gt;): void;
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
-| 202 | The caller is not a system application.                              |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified eventType is greater than 255. |
 
 **示例：**
@@ -1639,7 +1639,7 @@ on(type: 'deviceStateChange',  callback: Callback&lt;{ action: DeviceStateChange
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
-| 202 | The caller is not a system application.                              |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified eventType is greater than 255. |
 
 **示例：**
@@ -1696,7 +1696,7 @@ off(type: 'deviceStateChange', callback?: Callback&lt;{ action: DeviceStateChang
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
-| 202 | The caller is not a system application.                              |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified eventType is greater than 255. |
 
 **示例：**
@@ -1753,7 +1753,7 @@ on(type: 'deviceFound', callback: Callback&lt;{ subscribeId: number, device: Dev
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
-| 202 | The caller is not a system application.                              |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified eventType is greater than 255. |
 
 **示例：**
@@ -1810,7 +1810,7 @@ off(type: 'deviceFound', callback?: Callback&lt;{ subscribeId: number, device: D
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
-| 202 | The caller is not a system application.                              |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified eventType is greater than 255. |
 
 **示例：**
@@ -1867,7 +1867,7 @@ on(type: 'discoverFail', callback: Callback&lt;{ subscribeId: number, reason: nu
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
-| 202 | The caller is not a system application.                              |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified eventType is greater than 255. |
 
 **示例：**
@@ -1916,7 +1916,7 @@ off(type: 'discoverFail', callback?: Callback&lt;{ subscribeId: number, reason: 
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
-| 202 | The caller is not a system application.                              |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified eventType is greater than 255. |
 
 **示例：**
@@ -1965,7 +1965,7 @@ on(type: 'publishSuccess', callback: Callback&lt;{ publishId: number }&gt;): voi
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
-| 202 | The caller is not a system application.                              |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified eventType is greater than 255. |
 
 **示例：**
@@ -2013,7 +2013,7 @@ off(type: 'publishSuccess', callback?: Callback&lt;{ publishId: number }&gt;): v
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
-| 202 | The caller is not a system application.                              |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified eventType is greater than 255. |
 
 **示例：**
@@ -2061,7 +2061,7 @@ on(type: 'publishFail', callback: Callback&lt;{ publishId: number, reason: numbe
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
-| 202 | The caller is not a system application.                              |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified eventType is greater than 255. |
 
 **示例：**
@@ -2110,7 +2110,7 @@ off(type: 'publishFail', callback?: Callback&lt;{ publishId: number, reason: num
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
-| 202 | The caller is not a system application.                              |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified eventType is greater than 255. |
 
 **示例：**
@@ -2159,7 +2159,7 @@ on(type: 'serviceDie', callback: () =&gt; void): void
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
-| 202 | The caller is not a system application.                              |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified eventType is greater than 255. |
 
 **示例：**
@@ -2203,7 +2203,7 @@ off(type: 'serviceDie', callback?: () =&gt; void): void
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
-| 202 | The caller is not a system application.                              |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified eventType is greater than 255. |
 
 **示例：**

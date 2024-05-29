@@ -87,7 +87,7 @@ releaseDeviceManager(deviceManager: DeviceManager): void;
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
-| 201 | Permission verify failed.                                            |
+| 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. |
 | 11600101 | Failed to execute the function.                                 |
 
@@ -162,7 +162,7 @@ getAvailableDeviceListSync(): Array&lt;DeviceBasicInfo&gt;;
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
-| 201 | Permission verify failed.                                            |
+| 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. |
 | 11600101 | Failed to execute the function.                                 |
 
@@ -203,7 +203,7 @@ getAvailableDeviceList(callback:AsyncCallback&lt;Array&lt;DeviceBasicInfo&gt;&gt
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
-| 201 | Permission verify failed.                                            |
+| 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
 | 11600101 | Failed to execute the function.                                 |
 
 **示例：**
@@ -249,7 +249,7 @@ getAvailableDeviceList(): Promise&lt;Array&lt;DeviceBasicInfo&gt;&gt;;
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
-| 201 | Permission verify failed.                                            |
+| 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
 | 11600101 | Failed to execute the function.                                 |
 
 **示例：**
@@ -288,7 +288,7 @@ getLocalDeviceNetworkId(): string;
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
-| 201 | Permission verify failed.                                            |
+| 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
 | 11600101 | Failed to execute the function.                                 |
 
 **示例：**
@@ -328,7 +328,7 @@ getLocalDeviceName(): string;
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
-| 201 | Permission verify failed.                                            |
+| 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
 | 11600101 | Failed to execute the function.                                 |
 
 **示例：**
@@ -368,7 +368,7 @@ getLocalDeviceType(): number;
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
-| 201 | Permission verify failed.                                            |
+| 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
 | 11600101 | Failed to execute the function.                                 |
 
 **示例：**
@@ -408,7 +408,7 @@ getLocalDeviceId(): string;
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
-| 201 | Permission verify failed.                                            |
+| 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
 | 11600101 | Failed to execute the function.                                 |
 
 **示例：**
@@ -454,7 +454,7 @@ getDeviceName(networkId: string): string;
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
-| 201 | Permission verify failed.                                            |
+| 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified networkId is greater than 255. |
 | 11600101 | Failed to execute the function.                                 |
 
@@ -503,7 +503,7 @@ getDeviceType(networkId: string): number;
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
-| 201 | Permission verify failed.                                            |
+| 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified networkId is greater than 255. |
 | 11600101 | Failed to execute the function.                                 |
 
@@ -547,10 +547,10 @@ startDiscovering(discoverParam: {[key:&nbsp;string]:&nbsp;Object} , filterOption
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
-| 201 | Permission verify failed.                                            |
+| 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. |
 | 11600101 | Failed to execute the function.                                 |
-| 11600104 | Discovery repeats.                                              |
+| 11600104 | Discovery unavailable.                                          |
 
 **示例：**
 
@@ -600,10 +600,9 @@ stopDiscovering(): void;
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
-| 201 | Permission verify failed.                                            |
+| 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. |
 | 11600101 | Failed to execute the function.                                 |
-| 11600104 | Stop discovery repeats.                                         |
 
 **示例：**
 
@@ -643,10 +642,10 @@ bindTarget(deviceId: string, bindParam: {[key:&nbsp;string]:&nbsp;Object} , call
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
-| 201 | Permission verify failed.                                            |
+| 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified deviceId is greater than 255.  |
 | 11600101 | Failed to execute the function.                                 |
-| 11600103 | Bind invalid.                                                   |
+| 11600103 | Authentication invalid.                                         |
 
 **示例：**
 
@@ -704,7 +703,7 @@ unbindTarget(deviceId: string): void;
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
-| 201 | Permission verify failed.                                            |
+| 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified deviceId is greater than 255.  |
 | 11600101 | Failed to execute the function.                                 |
 
@@ -746,7 +745,7 @@ on(type: 'deviceStateChange', callback: Callback&lt;{ action: DeviceStateChange,
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
-| 201 | Permission verify failed.                                            |
+| 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified deviceId is greater than 255.  |
 
 **示例：**
@@ -799,7 +798,7 @@ off(type: 'deviceStateChange', callback?: Callback&lt;{ action: DeviceStateChang
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
-| 201 | Permission verify failed.                                            |
+| 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified deviceId is greater than 255.  |
 
 **示例：**
@@ -852,7 +851,7 @@ on(type: 'discoverSuccess', callback: Callback&lt;{ device: DeviceBasicInfo }&gt
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
-| 201 | Permission verify failed.                                            |
+| 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified deviceId is greater than 255.  |
 
 **示例：**
@@ -904,7 +903,7 @@ off(type: 'discoverSuccess', callback?: Callback&lt;{ device: DeviceBasicInfo }&
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
-| 201 | Permission verify failed.                                            |
+| 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified deviceId is greater than 255.  |
 
 **示例：**
@@ -955,7 +954,7 @@ on(type: 'deviceNameChange', callback: Callback&lt;{ deviceName: string }&gt;): 
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
-| 201 | Permission verify failed.                                            |
+| 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified deviceId is greater than 255.  |
 
 **示例：**
@@ -1001,7 +1000,7 @@ off(type: 'deviceNameChange', callback?: Callback&lt;{ deviceName: string }&gt;)
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
-| 201 | Permission verify failed.                                            |
+| 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified deviceId is greater than 255.  |
 
 **示例：**
@@ -1047,7 +1046,7 @@ on(type: 'discoverFailure', callback: Callback&lt;{ reason: number }&gt;): void;
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
-| 201 | Permission verify failed.                                            |
+| 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified deviceId is greater than 255.  |
 
 **示例：**
@@ -1093,7 +1092,7 @@ off(type: 'discoverFailure', callback?: Callback&lt;{ reason: number }&gt;): voi
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
-| 201 | Permission verify failed.                                            |
+| 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified deviceId is greater than 255.  |
 
 **示例：**
@@ -1139,7 +1138,7 @@ on(type: 'serviceDie', callback?: Callback&lt;{}&gt;): void;
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
-| 201 | Permission verify failed.                                            |
+| 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified deviceId is greater than 255.  |
 
 **示例：**
@@ -1181,7 +1180,7 @@ off(type: 'serviceDie', callback?: Callback&lt;{}&gt;): void;
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
-| 201 | Permission verify failed.                                            |
+| 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified deviceId is greater than 255.  |
 
 **示例：**
