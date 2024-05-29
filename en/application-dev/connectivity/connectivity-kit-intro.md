@@ -43,7 +43,7 @@ The following describes the common modules related to Bluetooth:
   Personal Area Network (PAN) is a wireless communication technology used to connect devices to a small-scale network. For example, devices such as a smartphone, computer, and printer can be connected to a PAN to print and share files.
   For details, see [@ohos.bluetooth.pan](../reference/apis-connectivity-kit/js-apis-bluetooth-pan.md).
 
-For details about the development, see [Bluetooth Overview](../bluetooth/bluetooth-overview.md).
+For details about the development, see [Bluetooth Overview](./bluetooth/bluetooth-overview.md).
 
 ### WLAN
 A wireless local area network (WLAN) uses the radio, infrared, or other technologies to transmit data between devices that are not physically connected with each other. It is widely used in offices and public places where mobile devices are used.
@@ -84,5 +84,3 @@ Connectivity Kit provides basic communication services for applications. Before 
 ### Constraints
 
 Device capabilities can be used only after the related switch is enabled after user authorization. Otherwise, the system does not provide services for third-party applications.
-
-<!--no_check-->
