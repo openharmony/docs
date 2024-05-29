@@ -20,7 +20,7 @@ RichEditor(value: RichEditorOptions)
 
 **参数：**
 
-| 参数名   | 参数类型                                    | 必填   | 参数描述        |
+| 参数名   | 类型                                    | 必填   | 说明        |
 | ----- | --------------------------------------- | ---- | ----------- |
 | value | [RichEditorOptions](#richeditoroptions) | 是    | 富文本组件初始化选项。 |
 
@@ -33,7 +33,7 @@ RichEditor(value: RichEditorOptions)
 >
 >  align属性只支持上方丶中间和下方位置的对齐方式。
 
-| 名称                               | 参数类型                                     | 描述                                       |
+| 名称                               | 类型                                     | 说明                                       |
 | -------------------------------- | ---------------------------------------- | ---------------------------------------- |
 | customKeyboard                   | [CustomBuilder](ts-types.md#custombuilder8) | 设置自定义键盘。<br/>**说明：**<br/>当设置自定义键盘时，输入框激活后不会打开系统输入法，而是加载指定的自定义组件。<br/>自定义键盘的高度可以通过自定义组件根节点的height属性设置，宽度不可设置，使用系统默认值。<br/>自定义键盘采用覆盖原始界面的方式呈现，不会对应用原始界面产生压缩或者上提。<br/>自定义键盘无法获取焦点，但是会拦截手势事件。<br/>默认在输入控件失去焦点时，关闭自定义键盘。<br/>如果设备支持拍摄输入，设置自定义键盘后，该输入框会不支持拍摄输入。 |
 | bindSelectionMenu                | {<br/>spantype:&nbsp;[RichEditorSpanType](#richeditorspantype),<br/>content:&nbsp;[CustomBuilder](ts-types.md#custombuilder8),<br/>responseType:&nbsp;[ResponseType](ts-appendix-enums.md#responsetype8)&nbsp;\| [RichEditorResponseType<sup>11+</sup>](ts-appendix-enums.md#richeditorresponsetype11),<br/>options?:&nbsp;[SelectionMenuOptions](#selectionmenuoptions11)<br/>} | 设置自定义选择菜单。<br/> 默认值：{<br/>  spanType:&nbsp;RichEditorSpanType.TEXT<br/>responseType:&nbsp;ResponseType.LongPress<br/>其他：空<br/>}<br/>自定义菜单超长时，建议内部嵌套[Scroll](./ts-container-scroll.md)组件使用，避免键盘被遮挡。 |
@@ -49,9 +49,9 @@ RichEditor(value: RichEditorOptions)
 | ---------------------------------------- | ---------------------------------------- |
 | onReady(callback:&nbsp;()&nbsp;=&gt;&nbsp;void) | 富文本组件初始化完成后，触发回调。                        |
 | onSelect(callback:&nbsp;(value:&nbsp;[RichEditorSelection](#richeditorselection))&nbsp;=&gt;&nbsp;void) | 鼠标左键按下选择，松开左键后触发回调。<br />用手指选择时，松开手指触发回调。 <br />- value：选中的所有span信息。 |
-| aboutToIMEInput(callback:&nbsp;(value:&nbsp;[RichEditorInsertValue](#richeditorinsertvalue))&nbsp;=&gt;&nbsp;boolean) | 输入法输入内容前，触发回调。<br />- value：输入法将要输入内容信息。 |
+| aboutToIMEInput(callback:&nbsp;(value:&nbsp;[RichEditorInsertValue](#richeditorinsertvalue))&nbsp;=&gt;&nbsp;boolean) | 输入法输入内容前，触发回调。<br />- value：输入法将要输入内容信息。<br />- boolean：组件是否执行添加内容操作。 |
 | onIMEInputComplete(callback:&nbsp;(value:&nbsp;[RichEditorTextSpanResult](#richeditortextspanresult))&nbsp;=&gt;&nbsp;void) | 输入法完成输入后，触发回调。<br />- value：输入法完成输入后的文本Span信息。 |
-| aboutToDelete(callback:&nbsp;(value:&nbsp;[RichEditorDeleteValue](#richeditordeletevalue))&nbsp;=&gt;&nbsp;boolean) | 输入法删除内容前，触发回调。 <br />- value：准备删除的内容所在的文本或者图片Span信息。 |
+| aboutToDelete(callback:&nbsp;(value:&nbsp;[RichEditorDeleteValue](#richeditordeletevalue))&nbsp;=&gt;&nbsp;boolean) | 输入法删除内容前，触发回调。 <br />- value：准备删除的内容所在的文本或者图片Span信息。<br />- boolean：组件是否执行删除操作。 |
 | onDeleteComplete(callback:&nbsp;()&nbsp;=&gt;&nbsp;void) | 输入法完成删除后，触发回调。                           |
 | onPaste<sup>11+</sup>(callback: (event?: [PasteEvent](#pasteevent11)) => void) | 完成粘贴前，触发回调。 <br/>**说明：** <br/>系统的默认粘贴和拖拽行为，只支持纯文本的粘贴。<br/>开发者可以通过该方法，覆盖系统默认行为，实现图文的粘贴。 |
 
@@ -122,7 +122,7 @@ Span类型信息。
 
 后端返回的文本样式信息。
 
-| 名称         | 类型                                       | 必填   | 描述           |
+| 名称         | 类型                                       | 必填   | 说明           |
 | ---------- | ---------------------------------------- | ---- | ------------ |
 | fontColor  | [ResourceColor](ts-types.md#resourcecolor) | 是    | 文本颜色。        |
 | fontSize   | number                                   | 是    | 字体大小。        |
@@ -162,7 +162,7 @@ Span类型信息。
 
 后端返回的SymbolSpan样式信息。
 
-| 名称 | 类型 | 必填 | 描述                               |
+| 名称 | 类型 | 必填 | 说明                               |
 | ------ | -------- | ---- | -------------------------------------- |
 | fontColor | Array\<[ResourceColor](ts-types.md#resourcecolor)\> | 否 | SymbolSpan组件颜色。<br/> 默认值：不同渲染策略下默认值不同。 |
 | fontSize | number \| string \| [Resource](ts-types.md#resource) | 否 | SymbolSpan组件大小。<br/>默认值：跟随主题。 |
@@ -174,7 +174,7 @@ Span类型信息。
 
 后端返回的图片信息。
 
-| 名称               | 类型                                                                | 必填  | 描述               |
+| 名称               | 类型                                                                | 必填  | 说明               |
 |------------------|-------------------------------------------------------------------|-----|------------------|
 | spanPosition     | [RichEditorSpanPosition](#richeditorspanposition)                 | 是   | Span位置。          |
 | valuePixelMap    | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)                    | 否   | 图片内容。            |
@@ -186,7 +186,7 @@ Span类型信息。
 
 后端返回的图片样式信息。
 
-| 名称            | 类型                                       | 必填   | 描述        |
+| 名称            | 类型                                       | 必填   | 说明        |
 | ------------- | ---------------------------------------- | ---- | --------- |
 | size          | [number, number]                         | 是    | 图片的宽度和高度。默认值：size的默认值与objectFit的值有关，不同的objectFit值对应的size默认值也不同。objectFit的值为Cover时，图片高度为组件高度减去组件上下内边距，图片宽度为组件宽度减去组件左右内边距。|
 | verticalAlign | [ImageSpanAlignment](ts-basic-components-imagespan.md#imagespanalignment) | 是    | 图片垂直对齐方式。 |
@@ -239,7 +239,7 @@ setCaretOffset(offset: number): boolean
 
 **参数：**
 
-| 参数名    | 参数类型   | 必填   | 参数描述                 |
+| 参数名    | 类型   | 必填   | 说明                 |
 | ------ | ------ | ---- | -------------------- |
 | offset | number | 是    | 光标偏移位置。超出文本范围时，设置失败。 |
 
@@ -257,7 +257,7 @@ addTextSpan(value: string, options?: RichEditorTextSpanOptions): number
 
 **参数：**
 
-| 参数名     | 参数类型                                     | 必填   | 参数描述  |
+| 参数名     | 类型                                     | 必填   | 说明  |
 | ------- | ---------------------------------------- | ---- | ----- |
 | value   | string                                   | 是    | 文本内容。 |
 | options | [RichEditorTextSpanOptions](#richeditortextspanoptions) | 否    | 文本选项。 |
@@ -276,7 +276,7 @@ addImageSpan(value: PixelMap | ResourceStr, options?: RichEditorImageSpanOptions
 
 **参数：**
 
-| 参数名     | 参数类型                                     | 必填   | 参数描述  |
+| 参数名     | 类型                                     | 必填   | 说明  |
 | ------- | ---------------------------------------- | ---- | ----- |
 | value   | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)\|[ResourceStr](ts-types.md#resourcestr) | 是    | 图片内容。 |
 | options | [RichEditorImageSpanOptions](#richeditorimagespanoptions) | 否    | 图片选项。 |
@@ -308,7 +308,7 @@ addBuilderSpan(value: CustomBuilder, options?: RichEditorBuilderSpanOptions): nu
 
 **参数：**
 
-| 参数名     | 参数类型                                     | 必填   | 参数描述       |
+| 参数名     | 类型                                     | 必填   | 说明       |
 | ------- | ---------------------------------------- | ---- | ---------- |
 | value   | [CustomBuilder](ts-types.md#custombuilder8) | 是    | 自定义组件。     |
 | options | [RichEditorBuilderSpanOptions](#richeditorbuilderspanoptions11) | 否    | builder选项。 |
@@ -329,7 +329,7 @@ addSymbolSpan(value: Resource, options?: RichEditorSymbolSpanOptions ): number
 
 **参数：**
 
-| 参数名     | 参数类型                                     | 必填   | 参数描述  |
+| 参数名     | 类型                                     | 必填   | 说明  |
 | ------- | ---------------------------------------- | ---- | ----- |
 | value   | [Resource](ts-types.md#resource)         | 是    | 组件内容。 |
 | options | [RichEditorSymbolSpanOptions](#richeditorsymbolspanoptions11) | 否    | 组件选项。 |
@@ -360,7 +360,7 @@ setTypingStyle(value: RichEditorTextStyle): void
 
 **参数：**
 
-| 参数名   | 参数类型                                     | 必填   | 参数描述  |
+| 参数名   | 类型                                     | 必填   | 说明  |
 | ----- | ---------------------------------------- | ---- | ----- |
 | value | [RichEditorTextStyle](#richeditortextstyle) | 是    | 预设样式。 |
 
@@ -374,7 +374,7 @@ updateSpanStyle(value: RichEditorUpdateTextSpanStyleOptions | RichEditorUpdateIm
 
 **参数：**
 
-| 名称 | 类型 | 必填 | 描述                               |
+| 参数名 | 类型 | 必填 | 说明                               |
 | ------ | -------- | ---- | -------------------------------------- |
 | value | [RichEditorUpdateTextSpanStyleOptions](#richeditorupdatetextspanstyleoptions) \| [RichEditorUpdateImageSpanStyleOptions](#richeditorupdateimagespanstyleoptions) \| [RichEditorUpdateSymbolSpanStyleOptions](#richeditorupdatesymbolspanstyleoptions11)<sup>11+</sup> | 是 | 文本、图片或SymbolSpan的样式选项信息。 |
 
@@ -386,7 +386,7 @@ updateParagraphStyle(value: RichEditorParagraphStyleOptions): void
 
 **参数：**
 
-| 名称    | 类型                                       | 必填   | 描述         |
+| 参数名    | 类型                                       | 必填   | 说明         |
 | ----- | ---------------------------------------- | ---- | ---------- |
 | value | [RichEditorParagraphStyleOptions](#richeditorparagraphstyleoptions11) | 是    | 段落的样式选项信息。 |
 
@@ -398,7 +398,7 @@ getSpans(value?: RichEditorRange): Array<RichEditorTextSpanResult| RichEditorIma
 
 **参数：**
 
-| 参数名   | 参数类型                                | 必填   | 参数描述        |
+| 参数名   | 类型                                | 必填   | 说明        |
 | ----- | ----------------------------------- | ---- | ----------- |
 | value | [RichEditorRange](#richeditorrange) | 否    | 需要获取span范围。 |
 
@@ -416,7 +416,7 @@ deleteSpans(value?: RichEditorRange): void
 
 **参数：**
 
-| 参数名   | 参数类型                                | 必填   | 参数描述                |
+| 参数名   | 类型                                | 必填   | 说明                |
 | ----- | ----------------------------------- | ---- | ------------------- |
 | value | [RichEditorRange](#richeditorrange) | 否    | 删除范围。省略时，删除所有文本和图片。 |
 
@@ -428,7 +428,7 @@ getParagraphs(value?: RichEditorRange): Array\<RichEditorParagraphResult>
 
 **参数：**
 
-| 参数名   | 参数类型                                | 必填   | 参数描述       |
+| 参数名   | 类型                                | 必填   | 说明       |
 | ----- | ----------------------------------- | ---- | ---------- |
 | value | [RichEditorRange](#richeditorrange) | 否    | 需要获取段落的范围。 |
 
@@ -464,7 +464,7 @@ selectionStart和selectionEnd均为-1时表示全选。
 
 **参数：**
 
-| 参数名            | 参数类型   | 必填   | 参数描述    |
+| 参数名            | 类型   | 必填   | 说明    |
 | -------------- | ------ | ---- | ------- |
 | selectionStart | number | 是    | 选中开始位置。 |
 | selectionEnd   | number | 是    | 选中结束位置。 |
@@ -497,7 +497,7 @@ getSelection(): RichEditorSelection
 
 文本样式选项。
 
-| 名称        | 类型                                       | 必填   | 描述                              |
+| 名称        | 类型                                       | 必填   | 说明                              |
 | --------- | ---------------------------------------- | ---- | ------------------------------- |
 | start     | number                                   | 否    | 需要更新样式的文本起始位置，省略或者设置负值时表示从0开始。  |
 | end       | number                                   | 否    | 需要更新样式的文本结束位置，省略或者超出文本范围时表示无穷大。 |
@@ -511,7 +511,7 @@ getSelection(): RichEditorSelection
 
 图片样式选项。
 
-| 名称         | 类型                                       | 必填   | 描述                              |
+| 名称         | 类型                                       | 必填   | 说明                              |
 | ---------- | ---------------------------------------- | ---- | ------------------------------- |
 | start      | number                                   | 否    | 需要更新样式的图片起始位置，省略或者设置负值时表示从0开始。  |
 | end        | number                                   | 否    | 需要更新样式的图片结束位置，省略或者超出文本范围时表示无穷大。 |
@@ -525,7 +525,7 @@ getSelection(): RichEditorSelection
 
 SymbolSpan样式选项。
 
-| 名称          | 类型                                       | 必填   | 描述                              |
+| 名称          | 类型                                       | 必填   | 说明                              |
 | ----------- | ---------------------------------------- | ---- | ------------------------------- |
 | start       | number                                   | 否    | 需要更新样式的文本起始位置，省略或者设置负值时表示从0开始。  |
 | end         | number                                   | 否    | 需要更新样式的文本结束位置，省略或者超出文本范围时表示无穷大。 |
@@ -539,7 +539,7 @@ SymbolSpan样式选项。
 
 段落样式选项
 
-| 名称    | 类型                                       | 必填   | 描述                                 |
+| 名称    | 类型                                       | 必填   | 说明                                 |
 | ----- | ---------------------------------------- | ---- | ---------------------------------- |
 | start | number                                   | 否    | 需要更新样式的段落起始位置，省略或者设置负值时表示从0开始。     |
 | end   | number                                   | 否    | 需要更新样式的段落结束位置，省略、负数或者超出文本范围时表示无穷大。 |
@@ -553,7 +553,7 @@ SymbolSpan样式选项。
 
 段落样式。
 
-| 名称            | 类型                                       | 必填   | 描述                 |
+| 名称            | 类型                                       | 必填   | 说明                 |
 | ------------- | ---------------------------------------- | ---- | ------------------ |
 | textAlign     | [TextAlign](ts-appendix-enums.md#textalign) | 否    | 设置文本段落在水平方向的对齐方式。默认值：TextAlign.START|
 | leadingMargin | [Dimension](ts-types.md#dimension10) \| [LeadingMarginPlaceholder](#leadingmarginplaceholder11) | 否    | 设置文本段落缩进，当段首为ImageSpan或BuilderSpan时，此属性值不生效。参数为Dimension类型时，不支持以Percentage形式设置。默认值：{"size":["0.00px","0.00px"]} |
@@ -562,7 +562,7 @@ SymbolSpan样式选项。
 
 前导边距占位符，用于表示文本段落左侧与组件边缘之间的距离。
 
-| 名称       | 类型                                       | 必填   | 描述             |
+| 名称       | 类型                                       | 必填   | 说明             |
 | -------- | ---------------------------------------- | ---- | -------------- |
 | pixelMap | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) | 是    | 图片内容。          |
 | size     | \[[Dimension](ts-types.md#dimension10), [Dimension](ts-types.md#dimension10)\] | 是    | 图片大小，不支持设置百分比。 |
@@ -571,7 +571,7 @@ SymbolSpan样式选项。
 
 后端返回的段落信息。
 
-| 名称    | 类型                                       | 必填   | 描述      |
+| 名称    | 类型                                       | 必填   | 说明      |
 | ----- | ---------------------------------------- | ---- | ------- |
 | style | [RichEditorParagraphStyle](#richeditorparagraphstyle11) | 是    | 段落样式。   |
 | range | \[number, number\]                       | 是    | 段落起始和结束位置。 |
@@ -580,7 +580,7 @@ SymbolSpan样式选项。
 
 添加文本的偏移位置和文本样式信息。
 
-| 名称                           | 类型                                       | 必填   | 描述                         |
+| 名称                           | 类型                                       | 必填   | 说明                         |
 | ---------------------------- | ---------------------------------------- | ---- | -------------------------- |
 | offset                       | number                                   | 否    | 添加文本的位置。省略时，添加到所有文本字符串的最后。<br/>当值小于0时，放在字符串最前面；当值大于字符串长度时，放在字符串最后面。 |
 | style                        | [RichEditorTextStyle](#richeditortextstyle) | 否    | 文本样式信息。省略时，使用系统默认文本信息。     |
@@ -591,7 +591,7 @@ SymbolSpan样式选项。
 
 文本样式信息。
 
-| 名称                       | 类型                                       | 必填   | 描述                                       |
+| 名称                       | 类型                                       | 必填   | 说明                                       |
 | ------------------------ | ---------------------------------------- | ---- | ---------------------------------------- |
 | fontColor                | [ResourceColor](ts-types.md#resourcecolor) | 否    | 文本颜色。<br/> 默认值：Color.Black。              |
 | fontSize                 | [Length](ts-types.md#length) \| number            | 否    | 设置字体大小，Length为number类型时，使用fp单位。字体默认大小16。不支持设置百分比字符串。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
@@ -606,7 +606,7 @@ SymbolSpan样式选项。
 
 添加图片的偏移位置和图片样式信息。
 
-| 名称                    | 类型                                       | 必填   | 描述                         |
+| 名称                    | 类型                                       | 必填   | 说明                         |
 | --------------------- | ---------------------------------------- | ---- | -------------------------- |
 | offset                | number                                   | 否    | 添加图片的位置。省略时，添加到所有文本字符串的最后。<br/>当值小于0时，放在字符串最前面；当值大于字符串长度时，放在字符串最后面。 |
 | imageStyle            | [RichEditorImageSpanStyle](#richeditorimagespanstyle) | 否    | 图片样式信息。省略时，使用系统默认图片信息。     |
@@ -616,15 +616,15 @@ SymbolSpan样式选项。
 
 图片样式。
 
-| 名称                        | 类型                                       | 必填   | 描述                                       |
+| 名称                        | 类型                                       | 必填   | 说明                                       |
 | ------------------------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| size                      | [[Dimension](ts-types.md#dimension10), [Dimension](ts-types.md#dimension10)] | 否    | 图片宽度和高度。                                 |
+| size                      | [[Dimension](ts-types.md#dimension10), [Dimension](ts-types.md#dimension10)] | 否    | 图片宽度和高度。默认值：size的默认值与objectFit的值有关，不同的objectFit值对应的size默认值也不同。objectFit的值为Cover时，图片高度为组件高度减去组件上下内边距，图片宽度为组件宽度减去组件左右内边距。                                 |
 | verticalAlign             | [ImageSpanAlignment](ts-basic-components-imagespan.md#imagespanalignment) | 否    | 图片垂直对齐方式。<br/>默认值:ImageSpanAlignment.BASELINE |
 | objectFit                 | [ImageFit](ts-appendix-enums.md#imagefit) | 否    | 图片缩放类型。<br/> 默认值:ImageFit.Cover。         |
 | layoutStyle<sup>11+</sup> | [RichEditorLayoutStyle](#richeditorlayoutstyle11) | 否    | 图片布局风格。默认值：{"broderRadius":"","margin":""}<br/>                             |
 
 ## RichEditorLayoutStyle<sup>11+</sup> 
-|名称	|类型	|必填|	描述|
+|名称	|类型	|必填|	说明|
 | -------------  | -----------------------            | ---- | ------------------------------------------------------------ |
 |margin	         |  [Dimension](ts-types.md#dimension10) \| [Margin](ts-types.md#margin)	                       |  否  |	外边距类型，用于描述组件不同方向的外边距。<br/>参数为Dimension类型时，四个方向外边距同时生效。|
 |borderRadius	   |  [Dimension](ts-types.md#dimension10) \| [BorderRadiuses](ts-types.md#borderradiuses9)  |  否  |	圆角类型，用于描述组件边框圆角半径。|
@@ -633,7 +633,7 @@ SymbolSpan样式选项。
 
 添加文本的偏移位置和文本样式信息。
 
-| 名称     | 类型                                       | 必填   | 描述                         |
+| 名称     | 类型                                       | 必填   | 说明                         |
 | ------ | ---------------------------------------- | ---- | -------------------------- |
 | offset | number                                   | 否    | 添加组件的位置。省略时，添加到所有文本字符串的最后。<br/>当值小于0时，放在字符串最前面；当值大于字符串长度时，放在字符串最后面。 |
 | style  | [RichEditorSymbolSpanStyle](#richeditorsymbolspanstyle11) | 否    | 组件样式信息。省略时，使用系统默认文本信息。     |
@@ -642,7 +642,7 @@ SymbolSpan样式选项。
 
 组件SymbolSpan样式信息。
 
-| 名称 | 类型 | 必填 | 描述                               |
+| 名称 | 类型 | 必填 | 说明                               |
 | ------ | -------- | ---- | -------------------------------------- |
 | fontColor | Array\<[ResourceColor](ts-types.md#resourcecolor)\> | 否 | 设置SymbolSpan组件颜色。<br/> 默认值：不同渲染策略下默认值不同。 |
 | fontSize | number \| string \| [Resource](ts-types.md#resource) | 否 | 设置SymbolSpan组件大小。<br/>默认值：跟随主题。 |
@@ -654,7 +654,7 @@ SymbolSpan样式选项。
 
 添加图片的偏移位置和图片样式信息。
 
-| 名称     | 类型     | 必填   | 描述                                    |
+| 名称     | 类型     | 必填   | 说明                                    |
 | ------ | ------ | ---- | ------------------------------------- |
 | offset | number | 否    | 添加builder的位置。省略或者为异常值时，添加到所有文本字符串的最后。 |
 
@@ -662,7 +662,7 @@ SymbolSpan样式选项。
 
 范围信息。
 
-| 名称    | 类型     | 必填   | 描述                     |
+| 名称    | 类型     | 必填   | 说明                     |
 | ----- | ------ | ---- | ---------------------- |
 | start | number | 否    | 起始位置，省略或者设置负值时表示从0开始。  |
 | end   | number | 否    | 结束位置，省略或者超出文本范围时表示无穷大。 |
@@ -671,7 +671,7 @@ SymbolSpan样式选项。
 
 范围信息。
 
-| 名称          | 类型         | 必填   | 描述            |
+| 名称          | 类型         | 必填   | 说明            |
 | ----------- | ---------- | ---- | ------------- |
 | onAppear    | () => void | 否    | 自定义选择菜单弹出时回调。 |
 | onDisappear | () => void | 否    | 自定义选择菜单关闭时回调。 |
@@ -680,7 +680,7 @@ SymbolSpan样式选项。
 
 定义用户粘贴事件。
 
-| 名称             | 类型          | 必填   | 描述                            |
+| 名称             | 类型          | 必填   | 说明                            |
 | -------------- | ----------- | ---- | ----------------------------- |
 | preventDefault | () => void | 否    | 阻止系统默认粘贴事件。 |
 
@@ -697,7 +697,7 @@ onClick?: (event: ClickEvent) => void
 
 **参数:**
 
-| 参数名   | 参数类型                                     | 必填   | 描述      |
+| 参数名   | 类型                                     | 必填   | 说明      |
 | ----- | ---------------------------------------- | ---- | ------- |
 | event | [ClickEvent](ts-universal-events-click.md#clickevent对象说明) | 否    | 用户点击事件。 |
 
@@ -709,7 +709,7 @@ onLongPress?: (event: GestureEvent) => void
 
 **参数:**
 
-| 参数名   | 参数类型                                     | 必填   | 描述      |
+| 参数名   | 类型                                     | 必填   | 说明      |
 | ----- | ---------------------------------------- | ---- | ------- |
 | event | [GestureEvent](ts-gesture-settings.md#gestureevent对象说明) | 否    | 用户长按事件。 |
 
