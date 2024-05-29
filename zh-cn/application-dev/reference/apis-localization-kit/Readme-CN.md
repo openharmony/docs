@@ -17,7 +17,7 @@
     - [raw_file_manager.h](raw__file__manager_8h.md)
     - [raw_file.h](raw__file_8h.md)
     - [ohresmgr.h](ohresmgr_8h.md)
-    - [resmgr_common.h](resmgr__common_8h.md)
+    - [resmgr_common.h](resmgr_common_8h.md)
   - 结构体
     - [RawFileDescriptor](_raw_file_descriptor.md)
     - [RawFileDescriptor64](_raw_file_descriptor64.md)

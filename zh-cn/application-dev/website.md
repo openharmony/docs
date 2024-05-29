@@ -228,9 +228,7 @@
       - 应用权限管控
         - [应用权限管控概述](security/AccessToken/app-permission-mgmt-overview.md)
         - 申请应用权限
-          <!--Del-->
           - [选择申请权限的方式](security/AccessToken/determine-application-mode.md)
-          <!--DelEnd-->
           - [声明权限](security/AccessToken/declare-permissions.md)
           - [向用户申请授权](security/AccessToken/request-user-authorization.md)
           - [申请使用受控权限](security/AccessToken/declare-permissions-in-acl.md)
@@ -3058,7 +3056,7 @@
         - [raw_file_manager.h](reference/apis-localization-kit/raw__file__manager_8h.md)
         - [raw_file.h](reference/apis-localization-kit/raw__file_8h.md)
         - [ohresmgr.h](reference/apis-localization-kit/ohresmgr_8h.md)
-        - [resmgr_common.h](reference/apis-localization-kit/resmgr__common_8h.md)
+        - [resmgr_common.h](reference/apis-localization-kit/resmgr_common_8h.md)
       - 结构体
         - [RawFileDescriptor](reference/apis-localization-kit/_raw_file_descriptor.md)
         - [RawFileDescriptor64](reference/apis-localization-kit/_raw_file_descriptor64.md)
