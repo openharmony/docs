@@ -218,7 +218,74 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     }
     ```
    
-7. 调用OH_AudioCodec_PushInputBuffer()，写入待解码的数据。
+7. （可选）调用OH_AVCencInfo_SetAVBuffer()，设置cencInfo。
+
+    若当前播放的节目是DRM加密节目，且由上层应用做媒体解封装，则须调用OH_AVCencInfo_SetAVBuffer()将cencInfo设置给AVBuffer，以实现AVBuffer中媒体数据的解密。
+
+    添加头文件
+
+    ```c++
+    #include <multimedia/player_framework/native_cencinfo.h>
+    ```
+    在 CMake 脚本中链接动态库
+
+    ``` cmake
+    target_link_libraries(sample PUBLIC libnative_media_avcencinfo.so)
+    ```
+
+    使用示例
+    ```c++
+    auto buffer = signal_->inBufferQueue_.front();
+    int64_t size;
+    int64_t pts;
+    uint32_t keyIdLen = DRM_KEY_ID_SIZE;
+    uint8_t keyId[] = {
+        0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01,
+        0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01};
+    uint32_t ivLen = DRM_KEY_IV_SIZE;
+    uint8_t iv[] = {
+        0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01,
+        0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01};
+    uint32_t encryptedBlockCount = 0;
+    uint32_t skippedBlockCount = 0;
+    uint32_t firstEncryptedOffset = 0;
+    uint32_t subsampleCount = 1;
+    DrmSubsample subsamples[1] = { {0x10, 0x16} };
+    inputFile_.read(reinterpret_cast<char *>(&size), sizeof(size));
+    inputFile_.read(reinterpret_cast<char *>(&pts), sizeof(pts));
+    inputFile_.read((char *)OH_AVMemory_GetAddr(buffer), size);
+    OH_AVCencInfo *cencInfo = OH_AVCencInfo_Create();
+    if (cencInfo == nullptr) {
+        // 异常处理
+    }
+    OH_AVErrCode errNo = OH_AVCencInfo_SetAlgorithm(cencInfo, DRM_ALG_CENC_AES_CTR);
+    if (errNo != AV_ERR_OK) {
+        // 异常处理
+    }
+    errNo = OH_AVCencInfo_SetKeyIdAndIv(cencInfo, keyId, keyIdLen, iv, ivLen);
+    if (errNo != AV_ERR_OK) {
+        // 异常处理
+    }
+    errNo = OH_AVCencInfo_SetSubsampleInfo(cencInfo, encryptedBlockCount, skippedBlockCount, firstEncryptedOffset,
+        subsampleCount, subsamples);
+    if (errNo != AV_ERR_OK) {
+        // 异常处理
+    }
+    errNo = OH_AVCencInfo_SetMode(cencInfo, DRM_CENC_INFO_KEY_IV_SUBSAMPLES_SET);
+    if (errNo != AV_ERR_OK) {
+        // 异常处理
+    }
+    errNo = OH_AVCencInfo_SetAVBuffer(cencInfo, buffer);
+    if (errNo != AV_ERR_OK) {
+        // 异常处理
+    }
+    errNo = OH_AVCencInfo_Destroy(cencInfo);
+    if (errNo != AV_ERR_OK) {
+        // 异常处理
+    }
+    ```
+   
+8. 调用OH_AudioCodec_PushInputBuffer()，写入待解码的数据。
 
    如果是结束，需要对flag标识成AVCODEC_BUFFER_FLAGS_EOS。
 
@@ -245,7 +312,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     }
     ```
    
-8. 调用OH_AudioCodec_FreeOutputBuffer()，输出解码后的PCM码流。
+9. 调用OH_AudioCodec_FreeOutputBuffer()，输出解码后的PCM码流。
 
     <!--RP2-->
     ```c++
@@ -269,7 +336,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     ```
     <!--RP2End-->
 
-9. （可选）调用OH_AudioCodec_Flush()刷新解码器。
+10. （可选）调用OH_AudioCodec_Flush()刷新解码器。
    调用OH_AudioCodec_Flush()后，解码器仍处于运行态，但会将当前队列清空，将已解码的数据释放。
    此时需要调用OH_AudioCodec_Start()重新开始解码。
    使用情况：
@@ -290,7 +357,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     }
     ```
 
-10. （可选）调用OH_AudioCodec_Reset()重置解码器。
+11. （可选）调用OH_AudioCodec_Reset()重置解码器。
     调用OH_AudioCodec_Reset()后，解码器回到初始化的状态，需要调用OH_AudioCodec_Configure()重新配置，然后调用OH_AudioCodec_Start()重新开始解码。
 
     ```c++
@@ -306,7 +373,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     }
     ```
 
-11. 调用OH_AudioCodec_Stop()停止解码器。
+12. 调用OH_AudioCodec_Stop()停止解码器。
 
     ```c++
     // 终止解码器 audioDec_
@@ -316,7 +383,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     }
     ```
 
-12. 调用OH_AudioCodec_Destroy()销毁解码器实例，释放资源。
+13. 调用OH_AudioCodec_Destroy()销毁解码器实例，释放资源。
 
     > **说明：**
     >不要重复销毁解码器
