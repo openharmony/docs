@@ -32,7 +32,7 @@ Obtains an OAID. This API uses a promise to return the result.
 
 | Type| Description| 
 | -------- | -------- |
-| Promise&lt;string&gt; | Promise used to return the OAID. If the operation is successful, an OAID is returned. If the operation fails, 00000000-0000 00000000-0000-0000-0000-000000000000 is returned.| 
+| Promise&lt;string&gt; | Promise used to return the OAID.<br>1. If the application has configured the permission and obtained user authorization, the OAID is returned.<br>2. If the application has configured the permission but not obtained user authorization, 00000000-0000-0000-0000-000000000000 is returned.<br>3. If the application has not configured the permission, 00000000-0000-0000-0000-000000000000 is returned.| 
 
 **Error codes**
 
@@ -45,15 +45,16 @@ For details about the following error codes, see [OAID Error Codes](errorcode-oa
 **Example**
 ```
 import identifier from '@ohos.identifier.oaid';
-import hilog from '@ohos.hilog'; 
+import hilog from '@ohos.hilog';
 import { BusinessError } from '@ohos.base';
- 
-try {  
+
+try {
   identifier.getOAID().then((data) => {
     const oaid: string = data;
     hilog.info(0x0000, 'testTag', '%{public}s', `get oaid by promise success, oaid: ${oaid}`);
   }).catch((err: BusinessError) => {
-    hilog.info(0x0000, 'testTag', '%{public}s', `get oaid by promise failed, code: ${err.code}, message: ${err.message}`);
+    hilog.error(0x0000, 'testTag', '%{public}s',
+      `get oaid by promise failed, code: ${err.code}, message: ${err.message}`);
   })
 } catch (err) {
   hilog.error(0x0000, 'testTag', '%{public}s', `get oaid by promise catch error: ${err.code} ${err.message}`);
@@ -76,7 +77,7 @@ Obtains an OAID. This API uses an asynchronous callback to return the result.
 
 | Name| Type| Mandatory| Description| 
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;string&gt; | Yes| Callback used to return the OAID. If the operation is successful, an OAID is returned. If the operation fails, 00000000-0000 00000000-0000-0000-0000-000000000000 is returned.| 
+| callback | AsyncCallback&lt;string&gt; | Yes| Callback used to return the OAID.<br>1. If the application has configured the permission and obtained user authorization, the OAID is returned.<br>2. If the application has configured the permission but not obtained user authorization, 00000000-0000-0000-0000-000000000000 is returned.<br>3. If the application has not configured the permission, 00000000-0000-0000-0000-000000000000 is returned.| 
 
 
 **Error codes**

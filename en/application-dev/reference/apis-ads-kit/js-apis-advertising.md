@@ -14,17 +14,19 @@ The advertising module provides APIs for requesting and displaying ads.
 ```ts
 import advertising from '@ohos.advertising';
 ```
+## AdLoader
 
+Provides the APIs for loading ads.
 
-## constructor
+**System capability**: SystemCapability.Advertising.Ads
+
+### constructor
 
 constructor(context: common.Context);
 
 Constructor.
 
 **System capability**: SystemCapability.Advertising.Ads
-
-**Since**: 11
 
 **Parameters**
 
@@ -46,15 +48,13 @@ function createConstructor(context: common.Context): void {
 ```
 
 
-## loadAd
+### loadAd
 
 loadAd(adParam: AdRequestParams, adOptions: AdOptions, listener: AdLoadListener): void
 
 Loads an ad.
 
 **System capability**: SystemCapability.Advertising.Ads
-
-**Since**: 11
 
 **Parameters**
 
@@ -87,11 +87,13 @@ function requestAd(context: common.Context): void {
     // Ad type.
     adType: 3,
     // Ad ID.
-    adId: "test1", 
+    adId: "testy63txaom8", 
   };
   const adOptions: advertising.AdOptions = {
     // Set the maximum ad content rating.
     adContentClassification: 'A',
+    // Optional custom parameter, which specifies whether the ad can be downloaded while mobile data is in use. The value 1 means that the ad can be downloaded while mobile data is in use, and 0 means the opposite.
+    allowMobileTraffic: 0,
   };
   // Listener for the ad loading status.
   const adLoaderListener: advertising.AdLoadListener = {
@@ -115,15 +117,13 @@ function requestAd(context: common.Context): void {
 ```
 
 
-## loadAdWithMultiSlots
+### loadAdWithMultiSlots
 
 loadAdWithMultiSlots(adParams: AdRequestParams[], adOptions: AdOptions, listener: MultiSlotsAdLoadListener): void
 
 Loads multiple ads.
 
 **System capability**: SystemCapability.Advertising.Ads
-
-**Since**: 11
 
 **Parameters**
 
@@ -156,18 +156,20 @@ function requestMultiAd(context: common.Context): void {
       // Ad type.
       adType: 3,
       // Ad ID.
-      adId: "test1",
+      adId: "testy63txaom8",
     } as advertising.AdRequestParams,
     {
       // Ad type.
       adType: 3,
       // Ad ID.
-      adId: "test2", 
+      adId: "testy63txaom8", 
     } as advertising.AdRequestParams
   ];
   const adOptions: advertising.AdOptions = {
     // Set the maximum ad content rating.
     adContentClassification: 'A',
+    // Optional custom parameter, which specifies whether the ad can be downloaded while mobile data is in use. The value 1 means that the ad can be downloaded while mobile data is in use, and 0 means the opposite.
+    allowMobileTraffic: 0,
   };
   // Listener for the ad loading status.
   const multiSlotsAdLoaderListener: advertising.MultiSlotsAdLoadListener = {
@@ -200,8 +202,6 @@ Shows a full-screen ad.
 
 **System capability**: SystemCapability.Advertising.Ads
 
-**Since**: 11
-
 **Parameters**
 
 
@@ -209,7 +209,7 @@ Shows a full-screen ad.
 | -------- | -------- | -------- | -------- |
 | ad | [Advertisement](#advertisement) | Yes| Ad object.| 
 | options | [AdDisplayOptions](#addisplayoptions) | Yes| Ad display parameters.| 
-| context | common.[UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) | No| UIAbility context.| 
+| context | common.[UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) | No| Context of the UIAbility. If this parameter is not set, the value is obtained from @ohos.app.ability.common.| 
 
 
 **Error codes**
@@ -271,10 +271,10 @@ Defines the ad configuration.
 
 | Name| Type| Mandatory| Description| 
 | -------- | -------- | -------- | -------- |
-| tagForChildProtection | number | No| Whether to process the ad request according to the Children's Online Privacy Protection Act (COPPA).<br>- **-1**: You do not want to specify whether the ad content needs to be COPPA-compliant.<br>- **0**: The ad content does not need to be COPPA-compliant.<br>- **1**: The ad content must be COPPA-compliant (no ad will be returned for this ad request).| 
+| tagForChildProtection | number | No| Whether you want the ad content to be treated as COPPA-compliant.<br>- **-1**: You do not want to specify whether the ad content needs to be treated as COPPA-compliant.<br>- **0**: You do not want the ad content to be treated as COPPA-compliant.<br>- **1**: You want the ad content to be treated as COPPA-compliant (no ad will be returned for this ad request).| 
 | adContentClassification | string | No| Maximum ad content rating.<br>- **W**: content suitable for toddlers and older audiences.<br>- **PI**: content suitable for kids and older audiences.<br>- **J**: content suitable for teenagers and older audiences.<br>- **A**: content only suitable for adults.| 
-| nonPersonalizedAd | number | No| Whether to request non-personalized ads.<br>- **0**: request for personalized and non-personalized ads.<br>- **1**: request for non-personalized ads.| 
-| [key: string] | number \| boolean \| string \| undefined | No| Custom parameters.<br> - **totalDuration**: The value is of the number type, in seconds. This parameter is mandatory for roll ads and is used to set the total duration of roll ads.<br> - **placementAdCountDownDesc**: The value is of the string type. This parameter is optional for roll ads and is used to set the countdown description of roll ads. This parameter must be encoded using the **encodeURI()** API. If this parameter is set, the countdown description is displayed. Otherwise, only the countdown is displayed.|
+| nonPersonalizedAd | number | No| Whether to request only non-personalized ads.<br>- **0**: request for personalized and non-personalized ads.<br>- **1**: request for only non-personalized ads.| 
+| [key: string] | number \| boolean \| string \| undefined | No| Custom parameters.<br> - **totalDuration**: The value is of the number type, in seconds. This parameter is mandatory for roll ads and is used to set the total duration of roll ads.<br> - **placementAdCountDownDesc**: The value is of the string type. This parameter is optional for roll ads and is used to set the countdown description of roll ads. This parameter must be encoded using the **encodeURI()** API. If this parameter is set, the countdown description is displayed. Otherwise, only the countdown is displayed.<br> - **allowMobileTraffic**: The value is of the number type. This parameter is optional. It specifies whether ads can be downloaded while mobile data is in use. The value **1** means that ads can be downloaded while mobile data is in use, and **0** means the opposite.|
 
 
 ## AdRequestParams
@@ -301,11 +301,48 @@ Enumerates the callbacks used for the request for loading an ad.
 
 **System capability**: SystemCapability.Advertising.Ads
 
+### onAdLoadFailure
 
-| Name| Type| Mandatory| Description|
+onAdLoadFailure(errorCode: number, errorMsg: string): void
+
+Called when an ad request fails.
+
+**System capability**: SystemCapability.Advertising.Ads
+
+| Name| Type| Mandatory| Description| 
 | -------- | -------- | -------- | -------- |
-| onAdLoadFailure | function(errorCode: number, errorMsg: string): void | Yes| Called when the ad request fails.| 
-| onAdLoadSuccess | function(ads: Array&lt;advertising.[Advertisement](#advertisement)&gt;): void | Yes| Called when the ad request is successful.| 
+| errorCode | number | Yes| Result code indicating the ad request failure.| 
+| errorMsg | string | Yes| Error message about the ad request failure.| 
+
+
+### onAdLoadSuccess
+
+onAdLoadSuccess(ads: Array&lt;advertising.[Advertisement](#advertisement)&gt;): void
+
+Called when an ad request is successful.
+
+**System capability**: SystemCapability.Advertising.Ads
+
+| Name| Type| Mandatory| Description| 
+| -------- | -------- | -------- | -------- |
+| ads | Array&lt;advertising.[Advertisement](#advertisement)&gt; | Yes| Ad data.| 
+
+
+**Example**
+
+```ts
+import advertising from '@ohos.advertising';
+
+let adLoaderListener: advertising.AdLoadListener = {
+  onAdLoadFailure: (errorCode: number, errorMsg: string) => {
+
+  },
+  onAdLoadSuccess: (ads: Array<advertising.Advertisement>): void {
+
+  }
+}
+
+```
 
 
 ## MultiSlotsAdLoadListener
@@ -314,11 +351,47 @@ Enumerates the callbacks used for the request for loading multiple ads.
 
 **System capability**: SystemCapability.Advertising.Ads
 
+### onAdLoadFailure
 
-| Name| Type| Mandatory| Description|
+onAdLoadFailure(errorCode: number, errorMsg: string): void
+
+Called when a request for loading multiple ads fails.
+
+**System capability**: SystemCapability.Advertising.Ads
+
+| Name| Type| Mandatory| Description| 
 | -------- | -------- | -------- | -------- |
-| onAdLoadFailure | function(errorCode: number, errorMsg: string): void | Yes| Called when the ad request fails.| 
-| onAdLoadSuccess | function(adsMap: Map&lt;string, Array&lt;advertising.[Advertisement](#advertisement)&gt;&gt;): void | Yes| Called when the ad request is successful.| 
+| errorCode | number | Yes| Result code indicating the ad request failure.| 
+| errorMsg | string | Yes| Error message about the ad request failure.| 
+
+
+### onAdLoadSuccess
+
+onAdLoadSuccess(adsMap: Map&lt;string, Array&lt;advertising.[Advertisement](#advertisement)&gt;&gt;): void
+
+Called when a request for loading multiple ads is successful.
+
+**System capability**: SystemCapability.Advertising.Ads
+
+| Name| Type| Mandatory| Description| 
+| -------- | -------- | -------- | -------- |
+| adsMap |  Map&lt;string, Array&lt;advertising.[Advertisement](#advertisement)&gt;&gt;| Yes| Ad data.| 
+
+
+**Example**
+
+```ts
+import advertising from '@ohos.advertising';
+
+let adLoaderListener: advertising.MultiSlotsAdLoadListener = {
+  onAdLoadFailure: (errorCode: number, errorMsg: string) => {
+
+  },
+  onAdLoadSuccess: (ads: Map<string, Array<advertising.Advertisement>>): void {
+
+  }
+}
+```
 
 
 ## Advertisement
@@ -334,17 +407,17 @@ Defines the requested ad content.
 | -------- | -------- | -------- | -------- |
 | adType | number | Yes| Ad type.| 
 | uniqueId | string | Yes| Unique ID of the ad.| 
-| rewarded | boolean | No| Whether users get rewarded for watching or clicking the ad.<br>- **true**: Users get rewarded.<br>- **false**: Users do not get rewarded.| 
-| shown | boolean | No| Whether the ad is shown.<br>- **true**: The ad is shown.<br>- **false**: The ad is not shown.| 
-| clicked | boolean | No| Whether the ad is clicked.<br>- **true**: The ad is clicked.<br>- **false**: The ad is not clicked.| 
-| rewardVerifyConfig | Map&lt;string, string&gt; | No| Server verification parameter.<br>{<br>customData: "test",<br>userId: "12345"<br>} | 
-| [key: string] | Object | No| Custom parameters.<br>- **isFullScreen**: The value is of the Boolean type. This parameter is used for splash ads to specify whether such an ad is in full-screen mode. The value **true** means that the ad is in full-screen mode, and **false** means that the ad is in half-screen mode.|
+| rewarded | boolean | Yes| Whether users get rewarded for watching or clicking the ad.<br>- **true**: Users get rewarded.<br>- **false**: Users do not get rewarded.| 
+| shown | boolean | Yes| Whether the ad is shown.<br>- **true**: The ad is shown.<br>- **false**: The ad is not shown.| 
+| clicked | boolean | Yes| Whether the ad is clicked.<br>- **true**: The ad is clicked.<br>- **false**: The ad is not clicked.| 
+| rewardVerifyConfig | Map&lt;string, string&gt; | Yes| Server verification parameter.<br>{<br>customData: "test",<br>userId: "12345"<br>} | 
+| [key: string] | Object | Yes| Custom parameters.<br>- **isFullScreen**: The value is of the Boolean type. This parameter is used for splash ads to specify whether such an ad is in full-screen mode. The value **true** means that the ad is in full-screen mode, and **false** means that the ad is in half-screen mode.|
 
 
 ## AdDisplayOptions
 
 
-Defines the ad display parameters.
+Ad display parameters.
 
 
 **System capability**: SystemCapability.Advertising.Ads
@@ -368,7 +441,28 @@ Defines the ad status change callback.
 
 **System capability**: SystemCapability.Advertising.Ads
 
+### onStatusChanged
+
+onStatusChanged(status: number, ad: advertising.[Advertisement](#advertisement), data: string)
+
+Called when the ad display status changes.
+
+**System capability**: SystemCapability.Advertising.Ads
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| onStatusChanged | function(status: string, ad: advertising.[Advertisement](#advertisement), data: string): void | Yes| Ad display callback.<br>1. **status**: ad display status, which can be<br>**onAdOpen**, **onAdClose**, **onAdReward**, **onAdClick**, **onVideoPlayBegin**, or **onVideoPlayEnd**.<br>1. **ad**: content of the ad.<br>2. **data**: additional information.| 
+| status | string | Yes| **status**: ad display status, which can be<br>**onAdOpen**, **onAdClose**, **onAdClick**, **onVideoPlayBegin**, **onVideoPlayEnd**, **onAdLoad**, **onAdFail**, **onMediaProgress**, **onMediaStart**, **onMediaPause**, **onMediaStop**, **onMediaComplete**, **onMediaError**, **onLandscape**, **onPortrait**, **onAdReward**, **onMediaCountDown**, or **onBackClicked**.| 
+| ad | advertising.[Advertisement](#advertisement) | Yes| Content of the ad.| 
+| data | string | Yes| Extended information.| 
+
+**Example**
+
+```ts
+import advertising from '@ohos.advertising';
+
+let adInteractionListener: advertising.AdInteractionListener = {
+  onStatusChanged: (status: string, ad: advertising.Advertisement, data: string) => {
+
+  }
+}
+```
