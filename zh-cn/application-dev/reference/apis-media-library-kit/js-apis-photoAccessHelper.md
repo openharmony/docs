@@ -2262,8 +2262,8 @@ async function example() {
 
 | 名称           | 类型    | 可读   | 可写  | 说明   |
 | ------------ | ------ | ---- | ---- | ------- |
-| albumType | [AlbumType]( #albumtype) | 是    | 否    | 相册类型。    |
-| albumSubtype | [AlbumSubtype]( #albumsubtype) | 是    | 否   | 相册子类型。    |
+| albumType | [AlbumType](#albumtype) | 是    | 否    | 相册类型。    |
+| albumSubtype | [AlbumSubtype](#albumsubtype) | 是    | 否   | 相册子类型。    |
 | albumName | string | 是    | 用户相册可写，预置相册不可写   | 相册名称。    |
 | albumUri | string | 是    | 否    | 相册Uri。   |
 | count | number | 是    | 否    |  相册中文件数量。 |
