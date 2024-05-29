@@ -1715,7 +1715,7 @@ export class CustomTransition {
   // timeout：转场结束的超时时间
   registerNavParam(name: number, startCallback: (operation: boolean, isExit: boolean) => void,
                    endCallback:(operation: boolean, isExit: boolean) => void,
-                   onFinish: (opeation: boolean, isExit: boolean) => void, timeout: number): void {
+                   onFinish: (operation: boolean, isExit: boolean) => void, timeout: number): void {
 
     if (customTransitionMap.has(name)) {
       let param = customTransitionMap.get(name);

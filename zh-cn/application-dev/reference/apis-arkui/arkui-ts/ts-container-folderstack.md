@@ -134,12 +134,12 @@ struct Index {
       FolderStack({ upperItems: ["upperitemsId"] }) {
         // 此Column会自动上移到上半屏
         Column() {
-          Text("vedio zone").height("100%").width("100%").textAlign(TextAlign.Center).fontSize(25)
+          Text("video zone").height("100%").width("100%").textAlign(TextAlign.Center).fontSize(25)
         }.backgroundColor(Color.Pink).width("100%").height("100%").id("upperitemsId")
 
         // 下列两个Column堆叠在下半屏区域
         Column() {
-          Text("vedio title")
+          Text("video title")
             .width("100%")
             .height(50)
             .textAlign(TextAlign.Center)
@@ -148,7 +148,7 @@ struct Index {
         }.width("100%").height("100%").justifyContent(FlexAlign.Start)
 
         Column() {
-          Text("vedie bar ")
+          Text("video bar ")
             .width("100%")
             .height(50)
             .textAlign(TextAlign.Center)
