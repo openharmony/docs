@@ -1,6 +1,6 @@
 # DownloadFileButton
 
-下载控件，用户通过点击该下载按钮，可以获取到当前应用所属的存储路径。
+下载icon组件，用户通过点击该下载按钮，可以获取到当前应用在Download公共目录中所属的存储路径。
 
 
 > **说明：**
@@ -13,7 +13,13 @@
 import DownloadFileButton from '@ohos.arkui.advanced.DownloadFileButton';
 ```
 
+## 属性
 
+支持通用属性。
+
+## 事件
+
+支持通用事件。
 
 ## 子组件
 
@@ -23,20 +29,20 @@ import DownloadFileButton from '@ohos.arkui.advanced.DownloadFileButton';
 
 ### DownloadFileButton
 
-Downloadbutton()
+Downloadbutton(contentOption?:DownloadContentOption, styleOption?:DownloadStyleOption)
 
 默认创建带有图标、文本、背景的保存按钮。
 
 **元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
-**系统能力**：SystemCapability.FileManagement.UserFileService
+**系统能力**： SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
-| 参数名        | 参数类型                                        | 必填 | 参数描述                         |
-| ------------- | ----------------------------------------------- | ---- | -------------------------------- |
-| contentOption | [DownloadContentOption](#DownloadContentOption) | 否   | 创建包含指定元素内容的下载按钮。 |
-| styleOption   | [DownloadStyleOption](#DownloadStyleOption)     | 否   | 创建包含指定元素样式的下载按钮。 |
+| 参数名        | 参数类型              | 必填 | 参数描述                         |
+| ------------- | --------------------- | ---- | -------------------------------- |
+| contentOption | DownloadContentOption | 否   | 创建包含指定元素内容的下载按钮。 |
+| styleOption   | DownloadStyleOption   | 否   | 创建包含指定元素样式的下载按钮。 |
 
 
 
@@ -44,10 +50,10 @@ Downloadbutton()
 
 **元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
-| 名称 | 类型                                                | 必填 | 描述                                                         |
-| ---- | --------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| icon | [DownloadIconStyle](#DownloadIconStyle枚举说明)     | 否   | 设置下载按钮的图标风格<br/>不传入该参数表示没有图标，icon和text至少存在一个。 |
-| text | [DownloadDescription](#DownloadDescription枚举说明) | 否   | 设置下载按钮的文本描述<br/>不传入该参数表示没有文字描述，icon和text至少存在一个。 |
+| 名称 | 类型                | 必填 | 描述                                                         |
+| ---- | ------------------- | ---- | ------------------------------------------------------------ |
+| icon | DownloadIconStyle   | 否   | 设置下载按钮的图标风格<br/>不传入该参数表示没有图标，icon和text至少存在一个。 |
+| text | DownloadDescription | 否   | 设置下载按钮的文本描述<br/>不传入该参数表示没有文字描述，icon和text至少存在一个。 |
 
 
 
@@ -55,17 +61,17 @@ Downloadbutton()
 
 **元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
-| 名称            | 类型                                                        | 必填 | 描述                                                         |
-| --------------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| iconSize        | Dimension                                                   | 否   | 下载控件上图标的尺寸。<br/>默认值：16vp                      |
-| layoutDirection | [DownloadLayoutDirection](#DownloadLayoutDirection枚举说明) | 否   | 下载控件上图标和文字分布的方向。<br/>默认值：DownloadLayoutDirection.HORIZONTAL |
-| fontSize        | Dimension                                                   | 否   | 下载控件上文字的尺寸。<br/>默认值：16fp                      |
-| fontStyle       | FontStyle                                                   | 否   | 下载控件上文字的样式。<br/>默认值：FontStyle.Normal          |
-| fontWeight      | number \| FontWeight \| string                              | 否   | 下载控件上文字粗细。<br/>默认值：FontWeight.Medium           |
-| fontFamily      | string \| Resource                                          | 否   | 下载控件上文字的字体。<br/>默认字体：'HarmonyOS Sans'        |
-| fontColor       | ResourceColor                                               | 否   | 下载控件上文字的颜色。<br/>默认值：#ffffffff                 |
-| iconColor       | ResourceColor                                               | 否   | 下载控件上图标的颜色。<br/>默认值：#ffffffff                 |
-| textIconSpace   | Dimension                                                   | 否   | 下载控件中图标和文字的间距。<br/>默认值：4vp                 |
+| 名称            | 类型                           | 必填 | 描述                                                         |
+| --------------- | ------------------------------ | ---- | ------------------------------------------------------------ |
+| iconSize        | Dimension                      | 否   | 下载控件上图标的尺寸。<br/>默认值：16vp                      |
+| layoutDirection | DownloadLayoutDirection        | 否   | 下载控件上图标和文字分布的方向。<br/>默认值：DownloadLayoutDirection.HORIZONTAL |
+| fontSize        | Dimension                      | 否   | 下载控件上文字的尺寸。<br/>默认值：16fp                      |
+| fontStyle       | FontStyle                      | 否   | 下载控件上文字的样式。<br/>默认值：FontStyle.Normal          |
+| fontWeight      | number \| FontWeight \| string | 否   | 下载控件上文字粗细。<br/>默认值：FontWeight.Medium           |
+| fontFamily      | string \| Resource             | 否   | 下载控件上文字的字体。<br/>默认字体：'HarmonyOS Sans'        |
+| fontColor       | ResourceColor                  | 否   | 下载控件上文字的颜色。<br/>默认值：#ffffffff                 |
+| iconColor       | ResourceColor                  | 否   | 下载控件上图标的颜色。<br/>默认值：#ffffffff                 |
+| textIconSpace   | Dimension                      | 否   | 下载控件中图标和文字的间距。<br/>默认值：4vp                 |
 
 
 
@@ -75,8 +81,8 @@ Downloadbutton()
 
 | 名称        | 枚举值 | 描述                       |
 | ----------- | ------ | -------------------------- |
-| FULL_FILLED | 0      | 下载按钮展示填充样式图标。 |
-| LINES       | 1      | 下载按钮展示线条样式图标。 |
+| FULL_FILLED | 1      | 下载按钮展示填充样式图标。 |
+| LINES       | 2      | 下载按钮展示线条样式图标。 |
 
 
 
@@ -86,14 +92,14 @@ Downloadbutton()
 
 | 名称                | 枚举值 | 描述                                                         |
 | ------------------- | ------ | ------------------------------------------------------------ |
-| DOWNLOAD            | 0      | 下载按钮的文字描述为“下载”。 **元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
-| DOWNLOAD_FILE       | 1      | 下载按钮的文字描述为“下载文件”。 **元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
-| SAVE                | 2      | 下载按钮的文字描述为“保存”。 **元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
-| SAVE_IMAGE          | 3      | 下载按钮的文字描述为“保存图片”。 **元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
-| SAVE_FILE           | 4      | 下载按钮的文字描述为“保存文件”。 **元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
-| DOWNLOAD_AND_SHARE  | 5      | 下载按钮的文字描述为“下载分享”。 **元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
-| RECEIVE             | 6      | 下载按钮的文字描述为“接收”。 **元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
-| CONTINUE_TO_RECEIVE | 7      | 下载按钮的文字描述为“继续接收”。 **元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| DOWNLOAD            | 1      | 下载按钮的文字描述为“下载”。 **元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| DOWNLOAD_FILE       | 2      | 下载按钮的文字描述为“下载文件”。 **元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| SAVE                | 3      | 下载按钮的文字描述为“保存”。 **元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| SAVE_IMAGE          | 4      | 下载按钮的文字描述为“保存图片”。 **元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| SAVE_FILE           | 5      | 下载按钮的文字描述为“保存文件”。 **元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| DOWNLOAD_AND_SHARE  | 6      | 下载按钮的文字描述为“下载分享”。 **元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| RECEIVE             | 7      | 下载按钮的文字描述为“接收”。 **元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| CONTINUE_TO_RECEIVE | 8      | 下载按钮的文字描述为“继续接收”。 **元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
 
 
 
@@ -172,28 +178,4 @@ struct Index {
     }
   }
 }
-
-
-
-...
-  contentOption: {
-           text: DownloadDescription.DOWNLOAD
-        }
-...
-
-
-...
-  contentOption: {
-         icon: DownloadIconStyle.FULL_FILLED
-        }
-        ..
- styleOption: {
-        iconColor: '#007dff'
-        }
-        ..
-         // .backgroundColor('#007dff')
-...
 ```
-
-
-
