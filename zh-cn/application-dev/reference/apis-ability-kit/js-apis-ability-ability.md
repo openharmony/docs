@@ -29,7 +29,7 @@ import ability from '@ohos.ability.ability';
 
 **示例：**
 ```ts
-import ability from '@ohos.ability.ability';
+import { ability } from '@kit.AbilityKit';
 
 let dataAbilityHelper: ability.DataAbilityHelper;
 let pacMap: ability.PacMap;

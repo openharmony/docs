@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```ts
-import Configuration from '@ohos.app.ability.Configuration';
+import { Configuration } from '@kit.AbilityKit';
 ```
 
 ## 属性
@@ -32,37 +32,35 @@ import Configuration from '@ohos.app.ability.Configuration';
 **示例：**
 
   ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import EnvironmentCallback from '@ohos.app.ability.EnvironmentCallback';
-import Want from '@ohos.app.ability.Want';
+import { UIAbility, AbilityConstant, EnvironmentCallback, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
-    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-        let envCallback: EnvironmentCallback = {
-            onConfigurationUpdated(config) {
-                console.info(`envCallback onConfigurationUpdated success: ${JSON.stringify(config)}`);
-                let language = config.language;
-                let colorMode = config.colorMode;
-                let direction = config.direction;
-                let screenDensity = config.screenDensity;
-                let displayId = config.displayId;
-                let hasPointerDevice = config.hasPointerDevice;
-                let fontSizeScale = config.fontSizeScale;
-                let fontWeightScale = config.fontWeightScale;
-            },
-            onMemoryLevel(level) {
-                console.log('onMemoryLevel level: ${level}');
-            }
-        };
-        try {
-            let applicationContext = this.context.getApplicationContext();
-            let callbackId = applicationContext.on('environment', envCallback);
-            console.log(`callbackId: ${callbackId}`);
-        } catch (paramError) {
-            console.error(`error: ${paramError.code}, ${paramError.message}`);
-        }
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    let envCallback: EnvironmentCallback = {
+      onConfigurationUpdated(config) {
+        console.info(`envCallback onConfigurationUpdated success: ${JSON.stringify(config)}`);
+        let language = config.language;
+        let colorMode = config.colorMode;
+        let direction = config.direction;
+        let screenDensity = config.screenDensity;
+        let displayId = config.displayId;
+        let hasPointerDevice = config.hasPointerDevice;
+        let fontSizeScale = config.fontSizeScale;
+        let fontWeightScale = config.fontWeightScale;
+      },
+      onMemoryLevel(level) {
+        console.log('onMemoryLevel level: ${level}');
+      }
+    };
+    try {
+      let applicationContext = this.context.getApplicationContext();
+      let callbackId = applicationContext.on('environment', envCallback);
+      console.log(`callbackId: ${callbackId}`);
+    } catch (paramError) {
+      console.error(`error: ${(paramError as BusinessError).code}, ${(paramError as BusinessError).message}`);
     }
+  }
 }
   ```
 

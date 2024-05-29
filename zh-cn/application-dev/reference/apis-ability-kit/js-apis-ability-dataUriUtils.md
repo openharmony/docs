@@ -9,7 +9,7 @@ DataUriUtils模块提供用于处理uri对象的能力，包括获取、绑定�
 ## 导入模块
 
 ```ts
-import dataUriUtils from '@ohos.ability.dataUriUtils';
+import { dataUriUtils } from '@kit.AbilityKit';
 ```
 
 ## dataUriUtils.getId
@@ -35,7 +35,7 @@ getId(uri: string): number
 **示例：**
 
 ```ts
-import dataUriUtils from '@ohos.ability.dataUriUtils';
+import { dataUriUtils } from '@kit.AbilityKit';
 
 let id = dataUriUtils.getId('com.example.dataUriUtils/1221');
 ```
@@ -66,7 +66,7 @@ attachId(uri: string, id: number): string
 **示例：**
 
 ```ts
-import dataUriUtils from '@ohos.ability.dataUriUtils';
+import { dataUriUtils } from '@kit.AbilityKit';
 
 let id = 1122;
 let uri = dataUriUtils.attachId(
@@ -100,7 +100,7 @@ deleteId(uri: string): string
 **示例：**
 
 ```ts
-import dataUriUtils from '@ohos.ability.dataUriUtils';
+import { dataUriUtils } from '@kit.AbilityKit';
 
 let uri = dataUriUtils.deleteId('com.example.dataUriUtils/1221');
 ```
@@ -131,12 +131,12 @@ updateId(uri: string, id: number): string
 **示例：**
 
 ```ts
-import dataUriUtils from '@ohos.ability.dataUriUtils';
+import { dataUriUtils } from '@kit.AbilityKit';
 
 let id = 1122;
 let uri = dataUriUtils.updateId(
-    'com.example.dataUriUtils/1221',
-	id
+  'com.example.dataUriUtils/1221',
+  id
 );
 ```
 

@@ -8,7 +8,7 @@ appRecovery模块提供了应用在故障状态下的恢复能力。
 
 ## 导入模块
 ```ts
-import appRecovery from '@ohos.app.ability.appRecovery';
+import { appRecovery } from '@kit.AbilityKit';
 ```
 
 ## appRecovery.RestartFlag
@@ -75,17 +75,16 @@ enableAppRecovery(restart?: [RestartFlag](#apprecoveryrestartflag), saveOccasion
 **示例：**
     
 ```ts
-import appRecovery from '@ohos.app.ability.appRecovery';
-import AbilityStage from '@ohos.app.ability.AbilityStage';
+import { appRecovery, AbilityStage } from '@kit.AbilityKit';
 
 export default class MyAbilityStage extends AbilityStage {
-    onCreate() {
-        appRecovery.enableAppRecovery(
-            appRecovery.RestartFlag.ALWAYS_RESTART,
-            appRecovery.SaveOccasionFlag.SAVE_WHEN_ERROR,
-            appRecovery.SaveModeFlag.SAVE_WITH_FILE
-        );
-    }
+  onCreate() {
+    appRecovery.enableAppRecovery(
+      appRecovery.RestartFlag.ALWAYS_RESTART,
+      appRecovery.SaveOccasionFlag.SAVE_WHEN_ERROR,
+      appRecovery.SaveModeFlag.SAVE_WITH_FILE
+    );
+  }
 }
 ```
 
@@ -112,20 +111,20 @@ API10时将启动由[setRestartWant](#apprecoverysetrestartwant10)指定的Abili
 **示例：**
     
 ```ts
-import appRecovery from '@ohos.app.ability.appRecovery';
-import errorManager from '@ohos.app.ability.errorManager';
+import { appRecovery, errorManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let observer: errorManager.ErrorObserver = {
-    onUnhandledException(errorMsg) {
-        console.log('onUnhandledException, errorMsg: ', errorMsg);
-        appRecovery.restartApp();
-    }
+  onUnhandledException(errorMsg) {
+    console.log('onUnhandledException, errorMsg: ', errorMsg);
+    appRecovery.restartApp();
+  }
 };
 
 try {
-    errorManager.on('error', observer);
+  errorManager.on('error', observer);
 } catch (paramError) {
-    console.error(`error: ${paramError.code}, ${paramError.message}`);
+  console.error(`error: ${(paramError as BusinessError).code}, ${(paramError as BusinessError).message}`);
 }
 ```
 
@@ -150,20 +149,20 @@ saveAppState(): boolean
 **示例：**
     
 ```ts
-import appRecovery from '@ohos.app.ability.appRecovery';
-import errorManager from '@ohos.app.ability.errorManager';
+import { appRecovery, errorManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let observer: errorManager.ErrorObserver = {
-    onUnhandledException(errorMsg) {
-        console.log('onUnhandledException, errorMsg: ', errorMsg);
-        appRecovery.saveAppState();
-    }
+  onUnhandledException(errorMsg) {
+    console.log('onUnhandledException, errorMsg: ', errorMsg);
+    appRecovery.saveAppState();
+  }
 };
 
 try {
-    errorManager.on('error', observer);
+  errorManager.on('error', observer);
 } catch (paramError) {
-    console.error(`error: ${paramError.code}, ${paramError.message}`);
+  console.error(`error: ${(paramError as BusinessError).code}, ${(paramError as BusinessError).message}`);
 }
 ```
 
@@ -194,20 +193,20 @@ saveAppState(context?: UIAbilityContext): boolean
 **示例：**
 
 ```ts
-import appRecovery from '@ohos.app.ability.appRecovery';
-import errorManager from '@ohos.app.ability.errorManager';
+import { appRecovery, errorManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let observer: errorManager.ErrorObserver = {
-    onUnhandledException(errorMsg) {
-        console.log('onUnhandledException, errorMsg: ', errorMsg);
-        appRecovery.saveAppState(this.context);
-    }
+  onUnhandledException(errorMsg) {
+    console.log('onUnhandledException, errorMsg: ', errorMsg);
+    appRecovery.saveAppState(this.context);
+  }
 };
 
 try {
-    errorManager.on('error', observer);
+  errorManager.on('error', observer);
 } catch (paramError) {
-    console.error(`error: ${paramError.code}, ${paramError.message}`);
+  console.error(`error: ${(paramError as BusinessError).code}, ${(paramError as BusinessError).message}`);
 }
 ```
 
@@ -232,8 +231,7 @@ setRestartWant(want: Want): void
 **示例：**
 
 ```ts
-import appRecovery from '@ohos.app.ability.appRecovery';
-import Want from '@ohos.app.ability.Want';
+import { appRecovery, Want } from '@kit.AbilityKit';
 
 @Entry
 @Component
