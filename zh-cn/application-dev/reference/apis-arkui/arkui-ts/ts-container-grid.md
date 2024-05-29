@@ -107,6 +107,7 @@ Grid组件根据rowsTemplate、columnsTemplate属性的设置情况，可分为�
 - 此模式下仅生效以下属性：layoutDirection、maxCount、minCount、cellLength、editMode、columnsGap、rowsGap。
 - 当前layoutDirection设置为Row时，先从左到右排列，排满一行再排下一行。剩余高度不足时不再布局，整体内容顶部居中。
 - 当前layoutDirection设置为Column时，先从上到下排列，排满一列再排下一列，剩余宽度不足时不再布局。整体内容顶部居中。
+- 当前Grid下面没有GridItem时，Grid的宽高为0。
 
 ### flingSpeedLimit<sup>11+</sup>
 
