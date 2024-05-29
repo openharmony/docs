@@ -1892,7 +1892,7 @@ on(type: 'sizeChange', callback: Callback&lt;window.Size&gt;): void;
 | 参数名   | 类型                   | 必填 | 说明     |
 | -------- | ---------------------- | ---- | -------- |
 | type | string | 是 | 监听当前面板的大小是否产生变化，固定取值为'sizeChange'。 |
-| callback | Callback\<[window.Size](../apis-arkui/js-apis-window.md#Size7)> | 否   | 回调函数。返回当前软键盘面板的大小，包含宽度和高度值。 |
+| callback | Callback\<[window.Size](../apis-arkui/js-apis-window.md#size7)> | 否   | 回调函数。返回当前软键盘面板的大小，包含宽度和高度值。 |
 
 **示例：**
 
@@ -1986,7 +1986,7 @@ off(type: 'sizeChange', callback?: Callback&lt;window.Size&gt;): void;
 | 参数名   | 类型                   | 必填 | 说明     |
 | -------- | ---------------------- | ---- | -------- |
 | type | string | 是 | 监听当前面板的大小是否产生变化，固定取值为'sizeChange'。 |
-| callback | Callback\<[window.Size](../apis-arkui/js-apis-window.md#Size7)> | 否   | 回调函数。返回当前软键盘面板的大小，包含宽度和高度值。 |
+| callback | Callback\<[window.Size](../apis-arkui/js-apis-window.md#size7)> | 否   | 回调函数。返回当前软键盘面板的大小，包含宽度和高度值。 |
 
 **示例：**
 
