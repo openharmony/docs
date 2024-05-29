@@ -4071,6 +4071,7 @@ Describes the media metadata.
 | title           | string                  | No  | Title.                                                                |
 | artist          | string                  | No  | Artist.                                                               |
 | author          | string                  | No  | Author.                                                              |
+| avQueueName<sup>11+</sup>       | string                  | No  | Playlist name.                                                              |
 | avQueueId<sup>11+</sup>       | string                  | No  | Unique ID of the playlist.                                                              |
 | avQueueImage<sup>11+</sup>    | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) &#124; string | No  | Cover image of the playlist, which can be pixel data of an image or an image path (local path or Internet path). |                       
 | album           | string                  | No  | Album name.                                                              |
@@ -5717,7 +5718,7 @@ avsessionController.on('callMetadataChange', 'all', (callmetadata: avSession.Cal
 });
 
 avsessionController.on('callMetadataChange', ['name'], (callmetadata: avSession.CallMetadata) => {
-  console.info(`on callMetadataChange state : ${callmetadata.state}`);
+  console.info(`on callMetadataChange state : ${callmetadata.name}`);
 });
 ```
 
@@ -6816,7 +6817,7 @@ Enumerates the error codes used in the media session.
 | ERR_CODE_COMMAND_INVALID               | 6600105 | Invalid session command.           |
 | ERR_CODE_SESSION_INACTIVE              | 6600106 | The session is not activated.                |
 | ERR_CODE_MESSAGE_OVERLOAD              | 6600107 | Too many commands or events.       |
-| ERR_CODE_DEVICE_CONNECTION_FAILED      | 6600108 | Device connecting failed.       |
+| ERR_CODE_DEVICE_CONNECTION_FAILED      | 6600108 | Device connection failed.       |
 | ERR_CODE_REMOTE_CONNECTION_NOT_EXIST   | 6600109 | The remote connection is not established.       |
 
 ## SkipIntervals<sup>11+</sup>

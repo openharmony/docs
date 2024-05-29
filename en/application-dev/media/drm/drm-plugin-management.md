@@ -45,22 +45,3 @@ Read [DRM](../../reference/apis-drm-kit/js-apis-drm.md) for the API reference.
      return mediaKeySystem;
    }
    ```
-
-5. Call **getMediaKeySystems** to obtain the names and UUIDs of the DRM plug-ins supported by the device.
-
-   > **NOTE**
-   >
-   > If the size of the array is null, no supported plug-in exists on the device.
-
-   ```ts
-   function getMediaKeySystems(): drm.MediaKeySystemDescription[]{
-    let description : drm.MediaKeySystemDescription[] = [];
-    try {
-      description = drm.getMediaKeySystems();
-    } catch (err) {
-      let error = err as BusinessError;
-      console.error(`getMediaKeySystems ERROR: ${error}`)
-    }
-    return description;
-   }
-   ```

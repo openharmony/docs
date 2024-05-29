@@ -29,7 +29,6 @@ The **native_drm_common.h** file declares the DRM data types.
 | struct&nbsp;&nbsp;[DRM_MediaKeyStatus](_d_r_m___media_key_status.md) | Describes the media key status.| 
 | struct&nbsp;&nbsp;[DRM_PsshInfo](_d_r_m___pssh_info.md) | Describes the Protection Scheme Specific Header (PSSH) information of the UUID.| 
 | struct&nbsp;&nbsp;[DRM_MediaKeySystemInfo](_d_r_m___media_key_system_info.md) | Describes the media key system information obtained from a media source.| 
-| struct&nbsp;&nbsp;[DRM_MediaKeySystemDescription](_d_r_m___media_key_system_description.md) | Describes the name and UUID of a DRM plug-in. | 
 
 
 ### Macros
@@ -57,8 +56,6 @@ The **native_drm_common.h** file declares the DRM data types.
 | [DRM_UUID_LEN](_drm.md#drm_uuid_len)&nbsp;&nbsp;&nbsp;16 | UUID length.| 
 | [MAX_PSSH_DATA_LEN](_drm.md#max_pssh_data_len)&nbsp;&nbsp;&nbsp;2048 | Maximum length of PSSH data.| 
 | [MAX_PSSH_INFO_COUNT](_drm.md#max_pssh_info_count)&nbsp;&nbsp;&nbsp;8 | Maximum number of pieces of PSSH information.| 
-| [MAX_MEDIA_KEY_SYSTEM_NAME_LEN](_drm.md#max_media_key_system_name_len)&nbsp;&nbsp;&nbsp;128 | Maximum length of a media key system name. | 
-| [MAX_MEDIA_KEY_SYSTEM_NUM](_drm.md#max_media_key_system_num)&nbsp;&nbsp;&nbsp;8 | Maximum number of supported media key systems. | 
 
 
 ### Types
