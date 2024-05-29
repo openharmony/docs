@@ -1398,7 +1398,7 @@ struct Index {
 }
 ```
 
-## postDelayedFrameCallback<sup>12+</sup>
+### postDelayedFrameCallback<sup>12+</sup>
 
 注册一个回调，在延迟一段时间后的下一帧进行渲染时执行。
 
@@ -1409,7 +1409,7 @@ struct Index {
 | 参数名 | 类型   | 必填 | 说明                                    |
 | ------ | ------ | ---- | --------------------------------------- |
 | frameCallback | [FrameCallback](#framecallback12) | 是   | 下一帧需要执行的回调。 |
-| delayTime | number | 是   | 延迟的时间，以毫秒为单位。 |
+| delayTime | number | 是   | 延迟的时间，以毫秒为单位。传入null、undefined或小于0的值，会按0处理。 |
 
 **示例：**
 
@@ -1434,7 +1434,7 @@ class MyFrameCallback extends FrameCallback {
 struct Index {
   build() {
     Row() {
-      Button('点击触发postFrameCallback')
+      Button('点击触发postDelayedFrameCallback')
         .onClick(() => {
           this.getUIContext().postDelayedFrameCallback(new MyFrameCallback("delayTask"), 5);
         })
@@ -5970,15 +5970,19 @@ class MyFrameCallback extends FrameCallback {
 struct Index {
   build() {
     Row() {
-      Button('点击触发postFrameCallback')
-        .onClick(() => {
-          this.getUIContext().postFrameCallback(new MyFrameCallback("normTask"));
-        })
-      Button('点击触发postFrameCallback')
-        .onClick(() => {
-          this.getUIContext().postDelayedFrameCallback(new MyFrameCallback("delayTask"), 5);
-        })
+      Column() {
+        Button('点击触发postFrameCallback')
+          .onClick(() => {
+            this.getUIContext().postFrameCallback(new MyFrameCallback("normTask"));
+          })
+        Button('点击触发postDelayedFrameCallback')
+          .onClick(() => {
+            this.getUIContext().postDelayedFrameCallback(new MyFrameCallback("delayTask"), 5);
+          })
+      }
+      .width('100%')
     }
+    .height('100%')
   }
 }
 ```
