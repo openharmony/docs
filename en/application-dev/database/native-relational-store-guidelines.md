@@ -42,8 +42,8 @@ For details about the interfaces, see [RDB](../reference/apis-arkdata/_r_d_b.md)
 | OH_VBucket_PutAsset(OH_VBucket *bucket, const char *field, Rdb_Asset *value) | Puts an RDB asset into an **OH_VBucket** object.|
 | OH_VBucket_PutAssets(OH_VBucket *bucket, const char *field, Rdb_Asset *value, uint32_t count) | Puts RDB assets into an **OH_VBucket** object.|
 | OH_Rdb_SetDistributedTables(OH_Rdb_Store *store, const char *tables[], uint32_t count, Rdb_DistributedType type, const Rdb_DistributedConfig *config) | Sets distributed database tables.|
-| OH_Rdb_FindModifyTime(OH_Rdb_Store *store, const char *tableName, const char *columnName, OH_VObject *values) | Obtains the last modification time of the data in the specified column of a table. |
-| OH_Rdb_CloudSync(OH_Rdb_Store *store, Rdb_SyncMode mode, const char *tables[], uint32_t count, const Rdb_ProgressObserver *observer) | Manually performs device-cloud sync for a table. The cloud service must be available. |
+| OH_Rdb_FindModifyTime(OH_Rdb_Store *store, const char *tableName, const char *columnName, OH_VObject *values) | Obtains the last modification time of the data in the specified column of a table.|
+| OH_Rdb_CloudSync(OH_Rdb_Store *store, Rdb_SyncMode mode, const char *tables[], uint32_t count, const Rdb_ProgressObserver *observer) | Manually performs device-cloud sync for a table. The cloud service must be available.|
 | int OH_Data_Asset_SetName(Data_Asset *asset, const char *name) | Sets the name for a data asset.|
 | int OH_Data_Asset_SetUri(Data_Asset *asset, const char *uri) | Sets the absolute path for a data asset.|
 | int OH_Data_Asset_SetPath(Data_Asset *asset, const char *path) | Sets the relative path in the application sandbox directory for a data asset.|
@@ -58,13 +58,13 @@ For details about the interfaces, see [RDB](../reference/apis-arkdata/_r_d_b.md)
 | int OH_Data_Asset_GetModifyTime(Data_Asset *asset, int64_t *modifyTime) | Obtains the last modification time of a data asset.|
 | int OH_Data_Asset_GetSize(Data_Asset *asset, size_t *size) | Obtains the size of a data asset.|
 | int OH_Data_Asset_GetStatus(Data_Asset *asset, Data_AssetStatus *status) | Obtains the status of a data asset.|
-| Data_Asset *OH_Data_Asset_CreateOne() | Creates a data asset instance. When this data asset is no longer needed, use **OH_Data_Asset_DestroyOne** to destroy it. |
+| Data_Asset *OH_Data_Asset_CreateOne() | Creates a data asset instance. When this data asset is no longer needed, use **OH_Data_Asset_DestroyOne** to destroy it.|
 | int OH_Data_Asset_DestroyOne(Data_Asset *asset) | Destroys a data asset instance to reclaim memory.|
-| Data_Asset **OH_Data_Asset_CreateMultiple(uint32_t count) | Creates an instance for multiple data assets. When the instance is no longer required, use **OH_Data_Asset_DestroyMultiple** to destroy it. |
+| Data_Asset **OH_Data_Asset_CreateMultiple(uint32_t count) | Creates an instance for multiple data assets. When the instance is no longer required, use **OH_Data_Asset_DestroyMultiple** to destroy it.|
 | int OH_Data_Asset_DestroyMultiple(Data_Asset **assets, uint32_t count) | Destroys multiple data assets to reclaim memory.|
 | int OH_Rdb_Subscribe(OH_Rdb_Store *store, Rdb_SubscribeType type, const Rdb_DataObserver *observer) | Registers an observer for an RDB store. When the data in the distributed database changes, a callback will be invoked to return the data change.|
 | int OH_Rdb_Unsubscribe(OH_Rdb_Store *store, Rdb_SubscribeType type, const Rdb_DataObserver *observer) | Unregisters the observer of the specified type.|
-| int OH_Rdb_SubscribeAutoSyncProgress(OH_Rdb_Store *store, const Rdb_ProgressObserver *observer) | Subscribes to the auto sync process of an RDB store. The registered callback will be invoked to return the auto sync progress received. |
+| int OH_Rdb_SubscribeAutoSyncProgress(OH_Rdb_Store *store, const Rdb_ProgressObserver *observer) | Subscribes to the auto sync process of an RDB store. The registered callback will be invoked to return the auto sync progress received.|
 | int OH_Rdb_UnsubscribeAutoSyncProgress(OH_Rdb_Store *store, const Rdb_ProgressObserver *observer) | Unsubscribes from the auto sync process of an RDB store.|
 
 
@@ -94,9 +94,7 @@ libnative_rdb_ndk.z.so
 
    The **dataBaseDir** variable specifies the application sandbox path. In the stage model, you are advised to use the database directory. For details, see the **databaseDir** attribute of [Context](../reference/apis-ability-kit/js-apis-inner-application-context.md). The FA model does not provide any API for obtaining the database sandbox path. Use the application directory instead. For details, see **getFilesDir** of [Context](../reference/apis-ability-kit/js-apis-inner-app-context.md). 
 
-   **area** indicates the security level of the directory for database files. For details, see [contextConstant](../reference/apis-ability-kit/js-apis-app-ability-contextConstant.md). 
-
-   During development, you need to implement the conversion from **AreaMode** to **Rdb_SecurityArea**. 
+   **area** indicates the security level of the directory for database files. For details, see [contextConstant](../reference/apis-ability-kit/js-apis-app-ability-contextConstant.md). During development, you need to implement the conversion from **AreaMode** to **Rdb_SecurityArea**.
 
    Example:
 
@@ -224,7 +222,7 @@ libnative_rdb_ndk.z.so
    ```c
    // If the column attribute is a single asset, use asset in the SQL statements. If the column attribute is multiple assets, use assets in the SQL statements.
    char createAssetTableSql[] = "CREATE TABLE IF NOT EXISTS asset_table (id INTEGER PRIMARY KEY AUTOINCREMENT, data1 asset, data2 assets );";
-   errCode = OH_Rdb_Execute(storeTestRdbStore_, createAssetTableSql);
+   errCode = OH_Rdb_Execute(store_, createAssetTableSql);
    Data_Asset *asset = OH_Data_Asset_CreateOne();
    OH_Data_Asset_SetName(asset, "name0");
    OH_Data_Asset_SetUri(asset, "uri0");
@@ -313,7 +311,7 @@ libnative_rdb_ndk.z.so
    int64_t keys[] = { 1 };
    values->putInt64(values, keys, 1);
    OH_Cursor *cursor;
-   cursor = OH_Rdb_FindModifyTime(storeTestRdbStore_, "EMPLOYEE", "ROWID", values);
+   cursor = OH_Rdb_FindModifyTime(store_, "EMPLOYEE", "ROWID", values);
    ```
 
 8. Create distributed tables. 
@@ -324,7 +322,7 @@ libnative_rdb_ndk.z.so
    constexpr int TABLE_COUNT = 1;
    const char *table[TABLE_COUNT];
    table[0] = "EMPLOYEE";
-   int errcode = OH_Rdb_SetDistributedTables(storeTestRdbStore_, table, TABLE_COUNT, Rdb_DistributedType::DISTRIBUTED_CLOUD, &config);
+   int errcode = OH_Rdb_SetDistributedTables(store_, table, TABLE_COUNT, Rdb_DistributedType::DISTRIBUTED_CLOUD, &config);
    ```
 
 9. Manually perform device-cloud sync for the distributed tables. 
@@ -338,7 +336,7 @@ libnative_rdb_ndk.z.so
     // Do something.
    }
    const Rdb_ProgressObserver observer = { .context = nullptr, .callback = CloudSyncObserverCallback };
-   OH_Rdb_CloudSync(storeTestRdbStore_, Rdb_SyncMode::SYNC_MODE_TIME_FIRST, table, TABLE_COUNT, &observer);
+   OH_Rdb_CloudSync(store_, Rdb_SyncMode::SYNC_MODE_TIME_FIRST, table, TABLE_COUNT, &observer);
    ```
 
 10. Register a data observer for the specified event type for an RDB store. When the data changes, the registered callback will be invoked to process the observation. 
@@ -353,7 +351,7 @@ libnative_rdb_ndk.z.so
     }
     Rdb_BriefObserver briefObserver;
     const Rdb_BriefObserver briefObserver = { .context = nullptr, .callback = RdbSubscribeBriefCallback };
-    OH_Rdb_Subscribe(storeTestRdbStore_, Rdb_SubscribeType::RDB_SUBSCRIBE_TYPE_CLOUD, &briefObserver);
+    OH_Rdb_Subscribe(store_, Rdb_SubscribeType::RDB_SUBSCRIBE_TYPE_CLOUD, &briefObserver);
     ```
 
 11. Unsubscribe from the events of the specified type for an RDB store. After that, the callback will not be invoked to process the observation. 
@@ -368,7 +366,7 @@ libnative_rdb_ndk.z.so
      }
      Rdb_BriefObserver briefObserver = RdbSubscribeBriefCallback;
      const Rdb_DataObserver briefObs = { .context = nullptr, .callback.briefObserver = briefObserver };
-     OH_Rdb_Unsubscribe(storeTestRdbStore_, Rdb_SubscribeType::RDB_SUBSCRIBE_TYPE_CLOUD, &briefObs);
+     OH_Rdb_Unsubscribe(store_, Rdb_SubscribeType::RDB_SUBSCRIBE_TYPE_CLOUD, &briefObs);
      ```
 
 12. Register an observer for auto sync progress of an RDB store. When auto sync is performed on the RDB store, the registered callback will be invoked to process the observation. 
@@ -382,7 +380,7 @@ libnative_rdb_ndk.z.so
      // do something
      }
      const Rdb_ProgressObserver observer = { .context = nullptr, .callback = RdbProgressObserverCallback };
-     OH_Rdb_SubscribeAutoSyncProgress(storeTestRdbStore_, &observer);
+     OH_Rdb_SubscribeAutoSyncProgress(store_, &observer);
      ```
 
 13. Unsubscribe from the auto sync progress from an RDB store. After that, the callback will not be invoked to process the observation. 
@@ -396,12 +394,12 @@ libnative_rdb_ndk.z.so
      // do something
      }
      const Rdb_ProgressObserver observer = { .context = nullptr, .callback = RdbProgressObserverCallback };
-     OH_Rdb_UnsubscribeAutoSyncProgress(storeTestRdbStore_, &observer);
+     OH_Rdb_UnsubscribeAutoSyncProgress(store_, &observer);
      ```
 
 14. Delete an RDB store. 
 
-     Call **OH_Rdb_DeleteStore** to delete the RDB store and related database file. <br>Example:
+    Call **OH_Rdb_DeleteStore** to delete the RDB store and related database file. <br>Example:
 
      ```c
      // Close the database instance.
@@ -411,7 +409,3 @@ libnative_rdb_ndk.z.so
      ```
 
      
-
-
-
-  

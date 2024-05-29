@@ -117,3 +117,4 @@ The following describes how to encapsulate an image and a plaint text into an ob
      }
    }
    ```
+
