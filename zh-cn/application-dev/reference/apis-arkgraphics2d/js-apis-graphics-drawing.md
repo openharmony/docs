@@ -1719,6 +1719,20 @@ let font = new drawing.Font();
 font.measureText("drawing", drawing.TextEncoding.TEXT_ENCODING_UTF8);
 ```
 
+## FontMetricsFlags
+
+字体度量标志枚举, 用于指示字体度量中的各字段数据是否有效。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+| 名称                          | 值        | 说明                           |
+| ----------------------------- | --------- | ------------------------------ |
+| UNDERLINE_THICKNESS_VALID     | 1 << 0    | 表示[FontMetrics](#fontmetrics) 结构中的underlineThickness（下划线厚度）字有效。    |
+| UNDERLINE_POSITION_VALID      | 1 << 1    | 表示[FontMetrics](#fontmetrics)结构中的underlinePosition（下划线位置）字段有效。  |
+| STRIKETHROUGH_THICKNESS_VALID | 1 << 2    | 表示[FontMetrics](#fontmetrics)结构中strikethroughThickness（删除线厚度）是有效的。|
+| STRIKETHROUGH_POSITION_VALID  | 1 << 3    | 表明[FontMetrics](#fontmetrics)内的strikethroughPosition（删除线位置）字段有效。  |
+| BOUNDS_INVALID                | 1 << 4    | 表明[FontMetrics](#fontmetrics)中的边界度量值（如top, bottom, xMin, xMax）无效。  |
+
 ## FontMetrics
 
 描述字形大小和布局的属性信息，同一种字体中的字符属性大致相同。
@@ -1727,11 +1741,22 @@ font.measureText("drawing", drawing.TextEncoding.TEXT_ENCODING_UTF8);
 
 | 名称    | 类型   | 可读 | 可写 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
+| flags   | [FontMetricsFlags](#fontmetricsflags) | 是   | 是   | 表明哪些字体度量标志有效。        |
 | top     | number | 是   | 是   | 文字最高处到基线之间的最大距离，浮点数。                         |
 | ascent  | number | 是   | 是   | 文字最高处到基线之间的距离，浮点数。                             |
 | descent | number | 是   | 是   | 基线到文字最低处之间的距离，浮点数。                             |
 | bottom  | number | 是   | 是   | 基线到文字最低处之间的最大距离，浮点数。                         |
 | leading | number | 是   | 是   | 行间距，从上一行文字descent到下一行文字ascent之间的距离，浮点数。 |
+| avgCharWidth | number | 是   | 是   | 平均字符宽度，如果未知，则为零。                             |
+| maxCharWidth | number | 是   | 是   | 最大字符宽度，如果未知，则为零。                             |
+| xMin | number | 是    | 是   | 字体中任意字形边界框最左边沿到原点的水平距离，这个值往往小于零，意味着字形可能向左延伸超出其水平轴的起点。                |
+| xMax | number | 是   | 是   | 字体中任意字形边界框最右边沿到原点的水平距离，此值多为正数，指示了字形在水平方向上的最大延伸范围。        |
+| xHeight | number | 是   | 是   | 小写字母"x"的高度，如果未知则为0，通常为负值。                     |
+| capHeight | number | 是   | 是   | 大写字母的高度，如果未知则为0，通常为负值。                      |
+| underlineThickness | number | 是   | 是   | 下划线的厚度。                                          |
+| underlinePosition  | number | 是   | 是   | 文本基线到下划线顶部的垂直距离，通常是正数。             |
+| strikethroughThickness  | number | 是   | 是   | 文本删除线的厚度，即贯穿文本字符的水平线的宽度。    |
+| strikethroughPosition  | number | 是   | 是   | 文本基线到底部删除线的垂直距离，通常为负值。         |
 
 ## ColorFilter
 

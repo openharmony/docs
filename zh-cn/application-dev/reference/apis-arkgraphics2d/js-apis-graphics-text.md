@@ -1048,6 +1048,161 @@ struct Index {
 }
 ```
 
+### getActualTextRange
+
+getActualTextRange(lineNumber: number, includeSpaces: boolean): [Range](#range);
+
+获取指定行号上的实际可见文本范围，这不包括由于文本溢出而显示的省略号。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明      |
+| ----- | ------ | ---- | --------- |
+| lineNumber  | number | 是   | 要获取文本范围的行号，行号从0开始。|
+| includeSpaces  | boolean | 是   | 指示是否应包含空白字符。|
+
+**返回值：**
+
+| 类型             | 说明                                              |
+| ---------------- | ------------------------------------------------ |
+| [Range](#range)  | 标示了实际文本范围。                               |
+
+**示例：**
+
+```ts
+import { text } from "@kit.ArkGraphics2D";
+
+function Text() {
+  let rang = paragraph.getActualTextRange(0, true);
+}
+
+@Entry
+@Component
+struct Index {
+  @State fun: Function = Text;
+  build() {
+    Column() {
+      Button().onClick(() => {
+        this.fun();
+      })
+    }
+  }
+}
+```
+
+### getLineMetrics
+
+getLineMetrics(): Array\<LineMetrics>;
+
+获取文本行的行度量数组。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**返回值：**
+
+| 类型                          | 说明          |
+| ----------------------------- | ------------- |
+| Array\<[LineMetrics](#linemetrics)> | 文本行的行度量数组。|
+
+**示例：**
+
+```ts
+import { text } from "@kit.ArkGraphics2D";
+
+function Text() {
+  let arrLineMetrc =  paragraph.getLineMetrics();
+}
+
+@Entry
+@Component
+struct Index {
+  @State fun: Function = Text;
+  build() {
+    Column() {
+      Button().onClick(() => {
+        this.fun();
+      })
+    }
+  }
+}
+```
+
+### getLineMetrics
+
+getLineMetrics(lineNumber: number): LineMetrics | undefined;
+
+获取特定行号的行度量信息。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明      |
+| ----- | ------ | ---- | --------- |
+| lineNumber  | number | 是   | 要查询度量信息的行的编号, 行号从0开始|
+
+**返回值：**
+
+| 类型             | 说明                                              |
+| ---------------- | ------------------------------------------------ |
+| [LineMetrics](#linemetrics) | 如果指定的行号有效且度量信息存在，则返回一个包含该行度量数据的 LineMetrics 对象；如果行号无效或无法获取度量信息，则返回 undefined。                  |
+
+**示例：**
+
+```ts
+import { text } from "@kit.ArkGraphics2D";
+
+function Text() {
+  let lineMetrics =  paragraph.getLineMetrics(0);
+}
+
+@Entry
+@Component
+struct Index {
+  @State fun: Function = Text;
+  build() {
+    Column() {
+      Button().onClick(() => {
+        this.fun();
+      })
+    }
+  }
+}
+```
+
+## RunMetrics
+
+描述文本行中连续文本块的布局信息和度量数据。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+| 名称      | 类型                                                | 只读 | 必填 | 说明        |
+| --------- | -------------------------------------------------- | ---- | ---- | ----------- |
+| textStyle | [TextStyle](#textstyle)                             | 是   | 是   | 字体的样式信息。|
+| fontMetrics | [FontMetrics](js-apis-graphics-drawing.md#fontmetrics)| 是   | 是   | 字体度量信息。    |
+
+## LineMetrics
+
+用于描述文本布局中单行文字的度量信息。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+| 名称      | 类型                                                | 只读 | 必填 | 说明        |
+| --------- | -------------------------------------------------- | ---- | ---- | ----------- |
+| startIndex | number                                            | 是   | 是   | 文本缓冲区中该行开始的索引位置。|
+| endIndex   | number                                            | 是   | 是   | 文本缓冲区中该行结束的索引位置。|
+| ascent     | number                                            | 是   | 是   | 文字上升高度，即从基线到字符顶部的距离。|
+| descent    | number                                            | 是   | 是   | 文字下降高度，即从基线到字符底部的距离。|
+| height     | number                                            | 是   | 是   | 当前行的高度，计算方式为 `Math.round(ascent + descent)`|
+| width      | number                                            | 是   | 是   | 行的宽度。                      |
+| left       | number                        | 是   | 是   | 行的左边缘位置。右边缘可通过 `left +width` 计算得出。|
+| baseline   | number                        | 是   | 是   | 该行基线相对于段落顶部的 Y 坐标位置。|
+| lineNumber   | number                        | 是   | 是   | 行号，从0开始计数。|
+| topHeight   | number                        | 是   | 是   | 从顶部到当前行的高度。|
+| runMetrics   | Map<number, [RunMetrics](#runmetrics)>                        | 是   | 是   | 文本索引范围与关联的字体度量信息之间的映射。|
+
 ## TextBox
 
 文本矩形区域。
