@@ -630,12 +630,12 @@ util.Aspect.replace(MyClass, 'foo', false, (instance: MyClass, arg: string): str
 
 result = asp.foo('123');
 // Output: execute instead
-// Output: arg is 123
+// Output: foo arg is 123
 // Output: msg is changed to msg111
 console.info('result is ' + result);
 // Output: result is msg222
 console.info('asp.msg is ' + asp.msg);
-// Output: asp.msg is msg111
+//Output: asp.msg is msg111
 ```
 
 ## TextDecoder
@@ -648,7 +648,7 @@ Provides APIs to decode byte arrays into strings. It supports multiple formats, 
 
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| encoding | string | Yes| No| Encoding format.<br>- Supported formats: utf-8, ibm866, iso-8859-2, iso-8859-3, iso-8859-4, iso-8859-5, iso-8859-6, iso-8859-7, iso-8859-8, iso-8859-8-i, iso-8859-10, iso-8859-13, iso-8859-14, iso-8859-15, koi8-r, koi8-u, macintosh, windows-874, windows-1250, windows-1251, windows-1252, windows-1253, windows-1254, windows-1255, windows-1256, windows-1257, windows-1258, x-mac-cyrilli, gbk, gb18030, big5, euc-jp, iso-2022-jp, shift_jis, euc-kr, utf-16be, utf-16le|
+| encoding | string | Yes| No| Encoding format.<br>The following formats are supported: utf-8, ibm866, iso-8859-2, iso-8859-3, iso-8859-4, iso-8859-5, iso-8859-6, iso-8859-7, iso-8859-8, iso-8859-8-i, iso-8859-10, iso-8859-13, iso-8859-14, iso-8859-15, koi8-r, koi8-u, macintosh, windows-874, windows-1250, windows-1251, windows-1252, windows-1253, windows-1254, windows-1255, windows-1256, windows-1257, windows-1258, x-mac-cyrillic, gbk, gb18030, big5, euc-jp, iso-2022-jp, shift_jis, euc-kr, utf-16be, utf-16le|
 | fatal | boolean | Yes| No| Whether to display fatal errors.|
 | ignoreBOM | boolean | Yes| No| Whether to ignore the byte order marker (BOM). The default value is **false**, which indicates that the result contains the BOM.|
 
@@ -829,7 +829,9 @@ Defines encoded text.
 
 ## TextEncoder
 
-Provides APIs to encode strings into byte arrays. It supports multiple formats, including UTF-8, UTF-16LE, and UTF-16BE. When **TextEncoder** is used for encoding, the number of bytes occupied by a character varies according to the encoding format. For example, a Chinese character usually occupies three bytes in UTF-8 encoding format but two bytes in UTF-16LE or UTF-16BE encoding format. Therefore, when using **TextEncoder**, you must explicitly specify the encoding format to obtain the required encoding result.
+Provides APIs to encode strings into byte arrays. Multiple encoding formats are supported.
+
+Note that when **TextEncoder** is used for encoding, the number of bytes occupied by a character varies according to the encoding format. Therefore, when using **TextEncoder**, you must explicitly specify the encoding format to be used to obtain the required encoding result.
 
 ### Attributes
 

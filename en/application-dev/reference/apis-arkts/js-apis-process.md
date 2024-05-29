@@ -46,7 +46,7 @@ Checks whether this process is isolated.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the process is isolated; returns **false** otherwise.|
+| boolean | **true**: The process is isolated.<br>**false**: The process is not isolated.|
 
 **Example**
 
@@ -67,7 +67,7 @@ Checks whether this process is running in a 64-bit environment.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the process is running in a 64-bit environment; returns **false** otherwise.|
+| boolean | **true**: The process is running in a 64-bit environment.<br>**false**: The process is not running in a 64-bit environment.|
 
 **Example**
 
@@ -176,7 +176,7 @@ Sends a signal to the specified process to terminate it.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the signal is sent successfully; returns **false** otherwise.  |
+| boolean | **true**: The signal is sent successfully.<br>**false**: The signal fails to be sent.|
 
 **Example**
 
@@ -217,7 +217,7 @@ process.exit(0);
 
 getUidForName(v: string): number
 
-Obtains the process UID based on the process name.
+Obtains the UID of a user from the user database of the system based on the specified user name.
 
 > **NOTE**
 >
@@ -229,13 +229,13 @@ Obtains the process UID based on the process name.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| v | string | Yes| Name of a process.|
+| v | string | Yes| User name.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| number | Process UID.|
+| number | UID of the user.|
 
 **Example**
 
@@ -298,7 +298,7 @@ Checks whether a UID belongs to this application.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the UID belongs to the application; returns **false** otherwise.|
+| boolean | **true**: The UID belongs to the application.<br>**false**: The UID does not belong to the application.|
 
 **Example**
 
@@ -394,7 +394,7 @@ Checks whether a UID belongs to this application.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the UID belongs to the application; returns **false** otherwise.|
+| boolean | **true**: The UID belongs to the application.<br>**false**: The UID does not belong to the application.|
 
 **Example**
 
@@ -408,7 +408,7 @@ let result = pro.isAppUid(688);
 
 getUidForName(v: string): number
 
-Obtains the process UID based on the process name.
+Obtains the UID of a user from the user database of the system based on the specified user name.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -416,13 +416,13 @@ Obtains the process UID based on the process name.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| v | string | Yes| Name of a process.|
+| v | string | Yes| User name.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| number | Process UID.|
+| number | UID of the user.|
 
 **Example**
 
@@ -561,7 +561,7 @@ Sends a signal to the specified process to terminate it.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the signal is sent successfully; returns **false** otherwise.  |
+| boolean | **true**: The signal is sent successfully.<br>**false**: The signal fails to be sent.|
 
 **Example**
 

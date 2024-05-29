@@ -31,7 +31,7 @@ setTimeout(() => {
 
 In the preceding code, the **setTimeout** function simulates an asynchronous operation that generates a random number one second later. If the random number is greater than 0.5, the **resolve** callback function is executed and the random number is passed in as a parameter. Otherwise, the **reject** callback function is executed and an error object is passed in.
 
-After the Promise object is created, you can use the **then** and **catch** methods to register the callback functions for the fulfilled and rejected states. The **then** method can receive two parameters: one for processing the fulfilled state and the other for processing the rejected state. If only one parameter is passed in, the callback function is executed as long as the state changes. The **catch** method receives a callback function to process the failure result, that is, capture the exception thrown when the Promise state changes to **rejected** or the operation fails. The code snippet below shows the use of the **then** and **catch** methods:
+After the Promise object is created, you can use the **then** and **catch** methods to register the callback functions for the fulfilled and rejected states. The **then** method can receive two parameters: one for processing the fulfilled state and the other for processing the rejected state. If only one parameter is passed in, the **then** method automatically calls the callback function when the Promise state changes to **fulfilled** and passes in the result of the Promise object in the callback function. The **catch** method receives a callback function to process the failure result, that is, capture the exception thrown when the Promise state changes to **rejected** or the operation fails. The code snippet below shows the use of the **then** and **catch** methods:
 
 
 ```ts
@@ -71,7 +71,7 @@ myAsyncFunction();
 
 In the preceding code, the await keyword is used to wait for the parsing of the Promise object and store its parsed value in the **result** variable.
 
-Note that the entire operation must be packaged in the **async** function because the code needs to wait for the asynchronous operation to complete. In addition to **await**, you can use the try/catch block to capture exceptions in asynchronous operations.
+Note that the entire operation must be packed in the **async** function because the code needs to wait for the asynchronous operation to complete. In addition to **await**, you can use the try/catch block to capture exceptions in asynchronous operations.
 
 
 ```ts

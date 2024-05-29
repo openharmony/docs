@@ -1,6 +1,6 @@
 # Worker Introduction
 
-With the Worker module, you can provide a multithreading environment for an application, so that the application can perform a time-consuming operation in a background thread. This greatly prevents a computing-intensive or high-latency task from blocking the running of the main thread. For details about the APIs and their usage, see [Worker](../reference/apis-arkts/js-apis-worker.md).
+With the Worker module, you can provide a multithreaded environment for an application, so that the application can perform a time-consuming operation in a background thread. This greatly prevents a computing-intensive or high-latency task from blocking the running of the main thread. For details about the APIs and their usage, see [Worker](../reference/apis-arkts/js-apis-worker.md).
 
 
 ## Worker Operating Mechanism
@@ -20,6 +20,7 @@ The thread that creates the worker thread is referred to as the host thread (not
 - Context objects vary in different threads. Therefore, the worker thread can use only a thread-safe library, but not a non-thread-safe library (for example, UI-related non-thread-safe library). For details, see [Precautions for Multithread Safe](multi-thread-safety.md).
 - A maximum of 16 MB data can be serialized.
 - You must register the **onerror** API in the main thread to listen for worker thread errors, which might cause a JavaScript crash.
+- Worker thread files cannot be used across HAPs.
 
 ### Precautions for Creating a Worker Thread
 

@@ -359,7 +359,7 @@ for (let pair of pairs) {
 ```
 
 
-### tostring<sup>9+</sup>
+### toString<sup>9+</sup>
 
 toString(): string
 
@@ -409,7 +409,7 @@ Provides APIs for parsing, constructing, standardizing, and encoding URL strings
 **Example**
 
 ```ts
-let that = url.URL.parseURL('http://username:password@host:8080/directory/file?foo=1&bar=2#fragment');
+let that = Url.URL.parseURL('http://username:password@host:8080/directory/file?foo=1&bar=2#fragment');
 console.log("hash " + that.hash) // hash #fragment
 console.log("host " + that.host) // host host:8080
 console.log("hostname " + that.hostname) // hostname host
@@ -501,7 +501,7 @@ let url = Url.URL.parseURL(mm);
 let result = url.toString(); // Output 'https://username:password@host:8080/'
 ```
 
-### tostring
+### toString
 
 toString(): string
 
@@ -932,7 +932,7 @@ for (let pair of pairs) {
 }
 ```
 
-### tostring<sup>(deprecated)</sup>
+### toString<sup>(deprecated)</sup>
 
 toString(): string
 
@@ -940,7 +940,7 @@ Obtains search parameters that are serialized as a string and, if necessary, per
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [URLParams.tostring<sup>9+</sup>](#tostring9) instead.
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [URLParams.toString<sup>9+</sup>](#tostring9) instead.
 
 **System capability**: SystemCapability.Utils.Lang
 
