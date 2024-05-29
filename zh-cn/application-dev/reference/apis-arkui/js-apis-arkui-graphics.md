@@ -420,6 +420,26 @@ lpx(value: number): LengthMetrics
 | ------------- | ---------------- |
 | [LengthMetrics](#lengthmetrics12) | LengthMetrics 类的实例。 |
 
+### resource<sup>12+</sup>
+
+resource(value: Resource): LengthMetrics
+
+用于生成Resource类型资源的长度属性。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型          | 必填 | 说明         |
+| ------ | ------------- | ---- | ------------ |
+| value   | Resource | 是   | 长度属性的值。 |
+
+**返回值：**
+
+| 类型          | 说明             |
+| ------------- | ---------------- |
+| [LengthMetrics](#lengthmetrics12) | LengthMetrics 类的实例。 |
+
 ## ColorMetrics<sup>12+</sup>
 
 用于混合颜色。
