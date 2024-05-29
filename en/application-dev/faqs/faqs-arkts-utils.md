@@ -493,3 +493,13 @@ To address the problem that a large number of threads are required, you are advi
 **References**
 
 [Comparison Between TaskPool and Worker](../arkts-utils/taskpool-vs-worker.md)
+
+## Can long-time listening interfaces, such as **emitter.on**, be used in a TaskPool thread?
+
+Not recommended.
+
+**Principle Clarification**
+
+1. Long-time listening may adversely affect thread recycling or reuse.
+2. If a thread is reclaimed, the thread callback becomes invalid or an unexpected error occurs.
+3. If a task function is executed for multiple times, listening may be generated in different threads. Consequently, the result may fail to meet your expectation.
