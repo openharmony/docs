@@ -45,8 +45,10 @@ The table below lists the types of continuous tasks, which are used in various s
    - Scenario 3: If the background load of the process that runs a continuous task is higher than the corresponding typical load for a long period of time, the system performs certain control.
 
 > **NOTE**
-> 
+>
 > The application shall proactively cancel a continuous task when it is finished. Otherwise, the system will forcibly cancel the task. For example, when a user taps the UI to pause music playback, the application must cancel the continuous task in a timely manner. When the user taps the UI again to continue music playback, the application needs to request a continuous task.
+>
+> When an application that plays audio stops a continuous task in the background, it must suspend or stop the audio stream. Otherwise, the application will be forcibly terminated by the system.
 
 ## Available APIs
 
@@ -469,5 +471,5 @@ The following walks you through how to request a continuous task for recording. 
     }
 
     export default new ServiceAbility();
-   ```
+    ```
 
