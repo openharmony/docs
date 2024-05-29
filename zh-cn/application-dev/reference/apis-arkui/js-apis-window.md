@@ -1745,6 +1745,8 @@ setWindowSystemBarEnable(names: Array<'status' | 'navigation'>, callback: AsyncC
 
 设置窗口全屏模式时导航栏、状态栏的可见模式，使用callback异步回调。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
@@ -1790,6 +1792,8 @@ try {
 setWindowSystemBarEnable(names: Array<'status' | 'navigation'>): Promise&lt;void&gt;
 
 设置窗口全屏模式时导航栏、状态栏的可见模式，使用Promise异步回调。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 

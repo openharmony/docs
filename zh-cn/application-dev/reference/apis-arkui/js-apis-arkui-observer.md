@@ -17,12 +17,14 @@ import observer from '@ohos.arkui.observer'
 
 NavDestination组件状态。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称      | 值  | 说明                     |
 | --------- | --- | ------------------------ |
-| ON_SHOWN  | 0   | NavDestination组件显示。<br/>**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
-| ON_HIDDEN | 1   | NavDestination组件隐藏。<br/>**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| ON_SHOWN  | 0   | NavDestination组件显示。<br/>**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。 |
+| ON_HIDDEN | 1   | NavDestination组件隐藏。<br/>**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。|
 | ON_APPEAR<sup>12+</sup> | 2   | NavDestination从组件树上挂载。<br/> **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。|
 | ON_DISAPPEAR<sup>12+</sup> | 3   | NavDestination从组件树上卸载。 <br/>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。|
 | ON_WILL_SHOW<sup>12+</sup> | 4   | NavDestination组件显示之前。 <br/>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。|
@@ -34,6 +36,8 @@ NavDestination组件状态。
 ## ScrollEventType<sup>12+</sup>
 
 滚动事件的类型。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -62,13 +66,15 @@ routerPage生命周期触发时对应的状态。
 
 NavDestination组件信息。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称         | 类型                                               | 必填 | 说明                                         |
 | ------------ | -------------------------------------------------- | ---- | -------------------------------------------- |
-| navigationId | [ResourceStr](arkui-ts/ts-types.md#resourcestr) | 是   | 包含NavDestination组件的Navigation组件的id。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
-| name         | [ResourceStr](arkui-ts/ts-types.md#resourcestr) | 是   | NavDestination组件的名称。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
-| state        | [NavDestinationState](#navdestinationstate)        | 是   | NavDestination组件的状态。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| navigationId | [ResourceStr](arkui-ts/ts-types.md#resourcestr) | 是   | 包含NavDestination组件的Navigation组件的id。 |
+| name         | [ResourceStr](arkui-ts/ts-types.md#resourcestr) | 是   | NavDestination组件的名称。 |
+| state        | [NavDestinationState](#navdestinationstate)        | 是   | NavDestination组件的状态。 |
 | index<sup>12+</sup>        | number        | 是   | NavDestination在页面栈中的索引。                   |
 | param<sup>12+</sup>        | Object        | 否   | NavDestination组件的参数。                   |
 | navDestinationId<sup>12+</sup>        | string        | 是   | NavDestination组件的唯一标识ID。                   |
@@ -76,6 +82,8 @@ NavDestination组件信息。
 ## NavigationInfo<sup>12+</sup>
 
 Navigation组件信息。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -88,6 +96,8 @@ Navigation组件信息。
 
 ScrollEvent滚动信息。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称         | 类型                                               | 必填 | 说明                                         |
@@ -99,6 +109,8 @@ ScrollEvent滚动信息。
 ## ObserverOptions<sup>12+</sup>
 
 Observer选项。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -127,6 +139,8 @@ RouterPageInfo包含的信息。
 
 屏幕像素密度变化回调包含的信息。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称    | 类型                                      | 必填 | 说明                                   |
@@ -137,6 +151,8 @@ RouterPageInfo包含的信息。
 ## NavDestinationSwitchInfo<sup>12+</sup>
 
 Navigation组件页面切换的信息。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -150,6 +166,8 @@ Navigation组件页面切换的信息。
 ## NavDestinationSwitchObserverOptions<sup>12+</sup>
 
 Navigation组件页面切换事件的监听选项。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -261,6 +279,8 @@ on(type: 'scrollEvent', callback: Callback\<ScrollEventInfo\>): void
 
 监听滚动事件的开始和结束。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -279,6 +299,8 @@ on(type: 'scrollEvent', callback: Callback\<ScrollEventInfo\>): void
 off(type: 'scrollEvent', callback?: Callback\<ScrollEventInfo\>): void
 
 取消监听滚动事件的开始和结束。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -318,6 +340,8 @@ on(type: 'scrollEvent', options: ObserverOptions, callback: Callback\<ScrollEven
 off(type: 'scrollEvent', options: ObserverOptions, callback?: Callback\<ScrollEventInfo\>): void
 
 取消监听滚动事件的开始和结束。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -464,6 +488,8 @@ on(type: 'densityUpdate', context: UIContext, callback: Callback\<DensityInfo\>)
 
 监听屏幕像素密度变化。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -510,6 +536,8 @@ struct Index {
 off(type: 'densityUpdate', context: UIContext, callback?: Callback\<DensityInfo\>): void
 
 取消监听屏幕像素密度的变化。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -561,6 +589,8 @@ on(type: 'willDraw', context: UIContext, callback: Callback\<void\>): void
 
 监听每一帧绘制指令下发情况。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -598,6 +628,8 @@ struct Index {
 off(type: 'willDraw', context: UIContext, callback?: Callback\<void\>): void
 
 取消监听每一帧绘制指令下发情况。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -640,6 +672,8 @@ on(type: 'didLayout', context: UIContext, callback: Callback\<void\>): void
 
 监听每一帧布局完成情况
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -677,6 +711,8 @@ struct Index {
 off(type: 'didLayout', context: UIContext, callback?: Callback\<void\>): void
 
 取消监听每一帧布局完成情况。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -719,6 +755,8 @@ on(type: 'navDestinationSwitch', context: UIAbilityContext | UIContext, callback
 
 监听Navigation的页面切换事件。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -748,6 +786,8 @@ observer.on('navDestinationSwitch', this.uiContext, callBackFunc);
 off(type: 'navDestinationSwitch', context: UIAbilityContext | UIContext, callback?: Callback\<NavDestinationSwitchInfo\>): void
 
 取消监听Navigation的页面切换事件。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -779,6 +819,8 @@ on(type: 'navDestinationSwitch', context: UIAbilityContext | UIContext, observer
 
 监听Navigation的页面切换事件。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -809,6 +851,8 @@ observer.on('navDestinationSwitch', this.uiContext, { navigationId: "myNavId" },
 off(type: 'navDestinationSwitch', context: UIAbilityContext | UIContext, observerOptions: NavDestinationSwitchObserverOptions, callback?: Callback\<NavDestinationSwitchInfo\>): void
 
 取消监听Navigation的页面切换事件。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

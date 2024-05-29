@@ -86,6 +86,8 @@ import drm from '@ohos.multimedia.drm';
 
 枚举，请求类型。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
 | 名称                       | 值   | 说明            |
@@ -100,6 +102,8 @@ import drm from '@ohos.multimedia.drm';
 ## ContentProtectionLevel
 
 枚举，内容保护级别。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
@@ -126,6 +130,8 @@ import drm from '@ohos.multimedia.drm';
 
 设备证书请求的操作数据。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
 | 名称      | 类型                           | 必填 | 说明         |
@@ -136,6 +142,8 @@ import drm from '@ohos.multimedia.drm';
 ## MediaKeyRequest
 
 许可证请求。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
@@ -148,6 +156,8 @@ import drm from '@ohos.multimedia.drm';
 ## EventInfo
 
 事件类型。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
@@ -171,6 +181,8 @@ import drm from '@ohos.multimedia.drm';
 
 许可证状态
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
 | 名称      | 类型                           | 必填 | 说明         |
@@ -182,6 +194,8 @@ import drm from '@ohos.multimedia.drm';
 
 许可证信息
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
 | 名称      | 类型                           | 必填 | 说明         |
@@ -192,6 +206,8 @@ import drm from '@ohos.multimedia.drm';
 ## MediaKeySystemInfo
 
 指示媒体源的drm信息。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
@@ -1174,6 +1190,8 @@ generateMediaKeyRequest(mimeType: string, initData: Uint8Array, mediaKeyType: nu
 
 生成许可证请求。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
 **参数：**
@@ -1227,6 +1245,8 @@ processMediaKeyResponse(response: Uint8Array): Promise<Uint8Array\>
 
 处理离线许可证响应返回。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
 **参数：**
@@ -1273,6 +1293,8 @@ mediaKeySession.processMediaKeyResponse(mediaKeyResponse).then((mediaKeyId: Uint
 
 检查在线许可证状态。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
 **返回值：**
@@ -1313,6 +1335,8 @@ clearMediaKeys(): void
 
 删除在线许可证。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
 **错误码：**
@@ -1346,6 +1370,8 @@ try {
 generateOfflineReleaseRequest(mediaKeyId: Uint8Array): Promise<Uint8Array\>
 
 生成离线许可证释放请求。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
@@ -1399,6 +1425,8 @@ processOfflineReleaseResponse(mediaKeyId: Uint8Array, response: Uint8Array): Pro
 
 处理离线许可证响应。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
 **参数：**
@@ -1447,6 +1475,8 @@ restoreOfflineMediaKeys(mediaKeyId: Uint8Array): Promise<void\>
 
 恢复离线许可证。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
 **参数：**
@@ -1494,6 +1524,8 @@ getContentProtectionLevel(): ContentProtectionLevel
 
 获取当前会话的内容保护级别。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
 **返回值：**
@@ -1533,6 +1565,8 @@ try {
 requireSecureDecoderModule(mimeType: string): boolean
 
 获取安全解码模块状态。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
@@ -1581,6 +1615,8 @@ on(type: 'keyRequired', callback: (eventInfo: EventInfo) => void): void
 
 监听密钥请求事件，通过注册回调函数获取结果。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
 **参数：**
@@ -1617,6 +1653,8 @@ off(type: 'keyRequired', callback?: (eventInfo: EventInfo) => void): void
 
 注销监听密钥请求事件，注销密钥请求事件回调函数。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
 **参数：**
@@ -1650,6 +1688,8 @@ function unregisterKeyRequired(mediaKeysession: drm.MediaKeySession): void {
 on(type: 'keyExpired', callback: (eventInfo: EventInfo) => void): void
 
 监听密钥过期，通过注册回调函数获取结果。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
@@ -1687,6 +1727,8 @@ off(type: 'keyExpired', callback?: (eventInfo: EventInfo) => void): void
 
 注销监听密钥过期事件，注销密钥过期事件回调函数。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
 **参数：**
@@ -1720,6 +1762,8 @@ function unregisterKeyExpired(mediaKeysession: drm.MediaKeySession): void {
 on(type: 'vendorDefined', callback: (eventInfo: EventInfo) => void): void
 
 监听第三方定义事件，通过注册回调函数获取结果。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
@@ -1757,6 +1801,8 @@ off(type: 'vendorDefined', callback?: (eventInfo: EventInfo) => void): void
 
 注销监听第三方定义事件，注销第三方定义事件回调函数。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
 **参数：**
@@ -1790,6 +1836,8 @@ function unregisterVendorDefined(mediaKeysession: drm.MediaKeySession): void {
 on(type: 'expirationUpdate', callback: (eventInfo: EventInfo) => void): void
 
 监听过期更新事件，通过注册回调函数获取结果。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
@@ -1827,6 +1875,8 @@ off(type: 'expirationUpdate', callback?: (eventInfo: EventInfo) => void): void
 
 注销监听过期更新事件，注销过期更新事件回调函数。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
 **参数：**
@@ -1860,6 +1910,8 @@ function unregisterExpirationUpdate(mediaKeysession: drm.MediaKeySession): void 
 on(type: 'keysChange', callback: (keyInfo: KeysInfo[], newKeyAvailable: boolean) => void): void
 
 监听密钥变化事件，通过注册回调函数获取结果。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
@@ -1897,6 +1949,8 @@ off(type: 'keysChange', callback?: (keyInfo: KeysInfo[], newKeyAvailable: boolea
 
 注销监听密钥变化事件，注销密钥变化事件回调函数。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
 **参数：**
@@ -1930,6 +1984,8 @@ function unregisterkeyChange(mediaKeysession: drm.MediaKeySession): void {
 destroy(): void
 
 销毁MediaKeySession运行时申请的资源。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
