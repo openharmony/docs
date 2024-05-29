@@ -42,10 +42,10 @@ publish(request: NotificationRequest, callback: AsyncCallback\<void\>): void
 | 1600007  | The notification is not exist.                       |
 | 1600009  | Over max number notifications per second.            |
 | 1600012  | No memory space.                                     |
-| 1600014  | No relevant right.                                   |
+| 1600014  | No permission.                                   |
 | 1600015  | The current notification status does not support duplicate configurations. |
 | 1600016  | The notification version for this update is too low. |
-| 2300007  | Network is unreachable.                              |
+| 2300007  | Network unreachable.                              |
 
 **示例：**
 
@@ -110,10 +110,10 @@ publish(request: NotificationRequest): Promise\<void\>
 | 1600007  | The notification is not exist.                       |
 | 1600009  | Over max number notifications per second.            |
 | 1600012  | No memory space.                                     |
-| 1600014  | No relevant right.                                   |
+| 1600014  | No permission.                                   |
 | 1600015  | The current notification status does not support duplicate configurations. |
 | 1600016  | The notification version for this update is too low. |
-| 2300007  | Network is unreachable.                              |
+| 2300007  | Network unreachable.                              |
 
 **示例：**
 
@@ -1300,7 +1300,7 @@ requestEnableNotification(callback: AsyncCallback\<void\>): void
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
 | 1600004  | Notification is not enabled.          |
-| 1600013  | Enable Notification Dialog has been popping already.          |
+| 1600013  | A notification dialog box is already displayed.          |
 
 **示例：**
 
@@ -1342,7 +1342,7 @@ requestEnableNotification(): Promise\<void\>
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
 | 1600004  | Notification is not enabled.          |
-| 1600013  | Enable Notification Dialog has been popping already.          |
+| 1600013  | A notification dialog box is already displayed.          |
 
 **示例：**
 
@@ -1384,7 +1384,7 @@ requestEnableNotification(context: UIAbilityContext, callback: AsyncCallback\<vo
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
 | 1600004  | Notification is not enabled.          |
-| 1600013  | Enable Notification Dialog has been popping already.          |
+| 1600013  | A notification dialog box is already displayed.          |
 
 **示例：**
 
@@ -1440,7 +1440,7 @@ requestEnableNotification(context: UIAbilityContext): Promise\<void\>
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
 | 1600004  | Notification is not enabled.          |
-| 1600013  | Enable Notification Dialog has been popping already.          |
+| 1600013  | A notification dialog box is already displayed.          |
 
 **示例：**
 
