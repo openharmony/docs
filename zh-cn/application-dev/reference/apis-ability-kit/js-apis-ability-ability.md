@@ -10,7 +10,7 @@ Ability模块将二级模块API组织在一起方便开发者进行导出。
 ## 导入模块
 
 ```ts
-import ability from '@ohos.ability.ability';
+import { ability } from '@kit.AbilityKit';
 ```
 
 ## 属性
