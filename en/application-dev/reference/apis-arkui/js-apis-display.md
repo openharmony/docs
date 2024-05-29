@@ -278,10 +278,17 @@ Unsubscribes from display changes.
 
 ```ts
 try {
+  // Unregister all the callbacks that have been registered through on().
   display.off("remove");
 } catch (exception) {
   console.error('Failed to unregister callback. Code: ' + JSON.stringify(exception));
 }
+
+let callback: Callback<number> = (data: number) => {
+  console.info('Succeeded in unregistering the callback for display remove. Data: ' + JSON.stringify(data))
+};
+// Unregister the specified callback.
+display.off('remove', callback);
 ```
 
 ## display.isFoldable<sup>10+</sup>
@@ -497,10 +504,17 @@ For details about the error codes, see [Display Error Codes](errorcode-display.m
 
 ```ts
 try {
+  // Unregister all the callbacks that have been registered through on().
   display.off('foldStatusChange');
 } catch (exception) {
   console.error('Failed to unregister callback. Code: ' + JSON.stringify(exception));
 }
+
+let callback: Callback<display.FoldStatus> = (data: display.FoldStatus) => {
+  console.info('unregistering FoldStatus changes callback. Data: ' + JSON.stringify(data));
+};
+// Unregister the specified callback.
+display.off('foldStatusChange', callback);
 ```
 
 ## display.on('foldDisplayModeChange')<sup>10+</sup>
@@ -568,11 +582,19 @@ For details about the error codes, see [Display Error Codes](errorcode-display.m
 
 ```ts
 try {
+  // Unregister all the callbacks that have been registered through on().
   display.off('foldDisplayModeChange');
 } catch (exception) {
   console.error('Failed to unregister callback. Code: ' + JSON.stringify(exception));
 }
+
+let callback: Callback<display.FoldDisplayMode> = (data: display.FoldDisplayMode) => {
+  console.info('unregistering FoldDisplayMode changes callback. Data: ' + JSON.stringify(data));
+};
+// Unregister the specified callback.
+display.off('foldDisplayModeChange', callback);
 ```
+
 
 ## display.getDefaultDisplay<sup>(deprecated)</sup>
 

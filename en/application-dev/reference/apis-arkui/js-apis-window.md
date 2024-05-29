@@ -2,7 +2,7 @@
 
 The **Window** module provides basic window management capabilities, such as creating and destroying the current window, setting properties for the current window, and managing and scheduling windows.
 
-This module provides the following common window-related functionalities:
+This module provides the following common window-related functions:
 
 - [Window](#window): window instance, which is the basic unit managed by the window manager.
 - [WindowStage](#windowstage9): window manager that manages windows.
@@ -18,7 +18,6 @@ import window from '@ohos.window';
 ```
 
 ## WindowType<sup>7+</sup>
-
 
 Enumerates the window types.
 
@@ -40,7 +39,7 @@ Defines the parameters for creating a subwindow or system window.
 | Name| Type| Mandatory| Description                                                                         |
 | ---------- | -------------------------- | -- |-----------------------------------------------------------------------------|
 | name       | string                     | Yes| Name of the window.                                                                      |
-| windowType | [WindowType](#windowtype7) | Yes| Type of the window.                                                                      |
+| windowType | [WindowType](#windowtype7) | Yes| Window type.                                                                      |
 | ctx        | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | No| Current application context. If no value is passed, no context is used.<br>In the FA model, do not pass in this parameter when creating a subwindow. Otherwise, an error is reported.<br>In the stage model, you must pass in this parameter when creating a floating window, modal window, or system window.|
 | displayId  | number                     | No| ID of the current physical screen. If no value is passed, the default value **-1** is used. The value must be an integer.                                            |
 | parentId   | number                     | No| ID of the parent window. If no value is passed, the default value **-1** is used. The value must be an integer.                                                          |
@@ -69,10 +68,10 @@ Describes the properties of the status bar and navigation bar.
 | -------------------------------------- | -------- | ---- | ------------------------------------------------------------ |
 | statusBarColor                         | string   |  No  | Background color of the status bar. The value is a hexadecimal RGB or ARGB color code and is case insensitive, for example, **#00FF00** or **#FF00FF00**. The default value is **#0x66000000**.|
 | isStatusBarLightIcon<sup>7+</sup>      | boolean  |  No  | Whether any icon on the status bar is highlighted. The value **true** means that the icon is highlighted, and **false** means the opposite. The default value is **false**.|
-| statusBarContentColor<sup>8+</sup>     | string   |  No  | Color of the text on the status bar. After this property is set, the setting of **isStatusBarLightIcon** is invalid. The default value is **0xE5FFFFFF**.|
+| statusBarContentColor<sup>8+</sup>     | string   |  No  | Color of the text on the status bar. After this property is set, the setting of **isStatusBarLightIcon** is invalid. The default value is **#0xE5FFFFFF**.|
 | navigationBarColor                     | string   |  No  | Background color of the navigation bar. The value is a hexadecimal RGB or ARGB color code and is case insensitive, for example, **#00FF00** or **#FF00FF00**. The default value is **#0x66000000**.|
 | isNavigationBarLightIcon<sup>7+</sup>  | boolean  |  No  | Whether any icon on the navigation bar is highlighted. The value **true** means that the icon is highlighted, and **false** means the opposite. The default value is **false**.|
-| navigationBarContentColor<sup>8+</sup> | string   |  No  | Color of the text on the navigation bar. After this property is set, the setting of **isNavigationBarLightIcon** is invalid. The default value is **0xE5FFFFFF**.|
+| navigationBarContentColor<sup>8+</sup> | string   |  No  | Color of the text on the navigation bar. After this property is set, the setting of **isNavigationBarLightIcon** is invalid. The default value is **#0xE5FFFFFF**.|
 
 ## Orientation<sup>9+</sup>
 
@@ -87,12 +86,12 @@ Enumerates the window orientations.
 | LANDSCAPE                             | 2    | Landscape.  |
 | PORTRAIT_INVERTED                     | 3    | Reverse portrait.  |
 | LANDSCAPE_INVERTED                    | 4    | Reverse landscape.|
-| AUTO_ROTATION                         | 5    | Auto rotation.|
-| AUTO_ROTATION_PORTRAIT                | 6    | Auto rotation in the vertical direction.|
-| AUTO_ROTATION_LANDSCAPE               | 7    | Auto rotation in the horizontal direction.|
-| AUTO_ROTATION_RESTRICTED              | 8    | Switched-determined auto rotation.|
-| AUTO_ROTATION_PORTRAIT_RESTRICTED     | 9    | Switched-determined auto rotation in the vertical direction.|
-| AUTO_ROTATION_LANDSCAPE_RESTRICTED    | 10   | Switched-determined auto rotation in the horizontal direction.|
+| AUTO_ROTATION                         | 5    | Automatically rotates with the sensor. The orientation can be portrait, landscape, reverse portrait, or reverse landscape.|
+| AUTO_ROTATION_PORTRAIT                | 6    | Automatically rotates with the sensor in the vertical direction. The orientation can be portrait or reverse portrait.|
+| AUTO_ROTATION_LANDSCAPE               | 7    | Automatically rotates with the sensor in the horizontal direction. The orientation can be landscape or reverse landscape.|
+| AUTO_ROTATION_RESTRICTED              | 8    | Automatically rotates with the sensor, under the restriction of the rotation switch in the Control Panel. The orientation can be portrait, landscape, reverse portrait, or reverse landscape.|
+| AUTO_ROTATION_PORTRAIT_RESTRICTED     | 9    | Automatically rotates with the sensor, under the restriction of the rotation switch in the Control Panel. The orientation can be portrait or reverse portrait.|
+| AUTO_ROTATION_LANDSCAPE_RESTRICTED    | 10   | Automatically rotates with the sensor, under the restriction of the rotation switch in the Control Panel. The orientation can be landscape or reverse landscape.|
 | LOCKED                                | 11   | Locked.|
 
 ## Rect<sup>7+</sup>
@@ -110,7 +109,7 @@ Describes the rectangular area of the window.
 
 ## AvoidArea<sup>7+</sup>
 
-Describes the area where the window cannot be displayed, for example, the system bar area, notch, gesture area, and soft keyboard area. Touch events will not be responded in this area. 
+Describes the area where the window cannot be displayed, for example, the system bar area, notch, gesture area, and soft keyboard area. Touch events will not be responded in this area.
 
 Pay attention to the following restrictions on this area:
 
@@ -118,7 +117,7 @@ Pay attention to the following restrictions on this area:
 
 - The gesture area on the left and right sides supports transparent transmission of touch events, touch and hold events, and swipe up and down events, but not drag events. 
 
-- The navigation bar area supports responding to touch events, touch and hold events, and drag events. However, it does not support transparent transmission of events. 
+- The navigation bar area supports responding to touch events, touch and hold events, and drag events. However, it does not support transparent transmission of events.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -189,16 +188,16 @@ Enumerates the window lifecycle states.
 
 ## WindowLimits<sup>11+</sup>
 
-Defines the window size limits.
+Defines the window size limits. You can call [setWindowLimits](#setwindowlimits11) to set the window size limits and call [getWindowLimits](#getwindowlimits11) to obtain the current window size limits.
 
 **System capability**: SystemCapability.Window.SessionManager
 
 | Name     | Type  | Readable| Writable| Description                                                        |
 | :-------- | :----- | :--- | :--- | :----------------------------------------------------------- |
-| maxWidth  | number | Yes  | Yes  | Maximum window width, in px. The value must be an integer. The default value is **0**, indicating that the attribute does not change. The lower limit is **0**, and the upper limit is the maximum width specified by the system. |
-| maxHeight | number | Yes  | Yes  | Maximum window height, in px. The value must be an integer. The default value is **0**, indicating that the attribute does not change. The lower limit is **0**, and the upper limit is the maximum height specified by the system. |
-| minWidth  | number | Yes  | Yes  | Minimum window width, in px. The value must be an integer. The default value is **0**, indicating that the attribute does not change. The lower limit is **0**, and the upper limit is the minimum width specified by the system. |
-| minHeight | number | Yes  | Yes  | Minimum window height, in px. The value must be an integer. The default value is **0**, indicating that the attribute does not change. The lower limit is **0**, and the upper limit is the minimum height specified by the system. |
+| maxWidth  | number | Yes  | Yes  | Maximum window width, in px. The value must be an integer. The default value is **0**, indicating that the property does not change. The lower limit is **0**, and the upper limit is the maximum width specified by the system. |
+| maxHeight | number | Yes  | Yes  | Maximum window height, in px. The value must be an integer. The default value is **0**, indicating that the property does not change. The lower limit is **0**, and the upper limit is the maximum height specified by the system. |
+| minWidth  | number | Yes  | Yes  | Minimum window width, in px. The value must be an integer. The default value is **0**, indicating that the property does not change. The lower limit is **0**, and the upper limit is the minimum width specified by the system. |
+| minHeight | number | Yes  | Yes  | Minimum window height, in px. The value must be an integer. The default value is **0**, indicating that the property does not change. The lower limit is **0**, and the upper limit is the minimum height specified by the system. |
 
 ## WindowStatusType<sup>11+</sup>
 
@@ -348,7 +347,7 @@ Finds a window based on the name.
 
 | Name| Type  | Mandatory| Description    |
 | ------ | ------ | ---- | -------- |
-| name   | string | Yes  | Window ID.|
+| name   | string | Yes  | Window name, that is, the value of **name** in [Configuration](#configuration9).|
 
 **Return value**
 
@@ -517,19 +516,81 @@ For details about the error codes, see [Window Error Codes](errorcode-window.md)
 **Example**
 
 ```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
 import { BusinessError } from '@ohos.base';
 
-try {
-  let sourceWindowId: number = 40;
-  let targetWindowId: number = 41;
-  let promise = window.shiftAppWindowFocus(sourceWindowId, targetWindowId);
-  promise.then(() => {
-    console.info('Succeeded in shifting app window focus');
-  }).catch((err: BusinessError) => {
-    console.error('Failed to shift app window focus. Cause:' + JSON.stringify(err));
-  });
-} catch (exception) {
-  console.error('Failed to shift app window focus. Cause:' + JSON.stringify(exception));
+export default class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    // ...
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    let subWindowClass: window.Window | undefined = undefined;
+    let windowClassId: number = -1;
+    let subWindowClassId: number = -1;
+
+    // Obtain the main window and ID of the application.
+    try {
+      let promise = windowStage.getMainWindow();
+      promise.then((data) => {
+        if (data == null) {
+          console.error("Failed to obtaining the window. Cause: The data is empty");
+          return;
+        }
+        windowClass = data;
+        windowClass.setUIContent("pages/Index");
+        try {
+          windowClassId = windowClass.getWindowProperties().id;
+        } catch (exception) {
+          console.error('Failed to obtain the window. Cause: ' + JSON.stringify(exception))
+        }
+        console.info('Succeeded in obtaining the window')
+      }).catch((err: BusinessError) => {
+        console.error('Failed to obtaining the window. Cause: ' + JSON.stringify(err))
+      })
+    } catch (exception) {
+      console.error('Failed to obtain the window. Cause: ' + JSON.stringify(exception))
+    }
+
+    // Create or obtain a subwindow and its ID. In this case, the subwindow has focus.
+    try {
+      let promise = windowStage.createSubWindow("testSubWindow");
+      promise.then((data) => {
+        if (data == null) {
+          console.error("Failed to obtaining the window. Cause: The data is empty");
+          return;
+        }
+        subWindowClass = data;
+        try {
+          subWindowClassId = subWindowClass.getWindowProperties().id;
+        } catch (exception) {
+          console.error('Failed to obtain the window. Cause: ' + JSON.stringify(exception))
+        }
+        subWindowClass.resize(500, 500);
+        subWindowClass.setUIContent("pages/Index2");
+        subWindowClass.showWindow();
+
+        // Listen for the window status and ensure that the window is ready.
+        subWindowClass.on("windowEvent", (windowEvent) => {
+          if (windowEvent == window.WindowEventType.WINDOW_ACTIVE) {
+            // Switch the focus.
+            try {
+              let promise = window.shiftAppWindowFocus(subWindowClassId, windowClassId);
+              promise.then(() => {
+                console.info('Succeeded in shifting app window focus');
+              }).catch((err: BusinessError) => {
+                console.error('Failed to shift app window focus. Cause: ' + JSON.stringify(err));
+              })
+            } catch (exception) {
+              console.error('Failed to shift app window focus. Cause: ' + JSON.stringify(exception));
+            }
+          }
+        })
+      })
+    } catch (exception) {
+      console.error('Failed to create the subWindow. Cause: ' + JSON.stringify(exception));
+    }
+  }
 }
 ```
 
@@ -551,7 +612,7 @@ Creates a subwindow. This API uses an asynchronous callback to return the result
 
 | Name  | Type                                  | Mandatory| Description                                |
 | -------- | -------------------------------------- | ---- | ------------------------------------ |
-| id       | string                                 | Yes  | Window ID.                            |
+| id       | string                                 | Yes  | Window name, that is, the value of **name** in [Configuration](#configuration9).|
 | type     | [WindowType](#windowtype7)              | Yes  | Window type.                          |
 | callback | AsyncCallback&lt;[Window](#window)&gt; | Yes  | Callback used to return the subwindow created.|
 
@@ -590,7 +651,7 @@ Creates a subwindow. This API uses a promise to return the result.
 
 | Name| Type                     | Mandatory| Description      |
 | ------ | ------------------------- | ---- | ---------- |
-| id     | string                    | Yes  | Window ID.  |
+| id     | string                    | Yes  | Window name, that is, the value of **name** in [Configuration](#configuration9).  |
 | type   | [WindowType](#windowtype7) | Yes  | Window type.|
 
 **Return value**
@@ -631,7 +692,7 @@ Creates a system window. This API uses an asynchronous callback to return the re
 | Name  | Type                                                   | Mandatory| Description                                |
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------ |
 | ctx      | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | Yes  | Current application context.                |
-| id       | string                                                  | Yes  | Window ID.                            |
+| id       | string                                                  | Yes  | Window name, that is, the value of **name** in [Configuration](#configuration9).  |
 | type     | [WindowType](#windowtype7)                              | Yes  | Window type.                          |
 | callback | AsyncCallback&lt;[Window](#window)&gt;                  | Yes  | Callback used to return the subwindow created.|
 
@@ -670,7 +731,7 @@ Creates a system window. This API uses a promise to return the result.
 | Name| Type                     | Mandatory| Description                                                        |
 | ------ | ------------------------- | ---- | ------------------------------------------------------------ |
 | ctx    | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | Yes  | Current application context.|
-| id     | string                    | Yes  | Window ID.                                                    |
+| id     | string                    | Yes  | Window name, that is, the value of **name** in [Configuration](#configuration9).|
 | type   | [WindowType](#windowtype7) | Yes  | Window type.                                                  |
 
 **Return value**
@@ -710,7 +771,7 @@ Finds a window based on the ID. This API uses an asynchronous callback to return
 
 | Name  | Type                                  | Mandatory| Description                                |
 | -------- | -------------------------------------- | ---- | ------------------------------------ |
-| id       | string                                 | Yes  | Window ID.                            |
+| id       | string                                 | Yes  | Window name, that is, the value of **name** in [Configuration](#configuration9).|
 | callback | AsyncCallback&lt;[Window](#window)&gt; | Yes  | Callback used to return the window found.|
 
 **Example**
@@ -746,7 +807,7 @@ Finds a window based on the ID. This API uses a promise to return the result.
 
 | Name| Type  | Mandatory| Description    |
 | ------ | ------ | ---- | -------- |
-| id     | string | Yes  | Window ID.|
+| id     | string | Yes  | Window name, that is, the value of **name** in [Configuration](#configuration9).|
 
 **Return value**
 
@@ -1340,7 +1401,7 @@ try {
 
 getWindowAvoidArea(type: AvoidAreaType): AvoidArea
 
-Obtains the area where this window cannot be displayed, for example, the system bar area, notch, gesture area, and soft keyboard area.
+Obtains the area where this window cannot be displayed, for example, the system bar area, notch, gesture area, and soft keyboard area. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -1718,7 +1779,7 @@ try {
 
 setPreferredOrientation(orientation: Orientation, callback: AsyncCallback&lt;void&gt;): void
 
-Sets the preferred orientation for this window. This API uses an asynchronous callback to return the result.
+Sets the preferred orientation for this window. This API uses an asynchronous callback to return the result. It takes effect only on the device that supports rotation with the sensor.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -1761,7 +1822,7 @@ try {
 
 setPreferredOrientation(orientation: Orientation): Promise&lt;void&gt;
 
-Sets the preferred orientation for this window. This API uses a promise to return the result.
+Sets the preferred orientation for this window. This API uses a promise to return the result. It takes effect only on the device that supports rotation with the sensor.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -2110,38 +2171,25 @@ For details about the error codes, see [Window Error Codes](errorcode-window.md)
 **Example**
 
 ```ts
-// ets/entryability/EntryAbility.ets
-import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
 import { BusinessError } from '@ohos.base';
 import * as Index from '../pages/Index'; // Import the named route page.
 
-export default class EntryAbility extends UIAbility {
-  // ...
-
-  onWindowStageCreate(windowStage: window.WindowStage) {
-    console.info('onWindowStageCreate');
-    let windowClass: window.Window = windowStage.getMainWindowSync(); // Obtain the main window of the application.
-    let storage: LocalStorage = new LocalStorage();
-    storage.setOrCreate('storageSimpleProp', 121);
-    try {
-      if (!windowClass) {
-        console.info('Failed to load the content. Cause: windowClass is null');
-      } else {
-        (windowClass as window.Window).loadContentByName(Index.entryName, storage, (err: BusinessError) => {
-          const errCode: number = err.code;
-          if (errCode) {
-            console.error('Failed to load the content. Cause:' + JSON.stringify(err));
-            return;
-          }
-          console.info('Succeeded in loading the content.');
-        });
-      }
-    } catch (exception) {
-      console.error('Failed to load the content. Cause:' + JSON.stringify(exception));
+console.info('onWindowStageCreate');
+let storage: LocalStorage = new LocalStorage();
+storage.setOrCreate('storageSimpleProp', 121);
+try {
+  (windowClass as window.Window).loadContentByName(Index.entryName, storage, (err: BusinessError) => {
+    const errCode: number = err.code;
+    if (errCode) {
+      console.error(`Failed to load the content. Cause code: ${err.code}, message: ${err.message}`);
+      return;
     }
-  }
-};
+    console.info('Succeeded in loading the content.');
+  });
+} catch (exception) {
+  console.error(`Failed to load the content. Cause code: ${exception.code}, message: ${exception.message}`);
+}
 ```
 ```ts
 // ets/pages/Index.ets
@@ -2193,36 +2241,22 @@ For details about the error codes, see [Window Error Codes](errorcode-window.md)
 **Example**
 
 ```ts
-// ets/entryability/EntryAbility.ets
-import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
 import { BusinessError } from '@ohos.base';
 import * as Index from '../pages/Index'; // Import the named route page.
 
-export default class EntryAbility extends UIAbility {
-  // ...
-
-  onWindowStageCreate(windowStage: window.WindowStage) {
-    console.info('onWindowStageCreate');
-    let windowClass: window.Window = windowStage.getMainWindowSync(); // Obtain the main window of the application.
-    try {
-      if (!windowClass) {
-        console.info('Failed to load the content. Cause: windowClass is null');
-      } else {
-        (windowClass as window.Window).loadContentByName(Index.entryName, (err: BusinessError) => {
-          const errCode: number = err.code;
-          if (errCode) {
-            console.error('Failed to load the content. Cause:' + JSON.stringify(err));
-            return;
-          }
-          console.info('Succeeded in loading the content.');
-        });
-      }
-    } catch (exception) {
-      console.error('Failed to load the content. Cause:' + JSON.stringify(exception));
+try {  
+  (windowClass as window.Window).loadContentByName(Index.entryName, (err: BusinessError) => {
+    const errCode: number = err.code;
+    if (errCode) {
+      console.error(`Failed to load the content. Cause code: ${err.code}, message: ${err.message}`);
+      return;
     }
-  }
-};
+    console.info('Succeeded in loading the content.');
+  });
+} catch (exception) {
+  console.error(`Failed to load the content. Cause code: ${exception.code}, message: ${exception.message}`);
+}
 ```
 ```ts
 // ets/pages/Index.ets
@@ -2280,36 +2314,22 @@ For details about the error codes, see [Window Error Codes](errorcode-window.md)
 **Example**
 
 ```ts
-// ets/entryability/EntryAbility.ets
-import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
 import { BusinessError } from '@ohos.base';
 import * as Index from '../pages/Index'; // Import the named route page.
 
-export default class EntryAbility extends UIAbility {
-  // ...
-
-  onWindowStageCreate(windowStage: window.WindowStage) {
-    console.info('onWindowStageCreate');
-    let windowClass: window.Window = windowStage.getMainWindowSync(); // Obtain the main window of the application.
-    let storage: LocalStorage = new LocalStorage();
-    storage.setOrCreate('storageSimpleProp', 121);
-    try {
-      if (!windowClass) {
-        console.info('Failed to load the content. Cause: windowClass is null');
-      } else {
-        let promise = (windowClass as window.Window).loadContentByName(Index.entryName, storage);
-        promise.then(() => {
-          console.info('Succeeded in loading the content.');
-        }).catch((err: BusinessError) => {
-          console.error('Failed to load the content. Cause:' + JSON.stringify(err));
-        });
-      }
-    } catch (exception) {
-      console.error('Failed to load the content. Cause:' + JSON.stringify(exception));
-    }
-  }
-};
+let storage: LocalStorage = new LocalStorage();
+storage.setOrCreate('storageSimpleProp', 121);
+try {
+  let promise = (windowClass as window.Window).loadContentByName(Index.entryName, storage);
+  promise.then(() => {
+    console.info('Succeeded in loading the content.');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to load the content. Cause code: ${err.code}, message: ${err.message}`);
+  });
+} catch (exception) {
+  console.error(`Failed to load the content. Cause code: ${exception.code}, message: ${exception.message}`);
+}
 ```
 ```ts
 // ets/pages/Index.ets
@@ -2586,7 +2606,7 @@ Subscribes to the screenshot event.
 
 | Name  | Type               | Mandatory| Description                                                        |
 | -------- | ------------------- | ---- | ------------------------------------------------------------ |
-| type     | string              | Yes  | Event type. The value is fixed at **'screenshot'**, indicating the screenshot event.|
+| type     | string              | Yes  | Event type. The value is fixed at **'screenshot'**, indicating the screenshot event, which can be initiated from the Control Panel, by running hdc commands, or by calling the screenshot interfaces.|
 | callback | Callback&lt;void&gt; | Yes  | Callback invoked when a screenshot event occurs.                              |
 
 **Example**
@@ -2629,7 +2649,7 @@ try {
 }
 try {
   windowClass.off('screenshot', callback);
-  // If multiple callbacks are enabled in on(), they will all be disabled.
+  // Unregister all the callbacks that have been registered through on().
   windowClass.off('screenshot');
 } catch (exception) {
   console.error('Failed to unregister callback. Cause: ' + JSON.stringify(exception));
@@ -2640,7 +2660,7 @@ try {
 
 on(type: 'dialogTargetTouch', callback: Callback&lt;void&gt;): void
 
-Subscribes to the touch event of the target window in the modal window mode.
+Subscribes to click or touch events in a window covered by a modal window.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -2648,8 +2668,8 @@ Subscribes to the touch event of the target window in the modal window mode.
 
 | Name  | Type                | Mandatory| Description                                                         |
 | -------- | ------------------- | ---- | ------------------------------------------------------------ |
-| type     | string              | Yes  | Event type. The value is fixed at **'dialogTargetTouch'**, indicating the touch event of the target window in the modal window mode.|
-| callback | Callback&lt;void&gt;| Yes  | Callback invoked when the touch event occurs in the target window of the modal window mode.|
+| type     | string              | Yes  | Event type. The value is fixed at **'dialogTargetTouch'**, indicating the click or touch event in a window covered by a modal window.|
+| callback | Callback&lt;void&gt;| Yes  | Callback invoked when a click or touch event occurs in the window covered by the modal window.|
 
 **Example**
 
@@ -3165,7 +3185,7 @@ private SetUIContent(windowClass: window.Window) {
 
 setWindowBrightness(brightness: number, callback: AsyncCallback&lt;void&gt;): void
 
-Called by the application window to set the screen brightness. This API uses an asynchronous callback to return the result.
+Sets the screen brightness for this window. This API uses an asynchronous callback to return the result.
 
 When the screen brightness setting for the window takes effect, Control Panel cannot adjust the system screen brightness. It can do so only after the window screen brightness is restored to the default value.
 
@@ -3211,7 +3231,7 @@ try {
 
 setWindowBrightness(brightness: number): Promise&lt;void&gt;
 
-Called by the application window to set the screen brightness. This API uses a promise to return the result.
+Sets the screen brightness for this window. This API uses a promise to return the result.
 
 When the screen brightness setting for the window takes effect, Control Panel cannot adjust the system screen brightness. It can do so only after the window screen brightness is restored to the default value.
 
@@ -3260,7 +3280,8 @@ try {
 
 setWindowFocusable(isFocusable: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-Sets whether this window can gain focus. This API uses an asynchronous callback to return the result.
+Sets whether this window is focusable, that is, whether the window can gain focus after it is being clicked or using other methods. This API uses an asynchronous callback to return the result.
+
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -3304,7 +3325,7 @@ try {
 
 setWindowFocusable(isFocusable: boolean): Promise&lt;void&gt;
 
-Sets whether this window can gain focus. This API uses a promise to return the result.
+Sets whether this window is focusable, that is, whether the window can gain focus after it is being clicked or using other methods. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -3736,18 +3757,31 @@ For details about the error codes, see [Window Error Codes](errorcode-window.md)
 **Example**
 
 ```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
 import { BusinessError } from '@ohos.base';
 
-try {
-  let ratio = 1.0;
-  let promise = windowClass.setAspectRatio(ratio);
-  promise.then(() => {
-    console.info('Succeeded in setting aspect ratio of window.');
-  }).catch((err: BusinessError) => {
-    console.error('Failed to set the aspect ratio of window. Cause:' + JSON.stringify(err));
-  });
-} catch (exception) {
-  console.error('Failed to set the aspect ratio of window. Cause: ' + JSON.stringify(exception));
+export default class EntryAbility extends UIAbility {
+
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window = windowStage.getMainWindowSync(); // Obtain the main window of the application.
+    if (!windowClass) {
+      console.info('windowClass is null');
+    }
+    try {
+      let ratio = 1.0;
+      let promise = windowClass.setAspectRatio(ratio);
+      promise.then(() => {
+        console.info('Succeeded in setting aspect ratio of window.');
+      }).catch((err: BusinessError) => {
+        console.error(`Failed to set the aspect ratio of window. Cause code: ${err.code}, message: ${err.message}`);
+      });
+    } catch (exception) {
+      console.error(`Failed to set the aspect ratio of window. Cause code: ${exception.code}, message: ${exception.message}`);
+    }
+  }
 }
 ```
 
@@ -3780,20 +3814,33 @@ For details about the error codes, see [Window Error Codes](errorcode-window.md)
 **Example**
 
 ```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
 import { BusinessError } from '@ohos.base';
 
-try {
-  let ratio = 1.0;
-  windowClass.setAspectRatio(ratio, (err: BusinessError) => {
-    const errCode: number = err.code;
-    if (errCode) {
-      console.error('Failed to set the aspect ratio of window. Cause:' + JSON.stringify(err));
-      return;
+export default class EntryAbility extends UIAbility {
+
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window = windowStage.getMainWindowSync(); // Obtain the main window of the application.
+    if (!windowClass) {
+      console.info('Failed to load the content. Cause: windowClass is null');
     }
-    console.info('Succeeded in setting the aspect ratio of window.');
-  });
-} catch (exception) {
-  console.error('Failed to set the aspect ratio of window. Cause: ' + JSON.stringify(exception));
+    try {
+      let ratio = 1.0;
+      windowClass.setAspectRatio(ratio, (err: BusinessError) => {
+        const errCode: number = err.code;
+        if (errCode) {
+          console.error(`Failed to set the aspect ratio of window. Cause code: ${err.code}, message: ${err.message}`);
+          return;
+        }
+        console.info('Succeeded in setting the aspect ratio of window.');
+      });
+    } catch (exception) {
+      console.error(`Failed to set the aspect ratio of window. Cause code: ${exception.code}, message: ${exception.message}`);
+    }
+  }
 }
 ```
 
@@ -3825,17 +3872,30 @@ For details about the error codes, see [Window Error Codes](errorcode-window.md)
 **Example**
 
 ```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
 import { BusinessError } from '@ohos.base';
 
-try {
-  let promise = windowClass.resetAspectRatio();
-  promise.then(() => {
-    console.info('Succeeded in resetting aspect ratio of window.');
-  }).catch((err: BusinessError) => {
-    console.error('Failed to reset the aspect ratio of window. Cause:' + JSON.stringify(err));
-  });
-} catch (exception) {
-  console.error('Failed to reset the aspect ratio of window. Cause: ' + JSON.stringify(exception));
+export default class EntryAbility extends UIAbility {
+
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window = windowStage.getMainWindowSync(); // Obtain the main window of the application.
+    if (!windowClass) {
+      console.info('Failed to load the content. Cause: windowClass is null');
+    }
+    try {
+      let promise = windowClass.resetAspectRatio();
+      promise.then(() => {
+        console.info('Succeeded in resetting aspect ratio of window.');
+      }).catch((err: BusinessError) => {
+        console.error(`Failed to reset the aspect ratio of window. Cause code: ${err.code}, message: ${err.message}`);
+      });
+    } catch (exception) {
+      console.error(`Failed to reset the aspect ratio of window. Cause code: ${exception.code}, message: ${exception.message}`);
+    }
+  }
 }
 ```
 
@@ -3867,19 +3927,32 @@ For details about the error codes, see [Window Error Codes](errorcode-window.md)
 **Example**
 
 ```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
 import { BusinessError } from '@ohos.base';
 
-try {
-  windowClass.resetAspectRatio((err: BusinessError) => {
-    const errCode: number = err.code;
-    if (errCode) {
-      console.error('Failed to reset the aspect ratio of window. Cause:' + JSON.stringify(err));
-      return;
+export default class EntryAbility extends UIAbility {
+
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window = windowStage.getMainWindowSync(); // Obtain the main window of the application.
+    if (!windowClass) {
+      console.info('Failed to load the content. Cause: windowClass is null');
     }
-    console.info('Succeeded in resetting aspect ratio of window.');
-  });
-} catch (exception) {
-  console.error('Failed to reset the aspect ratio of window. Cause: ' + JSON.stringify(exception));
+    try {
+      windowClass.resetAspectRatio((err: BusinessError) => {
+        const errCode: number = err.code;
+        if (errCode) {
+          console.error(`Failed to reset the aspect ratio of window. Cause code: ${err.code}, message: ${err.message}`);
+          return;
+        }
+        console.info('Succeeded in resetting aspect ratio of window.');
+      });
+    } catch (exception) {
+      console.error(`Failed to reset the aspect ratio of window. Cause code: ${exception.code}, message: ${exception.message}`);
+    }
+  }
 }
 ```
 
@@ -3973,7 +4046,7 @@ promise.then(() => {
 
 recover(): Promise&lt;void&gt;
 
-Restores the main window from the full-screen, maximized, or split-screen mode to a floating window, and restores the window size and position to those before the full-screen, maximized, or split-screen mode is entered. If the main window is already in the floating window mode, nothing will happen. This API uses a promise to return the result. It takes effect only for certain device types.
+Restores the main window from the full-screen, maximized, or split-screen mode to a floating window, and restores the window size and position to those before the full-screen, maximized, or split-screen mode is entered. If the main window is already in the floating window mode, nothing will happen. This API uses a promise to return the result. It takes effect only in the multi-window cascade layout.
 
 **System capability**: SystemCapability.Window.SessionManager
 
@@ -4196,7 +4269,7 @@ Sets the height of the title bar for this window.
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| height | number | Yes  | Height of the title bar. The value is an integer in the range [48,112]. The unit is vp.|
+| height | number | Yes  | Height of the title bar. It takes effect only for the window with the title bar. The value is an integer in the range [37,112]. The unit is vp. If a floating point number is passed in, the value is rounded down. A value outside the range is invalid.|
 
 **Error codes**
 
@@ -4724,8 +4797,9 @@ promise.then((data) => {
 setFullScreen(isFullScreen: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 Sets whether the window is in full-screen mode. This API uses an asynchronous callback to return the result.
-In full-screen mode, the window is displayed in full screen, and the status bar and navigation bar are not displayed.
-In non-full-screen mode, the status bar and navigation bar are displayed, and the window size does not overlap the positions of the status bar and navigation bar.
+
+- In full-screen mode, the window is displayed in full screen, and the status bar and navigation bar are not displayed.
+- In non-full-screen mode, the status bar and navigation bar are displayed, and the window size does not overlap the positions of the status bar and navigation bar.
 
 > **NOTE**
 >
@@ -4761,8 +4835,9 @@ windowClass.setFullScreen(isFullScreen, (err: BusinessError) => {
 setFullScreen(isFullScreen: boolean): Promise&lt;void&gt;
 
 Sets whether the window is in full-screen mode. This API uses a promise to return the result.
-In full-screen mode, the window is displayed in full screen, and the status bar and navigation bar are not displayed.
-In non-full-screen mode, the status bar and navigation bar are displayed, and the window size does not overlap the positions of the status bar and navigation bar.
+
+- In full-screen mode, the window is displayed in full screen, and the status bar and navigation bar are not displayed.
+- In non-full-screen mode, the status bar and navigation bar are displayed, and the window size does not overlap the positions of the status bar and navigation bar.
 
 > **NOTE**
 >
@@ -5644,7 +5719,7 @@ promise.then(() => {
 
 setFocusable(isFocusable: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-Sets whether this window can gain focus. This API uses an asynchronous callback to return the result.
+Sets whether this window is focusable, that is, whether the window can gain focus after it is being clicked or using other methods. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
@@ -5679,7 +5754,7 @@ windowClass.setFocusable(isFocusable, (err: BusinessError) => {
 
 setFocusable(isFocusable: boolean): Promise&lt;void&gt;
 
-Sets whether this window can gain focus. This API uses a promise to return the result.
+Sets whether this window is focusable, that is, whether the window can gain focus after it is being clicked or using other methods. This API uses a promise to return the result.
 
 > **NOTE**
 >
@@ -6045,14 +6120,14 @@ Describes the lifecycle of a window stage.
 
 ## SubWindowOptions<sup>11+</sup>
 
-Defines the parameters used for creating a subwindow.
+Describes the parameters used for creating a subwindow.
 
 **System capability**: SystemCapability.Window.SessionManager
 
-| Name     | Type | Readable| Writable| Description        |
+| Name     | Type | Read Only| Mandatory| Description        |
 | ---------- | ---- | ---- | ---- | ----------- |
 | title    | string | No| Yes| Title of the subwindow.      |
-| decorEnabled | boolean | No| Yes| Whether decorations are displayed in the subwindow. The value **true** means decorations are displayed, and **false** means the opposite.      |
+| decorEnabled | boolean | No| Yes| Whether decorations are displayed in the subwindow. The value **true** means that decorations are displayed, and **false** means the opposite.      |
 
 ## WindowStage<sup>9+</sup>
 
@@ -6267,6 +6342,7 @@ export default class EntryAbility extends UIAbility {
   }
 };
 ```
+
 ### createSubWindow<sup>9+</sup>
 
 createSubWindow(name: string): Promise&lt;Window&gt;
@@ -6325,6 +6401,7 @@ export default class EntryAbility extends UIAbility {
   }
 };
 ```
+
 ### createSubWindowWithOptions<sup>11+</sup>
 
 createSubWindowWithOptions(name: string, options: SubWindowOptions): Promise&lt;Window&gt;
