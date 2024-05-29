@@ -8,7 +8,7 @@
 
 **错误信息**
 
-Function is disabled.
+Function disabled.
 
 **错误描述**
 
