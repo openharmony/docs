@@ -29,6 +29,16 @@ Menu()
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
+## subMenuExpandingMode<sup>12+</sup>枚举说明
+
+Menu子菜单展开样式枚举。
+
+| 名称           | 描述                                |
+|--------------|-----------------------------------|
+| SIDE_EXPAND  | 默认展开样式, 子菜单位于同一平面侧边展开。            |
+| EMBEDDED_EXPAND | 直接展开样式, 子菜单嵌于主菜单内展开。              |
+| STACK_EXPAND | 堆叠样式, 子菜单浮于主菜单上方展开。 |
+
 ## 属性
 
 除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
@@ -112,6 +122,50 @@ width(value: Length)
 | 参数名 | 类型                         | 必填 | 说明           |
 | ------ | ---------------------------- | ---- | -------------- |
 | value  | [Length](ts-types.md#length) | 是   | Menu边框宽度。 |
+
+### menuItemDivider<sup>12+</sup>
+
+menuItemDivider(options: DividerStyleOptions | undefined)
+
+设置menuItem分割线样式, 不设置该属性则不展示分割线。
+
+startMargin + endMargin 超过组件宽度后startMargin和endMargin会被置0。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名     | 类型                                                     | 必填         | 说明           |
+|---------|--------------------------------------------------------|------------| -------------- |
+| options | [DividerStyleOptions](ts-types.md#DividerStyleOptions)&nbsp;\| &nbsp;undefined | 是   | 设置menuItem分割线样式。<br />-strokeWidth:分割线的线宽。<br />-color：分割线的颜色。<br />-startMargin：分割线与菜单侧边起端的距离。<br />-endMargin：分割线与菜单侧边结束端的距离。 |
+
+### menuItemGroupDivider<sup>12+</sup>
+
+menuItemGroupDivider(options: DividerStyleOptions | undefined)
+
+设置menuItemGroup上下分割线的样式, 不设置该属性则默认展示分割线。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名     | 类型                                                     | 必填         | 说明           |
+|---------|--------------------------------------------------------|------------| -------------- |
+| options | [DividerStyleOptions](ts-types.md#DividerStyleOptions)&nbsp;\| &nbsp;undefined | 是   | 设置menuItemGroup顶部和底部分割线样式。<br />-strokeWidth:分割线的线宽。<br />-color：分割线的颜色。<br />-startMargin：分割线与菜单侧边起端的距离。<br />-endMargin：分割线与菜单侧边结束端的距离。 |
+
+### subMenuExpandingMode<sup>12+</sup>
+
+subMenuExpandingMode(mode: SubMenuExpandingMode)
+
+设置Menu子菜单展开样式。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                         | 必填 | 说明           |
+| ------ | ---------------------------- | ---- |--------------|
+| mode  | SubMenuExpandingMode | 是   | Menu子菜单展开样式。 |
 
 ## 示例
 
