@@ -263,82 +263,6 @@ struct AnimateToExample {
   }
 }
 ```
-### animateToImmediately<sup>12+</sup>
-
-animateToImmediately(param: AnimateParam , event: () => void): void
-
-animateToImmediately接口允许用户通过UIContext对象，获取显式立即动画的能力。同时加载多个属性动画的情况下，使用该接口可以立即执行闭包代码中状态变化导致的过渡动效。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名   | 类型                                       | 必填   | 说明                                    |
-| ----- | ---------------------------------------- | ---- | ------------------------------------- |
-| param | [AnimateParam](arkui-ts/ts-explicit-animation.md#animateparam对象说明) | 是    | 设置动画效果相关参数。                           |
-| event | () => void                               | 是    | 指定显示动效的闭包函数，在闭包函数中导致的状态变化系统会自动插入过渡动画。 |
-
-**示例：**
-
-该示例实现了通过UIContext对象获取显式立即动画的能力，调用animateToImmediately接口实现参数定义的动画效果。
-
-```ts
-// xxx.ets
-@Entry
-@Component
-struct AnimateToImmediatelyExample {
-  @State widthSize: number = 250
-  @State heightSize: number = 100
-  @State opacitySize: number = 0
-  private flag: boolean = true
-  uiContext: UIContext | null | undefined = this.getUIContext();
-
-  build() {
-    Column() {
-      Column()
-        .width(this.widthSize)
-        .height(this.heightSize)
-        .backgroundColor(Color.Green)
-        .opacity(this.opacitySize)
-      Button('change size')
-        .margin(30)
-        .onClick(() => {
-          if (this.flag) {
-            this.uiContext?.animateToImmediately({
-              delay: 0,
-              duration: 1000
-            }, () => {
-              this.opacitySize = 1
-            })
-            this.uiContext?.animateTo({
-              delay: 1000,
-              duration: 1000
-            }, () => {
-              this.widthSize = 150
-              this.heightSize = 60
-            })
-          } else {
-            this.uiContext?.animateToImmediately({
-              delay: 0,
-              duration: 1000
-            }, () => {
-              this.widthSize = 250
-              this.heightSize = 100
-            })
-            this.uiContext?.animateTo({
-              delay: 1000,
-              duration: 1000
-            }, () => {
-              this.opacitySize = 0
-            })
-          }
-          this.flag = !this.flag
-        })
-    }.width('100%').margin({ top: 5 })
-  }
-}
-```
-![animateToImmediately](figures/animateToImmediately.gif) 
 
 ### getSharedLocalStorage<sup>12+</sup>
 
@@ -443,7 +367,6 @@ getHostContext(): Context | undefined
 **示例：**
 
 ```ts
-// xxx.ets
 @Entry
 @Component
 struct Index {
@@ -452,15 +375,14 @@ struct Index {
   build() {
     Row() {
       Column() {
-        Text("cacheDir="+this.uiContext?.getHostContext().cacheDir).fontSize(25)
-        Text("bundleCodeDir="+this.uiContext?.getHostContext().bundleCodeDir).fontSize(25)
+        Text("cacheDir='"+this.uiContext?.getHostContext()?.cacheDir+"'").fontSize(25)
+        Text("bundleCodeDir='"+this.uiContext?.getHostContext()?.bundleCodeDir+"'").fontSize(25)
       }
       .width('100%')
     }
     .height('100%')
   }
 }
-
 ```
 
 ### getFrameNodeById<sup>12+</sup>
@@ -1432,6 +1354,94 @@ struct Index {
 }
 ```
 
+### postFrameCallback<sup>12+</sup>
+
+注册一个在下一帧进行渲染时执行的回调。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                    |
+| ------ | ------ | ---- | --------------------------------------- |
+| frameCallback | [FrameCallback](#framecallback12) | 是   | 下一帧需要执行的回调。 |
+
+**示例：**
+
+```ts
+import { FrameCallback } from '@ohos.arkui.UIContext';
+
+class MyFrameCallback extends FrameCallback {
+  private tag: string;
+
+  constructor(tag: string) {
+    super()
+    this.tag = tag;
+  }
+
+  onFrame(frameTimeNanos: number) {
+    console.info('MyFrameCallback ' + this.tag + ' ' + frameTimeNanos.toString());
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Button('点击触发postFrameCallback')
+        .onClick(() => {
+          this.getUIContext().postFrameCallback(new MyFrameCallback("normTask"));
+        })
+    }
+  }
+}
+```
+
+## postDelayedFrameCallback<sup>12+</sup>
+
+注册一个回调，在延迟一段时间后的下一帧进行渲染时执行。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                    |
+| ------ | ------ | ---- | --------------------------------------- |
+| frameCallback | [FrameCallback](#framecallback12) | 是   | 下一帧需要执行的回调。 |
+| delayTime | number | 是   | 延迟的时间，以毫秒为单位。 |
+
+**示例：**
+
+```ts
+import { FrameCallback } from '@ohos.arkui.UIContext';
+
+class MyFrameCallback extends FrameCallback {
+  private tag: string;
+
+  constructor(tag: string) {
+    super()
+    this.tag = tag;
+  }
+
+  onFrame(frameTimeNanos: number) {
+    console.info('MyFrameCallback ' + this.tag + ' ' + frameTimeNanos.toString());
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Button('点击触发postFrameCallback')
+        .onClick(() => {
+          this.getUIContext().postDelayedFrameCallback(new MyFrameCallback("delayTask"), 5);
+        })
+    }
+  }
+}
+```
 
 ## Font
 
@@ -4130,6 +4140,8 @@ openCustomDialog\<T extends Object>(dialogContent: ComponentContent\<T>, options
 
 创建并弹出dialogContent对应的自定义弹窗，使用Promise异步回调。通过该接口弹出的弹窗内容样式完全按照dialogContent中设置的样式显示，即相当于customdialog设置customStyle为true时的显示效果。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -4213,6 +4225,8 @@ struct Index {
 closeCustomDialog\<T extends Object>(dialogContent: ComponentContent\<T>): Promise&lt;void&gt;
 
 关闭已弹出的dialogContent对应的自定义弹窗，使用Promise异步回调。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -4306,6 +4320,8 @@ struct Index {
 updateCustomDialog\<T extends Object>(dialogContent: ComponentContent\<T>, options: promptAction.BaseDialogOptions): Promise&lt;void&gt;
 
 更新已弹出的dialogContent对应的自定义弹窗的样式，使用Promise异步回调。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -5917,6 +5933,58 @@ struct ComponentSnapshotExample {
         .width(200)
         .border({ color: Color.Black, width: 2 })
     }.width('100%').margin({ left: 10, top: 5, bottom: 5 }).height(300)
+  }
+}
+```
+
+## FrameCallback<sup>12+</sup>
+
+用于设置下一帧渲染时需要执行的任务。需要配合[UIContext](#uicontext)中的[postFrameCallback](#postframecallback12)和[postDelayedFrameCallback](#postdelayedframecallback12)使用。开发者需要继承该类并重写[onFrame](#onframe12)方法，实现具体的业务逻辑。
+
+### onFrame<sup>12+</sup>
+
+在下一帧进行渲染时，该方法将被执行。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                                                 | 必填 | 说明                                                    |
+| ------- | ---------------------------------------------------- | ---- | ------------------------------------------------------- |
+| frameTimeInNano | number | 是   | 下一帧渲染开始执行的时间，以纳秒为单位。 |
+
+**示例：**
+
+```ts
+import { FrameCallback } from '@ohos.arkui.UIContext';
+
+class MyFrameCallback extends FrameCallback {
+  private tag: string;
+
+  constructor(tag: string) {
+    super()
+    this.tag = tag;
+  }
+
+  onFrame(frameTimeNanos: number) {
+    console.info('MyFrameCallback ' + this.tag + ' ' + frameTimeNanos.toString());
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Button('点击触发postFrameCallback')
+        .onClick(() => {
+          this.getUIContext().postFrameCallback(new MyFrameCallback("normTask"));
+        })
+      Button('点击触发postFrameCallback')
+        .onClick(() => {
+          this.getUIContext().postDelayedFrameCallback(new MyFrameCallback("delayTask"), 5);
+        })
+    }
   }
 }
 ```

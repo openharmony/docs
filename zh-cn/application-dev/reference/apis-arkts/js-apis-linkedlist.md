@@ -158,12 +158,13 @@ insert(index: number, element: T): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 10200011 | The insert method cannot be bound. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200001 | The value of index is out of range. |
+| 10200011 | The insert method cannot be bound. |
 
 **示例：**
 
@@ -232,10 +233,11 @@ get(index: number): T
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200011 | The get method cannot be bound. |
 
 **示例：**
@@ -358,12 +360,13 @@ removeByIndex(index: number): T
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 10200011 | The removeByIndex method cannot be bound. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200001 | The value of index is out of range. |
+| 10200011 | The removeByIndex method cannot be bound. |
 
 **示例：**
 
@@ -397,8 +400,8 @@ removeFirst(): T
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 10200011 | The removeFirst method cannot be bound. |
 | 10200010 | Container is empty. |
+| 10200011 | The removeFirst method cannot be bound. |
 
 **示例：**
 
@@ -432,8 +435,8 @@ removeLast(): T
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 10200011 | The removeLast method cannot be bound. |
 | 10200010 | Container is empty. |
+| 10200011 | The removeLast method cannot be bound. |
 
 **示例：**
 
@@ -512,8 +515,8 @@ removeFirstFound(element: T): boolean
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 10200011 | The removeFirstFound method cannot be bound. |
 | 10200010 | Container is empty. |
+| 10200011 | The removeFirstFound method cannot be bound. |
 | 10200017 | The element does not exist in this container. |
 
 **示例：**
@@ -553,8 +556,8 @@ removeLastFound(element: T): boolean
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 10200011 | The removeLastFound method cannot be bound. |
 | 10200010 | Container is empty. |
+| 10200011 | The removeLastFound method cannot be bound. |
 | 10200017 | The element does not exist in this container. |
 
 **示例：**
@@ -627,10 +630,11 @@ callbackfn的参数说明：
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200011 | The forEach method cannot be bound. |
 
 **示例：**
@@ -696,12 +700,13 @@ set(index: number, element: T): T
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 10200011 | The set method cannot be bound. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200001 | The value of index is out of range. |
+| 10200011 | The set method cannot be bound. |
 
 **示例：**
 
@@ -849,9 +854,9 @@ linkedList.add(4);
 
 // 使用方法一：
 let items = Array.from(linkedList)
-for (let item of items) { 
-  console.log("value:" + item); 
-} 
+for (let item of items) {
+  console.log("value:" + item);
+}
 
 // 使用方法二：
 let iter = linkedList[Symbol.iterator]();

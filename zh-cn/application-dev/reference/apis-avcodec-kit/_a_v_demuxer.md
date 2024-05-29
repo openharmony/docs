@@ -112,7 +112,11 @@ OH_AVErrCode OH_AVDemuxer_GetMediaKeySystemInfo (OH_AVDemuxer *demuxer, DRM_Medi
 
 **返回：**
 
-执行成功返回AV_ERR_OK, 否则返回具体错误码，请参阅[OH_AVErrCode](_core.md#oh_averrcode)。
+返回函数结果代码[OH_AVErrCode](_core.md#oh_averrcode)：
+
+AV_ERR_OK：操作成功。
+
+AV_ERR_INVALID_VAL：解复用器实例为nullptr或无效，或者mediaKeySystemInfo为nullptr。
 
 
 ### OH_AVDemuxer_ReadSample()
@@ -255,7 +259,13 @@ OH_AVErrCode OH_AVDemuxer_SetMediaKeySystemInfoCallback (OH_AVDemuxer *demuxer, 
 
 **返回：**
 
-执行成功返回AV_ERR_OK, 否则返回具体错误码，请参阅[OH_AVErrCode](_core.md#oh_averrcode)。
+返回函数结果代码[OH_AVErrCode](_core.md#oh_averrcode)：
+
+AV_ERR_OK：操作成功。
+
+AV_ERR_OPERATE_NOT_PERMIT：解复用器引擎未启动或初始化失败。
+
+AV_ERR_INVALID_VAL：解复用器实例为nullptr或无效。
 
 
 ### OH_AVDemuxer_UnselectTrackByID()

@@ -43,6 +43,8 @@ initialize(): void
 
 | 错误码ID | 错误信息|
 | -------- | -------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 | 3200101 | Connected NFC tag running state is abnormal in service. |
 
 ## connectedTag.uninit
@@ -76,6 +78,8 @@ uninitialize(): void
 
 | 错误码ID | 错误信息|
 | -------- | -------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 | 3200101 | Connected NFC tag running state is abnormal in service. |
 
 ## connectedTag.readNdefTag
@@ -128,6 +132,8 @@ read(): Promise&lt;number[]&gt;
 
 | 错误码ID | 错误信息|
 | -------- | -------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 | 3200101 | Connected NFC tag running state is abnormal in service. |
 
 **示例：**
@@ -194,6 +200,8 @@ read(callback: AsyncCallback&lt;number[]&gt;): void
 
 | 错误码ID | 错误信息|
 | -------- | -------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 | 3200101 | Connected NFC tag running state is abnormal in service. |
 
 **示例：**
@@ -273,6 +281,9 @@ write(data: number[]): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息|
 | -------- | -------- |
+|201 | Permission denied.                 |
+|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.          |
+|801 | Capability not supported.          |
 | 3200101 | Connected NFC tag running state is abnormal in service. |
 
 **示例：**
@@ -343,6 +354,9 @@ write(data: number[], callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID | 错误信息|
 | -------- | -------- |
+|201 | Permission denied.                 |
+|401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.          |
+|801 | Capability not supported.          |
 | 3200101 | Connected NFC tag running state is abnormal in service. |
 
 **示例：**

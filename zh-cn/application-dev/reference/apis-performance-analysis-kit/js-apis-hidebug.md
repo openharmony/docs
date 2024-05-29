@@ -573,6 +573,7 @@ getAppMemoryLimit() : MemoryLimit
 | rssLimit    | bigint |  是  | 应用程序进程的驻留集的限制，以KB为单位     |
 | vssLimit  | bigint |  是  | 进程的虚拟内存限制，以KB为单位       |
 | vmHeapLimit | bigint |  是  | 当前线程的 JS VM 堆大小限制，以KB为单位      |
+| vmTotalHeapSize | bigint |  是  | 当前进程的 JS 堆内存大小限制，以KB为单位      |
 
 ## hidebug.setAppResourceLimit<sup>12+</sup>
 

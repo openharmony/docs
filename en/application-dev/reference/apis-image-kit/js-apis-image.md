@@ -2942,10 +2942,10 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 | ID| Error Message|
 | ------- | --------------------------------------------|
 | 401  | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed;     |
-| 62980123| Images in EXIF format are not supported.             |
-| 62980133| The EXIF data is out of range.            |
-| 62980135| The EXIF value is invalid.            |
-| 62980146| The EXIF data failed to be written to the file.            |
+| 62980096| The operation failed.             |
+| 62980110| The image source data is incorrect.            |
+| 62980113| Unknown image format.           |
+| 62980116| Failed to decode the image.            |
 
 **Example**
 
@@ -3118,10 +3118,10 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 | ID| Error Message|
 | ------- | --------------------------------------------|
 | 401  | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed;      |
-| 62980096| The operation failed.             |
-| 62980110| The image source data is incorrect.             |
-| 62980113| Unknown image format.             |
-| 62980116| Failed to decode the image.             |
+| 62980123| Images in EXIF format are not supported.            |
+| 62980133| The EXIF data is out of range.             |
+| 62980135| The EXIF value is invalid.            |
+| 62980146| The EXIF data failed to be written to the file.             |
 
 **Example**
 

@@ -4,7 +4,7 @@
 - [图片解码(ArkTS)](image-decoding.md)
 - [图片解码(C/C++)](image-decoding-native.md)
 - [图片接收器(C/C++)](image-receiver-native.md)
-- [图片解码native(C/C++)](image-source-native.md)
+- [图片解码Native(C/C++)](image-source-native.md)
 - [图片接收器Native(C/C++)](image-receiver-native-c.md)
 - 图片处理
   - [图像变换(ArkTS)](image-transformation.md)
@@ -15,6 +15,6 @@
   - [图像信息处理Native(C/C++)](image-native.md)
 - [图片编码(ArkTS)](image-encoding.md)
 - [图片编码(C/C++)](image-encoding-native.md)
-- [图片编码native(C/C++)](image-packer-native.md)
+- [图片编码Native(C/C++)](image-packer-native.md)
 - [图片工具](image-tool.md)
 - [ImageEffect开发指导 (C/C++)](image-effect-guidelines.md)

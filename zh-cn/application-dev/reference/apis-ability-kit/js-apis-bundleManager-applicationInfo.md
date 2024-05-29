@@ -38,6 +38,7 @@
 | dataUnclearable<sup>11+</sup>       | boolean                      | 是   | 否   | 标识应用数据是否可被删除。true表示不可删除，false表示可以删除。默认为false。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 | nativeLibraryPath<sup>12+</sup> | string                                                                     | 是   | 否   | 应用程序的本地库文件路径。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。                                                  |
 | multiAppMode<sup>12+</sup> | [MultiAppMode](#multiappmode12)    | 是   | 否   | 应用多开模式。|
+| appIndex<sup>12+</sup>    | number    | 是   | 否   | 应用包的分身索引标识，仅在分身应用中生效。 |
 
 ## MultiAppMode<sup>12+</sup>
 表示应用多开模式。

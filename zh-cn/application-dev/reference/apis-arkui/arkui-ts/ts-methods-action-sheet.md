@@ -268,3 +268,78 @@ struct ActionSheetExample {
 ```
 
 ![zh-cn_image_action_animation](figures/zh-cn_image_action_animation.gif)
+
+### 示例4
+该示例定义了ActionSheet的样式，如宽度、高度、背景色、阴影等等
+```ts
+@Entry
+@Component
+struct ActionSheetExample {
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Button('Click to Show ActionSheet')
+        .onClick(() => {
+          ActionSheet.show({
+            title: 'ActionSheet title',
+            subtitle: 'ActionSheet subtitle',
+            message: 'message',
+            autoCancel: true,
+            width: 300,
+            height: 350,
+            cornerRadius: 20,
+            borderWidth: 1,
+            borderStyle: BorderStyle.Solid,//使用borderStyle属性，需要和borderWidth属性一起使用
+            borderColor: Color.Blue,//使用borderColor属性，需要和borderWidth属性一起使用
+            backgroundColor: Color.White,
+            shadow: ({ radius: 20, color: Color.Grey, offsetX: 50, offsetY: 0}),
+            confirm: {
+              defaultFocus: true,
+              value: 'Confirm button',
+              action: () => {
+                console.log('Get Alert Dialog handled')
+              }
+            },
+            cancel: () => {
+              console.log('actionSheet canceled')
+            },
+            onWillDismiss:(dismissDialogAction: DismissDialogAction)=> {
+              console.info("reason=" + JSON.stringify(dismissDialogAction.reason))
+              console.log("dialog onWillDismiss")
+              if (dismissDialogAction.reason == DismissReason.PRESS_BACK) {
+                dismissDialogAction.dismiss()
+              }
+              if (dismissDialogAction.reason == DismissReason.TOUCH_OUTSIDE) {
+                dismissDialogAction.dismiss()
+              }
+            },
+            alignment: DialogAlignment.Bottom,
+            offset: { dx: 0, dy: -10 },
+            sheets: [
+              {
+                title: 'apples',
+                action: () => {
+                  console.log('apples')
+                }
+              },
+              {
+                title: 'bananas',
+                action: () => {
+                  console.log('bananas')
+                }
+              },
+              {
+                title: 'pears',
+                action: () => {
+                  console.log('pears')
+                }
+              }
+            ]
+          })
+        })
+    }.width('100%')
+    .height('100%')
+  }
+}
+```
+
+![zh-cn_image_action_style](figures/zh-cn_image_action_style.gif)

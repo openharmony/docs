@@ -95,7 +95,7 @@
 ### ArkUI_UIInputEvent
 
 ```
-typedef struct ArkUI_UIInputEvent ArkUI_UIInputEvent
+typedef struct ArkUI_UIInputEventArkUI_UIInputEvent
 ```
 **描述：**
 

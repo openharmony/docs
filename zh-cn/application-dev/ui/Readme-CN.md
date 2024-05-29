@@ -66,6 +66,7 @@
   - 支持交互事件
     - [交互事件概述](arkts-event-overview.md)
     - 使用通用事件
+      - [事件分发](arkts-common-events-distribute.md)
       - [触屏事件](arkts-common-events-touch-screen-event.md)
       - [键鼠事件](arkts-common-events-device-input-event.md)
       - [焦点事件](arkts-common-events-focus-event.md)

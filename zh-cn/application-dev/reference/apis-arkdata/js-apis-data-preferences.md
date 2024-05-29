@@ -24,8 +24,8 @@ import dataPreferences from '@ohos.data.preferences';
 
 | 名称             | 参数类型 | 可读 | 可写 | 说明                                    |
 | ---------------- | -------- | ---- | ---- | --------------------------------------- |
-| MAX_KEY_LENGTH   | number   | 是   | 否   | Key的最大长度限制为80个字节。     |
-| MAX_VALUE_LENGTH | number   | 是   | 否   | Value的最大长度限制为8192个字节。 |
+| MAX_KEY_LENGTH   | number   | 是   | 否   | Key的最大长度限制为1024个字节。     |
+| MAX_VALUE_LENGTH | number   | 是   | 否   | Value的最大长度限制为16 * 1024 * 1024个字节。 |
 
 
 ## dataPreferences.getPreferences
@@ -59,6 +59,7 @@ getPreferences(context: Context, name: string, callback: AsyncCallback&lt;Prefer
 
 FA模型示例：
 
+<!--code_no_check_fa-->
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 import { BusinessError } from '@ohos.base';
@@ -135,6 +136,7 @@ getPreferences(context: Context, name: string): Promise&lt;Preferences&gt;
 
 FA模型示例：
 
+<!--code_no_check_fa-->
 ```ts
 // 获取context
 import featureAbility from '@ohos.ability.featureAbility';
@@ -208,6 +210,7 @@ getPreferences(context: Context, options: Options, callback: AsyncCallback&lt;Pr
 
 FA模型示例：
 
+<!--code_no_check_fa-->
 ```ts
 // 获取context
 import featureAbility from '@ohos.ability.featureAbility';
@@ -291,6 +294,7 @@ getPreferences(context: Context, options: Options): Promise&lt;Preferences&gt;
 
 FA模型示例：
 
+<!--code_no_check_fa-->
 ```ts
 // 获取context
 import featureAbility from '@ohos.ability.featureAbility';
@@ -371,6 +375,7 @@ getPreferencesSync(context: Context, options: Options): Preferences
 
 FA模型示例：
 
+<!--code_no_check_fa-->
 ```ts
 // 获取context
 import featureAbility from '@ohos.ability.featureAbility';
@@ -432,6 +437,7 @@ deletePreferences(context: Context, name: string, callback: AsyncCallback&lt;voi
 
 FA模型示例：
 
+<!--code_no_check_fa-->
 ```ts
 // 获取context
 import featureAbility from '@ohos.ability.featureAbility';
@@ -507,6 +513,7 @@ deletePreferences(context: Context, name: string): Promise&lt;void&gt;
 
 FA模型示例：
 
+<!--code_no_check_fa-->
 ```ts
 // 获取context
 import featureAbility from '@ohos.ability.featureAbility';
@@ -578,6 +585,7 @@ deletePreferences(context: Context, options: Options, callback: AsyncCallback&lt
 
 FA模型示例：
 
+<!--code_no_check_fa-->
 ```ts
 // 获取context
 import featureAbility from '@ohos.ability.featureAbility';
@@ -659,6 +667,7 @@ deletePreferences(context: Context, options: Options): Promise&lt;void&gt;
 
 FA模型示例：
 
+<!--code_no_check_fa-->
 ```ts
 // 获取context
 import featureAbility from '@ohos.ability.featureAbility';
@@ -731,6 +740,7 @@ removePreferencesFromCache(context: Context, name: string, callback: AsyncCallba
 
 FA模型示例：
 
+<!--code_no_check_fa-->
 ```ts
 // 获取context
 import featureAbility from '@ohos.ability.featureAbility';
@@ -806,6 +816,7 @@ removePreferencesFromCache(context: Context, name: string): Promise&lt;void&gt;
 
 FA模型示例：
 
+<!--code_no_check_fa-->
 ```ts
 // 获取context
 import featureAbility from '@ohos.ability.featureAbility';
@@ -873,6 +884,7 @@ removePreferencesFromCacheSync(context: Context, name: string): void
 
 FA模型示例：
 
+<!--code_no_check_fa-->
 ```ts
 // 获取context
 import featureAbility from '@ohos.ability.featureAbility';
@@ -931,6 +943,7 @@ removePreferencesFromCache(context: Context, options: Options, callback: AsyncCa
 
 FA模型示例：
 
+<!--code_no_check_fa-->
 ```ts
 // 获取context
 import featureAbility from '@ohos.ability.featureAbility';
@@ -1011,6 +1024,7 @@ removePreferencesFromCache(context: Context, options: Options): Promise&lt;void&
 
 FA模型示例：
 
+<!--code_no_check_fa-->
 ```ts
 // 获取context
 import featureAbility from '@ohos.ability.featureAbility';
@@ -1083,6 +1097,7 @@ removePreferencesFromCacheSync(context: Context, options: Options):void
 
 FA模型示例：
 
+<!--code_no_check_fa-->
 ```ts
 // 获取context
 import featureAbility from '@ohos.ability.featureAbility';

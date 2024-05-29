@@ -271,10 +271,7 @@ zh-cn/application-dev/device/externaldevice-guidelines.md @warehouse12
 
 
 [开发-Form Kit]
-zh-cn/application-dev/application-models/formkit-overview.md @arondave @hehe9876 @nezha-father
-zh-cn/application-dev/application-models/arkts-ui-widget*.md @arondave @hehe9876 @nezha-father
-zh-cn/application-dev/application-models/js-ui-widget*.md @arondave @hehe9876 @nezha-father
-zh-cn/application-dev/application-models/widget*.md @arondave @hehe9876 @nezha-father
+zh-cn/application-dev/form/ @arondave @hehe9876 @nezha-father
 
 
 [开发-DFX]
@@ -694,7 +691,7 @@ zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-tabcontent.md	@
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-waterflow.md	@cc520bf	@zcdqs	@lihaoyn	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-effectcomponent-sys.md @HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-list-sys.md @cc520bf	@yeyinglong_admin	@lihaoyn	@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-ui-extension-component-sys.md	@seaside_wu	@keerecles	@tomatodevboy	@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-ui-extension-component-sys.md	@dutie123	@tomatodevboy	@HelloCrease
 
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-media-components-video.md	@seaside_wu	@keerecles	@pangxinyu10128	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-drawing-components-circle.md	@seaside_wu	@keerecles	@tomatodevboy	@HelloCrease
@@ -790,7 +787,9 @@ zh-cn/application-dev/reference/apis-arkui/js-apis-arkui-performancemonitor-sys.
 zh-cn/application-dev/reference/apis-arkui/js-apis-devicestatus-draginteraction-sys.md    @piggyguy  @tomatodevboy	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/js-apis-plugincomponent-sys.md  @seaside_wu	@keerecles	@tomatodevboy	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/js-apis-uiappearance-sys.md  @lushi1202  @zhang-jian008	@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/js-apis-uiExtensionHost-sys.md  @seaside_wu	@keerecles	@tomatodevboy	@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/js-apis-uiExtensionHost-sys.md  @dutie123	@tomatodevboy	@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/js-apis-arkui-uiExtension.md  @dutie123	@tomatodevboy	@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/js-apis-arkui-uiExtension-sys.md  @dutie123	@tomatodevboy	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/js-apis-arkui-builderNode.md  @sunfei2021 @tomatodevboy	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/js-apis-arkui-frameNode.md  @sunfei2021 @tomatodevboy	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/js-apis-arkui-graphics.md  @sunfei2021 @tomatodevboy	@HelloCrease
@@ -990,12 +989,7 @@ zh-cn/application-dev/reference/apis-driverdevelopment-kit/  @warehouse12
 
 [API参考-Form Kit]
 zh-cn/application-dev/reference/apis-form-kit/  @arondave  @hehe9876  @nezha-fathe
-zh-cn/application-dev/reference/apis-as/js-apis-app-form-formBindingData.md @arondave @hehe9876 @nezha-father
-zh-cn/application-dev/reference/apis-as/js-apis-application-formError.md @arondave @hehe9876 @nezha-father
-zh-cn/application-dev/reference/apis-as/js-apis-app-form-formExtensionAbility.md @arondave @hehe9876 @nezha-father
-zh-cn/application-dev/reference/apis-as/js-apis-inner-application-formExtensionContext.md @arondave @hehe9876 @nezha-father
-zh-cn/application-dev/reference/apis-as/js-apis-app-form-formInfo.md @arondave @hehe9876 @nezha-father
-zh-cn/application-dev/reference/apis-as/js-apis-app-form-formProvider.md @arondave @hehe9876 @nezha-father
+
 
 
 [API参考-IME kit]
