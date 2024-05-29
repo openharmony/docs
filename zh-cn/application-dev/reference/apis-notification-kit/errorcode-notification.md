@@ -226,7 +226,7 @@ No memory space.
 
 **错误信息**
 
-Enable Notification Dialog has been popping already.
+A notification dialog box is already displayed.
 
 **错误描述**
 
