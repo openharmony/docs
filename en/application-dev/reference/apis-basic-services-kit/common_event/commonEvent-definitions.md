@@ -1,7 +1,7 @@
 # System Common Events (To Be Deprecated Soon)
 
 This document provides indexes for predefined system common events.
-For details about the definition of a system common event, see [Support in @ohos.commonEvent (Common Event)](./js-apis-commonEvent.md#support).
+For details about the definition of a system common event, see [Support in @ohos.commonEvent (Common Event)](../js-apis-commonEvent.md#support).
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
@@ -880,7 +880,7 @@ Indicates that the airplane mode of the device has changed.
   - Required subscriber permissions: none
 
 
-* [COMMON_EVENT_SPLIT_SCREEN<sup>8+</sup>](./common_event/commonEvent-window.md)
+* [COMMON_EVENT_SPLIT_SCREEN<sup>8+</sup>](../common_event/commonEvent-window.md)
 Indicates that the screen has been split.
 
 
@@ -906,5 +906,5 @@ Indicates that the user information has been updated.
   - Value: **usual.event.USER_INFO_UPDATED**
   - Required subscriber permissions: none
 
-* [COMMON_EVENT_SMS_RECEIVE_COMPLETED](./common_event/commonEvent-mms.md)
+* [COMMON_EVENT_SMS_RECEIVE_COMPLETED](../common_event/commonEvent-mms.md)
 Indicates that a new SMS message has been received.

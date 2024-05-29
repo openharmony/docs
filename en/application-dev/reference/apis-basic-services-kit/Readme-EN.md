@@ -19,10 +19,7 @@
         - [@ohos.batteryStatistics (Battery Statistics) (System API)](js-apis-batteryStatistics-sys.md)
         - [@ohos.brightness (Screen Brightness) (System API)](js-apis-brightness-sys.md)
         - [@ohos.charger (Charging Type) (System API)](js-apis-charger-sys.md)
-        - [@ohos.deviceAttest (Device Attestation) (System API)](js-apis-deviceAttest-sys.md)
-        - [@ohos.enterprise.usbManager (USB Management) (System API)](js-apis-enterprise-usbManager-sys.md)
         - [@ohos.power (Power Management) (System API)](js-apis-power-sys.md)
-        - [@ohos.systemCapability (SystemCapability) (System API)](js-apis-system-capability-sys.md)
         - [@ohos.systemParameterEnhance (System Parameter) (System API)](js-apis-system-parameterEnhance-sys.md)
         - [@ohos.screenLock (Screen Lock) (System API)](js-apis-screen-lock-sys.md)
         - [@ohos.usbManager (USB Management) (System API)](js-apis-usbManager-sys.md)
@@ -37,7 +34,6 @@
         - [@ohos.request (Upload and Download) (System API)](js-apis-request-sys.md)
     - Process and Thread Communication
         - [@ohos.commonEventManager (Common Event)](js-apis-commonEventManager.md)
-        - [@ohos.events.emitter (Emitter)](js-apis-emitter.md)
         - [@ohos.commonEventManager (Common Event) (System API)](js-apis-commonEventManager-sys.md)
         - [@ohos.application.StaticSubscriberExtensionAbility (StaticSubscriberExtensionAbility) (System API)](js-apis-application-staticSubscriberExtensionAbility-sys.md)
         - [@ohos.application.StaticSubscriberExtensionContext (StaticSubscriberExtensionContext) (System API)](js-apis-application-StaticSubscriberExtensionContext-sys.md)
@@ -47,7 +43,7 @@
             - [CommonEventSubscriber](js-apis-inner-commonEvent-commonEventSubscriber.md)
             - [CommonEventSubscribeInfo](js-apis-inner-commonEvent-commonEventSubscribeInfo.md)
         - Common Events
-            - [System Common Events](commonEventManager-definitions.md)
+            - [System Common Events](common_event/commonEventManager-definitions.md)
             - [Common Events of the Ability Subsystem](common_event/commonEvent-ability.md)
             - [Common Events of the Bundle Management Subsystem](common_event/commonEvent-bundleManager.md)
             - [Common Events of the Notification Service](common_event/commonEvent-ans.md)
@@ -61,32 +57,30 @@
             - [Common Events of the Wi-Fi Subsystem](common_event/commonEvent-wifi.md)
             - [Common Events of the USB Subsystem](common_event/commonEvent-usb.md)
             - [Common Events of the File Management Subsystem](common_event/commonEvent-filemanagement.md)
-            - [Common Events of the Theme Framework - Lock Screen](commonEvent-screenlock.md)
+            - [Common Events of the Theme Framework - Lock Screen](common_event/commonEvent-screenlock.md)
             - [Common Events of the Time and Time Zone Subsystem](common_event/commonEvent-time.md)
             - [Common Events of the Account Subsystem](common_event/commonEvent-account.md)
             - [Common Events of the Language Subsystem](common_event/commonEvent-locale.md)
-            - [System Common Events (System API)](commonEventManager-definitions-sys.md)
+            - [System Common Events (System API)](common_event/commonEventManager-definitions-sys.md)
     - Others
         - [@ohos.base (Public Callback Information)](js-apis-base.md)
         - [@ohos.settings (Data Item Settings)](js-apis-settings.md)
         - [@ohos.wallpaper (Wallpaper)](js-apis-wallpaper.md)
         - [@ohos.settings (Data Item Settings) (System API)](js-apis-settings-sys.md)
         - [@ohos.systemDateTime (System Time and Time Zone) (System API)](js-apis-system-date-time-sys.md)
-        - [@ohos.systemTime (System Time and Time Zone)](js-apis-system-time.md)
         - [@ohos.wallpaper (Wallpaper) (System API)](js-apis-wallpaper-sys.md)
         - [@ohos.WallpaperExtensionAbility (WallpaperExtensionAbility) (System API)](js-apis-WallpaperExtensionAbility-sys.md)
         - [@ohos.systemTimer (System Timer) (System API)](js-apis-system-timer-sys.md)
     - APIs No Longer Maintained
-        - [System Common Events](commonEvent-definitions.md)
+        - [System Common Events](common_event/commonEvent-definitions.md)
         - [@ohos.commonEvent (Common Event)](js-apis-commonEvent.md)
         - [@ohos.usb (USB)](js-apis-usb-deprecated.md)
         - [@system.brightness (Screen Brightness)](js-apis-system-brightness.md)
-        - [@system.battery (Battery Information)](js-apis-system-battery.md)
-        - [@system.device (Device Information)](js-apis-system-device.md)
         - [@system.request (Upload and Download)](js-apis-system-request.md)
         - [@ohos.commonEvent (Common Event) (System API)](js-apis-commonEvent-sys.md)
         - [@ohos.usb (USB) (System API)](js-apis-usb-deprecated-sys.md)
-        - [@ohos.systemTime (System Time and Time Zone)](js-apis-system-time.md)
+        - [@ohos.systemTime (System Time and Time Zone) (System API)](js-apis-system-time-sys.md)
+    
 - Error Codes
     - [USB Error Codes](errorcode-usb.md)
     - [Running Lock Error Codes](errorcode-runninglock.md)
@@ -97,14 +91,15 @@
     - [Brightness Error Codes](errorcode-brightness.md)
     - [Thermal Manager Error Codes](errorcode-thermal.md)
     - [Upload and Download Error Codes](errorcode-request.md)
+    - [Time and Time Zone Error Codes](errorcode-time.md)
     - [Event Error Codes](errorcode-CommonEventService.md)
     - [System Parameter Error Codes](errorcode-system-parameterV9.md)
     - [Power Manager Error Codes](errorcode-power.md)
     - [Account Management Error Codes](errorcode-account.md)
-    - [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md)
     - [Update Error Codes](errorcode-update.md)
+    - [Screenlock Error Codes](errorcode-screenlock.md)
 
 
-<!--no_check-->
+
 
 
