@@ -7,7 +7,7 @@
   "module": {
     "abilities": [
       {
-        //入口配置
+        // 入口配置
         "skills": [
           {
             "actions": [
@@ -17,7 +17,7 @@
               "entity.system.home"
             ]
           },
-        //浏览器配置
+        // 浏览器配置
           {
             "actions": [
               "ohos.want.action.viewData"
