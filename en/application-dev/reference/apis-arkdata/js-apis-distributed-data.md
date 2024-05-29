@@ -40,7 +40,7 @@ Creates a **KVManager** instance to manage KV stores. This API uses an asynchron
 | Name| Type| Mandatory| Description|
 | ----- | ------ | ------ | ------ |
 | config | [KVManagerConfig](#kvmanagerconfig) | Yes | Configuration of the **KVManager** instance, including the bundle name and user information of the caller.|
-| callback | AsyncCallback&lt;[KVManager](#kvmanager)&gt; | Yes | Callback invoked to return the **KVManager** instance created.|
+| callback | AsyncCallback&lt;[KVManager](#kvmanager)&gt; | Yes | Callback used to return the **KVManager** instance created.|
 
 **Example**
 ```js
@@ -161,7 +161,7 @@ Creates and obtains a KV store. This API uses an asynchronous callback to return
 | ----- | ------ | ------ | ------ |
 | storeId | string | Yes | Unique identifier of the KV store. The length cannot exceed [MAX_STORE_ID_LENGTH](#constants).|
 | options | [Options](#options) | Yes | Configuration of the KV store.|
-| callback | AsyncCallback&lt;T&gt; | Yes | Callback invoked to return the KV store instance created.|
+| callback | AsyncCallback&lt;T&gt; | Yes | Callback used to return the KV store instance created.|
 
 **Example**
 
@@ -254,7 +254,7 @@ Closes a KV store. This API uses an asynchronous callback to return the result.
 | appId    | string              | Yes  | Bundle name of the app that invokes the KV store.        |
 | storeId  | string  | Yes  | Unique identifier of the KV store to close. The length cannot exceed [MAX_STORE_ID_LENGTH](#constants).|
 | kvStore  | [KVStore](#kvstore) | Yes  | KV store to close.    |
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
 
 **Example**
 
@@ -352,7 +352,7 @@ Deletes a KV store. This API uses an asynchronous callback to return the result.
 | -----  | ------  | ----  | ----------------------- |
 | appId  | string  | Yes  | Bundle name of the app that invokes the KV store.    |
 | storeId | string | Yes  | Unique identifier of the KV store to delete. The length cannot exceed [MAX_STORE_ID_LENGTH](#constants).|
-| callback | AsyncCallback&lt;void&gt;  | Yes  | Callback invoked to return the result.|
+| callback | AsyncCallback&lt;void&gt;  | Yes  | Callback used to return the result.|
 
 **Example**
 
@@ -448,7 +448,7 @@ Obtains the IDs of all KV stores that are created by [getKVStore()](#getkvstore)
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | appId  | string  | Yes   | Bundle name of the app that invokes the KV store.    |
-| callback | AsyncCallback&lt;string[]&gt; | Yes  |Callback invoked to return the IDs of all created KV stores.|
+| callback | AsyncCallback&lt;string[]&gt; | Yes  |Callback used to return the IDs of all created KV stores.|
 
 **Example**
 
@@ -517,7 +517,7 @@ Subscribes to service status changes.
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | event  | string | Yes   | Event type. The value is **distributedDataServiceDie**, which indicates service status changes.|
-| deathCallback  | Callback&lt;void&gt;  | Yes   | Callback invoked to return the service status change. |
+| deathCallback  | Callback&lt;void&gt;  | Yes   | Callback used to return the service status change. |
 
 **Example**
 
@@ -2091,7 +2091,7 @@ Adds a KV pair of the specified type to this KV store. This API uses an asynchro
 | -----  | ------  | ----  | ----------------------- |
 | key    | string  | Yes   |Key of the KV pair to add. It cannot be empty, and the length cannot exceed [MAX_KEY_LENGTH](#constants).  |
 | value  | Uint8Array \| string \| number \| boolean | Yes   |Value of the KV pair to add. The value type can be Uint8Array, number, string, or boolean. A value of the Uint8Array or string type cannot exceed [MAX_VALUE_LENGTH](#constants).  |
-| callback | AsyncCallback&lt;void&gt; | Yes   |Callback invoked to return the result.  |
+| callback | AsyncCallback&lt;void&gt; | Yes   |Callback used to return the result.  |
 
 **Example**
 
@@ -2163,7 +2163,7 @@ Deletes a KV pair from this KV store. This API uses an asynchronous callback to 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | key    | string  | Yes   |Key of the KV pair to delete. It cannot be empty, and the length cannot exceed [MAX_KEY_LENGTH](#constants).  |
-| callback  | AsyncCallback&lt;void&gt;  | Yes   |Callback invoked to return the result.  |
+| callback  | AsyncCallback&lt;void&gt;  | Yes   |Callback used to return the result.  |
 
 **Example**
 
@@ -2247,7 +2247,7 @@ Subscribes to data changes of the specified type.
 | -------- | --------------------------------------------------------- | ---- | ---------------------------------------------------- |
 | event    | string                                                    | Yes  | Event type. The value is **dataChange**, which indicates data changes.|
 | type     | [SubscribeType](#subscribetype)                           | Yes  | Type of data change.                                    |
-| listener |Callback&lt;[ChangeNotification](#changenotification)&gt; | Yes   |Callback invoked to return the data change.|
+| listener |Callback&lt;[ChangeNotification](#changenotification)&gt; | Yes   |Callback used to return the data change.|
 
 **Example**
 
@@ -2271,7 +2271,7 @@ Subscribes to sync complete events.
 | Name      | Type                                         | Mandatory| Description                                                  |
 | ------------ | --------------------------------------------- | ---- | ------------------------------------------------------ |
 | event        | string                                        | Yes  | Event type. The value is **syncComplete**, which indicates a sync complete event.|
-| syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | Yes  | Callback invoked to return a sync complete event.            |
+| syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | Yes  | Callback used to return a sync complete event.            |
 
 **Example**
 
@@ -2369,7 +2369,7 @@ Inserts KV pairs in batches to this KV store. This API uses an asynchronous call
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | entries  |[Entry](#entry)[] | Yes   |KV pairs to insert in batches. |
-| callback |AsyncCallback&lt;void&gt; |Yes    |Callback invoked to return the result.|
+| callback |AsyncCallback&lt;void&gt; |Yes    |Callback used to return the result.|
 
 **Example**
 
@@ -2470,7 +2470,7 @@ Deletes KV pairs in batches from this KV store. This API uses an asynchronous ca
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | keys  |string[] | Yes   |KV pairs to delete in batches. |
-| callback  |AsyncCallback&lt;void&gt; | Yes   |Callback invoked to return the result. |
+| callback  |AsyncCallback&lt;void&gt; | Yes   |Callback used to return the result. |
 
 **Example**
 
@@ -2572,7 +2572,7 @@ Starts the transaction in this KV store. This API uses an asynchronous callback 
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| callback  |AsyncCallback&lt;void&gt; | Yes   |Callback invoked to return the result. |
+| callback  |AsyncCallback&lt;void&gt; | Yes   |Callback used to return the result. |
 
 **Example**
 
@@ -2659,7 +2659,7 @@ Commits the transaction in this KV store. This API uses an asynchronous callback
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| callback  |AsyncCallback&lt;void&gt; | Yes   |Callback invoked to return the result. |
+| callback  |AsyncCallback&lt;void&gt; | Yes   |Callback used to return the result. |
 
 **Example**
 
@@ -2721,7 +2721,7 @@ Rolls back the transaction in this KV store. This API uses an asynchronous callb
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| callback  |AsyncCallback&lt;void&gt; | Yes   |Callback invoked to return the result. |
+| callback  |AsyncCallback&lt;void&gt; | Yes   |Callback used to return the result. |
 
 **Example**
 
@@ -2784,7 +2784,7 @@ Sets data sync, which can be enabled or disabled. This API uses an asynchronous 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | enabled  |boolean | Yes   |Whether to enable data sync. The value **true** means to enable data sync, and **false** means the opposite. |
-| callback  |AsyncCallback&lt;void&gt; | Yes   |Callback invoked to return the result. |
+| callback  |AsyncCallback&lt;void&gt; | Yes   |Callback used to return the result. |
 
 **Example**
 
@@ -2854,7 +2854,7 @@ Sets the data sync range. This API uses an asynchronous callback to return the r
 | -----  | ------  | ----  | ----------------------- |
 | localLabels  |string[] | Yes   |Sync labels set for the local device. |
 | remoteSupportLabels  |string[] | Yes   |Sync labels set for remote devices. |
-| callback  |AsyncCallback&lt;void&gt; | Yes   |Callback invoked to return the result. |
+| callback  |AsyncCallback&lt;void&gt; | Yes   |Callback used to return the result. |
 
 **Example**
 
@@ -2996,7 +2996,7 @@ Obtains the value of the specified key. This API uses an asynchronous callback t
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | key    |string   | Yes   |Key of the value to obtain. It cannot be empty, and the length cannot exceed [MAX_KEY_LENGTH](#constants). |
-| callback  |AsyncCallback&lt;Uint8Array \| string \| boolean \| number&gt; | Yes   |Callback invoked to return the value obtained. |
+| callback  |AsyncCallback&lt;Uint8Array \| string \| boolean \| number&gt; | Yes   |Callback used to return the value obtained. |
 
 **Example**
 
@@ -3077,7 +3077,7 @@ Obtains all KV pairs that match the specified key prefix. This API uses an async
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | keyPrefix    |string   | Yes   |Key prefix to match. |
-| callback    |AsyncCallback&lt;[Entry](#entry)[]&gt;   | Yes   |Callback invoked to return the KV pairs that match the specified prefix. |
+| callback    |AsyncCallback&lt;[Entry](#entry)[]&gt;   | Yes   |Callback used to return the KV pairs that match the specified prefix. |
 
 **Example**
 
@@ -3181,7 +3181,7 @@ Obtains the KV pairs that match the specified **Query** object. This API uses an
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | query  |[Query](#query8)   | Yes   |Key prefix to match. |
-| callback  |AsyncCallback&lt;[Entry](#entry)[]&gt;   | Yes   |Callback invoked to return the KV pairs that match the specified **Query** object. |
+| callback  |AsyncCallback&lt;[Entry](#entry)[]&gt;   | Yes   |Callback used to return the KV pairs that match the specified **Query** object. |
 
 **Example**
 
@@ -3290,7 +3290,7 @@ Obtains the result set with the specified prefix. This API uses an asynchronous 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | keyPrefix  |string   | Yes   |Key prefix to match.|
-| callback  |AsyncCallback&lt;[KvStoreResultSet](#kvstoreresultset8)&gt;   | Yes   |Callback invoked to return the result set with the specified prefix.|
+| callback  |AsyncCallback&lt;[KvStoreResultSet](#kvstoreresultset8)&gt;   | Yes   |Callback used to return the result set with the specified prefix.|
 
 **Example**
 
@@ -3399,7 +3399,7 @@ Obtains a **KvStoreResultSet** object that matches the specified **Query** objec
 | Name | Type| Mandatory | Description                   |
 | -----  | ------   | ----  | ----------------------- |
 | query  |Query    | Yes   |**Query** object to match.            |
-| callback  |AsyncCallback&lt;[KvStoreResultSet](#kvstoreresultset8)&gt;   | Yes   |Callback invoked to return the **KvStoreResultSet** object obtained.|
+| callback  |AsyncCallback&lt;[KvStoreResultSet](#kvstoreresultset8)&gt;   | Yes   |Callback used to return the **KvStoreResultSet** object obtained.|
 
 **Example**
 
@@ -3503,7 +3503,7 @@ Closes the **KvStoreResultSet** object obtained by [SingleKvStore.getResultSet](
 | Name | Type| Mandatory | Description                   |
 | -----  | ------   | ----  | ----------------------- |
 | resultSet  |[KvStoreResultSet](#kvstoreresultset8)   | Yes   |**KvStoreResultSet** object to close.            |
-| callback  |AsyncCallback&lt;void&gt;   | Yes   |Callback invoked to return the result.            |
+| callback  |AsyncCallback&lt;void&gt;   | Yes   |Callback used to return the result.            |
 
 **Example**
 
@@ -3574,7 +3574,7 @@ Obtains the number of results that matches the specified **Query** object. This 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------   | ----  | ----------------------- |
 | query  |[Query](#query8)   | Yes   |**Query** object to match.        |
-| callback  |AsyncCallback&lt;number&gt;   | Yes   |Callback invoked to return the number of results that match the specified **Query** object.        |
+| callback  |AsyncCallback&lt;number&gt;   | Yes   |Callback used to return the number of results that match the specified **Query** object.        |
 
 **Example**
 
@@ -3679,7 +3679,7 @@ Deletes data of a device. This API uses an asynchronous callback to return the r
 | Name | Type| Mandatory | Description                   |
 | -----  | ------   | ----  | ----------------------- |
 | deviceId  |string   | Yes   |ID of the target device.      |
-| callback  |AsyncCallback&lt;void&gt;   | Yes   |Callback invoked to return the result.     |
+| callback  |AsyncCallback&lt;void&gt;   | Yes   |Callback used to return the result.     |
 
 **Example**
 
@@ -3836,7 +3836,7 @@ Subscribes to data changes of the specified type.
 | -------- | --------------------------------------------------------- | ---- | ---------------------------------------------------- |
 | event    | string                                                    | Yes  | Event type. The value is **dataChange**, which indicates data changes. |
 | type     | [SubscribeType](#subscribetype)                           | Yes  | Type of data change.                                    |
-| listener | Callback&lt;[ChangeNotification](#changenotification)&gt; | Yes  | Callback invoked to return the data change.                     |
+| listener | Callback&lt;[ChangeNotification](#changenotification)&gt; | Yes  | Callback used to return the data change.                     |
 
 **Example**
 
@@ -3860,7 +3860,7 @@ Subscribes to sync complete events.
 | Name      | Type                                         | Mandatory| Description                                                  |
 | ------------ | --------------------------------------------- | ---- | ------------------------------------------------------ |
 | event        | string                                        | Yes  | Event type. The value is **syncComplete**, which indicates a sync complete event. |
-| syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | Yes  | Callback invoked to return a sync complete event.            |
+| syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | Yes  | Callback used to return a sync complete event.            |
 
 **Example**
 
@@ -3967,7 +3967,7 @@ Sets the default delay allowed for KV store sync. This API uses an asynchronous 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------   | ----  | ----------------------- |
 | defaultAllowedDelayMs  |number  | Yes   |Default delay allowed for database sync, in ms.   |
-| callback  |AsyncCallback&lt;void&gt;  | Yes  |Callback invoked to return the result.  |
+| callback  |AsyncCallback&lt;void&gt;  | Yes  |Callback used to return the result.  |
 
 **Example**
 
@@ -4034,7 +4034,7 @@ Obtains the security level of this KV store. This API uses an asynchronous callb
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------   | ----  | ----------------------- |
-| callback  |AsyncCallback&lt;[SecurityLevel](#securitylevel)&gt;  | Yes   |Callback invoked to return the security level of the KV store.   |
+| callback  |AsyncCallback&lt;[SecurityLevel](#securitylevel)&gt;  | Yes   |Callback used to return the security level of the KV store.   |
 
 **Example**
 
@@ -4108,7 +4108,7 @@ Obtains a string value that matches the specified device ID and key. This API us
 | -----  | ------   | ----  | ----------------------- |
 | deviceId  |string  | Yes   |ID of the target device.   |
 | key       |string  | Yes   |Key to match.   |
-| callback  |AsyncCallback&lt;boolean\|string\|number\|Uint8Array&gt;  | Yes   |Callback invoked to return the value obtained.   |
+| callback  |AsyncCallback&lt;boolean\|string\|number\|Uint8Array&gt;  | Yes   |Callback used to return the value obtained.   |
 
 **Example**
 
@@ -4195,7 +4195,7 @@ Obtains all KV pairs that match the specified device ID and key prefix. This API
 | -----  | ------   | ----  | ----------------------- |
 | deviceId  |string  | Yes   |ID of the target device.   |
 | keyPrefix |string  | Yes   |Key prefix to match.   |
-| callback  |AsyncCallback&lt;[Entry](#entry)[]&gt;  | Yes |Callback invoked to return the KV pairs obtained.   |
+| callback  |AsyncCallback&lt;[Entry](#entry)[]&gt;  | Yes |Callback used to return the KV pairs obtained.   |
 
 **Example**
 
@@ -4305,7 +4305,7 @@ Obtains the KV pairs that match the specified **Query** object. This API uses an
 | Name | Type| Mandatory | Description                   |
 | -----  | ------   | ----  | ----------------------- |
 | query  |[Query](#query8)  | Yes   |**Query** object to match.   |
-| callback |AsyncCallback&lt;[Entry](#entry)[]&gt;  | Yes   |Callback invoked to return the KV pairs obtained.   |
+| callback |AsyncCallback&lt;[Entry](#entry)[]&gt;  | Yes   |Callback used to return the KV pairs obtained.   |
 
 **Example**
 
@@ -4420,7 +4420,7 @@ Obtains the KV pairs that match the specified device ID and **Query** object. Th
 | -----  | ------   | ----  | ----------------------- |
 | deviceId  |string  | Yes   |ID of the target device.   |
 | query  |[Query](#query8)  | Yes   |**Query** object to match.   |
-| callback |AsyncCallback&lt;[Entry](#entry)[]&gt;  | Yes   |Callback invoked to return the KV pairs that match the specified device ID and **Query** object.   |
+| callback |AsyncCallback&lt;[Entry](#entry)[]&gt;  | Yes   |Callback used to return the KV pairs that match the specified device ID and **Query** object.   |
 
 **Example**
 
@@ -4541,7 +4541,7 @@ Obtains a **KvStoreResultSet** object that matches the specified device ID and k
 | -----  | ------   | ----  | ----------------------- |
 | deviceId  |string  | Yes   |ID of the target device.   |
 | keyPrefix |string  | Yes   |Key prefix to match.   |
-| callback  |AsyncCallback&lt;[KvStoreResultSet](#kvstoreresultset8)&gt;  | Yes |Callback invoked to return the **KvStoreResultSet** object that matches the specified device ID and key prefix.   |
+| callback  |AsyncCallback&lt;[KvStoreResultSet](#kvstoreresultset8)&gt;  | Yes |Callback used to return the **KvStoreResultSet** object that matches the specified device ID and key prefix.   |
 
 **Example**
 
@@ -4623,7 +4623,7 @@ Obtains a **KvStoreResultSet** object that matches the specified **Query** objec
 | Name | Type| Mandatory | Description                   |
 | -----  | ------   | ----  | ----------------------- |
 | query  |[Query](#query8)  | Yes   |**Query** object to match.   |
-| callback  |AsyncCallback&lt;[KvStoreResultSet](#kvstoreresultset8)&gt;  | Yes |Callback invoked to return the **KvStoreResultSet** object obtained.   |
+| callback  |AsyncCallback&lt;[KvStoreResultSet](#kvstoreresultset8)&gt;  | Yes |Callback used to return the **KvStoreResultSet** object obtained.   |
 
 **Example**
 
@@ -4744,7 +4744,7 @@ Obtains a **KvStoreResultSet** object that matches the specified device ID and *
 | -----  | ------   | ----  | ----------------------- |
 | deviceId  |string  | Yes   |ID of the target device.   |
 | query  |[Query](#query8)  | Yes   |**Query** object to match.   |
-| callback  |AsyncCallback&lt;[KvStoreResultSet](#kvstoreresultset8)&gt;  | Yes |Callback invoked to return the **KvStoreResultSet** object that matches the specified device ID and **Query** object.   |
+| callback  |AsyncCallback&lt;[KvStoreResultSet](#kvstoreresultset8)&gt;  | Yes |Callback used to return the **KvStoreResultSet** object that matches the specified device ID and **Query** object.   |
 
 **Example**
 
@@ -4865,7 +4865,7 @@ Closes the **KvStoreResultSet** object obtained by [DeviceKVStore.getResultSet](
 | Name | Type| Mandatory | Description                   |
 | -----  | ------   | ----  | ----------------------- |
 | resultSet  |[KvStoreResultSet](#getresultset8)  | Yes   |**KvStoreResultSet** object to close.  |
-| callback   |AsyncCallback&lt;void&gt;                 | Yes   |Callback invoked to return the result.   |
+| callback   |AsyncCallback&lt;void&gt;                 | Yes   |Callback used to return the result.   |
 
 **Example**
 
@@ -4938,7 +4938,7 @@ Obtains the number of results that matches the specified **Query** object. This 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------   | ----  | ----------------------- |
 | query     |[Query](#query8)       | Yes   |**Query** object to match.   |
-| callback  |AsyncCallback&lt;number&gt;  | Yes   |Callback invoked to return the number of results obtained.   |
+| callback  |AsyncCallback&lt;number&gt;  | Yes   |Callback used to return the number of results obtained.   |
 
 **Example**
 
@@ -5046,7 +5046,7 @@ Obtains the number of results that matches the specified device ID and **Query**
 | -----  | ------   | ----  | ----------------------- |
 | deviceId  |string                       | Yes   |ID of the target device.   |
 | query     |[Query](#query8)       | Yes   |**Query** object to match.   |
-| callback  |AsyncCallback&lt;number&gt;  | Yes   |Callback invoked to return the number of results obtained.   |
+| callback  |AsyncCallback&lt;number&gt;  | Yes   |Callback used to return the number of results obtained.   |
 
 **Example**
 
@@ -5156,7 +5156,7 @@ Deletes data of the specified device from this KV store. This API uses an asynch
 | Name | Type| Mandatory | Description                   |
 | -----  | ------   | ----  | ----------------------- |
 | deviceId  |string                       | Yes   |ID of the target device. |
-| callback  |AsyncCallback&lt;void&gt;    | Yes   |Callback invoked to return the result.   |
+| callback  |AsyncCallback&lt;void&gt;    | Yes   |Callback used to return the result.   |
 
 **Example**
 
@@ -5314,7 +5314,7 @@ Subscribes to data changes of the specified type.
 | -------- | --------------------------------------------------------- | ---- | ---------------------------------------------------- |
 | event    | string                                                    | Yes  | Event type. The value is **dataChange**, which indicates data changes. |
 | type     | [SubscribeType](#subscribetype)                           | Yes  | Type of data change.                                    |
-| listener | Callback&lt;[ChangeNotification](#changenotification)&gt; | Yes  | Callback invoked to return the data change.                   |
+| listener | Callback&lt;[ChangeNotification](#changenotification)&gt; | Yes  | Callback used to return the data change.                   |
 
 **Example**
 
@@ -5338,7 +5338,7 @@ Subscribes to sync complete events.
 | Name      | Type                                         | Mandatory| Description                                                  |
 | ------------ | --------------------------------------------- | ---- | ------------------------------------------------------ |
 | event        | string                                        | Yes  | Event type. The value is **syncComplete**, which indicates a sync complete event. |
-| syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | Yes  | Callback invoked to return a sync complete event.            |
+| syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | Yes  | Callback used to return a sync complete event.            |
 
 **Example**
 

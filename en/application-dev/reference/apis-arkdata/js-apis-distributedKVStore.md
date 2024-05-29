@@ -28,7 +28,7 @@ Provides the **KVManager** instance configuration, including the bundle name of 
 
 | Name    | Type             | Mandatory| Description                                                        |
 | ---------- | --------------------- | ---- | ------------------------------------------------------------ |
-| context    | Context               | Yes  |Application context.<br>For details about the application context of the FA model, see [Context](../apis-ability-kit/js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md).<br>Since API version 10, the parameter type of context is [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md).|
+| context    | BaseContext           | Yes  |Application context.<br>For details about the application context of the FA model, see [Context](../apis-ability-kit/js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md).<br>Since API version 10, the parameter type of context is [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md).|
 | bundleName | string                | Yes  | Bundle name.                                              |
 
 ## Constants
@@ -154,7 +154,7 @@ Provides KV store configuration.
 | autoSync        | boolean                         | No  | Whether to automatically synchronize database files. The default value is **false**, which means the database files are manually synchronized.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core<br>**Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC|
 | kvStoreType     | [KVStoreType](#kvstoretype)     | No  | Type of the KV store to create. The default value is **DEVICE_COLLABORATION**, which indicates a device KV store.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core|
 | securityLevel   | [SecurityLevel](#securitylevel) | Yes  | Security level of the KV store.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core|
-| schema          | [Schema](#schema)               | No  | Schema used to define the values stored in the KV store. The default value is **undefined**, which means no schema is used.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore|
+| schema          | [Schema](#schema)               | No  | Schema that defines the values stored in the KV store. The default value is **undefined**, which means no schema is used.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore|
 
 ## Schema
 
@@ -164,10 +164,14 @@ Defines the schema of a KV store. You can create a **Schema** object and place i
 
 | Name   | Type                   | Readable| Writable| Description                      |
 | ------- | ----------------------- | ---- | ---- | -------------------------- |
-| root    | [FieldNode](#fieldnode) | Yes  | Yes  | JSON root object.          |
-| indexes | Array\<string>          | Yes  | Yes  | String array in JSON format.|
-| mode    | number                  | Yes  | Yes  | Schema mode.        |
-| skip    | number                  | Yes  | Yes  | Size of a skip of the schema.        |
+| root    | [FieldNode](#fieldnode) | Yes  | Yes  | Fields in **Value**.|
+| indexes | Array\<string>          | Yes  | Yes  | Indexes of the fields in **Value**. Indexes are created only for **FieldNode** with this parameter specified. If no index needs to be created, this parameter can be left empty. <br>Format: '$.field1', '$.field2'|
+| mode    | number                  | Yes  | Yes  | Schema mode, which can be **0** (strict mode) or **1** (compatible mode).|
+| skip    | number                  | Yes  | Yes  | Number of bytes that can be skipped during the value check. The value range is [0, 4M-2].|
+
+**Strict** mode: In this mode, the format of the value inserted must strictly match the schema definition, and the number of fields cannot be more or less than that defined in the schema. Otherwise, an error will be returned in the value check.
+
+**Compatible** mode: In this mode, the value check is successful as long as the value has the characteristics defined in the schema. Extra fields are allowed. For example, if **id** and **name** are defined, more fields such as **id**, **name**, and **age** can be inserted.
 
 ### constructor
 
@@ -177,17 +181,38 @@ A constructor used to create a **Schema** instance.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
+**Example**
+
+```ts
+
+let child1 = new distributedKVStore.FieldNode('id');
+child1.type = distributedKVStore.ValueType.INTEGER;
+child1.nullable = false;
+child1.default = '1';
+let child2 = new distributedKVStore.FieldNode('name');
+child2.type = distributedKVStore.ValueType.STRING;
+child2.nullable = false;
+child2.default = 'zhangsan';
+
+let schema = new distributedKVStore.Schema();
+schema.root.appendChild(child1);
+schema.root.appendChild(child2);
+schema.indexes = ['$.id', '$.name'];
+schema.mode = 1;
+schema.skip = 0;
+```
+
 ## FieldNode
 
-Represents a **Schema** instance, which provides the methods for defining the values stored in a KV store.
+Represents a node of a **Schema** instance. It defines the values stored in a KV store.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
 | Name    | Type   | Readable| Writable| Description                          |
 | -------- | ------- | ---- | ---- | ------------------------------ |
-| nullable | boolean | Yes  | Yes  | Whether the database field can be null.  |
-| default  | string  | Yes  | Yes  | Default value of a **FieldNode**.       |
-| type     | number  | Yes  | Yes  | Value of the data type corresponding to the specified node.|
+| nullable | boolean | Yes  | Yes  | Whether the node fields can be null. The value **true** means the node fields can be null; the value **false** means the opposite.|
+| default  | string  | Yes  | Yes  | Default value of **FieldNode**.       |
+| type     | number  | Yes  | Yes  | Data type of the node. The value is an enumerated value of [ValueType](#valuetype). Currently, **BYTE_ARRAY** is not supported. Using this type may cause a failure in calling [getKVStore](#getkvstore).|
 
 ### constructor
 
@@ -331,9 +356,9 @@ Obtains a distributed KV store. This API uses an asynchronous callback to return
 
 | Name  | Type              | Mandatory| Description                                                        |
 | -------- | ---------------------- | ---- | ------------------------------------------------------------ |
-| storeId  | string                 | Yes  | Unique identifier of the KV store, which cannot exceed [MAX_STORE_ID_LENGTH](#constants) in length.|
+| storeId  | string                 | Yes  | Unique identifier of the KV store. The KV store ID allows only letters, digits, and underscores (_), and cannot exceed [MAX_STORE_ID_LENGTH](#constants) in length.|
 | options  | [Options](#options)    | Yes  | Configuration of the KV store to create.                              |
-| callback | AsyncCallback&lt;T&gt; | Yes  | Callback invoked to return the **SingleKVStore** or **DeviceKVStore** instance created.|
+| callback | AsyncCallback&lt;T&gt; | Yes  | Callback used to return the **SingleKVStore** or **DeviceKVStore** instance created.|
 
 **Error codes**
 
@@ -385,7 +410,7 @@ Obtains a distributed KV store. This API uses a promise to return the result.
 
 | Name | Type           | Mandatory| Description                                                        |
 | ------- | ------------------- | ---- | ------------------------------------------------------------ |
-| storeId | string              | Yes  | Unique identifier of the KV store, which cannot exceed [MAX_STORE_ID_LENGTH](#constants) in length.|
+| storeId | string              | Yes  | Unique identifier of the KV store. The KV store ID allows only letters, digits, and underscores (_), and cannot exceed [MAX_STORE_ID_LENGTH](#constants) in length.|
 | options | [Options](#options) | Yes  | Configuration of the distributed KV store to create.                              |
 
 **Return value**
@@ -443,8 +468,8 @@ Closes a distributed KV store. This API uses an asynchronous callback to return 
 | Name  | Type                 | Mandatory| Description                                                        |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
 | appId    | string                    | Yes  | Bundle name of the application.                                     |
-| storeId  | string                    | Yes  | Unique identifier of the KV store to close, which cannot exceed [MAX_STORE_ID_LENGTH](#constants) in length.|
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.                                                  |
+| storeId  | string                    | Yes  | Unique identifier of the KV store to close. The KV store ID allows only letters, digits, and underscores (_), and cannot exceed [MAX_STORE_ID_LENGTH](#constants) in length.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.    |
 
 **Example**
 
@@ -498,7 +523,7 @@ Closes a distributed KV store. This API uses a promise to return the result.
 | Name | Type| Mandatory| Description                                                        |
 | ------- | -------- | ---- | ------------------------------------------------------------ |
 | appId   | string   | Yes  | Bundle name of the application.                                      |
-| storeId | string   | Yes  | Unique identifier of the KV store to close, which cannot exceed [MAX_STORE_ID_LENGTH](#constants) in length.|
+| storeId | string   | Yes  | Unique identifier of the KV store to close. The KV store ID allows only letters, digits, and underscores (_), and cannot exceed [MAX_STORE_ID_LENGTH](#constants) in length.|
 
 **Return value**
 
@@ -555,8 +580,8 @@ Deletes a distributed KV store. This API uses an asynchronous callback to return
 | Name  | Type                 | Mandatory| Description                                                        |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
 | appId    | string                    | Yes  | Bundle name of the application.                                      |
-| storeId  | string                    | Yes  | Unique identifier of the KV store to delete, which cannot exceed [MAX_STORE_ID_LENGTH](#constants) in length.|
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.                                                  |
+| storeId  | string                    | Yes  | Unique identifier of the KV store to delete. The KV store ID allows only letters, digits, and underscores (_), and cannot exceed [MAX_STORE_ID_LENGTH](#constants) in length.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.    |
 
 **Error codes**
 
@@ -619,7 +644,7 @@ Deletes a distributed KV store. This API uses a promise to return the result.
 | Name | Type| Mandatory| Description                                                        |
 | ------- | -------- | ---- | ------------------------------------------------------------ |
 | appId   | string   | Yes  | Bundle name of the application.                                     |
-| storeId | string   | Yes  | Unique identifier of the KV store to delete, which cannot exceed [MAX_STORE_ID_LENGTH](#constants) in length.|
+| storeId | string   | Yes  | Unique identifier of the KV store to delete. The KV store ID allows only letters, digits, and underscores (_), and cannot exceed [MAX_STORE_ID_LENGTH](#constants) in length.|
 
 **Return value**
 
@@ -684,7 +709,7 @@ Obtains the IDs of all distributed KV stores that are created by [getKVStore](#g
 | Name  | Type                     | Mandatory| Description                                               |
 | -------- | ----------------------------- | ---- | --------------------------------------------------- |
 | appId    | string                        | Yes  | Bundle name of the application.                             |
-| callback | AsyncCallback&lt;string[]&gt; | Yes  | Callback invoked to return the IDs of all the distributed KV stores created.|
+| callback | AsyncCallback&lt;string[]&gt; | Yes  | Callback used to return the IDs of all the distributed KV stores created.|
 
 **Example**
 
@@ -758,7 +783,7 @@ Subscribes to the termination (death) of the distributed data service. If the se
 | Name       | Type            | Mandatory| Description                                                        |
 | ------------- | -------------------- | ---- | ------------------------------------------------------------ |
 | event         | string               | Yes  | Event type. The value is **distributedDataServiceDie**, which indicates the termination of the distributed data service.|
-| deathCallback | Callback&lt;void&gt; | Yes  | Callback invoked to return service status changes.                                                  |
+| deathCallback | Callback&lt;void&gt; | Yes  | Callback used to return the result. If the subscription is successful, **err** is **undefined**. Otherwise, **err** is an error object.    |
 
 **Example**
 
@@ -1294,7 +1319,7 @@ Provides methods to create a **Query** object, which defines different data quer
 
 constructor()
 
-A constructor used to create a **Schema** instance.
+A constructor used to create a **Query** instance.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -1341,7 +1366,7 @@ Creates a **Query** object to match the specified field whose value is equal to 
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | Yes   |Field to match. It cannot contain '^'. |
+| fieId  | string  | Yes   |Field to match. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned.|
 | value  | number\|string\|boolean  | Yes   | Value specified.|
 
 **Return value**
@@ -1378,7 +1403,7 @@ Creates a **Query** object to match the specified field whose value is not equal
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | Yes   |Field to match. It cannot contain '^'. |
+| fieId  | string  | Yes   |Field to match. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned. |
 | value  | number\|string\|boolean  | Yes   | Value specified.|
 
 **Return value**
@@ -1414,7 +1439,7 @@ Creates a **Query** object to match the specified field whose value is greater t
 **Parameters**
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | Yes   |Field to match. It cannot contain '^'. |
+| fieId  | string  | Yes   |Field to match. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned. |
 | value  | number\|string\|boolean  | Yes   | Value specified.|
 
 **Return value**
@@ -1452,7 +1477,7 @@ Creates a **Query** object to match the specified field whose value is less than
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | Yes   |Field to match. It cannot contain '^'. |
+| fieId  | string  | Yes   |Field to match. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned. |
 | value  | number\|string  | Yes   | Value specified.|
 
 **Return value**
@@ -1490,7 +1515,7 @@ Creates a **Query** object to match the specified field whose value is greater t
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | Yes   |Field to match. It cannot contain '^'. |
+| fieId  | string  | Yes   |Field to match. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned. |
 | value  | number\|string  | Yes   | Value specified.|
 
 **Return value**
@@ -1528,7 +1553,7 @@ Creates a **Query** object to match the specified field whose value is less than
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | Yes   |Field to match. It cannot contain '^'. |
+| fieId  | string  | Yes   |Field to match. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned. |
 | value  | number\|string  | Yes   | Value specified.|
 
 **Return value**
@@ -1565,7 +1590,7 @@ Creates a **Query** object to match the specified field whose value is **null**.
 
 | Name| Type| Mandatory| Description                         |
 | ------ | -------- | ---- | ----------------------------- |
-| fieId  | string   | Yes  | Field to match. It cannot contain '^'.|
+| fieId  | string   | Yes  | Field to match. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned.|
 
 **Return value**
 
@@ -1601,7 +1626,7 @@ Creates a **Query** object to match the specified field whose value is within th
 
 | Name   | Type| Mandatory| Description                         |
 | --------- | -------- | ---- | ----------------------------- |
-| fieId     | string   | Yes  | Field to match. It cannot contain '^'.|
+| fieId     | string   | Yes  | Field to match. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned.|
 | valueList | number[] | Yes  | List of numbers.           |
 
 **Return value**
@@ -1638,7 +1663,7 @@ Creates a **Query** object to match the specified field whose value is within th
 
 | Name   | Type| Mandatory| Description                         |
 | --------- | -------- | ---- | ----------------------------- |
-| fieId     | string   | Yes  | Field to match. It cannot contain '^'.|
+| fieId     | string   | Yes  | Field to match. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned.|
 | valueList | string[] | Yes  | List of strings.     |
 
 **Return value**
@@ -1675,7 +1700,7 @@ Creates a **Query** object to match the specified field whose value is not withi
 
 | Name   | Type| Mandatory| Description                         |
 | --------- | -------- | ---- | ----------------------------- |
-| fieId     | string   | Yes  | Field to match. It cannot contain '^'.|
+| fieId     | string   | Yes  | Field to match. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned.|
 | valueList | number[] | Yes  | List of numbers.           |
 
 **Return value**
@@ -1712,7 +1737,7 @@ Creates a **Query** object to match the specified field whose value is not withi
 
 | Name   | Type| Mandatory| Description                         |
 | --------- | -------- | ---- | ----------------------------- |
-| fieId     | string   | Yes  | Field to match. It cannot contain '^'.|
+| fieId     | string   | Yes  | Field to match. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned.|
 | valueList | string[] | Yes  | List of strings.     |
 
 **Return value**
@@ -1749,7 +1774,7 @@ Creates a **Query** object to match the specified field whose value is similar t
 
 | Name| Type| Mandatory| Description                         |
 | ------ | -------- | ---- | ----------------------------- |
-| fieId  | string   | Yes  | Field to match. It cannot contain '^'.|
+| fieId  | string   | Yes  | Field to match. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned.|
 | value  | string   | Yes  | String specified.         |
 
 **Return value**
@@ -1786,7 +1811,7 @@ Creates a **Query** object to match the specified field whose value is not simil
 
 | Name| Type| Mandatory| Description                         |
 | ------ | -------- | ---- | ----------------------------- |
-| fieId  | string   | Yes  | Field to match. It cannot contain '^'.|
+| fieId  | string   | Yes  | Field to match. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned.|
 | value  | string   | Yes  | String specified.         |
 
 **Return value**
@@ -1885,7 +1910,7 @@ Creates a **Query** object to sort the query results in ascending order.
 
 | Name| Type| Mandatory| Description                         |
 | ------ | -------- | ---- | ----------------------------- |
-| fieId  | string   | Yes  | Field to match. It cannot contain '^'.|
+| fieId  | string   | Yes  | Field to match. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned.|
 
 **Return value**
 
@@ -1922,7 +1947,7 @@ Creates a **Query** object to sort the query results in descending order.
 
 | Name| Type| Mandatory| Description                         |
 | ------ | -------- | ---- | ----------------------------- |
-| fieId  | string   | Yes  | Field to match. It cannot contain '^'.|
+| fieId  | string   | Yes  | Field to match. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned.|
 
 **Return value**
 
@@ -1999,7 +2024,7 @@ Creates a **Query** object to match the specified field whose value is not **nul
 
 | Name| Type| Mandatory| Description                         |
 | ------ | -------- | ---- | ----------------------------- |
-| fieId  | string   | Yes  | Field to match. It cannot contain '^'.|
+| fieId  | string   | Yes  | Field to match. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned.|
 
 **Return value**
 
@@ -2097,7 +2122,7 @@ Creates a **Query** object with a specified key prefix.
 
 | Name| Type| Mandatory| Description              |
 | ------ | -------- | ---- | ------------------ |
-| prefix | string   | Yes  | Key prefix.|
+| prefix | string   | Yes  | Key prefix, which cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned.|
 
 **Return value**
 
@@ -2134,7 +2159,7 @@ Creates a **Query** object with an index preferentially used for query.
 
 | Name| Type| Mandatory| Description              |
 | ------ | -------- | ---- | ------------------ |
-| index  | string   | Yes  | Index preferentially used for query.|
+| index  | string   | Yes  | Index to set, which cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned.|
 
 **Return value**
 
@@ -2246,7 +2271,7 @@ Adds a KV pair of the specified type to this KV store. This API uses an asynchro
 | -----  | ------  | ----  | ----------------------- |
 | key    | string  | Yes   |Key of the KV pair to add. It cannot be empty, and the length cannot exceed [MAX_KEY_LENGTH](#constants).  |
 | value  | Uint8Array \| string \| number \| boolean | Yes   |Value of the KV pair to add. The value type can be Uint8Array, number, string, or boolean. A value of the Uint8Array or string type cannot exceed [MAX_VALUE_LENGTH](#constants).  |
-| callback | AsyncCallback&lt;void&gt; | Yes   |Callback invoked to return the result.  |
+| callback | AsyncCallback&lt;void&gt; | Yes   |Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.  |
 
 **Error codes**
 
@@ -2352,7 +2377,7 @@ Batch inserts KV pairs to this single KV store. This API uses an asynchronous ca
 | Name  | Type                | Mandatory| Description                    |
 | -------- | ------------------------ | ---- | ------------------------ |
 | entries  | [Entry](#entry)[]        | Yes  | KV pairs to insert in batches. An **entries** object allows a maximum of 128 entries.|
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.              |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.  |
 
 **Error codes**
 
@@ -2499,7 +2524,7 @@ Deletes a KV pair from this KV store. This API uses an asynchronous callback to 
 | Name  | Type                 | Mandatory| Description                                                        |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
 | key      | string                    | Yes  | Key of the KV pair to delete. It cannot be empty, and the length cannot exceed [MAX_KEY_LENGTH](#constants).|
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.                                                  |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.        |
 
 **Error codes**
 
@@ -2620,7 +2645,7 @@ Batch deletes KV pairs from this single KV store. This API uses an asynchronous 
 | Name  | Type                 | Mandatory| Description                    |
 | -------- | ------------------------- | ---- | ------------------------ |
 | keys     | string[]                  | Yes  | KV pairs to delete in batches.|
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.              |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -2771,7 +2796,7 @@ Deletes data of a device. This API uses an asynchronous callback to return the r
 | Name  | Type                 | Mandatory| Description                  |
 | -------- | ------------------------- | ---- | ---------------------- |
 | deviceId | string                    | Yes  | ID of the target device.|
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.            |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.   |
 
 **Error codes**
 
@@ -2888,7 +2913,7 @@ Obtains the value of the specified key. This API uses an asynchronous callback t
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | key    |string   | Yes   |Key of the value to obtain. It cannot be empty, and the length cannot exceed [MAX_KEY_LENGTH](#constants). |
-| callback  |AsyncCallback&lt;boolean \| string \| number \| Uint8Array&gt; | Yes   |Callback invoked to return the value obtained. |
+| callback  |AsyncCallback&lt;boolean \| string \| number \| Uint8Array&gt; | Yes   |Callback used to return the value obtained. |
 
 **Error codes**
 
@@ -3001,7 +3026,7 @@ Obtains all KV pairs that match the specified key prefix. This API uses an async
 | Name   | Type                              | Mandatory| Description                                    |
 | --------- | -------------------------------------- | ---- | ---------------------------------------- |
 | keyPrefix | string                                 | Yes  | Key prefix to match.                    |
-| callback  | AsyncCallback&lt;[Entry](#entry)[]&gt; | Yes  | Callback invoked to return the KV pairs that match the specified prefix.|
+| callback  | AsyncCallback&lt;[Entry](#entry)[]&gt; | Yes  | Callback used to return the KV pairs that match the specified prefix.|
 
 **Error codes**
 
@@ -3136,7 +3161,7 @@ Obtains the KV pairs that match the specified **Query** object. This API uses an
 | Name  | Type                              | Mandatory| Description                                           |
 | -------- | -------------------------------------- | ---- | ----------------------------------------------- |
 | query    | [Query](#query)                         | Yes  | Key prefix to match.                           |
-| callback | AsyncCallback&lt;[Entry](#entry)[]&gt; | Yes  | Callback invoked to return the KV pairs that match the specified **Query** object.|
+| callback | AsyncCallback&lt;[Entry](#entry)[]&gt; | Yes  | Callback used to return the KV pairs that match the specified **Query** object.|
 
 **Error codes**
 
@@ -3272,7 +3297,7 @@ Obtains a result set with the specified prefix from this single KV store. This A
 | Name   | Type                                                  | Mandatory| Description                                |
 | --------- | ---------------------------------------------------------- | ---- | ------------------------------------ |
 | keyPrefix | string                                                     | Yes  | Key prefix to match.                |
-| callback  | AsyncCallback&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | Yes  | Callback invoked to return the result set with the specified prefix.|
+| callback  | AsyncCallback&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | Yes  | Callback used to return the result set with the specified prefix.|
 
 **Error codes**
 
@@ -3319,7 +3344,7 @@ try {
         console.info('Succeeded in getting result set');
         resultSet = result;
         if (kvStore != null) {
-          kvStore.closeResultSet(resultSet, (err :BusinessError) => {
+          kvStore.closeResultSet(resultSet, (err: BusinessError) => {
             if (err != undefined) {
               console.error(`Failed to close resultset.code is ${err.code},message is ${err.message}`);
               return;
@@ -3422,7 +3447,7 @@ Obtains a **KVStoreResultSet** object that matches the specified **Query** objec
 | Name  | Type                                                  | Mandatory| Description                                                     |
 | -------- | ---------------------------------------------------------- | ---- | --------------------------------------------------------- |
 | query    | Query                                                      | Yes  | **Query** object to match.                                           |
-| callback | AsyncCallback&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | Yes  | Callback invoked to return the **KVStoreResultSet** object obtained.|
+| callback | AsyncCallback&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | Yes  | Callback used to return the **KVStoreResultSet** object obtained.|
 
 **Error codes**
 
@@ -3558,7 +3583,7 @@ Closes the **KVStoreResultSet** object returned by [SingleKvStore.getResultSet](
 | Name   | Type                             | Mandatory| Description                              |
 | --------- | ------------------------------------- | ---- | ---------------------------------- |
 | resultSet | [KVStoreResultSet](#kvstoreresultset) | Yes  | **KVStoreResultSet** object to close.|
-| callback  | AsyncCallback&lt;void&gt;             | Yes  | Callback invoked to return the result.                        |
+| callback  | AsyncCallback&lt;void&gt;             | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object. |
 
 **Example**
 
@@ -3651,7 +3676,7 @@ Obtains the number of results that matches the specified **Query** object. This 
 | Name  | Type                   | Mandatory| Description                                       |
 | -------- | --------------------------- | ---- | ------------------------------------------- |
 | query    | [Query](#query)              | Yes  | **Query** object to match.                             |
-| callback | AsyncCallback&lt;number&gt; | Yes  | Callback invoked to return the number of results obtained.|
+| callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the number of results obtained.|
 
 **Error codes**
 
@@ -3778,7 +3803,7 @@ Backs up a distributed KV store. This API uses an asynchronous callback to retur
 | Name  | Type                 | Mandatory| Description                                                        |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
 | file     | string                    | Yes  | Name of the KV store. The value cannot be empty or exceed [MAX_KEY_LENGTH](#constants).|
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -3867,7 +3892,7 @@ Restores a distributed KV store from a database file. This API uses an asynchron
 | Name  | Type                 | Mandatory| Description                                                        |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
 | file     | string                    | Yes  | Name of the database file. The value cannot be empty or exceed [MAX_KEY_LENGTH](#constants).|
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -3956,7 +3981,7 @@ Deletes a backup file. This API uses an asynchronous callback to return the resu
 | Name  | Type                                          | Mandatory| Description                                                        |
 | -------- | -------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | files    | Array&lt;string&gt;                                | Yes  | Name of the backup file to delete. The value cannot be empty or exceed [MAX_KEY_LENGTH](#constants).|
-| callback | AsyncCallback&lt;Array&lt;[string, number]&gt;&gt; | Yes  | Callback invoked to return the name of the backup file deleted and the operation result.                |
+| callback | AsyncCallback&lt;Array&lt;[string, number]&gt;&gt; | Yes  | Callback used to return the name of the backup file deleted and the operation result.                |
 
 **Example**
 
@@ -4028,7 +4053,7 @@ Starts the transaction in this single KV store. This API uses an asynchronous ca
 
 | Name  | Type                 | Mandatory| Description      |
 | -------- | ------------------------- | ---- | ---------- |
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -4156,7 +4181,7 @@ Commits the transaction in this single KV store. This API uses an asynchronous c
 
 | Name  | Type                 | Mandatory| Description      |
 | -------- | ------------------------- | ---- | ---------- |
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -4236,7 +4261,7 @@ Rolls back the transaction in this single KV store. This API uses an asynchronou
 
 | Name  | Type                 | Mandatory| Description      |
 | -------- | ------------------------- | ---- | ---------- |
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -4317,7 +4342,7 @@ Sets data sync, which can be enabled or disabled. This API uses an asynchronous 
 | Name  | Type                 | Mandatory| Description                                                     |
 | -------- | ------------------------- | ---- | --------------------------------------------------------- |
 | enabled  | boolean                   | Yes  | Whether to enable data sync. The value **true** means to enable data sync, and **false** means the opposite.|
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.                                               |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.     |
 
 **Example**
 
@@ -4389,7 +4414,7 @@ Sets the data sync range. This API uses an asynchronous callback to return the r
 | ------------------- | ------------------------- | ---- | -------------------------------- |
 | localLabels         | string[]                  | Yes  | Sync labels set for the local device.        |
 | remoteSupportLabels | string[]                  | Yes  | Sync labels set for remote devices.|
-| callback            | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.                      |
+| callback            | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Example**
 
@@ -4465,7 +4490,7 @@ Sets the default delay allowed for KV store sync. This API uses an asynchronous 
 | Name               | Type                 | Mandatory| Description                                        |
 | --------------------- | ------------------------- | ---- | -------------------------------------------- |
 | defaultAllowedDelayMs | number                    | Yes  | Default delay allowed for database sync, in ms.|
-| callback              | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.                                  |
+| callback              | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Example**
 
@@ -4713,7 +4738,7 @@ Subscribes to data changes of the specified type.
 | -------- | --------------------------------------------------------- | ---- | ---------------------------------------------------- |
 | event    | string                                                    | Yes  | Event type. The value is **dataChange**, which indicates data changes.|
 | type     | [SubscribeType](#subscribetype)                           | Yes  | Type of data change.                                    |
-| listener | Callback&lt;[ChangeNotification](#changenotification)&gt; | Yes  | Callback invoked to return the data change.                                          |
+| listener | Callback&lt;[ChangeNotification](#changenotification)&gt; | Yes  | Callback used to return the object to be notified when the data changes.|
 
 **Error codes**
 
@@ -4752,7 +4777,7 @@ Subscribes to sync complete events.
 | Name      | Type                                     | Mandatory| Description                                                  |
 | ------------ | --------------------------------------------- | ---- | ------------------------------------------------------ |
 | event        | string                                        | Yes  | Event type. The value is **syncComplete**, which indicates a sync complete event.|
-| syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | Yes  | Callback invoked to return the sync complete event.            |
+| syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | Yes  | Callback used to return the sync complete event.            |
 
 **Example**
 
@@ -4895,7 +4920,7 @@ Obtains the security level of this KV store. This API uses an asynchronous callb
 
 | Name  | Type                                            | Mandatory| Description                            |
 | -------- | ---------------------------------------------------- | ---- | -------------------------------- |
-| callback | AsyncCallback&lt;[SecurityLevel](#securitylevel)&gt; | Yes  | Callback invoked to return the security level of the KV store.|
+| callback | AsyncCallback&lt;[SecurityLevel](#securitylevel)&gt; | Yes  | Callback used to return the security level of the KV store.|
 
 **Error codes**
 
@@ -4965,7 +4990,7 @@ try {
 
 ## DeviceKVStore
 
-Provides APIs for querying and synchronizing data in a device KV store. This class inherits from **SingleKVStore**.
+Provides APIs for querying and synchronizing data in a device KV store. This class inherits from **SingleKVStore**. The **SingleKVStore** APIs such as **put** and **putBatch** can be used.
 
 Data is distinguished by device in a device KV store. Each device can only write and modify its own data. Data of other devices is read-only and cannot be modified.
 
@@ -4986,7 +5011,7 @@ Obtains the value of the specified key for this device. This API uses an asynchr
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | key      | string                                                       | Yes  | Key of the value to obtain. It cannot be empty, and the length cannot exceed [MAX_KEY_LENGTH](#constants).|
-| callback | AsyncCallback&lt;boolean \| string \| number \| Uint8Array&gt; | Yes  | Callback invoked to return the value obtained.                                |
+| callback | AsyncCallback&lt;boolean \| string \| number \| Uint8Array&gt; | Yes  | Callback used to return the value obtained.                                |
 
 **Error codes**
 
@@ -5102,7 +5127,7 @@ Obtains a string value that matches the specified device ID and key. This API us
 | -----  | ------   | ----  | ----------------------- |
 | deviceId  |string  | Yes   |ID of the target device.   |
 | key       |string  | Yes   |Key to match.   |
-| callback  |AsyncCallback&lt;boolean\|string\|number\|Uint8Array&gt;  | Yes   |Callback invoked to return the value obtained.   |
+| callback  |AsyncCallback&lt;boolean\|string\|number\|Uint8Array&gt;  | Yes   |Callback used to return the value obtained.   |
 
 **Error codes**
 
@@ -5218,7 +5243,7 @@ Obtains all KV pairs that match the specified key prefix for this device. This A
 | Name   | Type                                  | Mandatory| Description                                    |
 | --------- | -------------------------------------- | ---- | ---------------------------------------- |
 | keyPrefix | string                                 | Yes  | Key prefix to match.                    |
-| callback  | AsyncCallback&lt;[Entry](#entry)[]&gt; | Yes  | Callback invoked to return the KV pairs that match the specified prefix.|
+| callback  | AsyncCallback&lt;[Entry](#entry)[]&gt; | Yes  | Callback used to return the KV pairs that match the specified prefix.|
 
 **Error codes**
 
@@ -5357,7 +5382,7 @@ Obtains all KV pairs that match the specified device ID and key prefix. This API
 | --------- | -------------------------------------- | ---- | ---------------------------------------------- |
 | deviceId  | string                                 | Yes  | ID of the target device.                      |
 | keyPrefix | string                                 | Yes  | Key prefix to match.                          |
-| callback  | AsyncCallback&lt;[Entry](#entry)[]&gt; | Yes  | Callback invoked to return the KV pairs obtained.|
+| callback  | AsyncCallback&lt;[Entry](#entry)[]&gt; | Yes  | Callback used to return the KV pairs obtained.|
 
 **Error codes**
 
@@ -5499,7 +5524,7 @@ Obtains all KV pairs that match the specified **Query** object for this device. 
 | Name  | Type                                  | Mandatory| Description                                                 |
 | -------- | -------------------------------------- | ---- | ----------------------------------------------------- |
 | query    | [Query](#query)                         | Yes  | Key prefix to match.                                 |
-| callback | AsyncCallback&lt;[Entry](#entry)[]&gt; | Yes  | Callback invoked to return the KV pairs that match the specified **Query** object on the local device.|
+| callback | AsyncCallback&lt;[Entry](#entry)[]&gt; | Yes  | Callback used to return the KV pairs that match the specified **Query** object on the local device.|
 
 **Error codes**
 
@@ -5640,7 +5665,7 @@ Obtains the KV pairs that match the specified device ID and **Query** object. Th
 | -------- | -------------------------------------- | ---- | ------------------------------------------------------- |
 | deviceId | string                                 | Yes  | ID of the target device.                                   |
 | query    | [Query](#query)                         | Yes  | **Query** object to match.                                         |
-| callback | AsyncCallback&lt;[Entry](#entry)[]&gt; | Yes  | Callback invoked to return the KV pairs that match the specified device ID and **Query** object.|
+| callback | AsyncCallback&lt;[Entry](#entry)[]&gt; | Yes  | Callback used to return the KV pairs that match the specified device ID and **Query** object.|
 
 **Error codes**
 
@@ -5788,7 +5813,7 @@ Obtains a result set with the specified prefix for this device. This API uses an
 | Name   | Type                                                      | Mandatory| Description                                |
 | --------- | ---------------------------------------------------------- | ---- | ------------------------------------ |
 | keyPrefix | string                                                     | Yes  | Key prefix to match.                |
-| callback  | AsyncCallback&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | Yes  | Callback invoked to return the result set with the specified prefix.|
+| callback  | AsyncCallback&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | Yes  | Callback used to return the result set with the specified prefix.|
 
 **Error codes**
 
@@ -5942,7 +5967,7 @@ Obtains a **KVStoreResultSet** object that matches the specified device ID and k
 | --------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | deviceId  | string                                                       | Yes  | ID of the target device.                                    |
 | keyPrefix | string                                                       | Yes  | Key prefix to match.                                        |
-| callback  | AsyncCallback&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | Yes  | Callback invoked to return the **KVStoreResultSet** object that matches the specified device ID and key prefix.|
+| callback  | AsyncCallback&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | Yes  | Callback used to return the **KVStoreResultSet** object that matches the specified device ID and key prefix.|
 
 **Error codes**
 
@@ -6063,7 +6088,7 @@ Obtains a **KVStoreResultSet** object that matches the specified device ID and *
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | deviceId | string                                                       | Yes  | ID of the device to which the **KVStoreResultSet** object belongs.                          |
 | query    | [Query](#query)                                               | Yes  | **Query** object to match.                                              |
-| callback | AsyncCallback&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | Yes  | Callback invoked to return the **KVStoreResultSet** object that matches the specified device ID and **Query** object.|
+| callback | AsyncCallback&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | Yes  | Callback used to return the **KVStoreResultSet** object that matches the specified device ID and **Query** object.|
 
 **Error codes**
 
@@ -6298,7 +6323,7 @@ Obtains a **KVStoreResultSet** object that matches the specified **Query** objec
 | Name  | Type          | Mandatory| Description                              |
 | -------- | -------------- | ---- | ---------------------------------- |
 | query    | [Query](#query) | Yes  | **Query** object to match.                    |
-| callback    | AsyncCallback&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | Yes  | Callback invoked to return the **KVStoreResultSet** object obtained.        |
+| callback    | AsyncCallback&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | Yes  | Callback used to return the **KVStoreResultSet** object obtained.        |
 
 
 **Error codes**
@@ -6377,7 +6402,7 @@ Obtains the number of results that match the specified **Query** object for this
 | Name  | Type                       | Mandatory| Description                                             |
 | -------- | --------------------------- | ---- | ------------------------------------------------- |
 | query    | [Query](#query)              | Yes  | **Query** object to match.                                   |
-| callback | AsyncCallback&lt;number&gt; | Yes  | Callback invoked to return the number of results obtained.|
+| callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the number of results obtained.|
 
 **Error codes**
 
@@ -6509,7 +6534,7 @@ Obtains the number of results that matches the specified device ID and **Query**
 | -------- | --------------------------- | ---- | --------------------------------------------------- |
 | deviceId | string                      | Yes  | ID of the device to which the **KVStoreResultSet** object belongs.                 |
 | query    | [Query](#query)              | Yes  | **Query** object to match.                                     |
-| callback | AsyncCallback&lt;number&gt; | Yes  | Callback invoked to return the number of results obtained. |
+| callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the number of results obtained.|
 
 **Error codes**
 

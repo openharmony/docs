@@ -1,6 +1,6 @@
 # @ohos.data.uniformTypeDescriptor (Uniform Data Definition and Description)
 
-The **uniformTypeDescriptor** module abstracts and defines OpenHarmony uniform data types.
+The **uniformTypeDescriptor** module abstracts and defines uniform data types.
 
 > **NOTE**
 >
@@ -14,7 +14,7 @@ import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
 
 ## UniformDataType
 
-Enumerates OpenHarmony uniform data types. Some data types are related. For example, the JPEG type belongs to the IMAGE type.
+Enumerates the uniform data types. Some data types are related. For example, the JPEG type belongs to the IMAGE type.
 
 **System capability**: SystemCapability.DistributedDataManager.UDMF.Core
 
@@ -107,12 +107,12 @@ Enumerates OpenHarmony uniform data types. Some data types are related. For exam
 | VCARD<sup>11+</sup>             | 'general.vcard'               | Base electronic business card type.<br>This type belongs to **OBJECT**.                    |
 | NAVIGATION<sup>11+</sup>         | 'general.navigation'           | Base navigation data type.<br>This type belongs to **OBJECT**.                      |
 | LOCATION<sup>11+</sup>        | 'general.location'          | Location data.<br>This type belongs to **NAVIGATION**.           |
-| OPENHARMONY_FORM                         | 'openharmony.form'                   | Widget defined for OpenHarmony.<br>This type belongs to **OBJECT**.             |
-| OPENHARMONY_APP_ITEM                        | 'openharmony.app-item'                  | Home screen icon defined for OpenHarmony.<br>This type belongs to **OBJECT**.           |
-| OPENHARMONY_PIXEL_MAP                        | 'openharmony.pixel-map'                  | Pixel map defined by OpenHarmony.<br>This type belongs to **IMAGE**.            |
-| OPENHARMONY_ATOMIC_SERVICE<sup>11+</sup>                        | 'openharmony.atomic-service'                  | Atomic service defined for OpenHarmony.<br>This type belongs to **OBJECT**.            |
-| OPENHARMONY_PACKAGE<sup>11+</sup>                        | 'openharmony.package'                  | Package defined for OpenHarmony (compressed folder).<br>This type belongs to **DIRECTORY**.            |
-| OPENHARMONY_HAP<sup>11+</sup>                        | 'openharmony.hap'                  | Ability package defined for OpenHarmony.<br>This type belongs to **OPENHARMONY_PACKAGE**.            |
+| OPENHARMONY_FORM                         | 'openharmony.form'                   | Widget defined for the system.<br>This type belongs to **OBJECT**.             |
+| OPENHARMONY_APP_ITEM                        | 'openharmony.app-item'                  | Home screen icon defined for the system.<br>This type belongs to **OBJECT**.           |
+| OPENHARMONY_PIXEL_MAP                        | 'openharmony.pixel-map'                  | Pixel map defined for the system.<br>This type belongs to **IMAGE**.            |
+| OPENHARMONY_ATOMIC_SERVICE<sup>11+</sup>                        | 'openharmony.atomic-service'                  | Atomic service defined for the system.<br>This type belongs to **OBJECT**.            |
+| OPENHARMONY_PACKAGE<sup>11+</sup>                        | 'openharmony.package'                  | Package (compressed folder) defined for the system.<br>This type belongs to **DIRECTORY**.            |
+| OPENHARMONY_HAP<sup>11+</sup>                        | 'openharmony.hap'                  | Ability package defined for the system.<br>This type belongs to **OPENHARMONY_PACKAGE**.            |
 
 ## TypeDescriptor<sup>11+</sup> 
 

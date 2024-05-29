@@ -505,7 +505,7 @@ Inserts data to the UDMF public data channel. This API uses an asynchronous call
 |----------|----------------------------|----|------------------------------|
 | options  | [Options](#options)        | Yes | Configuration parameters. Only the **intention** is required.       |
 | data     | [UnifiedData](#unifieddata) | Yes | Data to insert.                       |
-| callback | AsyncCallback&lt;string&gt; | Yes | Callback invoked to return the key (unique identifier) of the data inserted.|
+| callback | AsyncCallback&lt;string&gt; | Yes | Callback used to return the key (unique identifier) of the data inserted.|
 
 **Example**
 
@@ -595,7 +595,7 @@ Updates the data in the UDMF public data channel. This API uses an asynchronous 
 |----------|-----------------------------|----|-------------------------------------|
 | options  | [Options](#options)         | Yes | Configuration parameters. Only the value of **key** is required.                    |
 | data     | [UnifiedData](#unifieddata) | Yes | New data.                              |
-| callback | AsyncCallback&lt;void&gt;   | Yes | Callback invoked to return the result. If the data is updated successfully, **err** is **undefined**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt;   | Yes | Callback used to return the result. If the data is updated successfully, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Example**
 
@@ -685,7 +685,7 @@ Queries data in the UDMF public data channel. This API uses an asynchronous call
 | Name     | Type                                                           | Mandatory| Description                                                                                                                                                              |
 |----------|---------------------------------------------------------------|----|------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | options  | [Options](#options)                                           | Yes | Configuration parameters. Both the **key** and **intention** are optional, and the return value varies depending on the parameters passed in.                                                                                                                   |
-| callback | AsyncCallback&lt;Array&lt;[UnifiedData](#unifieddata)&gt;&gt; | Yes | Callback invoked to return the queried data.<br>If only the **key** is specified in **options**, the data corresponding to the key is returned.<br>If only the **intention** is specified in **options**, all data in the **intention** is returned.<br>If both **intention** and **key** are specified, the intersection of the two is returned, which is the result obtained when only **key** is specified. If there is no intersection between the specified **intention** and **key**, an error object is returned.|
+| callback | AsyncCallback&lt;Array&lt;[UnifiedData](#unifieddata)&gt;&gt; | Yes | Callback used to return the queried data.<br>If only the **key** is specified in **options**, the data corresponding to the key is returned.<br>If only the **intention** is specified in **options**, all data in the **intention** is returned.<br>If both **intention** and **key** are specified, the intersection of the two is returned, which is the result obtained when only **key** is specified. If there is no intersection between the specified **intention** and **key**, an error object is returned.|
 
 **Example**
 
@@ -786,7 +786,7 @@ Deletes data from the UDMF public data channel. This API uses an asynchronous ca
 | Name     | Type                                                           | Mandatory| Description                                                                                                                                                                                    |
 |----------|---------------------------------------------------------------|----|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | options  | [Options](#options)                                           | Yes | Configuration parameters. Both the **key** and **intention** are optional, and the return value varies depending on the parameters passed in.                                                                                                                                         |
-| callback | AsyncCallback&lt;Array&lt;[UnifiedData](#unifieddata)&gt;&gt; | Yes | Callback invoked to return the data deleted.<br>If only the **key** is specified in **options**, the data corresponding to the key deleted is returned.<br>If only the **intention** is specified in **options**, all data in the **intention** deleted is returned.<br>If both **intention** and **key** are specified, the intersection of the two deleted is returned. If there is no intersection between the two, an error object is returned.|
+| callback | AsyncCallback&lt;Array&lt;[UnifiedData](#unifieddata)&gt;&gt; | Yes | Callback used to return the data deleted.<br>If only the **key** is specified in **options**, the data corresponding to the key deleted is returned.<br>If only the **intention** is specified in **options**, all data in the **intention** deleted is returned.<br>If both **intention** and **key** are specified, the intersection of the two deleted is returned. If there is no intersection between the two, an error object is returned.|
 
 **Example**
 

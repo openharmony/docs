@@ -1,6 +1,6 @@
 # @ohos.data.dataSharePredicates (DataShare Predicates)
 
-You can use **DataSharePredicates** to specify conditions for [updating](js-apis-data-dataShare-sys.md#update), [deleting](js-apis-data-dataShare-sys.md#delete), and [querying](js-apis-data-dataShare-sys.md#query) data when **DataShare** is used to manage data.
+**DataSharePredicates** provides a filter object to update, delete, and query data in a database by using **DataShare** APIs.
 
 The APIs provided by **DataSharePredicates** correspond to the filter criteria of the database. Before using the APIs, you need to have basic database knowledge.
 
