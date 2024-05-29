@@ -65,3 +65,33 @@ API version 12及以后：Badge组件前后状态相同时不缩放，显隐时�
 **适配指导**
 
 默认样式变更调整，无需适配。
+
+## cl.arkui.3 TimePickerDialog、DatePickerDialog支持设置前导零
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+开发者给TimePickerDialog、DatePickerDialog设置是否需要前导零。
+
+**变更影响**
+
+该变更为非兼容性变更。
+
+1. 根据开发者的配置动态控制TimePickerDialog中的TimePicker小时选项是否需要前导零：当且仅当TimePickerDialog 是12小时制的且开发者设置需要前导零，TimePickerDialog 的小时选项中小于10的选项数值前才需要补零，否则不补零。24小时制小于10的选项数值默认有前导零，可以单独设置没有前导零。
+
+2. 根据开发者的配置动态控制DatePickerDialog中的TimePicker小时选项是否需要前导零：当且仅当DatePickerDialog中的TimePicker是12小时制的且开发者设置需要前导零，DatePickerDialog中的TimePicker的小时选项中小于10的选项数值前才需要补零，否则不补零。24小时制小于10的选项数值默认有前导零，可以单独设置没有前导零。
+
+**起始API Level**
+
+12
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.29开始。
+
+**适配指导**
+
+默认行为变更，无需适配，但应注意时间窗口是否按照设置显示前导零。
