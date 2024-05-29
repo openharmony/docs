@@ -5,35 +5,35 @@ This section uses the operation of using a browser to open a website as an examp
 ```json
 {
   "module": {
-    //...
     "abilities": [
       {
-        //...
+        // Entry configuration
         "skills": [
           {
-            "entities": [
-              "entity.system.home",
-              "entity.system.browsable"
-              //...
-            ],
             "actions": [
-              "action.system.home",
-              "ohos.want.action.viewData"
-              //...
+              "action.system.home"
             ],
-            "uris": [
-              {
+            "entities": [
+              "entity.system.home"
+            ]
+          },
+        // Browser configuration
+          {
+            "actions": [
+              "ohos.want.action.viewData"
+            ],
+            "entities": [
+              "entity.system.browsable"
+            ],
+            "uris": [{
                 "scheme": "https",
                 "host": "www.test.com",
                 "port": "8080",
-                // Prefix matching is used.
                 "pathStartWith": "query"
               },
               {
-                "scheme": "http",
-                //...
+                "scheme": "http"
               }
-              //...
             ]
           }
         ]
