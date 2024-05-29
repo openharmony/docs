@@ -220,7 +220,7 @@ BottomTabBarStyle的静态构造函数。
 | ----------  | ---------------------------------------- |
 | AUTO        | 若页签宽度大于104vp，页签内容为左右排布，否则页签内容为上下排布。仅TabBar为垂直模式或Fixed水平模式时有效。 |
 | VERTICAL    | 页签内容上下排布。 |
-| HORIZONAL   | 页签内容左右排布。 |
+| HORIZONTAL | 页签内容左右排布。 |
 
 ## TabBarIconStyle<sup>12+</sup>对象说明
 

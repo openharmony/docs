@@ -199,7 +199,7 @@ struct CustomDialogUser {
     cornerRadius: 10,
   })
 
-  // 在自定义组件即将析构销毁时将dialogControlle置空
+  // 在自定义组件即将析构销毁时将dialogController置空
   aboutToDisappear() {
     this.dialogController = null // 将dialogController置空
   }
@@ -284,7 +284,7 @@ struct CustomDialogUser {
     customStyle: false,
     cornerRadius: 10,
   })
-  // 在自定义组件即将析构销毁时将dialogControlle置空
+  // 在自定义组件即将析构销毁时将dialogController置空
   aboutToDisappear() {
     this.dialogController = null // 将dialogController置空
   }
@@ -374,7 +374,7 @@ struct CustomDialogUser {
     backgroundColor: Color.White,
     shadow: ({ radius: 20, color: Color.Grey, offsetX: 50, offsetY: 0}),
   })
-  // 在自定义组件即将析构销毁时将dialogControlle置空
+  // 在自定义组件即将析构销毁时将dialogController置空
   aboutToDisappear() {
     this.dialogController = null // 将dialogController置空
   }
