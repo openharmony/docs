@@ -11,7 +11,7 @@
 ## 导入模块
 
 ```ts
-import InsightIntentExecutor from '@ohos.app.ability.InsightIntentExecutor';
+import { InsightIntentExecutor } from '@kit.AbilityKit';
 ```
 
 ## 属性
@@ -58,12 +58,11 @@ onExecuteInUIAbilityForegroundMode(name: string, param: Record<string, Object>, 
 
 直接返回意图调用的结果，示例如下：
   ```ts
-  import IntentExecutor from '@ohos.app.ability.InsightIntentExecutor';
-  import insightIntent from '@ohos.app.ability.insightIntent';
-  import window from '@ohos.window';
-  import hilog from '@ohos.hilog';
+  import { InsightIntentExecutor, insightIntent } from '@kit.AbilityKit';
+  import { window } from '@kit.ArkUI';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  export default class IntentExecutorImpl extends IntentExecutor {
+  export default class IntentExecutorImpl extends InsightIntentExecutor {
     onExecuteInUIAbilityForegroundMode(name: string, param: Record<string, Object>, pageLoader: window.WindowStage): insightIntent.ExecuteResult {
       let result: insightIntent.ExecuteResult;
       if (name !== 'SupportedInsightIntentName') {
@@ -100,10 +99,9 @@ onExecuteInUIAbilityForegroundMode(name: string, param: Record<string, Object>, 
 
 使用Promise异步返回意图调用的结果，示例如下：
   ```ts
-  import IntentExecutor from '@ohos.app.ability.InsightIntentExecutor';
-  import insightIntent from '@ohos.app.ability.insightIntent';
-  import window from '@ohos.window';
-  import hilog from '@ohos.hilog';
+  import { InsightIntentExecutor, insightIntent } from '@kit.AbilityKit';
+  import { window } from '@kit.ArkUI';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   async function executeInsightIntent(param: Record<string, Object>): Promise<insightIntent.ExecuteResult> {
     return new Promise((resolve, reject) => {
@@ -117,7 +115,7 @@ onExecuteInUIAbilityForegroundMode(name: string, param: Record<string, Object>, 
     })
   }
 
-  export default class IntentExecutorImpl extends IntentExecutor {
+  export default class IntentExecutorImpl extends InsightIntentExecutor {
     async onExecuteInUIAbilityForegroundMode(name: string, param: Record<string, Object>, pageLoader: window.WindowStage): Promise<insightIntent.ExecuteResult> {
       let result: insightIntent.ExecuteResult;
       if (name !== 'SupportedInsightIntentName') {
@@ -169,10 +167,9 @@ onExecuteInUIAbilityBackgroundMode(name: string, param: Record<string, Object>):
 
 直接返回意图调用的结果，示例如下：
   ```ts
-  import IntentExecutor from '@ohos.app.ability.InsightIntentExecutor';
-  import insightIntent from '@ohos.app.ability.insightIntent';
+  import { InsightIntentExecutor, insightIntent } from '@kit.AbilityKit';
 
-  export default class IntentExecutorImpl extends IntentExecutor {
+  export default class IntentExecutorImpl extends InsightIntentExecutor {
     onExecuteInUIAbilityBackgroundMode(name: string, param: Record<string, Object>): insightIntent.ExecuteResult {
       let result: insightIntent.ExecuteResult = {
         code: 0,
@@ -187,8 +184,7 @@ onExecuteInUIAbilityBackgroundMode(name: string, param: Record<string, Object>):
 
 使用Promise异步返回意图调用的结果，示例如下：
   ```ts
-  import IntentExecutor from '@ohos.app.ability.InsightIntentExecutor';
-  import insightIntent from '@ohos.app.ability.insightIntent';
+  import { InsightIntentExecutor, insightIntent } from '@kit.AbilityKit';
 
   async function executeInsightIntent(param: Record<string, Object>): Promise<insightIntent.ExecuteResult> {
     return new Promise((resolve, reject) => {
@@ -202,7 +198,7 @@ onExecuteInUIAbilityBackgroundMode(name: string, param: Record<string, Object>):
     })
   }
 
-  export default class IntentExecutorImpl extends IntentExecutor {
+  export default class IntentExecutorImpl extends InsightIntentExecutor {
     async onExecuteInUIAbilityBackgroundMode(name: string, param: Record<string, Object>): Promise<insightIntent.ExecuteResult> {
       let result: insightIntent.ExecuteResult = await executeInsightIntent(param);
       return result;
@@ -240,12 +236,10 @@ onExecuteInUIExtensionAbility(name: string, param: Record<string, Object>, pageL
 
 直接返回意图调用的结果，示例如下：
   ```ts
-  import IntentExecutor from '@ohos.app.ability.InsightIntentExecutor';
-  import insightIntent from '@ohos.app.ability.insightIntent';
-  import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
-  import hilog from '@ohos.hilog';
+  import { InsightIntentExecutor, insightIntent, UIExtensionContentSession } from '@kit.AbilityKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  export default class IntentExecutorImpl extends IntentExecutor {
+  export default class IntentExecutorImpl extends InsightIntentExecutor {
     onExecuteInUIExtensionAbility(name: string, param: Record<string, Object>, pageLoader: UIExtensionContentSession): insightIntent.ExecuteResult {
       let result: insightIntent.ExecuteResult;
       if (name !== 'SupportedInsightIntentName') {
@@ -276,10 +270,8 @@ onExecuteInUIExtensionAbility(name: string, param: Record<string, Object>, pageL
 
 使用Promise异步返回意图调用的结果，示例如下：
   ```ts
-  import IntentExecutor from '@ohos.app.ability.InsightIntentExecutor';
-  import insightIntent from '@ohos.app.ability.insightIntent';
-  import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
-  import hilog from '@ohos.hilog';
+  import { InsightIntentExecutor, insightIntent, UIExtensionContentSession } from '@kit.AbilityKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   async function executeInsightIntent(param: Record<string, Object>): Promise<insightIntent.ExecuteResult> {
     return new Promise((resolve, reject) => {
@@ -293,7 +285,7 @@ onExecuteInUIExtensionAbility(name: string, param: Record<string, Object>, pageL
     })
   }
 
-  export default class IntentExecutorImpl extends IntentExecutor {
+  export default class IntentExecutorImpl extends InsightIntentExecutor {
     async onExecuteInUIExtensionAbility(name: string, param: Record<string, Object>, pageLoader: UIExtensionContentSession): Promise<insightIntent.ExecuteResult> {
       let result: insightIntent.ExecuteResult;
       if (name !== 'SupportedInsightIntentName') {
@@ -343,11 +335,10 @@ onExecuteInServiceExtensionAbility(name: string, param: Record<string, Object>):
 
 直接返回意图调用的结果，示例如下：
   ```ts
-  import IntentExecutor from '@ohos.app.ability.InsightIntentExecutor';
-  import insightIntent from '@ohos.app.ability.insightIntent';
-  import hilog from '@ohos.hilog';
+  import { InsightIntentExecutor, insightIntent } from '@kit.AbilityKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
-  export default class IntentExecutorImpl extends IntentExecutor {
+  export default class IntentExecutorImpl extends InsightIntentExecutor {
     onExecuteInServiceExtensionAbility(name: string, param: Record<string, Object>): insightIntent.ExecuteResult {
       let result: insightIntent.ExecuteResult;
       if (name !== 'SupportedInsightIntentName') {
@@ -375,9 +366,8 @@ onExecuteInServiceExtensionAbility(name: string, param: Record<string, Object>):
 
 使用Promise异步返回意图调用的结果，示例如下：
   ```ts
-  import IntentExecutor from '@ohos.app.ability.InsightIntentExecutor';
-  import insightIntent from '@ohos.app.ability.insightIntent';
-  import hilog from '@ohos.hilog';
+  import { InsightIntentExecutor, insightIntent } from '@kit.AbilityKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   async function executeInsightIntent(param: Record<string, Object>): Promise<insightIntent.ExecuteResult> {
     return new Promise((resolve, reject) => {
@@ -391,7 +381,7 @@ onExecuteInServiceExtensionAbility(name: string, param: Record<string, Object>):
     });
   }
 
-  export default class IntentExecutorImpl extends IntentExecutor {
+  export default class IntentExecutorImpl extends InsightIntentExecutor {
     async onExecuteInServiceExtensionAbility(name: string, param: Record<string, Object>): Promise<insightIntent.ExecuteResult> {
       let result: insightIntent.ExecuteResult;
       if (name !== 'SupportedInsightIntentName') {

@@ -11,7 +11,7 @@ UIExtensionContentSession是[UIExtensionAbility](js-apis-app-ability-uiExtension
 ## 导入模块
 
 ```ts
-import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
+import { UIExtensionContentSession } from '@kit.AbilityKit';
 ```
 
 ## UIExtensionContentSession.loadContent

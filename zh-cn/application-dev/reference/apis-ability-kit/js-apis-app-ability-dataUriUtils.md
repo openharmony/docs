@@ -9,7 +9,7 @@ DataUriUtils模块提供用于处理uri对象的能力，包括获取、绑定�
 ## 导入模块
 
 ```ts
-import dataUriUtils from '@ohos.app.ability.dataUriUtils';
+import { dataUriUtils } from '@kit.AbilityKit';
 ```
 
 ## dataUriUtils.getId
@@ -43,13 +43,13 @@ getId(uri: string): number
 **示例：**
 
 ```ts
-import dataUriUtils from '@ohos.app.ability.dataUriUtils';
+import { dataUriUtils } from '@kit.AbilityKit';
 
 try {
-    let id = dataUriUtils.getId('com.example.dataUriUtils/1221');
-    console.info(`get id: ${id}`);
+  let id = dataUriUtils.getId('com.example.dataUriUtils/1221');
+  console.info(`get id: ${id}`);
 } catch(err) {
-    console.error(`get id err ,check the uri ${err}`);
+  console.error(`get id err ,check the uri ${err}`);
 }
 ```
 
@@ -87,19 +87,19 @@ attachId(uri: string, id: number): string
 **示例：**
 
 ```ts
-import dataUriUtils from '@ohos.app.ability.dataUriUtils';
+import { dataUriUtils } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let id = 1122;
 try {
-    let uri = dataUriUtils.attachId(
-        'com.example.dataUriUtils',
-        id,
-    );
-    console.info(`attachId the uri is: ${uri}`);
+  let uri = dataUriUtils.attachId(
+    'com.example.dataUriUtils',
+    id,
+  );
+  console.info(`attachId the uri is: ${uri}`);
 } catch (err) {
-    console.error(`get id err ,check the uri ${err}`);
+  console.error(`get id err, code: ${JSON.stringify((err as BusinessError).code)}, msg: ${JSON.stringify((err as BusinessError).message)}`);
 }
-
 ```
 
 
@@ -135,15 +135,15 @@ deleteId(uri: string): string
 **示例：**
 
 ```ts
-import dataUriUtils from '@ohos.app.ability.dataUriUtils';
+import { dataUriUtils } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-    let uri = dataUriUtils.deleteId('com.example.dataUriUtils/1221');
-    console.info(`delete id with the uri is: ${uri}`);
+  let uri = dataUriUtils.deleteId('com.example.dataUriUtils/1221');
+  console.info(`delete id with the uri is: ${uri}`);
 } catch(err) {
-    console.error(`delete uri err, check the input uri ${err}`);
+  console.error(`delete id err, code: ${JSON.stringify((err as BusinessError).code)}, msg: ${JSON.stringify((err as BusinessError).message)}`);
 }
-
 ```
 
 
@@ -180,16 +180,17 @@ updateId(uri: string, id: number): string
 **示例：**
 
 ```ts
-import dataUriUtils from '@ohos.app.ability.dataUriUtils';
+import { dataUriUtils } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-    let id = 1122;
-    let uri = dataUriUtils.updateId(
-        'com.example.dataUriUtils/1221',
-        id
-    );
+  let id = 1122;
+  let uri = dataUriUtils.updateId(
+    'com.example.dataUriUtils/1221',
+    id
+  );
 } catch (err) {
-    console.error(`delete uri err, check the input uri ${err}`);
+  console.error(`update id err, code: ${JSON.stringify((err as BusinessError).code)}, msg: ${JSON.stringify((err as BusinessError).message)}`);
 }
 ```
 
