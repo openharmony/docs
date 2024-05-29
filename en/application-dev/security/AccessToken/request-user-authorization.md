@@ -47,7 +47,7 @@ The following example steps you through on how to request the permission for usi
 
 2. Check whether the user has granted the permission.
    
-   Use [checkAccessToken()](../../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#checkaccesstoken9) to check whether the user has already granted the permission that your application requires. If yes, the application can use the microphone. Otherwise, user authorization is required.
+   Use [checkAccessToken()](../../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#checkaccesstoken9) to check whether the user has already granted the permission that your application requires. If yes, your application can use the microphone. Otherwise, user authorization is required.
 
    ```ts
    import bundleManager from '@ohos.bundle.bundleManager';
@@ -109,7 +109,6 @@ The following example steps you through on how to request the permission for usi
       import { BusinessError } from '@ohos.base';
       
       const permissions: Array<Permissions> = ['ohos.permission.MICROPHONE'];
-      
       function reqPermissionsFromUser(permissions: Array<Permissions>, context: common.UIAbilityContext): void {
         let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
         // Determine whether to display a user authorization dialog box based on the return value of requestPermissionsFromUser.
@@ -129,7 +128,6 @@ The following example steps you through on how to request the permission for usi
           console.error(`Failed to request permissions from user. Code is ${err.code}, message is ${err.message}`);
         })
       }
-      
       export default class EntryAbility extends UIAbility {
         onWindowStageCreate(windowStage: window.WindowStage): void {
           reqPermissionsFromUser(permissions, this.context);
@@ -148,7 +146,6 @@ The following example steps you through on how to request the permission for usi
       import { BusinessError } from '@ohos.base';
       
       const permissions: Array<Permissions> = ['ohos.permission.MICROPHONE'];
-      
       function reqPermissionsFromUser(permissions: Array<Permissions>, context: common.UIAbilityContext): void {
         let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
         // Determine whether to display a user authorization dialog box based on the return value of requestPermissionsFromUser.
@@ -191,7 +188,6 @@ The following example steps you through on how to request the permission for usi
    import Want from '@ohos.app.ability.Want';
    import common from '@ohos.app.ability.common';
    import { BusinessError } from '@ohos.base';
-   
    function openPermissionsInSystemSettings(context: common.UIAbilityContext): void {
      let wantInfo: Want = {
        action: 'action.settings.app.info',

@@ -1,9 +1,11 @@
-# Application Permission Groups
+# Application Permission Groups (Only for OpenHarmony)
 
 
-## NOTE
+## Usage Guidelines
 
 - It will be helpful if you understand [permission groups and permissions](app-permission-mgmt-overview.md#permission-groups-and-permissions) before requesting permission groups for your application.
+
+- A permission group is a logical grouping of related permissions. When a permission is requested, the members of the group are presented together in the user interface, making it easier for the user to manage permissions. If the user grants the permission, all the permissions in the permission group will be granted in a unified manner. For security purposes, the Location, Contacts, Call Logs, Phone, Messaging, and Calendar permission groups do not support unified authorization.
 
 - The following lists the permission groups supported by the system. For details about the permissions, see [Permissions for All Applications](permissions-for-all.md).
 
@@ -27,6 +29,13 @@
 - ohos.permission.MICROPHONE
 
 
+## Contacts
+
+- ohos.permission.READ_CONTACTS
+
+- ohos.permission.WRITE_CONTACTS
+
+
 ## Calendar
 
 - ohos.permission.READ_CALENDAR
@@ -48,9 +57,51 @@
 - ohos.permission.READ_HEALTH_DATA
 
 
+## Images and Videos
+
+- ohos.permission.WRITE_IMAGEVIDEO
+
+- ohos.permission.READ_IMAGEVIDEO
+
+- ohos.permission.MEDIA_LOCATION
+
+
+## Music and Audio
+
+- ohos.permission.WRITE_AUDIO
+
+- ohos.permission.READ_AUDIO
+
+
+## Media and Files
+
+- ohos.permission.READ_DOCUMENT
+
+- ohos.permission.WRITE_DOCUMENT
+
+- ohos.permission.READ_MEDIA
+
+- ohos.permission.WRITE_MEDIA
+
+
+## Ad Tracking
+
+- ohos.permission.APP_TRACKING_CONSENT
+
+
+## Installed Bundle List
+
+- ohos.permission.GET_INSTALLED_BUNDLE_LIST
+
+
 ## Multi-device Collaboration
 
 - ohos.permission.DISTRIBUTED_DATASYNC
+
+
+## Bluetooth
+
+- ohos.permission.ACCESS_BLUETOOTH
 
 
 ## Phone
@@ -82,43 +133,15 @@
 - ohos.permission.SEND_MESSAGES
 
 
-## Music and Audio
+## Pasteboard
 
-- ohos.permission.WRITE_AUDIO
-
-- ohos.permission.READ_AUDIO
+- ohos.permission.READ_PASTEBOARD 
 
 
-## Media and Files
+## Directory
 
-- ohos.permission.READ_DOCUMENT
+- ohos.permission.READ_WRITE_DOWNLOAD_DIRECTORY
 
-- ohos.permission.WRITE_DOCUMENT
+- ohos.permission.READ_WRITE_DESKTOP_DIRECTORY
 
-- ohos.permission.READ_MEDIA
-
-- ohos.permission.WRITE_MEDIA
-
-
-## Images and Videos
-
-- ohos.permission.WRITE_IMAGEVIDEO
-
-- ohos.permission.READ_IMAGEVIDEO
-
-- ohos.permission.MEDIA_LOCATION
-
-
-## Ad Tracking
-
-- ohos.permission.APP_TRACKING_CONSENT
-
-
-## Installed Bundle List
-
-- ohos.permission.GET_INSTALLED_BUNDLE_LIST
-
-
-## Bluetooth
-
-- ohos.permission.ACCESS_BLUETOOTH
+- ohos.permission.READ_WRITE_DOCUMENTS_DIRECTORY
