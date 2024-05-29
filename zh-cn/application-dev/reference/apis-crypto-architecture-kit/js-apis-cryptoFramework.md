@@ -2845,7 +2845,7 @@ update(data: DataBlob, callback: AsyncCallback\<DataBlob>): void
 
 分段更新加密或者解密数据操作，通过注册回调函数获取加/解密数据。
 
-必须在对[Cipher](#cipher)实例使用[init()](init-1)初始化后，才能使用本函数。
+必须在对[Cipher](#cipher)实例使用[init()](#init-1)初始化后，才能使用本函数。
 
 > **说明：**
 >
@@ -2882,7 +2882,7 @@ update(data: DataBlob): Promise\<DataBlob>
 
 分段更新加密或者解密数据操作，通过Promise获取加/解密数据。
 
-必须在对[Cipher](#cipher)实例使用[init()](init-2)初始化后，才能使用本函数。
+必须在对[Cipher](#cipher)实例使用[init()](#init-2)初始化后，才能使用本函数。
 
 > **说明：**
 >
