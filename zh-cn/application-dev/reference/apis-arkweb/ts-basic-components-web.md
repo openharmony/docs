@@ -2875,55 +2875,96 @@ onShowFileSelector(callback: (event?: { result: FileSelectorResult, fileSelector
 
 **示例：**
 
-  ```ts
-  // xxx.ets
-  import web_webview from '@ohos.web.webview';
-  import picker from '@ohos.file.picker';
-  import { BusinessError } from '@ohos.base';
+1. 拉起文件选择器。
 
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
+   ```ts
+   // xxx.ets
+   import { webview } from '@kit.ArkWeb';
+   import { picker } from '@kit.CoreFileKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
 
-    build() {
-      Column() {
-        Web({ src: $rawfile('index.html'), controller: this.controller })
-          .onShowFileSelector((event) => {
-            console.log('MyFileUploader onShowFileSelector invoked')
-            const documentSelectOptions = new picker.DocumentSelectOptions();
-            let uri: string | null = null;
-            const documentViewPicker = new picker.DocumentViewPicker();
-            documentViewPicker.select(documentSelectOptions).then((documentSelectResult) => {
-              uri = documentSelectResult[0];
-              console.info('documentViewPicker.select to file succeed and uri is:' + uri);
-              if (event) {
-                event.result.handleFileList([uri]);
-              }
-            }).catch((err: BusinessError) => {
-              console.error(`Invoke documentViewPicker.select failed, code is ${err.code}, message is ${err.message}`);
-            })
-            return true
-          })
-      }
-    }
-  }
-  ```
+   @Entry
+   @Component
+   struct WebComponent {
+     controller: webview.WebviewController = new webview.WebviewController()
+ 
+     build() {
+       Column() {
+         Web({ src: $rawfile('index.html'), controller: this.controller })
+           .onShowFileSelector((event) => {
+             console.log('MyFileUploader onShowFileSelector invoked')
+             const documentSelectOptions = new picker.DocumentSelectOptions();
+             let uri: string | null = null;
+             const documentViewPicker = new picker.DocumentViewPicker();
+             documentViewPicker.select(documentSelectOptions).then((documentSelectResult) => {
+               uri = documentSelectResult[0];
+               console.info('documentViewPicker.select to file succeed and uri is:' + uri);
+               if (event) {
+                 event.result.handleFileList([uri]);
+               }
+             }).catch((err: BusinessError) => {
+               console.error(`Invoke documentViewPicker.select failed, code is ${err.code},  message is ${err.message}`);
+             })
+             return true;
+           })
+       }
+     }
+   }
+   ```
 
-  加载的html文件。
-  ```html
-  <!DOCTYPE html>
-  <html>
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
-  </head>
-  <body>
-    <form id="upload-form" enctype="multipart/form-data">
-      <input type="file" id="upload" name="upload"/>
-      </form>
-  </body>
-  </html>
-  ```
+2. 拉起图库选择器。
+
+   ```ts
+   // xxx.ets
+   import { webview } from '@kit.ArkWeb';
+   import { picker } from '@kit.CoreFileKit';
+   import { photoAccessHelper } from '@kit.MediaLibraryKit';
+
+   @Entry
+   @Component
+   export struct WebComponent {
+     controller: webview.WebviewController = new webview.WebviewController()
+
+     async selectFile(result: FileSelectorResult): Promise<void> {
+       let photoSelectOptions = new photoAccessHelper.PhotoSelectOptions();
+       let photoPicker = new photoAccessHelper.PhotoViewPicker();
+       // 过滤选择媒体文件类型为IMAGE
+       photoSelectOptions.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_VIDEO_TYPE;
+       // 设置最大选择数量
+       photoSelectOptions.maxSelectNumber = 5;
+       let chooseFile: picker.PhotoSelectResult = await photoPicker.select(photoSelectOptions);
+       // 获取选择的文件列表
+       result.handleFileList(chooseFile.photoUris);
+     }
+
+     build() {
+       Column() {
+         Web({ src: $rawfile('index.html'), controller: this.controller })
+           .onShowFileSelector((event) => {
+             if (event) {
+               this.selectFile(event.result);
+             }
+             return true;
+           })
+       }
+     }
+   }
+   ```
+
+   加载的html文件。
+   ```html
+   <!DOCTYPE html>
+   <html>
+   <head>
+     <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
+   </head>
+   <body>
+     <form id="upload-form" enctype="multipart/form-data">
+       <input type="file" id="upload" name="upload"/>
+       </form>
+   </body>
+   </html>
+   ```
 
 ### onResourceLoad<sup>9+</sup>
 
