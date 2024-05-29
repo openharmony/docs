@@ -3050,7 +3050,7 @@
     - C API
       - 模块
         - [Rawfile](reference/apis-localization-kit/rawfile.md)
-        - [Resourcemanager](reference/apis-localization-kit/Resourcemanager.md)
+        - [Resourcemanager](reference/apis-localization-kit/resourcemanager.md)
       - 头文件
         - [raw_dir.h](reference/apis-localization-kit/raw__dir_8h.md)
         - [raw_file_manager.h](reference/apis-localization-kit/raw__file__manager_8h.md)
