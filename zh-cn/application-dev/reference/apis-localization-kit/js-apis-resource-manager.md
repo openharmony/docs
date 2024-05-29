@@ -223,10 +223,13 @@ import { BusinessError } from '@ohos.base';
 <!--RP1-->
 | 名称                   | 值  | 说明   |
 | -------------------- | ---- | ---- |
+| DEVICE_TYPE_PHONE    | 0x00 | 手机。   |
 | DEVICE_TYPE_TABLET   | 0x01 | 平板。   |
 | DEVICE_TYPE_CAR      | 0x02 | 汽车。   |
+| DEVICE_TYPE_PC       | 0x03 | PC。   |
 | DEVICE_TYPE_TV       | 0x04 | 电视。  |
 | DEVICE_TYPE_WEARABLE | 0x06 | 穿戴。   |
+| DEVICE_TYPE_2IN1     | 0x07 | 2in1。   |
 <!--RP1End-->
 
 ## ScreenDensity
@@ -303,6 +306,8 @@ import { BusinessError } from '@ohos.base';
 
 表示rawfile文件所在hap的的descriptor信息。
 
+**元服务API**：从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Global.ResourceManager
 
 **参数：**
@@ -316,6 +321,8 @@ import { BusinessError } from '@ohos.base';
 ## Resource<sup>9+</sup>
 
 表示的资源信息。
+
+**元服务API**：从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Global.ResourceManager
 
