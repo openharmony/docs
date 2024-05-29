@@ -44,6 +44,7 @@ import formInfo from '@ohos.app.form.formInfo';
 | customizeData    | Record\<string, string>      | 是    | 否     | 卡片用户数据。         |
 | isDynamic<sup>10+</sup>      | boolean               | 是    | 否     | 卡片是否为动态卡片。<br/>仅ArkTS卡片区分动静态卡片，JS卡片均为动态卡片。               |
 | transparencyEnabled<sup>11+</sup>      | boolean               | 是    | 否     | 卡片是否支持设置背景透明度。<br/>ArkTS卡片由用户配置决定是否支持，JS卡片均不支持。               |
+| supportShapes    | Array&lt;number&gt;      | 是    | 否     | 卡片支持的形状。具体可选形状参考[FormShape](#formshape)   |
 
 ## FormType
 
@@ -139,6 +140,16 @@ import formInfo from '@ohos.app.form.formInfo';
 | DIMENSION_1_1<sup>11+<sup>      | 6   | 1 x 1 form。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
 | DIMENSION_6_4<sup>12+<sup>      | 7   | 6 x 4 form。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。|
 
+##  FormShape
+
+定义卡片形状枚举。
+
+**系统能力：** SystemCapability.Ability.Form
+
+| 名称        | 值   | 说明         |
+| ----------- | ---- | ------------ |
+| RECT        | 1   | 方形 form。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。|
+| CIRCLE      | 2   | 圆形 form。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。|
 
 ## FormInfoFilter
 
@@ -153,6 +164,7 @@ import formInfo from '@ohos.app.form.formInfo';
 | bundleName    | string    |否    | 选填，仅保留含bundleName与提供值相符的卡片信息，<br>未填写时则不通过bundleName进行过滤。   |
 | moduleName    | string    |否    | 选填，仅保留含moduleName与提供值相符的卡片信息，<br>未填写时则不通过moduleName进行过滤。   |
 | supportedDimensions | Array<number> |否    | 选填，仅保留含supportedDimensions提供值相符的卡片信息，<br>未填写时则不通过supportedDimensions进行过滤。   |
+| supportedShape | Array<number> |否    | 选填，仅保留含supportedShapes提供值相符的卡片信息，<br>未填写时则不通过supportedShapes进行过滤。   |
 
 ## VisibilityType
 
