@@ -118,7 +118,7 @@ onHoverStatusChange(callback: (event: { foldStatus: FoldStatus,isHoverMode:boole
 | foldStatus       | [FoldStatus](ts-appendix-enums.md#foldstatus11)             | 是   | 当前设备的折叠状态。 |
 | isHoverMode      | boolean                                                     | 是   | 当前是否悬停模式。  |
 | appRotation      | [AppRotation](ts-appendix-enums.md#approtation12)           | 是   | 当前应用方向。    |
-| windowMode       | [WindowMode](../js-apis-window-sys.md#windowmode7)          | 是   | 当前屏幕模式。    |
+| windowMode       | WindowMode         | 是   | 当前屏幕模式。    |
 
 ## 示例
 
