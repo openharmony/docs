@@ -2108,4 +2108,3 @@ wifiManager.on("hotspotStaLeave", recvHotspotStaLeaveFunc);
 wifiManager.off("hotspotStaLeave", recvHotspotStaLeaveFunc);
 
 ```
-
