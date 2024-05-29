@@ -112,19 +112,6 @@ onRefreshing(callback: () => void)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-
-## RefreshStatus枚举说明
-
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
-
-| 名称       | 具体值       | 描述                   |
-| -------- | -------- | -------------------- |
-| Inactive | 0 | 默认未下拉状态。             |
-| Drag     | 1 | 下拉中，下拉距离小于刷新距离。      |
-| OverDrag | 2 | 下拉中，下拉距离超过刷新距离。      |
-| Refresh  | 3 | 下拉结束，回弹至刷新距离，进入刷新状态。 |
-| Done     | 4 | 刷新结束，返回初始状态（顶部）。     |
-
 ### onOffsetChange<sup>12+</sup>
 
 onOffsetChange(callback: Callback\<number>)
@@ -139,9 +126,25 @@ onOffsetChange(callback: Callback\<number>)
 | ------ | --------------------------------------- | ---- | ---------- |
 | value  | number | 是   | 下拉距离。<br/>单位：vp |
 
+
+## RefreshStatus枚举说明
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+| 名称       | 具体值       | 描述                   |
+| -------- | -------- | -------------------- |
+| Inactive | 0 | 默认未下拉状态。             |
+| Drag     | 1 | 下拉中，下拉距离小于刷新距离。      |
+| OverDrag | 2 | 下拉中，下拉距离超过刷新距离。      |
+| Refresh  | 3 | 下拉结束，回弹至刷新距离，进入刷新状态。 |
+| Done     | 4 | 刷新结束，返回初始状态（顶部）。     |
+
+
 ## 示例 
+
 ### 示例1
-刷新组件使用默认样式：
+
+刷新组件使用默认样式。
 
 ```ts
 // xxx.ets
@@ -195,7 +198,7 @@ struct RefreshExample {
 
 ### 示例2 
 
-自定义刷新组件：
+自定义刷新组件。
 
 ```ts
 // xxx.ets
