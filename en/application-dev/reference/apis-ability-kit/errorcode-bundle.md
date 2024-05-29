@@ -81,7 +81,7 @@ When a user-related API is called, the user ID passed in does not exist.
 
 **Error Message**
 
-The specified app ID is empty string.
+The specified app ID is an empty string.
 
 **Description**
 
@@ -252,7 +252,7 @@ Ensure that the version of the bundle to install is not earlier than the version
 
 **Error Message**
 
-Failed to install because the dependent module does not exist.
+Failed to install the HAP or HSP because the dependent module does not exist.
 
 **Description**
 
@@ -472,7 +472,7 @@ The application is a system application and the **AllowAppDataNotCleared** field
 
 **Error Message**
 
-Failed to install the HAP because the overlay check of the HAP is failed.
+Failed to install the HAP because the overlay check of the HAP failed.
 
 **Description**
 
@@ -566,7 +566,7 @@ Check whether the application contains only modules with the overlay feature.
 
 **Error Message**
 
-Failed to install the HSP because lacks appropriate permissions.
+Failed to install the HSP due to the lack of required permission.
 
 **Description**
 
@@ -584,7 +584,7 @@ Configure the **AllowAppShareLibrary** privilege for the shared library, re-sign
 
 **Error Message**
 
-The version of shared bundle is dependent on other applications.
+The version of the shared bundle is dependent on other applications.
 
 **Description**
 
@@ -620,7 +620,7 @@ The shared library to uninstall does not exist.
 
 **Error Message**
 
-Failed to install because disallow install a shared bundle by hapFilePaths.
+Failed to install the HSP because disallow install a shared bundle by hapFilePaths.
 
 **Description**
 
@@ -656,7 +656,7 @@ During application uninstall, the bundle name of an inter-application shared lib
 
 **Error Message**
 
-Failed to install because enterprise device management disallow install.
+Failed to install the HAP because enterprise device management disallow install.
 
 **Description**
 
@@ -732,7 +732,7 @@ Set the **isolationMode** field in the HAP based on the isolation mode of the de
 
 **Error Message**
 
-Failed to uninstall because enterprise device management disallow uninstall.
+Failed to uninstall the HAP because enterprise device management disallow uninstall.
 
 **Description**
 
@@ -769,7 +769,7 @@ The version of the application to be updated is not later than the current versi
 ## 17700048 Code Signature Verification Failure
 **Error Message**
 
-Failed to install the HAP because the code signature verification is failed.
+Failed to install the HAP because the code signature verification failed.
 
 **Description**
 
@@ -809,7 +809,7 @@ Ensure that the HAP or HSP to be installed belongs to the current application.
 
 **Error Message**
 
-Failed to install the HAP because enterprise normal/MDM bundle cannot be installed on non-enterprise device.
+Failed to install the HAP because an enterprise normal/MDM bundle cannot be installed on non-enterprise device.
 
 **Description**
 
@@ -829,7 +829,7 @@ The device is not an enterprise device.
 
 **Error Message**
 
-Failed to install the HAP because the distribution type of caller application is not enterprise_mdm.
+Failed to install the HAP because the distribution type of the caller application is not enterprise_mdm.
 
 **Description**
 
@@ -847,7 +847,7 @@ Ensure that the signature file of the application is correctly configured.
 
 **Error Message**
 
-Failed to install the HAP because debug bundle cannot be installed under non-developer mode.
+Failed to install the HAP because a debug bundle can be installed only in developer mode.
 
 **Description**
 
@@ -865,7 +865,7 @@ Run the **hdc shell param get const.security.developermode.state** command. If *
 
 **Error Message**
 
-Not app gallery call.
+The caller is not AppGallery.
 
 **Description**
 
@@ -897,13 +897,13 @@ The application has applied for an incorrect permission, causing the installatio
 **Solution**
 
 1. Check whether the application has applied for the [MDM permission](../../security/AccessToken/permissions-for-mdm-apps.md), which is available only for MDM applications.
-2. Check whether the [permission level](../../security/AccessToken/permissions-for-all.md) is higher than the [application's APL](../../security/app-provision-structure.md#bundle-info). If the application uses the default APL, which is normal, it can require the system_basic or system_core permission only. Change the API in the **UnsgnedDebugProfileTemplate.json** file to **system_basic** or **system_core**, and sign and pack the application again.
+2. Check whether the requested permission is open. For details, see [Permission List](../../security/AccessToken/permissions-for-all.md).
 
 ## 17700201 .abc File Verification Failure
 
 **Error Message**
 
-Failed to verify abc.
+Failed to verify the abc file.
 
 **Description**
 
@@ -921,7 +921,7 @@ Pass in the path of a trusted .abc file.
 
 **Error Message**
 
-Failed to delete abc.
+Failed to delete the abc file.
 
 **Description**
 
@@ -934,3 +934,4 @@ The .abc file does not exist.
 **Solution**
 
 Pass in a valid path of the .abc file.
+

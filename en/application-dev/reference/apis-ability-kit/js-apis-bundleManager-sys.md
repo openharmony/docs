@@ -87,6 +87,7 @@ Enumerates the types of profiles (also called application files).
 | -------------- | ---- | --------------- |
 | INTENT_PROFILE  | 1    | Profile of the InsightIntent framework.   |
 
+
 ## APIs
 
 ### bundleManager.getBundleInfo
@@ -1921,7 +1922,7 @@ Enables or disables an ability. This API uses an asynchronous callback to return
 | Name   | Type       | Mandatory| Description                                 |
 | -------- | ----------- | ---- | ------------------------------------- |
 | info     | [AbilityInfo](js-apis-bundleManager-abilityInfo.md) | Yes  | Information about the target ability.             |
-| isEnabled| boolean     | Yes  | Whether to enable the ability. The value **true** means to enable the ability, and **false** means to disable the ability.|
+| isEnabled| boolean     | Yes  | Whether to enable the ability. The value **true** means to enable the ability, and **false** means to disable the ability. |
 | callback | AsyncCallback\<void> | Yes| Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
@@ -1985,7 +1986,7 @@ Enables or disables an ability. This API uses a promise to return the result.
 | Name   | Type       | Mandatory| Description                                 |
 | -------- | ----------- | ---- | ------------------------------------- |
 | info     | [AbilityInfo](js-apis-bundleManager-abilityInfo.md) | Yes  | Information about the target ability.                  |
-| isEnabled| boolean     | Yes  | Whether to enable the ability. The value **true** means to enable the ability, and **false** means to disable the ability.|
+| isEnabled| boolean     | Yes  | Whether to enable the ability. The value **true** means to enable the ability, and **false** means to disable the ability. |
 
 **Return value**
 
@@ -2052,7 +2053,7 @@ Enables or disables an ability. This API returns the result synchronously.
 | Name   | Type       | Mandatory| Description                                 |
 | -------- | ----------- | ---- | ------------------------------------- |
 | info     | [AbilityInfo](js-apis-bundleManager-abilityInfo.md) | Yes  | Information about the target ability.             |
-| isEnabled| boolean     | Yes  | Whether to enable the ability. The value **true** means to enable the ability, and **false** means to disable the ability.|
+| isEnabled| boolean     | Yes  | Whether to enable the ability. The value **true** means to enable the ability, and **false** means to disable the ability. |
 
 **Error codes**
 
@@ -2244,7 +2245,7 @@ try {
 
 ### bundleManager.isAbilityEnabled
 
-isAbilityEnabled(info: AbilityInfo], callback: AsyncCallback\<boolean>): void
+isAbilityEnabled(info: AbilityInfo, callback: AsyncCallback\<boolean>): void
 
 Checks whether an ability is enabled. This API uses an asynchronous callback to return the result.
 
@@ -3954,7 +3955,7 @@ For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md)
 | ID| Error Message                                                   |
 | -------- | ---------------------------------------------------------- |
 | 17700001 | The specified bundleName is not found.                     |
-| 17700053 | Not app gallery call.                                      |
+| 17700053 | The caller is not AppGallery.                                      |
 
 **Example**
 

@@ -45,7 +45,7 @@ For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md)
 
 | ID| Error Message                               |
 | ------ | -------------------------------------- |
-| 17700005 |  The specified app ID is empty string.  |
+| 17700005 |  The specified app ID is an empty string.  |
 
 **Example**
 
@@ -97,7 +97,7 @@ For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md)
 
 | ID| Error Message                               |
 | ------ | -------------------------------------- |
-| 17700005 |  The specified app ID is empty string.  |
+| 17700005 |  The specified app ID is an empty string.  |
 
 **Example**
 
@@ -150,7 +150,7 @@ For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md)
 
 | ID| Error Message                               |
 | ------ | -------------------------------------- |
-| 17700005 |  The specified app ID is empty string.  |
+| 17700005 |  The specified app ID is an empty string.  |
 
 **Example**
 
@@ -200,7 +200,7 @@ For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md)
 
 | ID| Error Message                               |
 | ------ | -------------------------------------- |
-| 17700005 |  The specified app ID is empty string.  |
+| 17700005 |  The specified app ID is an empty string.  |
 
 **Example**
 
@@ -249,7 +249,7 @@ For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md)
 
 | ID| Error Message                               |
 | ------ | -------------------------------------- |
-| 17700005 |  The specified app ID is empty string.  |
+| 17700005 |  The specified app ID is an empty string.  |
 
 **Example**
 
@@ -304,7 +304,7 @@ For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md)
 
 | ID| Error Message                               |
 | ------ | -------------------------------------- |
-| 17700005 |  The specified app ID is empty string.  |
+| 17700005 |  The specified app ID is an empty string.  |
 
 **Example**
 
@@ -354,7 +354,7 @@ For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md)
 
 | ID| Error Message                               |
 | ------ | -------------------------------------- |
-| 17700005 |  The specified app ID is empty string.  |
+| 17700005 |  The specified app ID is an empty string.  |
 
 **Example**
 
@@ -403,7 +403,7 @@ For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md)
 
 | ID| Error Message                               |
 | ------ | -------------------------------------- |
-| 17700005 |  The specified app ID is empty string.  |
+| 17700005 |  The specified app ID is an empty string.  |
 
 **Example**
 
@@ -450,7 +450,7 @@ For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md)
 
 | ID| Error Message                               |
 | ------ | -------------------------------------- |
-| 17700005 |  The specified app ID is empty string.  |
+| 17700005 |  The specified app ID is an empty string.  |
 
 **Example**
 

@@ -20,18 +20,18 @@ Enumerates the bundle flags, which indicate the type of bundle information to ob
 
  **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
-| Name                                     | Value        | Description                                                        |
-| ----------------------------------------- | ---------- | ------------------------------------------------------------ |
-| GET_BUNDLE_INFO_DEFAULT                   | 0x00000000 | Used to obtain the default bundle information. The obtained information does not contain information about the signature, application, HAP module, ability, ExtensionAbility, or permission.|
-| GET_BUNDLE_INFO_WITH_APPLICATION          | 0x00000001 | Used to obtain the bundle information with application information. The obtained information does not contain information about the signature, HAP module, ability, ExtensionAbility, or permission.|
-| GET_BUNDLE_INFO_WITH_HAP_MODULE           | 0x00000002 | Used to obtain the bundle information with HAP module information. The obtained information does not contain information about the signature, application, ability, ExtensionAbility, or permission.|
-| GET_BUNDLE_INFO_WITH_ABILITY              | 0x00000004 | Used to obtain the bundle information with ability information. The obtained information does not contain information about the signature, application, ExtensionAbility, or permission. It must be used together with **GET_BUNDLE_INFO_WITH_HAP_MODULE**.|
-| GET_BUNDLE_INFO_WITH_EXTENSION_ABILITY    | 0x00000008 | Used to obtain the bundle information with ExtensionAbility information. The obtained information does not contain information about the signature, application, ability, or permission. It must be used together with **GET_BUNDLE_INFO_WITH_HAP_MODULE**.|
-| GET_BUNDLE_INFO_WITH_REQUESTED_PERMISSION | 0x00000010 | Used to obtain the bundle information with permission information. The obtained information does not contain information about the signature, application, HAP module, ability, or ExtensionAbility.|
-| GET_BUNDLE_INFO_WITH_METADATA             | 0x00000020 | Used to obtain the metadata contained in the application, HAP module, ability, or ExtensionAbility information. It must be used together with **GET_BUNDLE_INFO_WITH_APPLICATION**, **GET_BUNDLE_INFO_WITH_HAP_MODULE**, **GET_BUNDLE_INFO_WITH_ABILITY**, and **GET_BUNDLE_INFO_WITH_EXTENSION_ABILITY**.|
-| GET_BUNDLE_INFO_WITH_DISABLE              | 0x00000040 | Used to obtain the information about disabled bundles and abilities of a bundle. The obtained information does not contain information about the signature, application, HAP module, ability, ExtensionAbility, or permission.|
-| GET_BUNDLE_INFO_WITH_SIGNATURE_INFO       | 0x00000080 | Used to obtain the bundle information with signature information. The obtained information does not contain information about the application, HAP module, ability, ExtensionAbility, or permission.|
-| GET_BUNDLE_INFO_WITH_MENU<sup>11+</sup>   | 0x00000100 | Used to obtain the bundle information with the file context menu configuration. It must be used together with **GET_BUNDLE_INFO_WITH_HAP_MODULE**.|
+| Name                                         | Value        | Description                                                        |
+| --------------------------------------------- | ---------- | ------------------------------------------------------------ |
+| GET_BUNDLE_INFO_DEFAULT                       | 0x00000000 | Used to obtain the default bundle information. The obtained information does not contain information about the signature, application, HAP module, ability, ExtensionAbility, or permission.|
+| GET_BUNDLE_INFO_WITH_APPLICATION              | 0x00000001 | Used to obtain the bundle information with application information. The obtained information does not contain information about the signature, HAP module, ability, ExtensionAbility, or permission.|
+| GET_BUNDLE_INFO_WITH_HAP_MODULE               | 0x00000002 | Used to obtain the bundle information with HAP module information. The obtained information does not contain information about the signature, application, ability, ExtensionAbility, or permission.|
+| GET_BUNDLE_INFO_WITH_ABILITY                  | 0x00000004 | Used to obtain the bundle information with ability information. The obtained information does not contain information about the signature, application, ExtensionAbility, or permission. It must be used together with **GET_BUNDLE_INFO_WITH_HAP_MODULE**.|
+| GET_BUNDLE_INFO_WITH_EXTENSION_ABILITY        | 0x00000008 | Used to obtain the bundle information with ExtensionAbility information. The obtained information does not contain information about the signature, application, ability, or permission. It must be used together with **GET_BUNDLE_INFO_WITH_HAP_MODULE**.|
+| GET_BUNDLE_INFO_WITH_REQUESTED_PERMISSION     | 0x00000010 | Used to obtain the bundle information with permission information. The obtained information does not contain information about the signature, application, HAP module, ability, or ExtensionAbility.|
+| GET_BUNDLE_INFO_WITH_METADATA                 | 0x00000020 | Used to obtain the metadata contained in the application, HAP module, ability, or ExtensionAbility information. It must be used together with **GET_BUNDLE_INFO_WITH_APPLICATION**, **GET_BUNDLE_INFO_WITH_HAP_MODULE**, **GET_BUNDLE_INFO_WITH_ABILITY**, and **GET_BUNDLE_INFO_WITH_EXTENSION_ABILITY**.|
+| GET_BUNDLE_INFO_WITH_DISABLE                  | 0x00000040 | Used to obtain the information about disabled bundles and abilities of a bundle. The obtained information does not contain information about the signature, application, HAP module, ability, ExtensionAbility, or permission.|
+| GET_BUNDLE_INFO_WITH_SIGNATURE_INFO           | 0x00000080 | Used to obtain the bundle information with signature information. The obtained information does not contain information about the application, HAP module, ability, ExtensionAbility, or permission.|
+| GET_BUNDLE_INFO_WITH_MENU<sup>11+</sup>       | 0x00000100 | Used to obtain the bundle information with the file context menu configuration. It must be used together with **GET_BUNDLE_INFO_WITH_HAP_MODULE**.|
 
 ### ExtensionAbilityType
 
@@ -52,7 +52,7 @@ Enumerates the types of ExtensionAbilities.
 | WALLPAPER        | 8   | WallpaperExtensionAbility: provides APIs to implement the home screen wallpaper. This ability is reserved.|
 | BACKUP           |  9  | [BackupExtensionAbility](../apis-core-file-kit/js-apis-application-backupExtensionAbility.md): provides APIs to implement application data backup and restore.|
 | WINDOW           |  10 | [WindowExtensionAbility](../apis-arkui/js-apis-application-windowExtensionAbility-sys.md): allows system applications to display UIs of other applications.|
-| ENTERPRISE_ADMIN |  11 | [EnterpriseAdminExtensionAbility](../apis-mdm-kit/js-apis-EnterpriseAdminExtensionAbility-sys.md): provides APIs for processing enterprise management events, such as application installation events on devices and events indicating too many incorrect screen-lock password attempts.|
+| ENTERPRISE_ADMIN |  11 | [EnterpriseAdminExtensionAbility](../apis-mdm-kit/js-apis-EnterpriseAdminExtensionAbility-sys.md.md): provides APIs for processing enterprise management events, such as application installation events on devices and events indicating too many incorrect screen-lock password attempts.|
 | THUMBNAIL        | 13  | ThumbnailExtensionAbility: provides thumbnails for files. This ability is reserved.|
 | PREVIEW          | 14  | PreviewExtensionAbility: provides APIs for file preview so that other applications can be embedded and displayed in the current application. This ability is reserved.|
 | PRINT<sup>10+</sup> | 15 | PrintExtensionAbility: provides APIs for printing images. Printing documents is not supported yet.|
@@ -613,7 +613,6 @@ For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md)
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700002 | The specified moduleName is not existed.                      |
 | 17700003 | The specified extensionAbilityName not existed.            |
 | 17700024 | Failed to get the profile because there is no profile in the HAP. |
@@ -706,7 +705,7 @@ For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md)
 
 | ID| Error Message                             |
 | -------- | ------------------------------------- |
-| 17700201 | verifyAbc failed. |
+| 17700201 | Failed to verify the abc file. |
 
 **Example**
 
@@ -759,7 +758,7 @@ For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md)
 
 | ID| Error Message                           |
 | -------- | --------------------------------------|
-| 17700201 | verifyAbc failed. |
+| 17700201 | Failed to verify the abc file. |
 
 **Example**
 
@@ -809,7 +808,7 @@ For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md)
 
 | ID| Error Message                           |
 | -------- | --------------------------------------|
-| 17700202 | deleteAbc failed. |
+| 17700202 | Failed to delete the abc file. |
 
 **Example**
 

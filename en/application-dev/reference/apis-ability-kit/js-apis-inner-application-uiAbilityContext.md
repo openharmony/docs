@@ -542,6 +542,10 @@ terminateSelf(callback: AsyncCallback&lt;void&gt;): void
 
 Terminates this ability. This API uses an asynchronous callback to return the result.
 
+> **NOTE**
+> 
+> After this API is called, missions in Recents are not cleared by default. To clear missions, set [removeMissionAfterTerminate] (../../quick-start/module-configuration-file.md#abilities) to **true**.
+
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
@@ -597,6 +601,10 @@ terminateSelf(): Promise&lt;void&gt;
 
 Terminates this ability. This API uses a promise to return the result.
 
+> **NOTE**
+> 
+> After this API is called, missions in Recents are not cleared by default. To clear missions, set [removeMissionAfterTerminate] (../../quick-start/module-configuration-file.md#abilities) to **true**.
+
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
@@ -651,6 +659,10 @@ export default class EntryAbility extends UIAbility {
 terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback&lt;void&gt;): void
 
 Terminates this ability. If the ability is started by calling [startAbilityForResult](#uiabilitycontextstartabilityforresult), the result is returned to the caller in the form of an asynchronous callback when **terminateSelfWithResult** is called. Otherwise, no result is returned to the caller when **terminateSelfWithResult** is called.
+
+> **NOTE**
+> 
+> After this API is called, missions in Recents are not cleared by default. To clear missions, set [removeMissionAfterTerminate] (../../quick-start/module-configuration-file.md#abilities) to **true**.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -720,6 +732,10 @@ export default class EntryAbility extends UIAbility {
 terminateSelfWithResult(parameter: AbilityResult): Promise&lt;void&gt;
 
 Terminates this ability. If the ability is started by calling [startAbilityForResult](#uiabilitycontextstartabilityforresult), the result is returned to the caller in the form of a promise when **terminateSelfWithResult** is called. Otherwise, no result is returned to the caller when **terminateSelfWithResult** is called.
+
+> **NOTE**
+> 
+> After this API is called, missions in Recents are not cleared by default. To clear missions, set [removeMissionAfterTerminate] (../../quick-start/module-configuration-file.md#abilities) to **true**.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1616,7 +1632,7 @@ Implicitly starts a given type of UIExtensionAbility. This API uses an asynchron
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Type of the UIExtensionAbility to start.|
 | wantParam | Record&lt;string,&nbsp;Object&gt; | Yes| Extended parameter.|
-| abilityStartCallback | [AbilityStartCallback](js-apis-inner-application-abilityStartCallback.md) | Yes| Callback to be invoked when the startup fails.|
+| abilityStartCallback | [AbilityStartCallback](js-apis-inner-application-abilityStartCallback.md) | Yes| Callback used to return the result.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Error codes**
@@ -1679,7 +1695,7 @@ Implicitly starts a given type of UIExtensionAbility. This API uses a promise to
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Type of the UIExtensionAbility to start.|
 | wantParam | Record&lt;string,&nbsp;Object&gt; | Yes| Extended parameter.|
-| abilityStartCallback | [AbilityStartCallback](js-apis-inner-application-abilityStartCallback.md) | Yes| Callback to be invoked when the startup fails.|
+| abilityStartCallback | [AbilityStartCallback](js-apis-inner-application-abilityStartCallback.md) | Yes| Callback used to return the result.|
 
 **Return value**
 

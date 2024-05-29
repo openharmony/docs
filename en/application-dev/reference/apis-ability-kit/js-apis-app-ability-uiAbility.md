@@ -237,7 +237,6 @@ onContinue(wantParam: Record&lt;string, Object&gt;): AbilityConstant.OnContinueR
 
 Called to save data during the UIAbility migration preparation process.
 
-
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
@@ -252,7 +251,7 @@ Called to save data during the UIAbility migration preparation process.
 
 | Type| Description|
 | -------- | -------- |
-| [AbilityConstant.OnContinueResult](js-apis-app-ability-abilityConstant.md#abilityconstantoncontinueresult)  | Continuation result.|
+| [AbilityConstant.OnContinueResult](js-apis-app-ability-abilityConstant.md#abilityconstantoncontinueresult) | Continuation result.|
 
 **Example**
 
@@ -1089,10 +1088,11 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
   ```
 
 ## OnReleaseCallback
+### (msg: string)
 
+(msg: string): void
 
 Defines the callback that is invoked when the stub on the target UIAbility is disconnected.
-
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -1105,9 +1105,11 @@ Defines the callback that is invoked when the stub on the target UIAbility is di
 
 ## OnRemoteStateChangeCallback<sup>10+</sup>
 
+### (msg: string)
+
+(msg: string): void
 
 Defines the callback that is invoked when the remote UIAbility state changes in the collaboration scenario.
-
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -1117,12 +1119,13 @@ Defines the callback that is invoked when the remote UIAbility state changes in 
 | --- | ----- | --- | -------- |
 | msg | string | Yes| Message used for disconnection.| 
 
-
 ## CalleeCallback
 
+### (indata: rpc.MessageSequence)
+
+(indata: rpc.MessageSequence): rpc.Parcelable
 
 Defines the callback of the registration message notification of the UIAbility.
-
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
