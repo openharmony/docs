@@ -377,7 +377,7 @@ napi_status napi_release_threadsafe_function(napi_threadsafe_function function);
         <td>uv_stop</td>
     </tr>
     <tr>
-        <td rowspan="4"><a href="#libuv中的Handles和Requests">handle概念及相关接口</a></td>
+        <td rowspan="4"><a href="#Handles和Requests">handle概念及相关接口</a></td>
         <td>uv_poll_*</td>
     </tr>
     <tr>
@@ -390,7 +390,7 @@ napi_status napi_release_threadsafe_function(napi_threadsafe_function function);
         <td>uv_signal_*</td>
     </tr>
     <tr>
-        <td rowspan="5"><a href="#libuv中的Handles和Requests">Requests概念及相关接口</a></td>\
+        <td rowspan="5"><a href="#Handles和Requests">Requests概念及相关接口</a></td>\
         <td>uv_fs_*</td>
     </tr>
     <tr>
@@ -517,7 +517,7 @@ int stop_loop(uv_loop_t* loop)
 
 **注：** 该代码是基于所有的handle都按照<a href="#wrap_handle">下述方式</a>封装编写的。
 
-### <a id="libuv中的Handles和Requests">libuv中的Handles和Requests </a>
+### <a id="Handles和Requests">libuv中的Handles和Requests </a>
 
 **Handle：** 表示一个持久性的对象，通常挂载到loop中对应的handle_queue队列上。如果handle处于活跃状态，每次`uv_run`都会处理handle中的回调函数。 
 
