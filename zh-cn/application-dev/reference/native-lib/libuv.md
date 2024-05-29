@@ -419,6 +419,7 @@ napi_status napi_release_threadsafe_function(napi_threadsafe_function function);
 </table>
 
 
+
 ### 线程安全函数
 
 在libuv中，由于涉及到大量的异步任务，稍有不慎就会陷入到多线程问题中。在这里，我们对libuv中常见的线程安全函数和非线程安全函数做了汇总。若开发者在多线程编程中调用了非线程安全的函数，势必要对其进行加锁保护或者保证代码的正确运行时序。否则将陷入到crash问题中。
@@ -516,7 +517,7 @@ int stop_loop(uv_loop_t* loop)
 
 **注：** 该代码是基于所有的handle都按照<a href="#wrap_handle">下述方式</a>封装编写的。
 
-### <a id="libuv中的Handles和Requests">libuv中的Handles和Requests</a>
+### <a id="libuv中的Handles和Requests">libuv中的Handles和Requests </a>
 
 **Handle：** 表示一个持久性的对象，通常挂载到loop中对应的handle_queue队列上。如果handle处于活跃状态，每次`uv_run`都会处理handle中的回调函数。 
 
