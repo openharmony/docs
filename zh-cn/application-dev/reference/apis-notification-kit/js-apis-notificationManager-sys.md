@@ -361,7 +361,7 @@ notificationSlotArray[0] = notificationSlot;
 notificationManager.addSlots(notificationSlotArray).then(() => {
 	console.info("addSlots success");
 }).catch((err: Base.BusinessError) => {
-    console.error(`addSlot fail: ${JSON.stringify(err)}`);
+    console.error(`addSlots fail: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -404,9 +404,9 @@ import Base from '@ohos.base';
 
 let setNotificationEnableCallback = (err: Base.BusinessError): void => {
     if (err) {
-        console.error(`setNotificationEnableCallback failed, code is ${err.code}, message is ${err.message}`);
+        console.error(`setNotificationEnable failed, code is ${err.code}, message is ${err.message}`);
     } else {
-        console.info("setNotificationEnableCallback success");
+        console.info("setNotificationEnable success");
     }
 }
 let bundle: notificationManager.BundleOption = {
@@ -2020,7 +2020,7 @@ let isSupportDoNotDisturbModeCallback = (err: Base.BusinessError, data: boolean)
     if (err) {
         console.error(`isSupportDoNotDisturbMode failed, code is ${err.code}, message is ${err.message}`);
     } else {
-        console.info("isSupportDoNotDisturbMode success");
+        console.info("isSupportDoNotDisturbMode success, data: " + JSON.stringify(data));
     }
 }
 
@@ -2061,9 +2061,9 @@ isSupportDoNotDisturbMode(): Promise\<boolean\>
 import Base from '@ohos.base';
 
 notificationManager.isSupportDoNotDisturbMode().then((data: boolean) => {
-	console.info("supportDoNotDisturbMode success, data: " + JSON.stringify(data));
+	console.info("isSupportDoNotDisturbMode success, data: " + JSON.stringify(data));
 }).catch((err: Base.BusinessError) => {
-    console.error(`supportDoNotDisturbMode fail: ${JSON.stringify(err)}`);
+    console.error(`isSupportDoNotDisturbMode fail: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -2202,7 +2202,7 @@ let setDistributedEnableByBundleCallback = (err: Base.BusinessError): void => {
     if (err) {
         console.error(`setDistributedEnableByBundle failed, code is ${err.code}, message is ${err.message}`);
     } else {
-        console.info("enableDistributedByBundle success");
+        console.info("setDistributedEnableByBundle success");
     }
 };
 let bundle: notificationManager.BundleOption = {
@@ -2890,8 +2890,8 @@ isNotificationSlotEnabled(bundle: BundleOption, type: SlotType, callback: AsyncC
 ```ts
 import Base from '@ohos.base';
 
-// isNotificationSlotEnabled
-let getEnableSlotCallback = (err: Base.BusinessError, data: boolean): void => {
+// isNotificationSlotEnabledCallback
+let isNotificationSlotEnabledCallback = (err: Base.BusinessError, data: boolean): void => {
     if (err) {
         console.error(`isNotificationSlotEnabled failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -2902,7 +2902,7 @@ let getEnableSlotCallback = (err: Base.BusinessError, data: boolean): void => {
 notificationManager.isNotificationSlotEnabled(
     { bundle: "ohos.samples.notification", },
     notificationManager.SlotType.SOCIAL_COMMUNICATION,
-    getEnableSlotCallback);
+    isNotificationSlotEnabledCallback);
 ```
 
 ## notificationManager.isNotificationSlotEnabled
@@ -2994,14 +2994,14 @@ import Base from '@ohos.base';
 
 let userId: number = 100;
 let enable: boolean = true;
-let callback = (err: Base.BusinessError): void => {
+let setSyncNotificationEnabledWithoutAppCallback = (err: Base.BusinessError): void => {
     if (err) {
         console.error(`setSyncNotificationEnabledWithoutApp failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("setSyncNotificationEnabledWithoutApp success");
     }
 }
-notificationManager.setSyncNotificationEnabledWithoutApp(userId, enable, callback);
+notificationManager.setSyncNotificationEnabledWithoutApp(userId, enable, setSyncNotificationEnabledWithoutAppCallback);
 ```
 
 
@@ -3094,9 +3094,9 @@ import Base from '@ohos.base';
 let userId: number = 100;
 let getSyncNotificationEnabledWithoutAppCallback = (err: Base.BusinessError, data: boolean): void => {
     if (err) {
-        console.info('getSyncNotificationEnabledWithoutAppCallback, err:' + err);
+        console.info(`getSyncNotificationEnabledWithoutAppCallback failed, code is ${err.code}, message is ${err.message}`);
     } else {
-        console.info('getSyncNotificationEnabledWithoutAppCallback, data:' + data);
+        console.info("getSyncNotificationEnabledWithoutAppCallback success, data: " + JSON.stringify(data));
     }
 }
 notificationManager.getSyncNotificationEnabledWithoutApp(userId, getSyncNotificationEnabledWithoutAppCallback);
@@ -3145,7 +3145,7 @@ import Base from '@ohos.base';
 
 let userId: number = 100;
 notificationManager.getSyncNotificationEnabledWithoutApp(userId).then((data: boolean) => {
-  console.info('getSyncNotificationEnabledWithoutApp, data:' + data);
+  console.info('getSyncNotificationEnabledWithoutApp, data: ' + JSON.stringify(data));
 }).catch((err: Base.BusinessError) => {
     console.error(`getSyncNotificationEnabledWithoutApp fail: ${JSON.stringify(err)}`);
 });
@@ -3388,7 +3388,7 @@ subscribeSystemLiveView(subscriber: SystemLiveViewSubscriber): Promise\<void>;
 import Base from '@ohos.base';
 
 let onResponseCallback = (id:number, option:notificationManager.ButtonOptions) => {
-    console.info("response callback: " + JSON.stringify(option) + "notificationId" + id);
+    console.info("onResponseCallback: " + JSON.stringify(option) + "notificationId" + id);
 }
 let subscriber: notificationManager.SystemLiveViewSubscriber  = {
     onResponse: onResponseCallback,
