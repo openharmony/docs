@@ -6,7 +6,7 @@ Generic Attribute Profile (GATT) provides profile discovery and description serv
 ## When to Use
 
 You can use the APIs provided by the **gatt** module to:
-- Connect to the server and read and write data in the server.
+- Connect to the server and read and write data.
 - Manage services on the server and respond to the requests from the client.
 
 ## Available APIs
@@ -56,7 +56,7 @@ The following table describes the related APIs.
 
 ## How to Develop
 
-### Reading and Writing Data in the Server
+### Reading and Writing Data on the Server
 1. Import the **ble** module.
 2. Create a **gattClient** instance.
 3. Connect to the server.
@@ -71,7 +71,7 @@ Example:
 import ble from '@ohos.bluetooth.ble';
 import { BusinessError } from '@ohos.base';
 
-// serverDeviceId is the device ID of the GATT server obtained after Bluetooth scanning is started.
+// serverDeviceId is the device ID of the GATT server obtained through Bluetooth scanning.
 let serverDeviceId = 'xx:xx:xx:xx:xx:xx';
 
 // Create a GattClientDevice instance.
@@ -202,13 +202,9 @@ let characteristic: ble.BLECharacteristic = {
 clientDevice.writeCharacteristicValue(characteristic, ble.GattWriteType.WRITE);
 
 // Write a descriptor.
-let message = '';
-if (clientDevice.writeDescriptorValue(descriptor)) {
-  message = 'writeDescriptorValue success';
-} else {
-  message = 'writeDescriptorValue failed';
-}
-console.info(message);
+clientDevice.writeDescriptorValue(descriptor).then(() => {
+  console.info('writeDescriptorValue success')
+});
 
 // Disconnect from the server.
 clientDevice.disconnect();
