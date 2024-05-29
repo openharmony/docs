@@ -11,6 +11,7 @@
 - C API
   - 模块
     - [Rawfile](rawfile.md)
+    - [Resourcemanager](resourcemanager.md)
   - 头文件
     - [raw_dir.h](raw__dir_8h.md)
     - [raw_file_manager.h](raw__file__manager_8h.md)
