@@ -3067,7 +3067,7 @@
 
 ### ohos.permission.ACCESS_SEARCH_SERVICE
 
-允许系统应用调用融合搜索服务提供的本地搜索能力
+允许系统应用调用融合搜索服务提供的本地搜索能力。
 
 **权限级别**：system_basic
 
