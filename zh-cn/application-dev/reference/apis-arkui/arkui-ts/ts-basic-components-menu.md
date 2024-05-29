@@ -137,7 +137,7 @@ startMargin + endMargin 超过组件宽度后startMargin和endMargin会被置0�
 
 | 参数名     | 类型                                                     | 必填         | 说明           |
 |---------|--------------------------------------------------------|------------| -------------- |
-| options | [DividerStyleOptions](ts-types.md#DividerStyleOptions)&nbsp;\| &nbsp;undefined | 是   | 设置menu item分割线样式。<br />-strokeWidth:分割线的线宽。<br />-color：分割线的颜色。<br />-startMargin：分割线与菜单侧边起端的距离。<br />-endMargin：分割线与菜单侧边结束端的距离。 |
+| options | [DividerStyleOptions](ts-types.md#DividerStyleOptions)&nbsp;\| &nbsp;undefined | 是   | 设置menuItem分割线样式。<br />-strokeWidth:分割线的线宽。<br />-color：分割线的颜色。<br />-startMargin：分割线与菜单侧边起端的距离。<br />-endMargin：分割线与菜单侧边结束端的距离。 |
 
 ### menuItemGroupDivider<sup>12+</sup>
 
@@ -149,9 +149,9 @@ menuItemGroupDivider(options: DividerStyleOptions | undefined)
 
 **参数：**
 
-| 参数名                  | 类型                                                     | 必填         | 说明           |
-|----------------------|--------------------------------------------------------|------------| -------------- |
-| menuItemGroupDivider | [DividerStyleOptions](ts-types.md#DividerStyleOptions)&nbsp;\| &nbsp;undefined | 是   | 设置menu item group顶部和底部分割线样式。<br />-strokeWidth:分割线的线宽。<br />-color：分割线的颜色。<br />-startMargin：分割线与菜单侧边起端的距离。<br />-endMargin：分割线与菜单侧边结束端的距离。 |
+| 参数名     | 类型                                                     | 必填         | 说明           |
+|---------|--------------------------------------------------------|------------| -------------- |
+| options | [DividerStyleOptions](ts-types.md#DividerStyleOptions)&nbsp;\| &nbsp;undefined | 是   | 设置menuItemGroup顶部和底部分割线样式。<br />-strokeWidth:分割线的线宽。<br />-color：分割线的颜色。<br />-startMargin：分割线与菜单侧边起端的距离。<br />-endMargin：分割线与菜单侧边结束端的距离。 |
 
 ### subMenuExpandingMode<sup>12+</sup>
 
