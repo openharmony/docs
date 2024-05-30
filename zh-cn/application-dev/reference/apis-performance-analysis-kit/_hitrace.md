@@ -312,7 +312,7 @@ HiTraceId OH_HiTrace_BeginChain (const char * name, int flags )
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| name | 进程名. | 
+| name | 跟踪业务名 | 
 | flags | 跟踪功能标志 | 
 
 **返回：**
