@@ -718,6 +718,14 @@ static setHttpDns(secureDnsMode:SecureDnsMode, secureDnsConfig:string): void
 | secureDnsMode         |   [SecureDnsMode](#securednsmode10)   | 是   | 使用HTTPDNS的模式。|
 | secureDnsConfig       | string | 是 | HTTPDNS server的配置，必须是https协议并且只允许配置一个server。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                  |
+| -------- | ----------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                                   |
+
 **示例：**
 
 ```ts
@@ -3364,6 +3372,7 @@ storeWebArchive(baseName: string, autoName: boolean, callback: AsyncCallback\<st
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                                   |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 | 17100003 | Invalid resource path or file type.                          |
 
@@ -3432,6 +3441,7 @@ storeWebArchive(baseName: string, autoName: boolean): Promise\<string>
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                                   |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 | 17100003 | Invalid resource path or file type.                          |
 
@@ -4915,6 +4925,7 @@ setAudioMuted(mute: boolean): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Incorrect parameter types. 2. Parameter verification failed. |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
@@ -5378,7 +5389,15 @@ static setConnectionTimeout(timeout: number): void
 
 | 参数名          | 类型    |  必填  | 说明                                            |
 | ---------------| ------- | ---- | ------------- |
-| timeout        | number  | 是   | socket连接超时时间，以秒为单位。 |
+| timeout        | number  | 是   | socket连接超时时间，以秒为单位，socket必须为大于0的整数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 
 **示例：**
 
@@ -5416,6 +5435,46 @@ struct WebComponent {
 }
 ```
 
+### warmupServiceWorker<sup>12+</sup>
+
+static warmupServiceWorker(url: string): void
+
+预热ServiceWorker，以提升首屏页面的加载速度（仅限于会使用ServiceWorker的页面）。在加载url之前调用此API。
+
+**系统能力：**  SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名          | 类型    |  必填  | 说明                                            |
+| ---------------| ------- | ---- | ------------- |
+| url            | string  | 是   | 需要预热ServiceWorker的url。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md).
+
+| 错误码ID  | 错误信息                                                      |
+| -------- | ------------------------------------------------------------ |
+| 17100002 | Invalid url.                                                 |
+
+**示例：**
+
+```ts
+// xxx.ts
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { window } from '@kit.ArkUI';
+import { webview } from '@kit.ArkWeb';
+
+export default class EntryAbility extends UIAbility {
+    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+        console.log("EntryAbility onCreate");
+        webview.WebviewController.warmupServiceWorker("https://www.example.com");
+        AppStorage.setOrCreate("abilityWant", want);
+    }
+}
+```
+
 ### enableSafeBrowsing<sup>11+</sup>
 
 enableSafeBrowsing(enable: boolean): void
@@ -5436,7 +5495,7 @@ enableSafeBrowsing(enable: boolean): void
 
 | 错误码ID | 错误信息                  |
 | -------- | ----------------------- |
-|  401 | Invalid input parameter.    |
+| 401      | Parameter error. Possible causes: 1. Incorrect parameter types. 2. Parameter verification failed. |
 
 **示例：**
 
@@ -11743,6 +11802,14 @@ static deserialize(serializedData: Uint8Array): WebDownloadItem
 | ------ | ------------------------- |
 | [WebDownloadItem](#webdownloaditem11) | 从字节数组反序列化为一个WebDownloadItem对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Incorrect parameter types. 2. Parameter verification failed.  |
+
 **示例：**
 
 ```ts
@@ -11821,6 +11888,14 @@ start(downloadPath: string): void
 | 参数名 | 类型                   | 必填 | 说明                             |
 | ------ | ---------------------- | ---- | ------------------------------|
 | downloadPath   | string     | 是  | 下载文件的路径(包含文件名)。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Incorrect parameter types. 2. Parameter verification failed.  |
 
 **示例：**
 
