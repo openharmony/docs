@@ -2036,10 +2036,10 @@ ArkTS TypedArray排序函数类型。
 
 ## collections.TypedArray
 
-一种线性数据结构，底层基于[ArkTS ArrayBuffer](#collectionsarraybuffer)实现。目前支持包括Int8Array、Uint8Array、Int16Array、Uint16Array、Int32Array以及Uint32Array。
+一种线性数据结构，底层基于[ArkTS ArrayBuffer](#collectionsarraybuffer)实现。目前支持包括Int8Array、Uint8Array、Int16Array、Uint16Array、Int32Array、Uint32Array以及Uint8ClampedArray。
 
 文档中存在泛型的使用，涉及以下泛型标记符：
-- TypedArray: 指上述6种具体的ArkTS TypedArray。
+- TypedArray: 指上述7种具体的ArkTS TypedArray。
 
 ### 属性
 
@@ -2081,6 +2081,7 @@ let int16Array: collections.Int16Array = new collections.Int16Array();
 let uint16Array: collections.Uint16Array = new collections.Uint16Array();
 let int32Array: collections.Int32Array = new collections.Int32Array();
 let uint32Array: collections.Uint32Array = new collections.Uint32Array();
+let uint8ClampedArray: collections.Uint8ClampedArray = new collections.Uint8ClampedArray();
 ```
 
 ### constructor
@@ -2117,6 +2118,7 @@ let int16Array: collections.Int16Array = new collections.Int16Array(12);
 let uint16Array: collections.Uint16Array = new collections.Uint16Array(12);
 let int32Array: collections.Int32Array = new collections.Int32Array(12);
 let uint32Array: collections.Uint32Array = new collections.Uint32Array(12);
+let uint8ClampedArray: collections.Uint8ClampedArray = new collections.Uint8ClampedArray(12);
 ```
 
 ### constructor
