@@ -211,10 +211,10 @@ struct Index {
   isChecked = false;
   dialogControllerImage: CustomDialogController = new CustomDialogController({
     builder: TipsDialog({
-      // imageRes: '网络图片 url'
-      // imageRes: this.pixelMap
+      // imageRes: '网络图片 url',
+      // imageRes: this.pixelMap,
       imageRes: $r('sys.media.ohos_ic_public_voice'),
-      // checkTips: '回调'
+      // checkTips: '回调',
       content: '想要卸载这个APP嘛?',
       primaryButton: {
         value: '取消',
