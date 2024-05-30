@@ -55,7 +55,7 @@ OH_AVCapability *capability = OH_AVCodec_GetCapabilityByCategory(OH_AVCODEC_MIME
 if (capability != nullptr) {
    // 2. 获取H.264软件解码器名称
    const char *codecName = OH_AVCapability_GetName(capability);
-   // 3. 创建H.264硬件解码器实例
+   // 3. 创建H.264软件解码器实例
    OH_AVCodec *videoEnc = OH_VideoEncoder_CreateByName(codecName);
 }
 ```
