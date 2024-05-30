@@ -4,7 +4,7 @@
 
 [libuv](http://libuv.org/)是一个跨平台库，基于事件驱动来实现异步I/O，适用于网络编程和文件系统操作。它是Node.js的核心库之一，也被其他语言的开发者广泛使用。
 
-## 支持的功能
+## 支持的能力
 
 [libuv](http://libuv.org/)实现了跨平台的基于事件驱动的异步I/O。
 
@@ -28,7 +28,7 @@
 
 OpenHarmony 还将长期通过napi来为开发者提供和主线程交互及扩展js接口的能力，但会屏蔽实现层使用的事件循环。尽管我们在API12中给`napi_get_uv_event_loop`接口标记了废弃，但napi的主要功能接口将会长期维护，并保证与node的原生行为一致，来保证熟悉node.js的扩展机制的开发者方便地将自己的已有代码接入到OpnHarmony中来。
 
-如果您对 libuv 非常熟悉，并自信能够处理好所有的内存管理和多线程问题，您仍然可以像使用原生 libuv 一样，自己启动线程，并在上面使用 libuv 完成自己的业务。在没有特殊版本要求的情况下，您不需要额外引入 libuv库到您的应用工程中。
+如果您对 libuv 非常熟悉，并自信能够处理好所有的内存管理和多线程问题，您仍可以像使用原生 libuv 一样，自己启动线程，并在上面使用 libuv 完成自己的业务。在没有特殊版本要求的情况下，您不需要额外引入 libuv库到您的应用工程中。
 
 ### 当前问题和解决方案
 
@@ -93,11 +93,11 @@ static napi_value Add(napi_env env, napi_callback_info info)
 
 #### 场景二、在native侧向应用主循环抛fd事件，接口无法生效
 
-由于应用主循环仅仅接收fd事件，在监听了uvloop中的backend_fd后，只有该fd事件被触发才会执行一次`uv_run`。这就意味着，在应用主循环中调用uv接口，如果不一次触发fd事件，`uv_run`将永远不会被执行，最后导致libuv的接口正常调用时不生效（仅当应用中没有触发uvloop中的fd事件时）。
+由于应用主循环仅仅接收fd事件，在监听了uvloop中的backend_fd后，只有该fd事件被触发才会执行一次`uv_run`。这就意味着，在应用主循环中调用uv接口，如果不触发一次fd事件，`uv_run`将永远不会被执行，最后导致libuv的接口正常调用时不生效（仅当应用中没有触发uvloop中的fd事件时）。
 
 **错误示例：**
 
-我们以`uv_pool_start`接口为例，来说明OpenHarmony中，我们像使用原生libuv一样调用`uv_pool_start`接口时无法生效的问题。
+我们以`uv_poll_start`接口举例，来说明在OpenHarmony中，我们像使用原生libuv一样调用`uv_pool_start`接口时无法生效的问题。
 
 ```cpp
 #include "napi/native_api.h"
@@ -107,6 +107,7 @@ static napi_value Add(napi_env env, napi_callback_info info)
 #include <hilog/log.h>
 #include <thread>
 #include <sys/eventfd.h>
+#include <unistd.h>
 uv_loop_t *loop;
 napi_value jsCb;
 int fd = -1;
@@ -131,7 +132,7 @@ static napi_value TestClose(napi_env env, napi_callback_info info){
     // 初始化一个poll句柄，并将其与eventfd关联
     uv_poll_init(loop, poll_handle, fd);
     // 开始监听poll事件
-    uv_pool_start(pool_handle, UV_READABLE, pool_handler);
+    uv_poll_start(poll_handle, UV_READABLE, poll_handler);
     // 创建一个新线程，向eventfd写入数据
     std::thread mythread([](){
         for (int i = 0; i < 8; i++){
@@ -148,7 +149,7 @@ static napi_value TestClose(napi_env env, napi_callback_info info){
 }
 EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports){
-    napi_proterty_descriptor desc[] = {{"testClose", nullptr, TestClose, nullptr, nullptr, nullptr, napi_default, nullptr}};
+    napi_property_descriptor desc[] = {{"testClose", nullptr, TestClose, nullptr, nullptr, nullptr, napi_default, nullptr}};
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0], desc));
     return exports;
 EXTERN_C_END
@@ -163,8 +164,8 @@ static napi_module demoModule = {
     .reserved = {0},
 };
 
-extern "C" __attribute__((constructor)) void RegisterEntryModlue(void){
-    napi_modlue_register(&demoModule);
+extern "C" __attribute__((constructor)) void RegisterEntryModule(void){
+    napi_module_register(&demoModule);
 }
 ```
 
@@ -172,7 +173,7 @@ extern "C" __attribute__((constructor)) void RegisterEntryModlue(void){
 
 1. 首先通过`napi_get_uv_event_loop`接口获取到应用主线程的uvloop。
 2. 然后创建一个eventfd。
-3. 初始化uv_pool_t，并启动该句柄使其生效，在eventfd可读时触发回调函数`poll_handler`。
+3. 初始化uv_poll_t，并启动该句柄使其生效，在eventfd可读时触发回调函数`poll_handler`。
 4. 新开一个线程，向eventfd里写入字符。
 
 执行上述代码，poll_handler并不能正常打印。这是由于应用主线程是靠fd驱动来执行`uv_run`的，而非以UV_RUN_DEFAULT模式来进行循环。尽管uvloop中的backend_fd已经被event_handler监听，但是当执行`uv_pool_start`的时候，fd并未通过`epoll_ctl`加入到backend_fd中被其监听，**而是在下一次`uv_run`中的`uv_io_poll`这个函数才会执行`epoll_ctl`函数。因此，如果应用进程中没有其他触发backend_fd事件的时候，libuv接口的正常使用可能不会达到开发者的预期。**
@@ -214,7 +215,7 @@ static napi_value TestClose(napi_env env, napi_callback_info info){
     OH_LOG_INFO(LOG_APP, "fd is %{public}d\n",fd);
     uv_poll_t* poll_handle = new uv_poll_t;
     uv_poll_init(loop, poll_handle, fd);
-    uv_pool_start(pool_handle, UV_READABLE, pool_handler);
+    uv_pool_start(poll_handle, UV_READABLE, poll_handler);
 
     // 主动触发一次fd事件，让主线程执行一次uv_run
     uv_async_send(&loop->wq_async);
@@ -235,7 +236,7 @@ static napi_value TestClose(napi_env env, napi_callback_info info){
 
 EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports){
-    napi_proterty_descriptor desc[] = {{"testClose", nullptr, TestClose, nullptr, nullptr, nullptr, napi_default, nullptr}};
+    napi_property_descriptor desc[] = {{"testClose", nullptr, TestClose, nullptr, nullptr, nullptr, napi_default, nullptr}};
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0], desc));
     return exports;
 }
@@ -251,8 +252,8 @@ static napi_module demoModule = {
     .reserved = {0},
 };
 
-extern "C" __attribute__((constructor)) void RegisterEntryModlue(void){
-    napi_modlue_register(&demoModule);
+extern "C" __attribute__((constructor)) void RegisterEntryModule(void){
+    napi_module_register(&demoModule);
 }
 ```
 
@@ -273,14 +274,14 @@ extern "C" __attribute__((constructor)) void RegisterEntryModlue(void){
 相关函数为：
 
 ```cpp
-// 创建一个新的一部工作
+// 创建一个新的异步工作
 // env：指向当前环境的指针
 // async_resource：可选的资源对象，用于跟踪异步操作
 // async_resource_name：可选的字符串，用于描述异步资源
 // execute：一个回调函数，它将在一个新的线程中执行异步操作
-// complate：一个回调函数，它将在异步操作完成后被调用
+// complete：一个回调函数，它将在异步操作完成后被调用
 // data：用户定义的数据，它将被传递给execute和complate回调函数
-// result：指向新创建的一部工作的指针
+// result：指向新创建的异步工作的指针
 napi_status napi_create_async_work(napi_env env,
                                   napi_value async_resource,
                                   napi_value async_resource_name,
@@ -349,7 +350,7 @@ napi_status napi_release_threadsafe_function(napi_threadsafe_function function);
 
 <br/>
 
-除此之外，如果开发者需要libuv其他原生接口来实现业务功能，为了让开发者正确使用libuv提供的接口能力，避免因为错误使用而陷入到问题当中。在后续章节，我们将逐步介绍libuv的一些基本概念和OpenHarmony系统中常用函数的正确使用方法，它仅仅可以保证开发者使用libuv接口的时候不会出现应用进程崩溃等现象。另外，我们还统计了在当前应用主进程上可以正常使用的接口，以及无法在应用主线程上使用的接口。
+除此之外，如果开发者需要libuv其他原生接口来实现业务功能，为了让开发者正确使用libuv提供的接口能力，避免因为错误使用而陷入到问题当中。在后续章节，我们将逐步介绍libuv的一些基本概念和OpenHarmony系统中常用函数的正确使用方法，它仅仅可以保证开发者使用libuv接口的时候不会出现应用进程崩溃等现象。另外，我们还统计了在当前应用主线程上可以正常使用的接口，以及无法在应用主线程上使用的接口。
 
 ### 接口汇总说明
 
@@ -432,7 +433,7 @@ table td,th{
         <td>uv_signal_*</td>
     </tr>
     <tr>
-        <td rowspan="5"><a href="#Handles和Requests">Requests概念及相关接口</a></td>\
+        <td rowspan="5"><a href="#Handles和Requests">Request概念及相关接口</a></td>
         <td>uv_fs_*</td>
     </tr>
     <tr>
@@ -460,12 +461,9 @@ table td,th{
     </tr>
 </table>
 
-
-
-
 ### 线程安全函数
 
-在libuv中，由于涉及到大量的异步任务，稍有不慎就会陷入到多线程问题中。在这里，我们对libuv中常见的线程安全函数和非线程安全函数做了汇总。若开发者在多线程编程中调用了非线程安全的函数，势必要对其进行加锁保护或者保证代码的正确运行时序。否则将陷入到crash问题中。
+在libuv中，由于涉及到大量的异步任务，稍有不慎就会陷入到多线程问题中。在这里，我们对libuv中常用的线程安全函数和非线程安全函数做了汇总。若开发者在多线程编程中调用了非线程安全的函数，势必要对其进行加锁保护或者保证代码的正确运行时序。否则将陷入到crash问题中。
 
 线程安全函数：
 
@@ -476,7 +474,7 @@ table td,th{
 - uv_poll_*()：poll事件相关函数。
 - 锁相关的操作，如uv_mutex_lock()、uv_mutex_unlock()等等。
 
-**提示：所有形如uv_xxx_init的函数，即使它是以线程安全的方式实现的，但使用时应注意，避免多个线程同时调用uv_xxx_init，否则它依旧会引起多线程资源竞争的问题。最好的方式是在事件循环函数中调用该函数。**
+**提示：所有形如uv_xxx_init的函数，即使它是以线程安全的方式实现的，但使用时要注意，避免多个线程同时调用uv_xxx_init，否则它依旧会引起多线程资源竞争的问题。最好的方式是在事件循环函数中调用该函数。**
 
 **注：uv_async_send函数被调用后，回调函数是被异步触发的。如果调用了多次uv_async_send，libuv只保证至少有一次回调会被执行。这就可能导致一旦对同一句柄触发了多次uv_async_send，libuv对回调的处理可能会违背开发者的预期。**
 
@@ -491,7 +489,7 @@ table td,th{
 
 ### <a id="libuv中的事件循环">libuv中的事件循环</a>
 
-事件循环是libuv中最核心的一个概念，loop负责管理整个事件循环的所有资源，它贯穿整个事件循环的生命周期。通常将`uv_run`所在的线程称为该事件循环的主线程。
+事件循环是libuv中最核心的一个概念，loop负责管理整个事件循环的所有资源，它贯穿于整个事件循环的生命周期。通常将`uv_run`所在的线程称为该事件循环的主线程。
 
 #### <a id="事件循环运行的三种方式">事件循环运行的三种方式</a>
 
@@ -499,7 +497,7 @@ table td,th{
 
 `UV_RUN_ONCE`：一次轮询模式，如果pending_queue中有回调函数，则执行，然后跳过`uv__io_poll`函数。此模式默认认为loop中一定有事件发生。
 
-`UV_RUN_NOWAIT`：非阻塞模式，该模式下不会执行pending_queue，而是直接执行一次I/O轮询（`uv__io_pool`）。
+`UV_RUN_NOWAIT`：非阻塞模式，该模式下不会执行pending_queue，而是直接执行一次I/O轮询（`uv__io_poll`）。
 
 #### 常用接口
 
@@ -513,7 +511,7 @@ int **uv_loop_close**(uv_loop_t* loop);
 
 uv_loop_t* **uv_default_loop**（void);
 
-<p style="text-indent:2em">该函数创建一个进程级的loop。在OpenHarmony中，由于目前的应用主循环及其他js工作进程还存在着libuv的loop。因此我们不建议开发者使用该函数来创建loop并实现业务功能。在系统的双loop改造完成后，开发者可以根据业务要求来使用该接口。</p>
+<p style="text-indent:2em">该函数创建一个进程级的loop。在OpenHarmony中，由于目前的应用主循环及其他js工作线程还存在着libuv的loop。因此我们不建议开发者使用该函数来创建loop并实现业务功能。在系统的双loop改造完成后，开发者可以根据业务要求来使用该接口。</p>
 
 int **uv_run**(uv_loop_t* loop, uv_run_mode mode);
 
@@ -560,7 +558,7 @@ int stop_loop(uv_loop_t* loop)
 
 **注：** 该代码是基于所有的handle都按照<a href="#wrap_handle">下述方式</a>封装编写的。
 
-### <a id="Handles和Requests">libuv中的Handles和Requests </a>
+### <a id="Handles和Requests">libuv中的Handles和Requests </a>
 
 **Handle：** 表示一个持久性的对象，通常挂载到loop中对应的handle_queue队列上。如果handle处于活跃状态，每次`uv_run`都会处理handle中的回调函数。 
 
@@ -578,6 +576,7 @@ typedef struct uv_signal_s uv_signal_t;
 /* Request Type */
 typedef struct uv_req_s uv_req_t;
 typedef struct uv_work_s uv_work_t;
+typedef struct uv_fs_s uv_fs_t;
 ```
 
 **注：在handles中，uv_xxx_t继承了uv_handle_t；在requests中，uv_work_t继承了uv_req_t。**
@@ -585,8 +584,8 @@ typedef struct uv_work_s uv_work_t;
 对于libuv中的handles，对其有个正确的认识并管理好它的生命周期至关重要。handle作为一个长期存在于loop中的句柄，在使用中，开发者应遵循下面的原则：
 
 1.  句柄的初始化工作应在事件循环的线程中进行。
-2. 若由于业务问题，句柄需要在其他工作线程初始化，在使用之前用原子变量判断是否初始化完成。
-3. 句柄在确定后续不再使用后，调用`uv_close`将句柄从loop中摘除。
+2.  若由于业务问题，句柄需要在其他工作线程初始化，在使用之前用原子变量判断是否初始化完成。
+3.  句柄在确定后续不再使用后，调用`uv_close`将句柄从loop中摘除。
 
 针对上面第三条，开发者可以参考[electron项目](https://github.com/electron/electron/pull/25332)中的做法对handles进行封装。
 
@@ -769,7 +768,7 @@ after_work_cb：loop所在线程的要执行的回调函数。
   函数原型：
 
 ```cpp
-int uv_random(uv_loot_t* loop,
+int uv_random(uv_loop_t* loop,
              uv_random_t* req,
              void* buf,
              size_t buflen,
@@ -779,7 +778,7 @@ int uv_random(uv_loot_t* loop,
 
 - uv_work_t
 
-​    函数原型：
+    函数原型：
 
 ```cpp
 /**
@@ -802,7 +801,7 @@ int uv_queue_work(uv_loop_t* loop,
 
 - uv_fs_t
 
-​    文件类提供的所有异步接口，在应用主线程中都是可以生效的。主要有如下：
+    文件类提供的所有异步接口，在应用主线程中都是可以生效的。主要有如下：
 
 ```cpp
 /**
@@ -903,7 +902,7 @@ int uv_fs_copyfile(uv_loop_t* loop,
 
 - uv_getaddrinfo_t
 
-​     函数原型：
+     函数原型：
 
 ```cpp
 /**
@@ -927,7 +926,7 @@ int uv_getaddrinfo(uv_loop_t* loop,
 
 - uv_getnameinfo_t
 
-​     函数原型：
+     函数原型：
 
 ```cpp
 /**
@@ -952,7 +951,7 @@ int uv_getnameinfo(uv_loop_t* loop,
 - idle句柄
 - prepare句柄
 - check句柄
-- signal句柄
+- signal相关函数
 - tcp及udp相关函数
 
 ## 技术案例
