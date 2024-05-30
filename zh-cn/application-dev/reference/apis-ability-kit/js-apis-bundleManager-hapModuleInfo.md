@@ -72,4 +72,4 @@ HAP信息，三方应用可以通过[getBundleInfoForSelf](js-apis-bundleManager
 | name          | string | 是   | 是   | 标识跳转页面的名称。       |
 | pageSourceFile| string | 是   | 是   | 标识页面在模块内的路径。   |
 | buildFunction | string | 是   | 是   | 标识被@Builder修饰的函数，该函数描述页面的UI。   |
-| data          | string | 是   | 是   | 标识自定义数据。   |
+| data          | string | 是   | 是   | 标识自定义数据的JSON字符串。   |
