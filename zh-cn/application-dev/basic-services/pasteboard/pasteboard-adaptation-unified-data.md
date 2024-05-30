@@ -22,43 +22,43 @@
 
 ## 开发步骤
 
-    ```ts
-    // 1. 导入`@ohos.pasteboard.d.ts`,`@ohos.data.unifiedDataChannel`和`@ohos.data.uniformTypeDescriptor`模块
-    import {unifiedDataChannel, uniformTypeDescriptor} from '@kit.ArkData';
-    import {BusinessError, pasteboard} from '@kit.BasicServicesKit';
+```ts
+// 1. 导入`@ohos.pasteboard.d.ts`,`@ohos.data.unifiedDataChannel`和`@ohos.data.uniformTypeDescriptor`模块
+import {unifiedDataChannel, uniformTypeDescriptor} from '@kit.ArkData';
+import {BusinessError, pasteboard} from '@kit.BasicServicesKit';
 
-    // 2. 构造一条PlainText数据记录
-    let plainTextData = new unifiedDataChannel.UnifiedData();
-    let plainText = new unifiedDataChannel.PlainText();
-    plainText.details = {
-        Key: 'Plaintext',
-        Value: 'Plaintext',
-    };
-    plainText.textContent = 'TextContent';
-    plainText.abstract = 'TextContent';
-    plainTextData.addRecord(plainText);
+// 2. 构造一条PlainText数据记录
+let plainTextData = new unifiedDataChannel.UnifiedData();
+let plainText = new unifiedDataChannel.PlainText();
+plainText.details = {
+    Key: 'Plaintext',
+    Value: 'Plaintext',
+};
+plainText.textContent = 'TextContent';
+plainText.abstract = 'TextContent';
+plainTextData.addRecord(plainText);
 
-    // 3. 向系统剪贴板中存入一条PlainText数据
-    plainTextData.properties.shareOptions = unifiedDataChannel.ShareOptions.CROSS_APP;
-    // 跨应用使用时设置为CROSS_APP，本应用内使用时设置为IN_APP
-    pasteboard.getSystemPasteboard().setUnifiedData(plainTextData).then(()=>{
-    // 存入成功，处理正常场景
-    }).catch((error: BusinessError) => {
-    // 处理异常场景
-    });
+// 3. 向系统剪贴板中存入一条PlainText数据
+plainTextData.properties.shareOptions = unifiedDataChannel.ShareOptions.CROSS_APP;
+// 跨应用使用时设置为CROSS_APP，本应用内使用时设置为IN_APP
+pasteboard.getSystemPasteboard().setUnifiedData(plainTextData).then(()=>{
+// 存入成功，处理正常场景
+}).catch((error: BusinessError) => {
+// 处理异常场景
+});
 
-    // 4. 从系统剪贴板中读取这条text数据
-    pasteboard.getSystemPasteboard().getUnifiedData().then((data) => {
-        let outputData = data;
-        let records = outputData.getRecords();
-        if (records[0].getType() == uniformTypeDescriptor.UniformDataType.PLAIN_TEXT) {
-            let record = records[0] as unifiedDataChannel.PlainText;
-            console.log('GetPlainText success, type:' + records[0].getType + ', details:' +
-                JSON.stringify(record.details) + ', textContent:' + record.textContent + ', abstract:' + record.abstract);
-        } else {
-            console.log('Get Plain Text Data No Success, Type is: ' + records[0].getType());
-        }
-    }).catch((error: BusinessError) => {
-    //处理异常场景
-    })
-    ```
+// 4. 从系统剪贴板中读取这条text数据
+pasteboard.getSystemPasteboard().getUnifiedData().then((data) => {
+    let outputData = data;
+    let records = outputData.getRecords();
+    if (records[0].getType() == uniformTypeDescriptor.UniformDataType.PLAIN_TEXT) {
+        let record = records[0] as unifiedDataChannel.PlainText;
+        console.log('GetPlainText success, type:' + records[0].getType + ', details:' +
+            JSON.stringify(record.details) + ', textContent:' + record.textContent + ', abstract:' + record.abstract);
+    } else {
+        console.log('Get Plain Text Data No Success, Type is: ' + records[0].getType());
+    }
+}).catch((error: BusinessError) => {
+//处理异常场景
+})
+```
