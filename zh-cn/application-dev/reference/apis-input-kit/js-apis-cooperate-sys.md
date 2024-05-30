@@ -13,7 +13,7 @@
 ## 导入模块
 
 ```ts
-import inputDeviceCooperate from '@ohos.multimodalInput.inputDeviceCooperate'
+import { inputDeviceCooperate } from '@kit.InputKit';
 ```
 
 ## inputDeviceCooperate.enable
@@ -43,8 +43,8 @@ enable(enable: boolean, callback: AsyncCallback&lt;void&gt;): void
 **示例**：
 
 ```ts
-import inputDeviceCooperate from '@ohos.multimodalInput.inputDeviceCooperate'
-import { BusinessError } from '@ohos.base'
+import { inputDeviceCooperate } from '@kit.InputKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   inputDeviceCooperate.enable(true, (error: BusinessError) => {
@@ -95,8 +95,8 @@ enable(enable: boolean): Promise&lt;void&gt;
 **示例**：
 
 ```ts
-import inputDeviceCooperate from '@ohos.multimodalInput.inputDeviceCooperate'
-import { BusinessError } from '@ohos.base'
+import { inputDeviceCooperate } from '@kit.InputKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   inputDeviceCooperate.enable(true).then(() => {
@@ -138,8 +138,8 @@ start(sinkDeviceDescriptor: string, srcInputDeviceId: number, callback: AsyncCal
 **示例**：
 
 ```ts
-import inputDeviceCooperate from '@ohos.multimodalInput.inputDeviceCooperate'
-import { BusinessError } from '@ohos.base'
+import { inputDeviceCooperate } from '@kit.InputKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let sinkDeviceDescriptor = "descriptor";
 let srcInputDeviceId = 0;
@@ -191,8 +191,8 @@ start(sinkDeviceDescriptor: string, srcInputDeviceId: number): Promise\<void>
 **示例**：
 
 ```ts
-import inputDeviceCooperate from '@ohos.multimodalInput.inputDeviceCooperate'
-import { BusinessError } from '@ohos.base'
+import { inputDeviceCooperate } from '@kit.InputKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let sinkDeviceDescriptor = "descriptor";
 let srcInputDeviceId = 0;
@@ -233,8 +233,8 @@ stop(callback: AsyncCallback\<void>): void
 **示例**：
 
 ```ts
-import inputDeviceCooperate from '@ohos.multimodalInput.inputDeviceCooperate'
-import { BusinessError } from '@ohos.base'
+import { inputDeviceCooperate } from '@kit.InputKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   inputDeviceCooperate.stop((error: BusinessError) => {
@@ -266,8 +266,8 @@ stop(): Promise\<void>
 **示例**：
 
 ```ts
-import inputDeviceCooperate from '@ohos.multimodalInput.inputDeviceCooperate'
-import { BusinessError } from '@ohos.base'
+import { inputDeviceCooperate } from '@kit.InputKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   inputDeviceCooperate.stop().then(() => {
@@ -308,8 +308,8 @@ getState(deviceDescriptor: string, callback: AsyncCallback<{ state: boolean }>):
 **示例**：
 
 ```ts
-import inputDeviceCooperate from '@ohos.multimodalInput.inputDeviceCooperate'
-import { BusinessError } from '@ohos.base'
+import { inputDeviceCooperate } from '@kit.InputKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let deviceDescriptor = "descriptor";
 try {
@@ -359,8 +359,8 @@ getState(deviceDescriptor: string): Promise<{ state: boolean }>
 **示例**：
 
 ```ts
-import inputDeviceCooperate from '@ohos.multimodalInput.inputDeviceCooperate'
-import { BusinessError } from '@ohos.base'
+import { inputDeviceCooperate } from '@kit.InputKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let deviceDescriptor = "descriptor";
 try {
@@ -401,7 +401,7 @@ on(type: 'cooperation', callback: AsyncCallback<{ deviceDescriptor: string, even
 **示例**：
 
 ```ts
-import inputDeviceCooperate from '@ohos.multimodalInput.inputDeviceCooperate'
+import { inputDeviceCooperate } from '@kit.InputKit';
 
 function callback(msg: object) {
   console.log(`Keyboard mouse crossing event: ${JSON.stringify(msg)}`);
@@ -441,7 +441,7 @@ off(type: 'cooperation', callback?: AsyncCallback\<void>): void
 **示例**：
 
 ```ts
-import inputDeviceCooperate from '@ohos.multimodalInput.inputDeviceCooperate'
+import { inputDeviceCooperate } from '@kit.InputKit';
 
 // 取消注册单个回调函数
 function callbackOn(msg: object) {
@@ -460,7 +460,7 @@ try {
 }
 ```
 ```ts
-import inputDeviceCooperate from '@ohos.multimodalInput.inputDeviceCooperate'
+import { inputDeviceCooperate } from '@kit.InputKit';
 
 // 取消注册所有回调函数
 function callback(msg: object) {
