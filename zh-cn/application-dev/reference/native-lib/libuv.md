@@ -179,7 +179,7 @@ extern "C" __attribute__((constructor)) void RegisterEntryModlue(void){
 
 **临时方案：**
 
-在当下的系统版本中，我们并不推荐开发者直接通过`napi_get_uv_event_loop`获取应用主线程的uvloop进行业务逻辑的开发。如果当前系统接口无法满足开发者的开发需求，确有必要使用libuv来实现业务功能，为了使libuv接口在主线程上生效，我们可以在调用类似*ub_xxx_start*后，执行一次`uv_async_send`的方式来主动触发应用主线程执行一次`uv_run`。这样可以保证该接口生效并正常执行。
+在当下的系统版本中，我们并不推荐开发者直接通过`napi_get_uv_event_loop`获取应用主线程的uvloop进行业务逻辑的开发。如果当前系统接口无法满足开发者的开发需求，确有必要使用libuv来实现业务功能，为了使libuv接口在主线程上生效，我们可以在调用类似*uv_xxx_start*后，执行一次`uv_async_send`的方式来主动触发应用主线程执行一次`uv_run`。这样可以保证该接口生效并正常执行。
 
 针对上述无法生效的代码示例，可以修改如下使其生效：
 
@@ -268,7 +268,7 @@ extern "C" __attribute__((constructor)) void RegisterEntryModlue(void){
 
 当开发者需要执行一个比较耗时的操作但又不希望阻塞主线程执行时，libuv提供了底层接口`uv_queue_work`帮助开发者在异步线程中执行耗时操作，然后将结果回调到主线程上进行处理。
 
-在napi中，通常可以通过[napi_async_work](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/napi/use-napi-asynchronous-task.md)相关函数来实现异步开发的功能。
+在napi中，通常可以通过[napi_async_work](../../napi/use-napi-asynchronous-task.md)相关函数来实现异步开发的功能。
 
 相关函数为：
 
@@ -344,6 +344,7 @@ napi_status napi_call_threadsafe_function(napi_threadsafe_function function, voi
 // 释放一个线程安全的函数
 // function：指向线程安全函数的指针
 napi_status napi_release_threadsafe_function(napi_threadsafe_function function);
+
 ```
 
 <br/>
@@ -352,16 +353,57 @@ napi_status napi_release_threadsafe_function(napi_threadsafe_function function);
 
 ### 接口汇总说明
 
+<style type="text/css">
+table{
+    border-collapse:collapse;
+    table-layout:fixed;
+    border-radius:5px;
+    overflow:hidden;
+    margin:10px auto;
+    border:2px solid #70aefb;
+    background-color:#328ef4;
+    color: #c7dafb;
+}
+table td,th{
+    text-align: center;
+    border: 1px solid #70aefb;
+    vertical-align : middle;
+    width: 80%;
+}
+.table-color-green{
+    background-color: green;
+}
+.table-color-grey{
+    background-color: #696969;
+}
+.table-color-black{
+    background-color: black;
+}
+.jt-up-color{
+    color: red;
+}
+.parent-position{
+    position: relative;
+}
+.child-position{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+.main-font{
+    font-size: 23px;
+}
+</style>
 <table>
     <tr>
         <td><b>接口类型</b></td>
         <td><b>接口汇总</b></td>
     </tr>
-   	<tr>
-        <td rowspan = "6"><a href="#libuv中的事件循环">loop概念及相关接口</a></td>
+    <tr>
+        <td rowspan ="6"><a href="#libuv中的事件循环">loop概念及相关接口</a></td>
         <td>uv_loop_init</td>
     </tr>
-	<tr>
+    <tr>
         <td>uv_loop_close</td>
     </tr>
     <tr>
@@ -377,7 +419,7 @@ napi_status napi_release_threadsafe_function(napi_threadsafe_function function);
         <td>uv_stop</td>
     </tr>
     <tr>
-        <td rowspan="4"><a href="#Handles和Requests">handle概念及相关接口</a></td>
+        <td rowspan="4"><a href="#Handles和Requests">Handle概念及相关接口</a></td>
         <td>uv_poll_*</td>
     </tr>
     <tr>
@@ -417,6 +459,7 @@ napi_status napi_release_threadsafe_function(napi_threadsafe_function function);
         <td>uv_queue_work</td>
     </tr>
 </table>
+
 
 
 
@@ -919,13 +962,3 @@ int uv_getnameinfo(uv_loop_t* loop,
 [libuv工作线程接入FFRT方案分析](https://gitee.com/openharmony/third_party_libuv/wikis/06-Wiki-%E6%8A%80%E6%9C%AF%E8%B5%84%E6%BA%90/%20libuv%E5%B7%A5%E4%BD%9C%E7%BA%BF%E7%A8%8B%E6%8E%A5%E5%85%A5FFRT%E6%96%B9%E6%A1%88%E5%88%86%E6%9E%90)
 
 [QoS感知的libuv、napi异步接口整改FAQ](https://gitee.com/openharmony/third_party_libuv/wikis/06-Wiki-%E6%8A%80%E6%9C%AF%E8%B5%84%E6%BA%90/QoS%E6%84%9F%E7%9F%A5%E7%9A%84libuv%E3%80%81napi%E5%BC%82%E6%AD%A5%E6%8E%A5%E5%8F%A3%E6%95%B4%E6%94%B9FAQ)
-
-## OpenHarmony中常见的libuv报错
-
-[三方库libuv地址越界问题案例分析](http://3ms.huawei.com/km/blogs/details/15141439?l=zh-cn)
-
-[应用异步任务得不到回调的几种情况和排查措施](http://3ms.huawei.com/km/blogs/details/15261265?l=zh-cn)
-
-[一篇关于对libuv中的uv_close函数理解不深导致的错误案例](http://3ms.huawei.com/km/blogs/details/15292469?l=zh-cn)
-
-[一篇关于libuv的crash报错信息与doubule close的关系](http://3ms.huawei.com/km/blogs/details/15306952?l=zh-cn)
