@@ -201,11 +201,13 @@ CustomContentDialog({controller: CustomDialogController, contentBuilder: () => v
 ### 示例1
 
 ```ts
-import { TipsDialog } from '@ohos.arkui.advanced.Dialog'
+import { TipsDialog } from '@ohos.arkui.advanced.Dialog';
+import { image } from '@kit.ImageKit';
+
 @Entry
 @Component
 struct Index {
-  @State pixelMap = PixelMap | undefined = undefined;
+  @State pixelMap: PixelMap | undefined = undefined;
   isChecked = false;
   dialogControllerImage: CustomDialogController = new CustomDialogController({
     builder: TipsDialog({
