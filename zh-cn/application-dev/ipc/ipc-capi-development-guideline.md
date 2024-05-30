@@ -51,7 +51,7 @@ libchild_process.so
 // ipc capi
 #include <IPCKit/ipc_kit.h>
 // 元能力，ability capi
-#include <ability/native_child_process.h>
+#include <AbilityKit/native_child_process.h>
 ```
 
 ### 3. 异步调用场景
@@ -64,7 +64,7 @@ libchild_process.so
 #include <chrono>
 #include <condition_variable>
 #include <IPCKit/ipc_kit.h>
-#include <ability/native_child_process.h>
+#include <AbilityKit/native_child_process.h>
 #include <hilog/log.h>
 #undef LOG_DOMAIN
 #undef LOG_TAG

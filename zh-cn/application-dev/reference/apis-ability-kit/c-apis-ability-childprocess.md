@@ -101,7 +101,7 @@ enum Ability_NativeChildProcess_ErrCode
 
 ## 函数说明
 
-### OH_Ability_CreateNativeChildProcess()
+### OH_Ability_CreateNativeChildProcess
 
 ```
 int OH_Ability_CreateNativeChildProcess (const char *libName, OH_Ability_OnNativeChildProcessStarted onProcessStarted )
