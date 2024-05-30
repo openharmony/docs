@@ -32,6 +32,8 @@ key(value: string): T
 
 组件的唯一标识，唯一性由使用者保证。
 
+此接口仅用于对应用的测试。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
