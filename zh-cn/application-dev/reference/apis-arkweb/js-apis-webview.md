@@ -4527,7 +4527,7 @@ static customizeSchemes(schemes: Array\<WebCustomScheme\>): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-|  401 | Invalid input parameter.    |
+|  401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.    |
 | 17100020 | Failed to register custom schemes. |
 
 **示例：**
@@ -6714,7 +6714,7 @@ setWebSchemeHandler(scheme: string, handler: WebSchemeHandler): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Invalid input parameter.                                     |
+| 401      | Parameter error. Possible causes: 1. Incorrect parameter types.  |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
@@ -13116,7 +13116,7 @@ read(size: number): Promise\<ArrayBuffer\>
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
-|  401 | Invalid input parameter.    |
+|  401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.    |
 
 **示例：**
 
@@ -13460,7 +13460,7 @@ setUrl(url: string): void
 
 | 错误码ID | 错误信息                  |
 | -------- | ----------------------- |
-|  401 | Invalid input parameter.    |
+|  401 | Parameter error. Possible causes: 1. Incorrect parameter types.    |
 
 ### setNetErrorCode<sup>12+</sup>
 
@@ -13482,7 +13482,7 @@ setNetErrorCode(code: WebNetErrorList): void
 
 | 错误码ID | 错误信息                  |
 | -------- | ----------------------- |
-|  401 | Invalid input parameter.    |
+|  401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.    |
 
 **示例：**
 
@@ -13534,7 +13534,7 @@ setStatusText(text: string): void
 
 | 错误码ID | 错误信息                  |
 | -------- | ----------------------- |
-|  401 | Invalid input parameter.    |
+|  401 | Parameter error. Possible causes: 1. Incorrect parameter types.    |
 
 **示例：**
 
@@ -13560,7 +13560,7 @@ setMimeType(type: string): void
 
 | 错误码ID | 错误信息                  |
 | -------- | ----------------------- |
-|  401 | Invalid input parameter.    |
+|  401 | Parameter error. Possible causes: 1. Incorrect parameter types.    |
 
 **示例：**
 
@@ -13586,7 +13586,7 @@ setEncoding(encoding: string): void
 
 | 错误码ID | 错误信息                  |
 | -------- | ----------------------- |
-|  401 | Invalid input parameter.    |
+|  401 | Parameter error. Possible causes: 1. Incorrect parameter types.    |
 
 **示例：**
 
@@ -13777,7 +13777,7 @@ didReceiveResponse(response: WebSchemeHandlerResponse): void
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
-|  401 | Invalid input parameter.    |
+|  401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.    |
 | 17100021 | The resource handler is invalid. |
 
 **示例：**
