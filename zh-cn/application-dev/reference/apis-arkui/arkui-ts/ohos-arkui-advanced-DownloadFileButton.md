@@ -1,6 +1,6 @@
-# DownloadFileButton
+# @ohos.arkui.advanced.DownloadFileButton（下载文件按钮）
 
-下载icon组件，用户通过点击该下载按钮，可以获取到当前应用在Download公共目录中所属的存储路径。
+下载文件按钮，通过点击该下载按钮，可以获取到当前应用在Download公共目录中所属的存储路径。
 
 
 > **说明：**
@@ -10,28 +10,22 @@
 ##  导入模块
 
 ```
-import DownloadFileButton from '@ohos.arkui.advanced.DownloadFileButton';
+import DownloadFileButton from '@ohos.arkui.advanced.DownloadFileButton'
 ```
-
-## 属性
-
-支持通用属性。
-
-## 事件
-
-支持通用事件。
 
 ## 子组件
 
-不支持。
+无
 
-## 接口
+## 属性
 
-### DownloadFileButton
+支持[通用属性](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-size.md)。
 
-Downloadbutton(contentOption?:DownloadContentOption, styleOption?:DownloadStyleOption)
+## DownloadFileButton
 
-默认创建带有图标、文本、背景的保存按钮。
+Downloadbutton(contentOptions?:DownloadContentOptions, styleOptions?:DownloadStyleOptions)
+
+**装饰器类型：**@Component
 
 **元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
@@ -39,80 +33,86 @@ Downloadbutton(contentOption?:DownloadContentOption, styleOption?:DownloadStyleO
 
 **参数：**
 
-| 参数名        | 参数类型              | 必填 | 参数描述                         |
-| ------------- | --------------------- | ---- | -------------------------------- |
-| contentOption | DownloadContentOption | 否   | 创建包含指定元素内容的下载按钮。 |
-| styleOption   | DownloadStyleOption   | 否   | 创建包含指定元素样式的下载按钮。 |
+| 名称           | 类型                                                         | 必填 | 装饰器类型 | 说明                             |
+| -------------- | ------------------------------------------------------------ | ---- | ---------- | -------------------------------- |
+| contentOptions | [DownloadContentOptions](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ohos-arkui-advanced-DownloadFileButton.md#downloadcontentoptions) | 否   | @State     | 创建包含指定元素内容的下载按钮。 |
+| styleOptions   | [DownloadStyleOptions](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ohos-arkui-advanced-DownloadFileButton.md#downloadstyleoptions) | 否   | @State     | 创建包含指定元素样式的下载按钮。 |
 
-
-
-## DownloadContentOption
+## DownloadContentOptions
 
 **元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
-| 名称 | 类型                | 必填 | 描述                                                         |
-| ---- | ------------------- | ---- | ------------------------------------------------------------ |
-| icon | DownloadIconStyle   | 否   | 设置下载按钮的图标风格<br/>不传入该参数表示没有图标，icon和text至少存在一个。 |
-| text | DownloadDescription | 否   | 设置下载按钮的文本描述<br/>不传入该参数表示没有文字描述，icon和text至少存在一个。 |
+**系统能力**： SystemCapability.ArkUI.ArkUI.Full
 
+| 名称 | 类型                                                         | 必填 | 说明                                                         |
+| ---- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| icon | [DownloadIconStyle](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ohos-arkui-advanced-DownloadFileButton.md#downloadiconstyle) | 否   | 设置下载按钮的图标风格<br/>不传入该参数表示没有图标，icon和text至少存在一个。 |
+| text | [DownloadDescription](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ohos-arkui-advanced-DownloadFileButton.md#downloaddescription) | 否   | 设置下载按钮的文本描述<br/>不传入该参数表示没有文字描述，icon和text至少存在一个。 |
 
-
-## DownloadStyleOption
-
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
-
-| 名称            | 类型                           | 必填 | 描述                                                         |
-| --------------- | ------------------------------ | ---- | ------------------------------------------------------------ |
-| iconSize        | Dimension                      | 否   | 下载控件上图标的尺寸。<br/>默认值：16vp                      |
-| layoutDirection | DownloadLayoutDirection        | 否   | 下载控件上图标和文字分布的方向。<br/>默认值：DownloadLayoutDirection.HORIZONTAL |
-| fontSize        | Dimension                      | 否   | 下载控件上文字的尺寸。<br/>默认值：16fp                      |
-| fontStyle       | FontStyle                      | 否   | 下载控件上文字的样式。<br/>默认值：FontStyle.Normal          |
-| fontWeight      | number \| FontWeight \| string | 否   | 下载控件上文字粗细。<br/>默认值：FontWeight.Medium           |
-| fontFamily      | string \| Resource             | 否   | 下载控件上文字的字体。<br/>默认字体：'HarmonyOS Sans'        |
-| fontColor       | ResourceColor                  | 否   | 下载控件上文字的颜色。<br/>默认值：#ffffffff                 |
-| iconColor       | ResourceColor                  | 否   | 下载控件上图标的颜色。<br/>默认值：#ffffffff                 |
-| textIconSpace   | Dimension                      | 否   | 下载控件中图标和文字的间距。<br/>默认值：4vp                 |
-
-
-
-## DownloadIconStyle枚举说明
+## DownloadStyleOptions
 
 **元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
-| 名称        | 枚举值 | 描述                       |
-| ----------- | ------ | -------------------------- |
-| FULL_FILLED | 1      | 下载按钮展示填充样式图标。 |
-| LINES       | 2      | 下载按钮展示线条样式图标。 |
+**系统能力**： SystemCapability.ArkUI.ArkUI.Full
 
+| 名称            | 类型                                                         | 必填 | 说明                                                         |
+| --------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| iconSize        | Dimension                                                    | 否   | 下载控件上图标的尺寸。<br/>默认值：16vp                      |
+| layoutDirection | [DownloadLayoutDirection](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ohos-arkui-advanced-DownloadFileButton.md#downloadlayoutdirection) | 否   | 下载控件上图标和文字分布的方向。<br/>默认值：DownloadLayoutDirection.HORIZONTAL |
+| fontSize        | Dimension                                                    | 否   | 下载控件上文字的尺寸。<br/>默认值：16fp                      |
+| fontStyle       | FontStyle                                                    | 否   | 下载控件上文字的样式。<br/>默认值：FontStyle.Normal          |
+| fontWeight      | number \| FontWeight \| string                               | 否   | 下载控件上文字粗细。<br/>默认值：FontWeight.Medium           |
+| fontFamily      | string \| Resource                                           | 否   | 下载控件上文字的字体。<br/>默认字体：'HarmonyOS Sans'        |
+| fontColor       | ResourceColor                                                | 否   | 下载控件上文字的颜色。<br/>默认值：#ffffffff                 |
+| iconColor       | ResourceColor                                                | 否   | 下载控件上图标的颜色。<br/>默认值：#ffffffff                 |
+| textIconSpace   | Dimension                                                    | 否   | 下载控件中图标和文字的间距。<br/>默认值：4vp                 |
 
-
-## DownloadDescription枚举说明
-
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
-
-| 名称                | 枚举值 | 描述                                                         |
-| ------------------- | ------ | ------------------------------------------------------------ |
-| DOWNLOAD            | 1      | 下载按钮的文字描述为“下载”。 **元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
-| DOWNLOAD_FILE       | 2      | 下载按钮的文字描述为“下载文件”。 **元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
-| SAVE                | 3      | 下载按钮的文字描述为“保存”。 **元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
-| SAVE_IMAGE          | 4      | 下载按钮的文字描述为“保存图片”。 **元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
-| SAVE_FILE           | 5      | 下载按钮的文字描述为“保存文件”。 **元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
-| DOWNLOAD_AND_SHARE  | 6      | 下载按钮的文字描述为“下载分享”。 **元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
-| RECEIVE             | 7      | 下载按钮的文字描述为“接收”。 **元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
-| CONTINUE_TO_RECEIVE | 8      | 下载按钮的文字描述为“继续接收”。 **元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
-
-
-
-## DownloadLayoutDirection枚举说明
+## DownloadIconStyle
 
 **元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
-| 名称       | 枚举值 | 描述                                       |
-| ---------- | ------ | ------------------------------------------ |
-| HORIZONTAL | 0      | 下载控件上图标和文字分布的方向为水平排列。 |
-| VERTICAL   | 1      | 下载控件上图标和文字分布的方向为垂直排列。 |
+**系统能力**： SystemCapability.ArkUI.ArkUI.Full
+
+| 名称        | 值   | 说明                       |
+| ----------- | ---- | -------------------------- |
+| FULL_FILLED | 1    | 下载按钮展示填充样式图标。 |
+| LINES       | 2    | 下载按钮展示线条样式图标。 |
 
 
+
+## DownloadDescription
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力**： SystemCapability.ArkUI.ArkUI.Full
+
+| 名称                | 值   | 说明                             |
+| ------------------- | ---- | -------------------------------- |
+| DOWNLOAD            | 1    | 下载按钮的文字描述为“下载”。     |
+| DOWNLOAD_FILE       | 2    | 下载按钮的文字描述为“下载文件”。 |
+| SAVE                | 3    | 下载按钮的文字描述为“保存”。     |
+| SAVE_IMAGE          | 4    | 下载按钮的文字描述为“保存图片”。 |
+| SAVE_FILE           | 5    | 下载按钮的文字描述为“保存文件”。 |
+| DOWNLOAD_AND_SHARE  | 6    | 下载按钮的文字描述为“下载分享”。 |
+| RECEIVE             | 7    | 下载按钮的文字描述为“接收”。     |
+| CONTINUE_TO_RECEIVE | 8    | 下载按钮的文字描述为“继续接收”。 |
+
+
+
+## DownloadLayoutDirection
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力**： SystemCapability.ArkUI.ArkUI.Full
+
+| 名称       | 值   | 说明                                       |
+| ---------- | ---- | ------------------------------------------ |
+| HORIZONTAL | 0    | 下载控件上图标和文字分布的方向为水平排列。 |
+| VERTICAL   | 1    | 下载控件上图标和文字分布的方向为垂直排列。 |
+
+## 事件
+
+支持[通用事件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-events-click.md)。
 
 ##  示例
 
@@ -127,11 +127,11 @@ struct Index {
   build() {
     Column() {
       DownloadFileButton({
-        contentOption: {
+        contentOptions: {
           // icon: DownloadIconStyle.FULL_FILLED,
           // text: DownloadDescription.DOWNLOAD
         },
-        styleOption: {
+        styleOptions: {
           iconSize: '16vp',
           layoutDirection: DownloadLayoutDirection.HORIZONTAL,
           fontSize: '16vp',
@@ -179,3 +179,5 @@ struct Index {
   }
 }
 ```
+
+![zh-cn_image_0000001643320073](https://gitee.com/openharmony/docs/raw/master/zh-cn/application-dev/reference/apis-arkui/arkui-ts/figures/zh-cn_image_0000001643320073.png)
