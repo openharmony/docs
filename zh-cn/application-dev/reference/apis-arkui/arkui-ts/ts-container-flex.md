@@ -38,7 +38,7 @@ Flex(value?: FlexOptions)
 | justifyContent | [FlexAlign](ts-appendix-enums.md#flexalign) | 否    | FlexAlign.Start   | 所有子组件在Flex容器主轴上的对齐格式。                    |
 | alignItems     | [ItemAlign](ts-appendix-enums.md#itemalign) | 否    | ItemAlign.Start   | 所有子组件在Flex容器交叉轴上的对齐格式。                   |
 | alignContent   | [FlexAlign](ts-appendix-enums.md#flexalign) | 否    | FlexAlign.Start   | 交叉轴中有额外的空间时，多行内容的对齐方式。仅在wrap为Wrap或WrapReverse下生效。 |
-| space          | [FlexSpaceOptions](ts-appendix-enums.md#flexspaceoptions) | 否   | space: {main:LengthMetrics.px(0), cross:LengthMetrics.px(0)} | 所有子组件在Flex容器主轴或交叉轴的space。<br/>从API version 12开始，space为负数、百分比或者justifyContent设置为FlexAlign.SpaceBetween、FlexAlign.SpaceAround、FlexAlign.SpaceEvenly时不生效。<br/>**说明：**<br/>可选值为大于等于0的数字，或者可以转换为数字的字符串。 |
+| space<sup>12+</sup>       | [FlexSpaceOptions](ts-appendix-enums.md#flexspaceoptions) | 否   | {main:LengthMetrics.px(0), cross:LengthMetrics.px(0)} | 所有子组件在Flex容器主轴或交叉轴的space。<br/>space为负数、百分比或者justifyContent设置为FlexAlign.SpaceBetween、FlexAlign.SpaceAround、FlexAlign.SpaceEvenly时不生效。<br/>**说明：**<br/>可选值为大于等于0的数字，或者可以转换为数字的字符串。 |
 
 ## 示例
 
