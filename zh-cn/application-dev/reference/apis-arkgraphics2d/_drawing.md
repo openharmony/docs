@@ -23,18 +23,21 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 | [drawing_color.h](drawing__color_8h.md) | 文件中定义了与颜色相关的功能函数。 | 
 | [drawing_color_filter.h](drawing__color__filter_8h.md) | 声明与绘图模块中的颜色滤波器对象相关的函数。 | 
 | [drawing_color_space.h](drawing__color__space_8h.md) | 文件中定义了与颜色空间相关的功能函数。 | 
+| [drawing_error_code.h](drawing__error__code_8h.md) | 声明与绘图模块中的错误码相关的函数。 | 
 | [drawing_filter.h](drawing__filter_8h.md) | 声明与绘图模块中的滤波器对象相关的函数。 | 
 | [drawing_font.h](drawing__font_8h.md) | 文件中定义了与字体相关的功能函数。 | 
 | [drawing_font_collection.h](drawing__font__collection_8h.md) | 定义绘制模块中与字体集合相关的函数。 | 
 | [drawing_font_mgr.h](drawing__font__mgr_8h.md) | 文件中定义了与字体管理相关的功能函数，用于加载和匹配系统中可用的字体。 | 
 | [drawing_gpu_context.h](drawing__gpu__context_8h.md) | 声明与绘图模块中的图形处理器上下文对象相关的函数。 | 
 | [drawing_image.h](drawing__image_8h.md) | 文件中定义了与图片相关的功能函数。 | 
+| [drawing_image_filter.h](drawing__image__filter_8h.md) | 声明与绘图模块中的图像滤波器对象相关的函数。 |
 | [drawing_mask_filter.h](drawing__mask__filter_8h.md) | 声明与绘图模块中的对象相关的函数。 | 
 | [drawing_matrix.h](drawing__matrix_8h.md) | 文件中定义了与矩阵相关的功能函数。 | 
 | [drawing_memory_stream.h](drawing__memory__stream_8h.md) | 文件中定义了与内存流相关的功能函数。 | 
 | [drawing_path.h](drawing__path_8h.md) | 文件中定义了与自定义路径相关的功能函数 | 
 | [drawing_path_effect.h](drawing__path__effect_8h.md) | 文件中定义了与路径效果相关的功能函数。 | 
 | [drawing_pen.h](drawing__pen_8h.md) | 文件中定义了与画笔相关的功能函数。 | 
+| [drawing_pixel_map.h](drawing__pixel__map_8h.md) | 声明与绘图模块中的像素图对象相关的函数。 | 
 | [drawing_point.h](drawing__point_8h.md) | 文件中定义了与坐标点相关的功能函数。 | 
 | [drawing_rect.h](drawing__rect_8h.md) | 文件中定义了与矩形相关的功能函数。 | 
 | [drawing_region.h](drawing__region_8h.md) | 定义了与区域相关的功能函数，包括区域的创建，边界设置和销毁等。 | 
