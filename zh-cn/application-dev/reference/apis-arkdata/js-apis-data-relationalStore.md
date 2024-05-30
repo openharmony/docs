@@ -5854,7 +5854,7 @@ import { BusinessError } from "@ohos.base";
 const tables = ["table1", "table2"];
 
 if(store != undefined) {
-  (store as relationalStore.RdbStore).cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, (progressDetail: relationalStore.ProgressDetails) => {
+  (store as relationalStore.RdbStore).cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, tables, (progressDetail: relationalStore.ProgressDetails) => {
     console.info(`progress: ${progressDetail}`);
   }).then(() => {
     console.info('Cloud sync succeeded');
@@ -5960,7 +5960,7 @@ try {
   }
 } catch (err) {
   let code = (err as BusinessError).code;
-  let message = (err as BusinessError).message
+  let message = (err as BusinessError).message;
   console.error(`Register observer failed, code is ${code},message is ${message}`);
 }
 ```
@@ -5970,32 +5970,33 @@ try {
 ```ts
 try {
   if(store != undefined) {
-    store.on('dataChange', relationalStore.SubscribeType.SUBSCRIBE_TYPE_LOCAL_DETAILS, (ChangeInfos) => {
+    (store as relationalStore.RdbStore).on('dataChange', relationalStore.SubscribeType.SUBSCRIBE_TYPE_LOCAL_DETAILS, (ChangeInfos) => {
       for (let i = 0; i < ChangeInfos.length; i++) {
-        console.info(TAG + `table = ${ChangeInfos[i].table}`);
-        console.info(TAG + `type = ${ChangeInfos[i].type}`);
-        console.info(TAG + `inserted = ${ChangeInfos[i].inserted[0]}`);
-        console.info(TAG + `updated = ${ChangeInfos[i].updated[0]}`);
-        console.info(TAG + `deleted = ${ChangeInfos[i].updated[0]}`);
+        console.info(`ChangeInfos = ${ChangeInfos[i]}`);
       }
     });
   }
 } catch (err) {
-  console.error(TAG + `on dataChange fail, code:${err.code}, message: ${err.message}`);
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message;
+  console.error(`on dataChange fail, code is ${code},message is ${message}`);
 }
 
 try {
-  const valueBucket1 = {
+  const valueBucket: ValuesBucket = {
     'name': 'zhangsan',
     'age': 18,
     'salary': 25000,
     'blobType': new Uint8Array([1, 2, 3]),
   };
 
-  let rowId = await store.insert('test', valueBucket1);
-  await store.delete('test');
+  if(store != undefined) {
+    (store as relationalStore.RdbStore).insert('test', valueBucket);
+  }
 } catch (err) {
-  console.error(TAG + `insert fail, code:${err.code}, message: ${err.message}`);
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message;
+  console.error(`insert fail, code is ${code},message is ${message}`);
 }
 ```
 
@@ -6617,7 +6618,7 @@ const STORE_CONFIG1: relationalStore.StoreConfig = {
     securityLevel: relationalStore.SecurityLevel.S1,
 }
 
-relationalStore.getRdbStore(context, STORE_CONFIG1).then(async (rdbStore: relationalStore.RdbStore) => {
+relationalStore.getRdbStore(this.context, STORE_CONFIG1).then(async (rdbStore: relationalStore.RdbStore) => {
     attachStore = rdbStore;
     console.info('Get RdbStore successfully.')
 }).catch((err: BusinessError) => {
@@ -6647,7 +6648,7 @@ const STORE_CONFIG2: relationalStore.StoreConfig = {
     securityLevel: relationalStore.SecurityLevel.S1,
 }
 
-relationalStore.getRdbStore(context, STORE_CONFIG2).then(async (rdbStore: relationalStore.RdbStore) => {
+relationalStore.getRdbStore(this.context, STORE_CONFIG2).then(async (rdbStore: relationalStore.RdbStore) => {
     attachStore = rdbStore;
     console.info('Get RdbStore successfully.')
 }).catch((err: BusinessError) => {
