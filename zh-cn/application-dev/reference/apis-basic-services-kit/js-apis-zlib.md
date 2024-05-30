@@ -476,7 +476,7 @@ compressFiles(inFiles: Array&lt;string&gt;, outFile: string, options: Options): 
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 900001   | The input source file is invalid.                            |
-| 900003   | The input destination file is invalid.                       |
+| 900002   | The input destination file is invalid.                       |
 
 **示例：**
 
@@ -565,6 +565,8 @@ let checksum = zlib.createChecksumSync()
 adler32(adler: number, buf: ArrayBuffer): Promise&lt;number&gt;
 
 计算Adler-32校验和，使用Promise异步返回。成功时返回计算后的Adler-32校验和，失败时返回错误码。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
