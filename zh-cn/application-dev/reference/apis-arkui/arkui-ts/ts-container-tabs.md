@@ -477,6 +477,33 @@ changeIndex(value: number): void
 | ----- | ------ | ---- | ---------------------------------------- |
 | value | number | 是    | 页签在Tabs里的索引值，索引值从0开始。<br/>**说明：** <br/>设置小于0或大于最大数量的值时，取默认值0。 |
 
+### preloadItems<sup>12+</sup>
+
+preloadItems(indices: Optional\<Array\<number>>): Promise\<void>
+
+控制Tabs预加载指定子节点。调用该接口后会一次性加载所有指定的子节点，因此为了性能考虑，建议分批加载子节点。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**参数：**
+
+| 参数名   | 参数类型   | 必填   | 参数描述                                     |
+| ----- | ------ | ---- | ---------------------------------------- |
+| indices | Optional\<Array\<number>> | 是 | 需预加载的子节点的下标数组。<br/>默认值：空数组。 |
+
+**返回值：** 
+
+| 类型                                                         | 说明                     |
+| ------------------------------------------------------------ | ------------------------ |
+| Promise\<void> | 预加载完成后触发的回调。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../../errorcode-universal.md)错误码。
+
+| 错误码ID   | 错误信息                                      |
+| --------   | -------------------------------------------- |
+| 401 | Parameter invalid. Possible causes: 1. The type of the parameter is not Array\<number>; 2. The parameter is an empty array; 3. The parameter contains an invalid index. |
 
 ## 示例
 
@@ -1368,3 +1395,80 @@ struct TabsExample {
 ```
 
 ![tabs10](figures/tabs10.gif)
+
+### 示例10
+
+本示例通过preloadItems接口实现了预加载指定子节点。
+
+```ts
+// xxx.ets
+import { BusinessError } from '@kit.BasicServicesKit'
+
+@Entry
+@Component
+struct TabsPreloadItems {
+  @State currentIndex: number = 1
+  private tabsController: TabsController = new TabsController()
+
+  build() {
+    Column() {
+      Tabs({ index: this.currentIndex, controller: this.tabsController }) {
+        TabContent() {
+          MyComponent({ color: '#00CB87' })
+        }.tabBar(SubTabBarStyle.of('green'))
+
+        TabContent() {
+          MyComponent({ color: '#007DFF' })
+        }.tabBar(SubTabBarStyle.of('blue'))
+
+        TabContent() {
+          MyComponent({ color: '#FFBF00' })
+        }.tabBar(SubTabBarStyle.of('yellow'))
+
+        TabContent() {
+          MyComponent({ color: '#E67C92' })
+        }.tabBar(SubTabBarStyle.of('pink'))
+      }
+      .width(360)
+      .height(296)
+      .backgroundColor('#F1F3F5')
+      .onChange((index: number) => {
+        this.currentIndex = index
+      })
+
+      Button('preload items: [0, 2, 3]')
+        .margin(5)
+        .onClick(() => {
+          // 预加载第0、2、3个子节点，提高滑动或点击切换至这些节点时的性能
+          this.tabsController.preloadItems([0, 2, 3])
+            .then(() => {
+              console.info('preloadItems success.')
+            })
+            .catch((error: BusinessError) => {
+              console.error('preloadItems failed, error code: ' + error.code + ', error message: ' + error.message)
+            })
+        })
+    }
+  }
+}
+
+@Component
+struct MyComponent {
+  private color: string = ""
+
+  aboutToAppear(): void {
+    console.info('aboutToAppear backgroundColor:' + this.color)
+  }
+
+  aboutToDisappear(): void {
+    console.info('aboutToDisappear backgroundColor:' + this.color)
+  }
+
+  build() {
+    Column()
+      .width('100%')
+      .height('100%')
+      .backgroundColor(this.color)
+  }
+}
+```
