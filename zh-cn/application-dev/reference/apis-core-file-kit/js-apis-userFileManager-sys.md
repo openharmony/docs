@@ -2779,6 +2779,7 @@ setUserComment(userComment: string, callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 202   | Called by non-system application.                |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. | 
 
 **示例：**
