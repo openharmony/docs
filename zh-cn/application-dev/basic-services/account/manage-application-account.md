@@ -41,7 +41,7 @@
    try {
      await appAccountManager.createAccount(name, options);
      console.log('createAccount successfully');
-   } catch (err: BusinessError) {
+   } catch (err) {
      console.log('createAccount failed, error: ' + JSON.stringify(err));
    }
    ```
