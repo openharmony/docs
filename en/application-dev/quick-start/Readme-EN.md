@@ -13,10 +13,8 @@
       - [HAP](hap-package.md)
       - [HAR](har-package.md)
       - [HSP](in-app-hsp.md)
+      - [Dynamic Import](arkts-dynamic-import.md)
     - [Application Package Installation, Uninstall, and Update](application-package-install-uninstall.md)
-    - Quick Fix
-      - [Quick Fix Overview](quickfix-principles.md)
-      - [CLI-based Quick Fix Development](quickfix-debug.md)
   - Application Configuration Files in Stage Model
     - [Overview of Application Configuration Files in Stage Model](application-configuration-file-overview-stage.md)
     - [app.json5 Configuration File](app-configuration-file.md)
@@ -38,9 +36,10 @@
     - Basic Syntax
       - [Basic Syntax Overview](arkts-basic-syntax-overview.md)
       - [Declarative UI Description](arkts-declarative-ui-description.md)
-      - CustomComponent
+      - Custom Component
         - [Creating a Custom Component](arkts-create-custom-components.md)
         - [Page and Custom Component Lifecycle](arkts-page-custom-components-lifecycle.md)
+        - [Custom Component Layout](arkts-page-custom-components-layout.md)
         - [Freezing a Custom Component](arkts-custom-components-freeze.md)
       - [\@Builder Decorator: Custom Builder Function](arkts-builder.md)
       - [\@BuilderParam Decorator: @Builder Function Reference](arkts-builderparam.md)

@@ -585,7 +585,7 @@ In most cases, view model data items are of complex types, such as arrays of obj
 
 ### \@Prop and \@ObjectLink Nested Data Structures
 
-When possible, design a separate \@Component decorator to render each array or object. In this case, an object array or nested object (which is an object whose property is an object) requires two \@Component decorators: one for rendering an external array/object, and the other for rendering a class object nested within the array/object. Variables decorated by \@Prop, \@Link, and \@ObjectLink can only observe changes at the first layer.
+When possible, design a separate custom component to render each array or object. In this case, an object array or nested object (which is an object whose property is an object) requires two custom components: one for rendering an external array/object, and the other for rendering a class object nested within the array/object. For variables decorated by \@State, \@Prop, \@Link, and \@ObjectLink, only changes at the first layer can be observed.
 
 - For a class:
   - Value assignment changes can be observed: this.obj=new ClassObj(...)
@@ -1123,7 +1123,6 @@ In this way, the UI re-render workload is minimized, leading to higher applicati
 
 
 ```ts
-
 // ViewModel classes
 let nextId = 0;
 
@@ -1194,7 +1193,7 @@ struct PersonView {
   @ObjectLink phones: ObservedArray<string>;
   @Link selectedPerson: Person;
 
-  build() {
+  build() { 
     Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.SpaceBetween }) {
       Text(this.person.name)
       if (this.phones.length) {
@@ -1209,16 +1208,37 @@ struct PersonView {
   }
 }
 
+@Component
+struct phonesNumber {
+  @ObjectLink phoneNumber: ObservedArray<string>
+
+  build() {
+    Column() {
+
+      ForEach(this.phoneNumber,
+        (phone: ResourceStr, index?: number) => {
+          TextInput({ text: phone })
+            .width(150)
+            .onChange((value) => {
+              console.log(`${index}. ${value} value has changed`)
+              this.phoneNumber[index!] = value;
+            })
+        },
+        (phone: ResourceStr, index: number) => `${this.phoneNumber[index] + index}`
+      )
+    }
+  }
+}
+
+
 // Render the information about the contact (person).
 // The @Prop decorated variable makes a deep copy from the parent component AddressBookView and retains the changes locally. The changes of TextInput apply only to the local copy.
 // Click Save Changes to copy all data to @Link through @Prop and synchronize the data to other components.
 @Component
 struct PersonEditView {
   @Consume addrBook: AddressBook;
-
   /* Reference pointing to selectedPerson in the parent component. */
   @Link selectedPerson: Person;
-
   /* Make changes on the local copy until you click Save Changes. */
   @Prop name: string = "";
   @Prop address: Address = new Address("", 0, "");
@@ -1251,17 +1271,7 @@ struct PersonEditView {
         })
 
       if (this.phones.length > 0) {
-        ForEach(this.phones,
-          (phone: ResourceStr, index?:number) => {
-            TextInput({ text: phone })
-              .width(150)
-              .onChange((value) => {
-                console.log(`${index}. ${value} value has changed`)
-                this.phones[index!] = value;
-              })
-          },
-          (phone: ResourceStr, index?:number) => `${index}`
-        )
+        phonesNumber({ phoneNumber: this.phones })
       }
 
       Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.SpaceBetween }) {
@@ -1319,13 +1329,15 @@ struct AddressBookView {
       Divider().height(8)
 
       ForEach(this.contacts, (contact: Person) => {
-        PersonView({ 
-          person: contact, 
-          phones: contact.phones as ObservedArray<string>, 
-          selectedPerson: this.selectedPerson 
+        PersonView({
+          person: contact,
+          phones: contact.phones as ObservedArray<string>,
+          selectedPerson: this.selectedPerson
         })
       },
-        (contact: Person): string => { return contact.id_; }
+        (contact: Person): string => {
+          return contact.id_;
+        }
       )
 
       Divider().height(8)
@@ -1348,9 +1360,9 @@ struct PageEntry {
   @Provide addrBook: AddressBook = new AddressBook(
     new Person("Gigi", "Itamerenkatu 9", 180, "Helsinki", ["18*********", "18*********", "18*********"]),
     [
-      new Person("Oly", "Itamerenkatu 9", 180, "Helsinki", ["18*********", "18*********"]),
-      new Person("Sam", "Itamerenkatu 9", 180, "Helsinki", ["18*********", "18*********"]),
-      new Person("Vivi", "Itamerenkatu 9", 180, "Helsinki", ["18*********", "18*********"]),
+      new Person("Oly", "Itamerenkatu 9", 180, "Helsinki", ["11*********", "12*********"]),
+      new Person("Sam", "Itamerenkatu 9", 180, "Helsinki", ["13*********", "14*********"]),
+      new Person("Vivi", "Itamerenkatu 9", 180, "Helsinki", ["15*********", "168*********"]),
     ]);
 
   build() {

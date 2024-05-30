@@ -33,7 +33,7 @@ Along its evolution, OpenHarmony has provided two application models:
 
 - **Feature Ability (FA) model**: This model is supported since API version 7. It is no longer recommended. For details about development based on the FA model, see [FA Model Development Overview](../application-models/fa-model-development-overview.md).
 
-For details about the differences between the FA model and stage model, see [Interpretation of the Application Model](../application-models/application-model-description.md).
+For details about the differences between the FA model and stage model, see [Interpretation of the Application Model](../application-models/application-models.md).
 
 To help you better understand the preceding basic concepts and application development process, **Getting Started** walks you through an example of building the first ArkTS application with two pages in the stage model.
 

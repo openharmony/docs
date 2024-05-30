@@ -1,6 +1,6 @@
 # Proper Use of State Management
 
-Managing state in applications can be a tricky task. You may find the UI not refreshed as expected, or the re-renders slowing down your application. This topic explores some best practices for managing state, through typical examples and nonexamples.
+Managing state in applications can be a tricky task. You may find the UI not refreshed as expected, or the re-renders slowing down your application. This topic explores some best practices for managing state, through typical correct and incorrect usage examples.
 
 ## Properly Using Attributes
 
@@ -203,6 +203,10 @@ After optimization, an object array is used in place of the original attribute a
 
 ### Splitting a Complex Large Object into Multiple Small Objects
 
+> **NOTE**
+>
+> You are advised to use the [@Track decorator](arkts-track.md) in this scenario since API version 11.
+
 During development, we sometimes define a large object that contains many style-related properties, and pass the object between parent and child components to bind the properties to the components.
 
 ```typescript
@@ -232,7 +236,7 @@ struct SpecialImage {
     return 1;
   }
   build() {
-    Image($r('app.media.icon'))
+    Image($r('app.media.icon')) // Use app.media.app_icon since API version 12.
       .width(this.uiStyle.imageWidth)
       .height(this.uiStyle.imageHeight)
       .margin({ top: 20 })
@@ -272,7 +276,7 @@ struct CompA {
       })
       Stack() {
         Column() {
-            Image($r('app.media.icon'))
+            Image($r('app.media.icon')) // Use app.media.app_icon since API version 12.
               .opacity(this.uiStyle.alpha)
               .scale({
                 x: this.uiStyle.scaleX,
@@ -433,7 +437,7 @@ struct SpecialImage {
     return 1;
   }
   build() {
-    Image($r('app.media.icon'))
+    Image($r('app.media.icon')) // Use app.media.app_icon since API version 12.
       .width(this.needRenderImage.imageWidth) // !! use this.needRenderImage.xxx rather than this.uiStyle.needRenderImage.xxx !!
       .height(this.needRenderImage.imageHeight)
       .margin({top:20})
@@ -481,7 +485,7 @@ struct CompA {
       })
       Stack() {
         Column() {
-          Image($r('app.media.icon'))
+          Image($r('app.media.icon')) // Use app.media.app_icon since API version 12.
             .opacity(this.needRenderAlpha.alpha)
             .scale({
               x: this.needRenderScale.scaleX, // use this.needRenderXxx.xxx rather than this.uiStyle.needRenderXxx.xxx
@@ -597,6 +601,167 @@ After the optimization, the 15 attributes previously in one class are divided in
 - Properties that may be used in different places should be divided into a new child class, that is, **NeedRenderAlpha**, **NeedRenderBorderRadius**, and **NeedRenderFontSize** in the example. This mode of division is applicable to the scenario where a property works on multiple components or works on their own, for example, **.opacity** and **.borderRadius** (which usually work on their own).
 
 As in combination of properties, the principle behind division of properties is that changes to properties of objects nested more than two levels deep cannot be observed. Yet, you can use @Observed and @ObjectLink to transfer level-2 objects between parent and child nodes to observe property changes at level 2 and precisely control the render scope. For details about division of properties, see [Precisely Controlling Render Scope](../performance/precisely-control-render-scope.md).
+
+You can also use the @Track decorator to precisely control the render scope, which does not involve division of properties.
+
+```ts
+@Observed
+class UIStyle {
+  @Track translateX: number = 0;
+  @Track translateY: number = 0;
+  @Track scaleX: number = 0.3;
+  @Track scaleY: number = 0.3;
+  @Track width: number = 336;
+  @Track height: number = 178;
+  @Track posX: number = 10;
+  @Track posY: number = 50;
+  @Track alpha: number = 0.5;
+  @Track borderRadius: number = 24;
+  @Track imageWidth: number = 78;
+  @Track imageHeight: number = 78;
+  @Track translateImageX: number = 0;
+  @Track translateImageY: number = 0;
+  @Track fontSize: number = 20;
+}
+@Component
+struct SpecialImage {
+  @ObjectLink uiStyle: UIStyle;
+  private isRenderSpecialImage() : number { // function to show whether the component is rendered
+    console.log("SpecialImage is rendered");
+    return 1;
+  }
+  build() {
+    Image($r('app.media.icon')) // Use app.media.app_icon since API version 12.
+      .width(this.uiStyle.imageWidth)
+      .height(this.uiStyle.imageHeight)
+      .margin({ top: 20 })
+      .translate({
+        x: this.uiStyle.translateImageX,
+        y: this.uiStyle.translateImageY
+      })
+      .opacity(this.isRenderSpecialImage()) // if the Image is rendered, it will call the function
+  }
+}
+@Component
+struct CompA {
+  @ObjectLink uiStyle: UIStyle
+  // the following functions are used to show whether the component is called to be rendered
+  private isRenderColumn() : number {
+    console.log("Column is rendered");
+    return 1;
+  }
+  private isRenderStack() : number {
+    console.log("Stack is rendered");
+    return 1;
+  }
+  private isRenderImage() : number {
+    console.log("Image is rendered");
+    return 1;
+  }
+  private isRenderText() : number {
+    console.log("Text is rendered");
+    return 1;
+  }
+  build() {
+    Column() {
+      SpecialImage({
+        // in low version, Dev Eco may throw a warning
+        // But you can still build and run the code
+        uiStyle: this.uiStyle
+      })
+      Stack() {
+        Column() {
+            Image($r('app.media.icon')) // Use app.media.app_icon since API version 12.
+              .opacity(this.uiStyle.alpha)
+              .scale({
+                x: this.uiStyle.scaleX,
+                y: this.uiStyle.scaleY
+              })
+              .padding(this.isRenderImage())
+              .width(300)
+              .height(300)
+        }
+        .width('100%')
+        .position({ y: -80 })
+        Stack() {
+          Text("Hello World")
+            .fontColor("#182431")
+            .fontWeight(FontWeight.Medium)
+            .fontSize(this.uiStyle.fontSize)
+            .opacity(this.isRenderText())
+            .margin({ top: 12 })
+        }
+        .opacity(this.isRenderStack())
+        .position({
+          x: this.uiStyle.posX,
+          y: this.uiStyle.posY
+        })
+        .width('100%')
+        .height('100%')
+      }
+      .margin({ top: 50 })
+      .borderRadius(this.uiStyle.borderRadius)
+      .opacity(this.isRenderStack())
+      .backgroundColor("#FFFFFF")
+      .width(this.uiStyle.width)
+      .height(this.uiStyle.height)
+      .translate({
+        x: this.uiStyle.translateX,
+        y: this.uiStyle.translateY
+      })
+      Column() {
+        Button("Move")
+          .width(312)
+          .fontSize(20)
+          .backgroundColor("#FF007DFF")
+          .margin({ bottom: 10 })
+          .onClick(() => {
+            animateTo({
+              duration: 500
+            },() => {
+              this.uiStyle.translateY = (this.uiStyle.translateY + 180) % 250;
+            })
+          })
+        Button("Scale")
+          .borderRadius(20)
+          .backgroundColor("#FF007DFF")
+          .fontSize(20)
+          .width(312)
+          .onClick(() => {
+            this.uiStyle.scaleX = (this.uiStyle.scaleX + 0.6) % 0.8;
+          })
+      }
+      .position({
+        y:666
+      })
+      .height('100%')
+      .width('100%')
+
+    }
+    .opacity(this.isRenderColumn())
+    .width('100%')
+    .height('100%')
+
+  }
+}
+@Entry
+@Component
+struct Page {
+  @State uiStyle: UIStyle = new UIStyle();
+  build() {
+    Stack() {
+      CompA({
+        // in low version, Dev Eco may throw a warning
+        // But you can still build and run the code
+        uiStyle: this.uiStyle
+      })
+    }
+    .backgroundColor("#F1F3F5")
+  }
+}
+```
+
+
 
 ### Binding Components to Class Objects Decorated with @Observed or Declared as State Variables
 
@@ -935,7 +1100,7 @@ In the preceding code, the ChildList type is decorated by @Observed when defined
 
 ### Minimizing the Use of LazyForEach in UI Updating
 
-**LazyForEach** often work hand in hand with state variables.
+[LazyForEach](arkts-rendering-control-lazyforeach.md) often works hand in hand with state variables.
 
 ```typescript
 class BasicDataSource implements IDataSource {
@@ -1038,7 +1203,7 @@ struct MyComponent {
 
   aboutToAppear() {
     for (let i = 0; i <= 9; i++) {
-      this.data.pushData(new StringData(`Click to add ${i}`, $r('app.media.icon')));
+      this.data.pushData(new StringData(`Click to add ${i}`, $r('app.media.icon'))); // Use app.media.app_icon since API version 12.
     }
   }
 
@@ -1160,8 +1325,8 @@ class MyDataSource extends BasicDataSource {
 
 @Observed
 class StringData {
-  message: string;
-  imgSrc: Resource;
+  @Track message: string;
+  @Track imgSrc: Resource;
   constructor(message: string, imgSrc: Resource) {
     this.message = message;
     this.imgSrc = imgSrc;
@@ -1175,7 +1340,7 @@ struct MyComponent {
 
   aboutToAppear() {
     for (let i = 0; i <= 9; i++) {
-      this.data.pushData(new StringData(`Click to add ${i}`, $r('app.media.icon')));
+      this.data.pushData(new StringData(`Click to add ${i}`, $r('app.media.icon'))); // Use app.media.app_icon since API version 12.
     }
   }
 
@@ -1218,11 +1383,11 @@ Below you can see how the preceding code snippet works.
 
 In this example, the UI is re-rendered properly: The image does not flicker, and no log is generated, which indicates that the **\<Text>** and **\<Image>** components are not rebuilt.
 
-This is thanks to introduction of custom components, where state variables are directly changed through @Observed and @ObjectLink, instead of through **LazyForEach**. With this optimization, the update scope is narrowed down from the entire list item to the specified **\<Text>** component.
+This is thanks to introduction of custom components, where state variables are directly changed through @Observed and @ObjectLink, instead of through **LazyForEach**. You can also decorate the **message** and **imgSrc** properties in the **StringData** type with [@Track](arkts-track.md) to further narrow down the update scope to the specified **\<Text>** component.
 
 ### Using Custom Components to Match Object Arrays in ForEach
 
-Frequently seen in applications, the combination of object arrays and **ForEach** requires special attentions. Inappropriate use may cause UI re-render issues.
+Frequently seen in applications, the combination of object arrays and [ForEach](arkts-rendering-control-foreach.md) requires special attentions. Inappropriate use may cause UI re-render issues.
 
 ```typescript
 @Observed

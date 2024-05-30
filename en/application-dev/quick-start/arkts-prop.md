@@ -961,7 +961,7 @@ struct Parent {
 }
 ```
 
-[Correct Use]
+[Correct Usage]
 
 ```ts
 @Observed
