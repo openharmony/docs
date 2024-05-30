@@ -5461,10 +5461,10 @@ static warmupServiceWorker(url: string): void
 
 ```ts
 // xxx.ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import webview from '@ohos.web.webview';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import Want from '@ohos.app.ability.Want';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { window } from '@kit.ArkUI';
+import { webview } from '@kit.ArkWeb';
 
 export default class EntryAbility extends UIAbility {
     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
