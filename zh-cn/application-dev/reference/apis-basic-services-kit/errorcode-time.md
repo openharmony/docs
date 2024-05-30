@@ -8,7 +8,7 @@
 
 **错误信息** 
 
-  The parameter check failed or permission denied or system error.
+Parameter check failed, permission denied, or system error.
 
 **错误描述**
 
@@ -26,7 +26,7 @@
 
 **错误信息**
 
-PERMISSION_ERROR.
+Permission verification failed. The application does not have the permission required to call the API.
 
 **错误描述**
 
@@ -44,7 +44,7 @@ PERMISSION_ERROR.
 
 **错误信息**
 
-SYSTEM_APP_ERROR.
+System application error.
 
 **错误描述**
 
@@ -62,7 +62,7 @@ SYSTEM_APP_ERROR.
 
 **错误信息**
 
-PARAMETER_ERROR.
+Parameter error.
 
 **错误描述**
 
