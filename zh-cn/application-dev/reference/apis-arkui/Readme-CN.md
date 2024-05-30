@@ -247,6 +247,7 @@
       - [Row (系统接口)](arkui-ts/ts-container-row-sys.md)
       - [Stack (系统接口)](arkui-ts/ts-container-stack-sys.md)
       - [UIExtensionComponent (系统接口)](arkui-ts/ts-container-ui-extension-component-sys.md)
+      - [IsolatedComponent (系统接口)](arkui-ts/ts-container-isolated-component-sys.md)
       <!--DelEnd-->
     - 媒体组件
       - [Video](arkui-ts/ts-media-components-video.md)
