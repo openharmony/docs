@@ -9,7 +9,7 @@ The **pointer** module provides APIs related to pointer attribute management.
 ## Modules to Import
 
 ```js
-import pointer from '@kit.InputKit';
+import { pointer } from '@kit.InputKit';
 ```
 
 ## pointer.setPointerVisible
@@ -239,8 +239,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-import { BusinessError }  from '@kit.BasicServicesKit';
-import window from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { window } from '@kit.ArkUI';
 
 let context = getContext(this);
 window.getLastWindow(context, (error: BusinessError, win: window.Window) => {
@@ -294,8 +294,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-import { BusinessError }  from '@kit.BasicServicesKit';
-import window from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { window } from '@kit.ArkUI';
 
 let context = getContext(this);
 window.getLastWindow(context, (error: BusinessError, win: window.Window) => {
@@ -384,8 +384,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-import { BusinessError }  from '@kit.BasicServicesKit';
-import window from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { window } from '@kit.ArkUI';
 
 window.getLastWindow(getContext(), (error: BusinessError, win: window.Window) => {
   if (error.code) {
@@ -433,8 +433,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-import { BusinessError }  from '@kit.BasicServicesKit';
-import window from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { window } from '@kit.ArkUI';
 
 window.getLastWindow(getContext(), (error: BusinessError, win: window.Window) => {
   if (error.code) {
@@ -481,8 +481,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 ```js
-import { BusinessError }  from '@kit.BasicServicesKit';
-import window from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { window } from '@kit.ArkUI';
 
 window.getLastWindow(getContext(), (error: BusinessError, win: window.Window) => {
   if (error.code) {
@@ -613,9 +613,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-import image from '@kit.ImageKit';
-import { BusinessError }  from '@kit.BasicServicesKit';
-import window from '@kit.ArkUI';
+import { image } from '@kit.ImageKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { window } from '@kit.ArkUI';
 
 const svgFileData = getContext().resourceManager.getMediaContent($r("app.media.icon"));
 const svgBuffer: image.Buffer = svgFileData.buffer;
@@ -663,9 +663,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-import image from '@kit.ImageKit';
-import { BusinessError }  from '@kit.BasicServicesKit';
-import window from '@kit.ArkUI';
+import { image } from '@kit.ImageKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { window } from '@kit.ArkUI';
 
 const svgFileData = getContext().resourceManager.getMediaContent($r("app.media.icon"));
 const svgBuffer: image.Buffer = svgFileData.buffer;

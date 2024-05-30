@@ -129,8 +129,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```js
 import { MouseEvent } from '@kit.InputKit';
-import promptAction from '@kit.ArkUI'
-import display from '@kit.ArkUI'
+import { promptAction } from '@kit.ArkUI'
+import { display } from '@kit.ArkUI'
 
 /**
  * Callback triggered when the mouse pointer moves to the specified rectangular area.
@@ -917,7 +917,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-import type { FingerprintEvent } from '@kit.InputKit';
+import type FingerprintEvent from '@kit.InputKit';
 import inputMonitor from '@kit.InputKit';
 
 try {
@@ -1026,7 +1026,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-import type { FingerprintEvent } from '@kit.InputKit';
+import type FingerprintEvent from '@kit.InputKit';
 import inputMonitor from '@kit.InputKit';
 
 let callback = (fingerprint: FingerprintEvent) => {

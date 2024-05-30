@@ -155,7 +155,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-import mouseEvent from '@kit.InputKit';
+import { MouseEvent } from '@kit.InputKit';
 
 try {
   let mouseButtonUpData: mouseEvent.MouseEvent = {
@@ -255,7 +255,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-import touchEvent from '@kit.InputKit';
+import { TouchEvent } from '@kit.InputKit';
 
 try {
   let touchEvent: touchEvent.Touch = {
