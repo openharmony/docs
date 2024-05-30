@@ -705,7 +705,7 @@ Checks the validity period of this X.509 certificate.
 
 | Name  | Type           | Mandatory| Description       |
 | -------- | -------------- | ---- | ---------- |
-| date     | string         | Yes  | Date in the YYMMDDHHMMSSZ or YYYYMMDDHHMMSSZ format. The date must end with **Z**, which indicates the UTC.|
+| date     | string         | Yes  | Date in ASN.1 format.|
 
 **Error codes**
 
@@ -1104,7 +1104,7 @@ Obtains the start time of this X.509 certificate.
 
 | Type  | Description                                                        |
 | ------ | ------------------------------------------------------------ |
-| string | Start time of the X509 certificate validity period, in the YYMMDDHHMMSSZ or YYYYMMDDHHMMSSZ format. The value must end with **Z**, which indicates the UTC.|
+| string | Start time of the X509 certificate validity period, in ASN.1 format.|
 
 **Error codes**
 
@@ -1175,7 +1175,7 @@ Obtains the expiration time of this X.509 certificate.
 
 | Type  | Description                                                        |
 | ------ | ------------------------------------------------------------ |
-| string | Expiration time of the X509 certificate validity period, in the YYMMDDHHMMSSZ or YYYYMMDDHHMMSSZ format. The value must end with **Z**, which indicates the UTC.|
+| string | Expiration time of the X509 certificate validity period, in ASN.1 format.|
 
 **Error codes**
 
