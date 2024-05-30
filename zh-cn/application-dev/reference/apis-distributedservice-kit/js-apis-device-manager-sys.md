@@ -740,7 +740,7 @@ startDeviceDiscovery(subscribeInfo: SubscribeInfo): void
 | 202 | Permission verification failed. A non-system application calls a system API.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified networkId is greater than 255. |
 | 11600101 | Failed to execute the function.                                 |
-| 11600104 | Discovery invalid.                                              |
+| 11600104 | Discovery unavailable.                                              |
 
 **示例：**
 
@@ -806,7 +806,7 @@ startDeviceDiscovery(subscribeInfo: SubscribeInfo, filterOptions?: string): void
 | 202 | Permission verification failed. A non-system application calls a system API.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified networkId is greater than 255. |
 | 11600101 | Failed to execute the function.                                 |
-| 11600104 | Discovery invalid.                                              |
+| 11600104 | Discovery unavailable.                                              |
 
 **示例：**
 
@@ -938,7 +938,7 @@ publishDeviceDiscovery(publishInfo: PublishInfo): void
 | 202 | Permission verification failed. A non-system application calls a system API.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. |
 | 11600101 | Failed to execute the function.                                 |
-| 11600105 | Publish invalid.                                                |
+| 11600105 | Publish unavailable.                                                |
 
 **示例：**
 
