@@ -25,7 +25,7 @@ import DownloadFileButton from '@ohos.arkui.advanced.DownloadFileButton'
 
 Downloadbutton(contentOptions?:DownloadContentOptions, styleOptions?:DownloadStyleOptions)
 
-下载文件按钮组件，默认显示图标和文字
+下载文件按钮组件，默认显示图标和文字。
 
 **装饰器类型：**@Component
 
@@ -42,7 +42,7 @@ Downloadbutton(contentOptions?:DownloadContentOptions, styleOptions?:DownloadSty
 
 ## DownloadContentOptions
 
-下载文件按钮中显示的内容
+下载文件按钮中显示的内容。
 
 **元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
@@ -55,7 +55,7 @@ Downloadbutton(contentOptions?:DownloadContentOptions, styleOptions?:DownloadSty
 
 ## DownloadStyleOptions
 
-下载文件按钮中图标和文字的样式
+下载文件按钮中图标和文字的样式。
 
 **元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
@@ -75,7 +75,7 @@ Downloadbutton(contentOptions?:DownloadContentOptions, styleOptions?:DownloadSty
 
 ## DownloadIconStyle
 
-下载文件按钮中图标的风格
+下载文件按钮中图标的风格。
 
 **元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
@@ -90,7 +90,7 @@ Downloadbutton(contentOptions?:DownloadContentOptions, styleOptions?:DownloadSty
 
 ## DownloadDescription
 
-下载按钮中文字的内容
+下载按钮中文字的内容。
 
 **元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
@@ -111,7 +111,7 @@ Downloadbutton(contentOptions?:DownloadContentOptions, styleOptions?:DownloadSty
 
 ## DownloadLayoutDirection
 
-下载文件按钮中图标和文字的排列方式
+下载文件按钮中图标和文字的排列方式。
 
 **元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
