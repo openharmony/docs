@@ -354,47 +354,6 @@ napi_status napi_release_threadsafe_function(napi_threadsafe_function function);
 
 ### 接口汇总说明
 
-<style type="text/css">
-table{
-    border-collapse:collapse;
-    table-layout:fixed;
-    border-radius:5px;
-    overflow:hidden;
-    margin:10px auto;
-    border:2px solid #70aefb;
-    background-color:#328ef4;
-    color: #c7dafb;
-}
-table td,th{
-    text-align: center;
-    border: 1px solid #70aefb;
-    vertical-align : middle;
-    width: 80%;
-}
-.table-color-green{
-    background-color: green;
-}
-.table-color-grey{
-    background-color: #696969;
-}
-.table-color-black{
-    background-color: black;
-}
-.jt-up-color{
-    color: red;
-}
-.parent-position{
-    position: relative;
-}
-.child-position{
-    position: absolute;
-    right: 0;
-    bottom: 0;
-}
-.main-font{
-    font-size: 23px;
-}
-</style>
 <table>
     <tr>
         <td><b>接口类型</b></td>
