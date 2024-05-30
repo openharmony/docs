@@ -9,7 +9,7 @@ The **inputEvent** module provides the basic events reported by the device.
 ## Modules to Import
 
 ```js
-import InputEvent from '@kit.InputKit';
+import { InputEvent } from '@kit.InputKit';
 ```
 
 ## InputEvent 
