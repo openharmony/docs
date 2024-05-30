@@ -127,7 +127,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 deactivatePermission(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
 
-Deactivates the permissions on multiple files or folders. This API uses a promise to return the result. <br>This API is available only to certain devices.
+Deactivates the permissions on multiple files or folders. This API uses a promise to return the result. <br>This API is available only to the devices with the required system capability.
 
 **Required permissions**: ohos.permission.FILE_ACCESS_PERSIST
 
@@ -190,4 +190,3 @@ If the permission deactivation of some URIs fails, error code 13900001 will be r
     }
   }
   ```
-<!--no_check-->

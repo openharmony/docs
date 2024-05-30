@@ -38,12 +38,16 @@ You can use [FilePicker](../reference/apis-core-file-kit/js-apis-file-picker.md)
    photoSelectOptions.maxSelectNumber = 5; // Set the maximum number of images to select.
    ```
 
-4. Create a **PhotoViewPicker** instance and call [select()](../reference/apis-core-file-kit/js-apis-file-picker.md#select) to open the **Gallery** page for the user to select images. After the user selects images, [PhotoSelectResult](../reference/apis-core-file-kit/js-apis-file-picker.md#photoselectresult) is returned.<br>The permission on the URIs returned by **select()** is read-only. You are advised to define a global variable to hold the URI and use a button to open the file.<br>If metadata needs to be obtained, you can use the [@ohos.file.fs](../reference/apis-core-file-kit/js-apis-file-fs.md) and [@ohos.file.fileuri](../reference/apis-core-file-kit/js-apis-file-fileuri.md) APIs to obtain file attribute information, such as the file name, size, access time, modification time, and path, based on the URI.
+4. Create a **PhotoViewPicker** instance and call [select()](../reference/apis-core-file-kit/js-apis-file-picker.md#select) to open the **Gallery** page for the user to select images. After the user selects images, [PhotoSelectResult](../reference/apis-core-file-kit/js-apis-file-picker.md#photoselectresult) is returned.
+
+   The permission on the URIs returned by **select()** is read-only. You are advised to define a global variable to hold the URI and use a button to open the file.
+
+   If metadata needs to be obtained, you can use the [@ohos.file.fs](../reference/apis-core-file-kit/js-apis-file-fs.md) and [@ohos.file.fileuri](../reference/apis-core-file-kit/js-apis-file-fileuri.md) APIs to obtain file attribute information, such as the file name, size, access time, modification time, and path, based on the URI.
 
    ```ts
-import picker from '@ohos.file.picker';
+   import picker from '@ohos.file.picker';
    import { BusinessError } from '@ohos.base';
-
+   
    let uris: Array<string> = [];
    const photoViewPicker = new picker.PhotoViewPicker();
    photoViewPicker.select(photoSelectOptions).then((photoSelectResult: picker.PhotoSelectResult) => {
@@ -53,7 +57,7 @@ import picker from '@ohos.file.picker';
      console.error(`Invoke photoViewPicker.select failed, code is ${err.code}, message is ${err.message}`);
    })
    ```
-   
+
 5. After the application UI is returned from **Gallery**, use a button to trigger the application's API. Use [fs.openSync](../reference/apis-core-file-kit/js-apis-file-fs.md#fsopensync) to open an image based on the URI. After the image is opened, the FD is returned. Note that the **mode** parameter of **fs.openSync()** must be **fs.OpenMode.READ_ONLY**.
 
    ```ts
@@ -94,7 +98,7 @@ import picker from '@ohos.file.picker';
    const documentSelectOptions = new picker.DocumentSelectOptions(); 
    documentSelectOptions.maxSelectNumber = 5; // (Optional) Maximum number of documents to select.
    documentSelectOptions.defaultFilePathUri = "file://docs/storage/Users/currentUser/test"; // (Optional) Path of the document or directory to select.
-   documentSelectOptions.fileSuffixFilters = ['.png', '.txt', '.mp4']; // (Optional) Types of the documents to select. Use a comma to separate multiple file name extensions.
+   documentSelectOptions.fileSuffixFilters = ['.png', '.txt', '.mp4']; // (Optional) Types of the documents to select. Use a comma to separate multiple file name extensions. The number of file name extension types cannot exceed 100.
    ```
 
 3. Create a **DocumentViewPicker** instance, and use [select()](../reference/apis-core-file-kit/js-apis-file-picker.md#select-3) to start the FilePicker application page for the user to select documents. After the user selects documents, a result set containing the document URIs is returned.

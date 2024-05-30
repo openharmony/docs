@@ -16,7 +16,7 @@ import environment from '@ohos.file.environment';
 
 getUserDownloadDir(): string
 
-Obtains the sandbox path of the pre-authorized **Download** directory of the current user. This API is available only to certain devices.
+Obtains the sandbox path of the pre-authorized **Download** directory of the current user. This API is available only to the devices with the required system capability.
 
 **Required permissions**: ohos.permission.READ_WRITE_DOWNLOAD_DIRECTORY
 
@@ -56,7 +56,7 @@ function getUserDownloadDirExample() {
 
 getUserDesktopDir(): string
 
-Obtains the sandbox path of the pre-authorized **Desktop** directory of the current user. This API is available only to certain devices.
+Obtains the sandbox path of the pre-authorized **Desktop** directory of the current user. This API is available only to the devices with the required system capability.
 
 **Required permissions**: ohos.permission.READ_WRITE_DESKTOP_DIRECTORY
 
@@ -96,7 +96,7 @@ function getUserDesktopDirExample() {
 
 getUserDocumentDir(): string
 
-Obtains the sandbox path of the pre-authorized **Documents** directory of the current user. This API is available only to certain devices.
+Obtains the sandbox path of the pre-authorized **Documents** directory of the current user. This API is available only to the devices with the required system capability.
 
 **Required permissions**: ohos.permission.READ_WRITE_DOCUMENTS_DIRECTORY
 

@@ -62,7 +62,7 @@ Represents a permission policy, that is, a policy for granting or activating the
 
 persistPermission(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
 
-Persists the permissions granted to multiple files or folders. This API uses a promise to return the result.<br>This API is available only to certain devices.
+Persists the permissions granted to multiple files or folders. This API uses a promise to return the result.<br>This API is available only to the devices with the required system capability.
 
 **Required permissions**: ohos.permission.FILE_ACCESS_PERSIST
 
@@ -72,7 +72,7 @@ Persists the permissions granted to multiple files or folders. This API uses a p
 
 | Name| Type                                   | Mandatory| Description                     |
 | -------- |---------------------------------------| -------- |-------------------------|
-| policies| Array&lt;[PolicyInfo](#policyinfo11)> | Yes| Array of permission policies.  |
+| policies| Array&lt;[PolicyInfo](#policyinfo11)> | Yes| Permission policies to persist.          |
 
 **Return value**
 
@@ -132,7 +132,7 @@ If the permission persistence of some URIs fails, error code 13900001 will be re
 
 revokePermission(policies: Array&lt;PolicyInfo&gt;): Promise&lt;void&gt;
 
-Revokes permissions from multiple files or folders. This API uses a promise to return the result.<br>This API is available only to certain devices.
+Revokes permissions from multiple files or folders. This API uses a promise to return the result.<br>This API is available only to the devices with the required system capability.
 
 **Required permissions**: ohos.permission.FILE_ACCESS_PERSIST
 
@@ -142,7 +142,7 @@ Revokes permissions from multiple files or folders. This API uses a promise to r
 
 | Name| Type                | Mandatory| Description                     |
 | -------- |--------------------| -------- |-------------------------|
-| policies| Array&lt;[PolicyInfo](#policyinfo11)> | Yes| Array of permission policies.  |
+| policies| Array&lt;[PolicyInfo](#policyinfo11)> | Yes| Permission policies to revoke.          |
 
 **Return value**
 
@@ -202,7 +202,7 @@ If the permission revocation of some URIs fails, error code 13900001 will be ret
 
 activatePermission(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
 
-Activates the permissions that have been persisted on multiple files or folders. This API uses a promise to return the result. <br>This API is available only to certain devices.
+Activates the permissions that have been persisted on multiple files or folders. This API uses a promise to return the result. <br>This API is available only to the devices with the required system capability.
 
 **Required permissions**: ohos.permission.FILE_ACCESS_PERSIST
 
@@ -212,7 +212,7 @@ Activates the permissions that have been persisted on multiple files or folders.
 
 | Name| Type| Mandatory| Description                     |
 | -------- | -------- | -------- |-------------------------|
-| policies| Array&lt;[PolicyInfo](#policyinfo11)> | Yes| Array of permission policies.  |
+| policies| Array&lt;[PolicyInfo](#policyinfo11)> | Yes| Permission policies to activate.          |
 
 **Return value**
 
@@ -270,7 +270,7 @@ If the permission activation of some URIs fails, error code 13900001 will be ret
 
 deactivatePermission(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;
 
-Deactivates the permissions on multiple files or folders. This API uses a promise to return the result. <br>This API is available only to certain devices.
+Deactivates the permissions on multiple files or folders. This API uses a promise to return the result. <br>This API is available only to the devices with the required system capability.
 
 **Required permissions**: ohos.permission.FILE_ACCESS_PERSIST
 
@@ -280,7 +280,7 @@ Deactivates the permissions on multiple files or folders. This API uses a promis
 
 | Name| Type| Mandatory| Description                     |
 | -------- | -------- | -------- |-------------------------|
-| policies| Array&lt;[PolicyInfo](#policyinfo11)> | Yes| Array of permission policies. |
+| policies| Array&lt;[PolicyInfo](#policyinfo11)> | Yes| Permission policies to deactivate.          |
 
 **Return value**
 
