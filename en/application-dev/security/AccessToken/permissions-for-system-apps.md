@@ -3280,3 +3280,15 @@ Allows an application to access the **Desktop** directory in the user directory.
 **Enable via ACL**: true
 
 **Valid since**: 11
+
+### ohos.permission.ACCESS_SCREEN_LOCK
+
+Allows an application to use the disable lock screen feature.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 12
