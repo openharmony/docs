@@ -22,7 +22,6 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 | [drawing_canvas.h](drawing__canvas_8h.md) | 文件中定义了与画布相关的功能函数。 | 
 | [drawing_color.h](drawing__color_8h.md) | 文件中定义了与颜色相关的功能函数。 | 
 | [drawing_color_filter.h](drawing__color__filter_8h.md) | 声明与绘图模块中的颜色滤波器对象相关的函数。 | 
-| [drawing_color_sapce.h](drawing__color__space_8h.md) | 文件中定义了与颜色空间相关的功能函数。 | 
 | [drawing_error_code.h](drawing__error__code_8h.md) | 声明与绘图模块中的错误码相关的函数。 | 
 | [drawing_color_space.h](drawing__color__space_8h.md) | 文件中定义了与颜色空间相关的功能函数。 | 
 | [drawing_filter.h](drawing__filter_8h.md) | 声明与绘图模块中的滤波器对象相关的函数。 | 
