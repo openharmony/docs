@@ -603,6 +603,7 @@ stopDiscovering(): void;
 | 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. |
 | 11600101 | Failed to execute the function.                                 |
+| 11600104 | Discovery unavailable.                                          |
 
 **示例：**
 
@@ -640,12 +641,12 @@ bindTarget(deviceId: string, bindParam: {[key:&nbsp;string]:&nbsp;Object} , call
 
 以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)
 
-| 错误码ID | 错误信息                                                        |
+| 错误码ID | 错误信息                                                         |
 | -------- | --------------------------------------------------------------- |
 | 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified deviceId is greater than 255.  |
 | 11600101 | Failed to execute the function.                                 |
-| 11600103 | Authentication invalid.                                         |
+| 11600103 | Authentication unavailable.                                     |
 
 **示例：**
 
