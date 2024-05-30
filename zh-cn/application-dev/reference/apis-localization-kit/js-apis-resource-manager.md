@@ -226,7 +226,6 @@ import { BusinessError } from '@ohos.base';
 | DEVICE_TYPE_PHONE    | 0x00 | 手机。   |
 | DEVICE_TYPE_TABLET   | 0x01 | 平板。   |
 | DEVICE_TYPE_CAR      | 0x02 | 汽车。   |
-| DEVICE_TYPE_PC       | 0x03 | PC。   |
 | DEVICE_TYPE_TV       | 0x04 | 电视。  |
 | DEVICE_TYPE_WEARABLE | 0x06 | 穿戴。   |
 | DEVICE_TYPE_2IN1     | 0x07 | 2in1。   |
