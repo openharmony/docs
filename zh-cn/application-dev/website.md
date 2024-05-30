@@ -3045,6 +3045,8 @@
       - [@ohos.i18n (国际化-I18n)](reference/apis-localization-kit/js-apis-i18n.md)
       - [@ohos.intl (国际化-Intl)](reference/apis-localization-kit/js-apis-intl.md)
       - [@ohos.resourceManager (资源管理)](reference/apis-localization-kit/js-apis-resource-manager.md)
+      - [@ohos.sendableResourceManager (资源管理)](reference/apis-localization-kit/js-apis-sendable-resource-manager.md)
+
       <!--Del-->
       - [@ohos.i18n (国际化-I18n)(系统接口)](reference/apis-localization-kit/js-apis-i18n-sys.md)
       <!--DelEnd-->
