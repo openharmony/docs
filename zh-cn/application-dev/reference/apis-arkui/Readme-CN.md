@@ -272,6 +272,7 @@
       - [@ohos.arkui.advanced.ComposeTitleBar (头像和单双行文本标题栏)](arkui-ts/ohos-arkui-advanced-ComposeTitleBar.md)
       - [@ohos.arkui.advanced.Counter (计数器组件)](arkui-ts/ohos-arkui-advanced-Counter.md)
       - [@ohos.arkui.advanced.Dialog (弹出框)](arkui-ts/ohos-arkui-advanced-Dialog.md)
+      - [@ohos.arkui.advanced.DownloadFileButton (下载文件按钮)](arkui-ts/ohos-arkui-advanced-DownloadFileButton.md)
       - [@ohos.arkui.advanced.EditableTitleBar (编辑页面标题栏)](arkui-ts/ohos-arkui-advanced-EditableTitleBar.md)
       - [@ohos.arkui.advanced.ExceptionPrompt (异常提示)](arkui-ts/ohos-arkui-advanced-ExceptionPrompt.md)
       - [@ohos.arkui.advanced.Filter (多条件筛选)](arkui-ts/ohos-arkui-advanced-Filter.md)

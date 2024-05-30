@@ -19,7 +19,7 @@ import DownloadFileButton from '@ohos.arkui.advanced.DownloadFileButton'
 
 ## 属性
 
-支持[通用属性](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-size.md)。
+支持[通用属性](ts-universal-attributes-size.md)。
 
 ## DownloadFileButton
 
@@ -35,8 +35,8 @@ Downloadbutton(contentOptions?:DownloadContentOptions, styleOptions?:DownloadSty
 
 | 名称           | 类型                                                         | 必填 | 装饰器类型 | 说明                             |
 | -------------- | ------------------------------------------------------------ | ---- | ---------- | -------------------------------- |
-| contentOptions | [DownloadContentOptions](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ohos-arkui-advanced-DownloadFileButton.md#downloadcontentoptions) | 否   | @State     | 创建包含指定元素内容的下载按钮。 |
-| styleOptions   | [DownloadStyleOptions](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ohos-arkui-advanced-DownloadFileButton.md#downloadstyleoptions) | 否   | @State     | 创建包含指定元素样式的下载按钮。 |
+| contentOptions | [DownloadContentOptions](#downloadcontentoptions) | 否   | @State     | 创建包含指定元素内容的下载按钮。 |
+| styleOptions   | [DownloadStyleOptions](#downloadstyleoptions) | 否   | @State     | 创建包含指定元素样式的下载按钮。 |
 
 ## DownloadContentOptions
 
@@ -46,8 +46,8 @@ Downloadbutton(contentOptions?:DownloadContentOptions, styleOptions?:DownloadSty
 
 | 名称 | 类型                                                         | 必填 | 说明                                                         |
 | ---- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| icon | [DownloadIconStyle](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ohos-arkui-advanced-DownloadFileButton.md#downloadiconstyle) | 否   | 设置下载按钮的图标风格<br/>不传入该参数表示没有图标，icon和text至少存在一个。 |
-| text | [DownloadDescription](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ohos-arkui-advanced-DownloadFileButton.md#downloaddescription) | 否   | 设置下载按钮的文本描述<br/>不传入该参数表示没有文字描述，icon和text至少存在一个。 |
+| icon | [DownloadIconStyle](#downloadiconstyle) | 否   | 设置下载按钮的图标风格<br/>不传入该参数表示没有图标，icon和text至少存在一个。 |
+| text | [DownloadDescription](#downloaddescription) | 否   | 设置下载按钮的文本描述<br/>不传入该参数表示没有文字描述，icon和text至少存在一个。 |
 
 ## DownloadStyleOptions
 
@@ -58,7 +58,7 @@ Downloadbutton(contentOptions?:DownloadContentOptions, styleOptions?:DownloadSty
 | 名称            | 类型                                                         | 必填 | 说明                                                         |
 | --------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | iconSize        | Dimension                                                    | 否   | 下载控件上图标的尺寸。<br/>默认值：16vp                      |
-| layoutDirection | [DownloadLayoutDirection](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ohos-arkui-advanced-DownloadFileButton.md#downloadlayoutdirection) | 否   | 下载控件上图标和文字分布的方向。<br/>默认值：DownloadLayoutDirection.HORIZONTAL |
+| layoutDirection | [DownloadLayoutDirection](#downloadlayoutdirection) | 否   | 下载控件上图标和文字分布的方向。<br/>默认值：DownloadLayoutDirection.HORIZONTAL |
 | fontSize        | Dimension                                                    | 否   | 下载控件上文字的尺寸。<br/>默认值：16fp                      |
 | fontStyle       | FontStyle                                                    | 否   | 下载控件上文字的样式。<br/>默认值：FontStyle.Normal          |
 | fontWeight      | number \| FontWeight \| string                               | 否   | 下载控件上文字粗细。<br/>默认值：FontWeight.Medium           |
@@ -112,7 +112,7 @@ Downloadbutton(contentOptions?:DownloadContentOptions, styleOptions?:DownloadSty
 
 ## 事件
 
-支持[通用事件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-universal-events-click.md)。
+支持[通用事件](ts-universal-events-click.md)。
 
 ##  示例
 
@@ -180,4 +180,4 @@ struct Index {
 }
 ```
 
-![zh-cn_image_0000001643320073](https://gitee.com/openharmony/docs/raw/master/zh-cn/application-dev/reference/apis-arkui/arkui-ts/figures/zh-cn_image_0000001643320073.png)
+![zh-cn_image_0000001643320073](figures/zh-cn_image_0000001643320073.png)
