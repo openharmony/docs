@@ -317,7 +317,7 @@ export struct ShowAd {
 | adCount | number | 否 | 请求的广告数量。不填以业务逻辑为准 | 
 | adWidth | number | 否 | 广告位宽度，必须大于0。不填以业务逻辑为准 | 
 | adHeight | number | 否 | 广告位高度，必须大于0。不填以业务逻辑为准 | 
-| adSearchKeyword | string | 否 | 广告关键字。 | 
+| adSearchKeyword | string | 否 | 广告关键字。不填默认""。 | 
 | [key: string] | number \| boolean \| string \| undefined | 否 | 自定义参数。 | 
 
 
@@ -463,9 +463,9 @@ let adLoaderListener: advertising.MultiSlotsAdLoadListener = {
 | -------- | -------- | -------- | -------- |
 | customData | string | 否 | 媒体自定义数据。用于服务端通知媒体服务器某位用户因为与激励视频广告互动而应予以奖励，从而规避欺骗的行为（不填则不会通知）。 | 
 | userId | string | 否 | 媒体自定义用户id。用于服务端通知媒体服务器某位用户因为与激励视频广告互动而应予以奖励，从而规避欺骗的行为（不填则不会通知）。 | 
-| useMobileDataReminder | boolean | 否 | 使用移动数据播放视频或下载应用时是否弹框通知用户。<br/>- true：弹框通知。<br/>- false：不弹框通知。 | 
+| useMobileDataReminder | boolean | 否 | 使用移动数据播放视频或下载应用时是否弹框通知用户。<br/>- true：弹框通知。<br/>- false：不弹框通知。该参数依赖流量弹窗功能，当前不支持完整功能的使用，暂不确定默认值。 | 
 | mute | boolean | 否 | 广告视频播放是否静音。<br/>- true：静音播放。<br/>- false：非静音播放。不填默认为true | 
-| audioFocusType | number | 否 | 视频播放过程中获得音频焦点的场景类型。<br/>- 0：视频播放静音、非静音时都获取焦点。<br/>- 1：视频静音播放时不获取焦点。<br/>- 2：视频播放静音、非静音时都不获取焦点。 | 
+| audioFocusType | number | 否 | 视频播放过程中获得音频焦点的场景类型。<br/>- 0：视频播放静音、非静音时都获取焦点。<br/>- 1：视频静音播放时不获取焦点。<br/>- 2：视频播放静音、非静音时都不获取焦点。该接口依赖的相关功能当前不支持使用，暂不确定默认值。 | 
 | [key: string] | number \| boolean \| string \| undefined | 否 | 自定义参数。<br/>- refreshTime：类型number，单位：ms，取值范围[30000, 120000]。AutoAdComponent组件可选自定义参数，用于控制广告的轮播时间间隔。填写了该参数，则广告按照参数配置的时间间隔轮播，否则广告不会轮播，只会展示广告响应中的第一个广告内容。 |
 
 
@@ -515,17 +515,17 @@ getAdRequestBody(adParams: AdRequestParams[], adOptions: AdOptions): Promise<str
 
 **系统能力：** SystemCapability.Advertising.Ads
 
-**返回值：**
-
-| 类型 | 说明 | 
-| -------- | -------- |
-| Promise&lt;string&gt; | Promise对象，返回字符类型的广告数据。| 
-
 **参数：**
 | **参数名** | **类型** | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
 | adParam | [AdRequestParams](#adrequestparams) | 是 | 广告请求参数。 | 
 | adOptions | [AdOptions](#adoptions) | 是 | 广告配置。 | 
+
+**返回值：**
+
+| 类型 | 说明 | 
+| -------- | -------- |
+| Promise&lt;string&gt; | Promise对象，返回字符类型的广告数据。| 
 
 **错误码：**
 
