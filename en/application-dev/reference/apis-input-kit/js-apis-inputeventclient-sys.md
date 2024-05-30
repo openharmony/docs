@@ -11,7 +11,7 @@ The **inputEventClient** module implements the input event injection capability.
 ## Modules to Import
 
 ```js
-import inputEventClient from '@kit.InputKit';
+import { inputEventClient } from '@kit.InputKit';
 ```
 
 ## inputEventClient.injectEvent

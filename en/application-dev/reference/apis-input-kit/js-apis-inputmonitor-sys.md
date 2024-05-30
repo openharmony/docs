@@ -13,7 +13,7 @@ The **inputMonitor** module implements listening for events of input devices, in
 ## Modules to Import
 
 ```js
-import inputMonitor from '@kit.InputKit';
+import { inputMonitor } from '@kit.InputKit';
 ```
 
 ## inputMonitor.on('touch')
@@ -917,8 +917,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-import type FingerprintEvent from '@kit.InputKit';
-import inputMonitor from '@kit.InputKit';
+import type { FingerprintEvent } from '@kit.InputKit';
+import { inputMonitor } from '@kit.InputKit';
 
 try {
   inputMonitor.on('fingerprint', (fingerprint) => {
@@ -1026,8 +1026,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-import type FingerprintEvent from '@kit.InputKit';
-import inputMonitor from '@kit.InputKit';
+import type { FingerprintEvent } from '@kit.InputKit';
+import { inputMonitor } from '@kit.InputKit';
 
 let callback = (fingerprint: FingerprintEvent) => {
   console.log(`Monitor on success ${JSON.stringify(fingerprint)}`);
