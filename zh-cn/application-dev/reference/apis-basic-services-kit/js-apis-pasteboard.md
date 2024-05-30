@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```ts
-import pasteboard from '@ohos.pasteboard';
+import { pasteboard } from '@kit.BasicServicesKit';
 ```
 
 ## 常量
@@ -225,7 +225,7 @@ createWantData(want: Want): PasteData
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 
 let object: Want = {
     bundleName: "com.example.aafwk.test",
@@ -347,7 +347,7 @@ createWantRecord(want: Want): PasteDataRecord
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 
 let object: Want = {
     bundleName: "com.example.aafwk.test",
@@ -505,7 +505,7 @@ convertToText(callback: AsyncCallback&lt;string&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let record: pasteboard.PasteDataRecord = pasteboard.createUriRecord('dataability:///com.example.myapplication1/user.txt');
 record.convertToText((err: BusinessError, data: string) => {
@@ -537,7 +537,7 @@ convertToText(): Promise&lt;string&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let record: pasteboard.PasteDataRecord = pasteboard.createUriRecord('dataability:///com.example.myapplication1/user.txt');
 record.convertToText().then((data: string) => {
@@ -621,7 +621,7 @@ getPrimaryWant(): Want
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 
 let object: Want = {
     bundleName: "com.example.aafwk.test",
@@ -673,7 +673,7 @@ getPrimaryPixelMap(): image.PixelMap
 **示例：**
 
 ```ts
-import image from '@ohos.multimedia.image';
+import { image } from '@kit.ImageKit';
 
 let buffer = new ArrayBuffer(128);
 let realSize: image.Size = { height: 3, width: 5 };
@@ -1133,7 +1133,7 @@ addWantRecord(want: Want): void
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 
 let pasteData: pasteboard.PasteData = pasteboard.createPlainTextData('hello');
 let object: Want = {
@@ -1468,7 +1468,7 @@ clearData(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 systemPasteboard.clearData().then((data: void) => {
@@ -1554,7 +1554,7 @@ setData(data: PasteData): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let pasteData: pasteboard.PasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_PLAIN, 'content');
 let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
@@ -1595,7 +1595,7 @@ getData( callback: AsyncCallback&lt;PasteData&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 systemPasteboard.getData((err: BusinessError, pasteData: pasteboard.PasteData) => {
@@ -1637,7 +1637,7 @@ getData(): Promise&lt;PasteData&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 systemPasteboard.getData().then((pasteData: pasteboard.PasteData) => {
@@ -1674,7 +1674,7 @@ hasData(callback:  AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 systemPasteboard.hasData((err: BusinessError, data: boolean) => {
@@ -1705,7 +1705,7 @@ hasData(): Promise&lt;boolean&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 systemPasteboard.hasData().then((data: boolean) => {
@@ -1773,7 +1773,7 @@ clear(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 systemPasteboard.clear().then((data) => {
@@ -1811,7 +1811,7 @@ getPasteData( callback: AsyncCallback&lt;PasteData&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 systemPasteboard.getPasteData((err: BusinessError, pasteData: pasteboard.PasteData) => {
@@ -1843,7 +1843,7 @@ getPasteData(): Promise&lt;PasteData&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 systemPasteboard.getPasteData().then((pasteData: pasteboard.PasteData) => {
@@ -1881,7 +1881,7 @@ hasPasteData(callback:  AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 systemPasteboard.hasPasteData((err: BusinessError, data: boolean) => {
@@ -1913,7 +1913,7 @@ hasPasteData(): Promise&lt;boolean&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 systemPasteboard.hasPasteData().then((data: boolean) => {
@@ -1988,7 +1988,7 @@ setPasteData(data: PasteData): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let pasteData: pasteboard.PasteData = pasteboard.createPlainTextData('content');
 let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
@@ -2284,9 +2284,9 @@ getUnifiedData(): Promise&lt;unifiedDataChannel.UnifiedData&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import unifiedDataChannel from '@ohos.data.unifiedDataChannel';
-import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { unifiedDataChannel } from '@kit.ArkData';
+import { uniformTypeDescriptor } from '@kit.ArkData';
 
 let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 systemPasteboard.getUnifiedData().then((data) => {
@@ -2330,7 +2330,7 @@ getUnifiedDataSync(): unifiedDataChannel.UnifiedData
 **示例：**
 
 ```ts
-import unifiedDataChannel from '@ohos.data.unifiedDataChannel';
+import { unifiedDataChannel } from '@kit.ArkData';
 
 let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 try {
@@ -2374,8 +2374,8 @@ setUnifiedData(data: unifiedDataChannel.UnifiedData): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import unifiedDataChannel from '@ohos.data.unifiedDataChannel';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { unifiedDataChannel } from '@kit.ArkData';
 
 let plainTextData = new unifiedDataChannel.UnifiedData();
 let plainText = new unifiedDataChannel.PlainText();
@@ -2421,7 +2421,7 @@ setUnifiedDataSync(data: unifiedDataChannel.UnifiedData): void
 **示例：**
 
 ```ts
-import unifiedDataChannel from '@ohos.data.unifiedDataChannel';
+import { unifiedDataChannel } from '@kit.ArkData';
 
 let plainTextData = new unifiedDataChannel.UnifiedData();
 let plainText = new unifiedDataChannel.PlainText();
