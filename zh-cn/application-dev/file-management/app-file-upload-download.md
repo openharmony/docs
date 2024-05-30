@@ -4,7 +4,7 @@
 
 ## 上传应用文件
 
-开发者可以使用上传下载模块（[ohos.request](../reference/apis-basic-services-kit/js-apis-request.md)）的上传接口将本地文件上传。文件上传过程使用系统服务代理完成。
+开发者可以使用上传下载模块（[ohos.request](../reference/apis-basic-services-kit/js-apis-request.md)）的上传接口将本地文件上传。文件上传过程使用系统服务代理完成, 在api12中request.agent.create接口增加了设置代理地址参数，支持用户设置自定义代理地址。
 
 > **说明：**
 >
@@ -12,9 +12,10 @@
 >
 > 使用上传下载模块，需[声明权限](../security/AccessToken/declare-permissions.md)：ohos.permission.INTERNET。
 
-以下示例代码演示了如何将应用缓存文件路径下的文件上传至网络服务器。
+以下示例代码演示两种将应用缓存文件路径下的文件上传至网络服务器的方式:
 
 ```ts
+// 方式一:request.uploadFile
 // pages/xxx.ets
 import common from '@ohos.app.ability.common';
 import fs from '@ohos.file.fs';
@@ -66,9 +67,55 @@ try {
 }
 ```
 
+```ts
+// 方式二:request.agent
+// 获取应用文件路径
+let context = getContext(this) as common.UIAbilityContext;
+let cacheDir = context.cacheDir;
+
+// 新建一个本地应用文件
+let file = fs.openSync(cacheDir + '/test.txt', fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+fs.writeSync(file.fd, 'upload file test');
+fs.closeSync(file);
+let attachments: Array<request.agent.FormItem> = [{
+  name: "test",
+  value: [
+    {
+      filename: "test.txt",
+      path: "./test.txt",
+    },
+  ]
+}];
+let config: request.agent.Config = {
+  action: request.agent.Action.UPLOAD,
+  url: 'http://xxx',
+  mode: request.agent.Mode.FOREGROUND,
+  overwrite: true,
+  method: "POST",
+  data: attachments,
+  saveas: "./"
+};
+request.agent.create(getContext(), config).then((task: request.agent.Task) => {
+  task.start((err: BusinessError) => {
+    if (err) {
+      this.progress = `Failed to start the upload task, Code: ${err.code}  message: ${err.message}`;
+      return;
+    }
+  });
+  task.on('progress', async(progress) => {
+    console.warn(`/Request upload status ${progress.state}, uploaded ${progress.processed}`);
+  })
+  task.on('completed', async() => {
+    console.warn(`/Request upload completed`);
+  })
+}).catch((err: BusinessError) => {
+  this.progress = `Failed to create a upload task, Code: ${err.code}, message: ${err.message}`;
+});
+```
+
 ## 下载网络资源文件至应用文件目录
 
-开发者可以使用上传下载模块（[ohos.request](../reference/apis-basic-services-kit/js-apis-request.md)）的下载接口将网络资源文件下载到应用文件目录。对已下载的网络资源文件，开发者可以使用基础文件IO接口（[ohos.file.fs](../reference/apis-core-file-kit/js-apis-file-fs.md)）对其进行访问，使用方式与[应用文件访问](app-file-access.md)一致。文件下载过程使用系统服务代理完成。
+开发者可以使用上传下载模块（[ohos.request](../reference/apis-basic-services-kit/js-apis-request.md)）的下载接口将网络资源文件下载到应用文件目录。对已下载的网络资源文件，开发者可以使用基础文件IO接口（[ohos.file.fs](../reference/apis-core-file-kit/js-apis-file-fs.md)）对其进行访问，使用方式与[应用文件访问](app-file-access.md)一致。文件下载过程使用系统服务代理完成, 在api12中request.agent.create接口增加了设置代理地址参数，支持用户设置自定义代理地址。
 
 > **说明：**
 >
@@ -76,9 +123,10 @@ try {
 >
 > 使用上传下载模块，需[声明权限](../security/AccessToken/declare-permissions.md)：ohos.permission.INTERNET。
 
-以下示例代码演示了如何将网络资源文件下载到应用文件目录：
+以下示例代码演示两种将网络资源文件下载到应用文件目录的方式：
 
 ```ts
+// 方式一:request.downloadFile
 // pages/xxx.ets
 // 将网络资源文件下载到应用文件目录并读取一段内容
 import common from '@ohos.app.ability.common';
@@ -112,4 +160,38 @@ try {
   let err: BusinessError = error as BusinessError;
   console.error(`Invoke downloadFile failed, code is ${err.code}, message is ${err.message}`);
 }
+```
+```ts
+// 方式二:request.agent
+// pages/xxx.ets
+// 将网络资源文件下载到应用文件目录并读取一段内容
+import common from '@ohos.app.ability.common';
+import fs from '@ohos.file.fs';
+import request from '@ohos.request';
+import { BusinessError } from '@ohos.base';
+import buffer from '@ohos.buffer';
+
+let config: request.agent.Config = {
+  action: request.agent.Action.DOWNLOAD,
+  url: 'https://xxxx/test.txt',
+  gauge: true,
+  overwrite: true,
+  network: request.agent.Network.WIFI,
+};
+request.agent.create(getContext(), config).then((task: request.agent.Task) => {
+  task.start((err: BusinessError) => {
+    if (err) {
+      this.progress = `Failed to start the upload task, Code: ${err.code}  message: ${err.message}`;
+      return;
+    }
+  });
+  task.on('progress', async(progress) => {
+    console.warn(`/Request download status ${progress.state}, downloaded ${progress.processed}`);
+  })
+  task.on('completed', async() => {
+    console.warn(`/Request download completed`);
+  })
+}).catch((err: BusinessError) => {
+  this.progress = `Failed to create a download task, Code: ${err.code}, message: ${err.message}`;
+});
 ```

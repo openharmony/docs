@@ -95,7 +95,7 @@ uploadFile(context: BaseContext, config: UploadConfig): Promise&lt;UploadTask&gt
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
@@ -148,7 +148,7 @@ uploadFile(context: BaseContext, config: UploadConfig, callback: AsyncCallback&l
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
@@ -743,7 +743,7 @@ downloadFile(context: BaseContext, config: DownloadConfig): Promise&lt;DownloadT
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
@@ -794,7 +794,7 @@ downloadFile(context: BaseContext, config: DownloadConfig, callback: AsyncCallba
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
@@ -2210,7 +2210,7 @@ on(event: 'progress', callback: (progress: Progress) =&gt; void): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
@@ -2282,7 +2282,7 @@ on(event: 'completed', callback: (progress: Progress) =&gt; void): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
@@ -2354,7 +2354,7 @@ on(event: 'failed', callback: (progress: Progress) =&gt; void): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
@@ -2426,7 +2426,7 @@ on(event: 'pause', callback: (progress: Progress) =&gt; void): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)。
 
 **示例：**
 
@@ -2494,7 +2494,7 @@ on(event: 'resume', callback: (progress: Progress) =&gt; void): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)。
 
 **示例：**
 
@@ -2562,7 +2562,7 @@ on(event: 'remove', callback: (progress: Progress) =&gt; void): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)。
 
 **示例：**
 
@@ -2630,7 +2630,7 @@ off(event: 'progress', callback?: (progress: Progress) =&gt; void): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
@@ -2710,7 +2710,7 @@ off(event: 'completed', callback?: (progress: Progress) =&gt; void): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
@@ -2790,7 +2790,7 @@ off(event: 'failed', callback?: (progress: Progress) =&gt; void): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
@@ -2870,7 +2870,7 @@ off(event: 'pause', callback?: (progress: Progress) =&gt; void): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)。
 
 **示例：**
 
@@ -2946,7 +2946,7 @@ off(event: 'resume', callback?: (progress: Progress) =&gt; void): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)。
 
 **示例：**
 
@@ -3022,7 +3022,7 @@ off(event: 'remove', callback?: (progress: Progress) =&gt; void): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)。
 
 **示例：**
 
@@ -3099,7 +3099,7 @@ start(callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
@@ -3167,7 +3167,7 @@ start(): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
@@ -3231,7 +3231,7 @@ pause(callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
@@ -3300,7 +3300,7 @@ pause(): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
@@ -3369,7 +3369,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
@@ -3443,7 +3443,7 @@ resume(): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
@@ -3513,7 +3513,7 @@ stop(callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
@@ -3578,7 +3578,7 @@ stop(): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
@@ -3645,7 +3645,7 @@ create(context: BaseContext, config: Config, callback: AsyncCallback&lt;Task&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
@@ -3727,7 +3727,7 @@ create(context: BaseContext, config: Config): Promise&lt;Task&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
@@ -3805,7 +3805,7 @@ getTask(context: BaseContext, id: string, token?: string): Promise&lt;Task&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
@@ -3839,7 +3839,7 @@ remove(id: string, callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
@@ -3881,7 +3881,7 @@ remove(id: string): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
@@ -3915,7 +3915,7 @@ show(id: string, callback: AsyncCallback&lt;TaskInfo&gt;): void
   | callback | AsyncCallback&lt;[TaskInfo](#taskinfo10)&gt; | 是 | 回调函数，返回任务详细信息。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
@@ -3956,7 +3956,7 @@ show(id: string): Promise&lt;TaskInfo&gt;
 | Promise&lt;[TaskInfo](#taskinfo10)&gt; | Promise对象。返回任务详细信息的Promise对象。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
@@ -3991,7 +3991,7 @@ touch(id: string, token: string, callback: AsyncCallback&lt;TaskInfo&gt;): void
   | callback | AsyncCallback&lt;[TaskInfo](#taskinfo10)&gt; | 是 | 回调函数，返回任务详细信息。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
@@ -4033,7 +4033,7 @@ touch(id: string, token: string): Promise&lt;TaskInfo&gt;
 | Promise&lt;[TaskInfo](#taskinfo10)&gt; | Promise对象。返回任务详细信息的Promise对象。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
@@ -4065,7 +4065,7 @@ search(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
   | callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | 是 | 回调函数，返回满足条件任务id。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
@@ -4099,7 +4099,7 @@ search(filter: Filter, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
   | callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | 是 | 回调函数，返回满足条件任务id。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
@@ -4144,7 +4144,7 @@ search(filter?: Filter): Promise&lt;Array&lt;string&gt;&gt;
 | Promise&lt;Array&lt;string&gt;&gt; | Promise对象。返回满足条件任务id的Promise对象。 |
 
 **错误码：**
-以下错误码的详细介绍请参见[上传下载错误码](./errorcode-request.md)。
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
