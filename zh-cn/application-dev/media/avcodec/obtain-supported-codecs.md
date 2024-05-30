@@ -56,7 +56,7 @@ if (capability != nullptr) {
    // 2. 获取H.264软件解码器名称
    const char *codecName = OH_AVCapability_GetName(capability);
    // 3. 创建H.264软件解码器实例
-   OH_AVCodec *videoEnc = OH_VideoEncoder_CreateByName(codecName);
+   OH_AVCodec *videoDec = OH_VideoDecoder_CreateByName(codecName);
 }
 ```
 
@@ -285,14 +285,14 @@ if (bitrate > bitrateRange.maxVal || bitrate < bitrateRange.minVal ) {
    // 7.（可选）调整待配置码率值
 }
 // 8. 配置编码参数
-OH_AVCodec *audioEnc = OH_AudioCodec_CreateByMime(OH_AVCODEC_MIMETYPE_AUDIO_AAC, true);
+OH_AVCodec *audioEnc = OH_AudioEncoder_CreateByMime(OH_AVCODEC_MIMETYPE_AUDIO_AAC);
 OH_AVFormat *format = OH_AVFormat_Create();
 if (OH_AVFormat_SetIntValue(format, OH_MD_KEY_AUD_SAMPLE_RATE, sampleRate) &&
    OH_AVFormat_SetIntValue(format, OH_MD_KEY_AUD_CHANNEL_COUNT, channelCount) &&
    OH_AVFormat_SetLongValue(format, OH_MD_KEY_BITRATE, static_cast<int64_t>(bitrate)) == false) {
    // 异常处理
 }
-if (OH_AudioCodec_Configure(audioEnc, format) != AV_ERR_OK) {
+if (OH_AudioEncoder_Configure(audioEnc, format) != AV_ERR_OK) {
    // 异常处理
 }
 OH_AVFormat_Destroy(format);
