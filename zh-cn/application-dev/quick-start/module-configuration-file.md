@@ -912,7 +912,7 @@ routerMap配置文件描述模块的路由表信息，routerMap标签值为数�
 | name          | 标识跳转页面的名称。取值为长度不超过1023字节的字符串。 | 字符串  | 该标签不可缺省。       |
 | pageSourceFile| 标识页面在模块内的路径。取值为长度不超过31字节的字符串。 | 字符串 | 该标签不可缺省。  |
 | buildFunction | 标识被@Builder修饰的函数，该函数描述页面的UI。取值为长度不超过1023字节的字符串。 | 字符串  | 该标签不可缺省。   |
-| [data](#data标签)  | 标识自定义数据。 每个自定义数据字符串取值不超过128字节。 | 对象   | 该标签可缺省，缺省值为空。   |
+| [data](#data标签)  | 标识自定义数据。 总长度不超过4096。 | 对象   | 该标签可缺省，缺省值为空。   |
 
 示例如下：
 
@@ -944,7 +944,7 @@ routerMap配置文件描述模块的路由表信息，routerMap标签值为数�
 ### data标签
 
 此标签用于支持在路由表中配置自定义数据。
-data对象内部，可以填入字符串类型的自定义数据。
+data对象内部，可以填入自定义数据。
 
 data标签示例：
 
@@ -956,8 +956,17 @@ data标签示例：
       "pageSourceFile": "entry/src/index",
       "buildFunction": "myBuilder",
       "data": {
-        "key1": "data1",
-        "key2": "data2"
+        "stringKey": "data1",
+        "numberKey": 123,
+        "booleanKey": true,
+        "objectKey": {
+          "name": "test"
+        },
+        "arrayKey": [
+          {
+            "id": 123
+          }
+        ]
       }
     }
   ]
