@@ -454,6 +454,8 @@ adler32(adler: number, buf: ArrayBuffer): Promise&lt;number&gt;
 
 计算Adler-32校验和，使用Promise异步返回。成功时返回计算后的Adler-32校验和，失败时返回错误码。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.BundleManager.Zlib
 
 **参数：**
