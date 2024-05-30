@@ -372,7 +372,6 @@ struct Index {
       },
     }),
     autoCancel: true,
-    customStyle: true,
     alignment: DialogAlignment.Bottom
   })
 
