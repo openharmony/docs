@@ -325,6 +325,7 @@
         - [多线程安全注意事项](arkts-utils/multi-thread-safety.md)
         - [\@Concurrent装饰器：声明并校验并发函数](arkts-utils/arkts-concurrent.md)
         - [Sendable开发指导](arkts-utils/arkts-sendable.md)
+        - [已接入Sendable的系统对象](arkts-utils/arkts-sendable-system-object-list.md)
         - [共享模块开发指导](arkts-utils/arkts-sendable-module.md)
     - 容器类库
       - [容器类库概述](arkts-utils/container-overview.md)
