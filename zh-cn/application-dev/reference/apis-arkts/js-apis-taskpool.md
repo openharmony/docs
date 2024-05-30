@@ -1342,6 +1342,53 @@ taskpool.execute(task).then(()=> {
 });
 ```
 
+### isDone<sup>12+</sup>
+
+isDone(): boolean
+
+检查任务是否已完成。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+
+**返回值：**
+
+| 类型    | 说明                                 |
+| ------- | ------------------------------------ |
+| boolean | 任务执行完成返回true，任务未执行完成返回false。 |
+
+**示例：**
+
+```ts
+@Concurrent
+function inspectStatus(arg: number): number {
+  // 2s sleep
+  let t: number = Date.now();
+  while (Date.now() - t < 1000) {
+    continue;
+  }
+  return arg + 1;
+}
+
+async function taskpoolCancel(): Promise<void> {
+  let task: taskpool.Task = new taskpool.Task(inspectStatus, 100); // 100: test number
+  taskpool.execute(task).then((res: Object)=>{
+    console.info("taskpool test result: " + res);
+  }).catch((err: string) => {
+    console.error("taskpool test occur error: " + err);
+  });
+
+  setTimeout(()=>{
+    if (!task.isDone()) {
+      taskpool.cancel(task);
+    }
+  }, 3000); // 延时3s，确保任务已执行
+}
+
+taskpoolCancel();
+```
+
 ## CallbackFunction<sup>12+</sup>
 
 type CallbackFunction = () => void
