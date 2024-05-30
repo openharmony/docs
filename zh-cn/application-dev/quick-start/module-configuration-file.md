@@ -956,7 +956,17 @@ data标签示例：
       "pageSourceFile": "entry/src/index",
       "buildFunction": "myBuilder",
       "data": {
-
+        "stringKey": "data1",
+        "numberKey": 123,
+        "booleanKey": true,
+        "objectKey": {
+          "name": "test"
+        },
+        "arrayKey": [
+          {
+            "id": 123
+          }
+        ]
       }
     }
   ]
