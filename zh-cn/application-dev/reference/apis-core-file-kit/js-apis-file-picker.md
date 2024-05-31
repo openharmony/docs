@@ -886,7 +886,6 @@ async function example18() {
 ## DocumentSaveOptions
 
 文档保存选项。
-当pickerMode设置为DOWNLOAD时，用户配置的参数defaultFilePathUri和fileSuffixChoices将不会生效。
 
 **系统能力：** SystemCapability.FileManagement.UserFileService
 
@@ -895,16 +894,16 @@ async function example18() {
 | newFileNames            | Array&lt;string&gt;    | 否   | 拉起documentPicker进行保存的文件名，若无此参数，则默认需要用户自行输入 <br>**元服务API:** 从API version 12开始，该接口支持在元服务中使用。 |
 | defaultFilePathUri<sup>10+</sup>    | string  | 否   | 指定保存的文件或者目录路径 <br>**元服务API:** 从API version 12开始，该接口支持在元服务中使用。 |
 | fileSuffixChoices<sup>10+</sup>     | Array&lt;string&gt; | 否   | 保存文件的后缀类型 <br>**元服务API:** 从API version 12开始，该接口支持在元服务中使用。 |
-| pickerMode     | Array&lt;DocumentPickerMode&gt; | 否   | 拉起picker的类型 <br>**元服务API:** 从API version 12开始，该接口支持在元服务中使用。 |
+| pickerMode     |  [DocumentPickerMode](#DocumentPickerMode) | 否   | 拉起picker的类型, 默认为DEFAULT。当pickerMode设置为DOWNLOAD时，用户配置的参数newFileNames、defaultFilePathUri和fileSuffixChoices将不会生效 |
 
 ## AudioSelectOptions
 
-音频选择选项，目前不支持参数配置。
+音频选择选项。
 
 **系统能力：** SystemCapability.FileManagement.UserFileService
 | 名称                    | 类型                                          | 必填 | 说明                                       |
 | :---------------------- |---------------------------------------------| ---- |------------------------------------------|
-| maxSelectNumber       | number                                      | 否   | 选择文件最大个数 |
+| maxSelectNumber       | number                                      | 否   | 选择文件最大个数，上限500，有效值范围1-500 |
 
 ## AudioSaveOptions
 
