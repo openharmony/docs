@@ -19,7 +19,7 @@
 | 音频       | ogg                        |音频码流：OGG|
 | 音频       | flac                       |音频码流：FLAC|
 | 音频       | wav                        |音频码流：PCM|
-| 音频       | amr                        |音频码流：AMR(amrnb、amrwb)|
+| 音频       | amr                        |音频码流：AMR(AMR-NB、AMR-WB)|
 | 音频       | ape                        |音频码流：APE|
 | 外挂字幕   | srt                        |字幕流：SRT|
 
