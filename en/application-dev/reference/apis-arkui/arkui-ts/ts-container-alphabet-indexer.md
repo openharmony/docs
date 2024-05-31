@@ -1,6 +1,6 @@
 # AlphabetIndexer
 
-The **\<Indexer>** component can create a logically indexed array of items in a container for instant location.
+The **\<AlphabetIndexer>** component can create a logically indexed array of items in a container for instant location.
 
 >  **NOTE**
 >
@@ -21,7 +21,7 @@ AlphabetIndexer(value: {arrayValue: Array&lt;string&gt;, selected: number})
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | arrayValue | Array&lt;string&gt; | Yes| Array of strings to be displayed in the alphabetic index bar. The value cannot be null.|
-| selected   | number              | Yes   | Index of the initially selected item. If the value exceeds the value range, the default value 0 is used.<br>Since API version 10, this parameter supports [$$](../../quick-start/arkts-two-way-sync.md) for two-way binding of variables.|
+| selected   | number              | Yes   | Index of the initially selected item. If the value exceeds the value range, the default value 0 is used.<br>Since API version 10, this parameter supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md).|
 
 ## Attributes
 
@@ -29,23 +29,24 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 | Name                 | Type    | Description                                                                   |
 | ----------------------- | --------------------| ------------------------------------------------------------------|
-| color                   | [ResourceColor](ts-types.md#resourcecolor)       | Font color.<br>Default value: **0x99000000**                          |
-| selectedColor           | [ResourceColor](ts-types.md#resourcecolor)     | Font color of the selected text.<br>Default value: **0xFF254FF7**                          |
-| popupColor              | [ResourceColor](ts-types.md#resourcecolor)        | Font color of the pop-up text.<br>Default value: **0xFF254FF7**                        |
-| selectedBackgroundColor | [ResourceColor](ts-types.md#resourcecolor)       | Background color of the selected item.<br>Default value: **0x1F0A59F7**                          |
+| color                   | [ResourceColor](ts-types.md#resourcecolor)       | Font color.<br>Default value: **0x99182431**                          |
+| selectedColor           | [ResourceColor](ts-types.md#resourcecolor)     | Font color of the selected text.<br>Default value: **0xFF007DFF**                          |
+| popupColor              | [ResourceColor](ts-types.md#resourcecolor)        | Font color of the pop-up text.<br>Default value: **0xFF007DFF**                        |
+| selectedBackgroundColor | [ResourceColor](ts-types.md#resourcecolor)       | Background color of the selected item.<br>Default value: **0x1A007DFF**                          |
 | popupBackground         | [ResourceColor](ts-types.md#resourcecolor)        | Background color of the pop-up text.<br>Default value: **0xFFFFFFFF**                           |
 | usingPopup              | boolean                                  | Whether to use pop-up text.<br>Default value: **false**                        |
 | selectedFont            | [Font](ts-types.md#font) | Font style of the selected text.<br>Default value:<br>{<br>size:'12.0fp',<br> style:FontStyle.Normal,<br> weight:FontWeight.Normal,<br> family:'HarmonyOS Sans'<br>}                          |
 | popupFont               | [Font](ts-types.md#font) | Font style of the pop-up text.<br>Default value:<br>{<br>size:'24.0vp',<br> style:FontStyle.Normal,<br> weight:FontWeight.Normal,<br> family:'HarmonyOS Sans'<br>}                         |
 | font                    | [Font](ts-types.md#font) | Default font style of the alphabetic index bar.<br>Default value:<br>{<br>size:'12.0fp',<br> style:FontStyle.Normal,<br> weight:FontWeight.Normal,<br> family:'HarmonyOS Sans'<br>}                      |
-| itemSize                | string \| number            | Size of an item in the alphabetic index bar. The item is a square, and the side length needs to be set. This attribute cannot be set to a percentage.<br>Default value: **16.0**<br>Unit: vp|
+| itemSize                | string \| number            | Size of the item in the alphabetic index bar. The item is a square, and the side length needs to be set. This attribute cannot be set to a percentage.<br>Default value: **16.0**<br>Unit: vp|
 | alignStyle              | value: [IndexerAlign](#indexeralign),<br>offset<sup>10+</sup>?: [Length](ts-types.md#length) | Alignment style of the alphabetic index bar.<br>**value**: alignment of the alphabetic index bar with the pop-up window, which can be left-aligned or right-aligned.<br>Default value: **IndexerAlign.Right**<br>**offset**: spacing between the pop-up window and the alphabetic index bar. A value greater than or equal to 0 is valid. If this parameter is set to a value less than 0 or is not set, the spacing is the same as **popupPosition.x**. If this parameter and **popupPosition** are set at the same time, **offset** takes effect in the horizontal direction and **popupPosition.y** takes effect in the vertical direction.|
-| selected | number | Index of the selected item.<br>Default value: **0**<br>Since API version 10, this parameter supports [$$](../../quick-start/arkts-two-way-sync.md) for two-way binding of variables.|
-| popupPosition | [Position](ts-types.md#position8) | Position of the pop-up window relative to the center of the indexer bar's top border.<br>Default value: **{x:60.0, y:48.0}**|
+| selected<sup>8+</sup> | number | Index of the selected item.<br>Default value: **0**<br>Since API version 10, this attribute supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md).|
+| popupPosition<sup>8+</sup> | [Position](ts-types.md#position) | Position of the pop-up window relative to the center of the indexer bar's top border.<br>Default value: **{x:60.0, y:48.0}**|
 | popupSelectedColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor) | Color of the selected text excluding the initial letter in the pop-up window.<br>Default value: **#FF182431**|
 | popupUnselectedColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor) | Color of the unselected text in the pop-up window.<br>Default value: **#FF182431**|
 | popupItemFont<sup>10+</sup> | [Font](ts-types.md#font) | Font of the text excluding the initial letter in the pop-up window.<br>Default value:<br>{<br>size:24,<br>weight:FontWeight.Medium<br>}|
 | popupItemBackgroundColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor) | Background color of the portion excluding the initial letter in the pop-up window.<br>Default value: **#FFFFFF**|
+| autoCollapse<sup>11+</sup>             | boolean                                  | Whether to auto-collapse or expand the indexer bar.<br>Default value: **false**<br>**NOTE**<br>- If the initial character is **#**, it is excluded.<br>Number of remaining characters $\leq$ 9: The index bar is expanded.<br>9 < Number of remaining characters $\leq$ 13: The index bar is expanded or partially collapsed, depending on its height.<br>Number of remaining characters > 13: The index bar is fully or partially collapsed, depending on its height.<br>- If the initial character is not **#**:<br>Number of all characters $\leq$ 9: The index bar is expanded.<br>9 < Number of all characters $\leq$ 13: The index bar is expanded or partially collapsed, depending on its height.<br>Number of all characters > 13: The index bar is fully or partially collapsed, depending on its height.|
 
 ## IndexerAlign
 
@@ -67,6 +68,7 @@ In addition to the [universal events](ts-universal-events-click.md), the followi
 
 
 ## Example
+### Example 1
 
 ```ts
 // xxx.ets
@@ -171,3 +173,138 @@ struct AlphabetIndexerSample {
 ```
 
 ![alphabet](figures/alphabet.gif)
+
+### Example 2
+```ts
+// xxx.ets
+@Entry
+@Component
+struct AlphabetIndexerSample {
+  private arrayA:string[] = ['Ann']
+  private arrayB: string[] = ['Ben', 'Bob']
+  private arrayC: string[] = ['Calvin', 'Cameron', 'Charlie', 'Charlotte']
+  private arrayJ: string[] = ['Jack', 'James']
+  private value: string[] = ['#', 'A', 'B', 'C', 'D', 'E', 'F', 'G',
+    'H', 'I', 'J', 'K', 'L', 'M', 'N',
+    'O', 'P', 'Q', 'R', 'S', 'T', 'U',
+    'V', 'W', 'X', 'Y', 'Z']
+  @State isNeedAutoCollapse: boolean = false;
+  @State indexerHeight: string = '75%';
+
+  build() {
+    Stack({ alignContent: Alignment.Start }) {
+      Row() {
+        List({ space: 20, initialIndex: 0 }) {
+          ForEach(this.arrayA, (item: string) => {
+            ListItem() {
+              Text(item)
+                .width('80%')
+                .height('5%')
+                .fontSize(30)
+                .textAlign(TextAlign.Center)
+            }
+          }, (item: string) => item)
+
+          ForEach(this.arrayB, (item: string) => {
+            ListItem() {
+              Text(item)
+                .width('80%')
+                .height('5%')
+                .fontSize(30)
+                .textAlign(TextAlign.Center)
+            }
+          }, (item: string) => item)
+
+          ForEach(this.arrayC, (item: string) => {
+            ListItem() {
+              Text(item)
+                .width('80%')
+                .height('5%')
+                .fontSize(30)
+                .textAlign(TextAlign.Center)
+            }
+          }, (item: string) => item)
+
+          ForEach(this.arrayJ, (item: string) => {
+            ListItem() {
+              Text(item)
+                .width('80%')
+                .height('5%')
+                .fontSize(30)
+                .textAlign(TextAlign.Center)
+            }
+          }, (item: string) => item)
+        }
+        .width('50%')
+        .height('100%')
+
+        Column() {
+          Column() {
+            AlphabetIndexer({ arrayValue: this.value, selected: 0 })
+              .autoCollapse(this.isNeedAutoCollapse)
+              .height(this.indexerHeight)
+              .selectedColor(0xFFFFFF)// Font color of the selected item.
+              .popupColor(0xFFFAF0)// Font color of the pop-up text.
+              .selectedBackgroundColor(0xCCCCCC)// Background color of the selected item.
+              .popupBackground(0xD2B48C)// Background color of the pop-up text.
+              .usingPopup(true)// Whether to use pop-up text.
+              .selectedFont({size: 16, weight: FontWeight.Bolder})// Font style of the selected item.
+              .popupFont({ size: 30, weight: FontWeight.Bolder})// Font style of the pop-up text.
+              .itemSize(28)// Size of an item in the alphabetic index bar.
+              .alignStyle(IndexerAlign.Right)// The pop-up window is displayed on the left of the alphabetic index bar.
+              .popupSelectedColor(0x00FF00)
+              .popupUnselectedColor(0x0000FF)
+              .popupItemFont({ size: 30, style: FontStyle.Normal })
+              .popupItemBackgroundColor(0xCCCCCC)
+              .onSelect((index: number) => {
+                console.info(this.value[index] + ' Selected!');
+              })
+              .onRequestPopupData((index: number) => {
+                if (this.value[index] == 'A') {
+                  return this.arrayA;
+                } else if (this.value[index] == 'B') {
+                  return this.arrayB;
+                } else if (this.value[index] == 'C') {
+                  return this.arrayC;
+                } else if (this.value[index] == 'J') {
+                  return this.arrayJ;
+                } else {
+                  return [];
+                }
+              })
+              .onPopupSelect((index: number) => {
+                console.info('onPopupSelected:' + index);
+              })
+          }
+          .height('80%')
+          .justifyContent(FlexAlign.Center)
+
+          Column() {
+            Button ('Collapse')
+              .margin('5vp')
+              .onClick(() => {
+                this.isNeedAutoCollapse = true;
+              })
+            Button ('30% of Index Bar Height')
+              .margin('5vp')
+              .onClick(() => {
+                this.indexerHeight = '30%';
+              })
+            Button ('70% of Index Bar Height')
+              .margin('5vp')
+              .onClick(() => {
+                this.indexerHeight = '70%';
+              })
+          }.height('20%')
+        }
+        .width('50%')
+        .justifyContent(FlexAlign.Center)
+      }
+      .width('100%')
+      .height('100%')
+    }
+  }
+}
+```
+
+![alphabetIndexerAutoCollapseSample](figures/alphabetIndexerAutoCollapseSample.gif)

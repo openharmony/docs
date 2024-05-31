@@ -41,7 +41,7 @@ Sets the percentage of the parent container's remaining space that is allocated 
 
 flexShrink(value: number)
 
-Sets the percentage of the parent container's shrink size that is allocated to the component.
+Sets the percentage of the parent container's shrink size that is allocated to the component. When the parent container is **\<Column>** or **\<Row>**, you must set the size along the main axis.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 

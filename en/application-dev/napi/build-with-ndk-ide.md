@@ -59,7 +59,7 @@ The **externalNativeOptions** parameter in the module-level **build-profile.json
     "cppFlags": "",
     "abiFilters": [
        "arm64-v8a",
-       "armeabi-v7a",mor
+       "armeabi-v7a",
        "x86_64"
     ],
   }
@@ -71,7 +71,7 @@ The following table describes the **externalNativeOptions** parameter.
 | Configuration Item| Type| Description| 
 | -------- | -------- | -------- |
 | path | string | Path to the CMake build script, that is, the **CMakeLists.txt** file.| 
-| abiFilters | array | Local ABI. Available options are as follows:<br>- armeabi-v7a<br>- arm64-v8a<br>- x86_64<br>If this parameter is not set, all **abiFilters** options are used during compilation.| 
+| abiFilters | array | Local ABI. Available options are as follows:<br>- armeabi-v7a<br>- arm64-v8a<br>- x86_64<br>If this parameter is not set, the **arm64-v8a** option is used.| 
 | arguments | string | CMake compilation parameters.| 
 | cppFlags | string | C++ compiler parameters.| 
 

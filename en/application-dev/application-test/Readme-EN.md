@@ -1,4 +1,4 @@
-# Application Test
+# Test Kit
 
 - [arkXtest User Guide](arkxtest-guidelines.md)
 - [SmartPerf User Guide](smartperf-guidelines.md)
