@@ -35,26 +35,26 @@
       - [从TypeScript到ArkTS的适配规则](quick-start/typescript-to-arkts-migration-guide.md)
       - [适配指导案例](quick-start/arkts-more-cases.md)
     - [ArkTS高性能编程实践](quick-start/arkts-high-performance-programming.md)
-    - UI范式
-      - 基本语法
-        - [基本语法概述](quick-start/arkts-basic-syntax-overview.md)
-        - [声明式UI描述](quick-start/arkts-declarative-ui-description.md)
-        - 自定义组件
-          - [创建自定义组件](quick-start/arkts-create-custom-components.md)
-          - [页面和自定义组件生命周期](quick-start/arkts-page-custom-components-lifecycle.md)
-          - [自定义组件的自定义布局](quick-start/arkts-page-custom-components-layout.md)
-          - [自定义组件冻结功能](quick-start/arkts-custom-components-freeze.md)
-          - [自定义组件成员属性访问限定符使用限制](quick-start/arkts-custom-components-access-restrictions.md)
-        - [\@Builder装饰器：自定义构建函数](quick-start/arkts-builder.md)
-        - [\@BuilderParam装饰器：引用\@Builder函数](quick-start/arkts-builderparam.md)
-        - [wrapBuilder：封装全局@Builder](quick-start/arkts-wrapBuilder.md)
-        - [\@Styles装饰器：定义组件重用样式](quick-start/arkts-style.md)
-        - [\@Extend装饰器：定义扩展组件样式](quick-start/arkts-extend.md)
-        - [stateStyles：多态样式](quick-start/arkts-statestyles.md)
-        - [@AnimatableExtend装饰器：定义可动画属性](quick-start/arkts-animatable-extend.md)
-        - [@Require装饰器：校验构造传参](quick-start/arkts-require.md)
-      - 状态管理
-        - [状态管理概述](quick-start/arkts-state-management-overview.md)
+    - UI范式基本语法
+      - [基本语法概述](quick-start/arkts-basic-syntax-overview.md)
+      - [声明式UI描述](quick-start/arkts-declarative-ui-description.md)
+      - 自定义组件
+        - [创建自定义组件](quick-start/arkts-create-custom-components.md)
+        - [页面和自定义组件生命周期](quick-start/arkts-page-custom-components-lifecycle.md)
+        - [自定义组件的自定义布局](quick-start/arkts-page-custom-components-layout.md)
+        - [自定义组件冻结功能](quick-start/arkts-custom-components-freeze.md)
+        - [自定义组件成员属性访问限定符使用限制](quick-start/arkts-custom-components-access-restrictions.md)
+      - [\@Builder装饰器：自定义构建函数](quick-start/arkts-builder.md)
+      - [\@BuilderParam装饰器：引用\@Builder函数](quick-start/arkts-builderparam.md)
+      - [wrapBuilder：封装全局@Builder](quick-start/arkts-wrapBuilder.md)
+      - [\@Styles装饰器：定义组件重用样式](quick-start/arkts-style.md)
+      - [\@Extend装饰器：定义扩展组件样式](quick-start/arkts-extend.md)
+      - [stateStyles：多态样式](quick-start/arkts-statestyles.md)
+      - [@AnimatableExtend装饰器：定义可动画属性](quick-start/arkts-animatable-extend.md)
+      - [@Require装饰器：校验构造传参](quick-start/arkts-require.md)
+    - 状态管理
+      - [状态管理概述](quick-start/arkts-state-management-overview.md)
+      - 状态管理（V1稳定版）
         - 管理组件拥有的状态
           - [\@State装饰器：组件内状态](quick-start/arkts-state.md)
           - [\@Prop装饰器：父子单向同步](quick-start/arkts-prop.md)
@@ -75,9 +75,8 @@
         - [MVVM模式](quick-start/arkts-mvvm.md)
         - [状态管理优秀实践](quick-start/arkts-state-management-best-practices.md)
         - [状态管理合理使用开发指导](quick-start/properly-use-state-management-to-develope.md)
-      - 状态管理（推荐）
-        - [状态管理（推荐）概述](quick-start/arkts-new-state-management-overview.md)
-        - 状态管理（推荐）所属装饰器
+      - 状态管理（V2试用版）
+        - 状态管理（V2试用版）所属装饰器
           - [\@ObservedV2装饰器和\@Trace装饰器：类属性变化观测](quick-start/arkts-new-observedV2-and-trace.md)
           - [\@ComponentV2装饰器：自定义组件](quick-start/arkts-new-componentV2.md)
           - [\@Local装饰器：组件内部状态](quick-start/arkts-new-local.md)
@@ -88,7 +87,7 @@
           - [\@Provider和\@Consumer装饰器：跨组件层级双向同步](quick-start/arkts-new-Provider-and-Consumer.md)
           - [\@Computed装饰器：计算属性](quick-start/arkts-new-Computed.md)
           - [!!语法：双向绑定](quick-start/arkts-new-binding.md)
-      - 渲染控制
+    - 渲染控制
         - [渲染控制概述](quick-start/arkts-rendering-control-overview.md)
         - [if/else：条件渲染](quick-start/arkts-rendering-control-ifelse.md)
         - [ForEach：循环渲染](quick-start/arkts-rendering-control-foreach.md)
