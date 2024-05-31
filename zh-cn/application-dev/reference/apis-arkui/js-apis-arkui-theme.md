@@ -136,6 +136,7 @@ import { CustomTheme, CustomColors, ThemeControl } from '@ohos.arkui.theme';
 class BlueColors implements CustomColors {
   fontPrimary = Color.White;
   backgroundPrimary = Color.Blue;
+  brand = Color.Blue; //品牌色
 }
 
 class PageCustomTheme implements CustomTheme {
