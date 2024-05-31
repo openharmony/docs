@@ -353,6 +353,52 @@ stopImageAnalyzer(): void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+### setXComponentSurfaceRotation<sup>12+</sup>
+
+setXComponentSurfaceRotation(rotationOptions: SurfaceRotationOptions): void
+
+设置XComponent持有Surface在屏幕旋转时是否锁定方向，仅XComponent类型为SURFACE("surface")时有效。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**参数:**
+
+| 参数名 | 参数类型                             | 必填 | 描述                              |
+| ------ | ------------------------------------ | ---- | --------------------------------- |
+| rotationOptions   | [SurfaceRotationOptions](#surfacerotationoptions12类型说明) | 否   | 设置XComponent持有Surface在屏幕旋转时是否锁定方向。 |
+
+> **说明：**
+>
+> rotationOptions未配置时，默认XComponent持有Surface在屏幕旋转时不锁定方向，跟随屏幕进行旋转。
+>
+> 仅在屏幕旋转过程中生效，旋转完成后不再锁定Surface。
+>
+> 仅在屏幕旋转90°，即发生横竖屏切换时生效。
+
+### getXComponentSurfaceRotation<sup>12+</sup>
+
+getXComponentSurfaceRotation(): Required<SurfaceRotationOptions>
+
+获取XComponent持有Surface在屏幕旋转时是否锁定方向的设置，仅XComponent类型为SURFACE("surface")时有效。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**返回值:**
+
+| 类型                                 | 描述                                  |
+| ------------------------------------ | ------------------------------------- |
+| [SurfaceRotationOptions](#surfacerotationoptions12类型说明) | 获取XComponent持有Surface在屏幕旋转时是否锁定方向的设置。 |
+
+### SurfaceRotationOptions<sup>12+</sup>类型说明
+
+用于描述XComponent持有Surface在屏幕旋转时是否锁定方向的设置。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+| 名称          | 类型   | 必填 | 说明                                                         |
+| ------------- | ------ | ---- | ------------------------------------------------------------ |
+| lock       | boolean | 否   | Surface在屏幕旋转时是否锁定方向，未设置时默认取值为false，即不锁定方向。 |
+
 ## 示例
 
 示例效果请以真机运行为准，当前IDE预览器不支持。
