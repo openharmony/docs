@@ -336,7 +336,6 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     }
     ```
     > **注意：**
-    >
     > Flush之后，重新Start时，需要重新传XPS。
     >
 
@@ -359,10 +358,6 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 13. （可选）调用OH_VideoDecoder_Reset()重置解码器。
 
     调用OH_VideoDecoder_Reset()后，解码器回到初始化的状态，需要调用OH_VideoDecoder_Configure()、OH_VideoDecoder_SetSurface()重新配置。
-    > **注意：**
-    >
-    > Reset之后，重新Start时，需要重新传XPS。具体示例请参考OH_VideoDecoder_Flush()步骤12。
-    >
 
     ```c++
     // 重置解码器videoDec
@@ -381,12 +376,12 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
         // 异常处理
     }
     ```
+    > **注意：**
+    > Reset之后，重新Start时，需要重新传XPS。具体示例请参考OH_VideoDecoder_Flush()步骤12。
+    >
 
 14. （可选）调用OH_VideoDecoder_Stop()停止解码器。
-    > **注意：**
-    >
-    > Stop之后，重新Start时，需要重新传XPS。具体示例请参考OH_VideoDecoder_Flush()步骤12。
-    >
+
     ```c++
     // 终止解码器videoDec
     int32_t ret = OH_VideoDecoder_Stop(videoDec);
@@ -394,6 +389,9 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
         // 异常处理
     }
     ```
+    > **注意：**
+    > Stop之后，重新Start时，需要重新传XPS。具体示例请参考OH_VideoDecoder_Flush()步骤12。
+    >
 
 15. 调用OH_VideoDecoder_Destroy()销毁解码器实例，释放资源。
 
