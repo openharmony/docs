@@ -10,24 +10,26 @@
 
 ## 接口说明
 
-详细接口见[接口文档](../../reference/apis-basic-services-kit/js-apis-pasteboard.md#getUnifiedData12)。
+详细接口见[接口文档](../../reference/apis-basic-services-kit/js-apis-pasteboard.md#getunifieddata12)。
 
 | 名称 | 说明                                                                                                                                        |
 | -------- |----------------------------------------------------------------------------------------------------------------------------------------|
-| setUnifiedData(data: udc.UnifiedData): Promise<void> | 将统一数据对象的数据写入系统剪贴板。 
+| setUnifiedData(data: udc.UnifiedData): Promise\<void\> | 将统一数据对象的数据写入系统剪贴板。 
 | setUnifiedDataSync(data: udc.UnifiedData): void | 将统一数据对象的数据写入系统剪贴板，此接口为同步接口。                                                                                                                          |
-| getUnifiedData(): Promise<udc.UnifiedData> | 从系统剪贴板中读取统一数据对象的数据。                                                                                                                          |
+| getUnifiedData(): Promise\<udc.UnifiedData\> | 从系统剪贴板中读取统一数据对象的数据。                                                                                                                          |
 | getUnifiedDataSync(): udc.UnifiedData | 从系统剪贴板中读取统一数据对象的数据，此接口为同步接口。                                                                                                                   |
 
 
 ## 开发步骤
 
+1. 导入`@ohos.pasteboard.d.ts`,`@ohos.data.unifiedDataChannel`和`@ohos.data.uniformTypeDescriptor`模块。
 ```ts
-// 1. 导入`@ohos.pasteboard.d.ts`,`@ohos.data.unifiedDataChannel`和`@ohos.data.uniformTypeDescriptor`模块
 import {unifiedDataChannel, uniformTypeDescriptor} from '@kit.ArkData';
 import {BusinessError, pasteboard} from '@kit.BasicServicesKit';
+```
 
-// 2. 构造一条PlainText数据记录
+2. 构造一条PlainText数据记录。
+```ts
 let plainTextData = new unifiedDataChannel.UnifiedData();
 let plainText = new unifiedDataChannel.PlainText();
 plainText.details = {
@@ -37,8 +39,10 @@ plainText.details = {
 plainText.textContent = 'TextContent';
 plainText.abstract = 'TextContent';
 plainTextData.addRecord(plainText);
+```
 
-// 3. 向系统剪贴板中存入一条PlainText数据
+3. 向系统剪贴板中存入一条PlainText数据。
+```ts
 plainTextData.properties.shareOptions = unifiedDataChannel.ShareOptions.CROSS_APP;
 // 跨应用使用时设置为CROSS_APP，本应用内使用时设置为IN_APP
 pasteboard.getSystemPasteboard().setUnifiedData(plainTextData).then(()=>{
@@ -46,8 +50,10 @@ pasteboard.getSystemPasteboard().setUnifiedData(plainTextData).then(()=>{
 }).catch((error: BusinessError) => {
 // 处理异常场景
 });
+```
 
-// 4. 从系统剪贴板中读取这条text数据
+4. 从系统剪贴板中读取这条text数据。
+```ts
 pasteboard.getSystemPasteboard().getUnifiedData().then((data) => {
     let outputData = data;
     let records = outputData.getRecords();
