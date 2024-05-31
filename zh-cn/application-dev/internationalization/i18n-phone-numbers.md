@@ -45,7 +45,8 @@
 | E164 | +86 158\*\*\*\*2312 | 
 | INTERNATIONAL | +86 158 \*\*\*\* 2312 | 
 | NATIONAL | 158 \*\*\*\* 2312 | 
-| RFC3966 | tel:+86-158-\*\*\*\*-2312 | 
+| RFC3966 | tel:+86-158-\*\*\*\*-2312 |
+| TYPING | 158 \*\*\* |
 
 
 **开发实例**
@@ -69,4 +70,8 @@ let isValid = phoneNumberFormat3.isValidNumber('158****2312'); // isValid: true
 // 以某种语言显示号码归属地
 let phoneNumberFormat4 = new i18n.PhoneNumberFormat("CN");
 let locationName4 = phoneNumberFormat4.getLocationName('158****2312', 'en-GB') // locationName4: XiAn, Shanxi
+
+// 拨号中的电话号码
+let phoneNumberFormat5 = new i18n.PhoneNumberFormat('CN', {type: 'TYPING'});
+let formattedPhoneNumber5 = phoneNumberFormat5.format('158***'); // formattedPhoneNumber5: 158 ***
 ```
