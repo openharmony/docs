@@ -3176,7 +3176,7 @@
         - [MediaLibrary_RequestOptions](reference/apis-media-library-kit/_media_library___request_options.md)  
   - MindSpore Lite Kit API参考
     - ArkTS API
-      - [@ohos.ai.mindSporeLite (推理能力)](reference/apis-mindspore-lite-kit/js-apis-mindSporeLite.md)
+      - [@ohos.ai.mindSporeLite (端侧AI框架)](reference/apis-mindspore-lite-kit/js-apis-mindSporeLite.md)
       <!--Del-->
       - [@ohos.ai.intelligentVoice (智能语音)(系统接口)](reference/apis-mindspore-lite-kit/js-apis-intelligentVoice-sys.md)
       <!--DelEnd-->
