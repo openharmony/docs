@@ -14,7 +14,7 @@
 
 ## 限制约束
 
-av_codec只支持AnnexB,AnnexB不支持多slice。
+av_codec只支持AnnexB，AnnexB不支持多slice。
 
 ## Surface输出与Buffer输出
 
