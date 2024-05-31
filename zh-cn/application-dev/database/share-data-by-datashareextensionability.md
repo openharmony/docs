@@ -55,12 +55,9 @@
 `@ohos.application.DataShareExtensionAbility`模块，开发者可根据应用需求选择性重写其业务实现。例如数据提供方只提供插入、删除和查询服务，则可只重写这些接口，并导入对应的基础依赖模块；如果需要增加权限校验，可以在重写的回调方法中使用IPC提供的[getCallingPid](../reference/apis-ipc-kit/js-apis-rpc.md#getcallingpid)、[getCallingUid](../reference/apis-ipc-kit/js-apis-rpc.md#getcallinguid)、[getCallingTokenId](../reference/apis-ipc-kit/js-apis-rpc.md#getcallingtokenid8)方法获取访问者信息来进行权限校验。
    
    ```ts
-   import Extension from '@ohos.application.DataShareExtensionAbility';
-   import { UpdateOperation } from '@ohos.application.DataShareExtensionAbility';
-   import dataSharePredicates from '@ohos.data.dataSharePredicates';
-   import relationalStore from '@ohos.data.relationalStore';
-   import Want from '@ohos.app.ability.Want';
-   import { BusinessError } from '@ohos.base'
+   import { DataShareExtensionAbility, dataShare, dataSharePredicates, relationalStore } from '@kit.ArkData';
+   import { Want } from '@kit.AbilityKit';
+   import { BusinessError } from '@kit.BasicServicesKit'
    ```
 
 4. 数据提供方的业务实现由开发者自定义。例如可以通过数据库、读写文件或访问网络等各方式实现数据提供方的数据存储。
@@ -75,7 +72,7 @@
    let rdbStore: relationalStore.RdbStore;
    let result: string;
 
-   export default class DataShareExtAbility extends Extension {
+   export default class DataShareExtAbility extends DataShareExtensionAbility {
      // 重写onCreate接口
      onCreate(want: Want, callback: Function) {
        result = this.context.cacheDir + '/datashare.txt';
@@ -115,8 +112,8 @@
        }
      }
      // 重写batchUpdate接口
-     batchUpdate(operations:Record<string, Array<UpdateOperation>>, callback:Function) {
-       let recordOps : Record<string, Array<UpdateOperation>> = operations;
+     batchUpdate(operations:Record<string, Array<dataShare.UpdateOperation>>, callback:Function) {
+       let recordOps : Record<string, Array<dataShare.UpdateOperation>> = operations;
        let results : Record<string, Array<number>> = {};
        let a = Object.entries(recordOps);
        for (let i = 0; i < a.length; i++) {
@@ -208,11 +205,9 @@
 1. 导入基础依赖包。
    
    ```ts
-   import UIAbility from '@ohos.app.ability.UIAbility';
-   import dataShare from '@ohos.data.dataShare';
-   import dataSharePredicates from '@ohos.data.dataSharePredicates';
-   import { ValuesBucket } from '@ohos.data.ValuesBucket'
-   import window from '@ohos.window';
+   import { UIAbility } from '@kit.AbilityKit';
+   import { dataShare, dataSharePredicates, ValuesBucket } from '@kit.ArkData';
+   import { window } from '@kit.ArkUI';
    ```
 
 2. 定义与数据提供方通信的URI字符串。
@@ -292,15 +287,18 @@
        console.info(`dsHelper delete result:${data}`);
      });
      // 批量更新数据
-     (dsHelper as dataShare.DataShareHelper).batchUpdate(record).then((data: Record<string, Array<number>>) => {
-       // 遍历data获取每条数据的更新结果， value为更新成功的数据记录数，若小于0，说明该次更新失败
-       for (const [key, values] of Object.entries(data)) {
-           console.info(`Update uri:${key}`);
-           for (const value of values) {
-               console.info(`Update result:${value}`);
-           }
-       }
-     })；
+     (dsHelper as dataShare.DataShareHelper).batchUpdate(record).then((data: Record<string, Array>) => {
+        // 遍历data获取每条数据的更新结果， value为更新成功的数据记录数，若小于0，说明该次更新失败
+        let a = Object.entries(data);
+        for (let i = 0; i < a.length; i++) {
+          let key = a[i][0];
+          let values = a[i][1]
+          console.info(`Update uri:${key}`);
+          for (const value of values) {
+            console.info(`Update result:${value}`);
+          }
+        }
+      });
      // 关闭DataShareHelper实例
      (dsHelper as dataShare.DataShareHelper).close();
    }
