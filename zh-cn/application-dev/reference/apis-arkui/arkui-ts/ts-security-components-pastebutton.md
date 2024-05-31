@@ -1,7 +1,7 @@
 # PasteButton
 
 
-安全控件的粘贴按钮，用户通过点击该粘贴按钮，可以临时获取读取剪贴板权限，而不会触发toast提示。
+安全控件的粘贴按钮，用户通过点击该粘贴按钮，可以临时获取读取剪贴板权限。
 
 
 > **说明：**
@@ -43,7 +43,7 @@ PasteButton(option:PasteButtonOptions)
 | -------- | -------- | -------- | -------- |
 | icon | [PasteIconStyle](#pasteiconstyle枚举说明) | 否 | 设置粘贴按钮的图标风格。<br/>不传入该参数表示没有图标，icon和text至少存在一个。 |
 | text | [PasteDescription](#pastedescription枚举说明) | 否 | 设置粘贴按钮的文本描述。<br/>不传入该参数表示没有文字描述，icon和text至少存在一个。 |
-| buttonType | [ButtonType](ts-basic-components-button.md#buttontype枚举说明) | 否 | 设置粘贴按钮的背景样式。<br/>不传入该参数表示没有背景。 |
+| buttonType | [ButtonType](ts-basic-components-button.md#buttontype枚举说明) | 否 | 设置粘贴按钮的背景样式。<br/>不传入该参数，系统默认提供Capsule类型按钮。 |
 
 
 ## 属性

@@ -44,7 +44,7 @@ SaveButton(option:SaveButtonOptions)
 | -------- | -------- | -------- | -------- |
 | icon | [SaveIconStyle](#saveiconstyle枚举说明) | 否 | 设置保存按钮的图标风格<br/>不传入该参数表示没有图标，icon和text至少存在一个。 |
 | text | [SaveDescription](#savedescription枚举说明) | 否 | 设置保存按钮的文本描述<br/>不传入该参数表示没有文字描述，icon和text至少存在一个。 |
-| buttonType | [ButtonType](ts-basic-components-button.md#buttontype枚举说明) | 否 | 设置保存按钮的背景样式<br/>不传入该参数表示没有背景。 |
+| buttonType | [ButtonType](ts-basic-components-button.md#buttontype枚举说明) | 否 | 设置保存按钮的背景样式<br/>不传入该参数，系统默认提供Capsule类型按钮。 |
 
 
 ## SaveIconStyle枚举说明
@@ -69,7 +69,7 @@ SaveButton(option:SaveButtonOptions)
 | DOWNLOAD_AND_SHARE | 5 | 保存按钮的文字描述为“下载分享”。 <br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
 | RECEIVE | 6 | 保存按钮的文字描述为“接收”。 <br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
 | CONTINUE_TO_RECEIVE | 7 | 保存按钮的文字描述为“继续接收”。 <br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
-| SAVE_TO_GALLERY<sup>12+</sup> | 8 | 保存按钮的文字描述为“保存到图库”。 <br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。|
+| SAVE_TO_GALLERY<sup>12+</sup> | 8 | 保存按钮的文字描述为“保存至图库”。 <br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。|
 
 
 ## SaveButtonOnClickResult枚举说明

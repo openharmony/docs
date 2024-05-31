@@ -9,7 +9,7 @@ The **statistics** module provides APIs to query real-time or historical data tr
 ## Modules to Import
 
 ```js
-import statistics from "@ohos.net.statistics";
+import { statistics } from '@kit.NetworkKit';
 ```
 
 
@@ -47,7 +47,7 @@ For details about the error codes, see [Traffic Management Error Codes](errorcod
 **Example**
 
 ```js
-import statistics from '@ohos.net.statistics';
+import { statistics } from '@kit.NetworkKit';
 
 class IFace {
   iface: string = ""
@@ -92,7 +92,7 @@ For details about the error codes, see [Traffic Management Error Codes](errorcod
 **Example**
 
 ```js
-import statistics from '@ohos.net.statistics';
+import { statistics } from '@kit.NetworkKit';
 
 class IFace {
   iface: string = ""
@@ -143,8 +143,8 @@ For details about the error codes, see [Traffic Management Error Codes](errorcod
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
-import statistics from '@ohos.net.statistics';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { statistics } from '@kit.NetworkKit';
 
 let iFaceInfo: statistics.IfaceInfo | null = null;
 if (iFaceInfo) {
@@ -208,7 +208,7 @@ For details about the error codes, see [Traffic Management Error Codes](errorcod
 **Example**
 
 ```js
-import statistics from '@ohos.net.statistics';
+import { statistics } from '@kit.NetworkKit';
 
 let iFaceInfo: statistics.IfaceInfo | null = null;
 if (iFaceInfo) {
@@ -269,8 +269,8 @@ For details about the error codes, see [Traffic Management Error Codes](errorcod
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
-import statistics from '@ohos.net.statistics';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { statistics } from '@kit.NetworkKit';
 
 let uidInfo: statistics.UidInfo = {
   uid: 20010037,

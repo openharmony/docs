@@ -831,6 +831,21 @@ ShortcutInfo结构体中的want指定的ability不存在，ShortcutInfo结构体
 **处理步骤**<br/>
 检查ShortcutInfo结构体中的want有效性。
 
+## 17700068 应用支持分身后，最大分身数量在更新时不可减小
+
+**错误信息**<br/>
+Failed to install the HAP because the maximum count of clone app cannot be reduced.
+
+**错误描述**<br/>
+应用多开模式为appClone，在更新时，maxCount数值不允许减小。
+
+**可能原因**<br/>
+支持分身的应用在更新时，最大分身数量减小了。
+
+**处理步骤**<br/>
+1. 检查更新应用是否支持分身。
+2. 检查应用在更新前后，支持最大分身数量是否减小。
+
 ## 17700201 abc文件校验失败
 **错误信息**<br/>
 Failed to verify the abc file.

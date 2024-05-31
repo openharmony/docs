@@ -32,6 +32,8 @@ import constant from '@ohos.bluetooth.constant';
 
 枚举，蓝牙设备的profile连接状态。
 
+**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 | 名称                  | 值  | 说明             |

@@ -106,6 +106,7 @@ struct MyComponent {
   navDesInfo: observer.NavDestinationInfo | undefined
 
   aboutToAppear() {
+    // this指代MyComponent自定义节点，并从该节点向上查找其最近的一个类型为NavDestination的父亲节点
     this.navDesInfo = this.queryNavDestinationInfo();
     console.log('get navDestinationInfo: ' + JSON.stringify(this.navDesInfo))
   }
@@ -153,6 +154,7 @@ export struct PageOne() {
   pathStack: NavPathStack = new NavPathStack()
 
   aboutToAppear() {
+    // this指代PageOne自定义节点，并从该节点向上查找其最近的一个类型为Navigation的父亲节点
     let navigationInfo: observer.NavigationInfo | undefined = this.queryNavigationInfo()
     console.log('get navigationInfo: ' + JSON.stringify(navigationInfo))
     if (navigationInfo !== undefined) {

@@ -65,7 +65,7 @@ createPixelMap(colors: ArrayBuffer, options: InitializationOptions, callback: As
 | -------- | ------------------------------------------------ | ---- | -------------------------- |
 | colors   | ArrayBuffer                                      | 是   | BGRA_8888格式的颜色数组。  |
 | options  | [InitializationOptions](#initializationoptions8) | 是   | 属性。                     |
-| callback | AsyncCallback\<[PixelMap](#pixelmap7)>           | 是   | 回调函数，当创建PixelMap成功，error为undefined，PixelMap为返回的图片对象；否则为错误对象。 |
+| callback | AsyncCallback\<[PixelMap](#pixelmap7)>           | 是   | 回调函数，当创建PixelMap成功，err为undefined，data为获取到的PixelMap对象；否则为错误对象。 |
 
 **示例：**
 
@@ -320,7 +320,7 @@ createPremultipliedPixelMap(src: PixelMap, dst: PixelMap, callback: AsyncCallbac
 | -------- | ------------------------------------------------ | ---- | -------------------------- |
 | src | [PixelMap](#pixelmap7) | 是   | 源PixelMap对象。 |
 | dst | [PixelMap](#pixelmap7) | 是   | 目标PixelMap对象。 |
-|callback | AsyncCallback\<void> | 是   | 获取回调，失败时返回错误信息。 |
+|callback | AsyncCallback\<void> | 是   | 回调函数，当创建PixelMap成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
@@ -432,7 +432,7 @@ createUnpremultipliedPixelMap(src: PixelMap, dst: PixelMap, callback: AsyncCallb
 | -------- | ------------------------------------------------ | ---- | -------------------------- |
 | src | [PixelMap](#pixelmap7) | 是   | 源PixelMap对象。 |
 | dst | [PixelMap](#pixelmap7) | 是   | 目标PixelMap对象。|
-|callback | AsyncCallback\<void> | 是   | 获取回调，失败时返回错误信息。|
+|callback | AsyncCallback\<void> | 是   | 回调函数，当创建PixelMap成功，err为undefined，否则为错误对象。|
 
 **错误码：**
 
@@ -606,7 +606,7 @@ readPixelsToBuffer(dst: ArrayBuffer, callback: AsyncCallback\<void>): void
 | 参数名   | 类型                 | 必填 | 说明                                                                                                  |
 | -------- | -------------------- | ---- | ----------------------------------------------------------------------------------------------------- |
 | dst      | ArrayBuffer          | 是   | 缓冲区，函数执行结束后获取的图像像素数据写入到该内存区域内。缓冲区大小由[getPixelBytesNumber](#getpixelbytesnumber7)接口获取。 |
-| callback | AsyncCallback\<void> | 是   | 回调函数。当读取像素数据到ArrayBuffer成功，error为undefined，否则为错误对象。  |
+| callback | AsyncCallback\<void> | 是   | 回调函数。当读取像素数据到ArrayBuffer成功，err为undefined，否则为错误对象。  |
 
 **示例：**
 
@@ -731,7 +731,7 @@ readPixels(area: PositionArea, callback: AsyncCallback\<void>): void
 | 参数名   | 类型                           | 必填 | 说明                           |
 | -------- | ------------------------------ | ---- | ------------------------------ |
 | area     | [PositionArea](#positionarea7) | 是   | 区域大小，根据区域读取。       |
-| callback | AsyncCallback\<void>           | 是   |  回调函数。当读取区域内的图片数据成功，error为undefined，否则为错误对象。 |
+| callback | AsyncCallback\<void>           | 是   |  回调函数。当读取区域内的图片数据成功，err为undefined，否则为错误对象。 |
 
 **示例：**
 
@@ -751,7 +751,7 @@ async function Demo() {
                 console.error(`Failed to read pixelmap from the specified area. code is ${error.code}, message is ${error.message}`);
                 return;
             } else {
-                console.info('Succeeded to read pixelmap from the specified area.');
+                console.info('Succeeded in reading pixelmap from the specified area.');
             }
         })
     }
@@ -843,7 +843,7 @@ async function Demo() {
     }
     if (pixelMap != undefined) {
         pixelMap.writePixels(area).then(() => {
-            console.info('Succeeded to write pixelmap into the specified area.');
+            console.info('Succeeded in writing pixelmap into the specified area.');
         }).catch((error: BusinessError) => {
             console.error(`Failed to write pixelmap into the specified area. code is ${error.code}, message is ${error.message}`);
         })
@@ -868,7 +868,7 @@ writePixels(area: PositionArea, callback: AsyncCallback\<void>): void
 | 参数名    | 类型                           | 必填 | 说明                           |
 | --------- | ------------------------------ | ---- | ------------------------------ |
 | area      | [PositionArea](#positionarea7) | 是   | 区域，根据区域写入。           |
-| callback  | AsyncCallback\<void>           | 是   | 获取回调，失败时返回错误信息。 |
+| callback  | AsyncCallback\<void>           | 是   | 回调函数，当写入成功，err为undefined，否则为错误对象。 |
 
 **示例：**
 
@@ -891,7 +891,7 @@ async function Demo() {
                 console.error(`Failed to write pixelmap into the specified area. code is ${error.code}, message is ${error.message}`);
                 return;
             } else {
-                console.info('Succeeded to write pixelmap into the specified area.');
+                console.info('Succeeded in writing pixelmap into the specified area.');
             }
         })
     }
@@ -1009,7 +1009,7 @@ writeBufferToPixels(src: ArrayBuffer, callback: AsyncCallback\<void>): void
 | 参数名   | 类型                 | 必填 | 说明                           |
 | -------- | -------------------- | ---- | ------------------------------ |
 | src      | ArrayBuffer          | 是   | 图像像素数据。                 |
-| callback | AsyncCallback\<void> | 是   | 回调函数。当读取缓冲区中的图片数据并写入PixelMap成功，error为undefined，否则为错误对象。 |
+| callback | AsyncCallback\<void> | 是   | 回调函数。当读取缓冲区中的图片数据并写入PixelMap成功，err为undefined，否则为错误对象。 |
 
 **示例：**
 
@@ -1096,7 +1096,7 @@ getImageInfo(): Promise\<ImageInfo>
 
 | 类型                              | 说明                                                        |
 | --------------------------------- | ----------------------------------------------------------- |
-| Promise\<[ImageInfo](#imageinfo)> | Promise实例，用于异步获取图像像素信息，失败时返回错误信息。 |
+| Promise\<[ImageInfo](#imageinfo)> | Promise对象，返回图像像素信息。 |
 
 **示例：**
 
@@ -1132,7 +1132,7 @@ getImageInfo(callback: AsyncCallback\<ImageInfo>): void
 
 | 参数名   | 类型                                    | 必填 | 说明                                                         |
 | -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback\<[ImageInfo](#imageinfo)> | 是   | 回调函数。当获取图像像素信息成功，error为undefined，否则为错误对象。 |
+| callback | AsyncCallback\<[ImageInfo](#imageinfo)> | 是   | 回调函数。当获取图像像素信息成功，err为undefined，data为获取到的图像像素信息；否则为错误对象。 |
 
 **示例:**
 
@@ -1337,7 +1337,7 @@ async function Demo() {
     let rate: number = 0.5;
     if (pixelMap != undefined) {
         pixelMap.opacity(rate).then(() => {
-            console.info('Sucessed in setting opacity.');
+            console.info('Succeeded in setting opacity.');
         }).catch((err: BusinessError) => {
             console.error(`Failed to set opacity. code is ${err.code}, message is ${err.message}`);
         })
@@ -1433,7 +1433,7 @@ createAlphaPixelmap(callback: AsyncCallback\<PixelMap>): void
 
 | 参数名   | 类型                     | 必填 | 说明                     |
 | -------- | ------------------------ | ---- | ------------------------ |
-| callback | AsyncCallback\<[PixelMap](#pixelmap7)> | 是   |  回调函数，当创建PixelMap成功，error为undefined，PixelMap为返回的图片对象；否则为错误对象。 |
+| callback | AsyncCallback\<[PixelMap](#pixelmap7)> | 是   |  回调函数，当创建PixelMap成功，err为undefined，data为获取到的PixelMap对象；否则为错误对象。 |
 
 **示例：**
 
@@ -1814,7 +1814,7 @@ async function Demo() {
     let angle: number = 90.0;
     if (pixelMap != undefined) {
         pixelMap.rotate(angle).then(() => {
-            console.info('Sucessed in rotating pixelmap.');
+            console.info('Succeeded in rotating pixelmap.');
         }).catch((err: BusinessError) => {
             console.error(`Failed to rotate pixelmap. code is ${err.code}, message is ${err.message}`); 
         })
@@ -1878,7 +1878,7 @@ flip(horizontal: boolean, vertical: boolean, callback: AsyncCallback\<void>): vo
 | ---------- | -------------------- | ---- | ----------------------------- |
 | horizontal | boolean              | 是   | 水平翻转。                    |
 | vertical   | boolean              | 是   | 垂直翻转。                    |
-| callback   | AsyncCallback\<void> | 是   | 获取回调，失败时返回错误信息。|
+| callback   | AsyncCallback\<void> | 是   | 回调函数，当对图片翻转成功，err为undefined，否则为错误对象。|
 
 **示例：**
 
@@ -1936,7 +1936,7 @@ async function Demo() {
     let vertical: boolean = false;
     if (pixelMap != undefined) {
         pixelMap.flip(horizontal, vertical).then(() => {
-            console.info('Sucessed in flipping pixelmap.');
+            console.info('Succeeded in flipping pixelmap.');
         }).catch((err: BusinessError) => {
             console.error(`Failed to flip pixelmap. code is ${err.code}, message is ${err.message}`);
             
@@ -2446,6 +2446,8 @@ release():Promise\<void>
 
 释放PixelMap对象，使用Promise形式返回释放结果。
 
+ArkTS有内存回收机制，PixelMap对象不调用release方法，内存最终也会由系统统一释放。但图片使用的内存往往较大，为尽快释放内存，建议应用在使用完成后主动调用release方法提前释放内存。
+
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
@@ -2480,6 +2482,8 @@ release(callback: AsyncCallback\<void>): void
 
 释放PixelMap对象，使用callback形式返回释放结果。
 
+ArkTS有内存回收机制，PixelMap对象不调用release方法，内存最终也会由系统统一释放。但图片使用的内存往往较大，为尽快释放内存，建议应用在使用完成后主动调用release方法提前释放内存。
+
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
@@ -2490,7 +2494,7 @@ release(callback: AsyncCallback\<void>): void
 
 | 参数名   | 类型                 | 必填 | 说明               |
 | -------- | -------------------- | ---- | ------------------ |
-| callback | AsyncCallback\<void> | 是   | 回调函数。当对图像像素颜色进行色彩空间转换成功，err为undefined，否则为错误对象。 |
+| callback | AsyncCallback\<void> | 是   | 回调函数。当对PixelMap对象释放成功，err为undefined，否则为错误对象。 |
 
 **示例：**
 
@@ -2824,7 +2828,7 @@ getImageInfo(index: number, callback: AsyncCallback\<ImageInfo>): void
 | 参数名   | 类型                                   | 必填 | 说明                                     |
 | -------- | -------------------------------------- | ---- | ---------------------------------------- |
 | index    | number                                 | 是   | 创建图片源时的序号。                     |
-| callback | AsyncCallback<[ImageInfo](#imageinfo)> | 是   | 回调函数。当获取图片信息成功，error为undefined，否则为错误对象。 |
+| callback | AsyncCallback<[ImageInfo](#imageinfo)> | 是   | 回调函数。当获取图片信息成功，err为undefined，data为获取到的图片信息；否则为错误对象。 |
 
 **示例：**
 
@@ -2833,9 +2837,9 @@ import { BusinessError } from '@ohos.base';
 
 imageSourceApi.getImageInfo(0, (error: BusinessError, imageInfo: image.ImageInfo) => { 
     if (error) {
-        console.error('getImageInfo failed.');
+        console.error(`Failed to obtain the image information.code is ${error.code}, message is ${error.message}`);
     } else {
-        console.info('getImageInfo succeeded.');
+        console.info('Succeeded in obtaining the image information.');
     }
 })
 ```
@@ -2856,7 +2860,7 @@ getImageInfo(callback: AsyncCallback\<ImageInfo>): void
 
 | 参数名   | 类型                                   | 必填 | 说明                                     |
 | -------- | -------------------------------------- | ---- | ---------------------------------------- |
-| callback | AsyncCallback<[ImageInfo](#imageinfo)> | 是   | 回调函数。当获取图片信息成功，error为undefined，否则为错误对象。 |
+| callback | AsyncCallback<[ImageInfo](#imageinfo)> | 是   | 回调函数。当获取图片信息成功，err为undefined，data为获取到的图片信息；否则为错误对象。 |
 
 **示例：**
 
@@ -2864,8 +2868,8 @@ getImageInfo(callback: AsyncCallback\<ImageInfo>): void
 import { BusinessError } from '@ohos.base';
 
 imageSourceApi.getImageInfo((err: BusinessError, imageInfo: image.ImageInfo) => { 
-    if (err != undefined) {
-        console.error(`Failed to obtaining the image information.code is ${err.code}, message is ${err.message}`);
+    if (err) {
+        console.error(`Failed to obtain the image information.code is ${err.code}, message is ${err.message}`);
     } else {
         console.info('Succeeded in obtaining the image information.');
     }
@@ -2894,7 +2898,7 @@ getImageInfo(index?: number): Promise\<ImageInfo>
 
 | 类型                             | 说明                   |
 | -------------------------------- | ---------------------- |
-| Promise<[ImageInfo](#imageinfo)> | Promise实例，用于异步返回获取到的图片信息。 |
+| Promise<[ImageInfo](#imageinfo)> | Promise对象，返回获取到的图片信息。 |
 
 **示例：**
 
@@ -2905,7 +2909,7 @@ imageSourceApi.getImageInfo(0)
     .then((imageInfo: image.ImageInfo) => {
 		console.info('Succeeded in obtaining the image information.');
 	}).catch((error: BusinessError) => {
-		console.error('Failed to obtain the image information.');
+        console.error(`Failed to obtain the image information.code is ${error.code}, message is ${error.message}`);
 	})
 ```
 
@@ -2938,9 +2942,9 @@ let filePath = "/test"
 let imageSource = image.createImageSource(filePath);
 let imageInfo = imageSource.getImageInfoSync(0);
 if (imageInfo == undefined) {
-    console.error('getImageInfoSync failed.');
+    console.error('Failed to obtain the image information.');
 } else {
-    console.info('getImageInfoSync succeeded.');
+    console.info('Succeeded in obtaining the image information.');
     console.info('imageInfo.size.height:' + imageInfo.size.height);
     console.info('imageInfo.size.width:' + imageInfo.size.width);
 }
@@ -2965,7 +2969,7 @@ getImageProperty(key:PropertyKey, options?: ImagePropertyOptions): Promise\<stri
 
 | 类型             | 说明                                                              |
 | ---------------- | ----------------------------------------------------------------- |
-| Promise\<string> | Promise实例，用于异步获取图片属性值，如获取失败则返回属性默认值。 |
+| Promise\<string> | Promise对象，返回图片属性值，如获取失败则返回属性默认值。 |
 
 **错误码：**
 
@@ -3024,7 +3028,7 @@ getImageProperty(key:string, options?: GetImagePropertyOptions): Promise\<string
 
 | 类型             | 说明                                                              |
 | ---------------- | ----------------------------------------------------------------- |
-| Promise\<string> | Promise实例，用于异步获取图片属性值，如获取失败则返回属性默认值。 |
+| Promise\<string> | Promise对象，返回图片属性值，如获取失败则返回属性默认值。 |
 
 **示例：**
 
@@ -3056,7 +3060,7 @@ getImageProperty(key:string, callback: AsyncCallback\<string>): void
 | 参数名   | 类型                   | 必填 | 说明                                                         |
 | -------- | ---------------------- | ---- | ------------------------------------------------------------ |
 | key      | string                 | 是   | 图片属性名。                                                 |
-| callback | AsyncCallback\<string> | 是   | 获取图片属性回调，返回图片属性值，如获取失败则返回属性默认值。 |
+| callback | AsyncCallback\<string> | 是   | 回调函数，当获取图片属性值成功，err为undefined，data为获取到的图片属性值；否则为错误对象。 |
 
 **示例：**
 
@@ -3090,7 +3094,7 @@ getImageProperty(key:string, options: GetImagePropertyOptions, callback: AsyncCa
 | -------- | ---------------------------------------------------- | ---- | ------------------------------------------------------------- |
 | key      | string                                               | 是   | 图片属性名。                                                  |
 | options  | [GetImagePropertyOptions](#getimagepropertyoptionsdeprecated) | 是   | 图片属性，包括图片序号与默认属性值。                          |
-| callback | AsyncCallback\<string>                               | 是   | 获取图片属性回调，返回图片属性值，如获取失败则返回属性默认值。|
+| callback | AsyncCallback\<string>                               | 是   | 回调函数，当获取图片属性值成功，err为undefined，data为获取到的图片属性值；否则为错误对象。|
 
 **示例：**
 
@@ -3125,7 +3129,7 @@ getImageProperties(key: Array&#60;PropertyKey&#62;): Promise<Record<PropertyKey,
 
 | 类型             | 说明                                                              |
 | ---------------- | ----------------------------------------------------------------- |
-| Promise\<Record<[PropertyKey](#propertykey7), string \| null>> | Promise实例，用于异步获取图片属性值，如获取失败则返回null。 |
+| Promise\<Record<[PropertyKey](#propertykey7), string \| null>> | Promise对象，返回图片属性值，如获取失败则返回null。 |
 
 **错误码：**
 
@@ -3271,7 +3275,7 @@ modifyImageProperty(key: string, value: string, callback: AsyncCallback\<void>):
 | -------- | ------------------- | ---- | ------------------------------ |
 | key      | string              | 是   | 图片属性名。                   |
 | value    | string              | 是   | 属性值。                       |
-| callback | AsyncCallback\<void> | 是   | 修改属性值，callback返回结果。 |
+| callback | AsyncCallback\<void> | 是   | 回调函数，当修改图片属性值成功，err为undefined，否则为错误对象。 |
 
 **示例：**
 
@@ -3279,10 +3283,10 @@ modifyImageProperty(key: string, value: string, callback: AsyncCallback\<void>):
 import { BusinessError } from '@ohos.base';
 
 imageSourceApi.modifyImageProperty("ImageWidth", "120", (err: BusinessError) => {
-    if (err != undefined) {
-        console.error('modifyImageProperty Failed');
+    if (err) {
+        console.error(`Failed to modify the Image Width.code is ${err.code}, message is ${err.message}`);
     } else {
-        console.info('modifyImageProperty Succeeded');
+        console.info('Succeeded in modifying the Image Width.');
     }
 })
 ```
@@ -3402,7 +3406,7 @@ updateData(buf: ArrayBuffer, isFinished: boolean, offset: number, length: number
 | isFinished | boolean             | 是   | 是否更新完。         |
 | offset      | number              | 是   | 偏移量。             |
 | length     | number              | 是   | 数组长。             |
-| callback   | AsyncCallback\<void> | 是   | 回调表示成功或失败。 |
+| callback   | AsyncCallback\<void> | 是   |  回调函数，当更新增量数据成功，err为undefined，否则为错误对象。 |
 
 **示例：**
 
@@ -3411,7 +3415,7 @@ import { BusinessError } from '@ohos.base';
 
 const array: ArrayBuffer = new ArrayBuffer(100);
 imageSourceApi.updateData(array, false, 0, 10, (err: BusinessError) => {
-    if (err != undefined) {
+    if (err) {
         console.error(`Failed to update data.code is ${err.code},message is ${err.message}`);
     } else {
         console.info('Succeeded in updating data.');
@@ -3471,7 +3475,7 @@ createPixelMap(callback: AsyncCallback\<PixelMap>): void
 
 | 参数名     | 类型                                  | 必填 | 说明                       |
 | -------- | ------------------------------------- | ---- | -------------------------- |
-| callback | AsyncCallback<[PixelMap](#pixelmap7)> | 是   | 通过回调返回PixelMap对象。 |
+| callback | AsyncCallback<[PixelMap](#pixelmap7)> | 是   | 回调函数，当创建PixelMap对象成功，err为undefined，data为获取到的PixelMap对象；否则为错误对象。 |
 
 **示例：**
 
@@ -3479,7 +3483,7 @@ createPixelMap(callback: AsyncCallback\<PixelMap>): void
 import { BusinessError } from '@ohos.base';
 
 imageSourceApi.createPixelMap((err: BusinessError, pixelMap: image.PixelMap) => {
-    if (err != undefined) {
+    if (err) {
         console.error(`Failed to create pixelMap.code is ${err.code},message is ${err.message}`);
     } else {
         console.info('Succeeded in creating pixelMap object.');
@@ -3504,7 +3508,7 @@ createPixelMap(options: DecodingOptions, callback: AsyncCallback\<PixelMap>): vo
 | 参数名   | 类型                                  | 必填 | 说明                       |
 | -------- | ------------------------------------- | ---- | -------------------------- |
 | options  | [DecodingOptions](#decodingoptions7)  | 是   | 解码参数。                 |
-| callback | AsyncCallback<[PixelMap](#pixelmap7)> | 是   | 通过回调返回PixelMap对象。 |
+| callback | AsyncCallback<[PixelMap](#pixelmap7)> | 是   | 回调函数，当创建PixelMap对象成功，err为undefined，data为获取到的PixelMap对象；否则为错误对象。 |
 
 **示例：**
 
@@ -3521,7 +3525,7 @@ let decodingOptions: image.DecodingOptions = {
     index: 0
 };
 imageSourceApi.createPixelMap(decodingOptions, (err: BusinessError, pixelMap: image.PixelMap) => { 
-    if (err != undefined) {
+    if (err) {
         console.error(`Failed to create pixelMap.code is ${err.code},message is ${err.message}`);
     } else {
         console.info('Succeeded in creating pixelMap object.');
@@ -3650,7 +3654,7 @@ createPixelMapList(callback: AsyncCallback<Array\<PixelMap>>): void
 
 | 参数名     | 类型                                  | 必填 | 说明                       |
 | -------- | ------------------------------------- | ---- | -------------------------- |
-| callback | AsyncCallback<Array<[PixelMap](#pixelmap7)>> | 是   | 通过回调返回PixelMap数组。 |
+| callback | AsyncCallback<Array<[PixelMap](#pixelmap7)>> | 是   | 回调函数，当创建PixelMap对象数组成功，err为undefined，data为获取到的PixelMap对象数组；否则为错误对象。  |
 
 **错误码：**
 
@@ -3683,7 +3687,7 @@ createPixelMapList(callback: AsyncCallback<Array\<PixelMap>>): void
 import { BusinessError } from '@ohos.base';
 
 imageSourceApi.createPixelMapList((err: BusinessError, pixelMapList: Array<image.PixelMap>) => {
-    if (err != undefined) {
+    if (err) {
         console.error(`Failed to create pixelMapList object.code is ${err.code},message is ${err.message}`);
     } else {
         console.info('Succeeded in creating pixelMapList object.');
@@ -3704,7 +3708,7 @@ createPixelMapList(options: DecodingOptions, callback: AsyncCallback<Array\<Pixe
 | 参数名   | 类型                 | 必填 | 说明                               |
 | -------- | -------------------- | ---- | ---------------------------------- |
 | options | [DecodingOptions](#decodingoptions7) | 是 | 解码参数。 |
-| callback | AsyncCallback<Array<[PixelMap](#pixelmap7)>> | 是   | 通过回调返回PixelMap数组。 |
+| callback | AsyncCallback<Array<[PixelMap](#pixelmap7)>> | 是   | 回调函数，当创建PixelMap对象数组成功，err为undefined，data为获取到的PixelMap对象数组；否则为错误对象。  |
 
 **错误码：**
 
@@ -3745,7 +3749,7 @@ let decodeOpts: image.DecodingOptions = {
     index: 0,
 };
 imageSourceApi.createPixelMapList(decodeOpts, (err: BusinessError, pixelMapList: Array<image.PixelMap>) => {
-    if (err != undefined) {
+    if (err) {
         console.error(`Failed to create pixelMapList object.code is ${err.code},message is ${err.message}`);
     } else {
         console.info('Succeeded in creating pixelMapList object.');
@@ -3765,7 +3769,7 @@ getDelayTimeList(callback: AsyncCallback<Array\<number>>): void
 
 | 参数名   | 类型                 | 必填 | 说明                               |
 | -------- | -------------------- | ---- | ---------------------------------- |
-| callback | AsyncCallback<Array\<number>> | 是   | 通过回调返回延迟时间数组。 |
+| callback | AsyncCallback<Array\<number>> | 是   | 回调函数，当获取图像延迟时间数组成功，err为undefined，data为获取到的图像延时时间数组；否则为错误对象。 |
 
 **错误码：**
 
@@ -3792,10 +3796,10 @@ getDelayTimeList(callback: AsyncCallback<Array\<number>>): void
 import { BusinessError } from '@ohos.base';
 
 imageSourceApi.getDelayTimeList((err: BusinessError, delayTimes: Array<number>) => {
-    if (err != undefined) {
+    if (err) {
         console.error(`Failed to get delayTimes object.code is ${err.code},message is ${err.message}`);
     } else {
-        console.info('Succeeded in delayTimes object.');
+        console.info('Succeeded in getting delayTimes object.');
     }
 })
 ```
@@ -3812,7 +3816,7 @@ getDelayTimeList(): Promise<Array\<number>>
 
 | 类型           | 说明                        |
 | -------------- | --------------------------- |
-| Promise<Array\<number>> | Promise实例，异步返回延迟时间数组。 |
+| Promise<Array\<number>> | Promise对象，返回延迟时间数组。 |
 
 **错误码：**
 
@@ -3839,7 +3843,7 @@ getDelayTimeList(): Promise<Array\<number>>
 import { BusinessError } from '@ohos.base';
 
 imageSourceApi.getDelayTimeList().then((delayTimes: Array<number>) => {
-    console.info('Succeeded in delayTimes object.');
+    console.info('Succeeded in getting delayTimes object.');
 }).catch((err: BusinessError) => {
     console.error(`Failed to get delayTimes object.code is ${err.code},message is ${err.message}`);
 })
@@ -3857,7 +3861,7 @@ getFrameCount(callback: AsyncCallback\<number>): void
 
 | 参数名   | 类型                 | 必填 | 说明                               |
 | -------- | -------------------- | ---- | ---------------------------------- |
-| callback | AsyncCallback\<number> | 是   | 通过回调返回图像帧数。 |
+| callback | AsyncCallback\<number> | 是   | 回调函数，当获取图像帧数成功，err为undefined，data为获取到的图像帧数；否则为错误对象。 |
 
 **错误码：**
 
@@ -3883,7 +3887,7 @@ getFrameCount(callback: AsyncCallback\<number>): void
 import { BusinessError } from '@ohos.base';
 
 imageSourceApi.getFrameCount((err: BusinessError, frameCount: number) => {
-    if (err != undefined) {
+    if (err) {
         console.error(`Failed to get frame count.code is ${err.code},message is ${err.message}`);
     } else {
         console.info('Succeeded in getting frame count.');
@@ -3903,7 +3907,7 @@ getFrameCount(): Promise\<number>
 
 | 类型           | 说明                        |
 | -------------- | --------------------------- |
-| Promise\<number> | Promise实例，异步返回图像帧数。 |
+| Promise\<number> | Promise对象，返回图像帧数。 |
 
 **错误码：**
 
@@ -3947,7 +3951,7 @@ getDisposalTypeList(): Promise\<Array\<number>>
 
 | 类型           | 说明                        |
 | -------------- | --------------------------- |
-| Promise\<Array\<number>> | Promise实例，异步返回帧过渡模式数组。 |
+| Promise\<Array\<number>> | Promise对象，返回帧过渡模式数组。 |
 
 **错误码：**
 
@@ -3966,7 +3970,7 @@ getDisposalTypeList(): Promise\<Array\<number>>
 ```ts
 import { BusinessError } from '@ohos.base';
 imageSourceApi.getDisposalTypeList().then((disposalTypes: Array<number>) => {
-    console.info('Succeeded in disposalTypes object.');
+    console.info('Succeeded in getting disposalTypes object.');
 }).catch((err: BusinessError) => {
     console.error(`Failed to get disposalTypes object.code ${err.code},message is ${err.message}`);
 })
@@ -3978,13 +3982,15 @@ release(callback: AsyncCallback\<void>): void
 
 释放图片源实例，使用callback形式返回结果。
 
+ArkTS有内存回收机制，ImageSource对象不调用release方法，内存最终也会由系统统一释放。但图片使用的内存往往较大，为尽快释放内存，建议应用在使用完成后主动调用release方法提前释放内存。
+
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
 **参数：**
 
 | 参数名   | 类型                 | 必填 | 说明                               |
 | -------- | -------------------- | ---- | ---------------------------------- |
-| callback | AsyncCallback\<void> | 是   | 资源释放回调，失败时返回错误信息。 |
+| callback | AsyncCallback\<void> | 是   | 回调函数，当资源释放成功，err为undefined，否则为错误对象。  |
 
 **示例：**
 
@@ -3992,8 +3998,8 @@ release(callback: AsyncCallback\<void>): void
 import { BusinessError } from '@ohos.base';
 
 imageSourceApi.release((err: BusinessError) => { 
-    if (err != undefined) {
-        console.error('Failed to release the image source instance.');
+    if (err) {
+        console.error(`Failed to release the image source instance.code ${err.code},message is ${err.message}`);
     } else {
         console.info('Succeeded in releasing the image source instance.');
     }
@@ -4005,6 +4011,8 @@ imageSourceApi.release((err: BusinessError) => {
 release(): Promise\<void>
 
 释放图片源实例，使用Promise形式返回结果。
+
+ArkTS有内存回收机制，ImageSource对象不调用release方法，内存最终也会由系统统一释放。但图片使用的内存往往较大，为尽快释放内存，建议应用在使用完成后主动调用release方法提前释放内存。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -4076,7 +4084,7 @@ packing(source: ImageSource, option: PackingOption, callback: AsyncCallback\<Arr
 | -------- | ---------------------------------- | ---- | ---------------------------------- |
 | source   | [ImageSource](#imagesource)        | 是   | 打包的图片源。                     |
 | option   | [PackingOption](#packingoption)    | 是   | 设置打包参数。                      |
-| callback | AsyncCallback\<ArrayBuffer>        | 是   | 获取图片打包回调，返回打包后数据。 |
+| callback | AsyncCallback\<ArrayBuffer>        | 是   | 回调函数，当图片打包成功，err为undefined，data为获取到的压缩或打包数据；否则为错误对象。  |
 
 **示例：**
 
@@ -4087,9 +4095,9 @@ const imageSourceApi: image.ImageSource = image.createImageSource(0);
 let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 };
 imagePackerApi.packing(imageSourceApi, packOpts, (err: BusinessError, data: ArrayBuffer) => {
     if (err) {
-        console.error('packing failed.');
+        console.error(`Failed to pack the image.code ${err.code},message is ${err.message}`);
     } else {
-        console.info('packing succeeded.');
+        console.info('Succeeded in packing the image.');
     }
 })
 ```
@@ -4115,7 +4123,7 @@ packing(source: ImageSource, option: PackingOption): Promise\<ArrayBuffer>
 
 | 类型                         | 说明                                          |
 | ---------------------------- | --------------------------------------------- |
-| Promise\<ArrayBuffer>        | Promise实例，用于异步获取压缩或打包后的数据。 |
+| Promise\<ArrayBuffer>        | Promise对象，返回压缩或打包后的数据。 |
 
 **示例：**
 
@@ -4126,9 +4134,9 @@ const imageSourceApi: image.ImageSource = image.createImageSource(0);
 let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 }
 imagePackerApi.packing(imageSourceApi, packOpts)
     .then((data: ArrayBuffer) => {
-        console.info('packing succeeded.');
+        console.info('Succeeded in packing the image.');
 	}).catch((error: BusinessError) => {
-	    console.error('packing failed.');
+        console.error(`Failed to pack the image.code ${error.code},message is ${error.message}`);
 	})
 ```
 
@@ -4148,7 +4156,7 @@ packing(source: PixelMap, option: PackingOption, callback: AsyncCallback\<ArrayB
 | -------- | ------------------------------- | ---- | ---------------------------------- |
 | source   | [PixelMap](#pixelmap7)           | 是   | 打包的PixelMap资源。               |
 | option   | [PackingOption](#packingoption) | 是   | 设置打包参数。                     |
-| callback | AsyncCallback\<ArrayBuffer>     | 是   | 获取图片打包回调，返回打包后数据。 |
+| callback | AsyncCallback\<ArrayBuffer>     | 是   | 回调函数，当图片打包成功，err为undefined，data为获取到的压缩或打包数据；否则为错误对象。  |
 
 **示例：**
 
@@ -4188,7 +4196,7 @@ packing(source: PixelMap, option: PackingOption): Promise\<ArrayBuffer>
 
 | 类型                  | 说明                                         |
 | --------------------- | -------------------------------------------- |
-| Promise\<ArrayBuffer> | Promise实例，用于异步获取压缩或打包后的数据。|
+| Promise\<ArrayBuffer> | Promise对象，返回压缩或打包后的数据。|
 
 **示例：**
 
@@ -4203,10 +4211,10 @@ image.createPixelMap(color, opts).then((pixelMap: image.PixelMap) => {
         .then((data: ArrayBuffer) => {
             console.info('Succeeded in packing the image.');
         }).catch((error: BusinessError) => {
-            console.error('Failed to pack the image..');
+            console.error(`Failed to pack the image.code ${error.code},message is ${error.message}`);
         })
 }).catch((error: BusinessError) => {
-	console.error('createPixelMap failed.');
+	console.error(`Failed to create PixelMap.code ${error.code},message is ${error.message}`);
 })
 ```
 
@@ -4216,13 +4224,15 @@ release(callback: AsyncCallback\<void>): void
 
 释放图片打包实例，使用callback形式返回结果。
 
+ArkTS有内存回收机制，ImagePacker对象不调用release方法，内存最终也会由系统统一释放。但图片使用的内存往往较大，为尽快释放内存，建议应用在使用完成后主动调用release方法提前释放内存。
+
 **系统能力：** SystemCapability.Multimedia.Image.ImagePacker
 
 **参数：**
 
 | 参数名   | 类型                 | 必填 | 说明                           |
 | -------- | -------------------- | ---- | ------------------------------ |
-| callback | AsyncCallback\<void> | 是   | 释放回调，失败时返回错误信息。 |
+| callback | AsyncCallback\<void> | 是   | 回调函数，当释放图片打包实例成功，err为undefined，否则为错误对象。 |
 
 **示例：**
 
@@ -4230,7 +4240,7 @@ release(callback: AsyncCallback\<void>): void
 import { BusinessError } from '@ohos.base';
 
 imagePackerApi.release((err: BusinessError)=>{ 
-    if (err != undefined) {
+    if (err) {
         console.error('Failed to release image packaging.'); 
     } else {
         console.info('Succeeded in releasing image packaging.');
@@ -4243,6 +4253,8 @@ imagePackerApi.release((err: BusinessError)=>{
 release(): Promise\<void>
 
 释放图片打包实例，使用Promise形式返回释放结果。
+
+ArkTS有内存回收机制，ImagePacker对象不调用release方法，内存最终也会由系统统一释放。但图片使用的内存往往较大，为尽快释放内存，建议应用在使用完成后主动调用release方法提前释放内存。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImagePacker
 
@@ -4279,7 +4291,7 @@ packToFile(source: ImageSource, fd: number, options: PackingOption, callback: As
 | source   | [ImageSource](#imagesource)     | 是   | 打包的图片源。                 |
 | fd       | number                          | 是   | 文件描述符。                   |
 | options   | [PackingOption](#packingoption) | 是   | 设置打包参数。                 |
-| callback | AsyncCallback\<void>            | 是   | 获取回调，失败时返回错误信息。 |
+| callback | AsyncCallback\<void>            | 是   | 回调函数，当打包进文件成功，err为undefined，否则为错误对象。  |
 
 **示例：**
 
@@ -4296,9 +4308,9 @@ let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
 const imagePackerApi: image.ImagePacker = image.createImagePacker();
 imagePackerApi.packToFile(imageSourceApi, file.fd, packOpts, (err: BusinessError) => {
     if (err) {
-        console.error('packToFile failed.');
+        console.error(`Failed to pack the image to file.code ${err.code},message is ${err.message}`);
     } else {
-        console.info('packToFile succeeded.');
+        console.info('Succeeded in packing the image to file.');
     }
 })
 ```
@@ -4339,9 +4351,9 @@ const filePath: string = context.cacheDir + "/image_source.jpg";
 let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
 const imagePackerApi: image.ImagePacker = image.createImagePacker();
 imagePackerApi.packToFile(imageSourceApi, file.fd, packOpts).then(() => {
-    console.info('Succeeded in packToFile.');
+    console.info('Succeeded in packing the image to file.');
 }).catch((error: BusinessError) => { 
-    console.error('Failed to packToFile.'); 
+    console.error(`Failed to pack the image to file.code ${err.code},message is ${err.message}`);
 }) 
 ```
 
@@ -4360,7 +4372,7 @@ packToFile (source: PixelMap, fd: number, options: PackingOption,  callback: Asy
 | source   | [PixelMap](#pixelmap7)          | 是   | 打包的PixelMap资源。           |
 | fd       | number                          | 是   | 文件描述符。                   |
 | options   | [PackingOption](#packingoption) | 是   | 设置打包参数。                 |
-| callback | AsyncCallback\<void>            | 是   | 获取回调，失败时返回错误信息。 |
+| callback | AsyncCallback\<void>            | 是   | 回调函数，当打包图片进文件成功，err为undefined，否则为错误对象。  |
 
 **示例：**
 
@@ -4378,9 +4390,9 @@ image.createPixelMap(color, opts).then((pixelmap: image.PixelMap) => {
     const imagePackerApi: image.ImagePacker = image.createImagePacker();
     imagePackerApi.packToFile(pixelmap, file.fd, packOpts, (err: BusinessError) => {
         if (err) {
-            console.error('packToFile failed.');
+            console.error(`Failed to pack the image to file.code ${err.code},message is ${err.message}`);
         } else {
-            console.info('packToFile succeeded.');
+            console.info('Succeeded in packing the image to file.');
         }
     })
 })
@@ -4424,9 +4436,9 @@ image.createPixelMap(color, opts).then((pixelmap: image.PixelMap) => {
     const imagePackerApi: image.ImagePacker = image.createImagePacker();
     imagePackerApi.packToFile(pixelmap, file.fd, packOpts)
         .then(() => {
-            console.info('Succeeded in packToFile.');
+            console.info('Succeeded in packing the image to file.');
         }).catch((error: BusinessError) => {
-            console.error('Failed to packToFile.');
+            console.error(`Failed to pack the image to file.code ${error.code},message is ${error.message}`);
         })
 })
 ```
@@ -4444,7 +4456,7 @@ createImageReceiver(size: Size, format: ImageFormat, capacity: number): ImageRec
 | 参数名   | 类型   | 必填 | 说明                   |
 | -------- | ------ | ---- | ---------------------- |
 | size    | [Size](#size)  | 是   | 图像的默认大小。       |
-| format   | [ImageFormat](#imageformat9) | 是   | 图像格式，取值为[ImageFormat](#imageformat9)常量（目前仅支持 ImageFormat:JPEG）。             |
+| format   | [ImageFormat](#imageformat9) | 是   | 图像格式，取值为[ImageFormat](#imageformat9)常量（目前仅支持 ImageFormat:JPEG，实际返回格式由生产者决定，如相机）。             |
 | capacity | number | 是   | 同时访问的最大图像数。 |
 
 **返回值：**
@@ -4489,7 +4501,7 @@ createImageReceiver(width: number, height: number, format: number, capacity: num
 | -------- | ------ | ---- | ---------------------- |
 | width    | number | 是   | 图像的默认宽度。       |
 | height   | number | 是   | 图像的默认高度。       |
-| format   | number | 是   | 图像格式，取值为[ImageFormat](#imageformat9)常量（目前仅支持 ImageFormat:JPEG）。  |
+| format   | number | 是   | 图像格式，取值为[ImageFormat](#imageformat9)常量（目前仅支持 ImageFormat:JPEG，实际返回格式由生产者决定，如相机）。  |
 | capacity | number | 是   | 同时访问的最大图像数。 |
 
 **返回值：**
@@ -4532,7 +4544,7 @@ getReceivingSurfaceId(callback: AsyncCallback\<string>): void
 
 | 参数名   | 类型                   | 必填 | 说明                       |
 | -------- | ---------------------- | ---- | -------------------------- |
-| callback | AsyncCallback\<string> | 是   | 回调函数，返回surface id。 |
+| callback | AsyncCallback\<string> | 是   | 回调函数，当获取surface id成功，err为undefined，data为获取到的surface id；否则为错误对象。 |
 
 **示例:**
 
@@ -4541,9 +4553,9 @@ import { BusinessError } from '@ohos.base';
 
 receiver.getReceivingSurfaceId((err: BusinessError, id: string) => { 
     if (err) {
-        console.error('getReceivingSurfaceId failed.');
+        console.error(`Failed to get the ReceivingSurfaceId.code ${err.code},message is ${err.message}`);
     } else {
-        console.info('getReceivingSurfaceId succeeded.');
+        console.info('Succeeded in getting the ReceivingSurfaceId.');
     }
 });
 ```
@@ -4560,7 +4572,7 @@ getReceivingSurfaceId(): Promise\<string>
 
 | 类型             | 说明                 |
 | ---------------- | -------------------- |
-| Promise\<string> | 异步返回surface id。 |
+| Promise\<string> | Promise对象，返回surface id。 |
 
 **示例：**
 
@@ -4568,9 +4580,9 @@ getReceivingSurfaceId(): Promise\<string>
 import { BusinessError } from '@ohos.base';
 
 receiver.getReceivingSurfaceId().then((id: string) => { 
-    console.info('getReceivingSurfaceId succeeded.');
+    console.info('Succeeded in getting the ReceivingSurfaceId.');
 }).catch((error: BusinessError) => {
-    console.error('getReceivingSurfaceId failed.');
+    console.error(`Failed to get the ReceivingSurfaceId.code ${error.code},message is ${error.message}`);
 })
 ```
 
@@ -4586,7 +4598,7 @@ readLatestImage(callback: AsyncCallback\<Image>): void
 
 | 参数名     | 类型                            | 必填 | 说明                     |
 | -------- | ------------------------------- | ---- | ------------------------ |
-| callback | AsyncCallback<[Image](#image9)> | 是   | 回调函数，返回最新图像。 |
+| callback | AsyncCallback<[Image](#image9)> | 是   | 回调函数，当读取最新图片成功，err为undefined，data为获取到的最新图片；否则为错误对象。  |
 
 **示例：**
 
@@ -4595,9 +4607,9 @@ import { BusinessError } from '@ohos.base';
 
 receiver.readLatestImage((err: BusinessError, img: image.Image) => { 
     if (err) {
-        console.error('readLatestImage failed.');
+        console.error(`Failed to read the latest Image.code ${err.code},message is ${err.message}`);
     } else {
-        console.info('readLatestImage succeeded.');
+        console.info('Succeeded in reading the latest Image.');
     }
 });
 ```
@@ -4614,7 +4626,7 @@ readLatestImage(): Promise\<Image>
 
 | 类型                      | 说明               |
 | ------------------------- | ------------------ |
-| Promise<[Image](#image9)> | 异步返回最新图片。 |
+| Promise<[Image](#image9)> | Promise对象，返回最新图片。 |
 
 **示例：**
 
@@ -4622,9 +4634,9 @@ readLatestImage(): Promise\<Image>
 import { BusinessError } from '@ohos.base';
 
 receiver.readLatestImage().then((img: image.Image) => {
-    console.info('readLatestImage succeeded.');
+    console.info('Succeeded in reading the latest Image.');
 }).catch((error: BusinessError) => {
-    console.error('readLatestImage failed.');
+    console.error(`Failed to read the latest Image.code ${error.code},message is ${error.message}`);
 })
 ```
 
@@ -4640,7 +4652,7 @@ readNextImage(callback: AsyncCallback\<Image>): void
 
 | 参数名   | 类型                            | 必填 | 说明                       |
 | -------- | ------------------------------- | ---- | -------------------------- |
-| callback | AsyncCallback<[Image](#image9)> | 是   | 回调函数，返回下一张图片。 |
+| callback | AsyncCallback<[Image](#image9)> | 是   | 回调函数，当获取下一张图片成功，err为undefined，data为获取到的下一张图片；否则为错误对象。  |
 
 **示例：**
 
@@ -4649,9 +4661,9 @@ import { BusinessError } from '@ohos.base';
 
 receiver.readNextImage((err: BusinessError, img: image.Image) => { 
     if (err) {
-        console.error('readNextImage failed.');
+        console.error(`Failed to read the next Image.code ${err.code},message is ${err.message}`);
     } else {
-        console.info('readNextImage succeeded.');
+        console.info('Succeeded in reading the next Image.');
     }
 });
 ```
@@ -4668,7 +4680,7 @@ readNextImage(): Promise\<Image>
 
 | 类型                      | 说明                 |
 | ------------------------- | -------------------- |
-| Promise<[Image](#image9)> | 异步返回下一张图片。 |
+| Promise<[Image](#image9)> | Promise对象，返回下一张图片。 |
 
 **示例：**
 
@@ -4676,9 +4688,9 @@ readNextImage(): Promise\<Image>
 import { BusinessError } from '@ohos.base';
 
 receiver.readNextImage().then((img: image.Image) => {
-    console.info('readNextImage succeeded.');
+    console.info('Succeeded in reading the next Image.');
 }).catch((error: BusinessError) => {
-    console.error('readNextImage failed.');
+    console.error(`Failed to read the next Image.code ${error.code},message is ${error.message}`);
 })
 ```
 
@@ -4695,7 +4707,7 @@ on(type: 'imageArrival', callback: AsyncCallback\<void>): void
 | 参数名   | 类型                 | 必填 | 说明                                                   |
 | -------- | -------------------- | ---- | ------------------------------------------------------ |
 | type     | string               | 是   | 注册事件的类型，固定为'imageArrival'，接收图片时触发。 |
-| callback | AsyncCallback\<void> | 是   | 注册的事件回调。                                       |
+| callback | AsyncCallback\<void> | 是   | 回调函数，当注册事件触发成功，err为undefined，否则为错误对象。                                        |
 
 **示例：**
 
@@ -4711,13 +4723,15 @@ release(callback: AsyncCallback\<void>): void
 
 释放ImageReceiver实例并使用回调返回结果。
 
+ArkTS有内存回收机制，ImageReceiver对象不调用release方法，内存最终也会由系统统一释放。但图片使用的内存往往较大，为尽快释放内存，建议应用在使用完成后主动调用release方法提前释放内存。
+
 **系统能力：** SystemCapability.Multimedia.Image.ImageReceiver
 
 **参数：**
 
 | 参数名   | 类型                 | 必填 | 说明                     |
 | -------- | -------------------- | ---- | ------------------------ |
-| callback | AsyncCallback\<void> | 是   | 回调函数，返回操作结果。 |
+| callback | AsyncCallback\<void> | 是   | 回调函数，当释放ImageReceiver实例成功，err为undefined，否则为错误对象。  |
 
 **示例：**
 
@@ -4726,9 +4740,9 @@ import { BusinessError } from '@ohos.base'
 
 receiver.release((err: BusinessError) => {
     if (err) {
-        console.error('release ImageReceiver failed.');
+        console.error(`Failed to release the receiver.code ${err.code},message is ${err.message}`);
     } else {
-        console.info('release ImageReceiver succeeded.');
+        console.info('Succeeded in releaseing the receiver.');
     }
 })
 ```
@@ -4738,6 +4752,8 @@ receiver.release((err: BusinessError) => {
 release(): Promise\<void>
 
 释放ImageReceiver实例并使用promise返回结果。
+
+ArkTS有内存回收机制，ImageReceiver对象不调用release方法，内存最终也会由系统统一释放。但图片使用的内存往往较大，为尽快释放内存，建议应用在使用完成后主动调用release方法提前释放内存。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageReceiver
 
@@ -4753,9 +4769,9 @@ release(): Promise\<void>
 import { BusinessError } from '@ohos.base';
 
 receiver.release().then(() => {
-    console.info('release succeeded.');
+    console.info('Succeeded in releaseing the receiver.');
 }).catch((error: BusinessError) => {
-    console.error('release failed.');
+    console.error(`Failed to release the receiver.code ${error.code},message is ${error.message}`);
 })
 ```
 
@@ -4859,7 +4875,7 @@ dequeueImage(callback: AsyncCallback\<Image>): void
 
 | 参数名        | 类型                                    | 必填 | 说明                 |
 | ------------- | ---------------------------------------| ---- | -------------------- |
-| callback      | AsyncCallback\<[Image](#image9)>  | 是   | 回调函数，返回最新图片。 |
+| callback      | AsyncCallback\<[Image](#image9)>  | 是   | 回调函数，当获取最新图片成功，err为undefined，data为获取到的最新图片；否则为错误对象。  |
 
 **示例：**
 
@@ -4868,9 +4884,9 @@ import { BusinessError } from '@ohos.base';
 
 creator.dequeueImage((err: BusinessError, img: image.Image) => {
     if (err) {
-        console.error('dequeueImage failed.');
+        console.error(`Failed to dequeue the Image.code ${err.code},message is ${err.message}`);
     } else {
-        console.info('dequeueImage succeeded.');
+        console.info('Succeeded in dequeuing the Image.');
     }
 });
 ```
@@ -4887,7 +4903,7 @@ dequeueImage(): Promise\<Image>
 
 | 类型             | 说明           |
 | --------------- | ------------- |
-| Promise\<[Image](#image9)> | Promise实例，用于返回最新图片。 |
+| Promise\<[Image](#image9)> | Promise对象，返回最新图片。 |
 
 **示例：**
 
@@ -4895,9 +4911,9 @@ dequeueImage(): Promise\<Image>
 import { BusinessError } from '@ohos.base';
 
 creator.dequeueImage().then((img: image.Image) => {
-    console.info('dequeueImage succeeded.');
+    console.info('Succeeded in dequeuing the Image.');
 }).catch((error: BusinessError) => {
-    console.error('dequeueImage failed: ' + error);
+    console.error(`Failed to dequeue the Image.code ${error.code},message is ${error.message}`);
 })
 ```
 
@@ -4914,7 +4930,7 @@ queueImage(interface: Image, callback: AsyncCallback\<void>): void
 | 参数名        | 类型                     | 必填 | 说明                 |
 | ------------- | -------------------------| ---- | -------------------- |
 | interface     | [Image](#image9)                    | 是   | 绘制好的buffer图像。 |
-| callback      | AsyncCallback\<void>     | 是   | 获取回调，失败时返回错误信息。 |
+| callback      | AsyncCallback\<void>     | 是   | 回调函数，当将图片放入Dirty队列成功，err为undefined，否则为错误对象。  |
 
 **示例：**
 
@@ -4934,9 +4950,9 @@ creator.dequeueImage().then((img: image.Image) => {
     })
     creator.queueImage(img, (err: BusinessError) => {
         if (err) {
-            console.error('queueImage failed: ' + err);
+            console.error(`Failed to queue the Image.code ${err.code},message is ${err.message}`);
         } else {
-            console.info('queueImage succeeded');
+            console.info('Succeeded in queuing the Image.');
         }
     })
 })
@@ -4980,9 +4996,9 @@ creator.dequeueImage().then((img: image.Image) => {
         }
     })
     creator.queueImage(img).then(() => {
-        console.info('queueImage succeeded.');
+        console.info('Succeeded in queuing the Image.');
     }).catch((error: BusinessError) => {
-        console.error('queueImage failed: ' + error);
+        console.error(`Failed to queue the Image.code ${error.code},message is ${error.message}`);
     })
 })
 
@@ -5001,7 +5017,7 @@ on(type: 'imageRelease', callback: AsyncCallback\<void>): void
 | 参数名        | 类型                     | 必填 | 说明                 |
 | ------------- | -------------------------| ---- | -------------------- |
 | type          | string                   | 是   | 监听事件类型，如'imageRelease'。 |
-| callback      | AsyncCallback\<void>     | 是   | 获取回调，失败时返回错误信息。 |
+| callback      | AsyncCallback\<void>     | 是   | 回调函数，当监听时间触发成功，err为undefined，否则为错误对象。  |
 
 **示例：**
 
@@ -5010,9 +5026,9 @@ import { BusinessError } from '@ohos.base';
 
 creator.on('imageRelease', (err: BusinessError) => {
     if (err) {
-        console.error('on faild' + err);
+        console.error(`Failed to get the imageRelease callback.code ${err.code},message is ${err.message}`);
     } else {
-        console.info('on succeeded');
+        console.info('Succeeded in getting imageRelease callback.');
     }
 })
 ```
@@ -5023,13 +5039,15 @@ release(callback: AsyncCallback\<void>): void
 
 释放当前图像，并使用callback返回结果。
 
+ArkTS有内存回收机制，ImageCreator对象不调用release方法，内存最终也会由系统统一释放。但图片使用的内存往往较大，为尽快释放内存，建议应用在使用完成后主动调用release方法提前释放内存。
+
 **系统能力：** SystemCapability.Multimedia.Image.ImageCreator
 
 **参数：**
 
 | 参数名           | 类型                     | 必填 | 说明                 |
 | ------------- | -------------------------| ---- | -------------------- |
-| callback      | AsyncCallback\<void>     | 是   | 获取回调，失败时返回错误信息。 |
+| callback      | AsyncCallback\<void>     | 是   | 回调函数，当图像释放成功，err为undefined，否则为错误对象。 |
 
 **示例：**
 
@@ -5038,9 +5056,9 @@ import { BusinessError } from '@ohos.base';
 
 creator.release((err: BusinessError) => {
     if (err) {
-        console.error('release failed: ' + err);
+        console.error(`Failed to release the creator.code ${err.code},message is ${err.message}`);
     } else {
-        console.info('release succeeded');
+        console.info('Succeeded in releasing creator.');
     }
 });
 ```
@@ -5049,6 +5067,8 @@ creator.release((err: BusinessError) => {
 release(): Promise\<void>
 
 释放当前图像，并使用promise返回结果。
+
+ArkTS有内存回收机制，ImageCreator对象不调用release方法，内存最终也会由系统统一释放。但图片使用的内存往往较大，为尽快释放内存，建议应用在使用完成后主动调用release方法提前释放内存。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageCreator
 
@@ -5064,9 +5084,9 @@ release(): Promise\<void>
 import { BusinessError } from '@ohos.base';
 
 creator.release().then(() => {
-    console.info('release succeeded');
+    console.info('Succeeded in releasing creator.');
 }).catch((error: BusinessError) => {
-    console.error('release failed');
+    console.error(`Failed to release the creator.code ${error.code},message is ${error.message}`);
 })
 ```
 
@@ -5097,8 +5117,8 @@ getComponent(componentType: ComponentType, callback: AsyncCallback\<Component>):
 
 | 参数名        | 类型                                    | 必填 | 说明                 |
 | ------------- | --------------------------------------- | ---- | -------------------- |
-| componentType | [ComponentType](#componenttype9)        | 是   | 图像的组件类型。     |
-| callback      | AsyncCallback<[Component](#component9)> | 是   | 用于返回组件缓冲区。 |
+| componentType | [ComponentType](#componenttype9)        | 是   | 图像的组件类型。（目前仅支持 ComponentType:JPEG，实际返回格式由生产者决定，如相机）    |
+| callback      | AsyncCallback<[Component](#component9)> | 是   | 回调函数，当返回组件缓冲区成功，err为undefined，data为获取到的组件缓冲区；否则为错误对象。  |
 
 **示例：**
 
@@ -5107,9 +5127,9 @@ import { BusinessError } from '@ohos.base';
 
 img.getComponent(4, (err: BusinessError, component: image.Component) => {
     if (err) {
-        console.error('getComponent failed.');
+        console.error(`Failed to get the component.code ${err.code},message is ${err.message}`);
     } else {
-        console.info('getComponent succeeded.');
+        console.info('Succeeded in getting component.');
     }
 })
 ```
@@ -5126,13 +5146,13 @@ getComponent(componentType: ComponentType): Promise\<Component>
 
 | 参数名        | 类型                             | 必填 | 说明             |
 | ------------- | -------------------------------- | ---- | ---------------- |
-| componentType | [ComponentType](#componenttype9) | 是   | 图像的组件类型。 |
+| componentType | [ComponentType](#componenttype9) | 是   | 图像的组件类型。（目前仅支持 ComponentType:JPEG，实际返回格式由生产者决定，如相机） |
 
 **返回值：**
 
 | 类型                              | 说明                              |
 | --------------------------------- | --------------------------------- |
-| Promise<[Component](#component9)> | Promise实例，用于异步返回组件缓冲区。 |
+| Promise<[Component](#component9)> | Promise对象，返回组件缓冲区。 |
 
 **示例：**
 
@@ -5140,9 +5160,9 @@ getComponent(componentType: ComponentType): Promise\<Component>
 import { BusinessError } from '@ohos.base';
 
 img.getComponent(4).then((component: image.Component) => {
-    console.info('getComponent succeeded.');
+    console.info('Succeeded in getting component.');
 }).catch((error: BusinessError) => {
-    console.error('getComponent failed');
+    console.error(`Failed to get the component.code ${error.code},message is ${error.message}`);
 })
 ```
 
@@ -5154,13 +5174,15 @@ release(callback: AsyncCallback\<void>): void
 
 在接收另一个图像前必须先释放对应资源。
 
+ArkTS有内存回收机制，Image对象不调用release方法，内存最终也会由系统统一释放。但图片使用的内存往往较大，为尽快释放内存，建议应用在使用完成后主动调用release方法提前释放内存。
+
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
 **参数：**
 
 | 参数名   | 类型                 | 必填 | 说明           |
 | -------- | -------------------- | ---- | -------------- |
-| callback | AsyncCallback\<void> | 是   | 返回操作结果。 |
+| callback | AsyncCallback\<void> | 是   | 回调函数，当图像释放成功，err为undefined，否则为错误对象。  |
 
 **示例：**
 
@@ -5168,10 +5190,10 @@ release(callback: AsyncCallback\<void>): void
 import { BusinessError } from '@ohos.base';
 
 img.release((err: BusinessError) => {
-    if (err != undefined) {
-        console.error('Failed to release the image source instance.');
+    if (err) {
+        console.error(`Failed to release the image instance.code ${err.code},message is ${err.message}`);
     } else {
-        console.info('Succeeded in releasing the image source instance.');
+        console.info('Succeeded in releasing the image instance.');
     }
 })
 ```
@@ -5183,6 +5205,8 @@ release(): Promise\<void>
 释放当前图像并使用Promise方式返回结果。
 
 在接收另一个图像前必须先释放对应资源。
+
+ArkTS有内存回收机制，Image对象不调用release方法，内存最终也会由系统统一释放。但图片使用的内存往往较大，为尽快释放内存，建议应用在使用完成后主动调用release方法提前释放内存。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -5198,9 +5222,9 @@ release(): Promise\<void>
 import { BusinessError } from '@ohos.base';
 
 img.release().then(() => {
-    console.info('release succeeded.');
+    console.info('Succeeded in releasing the image instance.');
 }).catch((error: BusinessError) => {
-    console.error('release failed.');
+    console.error(`Failed to release the image instance.code ${error.code},message is ${error.message}`);
 })
 ```
 
@@ -5331,10 +5355,10 @@ PixelMap的初始化选项。
 
 | 名称                     | 类型                               | 只读 |可选 |  说明           |
 | ------------------------ | ---------------------------------- | ----| -----|  -------------- |
-| alphaType<sup>9+</sup>   | [AlphaType](#alphatype9)           | 否   | 是| 透明度。默认值为UNKNOWN。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。      |
+| alphaType<sup>9+</sup>   | [AlphaType](#alphatype9)           | 否   | 是| 透明度。默认值为IMAGE_ALPHA_TYPE_PREMUL。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。      |
 | editable                 | boolean                            | 否   | 是| 是否可编辑。默认值为false。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。|
 | srcPixelFormat<sup>12+</sup>  | [PixelMapFormat](#pixelmapformat7) | 否 | 是 | 传入的原始数据像素格式。默认值为BGRA_8888。|
-| pixelFormat              | [PixelMapFormat](#pixelmapformat7) | 否 | 是|像素格式。默认值为UNKNOWN。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。     |
+| pixelFormat              | [PixelMapFormat](#pixelmapformat7) | 否 | 是|像素格式。默认值为RGBA_8888。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。     |
 | scaleMode<sup>9+</sup>   | [ScaleMode](#scalemode9)           | 否  | 是 | 缩略值。默认值为0。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。       |
 | size                     | [Size](#size)                      | 否  | 否|创建图片大小。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。 |
 
@@ -5383,7 +5407,7 @@ PixelMap的初始化选项。
 
 | 名称    | 类型   | 必填 | 说明                                                |
 | ------- | ------ | ---- | --------------------------------------------------- |
-| format  | string | 是   | 目标格式。</br>当前只支持jpg、webp 和 png。 |
+| format  | string | 是   | 目标格式。</br>当前只支持"image/jpeg"、"image/webp" 和 "image/png"。 |
 | quality | number | 是   | JPEG编码中设定输出图片质量的参数，取值范围为0-100。0质量最低，100质量最高，质量越高生成图片所占空间越大。 |
 | bufferSize<sup>9+</sup> | number | 否   | 接收编码数据的缓冲区大小，单位为Byte。默认为10MB。bufferSize需大于编码后图片大小。使用[packToFile](#packtofile11)不受此参数限制。 |
 | desiredDynamicRange<sup>12+</sup> | [PackingDynamicRange](#packingdynamicrange12) | 否   | 目标动态范围。默认值为SDR。 |

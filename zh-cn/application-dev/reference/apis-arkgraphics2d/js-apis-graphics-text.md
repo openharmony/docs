@@ -193,6 +193,44 @@ import { drawing } from '@kit.ArkGraphics2D'
 
 字体管理器。
 
+### getGlobalInstance
+
+static getGlobalInstance(): FontCollection
+
+获取应用全局FontCollection的实例。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**返回值：**
+
+| 类型   | 说明                |
+| ------ | ------------------ |
+| [FontCollection](#fontcollection) | FontCollection对象。|
+
+**示例：**
+
+```ts
+import { text } from "@kit.ArkGraphics2D"
+
+function Text() {
+  let fontCollection = text.FontCollection.getGlobalInstance();
+  fontCollection.loadFontSync('test', 'File://');
+}
+
+@Entry
+@Component
+struct Index {
+  fun: Function = Text;
+  build() {
+    Column() {
+      Button().onClick(() => {
+        this.fun();
+      })
+    }
+  }
+}
+```
+
 ### loadFontSync
 
 loadFontSync(name: string, path: string | Resource): void
@@ -1136,7 +1174,7 @@ struct Index {
 
 | 参数名    | 类型       | 必填 | 说明                                                                                                   |
 | --------- | --------- | ---- | ------------------------------------------------------------------------------------------------------ |
-| textStyle | [TextStyle](textstyle) | 是   | 包含了对文本的各种视觉属性的定义，如字体、字号、颜色、字重、字间距、行距、装饰（如下划线、删除线）、文本阴影等。 |
+| textStyle | [TextStyle](#textstyle) | 是   | 包含了对文本的各种视觉属性的定义，如字体、字号、颜色、字重、字间距、行距、装饰（如下划线、删除线）、文本阴影等。 |
 
 **示例：**
 

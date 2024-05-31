@@ -47,13 +47,14 @@ getResourceManager(callback: AsyncCallback&lt;ResourceManager&gt;): void
 | callback | AsyncCallback&lt;[ResourceManager](#resourcemanager)&gt; | 是    |返回资源管理ResourceManager对象。 |
 
 **示例：** 
+  <!--code_no_check_fa-->
   ```js
   resourceManager.getResourceManager((error, mgr) => {
     if (error != null) {
       console.error("error is " + error);
       return;
     }
-    mgr.getStringValue($r('app.string.text').id, (error: BusinessError, value: string) => {
+    mgr.getStringValue($r('app.string.test').id, (error: BusinessError, value: string) => {
       if (error != null) {
         console.error("error is " + error);
       } else {
@@ -81,7 +82,7 @@ getResourceManager(bundleName: string, callback: AsyncCallback&lt;ResourceManage
 | callback   | AsyncCallback&lt;[ResourceManager](#resourcemanager)&gt; | 是    | 返回资源管理ResourceManager对象。 |
 
 **示例：** 
-
+  <!--code_no_check_fa-->
   ```js
   resourceManager.getResourceManager("com.example.myapplication", (error, mgr) => {
   });
@@ -104,12 +105,13 @@ getResourceManager(): Promise&lt;ResourceManager&gt;
 | Promise&lt;[ResourceManager](#resourcemanager)&gt; | 返回资源管理ResourceManager对象。 |
 
 **示例：** 
+  <!--code_no_check_fa-->
   ```js
   import resourceManager from '@ohos.resourceManager';
   import { BusinessError } from '@ohos.base';
 
   resourceManager.getResourceManager().then((mgr: resourceManager.ResourceManager) => {
-    mgr.getStringValue($r('app.string.text').id, (error: BusinessError, value: string) => {
+    mgr.getStringValue($r('app.string.test').id, (error: BusinessError, value: string) => {
       if (error != null) {
         console.error("error is " + error);
       } else {
@@ -144,6 +146,7 @@ getResourceManager(bundleName: string): Promise&lt;ResourceManager&gt;
 | Promise&lt;[ResourceManager](#resourcemanager)&gt; | 返回资源管理ResourceManager对象。 |
 
 **示例：** 
+  <!--code_no_check_fa-->
   ```js
   import resourceManager from '@ohos.resourceManager';
   import { BusinessError } from '@ohos.base';
@@ -220,10 +223,12 @@ import { BusinessError } from '@ohos.base';
 <!--RP1-->
 | 名称                   | 值  | 说明   |
 | -------------------- | ---- | ---- |
+| DEVICE_TYPE_PHONE    | 0x00 | 手机。   |
 | DEVICE_TYPE_TABLET   | 0x01 | 平板。   |
 | DEVICE_TYPE_CAR      | 0x02 | 汽车。   |
 | DEVICE_TYPE_TV       | 0x04 | 电视。  |
 | DEVICE_TYPE_WEARABLE | 0x06 | 穿戴。   |
+| DEVICE_TYPE_2IN1     | 0x07 | 2in1。   |
 <!--RP1End-->
 
 ## ScreenDensity
@@ -300,6 +305,8 @@ import { BusinessError } from '@ohos.base';
 
 表示rawfile文件所在hap的的descriptor信息。
 
+**元服务API**：从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Global.ResourceManager
 
 **参数：**
@@ -313,6 +320,8 @@ import { BusinessError } from '@ohos.base';
 ## Resource<sup>9+</sup>
 
 表示的资源信息。
+
+**元服务API**：从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Global.ResourceManager
 

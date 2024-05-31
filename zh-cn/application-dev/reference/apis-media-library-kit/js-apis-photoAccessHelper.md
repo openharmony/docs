@@ -2262,8 +2262,8 @@ async function example() {
 
 | 名称           | 类型    | 可读   | 可写  | 说明   |
 | ------------ | ------ | ---- | ---- | ------- |
-| albumType | [AlbumType]( #albumtype) | 是    | 否    | 相册类型。    |
-| albumSubtype | [AlbumSubtype]( #albumsubtype) | 是    | 否   | 相册子类型。    |
+| albumType | [AlbumType](#albumtype) | 是    | 否    | 相册类型。    |
+| albumSubtype | [AlbumSubtype](#albumsubtype) | 是    | 否   | 相册子类型。    |
 | albumName | string | 是    | 用户相册可写，预置相册不可写   | 相册名称。    |
 | albumUri | string | 是    | 否    | 相册Uri。   |
 | count | number | 是    | 否    |  相册中文件数量。 |
@@ -3299,6 +3299,39 @@ async function example() {
     console.info('addResourceByArrayBuffer successfully');
   } catch (err) {
     console.error(`addResourceByArrayBufferDemo failed with error: ${err.code}, ${err.message}`);
+  }
+}
+```
+
+### saveCameraPhoto<sup>12+</sup>
+
+saveCameraPhoto(): void
+
+保存相机拍摄的照片。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 14000011 |  System inner fail.         |
+| 14000016 |  Operation Not Support.         |
+
+**示例：**
+
+```ts
+async function example(asset: photoAccessHelper.PhotoAsset) {
+  console.info('saveCameraPhotoDemo');
+  try {
+    let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest(asset);
+    assetChangeRequest.saveCameraPhoto();
+    await phAccessHelper.applyChanges(assetChangeRequest);
+    console.info('apply saveCameraPhoto successfully');
+  } catch (err) {
+    console.error(`apply saveCameraPhoto failed with error: ${err.code}, ${err.message}`);
   }
 }
 ```
@@ -4484,11 +4517,12 @@ title参数规格为：
 
 **系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-| 名称  |  值 |  说明 |
-| ----- |  ---- | ---- |
-| IMAGE_TYPE  |  'image/*' | 图片类型。 |
-| VIDEO_TYPE |  'video/*' | 视频类型。 |
-| IMAGE_VIDEO_TYPE |  '\*/*' | 图片和视频类型。 |
+| 名称                                    |  值 | 说明       |
+|---------------------------------------|  ---- |----------|
+| IMAGE_TYPE                            |  'image/*' | 图片类型。    |
+| VIDEO_TYPE                            |  'video/*' | 视频类型。    |
+| IMAGE_VIDEO_TYPE                      |  '\*/*' | 图片和视频类型。 |
+| MOVING_PHOTO_IMAGE_TYPE<sup>12+</sup> |  'image/movingPhoto' | 动态照片类型。  |
 
 ## RecommendationType<sup>11+</sup>
 
@@ -4507,6 +4541,7 @@ title参数规格为：
 | BANK_CARD<sup>12+</sup> |  7 | 银行卡。 |
 | DRIVER_LICENSE<sup>12+</sup> |  8 | 驾驶证。 |
 | DRIVING_LICENSE<sup>12+</sup> |  9 | 行驶证。 |
+| FEATURED_SINGLE_PORTRAIT<sup>12+</sup> |  10 | 精选单人像。 |
 
 **示例：**
 
@@ -4586,9 +4621,9 @@ async function example() {
 | recommendationType | [RecommendationType](#recommendationtype11)   | 否   | 如果需要根据枚举值推荐相应的图片，则配置此参数。 |
 | textContextInfo<sup>12+</sup> | [TextContextInfo](#textcontextinfo12)   | 否   | 如果需要根据文本信息推荐相应的图片，则配置此参数(如果同时配置了recommendationType，则仅textContextInfo生效)。 |
 
-## PhotoSelectOptions
+## BaseSelectOptions<sup>12+</sup>
 
-图库选择选项。
+图库选择选项基类。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -4597,10 +4632,19 @@ async function example() {
 | MIMEType              | [PhotoViewMIMETypes](#photoviewmimetypes)   | 否   | 可选择的媒体文件类型，若无此参数，则默认为图片和视频类型。 |
 | maxSelectNumber       | number | 否   | 选择媒体文件数量的最大值(默认值为50，最大值为500)。      |
 | isPhotoTakingSupported<sup>11+</sup> | boolean  | 否   | 支持拍照。 |
-| isEditSupported<sup>11+</sup>       | boolean | 否   | 支持编辑照片。      |
 | isSearchSupported<sup>11+</sup> | boolean  | 否   | 支持搜索。 |
 | recommendationOptions<sup>11+</sup>       | [RecommendationOptions](#recommendationoptions11)   | 否   | 支持图片推荐。      |
 | preselectedUris<sup>11+</sup> | Array&lt;string&gt;  | 否   | 预选择图片的uri数据。 |
+
+## PhotoSelectOptions
+
+图库选择选项子类，继承于BaseSelectOptions。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 名称                    | 类型                | 必填 | 说明                          |
+| ----------------------- | ------------------- | ---- | -------------------------------- |
+| isEditSupported<sup>11+</sup>       | boolean | 否   | 支持编辑照片。      |
 
 ## PhotoSelectResult
 

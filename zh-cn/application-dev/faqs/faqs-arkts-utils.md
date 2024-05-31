@@ -111,7 +111,7 @@ for (let i: number = 0; i < allCount; i+=3) { // 3: 每次执行3个任务，循
 
 1. [Priority](../reference/apis-arkts/js-apis-taskpool.md)
 
-## 如何将类Java语言的线程模型（内存共享）在各场景的实现方式，转换成在ArkTS的线程模型下（内存隔离）的实现方式？(API 11)
+## 如何将内存共享的线程模型，转换成在ArkTS的线程模型下（内存隔离）的实现方式？(API 11)
 
 **解决方案**
 
@@ -438,7 +438,7 @@ Worker支持通过PostMessage往父线程抛任务。TaskPool支持往父线程�
 1. [@ohos.taskpool（启动任务池）](../reference/apis-arkts/js-apis-taskpool.md)
 2. [@ohos.worker (启动一个Worker)](../reference/apis-arkts/js-apis-worker.md)
 
-## ArkTS是否支持类似Java的共享内存模型进行多线程开发吗？(API 10)
+## ArkTS是否支持共享内存模型进行多线程开发吗？(API 10)
 
 **规格澄清**
 
@@ -534,7 +534,7 @@ TaskPool的任务支持通过sendData接口触发主线程的onReceiveData回调
 
 ArkTS层接口的异步如果不涉及I/O操作，则异步任务会在主线程的微任务执行时机触发，仍然占用主线程。推荐使用TaskPool，分发到后台任务池进行。
 
-##  synchronized在java中可以修饰方法，从而简单地实现函数的同步调用。在系统ets开发中，如何简单实现该功能?(API 10)
+##  如何简单实现函数的同步调用功能?(API 10)
 
 **解决方案**
 
@@ -683,34 +683,42 @@ AST属于编译器编译过程中间数据结构，该数据本身不稳定，�
 报错原因: 应用拉起时，应用入口文件模块查找失败。
 
 定位方法:
-(1) 打开应用工程级编译构建文件: entry > build-profile.json5
+(1) 打开应用工程级编译构建文件: entry > src/main/module.json5
 
 ([OpenHarmony工程管理介绍](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V3/ohos-project-overview-0000001218440650-V3))
-([build-profile.json5编译构建信息](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V3/ohos-building-configuration-0000001218440654-V3))
-
-build-profile.json5部分参数示例如下:
+module.json5部分参数示例如下:
 ```
 {
-  "app": {
-    ···
-  },
-  "modules": [
-    {
-      "name": "entry",  // 模块名称
-      "srcPath": "./entry",  // 标明src目录相对工程根目录的相对路径
-      "targets": [  // 定义构建的产物，由product和各模块定义的targets共同定义
-        {
-          "name": "default",  // target名称，由各个模块的build-profile.json5中的targets字段定义
-          "applyToProducts": [  // 产品品类名称，由products字段进行定义
-            "default"
-          ]
-        }
-      ]
-    }
-  ]
+  "module": {
+    "name": "entry",
+    "type": "entry",
+    ...
+    "abilities": [
+      {
+        "name": "EntryAbility", // 模块名称
+        "srcEntry": "./ets/entryability/EntryAbility.ts",  // 标明src目录相对工程根目录的相对路径
+        "description": "$string:EntryAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:EntryAbility_label",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background",
+        "exported": true,
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }
 ```
-(2) 其中，"modules":"srcPath" 参数标记了该应用拉起的入口文件。如报错入口文件加载失败，请检查build-profile.json5内的"srcPath"参数是否书写正确。
+(2) 其中，"abilities":"srcEntry" 参数标记了该应用拉起的入口文件。如报错入口文件加载失败，请检查module.json5内的"srcEntry"参数是否书写正确。
 
 3. "No export named 'xxxx' which exported by 'xxxx'" 报错表示加载应用hap或har包内so时，该模块内未查找到特定对象
 

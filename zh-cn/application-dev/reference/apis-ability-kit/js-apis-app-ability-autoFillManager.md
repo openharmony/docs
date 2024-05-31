@@ -81,7 +81,8 @@ onFailure(): void
 
 requestAutoSave(context: UIContext, callback?: AutoSaveCallback): void
 
-发起保存请求。使用callback异步回调。
+请求保存表单数据，使用callback异步回调。
+如果当前表单没有提供表单切换的功能，可以通过此接口保存历史表单输入数据，保存请求完成时会触发该回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 

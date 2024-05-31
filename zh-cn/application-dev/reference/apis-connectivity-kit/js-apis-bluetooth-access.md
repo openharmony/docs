@@ -22,6 +22,8 @@ enableBluetooth(): void
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
+**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 **错误码**：
@@ -30,6 +32,8 @@ enableBluetooth(): void
 
 | 错误码ID | 错误信息            |
 | -------- | ------------------ |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 |2900001   | Service stopped.   |
 |2900099   | Operation failed.  |
 
@@ -53,6 +57,8 @@ disableBluetooth(): void
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
+**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 **错误码**：
@@ -61,6 +67,8 @@ disableBluetooth(): void
 
 |错误码ID   | 错误信息           |
 | -------- | ------------------ |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 |2900001   | Service stopped.   |
 |2900099   | Operation failed.  |
 
@@ -84,7 +92,7 @@ getState(): BluetoothState
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
-**元服务API**: 从API version 11开始，该接口支持在元服务中使用。
+**元服务API**：从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -100,6 +108,8 @@ getState(): BluetoothState
 
 |错误码ID   | 错误信息           |
 | -------- | ------------------ |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 |2900001   | Service stopped.   |
 |2900099   | Operation failed.  |
 
@@ -122,6 +132,8 @@ on(type: "stateChange", callback: Callback&lt;BluetoothState&gt;): void
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
+**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 **参数：**
@@ -137,6 +149,9 @@ on(type: "stateChange", callback: Callback&lt;BluetoothState&gt;): void
 
 |错误码ID   | 错误信息           |
 | -------- | ------------------ |
+|201 | Permission denied.                 |
+|401 | Invalid parameter.                 |
+|801 | Capability not supported.          |
 |2900099   | Operation failed.  |
 
 **示例：**
@@ -162,6 +177,8 @@ off(type: "stateChange", callback?: Callback&lt;BluetoothState&gt;): void
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
+**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 **参数：**
@@ -177,6 +194,9 @@ off(type: "stateChange", callback?: Callback&lt;BluetoothState&gt;): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter.                 |
+|801 | Capability not supported.          |
 |2900099 | Operation failed.                        |
 
 **示例：**

@@ -32,6 +32,12 @@ expandSafeArea(types?: Array&lt;SafeAreaType&gt;, edges?: Array&lt;SafeAreaEdge&
 >  当父容器是滚动容器时，设置expandSafeArea属性不生效。
 >
 >  设置expandSafeArea()时，不传参，走默认值处理；设置expandSafeArea([],[])时，相当于入参是空数组，此时设置expandSafeArea属性不生效。
+>   
+>  组件设置expandSafeArea之后生效的条件为：  
+>  1.type为SafeAreaType.KEYBOARD时默认生效，组件不避让键盘。  
+>  2.设置其他type，组件的边界与安全区域重合时组件能够延伸到安全区域下。例如：设备顶部状态栏高度100，那么组件在屏幕中的绝对位置需要为0 <= y <= 100。  
+>   
+>  组件延伸到安全区域下，在安全区域处的事件，如点击事件等可能会被系统拦截，优先给状态栏等系统组件响应。
 
 ## setKeyboardAvoidMode<sup>11+</sup>
 

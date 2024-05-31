@@ -13,7 +13,7 @@ FrameNode表示组件树的实体节点。[NodeController](./js-apis-arkui-nodeC
 ## 导入模块
 
 ```ts
-import { FrameNode, LayoutConstraint } from "@ohos.arkui.node";
+import { FrameNode, LayoutConstraint, typeNode } from "@ohos.arkui.node";
 ```
 
 ## FrameNode
@@ -990,9 +990,272 @@ invalidate(): void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+### addComponentContent<sup>12+</sup>
+
+addComponentContent<T>(content: ComponentContent<T>): void
+
+支持添加ComponentContent类型的组件内容。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+```ts
+import { typeNode, NodeController, FrameNode, ComponentContent } from '@ohos.arkui.node';
+
+@Builder
+function buildText() {
+  Column() {
+    Text('hello')
+      .width(50)
+      .height(50)
+      .backgroundColor(Color.Yellow)
+  }
+}
+
+class MyNodeController extends NodeController {
+  makeNode(uiContext: UIContext): FrameNode | null {
+    let node = new FrameNode(uiContext)
+    node.commonAttribute.width(300).height(300).backgroundColor(Color.Red)
+    let col = typeNode.createNode(uiContext, "Column")
+    col.initialize({ space: 10 })
+    node.appendChild(col)
+    let row4 = typeNode.createNode(uiContext, "Row")
+    row4.attribute.width(200)
+      .height(200)
+      .borderWidth(1)
+      .borderColor(Color.Black)
+      .backgroundColor(Color.Green)
+    let component = new ComponentContent<Object>(uiContext, wrapBuilder(buildText))
+    row4.addComponentContent(component)
+    col.appendChild(row4)
+    return node
+  }
+}
+
+@Entry
+@Component
+struct FrameNodeTypeTest {
+  private myNodeController: MyNodeController = new MyNodeController();
+
+  build() {
+    Row() {
+      NodeContainer(this.myNodeController);
+    }
+  }
+}
+```
+
+### disposeTree<sup>12+</sup>
+
+disposeTree(): void
+
+下树并递归释放当前节点为根的子树。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+```ts
+import { FrameNode, NodeController, BuilderNode } from "@kit.ArkUI"
+
+@Component
+struct TestComponent {
+  private myNodeController: MyNodeController = new MyNodeController(wrapBuilder(buildComponent2));
+
+  build() {
+    Column() {
+      Text('This is a BuilderNode.')
+        .fontSize(16)
+        .fontWeight(FontWeight.Bold)
+      NodeContainer(this.myNodeController)
+    }
+    .width('100%')
+    .backgroundColor(Color.Gray)
+  }
+
+  aboutToAppear() {
+    console.error('BuilderNode aboutToAppear');
+  }
+
+  aboutToDisappear() {
+    console.error('BuilderNode aboutToDisappear');
+  }
+}
+
+@Component
+struct TestComponent2 {
+  private myNodeController: MyNodeController = new MyNodeController(wrapBuilder(buildComponent3));
+  private myNodeController2: MyNodeController = new MyNodeController(wrapBuilder(buildComponent4));
+
+  build() {
+    Column() {
+      Text('This is a BuilderNode 2.')
+        .fontSize(16)
+        .fontWeight(FontWeight.Bold)
+      NodeContainer(this.myNodeController)
+      NodeContainer(this.myNodeController2)
+    }
+    .width('100%')
+    .backgroundColor(Color.Gray)
+  }
+
+  aboutToAppear() {
+    console.error('BuilderNode 2 aboutToAppear');
+  }
+
+  aboutToDisappear() {
+    console.error('BuilderNode 2 aboutToDisappear');
+  }
+}
+
+@Component
+struct TestComponent3 {
+  build() {
+    Column() {
+      Text('This is a BuilderNode 3.')
+        .fontSize(16)
+        .fontWeight(FontWeight.Bold)
+
+    }
+    .width('100%')
+    .backgroundColor(Color.Gray)
+  }
+
+  aboutToAppear() {
+    console.error('BuilderNode 3 aboutToAppear');
+  }
+
+  aboutToDisappear() {
+    console.error('BuilderNode 3 aboutToDisappear');
+  }
+}
+
+@Component
+struct TestComponent4 {
+  build() {
+    Column() {
+      Text('This is a BuilderNode 4.')
+        .fontSize(16)
+        .fontWeight(FontWeight.Bold)
+
+    }
+    .width('100%')
+    .backgroundColor(Color.Gray)
+  }
+
+  aboutToAppear() {
+    console.error('BuilderNode 4 aboutToAppear');
+  }
+
+  aboutToDisappear() {
+    console.error('BuilderNode 4 aboutToDisappear');
+  }
+}
+
+@Builder
+function buildComponent() {
+  TestComponent()
+}
+
+@Builder
+function buildComponent2() {
+  TestComponent2()
+}
+
+@Builder
+function buildComponent3() {
+  TestComponent3()
+}
+
+@Builder
+function buildComponent4() {
+  TestComponent4()
+}
+
+class MyNodeController extends NodeController {
+  private rootNode: FrameNode | null = null;
+  private builderNode: BuilderNode<[]> | null = null;
+  private wrappedBuilder: WrappedBuilder<[]>;
+
+  constructor(builder: WrappedBuilder<[]>) {
+    super();
+    this.wrappedBuilder = builder;
+  }
+
+  makeNode(uiContext: UIContext): FrameNode | null {
+    this.builderNode = new BuilderNode(uiContext, { selfIdealSize: { width: 200, height: 100 } });
+    this.builderNode.build(this.wrappedBuilder);
+
+    return this.builderNode.getFrameNode();
+  }
+
+  dispose() {
+    if (this.builderNode !== null) {
+      this.builderNode.getFrameNode()?.disposeTree()
+    }
+  }
+
+  removeBuilderNode() {
+    const rootRenderNode = this.rootNode!.getRenderNode();
+    if (rootRenderNode !== null && this.builderNode !== null && this.builderNode.getFrameNode() !== null) {
+      rootRenderNode.removeChild(this.builderNode!.getFrameNode()!.getRenderNode());
+    }
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  private myNodeController: MyNodeController = new MyNodeController(wrapBuilder(buildComponent));
+
+  build() {
+    Column({ space: 4 }) {
+      NodeContainer(this.myNodeController)
+      Button('BuilderNode dispose')
+        .onClick(() => {
+          this.myNodeController.dispose();
+        })
+        .width('100%')
+      Button('BuilderNode rebuild')
+        .onClick(() => {
+          this.myNodeController.rebuild();
+        })
+        .width('100%')
+    }
+  }
+}
+```
+
 **示例：**
 
 请参考[节点自定义示例](#节点自定义示例)。
+
+## TypedFrameNode<sup>12+</sup>
+
+TypedFrameNode继承自[FrameNode](#framenode)，用于声明具体类型的FrameNode。
+
+> **说明：**
+>
+> 本模块支持具体类型范围：
+> Row、Column、Stack、Text、GridRow、GridCol、Flex、Swiper、Progress、Scroll、RelativeContainer、Divider、LoadingProgress、Search、Blank、Image、List、ListItem。
+> 
+
+### initialize<sup>12+</sup>
+
+initialize: C
+
+该接口用于创建对应组件的构造参数，用于设置/更新组件的初始值。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### attribute<sup>12+</sup>
+
+get attribute(): T
+
+该接口用于获取对应组件的属性设置对象，用于设置/更新组件的通用、私有属性。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**示例：**
+
+请参考[自定义具体类型节点示例](#自定义具体类型节点示例)。
 
 ## 节点操作示例
 ```ts
@@ -1090,32 +1353,32 @@ class MyNodeController extends NodeController {
   }
   getPositionToWindow()
   {
-    let positionToWindow = this.frameNode?.getPositionToWindow();
+    let positionToWindow = this.rootNode?.getPositionToWindow();
     console.log(TEST_TAG + JSON.stringify(positionToWindow));
   }
   getPositionToParent()
   {
-    let positionToParent = this.frameNode?.getPositionToParent();
+    let positionToParent = this.rootNode?.getPositionToParent();
     console.log(TEST_TAG + JSON.stringify(positionToParent));
   }
   getPositionToScreen()
   {
-    let positionToScreen = this.frameNode?.getPositionToScreen();
+    let positionToScreen = this.rootNode?.getPositionToScreen();
     console.log(TEST_TAG + JSON.stringify(positionToScreen));
   }
   getPositionToWindowWithTransform()
   {
-    let positionToWindowWithTransform = this.frameNode?.getPositionToWindowWithTransform();
+    let positionToWindowWithTransform = this.rootNode?.getPositionToWindowWithTransform();
     console.log(TEST_TAG + JSON.stringify(positionToWindowWithTransform));
   }
   getPositionToParentWithTransform()
   {
-    let positionToParentWithTransform = this.frameNode?.getPositionToParentWithTransform();
+    let positionToParentWithTransform = this.rootNode?.getPositionToParentWithTransform();
     console.log(TEST_TAG + JSON.stringify(positionToParentWithTransform));
   }
   getPositionToScreenWithTransform()
   {
-    let positionToScreenWithTransform = this.frameNode?.getPositionToScreenWithTransform();
+    let positionToScreenWithTransform = this.rootNode?.getPositionToScreenWithTransform();
     console.log(TEST_TAG + JSON.stringify(positionToScreenWithTransform));
   }
   getMeasuredSize()
@@ -1631,3 +1894,44 @@ struct Index {
   }
 }
 ```
+
+## 自定义具体类型节点示例
+
+以Text节点为例，创建Text类型节点。
+
+```ts
+import { typeNode, NodeController, FrameNode } from '@ohos.arkui.node';
+
+class MyNodeController extends NodeController {
+  makeNode(uiContext: UIContext): FrameNode | null {
+    let node = new FrameNode(uiContext);
+    node.commonAttribute.width(100)
+      .height(50)
+      .borderColor(Color.Gray)
+      .borderWidth(1)
+      .margin({ left: 10 });
+    let col = typeNode.createNode(uiContext, "Column");
+    col.initialize({ space: 5 })
+      .width('100%').height('100%').margin({ top: 5 });
+    node.appendChild(col);
+    let text = typeNode.createNode(uiContext, "Text");
+    text.initialize("Hello").fontColor(Color.Blue).fontSize(14);
+    col.appendChild(text);
+    return node;
+  }
+}
+
+@Entry
+@Component
+struct FrameNodeTypeTest {
+  private myNodeController: MyNodeController = new MyNodeController();
+
+  build() {
+    Row() {
+      NodeContainer(this.myNodeController);
+    }
+  }
+}
+```
+
+![FrameNodeTextTest](figures/FrameNodeTextTest.png)

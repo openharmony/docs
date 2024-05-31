@@ -33,7 +33,7 @@ Node模块相关接口需要在主线程上调用。
 | int32_t(\* [registerNodeEvent](#registernodeevent) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, [ArkUI_NodeEventType](_ark_u_i___native_module.md#arkui_nodeeventtype) eventType, int32_t targetId, void \*userData) | 注册节点事件函数。  | 
 | void(\* [unregisterNodeEvent](#unregisternodeevent) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, [ArkUI_NodeEventType](_ark_u_i___native_module.md#arkui_nodeeventtype) eventType) | 反注册节点事件函数。  | 
 | void(\* [registerNodeEventReceiver](#registernodeeventreceiver) )(void(\*eventReceiver)([ArkUI_NodeEvent](_ark_u_i___native_module.md#arkui_nodeevent) \*event)) | 注册事件回调统一入口函数。  | 
-|  void(\* unregisterNodeEventReceiver )() | 反注册事件回调统一入口函数。  | 
+|  void(\* [unregisterNodeEventReceiver](#unregisternodeeventreceiver) )() | 反注册事件回调统一入口函数。  | 
 | void(\* [markDirty](#markdirty) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, [ArkUI_NodeDirtyFlag](_ark_u_i___native_module.md#arkui_nodedirtyflag) dirtyFlag) | 强制标记当前节点需要重新测算，布局或者绘制。  | 
 | uint32_t(\* [getTotalChildCount](#gettotalchildcount) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node) | 获取子节点的个数。  | 
 | [ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle)(\* [getChildAt](#getchildat) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, int32_t position) | 获取子节点。  | 
@@ -44,7 +44,7 @@ Node模块相关接口需要在主线程上调用。
 | int32_t(\* [registerNodeCustomEvent](#registernodecustomevent) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, [ArkUI_NodeCustomEventType](_ark_u_i___native_module.md#arkui_nodecustomeventtype) eventType, int32_t targetId, void \*userData) | 注册自定义节点事件函数。事件触发时通过registerNodeCustomEventReceiver注册的自定义事件入口函数返回。  | 
 | void(\* [unregisterNodeCustomEvent](#unregisternodecustomevent) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, [ArkUI_NodeCustomEventType](_ark_u_i___native_module.md#arkui_nodecustomeventtype) eventType) | 反注册自定义节点事件函数。  | 
 | void(\* [registerNodeCustomEventReceiver](#registernodecustomeventreceiver) )(void(\*eventReceiver)([ArkUI_NodeCustomEvent](_ark_u_i___native_module.md#arkui_nodecustomevent) \*event)) | 注册自定义节点事件回调统一入口函数。  | 
-|  void(\* [unregisterNodeCustomEventReceiver](#unregisternodecustomeventreceiver) )() | 反注册自定义节点事件回调统一入口函数。  | 
+|  void(\* unregisterNodeCustomEventReceiver )() | 反注册自定义节点事件回调统一入口函数。  | 
 | int32_t(\* [setMeasuredSize](#setmeasuredsize) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, int32_t width, int32_t height) | 在测算回调函数中设置组件的测算完成后的宽和高。  | 
 | int32_t(\* [setLayoutPosition](#setlayoutposition) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, int32_t positionX, int32_t positionY) | 在布局回调函数中设置组件的位置。  | 
 | [ArkUI_IntSize](_ark_u_i___int_size.md)(\* [getMeasuredSize](#getmeasuredsize) )([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node) | 获取组件测算完成后的宽高尺寸。  | 
@@ -82,7 +82,7 @@ int32_t(* ArkUI_NativeNodeAPI_1::addChild) (ArkUI_NodeHandle parent, ArkUI_NodeH
 
 **返回：**
 
-错误码。 [ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。 [ARKUI_ERROR_CODE_NOT_SUPPROTED_FOR_ARKTS_NODE](_ark_u_i___native_module.md) 禁止对BuilderNode生成的节点， 进行设置属性、重置属性、设置事件与新增或修改子节点操作。
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。 [ARKUI_ERROR_CODE_NOT_SUPPROTED_FOR_ARKTS_NODE](_ark_u_i___native_module.md) 禁止对BuilderNode生成的节点， 进行设置属性、重置属性、设置事件与新增或修改子节点操作。
 
 
 ### addNodeCustomEventReceiver
@@ -109,7 +109,7 @@ int32_t(* ArkUI_NativeNodeAPI_1::addNodeCustomEventReceiver) (ArkUI_NodeHandle n
 
 **返回：**
 
-错误码。 [ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。
 
 
 ### addNodeEventReceiver
@@ -136,7 +136,7 @@ int32_t(* ArkUI_NativeNodeAPI_1::addNodeEventReceiver) (ArkUI_NodeHandle node, v
 
 **返回：**
 
-错误码。 [ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。
 
 
 ### createNode
@@ -376,7 +376,7 @@ uint32_t(* ArkUI_NativeNodeAPI_1::getTotalChildCount) (ArkUI_NodeHandle node)
 
 **返回：**
 
-错误码。 [ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。
 
 
 ### getUserData
@@ -418,7 +418,7 @@ int32_t(* ArkUI_NativeNodeAPI_1::insertChildAfter) (ArkUI_NodeHandle parent, Ark
 
 **返回：**
 
-错误码。 [ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。 [ARKUI_ERROR_CODE_NOT_SUPPROTED_FOR_ARKTS_NODE](_ark_u_i___native_module.md) 禁止对BuilderNode生成的节点， 进行设置属性、重置属性、设置事件与新增或修改子节点操作。
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。 [ARKUI_ERROR_CODE_NOT_SUPPROTED_FOR_ARKTS_NODE](_ark_u_i___native_module.md) 禁止对BuilderNode生成的节点， 进行设置属性、重置属性、设置事件与新增或修改子节点操作。
 
 
 ### insertChildAt
@@ -440,7 +440,7 @@ int32_t(* ArkUI_NativeNodeAPI_1::insertChildAt) (ArkUI_NodeHandle parent, ArkUI_
 
 **返回：**
 
-错误码。 [ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。 [ARKUI_ERROR_CODE_NOT_SUPPROTED_FOR_ARKTS_NODE](_ark_u_i___native_module.md) 禁止对BuilderNode生成的节点， 进行设置属性、重置属性、设置事件与新增或修改子节点操作。
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。 [ARKUI_ERROR_CODE_NOT_SUPPROTED_FOR_ARKTS_NODE](_ark_u_i___native_module.md) 禁止对BuilderNode生成的节点， 进行设置属性、重置属性、设置事件与新增或修改子节点操作。
 
 
 ### insertChildBefore
@@ -462,7 +462,7 @@ int32_t(* ArkUI_NativeNodeAPI_1::insertChildBefore) (ArkUI_NodeHandle parent, Ar
 
 **返回：**
 
-错误码。 [ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。 [ARKUI_ERROR_CODE_NOT_SUPPROTED_FOR_ARKTS_NODE](_ark_u_i___native_module.md) 禁止对BuilderNode生成的节点， 进行设置属性、重置属性、设置事件与新增或修改子节点操作。
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。 [ARKUI_ERROR_CODE_NOT_SUPPROTED_FOR_ARKTS_NODE](_ark_u_i___native_module.md) 禁止对BuilderNode生成的节点， 进行设置属性、重置属性、设置事件与新增或修改子节点操作。
 
 
 ### layoutNode
@@ -484,7 +484,7 @@ int32_t(* ArkUI_NativeNodeAPI_1::layoutNode) (ArkUI_NodeHandle node, int32_t pos
 
 **返回：**
 
-错误码。 [ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。
 
 
 ### markDirty
@@ -524,7 +524,7 @@ int32_t(* ArkUI_NativeNodeAPI_1::measureNode) (ArkUI_NodeHandle node, ArkUI_Layo
 
 **返回：**
 
-错误码。 [ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。
 
 
 ### registerNodeCustomEvent
@@ -542,12 +542,12 @@ int32_t(* ArkUI_NativeNodeAPI_1::registerNodeCustomEvent) (ArkUI_NodeHandle node
 | -------- | -------- |
 | node | 需要注册事件的节点对象。  | 
 | eventType | 需要注册的事件类型。  | 
-| targetId | 自定义事件ID，当事件触发时在回调参数ArkUI_NodeCustomEvent中携带回来。| 
-| userData | 自定义事件参数，当事件触发时在回调参数ArkUI_NodeCustomEvent中携带回来。 | 
+| targetId | 自定义事件ID，当事件触发时在回调参数[ArkUI_NodeCustomEvent](_ark_u_i___native_module.md#arkui_nodecustomevent) 中携带回来。  | 
+| userData | 自定义事件参数，当事件触发时在回调参数[ArkUI_NodeCustomEvent](_ark_u_i___native_module.md#arkui_nodecustomevent) 中携带回来。  | 
 
 **返回：**
 
-错误码。 ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。 ARKUI_ERROR_CODE_ATTRIBUTE_OR_EVENT_NOT_SUPPORTED 系统中未找到Native接口的动态实现库。 
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。 [ARKUI_ERROR_CODE_ATTRIBUTE_OR_EVENT_NOT_SUPPORTED](_ark_u_i___native_module.md) 系统中未找到Native接口的动态实现库。
 
 
 ### registerNodeCustomEventReceiver
@@ -573,15 +573,6 @@ ArkUI框架会统一收集过程中产生的自定义组件事件并通过注册
 | -------- | -------- |
 | eventReceiver | 事件回调统一入口函数。  | 
 
-### unregisterNodeCustomEventReceiver
-
-```
-void(* unregisterNodeCustomEventReceiver )()
-```
-**描述：**
-
-反注册自定义节点事件回调统一入口函数。
-
 
 ### registerNodeEvent
 
@@ -598,12 +589,12 @@ int32_t(* ArkUI_NativeNodeAPI_1::registerNodeEvent) (ArkUI_NodeHandle node, ArkU
 | -------- | -------- |
 | node | 需要注册事件的节点对象。  | 
 | eventType | 需要注册的事件类型。  | 
-| targetId | 自定义事件ID，当事件触发时在回调参数ArkUI_NodeCustomEvent中携带回来。| 
-| userData | 自定义事件参数，当事件触发时在回调参数ArkUI_NodeCustomEvent中携带回来。 | 
+| targetId | 自定义事件ID，当事件触发时在回调参数[ArkUI_NodeEvent](_ark_u_i___native_module.md#arkui_nodeevent) 中携带回来。  | 
+| userData | 自定义事件参数，当事件触发时在回调参数**rkUI_NodeEvent** 中携带回来。  | 
 
 **返回：**
 
-错误码。 ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。 ARKUI_ERROR_CODE_ATTRIBUTE_OR_EVENT_NOT_SUPPORTED 系统中未找到Native接口的动态实现库。 ARKUI_ERROR_CODE_NOT_SUPPROTED_FOR_ARKTS_NODE 禁止对BuilderNode生成的节点， 进行设置属性、重置属性、设置事件与新增或修改子节点操作。  | 
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。 [ARKUI_ERROR_CODE_ATTRIBUTE_OR_EVENT_NOT_SUPPORTED](_ark_u_i___native_module.md) 系统中未找到Native接口的动态实现库。 [ARKUI_ERROR_CODE_NOT_SUPPROTED_FOR_ARKTS_NODE](_ark_u_i___native_module.md) 禁止对BuilderNode生成的节点， 进行设置属性、重置属性、设置事件与新增或修改子节点操作。
 
 
 ### registerNodeEventReceiver
@@ -629,6 +620,14 @@ ArkUI框架会统一收集过程中产生的组件事件并通过注册的eventR
 | -------- | -------- |
 | eventReceiver | 事件回调统一入口函数。  | 
 
+### unregisterNodeEventReceiver
+
+```
+void(* ArkUI_NativeNodeAPI_1::unregisterNodeEventReceiver) ()
+```
+**描述：**
+
+反注册事件回调统一入口函数。
 
 ### removeChild
 
@@ -648,7 +647,7 @@ int32_t(* ArkUI_NativeNodeAPI_1::removeChild) (ArkUI_NodeHandle parent, ArkUI_No
 
 **返回：**
 
-错误码。 [ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。 [ARKUI_ERROR_CODE_NOT_SUPPROTED_FOR_ARKTS_NODE](_ark_u_i___native_module.md) 禁止对BuilderNode生成的节点， 进行设置属性、重置属性、设置事件与新增或修改子节点操作。
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。 [ARKUI_ERROR_CODE_NOT_SUPPROTED_FOR_ARKTS_NODE](_ark_u_i___native_module.md) 禁止对BuilderNode生成的节点， 进行设置属性、重置属性、设置事件与新增或修改子节点操作。
 
 
 ### removeNodeCustomEventReceiver
@@ -669,7 +668,7 @@ int32_t(* ArkUI_NativeNodeAPI_1::removeNodeCustomEventReceiver) (ArkUI_NodeHandl
 
 **返回：**
 
-错误码。 [ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。
 
 
 ### removeNodeEventReceiver
@@ -690,7 +689,7 @@ int32_t(* ArkUI_NativeNodeAPI_1::removeNodeEventReceiver) (ArkUI_NodeHandle node
 
 **返回：**
 
-错误码。 [ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。
 
 
 ### resetAttribute
@@ -711,7 +710,7 @@ int32_t(* ArkUI_NativeNodeAPI_1::resetAttribute) (ArkUI_NodeHandle node, ArkUI_N
 
 **返回：**
 
-错误码。 [ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。 [ARKUI_ERROR_CODE_ATTRIBUTE_OR_EVENT_NOT_SUPPORTED](_ark_u_i___native_module.md) 系统中未找到Native接口的动态实现库。 [ARKUI_ERROR_CODE_NOT_SUPPROTED_FOR_ARKTS_NODE](_ark_u_i___native_module.md) 禁止对BuilderNode生成的节点， 进行设置属性、重置属性、设置事件与新增或修改子节点操作。
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。 [ARKUI_ERROR_CODE_ATTRIBUTE_OR_EVENT_NOT_SUPPORTED](_ark_u_i___native_module.md) 系统中未找到Native接口的动态实现库。 [ARKUI_ERROR_CODE_NOT_SUPPROTED_FOR_ARKTS_NODE](_ark_u_i___native_module.md) 禁止对BuilderNode生成的节点， 进行设置属性、重置属性、设置事件与新增或修改子节点操作。
 
 
 ### setAttribute
@@ -733,7 +732,7 @@ int32_t(* ArkUI_NativeNodeAPI_1::setAttribute) (ArkUI_NodeHandle node, ArkUI_Nod
 
 **返回：**
 
-错误码。 [ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。 [ARKUI_ERROR_CODE_ATTRIBUTE_OR_EVENT_NOT_SUPPORTED](_ark_u_i___native_module.md) 系统中未找到Native接口的动态实现库。 [ARKUI_ERROR_CODE_NOT_SUPPROTED_FOR_ARKTS_NODE](_ark_u_i___native_module.md) 禁止对BuilderNode生成的节点， 进行设置属性、重置属性、设置事件与新增或修改子节点操作。
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。 [ARKUI_ERROR_CODE_ATTRIBUTE_OR_EVENT_NOT_SUPPORTED](_ark_u_i___native_module.md) 系统中未找到Native接口的动态实现库。 [ARKUI_ERROR_CODE_NOT_SUPPROTED_FOR_ARKTS_NODE](_ark_u_i___native_module.md) 禁止对BuilderNode生成的节点， 进行设置属性、重置属性、设置事件与新增或修改子节点操作。
 
 
 ### setLayoutPosition
@@ -755,7 +754,7 @@ int32_t(* ArkUI_NativeNodeAPI_1::setLayoutPosition) (ArkUI_NodeHandle node, int3
 
 **返回：**
 
-错误码。 [ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。
 
 
 ### setLengthMetricUnit
@@ -776,7 +775,7 @@ int32_t(* ArkUI_NativeNodeAPI_1::setLengthMetricUnit) (ArkUI_NodeHandle node, Ar
 
 **返回：**
 
-错误码。 [ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。
 
 
 ### setMeasuredSize
@@ -798,7 +797,7 @@ int32_t(* ArkUI_NativeNodeAPI_1::setMeasuredSize) (ArkUI_NodeHandle node, int32_
 
 **返回：**
 
-错误码。 [ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。
 
 
 ### setUserData
@@ -819,7 +818,7 @@ int32_t(* ArkUI_NativeNodeAPI_1::setUserData) (ArkUI_NodeHandle node, void *user
 
 **返回：**
 
-错误码。 [ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。
 
 
 ### unregisterNodeCustomEvent
