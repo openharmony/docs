@@ -33,9 +33,9 @@ createAVPlayer(callback: AsyncCallback\<AVPlayer>): void
 > - 可创建的音视频播放实例（即音频、视频、音视频三类相加）不能超过16个。<!--Del-->
 > - 可创建的音视频播放实例数量依赖于设备芯片的支持情况，如芯片支持创建的数量少于上述情况，请以芯片规格为准。如RK3568仅支持创建6个以内的视频播放实例。<!--DelEnd-->
 
-**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
-
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
 **参数：**
 
@@ -79,9 +79,9 @@ createAVPlayer(): Promise\<AVPlayer>
 > - 可创建的音视频播放实例（即音频、视频、音视频三类相加）不能超过16个。<!--Del-->
 > - 可创建的音视频播放实例数量依赖于设备芯片的支持情况，如芯片支持创建的数量少于上述情况，请以芯片规格为准。如RK3568仅支持创建6个以内的视频播放实例。<!--DelEnd-->
 
-**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
-
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
 **返回值：**
 
@@ -169,9 +169,9 @@ createAVRecorder(): Promise\<AVRecorder>
 > - 可创建的音视频录制实例不能超过2个。
 > - 由于设备共用音频通路，一个设备仅能有一个实例进行音频录制。创建第二个实例录制音频时，将会因为音频通路冲突导致创建失败。
 
-**系统能力：** SystemCapability.Multimedia.Media.AVRecorder
-
 **元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
 **返回值：**
 
@@ -424,9 +424,9 @@ media.createAVScreenCaptureRecorder().then((captureRecorder: media.AVScreenCaptu
 
 [媒体错误码](errorcode-media.md)类型枚举
 
-**系统能力：** SystemCapability.Multimedia.Media.Core
-
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.Core
 
 | 名称                                  | 值      | 说明                                 |
 | :------------------------------------ | ------- | ------------------------------------ |
@@ -446,9 +446,9 @@ media.createAVScreenCaptureRecorder().then((captureRecorder: media.AVScreenCaptu
 
 媒体类型枚举。
 
-**系统能力：** SystemCapability.Multimedia.Media.Core
-
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.Core
 
 | 名称           | 值   | 说明       |
 | -------------- | ---- | ---------- |
@@ -512,9 +512,9 @@ Codec MIME类型枚举。
 
 表示播放或录制实例状态机切换原因的枚举，伴随state一起上报。
 
-**系统能力：** SystemCapability.Multimedia.Media.Core
-
 **元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.Core
 
 | 名称       | 值   | 说明                                                         |
 | ---------- | ---- | ------------------------------------------------------------ |
@@ -558,9 +558,9 @@ on(type: 'stateChange', callback: (state: AVPlayerState, reason: StateChangeReas
 
 监听播放状态机AVPlayerState切换的事件。
 
-**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
-
 **元服务API：** 从API version 11 开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
 **参数：**
 
@@ -614,9 +614,9 @@ off(type: 'stateChange'): void
 
 取消监听播放状态机[AVPlayerState](#avplayerstate9)切换的事件。
 
-**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
-
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
 **参数：**
 
@@ -636,9 +636,9 @@ on(type: 'error', callback: ErrorCallback): void
 
 监听[AVPlayer](#avplayer9)的错误事件，该事件仅用于错误提示，不需要用户停止播控动作。如果此时[AVPlayerState](#avplayerstate9)也切至error状态，用户需要通过[reset()](#reset9)或者[release()](#release9)退出播放操作。
 
-**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
-
 **元服务API：** 从API version 11 开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
 **参数：**
 
@@ -680,9 +680,9 @@ off(type: 'error'): void
 
 取消监听播放的错误事件。
 
-**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
-
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
 **参数：**
 
@@ -746,9 +746,9 @@ prepare(callback: AsyncCallback\<void>): void
 
 通过回调方式准备播放音频/视频，需在[stateChange](#onstatechange9)事件成功触发至initialized状态后，才能调用。
 
-**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
-
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
 **参数：**
 
@@ -785,9 +785,9 @@ prepare(): Promise\<void>
 
 通过Promise方式准备播放音频/视频，需在[stateChange](#onstatechange9)事件成功触发至initialized状态后，才能调用。
 
-**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
-
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
 **返回值：**
 
@@ -822,9 +822,9 @@ play(callback: AsyncCallback\<void>): void
 
 通过回调方式开始播放音视频资源，只能在prepared/paused/completed状态调用。
 
-**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
-
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
 **参数：**
 
@@ -860,9 +860,9 @@ play(): Promise\<void>
 
 通过Promise方式开始播放音视频资源，只能在prepared/paused/completed状态调用。
 
-**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
-
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
 **返回值：**
 
@@ -896,9 +896,9 @@ pause(callback: AsyncCallback\<void>): void
 
 通过回调方式暂停播放音视频资源，只能在playing状态调用。
 
-**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
-
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
 **参数：**
 
@@ -934,9 +934,9 @@ pause(): Promise\<void>
 
 通过Promise方式暂停播放音视频资源，只能在playing状态调用。
 
-**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
-
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
 **返回值：**
 
@@ -970,9 +970,9 @@ stop(callback: AsyncCallback\<void>): void
 
 通过回调方式停止播放音视频资源，只能在prepared/playing/paused/completed状态调用。
 
-**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
-
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
 **参数：**
 
@@ -1008,9 +1008,9 @@ stop(): Promise\<void>
 
 通过Promise方式停止播放音视频资源，只能在prepared/playing/paused/completed状态调用。
 
-**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
-
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
 **返回值：**
 
@@ -1044,9 +1044,9 @@ reset(callback: AsyncCallback\<void>): void
 
 通过回调方式重置播放，只能在initialized/prepared/playing/paused/completed/stopped/error状态调用。
 
-**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
-
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
 **参数：**
 
@@ -1082,9 +1082,9 @@ reset(): Promise\<void>
 
 通过Promise方式重置播放，只能在initialized/prepared/playing/paused/completed/stopped/error状态调用。
 
-**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
-
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
 **返回值：**
 
@@ -1118,9 +1118,9 @@ release(callback: AsyncCallback\<void>): void
 
 通过回调方式销毁播放资源，除released状态，都可以调用。
 
-**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
-
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
 **参数：**
 
@@ -1156,9 +1156,9 @@ release(): Promise\<void>
 
 通过Promise方式销毁播放，除released状态，都可以调用。
 
-**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
-
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
 **返回值：**
 
@@ -1192,9 +1192,9 @@ getTrackDescription(callback: AsyncCallback\<Array\<MediaDescription>>): void
 
 通过回调方式获取音视频轨道信息，可以在prepared/playing/paused状态调用。获取所有音视轨道信息，应在数据加载回调后调用。
 
-**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
-
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
 **参数：**
 
@@ -1230,9 +1230,9 @@ getTrackDescription(): Promise\<Array\<MediaDescription>>
 
 通过Promise方式获取音视频轨道信息，可以在prepared/playing/paused状态调用。
 
-**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
-
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
 **返回值：**
 
@@ -1466,9 +1466,9 @@ seek(timeMs: number, mode?:SeekMode): void
 跳转到指定播放位置，只能在prepared/playing/paused/completed状态调用，可以通过[seekDone事件](#onseekdone9)确认是否生效。
 注：直播场景不支持seek。
 
-**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
-
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
 **参数：**
 
@@ -1515,9 +1515,9 @@ off(type: 'seekDone'): void
 
 取消监听seek生效的事件。
 
-**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
-
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
 **参数：**
 
@@ -1560,6 +1560,8 @@ on(type: 'speedDone', callback: Callback\<number>): void
 
 监听setSpeed生效的事件
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
 **参数：**
@@ -1582,6 +1584,8 @@ avPlayer.on('speedDone', (speed:number) => {
 off(type: 'speedDone'): void
 
 取消监听setSpeed生效的事件。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -1626,6 +1630,8 @@ on(type: 'bitrateDone', callback: Callback\<number>): void
 
 监听setBitrate生效的事件。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
 **参数：**
@@ -1649,6 +1655,8 @@ off(type: 'bitrateDone'): void
 
 取消监听setBitrate生效的事件。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
 **参数：**
@@ -1668,6 +1676,8 @@ avPlayer.off('bitrateDone')
 on(type: 'availableBitrates', callback: (bitrates: Array\<number>) => void): void
 
 监听HLS协议流可用的比特率列表，只会在切换prepared状态后上报。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -1691,6 +1701,8 @@ avPlayer.on('availableBitrates', (bitrates: Array<number>) => {
 off(type: 'availableBitrates'): void
 
 取消监听HLS协议流可用的比特率列表，调用[prepare](#prepare9)后，上报此事件。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -1790,6 +1802,8 @@ on(type: 'volumeChange', callback: Callback\<number>): void
 
 监听setVolume生效的事件。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
 **参数：**
@@ -1813,6 +1827,8 @@ off(type: 'volumeChange'): void
 
 取消监听setVolume生效的事件。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
 **参数：**
@@ -1832,6 +1848,8 @@ avPlayer.off('volumeChange')
 on(type: 'endOfStream', callback: Callback\<void>): void
 
 监听资源播放至结尾的事件；如果用户设置[loop](#属性)=true，播放会跳转至开头重播；如果用户没有设置loop，会通过[stateChange](#onstatechange9)上报completed状态。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -1856,6 +1874,8 @@ off(type: 'endOfStream'): void
 
 取消监听资源播放至结尾的事件。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
 **参数：**
@@ -1877,9 +1897,9 @@ on(type: 'timeUpdate', callback: Callback\<number>): void
 监听资源播放当前时间，单位为毫秒（ms），用于刷新进度条当前位置，默认间隔100ms时间上报，因用户操作(seek)产生的时间变化会立刻上报。
 注：直播场景不支持timeUpdate上报。
 
-**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
-
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
 **参数：**
 
@@ -1902,9 +1922,9 @@ off(type: 'timeUpdate'): void
 
 取消监听资源播放当前时间。
 
-**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
-
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
 **参数：**
 
@@ -1926,9 +1946,9 @@ on(type: 'durationUpdate', callback: Callback\<number>): void
 监听资源播放资源的时长，单位为毫秒（ms），用于刷新进度条长度，默认只在prepared上报一次，同时允许一些特殊码流刷新多次时长。
 注：直播场景不支持durationUpdate上报。
 
-**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
 **参数：**
 
@@ -1951,6 +1971,8 @@ off(type: 'durationUpdate'): void
 
 取消监听资源播放资源的时长。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
 **参数：**
@@ -1970,6 +1992,8 @@ avPlayer.off('durationUpdate')
 on(type: 'bufferingUpdate', callback: (infoType: BufferingInfoType, value: number) => void): void
 
 订阅音视频缓存更新事件，仅网络播放支持该订阅事件。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -1994,6 +2018,8 @@ off(type: 'bufferingUpdate'): void
 
 取消监听音视频缓存更新事件。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
 **参数：**
@@ -2013,6 +2039,8 @@ avPlayer.off('bufferingUpdate')
 on(type: 'startRenderFrame', callback: Callback\<void>): void
 
 订阅视频播放开始首帧渲染的更新事件，仅视频播放支持该订阅事件，该事件仅代表播放服务将第一帧画面送显示模块，实际效果依赖显示服务渲染性能。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -2037,6 +2065,8 @@ off(type: 'startRenderFrame'): void
 
 取消监听视频播放开始首帧渲染的更新事件。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
 **参数：**
@@ -2056,6 +2086,8 @@ avPlayer.off('startRenderFrame')
 on(type: 'videoSizeChange', callback: (width: number, height: number) => void): void
 
 监听视频播放宽高变化事件，仅视频播放支持该订阅事件，默认只在prepared状态上报一次，但HLS协议码流会在切换分辨率时上报；
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -2080,6 +2112,8 @@ off(type: 'videoSizeChange'): void
 
 取消监听视频播放宽高变化事件。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
 **参数：**
@@ -2099,6 +2133,8 @@ avPlayer.off('videoSizeChange')
 on(type: 'audioInterrupt', callback: (info: audio.InterruptEvent) => void): void
 
 监听音频焦点变化事件，多个音视频资源同时播放时，会根据音频焦点模型[audio.InterruptMode](../apis-audio-kit/js-apis-audio.md#interruptmode9)触发此事件。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -2124,6 +2160,8 @@ avPlayer.on('audioInterrupt', (info: audio.InterruptEvent) => {
 off(type: 'audioInterrupt'): void
 
 取消监听音频焦点变化事件。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -2205,9 +2243,9 @@ avPlayer.off('audioOutputDeviceChangeWithInfo');
 
 [AVPlayer](#avplayer9)的状态机，可通过state属性主动获取当前状态，也可通过监听[stateChange](#onstatechange9)事件上报当前状态，状态机之间的切换规则，可参考[音频播放开发指导](../../media/media/using-avplayer-for-playback.md)。
 
-**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
-
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
 |              名称               |  类型  | 说明                                                         |
 | :-----------------------------: | :----: | :----------------------------------------------------------- |
@@ -2225,9 +2263,9 @@ avPlayer.off('audioOutputDeviceChangeWithInfo');
 
 音视频文件资源描述，一种特殊资源的播放方式，使用场景：应用中的音频资源被连续存储在同一个文件中，需要根据偏移量和长度进行播放。
 
-**系统能力：** SystemCapability.Multimedia.Media.Core
-
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.Core
 
 | 名称   | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
@@ -2239,9 +2277,9 @@ avPlayer.off('audioOutputDeviceChangeWithInfo');
 
 音视频文件资源描述，用于DataSource播放方式，使用场景：应用在未获取完整音视频资源时，允许用户创建播放实例并开始播放，达到提前播放的目的。
 
-**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
-
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
 | 名称   | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
@@ -2294,9 +2332,9 @@ avPlayer.off('audioOutputDeviceChangeWithInfo');
 
 通过key-value方式获取媒体信息。
 
-**系统能力：** SystemCapability.Multimedia.Media.Core
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
-**元服务API：** 从API version 11 开始，该接口支持在元服务中使用。
+**系统能力：** SystemCapability.Multimedia.Media.Core
 
 | 名称          | 类型   | 必填 | 说明                                                         |
 | ------------- | ------ | ---- | ------------------------------------------------------------ |
@@ -2432,9 +2470,9 @@ prepare(config: AVRecorderConfig): Promise\<void>
 
 使用相机视频录制还需要与相机模块配合，相机模块接口的使用详情见[相机管理](../apis-camera-kit/js-apis-camera.md)。
 
-**系统能力：** SystemCapability.Multimedia.Media.AVRecorder
-
 **元服务API：** 从API version 12 开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
 **参数：**
 
@@ -2635,6 +2673,8 @@ start(callback: AsyncCallback\<void>): void
 
 纯音频录制需在[prepare()](#prepare9-2)事件成功触发后，才能调用start方法。纯视频录制，音视频录制需在[getInputSurface()](#getinputsurface9)事件成功触发后，才能调用start方法。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
 **参数：**
@@ -2675,9 +2715,9 @@ start(): Promise\<void>
 
 纯音频录制需在[prepare()](#prepare9-3)事件成功触发后，才能调用start方法。纯视频录制，音视频录制需在[getInputSurface()](#getinputsurface9-1)事件成功触发后，才能调用start方法。
 
-**系统能力：** SystemCapability.Multimedia.Media.AVRecorder
-
 **元服务API：** 从API version 12 开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
 **返回值：**
 
@@ -2755,9 +2795,9 @@ pause(): Promise\<void>
 
 需要[start()](#start9-1)事件成功触发后，才能调用pause方法，可以通过调用[resume()](#resume9-1)接口来恢复录制。
 
-**系统能力：** SystemCapability.Multimedia.Media.AVRecorder
-
 **元服务API：** 从API version 12 开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
 **返回值：**
 
@@ -2835,9 +2875,9 @@ resume(): Promise\<void>
 
 需要在[pause()](#pause9-3)事件成功触发后，才能调用resume方法。
 
-**系统能力：** SystemCapability.Multimedia.Media.AVRecorder
-
 **元服务API：** 从API version 12 开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
 **返回值：**
 
@@ -2876,6 +2916,8 @@ stop(callback: AsyncCallback\<void>): void
 需要在[start()](#start9)或[pause()](#pause9-2)事件成功触发后，才能调用stop方法。
 
 纯音频录制时，需要重新调用[prepare()](#prepare9-2)接口才能重新录制。纯视频录制，音视频录制时，需要重新调用[prepare()](#prepare9-2)和[getInputSurface()](#getinputsurface9)接口才能重新录制。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
@@ -2919,9 +2961,9 @@ stop(): Promise\<void>
 
 纯音频录制时，需要重新调用[prepare()](#prepare9-3)接口才能重新录制。纯视频录制，音视频录制时，需要重新调用[prepare()](#prepare9-3)和[getInputSurface()](#getinputsurface9-1)接口才能重新录制。
 
-**系统能力：** SystemCapability.Multimedia.Media.AVRecorder
-
 **元服务API：** 从API version 12 开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
 **返回值：**
 
@@ -3073,9 +3115,9 @@ release(): Promise\<void>
 
 释放音视频录制资源之后，该AVRecorder实例不能再进行任何操作。
 
-**系统能力：** SystemCapability.Multimedia.Media.AVRecorder
-
 **元服务API：** 从API version 12 开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
 **返回值：**
 
@@ -3429,9 +3471,9 @@ on(type: 'stateChange', callback: (state: AVRecorderState, reason: StateChangeRe
 
 订阅录制状态机AVRecorderState切换的事件，当 AVRecorderState状态机发生变化时，会通过订阅的回调方法通知用户。用户只能订阅一个状态机切换事件的回调方法，当用户重复订阅时，以最后一次订阅的回调接口为准。
 
-**系统能力：** SystemCapability.Multimedia.Media.AVRecorder
-
 **元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
 **参数：**
 
@@ -3463,9 +3505,9 @@ off(type: 'stateChange'): void
 
 取消订阅播放状态机[AVRecorderState](#avrecorderstate9)切换的事件。
 
-**系统能力：** SystemCapability.Multimedia.Media.AVRecorder
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
-**元服务API：** 从API version 12 开始，该接口支持在元服务中使用。
+**系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
 **参数：**
 
@@ -3487,9 +3529,9 @@ on(type: 'error', callback: ErrorCallback): void
 
 用户只能订阅一个错误事件的回调方法，当用户重复订阅时，以最后一次订阅的回调接口为准。
 
-**系统能力：** SystemCapability.Multimedia.Media.AVRecorder
-
 **元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
 **参数：**
 
@@ -3531,9 +3573,9 @@ off(type: 'error'): void
 
 取消订阅录制错误事件，取消后不再接收到AVRecorder的错误事件。
 
-**系统能力：** SystemCapability.Multimedia.Media.AVRecorder
-
 **元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
 **参数：**
 
@@ -3605,9 +3647,9 @@ avRecorder.off('audioCapturerChange');
 
 音视频录制的状态机。可通过state属性获取当前状态。
 
-**系统能力：** SystemCapability.Multimedia.Media.AVRecorder
-
 **元服务API：** 从API version 12 开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
 | 名称     | 类型   | 说明                                                         |
 | -------- | ------ | ------------------------------------------------------------ |
