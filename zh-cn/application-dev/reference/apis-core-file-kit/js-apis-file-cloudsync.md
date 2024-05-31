@@ -92,12 +92,18 @@ on(event: 'progress', callback: Callback\<DownloadProgress>): void
 **示例：**
 
   ```ts
+  import { BusinessError } from '@ohos.base';
   let fileCache = new cloudSync.CloudFileCache();
   let callback = (pg: cloudSync.DownloadProgress) => {
     console.info("download state：" + pg.state);
   };
 
-  fileCache.on('progress', callback);
+  try {
+    fileCache.on('progress', callback);
+  } catch (e) {
+    const error = e as BusinessError;
+    console.error(`Error code: ${error.code}, message: ${error.message}`);
+  }
   ```
 
 ### off<sup>11+</sup>
@@ -127,15 +133,20 @@ off(event: 'progress', callback?: Callback\<DownloadProgress>): void
 **示例：**
 
   ```ts
+  import { BusinessError } from '@ohos.base';
   let fileCache = new cloudSync.CloudFileCache();
 
   let callback = (pg: cloudSync.DownloadProgress) => {
     console.info("download state：" + pg.state);
   }
 
-  fileCache.on('progress', callback);
-
-  fileCache.off('progress', callback);
+  try {
+    fileCache.on('progress', callback);
+    fileCache.off('progress', callback);
+  } catch (e) {
+    const error = e as BusinessError;
+    console.error(`Error code: ${error.code}, message: ${error.message}`);
+  }
   ```
 
 ### start<sup>11+</sup>
@@ -167,9 +178,14 @@ start(uri: string): Promise&lt;void&gt;
   let path = "/data/storage/el2/cloud/1.txt";
   let uri = fileUri.getUriFromPath(path);
 
-  fileCache.on('progress', (pg: cloudSync.DownloadProgress) => {
-    console.info("download state:" + pg.state);
-  });
+  try {
+    fileCache.on('progress', (pg: cloudSync.DownloadProgress) => {
+      console.info("download state:" + pg.state);
+    });
+  } catch (e) {
+    const error = e as BusinessError;
+    console.error(`Error code: ${error.code}, message: ${error.message}`);
+  }
 
   fileCache.start(uri).then(() => {
     console.info("start download successfully");
