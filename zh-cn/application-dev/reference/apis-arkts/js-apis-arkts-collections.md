@@ -69,7 +69,7 @@ join(separator?: string): string
 
 **错误码**：
 
-以下错误码详细介绍请参考[通用错误码](errorcode-universal.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
@@ -104,7 +104,7 @@ slice(start?: number, end?: number): ConcatArray\<T>
 
 **错误码**：
 
-以下错误码详细介绍请参考[通用错误码](errorcode-universal.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
@@ -1139,7 +1139,7 @@ concat(...items: ConcatArray<T>[]): Array<T>
 
 **错误码：**
 
-以下错误码详细介绍请参考[通用错误码](errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息                         |
 | ------- | -------- |
