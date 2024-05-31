@@ -86,6 +86,12 @@
         "name": "name1",
         "value": "value1"
       }
+    ],
+    "hnpPackages": [
+      {
+        "package": "hnpsample.hnp",
+        "type": "public"
+      }
     ]
   }
 }
@@ -132,6 +138,7 @@ module.json5配置文件包含以下标签。
 | [routerMap](#routermap标签) | 标识当前模块配置的路由表路径。取值为长度不超过255字节的字符串。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | [appEnvironments](#appenvironments标签) | 标识当前模块配置的应用环境变量，只允许entry和feature模块配置。 | 对象数组 | 该标签可缺省，缺省值为空。 |
 | appStartup | 标识当前Module启动框架配置路径，仅在Entry中生效。 | 字符串 | 该标签可缺省，缺省值为空。 |
+| [hnpPackages](#hnppackages标签) | 标识当前应用包含的Native软件包信息。只允许entry类型模块配置。 | 对象数组 | 该标签可缺省，缺省值为空。 |
 
 ## deviceTypes标签
 
@@ -1030,6 +1037,33 @@ definePermissions标签示例：
         "distributedSceneEnable": false,
         "label": "$string:EntryAbility_label"
         }
+      }
+    ]
+  }
+}
+```
+
+## hnpPackages标签
+
+该标签标识应用包含的Native软件包信息。
+
+**表10** hnpPackages标签说明
+
+| 属性名称 | 含义 | 数据类型 | 是否可缺省 |
+| -------- | -------- | -------- | -------- |
+| package | 标识Native软件包名称。 | 字符串 | 该标签不可缺省。 |
+| type | 标识Native软件包类型。支持的取值如下：<br/>-&nbsp;public：公有类型。<br/>-&nbsp;private：私有类型。  | 字符串 | 该标签不可缺省。 |
+
+hnpPackages示例：
+
+
+```json
+{
+  "module" : {
+    "hnpPackages": [
+      {
+        "package": "hnpsample.hnp",
+        "type": "public"
       }
     ]
   }
