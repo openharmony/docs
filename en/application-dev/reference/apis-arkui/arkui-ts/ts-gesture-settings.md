@@ -34,8 +34,8 @@ A region in which a gesture can be recognized may be specified by the [touch tar
 ## GestureMask
 | Name| Description|
 | -------- | -------- |
-| Normal | The gestures of child components are not ignored and are recognized based on the default gesture recognition sequence.|
-| IgnoreInternal | The gestures of child components are ignored, including the built-in gestures. For example, if the child component is **\<List>**, its built-in swipe gesture is also ignored. If the areas of the parent and child components are partly overlapped, only gestures in the overlapped areas are ignored.|
+| Normal | The gestures of child components are enabled and recognized based on the default gesture recognition sequence.|
+| IgnoreInternal | The gestures of child components are disabled, including the built-in gestures, such as the built-in swipe gesture for a **\<List>** component. If the areas of the parent and child components are partly overlapped, only gestures in the overlapped areas are disabled.|
 
 ## Gesture Response Event
 
@@ -51,15 +51,15 @@ The component binds gesture objects of different **GestureType** instances throu
 | Name| Type| Description|
 | -------- | -------- | -------- |
 | repeat | boolean | Whether the event is triggered repeatedly. This attribute is used for the **LongPressGesture** event.|
-| offsetX | number | Offset of the gesture event on the x-axis relative to the original area of the current component, in vp. This attribute is used for the **PanGesture** event. A positive value means to pan from left to right, and a negative value means the opposite.|
-| offsetY | number | Offset of the gesture event on the y-axis relative to the original area of the current component, in vp. This attribute is used for the **PanGesture** event. A positive value means to pan from top to bottom, and a negative value means the opposite.|
+| offsetX | number | Offset in the X coordinate of the gesture event, in vp. This attribute is used for the **PanGesture** event. A positive value means to pan from left to right, and a negative value means the opposite.|
+| offsetY | number | Offset in the Y coordinate of the gesture event, in vp. This attribute is used for the **PanGesture** event. A positive value means to pan from top to bottom, and a negative value means the opposite.|
 | angle | number | Rotation angle for the **RotationGesture** event;<br>angle of the swipe gesture for the **SwipeGesture** event, that is, the change in the included angle between the line segment created by the two fingers and the horizontal direction.<br>**NOTE**<br>Angle calculation method: After a swipe gesture is recognized, a line connecting the two fingers is identified as the initial line. As the fingers swipe, the line between the fingers rotates. Based on the coordinates of the initial line's and current line's end points, an arc tangent function is used to calculate the respective included angle of the points relative to the horizontal direction by using the following formula: Rotation angle = arctan2(cy2-cy1,cx2-cx1) - arctan2(y2-y1,x2-x1) The initial line is used as the coordinate system. The clockwise rotation is 0 to 180 degrees, and the counter-clockwise rotation is –180 to 0 degrees.|
 | scale | number | Scale ratio. This attribute is used for the **PinchGesture** event.|
-| pinchCenterX | number | X coordinate of the center of the pinch gesture, in vp, relative to the original area of the current component. This attribute is used for the **PinchGesture** event.|
-| pinchCenterY | number | Y coordinate of the center of the pinch gesture, in vp, relative to the original area of the current component. This attribute is used for the **PinchGesture** event.|
+| pinchCenterX | number | X coordinate of the pinch center, in vp. This attribute is used for the **PinchGesture** event.|
+| pinchCenterY | number | Y coordinate of the pinch center, in vp. This attribute is used for the **PinchGesture** event.|
 | speed<sup>8+</sup> | number | Swipe gesture speed, that is, the average swipe speed of all fingers relative to the original area of the current component. The unit is vp/s. This attribute is used for the **SwipeGesture** event.|
 | fingerList<sup>8+</sup> | [FingerInfo](#fingerinfo8)[] | Information about all fingers that trigger the gesture event.<br>**NOTE**<br>The index of a finger corresponds to its position, that is, the ID of a finger in **fingerList[index]** refers to its index. If a finger is pressed first and does not participate in triggering of the current gesture, its position in **fingerList** is left empty.|
-| timestamp<sup>8+</sup> | number | Timestamp of the event.|
+| timestamp<sup>8+</sup> | number | Timestamp of the event.<br>**NOTE**<br>Unit: ns|
 | target<sup>8+</sup> | [EventTarget](ts-universal-events-click.md#eventtarget8) | Display area of the element that triggers the gesture event.|
 | source<sup>8+</sup> | [SourceType](#sourcetype) | Event input device.|
 | pressure<sup>9+</sup> | number | Press pressure.|
@@ -110,7 +110,7 @@ struct GestureSettingsExample {
         Text('TapGesture:' + this.priorityTestValue).fontSize(28)
           .gesture(
             TapGesture()
-              .onAction(() => {
+              .onAction((event: GestureEvent) => {
                 this.priorityTestValue += '\nText'
               }))
       }
@@ -122,7 +122,7 @@ struct GestureSettingsExample {
       // When priorityGesture is set, the tap gesture on the <Column> component is prioritized over the tap gesture on the child <Text> component.
       .priorityGesture(
         TapGesture()
-          .onAction((event?: GestureEvent) => {
+          .onAction((event: GestureEvent) => {
             this.priorityTestValue += '\nColumn'
           }), GestureMask.IgnoreInternal)
 
@@ -130,7 +130,7 @@ struct GestureSettingsExample {
         Text('TapGesture:' + this.parallelTestValue).fontSize(28)
           .gesture(
             TapGesture()
-              .onAction(() => {
+              .onAction((event: GestureEvent) => {
                 this.parallelTestValue += '\nText'
               }))
       }
@@ -142,7 +142,7 @@ struct GestureSettingsExample {
       // When parallelGesture is set, the tap gestures on the <Column> component and on the child <Text> component are both recognized.
       .parallelGesture(
         TapGesture()
-          .onAction((event?: GestureEvent) => {
+          .onAction((event: GestureEvent) => {
             this.parallelTestValue += '\nColumn'
           }), GestureMask.Normal)
     }

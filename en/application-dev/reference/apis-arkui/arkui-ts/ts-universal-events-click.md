@@ -8,11 +8,11 @@ A click event is triggered when a component is clicked.
 
 ## onClick
 
-onClick(event: (event: ClickEvent) => void)
+onClick(event: (event: ClickEvent) => void): T
 
 Called when a click event occurs.
 
-**Widget capability**: Since API version 9, this feature is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -22,23 +22,29 @@ Called when a click event occurs.
 | ------ | --------------------------------- | ---- | -------------------- |
 | event  | [ClickEvent](#clickevent) | Yes  | [ClickEvent](#clickevent) object.|
 
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| T | Current component.|
+
 ## ClickEvent
 
 This API can be used in ArkTS widgets since API version 9.
 
 | Name           | Type                                | Description                                                    |
 | ------------------- | ------------------------------------ | -------------------------------------------------------- |
-| x                   | number                               | X coordinate of the click relative to the upper left corner of the clicked component's original area.<br>Unit: vp    |
-| y                   | number                               | Y coordinate of the click relative to the upper left corner of the clicked component's original area.<br>Unit: vp         |
+| x                   | number                               | X coordinate of the click point relative to the left edge of the clicked component.<br>Unit: vp |
+| y                   | number                               | Y coordinate of the click point relative to the upper edge of the clicked component.<br>Unit: vp |
 | timestamp<sup>8+</sup> | number | Timestamp of the event. It is the interval between the time when the event is triggered and the time when the system starts.<br>Unit: ns|
 | target<sup>8+</sup> | [EventTarget](#eventtarget8) | Display area of the object that triggers the event.|
 | source<sup>8+</sup> | [SourceType](ts-gesture-settings.md#sourcetype)| Event input device.|
-| windowX<sup>10+</sup> | number                             | X coordinate of the click relative to the upper left corner of the application window.<br>Unit: vp|
-| windowY<sup>10+</sup> | number                             | Y coordinate of the click relative to the upper left corner of the application window.<br>Unit: vp|
-| displayX<sup>10+</sup> | number                            | X coordinate of the click relative to the upper left corner of the application screen.<br>Unit: vp|
+| windowX<sup>10+</sup> | number                             | X coordinate of the click point relative to the upper left corner of the application window.<br>Unit: vp |
+| windowY<sup>10+</sup> | number                             | Y coordinate of the click point relative to the upper left corner of the application window.<br>Unit: vp |
+| displayX<sup>10+</sup> | number                            | X coordinate of the click point relative to the upper left corner of the application screen.<br>Unit: vp |
 | displayY<sup>10+</sup> | number                            | Y coordinate of the click relative to the upper left corner of the application screen.<br>Unit: vp|
 | screenX<sup>(deprecated)</sup> | number                    | X coordinate of the click relative to the upper left corner of the application window.<br>This API is deprecated since API version 10. You are advised to use **windowX** instead. |
-| screenY<sup>(deprecated)</sup> | number                    | Y coordinate of the click relative to the upper left corner of the application window.<br>This API is deprecated since API version 10. You are advised to use **windowY** instead. |
+| screenY<sup>(deprecated)</sup> | number                    | Y coordinate of the click point relative to the upper left corner of the application window.<br>This API is deprecated since API version 10. You are advised to use **windowY** instead. |
 
 ## EventTarget<sup>8+</sup>
 

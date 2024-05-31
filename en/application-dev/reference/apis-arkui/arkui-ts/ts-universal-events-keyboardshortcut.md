@@ -8,7 +8,7 @@ You can set one or more custom keyboard shortcuts for a component. The behavior 
 
 ## keyboardShortcut
 
-keyboardShortcut(value: string | FunctionKey, keys: Array\<ModifierKey>, action?: () => void)
+keyboardShortcut(value: string | FunctionKey, keys: Array\<ModifierKey>, action?: () => void): T
 
 Sets a keyboard shortcut for the component.
 
@@ -21,6 +21,12 @@ Sets a keyboard shortcut for the component.
 | value | string \| [FunctionKey](#functionkey) | Yes   | Character key (which can be entered through the keyboard) or [function key](#functionkey).<br>|
 | keys  | Array\<[ModifierKey](#modifierkey)>    | Yes   | Modifier keys.<br>                              |
 | action  | () => void    | No   | Callback for a custom event after the keyboard shortcut is triggered.<br>                              |
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| T | Current component.|
 
 ## ModifierKey
 

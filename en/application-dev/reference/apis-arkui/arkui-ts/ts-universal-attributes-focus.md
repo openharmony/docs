@@ -18,7 +18,7 @@ Specifies whether the current component is focusable.
 
 | Name| Type   | Mandatory| Description                                                        |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | boolean | Yes  | Whether the current component is focusable.<br>**NOTE**<br>Components that have default interaction logic, such as **\<Button>** and **\<TextInput>**, are focusable by default. Other components, such as **\<Text>** and **\<Image>**, are not focusable by default. Only focusable components can trigger a [focus event](ts-universal-focus-event.md).|
+| value  | boolean | Yes  | Whether the current component is focusable.<br>**NOTE**<br>Components that have default interaction logic, such as [\<Button>](ts-basic-components-button.md) and [\<TextInput>](ts-basic-components-textinput.md), are focusable by default. Other components, such as [\<Text>](ts-basic-components-text.md) and [\<Image>](ts-basic-components-image.md), are not focusable by default. Only focusable components can trigger a [focus event](ts-universal-focus-event.md).|
 
 ## tabIndex<sup>9+</sup>
 
@@ -46,7 +46,7 @@ Specifies whether to set the component as the default focus of the page.
 
 | Name| Type   | Mandatory| Description                                                        |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | boolean | Yes  | Whether to set the component as the default focus of the page. This parameter takes effect only when the page is new and accessed for the first time.<br>Default value: **false**<br>**NOTE**<br><br>The value **true** means to set the component as the default focus, and the value **false** has no effect.<br>If **defaultFocus(true)** is not set for any component on the page, the default focus is the root container.<br>If **defaultFocus(true)** is set for multiple components on the page, the first component found in the component tree in-depth traversal is used as the default focus.|
+| value  | boolean | Yes  | Whether to set the component as the default focus of the page. This parameter takes effect only when the page is new and accessed for the first time.<br>Default value: **false**<br>**NOTE**<br>The value **true** means to set the component as the default focus, and the value **false** has no effect.<br>If **defaultFocus(true)** is not set for any component on the page, the default focus is the root container.<br>If **defaultFocus(true)** is set for multiple components on the page, the first component found in the component tree in-depth traversal is used as the default focus.|
 
 ## groupDefaultFocus<sup>9+</sup>
 
@@ -60,7 +60,7 @@ Specifies whether to set the component as the default focus of the container.
 
 | Name| Type   | Mandatory| Description                                                        |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | boolean | Yes  | Whether to set the component as the default focus of the parent container. This parameter takes effect only when the container is new and obtains focus for the first time.<br>Default value: **false**<br>**NOTE**<br><br>This parameter must be used together with [tabIndex](#tabindex9). When **tabIndex** is set for a container and **groupDefaultFocus(true)** is set for a child in the container or for the container itself, then when the container obtains focus for the first time through sequential Tab navigation, the focus automatically moves to the specified component. If **groupDefaultFocus(true)** is set for multiple components in the container (including the container itself), the first component found in the component tree in-depth traversal receives the focus.|
+| value  | boolean | Yes  | Whether to set the component as the default focus of the parent container. This parameter takes effect only when the container is new and obtains focus for the first time.<br>Default value: **false**<br>**NOTE**<br>This parameter must be used together with [tabIndex](#tabindex9). When **tabIndex** is set for a container and **groupDefaultFocus(true)** is set for a child in the container or for the container itself, then when the container obtains focus for the first time through sequential Tab navigation, the focus automatically moves to the specified component. If **groupDefaultFocus(true)** is set for multiple components in the container (including the container itself), the first component found in the component tree in-depth traversal receives the focus.|
 
 ## focusOnTouch<sup>9+</sup>
 
@@ -237,23 +237,23 @@ struct FocusableExample {
 ```
 Diagrams:
 
-When you press the **Tab** key for the first time, the focus switches to the component bound to **defaultFocus**.
+On first-time access, the focus is on the **\<TextInput>** component bound to **defaultFocus**.
 
 ![defaultFocus](figures/defaultFocus.png)
 
-When you press the **Tab** key for the second time, the focus switches to the container that matches **tabIndex(1)** and automatically moves to the component bound to **groupDefaultFocus**.
+When you press the **Tab** key for the first time, the focus switches to the container that matches **tabIndex(1)** and automatically moves to the component bound to **groupDefaultFocus**.
 
 ![groupDefaultFocus1](figures/groupDefaultFocus1.png)
 
-When you press the **Tab** key for the third time, the focus switches to the container that matches **tabIndex(2)** and automatically moves to the component bound to **groupDefaultFocus**.
+When you press the **Tab** key for the second time, the focus switches to the container that matches **tabIndex(2)** and automatically moves to the component bound to **groupDefaultFocus**.
 
 ![groupDefaultFocus2](figures/groupDefaultFocus2.png)
 
-When you press the **Tab** key for the fourth time, the focus switches to the container that matches **tabIndex(3)** and automatically moves to the component bound to **groupDefaultFocus**.
+When you press the **Tab** key for the third time, the focus switches to the container that matches **tabIndex(3)** and automatically moves to the component bound to **groupDefaultFocus**.
 
 ![groupDefaultFocus3](figures/groupDefaultFocus3.png)
 
-Click the component bound to **focusOnTouch**. The component then obtains focus.
+Clicking the component bound to **focusOnTouch** sets the focus on the component and removes the focus indicator. Pressing the Tab key again displays the focus indicator.
 
 ![focusOnTouch](figures/focusOnTouch.png)
 

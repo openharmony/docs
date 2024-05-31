@@ -51,6 +51,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | antiAlias | boolean | true | Whether anti-aliasing is enabled.<br>This API can be used in ArkTS widgets since API version 9.<br>**NOTE**<br>An invalid value is handled as the default value.|
 
 ## Example
+### Example 1
 
 ```ts
 // xxx.ets
@@ -96,3 +97,40 @@ struct RectExample {
 ```
 
 ![en-us_image_0000001174264386](figures/en-us_image_0000001174264386.png)
+
+### Example 2
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct RectExample {
+  build() {
+    Column({ space: 10 }) {
+      Column()
+        .width(100)
+        .height(100)
+        .linearGradient({
+          direction: GradientDirection.Right,
+          colors: [[0xff0000, 0.0], [0x0000ff, 0.3], [0xffff00, 1.0]]
+        })
+        .clip(new Rect({ width: 100, height: 100, radius: 40 }))
+      Rect()
+        .width(100)
+        .height(100)
+        // Set the color of the fill area. To display the color gradient of the background, set .fillOpacity(0.0).
+        .fill(Color.Pink)
+        // Set the radius of the rounded corner to 40.
+        .radius(40)
+        .stroke(Color.Black)
+        // Set the color gradient. It takes effect only for a 100 x 100 rectangular area. The boundary of the gradient does not contain rounded corners.
+        .linearGradient({
+          direction: GradientDirection.Right,
+          colors: [[0xff0000, 0.0], [0x0000ff, 0.3], [0xffff00, 1.0]]
+        })
+    }
+  }
+}
+```
+
+![en-us_image_0000001174264386](figures/en-us_image_0000001174264387.jpeg)

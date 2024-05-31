@@ -1,6 +1,6 @@
 # BuilderNode
 
-The **BuilderNode** module provides APIs for creating a BuilderNode – a custom node that can be used to mount native components. A BuilderNode can be used only as a leaf node. Whenever possible, avoid operating child nodes and their attributes under the root node through the root node's render node.
+The **BuilderNode** module provides APIs for a BuilderNode – a custom node that can be used to mount native components. A BuilderNode can be used only as a leaf node. Whenever possible, avoid operating child nodes and their attributes under the root node through the root node's render node.
 
 > **NOTE**
 >
@@ -25,6 +25,14 @@ Enumerates the node rendering types.
 | RENDER_TYPE_DISPLAY | 0   | The node is displayed on the screen.|
 | RENDER_TYPE_TEXTURE | 1   | The node is exported as a texture.  |
 
+> **NOTE**
+>
+> Currently, the **RENDER_TYPE_TEXTURE** type takes effect only for the [XComponentNode](./js-apis-arkui-xcomponentNode.md) and the [BuilderNode](#buildernode-1) holding a component tree whose root node is a custom component.
+>
+> In the case of [BuilderNode](#buildernode-1), the following custom components that function as the root node support texture export: Badge, Blank, Button, CanvasGradient, CanvasPattern, CanvasRenderingContext2D, Canvas, CheckboxGroup, Checkbox, Circle, ColumnSplit, Column, ContainerSpan, Counter, DataPanel, Divider, Ellipse, Flex, Gauge, Hyperlink, ImageBitmap, ImageData, Image, Line, LoadingProgress, Marquee, Matrix2D, OffscreenCanvasRenderingContext2D, OffscreenCanvas, Path2D, Path, PatternLock, Polygon, Polyline, Progress, QRCode, Radio, Rating, Rect, RelativeContainer, RowSplit, Row, Shape, Slider, Span, Stack, TextArea, TextClock, TextInput, TextTimer, Text, Toggle, Video (not supporting the native full-screen mode), Web, XComponent
+>
+> For details, see [Rendering and Drawing XComponent+AVPlayer and Button Components at the Same Layer](../../web/web-same-layer.md).
+
 ## RenderOptions
 
 Provides optional parameters for creating a BuilderNode.
@@ -35,7 +43,7 @@ Provides optional parameters for creating a BuilderNode.
 | ------------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
 | selfIdealSize | [Size](js-apis-arkui-graphics.md#size) | No  | Ideal size of the node.                                            |
 | type          | [NodeRenderType](#noderendertype)      | No  | Rendering type of the node.                                            |
-| surfaceId     | string                                 | No  | Surface ID of the texture receiver. Generally, the texture receiver is an [OH_NativeImage](../native-apis/_o_h___native_image.md#oh_nativeimage) instance.|
+| surfaceId     | string                                 | No  | Surface ID of the texture receiver. Generally, the texture receiver is an [OH_NativeImage](../apis-arkgraphics2d/_o_h___native_image.md#oh_nativeimage) instance.|
 
 ## BuilderNode
 
@@ -229,7 +237,7 @@ struct Index {
 
 update(arg: Object): void
 
-Updates this BuilderNode based on the provided parameter, which is of the same type as the input parameter passed to the [build](###build) API. To call this API on a custom component, the variable used in the component must be defined as the @Prop type.
+Updates this BuilderNode based on the provided parameter, which is of the same type as the input parameter passed to the [build](#build) API. To call this API on a custom component, the variable used in the component must be defined as the @Prop type.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -237,7 +245,7 @@ Updates this BuilderNode based on the provided parameter, which is of the same t
 
 | Name| Type  | Mandatory| Description                                                                    |
 | ------ | ------ | ---- | ------------------------------------------------------------------------ |
-| arg    | Object | Yes  | Parameter used to update the BuilderNode. It is of the same type as the parameter passed to the [build](###build) API.|
+| arg    | Object | Yes  | Parameter used to update the BuilderNode. It is of the same type as the parameter passed to the [build](#build) API.|
 
 **Example**
 ```ts
@@ -276,7 +284,7 @@ function buildText(params: Params) {
       .fontSize(50)
       .fontWeight(FontWeight.Bold)
       .margin({ bottom: 36 })
-    TextBuilder({message: params.text}) //Custom component
+    TextBuilder({message: params.text}) // Custom component
   }
 }
 
@@ -344,7 +352,7 @@ Dispatches an event to the FrameNode created by this BuilderNode.
 
 | Name| Type                                                                     | Mandatory| Description      |
 | ------ | ------------------------------------------------------------------------- | ---- | ---------- |
-| event  | [TouchEvent](../arkui-ts/ts-universal-events-touch.md#touchevent) | Yes  | Touch event.|
+| event  | [TouchEvent](arkui-ts/ts-universal-events-touch.md#touchevent) | Yes  | Touch event.|
 
 **Return value**
 

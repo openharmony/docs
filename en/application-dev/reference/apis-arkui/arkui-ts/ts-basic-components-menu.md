@@ -66,28 +66,26 @@ struct Index {
       MenuItem({
         startIcon: this.iconStr,
         content: "Menu option",
-        endIcon: $r("app.media.arrow_right_filled"),
+        endIcon: this.iconStr2,
         builder: ():void=>this.SubMenu()
       })
       MenuItemGroup({ header: 'Subtitle' }) {
-        MenuItem ({ content: "Menu option" })
-          .selectIcon(true)
-          .selected(this.select)
-          .onChange((selected) => {
-            console.info("menuItem select" + selected);
-            this.iconStr2 = $r("app.media.icon");
-          })
         MenuItem({
-          startIcon: $r("app.media.view_list_filled"),
+          startIcon: this.iconStr,
           content: "Menu option",
-          endIcon: $r("app.media.arrow_right_filled"),
+          endIcon: this.iconStr2,
+          builder: ():void=>this.SubMenu()
+        })
+        MenuItem({
+          startIcon: $r("app.media.app_icon"),
+          content: "Menu option",
+          endIcon: this.iconStr2,
           builder: ():void=>this.SubMenu()
         })
       }
       MenuItem({
-        startIcon: this.iconStr2,
+        startIcon: this.iconStr,
         content: "Menu option",
-        endIcon: $r("app.media.arrow_right_filled")
       })
     }
   }

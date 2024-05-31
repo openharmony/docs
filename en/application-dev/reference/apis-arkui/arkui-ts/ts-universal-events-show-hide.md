@@ -8,21 +8,33 @@ The show/hide event is triggered when a component is mounted or unmounted from t
 
 ## onAppear
 
-onAppear(event: () => void)
+onAppear(event: () => void): T
 
 Triggered when the component is displayed.
 
-**Widget capability**: Since API version 9, this feature is supported in ArkTS widgets.
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| T | Current component.|
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 ## onDisAppear
 
-onDisAppear(event: () => void)
+onDisAppear(event: () => void): T
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| T | Current component.|
 
 Triggered when the component is hidden.
 
-**Widget capability**: Since API version 9, this feature is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 

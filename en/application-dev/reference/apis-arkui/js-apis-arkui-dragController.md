@@ -47,9 +47,13 @@ import UDC from '@ohos.data.unifiedDataChannel';
 @Entry
 @Component
 struct DragControllerPage {
+  @State text: string = ''
+
   @Builder DraggingBuilder() {
     Column() {
       Text("DraggingBuilder")
+        .fontColor(Color.White)
+        .fontSize(12)
     }
     .width(100)
     .height(100)
@@ -59,10 +63,13 @@ struct DragControllerPage {
   build() {
     Column() {
       Button('touch to execute drag')
+        .margin(10)
         .onTouch((event?:TouchEvent) => {
           if(event){
             if (event.type == TouchType.Down) {
-              let text = new UDC.Text()
+              let text = new UDC.PlainText()
+              text.textContent = 'drag text'
+              text.abstract = 'abstract'
               let unifiedData = new UDC.UnifiedData(text)
 
               let dragInfo: dragController.DragInfo = {
@@ -78,20 +85,34 @@ struct DragControllerPage {
               dragController.executeDrag(()=>{this.DraggingBuilder()}, dragInfo, (err, eve) => {
                 if(eve.event){
                   if (eve.event.getResult() == DragResult.DRAG_SUCCESSFUL) {
-                  // ...
+                    // ...
                   } else if (eve.event.getResult() == DragResult.DRAG_FAILED) {
-                  // ...
+                    // ...
                   }
                 }
               })
             }
           }
         })
+      Text(this.text)
+        .height(100)
+        .width(150)
+        .margin({top:20})
+        .border({color:Color.Black,width:1})
+        .onDrop((dragEvent?:DragEvent)=>{
+          if(dragEvent){
+            let records: Array<UDC.UnifiedRecord> = dragEvent.getData().getRecords();
+            let plainText: UDC.PlainText = records[0] as UDC.PlainText;
+            this.text = plainText.textContent;
+          }
+        })
     }
+    .width('100%')
+    .height('100%')
   }
 }
 ```
-
+  ![en-us_executeDrag1](figures/executeDrag1.gif)
 ## dragController.executeDrag
 
 executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: DragInfo): Promise&lt;{event: DragEvent, extraParams: string}&gt;
@@ -131,11 +152,13 @@ import UDC from '@ohos.data.unifiedDataChannel';
 @Entry
 @Component
 struct DragControllerPage {
-  @State pixmap: image.PixelMap|null = null
+  @State pixmap: image.PixelMap|undefined = undefined
+  @State text: string = ''
 
   @Builder DraggingBuilder() {
     Column() {
       Text("DraggingBuilder")
+        .fontColor(Color.White)
     }
     .width(100)
     .height(100)
@@ -145,19 +168,33 @@ struct DragControllerPage {
   @Builder PixmapBuilder() {
     Column() {
       Text("PixmapBuilder")
+        .fontColor(Color.White)
+        .fontSize(15)
     }
     .width(100)
     .height(100)
     .backgroundColor(Color.Blue)
   }
 
+  aboutToAppear() {
+    let pb: CustomBuilder = (): void => {
+      this.PixmapBuilder()
+    }
+    componentSnapshot.createFromBuilder(pb).then((pix: image.PixelMap) => {
+      this.pixmap = pix;
+    })
+  }
+
   build() {
     Column() {
       Button('touch to execute drag')
+        .margin(10)
         .onTouch((event?:TouchEvent) => {
           if(event){
             if (event.type == TouchType.Down) {
-              let text = new UDC.Text()
+              let text = new UDC.PlainText()
+              text.textContent = 'drag text'
+              text.abstract = 'abstract'
               let unifiedData = new UDC.UnifiedData(text)
 
               let dragInfo: dragController.DragInfo = {
@@ -165,32 +202,40 @@ struct DragControllerPage {
                 data: unifiedData,
                 extraParams: ''
               }
-              let pb:CustomBuilder = ():void=>{this.PixmapBuilder()}
-              componentSnapshot.createFromBuilder(pb).then((pix: image.PixelMap) => {
-                this.pixmap = pix;
-                let dragItemInfo: DragItemInfo = {
-                  pixelMap: this.pixmap,
-                  builder: ()=>{this.DraggingBuilder()},
-                  extraInfo: "DragItemInfoTest"
-                }
+              let dragItemInfo: DragItemInfo = {
+                pixelMap: this.pixmap,
+                builder: ()=>{this.DraggingBuilder()},
+                extraInfo: "DragItemInfoTest"
+              }
 
-                class tmp{
-                  event:DragResult|undefined = undefined
-                  extraParams:string = ''
-                }
-                let eve:tmp = new tmp()
-                dragController.executeDrag(dragItemInfo, dragInfo)
-                  .then((eve) => {
-                    if (eve.event.getResult() == DragResult.DRAG_SUCCESSFUL) {
-                      // ...
-                    } else if (eve.event.getResult() == DragResult.DRAG_FAILED) {
-                      // ...
-                    }
-                  })
-                  .catch((err:Error) => {
-                  })
-              })
+              class tmp{
+                event:DragResult|undefined = undefined
+                extraParams:string = ''
+              }
+              let eve:tmp = new tmp()
+              dragController.executeDrag(dragItemInfo, dragInfo)
+                .then((eve) => {
+                  if (eve.event.getResult() == DragResult.DRAG_SUCCESSFUL) {
+                    // ...
+                  } else if (eve.event.getResult() == DragResult.DRAG_FAILED) {
+                    // ...
+                  }
+                })
+                .catch((err:Error) => {
+                })
             }
+          }
+        })
+      Text(this.text)
+        .height(100)
+        .width(150)
+        .margin({top:20})
+        .border({color:Color.Black,width:1})
+        .onDrop((dragEvent?:DragEvent)=>{
+          if(dragEvent){
+            let records: Array<UDC.UnifiedRecord> = dragEvent.getData().getRecords();
+            let plainText: UDC.PlainText = records[0] as UDC.PlainText;
+            this.text = plainText.textContent;
           }
         })
     }
@@ -199,7 +244,7 @@ struct DragControllerPage {
   }
 }
 ```
-
+  ![en-us_executeDrag2](figures/executeDrag2.gif)
 ## DragInfo
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
@@ -213,156 +258,6 @@ Defines the attributes required for initiating a drag action and information car
 | extraParams | string                                                 | No  | Additional information about the drag action. Not supported currently.|
 | touchPoint<sup>11+</sup>    | [TouchPoint](arkui-ts/ts-types.md#touchpoint11)  | No  | Coordinates of the touch point. If this parameter is not set, the touch point is centered.     |
 | previewOptions<sup>11+</sup>| [DragPreviewOptions](arkui-ts/ts-universal-attributes-drag-drop.md#dragpreviewoptions11)                                | No  | Custom configuration of the drag preview.|
-
-## DragStatus<sup>11+</sup>
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-Describes the dragging start and end states.
-
-| Name         | Value                                                  | Description                                    |
-| -----------   | ------------------------------------------------------| ---------------------------------------- |
-| STARTED       | 0                                                  | Dragging is started.        |
-| ENDED        | 1                                                  | Dragging ends.              |
-
-## DragAndDropInfo<sup>11+</sup>
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-Provides the data reported when the state changes during dragging.
-
-| Name         | Type                                                  | Mandatory| Description                                    |
-| -----------   | ------------------------------------------------------ | ---- | ---------------------------------------- |
-| status       | [DragStatus](#dragstatus11)                                                 | Yes  | Current dragging state (started or ended).        |
-| event        | [DragEvent](arkui-ts/ts-universal-events-drag-drop.md#dragevent) | No  | Drag event corresponding to the current state.              |
-| extraParams| string                                                 | No  | Additional information about the drag action. Not supported currently.|
-
-## DragAction<sup>11+</sup>
-
-Implements a **DragAction** object to subscribe to drag state changes and start the drag service.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-### startDrag<sup>11+</sup>
-
-startDrag(): Promise&lt;void&gt;
-
-Starts the drag service. This API uses a promise to return the result.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-**Error codes**
-
-| ID| Error Message     |
-| -------- | ------------- |
-| 100001   | if some internal handling failed. |
-
-**Example**
-```ts
-import dragController from "@ohos.arkui.dragController"
-import UDC from '@ohos.data.unifiedDataChannel';
-let customBuilders:Array<CustomBuilder | DragItemInfo> = new Array<CustomBuilder | DragItemInfo>();
-let text = new UDC.Text()
-let unifiedData = new UDC.UnifiedData(text)
-let dragInfo: dragController.DragInfo = {
-  pointerId: 0,
-  data: unifiedData,
-  extraParams: ''
-}
-try{
-  let dragAction: dragController.DragAction | null = dragController.createDragAction(customBuilders, dragInfo);
-  if(!dragAction){
-    console.log("listener dragAction is null");
-    return
-  }
-  dragAction.startDrag().then(()=>{}).catch((err:Error)=>{
-    console.log("start drag Error:" + err.message);
-  })
-}catch(err) {
-  console.log("create dragAction Error:" + err.message);
-}
-
-```
-
-### on('statusChange')<sup>11+</sup>
-
-on(type: 'statusChange', callback: Callback&lt;[DragAndDropInfo](#draganddropinfo11)&gt;): void
-
-Subscribes to drag state changes.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-**Parameters**
-| Name    | Type | Mandatory   | Description            |
-| ------ | ------ | ------- | ---------------- |
-|  type  | string | Yes     | Event type. The value is fixed at **'statusChange'**, which indicates the drag state change event.|
-|  callback  | Callback&lt;[DragAndDropInfo](#draganddropinfo11)&gt; | Yes     | Callback used to return a [DragAndDropInfo](#draganddropinfo11) instance.|
-
-**Example**
-```ts
-import dragController from "@ohos.arkui.dragController"
-import UDC from '@ohos.data.unifiedDataChannel';
-let customBuilders:Array<CustomBuilder | DragItemInfo> = new Array<CustomBuilder | DragItemInfo>();
-let text = new UDC.Text()
-let unifiedData = new UDC.UnifiedData(text)
-let dragInfo: dragController.DragInfo = {
-  pointerId: 0,
-  data: unifiedData,
-  extraParams: ''
-}
-try{
-  let dragAction: dragController.DragAction | null = dragController.createDragAction(customBuilders, dragInfo);
-  if(!dragAction){
-    console.log("listener dragAction is null");
-    return
-  }
-  dragAction.on('statusChange', (dragAndDropInfo: dragController.DragAndDropInfo)=>{
-    console.info("Register to listen on drag status", JSON.stringify(dragAndDropInfo));
-  })
-}catch(err) {
-  console.log("create dragAction Error:" + err.message);
-}
-```
-
-### off('statusChange')<sup>11+</sup>
-
- off(type: 'statusChange', callback?: Callback&lt;[DragAndDropInfo](#draganddropinfo11)&gt;): void
-
-Unsubscribes from drag state changes.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-**Parameters**
-| Name    | Type | Mandatory   | Description            |
-| ------ | ------ | ------- | ---------------- |
-|  type  | string | Yes     | Event type. The value is fixed at **'statusChange'**, which indicates the drag state change event.|
-|  callback  | Callback&lt;[DragAndDropInfo](#draganddropinfo11)&gt; | No     | Callback used to return a [DragAndDropInfo](#draganddropinfo11) instance. If this parameter is not set, this API unsubscribes from all callbacks corresponding to **type**.|
-
-**Example**
-```ts
-import dragController from "@ohos.arkui.dragController"
-import UDC from '@ohos.data.unifiedDataChannel';
-let customBuilders:Array<CustomBuilder | DragItemInfo> = new Array<CustomBuilder | DragItemInfo>();
-let text = new UDC.Text()
-let unifiedData = new UDC.UnifiedData(text)
-let dragInfo: dragController.DragInfo = {
-  pointerId: 0,
-  data: unifiedData,
-  extraParams: ''
-}
-try{
-  let dragAction: dragController.DragAction | null = dragController.createDragAction(customBuilders, dragInfo);
-  if(!dragAction){
-    console.log("listener dragAction is null");
-    return
-  }
-  dragAction.off('statusChange', (dragAndDropInfo: dragController.DragAndDropInfo)=>{
-    console.info("Cancel listening on drag status", JSON.stringify(dragAndDropInfo));
-  })
-}catch(err) {
-  console.log("create dragAction Error:" + err.message);
-}
-```
 
 ## dragController.createDragAction<sup>11+</sup>
 
@@ -391,7 +286,7 @@ Creates a **DragAction** object, by explicitly specifying one or more drag previ
 
 | ID| Error Message     |
 | -------- | ------------- |
-| 401      | Invalid input parameter |
+| 401      | If the parameters checking failed |
 | 100001   | If some internal handling failed |
 
 **Example**
@@ -406,11 +301,14 @@ import UDC from '@ohos.data.unifiedDataChannel';
 @Component
 struct DragControllerPage {
   @State pixmap: image.PixelMap | null = null
+  @State text: string = ''
   private dragAction: dragController.DragAction | null = null;
   customBuilders:Array<CustomBuilder | DragItemInfo> = new Array<CustomBuilder | DragItemInfo>();
   @Builder DraggingBuilder() {
     Column() {
       Text("DraggingBuilder")
+        .fontColor(Color.White)
+        .fontSize(12)
     }
     .width(100)
     .height(100)
@@ -421,11 +319,23 @@ struct DragControllerPage {
     Column() {
 
       Column() {
-        Text ("Test")
+        Text(this.text)
+          .width('100%')
+          .height('100%')
+          .fontColor(Color.White)
+          .fontSize(18)
+          .onDrop((dragEvent?:DragEvent)=>{
+            if(dragEvent){
+              let records: Array<UDC.UnifiedRecord> = dragEvent.getData().getRecords();
+              let plainText: UDC.PlainText = records[0] as UDC.PlainText;
+              this.text = plainText.textContent;
+            }
+          })
       }
       .width(100)
       .height(100)
       .backgroundColor(Color.Red)
+      .margin(10)
 
       Button('Drag Multiple Objects').onTouch((event?:TouchEvent) => {
         if(event){
@@ -435,7 +345,8 @@ struct DragControllerPage {
             this.customBuilders.push(()=>{this.DraggingBuilder()});
             this.customBuilders.push(()=>{this.DraggingBuilder()});
             this.customBuilders.push(()=>{this.DraggingBuilder()});
-            let text = new UDC.Text()
+            let text = new UDC.PlainText()
+            text.textContent = 'drag text'
             let unifiedData = new UDC.UnifiedData(text)
             let dragInfo: dragController.DragInfo = {
               pointerId: 0,
@@ -444,24 +355,24 @@ struct DragControllerPage {
             }
             try{
               this.dragAction = dragController.createDragAction(this.customBuilders, dragInfo)
-            if(!this.dragAction){
-              console.log("listener dragAction is null");
-              return
-            }
-            this.dragAction.on('statusChange', (dragAndDropInfo: dragController.DragAndDropInfo)=>{
-              if (dragAndDropInfo.status == dragController.DragStatus.STARTED) {
-                console.log("drag has start");
-              } else if (dragAndDropInfo.status == dragController.DragStatus.ENDED){
-                console.log("drag has end");
-                if (!this.dragAction) {
-                  return
-                }
-                this.dragAction.off('statusChange')
+              if(!this.dragAction){
+                console.log("listener dragAction is null");
+                return
               }
-            })
-            this.dragAction.startDrag().then(()=>{}).catch((err:Error)=>{
-              console.log("start drag Error:" + err.message);
-            })
+              this.dragAction.on('statusChange', (dragAndDropInfo: dragController.DragAndDropInfo)=>{
+                if (dragAndDropInfo.status == dragController.DragStatus.STARTED) {
+                  console.log("drag has start");
+                } else if (dragAndDropInfo.status == dragController.DragStatus.ENDED){
+                  console.log("drag has end");
+                  if (!this.dragAction) {
+                    return
+                  }
+                  this.dragAction.off('statusChange')
+                }
+              })
+              this.dragAction.startDrag().then(()=>{}).catch((err:Error)=>{
+                console.log("start drag Error:" + err.message);
+              })
             } catch(err) {
               console.log("create dragAction Error:" + err.message);
             }
@@ -472,6 +383,192 @@ struct DragControllerPage {
   }
 }
 ```
+  ![en-us_executeDrag3](figures/executeDrag3.gif)
+## DragAction<sup>11+</sup>
+
+Implements a **DragAction** object to subscribe to drag state changes and start the drag service.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+### startDrag<sup>11+</sup>
+
+startDrag(): Promise&lt;void&gt;
+
+Starts the drag service. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Error codes**
+
+| ID| Error Message     |
+| -------- | ------------- |
+| 100001   | if some internal handling failed. |
+
+**Example**
+```ts
+import dragController from "@ohos.arkui.dragController"
+import UDC from '@ohos.data.unifiedDataChannel';
+
+@Entry
+@Component
+struct DragControllerPage {
+  build() {
+    Column() {
+      Button('touch to execute drag')
+        .onTouch((event?:TouchEvent) => {
+          let customBuilders:Array<CustomBuilder | DragItemInfo> = new Array<CustomBuilder | DragItemInfo>();
+          let text = new UDC.Text()
+          let unifiedData = new UDC.UnifiedData(text)
+          let dragInfo: dragController.DragInfo = {
+            pointerId: 0,
+            data: unifiedData,
+            extraParams: ''
+          }
+          try {
+            let dragAction: dragController.DragAction | null = dragController.createDragAction(customBuilders, dragInfo);
+            if(!dragAction){
+              console.log("listener dragAction is null");
+              return
+            }
+            dragAction.startDrag().then(()=>{}).catch((err:Error)=>{
+              console.log("start drag Error:" + err.message);
+            })
+          } catch (err) {
+            console.log("create dragAction Error:" + err.message);
+          }
+        })
+    }
+  }
+}
+
+```
+### on('statusChange')<sup>11+</sup>
+
+on(type: 'statusChange', callback: Callback&lt;[DragAndDropInfo](#draganddropinfo11)&gt;): void
+
+Subscribes to drag state changes.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+| Name    | Type | Mandatory   | Description            |
+| ------ | ------ | ------- | ---------------- |
+|  type  | string | Yes     | Event type. The value is fixed at **'statusChange'**, which indicates the drag state change event.|
+|  callback  | Callback&lt;[DragAndDropInfo](#draganddropinfo11)&gt; | Yes     | Callback used to return a [DragAndDropInfo](#draganddropinfo11) instance.|
+
+**Example**
+```ts
+import dragController from "@ohos.arkui.dragController"
+import UDC from '@ohos.data.unifiedDataChannel';
+
+@Entry
+@Component
+struct DragControllerPage {
+  build() {
+    Column() {
+      Button('touch to execute drag')
+        .onTouch((event?:TouchEvent) => {
+          let customBuilders:Array<CustomBuilder | DragItemInfo> = new Array<CustomBuilder | DragItemInfo>();
+          let text = new UDC.Text()
+          let unifiedData = new UDC.UnifiedData(text)
+          let dragInfo: dragController.DragInfo = {
+            pointerId: 0,
+            data: unifiedData,
+            extraParams: ''
+          }
+          try{
+            let dragAction: dragController.DragAction | null = dragController.createDragAction(customBuilders, dragInfo);
+            if(!dragAction){
+              console.log("listener dragAction is null");
+              return
+            }
+            dragAction.on('statusChange', (dragAndDropInfo: dragController.DragAndDropInfo)=>{
+              console.info("Register to listen on drag status", JSON.stringify(dragAndDropInfo));
+            })
+          }catch(err) {
+            console.log("create dragAction Error:" + err.message);
+          }
+        })
+    }
+  }
+}
+```
+
+### off('statusChange')<sup>11+</sup>
+
+ off(type: 'statusChange', callback?: Callback&lt;[DragAndDropInfo](#draganddropinfo11)&gt;): void
+
+Unsubscribes from drag state changes.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+| Name    | Type | Mandatory   | Description            |
+| ------ | ------ | ------- | ---------------- |
+|  type  | string | Yes     | Event type. The value is fixed at **'statusChange'**, which indicates the drag state change event.|
+|  callback  | Callback&lt;[DragAndDropInfo](#draganddropinfo11)&gt; | No     | Callback used to return a [DragAndDropInfo](#draganddropinfo11) instance. If this parameter is not set, this API unsubscribes from all callbacks corresponding to **type**.|
+
+**Example**
+```ts
+import dragController from "@ohos.arkui.dragController"
+import UDC from '@ohos.data.unifiedDataChannel';
+
+@Entry
+@Component
+struct DragControllerPage {
+  build() {
+    Column() {
+      Button('touch to execute drag')
+        .onTouch((event?:TouchEvent) => {
+          let customBuilders:Array<CustomBuilder | DragItemInfo> = new Array<CustomBuilder | DragItemInfo>();
+          let text = new UDC.Text()
+          let unifiedData = new UDC.UnifiedData(text)
+          let dragInfo: dragController.DragInfo = {
+            pointerId: 0,
+            data: unifiedData,
+            extraParams: ''
+          }
+          try{
+            let dragAction: dragController.DragAction | null = dragController.createDragAction(customBuilders, dragInfo);
+            if(!dragAction){
+              console.log("listener dragAction is null");
+              return
+            }
+            dragAction.off('statusChange', (dragAndDropInfo: dragController.DragAndDropInfo)=>{
+              console.info("Cancel listening on drag status", JSON.stringify(dragAndDropInfo));
+            })
+          }catch(err) {
+            console.log("create dragAction Error:" + err.message);
+          }
+        })
+    }
+  }
+}
+```
+
+## DragAndDropInfo<sup>11+</sup>
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+Provides the data reported when the state changes during dragging.
+
+| Name         | Type                                                  | Mandatory| Description                                    |
+| -----------   | ------------------------------------------------------ | ---- | ---------------------------------------- |
+| status       | [DragStatus](#dragstatus11)                                                 | Yes  | Current dragging state (started or ended).        |
+| event        | [DragEvent](arkui-ts/ts-universal-events-drag-drop.md#dragevent) | No  | Drag event corresponding to the current state.              |
+| extraParams| string                                                 | No  | Additional information about the drag action. Not supported currently.|
+
+## DragStatus<sup>11+</sup>
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+Describes the dragging start and end states.
+
+| Name         | Value                                                  | Description                                    |
+| -----------   | ------------------------------------------------------| ---------------------------------------- |
+| STARTED       | 0                                                  | Dragging is started.        |
+| ENDED        | 1                                                  | Dragging ends.              |
+
 ## AnimationOptions<sup>11+</sup>
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
@@ -511,7 +608,7 @@ Implements a **DragPreview** object. This API does not work in the **OnDrop** an
 
 setForegroundColor(color: ResourceColor): void
 
-Sets the mask color of the drag preview. This API does not work in the **OnDrop** and **OnDragEnd** callbacks.
+Sets the foreground color of the drag preview. This API does not work in the **OnDrop** and **OnDragEnd** callbacks. It can only be used on the object obtained through the [getDragPreview()](js-apis-arkui-UIContext.md#getdragpreview11) API.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -519,7 +616,7 @@ Sets the mask color of the drag preview. This API does not work in the **OnDrop*
 
 | Name  | Type                            | Mandatory| Description                    |
 | -------- | -------------------------------- | ---- | ------------------------ |
-| color    | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | Yes  |      Mask color of the drag preview.                   |
+| color    | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | Yes  |      Foreground color of the drag preview.                   |
 
 **Example**
 
@@ -529,7 +626,7 @@ For details, see [animate](#animate11).
 
 animate(options: AnimationOptions, handler: () => void): void
 
-Applies an animation to the background mask color changes. This API does not work in the **OnDrop** and **OnDragEnd** callbacks.
+Applies a foreground color animation to the drag preview. This API does not work in the **OnDrop** and **OnDragEnd** callbacks. It can only be used on the object obtained through the [getDragPreview()](js-apis-arkui-UIContext.md#getdragpreview11) API.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -597,6 +694,7 @@ import image from '@ohos.multimedia.image';
 import curves from '@ohos.curves';
 import { BusinessError } from '@ohos.base';
 import { UIContext } from '@ohos.arkui.UIContext';
+import promptAction from '@ohos.promptAction';
 
 
 let storages = LocalStorage.getShared();
@@ -609,6 +707,8 @@ struct DragControllerPage {
   @Builder DraggingBuilder() {
     Column() {
       Text("DraggingBuilder")
+        .fontColor(Color.White)
+        .fontSize(12)
     }
     .width(100)
     .height(100)
@@ -626,27 +726,29 @@ struct DragControllerPage {
 
   build() {
     Column() {
-      Button('Drag Here').onDragEnter(() => {
-          try {
-            let uiContext: UIContext = storages.get<UIContext>('uiContext') as UIContext;
-            let previewObj: dragController.DragPreview = uiContext.getDragController().getDragPreview();
-            let foregroundColor: ResourceColor = Color.Green;
+      Button ('Drag Here')
+        .margin(10)
+        .onDragEnter(() => {
+        try {
+          let uiContext: UIContext = storages.get<UIContext>('uiContext') as UIContext;
+          let previewObj: dragController.DragPreview = uiContext.getDragController().getDragPreview();
+          let foregroundColor: ResourceColor = Color.Green;
 
-            let previewAnimation: dragController.AnimationOptions = {
-              curve: curves.cubicBezierCurve(0.2,0,0,1),
-            }
-            previewObj.animate(previewAnimation, () => {
-              previewObj.setForegroundColor(foregroundColor);
-            });
-          } catch (error) {
-            let msg = (error as BusinessError).message;
-            let code = (error as BusinessError).code;
-            hilog.error(0x0000, `show error code is ${code}, message is ${msg}`, '');
+          let previewAnimation: dragController.AnimationOptions = {
+            curve: curves.cubicBezierCurve(0.2,0,0,1),
           }
+          previewObj.animate(previewAnimation, () => {
+            previewObj.setForegroundColor(foregroundColor);
+          });
+        } catch (error) {
+          let msg = (error as BusinessError).message;
+          let code = (error as BusinessError).code;
+          hilog.error(0x0000, `show error code is ${code}, message is ${msg}`, '');
+        }
       })
-      .onDrop(() => {
-
-      })
+        .onDrop(() => {
+          promptAction.showToast({duration: 100, message: 'Drag Success', bottom: 400})
+        })
       Button ('Drag').onTouch ((event?:TouchEvent) => {
         if(event){
           if (event.type == TouchType.Down) {
@@ -657,22 +759,22 @@ struct DragControllerPage {
               data: unifiedData,
               extraParams: ''
             }
-              class tmp{
-                event:DragEvent|undefined = undefined
-                extraParams:string = ''
-              }
-              let eve:tmp = new tmp()
-              dragController.executeDrag(() => {
-                this.DraggingBuilder()
-              }, dragInfo, (err , eve) => {
-                hilog.info(0x0000, `ljx ${JSON.stringify(err)}`, '')
-                if (eve && eve.event) {
-                  if (eve.event.getResult() == DragResult.DRAG_SUCCESSFUL) {
-                    hilog.info(0x0000, 'success', '');
-                  } else if (eve.event.getResult() == DragResult.DRAG_FAILED) {
-                    hilog.info(0x0000, 'failed', '');
-                  }
+            class tmp{
+              event:DragEvent|undefined = undefined
+              extraParams:string = ''
+            }
+            let eve:tmp = new tmp()
+            dragController.executeDrag(() => {
+              this.DraggingBuilder()
+            }, dragInfo, (err , eve) => {
+              hilog.info(0x0000, `ljx ${JSON.stringify(err)}`, '')
+              if (eve && eve.event) {
+                if (eve.event.getResult() == DragResult.DRAG_SUCCESSFUL) {
+                  hilog.info(0x0000, 'success', '');
+                } else if (eve.event.getResult() == DragResult.DRAG_FAILED) {
+                  hilog.info(0x0000, 'failed', '');
                 }
+              }
             })
           }
         }
@@ -682,3 +784,5 @@ struct DragControllerPage {
     .height('100%')
   }
 }
+```
+  ![en-us_executeDrag5](figures/executeDrag5.gif)

@@ -13,11 +13,11 @@ This component can contain child components.
 
 >  **NOTE**
 >
->  Built-in components and custom components are allowed, with support for ([if/else](../../quick-start/arkts-rendering-control-ifelse.md), [ForEach](../../quick-start/arkts-rendering-control-foreach.md), and [LazyForEach](../../quick-start/arkts-rendering-control-lazyforeach.md)) rendering control.
+>  Built-in components and custom components are allowed, with support for ([if/else](../../../quick-start/arkts-rendering-control-ifelse.md), [ForEach](../../../quick-start/arkts-rendering-control-foreach.md), and [LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md)) rendering control.
 >
->  When the **\<Swiper>** component's **displayMode** attribute is set to **SwiperDisplayMode.AutoLinear** or its **displayCount** attribute is set to **'auto'**, the child component whose **visibility** attribute is set to **None** does not take up space in the viewport, but this does not affect the number of navigation dots.
+>  If a child component has its **visibility** attribute set to **None** and the **\<Swiper>** component has its **displayMode** attribute set to **SwiperDisplayMode.AUTO_LINEAR** or **displayCount** set to **'auto'**, the child component takes up space in the viewport, but is not displayed.
 >
->  If the child component has the **visibility** attribute set to **None** or **Hidden**, it takes up space in the viewport, but is not displayed.
+>  If a child component has its **visibility** attribute set to **None** or **Hidden**, it takes up space in the viewport, but is not displayed.
 >
 >  When the number of child components is less than or equal to the total number of allowed nodes (totalDisplayCount = DisplayCount + prevMargin? (1: 0 ) + nextMargin? (1: 0 )) in the content area, the **\<Swiper>** component uses the non-looping mode for layout. In this case, the child components specified by **nextMargin** and **prevMargin** take up space in the viewport, but are not displayed. The specifications of the **\<Swiper>** component are calculated based on the value of **totalDisplayCount**.
 >
@@ -41,7 +41,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 | Name                                   | Type                                    | Description                                      |
 | ------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| index                                 | number                                   | Index of the child component currently displayed in the container.<br>Default value: **0**<br>**NOTE**<br>If the value is less than 0 or greater than or equal to the number of child components, the default value **0** is used.<br>Since API version 10, this attribute supports [$$](../../quick-start/arkts-two-way-sync.md) for two-way binding of variables.|
+| index                                 | number                                   | Index of the child component currently displayed in the container.<br>Default value: **0**<br>**NOTE**<br>If the value is less than 0 or greater than or equal to the number of child components, the default value **0** is used.<br>Since API version 10, this attribute supports [$$](../../../quick-start/arkts-two-way-sync.md) for two-way binding of variables.|
 | autoPlay                              | boolean                                  | Whether to enable automatic playback for child component switching.<br>Default value: **false**<br>**NOTE**<br>If **loop** is set to **false**, the playback stops when the last page is displayed. The playback continues when the page is not the last page after a swipe gesture.|
 | interval                              | number                                   | Interval for automatic playback, in ms.<br>Default value: **3000**      |
 | indicator                             | [DotIndicator](#dotindicator10)<sup>10+</sup>  \| [DigitIndicator](#digitindicator10)<sup>10+</sup>  \| boolean | Style of the navigation point indicator.<br> \- **DotIndicator**: dot style.<br> \- **DigitIndicator**: digit style.<br> \- **boolean**: whether to enable the navigation point indicator.<br>  Default value: **true**<br>  Default type: **DotIndicator**|
@@ -49,12 +49,12 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | duration                              | number                                   | Duration of the animation for switching child components, in ms.<br>Default value: **400**           |
 | vertical                              | boolean                                  | Whether vertical swiping is used.<br>Default value: **false**                  |
 | itemSpace                             | number \| string               | Space between child components.<br>Default value: **0**<br>**NOTE**<br>This parameter cannot be set in percentage.<br>If the type is number, the default unit is vp. If the type is string, the pixel unit must be explicitly specified, for example, '10px'.|
-| displayMode                           | [SwiperDisplayMode](#swiperdisplaymode) | Mode in which elements are displayed along the main axis. This attribute takes effect only when **displayCount** is not set.<br>Default value: **SwiperDisplayMode.Stretch**|
-| cachedCount<sup>8+</sup>              | number                                   | Number of child components to be cached.<br>Default value: **1**|
+| displayMode                           | [SwiperDisplayMode](#swiperdisplaymode) | Mode in which elements are displayed along the main axis. This attribute takes effect only when **displayCount** is not set.<br>Default value: **SwiperDisplayMode.STRETCH**|
+| cachedCount<sup>8+</sup>              | number                                   | Number of child components to be cached.<br>Default value: **1**<br>**NOTE**<br>If **swipeByGroup** in **displayCount** is set to **true**, child components are cached by group. For example, if **cachedCount** is set to **1** and **swipeByGroup** is set to **true**, the child components in the previous and next groups are cached.|
 | disableSwipe<sup>8+</sup>             | boolean                                  | Whether to disable the swipe feature.<br>Default value: **false**               |
-| curve<sup>8+</sup>                    | [Curve](ts-appendix-enums.md#curve)  \| string   \| [ICurve](../apis/js-apis-curve.md#icurve)<sup>10+</sup>| Animation curve. The ease-in/ease-out curve is used by default. For details about common curves, see [Curve](ts-appendix-enums.md#curve). You can also create custom curves (interpolation curve objects) by using the API provided by the [interpolation calculation](../apis/js-apis-curve.md) module.<br>Default value: **Curve.Linear**|
+| curve<sup>8+</sup>                    | [Curve](ts-appendix-enums.md#curve)  \| string   \| [ICurve](../js-apis-curve.md#icurve)<sup>10+</sup>| Animation curve. The ease-in/ease-out curve is used by default. For details about common curves, see [Curve](ts-appendix-enums.md#curve). You can also create custom curves (interpolation curve objects) by using the API provided by the [interpolation calculation](../js-apis-curve.md) module.<br>Default value: **Curve.Linear**|
 | indicatorStyle<sup>(deprecated)</sup> | {<br>left?: [Length](ts-types.md#length),<br>top?: [Length](ts-types.md#length),<br>right?: [Length](ts-types.md#length),<br>bottom?: [Length](ts-types.md#length),<br>size?: [Length](ts-types.md#length),<br>mask?: boolean,<br>color?: [ResourceColor](ts-types.md#resourcecolor),<br>selectedColor?: [ResourceColor](ts-types.md#resourcecolor)<br>} | Style of the navigation point indicator.<br>\- **left**: distance between the navigation point indicator and the left edge of the **\<Swiper>** component.<br>\- **top**: distance between the navigation point indicator and the top edge of the **\<Swiper>** component.<br>\- **right**: distance between the navigation point indicator and the right edge of the **\<Swiper>** component.<br>\- **bottom**: distance between the navigation point indicator and the bottom edge of the **\<Swiper>** component.<br>\- **size**: diameter of the navigation point indicator. The value cannot be in percentage. Default value: **6vp**<br>\- **mask**: whether to enable the mask for the navigation point indicator.<br>\- **color**: color of the navigation point indicator.<br>\- **selectedColor**: color of the selected navigation dot.<br>This API is supported since API version 8 and is deprecated since API version 10. You are advised to use [indicator](#indicator10) instead.|
-| displayCount<sup>8+</sup>   | number \| string \| <br>[SwiperAutoFill](#swiperautofill10)<sup>10+</sup> | Number of elements to display per page.<br>Default value: **1**<br>**NOTE**<br>If the value is of the string type, it can only be **'auto'**, whose display effect is the same as that of **SwiperDisplayMode.AutoLinear**.<br>If the value is set to a number less than or equal to 0, the default value **1** is used.<br>If the value is of the number type, child components stretch (shrink) on the main axis after the swiper width [deducting the result of itemSpace x (displayCount - 1)] is evenly distributed among them on the main axis.<br> If the value is of the SwiperAutoFill type, the system automatically calculates and changes the number of elements to display per page based on the **\<Swiper>** component width and the **minSize** settings for the child component. If **minSize** is left empty or set to a value less than or equal to 0, the **\<Swiper>** component displays one column.|
+| displayCount<sup>8+</sup>   | value: number \| string \| <br>[SwiperAutoFill](#swiperautofill10)<sup>10+</sup>,<br/> swipeByGroup?: boolean<sup>11+</sup> | Number of elements to display per page.<br>Default value: **1**<br>**NOTE**<br>1. If the value is of the string type, it can only be **'auto'**, which is equivalent to **SwiperDisplayMode.AUTO_LINEAR**.<br>2. If the value is set to a number less than or equal to 0, the default value **1** is used.<br>3. If the value is of the number type, child components stretch (shrink) on the main axis after the swiper width [deducting the result of itemSpace x (displayCount - 1)] is evenly distributed among them on the main axis.<br>4. If the value is of the SwiperAutoFill type, the system automatically works out the value based on the width and **minSize** settings of the **\<Swiper>** component. If **minSize** is left empty or set to a value less than or equal to 0, the **\<Swiper>** component displays one column.<br>5. With page turning by group, placeholders are used if the number of child elements in the last group is less than the value of **displayCount**. Such placeholders are used to reserve space in the layout and does not display any content. The background style of the **\<Swiper>** is applied to where the placeholders are displayed.<br>6. With page turning by group, the drag distance threshold for page turning is half of the width of the **\<Swiper>** component. (With page turning by child element, the threshold is half of the width of the child element.)|
 | effectMode<sup>8+</sup>               | [EdgeEffect](ts-appendix-enums.md#edgeeffect) | Effect when the component is at one of the edges. This parameter is effective only when **loop** is set to **false**. For details about the supported effects, see the **EdgeEffect** enums.<br>Default value: **EdgeEffect.Spring**<br>**NOTE**<br>The spring effect does not take effect when the controller API is called.|
 | displayArrow<sup>10+</sup>            | value:[ArrowStyle](#arrowstyle10) \| boolean,<br>isHoverShow?: boolean | Arrow style of the navigation point indicator.<br>- **value**: arrow and background to set. In abnormal scenarios, the default values in the **ArrowStyle** object are used.<br>\- **isHoverShow**: whether to show the arrow only when the mouse pointer hovers over the navigation point indicator.<br>Default value: **false**<br>**NOTE**<br>When **isHoverShow** is set to **false**, the arrow is always displayed and can be clicked to turn pages.<br>When **isHoverShow** is set to **true**, the arrow is displayed only when the mouse pointer hovers over the navigation point indicator, and it can be clicked to turn pages.|
 | nextMargin<sup>10+</sup>    | <br>[Length](ts-types.md#length)<br>| Next margin, used to reveal a small part of the next item.<br>Default value: **0**<br>**NOTE**<br>This attribute is available only when **SwiperDisplayMode** is set to **STRETCH**.<br>When the main axis runs horizontally and either the next margin or previous margin is greater than the calculated width of the child component, neither the next margin nor previous margin is displayed.<br>When the main axis runs vertically and either the next margin or previous margin is greater than the calculated height of the child component, neither the next margin nor previous margin is displayed.|
@@ -381,3 +381,86 @@ struct SwiperExample {
 }
 ```
 ![swiper](figures/swiper-digit.gif)
+
+### Example 3
+```ts
+// xxx.ets
+class MyDataSource implements IDataSource {
+  private list: number[] = []
+
+  constructor(list: number[]) {
+    this.list = list
+  }
+
+  totalCount(): number {
+    return this.list.length
+  }
+
+  getData(index: number): number {
+    return this.list[index]
+  }
+
+  registerDataChangeListener(listener: DataChangeListener): void {
+  }
+
+  unregisterDataChangeListener() {
+  }
+}
+
+@Entry
+@Component
+struct SwiperExample {
+  private swiperController: SwiperController = new SwiperController()
+  private data: MyDataSource = new MyDataSource([])
+
+  aboutToAppear(): void {
+    let list: number[] = []
+    for (let i = 1; i <= 10; i++) {
+      list.push(i);
+    }
+    this.data = new MyDataSource(list)
+  }
+
+  build() {
+    Column({ space: 5 }) {
+      Swiper(this.swiperController) {
+        LazyForEach(this.data, (item: string) => {
+          Text(item.toString())
+            .width('90%')
+            .height(160)
+            .backgroundColor(0xAFEEEE)
+            .textAlign(TextAlign.Center)
+            .fontSize(30)
+        }, (item: string) => item)
+      }
+      .displayCount(3, true)
+      .autoPlay(true)
+      .interval(4000)
+      .loop(true)
+      .duration(1000)
+      .itemSpace(10)
+      .indicator( // Set the style of the navigation point indicator.
+        new DotIndicator()
+          .itemWidth(15)
+          .itemHeight(15)
+          .selectedItemWidth(15)
+          .selectedItemHeight(15)
+          .color(Color.Gray)
+          .selectedColor(Color.Blue))
+
+      Row({ space: 12 }) {
+        Button('showNext')
+          .onClick(() => {
+            this.swiperController.showNext()
+          })
+        Button('showPrevious')
+          .onClick(() => {
+            this.swiperController.showPrevious()
+          })
+      }.margin(5)
+    }.width('100%')
+    .margin({ top: 5 })
+  }
+}
+```
+![swiper](figures/swiper-swipe-by-group.gif)
