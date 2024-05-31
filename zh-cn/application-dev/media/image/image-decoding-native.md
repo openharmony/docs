@@ -1,4 +1,4 @@
-# 图片解码(C/C++)
+# 使用Image完成图片解码
 
 图片解码指将所支持格式的存档图片解码成统一的[PixelMap](image-overview.md)，以便在应用或系统中进行图片显示或[图片处理](image-transformation.md)。当前支持的存档图片格式包括JPEG、PNG、GIF、WebP、BMP、SVG、ICO、DNG。
 
@@ -34,14 +34,15 @@ EXTERN_C_END
 
 ### JS侧调用
 
-1.  打开src\main\cpp\types\libentry\index.d.ts（其中libentry根据工程名生成），导入如下引用文件:
- 
+1. 打开src\main\cpp\types\libentry\index.d.ts（其中libentry根据工程名生成），导入如下引用文件:
+
     ```js
     import image from '@ohos.multimedia.image'
     import resourceManager from '@ohos.resourceManager'
 
     export const getSyncPixelMap: (resMgr: resourceManager.ResourceManager, src: string) => image.PixelMap;
     ```
+
 2. 准备图片资源文件,本示例文件名为example.jpg，导入到src\main\resources\rawfile\ 路径下。
 
 3. 打开src\main\ets\pages\index.ets，导入"libentry.so（根据工程名生成）"，调用Native接口，传入JS的资源对象。示例如下:
@@ -71,7 +72,6 @@ EXTERN_C_END
       }
    }
     ```
-
 
 ### Native接口调用
 
@@ -163,6 +163,7 @@ EXTERN_C_END
    ```
 
 图片框架支持增量式解码，使用方法如下：
+
    ```c++
       #include <multimedia/image_framework/image_source_mdk.h>
       #include <multimedia/image_framework/image_pixel_map_mdk.h>

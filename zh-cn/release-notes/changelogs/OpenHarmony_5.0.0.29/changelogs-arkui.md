@@ -35,3 +35,33 @@ openCustomDialog<T extends Object>(dialogContent: ComponentContent<T>, options?:
 **适配指导**
 
 默认行为变更，无需适配，但应注意变更后的行为是否对整体应用逻辑产生影响。
+
+## cl.arkui.2 Badge组件显隐时增加缩放动效
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+给Badge组件显隐时增加缩放动画，代替简单的出现与消失
+
+**变更影响**
+
+该变更为非兼容性变更。
+
+API version 11及以前：Badge组件显隐时没有缩放动效。
+
+API version 12及以后：Badge组件前后状态相同时不缩放，显隐时增加缩放动效。
+
+**起始 API Level**
+
+7
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.29开始。
+
+**适配指导**
+
+默认样式变更调整，无需适配。

@@ -14,6 +14,8 @@
 
 **开发示例：** [使用AES对称密钥（GCM模式）分段加解密](crypto-aes-sym-encrypt-decrypt-gcm-by-segment.md)
 
+**开发示例：** [使用SM4对称密钥（GCM模式）分段加解密](crypto-sm4-sym-encrypt-decrypt-gcm-by-segment.md)
+
 ## 非对称加解密
 
 非对称加解密，不支持update操作，仅需要调用[Cipher.init](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#init-1)和[Cipher.doFinal](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#dofinal-1)完成加解密。

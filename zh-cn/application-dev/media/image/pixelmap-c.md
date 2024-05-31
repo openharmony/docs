@@ -1,4 +1,4 @@
-# 位图操作(C/C++)
+# 使用Image_NativeModule完成位图操作
 
 创建位图，获取位图的宽，高，pixelFormat，alphaType，rowStride信息，对位图进行操作以及释放位图实例。
 
@@ -14,7 +14,7 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libpixelmap.so)
 
 ### Native接口调用
 
-具体接口说明请参考[API文档](../../reference/apis-image-kit/image.md)
+具体接口说明请参考[API文档](../../reference/apis-image-kit/_image___native_module.md)。
 
 在hello.cpp中实现C API接口调用逻辑，示例代码如下：
 

@@ -217,7 +217,7 @@ errorManager.on("loopObserver", 1, observer);
 
 on(type: 'unhandledRejection', observer: UnhandledRejectionObserver): void
 
-注册主线程被拒绝promise监听器。注册后可以捕获到应用主线程中未被捕获到的promise rejection。
+注册被拒绝promise监听器。注册后可以捕获到当前线程中未被捕获到的promise rejection。
 
 **元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
@@ -227,8 +227,8 @@ on(type: 'unhandledRejection', observer: UnhandledRejectionObserver): void
  
 | 参数名                   | 类型                                                          | 必填 | 说明                                       |
 |-----------------------|-------------------------------------------------------------| -------- |------------------------------------------|
-| type                  | string                                                      | 是 | 填写'unhandledRejection'，表示注册主线程被拒绝promise监听器。 |
-| observer              | [UnhandledRejectionObserver](#unhandledrejectionobserver12) | 是 | 注册主线程被拒绝promise监听器。                          |
+| type                  | string                                                      | 是 | 填写'unhandledRejection'，表示注册被拒绝promise监听器。 |
+| observer              | [UnhandledRejectionObserver](#unhandledrejectionobserver12) | 是 | 注册被拒绝promise监听器。                          |
 
 **错误码**：
 
@@ -299,7 +299,7 @@ errorManager.off("loopObserver");
 
 off(type: 'unhandledRejection', observer?: UnhandledRejectionObserver): void
 
-注销主线程被拒绝promise监听器。
+注销被拒绝promise监听器。
 
 **元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
@@ -309,8 +309,8 @@ off(type: 'unhandledRejection', observer?: UnhandledRejectionObserver): void
 
 | 参数名                   | 类型                              | 必填 | 说明                                           |
 |-----------------------|---------------------------------|----|----------------------------------------------|
-| type                  | string                          | 是  | 填写'unhandledRejection'，表示注册主线程被拒绝promise监听器。 |
-| observer              | [UnhandledRejectionObserver](#unhandledrejectionobserver12) | 否  | 注册了的主线程被拒绝promise监听器。                        |
+| type                  | string                          | 是  | 填写'unhandledRejection'，表示注册被拒绝promise监听器。 |
+| observer              | [UnhandledRejectionObserver](#unhandledrejectionobserver12) | 否  | 注册了被拒绝promise监听器。                        |
 
 **错误码**：
 
@@ -376,7 +376,7 @@ errorManager.off("unhandledRejection", observer);
 
 type UnhandledRejectionObserver = (reason: Error | any, promise: Promise\<any>) => void
 
-将在js运行时应用主线程中用户未捕获到的rejection。
+将在js运行时应用中用户未捕获到的rejection。
 
 **元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 

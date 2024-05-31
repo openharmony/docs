@@ -1,4 +1,4 @@
-# 图片编码Native(C/C++)
+# 使用Image_NativeModule完成图片编码
 
 图像打包类，用于创建以及释放ImagePacker实例。
 
@@ -14,7 +14,7 @@ target_link_libraries(entry PUBLIC libhilog_ndk.z.so libimage_packer.so)
 
 ### Native接口调用
 
-具体接口说明请参考[API文档](../../reference/apis-image-kit/image.md)
+具体接口说明请参考[API文档](../../reference/apis-image-kit/_image___native_module.md)。
 
 在hello.cpp中实现C API接口调用逻辑，示例代码如下：
 

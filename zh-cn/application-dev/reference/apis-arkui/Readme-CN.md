@@ -135,7 +135,9 @@
         - [事件独占控制](arkui-ts/ts-universal-attributes-monopolize-events.md)
         - [鼠标光标控制](arkui-ts/ts-universal-attributes-cursor.md)
         - [特效绘制合并](arkui-ts/ts-universal-attributes-use-effect.md)
+        <!--Del-->
         - [点光源设置 (系统接口)](arkui-ts/ts-universal-attributes-point-light-style-sys.md)
+        <!--DelEnd-->
       - 手势处理
         - [绑定手势方法](arkui-ts/ts-gesture-settings.md)
         - 基础手势
@@ -245,6 +247,7 @@
       - [Row (系统接口)](arkui-ts/ts-container-row-sys.md)
       - [Stack (系统接口)](arkui-ts/ts-container-stack-sys.md)
       - [UIExtensionComponent (系统接口)](arkui-ts/ts-container-ui-extension-component-sys.md)
+      - [IsolatedComponent (系统接口)](arkui-ts/ts-container-isolated-component-sys.md)
       <!--DelEnd-->
     - 媒体组件
       - [Video](arkui-ts/ts-media-components-video.md)
@@ -281,6 +284,7 @@
       - [@ohos.arkui.advanced.EditableTitleBar (编辑页面标题栏)](arkui-ts/ohos-arkui-advanced-EditableTitleBar.md)
       - [@ohos.arkui.advanced.ExceptionPrompt (异常提示)](arkui-ts/ohos-arkui-advanced-ExceptionPrompt.md)
       - [@ohos.arkui.advanced.Filter (多条件筛选)](arkui-ts/ohos-arkui-advanced-Filter.md)
+      - [@ohos.arkui.advanced.FormMenu (应用卡片加桌菜单)](arkui-ts/ohos-arkui-advanced-formmenu.md)
       - [@ohos.arkui.advanced.FullScreenLaunchComponent (全屏启动元服务组件)](arkui-ts/ohos-arkui-advanced-FullScreenLaunchComponent.md)
       - [@ohos.arkui.advanced.GridObjectSortComponent (网格对象的编辑排序)](arkui-ts/ohos-arkui-advanced-GridObjectSortComponent.md)
       - [@ohos.arkui.advanced.ProgressButton (下载按钮)](arkui-ts/ohos-arkui-advanced-ProgressButton.md)
@@ -294,7 +298,6 @@
       - [@ohos.arkui.advanced.TabTitleBar (页签型标题栏)](arkui-ts/ohos-arkui-advanced-TabTitleBar.md)
       - [@ohos.arkui.advanced.ToolBar (工具栏)](arkui-ts/ohos-arkui-advanced-ToolBar.md)
       - [@ohos.arkui.advanced.TreeView (树视图)](arkui-ts/ohos-arkui-advanced-TreeView.md)
-      - [@ohos.arkui.advanced.FormMenu (应用卡片加桌菜单)](arkui-ts/ohos-arkui-advanced-formmenu.md)
     - 安全控件
       - [安全控件通用属性](arkui-ts/ts-securitycomponent-attributes.md)
       - [LocationButton](arkui-ts/ts-security-components-locationbutton.md)
@@ -335,7 +338,9 @@
     - [枚举说明](arkui-ts/ts-appendix-enums.md)
     - [设置事件回调](arkui-ts/ts-uicommonevent.md)
     - [属性字符串](arkui-ts/ts-universal-styled-string.md)
+    <!--Del-->
     - [枚举说明 (系统接口)](arkui-ts/ts-appendix-enums-sys.md)
+    <!--DelEnd-->
     - 已停止维护的组件
       <!--Del-->
       - [AbilityComponent (系统接口)](arkui-ts/ts-container-ability-component-sys.md)

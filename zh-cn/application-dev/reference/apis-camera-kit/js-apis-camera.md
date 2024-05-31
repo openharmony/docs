@@ -2567,7 +2567,7 @@ on(type: 'estimatedCaptureDuration', callback: AsyncCallback\<number\>): void;
 
 | 参数名   | 类型                   | 必填 | 说明                                                         |
 | -------- | ---------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                 | 是   | 监听事件，固定为'captureReady'，photoOutput创建成功后可监听。拍照完全结束可触发该事件发生并返回相应信息。 |
+| type     | string                 | 是   | 监听事件，固定为'estimatedCaptureDuration'，photoOutput创建成功后可监听。拍照完全结束可触发该事件发生并返回相应信息。 |
 | callback | AsyncCallback\<number> | 是   | 回调函数，用于获取相关信息。                                 |
 
 **示例：**

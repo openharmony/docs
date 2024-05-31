@@ -9,7 +9,7 @@
 
 **错误信息**
 
-Resource Unavailable.
+Resource unavailable.
 
 **可能原因**
 

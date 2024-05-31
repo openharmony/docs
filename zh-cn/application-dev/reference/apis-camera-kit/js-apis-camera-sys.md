@@ -3257,7 +3257,7 @@ function unregisterFocusStateChange(highResolutionPhotoSession: camera.HighResol
 
 SlowMotionVideoSession extends Session, Flash, AutoExposure, Focus, Zoom, ColorEffect
 
-慢动作录像模式会话类，继承自[Session](js-apis-camera.md#session11)，用于设置人像拍照模式的参数以及保存所需要的所有资源[CameraInput](js-apis-camera.md#camerainput)、[CameraOutput](js-apis-camera.md#cameraoutput)。
+慢动作录像模式会话类，继承自[Session](js-apis-camera.md#session11)，用于设置慢动作录像模式的参数以及保存所需要的所有资源[CameraInput](js-apis-camera.md#camerainput)、[CameraOutput](js-apis-camera.md#cameraoutput)。
 
 > **说明：**
 > 慢动作模式下只能添加预览流和录像流。
@@ -3265,7 +3265,7 @@ SlowMotionVideoSession extends Session, Flash, AutoExposure, Focus, Zoom, ColorE
 
 on(type: 'error', callback: ErrorCallback): void
 
-监听人像拍照会话的错误事件，通过注册回调函数获取结果。
+监听慢动作录像模式会话的错误事件，通过注册回调函数获取结果。
 
 **系统接口：** 此接口为系统接口。
 
@@ -3296,7 +3296,7 @@ function registerSessionError(slowMotionVideoSession: camera.SlowMotionVideoSess
 
 off(type: 'error', callback?: ErrorCallback): void
 
-注销监听人像拍照会话的错误事件，通过注册回调函数获取结果。
+注销慢动作录像模式会话的错误事件，通过注册回调函数获取结果。
 
 **系统接口：** 此接口为系统接口。
 
