@@ -1284,7 +1284,6 @@
     - [restool工具](tools/restool.md)
     - [LLDB工具](tools/lldb-tool.md)
     - [param工具](tools/param-tool.md)
-    - [OpenHarmony SDK升级助手](tools/openharmony_sdk_upgrade_assistant.md)
 - API参考
   - [系统能力SystemCapability使用指南](reference/syscap.md)
   - [系统能力SystemCapability列表](reference/syscap-list.md)
