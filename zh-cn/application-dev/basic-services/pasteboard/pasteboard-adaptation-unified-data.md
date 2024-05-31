@@ -59,7 +59,7 @@ pasteboard.getSystemPasteboard().getUnifiedData().then((data) => {
     let records = outputData.getRecords();
     if (records[0].getType() == uniformTypeDescriptor.UniformDataType.PLAIN_TEXT) {
         let record = records[0] as unifiedDataChannel.PlainText;
-        console.log('GetPlainText success, type:' + records[0].getType + ', details:' +
+        console.log('GetPlainText success, type:' + records[0].getType() + ', details:' +
             JSON.stringify(record.details) + ', textContent:' + record.textContent + ', abstract:' + record.abstract);
     } else {
         console.log('Get Plain Text Data No Success, Type is: ' + records[0].getType());
