@@ -253,7 +253,7 @@ udid of current device is :
 ## 快速修复
 
 ```bash
-bm quickfix [-h] [-a -f filePath] [-q -b bundleName]
+bm quickfix [-h] [-a -f filePath [-t targetPath] [-d]] [-q -b bundleName] [-r -b bundleName] 
 ```
 
 
@@ -263,7 +263,10 @@ bm quickfix [-h] [-a -f filePath] [-q -b bundleName]
 | -------- | -------- |
 | -h | 显示quickfix支持的命令信息 |
 | -a&nbsp;-f | 执行快速修复补丁安装命令，file-path对应hqf文件，支持传递1个或多个hqf文件，或传递hqf文件所在的目录。 |
-| -q&nbsp;-b | 根据包名查询补丁信息，bundle-name对应包名。 |
+| -t | 指定快速修复补丁的安装目录名称，安装后补丁不使能。名称只允许指定一层目录，不可包含`..`、`/`等字符，实际安装目录为patch下指定的目录名称。例如指定-t mydir，实际安装目录为patch/mydir。 |
+| -d | 选择debug模式执行补丁安装命令。 |
+| -q&nbsp;-b | 根据包名查询补丁信息，bundleName对应包名。 |
+| -r&nbsp;-b | 根据包名卸载补丁，bundleName对应包名，只能卸载通过-t指定安装目录名称且不使能的补丁。 |
 
 
 示例：
@@ -284,8 +287,12 @@ bm quickfix -q -b com.ohos.app
 //  type:                            
 # 快速修复补丁安装
 bm quickfix -a -f /data/app/
-//执行结果
+// 执行结果
 apply quickfix succeed.
+# 快速修复补丁卸载
+bm quickfix -r -b com.ohos.app
+// 执行结果
+delete quick fix successfully
 ```
 
 ## 共享库查询命令

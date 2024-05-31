@@ -15,7 +15,7 @@
 ## 装饰器说明
 \@Computed语法：
 
-```
+```ts
 @Computed get varName(): T {
     return value;
 }
@@ -32,7 +32,7 @@
 
 - \@Computed为方法装饰器修饰getter方法，在getter方法中，不能改变参与计算的属性。
 
-```
+```ts
 @Computed
 get fullName() {
   this.lastName += 'a'; // error
@@ -42,7 +42,7 @@ get fullName() {
 - \@Computed不能和双向绑定!!连用，即\@Computed修饰的是getter访问器，不会被子组件同步，也不能被赋值。
 
 
-```
+```ts
 @Computed
 get fullName() {
   return this.firstName + ' ' + this.lastName;
@@ -50,10 +50,10 @@ get fullName() {
 
 Child({ fullName: this.fullName!! }) // error
 ```
-- \@Computed为新一代状态管理提供的能力，只能在\@ComponentV2和\@ObservedV2中使用。
+- \@Computed为状态管理V2提供的能力，只能在\@ComponentV2和\@ObservedV2中使用。
 - 多个\@Computed一起使用时，警惕循环求解。
 
-```
+```ts
 @Local a : number = 1;
 @Computed
 get b() {
@@ -75,7 +75,7 @@ get c() {
 - 如果UI中有多处需要使用`this.lastName + ' '+ this.firstName`这段计算逻辑，可以使用计算属性，减少计算次数。
 - 点击第二个Button，age自增，UI无变化。因为age非状态变量，只有被观察到的变化才会触发\@Computed fullName重新计算。
 
-```
+```ts
 @Entry
 @ComponentV2
 struct Index {
@@ -115,7 +115,7 @@ struct Index {
 2. 在\@ObservedV2装饰的类中使用计算属性
 - 点击Button改变lastName，触发\@Computed fullName重新计算，且只被计算一次。
 
-```
+```ts
 @ObservedV2
 class Name {
   @Trace firstName: string = 'Li';
@@ -152,7 +152,7 @@ struct Index {
 - 点击“-”，celsius-- -> fahrenheit -> kelvin --> kelvin改变触发onKelvinMonitor。
 - 点击“+”，celsius++ -> fahrenheit -> kelvin --> kelvin改变触发onKelvinMonitor。
 
-```
+```ts
 @Entry
 @ComponentV2
 struct MyView {
@@ -202,7 +202,7 @@ struct MyView {
 - `quantity`的改变触发`total`和`qualifiesForDiscount`重新计算，计算商品总价和是否可以享有优惠。
 - `total`和`qualifiesForDiscount`的改变触发子组件`Child`对应Text组件刷新。
 
-```
+```ts
 @ObservedV2
 class Article {
   @Trace quantity: number = 0;

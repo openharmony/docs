@@ -877,6 +877,18 @@
 
 **起始版本**：9
 
+### ohos.permission.START_DLP_CRED
+
+允许系统应用或者系统服务拉起DLP凭据管理应用。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
 ### ohos.permission.START_SHORTCUT
 
 允许应用拉起快捷方式。

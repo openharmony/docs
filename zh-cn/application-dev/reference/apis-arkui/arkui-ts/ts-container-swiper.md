@@ -365,6 +365,7 @@ nextMargin(value: Length)
 | 参数名 | 类型                         | 必填 | 说明                   |
 | ------ | ---------------------------- | ---- | ---------------------- |
 | value  | [Length](ts-types.md#length) | 是   | 后边距。<br/>默认值：0 |
+| ignoreBlank<sup>12+</sup>  | boolean | 否   | 非loop场景下尾页不显示nextMargin。<br/>默认值：false |
 
 ### prevMargin<sup>10+</sup>
 
@@ -385,6 +386,7 @@ prevMargin(value: Length)
 | 参数名 | 类型                         | 必填 | 说明                   |
 | ------ | ---------------------------- | ---- | ---------------------- |
 | value  | [Length](ts-types.md#length) | 是   | 前边距。<br/>默认值：0 |
+| ignoreBlank<sup>12+</sup>  | boolean | 否   | 非loop场景下首页不显示prevMargin。<br/>默认值：false |
 
 ### nestedScroll<sup>11+</sup>
 
