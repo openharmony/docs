@@ -703,7 +703,7 @@ class EntryAbility extends UIAbility {
 | SUBSCRIBE_TYPE_CLOUD_DETAILS<sup>10+</sup> | 2  | 订阅云端数据更改详情。<br>**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client |
 | SUBSCRIBE_TYPE_LOCAL_DETAILS<sup>12+</sup> | 3  | 订阅本地数据更改详情。<br>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
 
-## RebuldType<sup>12+</sup>
+## RebuildType<sup>12+</sup>
 
 描述数据库重建类型的枚举。请使用枚举名称而非枚举值。
 
@@ -2007,7 +2007,7 @@ predicates.notLike("NAME", "os");
 | 名称         | 类型            | 只读       | 必填 | 说明                             |
 | ------------ | ----------- | ---- | -------------------------------- | -------------------------------- |
 | version<sup>10+</sup>  | number | 否 | 是   | 设置和获取数据库版本，值为大于0的正整数。       |
-| rebuilt<sup>12+</sup> | [RebuildType](#rebuldtype12) | 是 | 是 | 用于获取数据库是否进行过重建。 |
+| rebuilt<sup>12+</sup> | [RebuildType](#rebuildtype12) | 是 | 是 | 用于获取数据库是否进行过重建。 |
 
 **错误码：**
 
