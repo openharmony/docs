@@ -44,13 +44,13 @@ TipsDialog({controller: CustomDialogController, imageRes: Resource, imageSize?: 
 | 名称                          | 参数类型                                                     | 必填 | 装饰器类型 | 说明                                                         |
 | ----------------------------- | ------------------------------------------------------------ | ---- | ---------- | ------------------------------------------------------------ |
 | controller                    | [CustomDialogController](ts-methods-custom-dialog-box.md#customdialogcontroller) | 是   | -          | 提示弹出框控制器。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| imageRes                      | [ResourceStr](ts-types.md#resourcestr) \| [PixelMap](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-image-kit/js-apis-image.md#pixelmap7) | 是   | -          | 展示的图片。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| imageRes                      | [ResourceStr<sup>12+</sup>](ts-types.md#resourcestr) \| [PixelMap<sup>12+</sup>](../../apis-image-kit/js-apis-image.md#pixelmap7) | 是   | -          | 展示的图片。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 | imageSize                     | [SizeOptions](ts-types.md#sizeoptions)                       | 否   | -          | 自定义图片尺寸。<br/>默认值：64*64vp<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 | title                         | [ResourceStr](ts-types.md#resourcestr)                       | 否   | -          | 提示弹出框标题。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 | content                       | [ResourceStr](ts-types.md#resourcestr)                       | 否   | -          | 提示弹出框内容。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 | checkTips                     | [ResourceStr](ts-types.md#resourcestr)                       | 否   | -          | checkbox的提示内容。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 | isChecked                     | boolean                                                      | 否   | \@Prop     | value为true时，表示checkbox已选中，value为false时，表示未选中。<br/>默认值：false<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| checkAction<sup>12+</sup>     | (isChecked: boolean) => void                                 | 否   | -          | checkbox的选中状态改变事件。                                 |
+| checkAction<sup>12+</sup>     | (isChecked: boolean) => void                                 | 否   | -          | 现推荐使用 onCheckedChange<sup>12+</sup>。                                 |
 | onCheckedChange<sup>12+</sup> | Callback\<boolean>                                           | 否   | -          | checkbox的选中状态改变事件。                                 |
 | primaryButton                 | [ButtonOptions](#buttonoptions)                              | 否   | -          | 提示框左侧按钮。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 | secondaryButton               | [ButtonOptions](#buttonoptions)                              | 否   | -          | 提示框右侧按钮。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
