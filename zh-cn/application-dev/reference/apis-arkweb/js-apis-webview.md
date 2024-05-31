@@ -7107,6 +7107,7 @@ precompileJavaScript(url: string, script: string | Uint8Array, cacheOptions: Cac
 
 3. 编写用于生成字节码缓存的组件，本例中的本地Javascript资源内容通过文件读取接口读取rawfile目录下的本地文件。
 
+   <!--code_no_check-->
    ```ts
    // PrecompileWebview.ets
    import { BuilderData } from "./DynamicComponent";
@@ -7153,6 +7154,7 @@ JavaScript资源的获取方式也可通过[网络请求](../apis-network-kit/js
 
 4. 编写业务用组件代码。
 
+   <!--code_no_check-->
    ```ts
    // BusinessWebview.ets
    import { BuilderData } from "./DynamicComponent";
