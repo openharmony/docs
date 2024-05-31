@@ -590,6 +590,14 @@ NavDestination之间切换时可以通过[geometryTransition](../reference/apis-
 - 给每个路由页面设置一个名字，按照名称进行跳转而不是文件路径。
 - 页面的加载可以使用动态Import（按需加载），防止首个页面加载大量代码导致卡顿。
 
+动态路由提供[系统路由表](#系统路由表)和[自定义路由表](#自定义路由表)两种方式。
+
+- 系统路由表相对自定义路由表，使用更简单，只需要添加对应页面跳转配置项，即可实现页面跳转。
+
+- 自定义路由表使用起来更复杂，但是可以根据应用业务进行定制处理。
+
+支持自定义路由表和系统路由表混用。
+
 ### 系统路由表
 
 从API version 12开始，Navigation支持使用系统路由表的方式进行动态路由。各业务模块（HSP/HAR）中需要独立配置router_map.json文件，在触发路由跳转时，应用只需要通过NavPactStack提供的路由方法，传入需要路由的页面配置名称，此时系统会自动完成路由模块的动态加载、页面组件构建，并完成路由跳转，从而实现了开发层面的模块解耦。其主要步骤如下：
@@ -672,75 +680,16 @@ NavDestination之间切换时可以通过[geometryTransition](../reference/apis-
 
 ### 自定义路由表
 
-除了上述系统路由表方式外，开发者还可以通过自定义路由表的方式来实现跨包动态路由。
+开发者可以通过自定义路由表的方式来实现跨包动态路由，具体实现方法请参考[Navigation自定义动态路由](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/ApplicationModels/DynamicRouter)示例。
 
-1. 定义配置路由加载项，在加载项中配置对应加载项的页面名称，模块名称和模块路径。
-   
-   ```ts
-     class RouteItem {
-       name: string;
-       pageModule: string;
-       pagePath: string;
-     }
-   ```
-2. 也可以将上述配置项配置在资源文件中，通过资源管理[@ohos.resourceManager](../reference/apis-localization-kit/js-apis-resource-manager.md)将文件读取后解析出对应字段。
-3. 将路由表中的页面配置到Navigation定义页所在工程的依赖配置文件oh_packages.json5中。
-   
-   ```json
-     {
-       "dependency": {
-         "dynamicRouter": "file:../dynamicRouter", // 外部依赖配置项
-         ...
-       }
-     }
-   ```
-4. 将路由表中的依赖动态加载的文件配置到oh-packages.json中，可以参考如下配置：
-   
-   ```json
-     {
-       "buildOption": {
-         "sourceOption": {
-           "dynamicImport": [
-             './PageOne', // 本包的文件路径
-             "dynamicRouter" // 跨包的名称
-           ]
-         }
-       }
-     }
-   ```
-5. 提供路由管理类，注册WrapBuilder方法。
-   
-   ```ts
-     registerRouteMap(name: string, builder: WrapperBuilder<[object]>)
-     {
-       DynamicRouter.builderMap.set(name, builder);
-     }
-   
-     async push(info: RouterInfo, param?: string)
-     {
-       try {
-         let result = await import(info.moduleName);
-         result.harInit(info.pageName);
-         DynamicRouter.getNavPathStack().pushPathByName(info.name);
-       } catch(err) {
-         logger.error(LOGGER_TAG, err);
-       }
-     }
-   ```
-6. 针对跳转目标页面，需要调用注册函数将页面注册到页面跳转列表中。
-   
-   ```ts
-     @Builder
-     export function getVibrateEffectView() {
-       VibrateEffectView()
-     }
-   
-     DynamicRouter.registerRouterMap(RouterInfo.VIBRATE_EFFECT, wrapBuilder(getVibrateEffectView));
-   ```
-<!--RP1--><!--RP1End-->  
+**实现方案：**
 
-## 相关实例
+1. 定义页面跳转配置项。
+- 使用资源文件进行定义，通过资源管理[@ohos.resourceManager](../reference/apis-localization-kit/js-apis-resource-manager.md)在运行时对资源文件解析。
+- 在ets文件中配置路由加载配置项，一般包括路由页面名称（即pushPath等接口中页面的别名），文件所在模块名称（hsp/har的模块名），加载页面在模块内的路径（相对src目录的路径）。
 
-基于Navigation，可参考以下实例：
-   
-- [Navigation自定义动态路由 (ArkTS) (Full SDK) API(12) ](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/ApplicationModels/DynamicRouter)
+2. 加载目标跳转页面，通过[import](../quick-start/arkts-dynamic-import.md)将跳转目标页面所在的模块在运行时加载, 在模块加载完成后，调用模块中的方法，通过import在模块的方法中加载模块中显示的目标页面，并返回页面加载完成后定义的Builder函数。
+
+3. 触发页面跳转，在Navigation的[.navDestination](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#navdestination10)属性执行步骤2中加载的Builder函数，即可跳转到目标页面。
+
+<!--RP1--><!--RP1End-->
