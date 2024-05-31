@@ -123,7 +123,6 @@
    /*
     * 确定密钥别名和封装密钥属性参数集
     */
-   let srcKeyAlias = 'sm4_key_fingerprint_access';
    let cipherInData = 'Hks_SM4_Cipher_Test_101010101010101010110_string'; // 明文数据
    let IV = '1234567890123456';
    let handle = 0;
@@ -243,7 +242,7 @@
    }
    async function testSm4Cipher() {
        /* 初始化密钥会话获取挑战值 */
-       await publicInitFunc(srcKeyAlias, encryptOptions);
+       await publicInitFunc(keyAlias, encryptOptions);
        /* 加密 */
        encryptOptions.inData = StringToUint8Array(cipherInData);
        await publicFinishFunc(handle, encryptOptions);
@@ -257,12 +256,8 @@
    import userIAM_userAuth from '@ohos.userIAM.userAuth';
    import { BusinessError} from "@kit.BasicServicesKit"
    /*
-    * 确定密钥别名和封装密钥属性参数集
+    * 确定封装密钥属性参数集
     */
-   let srcKeyAlias = 'sm4_key_fingerprint_access';
-   let cipherText = 'r56ywtTJUQC6JFJ2VV2kZw=='; // 加密时得到的密文数据, 业务需根据实际加密结果修改
-   let IV = '1234567890123456';
-   let handle: number;
    let finishOutData: Uint8Array; // 解密后的明文数据
    let fingerAuthToken: Uint8Array;
    let challenge: Uint8Array;
@@ -429,7 +424,7 @@
    }
    async function testSm4Cipher() {
        /* 初始化密钥会话获取挑战值 */
-       await publicInitFunc(srcKeyAlias, decryptOptions);
+       await publicInitFunc(keyAlias, decryptOptions);
        /* 调用userIAM进行身份认证 */
        userIAMAuthFinger(challenge);
        /* 认证成功后进行解密, 需要传入Auth获取到的authToken值 */

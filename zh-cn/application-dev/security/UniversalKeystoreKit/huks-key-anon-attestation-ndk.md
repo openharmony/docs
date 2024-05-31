@@ -1,5 +1,7 @@
 # 匿名密钥证明(C/C++)
 
+在使用本功能时，需确认网络通畅。
+
 ## 在CMake脚本中链接相关动态库
 ```txt
    target_link_libraries(entry PUBLIC libhuks_ndk.z.so)
