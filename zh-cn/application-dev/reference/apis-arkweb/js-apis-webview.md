@@ -6813,7 +6813,7 @@ setServiceWorkerWebSchemeHandler(scheme: string, handler: WebSchemeHandler): voi
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Invalid input parameter.                                     |
+| 401      | Parameter error. Possible causes: 1. Incorrect parameter types. |
 
 **示例：**
 
@@ -13419,7 +13419,7 @@ setStatus(code: number): void
 
 | 错误码ID | 错误信息                  |
 | -------- | ----------------------- |
-|  401 | Invalid input parameter.    |
+|  401 | Parameter error. Possible causes: 1. Incorrect parameter types. |
 
 **示例：**
 
@@ -13525,7 +13525,7 @@ setHeaderByName(name: string, value: string, overwrite: boolean): void
 
 | 错误码ID | 错误信息                  |
 | -------- | ----------------------- |
-|  401 | Invalid input parameter.    |
+|  401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.    |
 
 **示例：**
 
@@ -13715,7 +13715,7 @@ didReceiveResponseBody(data: ArrayBuffer): void
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
-|  401 | Invalid input parameter.    |
+|  401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.    |
 | 17100021 | The resource handler is invalid. |
 
 **示例：**
