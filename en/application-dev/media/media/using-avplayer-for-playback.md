@@ -61,10 +61,10 @@ Read [AVPlayer](../../reference/apis-media-kit/js-apis-media.md#avplayer9) for t
 Refer to the sample code below to play a complete piece of music.
 
 ```ts
-import media from '@ohos.multimedia.media';
-import fs from '@ohos.file.fs';
-import common from '@ohos.app.ability.common';
-import { BusinessError } from '@ohos.base';
+import { media } from '@kit.MediaKit';
+import { fileIo } from '@kit.CoreFileKit';
+import { common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export class AVPlayerDemo {
   private count: number = 0;
@@ -146,7 +146,7 @@ export class AVPlayerDemo {
     let pathDir = context.filesDir;
     let path = pathDir + '/01.mp3';
     // Open the corresponding file address to obtain the file descriptor and assign a value to the URL to trigger the reporting of the initialized state.
-    let file = await fs.open(path);
+    let file = await fileIo.open(path);
     fdPath = fdPath + '' + file.fd;
     this.isSeek = true; // The seek operation is supported.
     avPlayer.url = fdPath;
@@ -183,7 +183,7 @@ export class AVPlayerDemo {
         if (buf == undefined || length == undefined || pos == undefined) {
           return -1;
         }
-        num = fs.readSync(this.fd, buf, { offset: pos, length: length });
+        num = fileIo.readSync(this.fd, buf, { offset: pos, length: length });
         if (num > 0 && (this.fileSize >= pos)) {
           return num;
         }
@@ -194,11 +194,11 @@ export class AVPlayerDemo {
     // Obtain the sandbox address filesDir through UIAbilityContext. The stage model is used as an example.
     let pathDir = context.filesDir;
     let path = pathDir  + '/01.mp3';
-    await fs.open(path).then((file: fs.File) => {
+    await fileIo.open(path).then((file: fileIo.File) => {
       this.fd = file.fd;
     })
     // Obtain the size of the file to be played.
-    this.fileSize = fs.statSync(path).size;
+    this.fileSize = fileIo.statSync(path).size;
     src.fileSize = this.fileSize;
     this.isSeek = true; // The seek operation is supported.
     avPlayer.dataSrc = src;
@@ -218,7 +218,7 @@ export class AVPlayerDemo {
         if (buf == undefined || length == undefined) {
           return -1;
         }
-        num = fs.readSync(this.fd, buf);
+        num = fileIo.readSync(this.fd, buf);
         if (num > 0) {
           return num;
         }
@@ -228,7 +228,7 @@ export class AVPlayerDemo {
     // Obtain the sandbox address filesDir through UIAbilityContext. The stage model is used as an example.
     let pathDir = context.filesDir;
     let path = pathDir  + '/01.mp3';
-    await fs.open(path).then((file: fs.File) => {
+    await fileIo.open(path).then((file: fileIo.File) => {
       this.fd = file.fd;
     })
     this.isSeek = false; // The seek operation is not supported.
