@@ -48,7 +48,7 @@ disableAdmin(admin: Want, userId?: number): Promise\<void>
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 9200005  | failed to disable the administrator application of the device. |
+| 9200005  | Failed to deactivate the administrator application of the device. |
 | 201      | Permission verification failed. The application does not have the permission required to call the API. |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
