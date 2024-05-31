@@ -3186,15 +3186,17 @@ let value2 = 18;
 let value3 = 100.5;
 let value4 = new Uint8Array([1, 2, 3]);
 
-store.beginTransaction();
-const valueBucket: ValuesBucket = {
-  'NAME': value1,
-  'AGE': value2,
-  'SALARY': value3,
-  'CODES': value4,
-};
-store.insert("test", valueBucket);
-store.commit();
+if(store != undefined) {
+  store.beginTransaction();
+  const valueBucket: ValuesBucket = {
+    'NAME': value1,
+    'AGE': value2,
+    'SALARY': value3,
+    'CODES': value4,
+  };
+  store.insert("test", valueBucket);
+  store.commit();
+}
 ```
 
 ### commit
@@ -3216,15 +3218,17 @@ let value2 = 18;
 let value3 = 100.5;
 let value4 = new Uint8Array([1, 2, 3]);
 
-store.beginTransaction();
-const valueBucket: ValuesBucket = {
-  'NAME': value1,
-  'AGE': value2,
-  'SALARY': value3,
-  'CODES': value4,
-};
-store.insert("test", valueBucket);
-store.commit();
+if(store != undefined) {
+  store.beginTransaction();
+  const valueBucket: ValuesBucket = {
+    'NAME': value1,
+    'AGE': value2,
+    'SALARY': value3,
+    'CODES': value4,
+  };
+  store.insert("test", valueBucket);
+  store.commit();
+}
 ```
 
 ### rollBack
@@ -3246,21 +3250,23 @@ let value2 = 18;
 let value3 = 100.5;
 let value4 = new Uint8Array([1, 2, 3]);
 
-try {
-  store.beginTransaction()
-  const valueBucket: ValuesBucket = {
-    'NAME': value1,
-    'AGE': value2,
-    'SALARY': value3,
-    'CODES': value4,
-  };
-  store.insert("test", valueBucket);
-  store.commit();
-} catch (err) {
-  let code = (err as BusinessError).code;
-  let message = (err as BusinessError).message
-  console.error(`Transaction failed, code is ${code},message is ${message}`);
-  store.rollBack();
+if(store != undefined) {
+  try {
+    store.beginTransaction()
+    const valueBucket: ValuesBucket = {
+      'NAME': value1,
+      'AGE': value2,
+      'SALARY': value3,
+      'CODES': value4,
+    };
+    store.insert("test", valueBucket);
+    store.commit();
+  } catch (err) {
+    let code = (err as BusinessError).code;
+    let message = (err as BusinessError).message
+    console.error(`Transaction failed, code is ${code},message is ${message}`);
+    store.rollBack();
+  }
 }
 ```
 
@@ -4035,7 +4041,7 @@ import { BusinessError } from "@ohos.base";
 const tables = ["table1", "table2"];
 
 if(store != undefined) {
-  (store as relationalStore.RdbStore).cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, (progressDetail: relationalStore.ProgressDetails) => {
+  (store as relationalStore.RdbStore).cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, tables, (progressDetail: relationalStore.ProgressDetails) => {
     console.info(`progress: ${progressDetail}`);
   }).then(() => {
     console.info('Cloud sync succeeded');
