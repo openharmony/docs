@@ -116,8 +116,8 @@
      
    ```ts
    // Stage模型获取context
-   import window from '@ohos.window';
-   import UIAbility from '@ohos.app.ability.UIAbility';
+   import { window } from '@kit.ArkUI';
+   import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
    import { BusinessError } from '@ohos.base';
    
    let kvManager: distributedKVStore.KVManager | undefined = undefined;

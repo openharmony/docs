@@ -76,7 +76,7 @@ if (kvStore !== undefined) {
 
   
 ```ts
-import relationalStore from '@ohos.data.relationalStore';
+import { relationalStore } from '@kit.ArkData';
 
 let store: relationalStore.RdbStore;
 let context = getContext(this);

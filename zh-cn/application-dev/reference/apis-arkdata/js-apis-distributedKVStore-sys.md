@@ -19,7 +19,7 @@
 ## 导入模块
 
 ```ts
-import { distributedKVStore } from '@kit.ArkData';
+import { distributedKVStore , dataSharePredicates } from '@kit.ArkData';
 ```
 
 ## SingleKVStore
@@ -198,7 +198,6 @@ delete(predicates: dataSharePredicates.DataSharePredicates, callback: AsyncCallb
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
 import { BusinessError } from '@ohos.base';
 
 try {
@@ -271,7 +270,6 @@ delete(predicates: dataSharePredicates.DataSharePredicates): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
 import { BusinessError } from '@ohos.base';
 
 try {
@@ -330,7 +328,6 @@ getResultSet(predicates: dataSharePredicates.DataSharePredicates, callback: Asyn
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
 import { BusinessError } from '@ohos.base';
 
 try {
@@ -399,7 +396,6 @@ getResultSet(predicates: dataSharePredicates.DataSharePredicates): Promise&lt;KV
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
 import { BusinessError } from '@ohos.base';
 
 try {
@@ -470,7 +466,6 @@ getResultSet(predicates: dataSharePredicates.DataSharePredicates, callback: Asyn
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
 import { BusinessError } from '@ohos.base';
 
 try {
@@ -539,7 +534,6 @@ getResultSet(predicates: dataSharePredicates.DataSharePredicates): Promise&lt;KV
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
 import { BusinessError } from '@ohos.base';
 
 try {
@@ -604,7 +598,6 @@ getResultSet(deviceId: string, predicates: dataSharePredicates.DataSharePredicat
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
 import { BusinessError } from '@ohos.base';
 
 try {
@@ -678,7 +671,6 @@ getResultSet(deviceId: string, predicates: dataSharePredicates.DataSharePredicat
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
 import { BusinessError } from '@ohos.base';
 
 try {
