@@ -97,7 +97,7 @@
    ```ts
    let files = 'BK001';
    try {
-     kvStore.backup(file, (err) => {
+     kvStore.backup(files, (err) => {
        if (err) {
          console.error(`Fail to backup data.code:${err.code},message:${err.message}`);
        } else {
@@ -132,7 +132,7 @@
    ```ts
    let files = 'BK001';
    try {
-     kvStore.restore(file, (err) => {
+     kvStore.restore(files, (err) => {
        if (err) {
          console.error(`Fail to restore data. Code:${err.code},message:${err.message}`);
        } else {
@@ -169,7 +169,7 @@
 1. 使用getRdbStore()方法创建关系型数据库。
      
    ```ts
-   import relationalStore from '@ohos.data.relationalStore';
+   import { relationalStore } from '@kit.ArkData';
    import { BusinessError } from '@ohos.base';
    
    let store: relationalStore.RdbStore | undefined = undefined;

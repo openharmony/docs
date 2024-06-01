@@ -319,7 +319,7 @@ createKVManager(config: KVManagerConfig): KVManager
 Stage模型下的示例：
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@ohos.base';
 
 let kvManager: distributedKVStore.KVManager;
@@ -4127,7 +4127,7 @@ import { BusinessError } from '@ohos.base';
 
 let files = "BK001";
 try {
-  kvStore.backup(file, (err: BusinessError) => {
+  kvStore.backup(files, (err: BusinessError) => {
     if (err) {
       console.error(`Failed to backup.code is ${err.code},message is ${err.message} `);
     } else {
@@ -4176,7 +4176,7 @@ import { BusinessError } from '@ohos.base';
 
 let files = "BK001";
 try {
-  kvStore.backup(file).then(() => {
+  kvStore.backup(files).then(() => {
     console.info(`Succeeded in backupping data`);
   }).catch((err: BusinessError) => {
     console.error(`Failed to backup.code is ${err.code},message is ${err.message}`);
@@ -4218,7 +4218,7 @@ import { BusinessError } from '@ohos.base';
 
 let files = "BK001";
 try {
-  kvStore.restore(file, (err: BusinessError) => {
+  kvStore.restore(files, (err: BusinessError) => {
     if (err) {
       console.error(`Failed to restore.code is ${err.code},message is ${err.message}`);
     } else {
@@ -4267,7 +4267,7 @@ import { BusinessError } from '@ohos.base';
 
 let files = "BK001";
 try {
-  kvStore.restore(file).then(() => {
+  kvStore.restore(files).then(() => {
     console.info(`Succeeded in restoring data`);
   }).catch((err: BusinessError) => {
     console.error(`Failed to restore.code is ${err.code},message is ${err.message}`);
@@ -4959,7 +4959,7 @@ sync(deviceIds: string[], mode: SyncMode, delayMs?: number): void
 
 ```ts
 import { distributedDeviceManager } from '@kit.DistributedServiceKit';
-import UIAbility from '@ohos.app.ability.UIAbility';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@ohos.base';
 
 let devManager: distributedDeviceManager.DeviceManager;
@@ -5046,7 +5046,7 @@ sync(deviceIds: string[], query: Query, mode: SyncMode, delayMs?: number): void
 
 ```ts
 import { distributedDeviceManager } from '@kit.DistributedServiceKit';
-import UIAbility from '@ohos.app.ability.UIAbility';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@ohos.base';
 
 let devManager: distributedDeviceManager.DeviceManager;

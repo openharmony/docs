@@ -110,7 +110,7 @@ try {
   
 ```ts
 import { BusinessError } from '@ohos.base';
-import relationalStore from '@ohos.data.relationalStore';
+import { relationalStore } from '@kit.ArkData';
 
 let store: relationalStore.RdbStore;
 const STORE_CONFIG: relationalStore.StoreConfig = {
