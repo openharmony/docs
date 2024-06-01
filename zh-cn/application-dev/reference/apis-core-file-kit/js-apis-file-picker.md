@@ -872,7 +872,7 @@ async function example18() {
 | selectMode<sup>11+</sup>         | [DocumentSelectMode](#documentselectmode11) | 否   | 支持选择的资源类型，比如：文件、文件夹和二者混合，仅对具有该系统能力的设备开放，默认值是文件类型。**系统能力：** SystemCapability.FileManagement.UserFileService.FolderSelection <br>**元服务API:** 从API version 12开始，该接口支持在元服务中使用。 |
 | authMode<sup>12+</sup>    | boolean                              | 否   | 拉起授权picker，默认为false（非授权模式）。当authMode为true时为授权模式，defaultFilePathUri必填，表明待授权uri。仅对具有该系统能力的设备开放，**系统能力：** SystemCapability.FileManagement.UserFileService.FolderSelection <br>**元服务API:** 从API version 12开始，该接口支持在元服务中使用。 |     
 
-## DocumentPickerMode
+## DocumentPickerMode<sup>12+</sup>
 
 枚举，picker选择的文档类型。
 
@@ -894,7 +894,7 @@ async function example18() {
 | newFileNames            | Array&lt;string&gt;    | 否   | 拉起documentPicker进行保存的文件名，若无此参数，则默认需要用户自行输入 <br>**元服务API:** 从API version 12开始，该接口支持在元服务中使用。 |
 | defaultFilePathUri<sup>10+</sup>    | string  | 否   | 指定保存的文件或者目录路径 <br>**元服务API:** 从API version 12开始，该接口支持在元服务中使用。 |
 | fileSuffixChoices<sup>10+</sup>     | Array&lt;string&gt; | 否   | 保存文件的后缀类型 <br>**元服务API:** 从API version 12开始，该接口支持在元服务中使用。 |
-| pickerMode     |  [DocumentPickerMode](#documentPickerMode1) | 否   | 拉起picker的类型, 默认为DEFAULT。当pickerMode设置为DOWNLOAD时，用户配置的参数newFileNames、defaultFilePathUri和fileSuffixChoices将不会生效 |
+| pickerMode     |  [DocumentPickerMode](#documentPickerMode12) | 否   | 拉起picker的类型, 默认为DEFAULT。当pickerMode设置为DOWNLOAD时，用户配置的参数newFileNames、defaultFilePathUri和fileSuffixChoices将不会生效 |
 
 ## AudioSelectOptions
 
