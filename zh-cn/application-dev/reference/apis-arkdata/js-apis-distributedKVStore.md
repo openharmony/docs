@@ -17,7 +17,7 @@
 ## 导入模块
 
 ```ts
-import distributedKVStore from '@ohos.data.distributedKVStore';
+import { distributedKVStore } from '@kit.ArkData';
 ```
 
 ## KVManagerConfig
@@ -352,7 +352,7 @@ FA模型下的示例：
 
 <!--code_no_check_fa-->
 ```ts
-import featureAbility from '@ohos.ability.featureAbility';
+import { featureAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@ohos.base';
 
 let kvManager: distributedKVStore.KVManager;
@@ -4125,7 +4125,7 @@ backup(file:string, callback: AsyncCallback&lt;void&gt;):void
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let file = "BK001";
+let files = "BK001";
 try {
   kvStore.backup(file, (err: BusinessError) => {
     if (err) {
@@ -4174,7 +4174,7 @@ backup(file:string): Promise&lt;void&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let file = "BK001";
+let files = "BK001";
 try {
   kvStore.backup(file).then(() => {
     console.info(`Succeeded in backupping data`);
@@ -4216,7 +4216,7 @@ restore(file:string, callback: AsyncCallback&lt;void&gt;):void
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let file = "BK001";
+let files = "BK001";
 try {
   kvStore.restore(file, (err: BusinessError) => {
     if (err) {
@@ -4265,7 +4265,7 @@ restore(file:string): Promise&lt;void&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let file = "BK001";
+let files = "BK001";
 try {
   kvStore.restore(file).then(() => {
     console.info(`Succeeded in restoring data`);
@@ -4958,11 +4958,11 @@ sync(deviceIds: string[], mode: SyncMode, delayMs?: number): void
 **示例：**
 
 ```ts
-import deviceManager from '@ohos.distributedDeviceManager';
+import { distributedDeviceManager } from '@kit.DistributedServiceKit';
 import UIAbility from '@ohos.app.ability.UIAbility';
 import { BusinessError } from '@ohos.base';
 
-let devManager: deviceManager.DeviceManager;
+let devManager: distributedDeviceManager.DeviceManager;
 const KEY_TEST_SYNC_ELEMENT = 'key_test_sync';
 const VALUE_TEST_SYNC_ELEMENT = 'value-string-001';
 // create deviceManager
@@ -4970,7 +4970,7 @@ export default class EntryAbility extends UIAbility {
   onCreate() {
     let context = this.context;
     try {
-      devManager = deviceManager.createDeviceManager(context.applicationInfo.name);
+      devManager = distributedDeviceManager.createDeviceManager(context.applicationInfo.name);
       let deviceIds: string[] = [];
       if (devManager != null) {
         let devices = devManager.getAvailableDeviceListSync();
@@ -5045,11 +5045,11 @@ sync(deviceIds: string[], query: Query, mode: SyncMode, delayMs?: number): void
 **示例：**
 
 ```ts
-import deviceManager from '@ohos.distributedDeviceManager';
+import { distributedDeviceManager } from '@kit.DistributedServiceKit';
 import UIAbility from '@ohos.app.ability.UIAbility';
 import { BusinessError } from '@ohos.base';
 
-let devManager: deviceManager.DeviceManager;
+let devManager: distributedDeviceManager.DeviceManager;
 const KEY_TEST_SYNC_ELEMENT = 'key_test_sync';
 const VALUE_TEST_SYNC_ELEMENT = 'value-string-001';
 // create deviceManager
@@ -5057,7 +5057,7 @@ export default class EntryAbility extends UIAbility {
   onCreate() {
     let context = this.context;
     try {
-      let devManager = deviceManager.createDeviceManager(context.applicationInfo.name);
+      let devManager = distributedDeviceManager.createDeviceManager(context.applicationInfo.name);
       let deviceIds: string[] = [];
       if (devManager != null) {
         let devices = devManager.getAvailableDeviceListSync();

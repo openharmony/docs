@@ -59,7 +59,7 @@
 
   
 ```ts
-import distributedKVStore from '@ohos.data.distributedKVStore';
+import { distributedKVStore } from '@kit.ArkData';
 import { BusinessError } from '@ohos.base';
 
 let kvManager: distributedKVStore.KVManager;

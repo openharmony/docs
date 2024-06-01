@@ -27,7 +27,7 @@
 
      
    ```ts
-   import distributedKVStore from '@ohos.data.distributedKVStore';
+   import { distributedKVStore } from '@kit.ArkData';
    import { BusinessError } from '@ohos.base';
    
    let kvManager: distributedKVStore.KVManager;
@@ -95,7 +95,7 @@
 3. 使用backup()方法备份数据。
      
    ```ts
-   let file = 'BK001';
+   let files = 'BK001';
    try {
      kvStore.backup(file, (err) => {
        if (err) {
@@ -130,7 +130,7 @@
 5. 使用restore()方法恢复数据。
      
    ```ts
-   let file = 'BK001';
+   let files = 'BK001';
    try {
      kvStore.restore(file, (err) => {
        if (err) {
