@@ -36,7 +36,7 @@ AVCastPicker()
 | activeColor | Color &#124; number &#124; string | 指设备切换成功状态下投播组件的颜色 |
 | pickerStyle | [AVCastPickerStyle](js-apis-avCastPickerParam.md#avcastpickerstyle12) | 投播样式 |
 | colorMode | [AVCastPickerColorMode](js-apis-avCastPickerParam.md#avcastpickercolormode12) | 显示模式 |
-| sessionType | string | 会话类型 |
+| sessionType | string | [会话类型，默认值为'audio'](js-apis-avsession.md#avsessiontype10) |
 | onStateChange | (state: [AVCastPickerState](js-apis-avCastPickerParam.md)) => void | 投播状态更改回调 |
 
 ## 事件
