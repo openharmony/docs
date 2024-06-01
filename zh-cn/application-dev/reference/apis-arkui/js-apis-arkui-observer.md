@@ -93,6 +93,7 @@ ScrollEvent滚动信息。
 | 名称         | 类型                                               | 必填 | 说明                                         |
 | ------------ | -------------------------------------------------- | ---- | -------------------------------------------- |
 | id           | string                                             | 是   | 滚动组件的id。                               |
+| uniqueId           | number                                             | 是   | 滚动组件的uniqueId。                               |
 | scrollEvent    | [ScrollEventType](#scrolleventtype12)                | 是   | 滚动事件的类型。                             |
 | offset       | number                                             | 是   | 滚动组件的当前偏移量。                        |
 
