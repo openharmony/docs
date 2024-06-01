@@ -105,7 +105,6 @@ checkMultiOsAccountEnabled(): Promise&lt;boolean&gt;
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 
 **示例：**
@@ -435,7 +434,6 @@ checkOsAccountTestable(): Promise&lt;boolean&gt;
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 
 **示例：**
@@ -776,7 +774,6 @@ getOsAccountCount(): Promise&lt;number&gt;
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
 | 201 | Permission denied.|
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
 
 **示例：**
@@ -852,7 +849,6 @@ getOsAccountLocalId(): Promise&lt;number&gt;
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
 
 **示例：**
@@ -1250,7 +1246,6 @@ getActivatedOsAccountLocalIds(): Promise&lt;Array&lt;number&gt;&gt;
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
 
 **示例：**
@@ -1337,7 +1332,6 @@ getCurrentOsAccount(): Promise&lt;OsAccountInfo&gt;
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
 | 201 | Permission denied.|
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 
 **示例：**
@@ -1410,7 +1404,6 @@ getOsAccountType(): Promise&lt;OsAccountType&gt;
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 
 **示例：**
@@ -1489,7 +1482,6 @@ queryDistributedVirtualDeviceId(): Promise&lt;string&gt;
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
 | 201 | Permission denied.|
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 
 **示例：**
