@@ -143,6 +143,22 @@ animationDuration(value: number)
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | value  | number | 是   | 点击TabBar页签和调用TabsController的changeIndex接口切换TabContent的动画时长。<br/>默认值：<br/>API version 10及以前，不设置该属性或设置为null时，默认值为0ms，即点击TabBar页签和调用TabsController的changeIndex接口切换TabContent无动画。设置为小于0或undefined时，默认值为300ms。<br/>API version 11及以后，不设置该属性或设置为异常值，且设置TabBar为BottomTabBarStyle样式时，默认值为0ms。设置TabBar为其他样式时，默认值为300ms。 |
 
+### animationMode<sup>12+</sup>
+
+animationMode(mode: Optional\<AnimationMode\>)
+
+设置点击TabBar页签是切换TabContent的动画形式。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| mode  | Optional\<[AnimationMode](#animationmode12枚举说明)\> | 是   | 点击TabBar页签是切换TabContent的动画形式。<br/>默认值：<br/>默认值是AnimationMode::CONTENT_FIRST，表示在点击TabBar切换TabContent时，先加载目标页内容，再开始切换动画。|
+
 ### divider<sup>10+</sup>
 
 divider(value: DividerStyle | null)
@@ -279,6 +295,16 @@ barGridAlign(value: BarGridColumnOptions)
 | ---------- | ---------------------------------------- |
 | Scrollable | 每一个TabBar均使用实际布局宽度，超过总长度（横向Tabs的barWidth，纵向Tabs的barHeight）后可滑动。 |
 | Fixed      | 所有TabBar平均分配barWidth宽度（纵向时平均分配barHeight高度）。 |
+
+## AnimationMode<sup>12+</sup>枚举说明
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+| 名称         | 描述                                       |
+| ---------- | ---------------------------------------- |
+| CONTENT_FIRST | 先加载目标页内容，再开始切换动画 |
+| ACTION_FIRST | 先开始切换动画，再加载目标页内容；生效需要同时需要满足：Tabs的height、width没有设置成auto |
+| NO_ANIMATION | 关闭默认动画 |
 
 ## LayoutStyle<sup>10+</sup>枚举说明
 
