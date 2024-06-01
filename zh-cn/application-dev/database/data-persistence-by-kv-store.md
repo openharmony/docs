@@ -39,7 +39,7 @@
      
    ```js
    // 导入模块
-   import distributedKVStore from '@ohos.data.distributedKVStore';
+   import { distributedKVStore } from '@kit.ArkData';
    
    // Stage模型
    import window from '@ohos.window';
@@ -78,10 +78,11 @@
      
    ```js
    // 导入模块
-   import distributedKVStore from '@ohos.data.distributedKVStore';
+   import { distributedKVStore } from '@kit.ArkData';
    
    // FA模型
-   import featureAbility from '@ohos.ability.featureAbility';
+   import { featureAbility } from '@kit.AbilityKit';
+   import { BusinessError } from '@ohos.base';
    
    let kvManager: distributedKVStore.KVManager | undefined = undefined;
    let context = featureAbility.getContext(); // 获取context
