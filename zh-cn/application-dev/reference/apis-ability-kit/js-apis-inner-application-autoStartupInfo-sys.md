@@ -20,6 +20,7 @@
 | moduleName | string | 否   | 应用程序的Module名称。 |
 | abilityName | string | 是  | 应用程序的Ability名称。 |
 | abilityTypeName | string | 否 | 应用程序的Ability类型。 |
+| appCloneIndex | number   | 否   | 分身应用索引。  |
 
 **示例：**
 
