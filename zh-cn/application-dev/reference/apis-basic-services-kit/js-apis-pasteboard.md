@@ -2290,7 +2290,7 @@ import { uniformTypeDescriptor } from '@kit.ArkData';
 
 let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 systemPasteboard.getUnifiedData().then((data) => {
-    let records = data.getRecords();
+    let records: Array<unifiedDataChannel.UnifiedRecord> = data.getRecords();
     for (let j = 0; j < records.length; j++) {
         if (records[j].getType() === uniformTypeDescriptor.UniformDataType.PLAIN_TEXT) {
             let text = records[j] as unifiedDataChannel.PlainText;
