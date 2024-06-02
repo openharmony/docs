@@ -49,7 +49,7 @@ startAbilityForResultWithAccount(want: Want, accountId: number, callback: AsyncC
 
 **错误码：**
 
-以下错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -142,7 +142,7 @@ startAbilityForResultWithAccount(want: Want, accountId: number, options: StartOp
 
 **错误码：**
 
-以下错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -243,7 +243,7 @@ startAbilityForResultWithAccount(want: Want, accountId: number, options?: StartO
 
 **错误码：**
 
-以下错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -325,7 +325,7 @@ startServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void
 
 **错误码：**
 
-以下错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -397,7 +397,7 @@ startServiceExtensionAbility(want: Want): Promise\<void>
 
 **错误码：**
 
-以下错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -477,7 +477,7 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback:
 
 **错误码：**
 
-以下错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -557,7 +557,7 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\
 
 **错误码：**
 
-以下错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -630,7 +630,7 @@ stopServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void
 
 **错误码：**
 
-以下错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -700,7 +700,7 @@ stopServiceExtensionAbility(want: Want): Promise\<void>
 
 **错误码：**
 
-以下错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -776,7 +776,7 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback: 
 
 **错误码：**
 
-以下错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -852,7 +852,7 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\<
 
 **错误码：**
 
-以下错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -935,7 +935,7 @@ connectServiceExtensionAbilityWithAccount(want: Want, accountId: number, options
 
 **错误码：**
 
-以下错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -1025,7 +1025,7 @@ startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<
 
 **错误码：**
 
-以下错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -1116,7 +1116,7 @@ startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, ca
 
 **错误码：**
 
-以下错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -1210,7 +1210,7 @@ startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): 
 
 **错误码：**
 
-以下错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -1292,7 +1292,7 @@ setMissionIcon(icon: image.PixelMap, callback: AsyncCallback\<void>): void
 
 **错误码：**
 
-以下错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -1354,7 +1354,7 @@ setMissionIcon(icon: image.PixelMap): Promise\<void>
 
 **错误码：**
 
-以下错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -1418,7 +1418,7 @@ startRecentAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -1498,7 +1498,7 @@ startRecentAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt
 
 **错误码：**
 
-以下错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -1582,7 +1582,7 @@ startRecentAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -1675,7 +1675,7 @@ startAbilityByCallWithAccount(want: Want, accountId: number): Promise&lt;Caller&
 
 **错误码：**
 
-以下错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -1761,7 +1761,7 @@ startAbilityAsCaller(want: Want, callback: AsyncCallback\<void>): void
 
 **错误码：**
 
-以下错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -1834,7 +1834,7 @@ startAbilityAsCaller(want: Want, options: StartOptions, callback: AsyncCallback\
 
 **错误码：**
 
-以下错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -1915,7 +1915,7 @@ startAbilityAsCaller(want: Want, options?: StartOptions): Promise\<void>
 
 **错误码：**
 
-以下错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -2000,7 +2000,7 @@ requestModalUIExtension(pickerWant: Want): Promise\<void>
 
 **错误码：**
 
-以下错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -2071,7 +2071,7 @@ requestModalUIExtension(pickerWant: Want, callback: AsyncCallback\<void>): void
 
 **错误码：**
 
-以下错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |

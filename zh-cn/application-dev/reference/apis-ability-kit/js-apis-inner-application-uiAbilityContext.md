@@ -52,7 +52,7 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -133,7 +133,7 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 
 **错误码：**
 
-以下错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -225,7 +225,7 @@ startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -315,7 +315,7 @@ startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;):
 
 **错误码：**
 
-以下错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -401,7 +401,7 @@ startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback
 
 **错误码：**
 
-以下错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -497,7 +497,7 @@ startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityRes
 
 **错误码：**
 
-以下错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -581,7 +581,7 @@ terminateSelf(callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -641,7 +641,7 @@ terminateSelf(): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -702,7 +702,7 @@ terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback&lt;voi
 
 **错误码：**
 
-以下错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -782,7 +782,7 @@ terminateSelfWithResult(parameter: AbilityResult): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -856,7 +856,7 @@ connectServiceExtensionAbility(want: Want, options: ConnectOptions): number
 
 **错误码：**
 
-以下错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -937,7 +937,7 @@ disconnectServiceExtensionAbility(connection: number): Promise\<void>
 
 **错误码：**
 
-以下错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -995,7 +995,7 @@ disconnectServiceExtensionAbility(connection: number, callback: AsyncCallback\<v
 
 **错误码：**
 
-以下错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -1070,7 +1070,7 @@ startAbilityByCall(want: Want): Promise&lt;Caller&gt;
 
 **错误码：**
 
-以下错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -1188,7 +1188,7 @@ setMissionLabel(label: string, callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -1237,7 +1237,7 @@ setMissionLabel(label: string): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -1377,7 +1377,7 @@ restoreWindowStage(localStorage: LocalStorage): void
 
 **错误码：**
 
-以下错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -1416,7 +1416,7 @@ isTerminating(): boolean
 
 **错误码：**
 
-以下错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -1456,7 +1456,7 @@ requestDialogService(want: Want, result: AsyncCallback&lt;dialogRequest.RequestR
 
 **错误码：**
 
-以下错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -1540,7 +1540,7 @@ requestDialogService(want: Want): Promise&lt;dialogRequest.RequestResult&gt;
 
 **错误码：**
 
-以下错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -1614,7 +1614,7 @@ reportDrawnCompleted(callback: AsyncCallback\<void>): void
 
 **错误码：**
 
-以下错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -1678,7 +1678,7 @@ startAbilityByType(type: string, wantParam: Record<string, Object>,
 
 **错误码：**
 
-以下错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -1743,7 +1743,7 @@ startAbilityByType(type: string, wantParam: Record<string, Object>,
 
 **错误码：**
 
-以下错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -1798,7 +1798,7 @@ showAbility(): Promise\<void>
 
 **错误码：**
 
-以下错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -2072,7 +2072,7 @@ openAtomicService(appId: string, options?: AtomicServiceOptions): Promise&lt;Abi
 
 **错误码：**
 
-以下错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -2160,7 +2160,7 @@ openLink(link: string, options?: OpenLinkOptions, callback?: AsyncCallback&lt;Ab
 
 **错误码：**
 
-以下错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
