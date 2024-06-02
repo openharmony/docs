@@ -573,10 +573,11 @@ getCurrentTopAbility(callback: AsyncCallback\<UIAbility>): void
 
 **错误码**：
 
-以下错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
+以下错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000100 | GetCurrentTopAbility failed. |
 
 **示例：**
