@@ -10,7 +10,7 @@
 ## 导入模块
 
 ```ts
-import inputMethod from '@ohos.inputMethod';
+import { inputMethod } from '@kit.IMEKit';
 ```
 
 ## inputMethod.switchInputMethod<sup>11+</sup>
@@ -52,7 +52,7 @@ switchInputMethod(bundleName: string, subtypeId?: string): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let currentIme = inputMethod.getCurrentInputMethod();
 try {
@@ -238,13 +238,13 @@ isPanelShown(panelInfo: PanelInfo): boolean
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
 | 202      | not system application.  |
-| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 12800008 | input method manager service error. |
 
 **示例：**
 
 ```ts
-import { PanelInfo, PanelType, PanelFlag } from '@ohos.inputMethod.Panel';
+import { PanelInfo, PanelType, PanelFlag } from '@kit.IMEKit';
 
 let info: PanelInfo = {
   type: PanelType.SOFT_KEYBOARD,
