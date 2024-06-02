@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```ts
-import inputMethodEngine from '@ohos.inputMethodEngine';
+import { inputMethodEngine } from '@kit.IMEKit';
 ```
 
 ## 常量
@@ -157,8 +157,8 @@ let keyboardDelegate = inputMethodEngine.createKeyboardDelegate();
 **示例：**
 
 ```ts
-import inputMethodEngine from '@ohos.inputMethodEngine';
-import { BusinessError } from '@ohos.base';
+import { inputMethodEngine } from '@kit.IMEKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let record :Record<string, inputMethodEngine.CommandDataType> = {
@@ -532,7 +532,7 @@ on(type: 'setSubtype', callback: (inputMethodSubtype: InputMethodSubtype) => voi
 **示例：**
 
 ```ts
-import InputMethodSubtype from '@ohos.InputMethodSubtype';
+import { InputMethodSubtype } from '@kit.IMEKit';
 
 try {
   inputMethodEngine.getInputMethodAbility().on('setSubtype', (inputMethodSubtype: InputMethodSubtype) => {
@@ -653,8 +653,8 @@ on(type: 'privateCommand', callback: Callback<Record<string, CommandDataType>>):
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import inputMethodEngine from '@ohos.inputMethodEngine';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { inputMethodEngine } from '@kit.IMEKit';
 
 let privateCommandCallback = (record : Record<string, inputMethodEngine.CommandDataType>) => {
   for (const key in record) {
@@ -696,8 +696,8 @@ off(type: 'privateCommand', callback?: Callback< SecurityMode>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import inputMethodEngine from '@ohos.inputMethodEngine';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { inputMethodEngine } from '@kit.IMEKit';
 
 let privateCommandCallback = (record : Record<string, inputMethodEngine.CommandDataType>) => {
   for (const key in record) {
@@ -764,13 +764,13 @@ createPanel(ctx: BaseContext, info: PanelInfo, callback: AsyncCallback\<Panel>):
 
 | 错误码ID   | 错误信息                       |
 | ---------- | ----------------------------- |
-| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 12800004   | not an input method extension. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let panelInfo: inputMethodEngine.PanelInfo = {
   type: inputMethodEngine.PanelType.SOFT_KEYBOARD,
@@ -814,13 +814,13 @@ createPanel(ctx: BaseContext, info: PanelInfo): Promise\<Panel>
 
 | 错误码ID   | 错误信息                       |
 | ---------- | ----------------------------- |
-| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 12800004   | not an input method extension. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let panelInfo: inputMethodEngine.PanelInfo = {
   type: inputMethodEngine.PanelType.SOFT_KEYBOARD,
@@ -860,7 +860,7 @@ destroyPanel(panel: Panel, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let panelInfo: inputMethodEngine.PanelInfo = {
   type: inputMethodEngine.PanelType.SOFT_KEYBOARD,
@@ -925,7 +925,7 @@ destroyPanel(panel: Panel): Promise\<void>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let panelInfo: inputMethodEngine.PanelInfo = {
   type: inputMethodEngine.PanelType.SOFT_KEYBOARD,
@@ -1047,7 +1047,7 @@ on(type: 'keyEvent', callback: (event: InputKeyEvent) => boolean): void
 **示例：**
 
 ```ts
-import type { KeyEvent } from '@ohos.multimodalInput.keyEvent';
+import type { KeyEvent } from '@kit.InputKit';
 
 try {
   inputMethodEngine.getKeyboardDelegate().on('keyEvent', (keyEvent: KeyEvent) => {
@@ -1079,7 +1079,7 @@ off(type: 'keyEvent', callback?: (event: InputKeyEvent) => boolean): void
 **示例：**
 
 ```ts
-import type { KeyEvent } from '@ohos.multimodalInput.keyEvent';
+import type { KeyEvent } from '@kit.InputKit';
 
 try {
   inputMethodEngine.getKeyboardDelegate().off('keyEvent', (keyEvent: KeyEvent) => {
@@ -1340,7 +1340,7 @@ setUiContent(path: string, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   panel.setUiContent('pages/page2/page2', (err: BusinessError) => {
@@ -1386,7 +1386,7 @@ setUiContent(path: string): Promise\<void>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   panel.setUiContent('pages/page2/page2').then(() => {
@@ -1426,7 +1426,7 @@ setUiContent(path: string, storage: LocalStorage, callback: AsyncCallback\<void>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let storage = new LocalStorage();
 storage.setOrCreate('storageSimpleProp',121);
@@ -1475,7 +1475,7 @@ setUiContent(path: string, storage: LocalStorage): Promise\<void>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let storage = new LocalStorage();
 storage.setOrCreate('storageSimpleProp',121);
@@ -1521,7 +1521,7 @@ resize(width: number, height: number, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   panel.resize(500, 1000, (err: BusinessError) => {
@@ -1572,7 +1572,7 @@ resize(width: number, height: number): Promise\<void>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   panel.resize(500, 1000).then(() => {
@@ -1607,12 +1607,12 @@ moveTo(x: number, y: number, callback: AsyncCallback\<void>): void
 
 | 错误码ID | 错误信息                                                |
 | -------- | ------------------------------------------------------- |
-| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   panel.moveTo(300, 300, (err: BusinessError) =>{
@@ -1654,12 +1654,12 @@ moveTo(x: number, y: number): Promise\<void>
 
 | 错误码ID | 错误信息                                                |
 | -------- | ------------------------------------------------------- |
-| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   panel.moveTo(300, 300).then(() => {
@@ -1689,7 +1689,7 @@ show(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 panel.show((err: BusinessError) => {
   if (err) {
@@ -1717,7 +1717,7 @@ show(): Promise\<void>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 panel.show().then(() => {
   console.log('Succeeded in showing the panel.');
@@ -1743,7 +1743,7 @@ hide(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 panel.hide((err: BusinessError) => {
   if (err) {
@@ -1771,7 +1771,7 @@ hide(): Promise\<void>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 panel.hide().then(() => {
   console.log('Succeeded in hiding the panel.');
@@ -1807,7 +1807,7 @@ adjustPanelRect(flag: PanelFlag, rect: PanelRect): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let panelFlag = inputMethodEngine.PanelFlag.FLG_FIXED;
@@ -1897,7 +1897,7 @@ on(type: 'sizeChange', callback: Callback&lt;window.Size&gt;): void;
 **示例：**
 
 ```ts
-import window from '@ohos.window';
+import { window } from '@kit.ArkUI';
 try {
   panel.on('sizeChange', (windowSize: window.Size) => {
     console.info(`panel is size changes, width: ${JSON.stringify(windowSize.width)}, height:${JSON.stringify(windowSize.width)}`);
@@ -1991,7 +1991,7 @@ off(type: 'sizeChange', callback?: Callback&lt;window.Size&gt;): void;
 **示例：**
 
 ```ts
-import window from '@ohos.window';
+import { window } from '@kit.ArkUI';
 try {
   panel.off('sizeChange', (windowSize: window.Size) => {
     console.info(`panel is size changes, width: ${JSON.stringify(windowSize.width)}, height:${JSON.stringify(windowSize.width)}`);
@@ -2057,7 +2057,7 @@ setPrivacyMode(isPrivacyMode: boolean): void
 | 错误码ID | 错误信息                                                |
 | -------- | ------------------------------------------------------- |
 | 201      | permissions check fails.  |
-| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -2099,7 +2099,7 @@ hide(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 keyboardController.hide((err: BusinessError) => {
   if (err) {
@@ -2135,7 +2135,7 @@ hide(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 keyboardController.hide().then(() => {
   console.log('Succeeded in hiding keyboard.');
@@ -2165,7 +2165,7 @@ hideKeyboard(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 keyboardController.hideKeyboard((err: BusinessError) => {
   if (err) {
@@ -2197,7 +2197,7 @@ hideKeyboard(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 keyboardController.hideKeyboard().then(() => {
   console.log('Succeeded in hiding keyboard.');
@@ -2232,7 +2232,7 @@ exitCurrentInputType(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 keyboardController.exitCurrentInputType((err: BusinessError) => {
   if (err) {
@@ -2269,7 +2269,7 @@ exitCurrentInputType(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 keyboardController.exitCurrentInputType().then(() => {
   console.log('Succeeded in exiting current input type.');
@@ -2361,13 +2361,13 @@ sendKeyFunction(action:number, callback: AsyncCallback&lt;boolean&gt;): void
 
 | 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
-| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 12800003 | input method client error. |
 
  **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let action = 1;
 try {
@@ -2413,13 +2413,13 @@ sendKeyFunction(action: number): Promise&lt;boolean&gt;
 
 | 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
-| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 12800003 | input method client error. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let action = 1;
 try {
@@ -2458,14 +2458,14 @@ getForward(length:number, callback: AsyncCallback&lt;string&gt;): void
 
 | 错误码ID | 错误信息                     |
 | -------- | ------------------------------ |
-| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 12800003 | input method client error.     |
 | 12800006 | Input method controller error. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let length = 1;
 try {
@@ -2507,14 +2507,14 @@ getForward(length:number): Promise&lt;string&gt;
 
 | 错误码ID | 错误信息                     |
 | -------- | ------------------------------ |
-| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 12800003 | input method client error.     |
 | 12800006 | Input method controller error. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let length = 1;
 try {
@@ -2591,14 +2591,14 @@ getBackward(length:number, callback: AsyncCallback&lt;string&gt;): void
 
 | 错误码ID | 错误信息                     |
 | -------- | ------------------------------ |
-| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 12800003 | input method client error.     |
 | 12800006 | Input method controller error. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let length = 1;
 try {
@@ -2640,14 +2640,14 @@ getBackward(length:number): Promise&lt;string&gt;
 
 | 错误码ID | 错误信息                     |
 | -------- | ------------------------------ |
-| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 12800003 | input method client error.     |
 | 12800006 | Input method controller error. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let length = 1;
 try {
@@ -2724,14 +2724,14 @@ deleteForward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 
 | 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
-| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 12800002 | Input method engine error. |
 | 12800003 | input method client error. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let length = 1;
 try {
@@ -2777,14 +2777,14 @@ deleteForward(length:number): Promise&lt;boolean&gt;
 
 | 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
-| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 12800002 | Input method engine error. |
 | 12800003 | input method client error. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let length = 1;
 try {
@@ -2859,14 +2859,14 @@ deleteBackward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 
 | 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
-| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 12800002 | Input method engine error. |
 | 12800003 | input method client error. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let length = 1;
 try {
@@ -2912,14 +2912,14 @@ deleteBackward(length:number): Promise&lt;boolean&gt;
 
 | 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
-| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 12800002 | Input method engine error. |
 | 12800003 | input method client error. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let length = 1;
 inputClient.deleteBackward(length).then((result: boolean) => {
@@ -2990,14 +2990,14 @@ insertText(text:string, callback: AsyncCallback&lt;boolean&gt;): void
 
 | 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
-| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 12800002 | Input method engine error. |
 | 12800003 | input method client error. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 inputClient.insertText('test', (err: BusinessError, result: boolean) => {
   if (err) {
@@ -3038,14 +3038,14 @@ insertText(text:string): Promise&lt;boolean&gt;
 
 | 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
-| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 12800002 | Input method engine error. |
 | 12800003 | input method client error. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   inputClient.insertText('test').then((result: boolean) => {
@@ -3082,7 +3082,7 @@ insertTextSync(text: string): void
 
 | 错误码ID | 错误信息                   |
 | -------- | -------------------------- |
-| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 12800002 | input method engine error. |
 | 12800003 | input method client error. |
 
@@ -3122,7 +3122,7 @@ getEditorAttribute(callback: AsyncCallback&lt;EditorAttribute&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 inputClient.getEditorAttribute((err: BusinessError, editorAttribute: inputMethodEngine.EditorAttribute) => {
   if (err) {
@@ -3159,7 +3159,7 @@ getEditorAttribute(): Promise&lt;EditorAttribute&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   inputClient.getEditorAttribute().then((editorAttribute: inputMethodEngine.EditorAttribute) => {
@@ -3233,7 +3233,7 @@ moveCursor(direction: number, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   inputClient.moveCursor(inputMethodEngine.Direction.CURSOR_UP, (err: BusinessError) => {
@@ -3280,7 +3280,7 @@ moveCursor(direction: number): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   inputClient.moveCursor(inputMethodEngine.Direction.CURSOR_UP).then(() => {
@@ -3354,7 +3354,7 @@ selectByRange(range: Range, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let range: inputMethodEngine.Range = { start: 0, end: 1 };
@@ -3402,7 +3402,7 @@ selectByRange(range: Range): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let range: inputMethodEngine.Range = { start: 0, end: 1 };
@@ -3478,7 +3478,7 @@ selectByMovement(movement: Movement, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let movement: inputMethodEngine.Movement = { direction: 1 };
@@ -3526,7 +3526,7 @@ selectByMovement(movement: Movement): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let movement: inputMethodEngine.Movement = { direction: 1 };
@@ -3560,7 +3560,7 @@ selectByMovementSync(movement: Movement): void
 
 | 错误码ID | 错误信息                   |
 | -------- | -------------------------- |
-| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 12800003 | input method client error. |
 
 **示例：**
@@ -3601,7 +3601,7 @@ getTextIndexAtCursor(callback: AsyncCallback&lt;number&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 inputClient.getTextIndexAtCursor((err: BusinessError, index: number) => {
   if (err) {
@@ -3638,7 +3638,7 @@ getTextIndexAtCursor(): Promise&lt;number&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 inputClient.getTextIndexAtCursor().then((index: number) => {
   console.log('Succeeded in getTextIndexAtCursor: ' + index);
@@ -3706,14 +3706,14 @@ sendExtendAction(action: ExtendAction, callback: AsyncCallback&lt;void&gt;): voi
 
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------ |
-| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 12800003 | input method client error.     |
 | 12800006 | Input method controller error. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   inputClient.sendExtendAction(inputMethodEngine.ExtendAction.COPY, (err: BusinessError) => {
@@ -3758,14 +3758,14 @@ sendExtendAction(action: ExtendAction): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------ |
-| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 12800003 | input method client error.     |
 | 12800006 | Input method controller error. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   inputClient.sendExtendAction(inputMethodEngine.ExtendAction.COPY).then(() => {
@@ -3816,8 +3816,8 @@ sendPrivateCommand(commandData: Record&lt;string, CommandDataType&gt;): Promise&
 **示例：**
 
 ```ts
-import inputMethodEngine from '@ohos.inputMethodEngine';
-import { BusinessError } from '@ohos.base';
+import { inputMethodEngine } from '@kit.IMEKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 inputMethodEngine.getInputMethodAbility().on('inputStart', (kbController, textInputClient) => {
   try {
@@ -3871,7 +3871,7 @@ getCallingWindowInfo(): Promise&lt;WindowInfo&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   inputClient.getCallingWindowInfo().then((windowInfo: inputMethodEngine.WindowInfo) => {
@@ -3919,7 +3919,7 @@ setPreviewText(text: string, range: Range): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let range: inputMethodEngine.Range = { start: 0, end: 1 };
@@ -4000,7 +4000,7 @@ finishTextPreview(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   inputClient.finishTextPreview().then(() => {
@@ -4153,7 +4153,7 @@ getForward(length:number, callback: AsyncCallback&lt;string&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let length = 1;
 textInputClient.getForward(length, (err: BusinessError, text: string) => {
@@ -4192,7 +4192,7 @@ getForward(length:number): Promise&lt;string&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let length = 1;
 textInputClient.getForward(length).then((text: string) => {
@@ -4224,7 +4224,7 @@ getBackward(length:number, callback: AsyncCallback&lt;string&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let length = 1;
 textInputClient.getBackward(length, (err: BusinessError, text: string) => {
@@ -4263,7 +4263,7 @@ getBackward(length:number): Promise&lt;string&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let length = 1;
 textInputClient.getBackward(length).then((text: string) => {
@@ -4295,7 +4295,7 @@ deleteForward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let length = 1;
 textInputClient.deleteForward(length, (err: BusinessError, result: boolean) => {
@@ -4338,7 +4338,7 @@ deleteForward(length:number): Promise&lt;boolean&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let length = 1;
 textInputClient.deleteForward(length).then((result: boolean) => {
@@ -4374,7 +4374,7 @@ deleteBackward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let length = 1;
 textInputClient.deleteBackward(length, (err: BusinessError, result: boolean) => {
@@ -4417,7 +4417,7 @@ deleteBackward(length:number): Promise&lt;boolean&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let length = 1;
 textInputClient.deleteBackward(length).then((result: boolean) => {
@@ -4452,7 +4452,7 @@ sendKeyFunction(action: number, callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let action = 1;
 textInputClient.sendKeyFunction(action, (err: BusinessError, result: boolean) => {
@@ -4495,7 +4495,7 @@ sendKeyFunction(action: number): Promise&lt;boolean&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let action = 1;
 textInputClient.sendKeyFunction(action).then((result: boolean) => {
@@ -4531,7 +4531,7 @@ insertText(text:string, callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 textInputClient.insertText('test', (err: BusinessError, result: boolean) => {
   if (err) {
@@ -4573,7 +4573,7 @@ insertText(text:string): Promise&lt;boolean&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 textInputClient.insertText('test').then((result: boolean) => {
   if (result) {
@@ -4607,7 +4607,7 @@ getEditorAttribute(callback: AsyncCallback&lt;EditorAttribute&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 textInputClient.getEditorAttribute((err: BusinessError, editorAttribute: inputMethodEngine.EditorAttribute) => {
   if (err) {
@@ -4640,7 +4640,7 @@ getEditorAttribute(): Promise&lt;EditorAttribute&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 textInputClient.getEditorAttribute().then((editorAttribute: inputMethodEngine.EditorAttribute) => {
   console.log('editorAttribute.inputPattern: ' + JSON.stringify(editorAttribute.inputPattern));
