@@ -643,7 +643,6 @@ terminateSelf(): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
@@ -1416,7 +1415,6 @@ isTerminating(): boolean
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000011 | The context does not exist. |
 
 错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
@@ -1615,7 +1613,6 @@ reportDrawnCompleted(callback: AsyncCallback\<void>): void
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
 
@@ -1800,7 +1797,6 @@ showAbility(): Promise\<void>
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000050 | Internal error. |
 | 16000067 | Start options check failed. |
 
@@ -1900,7 +1896,6 @@ hideAbility(): Promise\<void>
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000050 | Internal error. |
 | 16000067 | Start options check failed. |
 
@@ -1999,7 +1994,6 @@ moveAbilityToBackground(): Promise\<void>
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
 | 16000061 | Operation not supported. |

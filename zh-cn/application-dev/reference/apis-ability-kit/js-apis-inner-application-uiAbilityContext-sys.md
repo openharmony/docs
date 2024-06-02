@@ -1422,7 +1422,7 @@ startRecentAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -1502,7 +1502,7 @@ startRecentAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -1586,7 +1586,7 @@ startRecentAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -1763,7 +1763,7 @@ startAbilityAsCaller(want: Want, callback: AsyncCallback\<void>): void
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -1836,7 +1836,7 @@ startAbilityAsCaller(want: Want, options: StartOptions, callback: AsyncCallback\
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 401 | 401 - Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 | 16000001 | The specified ability does not exist. |
 | 16000004 | Can not start invisible component. |
 | 16000005 | The specified process does not have the permission. |
@@ -1917,7 +1917,7 @@ startAbilityAsCaller(want: Want, options?: StartOptions): Promise\<void>
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |

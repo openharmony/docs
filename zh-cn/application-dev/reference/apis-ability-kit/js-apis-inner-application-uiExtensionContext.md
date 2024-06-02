@@ -957,7 +957,6 @@ reportDrawnCompleted(callback: AsyncCallback\<void>): void
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 401| Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
 

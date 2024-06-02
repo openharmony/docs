@@ -575,7 +575,6 @@ getCurrentTopAbility(callback: AsyncCallback\<UIAbility>): void
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000100 | GetCurrentTopAbility failed. |
 
 以上错误码详细介绍请参考[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
@@ -1666,6 +1665,7 @@ setMockList(mockList: Record\<string, string>): void
 
 | 错误码ID | 错误信息        |
 | -------- | --------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000050 | Internal error. |
 
 以上错误码详细介绍请参考[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。

@@ -38,7 +38,9 @@ createBundleContext(bundleName: string): Context
 | -------- | -------- |
 | Context | 安装包的上下文。 |
 
-**错误码：**
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -86,9 +88,9 @@ createModuleContext(bundleName: string, moduleName: string): Context
 | -------- | -------- |
 | Context | 模块的上下文。 |
 
-**错误码：**
+**错误码**：
 
-以下错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -138,9 +140,9 @@ createModuleResourceManager(bundleName: string, moduleName: string): resmgr.Reso
 | -------- | -------- |
 | resmgr.ResourceManager | 资源管理对象。 |
 
-**错误码：**
+**错误码**：
 
-以下错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -181,7 +183,9 @@ createSystemHspModuleResourceManager(bundleName: string, moduleName: string): re
 | bundleName | string | 是    | 包名。  |
 | moduleName | string | 是    | 模块名。 |
 
-**错误码：**
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)、[元能力子系统错误码](errorcode-ability.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |

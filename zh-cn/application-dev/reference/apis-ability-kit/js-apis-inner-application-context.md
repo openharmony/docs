@@ -57,7 +57,9 @@ createModuleContext(moduleName: string): Context
 | -------- | -------- |
 | Context | 模块的上下文。 |
 
-**错误码：**
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
@@ -100,7 +102,9 @@ getApplicationContext(): ApplicationContext
 | -------- | -------- |
 | [ApplicationContext](js-apis-inner-application-applicationContext.md) | 应用上下文Context。 |
 
-**错误码：**
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |

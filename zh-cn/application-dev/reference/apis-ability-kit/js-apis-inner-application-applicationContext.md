@@ -42,6 +42,8 @@ on(type: 'abilityLifecycle', callback: AbilityLifecycleCallback): number
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
@@ -119,6 +121,8 @@ off(type: 'abilityLifecycle', callbackId: number,  callback: AsyncCallback\<void
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
@@ -170,6 +174,8 @@ off(type: 'abilityLifecycle', callbackId: number): Promise\<void>
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
@@ -214,6 +220,8 @@ on(type: 'environment', callback: EnvironmentCallback): number
 | number | 返回的此次注册监听系统环境变化的ID（每次注册该ID会自增+1，当超过监听上限数量2^63-1时，返回-1）。|
 
 **错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
@@ -267,6 +275,8 @@ off(type: 'environment', callbackId: number,  callback: AsyncCallback\<void>): v
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
@@ -317,6 +327,8 @@ off(type: 'environment', callbackId: number): Promise\<void\>
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
@@ -354,6 +366,8 @@ on(type: 'applicationStateChange', callback: ApplicationStateChangeCallback): vo
 | callback | [ApplicationStateChangeCallback](js-apis-app-ability-applicationStateChangeCallback.md) | 是   | 回调函数。可以对应用从后台切换到前台，以及前台切换到后台分别定义回调。       |
 
 **错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
@@ -404,6 +418,8 @@ off(type: 'applicationStateChange', callback?: ApplicationStateChangeCallback): 
 | callback | [ApplicationStateChangeCallback](js-apis-app-ability-applicationStateChangeCallback.md) | 否   | 回调函数。可以对应用从后台切换到前台，以及前台切换到后台分别定义回调。       |
 
 **错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
@@ -612,7 +628,6 @@ setColorMode(colorMode: ConfigurationConstant.ColorMode): void
 | ------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000011 | The context does not exist. |
-| 401 | If the input parameter is not valid parameter. |
 
 以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
@@ -690,7 +705,6 @@ clearUpApplicationData(): Promise\<void\>
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
 
