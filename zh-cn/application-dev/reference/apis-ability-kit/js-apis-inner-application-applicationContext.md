@@ -456,13 +456,13 @@ getRunningProcessInformation(): Promise\<Array\<ProcessInformation>>
 
 **错误码**：
 
+以下错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -500,13 +500,13 @@ getRunningProcessInformation(callback: AsyncCallback\<Array\<ProcessInformation>
 
 **错误码**：
 
+以下错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -545,12 +545,12 @@ killAllProcesses(): Promise\<void\>
 
 **错误码**：
 
+以下错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000011 | The context does not exist. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -583,12 +583,12 @@ killAllProcesses(callback: AsyncCallback\<void\>)
 
 **错误码**：
 
+以下错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000011 | The context does not exist. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -624,12 +624,12 @@ setColorMode(colorMode: ConfigurationConstant.ColorMode): void
 
 **错误码**：
 
+以下错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000011 | The context does not exist. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -663,12 +663,13 @@ setLanguage(language: string): void
 
 **错误码**：
 
+以下错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000011 | The context does not exist. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -703,12 +704,12 @@ clearUpApplicationData(): Promise\<void\>
 
 **错误码**：
 
+以下错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -742,13 +743,13 @@ clearUpApplicationData(callback: AsyncCallback\<void\>): void
 
 **错误码**：
 
+以下错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -783,14 +784,14 @@ restartApp(want: Want): void
 
 **错误码**：
 
+以下错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000050 | Internal error. |
 | 16000063 | The target to restart does not belong to the current app or is not a UIAbility. |
 | 16000064 | Restart too frequently. Try again at least 10s later. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
