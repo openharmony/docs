@@ -12,11 +12,11 @@
 
 ## 接口列表
 
-[libuv支持的API文档](http://docs.libuv.org/en/v1.x/api.html)。
+详见[libuv支持的API文档](http://docs.libuv.org/en/v1.x/api.html)。
 
 ## OpenHarmony引入libuv的背景
 
-在OpenHarmony的早期版本中，为了兼容node的生态，将node的napi引入到系统中，方便node开发者快速接入OpenHarmony，扩展自己的js接口。同时引入了node的事件循环实现库——libuv。
+在OpenHarmony的早期版本中，为了兼容node的生态，将node的Node-API引入到系统中，方便node开发者快速接入OpenHarmony，扩展自己的js接口。同时引入了node的事件循环实现库——libuv。
 
 ### 演进方向
 
@@ -24,19 +24,19 @@
 
 开发者应尽可能避免在 `napi_get_uv_event_loop` 接口(已在API12中标记废弃)获取的应用主 loop 上使用 libuv 的 ndk 进行操作，因为这可能会带来各种问题，并给未来的兼容性变更带来大量的工作量。
 
-如果开发者希望跟主线程事件循环交互，比如插入任务等，应当使用[napi提供的接口](../../napi/napi-data-types-interfaces.md)。
+如果开发者希望跟主线程事件循环交互，比如插入任务等，应当使用[Node-API提供的接口](../../napi/napi-data-types-interfaces.md)。
 
-OpenHarmony 还将长期通过napi来为开发者提供和主线程交互及扩展js接口的能力，但会屏蔽实现层使用的事件循环。尽管我们在API12中给`napi_get_uv_event_loop`接口标记了废弃，但napi的主要功能接口将会长期维护，并保证与node的原生行为一致，来保证熟悉node.js的扩展机制的开发者方便地将自己的已有代码接入到OpnHarmony中来。
+OpenHarmony 还将长期通过Node-API来为开发者提供和主线程交互及扩展js接口的能力，但会屏蔽实现层使用的事件循环。尽管我们在API12中给`napi_get_uv_event_loop`接口标记了废弃，但Node-API的主要功能接口将会长期维护，并保证与node的原生行为一致，来保证熟悉node.js的扩展机制的开发者方便地将自己的已有代码接入到OpnHarmony中来。
 
 如果您对 libuv 非常熟悉，并自信能够处理好所有的内存管理和多线程问题，您仍可以像使用原生 libuv 一样，自己启动线程，并在上面使用 libuv 完成自己的业务。在没有特殊版本要求的情况下，您不需要额外引入 libuv库到您的应用工程中。
 
 ### 当前问题和解决方案
 
-众所周知，一个线程上只能存在一个事件循环，为了适配系统应用的主事件循环，在主线程上的js环境中，uvloop中的事件处理是由主事件循环监听其fd，触发一次`uv_run`来驱动的。因此部分依赖uvloop始终循环的功能无法生效。
+根据现有机制，一个线程上只能存在一个事件循环，为了适配系统应用的主事件循环，在主线程上的js环境中，uvloop中的事件处理是由主事件循环监听其fd，触发一次`uv_run`来驱动的。因此部分依赖uvloop始终循环的功能无法生效。
 
 基于上述，比较常用的场景和解决方案有：
 
-#### 场景一、在JS主线程抛异步任务到工作线程执行，在主线程中执行JS代码处理返回结果。
+#### 场景一、在JS主线程抛异步任务到工作线程执行，在主线程中执行JS代码处理返回结果
 
 **错误示例：**
 
@@ -259,17 +259,17 @@ extern "C" __attribute__((constructor)) void RegisterEntryModule(void){
 
 ## libuv使用指导
 
-**重要：libuv NDK中所有依赖`uv_run`的接口在当前系统的应用主循环中无法及时生效，并且可能会导致卡顿掉帧的现象。因此不建议直接在JS主线程上使用libuv NDK接口，对于异步任务执行及使用线程安全函数与主线程通信，开发者可以直接调用napi接口来实现相关功能。**
+**重要：libuv NDK中所有依赖`uv_run`的接口在当前系统的应用主循环中无法及时生效，并且可能会导致卡顿掉帧的现象。因此不建议直接在JS主线程上使用libuv NDK接口，对于异步任务执行及使用线程安全函数与主线程通信，开发者可以直接调用Node-API接口来实现相关功能。**
 
-### libuv接口与napi接口对应关系
+### libuv接口与Node-API接口对应关系
 
-当前OpenHarmony提供了一些napi接口，可以替换libuv接口的使用。主要包括异步任务相关接口，线程安全的函数调用接口。
+当前OpenHarmony提供了一些Node-API接口，可以替换libuv接口的使用。主要包括异步任务相关接口，线程安全的函数调用接口。
 
 #### 异步任务接口
 
 当开发者需要执行一个比较耗时的操作但又不希望阻塞主线程执行时，libuv提供了底层接口`uv_queue_work`帮助开发者在异步线程中执行耗时操作，然后将结果回调到主线程上进行处理。
 
-在napi中，通常可以通过[napi_async_work](../../napi/use-napi-asynchronous-task.md)相关函数来实现异步开发的功能。
+在Node-API中，通常可以通过[napi_async_work](../../napi/use-napi-asynchronous-task.md)相关函数来实现异步开发的功能。
 
 相关函数为：
 
@@ -310,7 +310,7 @@ napi_status napi_delete_async_work(napi_env env, napi_async_work work);
 - uv_async_init()
 - uv_async_send()
 
-napi与之对应的接口为[napi_threadsafe_function](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/napi/use-napi-thread-safety.md)相关函数。
+Node-API与之对应的接口为[napi_threadsafe_function](../../napi/use-napi-thread-safety.md)相关函数。
 
 相关函数：
 
@@ -347,8 +347,6 @@ napi_status napi_call_threadsafe_function(napi_threadsafe_function function, voi
 napi_status napi_release_threadsafe_function(napi_threadsafe_function function);
 
 ```
-
-<br/>
 
 除此之外，如果开发者需要libuv其他原生接口来实现业务功能，为了让开发者正确使用libuv提供的接口能力，避免因为错误使用而陷入到问题当中。在后续章节，我们将逐步介绍libuv的一些基本概念和OpenHarmony系统中常用函数的正确使用方法，它仅仅可以保证开发者使用libuv接口的时候不会出现应用进程崩溃等现象。另外，我们还统计了在当前应用主线程上可以正常使用的接口，以及无法在应用主线程上使用的接口。
 
@@ -420,17 +418,20 @@ napi_status napi_release_threadsafe_function(napi_threadsafe_function function);
     </tr>
 </table>
 
+
 ### 线程安全函数
 
 在libuv中，由于涉及到大量的异步任务，稍有不慎就会陷入到多线程问题中。在这里，我们对libuv中常用的线程安全函数和非线程安全函数做了汇总。若开发者在多线程编程中调用了非线程安全的函数，势必要对其进行加锁保护或者保证代码的正确运行时序。否则将陷入到crash问题中。
+
+
 
 线程安全函数：
 
 - uv_async_init()：初始化异步句柄。
 - uv_async_send()：向异步句柄发送信号，可以在任何线程中调用。
 - uv_thread_create()：创建一个新线程并执行指定的函数，可以在任何线程中调用。
-- uv_fs_*()：文件相关操作
-- uv_poll_*()：poll事件相关函数。
+- uv_fs_*()：文件相关操作（uv\_fs\_\* 表示以uv\_fs\_开头的支持文件IO的系列函数）。
+- uv_poll_*()：poll事件相关函数（uv\_poll\_\* 表示以uv\_poll\_开头的支持poll IO的系列函数）。
 - 锁相关的操作，如uv_mutex_lock()、uv_mutex_unlock()等等。
 
 **提示：所有形如uv_xxx_init的函数，即使它是以线程安全的方式实现的，但使用时要注意，避免多个线程同时调用uv_xxx_init，否则它依旧会引起多线程资源竞争的问题。最好的方式是在事件循环函数中调用该函数。**
@@ -446,11 +447,13 @@ napi_status napi_release_threadsafe_function(napi_threadsafe_function function);
 - uv_os_tmpdir()：获取临时目录
 - uv_os_homedir()：获取家目录
 
-### <a id="libuv中的事件循环">libuv中的事件循环</a>
+### libuv中的事件循环
 
 事件循环是libuv中最核心的一个概念，loop负责管理整个事件循环的所有资源，它贯穿于整个事件循环的生命周期。通常将`uv_run`所在的线程称为该事件循环的主线程。
 
-#### <a id="事件循环运行的三种方式">事件循环运行的三种方式</a>
+#### 事件循环运行的三种方式
+
+事件循环运行的三种方式分别为UV_RUN_DEFAULT、UV_RUN_ONCE和UV_RUN_NOWAIT。
 
 `UV_RUN_DEFAULT`：默认轮询方式，该模式将会一直运行下去，直到loop中没有活跃的句柄和请求。
 
@@ -462,27 +465,27 @@ napi_status napi_release_threadsafe_function(napi_threadsafe_function function);
 
 int **uv_loop_init**(uv_loop_t* loop);
 
-<p style="text-indent:2em">对loop进行初始化。</p>
+​    对loop进行初始化。
 
 int **uv_loop_close**(uv_loop_t* loop);
 
-<p style="text-indent:2em">关闭loop，该函数只有在loop中所有的句柄和请求都关闭后才能成功返回，否则将返回UV_EBUSY。</p>
+   关闭loop，该函数只有在loop中所有的句柄和请求都关闭后才能成功返回，否则将返回UV_EBUSY。
 
 uv_loop_t* **uv_default_loop**（void);
 
-<p style="text-indent:2em">该函数创建一个进程级的loop。在OpenHarmony中，由于目前的应用主循环及其他js工作线程还存在着libuv的loop。因此我们不建议开发者使用该函数来创建loop并实现业务功能。在系统的双loop改造完成后，开发者可以根据业务要求来使用该接口。</p>
+   该函数创建一个进程级的loop。在OpenHarmony中，由于目前的应用主循环及其他js工作线程还存在着libuv的loop。因此我们不建议开发者使用该函数来创建loop并实现业务功能。在系统的双loop改造完成后，开发者可以根据业务要求来使用该接口。
 
 int **uv_run**(uv_loop_t* loop, uv_run_mode mode);
 
-<p style="text-indent:2em">启动事件循环。运行模式可查看<a href="#事件循环运行的三种方式">事件循环运行的三种方式。</a></p>
+   启动事件循环。运行模式可查看[事件循环运行的三种方式](#事件循环运行的三种方式)。</a>
 
 int **uv_loop_alive**(uv_loop_t loop);
 
-<p style="text-indent:2em">判断loop是否处于活跃状态。</p>
+   判断loop是否处于活跃状态。
 
 void **uv_stop**(uv_loop_t* loop);
 
-  该函数用来停止一个事件循环，在loop的下一次迭代中才会停止。如果该函数发生在I/O操作之前，将不会阻塞而是直接跳过`uv_io_poll`。
+   该函数用来停止一个事件循环，在loop的下一次迭代中才会停止。如果该函数发生在I/O操作之前，将不会阻塞而是直接跳过`uv_io_poll`。
 
 **使用技巧**：在使用loop时，需要特别注意`uv_stop`函数的使用。开发者需要确保`uv_stop`前，通知与loop相关的所有线程的handle都关闭。参考代码如下：
 
@@ -515,11 +518,11 @@ int stop_loop(uv_loop_t* loop)
 }
 ```
 
-**注：** 该代码是基于所有的handle都按照<a href="#wrap_handle">下述方式</a>封装编写的。
+**注：** 该代码是基于所有的handle都按照[下述方式](#wrap_handle)封装编写的。
 
-### <a id="Handles和Requests">libuv中的Handles和Requests </a>
+### libuv中的Handles和Requests
 
-**Handle：** 表示一个持久性的对象，通常挂载到loop中对应的handle_queue队列上。如果handle处于活跃状态，每次`uv_run`都会处理handle中的回调函数。 
+**Handle：** 表示一个持久性的对象，通常挂载到loop中对应的handle_queue队列上。如果handle处于活跃状态，每次`uv_run`都会处理handle中的回调函数。
 
 **Request：** 表示一个短暂性的请求，一个request只触发一次回调操作。
 
@@ -542,9 +545,9 @@ typedef struct uv_fs_s uv_fs_t;
 
 对于libuv中的handles，对其有个正确的认识并管理好它的生命周期至关重要。handle作为一个长期存在于loop中的句柄，在使用中，开发者应遵循下面的原则：
 
-1.  句柄的初始化工作应在事件循环的线程中进行。
-2.  若由于业务问题，句柄需要在其他工作线程初始化，在使用之前用原子变量判断是否初始化完成。
-3.  句柄在确定后续不再使用后，调用`uv_close`将句柄从loop中摘除。
+1. 句柄的初始化工作应在事件循环的线程中进行。
+2. 若由于业务问题，句柄需要在其他工作线程初始化，在使用之前用原子变量判断是否初始化完成。
+3. 句柄在确定后续不再使用后，调用`uv_close`将句柄从loop中摘除。
 
 针对上面第三条，开发者可以参考[electron项目](https://github.com/electron/electron/pull/25332)中的做法对handles进行封装。
 
@@ -626,7 +629,7 @@ uv_queue_work(loop, work, [](uv_work_t* req) {
 
 libuv的线程间通信是通过uv_async_t句柄来进行的，相关函数如下：
 
-int **uv_async_init**(uv_loop_t* loop, uv_async_t* handle, uv_async_cb async_cb)
+int **uv_async_init**(uv_loop_t*loop, uv_async_t* handle, uv_async_cb async_cb)
 
   loop：事件循环loop。
 
@@ -644,7 +647,6 @@ int **uv_async_send**(uv_async_t* handle)
 
 **提示1：** uv_async_t从调用`uv_async_init`开始后就一直处于活跃状态，除非用`uv_close`将其关闭。
 **提示2：** uv_async_t的执行顺序严格按照`uv_async_init`的顺序，而非通过`uv_async_send`的顺序来执行的。因此按照初始化的顺序来管理好时序问题是必要的。
-
 
 示例代码：
 
@@ -686,10 +688,13 @@ int main()
 
 1. 在主线程中初始化async句柄
 2. 新建一个子线程，在里面每隔100毫秒触发一次`uv_async_send`。10次以后调用`uv_close`关闭async句柄。
-3. 在主线程运行事件循环。 
+3. 在主线程运行事件循环。
 
 每触发一次，主线程都会执行一次回调函数。
 
+
+
+[test](#线程安全函数)
 
 
 
@@ -710,7 +715,6 @@ after_work_cb：loop所在线程的要执行的回调函数。
 
 **注意：** work_cb与after_work_cb的执行有一个时序问题，只有work_cb执行完，通过`uv_async_send(loop->wq_async)`触发fd事件，loop所在线程在下一次迭代中才会执行after_work_cb。只有执行到after_work_cb时，与之相关的uv_work_t生命周期才算结束。
 
-
 ## OpenHarmony中libuv的使用现状
 
 当前OpenHarmony系统中涉及到libuv的线程主要有主线程、JS Worker线程、Taskpool中的TaskWorker线程以及IPC线程。除了主线程内采用了eventhandler作为主循环，其他线程都是使用libuv中的UV_RUN_DEFAULT运行模式作为当前线程的事件主循环来执行任务。在主线程中，eventhandler通过fd驱动的方式来触发任务的执行，eventhandler监听了uv_loop中的backend_fd。当loop中有fd事件触发的时候，eventhandler会执行一次`uv_run`来执行libuv中的任务。
@@ -718,7 +722,6 @@ after_work_cb：loop所在线程的要执行的回调函数。
 综上所述，开发者会发现这样一种现象：**同样的libuv接口在主线程上不生效，但在JS Worker线程中就没问题。这主要还是因为主线程上所有不通过触发fd来驱动的uv接口都不会得到及时的响应。**
 
 另外，在应用主线程中，所有的异步任务尽管最终都是通过libuv得到执行的。但是在当前系统中，[libuv的线程池已经对接到了FFRT中](https://gitee.com/openharmony/third_party_libuv/wikis/06-Wiki-%E6%8A%80%E6%9C%AF%E8%B5%84%E6%BA%90/%20libuv%E5%B7%A5%E4%BD%9C%E7%BA%BF%E7%A8%8B%E6%8E%A5%E5%85%A5FFRT%E6%96%B9%E6%A1%88%E5%88%86%E6%9E%90)，任何抛向libuv的异步任务都会在FFRT的线程中得到调度。应用主线程的回调函数也通过PostTask接口插入到eventhandler的队列上。这就意味着主线程上的异步任务完成后不再通过`uv_async_send`的方式触发主线程的回调。
-
 
 我们总结了五种类型的请求任务是直接可以按照正常用法在应用主循环中生效的：
 
@@ -919,4 +922,4 @@ int uv_getnameinfo(uv_loop_t* loop,
 
 [libuv工作线程接入FFRT方案分析](https://gitee.com/openharmony/third_party_libuv/wikis/06-Wiki-%E6%8A%80%E6%9C%AF%E8%B5%84%E6%BA%90/%20libuv%E5%B7%A5%E4%BD%9C%E7%BA%BF%E7%A8%8B%E6%8E%A5%E5%85%A5FFRT%E6%96%B9%E6%A1%88%E5%88%86%E6%9E%90)
 
-[QoS感知的libuv、napi异步接口整改FAQ](https://gitee.com/openharmony/third_party_libuv/wikis/06-Wiki-%E6%8A%80%E6%9C%AF%E8%B5%84%E6%BA%90/QoS%E6%84%9F%E7%9F%A5%E7%9A%84libuv%E3%80%81napi%E5%BC%82%E6%AD%A5%E6%8E%A5%E5%8F%A3%E6%95%B4%E6%94%B9FAQ)
+[QoS感知的libuv、Node-API异步接口整改FAQ](https://gitee.com/openharmony/third_party_libuv/wikis/06-Wiki-%E6%8A%80%E6%9C%AF%E8%B5%84%E6%BA%90/QoS%E6%84%9F%E7%9F%A5%E7%9A%84libuv%E3%80%81napi%E5%BC%82%E6%AD%A5%E6%8E%A5%E5%8F%A3%E6%95%B4%E6%94%B9FAQ)
