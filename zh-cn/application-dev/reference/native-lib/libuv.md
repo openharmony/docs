@@ -377,8 +377,8 @@ napi_status napi_release_threadsafe_function(napi_threadsafe_function function);
         <td>uv_stop</td>
     </tr>
     <tr>
-        <td rowspan="4"><a href="#libuv中的Handle">Handle概念及相关接口</a></td>
-        <td>uv_poll_x</td>
+        <td rowspan ="4"><a href="#libuv中的Handle">Handle概念及相关接口</a></td>
+        <td>uv_pool_x</td>
     </tr>
     <tr>
         <td>uv_timer_x</td>
@@ -390,7 +390,7 @@ napi_status napi_release_threadsafe_function(napi_threadsafe_function function);
         <td>uv_signal_x</td>
     </tr>
     <tr>
-        <td rowspan="5"><a href="#libuv中的Request">Request概念及相关接口</a></td>
+        <td rowspan ="5"><a href="#libuv中的Request">Request概念及相关接口</a></td>
         <td>uv_fs_x</td>
     </tr>
     <tr>
@@ -406,7 +406,7 @@ napi_status napi_release_threadsafe_function(napi_threadsafe_function function);
         <td>uv_queue_work</td>
     </tr>
     <tr>
-        <td rowspan="2"><a href="#线程间通信">线程间通信原理及相关接口</a></td>
+        <td rowspan ="2"><a href="#线程间通信">线程间通信原理及相关接口</a></td>
         <td>uv_async_init</td>
     </tr>
     <tr>
@@ -417,6 +417,7 @@ napi_status napi_release_threadsafe_function(napi_threadsafe_function function);
         <td>uv_queue_work</td>
     </tr>
 </table>
+
 
 
 
