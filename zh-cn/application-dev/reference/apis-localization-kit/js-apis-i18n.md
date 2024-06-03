@@ -1142,6 +1142,17 @@ format(number: string): string
   ```ts
   let phonenumberfmt: i18n.PhoneNumberFormat = new i18n.PhoneNumberFormat("CN");
   let formattedPhoneNumber: string = phonenumberfmt.format("158****2312"); // formattedPhoneNumber = "158 **** 2312"
+
+  // 拨号中的号码格式化
+  let option: i18n.PhoneNumberFormatOptions = {type: "TYPING"};
+  let phoneNumberFmt: i18n.PhoneNumberFormat = new i18n.PhoneNumberFormat("CN", option);
+  let number : string = "130493";
+  let formatResult : string = "";
+  for (let i = 0; i < number.length; i++) {
+    formatResult += number.charAt(i);
+    formatResult = phoneNumberFmt.format(formatResult);
+  }
+  console.log(formatResult); // formatResult: 130 493
   ```
 
 

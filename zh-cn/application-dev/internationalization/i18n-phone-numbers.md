@@ -71,7 +71,13 @@ let isValid = phoneNumberFormat3.isValidNumber('158****2312'); // isValid: true
 let phoneNumberFormat4 = new i18n.PhoneNumberFormat("CN");
 let locationName4 = phoneNumberFormat4.getLocationName('158****2312', 'en-GB') // locationName4: XiAn, Shanxi
 
-// 拨号中的电话号码
-let phoneNumberFormat5 = new i18n.PhoneNumberFormat('CN', {type: 'TYPING'});
-let formattedPhoneNumber5 = phoneNumberFormat5.format('158***'); // formattedPhoneNumber5: 158 ***
+// 拨号中的电话号码格式化
+let phoneNumberFmt = new i18n.PhoneNumberFormat('CN', {type: 'TYPING'});
+let number : string = "0755453";
+let formatResult : string = "";
+for (let i = 0; i < number.length; i++) {
+  formatResult += number.charAt(i);
+  formatResult = phoneNumberFmt.format(formatResult);
+}
+console.log(formatResult); // formatResult: 0755 453
 ```
