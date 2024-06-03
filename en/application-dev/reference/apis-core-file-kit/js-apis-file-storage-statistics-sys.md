@@ -5,7 +5,7 @@ The **storageStatistics** module provides APIs for obtaining storage space infor
 > **NOTE**
 >
 > - The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-> - This topic describes only the system APIs provided by the module. For details about its public APIs, see [@ohos.file.storageStatistics](js-apis-file-storage-statistics-sys.md).
+> - This topic describes only the system APIs provided by the module. For details about its public APIs, see [@ohos.file.storageStatistics](js-apis-file-storage-statistics.md).
 
 ## Modules to Import
 

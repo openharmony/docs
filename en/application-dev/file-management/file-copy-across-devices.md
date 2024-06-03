@@ -14,7 +14,6 @@ The distributed file system provides the cross-device file copy capability for a
    ```ts
    import fs from '@ohos.file.fs';
    import common from '@ohos.app.ability.common';
-   import { BusinessError } from '@ohos.base';
    import fileUri from '@ohos.file.fileuri';
 
    let context = getContext(this) as common.UIAbilityContext; // Obtain the UIAbilityContext of device A.
@@ -29,7 +28,6 @@ The distributed file system provides the cross-device file copy capability for a
     fs.writeSync(file.fd, 'Create file success');
     fs.closeSync(file);
    } catch (error) {
-    let err: BusinessError = error as BusinessError;
     console.error(`Failed to createFile. Code: ${err.code}, message: ${err.message}`);
    }
 
@@ -45,11 +43,9 @@ The distributed file system provides the cross-device file copy capability for a
       console.info("Succeeded in copying---. ");
       console.info("src: " + srcUri + "dest: " + destUri);
     }).catch((error)=>{
-      let err: BusinessError = error as BusinessError;
       console.info(`Failed to copy. Code: ${err.code}, message: ${err.message}`);
     })
    } catch (error) {
-    let err: BusinessError = error as BusinessError;
     console.error(`Failed to getData. Code: ${err.code}, message: ${err.message}`);
    }
    ```
@@ -59,7 +55,6 @@ The distributed file system provides the cross-device file copy capability for a
    ```ts
    import fs from '@ohos.file.fs';
    import common from '@ohos.app.ability.common';
-   import { BusinessError } from '@ohos.base';
    import fileUri from '@ohos.file.fileuri';
 
    let context = getContext(this) as common.UIAbilityContext; // Obtain the UIAbilityContext of device B.
@@ -88,11 +83,9 @@ The distributed file system provides the cross-device file copy capability for a
       console.info("Succeeded in copying of paste. ");
       console.info("src: " + srcUri + "dest: " + destUri); // file://com.example.myapplication/data/storage/el2/distributedfiles/src.txt
     }).catch((error)=>{
-      let err: BusinessError = error as BusinessError;
       console.info(`Failed to copy. Code: ${err.code}, message: ${err.message}`);
     })
    } catch (error) {
-    let err: BusinessError = error as BusinessError;
     console.error(`Failed to copy. Code: ${err.code}, message: ${err.message}`);
    }
    ```

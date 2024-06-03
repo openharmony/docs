@@ -165,7 +165,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 getExternalStorageDir(): string
 
-Obtains the sandbox path of the root directory of the external storage card. This API is available only to certain devices.
+Obtains the sandbox path of the root directory of an external storage card. This API is available only to the devices with the required system capability .
 
 **Required permissions**: ohos.permission.FILE_ACCESS_MANAGER
 
@@ -208,7 +208,7 @@ function getExternalStorageDirExample() {
 
 getUserHomeDir(): string
 
-Obtains the sandbox path of the built-in card directory of the current user. This API is available only to certain devices.
+Obtains the sandbox path of the built-in card directory of the current user. This API is available only to the devices with the required system capability.
 
 **Required permissions**: ohos.permission.FILE_ACCESS_MANAGER
 

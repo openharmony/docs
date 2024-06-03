@@ -68,7 +68,7 @@ Before sharing an application file, you need to [obtain the application file pat
    export default class EntryAbility extends UIAbility {
      onWindowStageCreate(windowStage: window.WindowStage) {
        // Obtain the application sandbox path of the file.
-       let filePath = this.context.filesDir + '/test.txt';
+       let filePath = this.context.filesDir + '/test1.txt';
        // Convert the application sandbox path into a URI.
        let uri = fileUri.getUriFromPath(filePath);
        let want: Want  = {
@@ -136,7 +136,7 @@ import { BusinessError } from '@ohos.base';
 
 function getShareFile() {
   try {
-    let want: Want = {}; // The value should be the want information passed by the application that shares the file.
+    let want: Want = {}; // Change the value to the want information passed by the application that shares the file.
 
     // Obtain the uri field from the want information.
     let uri = want.uri;

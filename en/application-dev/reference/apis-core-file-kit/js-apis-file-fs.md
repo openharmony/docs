@@ -2107,6 +2107,9 @@ rename(oldPath: string, newPath: string): Promise&lt;void&gt;
 
 Renames a file or folder. This API uses a promise to return the result.
 
+> **NOTE**
+> This API does not support operations on files in a distributed file directory.
+
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
@@ -2145,6 +2148,9 @@ rename(oldPath: string, newPath: string, callback: AsyncCallback&lt;void&gt;): v
 
 Renames a file or folder. This API uses an asynchronous callback to return the result.
 
+> **NOTE**
+> This API does not support operations on files in a distributed file directory.
+
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
@@ -2179,6 +2185,9 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 renameSync(oldPath: string, newPath: string): void
 
 Renames a file or folder. This API returns the result synchronously.
+
+> **NOTE**
+> This API does not support operations on files in a distributed file directory.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -2686,6 +2695,9 @@ moveDir(src: string, dest: string, mode?: number): Promise\<void>
 
 Moves a folder. This API uses a promise to return the result.
 
+> **NOTE**
+> This API does not support operations on files in a distributed file directory.
+
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
@@ -2725,6 +2737,9 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 moveDir(src: string, dest: string, mode: number, callback: AsyncCallback\<void, Array\<ConflictFiles>>): void
 
 Moves a folder with the specified mode. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+> This API does not support operations on files in a distributed file directory.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -2770,6 +2785,9 @@ Moves a folder. This API uses an asynchronous callback to return the result.
 
 An exception will be thrown if there is a folder with the same name in the destination directory.
 
+> **NOTE**
+> This API does not support operations on files in a distributed file directory.
+
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
@@ -2810,6 +2828,9 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 moveDirSync(src: string, dest: string, mode?: number): void
 
 Moves a folder. This API returns the result synchronously.
+
+> **NOTE**
+> This API does not support operations on files in a distributed file directory.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -2854,6 +2875,9 @@ moveFile(src: string, dest: string, mode?: number): Promise\<void>
 
 Moves a file. This API uses a promise to return the result.
 
+> **NOTE**
+> This API does not support operations on files in a distributed file directory.
+
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
@@ -2893,6 +2917,9 @@ moveFile(src: string, dest: string, mode: number, callback: AsyncCallback\<void>
 
 Moves a file with the specified mode. This API uses an asynchronous callback to return the result.
 
+> **NOTE**
+> This API does not support operations on files in a distributed file directory.
+
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
@@ -2929,6 +2956,9 @@ moveFile(src: string, dest: string, callback: AsyncCallback\<void>): void
 
 Moves a file and forcibly overwrites the file with the same name in the destination directory. This API uses an asynchronous callback to return the result.
 
+> **NOTE**
+> This API does not support operations on files in a distributed file directory.
+
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
 **Parameters**
@@ -2962,6 +2992,9 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 moveFileSync(src: string, dest: string, mode?: number): void
 
 Moves a file. This API returns the result synchronously.
+
+> **NOTE**
+> This API does not support operations on files in a distributed file directory.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -4853,34 +4886,34 @@ Defines the options used in **read()**.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
-| Name       | Type      | Description               |
-| ----------- | --------------- | ------------------ |
-| length | number     | Length of the data to read. This parameter is optional. The default value is the buffer length.          |
-|  offset    | number     | Start position of the file to read, which is determined by **filePointer** plus **offset**. This parameter is optional. By default, data is read from the **filePointer**.|
+| Name       | Type      | Mandatory      | Description               |
+| ----------- | --------------- | ------------------ | ------------------ |
+| length | number     | No| Length of the data to read. This parameter is optional. The default value is the buffer length.          |
+|  offset    | number     | No| Start position of the file to read, which is determined by **filePointer** plus **offset**. This parameter is optional. By default, data is read from the **filePointer**.|
 
 ## ReadTextOptions<sup>11+</sup>
 
-Defines the options used in **readText()**.
+Defines the options used in **readText()**. It inherits from [ReadOptions](#readoptions11).
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
-| Name       | Type      | Description               |
-| ----------- | --------------- | ------------------ |
-| length | number     | Length of the data to read. This parameter is optional. The default value is the file length.          |
-|  offset    | number     | Start position of the file to read. This parameter is optional. By default, data is read from the current position.|
-| encoding    | string | Format of the data to be encoded. This parameter is valid only when the data type is string. The default value is **'utf-8'**, which is the only value supported.      |
+| Name       | Type      | Mandatory      | Description               |
+| ----------- | --------------- | ------------------ | ------------------ |
+| length | number     | No| Length of the data to read. This parameter is optional. The default value is the file length.          |
+|  offset    | number     | No| Start position of the file to read. This parameter is optional. By default, data is read from the current position.|
+| encoding    | string | No| Format of the data to be encoded. This parameter is valid only when the data type is string. The default value is **'utf-8'**, which is the only value supported.      |
 
 ## WriteOptions<sup>11+</sup>
 
-Defines the options used in **write()**.
+Defines the options use din **write()**. It inherits from [Options](#options11).
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
-| Name       | Type      | Description               |
-| ----------- | --------------- | ------------------ |
-| length | number     | Length of the data to write. This parameter is optional. The default value is the buffer length.          |
-|  offset    | number     | Start position of the file to write, which is determined by **filePointer** plus **offset**. This parameter is optional. By default, data is written from the **filePointer**.|
-| encoding    | string | Format of the data to be encoded. This parameter is valid only when the data type is string. The default value is **'utf-8'**, which is the only value supported.      |
+| Name       | Type      | Mandatory      | Description               |
+| ----------- | --------------- | ------------------ | ------------------ |
+| length | number     | No| Length of the data to write. This parameter is optional. The default value is the buffer length.          |
+|  offset    | number     | No| Start position of the file to write, which is determined by **filePointer** plus **offset**. This parameter is optional. By default, data is written from the **filePointer**.|
+| encoding    | string | No| Format of the data to be encoded. This parameter is valid only when the data type is string. The default value is **'utf-8'**, which is the only value supported.      |
 
 ## ListFileOptions<sup>11+</sup>
 
@@ -4888,8 +4921,8 @@ Defines the options used in **listFile()**.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
-| Name       | Type      | Description               |
-| ----------- | --------------- | ------------------ |
-| recursion | boolean     | Whether to list all files in the subfolders recursively. This parameter is optional. The default value is **false**. If **recursion** is **false**, the names of the files and folders that meet the specified conditions in the current directory are returned. If **recursion** is **true**, relative paths (starting with /) of all files that meet the specified conditions in the current directory are returned.          |
-|  listNum    | number     | Number of file names to list. This parameter is optional. The default value is **0**, which means to list all files.|
-| filter    | [Filter](#filter10) | Format of the data to be encoded. This parameter is valid only when the data type is string. The default value is **'utf-8'**, which is the only value supported.      |
+| Name       | Type      | Mandatory      | Description               |
+| ----------- | --------------- | ------------------ | ------------------ |
+| recursion | boolean     | No| Whether to list all files in the subfolders recursively. This parameter is optional. The default value is **false**. If **recursion** is **false**, the names of the files and folders that meet the specified conditions in the current directory are returned. If **recursion** is **true**, relative paths (starting with /) of all files that meet the specified conditions in the current directory are returned.          |
+|  listNum    | number     | No| Number of file names to list. This parameter is optional. The default value is **0**, which means to list all files.|
+| filter    | [Filter](#filter10) | No| Format of the data to be encoded. This parameter is valid only when the data type is string. The default value is **'utf-8'**, which is the only value supported.      |
