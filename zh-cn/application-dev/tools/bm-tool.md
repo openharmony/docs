@@ -459,7 +459,7 @@ bm dump-dependencies -n com.ohos.app -m entry
 
 出现该问题的原因是配置文件app.json5和module.json5中必填字段缺失。
 
-* 方法1：请参考[app.json5配置文件](../../application-dev/quick-start/app-configuration-file.md)和[module.json5配置文件](../../application-dev/quick-start/module-configuration-file.md)查看并补充必填字段。
+* 方法1：请参考<!--RP1-->[app.json5配置文件](../../application-dev/quick-start/app-configuration-file.md)<!--RP1End-->和<!--RP2-->[module.json5配置文件](../../application-dev/quick-start/module-configuration-file.md)<!--RP2End-->查看并补充必填字段。
 * 方法2：通过hilog日志判断缺失字段。
 
     开启落盘命令：
