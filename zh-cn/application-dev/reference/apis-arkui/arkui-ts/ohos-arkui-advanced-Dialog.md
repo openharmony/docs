@@ -41,6 +41,9 @@ TipsDialog({controller: CustomDialogController, imageRes: Resource, imageSize?: 
 **参数：**
 
 
+
+
+
 | 名称                          | 参数类型                                                     | 必填 | 装饰器类型 | 说明                                                         |
 | ----------------------------- | ------------------------------------------------------------ | ---- | ---------- | ------------------------------------------------------------ |
 | controller                    | [CustomDialogController](ts-methods-custom-dialog-box.md#customdialogcontroller) | 是   | -          | 提示弹出框控制器。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
@@ -50,12 +53,11 @@ TipsDialog({controller: CustomDialogController, imageRes: Resource, imageSize?: 
 | content                       | [ResourceStr](ts-types.md#resourcestr)                       | 否   | -          | 提示弹出框内容。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 | checkTips                     | [ResourceStr](ts-types.md#resourcestr)                       | 否   | -          | checkbox的提示内容。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 | isChecked                     | boolean                                                      | 否   | \@Prop     | value为true时，表示checkbox已选中，value为false时，表示未选中。<br/>默认值：false<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| checkAction<sup>12+</sup>     | (isChecked: boolean) => void                                 | 否   | -          | 现推荐使用 onCheckedChange<sup>12+</sup>。                                 |
+| checkAction<sup>12+</sup>     | (isChecked: boolean) => void                                 | 否   | -          | 现推荐使用 onCheckedChange<sup>12+</sup>。                   |
 | onCheckedChange<sup>12+</sup> | Callback\<boolean>                                           | 否   | -          | checkbox的选中状态改变事件。                                 |
 | primaryButton                 | [ButtonOptions](#buttonoptions)                              | 否   | -          | 提示框左侧按钮。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 | secondaryButton               | [ButtonOptions](#buttonoptions)                              | 否   | -          | 提示框右侧按钮。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 | theme<sup>12+</sup>           | Theme \| CustomTheme                                         | 否   | -          | 主题信息，可以是CustomTheme或从onWillApplyTheme中获取的Theme实例。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
-
 
 ## SelectDialog
 
