@@ -362,7 +362,7 @@ napi_status napi_release_threadsafe_function(napi_threadsafe_function function);
         <td>uv_loop_init</td>
     </tr>
     <tr>
-        <td>uv_loop_close_*</td>
+        <td>uv_loop_close</td>
     </tr>
     <tr>
         <td>uv_default_loop</td>
@@ -378,20 +378,20 @@ napi_status napi_release_threadsafe_function(napi_threadsafe_function function);
     </tr>
     <tr>
         <td rowspan="4"><a href="#libuv中的Handle">Handle概念及相关接口</a></td>
-        <td>uv_poll_*</td>
+        <td>uv_poll_x</td>
     </tr>
     <tr>
-        <td>uv_timer_*</td>
+        <td>uv_timer_x</td>
     </tr>
     <tr>
-        <td>uv_async_*</td>
+        <td>uv_async_x</td>
     </tr>
     <tr>
-        <td>uv_signal_*</td>
+        <td>uv_signal_x</td>
     </tr>
     <tr>
         <td rowspan="5"><a href="#libuv中的Request">Request概念及相关接口</a></td>
-        <td>uv_fs_*</td>
+        <td>uv_fs_x</td>
     </tr>
     <tr>
         <td>uv_random</td>
