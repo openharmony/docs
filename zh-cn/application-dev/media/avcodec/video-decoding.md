@@ -12,6 +12,10 @@
 
 <!--RP1--><!--RP1End-->
 
+## 限制约束
+
+av_codec只支持AnnexB，AnnexB不支持多slice。
+
 ## Surface输出与Buffer输出
 
 两者数据的输出方式不同。
@@ -377,11 +381,6 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 
 13. （可选）调用OH_VideoDecoder_Flush()刷新解码器。
 
-    > **注意：**
-    >
-    > Flush、Start之后，需要重新传XPS。
-    >
-
     调用OH_VideoDecoder_Flush()后，解码器仍处于运行态，但会将当前队列清空，将已解码的数据释放。
 
     此时需要调用OH_VideoDecoder_Start()重新开始解码。
@@ -394,6 +393,25 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     }
     // 重新开始解码
     ret = OH_VideoDecoder_Start(videoDec);
+    if (ret != AV_ERR_OK) {
+        // 异常处理
+    }
+    ```
+    > **注意：**
+    > Flush之后，重新Start时，需要重新传XPS。
+    >
+
+     ```c++
+    // 配置帧数据XPS信息
+    OH_AVCodecBufferAttr info;
+    info.flags = AVCODEC_BUFFER_FLAG_CODEC_DATA;
+    // info信息写入buffer
+    int32_t ret = OH_AVBuffer_SetBufferAttr(buffer, &info);
+    if (ret != AV_ERR_OK) {
+        // 异常处理
+    }
+    // 将帧数据推送到解码器中，index为对应队列下标
+    ret = OH_VideoDecoder_PushInputBuffer(videoDec, index);
     if (ret != AV_ERR_OK) {
         // 异常处理
     }
@@ -420,6 +438,9 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
         // 异常处理
     }
     ```
+    > **注意：**
+    > Reset之后，重新Start时，需要重新传XPS。具体示例请参考OH_VideoDecoder_Flush()步骤12。
+    >
 
 15. （可选）调用OH_VideoDecoder_Stop()停止解码器。
 
@@ -430,6 +451,9 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
         // 异常处理
     }
     ```
+    > **注意：**
+    > Stop之后，重新Start时，需要重新传XPS。具体示例请参考OH_VideoDecoder_Flush()步骤12。
+    >
 
 16. 调用OH_VideoDecoder_Destroy()销毁解码器实例，释放资源。
 

@@ -24,9 +24,7 @@ You can use `$r` or `$rawfile` to create a **Resource** object, but its attribut
 
   **filename**: name of the file in the **resources/rawfile** directory of the project.
 
-  > **NOTE**
-  >
-  > When referencing resources of the **Resource** type, make sure the data type is the same as that of the attribute method. For example, if an attribute method supports the **string | Resource** types, the data type of the **Resource** type must be string.
+  **NOTE**<br>When referencing resources of the **Resource** type, make sure the data type is the same as that of the attribute method. For example, if an attribute method supports the **string | Resource** types, the data type of the **Resource** type must be string.
 
 ## Length
 
@@ -677,4 +675,3 @@ Enumerates length units.
 | [FP](#fp10) | 2 | The **FP** type is used to represent a length in fp.|
 | [PERCENT](#percentage10) | 3 | The **Percentage** type is used to represent a length in percentage.|
 | [LPX](#lpx10) | 4 | The **LPX** type is used to represent a length in lpx.|
-<!--no_check-->

@@ -12,7 +12,7 @@ EnvironmentCallback模块提供应用上下文ApplicationContext对系统环境�
 ## 导入模块
 
 ```ts
-import EnvironmentCallback from '@ohos.app.ability.EnvironmentCallback';
+import { EnvironmentCallback } from '@kit.AbilityKit';
 ```
 
 
@@ -61,39 +61,38 @@ onMemoryLevel(level: AbilityConstant.MemoryLevel): void
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import EnvironmentCallback from '@ohos.app.ability.EnvironmentCallback';
+import { UIAbility, EnvironmentCallback } from '@kit.AbilityKit';
 
 let callbackId: number;
 
 export default class MyAbility extends UIAbility {
-    onCreate() {
-        console.log('MyAbility onCreate');
-        let environmentCallback: EnvironmentCallback  =  {
-            onConfigurationUpdated(config){
-                console.log(`onConfigurationUpdated config: ${JSON.stringify(config)}`);
-            },
+  onCreate() {
+    console.log('MyAbility onCreate');
+    let environmentCallback: EnvironmentCallback  =  {
+      onConfigurationUpdated(config){
+        console.log(`onConfigurationUpdated config: ${JSON.stringify(config)}`);
+      },
 
-            onMemoryLevel(level){
-                console.log(`onMemoryLevel level: ${JSON.stringify(level)}`);
-            }
-        };
-        // 1.获取applicationContext
-        let applicationContext = this.context.getApplicationContext();
-        // 2.通过applicationContext注册监听应用内生命周期
-        callbackId = applicationContext.on('environment', environmentCallback);
-        console.log(`registerEnvironmentCallback number: ${JSON.stringify(callbackId)}`);
-    }
+      onMemoryLevel(level){
+        console.log(`onMemoryLevel level: ${JSON.stringify(level)}`);
+      }
+    };
+    // 1.获取applicationContext
+    let applicationContext = this.context.getApplicationContext();
+    // 2.通过applicationContext注册监听应用内生命周期
+    callbackId = applicationContext.on('environment', environmentCallback);
+    console.log(`registerEnvironmentCallback number: ${JSON.stringify(callbackId)}`);
+  }
 
-    onDestroy() {
-        let applicationContext = this.context.getApplicationContext();
-        applicationContext.off('environment', callbackId, (error, data) => {
-            if (error && error.code !== 0) {
-                console.error(`unregisterEnvironmentCallback fail, error: ${JSON.stringify(error)}`);
-            } else {
-                console.log(`unregisterEnvironmentCallback success, data: ${JSON.stringify(data)}`);
-            }
-        });
-    }
+  onDestroy() {
+    let applicationContext = this.context.getApplicationContext();
+    applicationContext.off('environment', callbackId, (error, data) => {
+      if (error && error.code !== 0) {
+        console.error(`unregisterEnvironmentCallback fail, error: ${JSON.stringify(error)}`);
+      } else {
+        console.log(`unregisterEnvironmentCallback success, data: ${JSON.stringify(data)}`);
+      }
+    });
+  }
 }
 ```

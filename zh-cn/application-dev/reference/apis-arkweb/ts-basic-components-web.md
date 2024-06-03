@@ -5170,6 +5170,251 @@ onViewportFitChanged(callback: OnViewportFitChangedCallback)
     </body>
   </html>
   ```
+
+### onInterceptKeyboardAttach<sup>12+</sup>
+
+onInterceptKeyboardAttach(callback: WebKeyboardCallback)
+
+网页中可编辑元素（如input标签）拉起软键盘之前会回调该接口，应用可以使用该接口拦截系统软键盘的弹出，配置应用定制的软键盘（应用根据该接口可以决定使用系统默认软键盘/定制enter键的系统软键盘/全部由应用自定义的软键盘）。
+
+**参数：**
+
+| 参数名   | 类型                                                         | 说明                                   |
+| -------- | ------------------------------------------------------------ | -------------------------------------- |
+| callback | [WebKeyboardCallback](#webkeyboardcallback12) | 拦截网页拉起软键盘回调。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  import inputMethodEngine from '@ohos.inputMethodEngine'
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    webKeyboardController: WebKeyboardController = new WebKeyboardController()
+    inputAttributeMap: Map<string, number> = new Map([
+        ['UNSPECIFIED', inputMethodEngine.ENTER_KEY_TYPE_UNSPECIFIED],
+        ['GO', inputMethodEngine.ENTER_KEY_TYPE_GO],
+        ['SEARCH', inputMethodEngine.ENTER_KEY_TYPE_SEARCH],
+        ['SEND', inputMethodEngine.ENTER_KEY_TYPE_SEND],
+        ['NEXT', inputMethodEngine.ENTER_KEY_TYPE_NEXT],
+        ['DONE', inputMethodEngine.ENTER_KEY_TYPE_DONE],
+        ['PREVIOUS', inputMethodEngine.ENTER_KEY_TYPE_PREVIOUS]
+      ])
+
+      /**
+       * 自定义键盘组件Builder
+       */
+      @Builder
+      customKeyboardBuilder() {
+		// 这里实现自定义键盘组件，对接WebKeyboardController实现输入、删除、关闭等操作。
+      }
+
+    build() {
+      Column() {
+        Web({ src: $rawfile('index.html'), controller: this.controller })
+        .onInterceptKeyboardAttach((KeyboardCallbackInfo) => {
+          // option初始化，默认使用系统默认键盘
+          let option: WebKeyboardOptions = {
+            useSystemKeyboard: true,
+          };
+          if (!KeyboardCallbackInfo) {
+            return option;
+          }
+
+          // 保存WebKeyboardController，使用自定义键盘时候，需要使用该handelr控制输入、删除、软键盘关闭等行为
+          this.webKeyboardController = KeyboardCallbackInfo.controller
+          let attributes: Record<string, string> = KeyboardCallbackInfo.attributes
+          // 遍历attributes
+          let attributeKeys = Object.keys(attributes)
+          for (let i = 0; i < attributeKeys.length; i++) {
+            console.log('WebCustomKeyboard key = ' + attributeKeys[i] + ', value = ' + attributes[attributeKeys[i]])
+          }
+
+          if (attributes) {
+            if (attributes['data-keyboard'] == 'customKeyboard') {
+              // 根据html可编辑元素的属性，判断使用不同的软键盘，例如这里如果属性包含有data-keyboard，且值为customKeyboard，则使用自定义键盘
+              console.log('WebCustomKeyboard use custom keyboard')
+              option.useSystemKeyboard = false;
+              // 设置自定义键盘builder
+              option.customKeyboard = () => {
+                this.customKeyboardBuilder()
+              }
+              return option;
+            }
+
+            if (attributes['keyboard-return'] != undefined) {
+              // 根据html可编辑元素的属性，判断使用不同的软键盘，例如这里如果属性包含有keyboard-return，使用系统键盘，并且指定系统软键盘enterKey类型
+              option.useSystemKeyboard = true;
+              let enterKeyType: number | undefined = this.inputAttributeMap.get(attributes['keyboard-return'])
+              if (enterKeyType != undefined) {
+                option.enterKeyType = enterKeyType
+              }
+              return option;
+            }
+          }
+
+          return option;
+        })
+      }
+    }
+  }
+  ```
+
+  加载的html文件。
+  ```html
+  <!-- index.html -->
+    <!DOCTYPE html>
+    <html>
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0">
+    </head>
+
+    <body>
+
+    <p style="font-size:12px">input标签，原有默认行为：</p>
+    <input type="text" style="width: 300px; height: 20px"><br>
+    <hr style="height:2px;border-width:0;color:gray;background-color:gray">
+
+    <p style="font-size:12px">input标签，系统键盘自定义enterKeyType属性 enter key UNSPECIFIED：</p>
+    <input type="text" keyboard-return="UNSPECIFIED" style="width: 300px; height: 20px"><br>
+    <hr style="height:2px;border-width:0;color:gray;background-color:gray">
+
+    <p style="font-size:12px">input标签，系统键盘自定义enterKeyType属性 enter key GO：</p>
+    <input type="text" keyboard-return="GO" style="width: 300px; height: 20px"><br>
+    <hr style="height:2px;border-width:0;color:gray;background-color:gray">
+
+    <p style="font-size:12px">input标签，系统键盘自定义enterKeyType属性 enter key SEARCH：</p>
+    <input type="text" keyboard-return="SEARCH" style="width: 300px; height: 20px"><br>
+    <hr style="height:2px;border-width:0;color:gray;background-color:gray">
+
+    <p style="font-size:12px">input标签，系统键盘自定义enterKeyType属性 enter key SEND：</p>
+    <input type="text" keyboard-return="SEND" style="width: 300px; height: 20px"><br>
+    <hr style="height:2px;border-width:0;color:gray;background-color:gray">
+
+    <p style="font-size:12px">input标签，系统键盘自定义enterKeyType属性 enter key NEXT：</p>
+    <input type="text" keyboard-return="NEXT" style="width: 300px; height: 20px"><br>
+    <hr style="height:2px;border-width:0;color:gray;background-color:gray">
+
+    <p style="font-size:12px">input标签，系统键盘自定义enterKeyType属性 enter key DONE：</p>
+    <input type="text" keyboard-return="DONE" style="width: 300px; height: 20px"><br>
+    <hr style="height:2px;border-width:0;color:gray;background-color:gray">
+
+    <p style="font-size:12px">input标签，系统键盘自定义enterKeyType属性 enter key PREVIOUS：</p>
+    <input type="text" keyboard-return="PREVIOUS" style="width: 300px; height: 20px"><br>
+    <hr style="height:2px;border-width:0;color:gray;background-color:gray">
+
+    <p style="font-size:12px">input标签，应用自定义键盘：</p>
+    <input type="text" data-keyboard="customKeyboard" style="width: 300px; height: 20px"><br>
+
+    </body>
+
+    </html>
+  ```
+
+## WebKeyboardCallback<sup>12+</sup>
+
+type WebKeyboardCallback = (keyboardCallbackInfo: WebKeyboardCallbackInfo) => WebKeyboardOptions
+
+拦截网页可编辑元素拉起软键盘的回调，一般在点击网页input标签时触发。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名           | 类型   | 必填   | 说明               |
+| ------------- | ------ | ---- | ------------------ |
+| keyboardCallbackInfo    | [WebKeyboardCallbackInfo](#webkeyboardcallbackinfo12) | 是    | 拦截网页拉起软键盘回调通知的入参，其中包括[WebKeyboardController](#webkeyboardcontroller12)、可编辑元素的属性。  |
+
+
+**返回值：**
+
+| 类型               | 说明                                                         |
+| ------------------ | ------------------------------------------------------------ |
+| [WebKeyboardOptions](#webkeyboardoptions12) | 回调函数通过返回[WebKeyboardOptions](#webkeyboardoptions12)来决定ArkWeb内核拉起不同类型的软键盘。 |
+
+## WebKeyboardCallbackInfo<sup>12+</sup>
+
+拦截网页可编辑元素拉起软键盘的回调入参，其中包括[WebKeyboardController](#webkeyboardcontroller12)、可编辑元素的属性。
+
+| 名称             | 类型      | 可读   | 可写   | 必填   | 说明                                       |
+| -------------- | ------- | ---- | ---- | ---- | ---------------------------------------- |
+| controller | [WebKeyboardController](#webkeyboardcontroller12)  | 是    | 否    | 是    | 提供控制自定义键盘的输入、删除、关闭等操作。 |
+| attributes | Record<string, string> | 是    | 否    | 是    | 触发本次软键盘弹出的网页元素属性。
+
+## WebKeyboardOptions<sup>12+</sup>
+
+拦截网页可编辑元素拉起软键盘的回调返回值，可以指定使用的键盘类型，并返回给web内核，以控制拉起不同类型的软键盘；
+
+| 名称             | 类型      | 可读   | 可写   | 必填   | 说明                                       |
+| -------------- | ------- | ---- | ---- | ---- | ---------------------------------------- |
+| useSystemKeyboard | boolean  | 是    | 是    | 是    | 是否使用系统默认软键盘。 |
+| enterKeyType | [enterKeyType](../apis-ime-kit/js-apis-inputmethod.md#enterkeytype10) | 是    | 是    | 否    | 指定系统软键盘enter键的类型，取值范围见输入框架的定义[enterKeyType](../apis-ime-kit/js-apis-inputmethod.md#enterkeytype10)，该参数为可选参数，当useSystemKeyboard为true，并且设置了有效的enterKeyType时候，才有效。|
+| customKeyboard | [CustomBuilder](../apis-arkui/arkui-ts/ts-types.md#custombuilder8) | 是    | 是    | 否    | 指定自定义键盘组件builder，可选参数，当useSystemKeyboard为false时，需要设置该参数，然后web组件会拉起该自定义键盘。
+
+## WebKeyboardController<sup>12+</sup>
+
+控制自定义键盘的输入、删除、关闭等操作。示例代码参考[onInterceptKeyboardAttach](#oninterceptkeyboardattach12)。
+
+### insertText<sup>12+</sup>
+
+insertText(text: string): void
+
+插入字符。
+
+**参数：**
+
+| 参数名 | 参数类型 | 必填 | 默认值 | 参数描述              |
+| ------ | -------- | ---- | ------ | --------------------- |
+| text   | string   | 是   | -      | 向Web输入框插入字符。 |
+
+### deleteForward<sup>12+</sup>
+
+deleteForward(length: number): void
+
+从后往前删除length参数指定长度的字符。
+
+**参数：**
+
+| 参数名 | 参数类型 | 必填 | 默认值 | 参数描述                 |
+| ------ | -------- | ---- | ------ | ------------------------ |
+| length | number   | 是   | -      | 从后往前删除字符的长度。 |
+
+### deleteBackward12+</sup>
+
+deleteBackward(length: number): void
+
+从前往后删除length参数指定长度的字符。
+
+**参数：**
+
+| 参数名 | 参数类型 | 必填 | 默认值 | 参数描述                 |
+| ------ | -------- | ---- | ------ | ------------------------ |
+| length | number   | 是   | -      | 从前往后删除字符的长度。 |
+
+### sendFunctionKey<sup>12+</sup>
+
+sendFunctionKey(key: number): void
+
+插入功能按键，目前仅支持enter键类型，取值见[enterKeyType](../apis-ime-kit/js-apis-inputmethod.md#enterkeytype10)。
+
+**参数：**
+
+| 参数名 | 参数类型 | 必填 | 默认值 | 参数描述                                   |
+| ------ | -------- | ---- | ------ | ------------------------------------------ |
+| key    | number   | 是   | -      | 向Web输入框传递功能键，目前仅支持enter键。 |
+
+### close<sup>12+</sup>
+
+close(): void
+
+关闭自定义键盘。
+
 ## ConsoleMessage
 
 Web组件获取控制台信息对象。示例代码参考[onConsole事件](#onconsole)。

@@ -13,7 +13,7 @@
 ## 导入模块
 
 ```ts
-import insightIntentDriver from '@ohos.app.ability.insightIntentDriver';
+import { insightIntentDriver } from '@kit.AbilityKit';
 ```
 
 ## ExecuteParam
@@ -84,9 +84,8 @@ execute(param: ExecuteParam, callback: AsyncCallback<insightIntent.ExecuteResult
 **示例：**
 
 ```ts
-  import insightIntentDriver from '@ohos.app.ability.insightIntentDriver';
-  import insightIntent from '@ohos.app.ability.insightIntent';
-  import hilog from '@ohos.hilog';
+  import { insightIntentDriver, insightIntent } from '@kit.AbilityKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   function executeInsightIntentAsync() {
     let param: insightIntentDriver.ExecuteParam = {
@@ -169,9 +168,8 @@ execute(param: ExecuteParam): Promise<insightIntent.ExecuteResult>
 **示例：**
 
 ```ts
-  import insightIntentDriver from '@ohos.app.ability.insightIntentDriver';
-  import insightIntent from '@ohos.app.ability.insightIntent';
-  import hilog from '@ohos.hilog';
+  import { insightIntentDriver, insightIntent } from '@kit.AbilityKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   async function executeSearchMusicIntentPromise() {
     let param: insightIntentDriver.ExecuteParam = {
