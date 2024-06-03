@@ -377,7 +377,7 @@ napi_status napi_release_threadsafe_function(napi_threadsafe_function function);
         <td>uv_stop</td>
     </tr>
     <tr>
-        <td rowspan="4"><a href="#libuv中的Handles和Requests">Handle概念及相关接口</a></td>
+        <td rowspan="4"><a href="#libuv中的Handles和Requests-1">Handle概念及相关接口</a></td>
         <td>uv_poll_*</td>
     </tr>
     <tr>
