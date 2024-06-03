@@ -108,7 +108,7 @@ export { nativeMulti } from './utils/nativeTest'
 依赖配置成功后，就可以像使用HAR一样调用HSP的对外接口了。 例如，上面的library已经导出了下面这些接口：
 
 ```ts
-// library/src/main/ets/index.ets
+// library/index.ets
 export { Log, add, minus } from './utils/test'
 export { MyTitleBar } from './components/MyTitleBar'
 export { nativeMulti } from './utils/nativeTest'
