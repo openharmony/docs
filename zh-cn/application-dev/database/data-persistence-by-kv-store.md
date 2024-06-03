@@ -43,8 +43,8 @@
    
    // Stage模型
    import { window } from '@kit.ArkUI';
-   import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
-   import { BusinessError } from '@ohos.base';
+   import { UIAbility } from '@kit.AbilityKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    
    let kvManager: distributedKVStore.KVManager | undefined = undefined;
    
@@ -82,7 +82,7 @@
    
    // FA模型
    import { featureAbility } from '@kit.AbilityKit';
-   import { BusinessError } from '@ohos.base';
+   import { BusinessError } from '@kit.BasicServicesKit';
    
    let kvManager: distributedKVStore.KVManager | undefined = undefined;
    let context = featureAbility.getContext(); // 获取context

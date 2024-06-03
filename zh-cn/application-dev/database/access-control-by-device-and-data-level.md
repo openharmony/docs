@@ -60,7 +60,7 @@
   
 ```ts
 import { distributedKVStore } from '@kit.ArkData';
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let kvManager: distributedKVStore.KVManager;
 let kvStore: distributedKVStore.SingleKVStore;
@@ -109,7 +109,7 @@ try {
 
   
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 import { relationalStore } from '@kit.ArkData';
 
 let store: relationalStore.RdbStore;

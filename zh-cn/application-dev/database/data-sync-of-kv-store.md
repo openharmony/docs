@@ -117,8 +117,8 @@
    ```ts
    // Stage模型获取context
    import { window } from '@kit.ArkUI';
-   import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
-   import { BusinessError } from '@ohos.base';
+   import { UIAbility } from '@kit.AbilityKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    
    let kvManager: distributedKVStore.KVManager | undefined = undefined;
    
@@ -130,7 +130,7 @@
     
     // FA模型获取context
    import { featureAbility } from '@kit.AbilityKit';
-   import { BusinessError } from '@ohos.base';
+   import { BusinessError } from '@kit.BasicServicesKit';
     
    let context = featureAbility.getContext();
    
