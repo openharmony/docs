@@ -30,7 +30,7 @@ This topic walks you through on how to create a certificate revocation list (CRL
 
 8. Use [X509CRL.getRevokedCert](../../reference/apis-device-certificate-kit/js-apis-cert.md#getrevokedcert11) to obtain the revoked certificate.
 
-9.  Use [X509CRLEntry.getRevocationDate](../../reference/apis-device-certificate-kit/js-apis-cert.md#x509crlentry11) to obtain the date when the certificate was revoked.
+9.  Use [X509CRLEntry.getRevocationDate](../../reference/apis-device-certificate-kit/js-apis-cert.md#getrevocationdate11) to obtain the date when the certificate was revoked.
 
 ```ts
 import certFramework from '@ohos.security.cert';
