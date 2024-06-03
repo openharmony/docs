@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```ts
-import inputMethodL from '@ohos.inputMethodList';
+import { inputMethodL } from '@kit.IMEKit';
 ```
 
 ## 子组件
@@ -62,7 +62,7 @@ InputMethodListDialog({controller: CustomDialogController, patternOptions?: Patt
 ##  示例
 
 ```ts
-import { InputMethodListDialog, Pattern, PatternOptions } from '@ohos.inputMethodList';
+import { InputMethodListDialog, Pattern, PatternOptions } from '@kit.IMEKit';
 
 @Entry
 // 设置组件

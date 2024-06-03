@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```ts
-import InputMethodSubtype from '@ohos.InputMethodSubtype';
+import { InputMethodSubtype } from '@kit.IMEKit';
 ```
 
 ## 属性
