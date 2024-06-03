@@ -81,6 +81,8 @@ java -jar path\app_packing_tool.jar --mode hsp --json-path <option> --resources-
 开发者可以使用打包工具的jar包对应用进行打包，通过传入打包选项、文件路径，生成所需的App包。App包用于上架应用市场。
 
 **App打包时HAP合法性校验：** 在对工程内的HAP包打包生成App包时，需要保证被打包的每个HAP在json文件中配置的bundleName、versionCode、minCompatibleVersionCode、debug、minAPIVersion、targetAPIVersion、apiReleaseType相同，moduleName唯一。对于FA模型，还需要保证json文件中配置的package唯一。
+>**说明：**
+>从API12后，app打包不再对versionName进行校验
 
 
 示例：
