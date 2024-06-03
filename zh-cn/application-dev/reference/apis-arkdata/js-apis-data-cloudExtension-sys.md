@@ -653,9 +653,9 @@ lock(): Promise&lt;Result&lt;LockInfo&gt;&gt;
 **示例：**
 
 ```ts
+let test_time: number = 10;
+let test_lockId: number = 1;
 export default class MyCloudDB implements cloudExtension.CloudDB {
-  let test_time: number = 10;
-  let test_lockId: number = 1;
   // ...
   async lock(): Promise<cloudExtension.Result<cloudExtension.LockInfo>> {
     console.info(`DB lock`);
@@ -697,9 +697,9 @@ heartbeat(lockId: number): Promise&lt;Result&lt;LockInfo&gt;&gt;
 **示例：**
 
 ```ts
+let test_lockId: number = 1;
+let test_time: number = 10;
 export default class MyCloudDB implements cloudExtension.CloudDB {
-  let test_lockId: number = 1;
-  let test_time: number = 10;
   // ...
   async heartbeat(lockId: number): Promise<cloudExtension.Result<cloudExtension.LockInfo>> {
     console.info(`heartbeat lock`);
