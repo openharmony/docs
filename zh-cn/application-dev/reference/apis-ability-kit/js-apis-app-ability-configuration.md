@@ -26,6 +26,8 @@ import Configuration from '@ohos.app.ability.Configuration';
 | hasPointerDevice  | boolean | 否 | 否 | 指示指针类型设备是否已连接，如键鼠、触控板等。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 | fontSizeScale<sup>12+<sup> | number | 否 | 否 | 字体大小缩放比例，取值范围：0~3.2。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
 | fontWeightScale<sup>12+<sup> | number | 否 | 否 | 字体粗细缩放比例，取值范围：0~1.25。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| mcc<sup>12+<sup> | string | 否  | 否 | 移动设备网络代码。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| mnc<sup>12+<sup> | string | 否  | 否 | 移动设备国家代码。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
 
 具体字段描述参考ohos.app.ability.Configuration.d.ts文件
 
@@ -50,6 +52,8 @@ export default class EntryAbility extends UIAbility {
                 let hasPointerDevice = config.hasPointerDevice;
                 let fontSizeScale = config.fontSizeScale;
                 let fontWeightScale = config.fontWeightScale;
+                let mcc = config.mcc;
+                let mnc = config.mnc;
             },
             onMemoryLevel(level) {
                 console.log('onMemoryLevel level: ${level}');
