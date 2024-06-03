@@ -377,7 +377,7 @@ napi_status napi_release_threadsafe_function(napi_threadsafe_function function);
         <td>uv_stop</td>
     </tr>
     <tr>
-        <td rowspan="4"><a href="#libuv中的Handles和Requests-1">Handle概念及相关接口</a></td>
+        <td rowspan="4"><a href="#Handle">Handle概念及相关接口</a></td>
         <td>uv_poll_*</td>
     </tr>
     <tr>
@@ -390,7 +390,7 @@ napi_status napi_release_threadsafe_function(napi_threadsafe_function function);
         <td>uv_signal_*</td>
     </tr>
     <tr>
-        <td rowspan="5"><a href="#libuv中的Handles和Requests">Request概念及相关接口</a></td>
+        <td rowspan="5"><a href="#Request">Request概念及相关接口</a></td>
         <td>uv_fs_*</td>
     </tr>
     <tr>
@@ -521,9 +521,13 @@ int stop_loop(uv_loop_t* loop)
 
 ### libuv中的Handles和Requests
 
-**Handle：** 表示一个持久性的对象，通常挂载到loop中对应的handle_queue队列上。如果handle处于活跃状态，每次`uv_run`都会处理handle中的回调函数。
+#### **Handle** 
 
-**Request：** 表示一个短暂性的请求，一个request只触发一次回调操作。
+handle表示一个持久性的对象，通常挂载到loop中对应的handle_queue队列上。如果handle处于活跃状态，每次`uv_run`都会处理handle中的回调函数。
+
+#### **Request** 
+
+retuest表示一个短暂性的请求，一个request只触发一次回调操作。
 
 下面是OpenHarmony系统中最常用的几个Handles和Requests：
 
