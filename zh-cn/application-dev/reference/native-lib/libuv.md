@@ -362,7 +362,7 @@ napi_status napi_release_threadsafe_function(napi_threadsafe_function function);
         <td>uv_loop_init</td>
     </tr>
     <tr>
-        <td>uv_loop_close</td>
+        <td>uv_loop_close_*</td>
     </tr>
     <tr>
         <td>uv_default_loop</td>
@@ -417,6 +417,7 @@ napi_status napi_release_threadsafe_function(napi_threadsafe_function function);
         <td>uv_queue_work</td>
     </tr>
 </table>
+
 
 
 
@@ -518,8 +519,6 @@ int stop_loop(uv_loop_t* loop)
 ```
 
 **注：** 该代码是基于所有的handle都按照[下述方式](#electron对handles的封装)封装编写的。
-
-### libuv中的Handles和Requests
 
 ### libuv中的Handle
 
