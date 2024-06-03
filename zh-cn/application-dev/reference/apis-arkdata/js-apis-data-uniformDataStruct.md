@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```js
-import uniformDataStruct from '@kit.ArkData';
+import { uniformDataStruct } from '@kit.ArkData';
 ```
 
 ## PlainText
