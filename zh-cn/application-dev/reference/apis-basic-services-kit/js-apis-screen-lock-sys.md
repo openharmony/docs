@@ -104,7 +104,7 @@ unlock(callback: AsyncCallback&lt;boolean&gt;): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 401  | parameter error.         |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 202  | permission verification failed, application which is not a system application uses system API.         |
 | 13200002  | the screenlock management service is abnormal.         |
 | 13200003  | illegal use.         |
@@ -193,7 +193,7 @@ lock(callback: AsyncCallback&lt;boolean&gt;): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 401  | parameter error.         |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 201  | permission denied.         |
 | 202  | permission verification failed, application which is not a system application uses system API.         |
 | 13200002  | the screenlock management service is abnormal.         |
@@ -282,7 +282,7 @@ onSystemEvent(callback: Callback&lt;SystemEvent&gt;): boolean
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 401  | parameter error.         |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 201  | permission denied.         |
 | 202  | permission verification failed, application which is not a system application uses system API.         |
 | 13200002  | the screenlock management service is abnormal.         |
@@ -326,7 +326,7 @@ sendScreenLockEvent(event: String, parameter: number, callback: AsyncCallback&lt
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 401  | parameter error.         |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 201  | permission denied.         |
 | 202  | permission verification failed, application which is not a system application uses system API.         |
 | 13200002  |the screenlock management service is abnormal.         |
@@ -376,7 +376,7 @@ sendScreenLockEvent(event: String, parameter: number): Promise&lt;boolean&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 401  | parameter error.         |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 201  | permission denied.         |
 | 202  | permission verification failed, application which is not a system application uses system API.         |
 | 13200002  | the screenlock management service is abnormal.         |
