@@ -8,6 +8,8 @@ The **AVScreenCapture**, **Window**, and **Graphics** modules together implement
 
 The full screen capture process involves creating an **AVScreenCapture** instance, configuring audio and video capture parameters, starting and stopping screen capture, and releasing the instance.
 
+If you are in a call when screen capture starts or a call is coming during screen capture, screen capture automatically stops, and the **OH_SCREEN_CAPTURE_STATE_STOPPED_BY_CALL** status is reported.
+
 This topic describes how to use the **AVScreenCapture** APIs to carry out one-time screen capture. For details about the API reference, see [AVScreenCapture](../../reference/apis-media-kit/_a_v_screen_capture.md).
 
 ## How to Develop
@@ -44,9 +46,9 @@ target_link_libraries(entry PUBLIC libnative_avscreen_capture.so)
 
     After creating the **capture** instance, you can set the parameters required for screen capture.
 
-    The setting that specifies whether to record microphone audio can be configured only during the initialization triggered by **OH_AVScreenCapture_Init**. It cannot be used to control the on/off status of the microphone once the recording starts.
+    By default, internal capture is used when captured files need to be stored. The microphone, which can be dynamically turned on or off, can be used for both internal capture and external capture.
 
-    In addition, no callback function is required for storing captured files.
+    A callback function must be set to listen for the capture status when captured files need to be stored.
 
     ```c++
     // Obtain the external capture (using microphones) or internal capture information. The internal capture parameters are mandatory. If both parameters are set, the parameter settings for internal capture and external capture must be the same.

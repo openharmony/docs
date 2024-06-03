@@ -100,6 +100,67 @@ async function createTonePlayerBefore(){
 }
 ```
 
+## audio.createAsrProcessingController<sup>12+</sup>
+
+createAsrProcessingController(audioCapturer: AudioCapturer): AsrProcessingController;
+
+Creates an Automatic Speech Recognition (ASR) processing controller.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Audio.Capturer
+
+**Return value**
+
+| Type                                                   | Description        |
+|-------------------------------------------------------| ------------ |
+| [AsrProcessingController](#asrprocessingcontroller12) | ASR processing controller.|
+
+**Error codes**
+
+For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+
+| ID  | Error Message                                    |
+|---------|------------------------------------------|
+| 202 | Caller is not a system application. |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
+| 6800104 | Operation not allowed. |
+
+**Example**
+
+```ts
+import audio from '@ohos.multimedia.audio';
+
+let audioStreamInfo: audio.AudioStreamInfo = {
+  samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
+  channels: audio.AudioChannel.CHANNEL_2,
+  sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
+  encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
+}
+
+let audioCapturerInfo: audio.AudioCapturerInfo = {
+  source: audio.SourceType.SOURCE_TYPE_MIC,
+  capturerFlags: 0
+}
+
+let audioCapturerOptions: audio.AudioCapturerOptions = {
+  streamInfo: audioStreamInfo,
+  capturerInfo: audioCapturerInfo
+}
+
+audio.createAudioCapturer(audioCapturerOptions, (err, data) => {
+  if (err) {
+    console.error(`AudioCapturer Created : Error: ${err}`);
+  } else {
+    console.info('AudioCapturer Created : Success : SUCCESS');
+    let audioCapturer = data;
+    let asrProcessingController = audio.createAsrProcessingController(audioCapturer);
+    console.info('AsrProcessingController Created : Success : SUCCESS');
+  }
+});
+```
+
 ## AudioVolumeType
 
 Enumerates the audio stream types.
@@ -178,6 +239,46 @@ Enumerates the audio interruption request types.
 | Name                              |  Value    | Description                      |
 | ---------------------------------- | ------ | ------------------------- |
 | INTERRUPT_REQUEST_TYPE_DEFAULT     | 0      |  Default type, which can be used to interrupt audio requests. |
+
+## VolumeFlag<sup>12+</sup>
+
+Enumerates the volume-related operations.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Audio.Volume
+
+| Name                              | Value| Description      |
+| ---------------------------------- |---|----------|
+| FLAG_SHOW_SYSTEM_UI | 1 | Displays the system volume bar.|
+
+## AsrNoiseSuppressionMode<sup>12+</sup>
+
+Enumerates the noise suppression modes in ASR.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Audio.Capturer
+
+| Name|  Value| Description|
+|-------|-------|-------|
+| BYPASS | 0 |Bypass noise suppression.|
+| STANDARD | 1 |Standard noise suppression.|
+| NEAR_FIELD | 2 |Near-field noise suppression.|
+| FAR_FIELD | 3 |Far-field noise suppression.|
+
+## AsrAecMode<sup>12+</sup>
+
+Enumerates the Acoustic Echo Cancellation (AEC) modes in ASR.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Audio.Capturer
+
+| Name|  Value| Description|
+|-------|-------|-------|
+| BYPASS | 0 |Bypass AEC.|
+| STANDARD | 1 |Standard AEC.|
 
 ## InterruptResult<sup>9+</sup>
 
@@ -306,9 +407,12 @@ Sets extended audio parameters. This API uses a promise to return the result.
 
 For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 
-| ID| Error Message|
-| ------- | -------------------------|
-| 6800101 | Invalid parameter error. |
+| ID| Error Message                                                                                                      |
+|-----|------------------------------------------------------------------------------------------------------------|
+| 201 | Permission denied. |
+| 202 | Not system App. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **Example**
 
@@ -354,8 +458,10 @@ Obtains the value of an audio parameter. This API uses a promise to return the r
 For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
-| ------- | -------------------------|
-| 6800101 | Invalid parameter error. |
+| ------ | -------------------------|
+| 202 | Not system App. |
+|  401  | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **Example**
 
@@ -464,6 +570,47 @@ For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 ```ts
 import audio from '@ohos.multimedia.audio';
 let audioSpatializationManager: audio.AudioSpatializationManager = audioManager.getSpatializationManager();
+```
+
+### disableSafeMediaVolume<sup>12+</sup>
+
+disableSafeMediaVolume(): Promise&lt;void&gt;
+
+Disables the safe volume mode. This API uses a promise to return the result.
+
+When the device plays at a high volume for a long time while the safe volume mode is disabled, the system does not automatically remind the user to decrease the volume to a safe volume.
+
+**Required permissions**: ohos.permission.MODIFY_AUDIO_SETTINGS
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Audio.Core
+
+**Return value**
+
+| Type                                      | Description                         |
+|------------------------------------------| ----------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 201     | Permission denied.                          |
+| 202     | Not system App.                             |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+audioManager.disableSafeMediaVolume().then(() => {
+    console.info('disableSafeMediaVolume success.');
+}).catch ((err: BusinessError) => {
+    console.error(`disableSafeMediaVolume fail: ${err.code},${err.message}`);
+});
 ```
 
 ### on('volumeChange')<sup>(deprecated)</sup>
@@ -621,7 +768,8 @@ For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-| 6800101 | invalid parameter error              |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **Example**
 
@@ -703,6 +851,51 @@ This permission is required only for muting or unmuting the ringer when **volume
 | Type               | Description                         |
 | ------------------- | ----------------------------- |
 | Promise&lt;void&gt; | Promise that returns no value.|
+
+**Example**
+
+```ts
+audioVolumeGroupManager.setVolume(audio.AudioVolumeType.MEDIA, 10).then(() => {
+  console.info('Promise returned to indicate a successful volume setting.');
+});
+```
+
+### setVolumeWithFlag<sup>12+</sup>
+
+setVolumeWithFlag(volumeType: AudioVolumeType, volume: number, flags: number): Promise&lt;void&gt;
+
+Sets the volume of a specified stream through the system volume bar. The API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.ACCESS_NOTIFICATION_POLICY
+
+This permission is required only for muting or unmuting the ringer when **volumeType** is set to **AudioVolumeType.RINGTONE**.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Audio.Volume
+
+**Parameters**
+
+| Name    | Type                               | Mandatory| Description                                  |
+| ---------- | ----------------------------------- | ---- |--------------------------------------|
+| volumeType | [AudioVolumeType](#audiovolumetype) | Yes  | Audio stream type.                              |
+| volume     | number                              | Yes  | Volume to set. The value range can be obtained by calling **getMinVolume** and **getMaxVolume**.|
+| flags | number | Yes| System volume bar.|
+
+**Return value**
+
+| Type               | Description                         |
+| ------------------- | ----------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 201     | Permission denied.                          |
+| 202     | Not system App.                             |
 
 **Example**
 
@@ -884,8 +1077,8 @@ For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 | ------- | --------------------------------------------|
 | 201     | Permission denied.                          |
 | 202     | Not system App.                             |
-| 401     | Input parameter type or number mismatch.    |
-| 6800101 | Input parameter value error.                |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **Example**
 
@@ -922,7 +1115,9 @@ For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-| 6800101 | Invalid parameter error. Return by callback.                     |
+| 201 | Permission denied. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. Return by callback.                     |
 | 6800301 | System error. Return by callback.                                |
 
 **Example**
@@ -971,7 +1166,9 @@ For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-| 6800101 | Invalid parameter error. Return by promise.                     |
+| 201 | Permission denied. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. Return by promise.                     |
 | 6800301 | System error. Return by promise.                                |
 
 **Example**
@@ -1014,7 +1211,9 @@ For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-| 6800101 | Invalid parameter error. Return by callback.                     |
+| 201 | Permission denied. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. Return by callback.                     |
 | 6800301 | System error. Return by callback.                                |
 
 **Example**
@@ -1063,7 +1262,9 @@ For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-| 6800101 | Invalid parameter error. Return by promise.                     |
+| 201 | Permission denied. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. Return by promise.                     |
 | 6800301 | System error. Return by promise.                                |
 
 **Example**
@@ -1110,7 +1311,9 @@ For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-| 6800101 | invalid parameter error              |
+| 202 | Not system App. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **Example**
 
@@ -1150,7 +1353,9 @@ For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-| 6800101 | Invalid parameter error. |
+| 202 | Not system App. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **Example**
 
@@ -1186,7 +1391,9 @@ For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-| 6800101 | Invalid parameter error. |
+| 202 | Not system App. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **Example**
 
@@ -1627,7 +1834,7 @@ Checks whether a device supports spatial audio rendering. This API returns the r
 
 | Name    | Type                                                        | Mandatory| Description                |
 | ---------- | ------------------------------------------------------------ | ---- | -------------------- |
-| deviceDescriptor | [AudioDeviceDescriptor](#audiodevicedescriptor)         | Yes  | Descriptor of the device.    |
+| deviceDescriptor | [AudioDeviceDescriptor](./js-apis-audio.md#audiodevicedescriptor)         | Yes  | Descriptor of the device.    |
 
 **Return value**
 
@@ -1642,8 +1849,8 @@ For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 | ID| Error Message|
 | ------- | --------------------------------------------|
 | 202     | Not system App.                             |
-| 401     | Input parameter type or number mismatch.    |
-| 6800101 | Invalid parameter error.                    |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **Example**
 
@@ -1725,7 +1932,7 @@ Checks whether a device supports head tracking. This API returns the result sync
 
 | Name    | Type                                                        | Mandatory| Description                |
 | ---------- | ------------------------------------------------------------ | ---- | -------------------- |
-| deviceDescriptor | [AudioDeviceDescriptor](#audiodevicedescriptor)         | Yes  | Descriptor of the device.    |
+| deviceDescriptor | [AudioDeviceDescriptor](./js-apis-audio.md#audiodevicedescriptor)         | Yes  | Descriptor of the device.    |
 
 **Return value**
 
@@ -1740,8 +1947,8 @@ For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 | ID| Error Message|
 | ------- | --------------------------------------------|
 | 202     | Not system App.                             |
-| 401     | Input parameter type or number mismatch.    |
-| 6800101 | Invalid parameter error.                    |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **Example**
 
@@ -1798,8 +2005,8 @@ For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 | ------- | --------------------------------------------|
 | 201     | Permission denied. Return by callback.      |
 | 202     | Not system App.                             |
-| 401     | Input parameter type or number mismatch.    |
-| 6800101 | Invalid parameter error.                    |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **Example**
 ```ts
@@ -1848,7 +2055,7 @@ For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 | ------- | --------------------------------------------|
 | 201     | Permission denied. Return by promise.       |
 | 202     | Not system App.                             |
-| 401     | Input parameter type or number mismatch.    |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **Example**
 
@@ -1926,8 +2133,8 @@ For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 | ID| Error Message|
 | ------- | --------------------------------------------|
 | 202     | Not system App.                             |
-| 401     | Input parameter type or number mismatch.    |
-| 6800101 | Invalid parameter error.                    |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **Example**
 
@@ -1963,8 +2170,8 @@ For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 | ID| Error Message|
 | ------- | --------------------------------------------|
 | 202     | Not system App.                             |
-| 401     | Input parameter type or number mismatch.    |
-| 6800101 | Invalid parameter error.                    |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **Example**
 
@@ -2001,8 +2208,8 @@ For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 | ------- | --------------------------------------------|
 | 201     | Permission denied. Return by callback.      |
 | 202     | Not system App.                             |
-| 401     | Input parameter type or number mismatch.    |
-| 6800101 | Invalid parameter error.                    |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **Example**
 ```ts
@@ -2051,7 +2258,7 @@ For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 | ------- | --------------------------------------------|
 | 201     | Permission denied. Return by promise.       |
 | 202     | Not system App.                             |
-| 401     | Input parameter type or number mismatch.    |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **Example**
 
@@ -2129,8 +2336,8 @@ For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 | ID| Error Message|
 | ------- | --------------------------------------------|
 | 202     | Not system App.                             |
-| 401     | Input parameter type or number mismatch.    |
-| 6800101 | Invalid parameter error.                    |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **Example**
 
@@ -2166,8 +2373,8 @@ For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 | ID| Error Message|
 | ------- | --------------------------------------------|
 | 202     | Not system App.                             |
-| 401     | Input parameter type or number mismatch.    |
-| 6800101 | Invalid parameter error.                    |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **Example**
 
@@ -2202,8 +2409,8 @@ For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 | ------- | --------------------------------------------|
 | 201     | Permission denied.                          |
 | 202     | Not system App.                             |
-| 401     | Input parameter type or number mismatch.    |
-| 6800101 | Invalid parameter error.                    |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **Example**
 
@@ -2251,8 +2458,8 @@ For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 | ------- | --------------------------------------------|
 | 201     | Permission denied.                          |
 | 202     | Not system App.                             |
-| 401     | Input parameter type or number mismatch.    |
-| 6800101 | Invalid parameter error.                    |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **Example**
 
@@ -2298,7 +2505,7 @@ For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 import audio from '@ohos.multimedia.audio';
 import { BusinessError } from '@ohos.base';
 try {
-  let spatializationSceneType: AudioSpatializationSceneType = audioSpatializationManager.getSpatializationSceneType();
+  let spatializationSceneType: audio.AudioSpatializationSceneType = audioSpatializationManager.getSpatializationSceneType();
   console.info(`AudioSpatializationManager spatializationSceneType: ${spatializationSceneType}`);
 } catch (err) {
   let error = err as BusinessError;
@@ -2644,4 +2851,184 @@ tonePlayer.release().then(() => {
 }).catch(() => {
   console.error('promise call release fail');
 });
+```
+
+## AsrProcessingController<sup>12+</sup>
+
+Implements an ASR processing controller.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Audio.Capturer
+
+### setAsrAecMode<sup>12+</sup>
+
+setAsrAecMode(mode: AsrAecMode): boolean;
+
+Sets an ASR AEC mode. This API returns the result synchronously.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Audio.Capturer
+
+**Parameters**
+
+| Name| Type                        | Mandatory| Description|
+|-------|----------------------------|-------|-------|
+| mode | [AsrAecMode](#asraecmode12) | Yes|ASR AEC mode.|
+
+**Return value**
+
+| Type| Description                                   |
+|-------|---------------------------------------|
+| boolean | **true**: The setting is successful.<br>**false**: The setting fails.|
+
+**Error codes**
+
+For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+
+| ID  | Error Message                                    |
+|---------|------------------------------------------|
+| 202 | Caller is not a system application. |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
+| 6800104 | Operation not allowed. |
+
+**Example**
+
+```ts
+let flag = asrProcessingController.setAsrAecMode(audio.AsrAecMode.BYPASS);
+```
+
+### getAsrAecMode<sup>12+</sup>
+
+getAsrAecMode(): AsrAecMode;
+
+Obtains the ASR AEC mode in use. This API returns the result synchronously.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Audio.Capturer
+
+**Return value**
+
+| Type| Description|
+|-------|-------|
+| [AsrAecMode](#asraecmode12) |ASR AEC mode.|
+
+**Error codes**
+
+For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+
+| ID  | Error Message                                    |
+|---------|------------------------------------------|
+| 202 | Caller is not a system application. |
+| 6800104 | Operation not allowed. |
+
+
+**Example**
+
+```ts
+let mode = asrProcessingController.getAsrAecMode();
+```
+
+### setAsrNoiseSuppressionMode<sup>12+</sup>
+
+setAsrNoiseSuppressionMode(mode: AsrNoiseSuppressionMode): boolean;
+
+Sets an ASR noise suppression mode. This API returns the result synchronously.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Audio.Capturer
+
+**Parameters**
+
+| Name| Type                                                   | Mandatory| Description|
+|-------|-------------------------------------------------------|-------|-------|
+| mode | [AsrNoiseSuppressionMode](#asrnoisesuppressionmode12) | Yes|ASR noise suppression mode.|
+
+**Return value**
+
+| Type| Description                                    |
+|-------|----------------------------------------|
+| boolean | **true**: The setting is successful.<br>**false**: The setting fails.|
+
+**Error codes**
+
+For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+
+| ID  | Error Message                                    |
+|---------|------------------------------------------|
+| 202 | Caller is not a system application. |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
+| 6800104 | Operation not allowed. |
+
+**Example**
+
+```ts
+let flag = asrProcessingController.setAsrNoiseSuppressionMode(audio.AsrNoiseSuppressionMode.BYPASS);
+```
+
+### getAsrNoiseSuppressionMode<sup>12+</sup>
+
+getAsrNoiseSuppressionMode(): AsrNoiseSuppressionMode;
+
+Obtains the ASR noise suppression mode in use. This API returns the result synchronously.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Audio.Capturer
+
+**Return value**
+
+| Type                     |Description|
+|-------------------------|-------|
+| [AsrNoiseSuppressionMode](#asrnoisesuppressionmode12) |ASR noise suppression mode.|
+
+**Error codes**
+
+For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+
+| ID  | Error Message                                    |
+|---------|------------------------------------------|
+| 202 | Caller is not a system application. |
+| 6800104 | Operation not allowed. |
+
+**Example**
+
+```ts
+let mode = asrProcessingController.getAsrNoiseSuppressionMode();
+```
+
+### isWhispering<sup>12+</sup>
+
+isWhispering(): boolean;
+
+Checks whether it is in the whisper state.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Audio.Capturer
+
+**Return value**
+
+| Type| Description                      |
+|-------|--------------------------|
+| boolean | **true**: It is in the whisper state.<br>**false**: It is not in the whisper state.|
+
+**Error codes**
+
+For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+
+| ID  | Error Message                                    |
+|---------|------------------------------------------|
+| 202 | Caller is not a system application. |
+| 6800104 | Operation not allowed. |
+
+**Example**
+
+```ts
+let flag = asrProcessingController.isWhispering();
 ```
