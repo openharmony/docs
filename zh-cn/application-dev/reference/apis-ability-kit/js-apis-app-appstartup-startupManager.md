@@ -55,9 +55,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-    let startParams = ['Sample_001'];
+    let startParams = 'Sample_001';
     try {
-      startupManager.run(startParams).then(() => {
+      startupManager.run([startParams]).then(() => {
         console.log('StartupTest startupManager run then, startParams = ')
       }).catch((error: BusinessError) => {
         console.info("StartupTest promise catch error, error = " + JSON.stringify(error));
@@ -65,7 +65,7 @@ export default class EntryAbility extends UIAbility {
           + JSON.stringify(startParams));
       })
     } catch (error) {
-      let errMsg = (error as BusinessError).message;
+      let errMsg = JSON.stringify((error as BusinessError).message);
       let errCode = (error as BusinessError).code;
       console.log('Startup catch error , errCode= ' + errCode);
       console.log('Startup catch error ,error= ' + errMsg);
@@ -99,7 +99,7 @@ export default class EntryAbility extends UIAbility {
 
   onWindowStageCreate(windowStage: window.WindowStage) {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
-    let result = startupManager.removeAllStartupTaskResults();
+    startupManager.removeAllStartupTaskResults();
 
     windowStage.loadContent('pages/Index', (err, data) => {
       if (err.code) {
@@ -223,7 +223,7 @@ export default class EntryAbility extends UIAbility {
     } else {
       console.info("Sample_001 uninitialized");
     }
-    
+
     windowStage.loadContent('pages/Index', (err, data) => {
       if (err.code) {
         hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
@@ -275,7 +275,7 @@ export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
     startupManager.removeStartupTaskResult('Sample_001');
-    
+
     windowStage.loadContent('pages/Index', (err, data) => {
       if (err.code) {
         hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');

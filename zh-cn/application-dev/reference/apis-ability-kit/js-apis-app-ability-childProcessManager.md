@@ -73,8 +73,8 @@ export default class DemoProcess extends ChildProcess {
 ```ts
 // 使用childProcessManager.startChildProcess方法启动子进程:
 import { childProcessManager } from '@kit.AbilityKit';
-import DemoProcess from '../process/DemoProcess';
 import { BusinessError } from '@kit.BasicServicesKit';
+import DemoProcess from '../process/DemoProcess';
 
 try {
   DemoProcess.toString(); // 这里要调用下DemoProcess类的任意方法，防止没有引用到而被构建工具优化掉
@@ -132,8 +132,8 @@ export default class DemoProcess extends ChildProcess {
 ```ts
 // 使用childProcessManager.startChildProcess方法启动子进程:
 import { childProcessManager } from '@kit.AbilityKit';
-import DemoProcess from '../process/DemoProcess';
 import { BusinessError } from '@kit.BasicServicesKit';
+import DemoProcess from '../process/DemoProcess';
 
 try {
   DemoProcess.toString(); // 这里要调用下DemoProcess类的任意方法，防止没有引用到而被构建工具优化掉

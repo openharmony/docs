@@ -32,7 +32,7 @@ onCompleted?(error: BusinessError\<void\>): void
 **示例：**
 
 ```ts
-import { StartupConfig, StartupConfigEntry, StartupListener } from '@kit.AbilityKit';
+import { StartupConfigEntry, StartupConfig, StartupListener } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class MyStartupConfigEntry extends StartupConfigEntry {

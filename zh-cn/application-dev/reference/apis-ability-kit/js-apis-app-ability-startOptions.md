@@ -11,7 +11,7 @@ StartOptions可以作为[startAbility()](js-apis-inner-application-uiAbilityCont
 ## 导入模块
 
 ```ts
-import StartOptions from '@ohos.app.ability.StartOptions';
+import { StartOptions } from '@kit.AbilityKit';
 ```
 
 ## 属性
@@ -33,10 +33,8 @@ import StartOptions from '@ohos.app.ability.StartOptions';
 **示例：**
 
   ```ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  import Want from '@ohos.app.ability.Want';
-  import StartOptions from '@ohos.app.ability.StartOptions';
-  import { BusinessError } from '@ohos.base';
+  import { UIAbility, Want, StartOptions } from '@kit.AbilityKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   export default class EntryAbility extends UIAbility {
 
