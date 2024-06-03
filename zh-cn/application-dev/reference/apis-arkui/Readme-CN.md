@@ -151,6 +151,7 @@
         - [组合手势](arkui-ts/ts-combined-gestures.md)
         - [自定义手势判定](arkui-ts/ts-gesture-customize-judge.md)
         - [设置组件绑定的手势](arkui-ts/ts-uigestureevent.md)
+        - [手势拦截增强](arkui-ts/ts-gesture-blocking-enhancement.md)
     - 基础组件
       - [AlphabetIndexer](arkui-ts/ts-container-alphabet-indexer.md)
       - [Blank](arkui-ts/ts-basic-components-blank.md)
