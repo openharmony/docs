@@ -208,6 +208,23 @@ void OnBufferAvailable(OH_AVScreenCapture *capture, OH_AVBuffer *buffer,
 
 struct OH_AVScreenCapture *capture;
 static napi_value Screencapture(napi_env env, napi_callback_info info) {
+    // 从js端获取窗口id number[]
+    vector<int> windowIdsExclude = {};
+    size_t argc = 1;
+    napi_value args[1] = {nullptr};
+    // 获取参数
+    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+    // 获取数组长度
+    uint32_t array_length;
+    napi_get_array_length(env, args[0], &array_length);
+    // 读初窗口id
+    for (int32_t i = 0; i < array_length; i++) {
+        napi_value temp;
+        napi_get_element(env, args[0], i, &temp);
+        uint32_t tempValue;
+        napi_get_value_uint32(env, temp, &tempValue);
+        windowIdsExclude.push_back(tempValue);
+     }
     // 实例化ScreenCapture
     capture = OH_AVScreenCapture_Create();
     
@@ -222,8 +239,11 @@ static napi_value Screencapture(napi_env env, napi_callback_info info) {
     OH_AVScreenCapture_ContentFilter contentFilter= OH_AVScreenCapture_CreateContentFilter();
     // 添加过滤通知音
     OH_AVScreenCapture_ContentFilter_AddAudioContent(contentFilter, OH_SCREEN_CAPTURE_NOTIFICATION_AUDIO);
-    // 排除过滤器
-    //OH_AVScreenCapture_ExcludeContent(capture, contentFilter);
+    // 排除指定窗口id
+    OH_AVScreenCapture_ContentFilter_AddWindowContent(contentFilter, &windowIdsExclude[0],
+                                                      static_cast<int32_t>(windowIdsExclude.size()));
+
+    OH_AVScreenCapture_ExcludeContent(capture, contentFilter);
 
     // 初始化录屏，传入配置信息OH_AVScreenRecorderConfig
     OH_AudioCaptureInfo miccapinfo = {.audioSampleRate = 16000, .audioChannels = 2, .audioSource = OH_MIC};
