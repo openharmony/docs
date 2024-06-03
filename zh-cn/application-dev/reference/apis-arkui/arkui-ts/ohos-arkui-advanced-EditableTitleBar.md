@@ -90,9 +90,7 @@ EditableTitleBar({leftIconStyle: EditableLeftIconType, imageItem?: EditableTitle
 
 ```ts
 // 该示例主要演示EditableTitleBar设置左侧图标、主标题及自定义右侧图标区的效果。
-import { EditableLeftIconType } from "@ohos.arkui.advanced.EditableTitleBar"
-import { EditableTitleBar } from "@ohos.arkui.advanced.EditableTitleBar"
-import promptAction from '@ohos.promptAction'
+import { EditableLeftIconType, EditableTitleBar, promptAction } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -100,51 +98,49 @@ struct Index {
   build() {
     Row() {
       Column() {
-		Divider().height(2).color(0xCCCCCC)
+        Divider().height(2).color(0xCCCCCC)
         EditableTitleBar({
           leftIconStyle: EditableLeftIconType.Cancel,
-          title: "编辑页面",
+          title: '编辑页面',
           menuItems: [],
           onCancel: () => {
-            promptAction.showToast({ message: "on cancel" })
+            promptAction.showToast({ message: 'on cancel' });
           },
           onSave: () => {
-            promptAction.showToast({ message: "on save" })
+            promptAction.showToast({ message: 'on save' });
           }
         })
         Divider().height(2).color(0xCCCCCC)
         EditableTitleBar({
           leftIconStyle: EditableLeftIconType.Back,
-          title: "编辑页面",
+          title: '编辑页面',
           menuItems: [
-            { value: $r('app.media.ic_public_reduce'),
+            {
+              value: $r('app.media.ic_public_reduce'),
               isEnabled: false,
               action: () => {
-                promptAction.showToast({ message: "show toast index 2" })
+                promptAction.showToast({ message: 'show toast index 2' });
               }
             }
           ],
           onSave: () => {
-            promptAction.showToast({ message: "on save" })
+            promptAction.showToast({ message: 'on save' })
           }
         })
-		Divider().height(2).color(0xCCCCCC)
+        Divider().height(2).color(0xCCCCCC)
       }.width('100%')
     }.height('100%')
   }
 }
 ```
 
-![zh-cn_image_0000001617073302](figures/zh-cn_image_0000001617073302.jpg)
+![zh-cn_image_0000001617073302](figures/zh-cn_image_0000001617073302.PNG)
 
 ### 示例2
 
 ```ts
 // 该示例主要演示EditableTitleBar设置背景模糊、头像；取消右侧保存图标及自定义标题栏外边距的效果。
-import { EditableLeftIconType, EditableTitleBar } from '@ohos.arkui.advanced.EditableTitleBar';
-import promptAction from '@ohos.promptAction';
-import router from '@ohos.router';
-import { LengthMetrics } from '@ohos.arkui.node';
+import { EditableLeftIconType, EditableTitleBar, LengthMetrics, promptAction, router } from '@kit.ArkUI';
 
 @Entry
 @Component

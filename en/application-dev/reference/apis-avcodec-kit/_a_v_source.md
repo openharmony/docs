@@ -80,7 +80,15 @@ Creates an **OH_AVSource** instance with a user-defined data source. You can rel
 
 **Returns**
 
-Returns the pointer to an **OH_AVSource** instance.
+Returns the pointer to the **OH_AVSource** instance created if the operation is successful; returns a null pointer otherwise.
+
+The possible causes of an operation failure are as follows:
+
+1. The value of **dataSource** is a null pointer.
+2. The size of the data source is 0.
+3. Setting the data source fails.
+4. The memory is insufficient.
+5. The decoder engine is a null pointer.
 
 
 ### OH_AVSource_CreateWithFD()

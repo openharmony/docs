@@ -2,26 +2,23 @@
 
 You can call the native APIs provided by the **AVDemuxer** module to demux audio and video, that is, to extract audio and video frame data from bit stream data.
 
-Currently, two data input types are supported: remote connection (over HTTP, HLS) and File Descriptor (FD).
+Currently, two data input types are supported: remote connection (over HTTP) and File Descriptor (FD).
 
 The following demuxing formats are supported:
-
+<!--RP1-->
 | Media Format | Muxing Format                     | Stream Format                     |
 | -------- | :----------------------------| :----------------------------|
-| Audio/Video       | mp4                 |<!--RP1-->Video stream: AVC(H.264); audio stream: AAC, MPEG(MP3)<!--RP1End-->|
-| Audio/Video       | fmp4                |<!--RP2-->Video stream: AVC(H.264); audio stream: AAC, MPEG(MP3)<!--RP2End-->|
-| Audio/Video       | mkv                 |<!--RP3-->Video stream: AVC(H.264); audio stream: AAC, MPEG(MP3), OPUS<!--RP3End-->|
-| Audio/Video       | mpeg-ts             |<!--RP4-->Video stream: AVC(H.264); audio stream: AAC, MPEG(MP3)<!--RP4End-->|
-| Audio/Video       | flv                 |<!--RP5-->Video stream: AVC(H.264); audio stream: AAC<!--RP5End-->|
-| Audio             | m4a                 |<!--RP6-->Audio stream: AAC<!--RP6End-->|
-| Audio             | aac                 |Audio stream: AAC|
-| Audio             | mp3                 |Audio stream: MPEG(MP3)|
-| Audio             | ogg                 |Audio stream: OGG|
-| Audio             | flac                |Audio stream: FLAC|
-| Audio             | wav                 |Audio stream: PCM|
-| Audio             | amr                 |Audio stream: AMR(AMR-NB, AMR-WB)|
-| Audio             | ape                 |Audio stream: APE|
-| External Subtitle | srt                 |Subtitle stream: SRT|
+| Audio/Video    | mp4                        |Video stream: AVC (H.264); audio stream: AAC and MPEG (MP3)|
+| Audio/Video    | mkv                        |Video stream: AVC (H.264); audio stream: AAC, MPEG (MP3), and OPUS|
+| Audio/Video    | mpeg-ts                    |Video stream: AVC (H.264); audio stream: AAC and MPEG (MP3)|
+| Audio      | m4a                        |Audio stream: AAC|
+| Audio      | aac                        |Audio stream: AAC|
+| Audio      | mp3                        |Audio stream: MPEG (MP3)|
+| Audio      | ogg                        |Audio stream: OGG|
+| Audio      | flac                        |Audio stream: FLAC|
+| Audio      | wav                        |Audio stream: PCM|
+| Audio      | amr                        |Audio stream: AMR (AMR-NB and AMR-WB)|
+<!--RP1End-->
 
 **Usage Scenario**
 

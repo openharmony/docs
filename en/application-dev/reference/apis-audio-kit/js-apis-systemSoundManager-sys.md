@@ -348,6 +348,8 @@ For details about the error codes, see [Media Error Codes](../apis-media-kit/err
 
 | ID| Error Message             |
 | ------- | --------------------- |
+| 202 | Caller is not a system application. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 5400103 | I/O error. |
 
 **Example**
@@ -396,6 +398,8 @@ For details about the error codes, see [Media Error Codes](../apis-media-kit/err
 
 | ID| Error Message             |
 | -------- | --------------------- |
+| 202 | Caller is not a system application. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 5400103  | I/O error. |
 
 **Example**
@@ -436,6 +440,15 @@ Obtains a player to play the system ringtone. This API uses a promise to return 
 | Type               | Description                           |
 | ------------------- | ------------------------------- |
 | Promise&lt;[RingtonePlayer](js-apis-inner-multimedia-ringtonePlayer-sys.md#ringtoneplayer)&gt; | Promise used to return the player obtained.|
+
+**Error codes**
+
+For details about the error codes, see [Media Error Codes](../apis-media-kit/errorcode-media.md).
+
+| ID| Error Message             |
+| -------- | --------------------- |
+| 202 | Caller is not a system application. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **Example**
 
@@ -485,6 +498,8 @@ For details about the error codes, see [Media Error Codes](../apis-media-kit/err
 
 | ID| Error Message             |
 | ------- | --------------------- |
+| 202 | Caller is not a system application. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 5400103 | I/O error. |
 
 **Example**
@@ -533,6 +548,8 @@ For details about the error codes, see [Media Error Codes](../apis-media-kit/err
 
 | ID| Error Message             |
 | ------- | --------------------- |
+| 202 | Caller is not a system application. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 5400103 | I/O error. |
 
 **Example**
@@ -573,6 +590,15 @@ Obtains a player to play the system alert tone. This API uses a promise to retur
 | Type                                                                                              | Description                           |
 |--------------------------------------------------------------------------------------------------| ------------------------------- |
 | Promise&lt;[SystemTonePlayer](js-apis-inner-multimedia-systemTonePlayer-sys.md#systemtoneplayer)&gt; | Promise used to return the player obtained.|
+
+**Error codes**
+
+For details about the error codes, see [Media Error Codes](../apis-media-kit/errorcode-media.md).
+
+| ID| Error Message             |
+| ------- | --------------------- |
+| 202 | Caller is not a system application. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **Example**
 

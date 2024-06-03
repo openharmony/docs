@@ -39,8 +39,8 @@
 6. 示例代码：
 
 ```ts
-import ble from '@ohos.bluetooth.ble';
-import { BusinessError } from '@ohos.base';
+import { ble } from '@kit.ConnectivityKit';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 
 const TAG: string = 'BleAdvertisingManager';
 
@@ -172,8 +172,8 @@ export default bleAdvertisingManager as BleAdvertisingManager;
 7. 示例代码:
 
 ```ts
-import ble from '@ohos.bluetooth.ble';
-import { BusinessError } from '@ohos.base';
+import { ble } from '@kit.ConnectivityKit';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 
 const TAG: string = 'BleScanManager';
 

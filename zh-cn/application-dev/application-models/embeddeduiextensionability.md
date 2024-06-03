@@ -10,6 +10,7 @@ EmbeddedUIExtensionAbility需要和[EmbeddedComponent](../reference/apis-arkui/a
 >
 > 1. 当前EmbeddedUIExtensionAbility和EmbeddedComponent仅支持在拥有多进程配置的设备上使用。
 > 2. EmbeddedComponent只能在UIAbility中使用，且被拉起的EmbeddedUIExtensionAbility需与UIAbility属于同一应用。
+> 3. 支持多实例场景，UIExtensionAbility的多实例介绍可参见[UIExtensionAbility](uiextensionability.md)。
 
 EmbeddedUIExtensionAbility通过[UIExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-uiExtensionContext.md)和[UIExtensionContentSession](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionContentSession.md)提供相关能力。本文描述中称被启动的EmbeddedUIExtensionAbility为提供方，称启动EmbeddedUIExtensionAbility的EmbeddedComponent组件为使用方。
 
@@ -19,12 +20,12 @@ EmbeddedUIExtensionAbility通过[UIExtensionContext](../reference/apis-ability-k
 
 [EmbeddedUIExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-embeddedUIExtensionAbility.md)提供了onCreate、onSessionCreate、onSessionDestroy、onForeground、onBackground和onDestroy生命周期回调，根据需要重写对应的回调方法。
 
-- **onCreate**：当EmbeddedUIExtensionAbility创建时回调，执行初始化业务逻辑操作。
-- **onSessionCreate**：当EmbeddedUIExtensionAbility界面内容对象创建后调用。
-- **onSessionDestroy**：当EmbeddedUIExtensionAbility界面内容对象销毁后调用。
-- **onForeground**：当EmbeddedUIExtensionAbility从后台转到前台时触发。
-- **onBackground**：当EmbeddedUIExtensionAbility从前台转到后台时触发。
-- **onDestroy**：当EmbeddedUIExtensionAbility销毁时回调，可以执行资源清理等操作。
+- [**onCreate**](../reference/apis-ability-kit/js-apis-app-ability-embeddedUIExtensionAbility.md#embeddeduiextensionabilityoncreate)：当EmbeddedUIExtensionAbility创建时回调，执行初始化业务逻辑操作。
+- [**onSessionCreate**](../reference/apis-ability-kit/js-apis-app-ability-embeddedUIExtensionAbility.md#embeddeduiextensionabilityonsessioncreate)：当EmbeddedUIExtensionAbility界面内容对象创建后调用。
+- [**onSessionDestroy**](../reference/apis-ability-kit/js-apis-app-ability-embeddedUIExtensionAbility.md#embeddeduiextensionabilityonsessiondestroy)：当EmbeddedUIExtensionAbility界面内容对象销毁后调用。
+- [**onForeground**](../reference/apis-ability-kit/js-apis-app-ability-embeddedUIExtensionAbility.md#embeddeduiextensionabilityonforeground)：当EmbeddedUIExtensionAbility从后台转到前台时触发。
+- [**onBackground**](../reference/apis-ability-kit/js-apis-app-ability-embeddedUIExtensionAbility.md#embeddeduiextensionabilityonbackground)：当EmbeddedUIExtensionAbility从前台转到后台时触发。
+- [**onDestroy**](../reference/apis-ability-kit/js-apis-app-ability-embeddedUIExtensionAbility.md#embeddeduiextensionabilityondestroy)：当EmbeddedUIExtensionAbility销毁时回调，可以执行资源清理等操作。
 
 ### 开发步骤
 
@@ -139,7 +140,7 @@ struct Index {
   @State message: string = 'Message: '
   private want: Want = {
     bundleName: "com.example.embeddeddemo",
-    abilityName: "ExampleEmbeddedAbility",
+    abilityName: "EmbeddedUIExtAbility",
   }
 
   build() {

@@ -33,6 +33,7 @@
     - [@ohos.uiAppearance (用户界面外观)(系统接口)](js-apis-uiappearance-sys.md)
     - [@ohos.uiExtensionHost (系统接口)](js-apis-uiExtensionHost-sys.md)
     - [@ohos.arkui.UIContext (UIContext)(系统接口)](js-apis-arkui-UIContext-sys.md)
+    - [@ohos.promptAction (弹窗)(系统接口)](js-apis-promptAction-sys.md)
     <!--DelEnd-->
     - arkui
       - [BuilderNode](js-apis-arkui-builderNode.md)
@@ -150,6 +151,7 @@
         - [组合手势](arkui-ts/ts-combined-gestures.md)
         - [自定义手势判定](arkui-ts/ts-gesture-customize-judge.md)
         - [设置组件绑定的手势](arkui-ts/ts-uigestureevent.md)
+        - [手势拦截增强](arkui-ts/ts-gesture-blocking-enhancement.md)
     - 基础组件
       - [AlphabetIndexer](arkui-ts/ts-container-alphabet-indexer.md)
       - [Blank](arkui-ts/ts-basic-components-blank.md)

@@ -380,6 +380,14 @@ popupTitleBackground(value: ResourceColor)
 | ------ | ------------------------------------------ | ---- | ------------------------------------------------------------ |
 | value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 设置提示弹窗首个索引项背板颜色。<br/>默认值：<br/>提示弹窗只有一个索引项：#00FFFFFF。<br/>提示弹窗有多个索引项：#0c182431。 |
 
+### enableHapticFeedback<sup>12+</sup>
+
+enableHapticFeedback(enable: boolean)
+
+| 参数名         | 类型                                                  | 必填 | 说明                         |
+|-------------|-----------------------------------------------------|----|----------------------------|
+| enable | boolean | 否  | 支持触控反馈。<br/>默认值：true。<br/> |
+
 ## IndexerAlign枚举说明
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。

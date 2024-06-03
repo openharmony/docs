@@ -1610,6 +1610,42 @@ SequenceRunner的构造函数。
 let runner: taskpool.SequenceRunner = new taskpool.SequenceRunner();
 ```
 
+### constructor<sup>12+</sup>
+
+constructor(name: string, priority?: Priority)
+
+SequenceRunner的构造函数。如果名字相同，将返回相同的SequenceRunner。
+
+> **说明：**
+>
+> - 不支持在同一线程重复构造相同的串行队列。
+> - 不支持修改串行队列的优先级。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+
+**参数：**
+
+| 参数名   | 类型                  | 必填 | 说明                                                       |
+| -------- | --------------------- | ---- | ---------------------------------------------------------- |
+| name     | string                | 是   | 串行队列的名字。 |
+| priority | [Priority](#priority) | 否   | 指定任务的优先级，该参数默认值为taskpool.Priority.MEDIUM。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
+
+**示例：**
+
+```ts
+let runner:taskpool.SequenceRunner = new taskpool.SequenceRunner("runner1", taskpool.Priority.LOW);
+```
+
 ### execute<sup>11+</sup>
 
 execute(task: Task): Promise\<Object>
