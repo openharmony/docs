@@ -352,74 +352,26 @@ napi_status napi_release_threadsafe_function(napi_threadsafe_function function);
 
 ### 接口汇总说明
 
-<table>
-    <tr>
-        <td><b>接口类型</b></td>
-        <td><b>接口汇总</b></td>
-    </tr>
-    <tr>
-        <td rowspan ="6"><a href="#libuv中的事件循环">loop概念及相关接口</a></td>
-        <td>uv_loop_init</td>
-    </tr>
-    <tr>
-        <td>uv_loop_close</td>
-    </tr>
-    <tr>
-        <td>uv_default_loop</td>
-    </tr>
-    <tr>
-        <td>uv_run</td>
-    </tr>
-    <tr>
-        <td>uv_loop_alive</td>
-    </tr>
-    <tr>
-        <td>uv_stop</td>
-    </tr>
-    <tr>
-        <td rowspan ="4"><a href="#libuv中的Handle和Request">Handle概念及相关接口</a></td>
-        <td>uv_pool_x</td>
-    </tr>
-    <tr>
-        <td>uv_timer_x</td>
-    </tr>
-    <tr>
-        <td>uv_async_x</td>
-    </tr>
-    <tr>
-        <td>uv_signal_x</td>
-    </tr>
-    <tr>
-        <td rowspan ="5">Request概念及相关接口</td>
-        <td>uv_fs_x</td>
-    </tr>
-    <tr>
-        <td>uv_random</td>
-    </tr>
-    <tr>
-        <td>uv_getaddrinfo</td>
-    </tr>
-    <tr>
-        <td>uv_getnameinfo</td>
-    </tr>
-    <tr>
-        <td>uv_queue_work</td>
-    </tr>
-    <tr>
-        <td rowspan ="2"><a href="#线程间通信">线程间通信原理及相关接口</a></td>
-        <td>uv_async_init</td>
-    </tr>
-    <tr>
-        <td>uv_async_send</td>
-    </tr>
-    <tr>
-        <td><a href="#线程池">线程池概念及相关接口</a></td>
-        <td>uv_queue_work</td>
-    </tr>
-</table>
-
-
-
+|  接口类型    |  接口汇总    |
+| ---- | ---- |
+|   [loop概念及相关接口](#libuv中的事件循环)   |  uv_loop_init    |
+|   [loop概念及相关接口](#libuv中的事件循环)   |   uv_loop_close   |
+|   [loop概念及相关接口](#libuv中的事件循环)   |  uv_default_loop    |
+|   [loop概念及相关接口](#libuv中的事件循环)   |   uv_run   |
+|   [loop概念及相关接口](#libuv中的事件循环)   |    uv_loop_alive  |
+|   [loop概念及相关接口](#libuv中的事件循环)   |  uv_stop    |
+|   [Handle概念及相关接口](#libuv中的Handle和Request)   |   uv_pool_*   |
+|   [Handle概念及相关接口](#libuv中的Handle和Request)   |  uv_imer_*   |
+|   [Handle概念及相关接口](#libuv中的Handle和Request)   |  uvasync_*   |
+|   [Handle概念及相关接口](#libuv中的Handle和Request)   |   uv_signal_*   |
+|   [Handle概念及相关接口](#libuv中的Handle和Request)   |   uv_fs_*   |
+|   [Request概念及相关接口](#libuv中的Handle和Request)   |  uv_random    |
+|   [Request概念及相关接口](#libuv中的Handle和Request)   |  uv_getaddrinfo    |
+|   [Request概念及相关接口](#libuv中的Handle和Request)   |  uv_getnameinfo    |
+|   [Request概念及相关接口](#libuv中的Handle和Request)   |  uv_queue_work    |
+|   [线程间通信原理及相关接口](#线程间通信)   |  uv_async_init    |
+|   [线程间通信原理及相关接口](#线程间通信)   |  uv_async_send    |
+|   [线程池概念及相关接口](#线程池)   |  uv_queue_work    |
 
 
 ### 线程安全函数
@@ -519,9 +471,7 @@ int stop_loop(uv_loop_t* loop)
 }
 ```
 
-**注：** 该代码是基于所有的handle都按照[下述方式](#electron对handles的封装)封装编写的。
-
-### libuv中的Handle和Request
+### libuv中的Handles和Requests
 
 handle表示一个持久性的对象，通常挂载到loop中对应的handle_queue队列上。如果handle处于活跃状态，每次`uv_run`都会处理handle中的回调函数。
 
@@ -550,9 +500,7 @@ typedef struct uv_fs_s uv_fs_t;
 2. 若由于业务问题，句柄需要在其他工作线程初始化，在使用之前用原子变量判断是否初始化完成。
 3. 句柄在确定后续不再使用后，调用`uv_close`将句柄从loop中摘除。
 
-针对上面第三条，开发者可以参考[electron项目](https://github.com/electron/electron/pull/25332)中的做法对handles进行封装。
-
-#### electron对handles的封装
+针对上面第三条，开发者可以参考[electron项目](https://github.com/electron/electron/pull/25332)中的做法对handles进行封装。代码如下：
 
 ```cpp
 template <typename T,
