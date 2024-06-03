@@ -319,8 +319,8 @@ createKVManager(config: KVManagerConfig): KVManager
 Stage模型下的示例：
 
 ```ts
-import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
-import { BusinessError } from '@ohos.base';
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let kvManager: distributedKVStore.KVManager;
 
@@ -353,7 +353,7 @@ FA模型下的示例：
 <!--code_no_check_fa-->
 ```ts
 import { featureAbility } from '@kit.AbilityKit';
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let kvManager: distributedKVStore.KVManager;
 let context = featureAbility.getContext()
@@ -408,7 +408,7 @@ getKVStore&lt;T&gt;(storeId: string, options: Options, callback: AsyncCallback&l
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let kvStore: distributedKVStore.SingleKVStore | null;
 try {
@@ -473,7 +473,7 @@ getKVStore&lt;T&gt;(storeId: string, options: Options): Promise&lt;T&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let kvStore: distributedKVStore.SingleKVStore | null;
 try {
@@ -524,7 +524,7 @@ closeKVStore(appId: string, storeId: string, callback: AsyncCallback&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let kvStore: distributedKVStore.SingleKVStore | null;
 const options: distributedKVStore.Options = {
@@ -592,7 +592,7 @@ closeKVStore(appId: string, storeId: string): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let kvStore: distributedKVStore.SingleKVStore | null;
 
@@ -653,7 +653,7 @@ deleteKVStore(appId: string, storeId: string, callback: AsyncCallback&lt;void&gt
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let kvStore: distributedKVStore.SingleKVStore | null;
 
@@ -723,7 +723,7 @@ deleteKVStore(appId: string, storeId: string): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let kvStore: distributedKVStore.SingleKVStore | null;
 
@@ -782,7 +782,7 @@ getAllKVStoreId(appId: string, callback: AsyncCallback&lt;string[]&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   kvManager.getAllKVStoreId('appId', (err: BusinessError, data: string[]) => {
@@ -830,7 +830,7 @@ getAllKVStoreId(appId: string): Promise&lt;string[]&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   console.info('GetAllKVStoreId');
@@ -872,7 +872,7 @@ on(event: 'distributedDataServiceDie', deathCallback: Callback&lt;void&gt;): voi
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   console.info('KVManagerOn');
@@ -912,7 +912,7 @@ off(event: 'distributedDataServiceDie', deathCallback?: Callback&lt;void&gt;): v
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   console.info('KVManagerOff');
@@ -949,7 +949,7 @@ getCount(): number
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
@@ -984,7 +984,7 @@ getPosition(): number
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
@@ -1019,7 +1019,7 @@ moveToFirst(): boolean
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
@@ -1054,7 +1054,7 @@ moveToLast(): boolean
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
@@ -1089,7 +1089,7 @@ moveToNext(): boolean
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
@@ -1126,7 +1126,7 @@ moveToPrevious(): boolean
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
@@ -1176,7 +1176,7 @@ move(offset: number): boolean
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
@@ -1226,7 +1226,7 @@ moveToPosition(position: number): boolean
 **示例**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
@@ -1262,7 +1262,7 @@ isFirst(): boolean
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
@@ -1297,7 +1297,7 @@ isLast(): boolean
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
@@ -1332,7 +1332,7 @@ isBeforeFirst(): boolean
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
@@ -1366,7 +1366,7 @@ isAfterLast(): boolean
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
@@ -1400,7 +1400,7 @@ getEntry(): Entry
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
@@ -1448,7 +1448,7 @@ reset(): Query
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let query: distributedKVStore.Query | null = new distributedKVStore.Query();
@@ -1494,7 +1494,7 @@ equalTo(field: string, value: number|string|boolean): Query
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let query: distributedKVStore.Query | null = new distributedKVStore.Query();
@@ -1539,7 +1539,7 @@ notEqualTo(field: string, value: number|string|boolean): Query
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let query: distributedKVStore.Query | null = new distributedKVStore.Query();
@@ -1583,7 +1583,7 @@ greaterThan(field: string, value: number|string|boolean): Query
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     let query: distributedKVStore.Query | null = new distributedKVStore.Query();
@@ -1629,7 +1629,7 @@ lessThan(field: string, value: number|string): Query
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     let query: distributedKVStore.Query | null = new distributedKVStore.Query();
@@ -1675,7 +1675,7 @@ greaterThanOrEqualTo(field: string, value: number|string): Query
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     let query: distributedKVStore.Query | null = new distributedKVStore.Query();
@@ -1721,7 +1721,7 @@ lessThanOrEqualTo(field: string, value: number|string): Query
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     let query: distributedKVStore.Query | null = new distributedKVStore.Query();
@@ -1765,7 +1765,7 @@ isNull(field: string): Query
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     let query: distributedKVStore.Query | null = new distributedKVStore.Query();
@@ -1810,7 +1810,7 @@ inNumber(field: string, valueList: number[]): Query
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     let query: distributedKVStore.Query | null = new distributedKVStore.Query();
@@ -1855,7 +1855,7 @@ inString(field: string, valueList: string[]): Query
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     let query: distributedKVStore.Query | null = new distributedKVStore.Query();
@@ -1900,7 +1900,7 @@ notInNumber(field: string, valueList: number[]): Query
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     let query: distributedKVStore.Query | null = new distributedKVStore.Query();
@@ -1945,7 +1945,7 @@ notInString(field: string, valueList: string[]): Query
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     let query: distributedKVStore.Query | null = new distributedKVStore.Query();
@@ -1990,7 +1990,7 @@ like(field: string, value: string): Query
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     let query: distributedKVStore.Query | null = new distributedKVStore.Query();
@@ -2035,7 +2035,7 @@ unlike(field: string, value: string): Query
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     let query: distributedKVStore.Query | null = new distributedKVStore.Query();
@@ -2065,7 +2065,7 @@ and(): Query
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     let query: distributedKVStore.Query | null = new distributedKVStore.Query();
@@ -2096,7 +2096,7 @@ or(): Query
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     let query: distributedKVStore.Query | null = new distributedKVStore.Query();
@@ -2141,7 +2141,7 @@ orderByAsc(field: string): Query
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     let query: distributedKVStore.Query | null = new distributedKVStore.Query();
@@ -2186,7 +2186,7 @@ orderByDesc(field: string): Query
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     let query: distributedKVStore.Query | null = new distributedKVStore.Query();
@@ -2232,7 +2232,7 @@ limit(total: number, offset: number): Query
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let total = 10;
 let offset = 1;
@@ -2279,7 +2279,7 @@ isNotNull(field: string): Query
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let query: distributedKVStore.Query | null = new distributedKVStore.Query();
@@ -2309,7 +2309,7 @@ beginGroup(): Query
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     let query: distributedKVStore.Query | null = new distributedKVStore.Query();
@@ -2340,7 +2340,7 @@ endGroup(): Query
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     let query: distributedKVStore.Query | null = new distributedKVStore.Query();
@@ -2385,7 +2385,7 @@ prefixKey(prefix: string): Query
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     let query: distributedKVStore.Query | null = new distributedKVStore.Query();
@@ -2430,7 +2430,7 @@ setSuggestIndex(index: string): Query
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     let query: distributedKVStore.Query | null = new distributedKVStore.Query();
@@ -2479,7 +2479,7 @@ deviceId(deviceId:string):Query
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     let query: distributedKVStore.Query | null = new distributedKVStore.Query();
@@ -2508,7 +2508,7 @@ getSqlLike():string
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     let query: distributedKVStore.Query | null = new distributedKVStore.Query();
@@ -2560,7 +2560,7 @@ put(key: string, value: Uint8Array | string | number | boolean, callback: AsyncC
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const KEY_TEST_STRING_ELEMENT = 'key_test_string';
 const VALUE_TEST_STRING_ELEMENT = 'value-test-string';
@@ -2618,7 +2618,7 @@ put(key: string, value: Uint8Array | string | number | boolean): Promise&lt;void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const KEY_TEST_STRING_ELEMENT = 'key_test_string';
 const VALUE_TEST_STRING_ELEMENT = 'value-test-string';
@@ -2668,7 +2668,7 @@ putBatch(entries: Entry[], callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let entries: distributedKVStore.Entry[] = [];
@@ -2748,7 +2748,7 @@ putBatch(entries: Entry[]): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let entries: distributedKVStore.Entry[] = [];
@@ -2817,7 +2817,7 @@ delete(key: string, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const KEY_TEST_STRING_ELEMENT = 'key_test_string';
 const VALUE_TEST_STRING_ELEMENT = 'value-test-string';
@@ -2883,7 +2883,7 @@ delete(key: string): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const KEY_TEST_STRING_ELEMENT = 'key_test_string';
 const VALUE_TEST_STRING_ELEMENT = 'value-test-string';
@@ -2940,7 +2940,7 @@ deleteBatch(keys: string[], callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let entries: distributedKVStore.Entry[] = [];
@@ -3019,7 +3019,7 @@ deleteBatch(keys: string[]): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let entries: distributedKVStore.Entry[] = [];
@@ -3086,7 +3086,7 @@ removeDeviceData(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const KEY_TEST_STRING_ELEMENT = 'key_test_string_2';
 const VALUE_TEST_STRING_ELEMENT = 'value-string-002';
@@ -3151,7 +3151,7 @@ removeDeviceData(deviceId: string): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const KEY_TEST_STRING_ELEMENT = 'key_test_string_2';
 const VALUE_TEST_STRING_ELEMENT = 'value-string-001';
@@ -3207,7 +3207,7 @@ get(key: string, callback: AsyncCallback&lt;boolean | string | number | Uint8Arr
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 
 const KEY_TEST_STRING_ELEMENT = 'key_test_string';
@@ -3269,7 +3269,7 @@ get(key: string): Promise&lt;boolean | string | number | Uint8Array&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 
 const KEY_TEST_STRING_ELEMENT = 'key_test_string';
@@ -3321,7 +3321,7 @@ getEntries(keyPrefix: string, callback: AsyncCallback&lt;Entry[]&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let entries: distributedKVStore.Entry[] = [];
@@ -3394,7 +3394,7 @@ getEntries(keyPrefix: string): Promise&lt;Entry[]&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 
 try {
@@ -3458,7 +3458,7 @@ getEntries(query: Query, callback: AsyncCallback&lt;Entry[]&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let arr = new Uint8Array([21, 31]);
@@ -3530,7 +3530,7 @@ getEntries(query: Query): Promise&lt;Entry[]&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let arr = new Uint8Array([21, 31]);
@@ -3598,7 +3598,7 @@ getResultSet(keyPrefix: string, callback: AsyncCallback&lt;KVStoreResultSet&gt;)
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
@@ -3680,7 +3680,7 @@ getResultSet(keyPrefix: string): Promise&lt;KVStoreResultSet&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
@@ -3749,7 +3749,7 @@ getResultSet(query: Query, callback: AsyncCallback&lt;KVStoreResultSet&gt;): voi
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
@@ -3823,7 +3823,7 @@ getResultSet(query: Query): Promise&lt;KVStoreResultSet&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
@@ -3884,7 +3884,7 @@ closeResultSet(resultSet: KVStoreResultSet, callback: AsyncCallback&lt;void&gt;)
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let resultSet: distributedKVStore.KVStoreResultSet;
 try {
@@ -3943,7 +3943,7 @@ closeResultSet(resultSet: KVStoreResultSet): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let resultSet: distributedKVStore.KVStoreResultSet;
 try {
@@ -3995,7 +3995,7 @@ getResultSize(query: Query, callback: AsyncCallback&lt;number&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let entries: distributedKVStore.Entry[] = [];
@@ -4063,7 +4063,7 @@ getResultSize(query: Query): Promise&lt;number&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let entries: distributedKVStore.Entry[] = [];
@@ -4123,11 +4123,11 @@ backup(file:string, callback: AsyncCallback&lt;void&gt;):void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let files = "BK001";
+let backupFile = "BK001";
 try {
-  kvStore.backup(files, (err: BusinessError) => {
+  kvStore.backup(backupFile, (err: BusinessError) => {
     if (err) {
       console.error(`Failed to backup.code is ${err.code},message is ${err.message} `);
     } else {
@@ -4172,11 +4172,11 @@ backup(file:string): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let files = "BK001";
+let backupFile = "BK001";
 try {
-  kvStore.backup(files).then(() => {
+  kvStore.backup(backupFile).then(() => {
     console.info(`Succeeded in backupping data`);
   }).catch((err: BusinessError) => {
     console.error(`Failed to backup.code is ${err.code},message is ${err.message}`);
@@ -4214,11 +4214,11 @@ restore(file:string, callback: AsyncCallback&lt;void&gt;):void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let files = "BK001";
+let backupFile = "BK001";
 try {
-  kvStore.restore(files, (err: BusinessError) => {
+  kvStore.restore(backupFile, (err: BusinessError) => {
     if (err) {
       console.error(`Failed to restore.code is ${err.code},message is ${err.message}`);
     } else {
@@ -4263,11 +4263,11 @@ restore(file:string): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let files = "BK001";
+let backupFile = "BK001";
 try {
-  kvStore.restore(files).then(() => {
+  kvStore.restore(backupFile).then(() => {
     console.info(`Succeeded in restoring data`);
   }).catch((err: BusinessError) => {
     console.error(`Failed to restore.code is ${err.code},message is ${err.message}`);
@@ -4304,7 +4304,7 @@ deleteBackup(files:Array&lt;string&gt;, callback: AsyncCallback&lt;Array&lt;[str
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let files = ["BK001", "BK002"];
 try {
@@ -4352,7 +4352,7 @@ deleteBackup(files:Array&lt;string&gt;): Promise&lt;Array&lt;[string, number]&gt
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let files = ["BK001", "BK002"];
 try {
@@ -4398,7 +4398,7 @@ startTransaction(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function putBatchString(len: number, prefix: string) {
   let entries: distributedKVStore.Entry[] = [];
@@ -4476,7 +4476,7 @@ startTransaction(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let count = 0;
@@ -4520,7 +4520,7 @@ commit(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   kvStore.commit((err: BusinessError) => {
@@ -4561,7 +4561,7 @@ commit(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   kvStore.commit().then(async () => {
@@ -4600,7 +4600,7 @@ rollback(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   kvStore.rollback((err: BusinessError) => {
@@ -4641,7 +4641,7 @@ rollback(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   kvStore.rollback().then(async () => {
@@ -4681,7 +4681,7 @@ enableSync(enabled: boolean, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   kvStore.enableSync(true, (err: BusinessError) => {
@@ -4728,7 +4728,7 @@ enableSync(enabled: boolean): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   kvStore.enableSync(true).then(() => {
@@ -4769,7 +4769,7 @@ setSyncRange(localLabels: string[], remoteSupportLabels: string[], callback: Asy
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   const localLabels = ['A', 'B'];
@@ -4819,7 +4819,7 @@ setSyncRange(localLabels: string[], remoteSupportLabels: string[]): Promise&lt;v
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   const localLabels = ['A', 'B'];
@@ -4861,7 +4861,7 @@ setSyncParam(defaultAllowedDelayMs: number, callback: AsyncCallback&lt;void&gt;)
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   const defaultAllowedDelayMs = 500;
@@ -4909,7 +4909,7 @@ setSyncParam(defaultAllowedDelayMs: number): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   const defaultAllowedDelayMs = 500;
@@ -4959,8 +4959,8 @@ sync(deviceIds: string[], mode: SyncMode, delayMs?: number): void
 
 ```ts
 import { distributedDeviceManager } from '@kit.DistributedServiceKit';
-import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
-import { BusinessError } from '@ohos.base';
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let devManager: distributedDeviceManager.DeviceManager;
 const KEY_TEST_SYNC_ELEMENT = 'key_test_sync';
@@ -5046,8 +5046,8 @@ sync(deviceIds: string[], query: Query, mode: SyncMode, delayMs?: number): void
 
 ```ts
 import { distributedDeviceManager } from '@kit.DistributedServiceKit';
-import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
-import { BusinessError } from '@ohos.base';
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let devManager: distributedDeviceManager.DeviceManager;
 const KEY_TEST_SYNC_ELEMENT = 'key_test_sync';
@@ -5129,7 +5129,7 @@ on(event: 'dataChange', type: SubscribeType, listener: Callback&lt;ChangeNotific
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   kvStore.on('dataChange', distributedKVStore.SubscribeType.SUBSCRIBE_TYPE_LOCAL, (data: distributedKVStore.ChangeNotification) => {
@@ -5167,7 +5167,7 @@ on(event: 'syncComplete', syncCallback: Callback&lt;Array&lt;[string, number]&gt
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 
 const KEY_TEST_FLOAT_ELEMENT = 'key_test_float';
@@ -5214,7 +5214,7 @@ off(event:'dataChange', listener?: Callback&lt;ChangeNotification&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class KvstoreModel {
   call(data: distributedKVStore.ChangeNotification) {
@@ -5271,7 +5271,7 @@ off(event: 'syncComplete', syncCallback?: Callback&lt;Array&lt;[string, number]&
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class KvstoreModel {
   call(data: [string, number][]) {
@@ -5327,7 +5327,7 @@ getSecurityLevel(callback: AsyncCallback&lt;SecurityLevel&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   kvStore.getSecurityLevel((err: BusinessError, data: distributedKVStore.SecurityLevel) => {
@@ -5368,7 +5368,7 @@ getSecurityLevel(): Promise&lt;SecurityLevel&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   kvStore.getSecurityLevel().then((data: distributedKVStore.SecurityLevel) => {
@@ -5421,7 +5421,7 @@ get(key: string, callback: AsyncCallback&lt;boolean | string | number | Uint8Arr
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const KEY_TEST_STRING_ELEMENT = 'key_test_string';
 const VALUE_TEST_STRING_ELEMENT = 'value-test-string';
@@ -5482,7 +5482,7 @@ get(key: string): Promise&lt;boolean | string | number | Uint8Array&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const KEY_TEST_STRING_ELEMENT = 'key_test_string';
 const VALUE_TEST_STRING_ELEMENT = 'value-test-string';
@@ -5539,7 +5539,7 @@ get(deviceId: string, key: string, callback: AsyncCallback&lt;boolean | string |
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const KEY_TEST_STRING_ELEMENT = 'key_test_string_2';
 const VALUE_TEST_STRING_ELEMENT = 'value-string-002';
@@ -5605,7 +5605,7 @@ get(deviceId: string, key: string): Promise&lt;boolean | string | number | Uint8
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const KEY_TEST_STRING_ELEMENT = 'key_test_string_2';
 const VALUE_TEST_STRING_ELEMENT = 'value-string-002';
@@ -5656,7 +5656,7 @@ getEntries(keyPrefix: string, callback: AsyncCallback&lt;Entry[]&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let entries: distributedKVStore.Entry[] = [];
@@ -5729,7 +5729,7 @@ getEntries(keyPrefix: string): Promise&lt;Entry[]&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let entries: distributedKVStore.Entry[] = [];
@@ -5797,7 +5797,7 @@ getEntries(deviceId: string, keyPrefix: string, callback: AsyncCallback&lt;Entry
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let entries: distributedKVStore.Entry[] = [];
@@ -5875,7 +5875,7 @@ getEntries(deviceId: string, keyPrefix: string): Promise&lt;Entry[]&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let entries: distributedKVStore.Entry[] = [];
@@ -5941,7 +5941,7 @@ getEntries(query: Query, callback: AsyncCallback&lt;Entry[]&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let arr = new Uint8Array([21, 31]);
@@ -6013,7 +6013,7 @@ getEntries(query: Query): Promise&lt;Entry[]&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let arr = new Uint8Array([21, 31]);
@@ -6084,7 +6084,7 @@ getEntries(deviceId: string, query: Query, callback: AsyncCallback&lt;Entry[]&gt
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let arr = new Uint8Array([21, 31]);
@@ -6167,7 +6167,7 @@ getEntries(deviceId: string, query: Query): Promise&lt;Entry[]&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let arr = new Uint8Array([21, 31]);
@@ -6235,7 +6235,7 @@ getResultSet(keyPrefix: string, callback: AsyncCallback&lt;KVStoreResultSet&gt;)
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
@@ -6317,7 +6317,7 @@ getResultSet(keyPrefix: string): Promise&lt;KVStoreResultSet&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
@@ -6391,7 +6391,7 @@ getResultSet(deviceId: string, keyPrefix: string, callback: AsyncCallback&lt;KVS
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
@@ -6457,7 +6457,7 @@ getResultSet(deviceId: string, keyPrefix: string): Promise&lt;KVStoreResultSet&g
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
@@ -6514,7 +6514,7 @@ getResultSet(deviceId: string, query: Query, callback: AsyncCallback&lt;KVStoreR
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
@@ -6603,7 +6603,7 @@ getResultSet(deviceId: string, query: Query): Promise&lt;KVStoreResultSet&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
@@ -6684,7 +6684,7 @@ getResultSet(query: Query): Promise&lt;KVStoreResultSet&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
@@ -6753,7 +6753,7 @@ getResultSet(query: Query, callback:AsyncCallback&lt;KVStoreResultSet&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
@@ -6831,7 +6831,7 @@ getResultSize(query: Query, callback: AsyncCallback&lt;number&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let entries: distributedKVStore.Entry[] = [];
@@ -6899,7 +6899,7 @@ getResultSize(query: Query): Promise&lt;number&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let entries: distributedKVStore.Entry[] = [];
@@ -6965,7 +6965,7 @@ getResultSize(deviceId: string, query: Query, callback: AsyncCallback&lt;number&
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let entries: distributedKVStore.Entry[] = [];
@@ -7042,7 +7042,7 @@ getResultSize(deviceId: string, query: Query): Promise&lt;number&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let entries: distributedKVStore.Entry[] = [];
