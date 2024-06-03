@@ -9,7 +9,7 @@ Want是对象间信息传递的载体，可以用于应用组件间的信息传�
 ## 导入模块
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 ```
 
 ## 属性
@@ -36,9 +36,8 @@ import Want from '@ohos.app.ability.Want';
 - 基础用法：在UIAbility对象中调用，示例中的context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
   ```ts
-  import common from '@ohos.app.ability.common';
-  import Want from '@ohos.app.ability.Want';
-  import { BusinessError } from '@ohos.base';
+  import { common, Want } from '@kit.AbilityKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
   let want: Want = {
@@ -60,9 +59,8 @@ import Want from '@ohos.app.ability.Want';
 
     * 字符串（String）
         ```ts
-        import common from '@ohos.app.ability.common';
-        import Want from '@ohos.app.ability.Want';
-        import { BusinessError } from '@ohos.base';
+        import { common, Want } from '@kit.AbilityKit';
+        import { BusinessError } from '@kit.BasicServicesKit';
 
         let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
         let want: Want = {
@@ -81,9 +79,7 @@ import Want from '@ohos.app.ability.Want';
         ```
     * 数字（Number）
         ```ts
-        import common from '@ohos.app.ability.common';
-        import Want from '@ohos.app.ability.Want';
-        import { BusinessError } from '@ohos.base';
+        import { common, Want } from '@kit.AbilityKit';
 
         let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
         let want: Want = {
@@ -103,9 +99,8 @@ import Want from '@ohos.app.ability.Want';
         ```
     * 布尔（Boolean）
         ```ts
-        import common from '@ohos.app.ability.common';
-        import Want from '@ohos.app.ability.Want';
-        import { BusinessError } from '@ohos.base';
+        import { common, Want } from '@kit.AbilityKit';
+        import { BusinessError } from '@kit.BasicServicesKit';
 
         let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
         let want: Want = {
@@ -124,9 +119,8 @@ import Want from '@ohos.app.ability.Want';
         ```
     * 对象（Object）
         ```ts
-        import common from '@ohos.app.ability.common';
-        import Want from '@ohos.app.ability.Want';
-        import { BusinessError } from '@ohos.base';
+        import { common, Want } from '@kit.AbilityKit';
+        import { BusinessError } from '@kit.BasicServicesKit';
 
         let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
         let want: Want = {
@@ -150,9 +144,8 @@ import Want from '@ohos.app.ability.Want';
         ```
     * 数组（Array）
         ```ts
-        import common from '@ohos.app.ability.common';
-        import Want from '@ohos.app.ability.Want';
-        import { BusinessError } from '@ohos.base';
+        import { common, Want } from '@kit.AbilityKit';
+        import { BusinessError } from '@kit.BasicServicesKit';
 
         let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
         let want: Want = {
@@ -174,16 +167,15 @@ import Want from '@ohos.app.ability.Want';
         ```
     * 文件描述符（FD）
       ```ts
-        import fs from '@ohos.file.fs';
-        import common from '@ohos.app.ability.common';
-        import Want from '@ohos.app.ability.Want';
-        import { BusinessError } from '@ohos.base';
+        import { fileIo } from '@kit.CoreFileKit';
+        import { common, Want } from '@kit.AbilityKit';
+        import { BusinessError } from '@kit.BasicServicesKit';
 
         let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
-
         let fd: number = 0;
+
         try {
-          fd = fs.openSync('/data/storage/el2/base/haps/pic.png').fd;
+          fd = fileIo.openSync('/data/storage/el2/base/haps/pic.png').fd;
         } catch(err) {
           let code = (err as BusinessError).code;
           let message = (err as BusinessError).message;
@@ -210,9 +202,8 @@ import Want from '@ohos.app.ability.Want';
 
     ```ts
       // (1) UIAbilityA通过startability启动UIAbilityB
-      import common from '@ohos.app.ability.common';
-      import Want from '@ohos.app.ability.Want';
-      import { BusinessError } from '@ohos.base';
+      import { common, Want } from '@kit.AbilityKit';
+      import { BusinessError } from '@kit.BasicServicesKit';
 
       let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
       let want: Want = {
@@ -222,6 +213,7 @@ import Want from '@ohos.app.ability.Want';
           developerParameters: 'parameters',
         },
       };
+
       context.startAbility(want, (err: BusinessError) => {
         if (err.code) {
           console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
@@ -231,9 +223,7 @@ import Want from '@ohos.app.ability.Want';
 
     ```ts
       // (2) 以UIAbilityB实例首次启动为例，会进入到UIAbilityB的onCreate生命周期
-      import UIAbility from '@ohos.app.ability.UIAbility';
-      import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-      import Want from '@ohos.app.ability.Want';
+      import { UIAbility, Want, AbilityConstant } from '@kit.AbilityKit';
 
       class UIAbilityB extends UIAbility {
         onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
@@ -243,10 +233,8 @@ import Want from '@ohos.app.ability.Want';
     ```
     * parameter参数中[wantConstant](js-apis-app-ability-wantConstant.md)的Key的使用方法。
     ```ts
-      import common from '@ohos.app.ability.common';
-      import Want from '@ohos.app.ability.Want';
-      import wantConstant from '@ohos.app.ability.wantConstant';
-      import { BusinessError } from '@ohos.base';
+      import { common, Want, wantConstant } from '@kit.AbilityKit';
+      import { BusinessError } from '@kit.BasicServicesKit';
 
       let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
       let want: Want = {
