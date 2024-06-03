@@ -1674,3 +1674,115 @@ try {
   hilog.error(0x0000, 'testTag', `preloadApplication error, code: ${(err as BusinessError).code}, msg:${(err as BusinessError).message}`);
 }
 ```
+
+## appManager.getRunningMultiAppInfo<sup>12+</sup>
+
+getRunningMultiAppInfo(bundleName: string): Promise\<RunningMultiAppInfo>
+
+根据应用包名获取系统中运行态的应用多开（即在一个设备上运行多个相同的应用）的相关信息，使用Promise异步回调。
+
+**需要权限**：ohos.permission.GET_RUNNING_INFO
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**系统API**：此接口为系统接口。
+
+**模型约束**：此接口仅可在Stage模型下使用。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| bundleName | string | 是 | 查询的应用包名。 |
+
+**返回值：**
+
+| 类型           | 说明              |
+| -------------- | ---------------- |
+| Promise\<[RunningMultiAppInfo](js-apis-inner-application-runningMultiAppInfo-sys.md)> | Promise对象。返回特定包名的运行态应用多开信息。 |
+
+**错误码**：
+
+  以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 201 | The application does not have permission to call the interface. |
+| 202 | Not system application. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16000072 | App clone or multi-instance is not supported. |
+
+**示例：**
+
+```ts
+import { appManager } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  let bundleName = "ohos.samples.etsclock";
+  appManager.getRunningMultiAppInfo(bundleName).then((info: appManager.RunningMultiAppInfo) => {
+      hilog.info(0x0000, 'testTag', `getRunningMultiAppInfo success`);
+    }).catch((err: BusinessError) => {
+      hilog.error(0x0000, 'testTag', `getRunningMultiAppInfo error, code: ${err.code}, msg:${err.message}`);
+    })
+} catch (err) {
+  hilog.error(0x0000, 'testTag', `getRunningMultiAppInfo error, code: ${err.code}, msg:${err.message}`);
+}
+```
+
+## appManager.isAppRunning<sup>12+</sup>
+
+isAppRunning(bundleName: string, appCloneIndex?: number): Promise\<boolean>
+
+判断应用是否在运行。使用Promise异步回调。
+
+**需要权限**：ohos.permission.GET_RUNNING_INFO
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**系统API**：此接口为系统接口。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| bundleName | string | 是 | 查询的应用包名。 |
+| appCloneIndex | number | 否 | 分身应用索引。 |
+
+**返回值：**
+
+| 类型           | 说明              |
+| -------------- | ---------------- |
+| Promise\<boolean> | Promise对象。返回true表示应用正在运行，返回false表示应用未运行。 |
+
+**错误码**：
+
+  以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 201 | The application does not have permission to call the interface. |
+| 202 | Not system application. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16000050 | Internal error. |
+| 16000073 | The app clone index does not exist. |
+
+**示例：**
+
+```ts
+import { appManager } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  let bundleName = "ohos.samples.etsclock";
+  appManager.isAppRunning(bundleName).then((data: boolean) => {
+      hilog.info(0x0000, 'testTag', `data: ${JSON.stringify(data)}`);
+    }).catch((err: BusinessError) => {
+      hilog.error(0x0000, 'testTag', `isAppRunning error, code: ${err.code}, msg:${err.message}`);
+    })
+} catch (err) {
+  hilog.error(0x0000, 'testTag', `isAppRunning error, code: ${err.code}, msg:${err.message}`);
+}
+```

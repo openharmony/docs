@@ -70,6 +70,7 @@ startAbilityForResultWithAccount(want: Want, accountId: number, callback: AsyncC
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
+| 16000073 | The target app clone with the specified index does not exist. |
 
 **示例：**
 
@@ -163,6 +164,7 @@ startAbilityForResultWithAccount(want: Want, accountId: number, options: StartOp
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
+| 16000073 | The target app clone with the specified index does not exist. |
 
 **示例：**
 
@@ -264,6 +266,7 @@ startAbilityForResultWithAccount(want: Want, accountId: number, options?: StartO
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
+| 16000073 | The target app clone with the specified index does not exist. |
 
 **示例：**
 
@@ -1046,6 +1049,7 @@ startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
+| 16000073 | The target app clone with the specified index does not exist. |
 
 **示例：**
 
@@ -1137,6 +1141,7 @@ startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, ca
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
+| 16000073 | The target app clone with the specified index does not exist. |
 
 **示例：**
 
@@ -1231,6 +1236,7 @@ startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): 
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
+| 16000073 | The target app clone with the specified index does not exist. |
 
 **示例：**
 
@@ -1438,6 +1444,7 @@ startRecentAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
+| 16000073 | The target app clone with the specified index does not exist. |
 
 **示例：**
 
@@ -1518,6 +1525,7 @@ startRecentAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
+| 16000073 | The target app clone with the specified index does not exist. |
 
 **示例：**
 
@@ -1602,6 +1610,7 @@ startRecentAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
+| 16000073 | The target app clone with the specified index does not exist. |
 
 **示例：**
 
@@ -1691,6 +1700,7 @@ startAbilityByCallWithAccount(want: Want, accountId: number): Promise&lt;Caller&
 | 16000013 | The application is controlled by EDM.       |
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released.        |
+| 16000073 | The target app clone with the specified index does not exist. |
 
 **示例：**
 
@@ -1781,6 +1791,7 @@ startAbilityAsCaller(want: Want, callback: AsyncCallback\<void>): void
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
+| 16000073 | The target app clone with the specified index does not exist. |
 
 **示例：**
 
@@ -1852,6 +1863,7 @@ startAbilityAsCaller(want: Want, options: StartOptions, callback: AsyncCallback\
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
+| 16000073 | The target app clone with the specified index does not exist. |
 
 **示例：**
 
@@ -1935,6 +1947,7 @@ startAbilityAsCaller(want: Want, options?: StartOptions): Promise\<void>
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
+| 16000073 | The target app clone with the specified index does not exist. |
 
 **示例：**
 
