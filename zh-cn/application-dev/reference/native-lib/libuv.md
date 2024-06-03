@@ -521,11 +521,11 @@ int stop_loop(uv_loop_t* loop)
 
 ### libuv中的Handles和Requests
 
-#### Handle
+### libuv中的Handle
 
 handle表示一个持久性的对象，通常挂载到loop中对应的handle_queue队列上。如果handle处于活跃状态，每次`uv_run`都会处理handle中的回调函数。
 
-#### Request
+### libuv中的Request
 
 retuest表示一个短暂性的请求，一个request只触发一次回调操作。
 
