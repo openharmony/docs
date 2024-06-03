@@ -12,7 +12,6 @@
    
    ```ts
    import { huks } from "@kit.UniversalKeystoreKit";
-   import { BusinessError} from "@kit.BasicServicesKit"
    /*
     * 确定密钥别名和封装密钥属性参数集
     */
@@ -94,7 +93,7 @@
            .then((data) => {
                console.info(`promise: generateKeyItem success, data = ${JSON.stringify(data)}`);
            })
-           .catch((error: BusinessError) => {
+           .catch((error) => {
                if (throwObject.isThrow) {
                    throw(error as Error);
                } else {
@@ -114,7 +113,6 @@
    
    ```ts
    import { huks } from "@kit.UniversalKeystoreKit";
-   import { BusinessError} from "@kit.BasicServicesKit"
    class HuksProperties {
        tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM;
        value: huks.HuksKeyAlg | huks.HuksKeySize | huks.HuksKeyPurpose | huks.HuksKeyPadding | huks.HuksCipherMode 
@@ -193,7 +191,7 @@
                console.info(`promise: doInit success, data = ${JSON.stringify(data)}`);
                handle = data.handle as number;
            })
-           .catch((error: BusinessError) => {
+           .catch((error) => {
                if (throwObject.isThrow) {
                    throw (error as Error);
                } else {
@@ -229,7 +227,7 @@
                cipherText = data.outData as Uint8Array;
                console.info(`promise: doFinish success, data = ${JSON.stringify(data)}`);
            })
-           .catch((error: BusinessError) => {
+           .catch((error) => {
                if (throwObject.isThrow) {
                    throw (error as Error);
                } else {
@@ -254,7 +252,6 @@
    ```ts
    import { huks } from "@kit.UniversalKeystoreKit";
    import userIAM_userAuth from '@ohos.userIAM.userAuth';
-   import { BusinessError} from "@kit.BasicServicesKit"
    /*
     * 确定封装密钥属性参数集
     */
@@ -335,7 +332,7 @@
                handle = data.handle;
                challenge = data.challenge as Uint8Array;
            })
-           .catch((error: BusinessError) => {
+           .catch((error) => {
                if (throwObject.isThrow) {
                    throw(error as Error);
                } else {
@@ -411,7 +408,7 @@
                finishOutData = data.outData as Uint8Array;
                console.info(`promise: doFinish success, data = ${JSON.stringify(data)}`);
            })
-           .catch((error: BusinessError) => {
+           .catch((error) => {
                if (throwObject.isThrow) {
                    throw(error as Error);
                } else {

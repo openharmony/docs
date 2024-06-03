@@ -49,7 +49,6 @@
  *以下以X25519 256密钥的Promise操作使用为例
  */
  import { huks } from "@kit.UniversalKeystoreKit";
- import { BusinessError} from "@kit.BasicServicesKit"
  /*
   * 确定密钥别名和封装密钥属性参数集
   */
@@ -185,7 +184,7 @@
          .then((data) => {
              console.info(`promise: generateKeyItem success, data = ${JSON.stringify(data)}`);
          })
-         .catch((error: BusinessError) => {
+         .catch((error) => {
              if (throwObject.isThrow) {
                  throw(error as Error);
              } else {
@@ -223,7 +222,7 @@
              console.info(`promise: doInit success, data = ${JSON.stringify(data)}`);
              handle = data.handle;
          })
-         .catch((error: BusinessError) => {
+         .catch((error) => {
              if (throwObject.isThrow) {
                  throw(error as Error);
              } else {
@@ -260,7 +259,7 @@
          .then ((data) => {
              console.info(`promise: doUpdate success, data = ${JSON.stringify(data)}`);
          })
-         .catch((error: BusinessError) => {
+         .catch((error) => {
              if (throwObject.isThrow) {
                  throw(error as Error);
              } else {
@@ -298,7 +297,7 @@
              finishOutData = data.outData as Uint8Array;
              console.info(`promise: doFinish success, data = ${JSON.stringify(data)}`);
          })
-         .catch((error: BusinessError) => {
+         .catch((error) => {
              if (throwObject.isThrow) {
                  throw(error as Error);
              } else {
@@ -336,7 +335,7 @@
              console.info(`promise: exportKeyItem success, data = ${JSON.stringify(data)}`);
              exportKey = data.outData as Uint8Array;
          })
-         .catch((error: BusinessError) => {
+         .catch((error) => {
              if (throwObject.isThrow) {
                  throw(error as Error);
              } else {
@@ -373,7 +372,7 @@
          .then ((data) => {
             console.info(`promise: deleteKeyItem key success, data = ${JSON.stringify(data)}`);
          })
-         .catch((error :BusinessError) => {
+         .catch((error) => {
              if (throwObject.isThrow) {
                  throw(error as Error);
              } else {

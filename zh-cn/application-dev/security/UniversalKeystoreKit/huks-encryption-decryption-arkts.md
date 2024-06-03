@@ -51,7 +51,6 @@
  * 以下以AES 128密钥的Promise操作使用为例
  */
 import { huks } from "@kit.UniversalKeystoreKit";
-import { BusinessError} from "@kit.BasicServicesKit"
 let aesKeyAlias = 'test_aesKeyAlias';
 let handle:number;
 let plainText = '123456';
@@ -165,7 +164,7 @@ async function GenerateAesKey() {
     await huks.generateKeyItem(aesKeyAlias, options)
     .then((data) => {
         console.info(`promise: generate AES Key success, data = ${JSON.stringify(data)}`);
-    }).catch((error: BusinessError)=>{
+    }).catch((error)=>{
         console.error(`promise: generate AES Key failed` + error);
     })
 }
@@ -191,7 +190,7 @@ async function EncryptData() {
     await huks.initSession(aesKeyAlias, options)
     .then((data) => {
         handle = data.handle;
-    }).catch((error: BusinessError)=>{
+    }).catch((error)=>{
         console.error(`promise: init EncryptData failed` + error);
     })
     /*
@@ -201,7 +200,7 @@ async function EncryptData() {
     .then((data) => {
         console.info(`promise: encrypt data success, data is `+ Uint8ArrayToString(data.outData as Uint8Array));
         cipherData = data.outData as Uint8Array;
-    }).catch((error: BusinessError)=>{
+    }).catch((error)=>{
         console.error(`promise: encrypt data failed` + error);
     })
 }
@@ -227,7 +226,7 @@ async function DecryptData() {
     await huks.initSession(aesKeyAlias, options)
     .then((data) => {
         handle = data.handle;
-    }).catch((error: BusinessError)=>{
+    }).catch((error)=>{
         console.error(`promise: init DecryptData failed` + error);
     })
     /*
@@ -236,7 +235,7 @@ async function DecryptData() {
     await huks.finishSession(handle, options)
     .then((data) => {
         console.info(`promise: decrypt data success, data is ` + Uint8ArrayToString(data.outData as Uint8Array));
-    }).catch((error: BusinessError)=>{
+    }).catch((error)=>{
         console.error(`promise: decrypt data failed` + error);
     })
 }
@@ -254,7 +253,7 @@ async function DeleteKey() {
     await huks.deleteKeyItem(aesKeyAlias, emptyOptions)
     .then((data) => {
         console.info(`promise: delete data success`);
-    }).catch((error: BusinessError)=>{
+    }).catch((error)=>{
         console.error(`promise: delete data failed` + error);
     })
 }

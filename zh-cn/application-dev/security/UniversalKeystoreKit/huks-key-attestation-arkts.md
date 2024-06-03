@@ -19,7 +19,6 @@
  * 以下以attestKey的Promise接口操作验证为例
  */
 import { huks } from "@kit.UniversalKeystoreKit";
-import { BusinessError} from "@kit.BasicServicesKit"
 /* 1.确定密钥别名 */
 let keyAliasString = "key attest";
 let aliasString = keyAliasString;
@@ -128,7 +127,7 @@ async function publicGenKeyFunc(keyAlias: string, huksOptions: huks.HuksOptions)
       .then((data) => {
         console.info(`promise: generateKeyItem success, data = ${JSON.stringify(data)}`);
       })
-      .catch((error: BusinessError) => {
+      .catch((error) => {
         if (throwObject.isThrow) {
           throw(error as Error);
         } else {
@@ -167,7 +166,7 @@ async function publicAttestKey(keyAlias: string, huksOptions: huks.HuksOptions) 
           attestCertChain = data.certChains as string[];
         }
       })
-      .catch((error: BusinessError) => {
+      .catch((error) => {
         if (throwObject.isThrow) {
           throw(error as Error);
         } else {

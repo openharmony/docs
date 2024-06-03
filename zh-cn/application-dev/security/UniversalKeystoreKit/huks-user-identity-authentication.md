@@ -11,7 +11,6 @@
 
    ```ts
    import { huks } from "@kit.UniversalKeystoreKit";
-   import { BusinessError} from "@kit.BasicServicesKit"
    /*
     * 确定密钥别名和封装密钥属性参数集
     */
@@ -86,7 +85,7 @@
            .then((data) => {
                console.info(`promise: generateKeyItem success, data = ${JSON.stringify(data)}`);
            })
-           .catch((error : BusinessError) => {
+           .catch((error) => {
                if (throwObject.isThrow) {
                    throw(error as Error);
                } else {
@@ -107,7 +106,6 @@
    ```ts
    import { huks } from "@kit.UniversalKeystoreKit";
    import userIAM_userAuth from '@ohos.userIAM.userAuth';
-   import { BusinessError} from "@kit.BasicServicesKit"
    /*
     * 确定密钥别名和封装密钥属性参数集
     */
@@ -176,7 +174,7 @@
                handle = data.handle;
                challenge = data.challenge as Uint8Array;
            })
-           .catch((error : BusinessError) => {
+           .catch((error) => {
                if (throwObject.isThrow) {
                    throw(error as Error);
                } else {
@@ -242,7 +240,6 @@
    * 以下以SM4 128密钥为例
    */
    import { huks } from "@kit.UniversalKeystoreKit";
-   import { BusinessError} from "@kit.BasicServicesKit"
    /*
    * 确定封装密钥属性参数集
    */
@@ -321,7 +318,7 @@
            .then ((data) => {
                console.info(`promise: doUpdate success, data = ${JSON.stringify(data)}`);
            })
-           .catch((error: BusinessError) => {
+           .catch((error) => {
                if (throwObject.isThrow) {
                    throw(error as Error);
                } else {
@@ -357,7 +354,7 @@
                finishOutData = data.outData as Uint8Array;
                console.info(`promise: doFinish success, data = ${JSON.stringify(data)}`);
            })
-           .catch((error: BusinessError) => {
+           .catch((error) => {
                if (throwObject.isThrow) {
                    throw(error as Error);
                } else {

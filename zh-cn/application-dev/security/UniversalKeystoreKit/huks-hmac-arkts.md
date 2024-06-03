@@ -33,7 +33,6 @@ HMAC是密钥相关的哈希运算消息认证码（Hash-based Message Authentic
  * 以下以HMAC密钥的Promise操作使用为例
  */
 import { huks } from "@kit.UniversalKeystoreKit";
-import { BusinessError} from "@kit.BasicServicesKit"
 let HmackeyAlias = 'test_HMAC';
 let handle:number;
 let plainText = '123456';
@@ -93,7 +92,7 @@ async function GenerateHMACKey() {
     await huks.generateKeyItem(HmackeyAlias, options)
     .then((data) => {
         console.info(`promise: generate HMAC Key success`);
-    }).catch((error: BusinessError)=>{
+    }).catch((error)=>{
         console.error(`promise: generate HMAC Key failed` + error);
     })
 }
@@ -119,7 +118,7 @@ async function HMACData() {
     await huks.initSession(HmackeyAlias, options)
     .then((data) => {
         handle = data.handle;
-    }).catch((error: BusinessError)=>{
+    }).catch((error)=>{
         console.error(`promise: init EncryptData failed` + error);
     })
     /*
@@ -129,7 +128,7 @@ async function HMACData() {
     .then((data) => {
         console.info(`promise: HMAC data success, data is `+ Uint8ArrayToString(data.outData as Uint8Array));
         hashData = data.outData as Uint8Array;
-    }).catch((error: BusinessError)=>{
+    }).catch((error)=>{
         console.error(`promise: HMAC data failed` + error);
     })
 }
