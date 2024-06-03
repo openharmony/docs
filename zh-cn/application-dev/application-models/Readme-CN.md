@@ -16,6 +16,7 @@
     - [ExtensionAbility组件](extensionability-overview.md)
       <!--Del-->
       - [ServiceExtensionAbility（仅对系统应用开放）](serviceextensionability.md)
+      - [UIExtensionAbility（仅对系统应用开放）](uiextensionability.md)
       <!--DelEnd-->
       - [EmbeddedUIExtensionAbility](embeddeduiextensionability.md)
     - [AbilityStage组件容器](abilitystage.md)
