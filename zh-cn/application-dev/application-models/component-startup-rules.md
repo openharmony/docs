@@ -62,7 +62,3 @@
 - 通过startAbilityByCall接口启动UIAbility。
 
 ![component-startup-rules](figures/component-startup-inter-stage.png)
-
-## API12版本跨应用组件启动规则
-
-  自API 12版本后，三方应用间的跨应用启动组件显式启动被限制，统一修改为uri匹配的方式匹配到对应的组件。

@@ -26,13 +26,13 @@ HarmonyOS NEXT Developer Preview0及以上版本的设备
 
 1. 导入ohos.app.ability.common模块。 
     ```
-    import common from '@ohos.app.ability.common';
+    import { common } from '@kit.AbilityKit';
     ```
 2. 构造接口参数并调用startAbilityByType接口。
 
 **示例**
   ~~~typescript
-  import common from '@ohos.app.ability.common';
+  import { common } from '@kit.AbilityKit';
   let context = getContext(this) as common.UIAbilityContext;
   let wantParam: Record<string, Object> = {
       'sceneType':1,
@@ -66,7 +66,7 @@ HarmonyOS NEXT Developer Preview0及以上版本的设备
 
 1. 导入ohos.app.ability.UIAbility模块。
     ~~~typescript
-    import UIAbility from '@ohos.app.ability.UIAbility';
+    import { UIAbility } from '@kit.AbilityKit';
     ~~~
 2. 在module.json5中新增[linkFeature](../quick-start/module-configuration-file.md#skills标签)属性并设置声明当前应用支持的特性功能，从而系统可以从设备已安装应用中找到当前支持该特性的应用。
 
@@ -128,11 +128,9 @@ HarmonyOS NEXT Developer Preview0及以上版本的设备
 **示例：**
 
 ```
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import hilog from '@ohos.hilog';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import window from '@ohos.window';
+import { AbilityConstant, UIAbility, want } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
 
 let destinationLatitude:number;
 let destinationLongitude:number;

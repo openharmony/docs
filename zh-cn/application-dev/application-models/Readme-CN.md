@@ -38,8 +38,6 @@
   - 应用间跳转
     - [指向性跳转](indeed-target-startup.md)
       - [使用Deep Linking实现应用间跳转](deep-linking-startup.md)
-      - [使用Web Linking实现浏览器跳转](web-linking-startup.md)
-      - [App Linking开发指南](app-linking.md)
       - [使用App Linking实现应用间跳转](app-linking-startup.md)
       - [应用间显式跳转切换link跳转适配](uiability-startup-adjust.md)
     - 通用意图跳转
