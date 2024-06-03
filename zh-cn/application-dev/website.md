@@ -495,7 +495,7 @@
       - [管理系统窗口（仅Stage模型支持）](windowmanager/system-window-stage.md)
       - [WindowExtensionAbility（仅对系统应用开放）](windowmanager/windowextensionability.md)
       <!--DelEnd-->
-      - [使用NaitveWindowEventFilter过滤多模输入事件（C/C++）](windowmanager/native-window-event-filter.md)
+      - [使用NativeWindowEventFilter过滤多模输入事件（C/C++）](windowmanager/native-window-event-filter.md)
   - ArkWeb（方舟Web）
     - [ArkWeb简介](web/web-component-overview.md)
     - [Web组件的生命周期](web/web-event-sequence.md)
