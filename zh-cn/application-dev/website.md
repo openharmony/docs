@@ -1046,8 +1046,6 @@
         - [Node-API常见问题](napi/use-napi-faqs.md)
       - 资源管理
         - [Rawfile开发指导](napi/rawfile-guidelines.md)
-      - 资源调度
-        - [FFRT开发指导](napi/ffrt-guidelines.md)
       - 内存管理
         - [Purgeable memory开发指导](napi/purgeable-memory-guidelines.md)
       - 设备管理
