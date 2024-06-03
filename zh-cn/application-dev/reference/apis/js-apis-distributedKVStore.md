@@ -4205,9 +4205,9 @@ backup(file:string, callback: AsyncCallback&lt;void&gt;):void
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let file = "BK001";
+let backupFile = "BK001";
 try {
-  kvStore.backup(file, (err: BusinessError) => {
+  kvStore.backup(backupFile, (err: BusinessError) => {
     if (err) {
       console.error(`Failed to backup.code is ${err.code},message is ${err.message} `);
     } else {
@@ -4253,9 +4253,9 @@ backup(file:string): Promise&lt;void&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let file = "BK001";
+let backupFile = "BK001";
 try {
-  kvStore.backup(file).then(() => {
+  kvStore.backup(backupFile).then(() => {
     console.info(`Succeeded in backupping data`);
   }).catch((err: BusinessError) => {
     console.error(`Failed to backup.code is ${err.code},message is ${err.message}`);
@@ -4294,9 +4294,9 @@ restore(file:string, callback: AsyncCallback&lt;void&gt;):void
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let file = "BK001";
+let backupFile = "BK001";
 try {
-  kvStore.restore(file, (err: BusinessError) => {
+  kvStore.restore(backupFile, (err: BusinessError) => {
     if (err) {
       console.error(`Failed to restore.code is ${err.code},message is ${err.message}`);
     } else {
@@ -4342,9 +4342,9 @@ restore(file:string): Promise&lt;void&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let file = "BK001";
+let backupFile = "BK001";
 try {
-  kvStore.restore(file).then(() => {
+  kvStore.restore(backupFile).then(() => {
     console.info(`Succeeded in restoring data`);
   }).catch((err: BusinessError) => {
     console.error(`Failed to restore.code is ${err.code},message is ${err.message}`);
