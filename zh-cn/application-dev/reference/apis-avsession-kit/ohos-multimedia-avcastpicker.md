@@ -30,14 +30,15 @@ AVCastPicker()
 
 除支持[通用属性](../apis-arkui/arkui-ts/ts-universal-attributes-size.md)外，还支持以下属性：
 
-| 名称 | 参数类型 | 描述 |
-| -------- | -------- | -------- |
-| normalColor | Color &#124; number &#124; string | 指正常状态下投播组件的颜色 |
-| activeColor | Color &#124; number &#124; string | 指设备切换成功状态下投播组件的颜色 |
-| pickerStyle | [AVCastPickerStyle](js-apis-avCastPickerParam.md#avcastpickerstyle12) | 投播样式 |
-| colorMode | [AVCastPickerColorMode](js-apis-avCastPickerParam.md#avcastpickercolormode12) | 显示模式 |
-| sessionType | string | 会话类型 |
-| onStateChange | (state: [AVCastPickerState](js-apis-avCastPickerParam.md)) => void | 投播状态更改回调 |
+| 名称 | 参数类型 | 必填 | 装饰器修饰类型 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| normalColor | Color &#124; number &#124; string | 否 | @Prop | 指正常状态下投播组件的颜色 |
+| activeColor | Color &#124; number &#124; string | 否 | @Prop | 指设备切换成功状态下投播组件的颜色 |
+| pickerStyle | [AVCastPickerStyle](js-apis-avCastPickerParam.md#avcastpickerstyle12) | 否 | @Prop | 投播样式 |
+| colorMode | [AVCastPickerColorMode](js-apis-avCastPickerParam.md#avcastpickercolormode12) | 否 |  @Prop |显示模式 |
+| sessionType | string | 否| @Prop | 会话类型 |
+| customPicker | [CustomBuilder](../apis-arkui/arkui-ts/ts-types.md#custombuilder8) | 否 | @Prop | 自定义样式 |
+| onStateChange | (state: [AVCastPickerState](js-apis-avCastPickerParam.md)) => void | 否 | @Prop | 投播状态更改回调 |
 
 ## 事件
 
