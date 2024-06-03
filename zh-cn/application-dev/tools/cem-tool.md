@@ -4,7 +4,10 @@ Common Event Manager（公共事件管理工具， 简称cem）是实现公共�
 
 > **说明：**
 >
-> 在使用本工具前，开发者需要先获取<!--RP1-->[hdc工具](../../device-dev/subsystems/subsys-toolchain-hdc-guide.md)<!--RP1End-->，执行hdc shell。
+> 在使用本工具前，开发者需要先获取<!--Del-->[<!--DelEnd-->hdc工具<!--Del-->](../../device-dev/subsystems/subsys-toolchain-hdc-guide.md)<!--DelEnd-->，执行hdc shell。
+> 
+> 当前工具仅支持在eng版本中使用，在user版本中使用会出现报错error: user version cannot publish common events。
+
 
 ## cem调试助手
 
@@ -21,10 +24,6 @@ Common Event Manager（公共事件管理工具， 简称cem）是实现公共�
   ```
 
 ### publish
-
-> **说明：**
-> 
-> 当前工具区分eng与user版本。publish命令仅支持在eng版本中使用，在user版本中使用会出现报错error: user version cannot publish common events。
 
 * 介绍
 

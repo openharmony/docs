@@ -182,10 +182,10 @@ import Base from '@ohos.base';
 
 CommonEventManager.removeStickyCommonEvent("sticky_event", (err:Base.BusinessError) => {
     if (err) {
-        console.info(`Remove sticky event AsyncCallback failed, errCode: ${err.code}, errMes: ${err.message}`);
+        console.info(`removeStickyCommonEvent failed, errCode: ${err.code}, errMes: ${err.message}`);
         return;
     }
-    console.info(`Remove sticky event AsyncCallback success`);
+    console.info(`removeStickyCommonEvent success`);
 });
 ```
 
@@ -233,9 +233,9 @@ removeStickyCommonEvent(event: string): Promise\<void>
 import Base from '@ohos.base';
 
 CommonEventManager.removeStickyCommonEvent("sticky_event").then(() => {
-    console.info(`Remove sticky event AsyncCallback success`);
+    console.info(`removeStickyCommonEvent success`);
 }).catch ((err:Base.BusinessError) => {
-    console.info(`Remove sticky event AsyncCallback failed, errCode: ${err.code}, errMes: ${err.message}`);
+    console.info(`removeStickyCommonEvent failed, errCode: ${err.code}, errMes: ${err.message}`);
 });
 ```
 
@@ -277,14 +277,14 @@ import Base from '@ohos.base';
 
 CommonEventManager.setStaticSubscriberState(true, (err:Base.BusinessError) => {
     if (!err) {
-        console.info(`Set static subscriber state callback failed, err is null.`);
+        console.info(`setStaticSubscriberState failed, err is null.`);
         return;
     }
     if (err.code !== undefined && err.code != null) {
-        console.info(`Set static subscriber state callback failed, errCode: ${err.code}, errMes: ${err.message}`);
+        console.info(`setStaticSubscriberState failed, errCode: ${err.code}, errMes: ${err.message}`);
         return;
     }
-    console.info(`Set static subscriber state callback success`);
+    console.info(`setStaticSubscriberState success`);
 });
 ```
 
@@ -330,9 +330,9 @@ setStaticSubscriberState(enable: boolean): Promise\<void>;
 import Base from '@ohos.base';
 
 CommonEventManager.setStaticSubscriberState(false).then(() => {
-    console.info(`Set static subscriber state promise success`);
+    console.info(`setStaticSubscriberState success`);
 }).catch ((err:Base.BusinessError) => {
-    console.info(`Set static subscriber state promise failed, errCode: ${err.code}, errMes: ${err.message}`);
+    console.info(`setStaticSubscriberState failed, errCode: ${err.code}, errMes: ${err.message}`);
 });
 ```
 
@@ -388,10 +388,10 @@ CommonEventManager.setStaticSubscriberState(true, evenName).then(() => {
       duration: 2000,
     });
   } catch (error) {
-    console.error(`showToast args error code is ${error.code}, message is ${error.message}`);
+    console.error(`showToast error code is ${error.code}, message is ${error.message}`);
   }
-  console.info(`Set static subscriber state success, state is ${true}`);
+  console.info(`setStaticSubscriberState success, state is ${true}`);
 }).catch((err: Base.BusinessError) => {
-  console.info(`Set static subscriber state failed, errCode: ${err.code}, errMes: ${err.message}`);
+  console.info(`setStaticSubscriberState failed, errCode: ${err.code}, errMes: ${err.message}`);
 });
 ```
