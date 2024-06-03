@@ -360,19 +360,18 @@ napi_status napi_release_threadsafe_function(napi_threadsafe_function function);
 |   [loop概念及相关接口](#libuv中的事件循环)   |   uv_run   |
 |   [loop概念及相关接口](#libuv中的事件循环)   |    uv_loop_alive  |
 |   [loop概念及相关接口](#libuv中的事件循环)   |  uv_stop    |
-|   [Handle概念及相关接口](#libuv中的Handles和Requests)   |   uv_pool_x |
-|   [Handle概念及相关接口](#libuv中的Handles和Requests)   |  uv_timer_x |
-|   [Handle概念及相关接口](#libuv中的Handles和Requests)   |  uv_async_x  |
-|   [Handle概念及相关接口](#libuv中的Handles和Requests)   |   uv_signal_x   |
-|   [Handle概念及相关接口](#libuv中的Handles和Requests)   |   uv_fs_x  |
-|   [Request概念及相关接口](#libuv中的Handles和Requests)   |  uv_random    |
-|   [Request概念及相关接口](#libuv中的Handles和Requests)   |  uv_getaddrinfo    |
-|   [Request概念及相关接口](#libuv中的Handles和Requests)   |  uv_getnameinfo    |
-|   [Request概念及相关接口](#libuv中的Handles和Requests)   |  uv_queue_work    |
+|   [Handle概念及相关接口](#libuv中的handles和requests)   |  uv_poll_\* |
+|   [Handle概念及相关接口](#libuv中的handles和requests)   |  uv_timer_\* |
+|   [Handle概念及相关接口](#libuv中的handles和requests)   |  uv_async_\* |
+|   [Handle概念及相关接口](#libuv中的handles和requests)   |   uv_signal_\*   |
+|   [Handle概念及相关接口](#libuv中的handles和requests)   |   uv_fs_\*  |
+|   [Request概念及相关接口](#libuv中的handles和requests)   |  uv_random    |
+|   [Request概念及相关接口](#libuv中的handles和requests)   |  uv_getaddrinfo    |
+|   [Request概念及相关接口](#libuv中的handles和requests)   |  uv_getnameinfo    |
+|   [Request概念及相关接口](#libuv中的handles和requests)   |  uv_queue_work    |
 |   [线程间通信原理及相关接口](#线程间通信)   |  uv_async_init    |
 |   [线程间通信原理及相关接口](#线程间通信)   |  uv_async_send    |
 |   [线程池概念及相关接口](#线程池)   |  uv_queue_work    |
-
 
 ### 线程安全函数
 
@@ -380,11 +379,11 @@ napi_status napi_release_threadsafe_function(napi_threadsafe_function function);
 
 线程安全函数：
 
-- uv\_async\_init()：初始化异步句柄。
-- uv\_async\_send()：向异步句柄发送信号，可以在任何线程中调用。
-- uv\_thread\_create()：创建一个新线程并执行指定的函数，可以在任何线程中调用。
-- uv\_fs\_\*()：文件相关操作（uv\_fs\_\* 表示以uv\_fs\_开头的支持文件IO的系列函数）。
-- uv_poll_\*()：poll事件相关函数（uv\_poll\_\* 表示以uv\_poll\_开头的支持poll IO的系列函数）。
+- uv_async_init()：初始化异步句柄。
+- uv_async_send()：向异步句柄发送信号，可以在任何线程中调用。
+- uv_thread_create()：创建一个新线程并执行指定的函数，可以在任何线程中调用。
+- uv_fs\_\*()：文件相关操作（uv\_fs\_\\* 表示以uv\_fs\_开头的支持文件IO的系列函数）。
+- uv_poll\_\*()：poll事件相关函数（uv\_poll\_\* 表示以uv\_poll\_开头的支持poll IO的系列函数）。
 - 锁相关的操作，如uv\_mutex\_lock()、uv\_mutex\_unlock()等等。
 
 **提示：所有形如uv_xxx_init的函数，即使它是以线程安全的方式实现的，但使用时要注意，避免多个线程同时调用uv_xxx_init，否则它依旧会引起多线程资源竞争的问题。最好的方式是在事件循环函数中调用该函数。**
@@ -483,9 +482,7 @@ int stop_loop(uv_loop_t* loop)
 }
 ```
 
-
-
-### libuv中的Handles和Requests
+### libuv中的handles和requests
 
 handle表示一个持久性的对象，通常挂载到loop中对应的handle_queue队列上。如果handle处于活跃状态，每次`uv_run`都会处理handle中的回调函数。
 
@@ -566,7 +563,7 @@ class UvHandle {
 void uv_close(uv_handle_t* handle, uv_close_cb close_cb)
 ```
 
-  handle：要关闭的句柄。 
+  handle：要关闭的句柄。
   close_cb：处理该句柄的函数，用来进行内存管理等操作。
 
 `uv_close`调用后，它首先将要关闭的handle挂载到loop中的closing_handles队列上，然后等待loop所在线程运行`uv__run_closing_handles`函数。最后回调函数close_cb将会在loop的下一次迭代中执行。因此，释放内存等操作应该在close_cb中进行。并且这种异步的关闭操作会带来多线程上的问题，开发者需要谨慎处理`uv_close`的时序问题，并且保证在close_cb执行之前Handles的生命周期。这是一篇在系统中存在的一些典型代码示例，可供开发者参考。
@@ -657,7 +654,6 @@ int main()
 3. 在主线程运行事件循环。
 
 每触发一次，主线程都会执行一次回调函数。
-
 
 ### 线程池
 
