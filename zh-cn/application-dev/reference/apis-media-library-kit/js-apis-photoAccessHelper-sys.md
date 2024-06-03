@@ -3794,7 +3794,7 @@ setEffectMode(mode: MovingPhotoEffectMode): void
 
 | 参数名        | 类型      | 必填   | 说明                                 |
 | ---------- | ------- | ---- | ---------------------------------- |
-| mode | MovingPhotoEffectMode | 是   | 动态照片效果模式。 |
+| mode | [MovingPhotoEffectMode](#movingphotoeffectmode12) | 是   | 动态照片效果模式。 |
 
 **错误码：**
 
