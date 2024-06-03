@@ -640,7 +640,7 @@ on(type: 'serviceFound', callback: Callback\<LocalServiceInfo>): void
 | 参数名        | 类型                             | 必填 | 说明                                     |
 |-------------|--------------|-----------|-----------------------------------------------------|
 | type     | string                          | 是       |订阅事件，固定为'serviceFound'。<br>serviceFound：发现mDNS服务事件。 |
-| callback | Callback<[LocalServiceInfo](#localserviceinfo)>                 | 是        |   mDNS服务的信息，需调用resolveLocalService解析这个mDNS服务。      |
+| callback | Callback<[LocalServiceInfo](#localserviceinfo)>                 | 是        |   mDNS服务的信息，需调用resolveLocalService解析这个mDNS服务信息。      |
 
 **示例：**
 
