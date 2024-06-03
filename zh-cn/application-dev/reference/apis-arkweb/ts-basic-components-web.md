@@ -2900,7 +2900,7 @@ onShowFileSelector(callback: Callback\<OnShowFileSelectorEvent, boolean\>)
    @Component
    struct WebComponent {
      controller: webview.WebviewController = new webview.WebviewController()
- 
+
      build() {
        Column() {
          Web({ src: $rawfile('index.html'), controller: this.controller })
@@ -5354,7 +5354,7 @@ type WebKeyboardCallback = (keyboardCallbackInfo: WebKeyboardCallbackInfo) => We
 | 名称             | 类型      | 可读   | 可写   | 必填   | 说明                                       |
 | -------------- | ------- | ---- | ---- | ---- | ---------------------------------------- |
 | useSystemKeyboard | boolean  | 是    | 是    | 是    | 是否使用系统默认软键盘。 |
-| enterKeyType | [enterKeyType](../apis-ime-kit/js-apis-inputmethod.md#enterkeytype10) | 是    | 是    | 否    | 指定系统软键盘enter键的类型，取值范围见输入框架的定义[enterKeyType](../apis-ime-kit/js-apis-inputmethod.md#enterkeytype10)，该参数为可选参数，当useSystemKeyboard为true，并且设置了有效的enterKeyType时候，才有效。|
+| enterKeyType | number | 是    | 是    | 否    | 指定系统软键盘enter键的类型，取值范围见输入框架的定义[EnterKeyType](../apis-ime-kit/js-apis-inputmethod.md#enterkeytype10)，该参数为可选参数，当useSystemKeyboard为true，并且设置了有效的enterKeyType时候，才有效。|
 | customKeyboard | [CustomBuilder](../apis-arkui/arkui-ts/ts-types.md#custombuilder8) | 是    | 是    | 否    | 指定自定义键盘组件builder，可选参数，当useSystemKeyboard为false时，需要设置该参数，然后web组件会拉起该自定义键盘。
 
 ## WebKeyboardController<sup>12+</sup>
@@ -5401,7 +5401,7 @@ deleteBackward(length: number): void
 
 sendFunctionKey(key: number): void
 
-插入功能按键，目前仅支持enter键类型，取值见[enterKeyType](../apis-ime-kit/js-apis-inputmethod.md#enterkeytype10)。
+插入功能按键，目前仅支持enter键类型，取值见[EnterKeyType](../apis-ime-kit/js-apis-inputmethod.md#enterkeytype10)。
 
 **参数：**
 
