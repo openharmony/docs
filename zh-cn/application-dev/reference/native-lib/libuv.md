@@ -360,11 +360,11 @@ napi_status napi_release_threadsafe_function(napi_threadsafe_function function);
 |   [loop概念及相关接口](#libuv中的事件循环)   |   uv_run   |
 |   [loop概念及相关接口](#libuv中的事件循环)   |    uv_loop_alive  |
 |   [loop概念及相关接口](#libuv中的事件循环)   |  uv_stop    |
-|   [Handle概念及相关接口](#libuv中的Handle和Request)   |   uv_pool_*   |
-|   [Handle概念及相关接口](#libuv中的Handle和Request)   |  uv_imer_*   |
-|   [Handle概念及相关接口](#libuv中的Handle和Request)   |  uvasync_*   |
-|   [Handle概念及相关接口](#libuv中的Handle和Request)   |   uv_signal_*   |
-|   [Handle概念及相关接口](#libuv中的Handle和Request)   |   uv_fs_*   |
+|   [Handle概念及相关接口](#libuv中的Handle和Request)   |   uv_pool_\* |
+|   [Handle概念及相关接口](#libuv中的Handle和Request)   |  uv_imer_\*  |
+|   [Handle概念及相关接口](#libuv中的Handle和Request)   |  uvasync_\*  |
+|   [Handle概念及相关接口](#libuv中的Handle和Request)   |   uv_signal_\*   |
+|   [Handle概念及相关接口](#libuv中的Handle和Request)   |   uv_fs_\*  |
 |   [Request概念及相关接口](#libuv中的Handle和Request)   |  uv_random    |
 |   [Request概念及相关接口](#libuv中的Handle和Request)   |  uv_getaddrinfo    |
 |   [Request概念及相关接口](#libuv中的Handle和Request)   |  uv_getnameinfo    |
