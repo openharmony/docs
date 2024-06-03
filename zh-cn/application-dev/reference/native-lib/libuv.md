@@ -380,12 +380,12 @@ napi_status napi_release_threadsafe_function(napi_threadsafe_function function);
 
 线程安全函数：
 
-- uv_async_init()：初始化异步句柄。
-- uv_async_send()：向异步句柄发送信号，可以在任何线程中调用。
-- uv_thread_create()：创建一个新线程并执行指定的函数，可以在任何线程中调用。
-- uv_fs_*()：文件相关操作（uv\_fs\_\* 表示以uv\_fs\_开头的支持文件IO的系列函数）。
-- uv_poll_*()：poll事件相关函数（uv\_poll\_\* 表示以uv\_poll\_开头的支持poll IO的系列函数）。
-- 锁相关的操作，如uv_mutex_lock()、uv_mutex_unlock()等等。
+- uv\_async\_init()：初始化异步句柄。
+- uv\_async\_send()：向异步句柄发送信号，可以在任何线程中调用。
+- uv\_thread\_create()：创建一个新线程并执行指定的函数，可以在任何线程中调用。
+- uv\_fs\_\*()：文件相关操作（uv\_fs\_\* 表示以uv\_fs\_开头的支持文件IO的系列函数）。
+- uv_poll_\*()：poll事件相关函数（uv\_poll\_\* 表示以uv\_poll\_开头的支持poll IO的系列函数）。
+- 锁相关的操作，如uv\_mutex\_lock()、uv\_mutex\_unlock()等等。
 
 **提示：所有形如uv_xxx_init的函数，即使它是以线程安全的方式实现的，但使用时要注意，避免多个线程同时调用uv_xxx_init，否则它依旧会引起多线程资源竞争的问题。最好的方式是在事件循环函数中调用该函数。**
 
@@ -393,12 +393,12 @@ napi_status napi_release_threadsafe_function(napi_threadsafe_function function);
 
 非线程安全函数：
 
-- uv_os_unsetenv()：删除环境变量
-- uv_os_setenv()：设置环境变量
-- uv_os_getenv()：获取环境变量
-- uv_os_environ()：检索所有的环境变量
-- uv_os_tmpdir()：获取临时目录
-- uv_os_homedir()：获取家目录
+- uv\_os\_unsetenv()：删除环境变量
+- uv\_os\_setenv()：设置环境变量
+- uv\_os\_getenv()：获取环境变量
+- uv\_os\_environ()：检索所有的环境变量
+- uv\_os\_tmpdir()：获取临时目录
+- uv\_os\_homedir()：获取家目录
 
 ### libuv中的事件循环
 
@@ -416,27 +416,39 @@ napi_status napi_release_threadsafe_function(napi_threadsafe_function function);
 
 #### 常用接口
 
-int **uv_loop_init**(uv_loop_t* loop);
+```cpp
+int uv_loop_init(uv_loop_t* loop);
+```
 
   对loop进行初始化。
 
-int **uv_loop_close**(uv_loop_t* loop);
+```cpp
+int uv_loop_close(uv_loop_t* loop);
+```
 
   关闭loop，该函数只有在loop中所有的句柄和请求都关闭后才能成功返回，否则将返回UV_EBUSY。
 
-uv_loop_t* **uv_default_loop**（void);
+```cpp
+uv_loop_t* uv_default_loop(void);
+```
 
   该函数创建一个进程级的loop。在OpenHarmony中，由于目前的应用主循环及其他js工作线程还存在着libuv的loop。因此我们不建议开发者使用该函数来创建loop并实现业务功能。在系统的双loop改造完成后，开发者可以根据业务要求来使用该接口。
 
-int **uv_run**(uv_loop_t* loop, uv_run_mode mode);
+```cpp
+int uv_run(uv_loop_t* loop, uv_run_mode mode);
+```
 
   启动事件循环。运行模式可查看[事件循环运行的三种方式](#事件循环运行的三种方式)。
 
-int **uv_loop_alive**(uv_loop_t loop);
+```cpp
+int uv_loop_alive(uv_loop_t loop);
+```
 
   判断loop是否处于活跃状态。
 
-void **uv_stop**(uv_loop_t* loop);
+```cpp
+void uv_stop(uv_loop_t* loop);
+```
 
   该函数用来停止一个事件循环，在loop的下一次迭代中才会停止。如果该函数发生在I/O操作之前，将不会阻塞而是直接跳过`uv_io_poll`。
 
