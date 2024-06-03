@@ -52,7 +52,7 @@ export function minus(a: number, b: number) {
 ```
 对外暴露的接口，需要在入口文件`index.ets`中声明：
 ```ts
-// library/src/main/ets/index.ets
+// library/index.ets
 export { Log, add, minus } from './utils/test'
 ```
 
@@ -78,7 +78,7 @@ export struct MyTitleBar {
 ```
 对外暴露的接口，需要在入口文件`index.ets`中声明：
 ```ts
-// library/src/main/ets/index.ets
+// library/index.ets
 export { MyTitleBar } from './components/MyTitleBar'
 ```
 #### HSP中资源使用说明
@@ -99,7 +99,7 @@ export function nativeMulti(a: number, b: number) {
 
 对外暴露的接口，需要在入口文件`index.ets`中声明：
 ```ts
-// library/src/main/ets/index.ets
+// library/index.ets
 export { nativeMulti } from './utils/nativeTest'
 ```
 
