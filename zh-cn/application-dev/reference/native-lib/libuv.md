@@ -377,7 +377,7 @@ napi_status napi_release_threadsafe_function(napi_threadsafe_function function);
         <td>uv_stop</td>
     </tr>
     <tr>
-        <td rowspan="4"><a href="#Handles和Requests">Handle概念及相关接口</a></td>
+        <td rowspan="4"><a href="#libuv中的Handles和Requests">Handle概念及相关接口</a></td>
         <td>uv_poll_*</td>
     </tr>
     <tr>
@@ -390,7 +390,7 @@ napi_status napi_release_threadsafe_function(napi_threadsafe_function function);
         <td>uv_signal_*</td>
     </tr>
     <tr>
-        <td rowspan="5"><a href="#Handles和Requests">Request概念及相关接口</a></td>
+        <td rowspan="5"><a href="#libuv中的Handles和Requests">Request概念及相关接口</a></td>
         <td>uv_fs_*</td>
     </tr>
     <tr>
@@ -419,11 +419,10 @@ napi_status napi_release_threadsafe_function(napi_threadsafe_function function);
 </table>
 
 
+
 ### 线程安全函数
 
 在libuv中，由于涉及到大量的异步任务，稍有不慎就会陷入到多线程问题中。在这里，我们对libuv中常用的线程安全函数和非线程安全函数做了汇总。若开发者在多线程编程中调用了非线程安全的函数，势必要对其进行加锁保护或者保证代码的正确运行时序。否则将陷入到crash问题中。
-
-
 
 线程安全函数：
 
@@ -465,27 +464,27 @@ napi_status napi_release_threadsafe_function(napi_threadsafe_function function);
 
 int **uv_loop_init**(uv_loop_t* loop);
 
-​    对loop进行初始化。
+  对loop进行初始化。
 
 int **uv_loop_close**(uv_loop_t* loop);
 
-   关闭loop，该函数只有在loop中所有的句柄和请求都关闭后才能成功返回，否则将返回UV_EBUSY。
+  关闭loop，该函数只有在loop中所有的句柄和请求都关闭后才能成功返回，否则将返回UV_EBUSY。
 
 uv_loop_t* **uv_default_loop**（void);
 
-   该函数创建一个进程级的loop。在OpenHarmony中，由于目前的应用主循环及其他js工作线程还存在着libuv的loop。因此我们不建议开发者使用该函数来创建loop并实现业务功能。在系统的双loop改造完成后，开发者可以根据业务要求来使用该接口。
+  该函数创建一个进程级的loop。在OpenHarmony中，由于目前的应用主循环及其他js工作线程还存在着libuv的loop。因此我们不建议开发者使用该函数来创建loop并实现业务功能。在系统的双loop改造完成后，开发者可以根据业务要求来使用该接口。
 
 int **uv_run**(uv_loop_t* loop, uv_run_mode mode);
 
-   启动事件循环。运行模式可查看[事件循环运行的三种方式](#事件循环运行的三种方式)。</a>
+  启动事件循环。运行模式可查看[事件循环运行的三种方式](#事件循环运行的三种方式)。
 
 int **uv_loop_alive**(uv_loop_t loop);
 
-   判断loop是否处于活跃状态。
+  判断loop是否处于活跃状态。
 
 void **uv_stop**(uv_loop_t* loop);
 
-   该函数用来停止一个事件循环，在loop的下一次迭代中才会停止。如果该函数发生在I/O操作之前，将不会阻塞而是直接跳过`uv_io_poll`。
+  该函数用来停止一个事件循环，在loop的下一次迭代中才会停止。如果该函数发生在I/O操作之前，将不会阻塞而是直接跳过`uv_io_poll`。
 
 **使用技巧**：在使用loop时，需要特别注意`uv_stop`函数的使用。开发者需要确保`uv_stop`前，通知与loop相关的所有线程的handle都关闭。参考代码如下：
 
@@ -518,7 +517,7 @@ int stop_loop(uv_loop_t* loop)
 }
 ```
 
-**注：** 该代码是基于所有的handle都按照[下述方式](#wrap_handle)封装编写的。
+**注：** 该代码是基于所有的handle都按照[下述方式](#electron对handles的封装)封装编写的。
 
 ### libuv中的Handles和Requests
 
@@ -551,7 +550,7 @@ typedef struct uv_fs_s uv_fs_t;
 
 针对上面第三条，开发者可以参考[electron项目](https://github.com/electron/electron/pull/25332)中的做法对handles进行封装。
 
-<a id="wrap_handle">代码如下:</a>
+#### electron对handles的封装
 
 ```cpp
 template <typename T,
@@ -601,15 +600,12 @@ class UvHandle {
 
 void **uv_close**(uv_handle_t* handle, uv_close_cb close_cb)
 
-<p style="text-indent:2em">handle：要关闭的句柄。</p>
-
-<p style="text-indent:2em">close_cb：处理该句柄的函数，用来进行内存管理等操作。</p>
+  handle：要关闭的句柄。 
+  close_cb：处理该句柄的函数，用来进行内存管理等操作。
 
 `uv_close`调用后，它首先将要关闭的handle挂载到loop中的closing_handles队列上，然后等待loop所在线程运行`uv__run_closing_handles`函数。最后回调函数close_cb将会在loop的下一次迭代中执行。因此，释放内存等操作应该在close_cb中进行。并且这种异步的关闭操作会带来多线程上的问题，开发者需要谨慎处理`uv_close`的时序问题，并且保证在close_cb执行之前Handles的生命周期。这是一篇在系统中存在的一些典型代码示例，可供开发者参考。
 
 **Tips**：在[libuv官方文档](http://libuv.org/)中，有个经验法则需要在此提示一下。原文翻译：如果 uv_foo_t 类型的句柄具有 `uv_foo_start()` 函数，则从调用该函数的那一刻起，它就处于活动状态。 同样，`uv_foo_stop()`再次停用句柄。
-
-<br/>
 
 而对于libuv中的requests，开发者需要确保一点，通过动态申请的request，在loop所在线程的回调函数中释放它即可。用uv_work_t举例，代码可参考如下：
 
@@ -623,7 +619,7 @@ uv_queue_work(loop, work, [](uv_work_t* req) {
 });
 ```
 
-### <a id = "线程间通信">线程间通信</a>
+### 线程间通信
 
 上面简单介绍了一些libuv中的基本概念，在这里我们将着重介绍libuv中的线程间通信。
 
@@ -693,12 +689,7 @@ int main()
 每触发一次，主线程都会执行一次回调函数。
 
 
-
-[test](#线程安全函数)
-
-
-
-### <a id="线程池">线程池</a>
+### 线程池
 
 线程池是libuv的一个核心功能，libuv中的线程池是通过uv_loop_t中的成员变量wq_async来控制工作线程与主线程的通信。核心函数如下：
 
