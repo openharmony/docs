@@ -380,7 +380,7 @@ popupTitleBackground(value: ResourceColor)
 | ------ | ------------------------------------------ | ---- | ------------------------------------------------------------ |
 | value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 设置提示弹窗首个索引项背板颜色。<br/>默认值：<br/>提示弹窗只有一个索引项：#00FFFFFF。<br/>提示弹窗有多个索引项：#0c182431。 |
 
-### enableHapticFeedback<sup>12</sup>
+### enableHapticFeedback<sup>12+</sup>
 
 enableHapticFeedback(enable: boolean)
 
