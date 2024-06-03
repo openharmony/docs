@@ -1,16 +1,16 @@
 # Switching Between Input Methods
 
-In the input method framework service, you can call the provided APIs to easily switch between input methods and input method subtypes.
+You can use the APIs of the input method framework service to easily switch between input methods and input method subtypes.
 
 > **NOTE**
 >
-> 1. The following APIs can be called only in the current input method application.
+> The following APIs can be called only in the current input method application.
 >
-> 2. For details about how to implement an input method application, see [Implementing an Input Method Application](./inputmethod_application_guide.md).
+> For details about how to implement an input method application, see [Implementing an Input Method Application](./inputmethod_application_guide.md).
 
 ## Switching Between Input Method Subtypes
 
-1. When in the input method application in use, call **inputMethod.switchCurrentInputMethodSubtype** to switch to another subtype – specified by **InputMethodSubtype** – of the input method.
+1. In the input method application in use, call [switchCurrentInputMethodSubtype](../reference/apis-ime-kit/js-apis-inputmethod.md#inputmethodswitchcurrentinputmethodsubtype9) with the target [InputMethodSubtype](../reference/apis-ime-kit/js-apis-inputmethod-subtype.md#inputmethodsubtype) to switch to another subtype of the current input method.
 
    ```ts
    import { InputMethodSubtype, inputMethod } from '@kit.IMEKit';
@@ -48,7 +48,7 @@ In the input method framework service, you can call the provided APIs to easily 
 
 ## Switching Between Input Methods
 
-When in the input method application in use, call **inputMethod.switchInputMethod** to switch to another input method specified by **InputMethodProperty**.
+In the input method application in use, call [switchInputMethod](../reference/apis-ime-kit/js-apis-inputmethod.md#inputmethodswitchinputmethod9) with the target [InputMethodProperty](../reference/apis-ime-kit/js-apis-inputmethod.md#inputmethodproperty8) to switch to another input method.
 
 ```ts
 import { inputMethod } from '@kit.IMEKit';
@@ -56,7 +56,7 @@ import { inputMethod } from '@kit.IMEKit';
 export class KeyboardController {
   async switchInputMethod(){
     let inputMethods = await inputMethod.getSetting().getInputMethods(true); // Obtain the list of enabled input methods.
-    let currentInputMethod = await inputMethod.getCurrentInputMethod(); // Obtain the current input method.
+    let currentInputMethod = inputMethod.getCurrentInputMethod(); // Obtain the current input method.
     for(let i=0;i<inputMethods.length;i++) {
       if(inputMethods[i].name != currentInputMethod.name) { // If the current input method is not the specified one, switch to the specified one. You can enter a fixed input method as required.
         await inputMethod.switchInputMethod(inputMethods[i]);
@@ -68,7 +68,7 @@ export class KeyboardController {
 
 ## Switching Between Input Methods and Subtypes
 
-When in the input method application in use, call **inputMethod.switchCurrentInputMethodAndSubtype** to switch to a specific subtype (specified by **InputMethodSubtype**) of another input method (specified by **InputMethodProperty**).
+In the input method application in use, call [switchCurrentInputMethodAndSubtype](../reference/apis-ime-kit/js-apis-inputmethod.md#inputmethodswitchcurrentinputmethodandsubtype9) with the target [InputMethodProperty](../reference/apis-ime-kit/js-apis-inputmethod.md#inputmethodproperty8) and [InputMethodSubtype](../reference/apis-ime-kit/js-apis-inputmethod-subtype.md#inputmethodsubtype) to switch to the subtype of another input method.
 
 ```ts
 import { inputMethod } from '@kit.IMEKit';
@@ -76,7 +76,7 @@ import { inputMethod } from '@kit.IMEKit';
 export class KeyboardController {
   async switchInputMethodAndSubtype() {
     let inputMethods = await inputMethod.getSetting().getInputMethods(true); // Obtain the list of enabled input methods.
-    let currentInputMethod = await inputMethod.getCurrentInputMethod(); // Obtain the current input method.
+    let currentInputMethod = inputMethod.getCurrentInputMethod(); // Obtain the current input method.
     for (let i = 0;i < inputMethods.length; i++) {
       if (inputMethods[i].name != currentInputMethod.name) { // If the current input method is not the specified one, switch to the specified one. You can enter a fixed input method as required.
         let subTypes = await inputMethod.getSetting().listInputMethodSubtype(inputMethods[i]); // Obtain the subtypes of the target input method.

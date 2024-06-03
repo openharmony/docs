@@ -15,8 +15,10 @@
   - [@ohos.data.ValuesBucket (数据集)](js-apis-data-valuesBucket.md)
   <!--Del-->
   - [@ohos.application.DataShareExtensionAbility (数据共享扩展能力)(系统接口)](js-apis-application-dataShareExtensionAbility-sys.md)
-  - [@ohos.data.cloudData (端云协同)](js-apis-data-cloudData.md)
-  - [@ohos.data.cloudData (端云协同)(系统接口)](js-apis-data-cloudData-sys.md)
+  <!--DelEnd-->
+  - [@ohos.data.cloudData (端云服务)](js-apis-data-cloudData.md)
+  <!--Del-->
+  - [@ohos.data.cloudData (端云服务)(系统接口)](js-apis-data-cloudData-sys.md)
   - [@ohos.data.cloudExtension (端云共享Extension)(系统接口)](js-apis-data-cloudExtension-sys.md)
   - [@ohos.data.dataShare (数据共享)(系统接口)](js-apis-data-dataShare-sys.md)
   - [@ohos.data.dataSharePredicates (数据共享谓词)(系统接口)](js-apis-data-dataSharePredicates-sys.md)

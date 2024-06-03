@@ -63,7 +63,6 @@ createTimer(options: TimerOptions, callback: AsyncCallback&lt;number&gt;): void
 
 | 错误码ID | 错误信息                                                                                                           |
 |-------|----------------------------------------------------------------------------------------------------------------|
-| -1    | System error.                                                                                                  |
 | 202   | Permission denied, Non system application use system APIs.                                                                                             |
 | 401   | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
@@ -117,7 +116,6 @@ createTimer(options: TimerOptions): Promise&lt;number&gt;
 
 | 错误码ID | 错误信息                                                                                                           |
 |-------|----------------------------------------------------------------------------------------------------------------|
-| -1    | System error.                                                                                                  |
 | 202   | Permission denied, Non system application use system APIs.                                                                                             |
 | 401   | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
@@ -164,7 +162,6 @@ startTimer(timer: number, triggerTime: number, callback: AsyncCallback&lt;void&g
 
 | 错误码ID | 错误信息                                                                                                           |
 |-------|----------------------------------------------------------------------------------------------------------------|
-| -1    | System error.                                                                                                  |
 | 202   | Permission denied, Non system application use system APIs.                                                                                             |
 | 401   | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
@@ -226,7 +223,6 @@ startTimer(timer: number, triggerTime: number): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息                                                                                                           |
 |-------|----------------------------------------------------------------------------------------------------------------|
-| -1    | System error.                                                                                                  |
 | 202   | Permission denied, Non system application use system APIs.                                                                                             |
 | 401   | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
@@ -280,7 +276,6 @@ stopTimer(timer: number, callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID | 错误信息                                                                                                           |
 |-------|----------------------------------------------------------------------------------------------------------------|
-| -1    | System error.                                                                                                  |
 | 202   | Permission denied, Non system application use system APIs.                                                                                             |
 | 401   | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
@@ -342,7 +337,6 @@ stopTimer(timer: number): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息                                                                                                           |
 |-------|----------------------------------------------------------------------------------------------------------------|
-| -1    | System error.                                                                                                  |
 | 202   | Permission denied, Non system application use system APIs.                                                                                             |
 | 401   | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
@@ -397,7 +391,6 @@ destroyTimer(timer: number, callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID | 错误信息                                                                                                           |
 |-------|----------------------------------------------------------------------------------------------------------------|
-| -1    | System error.                                                                                                  |
 | 202   | Permission denied, Non system application use system APIs.                                                                                             |
 | 401   | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
@@ -460,7 +453,6 @@ destroyTimer(timer: number): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息                                                                                                           |
 |-------|----------------------------------------------------------------------------------------------------------------|
-| -1    | System error.                                                                                                  |
 | 202   | Permission denied, Non system application use system APIs.                                                                                             |
 | 401   | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 

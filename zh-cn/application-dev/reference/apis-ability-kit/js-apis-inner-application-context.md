@@ -57,6 +57,14 @@ createModuleContext(moduleName: string): Context
 | -------- | -------- |
 | Context | 模块的上下文。 |
 
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+
 **示例：**
 
 ```ts
@@ -94,6 +102,14 @@ getApplicationContext(): ApplicationContext
 | -------- | -------- |
 | [ApplicationContext](js-apis-inner-application-applicationContext.md) | 应用上下文Context。 |
 
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+
 **示例：**
 
 ```ts
@@ -117,7 +133,7 @@ export default class EntryAbility extends UIAbility {
 
 getGroupDir(dataGroupID: string): Promise\<string>
 
-通过使用元服务应用中的Group ID获取对应的共享目录，使用Promise异步回调。
+通过使用应用中的Group ID获取对应的共享目录，使用Promise异步回调。
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
@@ -135,13 +151,14 @@ getGroupDir(dataGroupID: string): Promise\<string>
 | -------- | -------- |
 | Promise\<string> | 以Promise方式返回对应的共享目录。如果不存在则返回为空，仅支持应用el2加密级别。|
 
-**错误码**：
+**错误码：**
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
 
 | 错误码ID | 错误信息 |
-| ------- | -------- |
+| ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000011 | The context does not exist. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -169,7 +186,7 @@ export default class EntryAbility extends UIAbility {
 
 getGroupDir(dataGroupID: string, callback: AsyncCallback\<string>): void
 
-通过使用元服务应用中的Group ID获取对应的共享目录，使用callback异步回调。
+通过使用应用中的Group ID获取对应的共享目录，使用callback异步回调。
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
@@ -182,13 +199,14 @@ getGroupDir(dataGroupID: string, callback: AsyncCallback\<string>): void
 | dataGroupID | string | 是    | 元服务应用项目创建时，系统会指定分配唯一Group ID。 |
 | callback | AsyncCallback\<string> | 是    | 以callback方式返回对应的共享目录。如果不存在则返回为空，仅支持应用el2加密级别。|
 
-**错误码**：
+**错误码：**
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
 
 | 错误码ID | 错误信息 |
-| ------- | -------- |
+| ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000011 | The context does not exist. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 

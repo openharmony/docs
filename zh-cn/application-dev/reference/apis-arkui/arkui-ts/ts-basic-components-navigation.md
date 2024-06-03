@@ -407,7 +407,7 @@ customNavContentTransition(delegate(from: NavContentInfo, to: NavContentInfo, op
 
 ## NavPathStack<sup>10+</sup>
 
-Navigation路由栈。
+Navigation路由栈，允许被继承<sup>12+</sup>。开发者可以在派生类中新增属性方法，也可以重写基类NavPathStack的方法。派生类对象可以替代基类NavPathStack对象使用。使用示例参见[示例10](#示例10)。
 
 ### pushPath<sup>10+</sup>
 
@@ -917,6 +917,8 @@ setInterception(interception: NavigationInterception): void
 
 设置Navigation页面跳转拦截回调。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 名称    | 类型     | 必填   | 描述                     |
@@ -938,7 +940,7 @@ constructor(name: string, param: unknown)
 | 名称    | 类型      | 必填   | 描述                    |
 | ----- | ------- | ---- | --------------------- |
 | name  | string  | 是    | NavDestination页面名称。   |
-| param | unknown | 是    | NavDestination页面详细参数。 |
+| param | unknown | 否    | NavDestination页面详细参数。 |
 | onPop<sup>11+</sup> | import('../api/@ohos.base').Callback\<[PopInfo](#popinfo11)> | 否 | NavDestination页面触发pop时返回的回调。 |
 
 ## PopInfo<sup>11+</sup>
@@ -1004,6 +1006,8 @@ constructor(name: string, param: unknown)
 
 Navigation跳转拦截对象。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 | 名称    | 类型     | 必填 | 描述    |
 | ---- | ----- | ----- | ----   |
 | willShow | (from: [NavDestinationContext](ts-basic-components-navdestination.md#navdestinationcontext11类型说明) \|"navBar",<br> to: [NavDestinationContext](ts-basic-components-navdestination.md#navdestinationcontext11类型说明) \|"navBar",<br> operation: [NavigationOperation](#navigationoperation11枚举说明),<br> isAnimated: boolean) =&gt;void | 否 | 页面跳转前拦截，允许操作栈，在当前跳转中生效。<br> from: 页面跳转之前的栈顶页面信息。参数值为navBar，则表示跳转前的页面为Navigation首页。<br> to: 页面跳转之后的栈顶页面信息。参数值为navBar，则标题跳转的目标页面为Navigation首页。<br> operation: 当前页面跳转类型。<br> isAnimated: 页面跳转是否有动画。 |
@@ -1016,7 +1020,7 @@ Navigation跳转拦截对象。
 | ------ | ------------- | ---- | --------------- |
 | value  | string        | 是    | API Version 9: 显示菜单栏单个选项的文本。<br> API Version 10: 不显示菜单栏单个选项的文本。  <br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 | icon   | string        | 否    | 菜单栏单个选项的图标资源路径。 <br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| isEnabled<sup>12+</sup>   | boolean        | 否    | 使能状态，默认使能（false未使能，true使能）。 |
+| isEnabled<sup>12+</sup>   | boolean        | 否    | 使能状态，默认使能（false未使能，true使能）。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
 | action | () =&gt; void | 否    | 当前选项被选中的事件回调。   <br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 | symbolIcon<sup>12+</sup> |  [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md)  | 否    |菜单栏单个选项的symbol资源（优先级高于icon）。 |
 
@@ -1119,6 +1123,9 @@ Navigation跳转拦截对象。
 | REPLACE | 本次转场为页面替换。|
 
 ## BarStyle<sup>12+</sup>枚举说明
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 | 名称    | 描述  |
 |---------|------|
 |STANDARD | 标题栏与内容区采用上下布局。|
@@ -1132,7 +1139,7 @@ Navigation跳转拦截对象。
 | ------ | ------------- | ---- | --------------- |
 | backgroundColor | [ResourceColor](ts-types.md#resourcecolor)  | 否    | 标题栏背景颜色，不设置时为系统默认颜色。 |
 | backgroundBlurStyle   | [BlurStyle](ts-appendix-enums.md#blurstyle9)        | 否    | 标题栏背景模糊样式，不设置时关闭背景模糊效果。 |
-| barStyle<sup>12+</sup>   | [BarStyle](#barstyle12枚举说明)        | 否    | 标题栏布局方式设置。<br/>默认值：BarStyle.STANDARD |
+| barStyle<sup>12+</sup>   | [BarStyle](#barstyle12枚举说明)        | 否    | 标题栏布局方式设置。<br/>默认值：BarStyle.STANDARD<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
 
 ## NavigationToolbarOptions<sup>11+</sup>类型说明
 
@@ -1637,8 +1644,8 @@ export function PageTwoBuilder(name: string, param: Object) {
 }
 
 @Component
-export struct PageTwoTemp {
-  pathInfo: NavPathStack = new NavPathStack()
+export struct PageTwo {
+  pageInfos: NavPathStack = new NavPathStack()
   @State x: number = 300
   pageId: number = 0
 
@@ -1711,7 +1718,7 @@ export class CustomTransition {
   // timeout：转场结束的超时时间
   registerNavParam(name: number, startCallback: (operation: boolean, isExit: boolean) => void,
                    endCallback:(operation: boolean, isExit: boolean) => void,
-                   onFinish: (opeation: boolean, isExit: boolean) => void, timeout: number): void {
+                   onFinish: (operation: boolean, isExit: boolean) => void, timeout: number): void {
 
     if (customTransitionMap.has(name)) {
       let param = customTransitionMap.get(name);
@@ -1950,7 +1957,7 @@ class resultClass {
 }
 
 @Builder
-export function PageTwoBuilder(name: string, pram: Object) {
+export function PageTwoBuilder() {
   PageTwo()
 }
 
@@ -2408,6 +2415,10 @@ struct PageOneComponent {
     .onDisAppear(() => { this.eventStr += "<onDisAppear>"; })
     .onShown(() => { this.eventStr += "<onShown>"; })
     .onHidden(() => { this.eventStr += "<onHidden>"; })
+    .onWillAppear(() => { this.eventStr += "<onWillAppear>"; })
+    .onWillDisappear(() => { this.eventStr += "<onWillDisappear>"; })
+    .onWillShow(() => { this.eventStr += "<onWillShow>"; })
+    .onWillHide(() => { this.eventStr += "<onWillHide>"; })
     // onReady会在onAppear之前调用
     .onReady((ctx: NavDestinationContext) => {
       try {
@@ -2533,3 +2544,115 @@ struct NavigationExample {
 }
 ```
 ![titlebar_stack.gif](figures/titlebar_stack.gif)
+
+
+### 示例10
+
+```ts
+// 该示例主要演示如下两点功能
+// 1. 如何定义NavPathStack的派生类
+// 2. 派生类在Navigation中的基本用法
+class DerivedNavPathStack extends NavPathStack {
+  // usr defined property 'id'
+  id: string = "__default__"
+
+  // new function in derived class
+  setId(id: string) {
+    this.id = id;
+  }
+
+  // new function in derived class
+  getInfo(): string {
+    return "this page used Derived NavPathStack, id: " + this.id
+  }
+
+  // overwrite function of NavPathStack
+  pushPath(info: NavPathInfo, animated?: boolean): void {
+    console.log('[derive-test] reached DerivedNavPathStack\'s pushPath');
+    super.pushPath(info, animated);
+  }
+
+  // overwrite and overload function of NavPathStack
+  pop(animated?: boolean | undefined): NavPathInfo | undefined
+  pop(result: Object, animated?: boolean | undefined): NavPathInfo | undefined
+  pop(result?: Object, animated?: boolean | undefined): NavPathInfo | undefined {
+    console.log('[derive-test] reached DerivedNavPathStack\'s pop');
+    return super.pop(result, animated);
+  }
+
+  // other function of base class...
+}
+
+class param {
+  info: string = "__default_param__";
+  constructor(info: string) { this.info = info }
+}
+
+@Entry
+@Component
+struct Index {
+  derivedStack: DerivedNavPathStack = new DerivedNavPathStack();
+
+  aboutToAppear(): void {
+    this.derivedStack.setId('origin stack');
+  }
+
+  @Builder
+  pageMap(name: string) {
+    PageOne()
+  }
+
+  build() {
+    Navigation(this.derivedStack) {
+      Button('to Page One').margin(20).onClick(() => {
+        this.derivedStack.pushPath({
+          name: 'pageOne',
+          param: new param('push pageOne in homePage')
+        });
+      })
+    }.navDestination(this.pageMap)
+    .title('Home Page')
+  }
+}
+
+@Component
+struct PageOne {
+  derivedStack: DerivedNavPathStack = new DerivedNavPathStack();
+  curStringifyParam: string = "NA";
+
+  build() {
+    NavDestination() {
+      Column() {
+        Text(this.derivedStack.getInfo())
+          .margin(10)
+          .fontSize(25)
+          .fontWeight(FontWeight.Bold)
+          .textAlign(TextAlign.Start)
+        Text('current page param info:')
+          .margin(10)
+          .fontSize(25)
+          .fontWeight(FontWeight.Bold)
+          .textAlign(TextAlign.Start)
+        Text(this.curStringifyParam)
+          .margin(20)
+          .fontSize(20)
+          .textAlign(TextAlign.Start)
+      }.backgroundColor(Color.Pink)
+      Button('push Page One').margin(20).onClick(() => {
+        this.derivedStack.pushPath({
+          name: 'pageOne',
+          param: new param('push pageOne in pageOne when stack size: ' + this.derivedStack.size())
+        });
+      })
+    }.onReady((context: NavDestinationContext) => {
+      console.log('[derive-test] reached PageOne\'s onReady');
+      // get derived stack from navdestinationContext
+      this.derivedStack = context.pathStack as DerivedNavPathStack;
+      console.log('[derive-test] -- got derivedStack: ' + this.derivedStack.id);
+      this.curStringifyParam = JSON.stringify(context.pathInfo.param);
+      console.log('[derive-test] -- got param: ' + this.curStringifyParam);
+    })
+  }
+}
+```
+![derive_stack.gif](figures/derive_stack.gif)

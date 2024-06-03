@@ -392,6 +392,49 @@ try {
 
 ```
 
+## drm.getMediaKeySystemUuid<sup>12+</sup>
+
+getMediaKeySystemUuid(): string
+
+Obtains the names and UUIDs of the DRM plug-ins supported by the device.
+
+**System capability**: SystemCapability.Multimedia.Drm.Core
+
+**Parameters**
+
+| Name    | Type                                            | Mandatory| Description                          |
+| -------- | ----------------------------------------------- | ---- | ---------------------------- |
+| name  | string     | Yes  | Name of the DRM plug-in.                  |
+
+**Return value**
+
+| Type                                            | Description                          |
+| ----------------------------------------------- | ---------------------------- |
+| uuid  | string     | Yes  | Unique ID of the DRM plug-in.                  |
+
+**Error codes**
+
+For details about the error codes, see [DRM Error Codes](errorcode-drm.md).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 401                |  The parameter check failed                |
+| 24700101                |  All unknown errors                  |
+| 24700201                |  Service fatal error e.g. service died                  |
+
+**Example**
+
+```ts
+import drm from '@ohos.multimedia.drm';
+import { BusinessError } from '@ohos.base';
+try {
+  let uuid: string = drm.getMediaKeySystemUuid();
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`getMediaKeySystemUuid ERROR: ${error}`);  
+}
+```
+
 ## drm.getMediaKeySystems<sup>12+</sup>
 
 getMediaKeySystems(): MediaKeySystemDescription[]
@@ -1843,7 +1886,9 @@ import drm from '@ohos.multimedia.drm';
 
 function registerkeysChange(mediaKeysession: drm.MediaKeySession): void {
     mediaKeysession.on('keysChange', (keyInfo: drm.KeysInfo[], newKeyAvailable: boolean) => {
-        console.log('keysChange' + 'keyId:' + keyInfo.keyId + ' data:' + keyInfo.value);
+        for (let i = 0; i < keyInfo.length; i++) {
+            console.log('keysChange' + 'keyId:' + keyInfo[i].keyId + ' data:' + keyInfo[i].value);
+        }
     });
 }
 ```

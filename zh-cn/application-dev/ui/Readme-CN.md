@@ -66,6 +66,7 @@
   - 支持交互事件
     - [交互事件概述](arkts-event-overview.md)
     - 使用通用事件
+      - [事件分发](arkts-common-events-distribute.md)
       - [触屏事件](arkts-common-events-touch-screen-event.md)
       - [键鼠事件](arkts-common-events-device-input-event.md)
       - [焦点事件](arkts-common-events-focus-event.md)
@@ -149,4 +150,5 @@
         - [动画动效](ui-js-animate-dynamic-effects.md)
         - [动画帧](ui-js-animate-frame.md)
   - [自定义组件](ui-js-custom-components.md)
+  - [WebGL](../webgl/Readme-CN.md)
 - [窗口管理](../windowmanager/Readme-CN.md)

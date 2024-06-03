@@ -159,6 +159,8 @@ getSystemResourceManager(): ResourceManager
 
 Obtains a **ResourceManager** object.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Return value**
@@ -173,7 +175,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001009  | If application can't access system resource.                       |
+| 9001009  | Failed to access the system resource.                       |
 
 **Example**
   ```js
@@ -215,14 +217,14 @@ Enumerates the device types.
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
-
+<!--RP1-->
 | Name                  | Value | Description  |
 | -------------------- | ---- | ---- |
 | DEVICE_TYPE_TABLET   | 0x01 | Tablet  |
 | DEVICE_TYPE_CAR      | 0x02 | Automobile  |
 | DEVICE_TYPE_TV       | 0x04 | TV |
 | DEVICE_TYPE_WEARABLE | 0x06 | Wearable  |
-
+<!--RP1End-->
 
 ## ScreenDensity
 
@@ -242,6 +244,20 @@ Enumerates the screen density types.
 | SCREEN_XXXLDPI | 640  | Screen density with extra-extra-extra-large-scale dots per inch (XXXLDPI).|
 
 
+## ColorMode<sup>12+</sup>
+
+Defines the color mode of the current device.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+| Name | Value  | Description      |
+| ----- | ---- | ---------- |
+| DARK  | 0    | Dark mode.|
+| LIGHT | 1    | Light mode.|
+
+
 ## Configuration
 
 Defines the device configuration.
@@ -252,10 +268,16 @@ Defines the device configuration.
 
 **Parameters**
 
-| Name       | Type                   | Readable  | Writable  | Description      |
-| --------- | ----------------------- | ---- | ---- | -------- |
-| direction | [Direction](#direction) | Yes   | No   | Screen direction of the device.|
-| locale    | string                  | Yes   | No   | Current system language.  |
+| Name                       | Type                           | Readable| Writable| Description              |
+| --------------------------- | ------------------------------- | ---- | ---- | ------------------ |
+| direction                   | [Direction](#direction)         | Yes  | Yes  | Screen orientation.        |
+| locale                      | string                          | Yes  | Yes  | Country or region.|
+| deviceType<sup>12+</sup>    | [DeviceType](#devicetype)       | Yes  | Yes  | Device type.        |
+| screenDensity<sup>12+</sup> | [ScreenDensity](#screendensity) | Yes  | Yes  | Screen density.        |
+| colorMode<sup>12+</sup>     | [ColorMode](#colormode12)       | Yes  | Yes  | Color mode.        |
+| mcc<sup>12+</sup>           | number                          | Yes  | Yes  | Mobile country code.      |
+| mnc<sup>12+</sup>           | number                          | Yes  | Yes  | Mobile network code (MNC).      |
+
 
 
 ## DeviceCapability
@@ -347,9 +369,9 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
@@ -393,10 +415,10 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001001  | If the resId invalid.                               |
-| 9001002  | If the resource not found by resId.                 |
-| 9001006  | If the resource re-ref too much.                    |
-| 9001007  | If the resource obtained by resId formatting error. |
+| 9001001  | Invalid resource ID.                               |
+| 9001002  | No matching resource is found based on the resource ID.                 |
+| 9001006  | The resource is referenced cyclically.                    |
+| 9001007  | Failed to format the resource obtained based on the resource ID. |
 
 **Example**
   ```ts
@@ -442,9 +464,9 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
@@ -496,10 +518,10 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
-| 9001007  | If the resource obtained by resId formatting error. |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
+| 9001007  | Failed to format the resource obtained based on the resource ID. |
 
 **Example**
   ```ts
@@ -549,9 +571,9 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
-| 9001006  | If the resource re-ref too much.            |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
@@ -596,10 +618,10 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
-| 9001006  | If the resource re-ref too much.            |
-| 9001008  | If the resource obtained by resName formatting error. |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
+| 9001006  | The resource is referenced cyclically.            |
+| 9001008  | Failed to format the resource obtained based on the resource Name. |
 
 **Example**
   ```ts
@@ -639,8 +661,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001001  | If the module resId invalid.             |
-| 9001002  | If the resource not found by resId.      |
-| 9001006  | If the resource re-ref too much.         |
+| 9001002  | No matching resource is found based on the resource ID.      |
+| 9001006  | The resource is referenced cyclically.         |
 
 **Example (stage)**
   ```ts
@@ -690,9 +712,9 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
@@ -737,9 +759,9 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
@@ -797,9 +819,9 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
@@ -847,9 +869,9 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
-| 9001006  | If the resource re-ref too much.            |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
@@ -899,9 +921,9 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
-| 9001006  | If the resource re-ref too much.            |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
@@ -949,9 +971,9 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
@@ -997,9 +1019,9 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
@@ -1049,9 +1071,9 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001003  | If the resName invalid.                       |
-| 9001004  | If the resource not found by resName.         |
-| 9001006  | If the resource re-ref too much.            |
+| 9001003  | Invalid resource name.                       |
+| 9001004  | No matching resource is found based on the resource name.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
@@ -1087,9 +1109,9 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
@@ -1138,9 +1160,9 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
@@ -1185,9 +1207,9 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
@@ -1245,9 +1267,9 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
@@ -1296,9 +1318,9 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
-| 9001006  | If the resource re-ref too much.            |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
@@ -1348,9 +1370,9 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
-| 9001006  | If the resource re-ref too much.            |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
@@ -1403,9 +1425,9 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
@@ -1456,9 +1478,9 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
@@ -1513,9 +1535,9 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001003  | If the resName invalid.                       |
-| 9001004  | If the resource not found by resName.         |
-| 9001006  | If the resource re-ref too much.            |
+| 9001003  | Invalid resource name.                       |
+| 9001004  | No matching resource is found based on the resource name.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
@@ -1559,9 +1581,9 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
@@ -1616,9 +1638,9 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
@@ -1668,9 +1690,9 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
@@ -1733,9 +1755,9 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.                |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
@@ -1789,9 +1811,9 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
-| 9001006  | If the resource re-ref too much.            |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
@@ -1846,9 +1868,9 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
-| 9001006  | If the resource re-ref too much.            |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
@@ -1897,8 +1919,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **Example**
   ```ts
@@ -1953,8 +1975,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **Example**
   ```ts
@@ -2013,8 +2035,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
-| 9001003  | If the resName invalid.                       |
-| 9001004  | If the resource not found by resName.         |
+| 9001003  | Invalid resource name.                       |
+| 9001004  | No matching resource is found based on the resource name.         |
 
 **Example**
   ```ts
@@ -2061,8 +2083,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.              | 
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **Example**
   ```ts
@@ -2108,8 +2130,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **Example**
   ```ts
@@ -2159,8 +2181,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **Example**
   ```ts
@@ -2209,8 +2231,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **Example**
   ```ts
@@ -2255,8 +2277,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **Example**
   ```ts
@@ -2310,8 +2332,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **Example**
   ```ts
@@ -2369,8 +2391,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **Example**
   ```ts
@@ -2427,8 +2449,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **Example**
   ```ts
@@ -2476,8 +2498,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
 
 **Example**
   ```ts
@@ -2523,8 +2545,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
 
 **Example**
   ```ts
@@ -2574,8 +2596,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
 
 **Example**
   ```ts
@@ -2624,8 +2646,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
 
 **Example**
   ```ts
@@ -2674,8 +2696,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **Example**
   ```ts
@@ -2730,8 +2752,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **Example**
   ```ts
@@ -2790,8 +2812,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
-| 9001003  | If the resName invalid.                       |
-| 9001004  | If the resource not found by resName.         |
+| 9001003  | Invalid resource name.                       |
+| 9001004  | No matching resource is found based on the resource name.         |
 
 **Example**
   ```ts
@@ -2838,8 +2860,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **Example**
   ```ts
@@ -2885,8 +2907,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **Example**
   ```ts
@@ -2936,8 +2958,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **Example**
   ```ts
@@ -2986,8 +3008,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **Example**
   ```ts
@@ -3032,8 +3054,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **Example**
   ```ts
@@ -3087,8 +3109,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **Example**
   ```ts
@@ -3146,8 +3168,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **Example**
   ```ts
@@ -3204,8 +3226,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **Example**
   ```ts
@@ -3254,8 +3276,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
 
 **Example**
   ```ts
@@ -3301,8 +3323,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
 
 **Example**
   ```ts
@@ -3352,8 +3374,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
 
 **Example**
   ```ts
@@ -3402,8 +3424,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
 
 **Example**
   ```ts
@@ -3453,8 +3475,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **Example**
   ```ts
@@ -3516,8 +3538,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **Example**
   ```ts
@@ -3583,8 +3605,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
 
 **Example**
   ```ts
@@ -3642,9 +3664,9 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
@@ -3689,9 +3711,9 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
@@ -3741,9 +3763,9 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
-| 9001006  | If the resource re-ref too much.            |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
@@ -3787,9 +3809,9 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
@@ -3843,9 +3865,9 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
@@ -3895,9 +3917,9 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
-| 9001006  | If the resource re-ref too much.            |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
@@ -3949,9 +3971,9 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
@@ -3997,9 +4019,9 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
@@ -4049,9 +4071,9 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
-| 9001006  | If the resource re-ref too much.            |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
@@ -4091,8 +4113,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001001  | If the module resId invalid.             |
-| 9001002  | If the resource not found by resId.      |
-| 9001006  | If the resource re-ref too much.         |
+| 9001002  | No matching resource is found based on the resource ID.      |
+| 9001006  | The resource is referenced cyclically.         |
 
 **Example (stage)**
   ```ts
@@ -4142,9 +4164,9 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
@@ -4189,9 +4211,9 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
@@ -4249,9 +4271,9 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
@@ -4300,9 +4322,9 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
-| 9001006  | If the resource re-ref too much.            |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
@@ -4352,9 +4374,9 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
-| 9001006  | If the resource re-ref too much.            |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
@@ -4402,7 +4424,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001005  | If the resource not found by path.          |
+| 9001005  | Invalid relative path.          |
 
 **Example**
   ```ts
@@ -4490,7 +4512,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001005  | If the resource not found by path.          |
+| 9001005  | Invalid relative path.          |
 
 **Example**
   ```ts
@@ -4542,7 +4564,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001005  | If the resource not found by path.       |
+| 9001005  | Invalid relative path.       |
 
 **Example**
   ```ts
@@ -4585,7 +4607,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001005  | If the resource not found by path.       |
+| 9001005  | Invalid relative path.       |
 
 **Example**
   ```ts
@@ -4639,7 +4661,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001005  | If the resource not found by path.          |
+| 9001005  | Invalid relative path.          |
 
 **Example**
   ```ts
@@ -4687,7 +4709,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001005  | If the resource not found by path.          |
+| 9001005  | Invalid relative path.          |
 
 **Example**
   ```ts
@@ -4726,7 +4748,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001005  | If the resource not found by path.          |
+| 9001005  | Invalid relative path.          |
 
 **Example**
   ```ts
@@ -4779,7 +4801,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001005  | If the resource not found by path.          |
+| 9001005  | Invalid relative path.          |
 
 **Example**
   ```ts
@@ -4911,7 +4933,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001005  | If the resource not found by path.          |
+| 9001005  | Invalid relative path.          |
 
 **Example**
   ```ts
@@ -5156,7 +5178,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001010  | If the overlay path is invalid.            |
+| 9001010  | Invalid overlay path.            |
 
 **Example**
   ```ts
@@ -5195,7 +5217,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001010  | If the overlay path is invalid.            |
+| 9001010  | Invalid overlay path.            |
 
 **Example**
   ```ts
@@ -5292,9 +5314,9 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
@@ -5339,9 +5361,9 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
@@ -5391,9 +5413,9 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
-| 9001006  | If the resource re-ref too much.            |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
@@ -5437,7 +5459,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
-| 9001005  | If the resource not found by path.          |
+| 9001005  | Invalid relative path.          |
 
 **Example**
   ```ts
@@ -5449,6 +5471,123 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
     console.error(`isRawDir failed, error code: ${code}, message: ${message}.`);
+  }
+  ```
+
+### getOverrideResourceManager<sup>12+</sup>
+
+getOverrideResourceManager(configuration?: Configuration) : ResourceManager
+
+Obtains a **ResourceManager** object for loading differentiated resources. This API returns the result synchronously.
+
+The style (including the language, color mode, resolution, and orientation) of the resources obtained by a common **ResourceManager** object is determined by the system. With this API, an application can obtain the style of differentiated resources, for example, dark color resources in light color mode.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Parameters**
+
+| Name       | Type                           | Mandatory| Description                                                        |
+| ------------- | ------------------------------- | ---- | ------------------------------------------------------------ |
+| configuration | [Configuration](#configuration) | No  | Configuration of differentiated resources.<br>After obtaining the configuration of differentiated resources through [getOverrideConfiguration](#getoverrideconfiguration12), modify the configuration items as required, and then pass these items as input parameters to the API.<br>If this parameter is not specified, the system obtains resources that best match the current system.|
+
+**Return value**
+
+| Type           | Description                              |
+| --------------- | ---------------------------------- |
+| ResourceManager | **ResourceManager** object for loading differentiated resources.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | If the input parameter invalid. Possible causes: Incorrect parameter types |
+
+**Example**
+
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+
+  try {
+    let resMgr = this.context.resourceManager
+    let overrideConfig = resMgr.getOverrideConfiguration()
+    overrideConfig.colorMode = resourceManager.ColorMode.DARK
+    let overrideResMgr = resMgr.getOverrideResourceManager(overrideConfig)
+  } catch (error) {
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getOverrideResourceManager failed, error code: ${code}, message: ${message}.`);
+  }
+  ```
+
+### getOverrideConfiguration<sup>12+</sup>
+
+getOverrideConfiguration() : Configuration
+
+Obtains the configuration of differentiated resources. This API returns the result synchronously. This API allows a common **ResourceManager** object and a **ResourceManager** object obtained through [getOverrideResourceManager](#getoverrideresourcemanager12) to obtain the configuration of differentiated resources.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Return value**
+
+| Type                           | Description            |
+| ------------------------------- | ---------------- |
+| [Configuration](#configuration) | Configuration of differentiated resources.|
+
+**Example**
+
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+
+  let overrideConfig = this.context.resourceManager.getOverrideConfiguration()
+  ```
+
+### updateOverrideConfiguration<sup>12+</sup>
+
+updateOverrideConfiguration(configuration: Configuration) : void
+
+Updated configuration of differentiated resources. This API allows a common **ResourceManager** object and a **ResourceManager** object obtained through [getOverrideResourceManager](#getoverrideresourcemanager12) to update the configuration of differentiated resources.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Parameters**
+
+| Name       | Type                           | Mandatory| Description                                                        |
+| ------------- | ------------------------------- | ---- | ------------------------------------------------------------ |
+| configuration | [Configuration](#configuration) | Yes  | Configuration of differentiated resources. After obtaining the configuration of differentiated resources through [getOverrideConfiguration](#getoverrideconfiguration12), modify the configuration items as required, and then pass these items as input parameters to the API.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | If the input parameter invalid. Possible causes: Incorrect parameter types |
+
+**Example**
+
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+
+  try {
+    let resMgr = this.context.resourceManager
+    let overrideConfig = resMgr.getOverrideConfiguration()
+    overrideConfig.colorMode = resourceManager.ColorMode.DARK
+    let overrideResMgr = resMgr.updateOverrideConfiguration(overrideConfig)
+  } catch (error) {
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`updateOverrideConfiguration failed, error code: ${code}, message: ${message}.`);
   }
   ```
 

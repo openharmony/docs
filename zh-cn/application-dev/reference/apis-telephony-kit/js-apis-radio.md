@@ -1,6 +1,6 @@
 # @ohos.telephony.radio (网络搜索)
 
-网络搜索模块提供管理网络搜索的一些基础功能，包括获取当前接入的CS域和PS域无线接入技术、获取网络状态、获取当前选网模式、获取注册网络所在国家的ISO国家码、获取主卡所在卡槽的索引号、获取指定SIM卡槽对应的注册网络信号强度信息列表、获取运营商名称、获取设备的指定卡槽的IMEI、获取设备的指定卡槽的MEID、获取设备的指定卡槽的唯一设备ID，判断当前设备是否支持NR(New Radio)、判断主卡的Radio是否打开等。
+网络搜索模块提供管理网络搜索的一些基础功能，包括获取当前接入的CS域和PS域无线接入技术、获取网络状态、获取当前选网模式、获取注册网络所在国家的ISO国家码、获取主卡所在卡槽的索引号、获取指定SIM卡槽对应的注册网络信号强度信息列表、获取运营商名称，判断当前设备是否支持NR(New Radio)、判断主卡的Radio是否打开等。
 
 >**说明：**
 >
@@ -37,11 +37,11 @@ getRadioTech\(slotId: number, callback: AsyncCallback<[NetworkRadioTech](#networ
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
@@ -88,11 +88,11 @@ getRadioTech\(slotId: number\): Promise\<[NetworkRadioTech](#networkradiotech11)
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
@@ -131,11 +131,11 @@ getNetworkState\(callback: AsyncCallback\<NetworkState\>\): void
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
@@ -176,11 +176,11 @@ getNetworkState\(slotId: number, callback: AsyncCallback\<NetworkState\>\): void
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
@@ -227,11 +227,11 @@ getNetworkState\(slotId?: number\): Promise\<NetworkState\>
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
@@ -268,11 +268,11 @@ getNetworkSelectionMode\(slotId: number, callback: AsyncCallback\<NetworkSelecti
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
@@ -316,11 +316,11 @@ getNetworkSelectionMode\(slotId: number\): Promise\<NetworkSelectionMode\>
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
@@ -357,11 +357,11 @@ getISOCountryCodeForNetwork\(slotId: number, callback: AsyncCallback\<string\>\)
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
@@ -405,11 +405,11 @@ getISOCountryCodeForNetwork\(slotId: number\): Promise\<string\>
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
@@ -474,11 +474,11 @@ getPrimarySlotId\(callback: AsyncCallback\<number\>\): void
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
@@ -515,9 +515,9 @@ getPrimarySlotId\(\): Promise\<number\>
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
@@ -553,11 +553,11 @@ getSignalInformation\(slotId: number, callback: AsyncCallback\<Array\<SignalInfo
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
@@ -601,11 +601,11 @@ getSignalInformation\(slotId: number\): Promise\<Array\<SignalInformation\>\>
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
@@ -781,11 +781,11 @@ isRadioOn\(callback: AsyncCallback\<boolean\>\): void
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
@@ -826,11 +826,11 @@ isRadioOn\(slotId: number, callback: AsyncCallback\<boolean\>\): void
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
@@ -877,11 +877,11 @@ isRadioOn\(slotId?: number\): Promise\<boolean\>
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
@@ -918,11 +918,11 @@ getOperatorName\(slotId: number, callback: AsyncCallback\<string\>\): void
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 
@@ -966,11 +966,11 @@ getOperatorName\(slotId: number\): Promise\<string\>
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
-| 401      | Parameter error.                             |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.                             |
 | 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
+| 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
+| 8300999  | Unknown error.                               |
 
 **示例：**
 

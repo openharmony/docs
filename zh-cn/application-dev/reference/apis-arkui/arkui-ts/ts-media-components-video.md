@@ -34,7 +34,7 @@ Video(value: VideoOptions)
 
 | 参数名              | 参数类型                                                     | 必填 | 参数描述                                                     |
 | ------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| src                 | string \| [Resource](ts-types.md#resource)                            | 否   | 视频播放源的路径，支持本地视频路径和网络路径。<br>支持在resources下面的video或rawfile文件夹里放置媒体资源。<br>支持dataability://的路径前缀，用于访问通过Data Ability提供的视频路径，具体路径信息详见 [DataAbility说明](../../../application-models/dataability-overview.md)。<br/>- 支持file:///data/storage路径前缀的字符串，用于读取应用沙箱路径内的资源。需要保证目录包路径下的文件有可读权限。<br/>**说明：**<br/>视频支持的格式是：mp4、mkv、TS。 |
+| src                 | string \| [Resource](ts-types.md#resource)                            | 否   | 视频的数据源，支持本地视频和网络视频。<br>Resource格式可以跨包/跨模块访问资源文件，常用于访问本地视频。<br/>- 支持rawfile文件下的资源，即通过$rawfile引用视频文件。<br/>string格式可用于加载网络视频和本地视频，常用于加载网络视频。<br/>- 支持网络视频地址。<br/>- 支持file://路径前缀的字符串，即[应用沙箱URI](../../apis-core-file-kit/js-apis-file-fileuri.md#constructor10)：file://\<bundleName>/\<sandboxPath>。用于读取应用沙箱路径内的资源。需要保证目录包路径下的文件有可读权限。<br/>**说明：**<br/>视频支持的格式是：mp4、mkv、TS。 |
 | currentProgressRate | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[PlaybackSpeed<sup>8+</sup>](#playbackspeed8枚举说明) | 否   | 视频播放倍速。<br/>**说明：**<br/>number取值仅支持：0.75，1.0，1.25，1.75，2.0。<br/>默认值：1.0 \| PlaybackSpeed.Speed_Forward_1_00_X |
 | previewUri          | string&nbsp;\| [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)&nbsp;\|&nbsp;[Resource](ts-types.md)  | 否   | 视频未播放时的预览图片路径，默认不显示图片。                 |
 | controller          | [VideoController](#videocontroller)                          | 否   | 设置视频控制器，可以控制视频的播放状态。                     |
@@ -345,6 +345,12 @@ stop(): void
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
+### reset<sup>12+</sup>
+
+reset(): void
+
+video组件重置AVPlayer。显示当前帧，再次播放时从头开始播放。
+
 ### setCurrentTime
 
 setCurrentTime(value: number)
@@ -486,16 +492,19 @@ struct VideoCreateComponent {
       Row() {
         Button('start').onClick(() => {
           this.controller.start() // 开始播放
-        }).margin(5)
+        }).margin(2)
         Button('pause').onClick(() => {
           this.controller.pause() // 暂停播放
-        }).margin(5)
+        }).margin(2)
         Button('stop').onClick(() => {
           this.controller.stop() // 结束播放
-        }).margin(5)
+        }).margin(2)
+        Button('reset').onClick(() => {
+          this.controller.reset() // 重置AVPlayer
+        }).margin(2)
         Button('setTime').onClick(() => {
           this.controller.setCurrentTime(10, SeekMode.Accurate) // 精准跳转到视频的10s位置
-        }).margin(5)
+        }).margin(2)
       }
 
       Row() {

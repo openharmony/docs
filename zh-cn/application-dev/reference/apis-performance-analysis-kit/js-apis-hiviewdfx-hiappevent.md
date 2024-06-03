@@ -41,7 +41,7 @@ Processor的配置信息需要由数据处理者提供，目前设备内暂未�
 
 | 错误码ID | 错误信息          |
 | ------- | ----------------- |
-| 401     | Parameter error. Possible causes: 1. The limit parameter is too small; 2. The parameter type error. |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -115,7 +115,7 @@ removeProcessor(id: number): void
 
 | 错误码ID | 错误信息          |
 | ------- | ----------------- |
-| 401     | Parameter error. Possible causes: 1. The limit parameter is too small; 2. The parameter type error. |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -156,7 +156,8 @@ write(info: AppEventInfo, callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID | 错误信息                                      |
 | -------- | --------------------------------------------- |
-| 11100001 | Function is disabled.                         |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 11100001 | Function disabled.                            |
 | 11101001 | Invalid event domain.                         |
 | 11101002 | Invalid event name.                           |
 | 11101003 | Invalid number of event parameters.           |
@@ -216,7 +217,8 @@ write(info: AppEventInfo): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息                                      |
 | -------- | --------------------------------------------- |
-| 11100001 | Function is disabled.                         |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 11100001 | Function disabled.                            |
 | 11101001 | Invalid event domain.                         |
 | 11101002 | Invalid event name.                           |
 | 11101003 | Invalid number of event parameters.           |
@@ -276,8 +278,8 @@ setEventParam(params: Record&lt;string, ParamType&gt;, domain: string, name?: st
 | 参数名 | 类型                           | 必填 | 说明           |
 | ------ | ------------------------------ | ---- | -------------- |
 | params | Record&lt;string, [ParamType](#paramtype12)&gt; | 是 | 事件自定义参数对象。参数名和参数值规格定义如下：<br>- 参数名为string类型，首字符必须为字母字符或$字符，中间字符必须为数字字符、字母字符或下划线字符，结尾字符必须为数字字符或字母字符，长度非空且不超过32个字符。<br>- 参数值为[ParamType](#paramtype12)类型，参数值长度需在1024个字符以内。<br>- 参数个数需在64个以内。 |
-| domain | string                        | 是 | 事件领域。 |
-| name   | string                        | 否 | 事件名称。 |
+| domain | string                        | 是 | 事件领域。事件领域可支持关联应用事件和系统事件（hiAppEvent.domain.OS）。 |
+| name   | string                        | 否 | 事件名称。默认为空字符串，空字符串表示关联事件领域下的所有事件名称。事件名称可支持关联应用事件和系统事件，其中系统事件仅支持关联崩溃事件（hiAppEvent.event.APP_CRASH）和卡死事件（hiAppEvent.event.APP_FREEZE）。 |
 
 **返回值：**
 
@@ -291,6 +293,7 @@ setEventParam(params: Record&lt;string, ParamType&gt;, domain: string, name?: st
 
 | 错误码ID | 错误信息                                      |
 | -------- | --------------------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 11101007 | The number of parameter keys exceeds the limit. |
 
 **示例：**
@@ -303,6 +306,7 @@ let params: Record<string, hiAppEvent.ParamType> = {
   "int_data": 100,
   "str_data": "strValue",
 };
+// 给应用事件追加自定义参数
 hiAppEvent.setEventParam(params, "test_domain", "test_event").then(() => {
   hilog.info(0x0000, 'hiAppEvent', `success to set svent param`);
 }).catch((err: BusinessError) => {
@@ -347,6 +351,7 @@ configure(config: ConfigOption): void
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 11103001 | Invalid max storage quota value. |
 
 **示例：**
@@ -399,7 +404,7 @@ setUserId(name: string, value: string): void
 
 | 错误码ID | 错误信息          |
 | ------- | ----------------- |
-| 401     | Parameter error. Possible causes: 1. The limit parameter is too small; 2. The parameter type error. |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -439,7 +444,7 @@ getUserId(name: string): string
 
 | 错误码ID | 错误信息          |
 | ------- | ----------------- |
-| 401     | Parameter error. Possible causes: 1. The limit parameter is too small; 2. The parameter type error. |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -476,7 +481,7 @@ setUserProperty(name: string, value: string): void
 
 | 错误码ID | 错误信息          |
 | ------- | ----------------- |
-| 401     | Parameter error. Possible causes: 1. The limit parameter is too small; 2. The parameter type error. |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -516,7 +521,7 @@ getUserProperty(name: string): string
 
 | 错误码ID | 错误信息          |
 | ------- | ----------------- |
-| 401     | Parameter error. Possible causes: 1. The limit parameter is too small; 2. The parameter type error. |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -560,6 +565,7 @@ addWatcher(watcher: Watcher): AppEventPackageHolder
 
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 11102001 | Invalid watcher name.           |
 | 11102002 | Invalid filtering event domain. |
 | 11102003 | Invalid row value.              |
@@ -662,6 +668,7 @@ removeWatcher(watcher: Watcher): void
 
 | 错误码ID | 错误信息              |
 | -------- | --------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 11102001 | Invalid watcher name. |
 
 **示例：**
@@ -771,6 +778,7 @@ setSize(size: number): void
 
 | 错误码ID | 错误信息            |
 | -------- | ------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 11104001 | Invalid size value. |
 
 **示例：**
@@ -802,6 +810,7 @@ setRow(size: number): void
 
 | 错误码ID | 错误信息            |
 | -------- | ------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 11104001 | Invalid size value. |
 
 **示例：**
@@ -849,7 +858,7 @@ let eventPkg = holder4.takeNext();
 | row       | number   | 是   | 事件包的事件数量。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。             |
 | size      | number   | 是   | 事件包的事件大小，单位为byte。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 | data      | string[] | 是   | 事件包的事件信息。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。             |
-| appEventInfos | Array<[AppEventInfo](#appeventinfo)> | 是   | 事件对象集合。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| appEventInfos<sup>12+</sup> | Array<[AppEventInfo](#appeventinfo)> | 是   | 事件对象集合。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
 
 ## AppEventGroup<sup>11+</sup>
 

@@ -370,6 +370,7 @@ fontFeature(value: string)
 | ------ | ------ | ---- | -------------- |
 | value  | string | 是   | 文字特性效果。 |
 
+Font Feature当前支持的属性见 [fontFeature属性列表](ts-basic-components-text.md#fontfeature12)。
 设置 Font Feature 属性，Font Feature 是 OpenType 字体的高级排版能力，如支持连字、数字等宽等特性，一般用在自定义字体中，其能力需要字体本身支持。
 更多 Font Feature 能力介绍可参考 https://www.w3.org/TR/css-fonts-3/#font-feature-settings-prop 和 https://sparanoid.com/lab/opentype-features/
 
@@ -480,6 +481,21 @@ maxFontSize(value: number | string | Resource)
 | type  | [TextDecorationType](ts-appendix-enums.md#textdecorationtype) | 是   | 设置文本装饰线样式。 |
 | color  | &nbsp;[ResourceColor](ts-types.md#resourcecolor) | 否   | 设置文本装饰线颜色。 |
 | style | [TextDecorationStyle](ts-appendix-enums.md#textdecorationstyle12) | 否   | 设置文本装饰线样式。 |
+
+## InsertValue<sup>12+</sup>对象说明
+
+| 名称    | 参数类型                                                    | 必填 | 描述                                                         |
+| ------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| insertOffset  | number | 是   | 插入的值的位置信息。 |
+| insertValue  | string | 是   | 插入的值。 |
+
+## DeleteValue<sup>12+</sup>对象说明
+
+| 名称    | 参数类型                                                    | 必填 | 描述                                                         |
+| ------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| deleteOffset  | number | 是   | 删除的值的位置信息。 |
+| direction  | [TextDeleteDirection](ts-appendix-enums.md#textdeletedirection12) | 是   | 删除值的方向。 |
+| deleteValue  | string | 是   | 删除的值。 | 
 
 ## CancelButtonStyle<sup>10+</sup>枚举说明
 
@@ -641,6 +657,62 @@ onEditChange(callback:&nbsp;Callback<&nbsp;boolean&nbsp;>)
 | 参数名    | 类型                                | 必填 | 说明                 |
 | --------- | ---------------------------------- | ---- | -------------------- |
 | isEditing | &nbsp;Callback<&nbsp;boolean&nbsp;> | 是   | 为true表示正在输入。 |
+
+### onWillInsert<sup>12+</sup>
+
+onWillInsert(callback: Callback\<InsertValue, boolean>)
+
+在将要输入时，触发该回调。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                                         | 必填 | 说明               |
+| ------ | ------------------------------------------------------------ | ---- | ------------------ |
+| callback  | Callback\<[InsertValue](#insertvalue12对象说明), boolean> | 是   | 在将要输入时调用的回调。<br/>在返回true时，表示正常插入，返回false时，表示不插入。 |
+
+### onDidInsert<sup>12+</sup>
+
+onDidInsert(callback: Callback\<InsertValue>)
+
+在输入完成时，触发该回调。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                                         | 必填 | 说明               |
+| ------ | ------------------------------------------------------------ | ---- | ------------------ |
+| callback  | Callback\<[InsertValue](#insertvalue12对象说明)> | 是   | 在输入完成时调用的回调。 |
+
+### onWillDelete<sup>12+</sup>
+
+onWillDelete(callback: Callback\<DeleteValue, boolean>)
+
+在将要删除时，触发该回调。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                                         | 必填 | 说明               |
+| ------ | ------------------------------------------------------------ | ---- | ------------------ |
+| callback  | Callback\<[DeleteValue](#deletevalue12对象说明), boolean> | 是   | 在将要删除时调用的回调。<br/>在返回true时，表示正常删除，返回false时，表示不删除。 |
+
+### onDidDelete<sup>12+</sup>
+
+onDidDelete(callback: Callback\<DeleteValue>)
+
+在删除完成时，触发该回调。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                                         | 必填 | 说明               |
+| ------ | ------------------------------------------------------------ | ---- | ------------------ |
+| callback  | Callback\<[DeleteValue](#deletevalue12对象说明)> | 是   | 在删除完成时调用的回调。 |
 
 ## SearchController
 
@@ -1100,3 +1172,58 @@ struct SearchExample {
 ```
 
 ![searchAdaptFont](figures/search_adapt_font.png)
+
+### 示例9
+
+该实例展示输入框支持插入和删除回调。
+
+```ts
+// xxx.ets
+// xxx.ets
+@Entry
+@Component
+struct SearchExample {
+  @State insertValue: string = ""
+  @State deleteValue: string = ""
+  @State insertOffset: number = 0
+  @State deleteOffset: number = 0
+  @State deleteDirection: number = 0
+
+  build() {
+    Row() {
+      Column() {
+        Search({ value: "Search支持插入回调文本" })
+          .height(60)
+          .onWillInsert((info) => {
+            this.insertValue = info.insertValue
+            return true;
+          })
+          .onDidInsert((info) => {
+            this.insertOffset = info.insertOffset
+          })
+
+        Text("insertValue:" + this.insertValue + "  insertOffset:" + this.insertOffset).height(30)
+
+        Search({ value: "Search支持删除回调文本b" })
+          .height(60)
+          .onWillDelete((info) => {
+            this.deleteValue = info.deleteValue
+            info.direction
+            return true;
+          })
+          .onDidDelete((info) => {
+            this.deleteOffset = info.deleteOffset
+            this.deleteDirection = info.direction
+          })
+
+        Text("deleteValue:" + this.deleteValue + "  deleteOffset:" + this.deleteOffset).height(30)
+        Text("deleteDirection:" + (this.deleteDirection == 0 ? "BACKWARD" : "FORWARD")).height(30)
+
+      }.width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+![SearchInsertAndDelete](figures/SearchInsertAndDelete.PNG)

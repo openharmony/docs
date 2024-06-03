@@ -61,6 +61,15 @@ OH_AVErrCode OH_VideoDecoder_Configure (OH_AVCodec *codec, OH_AVFormat *format )
 
 Configures a video decoder. Typically, you need to configure the video track description information that can be extracted from **OH_AVSource**. This function must be called prior to **Prepare**.
 
+Parameter verification rules are as follows:
+| Key                    | Value Within the Range| Value Out of Range| No Value Configured|
+| ---------------------- | -------- | -------- | ------ |
+| OH_MD_KEY_WIDTH        | Passed       | Failed       | Failed     |
+| OH_MD_KEY_HEIGHT       | Passed       | Failed       | Failed     |
+| OH_MD_KEY_PIXEL_FORMAT | Passed       | Failed       | Passed     |
+| OH_MD_KEY_FRAME_RATE   | Passed       | Failed       | Passed     |
+| OH_MD_KEY_ROTATION     | Passed       | Failed       | Passed     |
+
 **System capability**: SystemCapability.Multimedia.Media.VideoDecoder
 
 **Since**: 9
@@ -75,7 +84,6 @@ Configures a video decoder. Typically, you need to configure the video track des
 **Returns**
 
 Returns **AV_ERR_OK** if the operation is successful; returns an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise.
-
 
 ### OH_VideoDecoder_CreateByMime()
 
@@ -542,7 +550,13 @@ Sets the decryption configuration. This function can be called prior to **Prepar
 
 **Returns**
 
-Returns **AV_ERR_OK** if the operation is successful; returns an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise.
+Returns a result code defined in [OH_AVErrCode](_core.md#oh_averrcode). The following result codes are possible:
+
+**AV_ERR_OK**: The operation is successful.
+
+**AV_ERR_OPERATE_NOT_PERMIT**: The codec service or media key session service is in an incorrect state.
+
+**AV_ERR_INVALID_VAL**: The codec instance or media key session is a null pointer or invalid.
 
 
 ### OH_VideoDecoder_SetParameter()

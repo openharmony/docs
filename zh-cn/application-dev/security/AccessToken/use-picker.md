@@ -16,6 +16,8 @@ Picker由系统独立进程实现，应用可以通过拉起Picker组件，用�
 
 - [相机Picker （Camera Picker）](#相机picker)：拍照、录制
 
+<!--RP1--><!--RP1End-->
+
 ## 音频Picker
 
 使用音频Picker（AudioViewPicker）可访问、保存用户公共目录的音频文件。
@@ -51,3 +53,6 @@ Picker由系统独立进程实现，应用可以通过拉起Picker组件，用�
 使用相机Picker （Camera Picker）可实现拍照、录制。
 
 在应用需要申请权限**ohos.permission.CAMERA**以使用相机时，可以使用Camera Picker替代，使用方式请参考：[cameraPicker.pick](../../reference/apis-camera-kit/js-apis-cameraPicker.md#pick)。
+
+<!--RP2-->
+<!--RP2End-->

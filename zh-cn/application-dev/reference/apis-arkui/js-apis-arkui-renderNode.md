@@ -1768,6 +1768,9 @@ extern "C" __attribute__((constructor)) void RegisterEntryModule(void)
 ```
 
 修改工程中的`src/main/cpp/CMakeLists.txt`文件，添加如下内容：
+
+<!--code_no_check-->
+
 ```cmake
 # the minimum version of CMake.
 cmake_minimum_required(VERSION 3.4.1)
@@ -1785,6 +1788,9 @@ target_link_libraries(entry PUBLIC libnative_drawing.so)
 ```
 
 同时在工程中的`src/main/cpp/types/libentry/index.d.ts`文件中，添加自定义绘制函数在ArkTs侧的定义，如：
+
+<!--code_no_check-->
+
 ```ts
 import { DrawContext } from "@ohos.arkui.node"
 
@@ -2229,7 +2235,7 @@ class MyNodeController extends NodeController {
   }
 
   disposeRenderNode() {
-    const rootRenderNode = this.rootNode.getRenderNode();
+    const rootRenderNode = this.rootNode!.getRenderNode();
     if (rootRenderNode !== null) {
       rootRenderNode.removeChild(renderNode);
     }

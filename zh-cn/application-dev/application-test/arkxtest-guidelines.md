@@ -101,13 +101,7 @@ export default function abilityTest() {
 
 本章节主要介绍UI测试框架支持能力，以及对应能力API的使用方法。<br>UI测试基于单元测试，UI测试脚本在单元测试脚本上增加了对UiTest接口,具体请参考[API文档](../../application-dev/reference/apis-test-kit/js-apis-uitest.md)。<br>如下的示例代码是在上面的单元测试脚本基础上增量编写，实现的是在启动的应用页面上进行点击操作，然后检测当前页面变化是否为预期变化。
 
-1.增加依赖导包。
-
-```ts
-import { Driver, ON } from '@kit.TestKit';
-```
-
-2.编写index.ets页面代码。
+1.编写index.ets页面代码， 作为被测示例demo。
 
 ```ts
 @Entry
@@ -137,10 +131,11 @@ struct Index {
 }
 ```
 
-3.编写具体测试代码。
+2.在ohosTest > ets > test文件夹下.test.ets文件中编写具体测试代码。
 
 ```ts
 import { describe, it, expect } from '@ohos/hypium';
+// 导入测试依赖kit
 import { abilityDelegatorRegistry, Driver, ON } from '@kit.TestKit';
 import { UIAbility, Want } from '@kit.AbilityKit';
 
@@ -226,7 +221,7 @@ export default function abilityTest() {
 
 框架当前支持多种用例执行方式，通过上表中的-s参数后的配置键值对参数传入触发，如下表所示。
 
-| 配置参数值     | 配置参数含义                                                 | 配置参数有值                                                 | 配置参数示例                              |
+| 配置参数名     | 配置参数含义                                                 | 配置参数取值                                               | 配置参数示例                              |
 | ------------ | -----------------------------------------------------------------------------    | ------------------------------------------------------------ | ----------------------------------------- |
 | unittest     | 用例执行所使用OpenHarmonyTestRunner对象  | OpenHarmonyTestRunner或用户自定义runner名称                  | - s unittest OpenHarmonyTestRunner        |
 | class        | 指定要执行的测试套或测试用例                                   | {describeName}#{itName}，{describeName}                      | -s class attributeTest#testAttributeIt    |
@@ -242,73 +237,75 @@ export default function abilityTest() {
 
 **cmd窗口执行test命令**
 
+- 参数配置和命令基于Stage模型
 - 打开cmd窗口
 - 执行 aa test 命令
+
 
 示例代码1：执行所有测试用例。
 
 ```shell  
- hdc shell aa test -b xxx -p xxx -s unittest OpenHarmonyTestRunner
+ hdc shell aa test -b xxx -m xxx -s unittest OpenHarmonyTestRunner
 ```
 
 示例代码2：执行指定的describe测试套用例，指定多个需用逗号隔开。
 
 ```shell  
-  hdc shell aa test -b xxx -p xxx -s unittest OpenHarmonyTestRunner -s class s1,s2
+  hdc shell aa test -b xxx -m xxx -s unittest OpenHarmonyTestRunner -s class s1,s2
 ```
 
 示例代码3：执行指定测试套中指定的用例，指定多个需用逗号隔开。
 
 ```shell  
-  hdc shell aa test -b xxx -p xxx -s unittest OpenHarmonyTestRunner -s class testStop#stop_1,testStop1#stop_0
+  hdc shell aa test -b xxx -m xxx -s unittest OpenHarmonyTestRunner -s class testStop#stop_1,testStop1#stop_0
 ```
 
 示例代码4：执行指定除配置以外的所有的用例，设置不执行多个测试套需用逗号隔开。
 
 ```shell  
-  hdc shell aa test -b xxx -p xxx -s unittest OpenHarmonyTestRunner -s notClass testStop
+  hdc shell aa test -b xxx -m xxx -s unittest OpenHarmonyTestRunner -s notClass testStop
 ```
 
 示例代码5：执行指定it名称的所有用例，指定多个需用逗号隔开。
 
 ```shell  
-  hdc shell aa test -b xxx -p xxx -s unittest OpenHarmonyTestRunner -s itName stop_0
+  hdc shell aa test -b xxx -m xxx -s unittest OpenHarmonyTestRunner -s itName stop_0
 ```
 
 示例代码6：用例执行超时时长配置。
 
 ```shell  
-  hdc shell aa test -b xxx -p xxx -s unittest OpenHarmonyTestRunner -s timeout 15000
+  hdc shell aa test -b xxx -m xxx -s unittest OpenHarmonyTestRunner -s timeout 15000
 ```
 
 示例代码7：用例以breakOnError模式执行用例。
 
 ```shell  
-  hdc shell aa test -b xxx -p xxx -s unittest OpenHarmonyTestRunner -s breakOnError true
+  hdc shell aa test -b xxx -m xxx -s unittest OpenHarmonyTestRunner -s breakOnError true
 ```
 
 示例代码8：执行测试类型匹配的测试用例。
 
 ```shell  
-  hdc shell aa test -b xxx -p xxx -s unittest OpenHarmonyTestRunner -s testType function
+  hdc shell aa test -b xxx -m xxx -s unittest OpenHarmonyTestRunner -s testType function
 ```
 
 示例代码9：执行测试级别匹配的测试用例。
 
 ```shell  
-  hdc shell aa test -b xxx -p xxx -s unittest OpenHarmonyTestRunner -s level 0
+  hdc shell aa test -b xxx -m xxx -s unittest OpenHarmonyTestRunner -s level 0
 ```
 
 示例代码10：执行测试规模匹配的测试用例。
 
 ```shell  
-  hdc shell aa test -b xxx -p xxx -s unittest OpenHarmonyTestRunner -s size small
+  hdc shell aa test -b xxx -m xxx -s unittest OpenHarmonyTestRunner -s size small
 ```
 
 示例代码11：执行测试用例指定次数。
 
 ```shell  
-  hdc shell aa test -b xxx -p xxx -s unittest OpenHarmonyTestRunner -s stress 1000
+  hdc shell aa test -b xxx -m xxx -s unittest OpenHarmonyTestRunner -s stress 1000
 ```
 
 **查看测试结果**
@@ -390,11 +387,11 @@ hdc file recv /data/local/tmp/layout/record.csv D:\tool  # D:\tool 为本地存�
 {
 	"ABILITY": "com.ohos.launcher.MainAbility", // 前台应用界面
 	"BUNDLE": "com.ohos.launcher", // 操作应用
-	"CENTER_X": "", // 模拟捏合中心X, pinch事件
-	"CENTER_Y": "", // 模拟捏合中心Y, pinch事件
+	"CENTER_X": "", // 预留字段,暂未使用
+	"CENTER_Y": "", // 预留字段,暂未使用
 	"EVENT_TYPE": "pointer", //  
 	"LENGTH": "0", // 总体步长
-	"OP_TYPE": "click", //事件类型，当前支持点击、双击、长按、拖拽、捏合、滑动、抛滑动作录制
+	"OP_TYPE": "click", //事件类型，当前支持点击、双击、长按、拖拽、滑动、抛滑动作录制
 	"VELO": "0.000000", // 离手速度
 	"direction.X": "0.000000",// 总体移动X方向
 	"direction.Y": "0.000000", // 总体移动Y方向
@@ -427,17 +424,17 @@ hdc file recv /data/local/tmp/layout/record.csv D:\tool  # D:\tool 为本地存�
 ## shell命令方式注入UI模拟操作
 > 支持操作类型：点击 双击 长按 慢滑 快滑 拖拽 输入文字 KeyEvent。
 
-| 配置参数值       | 配置参数含义                                  | 配置参数有值                                                                                                                                                                                              | 示例                                                                                  |
-|-------------|-----------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------|
-| click       | 模拟单击操作                                  | point_x (必选参数,点击x坐标点)<br/> point_y (必选参数,点击y坐标点)                                                                                                                                                    | hdc shell uitest uiInput click point_x point_y                                      |
-| doubleClick | 模拟双击操作                                  | point_x (必选参数,双击x坐标点)<br/> point_y (必选参数,双击y坐标点)                                                                                                                                                    | hdc shell uitest uiInput doubleClick point_x point_y                                |
-| longClick   | 模拟长按操作                                  | point_x (必选参数,长按x坐标点)<br/> point_y (必选参数,长按y坐标点)                                                                                                                                                    | hdc shell uitest uiInput longClick point_x point_y                                  |
-| fling       | 模拟快滑操作                                  | from_x (必选参数,滑动起点x坐标)<br/> from_y(必选参数,滑动起点y坐标)<br/> to_x(必选参数,滑动终点x坐标)<br/> to_y(必选参数,滑动终点y坐标)<br/> swipeVelocityPps_ (可选参数,滑动速度,取值范围: 200-40000, 默认值: 600)<br/> stepLength(可选参数,滑动步长,默认值:滑动距离/50) | hdc shell uitest uiInput fling from_x from_y to_x to_y swipeVelocityPps_ stepLength |
-| swipe       | 模拟慢滑操作                                  | from_x (必选参数,滑动起点x坐标)<br/> from_y(必选参数,滑动起点y坐标)<br/> to_x(必选参数,滑动终点x坐标)<br/> to_y(必选参数,滑动终点y坐标)<br/> swipeVelocityPps_ (可选参数,滑动速度,取值范围: 200-40000, 默认值: 600))                                       | hdc shell uitest uiInput swipe from_x from_y to_x to_y swipeVelocityPps_            |
-| drag        | 模拟拖拽操作                                  | from_x (必选参数,拖拽起点x坐标)<br/> from_y(必选参数,拖拽起点y坐标)<br/> to_x(必选参数,拖拽终点x坐标)<br/> to_y(必选参数,拖拽终点y坐标)<br/> swipeVelocityPps_ (可选参数,滑动速度,取值范围: 200-40000, 默认值: 600))                                       | hdc shell uitest uiInput drag from_x from_y to_x to_y swipeVelocityPps_             |
-| dircFling   | 模拟指定方向滑动操作                              | direction (可选参数,滑动方向,可选值: [0,1,2,3], 滑动方向: [左,右,上,下],默认值: 0)<br/> swipeVelocityPps_ (可选参数,滑动速度,取值范围: 200-40000, 默认值: 600)<br/> stepLength(可选参数,滑动步长,默认值:滑动距离/50)                                                                                                                                  | hdc shell uitest uiInput dircFling direction swipeVelocityPps_ stepLength                                       |
-| inputText        | 模拟输入框输入文本操作                             | point_x (必选参数,输入框x坐标点)<br/> point_y (必选参数,输入框y坐标点)<br/> input(输入文本)                                                                                                                                 | hdc shell uitest uiInput inputText  point_x point_y text                                  |
-| keyEvent    | 模拟实体按键事件(如:键盘,电源键,返回上一级,返回桌面等),以及组合按键操作 | keyID (必选参数,实体按键对应ID)<br/> keyID2 (可选参数,实体按键对应ID)                                                                                                                                                   | hdc shell uitest uiInput keyEvent keyID                                             |
+| 配置参数名       | 配置参数含义                                  | 配置参数取值                                                                                                                                                                                                                | 示例                                                                                  |
+|-------------|-----------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------|
+| click       | 模拟单击操作                                  | point_x (必选参数,点击x坐标点)<br/> point_y (必选参数,点击y坐标点)                                                                                                                                                                      | hdc shell uitest uiInput click point_x point_y                                      |
+| doubleClick | 模拟双击操作                                  | point_x (必选参数,双击x坐标点)<br/> point_y (必选参数,双击y坐标点)                                                                                                                                                                      | hdc shell uitest uiInput doubleClick point_x point_y                                |
+| longClick   | 模拟长按操作                                  | point_x (必选参数,长按x坐标点)<br/> point_y (必选参数,长按y坐标点)                                                                                                                                                                      | hdc shell uitest uiInput longClick point_x point_y                                  |
+| fling       | 模拟快滑操作                                  | from_x (必选参数,滑动起点x坐标)<br/> from_y(必选参数,滑动起点y坐标)<br/> to_x(必选参数,滑动终点x坐标)<br/> to_y(必选参数,滑动终点y坐标)<br/> swipeVelocityPps_ (可选参数,滑动速度,取值范围: 200-40000, 默认值: 600, 单位: px/s)<br/> stepLength(可选参数,滑动步长,默认值:滑动距离/50, 单位: px) | hdc shell uitest uiInput fling from_x from_y to_x to_y swipeVelocityPps_ stepLength |
+| swipe       | 模拟慢滑操作                                  | from_x (必选参数,滑动起点x坐标)<br/> from_y(必选参数,滑动起点y坐标)<br/> to_x(必选参数,滑动终点x坐标)<br/> to_y(必选参数,滑动终点y坐标)<br/> swipeVelocityPps_ (可选参数,滑动速度,取值范围: 200-40000, 默认值: 600, 单位: px/s))                                               | hdc shell uitest uiInput swipe from_x from_y to_x to_y swipeVelocityPps_            |
+| drag        | 模拟拖拽操作                                  | from_x (必选参数,拖拽起点x坐标)<br/> from_y(必选参数,拖拽起点y坐标)<br/> to_x(必选参数,拖拽终点x坐标)<br/> to_y(必选参数,拖拽终点y坐标)<br/> swipeVelocityPps_ (可选参数,滑动速度,取值范围: 200-40000, 默认值: 600, 单位: px/s))                                               | hdc shell uitest uiInput drag from_x from_y to_x to_y swipeVelocityPps_             |
+| dircFling   | 模拟指定方向滑动操作                              | direction (可选参数,滑动方向,可选值: [0,1,2,3], 滑动方向: [左,右,上,下],默认值: 0)<br/> swipeVelocityPps_ (可选参数,滑动速度,取值范围: 200-40000, 默认值: 600, 单位: px/s)<br/> stepLength(可选参数,滑动步长,默认值:滑动距离/50, 单位: px)                                            | hdc shell uitest uiInput dircFling direction swipeVelocityPps_ stepLength                                       |
+| inputText        | 模拟输入框输入文本操作                             | point_x (必选参数,输入框x坐标点)<br/> point_y (必选参数,输入框y坐标点)<br/> input(输入文本)                                                                                                                                                   | hdc shell uitest uiInput inputText  point_x point_y text                                  |
+| keyEvent    | 模拟实体按键事件(如:键盘,电源键,返回上一级,返回桌面等),以及组合按键操作 | keyID (必选参数,实体按键对应ID)<br/> keyID2 (可选参数,实体按键对应ID)                                                                                                                                                                     | hdc shell uitest uiInput keyEvent keyID                                             |
 
 示例代码1：执行点击事件。
 ```shell  

@@ -28,7 +28,7 @@ The input parameter value is out of range.
 
 **错误信息**
 
-Operation failed. Cannot connect to service.
+Service connection failed.
 
 **错误描述**
 
@@ -67,7 +67,7 @@ System internal error.
 
 **错误信息**
 
-Do not have sim card.
+No SIM card found.
 
 **错误描述**
 
@@ -86,7 +86,7 @@ Do not have sim card.
 
 **错误信息**
 
-Unknown error code.
+Unknown error.
 
 **错误描述**
 
@@ -124,7 +124,7 @@ SIM卡未激活。
 
 **错误信息**
 
-SIM card operation error.
+The SIM card failed to read or update data.
 
 **错误描述**
 

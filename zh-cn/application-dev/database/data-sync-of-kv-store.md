@@ -80,7 +80,7 @@
 | 接口名称 | 描述 | 
 | -------- | -------- |
 | createKVManager(config: KVManagerConfig): KVManager | 创建一个KVManager对象实例，用于管理数据库对象。 | 
-| getKVStore&lt;T&gt;(storeId: string, options: Options, callback: AsyncCallback&lt;T&gt;): void | 指定Options和storeId，创建并得到指定类型的KVStore数据库。 | 
+| getKVStore&lt;T&gt;(storeId: string, options: Options, callback: AsyncCallback&lt;T&gt;): void | 指定options和storeId，创建并得到指定类型的KVStore数据库。 | 
 | put(key: string, value: Uint8Array\|string\|number\|boolean, callback: AsyncCallback&lt;void&gt;): void | 插入和更新数据。 | 
 | on(event: 'dataChange', type: SubscribeType, listener: Callback&lt;ChangeNotification&gt;): void | 订阅数据库中数据的变化。 | 
 | get(key: string, callback: AsyncCallback&lt;boolean \| string \| number \| Uint8Array&gt;): void | 查询指定Key键的值。 | 

@@ -16,26 +16,24 @@
 
 | 名称 | 说明                                                                                                                                        |
 | -------- |----------------------------------------------------------------------------------------------------------------------------------------|
-| setUnifiedData(data: udc.UnifiedData): Promise<void> | 将统一数据类型的数据写入系统剪贴板。 
+| setUnifiedData(data: udc.UnifiedData): Promise\<void> | 将统一数据类型的数据写入系统剪贴板。 
 | setUnifiedDataSync(data: udc.UnifiedData): void | 将统一数据类型的数据写入系统剪贴板，此接口为同步接口。                                                                                                                          |
-| getUnifiedData(): Promise<udc.UnifiedData> | 从系统剪贴板中读取统一数据类型的数据。                                                                                                                          |
+| getUnifiedData(): Promise\<udc.UnifiedData> | 从系统剪贴板中读取统一数据类型的数据。                                                                                                                          |
 | getUnifiedDataSync(): udc.UnifiedData | 从系统剪贴板中读取统一数据类型的数据，此接口为同步接口。                                                                                                                   |
 
 ## 开发步骤
 
 1. 导入`@ohos.pasteboard.d.ts`,`@ohos.data.unifiedDataChannel`和`@ohos.data.uniformTypeDescriptor`模块。
    
-   ```ts
-   import pasteboard from '@ohos.pasteboard';
-   import unifiedDataChannel from '@ohos.data.unifiedDataChannel';
-   import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
-   import basic from 'basic'
+   ```ts\
+   import {unifiedDataChannel, uniformTypeDescriptor} from '@kit.ArkData';
+   import {BusinessError, pasteboard} from '@kit.BasicServicesKit'
    ```
 
 2. 构造一条PlainText数据,并书写获取延时数据的函数。
 
    ```ts
-   let plainTextData = new unifiedDataChannel.unifiedData();
+   let plainTextData = new unifiedDataChannel.UnifiedData();
    globalThis.GetDelayPlainText = ((dataType:string) => {
      let plainText = new unifiedDataChannel.PlainText();
      plainText.details = {
@@ -58,7 +56,7 @@
      plainTextData.properties.getDelayData = globalThis.GetDelayPlainText;
      pasteboard.getSystemPasteboard().setUnifiedData(plainTextData).then(()=>{
        // 存入成功，处理正常场景
-     }).catch((Error : basic.BusinessError) => {
+     }).catch((error: BusinessError) => {
        // 处理异常场景
      });
    })
@@ -78,7 +76,7 @@
        } else {
          globalThis.setLog('Get Plain Text Data No Success, Type is: ' + records[0].getType());
        }
-     }).catch((Error : basic.BusinessError) => {
+     }).catch((error: BusinessError) => {
        //处理异常场景
      })
    })

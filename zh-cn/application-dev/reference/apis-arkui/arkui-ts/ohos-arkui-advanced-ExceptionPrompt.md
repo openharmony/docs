@@ -59,7 +59,7 @@ PromptOptions定义options的类型。
 | marginType | [MarginType](#margintype) | 是 | 指定当前异常提示的边距样式 。 |
 | actionText | [ResourceStr](ts-types.md#resourcestr) | 否 | 指定当前异常提示的右侧图标按钮的文字内容。 |
 | marginTop | [Dimension](ts-types.md#dimension10) | 是 | 指定当前异常提示的距离顶部的位置。 |
-| isShown | boolean | 否 | 指定当前异常提示的显隐状态。<br />true:显示状态。<br />fasle：隐藏状态。 |
+| isShown | boolean | 否 | 指定当前异常提示的显隐状态。<br />true:显示状态。<br />false：隐藏状态。 |
 
 ## MarginType
 

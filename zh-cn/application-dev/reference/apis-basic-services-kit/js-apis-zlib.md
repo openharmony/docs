@@ -476,7 +476,7 @@ compressFiles(inFiles: Array&lt;string&gt;, outFile: string, options: Options): 
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 900001   | The input source file is invalid.                            |
-| 900003   | The input destination file is invalid.                       |
+| 900002   | The input destination file is invalid.                       |
 
 **示例：**
 
@@ -565,6 +565,8 @@ let checksum = zlib.createChecksumSync()
 adler32(adler: number, buf: ArrayBuffer): Promise&lt;number&gt;
 
 计算Adler-32校验和，使用Promise异步返回。成功时返回计算后的Adler-32校验和，失败时返回错误码。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -1121,6 +1123,7 @@ compress2(dest: ArrayBuffer, source: ArrayBuffer, level: CompressLevel, sourceLe
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
+| 17800004 | ZStream error.                                               |
 | 17800007 | Buffer error.                                                |
 
 **示例：**
@@ -1379,68 +1382,6 @@ async function demo() {
 }
 ```
 
-### inflateUndermine<sup>12+</sup>
-
-inflateUndermine(strm: ZStream, subvert: number): Promise&lt;ReturnStatus&gt;
-
-验证压缩流结构内部的校验和，使用Promise异步返回。成功时返回结果状态。
-
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
-
-**系统能力：** SystemCapability.BundleManager.Zlib
-
-**参数：**
-
-| 参数名  | 类型    | 必填 | 说明                            |
-| ------- | ------- | ---- | ------------------------------- |
-| strm    | ZStream | 是   | 参考[ZStream定义](#zstream12)。 |
-| subvert | number  | 是   | 是否破坏内部的标志。            |
-
-**返回值：**
-
-| 类型                                              | 说明                        |
-| ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise对象。返回结果状态。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.zlib错误码](./errorcode-zlib.md)。
-
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
-| 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
-| 17800004 | ZStream error.                                               |
-| 17800005 | Data error                                                   |
-
-**示例：**
-
-```ts
-import zlib from '@ohos.zlib';
-import base from '@ohos.base';
-
-async function demo() {
-    let str = 'hello world!';
-    let arrayBufferIn = new ArrayBuffer(str.length);
-    let byteArray = new Uint8Array(arrayBufferIn);
-    for (let i = 0, j = str.length; i < j; i++) {
-        byteArray[i] = str.charCodeAt(i)
-    }
-    let arrayBufferOut = new ArrayBuffer(100);
-    let zip = zlib.createZipSync();
-    await zip.inflateInit({nextIn: arrayBufferIn, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1}
-    ).then(data => {
-        console.info('inflateInit success');
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
-    await zip.inflateUndermine({availableOut: 1}, 5).then(data => {
-        console.info('inflateUndermine success');
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
-}
-```
-
 ### inflateSyncPoint<sup>12+</sup>
 
 inflateSyncPoint(strm: ZStream): Promise&lt;ReturnStatus&gt;
@@ -1532,6 +1473,7 @@ inflateSync(strm: ZStream): Promise&lt;ReturnStatus&gt;
 | 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
 | 17800004 | ZStream error.                                               |
 | 17800005 | Data error.                                                  |
+| 17800007 | Buffer error.                                                |
 
 **示例：**
 
@@ -1684,6 +1626,7 @@ inflateSetDictionary(strm: ZStream, dictionary: ArrayBuffer): Promise&lt;ReturnS
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
 | 17800004 | ZStream error.                                               |
+| 17800005 | Data error.                                                  |
 
 **示例：**
 
@@ -2431,11 +2374,12 @@ inflateBackInit(strm: ZStream, windowBits: number, window: ArrayBuffer): Promise
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.zlib错误码](./errorcode-zlib.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
+| 17800004 | ZStream error.                                               |
 
 **示例：**参考[inflateBack](#inflateback12)
 
@@ -2909,6 +2853,7 @@ deflate(strm: ZStream, flush: CompressFlushMode): Promise&lt;ReturnStatus&gt;
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
 | 17800004 | ZStream error.                                               |
+| 17800007 | Buffer error.                                                |
 
 **示例：**
 
@@ -4289,7 +4234,7 @@ struct Index {
   build() {
     Row() {
       Column() {
-        Button('test gzip interface')ts
+        Button('test gzip interface')
           .type(ButtonType.Capsule)
           .height(60)
           .width(200)
@@ -4326,9 +4271,10 @@ gzclose(): Promise&lt;ReturnStatus&gt;
 
 以下错误码的详细介绍请参见[ohos.zlib错误码](./errorcode-zlib.md)。
 
-| 错误码ID | 错误信息       |
-| -------- | -------------- |
-| 17800004 | ZStream error. |
+| 错误码ID | 错误信息                  |
+| -------- | ------------------------- |
+| 17800004 | ZStream error.            |
+| 17800006 | Memory allocation failed. |
 
 **示例：**
 
@@ -4817,9 +4763,10 @@ gzclosew(): Promise&lt;ReturnStatus&gt;
 
 以下错误码的详细介绍请参见[ohos.zlib错误码](./errorcode-zlib.md)。
 
-| 错误码ID | 错误信息       |
-| -------- | -------------- |
-| 17800004 | ZStream error. |
+| 错误码ID | 错误信息                  |
+| -------- | ------------------------- |
+| 17800004 | ZStream error.            |
+| 17800006 | Memory allocation failed. |
 
 **示例：**
 

@@ -9,7 +9,7 @@ The **keyCode** module provides keycode values for key devices, such as the keyb
 ## Modules to Import
 
 ```js
-import {KeyCode} from '@ohos.multimodalInput.keyCode';
+import {KeyCode} from '@kit.InputKit';
 ```
 
 ## KeyCode

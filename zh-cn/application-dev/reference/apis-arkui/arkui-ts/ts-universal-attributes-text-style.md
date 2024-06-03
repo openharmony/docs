@@ -129,6 +129,43 @@ decoration(value: DecorationStyleInterface)
 | value  | [DecorationStyleInterface<sup>12+</sup>](ts-universal-styled-string.md#decorationstyleinterface对象说明) | 是   | 文本装饰线样式对象。<br/>默认值：<br/>{<br/>&nbsp;type:&nbsp;TextDecorationType.None,<br/>&nbsp;color:&nbsp;Color.Black,<br/>&nbsp;style:&nbsp;TextDecorationStyle.SOLID&nbsp;<br/>} |
 
 
+## TextRange<sup>12+</sup>
+
+文本范围。
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -- | -- | -- | -- |
+| start | number | 否 | 起始索引。 |
+| end | number | 否 | 结束索引。 |
+
+## OnDidChangeCallback<sup>12+</sup>
+
+type OnDidChangeCallback = (rangeBefore: TextRange, rangeAfter: TextRange) => void
+
+文本变换后回调。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -- | -- | -- | -- |
+| rangeBefore | [TextRange](#textrange12) | 是 | 文本变化前将要被替换的文本范围。 |
+| rangeAfter | [TextRange](#textrange12) | 是 | 文本变化后新增内容的文本范围。 |
+
+## StyledStringChangedListener<sup>12+</sup>
+属性字符串的文本内容变化监听器
+| 参数名 | 类型 | 必填 | 说明 |
+| -- | -- | -- | -- |
+| onWillChange | Callback<[StyledStringChangeValue](#styledstringchangevalue12), boolean> | 否 | 文本内容将要变化回调函数。 |
+| onDidChange | [OnDidChangeCallback](#ondidchangecallback12) | 否 | 文本内容完成变化回调函数。 |
+
+## StyledStringChangeValue<sup>12+</sup>
+属性字符串的文本变化信息
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -- | -- | -- | -- |
+| range | TextRange | 是 | 即将被替换的属性字符串子串在原字符串中的范围。 |
+| replacementString | [StyledString](ts-universal-styled-string.md#styledstring) | 是 | 用于替换的属性字符串。 |
+
 ## 示例
 
 ```ts

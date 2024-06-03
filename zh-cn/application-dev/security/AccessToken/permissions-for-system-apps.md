@@ -877,6 +877,18 @@
 
 **起始版本**：9
 
+### ohos.permission.START_DLP_CRED
+
+允许系统应用或者系统服务拉起DLP凭据管理应用。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
 ### ohos.permission.START_SHORTCUT
 
 允许应用拉起快捷方式。
@@ -2057,6 +2069,42 @@
 
 **起始版本**：12
 
+### ohos.permission.EXEMPT_CAMERA_PRIVACY_INDICATOR
+
+允许应用在使用相机权限时不呈现提醒。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.EXEMPT_MICROPHONE_PRIVACY_INDICATOR
+
+允许应用在使用麦克风权限时不呈现提醒。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.EXEMPT_LOCATION_PRIVACY_INDICATOR
+
+允许应用在使用位置权限时不呈现提醒。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
 ### ohos.permission.GET_SUPER_PRIVACY
 
 允许获取超级隐私模式的状态。
@@ -2986,6 +3034,54 @@
 允许应用卸载应用分身。
 
 **权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.ACCESS_DEVICE_COLLABORATION_PRIVATE_ABILITY
+
+允许系统服务或系统应用访问多屏协同私有应用能力。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.ACCESS_FILE_CONTENT_SHARE
+
+允许系统服务或系统应用访问共享文件内容。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.ACCESS_RINGTONE_RESOURCE
+
+允许系统应用访问和写入铃音数据公共目录的权限。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.ACCESS_SEARCH_SERVICE
+
+允许系统应用调用融合搜索服务提供的本地搜索能力。
+
+**权限级别**：system_basic
 
 **授权方式**：system_grant
 

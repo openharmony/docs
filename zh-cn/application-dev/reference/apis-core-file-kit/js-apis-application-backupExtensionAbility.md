@@ -133,7 +133,7 @@ getBackupInfo(): string;
   ```ts
 
   class BackupExt extends BackupExtension {
-    async getBackupInfo(): string {
+    async getBackupInfo(): Promise<string> {
       console.log(`getBackupInfo ok`);
       let info = "app diy info";
       return info;

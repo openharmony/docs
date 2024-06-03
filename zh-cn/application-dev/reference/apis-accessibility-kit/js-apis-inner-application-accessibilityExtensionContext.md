@@ -626,6 +626,7 @@ injectGesture(gesturePath: GesturePath): Promise\<void>;
 
 | 错误码ID   | 错误信息                                     |
 | ------- | ---------------------------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 9300003 | No accessibility permission to perform the operation. |
 
 **示例：**
@@ -674,6 +675,7 @@ injectGesture(gesturePath: GesturePath, callback: AsyncCallback\<void>): void
 
 | 错误码ID   | 错误信息                                     |
 | ------- | ---------------------------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 9300003 | No accessibility permission to perform the operation. |
 
 **示例：**

@@ -262,7 +262,7 @@ Remove all comments including single line, multi line and JsDoc comments, in a p
 
 #### `-keep-property-name` [,identifiers,...]
 
-Specifies property names that you want to keep. For example,
+Specifies property names that you want to keep, and this option supports the use of [wildcards for name categories](#wildcards-for-name-categories). For example,
 
 ```
 -keep-property-name
@@ -322,7 +322,7 @@ testNapi.foo()
 
 #### `-keep-global-name` [,identifiers,...]
 
-Specifies names that you want to keep in the global scope. For example,
+Specifies names that you want to keep in the global scope, and this option supports the use of [wildcards for name categories](#wildcards-for-name-categories). For example,
 
 ```
 -keep-global-name
@@ -356,7 +356,7 @@ let d = new MyClass();      // MyClass can be safely obfuscated
 
 #### `-keep-file-name` [,identifiers,...]
 
-Specify the name of files/folders to keep (no need to write the file suffix). for example,
+Specify the name of files/folders to keep (no need to write the file suffix), and this option supports the use of [wildcards for name categories](#wildcards-for-name-categories). for example,
 
 ```
 -keep-file-name
@@ -374,8 +374,8 @@ const module2 = import(moduleName)   // dynamic reference cannot identify whethe
 
 #### `-keep-comments`
 
-To retain JsDoc comments above elements in declaration files, such as preserving the JsDoc comment above the Human class,
-you can make the following configuration:
+To retain JsDoc comments above elements in declaration files, such as preserving the JsDoc comment above the Human class, and this option supports the use of [wildcards for name categories](#wildcards-for-name-categories).
+You can make the following configuration:
 
 ```
 -keep-comments
@@ -405,7 +405,7 @@ If your are building HAR with this option, then the kept names will be merged in
 #### `-keep` path
 
 Names(such as variable names, class names, property names, etc.) in the specified path are not obfuscated. This path can be a file or a folder. If it is a folder, the files in the folder and the files in subfolders will not be obfuscated.  
-The path only supports relative paths, `./` and `../` are relative to the directory where the obfuscation configuration file is located.
+The path only supports relative paths, `./` and `../` are relative to the directory where the obfuscation configuration file is located, and this option supports the use of [wildcards for path categories](#wildcards-for-path-categories).
 
 ```
 -keep
@@ -417,6 +417,100 @@ The path only supports relative paths, `./` and `../` are relative to the direct
 **Note**:
 
 This option does not affect the function of file name obfuscation `-enable-filename-obfuscation`
+
+#### Wildcards supported in keep options
+##### Wildcards for name categories
+
+The usage of name categories wildcards is as follows:
+
+| Wildcard | Meaning                              | Example                                            |
+| -------- | ------------------------------------ | -------------------------------------------------- |
+| ?        | Matches any single character         | "AB?" can match "ABC", etc., but cannot match "AB" |
+| \*       | Matches any number of any characters | "*AB*" can match "AB", "aABb", "cAB", "ABc", etc.  |
+
+**Examples**：
+
+Retains all property names starting with 'a':
+```
+-keep-property-name
+a*
+```
+
+Retains all single-character property names:
+```
+-keep-property-name
+?
+```
+
+Retains all property names:
+
+```
+-keep-property-name
+*
+```
+
+
+##### Wildcards for path categories
+
+
+The usage of path categories wildcards is as follows:
+
+| Wildcard | Meaning                                                                                                                                             | Example                                                       |
+| -------- | --------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------- |
+| ?        | Matches any single character except path separator '/'                                                                                              | "../a?" can match "../ab", etc., but cannot match "../a/"     |
+| \*       | Matches any number of any characters except path separator '/'                                                                                      | "../a*/c" can match "../ab/c", but cannot match "../ab/d/s/c" |
+| \*\*     | Matches any number of any characters                                                                                                                | "../a**/c" can match "../ab/c", and also "../ab/d/s/c"        |
+| !        | Represents negation and can only be written at the beginning of a path to exclude certain cases that already exist in the user-configured whitelist | "!../a/b/c.ets" means except "../a/b/c.ets"                   |
+
+**Examples**：
+
+Indicates that the c.ets files in all folders in ../a/b/ (excluding subfolders) will not be obfuscated:
+```
+-keep
+../a/b/*/c.ets
+```
+
+Indicates that the c.ets files in all folders in ../a/b/ (including subfolders) will not be obfuscated:
+```
+-keep
+../a/b/**/c.ets
+```
+
+Indicates that except for the c.ets file, all other files in ../a/b/ will not be obfuscated. The '!' cannot be used alone, and it can only be used to exclude cases already in the whitelist:
+
+```
+-keep
+../a/b/
+!../a/b/c.ets
+```
+
+Indicates that all files will not be obfuscated:
+
+```
+-keep
+*
+```
+
+**Note**：
+
+(1)The above options do not support configuring wildcards '*', '?', '!' for other meanings.
+
+For example:
+```
+class A {
+  '*'= 1
+}
+-keep-property-name
+*
+```
+
+It becomes ineffective when you only want to retain the '\*' property.
+
+Here, \* indicates matching any number of any characters, resulting in all property names not being obfuscated, rather than only '\*' not being obfuscated.
+
+(2) The -keep option only allows the use of '/' as the path separator and does not support '\\' or '\\\\'.
+
+(3) The whitelist does not support configuring the following special characters: '\\', '\^', '\$', '\+', '\|', '\[', '\]', '\{', '\}', '\(', '\)'.
 
 ### Comments
 

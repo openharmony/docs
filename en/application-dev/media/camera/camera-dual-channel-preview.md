@@ -52,37 +52,10 @@ The figure below shows the recommended API calling process of the dual-channel p
 
 4. Create a surface of an **\<XComponent>** object.
 
-   For details, see [Camera Preview](camera-preview.md).
-
-   ```ets
-   //xxx.ets
-   // Create an XComponentController object.
-   @Component
-   struct XComponentPage {
-     // Create an XComponentController object.
-     mXComponentController: XComponentController = new XComponentController;
-
-     build() {
-       Flex() {
-         // Create an XComponent object.
-         XComponent({
-           id: '',
-           type: 'surface',
-           libraryname: '',
-           controller: this.mXComponentController
-         })
-           .onLoad(() => {
-             // Set the surface width and height (1920 x 1080). For details about how to set the preview size, see the preview resolutions supported by the current device, which are obtained from previewProfilesArray.
-             this.mXComponentController.setXComponentSurfaceSize({surfaceWidth:1920,surfaceHeight:1080});
-             // Obtain the surface ID.
-             let surfaceId: string = this.mXComponentController.getXComponentSurfaceId();
-           })
-           .width('1920px')
-           .height('1080px')
-       }
-     }
-   }
-   ```
+   The **\<XComponent>**, the capabilities of which are provided by the UI, offers the surface for preview streams. For details about how to obtain the surface ID, see [getXcomponentSurfaceId](../../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md#getxcomponentsurfaceid). For details about the component, see [XComponent](../../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md).
+   > **NOTE**
+   >
+   > The preview stream and video output stream must have the same aspect ratio of the resolution. For example, the aspect ratio of the surface of the **\<XComponent>** is 1920:1080 (which is equal to 16:9), then the aspect ratio of the resolution of the preview stream must also be 16:9. This means that the resolution can be 640:360, 960:540, 1920:1080, or the like.
 
 5. Implement dual-channel preview.
 

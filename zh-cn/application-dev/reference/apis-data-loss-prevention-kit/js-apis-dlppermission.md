@@ -1044,7 +1044,6 @@ cleanSandboxAppConfig(): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | Parameter error. |
 | 19100001 | Invalid parameter value. |
 | 19100007 | This API cannot be called by DLP sandbox applications. |
 | 19100011 | System service exception. |
@@ -1081,7 +1080,6 @@ getSandboxAppConfig(): Promise&lt;string&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | Parameter error. |
 | 19100001 | Invalid parameter value. |
 | 19100011 | System service exception. |
 | 19100018 | Not authorized application. |
@@ -1127,13 +1125,11 @@ isDLPFeatureProvided(): Promise&lt;boolean&gt;
 import { dlpPermission } from '@kit.DataLossPreventionKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async checkIsDLPFeatureProvided() {
-  dlpPermission.isDLPFeatureProvided().then((res) => {
-    console.info('res', JSON.stringify(res));
-  }).catch((err: BusinessError) => {
-    console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
-  });
-}
+dlpPermission.isDLPFeatureProvided().then((res) => {
+  console.info('res', JSON.stringify(res));
+}).catch((err: BusinessError) => {
+  console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
+});
 ```
 
 ## ActionFlagType

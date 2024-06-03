@@ -279,6 +279,8 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 
 枚举，焦点模型。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Audio.Interrupt
 
 | 名称                         | 值      | 说明       |
@@ -302,6 +304,8 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 
 枚举，设备角色。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
 | 名称          |  值    | 说明           |
@@ -312,6 +316,8 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 ## DeviceType
 
 枚举，设备类型。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
@@ -431,6 +437,8 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 ## AudioEncodingType<sup>8+</sup>
 
 枚举，音频编码类型。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Core
 
@@ -560,6 +568,8 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 
 枚举，音效模式。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
 | 名称               | 值     | 说明       |
@@ -583,6 +593,8 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 
 枚举，中断类型。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
 | 名称                 |  值     | 说明                   |
@@ -594,6 +606,8 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 
 枚举，强制打断类型。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
 | 名称            |  值    | 说明                                 |
@@ -604,6 +618,8 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 ## InterruptHint
 
 枚举，中断提示。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -639,8 +655,8 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 | 名称          | 类型                        | 必填  | 说明             |
 | ------------- | --------------------------- | ---- | ---------------- |
 | content       | [ContentType](#contenttypedeprecated) | 否   | 音频内容类型。<br>API version 8、9为必填参数，从API version 10开始，变更为可选参数。 |
-| usage         | [StreamUsage](#streamusage) | 是   | 音频流使用类型。 |
-| rendererFlags | number                      | 是   | 音频渲染器标志。<br>0代表普通音频渲染器，1代表低时延音频渲染器。ArkTS接口暂不支持低时延音频渲染器。 |
+| usage         | [StreamUsage](#streamusage) | 是   | 音频流使用类型。 <br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。|
+| rendererFlags | number                      | 是   | 音频渲染器标志。<br>0代表普通音频渲染器，1代表低时延音频渲染器。ArkTS接口暂不支持低时延音频渲染器。 <br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。|
 
 ## AudioRendererOptions<sup>8+</sup>
 
@@ -666,6 +682,8 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 ## InterruptEvent<sup>9+</sup>
 
 播放中断时，应用接收的中断事件。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -725,6 +743,8 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 
 枚举，流设备变更原因。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
 | 名称                                        |  值     | 说明              |
@@ -737,6 +757,8 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 ## AudioStreamDeviceChangeInfo<sup>11+</sup>
 
 流设备变更时，应用接收的事件。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
@@ -3152,7 +3174,7 @@ try {
 
 getMaxAmplitudeForInputDevice(inputDevice: AudioDeviceDescriptor): Promise&lt;number&gt;
 
-获取输入设备音频流的最大电平值，大小取值在0-1之间，最小为0。
+获取输入设备音频流的最大电平值，大小取值在0-1之间，最小为0，使用Promise方式异步返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -3183,30 +3205,27 @@ getMaxAmplitudeForInputDevice(inputDevice: AudioDeviceDescriptor): Promise&lt;nu
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let inputDeviceDesc: audio.AudioDeviceDescriptor;
-
-let capturerInfo = {
-  content : audio.ContentType.CONTENT_TYPE_MUSIC,
-  usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
-  capturerFlags : 0 }
-
-audioRoutingManager.getPreferredInputDeviceForCapturerInfo(capturerInfo).then(
-  (desc) => {
-    inputDeviceDesc = desc;
-  }).catch((err) => {
-    console.error("get outputDeviceId error" + JSON.stringify(err));
-    return;
-  });
-audioVolumeGroupManager.getMaxAmplitudeForInputDevice(inputDeviceDesc).then(value: number) {
-  console.info(`mic volatileume amplitude is: ${value}`);
+let capturerInfo: audio.AudioCapturerInfo = {
+  source: audio.SourceType.SOURCE_TYPE_MIC,
+  capturerFlags: 0
 }
+
+audioRoutingManager.getPreferredInputDeviceForCapturerInfo(capturerInfo).then((data) => {
+  audioVolumeGroupManager.getMaxAmplitudeForInputDevice(data[0]).then((value) => {
+    console.info(`mic volatileume amplitude is: ${value}`);
+  }).catch((err: BusinessError) => {
+    console.error("getMaxAmplitudeForInputDevice error" + JSON.stringify(err));
+  })
+}).catch((err: BusinessError) => {
+  console.error("get outputDeviceId error" + JSON.stringify(err));
+})
 ```
 
 ### getMaxAmplitudeForOutputDevice<sup>12+</sup>
 
 getMaxAmplitudeForOutputDevice(outputDevice: AudioDeviceDescriptor): Promise&lt;number&gt;
 
-获取输出设备音频流的最大电平值，大小取值在0-1之间，最小为0。
+获取输出设备音频流的最大电平值，大小取值在0-1之间，最小为0，使用Promise方式异步返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -3237,24 +3256,20 @@ getMaxAmplitudeForOutputDevice(outputDevice: AudioDeviceDescriptor): Promise&lt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let outputDeviceDesc: audio.AudioDeviceDescriptor;
-
-let rendererInfo = {
-  content : audio.ContentType.CONTENT_TYPE_MUSIC,
-  usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
-  rendererFlags : 0 }
-
-audioRoutingManager.getPreferredOutputDeviceForRendererInfo(rendererInfo).then(
-  (desc) => {
-    outputDeviceDesc = desc;
-  }).catch((err) => {
-    console.error("get outputDeviceId error" + JSON.stringify(err));
-    return;
-  });
-
-audioVolumeGroupManager.getMaxAmplitudeForOutputDevice(outputDeviceDesc).then(value: number) {
-  console.info(`speaker volatileume amplitude is: ${value}`);
+let rendererInfo: audio.AudioRendererInfo = {
+  usage : audio.StreamUsage.STREAM_USAGE_MUSIC,
+  rendererFlags : 0
 }
+
+audioRoutingManager.getPreferOutputDeviceForRendererInfo(rendererInfo).then((data) => {
+  audioVolumeGroupManager.getMaxAmplitudeForOutputDevice(data[0]).then((value) => {
+    console.info(`mic volatileume amplitude is: ${value}`);
+  }).catch((err: BusinessError) => {
+    console.error("getMaxAmplitudeForOutputDevice error" + JSON.stringify(err));
+  })
+}).catch((err: BusinessError) => {
+  console.error("getPreferOutputDeviceForRendererInfo error" + JSON.stringify(err));
+})
 ```
 
 ## AudioStreamManager<sup>9+</sup>
@@ -4779,9 +4794,13 @@ audioStreamManager.on('audioCapturerChange', (AudioCapturerChangeInfoArray) =>  
 
 设备属性数组类型，为[AudioDeviceDescriptor](#audiodevicedescriptor)的数组，只读。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 ## AudioDeviceDescriptor
 
 描述音频设备。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 | 名称                          | 类型                       | 可读 | 可写 | 说明       |
 | ----------------------------- | -------------------------- | ---- | ---- | ---------- |
@@ -5899,7 +5918,7 @@ setSpeed(speed: number): void
 
 | 参数名 | 类型                                     | 必填 | 说明                   |
 | ------ | ---------------------------------------- | ---- |----------------------|
-| speed | number | 是   | 设置播放的倍速值（倍速范围：0.25-4.0）。 |
+| speed | number | 是   | 设置播放的倍速值（倍速范围：0.125-4.0）。 |
 
 **错误码：**
 

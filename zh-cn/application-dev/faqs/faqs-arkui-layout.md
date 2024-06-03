@@ -62,7 +62,7 @@
 
 [图文混排](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md)
 
-## 如何实现类似安卓协调布局CoordinateLayout的效果(API 10)
+## 如何实现协调布局的效果(API 10)
 
 **解决措施**
 

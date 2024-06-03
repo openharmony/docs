@@ -15,7 +15,7 @@
 ## 导入模块
 
 ```ts
-import bundleManager from '@ohos.enterprise.bundleManager';
+import { bundleManager } from '@kit.MDMKit';
 ```
 
 ## bundleManager.addAllowedInstallBundles
@@ -43,16 +43,16 @@ addAllowedInstallBundles(admin: Want, appIds: Array\<string>, callback: AsyncCal
 
 | 错误码ID | 错误信息                                                                       |
 | ------- | ---------------------------------------------------------------------------- |
-| 9200001 | the application is not an administrator of the device.                              |
-| 9200002 | the administrator application does not have permission to manage the device.                                          |
-| 201 | the application does not have permission to call this function. |
-| 202 | not system application. |
+| 9200001 | The application is not an administrator application of the device.                  |
+| 9200002 | The administrator application does not have permission to manage the device.                                          |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -94,16 +94,16 @@ addAllowedInstallBundles(admin: Want, appIds: Array\<string>, userId: number, ca
 
 | 错误码ID | 错误信息                                                                     |
 | ------- | ---------------------------------------------------------------------------- |
-| 9200001 | the application is not an administrator of the device.                              |
-| 9200002 | the administrator application does not have permission to manage the device.                                          |
-| 201 | the application does not have permission to call this function. |
-| 202 | not system application. |
+| 9200001 | The application is not an administrator application of the device.                  |
+| 9200002 | The administrator application does not have permission to manage the device.                                          |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -150,17 +150,17 @@ addAllowedInstallBundles(admin: Want, appIds: Array\<string>, userId?: number): 
 
 | 错误码ID | 错误信息                                                                     |
 | ------- | ---------------------------------------------------------------------------- |
-| 9200001 | the application is not an administrator of the device.                              |
-| 9200002 | the administrator application does not have permission to manage the device.                                          |
-| 201 | the application does not have permission to call this function. |
-| 202 | not system application. |
+| 9200001 | The application is not an administrator application of the device.                  |
+| 9200002 | The administrator application does not have permission to manage the device.                                          |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -199,16 +199,16 @@ removeAllowedInstallBundles(admin: Want, appIds: Array\<string>, callback: Async
 
 | 错误码ID | 错误信息                                                                       |
 | ------- | ---------------------------------------------------------------------------- |
-| 9200001 | the application is not an administrator of the device.                              |
-| 9200002 | the administrator application does not have permission to manage the device.                                          |
-| 201 | the application does not have permission to call this function. |
-| 202 | not system application. |
+| 9200001 | The application is not an administrator application of the device.                  |
+| 9200002 | The administrator application does not have permission to manage the device.                                          |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -250,16 +250,16 @@ removeAllowedInstallBundles(admin: Want, appIds: Array\<string>, userId: number,
 
 | 错误码ID | 错误信息                                                                     |
 | ------- | ---------------------------------------------------------------------------- |
-| 9200001 | the application is not an administrator of the device.                              |
-| 9200002 | the administrator application does not have permission to manage the device.                                          |
-| 201 | the application does not have permission to call this function. |
-| 202 | not system application. |
+| 9200001 | The application is not an administrator application of the device.                  |
+| 9200002 | The administrator application does not have permission to manage the device.                                          |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -306,17 +306,17 @@ removeAllowedInstallBundles(admin: Want, appIds: Array\<string>, userId?: number
 
 | 错误码ID | 错误信息                                                                     |
 | ------- | ---------------------------------------------------------------------------- |
-| 9200001 | the application is not an administrator of the device.                              |
-| 9200002 | the administrator application does not have permission to manage the device.                                          |
-| 201 | the application does not have permission to call this function. |
-| 202 | not system application. |
+| 9200001 | The application is not an administrator application of the device.                  |
+| 9200002 | The administrator application does not have permission to manage the device.                                          |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -354,16 +354,16 @@ getAllowedInstallBundles(admin: Want, callback: AsyncCallback&lt;Array&lt;string
 
 | 错误码ID | 错误信息                                                                       |
 | ------- | ---------------------------------------------------------------------------- |
-| 9200001 | the application is not an administrator of the device.                              |
-| 9200002 | the administrator application does not have permission to manage the device.                                          |
-| 201 | the application does not have permission to call this function. |
-| 202 | not system application. |
+| 9200001 | The application is not an administrator application of the device.                  |
+| 9200002 | The administrator application does not have permission to manage the device.                                          |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -403,16 +403,16 @@ getAllowedInstallBundles(admin: Want, userId: number, callback: AsyncCallback&lt
 
 | 错误码ID | 错误信息                                                                       |
 | ------- | ---------------------------------------------------------------------------- |
-| 9200001 | the application is not an administrator of the device.                              |
-| 9200002 | the administrator application does not have permission to manage the device.                                          |
-| 201 | the application does not have permission to call this function. |
-| 202 | not system application. |
+| 9200001 | The application is not an administrator application of the device.                  |
+| 9200002 | The administrator application does not have permission to manage the device.                                          |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -457,17 +457,17 @@ getAllowedInstallBundles(admin: Want, userId?: number): Promise&lt;Array&lt;stri
 
 | 错误码ID | 错误信息                                                                     |
 | ------- | ---------------------------------------------------------------------------- |
-| 9200001 | the application is not an administrator of the device.                              |
-| 9200002 | the administrator application does not have permission to manage the device.                                          |
-| 201 | the application does not have permission to call this function. |
-| 202 | not system application. |
+| 9200001 | The application is not an administrator application of the device.                  |
+| 9200002 | The administrator application does not have permission to manage the device.                                          |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -505,16 +505,16 @@ addDisallowedInstallBundles(admin: Want, appIds: Array\<string>, callback: Async
 
 | 错误码ID | 错误信息                                                                       |
 | ------- | ---------------------------------------------------------------------------- |
-| 9200001 | the application is not an administrator of the device.                              |
-| 9200002 | the administrator application does not have permission to manage the device.                                          |
-| 201 | the application does not have permission to call this function. |
-| 202 | not system application. |
+| 9200001 | The application is not an administrator application of the device.                  |
+| 9200002 | The administrator application does not have permission to manage the device.                                          |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -556,16 +556,16 @@ addDisallowedInstallBundles(admin: Want, appIds: Array\<string>, userId: number,
 
 | 错误码ID | 错误信息                                                                     |
 | ------- | ---------------------------------------------------------------------------- |
-| 9200001 | the application is not an administrator of the device.                              |
-| 9200002 | the administrator application does not have permission to manage the device.                                          |
-| 201 | the application does not have permission to call this function. |
-| 202 | not system application. |
+| 9200001 | The application is not an administrator application of the device.                  |
+| 9200002 | The administrator application does not have permission to manage the device.                                          |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -612,17 +612,17 @@ addDisallowedInstallBundles(admin: Want, appIds: Array\<string>, userId?: number
 
 | 错误码ID | 错误信息                                                                     |
 | ------- | ---------------------------------------------------------------------------- |
-| 9200001 | the application is not an administrator of the device.                              |
-| 9200002 | the administrator application does not have permission to manage the device.                                          |
-| 201 | the application does not have permission to call this function. |
-| 202 | not system application. |
+| 9200001 | The application is not an administrator application of the device.                  |
+| 9200002 | The administrator application does not have permission to manage the device.                                          |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -661,16 +661,16 @@ removeDisallowedInstallBundles(admin: Want, appIds: Array\<string>, callback: As
 
 | 错误码ID | 错误信息                                                                       |
 | ------- | ---------------------------------------------------------------------------- |
-| 9200001 | the application is not an administrator of the device.                              |
-| 9200002 | the administrator application does not have permission to manage the device.                                          |
-| 201 | the application does not have permission to call this function. |
-| 202 | not system application. |
+| 9200001 | The application is not an administrator application of the device.                  |
+| 9200002 | The administrator application does not have permission to manage the device.                                          |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -712,16 +712,16 @@ removeDisallowedInstallBundles(admin: Want, appIds: Array\<string>, userId: numb
 
 | 错误码ID | 错误信息                                                                     |
 | ------- | ---------------------------------------------------------------------------- |
-| 9200001 | the application is not an administrator of the device.                              |
-| 9200002 | the administrator application does not have permission to manage the device.                                          |
-| 201 | the application does not have permission to call this function. |
-| 202 | not system application. |
+| 9200001 | The application is not an administrator application of the device.                  |
+| 9200002 | The administrator application does not have permission to manage the device.                                          |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -768,17 +768,17 @@ removeDisallowedInstallBundles(admin: Want, appIds: Array\<string>, userId?: num
 
 | 错误码ID | 错误信息                                                                     |
 | ------- | ---------------------------------------------------------------------------- |
-| 9200001 | the application is not an administrator of the device.                              |
-| 9200002 | the administrator application does not have permission to manage the device.                                          |
-| 201 | the application does not have permission to call this function. |
-| 202 | not system application. |
+| 9200001 | The application is not an administrator application of the device.                  |
+| 9200002 | The administrator application does not have permission to manage the device.                                          |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -816,16 +816,16 @@ getDisallowedInstallBundles(admin: Want, callback: AsyncCallback&lt;Array&lt;str
 
 | 错误码ID | 错误信息                                                                       |
 | ------- | ---------------------------------------------------------------------------- |
-| 9200001 | the application is not an administrator of the device.                              |
-| 9200002 | the administrator application does not have permission to manage the device.                                          |
-| 201 | the application does not have permission to call this function. |
-| 202 | not system application. |
+| 9200001 | The application is not an administrator application of the device.                  |
+| 9200002 | The administrator application does not have permission to manage the device.                                          |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -865,16 +865,16 @@ getDisallowedInstallBundles(admin: Want, userId: number, callback: AsyncCallback
 
 | 错误码ID | 错误信息                                                                       |
 | ------- | ---------------------------------------------------------------------------- |
-| 9200001 | the application is not an administrator of the device.                              |
-| 9200002 | the administrator application does not have permission to manage the device.                                          |
-| 201 | the application does not have permission to call this function. |
-| 202 | not system application. |
+| 9200001 | The application is not an administrator application of the device.                  |
+| 9200002 | The administrator application does not have permission to manage the device.                                          |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -919,17 +919,17 @@ getDisallowedInstallBundles(admin: Want, userId?: number): Promise&lt;Array&lt;s
 
 | 错误码ID | 错误信息                                                                     |
 | ------- | ---------------------------------------------------------------------------- |
-| 9200001 | the application is not an administrator of the device.                              |
-| 9200002 | the administrator application does not have permission to manage the device.                                          |
-| 201 | the application does not have permission to call this function. |
-| 202 | not system application. |
+| 9200001 | The application is not an administrator application of the device.                  |
+| 9200002 | The administrator application does not have permission to manage the device.                                          |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -967,16 +967,16 @@ addDisallowedUninstallBundles(admin: Want, appIds: Array\<string>, callback: Asy
 
 | 错误码ID | 错误信息                                                                       |
 | ------- | ---------------------------------------------------------------------------- |
-| 9200001 | the application is not an administrator of the device.                              |
-| 9200002 | the administrator application does not have permission to manage the device.                                          |
-| 201 | the application does not have permission to call this function. |
-| 202 | not system application. |
+| 9200001 | The application is not an administrator application of the device.                  |
+| 9200002 | The administrator application does not have permission to manage the device.                                          |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -1018,16 +1018,16 @@ addDisallowedUninstallBundles(admin: Want, appIds: Array\<string>, userId: numbe
 
 | 错误码ID | 错误信息                                                                     |
 | ------- | ---------------------------------------------------------------------------- |
-| 9200001 | the application is not an administrator of the device.                              |
-| 9200002 | the administrator application does not have permission to manage the device.                                          |
-| 201 | the application does not have permission to call this function. |
-| 202 | not system application. |
+| 9200001 | The application is not an administrator application of the device.                  |
+| 9200002 | The administrator application does not have permission to manage the device.                                          |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -1074,17 +1074,17 @@ addDisallowedUninstallBundles(admin: Want, appIds: Array\<string>, userId?: numb
 
 | 错误码ID | 错误信息                                                                     |
 | ------- | ---------------------------------------------------------------------------- |
-| 9200001 | the application is not an administrator of the device.                              |
-| 9200002 | the administrator application does not have permission to manage the device.                                          |
-| 201 | the application does not have permission to call this function. |
-| 202 | not system application. |
+| 9200001 | The application is not an administrator application of the device.                  |
+| 9200002 | The administrator application does not have permission to manage the device.                                          |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -1123,16 +1123,16 @@ removeDisallowedUninstallBundles(admin: Want, appIds: Array\<string>, callback: 
 
 | 错误码ID | 错误信息                                                                       |
 | ------- | ---------------------------------------------------------------------------- |
-| 9200001 | the application is not an administrator of the device.                              |
-| 9200002 | the administrator application does not have permission to manage the device.                                          |
-| 201 | the application does not have permission to call this function. |
-| 202 | not system application. |
+| 9200001 | The application is not an administrator application of the device.                  |
+| 9200002 | The administrator application does not have permission to manage the device.                                          |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -1174,16 +1174,16 @@ removeDisallowedUninstallBundles(admin: Want, appIds: Array\<string>, userId: nu
 
 | 错误码ID | 错误信息                                                                     |
 | ------- | ---------------------------------------------------------------------------- |
-| 9200001 | the application is not an administrator of the device.                              |
-| 9200002 | the administrator application does not have permission to manage the device.                                          |
-| 201 | the application does not have permission to call this function. |
-| 202 | not system application. |
+| 9200001 | The application is not an administrator application of the device.                  |
+| 9200002 | The administrator application does not have permission to manage the device.                                          |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -1230,17 +1230,17 @@ removeDisallowedUninstallBundles(admin: Want, appIds: Array\<string>, userId?: n
 
 | 错误码ID | 错误信息                                                                     |
 | ------- | ---------------------------------------------------------------------------- |
-| 9200001 | the application is not an administrator of the device.                              |
-| 9200002 | the administrator application does not have permission to manage the device.                                          |
-| 201 | the application does not have permission to call this function. |
-| 202 | not system application. |
+| 9200001 | The application is not an administrator application of the device.                  |
+| 9200002 | The administrator application does not have permission to manage the device.                                          |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -1278,16 +1278,16 @@ getDisallowedUninstallBundles(admin: Want, callback: AsyncCallback&lt;Array&lt;s
 
 | 错误码ID | 错误信息                                                                       |
 | ------- | ---------------------------------------------------------------------------- |
-| 9200001 | the application is not an administrator of the device.                              |
-| 9200002 | the administrator application does not have permission to manage the device.                                          |
-| 201 | the application does not have permission to call this function. |
-| 202 | not system application. |
+| 9200001 | The application is not an administrator application of the device.                  |
+| 9200002 | The administrator application does not have permission to manage the device.                                          |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -1327,16 +1327,16 @@ getDisallowedUninstallBundles(admin: Want, userId: number, callback: AsyncCallba
 
 | 错误码ID | 错误信息                                                                       |
 | ------- | ---------------------------------------------------------------------------- |
-| 9200001 | the application is not an administrator of the device.                              |
-| 9200002 | the administrator application does not have permission to manage the device.                                          |
-| 201 | the application does not have permission to call this function. |
-| 202 | not system application. |
+| 9200001 | The application is not an administrator application of the device.                  |
+| 9200002 | The administrator application does not have permission to manage the device.                                          |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -1381,17 +1381,17 @@ getDisallowedUninstallBundles(admin: Want, userId?: number): Promise&lt;Array&lt
 
 | 错误码ID | 错误信息                                                                     |
 | ------- | ---------------------------------------------------------------------------- |
-| 9200001 | the application is not an administrator of the device.                              |
-| 9200002 | the administrator application does not have permission to manage the device.                                          |
-| 201 | the application does not have permission to call this function. |
-| 202 | not system application. |
+| 9200001 | The application is not an administrator application of the device.                  |
+| 9200002 | The administrator application does not have permission to manage the device.                                          |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -1429,16 +1429,16 @@ uninstall(admin: Want, bundleName: string, callback: AsyncCallback&lt;void&gt;):
 
 | 错误码ID | 错误信息                                                                       |
 | ------- | ---------------------------------------------------------------------------- |
-| 9200001 | the application is not an administrator of the device.                              |
-| 9200002 | the administrator application does not have permission to manage the device.                                          |
-| 201 | the application does not have permission to call this function. |
-| 202 | not system application. |
+| 9200001 | The application is not an administrator application of the device.                  |
+| 9200002 | The administrator application does not have permission to manage the device.                                          |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -1479,16 +1479,16 @@ uninstall(admin: Want, bundleName: string, userId: number, callback: AsyncCallba
 
 | 错误码ID | 错误信息                                                                       |
 | ------- | ---------------------------------------------------------------------------- |
-| 9200001 | the application is not an administrator of the device.                              |
-| 9200002 | the administrator application does not have permission to manage the device.                                          |
-| 201 | the application does not have permission to call this function. |
-| 202 | not system application. |
+| 9200001 | The application is not an administrator application of the device.                  |
+| 9200002 | The administrator application does not have permission to manage the device.                                          |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -1529,16 +1529,16 @@ uninstall(admin: Want, bundleName: string, isKeepData: boolean, callback: AsyncC
 
 | 错误码ID | 错误信息                                                                       |
 | ------- | ---------------------------------------------------------------------------- |
-| 9200001 | the application is not an administrator of the device.                              |
-| 9200002 | the administrator application does not have permission to manage the device.                                          |
-| 201 | the application does not have permission to call this function. |
-| 202 | not system application. |
+| 9200001 | The application is not an administrator application of the device.                  |
+| 9200002 | The administrator application does not have permission to manage the device.                                          |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -1580,16 +1580,16 @@ uninstall(admin: Want, bundleName: string, userId: number, isKeepData: boolean, 
 
 | 错误码ID | 错误信息                                                                       |
 | ------- | ---------------------------------------------------------------------------- |
-| 9200001 | the application is not an administrator of the device.                              |
-| 9200002 | the administrator application does not have permission to manage the device.                                          |
-| 201 | the application does not have permission to call this function. |
-| 202 | not system application. |
+| 9200001 | The application is not an administrator application of the device.                  |
+| 9200002 | The administrator application does not have permission to manage the device.                                          |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -1629,17 +1629,17 @@ install(admin: Want, hapFilePaths: Array\<string>, callback: AsyncCallback\<void
 
 | 错误码ID | 错误信息                                                                       |
 | ------- | ---------------------------------------------------------------------------- |
-| 9200001 | the application is not an administrator of the device.                              |
-| 9200002 | the administrator application does not have permission to manage the device.                                |
-| 9201002 | the application install failed.                                |
-| 201 | the application does not have permission to call this function. |
-| 202 | not system application. |
+| 9200001 | The application is not an administrator application of the device.                  |
+| 9200002 | The administrator application does not have permission to manage the device.                                |
+| 9201002 | Failed to install the application. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -1681,17 +1681,17 @@ install(admin: Want, hapFilePaths: Array\<string>, installParam: InstallParam, c
 
 | 错误码ID | 错误信息                                                                       |
 | ------- | ---------------------------------------------------------------------------- |
-| 9200001 | the application is not an administrator of the device.                              |
-| 9200002 | the administrator application does not have permission to manage the device.                                |
-| 9201002 | the application install failed.                                |
-| 201 | the application does not have permission to call this function. |
-| 202 | not system application. |
+| 9200001 | The application is not an administrator application of the device.                  |
+| 9200002 | The administrator application does not have permission to manage the device.                                |
+| 9201002 | Failed to install the application. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',

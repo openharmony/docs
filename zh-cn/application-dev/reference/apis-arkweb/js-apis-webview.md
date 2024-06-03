@@ -83,7 +83,7 @@ postMessageEvent(message: WebMessage): void
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
-| 17100010 | Can not post message using this port. |
+| 17100010 | Failed to post messages through the port. |
 
 **示例：**
 
@@ -137,7 +137,7 @@ onMessageEvent(callback: (result: WebMessage) => void): void
 
 | 错误码ID | 错误信息                                        |
 | -------- | ----------------------------------------------- |
-| 17100006 | Can not register message event using this port. |
+| 17100006 | Failed to register a message event for the port.|
 
 **示例：**
 
@@ -210,7 +210,7 @@ postMessageEventExt(message: WebMessageExt): void
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
-| 17100010 | Can not post message using this port. |
+| 17100010 | Failed to post messages through the port. |
 
 ### onMessageEventExt<sup>10+</sup>
 
@@ -232,7 +232,7 @@ onMessageEventExt(callback: (result: WebMessageExt) => void): void
 
 | 错误码ID | 错误信息                                        |
 | -------- | ----------------------------------------------- |
-| 17100006 | Can not register message event using this port. |
+| 17100006 | Failed to register a message event for the port. |
 
 **示例：**
 
@@ -717,6 +717,14 @@ static setHttpDns(secureDnsMode:SecureDnsMode, secureDnsConfig:string): void
 | ------------------ | ------- | ---- | ------------- |
 | secureDnsMode         |   [SecureDnsMode](#securednsmode10)   | 是   | 使用HTTPDNS的模式。|
 | secureDnsConfig       | string | 是 | HTTPDNS server的配置，必须是https协议并且只允许配置一个server。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                  |
+| -------- | ----------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                                   |
 
 **示例：**
 
@@ -2292,7 +2300,7 @@ deleteJavaScriptRegister(name: string): void
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
-| 17100008 | Cannot delete JavaScriptProxy.                               |
+| 17100008 | Failed to delete JavaScriptProxy because it does not exist.                               |
 
 **示例：**
 
@@ -2397,7 +2405,7 @@ zoom(factor: number): void
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
-| 17100004 | Function not enable.                                         |
+| 17100004 | Function not enabled.                                         |
 
 **示例：**
 
@@ -2761,7 +2769,7 @@ postMessage(name: string, ports: Array\<WebMessagePort>, uri: string): void
 | 参数名 | 类型                   | 必填 | 说明                             |
 | ------ | ---------------------- | ---- | :------------------------------- |
 | name   | string                 | 是   | 要发送的消息名称。            |
-| ports  | Array\<WebMessagePort> | 是   | 要发送的消息端口。            |
+| ports  | Array\<[WebMessagePort](#webmessageport)> | 是   | 要发送的消息端口。            |
 | uri    | string                 | 是   | 接收该消息的URI。                |
 
 **错误码：**
@@ -2971,7 +2979,7 @@ zoomIn(): void
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
-| 17100004 | Function not enable.                                         |
+| 17100004 | Function not enabled.                                         |
 
 **示例：**
 
@@ -3017,7 +3025,7 @@ zoomOut(): void
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
-| 17100004 | Function not enable.                                         |
+| 17100004 | Function not enabled.                                         |
 
 **示例：**
 
@@ -3302,7 +3310,7 @@ getPageHeight(): number
 
 | 类型   | 说明                 |
 | ------ | -------------------- |
-| number | 当前网页的页面高度。 |
+| number | 当前网页的页面高度。单位：px。 |
 
 **错误码：**
 
@@ -3364,6 +3372,7 @@ storeWebArchive(baseName: string, autoName: boolean, callback: AsyncCallback\<st
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                                   |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 | 17100003 | Invalid resource path or file type.                          |
 
@@ -3432,6 +3441,7 @@ storeWebArchive(baseName: string, autoName: boolean): Promise\<string>
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                                   |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 | 17100003 | Invalid resource path or file type.                          |
 
@@ -4527,8 +4537,8 @@ static customizeSchemes(schemes: Array\<WebCustomScheme\>): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-|  401 | Invalid input parameter.    |
-| 17100020 | Register custom schemes failed. |
+|  401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.    |
+| 17100020 | Failed to register custom schemes. |
 
 **示例：**
 
@@ -4915,6 +4925,7 @@ setAudioMuted(mute: boolean): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Incorrect parameter types. 2. Parameter verification failed. |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
@@ -5019,6 +5030,7 @@ static prefetchResource(request: RequestInfo, additionalHeaders?: Array\<WebHead
 
 | 错误码ID  | 错误信息                                                      |
 | -------- | ------------------------------------------------------------ |
+| 401      | Invalid input parameter.Possible causes: 1. Mandatory parameters are left unspecified.2. Incorrect parameter types.3. Parameter verification failed. |
 | 17100002 | Invalid url.                                                 |
 
 **示例：**
@@ -5377,7 +5389,15 @@ static setConnectionTimeout(timeout: number): void
 
 | 参数名          | 类型    |  必填  | 说明                                            |
 | ---------------| ------- | ---- | ------------- |
-| timeout        | number  | 是   | socket连接超时时间，以秒为单位。 |
+| timeout        | number  | 是   | socket连接超时时间，以秒为单位，socket必须为大于0的整数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 
 **示例：**
 
@@ -5415,6 +5435,46 @@ struct WebComponent {
 }
 ```
 
+### warmupServiceWorker<sup>12+</sup>
+
+static warmupServiceWorker(url: string): void
+
+预热ServiceWorker，以提升首屏页面的加载速度（仅限于会使用ServiceWorker的页面）。在加载url之前调用此API。
+
+**系统能力：**  SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名          | 类型    |  必填  | 说明                                            |
+| ---------------| ------- | ---- | ------------- |
+| url            | string  | 是   | 需要预热ServiceWorker的url。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md).
+
+| 错误码ID  | 错误信息                                                      |
+| -------- | ------------------------------------------------------------ |
+| 17100002 | Invalid url.                                                 |
+
+**示例：**
+
+```ts
+// xxx.ts
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { window } from '@kit.ArkUI';
+import { webview } from '@kit.ArkWeb';
+
+export default class EntryAbility extends UIAbility {
+    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+        console.log("EntryAbility onCreate");
+        webview.WebviewController.warmupServiceWorker("https://www.example.com");
+        AppStorage.setOrCreate("abilityWant", want);
+    }
+}
+```
+
 ### enableSafeBrowsing<sup>11+</sup>
 
 enableSafeBrowsing(enable: boolean): void
@@ -5435,7 +5495,7 @@ enableSafeBrowsing(enable: boolean): void
 
 | 错误码ID | 错误信息                  |
 | -------- | ----------------------- |
-|  401 | Invalid input parameter.    |
+| 401      | Parameter error. Possible causes: 1. Incorrect parameter types. 2. Parameter verification failed. |
 
 **示例：**
 
@@ -5526,7 +5586,7 @@ enableIntelligentTrackingPrevention(enable: boolean): void
 | 错误码ID | 错误信息                  |
 | -------- | ----------------------- |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
-|  401 | Invalid input parameter.    |
+|  401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -5630,7 +5690,7 @@ static addIntelligentTrackingPreventionBypassingList(hostList: Array\<string>): 
 
 | 错误码ID  | 错误信息                  |
 | -------- | ------------------------ |
-|  401     | Invalid input parameter. |
+|  401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -5682,7 +5742,7 @@ static removeIntelligentTrackingPreventionBypassingList(hostList: Array\<string>
 
 | 错误码ID  | 错误信息                  |
 | -------- | ------------------------ |
-|  401     | Invalid input parameter. |
+|  401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -5764,7 +5824,7 @@ static setRenderProcessMode(mode: RenderProcessMode): void
 
 | 错误码ID  | 错误信息                  |
 | -------- | ------------------------ |
-|  401     | Invalid input parameter. |
+|  401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -5973,7 +6033,7 @@ createWebPrintDocumentAdapter(jobName: string): print.PrintDocumentAdapter
 
 | 错误码ID | 错误信息                                                                    |
 | -------- | -------------------------------------------------------------------------- |
-| 401 | Invalid input parameter.                                                        |
+| 401      | Invalid input parameter.Possible causes: 1. Mandatory parameters are left unspecified.2. Incorrect parameter types.3. Parameter verification failed. |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
@@ -6125,7 +6185,7 @@ setScrollable(enable: boolean): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-|  401 | Invalid input parameter. |
+| 401      | Invalid input parameter.Possible causes: 1. Mandatory parameters are left unspecified.2. Incorrect parameter types.3. Parameter verification failed. |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
@@ -6229,7 +6289,7 @@ setPrintBackground(enable: boolean): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401 | Invalid input parameter.                                           |
+| 401      | Invalid input parameter.Possible causes: 1. Mandatory parameters are left unspecified.2. Incorrect parameter types.3. Parameter verification failed. |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
@@ -6705,7 +6765,7 @@ setWebSchemeHandler(scheme: string, handler: WebSchemeHandler): void
 | 参数名 | 类型   | 必填 | 说明                      |
 | ------ | ------ | ---- | :------------------------ |
 | scheme    | string | 是   | 要拦截的协议。 |
-| handler    | WebSchemeHandler | 是   | 拦截此协议的拦截器。 |
+| handler    | [WebSchemeHandler](#webschemehandler12) | 是   | 拦截此协议的拦截器。 |
 
 **错误码：**
 
@@ -6713,7 +6773,7 @@ setWebSchemeHandler(scheme: string, handler: WebSchemeHandler): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Invalid input parameter.                                     |
+| 401      | Parameter error. Possible causes: 1. Incorrect parameter types.                                    |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
@@ -6812,7 +6872,7 @@ setServiceWorkerWebSchemeHandler(scheme: string, handler: WebSchemeHandler): voi
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Invalid input parameter.                                     |
+| 401      | Parameter error. Possible causes: 1. Incorrect parameter types. |
 
 **示例：**
 
@@ -7065,8 +7125,8 @@ precompileJavaScript(url: string, script: string | Uint8Array, cacheOptions: Cac
 
 | 参数名  | 类型    | 必填 | 说明                  |
 | ------- | ------ | ---- | :-------------------- |
-| url | string | 是   | 本地JavaScript文件对应的网络地址，即业务网页请求该文件的服务器版本时使用的网络地址。网络地址仅支持http或https协议。如果该网络地址对应的缓存失效，则业务网页将通过网络请求对应的资源。      |
-| script | string \| Uint8Array | 是   | 本地JavaScript的文本内容。      |
+| url | string | 是   | 本地JavaScript文件对应的网络地址，即业务网页请求该文件的服务器版本时使用的网络地址。网络地址仅支持http或https协议，长度不超过2048。如果该网络地址对应的缓存失效，则业务网页将通过网络请求对应的资源。      |
+| script | string \| Uint8Array | 是   | 本地JavaScript的文本内容。内容不能为空。      |
 | cacheOptions | [CacheOptions](#cacheoptions12) | 是   | 用于控制字节码缓存更新。      |
 
 **返回值：**
@@ -7081,6 +7141,7 @@ precompileJavaScript(url: string, script: string | Uint8Array, cacheOptions: Cac
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
+| 401      | Invalid input parameter.Possible causes: 1. Mandatory parameters are left unspecified.2. Incorrect parameter types.3. Parameter verification failed.                                     |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
@@ -7164,6 +7225,7 @@ precompileJavaScript(url: string, script: string | Uint8Array, cacheOptions: Cac
 
 3. 编写用于生成字节码缓存的组件，本例中的本地Javascript资源内容通过文件读取接口读取rawfile目录下的本地文件。
 
+   <!--code_no_check-->
    ```ts
    // PrecompileWebview.ets
    import { BuilderData } from "./DynamicComponent";
@@ -7210,6 +7272,7 @@ JavaScript资源的获取方式也可通过[网络请求](../apis-network-kit/js
 
 4. 编写业务用组件代码。
 
+   <!--code_no_check-->
    ```ts
    // BusinessWebview.ets
    import { BuilderData } from "./DynamicComponent";
@@ -7512,7 +7575,9 @@ injectOfflineResources(resourceMaps: Array\<[OfflineResourceMap](#offlineresourc
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
+| 401      | Invalid input parameter.Possible causes: 1. Mandatory parameters are left unspecified.2. Incorrect parameter types.3. Parameter verification failed.                                     |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
+| 17100002 | Invalid url.                                                 |
 
 **示例：**
 
@@ -7594,6 +7659,7 @@ injectOfflineResources(resourceMaps: Array\<[OfflineResourceMap](#offlineresourc
 
 3. 编写用于注入资源的组件代码，本例中的本地资源内容通过文件读取接口读取rawfile目录下的本地文件。
 
+   <!--code_no_check-->
    ```ts
    // InjectWebview.ets
    import web_webview from '@ohos.web.webview';
@@ -7648,6 +7714,7 @@ injectOfflineResources(resourceMaps: Array\<[OfflineResourceMap](#offlineresourc
 
 4. 编写业务用组件代码。
 
+   <!--code_no_check-->
    ```ts
    // BusinessWebview.ets
    import { BuilderData } from "./DynamicComponent";
@@ -7780,7 +7847,7 @@ static setHostIP(hostName: string, address: string, aliveTime: number): void
 
 | 错误码ID | 错误信息                 |
 | -------- | ------------------------ |
-| 401      | Invalid input parameter. |
+| 401      | Invalid input parameter.Possible causes: 1. Mandatory parameters are left unspecified.2. Incorrect parameter types.3. Parameter verification failed. |
 
 **示例：**
 
@@ -7806,7 +7873,7 @@ static clearHostIP(hostName: string): void
 
 | 错误码ID | 错误信息                 |
 | -------- | ------------------------ |
-| 401      | Invalid input parameter. |
+| 401      | Invalid input parameter.Possible causes: 1. Mandatory parameters are left unspecified.2. Incorrect parameter types.3. Parameter verification failed. |
 
 **示例：**
 
@@ -7993,7 +8060,7 @@ static fetchCookie(url: string, callback: AsyncCallback\<string>): void
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
-| 401 | Invalid input parameter.                                           |
+| 401      | Invalid input parameter.Possible causes: 1. Mandatory parameters are left unspecified.2. Incorrect parameter types.3. Parameter verification failed. |
 | 17100002 | Invalid url.                                           |
 
 **示例：**
@@ -8060,7 +8127,7 @@ static fetchCookie(url: string): Promise\<string>
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
-| 401 | Invalid input parameter.                                           |
+| 401      | Invalid input parameter.Possible causes: 1. Mandatory parameters are left unspecified.2. Incorrect parameter types.3. Parameter verification failed. |
 | 17100002 | Invalid url.                                           |
 
 **示例：**
@@ -8238,7 +8305,7 @@ static configCookie(url: string, value: string, callback: AsyncCallback\<void>):
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
-| 401      | Invalid input parameter.                               |
+| 401      | Invalid input parameter.Possible causes: 1. Mandatory parameters are left unspecified.2. Incorrect parameter types.3. Parameter verification failed. |
 | 17100002 | Invalid url.                                           |
 | 17100005 | Invalid cookie value.                                  |
 
@@ -8303,7 +8370,7 @@ static configCookie(url: string, value: string): Promise\<void>
 
 | 错误码ID | 错误信息                                                |
 | -------- | ------------------------------------------------------ |
-| 401      | Invalid input parameter.                               |
+| 401      | Invalid input parameter.Possible causes: 1. Mandatory parameters are left unspecified.2. Incorrect parameter types.3. Parameter verification failed. |
 | 17100002 | Invalid url.                                           |
 | 17100005 | Invalid cookie value.                                  |
 
@@ -10275,7 +10342,7 @@ getString(): string
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
-| 17100014 | The type does not match with the value of the result. |
+| 17100014 | The type and value of the message do not match. |
 
 ### getNumber<sup>10+</sup>
 
@@ -10297,7 +10364,7 @@ getNumber(): number
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
-| 17100014 | The type does not match with the value of the result. |
+| 17100014 | The type and value of the message do not match. |
 
 ### getBoolean<sup>10+</sup>
 
@@ -10319,7 +10386,7 @@ getBoolean(): boolean
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
-| 17100014 | The type does not match with the value of the result. |
+| 17100014 | The type and value of the message do not match. |
 
 ### getArrayBuffer<sup>10+</sup>
 
@@ -10341,7 +10408,7 @@ getArrayBuffer(): ArrayBuffer
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
-| 17100014 | The type does not match with the value of the result. |
+| 17100014 | The type and value of the message do not match. |
 
 ### getArray<sup>10+</sup>
 
@@ -10363,11 +10430,11 @@ getArray(): Array\<string | number | boolean\>
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
-| 17100014 | The type does not match with the value of the result. |
+| 17100014 | The type and value of the message do not match. |
 
 ## WebMessageExt<sup>10+</sup>
 
-[webMessagePort](#webmessageport)接口接收、发送的的数据对象。
+[webMessagePort](#webmessageport)接口接收、发送的数据对象。
 
 ### getType<sup>10+</sup>
 
@@ -10403,7 +10470,7 @@ getString(): string
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
-| 17100014 | The type does not match with the value of the web message. |
+| 17100014 | The type and value of the message do not match. |
 
 ### getNumber<sup>10+</sup>
 
@@ -10425,7 +10492,7 @@ getNumber(): number
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
-| 17100014 | The type does not match with the value of the web message. |
+| 17100014 | The type and value of the message do not match. |
 
 ### getBoolean<sup>10+</sup>
 
@@ -10447,7 +10514,7 @@ getBoolean(): boolean
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
-| 17100014 | The type does not match with the value of the web message. |
+| 17100014 | The type and value of the message do not match. |
 
 ### getArrayBuffer<sup>10+</sup>
 
@@ -10469,7 +10536,7 @@ getArrayBuffer(): ArrayBuffer
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
-| 17100014 | The type does not match with the value of the web message. |
+| 17100014 | The type and value of the message do not match. |
 
 ### getArray<sup>10+</sup>
 
@@ -10491,7 +10558,7 @@ getArray(): Array\<string | number | boolean\>
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
-| 17100014 | The type does not match with the value of the web message. |
+| 17100014 | The type and value of the message do not match. |
 
 ### getError<sup>10+</sup>
 
@@ -10513,7 +10580,7 @@ getError(): Error
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
-| 17100014 | The type does not match with the value of the web message. |
+| 17100014 | The type and value of the message do not match. |
 
 ### setType<sup>10+</sup>
 
@@ -10533,7 +10600,7 @@ setType(type: WebMessageType): void
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
-| 17100014 | The type does not match with the value of the web message. |
+| 17100014 | The type and value of the message do not match. |
 
 ### setString<sup>10+</sup>
 
@@ -10553,7 +10620,7 @@ setString(message: string): void
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
-| 17100014 | The type does not match with the value of the web message. |
+| 17100014 | The type and value of the message do not match. |
 
 ### setNumber<sup>10+</sup>
 
@@ -10573,7 +10640,7 @@ setNumber(message: number): void
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
-| 17100014 | The type does not match with the value of the web message. |
+| 17100014 | The type and value of the message do not match. |
 
 ### setBoolean<sup>10+</sup>
 
@@ -10593,7 +10660,7 @@ setBoolean(message: boolean): void
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
-| 17100014 | The type does not match with the value of the web message. |
+| 17100014 | The type and value of the message do not match. |
 
 ### setArrayBuffer<sup>10+</sup>
 
@@ -10615,7 +10682,7 @@ setArrayBuffer(message: ArrayBuffer): void
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
-| 17100014 | The type does not match with the value of the web message. |
+| 17100014 | The type and value of the message do not match. |
 
 ### setArray<sup>10+</sup>
 
@@ -10637,7 +10704,7 @@ setArray(message: Array\<string | number | boolean\>): void
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
-| 17100014 | The type does not match with the value of the web message. |
+| 17100014 | The type and value of the message do not match. |
 
 ### setError<sup>10+</sup>
 
@@ -10659,7 +10726,7 @@ setError(message: Error): void
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
-| 17100014 | The type does not match with the value of the web message. |
+| 17100014 | The type and value of the message do not match. |
 
 ## WebStorageOrigin
 
@@ -11739,6 +11806,14 @@ static deserialize(serializedData: Uint8Array): WebDownloadItem
 | ------ | ------------------------- |
 | [WebDownloadItem](#webdownloaditem11) | 从字节数组反序列化为一个WebDownloadItem对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Incorrect parameter types. 2. Parameter verification failed.  |
+
 **示例：**
 
 ```ts
@@ -11817,6 +11892,14 @@ start(downloadPath: string): void
 | 参数名 | 类型                   | 必填 | 说明                             |
 | ------ | ---------------------- | ---- | ------------------------------|
 | downloadPath   | string     | 是  | 下载文件的路径(包含文件名)。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Incorrect parameter types. 2. Parameter verification failed.  |
 
 **示例：**
 
@@ -11981,7 +12064,7 @@ pause(): void
 
 | 错误码ID  | 错误信息                                                      |
 | -------- | ------------------------------------------------------------ |
-| 17100019 | The download has not been started yet. |
+| 17100019 | The download task is not started yet. |
 
 **示例：**
 
@@ -12082,7 +12165,7 @@ resume(): void
 
 | 错误码ID  | 错误信息                                                      |
 | -------- | ------------------------------------------------------------ |
-| 17100016 | The download is not paused. |
+| 17100016 | The download task is not paused. |
 
 **示例：**
 
@@ -12995,7 +13078,7 @@ initialize(): Promise\<void\>
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
-| 17100022 | The http body stream init failed. |
+| 17100022 | Failed to initialize the HTTP body stream. |
 
 **示例：**
 
@@ -13112,7 +13195,7 @@ read(size: number): Promise\<ArrayBuffer\>
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
-|  401 | Invalid input parameter.    |
+|  401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.    |
 
 **示例：**
 
@@ -13356,6 +13439,24 @@ getRequestResourceType(): WebResourceType
 
 完整示例代码参考[onRequestStart](#onrequeststart12)。
 
+### getFrameUrl<sup>12+</sup>
+
+getFrameUrl(): string
+
+获取触发此请求的Frame的URL。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型     | 说明            |
+| ------ | ------------- |
+| string | 返回触发此请求的Frame的URL。 |
+
+**示例：**
+
+完整示例代码参考[onRequestStart](#onrequeststart12)。
+
 ## WebSchemeHandlerResponse<sup>12+</sup>
 
 请求的响应，可以为被拦截的请求创建一个Response并填充自定义的内容返回给Web组件。
@@ -13438,7 +13539,7 @@ setUrl(url: string): void
 
 | 错误码ID | 错误信息                  |
 | -------- | ----------------------- |
-|  401 | Invalid input parameter.    |
+|  401 | Parameter error. Possible causes: 1. Incorrect parameter types.    |
 
 ### setNetErrorCode<sup>12+</sup>
 
@@ -13460,7 +13561,7 @@ setNetErrorCode(code: WebNetErrorList): void
 
 | 错误码ID | 错误信息                  |
 | -------- | ----------------------- |
-|  401 | Invalid input parameter.    |
+|  401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.    |
 
 **示例：**
 
@@ -13486,7 +13587,7 @@ setStatus(code: number): void
 
 | 错误码ID | 错误信息                  |
 | -------- | ----------------------- |
-|  401 | Invalid input parameter.    |
+|  401 | Parameter error. Possible causes: 1. Incorrect parameter types. |
 
 **示例：**
 
@@ -13512,7 +13613,7 @@ setStatusText(text: string): void
 
 | 错误码ID | 错误信息                  |
 | -------- | ----------------------- |
-|  401 | Invalid input parameter.    |
+|  401 | Parameter error. Possible causes: 1. Incorrect parameter types.    |
 
 **示例：**
 
@@ -13538,7 +13639,7 @@ setMimeType(type: string): void
 
 | 错误码ID | 错误信息                  |
 | -------- | ----------------------- |
-|  401 | Invalid input parameter.    |
+|  401 | Parameter error. Possible causes: 1. Incorrect parameter types.    |
 
 **示例：**
 
@@ -13564,7 +13665,7 @@ setEncoding(encoding: string): void
 
 | 错误码ID | 错误信息                  |
 | -------- | ----------------------- |
-|  401 | Invalid input parameter.    |
+|  401 | Parameter error. Possible causes: 1. Incorrect parameter types.    |
 
 **示例：**
 
@@ -13592,7 +13693,7 @@ setHeaderByName(name: string, value: string, overwrite: boolean): void
 
 | 错误码ID | 错误信息                  |
 | -------- | ----------------------- |
-|  401 | Invalid input parameter.    |
+|  401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.    |
 
 **示例：**
 
@@ -13755,8 +13856,8 @@ didReceiveResponse(response: WebSchemeHandlerResponse): void
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
-|  401 | Invalid input parameter.    |
-| 17100021 | Resource handler is invalid. |
+|  401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.    |
+| 17100021 | The resource handler is invalid. |
 
 **示例：**
 
@@ -13782,8 +13883,8 @@ didReceiveResponseBody(data: ArrayBuffer): void
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
-|  401 | Invalid input parameter.    |
-| 17100021 | Resource handler is invalid. |
+|  401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.    |
+| 17100021 | The resource handler is invalid. |
 
 **示例：**
 
@@ -13803,7 +13904,7 @@ didFinish(): void
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
-| 17100021 | Resource handler is invalid. |
+| 17100021 | The resource handler is invalid. |
 
 **示例：**
 
@@ -13853,7 +13954,7 @@ onRequestStart(callback: (request: WebSchemeHandlerRequest, handler: WebResource
 
 | 参数名   | 类型                 | 必填 | 说明       |
 | -------- | -------------------- | ---- | ---------- |
-| callback   | (request: WebSchemeHandlerRequest, handler: WebResourceHandler) => boolean | 是 | 拦截对应scheme请求开始时触发的回调。request为请求，handler用于提供自定义的返回头以及返回体给Web组件，返回值表示该请求是否拦截。 |
+| callback   | (request: [WebSchemeHandlerRequest](#webschemehandlerrequest12), handler: [WebResourceHandler](#webresourcehandler12)) => boolean | 是 | 拦截对应scheme请求开始时触发的回调。request为请求，handler用于提供自定义的返回头以及返回体给Web组件，返回值表示该请求是否拦截。 |
 
 **示例：**
 
@@ -13886,6 +13987,7 @@ struct WebComponent {
                 console.log("[schemeHandler] onRequestStart hasGesture:" + request.hasGesture())
                 console.log("[schemeHandler] onRequestStart header size:" + request.getHeader().length)
                 console.log("[schemeHandler] onRequestStart resource type:" + request.getRequestResourceType())
+                console.log("[schemeHandler] onRequestStart frame url:" + request.getFrameUrl())
                 let header = request.getHeader();
                 for (let i = 0; i < header.length; i++) {
                   console.log("[schemeHandler] onRequestStart header:" + header[i].headerKey + " " + header[i].headerValue);
@@ -13968,7 +14070,7 @@ onRequestStop(callback: Callback\<WebSchemeHandlerRequest\>): void
 
 | 参数名   | 类型                 | 必填 | 说明       |
 | -------- | -------------------- | ---- | ---------- |
-| callback | Callback\<WebSchemeHandlerRequest\> | 是   | 对应请求结束的回调函数。 |
+| callback | Callback\<[WebSchemeHandlerRequest](#webschemehandlerrequest12)\> | 是   | 对应请求结束的回调函数。 |
 
 **示例：**
 
@@ -14498,7 +14600,7 @@ exitFullscreen(): void
 | 名称 | 类型 | 只读 | 必填 | 说明 |
 |------|------|------|------|------|
 | id | string | 否 | N/A | surface 的id ， 用于同层渲染的NativeImage的 psurfaceid。<br/>详见[NativeEmbedDataInfo](ts-basic-components-web.md#nativeembeddatainfo11)。 |
-| rect | {<br/>x: number, <br/>y: number, <br/>width: number, <br/>height: number<br/>} | 否 | N/A | surface 的位置信息。 |
+| rect | [RectEvent](#rectevent12) | 否 | N/A | surface 的位置信息。 |
 
 ## Preload<sup>12+<sup>
 
@@ -14568,7 +14670,7 @@ type CreateNativeMediaPlayerCallback = (handler: NativeMediaPlayerHandler, media
 
 | 名称        | 类型   | 可读 | 可写 |说明                 |
 | ----------- | ------ | -----|------|------------------- |
-| urlList | Array\<string\> | 是   | 是   | 本地离线资源对应的网络地址列表，列表的第一项将作为资源的源(Origin), 如果仅提供一个网络地址，则使用该地址作为这个资源的源。url仅支持http或https协议。      |
+| urlList | Array\<string\> | 是   | 是   | 本地离线资源对应的网络地址列表，列表的第一项将作为资源的源(Origin), 如果仅提供一个网络地址，则使用该地址作为这个资源的源。url仅支持http或https协议，长度不超过2048。      |
 | resource | Uint8Array | 是   | 是   | 本地离线资源的内容。      |
 | responseHeaders | Array<[WebHeader](#webheader)> | 是   | 是   | 资源对应的HTTP响应头。其中提供的Cache-Control或Expires响应头将被用于控制资源在内存缓存中的有效期。如果不提供，默认的有效期为86400秒，即1天。其中提供的Content-Type响应头将被用于定义资源的MIMEType，MODULE_JS必须提供有效的MIMEType，其他类型可不提供，无默认值，不符合标准的MIMEType会导致内存缓存失效。如果业务网页中的script标签使用了crossorigin属性，则必须在接口的responseHeaders参数中设置Cross-Origin响应头的值为anoymous或use-credentials。      |
 | type | [OfflineResourceType](#offlineresourcetype12) | 是   | 是   | 资源的类型，目前仅支持Javascript、图片和CSS类型的资源。      |
@@ -14614,3 +14716,16 @@ type CreateNativeMediaPlayerCallback = (handler: NativeMediaPlayerHandler, media
 | PLUGIN_RESOURCE | 17 | 插件请求的资源。 |
 | NAVIGATION_PRELOAD_MAIN_FRAME | 19 | 触发service worker预热的主frame跳转请求。 |
 | NAVIGATION_PRELOAD_SUB_FRAME | 20 | 触发service worker预热的子frame跳转请求。 |
+
+# RectEvent<sup>12+<sup>
+
+矩形定义。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称           | 类型       | 可读 | 可写 | 说明                         |
+| -------------- | --------- | ---- | ---- | ---------------------------- |
+| x  | number   | 是   | 是   | 矩形区域左上角x坐标。    |
+| y  | number   | 是   | 是   | 矩形区域左上角y坐标。    |
+| width  | number   | 是   | 是   | 矩形的宽度。    |
+| height  | number   | 是   | 是   | 矩形的高度。    |

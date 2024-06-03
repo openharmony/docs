@@ -22,7 +22,7 @@
    > 需要在avRecorder完成赋值（即“avRecorder = recorder; ”运行完成）后，再进行剩余操作。
 
    ```ts
-   import media from '@kit.MediaKit';
+   import { media } from '@kit.MediaKit';
    import { BusinessError } from '@kit.BasicServicesKit';
    
    let avRecorder: media.AVRecorder;
@@ -65,7 +65,7 @@
    > - 录制输出的url地址（即示例里avConfig中的url），形式为fd://xx (fd number)。需要基础文件操作接口（[ohos.file.fs](../../reference/apis-core-file-kit/js-apis-file-fs.md)）实现应用文件访问能力，获取方式参考[应用文件访问与管理](../../file-management/app-file-access.md)。
 
    ```ts
-   import media from '@kit.MediaKit';
+   import { media } from '@kit.MediaKit';
    import { BusinessError } from '@kit.BasicServicesKit';
    
    let avProfile: media.AVRecorderProfile = {
@@ -134,7 +134,7 @@
   参考以下示例，完成“开始录制-暂停录制-恢复录制-停止录制”的完整流程。
   
 ```ts
-import media from '@kit.MediaKit';
+import { media } from '@kit.MediaKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 export class AudioRecorderDemo {

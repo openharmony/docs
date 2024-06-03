@@ -550,7 +550,13 @@ OH_AVErrCode OH_VideoDecoder_SetDecryptionConfig (OH_AVCodec *codec, MediaKeySes
 
 **返回：**
 
-如果执行成功，则返回AV_ERR_OK，否则返回特定错误代码，请参阅[OH_AVErrCode](_core.md#oh_averrcode)。
+返回函数结果代码[OH_AVErrCode](_core.md#oh_averrcode)：
+
+AV_ERR_OK：操作成功。
+
+AV_ERR_OPERATE_NOT_PERMIT：编解码器服务或媒体密钥会话服务处于错误状态。
+
+AV_ERR_INVALID_VAL：编解码器实例为nullptr或无效，或者mediaKeySession为nullptr或无效。
 
 
 ### OH_VideoDecoder_SetParameter()

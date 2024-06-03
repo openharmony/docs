@@ -3,7 +3,9 @@
 - ArkTS APIs
   - [@ohos.multimedia.camera (Camera Management)](js-apis-camera.md)
   - [@ohos.multimedia.cameraPicker (Camera Picker)] (js-apis-cameraPicker.md)
+  <!--Del-->
   - [@ohos.multimedia.camera (Camera Management) (System API)](js-apis-camera-sys.md)
+  <!--DelEnd-->
 - C APIs
   - Modules
     - [OH_Camera](_o_h___camera.md)

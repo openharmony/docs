@@ -339,12 +339,18 @@ export default class EntryAbility extends UIAbility {
       let error = e as BusinessError;
       console.error(`Failed to create KVManager.code is ${error.code},message is ${error.message}`);
     }
+    if (kvManager !== undefined) {
+      kvManager = kvManager as distributedKVStore.KVManager;
+      // 进行后续创建数据库等相关操作
+      // ...
+    }
   }
 }
 ```
 
 FA模型下的示例：
 
+<!--code_no_check_fa-->
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 import { BusinessError } from '@ohos.base';
@@ -362,6 +368,11 @@ try {
   let error = e as BusinessError;
   console.error(`Failed to create KVManager.code is ${error.code},message is ${error.message}`);
 }
+if (kvManager !== undefined) {
+  kvManager = kvManager as distributedKVStore.KVManager;
+  // 进行后续创建数据库等相关操作
+  // ...
+}
 ```
 
 ## KVManager
@@ -372,7 +383,7 @@ try {
 
 getKVStore&lt;T&gt;(storeId: string, options: Options, callback: AsyncCallback&lt;T&gt;): void
 
-通过指定Options和storeId，创建并获取分布式键值数据库，使用callback异步回调。
+通过指定options和storeId，创建并获取分布式键值数据库，使用callback异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -421,13 +432,18 @@ try {
   let error = e as BusinessError;
   console.error(`An unexpected error occurred.code is ${error.code},message is ${error.message}`);
 }
+if (kvStore !== undefined) {
+     kvStore = kvStore as distributedKVStore.SingleKVStore;
+       // 进行后续相关数据操作，包括数据的增、删、改、查、订阅数据变化等操作
+       // ...
+}
 ```
 
 ### getKVStore
 
 getKVStore&lt;T&gt;(storeId: string, options: Options): Promise&lt;T&gt;
 
-通过指定Options和storeId，创建并获取分布式键值数据库，使用Promise异步回调。
+通过指定options和storeId，创建并获取分布式键值数据库，使用Promise异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -1469,7 +1485,7 @@ equalTo(field: string, value: number|string|boolean): Query
 
 **错误码：**
 
-以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | **错误码ID** | **错误信息** |
 | ------------ | ------------ |

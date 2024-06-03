@@ -89,7 +89,7 @@ getEnrolledState(authType : UserAuthType): EnrolledState
 | 错误码ID | 错误信息 |
 | -------- | ------- |
 | 201 | Permission verification failed. |
-| 401 | Incorrect parameters. |
+| 401 | Incorrect parameters. Possible causes: 1.Mandatory parameters are left unspecified. |
 | 12500002 | General operation error. |
 | 12500005 | The authentication type is not supported. |
 | 12500010 | The type of credential has not been enrolled. |
@@ -249,7 +249,7 @@ on(type: 'result', callback: IAuthCallback): void
 
 | 错误码ID | 错误信息                 |
 | -------- | ------------------------ |
-| 401      | Incorrect parameters.    |
+| 401      | Incorrect parameters. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification. |
 | 12500002 | General operation error. |
 
 **示例：**
@@ -305,7 +305,7 @@ off(type: 'result', callback?: IAuthCallback): void
 
 | 错误码ID | 错误信息                 |
 | -------- | ------------------------ |
-| 401      | Incorrect parameters.    |
+| 401      | Incorrect parameters. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification. |
 | 12500002 | General operation error. |
 
 **示例：**
@@ -355,18 +355,18 @@ start(): void
 | 错误码ID | 错误信息                                         |
 | -------- | ------------------------------------------------ |
 | 201      | Permission verification failed.                  |
-| 401      | Incorrect parameters.                            |
+| 401      | Incorrect parameters. Possible causes: 2.Incorrect parameter types. |
 | 12500001 | Authentication failed.                           |
 | 12500002 | General operation error.                         |
-| 12500003 | The operation is canceled.                       |
-| 12500004 | The operation is time-out.                       |
+| 12500003 | Authentication canceled.                         |
+| 12500004 | Authentication timeout.                          |
 | 12500005 | The authentication type is not supported.        |
 | 12500006 | The authentication trust level is not supported. |
-| 12500007 | The authentication task is busy.                 |
-| 12500009 | The authenticator is locked.                     |
+| 12500007 | Authentication service is busy.                  |
+| 12500009 | Authentication is locked out.                    |
 | 12500010 | The type of credential has not been enrolled.    |
-| 12500011 | The authentication is canceled from widget's navigation button.      |
-| 12500013 | Indicates that current authentication failed because of PIN expired. |
+| 12500011 | Switched to the custom authentication process.   |
+| 12500013 | Operation failed because of PIN expired. |
 
 **示例：**
 
@@ -410,7 +410,7 @@ cancel(): void
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------- |
 | 201      | Permission verification failed. |
-| 401      | Incorrect parameters.           |
+| 401      | Incorrect parameters. Possible causes: 2.Incorrect parameter types. |
 | 12500002 | General operation error.        |
 
 **示例：**
@@ -467,7 +467,7 @@ getUserAuthInstance(authParam: AuthParam, widgetParam: WidgetParam): UserAuthIns
 
 | 错误码ID | 错误信息                                         |
 | -------- | ------------------------------------------------ |
-| 401      | Incorrect parameters.                            |
+| 401      | Incorrect parameters. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification.          |
 | 12500002 | General operation error.                         |
 | 12500005 | The authentication type is not supported.        |
 | 12500006 | The authentication trust level is not supported. |
@@ -776,7 +776,7 @@ start : () => void
 | 12500001 | Authentication failed. |
 | 12500002 | General operation error. |
 | 12500003 | The operation is canceled. |
-| 12500004 | The operation is time-out. |
+| 12500004 | The operation is time-out.  |
 | 12500005 | The authentication type is not supported. |
 | 12500006 | The authentication trust level is not supported. |
 | 12500007 | The authentication task is busy. |
@@ -931,12 +931,12 @@ getAvailableStatus(authType : UserAuthType, authTrustLevel : AuthTrustLevel): vo
 | 错误码ID | 错误信息 |
 | -------- | ------- |
 | 201 | Permission verification failed. |
-| 401 | Incorrect parameters. |
+| 401 | Incorrect parameters. Possible causes: 1.Mandatory parameters are left unspecified. |
 | 12500002 | General operation error. |
 | 12500005 | The authentication type is not supported. |
 | 12500006 | The authentication trust level is not supported. |
 | 12500010 | The type of credential has not been enrolled. |
-| 12500013 | Indicates that current operation failed because of PIN expired. |
+| 12500013 | Operation failed because of PIN expired. |
 
 **示例：**
 

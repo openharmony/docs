@@ -171,7 +171,6 @@ setFoldDisplayMode(mode: FoldDisplayMode): void
 | ------- | ----------------------- |
 | 202     | Permission verification failed, non-system application uses system API.|
 | 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
-| 801 | Capability not supported on this device. |
 | 1400003 | This display manager service works abnormally. |
 
 **示例：**
@@ -210,7 +209,6 @@ setFoldStatusLocked(locked: boolean): void
 | ------- | ----------------------- |
 | 202     | Permission verification failed, non-system application uses system API.|
 | 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
-| 801 | Capability not supported on this device. |
 | 1400003 | This display manager service works abnormally. |
 
 **示例：**
@@ -263,24 +261,15 @@ import { BusinessError } from '@ohos.base';
 import display from '@ohos.display'
 
 let displayClass: display.Display | null = null;
-try {
-  displayClass = display.getDefaultDisplaySync();
-} catch (exception) {
-  console.error('Failed to obtain the default display object. Code: ' + JSON.stringify(exception));
-}
-
-try {
-  displayClass.hasImmersiveWindow((err: BusinessError, data) => {
+displayClass = display.getDefaultDisplaySync();
+displayClass.hasImmersiveWindow((err: BusinessError, data) => {
     const errCode: number = err.code;
     if (errCode) {
       console.error('Failed to check whether there is immersive window. Code: ' + JSON.stringify(err));
       return;
     }
     console.info('Succeeded in checking whether there is immersive window. data: ' + JSON.stringify(data));
-  });
-} catch (exception) {
-  console.error('Failed to check whether there is immersive window. Code: ' + JSON.stringify(exception));
-}
+});
 ```
 ### hasImmersiveWindow<sup>11+</sup>
 hasImmersiveWindow(): Promise&lt;boolean&gt;
@@ -314,12 +303,7 @@ import { BusinessError } from '@ohos.base';
 import display from '@ohos.display'
 
 let displayClass: display.Display | null = null;
-try {
-  displayClass = display.getDefaultDisplaySync();
-} catch (exception) {
-  console.error('Failed to obtain the default display object. Code: ' + JSON.stringify(exception));
-}
-
+displayClass = display.getDefaultDisplaySync();
 let promise = displayClass.hasImmersiveWindow();
 promise.then((data) => {
   console.info('Succeeded in checking whether there is immersive window. data: ' + JSON.stringify(data));

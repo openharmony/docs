@@ -59,6 +59,7 @@ Sendable interface需同时满足以下两个规则：
 - ArkTS语言标准库中定义的AsyncLock对象（须显式引入[@arkts.utils](../reference/apis-arkts/js-apis-arkts-utils.md)）。
 - 继承了[ISendable](#isendable)的interface。
 - 标注了[@Sendable装饰器](#sendable装饰器声明并校验sendable-class)的class。
+- 接入Sendable的系统对象类型（详见[Sendable系统对象](arkts-sendable-system-object-list.md)）。
 - 元素均为Sendable类型的union type数据。
 
 > **说明：**
@@ -166,12 +167,12 @@ class B extends A {
 
 **反例：**
 ```ts
+@Sendable
 class A {
   constructor() {
   }
 }
 
-@Sendable
 class B extends A {
   constructor() {
     super()

@@ -36,12 +36,12 @@ deleteForm(formId: string, callback: AsyncCallback&lt;void&gt;): void
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
+| 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred. |
 | 16501001 | The ID of the form to be operated does not exist. |
-| 16501003 | The form can not be operated by the current application. |
+| 16501003 | The form cannot be operated by the current application. |
 
 以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
@@ -94,12 +94,12 @@ deleteForm(formId: string): Promise&lt;void&gt;
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
+| 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred. |
 | 16501001 | The ID of the form to be operated does not exist. |
-| 16501003 | The form can not be operated by the current application. |
+| 16501003 | The form cannot be operated by the current application. |
 
 以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
@@ -144,12 +144,12 @@ releaseForm(formId: string, callback: AsyncCallback&lt;void&gt;): void
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
+| 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred. |
 | 16501001 | The ID of the form to be operated does not exist. |
-| 16501003 | The form can not be operated by the current application. |
+| 16501003 | The form cannot be operated by the current application. |
 
 以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
@@ -195,12 +195,12 @@ releaseForm(formId: string, isReleaseCache: boolean, callback: AsyncCallback&lt;
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
+| 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred. |
 | 16501001 | The ID of the form to be operated does not exist. |
-| 16501003 | The form can not be operated by the current application. |
+| 16501003 | The form cannot be operated by the current application. |
 
 以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
@@ -251,12 +251,12 @@ releaseForm(formId: string, isReleaseCache?: boolean): Promise&lt;void&gt;
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
+| 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred. |
 | 16501001 | The ID of the form to be operated does not exist. |
-| 16501003 | The form can not be operated by the current application. |
+| 16501003 | The form cannot be operated by the current application. |
 
 以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
@@ -301,12 +301,12 @@ requestForm(formId: string, callback: AsyncCallback&lt;void&gt;): void
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
+| 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred. |
 | 16501001 | The ID of the form to be operated does not exist. |
-| 16501003 | The form can not be operated by the current application. |
+| 16501003 | The form cannot be operated by the current application. |
 
 以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
@@ -356,12 +356,12 @@ requestForm(formId: string): Promise&lt;void&gt;
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
+| 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred. |
 | 16501001 | The ID of the form to be operated does not exist. |
-| 16501003 | The form can not be operated by the current application. |
+| 16501003 | The form cannot be operated by the current application. |
 
 以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
@@ -412,12 +412,12 @@ requestFormWithParams(formId: string, wantParams?: Record<string, Object>): Prom
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
+| 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred. |
 | 16501001 | The ID of the form to be operated does not exist. |
-| 16501003 | The form can not be operated by the current application. |
+| 16501003 | The form cannot be operated by the current application. |
 
 以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
@@ -465,12 +465,12 @@ castToNormalForm(formId: string, callback: AsyncCallback&lt;void&gt;): void
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
 | 16501000 | An internal functional error occurred. |
 | 16501001 | The ID of the form to be operated does not exist. |
-| 16501002 | The number of forms exceeds upper bound. |
-| 16501003 | The form can not be operated by the current application. |
+| 16501002 | The number of forms exceeds the maximum allowed. |
+| 16501003 | The form cannot be operated by the current application. |
 
 以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
@@ -520,12 +520,12 @@ castToNormalForm(formId: string): Promise&lt;void&gt;
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
 | 16501000 | An internal functional error occurred. |
 | 16501001 | The ID of the form to be operated does not exist. |
-| 16501002 | The number of forms exceeds upper bound. |
-| 16501003 | The form can not be operated by the current application. |
+| 16501002 | The number of forms exceeds the maximum allowed. |
+| 16501003 | The form cannot be operated by the current application. |
 
 以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
@@ -570,9 +570,9 @@ notifyVisibleForms(formIds: Array&lt;string&gt;, callback: AsyncCallback&lt;void
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
+| 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred. |
 
 以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
@@ -623,9 +623,9 @@ notifyVisibleForms(formIds: Array&lt;string&gt;): Promise&lt;void&gt;
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
+| 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred. |
 
 以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
@@ -671,9 +671,9 @@ notifyInvisibleForms(formIds: Array&lt;string&gt;, callback: AsyncCallback&lt;vo
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
+| 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred. |
 
 以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
@@ -724,9 +724,9 @@ notifyInvisibleForms(formIds: Array&lt;string&gt;): Promise&lt;void&gt;
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
+| 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred. |
 
 以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
@@ -772,11 +772,11 @@ enableFormsUpdate(formIds: Array&lt;string&gt;, callback: AsyncCallback&lt;void&
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
+| 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred. |
-| 16501003 | The form can not be operated by the current application. |
+| 16501003 | The form cannot be operated by the current application. |
 
 以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
@@ -826,11 +826,11 @@ enableFormsUpdate(formIds: Array&lt;string&gt;): Promise&lt;void&gt;
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
+| 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred. |
-| 16501003 | The form can not be operated by the current application. |
+| 16501003 | The form cannot be operated by the current application. |
 
 以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
@@ -875,12 +875,12 @@ disableFormsUpdate(formIds: Array&lt;string&gt;, callback: AsyncCallback&lt;void
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
+| 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred. |
 | 16501001 | The ID of the form to be operated does not exist. |
-| 16501003 | The form can not be operated by the current application. |
+| 16501003 | The form cannot be operated by the current application. |
 
 以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
@@ -930,12 +930,12 @@ disableFormsUpdate(formIds: Array&lt;string&gt;): Promise&lt;void&gt;
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
+| 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred. |
 | 16501001 | The ID of the form to be operated does not exist. |
-| 16501003 | The form can not be operated by the current application. |
+| 16501003 | The form cannot be operated by the current application. |
 
 以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
@@ -976,7 +976,7 @@ isSystemReady(callback: AsyncCallback&lt;void&gt;): void
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 202 | The application is not a system application.   |
-| 401 | If the input parameter is not valid parameter. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 
 以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
@@ -1058,9 +1058,9 @@ getAllFormsInfo(callback: AsyncCallback&lt;Array&lt;formInfo.FormInfo&gt;&gt;): 
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
+| 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred. |
 
 以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
@@ -1107,8 +1107,8 @@ getAllFormsInfo(): Promise&lt;Array&lt;formInfo.FormInfo&gt;&gt;
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
+| 16500050 | IPC connection error. |
+| 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred. |
 
 以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
@@ -1153,9 +1153,9 @@ getFormsInfo(bundleName: string, callback: AsyncCallback&lt;Array&lt;formInfo.Fo
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
+| 16500060 | Service connection error. |
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000 | An internal functional error occurred. |
 
@@ -1204,9 +1204,9 @@ getFormsInfo(bundleName: string, moduleName: string, callback: AsyncCallback&lt;
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
+| 16500060 | Service connection error. |
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000 | An internal functional error occurred. |
 
@@ -1260,9 +1260,9 @@ getFormsInfo(bundleName: string, moduleName?: string): Promise&lt;Array&lt;formI
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
+| 16500060 | Service connection error. |
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000 | An internal functional error occurred. |
 
@@ -1313,9 +1313,9 @@ getFormsInfo(filter: formInfo.FormInfoFilter): Promise&lt;Array&lt;formInfo.Form
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application.  |
-| 401 | If the input parameter is not valid parameter.  |
-| 16500050 | An IPC connection error happened.  |
-| 16500060 | A service connection error happened, please try again later.  |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error.  |
+| 16500060 | Service connection error.  |
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000 | An internal functional error occurred. |
 
@@ -1366,9 +1366,9 @@ deleteInvalidForms(formIds: Array&lt;string&gt;, callback: AsyncCallback&lt;numb
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
+| 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred. |
 
 以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
@@ -1421,9 +1421,9 @@ deleteInvalidForms(formIds: Array&lt;string&gt;): Promise&lt;number&gt;
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
+| 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred. |
 
 以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
@@ -1469,9 +1469,9 @@ acquireFormState(want: Want, callback: AsyncCallback&lt;formInfo.FormStateInfo&g
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
+| 16500060 | Service connection error. |
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000 | An internal functional error occurred. |
 
@@ -1535,9 +1535,9 @@ acquireFormState(want: Want): Promise&lt;formInfo.FormStateInfo&gt;
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
+| 16500060 | Service connection error. |
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000 | An internal functional error occurred. |
 
@@ -1595,7 +1595,7 @@ on(type: 'formUninstall', callback: Callback&lt;string&gt;): void
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 
 以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
@@ -1633,7 +1633,7 @@ off(type: 'formUninstall', callback?: Callback&lt;string&gt;): void
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 
 以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
@@ -1671,11 +1671,11 @@ notifyFormsVisible(formIds: Array&lt;string&gt;, isVisible: boolean, callback: A
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
+| 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred. |
-| 16501003 | The form can not be operated by the current application. |
+| 16501003 | The form cannot be operated by the current application. |
 
 以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
@@ -1726,11 +1726,11 @@ notifyFormsVisible(formIds: Array&lt;string&gt;, isVisible: boolean): Promise&lt
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
+| 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred. |
-| 16501003 | The form can not be operated by the current application. |
+| 16501003 | The form cannot be operated by the current application. |
 
 以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
@@ -1776,11 +1776,11 @@ notifyFormsEnableUpdate(formIds: Array&lt;string&gt;, isEnableUpdate: boolean, c
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
+| 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred. |
-| 16501003 | The form can not be operated by the current application. |
+| 16501003 | The form cannot be operated by the current application. |
 
 以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
@@ -1831,11 +1831,11 @@ notifyFormsEnableUpdate(formIds: Array&lt;string&gt;, isEnableUpdate: boolean): 
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
+| 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred. |
-| 16501003 | The form can not be operated by the current application. |
+| 16501003 | The form cannot be operated by the current application. |
 
 以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
@@ -1880,11 +1880,11 @@ shareForm(formId: string, deviceId: string, callback: AsyncCallback&lt;void&gt;)
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
 | 16501000 | An internal functional error occurred. |
 | 16501001 | The ID of the form to be operated does not exist. |
-| 16501003 | The form can not be operated by the current application. |
+| 16501003 | The form cannot be operated by the current application. |
 
 以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
@@ -1936,11 +1936,11 @@ shareForm(formId: string, deviceId: string): Promise&lt;void&gt;
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
 | 16501000 | An internal functional error occurred. |
 | 16501001 | The ID of the form to be operated does not exist. |
-| 16501003 | The form can not be operated by the current application. |
+| 16501003 | The form cannot be operated by the current application. |
 
 以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
@@ -1987,9 +1987,9 @@ notifyFormsPrivacyProtected(formIds: Array\<string>, isProtected: boolean, callb
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
+| 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred. |
 
 以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
@@ -2041,9 +2041,9 @@ notifyFormsPrivacyProtected(formIds: Array\<string\>, isProtected: boolean): Pro
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
+| 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred. |
 
 以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
@@ -2088,9 +2088,9 @@ acquireFormData(formId: string, callback: AsyncCallback\<Record\<string, Object>
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 201 | Permissions denied. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
+| 16500060 | Service connection error. |
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000 | An internal functional error occurred. |
 
@@ -2145,9 +2145,9 @@ acquireFormData(formId: string): Promise\<Record\<string, Object>>
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 201 | Permissions denied. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
+| 16500060 | Service connection error. |
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000 | An internal functional error occurred. |
 
@@ -2202,11 +2202,11 @@ setRouterProxy(formIds: Array&lt;string&gt;, proxy: Callback&lt;Want&gt;, callba
 | -------- | ------------------------------------------------------------ |
 | 201      | Permissions denied.                                          |
 | 202      | The application is not a system application.                 |
-| 401      | If the input parameter is not valid parameter.               |
-| 16500050 | An IPC connection error happened.                            |
-| 16500060 | A service connection error happened, please try again later. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error.                            |
+| 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred.                       |
-| 16501003 | The form can not be operated by the current application.     |
+| 16501003 | The form cannot be operated by the current application.     |
 
 以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
@@ -2301,11 +2301,11 @@ setRouterProxy(formIds: Array&lt;string&gt;, proxy: Callback&lt;Want&gt;): Promi
 | -------- | ------------------------------------------------------------ |
 | 201      | Permissions denied.                                          |
 | 202      | The application is not a system application.                 |
-| 401      | If the input parameter is not valid parameter.               |
-| 16500050 | An IPC connection error happened.                            |
-| 16500060 | A service connection error happened, please try again later. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error.                            |
+| 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred.                       |
-| 16501003 | The form can not be operated by the current application.     |
+| 16501003 | The form cannot be operated by the current application.     |
 
 以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
@@ -2388,11 +2388,11 @@ clearRouterProxy(formIds:Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt
 | -------- | ------------------------------------------------------------ |
 | 201      | Permissions denied.                                          |
 | 202      | The application is not a system application.                 |
-| 401      | If the input parameter is not valid parameter.               |
-| 16500050 | An IPC connection error happened.                            |
-| 16500060 | A service connection error happened, please try again later. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error.                            |
+| 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred.                       |
-| 16501003 | The form can not be operated by the current application.     |
+| 16501003 | The form cannot be operated by the current application.     |
 
 以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
@@ -2442,11 +2442,11 @@ clearRouterProxy(formIds:Array&lt;string&gt;): Promise&lt;void&gt;
 | -------- | ------------------------------------------------------------ |
 | 201      | Permissions denied.                                          |
 | 202      | The application is not a system application.                 |
-| 401      | If the input parameter is not valid parameter.               |
-| 16500050 | An IPC connection error happened.                            |
-| 16500060 | A service connection error happened, please try again later. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error.                            |
+| 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred.                       |
-| 16501003 | The form can not be operated by the current application.     |
+| 16501003 | The form cannot be operated by the current application.     |
 
 以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
@@ -2490,8 +2490,11 @@ setFormsRecyclable(formIds:Array&lt;string&gt;, callback: AsyncCallback&lt;void&
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 16500050 | An IPC connection error happened.                            |
-| 16500060 | A service connection error happened, please try again later. |
+| 201      | Permissions denied.                                          |
+| 202      | The application is not a system application.                 |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error.                            |
+| 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred.                       |
 
 以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
@@ -2542,8 +2545,11 @@ setFormsRecyclable(formIds:Array&lt;string&gt;): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 16500050 | An IPC connection error happened.                            |
-| 16500060 | A service connection error happened, please try again later. |
+| 201      | Permissions denied.                                          |
+| 202      | The application is not a system application.                 |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error.                            |
+| 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred.                       |
 
 以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
@@ -2588,8 +2594,11 @@ recoverForms(formIds:Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): 
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 16500050 | An IPC connection error happened.                            |
-| 16500060 | A service connection error happened, please try again later. |
+| 201      | Permissions denied.                                          |
+| 202      | The application is not a system application.                 |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error.                            |
+| 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred.                       |
 
 以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
@@ -2640,8 +2649,11 @@ recoverForms(formIds: Array&lt;string&gt;): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 16500050 | An IPC connection error happened.                            |
-| 16500060 | A service connection error happened, please try again later. |
+| 201      | Permissions denied.                                          |
+| 202      | The application is not a system application.                 |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error.                            |
+| 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred.                       |
 
 以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
@@ -2692,8 +2704,11 @@ recycleForms(formIds: Array&lt;string&gt;): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 16500050 | An IPC connection error happened.                            |
-| 16500060 | A service connection error happened, please try again later. |
+| 201      | Permissions denied.                                          |
+| 202      | The application is not a system application.                 |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error.                            |
+| 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred.                       |
 
 以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
@@ -2732,20 +2747,20 @@ updateFormLocation(formId: string, location: formInfo.FormLocation): void;
 | 参数名 | 类型    | 必填 | 说明    |
 | ------ | ------ | ---- | ------- |
 | formId | string | 是   | 卡片标识。 |
-| location |[FormLocation](js-apis-app-form-formInfo-sys.md#formlocation) | 是 | 卡片位置。 |
+| location |[formInfo.FormLocation](js-apis-app-form-formInfo-sys.md#formlocation) | 是 | 卡片位置。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 201      | Permissions denied.                                          |
-| 202      | caller is not system app.                                    |
-| 401      | If the input parameter is not valid parameter.               |
-| 16500050 | An IPC connection error happened.                            |
-| 16500060 | A service connection error happened, please try again later. |
+| 202      | The application is not a system application.                                    |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error.                            |
+| 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred.                       |
 | 16501001 | The ID of the form to be operated does not exist.            |
-| 16501003 | The form can not be operated by the current application.     |
+| 16501003 | The form cannot be operated by the current application.     |
 
 以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
@@ -2787,10 +2802,10 @@ setPublishFormResult(formId: string, result: formInfo.PublishFormResult): void;
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 201      | Permissions denied.                                          |
-| 202      | caller is not system app.                                    |
-| 401      | If the input parameter is not valid parameter.               |
-| 16500050 | An IPC connection error happened.                            |
-| 16500060 | A service connection error happened, please try again later. |
+| 202      | The application is not a system application.                                    |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error.                            |
+| 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred.                       |
 | 16501001 | The ID of the form to be operated does not exist.            |
 
