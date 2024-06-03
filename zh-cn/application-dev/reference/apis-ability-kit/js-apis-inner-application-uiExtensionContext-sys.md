@@ -49,13 +49,14 @@ startAbilityForResultAsCaller(want: Want, options?: StartOptions): Promise&lt;Ab
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息                                                |
 | -------- | ------------------------------------------------------- |
+| 401| Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist.                   |
 | 16000004 | Can not start invisible component.                      |
 | 16000050 | Internal error.                                         |
-
-以上错误码的详细介绍请参见[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
