@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```ts
-import unifiedDataChannel from '@ohos.data.unifiedDataChannel';
+import { unifiedDataChannel } from '@kit.ArkData';
 ```
 
 ## ShareOptions<sup>12+</sup>
@@ -50,7 +50,7 @@ type GetDelayData = (type: string) => UnifiedData
 **示例：**
 
 ```ts
-import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
+import { uniformTypeDescriptor } from '@kit.ArkData';
 
 let getDelayData: unifiedDataChannel.GetDelayData = ((type: string) => {
   if (type == uniformTypeDescriptor.UniformDataType.PLAIN_TEXT) {
@@ -103,7 +103,7 @@ type ValueType = number | string | image.PixelMap | Want | ArrayBuffer
 **示例：**
 
 ```ts
-import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
+import { uniformTypeDescriptor } from '@kit.ArkData';
 
 let properties = new unifiedDataChannel.UnifiedDataProperties();
 properties.extras = {
@@ -245,7 +245,7 @@ getRecords(): Array\<UnifiedRecord\>
 **示例：**
 
 ```ts
-import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
+import { uniformTypeDescriptor } from '@kit.ArkData';
 
 let text = new unifiedDataChannel.PlainText();
 text.textContent = 'this is textContent of text';
@@ -299,7 +299,7 @@ hasType(type: string): boolean
 **示例：**
 
 ```ts
-import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
+import { uniformTypeDescriptor } from '@kit.ArkData';
 
 let text = new unifiedDataChannel.PlainText();
 text.textContent = 'this is textContent of text';
@@ -406,9 +406,9 @@ constructor(type: string, value: ValueType)
 **示例：**
 
 ```ts
-import image from '@ohos.multimedia.image';
-import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
-import Want from '@ohos.app.ability.Want';
+import { image } from '@kit.ImageKit';
+import { uniformTypeDescriptor } from '@kit.ArkData';
+import { Want } from '@kit.AbilityKit';
 
 let text = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT, 'this is value of text');
 let link = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.HYPERLINK, 'www.XXX.com');
@@ -443,7 +443,7 @@ getType(): string
 **示例：**
 
 ```ts
-import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
+import { uniformTypeDescriptor } from '@kit.ArkData';
 
 let text = new unifiedDataChannel.PlainText();
 text.textContent = 'this is textContent of text';
@@ -475,7 +475,7 @@ getValue(): ValueType
 **示例：**
 
 ```ts
-import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
+import { uniformTypeDescriptor } from '@kit.ArkData';
 
 let text = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT, 'this is value of text');
 let value = text.getValue();
@@ -777,7 +777,7 @@ let unifiedData = new unifiedDataChannel.UnifiedData(appItem);
 **示例：**
 
 ```ts
-import image from '@ohos.multimedia.image'; // PixelMap类定义所在模块
+import { image } from '@kit.ImageKit'; // PixelMap类定义所在模块
 
 const color = new ArrayBuffer(96); // 创建pixelmap对象
 let opts: image.InitializationOptions = {
@@ -881,8 +881,8 @@ insertData(options: Options, data: UnifiedData, callback: AsyncCallback&lt;strin
 **示例：**
 
 ```ts
-import unifiedDataChannel from '@ohos.data.unifiedDataChannel';
-import { BusinessError } from '@ohos.base';
+import { unifiedDataChannel } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let plainText = new unifiedDataChannel.PlainText();
 plainText.textContent = 'hello world!';
@@ -941,8 +941,8 @@ insertData(options: Options, data: UnifiedData): Promise&lt;string&gt;
 **示例：**
 
 ```ts
-import unifiedDataChannel from '@ohos.data.unifiedDataChannel';
-import { BusinessError } from '@ohos.base';
+import { unifiedDataChannel } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let plainText = new unifiedDataChannel.PlainText();
 plainText.textContent = 'hello world!';
@@ -993,8 +993,8 @@ updateData(options: Options, data: UnifiedData, callback: AsyncCallback&lt;void&
 **示例：**
 
 ```ts
-import unifiedDataChannel from '@ohos.data.unifiedDataChannel';
-import { BusinessError } from '@ohos.base';
+import { unifiedDataChannel } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let plainText = new unifiedDataChannel.PlainText();
 plainText.textContent = 'hello world!';
@@ -1053,8 +1053,8 @@ updateData(options: Options, data: UnifiedData): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import unifiedDataChannel from '@ohos.data.unifiedDataChannel';
-import { BusinessError } from '@ohos.base';
+import { unifiedDataChannel } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let plainText = new unifiedDataChannel.PlainText();
 plainText.textContent = 'hello world!';
@@ -1105,9 +1105,9 @@ queryData(options: Options, callback: AsyncCallback&lt;Array&lt;UnifiedData&gt;&
 **示例：**
 
 ```ts
-import unifiedDataChannel from '@ohos.data.unifiedDataChannel';
-import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
-import { BusinessError } from '@ohos.base';
+import { unifiedDataChannel } from '@kit.ArkData';
+import { uniformTypeDescriptor } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let options: unifiedDataChannel.Options = {
   intention: unifiedDataChannel.Intention.DATA_HUB
@@ -1170,9 +1170,9 @@ queryData(options: Options): Promise&lt;Array&lt;UnifiedData&gt;&gt;
 **示例：**
 
 ```ts
-import unifiedDataChannel from '@ohos.data.unifiedDataChannel';
-import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
-import { BusinessError } from '@ohos.base';
+import { unifiedDataChannel } from '@kit.ArkData';
+import { uniformTypeDescriptor } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let options: unifiedDataChannel.Options = {
   key: 'udmf://DataHub/com.ohos.test/0123456789'
@@ -1228,9 +1228,9 @@ deleteData(options: Options, callback: AsyncCallback&lt;Array&lt;UnifiedData&gt;
 **示例：**
 
 ```ts
-import unifiedDataChannel from '@ohos.data.unifiedDataChannel';
-import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
-import { BusinessError } from '@ohos.base';
+import { unifiedDataChannel } from '@kit.ArkData';
+import { uniformTypeDescriptor } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let options: unifiedDataChannel.Options = {
   intention: unifiedDataChannel.Intention.DATA_HUB
@@ -1293,9 +1293,9 @@ deleteData(options: Options): Promise&lt;Array&lt;UnifiedData&gt;&gt;
 **示例：**
 
 ```ts
-import unifiedDataChannel from '@ohos.data.unifiedDataChannel';
-import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
-import { BusinessError } from '@ohos.base';
+import { unifiedDataChannel } from '@kit.ArkData';
+import { uniformTypeDescriptor } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let options: unifiedDataChannel.Options = {
   key: 'udmf://DataHub/com.ohos.test/0123456789'

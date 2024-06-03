@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```js
-import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
+import { uniformTypeDescriptor } from '@kit.ArkData';
 ```
 
 ## UniformDataType
@@ -206,8 +206,8 @@ belongsTo(type: string): boolean
 **示例：**
 
 ```ts
-import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
-import { BusinessError } from '@ohos.base';
+import { uniformTypeDescriptor } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try{
     let typeObj : uniformTypeDescriptor.TypeDescriptor = uniformTypeDescriptor.getTypeDescriptor('general.type-script');
@@ -252,8 +252,8 @@ isLowerLevelType(type: string): boolean
 **示例：**
 
 ```ts
-import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
-import { BusinessError } from '@ohos.base';
+import { uniformTypeDescriptor } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try{
     let typeObj : uniformTypeDescriptor.TypeDescriptor = uniformTypeDescriptor.getTypeDescriptor('general.type-script');
@@ -298,8 +298,8 @@ isHigherLevelType(type: string): boolean
 **示例：**
 
 ```ts
-import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
-import { BusinessError } from '@ohos.base';
+import { uniformTypeDescriptor } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try{
     let typeObj : uniformTypeDescriptor.TypeDescriptor = uniformTypeDescriptor.getTypeDescriptor('general.plain-text');
@@ -344,8 +344,8 @@ equals(typeDescriptor: TypeDescriptor): boolean
 **示例：**
 
 ```ts
-import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
-import { BusinessError } from '@ohos.base';
+import { uniformTypeDescriptor } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try{
     let typeA : uniformTypeDescriptor.TypeDescriptor = uniformTypeDescriptor.getTypeDescriptor('general.type-script');
@@ -390,8 +390,8 @@ getTypeDescriptor(typeId: string): TypeDescriptor
 **示例：**
 
 ```ts
-import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
-import { BusinessError } from '@ohos.base';
+import { uniformTypeDescriptor } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     let typeObj : uniformTypeDescriptor.TypeDescriptor = uniformTypeDescriptor.getTypeDescriptor('com.adobe.photoshop-image');
@@ -445,8 +445,8 @@ getUniformDataTypeByFilenameExtension(filenameExtension: string, belongsTo?: str
 **示例：**
 
 ```ts
-import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
-import { BusinessError } from '@ohos.base';
+import { uniformTypeDescriptor } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     let typeId = uniformTypeDescriptor.getUniformDataTypeByFilenameExtension('.ts', 'general.plain-text');
@@ -502,8 +502,8 @@ getUniformDataTypeByMIMEType(mimeType: string, belongsTo?: string): string
 **示例：**
 
 ```ts
-import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
-import { BusinessError } from '@ohos.base';
+import { uniformTypeDescriptor } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     let typeId = uniformTypeDescriptor.getUniformDataTypeByMIMEType('image/jpeg', 'general.image');
