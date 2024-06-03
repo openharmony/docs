@@ -67,8 +67,9 @@
 8. 示例代码:
 
 ```ts
-import ble from '@ohos.bluetooth.ble';
-import { BusinessError } from '@ohos.base';
+import { ble } from '@kit.ConnectivityKit';
+import { constant } from '@kit.ConnectivityKit';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 
 // serverDeviceId的值，是开启ble扫描获取gattServer的deviceId的值。
 let serverDeviceId = 'xx:xx:xx:xx:xx:xx';
@@ -227,8 +228,9 @@ console.info('close gattClientDevice success');
 7. 示例代码:
 
 ```ts
-import ble from '@ohos.bluetooth.ble';
-import { BusinessError } from '@ohos.base';
+import { ble } from '@kit.ConnectivityKit';
+import { constant } from '@kit.ConnectivityKit';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 
 // 创建gattServer实例
 let gattServerInstance = ble.createGattServer();
