@@ -82,7 +82,7 @@ java -jar path\app_packing_tool.jar --mode hsp --json-path <option> --resources-
 
 **App打包时HAP合法性校验：** 在对工程内的HAP包打包生成App包时，需要保证被打包的每个HAP在json文件中配置的bundleName、versionCode、minCompatibleVersionCode、debug、minAPIVersion、targetAPIVersion、apiReleaseType相同，moduleName唯一。对于FA模型，还需要保证json文件中配置的package唯一。
 >**说明：**
->从API12后，app打包不再对versionName进行校验
+>从API12后，App打包不再对versionName进行校验HAP的合法性。
 
 
 示例：
