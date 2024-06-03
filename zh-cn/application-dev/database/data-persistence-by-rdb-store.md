@@ -124,7 +124,7 @@
    import relationalStore from '@ohos.data.relationalStore'; // 导入模块
    import featureAbility from '@ohos.ability.featureAbility';
    
-   let context = featureAbility.getContext()
+   let context = featureAbility.getContext();
 
    const STORE_CONFIG :relationalStore.StoreConfig = {
      name: 'RdbTest.db', // 数据库文件名
@@ -345,7 +345,7 @@
    ```ts
    import featureAbility from '@ohos.ability.featureAbility';
    
-   let context = getContext(this);
+   let context = featureAbility.getContext(); 
 
    relationalStore.deleteRdbStore(context, 'RdbTest.db', (err: BusinessError) => {
      if (err) {
