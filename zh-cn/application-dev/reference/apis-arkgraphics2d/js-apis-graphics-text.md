@@ -130,6 +130,24 @@ import { drawing } from '@kit.ArkGraphics2D'
 | W800  | 7 | 800字重。|
 | W900  | 8 | 900字重。|
 
+## FontWidth
+
+字体宽度的枚举。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+| 名称             | 值 | 说明       |
+| ---------------- | - | ---------- |
+| ULTRA_CONDENSED  | 1 | 超窄字宽。  |
+| EXTRA_CONDENSED  | 2 | 特窄字宽。  |
+| CONDENSED        | 3 | 窄的字宽。  |
+| SEMI_CONDENSED   | 4 | 半窄字宽。  |
+| NORMAL           | 5 | 常规字宽。  |
+| SEMI_EXPANDED    | 6 | 半宽字宽。  |
+| EXPANDED         | 7 | 宽的字宽。  |
+| EXTRA_EXPANDED   | 8 | 特宽字宽。  |
+| ULTRA_EXPANDED   | 9 | 超宽的字宽。|
+
 ## FontStyle
 
 字体样式枚举。
@@ -141,6 +159,19 @@ import { drawing } from '@kit.ArkGraphics2D'
 | NORMAL  | 0 | 常规样式。                                            |
 | ITALIC  | 1 | 斜体，如果当前字体没有可用的斜体版本，会选用倾斜体替代。  |
 | OBLIQUE | 2 | 倾斜体，如果当前字体没有可用的倾斜体版本，会选用斜体替代。|
+
+## TextHeightBehavior
+
+文本高度修饰符模式枚举。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+| 名称                  |  值 | 说明                                                  |
+| --------------------- | --- | ---------------------------------------------------- |
+| ALL                   | 0x0 | 高度修饰符设置为段落中第一行和最后一行都上升。            |
+| DISABLE_FIRST_ASCENT  | 0x1 | 高度修饰符设置为禁止段落中第一行上升。                   |
+| DISABLE_LAST_ASCENT   | 0x2 | 高度修饰符设置为禁止段落中最后一行上升。                 |
+| DISABLE_ALL           | 0x3 | 高度修饰符设置为段落中第一行和最后一行都不上升。          |
 
 ## TextBaseline
 
@@ -165,6 +196,43 @@ import { drawing } from '@kit.ArkGraphics2D'
 | MIDDLE | 1 | 中间省略号。|
 | END    | 2 | 末尾省略号。|
 
+## TextShadow
+
+字体阴影。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+| 名称          | 类型                                                 | 只读 | 必填 | 说明                               |
+| ------------- | ---------------------------------------------------- | --  | ---  | --------------------------------- |
+| color         | [common2D.Color](js-apis-graphics-common2D.md#color) | 是  |  否   | 字体阴影的颜色，默认为黑色。        |
+| point         | [common2D.Point](js-apis-graphics-common2D.md#point) | 是  |  否   | 字体阴影基于当前文本的偏移位置。    |
+| blurRadius    | number                                               | 是  |  否   | 模糊半径，浮点数，默认为0.0。       |
+
+## RectStyle
+
+矩形框样式。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+| 名称               | 类型                                                 | 只读 | 必填 | 说明                                      |
+| -----------------  | ---------------------------------------------------- | --  | ---  | ---------------------------------------- |
+| color              | [common2D.Color](js-apis-graphics-common2D.md#color) | 是  |  是   | 矩形框的颜色，默认为黑色。                 |
+| leftTopRadius      | number                                               | 是  |  是   | 矩形框的左上半径，浮点数，默认为0.0。       |
+| rightTopRadius     | number                                               | 是  |  是   | 矩形框的右上半径，浮点数，默认为0.0。       |
+| rightBottomRadius  | number                                               | 是  |  是   | 矩形框的右下半径，浮点数，默认为0.0。       |
+| leftBottomRadius   | number                                               | 是  |  是   | 矩形框的左下半径，浮点数，默认为0.0。       |
+
+## FontFeature
+
+文本字体特征。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+| 名称      | 类型                                                 | 只读 | 必填 | 说明                                       |
+| --------- | ---------------------------------------------------- | --  | ---  | ----------------------------------------- |
+| name      | string                                               | 是  |  是   | 字体特征键值对中关键字所标识的字符串。       |
+| value     | number                                               | 是  |  是   | 字体特征键值对的值。                        |
+
 ## TextStyle
 
 文本样式。
@@ -188,6 +256,30 @@ import { drawing } from '@kit.ArkGraphics2D'
 | ellipsis      | string                                               | 是 | 否 | 省略号样式，表示省略号生效后使用该字段值替换省略号部分。       |
 | ellipsisMode  | [EllipsisMode](#ellipsismode)                        | 是 | 否 | 省略号类型，默认为END。                        |
 | locale        | string                                               | 是 | 否 | 语言类型，如'en'，具体请参照ISO 639-1规范，默认为空字符串。|
+| baselineShift | number                                               | 是 | 否 | 文本下划线的偏移距离，浮点数，默认为0.0。                 |
+| fontFeatures  | Array\<[FontFeature](#fontfeature)>                  | 是 | 否 | 文本字体特征数组。|
+| textShadows   | Array\<[TextShadow](#textshadow)>                    | 是 | 否 | 文本字体阴影数组。|
+| backgroundRect| [RectStyle](#rectstyle)                              | 是 | 否 | 文本矩形框样式。|
+
+## StrutStyle
+
+支柱样式，用于控制绘制文本时行之间的间距、基线对齐方式以及其他与行高相关的属性。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+| 名称                      | 类型                                       | 只读 | 必填 | 说明                                                                 |
+| -------------  | ---------------------------------------------------- | ---- | -- | --------------------------------------------------------------------- |
+| fontFamilies   | Array\<string>                                       | 是   | 否 | 字体类型，默认为系统字体。                                               |
+| fontStyle      | [FontStyle](#fontstyle)                              | 是   | 否 | 字体样式，默认为常规样式。                                               |
+| fontWidth      | [FontWidth](#fontwidth)                              | 是   | 否 | 字体宽度，默认为NORMAL。                                                |
+| fontWeight     | [FontWeight](#fontweight)                            | 是   | 否 | 字重，默认为W400。                                                      |
+| fontSize       | number                                               | 是   | 否 | 字体大小，浮点数，默认为14.0，单位为逻辑像素。                             |
+| height         | number                                               | 是   | 否 | 行高缩放倍数，浮点数，默认为1.0。                                         |
+| leading        | number                                               | 是   | 否 | 以自定义行距应用于支柱的行距，浮点数，默认为-1.0。                          |
+| forceHeight    | boolean                                              | 是   | 否 | 否所有行都将使用支柱的高度，true表示使用，false表示不使用，默认为false。     |
+| enabled        | boolean                                              | 是   | 否 | 是否启用支柱样式，true表示使用，false表示不使用，默认为false。              |
+| heightOverride | boolean                                              | 是   | 否 | 是否覆盖高度，true表示覆盖，false表示不覆盖，默认为false。                  |
+| halfLeading    | boolean                                              | 是   | 否 | true表示将行间距平分至行的顶部与底部，false则不平分，默认为false。           |
 
 ## FontCollection
 
@@ -276,14 +368,17 @@ struct Index {
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
-| 名称          | 类型               | 只读 | 必填 | 说明                                  |
-| ------------- | ----------------- | ---- | ---- | ------------------------------------ |
-| textStyle     | [TextStyle](#textstyle)         | 是   | 否   | 作用于整个段落的文本样式，默认为初始的TextStyle。|
-| textDirection | [TextDirection](#textdirection) | 是   | 否   | 文本方向，默认为LTR。               |
-| align         | [TextAlign](#textalign)         | 是   | 否   | 文本对齐方式，默认为START。           |
-| wordBreak     | [WordBreak](#wordbreak)         | 是   | 否   | 断词类型，默认为BREAK_WORD。               |
-| maxLines      | number                          | 是   | 否   | 最大行数限制，整数，默认为1e9。           |
-| breakStrategy | [BreakStrategy](#breakstrategy) | 是   | 否   | 断行策略，默认为GREEDY。               |
+| 名称                 | 类型                                        | 只读 | 必填 | 说明                                          |
+| -------------------- | ------------------------------------------ | ---- | ---- | -------------------------------------------- |
+| textStyle            | [TextStyle](#textstyle)                    | 是   | 否   | 作用于整个段落的文本样式，默认为初始的TextStyle。|
+| textDirection        | [TextDirection](#textdirection)            | 是   | 否   | 文本方向，默认为LTR。                          |
+| align                | [TextAlign](#textalign)                    | 是   | 否   | 文本对齐方式，默认为START。                     |
+| wordBreak            | [WordBreak](#wordbreak)                    | 是   | 否   | 断词类型，默认为BREAK_WORD。                    |
+| maxLines             | number                                     | 是   | 否   | 最大行数限制，整数，默认为1e9。                  |
+| breakStrategy        | [BreakStrategy](#breakstrategy)            | 是   | 否   | 断行策略，默认为GREEDY。                        |
+| strutStyle           | [StrutStyle](#strutstyle)                  | 是   | 否   | 支柱样式，默认为初始的StrutStyle。               |
+| textHeightBehavior   | [TextHeightBehavior](#textheightbehavior)  | 是   | 否   | 字重，默认为W400。                              |
+
 
 ## PlaceholderAlignment
 
@@ -1575,6 +1670,54 @@ function Text() {
   };
   let fontCollection = new text.FontCollection();
   let ParagraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
+  let paragraph = ParagraphGraphBuilder.build();
+}
+
+@Entry
+@Component
+struct Index {
+  @State fun: Function = Text;
+  build() {
+    Column() {
+      Button().onClick(() => {
+        this.fun();
+      })
+    }
+  }
+}
+```
+
+### addSymbol
+
+addSymbol(symbolId: number): void
+
+用于向正在构建的文本段落中插入具体的符号。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名    | 类型    | 必填 | 说明                       |
+| -------- | ------- | ---- | -------------------------- |
+| symbolId | number  | 是   | 要设置的符号，可支持设置的符号参见链接json文件中的value值, https://gitee.com/openharmony/global_system_resources/blob/master/systemres/main/resources/base/element/symbol.json |
+
+**示例：**
+
+```ts
+import { text } from "@kit.ArkGraphics2D";
+
+function Text() {
+  let myTextStyle: text.TextStyle = {
+    color: { alpha: 255, red: 255, green: 0, blue: 0 },
+    fontSize: 33,
+  };
+  let myParagraphStyle: text.ParagraphStyle = {
+    textStyle: myTextStyle,
+    align: 3,
+  };
+  let fontCollection = new text.FontCollection();
+  let ParagraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
+  ParagraphGraphBuilder.addSymbol(0xF0000);
   let paragraph = ParagraphGraphBuilder.build();
 }
 
