@@ -29,23 +29,23 @@ The following example implements the following: After **Current Location** is ta
 1. Import the dependency service **geoLocationManager**.
    
    ```ts
-   import geoLocationManager from '@ohos.geoLocationManager';
+   import { geoLocationManager } from '@kit.LocationKit';
    ```
 
 2. Add the \<**LocationButton**> component and obtain the current location information.
    
    The  \<**LocationButton**> component is a button-like component consisting of an icon, text, and background. Either the icon or text is mandatory, and the background is optional. The icon and text cannot be customized. You can only select from the existing options.
 
-   When declaring the API for creating a security component, you can determine whether to pass in parameters. If parameters are passed in, the component is created based on the specified parameters. If no parameter is passed in, a component with default icon, text, and background is created. The following example uses the default parameters. For details, see  [LocationButton](../../reference/apis-arkui/arkui-ts/ts-security-components-locationbutton.md). 
+   When declaring the API for creating a security component, you can determine whether to pass in parameters. If parameters are passed in, the component is created based on the specified parameters. If no parameter is passed in, a component with default icon, text, and background is created.
 
-   In addition, all security components inherit the [Security Component Universal Attributes](../../reference/apis-arkui/arkui-ts/ts-securitycomponent-attributes.md), which can be used to customize styles.
+   The following example uses default parameters. For details, see [LocationButton](../../reference/apis-arkui/arkui-ts/ts-security-components-locationbutton.md). In addition, all security components inherit the [Security Component Universal Attributes](../../reference/apis-arkui/arkui-ts/ts-securitycomponent-attributes.md), which can be used to customize styles.
 
    Use [geoLocationManager](../../reference/apis-location-kit/js-apis-geoLocationManager.md) in the **onClick()** callback of the \<**LocationButton**> component to obtain the current location information.
    
    ```ts
-   import geoLocationManager from '@ohos.geoLocationManager';
-   import promptAction from '@ohos.promptAction';
-   import { BusinessError } from '@ohos.base';
+   import { geoLocationManager } from '@kit.LocationKit';
+   import { promptAction } from '@kit.ArkUI';
+   import { BusinessError } from '@kit.BasicServicesKit';
    
    // Obtain the current location information.
    function getCurrentLocationInfo() {
