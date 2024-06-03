@@ -377,7 +377,7 @@ napi_status napi_release_threadsafe_function(napi_threadsafe_function function);
         <td>uv_stop</td>
     </tr>
     <tr>
-        <td rowspan ="4"><a href="#libuv中的Handle">Handle概念及相关接口</a></td>
+        <td rowspan ="4"><a href="#libuv中的Handle和Request">Handle概念及相关接口</a></td>
         <td>uv_pool_x</td>
     </tr>
     <tr>
@@ -390,7 +390,7 @@ napi_status napi_release_threadsafe_function(napi_threadsafe_function function);
         <td>uv_signal_x</td>
     </tr>
     <tr>
-        <td rowspan ="5"><a href="#libuv中的Request">Request概念及相关接口</a></td>
+        <td rowspan ="5">Request概念及相关接口</td>
         <td>uv_fs_x</td>
     </tr>
     <tr>
@@ -521,11 +521,9 @@ int stop_loop(uv_loop_t* loop)
 
 **注：** 该代码是基于所有的handle都按照[下述方式](#electron对handles的封装)封装编写的。
 
-### libuv中的Handle
+### libuv中的Handle和Request
 
 handle表示一个持久性的对象，通常挂载到loop中对应的handle_queue队列上。如果handle处于活跃状态，每次`uv_run`都会处理handle中的回调函数。
-
-### libuv中的Request
 
 retuest表示一个短暂性的请求，一个request只触发一次回调操作。
 
