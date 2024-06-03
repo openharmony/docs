@@ -37,7 +37,7 @@ setTime(time : number, callback : AsyncCallback&lt;void&gt;) : void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| -1       | The parameter check failed or permission denied or system error. |
+| -1       | Parameter check failed, permission denied, or system error. |
 
 **示例：**
 
@@ -88,7 +88,7 @@ setTime(time : number) : Promise&lt;void&gt;
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| -1       | The parameter check failed or permission denied or system error. |
+| -1       | Parameter check failed, permission denied, or system error. |
 
 **示例：**
 
@@ -132,7 +132,7 @@ setDate(date: Date, callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| -1       | The parameter check failed or permission denied or system error. |
+| -1       | Parameter check failed, permission denied, or system error. |
 
 **示例：**
 
@@ -182,7 +182,7 @@ setDate(date: Date): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| -1       | The parameter check failed or permission denied or system error. |
+| -1       | Parameter check failed, permission denied, or system error. |
 
 **示例：**
 
@@ -225,7 +225,7 @@ setTimezone(timezone: string, callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| -1       | The parameter check failed or permission denied or system error. |
+| -1       | Parameter check failed, permission denied, or system error. |
 
 **示例：**
 
@@ -274,7 +274,7 @@ setTimezone(timezone: string): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| -1       | The parameter check failed or permission denied or system error. |
+| -1       | Parameter check failed, permission denied, or system error. |
 
 **示例：**
 
