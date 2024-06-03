@@ -39,8 +39,8 @@
 6. 示例代码：
 
 ```ts
-import ble from '@ohos.bluetooth.ble';
-import { BusinessError } from '@ohos.base';
+import { ble } from '@kit.ConnectivityKit';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 
 export class BleAdvertisingManager {
   private advHandle: number = 0xFF; // default invalid value
@@ -169,8 +169,8 @@ export default bleAdvertisingManager as BleAdvertisingManager;
 7. 示例代码:
 
 ```ts
-import ble from '@ohos.bluetooth.ble';
-import { BusinessError } from '@ohos.base';
+import { ble } from '@kit.ConnectivityKit';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 
 export class BleScanManager {
   // 1 订阅扫描结果
