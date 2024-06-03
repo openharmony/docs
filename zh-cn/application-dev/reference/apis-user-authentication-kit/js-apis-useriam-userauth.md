@@ -249,7 +249,7 @@ on(type: 'result', callback: IAuthCallback): void
 
 | 错误码ID | 错误信息                 |
 | -------- | ------------------------ |
-| 401      | Incorrect parameters. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification. |
+| 401      | Incorrect parameters. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
 | 12500002 | General operation error. |
 
 **示例：**
@@ -305,7 +305,7 @@ off(type: 'result', callback?: IAuthCallback): void
 
 | 错误码ID | 错误信息                 |
 | -------- | ------------------------ |
-| 401      | Incorrect parameters. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification. |
+| 401      | Incorrect parameters. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
 | 12500002 | General operation error. |
 
 **示例：**
@@ -355,7 +355,7 @@ start(): void
 | 错误码ID | 错误信息                                         |
 | -------- | ------------------------------------------------ |
 | 201      | Permission verification failed.                  |
-| 401      | Incorrect parameters. Possible causes: 2.Incorrect parameter types. |
+| 401      | Incorrect parameters. Possible causes: 1.Incorrect parameter types. |
 | 12500001 | Authentication failed.                           |
 | 12500002 | General operation error.                         |
 | 12500003 | Authentication canceled.                         |
@@ -409,7 +409,7 @@ cancel(): void
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------- |
 | 201      | Permission verification failed. |
-| 401      | Incorrect parameters. Possible causes: 2.Incorrect parameter types. |
+| 401      | Incorrect parameters. Possible causes: 1.Incorrect parameter types. |
 | 12500002 | General operation error.        |
 
 **示例：**
@@ -466,7 +466,7 @@ getUserAuthInstance(authParam: AuthParam, widgetParam: WidgetParam): UserAuthIns
 
 | 错误码ID | 错误信息                                         |
 | -------- | ------------------------------------------------ |
-| 401      | Incorrect parameters. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification.          |
+| 401      | Incorrect parameters. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.   |
 | 12500002 | General operation error.                         |
 | 12500005 | The authentication type is not supported.        |
 | 12500006 | The authentication trust level is not supported. |
