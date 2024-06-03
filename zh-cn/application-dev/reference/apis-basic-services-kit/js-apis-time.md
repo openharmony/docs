@@ -34,7 +34,7 @@ getCurrentTime(isNano: boolean, callback: AsyncCallback&lt;number&gt;): void
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
-| -1       | The parameter check failed or system error. |
+| -1       | Parameter check failed, permission denied, or system error. |
 
 **示例：**
 
@@ -75,7 +75,7 @@ getCurrentTime(callback: AsyncCallback&lt;number&gt;): void
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
-| -1       | The parameter check failed or system error. |
+| -1       | Parameter check failed, permission denied, or system error. |
 
 **示例：**
 
@@ -122,7 +122,7 @@ getCurrentTime(isNano?: boolean): Promise&lt;number&gt;
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
-| -1       | The parameter check failed or system error. |
+| -1       | Parameter check failed, permission denied, or system error. |
 
 **示例：**
 
@@ -162,7 +162,7 @@ getRealActiveTime(isNano: boolean, callback: AsyncCallback&lt;number&gt;): void
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
-| -1       | The parameter check failed or system error. |
+| -1       | Parameter check failed, permission denied, or system error. |
 
 **示例：**
 
@@ -203,7 +203,7 @@ getRealActiveTime(callback: AsyncCallback&lt;number&gt;): void
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
-| -1       | The parameter check failed or system error. |
+| -1       | Parameter check failed, permission denied, or system error. |
 
 **示例：**
 
@@ -250,7 +250,7 @@ getRealActiveTime(isNano?: boolean): Promise&lt;number&gt;
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
-| -1       | The parameter check failed or system error. |
+| -1       | Parameter check failed, permission denied, or system error. |
 
 **示例：**
 
@@ -290,7 +290,7 @@ getRealTime(isNano: boolean, callback: AsyncCallback&lt;number&gt;): void
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
-| -1       | The parameter check failed or system error. |
+| -1       | Parameter check failed, permission denied, or system error. |
 
 **示例：**
 
@@ -331,7 +331,7 @@ getRealTime(callback: AsyncCallback&lt;number&gt;): void
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
-| -1       | The parameter check failed or system error. |
+| -1       | Parameter check failed, permission denied, or system error. |
 
 **示例：**
 
@@ -378,7 +378,7 @@ getRealTime(isNano?: boolean): Promise&lt;number&gt;
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
-| -1       | The parameter check failed or system error. |
+| -1       | Parameter check failed, permission denied, or system error. |
 
 **示例：**
 
@@ -417,7 +417,7 @@ getDate(callback: AsyncCallback&lt;Date&gt;): void
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
-| -1       | The parameter check failed or system error. |
+| -1       | Parameter check failed, permission denied, or system error. |
 
 **示例：**
 
@@ -458,7 +458,7 @@ getDate(): Promise&lt;Date&gt;
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
-| -1       | The parameter check failed or system error. |
+| -1       | Parameter check failed, permission denied, or system error. |
 
 **示例：**
 
@@ -497,7 +497,7 @@ getTimezone(callback: AsyncCallback&lt;string&gt;): void
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
-| -1       | The parameter check failed or system error. |
+| -1       | Parameter check failed, permission denied, or system error. |
 
 **示例：**
 
@@ -538,7 +538,7 @@ getTimezone(): Promise&lt;string&gt;
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
-| -1       | The parameter check failed or system error. |
+| -1       | Parameter check failed, permission denied, or system error. |
 
 **示例：**
 
