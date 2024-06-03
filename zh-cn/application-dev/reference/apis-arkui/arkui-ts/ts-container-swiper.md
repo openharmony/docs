@@ -348,7 +348,7 @@ displayArrow(value: ArrowStyle | boolean, isHoverShow?: boolean)
 
 ### nextMargin<sup>10+</sup>
 
-nextMargin(value: Length)
+nextMargin(value: Length, ignoreBlank?:boolean)
 
 设置后边距，用于露出后一项的一小部分。仅当SwiperDisplayMode为STRETCH模式时生效。
 
@@ -369,7 +369,7 @@ nextMargin(value: Length)
 
 ### prevMargin<sup>10+</sup>
 
-prevMargin(value: Length)
+prevMargin(value: Length, ignoreBlank?:boolean)
 
 设置前边距，用于露出前一项的一小部分。仅当SwiperDisplayMode为STRETCH模式时生效。
 
