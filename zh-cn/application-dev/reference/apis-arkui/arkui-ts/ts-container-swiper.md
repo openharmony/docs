@@ -15,7 +15,7 @@
 >
 >  - 子组件类型：系统组件和自定义组件，支持渲染控制类型（[if/else](../../../quick-start/arkts-rendering-control-ifelse.md)、[ForEach](../../../quick-start/arkts-rendering-control-foreach.md)和[LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md)）。
 >
->  - Swiper子组件的visibility属性设置为None，Swiper的displayMode属性设置为SwiperDisplayMode.AUTO_LINEAR或displayCount属性设置为'auto'时，对应子组件在视窗内不占位，但不影响导航点个数。
+>  - Swiper子组件的visibility属性设置为None，Swiper的displayCount属性设置为'auto'时，对应子组件在视窗内不占位，但不影响导航点个数。
 >
 >  - Swiper子组件的visibility属性设置为None，或者visibility属性设置为Hidden时，对应子组件不显示，但依然会在视窗内占位。
 >
@@ -286,7 +286,7 @@ displayCount(value: number | string | SwiperAutoFill, swipeByGroup?: boolean)
 
 设置Swiper视窗内元素显示个数。
 
-字符串类型仅支持设置为'auto'，显示效果同SwiperDisplayMode.AUTO_LINEAR。
+字符串类型仅支持设置为'auto'。
 
 使用number类型且设置小于等于0时，按默认值1显示。
 
@@ -434,9 +434,9 @@ indicatorInteractive(value: boolean)
 | 名称                              | 描述                                                         |
 | --------------------------------- | ------------------------------------------------------------ |
 | Stretch<sup>(deprecated)</sup>    | Swiper滑动一页的宽度为Swiper组件自身的宽度。<br>从API version 10开始不再维护，建议使用STRETCH代替。 |
-| AutoLinear<sup>(deprecated)</sup> | Swiper滑动一页的宽度为子组件宽度中的最大值。<br>从API version 10开始不再维护，建议使用AUTO_LINEAR代替。 |
+| AutoLinear<sup>(deprecated)</sup> | Swiper滑动一页的宽度为子组件宽度中的最大值。<br>从API version 10开始不再维护，建议使用[Scroller.scrollTo](ts-container-scroll.md#scrollto)代替。 |
 | STRETCH<sup>10+</sup>             | Swiper滑动一页的宽度为Swiper组件自身的宽度。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| AUTO_LINEAR<sup>10+</sup>         | Swiper滑动一页的宽度为视窗内最左侧子组件的宽度。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| AUTO_LINEAR<sup>(deprecated)</sup>         | Swiper滑动一页的宽度为视窗内最左侧子组件的宽度。<br/>从API version 10开始支持，从API version 12开始不再维护，建议使用[Scroller.scrollTo](ts-container-scroll.md#scrollto)代替。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 
 ## SwiperNestedScrollMode<sup>11+</sup>枚举说明
 
@@ -664,7 +664,7 @@ customContentTransition(transition: SwiperContentAnimatedTransition)
 
 使用说明：
 
-1、设置displayMode属性为SwiperDisplayMode.AUTO_LINEAR时，该接口不生效。<br>2、循环场景下，设置prevMargin和nextMargin属性，使得Swiper前后端显示同一页面时，该接口不生效。<br>3、在页面跟手滑动和离手后执行切换动画的过程中，会对视窗内所有页面逐帧触发[SwiperContentTransitionProxy](#swipercontenttransitionproxy12对象说明)回调。例如，当视窗内有下标为0、1的两个页面时，会每帧触发两次index值分别为0和1的回调。<br>4、设置displayCount属性的swipeByGroup参数为true时，若同组中至少有一个页面在视窗内时，则会对同组中所有页面触发回调，若同组所有页面均不在视窗内时，则会一起下渲染树。<br>5、在页面跟手滑动和离手后执行切换动画的过程中，默认动画（页面滑动）依然会发生，若希望页面不滑动，可以设置主轴方向上负的位移（translate属性）来抵消页面滑动。例如：当displayCount属性值为2，视窗内有下标为0、1的两个页面时，页面水平滑动过程中，可以逐帧设置第0页的translate属性在x轴上的值为-position * mainAxisLength来抵消第0页的位移，设置第1页的translate属性在x轴上的值为-(position - 1) * mainAxisLength来抵消第1页的位移。
+1、循环场景下，设置prevMargin和nextMargin属性，使得Swiper前后端显示同一页面时，该接口不生效。<br>2、在页面跟手滑动和离手后执行切换动画的过程中，会对视窗内所有页面逐帧触发[SwiperContentTransitionProxy](#swipercontenttransitionproxy12对象说明)回调。例如，当视窗内有下标为0、1的两个页面时，会每帧触发两次index值分别为0和1的回调。<br>3、设置displayCount属性的swipeByGroup参数为true时，若同组中至少有一个页面在视窗内时，则会对同组中所有页面触发回调，若同组所有页面均不在视窗内时，则会一起下渲染树。<br>4、在页面跟手滑动和离手后执行切换动画的过程中，默认动画（页面滑动）依然会发生，若希望页面不滑动，可以设置主轴方向上负的位移（translate属性）来抵消页面滑动。例如：当displayCount属性值为2，视窗内有下标为0、1的两个页面时，页面水平滑动过程中，可以逐帧设置第0页的translate属性在x轴上的值为-position * mainAxisLength来抵消第0页的位移，设置第1页的translate属性在x轴上的值为-(position - 1) * mainAxisLength来抵消第1页的位移。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -682,7 +682,7 @@ onContentDidScroll(handler: ContentDidScrollCallback)
 
 使用说明：
 
-1、设置displayMode属性为SwiperDisplayMode.AUTO_LINEAR时，该接口不生效。<br>2、循环场景下，设置prevMargin和nextMargin属性，使得Swiper前后端显示同一页面时，该接口不生效。<br>3、在页面滑动过程中，会对视窗内所有页面逐帧触发[ContentDidScrollCallback](#contentdidscrollcallback12类型说明)回调。例如，当视窗内有下标为0、1的两个页面时，会每帧触发两次index值分别为0和1的回调。<br>4、设置displayCount属性的swipeByGroup参数为true时，若同组中至少有一个页面在视窗内时，则会对同组中所有页面触发回调。
+1、循环场景下，设置prevMargin和nextMargin属性，使得Swiper前后端显示同一页面时，该接口不生效。<br>2、在页面滑动过程中，会对视窗内所有页面逐帧触发[ContentDidScrollCallback](#contentdidscrollcallback12类型说明)回调。例如，当视窗内有下标为0、1的两个页面时，会每帧触发两次index值分别为0和1的回调。<br>3、设置displayCount属性的swipeByGroup参数为true时，若同组中至少有一个页面在视窗内时，则会对同组中所有页面触发回调。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
