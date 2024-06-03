@@ -2105,7 +2105,7 @@ export default class EntryAbility extends UIAbility {
 
 setWindowSystemBarProperties(systemBarProperties: SystemBarProperties): Promise&lt;void&gt;
 
-设置窗口全屏模式时窗口内导航栏、状态栏的属性，使用Promise异步回调。
+设置主窗口全屏模式时窗口内导航栏、状态栏的属性，使用Promise异步回调。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
