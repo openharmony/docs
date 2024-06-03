@@ -903,7 +903,7 @@ async function example18() {
 **系统能力：** SystemCapability.FileManagement.UserFileService
 | 名称                    | 类型                                          | 必填 | 说明                                       |
 | :---------------------- |---------------------------------------------| ---- |------------------------------------------|
-| maxSelectNumber       | number                                      | 否   | 选择文件最大个数，上限500，有效值范围1-500 |
+| maxSelectNumber       | number                                      | 否   | 选择文件最大个数，默认值为1，上限500，有效值范围1-500 |
 
 ## AudioSaveOptions
 
