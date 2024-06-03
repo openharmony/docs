@@ -1,6 +1,6 @@
-# WitheTheme
+# WithTheme
 
-WitheTheme组件用于设置应用局部页面自定义主题风格，可设置子组件深浅色模式和自定义配色。
+WithTheme组件用于设置应用局部页面自定义主题风格，可设置子组件深浅色模式和自定义配色。
 
 > **说明：**
 >
@@ -18,7 +18,7 @@ WithTheme(options: WithThemeOptions)
 
 | 参数名                            | 参数类型                                  | 必填  | 参数描述          |
 |--------------------------------|---------------------------------------|-----|---------------|
-| WithThemeOptions | [WithThemeOptions](#withthemeoptions) | 是   | 设置作用域内组件配色。 |
+| options | [WithThemeOptions](#withthemeoptions) | 是   | 设置作用域内组件配色。 |
 
 ## 属性
 
