@@ -25,6 +25,18 @@
 
 **起始版本**：12
 
+### ohos.permission.ACCESS_SCREEN_LOCK
+
+允许应用访问锁屏信息。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
 ### ohos.permission.SYSTEM_FLOAT_WINDOW
 
 允许应用使用悬浮窗的能力。
@@ -3604,15 +3616,3 @@
 **ACL使能**：true
 
 **起始版本**：11
-
-### ohos.permission.ACCESS_SCREEN_LOCK
-
-允许应用使用禁止锁屏功能。
-
-**权限级别**：system_basic
-
-**授权方式**：system_grant
-
-**ACL使能**：true
-
-**起始版本**：12
