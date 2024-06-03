@@ -213,10 +213,7 @@ struct Index {
   isChecked = false;
   dialogControllerImage: CustomDialogController = new CustomDialogController({
     builder: TipsDialog({
-      // imageRes: '网络图片 url',
-      // imageRes: this.pixelMap,
       imageRes: $r('sys.media.ohos_ic_public_voice'),
-      // checkTips: '回调',
       content: '想要卸载这个APP嘛?',
       primaryButton: {
         value: '取消',
@@ -231,12 +228,9 @@ struct Index {
           console.info('Callback when the second button is clicked')
         }
       },
-      checkAction: () => {
+      onCheckedChange: () => {
         console.info('Callback when the checkbox is clicked')
       }
-      // onCheckedChange: () => {
-      //   console.info('Callback when the checkbox is clicked')  
-      // }
     }),
   })
 
@@ -347,7 +341,6 @@ struct Index {
 
 ```ts
 import { ConfirmDialog } from '@ohos.arkui.advanced.Dialog'
-import { PromptAction } from '@kit.ArkUI';
 @Entry
 @Component
 struct Index {
@@ -397,7 +390,7 @@ struct Index {
 }
 ```
 
-![20230728-101236](figures/20230728-101236.png)
+![2024-06-03](figures/2024-06-03_150422.png)
 
 
 ### 示例4
