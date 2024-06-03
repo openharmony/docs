@@ -908,56 +908,6 @@ image.createPixelMap(color, initializationOptions).then((pixelMap: image.PixelMa
 });
 ```
 
-## window.getSnapshot<sup>12+</sup>
-
-window.getSnapshot(windowId: number): Promise<image.PixelMap>
-
-获取指定窗口截图，使用Promise异步回调
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力：** SystemCapability.WindowManager.WindowManager.Core
-
-**参数：**
-| 参数名   | 类型   | 必填  | 说明         |
-| -------- | ------ | ----- | ------------ |
-| windowId | number | 是    | 窗口Id。可通过[getWindowProperties](js-apis-window.md#getwindowproperties9)接口获取到相关窗口属性，其中属性id即对应为窗口ID。 |
-
-**返回值：**
-| 类型                    | 说明                            |
-| ----------------------- | ------------------------------- |
-| Promise<[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)> | Promise对象。返回指定窗口截图。 |
-
-**错误码：**
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
-
-| 错误码ID | 错误信息                                     |
-| -------- | -------------------------------------------- |
-| 801      | Capability not supported. Failed to call the API due to limited device capabilities.     |
-| 1300002  | This window state is abnormal.               |
-| 1300003  | This window manager service work abnormally. |
-| 1300004  | This operation is not access.                |
-
-**示例：**
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-import { image } from '@kit.ImageKit';
-
-try {
-  // 此处仅示意，请使用getWindowProperties获取对应窗口ID再进行使用
-  let windowId: number = 40;
-  let promise = window.getSnapshot(windowId);
-  promise.then((pixelMap: image.PixelMap) => {
-    console.info('Succeeded in getting snapshot window. Pixel bytes number:' + pixelMap.getPixelBytesNumber());
-    pixelMap.release();
-  }).catch((err: BusinessError) =>{
-    console.error(`Failed to get snapshot. Cause code: ${err.code}, message: ${err.message}`);
-  });
-} catch (exception) {
-  console.error(`Failed to get snapshot. Cause code: ${exception.code}, message: ${exception.message}`);
-}
-```
-
 ## Window
 
 当前窗口实例，窗口管理器管理的基本单元。

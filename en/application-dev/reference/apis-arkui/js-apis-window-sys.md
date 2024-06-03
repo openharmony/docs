@@ -847,55 +847,6 @@ image.createPixelMap(color, initializationOptions).then((pixelMap: image.PixelMa
 });
 ```
 
-## window.getSnapshot<sup>12+</sup>
-
-window.getSnapshot(windowId: number): Promise<image.PixelMap>
-
-Captures a window. This API uses a promise to return the result.
-
-**System API**: This is a system API.
-
-**System capability**: SystemCapability.WindowManager.WindowManager.Core
-
-**Parameters**
-| Name  | Type  | Mandatory | Description        |
-| -------- | ------ | ----- | ------------ |
-| windowId | number | Yes   | Window ID. You can call [getWindowProperties](js-apis-window.md#getwindowproperties9) to obtain the window properties, in which **id** is the window ID.|
-
-**Return value**
-| Type                   | Description                           |
-| ----------------------- | ------------------------------- |
-| Promise<[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)> | Promise used to return the window screenshot.|
-
-**Error codes**
-
-For details about the error codes, see [Window Error Codes](errorcode-window.md).
-
-| ID| Error Message                                    |
-| -------- | -------------------------------------------- |
-| 1300002  | This window state is abnormal.               |
-| 1300003  | This window manager service work abnormally. |
-| 1300004  | This operation is not access.                |
-
-**Example**
-```ts
-import { BusinessError } from '@ohos.base';
-import image from '@ohos.multimedia.image';
-try {
-  // This is only an example. Use getWindowProperties to obtain the window ID.
-  let windowId: number = 40;
-  let promise = window.getSnapshot(windowId);
-  promise.then((pixelMap: image.PixelMap) => {
-    console.info('Succeeded in getting snapshot window. Pixel bytes number:' + pixelMap.getPixelBytesNumber());
-    pixelMap.release();
-  }).catch((err: BusinessError) =>{
-    console.error('Failed to get snapshot. Cause:' + JSON.stringify(err));
-  });
-} catch (exception) {
-  console.error('Failed to get snapshot. Cause:' + JSON.stringify(exception));
-}
-```
-
 ## Window
 
 Represents a window instance, which is the basic unit managed by the window manager.
