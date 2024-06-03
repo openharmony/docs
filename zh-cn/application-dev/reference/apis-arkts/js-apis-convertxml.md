@@ -10,7 +10,7 @@
 ## 导入模块
 
 ```ts
-import convertxml from '@ohos.convertxml';
+import { convertxml } from '@kit.ArkTS';
 ```
 
 ## ConvertXML
@@ -20,6 +20,8 @@ import convertxml from '@ohos.convertxml';
 convertToJSObject(xml: string, options?: ConvertOptions) : Object
 
 转换xml文本为JavaScript对象。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -38,10 +40,11 @@ convertToJSObject(xml: string, options?: ConvertOptions) : Object
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200002 | Invalid xml string. |
 
 **示例：**
@@ -122,6 +125,8 @@ console.log(result);
 ## ConvertOptions
 
 转换选项。
+
+**元服务API**：从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 

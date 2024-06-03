@@ -14,7 +14,7 @@ The **inputDevice** module allows you to listen for hot swap events of input dev
 ## Modules to Import
 
 ```js
-import inputDevice from '@ohos.multimodalInput.inputDevice';
+import { inputDevice } from '@kit.InputKit';
 ```
 
 ## inputDevice.setKeyboardRepeatDelay<sup>10+</sup>
@@ -33,6 +33,14 @@ Sets the keyboard repeat delay. This API uses an asynchronous callback to return
 | -------- | ------ | ---- | ------------------------------------------------------------ |
 | delay    | number                    | Yes   | Keyboard repeat delay, in ms. The value range is [300, 1000] and the default value is **500**.|
 | callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -72,6 +80,14 @@ Sets the keyboard repeat delay. This API uses a promise to return the result.
 | ------------------- | ---------------- |
 | Promise&lt;void&gt; | Promise used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```js
@@ -99,6 +115,15 @@ Obtains the keyboard repeat delay. This API uses an asynchronous callback to ret
 | Name    | Type  | Mandatory| Description                                                        |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
 | callback   | AsyncCallback&lt;number&gt;                    | Yes   | Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -132,6 +157,15 @@ Obtains the keyboard repeat delay. This API uses a promise to return the result.
 | --------------------- | ------------------- |
 | Promise&lt;number&gt; | Promise used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```js
@@ -160,6 +194,15 @@ Sets the keyboard repeat rate. This API uses an asynchronous callback to return 
 | -------- | ------ | ---- | ------------------------------------------------------------ |
 | rate    | number                    | Yes   | Keyboard repeat rate, in ms/time. The value range is [36, 100] and the default value is 50.|
 | callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -199,6 +242,15 @@ Sets the keyboard repeat rate. This API uses a promise to return the result.
 | ------------------- | ---------------- |
 | Promise&lt;void&gt; | Promise used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```js
@@ -226,6 +278,15 @@ Obtains the keyboard repeat rate. This API uses an asynchronous callback to retu
 | Name      | Type                         | Mandatory  | Description            |
 | -------- | --------------------------- | ---- | -------------- |
 | callback | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -258,6 +319,15 @@ Obtains the keyboard repeat rate. This API uses a promise to return the result.
 | Parameters                   | Description                 |
 | --------------------- | ------------------- |
 | Promise&lt;number&gt; | Promise used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 

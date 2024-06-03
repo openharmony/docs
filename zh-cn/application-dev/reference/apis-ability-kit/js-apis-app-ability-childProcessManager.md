@@ -11,7 +11,7 @@ childProcessManager模块提供子进程管理能力，支持子进程启动操�
 ## 导入模块
 
 ```ts
-import childProcessManager from '@ohos.app.ability.childProcessManager';
+import { childProcessManager } from '@kit.AbilityKit';
 ```
 
 ## childProcessManager.StartMode
@@ -48,19 +48,20 @@ startChildProcess(srcEntry: string, startMode: StartMode): Promise&lt;number&gt;
 
 **错误码**：
 
+  以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 | 16000050 | Internal error. |
 | 16000061  | Operation not supported. |
 | 16000062  | The number of child process exceeds upper bound. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
 ```ts
 // 在entry模块的src/main/ets/process下创建DemoProcess.ts子进程类:
-import ChildProcess from '@ohos.app.ability.ChildProcess';
+import { ChildProcess } from '@kit.AbilityKit';
 
 export default class DemoProcess extends ChildProcess {
   onStart() {
@@ -71,9 +72,9 @@ export default class DemoProcess extends ChildProcess {
 
 ```ts
 // 使用childProcessManager.startChildProcess方法启动子进程:
-import childProcessManager from '@ohos.app.ability.childProcessManager';
+import { childProcessManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 import DemoProcess from '../process/DemoProcess';
-import { BusinessError } from '@ohos.base';
 
 try {
   DemoProcess.toString(); // 这里要调用下DemoProcess类的任意方法，防止没有引用到而被构建工具优化掉
@@ -106,19 +107,20 @@ startChildProcess(srcEntry: string, startMode: StartMode, callback: AsyncCallbac
 
 **错误码**：
 
+  以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 | 16000050 | Internal error. |
 | 16000061  | Operation not supported. |
 | 16000062  | The number of child process exceeds upper bound. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
 ```ts
 // 在entry模块的src/main/ets/process下创建DemoProcess.ts子进程类:
-import ChildProcess from '@ohos.app.ability.ChildProcess';
+import { ChildProcess } from '@kit.AbilityKit';
 
 export default class DemoProcess extends ChildProcess {
   onStart() {
@@ -129,9 +131,9 @@ export default class DemoProcess extends ChildProcess {
 
 ```ts
 // 使用childProcessManager.startChildProcess方法启动子进程:
-import childProcessManager from '@ohos.app.ability.childProcessManager';
+import { childProcessManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 import DemoProcess from '../process/DemoProcess';
-import { BusinessError } from '@ohos.base';
 
 try {
   DemoProcess.toString(); // 这里要调用下DemoProcess类的任意方法，防止没有引用到而被构建工具优化掉

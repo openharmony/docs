@@ -159,6 +159,8 @@ getSystemResourceManager(): ResourceManager
 
 Obtains a **ResourceManager** object.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Return value**
@@ -173,7 +175,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001009  | If application can't access system resource.                       |
+| 9001009  | Failed to access the system resource.                       |
 
 **Example**
   ```js
@@ -198,6 +200,8 @@ import { BusinessError } from '@ohos.base';
 
 Enumerates the screen directions.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 | Name                  | Value | Description  |
@@ -210,19 +214,23 @@ Enumerates the screen directions.
 
 Enumerates the device types.
 
-**System capability**: SystemCapability.Global.ResourceManager
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
+**System capability**: SystemCapability.Global.ResourceManager
+<!--RP1-->
 | Name                  | Value | Description  |
 | -------------------- | ---- | ---- |
 | DEVICE_TYPE_TABLET   | 0x01 | Tablet  |
 | DEVICE_TYPE_CAR      | 0x02 | Automobile  |
 | DEVICE_TYPE_TV       | 0x04 | TV |
 | DEVICE_TYPE_WEARABLE | 0x06 | Wearable  |
-
+<!--RP1End-->
 
 ## ScreenDensity
 
 Enumerates the screen density types.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -236,23 +244,47 @@ Enumerates the screen density types.
 | SCREEN_XXXLDPI | 640  | Screen density with extra-extra-extra-large-scale dots per inch (XXXLDPI).|
 
 
+## ColorMode<sup>12+</sup>
+
+Defines the color mode of the current device.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+| Name | Value  | Description      |
+| ----- | ---- | ---------- |
+| DARK  | 0    | Dark mode.|
+| LIGHT | 1    | Light mode.|
+
+
 ## Configuration
 
 Defines the device configuration.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
 
-| Name       | Type                   | Readable  | Writable  | Description      |
-| --------- | ----------------------- | ---- | ---- | -------- |
-| direction | [Direction](#direction) | Yes   | No   | Screen direction of the device.|
-| locale    | string                  | Yes   | No   | Current system language.  |
+| Name                       | Type                           | Readable| Writable| Description              |
+| --------------------------- | ------------------------------- | ---- | ---- | ------------------ |
+| direction                   | [Direction](#direction)         | Yes  | Yes  | Screen orientation.        |
+| locale                      | string                          | Yes  | Yes  | Country or region.|
+| deviceType<sup>12+</sup>    | [DeviceType](#devicetype)       | Yes  | Yes  | Device type.        |
+| screenDensity<sup>12+</sup> | [ScreenDensity](#screendensity) | Yes  | Yes  | Screen density.        |
+| colorMode<sup>12+</sup>     | [ColorMode](#colormode12)       | Yes  | Yes  | Color mode.        |
+| mcc<sup>12+</sup>           | number                          | Yes  | Yes  | Mobile country code.      |
+| mnc<sup>12+</sup>           | number                          | Yes  | Yes  | Mobile network code (MNC).      |
+
 
 
 ## DeviceCapability
 
 Defines the device capability.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -314,6 +346,8 @@ getStringSync(resId: number): string
 
 Obtains a string based on the specified resource ID. This API returns the result synchronously.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -330,13 +364,14 @@ Obtains a string based on the specified resource ID. This API returns the result
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
@@ -357,6 +392,8 @@ getStringSync(resId: number, ...args: Array<string | number>): string
 
 Obtains a string based on the specified resource ID and formats the string based on **args**. This API returns the result synchronously.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -364,7 +401,7 @@ Obtains a string based on the specified resource ID and formats the string based
 | Name  | Type    | Mandatory  | Description   |
 | ----- | ------ | ---- | ----- |
 | resId | number | Yes   | Resource ID.|
-| args | Array<string \| number> | No   | Arguments for formatting strings.<br> Supported arguments:<br> %d, %f, %s, and %%<br> Note: **%%** is used to translate **%**.<br>Example: **%%d** is translated into the **%d** string.|
+| args | Array<string \| number> | No   | Arguments for formatting strings.<br>Supported value types include %d, %f, %s, %%, %number\\$d, %number\\$f, and %number\\$s.<br>Note: %% is escaped to %. % number\\$d indicates the sequence number of the parameter to be used.<br>For example, %%d is converted to a %d string after formatting, and %1\\$d indicates that the first parameter is used.|
 
 **Return value**
 
@@ -373,15 +410,15 @@ Obtains a string based on the specified resource ID and formats the string based
 | string | Formatted string corresponding to the specified resource ID.|
 
 **Error codes**
-
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
-| -------- | ----------------------------------------------- |
-| 9001001  | If the resId invalid.                               |
-| 9001002  | If the resource not found by resId.                 |
-| 9001006  | If the resource re-ref too much.                    |
-| 9001007  | If the resource obtained by resId formatting error. |
+| -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                               |
+| 9001002  | No matching resource is found based on the resource ID.                 |
+| 9001006  | The resource is referenced cyclically.                    |
+| 9001007  | Failed to format the resource obtained based on the resource ID. |
 
 **Example**
   ```ts
@@ -402,6 +439,8 @@ getStringSync(resource: Resource): string
 
 Obtains a string based on the specified resource object. This API returns the result synchronously.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Model restriction**: This API can be used only in the stage model.
@@ -420,13 +459,14 @@ Obtains a string based on the specified resource object. This API returns the re
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
@@ -453,6 +493,8 @@ getStringSync(resource: Resource, ...args: Array<string | number>): string
 
 Obtains a string based on the specified resource object and formats the string based on **args**. This API returns the result synchronously.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Model restriction**: This API can be used only in the stage model.
@@ -462,7 +504,7 @@ Obtains a string based on the specified resource object and formats the string b
 | Name     | Type                    | Mandatory  | Description  |
 | -------- | ---------------------- | ---- | ---- |
 | resource | [Resource](#resource9) | Yes   | Resource object.|
-| args | Array<string \| number> | No   | Arguments for formatting strings.<br> Supported arguments:<br> %d, %f, %s, and %%<br> Note: **%%** is used to translate **%**.<br>Example: **%%d** is translated into the **%d** string.|
+| args | Array<string \| number> | No   | Arguments for formatting strings.<br>Supported value types include %d, %f, %s, %%, %number\\$d, %number\\$f, and %number\\$s.<br>Note: %% is escaped to %. % number\\$d indicates the sequence number of the parameter to be used.<br>For example, %%d is converted to a %d string after formatting, and %1\\$d indicates that the first parameter is used.|
 
 **Return value**
 
@@ -471,15 +513,15 @@ Obtains a string based on the specified resource object and formats the string b
 | string | Formatted string corresponding to the specified resource object.|
 
 **Error codes**
-
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
-| 9001007  | If the resource obtained by resId formatting error. |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
+| 9001007  | Failed to format the resource obtained based on the resource ID. |
 
 **Example**
   ```ts
@@ -506,6 +548,8 @@ getStringByNameSync(resName: string): string
 
 Obtains a string based on the specified resource name. This API returns the result synchronously.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -522,13 +566,14 @@ Obtains a string based on the specified resource name. This API returns the resu
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
@@ -549,6 +594,8 @@ getStringByNameSync(resName: string, ...args: Array<string | number>): string
 
 Obtains a string based on the specified resource name and formats the string based on **args**. This API returns the result synchronously.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -556,7 +603,7 @@ Obtains a string based on the specified resource name and formats the string bas
 | Name    | Type    | Mandatory  | Description  |
 | ------- | ------ | ---- | ---- |
 | resName | string | Yes   | Resource name.|
-| args | Array<string \| number> | No   | Arguments for formatting strings.<br> Supported arguments:<br> %d, %f, %s, and %%<br> Note: **%%** is used to translate **%**.<br>Example: **%%d** is translated into the **%d** string.|
+| args | Array<string \| number> | No   | Arguments for formatting strings.<br>Supported value types include %d, %f, %s, %%, %number\\$d, %number\\$f, and %number\\$s.<br>Note: %% is escaped to %. % number\\$d indicates the sequence number of the parameter to be used.<br>For example, %%d is converted to a %d string after formatting, and %1\\$d indicates that the first parameter is used.|
 
 **Return value**
 
@@ -566,14 +613,15 @@ Obtains a string based on the specified resource name and formats the string bas
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
-| 9001006  | If the resource re-ref too much.            |
-| 9001008  | If the resource obtained by resName formatting error. |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
+| 9001006  | The resource is referenced cyclically.            |
+| 9001008  | Failed to format the resource obtained based on the resource Name. |
 
 **Example**
   ```ts
@@ -594,6 +642,8 @@ getStringValue(resId: number, callback: AsyncCallback&lt;string&gt;): void
 
 Obtains a string based on the specified resource ID. This API uses an asynchronous callback to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -605,13 +655,14 @@ Obtains a string based on the specified resource ID. This API uses an asynchrono
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001001  | If the module resId invalid.             |
-| 9001002  | If the resource not found by resId.      |
-| 9001006  | If the resource re-ref too much.         |
+| 9001002  | No matching resource is found based on the resource ID.      |
+| 9001006  | The resource is referenced cyclically.         |
 
 **Example (stage)**
   ```ts
@@ -638,6 +689,8 @@ getStringValue(resId: number): Promise&lt;string&gt;
 
 Obtains a string based on the specified resource ID. This API uses a promise to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -654,13 +707,14 @@ Obtains a string based on the specified resource ID. This API uses a promise to 
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
@@ -685,6 +739,8 @@ getStringValue(resource: Resource, callback: AsyncCallback&lt;string&gt;): void
 
 Obtains a string based on the specified resource object. This API uses an asynchronous callback to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Model restriction**: This API can be used only in the stage model.
@@ -702,9 +758,10 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
@@ -737,6 +794,8 @@ getStringValue(resource: Resource): Promise&lt;string&gt;
 
 Obtains a string based on the specified resource object. This API uses a promise to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Model restriction**: This API can be used only in the stage model.
@@ -759,9 +818,10 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
@@ -792,6 +852,8 @@ getStringByName(resName: string, callback: AsyncCallback&lt;string&gt;): void
 
 Obtains a string based on the specified resource name. This API uses an asynchronous callback to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -802,14 +864,14 @@ Obtains a string based on the specified resource name. This API uses an asynchro
 | callback | AsyncCallback&lt;string&gt; | Yes   |Callback used to return the result, which is the string corresponding to the specified resource ID.|
 
 **Error codes**
-
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
@@ -836,6 +898,8 @@ getStringByName(resName: string): Promise&lt;string&gt;
 
 Obtains a string based on the specified resource name. This API uses a promise to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -852,13 +916,14 @@ Obtains a string based on the specified resource name. This API uses a promise t
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
@@ -883,6 +948,8 @@ getStringArrayValueSync(resId: number): Array&lt;string&gt;
 
 Obtains a string array based on the specified resource ID. This API returns the result synchronously.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -903,9 +970,10 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
@@ -925,6 +993,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 getStringArrayValueSync(resource: Resource): Array&lt;string&gt;
 
 Obtains a string array based on the specified resource object. This API returns the result synchronously.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -948,9 +1018,10 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
@@ -977,6 +1048,8 @@ getStringArrayByNameSync(resName: string): Array&lt;string&gt;
 
 Obtains a string array based on the specified resource name. This API returns the result synchronously.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -997,9 +1070,10 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001003  | If the resName invalid.                       |
-| 9001004  | If the resource not found by resName.         |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001003  | Invalid resource name.                       |
+| 9001004  | No matching resource is found based on the resource name.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
@@ -1018,6 +1092,8 @@ getStringArrayValue(resId: number, callback: AsyncCallback&lt;Array&lt;string&gt
 
 Obtains a string array based on the specified resource ID. This API uses an asynchronous callback to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -1028,14 +1104,14 @@ Obtains a string array based on the specified resource ID. This API uses an asyn
 | callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | Yes   | Callback used to return the result, which is the string array corresponding to the specified resource ID.|
 
 **Error codes**
-
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
@@ -1062,6 +1138,8 @@ getStringArrayValue(resId: number): Promise&lt;Array&lt;string&gt;&gt;
 
 Obtains a string array based on the specified resource ID. This API uses a promise to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -1077,14 +1155,14 @@ Obtains a string array based on the specified resource ID. This API uses a promi
 | Promise&lt;Array&lt;string&gt;&gt; | Promise used to return the result, which is the string array corresponding to the specified resource ID.|
 
 **Error codes**
-
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
@@ -1108,6 +1186,9 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 getStringArrayValue(resource: Resource, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
 Obtains a string array based on the specified resource object. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Model restriction**: This API can be used only in the stage model.
@@ -1125,9 +1206,10 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
@@ -1160,6 +1242,8 @@ getStringArrayValue(resource: Resource): Promise&lt;Array&lt;string&gt;&gt;
 
 Obtains a string array based on the specified resource object. This API uses a promise to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Model restriction**: This API can be used only in the stage model.
@@ -1182,9 +1266,10 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
@@ -1215,6 +1300,8 @@ getStringArrayByName(resName: string, callback: AsyncCallback&lt;Array&lt;string
 
 Obtains a string array based on the specified resource name. This API uses an asynchronous callback to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -1226,13 +1313,14 @@ Obtains a string array based on the specified resource name. This API uses an as
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
@@ -1259,6 +1347,8 @@ getStringArrayByName(resName: string): Promise&lt;Array&lt;string&gt;&gt;
 
 Obtains a string array based on the specified resource name. This API uses a promise to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -1275,13 +1365,14 @@ Obtains a string array based on the specified resource name. This API uses a pro
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
@@ -1310,6 +1401,8 @@ Obtains a singular-plural string by the specified number based on the specified 
 >
 > Singular and plural forms are available for English, but not Chinese.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -1331,9 +1424,10 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
@@ -1358,6 +1452,8 @@ Obtains a singular-plural string by the specified number based on the specified 
 >
 > Singular and plural forms are available for English, but not Chinese.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Model restriction**: This API can be used only in the stage model.
@@ -1381,9 +1477,10 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
@@ -1414,6 +1511,8 @@ Obtains a singular-plural string by the specified number based on the specified 
 >
 > Singular and plural forms are available for English, but not Chinese.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -1435,9 +1534,10 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001003  | If the resName invalid.                       |
-| 9001004  | If the resource not found by resName.         |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001003  | Invalid resource name.                       |
+| 9001004  | No matching resource is found based on the resource name.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
@@ -1462,6 +1562,8 @@ Obtains a singular-plural string by the specified number based on the specified 
 >
 > Singular and plural forms are available for English, but not Chinese.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -1474,13 +1576,14 @@ Obtains a singular-plural string by the specified number based on the specified 
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
@@ -1511,6 +1614,8 @@ Obtains a singular-plural string by the specified number based on the specified 
 >
 > Singular and plural forms are available for English, but not Chinese.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -1528,13 +1633,14 @@ Obtains a singular-plural string by the specified number based on the specified 
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
@@ -1563,6 +1669,8 @@ Obtains a singular-plural string by the specified number based on the specified 
 >
 > Singular and plural forms are available for English, but not Chinese.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Model restriction**: This API can be used only in the stage model.
@@ -1581,9 +1689,10 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
@@ -1620,6 +1729,8 @@ Obtains a singular-plural string by the specified number based on the specified 
 >
 > Singular and plural forms are available for English, but not Chinese.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Model restriction**: This API can be used only in the stage model.
@@ -1639,13 +1750,14 @@ Obtains a singular-plural string by the specified number based on the specified 
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.                |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
@@ -1680,6 +1792,8 @@ Obtains a singular-plural string by the specified number based on the specified 
 >
 > Singular and plural forms are available for English, but not Chinese.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -1692,13 +1806,14 @@ Obtains a singular-plural string by the specified number based on the specified 
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
@@ -1729,6 +1844,8 @@ Obtains a singular-plural string by the specified number based on the specified 
 >
 > Singular and plural forms are available for English, but not Chinese.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -1746,13 +1863,14 @@ Obtains a singular-plural string by the specified number based on the specified 
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
@@ -1777,6 +1895,8 @@ getMediaContentSync(resId: number, density?: number): Uint8Array
 
 Obtains the content of a media file with the default or specified screen density based on the specified resource ID. This API returns the result synchronously.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -1798,8 +1918,9 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **Example**
   ```ts
@@ -1828,6 +1949,8 @@ getMediaContentSync(resource: Resource, density?: number): Uint8Array
 
 Obtains the content of a media file with the default or specified screen density based on the specified resource object. This API returns the result synchronously.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Model restriction**: This API can be used only in the stage model.
@@ -1851,8 +1974,9 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **Example**
   ```ts
@@ -1887,6 +2011,8 @@ getMediaByNameSync(resName: string, density?: number): Uint8Array
 
 Obtains the content of a media file with the default or specified screen density based on the specified resource name. This API returns the result synchronously.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -1908,8 +2034,9 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001003  | If the resName invalid.                       |
-| 9001004  | If the resource not found by resName.         |
+| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
+| 9001003  | Invalid resource name.                       |
+| 9001004  | No matching resource is found based on the resource name.         |
 
 **Example**
   ```ts
@@ -1938,6 +2065,8 @@ getMediaContent(resId: number, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
 Obtains the content of a media file based on the specified resource ID. This API uses an asynchronous callback to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -1949,12 +2078,13 @@ Obtains the content of a media file based on the specified resource ID. This API
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.              | 
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **Example**
   ```ts
@@ -1981,6 +2111,8 @@ getMediaContent(resId: number, density: number, callback: AsyncCallback&lt;Uint8
 
 Obtains the content of a media file with the specified screen density based on the specified resource ID. This API uses an asynchronous callback to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -1993,12 +2125,13 @@ Obtains the content of a media file with the specified screen density based on t
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **Example**
   ```ts
@@ -2025,6 +2158,8 @@ getMediaContent(resId: number): Promise&lt;Uint8Array&gt;
 
 Obtains the content of a media file based on the specified resource ID. This API uses a promise to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -2041,12 +2176,13 @@ Obtains the content of a media file based on the specified resource ID. This API
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **Example**
   ```ts
@@ -2071,6 +2207,8 @@ getMediaContent(resId: number, density: number): Promise&lt;Uint8Array&gt;
 
 Obtains the content of a media file with the specified screen density based on the specified resource ID. This API uses a promise to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -2092,8 +2230,9 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **Example**
   ```ts
@@ -2118,6 +2257,8 @@ getMediaContent(resource: Resource, callback: AsyncCallback&lt;Uint8Array&gt;): 
 
 Obtains the content of a media file based on the specified resource object. This API uses an asynchronous callback to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Model restriction**: This API can be used only in the stage model.
@@ -2135,8 +2276,9 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **Example**
   ```ts
@@ -2169,6 +2311,8 @@ getMediaContent(resource: Resource, density: number, callback: AsyncCallback&lt;
 
 Obtains the content of a media file with the specified screen density based on the specified resource object. This API uses an asynchronous callback to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Model restriction**: This API can be used only in the stage model.
@@ -2187,8 +2331,9 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **Example**
   ```ts
@@ -2221,6 +2366,8 @@ getMediaContent(resource: Resource): Promise&lt;Uint8Array&gt;
 
 Obtains the content of a media file based on the specified resource object. This API uses a promise to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Model restriction**: This API can be used only in the stage model.
@@ -2243,8 +2390,9 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **Example**
   ```ts
@@ -2275,6 +2423,8 @@ getMediaContent(resource: Resource, density: number): Promise&lt;Uint8Array&gt;
 
 Obtains the content of a media file with the specified screen density based on the specified resource object. This API uses a promise to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Model restriction**: This API can be used only in the stage model.
@@ -2298,8 +2448,9 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **Example**
   ```ts
@@ -2330,6 +2481,8 @@ getMediaByName(resName: string, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
 Obtains the content of a media file based on the specified resource name. This API uses an asynchronous callback to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -2340,13 +2493,13 @@ Obtains the content of a media file based on the specified resource name. This A
 | callback | AsyncCallback&lt;Uint8Array&gt; | Yes   | Callback used to return the result, which is the content of the media file corresponding to the specified resource ID.|
 
 **Error codes**
-
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
 
 **Example**
   ```ts
@@ -2373,6 +2526,8 @@ getMediaByName(resName: string, density: number, callback: AsyncCallback&lt;Uint
 
 Obtains the content of a media file with the specified screen density based on the specified resource name. This API uses an asynchronous callback to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -2389,8 +2544,9 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
+| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
 
 **Example**
   ```ts
@@ -2417,6 +2573,8 @@ getMediaByName(resName: string): Promise&lt;Uint8Array&gt;
 
 Obtains the content of a media file based on the specified resource name. This API uses a promise to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -2433,12 +2591,13 @@ Obtains the content of a media file based on the specified resource name. This A
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
 
 **Example**
   ```ts
@@ -2463,6 +2622,8 @@ getMediaByName(resName: string, density: number): Promise&lt;Uint8Array&gt;
 
 Obtains the content of a media file with the specified screen density based on the specified resource name. This API uses a promise to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -2484,8 +2645,9 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
+| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
 
 **Example**
   ```ts
@@ -2510,6 +2672,8 @@ getMediaContentBase64Sync(resId: number, density?: number): string
 
 Obtains the Base64 code of an image with the default or specified screen density based on the specified resource ID. This API returns the result synchronously.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -2531,8 +2695,9 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **Example**
   ```ts
@@ -2561,6 +2726,8 @@ getMediaContentBase64Sync(resource: Resource, density?: number): string
 
 Obtains the Base64 code of an image with the default or specified screen density based on the specified resource object. This API returns the result synchronously.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Model restriction**: This API can be used only in the stage model.
@@ -2584,8 +2751,9 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **Example**
   ```ts
@@ -2620,6 +2788,8 @@ getMediaBase64ByNameSync(resName: string, density?: number): string
 
 Obtains the Base64 code of an image with the default or specified screen density based on the specified resource name. This API returns the result synchronously.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -2641,8 +2811,9 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001003  | If the resName invalid.                       |
-| 9001004  | If the resource not found by resName.         |
+| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
+| 9001003  | Invalid resource name.                       |
+| 9001004  | No matching resource is found based on the resource name.         |
 
 **Example**
   ```ts
@@ -2671,6 +2842,8 @@ getMediaContentBase64(resId: number, callback: AsyncCallback&lt;string&gt;): voi
 
 Obtains the Base64 code of an image based on the specified resource ID. This API uses an asynchronous callback to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -2682,12 +2855,13 @@ Obtains the Base64 code of an image based on the specified resource ID. This API
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **Example**
   ```ts
@@ -2714,6 +2888,8 @@ getMediaContentBase64(resId: number, density: number, callback: AsyncCallback&lt
 
 Obtains the Base64 code of an image with the specified screen density based on the specified resource ID. This API uses an asynchronous callback to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -2730,8 +2906,9 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **Example**
   ```ts
@@ -2758,6 +2935,8 @@ getMediaContentBase64(resId: number): Promise&lt;string&gt;
 
 Obtains the Base64 code of an image based on the specified resource ID. This API uses a promise to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -2774,12 +2953,13 @@ Obtains the Base64 code of an image based on the specified resource ID. This API
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **Example**
   ```ts
@@ -2804,6 +2984,8 @@ getMediaContentBase64(resId: number, density: number): Promise&lt;string&gt;
 
 Obtains the Base64 code of an image with the specified screen density based on the specified resource ID. This API uses a promise to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -2825,8 +3007,9 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **Example**
   ```ts
@@ -2851,6 +3034,8 @@ getMediaContentBase64(resource: Resource, callback: AsyncCallback&lt;string&gt;)
 
 Obtains the Base64 code of an image based on the specified resource object. This API uses an asynchronous callback to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Model restriction**: This API can be used only in the stage model.
@@ -2868,8 +3053,9 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **Example**
   ```ts
@@ -2902,6 +3088,8 @@ getMediaContentBase64(resource: Resource, density: number, callback: AsyncCallba
 
 Obtains the Base64 code of an image with the specified screen density based on the specified resource object. This API uses an asynchronous callback to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Model restriction**: This API can be used only in the stage model.
@@ -2920,8 +3108,9 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **Example**
   ```ts
@@ -2954,6 +3143,8 @@ getMediaContentBase64(resource: Resource): Promise&lt;string&gt;
 
 Obtains the Base64 code of an image based on the specified resource object. This API uses a promise to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Model restriction**: This API can be used only in the stage model.
@@ -2976,8 +3167,9 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **Example**
   ```ts
@@ -3008,6 +3200,8 @@ getMediaContentBase64(resource: Resource, density: number): Promise&lt;string&gt
 
 Obtains the Base64 code of an image with the specified screen density based on the specified resource object. This API uses a promise to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Model restriction**: This API can be used only in the stage model.
@@ -3031,8 +3225,9 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **Example**
   ```ts
@@ -3063,6 +3258,8 @@ getMediaBase64ByName(resName: string, callback: AsyncCallback&lt;string&gt;): vo
 
 Obtains the Base64 code of an image based on the specified resource name. This API uses an asynchronous callback to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -3074,12 +3271,13 @@ Obtains the Base64 code of an image based on the specified resource name. This A
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
 
 **Example**
   ```ts
@@ -3106,6 +3304,8 @@ getMediaBase64ByName(resName: string, density: number, callback: AsyncCallback&l
 
 Obtains the Base64 code of an image with the specified screen density based on the specified resource name. This API uses an asynchronous callback to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -3122,8 +3322,9 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
+| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
 
 **Example**
   ```ts
@@ -3150,6 +3351,8 @@ getMediaBase64ByName(resName: string): Promise&lt;string&gt;
 
 Obtains the Base64 code of an image based on the specified resource name. This API uses a promise to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -3166,12 +3369,13 @@ Obtains the Base64 code of an image based on the specified resource name. This A
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
 
 **Example**
   ```ts
@@ -3196,6 +3400,8 @@ getMediaBase64ByName(resName: string, density: number): Promise&lt;string&gt;
 
 Obtains the Base64 code of an image with the specified screen density based on the specified resource name. This API uses a promise to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -3217,8 +3423,9 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
+| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
 
 **Example**
   ```ts
@@ -3239,9 +3446,11 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 ### getDrawableDescriptor<sup>10+</sup>
 
-getDrawableDescriptor(resId: number, density?: number, type?: number): DrawableDescriptor;
+getDrawableDescriptor(resId: number, density?: number, type?: number): DrawableDescriptor
 
 Obtains a **DrawableDescriptor** object for icon display based on the specified resource ID. This API returns the result synchronously.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -3261,12 +3470,13 @@ Obtains a **DrawableDescriptor** object for icon display based on the specified 
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **Example**
   ```ts
@@ -3297,9 +3507,11 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 ### getDrawableDescriptor<sup>10+</sup>
 
-getDrawableDescriptor(resource: Resource, density?: number, type?: number): DrawableDescriptor;
+getDrawableDescriptor(resource: Resource, density?: number, type?: number): DrawableDescriptor
 
 Obtains a **DrawableDescriptor** object for icon display based on the specified resource object. This API returns the result synchronously.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -3321,12 +3533,13 @@ Obtains a **DrawableDescriptor** object for icon display based on the specified 
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **Example**
   ```ts
@@ -3363,9 +3576,11 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 ### getDrawableDescriptorByName<sup>10+</sup>
 
-getDrawableDescriptorByName(resName: string, density?: number, type?: number): DrawableDescriptor;
+getDrawableDescriptorByName(resName: string, density?: number, type?: number): DrawableDescriptor
 
 Obtains a **DrawableDescriptor** object for icon display based on the specified resource name. This API returns the result synchronously.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -3385,12 +3600,13 @@ Obtains a **DrawableDescriptor** object for icon display based on the specified 
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
+| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
 
 **Example**
   ```ts
@@ -3425,6 +3641,8 @@ getBoolean(resId: number): boolean
 
 Obtains a Boolean result based on the specified resource ID. This API returns the result synchronously.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -3441,13 +3659,14 @@ Obtains a Boolean result based on the specified resource ID. This API returns th
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
@@ -3467,6 +3686,8 @@ getBoolean(resource: Resource): boolean
 
 Obtains a Boolean result based on the specified resource object. This API returns the result synchronously.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Model restriction**: This API can be used only in the stage model.
@@ -3485,13 +3706,14 @@ Obtains a Boolean result based on the specified resource object. This API return
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
@@ -3518,6 +3740,8 @@ getBooleanByName(resName: string): boolean
 
 Obtains a Boolean result based on the specified resource name. This API returns the result synchronously.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -3534,13 +3758,14 @@ Obtains a Boolean result based on the specified resource name. This API returns 
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
@@ -3561,6 +3786,8 @@ getNumber(resId: number): number
 
 Obtains an integer or float value based on the specified resource ID. This API returns the result synchronously.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -3577,13 +3804,14 @@ Obtains an integer or float value based on the specified resource ID. This API r
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
@@ -3612,6 +3840,8 @@ getNumber(resource: Resource): number
 
 Obtains an integer or float value based on the specified resource object. This API returns the result synchronously.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Model restriction**: This API can be used only in the stage model.
@@ -3626,17 +3856,18 @@ Obtains an integer or float value based on the specified resource object. This A
 
 | Type    | Description             |
 | ------ | --------------- |
-| number | Integer or float value corresponding to the specified resource object. Wherein, the integer value is the original value, and the float value is the actual pixel value. For details, see the sample code.|
+| number | Integer or float value corresponding to the specified resource name. An integer indicates the original value. A float number without a unit indicates the original value and a float number with the unit of vp or fp indicates the px value.|
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
@@ -3649,7 +3880,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
     id: $r('app.integer.integer_test').id
   };
   try {
-    this.context.resourceManager.getNumber(resource);// integer refers to the original value; float refers to the actual pixel value.
+    this.context.resourceManager.getNumber(resource);
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
@@ -3663,6 +3894,8 @@ getNumberByName(resName: string): number
 
 Obtains an integer or float value based on the specified resource name. This API returns the result synchronously.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -3675,17 +3908,18 @@ Obtains an integer or float value based on the specified resource name. This API
 
 | Type    | Description       |
 | ------ | --------- |
-| number | Integer or float value corresponding to the specified resource name.|
+| number | Integer or float value corresponding to the specified resource name. An integer indicates the original value. A float number without a unit indicates the original value and a float number with the unit of vp or fp indicates the px value.|
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
@@ -3714,6 +3948,8 @@ getColorSync(resId: number) : number;
 
 Obtains a color value based on the specified resource ID. This API returns the result synchronously.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -3734,9 +3970,10 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
@@ -3756,6 +3993,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 getColorSync(resource: Resource): number
 
 Obtains a color value based on the specified resource object. This API returns the result synchronously.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -3779,9 +4018,10 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
@@ -3808,6 +4048,8 @@ getColorByNameSync(resName: string) : number;
 
 Obtains a color value based on the specified resource name. This API returns the result synchronously.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -3828,9 +4070,10 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
@@ -3851,6 +4094,8 @@ getColor(resId: number, callback: AsyncCallback&lt;number&gt;): void;
 
 Obtains a color value based on the specified resource ID. This API uses an asynchronous callback to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -3866,9 +4111,10 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001001  | If the module resId invalid.             |
-| 9001002  | If the resource not found by resId.      |
-| 9001006  | If the resource re-ref too much.         |
+| 9001002  | No matching resource is found based on the resource ID.      |
+| 9001006  | The resource is referenced cyclically.         |
 
 **Example (stage)**
   ```ts
@@ -3895,6 +4141,8 @@ getColor(resId: number): Promise&lt;number&gt;
 
 Obtains a color value based on the specified resource ID. This API uses a promise to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -3915,9 +4163,10 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
@@ -3942,6 +4191,8 @@ getColor(resource: Resource, callback: AsyncCallback&lt;number&gt;): void;
 
 Obtains a color value based on the specified resource object. This API uses an asynchronous callback to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Model restriction**: This API can be used only in the stage model.
@@ -3959,9 +4210,10 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
@@ -3994,6 +4246,8 @@ getColor(resource: Resource): Promise&lt;number&gt;;
 
 Obtains a color value based on the specified resource object. This API uses a promise to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Model restriction**: This API can be used only in the stage model.
@@ -4016,9 +4270,10 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
@@ -4049,6 +4304,8 @@ getColorByName(resName: string, callback: AsyncCallback&lt;number&gt;): void
 
 Obtains a color value based on the specified resource name. This API uses an asynchronous callback to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -4064,9 +4321,10 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
@@ -4093,6 +4351,8 @@ getColorByName(resName: string): Promise&lt;number&gt;
 
 Obtains a color value based on the specified resource name. This API uses a promise to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -4113,9 +4373,10 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
@@ -4140,6 +4401,8 @@ getRawFileContentSync(path: string): Uint8Array
 
 Obtains the content of the raw file in the **resources/rawfile** directory. This API returns the result synchronously.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -4160,7 +4423,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001005  | If the resource not found by path.          |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001005  | Invalid relative path.          |
 
 **Example**
   ```ts
@@ -4181,6 +4445,8 @@ getRawFileContent(path: string, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
 Obtains the content of the raw file in the **resources/rawfile** directory. This API uses an asynchronous callback to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -4192,11 +4458,11 @@ Obtains the content of the raw file in the **resources/rawfile** directory. This
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001005  | If the resource not found by path.          |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 
 **Example**
   ```ts
@@ -4223,6 +4489,8 @@ getRawFileContent(path: string): Promise&lt;Uint8Array&gt;
 
 Obtains the content of the raw file in the **resources/rawfile** directory. This API uses a promise to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -4239,11 +4507,12 @@ Obtains the content of the raw file in the **resources/rawfile** directory. This
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001005  | If the resource not found by path.          |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001005  | Invalid relative path.          |
 
 **Example**
   ```ts
@@ -4272,6 +4541,8 @@ Obtains the list of folders and files in the **resources/rawfile** directory. Th
 >
 > If there is no folder or file in the directory, no information is returned. If there are folders and files in the directory, the list of folders and files is returned.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -4292,7 +4563,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001005  | If the resource not found by path.       |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001005  | Invalid relative path.       |
 
 **Example**
   ```ts
@@ -4317,6 +4589,8 @@ Obtains the list of folders and files in the **resources/rawfile** directory. Th
 >
 > If there is no folder or file in the directory, no information is returned. If there are folders and files in the directory, the list of folders and files is returned.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -4332,7 +4606,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001005  | If the resource not found by path.       |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001005  | Invalid relative path.       |
 
 **Example**
   ```ts
@@ -4363,6 +4638,8 @@ Obtains the list of folders and files in the **resources/rawfile** directory. Th
 >
 > If there is no folder or file in the directory, no information is returned. If there are folders and files in the directory, the list of folders and files is returned.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -4383,7 +4660,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001005  | If the resource not found by path.          |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001005  | Invalid relative path.          |
 
 **Example**
   ```ts
@@ -4408,6 +4686,8 @@ getRawFdSync(path: string): RawFileDescriptor
 
 Obtains the descriptor of the HAP where the raw file is located in the **resources/rawfile** directory.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -4428,7 +4708,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001005  | If the resource not found by path.          |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001005  | Invalid relative path.          |
 
 **Example**
   ```ts
@@ -4449,6 +4730,8 @@ getRawFd(path: string, callback: AsyncCallback&lt;RawFileDescriptor&gt;): void
 
 Obtains the descriptor of the HAP where the raw file is located in the **resources/rawfile** directory. This API uses an asynchronous callback to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -4460,11 +4743,12 @@ Obtains the descriptor of the HAP where the raw file is located in the **resourc
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001005  | If the resource not found by path.          |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001005  | Invalid relative path.          |
 
 **Example**
   ```ts
@@ -4494,6 +4778,8 @@ getRawFd(path: string): Promise&lt;RawFileDescriptor&gt;
 
 Obtains the descriptor of the HAP where the raw file is located in the **resources/rawfile** directory. This API uses a promise to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -4510,11 +4796,12 @@ Obtains the descriptor of the HAP where the raw file is located in the **resourc
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001005  | If the resource not found by path.          |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001005  | Invalid relative path.          |
 
 **Example**
   ```ts
@@ -4542,6 +4829,8 @@ closeRawFdSync(path: string): void
 
 Closes the descriptor of the HAP where the raw file is located in the **resources/rawfile** directory.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -4556,6 +4845,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001005  | The resource not found by path.          |
 
 **Example**
@@ -4577,6 +4867,8 @@ closeRawFd(path: string, callback: AsyncCallback&lt;void&gt;): void
 
 Closes the descriptor of the HAP where the raw file is located in the **resources/rawfile** directory. This API uses an asynchronous callback to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -4588,10 +4880,11 @@ Closes the descriptor of the HAP where the raw file is located in the **resource
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001005  | The resource not found by path.          |
 
 **Example**
@@ -4617,6 +4910,8 @@ closeRawFd(path: string): Promise&lt;void&gt;
 
 Closes the descriptor of the HAP where the raw file is located in the **resources/rawfile** directory. This API uses a promise to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -4633,11 +4928,12 @@ Closes the descriptor of the HAP where the raw file is located in the **resource
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001005  | If the resource not found by path.          |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001005  | Invalid relative path.          |
 
 **Example**
   ```ts
@@ -4657,6 +4953,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 getConfigurationSync(): Configuration
 
 Obtains the device configuration. This API returns the result synchronously.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -4682,6 +4980,8 @@ Obtains the device configuration. This API returns the result synchronously.
 getConfiguration(callback: AsyncCallback&lt;Configuration&gt;): void
 
 Obtains the device configuration. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -4715,6 +5015,8 @@ getConfiguration(): Promise&lt;Configuration&gt;
 
 Obtains the device configuration. This API uses a promise to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Return value**
@@ -4746,6 +5048,8 @@ getDeviceCapabilitySync(): DeviceCapability
 
 Obtains the device capability. This API returns the result synchronously.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Return value**
@@ -4770,6 +5074,8 @@ Obtains the device capability. This API returns the result synchronously.
 getDeviceCapability(callback: AsyncCallback&lt;DeviceCapability&gt;): void
 
 Obtains the device capability. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -4803,6 +5109,8 @@ getDeviceCapability(): Promise&lt;DeviceCapability&gt;
 
 Obtains the device capability. This API uses a promise to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Return value**
@@ -4834,6 +5142,8 @@ release()
 
 Releases a **ResourceManager** object. This API is not supported currently.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Example**
@@ -4851,6 +5161,8 @@ addResource(path: string) : void
 
 Loads resources from the specified path.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -4865,7 +5177,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001010  | If the overlay path is invalid.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001010  | Invalid overlay path.            |
 
 **Example**
   ```ts
@@ -4887,6 +5200,8 @@ removeResource(path: string) : void
 
 Removes the resources loaded from the specified path to restore the original resources.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -4901,7 +5216,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001010  | If the overlay path is invalid.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001010  | Invalid overlay path.            |
 
 **Example**
   ```ts
@@ -4922,6 +5238,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 getLocales(includeSystem?: boolean): Array\<string>
 
 Obtains the language list of an application.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -4973,6 +5291,8 @@ getSymbol(resId: number):number
 
 Obtains a symbol value based on the specified resource ID. This API returns the result synchronously.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -4993,9 +5313,10 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
@@ -5014,6 +5335,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 getSymbol(resource: Resource): number
 
 Obtains a symbol value based on the specified resource object. This API returns the result synchronously.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -5037,9 +5360,10 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
@@ -5066,6 +5390,8 @@ getSymbolByName(resName: string) : number;
 
 Obtains a symbol value based on the specified resource name. This API returns the result synchronously.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -5086,9 +5412,10 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
@@ -5100,6 +5427,167 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
     console.error(`getSymbolByName failed, error code: ${code}, message: ${message}.`);
+  }
+  ```
+
+### isRawDir<sup>12+</sup>
+
+isRawDir(path: string) : bool
+
+Checks whether a path is a subdirectory in the **rawfile** directory. This API returns the result synchronously.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Parameters**
+
+| Name    | Type    | Mandatory  | Description  |
+| ------- | ------ | ---- | ---- |
+| path | string | Yes   | Path of a rawfile.|
+
+**Return value**
+
+| Type    | Description        |
+| ------ | ---------- |
+| bool |Whether the path is a subdirectory in the **rawfile** directory.<br>**true**: The path is a subdirectory in the **rawfile** directory.<br>**false**: The path is not a subdirectory in the **rawfile** directory.|
+
+**Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001005  | Invalid relative path.          |
+
+**Example**
+  ```ts
+  import { BusinessError } from '@ohos.base';
+
+  try {
+    this.context.resourceManager.isRawDir("test.txt");
+  } catch (error) {
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`isRawDir failed, error code: ${code}, message: ${message}.`);
+  }
+  ```
+
+### getOverrideResourceManager<sup>12+</sup>
+
+getOverrideResourceManager(configuration?: Configuration) : ResourceManager
+
+Obtains a **ResourceManager** object for loading differentiated resources. This API returns the result synchronously.
+
+The style (including the language, color mode, resolution, and orientation) of the resources obtained by a common **ResourceManager** object is determined by the system. With this API, an application can obtain the style of differentiated resources, for example, dark color resources in light color mode.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Parameters**
+
+| Name       | Type                           | Mandatory| Description                                                        |
+| ------------- | ------------------------------- | ---- | ------------------------------------------------------------ |
+| configuration | [Configuration](#configuration) | No  | Configuration of differentiated resources.<br>After obtaining the configuration of differentiated resources through [getOverrideConfiguration](#getoverrideconfiguration12), modify the configuration items as required, and then pass these items as input parameters to the API.<br>If this parameter is not specified, the system obtains resources that best match the current system.|
+
+**Return value**
+
+| Type           | Description                              |
+| --------------- | ---------------------------------- |
+| ResourceManager | **ResourceManager** object for loading differentiated resources.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | If the input parameter invalid. Possible causes: Incorrect parameter types |
+
+**Example**
+
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+
+  try {
+    let resMgr = this.context.resourceManager
+    let overrideConfig = resMgr.getOverrideConfiguration()
+    overrideConfig.colorMode = resourceManager.ColorMode.DARK
+    let overrideResMgr = resMgr.getOverrideResourceManager(overrideConfig)
+  } catch (error) {
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getOverrideResourceManager failed, error code: ${code}, message: ${message}.`);
+  }
+  ```
+
+### getOverrideConfiguration<sup>12+</sup>
+
+getOverrideConfiguration() : Configuration
+
+Obtains the configuration of differentiated resources. This API returns the result synchronously. This API allows a common **ResourceManager** object and a **ResourceManager** object obtained through [getOverrideResourceManager](#getoverrideresourcemanager12) to obtain the configuration of differentiated resources.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Return value**
+
+| Type                           | Description            |
+| ------------------------------- | ---------------- |
+| [Configuration](#configuration) | Configuration of differentiated resources.|
+
+**Example**
+
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+
+  let overrideConfig = this.context.resourceManager.getOverrideConfiguration()
+  ```
+
+### updateOverrideConfiguration<sup>12+</sup>
+
+updateOverrideConfiguration(configuration: Configuration) : void
+
+Updated configuration of differentiated resources. This API allows a common **ResourceManager** object and a **ResourceManager** object obtained through [getOverrideResourceManager](#getoverrideresourcemanager12) to update the configuration of differentiated resources.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Parameters**
+
+| Name       | Type                           | Mandatory| Description                                                        |
+| ------------- | ------------------------------- | ---- | ------------------------------------------------------------ |
+| configuration | [Configuration](#configuration) | Yes  | Configuration of differentiated resources. After obtaining the configuration of differentiated resources through [getOverrideConfiguration](#getoverrideconfiguration12), modify the configuration items as required, and then pass these items as input parameters to the API.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | If the input parameter invalid. Possible causes: Incorrect parameter types |
+
+**Example**
+
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+
+  try {
+    let resMgr = this.context.resourceManager
+    let overrideConfig = resMgr.getOverrideConfiguration()
+    overrideConfig.colorMode = resourceManager.ColorMode.DARK
+    let overrideResMgr = resMgr.updateOverrideConfiguration(overrideConfig)
+  } catch (error) {
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`updateOverrideConfiguration failed, error code: ${code}, message: ${message}.`);
   }
   ```
 

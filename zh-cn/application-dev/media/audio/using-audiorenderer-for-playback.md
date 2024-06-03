@@ -34,10 +34,10 @@ AudioRenderer是音频渲染器，用于播放PCM（Pulse Code Modulation）音�
     import audio from '@ohos.multimedia.audio';
 
     let audioStreamInfo: audio.AudioStreamInfo = {
-      samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
-      channels: audio.AudioChannel.CHANNEL_1,
-      sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
-      encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
+      samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000, // 采样率
+      channels: audio.AudioChannel.CHANNEL_2, // 通道
+      sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE, // 采样格式
+      encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW // 编码格式
     };
 
     let audioRendererInfo: audio.AudioRendererInfo = {
@@ -61,7 +61,37 @@ AudioRenderer是音频渲染器，用于播放PCM（Pulse Code Modulation）音�
     });
     ```
 
-2. 调用start()方法进入running状态，开始渲染音频。
+2. 调用on('writeData')方法，订阅监听音频数据写入回调。
+     
+    ```ts
+    import { BusinessError } from '@ohos.base';
+    import fs from '@ohos.file.fs';
+
+    let bufferSize: number = 0;
+    class Options {
+      offset?: number;
+      length?: number;
+    }
+
+    let path = getContext().cacheDir;
+    //确保该路径下存在该资源
+    let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
+    let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
+   
+    let writeDataCallback = (buffer: ArrayBuffer) => {
+      
+      let options: Options = {
+        offset: bufferSize,
+        length: buffer.byteLength
+      }
+      fs.readSync(file.fd, buffer, options);
+      bufferSize += buffer.byteLength;
+    }
+
+    audioRenderer.on('writeData', writeDataCallback);
+    ```
+
+3. 调用start()方法进入running状态，开始渲染音频。
      
     ```ts
     import { BusinessError } from '@ohos.base';
@@ -73,24 +103,6 @@ AudioRenderer是音频渲染器，用于播放PCM（Pulse Code Modulation）音�
         console.info('Renderer start success.');
       }
     });
-    ```
-
-3. 指定待渲染文件地址，打开文件调用write()方法向缓冲区持续写入音频数据进行渲染播放。如果需要对音频数据进行处理以实现个性化的播放，在写入之前操作即可。
-     
-    ```ts
-    import fs from '@ohos.file.fs';
-
-    let context = getContext(this);
-    async function read() {
-      const bufferSize: number = await audioRenderer.getBufferSize();
-      let path = context.filesDir;
-      
-      const filePath = path + '/voice_call_data.wav';
-      let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
-      let buf = new ArrayBuffer(bufferSize);
-      let readsize: number = await fs.read(file.fd, buf);
-      let writeSize: number = await audioRenderer.write(buf);
-    }
     ```
 
 4. 调用stop()方法停止渲染。
@@ -127,11 +139,18 @@ AudioRenderer是音频渲染器，用于播放PCM（Pulse Code Modulation）音�
   
 ```ts
 import audio from '@ohos.multimedia.audio';
+import { BusinessError } from '@ohos.base';
 import fs from '@ohos.file.fs';
 
 const TAG = 'AudioRendererDemo';
 
+class Options {
+  offset?: number;
+  length?: number;
+}
+
 let context = getContext(this);
+let bufferSize: number = 0;
 let renderModel: audio.AudioRenderer | undefined = undefined;
 let audioStreamInfo: audio.AudioStreamInfo = {
   samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000, // 采样率
@@ -147,24 +166,28 @@ let audioRendererOptions: audio.AudioRendererOptions = {
   streamInfo: audioStreamInfo,
   rendererInfo: audioRendererInfo
 }
+let path = getContext().cacheDir;
+//确保该路径下存在该资源
+let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
+let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
+
+let writeDataCallback = (buffer: ArrayBuffer) => {
+  let options: Options = {
+    offset: bufferSize,
+    length: buffer.byteLength
+  }
+  fs.readSync(file.fd, buffer, options);
+   bufferSize += buffer.byteLength;
+}
 
 // 初始化，创建实例，设置监听事件
-async function init() {
+function init() {
   audio.createAudioRenderer(audioRendererOptions, (err, renderer) => { // 创建AudioRenderer实例
     if (!err) {
       console.info(`${TAG}: creating AudioRenderer success`);
       renderModel = renderer;
       if (renderModel !== undefined) {
-        (renderModel as audio.AudioRenderer).on('stateChange', (state: audio.AudioState) => { // 设置监听事件，当转换到指定的状态时触发回调
-          if (state == 2) {
-            console.info('audio renderer state is: STATE_RUNNING');
-          }
-        });
-        (renderModel as audio.AudioRenderer).on('markReach', 1000, (position: number) => { // 订阅markReach事件，当渲染的帧数达到1000帧时触发回调
-          if (position == 1000) {
-            console.info('ON Triggered successfully');
-          }
-        });
+        (renderModel as audio.AudioRenderer).on('writeData', writeDataCallback);
       }
     } else {
       console.info(`${TAG}: creating AudioRenderer failed, error: ${err.message}`);
@@ -173,65 +196,40 @@ async function init() {
 }
 
 // 开始一次音频渲染
-async function start() {
+function start() {
   if (renderModel !== undefined) {
     let stateGroup = [audio.AudioState.STATE_PREPARED, audio.AudioState.STATE_PAUSED, audio.AudioState.STATE_STOPPED];
     if (stateGroup.indexOf((renderModel as audio.AudioRenderer).state.valueOf()) === -1) { // 当且仅当状态为prepared、paused和stopped之一时才能启动渲染
       console.error(TAG + 'start failed');
       return;
     }
-    await (renderModel as audio.AudioRenderer).start(); // 启动渲染
-    
-    const bufferSize = await (renderModel as audio.AudioRenderer).getBufferSize();
-    
-    let path = context.filesDir;
-    const filePath = path + '/test.wav'; // 使用沙箱路径获取文件，实际路径为/data/storage/el2/base/haps/entry/files/test.wav
-    
-    let file = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
-    let stat = await fs.stat(filePath);
-    let buf = new ArrayBuffer(bufferSize);
-    let len = stat.size % bufferSize === 0 ? Math.floor(stat.size / bufferSize) : Math.floor(stat.size / bufferSize + 1);
-    class Options {
-      offset: number = 0;
-      length: number = 0
-    }
-    for (let i = 0; i < len; i++) {
-      let options: Options = {
-        offset: i * bufferSize,
-        length: bufferSize
-      };
-      let readsize = await fs.read(file.fd, buf, options);
-      
-      // buf是要写入缓冲区的音频数据，在调用AudioRenderer.write()方法前可以进行音频数据的预处理，实现个性化的音频播放功能，AudioRenderer会读出写入缓冲区的音频数据进行渲染
-      
-      let writeSize: number = await (renderModel as audio.AudioRenderer).write(buf);
-        if ((renderModel as audio.AudioRenderer).state.valueOf() === audio.AudioState.STATE_RELEASED) { // 如果渲染器状态为released，关闭资源
-        fs.close(file);
+    // 启动渲染
+    (renderModel as audio.AudioRenderer).start((err: BusinessError) => {
+      if (err) {
+        console.error('Renderer start failed.');
+      } else {
+        console.info('Renderer start success.');
       }
-      if ((renderModel as audio.AudioRenderer).state.valueOf() === audio.AudioState.STATE_RUNNING) {
-        if (i === len - 1) { // 如果音频文件已经被读取完，停止渲染
-          fs.close(file);
-          await (renderModel as audio.AudioRenderer).stop();
-        }
-      }
-    }
+    });
   }
 }
 
 // 暂停渲染
-async function pause() {
+function pause() {
   if (renderModel !== undefined) {
     // 只有渲染器状态为running的时候才能暂停
     if ((renderModel as audio.AudioRenderer).state.valueOf() !== audio.AudioState.STATE_RUNNING) {
       console.info('Renderer is not running');
       return;
     }
-    await (renderModel as audio.AudioRenderer).pause(); // 暂停渲染
-    if ((renderModel as audio.AudioRenderer).state.valueOf() === audio.AudioState.STATE_PAUSED) {
-      console.info('Renderer is paused.');
-    } else {
-      console.error('Pausing renderer failed.');
-    }
+    // 暂停渲染
+    (renderModel as audio.AudioRenderer).pause((err: BusinessError) => {
+      if (err) {
+        console.error('Renderer pause failed.');
+      } else {
+        console.info('Renderer pause success.');
+      }
+    });
   }
 }
 
@@ -243,12 +241,15 @@ async function stop() {
       console.info('Renderer is not running or paused.');
       return;
     }
-    await (renderModel as audio.AudioRenderer).stop(); // 停止渲染
-    if ((renderModel as audio.AudioRenderer).state.valueOf() === audio.AudioState.STATE_STOPPED) {
-      console.info('Renderer stopped.');
-    } else {
-      console.error('Stopping renderer failed.');
-    }
+    // 停止渲染
+    (renderModel as audio.AudioRenderer).stop((err: BusinessError) => {
+      if (err) {
+        console.error('Renderer stop failed.');
+      } else {
+        fs.close(file);
+        console.info('Renderer stop success.');
+      }
+    });
   }
 }
 
@@ -260,12 +261,14 @@ async function release() {
       console.info('Renderer already released');
       return;
     }
-    await renderModel.release(); // 释放资源
-    if (renderModel.state.valueOf() === audio.AudioState.STATE_RELEASED) {
-      console.info('Renderer released');
-    } else {
-      console.error('Renderer release failed.');
-    }
+    // 释放资源
+    (renderModel as audio.AudioRenderer).release((err: BusinessError) => {
+      if (err) {
+        console.error('Renderer release failed.');
+      } else {
+        console.info('Renderer release success.');
+      }
+    });
   }
 }
 ```

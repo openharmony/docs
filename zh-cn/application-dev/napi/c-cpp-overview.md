@@ -54,3 +54,14 @@ SET(CMAKE_INSTALL_RPATH "\${ORIGIN}/module")
 
 ### 2.4 支持symbol-version机制
 symbol-version是libc在**动态链接-符号重定位**阶段的符号检索机制，支持不同版本的符号重定位，也可以帮助解决重复符号的问题。可参考<a href="https://www.gnu.org/software/gnulib/manual/html_node/LD-Version-Scripts.html">LD Version Scripts (GNU Gnulib)</a>
+
+### 2.5 网络接口select支持fd fortify检测
+宏定义FD_SET/FD_CLR新增fd有效值检查，当传入的fd不在区间`[0, 1024)`中会触发abort crash。
+
+宏定义FD_ISSET新增fd有效值检查，当传入的fd不在区间`[0, 1024)`中会返回false。
+
+### 2.6 全球化支持
+自API12起，newlocale及setlocale接口支持将locale设置C、C.UTF-8、en_US、en_US.UTF-8、zh_CN及zh_CN.UTF-8。新增在zh_CN及zh_CN.UTF-8的locale设置下对strtod_l、wcstod_l和localeconv的支持。注意strtod_l及wcstod_l不支持对十六进制及十六进制小数的转换。
+
+### 2.7 fdsan功能
+[fdsan功能](./fdsan.md)可以帮助检测文件的重复关闭和关闭后使用问题。

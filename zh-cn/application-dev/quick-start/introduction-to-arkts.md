@@ -12,7 +12,7 @@ ArkTS的一大特性是它专注于低运行时开销。ArkTS对TypeScript的动
 
 为了确保应用开发的最佳体验，ArkTS提供对方舟开发框架ArkUI的声明式语法和其他特性的支持。由于此部分特性不在既有TypeScript的范围内，因此我们在《ArkUI支持》一章中提供了详细的ArkUI示例。
 
-本教程将指导开发者了解ArkTS的核心功能、语法和最佳实践，使开发者能够使用ArkTS高效构建高性能的移动应用。编程规范请参考[ArkTS语言规范](../../contribute/OpenHarmony-ArkTS-coding-style-guide.md)。
+本教程将指导开发者了解ArkTS的核心功能、语法和最佳实践，使开发者能够使用ArkTS高效构建高性能的移动应用。<!--Del-->编程规范请参考[ArkTS语言规范](../../contribute/OpenHarmony-ArkTS-coding-style-guide.md)。<!--DelEnd-->
 
 ## 基本知识
 
@@ -1540,7 +1540,7 @@ class Person {
 
 可选链可以任意长，可以包含任意数量的`?.`运算符。
 
-在以下示例中，如果一个`Person`的实例有不为空的`spouse`属性，且`spouse`有不为空的`nickname`属性，则输出`spouse.nick`。否则，输出`undefined`：
+在以下示例中，如果一个`Person`的实例有不为空的`spouse`属性，且`spouse`有不为空的`nick`属性，则输出`spouse.nick`。否则，输出`undefined`：
 
 ```typescript
 class Person {
@@ -1662,7 +1662,9 @@ async function test() {
 }
 ```
 
-更多的使用动态import的业务场景和使用实例见[动态import](arkts-dynamic-import.md)
+更多的使用动态import的业务场景和使用实例见[动态import](arkts-dynamic-import.md)。
+
+<!--RP1--><!--RP1End-->
 
 ### 顶层语句
 
@@ -1679,6 +1681,49 @@ function main() {
   console.log('this is the program entry');
 }
 ```
+
+## 关键字
+
+### this
+
+关键字`this`只能在类的实例方法中使用。
+
+**示例**
+
+```typescript
+class A {
+  count: string = 'a'
+  m(i: string): void {
+    this.count = i;
+  }
+}
+```
+
+使用限制：
+
+* 不支持`this`类型
+* 不支持在函数和类的静态方法中使用`this`
+
+**示例**
+
+```typescript
+class A {
+  n: number = 0
+  f1(arg1: this) {} // 编译时错误，不支持this类型
+  static f2(arg1: number) {
+    this.n = arg1;  // 编译时错误，不支持在类的静态方法中使用this
+  }
+}
+
+function foo(arg1: number) {
+  this.n = i;       // 编译时错误，不支持在函数中使用this
+}
+```
+
+关键字`this`的指向:
+
+* 调用实例方法的对象
+* 正在构造的对象
 
 ## ArkUI支持
 

@@ -24,7 +24,7 @@ Badge(value: BadgeParamWithNumber)
 
 创建数字标记组件。
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **参数：**
 
@@ -38,7 +38,9 @@ Badge(value: BadgeParamWithString)
 
 根据字符串创建标记组件。
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+从API version 12开始，该组件显隐时支持scale动效。
 
 **参数：**
 
@@ -46,27 +48,44 @@ Badge(value: BadgeParamWithString)
 | ------ | ----------------------------------------------------- | ---- | -------------------- |
 | value  | [BadgeParamWithString](#badgeparamwithstring对象说明) | 是   | 字符串标记组件参数。 |
 
+## BadgeParam对象说明
+
+包含创建Badge组件的基础参数。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+| 参数名 | 参数类型 | 必填 | 参数描述 |
+| -------- | -------- | -------- | -------- |
+| position | [BadgePosition](#badgeposition枚举说明)\|[Position<sup>10+</sup>](ts-types.md#position) | 否 | 设置提示点显示位置。<br/>默认值：BadgePosition.RightTop <br/>**说明：** <br/> Position作为入参，不支持设置百分比；设置为非法值时，默认（0,0）处理。|
+| style | [BadgeStyle](#badgestyle对象说明) | 是 | Badge组件可设置样式，支持设置文本颜色、尺寸、圆点颜色和尺寸。 |
+
 
 ## BadgeParamWithNumber对象说明
+
+BadgeParamWithNumber继承自[BadgeParam](#badgeparam对象说明)，具有BadgeParam的全部属性。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 参数名 | 参数类型 | 必填 | 参数描述 |
 | -------- | -------- | -------- | -------- |
 | count | number | 是 | 设置提醒消息数。<br/>**说明：** <br/>小于等于0时不显示信息标记。<br/>取值范围：[-2147483648,2147483647]，超出范围时会加上或减去4294967296，使得值仍在范围内，非整数时会舍去小数部分取整数部分，如5.5取5。 |
-| position | [BadgePosition](#badgeposition枚举说明)\|[Position<sup>10+</sup>](ts-types.md#position8) | 否 | 设置提示点显示位置。<br/>默认值：BadgePosition.RightTop <br/>**说明：** <br/> Position作为入参，不支持设置百分比；设置为非法值时，默认（0,0）处理。|
 | maxCount | number | 否 | 最大消息数，超过最大消息时仅显示maxCount+。<br/>默认值：99<br/>取值范围：[-2147483648,2147483647]，超出范围时会加上或减去4294967296，使得值仍在范围内，非整数时会舍去小数部分取整数部分，如5.5取5。 |
-| style | [BadgeStyle](#badgestyle对象说明) | 是 | Badge组件可设置样式，支持设置文本颜色、尺寸、圆点颜色和尺寸。 |
 
 ## BadgeParamWithString对象说明
 
-| 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 |
-| -------- | -------- | -------- | -------- | -------- |
-| value | string | 是 | - | 提示内容的文本字符串。 |
-| position | [BadgePosition](#badgeposition枚举说明)\|[Position<sup>10+</sup>](ts-types.md#position8) | 否 | BadgePosition.RightTop | 设置提示点显示位置。 |
-| style | [BadgeStyle](#badgestyle对象说明) | 是 | - | Badge组件可设置样式，支持设置文本颜色、尺寸、圆点颜色和尺寸。 |
+BadgeParamWithString继承自[BadgeParam](#badgeparam对象说明)，具有BadgeParam的全部属性。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+| 参数名 | 参数类型 | 必填 | 参数描述 |
+| -------- | -------- | -------- | -------- |
+| value | string | 是 | 提示内容的文本字符串。 |
 
 ## BadgePosition枚举说明
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称 | 枚举值 | 描述 |
 | -------- | -------- |-------- |
@@ -76,7 +95,9 @@ Badge(value: BadgeParamWithString)
 
 ## BadgeStyle对象说明
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称                      | 类型                                                         | 必填 | 描述                                                         |
 | ------------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
@@ -97,6 +118,8 @@ Badge(value: BadgeParamWithString)
 支持[通用事件](ts-universal-events-click.md)。
 
 ## 示例
+
+### 示例1
 
 ```ts
 // xxx.ets
@@ -242,3 +265,38 @@ struct BadgeExample {
 ```
 
 ![badge](figures/badge.png)
+
+### 示例2
+
+```ts
+// 该示例实现了Badge组件显隐时缩放
+@Entry
+@Component
+struct Index {
+  @State badgeCount: number = 1
+
+  build() {
+    Column({ space: 40 }) {
+      Badge({
+        count: this.badgeCount,
+        style: {},
+        position: BadgePosition.RightTop,
+      }) {
+        Image($r("app.media.icon"))
+        .width(50)
+        .height(50)
+      }
+      .width(55)
+      Button('count 0').onClick(() => {
+        this.badgeCount = 0
+      })
+      Button('count 1').onClick(() => {
+        this.badgeCount = 1
+      })
+    }
+    .margin({top: 20})
+  }
+}
+```
+
+![badgeScale](figures/badgeScale.gif)

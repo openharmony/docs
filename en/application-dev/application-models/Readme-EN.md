@@ -14,6 +14,8 @@
       - [Data Synchronization Between UIAbility and UI Page](uiability-data-sync-with-ui.md)
       - [Intra-Device Interaction Between UIAbility Components](uiability-intra-device-interaction.md)
     - [ExtensionAbility Component](extensionability-overview.md)
+      - [ServiceExtensionAbility (for System Applications Only)](serviceextensionability.md)
+      - [EmbeddedUIExtensionAbility](embeddeduiextensionability.md)
     - [AbilityStage Component Container](abilitystage.md)
     - [Context](application-context-stage.md)
     - Want
@@ -23,6 +25,7 @@
       - [Using Implicit Want to Open a Website](ability-startup-with-implicit-want.md)
       - [Using Want to Share Data Between Applications](data-share-via-want.md)
     - [Component Startup Rules (Stage Model)](component-startup-rules.md)
+    - [AppStartup Development](app-startup.md)
     - Inter-Device Application Component Interaction (Continuation)
       - [Continuation Overview](inter-device-interaction-hop-overview.md)
       - [Cross-Device Migration](hop-cross-device-migration.md)

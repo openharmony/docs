@@ -42,11 +42,11 @@ import AVSessionManager from '@ohos.multimedia.avsession';
 // 创建session
 let context: Context = getContext(this);
 async function createSession() {
-let type: AVSessionManager.AVSessionType = 'audio';
-let session = await AVSessionManager.createAVSession(context,'SESSION_NAME', type);
+  let type: AVSessionManager.AVSessionType = 'audio';
+  let session = await AVSessionManager.createAVSession(context,'SESSION_NAME', type);
 
-// 激活接口要在元数据、控制命令注册完成之后再执行
-await session.activate();
+  // 激活接口要在元数据、控制命令注册完成之后再执行
+  await session.activate();
   console.info(`session create done : sessionId : ${session.sessionId}`);
 }
 ```
@@ -76,7 +76,8 @@ async function setSessionInfo() {
   let metadata: AVSessionManager.AVMetadata = {
     assetId: '0', // 由应用指定，用于标识应用媒体库里的媒体
     title: 'TITLE',
-    artist: 'ARTIST'
+    mediaImage: 'IMAGE',
+    artist: 'ARTIST',
   };
   session.setAVMetadata(metadata).then(() => {
     console.info(`SetAVMetadata successfully`);
@@ -103,6 +104,8 @@ async function setListener() {
   // 把歌词信息设置给AVSession
   let metadata: AVSessionManager.AVMetadata = {
     assetId: '0',
+    title: 'TITLE',
+    mediaImage: 'IMAGE',
     lyric: 'http://www.test.lyric',
   };
   session.setAVMetadata(metadata).then(() => {
@@ -113,6 +116,9 @@ async function setListener() {
 
 }
 ```
+
+<!--RP1-->
+<!--RP1End-->
 
 ### 媒体资源金标
 
@@ -132,6 +138,8 @@ async function setListener() {
   // 把媒体音源信息设置给AVSession
   let metadata: AVSessionManager.AVMetadata = {
     assetId: '0',
+    title: 'TITLE',
+    mediaImage: 'IMAGE',
     // 标识该媒体音源是AudioVivid
     displayTags: AVSessionManager.DisplayTag.TAG_AUDIO_VIVID,
   };
@@ -188,16 +196,28 @@ async function setListener() {
   let type: AVSessionManager.AVSessionType = 'audio';
   let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', type);
 
-  // 设置状态： 播放状态，进度位置，播放倍速，缓存的时间，资源的时长
+  // 设置媒体资源时长
+  let metadata: AVSessionManager.AVMetadata = {
+    assetId: '0',
+    title: 'TITLE',
+    mediaImage: 'IMAGE',
+    duration: 23000, // 资源的时长，以ms为单位
+  };
+  session.setAVMetadata(metadata).then(() => {
+    console.info(`SetAVMetadata successfully`);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to set AVMetadata. Code: ${err.code}, message: ${err.message}`);
+  });
+
+  // 设置状态： 播放状态，进度位置，播放倍速，缓存的时间
   let playbackState: AVSessionManager.AVPlaybackState = {
     state: AVSessionManager.PlaybackState.PLAYBACK_STATE_PLAY, // 播放状态
     position: {
       elapsedTime: 1000, // 已经播放的位置，以ms为单位
-      updateTime: 30000, // 应用更新当前位置的时间戳，以ms为单位
+      updateTime: new Date().getTime(), // 应用更新当前位置时的时间戳，以ms为单位
     },
     speed: 1.0, // 可选，默认是1.0，播放的倍速，按照应用内支持的speed进行设置，系统不做校验
     bufferedTime: 14000, // 可选，资源缓存的时间，以ms为单位
-    duration: 23000, // 资源的时长，以ms为单位
   };
   session.setAVPlaybackState(playbackState, (err) => {
     if (err) {
@@ -210,18 +230,21 @@ async function setListener() {
 ```
 
 系统的播控中心会根据应用设置的信息自行进行播放进度的计算，而不需要应用实时更新播放进度；
-但是应用需要如下状态发生变化的时候，更新AVPlaybackState，否则系统会发生计算错误：
+但是应用需要如下状态发生变化的时候，再更新AVPlaybackState，否则系统会发生计算错误：
 
 - state
 - position
 - speed
 
+应用在真实播放开始时，再上报进度起始position；若播放存在buffer状态，可以先上报播放状态为AVSessionManager.PlaybackState.PLAYBACK_STATE_BUFFERING，来通知系统不刷新进度。
+
 关于进度条有一些特殊情况需要处理：
 
 1. 歌曲支持试听
 
-    如果VIP歌曲支持试听，这样应用就不需要设置完整的歌曲时长，则只需要设置歌曲的试听时长。
-    当应用仅设置歌曲的试听时长而不是完整时长，用户在播控中心触发进度控制时，应用收到的时长也是VIP试听时长内的相对时间戳位置，而不是完整歌曲的绝对时间戳位置，应用需要重新计算歌曲从零开始的绝对时间戳进行实际响应处理。
+    （1）应用不需要设置完整的歌曲时长，则只需要设置歌曲的试听时长。当应用仅设置歌曲的试听时长而不是完整时长，用户在播控中心触发进度控制时，应用收到的时长也是VIP试听时长内的相对时间戳位置，而不是完整歌曲的绝对时间戳位置，应用需要重新计算歌曲从零开始的绝对时间戳进行实际响应处理。
+    
+    （2）如果应用设置完整歌曲时长，但需要系统支持试听片段，也可以在播放时上报起始进度position，当收到的seek指令超过试听片段时，上报试听截止position，系统播控的进度会跟随回弹。
 
 2. 歌曲不支持试听
 
@@ -308,7 +331,9 @@ async function unregisterSessionListener() {
   // 设置支持的快进快退的时长设置给AVSession
   let metadata: AVSessionManager.AVMetadata = {
     assetId: '0', // 由应用指定，用于标识应用媒体库里的媒体
-    skipIntervals: SkipIntervals.SECONDS_10,
+    title: 'TITLE',
+    mediaImage: 'IMAGE',
+    skipIntervals: AVSessionManager.SkipIntervals.SECONDS_10,
   };
   session.setAVMetadata(metadata).then(() => {
     console.info(`SetAVMetadata successfully`);
@@ -362,7 +387,8 @@ async function setListener() {
 
 针对音乐类应用，系统的播控中心界面会默认展示循环模式的控制操作，目前系统支持四种固定的循环模式控制，参考: [LoopMode](../../reference/apis-avsession-kit/js-apis-avsession.md#loopmode10)。
 
-播控中心支持固定的四种循环模式的切换，即： 随机播放、顺序播放、单曲循环、列表循环。播控中心会按照固定的切换顺序通知应用，应用收到对应的循环模式命令后进行响应。
+播控中心支持固定的四种循环模式的切换，即： 随机播放、顺序播放、单曲循环、列表循环。应用收到循环模式切换的指令并切换后，需要向系统上报切换后的LoopMode。
+若应用内支持的LoopMode不在系统固定的四个循环模式内，需要选择四个固定循环模式其一向系统上报，由应用自定。
 
 实现参考：
 
@@ -376,20 +402,28 @@ async function setListener() {
  let type: AVSessionManager.AVSessionType = 'audio';
  let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', type);
 
- // 应用启动时，需要把应用内的循环模式设置给AVSession
- let playBackState: AVSessionManager.AVPlayBackState = {
+ // 应用启动时/内部切换循环模式，需要把应用内的当前的循环模式设置给AVSession
+ let playBackState: AVSessionManager.AVPlaybackState = {
    loopMode: AVSessionManager.LoopMode.LOOP_MODE_SINGLE,
  };
- session.setAVPlayBackState(playBackState).then(() => {
-   console.info(`set AVPlayBackState successfully`);
+ session.setAVPlaybackState(playBackState).then(() => {
+   console.info(`set AVPlaybackState successfully`);
  }).catch((err: BusinessError) => {
-   console.error(`Failed to set AVPlayBackState. Code: ${err.code}, message: ${err.message}`);
+   console.error(`Failed to set AVPlaybackState. Code: ${err.code}, message: ${err.message}`);
  });
 
  // 应用注册循环模式的控制监听
  session.on('setLoopMode', (mode) => {
    console.info(`on setLoopMode ${mode}`);
-   // 应用收到设置循环模式后，切换对应的循环模式
+   // 应用收到设置循环模式的指令后，应用自定下一个模式，切换完毕后通过AVPlaybackState上报切换后的LoopMode
+   let playBackState: AVSessionManager.AVPlaybackState = {
+    loopMode: AVSessionManager.LoopMode.LOOP_MODE_SINGLE,
+   };
+   session.setAVPlaybackState(playBackState).then(() => {
+     console.info(`set AVPlaybackState successfully`);
+   }).catch((err: BusinessError) => {
+     console.error(`Failed to set AVPlaybackState. Code: ${err.code}, message: ${err.message}`);
+   });
  });
 
 }
@@ -408,10 +442,10 @@ async function setListener() {
  let type: AVSessionManager.AVSessionType = 'audio';
  let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', type);
 
- session.on('seek', (time: number) => {
-   console.info(`on seek , the time is ${JSON.stringify(time)}`);
+ session.on('seek', (position: number) => {
+   console.info(`on seek , the time is ${JSON.stringify(position)}`);
 
-   // 由于应用内seek可能会触发较长的缓冲等待，一般先把状态设置为 Buffering
+   // 由于应用内seek可能会触发较长的缓冲等待，可以先把状态设置为 Buffering
    let playbackState: AVSessionManager.AVPlaybackState = {
      state: AVSessionManager.PlaybackState.PLAYBACK_STATE_BUFFERING, // 缓冲状态
    };
@@ -428,8 +462,8 @@ async function setListener() {
    // 应用内更新新的位置后，也需要同步更新状态给系统
    playbackState.state = AVSessionManager.PlaybackState.PLAYBACK_STATE_PLAY; // 播放状态
    playbackState.position = {
-     elapsedTime: 4000, // 已经播放的位置，以ms为单位
-     updateTime: 34000, // 应用更新当前位置的时间戳，以ms为单位
+     elapsedTime: position, // 已经播放的位置，以ms为单位
+     updateTime: new Date().getTime(), // 应用更新当前位置的时间戳，以ms为单位
    }
    session.setAVPlaybackState(playbackState, (err) => {
      if (err) {

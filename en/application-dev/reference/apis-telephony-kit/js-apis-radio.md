@@ -1,6 +1,6 @@
-# @ohos.telephony.radio (Radio)
+# @ohos.telephony.radio (Network Search)
 
-The **radio** module provides basic network search management functions. You can obtain the radio access technology (RAT) used in the CS and PS domains, network status, current network selection mode, ISO country code of the registered network, ID of the slot in which the primary card is located, list of signal strengths of the registered network, carrier name, and IMEI, MEID, and unique device ID of the SIM card in the specified slot. Besides, you can check whether the current device supports 5G\(NR\) and whether the radio service is enabled on the primary SIM card.
+The **radio** module provides basic network search management functions. Using the APIs provided by this module, you can obtain the radio access technology (RAT) used in the CS and PS domains, network status, current network selection mode, ISO country code of the registered network, ID of the slot in which the primary card is located, list of signal strengths of the registered network for the SIM card in the specified slot, and carrier name. Besides, you can check whether the current device supports New Radio \(NR\) and whether the radio service is enabled on the primary SIM card.
 
 >**NOTE**
 >
@@ -10,7 +10,7 @@ The **radio** module provides basic network search management functions. You can
 ## Modules to Import
 
 ```ts
-import radio from '@ohos.telephony.radio';
+import { radio } from '@kit.TelephonyKit';
 ```
 
 ## radio.getRadioTech
@@ -46,7 +46,7 @@ For details about the error codes, see[ohos.telephony (Telephony) Error Codes](e
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotId: number = 0;
 radio.getRadioTech(slotId, (err: BusinessError, data: radio.NetworkRadioTech) => {
@@ -97,7 +97,7 @@ For details about the error codes, see[ohos.telephony (Telephony) Error Codes](e
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotId: number = 0;
 radio.getRadioTech(slotId).then((data: radio.NetworkRadioTech) => {
@@ -140,7 +140,7 @@ For details about the error codes, see[ohos.telephony (Telephony) Error Codes](e
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 radio.getNetworkState((err: BusinessError, data: radio.NetworkState) => {
     if (err) {
@@ -185,7 +185,7 @@ For details about the error codes, see[ohos.telephony (Telephony) Error Codes](e
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotId: number = 0;
 radio.getNetworkState(slotId, (err: BusinessError, data: radio.NetworkState) => {
@@ -236,7 +236,7 @@ For details about the error codes, see[ohos.telephony (Telephony) Error Codes](e
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotId: number = 0;
 radio.getNetworkState(slotId).then((data: radio.NetworkState) => {
@@ -277,7 +277,7 @@ For details about the error codes, see[ohos.telephony (Telephony) Error Codes](e
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotId: number = 0;
 radio.getNetworkSelectionMode(slotId, (err: BusinessError, data: radio.NetworkSelectionMode) => {
@@ -325,7 +325,7 @@ For details about the error codes, see[ohos.telephony (Telephony) Error Codes](e
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotId: number = 0;
 radio.getNetworkSelectionMode(slotId).then((data: radio.NetworkSelectionMode) => {
@@ -349,7 +349,7 @@ Obtains the ISO country code of the network with which the SIM card in the speci
 | Name  | Type                   | Mandatory| Description                                    |
 | -------- | ----------------------- | ---- | ---------------------------------------- |
 | slotId   | number                  | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2  |
-| callback | AsyncCallback\<string\> | Yes  | Callback used to return the result, which is an ISO country code, for example, **CN** (China).|
+| callback | AsyncCallback\<string\> | Yes  | Callback used to return the result, which is an ISO country code, for example, **CN** (China). If the device is not registered with any network, an empty string is returned.|
 
 **Error codes**
 
@@ -366,7 +366,7 @@ For details about the error codes, see[ohos.telephony (Telephony) Error Codes](e
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotId: number = 0;
 radio.getISOCountryCodeForNetwork(slotId, (err: BusinessError, data: string) => {
@@ -397,7 +397,7 @@ Obtains the ISO country code of the network with which the SIM card in the speci
 
 | Type             | Description                                                        |
 | ----------------- | ------------------------------------------------------------ |
-| Promise\<string\> | Promise used to return the result, which is an ISO country code, for example, **CN** (China).|
+| Promise\<string\> | Promise used to return the result, which is an ISO country code, for example, **CN** (China). If the device is not registered with any network, an empty string is returned.|
 
 **Error codes**
 
@@ -414,7 +414,7 @@ For details about the error codes, see[ohos.telephony (Telephony) Error Codes](e
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotId: number = 0;
 radio.getISOCountryCodeForNetwork(slotId).then((data: string) => {
@@ -442,7 +442,7 @@ Obtains the ISO country code of the network with which the SIM card in the speci
 
 | Type             | Description                                                        |
 | ----------------- | ------------------------------------------------------------ |
-| string | ISO country code of the network, for example, **CN** (China).|
+| string | ISO country code of the network, for example, **CN** (China). If the device is not registered with any network, an empty string is returned.|
 
 **Example**
 
@@ -483,7 +483,7 @@ For details about the error codes, see[ohos.telephony (Telephony) Error Codes](e
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 radio.getPrimarySlotId((err: BusinessError, data: number) => {
     if (err) {
@@ -522,7 +522,7 @@ For details about the error codes, see[ohos.telephony (Telephony) Error Codes](e
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 radio.getPrimarySlotId().then((data: number) => {
     console.log(`getPrimarySlotId success, promise: data->${JSON.stringify(data)}`);
@@ -545,7 +545,7 @@ Obtains a list of signal strengths of the network with which the SIM card in the
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | slotId   | number                                                       | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2                      |
-| callback | AsyncCallback\<Array\<[SignalInformation](#signalinformation)\>\> | Yes  | Callback used to return the result, which is a list of [SignalInformation](#signalinformation) objects.|
+| callback | AsyncCallback\<Array\<[SignalInformation](#signalinformation)\>\> | Yes  | Callback used to return the result, which is an array of child class objects derived from [SignalInformation](#signalinformation).|
 
 **Error codes**
 
@@ -562,7 +562,7 @@ For details about the error codes, see[ohos.telephony (Telephony) Error Codes](e
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotId: number = 0;
 radio.getSignalInformation(slotId, (err: BusinessError, data: Array<radio.SignalInformation>) => {
@@ -593,7 +593,7 @@ Obtains a list of signal strengths of the network with which the SIM card in the
 
 | Type                                                       | Description                                                        |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<Array\<[SignalInformation](#signalinformation)\>\> | Promise used to return the result, which is a list of [SignalInformation](#signalinformation) objects.|
+| Promise\<Array\<[SignalInformation](#signalinformation)\>\> | Promise used to return the result, which is a list of child class objects derived from [SignalInformation](#signalinformation).|
 
 **Error codes**
 
@@ -610,7 +610,7 @@ For details about the error codes, see[ohos.telephony (Telephony) Error Codes](e
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotId: number = 0;
 radio.getSignalInformation(slotId).then((data: Array<radio.SignalInformation>) => {
@@ -638,7 +638,7 @@ Obtains a list of signal strengths of the network with which the SIM card in the
 
 | Type                                                       | Description                                                        |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Array\<[SignalInformation](#signalinformation)\>| Array of [SignalInformation](#signalinformation) objects.|
+| Array\<[SignalInformation](#signalinformation)\>| Array of child class objects derived from [SignalInformation](#signalinformation).|
 
 
 **Example**
@@ -649,11 +649,11 @@ let signalInfo: Array<radio.SignalInformation> = radio.getSignalInformationSync(
 console.log(`signal information size is:` + signalInfo.length);
 ```
 
-## radio.isNrSupported<sup>(deprecated)</sup>
+## radio.isNrSupported<sup>8+(deprecated)</sup>
 
 isNrSupported\(\): boolean
 
-Checks whether the SIM card supports 5G \(NR\).
+Check whether the current device supports NR.
 
 > **NOTE**
 >
@@ -678,7 +678,7 @@ console.log("Result: "+ result);
 
 isNrSupported\(slotId: number\): boolean
 
-Checks whether the SIM card in the specified slot supports 5G \(NR\).
+Check whether the SIM card in the specified slot supports NR.
 
 > **NOTE**
 >
@@ -711,7 +711,7 @@ console.log("Result: "+ result);
 
 isNRSupported\(\): boolean
 
-Checks whether the SIM card supports 5G \(NR\).
+Check whether the current device supports NR.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -733,7 +733,7 @@ console.log("Result: "+ result);
 
 isNRSupported\(slotId: number\): boolean
 
-Checks whether the SIM card in the specified slot supports 5G \(NR\).
+Check whether the SIM card in the specified slot supports NR.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -790,7 +790,7 @@ For details about the error codes, see[ohos.telephony (Telephony) Error Codes](e
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 radio.isRadioOn((err: BusinessError, data: boolean) => {
     if (err) {
@@ -835,7 +835,7 @@ For details about the error codes, see[ohos.telephony (Telephony) Error Codes](e
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotId: number = 0;
 radio.isRadioOn(slotId, (err: BusinessError, data: boolean) => {
@@ -886,7 +886,7 @@ For details about the error codes, see[ohos.telephony (Telephony) Error Codes](e
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotId: number = 0;
 radio.isRadioOn(slotId).then((data: boolean) => {
@@ -927,7 +927,7 @@ For details about the error codes, see[ohos.telephony (Telephony) Error Codes](e
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotId: number = 0;
 radio.getOperatorName(slotId, (err: BusinessError, data: string) => {
@@ -975,7 +975,7 @@ For details about the error codes, see[ohos.telephony (Telephony) Error Codes](e
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotId: number = 0;
 radio.getOperatorName(slotId).then((data: string) => {
@@ -1075,7 +1075,7 @@ Enumerates network types.
 | NETWORK_TYPE_WCDMA   | 3    | WCDMA network. |
 | NETWORK_TYPE_TDSCDMA | 4    | TD-SCDMA network.|
 | NETWORK_TYPE_LTE     | 5    | LTE network.                      |
-| NETWORK_TYPE_NR      | 6    | 5G NR network.                              |
+| NETWORK_TYPE_NR      | 6    | NR network.                              |
 
 ## NetworkState
 

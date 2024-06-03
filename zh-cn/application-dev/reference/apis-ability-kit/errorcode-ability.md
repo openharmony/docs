@@ -47,7 +47,7 @@ Incorrect Ability type.
 **处理步骤**
 
 1. 检查want中的bundleName、moduleName和abilityName是否正确。
-2. 根据Ability类型调用不同接口，如ServiceExtensionAbility应使用[startServiceExtensionAbility](js-apis-inner-application-uiAbilityContext-sys.md#uiabilitycontextstartserviceextensionability)方法启动或[connectServiceExtensionAbility()](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectserviceextensionability)方法连接。
+2. 根据Ability类型调用不同接口，如ServiceExtensionAbility应使用<!--Del-->[startServiceExtensionAbility](js-apis-inner-application-uiAbilityContext-sys.md#uiabilitycontextstartserviceextensionability)方法启动或<!--DelEnd-->[connectServiceExtensionAbility()](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectserviceextensionability)方法连接。
 
 ## 16000003 指定的ID不存在
 
@@ -283,6 +283,34 @@ The previous ability is starting, wait start later.
 **处理步骤**
 
 无需处理，等待启动即可。
+
+## 16000018 限制API 11以上版本三方应用跳转
+
+**错误信息**
+
+The application is not allow jumping to other applications when api version is above 11.
+
+**错误描述**
+
+当应用API版本大于11的时候，不允许显式跳转到其他三方应用。
+
+**处理步骤**
+
+使用隐式启动方式或通过[openLink](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextopenlink12)跳转其他应用。
+
+## 16000019 隐式启动未查找到匹配应用
+
+**错误信息**
+
+Can not match any component.
+
+**错误描述**
+
+隐式启动无法查找到匹配的Ability。
+
+**处理步骤**
+
+修改隐式启动的匹配项。
 
 ## 16000050 内部错误
 
@@ -745,6 +773,24 @@ wangAgent object has been canceled.
 
 检查触发的wantAgent对象是否已取消。
 
+## 16000200 应用缓存后快速启动支持状态设置超过1次
+
+**错误信息**
+
+The supported process cache state cannot be set more than once.
+
+**错误描述**
+
+在单个进程实例的生命周期中，应用缓存后快速启动支持状态设置成功1次后，再次设置方法将返回错误码。
+
+**可能原因**
+
+应用缓存后快速启动支持状态设置超过1次。
+
+**处理步骤**
+
+检查应用缓存后快速启动支持状态是否设置超过1次。
+
 ## 16100001 指定Uri的Ability不存在
 
 **错误信息**
@@ -873,6 +919,24 @@ Method not registered. The method has not registered.
 **处理步骤**
 
 请检查是否未注册该方法。
+
+## 16200006 没有权限设置常驻进程使能状态
+
+**错误信息**
+
+The caller application can only set the resident status of the configured process.
+
+**错误描述**
+
+当调用者没有权限设置常驻进程使能状态时返回。
+
+**可能原因**
+
+调用者没有常驻进程使能配置权限。
+
+**处理步骤**
+
+接口调用时从数据库查询调用者的常驻进程使能配置权限。
 
 ## 16300001 指定的任务不存在
 
@@ -1114,3 +1178,21 @@ observer not found.
 **处理步骤**
 
 请检查是否有重复注销监听器。
+
+## 16300005 指定的包信息不存在。
+
+**错误信息**
+
+The target bundle does not exist.
+
+**错误描述**
+
+预加载应用的包信息不存在时，方法将返回该错误码。
+
+**可能原因**
+
+预加载的bundleName、userId或appIndex错误，导致查询不到相关包信息。
+
+**处理步骤**
+
+检查传入的bundleName、userId和appIndex参数是否正确。

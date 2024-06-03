@@ -2,22 +2,26 @@
 
 开发者可以调用本模块的Native API接口，完成音视频解封装，即从比特流数据中取出音频、视频等媒体帧数据。
 
-当前支持的数据输入类型有：远程连接(http协议)和文件描述符(fd)。
+当前支持的数据输入类型有：远程连接(http协议、HLS协议)和文件描述符(fd)。
 
 支持的解封装格式如下：
 
 | 媒体格式  | 封装格式                      | 码流格式                      |
 | -------- | :----------------------------| :----------------------------|
-| 音视频     | mp4                        |视频码流：AVC(H.264)，音频码流：AAC、MPEG(MP3)|
-| 音视频     | mkv                        |视频码流：AVC(H.264)，音频码流：AAC、MPEG(MP3)、OPUS|
-| 音视频     | mpeg-ts                    |视频码流：AVC(H.264)，音频码流：AAC、MPEG(MP3)|
-| 音频       | m4a                        |音频码流：AAC|
+| 音视频     | mp4                        |<!--RP1-->视频码流：AVC(H.264)，音频码流：AAC、MPEG(MP3)<!--RP1End-->|
+| 音视频     | fmp4                       |<!--RP2-->视频码流：AVC(H.264)，音频码流：AAC、MPEG(MP3)<!--RP2End-->|
+| 音视频     | mkv                        |<!--RP3-->视频码流：AVC(H.264)，音频码流：AAC、MPEG(MP3)、OPUS<!--RP3End-->|
+| 音视频     | mpeg-ts                    |<!--RP4-->视频码流：AVC(H.264)，音频码流：AAC、MPEG(MP3)<!--RP4End-->|
+| 音视频     | flv                        |<!--RP5-->视频码流：AVC(H.264)，音频码流：AAC<!--RP5End-->|
+| 音频       | m4a                        |<!--RP6-->音频码流：AAC<!--RP6End-->|
 | 音频       | aac                        |音频码流：AAC|
 | 音频       | mp3                        |音频码流：MPEG(MP3)|
 | 音频       | ogg                        |音频码流：OGG|
-| 音频       | flac                        |音频码流：FLAC|
+| 音频       | flac                       |音频码流：FLAC|
 | 音频       | wav                        |音频码流：PCM|
-| 音频       | amr                        |音频码流：AMR(amrnb/amrwb)|
+| 音频       | amr                        |音频码流：AMR(AMR-NB、AMR-WB)|
+| 音频       | ape                        |音频码流：APE|
+| 外挂字幕   | srt                        |字幕流：SRT|
 
 **适用场景**：
 
@@ -62,6 +66,8 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    #include <multimedia/player_framework/native_avcodec_base.h>
    #include <multimedia/player_framework/native_avformat.h>
    #include <multimedia/player_framework/native_avbuffer.h>
+   #include <fcntl.h>
+   #include <sys/stat.h>
    ```
 
 2. 创建资源管理实例对象。
@@ -159,7 +165,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    ```
 4. 注册[DRM信息监听函数](../../reference/apis-drm-kit/_drm.md#drm_mediakeysysteminfocallback)（可选，若非DRM码流或已获得[DRM信息](../../reference/apis-drm-kit/_drm.md#drm_mediakeysysteminfo)，可跳过此步）。
 
-   加入头文件
+   添加头文件
    ```c++
    #include <multimedia/drm_framework/native_drm_common.h>
    ```
@@ -168,8 +174,9 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    ``` cmake
    target_link_libraries(sample PUBLIC libnative_drm.so)
    ```
+   设置DRM信息监听的接口有两种，可根据需要选择。
 
-   使用示例
+   使用示例一：
    ```c++
    // DRM信息监听回调OnDrmInfoChanged实现
    static void OnDrmInfoChanged(DRM_MediaKeySystemInfo *drmInfo)
@@ -177,11 +184,24 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
       // 解析DRM信息，包括数量、DRM类型及对应pssh
    }
 
-   // 设置异步回调
    DRM_MediaKeySystemInfoCallback callback = &OnDrmInfoChanged;
    int32_t ret = OH_AVDemuxer_SetMediaKeySystemInfoCallback(demuxer, callback);
+   ```
 
-   // 在监听到DRM信息后，也可主动调用获取DRM信息接口
+   使用示例二：
+   ```c++
+   // DRM信息监听回调OnDrmInfoChangedWithObj实现
+   static void OnDrmInfoChangedWithObj(OH_AVDemuxer *demuxer, DRM_MediaKeySystemInfo *drmInfo)
+   {
+      // 解析DRM信息，包括数量、DRM类型及对应pssh
+   }
+
+   Demuxer_MediaKeySystemInfoCallback callback = &OnDrmInfoChangedWithObj;
+   int32_t ret = OH_AVDemuxer_SetDemuxerMediaKeySystemInfoCallback(demuxer, callback)
+
+   ```
+   在监听到DRM信息后，也可主动调用获取DRM信息接口。
+   ```c++
    DRM_MediaKeySystemInfo mediaKeySystemInfo;
    OH_AVDemuxer_GetMediaKeySystemInfo(demuxer, &mediaKeySystemInfo);
    ```
@@ -294,17 +314,16 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    ```
 
 10. 销毁解封装实例。
-
-   ```c++
-   // 需要用户调用 OH_AVSource_Destroy 接口成功后，手动将对象置为 NULL，对同一对象重复调用 OH_AVSource_Destroy 会导致程序错误
-   if (OH_AVSource_Destroy(source) != AV_ERR_OK) {
-      printf("destroy source pointer error");
-   }
-   source = NULL;
-   // 需要用户调用 OH_AVDemuxer_Destroy 接口成功后，手动将对象置为 NULL，对同一对象重复调用 OH_AVDemuxer_Destroy 会导致程序错误
-   if (OH_AVDemuxer_Destroy(demuxer) != AV_ERR_OK) {
-      printf("destroy demuxer pointer error");
-   }
-   demuxer = NULL;
-   close(fd);
-   ```
+      ```c++
+      // 需要用户调用 OH_AVSource_Destroy 接口成功后，手动将对象置为 NULL，对同一对象重复调用 OH_AVSource_Destroy 会导致程序错误
+      if (OH_AVSource_Destroy(source) != AV_ERR_OK) {
+         printf("destroy source pointer error");
+      }
+      source = NULL;
+      // 需要用户调用 OH_AVDemuxer_Destroy 接口成功后，手动将对象置为 NULL，对同一对象重复调用 OH_AVDemuxer_Destroy 会导致程序错误
+      if (OH_AVDemuxer_Destroy(demuxer) != AV_ERR_OK) {
+         printf("destroy demuxer pointer error");
+      }
+      demuxer = NULL;
+      close(fd);
+      ```

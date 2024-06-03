@@ -42,11 +42,11 @@ import AVSessionManager from '@ohos.multimedia.avsession';
 // Create an AVSession object.
 let context: Context = getContext(this);
 async function createSession() {
-let type: AVSessionManager.AVSessionType = 'audio';
-let session = await AVSessionManager.createAVSession(context,'SESSION_NAME', type);
+  let type: AVSessionManager.AVSessionType = 'audio';
+  let session = await AVSessionManager.createAVSession(context,'SESSION_NAME', type);
 
-// Call activate() after the metadata and control commands are registered.
-await session.activate();
+  // Call activate() after the metadata and control commands are registered.
+  await session.activate();
   console.info(`session create done : sessionId : ${session.sessionId}`);
 }
 ```
@@ -76,7 +76,8 @@ async function setSessionInfo() {
   let metadata: AVSessionManager.AVMetadata = {
     assetId: '0', // Specified by the application, used to identify the media asset in the application media library.
     title: 'TITLE',
-    artist: 'ARTIST'
+    mediaImage: 'IMAGE',
+    artist: 'ARTIST',
   };
   session.setAVMetadata(metadata).then(() => {
     console.info(`SetAVMetadata successfully`);
@@ -103,6 +104,8 @@ async function setListener() {
   // Set the lyric to AVSession.
   let metadata: AVSessionManager.AVMetadata = {
     assetId: '0',
+    title: 'TITLE',
+    mediaImage: 'IMAGE',
     lyric: 'http://www.test.lyric',
   };
   session.setAVMetadata(metadata).then(() => {
@@ -113,6 +116,9 @@ async function setListener() {
 
 }
 ```
+
+<!--RP1-->
+<!--RP1End-->
 
 ### Display Tags of Media Assets
 
@@ -133,6 +139,8 @@ async function setListener() {
   // Set the media audio source information to AVSession.
   let metadata: AVSessionManager.AVMetadata = {
     assetId: '0',
+    title: 'TITLE',
+    mediaImage: 'IMAGE',
     // The display tag of the audio source is AudioVivid.
     displayTags: AVSessionManager.DisplayTag.TAG_AUDIO_VIVID,
   };
@@ -190,16 +198,28 @@ async function setListener() {
   let type: AVSessionManager.AVSessionType = 'audio';
   let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', type);
 
-  // Set the playback state information, including the playback state, position, speed, buffered time, and duration.
+  // Set the media resource duration.
+  let metadata: AVSessionManager.AVMetadata = {
+    assetId: '0',
+    title: 'TITLE',
+    mediaImage: 'IMAGE',
+    duration: 23000, // Duration of the media asset, in milliseconds.
+  };
+  session.setAVMetadata(metadata).then(() => {
+    console.info(`SetAVMetadata successfully`);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to set AVMetadata. Code: ${err.code}, message: ${err.message}`);
+  });
+
+  // Set the playback state information, including the playback state, position, speed, and buffered time.
   let playbackState: AVSessionManager.AVPlaybackState = {
     state: AVSessionManager.PlaybackState.PLAYBACK_STATE_PLAY, // Playing state.
     position: {
       elapsedTime: 1000, // Playback position, in milliseconds.
-      updateTime: 30000, // Timestamp when the application updates the current position, in milliseconds.
+      updateTime: new Date().getTime(), // Timestamp when the application updates the current position, in milliseconds.
     },
     speed: 1.0, // Optional. The default value is 1.0. The playback speed is set based on the speed supported by the application. The system does not verify the speed.
     bufferedTime: 14000, // Optional. Buffered time, in milliseconds.
-    duration: 23000, // Duration of the media asset, in milliseconds.
   };
   session.setAVPlaybackState(playbackState, (err) => {
     if (err) {
@@ -218,13 +238,15 @@ However, it needs to update the playback state when the following information ch
 - position
 - speed
 
+The application reports the start position of the progress once the actual playback starts. If the playback is in the buffer state, the application can report **AVSessionManager.PlaybackState.PLAYBACK_STATE_BUFFERING** to instruct the system not to update the progress.
+
 Certain special processing is required when setting the progress bar.
 
 1. Songs that can be previewed
 
-    If a VIP song can be previewed, the application should set the preview duration of the song, rather than the total duration.
-
-    If only the preview duration is set, when the user triggers progress control in the controller, the application receives the relative timestamp within the preview duration, rather than that within the total duration. The application needs to calculate the absolute timestamp from the very beginning of the song.
+    (1) The application sets the preview duration, rather than the total duration, for a song. In this case, when the user performs progress control in the controller, the application receives the relative timestamp within the preview duration, rather than that within the total duration. The application needs to calculate the absolute timestamp from the very beginning of the song.
+    
+    (2) The application sets the total duration for a song but requires the system to provide preview, the application can report the start position of the progress when the playback starts, and report the end position when the received seek instruction is not within the preview duration. In the latter case, the playback control progress of the system rebounds.
 
 2. Songs that do not support preview
 
@@ -310,7 +332,9 @@ async function unregisterSessionListener() {
   // Set the supported fast-forward or rewind duration for AVSession.
   let metadata: AVSessionManager.AVMetadata = {
     assetId: '0', // Specified by the application, used to identify the media asset in the application media library.
-    skipIntervals: SkipIntervals.SECONDS_10,
+    title: 'TITLE',
+    mediaImage: 'IMAGE',
+    skipIntervals: AVSessionManager.SkipIntervals.SECONDS_10,
   };
   session.setAVMetadata(metadata).then(() => {
     console.info(`SetAVMetadata successfully`);
@@ -362,7 +386,9 @@ async function setListener() {
 
 ### Setting the Loop Mode
 
-For music applications, the controller displays control operations in loop mode by default. Currently, the system supports four fixed [loop modes](../../reference/apis-avsession-kit/js-apis-avsession.md#loopmode10), namely, shuffle, sequential playback, single loop, and playlist loop. The controller notifies the application of the loop mode changes, and the application responds accordingly.
+For music applications, the controller displays control operations in loop mode by default. Currently, the system supports four fixed [loop modes](../../reference/apis-avsession-kit/js-apis-avsession.md#loopmode10), namely, shuffle, sequential playback, single loop, and playlist loop. After switching the loop mode as instructed, the application needs to report the new loop mode.
+
+Even if the application does not support the four fixed loop modes, it must report one of them to the system.
 
 Refer to the code snippet below:
 
@@ -376,20 +402,28 @@ async function setListener() {
  let type: AVSessionManager.AVSessionType = 'audio';
  let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', type);
 
- // When the application starts, it sets the loop mode to AVSession.
- let playBackState: AVSessionManager.AVPlayBackState = {
+ // When the application starts or switches the loop mode, it sets the loop mode in use to the AVSession.
+ let playBackState: AVSessionManager.AVPlaybackState = {
    loopMode: AVSessionManager.LoopMode.LOOP_MODE_SINGLE,
  };
- session.setAVPlayBackState(playBackState).then(() => {
-   console.info(`set AVPlayBackState successfully`);
+ session.setAVPlaybackState(playBackState).then(() => {
+   console.info(`set AVPlaybackState successfully`);
  }).catch((err: BusinessError) => {
-   console.error(`Failed to set AVPlayBackState. Code: ${err.code}, message: ${err.message}`);
+   console.error(`Failed to set AVPlaybackState. Code: ${err.code}, message: ${err.message}`);
  });
 
  // The application listens for loop mode changes.
  session.on('setLoopMode', (mode) => {
    console.info(`on setLoopMode ${mode}`);
-   // After receiving the setLoopMode command, the application switches to the corresponding loop mode.
+   // After receiving the instruction for setting the loop mode, the application determines the next mode. After the switching is complete, the application reports the new loop mode through AVPlaybackState.
+   let playBackState: AVSessionManager.AVPlaybackState = {
+    loopMode: AVSessionManager.LoopMode.LOOP_MODE_SINGLE,
+   };
+   session.setAVPlaybackState(playBackState).then(() => {
+     console.info(`set AVPlaybackState successfully`);
+   }).catch((err: BusinessError) => {
+     console.error(`Failed to set AVPlaybackState. Code: ${err.code}, message: ${err.message}`);
+   });
  });
 
 }
@@ -408,10 +442,10 @@ async function setListener() {
  let type: AVSessionManager.AVSessionType = 'audio';
  let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', type);
 
- session.on('seek', (time: number) => {
-   console.info(`on seek , the time is ${JSON.stringify(time)}`);
+ session.on('seek', (position: number) => {
+   console.info(`on seek , the time is ${JSON.stringify(position)}`);
 
-   // The seek operation may trigger a long buffering time. Generally, set the playback state to PLAYBACK_STATE_BUFFERING.
+   // The seek operation may trigger a long buffering time. You can set the playback state to PLAYBACK_STATE_BUFFERING.
    let playbackState: AVSessionManager.AVPlaybackState = {
      state: AVSessionManager.PlaybackState.PLAYBACK_STATE_BUFFERING, // Buffering state.
    };
@@ -428,8 +462,8 @@ async function setListener() {
    // After seeking to the specified position, the application synchronizes the new position to the system.
    playbackState.state = AVSessionManager.PlaybackState.PLAYBACK_STATE_PLAY; // Playing state.
    playbackState.position = {
-     elapsedTime: 4000, // Playback position, in milliseconds.
-     updateTime: 34000, // Timestamp when the application updates the current position, in milliseconds.
+     elapsedTime: position, // Playback position, in milliseconds.
+     updateTime: new Date().getTime(), // Timestamp when the application updates the current position, in milliseconds.
    }
    session.setAVPlaybackState(playbackState, (err) => {
      if (err) {

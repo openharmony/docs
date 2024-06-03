@@ -5,7 +5,9 @@
 
 在前端页面点击网页中的链接时，Web组件默认会自动打开并加载目标网址。当前端页面替换为新的加载链接时，会自动记录已经访问的网页地址。可以通过[forward()](../reference/apis-arkweb/js-apis-webview.md#forward)和[backward()](../reference/apis-arkweb/js-apis-webview.md#backward)接口向前/向后浏览上一个/下一个历史记录。
 
-  在下面的示例中，点击应用的按钮来触发前端页面的后退操作。
+页面加载过程中，若涉及网络资源获取，需要配置[ohos.permission.INTERNET](../security/AccessToken/declare-permissions.md)网络访问权限。
+
+在下面的示例中，点击应用的按钮来触发前端页面的后退操作。
 
 ```ts
 // xxx.ets
@@ -52,6 +54,7 @@ struct WebComponent {
   
     build() {
       Column() {
+        // 资源文件route.html存放路径src/main/resources/rawfile
         Web({ src: $rawfile('route.html'), controller: this.webviewController })
           .onLoadIntercept((event) => {
             if (event) {

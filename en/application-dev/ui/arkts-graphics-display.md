@@ -1,4 +1,4 @@
-# Displaying Images (Image)
+# Image Display (Image)
 
 
 More often than not, you may need to display images in your application, for example, icons in buttons, online images, and local images. This is where the **\<Image>** component comes in handy. The **\<Image>** component supports a wide range of image formats, including PNG, JPG, BMP, SVG, and GIF. For details, see [Image](../reference/apis-arkui/arkui-ts/ts-basic-components-image.md).
@@ -38,7 +38,7 @@ Data sources of the archived type can be classified into local resources, online
 
   To use online images, first apply for the **ohos.permission.INTERNET** permission. For details, see [Declaring Permissions](../security/AccessToken/declare-permissions.md). Then, in the **\<Image>** component, set **src** to the URL of the online image.
 
-  If an online image has been loaded before, the **\<Image>** component can obtain it from the cache, instead of having to request it from the Internet again. For details about the image cache, see [setImageCacheCount, setImageRawDataCacheSize, and setImageFileCacheSize](../reference/apis-arkui/js-apis-system-app.md#setimagecachecount7).
+  If an online image has been loaded before, the **\<Image>** component can obtain it from the cache, instead of having to request it from the Internet again. For details about the image cache, see [setImageCacheCount](../reference/apis-arkui/js-apis-system-app.md#setimagecachecount7), [setImageRawDataCacheSize](../reference/apis-arkui/js-apis-system-app.md#setimagerawdatacachesize7), and [setImageFileCacheSize](../reference/apis-arkui/js-apis-system-app.md#setimagefilecachesize7).
 
   ```ts
   Image('https://www.example.com/example.JPG') // Replace the URL with the actual URL.
@@ -85,7 +85,6 @@ Data sources of the archived type can be classified into local resources, online
         @State imgDatas: string[] = [];
         // Obtain the image URL set.
         getAllImg() {
-          let result = new Array<string>();
           try {
             let PhotoSelectOptions:picker.PhotoSelectOptions = new picker.PhotoSelectOptions();
             PhotoSelectOptions.MIMEType = picker.PhotoViewMIMETypes.IMAGE_TYPE;
@@ -124,8 +123,8 @@ Data sources of the archived type can be classified into local resources, online
         }
       }
       ```
-
-  2. Check the format of the URL obtained from the media library:
+      
+2. Check the format of the URL obtained from the media library:
       ```ts
       Image('file://media/Photos/5')
       .width(200)
@@ -140,7 +139,7 @@ Data sources of the archived type can be classified into local resources, online
 
 ### Pixel Map
 
-A pixel map is a pixel image obtained after image decoding. For details, see [Image Development](../media/image-overview.md). In the following example, the data returned by the loaded online image is decoded into a pixel map, which is then displayed on the **\<Image>** component.
+A pixel map is a pixel image obtained after image decoding. For details, see [Introduction to Image Kit](../media/image/image-overview.md). In the following example, the data returned by the loaded online image is decoded into a pixel map, which is then displayed on the **\<Image>** component.
 
 1. Create a **PixelMap** state variable.
 

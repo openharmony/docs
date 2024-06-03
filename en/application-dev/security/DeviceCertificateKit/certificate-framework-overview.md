@@ -72,6 +72,7 @@ You can use the certificate framework to implement the following functionalities
 - [Certificate Chain Validator Development](create-verify-cerchainvalidator-object.md)
 - [Certificate and CRL Collection Development](create-get-cert-crl-object.md)
 - [Certificate Chain Development](create-verify-certchain-object.md)
+- [Creating a TrustAnchor Object Array from a p12 File](create-trustanchor-from-p12.md)
 
 The certificate framework provides the following classes.
 

@@ -624,13 +624,13 @@
 * COMMON_EVENT_NFC_ACTION_RF_FIELD_ON_DETECTED
 （预留事件，暂未支持）提示检测到NFC设备RF字段处于使能状态。
   - 值：usual.event.nfc.action.RF_FIELD_ON_DETECTED
-  - 订阅者所需权限：ohos.permission.MANAGE_SECURE_SETTINGS
+  - 订阅者所需权限：ohos.permission.MANAGE_SECURE_SETTINGS（该权限仅系统应用可申请）
 
 
 * COMMON_EVENT_NFC_ACTION_RF_FIELD_OFF_DETECTED
 （预留事件，暂未支持）提示检测到NFC设备RF字段处于关闭状态。
   - 值：usual.event.nfc.action.RF_FIELD_OFF_DETECTED
-  - 订阅者所需权限：ohos.permission.MANAGE_SECURE_SETTINGS
+  - 订阅者所需权限：ohos.permission.MANAGE_SECURE_SETTINGS（该权限仅系统应用可申请）
 
 
 * COMMON_EVENT_DISCHARGING

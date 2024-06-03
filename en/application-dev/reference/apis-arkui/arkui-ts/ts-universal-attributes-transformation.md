@@ -14,6 +14,8 @@ Rotates the component.
 
 **Widget capability**: Since API version 9, this feature is supported in ArkTS widgets.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -36,7 +38,7 @@ Translates the component.
 
 | Name| Type                                         | Mandatory| Description                                                        |
 | ------ | --------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [TranslateOptions](#translateoptions) | Yes  | How the component is translated in the coordinate system (as shown below) with the upper left corner of the component as the coordinate origin. Values of **x**, **y**, and **z** indicate the translation distance along the respective axis. A positive value indicates a forward movement towards the respective axis, and a negative value indicates a backward movement towards the respective axis. The translation distance can be a number or a string (for example, **'10px'** or **'10%'**).<br>Default value:<br>{<br>x: 0,<br>y: 0,<br>z: 0<br>}<br>![coordinates](figures/coordinates.png) |
+| value  | [TranslateOptions](#translateoptions) | Yes  | How the component is translated in the coordinate system (as shown below) with the upper left corner of the component as the coordinate origin. Values of **x**, **y**, and **z** indicate the translation distance along the respective axis. A positive value indicates a forward movement towards the respective axis, and a negative value indicates a backward movement towards the respective axis. The translation distance can be a number or a string (for example, **'10px'** or **'10%'**).<br>Default value:<br>{<br>x: 0,<br>y: 0,<br>z: 0<br>}<br>![coordinates](figures/coordinates.png)<br>**NOTE**<br>When the component is translated along the z-axis, the position of the observation point remains unchanged. As such, the component appears larger when the value of **z** places it closer to the observation point and smaller when the value of **z** places it further away from the observation point.<br>![coordinateNode](figures/coordinateNote.png) |
 
 ## scale
 
@@ -45,6 +47,8 @@ scale(value: ScaleOptions)
 Scales the component.
 
 **Widget capability**: Since API version 9, this feature is supported in ArkTS widgets.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -58,7 +62,9 @@ Scales the component.
 
 transform(value: Matrix4Transit)
 
-Rotates the component.
+Sets the transformation matrix of the component.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -70,7 +76,9 @@ Rotates the component.
 
 ## RotateOptions
 
-Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 | Name                     | Type                      | Mandatory| Description                                                        |
 | ------------------------- | -------------------------- | ---- | ------------------------------------------------------------ |
@@ -85,7 +93,9 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 ## TranslateOptions
 
-Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 | Name| Type                      | Mandatory| Description           |
 | ---- | -------------------------- | ---- | --------------- |
@@ -95,7 +105,9 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 ## ScaleOptions
 
-Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 | Name   | Type                      | Mandatory| Description                                                        |
 | ------- | -------------------------- | ---- | ------------------------------------------------------------ |

@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```js
-import tag from '@ohos.nfc.tag';
+import { tag } from '@kit.ConnectivityKit';
 ```
 
 ## NfcATag
@@ -28,7 +28,7 @@ getSak(): number
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **返回值：**
 
@@ -39,7 +39,7 @@ getSak(): number
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
+import { tag } from '@kit.ConnectivityKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'nfcA' correctly.
 let sak : number = nfcA.getSak();
@@ -54,7 +54,7 @@ getAtqa(): number[]
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **返回值：**
 
@@ -65,7 +65,7 @@ getAtqa(): number[]
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
+import { tag } from '@kit.ConnectivityKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'nfcA' correctly.
 let atqa : number[] = nfcA.getAtqa();
@@ -88,7 +88,7 @@ getRespAppData(): number[]
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **返回值：**
 
@@ -99,7 +99,7 @@ getRespAppData(): number[]
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
+import { tag } from '@kit.ConnectivityKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'nfcB' correctly.
 let respAppData : number[] = nfcB.getRespAppData();
@@ -114,7 +114,7 @@ getRespProtocol(): number[]
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **返回值：**
 
@@ -125,7 +125,7 @@ getRespProtocol(): number[]
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
+import { tag } from '@kit.ConnectivityKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'nfcB' correctly.
 let respProtocol : number[] = nfcB.getRespProtocol();
@@ -148,7 +148,7 @@ getSystemCode(): number[]
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **返回值：**
 
@@ -159,7 +159,7 @@ getSystemCode(): number[]
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
+import { tag } from '@kit.ConnectivityKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'nfcF' correctly.
 let systemCode : number[] = nfcF.getSystemCode();
@@ -174,7 +174,7 @@ getPmm(): number[]
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **返回值：**
 
@@ -185,7 +185,7 @@ getPmm(): number[]
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
+import { tag } from '@kit.ConnectivityKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'nfcF' correctly.
 let pmm : number[] = nfcF.getPmm();
@@ -208,7 +208,7 @@ getResponseFlags(): number
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **返回值：**
 
@@ -219,7 +219,7 @@ getResponseFlags(): number
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
+import { tag } from '@kit.ConnectivityKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'nfcV' correctly.
 let responseFlags : number = nfcV.getResponseFlags();
@@ -234,7 +234,7 @@ getDsfId(): number
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **返回值：**
 
@@ -245,7 +245,7 @@ getDsfId(): number
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
+import { tag } from '@kit.ConnectivityKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'nfcV' correctly.
 let dsfId : number = nfcV.getDsfId();
@@ -268,7 +268,7 @@ getHistoricalBytes(): number[]
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **返回值：**
 
@@ -279,7 +279,7 @@ getHistoricalBytes(): number[]
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
+import { tag } from '@kit.ConnectivityKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'isoDep' correctly.
 let historicalBytes : number[] = isoDep.getHistoricalBytes();
@@ -294,7 +294,7 @@ getHiLayerResponse(): number[]
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **返回值：**
 
@@ -305,7 +305,7 @@ getHiLayerResponse(): number[]
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
+import { tag } from '@kit.ConnectivityKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'isoDep' correctly.
 let hiLayerResponse : number[] = isoDep.getHiLayerResponse();
@@ -322,7 +322,7 @@ isExtendedApduSupported(): Promise&lt;boolean&gt;
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **返回值：**
 
@@ -336,34 +336,39 @@ isExtendedApduSupported(): Promise&lt;boolean&gt;
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+| 201  | Permission denied. |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | Tag running state is abnormal in service. |
+| 3100204 | Tag I/O operation failed. |
 
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
-import {BusinessError} from '@ohos.base';
+import { tag } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'isoDep' correctly.
+function nfcTechDemo() {
+    // connect the tag at first if not connected.
+    if (!isoDep.isTagConnected()) {
+        if (!isoDep.connectTag()) {
+            console.log("isoDep connectTag failed.");
+            return;
+        }
+    }
 
-// connect the tag at first if not connected.
-if (!isoDep.isTagConnected()) {
-    if (!isoDep.connectTag()) {
-        console.log("isoDep connectTag failed.");
-        return;
+    try {
+        isoDep.isExtendedApduSupported().then((response: boolean) => {
+            console.log("isoDep isExtendedApduSupported Promise response: " + response);
+        }).catch((err: BusinessError) => {
+            console.error("isoDep isExtendedApduSupported Promise Code: ${err.code}, message: ${err.message}");
+        });
+    } catch (businessError) {
+        console.error("isoDep isExtendedApduSupported Promise Code: ${(businessError as Businsess).code}, " +
+            "message: ${(businessError as Businsess).message}");
     }
 }
 
-try {
-    isoDep.isExtendedApduSupported().then((response: boolean) => {
-        console.log("isoDep isExtendedApduSupported Promise response: " + response);
-    }).catch((err: BusinessError) => {
-        console.error("isoDep isExtendedApduSupported Promise Code: ${err.code}, message: ${err.message}");
-    });
-} catch (busiError) {
-    console.error("isoDep isExtendedApduSupported Promise Code: ${(busiError as Businsess).code}, " +
-        "message: ${(busiError as Businsess).message}");
-}
 ```
 
 ### IsoDepTag.isExtendedApduSupported<sup>9+</sup>
@@ -376,7 +381,7 @@ isExtendedApduSupported(callback: AsyncCallback\<boolean>): void
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -390,36 +395,40 @@ isExtendedApduSupported(callback: AsyncCallback\<boolean>): void
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+| 201  | Permission denied. |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | Tag running state is abnormal in service. |
+| 3100204 | Tag I/O operation failed. |
 
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
-import {BusinessError} from '@ohos.base';
+import { tag } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'isoDep' correctly.
+function nfcTechDemo() {
+    // connect the tag at first if not connected.
+    if (!isoDep.isTagConnected()) {
+        if (!isoDep.connectTag()) {
+            console.log("isoDep connectTag failed.");
+            return;
+        }
+    }
 
-// connect the tag at first if not connected.
-if (!isoDep.isTagConnected()) {
-    if (!isoDep.connectTag()) {
-        console.log("isoDep connectTag failed.");
-        return;
+    try {
+        isoDep.isExtendedApduSupported((err: BusinessError, response: boolean) => {
+            if (err) {
+                console.log("isoDep isExtendedApduSupported AsyncCallback Code: ${err.code}, message: ${err. message}");
+            } else {
+                console.log("isoDep isExtendedApduSupported AsyncCallback response: " + response);
+            }
+        });
+    } catch (busiErr) {
+        console.error("isoDep isExtendedApduSupported AsyncCallback Code: ${(businessError as Business).code}, " + "message: ${(businessError as Business).message}");
     }
 }
 
-try {
-    isoDep.isExtendedApduSupported((err: BusinessError, response: boolean) => {
-        if (err) {
-            console.log("isoDep isExtendedApduSupported AsyncCallback Code: ${err.code}, message: ${err.message}");
-        } else {
-            console.log("isoDep isExtendedApduSupported AsyncCallback response: " + response);
-        }
-    });
-} catch (busiErr) {
-    console.error("isoDep isExtendedApduSupported AsyncCallback Code: ${(busiError as Business).code}, " +
-        "message: ${(busiError as Business).message}");
-}
 ```
 
 ## NdefMessage<sup>9+</sup>
@@ -432,7 +441,7 @@ getNdefRecords(): [tag.NdefRecord](js-apis-nfcTag.md#ndefrecord9)[]
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **返回值：**
 
@@ -443,7 +452,7 @@ getNdefRecords(): [tag.NdefRecord](js-apis-nfcTag.md#ndefrecord9)[]
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
+import { tag } from '@kit.ConnectivityKit';
 
 // Obtains ndefMessage from tag.ndef.createNdefMessage or ndefTag.getNdefMessage.
 // let ndefMessage : tag.NdefMessage = tag.ndef.createNdefMessage(...);
@@ -469,7 +478,7 @@ getNdefTagType(): [tag.NfcForumType](js-apis-nfcTag.md#nfcforumtype9)
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **返回值：**
 
@@ -480,7 +489,7 @@ getNdefTagType(): [tag.NfcForumType](js-apis-nfcTag.md#nfcforumtype9)
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
+import { tag } from '@kit.ConnectivityKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'ndefTag' correctly.
 let ndefTagType : tag.NfcForumType = ndefTag.getNdefTagType();
@@ -495,7 +504,7 @@ getNdefMessage(): [NdefMessage](#ndefmessage9)
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **返回值：**
 
@@ -505,7 +514,7 @@ getNdefMessage(): [NdefMessage](#ndefmessage9)
 
 **示例：**
 ```js
-import tag from '@ohos.nfc.tag';
+import { tag } from '@kit.ConnectivityKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'ndefTag' correctly.
 let ndefMessage : tag.NdefMessage = ndefTag.getNdefMessage();
@@ -520,7 +529,7 @@ isNdefWritable(): boolean
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **返回值：**
 
@@ -531,7 +540,7 @@ isNdefWritable(): boolean
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
+import { tag } from '@kit.ConnectivityKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'ndefTag' correctly.
 let isWritable : boolean = ndefTag.isNdefWritable();
@@ -548,7 +557,7 @@ readNdef(): Promise\<[NdefMessage](#ndefmessage9)>
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **返回值：**
 
@@ -562,34 +571,39 @@ readNdef(): Promise\<[NdefMessage](#ndefmessage9)>
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+| 201  | Permission denied. |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | Tag running state is abnormal in service. |
+| 3100204 | Tag I/O operation failed. |
 
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
-import {BusinessError} from '@ohos.base';
+import { tag } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'ndefTag' correctly.
+function nfcTechDemo(){
+    // connect the tag at first if not connected.
+    if (!ndefTag.isTagConnected()) {
+        if (!ndefTag.connectTag()) {
+            console.log("ndefTag connectTag failed.");
+            return;
+        }
+    }
 
-// connect the tag at first if not connected.
-if (!ndefTag.isTagConnected()) {
-    if (!ndefTag.connectTag()) {
-        console.log("ndefTag connectTag failed.");
-        return;
+    try {
+        ndefTag.readNdef().then((ndefmessage : tag.NdefMessage) => {
+            console.log("ndef readNdef Promise ndefmessage: " + ndefmessage);
+        }).catch((err : BusinessError)=> {
+            console.error("ndef readNdef Promise err Code: ${err.code}, message: ${err.message}");
+        });
+    } catch (businessError) {
+        console.error("ndef readNdef Promise catch businessError Code: ${(businessError as BusinessError).code}, " +
+        "message: ${(businessError as BusinessError).message}");
     }
 }
 
-try {
-    ndefTag.readNdef().then((ndefmessage : tag.NdefMessage) => {
-        console.log("ndef readNdef Promise ndefmessage: " + ndefmessage);
-    }).catch((err : BusinessError)=> {
-        console.error("ndef readNdef Promise err Code: ${err.code}, message: ${err.message}");
-    });
-} catch (busiError) {
-    console.error("ndef readNdef Promise catched busiError Code: ${(busiError as BusinessError).code}, " +
-        "message: ${(busiError as BusinessError).message}");
-}
 ```
 
 ### NdefTag.readNdef<sup>9+</sup>
@@ -602,7 +616,7 @@ readNdef(callback: AsyncCallback\<[NdefMessage](#ndefmessage9)>): void
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -616,49 +630,54 @@ readNdef(callback: AsyncCallback\<[NdefMessage](#ndefmessage9)>): void
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+| 201  | Permission denied. |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | Tag running state is abnormal in service. |
+| 3100204 | Tag I/O operation failed. |
 
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
-import {BusinessError} from '@ohos.base';
+import { tag } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'ndefTag' correctly.
+function nfcTechDemo() {
+    // connect the tag at first if not connected.
+    if (!ndefTag.isTagConnected()) {
+        if (!ndefTag.connectTag()) {
+            console.log("ndefTag connectTag failed.");
+            return;
+        }
+    }
 
-// connect the tag at first if not connected.
-if (!ndefTag.isTagConnected()) {
-    if (!ndefTag.connectTag()) {
-        console.log("ndefTag connectTag failed.");
-        return;
+    try {
+        ndefTag.readNdef((err : BusinessError, ndefmessage : tag.NdefMessage)=> {
+            if (err) {
+                console.log("ndef readNdef AsyncCallback err Code: ${err.code}, message: ${err.message}");
+            } else {
+            console.log("ndef readNdef AsyncCallback ndefmessage: " + ndefmessage);
+            }
+        });
+    } catch (businessError) {
+        console.log("ndef readNdef AsyncCallback catch Code: ${(businessError : BusinessError).code}," +
+        " message: ${(businessError : BusinessError).message}");
     }
 }
 
-try {
-    ndefTag.readNdef((err : BusinessError, ndefmessage : tag.NdefMessage)=> {
-        if (err) {
-            console.log("ndef readNdef AsyncCallback err Code: ${err.code}, message: ${err.message}");
-        } else {
-          console.log("ndef readNdef AsyncCallback ndefmessage: " + ndefmessage);
-        }
-    });
-} catch (busiError) {
-    console.log("ndef readNdef AsyncCallback catched Code: ${(busiError : BusinessError).code}," +
-      " message: ${(busiError : BusinessError).message}");
-}
 ```
 
 ### NdefTag.writeNdef<sup>9+</sup>
 
 writeNdef(msg: [NdefMessage](#ndefmessage9)): Promise\<void>
 
-将NDEF Messsage数据对象写入标签，使用Promise方式作为异步方法。
+将NDEF Message数据对象写入标签，使用Promise方式作为异步方法。
 
 **需要权限：** ohos.permission.NFC_TAG
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -666,19 +685,28 @@ writeNdef(msg: [NdefMessage](#ndefmessage9)): Promise\<void>
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | msg | [NdefMessage](#ndefmessage9) | 是   | NDEF Message数据对象。|
 
+**返回值：**
+
+| 类型                        | 说明                 |
+| ------------------------- | ------------------ |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
+
 **错误码：**
 
 以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+| 201  | Permission denied. |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | Tag running state is abnormal in service. |
+| 3100204 | Tag I/O operation failed. |
 
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
-import {BusinessError} from '@ohos.base';
+import { tag } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'ndefTag' correctly.
 // ndefMessage created from raw data, such as:
@@ -686,23 +714,25 @@ let ndefMessage : tag.NdefMessage =
     tag.ndef.createNdefMessage([0xD1, 0x01, 0x03, 0x54, 0x4E, 0x46, 0x43]);  // MUST can be parsed as NDEF Record.
 // or ndefMessage created from tag.ndef.createNdefMessage(ndefRecords: NdefRecord[])
 
-// connect the tag at first if not connected.
-if (!ndefTag.isTagConnected()) {
-    if (!ndefTag.connectTag()) {
-        console.log("ndefTag connectTag failed.");
-        return;
+function nfcTechDemo() {
+    // connect the tag at first if not connected.
+    if (!ndefTag.isTagConnected()) {
+        if (!ndefTag.connectTag()) {
+            console.log("ndefTag connectTag failed.");
+            return;
+        }
     }
-}
 
-try {
-    ndefTag.writeNdef(ndefMessage).then(() => {
-        console.log("ndef writeNdef Promise success.");
-    }).catch((err : BusinessError)=> {
-        console.error("ndef writeNdef err Code: ${err.code}, message: ${err.message}");
-    });
-} catch (busiError) {
-    console.error("ndef writeNdef Promise catch busiError Code: ${(busiError as Businsess).code}, " +
-        "message: ${(busiError as Businsess).message}");
+    try {
+        ndefTag.writeNdef(ndefMessage).then(() => {
+            console.log("ndef writeNdef Promise success.");
+        }).catch((err : BusinessError)=> {
+            console.error("ndef writeNdef err Code: ${err.code}, message: ${err.message}");
+        });
+    } catch (businessError) {
+        console.error("ndef writeNdef Promise catch businessError Code: ${(businessError as Businsess).code}, " +
+            "message: ${(businessError as Businsess).message}");
+    }
 }
 ```
 
@@ -716,7 +746,7 @@ writeNdef(msg: [NdefMessage](#ndefmessage9), callback: AsyncCallback\<void>): vo
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -731,13 +761,16 @@ writeNdef(msg: [NdefMessage](#ndefmessage9), callback: AsyncCallback\<void>): vo
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+| 201  | Permission denied. |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | Tag running state is abnormal in service. |
+| 3100204 | Tag I/O operation failed. |
 
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
-import {BusinessError} from '@ohos.base';
+import { tag } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'ndefTag' correctly.
 // ndefMessage created from raw data, such as:
@@ -745,25 +778,27 @@ let ndefMessage : tag.NdefMessage =
     tag.ndef.createNdefMessage([0xD1, 0x01, 0x03, 0x54, 0x4E, 0x46, 0x43]);  // MUST can be parsed as NDEF Record.
 // or ndefMessage created from tag.ndef.createNdefMessage(ndefRecords: NdefRecord[])
 
-// connect the tag at first if not connected.
-if (!ndefTag.isTagConnected()) {
-    if (!ndefTag.connectTag()) {
-        console.log("ndefTag connectTag failed.");
-        return;
-    }
-}
-
-try {
-    ndefTag.writeNdef(ndefMessage, (err : BusinessError)=> {
-        if (err) {
-            console.error("ndef writeNdef AsyncCallback Code: ${err.code}, message: ${err.message}");
-        } else {
-            console.log("ndef writeNdef AsyncCallback success.");
+function nfcTechDemo() {
+    // connect the tag at first if not connected.
+    if (!ndefTag.isTagConnected()) {
+        if (!ndefTag.connectTag()) {
+            console.log("ndefTag connectTag failed.");
+            return;
         }
-    });
-} catch (busiError) {
-    console.error("ndef writeNdef AsyncCallback catch busiError Code: ${(busiError as Businsess).code}," +
-        " message: ${(busiError as Businsess).message}");
+    }
+
+    try {
+        ndefTag.writeNdef(ndefMessage, (err : BusinessError)=> {
+            if (err) {
+                console.error("ndef writeNdef AsyncCallback Code: ${err.code}, message: ${err.message}");
+            } else {
+                console.log("ndef writeNdef AsyncCallback success.");
+            }
+        }); 
+    } catch (businessError) {
+        console.error("ndef writeNdef AsyncCallback catch businessError Code: ${(businessError as Businsess).code}," +
+            " message: ${(businessError as Businsess).message}");
+    }
 }
 ```
 
@@ -777,7 +812,7 @@ canSetReadOnly(): boolean
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **返回值：**
 
@@ -791,12 +826,13 @@ canSetReadOnly(): boolean
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+| 201  | Permission denied. |
 | 3100201 | Tag running state is abnormal in service. |
 
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
+import { tag } from '@kit.ConnectivityKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'ndefTag' correctly.
 let canSetReadOnly : boolean = ndefTag.canSetReadOnly();
@@ -813,7 +849,13 @@ setReadOnly(): Promise\<void>
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**返回值：**
+
+| 类型                        | 说明                 |
+| ------------------------- | ------------------ |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -821,33 +863,38 @@ setReadOnly(): Promise\<void>
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+| 201  | Permission denied. |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | Tag running state is abnormal in service. |
+| 3100204 | Tag I/O operation failed. |
 
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
-import {BusinessError} from '@ohos.base';
+import { tag } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'ndefTag' correctly.
 
-// connect the tag at first if not connected.
-if (!ndefTag.isTagConnected()) {
-    if (!ndefTag.connectTag()) {
-        console.log("ndefTag connectTag failed.");
-        return;
+function nfcTechDemo() {
+    // connect the tag at first if not connected.
+    if (!ndefTag.isTagConnected()) {
+        if (!ndefTag.connectTag()) {
+            console.log("ndefTag connectTag failed.");
+            return;
+        }
     }
-}
 
-try {
-    ndefTag.setReadOnly().then(() => {
-        console.log("ndef setReadOnly Promise success.");
-    }).catch((err : BusinessError)=> {
-        console.error("ndef setReadOnly Promise err Code: ${err.code}, message: ${err.message}");
-    });
-} catch (busiError) {
-    console.error("ndef setReadOnly Promise catch busiError Code: ${(busiError as Businsess).code}, " +
-        "message: ${(busiError as Businsess).message}");
+    try {
+        ndefTag.setReadOnly().then(() => {
+            console.log("ndef setReadOnly Promise success.");
+        }).catch((err : BusinessError)=> {
+            console.error("ndef setReadOnly Promise err Code: ${err.code}, message: ${err.message}");
+        });
+    } catch (businessError) {
+        console.error("ndef setReadOnly Promise catch businessError Code: ${(businessError as Businsess).code}, " +
+            "message: ${(businessError as Businsess).message}");
+    }
 }
 ```
 
@@ -861,7 +908,7 @@ setReadOnly(callback: AsyncCallback\<void>): void
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -875,35 +922,40 @@ setReadOnly(callback: AsyncCallback\<void>): void
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+| 201  | Permission denied. |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | Tag running state is abnormal in service. |
+| 3100204 | Tag I/O operation failed. |
 
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
-import {BusinessError} from '@ohos.base';
+import { tag } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'ndefTag' correctly.
 
-// connect the tag at first if not connected.
-if (!ndefTag.isTagConnected()) {
-    if (!ndefTag.connectTag()) {
-        console.log("ndefTag connectTag failed.");
-        return;
-    }
-}
-
-try {
-    ndefTag.setReadOnly((err : BusinessError)=> {
-        if (err) {
-            console.log("ndef setReadOnly AsyncCallback err Code: ${err.code}, message: ${err.message}");
-        } else {
-            console.log("ndef setReadOnly AsyncCallback success.");
+function nfcTechDemo() {
+    // connect the tag at first if not connected.
+    if (!ndefTag.isTagConnected()) {
+        if (!ndefTag.connectTag()) {
+            console.log("ndefTag connectTag failed.");
+            return;
         }
-    });
-} catch (busiError) {
-    console.error("ndef setReadOnly AsyncCallback catch busiError Code: ${(busiError as Businsess).code}, " +
-        "message: ${(busiError as Businsess).message}");
+    }
+
+    try {
+        ndefTag.setReadOnly((err : BusinessError)=> {
+            if (err) {
+                console.log("ndef setReadOnly AsyncCallback err Code: ${err.code}, message: ${err.message}");
+            } else {
+                console.log("ndef setReadOnly AsyncCallback success.");
+            }
+        });
+    } catch (businessError) {
+        console.error("ndef setReadOnly AsyncCallback catch businessError Code: ${(businessError as Businsess).code}, " +
+            "message: ${(businessError as Businsess).message}");
+    }
 }
 ```
 
@@ -915,7 +967,7 @@ getNdefTagTypeString(type: [tag.NfcForumType](js-apis-nfcTag.md#nfcforumtype9)):
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -929,20 +981,28 @@ getNdefTagTypeString(type: [tag.NfcForumType](js-apis-nfcTag.md#nfcforumtype9)):
 | ------------------ | --------------------------|
 | string | NFC论坛类型的字符串描述。|
 
+**错误码：**
+
+以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
+
+| 错误码ID | 错误信息|
+| ------- | -------|
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
-import {BusinessError} from '@ohos.base';
+import { tag } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'ndefTag' correctly.
 
 try {
     let ndefTypeString : tag.NfcForumType = ndefTag.getNdefTagTypeString(tag.NfcForumType.NFC_FORUM_TYPE_1);
     console.log("ndef ndefTypeString: " + ndefTypeString);
-} catch (busiError) {
-    console.error("ndef getNdefTagTypeString catch busiError Code: ${(busiError as Businsess).code}, " +
-        "message: ${(busiError as Businsess).message}");
+} catch (businessError) {
+    console.error("ndef getNdefTagTypeString catch businessError Code: ${(businessError as Businsess).code}, " +
+        "message: ${(businessError as Businsess).message}");
 }
 ```
 
@@ -964,7 +1024,7 @@ authenticateSector(sectorIndex: number, key: number[], isKeyA: boolean): Promise
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -974,41 +1034,52 @@ authenticateSector(sectorIndex: number, key: number[], isKeyA: boolean): Promise
 | key | number[]| 是   | 用于扇区验证的密钥（6字节）。 |
 | isKeyA | boolean | 是   | isKeyA标志。true 表示KeyA，false 表示KeyB。|
 
+**返回值：**
+
+| 类型                        | 说明                 |
+| ------------------------- | ------------------ |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
+
 **错误码：**
 
 以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+| 201  | Permission denied. |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | Tag running state is abnormal in service. |
+| 3100204 | Tag I/O operation failed. |
 
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
-import {BusinessError} from '@ohos.base';
+import { tag } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'mifareClassic' correctly.
 
-// connect the tag at first if not connected.
-if (!mifareClassic.isTagConnected()) {
-    if (!mifareClassic.connectTag()) {
-        console.log("mifareClassic connectTag failed.");
-        return;
+function nfcTechDemo() {
+    // connect the tag at first if not connected.
+    if (!mifareClassic.isTagConnected()) {
+        if (!mifareClassic.connectTag()) {
+            console.log("mifareClassic connectTag failed.");
+            return;
+        }
     }
-}
 
-try {
-    let sectorIndex = 1; // change it to be correct index.
-    let key = [0x01, 0x02, 0x03, 0x04, 0x05, 0x06]  // MUST be 6 bytes, change it to be correct key.
-    mifareClassic.authenticateSector(sectorIndex, key, true).then(() => {
-        console.log("mifareClassic authenticateSector Promise success.");
-    }).catch((err : BusinessError)=> {
-        console.error("mifareClassic authenticateSector Promise errCode: ${err.code}, " + "message: ${err.message}");
-    });
-} catch (busiError) {
-    console.error("mifareClassic authenticateSector Promise catch busiError Code: ${(busiError as Businsess).code}, " +
-        "message: ${(busiError as Businsess).message}");
+    try {
+        let sectorIndex = 1; // change it to be correct index.
+        let key = [0x01, 0x02, 0x03, 0x04, 0x05, 0x06]  // MUST be 6 bytes, change it to be correct key.
+        mifareClassic.authenticateSector(sectorIndex, key, true).then(() => {
+            console.log("mifareClassic authenticateSector Promise success.");
+        }).catch((err : BusinessError)=> {
+            console.error("mifareClassic authenticateSector Promise errCode: ${err.code}, " + "message: ${err.message}");
+        });
+    } catch (businessError) {
+        console.error("mifareClassic authenticateSector Promise catch businessError Code: ${(businessError as Businsess).code}, " +
+            "message: ${(businessError as Businsess).message}");
+    }
 }
 ```
 
@@ -1022,7 +1093,7 @@ authenticateSector(sectorIndex: number, key: number[], isKeyA: boolean, callback
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -1039,36 +1110,41 @@ authenticateSector(sectorIndex: number, key: number[], isKeyA: boolean, callback
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+| 201  | Permission denied. |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | Tag running state is abnormal in service. |
+| 3100204 | Tag I/O operation failed. |
 
 **示例：**
 ```js
-import tag from '@ohos.nfc.tag';
-import {BusinessError} from '@ohos.base';
+import { tag } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'mifareClassic' correctly.
 
-// connect the tag at first if not connected.
-if (!mifareClassic.isTagConnected()) {
-    if (!mifareClassic.connectTag()) {
-        console.log("mifareClassic connectTag failed.");
-        return;
-    }
-}
-
-try {
-    let sectorIndex = 1; // change it to be correct index.
-    let key = [0x01, 0x02, 0x03, 0x04, 0x05, 0x06]  // MUST be 6 bytes, change it to be correct key.
-    mifareClassic.authenticateSector(sectorIndex, key, true, (err : BusinessError)=> {
-        if (err) {
-            console.log("mifareClassic authenticateSector AsyncCallback errCode: ${err.code}, message: ${err.message}");
-        } else {
-            console.log("mifareClassic authenticateSector AsyncCallback success.");
+function nfcTechDemo() {
+    // connect the tag at first if not connected.
+    if (!mifareClassic.isTagConnected()) {
+        if (!mifareClassic.connectTag()) {
+            console.log("mifareClassic connectTag failed.");
+            return;
         }
-    });
-} catch (busiError) {
-    console.error("mifareClassic authenticateSector AsyncCallback catch Code: ${(busiError as Businsess).code}, " +
-        "message: ${(busiError as Businsess).message}");
+    }
+
+    try {
+        let sectorIndex = 1; // change it to be correct index.
+        let key = [0x01, 0x02, 0x03, 0x04, 0x05, 0x06]  // MUST be 6 bytes, change it to be correct key.
+        mifareClassic.authenticateSector(sectorIndex, key, true, (err : BusinessError)=> {
+            if (err) {
+                console.log("mifareClassic authenticateSector AsyncCallback errCode: ${err.code}, message: ${err.message}");
+            } else {
+                console.log("mifareClassic authenticateSector AsyncCallback success.");
+            }
+        });
+    } catch (businessError) {
+        console.error("mifareClassic authenticateSector AsyncCallback catch Code: ${(businessError as Businsess).code}, " +
+            "message: ${(businessError as Businsess).message}");
+    }
 }
 ```
 
@@ -1082,7 +1158,7 @@ readSingleBlock(blockIndex: number): Promise\<number[]>
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -1102,34 +1178,39 @@ readSingleBlock(blockIndex: number): Promise\<number[]>
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+| 201  | Permission denied. |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | Tag running state is abnormal in service. |
+| 3100204 | Tag I/O operation failed. |
 
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
-import {BusinessError} from '@ohos.base';
+import { tag } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'mifareClassic' correctly.
 
-// connect the tag at first if not connected.
-if (!mifareClassic.isTagConnected()) {
-    if (!mifareClassic.connectTag()) {
-        console.log("mifareClassic connectTag failed.");
-        return;
+function nfcTechDemo() {
+    // connect the tag at first if not connected.
+    if (!mifareClassic.isTagConnected()) {
+        if (!mifareClassic.connectTag()) {
+            console.log("mifareClassic connectTag failed.");
+            return;
+        }
     }
-}
 
-try {
-    let blockIndex = 1; // change it to be correct index.
-    mifareClassic.readSingleBlock(blockIndex).then((data : number[]) => {
-        console.log("mifareClassic readSingleBlock Promise data: " + data);
-    }).catch((err : BusinessError)=> {
-        console.error("mifareClassic readSingleBlock Promise errCode: ${err.code}, message: ${err.message}");
-    });
-} catch (busiError) {
-    console.error("mifareClassic readSingleBlock Promise catch busiError Code: ${(busiError as Businsess).code}, " +
-        "message: ${(busiError as Businsess).message}");
+    try {
+        let blockIndex = 1; // change it to be correct index.
+        mifareClassic.readSingleBlock(blockIndex).then((data : number[]) => {
+            console.log("mifareClassic readSingleBlock Promise data: " + data);
+        }).catch((err : BusinessError)=> {
+            console.error("mifareClassic readSingleBlock Promise errCode: ${err.code}, message: ${err.message}");
+        });
+    } catch (businessError) {
+        console.error("mifareClassic readSingleBlock Promise catch businessError Code: ${(businessError as Businsess).code}, " +
+            "message: ${(businessError as Businsess).message}");
+    }
 }
 ```
 
@@ -1143,7 +1224,7 @@ readSingleBlock(blockIndex: number, callback: AsyncCallback\<number[]>): void
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -1158,36 +1239,41 @@ readSingleBlock(blockIndex: number, callback: AsyncCallback\<number[]>): void
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+| 201  | Permission denied. |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | Tag running state is abnormal in service. |
+| 3100204 | Tag I/O operation failed. |
 
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
-import {BusinessError} from '@ohos.base';
+import { tag } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'mifareClassic' correctly.
 
-// connect the tag at first if not connected.
-if (!mifareClassic.isTagConnected()) {
-    if (!mifareClassic.connectTag()) {
-        console.log("mifareClassic connectTag failed.");
-        return;
-    }
-}
-
-try {
-    let blockIndex = 1; // change it to be correct index.
-    mifareClassic.readSingleBlock(blockIndex, (err : BusinessError, data : number[])=> {
-        if (err) {
-            console.log("mifareClassic readSingleBlock AsyncCallback err: " + err);
-        } else {
-            console.log("mifareClassic readSingleBlock AsyncCallback data: " + data);
+function nfcTechDemo() {
+    // connect the tag at first if not connected.
+    if (!mifareClassic.isTagConnected()) {
+        if (!mifareClassic.connectTag()) {
+            console.log("mifareClassic connectTag failed.");
+            return;
         }
-    });
-} catch (busiError) {
-    console.error("mifareClassic readSingleBlock AsyncCallback catch busiError Code: ${(busiError as Businsess).code}, " +
-        "message: ${(busiError as Businsess).message}");
+    }
+
+    try {
+        let blockIndex = 1; // change it to be correct index.
+        mifareClassic.readSingleBlock(blockIndex, (err : BusinessError, data : number[])=> {
+            if (err) {
+                console.log("mifareClassic readSingleBlock AsyncCallback err: " + err);
+            } else {
+                console.log("mifareClassic readSingleBlock AsyncCallback data: " + data);
+            }
+        });
+    } catch (businessError) {
+        console.error("mifareClassic readSingleBlock AsyncCallback catch businessError Code: " + 
+        " ${(businessError as Businsess).code}, message: ${(businessError as Businsess).message}");
+    }
 }
 ```
 
@@ -1201,7 +1287,7 @@ writeSingleBlock(blockIndex: number, data: number[]): Promise\<void>
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -1210,42 +1296,53 @@ writeSingleBlock(blockIndex: number, data: number[]): Promise\<void>
 | blockIndex | number | 是   | 要写入的块索引，从0开始。 |
 | data | number[] | 是   | 要写入的数据，大小必须是16个字节。 |
 
+**返回值：**
+
+| 类型                        | 说明                 |
+| ------------------------- | ------------------ |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
+
 **错误码：**
 
 以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+| 201  | Permission denied. |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | Tag running state is abnormal in service. |
+| 3100204 | Tag I/O operation failed. |
 
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
-import {BusinessError} from '@ohos.base';
+import { tag } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'mifareClassic' correctly.
 
-// connect the tag at first if not connected.
-if (!mifareClassic.isTagConnected()) {
-    if (!mifareClassic.connectTag()) {
-        console.log("mifareClassic connectTag failed.");
-        return;
+function nfcTechDemo() {
+    // connect the tag at first if not connected.
+    if (!mifareClassic.isTagConnected()) {
+        if (!mifareClassic.connectTag()) {
+            console.log("mifareClassic connectTag failed.");
+            return;
+        }
     }
-}
 
-try {
-    let blockIndex = 1; // change it to be correct index.
-    let rawData = [0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0A,
-        0x0B, 0x0C, 0x0D, 0x0E, 0x0F, 0x10]; // MUST be 16 bytes, change it to be correct data.
-    mifareClassic.writeSingleBlock(blockIndex, rawData).then(() => {
-        console.log("mifareClassic writeSingleBlock Promise success.");
-    }).catch((err : BusinessError)=> {
-        console.error("mifareClassic writeSingleBlock Promise errCode: ${err.code}, message: ${err.message}");
-    });
-} catch (busiError) {
-    console.error("mifareClassic writeSingleBlock Promise catch busiError Code: ${(busiError as Businsess).code}, " +
-        "message: ${(busiError as Businsess).message}");
+    try {
+        let blockIndex = 1; // change it to be correct index.
+        let rawData = [0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0A,
+            0x0B, 0x0C, 0x0D, 0x0E, 0x0F, 0x10]; // MUST be 16 bytes, change it to be correct data.
+        mifareClassic.writeSingleBlock(blockIndex, rawData).then(() => {
+            console.log("mifareClassic writeSingleBlock Promise success.");
+        }).catch((err : BusinessError)=> {
+            console.error("mifareClassic writeSingleBlock Promise errCode: ${err.code}, message: ${err.message}");
+        });
+    } catch (businessError) {
+        console.error("mifareClassic writeSingleBlock Promise catch businessError Code: ${(businessError as Businsess).code}, "
+        + "message: ${(businessError as Businsess).message}");
+    }
 }
 ```
 
@@ -1259,7 +1356,7 @@ writeSingleBlock(blockIndex: number, data: number[], callback: AsyncCallback\<vo
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -1275,38 +1372,44 @@ writeSingleBlock(blockIndex: number, data: number[], callback: AsyncCallback\<vo
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+| 201  | Permission denied. |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | Tag running state is abnormal in service. |
+| 3100204 | Tag I/O operation failed. |
 
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
-import {BusinessError} from '@ohos.base';
+import { tag } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'mifareClassic' correctly.
 
-// connect the tag at first if not connected.
-if (!mifareClassic.isTagConnected()) {
-    if (!mifareClassic.connectTag()) {
-        console.log("mifareClassic connectTag failed.");
-        return;
-    }
-}
-
-try {
-    let blockIndex = 1; // change it to be correct index.
-    let rawData = [0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0A,
-        0x0B, 0x0C, 0x0D, 0x0E, 0x0F, 0x10]; // MUST be 16 bytes, change it to be correct data.
-    mifareClassic.writeSingleBlock(blockIndex, rawData, (err : BusinessError)=> {
-        if (err) {
-            console.log("mifareClassic writeSingleBlock AsyncCallback err Code: ${err.code}, message: ${err.message}");
-        } else {
-            console.log("mifareClassic writeSingleBlock AsyncCallback success.");
+function nfcTechDemo() {
+    // connect the tag at first if not connected.
+    if (!mifareClassic.isTagConnected()) {
+        if (!mifareClassic.connectTag()) {
+            console.log("mifareClassic connectTag failed.");
+            return;
         }
-    });
-} catch (busiError) {
-    console.error("mifareClassic writeSingleBlock AsyncCallback catch Code: ${(busiError as Businsess).code}, " +
-        "message: ${(busiError as Businsess).message}");
+    }
+
+    try {
+        let blockIndex = 1; // change it to be correct index.
+        let rawData = [0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0A,
+            0x0B, 0x0C, 0x0D, 0x0E, 0x0F, 0x10]; // MUST be 16 bytes, change it to be correct data.
+        mifareClassic.writeSingleBlock(blockIndex, rawData, (err : BusinessError)=> {
+            if (err) {
+                console.log("mifareClassic writeSingleBlock AsyncCallback err Code:" +
+                "${err.code}, message: ${err.message}");
+            } else {
+                console.log("mifareClassic writeSingleBlock AsyncCallback success.");
+            }
+        });
+    } catch (businessError) {
+        console.error("mifareClassic writeSingleBlock AsyncCallback catch Code: ${(businessError as Businsess).code}, " +
+            "message: ${(businessError as Businsess).message}");
+    }
 }
 ```
 
@@ -1320,7 +1423,7 @@ incrementBlock(blockIndex: number, value: number): Promise\<void>
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -1329,41 +1432,52 @@ incrementBlock(blockIndex: number, value: number): Promise\<void>
 | blockIndex | number | 是   | 要指定增加的块索引，从0开始。 |
 | value | number | 是   | 要指定增加的数据，非负数。 |
 
+**返回值：**
+
+| 类型                        | 说明                 |
+| ------------------------- | ------------------ |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
+
 **错误码：**
 
 以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+| 201  | Permission denied. |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | Tag running state is abnormal in service. |
+| 3100204 | Tag I/O operation failed. |
 
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
-import {BusinessError} from '@ohos.base';
+import { tag } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'mifareClassic' correctly.
 
-// connect the tag at first if not connected.
-if (!mifareClassic.isTagConnected()) {
-    if (!mifareClassic.connectTag()) {
-        console.log("mifareClassic connectTag failed.");
-        return;
+function nfcTechDemo() {
+    // connect the tag at first if not connected.
+    if (!mifareClassic.isTagConnected()) {
+        if (!mifareClassic.connectTag()) {
+            console.log("mifareClassic connectTag failed.");
+            return;
+        }
     }
-}
 
-try {
-    let blockIndex = 1; // change it to be correct index.
-    let value = 0x20; // change it to be correct data.
-    mifareClassic.incrementBlock(blockIndex, value).then(() => {
-        console.log("mifareClassic incrementBlock Promise success.");
-    }).catch((err : BusinessError)=> {
-        console.error("mifareClassic incrementBlock Promise err Code: ${err.code}, message: ${err.message}");
-    });
-} catch (busiError) {
-    console.error("mifareClassic incrementBlock Promise catch Code: ${(busiError as Businsess).code}, " +
-       "message: ${(busiError as Businsess).message}");
+    try {
+        let blockIndex = 1; // change it to be correct index.
+        let value = 0x20; // change it to be correct data.
+        mifareClassic.incrementBlock(blockIndex, value).then(() => {
+            console.log("mifareClassic incrementBlock Promise success.");
+        }).catch((err : BusinessError)=> {
+            console.error("mifareClassic incrementBlock Promise err Code: ${err.code}, message: ${err.message}");
+        });
+    } catch (businessError) {
+        console.error("mifareClassic incrementBlock Promise catch Code: ${(businessError as Businsess).code}, " +
+           "message: ${(businessError as Businsess).message}");
+    }
 }
 ```
 
@@ -1377,7 +1491,7 @@ incrementBlock(blockIndex: number, value: number, callback: AsyncCallback\<void>
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -1393,37 +1507,42 @@ incrementBlock(blockIndex: number, value: number, callback: AsyncCallback\<void>
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+| 201  | Permission denied. |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | Tag running state is abnormal in service. |
+| 3100204 | Tag I/O operation failed. |
 
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
-import {BusinessError} from '@ohos.base';
+import { tag } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'mifareClassic' correctly.
 
-// connect the tag at first if not connected.
-if (!mifareClassic.isTagConnected()) {
-    if (!mifareClassic.connectTag()) {
-        console.log("mifareClassic connectTag failed.");
-        return;
-    }
-}
-
-try {
-    let blockIndex = 1; // change it to be correct index.
-    let value = 0x20; // change it to be correct data.
-    mifareClassic.incrementBlock(blockIndex, value, (err : BusinessError)=> {
-        if (err) {
-            console.log("mifareClassic incrementBlock AsyncCallback err Code: ${err.code}, message: ${err.message}");
-        } else {
-            console.log("mifareClassic incrementBlock AsyncCallback success.");
+function nfcTechDemo() {
+    // connect the tag at first if not connected.
+    if (!mifareClassic.isTagConnected()) {
+        if (!mifareClassic.connectTag()) {
+            console.log("mifareClassic connectTag failed.");
+            return;
         }
-    });
-} catch (busiError) {
-    console.error("mifareClassic incrementBlock AsyncCallback catch busiError Code: ${(busiError as Businsess).code}, " +
-        "message: ${(busiError as Businsess).message}");
+    }
+
+    try {
+        let blockIndex = 1; // change it to be correct index.
+        let value = 0x20; // change it to be correct data.
+        mifareClassic.incrementBlock(blockIndex, value, (err : BusinessError)=> {
+            if (err) {
+                console.log("mifareClassic incrementBlock AsyncCallback err Code: ${err.code}, message: ${err.message}");
+            } else {
+                console.log("mifareClassic incrementBlock AsyncCallback success.");
+            }
+        });
+    } catch (businessError) {
+        console.error("mifareClassic incrementBlock AsyncCallback catch businessError Code: ${(businessError as Businsess).code}, " +
+            "message: ${(businessError as Businsess).message}");
+    }
 }
 ```
 
@@ -1437,7 +1556,7 @@ decrementBlock(blockIndex: number, value: number): Promise\<void>
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -1446,41 +1565,52 @@ decrementBlock(blockIndex: number, value: number): Promise\<void>
 | blockIndex | number | 是   | 要被运算的块索引，从0开始。 |
 | value | number | 是   | 要减少的数值，非负数。 |
 
+**返回值：**
+
+| 类型                        | 说明                 |
+| ------------------------- | ------------------ |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
+
 **错误码：**
 
 以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+| 201  | Permission denied. |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | Tag running state is abnormal in service. |
+| 3100204 | Tag I/O operation failed. |
 
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
-import {BusinessError} from '@ohos.base';
+import { tag } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'mifareClassic' correctly.
 
-// connect the tag at first if not connected.
-if (!mifareClassic.isTagConnected()) {
-    if (!mifareClassic.connectTag()) {
-        console.log("mifareClassic connectTag failed.");
-        return;
+function nfcTechDemo() {
+    // connect the tag at first if not connected.
+    if (!mifareClassic.isTagConnected()) {
+        if (!mifareClassic.connectTag()) {
+            console.log("mifareClassic connectTag failed.");
+            return;
+        }
     }
-}
 
-try {
-    let blockIndex = 1; // change it to be correct index.
-    let value = 0x20; // change it to be correct data.
-    mifareClassic.decrementBlock(blockIndex, value).then(() => {
-        console.log("mifareClassic decrementBlock Promise success.");
-    }).catch((err : BusinessError)=> {
-        console.error("mifareClassic decrementBlock Promise errCode: ${err.code}, message: ${err.message}");
-    });
-} catch (busiError) {
-    console.error("mifareClassic decrementBlock Promise catch busiError: Code: ${(busiError as Businsess).code}, " +
-        "message: ${(busiError as Businsess).message}");
+    try {
+        let blockIndex = 1; // change it to be correct index.
+        let value = 0x20; // change it to be correct data.
+        mifareClassic.decrementBlock(blockIndex, value).then(() => {
+            console.log("mifareClassic decrementBlock Promise success.");
+        }).catch((err : BusinessError)=> {
+            console.error("mifareClassic decrementBlock Promise errCode: ${err.code}, message: ${err.message}");
+        });
+    } catch (businessError) {
+        console.error("mifareClassic decrementBlock Promise catch businessError: Code: ${(businessError as Businsess).code}, " +
+            "message: ${(businessError as Businsess).message}");
+    }
 }
 ```
 
@@ -1494,7 +1624,7 @@ decrementBlock(blockIndex: number, value: number, callback: AsyncCallback\<void>
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -1510,37 +1640,43 @@ decrementBlock(blockIndex: number, value: number, callback: AsyncCallback\<void>
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+| 201  | Permission denied. |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | Tag running state is abnormal in service. |
+| 3100204 | Tag I/O operation failed. |
 
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
-import {BusinessError} from '@ohos.base';
+import { tag } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'mifareClassic' correctly.
 
-// connect the tag at first if not connected.
-if (!mifareClassic.isTagConnected()) {
-    if (!mifareClassic.connectTag()) {
-        console.log("mifareClassic connectTag failed.");
-        return;
-    }
-}
-
-try {
-    let blockIndex = 1; // change it to be correct index.
-    let value = 0x20; // change it to be correct data.
-    mifareClassic.decrementBlock(blockIndex, value, (err : BusinessError)=> {
-        if (err) {
-            console.log("mifareClassic decrementBlock AsyncCallback errCode: ${err.code}, message: ${err.message}");
-        } else {
-            console.log("mifareClassic decrementBlock AsyncCallback success.");
+function nfcTechDemo() {
+    // connect the tag at first if not connected.
+    if (!mifareClassic.isTagConnected()) {
+        if (!mifareClassic.connectTag()) {
+            console.log("mifareClassic connectTag failed.");
+            return;
         }
-    });
-} catch (busiError) {
-    console.error("mifareClassic decrementBlock AsyncCallback catch Code: ${(busiError as Businsess).code}, " +
-      "message: ${(busiError as Businsess).message}");
+    }
+
+    try {
+        let blockIndex = 1; // change it to be correct index.
+        let value = 0x20; // change it to be correct data.
+        mifareClassic.decrementBlock(blockIndex, value, (err : BusinessError)=> {
+            if (err) {
+                console.error("mifareClassic decrementBlock AsyncCallback errCode:" + 
+                  "${err.code}, message: ${err.message}");
+            } else {
+                console.log("mifareClassic decrementBlock AsyncCallback success.");
+            }
+        });
+    } catch (businessError) {
+        console.error("mifareClassic decrementBlock AsyncCallback catch Code: ${(businessError as Businsess).code}, " +
+          "message: ${(businessError as Businsess).message}");
+    }
 }
 ```
 
@@ -1554,7 +1690,7 @@ transferToBlock(blockIndex: number): Promise\<void>
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -1562,40 +1698,51 @@ transferToBlock(blockIndex: number): Promise\<void>
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | blockIndex | number | 是  | 被操作的块的索引，从0开始。 |
 
+**返回值：**
+
+| 类型                        | 说明                 |
+| ------------------------- | ------------------ |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
+
 **错误码：**
 
 以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+| 201  | Permission denied. |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | Tag running state is abnormal in service. |
+| 3100204 | Tag I/O operation failed. |
 
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
-import {BusinessError} from '@ohos.base';
+import { tag } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'mifareClassic' correctly.
 
-// connect the tag at first if not connected.
-if (!mifareClassic.isTagConnected()) {
-    if (!mifareClassic.connectTag()) {
-        console.log("mifareClassic connectTag failed.");
-        return;
+function nfcTechDemo() {
+    // connect the tag at first if not connected.
+    if (!mifareClassic.isTagConnected()) {
+        if (!mifareClassic.connectTag()) {
+            console.error("mifareClassic connectTag failed.");
+            return;
+        }
     }
-}
 
-try {
-    let blockIndex = 1; // change it to be correct index.
-    mifareClassic.transferToBlock(blockIndex).then(() => {
-        console.log("mifareClassic transferToBlock Promise success.");
-    }).catch((err : BusinessError)=> {
-        console.error("mifareClassic transferToBlock Promise err Code: ${err.code}, message: ${err.message}");
-    });
-} catch (busiError) {
-    console.error("mifareClassic transferToBlock Promise catch Code: ${(busiError as Businsess).code}, " +
-        "message: ${(busiError as Businsess).message}");
+    try {
+        let blockIndex = 1; // change it to be correct index.
+        mifareClassic.transferToBlock(blockIndex).then(() => {
+            console.log("mifareClassic transferToBlock Promise success.");
+        }).catch((err : BusinessError)=> {
+            console.error("mifareClassic transferToBlock Promise err Code: ${err.code}, message: ${err.message}");
+        });
+    } catch (businessError) {
+        console.error("mifareClassic transferToBlock Promise catch Code: ${(businessError as Businsess).code}, " +
+            "message: ${(businessError as Businsess).message}");
+    }
 }
 ```
 
@@ -1609,7 +1756,7 @@ transferToBlock(blockIndex: number, callback: AsyncCallback\<void>): void
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -1624,36 +1771,42 @@ transferToBlock(blockIndex: number, callback: AsyncCallback\<void>): void
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+| 201  | Permission denied. |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | Tag running state is abnormal in service. |
+| 3100204 | Tag I/O operation failed. |
 
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
-import {BusinessError} from '@ohos.base';
+import { tag } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'mifareClassic' correctly.
 
-// connect the tag at first if not connected.
-if (!mifareClassic.isTagConnected()) {
-    if (!mifareClassic.connectTag()) {
-        console.log("mifareClassic connectTag failed.");
-        return;
-    }
-}
-
-try {
-    let blockIndex = 1; // change it to be correct index.
-    mifareClassic.transferToBlock(blockIndex, (err : BusinessError)=> {
-        if (err) {
-            console.error("mifareClassic transferToBlock AsyncCallback errCode: ${err.code}, message: ${err.message}");
-        } else {
-            console.log("mifareClassic transferToBlock AsyncCallback success.");
+function nfcTechDemo() {
+    // connect the tag at first if not connected.
+    if (!mifareClassic.isTagConnected()) {
+        if (!mifareClassic.connectTag()) {
+            console.log("mifareClassic connectTag failed.");
+            return;
         }
-    });
-} catch (busiError) {
-    console.error("mifareClassic transferToBlock AsyncCallback catch Code: ${(busiError as Businsess).code}, " +
-        "message: ${(busiError as Businsess).message}");
+    }
+
+    try {
+        let blockIndex = 1; // change it to be correct index.
+        mifareClassic.transferToBlock(blockIndex, (err : BusinessError)=> {
+            if (err) {
+                console.error("mifareClassic transferToBlock AsyncCallback errCode: ${err.code}," +
+                    "message: ${err.message}");
+            } else {
+                console.log("mifareClassic transferToBlock AsyncCallback success.");
+            }
+        });
+    } catch (businessError) {
+        console.error("mifareClassic transferToBlock AsyncCallback catch Code: ${(businessError as Businsess).code}, " +
+            "message: ${(businessError as Businsess).message}");
+    }
 }
 ```
 
@@ -1667,7 +1820,7 @@ restoreFromBlock(blockIndex: number): Promise\<void>
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -1675,40 +1828,51 @@ restoreFromBlock(blockIndex: number): Promise\<void>
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | blockIndex | number | 是   | 被操作的块的索引，从0开始。|
 
+**返回值：**
+
+| 类型                        | 说明                 |
+| ------------------------- | ------------------ |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
+
 **错误码：**
 
 以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+| 201  | Permission denied. |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | Tag running state is abnormal in service. |
+| 3100204 | Tag I/O operation failed. |
 
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
-import {BusinessError} from '@ohos.base';
+import { tag } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'mifareClassic' correctly.
 
-// connect the tag at first if not connected.
-if (!mifareClassic.isTagConnected()) {
-    if (!mifareClassic.connectTag()) {
-        console.log("mifareClassic connectTag failed.");
-        return;
+function nfcTechDemo() {
+    // connect the tag at first if not connected.
+    if (!mifareClassic.isTagConnected()) {
+        if (!mifareClassic.connectTag()) {
+            console.log("mifareClassic connectTag failed.");
+            return;
+        }   
     }
-}
 
-try {
-    let blockIndex = 1; // change it to be correct index.
-    mifareClassic.restoreFromBlock(blockIndex).then(() => {
-        console.log("mifareClassic restoreFromBlock Promise success.");
-    }).catch((err : BusinessError)=> {
-        console.error("mifareClassic restoreFromBlock Promise errCode: ${err.code}, message: ${err.message}");
-    });
-} catch (busiError) {
-    console.error("mifareClassic restoreFromBlock Promise catch busiError Code: ${(busiError as Businsess).code}, " +
-        "message: ${(busiError as Businsess).message}");
+    try {
+        let blockIndex = 1; // change it to be correct index.
+        mifareClassic.restoreFromBlock(blockIndex).then(() => {
+            console.log("mifareClassic restoreFromBlock Promise success.");
+        }).catch((err : BusinessError)=> {
+            console.error("mifareClassic restoreFromBlock Promise errCode: ${err.code}, message: ${err.message}");
+        });
+    } catch (businessError) {
+        console.error("mifareClassic restoreFromBlock Promise catch businessError Code: ${(businessError as Businsess).code}," +
+            " message: ${(businessError as Businsess).message}");
+    }
 }
 ```
 
@@ -1722,7 +1886,7 @@ restoreFromBlock(blockIndex: number, callback: AsyncCallback\<void>): void
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -1737,36 +1901,42 @@ restoreFromBlock(blockIndex: number, callback: AsyncCallback\<void>): void
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+| 201  | Permission denied. |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | Tag running state is abnormal in service. |
+| 3100204 | Tag I/O operation failed. |
 
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
-import {BusinessError} from '@ohos.base';
+import { tag } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'mifareClassic' correctly.
 
-// connect the tag at first if not connected.
-if (!mifareClassic.isTagConnected()) {
-    if (!mifareClassic.connectTag()) {
-        console.log("mifareClassic connectTag failed.");
-        return;
-    }
-}
-
-try {
-    let blockIndex = 1; // change it to be correct index.
-    mifareClassic.restoreFromBlock(blockIndex, (err : BusinessError)=> {
-        if (err) {
-            console.log("mifareClassic restoreFromBlock AsyncCallback err Code: ${err.code}, message: ${err.message}");
-        } else {
-            console.log("mifareClassic restoreFromBlock AsyncCallback success.");
+function nfcTechDemo() {
+    // connect the tag at first if not connected.
+    if (!mifareClassic.isTagConnected()) {
+        if (!mifareClassic.connectTag()) {
+            console.log("mifareClassic connectTag failed.");
+            return;
         }
-    });
-} catch (busiError) {
-    console.error("mifareClassic restoreFromBlock AsyncCallback catch Code: ${(busiError as Businsess).code}, " +
-        "message: ${(busiError as Businsess).message}");
+    }
+
+    try {
+        let blockIndex = 1; // change it to be correct index.
+        mifareClassic.restoreFromBlock(blockIndex, (err : BusinessError)=> {
+            if (err) {
+                console.log("mifareClassic restoreFromBlock AsyncCallback err Code: ${err.code}," +
+                    " message: ${err.message}");
+            } else {
+                console.log("mifareClassic restoreFromBlock AsyncCallback success.");
+            }
+        });
+    } catch (businessError) {
+        console.error("mifareClassic restoreFromBlock AsyncCallback catch Code: ${(businessError as Businsess).code}, " +
+            "message: ${(businessError as Businsess).message}");
+    }
 }
 ```
 
@@ -1778,7 +1948,7 @@ getSectorCount(): number
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **返回值：**
 
@@ -1789,8 +1959,8 @@ getSectorCount(): number
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
-import {BusinessError} from '@ohos.base';
+import { tag } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'mifareClassic' correctly.
 let sectorCount : number = mifareClassic.getSectorCount();
@@ -1805,7 +1975,7 @@ getBlockCountInSector(sectorIndex: number): number
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -1819,11 +1989,19 @@ getBlockCountInSector(sectorIndex: number): number
 | ------------------ | --------------------------|
 | number | 该扇区内的块数量。|
 
+**错误码：**
+
+以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
+
+| 错误码ID | 错误信息|
+| ------- | -------|
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
-import {BusinessError} from '@ohos.base';
+import { tag } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'mifareClassic' correctly.
 
@@ -1831,9 +2009,9 @@ try {
     let sectorIndex = 1; // change it to be correct index.
     let blockCnt : number = mifareClassic.getBlockCountInSector(sectorIndex);
     console.log("mifareClassic blockCnt: " + blockCnt);
-} catch (busiError) {
-    console.error("mifareClassic getBlockCountInSector catch busiError Code: ${(busiError as Businsess).code}, " +
-        "message: ${(busiError as Businsess).message}");
+} catch (businessError) {
+    console.error("mifareClassic getBlockCountInSector catch businessError Code: ${(businessError as Businsess).code}, " +
+        "message: ${(businessError as Businsess).message}");
 }
 ```
 
@@ -1845,7 +2023,7 @@ getType(): [tag.MifareClassicType](js-apis-nfcTag.md#mifareclassictype9)
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **返回值：**
 
@@ -1856,7 +2034,7 @@ getType(): [tag.MifareClassicType](js-apis-nfcTag.md#mifareclassictype9)
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
+import { tag } from '@kit.ConnectivityKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'mifareClassic' correctly.
 let getType : tag.MifareClassicType = mifareClassic.getType();
@@ -1871,7 +2049,7 @@ getTagSize(): number
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **返回值：**
 
@@ -1882,8 +2060,8 @@ getTagSize(): number
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
-import {BusinessError} from '@ohos.base';
+import { tag } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'mifareClassic' correctly.
 let tagSize : number = mifareClassic.getTagSize();
@@ -1898,7 +2076,7 @@ isEmulatedTag(): boolean
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **返回值：**
 
@@ -1909,8 +2087,8 @@ isEmulatedTag(): boolean
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
-import {BusinessError} from '@ohos.base';
+import { tag } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'mifareClassic' correctly.
 let isEmulatedTag : boolean = mifareClassic.isEmulatedTag();
@@ -1925,7 +2103,7 @@ getBlockIndex(sectorIndex: number): number
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -1939,11 +2117,19 @@ getBlockIndex(sectorIndex: number): number
 | ------------------ | --------------------------|
 | number | 该扇区内的第一个块的序号，从0开始。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
+
+| 错误码ID | 错误信息|
+| ------- | -------|
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
-import {BusinessError} from '@ohos.base';
+import { tag } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'mifareClassic' correctly.
 
@@ -1951,9 +2137,9 @@ try {
     let sectorIndex = 1; // change it to be correct index.
     let blockIndex : number = mifareClassic.getBlockIndex(sectorIndex);
     console.log("mifareClassic blockIndex: " + blockIndex);
-} catch (busiError) {
-    console.error("mifareClassic getBlockIndex catch busiError Code: ${(busiError as Businsess).code}, " +
-        "message: ${(busiError as Businsess).message}");
+} catch (businessError) {
+    console.error("mifareClassic getBlockIndex catch businessError Code: ${(businessError as Businsess).code}, " +
+        "message: ${(businessError as Businsess).message}");
 }
 ```
 
@@ -1965,7 +2151,7 @@ getSectorIndex(blockIndex: number): number
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -1979,11 +2165,19 @@ getSectorIndex(blockIndex: number): number
 | ------------------ | --------------------------|
 | number | 扇区序号，从0开始。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
+
+| 错误码ID | 错误信息|
+| ------- | -------|
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
-import {BusinessError} from '@ohos.base';
+import { tag } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'mifareClassic' correctly.
 
@@ -1991,9 +2185,9 @@ try {
     let blockIndex = 1; // change it to be correct index.
     let sectorIndex : number = mifareClassic.getSectorIndex(blockIndex);
     console.log("mifareClassic sectorIndex: " + sectorIndex);
-} catch (busiError) {
-    console.error("mifareClassic getSectorIndex catch busiError Code: ${(busiError as Businsess).code}, " +
-       "message: ${(busiError as Businsess).message}");
+} catch (businessError) {
+    console.error("mifareClassic getSectorIndex catch businessError Code: ${(businessError as Businsess).code}, " +
+       "message: ${(businessError as Businsess).message}");
 }
 ```
 
@@ -2015,7 +2209,7 @@ readMultiplePages(pageIndex: number): Promise\<number[]>
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -2035,35 +2229,40 @@ readMultiplePages(pageIndex: number): Promise\<number[]>
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+| 201  | Permission denied. |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | Tag running state is abnormal in service. |
+| 3100204 | Tag I/O operation failed. |
 
 **示例：**
 
 ```js
 
-import tag from '@ohos.nfc.tag';
-import {BusinessError} from '@ohos.base';
+import { tag } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'mifareUltralight' correctly.
 
-// connect the tag at first if not connected.
-if (!mifareUltralight.isTagConnected()) {
-    if (!mifareUltralight.connectTag()) {
-        console.log("mifareUltralight connectTag failed.");
-        return;
+function nfcTechDemo() {
+    // connect the tag at first if not connected.
+    if (!mifareUltralight.isTagConnected()) {
+        if (!mifareUltralight.connectTag()) {
+            console.log("mifareUltralight connectTag failed.");
+            return;
+        }
     }
-}
 
-try {
-    let pageIndex = 1; // change it to be correct index.
-    mifareUltralight.readMultiplePages(pageIndex).then((data : number[]) => {
-        console.log("mifareUltralight readMultiplePages Promise data = " + data);
-    }).catch((err : BusinessError)=> {
-        console.error("mifareUltralight readMultiplePages Promise Code: ${err.code}, message: ${err.message}");
-    });
-} catch (busiError) {
-    console.error("mifareUltralight readMultiplePages Promise catch busiError Code: ${(busiError as Businsess).code}, " +
-        "message: ${(busiError as Businsess).message}");
+    try {
+        let pageIndex = 1; // change it to be correct index.
+        mifareUltralight.readMultiplePages(pageIndex).then((data : number[]) => {
+            console.log("mifareUltralight readMultiplePages Promise data = " + data);
+        }).catch((err : BusinessError)=> {
+            console.error("mifareUltralight readMultiplePages Promise Code: ${err.code}, message: ${err.message}");
+        });
+    } catch (businessError) {
+        console.error("mifareUltralight readMultiplePages Promise catch businessError" +
+            " Code: ${(businessError as Businsess).code}, message: ${(businessError as Businsess).message}");
+    }
 }
 ```
 
@@ -2077,7 +2276,7 @@ readMultiplePages(pageIndex: number, callback: AsyncCallback\<number[]>): void
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -2092,36 +2291,41 @@ readMultiplePages(pageIndex: number, callback: AsyncCallback\<number[]>): void
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+| 201  | Permission denied. |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | Tag running state is abnormal in service. |
+| 3100204 | Tag I/O operation failed. |
 
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
-import {BusinessError} from '@ohos.base';
+import { tag } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'mifareUltralight' correctly.
 
-// connect the tag at first if not connected.
-if (!mifareUltralight.isTagConnected()) {
-    if (!mifareUltralight.connectTag()) {
-        console.log("mifareUltralight connectTag failed.");
-        return;
-    }
-}
-
-try {
-    let pageIndex = 1; // change it to be correct index.
-    mifareUltralight.readMultiplePages(pageIndex, (err : BusinessError, data : number[])=> {
-        if (err) {
-          console.log("mifareUltralight readMultiplePages AsyncCallback Code: ${err.code}, message: ${err.message}");
-        } else {
-          console.log("mifareUltralight readMultiplePages AsyncCallback data: " + data);
+function nfcTechDemo() {
+    // connect the tag at first if not connected.
+    if (!mifareUltralight.isTagConnected()) {
+        if (!mifareUltralight.connectTag()) {
+            console.log("mifareUltralight connectTag failed.");
+            return;
         }
-    });
-} catch (busiError) {
-    console.error("mifareUltralight readMultiplePages AsyncCallback catch Code: ${(busiError as Businsess).code}, " +
-        "message: ${(busiError as Businsess).message}");
+    }
+
+    try {
+        let pageIndex = 1; // change it to be correct index.
+        mifareUltralight.readMultiplePages(pageIndex, (err : BusinessError, data : number[])=> {
+            if (err) {
+            console.log("mifareUltralight readMultiplePages AsyncCallback Code: ${err.code}, message: ${err.message}");
+            } else {
+                console.log("mifareUltralight readMultiplePages AsyncCallback data: " + data);
+            }
+        });
+    } catch (businessError) {
+        console.error("mifareUltralight readMultiplePages AsyncCallback catch Code: ${(businessError as Businsess).code}, " +
+            "message: ${(businessError as Businsess).message}");
+    }
 }
 ```
 
@@ -2135,7 +2339,7 @@ writeSinglePage(pageIndex: number, data: number[]): Promise\<void>
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -2144,41 +2348,52 @@ writeSinglePage(pageIndex: number, data: number[]): Promise\<void>
 | pageIndex | number | 是   | 要写入页面的索引，从0开始。 |
 | data | number[] | 是   | 要写入页面的数据内容，必须是4个字节大小。 |
 
+**返回值：**
+
+| 类型                        | 说明                 |
+| ------------------------- | ------------------ |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
+
 **错误码：**
 
 以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+| 201  | Permission denied. |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | Tag running state is abnormal in service. |
+| 3100204 | Tag I/O operation failed. |
 
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
-import {BusinessError} from '@ohos.base';
+import { tag } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'mifareUltralight' correctly.
 
-// connect the tag at first if not connected.
-if (!mifareUltralight.isTagConnected()) {
-    if (!mifareUltralight.connectTag()) {
-        console.log("mifareUltralight connectTag failed.");
-        return;
+function nfcTechDemo() {
+    // connect the tag at first if not connected.
+    if (!mifareUltralight.isTagConnected()) {
+        if (!mifareUltralight.connectTag()) {
+            console.log("mifareUltralight connectTag failed.");
+            return;
+        }
     }
-}
 
-try {
-    let pageIndex = 1; // change it to be correct index.
-    let rawData = [0x01, 0x02, 0x03, 0x04]; // MUST be 4 bytes, change it to be correct raw data.
-    mifareUltralight.writeSinglePage(pageIndex, rawData).then(() => {
-        console.log("mifareUltralight writeSinglePage Promise success.");
-    }).catch((err : BusinessError)=> {
-        console.error("mifareUltralight writeSinglePage Promise err Code: ${err.code}, message: ${err.message}");
-    });
-} catch (busiError) {
-    console.error("mifareUltralight writeSinglePage Promise catch Code: ${(busiError as Businsess).code}, " +
-        "message: ${(busiError as Businsess).message}");
+    try {
+        let pageIndex = 1; // change it to be correct index.
+        let rawData = [0x01, 0x02, 0x03, 0x04]; // MUST be 4 bytes, change it to be correct raw data.
+        mifareUltralight.writeSinglePage(pageIndex, rawData).then(() => {
+            console.log("mifareUltralight writeSinglePage Promise success.");
+        }).catch((err : BusinessError)=> {
+            console.error("mifareUltralight writeSinglePage Promise err Code: ${err.code}, message: ${err.message}");
+        });
+    } catch (businessError) {
+        console.error("mifareUltralight writeSinglePage Promise catch Code: ${(businessError as Businsess).code}, " +
+            "message: ${(businessError as Businsess).message}");
+    }
 }
 ```
 
@@ -2192,7 +2407,7 @@ writeSinglePage(pageIndex: number, data: number[], callback: AsyncCallback\<void
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -2208,37 +2423,43 @@ writeSinglePage(pageIndex: number, data: number[], callback: AsyncCallback\<void
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+| 201  | Permission denied. |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | Tag running state is abnormal in service. |
+| 3100204 | Tag I/O operation failed. |
 
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
-import {BusinessError} from '@ohos.base';
+import { tag } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'mifareUltralight' correctly.
 
-// connect the tag at first if not connected.
-if (!mifareUltralight.isTagConnected()) {
-    if (!mifareUltralight.connectTag()) {
-        console.log("mifareUltralight connectTag failed.");
-        return;
-    }
-}
-
-try {
-    let pageIndex = 1; // change it to be correct index.
-    let rawData = [0x01, 0x02, 0x03, 0x04]; // MUST be 4 bytes, change it to be correct raw data.
-    mifareUltralight.writeSinglePage(pageIndex, rawData, (err : BusinessError)=> {
-        if (err) {
-            console.error("mifareUltralight writeSinglePage AsyncCallback Code: ${err.code}, message: ${err.message}");
-        } else {
-            console.log("mifareUltralight writeSinglePage AsyncCallback success.");
+function nfcTechDemo() {
+    // connect the tag at first if not connected.
+    if (!mifareUltralight.isTagConnected()) {
+        if (!mifareUltralight.connectTag()) {
+            console.log("mifareUltralight connectTag failed.");
+            return;
         }
-    });
-} catch (busiError) {
-    console.error("mifareUltralight writeSinglePage AsyncCallback catch Code: ${(busiError as Businsess).code}, " +
-        "message: ${(busiError as Businsess).message}");
+    }
+
+    try {
+        let pageIndex = 1; // change it to be correct index.
+        let rawData = [0x01, 0x02, 0x03, 0x04]; // MUST be 4 bytes, change it to be correct raw data.
+        mifareUltralight.writeSinglePage(pageIndex, rawData, (err : BusinessError)=> {
+        if (err) {
+                console.error("mifareUltralight writeSinglePage AsyncCallback Code: ${err.code}," +
+                    "message: ${err.message}");
+            } else {
+                console.log("mifareUltralight writeSinglePage AsyncCallback success.");
+            }
+        });
+    } catch (businessError) {
+        console.error("mifareUltralight writeSinglePage AsyncCallback catch Code: ${(businessError as Businsess).code}, " +
+            "message: ${(businessError as Businsess).message}");
+    }
 }
 ```
 
@@ -2250,7 +2471,7 @@ getType(): [tag.MifareUltralightType](js-apis-nfcTag.md#mifareultralighttype9)
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **返回值：**
 
@@ -2261,7 +2482,7 @@ getType(): [tag.MifareUltralightType](js-apis-nfcTag.md#mifareultralighttype9)
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
+import { tag } from '@kit.ConnectivityKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'mifareUltralight' correctly.
 let getType : tag.MifareUltralightType = mifareClassic.getType();
@@ -2286,7 +2507,7 @@ format(message: [NdefMessage](#ndefmessage9)): Promise\<void>
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -2294,43 +2515,55 @@ format(message: [NdefMessage](#ndefmessage9)): Promise\<void>
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | message | [NdefMessage](#ndefmessage9) | 是   | 格式化成功时要写入的NDEF消息。可以为null，为null时仅格式化标签，不写入内容。 |
 
+**返回值：**
+
+| 类型                        | 说明                 |
+| ------------------------- | ------------------ |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
+
 **错误码：**
 
 以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+| 201  | Permission denied. |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | Tag running state is abnormal in service. |
+| 3100204 | Tag I/O operation failed. |
 
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
-import {BusinessError} from '@ohos.base';
+import { tag } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'ndefFormatable' correctly.
 
-// connect the tag at first if not connected.
-if (!ndefFormatable.isTagConnected()) {
-    if (!ndefFormatable.connectTag()) {
-        console.log("ndefFormatable connectTag failed.");
-        return;
+function nfcTechDemo() {
+    // connect the tag at first if not connected.
+    if (!ndefFormatable.isTagConnected()) {
+        if (!ndefFormatable.connectTag()) {
+            console.log("ndefFormatable connectTag failed.");
+            return;
+        }
     }
-}
 
-try {
-    // ndefMessage created from raw data, such as:
-    let ndefMessage = tag.ndef.createNdefMessage([0xD1, 0x01, 0x03, 0x54, 0x4E, 0x46, 0x43]);  // MUST can be parsed as NDEF Record.
-    // or ndefMessage created from tag.ndef.createNdefMessage(ndefRecords: NdefRecord[])
+    try {
+        // ndefMessage created from raw data, such as:
+        let ndefMessage = tag.ndef.createNdefMessage([0xD1, 0x01, 0x03, 0x54, 0x4E, 0x46, 0x43]);  
+        // MUST can be parsed as NDEF Record.
+        // or ndefMessage created from tag.ndef.createNdefMessage(ndefRecords: NdefRecord[])
 
-    ndefFormatable.format(ndefMessage).then(() => {
-        console.log("ndefFormatable format Promise success.");
-    }).catch((err : BusinessError)=> {
-        console.error("ndefFormatable format Promise err Code: ${err.code}, message: ${err.message}");
-    });
-} catch (busiError) {
-    console.error("ndefFormatable format Promise catch busiError Code: ${(busiError as Businsess).code}, " +
-        "message: ${(busiError as Businsess).message}");
+        ndefFormatable.format(ndefMessage).then(() => {
+            console.log("ndefFormatable format Promise success.");
+        }).catch((err : BusinessError)=> {
+            console.error("ndefFormatable format Promise err Code: ${err.code}, message: ${err.message}");
+        });
+    } catch (businessError) {
+        console.error("ndefFormatable format Promise catch businessError Code: ${(businessError as Businsess).code}, " +
+            "message: ${(businessError as Businsess).message}");
+    }
 }
 ```
 
@@ -2344,7 +2577,7 @@ format(message: [NdefMessage](#ndefmessage9), callback: AsyncCallback\<void>): v
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -2364,39 +2597,44 @@ format(message: [NdefMessage](#ndefmessage9), callback: AsyncCallback\<void>): v
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+| 201  | Permission denied. |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | Tag running state is abnormal in service. |
+| 3100204 | Tag I/O operation failed. |
 
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
-import {BusinessError} from '@ohos.base';
+import { tag } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'ndefFormatable' correctly.
 
-// connect the tag at first if not connected.
-if (!ndefFormatable.isTagConnected()) {
-    if (!ndefFormatable.connectTag()) {
-        console.log("ndefFormatable connectTag failed.");
-        return;
-    }
-}
-
-try {
-    // ndefMessage created from raw data, such as:
-    let ndefMessage = tag.ndef.createNdefMessage([0xD1, 0x01, 0x03, 0x54, 0x4E, 0x46, 0x43]);  // MUST can be parsed as NDEF Record.
-    // or ndefMessage created from tag.ndef.createNdefMessage(ndefRecords: NdefRecord[])
-
-    ndefFormatable.format(ndefMessage, (err : BusinessError)=> {
-        if (err) {
-            console.log("ndefFormatable format AsyncCallback Code: ${err.code}, message: ${err.message}");
-        } else {
-            console.log("ndefFormatable format AsyncCallback success.");
+function nfcTechDemo() {
+    // connect the tag at first if not connected.
+    if (!ndefFormatable.isTagConnected()) {
+        if (!ndefFormatable.connectTag()) {
+            console.log("ndefFormatable connectTag failed.");
+            return;
         }
-    });
-} catch (busiError) {
-    console.log("ndefFormatable format AsyncCallback catch Code: ${(busiError as Businsess).code}, " +
-        "message: ${(busiError as Businsess).message}");
+    }
+
+    try {
+        // ndefMessage created from raw data, such as:
+        let ndefMessage = tag.ndef.createNdefMessage([0xD1, 0x01, 0x03, 0x54, 0x4E, 0x46, 0x43]);  // MUST can be parsed as NDEF Record.
+        // or ndefMessage created from tag.ndef.createNdefMessage(ndefRecords: NdefRecord[])
+
+        ndefFormatable.format(ndefMessage, (err : BusinessError)=> {
+            if (err) {
+                console.log("ndefFormatable format AsyncCallback Code: ${err.code}, message: ${err.message}");
+            } else {
+                console.log("ndefFormatable format AsyncCallback success.");
+            }
+        });
+    } catch (businessError) {
+        console.log("ndefFormatable format AsyncCallback catch Code: ${(businessError as Businsess).code}, " +
+            "message: ${(businessError as Businsess).message}");
+    }
 }
 ```
 
@@ -2410,7 +2648,7 @@ formatReadOnly(message: [NdefMessage](#ndefmessage9)): Promise\<void>
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -2418,43 +2656,55 @@ formatReadOnly(message: [NdefMessage](#ndefmessage9)): Promise\<void>
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | message | [NdefMessage](#ndefmessage9) | 是   | 格式化成功时要写入的NDEF消息。可以为null，为null时仅格式化标签，不写入内容。 |
 
+**返回值：**
+
+| 类型                        | 说明                 |
+| ------------------------- | ------------------ |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
+
 **错误码：**
 
 以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+| 201  | Permission denied. |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | Tag running state is abnormal in service. |
+| 3100204 | Tag I/O operation failed. |
 
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
-import {BusinessError} from '@ohos.base';
+import { tag } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'ndefFormatable' correctly.
 
-// connect the tag at first if not connected.
-if (!ndefFormatable.isTagConnected()) {
-    if (!ndefFormatable.connectTag()) {
-        console.log("ndefFormatable connectTag failed.");
-        return;
+function nfcTechDemo() {
+    // connect the tag at first if not connected.
+    if (!ndefFormatable.isTagConnected()) {
+        if (!ndefFormatable.connectTag()) {
+            console.log("ndefFormatable connectTag failed.");
+            return;
+        }
     }
-}
 
-try {
-    // ndefMessage created from raw data, such as:
-    let ndefMessage = tag.ndef.createNdefMessage([0xD1, 0x01, 0x03, 0x54, 0x4E, 0x46, 0x43]);  // MUST can be parsed as NDEF Record.
-    // or ndefMessage created from tag.ndef.createNdefMessage(ndefRecords: NdefRecord[])
+    try {
+        // ndefMessage created from raw data, such as:
+        let ndefMessage = tag.ndef.createNdefMessage([0xD1, 0x01, 0x03, 0x54, 0x4E, 0x46, 0x43]);
+        // MUST can be parsed as NDEF Record.
+        // or ndefMessage created from tag.ndef.createNdefMessage(ndefRecords: NdefRecord[])
 
-    ndefFormatable.formatReadOnly(ndefMessage).then(() => {
-        console.log("ndefFormatable formatReadOnly Promise success.");
-    }).catch((err : BusinessError)=> {
-        console.log("ndefFormatable formatReadOnly Promise Code: ${err.code}, message: ${err.message}");
-    });
-} catch (busiError) {
-    console.error("ndefFormatable formatReadOnly Promise catch Code: ${(busiError as Businsess).code}, " +
-        "message: ${(busiError as Businsess).message}");
+        ndefFormatable.formatReadOnly(ndefMessage).then(() => {
+            console.log("ndefFormatable formatReadOnly Promise success.");
+        }).catch((err : BusinessError)=> {
+            console.log("ndefFormatable formatReadOnly Promise Code: ${err.code}, message: ${err.message}");
+        });
+    } catch (businessError) {
+        console.error("ndefFormatable formatReadOnly Promise catch Code: ${(businessError as Businsess).code}, " +
+            "message: ${(businessError as Businsess).message}");
+    }
 }
 ```
 
@@ -2468,7 +2718,7 @@ formatReadOnly(message: [NdefMessage](#ndefmessage9), callback: AsyncCallback\<v
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -2488,38 +2738,44 @@ formatReadOnly(message: [NdefMessage](#ndefmessage9), callback: AsyncCallback\<v
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+| 201  | Permission denied. |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | Tag running state is abnormal in service. |
+| 3100204 | Tag I/O operation failed. |
 
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
-import {BusinessError} from '@ohos.base';
+import { tag } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'ndefFormatable' correctly.
 
-// connect the tag at first if not connected.
-if (!ndefFormatable.isTagConnected()) {
-    if (!ndefFormatable.connectTag()) {
-        console.log("ndefFormatable connectTag failed.");
-        return;
-    }
-}
-
-try {
-    // ndefMessage created from raw data, such as:
-    let ndefMessage = tag.ndef.createNdefMessage([0xD1, 0x01, 0x03, 0x54, 0x4E, 0x46, 0x43]);  // MUST can be parsed as NDEF Record.
-    // or ndefMessage created from tag.ndef.createNdefMessage(ndefRecords: NdefRecord[])
-
-    ndefFormatable.formatReadOnly(ndefMessage, (err : BusinessError)=> {
-        if (err) {
-            console.error("ndefFormatable formatReadOnly AsyncCallback err Code: ${err.code}, message: ${err.message}");
-        } else {
-            console.log("ndefFormatable formatReadOnly AsyncCallback success.");
+function nfcTechDemo() {
+    // connect the tag at first if not connected.
+    if (!ndefFormatable.isTagConnected()) {
+        if (!ndefFormatable.connectTag()) {
+            console.error("ndefFormatable connectTag failed.");
+            return;
         }
-    });
-} catch (busiError) {
-    console.error("ndefFormatable formatReadOnly AsyncCallback catch Code: ${(busiError as Businsess).code}, " +
-        "message: ${(busiError as Businsess).message}");
+    }
+
+    try {
+        // ndefMessage created from raw data, such as:
+        let ndefMessage = tag.ndef.createNdefMessage([0xD1, 0x01, 0x03, 0x54, 0x4E, 0x46, 0x43]);
+        // MUST can be parsed as NDEF Record.
+        // or ndefMessage created from tag.ndef.createNdefMessage(ndefRecords: NdefRecord[])
+
+        ndefFormatable.formatReadOnly(ndefMessage, (err : BusinessError)=> {
+            if (err) {
+                console.error("ndefFormatable formatReadOnly AsyncCallback err Code: ${err.code}, message: ${err.message}");
+            } else {
+                console.log("ndefFormatable formatReadOnly AsyncCallback success.");
+            }
+        });
+    } catch (businessError) {
+        console.error("ndefFormatable formatReadOnly AsyncCallback catch Code: ${(businessError as Businsess).code}, " +
+            "message: ${(businessError as Businsess).message}");
+    }
 }
 ```

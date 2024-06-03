@@ -13,15 +13,17 @@
 
 ## 接口
 
-Text(content?: string | Resource | StyledString , value?: TextOptions)
+Text(content?: string | Resource , value?: TextOptions)
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **参数：**
 
 | 参数名 | 参数类型 | 必填 | 参数描述 |
 | -------- | -------- | -------- | -------- |
-| content | string \| [Resource](ts-types.md#resource) \| [StyledString](./ts-universal-styled-string.md) | 否 | 文本内容。包含子组件Span时不生效，显示Span内容，并且此时text组件的样式不生效。<br/>[StyledString](./ts-universal-styled-string.md#styledstring)的子类[MutableStyledString](./ts-universal-styled-string.md#mutablestyledstring)也可以作为入参值。<br/>默认值：' ' |
+| content | string \| [Resource](ts-types.md#resource) | 否 | 文本内容。包含子组件Span且未设置[属性字符串](ts-universal-styled-string.md#属性字符串)时不生效，显示Span内容，并且此时text组件的样式不生效。<br/>默认值：' ' |
 | value<sup>11+</sup> | [TextOptions](#textoptions11) | 否 | 文本组件初始化选项。|
 
 ## 属性
@@ -42,6 +44,8 @@ textAlign(value: TextAlign)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -60,11 +64,13 @@ textOverflow(value: { overflow: TextOverflow })
 
 当overflow设置为TextOverflow.None、TextOverflow.Clip、TextOverflow.Ellipsis时，需配合maxLines使用，单独设置不生效。设置TextOverflow.None与TextOverflow.Clip效果一样。
 
-当overflow设置为TextOverflow.MARQUEE时，文本在一行内滚动显示，设置maxLines及copyOption属性均不生效，此时不支持ImageSpan组件，并且在文本不可滚动时，设置textAlign属性生效；在文本可滚动时，设置textAlign属性不生效。
+当overflow设置为TextOverflow.MARQUEE时，文本在一行内滚动显示，设置maxLines及copyOption属性均不生效，此时不支持ImageSpan组件，并且在文本不可滚动时，设置textAlign属性生效；在文本可滚动时，设置textAlign属性不生效。在跑马灯模式下，Text组件clip属性默认为true。属性字符串的[CustomSpan](ts-universal-styled-string.md#customspan)不支持跑马灯模式。
 
 从API version 12开始，当overflow设置为TextOverflow.MARQUEE时，支持ImageSpan组件，文本和图片在一行内滚动显示。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -82,6 +88,8 @@ maxLines(value: number)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -98,6 +106,8 @@ lineHeight(value: number | string | Resource)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -108,11 +118,13 @@ lineHeight(value: number | string | Resource)
 
 ### decoration
 
-decoration(value: { type: TextDecorationType; color?: ResourceColor })
+decoration(value: DecorationStyleInterface)
 
 设置文本装饰线样式及其颜色。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -120,7 +132,7 @@ decoration(value: { type: TextDecorationType; color?: ResourceColor })
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | {<br/>type:&nbsp;[TextDecorationType](ts-appendix-enums.md#textdecorationtype),<br/>color?:&nbsp;[ResourceColor](ts-types.md#resourcecolor)<br/>} | 是   | 文本装饰线样式及其颜色。<br />默认值：{<br/>type:&nbsp;TextDecorationType.None,<br/>color：Color.Black<br/>} |
+| value  | [DecorationStyleInterface<sup>12+</sup>](ts-universal-styled-string.md#decorationstyleinterface对象说明) | 是   | 文本装饰线样式对象。<br/>默认值：<br/>{<br/>&nbsp;type:&nbsp;TextDecorationType.None,<br/>&nbsp;color:&nbsp;Color.Black,<br/>&nbsp;style:&nbsp;TextDecorationStyle.SOLID&nbsp;<br/>} |
 
 ### baselineOffset
 
@@ -129,6 +141,8 @@ baselineOffset(value: number | string)
 设置文本基线的偏移量，设置该值为百分比时，按默认值显示。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -142,11 +156,13 @@ baselineOffset(value: number | string)
 
 letterSpacing(value: number | string)
 
-设置文本字符间距。设置该值为百分比时，按默认值显示。
+设置文本字符间距。设置该值为百分比时，按默认值显示。设置该值为0时，按默认值显示。
 
 当取值为负值时，文字会发生压缩，负值过小时会将组件内容区大小压缩为0，导致无内容显示。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -162,13 +178,15 @@ minFontSize(value: number | string | Resource)
 
 设置文本最小显示字号。
 
-需配合[maxFontSize](#maxfontsize)以及[maxlines](#maxlines)或布局大小限制使用，单独设置不生效，对子组件不生效。
+需配合[maxFontSize](#maxfontsize)以及[maxlines](#maxlines)或布局大小限制使用，单独设置不生效，对子组件和属性字符串不生效。
 
 自适应字号生效时，fontSize设置不生效。
 
 minFontSize小于或等于0时，自适应字号不生效。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -184,11 +202,13 @@ maxFontSize(value: number | string | Resource)
 
 设置文本最大显示字号。
 
-需配合[minFontSize](#minfontsize)以及[maxlines](#maxlines)或布局大小限制使用，单独设置不生效，对子组件不生效。
+需配合[minFontSize](#minfontsize)以及[maxlines](#maxlines)或布局大小限制使用，单独设置不生效，对子组件和属性字符串不生效。
 
 自适应字号生效时，fontSize设置不生效。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -206,6 +226,8 @@ textCase(value: TextCase)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -221,6 +243,8 @@ copyOption(value: CopyOptions)
 设置组件是否支持文本可复制粘贴。设置copyOptions为CopyOptions.InApp或者CopyOptions.LocalDevice，长按文本，会弹出文本选择菜单，可选中文本并进行复制、全选操作。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -240,6 +264,8 @@ draggable(value: boolean)
 
 需配合[CopyOptions](ts-appendix-enums.md#copyoptions9)一起使用，设置copyOptions为CopyOptions.InApp或者CopyOptions.LocalDevice，并且draggable设置为true时，支持对选中文本的拖拽以及选中内容复制到输入框。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -253,6 +279,8 @@ draggable(value: boolean)
 font(value: Font)
 
 设置文本样式。包括字体大小、字体粗细、字体族和字体风格。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -270,11 +298,11 @@ textShadow(value: ShadowOptions | Array&lt;ShadowOptions&gt;)
 
 不支持fill字段,不支持智能取色模式。
 
-Text组件clip属性默认为true，超出组件大小区域的内容（例如文字阴影）会被截断。在Text组件内容超出组件大小区域场景下，建议设置clip属性为false达到完整文字阴影效果。
-
 从API version 11开始，该接口支持以数组形式入参，实现多重文字阴影。
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -296,6 +324,8 @@ heightAdaptivePolicy(value: TextHeightAdaptivePolicy)
 
 当设置为TextHeightAdaptivePolicy.LAYOUT_CONSTRAINT_FIRST时，优先使用布局约束来调整文本高度。如果布局大小超过布局约束，则尝试在minFontSize和maxFontSize的范围内缩小字体以满足布局约束。如果将字体大小缩小到minFontSize后，布局大小仍然超过布局约束，则删除超过布局约束的行。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -309,6 +339,8 @@ heightAdaptivePolicy(value: TextHeightAdaptivePolicy)
 textIndent(value: Length)
 
 设置首行文本缩进。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -325,6 +357,8 @@ wordBreak(value: WordBreak)
 设置断行规则。WordBreak.BREAK_ALL与{overflow:&nbsp;TextOverflow.Ellipsis}，maxLines组合使用可实现英文单词按字母截断，超出部分以省略号显示
 
 **卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -350,6 +384,8 @@ selection(selectionStart: number, selectionEnd: number)
 
 **卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -369,6 +405,8 @@ EllipsisMode.START和EllipsisMode.CENTER仅在单行超长文本生效。
 
 **卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -383,13 +421,15 @@ enableDataDetector(enable: boolean)
 
 设置使能文本识别。所识别实体的fontColor和decoration会被更改为如下样式：
 
-fontColor：Color.Blue<br/>decoration:&nbsp;{<br/>type:&nbsp;TextDecorationType.Underline,<br/>color:&nbsp;Color.Blue<br/>}
+fontColor：Color.Blue<br/>decoration:&nbsp;{<br/>type:&nbsp;TextDecorationType.Underline,<br/>color:&nbsp;Color.Blue,<br/>style:&nbsp;TextDecorationStyle.SOLID<br/>}
 
 该接口依赖设备底层应具有文本识别能力，否则设置不会生效。
 
 当enableDataDetector设置为true，同时不设置dataDetectorConfig属性时，默认识别所有类型的实体。
 
 当copyOption设置为CopyOptions.None时，该功能不会生效。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -413,6 +453,8 @@ dataDetectorConfig(config: TextDataDetectorConfig)
 
 2.&nbsp;当A&nbsp;⊄&nbsp;B且B&nbsp;⊄&nbsp;A时，若A.start&nbsp;<&nbsp;B.start，则保留A，反之则保留B。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -431,6 +473,8 @@ bindSelectionMenu(spanType: TextSpanType, content: CustomBuilder, responseType: 
 bindSelectionMenu长按响应时长为600ms，bindContextMenu长按响应时长为800ms，同时绑定且触发方式均为长按时，优先响应bindSelectionMenu。
 
 自定义菜单超长时，建议内部嵌套[Scroll](./ts-container-scroll.md)组件使用，避免键盘被遮挡。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -465,6 +509,9 @@ fontFeature(value: string)
 | ------ | ------ | ---- | -------------- |
 | value  | string | 是   | 文字特性效果。 |
 
+fontFeature属性列表<br/>
+![alt text](figures/arkts-fontfeature.png)
+
 设置 Font Feature 属性，Font Feature 是 OpenType 字体的高级排版能力，如支持连字、数字等宽等特性，一般用在自定义字体中，其能力需要字体本身支持。
 更多 Font Feature 能力介绍可参考 https://www.w3.org/TR/css-fonts-3/#font-feature-settings-prop 和 https://sparanoid.com/lab/opentype-features/
 
@@ -472,13 +519,62 @@ fontFeature(value: string)
 >
 >  不支持Text内同时存在文本内容和Span或ImageSpan子组件。如果同时存在，只显示Span或ImageSpan内的内容。
 >
->  通用属性中形状裁剪[clip](ts-universal-attributes-sharp-clipping.md#clip)属性，在Text组件中，默认值为true，即文本内容大于组件内容时，文本会截断。如果需要显示超出的部分，可以设置clip为false。
->
 >  字体排版引擎会对开发者传入的宽度[width](ts-universal-attributes-size.md#width)进行向下取整，保证是整型像素后进行排版。如果字体排版引擎向上取整，可能会出现文字右侧被截断。
 >
 >  当多个Text组件在[Row](ts-container-row.md)容器内布局且没有设置具体的布局分配信息时，Text会以Row的最大尺寸进行布局。如果需要子组件主轴累加的尺寸不超过Row容器主轴的尺寸，可以设置[layoutWeight](ts-universal-attributes-size.md#layoutweight)或者是以[Flex](ts-universal-attributes-flex-layout.md)布局来约束子组件的主轴尺寸。
 
+### lineSpacing<sup>12+</sup>
+
+lineSpacing(value: LengthMetrics)
+
+设置文本的行间距，设置值不大于0时，取默认值0。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 说明             |
+| ------ | ------------------------------------------------------------ | ---- | ---------------- |
+| value  | [LengthMetrics](ts-types.md#lengthmetrics12) | 是   | 文本的行间距。默认值：0 |
+
+### privacySensitive<sup>12+</sup>
+
+privacySensitive(supported: boolean)
+
+设置是否支持卡片敏感隐私信息。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名    | 类型    | 必填 | 说明                     |
+| --------- | ------- | ---- | ------------------------ |
+| supported | boolean | 是   | 是否支持卡片敏感隐私信息 |
+
+### lineBreakStrategy<sup>12+</sup>
+
+lineBreakStrategy(value: LineBreakStrategy)
+
+设置折行规则。该属性在wordBreak不等于breakAll的时候生效，不支持连词符。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                          | 必填 | 说明                                          |
+| ------ | --------------------------------------------- | ---- | --------------------------------------------- |
+| value  | [LineBreakStrategy](ts-appendix-enums.md#linebreakstrategy12) | 否   | 文本的折行规则。 <br />默认值：LineBreakStrategy.GREEDY |
+
 ## TextDataDetectorConfig<sup>11+</sup>对象说明
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 | 参数名 | 类型  | 必填 | 说明  |
 | ------ | -------- | ---- | ------------------------------------------- |
 | types   | [TextDataDetectorType](ts-appendix-enums.md#textdatadetectortype11) | 是   | 设置文本识别的实体类型。设置types为null或者[]时，识别所有类型的实体，否则只识别指定类型的实体。 |
@@ -496,6 +592,8 @@ onCopy(callback:(value:&nbsp;string)&nbsp;=&gt;&nbsp;void)
 
 **卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -512,6 +610,8 @@ onTextSelectionChange(callback: (selectionStart: number, selectionEnd: number) =
 
 **卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -520,6 +620,22 @@ onTextSelectionChange(callback: (selectionStart: number, selectionEnd: number) =
 | -------------- | ------ | ---- | -------------------- |
 | selectionStart | number | 是   | 所选文本的起始位置。 |
 | selectionEnd   | number | 是   | 所选文本的结束位置。 |
+
+### onMarqueeStateChange<sup>12+</sup>
+
+onMarqueeStateChange(callback: Callback<MarqueeState>)
+
+跑马灯动画在开始、完成一次滚动和停止时，触发该回调。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名    | 类型                                  | 必填  | 说明                       |
+|--------|-------------------------------------|-----|--------------------------|
+| state  | [MarqueeState](#marqueestate12枚举说明) | 是   | 开始滚动时、每一次滚动时以及在滚动结束时触发。 |
 
 ## TextOptions<sup>11+</sup>
 
@@ -533,6 +649,8 @@ Text初始化参数。
 
 Text组件的控制器。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 ### 导入对象
 
 ```
@@ -544,6 +662,63 @@ controller: TextController = new TextController()
 closeSelectionMenu(): void
 
 关闭自定义选择菜单或系统默认选择菜单。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+### setStyledString<sup>12+</sup>
+
+setStyledString(value: StyledString): void
+
+触发绑定或更新属性字符串。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**参数：**
+
+| 参数名   | 参数类型   | 必填   | 参数描述                |
+| ----- | ------ | ---- | ------------------- |
+| value | [StyledString](ts-universal-styled-string.md#styledstring) | 是    | 属性字符串。<br/>**说明：** <br/>StyledString的子类[MutableStyledString](ts-universal-styled-string.md#mutablestyledstring)也可以作为入参值。 |
+
+## marqueeOptions<sup>12+</sup>
+
+当overflow设置为TextOverflow.MARQUEE时，可以进行初始化。
+
+| 名称             | 类型                                             | 必填 | 说明            |
+|----------------|------------------------------------------------| -------- |---------------|
+| marqueeOptions | [MarqueeOptions](#marqueeoptions12) | 是 | marquee自定义选项。 |
+
+## MarqueeOptions<sup>12+</sup>
+
+marquee初始化参数。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名                | 类型                                              | 必填 | 说明                                                                                  |
+|--------------------|-------------------------------------------------|----|-------------------------------------------------------------------------------------|
+| start              | boolean                                         | 是  | 控制跑马灯进入播放状态。                                                                        |
+| step               | number                                          | 否  | 滚动动画文本滚动步长。<br/>默认值：4.0vp                                                           |
+| loop               | number                                          | 否  | 设置重复滚动的次数，小于等于零时无限循环。<br/>默认值：-1                                                    |
+| fromStart          | boolean                                         | 否  | 设置文本从头开始滚动或反向滚动。<br/>默认值：true                                                       |
+| delay              | number                                          | 否  | 设置每次滚动的时间间隔。<br/>默认值：0                                                              |
+| fadeout            | boolean                                         | 否  | 设置文字超长渐隐。开启默认渐隐后，在非输入态默认使能；输入态超长时，有未展示的文字的一侧生效渐隐，两侧都有未展示的文字时，两侧同时渐隐。<br/>默认值：false  |
+| marqueeStartPolicy | [MarqueeStartPolicy](#marqueestartpolicy12枚举说明) | 否  | 设置跑马灯启动策略。<br/>默认值：MarqueeStartPolicy.DEFAULT                                       |
+
+## MarqueeStartPolicy<sup>12+</sup>枚举说明
+
+| 名称       | 描述            |
+|----------|---------------|
+| DEFAULT  | 默认持续滚动。       |
+| ON_FOCUS | 获焦以及鼠标悬浮时开始滚动。 |
+
+## MarqueeState<sup>12+</sup>枚举说明
+
+| 名称     | 描述                            |
+|--------|-------------------------------|
+| START  | 滚动开始时触发。                      |
+| BOUNCE | 完成一次滚动时触发，若循环次数不为1，则该事件会多次触发。 |
+| FINISH | 滚动全部循环次数完成时触发回调。              |
 
 ## 示例
 
@@ -632,6 +807,8 @@ struct TextExample1 {
 
 ### 示例2
 
+decoration、baselineOffset、letterSpacing、textCase属性接口使用示例
+
 ```ts
 @Entry
 @Component
@@ -653,7 +830,8 @@ struct TextExample2 {
       Text('This is the text content with the decoration set to Overline and the color set to Red.')
         .decoration({
           type: TextDecorationType.Overline,
-          color: Color.Red
+          color: Color.Red,
+          style: TextDecorationStyle.DOTTED
         })
         .fontSize(12)
         .border({ width: 1 })
@@ -664,7 +842,8 @@ struct TextExample2 {
       Text('This is the text content with the decoration set to Underline and the color set to Red.')
         .decoration({
           type: TextDecorationType.Underline,
-          color: Color.Red
+          color: Color.Red,
+          style: TextDecorationStyle.WAVY
         })
         .fontSize(12)
         .border({ width: 1 })
@@ -795,6 +974,24 @@ struct TextExample {
         .width(300)
         .borderWidth(1)
         .textOverflow({ overflow: TextOverflow.MARQUEE })
+        .marqueeOptions({
+            start:true,
+            fromStart: true,
+            step:6,
+            loop:-1,
+            delay:0,
+            fadeout:false,
+            marqueeStartPolicy:MarqueeStartPolicy.DEFAULT
+          })
+        .onMarqueeStateChange((state:MarqueeState)=>{
+            if(state == MarqueeState.START){
+              //"收到状态: START";
+            }else if(state == MarqueeState.BOUNCE){
+              //"收到状态: BOUNCE";
+            }else if(state == MarqueeState.FINISH){
+              //"收到状态: FINISH";
+            }
+          })
     }
   }
 }
@@ -821,6 +1018,7 @@ struct TextExample4 {
         .wordBreak(WordBreak.NORMAL)
         .lineHeight(20)
         .maxLines(2)
+        .clip(true)
       Text('WordBreakType:Normal且clip为false').fontSize(9).fontColor(0xCCCCCC)
       Text('This is set wordBreak to WordBreak text Taumatawhakatangihangakoauauotamateaturipukakapikimaungahoronukupokaiwhenuakitanatahu.')
         .fontSize(12)
@@ -964,7 +1162,10 @@ struct TextExample7 {
   }
 }
 ```
+![](figures/text7.png)
+
 ### 示例8
+
 bindSelectionMenu，onTextSelectionChange及closeSelectionMenu使用示例
 
 ```ts
@@ -1102,3 +1303,86 @@ struct text {
 ```
 
 ![fontFeature](figures/textFontFeature.png)
+
+### 示例10
+lineSpacing使用示例，对比了不设置lineSpacing与lineSpacing设置不同单位的效果。
+
+```ts
+import { LengthMetrics } from '@ohos.arkui.node'
+
+@Entry
+@Component
+struct LineSpacingExample {
+  build() {
+      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.SpaceBetween }) {
+        Text('TextArea lineSpacing.').fontSize(9).fontColor(0xCCCCCC)
+        Text('This is a context with no lineSpacing set.\nThis is a context with no lineSpacing set.')
+          .fontSize(12)
+          .border({ width: 1 })
+        Text( 'This is a context with lineSpacing set to 20_px.\nThis is a context with lineSpacing set to 20_px.')
+          .fontSize(12)
+          .border({ width: 1 })
+          .lineSpacing(LengthMetrics.px(20))
+        Text('This is the TextArea with lineSpacing set to 20_vp.\nThis is the TextArea with lineSpacing set to 20_vp.')
+          .fontSize(12)
+          .border({ width: 1 })
+          .lineSpacing(LengthMetrics.vp(20))
+        Text('This is the TextArea with lineSpacing set to 20_fp.\nThis is the TextArea with lineSpacing set to 20_fp.')
+          .fontSize(12)
+          .border({ width: 1 })
+          .lineSpacing(LengthMetrics.fp(20))
+        Text('This is the TextArea with lineSpacing set to 20_lpx.\nThis is the TextArea with lineSpacing set to 20_lpx.')
+          .fontSize(12)
+          .border({ width: 1 })
+          .lineSpacing(LengthMetrics.lpx(20))
+        Text('This is the TextArea with lineSpacing set to 100%.\nThis is the TextArea with lineSpacing set to 100%.')
+          .fontSize(12)
+          .border({ width: 1 })
+          .lineSpacing(LengthMetrics.percent(1))
+      }.height(600).width(350).padding({ left: 35, right: 35, top: 35 })
+  }
+}
+```
+
+![lineSpacing](figures/Text_lineSpacing.png)
+
+### 示例11
+lineBreakStrategy使用示例，对比了不设置lineBreakStrategy与lineBreakStrategy设置不同挡位的效果。
+
+```ts
+@Entry
+@Component
+struct TextExample1 {
+  @State message1: string = "They can be classified as built-in components–those directly provided by the ArkUI framework and custom components – those defined by developers" +
+    "The built-in components include buttons radio buttonsprogress indicators and text You can set the rendering effectof thesecomponents in method chaining mode," +
+    "page components are divided into independent UI units to implementindependent creation development and reuse of different units on pages making pages more engineering-oriented.";
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start }) {
+      Text('LineBreakStrategy.GREEDY').fontSize(9).fontColor(0xCCCCCC).width('90%').padding(10)
+      Text(this.message1)
+        .fontSize(12)
+        .border({ width: 1 })
+        .padding(10)
+        .width('100%')
+        .lineBreakStrategy(LineBreakStrategy.GREEDY)
+      Text('LineBreakStrategy.HIGH_QUALITY').fontSize(9).fontColor(0xCCCCCC).width('90%').padding(10)
+      Text(this.message1)
+        .fontSize(12)
+        .border({ width: 1 })
+        .padding(10)
+        .width('100%')
+        .lineBreakStrategy(LineBreakStrategy.HIGH_QUALITY)
+      Text('LineBreakStrategy.BALANCED').fontSize(9).fontColor(0xCCCCCC).width('90%').padding(10)
+      Text(this.message1)
+        .fontSize(12)
+        .border({ width: 1 })
+        .padding(10)
+        .width('100%')
+        .lineBreakStrategy(LineBreakStrategy.BALANCED)
+    }.height(700).width(370).padding({ left: 35, right: 35, top: 35 })
+  }
+}
+```
+
+![textLineBreakStrategy](figures/textLineBreakStrategy.PNG)

@@ -20,8 +20,9 @@
 
 ## 接口
 
-
 WaterFlow(options?:  WaterFlowOptions)
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -35,9 +36,10 @@ WaterFlow(options?:  WaterFlowOptions)
 
 | 参数名     | 参数类型                                        | 必填 | 参数描述                                     |
 | ---------- | ----------------------------------------------- | ------ | -------------------------------------------- |
-| footer |  [CustomBuilder](ts-types.md#custombuilder8) | 否   | 设置WaterFlow尾部组件。  |
-| scroller | [Scroller](ts-container-scroll.md#scroller) | 否   | 可滚动组件的控制器，与可滚动组件绑定。<br/>**说明：** <br/>不允许和其他滚动类组件，如：[List](ts-container-list.md)、[Grid](ts-container-grid.md)、[Scroll](ts-container-scroll.md)等绑定同一个滚动控制对象。 |
+| footer |  [CustomBuilder](ts-types.md#custombuilder8) | 否   | 设置WaterFlow尾部组件。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| scroller | [Scroller](ts-container-scroll.md#scroller) | 否   | 可滚动组件的控制器，与可滚动组件绑定。<br/>**说明：** <br/>不允许和其他滚动类组件，如：[List](ts-container-list.md)、[Grid](ts-container-grid.md)、[Scroll](ts-container-scroll.md)等绑定同一个滚动控制对象。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 | sections<sup>12+</sup> |  [WaterFlowSections](#waterflowsections12) | 否   | 设置FlowItem分组，实现同一个瀑布流组件内部各分组使用不同列数混合布局。<br/>**说明：** <br/>1. 使用分组混合布局时会忽略columnsTemplate和rowsTemplate属性。<br/>2. 使用分组混合布局时不支持单独设置footer，可以使用最后一个分组作为尾部组件。  |
+| layoutMode<sup>12+</sup> |[WaterFlowLayoutMode](#waterflowlayoutmode12) | 否 | 设置WaterFlow的布局模式，根据使用场景选择更切合的模式。<br/>**说明：** <br/>默认值：[ALWAYS_TOP_DOWN](#waterflowlayoutmode12)。
 
 
 ## WaterFlowSections<sup>12+</sup>
@@ -160,6 +162,14 @@ type GetItemMainSizeByIndex = (index: number) => number
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | number | 指定index的FlowItem的主轴大小，纵向瀑布流时为高度，横向瀑布流时为宽度，单位vp。 |
 
+## WaterFlowLayoutMode<sup>12+</sup>
+
+| 名称 | 描述 |
+| ------ | -------------------- |
+| ALWAYS_TOP_DOWN | 默认的从上到下的布局模式。视窗内的FlowItem依赖视窗上方所有FlowItem的布局信息。因此跳转或切换列数时，需要计算出上方所有的FlowItem的布局信息。 |
+| SLIDING_WINDOW | 移动窗口式的布局模式。只考虑视窗内的布局信息，对视窗上方的FlowItem没有依赖关系，因此跳转或切换列数时只需要布局视窗内的FlowItem。有频繁切换列数或无动画跳转场景的应用建议使用该模式。 <br/>**说明：** <br/>1. 无动画跳转到较远的位置时，会以目标位置为基准，向前或向后布局FlowItem。这之后如果滑回跳转前的位置，内容的布局效果可能和之前不一致。 这个效果会导致跳转后回滑到顶部时，顶部节点可能不对齐。所以该布局模式下会在滑动到顶部后自动调整布局，保证顶部对齐。<br/> 2. 该模式不支持使用滚动条，就算设置了滚动条也无法显示。 <br/> 3. 不支持[scroller](#waterflowoptions对象说明)的[ScrollTo](ts-container-scroll.md#scrollTo)接口。 <br/> 3. 不支持[WaterFlowSection](#waterflowsections12)分段布局。 |
+
+
 ## 属性
 
 除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
@@ -173,6 +183,8 @@ columnsTemplate(value: string)
 例如, '1fr 1fr 2fr' 是将父组件分3列，将父组件允许的宽分为4等份，第一列占1份，第二列占1份，第三列占2份。
 
 可使用columnsTemplate('repeat(auto-fill,track-size)')根据给定的列宽track-size自动计算列数，其中repeat、auto-fill为关键字，track-size为可设置的宽度，支持的单位包括px、vp、%或有效数字，默认单位为vp，使用方法参见示例2。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -192,6 +204,8 @@ rowsTemplate(value: string)
 
 可使用rowsTemplate('repeat(auto-fill,track-size)')根据给定的行高track-size自动计算行数，其中repeat、auto-fill为关键字，track-size为可设置的高度，支持的单位包括px、vp、%或有效数字，默认单位为vp。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -205,6 +219,8 @@ rowsTemplate(value: string)
 itemConstraintSize(value: ConstraintSizeOptions)
 
 设置约束尺寸，子组件布局时，进行尺寸范围限制。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -220,6 +236,8 @@ columnsGap(value: Length)
 
 设置列与列的间距。 
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -234,6 +252,8 @@ rowsGap(value: Length)
 
 设置行与行的间距。 
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -247,6 +267,8 @@ rowsGap(value: Length)
 layoutDirection(value: FlexDirection)
 
 设置布局的主轴方向。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -276,6 +298,8 @@ enableScrollInteraction(value: boolean)
 
 设置是否支持滚动手势，当设置为false时，无法通过手指或者鼠标滚动，但不影响控制器的滚动接口。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -289,6 +313,8 @@ enableScrollInteraction(value: boolean)
 nestedScroll(value: NestedScrollOptions)
 
 设置向前向后两个方向上的嵌套滚动模式，实现与父组件的滚动联动。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -304,19 +330,23 @@ friction(value: number | Resource)
 
 设置摩擦系数，手动划动滚动区域时生效，只对惯性滚动过程有影响，对惯性滚动过程中的链式效果有间接影响。设置为小于等于0的值时，按默认值处理。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
 
 | 参数名 | 类型                                                 | 必填 | 说明                                                      |
 | ------ | ---------------------------------------------------- | ---- | --------------------------------------------------------- |
-| value  | number&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 摩擦系数。<br/>默认值：非可穿戴设备为0.6，可穿戴设备为0.9 |
+| value  | number&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 摩擦系数。<br/>默认值：非可穿戴设备为0.6，可穿戴设备为0.9。<br/>从API version 11开始，非可穿戴设备默认值为0.7。 |
 
 ### cachedCount<sup>11+</sup>
 
 cachedCount(value: number)
 
 设置预加载的FlowItem的数量，只在LazyForEach中生效。设置该属性后会缓存cachedCount个FlowItem。[LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md)超出显示和缓存范围的FlowItem会被释放。设置为小于0的值时，按默认值显示。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -332,6 +362,8 @@ scrollBar(barState: BarState)
 
 设置滚动条状态。滚动条位置和长度以已布局过的总高度和当前偏移为准，在瀑布流布局全部子节点之前随着滑动持续变化。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -344,7 +376,9 @@ scrollBar(barState: BarState)
 
 scrollBarWidth(value: number | string)
 
-设置滚动条的宽度，不支持百分比设置。如果滚动条的宽度超过其高度，则滚动条的宽度会变为默认值。
+设置滚动条的宽度，不支持百分比设置。宽度设置后，滚动条正常状态和按压状态宽度均为滚动条的宽度值。如果滚动条的宽度超过WaterFlow组件主轴方向的高度，则滚动条的宽度会变为默认值。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -359,6 +393,8 @@ scrollBarWidth(value: number | string)
 scrollBarColor(color: Color | number | string)
 
 设置滚动条的颜色。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -375,6 +411,8 @@ edgeEffect(value: EdgeEffect, options?: EdgeEffectOptions)
 设置边缘滑动效果。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -409,6 +447,8 @@ onReachStart(event: () => void)
 
 瀑布流组件到达起始位置时触发。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ### onReachEnd
@@ -416,6 +456,8 @@ onReachStart(event: () => void)
 onReachEnd(event: () => void)
 
 瀑布流组件到底末尾位置时触发。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -426,6 +468,8 @@ onScrollFrameBegin(event: (offset: number, state: ScrollState) => { offsetRemain
 瀑布流开始滑动时触发，事件参数传入即将发生的滑动量，事件处理函数中可根据应用场景计算实际需要的滑动量并作为事件处理函数的返回值返回，瀑布流将按照返回值的实际滑动量进行滑动。
 
 触发该事件的条件：手指拖动WaterFlow、WaterFlow惯性划动时每帧开始时触发；WaterFlow超出边缘回弹、使用滚动控制器和拖动滚动条的滚动不会触发。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -449,6 +493,8 @@ onScrollIndex(event: (first: number, last: number) => void)
 当前瀑布流显示的起始位置/终止位置的子组件发生变化时触发。瀑布流初始化时会触发一次。
 
 瀑布流显示区域上第一个子组件/最后一个组件的索引值有变化就会触发。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -579,6 +625,13 @@ export class WaterFlowDataSource implements IDataSource {
   notifyDataMove(from: number, to: number): void {
     this.listeners.forEach(listener => {
       listener.onDataMove(from, to)
+    })
+  }
+
+  //通知控制器数据批量修改
+  notifyDatasetChange(operations: DataOperation[]): void {
+    this.listeners.forEach(listener => {
+      listener.onDatasetChange(operations);
     })
   }
 
@@ -732,6 +785,19 @@ struct WaterFlowDemo {
       .backgroundColor(0xFAEEE0)
       .width('100%')
       .height('100%')
+      .onReachStart(() => {
+        console.info('waterFlow reach start')
+      })
+      .onScrollStart(() => {
+        console.info('waterFlow scroll start')
+      })
+      .onScrollStop(() => {
+        console.info('waterFlow scroll stop')
+      })
+      .onScrollFrameBegin((offset: number, state: ScrollState) => {
+        console.info('waterFlow scrollFrameBegin offset: ' + offset + ' state: ' + state.toString())
+        return { offsetRemain: offset }
+      })
     }
   }
 }
@@ -1011,3 +1077,121 @@ struct WaterFlowDemo {
 ```
 
 ![waterflowSections.png](figures/waterflowSections.png)
+
+### 示例4
+双指缩放改变列数。
+
+```ts
+// Index.ets
+import { WaterFlowDataSource } from './WaterFlowDataSource'
+
+@Reusable
+@Component
+struct ReusableFlowItem {
+  @State item: number = 0
+
+  // 从复用缓存中加入到组件树之前调用，可在此处更新组件的状态变量以展示正确的内容
+  aboutToReuse(params: Record<string, number>) {
+    this.item = params.item;
+    console.info('Reuse item:' + this.item)
+  }
+
+  aboutToAppear() {
+    console.info('item:' + this.item)
+  }
+
+  build() {
+    Column() {
+      Text("N" + this.item).fontSize(12).height('16')
+      Image('res/waterFlow (' + this.item % 5 + ').JPG')
+        .objectFit(ImageFit.Fill)
+        .width('100%')
+        .layoutWeight(1)
+    }
+  }
+}
+
+@Entry
+@Component
+struct WaterFlowDemo {
+  minSize: number = 80
+  maxSize: number = 180
+  colors: number[] = [0xFFC0CB, 0xDA70D6, 0x6B8E23, 0x6A5ACD, 0x00FFFF, 0x00FF7F]
+  @State columns: number = 2
+  dataSource: WaterFlowDataSource = new WaterFlowDataSource()
+  private itemWidthArray: number[] = []
+  private itemHeightArray: number[] = []
+
+  // 计算FlowItem宽/高
+  getSize() {
+    let ret = Math.floor(Math.random() * this.maxSize)
+    return (ret > this.minSize ? ret : this.minSize)
+  }
+
+  // 设置FlowItem的宽/高数组
+  setItemSizeArray() {
+    for (let i = 0; i < 100; i++) {
+      this.itemWidthArray.push(this.getSize())
+      this.itemHeightArray.push(this.getSize())
+    }
+  }
+
+  aboutToAppear() {
+    let lastCount = AppStorage.get<number>('columnsCount')
+    if (typeof lastCount != 'undefined') {
+      this.columns = lastCount
+    }
+    this.setItemSizeArray()
+  }
+
+  build() {
+    Column({ space: 2 }) {
+      Row() {
+        Text('双指缩放改变列数')
+          .height('5%')
+          .margin({ top: 10, left: 20 })
+      }
+
+      WaterFlow() {
+        LazyForEach(this.dataSource, (item: number) => {
+          FlowItem() {
+            ReusableFlowItem({ item: item })
+          }
+          .width('100%')
+          .height(this.itemHeightArray[item % 100])
+          .backgroundColor(this.colors[item % 5])
+        }, (item: string) => item)
+      }
+      .columnsTemplate('1fr '.repeat(this.columns))
+      .columnsGap(10)
+      .rowsGap(5)
+      .backgroundColor(0xFAEEE0)
+      .width('100%')
+      .height('100%')
+      .layoutWeight(1)
+      // 切换列数item位置重排动画
+      .animation({
+        duration: 300,
+        curve: Curve.Smooth
+      })
+      .priorityGesture(
+        PinchGesture()
+          .onActionEnd((event: GestureEvent) => {
+            console.info('end scale:' + event.scale)
+            // 手指分开，减少列数以放大item，触发阈值可以自定义，示例为2
+            if (event.scale > 2) {
+              this.columns--
+            } else if (event.scale < 0.6) {
+              this.columns++
+            }
+            // 可以根据设备屏幕宽度设定最大和最小列数，此处以最小1列最大4列为例
+            this.columns = Math.min(4, Math.max(1, this.columns));
+            AppStorage.setOrCreate<number>('columnsCount', this.columns)
+          })
+      )
+    }
+  }
+}
+```
+
+![pinch](figures/waterflow-pinch.gif)

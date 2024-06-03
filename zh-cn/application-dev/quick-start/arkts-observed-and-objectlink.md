@@ -7,7 +7,8 @@
 > **说明：**
 >
 > 从API version 9开始，这两个装饰器支持在ArkTS卡片中使用。
-
+>
+> 从API version 11开始，这两个装饰器支持在元服务中使用。
 
 ## 概述
 
@@ -17,7 +18,7 @@
 
 - 子组件中\@ObjectLink装饰器装饰的状态变量用于接收\@Observed装饰的类的实例，和父组件中对应的状态变量建立双向数据绑定。这个实例可以是数组中的被\@Observed装饰的项，或者是class object中的属性，这个属性同样也需要被\@Observed装饰。
 
-- 单独使用\@Observed是没有任何作用的，需要搭配\@ObjectLink或者[\@Prop](arkts-prop.md)使用。
+- \@Observed用于嵌套类场景中，观察对象类属性变化，要配合自定义组件使用（示例详见[嵌套对象](#嵌套对象)），如果要做数据双/单向同步，需要搭配\@ObjectLink或者\@Prop使用（示例详见[\@Prop与\@ObjectLink的差异](#prop与objectlink的差异)）。
 
 
 ## 限制条件
@@ -117,7 +118,7 @@ this.b.b = 5
 this.b.a.c = 5
 ```
 
-\@ObjectLink：\@ObjectLink只能接收被\@Observed装饰class的实例，可以观察到：
+\@ObjectLink：\@ObjectLink只能接收被\@Observed装饰class的实例，推荐设计单独的自定义组件来渲染每一个数组或对象。此时，对象数组或嵌套对象（属性是对象的对象称为嵌套对象）需要两个自定义组件，一个自定义组件呈现外部数组/对象，另一个自定义组件呈现嵌套在数组/对象内的类对象。可以观察到：
 
 - 其属性的数值的变化，其中属性是指Object.keys(observedObject)返回的所有属性，示例请参考[嵌套对象](#嵌套对象)。
 
@@ -203,8 +204,6 @@ struct ViewB {
 
 ### 嵌套对象
 
-以下是嵌套类对象的数据结构。
-
 > **说明：**
 >
 > NextID是用来在[ForEach循环渲染](./arkts-rendering-control-foreach.md)过程中，为每个数组元素生成一个唯一且持久的键值，用于标识对应的组件。
@@ -215,71 +214,97 @@ struct ViewB {
 let NextID: number = 1;
 
 @Observed
-class ClassA {
+class Bag {
   public id: number;
-  public c: number;
+  public size: number;
 
-  constructor(c: number) {
+  constructor(size: number) {
     this.id = NextID++;
-    this.c = c;
+    this.size = size;
   }
 }
 
 @Observed
-class ClassB {
-  public a: ClassA;
+class User {
+  public bag: Bag;
 
-  constructor(a: ClassA) {
-    this.a = a;
+  constructor(bag: Bag) {
+    this.bag = bag;
   }
 }
 
 @Observed
-class ClassD {
-  public c: ClassC;
+class Book {
+  public bookName: BookName;
 
-  constructor(c: ClassC) {
-    this.c = c;
+  constructor(bookName: BookName) {
+    this.bookName = bookName;
   }
 }
 
 @Observed
-class ClassC extends ClassA {
-  public k: number;
+class BookName extends Bag {
+  public nameSize: number;
 
-  constructor(k: number) {
-    // 调用父类方法对k进行处理
-    super(k);
-    this.k = k;
+  constructor(nameSize: number) {
+    // 调用父类方法对nameSize进行处理
+    super(nameSize);
+    this.nameSize = nameSize;
   }
 }
-```
 
+@Component
+struct ViewA {
+  label: string = 'ViewA';
+  @ObjectLink bag: Bag;
 
-  以下组件层次结构呈现的是嵌套类对象的数据结构。
+  build() {
+    Column() {
+      Text(`ViewC [${this.label}] this.bag.size = ${this.bag.size}`)
+        .fontColor('#ffffffff')
+        .backgroundColor('#ff3d9dba')
+        .width(320)
+        .height(50)
+        .borderRadius(25)
+        .margin(10)
+        .textAlign(TextAlign.Center)
+      Button(`ViewA: this.bag.size add 1`)
+        .width(320)
+        .backgroundColor('#ff17a98d')
+        .margin(10)
+        .onClick(() => {
+          this.bag.size += 1;
+        })
+    }
+  }
+}
 
-```ts
 @Component
 struct ViewC {
   label: string = 'ViewC1';
-  @ObjectLink c: ClassC;
+  @ObjectLink bookName: BookName;
 
   build() {
     Row() {
       Column() {
-        Text(`ViewC [${this.label}] this.a.c = ${this.c.c}`)
+        Text(`ViewC [${this.label}] this.bookName.size = ${this.bookName.size}`)
           .fontColor('#ffffffff')
-          .backgroundColor('#ff3fc4c4')
+          .backgroundColor('#ff3d9dba')
+          .width(320)
           .height(50)
           .borderRadius(25)
-        Button(`ViewC: this.c.c add 1`)
-          .backgroundColor('#ff7fcf58')
+          .margin(10)
+          .textAlign(TextAlign.Center)
+        Button(`ViewC: this.bookName.size add 1`)
+          .width(320)
+          .backgroundColor('#ff17a98d')
+          .margin(10)
           .onClick(() => {
-            this.c.c += 1;
-            console.log('this.c.c:' + this.c.c)
+            this.bookName.size += 1;
+            console.log('this.bookName.size:' + this.bookName.size)
           })
       }
-      .width(300)
+      .width(320)
     }
   }
 }
@@ -287,23 +312,43 @@ struct ViewC {
 @Entry
 @Component
 struct ViewB {
-  @State b: ClassB = new ClassB(new ClassA(0));
-  @State child: ClassD = new ClassD(new ClassC(0));
+  @State user: User = new User(new Bag(0));
+  @State child: Book = new Book(new BookName(0));
 
   build() {
     Column() {
-      ViewC({ label: 'ViewC #3',
-        c: this.child.c })
-      Button(`ViewC: this.child.c.c add 10`)
-        .backgroundColor('#ff7fcf58')
+      ViewA({ label: 'ViewA #1', bag: this.user.bag })
+        .width(320)
+      ViewC({ label: 'ViewC #3', bookName: this.child.bookName })
+        .width(320)
+      Button(`ViewC: this.child.bookName.size add 10`)
+        .width(320)
+        .backgroundColor('#ff17a98d')
+        .margin(10)
         .onClick(() => {
-          this.child.c.c += 10
-          console.log('this.child.c.c:' + this.child.c.c)
+          this.child.bookName.size += 10
+          console.log('this.child.bookName.size:' + this.child.bookName.size)
+        })
+      Button(`ViewB: this.user.bag = new Bag(10)`)
+        .width(320)
+        .backgroundColor('#ff17a98d')
+        .margin(10)
+        .onClick(() => {
+          this.user.bag = new Bag(10);
+        })
+      Button(`ViewB: this.user = new User(new Bag(20))`)
+        .width(320)
+        .backgroundColor('#ff17a98d')
+        .margin(10)
+        .onClick(() => {
+          this.user = new User(new Bag(20));
         })
     }
   }
 }
 ```
+
+![Observed_ObjectLink_nested_object](figures/Observed_ObjectLink_nested_object.gif)
 
 被@Observed装饰的ClassC类，可以观测到继承基类的属性的变化。
 
@@ -311,17 +356,17 @@ struct ViewB {
 ViewB中的事件句柄：
 
 
-- this.child.c = new ClassA(0) 和this.b = new ClassB(new ClassA(0))： 对\@State装饰的变量b和其属性的修改。
+- this.user.bag = new Bag(10) 和this.user = new User(new Bag(20))： 对@State装饰的变量b和其属性的修改。
 
-- this.child.c.c = ... ：该变化属于第二层的变化，@State无法观察到第二层的变化，但是ClassA被\@Observed装饰，ClassA的属性c的变化可以被\@ObjectLink观察到。
+- this.child.bookName.size += ... ：该变化属于第二层的变化，@State无法观察到第二层的变化，但是ClassA被\@Observed装饰，ClassA的属性c的变化可以被\@ObjectLink观察到。
 
 
 ViewC中的事件句柄：
 
 
-- this.c.c += 1：对\@ObjectLink变量a的修改，将触发Button组件的刷新。\@ObjectLink和\@Prop不同，\@ObjectLink不拷贝来自父组件的数据源，而是在本地构建了指向其数据源的引用。
+- this.bookName.size += 1：对\@ObjectLink变量c的修改，将触发Button组件的刷新。\@ObjectLink和\@Prop不同，\@ObjectLink不拷贝来自父组件的数据源，而是在本地构建了指向其数据源的引用。
 
-- \@ObjectLink变量是只读的，this.a = new ClassA(...)是不允许的，因为一旦赋值操作发生，指向数据源的引用将被重置，同步将被打断。
+- \@ObjectLink变量是只读的，this.bookName = new bookName(...)是不允许的，因为一旦赋值操作发生，指向数据源的引用将被重置，同步将被打断。
 
 
 ### 对象数组
@@ -352,6 +397,8 @@ struct ViewA {
   build() {
     Row() {
       Button(`ViewA [${this.label}] this.a.c = ${this.a ? this.a.c : "undefined"}`)
+        .width(320)
+        .margin(10)
         .onClick(() => {
           this.a.c += 1;
         })
@@ -378,14 +425,20 @@ struct ViewB {
       ViewA({ label: `ViewA this.arrA[last]`, a: this.arrA[this.arrA.length-1] })
 
       Button(`ViewB: reset array`)
+        .width(320)
+        .margin(10)
         .onClick(() => {
           this.arrA = [new ClassA(0), new ClassA(0)];
         })
       Button(`ViewB: push`)
+        .width(320)
+        .margin(10)
         .onClick(() => {
           this.arrA.push(new ClassA(0))
         })
       Button(`ViewB: shift`)
+        .width(320)
+        .margin(10)
         .onClick(() => {
           if (this.arrA.length > 0) {
             this.arrA.shift()
@@ -394,10 +447,14 @@ struct ViewB {
           }
         })
       Button(`ViewB: chg item property in middle`)
+        .width(320)
+        .margin(10)
         .onClick(() => {
           this.arrA[Math.floor(this.arrA.length / 2)].c = 10;
         })
       Button(`ViewB: chg item property in middle`)
+        .width(320)
+        .margin(10)
         .onClick(() => {
           this.arrA[Math.floor(this.arrA.length / 2)] = new ClassA(11);
         })
@@ -405,6 +462,8 @@ struct ViewB {
   }
 }
 ```
+
+![Observed_ObjectLink_object_array](figures/Observed_ObjectLink_object_array.gif)
 
 - this.arrA[Math.floor(this.arrA.length/2)] = new ClassA(..) ：该状态变量的改变触发2次更新：
   1. ForEach：数组项的赋值导致ForEach的[itemGenerator](arkts-rendering-control-foreach.md#接口描述)被修改，因此数组项被识别为有更改，ForEach的item builder将执行，创建新的ViewA组件实例。
@@ -500,6 +559,8 @@ struct IndexPage {
 }
 ```
 
+![Observed_ObjectLink_2D_array](figures/Observed_ObjectLink_2D_array.gif)
+
 ### 继承Map类
 
 > **说明：**
@@ -562,18 +623,30 @@ struct MapSampleNestedChild {
           Divider()
         })
 
-        Button('set new one').onClick(() => {
-          this.myMap.set(4, "d")
-        })
-        Button('clear').onClick(() => {
-          this.myMap.clear()
-        })
-        Button('replace the first one').onClick(() => {
-          this.myMap.set(0, "aa")
-        })
-        Button('delete the first one').onClick(() => {
-          this.myMap.delete(0)
-        })
+        Button('set new one')
+          .width(200)
+          .margin(10)
+          .onClick(() => {
+            this.myMap.set(4, "d")
+          })
+        Button('clear')
+          .width(200)
+          .margin(10)
+          .onClick(() => {
+            this.myMap.clear()
+          })
+        Button('replace the first one')
+          .width(200)
+          .margin(10)
+          .onClick(() => {
+            this.myMap.set(0, "aa")
+          })
+        Button('delete the first one')
+          .width(200)
+          .margin(10)
+          .onClick(() => {
+            this.myMap.delete(0)
+          })
       }
       .width('100%')
     }
@@ -581,6 +654,8 @@ struct MapSampleNestedChild {
   }
 }
 ```
+
+![Observed_ObjectLink_inherit_map](figures/Observed_ObjectLink_inherit_map.gif)
 
 ### 继承Set类
 
@@ -642,15 +717,24 @@ struct SetSampleNestedChild {
           Text(`${item}`).fontSize(30)
           Divider()
         })
-        Button('set new one').onClick(() => {
-          this.mySet.add(5)
-        })
-        Button('clear').onClick(() => {
-          this.mySet.clear()
-        })
-        Button('delete the first one').onClick(() => {
-          this.mySet.delete(0)
-        })
+        Button('set new one')
+          .width(200)
+          .margin(10)
+          .onClick(() => {
+            this.mySet.add(5)
+          })
+        Button('clear')
+          .width(200)
+          .margin(10)
+          .onClick(() => {
+            this.mySet.clear()
+          })
+        Button('delete the first one')
+          .width(200)
+          .margin(10)
+          .onClick(() => {
+            this.mySet.delete(0)
+          })
       }
       .width('100%')
     }
@@ -658,6 +742,8 @@ struct SetSampleNestedChild {
   }
 }
 ```
+
+![Observed_ObjectLink_inherit_set](figures/Observed_ObjectLink_inherit_set.gif)
 
 ## ObjectLink支持联合类型
 
@@ -739,6 +825,8 @@ struct Child {
   }
 }
 ```
+
+![ObjectLink-support-union-types](figures/ObjectLink-support-union-types.gif)
 
 ## 常见问题
 
@@ -844,7 +932,7 @@ struct Parent {
 
 在应用开发中，有很多嵌套对象场景，例如，开发者更新了某个属性，但UI没有进行对应的更新。
 
-每个装饰器都有自己可以观察的能力，并不是所有的改变都可以被观察到，只有可以被观察到的变化才会进行UI更新。\@Observed装饰器可以观察到嵌套对象的属性变化，其他装饰器仅能观察到第二层的变化。
+每个装饰器都有自己可以观察的能力，并不是所有的改变都可以被观察到，只有可以被观察到的变化才会进行UI更新。\@Observed装饰器可以观察到嵌套对象的属性变化，其他装饰器仅能观察到第一层的变化。
 
 【反例】
 
@@ -1560,7 +1648,9 @@ struct ParentComp {
 
 ### 在@Observed装饰类的构造函数中延时更改成员变量
 
-在状态管理中，使用@Observed装饰类后，会给该类使用一层“代理”进行包装。当在组件中改变该类的成员变量时，会被该代理进行拦截，在更改数据源中值的同时，也会将变化通知给绑定的组件，从而实现观测变化与触发刷新。当开发者在类的构造函数中对成员变量进行赋值或者修改时，此修改不会经过代理（因为是直接对数据源中的值进行修改），也就无法被观测到。所以，如果开发者在类的构造函数中使用定时器修改类中的成员变量，即使该修改成功执行了，也不会触发UI的刷新。
+在状态管理中，使用@Observed装饰类后，会给该类使用一层“代理”进行包装。当在组件中改变该类的成员变量时，会被该代理进行拦截，在更改数据源中值的同时，也会将变化通知给绑定的组件，从而实现观测变化与触发刷新。
+
+当开发者在类的构造函数中对成员变量进行赋值或者修改时，此修改不会经过代理（因为是直接对数据源中的值进行修改），也就无法被观测到。所以，如果开发者在类的构造函数中使用定时器修改类中的成员变量，即使该修改成功执行了，也不会触发UI的刷新。
 
 【反例】
 
@@ -1652,65 +1742,3 @@ struct Index {
 
 因此，更推荐开发者在组件中对@Observed装饰的类成员变量进行修改实现刷新。
 
-### 在@Observed装饰的类内使用static方法进行初始化
-
-在@Observed装饰的类内，尽量避免使用static方法进行初始化，在创建时会绕过Observed的实现，导致无法被代理，UI不刷新。
-
-```ts
-@Entry
-@Component
-struct MainPage {
-  @State viewModel: ViewModel = ViewModel.build();
-
-  build() {
-    Column() {
-      Button("Click")
-        .onClick((event) => {
-          this.viewModel.subViewModel.isShow = !this.viewModel.subViewModel.isShow;
-        })
-      SubComponent({ viewModel: this.viewModel.subViewModel })
-    }
-    .padding({ top: 60 })
-    .width('100%')
-    .alignItems(HorizontalAlign.Center)
-  }
-}
-
-@Component
-struct SubComponent {
-  @ObjectLink viewModel: SubViewModel;
-
-  build() {
-    Column() {
-      if (this.viewModel.isShow) {
-        Text("click to take effect");
-      }
-    }
-  }
-}
-
-class ViewModel {
-  subViewModel: SubViewModel = SubViewModel.build(); //内部静态方法创建
-
-  static build() {
-    console.log("ViewModel build()")
-    return new ViewModel();
-  }
-}
-
-@Observed
-class SubViewModel {
-  isShow?: boolean = false;
-
-  static build() {
-    //只有在SubViewModel内部的静态方法创建对象，会影响关联
-    console.log("SubViewModel build()")
-    let viewModel = new SubViewModel();
-    return viewModel;
-  }
-}
-```
-
-上文的示例中，在自定义组件ViewModel中使用static方法进行初始化，此时点击Click按钮，页面中并不会显示click to take effect。
-
-因此，不推荐开发者在自定义的类装饰器内使用static方法进行初始化。

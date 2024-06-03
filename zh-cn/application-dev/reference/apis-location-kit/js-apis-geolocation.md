@@ -50,7 +50,7 @@ import geolocation from '@ohos.geolocation';
 
 on(type: 'locationChange', request: LocationRequest, callback: Callback&lt;Location&gt;): void
 
-开启位置变化订阅，并发起定位请求。
+开启位置变化订阅，并发起定位请求。使用callback异步回调。
 
 > **说明：**<br/>
 > 从API version 9开始废弃，建议使用[geoLocationManager.on('locationChange')](js-apis-geoLocationManager.md#geolocationmanageronlocationchange)替代。
@@ -65,7 +65,7 @@ on(type: 'locationChange', request: LocationRequest, callback: Callback&lt;Locat
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 设置事件类型。type为“locationChange”，表示位置变化。 |
   | request |  [LocationRequest](#locationrequestdeprecated) | 是 | 设置位置请求参数。 |
-  | callback | Callback&lt;[Location](#locationdeprecated)&gt; | 是 | 接收位置变化状态变化监听。 |
+  | callback | Callback&lt;[Location](#locationdeprecated)&gt; | 是 | 回调函数，返回位置信息。 |
 
 
 
@@ -119,7 +119,7 @@ off(type: 'locationChange', callback?: Callback&lt;Location&gt;): void
 
 on(type: 'locationServiceState', callback: Callback&lt;boolean&gt;): void
 
-订阅位置服务状态变化。
+订阅位置服务状态变化。使用callback异步回调。
 
 > **说明：**<br/>
 > 从API version 9开始废弃，建议使用[geoLocationManager.on('locationEnabledChange')](js-apis-geoLocationManager.md#geolocationmanageronlocationenabledchange)替代。
@@ -133,7 +133,7 @@ on(type: 'locationServiceState', callback: Callback&lt;boolean&gt;): void
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 设置事件类型。type为“locationServiceState”，表示位置服务状态。 |
-  | callback | Callback&lt;boolean&gt; | 是 | 接收位置服务状态变化监听。 |
+  | callback | Callback&lt;boolean&gt; | 是 | 回调函数。返回true表示打开位置服务；返回false表示关闭位置服务。 |
 
 
 **示例**
@@ -184,7 +184,7 @@ off(type: 'locationServiceState', callback?: Callback&lt;boolean&gt;): void;
 
 on(type: 'cachedGnssLocationsReporting', request: CachedGnssLocationsRequest, callback: Callback&lt;Array&lt;Location&gt;&gt;): void;
 
-订阅缓存GNSS定位结果上报事件。
+订阅缓存GNSS定位结果上报事件。使用callback异步回调。
 
 > **说明：**<br/>
 > 从API version 8开始支持。
@@ -200,7 +200,7 @@ on(type: 'cachedGnssLocationsReporting', request: CachedGnssLocationsRequest, ca
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 设置事件类型。type为“cachedGnssLocationsReporting”，表示GNSS缓存定位结果上报。 |
   | request |  [CachedGnssLocationsRequest](#cachedgnsslocationsrequestdeprecated) | 是 | GNSS缓存功能配置参数 |
-  | callback | Callback&lt;Array&lt;[Location](#locationdeprecated)&gt;&gt; | 是 | 接收GNSS缓存位置上报。 |
+  | callback | Callback&lt;Array&lt;[Location](#locationdeprecated)&gt;&gt; | 是 | 回调函数，返回GNSS缓存位置。 |
 
 
 **示例**
@@ -254,7 +254,7 @@ off(type: 'cachedGnssLocationsReporting', callback?: Callback&lt;Array&lt;Locati
 
 on(type: 'gnssStatusChange', callback: Callback&lt;SatelliteStatusInfo&gt;): void;
 
-订阅GNSS卫星状态信息上报事件。
+订阅GNSS卫星状态信息上报事件。使用callback异步回调。
 
 > **说明：**<br/>
 > 从API version 8开始支持。
@@ -269,7 +269,7 @@ on(type: 'gnssStatusChange', callback: Callback&lt;SatelliteStatusInfo&gt;): voi
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 设置事件类型。type为“gnssStatusChange”，表示订阅GNSS卫星状态信息上报。 |
-  | callback | Callback&lt;[SatelliteStatusInfo](#satellitestatusinfodeprecated)&gt; | 是 | 接收GNSS卫星状态信息上报。 |
+  | callback | Callback&lt;[SatelliteStatusInfo](#satellitestatusinfodeprecated)&gt; | 是 | 回调函数，返回GNSS卫星状态信息。 |
 
 
 **示例**
@@ -320,7 +320,7 @@ off(type: 'gnssStatusChange', callback?: Callback&lt;SatelliteStatusInfo&gt;): v
 
 on(type: 'nmeaMessageChange', callback: Callback&lt;string&gt;): void;
 
-订阅GNSS NMEA信息上报事件。
+订阅GNSS NMEA信息上报事件。使用callback异步回调。
 
 > **说明：**<br/>
 > 从API version 8开始支持。
@@ -335,7 +335,7 @@ on(type: 'nmeaMessageChange', callback: Callback&lt;string&gt;): void;
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 设置事件类型。type为“nmeaMessageChange”，表示订阅GNSS&nbsp;NMEA信息上报。 |
-  | callback | Callback&lt;string&gt; | 是 | 接收GNSS&nbsp;NMEA信息上报。 |
+  | callback | Callback&lt;string&gt; | 是 | 回调函数，返回GNSS&nbsp;NMEA信息。 |
 
 
 **示例**
@@ -387,7 +387,7 @@ off(type: 'nmeaMessageChange', callback?: Callback&lt;string&gt;): void;
 
 on(type: 'fenceStatusChange', request: GeofenceRequest, want: WantAgent): void;
 
-添加一个围栏，并订阅地理围栏事件。
+添加一个围栏，并订阅地理围栏事件。使用callback异步回调。
 
 > **说明：**<br/>
 > 从API version 8开始支持。
@@ -484,7 +484,7 @@ off(type: 'fenceStatusChange', request: GeofenceRequest, want: WantAgent): void;
 
 getCurrentLocation(request: CurrentLocationRequest, callback: AsyncCallback&lt;Location&gt;): void
 
-获取当前位置，使用callback回调异步返回结果。
+获取当前位置，使用callback异步回调。
 
 > **说明：**<br/>
 > 从API version 9开始废弃，建议使用[geoLocationManager.getCurrentLocation](js-apis-geoLocationManager.md#geolocationmanagergetcurrentlocation)替代。
@@ -498,7 +498,7 @@ getCurrentLocation(request: CurrentLocationRequest, callback: AsyncCallback&lt;L
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | request | [CurrentLocationRequest](#currentlocationrequestdeprecated) | 是 | 设置位置请求参数。 |
-  | callback | AsyncCallback&lt;[Location](#locationdeprecated)&gt; | 是 | 用来接收位置信息的回调。 |
+  | callback | AsyncCallback&lt;[Location](#locationdeprecated)&gt; | 是 | 回调函数，返回当前位置信息。 |
 
 **示例**
 
@@ -523,7 +523,7 @@ getCurrentLocation(request: CurrentLocationRequest, callback: AsyncCallback&lt;L
 getCurrentLocation(callback: AsyncCallback&lt;Location&gt;): void
 
 
-获取当前位置，使用callback回调异步返回结果。
+获取当前位置，使用callback异步回调。
 
 > **说明：**<br/>
 > 从API version 9开始废弃，建议使用[geoLocationManager.getCurrentLocation](js-apis-geoLocationManager.md#geolocationmanagergetcurrentlocation)替代。
@@ -536,7 +536,7 @@ getCurrentLocation(callback: AsyncCallback&lt;Location&gt;): void
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;[Location](#locationdeprecated)&gt; | 是 | 用来接收位置信息的回调。 |
+  | callback | AsyncCallback&lt;[Location](#locationdeprecated)&gt; | 是 | 回调函数，返回当前位置信息。 |
 
 **示例**
 
@@ -559,7 +559,7 @@ getCurrentLocation(callback: AsyncCallback&lt;Location&gt;): void
 
 getCurrentLocation(request?: CurrentLocationRequest): Promise&lt;Location&gt;
 
-获取当前位置，使用Promise方式异步返回结果。
+获取当前位置，使用Promise异步回调。
 
 > **说明：**<br/>
 > 从API version 9开始废弃，建议使用[geoLocationManager.getCurrentLocation](js-apis-geoLocationManager.md#geolocationmanagergetcurrentlocation-2)替代。
@@ -578,7 +578,7 @@ getCurrentLocation(request?: CurrentLocationRequest): Promise&lt;Location&gt;
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;[Location](#locationdeprecated)&gt; | 以Promise形式返回位置信息。 |
+  | Promise&lt;[Location](#locationdeprecated)&gt; | Promise对象，返回当前位置信息。 |
 
 
 **示例**
@@ -596,7 +596,7 @@ getCurrentLocation(request?: CurrentLocationRequest): Promise&lt;Location&gt;
 
 getLastLocation(callback: AsyncCallback&lt;Location&gt;): void
 
-获取上一次位置，使用callback回调异步返回结果。
+获取上一次位置，使用callback异步回调。
 
 > **说明：**<br/>
 > 从API version 9开始废弃，建议使用[geoLocationManager.getLastLocation](js-apis-geoLocationManager.md#geolocationmanagergetlastlocation)替代。
@@ -609,7 +609,7 @@ getLastLocation(callback: AsyncCallback&lt;Location&gt;): void
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;[Location](#locationdeprecated)&gt; | 是 | 用来接收上次位置的回调。 |
+  | callback | AsyncCallback&lt;[Location](#locationdeprecated)&gt; | 是 | 回调函数，返回上次位置信息。 |
 
 
 **示例**
@@ -631,7 +631,7 @@ getLastLocation(callback: AsyncCallback&lt;Location&gt;): void
 
 getLastLocation(): Promise&lt;Location&gt;
 
-获取上一次位置，使用Promise方式异步返回结果。
+获取上一次位置，使用Promise异步回调。
 
 > **说明：**<br/>
 > 从API version 9开始废弃，建议使用[geoLocationManager.getLastLocation](js-apis-geoLocationManager.md#geolocationmanagergetlastlocation)替代。
@@ -644,7 +644,7 @@ getLastLocation(): Promise&lt;Location&gt;
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;[Location](#locationdeprecated)&gt; | 以Promise形式返回上次位置信息。 |
+  | Promise&lt;[Location](#locationdeprecated)&gt; | Promise对象，返回上次位置信息。 |
 
 
 **示例**
@@ -661,7 +661,7 @@ getLastLocation(): Promise&lt;Location&gt;
 
 isLocationEnabled(callback: AsyncCallback&lt;boolean&gt;): void
 
-判断位置服务是否已经打开，使用callback回调异步返回结果。
+判断位置服务是否已经打开，使用callback异步回调。
 
 > **说明：**<br/>
 > 从API version 9开始废弃，建议使用[geoLocationManager.isLocationEnabled](js-apis-geoLocationManager.md#geolocationmanagerislocationenabled)替代。
@@ -674,7 +674,7 @@ isLocationEnabled(callback: AsyncCallback&lt;boolean&gt;): void
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;boolean&gt; | 是 | 用来接收位置服务状态的回调。 |
+  | callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数。返回true表示位置服务已经开启；返回false表示位置服务已经关闭。 |
 
 **示例**
 
@@ -695,7 +695,7 @@ isLocationEnabled(callback: AsyncCallback&lt;boolean&gt;): void
 
 isLocationEnabled(): Promise&lt;boolean&gt;
 
-判断位置服务是否已经开启，使用Promise方式异步返回结果。
+判断位置服务是否已经开启，使用Promise异步回调。
 
 > **说明：**<br/>
 > 从API version 9开始废弃，建议使用[geoLocationManager.isLocationEnabled](js-apis-geoLocationManager.md#geolocationmanagerislocationenabled)替代。
@@ -708,7 +708,7 @@ isLocationEnabled(): Promise&lt;boolean&gt;
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;boolean&gt; | 以Promise形式返回位置服务是否可用的状态。 |
+  | Promise&lt;boolean&gt; | Promise对象，返回true表示位置服务已经开启；返回false表示位置服务已经关闭。 |
 
 **示例**
 
@@ -724,7 +724,7 @@ isLocationEnabled(): Promise&lt;boolean&gt;
 
 requestEnableLocation(callback: AsyncCallback&lt;boolean&gt;): void
 
-请求打开位置服务，使用callback回调异步返回结果。
+请求打开位置服务，使用callback异步回调。
 
 > **说明：**<br/>
 > 从API version 9开始废弃，建议由应用本身弹框请求用户跳转到settings开启位置开关，并且在弹框上写清楚会在什么场景下使用位置信息。
@@ -737,7 +737,7 @@ requestEnableLocation(callback: AsyncCallback&lt;boolean&gt;): void
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;boolean&gt; | 是 | 用来接收位置服务状态的回调。 |
+  | callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数。返回true表示打开位置服务；返回false表示关闭位置服务。 |
 
 **示例**
 
@@ -758,7 +758,7 @@ requestEnableLocation(callback: AsyncCallback&lt;boolean&gt;): void
 
 requestEnableLocation(): Promise&lt;boolean&gt;
 
-请求打开位置服务，使用Promise方式异步返回结果。
+请求打开位置服务，使用Promise异步回调。
 
 > **说明：**<br/>
 > 从API version 9开始废弃，建议由应用本身弹框请求用户跳转到settings开启位置开关，并且在弹框上写清楚会在什么场景下使用位置信息。
@@ -771,7 +771,7 @@ requestEnableLocation(): Promise&lt;boolean&gt;
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;boolean&gt; | 以Promise形式返回位置服务是否可用的状态。 |
+  | Promise&lt;boolean&gt; | Promise对象，返回true表示位置服务已经开启；返回false表示位置服务已经关闭。 |
 
 **示例**
 
@@ -787,7 +787,7 @@ requestEnableLocation(): Promise&lt;boolean&gt;
 
 isGeoServiceAvailable(callback: AsyncCallback&lt;boolean&gt;): void
 
-判断（逆）地理编码服务状态，使用callback回调异步返回结果。
+判断（逆）地理编码服务状态，使用callback异步回调。
 
 > **说明：**<br/>
 > 从API version 9开始废弃，建议使用[geoLocationManager.isGeocoderAvailable](js-apis-geoLocationManager.md#geolocationmanagerisgeocoderavailable)替代。
@@ -800,7 +800,7 @@ isGeoServiceAvailable(callback: AsyncCallback&lt;boolean&gt;): void
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;boolean&gt; | 是 | 用来接收地理编码服务状态的回调。 |
+  | callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数，返回true表示地理编码服务可用；返回false表示地理编码服务不可用。 |
 
 **示例**
 
@@ -821,7 +821,7 @@ isGeoServiceAvailable(callback: AsyncCallback&lt;boolean&gt;): void
 
 isGeoServiceAvailable(): Promise&lt;boolean&gt;
 
-判断（逆）地理编码服务状态，使用Promise方式异步返回结果。
+判断（逆）地理编码服务状态，使用Promise异步回调。
 
 > **说明：**<br/>
 > 从API version 9开始废弃，建议使用[geoLocationManager.isGeocoderAvailable](js-apis-geoLocationManager.md#geolocationmanagerisgeocoderavailable)替代。
@@ -834,7 +834,7 @@ isGeoServiceAvailable(): Promise&lt;boolean&gt;
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;boolean&gt; | 以Promise形式返回地理编码服务是否可用的状态。 |
+  | Promise&lt;boolean&gt; | Promise对象，返回true表示地理编码服务可用；返回false表示地理编码服务不可用。 |
 
 **示例**
 
@@ -850,7 +850,7 @@ isGeoServiceAvailable(): Promise&lt;boolean&gt;
 
 getAddressesFromLocation(request: ReverseGeoCodeRequest, callback: AsyncCallback&lt;Array&lt;GeoAddress&gt;&gt;): void
 
-调用逆地理编码服务，将坐标转换为地理描述，使用callback回调异步返回结果。
+调用逆地理编码服务，将坐标转换为地理描述，使用callback异步回调。
 
 > **说明：**<br/>
 > 从API version 9开始废弃，建议使用[geoLocationManager.getAddressesFromLocation](js-apis-geoLocationManager.md#geolocationmanagergetaddressesfromlocation)替代。
@@ -864,7 +864,7 @@ getAddressesFromLocation(request: ReverseGeoCodeRequest, callback: AsyncCallback
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | request | [ReverseGeoCodeRequest](#reversegeocoderequestdeprecated) | 是 | 设置逆地理编码请求的相关参数。 |
-  | callback | AsyncCallback&lt;Array&lt;[GeoAddress](#geoaddressdeprecated)&gt;&gt; | 是 | 设置接收逆地理编码请求的回调参数。 |
+  | callback | AsyncCallback&lt;Array&lt;[GeoAddress](#geoaddressdeprecated)&gt;&gt; | 是 | 回调函数，返回逆地理编码结果。 |
 
 **示例**
 
@@ -886,7 +886,7 @@ getAddressesFromLocation(request: ReverseGeoCodeRequest, callback: AsyncCallback
 
 getAddressesFromLocation(request: ReverseGeoCodeRequest): Promise&lt;Array&lt;GeoAddress&gt;&gt;;
 
-调用逆地理编码服务，将坐标转换为地理描述，使用Promise方式异步返回结果。
+调用逆地理编码服务，将坐标转换为地理描述，使用Promise异步回调。
 
 > **说明：**<br/>
 > 从API version 9开始废弃，建议使用[geoLocationManager.getAddressesFromLocation](js-apis-geoLocationManager.md#geolocationmanagergetaddressesfromlocation-1)替代。
@@ -905,7 +905,7 @@ getAddressesFromLocation(request: ReverseGeoCodeRequest): Promise&lt;Array&lt;Ge
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;Array&lt;[GeoAddress](#geoaddressdeprecated)&gt;&gt; | 以Promise形式返回地理描述信息。 |
+  | Promise&lt;Array&lt;[GeoAddress](#geoaddressdeprecated)&gt;&gt; | Promise对象，返回地理描述信息。 |
 
 **示例**
 
@@ -922,7 +922,7 @@ getAddressesFromLocation(request: ReverseGeoCodeRequest): Promise&lt;Array&lt;Ge
 
 getAddressesFromLocationName(request: GeoCodeRequest, callback: AsyncCallback&lt;Array&lt;GeoAddress&gt;&gt;): void
 
-调用地理编码服务，将地理描述转换为具体坐标，使用callback回调异步返回结果。
+调用地理编码服务，将地理描述转换为具体坐标，使用callback异步回调。
 
 > **说明：**<br/>
 > 从API version 9开始废弃，建议使用[geoLocationManager.getAddressesFromLocationName](js-apis-geoLocationManager.md#geolocationmanagergetaddressesfromlocationname)替代。
@@ -936,7 +936,7 @@ getAddressesFromLocationName(request: GeoCodeRequest, callback: AsyncCallback&lt
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | request | [GeoCodeRequest](#geocoderequestdeprecated) | 是 | 设置地理编码请求的相关参数。 |
-  | callback | AsyncCallback&lt;Array&lt;[GeoAddress](#geoaddressdeprecated)&gt;&gt; | 是 | 设置接收地理编码请求的回调参数。 |
+  | callback | AsyncCallback&lt;Array&lt;[GeoAddress](#geoaddressdeprecated)&gt;&gt; | 是 | 回调函数，返回地理编码结果。 |
 
 **示例**
 
@@ -958,7 +958,7 @@ getAddressesFromLocationName(request: GeoCodeRequest, callback: AsyncCallback&lt
 
 getAddressesFromLocationName(request: GeoCodeRequest): Promise&lt;Array&lt;GeoAddress&gt;&gt;
 
-调用地理编码服务，将地理描述转换为具体坐标，使用Promise方式异步返回结果。
+调用地理编码服务，将地理描述转换为具体坐标，使用Promise异步回调。
 
 > **说明：**<br/>
 > 从API version 9开始废弃，建议使用[geoLocationManager.getAddressesFromLocationName](js-apis-geoLocationManager.md#geolocationmanagergetaddressesfromlocationname-1)替代。
@@ -977,7 +977,7 @@ getAddressesFromLocationName(request: GeoCodeRequest): Promise&lt;Array&lt;GeoAd
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;Array&lt;[GeoAddress](#geoaddressdeprecated)&gt;&gt; | 以Promise形式返回地理编码请求的结果。 |
+  | Promise&lt;Array&lt;[GeoAddress](#geoaddressdeprecated)&gt;&gt; | Promise对象，返回地理编码查询结果。 |
 
 **示例**
 
@@ -994,7 +994,7 @@ getAddressesFromLocationName(request: GeoCodeRequest): Promise&lt;Array&lt;GeoAd
 
 getCachedGnssLocationsSize(callback: AsyncCallback&lt;number&gt;): void;
 
-获取GNSS芯片缓存位置的个数。
+获取GNSS芯片缓存位置的个数。使用callback异步回调。
 
 > **说明：**<br/>
 > 从API version 8开始支持。
@@ -1008,7 +1008,7 @@ getCachedGnssLocationsSize(callback: AsyncCallback&lt;number&gt;): void;
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;number&gt; | 是 | 用来接收GNSS芯片缓存位置个数的回调。 |
+  | callback | AsyncCallback&lt;number&gt; | 是 | 回调函数，返回GNSS芯片缓存位置个数。 |
 
 **示例**
 
@@ -1029,7 +1029,7 @@ getCachedGnssLocationsSize(callback: AsyncCallback&lt;number&gt;): void;
 
 getCachedGnssLocationsSize(): Promise&lt;number&gt;;
 
-获取GNSS芯片缓存位置的个数。
+获取GNSS芯片缓存位置的个数。使用Promise异步回调。
 
 > **说明：**<br/>
 > 从API version 8开始支持。
@@ -1043,7 +1043,7 @@ getCachedGnssLocationsSize(): Promise&lt;number&gt;;
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;number&gt; | 以Promise形式返回GNSS缓存位置的个数。 |
+  | Promise&lt;number&gt; | Promise对象，返回GNSS缓存位置的个数。 |
 
 **示例**
 
@@ -1059,7 +1059,7 @@ getCachedGnssLocationsSize(): Promise&lt;number&gt;;
 
 flushCachedGnssLocations(callback: AsyncCallback&lt;boolean&gt;): void;
 
-读取并清空GNSS芯片所有缓存位置。
+读取并清空GNSS芯片所有缓存位置。使用callback异步回调。
 
 > **说明：**<br/>
 > 从API version 8开始支持。
@@ -1073,7 +1073,7 @@ flushCachedGnssLocations(callback: AsyncCallback&lt;boolean&gt;): void;
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;boolean&gt; | 是 | 用来接收清空GNSS芯片缓存位置操作的结果。 |
+  | callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数。返回true表示操作成功；返回false表示操作失败。 |
 
 **示例**
 
@@ -1094,7 +1094,7 @@ flushCachedGnssLocations(callback: AsyncCallback&lt;boolean&gt;): void;
 
 flushCachedGnssLocations(): Promise&lt;boolean&gt;;
 
-读取并清空GNSS芯片所有缓存位置。
+读取并清空GNSS芯片所有缓存位置。使用Promise异步回调。
 
 > **说明：**<br/>
 > 从API version 8开始支持。
@@ -1108,7 +1108,7 @@ flushCachedGnssLocations(): Promise&lt;boolean&gt;;
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;boolean&gt;| 以Promise形式返回清空所有GNSS缓存位置结果。 |
+  | Promise&lt;boolean&gt;| Promise对象，返回true表示操作成功；返回false表示操作失败。 |
 
 **示例**
 
@@ -1124,7 +1124,7 @@ flushCachedGnssLocations(): Promise&lt;boolean&gt;;
 
 sendCommand(command: LocationCommand, callback: AsyncCallback&lt;boolean&gt;): void;
 
-给位置服务子系统的各个部件发送扩展命令。
+给位置服务子系统的各个部件发送扩展命令。使用callback异步回调。
 
 > **说明：**<br/>
 > 从API version 8开始支持。
@@ -1139,7 +1139,7 @@ sendCommand(command: LocationCommand, callback: AsyncCallback&lt;boolean&gt;): v
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | command |  [LocationCommand](#locationcommanddeprecated) | 是 | 指定目标场景，和将要发送的命令（字符串）。 |
-  | callback | AsyncCallback&lt;boolean&gt; | 是 | 用来接收命令发送的结果。 |
+  | callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数。返回true表示命令发送成功；返回false表示命令发送失败。 |
 
 **示例**
 
@@ -1161,7 +1161,7 @@ sendCommand(command: LocationCommand, callback: AsyncCallback&lt;boolean&gt;): v
 
 sendCommand(command: LocationCommand): Promise&lt;boolean&gt;;
 
-给位置服务子系统的各个部件发送扩展命令。
+给位置服务子系统的各个部件发送扩展命令。使用Promise异步回调。
 
 > **说明：**<br/>
 > 从API version 8开始支持。
@@ -1181,7 +1181,7 @@ sendCommand(command: LocationCommand): Promise&lt;boolean&gt;;
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise&lt;boolean&gt; | 以Promise形式返回命令发送成功或失败结果。 |
+  | Promise&lt;boolean&gt; | Promise对象，返回true表示命令发送成功；返回false表示命令发送失败。 |
 
 **示例**
 
@@ -1224,7 +1224,7 @@ sendCommand(command: LocationCommand): Promise&lt;boolean&gt;;
 
 **系统能力**：SystemCapability.Location.Location.Geocoder
 
-| 名称 | 类型 | 可读|可写 | 说明 |
+| 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | locale | string | 是 | 是 | 表示位置描述信息的语言，“zh”代表中文，“en”代表英文。 |
 | description | string | 是 | 是 | 表示位置信息描述，如“上海市浦东新区xx路xx号”。 |
@@ -1246,7 +1246,7 @@ sendCommand(command: LocationCommand): Promise&lt;boolean&gt;;
 
 **系统能力**：SystemCapability.Location.Location.Geocoder
 
-| 名称 | 类型 | 可读|可写 | 说明 |
+| 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | latitude<sup>7+</sup> | number | 是 | 否 | 表示纬度信息，正值表示北纬，负值表示南纬。取值范围为-90到90。 |
 | longitude<sup>7+</sup> | number | 是 | 否 | 表示经度信息，正值表示东经，负值表是西经。取值范围为-180到180。 |
@@ -1279,7 +1279,7 @@ sendCommand(command: LocationCommand): Promise&lt;boolean&gt;;
 
 **系统能力**：SystemCapability.Location.Location.Core
 
-| 名称 | 类型 | 可读|可写 | 说明 |
+| 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | priority | [LocationRequestPriority](#locationrequestprioritydeprecated) | 是 | 是 | 表示优先级信息。取值范围见[LocationRequestPriority](#locationrequestprioritydeprecated)的定义。 |
 | scenario | [LocationRequestScenario](#locationrequestscenariodeprecated) | 是 | 是 | 表示场景信息。取值范围见[LocationRequestScenario](#locationrequestscenariodeprecated)的定义。 |
@@ -1299,7 +1299,7 @@ sendCommand(command: LocationCommand): Promise&lt;boolean&gt;;
 
 **系统能力**：SystemCapability.Location.Location.Core
 
-| 名称 | 类型 | 可读|可写 | 说明 |
+| 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | priority | [LocationRequestPriority](#locationrequestprioritydeprecated) | 是 | 是 | 表示优先级信息。取值范围见[LocationRequestPriority](#locationrequestprioritydeprecated)的定义。 |
 | scenario | [LocationRequestScenario](#locationrequestscenariodeprecated) | 是 | 是 | 表示场景信息。取值范围见[LocationRequestScenario](#locationrequestscenariodeprecated)的定义。 |
@@ -1319,7 +1319,7 @@ sendCommand(command: LocationCommand): Promise&lt;boolean&gt;;
 
 **系统能力**：SystemCapability.Location.Location.Gnss
 
-| 名称 | 类型 | 可读|可写 | 说明 |
+| 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | satellitesNumber | number | 是 | 否 | 表示卫星个数。取值范围为大于等于0。 |
 | satelliteIds | Array&lt;number&gt; | 是 | 否 | 表示每个卫星的ID，数组类型。取值范围为大于等于0。 |
@@ -1341,7 +1341,7 @@ sendCommand(command: LocationCommand): Promise&lt;boolean&gt;;
 
 **系统能力**：SystemCapability.Location.Location.Gnss
 
-| 名称 | 类型 | 可读|可写 | 说明 |
+| 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | reportingPeriodSec | number | 是 | 是 | 表示GNSS缓存位置上报的周期，单位是毫秒。取值范围为大于0。 |
 | wakeUpCacheQueueFull | boolean | 是 | 是  | true表示GNSS芯片底层缓存队列满之后会主动唤醒AP芯片，并把缓存位置上报给应用。<br/>false表示GNSS芯片底层缓存队列满之后不会主动唤醒AP芯片，会把缓存位置直接丢弃。 |
@@ -1359,7 +1359,7 @@ GNSS围栏的配置参数。目前只支持圆形围栏。
 
 **系统能力**：SystemCapability.Location.Location.Geofence
 
-| 名称 | 类型 | 可读|可写 | 说明 |
+| 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | latitude | number | 是 | 是 |表示纬度。取值范围为-90到90。 |
 | longitude | number | 是 |是 | 表示经度。取值范围为-180到180。 |
@@ -1369,7 +1369,7 @@ GNSS围栏的配置参数。目前只支持圆形围栏。
 
 ## GeofenceRequest<sup>(deprecated)</sup>
 
-请求添加GNSS围栏消息中携带的参数，包括定位优先级、定位场景和围栏信息。
+请求添加GNSS围栏消息中携带的参数，包括定位场景和围栏信息。
 
 > **说明：**<br/>
 > 从API version 8开始支持。
@@ -1379,7 +1379,7 @@ GNSS围栏的配置参数。目前只支持圆形围栏。
 
 **系统能力**：SystemCapability.Location.Location.Geofence
 
-| 名称 | 类型 | 可读|可写 | 说明 |
+| 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | priority | [LocationRequestPriority](#locationrequestprioritydeprecated) | 是 | 是  | 表示位置信息优先级。 |
 | scenario | [LocationRequestScenario](#locationrequestscenariodeprecated) | 是 | 是  | 表示定位场景。 |
@@ -1398,7 +1398,7 @@ GNSS围栏的配置参数。目前只支持圆形围栏。
 
 **系统能力**：SystemCapability.Location.Location.Core
 
-| 名称 | 类型 | 可读|可写 | 说明 |
+| 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | scenario | [LocationRequestScenario](#locationrequestscenariodeprecated)  | 是 | 是  | 表示定位场景。 |
 | command | string | 是 | 是  | 扩展命令字符串。 |
@@ -1415,7 +1415,7 @@ GNSS围栏的配置参数。目前只支持圆形围栏。
 
 **系统能力**：SystemCapability.Location.Location.Core
 
-| 名称 | 类型 | 可读|可写 | 说明 |
+| 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | latitude<sup>7+</sup> | number | 是 | 否 | 表示纬度信息，正值表示北纬，负值表示南纬。取值范围为-90到90。 |
 | longitude<sup>7+</sup> | number | 是 | 否 | 表示经度信息，正值表示东经，负值表是西经。取值范围为-180到180。 |

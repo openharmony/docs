@@ -32,7 +32,7 @@ This topic elaborates steps 3 and 4.
 
 - For a user_grant permission, show a rationale to the user in a UI element, clearly explaining why your application needs the permission. Based on the rationale, the user then determines whether to grant the permission.
 
-- The authorization dialog box cannot be displayed again if the user denies the authorization. The application needs to provide information to guide the user to manually grant permissions on **Settings**.
+- Frequent pop-up windows may disturb user experience and are not recommended. If a user rejects the authorization, the window for requesting user authorization will not be displayed again. The application needs to provide information to guide the user to manually grant the permission in **Settings**.
 
 
 ## How to Develop
@@ -50,9 +50,8 @@ The following example steps you through on how to request the permission for usi
    Use [checkAccessToken()](../../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#checkaccesstoken9) to check whether the user has already granted the permission that your application requires. If yes, the application can use the microphone. Otherwise, user authorization is required.
 
    ```ts
-   import bundleManager from '@ohos.bundle.bundleManager';
-   import abilityAccessCtrl, { Permissions } from '@ohos.abilityAccessCtrl';
-   import { BusinessError } from '@ohos.base';
+   import { abilityAccessCtrl, bundleManager, Permissions } from '@kit.AbilityKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    
    const permissions: Array<Permissions> = ['ohos.permission.MICROPHONE'];
    
@@ -98,18 +97,16 @@ The following example steps you through on how to request the permission for usi
    Use [requestPermissionsFromUser()](../../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9) to request user authorization. You can specify a list of permissions, such as the permission to access the location, Calendar, camera, or microphone, in the **Array<Permissions>** parameter of this API. The user can grant or deny the permissions.
 
    You can have [requestPermissionsFromUser()](../../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9) called in **onWindowStageCreate()** of the UIAbility to dynamically request user authorization, or request user authorization on the UI based on service requirements.
+   <!--RP1-->
 
    - Sample code for requesting user authorization using UIAbility
       
       ```ts
-      import UIAbility from '@ohos.app.ability.UIAbility';
-      import window from '@ohos.window';
-      import abilityAccessCtrl, { Permissions } from '@ohos.abilityAccessCtrl';
-      import common from '@ohos.app.ability.common';
-      import { BusinessError } from '@ohos.base';
+      import { abilityAccessCtrl, common, Permissions, UIAbility } from '@kit.AbilityKit';
+      import { window } from '@kit.ArkUI';
+      import { BusinessError } from '@kit.BasicServicesKit';
       
       const permissions: Array<Permissions> = ['ohos.permission.MICROPHONE'];
-      
       function reqPermissionsFromUser(permissions: Array<Permissions>, context: common.UIAbilityContext): void {
         let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
         // Determine whether to display a user authorization dialog box based on the return value of requestPermissionsFromUser.
@@ -129,11 +126,13 @@ The following example steps you through on how to request the permission for usi
           console.error(`Failed to request permissions from user. Code is ${err.code}, message is ${err.message}`);
         })
       }
-      
       export default class EntryAbility extends UIAbility {
         onWindowStageCreate(windowStage: window.WindowStage): void {
-          reqPermissionsFromUser(permissions, this.context);
           // ...
+          windowStage.loadContent('pages/Index', (err, data) => {
+            reqPermissionsFromUser(permissions, this.context);
+          // ...
+          });
         }
       
         // ...
@@ -143,12 +142,10 @@ The following example steps you through on how to request the permission for usi
    - Sample code for requesting user authorization on the UI
 
       ```ts
-      import abilityAccessCtrl, { Permissions } from '@ohos.abilityAccessCtrl';
-      import common from '@ohos.app.ability.common';
-      import { BusinessError } from '@ohos.base';
+      import { abilityAccessCtrl, common, Permissions } from '@kit.AbilityKit';
+      import { BusinessError } from '@kit.BasicServicesKit';
       
       const permissions: Array<Permissions> = ['ohos.permission.MICROPHONE'];
-      
       function reqPermissionsFromUser(permissions: Array<Permissions>, context: common.UIAbilityContext): void {
         let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
         // Determine whether to display a user authorization dialog box based on the return value of requestPermissionsFromUser.
@@ -182,27 +179,10 @@ The following example steps you through on how to request the permission for usi
         }
       }
       ```
+   <!--RP1End-->
 
 4. Perform subsequent operations based on the authorization result.
-   
+
    After [requestPermissionsFromUser()](../../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9) is called, the application waits for the user authorization result. If the user has granted the permission, the application can use the microphone. Otherwise, display a message indicating that user authorization is required, and direct the user to set the permission in the **Settings** page.
 
-   ```ts
-   import Want from '@ohos.app.ability.Want';
-   import common from '@ohos.app.ability.common';
-   import { BusinessError } from '@ohos.base';
-   
-   function openPermissionsInSystemSettings(context: common.UIAbilityContext): void {
-     let wantInfo: Want = {
-       action: 'action.settings.app.info',
-       parameters: {
-         settingsParamBundleName: 'com.example.myapplication' // Open the Details page of the application.
-       }
-     }
-     context.startAbility(wantInfo).then(() => {
-       // ...
-     }).catch((err: BusinessError) => {
-       // ...
-     })
-   }
-   ```
+   Path: **Settings**\> **Privacy**\> **Permission manager**\> **Apps**\> Target app

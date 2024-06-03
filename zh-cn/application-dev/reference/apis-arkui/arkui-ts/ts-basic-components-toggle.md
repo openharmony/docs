@@ -15,7 +15,9 @@
 
 Toggle(options: { type: ToggleType, isOn?: boolean })
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **参数:**
 
@@ -27,13 +29,15 @@ Toggle(options: { type: ToggleType, isOn?: boolean })
 
 ## ToggleType枚举说明
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称       | 描述                 |
 | -------- | ---------------- |
-| Checkbox | 提供单选框样式。<br>**说明：**<br/>API version 11开始，Checkbox默认样式由圆角方形变为圆形。<br/>[通用属性margin](ts-universal-attributes-size.md)的默认值为：<br>{<br>&nbsp;top: '14px',<br>&nbsp;right: '14px',<br>&nbsp;bottom: '14px',<br>&nbsp;left: '14px'<br> }。<br/>默认尺寸为:<br>{width:'20vp', height:'20vp'}。|
+| Checkbox | 提供单选框样式。<br>**说明：**<br/>API version 11开始，Checkbox默认样式由圆角方形变为圆形。<br/>[通用属性margin](ts-universal-attributes-size.md#margin)的默认值为：<br>{<br>&nbsp;top: '14px',<br>&nbsp;right: '14px',<br>&nbsp;bottom: '14px',<br>&nbsp;left: '14px'<br> }。<br/>默认尺寸为:<br>{width:'20vp', height:'20vp'}。 |
 | Button   | 提供状态按钮样式，如果子组件有文本设置，则相应的文本内容会显示在按钮内部。<br/>默认尺寸为:高为28vp，宽无默认值。       |
-| Switch   | 提供开关样式。<br>**说明：**<br/>[通用属性margin](ts-universal-attributes-size.md)默认值为：<br>{<br/>&nbsp;top: '6px',<br/>&nbsp;right: '14px',<br/>&nbsp;bottom: '6px',<br/>&nbsp;left: '14px'<br/> }。<br/>默认尺寸为:<br>{width:'36vp', height:'20vp'}。|
+| Switch   | 提供开关样式。<br>**说明：**<br/>[通用属性margin](ts-universal-attributes-size.md#margin)默认值为：<br>{<br/>&nbsp;top: '6px',<br/>&nbsp;right: '14px',<br/>&nbsp;bottom: '6px',<br/>&nbsp;left: '14px'<br/> }。<br/>默认尺寸为:<br>{width:'36vp', height:'20vp'}。 |
 
 ## 属性
 
@@ -46,6 +50,8 @@ selectedColor(value: ResourceColor)
 设置组件打开状态的背景颜色。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -63,6 +69,8 @@ switchPointColor(color: ResourceColor)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -77,8 +85,6 @@ switchStyle(value: SwitchStyle)
 
 设置Switch类型的样式。仅对type为ToggleType.Switch生效。
 
-**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -87,7 +93,21 @@ switchStyle(value: SwitchStyle)
 | ------ | --------------------------------------------------- | ---- | ---------------- |
 | value  | [SwitchStyle<sup>12+</sup>](#switchstyle12对象说明) | 否   | Switch样式风格。 |
 
-### SwitchStyle<sup>12+</sup>对象说明
+### contentModifier<sup>12+</sup>
+
+contentModifier(modifier: ContentModifier\<ToggleConfiguration>)
+
+定制Toggle内容区的方法。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                          | 必填 | 说明                                             |
+| ------ | --------------------------------------------- | ---- | ------------------------------------------------ |
+| modifier  | [ContentModifier\<ToggleConfiguration>](#toggleconfiguration12对象说明) | 是   | 在Toggle组件上，定制内容区的方法。<br/>modifier: 内容修改器，开发者需要自定义class实现ContentModifier接口。 |
+
+## SwitchStyle<sup>12+</sup>对象说明
 
 | 名称              | 类型                                        | 必填 | 说明                                                         |
 | ----------------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
@@ -108,6 +128,8 @@ onChange(callback:&nbsp;(isOn:&nbsp;boolean)&nbsp;=&gt;&nbsp;void)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -115,6 +137,16 @@ onChange(callback:&nbsp;(isOn:&nbsp;boolean)&nbsp;=&gt;&nbsp;void)
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
 | isOn   | boolean | 是   | 为true时，代表状态从关切换为开。false时，代表状态从开切换为关。 |
+
+## ToggleConfiguration<sup>12+</sup>对象说明
+
+开发者需要自定义class实现ContentModifier接口。
+
+| 参数名  | 类型    |    默认值      |  说明              |
+| ------ | ------ | ------ |-------------------------------- |
+| isOn   | boolean| false  |  |</br>如果isOn属性没有设置默认值是false。</br>如果设置isOn属性，此值与设置isOn属性的值相同。 |
+| triggerChange |Callback\<boolean>| - |触发switch选中状态变化。 |
+
 
 ## 示例
 
@@ -227,3 +259,56 @@ struct ToggleExample {
 ```
 
 ![toggle](figures/toggleSwitchStyle.gif)
+
+### 示例3
+
+该示例实现了自定义Toggle样式的功能。自定义样式实现了通过按钮切换圆形颜色的功能：点击蓝圆按钮，圆形背景变蓝色，点击黄圆按钮，圆形背景变黄色。
+
+```ts
+// xxx.ets
+class MySwitchStyle implements ContentModifier<ToggleConfiguration> {
+  selectedColor: Color = Color.White
+  lamp: string = 'string';
+  constructor(selectedColor: Color, lamp: string) {
+    this.selectedColor = selectedColor
+    this.lamp = lamp;
+  }
+  applyContent() : WrappedBuilder<[ToggleConfiguration]>
+  {
+    return wrapBuilder(buildSwitch)
+  }
+}
+@Builder function buildSwitch(config: ToggleConfiguration) {
+  Column({ space: 50 }) {
+    Circle({ width: 150, height: 150 })
+      .fill(config.isOn ? (config.contentModifier as MySwitchStyle).selectedColor : Color.Blue)
+    Row() {
+      Button('蓝'+ JSON.stringify((config.contentModifier as MySwitchStyle).lamp))
+        .onClick(() => {
+          config.triggerChange(false);
+        })
+      Button('黄'+ JSON.stringify((config.contentModifier as MySwitchStyle).lamp))
+        .onClick(() => {
+          config.triggerChange(true);
+        })
+    }
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  build() {
+    Column({ space: 50 }) {
+      Toggle({ type: ToggleType.Switch})
+        .enabled(true)
+        .contentModifier(new MySwitchStyle(Color.Yellow, '灯'))
+        .onChange((isOn: boolean) => {
+          console.info('Switch Log:' + isOn)
+        })
+    }.height('100%').width('100%')
+  }
+}
+```
+
+![toggle](figures/Toggle_builder.gif)

@@ -61,6 +61,15 @@ OH_AVErrCode OH_VideoDecoder_Configure (OH_AVCodec *codec, OH_AVFormat *format )
 
 Configures a video decoder. Typically, you need to configure the video track description information that can be extracted from **OH_AVSource**. This function must be called prior to **Prepare**.
 
+Parameter verification rules are as follows:
+| Key                    | Value Within the Range| Value Out of Range| No Value Configured|
+| ---------------------- | -------- | -------- | ------ |
+| OH_MD_KEY_WIDTH        | Passed       | Failed       | Failed     |
+| OH_MD_KEY_HEIGHT       | Passed       | Failed       | Failed     |
+| OH_MD_KEY_PIXEL_FORMAT | Passed       | Failed       | Passed     |
+| OH_MD_KEY_FRAME_RATE   | Passed       | Failed       | Passed     |
+| OH_MD_KEY_ROTATION     | Passed       | Failed       | Passed     |
+
 **System capability**: SystemCapability.Multimedia.Media.VideoDecoder
 
 **Since**: 9
@@ -69,13 +78,12 @@ Configures a video decoder. Typically, you need to configure the video track des
 
 | Name| Description| 
 | -------- | -------- |
-| codec | Pointer to a video decorder instance.| 
+| codec | Pointer to a video decoder instance.| 
 | format | Pointer to an **OH_AVFormat** instance, which provides the description information about the video track to be decoded.| 
 
 **Returns**
 
 Returns **AV_ERR_OK** if the operation is successful; returns an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise.
-
 
 ### OH_VideoDecoder_CreateByMime()
 
@@ -145,7 +153,7 @@ Clears the internal resources of a video decoder and destroys the decoder instan
 
 | Name| Description| 
 | -------- | -------- |
-| codec | Pointer to a video decorder instance.| 
+| codec | Pointer to a video decoder instance.| 
 
 **Returns**
 
@@ -170,7 +178,7 @@ Clears the input and output data in the internal buffer of a video decoder. This
 
 | Name| Description| 
 | -------- | -------- |
-| codec | Pointer to a video decorder instance.| 
+| codec | Pointer to a video decoder instance.| 
 
 **Returns**
 
@@ -195,7 +203,7 @@ Frees an output buffer of a video decoder.
 
 | Name| Description| 
 | -------- | -------- |
-| codec | Pointer to a video decorder instance.| 
+| codec | Pointer to a video decoder instance.| 
 | index | Index of an output buffer.| 
 
 **Returns**
@@ -225,7 +233,7 @@ Frees an output buffer of a video decoder.
 
 | Name| Description| 
 | -------- | -------- |
-| codec | Pointer to a video decorder instance.| 
+| codec | Pointer to a video decoder instance.| 
 | index | Index of an output buffer.| 
 
 **Returns**
@@ -253,7 +261,7 @@ The caller must manually release the **OH_AVFormat** instance in the return valu
 
 | Name| Description| 
 | -------- | -------- |
-| codec | Pointer to a video decorder instance.| 
+| codec | Pointer to a video decoder instance.| 
 
 **Returns**
 
@@ -278,7 +286,7 @@ Checks whether a video decoder instance is valid.
 
 | Name| Description| 
 | -------- | -------- |
-| codec | Pointer to a video decorder instance.| 
+| codec | Pointer to a video decoder instance.| 
 | isValid | Output parameter. Pointer to an instance of the Boolean type. The value **true** means that the decoder instance is valid and **false** means the opposite.| 
 
 **Returns**
@@ -304,7 +312,7 @@ Prepares internal resources for a video decoder. This function must be called af
 
 | Name| Description| 
 | -------- | -------- |
-| codec | Pointer to a video decorder instance.| 
+| codec | Pointer to a video decoder instance.| 
 
 **Returns**
 
@@ -333,7 +341,7 @@ In addition, some decoders require the input of codec-specific data, such as PPS
 
 | Name| Description| 
 | -------- | -------- |
-| codec | Pointer to a video decorder instance.| 
+| codec | Pointer to a video decoder instance.| 
 | index | Index of an input buffer.| 
 
 **Returns**
@@ -367,7 +375,7 @@ In addition, some decoders require the input of codec-specific data, such as PPS
 
 | Name| Description| 
 | -------- | -------- |
-| codec | Pointer to a video decorder instance.| 
+| codec | Pointer to a video decoder instance.| 
 | index | Index of an input buffer.| 
 | attr | Description information about the data in the buffer.| 
 
@@ -394,7 +402,7 @@ Registers an asynchronous callback so that your application can respond to event
 
 | Name| Description| 
 | -------- | -------- |
-| codec | Pointer to a video decorder instance.| 
+| codec | Pointer to a video decoder instance.| 
 | callback | Callback function to set. For details, see [OH_AVCodecCallback](_o_h___a_v_codec_callback.md).| 
 | userData | User-specific data.| 
 
@@ -423,7 +431,7 @@ If no output surface is configured, calling this function only frees the output 
 
 | Name| Description| 
 | -------- | -------- |
-| codec | Pointer to a video decorder instance.| 
+| codec | Pointer to a video decoder instance.| 
 | index | Index of an output buffer.| 
 
 **Returns**
@@ -455,7 +463,7 @@ If no output surface is configured, calling this function only frees the output 
 
 | Name| Description| 
 | -------- | -------- |
-| codec | Pointer to a video decorder instance.| 
+| codec | Pointer to a video decoder instance.| 
 | index | Index of an output buffer.| 
 
 **Returns**
@@ -481,7 +489,7 @@ Resets a video decoder. To continue decoding, you must call **Configure** to con
 
 | Name| Description| 
 | -------- | -------- |
-| codec | Pointer to a video decorder instance.| 
+| codec | Pointer to a video decoder instance.| 
 
 **Returns**
 
@@ -510,7 +518,7 @@ Sets an asynchronous callback so that your application can respond to events gen
 
 | Name| Description| 
 | -------- | -------- |
-| codec | Pointer to a video decorder instance.| 
+| codec | Pointer to a video decoder instance.| 
 | callback | Callback function to set. For details, see [OH_AVCodecAsyncCallback](_o_h___a_v_codec_async_callback.md).| 
 | userData | User-specific data.| 
 
@@ -536,13 +544,19 @@ Sets the decryption configuration. This function can be called prior to **Prepar
 
 | Name| Description| 
 | -------- | -------- |
-| codec | Pointer to a video decorder instance. | 
+| codec | Pointer to a video decoder instance. | 
 | mediaKeySession | Pointer to a media key session instance with decryption capabilities. For details, see **MediaKeySession**. | 
 | secureVideoPath | Whether a secure video channel is used. The value **true** means that a secure video channel is used, and **false** means the opposite. | 
 
 **Returns**
 
-Returns **AV_ERR_OK** if the operation is successful; returns an error code defined in [OH_AVErrCode](_core.md#oh_averrcode) otherwise.
+Returns a result code defined in [OH_AVErrCode](_core.md#oh_averrcode). The following result codes are possible:
+
+**AV_ERR_OK**: The operation is successful.
+
+**AV_ERR_OPERATE_NOT_PERMIT**: The codec service or media key session service is in an incorrect state.
+
+**AV_ERR_INVALID_VAL**: The codec instance or media key session is a null pointer or invalid.
 
 
 ### OH_VideoDecoder_SetParameter()
@@ -565,7 +579,7 @@ This function can be called only after the decoder is started. Incorrect paramet
 
 | Name| Description| 
 | -------- | -------- |
-| codec | Pointer to a video decorder instance.| 
+| codec | Pointer to a video decoder instance.| 
 | format | Pointer to an **OH_AVFormat** instance.| 
 
 **Returns**
@@ -591,7 +605,7 @@ Sets an output surface for a video decoder. This function must be called prior t
 
 | Name| Description| 
 | -------- | -------- |
-| codec | Pointer to a video decorder instance.| 
+| codec | Pointer to a video decoder instance.| 
 | window | Pointer to an **OHNativeWindow** instance.| 
 
 **Returns**
@@ -617,7 +631,7 @@ Starts a video decoder. This function can be called only after the decoder is pr
 
 | Name| Description| 
 | -------- | -------- |
-| codec | Pointer to a video decorder instance.| 
+| codec | Pointer to a video decoder instance.| 
 
 **Returns**
 
@@ -644,7 +658,7 @@ If you have passed codec-specific data in the previous **Start** for the decoder
 
 | Name| Description| 
 | -------- | -------- |
-| codec | Pointer to a video decorder instance.| 
+| codec | Pointer to a video decoder instance.| 
 
 **Returns**
 

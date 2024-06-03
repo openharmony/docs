@@ -111,7 +111,7 @@ for (let i: number = 0; i < allCount; i+=3) { // 3: 每次执行3个任务，循
 
 1. [Priority](../reference/apis-arkts/js-apis-taskpool.md)
 
-## 如何将类Java语言的线程模型（内存共享）在各场景的实现方式，转换成在ArkTS的线程模型下（内存隔离）的实现方式？(API 11)
+## 如何将内存共享的线程模型，转换成在ArkTS的线程模型下（内存隔离）的实现方式？(API 11)
 
 **解决方案**
 
@@ -438,7 +438,7 @@ Worker支持通过PostMessage往父线程抛任务。TaskPool支持往父线程�
 1. [@ohos.taskpool（启动任务池）](../reference/apis-arkts/js-apis-taskpool.md)
 2. [@ohos.worker (启动一个Worker)](../reference/apis-arkts/js-apis-worker.md)
 
-## ArkTS是否支持类似Java的共享内存模型进行多线程开发吗？(API 10)
+## ArkTS是否支持共享内存模型进行多线程开发吗？(API 10)
 
 **规格澄清**
 
@@ -534,7 +534,7 @@ TaskPool的任务支持通过sendData接口触发主线程的onReceiveData回调
 
 ArkTS层接口的异步如果不涉及I/O操作，则异步任务会在主线程的微任务执行时机触发，仍然占用主线程。推荐使用TaskPool，分发到后台任务池进行。
 
-##  synchronized在java中可以修饰方法，从而简单地实现函数的同步调用。在系统ets开发中，如何简单实现该功能?(API 10)
+##  如何简单实现函数的同步调用功能?(API 10)
 
 **解决方案**
 
@@ -663,3 +663,120 @@ AST属于编译器编译过程中间数据结构，该数据本身不稳定，�
 **参考链接**
 
 1. [TaskPool和Worker的对比 (TaskPool和Worker)](../arkts-utils/taskpool-vs-worker.md)
+
+
+##  ArkTS 应用运行时出现模块化加载相关的异常报错提示，可能导致报错原因以及解决方法
+
+**报错与定位方法**
+
+1. "Cannot find dynamic-import module 'xxxx'" 报错表示当前加载的模块未被编译到当前应用包内
+
+报错原因: 通过动态加载传入表达式作为入参时，模块路径参数书写有误。
+``` typescript
+  import(module).then(m=>{m.foo();}).catch(e=>{console.log(e)})
+```
+
+定位方法: 将待加载module路径信息打印出来，评估模块路径是否计算有误。
+
+2. "Cannot find module 'xxxx' , which is application Entry Point" 报错表示拉起应用abc时，执行入口文件查找失败
+
+报错原因: 应用拉起时，应用入口文件模块查找失败。
+
+定位方法:
+(1) 打开应用工程级编译构建文件: entry > src/main/module.json5
+
+([OpenHarmony工程管理介绍](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V3/ohos-project-overview-0000001218440650-V3))
+module.json5部分参数示例如下:
+```
+{
+  "module": {
+    "name": "entry",
+    "type": "entry",
+    ...
+    "abilities": [
+      {
+        "name": "EntryAbility", // 模块名称
+        "srcEntry": "./ets/entryability/EntryAbility.ts",  // 标明src目录相对工程根目录的相对路径
+        "description": "$string:EntryAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:EntryAbility_label",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background",
+        "exported": true,
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+(2) 其中，"abilities":"srcEntry" 参数标记了该应用拉起的入口文件。如报错入口文件加载失败，请检查module.json5内的"srcEntry"参数是否书写正确。
+
+3. "No export named 'xxxx' which exported by 'xxxx'" 报错表示加载应用hap或har包内so时，该模块内未查找到特定对象
+
+报错原因: ets在模块化静态编译阶段，会预解析模块间依赖关系。ets文件内的导入变量名书写错误时，ide编译器与应用编译阶段均会报错提示。但目前对于应用内native C++模块的依赖关系检测会在运行阶段。
+
+定位方法:
+检查应用内so是否存在报错提示的导出变量，与加载应用内so导入变量处进行比较，不一致则适配修改。
+
+## taskpool线程中是否可以使用emitter.on等长时间监听接口
+
+不推荐。
+
+**原理澄清**
+
+1. 由于长时间的监听，可能会影响线程回收或复用。
+2. 如果线程被回收会导致线程回调失效或者发生不可预期的错误。
+3. 如果任务函数多次执行，可能会在不同的线程产生监听，导致结果不符合预期。
+
+**解决方案**
+
+建议使用[长时任务](../reference/apis-arkts/js-apis-taskpool.md#longtask12)。
+
+## taskpool中监听任务的接口onEnqueued、onStartExecution、onExecutionFailed、onExecutionSucceeded是否有调用顺序(API 12)
+
+**解决方案**
+
+上述四个接口可独立使用，无调用的先后顺序。
+
+## 如何在HAR中使用Sendable class
+
+**解决方案**
+
+使用TS HAR，具体内容参考以下文档。
+
+**参考链接**
+
+[编译生成TS文件](../quick-start/har-package.md#编译生成ts文件)
+
+## hdc属性开关
+
+1. 默认：hdc shell param set persist.ark.properties 0x105c
+2. 关闭多线程检测并打印异常栈帧：hdc shell param set persist.ark.properties -1
+3. GC状态打印：hdc shell param set persist.ark.properties 0x105e
+4. 多线程检测：hdc shell param set persist.ark.properties 0x107c
+5. 同时开启多线程检测并打印异常栈：hdc shell param set persist.ark.properties 0x127c
+6. 全局对象内存泄露检查：hdc shell param set persist.ark.properties 0x145c
+7. 全局原始值内存泄露检查：hdc shell param set persist.ark.properties 0x185C
+8. 打开GC共享堆信息：hdc shell param set persist.ark.properties 0x905c
+9. 微任务打点，包含入队及执行过程：hdc shell param set persist.ark.properties 0x8105c
+10. 增加ArkProperties控制是否启用旧的socket调试器：hdc shell param set persist.ark.properties 0x10105C
+11. 使用 DISABLE 适应测试脚本中现有的 ArkProperties：hdc shell param set persist.ark.properties 0x40105C
+12. 模块加载so异常报错信息增强：hdc shell param set persist.ark.properties 0x80105C
+13. 模块化打点：hdc shell param set persist.ark.properties 100105C
+14. 日志打印执行的模块：hdc shell param set persist.ark.properties 200105C
+### CPU Profiler性能数据采集
+1. 仅采集主线程冷启动：hdc shell param set persist.ark.properties 0x705c
+2. 仅采集worker线程冷启动：hdc shell param set persist.ark.properties 0x1505c
+3. 同时采集主线程及worker线程冷启动：hdc shell param set persist.ark.properties 0x1705c
+4. 仅采集主线程任意阶段：hdc shell param set persist.ark.properties 0x2505c
+5. 仅采集worker线程任意阶段：hdc shell param set persist.ark.properties 0x4505c
+6. 同时采集主线程及worker线程任意阶段：hdc shell param set persist.ark.properties 0x6505c

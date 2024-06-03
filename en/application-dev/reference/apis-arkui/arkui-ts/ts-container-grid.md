@@ -53,33 +53,342 @@ Defines the layout options. In this API, **irregularIndexes** and **onGetIrregul
 | regularSize  | [number, number]  | Yes   | Number of rows and columns occupied by a grid item with regular size. The only supported value is **[1, 1]**, meaning that the grid item occupies one row and one column.  |
 | irregularIndexes | number[] | No   | Indexes of the grid item with an irregular size in the grid. When **onGetIrregularSizeByIndex** is not set, the grid item specified in this parameter occupies an entire row of the grid that scrolls vertically or an entire column of the grid that scrolls horizontally.|
 | onGetIrregularSizeByIndex | (index: number) => [number, number] | No   | Number of rows and columns occupied by the grid item with an irregular size. This parameter is used together with **irregularIndexes**. A grid item cannot occupy multiple rows in vertical scrolling mode, or multiple columns in horizontal scrolling mode.|
-| onGetRectByIndex<sup>11+</sup> | (index: number) => [number, number,number,number] | No | Position and size of the grid item with the specified index, in the format of [rowStart,columnStart,rowSpan,columnSpan],<br>where **rowStart** indicates the row start position, **columnStart** indicates the column start position,<br>**rowSpan** indicates the number of rows occupied by the grid item, and **columnSpan** indicates the number of columns occupied by the grid item. Their values are unitless.<br>The values of **rowStart** and **columnStart** are natural numbers greater than or equal to 0. If a negative value is set, the default value **0** is used.<br>The values of **rowSpan** and **columnSpan** are natural numbers greater than or equal to 1. If a decimal is set, it is rounded down. If the decimal set is less than 1, the value **1** is used.<br>**NOTE**<br>Case 1: If a grid item finds that the start position specified for it is already occupied, it searches for an available start position from left to right and from top to bottom, starting from position [0,0].<br>Case 2: If any space other than the start position specified for a grid item is occupied, the grid item is displayed within the available space left.|
+| onGetRectByIndex<sup>11+</sup> | (index: number) => [number, number,number,number] | No | Position and size of the grid item with the specified index, in the format of [rowStart,columnStart,rowSpan,columnSpan], where **rowStart** indicates the row start position, **columnStart** indicates the column start position,<br>**rowSpan** indicates the number of rows occupied by the grid item, and **columnSpan** indicates the number of columns occupied by the grid item. Their values are unitless.<br>The values of **rowStart** and **columnStart** are natural numbers greater than or equal to 0. If a negative value is set, the default value **0** is used.<br>The values of **rowSpan** and **columnSpan** are natural numbers greater than or equal to 1. If a decimal is set, it is rounded down. If the decimal set is less than 1, the value **1** is used.<br>**NOTE**<br>Case 1: If a grid item finds that the start position specified for it is already occupied, it searches for an available start position from left to right and from top to bottom, starting from position [0,0].<br>Case 2: If any space other than the start position specified for a grid item is occupied, the grid item is displayed within the available space left.|
 
 ## Attributes
 
 In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
 
-| Name| Type| Description|
-| -------- | -------- | -------- |
-| columnsTemplate | string | Number of columns or minimum column width in the grid. If this attribute is not set, one column will be used.<br>For example, **'1fr 1fr 2fr'** indicates three columns, with the first column taking up 1/4 of the parent component's full width, the second column 1/4, and the third column 2/4.<br>**columnsTemplate('repeat(auto-fit, track-size)')** sets the minimum column width to **track-size**, based on which the number of columns and the actual column width are automatically obtained.<br>**columnsTemplate('repeat(auto-fill, track-size)')** sets the fixed column width to **track-size**, based on which the number of columns is automatically obtained.<br>**repeat**, **auto-fit**, and **auto-fill** are keywords. **track-size** indicates the column width, in the unit of px, vp (default), %, or any valid digit. The value must be greater than or equal to one valid column width.<br>**NOTE**<br>If this attribute is set to **'0fr'**, the column width is 0, and grid item in the column is not displayed. If this attribute is set to any other invalid value, the grid item is displayed as one column.|
-| rowsTemplate | string | Number of rows or minimum row height in the grid. If this attribute is not set, one row will be used.<br>For example, **'1fr 1fr 2fr'** indicates three rows, with the first row taking up 1/4 of the parent component's full height, the second row 1/4, and the third row 2/4.<br>**rowsTemplate('repeat(auto-fit, track-size)')** sets the minimum row height to **track-size**, based on which the number of rows and the actual row height are automatically obtained.<br>**rowsTemplate('repeat(auto-fill, track-size)')** sets the fixed row height to **track-size**, based on which the number of rows is automatically obtained.<br>**repeat**, **auto-fit**, and **auto-fill** are keywords. **track-size** indicates the row height, in the unit of px, vp (default), %, or any valid digit. The value must be greater than or equal to one valid row height.<br>**NOTE**<br>If this attribute is set to **'0fr'**, the row width is 0, and grid item in the row is not displayed. If this attribute is set to any other invalid value, the grid item is displayed as one row.|
-| columnsGap | [Length](ts-types.md#length) | Gap between columns.<br>Default value: **0**<br>**NOTE**<br>A value less than 0 evaluates to the default value.|
-| rowsGap | [Length](ts-types.md#length) | Gap between rows.<br>Default value: **0**<br>**NOTE**<br>A value less than 0 evaluates to the default value.|
-| scrollBar      | [BarState](ts-appendix-enums.md#barstate) | Scrollbar status.<br>Default value: **BarState.Off**<br>**NOTE**<br>In API version 9 and earlier versions, the default value is **BarState.Off**. In API version 10, the default value is **BarState.Auto**.|
-| scrollBarColor | string \| number \| [Color](ts-appendix-enums.md#color) | Color of the scrollbar.|
-| scrollBarWidth | string \| number    | Width of the scrollbar. After the width is set, the scrollbar is displayed with the set width in normal state and pressed state.<br>Default value: **4**<br>Unit: vp|
-| cachedCount | number                                   | Number of grid items to be preloaded (cached). It works only in [LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md). For details, see [Minimizing White Blocks During Swiping](../../../performance/arkts-performance-improvement-recommendation.md#minimizing-white-blocks-during-swiping).<br>Default value: **1**<br>**NOTE**<br>The number of the grid items to be cached before and after the currently displayed one equals the value of **cachedCount** multiplied by the number of columns.<br>Grid items that exceed the display and cache range are released.<br>A value less than 0 evaluates to the default value.|
-| editMode <sup>8+</sup>                   | boolean | Whether to enter editing mode. In editing mode, the user can drag the **\<[GridItem](ts-container-griditem.md)>** in the **\<Grid>** component.<br>Default value: **false**|
-| layoutDirection<sup>8+</sup>             | [GridDirection](#griddirection8) | Main axis direction of the grid.<br>Default value: **GridDirection.Row**|
-| maxCount<sup>8+</sup> | number  | When **layoutDirection** is **Row** or **RowReverse**: maximum number of columns that can be displayed.<br>When **layoutDirection** is **Column** or **ColumnReverse**: maximum number of rows that can be displayed.<br>Default value: **Infinity**<br>**NOTE**<br>If the value of **maxCount** is smaller than that of **minCount**, the default values of **maxCount** and **minCount** are used.<br>A value less than 1 evaluates to the default value.|
-| minCount<sup>8+</sup> | number  | When **layoutDirection** is **Row** or **RowReverse**: minimum number of columns that can be displayed.<br>When **layoutDirection** is **Column** or **ColumnReverse**: minimum number of rows that can be displayed.<br>Default value: **1**<br>**NOTE**<br>A value less than 1 evaluates to the default value.|
-| cellLength<sup>8+</sup> | number  | When **layoutDirection** is **Row** or **RowReverse**: fixed height per row.<br>When **layoutDirection** is **Column** or **ColumnReverse**: fixed width per column.<br>Default value: size of the first element|
-| multiSelectable<sup>8+</sup> | boolean | Whether to enable mouse frame selection.<br>Default value: **false**<br>- **false**: The mouse frame selection is disabled.<br>- **true**: The mouse frame selection is enabled.<br>**NOTE**<br> When mouse frame selection is enabled, you can use the **selected** attribute and the **onSelect** event of the **\<Griditem>** component to obtain the selection status of the component; you can also set the [style](./ts-universal-attributes-polymorphic-style.md) of the component in the selected state (by default, no style is set for the selected state).|
-| supportAnimation<sup>8+</sup> | boolean | Whether to enable animation. Currently, the grid item drag animation is supported.<br>Default value: **false**<br>**NOTE**<br> Animation is supported only in scrolling mode (only **rowsTemplate** or **columnsTemplate** is set).|
-| edgeEffect<sup>10+</sup> | value:[EdgeEffect](ts-appendix-enums.md#edgeeffect), <br>options?:[EdgeEffectOptions<sup>11+</sup>](ts-container-scroll.md#edgeeffectoptions11) | Effect used at the edges of the component when the boundary of the scrollable content is reached.<br>\- **value**: effect used at the edges of the **\<Grid>** component when the boundary of the scrollable content is reached. The spring effect and shadow effect are supported.<br>Default value: **EdgeEffect.None**<br>\- **options**: whether to enable the scroll effect when the component content size is smaller than the component itself.<br>Default value: **false**|
-| enableScrollInteraction<sup>10+</sup>  |  boolean  |   Whether to support scroll gestures. When this attribute is set to **false**, scrolling by finger or mouse is not supported, but the scrolling controller API is not affected.<br>Default value: **true**     |
-| nestedScroll<sup>10+</sup>                 | [NestedScrollOptions](ts-container-scroll.md#nestedscrolloptions10)         | Nested scrolling options. You can set the nested scrolling mode in the forward and backward directions to implement scrolling linkage with the parent component.|
-| friction<sup>10+</sup> | number \| [Resource](ts-types.md#resource)    | Friction coefficient. It applies only to gestures in the scrolling area, and it affects only indirectly the scroll chaining during the inertial scrolling process.<br>Default value: **0.9** for wearable devices and **0.6** for non-wearable devices<br>**NOTE**<br>A value less than or equal to 0 evaluates to the default value.|
+### columnsTemplate
+
+columnsTemplate(value: string)
+
+Sets the number of columns or minimum column width of the grid. If this attribute is not set, one column will be used.
+
+For example, **'1fr 1fr 2fr'** indicates three columns, with the first column taking up 1/4 of the parent component's full width, the second column 1/4, and the third column 2/4.
+
+**columnsTemplate('repeat(auto-fit, track-size)')** sets the minimum column width to **track-size**, based on which the number of columns and the actual column width are automatically obtained.
+
+**columnsTemplate('repeat(auto-fill, track-size)')** sets the fixed column width to **track-size**, based on which the number of columns is automatically obtained. **repeat**, **auto-fit**, and **auto-fill** are keywords. **track-size** indicates the column width, in the unit of px, vp (default), %, or any valid digit. The value must be greater than or equal to one valid column width.
+
+If this attribute is set to **'0fr'**, the column width is 0, and grid item in the column is not displayed. If this attribute is set to any other invalid value, the grid item is displayed as one column.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                              |
+| ------ | ------ | ---- | ---------------------------------- |
+| value  | string | Yes  | Number of columns or minimum column width of the grid.|
+
+### rowsTemplate
+
+rowsTemplate(value: string)
+
+Sets the number of rows or minimum row height of the grid. If this attribute is not set, one row will be used.
+
+For example, **'1fr 1fr 2fr'** indicates three rows, with the first row taking up 1/4 of the parent component's full height, the second row 1/4, and the third row 2/4.
+
+**rowsTemplate('repeat(auto-fit, track-size)')** sets the minimum row height to **track-size**, based on which the number of rows and the actual row height are automatically obtained.
+
+**rowsTemplate('repeat(auto-fill, track-size)')** sets the fixed row height to **track-size**, based on which the number of rows is automatically obtained. **repeat**, **auto-fit**, and **auto-fill** are keywords. **track-size** indicates the row height, in the unit of px, vp (default), %, or any valid digit. The value must be greater than or equal to one valid row height.
+
+If this attribute is set to **'0fr'**, the row width is 0, and grid item in the row is not displayed. If this attribute is set to any other invalid value, the grid item is displayed as one row.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                              |
+| ------ | ------ | ---- | ---------------------------------- |
+| value  | string | Yes  | Number of rows or minimum row height of the grid.|
+
+>  **NOTE**
+>
+>  Depending on the settings of the **rowsTemplate** and **columnsTemplate** attributes, the **\<Grid>** component supports the following layout modes:
+>
+>  1. **rowsTemplate** and **columnsTemplate** are both set
+>
+>  - The **\<Grid>** component displays only elements in a fixed number of rows and columns and cannot be scrolled.
+>  - In this mode, the following attributes do not take effect: **layoutDirection**, **maxCount**, **minCount**, and **cellLength**.
+>  - If the width and height of a grid are not set, the grid adapts to the size of its parent component by default.
+>  - The size of the grid rows and columns is the size of the grid content area minus the gap between rows and columns. It is allocated based on the proportion of each row and column.
+>  - By default, the grid items fill the entire grid.
+>
+>  2. Either **rowsTemplate** or **columnsTemplate** is set
+>
+>  - The **\<Grid>** component arranges elements in the specified direction and allows for scrolling to display excess elements.
+>  - If **columnsTemplate** is set, the component scrolls vertically, the main axis runs vertically, and the cross axis runs horizontally.
+>  - If **rowsTemplate** is set, the component scrolls horizontally, the main axis runs horizontally, and the cross axis runs vertically.
+>  - In this mode, the following attributes do not take effect: **layoutDirection**, **maxCount**, **minCount**, and **cellLength**.
+>  - The cross axis size of the grid is the cross axis size of the grid content area minus the gaps along the cross axis. It is allocated based on the proportion of each row and column.
+>  - The main axis size of the grid is the maximum height of all grid items in the cross axis direction of the current grid.
+>
+>  3. Neither **rowsTemplate** nor **columnsTemplate** is set
+>
+>  - The **\<Grid>** component arranges elements in the direction specified by **layoutDirection**. The number of columns is jointly determined by the grid width, width of the first element, **minCount**, **maxCount**, and **columnsGap**.
+>  - The number of rows is jointly determined by the grid height, height of the first element, **cellLength**, and **rowsGap**. Elements outside the determined range of rows and columns are not displayed and cannot be viewed through scrolling.
+>  - In this mode, only the following attributes take effect: **layoutDirection**, **maxCount**, **minCount**, **cellLength**, **editMode**, **columnsGap**, and **rowsGap**.
+>  - When **layoutDirection** is set to **Row**, child components are arranged from left to right. When a row is full, a new row will be added. If the remaining height is insufficient, no more elements will be laid out, and the whole content is centered at the top.
+>  - When **layoutDirection** is set to **Column**, elements are arranged column by column from top to bottom. If the remaining height is insufficient, no more elements will be laid out, and the whole content is centered at the top.
+>
+
+### columnsGap
+
+columnsGap(value: Length)
+
+Sets the gap between columns. A value less than 0 evaluates to the default value.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                        | Mandatory| Description                        |
+| ------ | ---------------------------- | ---- | ---------------------------- |
+| value  | [Length](ts-types.md#length) | Yes  | Gap between columns.<br>Default value: **0**|
+
+### rowsGap
+
+rowsGap(value: Length)
+
+Sets the gap between rows. A value less than 0 evaluates to the default value.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                        | Mandatory| Description                        |
+| ------ | ---------------------------- | ---- | ---------------------------- |
+| value  | [Length](ts-types.md#length) | Yes  | Gap between rows.<br>Default value: **0**|
+
+### scrollBar
+
+scrollBar(value: BarState)
+
+Sets the scrollbar state.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                     | Mandatory| Description                                                        |
+| ------ | ----------------------------------------- | ---- | ------------------------------------------------------------ |
+| value  | [BarState](ts-appendix-enums.md#barstate) | Yes  | Scrollbar state.<br>Default value: **BarState.Off**<br>**NOTE**<br>In API version 9 and earlier versions, the default value is **BarState.Off**. In API version 10, the default value is **BarState.Auto**.|
+
+### scrollBarColor
+
+scrollBarColor(value: Color | number | string)
+
+Sets the scrollbar color.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                                        | Mandatory| Description          |
+| ------ | ------------------------------------------------------------ | ---- | -------------- |
+| value  | [Color](ts-appendix-enums.md#color) \| number \| string | Yes  | Scrollbar color.|
+
+### scrollBarWidth
+
+scrollBarWidth(value: number | string)
+
+Sets the scrollbar width. After the width is set, the scrollbar is displayed with the set width in normal state and pressed state.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                      | Mandatory| Description                                     |
+| ------ | -------------------------- | ---- | ----------------------------------------- |
+| value  | number \| string | Yes  | Scrollbar width.<br>Default value: **4**<br>Unit: vp|
+
+### cachedCount
+
+cachedCount(value: number)
+
+Sets the number of grid items to be preloaded (cached). It works only in [LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md). A value less than 0 evaluates to the default value. For details, see [Minimizing White Blocks During Swiping](../../../performance/arkts-performance-improvement-recommendation.md#minimizing-white-blocks-during-swiping).
+
+The number of the grid items to be cached before and after the currently displayed one equals the value of **cachedCount** multiplied by the number of columns.
+
+Grid items that exceed the display and cache range are released.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                  |
+| ------ | ------ | ---- | -------------------------------------- |
+| value  | number | Yes  | Number of grid items to be preloaded (cached).<br>Default value: **1**|
+
+### editMode<sup>8+</sup>
+
+editMode(value: boolean)
+
+Sets whether to enable edit mode. In edit mode, the user can drag the [grid items](ts-container-griditem.md) in the **\<Grid>** component.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                    |
+| ------ | ------ | ---- | ---------------------------------------- |
+| value  | boolean | Yes  | Whether to enable edit mode.<br>Default value: **false**|
+
+### layoutDirection<sup>8+</sup>
+
+layoutDirection(value: GridDirection)
+
+Sets the main axis direction of the grid.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                    | Mandatory| Description                                          |
+| ------ | ---------------------------------------- | ---- | ---------------------------------------------- |
+| value  | [GridDirection](#griddirection8) | Yes  | Main axis direction of the grid.<br>Default value: **GridDirection.Row**|
+
+### maxCount<sup>8+</sup>
+
+maxCount(value: number)
+
+Sets the maximum number of rows or columns that can be displayed. A value less than 1 evaluates to the default value.
+
+When **layoutDirection** is **Row** or **RowReverse**, the value indicates the maximum number of columns that can be displayed.
+
+When **layoutDirection** is **Column** or **ColumnReverse**, the value indicates the maximum number of rows that can be displayed.
+
+If the value of **maxCount** is smaller than that of **minCount**, the default values of **maxCount** and **minCount** are used.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                         |
+| ------ | ------ | ---- | --------------------------------------------- |
+| value  | number | Yes  | Maximum number of rows or columns that can be displayed.<br>Default value: **Infinity**|
+
+### minCount<sup>8+</sup>
+
+minCount(value: number)
+
+Sets the minimum number of rows or columns that can be displayed. A value less than 1 evaluates to the default value.
+
+When **layoutDirection** is **Row** or **RowReverse**, the value indicates the minimum number of columns that can be displayed.
+
+When **layoutDirection** is **Column** or **ColumnReverse**, the value indicates the minimum number of rows that can be displayed.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                  |
+| ------ | ------ | ---- | -------------------------------------- |
+| value  | number | Yes  | Minimum number of rows or columns that can be displayed.<br>Default value: **1**|
+
+### cellLength<sup>8+</sup>
+
+cellLength(value: number)
+
+Sets the height per row or width per column.
+
+When **layoutDirection** is **Row** or **RowReverse**, the value indicates the height per row.
+
+When **layoutDirection** is **Column** or **ColumnReverse**, the value indicates the width per column.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                                   |
+| ------ | ------ | ---- | ------------------------------------------------------- |
+| value  | number | Yes  | Height per row or width per column.<br>Default value: size of the first element|
+
+### multiSelectable<sup>8+</sup>
+
+multiSelectable(value: boolean)
+
+Whether to enable multiselect. When multiselect is enabled, you can use the **selected** attribute and **onSelect** event to obtain the selected status of grid items; you can also set the [style](./ts-universal-attributes-polymorphic-style.md) for the selected state (by default, no style is set for the selected state).
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type   | Mandatory| Description                                                        |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| value  | boolean | Yes  | Whether to enable multiselect.<br>Default value: **false**<br>**false**: Multiselect is disabled. **true**: Multiselect is disabled.|
+
+### supportAnimation<sup>8+</sup>
+
+supportAnimation(value: boolean)
+
+Sets whether to enable animation. Currently, the grid item drag animation is supported. Animation is supported only in scrolling mode (only **rowsTemplate** or **columnsTemplate** is set).
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type   | Mandatory| Description                            |
+| ------ | ------- | ---- | -------------------------------- |
+| value  | boolean | Yes  | Whether to enable animation.<br>Default value: **false**|
+
+### edgeEffect<sup>10+</sup>
+
+edgeEffect(value: EdgeEffect, options?: EdgeEffectOptions)
+
+Sets the effect used when the scroll boundary is reached.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name               | Type                                                        | Mandatory| Description                                                        |
+| --------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value                 | [EdgeEffect](ts-appendix-enums.md#edgeeffect)                | Yes  | Effect used when the scroll boundary is reached. The spring and shadow effects are supported.<br>Default value: **EdgeEffect.None**|
+| options<sup>11+</sup> | [EdgeEffectOptions](ts-container-scroll.md#edgeeffectoptions11) | No  | Whether to enable the scroll effect when the component content is smaller than the component itself.<br>Default value: **false**|
+
+### enableScrollInteraction<sup>10+</sup>
+
+enableScrollInteraction(value: boolean)
+
+Sets whether to support scroll gestures. When this attribute is set to **false**, scrolling by finger or mouse is not supported, but the scrolling controller API is not affected.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type   | Mandatory| Description                               |
+| ------ | ------- | ---- | ----------------------------------- |
+| value  | boolean | Yes  | Whether to support scroll gestures.<br>Default value: **true**|
+
+### nestedScroll<sup>10+</sup>
+
+nestedScroll(value: NestedScrollOptions)
+
+Sets the nested scrolling options. You can set the nested scrolling mode in the forward and backward directions to implement scrolling linkage with the parent component.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                                        | Mandatory| Description          |
+| ------ | ------------------------------------------------------------ | ---- | -------------- |
+| value  | [NestedScrollOptions](ts-container-scroll.md#nestedscrolloptions10) | Yes  | Nested scrolling options.|
+
+### friction<sup>10+</sup>
+
+friction(value: number | Resource)
+
+Sets the friction coefficient. It applies only to gestures in the scrolling area, and it affects only indirectly the scroll chaining during the inertial scrolling process. A value less than or equal to 0 evaluates to the default value.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                                | Mandatory| Description                                                       |
+| ------ | ---------------------------------------------------- | ---- | ----------------------------------------------------------- |
+| value  | number \| [Resource](ts-types.md#resource) | Yes  | Friction coefficient.<br>Default value: **0.9** for wearable devices and **0.6** for non-wearable devices|
 
 Depending on the settings of the **rowsTemplate** and **columnsTemplate** attributes, the **\<Grid>** component supports the following layout modes:
 
@@ -108,6 +417,20 @@ Depending on the settings of the **rowsTemplate** and **columnsTemplate** attrib
 - When **layoutDirection** is set to **Row**, child components are arranged from left to right. When a row is full, a new row will be added. If the remaining height is insufficient, no more elements will be laid out, and the whole content is centered at the top.
 - When **layoutDirection** is set to **Column**, elements are arranged column by column from top to bottom. If the remaining height is insufficient, no more elements will be laid out, and the whole content is centered at the top.
 
+### flingSpeedLimit<sup>11+</sup>
+
+flingSpeedLimit(speedLimit: number)
+
+Sets the maximum starting fling speed when the fling animation starts. The unit is vp/s.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name    | Type  | Mandatory| Description                           |
+| ---------- | ------ | ---- | ------------------------------- |
+| speedLimit | number | Yes  | Maximum starting fling speed when the fling animation starts.|
+
 ## GridDirection<sup>8+</sup>
 
 | Name  |Value| Description                                  |
@@ -125,21 +448,245 @@ Depending on the settings of the **rowsTemplate** and **columnsTemplate** attrib
 
 In addition to the [universal events](ts-universal-events-click.md), the following events are supported.
 
-| Name| Description|
-| -------- | -------- |
-| onScrollIndex(event: (first: number, last<sup>10+</sup>: number) => void) | Triggered when the first or last item displayed in the grid changes. It is triggered once when the grid is initialized.<br>- **first**: index of the first item of the grid.<br>- **last**: index of the last item of the grid.<br>This event is triggered when either of the preceding indexes changes.|
-| onItemDragStart<sup>8+</sup>(event: (event: ItemDragInfo, itemIndex: number) => (() => any) \| void) | Triggered when a grid item starts to be dragged.<br>- **event**: See [ItemDragInfo](#itemdraginfo).<br>- **itemIndex**: index of the dragged item.<br>**NOTE**<br>If **void** is returned, the drag operation cannot be performed.<br>This event is triggered when the user long presses a grid item.<br>Drag detection also requires long press, and the event processing mechanism preferentially triggers child component events. Therefore, when **LongPressGesture** is bound to the grid item, the drag operation cannot be performed. In light of this, if both long press and drag operations are required, you can use universal drag events.|
-| onItemDragEnter<sup>8+</sup>(event: (event: ItemDragInfo) => void) | Triggered when the dragged item enters the drop target of the grid.<br>- **event**: See [ItemDragInfo](#itemdraginfo).|
-| onItemDragMove<sup>8+</sup>(event: (event: ItemDragInfo, itemIndex: number, insertIndex: number) => void) | Triggered when the dragged item moves over the drop target of the grid.<br>- **event**: See [ItemDragInfo](#itemdraginfo).<br>- **itemIndex**: initial position of the dragged item.<br>- **insertIndex**: index of the position to which the dragged item will be dropped.|
-| onItemDragLeave<sup>8+</sup>(event: (event: ItemDragInfo, itemIndex: number) => void) | Triggered when the dragged item leaves the drop target of the grid.<br>- **event**: See [ItemDragInfo](#itemdraginfo).<br>- **itemIndex**: index of the dragged item.|
-| onItemDrop<sup>8+</sup>(event: (event: ItemDragInfo, itemIndex: number, insertIndex: number, isSuccess: boolean) => void) | Triggered when the dragged item is dropped on the drop target of the grid.<br>- **event**: See [ItemDragInfo](#itemdraginfo).<br>- **itemIndex**: initial position of the dragged item.<br>- **insertIndex**: index of the position to which the dragged item will be dropped.<br>- **isSuccess**: whether the dragged item is successfully dropped.|
-| onScrollBarUpdate<sup>10+</sup>(event: (index: number, offset: number) => ComputedBarAttribute) | Triggered when the first item displayed in the grid changes. You can use this callback to set the position and length of the scrollbar.<br>- **index**: index of the first item displayed in the grid.<br>- offset: offset of the displayed first item relative to the start position of the grid, in vp.<br>- **ComputedBarAttribute**: See [ComputedBarAttribute](#computedbarattribute). |
-| onScroll<sup>10+</sup>(event: (scrollOffset: number, scrollState: [ScrollState](ts-container-list.md#scrollstate)) => void) | Triggered when the grid scrolls.<br>- **scrollOffset**: scroll offset of each frame, in vp. The offset is positive when the grid is scrolled up and negative when the grid is scrolled down.<br>- **scrollState**: current scroll state.|
-| onReachStart<sup>10+</sup>(event: () => void)          | Triggered when the grid reaches the start position.<br>**NOTE**<br>This event is triggered once when the grid is initialized and once when the grid scrolls to the start position. When the grid's edge effect is the spring effect, this event is triggered once when the grid passes the start position and is triggered again when the grid returns to the start position.|
-| onReachEnd<sup>10+</sup>(event: () => void)            | Triggered when the grid reaches the end position.<br>**NOTE**<br>When the grid's edge effect is the spring effect, this event is triggered once when the grid passes the end position and is triggered again when the grid returns to the end position.|
-| onScrollFrameBegin<sup>10+</sup>(event: (offset: number, state:  [ScrollState](ts-container-list.md#scrollstate) => { offsetRemain: number }) | Triggered when the grid starts to scroll. The input parameters indicate the amount by which the grid will scroll. The event handler then works out the amount by which the grid needs to scroll based on the real-world situation and returns the result.<br>\- **offset**: amount to scroll by, in vp.<br>\- **state**: current scrolling state.<br>- **offsetRemain**: actual amount by which the grid scrolls, in vp.<br>This event is triggered when the user starts dragging the grid or the grid starts inertial scrolling. It is not triggered when the component rebounds, the scrolling controller is used, or the scrollbar is dragged.<br>**NOTE**<br>If **gridDirection** is set to **Axis.Vertical**, the return value is the amount by which the grid needs to scroll in the vertical direction. If **gridDirection** is set to **Axis.Horizontal**, the return value is the amount by which the grid needs to scroll in the horizontal direction.|
-| onScrollStart<sup>10+</sup>(event: () => void) | Triggered when the grid starts scrolling initiated by the user's finger dragging the grid or its scrollbar. This event is also triggered when the animation contained in the scrolling triggered by [Scroller](ts-container-scroll.md#scroller) starts.|
-| onScrollStop<sup>10+</sup>(event: () => void)          | Triggered when the grid stops scrolling after the user's finger leaves the screen. This event is also triggered when the animation contained in the scrolling triggered by [Scroller](ts-container-scroll.md#scroller) stops.|
+### onScrollIndex
+
+onScrollIndex(event: (first: number, last: number) => void)
+
+Triggered when the first or last item displayed in the grid changes, that is, when the index of either the first or last item changes. It is triggered once when the grid is initialized.  
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name            | Type  | Mandatory| Description                            |
+| ------------------ | ------ | ---- | -------------------------------- |
+| first              | number | Yes  | Index of the first item of the grid.|
+| last<sup>10+</sup> | number | Yes  | Index of the last item of the grid.|
+
+### onItemDragStart<sup>8+</sup>
+
+onItemDragStart(event: (event: ItemDragInfo, itemIndex: number) => (() => any) \| void)
+
+Triggered when a grid item starts to be dragged. If **void** is returned, the drag operation cannot be performed.
+
+This event is triggered when the user long presses a grid item.
+
+Drag gesture recognition is also initiated by a long press, and the event processing mechanism prioritizes child component events. Therefore, when the grid item is bound to the long press gesture, it cannot be dragged. In light of this, if both long press and drag operations are required on the grid item, you can use the universal drag event.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name   | Type                                 | Mandatory| Description                  |
+| --------- | ------------------------------------- | ---- | ---------------------- |
+| event     | [ItemDragInfo](#itemdraginfo) | Yes  | Information about the drag point.        |
+| itemIndex | number                                | Yes  | Index of the dragged item.|
+
+### onItemDragEnter<sup>8+</sup>
+
+onItemDragEnter(event: (event: ItemDragInfo) => void)
+
+Triggered when the dragged item enters the drop target of the grid.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                 | Mandatory| Description          |
+| ------ | ------------------------------------- | ---- | -------------- |
+| event  | [ItemDragInfo](#itemdraginfo) | Yes  | Information about the drag point.|
+
+### onItemDragMove<sup>8+</sup>
+
+onItemDragMove(event: (event: ItemDragInfo, itemIndex: number, insertIndex: number) => void)
+
+Triggered when the dragged item moves over the drop target of the grid.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name     | Type                                 | Mandatory| Description          |
+| ----------- | ------------------------------------- | ---- | -------------- |
+| event       | [ItemDragInfo](#itemdraginfo) | Yes  | Information about the drag point.|
+| itemIndex   | number                                | Yes  | Initial position of the dragged item.|
+| insertIndex | number                                | Yes  | Index of the position to which the dragged item is dropped.|
+
+### onItemDragLeave<sup>8+</sup>
+
+onItemDragLeave(event: (event: ItemDragInfo, itemIndex: number) => void)
+
+Triggered when the dragged item leaves the drop target of the grid.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name   | Type                                 | Mandatory| Description                      |
+| --------- | ------------------------------------- | ---- | -------------------------- |
+| event     | [ItemDragInfo](#itemdraginfo) | Yes  | Information about the drag point.            |
+| itemIndex | number                                | Yes  | Index of the dragged item. |
+
+### onItemDrop<sup>8+</sup>
+
+onItemDrop(event: (event: ItemDragInfo, itemIndex: number, insertIndex: number, isSuccess: boolean) => void)
+
+Triggered when the dragged item is dropped on the drop target of the grid.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name     | Type                                 | Mandatory| Description          |
+| ----------- | ------------------------------------- | ---- | -------------- |
+| event       | [ItemDragInfo](#itemdraginfo) | Yes  | Information about the drag point.|
+| itemIndex   | number                                | Yes  | Initial position of the dragged item.|
+| insertIndex | number                                | Yes  | Index of the position to which the dragged item is dropped.|
+| isSuccess   | boolean                               | Yes  | Whether the dragged item is successfully dropped.  |
+
+### onScrollBarUpdate<sup>10+</sup>
+
+onScrollBarUpdate(event: (index: number, offset: number) => ComputedBarAttribute)
+
+Triggered when the first item displayed in the grid changes. You can use the callback to set the position and length of the scrollbar.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                                        |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| index  | number | Yes  | Index of the first item of the grid.                            |
+| offset | number | Yes  | Offset of the displayed first item relative to the start position of the grid, in vp.|
+
+**Return value**
+
+| Type                                                 | Description                |
+| ----------------------------------------------------- | -------------------- |
+| [ComputedBarAttribute](#computedbarattribute) | Position and length of the scrollbar.|
+
+### onScroll<sup>10+</sup>
+
+onScroll(event: (scrollOffset: number, scrollState: ScrollState) => void)
+
+Triggered when the grid scrolls.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name      | Type                                                   | Mandatory| Description                                                        |
+| ------------ | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| scrollOffset | number                                                  | Yes  | Scroll offset of each frame, in vp. The offset is positive when the grid is scrolled up and negative when the grid is scrolled down.|
+| scrollState  | [ScrollState](ts-container-list.md#scrollstate) | Yes  | Current scroll state.                                              |
+
+### onReachStart<sup>10+</sup>
+
+onReachStart(event: () => void)
+
+Triggered when the grid reaches the start position.
+
+This event is triggered once when the grid is initialized and once when the grid scrolls to the start position. When the spring effect is used when the scroll boundary of the grid is reached, this event is triggered when the grid passes the start position and is triggered again when the grid returns to the start position.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+### onReachEnd<sup>10+</sup>
+
+onReachEnd(event: () => void)
+
+Triggered when the grid reaches the end position.
+
+When the spring effect is used when the scroll boundary of the grid is reached, this event is triggered once when the grid passes the end position and is triggered again when the grid returns to the end position.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+### onScrollFrameBegin<sup>10+</sup>
+
+onScrollFrameBegin(event: (offset: number, state:  ScrollState) => { offsetRemain: number })
+
+Triggered when the grid starts to scroll. After the amount by which the grid will scroll is passed in, the event handler works out the amount by which the grid needs to scroll based on the real-world situation and returns the result.
+
+If **gridDirection** is set to **Axis.Vertical**, the return value is the amount by which the grid needs to scroll in the vertical direction. If **gridDirection** is set to **Axis.Horizontal**, the return value is the amount by which the grid needs to scroll in the horizontal direction.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                                   | Mandatory| Description                      |
+| ------ | ------------------------------------------------------- | ---- | -------------------------- |
+| offset | number                                                  | Yes  | Amount to scroll by, in vp.|
+| state  | [ScrollState](ts-container-list.md#scrollstate) | Yes  | Current scroll state.            |
+
+**Return value**
+
+| Type                    | Description                |
+| ------------------------ | -------------------- |
+| { offsetRemain: number } | Actual amount by which the grid scrolls, in vp.|
+
+### onScrollStart<sup>10+</sup>
+
+onScrollStart(event: () => void)
+
+Triggered when the grid starts scrolling initiated by the user's finger dragging the grid or its scrollbar. This event is also triggered when the animation contained in the scrolling triggered by [Scroller](ts-container-scroll.md#scroller) starts.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+### onScrollStop<sup>10+</sup>
+
+onScrollStop(event: () => void)
+
+Triggered when the grid stops scrolling after the user's finger leaves the screen. This event is also triggered when the animation contained in the scrolling triggered by [Scroller](ts-container-scroll.md#scroller) stops.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+### onScroll<sup>(deprecated)</sup>
+onScroll(event: (scrollOffset: number, scrollState: [ScrollState](ts-container-list.md#scrollstate)) => void) 
+
+Triggered when the grid scrolls.
+
+This API is available since API version 10.
+
+This API is deprecated since API version 12. You are advised to use [onDidScroll](#ondidscroll12) instead.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| ------ | ------ | ------ | ------|
+| scrollOffset | number | Yes| Scroll offset of each frame. The offset is positive when the grid is scrolled up and negative when the grid is scrolled down.<br>Unit: vp |
+| scrollState | [ScrollState](ts-container-list.md#scrollstate) | Yes| Current scroll state.|
+
+### onWillScroll<sup>12+</sup> 
+onWillScroll(handler: OnScrollCallback)
+
+Triggered when the grid is about to scroll. The return value is the offset amount by which the grid will scroll and the current scroll state. The returned offset is obtained by calculation, not the actual offset.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| ------ | ------ | ------ | ------|
+| handler | [OnScrollCallback](ts-container-list.md#onscrollcallback) | Yes| Callback invoked when the grid is about to scroll.|
+
+> **NOTE**
+> 
+> When **ScrollEdge** and **ScrollToIndex** that does not involve animation is called, **onWillScroll** is not triggered.
+
+
+### onDidScroll<sup>12+</sup> 
+onDidScroll(handler: OnScrollCallback)
+
+Triggered when the grid scrolls. The return value is the offset amount by which the grid has scrolled and the current scroll state.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| ------ | ------ | ------ | ------|
+| handler | [OnScrollCallback](ts-container-list.md#onscrollcallback) | Yes| Callback triggered when the grid scrolls.|
 
 ## ItemDragInfo
 
@@ -583,7 +1130,7 @@ struct GridExample {
 
 ### Example 5
 
-1.  Set **editMode\(true\)** to enable the grid to enter editing mode, where the user can drag the grid items.
+1.  Set **editMode\(true\)** to enable edit mode, where the user can drag the grid items.
 2.  Through [onItemDragStart](#events), set the image to be displayed during dragging.
 3.  Through [onItemDrop](#events), obtain the initial position of the dragged item and the position to which the dragged item will be dropped. Through [onItemDrop](#events), complete the array position exchange logic.
 
@@ -643,7 +1190,7 @@ struct GridExample {
       .width('90%')
       .backgroundColor(0xFAEEE0)
       .height(300)
-      .editMode(true) // Enable the grid to enter editing mode, where the user can drag the grid items.
+      .editMode(true) // Enable edit mode, where the user can drag the grid items.
       .onItemDragStart((event: ItemDragInfo, itemIndex: number) => { // Triggered when a grid item starts to be dragged.
         this.text = this.numbers[itemIndex]
         return this.pixelMapBuilder() // Set the image to be displayed during dragging.

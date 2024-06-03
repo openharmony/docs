@@ -16,7 +16,7 @@ import dlpPermission from '@ohos.dlpPermission';
 
 isDLPFile(fd: number): Promise&lt;boolean&gt;
 
-Checks whether a file is a DLP file. This API uses a promise to return the result.
+Checks whether a file is a DLP file based on the file descriptor (FD). This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Security.DataLossPrevention
 
@@ -24,7 +24,7 @@ Checks whether a file is a DLP file. This API uses a promise to return the resul
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| fd | number | Yes| File descriptor (FD) of the file to check.|
+| fd | number | Yes| FD of the file to check.|
 
 **Return value**
 | Type| Description|
@@ -64,7 +64,7 @@ fs.closeSync(file);
 
 isDLPFile(fd: number, callback: AsyncCallback&lt;boolean&gt;): void
 
-Checks whether a file is a DLP file. This API uses an asynchronous callback to return the result.
+Checks whether a file is a DLP file based on the FD. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Security.DataLossPrevention
 
@@ -435,7 +435,7 @@ try {
     } else {
       console.info('isInSandbox, data', JSON.stringify(data));
     }
-  }); // Whether the application is running in the sandbox.
+  }); // Check whether the application is running in the sandbox.
 } catch (err) {
   console.error('isInSandbox error,', (err as BusinessError).code, (err as BusinessError).message);
 }
@@ -525,7 +525,8 @@ try {
 
 setRetentionState(docUris: Array&lt;string&gt;): Promise&lt;void&gt;
 
-Sets the sandbox retention state. This API uses a promise to return the result. 
+Sets the sandbox retention state. This API uses a promise to return the result.
+
 A sandbox application is automatically installed when a DLP file is opened, and automatically uninstalled when the DLP file is closed. Once the sandbox retention state is set for a DLP file, the sandbox application will not be automatically uninstalled when the DLP file is closed.
 
 **System capability**: SystemCapability.Security.DataLossPrevention
@@ -1106,6 +1107,41 @@ try {
 }
 ```
 
+## dlpPermission.isDLPFeatureProvided<sup>12+<sup>
+isDLPFeatureProvided(): Promise&lt;boolean&gt;
+
+Queries whether the current system provides the DLP feature. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Security.DataLossPrevention
+
+**Return value**
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;boolean&gt; | Promise used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [DLP Service Error Codes](errorcode-dlp.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 19100011 | System service exception. |
+
+**Example**
+
+```ts
+import dlpPermission from '@ohos.dlpPermission';
+import { BusinessError } from '@ohos.base';
+
+async checkIsDLPFeatureProvided() {
+  dlpPermission.isDLPFeatureProvided().then((res) => {git
+    console.info('res', JSON.stringify(res));
+  }).catch((err: BusinessError) => {
+    console.error('error', (err as BusinessError).code, (err as BusinessError).message); // Error reported if the operation fails.
+  });
+}
+```
+
 ## ActionFlagType
 
 Enumerates the operations that can be performed on a DLP file. For example, the DLP sandbox application can dim its button based on this parameter.
@@ -1163,7 +1199,7 @@ Represents the information about a DLP file opened.
 
 ## DLPManagerResult<sup>11+</sup>
 
-Represents what is returned on DLP manager application startup.
+Represents information about the trigger of the DLP manager application.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -1185,5 +1221,3 @@ Represents the sandbox retention information.
 | appIndex | number | Yes| No| Index of the DLP sandbox application.|
 | bundleName | string | Yes| No| Bundle name of the application.|
 | docUris | Array&lt;string&gt; | Yes| No| URI list of the DLP files.|
-
-<!--no_check-->

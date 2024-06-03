@@ -20,6 +20,8 @@ getFont(): Font
 
 获取Font对象。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：**
@@ -38,6 +40,8 @@ uiContext.getFont();
 getComponentUtils(): ComponentUtils
 
 获取ComponentUtils对象。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -58,6 +62,8 @@ uiContext.getComponentUtils();
 getUIInspector(): UIInspector
 
 获取UIInspector对象。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -99,6 +105,8 @@ getMediaQuery(): MediaQuery
 
 获取MediaQuery对象。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：**
@@ -119,6 +127,8 @@ getRouter(): Router
 
 获取Router对象。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：**
@@ -138,6 +148,8 @@ uiContext.getRouter();
 getPromptAction(): PromptAction
 
 获取PromptAction对象。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -178,6 +190,8 @@ uiContext.getOverlayManager();
 animateTo(value: AnimateParam, event: () => void): void
 
 提供animateTo接口来指定由于闭包代码导致的状态变化插入过渡动效。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -353,7 +367,6 @@ getHostContext(): Context | undefined
 **示例：**
 
 ```ts
-// xxx.ets
 @Entry
 @Component
 struct Index {
@@ -362,15 +375,14 @@ struct Index {
   build() {
     Row() {
       Column() {
-        Text("cacheDir="+this.uiContext?.getHostContext().cacheDir).fontSize(25)
-        Text("bundleCodeDir="+this.uiContext?.getHostContext().bundleCodeDir).fontSize(25)
+        Text("cacheDir='"+this.uiContext?.getHostContext()?.cacheDir+"'").fontSize(25)
+        Text("bundleCodeDir='"+this.uiContext?.getHostContext()?.bundleCodeDir+"'").fontSize(25)
       }
       .width('100%')
     }
     .height('100%')
   }
 }
-
 ```
 
 ### getFrameNodeById<sup>12+</sup>
@@ -399,11 +411,59 @@ getFrameNodeById(id: string): FrameNode | null
 uiContext.getFrameNodeById("TestNode")
 ```
 
+### getFrameNodeByUniqueId<sup>12+</sup>
+
+getFrameNodeByUniqueId(id: number): FrameNode | null
+
+提供getFrameNodeByUniqueId接口通过组件的uniqueId获取组件树的实体节点。
+1. 当uniqueId对应的是内置组件时，返回组件所对应的FrameNode；
+2. 当uniqueId对应的是自定义组件时，若其有渲染内容，则返回其FrameNode，类型为__Common__；若其无渲染内容，则返回其第一个子组件的FrameNode。
+3. 当uniqueId无对应的组件时，返回null。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名   | 类型                                       | 必填   | 说明                                    |
+| ----- | ---------------------------------------- | ---- | ------------------------------------- |
+| id | number | 是    | 节点对应的UniqueId                          |
+
+**返回值：**
+
+| 类型                                       | 说明            |
+| ---------------------------------------- | ------------- |
+| [FrameNode](js-apis-arkui-frameNode.md)  \| null | 返回的组件树的实体节点或者空节点。 |
+
+**示例：**
+
+```ts
+import { UIContext } from '@ohos.arkui.UIContext';
+import { FrameNode } from '@ohos.arkui.node';
+
+@Entry
+@Component
+struct MyComponent {
+  aboutToAppear() {
+    let uniqueId: number = this.getUniqueId();
+    let uiContext: UIContext = this.getUIContext();
+    if (uiContext) {
+      let node: FrameNode = uiContext.getFrameNodeByUniqueId(uniqueId);
+    }
+  }
+
+  build() {
+    // ...
+  }
+}
+```
+
 ### showAlertDialog
 
 showAlertDialog(options: AlertDialogParamWithConfirm | AlertDialogParamWithButtons | AlertDialogParamWithOptions): void
 
 显示警告弹窗组件，可设置文本内容与响应回调。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -443,6 +503,8 @@ uiContext.showAlertDialog(
 showActionSheet(value: ActionSheetOptions): void
 
 定义列表弹窗并弹出。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -499,6 +561,8 @@ showDatePickerDialog(options: DatePickerDialogOptions): void
 
 定义日期滑动选择器弹窗并弹出。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -535,6 +599,8 @@ showTimePickerDialog(options: TimePickerDialogOptions): void
 
 定义时间滑动选择器弹窗并弹出。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -565,7 +631,7 @@ struct TimePickerDialogExample {
       Button('showTimePickerDialog')
         .margin(30)
         .onClick(() => {
-          uiContext.showTimePickerDialog({
+          this.getUIContext().showTimePickerDialog({
             selected: this.selectTime,
             onAccept: (value: TimePickerResult) => {
               // 设置selectTime为按下确定按钮时的时间，这样当弹窗再次弹出时显示选中的为上一次确定的时间
@@ -593,6 +659,8 @@ struct TimePickerDialogExample {
 showTextPickerDialog(options: TextPickerDialogOptions): void
 
 定义文本滑动选择器弹窗并弹出。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -630,7 +698,7 @@ struct TextPickerDialogExample {
       Button('showTextPickerDialog')
         .margin(30)
         .onClick(() => {
-          uiContext.showTextPickerDialog({
+          this.getUIContext().showTextPickerDialog({
             range: this.fruits,
             selected: this.select,
             onAccept: (value: TextPickerResult) => {
@@ -661,6 +729,8 @@ createAnimator(options: AnimatorOptions): AnimatorResult
 
 定义Animator类。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -674,6 +744,15 @@ createAnimator(options: AnimatorOptions): AnimatorResult
 | 类型                                       | 说明            |
 | ---------------------------------------- | ------------- |
 | [AnimatorResult](js-apis-animator.md#animatorresult) | Animator结果接口。 |
+
+
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 
 **示例：**
 
@@ -710,6 +789,8 @@ runScopedTask(callback: () => void): void
 
 在当前UI上下文执行传入的回调函数。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -733,6 +814,8 @@ uiContext.runScopedTask(
 setKeyboardAvoidMode(value: KeyboardAvoidMode): void
 
 配置虚拟键盘弹出时，页面的避让模式。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -767,6 +850,8 @@ onWindowStageCreate(windowStage: window.WindowStage) {
 getKeyboardAvoidMode(): KeyboardAvoidMode
 
 获取虚拟键盘弹出时，页面的避让模式。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -804,6 +889,8 @@ getAtomicServiceBar(): Nullable\<AtomicServiceBar>
 
 获取AtomicServiceBar对象，通过该对象设置原子化服务menuBar的属性。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：**
@@ -838,6 +925,8 @@ getDragController(): DragController
 
 获取DragController对象，可通过该对象创建并发起拖拽。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：**
@@ -857,6 +946,8 @@ uiContext.getDragController();
 getDragPreview(): dragController.DragPreview
 
 返回一个代表拖拽背板的对象。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -878,6 +969,8 @@ keyframeAnimateTo(param: KeyframeAnimateParam, keyframes: Array&lt;KeyframeState
 
 产生关键帧动画。该接口的使用说明请参考[keyframeAnimateTo](arkui-ts/ts-keyframeAnimateTo.md)。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -891,7 +984,7 @@ keyframeAnimateTo(param: KeyframeAnimateParam, keyframes: Array&lt;KeyframeState
 
 getFocusController(): FocusController
 
-获取FocusController对象，可通过该对象控制焦点。
+获取[FocusController](js-apis-arkui-UIContext.md#focuscontroller12)对象，可通过该对象控制焦点。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -899,12 +992,455 @@ getFocusController(): FocusController
 
 |类型|说明|
 |----|----|
-|[FocusController](js-apis-arkui-UIContext.md#FocusController12)| 获取FocusController对象。|
+|[FocusController](js-apis-arkui-UIContext.md#focuscontroller12)| 获取FocusController对象。|
 
 **示例：**
 
 ```ts
 uiContext.getFocusController();
+```
+
+### getFilteredInspectorTree<sup>12+</sup>
+
+getFilteredInspectorTree(filters?: Array\<string\>): string
+
+获取组件树及组件属性。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型            | 必填 | 说明                                                         |
+| ------- | --------------- | ---- | ------------------------------------------------------------ |
+| filters | Array\<string\> | 否   | 需要获取的组件属性的过滤列表。目前仅支持过滤字段："id", "src", "content", "editable", "scrollable", "selectable", "focusable", "forcused"，其余字段仅供测试场景使用。 |
+
+**返回值：** 
+
+| 类型   | 说明                               |
+| ------ | ---------------------------------- |
+| string | 获取组件树及组件属性的JSON字符串。 |
+
+
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+
+**示例：**
+
+```ts
+uiContext.getFilteredInspectorTree(['id', 'src', 'content']);
+```
+
+### getFilteredInspectorTreeById<sup>12+</sup>
+
+getFilteredInspectorTreeById(id: string, depth: number, filters?: Array\<string\>): string
+
+获取指定的组件及其子组件的属性。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型            | 必填 | 说明                                                         |
+| ------- | --------------- | ---- | ------------------------------------------------------------ |
+| id      | string          | 是   | 指定的[组件标识](arkui-ts/ts-universal-attributes-component-id.md)id。 |
+| depth   | number          | 是   | 获取子组件的层数。当取值0时，获取指定的组件及其所有的子孙组件的属性。当取值1时，仅获取指定的组件的属性。当取值2时，指定的组件及其1层子组件的属性。以此类推。 |
+| filters | Array\<string\> | 否   | 需要获取的组件属性的过滤列表。目前仅支持过滤字段："id", "src", "content", "editable", "scrollable", "selectable", "focusable", "forcused"，其余字段仅供测试场景使用。 |
+
+**返回值：** 
+
+| 类型   | 说明                                         |
+| ------ | -------------------------------------------- |
+| string | 获取指定的组件及其子组件的属性的JSON字符串。 |
+
+
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+
+**示例：**
+
+```ts
+uiContext.getFilteredInspectorTreeById('testId', 0, ['id', 'src', 'content']);
+```
+
+### getCursorController<sup>12+</sup>
+
+getCursorController(): CursorController
+
+获取[CursorController](js-apis-arkui-UIContext.md#cursorcontroller12)对象，可通过该对象控制光标。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+|类型|说明|
+|----|----|
+|[CursorController](js-apis-arkui-UIContext.md#cursorcontroller12)| 获取CursorController对象。|
+
+**示例：**
+
+```ts
+uiContext.CursorController();
+```
+
+### getContextMenuController<sup>12+</sup>
+
+getContextMenuController(): ContextMenuController
+
+获取[ContextMenuController](js-apis-arkui-UIContext.md#contextmenucontroller12)对象，可通过该对象控制菜单。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+|类型|说明|
+|----|----|
+|[ContextMenuController](js-apis-arkui-UIContext.md#contextmenucontroller12)| 获取ContextMenuController对象。|
+
+**示例：**
+
+```ts
+uiContext.getContextMenuController();
+```
+
+### getMeasureUtils<sup>12+</sup>
+
+getMeasureUtils(): MeasureUtils
+
+允许用户通过UIContext对象，获取MeasureUtils对象进行文本计算。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：** 
+
+| 类型   | 说明                                         |
+| ------ | -------------------------------------------- |
+| [MeasureUtils](js-apis-arkui-UIContext.md#measureutils12) | 提供文本宽度、高度等相关计算。 |
+
+**示例：**
+
+```ts
+uiContext.getMeasureUtils();
+```
+
+### getComponentSnapshot<sup>12+</sup>
+
+getComponentSnapshot(): ComponentSnapshot
+
+获取ComponentSnapshot对象，可通过该对象获取组件截图的能力。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型                                                         | 说明                        |
+| ------------------------------------------------------------ | --------------------------- |
+| [ComponentSnapshot](js-apis-arkui-UIContext.md#componentsnapshot12) | 获取ComponentSnapshot对象。 |
+
+**示例：**
+
+```ts
+uiContext.getComponentSnapshot();
+```
+
+### vp2px<sup>12+</sup>
+
+vp2px(value : number) : number
+
+将vp单位的数值转换为以px为单位的数值。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                   |
+| ------ | ------ | ---- | -------------------------------------- |
+| value | number | 是   | 将vp单位的数值转换为以px为单位的数值。 |
+
+**返回值：**
+
+| 类型   | 说明           |
+| ------ | -------------- |
+| number | 转换后的数值。 |
+
+**示例：**
+
+```tx
+uiContext.vp2px(200);
+```
+
+### px2vp<sup>12+</sup>
+
+px2vp(value : number) : number
+
+将px单位的数值转换为以vp为单位的数值。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                   |
+| ------ | ------ | ---- | -------------------------------------- |
+| value | number | 是   | 将px单位的数值转换为以vp为单位的数值。 |
+
+**返回值：**
+
+| 类型   | 说明           |
+| ------ | -------------- |
+| number | 转换后的数值。 |
+
+**示例：**
+
+```tx
+uiContext.px2vp(200);
+```
+
+### fp2px<sup>12+</sup>
+
+fp2px(value : number) : number
+
+将fp单位的数值转换为以px为单位的数值。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                   |
+| ------ | ------ | ---- | -------------------------------------- |
+| value | number | 是   | 将fp单位的数值转换为以px为单位的数值。 |
+
+**返回值：**
+
+| 类型   | 说明           |
+| ------ | -------------- |
+| number | 转换后的数值。 |
+
+**示例：**
+
+```tx
+uiContext.fp2px(200);
+```
+
+### px2fp<sup>12+</sup>
+
+px2fp(value : number) : number
+
+将px单位的数值转换为以fp为单位的数值。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                   |
+| ------ | ------ | ---- | -------------------------------------- |
+| value | number | 是   | 将px单位的数值转换为以fp为单位的数值。 |
+
+**返回值：**
+
+| 类型   | 说明           |
+| ------ | -------------- |
+| number | 转换后的数值。 |
+
+**示例：**
+
+```tx
+uiContext.px2fp(200);
+```
+
+### lpx2px<sup>12+</sup>
+
+lpx2px(value : number) : number
+
+将lpx单位的数值转换为以px为单位的数值。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                    |
+| ------ | ------ | ---- | --------------------------------------- |
+| value | number | 是   | 将lpx单位的数值转换为以px为单位的数值。 |
+
+**返回值：**
+
+| 类型   | 说明           |
+| ------ | -------------- |
+| number | 转换后的数值。 |
+
+**示例：**
+
+```tx
+uiContext.lpx2px(200);
+```
+
+### px2lpx<sup>12+</sup>
+
+px2lpx(value : number) : number
+
+将px单位的数值转换为以lpx为单位的数值。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                    |
+| ------ | ------ | ---- | --------------------------------------- |
+| value | number | 是   | 将px单位的数值转换为以lpx为单位的数值。 |
+
+**返回值：**
+
+| 类型   | 说明           |
+| ------ | -------------- |
+| number | 转换后的数值。 |
+
+**示例：**
+
+```tx
+uiContext.px2lpx(200);
+```
+
+### getWindowName<sup>12+</sup>
+
+getWindowName(): string | undefined
+
+获取当前实例所在窗口的名称。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：** 
+
+| 类型   | 说明                                         |
+| ------ | -------------------------------------------- |
+| string \| undefined | 当前实例所在窗口的名称。若窗口不存在，则返回undefined。 |
+
+**示例：**
+
+```ts
+import window from '@ohos.window';
+
+@Entry
+@Component
+struct Index {
+  @State message: string = 'Hello World'
+
+  aboutToAppear() {
+    const windowName = this.getUIContext().getWindowName();
+    console.error('WindowName ' + windowName);
+    const currWindow = window.findWindow(windowName);
+    const windowProperties = currWindow.getWindowProperties();
+    console.error(`Window width ${windowProperties.windowRect.width}, height ${windowProperties.windowRect.height}`);
+  }
+
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+### postFrameCallback<sup>12+</sup>
+
+注册一个在下一帧进行渲染时执行的回调。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                    |
+| ------ | ------ | ---- | --------------------------------------- |
+| frameCallback | [FrameCallback](#framecallback12) | 是   | 下一帧需要执行的回调。 |
+
+**示例：**
+
+```ts
+import { FrameCallback } from '@ohos.arkui.UIContext';
+
+class MyFrameCallback extends FrameCallback {
+  private tag: string;
+
+  constructor(tag: string) {
+    super()
+    this.tag = tag;
+  }
+
+  onFrame(frameTimeNanos: number) {
+    console.info('MyFrameCallback ' + this.tag + ' ' + frameTimeNanos.toString());
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Button('点击触发postFrameCallback')
+        .onClick(() => {
+          this.getUIContext().postFrameCallback(new MyFrameCallback("normTask"));
+        })
+    }
+  }
+}
+```
+
+### postDelayedFrameCallback<sup>12+</sup>
+
+注册一个回调，在延迟一段时间后的下一帧进行渲染时执行。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                    |
+| ------ | ------ | ---- | --------------------------------------- |
+| frameCallback | [FrameCallback](#framecallback12) | 是   | 下一帧需要执行的回调。 |
+| delayTime | number | 是   | 延迟的时间，以毫秒为单位。传入null、undefined或小于0的值，会按0处理。 |
+
+**示例：**
+
+```ts
+import { FrameCallback } from '@ohos.arkui.UIContext';
+
+class MyFrameCallback extends FrameCallback {
+  private tag: string;
+
+  constructor(tag: string) {
+    super()
+    this.tag = tag;
+  }
+
+  onFrame(frameTimeNanos: number) {
+    console.info('MyFrameCallback ' + this.tag + ' ' + frameTimeNanos.toString());
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Button('点击触发postDelayedFrameCallback')
+        .onClick(() => {
+          this.getUIContext().postDelayedFrameCallback(new MyFrameCallback("delayTask"), 5);
+        })
+    }
+  }
+}
 ```
 
 ## Font
@@ -916,6 +1452,8 @@ uiContext.getFocusController();
 registerFont(options: font.FontOptions): void
 
 在字体管理中注册自定义字体。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -941,6 +1479,8 @@ getSystemFontList(): Array\<string>
 
 获取系统支持的字体名称列表。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：**
@@ -964,6 +1504,8 @@ if(font){
 getFontByName(fontName: string): font.FontInfo
 
 根据传入的系统字体名称获取系统字体的相关信息。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -999,6 +1541,8 @@ getRectangleById(id: string): componentUtils.ComponentInfo
 
 获取组件大小、位置、平移缩放旋转及仿射矩阵属性信息。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -1033,6 +1577,8 @@ createComponentObserver(id: string): inspector.ComponentObserver
 
 注册组件布局和绘制完成回调通知。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -1065,6 +1611,8 @@ on(type: 'navDestinationUpdate', callback: Callback\<observer.NavDestinationInfo
 
 监听NavDestination组件的状态变化。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -1090,6 +1638,8 @@ off(type: 'navDestinationUpdate', callback?: Callback\<observer.NavDestinationIn
 
 取消监听NavDestination组件的状态变化。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -1112,6 +1662,8 @@ observer.off('navDestinationUpdate');
 on(type: 'navDestinationUpdate', options: { navigationId: ResourceStr }, callback: Callback\<observer.NavDestinationInfo\>): void
 
 监听NavDestination组件的状态变化。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1138,6 +1690,8 @@ observer.on('navDestinationUpdate', { navigationId: "testId" }, (info) => {
 off(type: 'navDestinationUpdate', options: { navigationId: ResourceStr }, callback?: Callback\<observer.NavDestinationInfo\>): void
 
 取消监听NavDestination组件的状态变化。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1302,6 +1856,8 @@ on(type: 'routerPageUpdate', callback: Callback\<observer.RouterPageInfo\>): voi
 
 监听router中page页面的状态变化。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -1327,6 +1883,8 @@ observer.on('routerPageUpdate', (info) => {
 off(type: 'routerPageUpdate', callback?: Callback\<observer.RouterPageInfo\>): void
 
 取消监听router中page页面的状态变化。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1441,7 +1999,7 @@ struct Index {
 }
 ```
 
-### observer.on('willDraw')<sup>12+</sup>
+### on('willDraw')<sup>12+</sup>
 
 on(type: 'willDraw', callback: Callback\<void\>): void
 
@@ -1476,7 +2034,7 @@ struct Index {
 }
 ```
 
-### observer.off('willDraw')<sup>12+</sup>
+### off('willDraw')<sup>12+</sup>
 
 off(type: 'willDraw', callback?: Callback\<void\>): void
 
@@ -1516,7 +2074,7 @@ struct Index {
 }
 ```
 
-### observer.on('didLayout')<sup>12+</sup>
+### on('didLayout')<sup>12+</sup>
 
 on(type: 'didLayout', callback: Callback\<void\>): void
 
@@ -1551,7 +2109,7 @@ struct Index {
 }
 ```
 
-### observer.off('didLayout')<sup>12+</sup>
+### off('didLayout')<sup>12+</sup>
 
 off(type: 'didLayout', callback?: Callback\<void\>): void
 
@@ -1609,14 +2167,57 @@ on(type: 'navDestinationSwitch', callback: Callback\<observer.NavDestinationSwit
 **示例：**
 
 ```ts
-// 在页面Component中使用
-import { UIContext, UIObserver } from '@ohos.arkui.UIContext';
-// callback是开发者定义的监听回调函数
-let callback = (info: observer.NavDestinationSwitchInfo) => {
-    console.info(`navigation page switched, switchInfo: ${JSON.stringify(info)}`);
-};
-let observer: UIObserver = this.getUIContext().getUIObserver();
-observer.on('navDestinationSwitch', callback);
+// Index.ets
+// 演示 UIObserver.on('navDestinationSwitch', callback)
+// UIObserver.off('navDestinationSwitch', callback)
+
+@Component
+struct PageOne {
+  build() {
+    NavDestination() {
+      Text("pageOne")
+    }.title("pageOne")
+  }
+}
+
+function callBackFunc(info: observer.NavDestinationSwitchInfo) {
+  console.log(`testTag navDestinationSwitch from: ${JSON.stringify(info.from)} to: ${JSON.stringify(info.to)}`)
+}
+
+@Entry
+@Component
+struct Index {
+  private stack: NavPathStack = new NavPathStack();
+
+  @Builder
+  PageBuilder(name: string) {
+    PageOne()
+  }
+
+  aboutToAppear() {
+    let obs = this.getUIContext().getUIObserver();
+    obs.on('navDestinationSwitch', callBackFunc);
+  }
+
+  aboutToDisappear() {
+    let obs = this.getUIContext().getUIObserver();
+    obs.off('navDestinationSwitch', callBackFunc);
+  }
+
+  build() {
+    Column() {
+      Navigation(this.stack) {
+        Button("push").onClick(() => {
+          this.stack.pushPath({name: "pageOne"});
+        })
+      }
+      .title("Navigation")
+      .navDestination(this.PageBuilder)
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
 ```
 
 ### off('navDestinationSwitch')<sup>12+</sup>
@@ -1634,18 +2235,7 @@ off(type: 'navDestinationSwitch', callback?: Callback\<observer.NavDestinationSw
 | type     | string                                                       | 是   | 监听事件，固定为'navDestinationSwitch'，即Navigation的页面切换事件。 |
 | callback | Callback\<observer.[NavDestinationSwitchInfo](js-apis-arkui-observer.md#navdestinationswitchinfo12)\>        | 否   | 需要被注销的回调函数。                 |
 
-**示例：**
-
-```ts
-// 在页面Component中使用
-import { UIContext, UIObserver } from '@ohos.arkui.UIContext';
-// callback是开发者定义的监听回调函数
-let callback = (info: observer.NavDestinationSwitchInfo) => {
-    console.info(`navigation page switched, switchInfo: ${JSON.stringify(info)}`);
-};
-let observer: UIObserver = this.getUIContext().getUIObserver();
-observer.off('navDestinationSwitch', callback);
-```
+**示例代码参考上述UIObserver.on('navDestinationSwitch')接口的示例代码**
 
 ### on('navDestinationSwitch')<sup>12+</sup>
 
@@ -1666,14 +2256,59 @@ on(type: 'navDestinationSwitch', observerOptions: observer.NavDestinationSwitchO
 **示例：**
 
 ```ts
-// 在页面Component中使用
-import { UIContext, UIObserver } from '@ohos.arkui.UIContext';
-// callback是开发者定义的监听回调函数
-let callback = (info: observer.NavDestinationSwitchInfo) => {
-    console.info(`navigation page switched, switchInfo: ${JSON.stringify(info)}`);
-};
-let observer: UIObserver = this.getUIContext().getUIObserver();
-observer.on('navDestinationSwitch', { navigationId: "myNavId" }, callback);
+// Index.ets
+// 演示 UIObserver.on('navDestinationSwitch', NavDestinationSwitchObserverOptions, callback)
+// UIObserver.off('navDestinationSwitch', NavDestinationSwitchObserverOptions, callback)
+import observer from '@ohos.arkui.observer';
+
+@Component
+struct PageOne {
+  build() {
+    NavDestination() {
+      Text("pageOne")
+    }.title("pageOne")
+  }
+}
+
+function callBackFunc(info: observer.NavDestinationSwitchInfo) {
+  console.log(`testTag navDestinationSwitch from: ${JSON.stringify(info.from)} to: ${JSON.stringify(info.to)}`)
+}
+
+@Entry
+@Component
+struct Index {
+  private stack: NavPathStack = new NavPathStack();
+
+  @Builder
+  PageBuilder(name: string) {
+    PageOne()
+  }
+
+  aboutToAppear() {
+    let obs = this.getUIContext().getUIObserver();
+    obs.on('navDestinationSwitch', { navigationId: "myNavId" }, callBackFunc)
+  }
+
+  aboutToDisappear() {
+    let obs = this.getUIContext().getUIObserver();
+    obs.off('navDestinationSwitch', { navigationId: "myNavId" }, callBackFunc)
+  }
+
+  build() {
+    Column() {
+      Navigation(this.stack) {
+        Button("push").onClick(() => {
+          this.stack.pushPath({name: "pageOne"});
+        })
+      }
+      .id("myNavId")
+      .title("Navigation")
+      .navDestination(this.PageBuilder)
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
 ```
 
 ### off('navDestinationSwitch')<sup>12+</sup>
@@ -1692,22 +2327,11 @@ off(type: 'navDestinationSwitch', observerOptions: observer.NavDestinationSwitch
 | observerOptions | observer.[NavDestinationSwitchObserverOptions](js-apis-arkui-observer.md#navdestinationswitchobserveroptions12)        | 是   | 监听选项。   |
 | callback | Callback\<observer.[NavDestinationSwitchInfo](js-apis-arkui-observer.md#navdestinationswitchinfo12)\>        | 否   | 需要被注销的回调函数。                 |
 
-**示例：**
-
-```ts
-// 在页面Component中使用
-import { UIContext, UIObserver } from '@ohos.arkui.UIContext';
-// callback是开发者定义的监听回调函数
-let callback = (info: observer.NavDestinationSwitchInfo) => {
-    console.info(`navigation page switched, switchInfo: ${JSON.stringify(info)}`);
-};
-let observer: UIObserver = this.getUIContext().getUIObserver();
-observer.off('navDestinationSwitch', { navigationId: "myNavId" }, callback);
-```
+**示例代码参考上述UIObserver.on('navDestinationSwitch')接口的示例代码**
 
 ### on('willClick')<sup>12+</sup>
 
-on(type: 'willClick', callback: Callback\<GestureEvent, FrameNode>): void
+on(type: 'willClick', callback: GestureEventListenerCallback): void
 
 监听点击事件指令下发情况。
 
@@ -1718,7 +2342,7 @@ on(type: 'willClick', callback: Callback\<GestureEvent, FrameNode>): void
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 监听事件，固定为'willClick'，用于监听点击事件指令下发情况，所注册回调将于点击事件触发前触发。 |
-| callback | Callback<[GestureEvent](../apis-arkui/arkui-ts/ts-gesture-settings.md#gestureevent对象说明), [FrameNode](js-apis-arkui-frameNode.md#framenode)>         | 是   | 回调函数。可以获得点击事件的GestureEvent和组件的FrameNode。 |
+| callback | [GestureEventListenerCallback](#gestureeventlistenercallback12) | 是   | 回调函数。可以获得点击事件的GestureEvent和组件的FrameNode。  |
 
 **示例：**
 
@@ -1733,7 +2357,7 @@ observer.on('willClick', callback);
 
 ### off('willClick')<sup>12+</sup>
 
-off(type: 'willClick', callback?: Callback\<GestureEvent, FrameNode>): void
+off(type: 'willClick', callback?: GestureEventListenerCallback): void
 
 取消监听点击事件指令下发情况。
 
@@ -1741,10 +2365,10 @@ off(type: 'willClick', callback?: Callback\<GestureEvent, FrameNode>): void
 
 **参数：** 
 
-| 参数名   | 类型                                                         | 必填 | 说明                                                         |
-| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| 参数名   | 类型                                                         | 必填 | 说明                                                  |
+| -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------- |
 | type     | string                                                       | 是   | 监听事件，固定为'willClick'，即点击事件指令下发情况。 |
-| callback | Callback\<[GestureEvent](../apis-arkui/arkui-ts/ts-gesture-settings.md#gestureevent对象说明), [FrameNode](js-apis-arkui-frameNode.md#framenode)>        | 否   | 需要被注销的回调函数。                 |
+| callback | [GestureEventListenerCallback](#gestureeventlistenercallback12) | 否   | 需要被注销的回调函数。                                |
 
 **示例：**
 
@@ -1759,7 +2383,7 @@ observer.off('willClick', callback);
 
 ### on('didClick')<sup>12+</sup>
 
-on(type: 'didClick', callback: Callback\<GestureEvent, FrameNode>): void
+on(type: 'didClick', callback: GestureEventListenerCallback): void
 
 监听点击事件指令下发情况。
 
@@ -1770,7 +2394,7 @@ on(type: 'didClick', callback: Callback\<GestureEvent, FrameNode>): void
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 监听事件，固定为'didClick'，用于监听点击事件指令下发情况，所注册回调将于点击事件触发前触发。 |
-| callback | Callback<[GestureEvent](../apis-arkui/arkui-ts/ts-gesture-settings.md#gestureevent对象说明), [FrameNode](js-apis-arkui-frameNode.md#framenode)>         | 是   | 回调函数。可以获得点击事件的GestureEvent和组件的FrameNode。   |
+| callback | [GestureEventListenerCallback](#gestureeventlistenercallback12) | 是   | 回调函数。可以获得点击事件的GestureEvent和组件的FrameNode。  |
 
 **示例：**
 
@@ -1785,7 +2409,7 @@ observer.on('didClick', callback);
 
 ### off('didClick')<sup>12+</sup>
 
-off(type: 'didClick', callback?: Callback\<GestureEvent, FrameNode>): void
+off(type: 'didClick', callback?: GestureEventListenerCallback): void
 
 取消监听点击事件指令下发情况。
 
@@ -1793,10 +2417,10 @@ off(type: 'didClick', callback?: Callback\<GestureEvent, FrameNode>): void
 
 **参数：** 
 
-| 参数名   | 类型                                                         | 必填 | 说明                                                         |
-| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| 参数名   | 类型                                                         | 必填 | 说明                                                 |
+| -------- | ------------------------------------------------------------ | ---- | ---------------------------------------------------- |
 | type     | string                                                       | 是   | 监听事件，固定为'didClick'，即点击事件指令下发情况。 |
-| callback | Callback\<[GestureEvent](../apis-arkui/arkui-ts/ts-gesture-settings.md#gestureevent对象说明), [FrameNode](js-apis-arkui-frameNode.md#framenode)>        | 否   | 需要被注销的回调函数。                 |
+| callback | [GestureEventListenerCallback](#gestureeventlistenercallback12) | 否   | 需要被注销的回调函数。                               |
 
 **示例：**
 
@@ -1811,7 +2435,7 @@ observer.off('didClick', callback);
 
 ### on('willClick')<sup>12+</sup>
 
-on(type: 'willClick', callback: Callback\<ClickEvent, FrameNode>): void
+on(type: 'willClick', callback: ClickEventListenerCallback): void
 
 监听点击事件指令下发情况。
 
@@ -1819,10 +2443,10 @@ on(type: 'willClick', callback: Callback\<ClickEvent, FrameNode>): void
 
 **参数：** 
 
-| 参数名   | 类型                                                         | 必填 | 说明                                                         |
-| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | 是   | 监听事件，固定为'willClick'，用于监听点击事件指令下发情况，所注册回调将于点击事件触发前触发。 |
-| callback | Callback<[ClickEvent](../apis-arkui/arkui-ts/ts-universal-events-click.md#clickevent对象说明), [FrameNode](js-apis-arkui-frameNode.md#framenode)>         | 是   | 回调函数。可以获得点击事件的ClickEvent和组件的FrameNode。   |
+| 参数名   | 类型                                                        | 必填 | 说明                                                         |
+| -------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                                      | 是   | 监听事件，固定为'willClick'，用于监听点击事件指令下发情况，所注册回调将于点击事件触发前触发。 |
+| callback | [ClickEventListenerCallback](#clickeventlistenercallback12) | 是   | 回调函数。可以获得点击事件的ClickEvent和组件的FrameNode。    |
 
 **示例：**
 
@@ -1837,7 +2461,7 @@ observer.on('willClick', callback);
 
 ### off('willClick')<sup>12+</sup>
 
-off(type: 'willClick', callback?: Callback\<ClickEvent, FrameNode>): void
+off(type: 'willClick', callback?: ClickEventListenerCallback): void
 
 取消监听点击事件指令下发情况。
 
@@ -1845,10 +2469,10 @@ off(type: 'willClick', callback?: Callback\<ClickEvent, FrameNode>): void
 
 **参数：** 
 
-| 参数名   | 类型                                                         | 必填 | 说明                                                         |
-| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | 是   | 监听事件，固定为'willClick'，即点击事件指令下发情况。 |
-| callback | Callback\<[ClickEvent](../apis-arkui/arkui-ts/ts-universal-events-click.md#clickevent对象说明), [FrameNode](js-apis-arkui-frameNode.md#framenode)>        | 否   | 需要被注销的回调函数。                 |
+| 参数名   | 类型                                                        | 必填 | 说明                                                  |
+| -------- | ----------------------------------------------------------- | ---- | ----------------------------------------------------- |
+| type     | string                                                      | 是   | 监听事件，固定为'willClick'，即点击事件指令下发情况。 |
+| callback | [ClickEventListenerCallback](#clickeventlistenercallback12) | 否   | 需要被注销的回调函数。                                |
 
 **示例：**
 
@@ -1863,7 +2487,7 @@ observer.off('willClick', callback);
 
 ### on('didClick')<sup>12+</sup>
 
-on(type: 'didClick', callback: Callback\<ClickEvent, FrameNode>): void
+on(type: 'didClick', callback: ClickEventListenerCallback): void
 
 监听点击事件指令下发情况。
 
@@ -1871,10 +2495,10 @@ on(type: 'didClick', callback: Callback\<ClickEvent, FrameNode>): void
 
 **参数：** 
 
-| 参数名   | 类型                                                         | 必填 | 说明                                                         |
-| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | 是   | 监听事件，固定为'didClick'，用于监听点击事件指令下发情况，所注册回调将于点击事件触发前触发。 |
-| callback | Callback<[ClickEvent](../apis-arkui/arkui-ts/ts-universal-events-click.md#clickevent对象说明), [FrameNode](js-apis-arkui-frameNode.md#framenode)>         | 是   | 回调函数。可以获得点击事件的ClickEvent和组件的FrameNode。   |
+| 参数名   | 类型                                                        | 必填 | 说明                                                         |
+| -------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                                      | 是   | 监听事件，固定为'didClick'，用于监听点击事件指令下发情况，所注册回调将于点击事件触发前触发。 |
+| callback | [ClickEventListenerCallback](#clickeventlistenercallback12) | 是   | 回调函数。可以获得点击事件的ClickEvent和组件的FrameNode。    |
 
 **示例：**
 
@@ -1889,7 +2513,7 @@ observer.on('didClick', callback);
 
 ### off('didClick')<sup>12+</sup>
 
-off(type: 'didClick', callback?: Callback\<ClickEvent, FrameNode>): void
+off(type: 'didClick', callback?: ClickEventListenerCallback): void
 
 取消监听点击事件指令下发情况。
 
@@ -1897,10 +2521,10 @@ off(type: 'didClick', callback?: Callback\<ClickEvent, FrameNode>): void
 
 **参数：** 
 
-| 参数名   | 类型                                                         | 必填 | 说明                                                         |
-| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | 是   | 监听事件，固定为'didClick'，即点击事件指令下发情况。 |
-| callback | Callback\<[ClickEvent](../apis-arkui/arkui-ts/ts-universal-events-click.md#clickevent对象说明), [FrameNode](js-apis-arkui-frameNode.md#framenode)>        | 否   | 需要被注销的回调函数。                 |
+| 参数名   | 类型                                                        | 必填 | 说明                                                 |
+| -------- | ----------------------------------------------------------- | ---- | ---------------------------------------------------- |
+| type     | string                                                      | 是   | 监听事件，固定为'didClick'，即点击事件指令下发情况。 |
+| callback | [ClickEventListenerCallback](#clickeventlistenercallback12) | 否   | 需要被注销的回调函数。                               |
 
 **示例：**
 
@@ -1912,6 +2536,38 @@ let callback = (event: ClickEvent, frameNode: FrameNode) => {};
 let observer: UIObserver = this.getUIContext().getUIObserver();
 observer.off('didClick', callback);
 ```
+
+## GestureEventListenerCallback<sup>12+</sup>
+type GestureEventListenerCallback = (event: GestureEvent, node?: FrameNode) => void
+
+ArkTS GestureEvent事件监听函数类型。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**参数：**
+
+| 参数名  | 类型   | 必填 | 说明                          |
+| ------- | ------ | ---- | --------------------------- |
+| event | [GestureEvent](../apis-arkui/arkui-ts/ts-gesture-settings.md#gestureevent对象说明) | 是 | 触发事件监听的手势事件的相关信息。 |
+| node | [FrameNode](js-apis-arkui-frameNode.md#framenode) | 否 | 触发事件监听的手势事件所绑定的组件。 |
+
+## ClickEventListenerCallback<sup>12+</sup>
+type ClickEventListenerCallback = (event: ClickEvent, node?: FrameNode) => void
+
+ArkTS GestureEvent事件监听函数类型。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**参数：**
+
+| 参数名  | 类型   | 必填 | 说明                          |
+| ------- | ------ | ---- | --------------------------- |
+| event | [ClickEvent](../apis-arkui/arkui-ts/ts-universal-events-click.md#clickevent对象说明) | 是 | 触发事件监听的点击事件的相关信息。 |
+| node | [FrameNode](js-apis-arkui-frameNode.md#framenode) | 否 | 触发事件监听的点击事件所绑定的组件。 |
 
 ## MediaQuery
 
@@ -1922,6 +2578,8 @@ observer.off('didClick', callback);
 matchMediaSync(condition: string): mediaQuery.MediaQueryListener
 
 设置媒体查询的查询条件，并返回对应的监听句柄。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1955,6 +2613,8 @@ pushUrl(options: router.RouterOptions): Promise&lt;void&gt;
 
 跳转到应用内的指定页面，通过Promise获取跳转异常的返回结果。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -1971,13 +2631,14 @@ pushUrl(options: router.RouterOptions): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.router(页面路由)](errorcode-router.md)错误码。
 
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
-| 100001 | if UI execution context not found. |
-| 100002 | if the uri is not exist.           |
-| 100003 | if the pages are pushed too much.  |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 100001 | Internal error. |
+| 100002 | Uri error. The URI of the page to redirect is incorrect or does not exist.           |
+| 100003 | Page stack error. Too many pages are pushed.  |
 
 **示例：**
 
@@ -2008,6 +2669,8 @@ pushUrl(options: router.RouterOptions, callback: AsyncCallback&lt;void&gt;): voi
 
 跳转到应用内的指定页面。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -2019,13 +2682,14 @@ pushUrl(options: router.RouterOptions, callback: AsyncCallback&lt;void&gt;): voi
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.router(页面路由)](errorcode-router.md)错误码。
 
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
-| 100001 | if UI execution context not found. |
-| 100002 | if the uri is not exist.           |
-| 100003 | if the pages are pushed too much.  |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 100001 | Internal error. |
+| 100002 | Uri error. The URI of the page to redirect is incorrect or does not exist.           |
+| 100003 | Page stack error. Too many pages are pushed.  |
 
 **示例：**
 
@@ -2058,6 +2722,8 @@ pushUrl(options: router.RouterOptions, mode: router.RouterMode): Promise&lt;void
 
 跳转到应用内的指定页面，通过Promise获取跳转异常的返回结果。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -2075,13 +2741,14 @@ pushUrl(options: router.RouterOptions, mode: router.RouterMode): Promise&lt;void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.router(页面路由)](errorcode-router.md)错误码。
 
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
-| 100001 | if UI execution context not found. |
-| 100002 | if the uri is not exist.           |
-| 100003 | if the pages are pushed too much.  |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 100001 | Internal error. |
+| 100002 | Uri error. The URI of the page to redirect is incorrect or does not exist.           |
+| 100003 | Page stack error. Too many pages are pushed.  |
 
 **示例：**
 
@@ -2117,6 +2784,8 @@ pushUrl(options: router.RouterOptions, mode: router.RouterMode, callback: AsyncC
 
 跳转到应用内的指定页面。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -2129,13 +2798,14 @@ pushUrl(options: router.RouterOptions, mode: router.RouterMode, callback: AsyncC
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.router(页面路由)](errorcode-router.md)错误码。
 
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
-| 100001 | if UI execution context not found. |
-| 100002 | if the uri is not exist.           |
-| 100003 | if the pages are pushed too much.  |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 100001 | Internal error. |
+| 100002 | Uri error. The URI of the page to redirect is incorrect or does not exist.           |
+| 100003 | Page stack error. Too many pages are pushed.  |
 
 **示例：**
 
@@ -2173,6 +2843,8 @@ replaceUrl(options: router.RouterOptions): Promise&lt;void&gt;
 
 用应用内的某个页面替换当前页面，并销毁被替换的页面，通过Promise获取跳转异常的返回的结果。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -2189,12 +2861,13 @@ replaceUrl(options: router.RouterOptions): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.router(页面路由)](errorcode-router.md)错误码。
 
 | 错误码ID  | 错误信息                                     |
 | ------ | ---------------------------------------- |
-| 100001 | if UI execution context not found, only throw in standard system. |
-| 200002 | if the uri is not exist.                 |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 100001 | The UI execution context is not found. This error code is thrown only in the standard system. |
+| 200002 | Uri error. The URI of the page to be used for replacement is incorrect or does not exist.                 |
 
 **示例：**
 
@@ -2222,6 +2895,8 @@ replaceUrl(options: router.RouterOptions, callback: AsyncCallback&lt;void&gt;): 
 
 用应用内的某个页面替换当前页面，并销毁被替换的页面。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -2233,11 +2908,12 @@ replaceUrl(options: router.RouterOptions, callback: AsyncCallback&lt;void&gt;): 
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.router(页面路由)](errorcode-router.md)错误码。
 
 | 错误码ID  | 错误信息                                     |
 | ------ | ---------------------------------------- |
-| 100001 | if UI execution context not found, only throw in standard system. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 100001 | The UI execution context is not found. This error code is thrown only in the standard system. |
 | 200002 | if the uri is not exist.                 |
 
 **示例：**
@@ -2268,6 +2944,8 @@ replaceUrl(options: router.RouterOptions, mode: router.RouterMode): Promise&lt;v
 
 用应用内的某个页面替换当前页面，并销毁被替换的页面，通过Promise获取跳转异常的返回结果。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -2285,12 +2963,13 @@ replaceUrl(options: router.RouterOptions, mode: router.RouterMode): Promise&lt;v
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.router(页面路由)](errorcode-router.md)错误码。
 
 | 错误码ID  | 错误信息                                     |
 | ------ | ---------------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 | 100001 | if can not get the delegate, only throw in standard system. |
-| 200002 | if the uri is not exist.                 |
+| 200002 | Uri error. The URI of the page to be used for replacement is incorrect or does not exist.                 |
 
 **示例：**
 
@@ -2323,6 +3002,8 @@ replaceUrl(options: router.RouterOptions, mode: router.RouterMode, callback: Asy
 
 用应用内的某个页面替换当前页面，并销毁被替换的页面。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -2335,12 +3016,13 @@ replaceUrl(options: router.RouterOptions, mode: router.RouterMode, callback: Asy
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.router(页面路由)](errorcode-router.md)错误码。
 
 | 错误码ID  | 错误信息                                     |
 | ------ | ---------------------------------------- |
-| 100001 | if UI execution context not found, only throw in standard system. |
-| 200002 | if the uri is not exist.                 |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 100001 | The UI execution context is not found. This error code is thrown only in the standard system. |
+| 200002 | Uri error. The URI of the page to be used for replacement is incorrect or does not exist.               |
 
 **示例：**
 
@@ -2375,6 +3057,8 @@ pushNamedRoute(options: router.NamedRouterOptions): Promise&lt;void&gt;
 
 跳转到指定的命名路由页面，通过Promise获取跳转异常的返回结果。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -2391,13 +3075,14 @@ pushNamedRoute(options: router.NamedRouterOptions): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.router(页面路由)](errorcode-router.md)错误码。
 
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
-| 100001 | if UI execution context not found. |
-| 100003 | if the pages are pushed too much.  |
-| 100004 | if the named route is not exist.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 100001 | Internal error. |
+| 100003 | Page stack error. Too many pages are pushed.  |
+| 100004 | Named route error. The named route does not exist.   |
 
 **示例：**
 
@@ -2428,6 +3113,8 @@ pushNamedRoute(options: router.NamedRouterOptions, callback: AsyncCallback&lt;vo
 
 跳转到指定的命名路由页面。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -2439,13 +3126,14 @@ pushNamedRoute(options: router.NamedRouterOptions, callback: AsyncCallback&lt;vo
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.router(页面路由)](errorcode-router.md)错误码。
 
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
-| 100001 | if UI execution context not found. |
-| 100003 | if the pages are pushed too much.  |
-| 100004 | if the named route is not exist.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 100001 | Internal error. |
+| 100003 | Page stack error. Too many pages are pushed.  |
+| 100004 | Named route error. The named route does not exist.  |
 
 **示例：**
 
@@ -2477,6 +3165,8 @@ pushNamedRoute(options: router.NamedRouterOptions, mode: router.RouterMode): Pro
 
 跳转到指定的命名路由页面，通过Promise获取跳转异常的返回结果。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -2494,13 +3184,14 @@ pushNamedRoute(options: router.NamedRouterOptions, mode: router.RouterMode): Pro
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.router(页面路由)](errorcode-router.md)错误码。
 
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
-| 100001 | if UI execution context not found. |
-| 100003 | if the pages are pushed too much.  |
-| 100004 | if the named route is not exist.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 100001 | Internal error. |
+| 100003 | Page stack error. Too many pages are pushed.  |
+| 100004 | Named route error. The named route does not exist.  |
 
 **示例：**
 
@@ -2536,6 +3227,8 @@ pushNamedRoute(options: router.NamedRouterOptions, mode: router.RouterMode, call
 
 跳转到指定的命名路由页面。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -2548,13 +3241,14 @@ pushNamedRoute(options: router.NamedRouterOptions, mode: router.RouterMode, call
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.router(页面路由)](errorcode-router.md)错误码。
 
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
-| 100001 | if UI execution context not found. |
-| 100003 | if the pages are pushed too much.  |
-| 100004 | if the named route is not exist.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 100001 | Internal error. |
+| 100003 | Page stack error. Too many pages are pushed.  |
+| 100004 | Named route error. The named route does not exist.   |
 
 **示例：**
 
@@ -2592,6 +3286,8 @@ replaceNamedRoute(options: router.NamedRouterOptions): Promise&lt;void&gt;
 
 用指定的命名路由页面替换当前页面，并销毁被替换的页面，通过Promise获取跳转异常的返回结果。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -2608,12 +3304,13 @@ replaceNamedRoute(options: router.NamedRouterOptions): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.router(页面路由)](errorcode-router.md)错误码。
 
 | 错误码ID  | 错误信息                                     |
 | ------ | ---------------------------------------- |
-| 100001 | if UI execution context not found, only throw in standard system. |
-| 100004 | if the named route is not exist.         |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 100001 | The UI execution context is not found. This error code is thrown only in the standard system. |
+| 100004 | Named route error. The named route does not exist.        |
 
 **示例：**
 
@@ -2641,6 +3338,8 @@ replaceNamedRoute(options: router.NamedRouterOptions, callback: AsyncCallback&lt
 
 用指定的命名路由页面替换当前页面，并销毁被替换的页面。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -2652,12 +3351,13 @@ replaceNamedRoute(options: router.NamedRouterOptions, callback: AsyncCallback&lt
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.router(页面路由)](errorcode-router.md)错误码。
 
 | 错误码ID  | 错误信息                                     |
 | ------ | ---------------------------------------- |
-| 100001 | if UI execution context not found, only throw in standard system. |
-| 100004 | if the named route is not exist.         |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 100001 | The UI execution context is not found. This error code is thrown only in the standard system. |
+| 100004 | Named route error. The named route does not exist.         |
 
 **示例：**
 
@@ -2687,6 +3387,8 @@ replaceNamedRoute(options: router.NamedRouterOptions, mode: router.RouterMode): 
 
 用指定的命名路由页面替换当前页面，并销毁被替换的页面，通过Promise获取跳转异常的返回结果。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -2705,12 +3407,13 @@ replaceNamedRoute(options: router.NamedRouterOptions, mode: router.RouterMode): 
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.router(页面路由)](errorcode-router.md)错误码。
 
 | 错误码ID  | 错误信息                                     |
 | ------ | ---------------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 | 100001 | if can not get the delegate, only throw in standard system. |
-| 100004 | if the named route is not exist.         |
+| 100004 | Named route error. The named route does not exist.       |
 
 **示例：**
 
@@ -2743,6 +3446,8 @@ replaceNamedRoute(options: router.NamedRouterOptions, mode: router.RouterMode, c
 
 用指定的命名路由页面替换当前页面，并销毁被替换的页面。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -2755,12 +3460,13 @@ replaceNamedRoute(options: router.NamedRouterOptions, mode: router.RouterMode, c
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.router(页面路由)](errorcode-router.md)错误码。
 
 | 错误码ID  | 错误信息                                     |
 | ------ | ---------------------------------------- |
-| 100001 | if UI execution context not found, only throw in standard system. |
-| 100004 | if the named route is not exist.         |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 100001 | The UI execution context is not found. This error code is thrown only in the standard system. |
+| 100004 | Named route error. The named route does not exist.        |
 
 **示例：**
 
@@ -2794,6 +3500,8 @@ routerF.replaceNamedRoute({
 back(options?: router.RouterOptions ): void
 
 返回上一页面或指定的页面。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -2849,6 +3557,8 @@ clear(): void
 
 清空页面栈中的所有历史页面，仅保留当前页面作为栈顶页面。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **示例：**
@@ -2865,6 +3575,8 @@ router.clear();
 getLength(): string
 
 获取当前在页面栈内的页面数量。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -2889,6 +3601,8 @@ console.log('pages stack size = ' + size);
 getState(): router.RouterState
 
 获取当前页面的状态信息。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -2984,6 +3698,8 @@ showAlertBeforeBackPage(options: router.EnableAlertOptions): void
 
 开启页面返回询问对话框。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -2994,11 +3710,12 @@ showAlertBeforeBackPage(options: router.EnableAlertOptions): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.router(页面路由)](errorcode-router.md)错误码。
 
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
-| 100001 | if UI execution context not found. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 100001 | Internal error. |
 
 **示例：**
 
@@ -3023,6 +3740,8 @@ hideAlertBeforeBackPage(): void
 
 禁用页面返回询问对话框。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **示例：**
@@ -3039,6 +3758,8 @@ router.hideAlertBeforeBackPage();
 getParams(): Object
 
 获取发起跳转的页面往当前页传入的参数。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -3067,6 +3788,8 @@ showToast(options: promptAction.ShowToastOptions): void
 
 创建并显示文本提示框。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -3077,11 +3800,12 @@ showToast(options: promptAction.ShowToastOptions): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.promptAction(弹窗)](errorcode-promptAction.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.promptAction(弹窗)](errorcode-promptAction.md)错误码。
 
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
-| 100001 | if UI execution context not found. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 100001 | Internal error. |
 
 **示例：**
 
@@ -3107,6 +3831,8 @@ showDialog(options: promptAction.ShowDialogOptions, callback: AsyncCallback&lt;p
 
 创建并显示对话框，对话框响应结果异步返回。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -3118,11 +3844,12 @@ showDialog(options: promptAction.ShowDialogOptions, callback: AsyncCallback&lt;p
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.promptAction(弹窗)](errorcode-promptAction.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.promptAction(弹窗)](errorcode-promptAction.md)错误码。
 
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
-| 100001 | if UI execution context not found. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 100001 | Internal error. |
 
 **示例：**
 
@@ -3168,6 +3895,8 @@ showDialog(options: promptAction.ShowDialogOptions): Promise&lt;promptAction.Sho
 
 创建并显示对话框，对话框响应后同步返回结果，通过Promise获取对话框响应结果。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -3184,11 +3913,12 @@ showDialog(options: promptAction.ShowDialogOptions): Promise&lt;promptAction.Sho
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.promptAction(弹窗)](errorcode-promptAction.md)错误码。
+以下错误码的详细介绍请参见[ 通用错误码](../errorcode-universal.md)和[ohos.promptAction(弹窗)](errorcode-promptAction.md)错误码。
 
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
-| 100001 | if UI execution context not found. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 100001 | Internal error. |
 
 **示例：**
 
@@ -3230,7 +3960,9 @@ showActionMenu(options: promptAction.ActionMenuOptions, callback: AsyncCallback&
 
 创建并显示操作菜单，菜单响应结果异步返回。
 
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full。
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
@@ -3241,11 +3973,12 @@ showActionMenu(options: promptAction.ActionMenuOptions, callback: AsyncCallback&
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.promptAction(弹窗)](errorcode-promptAction.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.promptAction(弹窗)](errorcode-promptAction.md)错误码。
 
 | 错误码ID | 错误信息                           |
 | -------- | ---------------------------------- |
-| 100001   | if UI execution context not found. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 100001   | Internal error. |
 
 **示例：**
 
@@ -3301,11 +4034,12 @@ showActionMenu(options: promptAction.ActionMenuOptions, callback: [promptAction.
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.promptAction(弹窗)](errorcode-promptAction.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.promptAction(弹窗)](errorcode-promptAction.md)错误码。
 
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
-| 100001 | if UI execution context not found. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 100001 | Internal error. |
 
 **示例：**
 
@@ -3342,6 +4076,8 @@ showActionMenu(options: promptAction.ActionMenuOptions): Promise&lt;promptAction
 
 创建并显示操作菜单，通过Promise获取菜单响应结果。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -3358,11 +4094,12 @@ showActionMenu(options: promptAction.ActionMenuOptions): Promise&lt;promptAction
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.promptAction(弹窗)](errorcode-promptAction.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.promptAction(弹窗)](errorcode-promptAction.md)错误码。
 
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
-| 100001 | if UI execution context not found. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 100001 | Internal error. |
 
 **示例：**
 
@@ -3399,9 +4136,11 @@ try {
 
 ### openCustomDialog<sup>12+</sup>
 
-openCustomDialog(dialogContent: ComponentContent, options?: promptAction.BaseDialogOptions): Promise&lt;void&gt;
+openCustomDialog\<T extends Object>(dialogContent: ComponentContent\<T>, options?: promptAction.BaseDialogOptions): Promise&lt;void&gt;
 
-创建并弹出dialogContent对应的自定义弹窗，使用Promise异步回调。
+创建并弹出dialogContent对应的自定义弹窗，使用Promise异步回调。通过该接口弹出的弹窗内容样式完全按照dialogContent中设置的样式显示，即相当于customdialog设置customStyle为true时的显示效果。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -3409,7 +4148,7 @@ openCustomDialog(dialogContent: ComponentContent, options?: promptAction.BaseDia
 
 | 参数名     | 类型                                       | 必填   | 说明      |
 | ------- | ---------------------------------------- | ---- | ------- |
-| dialogContent | [ComponentContent](./js-apis-arkui-ComponentContent.md) | 是 | 自定义弹窗中显示的组件内容。 |
+| dialogContent | [ComponentContent\<T>](./js-apis-arkui-ComponentContent.md) | 是 | 自定义弹窗中显示的组件内容。 |
 | options | [promptAction.BaseDialogOptions](js-apis-promptAction.md#basedialogoptions11) | 否    |   弹窗样式。 |
 
 **返回值：**
@@ -3420,12 +4159,13 @@ openCustomDialog(dialogContent: ComponentContent, options?: promptAction.BaseDia
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.promptAction(弹窗)](errorcode-promptAction.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.promptAction(弹窗)](errorcode-promptAction.md)错误码。
 
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 | 103301 | the ComponentContent is incorrect. |
-| 103302 | the ComponentContent has already been opened. |
+| 103302 | Dialog content already exists.|
 
 **示例：**
 
@@ -3482,9 +4222,11 @@ struct Index {
 
 ### closeCustomDialog<sup>12+</sup>
 
-closeCustomDialog(dialogContent: ComponentContent): Promise&lt;void&gt;
+closeCustomDialog\<T extends Object>(dialogContent: ComponentContent\<T>): Promise&lt;void&gt;
 
 关闭已弹出的dialogContent对应的自定义弹窗，使用Promise异步回调。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -3492,7 +4234,7 @@ closeCustomDialog(dialogContent: ComponentContent): Promise&lt;void&gt;
 
 | 参数名     | 类型                                       | 必填   | 说明      |
 | ------- | ---------------------------------------- | ---- | ------- |
-| dialogContent | [ComponentContent](./js-apis-arkui-ComponentContent.md) | 是 | 自定义弹窗中显示的组件内容。 |
+| dialogContent | [ComponentContent\<T>](./js-apis-arkui-ComponentContent.md) | 是 | 自定义弹窗中显示的组件内容。 |
 
 **返回值：**
 
@@ -3502,10 +4244,11 @@ closeCustomDialog(dialogContent: ComponentContent): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.promptAction(弹窗)](errorcode-promptAction.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.promptAction(弹窗)](errorcode-promptAction.md)错误码。
 
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 | 103301 | the ComponentContent is incorrect. |
 | 103303 | the ComponentContent cannot be found. |
 
@@ -3574,9 +4317,11 @@ struct Index {
 
 ### updateCustomDialog<sup>12+</sup>
 
-updateCustomDialog(dialogContent: ComponentContent, options: promptAction.BaseDialogOptions): Promise&lt;void&gt;
+updateCustomDialog\<T extends Object>(dialogContent: ComponentContent\<T>, options: promptAction.BaseDialogOptions): Promise&lt;void&gt;
 
 更新已弹出的dialogContent对应的自定义弹窗的样式，使用Promise异步回调。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -3584,7 +4329,7 @@ updateCustomDialog(dialogContent: ComponentContent, options: promptAction.BaseDi
 
 | 参数名     | 类型                                       | 必填   | 说明      |
 | ------- | ---------------------------------------- | ---- | ------- |
-| dialogContent | [ComponentContent](./js-apis-arkui-ComponentContent.md) | 是 | 自定义弹窗中显示的组件内容。 |
+| dialogContent | [ComponentContent\<T>](./js-apis-arkui-ComponentContent.md) | 是 | 自定义弹窗中显示的组件内容。 |
 | options | [promptAction.BaseDialogOptions](js-apis-promptAction.md#basedialogoptions11) | 是    |   弹窗样式，目前仅支持更新alignment、offset、autoCancel、maskColor。 |
 
 **返回值：**
@@ -3595,10 +4340,11 @@ updateCustomDialog(dialogContent: ComponentContent, options: promptAction.BaseDi
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.promptAction(弹窗)](errorcode-promptAction.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.promptAction(弹窗)](errorcode-promptAction.md)错误码。
 
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 | 103301 | the ComponentContent is incorrect. |
 | 103303 | the ComponentContent cannot be found. |
 
@@ -3674,6 +4420,8 @@ executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: dragController.DragI
 
 主动发起拖拽能力，传入拖拽发起后跟手效果所拖拽的对象以及携带拖拽信息。通过回调返回拖拽事件结果。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -3685,10 +4433,12 @@ executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: dragController.DragI
 | callback | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;{event: [DragEvent](arkui-ts/ts-universal-events-drag-drop.md#dragevent说明), extraParams: string}&gt; | 是   | 拖拽结束返回结果的回调<br/>- event：拖拽事件信息，仅包括拖拽结果。<br/>- extraParams：拖拽事件额外信息。          |
 
 **错误码：**
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码。
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 100001   | if some internal handling failed. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed. |
+| 100001   | Internal handling failed. |
 
 **示例：**
 
@@ -3750,6 +4500,8 @@ executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: dragController.DragI
 
 主动发起拖拽能力，传入拖拽发起后跟手效果所拖拽的对象以及携带拖拽信息。通过Promise返回拖拽事件结果。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -3766,10 +4518,12 @@ executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: dragController.DragI
 | Promise&lt;{event: [DragEvent](arkui-ts/ts-universal-events-drag-drop.md#dragevent说明), extraParams: string}&gt; | 拖拽结束返回结果的回调<br/>- event：拖拽事件信息，仅包括拖拽结果。<br/>- extraParams：拖拽事件额外信息。 |
 
 **错误码：**
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码。
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 100001   | if some internal handling failed. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed. |
+| 100001   | Internal handling failed. |
 
 **示例：**
 
@@ -3859,6 +4613,8 @@ createDragAction(customArray: Array&lt;CustomBuilder \| DragItemInfo&gt;, dragIn
 
 **说明：** 建议控制传递的拖拽背板数量，传递过多容易导致拖起的效率问题。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -3875,10 +4631,12 @@ createDragAction(customArray: Array&lt;CustomBuilder \| DragItemInfo&gt;, dragIn
 | [dragController.DragAction](js-apis-arkui-dragController.md#dragaction11)| 创建拖拽Action对象，主要用于后面实现注册监听拖拽状态改变事件和启动拖拽服务。 |
 
 **错误码：**
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码。
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 100001   | if some internal handling failed. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed. |
+| 100001   | Internal handling failed. |
 
 **示例：**
 1.在EntryAbility.ets中获取UI上下文并保存至LocalStorage中。
@@ -3905,9 +4663,10 @@ export default class EntryAbility extends UIAbility {
 
   onWindowStageCreate(windowStage: window.WindowStage): void {
     // Main window is created, set main page for this ability
+    let storage: LocalStorage = new LocalStorage();
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
 
-    windowStage.loadContent('pages/Index', (err, data) => {
+    windowStage.loadContent('pages/Index', storage, (err, data) => {
       if (err.code) {
         hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
         return;
@@ -4022,6 +4781,45 @@ struct DragControllerPage {
       }).margin({top:20})
     }
   }
+}
+```
+
+### setDragEventStrictReportingEnabled<sup>12+</sup>
+
+setDragEventStrictReportingEnabled(enable: boolean): void
+
+当目标从父组件拖拽到子组件时，通过该方法设置是否会触发父组件的onDragLeave的回调。
+
+**系统能力：** : SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明                                                         |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| enable | boolean | 是   | 将目标从父组件拖拽到子组件时，是否会触发父组件的onDragLeave的回调。 |
+
+**示例：**
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
+import { UIContext } from '@ohos.arkui.UIContext';
+ export default class EntryAbility extends UIAbility {
+   onWindowStageCreate(windowStage: window.WindowStage): void {
+       windowStage.loadContent('pages/Index', (err, data) => {
+         if (err.code) {
+         return;
+       }
+       windowStage.getMainWindow((err, data) => {
+         if (err.code) {
+           return;
+         }
+         let windowClass: window.Window = data;
+         let uiContext: UIContext = windowClass.getUIContext();
+         uiContext.getDragController().setDragEventStrictReportingEnabled(true);
+     });
+   });
+ }
 }
 ```
 
@@ -4229,44 +5027,6 @@ hideAllComponentContents(): void
 
 请参考[addComponentContent示例](#addcomponentcontent12)
 
-
-### setDragEventStrictReportingEnabled<sup>12+</sup>
-
-setDragEventStrictReportingEnabled(enable: boolean): void
-
-当目标从父组件拖拽到子组件时，通过该方法设置是否会触发父组件的onDragLeave的回调。
-
-**系统能力：** : SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-|参数名|类型|必填|说明|
-| ------- | ------- | ------- | ------- |
-| enable | boolean | 是| 将目标从父组件拖拽到子组件时，是否会触发父组件的onDragLeave的回调。|
-
-**示例：**
-```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import window from '@ohos.window';
-import { UIContext } from '@ohos.arkui.UIContext';
- export default class EntryAbility extends UIAbility {
-   onWindowStageCreate(windowStage: window.WindowStage): void {
-       windowStage.loadContent('pages/Index', (err, data) => {
-         if (err.code) {
-         return;
-       }
-       windowStage.getMainWindow((err, data) => {
-         if (err.code) {
-           return;
-         }
-         let windowClass: window.Window = data;
-         let uiContext: UIContext = windowClass.getUIContext();
-         uiContext.getDragController().setDragEventStrictReportingEnabled(true);
-     });
-   });
- }
-```
-
 ## AtomicServiceBar<sup>11+</sup>
 
 以下接口需要先使用UIContext中的[getAtomicServiceBar](#getatomicservicebar11)方法获取到AtomicServiceBar对象，再通过该对象调用对应方法。
@@ -4282,6 +5042,8 @@ setVisible(visible: boolean): void
 > **说明：**
 >
 > 从API version 12开始原子化服务menuBar样式变更，menuBar默认隐藏，变为悬浮按钮，通过该接口无法改变menuBar的可见性。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -4323,6 +5085,8 @@ setBackgroundColor(color:Nullable<Color | number | string>): void
 >
 > 从API version 12开始原子化服务menuBar样式变更，menuBar的背景默认隐藏，通过该接口无法改变menuBar的背景颜色。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -4361,6 +5125,8 @@ setTitleContent(content:string): void
 > **说明：**
 >
 > 从API version 12开始原子化服务menuBar样式变更，menuBar的标题默认隐藏，通过该接口无法改变menuBar的标题内容。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -4401,6 +5167,8 @@ setTitleFontStyle(font:FontStyle):void
 >
 > 从API version 12开始原子化服务menuBar样式变更，menuBar的标题默认隐藏，通过该接口无法改变menuBar的字体样式。
 
+**元服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full。
 
 **参数：**
@@ -4440,6 +5208,8 @@ setIconColor(color:Nullable<Color | number | string>): void
 >
 > 从API version 12开始原子化服务menuBar样式变更，menuBar默认隐藏，悬浮按钮图标不予用户设置，通过该接口无法改变menuBar的图标颜色。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -4473,6 +5243,8 @@ onWindowStageCreate(windowStage: window.WindowStage) {
 ## KeyboardAvoidMode<sup>11+</sup>
 
 配置键盘避让时页面的避让模式。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -4535,6 +5307,687 @@ struct ClearFocusExample {
       }
     }
     .width('100%')
+    .height('100%')
+  }
+}
+```
+
+### requestFocus<sup>12+</sup>
+
+requestFocus(key: string): void
+
+通过组件的id将焦点转移到组件树对应的实体节点。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------- | ------- | ------- | ------- |
+| key | string | 是 | 节点对应的[组件标识](arkui-ts/ts-universal-attributes-component-id.md)。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[焦点错误码](errorcode-focus.md)。
+
+| 错误码ID  | 错误信息                                     |
+| ------ | ---------------------------------------- |
+| 150001 | This component is not focusable. |
+| 150002 | This component has an unfocusable ancestor.      |
+| 150003 | The component doesn't exist, is currently invisible, or has been disabled. |
+
+**示例：**
+
+```ts
+@Entry
+@Component
+struct RequestExample {
+  @State btColor: Color = Color.Blue
+
+  build() {
+    Column({ space: 20 }) {
+      Column({ space: 5 }) {
+        Button('Button')
+          .width(200)
+          .height(70)
+          .fontColor(Color.White)
+          .focusOnTouch(true)
+          .backgroundColor(this.btColor)
+          .onFocus(() => {
+            this.btColor = Color.Red
+          })
+          .onBlur(() => {
+            this.btColor = Color.Blue
+          })
+          .id("testButton")
+
+        Divider()
+          .vertical(false)
+          .width("80%")
+          .backgroundColor(Color.Black)
+          .height(10)
+
+        Button('requestFocus')
+          .width(200)
+          .height(70)
+          .onClick(() => {
+            this.getUIContext().getFocusController().requestFocus("testButton")
+          })
+
+        Button('requestFocus fail')
+          .width(200)
+          .height(70)
+          .onClick(() => {
+            try {
+              this.getUIContext().getFocusController().requestFocus("eee")
+            } catch (error) {
+              console.error('requestFocus failed code is ' + error.code + ' message is ' + error.message)
+            }
+          })
+      }
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+
+## CursorController<sup>12+</sup>
+以下API需先使用UIContext中的[getCursorController()](js-apis-arkui-UIContext.md#getcursorcontroller12)方法获取CursorController实例，再通过此实例调用对应方法。
+
+### restoreDefault<sup>12+</sup>
+
+restoreDefault(): void
+
+恢复默认的光标样式
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**示例：**
+当光标移出绿框时，通过CursorController的restoreDefault方法恢复默认光标样式
+
+```ts
+import pointer from '@ohos.multimodalInput.pointer';
+import uiContext, { CursorController } from '@ohos.arkui.UIContext';
+
+@Entry
+@Component
+struct CursorControlExample {
+  @State text: string = ''
+  cursorCustom: CursorController = this.getUIContext().getCursorController();
+
+  build() {
+    Column() {
+      Row().height(200).width(200).backgroundColor(Color.Green).position({x: 150 ,y:70})
+        .onHover((flag) => {
+          if (flag) {
+            this.cursorCustom.setCursor(pointer.PointerStyle.EAST)
+          } else {
+            console.log("restoreDefault");
+            this.cursorCustom.restoreDefault();
+          }
+        })
+    }.width('100%')
+  }
+}
+```
+![cursor-restoreDefault](figures/cursor-restoreDefault.gif)
+
+### setCursor<sup>12+</sup>
+
+setCursor(value: PointerStyle): void
+
+更改当前的鼠标光标样式
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名     | 类型                                       | 必填   | 说明      |
+| ------- | ---------------------------------------- | ---- | ------- |
+| value | [PointerStyle](../../reference/apis-input-kit/js-apis-pointer.md#pointerstyle) | 是    | 光标样式 |
+
+**示例：**
+当光标进入蓝框时，通过CursorController的setCursor方法修改光标样式为PointerStyle.WEST
+
+```ts
+import pointer from '@ohos.multimodalInput.pointer';
+import uiContext, { CursorController } from '@ohos.arkui.UIContext';
+
+@Entry
+@Component
+struct CursorControlExample {
+  @State text: string = ''
+  cursorCustom: CursorController = this.getUIContext().getCursorController();
+
+  build() {
+    Column() {
+      Row().height(200).width(200).backgroundColor(Color.Blue).position({x: 100 ,y:70})
+        .onHover((flag) => {
+          if (flag) {
+            this.cursorCustom.setCursor(pointer.PointerStyle.WEST)
+          } else {
+            this.cursorCustom.restoreDefault();
+          }
+        })
+    }.width('100%')
+  }
+}
+```
+![cursor-setCursor](figures/cursor-setCursor.gif)
+
+## ContextMenuController<sup>12+</sup>
+以下API需先使用UIContext中的[getContextMenuController()](js-apis-arkui-UIContext.md#getcontextmenucontroller12)方法获取ContextMenuController实例，再通过此实例调用对应方法。
+
+### close<sup>12+</sup>
+
+close(): void
+
+关闭菜单
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**示例：**
+通过定时器触发，调用ContextMenuController的close方法关闭菜单
+
+```ts
+import uiContext, { ContextMenuController } from '@ohos.arkui.UIContext';
+
+@Entry
+@Component
+struct Index {
+  menu: ContextMenuController = this.getUIContext().getContextMenuController();
+
+  @Builder MenuBuilder() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Button('Test ContextMenu1 Close')
+      Divider().strokeWidth(2).margin(5).color(Color.Black)
+      Button('Test ContextMenu2')
+      Divider().strokeWidth(2).margin(5).color(Color.Black)
+      Button('Test ContextMenu3')
+    }
+    .width(200)
+    .height(160)
+  }
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Button("启动定时器").onClick(()=>
+      {
+        setTimeout(() => {
+          this.menu.close();
+        }, 10000);
+      })
+
+      Column() {
+        Text("Test ContextMenu close")
+          .fontSize(20)
+          .width('100%')
+          .height(500)
+          .backgroundColor(0xAFEEEE)
+          .textAlign(TextAlign.Center)
+      }
+      .bindContextMenu(this.MenuBuilder, ResponseType.LongPress)
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+
+![contextMenuController_close](figures/contextMenuController_close.gif)
+
+## MeasureUtils<sup>12+</sup>
+
+以下API需先使用UIContext中的[getMeasureUtils()](js-apis-arkui-UIContext.md#getmeasureutils12)方法获取MeasureUtils实例，再通过此实例调用对应方法。
+
+### measureText<sup>12+</sup>
+
+measureText(options: MeasureOptions): number
+
+计算指定文本单行布局下的宽度。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名     | 类型                              | 必填   | 说明        |
+| ------- | ------------------------------- | ---- | --------- |
+| options | [MeasureOptions](js-apis-measure.md#measureoptions) | 是    | 被计算文本描述信息。 |
+
+**返回值：**
+
+| 类型          | 说明       |
+| ------------  | --------- |
+| number        | 文本宽度。<br/>**说明:**<br/>单位px。 |
+
+
+**示例：**
+通过MeasureUtils的measureText方法获取"Hello World"文字的宽度。
+
+```ts
+import { MeasureUtils } from '@ohos.arkui.UIContext';
+
+@Entry
+@Component
+struct Index {
+  @State uiContext: UIContext = this.getUIContext();
+  @State uiContextMeasure: MeasureUtils = this.uiContext.getMeasureUtils();
+  @State textWidth: number = this.uiContextMeasure.measureText({
+    textContent: "Hello word",
+    fontSize: '50px'
+  })
+
+  build() {
+    Row() {
+      Column() {
+        Text(`The width of 'Hello World': ${this.textWidth}`)
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+### measureTextSize<sup>12+</sup>
+
+measureTextSize(options: MeasureOptions): SizeOptions
+
+计算指定文本单行布局下的宽度和高度。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名     | 类型                              | 必填   | 说明        |
+| ------- | ------------------------------- | ---- | --------- |
+| options | [MeasureOptions](js-apis-measure.md#measureoptions) | 是    | 被计算文本描述信息。 |
+
+**返回值：**
+
+| 类型          | 说明       |
+| ------------  | --------- |
+| [SizeOption](arkui-ts/ts-types.md#sizeoptions)   | 返回文本所占布局宽度和高度。<br/>**说明:**<br/> 文本宽度以及高度返回值单位均为px。 |
+
+
+**示例：**
+通过MeasureUtils的measureTextSize方法获取"Hello World"文字的宽度和高度
+
+```ts
+import { MeasureUtils } from '@ohos.arkui.UIContext';
+
+@Entry
+@Component
+struct Index {
+  @State uiContext: UIContext = this.getUIContext();
+  @State uiContextMeasure: MeasureUtils = this.uiContext.getMeasureUtils();
+  textSize : SizeOptions = this.uiContextMeasure.measureTextSize({
+    textContent: "Hello word",
+    fontSize: '50px'
+  })
+  build() {
+    Row() {
+      Column() {
+        Text(`The width of 'Hello World': ${this.textSize.width}`)
+        Text(`The height of 'Hello World': ${this.textSize.height}`)
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+## ComponentSnapshot<sup>12+</sup>
+
+以下API需先使用UIContext中的[getComponentSnapshot()](js-apis-arkui-UIContext.md#getcomponentsnapshot12)方法获取ComponentSnapshot对象，再通过此实例调用对应方法。
+
+### get<sup>12+</sup>
+
+get(id: string, callback: AsyncCallback<image.PixelMap>): void
+
+获取已加载的组件的截图，传入组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识)，找到对应组件进行截图。通过回调返回结果。
+
+> **说明：** 
+>
+> 截图会获取最近一帧的绘制内容。如果在组件触发更新的同时调用截图，更新的渲染内容不会被截取到，截图会返回上一帧的绘制内容。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| id       | string                                                       | 是   | 目标组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识) |
+| callback | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;image.[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | 是   | 截图返回结果的回调。                                         |
+
+**错误码：** 
+
+| 错误码ID | 错误信息            |
+| -------- | ------------------- |
+| 100001   | if id is not valid. |
+
+**示例：**
+
+```ts
+import image from '@ohos.multimedia.image'
+import { UIContext } from '@ohos.arkui.UIContext';
+
+@Entry
+@Component
+struct SnapshotExample {
+  @State pixmap: image.PixelMap | undefined = undefined
+  uiContext: UIContext = this.getUIContext();
+  build() {
+    Column() {
+      Row() {
+        Image(this.pixmap).width(150).height(150).border({ color: Color.Black, width: 2 }).margin(5)
+        Image($r('app.media.img')).autoResize(true).width(150).height(150).margin(5).id("root")
+      }
+      Button("click to generate UI snapshot")
+        .onClick(() => {
+          this.uiContext.getComponentSnapshot().get("root", (error: Error, pixmap: image.PixelMap) => {
+            if (error) {
+              console.log("error: " + JSON.stringify(error))
+              return;
+            }
+            this.pixmap = pixmap
+          })
+        }).margin(10)
+    }
+    .width('100%')
+    .height('100%')
+    .alignItems(HorizontalAlign.Center)
+  }
+}
+```
+
+### get<sup>12+</sup>
+
+get(id: string): Promise<image.PixelMap>
+
+获取已加载的组件的截图，传入组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识)，找到对应组件进行截图。通过Promise返回结果。
+
+> **说明：**
+>
+> 截图会获取最近一帧的绘制内容。如果在组件触发更新的同时调用截图，更新的渲染内容不会被截取到，截图会返回上一帧的绘制内容。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| id     | string | 是   | 目标组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识) |
+
+**返回值：**
+
+| 类型                                                         | 说明             |
+| ------------------------------------------------------------ | ---------------- |
+| Promise&lt;image.[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | 截图返回的结果。 |
+
+**错误码：** 
+
+| 错误码ID | 错误信息            |
+| -------- | ------------------- |
+| 100001   | if id is not valid. |
+
+**示例：**
+
+```ts
+import image from '@ohos.multimedia.image'
+import { UIContext } from '@ohos.arkui.UIContext';
+
+@Entry
+@Component
+struct SnapshotExample {
+  @State pixmap: image.PixelMap | undefined = undefined
+  uiContext: UIContext = this.getUIContext();
+
+  build() {
+    Column() {
+      Row() {
+        Image(this.pixmap).width(150).height(150).border({ color: Color.Black, width: 2 }).margin(5)
+        Image($r('app.media.icon')).autoResize(true).width(150).height(150).margin(5).id("root")
+      }
+      Button("click to generate UI snapshot")
+        .onClick(() => {
+          this.uiContext.getComponentSnapshot()
+            .get("root")
+            .then((pixmap: image.PixelMap) => {
+              this.pixmap = pixmap
+            })
+            .catch((err: Error) => {
+              console.log("error: " + err)
+            })
+        }).margin(10)
+    }
+    .width('100%')
+    .height('100%')
+    .alignItems(HorizontalAlign.Center)
+  }
+}
+```
+
+### createFromBuilder<sup>12+</sup>
+
+createFromBuilder(builder: CustomBuilder, callback: AsyncCallback<image.PixelMap>): void
+
+在应用后台渲染[CustomBuilder](arkui-ts/ts-types.md#custombuilder8)自定义组件，并输出其截图。通过回调返回结果。
+> **说明：** 
+>
+> 由于需要等待组件构建、渲染成功，离屏截图的回调有500ms以内的延迟。
+>
+> 部分执行耗时任务的组件可能无法及时在截图前加载完成，因此会截取不到加载成功后的图像。例如：加载网络图片的[Image](arkui-ts/ts-basic-components-image.md)组件、[Web](../apis-arkweb/ts-basic-components-web.md)组件。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| builder  | [CustomBuilder](arkui-ts/ts-types.md#custombuilder8)         | 是   | 自定义组件构建函数。<br/>**说明：** 不支持全局builder。      |
+| callback | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;image.[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | 是   | 截图返回结果的回调。支持在回调中获取离屏组件绘制区域坐标和大小。 |
+
+**错误码：** 
+
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 100001   | if builder is not a valid build function. |
+
+**示例：**
+
+```ts
+import image from '@ohos.multimedia.image'
+import { UIContext } from '@ohos.arkui.UIContext';
+
+@Entry
+@Component
+struct ComponentSnapshotExample {
+  @State pixmap: image.PixelMap | undefined = undefined
+  uiContext: UIContext = this.getUIContext();
+  @Builder
+  RandomBuilder() {
+    Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
+      Text('Test menu item 1')
+        .fontSize(20)
+        .width(100)
+        .height(50)
+        .textAlign(TextAlign.Center)
+      Divider().height(10)
+      Text('Test menu item 2')
+        .fontSize(20)
+        .width(100)
+        .height(50)
+        .textAlign(TextAlign.Center)
+    }
+    .width(100)
+    .id("builder")
+  }
+
+  build() {
+    Column() {
+      Button("click to generate UI snapshot")
+        .onClick(() => {
+          this.uiContext.getComponentSnapshot().createFromBuilder(() => {
+            this.RandomBuilder()
+          },
+            (error: Error, pixmap: image.PixelMap) => {
+              if (error) {
+                console.log("error: " + JSON.stringify(error))
+                return;
+              }
+              this.pixmap = pixmap
+            })
+        })
+      Image(this.pixmap)
+        .margin(10)
+        .height(200)
+        .width(200)
+        .border({ color: Color.Black, width: 2 })
+    }.width('100%').margin({ left: 10, top: 5, bottom: 5 }).height(300)
+  }
+}
+```
+
+### createFromBuilder<sup>12+</sup>
+
+createFromBuilder(builder: CustomBuilder): Promise<image.PixelMap>
+
+在应用后台渲染[CustomBuilder](arkui-ts/ts-types.md#custombuilder8)自定义组件，并输出其截图。通过Promise返回结果。
+
+> **说明：** 
+>
+> 由于需要等待组件构建、渲染成功，离屏截图的回调有500ms以内的延迟。
+>
+> 部分执行耗时任务的组件可能无法及时在截图前加载完成，因此会截取不到加载成功后的图像。例如：加载网络图片的[Image](arkui-ts/ts-basic-components-image.md)组件、[Web](../apis-arkweb/ts-basic-components-web.md)组件。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                                                 | 必填 | 说明                                                    |
+| ------- | ---------------------------------------------------- | ---- | ------------------------------------------------------- |
+| builder | [CustomBuilder](arkui-ts/ts-types.md#custombuilder8) | 是   | 自定义组件构建函数。<br/>**说明：** 不支持全局builder。 |
+
+**返回值：**
+
+| 类型                                                         | 说明             |
+| ------------------------------------------------------------ | ---------------- |
+| Promise&lt;image.[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | 截图返回的结果。 |
+
+**错误码：** 
+
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 100001   | if builder is not a valid build function. |
+
+**示例：**
+
+```ts
+import image from '@ohos.multimedia.image'
+import { UIContext } from '@ohos.arkui.UIContext';
+
+@Entry
+@Component
+struct ComponentSnapshotExample {
+  @State pixmap: image.PixelMap | undefined = undefined
+  uiContext: UIContext = this.getUIContext();
+  @Builder
+  RandomBuilder() {
+    Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
+      Text('Test menu item 1')
+        .fontSize(20)
+        .width(100)
+        .height(50)
+        .textAlign(TextAlign.Center)
+      Divider().height(10)
+      Text('Test menu item 2')
+        .fontSize(20)
+        .width(100)
+        .height(50)
+        .textAlign(TextAlign.Center)
+    }
+    .width(100)
+    .id("builder")
+  }
+  build() {
+    Column() {
+      Button("click to generate UI snapshot")
+        .onClick(() => {
+          this.uiContext.getComponentSnapshot()
+            .createFromBuilder(() => {
+              this.RandomBuilder()
+            })
+            .then((pixmap: image.PixelMap) => {
+              this.pixmap = pixmap
+            })
+            .catch((err: Error) => {
+              console.log("error: " + err)
+            })
+        })
+      Image(this.pixmap)
+        .margin(10)
+        .height(200)
+        .width(200)
+        .border({ color: Color.Black, width: 2 })
+    }.width('100%').margin({ left: 10, top: 5, bottom: 5 }).height(300)
+  }
+}
+```
+
+## FrameCallback<sup>12+</sup>
+
+用于设置下一帧渲染时需要执行的任务。需要配合[UIContext](#uicontext)中的[postFrameCallback](#postframecallback12)和[postDelayedFrameCallback](#postdelayedframecallback12)使用。开发者需要继承该类并重写[onFrame](#onframe12)方法，实现具体的业务逻辑。
+
+### onFrame<sup>12+</sup>
+
+在下一帧进行渲染时，该方法将被执行。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                                                 | 必填 | 说明                                                    |
+| ------- | ---------------------------------------------------- | ---- | ------------------------------------------------------- |
+| frameTimeInNano | number | 是   | 下一帧渲染开始执行的时间，以纳秒为单位。 |
+
+**示例：**
+
+```ts
+import { FrameCallback } from '@ohos.arkui.UIContext';
+
+class MyFrameCallback extends FrameCallback {
+  private tag: string;
+
+  constructor(tag: string) {
+    super()
+    this.tag = tag;
+  }
+
+  onFrame(frameTimeNanos: number) {
+    console.info('MyFrameCallback ' + this.tag + ' ' + frameTimeNanos.toString());
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Column() {
+        Button('点击触发postFrameCallback')
+          .onClick(() => {
+            this.getUIContext().postFrameCallback(new MyFrameCallback("normTask"));
+          })
+        Button('点击触发postDelayedFrameCallback')
+          .onClick(() => {
+            this.getUIContext().postDelayedFrameCallback(new MyFrameCallback("delayTask"), 5);
+          })
+      }
+      .width('100%')
+    }
     .height('100%')
   }
 }

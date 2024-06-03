@@ -14,7 +14,7 @@
 ## 导入模块
 
 ```ts
-import DataShareExtensionAbility from '@ohos.application.DataShareExtensionAbility';
+import { DataShareExtensionAbility } from '@kit.ArkData';
 ```
 
 ## 属性
@@ -43,8 +43,8 @@ DataShare客户端连接DataShareExtensionAbility服务端时，服务端回调�
 **示例：**
 
 ```ts
-import relationalStore from '@ohos.data.relationalStore'
-import Want from '@ohos.app.ability.Want'
+import { DataShareExtensionAbility, relationalStore } from '@kit.ArkData';
+import { Want } from '@kit.AbilityKit';
 
 let DB_NAME = 'DB00.db';
 let TBL_NAME = 'TBL00';
@@ -101,8 +101,7 @@ insert?(uri: string, valueBucket: ValuesBucket, callback: AsyncCallback&lt;numbe
 **示例：**
 
 ```ts
-import relationalStore from '@ohos.data.relationalStore'
-import { ValuesBucket } from '@ohos.data.ValuesBucket'
+import { DataShareExtensionAbility, relationalStore, ValuesBucket } from '@kit.ArkData';
 
 let TBL_NAME = 'TBL00';
 let rdbStore: relationalStore.RdbStore;
@@ -143,9 +142,7 @@ update?(uri: string, predicates: dataSharePredicates.DataSharePredicates, valueB
 **示例：**
 
 ```ts
-import relationalStore from '@ohos.data.relationalStore';
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import { ValuesBucket } from '@ohos.data.ValuesBucket'
+import { DataShareExtensionAbility, relationalStore, dataSharePredicates, ValuesBucket } from '@kit.ArkData';
 
 let TBL_NAME = 'TBL00';
 let rdbStore: relationalStore.RdbStore;
@@ -182,32 +179,34 @@ batchUpdate?( operations: Record&lt;string, Array&lt;UpdateOperation&gt;&gt; , c
 **示例：**
 
 ```ts
-import relationalStore from '@ohos.data.relationalStore';
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import { ValuesBucket } from '@ohos.data.ValuesBucket'
+import { DataShareExtensionAbility, relationalStore, dataShare } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit'
 
 let TBL_NAME = 'TBL00';
 let rdbStore: relationalStore.RdbStore;
 
 export default class DataShareExtAbility extends DataShareExtensionAbility {
-  batchUpdate(operations, callback) {
-        let recordOps : Record<string, Array<UpdateOperation>> = operations;
-        let results : Record<string, Array<number>> = {};
-        for (const [key, values] of Object.entries(recordOps)) {
-            let result : number[] = [];
-            for (const value of values) {
-                await rdbStore.update(TBL_NAME, value.values, value.predicates).then(async (rows) => {
-                    console.info('Update row count is ' + rows);
-                    result.push(rows);
-                }).catch((err) => {
-                    console.info('Update failed, err is ' + JSON.stringify(err));
-                    result.push(-1)
-                })
-            }
-            results[key] = result;
-        }
-        callback(null, results);
+  batchUpdate(operations:Record<string, Array<dataShare.UpdateOperation>>, callback:Function) {
+    let recordOps : Record<string, Array<dataShare.UpdateOperation>> = operations;
+    let results : Record<string, Array<number>> = {};
+    let a = Object.entries(recordOps);
+    for (let i = 0; i < a.length; i++) {
+      let key = a[i][0];
+      let values = a[i][1];
+      let result : number[] = [];
+      for (const value of values) {
+        rdbStore.update(TBL_NAME, value.values, value.predicates).then(async (rows) => {
+          console.info('Update row count is ' + rows);
+          result.push(rows);
+        }).catch((err:BusinessError) => {
+          console.info('Update failed, err is ' + JSON.stringify(err));
+          result.push(-1)
+        })
+      }
+      results[key] = result;
     }
+    callback(null, results);
+  }
 };
 ```
 
@@ -230,8 +229,7 @@ delete?(uri: string, predicates: dataSharePredicates.DataSharePredicates, callba
 **示例：**
 
 ```ts
-import relationalStore from '@ohos.data.relationalStore';
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { DataShareExtensionAbility, relationalStore, dataSharePredicates } from '@kit.ArkData';
 
 let TBL_NAME = 'TBL00';
 let rdbStore: relationalStore.RdbStore;
@@ -270,8 +268,7 @@ query?(uri: string, predicates: dataSharePredicates.DataSharePredicates, columns
 **示例：**
 
 ```ts
-import relationalStore from '@ohos.data.relationalStore';
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { DataShareExtensionAbility, relationalStore, dataSharePredicates } from '@kit.ArkData';
 
 let TBL_NAME = 'TBL00';
 let rdbStore: relationalStore.RdbStore;
@@ -312,8 +309,7 @@ batchInsert?(uri: string, valueBuckets: Array&lt;ValuesBucket&gt;, callback: Asy
 **示例：**
 
 ```ts
-import relationalStore from '@ohos.data.relationalStore';
-import { ValuesBucket } from '@ohos.data.ValuesBucket'
+import { DataShareExtensionAbility, relationalStore, ValuesBucket } from '@kit.ArkData';
 
 let TBL_NAME = 'TBL00';
 let rdbStore: relationalStore.RdbStore;
@@ -351,7 +347,8 @@ normalizeUri?(uri: string, callback: AsyncCallback&lt;string&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base'
+import { DataShareExtensionAbility } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit'
 
 export default class DataShareExtAbility extends DataShareExtensionAbility {
   normalizeUri(uri: string, callback: Function) {
@@ -386,7 +383,8 @@ denormalizeUri?(uri: string, callback: AsyncCallback&lt;string&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base'
+import { DataShareExtensionAbility } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit'
 
 export default class DataShareExtAbility extends DataShareExtensionAbility {
   denormalizeUri(uri: string, callback: Function) {

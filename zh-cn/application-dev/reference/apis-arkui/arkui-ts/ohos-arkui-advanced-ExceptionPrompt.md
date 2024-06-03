@@ -30,6 +30,8 @@ ExceptionPrompt({ options: PromptOptions })
 
 **装饰器类型：**\@Component
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -46,6 +48,8 @@ ExceptionPrompt({ options: PromptOptions })
 
 PromptOptions定义options的类型。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称 | 类型 | 必填 | 说明 |
@@ -55,11 +59,13 @@ PromptOptions定义options的类型。
 | marginType | [MarginType](#margintype) | 是 | 指定当前异常提示的边距样式 。 |
 | actionText | [ResourceStr](ts-types.md#resourcestr) | 否 | 指定当前异常提示的右侧图标按钮的文字内容。 |
 | marginTop | [Dimension](ts-types.md#dimension10) | 是 | 指定当前异常提示的距离顶部的位置。 |
-| isShown | boolean | 否 | 指定当前异常提示的显隐状态。<br />true:显示状态。<br />fasle：隐藏状态。 |
+| isShown | boolean | 否 | 指定当前异常提示的显隐状态。<br />true:显示状态。<br />false：隐藏状态。 |
 
 ## MarginType
 
 MarginType定义marginType的类型。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

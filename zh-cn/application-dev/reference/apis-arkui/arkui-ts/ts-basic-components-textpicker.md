@@ -18,6 +18,8 @@ TextPicker(options?: TextPickerOptions)
 
 根据range指定的选择范围创建文本选择器。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -28,13 +30,17 @@ TextPicker(options?: TextPickerOptions)
 
 ## TextPickerOptions对象说明
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称 | 类型 | 必填 | 描述 |
 | -------- | -------- | -------- | -------- |
-| range | string[]&nbsp;\|&nbsp;string[] []<sup>10+</sup> \| [Resource](ts-types.md#resource类型)&nbsp;\|<br/>[TextPickerRangeContent](#textpickerrangecontent10类型说明)[]<sup>10+</sup>&nbsp;\|&nbsp;[TextCascadePickerRangeContent](#textcascadepickerrangecontent10类型说明)[]<sup>10+</sup> | 是 | 选择器的数据选择列表。不可设置为空数组，若设置为空数组，则不显示；若动态变化为空数组，则保持当前正常值显示。<br/>**说明**：单列数据选择器使用string[]，Resource，TextPickerRangeContent[]类型。<br/>多列数据选择器使用string[][]类型。 <br/>多列联动数据选择器使用TextCascadePickerRangeContent[]类型。<br/>Resource类型只支持[strarray.json](../../../quick-start/resource-categories-and-access.md#资源组目录)。 |
+| range | string[]&nbsp;\|&nbsp;string[] []<sup>10+</sup> \| [Resource](ts-types.md#resource类型)&nbsp;\|<br/>[TextPickerRangeContent](#textpickerrangecontent10类型说明)[]<sup>10+</sup>&nbsp;\|&nbsp;[TextCascadePickerRangeContent](#textcascadepickerrangecontent10类型说明)[]<sup>10+</sup> | 是 | 选择器的数据选择列表。不可设置为空数组，若设置为空数组，则不显示；若动态变化为空数组，则保持当前正常值显示。<br/>**说明**：单列数据选择器使用string[]，Resource，TextPickerRangeContent[]类型。<br/>多列数据选择器使用string[][]类型。 <br/>多列联动数据选择器使用TextCascadePickerRangeContent[]类型。<br/>Resource类型只支持[strarray.json](../../../quick-start/resource-categories-and-access.md#资源组目录)。<br>range的类型及列数不可以动态修改。|
 | selected | number&nbsp;\|&nbsp;number[]<sup>10+</sup> | 否 | 设置默认选中项在数组中的索引值。<br/>默认值：0 <br/>**说明**：单列数据选择器使用number类型。<br/>多列、多列联动数据选择器使用number[]类型。<br />从API version 10开始，该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。|
 | value | string&nbsp;\|&nbsp;string[]<sup>10+</sup> | 否 | 设置默认选中项的值，优先级低于selected。<br/>默认值：第一个元素值<br/>**说明**：只有显示文本列表时该值有效。显示图片或图片加文本的列表时，该值无效。 <br/>单列数据选择器使用string类型。<br/>多列、多列联动数据选择器使用string[]类型。<br />从API version 10开始，该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。|
 
 ## TextPickerRangeContent<sup>10+</sup>类型说明
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 参数名 | 参数类型                                                 | 必填 | 参数描述   |
 | ------ | -------------------------------------------------------- | ---- | ---------- |
@@ -42,6 +48,8 @@ TextPicker(options?: TextPickerOptions)
 | text   | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 否   | 文本信息。 |
 
 ## TextCascadePickerRangeContent<sup>10+</sup>类型说明
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 参数名 | 参数类型                                                 | 必填 | 参数描述   |
 | ------ | -------------------------------------------------------- | ---- | ---------- |
@@ -66,6 +74,8 @@ defaultPickerItemHeight(value: number | string)
 
 设置Picker各选择项的高度。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -79,6 +89,8 @@ defaultPickerItemHeight(value: number | string)
 disappearTextStyle(value: PickerTextStyle)
 
 设置所有选项中最上和最下两个选项的文本颜色、字号、字体粗细。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -94,6 +106,8 @@ textStyle(value: PickerTextStyle)
 
 设置所有选项中除了最上、最下及选中项以外的文本颜色、字号、字体粗细。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -107,6 +121,8 @@ textStyle(value: PickerTextStyle)
 selectedTextStyle(value: PickerTextStyle)
 
 设置选中项的文本颜色、字号、字体粗细。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -122,6 +138,8 @@ selectedIndex(value: number | number[])
 
 设置默认选中项在数组中的索引值，优先级高于options中的选中值。单列数据选择器使用number类型。多列、多列联动数据选择器使用number[]类型。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -135,6 +153,8 @@ selectedIndex(value: number | number[])
 canLoop(value: boolean)
 
 设置是否可循环滚动。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -150,12 +170,14 @@ divider(value: DividerOptions | null)
 
 设置分割线样式，不设置该属性则按“默认值”展示分割线。
 
+startMargin + endMargin 超过组件宽度后startMargin和endMargin会被置0。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 | 参数名 | 类型    | 必填 | 说明                                                                  |
 | ------ | ------- | ---- | --------------------------------------------------------------------- |
-| divider  | [DividerOptions](#divideroptions12类型说明) \| null | 否   | 1.设置DividerOptions，则按设置的样式显示分割线。<br/>默认值：<br/>{<br/>strokeWidth: '2px', <br/>startMargin: 0, <br/>endMargin: 0, <br/>color: '#33000000'<br/>}<br/>2.设置为null不显示分割线。 |
+| divider  | [DividerOptions](#divideroptions12类型说明) \| null | 是   | 1.设置DividerOptions，则按设置的样式显示分割线。<br/>默认值：<br/>{<br/>strokeWidth: '2px', <br/>startMargin: 0, <br/>endMargin: 0, <br/>color: '#33000000'<br/>}<br/>2.设置为null不显示分割线。 |
 
 ### gradientHeight<sup>12+</sup>
 
@@ -169,7 +191,7 @@ gradientHeight(value: Dimension)
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | [Dimension](ts-types.md#dimension10) | 是   | 内容区上下边缘的渐隐高度（支持百分比）。设置为0时不显示渐隐效果，负数等非法值显示默认渐隐效果。默认值为36vp|
+| value  | [Dimension](ts-types.md#dimension10) | 是   | 内容区上下边缘的渐隐高度（支持百分比，100%为TextPicker高度的一半即最大值），设置为0时不显示渐隐效果，负数等非法值显示默认渐隐效果。默认值为36vp。|
 
 ## 事件
 
@@ -207,6 +229,8 @@ onCancel(callback: () => void)
 onChange(callback:&nbsp;(value:&nbsp;string&nbsp;\|&nbsp;string[],&nbsp;index:&nbsp;number&nbsp;\|&nbsp;number[])&nbsp;=&gt;&nbsp;void)
 
 滑动选中TextPicker文本内容后，触发该回调。当显示文本或图片加文本列表时，value值为选中项中的文本值，当显示图片列表时，value值为空。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

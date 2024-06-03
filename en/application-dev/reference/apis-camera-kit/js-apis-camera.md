@@ -210,6 +210,7 @@ which are returned when an API call is incorrect or the **on()** API is used to 
 | CONFLICT_CAMERA            | 7400107    | The device is already started.    |
 | DEVICE_DISABLED            | 7400108    | The camera is disabled for security reasons.    |
 | DEVICE_PREEMPTED           | 7400109    | The camera is preempted.    |
+| UNRESOLVED_CONFLICTS_WITH_CURRENT_CONFIGURATIONS<sup>12+</sup> | 7400110   | The configuration conflicts with the current configuration.    |
 | SERVICE_FATAL_ERROR        | 7400201    | An error occurs in the camera service.    |
 
 ## CameraManager
@@ -841,7 +842,7 @@ Unsubscribes from camera status events. This API uses an asynchronous callback t
 | Name    | Type           | Mandatory| Description      |
 | -------- | -----------------| ---- | --------- |
 | type     | string           | Yes  | Event type. The value is fixed at **'cameraStatus'**. The event can be listened for when a **CameraManager** instance is obtained.|
-| callback | AsyncCallback\<[CameraStatusInfo](#camerastatusinfo)\> | No  | Callback used to return the result. This parameter is optional. If this parameter is specified, the subscription to the specified event on('cameraStatus') with the specified callback is canceled. (The callback object cannot be an anonymous function.)|
+| callback | AsyncCallback\<[CameraStatusInfo](#camerastatusinfo)\> | No  | Callback used to return the result. If this parameter is specified, the subscription to the specified event with the specified callback is canceled. (The callback object cannot be an anonymous function.) Otherwise, the subscriptions to the specified event with all the callbacks are canceled.|
 
 **Example**
 
@@ -1007,7 +1008,7 @@ Unsubscribes from flashlight status change events. This API uses an asynchronous
 | Name    | Type            | Mandatory| Description      |
 | -------- | --------------- | ---- | --------- |
 | type     | string          | Yes  | Event type. The value is fixed at **'torchStatusChange'**. The event can be listened for when a **CameraManager** instance is obtained.|
-| callback | AsyncCallback\<TorchStatusInfo> | No  | Callback used to return the result. This parameter is optional. If this parameter is specified, the subscription to the specified event on('torchStatusChange') with the specified callback is canceled. (The callback object cannot be an anonymous function.)              |
+| callback | AsyncCallback\<TorchStatusInfo> | No  | Callback used to return the result. If this parameter is specified, the subscription to the specified event with the specified callback is canceled. (The callback object cannot be an anonymous function.) Otherwise, the subscriptions to the specified event with all the callbacks are canceled.|
 
 **Example**
 
@@ -1281,7 +1282,7 @@ Unsubscribes from **CameraInput** error events.
 | -------- | -------------------------------- | --- | ------------------------------------------- |
 | type     | string                           | Yes  | Event type. The value is fixed at **'error'**. The event can be listened for when a **CameraInput** instance is created. This event is triggered and the result is returned when an error occurs on the camera device. For example, if the camera device is unavailable or a conflict occurs, the error information is returned.|
 | camera   | [CameraDevice](#cameradevice)    | Yes  | Camera device.|
-| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | No  | Callback used to return the result. This parameter is optional. If this parameter is specified, the subscription to the specified event on('error') with the specified callback is canceled. (The callback object cannot be an anonymous function.)  |
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | No  | Callback used to return the result. If this parameter is specified, the subscription to the specified event with the specified callback is canceled. (The callback object cannot be an anonymous function.) Otherwise, the subscriptions to the specified event with all the callbacks are canceled.|
 
 **Example**
 
@@ -1583,7 +1584,7 @@ Unsubscribes from preview frame start events.
 | Name     | Type                 | Mandatory| Description                                    |
 | -------- | -------------------- | ---- | --------------------------------------- |
 | type     | string               | Yes  | Event type. The value is fixed at **'frameStart'**. The event can be listened for when a **previewOutput** instance is created.|
-| callback | AsyncCallback\<void\> | No  | Callback used to return the result. This parameter is optional. If this parameter is specified, the subscription to the specified event on('frameStart') with the specified callback is canceled. (The callback object cannot be an anonymous function.)   |
+| callback | AsyncCallback\<void\> | No  | Callback used to return the result. If this parameter is specified, the subscription to the specified event with the specified callback is canceled. (The callback object cannot be an anonymous function.) Otherwise, the subscriptions to the specified event with all the callbacks are canceled.|
 
 **Example**
 
@@ -1633,7 +1634,7 @@ Unsubscribes from preview frame end events.
 | Name     | Type                 | Mandatory| Description                                 |
 | -------- | -------------------- | ---- | ------------------------------------- |
 | type     | string               | Yes  | Event type. The value is fixed at **'frameEnd'**. The event can be listened for when a **previewOutput** instance is created.|
-| callback | AsyncCallback\<void\> | No  |  Callback used to return the result. This parameter is optional. If this parameter is specified, the subscription to the specified event on('frameEnd') with the specified callback is canceled. (The callback object cannot be an anonymous function.)               |
+| callback | AsyncCallback\<void\> | No  | Callback used to return the result. If this parameter is specified, the subscription to the specified event with the specified callback is canceled. (The callback object cannot be an anonymous function.) Otherwise, the subscriptions to the specified event with all the callbacks are canceled.|
 
 **Example**
 
@@ -1685,13 +1686,88 @@ Unsubscribes from **PreviewOutput** error events.
 | Name    | Type        | Mandatory| Description                      |
 | -------- | --------------| ---- | ------------------------ |
 | type     | string        | Yes  | Event type. The value is fixed at **'error'**. The event can be listened for when a **previewOutput** instance is created.|
-| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | No  | Callback used to return the result. This parameter is optional. If this parameter is specified, the subscription to the specified event on('error') with the specified callback is canceled. (The callback object cannot be an anonymous function.)   |
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | No  | Callback used to return the result. If this parameter is specified, the subscription to the specified event with the specified callback is canceled. (The callback object cannot be an anonymous function.) Otherwise, the subscriptions to the specified event with all the callbacks are canceled.|
 
 **Example**
 
 ```ts
 function unregisterPreviewOutputError(previewOutput: camera.PreviewOutput): void {
   previewOutput.off('error');
+}
+```
+
+### getSupportedFrameRates<sup>12+</sup>
+
+ getSupportedFrameRates(): Array<FrameRateRange>
+
+Obtains the supported frame rates.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+|      Type     |     Description    |
+| -------------  | ------------ |
+| Array<[FrameRateRange](#frameraterange)> | Array of supported frame rates.|
+
+**Example**
+
+```ts
+function getSupportedFrameRates(previewOutput: camera.PreviewOutput): Array<FrameRateRange> {
+  let supportedFrameRatesArray: Array<camera.FrameRateRange> = previewOutput.getSupportedFrameRates();
+  return supportedFrameRatesArray;
+}
+```
+
+### setFrameRate<sup>12+</sup>
+
+setFrameRate(minFps: number, maxFps: number): void
+
+Sets a frame rate range for preview streams. The range must be within the supported frame rate range, which can be obtained by calling [getSupportedFrameRates](#getsupportedframerates12).
+
+> **NOTE**
+>
+> This API is valid only in [VideoSession](#videosession11) mode.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name    | Type        | Mandatory| Description                      |
+| -------- | --------------| ---- | ------------------------ |
+| minFps   | number        | Yes  | Minimum frame rate.|
+| maxFps   | number        | Yes  | Maximum frame rate.|
+
+**Example**
+
+```ts
+function setFrameRateRange(previewOutput: camera.PreviewOutput, frameRateRange: Array<number>): void {
+  previewOutput.setFrameRate(frameRateRange[0], frameRateRange[1]);
+}
+```
+
+### getActiveFrameRate<sup>12+</sup>
+
+getActiveFrameRate(): FrameRateRange
+
+Obtains the configured frame rate range.
+
+This API is valid only after [setFrameRate](#setframerate12) is called to set a frame rate range for preview streams.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Return value**
+
+|      Type     |     Description    |
+| -------------  | ------------ |
+| [FrameRateRange](#frameraterange) | Frame rate range.|
+
+**Example**
+
+```ts
+function getActiveFrameRate(previewOutput: camera.PreviewOutput): FrameRateRange {
+  let activeFrameRate: camera.FrameRateRange = previewOutput.getActiveFrameRate();
+  return activeFrameRate;
 }
 ```
 
@@ -2012,7 +2088,7 @@ Unsubscribes from events indicating available high-resolution images.
 | Name     | Type                   | Mandatory| Description                                      |
 | -------- | ---------------------- | ---- | ------------------------------------------ |
 | type     | string                 | Yes  | Event type. The value is fixed at **'photoAvailable'**. The event can be listened for when a **photoOutput** instance is created.|
-| callback | AsyncCallback\<[Photo](#photo11)\> | No  | Callback used to return the result. This parameter is optional. If this parameter is specified, the subscription to the specified event on('photoAvailable') with the specified callback is canceled. (The callback object cannot be an anonymous function.)|
+| callback | AsyncCallback\<[Photo](#photo11)\> | No  | Callback used to return the result. If this parameter is specified, the subscription to the specified event with the specified callback is canceled. (The callback object cannot be an anonymous function.) Otherwise, the subscriptions to the specified event with all the callbacks are canceled.|
 
 **Example**
 
@@ -2071,7 +2147,7 @@ Unsubscribes from capture start events.
 | Name     | Type                   | Mandatory| Description                                      |
 | -------- | ---------------------- | ---- | ------------------------------------------ |
 | type     | string                 | Yes  | Event type. The value is fixed at **'captureStartWithInfo'**. The event can be listened for when a **photoOutput** instance is created.|
-| callback | AsyncCallback\<[CaptureStartInfo](#capturestartinfo11)\> | No  | Callback used to return the result. This parameter is optional. If this parameter is specified, the subscription to the specified event on('captureStartWithInfo') with the specified callback is canceled. (The callback object cannot be an anonymous function.)           |
+| callback | AsyncCallback\<[CaptureStartInfo](#capturestartinfo11)\> | No  | Callback used to return the result. If this parameter is specified, the subscription to the specified event with the specified callback is canceled. (The callback object cannot be an anonymous function.) Otherwise, the subscriptions to the specified event with all the callbacks are canceled.|
 
 **Example**
 
@@ -2080,6 +2156,118 @@ import { BusinessError } from '@ohos.base';
 
 function unRegisterCaptureStartWithInfo(photoOutput: camera.PhotoOutput): void {
   photoOutput.off('captureStartWithInfo');
+}
+```
+
+### isMovingPhotoSupported<sup>12+</sup>
+
+isMovingPhotoSupported(): boolean
+
+Checks whether taking moving photos is supported.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Return value**
+
+| Type           | Description                    |
+| -------------- | ----------------------- |
+| boolean | **true**: Taking moving photos is supported.<br>**false**: Taking moving photos is not supported.|
+
+**Error codes**
+
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
+
+| ID        | Error Message       |
+| --------------- | --------------- |                               |
+| 7400201                |  Camera service fatal error. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+function isMovingPhotoSupported(photoOutput: camera.PhotoOutput): boolean {
+  let isSupported: boolean = false;
+  try {
+    isSupported = photoOutput.isMovingPhotoSupported();
+  } catch (error) {
+    // If the operation fails, error.code is returned and processed.
+    let err = error as BusinessError;
+    console.error(`The isMovingPhotoSupported call failed. error code: ${err.code}`);
+  }
+  return isSupported;
+}
+```
+
+### enableMovingPhoto<sup>12+</sup>
+
+enableMovingPhoto(enabled: boolean): void
+
+Enables or disables the feature of taking moving photos.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name     | Type                   | Mandatory| Description                                      |
+| -------- | ---------------------- | ---- | ------------------------------------------ |
+| enabled  | boolean                | Yes  | Whether to enable the feature of taking moving photos. The value **true** means to enable the feature, and **false** means the opposite.    |
+
+**Error codes**
+
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
+
+| ID        | Error Message       |
+| --------------- | --------------- |     
+| 7400101                |  Parameter missing or parameter type incorrect.        |
+| 7400201                |  Camera service fatal error. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+function enableMovingPhoto(photoOutput: camera.PhotoOutput): void {
+  try {
+    photoOutput.enableMovingPhoto(true);
+  } catch (error) {
+    // If the operation fails, error.code is returned and processed.
+    let err = error as BusinessError;
+    console.error(`The enableMovingPhoto call failed. error code: ${err.code}`);
+  }
+}
+```
+
+### on('photoAssetAvailable')<sup>12+</sup>
+
+on(type: 'photoAssetAvailable', callback: AsyncCallback\<PhotoAsset\>): void
+
+Subscribes to photo asset available events.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name    | Type     | Mandatory| Description                                 |
+| -------- | ---------- | --- | ------------------------------------ |
+| type     | string     | Yes  | Event type. The value is fixed at **'photoAssetAvailable'**. The event can be listened for when a **photoOutput** instance is created.|
+| callback | AsyncCallback\<[PhotoAsset](../apis-media-library-kit/js-apis-photoAccessHelper.md#photoasset)\> | Yes  | Callback used to return the photo asset.|
+
+**Example**
+
+```ts
+import photoAccessHelper from '@ohos.file.photoAccessHelper';
+
+function onPhotoOutputPhotoAssetAvailable(photoOutput: camera.PhotoOutput): void {
+  photoOutput.on('photoAssetAvailable', (err: BusinessError, photoAsset: photoAccessHelper.PhotoAsset): void => {
+    if (err) {
+      console.info(`photoAssetAvailable error: ${JSON.stringify(err)}.`);
+      return;
+    }
+    console.info('photoOutPutCallBack photoAssetAvailable');
+    // Save or use the photo. You need to implement this API.
+    photoAsset.saveCameraPhoto();
+  });
 }
 ```
 
@@ -2156,7 +2344,7 @@ Unsubscribes from capture start events.
 | Name     | Type                   | Mandatory| Description                                      |
 | -------- | ---------------------- | ---- | ------------------------------------------ |
 | type     | string                 | Yes  | Event type. The value is fixed at **'captureStart'**. The event can be listened for when a **photoOutput** instance is created.|
-| callback | AsyncCallback\<number\> | No  | Callback used to return the result. This parameter is optional. If this parameter is specified, the subscription to the specified event on('captureStart') with the specified callback is canceled. (The callback object cannot be an anonymous function.) |
+| callback | AsyncCallback\<number\> | No  | Callback used to return the result. If this parameter is specified, the subscription to the specified event with the specified callback is canceled. (The callback object cannot be an anonymous function.) Otherwise, the subscriptions to the specified event with all the callbacks are canceled.|
 
 **Example**
 
@@ -2209,7 +2397,7 @@ Unsubscribes from frame shutter events.
 | Name    | Type     | Mandatory| Description                                 |
 | -------- | ---------- | --- | ------------------------------------ |
 | type     | string     | Yes  | Event type. The value is fixed at **'frameShutter'**. The event can be listened for when a **photoOutput** instance is created.|
-| callback | AsyncCallback\<[FrameShutterInfo](#frameshutterinfo)\> | No  | Callback used to return the result. This parameter is optional. If this parameter is specified, the subscription to the specified event on('frameShutter') with the specified callback is canceled. (The callback object cannot be an anonymous function.)            |
+| callback | AsyncCallback\<[FrameShutterInfo](#frameshutterinfo)\> | No  | Callback used to return the result. If this parameter is specified, the subscription to the specified event with the specified callback is canceled. (The callback object cannot be an anonymous function.) Otherwise, the subscriptions to the specified event with all the callbacks are canceled.|
 
 **Example**
 
@@ -2262,13 +2450,169 @@ Unsubscribes from capture end events.
 | Name    | Type          | Mandatory| Description                                      |
 | -------- | --------------- | ---- | ---------------------------------------- |
 | type     | string          | Yes  | Event type. The value is fixed at **'captureEnd'**. The event can be listened for when a **photoOutput** instance is created.|
-| callback | AsyncCallback\<[CaptureEndInfo](#captureendinfo)\> | No  | Callback used to return the result. This parameter is optional. If this parameter is specified, the subscription to the specified event on('captureEnd') with the specified callback is canceled. (The callback object cannot be an anonymous function.)                 |
+| callback | AsyncCallback\<[CaptureEndInfo](#captureendinfo)\> | No  | Callback used to return the result. If this parameter is specified, the subscription to the specified event with the specified callback is canceled. (The callback object cannot be an anonymous function.) Otherwise, the subscriptions to the specified event with all the callbacks are canceled.|
 
 **Example**
 
 ```ts
 function unregisterPhotoOutputCaptureEnd(photoOutput: camera.PhotoOutput): void {
   photoOutput.off('captureEnd');
+}
+```
+
+### on('frameShutterEnd')<sup>12+</sup>
+
+on(type: 'frameShutterEnd', callback: AsyncCallback\<FrameShutterEndInfo\>): void
+
+Subscribes to frame shutter end events. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name  | Type                                                        | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | Yes  | Event type. The value is fixed at **'frameShutterEnd'**. The event can be listened for when a **photoOutput** instance is created.|
+| callback | AsyncCallback\<[FrameShutterEndInfo](#frameshutterendinfo12)\> | Yes  | Callback used to return the result. It is invoked when the frame shutter ends.  |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+function callback(err: BusinessError, frameShutterEndInfo: camera.FrameShutterEndInfo): void {
+  console.info(`CaptureId for frame : ${frameShutterEndInfo.captureId}`);
+}
+
+function registerPhotoOutputFrameShutterEnd(photoOutput: camera.PhotoOutput): void {
+  photoOutput.on('frameShutterEnd', callback);
+}
+```
+
+### off('frameShutterEnd')<sup>12+</sup>
+
+off(type: 'frameShutterEnd', callback?: AsyncCallback\<FrameShutterEndInfo\>): void
+
+Unsubscribes from frame shutter end events.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name  | Type                                                        | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | Yes  | Event type. The value is fixed at **'frameShutterEnd'**. The event can be listened for when a **photoOutput** instance is created.|
+| callback | AsyncCallback\<[FrameShutterEndInfo](#frameshutterendinfo12)\> | No  | Callback used to return the result. If this parameter is specified, the subscription to the specified event with the specified callback is canceled. (The callback object cannot be an anonymous function.) Otherwise, the subscriptions to the specified event with all the callbacks are canceled.|
+
+**Example**
+
+```ts
+function unregisterPhotoOutputFrameShutterEnd(photoOutput: camera.PhotoOutput): void {
+  photoOutput.off('frameShutterEnd');
+}
+```
+
+### on('captureReady')<sup>12+</sup>
+
+on(type: 'captureReady', callback: AsyncCallback\<void\>): void;
+
+Subscribes to capture ready events. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name  | Type                 | Mandatory| Description                                                        |
+| -------- | --------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                | Yes  | Event type. The value is fixed at **'captureReady'**. The event can be listened for when a **photoOutput** instance is created. The event is triggered and the corresponding information is returned when it is ready to take the next photo.|
+| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.                                |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+function callback(): void {
+  console.info(`photo capture ready`);
+}
+
+function registerPhotoOutputcaptureReady(photoOutput: camera.PhotoOutput): void {
+  photoOutput.on('captureReady', callback);
+}
+```
+
+### off('captureReady')<sup>12+</sup>
+
+off(type: 'captureReady', callback?: AsyncCallback<void>): void;
+
+Unsubscribes from capture ready events.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name  | Type                                                | Mandatory| Description                                                        |
+| -------- | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                               | Yes  | Event type. The value is fixed at **'captureReady'**. The event can be listened for when a **photoOutput** instance is created.|
+| callback | AsyncCallback\<[CaptureReadyInfo](#captureendinfo)\> | No  | Callback used to return the result. If this parameter is specified, the subscription to the specified event with the specified callback is canceled. (The callback object cannot be an anonymous function.) Otherwise, the subscriptions to the specified event with all the callbacks are canceled.|
+
+**Example**
+
+```ts
+function unregisterPhotoOutputcaptureReady(photoOutput: camera.PhotoOutput): void {
+  photoOutput.off('captureReady');
+}
+```
+
+### on('estimatedCaptureDuration')<sup>12+</sup>
+
+on(type: 'estimatedCaptureDuration', callback: AsyncCallback\<number\>): void;
+
+Subscribes to estimated capture duration events. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name  | Type                  | Mandatory| Description                                                        |
+| -------- | ---------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                 | Yes  | Event type. The value is fixed at **'estimatedCaptureDuration'**. The event can be listened for when a **photoOutput** instance is created. This event is triggered and the corresponding information is returned when the photographing is complete.|
+| callback | AsyncCallback\<number> | Yes  | Callback used to return the result.                                |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+function callback(err: BusinessError, duration: number): void {
+  console.info(`photo estimated capture duration : ${duration}`);
+}
+
+function registerPhotoOutputEstimatedCaptureDuration(photoOutput: camera.PhotoOutput): void {
+  photoOutput.on('estimatedCaptureDuration', callback);
+}
+```
+
+### off('estimatedCaptureDuration')<sup>12+</sup>
+
+off(type: 'estimatedCaptureDuration', callback?: AsyncCallback\<number\>): void;
+
+Unsubscribes from estimated capture duration events.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name  | Type                   | Mandatory| Description                                                        |
+| -------- | ----------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                  | Yes  | Event type. The value is fixed at **'estimatedCaptureDuration'**. The event can be listened for when a **photoOutput** instance is created.|
+| callback | AsyncCallback\<number\> | No  | Callback used to return the result. If this parameter is specified, the subscription to the specified event with the specified callback is canceled. (The callback object cannot be an anonymous function.) Otherwise, the subscriptions to the specified event with all the callbacks are canceled.|
+
+**Example**
+
+```ts
+function unregisterPhotoOutputEstimatedCaptureDuration(photoOutput: camera.PhotoOutput): void {
+  photoOutput.off('estimatedCaptureDuration');
 }
 ```
 
@@ -2314,7 +2658,7 @@ Unsubscribes from **PhotoOutput** error events.
 | Name    | Type        | Mandatory| Description                                |
 | -------- | ------------- | ---- | ----------------------------------- |
 | type     | string       | Yes  | Event type. The value is fixed at **'error'**. The event can be listened for when a **photoOutput** instance is created.|
-| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | No  | Callback used to return the result. This parameter is optional. If this parameter is specified, the subscription to the specified event on('error') with the specified callback is canceled. (The callback object cannot be an anonymous function.)  |
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | No  | Callback used to return the result. If this parameter is specified, the subscription to the specified event with the specified callback is canceled. (The callback object cannot be an anonymous function.) Otherwise, the subscriptions to the specified event with all the callbacks are canceled.|
 
 **Example**
 
@@ -2334,6 +2678,16 @@ Defines the frame shutter information.
 | --------- | ------ | ---- | ---- | ---------- |
 | captureId | number | No  | Yes  | ID of this capture action. |
 | timestamp | number | No  | Yes  | Timestamp when the frame shutter event is triggered.|
+
+## FrameShutterEndInfo<sup>12+</sup>
+
+Describes the frame shutter end information during capture.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+| Name     | Type  | Read-only| Mandatory| Description      |
+| --------- | ------ | ---- | ---- | ---------- |
+| captureId | number | No  | Yes  | ID of this capture action.|
 
 ## CaptureStartInfo<sup>11+</sup>
 
@@ -2537,7 +2891,7 @@ Unsubscribes from video recording start events.
 | Name     | Type                 | Mandatory| Description                                      |
 | -------- | -------------------- | ---- | ----------------------------------------- |
 | type     | string               | Yes  | Event type. The value is fixed at **'frameStart'**. The event can be listened for when a **videoOutput** instance is created.|
-| callback | AsyncCallback\<void\> | No  | Callback used to return the result. This parameter is optional. If this parameter is specified, the subscription to the specified event on('frameStart') with the specified callback is canceled. (The callback object cannot be an anonymous function.) |
+| callback | AsyncCallback\<void\> | No  | Callback used to return the result. If this parameter is specified, the subscription to the specified event with the specified callback is canceled. (The callback object cannot be an anonymous function.) Otherwise, the subscriptions to the specified event with all the callbacks are canceled.|
 
 **Example**
 
@@ -2588,7 +2942,7 @@ Unsubscribes from video recording stop events.
 | Name     | Type                 | Mandatory| Description                                      |
 | -------- | -------------------- | ---- | ------------------------------------------ |
 | type     | string               | Yes  | Event type. The value is fixed at **'frameEnd'**. The event can be listened for when a **videoOutput** instance is created.|
-| callback | AsyncCallback\<void\> | No  | Callback used to return the result. This parameter is optional. If this parameter is specified, the subscription to the specified event on('frameEnd') with the specified callback is canceled. (The callback object cannot be an anonymous function.)   |
+| callback | AsyncCallback\<void\> | No  | Callback used to return the result. If this parameter is specified, the subscription to the specified event with the specified callback is canceled. (The callback object cannot be an anonymous function.) Otherwise, the subscriptions to the specified event with all the callbacks are canceled.|
 
 **Example**
 
@@ -2640,7 +2994,7 @@ Unsubscribes from **VideoOutput** error events.
 | Name    | Type        | Mandatory| Description                                |
 | -------- | ------------- | ---- | ----------------------------------- |
 | type     | string       | Yes  | Event type. The value is fixed at **'error'**. The event can be listened for when a **photoOutput** instance is created.|
-| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | No  | Callback used to return the result. This parameter is optional. If this parameter is specified, the subscription to the specified event on('error') with the specified callback is canceled. (The callback object cannot be an anonymous function.)              |
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | No  | Callback used to return the result. If this parameter is specified, the subscription to the specified event with the specified callback is canceled. (The callback object cannot be an anonymous function.) Otherwise, the subscriptions to the specified event with all the callbacks are canceled.|
 
 **Example**
 
@@ -2649,6 +3003,82 @@ function unregisterVideoOutputError(videoOutput: camera.VideoOutput): void {
   videoOutput.off('error');
 }
 ```
+
+### getSupportedFrameRates<sup>12+</sup>
+
+getSupportedFrameRates(): Array\<FrameRateRange>
+
+Obtains the supported frame rate range.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+|      Type     |     Description    |
+| -------------  | ------------ |
+| Array<[FrameRateRange](#frameraterange)> | Array of supported frame rates.|
+
+**Example**
+
+```ts
+function getSupportedFrameRates(videoOutput: camera.VideoOutput): Array<FrameRateRange> {
+  let supportedFrameRatesArray: Array<camera.FrameRateRange> = videoOutput.getSupportedFrameRates();
+  return supportedFrameRatesArray;
+}
+```
+
+### setFrameRate<sup>12+</sup>
+
+setFrameRate(minFps: number, maxFps: number): void
+
+Sets a frame rate range for preview streams. The range must be within the supported frame rate range, which can be obtained by calling [getSupportedFrameRates](#getsupportedframerates12-1).
+
+> **NOTE**
+>
+> This API is valid only in [VideoSession](#videosession11) mode.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name    | Type        | Mandatory| Description                      |
+| -------- | --------------| ---- | ------------------------ |
+| minFps   | number        | Yes  | Minimum frame rate.|
+| maxFps   | number        | Yes  | Maximum frame rate.|
+
+**Example**
+
+```ts
+function setFrameRateRange(videoOutput: camera.VideoOutput, frameRateRange: Array<number>): void {
+  videoOutput.setFrameRate(frameRateRange[0], frameRateRange[1]);
+}
+```
+
+### getActiveFrameRate<sup>12+</sup>
+
+getActiveFrameRate(): FrameRateRange
+
+Obtains the configured frame rate range.
+
+This API is valid only after [setFrameRate](#setframerate12-1) is called to set a frame rate range for preview streams.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Return value**
+
+|      Type     |     Description    |
+| -------------  | ------------ |
+| [FrameRateRange](#frameraterange) | Frame rate range.|
+
+**Example**
+
+```ts
+function getActiveFrameRate(videoOutput: camera.VideoOutput): FrameRateRange {
+  let activeFrameRate: camera.FrameRateRange = videoOutput.getActiveFrameRate();
+  return activeFrameRate;
+}
+```
+
 
 ## MetadataOutput
 
@@ -2832,7 +3262,7 @@ Unsubscribes from events indicating available metadata objects.
 | Name     | Type        | Mandatory| Description                                 |
 | -------- | -------------- | ---- | ------------------------------------ |
 | type     | string         | Yes  | Event type. The value is fixed at **'metadataObjectsAvailable'**. The event can be listened for when a **metadataOutput** instance is created.|
-| callback | AsyncCallback\<Array\<[MetadataObject](#metadataobject)\>\> | No  | Callback used to return the result. This parameter is optional. If this parameter is specified, the subscription to the specified event on('metadataObjectsAvailable') with the specified callback is canceled. (The callback object cannot be an anonymous function.)|
+| callback | AsyncCallback\<Array\<[MetadataObject](#metadataobject)\>\> | No  | Callback used to return the result. If this parameter is specified, the subscription to the specified event with the specified callback is canceled. (The callback object cannot be an anonymous function.) Otherwise, the subscriptions to the specified event with all the callbacks are canceled.|
 
 **Example**
 
@@ -2884,7 +3314,7 @@ Unsubscribes from metadata error events.
 | Name    | Type        | Mandatory| Description                                    |
 | -------- | ------------- | ---- | --------------------------------------- |
 | type     | string        | Yes  | Event type. The value is fixed at **'error'**. The event can be listened for when a **metadataOutput** instance is created.|
-| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | No  | Callback used to return the result. This parameter is optional. If this parameter is specified, the subscription to the specified event on('error') with the specified callback is canceled. (The callback object cannot be an anonymous function.)          |
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | No  | Callback used to return the result. If this parameter is specified, the subscription to the specified event with the specified callback is canceled. (The callback object cannot be an anonymous function.) Otherwise, the subscriptions to the specified event with all the callbacks are canceled.|
 
 **Example**
 
@@ -3929,9 +4359,9 @@ For details about the error codes, see [Camera Error Codes](errorcode-camera.md)
 import { BusinessError } from '@ohos.base';
 
 function setMeteringPoint(photoSession: camera.PhotoSession): void {
-  const exposurePoint: camera.Point = {x: 1, y: 1};
+  const point: camera.Point = {x: 1, y: 1};
   try {
-    photoSession.setMeteringPoint(exposurePoint);
+    photoSession.setMeteringPoint(point);
   } catch (error) {
     // If the operation fails, error.code is returned and processed.
     let err = error as BusinessError;
@@ -4754,6 +5184,7 @@ function commitConfig(captureSession: camera.CaptureSession): void {
     console.info('Promise returned to indicate the commit config success.');
   }).catch((error: BusinessError) => {
     // If the operation fails, error.code is returned and processed.
+    let err = error as BusinessError;
     console.error(`The commitConfig call failed. error code: ${err.code}`);
   });
 }
@@ -5366,7 +5797,7 @@ function getFlashMode(captureSession: camera.CaptureSession): camera.FlashMode |
 
 ### isExposureModeSupported<sup>(deprecated)</sup>
 
-isExposureModeSupported(aeMode: ExposureMode): boolean;
+isExposureModeSupported(aeMode: ExposureMode): boolean
 
 Checks whether an exposure mode is supported.
 
@@ -5564,7 +5995,7 @@ The coordinate system is based on the horizontal device direction with the devic
 
 | Name          | Type                           | Mandatory| Description                |
 | ------------- | -------------------------------| ---- | ------------------- |
-| exposurePoint | [Point](#point)                | Yes  | Metering point. The value range of x and y must be within [0,1]. If a value less than 0 is passed, the value **0** is used. If a value greater than **1** is passed, the value **1** is used.            |
+| point | [Point](#point)                | Yes  | Metering point. The value range of x and y must be within [0,1]. If a value less than 0 is passed, the value **0** is used. If a value greater than **1** is passed, the value **1** is used.            |
 
 **Error codes**
 
@@ -5580,9 +6011,9 @@ For details about the error codes, see [Camera Error Codes](errorcode-camera.md)
 import { BusinessError } from '@ohos.base';
 
 function setMeteringPoint(captureSession: camera.CaptureSession): void {
-  const exposurePoint: camera.Point = {x: 1, y: 1};
+  const point: camera.Point = {x: 1, y: 1};
   try {
-    captureSession.setMeteringPoint(exposurePoint);
+    captureSession.setMeteringPoint(point);
   } catch (error) {
     // If the operation fails, error.code is returned and processed.
     let err = error as BusinessError;
@@ -6318,7 +6749,7 @@ Unsubscribes from focus state change events.
 | Name    | Type                                     | Mandatory| Description                      |
 | -------- | ----------------------------------------- | ---- | ------------------------ |
 | type     | string                                    | Yes  | Event type. The value is fixed at **'focusStateChange'**. The event can be listened for when a session is created.|
-| callback | AsyncCallback\<[FocusState](#focusstate)\> | No  | Callback used to return the result. This parameter is optional. If this parameter is specified, the subscription to the specified event on('focusStateChange') with the specified callback is canceled. (The callback object cannot be an anonymous function.) |
+| callback | AsyncCallback\<[FocusState](#focusstate)\> | No  | Callback used to return the result. If this parameter is specified, the subscription to the specified event with the specified callback is canceled. (The callback object cannot be an anonymous function.) Otherwise, the subscriptions to the specified event with all the callbacks are canceled.|
 
 **Example**
 
@@ -6376,7 +6807,7 @@ Unsubscribes from **CaptureSession** error events. This API uses a callback to r
 | Name    | Type                                                         | Mandatory| Description                          |
 | -------- | ----------------------------------------------------------- | ---- | ------------------------------ |
 | type     | string                                                      | Yes  | Event type. The value is fixed at **'error'**. The event can be listened for when a session is created.|
-| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback)| No  | Callback used to return the result. This parameter is optional. If this parameter is specified, the subscription to the specified event on('error') with the specified callback is canceled. (The callback object cannot be an anonymous function.)      |
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback)| No  | Callback used to return the result. If this parameter is specified, the subscription to the specified event with the specified callback is canceled. (The callback object cannot be an anonymous function.) Otherwise, the subscriptions to the specified event with all the callbacks are canceled.|
 
 **Example**
 
@@ -6385,10 +6816,140 @@ function unregisterCaptureSessionError(captureSession: camera.CaptureSession): v
   captureSession.off('error');
 }
 ```
+## ColorManagementQuery<sup>12+</sup>
+
+Provides the APIs for color space query.
+
+### getSupportedColorSpaces<sup>12+</sup>
+
+getSupportedColorSpaces(): Array\<colorSpaceManager.ColorSpace\>
+
+Obtains the supported color spaces.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Return value**
+
+| Type                                            | Description                          |
+| ----------------------------------------------- | ---------------------------- |
+| Array<[colorSpaceManager.ColorSpace](../apis-arkgraphics2d/js-apis-colorSpaceManager.md#colorspace)>| Array of color spaces supported.    |
+
+**Error codes**
+
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 7400103         |  Session not config, only throw in session usage.                       |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+import colorSpaceManager from '@ohos.graphics.colorSpaceManager';
+
+function getSupportedColorSpaces(session: camera.PhotoSession): Array<colorSpaceManager.ColorSpace> {
+  let colorSpaces: Array<colorSpaceManager.ColorSpace> = [];
+  try {
+    colorSpaces = session.getSupportedColorSpaces();
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`The getSupportedColorSpaces call failed. error code: ${err.code}`);
+  }
+  return colorSpaces;
+}
+```
+## ColorManagement<sup>12+</sup>
+
+ColorManagement extends ColorManagementQuery
+
+Provides the APIs for color space settings. It inherits from **ColorManagementQuery**.
+
+### setColorSpace<sup>12+</sup>
+
+setColorSpace(colorSpace: colorSpaceManager.ColorSpace): void
+
+Sets a color space. Before the setting, use [getSupportedColorSpaces](#getsupportedcolorspaces12) to obtain the supported color spaces.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name        | Type                | Mandatory| Description                     |
+| ------------ |---------------------- | -- | -------------------------- |
+| colorSpace | [colorSpaceManager.ColorSpace](../apis-arkgraphics2d/js-apis-colorSpaceManager.md#colorspace)  | Yes| Color space, which can be obtained through [getSupportedColorSpaces](#getsupportedcolorspaces12).  |
+
+**Error codes**
+
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 7400102         |  The colorSpace does not match the format.     |
+| 7400103         |  Session not config.                           |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+import colorSpaceManager from '@ohos.graphics.colorSpaceManager';
+
+function setColorSpace(session: camera.PhotoSession, colorSpaces: Array<colorSpaceManager.ColorSpace>): void {
+  if (colorSpaces === undefined || colorSpaces.length <= 0) {
+    return;
+  }
+  try {
+    session.setColorSpace(colorSpaces[0]);
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`The setColorSpace call failed, error code: ${err.code}`);
+  }
+}
+```
+
+### getActiveColorSpace<sup>12+</sup>
+
+getActiveColorSpace(): colorSpaceManager.ColorSpace
+
+Obtains the color space in use.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Return value**
+
+| Type                                            | Description                          |
+| ----------------------------------------------- | ---------------------------- |
+| [colorSpaceManager.ColorSpace](../apis-arkgraphics2d/js-apis-colorSpaceManager.md#colorspace)               | Color space.               |
+
+**Error codes**
+
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+import colorSpaceManager from '@ohos.graphics.colorSpaceManager';
+
+function getActiveColorSpace(session: camera.PhotoSession): colorSpaceManager.ColorSpace {
+  let colorSpace: colorSpaceManager.ColorSpace | undefined = undefined;
+  try {
+    colorSpace = session.getActiveColorSpace();
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`The getActiveColorSpace call failed. error code: ${err.code}`);
+  }
+  return colorSpace;
+}
+```
 
 ## PhotoSession<sup>11+</sup>
 
-PhotoSession extends Session, Flash, AutoExposure, Focus, Zoom
+PhotoSession extends Session, Flash, AutoExposure, Focus, Zoom, ColorManagement
 
 Implements a photo session, which sets the parameters of the normal photo mode and saves all [CameraInput](#camerainput) and [CameraOutput](#cameraoutput) instances required to run the camera. It inherits from [Session](#session11).
 
@@ -6417,9 +6978,7 @@ function callback(err: BusinessError): void {
 }
 
 function registerSessionError(photoSession: camera.PhotoSession): void {
-  photoSession.on('error', (error: BusinessError) => {
-    console.error(`Photo session error code: ${error.code}`);
-  });
+  photoSession.on('error', callback);
 }
 ```
 
@@ -6436,7 +6995,7 @@ Unsubscribes from **PhotoSession** error events. This API uses a callback to ret
 | Name    | Type                           | Mandatory| Description                          |
 | -------- | -------------------------------- | ---- | ------------------------------ |
 | type     | string                           | Yes  | Event type. The value is fixed at **'error'**. The event can be listened for when a session is created.|
-| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback)| No  | Callback used to return the result. This parameter is optional. If this parameter is specified, the subscription to the specified event on('error') with the specified callback is canceled. (The callback object cannot be an anonymous function.)    |
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback)| No  | Callback used to return the result. If this parameter is specified, the subscription to the specified event with the specified callback is canceled. (The callback object cannot be an anonymous function.) Otherwise, the subscriptions to the specified event with all the callbacks are canceled.|
 
 **Example**
 
@@ -6488,7 +7047,7 @@ Unsubscribes from focus state change events.
 | Name    | Type                                     | Mandatory| Description                      |
 | -------- | ----------------------------------------- | ---- | ------------------------ |
 | type     | string                                    | Yes  | Event type. The value is fixed at **'focusStateChange'**. The event can be listened for when a session is created.|
-| callback | AsyncCallback\<[FocusState](#focusstate)\> | No  | Callback used to return the result. This parameter is optional. If this parameter is specified, the subscription to the specified event on('focusStateChange') with the specified callback is canceled. (The callback object cannot be an anonymous function.) |
+| callback | AsyncCallback\<[FocusState](#focusstate)\> | No  | Callback used to return the result. If this parameter is specified, the subscription to the specified event with the specified callback is canceled. (The callback object cannot be an anonymous function.) Otherwise, the subscriptions to the specified event with all the callbacks are canceled.|
 
 **Example**
 
@@ -6540,7 +7099,7 @@ Unsubscribes from smooth zoom state change events.
 | Name    | Type                                     | Mandatory| Description                      |
 | -------- | ----------------------------------------- | ---- | ------------------------ |
 | type     | string              | Yes  | Event type. The value is fixed at **'smoothZoomInfoAvailable'**. The event can be listened for when a session is created.|
-| callback | AsyncCallback\<[SmoothZoomInfo](#smoothzoominfo11)\> | No  | Callback used to return the result. This parameter is optional. If this parameter is specified, the subscription to the specified event on('smoothZoomInfoAvailable') with the specified callback is canceled. (The callback object cannot be an anonymous function.) |
+| callback | AsyncCallback\<[SmoothZoomInfo](#smoothzoominfo11)\> | No  | Callback used to return the result. If this parameter is specified, the subscription to the specified event with the specified callback is canceled. (The callback object cannot be an anonymous function.) Otherwise, the subscriptions to the specified event with all the callbacks are canceled.|
 
 **Example**
 
@@ -6552,7 +7111,7 @@ function unregisterSmoothZoomInfo(photoSession: camera.PhotoSession): void {
 
 ## VideoSession<sup>11+</sup>
 
-VideoSession extends Session, Flash, AutoExposure, Focus, Zoom, Stabilization
+VideoSession extends Session, Flash, AutoExposure, Focus, Zoom, Stabilization, ColorManagement
 
 Implements a video session, which sets the parameters of the normal video mode and saves all [CameraInput](#camerainput) and [CameraOutput](#cameraoutput) instances required to run the camera. It inherits from [Session](#session11).
 
@@ -6598,7 +7157,7 @@ Unsubscribes from **VideoSession** error events. This API uses a callback to ret
 | Name    | Type                         | Mandatory| Description                          |
 | -------- | --------------------------- | ---- | ------------------------------ |
 | type     | string                    | Yes  | Event type. The value is fixed at **'error'**. The event can be listened for when a session is created.|
-| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback)| No  | Callback used to return the result. This parameter is optional. If this parameter is specified, the subscription to the specified event on('error') with the specified callback is canceled. (The callback object cannot be an anonymous function.)     |
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback)| No  | Callback used to return the result. If this parameter is specified, the subscription to the specified event with the specified callback is canceled. (The callback object cannot be an anonymous function.) Otherwise, the subscriptions to the specified event with all the callbacks are canceled.|
 
 **Example**
 
@@ -6650,7 +7209,7 @@ Unsubscribes from focus state change events.
 | Name    | Type                                     | Mandatory| Description                      |
 | -------- | ----------------------------------------- | ---- | ------------------------ |
 | type     | string                                    | Yes  | Event type. The value is fixed at **'focusStateChange'**. The event can be listened for when a session is created.|
-| callback | AsyncCallback\<[FocusState](#focusstate)\> | No | Callback used to return the result. This parameter is optional. If this parameter is specified, the subscription to the specified event on('focusStateChange') with the specified callback is canceled. (The callback object cannot be an anonymous function.) |
+| callback | AsyncCallback\<[FocusState](#focusstate)\> | No | Callback used to return the result. If this parameter is specified, the subscription to the specified event with the specified callback is canceled. (The callback object cannot be an anonymous function.) Otherwise, the subscriptions to the specified event with all the callbacks are canceled.|
 
 **Example**
 
@@ -6702,7 +7261,7 @@ Unsubscribes from smooth zoom state change events.
 | Name    | Type                                     | Mandatory| Description                      |
 | -------- | ----------------------------------------- | ---- | ------------------------ |
 | type     | string              | Yes  | Event type. The value is fixed at **'smoothZoomInfoAvailable'**. The event can be listened for when a session is created.|
-| callback | AsyncCallback\<[SmoothZoomInfo](#smoothzoominfo11)\> | No  | Callback used to return the result. This parameter is optional. If this parameter is specified, the subscription to the specified event on('smoothZoomInfoAvailable') with the specified callback is canceled. (The callback object cannot be an anonymous function.) |
+| callback | AsyncCallback\<[SmoothZoomInfo](#smoothzoominfo11)\> | No  | Callback used to return the result. If this parameter is specified, the subscription to the specified event with the specified callback is canceled. (The callback object cannot be an anonymous function.) Otherwise, the subscriptions to the specified event with all the callbacks are canceled.|
 
 **Example**
 

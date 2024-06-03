@@ -8,18 +8,9 @@ The **AVScreenCapture**, **Window**, and **Graphics** modules together implement
 
 The full screen capture process involves creating an **AVScreenCapture** instance, configuring audio and video capture parameters, starting and stopping screen capture, and releasing the instance.
 
+If you are in a call when screen capture starts or a call is coming during screen capture, screen capture automatically stops, and the **OH_SCREEN_CAPTURE_STATE_STOPPED_BY_CALL** status is reported.
+
 This topic describes how to use the **AVScreenCapture** APIs to carry out one-time screen capture. For details about the API reference, see [AVScreenCapture](../../reference/apis-media-kit/_a_v_screen_capture.md).
-
-## Applying for Permission
-
-Before development, configure the following permissions for your application. For details about permission configuration, see [Workflow for Using Permissions](../../security/AccessToken/determine-application-mode.md).
-
-| Permission| Description| Authorization Mode| APL|
-| ------ | ----- | --------| ------- |
-| ohos.permission.MICROPHONE | Allows an application to access the microphone.| user_grant | normal |
-| ohos.permission.READ_MEDIA | Allows an application to read media files from the user's external storage.| user_grant | normal |
-| ohos.permission.WRITE_MEDIA | Allows an application to read media files from and write media files into the user's external storage.| user_grant | normal |
-| ohos.permission.SYSTEM_FLOAT_WINDOW | Allows an application to be displayed in a floating window on top of other applications.| system_grant | system_basic |
 
 ## How to Develop
 
@@ -55,12 +46,18 @@ target_link_libraries(entry PUBLIC libnative_avscreen_capture.so)
 
     After creating the **capture** instance, you can set the parameters required for screen capture.
 
-    The setting that specifies whether to record microphone audio can be configured only during the initialization triggered by **OH_AVScreenCapture_Init**. It cannot be used to control the on/off status of the microphone once the recording starts.
+    By default, internal capture is used when captured files need to be stored. The microphone, which can be dynamically turned on or off, can be used for both internal capture and external capture.
 
-    In addition, no callback function is required for storing captured files.
+    A callback function must be set to listen for the capture status when captured files need to be stored.
 
     ```c++
-    // Obtain the microphone audio or internal sound. If both are set, the internal recording parameters are used preferentially. If the internal recording parameters fail to be set, the microphone parameter setting is used.
+    // Obtain the external capture (using microphones) or internal capture information. The internal capture parameters are mandatory. If both parameters are set, the parameter settings for internal capture and external capture must be the same.
+    OH_AudioCaptureInfo micCapInfo = {
+        .audioSampleRate = 48000,
+        .audioChannels = 2,
+        .audioSource = OH_MIC
+    };
+
     OH_AudioCaptureInfo innerCapInfo = {
         .audioSampleRate = 48000,
         .audioChannels = 2,
@@ -104,16 +101,16 @@ target_link_libraries(entry PUBLIC libnative_avscreen_capture.so)
     OH_AVScreenCapture_Init(capture, config);
     ```
 
-4. Call **StartScreenCapture()** to start screen capture.
+4. Call **StartScreenRecording()** to start screen recording.
 
     ```c++
-    OH_AVScreenCapture_StartScreenCapture(capture);
+    OH_AVScreenCapture_StartScreenRecording(capture);
     ```
 
-5. Call **StopScreenCapture()** to stop recording.
+5. Call **StopScreenRecording()** to stop screen recording.
 
     ```c++
-    OH_AVScreenCapture_StopScreenCapture(capture);
+    OH_AVScreenCapture_StopScreenRecording(capture);
     ```
 
 6. Call **Release()** to release the instance.
@@ -142,6 +139,12 @@ static napi_value Screencapture(napi_env env, napi_callback_info info) {
         .audioSampleRate = 48000, 
         .audioChannels = 2, 
         .audioSource = OH_MIC
+    };
+
+    OH_AudioCaptureInfo innerCapInfo = {
+        .audioSampleRate = 48000, 
+        .audioChannels = 2, 
+        .audioSource = OH_ALL_PLAYBACK
     };
 
     OH_AudioEncInfo audioEncInfo = {
@@ -232,4 +235,3 @@ static napi_module demoModule = {
 
 extern "C" __attribute__((constructor)) void RegisterEntryModule(void) { napi_module_register(&demoModule); }
 ```
-

@@ -11,7 +11,7 @@ VpnExtensionAbility模块提供三方VPN相关能力，提供三方VPN创建、�
 ## 导入模块
 
 ```ts
-import VpnExtensionAbility from '@ohos.app.ability.VpnExtensionAbility';
+import { VpnExtensionAbility } from '@kit.NetworkKit';
 ```
 
 ## 属性
@@ -39,8 +39,8 @@ onCreate(want: Want): void
 **示例：** 
 
   ```ts
-import VpnExtensionAbility from '@ohos.app.ability.VpnExtensionAbility';
-import Want from '@ohos.app.ability.Want';
+import { VpnExtensionAbility } from '@kit.NetworkKit';
+import { Want } from '@kit.AbilityKit';
 
 class MyVpnExtAbility extends VpnExtensionAbility {
     onCreate(want: Want) {
@@ -60,7 +60,7 @@ VpnExtensionAbility生命周期回调，在销毁时回调，执行资源清理�
 **示例：** 
 
   ```ts
-import VpnExtensionAbility from '@ohos.app.ability.VpnExtensionAbility';
+import { VpnExtensionAbility } from '@kit.NetworkKit';
 
 class MyVpnExtAbility extends VpnExtensionAbility {
     onDestroy() {

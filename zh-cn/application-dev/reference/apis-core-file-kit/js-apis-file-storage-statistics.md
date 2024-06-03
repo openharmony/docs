@@ -32,7 +32,7 @@ getCurrentBundleStats(): Promise&lt;BundleStats&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: Mandatory parameters are left unspecified. |
 | 13600001 | IPC error. |
 | 13900042 | Unknown error. |
 
@@ -67,7 +67,7 @@ getCurrentBundleStats(callback: AsyncCallback&lt;BundleStats&gt;): void
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: Mandatory parameters are left unspecified. |
 | 13600001 | IPC error. |
 | 13900042 | Unknown error. |
 
@@ -89,7 +89,7 @@ getCurrentBundleStats(callback: AsyncCallback&lt;BundleStats&gt;): void
 
 **系统能力**：SystemCapability.FileManagement.StorageService.SpatialStatistics
 
-| 名称      | 类型   | 可读 | 可写 | 说明           |
+| 名称      | 类型   | 只读 | 可写 | 说明           |
 | --------- | ------ | --- | ---- | -------------- |
 | appSize   | number | 是 | 否 | app数据大小（不包含空目录）（单位为Byte）    |
 | cacheSize | number | 是 | 否 | 缓存数据大小（单位为Byte）   |

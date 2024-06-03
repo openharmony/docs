@@ -13,10 +13,10 @@
 
 详细接口见[接口文档](../../reference/apis-basic-services-kit/js-apis-commonEventManager.md#commoneventmanagerpublish)。
 
-| 接口名 | 接口描述 |
-| -------- | -------- |
-| publish(event:&nbsp;string,&nbsp;callback:&nbsp;AsyncCallback) | 发布公共事件。 |
-| publish(event:&nbsp;string,&nbsp;options:&nbsp;[CommonEventPublishData](../../reference/apis-basic-services-kit/js-apis-commonEventManager.md#commoneventpublishdata),&nbsp;callback:&nbsp;AsyncCallback) | 指定发布信息并发布公共事件。 |
+| 接口名                                                       | 接口描述                     |
+| ------------------------------------------------------------ | ---------------------------- |
+| publish(event:&nbsp;string,&nbsp;callback:&nbsp;AsyncCallback) | 发布公共事件。               |
+| publish(event:&nbsp;string,&nbsp;options:&nbsp;[CommonEventPublishData](../../reference/apis-basic-services-kit/js-apis-inner-commonEvent-commonEventPublishData.md),&nbsp;callback:&nbsp;AsyncCallback) | 指定发布信息并发布公共事件。 |
 
 
 ## 发布不携带信息的公共事件
@@ -28,8 +28,11 @@
    ```ts
    import Base from '@ohos.base';
    import commonEventManager from '@ohos.commonEventManager';
+   import promptAction from '@ohos.promptAction';
+   import hilog from '@ohos.hilog';
 
    const TAG: string = 'ProcessModel';
+   const DOMAIN_NUMBER: number = 0xFF00;
    ```
 
 2. 传入需要发布的事件名称和回调函数，发布事件。
@@ -38,10 +41,10 @@
    // 发布公共事件，其中的event字段需要替换为实际的事件名称。
    commonEventManager.publish('event', (err: Base.BusinessError) => {
      if (err) {
-       console.info(`PublishCallBack err = ${JSON.stringify(err)}`);
+       hilog.info(DOMAIN_NUMBER, TAG, `PublishCallBack err = ${JSON.stringify(err)}`);
      } else {
-       ...
-       console.info(`Publish success`);
+       //...
+       hilog.info(DOMAIN_NUMBER, TAG, `Publish success`);
      }
    });
    ```
@@ -49,15 +52,17 @@
 
 ## 发布携带信息的公共事件
 
-携带信息的公共事件，可以发布为无序公共事件、有序公共事件和粘性事件，可以通过参数[CommonEventPublishData](../../reference/apis-basic-services-kit/js-apis-commonEventManager.md#commoneventpublishdata)的isOrdered、isSticky的字段进行设置。
+携带信息的公共事件，可以发布为无序公共事件、有序公共事件和粘性事件，可以通过参数[CommonEventPublishData](../../reference/apis-basic-services-kit/js-apis-inner-commonEvent-commonEventPublishData.md)的isOrdered、isSticky的字段进行设置。
 
 1. 导入模块。
    
    ```ts
    import Base from '@ohos.base';
    import commonEventManager from '@ohos.commonEventManager';
+   import hilog from '@ohos.hilog';
 
    const TAG: string = 'ProcessModel';
+   const DOMAIN_NUMBER: number = 0xFF00;
    ```
 
 2. 构建需要发布的公共事件信息。
@@ -76,10 +81,10 @@
    // 发布公共事件，其中的event字段需要替换为实际的事件名称。
    commonEventManager.publish('event', options, (err: Base.BusinessError) => {
      if (err) {
-       console.error('PublishCallBack err = ' + JSON.stringify(err));
+       hilog.error(DOMAIN_NUMBER, TAG, 'PublishCallBack err = ' + JSON.stringify(err));
      } else {
-       ...
-       console.info('Publish success');
+       //...
+       hilog.info(DOMAIN_NUMBER, TAG, 'Publish success');
      }
    });
    ```

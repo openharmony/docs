@@ -10,7 +10,7 @@ formInfo模块提供了卡片信息和状态等相关类型和枚举。
 ## 导入模块
 
 ```ts
-import formInfo from '@ohos.app.form.formInfo';
+import { formInfo } from '@kit.FormKit';
 ```
 
 
@@ -23,8 +23,8 @@ import formInfo from '@ohos.app.form.formInfo';
 | 名称        | 值   | 说明         |
 | ----------- | ---- | ------------ |
 | DEVICE_ID_KEY    | 'ohos.extra.param.key.device_id'   | 设备标识。 <br>**系统接口：** 此接口为系统接口。  |
-| FORM_LOCATION_KEY    | 'ohos.extra.param.key.form_location'   | 卡片位置。  |
-
+| FORM_PERMISSION_NAME_KEY | 'ohos.extra.param.key.permission_name' | 用户授权权限名称 |
+| FORM_PERMISSION_GRANTED_KEY | 'ohos.extra.param.key.permission_granted' | 用户是否授权 |
 
 ## FormUsageState
 
@@ -59,7 +59,7 @@ import formInfo from '@ohos.app.form.formInfo';
 | dimension | number               | 是    | 否     | 卡片规格。   |
 | formUsageState<sup>11+</sup> | [FormUsageState](#formusagestate)         | 是    | 否     | 卡片当前使用状态枚举。   |
 | formDescription<sup>11+</sup> | string         | 是    | 否     | 提供方卡片配置文件中的描述信息。   |
-| formLocation<sup>12+</sup> | [FormLocation](#formlocation)| 是    | 否     | 卡片位置信息。   |
+| formLocation<sup>12+</sup> | [FormLocation](#formlocation12)| 是    | 否     | 卡片位置信息。   |
 
 ## formProviderFilter<sup>10+</sup>
 
@@ -79,7 +79,7 @@ import formInfo from '@ohos.app.form.formInfo';
 | abilityName | string               | 是    | 否     | 卡片所属的Ability名称。        |
 | isUnusedIncluded<sup>11+</sup> | boolean               | 是    | 否     | 是否包含未使用的卡片。        |
 
-## FormLocation
+## FormLocation<sup>12+</sup>
 
 卡片当前位置枚举。
 
@@ -96,3 +96,27 @@ import formInfo from '@ohos.app.form.formInfo';
 | FORM_MANAGER_NEGATIVE_SCREEN | 5    | 表示卡片位于负一屏的卡片管理器。 |
 | SCREEN_LOCK                  | 6    | 表示卡片位于锁屏。               |
 | AI_SUGGESTION                | 7    | 表示卡片位于小艺建议推荐区。     |
+
+## PublishFormResult
+
+发布卡片加桌结果。
+
+**系统能力：** SystemCapability.Ability.Form
+
+| 名称    | 类型                                          | 可读 | 可写 | 说明                       |
+| ------- | --------------------------------------------- | ---- | ---- | -------------------------- |
+| code    | [PublishFormErrorCode](#publishformerrorcode) | 是   | 否   | 发布卡片加桌错误码。       |
+| message | string                                        | 是   | 否   | 设置卡片加桌结果返回信息。 |
+
+## PublishFormErrorCode
+
+发布卡片加桌错误码枚举。
+
+**系统能力**：SystemCapability.Ability.Form
+
+| 名称           | 值   | 说明                             |
+| -------------- | ---- | -------------------------------- |
+| SUCCESS        | 0    | 表示卡片加桌成功。               |
+| NO_SPACE       | 1    | 表示没有空间添加卡片。           |
+| PARAM_ERROR    | 2    | 表示参数检查失败。               |
+| INTERNAL_ERROR | 3    | 表示卡片处理过程中出现内部错误。 |

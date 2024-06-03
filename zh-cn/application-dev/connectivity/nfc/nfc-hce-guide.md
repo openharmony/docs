@@ -72,9 +72,10 @@ NFC卡模拟完整的JS API说明以及实例代码请参考：[NFC卡模拟接�
 ```
 
 ```ts
-import cardEmulation from '@ohos.nfc.cardEmulation';
-import { BusinessError } from '@ohos.base';
-import bundleManager from '@ohos.bundle.bundleManager'
+import { cardEmulation } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { AbilityConstant, UIAbility, Want, bundleManager } from '@kit.AbilityKit';
 
 let hceElementName: bundleManager.ElementName;
 let hceService: cardEmulation.HceService;
@@ -103,7 +104,7 @@ export default class EntryAbility extends UIAbility {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
 
     // 判断设备是否支持NFC能力和HCE能力
-    if (!canIUse("System.Capability.Communication.NFC.Core")) {
+    if (!canIUse("SystemCapability.Communication.NFC.Core")) {
       hilog.error(0x0000, 'testTag', 'nfc unavailable.');
       return;
     }
@@ -113,8 +114,8 @@ export default class EntryAbility extends UIAbility {
     }
 
     hceElementName = {
-      bundleName: want.bundleName,
-      abilityName: want.abilityName,
+      bundleName: want.bundleName = '',
+      abilityName: want.abilityName = '',
       moduleName: want.moduleName,
     }
     hceService = new cardEmulation.HceService();
@@ -206,9 +207,10 @@ export default class EntryAbility extends UIAbility {
 ```
 
 ```ts
-import cardEmulation from '@ohos.nfc.cardEmulation';
-import { BusinessError } from '@ohos.base';
-import bundleManager from '@ohos.bundle.bundleManager'
+import { cardEmulation } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { AbilityConstant, UIAbility, Want, bundleManager } from '@kit.AbilityKit';
 
 let hceElementName : bundleManager.ElementName;
 let hceService: cardEmulation.HceService;
@@ -238,7 +240,7 @@ export default class EntryAbility extends UIAbility {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
 
     // 判断设备是否支持NFC能力和HCE能力
-    if (!canIUse("System.Capability.Communication.NFC.Core")) {
+    if (!canIUse("SystemCapability.Communication.NFC.Core")) {
       hilog.error(0x0000, 'testTag', 'nfc unavailable.');
       return;
     }
@@ -248,8 +250,8 @@ export default class EntryAbility extends UIAbility {
     }
 
     hceElementName = {
-      bundleName: want.bundleName,
-      abilityName: want.abilityName,
+      bundleName: want.bundleName = '',
+      abilityName: want.abilityName = '',
       moduleName: want.moduleName,
     }
     hceService = new cardEmulation.HceService();

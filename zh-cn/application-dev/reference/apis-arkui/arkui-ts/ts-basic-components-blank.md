@@ -21,7 +21,9 @@ Blank(min?: number&nbsp;|&nbsp;string)
  - Blank设置主轴方向大小（size）与min时约束关系为max(min, size)。  
  - Blank在父容器交叉轴上设置大小时不会撑满父容器交叉轴，交叉轴不设置大小时alignSelf默认值为ItemAlign.Stretch，会撑满容器交叉轴。  
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用
 
 **参数：**
 
@@ -40,6 +42,8 @@ color(value: ResourceColor)
 设置空白填充的填充颜色。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

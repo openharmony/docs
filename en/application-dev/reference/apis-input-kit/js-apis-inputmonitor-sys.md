@@ -13,7 +13,7 @@ The **inputMonitor** module implements listening for events of input devices, in
 ## Modules to Import
 
 ```js
-import inputMonitor from '@ohos.multimodalInput.inputMonitor';
+import { inputMonitor } from '@kit.InputKit';
 ```
 
 ## inputMonitor.on('touch')
@@ -33,10 +33,19 @@ Enables listening for global touch (touchscreen) events.
 | type     | string                                   | Yes   | Event type. This field has a fixed value of **touch**.|
 | receiver | [TouchEventReceiver](#toucheventreceiver) | Yes   | Callback used to return touch events asynchronously.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 201  | Permission denied.   |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```js
-import { TouchEvent } from '@ohos.multimodalInput.touchEvent';
+import { TouchEvent } from '@kit.InputKit';
 try {
   inputMonitor.on('touch', (touchEvent: TouchEvent) => {
     console.log(`Monitor on success ${JSON.stringify(touchEvent)}`);
@@ -62,12 +71,21 @@ Enables listening for global mouse events.
 | Name      | Type                        | Mandatory  | Description                 |
 | -------- | -------------------------- | ---- | ------------------- |
 | type     | string                     | Yes   | Event type. This field has a fixed value of **mouse**.|
-| receiver | Callback&lt;MouseEvent&gt; | Yes   | Callback used to return mouse events asynchronously. |
+| receiver | Callback&lt;[MouseEvent](js-apis-mouseevent.md#mouseevent)&gt; | Yes   | Callback used to return mouse events asynchronously. |
 
-  **Example**
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 201  | Permission denied.   |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**Example**
 
 ```js
-import { MouseEvent } from '@ohos.multimodalInput.mouseEvent';
+import { MouseEvent } from '@kit.InputKit';
 
 try {
   inputMonitor.on('mouse', (mouseEvent: MouseEvent) => {
@@ -95,14 +113,24 @@ Enables listening for mouse events. When the mouse pointer moves to the specifie
 | -------- | -------------------------- | ---- | ------------------- |
 | type     | string                     | Yes   | Event type. This field has a fixed value of **mouse**.|
 | rect     | display.Rect[]             | Yes   | Rectangular area where a callback is triggered. One or two rectangular areas can be specified.|
-| receiver | Callback&lt;[MouseEvent](js-apis-mouseevent.md)&gt; | Yes   | Callback used to return mouse events asynchronously. |
+| receiver | Callback&lt;[MouseEvent](js-apis-mouseevent.md#mouseevent)&gt; | Yes   | Callback used to return mouse events asynchronously. |
 
-  **Example**
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 201  | Permission denied.   |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**Example**
 
 ```js
-import { MouseEvent } from '@ohos.multimodalInput.mouseEvent';
-import promptAction from '@ohos.promptAction'
-import display from '@ohos.display';
+import { MouseEvent } from '@kit.InputKit';
+import { promptAction } from '@kit.ArkUI'
+import { display } from '@kit.ArkUI'
 
 /**
  * Callback triggered when the mouse pointer moves to the specified rectangular area.
@@ -154,10 +182,19 @@ Disables listening for global touch (touchscreen) events.
 | type     | string                                   | Yes   | Event type. This field has a fixed value of **touch**.|
 | receiver | [TouchEventReceiver](#toucheventreceiver) | No   | Callback for which listening is disabled. If this parameter is not specified, listening will be disabled for all callbacks registered by the current application. |
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 201  | Permission denied.   |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```js
-import { TouchEvent } from '@ohos.multimodalInput.touchEvent';
+import { TouchEvent } from '@kit.InputKit';
 // Disable listening for a single callback.
 let callback = (touchEvent: TouchEvent) => {
   console.log(`Monitor on success ${JSON.stringify(touchEvent)}`);
@@ -173,7 +210,7 @@ try {
 ```
 
 ```js
-import { TouchEvent } from '@ohos.multimodalInput.touchEvent';
+import { TouchEvent } from '@kit.InputKit';
 // Cancel listening for all callbacks.
 let callback = (touchEvent: TouchEvent) => {
   console.log(`Monitor on success ${JSON.stringify(touchEvent)}`);
@@ -205,10 +242,19 @@ Disables listening for global mouse events.
 | type     | string                     | Yes   | Event type. This field has a fixed value of **mouse**.|
 | receiver | Callback&lt;MouseEvent&gt; | No   | Callback for which listening is disabled. If this parameter is not specified, listening will be disabled for all callbacks registered by the current application.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 201  | Permission denied.   |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```js
-import { MouseEvent } from '@ohos.multimodalInput.mouseEvent';
+import { MouseEvent } from '@kit.InputKit';
 // Disable listening for a single callback.
 let callback = (mouseEvent: MouseEvent) => {
   console.log(`Monitor on success ${JSON.stringify(mouseEvent)}`);
@@ -224,7 +270,7 @@ try {
 ```
 
 ```js
-import { MouseEvent } from '@ohos.multimodalInput.mouseEvent';
+import { MouseEvent } from '@kit.InputKit';
 // Cancel listening for all callbacks.
 let callback = (mouseEvent: MouseEvent) => {
   console.log(`Monitor on success ${JSON.stringify(mouseEvent)}`);
@@ -253,7 +299,7 @@ Defines the callback for touch (touchscreen) events.
 
 | Name        | Type                                      | Mandatory  | Description                                      |
 | ---------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| touchEvent | [TouchEvent](js-apis-touchevent.md) | Yes   | Touch event.|
+| touchEvent | [TouchEvent](js-apis-touchevent.md#touchevent) | Yes   | Touch event.|
 
 **Return value**
 
@@ -264,7 +310,7 @@ Defines the callback for touch (touchscreen) events.
 **Example**
 
 ```js
-import { TouchEvent } from '@ohos.multimodalInput.touchEvent';
+import { TouchEvent } from '@kit.InputKit';
 try {
   inputMonitor.on('touch', touchEvent => {
     if (touchEvent.touches.length == 3) {// Three fingers are pressed.
@@ -294,10 +340,20 @@ Enables listening for global touchpad pinch events.
 | type     | string                     | Yes   | Event type. This field has a fixed value of **pinch**.|
 | receiver | Callback&lt;[Pinch](js-apis-multimodalinput-gestureevent.md#pinch)&gt; | Yes   | Callback used to return pinch events asynchronously. |
 
-  **Example**
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 201  | Permission denied.   |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**Example**
 
 ```js
-import type { Pinch } from '@ohos.multimodalInput.gestureEvent';
+import type { Pinch } from '@kit.InputKit';
 try {
   inputMonitor.on('pinch', (pinchEvent) => {
     console.log(`Monitor on success ${JSON.stringify(pinchEvent)}`);
@@ -325,11 +381,21 @@ Disables listening for global touchpad pinch events.
 | type     | string                     | Yes   | Event type. This field has a fixed value of **pinch**.|
 | receiver | Callback&lt;[Pinch](js-apis-multimodalinput-gestureevent.md#pinch)&gt; | No   | Callback for which listening is disabled. If this parameter is not specified, listening will be disabled for all callbacks registered by the current application.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 201  | Permission denied.   |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```js
 // Disable listening for a single callback.
-import { Pinch } from '@ohos.multimodalInput.gestureEvent';
+import { Pinch } from '@kit.InputKit';
 
 let callback = (pinchEvent: Pinch) => {
   console.log(`Monitor on success ${JSON.stringify(pinchEvent)}`);
@@ -346,7 +412,7 @@ try {
 
 ```js
 // Cancel listening for all callbacks.
-import { Pinch } from '@ohos.multimodalInput.gestureEvent';
+import { Pinch } from '@kit.InputKit';
 
 let callback = (pinchEvent: Pinch) => {
   console.log(`Monitor on success ${JSON.stringify(pinchEvent)}`);
@@ -378,7 +444,17 @@ Enables listening for three-finger swipe events.
 | type     | string                     | Yes   | Event type. This field has a fixed value of **threeFingersSwipe**.|
 | receiver | Callback&lt;[ThreeFingersSwipe](js-apis-multimodalinput-gestureevent.md#threefingersswipe)&gt; | Yes   | Callback used to return three-finger swipe events asynchronously. |
 
-  **Example**
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 201  | Permission denied.   |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**Example**
 
 ```js
 try {
@@ -408,11 +484,21 @@ Disables listening for three-finger swipe events.
 | type     | string                     | Yes   | Event type. This field has a fixed value of **threeFingersSwipe**.|
 | receiver | Callback&lt;[ThreeFingersSwipe](js-apis-multimodalinput-gestureevent.md#threefingersswipe)&gt; | No   | Callback for which listening is disabled. If this parameter is not specified, listening will be disabled for all callbacks registered by the current application.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 201  | Permission denied.   |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```js
 // Disable listening for a single callback.
-import { ThreeFingersSwipe } from '@ohos.multimodalInput.gestureEvent';
+import { ThreeFingersSwipe } from '@kit.InputKit';
 
 let callback = (threeFingersSwipe: ThreeFingersSwipe) => {
   console.log(`Monitor on success ${JSON.stringify(threeFingersSwipe)}`);
@@ -429,7 +515,7 @@ try {
 
 ```js
 // Cancel listening for all callbacks.
-import { ThreeFingersSwipe } from '@ohos.multimodalInput.gestureEvent';
+import { ThreeFingersSwipe } from '@kit.InputKit';
 
 let callback = (threeFingersSwipe: ThreeFingersSwipe) => {
   console.log(`Monitor on success ${JSON.stringify(threeFingersSwipe)}`);
@@ -461,7 +547,17 @@ Enables listening for four-finger swipe events.
 | type     | string                     | Yes   | Event type. This field has a fixed value of **fourFingersSwipe**.|
 | receiver | Callback&lt;[FourFingersSwipe](js-apis-multimodalinput-gestureevent.md#fourfingersswipe)&gt; | Yes   | Callback used to return four-finger swipe events asynchronously. |
 
-  **Example**
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 201  | Permission denied.   |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**Example**
 
 ```js
 try {
@@ -491,11 +587,21 @@ Disables listening for four-finger swipe events.
 | type     | string                     | Yes   | Event type. This field has a fixed value of **fourFingersSwipe**.|
 | receiver | Callback&lt;[FourFingersSwipe](js-apis-multimodalinput-gestureevent.md#fourfingersswipe)&gt; | No   | Callback for which listening is disabled. If this parameter is not specified, listening will be disabled for all callbacks registered by the current application.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 201  | Permission denied.   |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```js
 // Disable listening for a single callback.
-import { FourFingersSwipe } from '@ohos.multimodalInput.gestureEvent';
+import { FourFingersSwipe } from '@kit.InputKit';
 
 let callback = (fourFingersSwipe: FourFingersSwipe) => {
   console.log(`Monitor on success ${JSON.stringify(fourFingersSwipe)}`);
@@ -512,7 +618,7 @@ try {
 
 ```js
 // Cancel listening for all callbacks.
-import { FourFingersSwipe } from '@ohos.multimodalInput.gestureEvent';
+import { FourFingersSwipe } from '@kit.InputKit';
 
 let callback = (fourFingersSwipe: FourFingersSwipe) => {
   console.log(`Monitor on success ${JSON.stringify(fourFingersSwipe)}`);
@@ -545,10 +651,20 @@ Enables listening for rotation events of the touchpad.
 | fingers     | number                     | Yes   | Number of fingers that trigger a rotation. The value must not be greater than **2**.|
 | receiver | Callback&lt;[Rotate](js-apis-multimodalinput-gestureevent.md#rotate)&gt; | Yes   | Callback used to return rotation events asynchronously. |
 
-  **Example**
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 201  | Permission denied.   |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**Example**
 
 ```js
-import type { Rotate } from '@ohos.multimodalInput.gestureEvent';
+import type { Rotate } from '@kit.InputKit';
 try {
   inputMonitor.on('rotate', 2, (rotateEvent: Rotate) => {
     console.log(`Monitor on success ${JSON.stringify(rotateEvent)}`);
@@ -577,11 +693,21 @@ Disables listening for rotation events of the touchpad.
 | fingers     | number                     | Yes   | Number of fingers that trigger a rotation. The value must not be greater than **2**.|
 | receiver | Callback&lt;[Rotate](js-apis-multimodalinput-gestureevent.md#rotate)&gt; | No   | Callback for which listening is disabled. If this parameter is not specified, listening will be disabled for all callbacks registered by the current application.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 201  | Permission denied.   |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```js
 // Disable listening for a single callback.
-import { Rotate } from '@ohos.multimodalInput.gestureEvent';
+import { Rotate } from '@kit.InputKit';
 
 let callback = (rotateEvent: Rotate) => {
   console.log(`Monitor on success ${JSON.stringify(rotateEvent)}`);
@@ -598,7 +724,7 @@ try {
 
 ```js
 // Cancel listening for all callbacks.
-import { Rotate } from '@ohos.multimodalInput.gestureEvent';
+import { Rotate } from '@kit.InputKit';
 
 let callback = (rotateEvent: Rotate) => {
   console.log(`Monitor on success ${JSON.stringify(rotateEvent)}`);
@@ -631,10 +757,20 @@ Enables listening for global touchpad pinch events.
 | fingers     | number                     | Yes   | Number of fingers that trigger the pinch. The value must be greater than or equal to **2**.|
 | receiver | Callback&lt;[Pinch](js-apis-multimodalinput-gestureevent.md#pinch)&gt; | Yes   | Callback used to return pinch events asynchronously. |
 
-  **Example**
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 201  | Permission denied.   |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**Example**
 
 ```js
-import type { Pinch } from '@ohos.multimodalInput.gestureEvent';
+import type { Pinch } from '@kit.InputKit';
 try {
   inputMonitor.on('pinch', 2, (pinchEvent: Pinch) => {
     console.log(`Monitor on success ${JSON.stringify(pinchEvent)}`);
@@ -663,11 +799,21 @@ Disables listening for global touchpad pinch events.
 | fingers     | number                     | Yes   | Number of fingers that trigger the pinch. The value must be greater than or equal to **2**.|
 | receiver | Callback&lt;[Pinch](js-apis-multimodalinput-gestureevent.md#pinch)&gt; | No   | Callback for which listening is disabled. If this parameter is not specified, listening will be disabled for all callbacks registered by the current application.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 201  | Permission denied.   |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```js
 // Disable listening for a single callback.
-import { Pinch } from '@ohos.multimodalInput.gestureEvent';
+import { Pinch } from '@kit.InputKit';
 
 let callback = (pinchEvent: Pinch) => {
   console.log(`Monitor on success ${JSON.stringify(pinchEvent)}`);
@@ -684,7 +830,7 @@ try {
 
 ```js
 // Cancel listening for all callbacks.
-import { Pinch } from '@ohos.multimodalInput.gestureEvent';
+import { Pinch } from '@kit.InputKit';
 
 let callback = (pinchEvent: Pinch) => {
   console.log(`Monitor on success ${JSON.stringify(pinchEvent)}`);
@@ -716,7 +862,17 @@ Enables listening for three-finger tap events.
 | type     | string                                                       | Yes  | Event type. This field has a fixed value of **threeFingersTap**.|
 | receiver | Callback&lt;[ThreeFingersTap](js-apis-multimodalinput-gestureevent.md#threefingerstap)&gt; | Yes  | Callback used to return three-finger tap events asynchronously.     |
 
-  **Example**
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 201  | Permission denied.   |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**Example**
 
 ```js
 try {
@@ -728,6 +884,49 @@ try {
   console.log(`Monitor on failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
+
+## inputMonitor.on('fingerprint')<sup>12+</sup>
+
+on(type: 'fingerprint', receiver: Callback[FingerprintEvent](js-apis-multimodalinput-gestureevent.md#threefingerstap)&gt): void
+
+Enables listening for fingerprint key events.
+
+**Required permissions**: ohos.permission.INPUT_MONITORING
+
+**System capability**: SystemCapability.MultimodalInput.Input.InputMonitor
+
+**Parameters**
+
+| Name  | Type                                                        | Mandatory| Description                                     |
+| -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
+| type     | string                                                       | Yes  | Event type, which is **fingerprint**.|
+| receiver | Callback&lt;[FingerprintEvent](js-apis-multimodalinput-gestureevent.md#threefingerstap)&gt; | Yes  | Callback used to receive the reported data.    |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 201  | Permission denied.   |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error.       |
+
+
+```js
+import type { FingerprintEvent } from '@kit.InputKit';
+import { inputMonitor } from '@kit.InputKit';
+
+try {
+  inputMonitor.on('fingerprint', (fingerprint) => {
+    console.log(`Monitor on success ${JSON.stringify(fingerprint)}`);
+    return false;
+  });
+} catch (error) {
+  console.log(`Monitor on failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
 
 ## inputMonitor.off('threeFingersTap')<sup>11+</sup>
 
@@ -746,11 +945,21 @@ Disables listening for three-finger tap events.
 | type     | string                                                       | Yes  | Event type. This field has a fixed value of **threeFingersTap**.                   |
 | receiver | Callback&lt;[ThreeFingersTap](js-apis-multimodalinput-gestureevent.md#threefingerstap)&gt; | No  | Callback for which listening is disabled. If this parameter is not specified, listening will be disabled for all callbacks registered by the current application.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 201  | Permission denied.   |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```js
 // Disable listening for a single callback.
-import { ThreeFingersTap } from '@ohos.multimodalInput.gestureEvent';
+import { ThreeFingersTap } from '@kit.InputKit';
 
 let callback = (threeFingersTap: ThreeFingersTap) => {
   console.log(`Monitor on success ${JSON.stringify(threeFingersTap)}`);
@@ -767,7 +976,7 @@ try {
 
 ```js
 // Cancel listening for all callbacks.
-import { ThreeFingersTap } from '@ohos.multimodalInput.gestureEvent';
+import { ThreeFingersTap } from '@kit.InputKit';
 
 let callback = (threeFingersTap: ThreeFingersTap) => {
   console.log(`Monitor on success ${JSON.stringify(threeFingersTap)}`);
@@ -776,6 +985,53 @@ let callback = (threeFingersTap: ThreeFingersTap) => {
 try {
   inputMonitor.on('threeFingersTap', callback);
   inputMonitor.off("threeFingersTap");
+  console.log(`Monitor off success`);
+} catch (error) {
+  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+
+## inputMonitor.off('fingerprint')<sup>12+</sup>
+
+off(type: 'fingerprint', receiver?: Callback[FingerprintEvent](js-apis-multimodalinput-gestureevent.md#threefingerstap)&gt): void
+
+Cancels listening for fingerprint key events.
+
+**Required permissions**: ohos.permission.INPUT_MONITORING
+
+**System capability**: SystemCapability.MultimodalInput.Input.InputMonitor
+
+**Parameters**
+
+| Name  | Type                                                        | Mandatory| Description                                     |
+| -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
+| type     | string                                                       | Yes  | Event type, which is **fingerprint**.     |
+| receiver | Callback&lt;[FingerprintEvent](js-apis-multimodalinput-gestureevent.md#threefingerstap)&gt; | Yes  | Callback used to receive the reported data.    |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 201  | Permission denied.   |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error.       |
+
+
+```js
+import type { FingerprintEvent } from '@kit.InputKit';
+import { inputMonitor } from '@kit.InputKit';
+
+let callback = (fingerprint: FingerprintEvent) => {
+  console.log(`Monitor on success ${JSON.stringify(fingerprint)}`);
+  return false;
+};
+
+try {
+  inputMonitor.on('fingerprint', callback);
+  inputMonitor.off("fingerprint", callback);
   console.log(`Monitor off success`);
 } catch (error) {
   console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);

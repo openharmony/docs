@@ -10,6 +10,7 @@
      
    ```ts
    import { BusinessError } from '@ohos.base';
+   import camera from '@ohos.multimedia.camera';
    import media from '@ohos.multimedia.media';
    ```
 

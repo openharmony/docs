@@ -14,11 +14,11 @@ vibrator模块提供控制马达振动的能力，主要包含灯的列表查询
 ## 导入模块
 
 
-```
-import vibrator from '@system.vibrator';
+```ts
+import { Vibrator } from '@kit.SensorServiceKit';
 ```
 
-## vibrator.vibrate
+## Vibrator.vibrate
 
  vibrate(options?: VibrateOptions): void
 
@@ -37,8 +37,7 @@ import vibrator from '@system.vibrator';
 **示例：** 
 
 ```ts
-import vibrator from '@system.vibrator';
-import { VibrateOptions } from '@system.vibrator';
+import { Vibrator, VibrateOptions } from '@kit.SensorServiceKit';
 
 let vibrateOptions: VibrateOptions = {
   mode: 'short',
@@ -52,7 +51,7 @@ let vibrateOptions: VibrateOptions = {
     console.info('completed in vibrating');
   }
 };
-vibrator.vibrate(vibrateOptions);
+Vibrator.vibrate(vibrateOptions);
 ```
 
 ## VibrateOptions

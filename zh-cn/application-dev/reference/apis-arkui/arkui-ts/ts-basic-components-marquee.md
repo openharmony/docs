@@ -6,7 +6,8 @@
 >  **说明：**
 >
 >  该组件从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
-
+>
+>  为了不影响滚动帧率，建议在滚动类组件中Marquee的个数不超过4个，或者使用[Text](ts-basic-components-text.md)组件的[TextOverflow.MARQUEE](ts-appendix-enums.md#textoverflow)替代。
 
 ## 子组件
 
@@ -17,9 +18,11 @@
 
 Marquee(value: { start: boolean, step?: number, loop?: number, fromStart?: boolean, src: string })
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**参数：** 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**参数：**
 
 | 参数名 | 参数类型 | 必填 | 参数描述 |
 | -------- | -------- | -------- | -------- |
@@ -42,13 +45,31 @@ allowScale(value: boolean)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：** 
+**参数：**
 
 | 参数名 | 类型    | 必填 | 说明                                 |
 | ------ | ------- | ---- | ------------------------------------ |
 | value  | boolean | 是   | 是否允许文本缩放。<br/>默认值：false |
+
+### marqueeUpdateStrategy<sup>12+</sup>
+
+marqueeUpdateStrategy(value: MarqueeUpdateStrategy)
+
+跑马灯组件属性更新后，跑马灯的滚动策略。(当跑马灯为播放状态，且文本内容宽度超过跑马灯组件宽度时，该属性生效。)<br>
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明                                 |
+| ------ | ------- | ---- | ------------------------------------ |
+| value |[MarqueeUpdateStrategy](ts-appendix-enums.md#marqueeupdatestrategy12枚举说明) | 是 | 跑马灯组件属性更新后，跑马灯的滚动策略。<br/>默认值: MarqueeUpdateStrategy.DEFAULT |
 
 ## 事件
 
@@ -60,6 +81,8 @@ onStart(event:&nbsp;()&nbsp;=&gt;&nbsp;void)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ### onBounce
@@ -69,6 +92,8 @@ onBounce(event:&nbsp;()&nbsp;=&gt;&nbsp;void)
 完成一次滚动时触发，若循环次数不为1，则该事件会多次触发。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -80,8 +105,9 @@ onFinish(event:&nbsp;()&nbsp;=&gt;&nbsp;void)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ## 示例
 
@@ -92,10 +118,19 @@ onFinish(event:&nbsp;()&nbsp;=&gt;&nbsp;void)
 @Component
 struct MarqueeExample {
   @State start: boolean = false
+  @State src: string = ''
+  @State marqueeText: string = 'Running Marquee'
   private fromStart: boolean = true
-  private step: number = 50
+  private step: number = 10
   private loop: number = Number.POSITIVE_INFINITY
-  private src: string = "Running Marquee starts rolling"
+  controller: TextClockController = new TextClockController()
+  convert2time(value: number): string{
+    let date = new Date(Number(value+'000'));
+    let hours = date.getHours().toString().padStart(2, '0');
+    let minutes = date.getMinutes().toString().padStart(2, '0');
+    let seconds = date.getSeconds().toString().padStart(2, '0');
+    return hours+ ":" + minutes + ":" + seconds;
+  }
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -104,9 +139,10 @@ struct MarqueeExample {
         step: this.step,
         loop: this.loop,
         fromStart: this.fromStart,
-        src: this.src
+        src: this.marqueeText + this.src
       })
-        .width(360)
+        .marqueeUpdateStrategy(MarqueeUpdateStrategy.PRESERVE_POSITION)
+        .width(300)
         .height(80)
         .fontColor('#FFFFFF')
         .fontSize(48)
@@ -125,12 +161,21 @@ struct MarqueeExample {
       Button('Start')
         .onClick(() => {
           this.start = true
+          //启动文本时钟
+          this.controller.start()
         })
         .width(120)
         .height(40)
         .fontSize(16)
         .fontWeight(500)
         .backgroundColor('#007DFF')
+      TextClock({ timeZoneOffset: -8, controller: this.controller })
+        .format('hms')
+        .onDateChange((value: number) => {
+          this.src = this.convert2time(value);
+        })
+        .margin(20)
+        .fontSize(30)
     }
     .width('100%')
     .height('100%')

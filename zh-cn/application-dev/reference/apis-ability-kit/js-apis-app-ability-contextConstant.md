@@ -11,12 +11,14 @@ ContextConstant提供Context相关的枚举，当前仅包含数据加密等级�
 ## 导入模块
 
 ```ts
-import contextConstant from '@ohos.app.ability.contextConstant';
+import { contextConstant } from '@kit.AbilityKit';
 ```
 
 ## ContextConstant.AreaMode
 
 数据加密等级。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -44,14 +46,10 @@ ProcessMode作为[StartOptions](js-apis-app-ability-startOptions.md)的一个属
 **示例：**
 
   ```ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  import Want from '@ohos.app.ability.Want';
-  import StartOptions from '@ohos.app.ability.StartOptions';
-  import contextConstant from '@ohos.app.ability.contextConstant';
-  import { BusinessError } from '@ohos.base';
+  import { UIAbility, Want, StartOptions, contextConstant } from '@kit.AbilityKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   export default class EntryAbility extends UIAbility {
-
     onForeground() {
       let want: Want = {
         deviceId: '',

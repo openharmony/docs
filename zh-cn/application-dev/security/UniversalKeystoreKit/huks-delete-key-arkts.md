@@ -16,8 +16,8 @@
 /*
  * 以下以HKDF256密钥的Promise操作使用为例
  */
-import huks from '@ohos.security.huks';
-import { BusinessError } from '@ohos.base';
+import { huks } from "@kit.UniversalKeystoreKit";
+import { BusinessError} from "@kit.BasicServicesKit"
 /* 1.确定密钥别名 */
 let keyAlias = "test_Key";
 /* 2.构造空对象 */
@@ -60,7 +60,7 @@ async function publicDeleteKeyFunc(keyAlias:string, huksOptions:huks.HuksOptions
         }
       });
   } catch (error) {
-    console.error(`promise: deletKeyItem input arg invalid` + error);
+    console.error(`promise: deleteKeyItem input arg invalid` + error);
   }
 }
 async function testDerive() {

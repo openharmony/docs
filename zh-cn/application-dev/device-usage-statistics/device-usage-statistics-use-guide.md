@@ -428,4 +428,4 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
 
 - [存储空间统计（ArkTS）（Full SDK）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/DeviceManagement/StorageStatistic)
 
-- [设备使用信息统计（ArkTS）（Full SDK）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/DeviceUsageStatistics/DeviceUsageStatistics)
+- [设备使用信息统计（ArkTS）（Full SDK）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/DeviceUsageStatistics/DeviceUsageStatistics)

@@ -20,29 +20,26 @@ The sample code for accessing a DataAbility is as follows:
 1. Create a **DataAbilityHelper** instance.
    
    ```ts
-   import featureAbility from '@ohos.ability.featureAbility'
-   import ohos_data_ability from '@ohos.data.dataAbility'
-   import relationalStore from '@ohos.data.relationalStore'
-   ```
-   ```ts
+   import featureAbility from '@ohos.ability.featureAbility';
+   import ohos_data_ability from '@ohos.data.dataAbility';
+   import relationalStore from '@ohos.data.relationalStore';
+   import ability from '@ohos.ability.ability';
    // Different from the URI defined in the config.json file, the URI passed in the parameter has an extra slash (/), three slashes in total.
-   private uri = 'dataability:///com.samples.famodelabilitydevelop.DataAbility';
-   private DAHelper = featureAbility.acquireDataAbilityHelper(this.uri);
+   let uri: string = 'dataability:///com.samples.famodelabilitydevelop.DataAbility';
+   let DAHelper: ability.DataAbilityHelper = featureAbility.acquireDataAbilityHelper(uri);
    ```
 
 2. Construct RDB data.
    
    ```ts
-   import ohos_data_ability from '@ohos.data.dataAbility'
-   import rdb from '@ohos.data.rdb'
-   ```
-   ```ts
-   private valuesBucket_insert: rdb.ValuesBucket = { name: 'Rose', introduction: 'insert' };
-   private valuesBucket_update: rdb.ValuesBucket = { name: 'Rose', introduction: 'update' };
-   private crowd = new Array({ name: 'Rose', introduction: 'batchInsert_one' } as rdb.ValuesBucket,
+   import ohos_data_ability from '@ohos.data.dataAbility';
+   import rdb from '@ohos.data.rdb';
+   let valuesBucket_insert: rdb.ValuesBucket = { name: 'Rose', introduction: 'insert' };
+   let valuesBucket_update: rdb.ValuesBucket = { name: 'Rose', introduction: 'update' };
+   let crowd = new Array({ name: 'Rose', introduction: 'batchInsert_one' } as rdb.ValuesBucket,
      { name: 'Rose', introduction: 'batchInsert_two' } as rdb.ValuesBucket);
-   private columnArray = new Array('id', 'name', 'introduction');
-   private predicates = new ohos_data_ability.DataAbilityPredicates();
+   let columnArray = new Array('id', 'name', 'introduction');
+   let predicates = new ohos_data_ability.DataAbilityPredicates();
    ```
 
    For details about DataAbilityPredicates, see [DataAbility Predicates](../reference/apis-arkdata/js-apis-data-ability.md).
@@ -60,11 +57,11 @@ The sample code for accessing a DataAbility is as follows:
    this.DAHelper.insert(this.uri, this.valuesBucket_insert, (error: BusinessError, data: number) => {
      if (error && error.code !== 0) {
        promptAction.showToast({
-         message: $r('app.string.insert_failed_toast')
+         message: 'insert_failed_toast'
        });
      } else {
        promptAction.showToast({
-      message: $r('app.string.insert_success_toast')
+      message: 'insert_success_toast'
        });
      }
      Logger.info(TAG, 'DAHelper insert result: ' + data + ', error: ' + JSON.stringify(error));
@@ -84,12 +81,12 @@ The sample code for accessing a DataAbility is as follows:
    // Promise mode (await needs to be used in the asynchronous method):
    this.DAHelper.insert(this.uri, this.valuesBucket_insert).then((datainsert) => {
      promptAction.showToast({
-       message: $r('app.string.insert_success_toast')
+       message: 'insert_success_toast'
      });
      Logger.info(TAG, 'DAHelper insert result: ' + datainsert);
    }).catch((error: BusinessError) => {
      promptAction.showToast({
-       message: $r('app.string.insert_failed_toast')
+       message: 'insert_success_toast'
      });
      Logger.error(TAG, `DAHelper insert failed. Cause: ${error.message}`);
    });
@@ -108,11 +105,11 @@ The sample code for accessing a DataAbility is as follows:
    this.DAHelper.delete(this.uri, this.predicates, (error, data) => {
      if (error && error.code !== 0) {
        promptAction.showToast({
-         message: $r('app.string.delete_failed_toast')
+         message: 'delete_failed_toast'
        });
      } else {
        promptAction.showToast({
-         message: $r('app.string.delete_success_toast')
+         message: 'delete_success_toast'
        });
     }
      Logger.info(TAG, 'DAHelper delete result: ' + data + ', error: ' + JSON.stringify(error));
@@ -131,12 +128,12 @@ The sample code for accessing a DataAbility is as follows:
    // Promise mode (await needs to be used in the asynchronous method):
    this.DAHelper.delete(this.uri, this.predicates).then((datadelete) => {
     promptAction.showToast({
-       message: $r('app.string.delete_success_toast')
+       message: 'delete_success_toast'
      });
      Logger.info(TAG, 'DAHelper delete result: ' + datadelete);
    }).catch((error: BusinessError) => {
      promptAction.showToast({
-       message: $r('app.string.delete_failed_toast')
+       message: 'delete_failed_toast'
      });
      Logger.error(TAG, `DAHelper delete failed. Cause: ${error.message}`);
    });
@@ -156,11 +153,11 @@ The sample code for accessing a DataAbility is as follows:
    this.DAHelper.update(this.uri, this.valuesBucket_update, this.predicates, (error, data) => {
      if (error && error.code !== 0) {
        promptAction.showToast({
-         message: $r('app.string.update_failed_toast')
+         message: 'update_failed_toast'
        });
      } else {
        promptAction.showToast({
-         message: $r('app.string.update_success_toast')
+         message: 'update_success_toast'
        });
     }
      Logger.info(TAG, 'DAHelper update result: ' + data + ', error: ' + JSON.stringify(error));
@@ -180,12 +177,12 @@ The sample code for accessing a DataAbility is as follows:
    this.predicates.equalTo('name', 'Rose');
    this.DAHelper.update(this.uri, this.valuesBucket_update, this.predicates).then((dataupdate) => {
     promptAction.showToast({
-       message: $r('app.string.update_success_toast')
+       message: 'update_success_toast'
      });
      Logger.info(TAG, 'DAHelper update result: ' + dataupdate);
    }).catch((error: BusinessError) => {
      promptAction.showToast({
-       message: $r('app.string.update_failed_toast')
+       message: 'update_failed_toast'
      });
      Logger.error(TAG, `DAHelper update failed. Cause: ${error.message}`);
    });
@@ -205,12 +202,12 @@ The sample code for accessing a DataAbility is as follows:
    this.DAHelper.query(this.uri, this.columnArray, this.predicates, (error, data) => {
      if (error && error.code !== 0) {
        promptAction.showToast({
-         message: $r('app.string.query_failed_toast')
+         message: 'query_failed_toast'
        });
        Logger.error(TAG, `DAHelper query failed. Cause: ${error.message}`);
      } else {
        promptAction.showToast({
-         message: $r('app.string.query_success_toast')
+         message: 'query_success_toast'
     });
      }
      // ResultSet is a cursor of a data set. By default, the cursor points to the -1st record. Valid data starts from 0.
@@ -238,7 +235,7 @@ The sample code for accessing a DataAbility is as follows:
    this.predicates.equalTo('name', 'Rose');
    this.DAHelper.query(this.uri, this.columnArray, this.predicates).then((dataquery) => {
      promptAction.showToast({
-       message: $r('app.string.query_success_toast')
+       message: 'query_success_toast'
      });
      // ResultSet is a cursor of a data set. By default, the cursor points to the -1st record. Valid data starts from 0.
      while (dataquery.goToNextRow()) {
@@ -251,7 +248,7 @@ The sample code for accessing a DataAbility is as follows:
      dataquery.close();
    }).catch((error: BusinessError) => {
      promptAction.showToast({
-       message: $r('app.string.query_failed_toast')
+       message: 'query_failed_toast'
      });
      Logger.error(TAG, `DAHelper query failed. Cause: ${error.message}`);
    });
@@ -270,11 +267,11 @@ The sample code for accessing a DataAbility is as follows:
    this.DAHelper.batchInsert(this.uri, this.crowd, (error, data) => {
      if (error && error.code !== 0) {
        promptAction.showToast({
-         message: $r('app.string.batchInsert_failed_toast')
+         message: 'batchInsert_failed_toast'
        });
      } else {
        promptAction.showToast({
-         message: $r('app.string.batchInsert_success_toast')
+         message: 'batchInsert_success_toast'
        });
     }
      Logger.info(TAG, 'DAHelper batchInsert result: ' + data + ', error: ' + JSON.stringify(error));
@@ -293,12 +290,12 @@ The sample code for accessing a DataAbility is as follows:
    // Promise mode (await needs to be used in the asynchronous method):
    this.DAHelper.batchInsert(this.uri, this.crowd).then((databatchInsert) => {
     promptAction.showToast({
-       message: $r('app.string.batchInsert_success_toast')
+       message: 'batchInsert_success_toast'
      });
      Logger.info(TAG, 'DAHelper batchInsert result: ' + databatchInsert);
    }).catch((error: BusinessError) => {
      promptAction.showToast({
-       message: $r('app.string.batchInsert_failed_toast')
+       message: 'batchInsert_failed_toast'
      });
      Logger.error(TAG, `DAHelper batchInsert failed. Cause: ${error.message}`);
    });
@@ -326,11 +323,11 @@ The sample code for accessing a DataAbility is as follows:
    this.DAHelper.executeBatch(this.uri, operations, (error, data) => {
      if (error && error.code !== 0) {
        promptAction.showToast({
-         message: $r('app.string.executeBatch_failed_toast')
+         message: 'executeBatch_failed_toast'
        });
      } else {
        promptAction.showToast({
-         message: $r('app.string.executeBatch_success_toast')
+         message: 'executeBatch_success_toast'
        });
      }
     Logger.info(TAG, `DAHelper executeBatch, result: ` + JSON.stringify(data) + ', error: ' + JSON.stringify(error));
@@ -358,12 +355,12 @@ The sample code for accessing a DataAbility is as follows:
    }];
    this.DAHelper.executeBatch(this.uri, operations).then((dataquery) => {
      promptAction.showToast({
-       message: $r('app.string.executeBatch_success_toast')
+       message: 'executeBatch_success_toast'
      });
      Logger.info(TAG, 'DAHelper executeBatch result: ' + JSON.stringify(dataquery));
    }).catch((error: BusinessError) => {
      promptAction.showToast({
-       message: $r('app.string.executeBatch_failed_toast')
+       message: 'executeBatch_failed_toast'
      });
      Logger.error(TAG, `DAHelper executeBatch failed. Cause: ${error.message}`);
    });

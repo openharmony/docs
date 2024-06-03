@@ -234,7 +234,7 @@
 
 在使用此功能前，应用需要先申请权限`ohos.permission.MANAGE_SYSTEM_AUDIO_EFFECTS`，申请方式请参考：[申请应用权限](../../security/AccessToken/determine-application-mode.md#system_basic等级的应用申请权限)。
 
-空间化设备状态AudioSpatialDeviceState的具体信息可以参考[AudioSpatialDeviceState](../../reference/apis-audio-kit/js-apis-audio-sys.md#audiospatialdevicestate)。
+空间化设备状态AudioSpatialDeviceState的具体信息可以参考[AudioSpatialDeviceState](../../reference/apis-audio-kit/js-apis-audio-sys.md#audiospatialdevicestate11)。
 
   ```ts
   import audio from '@ohos.multimedia.audio';
@@ -285,7 +285,7 @@
   import audio from '@ohos.multimedia.audio';
   import { BusinessError } from '@ohos.base';
   try {
-    let spatializationSceneType: AudioSpatializationSceneType = audioSpatializationManager.getSpatializationSceneType();
+    let spatializationSceneType: audio.AudioSpatializationSceneType = audioSpatializationManager.getSpatializationSceneType();
     console.info(`AudioSpatializationManager spatializationSceneType: ${spatializationSceneType}`);
   } catch (err) {
     let error = err as BusinessError;

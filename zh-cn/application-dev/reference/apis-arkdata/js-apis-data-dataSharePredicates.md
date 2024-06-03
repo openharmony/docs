@@ -1,6 +1,6 @@
 # @ohos.data.dataSharePredicates (数据共享谓词)
 
-**谓词(DataSharePredicates)** 是开发者通过DataShare查询数据库中的数据所使用的筛选条件，经常被应用在更新数据([update](js-apis-data-dataShare-sys.md#update))、删除数据([delete](js-apis-data-dataShare-sys.md#delete))和查询数据([query](js-apis-data-dataShare-sys.md#query))中。
+**谓词(DataSharePredicates)** 是开发者通过DataShare查询数据库中的数据所使用的筛选条件，经常被应用在更新数据、删除数据和查询数据中。
 
 谓词的接口函数与数据库的筛选条件一一对应，开发者在使用前需了解数据库相关知识。
 
@@ -15,7 +15,7 @@
 ## 导入模块
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 ```
 
 ## DataSharePredicates

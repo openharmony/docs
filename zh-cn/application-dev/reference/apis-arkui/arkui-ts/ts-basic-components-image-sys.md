@@ -44,9 +44,25 @@ edgeAntialiasing(value: number)
 | ------ | ------ | ---- | ----------------------------------- |
 | value  | number | 是   | SVG图源抗锯齿效果。<br/>默认值：$0$ |
 
+## pointLight<sup>11+</sup>
+
+pointLight(value: PointLightStyle)
+
+设置点光源样式。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 说明         |
+| ------ | ------------------------------------------------------------ | ---- | ------------ |
+| value  | [PointLightStyle](ts-universal-attributes-point-light-style-sys.md#pointlightstyle) | 是   | 点光源样式。 |
+
 ## ImageAnalyzerConfig<sup>11+</sup>
 
-从API version 11开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
 
 图片AI分析类型配置。
 

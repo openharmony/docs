@@ -150,12 +150,10 @@
 1. 导入基础依赖包。
 
    ```ts
-   import dataShare from '@ohos.data.dataShare';
-   import dataSharePredicates from '@ohos.data.dataSharePredicates';
-   import UIAbility from '@ohos.app.ability.UIAbility';
-   import { ValuesBucket } from '@ohos.data.ValuesBucket';
-   import window from '@ohos.window';
-   import { BusinessError } from '@ohos.base';
+   import { dataShare, dataSharePredicates, ValuesBucket } from '@kit.ArkData';
+   import { UIAbility } from '@kit.AbilityKit';
+   import { window } from '@kit.ArkUI';
+   import { BusinessError } from '@kit.BasicServicesKit'
    ```
 
 2. 定义与数据提供方通信的URI字符串。
@@ -297,10 +295,10 @@
 1. 导入基础依赖包。
 
    ```ts
-   import dataShare from '@ohos.data.dataShare';
-   import UIAbility from '@ohos.app.ability.UIAbility';
-   import window from '@ohos.window';
-   import { BusinessError } from '@ohos.base';
+   import { dataShare } from '@kit.ArkData';
+   import { UIAbility } from '@kit.AbilityKit';
+   import { window } from '@kit.ArkUI';
+   import { BusinessError } from '@kit.BasicServicesKit';
    ```
 
 2. 定义与数据提供方通信的URI字符串。
@@ -368,9 +366,9 @@
 1. 导入基础依赖包。
 
    ```ts
-   import dataShare from '@ohos.data.dataShare';
-   import UIAbility from '@ohos.app.ability.UIAbility';
-   import window from '@ohos.window';
+   import { dataShare } from '@kit.ArkData';
+   import { UIAbility } from '@kit.AbilityKit';
+   import { window } from '@kit.ArkUI';
    ```
 
 2. 定义与数据提供方通信的URI字符串。

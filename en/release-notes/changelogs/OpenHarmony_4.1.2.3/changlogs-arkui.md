@@ -35,7 +35,7 @@ N/A
 
 **Adaptation Guide**
 
-For details, see [\<Blank>](../../../application-dev/reference/arkui-ts/ts-basic-components-blank.md), [\<FlowItem>](../../../application-dev/reference/arkui-ts/ts-container-flowitem.md), [\<GridItem>](../../../application-dev/reference/arkui-ts/ts-container-griditem.md), [\<GridCol>](../../../application-dev/reference/arkui-ts/ts-container-gridcol.md), [\<ListItem>](../../../application-dev/reference/arkui-ts/ts-container-listitem.md), [\<ListItemGroup>](../../../application-dev/reference/arkui-ts/ts-container-listitemgroup.md), \<Option>, [\<Span>](../../../application-dev/reference/arkui-ts/ts-basic-components-span.md), [\<StepperItem>](../../../application-dev/reference/arkui-ts/ts-basic-components-stepperitem.md), and [\<TabContent>](../../../application-dev/reference/arkui-ts/ts-container-tabcontent.md).
+For details, see [\<Blank>](../../../application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-blank.md), [\<FlowItem>](../../../application-dev/reference/apis-arkui/arkui-ts/ts-container-flowitem.md), [\<GridItem>](../../../application-dev/reference/apis-arkui/arkui-ts/ts-container-griditem.md), [\<GridCol>](../../../application-dev/reference/apis-arkui/arkui-ts/ts-container-gridcol.md), [\<ListItem>](../../../application-dev/reference/apis-arkui/arkui-ts/ts-container-listitem.md), [\<ListItemGroup>](../../../application-dev/reference/apis-arkui/arkui-ts/ts-container-listitemgroup.md), \<Option>, [\<Span>](../../../application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-span.md), [\<StepperItem>](../../../application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-stepperitem.md), and [\<TabContent>](../../../application-dev/reference/apis-arkui/arkui-ts/ts-container-tabcontent.md).
 
 ## cl.arkui.2 Change of constraintSize Effectiveness for the \<Flex> Component in wrap Mode
 
@@ -88,10 +88,40 @@ Before the change, the height of the **\<Flex>** component is 200, which is not 
 
 If **wrap** is used and **constraintSize** is set on the **\<Flex>** component in previous versions, the settings should take effect. If the constraint is not required, remove **constraintSize** or adjust the constraint value.
 
-## cl.arkui.3 Change of the currentOffset Return Value from any to OffsetResult for the \<Scroll> Component
+## cl.arkui.3 Change in the currentOffset API of the \<Scroll> Component
+
+**Access Level**
+
+Public
+
+**Reason for Change**
+
+The original return value **any** of the **currentOffset** API is inconvenient for intelligent code completion.
 
 **Change Impact**
 
-API version 10 and earlier versions: The return value of the **currentOffset** API is **any**. This is inconvenient for automatic prompt during code development in the IDE.
+This change is a non-compatible change. The return value of the **currentOffset** API is changed from **any** to **OffsetResult**.
 
-API version 11 and later versions: The return value of the **currentOffset** API is **OffsetResult**.
+**API Level**
+
+11
+
+**Change Since**
+
+OpenHarmony SDK 4.1.2.3
+
+**Key API/Component Changes**
+
+In versions earlier than API version 10, the return value of the **currentOffset** API is **any**.
+```
+currentOffset();
+```
+
+Since API version 11, the return value of the **currentOffset** API is **OffsetResult**.
+```
+currentOffset() : OffsetResult;
+```
+
+**Adaptation Guide**
+
+N/A

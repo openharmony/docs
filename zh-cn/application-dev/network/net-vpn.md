@@ -1,4 +1,4 @@
-# VPN 管理
+# VPN 管理（仅对系统应用开放）
 
 ## 简介
 
@@ -36,10 +36,10 @@ VPN 即虚拟专网（VPN-Virtual Private Network）在公用网络上建立专�
 主要功能：实现业务逻辑，如：创建隧道、建立 VPN 网络、保护 VPN 网络、销毁 VPN 网络
 
 ```js
-import vpn from '@ohos.net.vpn';
-import common from '@ohos.app.ability.common';
+import { vpn } from '@kit.NetworkKit';
+import { common } from '@kit.AbilityKit';
 import vpn_client from "libvpn_client.so";
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let TunnelFd: number = -1;
 

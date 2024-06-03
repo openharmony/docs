@@ -43,7 +43,7 @@
         "requestPermissions": [
             {
                 "name": "ohos.permission.NFC_TAG",
-                "reason": "tag",
+                "reason": "$string:app_name",
             }
         ]
     }
@@ -57,17 +57,15 @@
 ## **导入模块**
 
 ```js
-import tag from '@ohos.nfc.tag';
+import { tag } from '@kit.ConnectivityKit';
 ```
 
 ## **tag.TagInfo**
 
 在对相关Tag类型卡片进行读写之前，必须先获取[TagInfo](#taginfo)相关属性值，以确认设备读取到的Tag卡片支持哪些技术类型。这样Tag应用程序才能调用正确的接口和所读取到的Tag卡片进行通信。
 ```js
-import tag from '@ohos.nfc.tag';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import Want from '@ohos.app.ability.Want'
+import { tag } from '@kit.ConnectivityKit';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 
 export default class EntryAbility extends UIAbility {
     onCreate(want : Want, launchParam: AbilityConstant.LaunchParam) {
@@ -78,7 +76,7 @@ export default class EntryAbility extends UIAbility {
     try {
       tagInfo = tag.getTagInfo(want);
     } catch (error) {
-      console.error("tag.getTagInfo catched error: " + error);
+      console.error("tag.getTagInfo catch error: " + error);
     }
     if (tagInfo == null || tagInfo == undefined) {
       console.log("no TagInfo to be created, ignore it.");
@@ -105,7 +103,7 @@ export default class EntryAbility extends UIAbility {
       try {
         nfcA = tag.getNfcATag(tagInfo);
       } catch (error) {
-        console.error("tag.getNfcATag catched error: " + error);
+        console.error("tag.getNfcATag catch error: " + error);
       }
       // other code to read or write this found tag.
     }
@@ -116,7 +114,7 @@ export default class EntryAbility extends UIAbility {
       try {
         isoDep = tag.getIsoDep(tagInfo);
       } catch (error) {
-        console.error("tag.getIsoDep catched error: " + error);
+        console.error("tag.getIsoDep catch error: " + error);
       }
       // other code to read or write this found tag.
     }
@@ -156,7 +154,7 @@ getNfcA(tagInfo: [TagInfo](#taginfo)): [NfcATag](js-apis-nfctech.md#nfcatag)
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -176,6 +174,8 @@ getNfcA(tagInfo: [TagInfo](#taginfo)): [NfcATag](js-apis-nfctech.md#nfcatag)
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+| 801  | Capability not supported. |
 | 3100201  | Tag running state is abnormal in service. |
 
 ## tag.getNfcBTag<sup>(deprecated)</sup>
@@ -209,7 +209,7 @@ getNfcB(tagInfo: [TagInfo](#taginfo)): [NfcBTag](js-apis-nfctech.md#nfcbtag)
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -229,6 +229,8 @@ getNfcB(tagInfo: [TagInfo](#taginfo)): [NfcBTag](js-apis-nfctech.md#nfcbtag)
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+| 801  | Capability not supported. |
 | 3100201  | Tag running state is abnormal in service. |
 
 ## tag.getNfcFTag<sup>(deprecated)</sup>
@@ -262,7 +264,7 @@ getNfcF(tagInfo: [TagInfo](#taginfo)): [NfcFTag](js-apis-nfctech.md#nfcftag)
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -282,6 +284,8 @@ getNfcF(tagInfo: [TagInfo](#taginfo)): [NfcFTag](js-apis-nfctech.md#nfcftag)
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+| 801  | Capability not supported. |
 | 3100201  | Tag running state is abnormal in service. |
 
 ## tag.getNfcVTag<sup>(deprecated)</sup>
@@ -315,7 +319,7 @@ getNfcV(tagInfo: [TagInfo](#taginfo)): [NfcVTag](js-apis-nfctech.md#nfcvtag)
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -335,6 +339,8 @@ getNfcV(tagInfo: [TagInfo](#taginfo)): [NfcVTag](js-apis-nfctech.md#nfcvtag)
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+| 801  | Capability not supported. |
 | 3100201  | Tag running state is abnormal in service. |
 
 ## tag.getIsoDep<sup>9+</sup>
@@ -345,7 +351,7 @@ getIsoDep(tagInfo: [TagInfo](#taginfo)): [IsoDepTag](js-apis-nfctech.md#isoDepTa
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -365,6 +371,8 @@ getIsoDep(tagInfo: [TagInfo](#taginfo)): [IsoDepTag](js-apis-nfctech.md#isoDepTa
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+| 801  | Capability not supported. |
 | 3100201  | Tag running state is abnormal in service. |
 
 ## tag.getNdef<sup>9+</sup>
@@ -375,7 +383,7 @@ getNdef(tagInfo: [TagInfo](#taginfo)): [NdefTag](js-apis-nfctech.md#ndeftag9)
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -405,7 +413,7 @@ getMifareClassic(tagInfo: [TagInfo](#taginfo)): [MifareClassicTag](js-apis-nfcte
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -425,6 +433,8 @@ getMifareClassic(tagInfo: [TagInfo](#taginfo)): [MifareClassicTag](js-apis-nfcte
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+| 801  | Capability not supported. |
 | 3100201  | Tag running state is abnormal in service. |
 
 ## tag.getMifareUltralight<sup>9+</sup>
@@ -435,7 +445,7 @@ getMifareUltralight(tagInfo: [TagInfo](#taginfo)): [MifareUltralightTag](js-apis
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 | 参数名  | 类型                | 必填 | 说明                                                          |
@@ -454,6 +464,8 @@ getMifareUltralight(tagInfo: [TagInfo](#taginfo)): [MifareUltralightTag](js-apis
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+| 801  | Capability not supported. |
 | 3100201  | Tag running state is abnormal in service. |
 
 ## tag.getNdefFormatable<sup>9+</sup>
@@ -464,7 +476,7 @@ getNdefFormatable(tagInfo: [TagInfo](#taginfo)): [NdefFormatableTag](js-apis-nfc
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **返回值：**
 
@@ -478,29 +490,40 @@ getNdefFormatable(tagInfo: [TagInfo](#taginfo)): [NdefFormatableTag](js-apis-nfc
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+| 801  | Capability not supported. |
 | 3100201  | Tag running state is abnormal in service. |
 
 ## tag.getTagInfo<sup>9+</sup>
 
-getTagInfo(want: [Want](../apis-ability-kit/js-apis-app-ability-want.md#Want)): [TagInfo](#taginfo)
+getTagInfo(want: [Want](../apis-ability-kit/js-apis-app-ability-want.md#want)): [TagInfo](#taginfo)
 
 从Want中获取TagInfo，Want是被NFC服务初始化，包含了TagInfo所需的属性值。
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
 | 参数名 | 类型                                     | 必填 | 说明                                                |
 | ------ | ---------------------------------------- | ---- | --------------------------------------------------- |
-| want   | [Want](../apis-ability-kit/js-apis-app-ability-want.md#Want) | 是   | 分发Ability时，在系统onCreate入口函数的参数中获取。 |
+| want   | [Want](../apis-ability-kit/js-apis-app-ability-want.md#want) | 是   | 分发Ability时，在系统onCreate入口函数的参数中获取。 |
 
 **返回值：**
 
 | **类型**            | **说明**                                     |
 | ------------------- | -------------------------------------------- |
 | [TagInfo](#taginfo) | TagInfo对象，用于获取不同技术类型的Tag对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
+
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+| 801  | Capability not supported. |
 
 ## tag.registerForegroundDispatch<sup>10+</sup>
 
@@ -512,7 +535,7 @@ registerForegroundDispatch(elementName: [ElementName](../apis-ability-kit/js-api
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -521,6 +544,17 @@ registerForegroundDispatch(elementName: [ElementName](../apis-ability-kit/js-api
 | elementName   |  [ElementName](../apis-ability-kit/js-apis-bundleManager-elementName.md)   | 是   | 所属应用读卡的页面信息（至少包含bundleName、abilityName这两项的赋值），不可以为空。          |
 | discTech         |  number[]   | 是   | 前台应用指定的NFC读卡技术类型，不可以为空，至少指定一种读卡技术类型。每个number值表示所支持技术类型的常量值型，根据number值设置NFC读卡轮询的Tag技术类型（仅包含[NFC_A](#技术类型定义), [NFC_B](#技术类型定义), [NFC_F](#技术类型定义), [NFC_V](#技术类型定义)中的一种或多种）。 |
 | callback | AsyncCallback&lt;[TagInfo](#taginfo)&gt; | 是   | 前台读卡监听回调函数，返回读到的Tag信息，不可以为空。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
+
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 201  | Permission denied. |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+| 801  | Capability not supported. |
+| 3100201  | Tag running state is abnormal in service. |
 
 **示例：**
 
@@ -536,7 +570,7 @@ unregisterForegroundDispatch(elementName: [ElementName](../apis-ability-kit/js-a
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -544,15 +578,23 @@ unregisterForegroundDispatch(elementName: [ElementName](../apis-ability-kit/js-a
 | ------------ | -------- | ---- | ------------------------------------------------------- |
 | elementName   |  [ElementName](../apis-ability-kit/js-apis-bundleManager-elementName.md)   | 是   | 所属应用读卡的页面信息（至少包含bundleName、abilityName这两项的赋值），不可以为空。           |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
+
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 201  | Permission denied. |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+| 801  | Capability not supported. |
+
 **示例：**
 
 ```js
-import Want from '@ohos.app.ability.Want';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import tag from '@ohos.nfc.tag';
-import { BusinessError } from '@ohos.base';
-import bundleManager from '@ohos.bundle.bundleManager';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+
+import { tag } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { AbilityConstant, UIAbility, Want, bundleManager } from '@kit.AbilityKit';
 
 let discTech : number[] = [tag.NFC_A, tag.NFC_B]; // replace with the tech(s) that is needed by foreground ability
 let elementName : bundleManager.ElementName;
@@ -619,7 +661,7 @@ on(type: 'readerMode', elementName: [ElementName](../apis-ability-kit/js-apis-bu
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -636,6 +678,9 @@ on(type: 'readerMode', elementName: [ElementName](../apis-ability-kit/js-apis-bu
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
+| 201  | Permission denied. |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+| 801  | Capability not supported. |
 | 3100202  | The element state is invalid. |
 
 **示例：**
@@ -652,7 +697,7 @@ off(type: 'readerMode', elementName: [ElementName](../apis-ability-kit/js-apis-b
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -668,17 +713,17 @@ off(type: 'readerMode', elementName: [ElementName](../apis-ability-kit/js-apis-b
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
+| 201  | Permission denied. |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+| 801  | Capability not supported. |
 | 3100203  | The off() can be called only when the on() has been called. |
 
 **示例：**
 
 ```js
-import Want from '@ohos.app.ability.Want';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import tag from '@ohos.nfc.tag';
-import { BusinessError } from '@ohos.base';
-import bundleManager from '@ohos.bundle.bundleManager';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import { tag } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { AbilityConstant, UIAbility, Want, bundleManager } from '@kit.AbilityKit';
 
 let discTech : number[] = [tag.NFC_A, tag.NFC_B]; // replace with the tech(s) that is needed by foreground ability
 let elementName : bundleManager.ElementName;
@@ -744,7 +789,7 @@ makeUriRecord(uri: string): [NdefRecord](#ndefrecord9)
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -758,22 +803,30 @@ makeUriRecord(uri: string): [NdefRecord](#ndefrecord9)
 | -------------------------- | ------------------------------------------------------------ |
 | [NdefRecord](#ndefrecord9) | NDEF标签的Record，详见NDEF技术规范《NFCForum-TS-NDEF_1.0》。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
+
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
+import { tag } from '@kit.ConnectivityKit';
 
 try {
     let uri = "https://www.example.com"; // change it to be correct.
-    let ndefRecord = tag.ndef.makeUriRecord(uri);
+    let ndefRecord : tag.NdefRecord = tag.ndef.makeUriRecord(uri);
     if (ndefRecord != undefined) {
         console.log("ndefMessage makeUriRecord rtdType: " + ndefRecord.rtdType);
         console.log("ndefMessage makeUriRecord payload: " + ndefRecord.payload);
     } else {
         console.log("ndefMessage makeUriRecord ndefRecord: " + ndefRecord);
     }
-} catch (busiError) {
-    console.error("ndefMessage makeUriRecord catched busiError: " + busiError);
+} catch (businessError) {
+    console.error("ndefMessage makeUriRecord catch businessError: " + businessError);
 }
 ```
 
@@ -785,7 +838,7 @@ makeTextRecord(text: string, locale: string): [NdefRecord](#ndefrecord9)
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -800,23 +853,31 @@ makeTextRecord(text: string, locale: string): [NdefRecord](#ndefrecord9)
 | -------------------------- | ------------------------------------------------------------ |
 | [NdefRecord](#ndefrecord9) | NDEF标签的Record，详见NDEF技术规范《NFCForum-TS-NDEF_1.0》。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
+
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
+import { tag } from '@kit.ConnectivityKit';
 
 try {
     let text = "Hello World";   // change it to be correct.
     let locale = "en"; // change it to be correct.
-    let ndefRecord = tag.ndef.makeTextRecord(text, locale);
+    let ndefRecord : tag.NdefRecord = tag.ndef.makeTextRecord(text, locale);
     if (ndefRecord != undefined) {
         console.log("ndefMessage makeTextRecord rtdType: " + ndefRecord.rtdType);
         console.log("ndefMessage makeTextRecord payload: " + ndefRecord.payload);
     } else {
         console.log("ndefMessage makeTextRecord ndefRecord: " + ndefRecord);
     }
-} catch (busiError) {
-    console.error("ndefMessage makeTextRecord catched busiError: " + busiError);
+} catch (businessError) {
+    console.error("ndefMessage makeTextRecord catch businessError: " + businessError);
 }
 ```
 
@@ -829,7 +890,7 @@ makeMimeRecord(mimeType: string, mimeData: number[]): [NdefRecord](#ndefrecord9)
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -844,23 +905,31 @@ makeMimeRecord(mimeType: string, mimeData: number[]): [NdefRecord](#ndefrecord9)
 | -------------------------- | ------------------------------------------------------------ |
 | [NdefRecord](#ndefrecord9) | NDEF标签的Record，详见NDEF技术规范《NFCForum-TS-NDEF_1.0》。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
+
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
+import { tag } from '@kit.ConnectivityKit';
 
 try {
     let mimeType = "text/plain";   // change it to be correct.
     let mimeData = [0x01, 0x02, 0x03, 0x04]; // change it to be correct.
-    let ndefRecord = tag.ndef.makeMimeRecord(mimeType, mimeData);
+    let ndefRecord : tag.NdefRecord = tag.ndef.makeMimeRecord(mimeType, mimeData);
     if (ndefRecord != undefined) {
         console.log("ndefMessage makeMimeRecord rtdType: " + ndefRecord.rtdType);
         console.log("ndefMessage makeMimeRecord payload: " + ndefRecord.payload);
     } else {
         console.log("ndefMessage makeMimeRecord ndefRecord: " + ndefRecord);
     }
-} catch (busiError) {
-    console.error("ndefMessage makeMimeRecord catched busiError: " + busiError);
+} catch (businessError) {
+    console.error("ndefMessage makeMimeRecord catch businessError: " + businessError);
 }
 ```
 ## tag.ndef.makeExternalRecord<sup>9+</sup>
@@ -871,7 +940,7 @@ makeExternalRecord(domainName: string, type: string, externalData: number[]): [N
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -887,24 +956,32 @@ makeExternalRecord(domainName: string, type: string, externalData: number[]): [N
 | -------------------------- | ------------------------------------------------------------ |
 | [NdefRecord](#ndefrecord9) | NDEF标签的Record，详见NDEF技术规范《NFCForum-TS-NDEF_1.0》。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
+
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
+import { tag } from '@kit.ConnectivityKit';
 
 try {
     let domainName = "ohos.nfc.application"; // change it to be correct.
     let type = "test"; // change it to be correct.
     let externalData = [0x01, 0x02, 0x03, 0x04]; // change it to be correct.
-    let ndefRecord = tag.ndef.makeExternalRecord(domainName, type, externalData);
+    let ndefRecord : tag.NdefRecord = tag.ndef.makeExternalRecord(domainName, type, externalData);
     if (ndefRecord != undefined) {
         console.log("ndefMessage makeExternalRecord rtdType: " + ndefRecord.rtdType);
         console.log("ndefMessage makeExternalRecord payload: " + ndefRecord.payload);
     } else {
         console.log("ndefMessage makeExternalRecord ndefRecord: " + ndefRecord);
     }
-} catch (busiError) {
-    console.error("ndefMessage makeExternalRecord catched busiError: " + busiError);
+} catch (businessError) {
+    console.error("ndefMessage makeExternalRecord catch businessError: " + businessError);
 }
 ```
 
@@ -916,7 +993,7 @@ messageToBytes(ndefMessage: [NdefMessage](js-apis-nfctech.md#ndefmessage9)): num
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -930,19 +1007,27 @@ messageToBytes(ndefMessage: [NdefMessage](js-apis-nfctech.md#ndefmessage9)): num
 | -------- | ------------------------------------------------------------------------------------- |
 | number[] | NDEF消息数据对象，所转换成的字节格式的数据。每个number十六进制表示，范围是0x00~0xFF。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
+
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
+import { tag } from '@kit.ConnectivityKit';
 
 let rawData = [0xD1, 0x01, 0x03, 0x54, 0x4E, 0x46, 0x43]; // MUST can be parsed as NDEF Record.
 try {
-    let ndefMessage = tag.ndef.createNdefMessage(rawData);
+    let ndefMessage : tag.NdefMessage = tag.ndef.createNdefMessage(rawData);
     console.log("ndef createNdefMessage, ndefMessage: " + ndefMessage);
     let rawData2 = tag.ndef.messageToBytes(ndefMessage);
     console.log("ndefMessage messageToBytes rawData2: " + rawData2);
-} catch (busiError) {
-    console.error("ndef createNdefMessage busiError: " + busiError);
+} catch (businessError) {
+    console.error("ndef createNdefMessage businessError: " + businessError);
 }
 ```
 ## tag.ndef.createNdefMessage<sup>9+</sup>
@@ -953,7 +1038,7 @@ createNdefMessage(data: number[]): [NdefMessage](js-apis-nfctech.md#ndefmessage9
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -967,16 +1052,24 @@ createNdefMessage(data: number[]): [NdefMessage](js-apis-nfctech.md#ndefmessage9
 | ---------------------------------------------- | ------------------------------------------------------------- |
 | [NdefMessage](js-apis-nfctech.md#ndefmessage9) | NDEF标签的Message，详见NDEF技术规范《NFCForum-TS-NDEF_1.0》。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
+
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+
 **示例：**
 ```js
-import tag from '@ohos.nfc.tag';
+import { tag } from '@kit.ConnectivityKit';
 
 let rawData = [0xD1, 0x01, 0x03, 0x54, 0x4E, 0x46, 0x43];  // MUST can be parsed as NDEF Record.
 try {
-    let ndefMessage = tag.ndef.createNdefMessage(rawData);
+    let ndefMessage : tag.NdefMessage = tag.ndef.createNdefMessage(rawData);
     console.log("ndef createNdefMessage, ndefMessage: " + ndefMessage);
-} catch (busiError) {
-    console.error("ndef createNdefMessage busiError: " + busiError);
+} catch (businessError) {
+    console.error("ndef createNdefMessage businessError: " + businessError);
 }
 ```
 
@@ -988,7 +1081,7 @@ createNdefMessage(ndefRecords: NdefRecord[]): [NdefMessage](js-apis-nfctech.md#n
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
-**元服务API集**：从API version 12开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -1002,19 +1095,27 @@ createNdefMessage(ndefRecords: NdefRecord[]): [NdefMessage](js-apis-nfctech.md#n
 | ---------------------------------------------- | ------------------------------------------------------------- |
 | [NdefMessage](js-apis-nfctech.md#ndefmessage9) | NDEF标签的Message，详见NDEF技术规范《NFCForum-TS-NDEF_1.0》。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
+
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
+import { tag } from '@kit.ConnectivityKit';
 
-let uriRecord = tag.ndef.makeUriRecord("https://www.example.com");
-let textRecord = tag.ndef.makeTextRecord("Hello World", "en");
-let ndefRecords = [uriRecord, textRecord];
+let uriRecord : tag.NdefRecord = tag.ndef.makeUriRecord("https://www.example.com");
+let textRecord : tag.NdefRecord = tag.ndef.makeTextRecord("Hello World", "en");
+let ndefRecords : tag.NdefRecord[] = [uriRecord, textRecord];
 try {
-    let ndefMessage = tag.ndef.createNdefMessage(ndefRecords);
+    let ndefMessage : tag.NdefMessage = tag.ndef.createNdefMessage(ndefRecords);
     console.log("ndef createNdefMessage ndefMessage: " + ndefMessage);
-} catch (busiError) {
-    console.error("ndef createNdefMessage busiError: " + busiError);
+} catch (businessError) {
+    console.error("ndef createNdefMessage businessError: " + businessError);
 }
 ```
 
@@ -1028,14 +1129,16 @@ NFC服务在读取到标签时给出的对象，通过改对象属性，应用�
 
 | **名称**                      | **类型**                                                      | **可读** | **可写** | **说明**                                                                                     |
 | ----------------------------- | ------------------------------------------------------------- | -------- | -------- | -------------------------------------------------------------------------------------------- |
-| uid<sup>9+</sup>              | number[]                                                      | 是       | 否       | 标签的uid，每个number值是十六进制表示，范围是0x00~0xFF。                                     |
-| technology<sup>9+</sup>       | number[]                                                      | 是       | 否       | 支持的技术类型，每个number值表示所支持技术类型的常量值。                                     |
+| uid<sup>9+</sup>              | number[]                                                      | 是       | 否       | 标签的uid，每个number值是十六进制表示，范围是0x00~0xFF。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。                                     |
+| technology<sup>9+</sup>       | number[]                                                      | 是       | 否       | 支持的技术类型，每个number值表示所支持技术类型的常量值。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。                                     |
 | supportedProfiles             | number[]                                                      | 是       | 否       | 支持的技术类型，从API9开始不支持，使用[tag.TagInfo#technology](#taginfo)替代。            |
 
 ## NdefRecord<sup>9+</sup>
 NDEF标签Record属性的定义，参考NDEF标签技术规范《NFCForum-TS-NDEF_1.0》的定义细节。
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 | **名称** | **类型** | **可读** | **可写** | **说明**                                                                                  |
 | -------- | -------- | -------- | -------- | ----------------------------------------------------------------------------------------- |
@@ -1048,6 +1151,8 @@ NDEF标签Record属性的定义，参考NDEF标签技术规范《NFCForum-TS-NDE
 NFC Tag有多种不同的技术类型，定义常量描述不同的技术类型。
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 | **名称**                     | **值** | **说明**                    |
 | ---------------------------- | ------ | --------------------------- |
@@ -1066,6 +1171,8 @@ NDEF Record的TNF(Type Name Field)类型值，参考NDEF标签技术规范《NFC
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 | **名称**         | **值** | **说明**                                         |
 | ---------------- | ------ | ------------------------------------------------ |
 | TNF_EMPTY        | 0x0    | Empty。                                          |
@@ -1081,6 +1188,8 @@ NDEF Record的RTD(Record Type Definition)类型值，参考NDEF标签技术规�
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 | **名称**              | **值** | **说明**                |
 | --------------------- | ------ | ----------------------- |
 | RTD_TEXT<sup>9+</sup> | [0x54] | 文本类型的NDEF Record。 |
@@ -1090,6 +1199,8 @@ NDEF Record的RTD(Record Type Definition)类型值，参考NDEF标签技术规�
 NFC Forum标准里面Tag类型的定义。
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 | **名称**         | **值** | **说明**             |
 | ---------------- | ------ | -------------------- |
@@ -1104,6 +1215,8 @@ MIFARE Classic标签类型的定义。
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 | **名称**     | **值** | **说明**             |
 | ------------ | ------ | -------------------- |
 | TYPE_UNKNOWN | 0      | 未知的MIFARE类型。   |
@@ -1116,6 +1229,8 @@ MIFARE Classic标签存储大小的定义。
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 | **名称**     | **值** | **说明**                          |
 | ------------ | ------ | --------------------------------- |
 | MC_SIZE_MINI | 320    | 每个标签5个扇区，每个扇区4个块。  |
@@ -1127,6 +1242,8 @@ MIFARE Classic标签存储大小的定义。
 MIFARE Ultralight标签类型的定义。
 
 **系统能力：** SystemCapability.Communication.NFC.Tag
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 | **名称**          | **值** | **说明**                  |
 | ----------------- | ------ | ------------------------- |

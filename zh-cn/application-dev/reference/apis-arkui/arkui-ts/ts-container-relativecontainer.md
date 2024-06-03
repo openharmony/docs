@@ -12,14 +12,14 @@
    * 水平方向为left， middle， right，对应容器的HorizontalAlign.Start， HorizontalAlign.Center， HorizontalAlign.End。
    * 垂直方向为top， center， bottom，对应容器的VerticalAlign.Top， VerticalAlign.Center， VerticalAlign.Bottom。
  * 子组件可以将容器、guideline、barrier或者其他子组件设为锚点：
-   * 参与相对布局的容器内组件必须设置非空且唯一的id，不设置id的组件不显示；容器id固定为__container__；guideline和barrier的id不能与组件重复，重复的话按照组件 > guideline > barrier的优先级生效。
+   * 参与相对布局的容器内组件，不设置id的组件能显示，但是不能被其他子组件作为锚点，相对布局容器会为其拼接id，此id的规律无法被应用感知；容器id固定为__container__；guideline和barrier的id不能与组件重复，重复的话按照组件 > guideline > barrier的优先级生效。
    * 此子组件某一方向上的三个位置（水平方向为left、middle、right，垂直方向为top、center、bottom）可以指定容器或其他子组件同方向的三个位置（水平方向为HorizontalAlign.Start、HorizontalAlign.Center、HorizontalAlign.End，垂直方向为VerticalAlign.Top、VerticalAlign.Center、VerticalAlign.Bottom）为锚点。若同方向上设置两个以上锚点，水平方向Start和Center优先，垂直方向Top和Center优先。例如，水平方向上指定了left以容器的HorizontalAlign.Start为锚点，middle以容器的HorizontalAlign.Center为锚点，又指定right的锚点为容器的HorizontalAlign.End，当组件的width和容器的width不能同时满足3条约束规则时，优先取Start和Center的约束规则。
    * 当同时存在前端页面设置的子组件尺寸和相对布局规则时，子组件的绘制尺寸取决于约束规则。从API Version 11开始，该规则发生变化，子组件绘制尺寸取决于前端页面设置的尺寸。
    * 对齐后需要额外偏移可设置offset(API Version 11上新增了[bias](ts-universal-attributes-location.md#bias对象说明)， 不建议再使用offset)。
    * 从API Version 11开始，在RelativeContainer组件中，width、height设置auto表示自适应子组件。
    * 当width设置auto时，如果水平方向上子组件以容器作为锚点，则auto不生效，垂直方向上同理。
    * 相对布局容器内的子组件的margin含义不同于通用属性的margin，其含义为到该方向上的锚点的距离。若该方向上没有锚点，则该方向的margin不生效。
-   * guideline的位置在不声明或者声明异常值(如undefine)时，取start：0的位置；start和end两种方式声明一种即可，同时声明时仅start生效。
+   * guideline的位置在不声明或者声明异常值(如undefined)时，取start：0的位置；start和end两种方式声明一种即可，同时声明时仅start生效。
    * 当容器在某个方向的size声明为“auto”时，该方向上guideline的位置只能使用start的方式声明(不可使用百分比)。
    * 垂直方向的guideline和barrier只能作为组件水平方向的锚点，作为垂直方向的锚点时取0；水平方向的guideline和barrier只能作为组件垂直方向的锚点，作为水平方向的锚点时取0。
    * 链的形成依靠组件间的依赖关系。以一个组件A、组件B组成的最小水平链为例，需要有锚点1 <-- 组件A <---> 组件B --> 锚点2的依赖关系，即A具有left锚点，B具有right锚点，同时A的right锚点是B的HorizontalAlign.Start，B的left锚点是A的HorizontalAlign.End。
@@ -39,7 +39,9 @@
 
 RelativeContainer()
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 ## 属性
 
@@ -49,29 +51,29 @@ RelativeContainer()
 
 guideLine(value: Array&lt;GuideLineStyle&gt;)
 
-设置RelativeContaine容器内的辅助线，Array中每个项目即为一条guideline。
+设置RelativeContainer容器内的辅助线，Array中每个项目即为一条guideline。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
 
-| 参数名 | 类型                                       | 必填 | 说明                             |
-| ------ | ------------------------------------------ | ---- | -------------------------------- |
-| value  | Array<[GuideLineStyle](#guidelinestyle12)> | 是   | RelativeContaine容器内的辅助线。 |
+| 参数名 | 类型                                       | 必填 | 说明                              |
+| ------ | ------------------------------------------ | ---- | --------------------------------- |
+| value  | Array<[GuideLineStyle](#guidelinestyle12)> | 是   | RelativeContainer容器内的辅助线。 |
 
 ### barrier<sup>12+</sup>
 
 barrier(value: Array&lt;BarrierStyle&gt;)
 
-设置RelativeContaine容器内的屏障，Array中每个项目即为一条barrier。
+设置RelativeContainer容器内的屏障，Array中每个项目即为一条barrier。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
 
-| 参数名 | 类型                                   | 必填 | 说明                           |
-| ------ | -------------------------------------- | ---- | ------------------------------ |
-| value  | Array<[BarrierStyle](#barrierstyle12)> | 是   | RelativeContaine容器内的屏障。 |
+| 参数名 | 类型                                   | 必填 | 说明                            |
+| ------ | -------------------------------------- | ---- | ------------------------------- |
+| value  | Array<[BarrierStyle](#barrierstyle12)> | 是   | RelativeContainer容器内的屏障。 |
 
 
 ## GuideLineStyle<sup>12+</sup>

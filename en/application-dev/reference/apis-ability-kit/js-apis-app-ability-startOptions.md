@@ -4,9 +4,9 @@
 
 > **NOTE**
 >
-> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
-> The APIs of this module can be used only in the stage model.
+> - The APIs of this module can be used only in the stage model.
 
 ## Modules to Import
 
@@ -20,7 +20,8 @@ import StartOptions from '@ohos.app.ability.StartOptions';
 
 | Name| Type| Read-only| Mandatory| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| displayId | number | No| No| Display ID mode. The default value is **0**, indicating the current display.|
+| windowMode<sup>12+</sup> | [abilityConstant.windowMode](js-apis-app-ability-abilityConstant.md#abilityconstantwindowmode12)  | No| No| Window mode. The split-screen mode can be set when the ability is started within an application.|
+| displayId | number | No| No| Display ID mode. The default value is **0**, indicating the current display.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | withAnimation<sup>11+</sup> | boolean | No| No| Whether the ability has the animation effect.|
 | windowLeft<sup>11+</sup> | number | No| No| Left position of the window.|
 | windowTop<sup>11+</sup> | number | No| No| Top position of the window.|
@@ -28,6 +29,7 @@ import StartOptions from '@ohos.app.ability.StartOptions';
 | windowHeight<sup>11+</sup> | number | No| No| Height of the window.|
 | processMode<sup>12+</sup> | [contextConstant.ProcessMode](js-apis-app-ability-contextConstant.md#contextconstantprocessmode12) | No| No| Process mode.<br>**Constraints**:<br>This attribute takes effect only on tablets.<br>This attribute takes effect only in [UIAbilityContext.startAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability-1).<br>**processMode** and **startupVisibility** must be set in pair.|
 | startupVisibility<sup>12+</sup> | [contextConstant.StartupVisibility](js-apis-app-ability-contextConstant.md#contextconstantstartupvisibility12) | No| No| Visibility of the ability after it is started in a new process.<br>**Constraints**:<br>This attribute takes effect only on tablets.<br>This attribute takes effect only in [UIAbilityContext.startAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability-1).<br>**processMode** and **startupVisibility** must be set in pair.|
+| windowFocused<sup>12+</sup> | boolean | No| No| Whether the window has focus. The default value is **true**, indicating that the window has focus.<br>**Constraints**:<br>This attribute takes effect only on tablets.<br>This attribute takes effect only in [UIAbilityContext.startAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability-1).<br>This attribute takes effect only when the application to start is in cold start mode.|
 
 **Example**
 

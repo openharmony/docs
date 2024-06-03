@@ -26,7 +26,7 @@ Before developing features related to audio and video playback or recording, you
 
 - Playback process: network protocol > container format > audio and video codec > graphics/audio rendering
 
-- Network protocols: HLS, HTTP, HTTPS, and more
+- Network protocols: HLS, HTTP-FLV, HTTP, HTTPS, and more
 
 - Container formats: mp4, mkv, mpeg-ts, and more
 
@@ -50,7 +50,7 @@ When a music application calls the **AVPlayer** APIs at the JS interface layer t
 
 In Figure 1, the numbers indicate the process where data is transferred to external modules.
 
-1. The music application transfers the media asset to the **AVPlayer** instance.
+1. The application transfers the media asset to the **AVPlayer** instance.
 
 2. The player framework outputs the audio PCM data streams to the audio framework, which then outputs the data streams to the audio HDI.
 
@@ -62,7 +62,7 @@ The figure below shows the interaction when the **AVPlayer** class is used to de
 
 ![Video playback interaction diagram](figures/video-playback-interaction-diagram.png)
 
-When the video application calls the **AVPlayer** APIs at the JS interface layer to implement audio and video playback, the player framework at the framework layer parses the media asset into separate audio data streams and video data streams. The audio data streams are then decoded by software and output to the audio framework. The audio framework outputs the audio data streams to the audio HDI at the hardware interface layer to implement audio playback. The video data streams are then decoded by hardware (recommended) or software and output to the graphic framework. The graphic framework outputs the video data streams to the display HDI at the hardware interface layer to implement graphics rendering.
+When a video application calls the **AVPlayer** APIs at the JS interface layer to implement audio and video playback, the player framework at the framework layer parses the media asset into separate audio data streams and video data streams. The audio data streams are then decoded by software and output to the audio framework. The audio framework outputs the audio data streams to the audio HDI at the hardware interface layer to implement audio playback. The video data streams are then decoded by hardware (recommended) or software and output to the graphic framework. The graphic framework outputs the video data streams to the display HDI at the hardware interface layer to implement graphics rendering.
 
 A complete video playback process requires the cooperation of the application, XComponent, player framework, graphic framework, audio framework, display HDI, and audio HDI.
 
@@ -88,7 +88,7 @@ The table below lists the supported protocols.
 | -------- | -------- |
 | Local VOD| The file descriptor is supported, but the file path is not.|
 | Network VoD| HTTP, HTTPS, and HLS are supported.|
-| Live webcasting| HLS is supported.|
+| Live webcasting| HLS and HTTP-FLV are supported.|
 
 The table below lists the supported audio playback formats.
 
@@ -99,7 +99,9 @@ The table below lists the supported audio playback formats.
 | mp3 | Audio format: MP3| 
 | ogg | Audio format: VORBIS | 
 | wav | Audio format: PCM| 
+| amr | Audio format: AMR| 
 
+<!--Del-->
 > **NOTE**
 > 
 > The supported video formats are further classified into mandatory and optional ones. All vendors must support mandatory ones and can determine whether to implement optional ones based on their service requirements. You are advised to perform compatibility processing to ensure that all the application functions are compatible on different platforms.
@@ -108,14 +110,15 @@ The table below lists the supported audio playback formats.
 | -------- | -------- |
 | H265<sup>10+</sup>      | Yes|
 | H264      | Yes|
+<!--DelEnd-->
 
 The table below lists the supported playback formats and mainstream resolutions.
 
 | Video Container Format| Description| Resolution| 
 | -------- | -------- | -------- |
-| mp4 | Video formats: H.265<sup>10+</sup>, H.264, MPEG2, and MPEG4<br>Audio formats: AAC and MP3| Mainstream resolutions, such as 4K, 1080p, 720p, 480p, and 270p|
-| mkv | Video formats: H.265<sup>10+</sup>, and H.264<br>Audio formats: AAC and MP3| Mainstream resolutions, such as 4K, 1080p, 720p, 480p, and 270p|
-| ts | Video formats: H.265<sup>10+</sup>, and H.264<br>Audio formats: AAC and MP3| Mainstream resolutions, such as 4K, 1080p, 720p, 480p, and 270p|
+| mp4 | Video formats: H.265<sup>10+</sup> and H.264<br>Audio formats: AAC and MP3| Mainstream resolutions, such as 4K, 1080p, 720p, 480p, and 270p|
+| mkv | Video formats: H.265<sup>10+</sup> and H.264<br>Audio formats: AAC and MP3| Mainstream resolutions, such as 4K, 1080p, 720p, 480p, and 270p|
+| ts | Video formats: H.265<sup>10+</sup> and H.264<br>Audio formats: AAC and MP3| Mainstream resolutions, such as 4K, 1080p, 720p, 480p, and 270p|
 
 ## AVRecorder
 

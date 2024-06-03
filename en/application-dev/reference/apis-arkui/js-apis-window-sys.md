@@ -4,7 +4,7 @@ The **Window** module provides basic window management capabilities, such as cre
 
 This module provides the following common window-related functions:
 
-- [Window](#window): the current window instance, which is the basic unit managed by the window manager.
+- [Window](#window): window instance, which is the basic unit managed by the window manager.
 - [WindowStage](#windowstage9): window manager that manages windows.
 
 > **NOTE**
@@ -45,6 +45,7 @@ Enumerates the window types.
 | TYPE_SYSTEM_TOAST<sup>11+</sup>     | 18      | Toast displayed at the top.<br>**Model restriction**: This API can be used only in the stage model.<br>**System API**: This is a system API.                       |
 | TYPE_DIVIDER<sup>11+</sup>          | 19      | Divider.<br>**Model restriction**: This API can be used only in the stage model.<br>**System API**: This is a system API.                |
 | TYPE_GLOBAL_SEARCH<sup>11+</sup>    | 20      | Window used for global search.<br>**Model restriction**: This API can be used only in the stage model.<br>**System API**: This is a system API.                       |
+| TYPE_HANDWRITE<sup>12+</sup>        | 21      | Stylus window.<br>**Model restriction**: This API can be used only in the stage model.<br>**System API**: This is a system API.                       |
 
 ## WindowMode<sup>7+</sup>
 
@@ -846,9 +847,58 @@ image.createPixelMap(color, initializationOptions).then((pixelMap: image.PixelMa
 });
 ```
 
+## window.getSnapshot<sup>12+</sup>
+
+window.getSnapshot(windowId: number): Promise<image.PixelMap>
+
+Captures a window. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
+
+**Parameters**
+| Name  | Type  | Mandatory | Description        |
+| -------- | ------ | ----- | ------------ |
+| windowId | number | Yes   | Window ID. You can call [getWindowProperties](js-apis-window.md#getwindowproperties9) to obtain the window properties, in which **id** is the window ID.|
+
+**Return value**
+| Type                   | Description                           |
+| ----------------------- | ------------------------------- |
+| Promise<[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)> | Promise used to return the window screenshot.|
+
+**Error codes**
+
+For details about the error codes, see [Window Error Codes](errorcode-window.md).
+
+| ID| Error Message                                    |
+| -------- | -------------------------------------------- |
+| 1300002  | This window state is abnormal.               |
+| 1300003  | This window manager service work abnormally. |
+| 1300004  | This operation is not access.                |
+
+**Example**
+```ts
+import { BusinessError } from '@ohos.base';
+import image from '@ohos.multimedia.image';
+try {
+  // This is only an example. Use getWindowProperties to obtain the window ID.
+  let windowId: number = 40;
+  let promise = window.getSnapshot(windowId);
+  promise.then((pixelMap: image.PixelMap) => {
+    console.info('Succeeded in getting snapshot window. Pixel bytes number:' + pixelMap.getPixelBytesNumber());
+    pixelMap.release();
+  }).catch((err: BusinessError) =>{
+    console.error('Failed to get snapshot. Cause:' + JSON.stringify(err));
+  });
+} catch (exception) {
+  console.error('Failed to get snapshot. Cause:' + JSON.stringify(exception));
+}
+```
+
 ## Window
 
-Represents the current window instance, which is the basic unit managed by the window manager.
+Represents a window instance, which is the basic unit managed by the window manager.
 
 In the following API examples, you must use [getLastWindow()](js-apis-window.md#windowgetlastwindow9), [createWindow()](js-apis-window.md#windowcreatewindow9), or [findWindow()](js-apis-window.md#windowfindwindow9) to obtain a **Window** instance (named windowClass in this example) and then call a method in this instance.
 
@@ -1007,7 +1057,6 @@ promise.then(() => {
   console.error('Failed to hide the window with animation. Cause: ' + JSON.stringify(err));
 });
 ```
-
 
 ### showWithAnimation<sup>9+</sup>
 
@@ -1821,7 +1870,7 @@ try {
 }
 ```
 
-###  getTransitionController<sup>9+</sup>
+### getTransitionController<sup>9+</sup>
 
  getTransitionController(): TransitionController
 
@@ -2030,6 +2079,46 @@ try {
 }
 ```
 
+### setTouchableAreas<sup>12+</sup>
+
+setTouchableAreas(rects: Array&lt;Rect&gt;): void
+
+Sets the touchable areas for this window.
+
+By default, the entire window is touchable. If a touchable area is set, touch events outside this area are transparently transmitted.
+
+The setting becomes invalid after the window rectangle changes.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+**Parameters**
+
+| Name  | Type                     | Mandatory| Description      |
+| -------- | ------------------------- | ---- | ---------- |
+| rects | Array<[Rect](js-apis-window.md#rect7)> | Yes  | Touchable areas.|
+
+**Error codes**
+
+For details about the error codes, see [Window Error Codes](errorcode-window.md).
+
+| ID| Error Message|
+| ------- | ------------------------------ |
+| 1300002 | This window state is abnormal.                |
+| 1300003 | This window manager service works abnormally. |                       |
+
+**Example**
+
+```ts
+try {
+  windowClass.setTouchableAreas([{left: 100, top: 100, width: 200, height:200},
+    {left: 400, top: 100, width: 200, height:200}]);
+} catch (exception) {
+  console.error('Failed to set touchable areas. Cause: ' + JSON.stringify(exception));
+}
+```
+
 ### raiseToAppTop<sup>10+</sup>
 
 raiseToAppTop(callback: AsyncCallback&lt;void&gt;): void
@@ -2176,7 +2265,7 @@ Adds or deletes the watermark flag for this window. This API uses an asynchronou
 
 | Name  | Type                      | Mandatory| Description                                             |
 | -------- | ------------------------- | ---  | ----------------------------------------------- |
-| enable   | boolean                   | Yes  | Whether to add or delete the watermark flag to the window. The value **true** means to add the watermark flag and **false** means to delete the watermark flag.|
+| enable   | boolean                   | Yes  | Whether to add or delete the flag. The value **true** means to add the flag and **false** means to delete the flag.|
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.          |
 
 **Error codes**
@@ -2208,6 +2297,56 @@ try {
   console.error('Failed to set water mark flag of window. Cause: ' + JSON.stringify(exception));
 }
 ```
+
+### setHandwritingFlag<sup>12+</sup>
+
+setHandwritingFlag(enable: boolean): Promise&lt;void&gt;
+
+Adds or deletes the handwriting flag for this window. After this flag is added, the window responds to stylus events but not touch events. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+**Parameters**
+
+| Name| Type    | Mandatory| Description                                           |
+| ------ | ------- | --- | ------------------------------------------------ |
+| enable | boolean | Yes  | Whether to add or delete the flag. The value **true** means to add the flag and **false** means to delete the flag.|
+
+**Return value**
+
+| Type               | Description                     |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Window Error Codes](errorcode-window.md).
+
+| ID| Error Message|
+| ------- | -------------------------------------------- |
+| 1300002 | This window state is abnormal.                 |
+| 1300003 | This window manager service works abnormally.  |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+try {
+  let enable = true;
+  let promise = windowClass.setHandwritingFlag(enable);
+  promise.then(() => {
+    console.info('Succeeded in setting handwriting flag of window.');
+  }).catch((err: BusinessError) => {
+    console.error('Failed to set handwriting flag of window. Cause:' + JSON.stringify(err));
+  });
+} catch (exception) {
+  console.error('Failed to set handwriting flag of window. Cause: ' + JSON.stringify(exception));
+}
+```
+
 ### raiseAboveTarget<sup>10+</sup>
 
 raiseAboveTarget(windowId: number, callback: AsyncCallback&lt;void&gt;): void
@@ -2431,8 +2570,8 @@ export default class EntryAbility extends UIAbility {
             console.info('Succeeded in loading the content.');
         });
         // Obtain the main window.
-        let mainWindow = null;
-        
+        let mainWindow: window.Window | undefined = undefined;
+
         windowStage.getMainWindow((err, data) => {
             if (err.code) {
                 console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
@@ -2502,8 +2641,8 @@ export default class EntryAbility extends UIAbility {
             console.info('Succeeded in loading the content.');
         });
         // Obtain the main window.
-        let mainWindow = null;
-        
+        let mainWindow: window.Window | undefined = undefined;
+
         windowStage.getMainWindow((err, data) => {
             if (err.code) {
                 console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
@@ -2572,7 +2711,7 @@ export default class EntryAbility extends UIAbility {
     });
 
     // Obtain the main window.
-    let mainWindow = null;
+    let mainWindow: window.Window | undefined = undefined;
     windowStage.getMainWindow((err, data) => {
       if (err.code) {
         console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
@@ -2647,7 +2786,7 @@ export default class EntryAbility extends UIAbility {
     });
 
     // Obtain the main window.
-    let mainWindow = null;
+    let mainWindow: window.Window | undefined = undefined;
     windowStage.getMainWindow((err, data) => {
       if (err.code) {
         console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
@@ -2665,6 +2804,64 @@ export default class EntryAbility extends UIAbility {
         console.error('Failed to hide the non-system floating windows. Cause: ' + JSON.stringify(err));
       });
     })
+  }
+}
+```
+
+### setTopmost<sup>12+</sup>
+
+setTopmost(isTopmost: boolean): Promise&lt;void&gt;
+
+Called by the main window to place the window above all the other windows. This API uses a promise to return the result.
+
+This parameter is valid only when the main window is a floating window in 2-in-1 devices.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+**Parameters**
+
+| Name  | Type                     | Mandatory| Description      |
+| -------- | ------------------------- | ---- | ---------- |
+| isTopmost | boolean | Yes  | Whether to pin the main window on top. The value **true** means to pin the main window on top, and **false** means the opposite.|
+
+**Return value**
+
+| Type               | Description                     |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Window Error Codes](errorcode-window.md).
+
+| ID| Error Message|
+| ------- | ------------------------------ |
+| 1300002 | This window state is abnormal.                |
+| 1300003 | This window manager service works abnormally. |
+| 1300004 | Unauthorized operation.                       |
+
+**Example**
+
+```js
+import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
+import { BusinessError } from '@ohos.base';
+
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    // ...
+    windowStage.getMainWindow().then((window) => {
+      let isTopmost: boolean = true;
+      let promise = window.setTopmost(isTopmost);
+      promise.then(() => {
+        console.info('Succeeded in setting the main window to be topmost.');
+      }).catch((err: BusinessError) => {
+        console.error('Failed to set the main window to be topmost. Cause: ' + JSON.stringify(err));
+      });
+    });
   }
 }
 ```
@@ -2713,6 +2910,65 @@ promise.then(()=> {
 }).catch((err: BusinessError)=>{
     console.error('Failed to enable the single-frame-composer function. code:${err.code}, message:${err.message}.');
 });
+```
+
+### setTitleButtonVisible<sup>12+</sup>
+
+setTitleButtonVisible(isMaximizeVisible: boolean, isMinimizeVisible: boolean, isSplitVisible: boolean): void
+
+Shows or hides the maximize, minimize, and split-screen buttons on the title bar of the main window.
+
+This API is valid only for 2-in-1 devices and takes effect only for the title bar buttons (maximize, minimize, and split-screen) that are available in the current scenario.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+**Parameters**
+
+| Name   | Type   | Mandatory| Description                                         |
+| --------- | ------- | ---- | --------------------------------------------- |
+| isMaximizeVisible | boolean | Yes  | Whether to show the maximize button. The value **true** means to show the button, and **false** means to hide it.|
+| isMinimizeVisible | boolean | Yes  | Whether to show the minimize button. The value **true** means to show the button, and **false** means to hide it.|
+| isSplitVisible | boolean | Yes  | Whether to show the split-screen button. The value **true** means to show the button, and **false** means to hide it.|
+
+**Error codes**
+
+For details about the error codes, see [Window Error Codes](errorcode-window.md).
+
+| ID| Error Message                      |
+| -------- | ------------------------------ |
+| 1300002  | This window state is abnormal. |
+| 1300004  | Unauthorized operation. |
+
+**Example**
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
+import { BusinessError } from '@ohos.base';
+
+export default class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    // Load the page corresponding to the main window.
+    windowStage.loadContent('pages/Index', (err) => {
+      let mainWindow: window.Window | undefined = undefined;
+      // Obtain the main window.
+      windowStage.getMainWindow().then(
+        data => {
+          mainWindow = data;
+          console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
+          // Call setTitleButtonVisible to hide the maximize, minimize, and split-screen buttons on the title bar of the main window.
+          mainWindow.setTitleButtonVisible(false, false, false);
+        }
+      ).catch((err: BusinessError) => {
+          if(err.code){
+            console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
+          }
+      });
+    });
+  }
+}
 ```
 
 ### setWindowType<sup>(deprecated)</sup>
@@ -2881,6 +3137,7 @@ export default class EntryAbility extends UIAbility {
   }
 };
 ```
+
 ## TransitionContext<sup>9+</sup>
 
 Provides the context for the transition animation.
@@ -2946,9 +3203,33 @@ Completes the transition. This API can be called only after [animateTo()](arkui-
 
 ## TransitionController<sup>9+</sup>
 
-Implements the transition animation controller.
+Implements the transition animation controller. Before calling any API, you must create a system window. For details, see the sample code.
 
 **System API**: This is a system API.
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window | undefined = undefined;
+let config: window.Configuration = {
+  name: "systemTypeWindow",
+  windowType: window.WindowType.TYPE_PANEL, // Select a system window type as required.
+  ctx: this.context
+};
+try {
+  let promise = window.createWindow(config);
+  promise.then((data) => {
+    windowClass = data;
+    console.info('Succeeded in creating the window. Data:' + JSON.stringify(data));
+  }).catch((err: BusinessError) => {
+    console.error('Failed to create the Window. Cause:' + JSON.stringify(err));
+  });
+} catch (exception) {
+  console.error('Failed to create the window. Cause: ' + JSON.stringify(exception));
+}
+```
 
 ### animationForShown<sup>9+</sup>
 
@@ -3023,6 +3304,7 @@ try {
   console.error('ShowWindowWithCustomAnimation err : ' + JSON.stringify(error));
 }
 ```
+
 ### animationForHidden<sup>9+</sup>
 
 animationForHidden(context: TransitionContext): void
@@ -3096,5 +3378,3 @@ try {
   console.error('HideWindowWithCustomAnimation err : ' + JSON.stringify(error));
 }
 ```
-
- <!--no_check--> 

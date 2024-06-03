@@ -163,6 +163,7 @@ import certManager from '@ohos.security.certManager';
 | CM_ERROR_GENERIC  | 17500001      | 表示调用接口时发生内部错误。 |
 | CM_ERROR_NO_FOUND  | 17500002      | 表示证书或凭据不存在。 |
 | CM_ERROR_INCORRECT_FORMAT  | 17500003      | 表示输入证书或凭据的数据格式无效。 |
+| CM_ERROR_MAX_CERT_COUNT_REACHED<sup>12+</sup>  | 17500004      | 表示证书或凭据数量达到上限。 |
 | CM_ERROR_NO_AUTHORIZATION<sup>12+</sup>  | 17500005      | 表示应用未经用户授权。 |
 
 ## certManager.installPrivateCertificate
@@ -188,10 +189,13 @@ installPrivateCertificate(keystore: Uint8Array, keystorePwd: string, certAlias: 
 
 以下错误码的详细介绍请参见[证书管理错误码](errorcode-certManager.md)。
 
-| 错误码ID | 错误信息      |
-| -------- | ------------- |
-| 17500001 | There is an generic error occurred when calling the API. |
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 201      | The application has no permission to call the API.     |
+| 401      | The parameter check failed.Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
+| 17500001 | There is an generic error occurred when calling the API.     |
 | 17500003 | The keystore is not valid format or keystorePwd is not correct. |
+| 17500004<sup>12+</sup> | The count of credentials reach the max. |
 
 **示例**：
 ```ts
@@ -244,10 +248,13 @@ installPrivateCertificate(keystore: Uint8Array, keystorePwd: string, certAlias: 
 
 以下错误码的详细介绍请参见[证书管理错误码](errorcode-certManager.md)。
 
-| 错误码ID | 错误信息      |
-| -------- | ------------- |
-| 17500001 | There is an generic error occurred when calling the API. |
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 201      | The application has no permission to call the API.     |
+| 401      | The parameter check failed.Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
+| 17500001 | There is an generic error occurred when calling the API.     |
 | 17500003 | The keystore is not valid format or keystorePwd is not correct. |
+| 17500004<sup>12+</sup> | The count of credentials reach the max. |
 
 **示例**：
 
@@ -295,6 +302,8 @@ getPrivateCertificate(keyUri: string, callback: AsyncCallback\<CMResult>) : void
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
+| 201      | The application has no permission to call the API.     |
+| 401 | The parameter check failed.Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 | 17500001 | There is an generic error occurred when calling the API. |
 | 17500002 | The certificate do not exist. |
 
@@ -349,6 +358,8 @@ getPrivateCertificate(keyUri: string) : Promise\<CMResult>
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
+| 201      | The application has no permission to call the API.     |
+| 401 | The parameter check failed.Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 | 17500001 | There is an generic error occurred when calling the API. |
 | 17500002 | The certificate do not exist. |
 
@@ -397,6 +408,8 @@ uninstallPrivateCertificate(keyUri: string, callback: AsyncCallback\<void>) : vo
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
+| 201      | The application has no permission to call the API.     |
+| 401 | The parameter check failed.Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 | 17500001 | There is an generic error occurred when calling the API. |
 | 17500002 | The certificate do not exist. |
 
@@ -446,6 +459,8 @@ uninstallPrivateCertificate(keyUri: string) : Promise\<void>
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
+| 201      | The application has no permission to call the API.     |
+| 401 | The parameter check failed.Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 | 17500001 | There is an generic error occurred when calling the API. |
 | 17500002 | The certificate do not exist. |
 
@@ -490,6 +505,8 @@ init(authUri: string, spec: CMSignatureSpec, callback: AsyncCallback\<CMHandle>)
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
+| 201      | The application has no permission to call the API.     |
+| 401 | The parameter check failed.Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 | 17500001 | There is an generic error occurred when calling the API. |
 | 17500002 | The certificate do not exist. |
 | 17500005<sup>12+</sup> | The application is not authorized by user. |
@@ -546,6 +563,8 @@ init(authUri: string, spec: CMSignatureSpec) : Promise\<CMHandle>
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
+| 201      | The application has no permission to call the API.     |
+| 401 | The parameter check failed.Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 | 17500001 | There is an generic error occurred when calling the API. |
 | 17500002 | The certificate do not exist. |
 | 17500005<sup>12+</sup> | The application is not authorized by user. |
@@ -594,9 +613,11 @@ update(handle: Uint8Array, data: Uint8Array, callback: AsyncCallback\<void>): vo
 
 以下错误码的详细介绍请参见[证书管理错误码](errorcode-certManager.md)。
 
-| 错误码ID | 错误信息      |
-| -------- | ------------- |
-| 17500001 | There is an generic error occurred when calling the API. |
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 201      | The application has no permission to call the API.     |
+| 401      | The parameter check failed.Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
+| 17500001 | There is an generic error occurred when calling the API.     |
 
 **示例**：
 ```ts
@@ -649,9 +670,11 @@ update(handle: Uint8Array, data: Uint8Array): Promise\<void>
 
 以下错误码的详细介绍请参见[证书管理错误码](errorcode-certManager.md)。
 
-| 错误码ID | 错误信息      |
-| -------- | ------------- |
-| 17500001 | There is an generic error occurred when calling the API. |
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 201      | The application has no permission to call the API.     |
+| 401      | The parameter check failed.Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
+| 17500001 | There is an generic error occurred when calling the API.     |
 
 **示例**：
 ```ts
@@ -697,9 +720,11 @@ finish(handle: Uint8Array, callback: AsyncCallback\<CMResult>) : void
 
 以下错误码的详细介绍请参见[证书管理错误码](errorcode-certManager.md)。
 
-| 错误码ID | 错误信息      |
-| -------- | ------------- |
-| 17500001 | There is an generic error occurred when calling the API. |
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 201      | The application has no permission to call the API.     |
+| 401      | The parameter check failed.Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
+| 17500001 | There is an generic error occurred when calling the API.     |
 
 **示例**：
 ```ts
@@ -749,9 +774,11 @@ finish(handle: Uint8Array, signature: Uint8Array, callback: AsyncCallback\<CMRes
 
 以下错误码的详细介绍请参见[证书管理错误码](errorcode-certManager.md)。
 
-| 错误码ID | 错误信息      |
-| -------- | ------------- |
-| 17500001 | There is an generic error occurred when calling the API. |
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 201      | The application has no permission to call the API.     |
+| 401      | The parameter check failed.Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
+| 17500001 | There is an generic error occurred when calling the API.     |
 
 **示例**：
 ```ts
@@ -804,9 +831,11 @@ finish(handle: Uint8Array, signature?: Uint8Array) : Promise\<CMResult>
 
 以下错误码的详细介绍请参见[证书管理错误码](errorcode-certManager.md)。
 
-| 错误码ID | 错误信息      |
-| -------- | ------------- |
-| 17500001 | There is an generic error occurred when calling the API. |
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 201      | The application has no permission to call the API.     |
+| 401      | The parameter check failed.Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
+| 17500001 | There is an generic error occurred when calling the API.     |
 
 **示例**：
 ```ts
@@ -866,9 +895,11 @@ abort(handle: Uint8Array, callback: AsyncCallback\<void>) : void
 
 以下错误码的详细介绍请参见[证书管理错误码](errorcode-certManager.md)。
 
-| 错误码ID | 错误信息      |
-| -------- | ------------- |
-| 17500001 | There is an generic error occurred when calling the API. |
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 201      | The application has no permission to call the API.     |
+| 401      | The parameter check failed.Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
+| 17500001 | There is an generic error occurred when calling the API.     |
 
 **示例**：
 ```ts
@@ -917,9 +948,11 @@ abort(handle: Uint8Array) : Promise\<void>
 
 以下错误码的详细介绍请参见[证书管理错误码](errorcode-certManager.md)。
 
-| 错误码ID | 错误信息      |
-| -------- | ------------- |
-| 17500001 | There is an generic error occurred when calling the API. |
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 201      | The application has no permission to call the API.     |
+| 401      | The parameter check failed.Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
+| 17500001 | There is an generic error occurred when calling the API.     |
 
 **示例**：
 ```ts
@@ -970,7 +1003,7 @@ getPublicCertificate(keyUri: string) : Promise\<CMResult>
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
 | 201 | The application has no permission to call the API. |
-| 401 | The parameter check failed. |
+| 401 | The parameter check failed.Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 | 17500001 | There is an generic error occurred when calling the API. |
 | 17500002 | The certificate do not exist. |
 | 17500005 | The application is not authorized by user. |
@@ -1026,7 +1059,7 @@ isAuthorizedApp(keyUri: string) : Promise\<boolean>
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
 | 201 | The application has no permission to call the API. |
-| 401 | The parameter check failed. |
+| 401 | The parameter check failed.Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 | 17500001 | There is an generic error occurred when calling the API. |
 
 **示例**：
@@ -1047,5 +1080,106 @@ try {
   })
 } catch (err) {
   console.error("[Promise]isAuthorizedApp failed");
+}
+```
+
+## certManager.getAllUserTrustedCertificates<sup>12+</sup>
+
+getAllUserTrustedCertificates() : Promise\<CMResult>
+
+表示获取所有用户根CA证书列表，使用Promise方式异步返回结果。
+
+**需要权限：** ohos.permission.ACCESS_CERT_MANAGER
+
+**系统能力：** SystemCapability.Security.CertificateManager
+
+**返回值**：
+
+| 类型                                        | 说明                 |
+| ------------------------------------------- | -------------------- |
+| Promise\<[CMResult](#cmresult)> | 回调函数。表示获取用户根CA证书列表的结果，返回值[CMResult](#cmresult)中的certList。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[证书管理错误码](errorcode-certManager.md)。
+
+| 错误码ID | 错误信息      |
+| -------- | ------------- |
+| 201 | The application has no permission to call the API. |
+| 17500001 | There is an generic error occurred when calling the API. |
+
+**示例**：
+```ts
+import certManager from '@ohos.security.certManager';
+import { BusinessError } from '@ohos.base';
+
+try {
+  certManager.getAllUserTrustedCertificates().then((cmResult) => {
+    if (cmResult.certList == undefined) {
+      console.log("[Promise]getAllUserTrustedCertificates result is undefined");
+    } else {
+      let list = cmResult.certList;
+      console.log("[Promise]getAllUserTrustedCertificates success");
+    }
+  }).catch((err: BusinessError) => {
+    console.error('[Promise]getAllUserTrustedCertificates failed');
+  })
+} catch (error) {
+  console.error("[Promise]getAllUserTrustedCertificates failed");
+}
+```
+
+## certManager.getUserTrustedCertificate<sup>12+</sup>
+
+getUserTrustedCertificate(certUri: string) : Promise\<CMResult>
+
+表示获取用户根CA证书的详细信息，使用Promise方式异步返回结果。
+
+**需要权限：** ohos.permission.ACCESS_CERT_MANAGER
+
+**系统能力：** SystemCapability.Security.CertificateManager
+
+**参数**：
+
+| 参数名   | 类型                                              | 必填 | 说明                       |
+| -------- | ------------------------------------------------- | ---- | -------------------------- |
+| certUri | string                   | 是   | 表示用户用户根CA证书的唯一标识符。 |
+
+**返回值**：
+
+| 类型                                        | 说明                 |
+| ------------------------------------------- | -------------------- |
+| Promise\<[CMResult](#cmresult)> | 回调函数。表示获取用户根CA证书详情的结果，返回值[CMResult](#cmresult)中的certInfo。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[证书管理错误码](errorcode-certManager.md)。
+
+| 错误码ID | 错误信息      |
+| -------- | ------------- |
+| 201 | The application has no permission to call the API. |
+| 401 | The parameter check failed.Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
+| 17500001 | There is an generic error occurred when calling the API. |
+| 17500002 | The certificate do not exist. |
+
+**示例**：
+```ts
+import certManager from '@ohos.security.certManager';
+import { BusinessError } from '@ohos.base';
+
+let certUri: string = 'testUserCert'; /* 用户安装用户根CA证书返回的唯一标识符，此处省略 */
+try {
+  certManager.getUserTrustedCertificate(certUri).then((cmResult) => {
+    if (cmResult.certInfo == undefined) {
+      console.log("[Promise]getUserTrustedCertificate result is undefined");
+    } else {
+      let cert = cmResult.certInfo;
+      console.log("[Promise]getUserTrustedCertificate success");
+    }
+  }).catch((err: BusinessError) => {
+    console.error('[Promise]getUserTrustedCertificate failed, code =', err.code);
+  })
+} catch (err) {
+  console.error("[Promise]getUserTrustedCertificate failed");
 }
 ```

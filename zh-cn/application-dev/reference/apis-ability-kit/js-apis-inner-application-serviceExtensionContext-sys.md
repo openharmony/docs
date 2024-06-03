@@ -27,7 +27,7 @@ import common from '@ohos.app.ability.common';
 import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
 import rpc from '@ohos.rpc';
 
-let commRemote: rpc.IRemoteObject; // 断开连接时需要释放
+let commRemote: rpc.IRemoteObject | null; // 断开连接时需要释放
 class EntryAbility extends ServiceExtensionAbility {
   onCreate() {
       let context = this.context; // 获取ServiceExtensionContext
@@ -54,8 +54,12 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
-| ------- | -------------------------------- |
+| ------- | -------- |
+| 201 | The application does not have permission to call the interface. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -67,12 +71,11 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
 | 16000011 | The context does not exist.        |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
+| 16000019 | Can not match any component. |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -131,8 +134,12 @@ startAbility(want: Want, options?: StartOptions): Promise\<void>;
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
-| ------- | -------------------------------- |
+| ------- | -------- |
+| 201 | The application does not have permission to call the interface. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -144,12 +151,11 @@ startAbility(want: Want, options?: StartOptions): Promise\<void>;
 | 16000011 | The context does not exist.        |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
+| 16000019 | Can not match any component. |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -207,8 +213,12 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
-| ------- | -------------------------------- |
+| ------- | -------- |
+| 201 | The application does not have permission to call the interface. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -220,12 +230,11 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 | 16000011 | The context does not exist.        |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
+| 16000019 | Can not match any component. |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -290,8 +299,13 @@ startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
-| ------- | -------------------------------- |
+| ------- | -------- |
+| 201 | The application does not have permission to call the interface. |
+| 202 | The application is not system-app, can not use system-api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -303,12 +317,11 @@ startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<
 | 16000011 | The context does not exist.        |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
+| 16000019 | Can not match any component. |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -371,8 +384,13 @@ startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, ca
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
-| ------- | -------------------------------- |
+| ------- | -------- |
+| 201 | The application does not have permission to call the interface. |
+| 202 | The application is not system-app, can not use system-api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -384,12 +402,11 @@ startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, ca
 | 16000011 | The context does not exist.        |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
+| 16000019 | Can not match any component. |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -462,8 +479,13 @@ startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): 
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
-| ------- | -------------------------------- |
+| ------- | -------- |
+| 201 | The application does not have permission to call the interface. |
+| 202 | The application is not system-app, can not use system-api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -475,12 +497,11 @@ startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): 
 | 16000011 | The context does not exist.        |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
+| 16000019 | Can not match any component. |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -539,8 +560,13 @@ startServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void;
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
-| ------- | -------------------------------- |
+| ------- | -------- |
+| 201 | The application does not have permission to call the interface. |
+| 202 | The application is not system-app, can not use system-api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -550,10 +576,9 @@ startServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void;
 | 16000011 | The context does not exist.        |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
+| 16000019 | Can not match any component. |
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -612,8 +637,13 @@ startServiceExtensionAbility(want: Want): Promise\<void>;
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
-| ------- | -------------------------------- |
+| ------- | -------- |
+| 201 | The application does not have permission to call the interface. |
+| 202 | The application is not system-app, can not use system-api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -623,10 +653,9 @@ startServiceExtensionAbility(want: Want): Promise\<void>;
 | 16000011 | The context does not exist.        |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
+| 16000019 | Can not match any component. |
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -687,8 +716,13 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback:
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
-| ------- | -------------------------------- |
+| ------- | -------- |
+| 201 | The application does not have permission to call the interface. |
+| 202 | The application is not system-app, can not use system-api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -698,11 +732,9 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback:
 | 16000011 | The context does not exist.        |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
+| 16000019 | Can not match any component. |
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
-
 
 **示例：**
 
@@ -769,8 +801,13 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
-| ------- | -------------------------------- |
+| ------- | -------- |
+| 201 | The application does not have permission to call the interface. |
+| 202 | The application is not system-app, can not use system-api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -780,10 +817,9 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\
 | 16000011 | The context does not exist.        |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
+| 16000019 | Can not match any component. |
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -842,8 +878,13 @@ startAbilityAsCaller(want: Want, callback: AsyncCallback\<void>): void;
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
-| ------- | -------------------------------- |
+| ------- | -------- |
+| 201 | The application does not have permission to call the interface. |
+| 202 | The application is not system-app, can not use system-api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -860,15 +901,13 @@ startAbilityAsCaller(want: Want, callback: AsyncCallback\<void>): void;
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
 
-错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
-
 **示例：**
 
 ```ts
 import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
 import Want from '@ohos.app.ability.Want';
 
-export default class EntryAbility extends ServiceExtensionAbility {
+class EntryAbility extends ServiceExtensionAbility {
   onCreate(want: Want) {
     // want包含启动该应用的Caller信息
     let localWant: Want = want;
@@ -913,8 +952,13 @@ startAbilityAsCaller(want: Want, options: StartOptions, callback: AsyncCallback\
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
-| ------- | -------------------------------- |
+| ------- | -------- |
+| 201 | The application does not have permission to call the interface. |
+| 202 | The application is not system-app, can not use system-api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
 | 16000004 | Can not start invisible component. |
 | 16000005 | The specified process does not have the permission. |
@@ -929,8 +973,6 @@ startAbilityAsCaller(want: Want, options: StartOptions, callback: AsyncCallback\
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
 
-错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
-
 **示例：**
 
 ```ts
@@ -938,7 +980,7 @@ import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
 import Want from '@ohos.app.ability.Want';
 import StartOptions from '@ohos.app.ability.StartOptions';
 
-export default class EntryAbility extends ServiceExtensionAbility {
+class EntryAbility extends ServiceExtensionAbility {
   onCreate(want: Want) {
     // want包含启动该应用的Caller信息
     let localWant: Want = want;
@@ -992,8 +1034,13 @@ startAbilityAsCaller(want: Want, options?: StartOptions): Promise\<void>;
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
-| ------- | -------------------------------- |
+| ------- | -------- |
+| 201 | The application does not have permission to call the interface. |
+| 202 | The application is not system-app, can not use system-api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -1010,8 +1057,6 @@ startAbilityAsCaller(want: Want, options?: StartOptions): Promise\<void>;
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
 
-错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
-
 **示例：**
 
 ```ts
@@ -1020,7 +1065,7 @@ import Want from '@ohos.app.ability.Want';
 import StartOptions from '@ohos.app.ability.StartOptions';
 import { BusinessError } from '@ohos.base';
 
-export default class EntryAbility extends ServiceExtensionAbility {
+class EntryAbility extends ServiceExtensionAbility {
   onCreate(want: Want) {
     // want包含启动该应用的Caller信息
     let localWant: Want = want;
@@ -1064,8 +1109,13 @@ stopServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void;
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
-| ------- | -------------------------------- |
+| ------- | -------- |
+| 201 | The application does not have permission to call the interface. |
+| 202 | The application is not system-app, can not use system-api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -1074,8 +1124,6 @@ stopServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void;
 | 16000011 | The context does not exist.        |
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -1134,8 +1182,13 @@ stopServiceExtensionAbility(want: Want): Promise\<void>;
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
-| ------- | -------------------------------- |
+| ------- | -------- |
+| 201 | The application does not have permission to call the interface. |
+| 202 | The application is not system-app, can not use system-api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -1144,8 +1197,6 @@ stopServiceExtensionAbility(want: Want): Promise\<void>;
 | 16000011 | The context does not exist.        |
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -1206,8 +1257,13 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback: 
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
-| ------- | -------------------------------- |
+| ------- | -------- |
+| 201 | The application does not have permission to call the interface. |
+| 202 | The application is not system-app, can not use system-api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -1216,8 +1272,6 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback: 
 | 16000011 | The context does not exist.        |
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -1284,8 +1338,13 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\<
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
-| ------- | -------------------------------- |
+| ------- | -------- |
+| 201 | The application does not have permission to call the interface. |
+| 202 | The application is not system-app, can not use system-api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -1294,8 +1353,6 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\<
 | 16000011 | The context does not exist.        |
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -1349,16 +1406,17 @@ terminateSelf(callback: AsyncCallback&lt;void&gt;): void;
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
-| ------- | -------------------------------- |
+| ------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
 | 16000004 | Can not start invisible component. |
 | 16000005 | The specified process does not have the permission. |
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
 | 16000011 | The context does not exist.        |
 | 16000050 | Internal error. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -1399,6 +1457,8 @@ terminateSelf(): Promise&lt;void&gt;;
 
 **错误码：**
 
+以下错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 16000001 | The specified ability does not exist. |
@@ -1407,8 +1467,6 @@ terminateSelf(): Promise&lt;void&gt;;
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
 | 16000011 | The context does not exist.        |
 | 16000050 | Internal error. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -1454,8 +1512,12 @@ connectServiceExtensionAbility(want: Want, options: ConnectOptions): number;
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
-| ------- | -------------------------------- |
+| ------- | -------- |
+| 201 | The application does not have permission to call the interface. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -1466,8 +1528,6 @@ connectServiceExtensionAbility(want: Want, options: ConnectOptions): number;
 | 16000055 | Installation-free timed out. |
 | 16000011 | The context does not exist.        |
 | 16000050 | Internal error. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -1532,8 +1592,13 @@ connectServiceExtensionAbilityWithAccount(want: Want, accountId: number, options
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
-| ------- | -------------------------------- |
+| ------- | -------- |
+| 201 | The application does not have permission to call the interface. |
+| 202 | The application is not system-app, can not use system-api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -1544,8 +1609,6 @@ connectServiceExtensionAbilityWithAccount(want: Want, accountId: number, options
 | 16000055 | Installation-free timed out. |
 | 16000011 | The context does not exist.        |
 | 16000050 | Internal error. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -1603,12 +1666,13 @@ disconnectServiceExtensionAbility(connection: number, callback:AsyncCallback&lt;
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
-| ------- | -------------------------------- |
+| ------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000011 | The context does not exist.        |
 | 16000050 | Internal error. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -1636,7 +1700,7 @@ class EntryAbility extends ServiceExtensionAbility {
     } catch (paramError) {
       commRemote = null;
       // 处理入参错误异常
-      console.error(`error.code: ${paramError.code}, error.message: ${paramError.message}`);
+      console.error(`error.code: ${(paramError as BusinessError).code}, error.message: ${(paramError as BusinessError).message}`);
     }
   }
 }
@@ -1666,12 +1730,13 @@ disconnectServiceExtensionAbility(connection: number): Promise&lt;void&gt;;
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
-| ------- | -------------------------------- |
+| ------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000011 | The context does not exist.        |
 | 16000050 | Internal error. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -1700,7 +1765,7 @@ class EntryAbility extends ServiceExtensionAbility {
     } catch (paramError) {
       commRemote = null;
       // 处理入参错误异常
-      console.error(`error.code: ${paramError.code}, error.message: ${paramError.message}`);
+      console.error(`error.code: ${(paramError as BusinessError).code}, error.message: ${(paramError as BusinessError).message}`);
     }
   }
 }
@@ -1727,7 +1792,7 @@ startAbilityByCall(want: Want): Promise&lt;Caller&gt;;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-app-ability-want.md) | 是 | 传入需要启动的Ability的信息，包含abilityName、moduleName、bundleName、deviceId(可选)、parameters(可选)，其中deviceId缺省或为空表示启动本地Ability，parameters缺省或为空表示后台启动Ability。 |
+| want | [Want](js-apis-app-ability-want.md) | 是 | 传入需要启动的Ability的信息，包含abilityName、moduleName、bundleName、deviceId、parameters(可选)，parameters缺省或为空表示后台启动Ability。 |
 
 **返回值：**
 
@@ -1737,8 +1802,12 @@ startAbilityByCall(want: Want): Promise&lt;Caller&gt;;
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
-| ------- | -------------------------------- |
+| ------- | -------- |
+| 201 | The application does not have permission to call the interface. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -1748,8 +1817,6 @@ startAbilityByCall(want: Want): Promise&lt;Caller&gt;;
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released.        |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -1854,10 +1921,12 @@ startRecentAbility(want: Want, callback: AsyncCallback\<void>): void;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[元能力子系统错误码](errorcode-ability.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
 
 | 错误码ID | 错误信息 |
-| ------- | -------------------------------- |
+| ------- | -------- |
+| 201 | The application does not have permission to call the interface. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -1930,10 +1999,12 @@ startRecentAbility(want: Want, options: StartOptions, callback: AsyncCallback\<v
 
 **错误码：**
 
-以下错误码的详细介绍请参见[元能力子系统错误码](errorcode-ability.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
 
 | 错误码ID | 错误信息 |
-| ------- | -------------------------------- |
+| ------- | -------- |
+| 201 | The application does not have permission to call the interface. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -2010,10 +2081,12 @@ startRecentAbility(want: Want, options?: StartOptions): Promise\<void>;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[元能力子系统错误码](errorcode-ability.md)。
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
 
 | 错误码ID | 错误信息 |
-| ------- | -------------------------------- |
+| ------- | -------- |
+| 201 | The application does not have permission to call the interface. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -2099,8 +2172,13 @@ startAbilityByCallWithAccount(want: Want, accountId: number): Promise&lt;Caller&
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
-| ------- | -------------------------------- |
+| ------- | -------- |
+| 201 | The application does not have permission to call the interface. |
+| 202 | The application is not system-app, can not use system-api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -2112,8 +2190,6 @@ startAbilityByCallWithAccount(want: Want, accountId: number): Promise&lt;Caller&
 | 16000013 | The application is controlled by EDM.       |
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released.        |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -2165,11 +2241,11 @@ requestModalUIExtension(pickerWant: Want): Promise\<void>
 
 请求在指定的前台应用上拉起对应类型的UIExtensionAbility。其中，前台应用通过want.parameters中bundleName来指定，如果未指定前台应用、bundleName指定的应用未在前台或指定的前台应用的bundleName不正确，则在系统界面上直接拉起UIExtensionAbility；被拉起的UIExtensionAbility通过want中bundleName、abilityName、moduleName字段共同确定，同时需要通过want.parameters中的ability.want.params.uiExtensionType字段配置UIExtensionAbility的类型。使用promise形式异步回调。
 
+在前台应用上拉起UIExtensionAility之前，必须确保该应用已完成页面初始化，否则将导致拉起失败、并出现"uiContent is nullptr"的报错信息。应用可通过监听页面加载状态来判断拉起UIExtensionAbility的时机，页面初始化成功后会出现关键日志信息"UIContentImpl: focus again"。
+
 > **说明：**
 >
 > 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。 
-> 跨应用场景下，目标Ability的exported属性若配置为false，指定的前台应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限，若为系统界面上直接拉起UIExtensionAbility的情况，则需要接口调用方申请`ohos.permission.START_INVISIBLE_ABILITY`权限。
-
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -2189,11 +2265,13 @@ requestModalUIExtension(pickerWant: Want): Promise\<void>
 
 **错误码：**
 
-| 错误码ID | 错误信息 |
-| ------- | -------------------------------- |
-| 16000050 | Internal error. |
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
 
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 202 | The application is not system-app, can not use system-api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 16000050 | Internal error. |
 
 **示例：**
 
@@ -2241,11 +2319,12 @@ requestModalUIExtension(pickerWant: Want, callback: AsyncCallback\<void>): void
 
 请求在指定的前台应用上拉起对应类型的UIExtensionAbility。其中，前台应用通过want.parameters中bundleName来指定，如果未指定前台应用、bundleName指定的应用未在前台或指定的前台应用的bundleName不正确，则在系统界面上直接拉起UIExtensionAbility；被拉起的UIExtensionAbility通过want中bundleName、abilityName、moduleName字段共同确定，同时需要通过want.parameters中的ability.want.params.uiExtensionType字段配置UIExtensionAbility的类型。使用callback形式异步回调。
 
+在前台应用上拉起UIExtensionAility之前，必须确保该应用已完成页面初始化，否则将导致拉起失败、并出现"uiContent is nullptr"的报错信息。应用可通过监听页面加载状态来判断拉起UIExtensionAbility的时机，页面初始化成功后会出现关键日志信息"UIContentImpl: focus again"。
+
 > **说明：**
 >
 > 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
-> 跨应用场景下，目标Ability的exported属性若配置为false，指定的前台应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限，若为系统界面上直接拉起UIExtensionAbility的情况，则需要接口调用方申请`ohos.permission.START_INVISIBLE_ABILITY`权限。
- 
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **系统接口**：此接口为系统接口。
@@ -2259,11 +2338,13 @@ requestModalUIExtension(pickerWant: Want, callback: AsyncCallback\<void>): void
 
 **错误码：**
 
-| 错误码ID | 错误信息 |
-| ------- | -------------------------------- |
-| 16000050 | Internal error. |
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
 
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 202 | The application is not system-app, can not use system-api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 16000050 | Internal error. |
 
 **示例：**
 
@@ -2301,6 +2382,106 @@ class ServiceExtension extends ServiceExtensionAbility {
       let message = (err as BusinessError).message;
       console.error(`requestModalUIExtension failed, code is ${code}, message is ${message}`);
     }
+  }
+}
+```
+
+## ServiceExtensionContext.openLink<sup>12+<sup>
+openLink(link:string, options?: OpenLinkOptions): Promise&lt;void&gt;
+
+通过AppLinking启动UIAbility，使用Promise异步回调。
+
+通过在link字段中传入标准格式的URL，基于隐式want匹配规则拉起目标UIAbility。目标方必须具备以下过滤器特征，才能处理AppLinking链接：
+- "actions"列表中包含"ohos.want.action.viewData"。
+- "entities"列表中包含"entity.system.browsable"。
+- "uris"列表中包含"scheme"为"https"且"domainVerify"为true的元素。
+
+传入的参数不合法时，如未设置必选参数或link字符串不是标准格式的URL，接口会直接抛出异常。参数校验通过，拉起目标方时出现的错误通过promise返回错误信息。
+
+> **说明：**
+>
+> 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
+ 
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**系统接口**: 此接口为系统接口。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| link | string | 是 | 指示要打开的标准格式URL。 |
+| options | [OpenLinkOptions](js-apis-app-ability-openLinkOptions.md) | 否 | 打开URL的选项参数。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 201 | The application does not have permission to call the interface. |
+| 202 | The application is not system-app, can not use system-api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 16000001 | The specified ability does not exist. |
+| 16000002 | Incorrect ability type. |
+| 16000004 | Can not start invisible component. |
+| 16000005 | The specified process does not have the permission. |
+| 16000006 | Cross-user operations are not allowed. |
+| 16000008 | The crowdtesting application expires. |
+| 16000009 | An ability cannot be started or stopped in Wukong mode. |
+| 16000010 | The call with the continuation flag is forbidden.        |
+| 16000011 | The context does not exist.        |
+| 16000012 | The application is controlled.        |
+| 16000013 | The application is controlled by EDM.       |
+| 16000019 | Can not match any component. |
+| 16200001 | The caller has been released. |
+
+**示例：**
+
+```ts
+import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
+import Want from '@ohos.app.ability.Want';
+import OpenLinkOptions from '@ohos.app.ability.OpenLinkOptions';
+import { BusinessError } from '@ohos.base';
+
+function log(info: string) {
+  console.error(`[ServiceExtApp]:: ${JSON.stringify(info)}`);
+}
+
+export default class ServiceExtAbility extends ServiceExtensionAbility {
+  onCreate(want: Want) {
+    log(`ServiceExtAbility OnCreate`);
+  }
+
+  onRequest(want: Want, startId: number) {
+    log(`ServiceExtAbility onRequest`);
+    let link: string = 'https://www.example.com';
+    let openLinkOptions: OpenLinkOptions = {
+      appLinkingOnly: false
+    };
+    try {
+      this.context.openLink(
+        link,
+        openLinkOptions
+      ).then(() => {
+        log(`open link success.`);
+      }).catch((err: BusinessError) => {
+        log(`open link failed, errCode ${JSON.stringify(err.code)}`);
+      });
+    }
+    catch (e) {
+      log(`exception occured, errCode ${JSON.stringify(e.code)}`);
+    }
+  }
+
+  onDestroy() {
+    log(`ServiceExtAbility onDestroy`);
   }
 }
 ```

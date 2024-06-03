@@ -1206,7 +1206,7 @@ async function example() {
       }
     });
   } catch (err) {
-    console.info('fetch failed, message =', err);
+    console.error('fetch failed, message =', err);
   }
 }
 ```
@@ -1430,7 +1430,7 @@ getPhotoIndex(photoUri: string, albumUri: string, options: FetchOptions, callbac
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 401   | if parameter is invalid.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. | 
 
 **示例：**
 
@@ -1462,11 +1462,11 @@ async function example() {
       if (err == undefined) {
         console.info(`getPhotoIndex successfully and index is : ${index}`);
       } else {
-        console.info(`getPhotoIndex failed;`);
+        console.error(`getPhotoIndex failed;`);
       }
     });
   } catch (error) {
-    console.info(`getPhotoIndex failed; error: ${error}`);
+    console.error(`getPhotoIndex failed; error: ${error}`);
   }
 }
 ```
@@ -1503,7 +1503,7 @@ getPhotoIndex(photoUri: string, albumUri: string, options: FetchOptions): Promis
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 401   | if parameter is invalid.         |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. | 
 
 **示例：**
 
@@ -1535,10 +1535,10 @@ async function example() {
     mgr.getPhotoIndex(photoAsset.uri, album.albumUri, fetchOptions).then((index) => {
       console.info(`getPhotoIndex successfully and index is : ${index}`);
     }).catch((err: BusinessError) => {
-      console.info(`getPhotoIndex failed; error: ${err}`);
+      console.error(`getPhotoIndex failed; error: ${err}`);
     });
   } catch (error) {
-    console.info(`getPhotoIndex failed; error: ${error}`);
+    console.error(`getPhotoIndex failed; error: ${error}`);
   }
 }
 ```
@@ -1832,7 +1832,7 @@ async function example() {
 
 **系统能力**：SystemCapability.FileManagement.UserFileManager.Core
 
-| 名称                      | 类型                     | 可读 | 可写 | 说明                                                   |
+| 名称                      | 类型                     | 只读 | 可写 | 说明                                                   |
 | ------------------------- | ------------------------ | ---- | ---- | ------------------------------------------------------ |
 | uri                       | string                   | 是   | 否   | 媒体文件资源uri（如：file://media/Photo/1/IMG_datetime_0001/displayName.jpg），详情参见用户文件uri介绍中的[媒体文件uri](../../file-management/user-file-uri-intro.md#媒体文件uri)。         |
 | fileType   | [FileType](#filetype) | 是   | 否   | 媒体文件类型                                               |
@@ -2720,6 +2720,15 @@ setUserComment(userComment: string): Promise&lt;void&gt;
 | --------------------------------------- | ----------------- |
 |Promise&lt;void&gt; | Promise对象，返回void。 |
 
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 202   | Called by non-system application.                |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. | 
+
 **示例：**
 
 ```ts
@@ -2763,6 +2772,15 @@ setUserComment(userComment: string, callback: AsyncCallback&lt;void&gt;): void
 | -------- | ------------------------- | ---- | ---------- |
 | userComment | string | 是   | 待修改的图片或视频的备注信息，备注信息最长为140字符。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | callback返回void。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 202   | Called by non-system application.                |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. | 
 
 **示例：**
 
@@ -3280,7 +3298,7 @@ async function example() {
 
 **系统能力**：SystemCapability.FileManagement.UserFileManager.Core
 
-| 名称           | 类型    | 可读   | 可写  | 说明   |
+| 名称           | 类型    | 只读   | 可写  | 说明   |
 | ------------ | ------ | ---- | ---- | ------- |
 | albumType<sup>10+</sup> | [AlbumType]( #albumtype10) | 是    | 否    | 相册类型。    |
 | albumSubType<sup>10+</sup> | [AlbumSubType]( #albumsubtype10) | 是    | 否   | 相册子类型。    |
@@ -3952,7 +3970,7 @@ async function example() {
 
 **系统能力**：SystemCapability.FileManagement.UserFileManager.Core
 
-| 名称           | 类型    | 可读   | 可写   | 说明      |
+| 名称           | 类型    | 只读   | 可写   | 说明      |
 | ------------ | ------ | ---- | ---- | ------- |
 | albumName | string | 是    | 是    | 相册名称。    |
 | albumUri | string | 是    | 否    | 相册Uri。   |
@@ -4263,7 +4281,7 @@ async function example() {
 
 **系统能力**：SystemCapability.FileManagement.UserFileManager.Core
 
-| 名称  |  类型 |  可读  |  可写  |  说明  |
+| 名称  |  类型 |  只读  |  可写  |  说明  |
 | ----- |  ---- |  ---- |  ---- |  ---- |
 | number |  number | 是 | 是 | number类型。 |
 | string |  string | 是 | 是 | string类型。|
@@ -4275,7 +4293,7 @@ async function example() {
 
 **系统能力**：SystemCapability.FileManagement.UserFileManager.Core
 
-| 名称  |  类型 |  可读  |  可写  |  说明 |
+| 名称  |  类型 |  只读  |  可写  |  说明 |
 | ----- |  ---- |  ---- |  ---- |  ---- |
 | deviceChange |  string | 是 | 是 |  设备。 |
 | albumChange |  string | 是 | 是 |  相册。 |
@@ -4290,11 +4308,11 @@ async function example() {
 
 **系统能力**：SystemCapability.FileManagement.UserFileManager.DistributedCore
 
-| 名称       | 类型                       | 可读 | 可写 | 说明             |
+| 名称       | 类型                       | 只读 | 可写 | 说明             |
 | ---------- | -------------------------- | ---- | ---- | ---------------- |
 | deviceName | string                     | 是   | 否   | 注册设备的名称。   |
 | networkId  | string                     | 是   | 否   | 注册设备的网络ID。 |
-| isOnline   | boolean                    | 是   | 否   | 是否在线。         |
+| isOnline   | boolean                    | 是   | 否   | 是否在线。true是在线，false为不在线         |
 
 ## FileType
 
@@ -4448,7 +4466,7 @@ async function example() {
 
 **系统能力**：SystemCapability.FileManagement.UserFileManager.Core
 
-| 名称                   | 类型                | 可读 | 可写 | 说明                                              |
+| 名称                   | 类型                | 只读 | 可写 | 说明                                              |
 | ---------------------- | ------------------- | ---- |---- | ------------------------------------------------ |
 | fetchColumns           | Array&lt;string&gt; | 是   | 是   | 检索条件，指定列名查询，如果该参数为空时默认查询uri、name、fileType（具体字段名称以检索对象定义为准）且使用[get](#get)接口去获取当前对象的其他属性时将会报错。示例：<br />fetchColumns: ['uri', 'title']。 |
 | predicates           | [dataSharePredicates.DataSharePredicates](../apis-arkdata/js-apis-data-dataSharePredicates-sys.md) | 是   | 是   | 谓词查询，显示过滤条件。 |
@@ -4459,7 +4477,7 @@ async function example() {
 
 **系统能力**：SystemCapability.FileManagement.UserFileManager.Core
 
-| 名称                   | 类型                | 可读 | 可写 | 说明                                              |
+| 名称                   | 类型                | 只读 | 可写 | 说明                                              |
 | ---------------------- | ------------------- | ---- |---- | ------------------------------------------------ |
 | predicates           | [dataSharePredicates.DataSharePredicates](../apis-arkdata/js-apis-data-dataSharePredicates-sys.md) | 是   | 是   | 谓词查询，显示过滤条件。 |
 
@@ -4469,7 +4487,7 @@ async function example() {
 
 **系统能力**：SystemCapability.FileManagement.UserFileManager.Core
 
-| 名称    | 类型                        | 可读 | 可写 | 说明                                                         |
+| 名称    | 类型                        | 只读 | 可写 | 说明                                                         |
 | ------- | --------------------------- | ---- | ---- | ------------------------------------------------------------ |
 | type    | [NotifyType](#notifytype10) | 是   | 否   | ChangeData的通知类型。                                       |
 | uris    | Array&lt;string&gt;         | 是   | 否   | 相同[NotifyType](#notifytype10)的所有uri，可以是FileAsset或Album。 |

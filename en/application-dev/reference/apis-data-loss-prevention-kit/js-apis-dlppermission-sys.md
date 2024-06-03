@@ -1827,18 +1827,6 @@ Represents the DLP sandbox identity information.
 | bundleName | string | Yes| No| Bundle name of the application.|
 | appIndex | number | Yes| No| Index of the DLP sandbox application.|
 
-## RetentionSandboxInfo
-
-Represents the sandbox retention information.
-
-**System capability**: SystemCapability.Security.DataLossPrevention
-
-| Name| Type| Readable| Writable| Description|
-| -------- | -------- | -------- | -------- | -------- |
-| appIndex | number | Yes| No| Index of the DLP sandbox application.|
-| bundleName | string | Yes| No| Bundle name of the application.|
-| docUris | Array&lt;string&gt; | Yes| No| URI list of the DLP files.|
-
 ## AccountType
 
 Enumerates the types of authorized accounts.

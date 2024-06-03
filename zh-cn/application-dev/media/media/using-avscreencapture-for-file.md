@@ -8,6 +8,8 @@
 
 使用AVScreenCapture录制屏幕涉及到AVScreenCapture实例的创建、音视频采集参数的配置、采集的开始与停止、资源的释放等。
 
+开始屏幕录制时正在通话中或者屏幕录制过程中来电，录屏将自动停止。因通话中断的录屏会上报OH_SCREEN_CAPTURE_STATE_STOPPED_BY_CALL状态。
+
 本开发指导将以完成一次屏幕数据录制的过程为例，向开发者讲解如何使用AVScreenCapture进行屏幕录制，详细的API声明请参考[AVScreenCapture API参考](../../reference/apis-media-kit/_a_v_screen_capture.md)。
 
 ## 开发步骤及注意事项
@@ -43,9 +45,9 @@ target_link_libraries(entry PUBLIC libnative_avscreen_capture.so)
 
     创建AVScreenCapture实例capture后，可以设置屏幕录制所需要的参数。
 
-    其中，录屏存文件仅仅能够在OH_AVScreenCapture_Init时期设置是否录制麦克风音频，在录制的过程中，无法控制麦克风的开启与关闭。
+    其中，录屏存文件时默认录制内录，麦克风可以动态开关，可以同时内外录制。
 
-    同时，录屏存文件无需设置回调函数。
+    同时，录屏存文件需要设置状态回调，感知录制状态。
 
     ```c++
     //录屏时获取麦克风或者内录，内录参数必填，如果都设置了，内录和麦克风的参数设置需要一致
@@ -101,13 +103,13 @@ target_link_libraries(entry PUBLIC libnative_avscreen_capture.so)
 4. 调用StartScreenRecording()方法开始进行屏幕录制。
 
     ```c++
-    OH_AVScreenCapture_StartScreenCapture(capture);
+    OH_AVScreenCapture_StartScreenRecording(capture);
     ```
 
 5. 调用StopScreenRecording()方法停止录制。
 
     ```c++
-    OH_AVScreenCapture_StopScreenCapture(capture);
+    OH_AVScreenCapture_StopScreenRecording(capture);
     ```
 
 6. 调用Release()方法销毁实例，释放资源。

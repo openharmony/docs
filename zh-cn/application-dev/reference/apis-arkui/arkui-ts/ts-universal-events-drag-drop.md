@@ -8,9 +8,9 @@
 >
 > 应用本身预置的资源文件（即应用在安装前的HAP包中已经存在的资源文件）仅支持本地应用内拖拽。
 
-ArkUI框架对以下组件实现了默认的拖拽能力，支持对数据的拖出或拖入响应，开发者只需要将这些组件的[draggable](ts-universal-attributes-drag-drop.md)属性设置为true，即可使用默认拖拽能力。
+ArkUI框架对以下组件实现了默认的拖拽能力，支持对数据的拖出或拖入响应，开发者只需要将这些组件的[draggable](ts-universal-attributes-drag-drop.md)属性设置为true，即可使用默认拖拽能力。<!--RP1--><!--RP1End-->
 
-- 默认支持拖出能力的组件（可从组件上拖出数据）：[Search](ts-basic-components-search.md)、[TextInput](ts-basic-components-textinput.md)、[TextArea](ts-basic-components-textarea.md)、[RichEditor](ts-basic-components-richeditor.md)、[Text](ts-basic-components-text.md)、[Image](ts-basic-components-image.md)、[FormComponent](ts-basic-components-formcomponent-sys.md)、[Hyperlink](ts-container-hyperlink.md)
+- 默认支持拖出能力的组件（可从组件上拖出数据）：[Search](ts-basic-components-search.md)、[TextInput](ts-basic-components-textinput.md)、[TextArea](ts-basic-components-textarea.md)、[RichEditor](ts-basic-components-richeditor.md)、[Text](ts-basic-components-text.md)、[Image](ts-basic-components-image.md)、<!--Del-->[FormComponent](ts-basic-components-formcomponent-sys.md)、<!--DelEnd-->[Hyperlink](ts-container-hyperlink.md)
 
 - 默认支持拖入能力的组件（目标组件可响应拖入数据）：[Search](ts-basic-components-search.md)、[TextInput](ts-basic-components-textinput.md)、[TextArea](ts-basic-components-textarea.md)、[Video](ts-media-components-video.md)
 
@@ -30,6 +30,8 @@ onDragStart(event: (event: DragEvent, extraParams?: string) => CustomBuilder | D
 
 文本类组件[Text](ts-basic-components-text.md)、[Search](ts-basic-components-search.md)、[TextInput](ts-basic-components-textinput.md)、[TextArea](ts-basic-components-textarea.md)、[RichEditor](ts-basic-components-richeditor.md)对选中的文本内容进行拖拽时，不支持背板图的自定义。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **事件优先级：** 长按触发时间 < 500ms，长按事件优先拖拽事件响应，长按触发时间 >= 500ms，拖拽事件优先长按事件响应。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -38,8 +40,7 @@ onDragStart(event: (event: DragEvent, extraParams?: string) => CustomBuilder | D
 
 | 参数名      | 类型                            | 必填 | 说明               |
 | ----------- | ------------------------------- | ---- | ------------------ |
-| event       | [DragEvent](#dragevent说明)     | 是   | 拖拽事件信息。     |
-| extraParams | string | 否   | 拖拽事件额外信息。<br/>**说明：**<br/>需要解析为Json格式，参考[extraParams](#extraparams说明)说明。|
+| event    | (event: DragEvent, extraParams?: string) => CustomBuilder &nbsp;\|&nbsp; DragItemInfo  | 是   | 回调函数。<br/> **说明：**<br/> event为拖拽事件信息。<br/> extraParams为拖拽事件额外信息。需要解析为Json格式，参考[extraParams](#extraparams说明)说明。|
 
 **返回值：**
 
@@ -53,14 +54,15 @@ onDragEnter(event: (event: DragEvent, extraParams?: string) => void)
 
 拖拽进入组件范围内时，触发回调，当监听了[onDrop](#ondrop)事件时，此事件才有效。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
 
 | 参数名      | 类型                            | 必填 | 说明                           |
 | ----------- | ------------------------------- | ---- | ------------------------------ |
-| event       | [DragEvent](#dragevent说明)     | 是   | 拖拽事件信息，包括拖拽点坐标。 |
-| extraParams | string | 否   | 拖拽事件额外信息。<br/>**说明：**<br/>需要解析为Json格式，参考[extraParams](#extraparams说明)说明。|
+| event    | (event: DragEvent, extraParams?: string) => void   | 是   | 回调函数。<br/>**说明：**<br/> event为拖拽事件信息，包括拖拽点坐标。<br/> extraParams为拖拽事件额外信息，需要解析为Json格式，参考[extraParams](#extraparams说明)说明。|
 
 ## onDragMove
 
@@ -68,14 +70,15 @@ onDragMove(event: (event: DragEvent, extraParams?: string) => void)
 
 拖拽在组件范围内移动时，触发回调，当监听了[onDrop](#ondrop)事件时，此事件才有效。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
 
 | 参数名      | 类型                            | 必填 | 说明                           |
 | ----------- | ------------------------------- | ---- | ------------------------------ |
-| event       | [DragEvent](#dragevent说明)     | 是   | 拖拽事件信息，包括拖拽点坐标。 |
-| extraParams | string | 否   | 拖拽事件额外信息。<br/>**说明：**<br/>需要解析为Json格式，参考[extraParams](#extraparams说明)说明。|
+| event    | (event: DragEvent, extraParams?: string) => void   | 是   | 回调函数。<br/>**说明：**<br/> event为拖拽事件信息，包括拖拽点坐标。<br/> extraParams为拖拽事件额外信息，需要解析为Json格式，参考[extraParams](#extraparams说明)说明。|
 
 ## onDragLeave
 
@@ -83,14 +86,15 @@ onDragLeave(event: (event: DragEvent, extraParams?: string) => void)
 
 拖拽离开组件范围内时，触发回调，当监听了[onDrop](#ondrop)事件时，此事件才有效。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
 
 | 参数名      | 类型                            | 必填 | 说明                           |
 | ----------- | ------------------------------- | ---- | ------------------------------ |
-| event       | [DragEvent](#dragevent说明)     | 是   | 拖拽事件信息，包括拖拽点坐标。 |
-| extraParams | string | 否   | 拖拽事件额外信息。<br/>**说明：**<br/>需要解析为Json格式，参考[extraParams](#extraparams说明)说明。|
+| event    | (event: DragEvent, extraParams?: string) => void   | 是   | 回调函数。<br/>**说明：**<br/> event为拖拽事件信息，包括拖拽点坐标。<br/> extraParams为拖拽事件额外信息，需要解析为Json格式，参考[extraParams](#extraparams说明)说明。|
 
 ## onDrop
 
@@ -98,14 +102,15 @@ onDrop(event: (event: DragEvent, extraParams?: string) => void)
 
 绑定此事件的组件可作为拖拽释放目标，当在本组件范围内停止拖拽行为时，触发回调。如果没有显式使用event.setResult()，则默认result为DRAG_SUCCESSFUL。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
 
 | 参数名      | 类型                            | 必填 | 说明                           |
 | ----------- | ------------------------------- | ---- | ------------------------------ |
-| event       | [DragEvent](#dragevent说明)     | 是   | 拖拽事件信息，包括拖拽点坐标。 |
-| extraParams | string | 否   | 拖拽事件额外信息。<br/>**说明：**<br/>需要解析为Json格式，参考[extraParams](#extraparams说明)说明。|
+| event    | (event: DragEvent, extraParams?: string) => void   | 是   | 回调函数。<br/>**说明：**<br/> event为拖拽事件信息，包括拖拽点坐标。<br/> extraParams为拖拽事件额外信息，需要解析为Json格式，参考[extraParams](#extraparams说明)说明。|
 
 ## onDragEnd
 
@@ -113,14 +118,15 @@ onDragEnd(event: (event: DragEvent, extraParams?: string) => void)
 
 绑定此事件的组件触发的拖拽结束后，触发回调。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
 
 | 参数名      | 类型                            | 必填 | 说明                           |
 | ----------- | ------------------------------- | ---- | ------------------------------ |
-| event       | [DragEvent](#dragevent说明)     | 是   | 拖拽事件信息，包括拖拽点坐标。 |
-| extraParams | string | 否   | 拖拽事件额外信息。<br/>**说明：**<br/>需要解析为Json格式，参考[extraParams](#extraparams说明)说明。|
+| event    | (event: DragEvent, extraParams?: string) => void   | 是   | 回调函数。<br/>**说明：**<br/> event为拖拽事件信息，包括拖拽点坐标。<br/> extraParams为拖拽事件额外信息，需要解析为Json格式，参考[extraParams](#extraparams说明)说明。|
 
 ## onPreDrag<sup>12+</sup>
 
@@ -134,13 +140,15 @@ onPreDrag(event: (preDragStatus: PreDragStatus) => void)
 
 | 参数名      | 类型                            | 必填 | 说明                           |
 | ----------- | ------------------------------- | ---- | ------------------------------ |
-| preDragStatus       | [PreDragStatus](#predragstatus12枚举说明)     | 是   | 拖拽预发起阶段。 |
+| callback    | Callback<(preDragStatus: [PreDragStatus](#predragstatus12枚举说明)> ) => void     | 是   | 回调函数。|
 
 ## DragItemInfo说明
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称      | 类型                                     | 必填   | 描述                                |
 | --------- | ---------------------------------------- | ---- | --------------------------------- |
-| pixelMap  | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) | 否    | 设置拖拽过程中显示的图片。                     |
+| pixelMap  | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) | 否    | 设置拖拽过程中显示的图片。 |
 | builder   | [CustomBuilder](ts-types.md#custombuilder8) | 否    | 拖拽过程中显示自定义组件，如果设置了pixelMap，则忽略此值。<br /> **说明：** <br/>不支持全局builder。如果builder中使用了[Image](ts-basic-components-image.md)组件，应尽量开启同步加载，即配置Image的[syncLoad](ts-basic-components-image.md#syncload8)为true。该builder只用于生成当次拖拽中显示的图片，builder的修改不会同步到当前正在拖拽的图片，对builder的修改需要在下一次拖拽时生效。|
 | extraInfo | string                                   | 否    | 拖拽项的描述。                           |
 
@@ -160,12 +168,16 @@ onPreDrag(event: (preDragStatus: PreDragStatus) => void)
 
 ### 属性
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称     | 类型  | 描述             |
 | ------ | ------ | ---------------- |
 | useCustomDropAnimation<sup>10+</sup> | boolean | 当拖拽结束时，是否使能并使用系统默认落位动效。<br/>应用可将该值设定为true来禁用系统默认落位动效，并实现自己的自定义动效。<br/>当不配置或设置为false时，系统默认落位动效生效，此情况下，应用不应再实现自定义动效，以避免动效上的冲突。|
 |dragBehavior<sup>10+</sup> | [DragBehavior](#dragbehavior10) | 切换复制和剪贴模式的角标显示状态。 |
 
 ### 方法
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称     | 返回值类型                            | 描述                           |
 | ----------- | ------------------------------- | ------------------------------ |
@@ -182,8 +194,8 @@ onPreDrag(event: (preDragStatus: PreDragStatus) => void)
 | getWindowY()<sup>10+</sup> | number | 当前拖拽点相对于窗口左上角的y轴坐标，单位为vp。 |
 | getDisplayX()<sup>10+</sup> | number | 当前拖拽点相对于屏幕左上角的x轴坐标，单位为vp。 |
 | getDisplayY()<sup>10+</sup> | number | 当前拖拽点相对于屏幕左上角的y轴坐标，单位为vp。 |
-| getX()<sup>(deprecated)</sup> | number | 当前拖拽点相对于窗口左上角的x轴坐标，单位为vp。<br>从API verdion 10开始不再维护，建议使用getWindowX()代替。 |
-| getY()<sup>(deprecated)</sup> | number | 当前拖拽点相对于窗口左上角的y轴坐标，单位为vp。<br>从API verdion 10开始不再维护，建议使用getWindowY()代替。 |
+| getX()<sup>(deprecated)</sup> | number | 当前拖拽点相对于窗口左上角的x轴坐标，单位为vp。<br>从API Version 10开始不再维护，建议使用getWindowX()代替。 |
+| getY()<sup>(deprecated)</sup> | number | 当前拖拽点相对于窗口左上角的y轴坐标，单位为vp。<br>从API Version 10开始不再维护，建议使用getWindowY()代替。 |
 
 
 **错误码：**
@@ -192,10 +204,12 @@ onPreDrag(event: (preDragStatus: PreDragStatus) => void)
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 190001    | GetData failed, data not found. |
-| 190002    | GetData failed, data error. |
+| 190001    | Data not found.|
+| 190002    | Data error. |
 
 ## DragResult<sup>10+</sup>枚举说明
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称 | 描述 |
 | ----- | ----------------- |
@@ -208,6 +222,8 @@ onPreDrag(event: (preDragStatus: PreDragStatus) => void)
 ## DragBehavior<sup>10+</sup>
 
 需要设置[DragResult](#dragresult10枚举说明)为DROP_ENABLED，并实现[onDrop](#ondrop)回调时才能够生效。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称 | 描述 |
 | ----- | ----------------- |
@@ -404,7 +420,7 @@ struct Index {
           .height(100)
           .border({ color: Color.Black, width: 1 })
           .margin(15)
-          .allowDrop([UTD.UniformDataType.TEXT])
+          .allowDrop([UTD.UniformDataType.PLAIN_TEXT])
           .onDrop((dragEvent?: DragEvent) => {
             this.getDataFromUdmf((dragEvent as DragEvent), (event: DragEvent) => {
               let records: Array<UDC.UnifiedRecord> = event.getData().getRecords();

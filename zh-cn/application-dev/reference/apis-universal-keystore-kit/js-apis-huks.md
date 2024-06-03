@@ -10,14 +10,16 @@ HUKS所管理的密钥可以由应用导入或者由应用调用HUKS接口生成
 ## 导入模块
 
 ```ts
-import huks from '@ohos.security.huks'
+import { huks } from '@kit.UniversalKeystoreKit';
 ```
 
 ## HuksParam
 
 调用接口使用的options中的properties数组中的param。
 
-**系统能力**：SystemCapability.Security.Huks.Core
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Security.Huks.Core
 
 | 名称 | 类型                                | 必填 | 说明         |
 | ------ | ----------------------------------- | ---- | ------------ |
@@ -28,7 +30,9 @@ import huks from '@ohos.security.huks'
 
 调用接口使用的options。
 
-**系统能力**：SystemCapability.Security.Huks.Core
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Security.Huks.Core
 
 | 名称     | 类型              | 必填 | 说明                     |
 | ---------- | ----------------- | ---- | ------------------------ |
@@ -39,7 +43,9 @@ import huks from '@ohos.security.huks'
 
 huks Handle结构体。
 
-**系统能力**：SystemCapability.Security.Huks.Core
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Security.Huks.Core
 
 | 名称    | 类型       | 必填 | 说明                                                 |
 | --------- | ---------- | ---- | ---------------------------------------------------- |
@@ -50,15 +56,29 @@ huks Handle结构体。
 
 调用接口返回的result。
 
-**系统能力**：SystemCapability.Security.Huks.Core
+**系统能力：** SystemCapability.Security.Huks.Core
 
 
 
 | 名称     | 类型                            | 必填 | 说明             |
 | ---------- | ------------------------------- | ---- | ---------------- |
-| outData    | Uint8Array                      | 否   | 表示输出数据。   |
-| properties | Array\<[HuksParam](#huksparam)> | 否   | 表示属性信息。   |
-| certChains | Array\<string>                  | 否   | 表示证书链数据。 |
+| outData    | Uint8Array                      | 否   | 表示输出数据。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。  |
+| properties | Array\<[HuksParam](#huksparam)> | 否   | 表示属性信息。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。  |
+| certChains | Array\<string>                  | 否   | 表示证书链数据。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+
+## HuksListAliasesReturnResult<sup>12+</sup>
+
+调用接口返回的result。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力**：SystemCapability.Security.Huks.Extension
+
+
+
+| 名称     | 类型                            | 必填 | 说明             |
+| ---------- | ------------------------------- | ---- | ---------------- |
+| keyAliases | Array\<string>                  | 否   | 表示密钥别名集。 |
 
 
 ## huks.generateKeyItem<sup>9+</sup>
@@ -67,7 +87,9 @@ generateKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\
 
 生成密钥，使用Callback回调异步返回结果。
 
-**系统能力**：SystemCapability.Security.Huks.Core
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Security.Huks.Core
 
 **参数：**
 
@@ -83,14 +105,14 @@ generateKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 401 | argument is invalid. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | api is not supported. |
 | 12000001 | algorithm mode is not supported. |
 | 12000002 | algorithm param is missing. |
 | 12000003 | algorithm param is invalid. |
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
-| 12000006 | error occured in crypto engine. |
+| 12000006 | error occurred in crypto engine. |
 | 12000012 | external error. |
 | 12000013 | queried credential does not exist. |
 | 12000014 | memory is insufficient. |
@@ -99,7 +121,7 @@ generateKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\
 **示例：**
 
 ```ts
-import huks from '@ohos.security.huks';
+import { huks } from '@kit.UniversalKeystoreKit';
 /* 以生成ECC256密钥为例 */
 class HuksProperties {
     tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM
@@ -148,7 +170,9 @@ generateKeyItem(keyAlias: string, options: HuksOptions) : Promise\<void>
 
 生成密钥，使用Promise方式异步返回结果。基于密钥不出TEE原则，通过promise不会返回密钥材料内容，只用于表示此次调用是否成功。
 
-**系统能力**：SystemCapability.Security.Huks.Extension
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Security.Huks.Extension
 
 **参数：**
 
@@ -169,14 +193,14 @@ generateKeyItem(keyAlias: string, options: HuksOptions) : Promise\<void>
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 401 | argument is invalid. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | api is not supported. |
 | 12000001 | algorithm mode is not supported. |
 | 12000002 | algorithm param is missing. |
 | 12000003 | algorithm param is invalid. |
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
-| 12000006 | error occured in crypto engine. |
+| 12000006 | error occurred in crypto engine. |
 | 12000012 | external error. |
 | 12000013 | queried credential does not exist. |
 | 12000014 | memory is insufficient. |
@@ -186,8 +210,8 @@ generateKeyItem(keyAlias: string, options: HuksOptions) : Promise\<void>
 
 ```ts
 /* 以生成ECC256密钥为例 */
-import huks from '@ohos.security.huks';
-import { BusinessError } from '@ohos.base';
+import { huks } from '@kit.UniversalKeystoreKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 class HuksProperties {
     tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM
     value: huks.HuksKeyAlg | huks.HuksKeySize | huks.HuksKeyPurpose | huks.HuksKeyDigest = huks.HuksKeyAlg.HUKS_ALG_ECC
@@ -235,7 +259,9 @@ deleteKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<v
 
 删除密钥，使用Callback回调异步返回结果。
 
-**系统能力**：SystemCapability.Security.Huks.Core
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Security.Huks.Core
 
 **参数：**
 
@@ -251,7 +277,7 @@ deleteKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<v
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 401 | argument is invalid. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | api is not supported. |
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
@@ -262,7 +288,7 @@ deleteKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<v
 **示例：**
 
 ```ts
-import huks from '@ohos.security.huks';
+import { huks } from '@kit.UniversalKeystoreKit';
 /* 此处options选择emptyOptions传空 */
 let keyAlias = 'keyAlias';
 let emptyOptions: huks.HuksOptions = {
@@ -287,7 +313,9 @@ deleteKeyItem(keyAlias: string, options: HuksOptions) : Promise\<void>
 
 删除密钥，使用Promise方式异步返回结果。
 
-**系统能力**：SystemCapability.Security.Huks.Extension
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Security.Huks.Extension
 
 **参数：**
 
@@ -308,7 +336,7 @@ deleteKeyItem(keyAlias: string, options: HuksOptions) : Promise\<void>
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 401 | argument is invalid. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | api is not supported. |
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
@@ -319,8 +347,8 @@ deleteKeyItem(keyAlias: string, options: HuksOptions) : Promise\<void>
 **示例：**
 
 ```ts
-import huks from '@ohos.security.huks';
-import { BusinessError } from '@ohos.base';
+import { huks } from '@kit.UniversalKeystoreKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 /* 此处options选择emptyOptions传空 */
 let keyAlias = 'keyAlias';
 let emptyOptions: huks.HuksOptions = {
@@ -339,48 +367,15 @@ try {
 }
 ```
 
-## huks.getSdkVersion<sup>(deprecated)</sup>
-
-getSdkVersion(options: HuksOptions) : string
-
-获取当前系统sdk版本。
-
-> **说明：**
->
-> 从API version 11开始废弃。
-
-**系统能力**：SystemCapability.Security.Huks.Extension
-
-**参数：**
-
-| 参数名  | 类型       | 必填 | 说明                      |
-| ------- | ---------- | ---- | ------------------------- |
-| options | [HuksOptions](#huksoptions) | 是   | 空对象，用于存放sdk版本。 |
-
-**返回值：**
-
-| 类型   | 说明          |
-| ------ | ------------- |
-| string | 返回sdk版本。 |
-
-**示例：**
-
-```ts
-import huks from '@ohos.security.huks';
-/* 此处options选择emptyOptions传空 */
-let emptyOptions: huks.HuksOptions = {
-    properties: []
-};
-let result = huks.getSdkVersion(emptyOptions);
-```
-
 ## huks.importKeyItem<sup>9+</sup>
 
 importKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<void>) : void
 
 导入明文密钥，使用Callback方式回调异步返回结果 。
 
-**系统能力**：SystemCapability.Security.Huks.Extension
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Security.Huks.Extension
 
 **参数：**
 
@@ -396,14 +391,14 @@ importKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<v
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 401 | argument is invalid. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | api is not supported. |
 | 12000001 | algorithm mode is not supported. |
 | 12000002 | algorithm param is missing. |
 | 12000003 | algorithm param is invalid. |
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
-| 12000006 | error occured in crypto engine. |
+| 12000006 | error occurred in crypto engine. |
 | 12000011 | queried entity does not exist. |
 | 12000012 | external error. |
 | 12000013 | queried credential does not exist. |
@@ -413,7 +408,7 @@ importKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<v
 **示例：**
 
 ```ts
-import huks from '@ohos.security.huks';
+import { huks } from '@kit.UniversalKeystoreKit';
 /* 以导入AES256密钥为例 */
 class HuksProperties {
     tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM
@@ -475,7 +470,9 @@ importKeyItem(keyAlias: string, options: HuksOptions) : Promise\<void>
 
 导入明文密钥，使用Promise方式异步返回结果。
 
-**系统能力**：SystemCapability.Security.Huks.Extension
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Security.Huks.Extension
 
 **参数：**
 
@@ -496,14 +493,14 @@ importKeyItem(keyAlias: string, options: HuksOptions) : Promise\<void>
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 401 | argument is invalid. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | api is not supported. |
 | 12000001 | algorithm mode is not supported. |
 | 12000002 | algorithm param is missing. |
 | 12000003 | algorithm param is invalid. |
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
-| 12000006 | error occured in crypto engine. |
+| 12000006 | error occurred in crypto engine. |
 | 12000011 | queried entity does not exist. |
 | 12000012 | external error. |
 | 12000013 | queried credential does not exist. |
@@ -513,8 +510,8 @@ importKeyItem(keyAlias: string, options: HuksOptions) : Promise\<void>
 **示例：**
 
 ```ts
-import huks from '@ohos.security.huks';
-import { BusinessError } from '@ohos.base';
+import { huks } from '@kit.UniversalKeystoreKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 /* 以导入AES128为例 */
 class HuksProperties {
     tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM
@@ -553,12 +550,12 @@ let properties: HuksProperties[] = [
         value: huks.HuksCipherMode.HUKS_MODE_ECB
     }
 ];
-let huksoptions: huks.HuksOptions = {
+let huksOptions: huks.HuksOptions = {
     properties: properties,
     inData: plainTextSize32
 };
 try {
-    huks.importKeyItem(keyAlias, huksoptions)
+    huks.importKeyItem(keyAlias, huksOptions)
         .then((data) => {
             console.info(`promise: importKeyItem success`);
         })
@@ -578,7 +575,7 @@ attestKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<H
 
 **需要权限**：ohos.permission.ATTEST_KEY，该权限仅系统应用可申请。
 
-**系统能力**：SystemCapability.Security.Huks.Extension
+**系统能力：** SystemCapability.Security.Huks.Extension
 
 **参数：**
 
@@ -595,14 +592,14 @@ attestKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<H
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
 | 201 | check permission failed. |
-| 401 | argument is invalid. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | api is not supported. |
 | 12000001 | algorithm mode is not supported. |
 | 12000002 | algorithm param is missing. |
 | 12000003 | algorithm param is invalid. |
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
-| 12000006 | error occured in crypto engine. |
+| 12000006 | error occurred in crypto engine. |
 | 12000011 | queried entity does not exist. |
 | 12000012 | external error. |
 | 12000014 | memory is insufficient. |
@@ -610,7 +607,7 @@ attestKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<H
 **示例：**
 
 ```ts
-import huks from '@ohos.security.huks';
+import { huks } from '@kit.UniversalKeystoreKit';
 class HuksProperties {
     tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM
     value: huks.HuksKeyAlg | huks.HuksKeySize | huks.HuksKeyPurpose | huks.HuksKeyDigest |
@@ -720,7 +717,7 @@ attestKeyItem(keyAlias: string, options: HuksOptions) : Promise\<HuksReturnResul
 
 **需要权限**：ohos.permission.ATTEST_KEY，该权限仅系统应用可申请。
 
-**系统能力**：SystemCapability.Security.Huks.Extension
+**系统能力：** SystemCapability.Security.Huks.Extension
 
 **参数：**
 
@@ -742,14 +739,14 @@ attestKeyItem(keyAlias: string, options: HuksOptions) : Promise\<HuksReturnResul
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
 | 201 | check permission failed. |
-| 401 | argument is invalid. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | api is not supported. |
 | 12000001 | algorithm mode is not supported. |
 | 12000002 | algorithm param is missing. |
 | 12000003 | algorithm param is invalid. |
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
-| 12000006 | error occured in crypto engine. |
+| 12000006 | error occurred in crypto engine. |
 | 12000011 | queried entity does not exist. |
 | 12000012 | external error. |
 | 12000014 | memory is insufficient. |
@@ -757,8 +754,8 @@ attestKeyItem(keyAlias: string, options: HuksOptions) : Promise\<HuksReturnResul
 **示例：**
 
 ```ts
-import huks from '@ohos.security.huks';
-import { BusinessError } from '@ohos.base';
+import { huks } from '@kit.UniversalKeystoreKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 class HuksProperties {
     tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM
     value: huks.HuksKeyAlg | huks.HuksKeySize | huks.HuksKeyPurpose | huks.HuksKeyDigest |
@@ -870,7 +867,9 @@ anonAttestKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallbac
 
 该操作需要联网进行，且耗时较长。
 
-**系统能力**：SystemCapability.Security.Huks.Extension
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Security.Huks.Extension
 
 **参数：**
 
@@ -886,14 +885,14 @@ anonAttestKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallbac
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 401 | argument is invalid. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | api is not supported. |
 | 12000001 | algorithm mode is not supported. |
 | 12000002 | algorithm param is missing. |
 | 12000003 | algorithm param is invalid. |
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
-| 12000006 | error occured in crypto engine. |
+| 12000006 | error occurred in crypto engine. |
 | 12000011 | queried entity does not exist. |
 | 12000012 | external error. |
 | 12000014 | memory is insufficient. |
@@ -901,7 +900,7 @@ anonAttestKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallbac
 **示例：**
 
 ```ts
-import huks from '@ohos.security.huks';
+import { huks } from '@kit.UniversalKeystoreKit';
 class HuksProperties {
     tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM
     value: huks.HuksKeyAlg | huks.HuksKeySize | huks.HuksKeyPurpose | huks.HuksKeyDigest |
@@ -1011,7 +1010,9 @@ anonAttestKeyItem(keyAlias: string, options: HuksOptions) : Promise\<HuksReturnR
 
 该操作需要联网进行，且耗时较长。
 
-**系统能力**：SystemCapability.Security.Huks.Extension
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Security.Huks.Extension
 
 **参数：**
 
@@ -1032,14 +1033,14 @@ anonAttestKeyItem(keyAlias: string, options: HuksOptions) : Promise\<HuksReturnR
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 401 | argument is invalid. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | api is not supported. |
 | 12000001 | algorithm mode is not supported. |
 | 12000002 | algorithm param is missing. |
 | 12000003 | algorithm param is invalid. |
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
-| 12000006 | error occured in crypto engine. |
+| 12000006 | error occurred in crypto engine. |
 | 12000011 | queried entity does not exist. |
 | 12000012 | external error. |
 | 12000014 | memory is insufficient. |
@@ -1047,7 +1048,7 @@ anonAttestKeyItem(keyAlias: string, options: HuksOptions) : Promise\<HuksReturnR
 **示例：**
 
 ```ts
-import huks from '@ohos.security.huks';
+import { huks } from '@kit.UniversalKeystoreKit';
 class HuksProperties {
     tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM
     value: huks.HuksKeyAlg | huks.HuksKeySize | huks.HuksKeyPurpose | huks.HuksKeyDigest |
@@ -1145,7 +1146,9 @@ importWrappedKeyItem(keyAlias: string, wrappingKeyAlias: string, options: HuksOp
 
 导入加密密钥，使用Callback方式回调异步返回结果 。
 
-**系统能力**：SystemCapability.Security.Huks.Extension
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Security.Huks.Extension
 
 **参数：**
 
@@ -1162,14 +1165,14 @@ importWrappedKeyItem(keyAlias: string, wrappingKeyAlias: string, options: HuksOp
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 401 | argument is invalid. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | api is not supported. |
 | 12000001 | algorithm mode is not supported. |
 | 12000002 | algorithm param is missing. |
 | 12000003 | algorithm param is invalid. |
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
-| 12000006 | error occured in crypto engine. |
+| 12000006 | error occurred in crypto engine. |
 | 12000011 | queried entity does not exist. |
 | 12000012 | external error. |
 | 12000013 | queried credential does not exist. |
@@ -1179,8 +1182,8 @@ importWrappedKeyItem(keyAlias: string, wrappingKeyAlias: string, options: HuksOp
 **示例：**
 
 ```ts
-import huks from '@ohos.security.huks';
-import { BusinessError } from '@ohos.base';
+import { huks } from '@kit.UniversalKeystoreKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 class HuksProperties {
     tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM
     value: huks.HuksKeyAlg | huks.HuksKeySize | huks.HuksKeyPurpose |
@@ -1378,7 +1381,9 @@ importWrappedKeyItem(keyAlias: string, wrappingKeyAlias: string, options: HuksOp
 
 导入加密密钥，使用Promise方式异步返回结果。
 
-**系统能力**：SystemCapability.Security.Huks.Extension
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Security.Huks.Extension
 
 **参数：**
 
@@ -1400,14 +1405,14 @@ importWrappedKeyItem(keyAlias: string, wrappingKeyAlias: string, options: HuksOp
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 401 | argument is invalid. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | api is not supported. |
 | 12000001 | algorithm mode is not supported. |
 | 12000002 | algorithm param is missing. |
 | 12000003 | algorithm param is invalid. |
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
-| 12000006 | error occured in crypto engine. |
+| 12000006 | error occurred in crypto engine. |
 | 12000011 | queried entity does not exist. |
 | 12000012 | external error. |
 | 12000013 | queried credential does not exist. |
@@ -1417,8 +1422,8 @@ importWrappedKeyItem(keyAlias: string, wrappingKeyAlias: string, options: HuksOp
 **示例：**
 
 ```ts
-import huks from '@ohos.security.huks';
-import { BusinessError } from '@ohos.base';
+import { huks } from '@kit.UniversalKeystoreKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 /* 处理流程与callback类似，主要差异点为如下函数： */
 /* 该处为示例代码，实际运行过程中，应使用实际导入密钥数据。数据构造方式由上注释可见说明 */
 async function TestImportWrappedFunc(alias: string, wrappingAlias: string, options: huks.HuksOptions) {
@@ -1442,7 +1447,9 @@ exportKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<H
 
 导出密钥，使用Callback方式回调异步返回的结果。
 
-**系统能力**：SystemCapability.Security.Huks.Extension
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Security.Huks.Extension
 
 **参数：**
 
@@ -1458,14 +1465,14 @@ exportKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<H
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 401 | argument is invalid. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | api is not supported. |
 | 12000001 | algorithm mode is not supported. |
 | 12000002 | algorithm param is missing. |
 | 12000003 | algorithm param is invalid. |
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
-| 12000006 | error occured in crypto engine. |
+| 12000006 | error occurred in crypto engine. |
 | 12000011 | queried entity does not exist. |
 | 12000012 | external error. |
 | 12000014 | memory is insufficient. |
@@ -1473,7 +1480,7 @@ exportKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<H
 **示例：**
 
 ```ts
-import huks from '@ohos.security.huks';
+import { huks } from '@kit.UniversalKeystoreKit';
 /* 此处options选择emptyOptions来传空 */
 let keyAlias = 'keyAlias';
 let emptyOptions: huks.HuksOptions = {
@@ -1498,7 +1505,9 @@ exportKeyItem(keyAlias: string, options: HuksOptions) : Promise\<HuksReturnResul
 
 导出密钥，使用Promise方式回调异步返回的结果。
 
-**系统能力**：SystemCapability.Security.Huks.Extension
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Security.Huks.Extension
 
 **参数：**
 
@@ -1519,14 +1528,14 @@ exportKeyItem(keyAlias: string, options: HuksOptions) : Promise\<HuksReturnResul
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 401 | argument is invalid. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | api is not supported. |
 | 12000001 | algorithm mode is not supported. |
 | 12000002 | algorithm param is missing. |
 | 12000003 | algorithm param is invalid. |
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
-| 12000006 | error occured in crypto engine. |
+| 12000006 | error occurred in crypto engine. |
 | 12000011 | queried entity does not exist. |
 | 12000012 | external error. |
 | 12000014 | memory is insufficient. |
@@ -1534,8 +1543,8 @@ exportKeyItem(keyAlias: string, options: HuksOptions) : Promise\<HuksReturnResul
 **示例：**
 
 ```ts
-import huks from '@ohos.security.huks';
-import { BusinessError } from '@ohos.base';
+import { huks } from '@kit.UniversalKeystoreKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 /* 此处options选择emptyOptions来传空 */
 let keyAlias = 'keyAlias';
 let emptyOptions: huks.HuksOptions = {
@@ -1560,7 +1569,9 @@ getKeyItemProperties(keyAlias: string, options: HuksOptions, callback: AsyncCall
 
 获取密钥属性，使用Callback回调异步返回结果。
 
-**系统能力**：SystemCapability.Security.Huks.Extension
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Security.Huks.Extension
 
 **参数：**
 
@@ -1576,14 +1587,14 @@ getKeyItemProperties(keyAlias: string, options: HuksOptions, callback: AsyncCall
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 401 | argument is invalid. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | api is not supported. |
 | 12000001 | algorithm mode is not supported. |
 | 12000002 | algorithm param is missing. |
 | 12000003 | algorithm param is invalid. |
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
-| 12000006 | error occured in crypto engine. |
+| 12000006 | error occurred in crypto engine. |
 | 12000011 | queried entity does not exist. |
 | 12000012 | external error. |
 | 12000014 | memory is insufficient. |
@@ -1591,7 +1602,7 @@ getKeyItemProperties(keyAlias: string, options: HuksOptions, callback: AsyncCall
 **示例：**
 
 ```ts
-import huks from '@ohos.security.huks';
+import { huks } from '@kit.UniversalKeystoreKit';
 /* 此处options选择emptyOptions来传空 */
 let keyAlias = 'keyAlias';
 let emptyOptions: huks.HuksOptions = {
@@ -1616,7 +1627,9 @@ getKeyItemProperties(keyAlias: string, options: HuksOptions) : Promise\<HuksRetu
 
 获取密钥属性，使用Promise回调异步返回结果。
 
-**系统能力**：SystemCapability.Security.Huks.Extension
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Security.Huks.Extension
 
 **参数：**
 
@@ -1637,14 +1650,14 @@ getKeyItemProperties(keyAlias: string, options: HuksOptions) : Promise\<HuksRetu
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 401 | argument is invalid. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | api is not supported. |
 | 12000001 | algorithm mode is not supported. |
 | 12000002 | algorithm param is missing. |
 | 12000003 | algorithm param is invalid. |
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
-| 12000006 | error occured in crypto engine. |
+| 12000006 | error occurred in crypto engine. |
 | 12000011 | queried entity does not exist. |
 | 12000012 | external error. |
 | 12000014 | memory is insufficient. |
@@ -1652,8 +1665,8 @@ getKeyItemProperties(keyAlias: string, options: HuksOptions) : Promise\<HuksRetu
 **示例：**
 
 ```ts
-import huks from '@ohos.security.huks';
-import { BusinessError } from '@ohos.base';
+import { huks } from '@kit.UniversalKeystoreKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 /* 此处options选择emptyOptions来传空 */
 let keyAlias = 'keyAlias';
 let emptyOptions: huks.HuksOptions = {
@@ -1678,7 +1691,7 @@ isKeyItemExist(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<
 
 判断密钥是否存在，使用Callback回调异步返回结果 。
 
-**系统能力**：SystemCapability.Security.Huks.Core
+**系统能力：** SystemCapability.Security.Huks.Core
 
 **参数：**
 
@@ -1694,13 +1707,13 @@ isKeyItemExist(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 401 | argument is invalid. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | api is not supported. |
 | 12000002 | algorithm param is missing. |
 | 12000003 | algorithm param is invalid. |
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
-| 12000006 | error occured in crypto engine. |
+| 12000006 | error occurred in crypto engine. |
 | 12000011 | queried entity does not exist. |
 | 12000012 | external error. |
 | 12000014 | memory is insufficient. |
@@ -1708,8 +1721,8 @@ isKeyItemExist(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<
 **示例：**
 
 ```ts
-import huks from '@ohos.security.huks';
-import promptAction from '@ohos.promptAction';
+import { huks } from '@kit.UniversalKeystoreKit';
+import { promptAction } from '@kit.ArkUI';
 /* 此处options选择emptyOptions来传空 */
 let keyAlias = 'keyAlias';
 let emptyOptions: huks.HuksOptions = {
@@ -1736,7 +1749,7 @@ isKeyItemExist(keyAlias: string, options: HuksOptions) : Promise\<boolean>
 
 判断密钥是否存在，使用Promise回调异步返回结果 。
 
-**系统能力**：SystemCapability.Security.Huks.Extension
+**系统能力：** SystemCapability.Security.Huks.Extension
 
 **参数：**
 
@@ -1757,13 +1770,13 @@ isKeyItemExist(keyAlias: string, options: HuksOptions) : Promise\<boolean>
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 401 | argument is invalid. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | api is not supported. |
 | 12000002 | algorithm param is missing. |
 | 12000003 | algorithm param is invalid. |
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
-| 12000006 | error occured in crypto engine. |
+| 12000006 | error occurred in crypto engine. |
 | 12000011 | queried entity does not exist. |
 | 12000012 | external error. |
 | 12000014 | memory is insufficient. |
@@ -1771,9 +1784,9 @@ isKeyItemExist(keyAlias: string, options: HuksOptions) : Promise\<boolean>
 **示例：**
 
 ```ts
-import huks from '@ohos.security.huks';
-import { BusinessError } from '@ohos.base';
-import promptAction from '@ohos.promptAction';
+import { huks } from '@kit.UniversalKeystoreKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { promptAction } from '@kit.ArkUI';
 
 /* 此处options选择emptyOptions来传空 */
 let keyAlias = 'keyAlias';
@@ -1799,7 +1812,9 @@ hasKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<bool
 
 判断密钥是否存在，使用Callback回调异步返回结果 。
 
-**系统能力**：SystemCapability.Security.Huks.Core
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Security.Huks.Core
 
 **参数：**
 
@@ -1815,21 +1830,21 @@ hasKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<bool
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 401 | argument is invalid. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | api is not supported. |
 | 12000002 | algorithm param is missing. |
 | 12000003 | algorithm param is invalid. |
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
-| 12000006 | error occured in crypto engine. |
+| 12000006 | error occurred in crypto engine. |
 | 12000012 | external error. |
 | 12000014 | memory is insufficient. |
 
 **示例：**
 
 ```ts
-import huks from '@ohos.security.huks';
-import promptAction from '@ohos.promptAction';
+import { huks } from '@kit.UniversalKeystoreKit';
+import { promptAction } from '@kit.ArkUI';
 /* 此处options选择emptyOptions来传空 */
 let keyAlias = 'keyAlias';
 let emptyOptions: huks.HuksOptions = {
@@ -1861,7 +1876,9 @@ hasKeyItem(keyAlias: string, options: HuksOptions) : Promise\<boolean>
 
 判断密钥是否存在，使用Promise回调异步返回结果 。
 
-**系统能力**：SystemCapability.Security.Huks.Extension
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Security.Huks.Extension
 
 **参数：**
 
@@ -1882,22 +1899,22 @@ hasKeyItem(keyAlias: string, options: HuksOptions) : Promise\<boolean>
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 401 | argument is invalid. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | api is not supported. |
 | 12000002 | algorithm param is missing. |
 | 12000003 | algorithm param is invalid. |
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
-| 12000006 | error occured in crypto engine. |
+| 12000006 | error occurred in crypto engine. |
 | 12000012 | external error. |
 | 12000014 | memory is insufficient. |
 
 **示例：**
 
 ```ts
-import huks from '@ohos.security.huks';
-import { BusinessError } from '@ohos.base';
-import promptAction from '@ohos.promptAction';
+import { huks } from '@kit.UniversalKeystoreKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { promptAction } from '@kit.ArkUI';
 
 /* 此处options选择emptyOptions来传空 */
 let keyAlias = 'keyAlias';
@@ -1930,7 +1947,9 @@ initSession(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<Huk
 
 initSession操作密钥接口，使用Callback回调异步返回结果。huks.initSession, huks.updateSession, huks.finishSession为三段式接口，需要一起使用。
 
-**系统能力**：SystemCapability.Security.Huks.Core
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Security.Huks.Core
 
 **参数：**
 
@@ -1946,14 +1965,14 @@ initSession操作密钥接口，使用Callback回调异步返回结果。huks.in
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 401 | argument is invalid. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | api is not supported. |
 | 12000001 | algorithm mode is not supported. |
 | 12000002 | algorithm param is missing. |
 | 12000003 | algorithm param is invalid. |
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
-| 12000006 | error occured in crypto engine. |
+| 12000006 | error occurred in crypto engine. |
 | 12000010 | the number of sessions has reached limit. |
 | 12000011 | queried entity does not exist. |
 | 12000012 | external error. |
@@ -1965,7 +1984,9 @@ initSession(keyAlias: string, options: HuksOptions) : Promise\<HuksSessionHandle
 
 initSession操作密钥接口，使用Promise方式异步返回结果。huks.initSession, huks.updateSession, huks.finishSession为三段式接口，需要一起使用。
 
-**系统能力**：SystemCapability.Security.Huks.Extension
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Security.Huks.Extension
 
 **参数：**
 
@@ -1986,14 +2007,14 @@ initSession操作密钥接口，使用Promise方式异步返回结果。huks.ini
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 401 | argument is invalid. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | api is not supported. |
 | 12000001 | algorithm mode is not supported. |
 | 12000002 | algorithm param is missing. |
 | 12000003 | algorithm param is invalid. |
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
-| 12000006 | error occured in crypto engine. |
+| 12000006 | error occurred in crypto engine. |
 | 12000010 | the number of sessions has reached limit. |
 | 12000011 | queried entity does not exist. |
 | 12000012 | external error. |
@@ -2005,7 +2026,9 @@ updateSession(handle: number, options: HuksOptions, callback: AsyncCallback\<Huk
 
 updateSession操作密钥接口，使用Callback回调异步返回结果。huks.initSession, huks.updateSession, huks.finishSession为三段式接口，需要一起使用。
 
-**系统能力**：SystemCapability.Security.Huks.Core
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Security.Huks.Core
 
 **参数：**
 
@@ -2021,17 +2044,17 @@ updateSession操作密钥接口，使用Callback回调异步返回结果。huks.
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 401 | argument is invalid. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | api is not supported. |
 | 12000001 | algorithm mode is not supported. |
 | 12000002 | algorithm param is missing. |
 | 12000003 | algorithm param is invalid. |
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
-| 12000006 | error occured in crypto engine. |
+| 12000006 | error occurred in crypto engine. |
 | 12000007 | this credential is already invalidated permanently. |
-| 12000008 | verify authtoken failed. |
-| 12000009 | authtoken is already timeout. |
+| 12000008 | verify auth token failed. |
+| 12000009 | auth token is already timeout. |
 | 12000011 | queried entity does not exist. |
 | 12000012 | external error. |
 | 12000014 | memory is insufficient. |
@@ -2042,7 +2065,9 @@ updateSession(handle: number, options: HuksOptions, token: Uint8Array, callback:
 
 updateSession操作密钥接口，使用Callback回调异步返回结果。huks.initSession, huks.updateSession, huks.finishSession为三段式接口，需要一起使用。
 
-**系统能力**：SystemCapability.Security.Huks.Extension
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Security.Huks.Extension
 
 **参数：**
 
@@ -2050,7 +2075,7 @@ updateSession操作密钥接口，使用Callback回调异步返回结果。huks.
 | -------- | ---------------------------------------------------- | ---- | -------------------------------------------- |
 | handle   | number                                               | 是   | updateSession操作的handle。                         |
 | options  | [HuksOptions](#huksoptions)                          | 是   | updateSession操作的参数集合。                       |
-| token    | Uint8Array                                           | 是   | 密钥[二次认证密钥访问控制](../../security/UniversalKeystoreKit/huks-identity-authentication-overview.md)制的用户鉴权证明(AuthToken)                         |
+| token    | Uint8Array                                           | 是   | 密钥[二次认证密钥访问控制](../../security/UniversalKeystoreKit/huks-identity-authentication-overview.md)的用户鉴权证明(AuthToken)。                         |
 | callback | AsyncCallback<[HuksReturnResult](#huksreturnresult9)> | 是   | 回调函数。将updateSession操作的结果添加到密钥管理系统的回调。 |
 
 **错误码：**
@@ -2059,17 +2084,17 @@ updateSession操作密钥接口，使用Callback回调异步返回结果。huks.
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 401 | argument is invalid. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | api is not supported. |
 | 12000001 | algorithm mode is not supported. |
 | 12000002 | algorithm param is missing. |
 | 12000003 | algorithm param is invalid. |
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
-| 12000006 | error occured in crypto engine. |
+| 12000006 | error occurred in crypto engine. |
 | 12000007 | this credential is already invalidated permanently. |
-| 12000008 | verify authtoken failed. |
-| 12000009 | authtoken is already timeout. |
+| 12000008 | verify auth token failed. |
+| 12000009 | auth token is already timeout. |
 | 12000011 | queried entity does not exist. |
 | 12000012 | external error. |
 | 12000014 | memory is insufficient. |
@@ -2080,7 +2105,9 @@ updateSession(handle: number, options: HuksOptions, token?: Uint8Array) : Promis
 
 updateSession操作密钥接口，使用Promise方式异步返回结果。huks.initSession, huks.updateSession, huks.finishSession为三段式接口，需要一起使用。
 
-**系统能力**：SystemCapability.Security.Huks.Extension
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Security.Huks.Extension
 
 **参数：**
 
@@ -2088,7 +2115,7 @@ updateSession操作密钥接口，使用Promise方式异步返回结果。huks.i
 | ------- | ---------------------------------------------- | ---- | -------------------------------------------- |
 | handle  | number                                         | 是   | updateSession操作的handle。                         |
 | options | [HuksOptions](#huksoptions)                    | 是   | updateSession操作的参数集合。                       |
-| token   | Uint8Array                                     | 否   |密钥[二次认证密钥访问控制](../../security/UniversalKeystoreKit/huks-identity-authentication-overview.md)制的用户鉴权证明(AuthToken) ，不填表示不进行二次认证密钥访问控制。                          |
+| token   | Uint8Array                                     | 否   |密钥[二次认证密钥访问控制](../../security/UniversalKeystoreKit/huks-identity-authentication-overview.md)的用户鉴权证明(AuthToken)，不填表示不进行二次认证密钥访问控制。                          |
 
 **返回值**：
 
@@ -2102,17 +2129,17 @@ updateSession操作密钥接口，使用Promise方式异步返回结果。huks.i
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 401 | argument is invalid. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | api is not supported. |
 | 12000001 | algorithm mode is not supported. |
 | 12000002 | algorithm param is missing. |
 | 12000003 | algorithm param is invalid. |
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
-| 12000006 | error occured in crypto engine. |
+| 12000006 | error occurred in crypto engine. |
 | 12000007 | this credential is already invalidated permanently. |
-| 12000008 | verify authtoken failed. |
-| 12000009 | authtoken is already timeout. |
+| 12000008 | verify auth token failed. |
+| 12000009 | auth token is already timeout. |
 | 12000011 | queried entity does not exist. |
 | 12000012 | external error. |
 | 12000014 | memory is insufficient. |
@@ -2123,7 +2150,9 @@ finishSession(handle: number, options: HuksOptions, callback: AsyncCallback\<Huk
 
 finishSession操作密钥接口，使用Callback回调异步返回结果。huks.initSession, huks.updateSession, huks.finishSession为三段式接口，需要一起使用。
 
-**系统能力**：SystemCapability.Security.Huks.Core
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Security.Huks.Core
 
 **参数：**
 
@@ -2139,17 +2168,17 @@ finishSession操作密钥接口，使用Callback回调异步返回结果。huks.
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 401 | argument is invalid. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | api is not supported. |
 | 12000001 | algorithm mode is not supported. |
 | 12000002 | algorithm param is missing. |
 | 12000003 | algorithm param is invalid. |
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
-| 12000006 | error occured in crypto engine. |
+| 12000006 | error occurred in crypto engine. |
 | 12000007 | this credential is already invalidated permanently. |
-| 12000008 | verify authtoken failed. |
-| 12000009 | authtoken is already timeout. |
+| 12000008 | verify auth token failed. |
+| 12000009 | auth token is already timeout. |
 | 12000011 | queried entity does not exist. |
 | 12000012 | external error. |
 | 12000014 | memory is insufficient. |
@@ -2160,7 +2189,9 @@ finishSession(handle: number, options: HuksOptions, token: Uint8Array, callback:
 
 finishSession操作密钥接口，使用Callback回调异步返回结果。huks.initSession, huks.updateSession, huks.finishSession为三段式接口，需要一起使用。
 
-**系统能力**：SystemCapability.Security.Huks.Extension
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Security.Huks.Extension
 
 **参数：**
 
@@ -2168,7 +2199,7 @@ finishSession操作密钥接口，使用Callback回调异步返回结果。huks.
 | -------- | ----------------------------------------------------- | ---- | -------------------------------------------- |
 | handle   | number                                                | 是   | finishSession操作的handle。                         |
 | options  | [HuksOptions](#huksoptions)                           | 是   | finishSession的参数集合。                           |
-| token    | Uint8Array                                            | 是   | finishSession操作的token。                          |
+| token    | Uint8Array                                            | 是   | 密钥[二次认证密钥访问控制](../../security/UniversalKeystoreKit/huks-identity-authentication-overview.md)的用户鉴权证明(AuthToken)。                         |
 | callback | AsyncCallback\<[HuksReturnResult](#huksreturnresult9)> | 是   | 回调函数。将finishSession操作的结果添加到密钥管理系统的回调。 |
 
 **错误码：**
@@ -2177,17 +2208,17 @@ finishSession操作密钥接口，使用Callback回调异步返回结果。huks.
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 401 | argument is invalid. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | api is not supported. |
 | 12000001 | algorithm mode is not supported. |
 | 12000002 | algorithm param is missing. |
 | 12000003 | algorithm param is invalid. |
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
-| 12000006 | error occured in crypto engine. |
+| 12000006 | error occurred in crypto engine. |
 | 12000007 | this credential is already invalidated permanently. |
-| 12000008 | verify authtoken failed. |
-| 12000009 | authtoken is already timeout. |
+| 12000008 | verify auth token failed. |
+| 12000009 | auth token is already timeout. |
 | 12000011 | queried entity does not exist. |
 | 12000012 | external error. |
 | 12000014 | memory is insufficient. |
@@ -2198,7 +2229,9 @@ finishSession(handle: number, options: HuksOptions, token?: Uint8Array) : Promis
 
 finishSession操作密钥接口，使用Promise方式异步返回结果。huks.initSession, huks.updateSession, huks.finishSession为三段式接口，需要一起使用。
 
-**系统能力**：SystemCapability.Security.Huks.Extension
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Security.Huks.Extension
 
 **参数：**
 
@@ -2206,7 +2239,7 @@ finishSession操作密钥接口，使用Promise方式异步返回结果。huks.i
 | ------- | ----------------------------------------------- | ---- | ----------------------------------- |
 | handle  | number                                          | 是   | finishSession操作的handle。                |
 | options | [HuksOptions](#huksoptions)                     | 是   | finishSession操作的参数集合。              |
-| token   | Uint8Array                                      | 否   | finishSession操作的token。                 |
+| token   | Uint8Array                                      | 否   | 密钥[二次认证密钥访问控制](../../security/UniversalKeystoreKit/huks-identity-authentication-overview.md)的用户鉴权证明(AuthToken)，不填表示不进行二次认证密钥访问控制。     |
 
 **返回值**：
 
@@ -2220,17 +2253,17 @@ finishSession操作密钥接口，使用Promise方式异步返回结果。huks.i
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 401 | argument is invalid. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | api is not supported. |
 | 12000001 | algorithm mode is not supported. |
 | 12000002 | algorithm param is missing. |
 | 12000003 | algorithm param is invalid. |
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
-| 12000006 | error occured in crypto engine. |
+| 12000006 | error occurred in crypto engine. |
 | 12000007 | this credential is already invalidated permanently. |
-| 12000008 | verify authtoken failed. |
-| 12000009 | authtoken is already timeout. |
+| 12000008 | verify auth token failed. |
+| 12000009 | auth token is already timeout. |
 | 12000011 | queried entity does not exist. |
 | 12000012 | external error. |
 | 12000014 | memory is insufficient. |
@@ -2241,7 +2274,9 @@ abortSession(handle: number, options: HuksOptions, callback: AsyncCallback\<void
 
 abortSession操作密钥接口，使用Callback回调异步返回结果 。
 
-**系统能力**：SystemCapability.Security.Huks.Core
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Security.Huks.Core
 
 **参数：**
 
@@ -2257,18 +2292,18 @@ abortSession操作密钥接口，使用Callback回调异步返回结果 。
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 401 | argument is invalid. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | api is not supported. |
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
-| 12000006 | error occured in crypto engine. |
+| 12000006 | error occurred in crypto engine. |
 | 12000012 | external error. |
 | 12000014 | memory is insufficient. |
 
 **示例：**
 
 ```ts
-import huks from '@ohos.security.huks';
+import { huks } from '@kit.UniversalKeystoreKit';
 /* huks.initSession, huks.updateSession, huks.finishSession为三段式接口，需要一起使用，当
  * huks.initSession和huks.updateSession
  * 以及huks.finishSession操作中的任一阶段发生错误时，
@@ -2348,7 +2383,9 @@ abortSession(handle: number, options: HuksOptions) : Promise\<void>;
 
 abortSession操作密钥接口，使用Promise方式异步返回结果。
 
-**系统能力**：SystemCapability.Security.Huks.Extension
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Security.Huks.Extension
 
 **参数：**
 
@@ -2369,19 +2406,19 @@ abortSession操作密钥接口，使用Promise方式异步返回结果。
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 401 | argument is invalid. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | api is not supported. |
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
-| 12000006 | error occured in crypto engine. |
+| 12000006 | error occurred in crypto engine. |
 | 12000012 | external error. |
 | 12000014 | memory is insufficient. |
 
 **示例：**
 
 ```ts
-import huks from '@ohos.security.huks';
-import { BusinessError } from '@ohos.base';
+import { huks } from '@kit.UniversalKeystoreKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 /* huks.initSession, huks.updateSession, huks.finishSession为三段式接口，需要一起使用，当
  * huks.initSession和huks.updateSession
  * 以及huks.finishSession操作中的任一阶段发生错误时，
@@ -2522,6 +2559,73 @@ async function testAbort() {
 }
 ```
 
+## huks.listAliases<sup>12+</sup>
+
+listAliases(options: HuksOptions): Promise\<HuksListAliasesReturnResult>;
+
+查询密钥别名集接口，使用Promise方式异步返回结果。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力**：SystemCapability.Security.Huks.Extension
+
+**参数：**
+
+| 参数名  | 类型                        | 必填 | 说明                                        |
+| ------- | --------------------------- | ---- | ------------------------------------------- |
+| options  | [HuksOptions](#huksoptions)                      | 是   | listAliases操作的参数集合。                         |
+
+
+**返回值**：
+
+| 类型                                | 说明                                               |
+| ----------------------------------- | -------------------------------------------------- |
+| Promise<[HuksListAliasesReturnResult](#hukslistaliasesreturnresult12)> | Promise对象。将listAliases操作的结果添加到密钥管理系统的回调。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[HUKS错误码](errorcode-huks.md)。
+
+| 错误码ID | 错误信息      |
+| -------- | ------------- |
+| 401 | argument is invalid. |
+| 12000004 | operating file failed. |
+| 12000005 | IPC communication failed. |
+| 12000012 | external error. |
+| 12000014 | memory is insufficient. |
+
+**示例：**
+
+```ts
+import { huks } from '@kit.UniversalKeystoreKit'
+import { BusinessError } from '@kit.BasicServicesKit';
+
+class HuksProperties {
+  tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_AUTH_STORAGE_LEVEL
+  value: huks.HuksAuthStorageLevel
+}
+
+async function testListAliases() {
+  let queryProperties: HuksProperties[] = [
+    {
+      tag: huks.HuksTag.HUKS_TAG_AUTH_STORAGE_LEVEL,
+      value: huks.HuksAuthStorageLevel.HUKS_AUTH_STORAGE_LEVEL_DE
+    }
+  ];
+  let queryOptions: huks.HuksOptions = {
+    properties: queryProperties
+  };
+
+  try {
+    let result: huks.HuksListAliasesReturnResult = await huks.listAliases(queryOptions);
+    console.info(`promise: listAliases success`);
+  } catch (error: BusinessError) {
+    console.error(`promise: listAliases fail , code: ` + error.code + `, msg: ` + error.message);
+  }
+}
+
+```
+
 
 ## HuksExceptionErrCode<sup>9+</sup>
 
@@ -2529,53 +2633,56 @@ async function testAbort() {
 
 关于错误码的具体信息，可在[错误码参考文档](errorcode-huks.md)中查看。
 
-**系统能力**：SystemCapability.Security.Huks.Core
+**系统能力：** SystemCapability.Security.Huks.Core
 
 | 名称                                           | 值 |  说明                        |
 | ---------------------------------------------- | -------- |--------------------------- |
-| HUKS_ERR_CODE_PERMISSION_FAIL                  | 201      | 权限错误导致失败。<br> **系统能力：** SystemCapability.Security.Huks.Core          |
-| HUKS_ERR_CODE_ILLEGAL_ARGUMENT                 | 401      | 参数错误导致失败。<br> **系统能力：** SystemCapability.Security.Huks.Core          |
-| HUKS_ERR_CODE_NOT_SUPPORTED_API                | 801      | 不支持的API。<br> **系统能力：** SystemCapability.Security.Huks.Core               |
-| HUKS_ERR_CODE_FEATURE_NOT_SUPPORTED            | 12000001 | 不支持的功能/特性。<br> **系统能力：** SystemCapability.Security.Huks.Core         |
-| HUKS_ERR_CODE_MISSING_CRYPTO_ALG_ARGUMENT      | 12000002 | 缺少密钥算法参数。<br> **系统能力：** SystemCapability.Security.Huks.Core          |
-| HUKS_ERR_CODE_INVALID_CRYPTO_ALG_ARGUMENT      | 12000003 | 无效密钥算法参数。<br> **系统能力：** SystemCapability.Security.Huks.Core          |
-| HUKS_ERR_CODE_FILE_OPERATION_FAIL              | 12000004 | 文件操作失败。<br> **系统能力：** SystemCapability.Security.Huks.Core              |
-| HUKS_ERR_CODE_COMMUNICATION_FAIL               | 12000005 | 通信失败。<br> **系统能力：** SystemCapability.Security.Huks.Core                  |
-| HUKS_ERR_CODE_CRYPTO_FAIL                      | 12000006 | 算法库操作失败。<br> **系统能力：** SystemCapability.Security.Huks.Core            |
-| HUKS_ERR_CODE_KEY_AUTH_PERMANENTLY_INVALIDATED | 12000007 | 密钥访问失败-密钥访问失效。<br> **系统能力：** SystemCapability.Security.Huks.Core |
-| HUKS_ERR_CODE_KEY_AUTH_VERIFY_FAILED           | 12000008 | 密钥访问失败-密钥认证失败。<br> **系统能力：** SystemCapability.Security.Huks.Core |
-| HUKS_ERR_CODE_KEY_AUTH_TIME_OUT                | 12000009 | 密钥访问失败-密钥访问超时。<br> **系统能力：** SystemCapability.Security.Huks.Core |
-| HUKS_ERR_CODE_SESSION_LIMIT                    | 12000010 | 密钥操作会话数已达上限。<br> **系统能力：** SystemCapability.Security.Huks.Core    |
-| HUKS_ERR_CODE_ITEM_NOT_EXIST                   | 12000011 | 目标对象不存在。<br> **系统能力：** SystemCapability.Security.Huks.Core            |
-| HUKS_ERR_CODE_EXTERNAL_ERROR                   | 12000012 | 外部错误。<br> **系统能力：** SystemCapability.Security.Huks.Core                  |
-| HUKS_ERR_CODE_CREDENTIAL_NOT_EXIST             | 12000013 | 缺失所需凭据。<br> **系统能力：** SystemCapability.Security.Huks.Core              |
-| HUKS_ERR_CODE_INSUFFICIENT_MEMORY              | 12000014 | 内存不足。<br> **系统能力：** SystemCapability.Security.Huks.Core                  |
-| HUKS_ERR_CODE_CALL_SERVICE_FAILED              | 12000015 | 调用其他系统服务失败。<br> **系统能力：** SystemCapability.Security.Huks.Core      |
-| HUKS_ERR_CODE_DEVICE_PASSWORD_UNSET<sup>11+</sup>  | 12000016 | 需要锁屏密码但未设置。<br> **系统能力：** SystemCapability.Security.Huks.Extension     |
+| HUKS_ERR_CODE_PERMISSION_FAIL                  | 201      | 权限错误导致失败。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Core          |
+| HUKS_ERR_CODE_NOT_SYSTEM_APP<sup>12+</sup>     | 202      | 非系统应用不可以调用系统API。<br> **系统能力：** SystemCapability.Security.Huks.Core               |
+| HUKS_ERR_CODE_ILLEGAL_ARGUMENT                 | 401      | 参数错误导致失败。可能原因：1. 必选参数未指定。2. 参数类型不正确。3. 参数校验失败。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Core          |
+| HUKS_ERR_CODE_NOT_SUPPORTED_API                | 801      | 不支持的API。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Core               |
+| HUKS_ERR_CODE_FEATURE_NOT_SUPPORTED            | 12000001 | 不支持的功能/特性。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Core         |
+| HUKS_ERR_CODE_MISSING_CRYPTO_ALG_ARGUMENT      | 12000002 | 缺少密钥算法参数。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Core          |
+| HUKS_ERR_CODE_INVALID_CRYPTO_ALG_ARGUMENT      | 12000003 | 无效密钥算法参数。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Core          |
+| HUKS_ERR_CODE_FILE_OPERATION_FAIL              | 12000004 | 文件操作失败。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Core              |
+| HUKS_ERR_CODE_COMMUNICATION_FAIL               | 12000005 | 通信失败。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Core                  |
+| HUKS_ERR_CODE_CRYPTO_FAIL                      | 12000006 | 算法库操作失败。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Core            |
+| HUKS_ERR_CODE_KEY_AUTH_PERMANENTLY_INVALIDATED | 12000007 | 密钥访问失败-密钥访问失效。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Core |
+| HUKS_ERR_CODE_KEY_AUTH_VERIFY_FAILED           | 12000008 | 密钥访问失败-密钥认证失败。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Core |
+| HUKS_ERR_CODE_KEY_AUTH_TIME_OUT                | 12000009 | 密钥访问失败-密钥访问超时。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Core |
+| HUKS_ERR_CODE_SESSION_LIMIT                    | 12000010 | 密钥操作会话数已达上限。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Core    |
+| HUKS_ERR_CODE_ITEM_NOT_EXIST                   | 12000011 | 目标对象不存在。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Core            |
+| HUKS_ERR_CODE_EXTERNAL_ERROR                   | 12000012 | 外部错误。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Core                  |
+| HUKS_ERR_CODE_CREDENTIAL_NOT_EXIST             | 12000013 | 缺失所需凭据。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Core              |
+| HUKS_ERR_CODE_INSUFFICIENT_MEMORY              | 12000014 | 内存不足。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Core                  |
+| HUKS_ERR_CODE_CALL_SERVICE_FAILED              | 12000015 | 调用其他系统服务失败。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Core      |
+| HUKS_ERR_CODE_DEVICE_PASSWORD_UNSET<sup>11+</sup>  | 12000016 | 需要锁屏密码但未设置。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Extension     |
 
 ## HuksKeyPurpose
 
 表示密钥用途。
 
-**系统能力**：SystemCapability.Security.Huks.Core
+**系统能力：** SystemCapability.Security.Huks.Core
 
 | 名称                     | 值   | 说明                             |
 | ------------------------ | ---- | -------------------------------- |
-| HUKS_KEY_PURPOSE_ENCRYPT | 1    | 表示密钥用于对明文进行加密操作。 <br> **系统能力：** SystemCapability.Security.Huks.Core|
-| HUKS_KEY_PURPOSE_DECRYPT | 2    | 表示密钥用于对密文进行解密操作。 <br> **系统能力：** SystemCapability.Security.Huks.Core|
-| HUKS_KEY_PURPOSE_SIGN    | 4    | 表示密钥用于对数据进行签名。 <br> **系统能力：** SystemCapability.Security.Huks.Extension|
-| HUKS_KEY_PURPOSE_VERIFY  | 8    | 表示密钥用于验证签名后的数据。 <br> **系统能力：** SystemCapability.Security.Huks.Extension|
-| HUKS_KEY_PURPOSE_DERIVE  | 16   | 表示密钥用于派生密钥。 <br> **系统能力：** SystemCapability.Security.Huks.Extension|
-| HUKS_KEY_PURPOSE_WRAP    | 32   | 表示密钥用于加密导出。 <br> **系统能力：** SystemCapability.Security.Huks.Extension|
-| HUKS_KEY_PURPOSE_UNWRAP  | 64   | 表示密钥加密导入。 <br> **系统能力：** SystemCapability.Security.Huks.Extension|
-| HUKS_KEY_PURPOSE_MAC     | 128  | 表示密钥用于生成mac消息验证码。 <br> **系统能力：** SystemCapability.Security.Huks.Extension|
-| HUKS_KEY_PURPOSE_AGREE   | 256  | 表示密钥用于进行密钥协商。 <br> **系统能力：** SystemCapability.Security.Huks.Extension|
+| HUKS_KEY_PURPOSE_ENCRYPT | 1    | 表示密钥用于对明文进行加密操作。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Core|
+| HUKS_KEY_PURPOSE_DECRYPT | 2    | 表示密钥用于对密文进行解密操作。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Core|
+| HUKS_KEY_PURPOSE_SIGN    | 4    | 表示密钥用于对数据进行签名。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Extension|
+| HUKS_KEY_PURPOSE_VERIFY  | 8    | 表示密钥用于验证签名后的数据。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Extension|
+| HUKS_KEY_PURPOSE_DERIVE  | 16   | 表示密钥用于派生密钥。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Extension|
+| HUKS_KEY_PURPOSE_WRAP    | 32   | 表示密钥用于加密导出。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Extension|
+| HUKS_KEY_PURPOSE_UNWRAP  | 64   | 表示密钥加密导入。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Extension|
+| HUKS_KEY_PURPOSE_MAC     | 128  | 表示密钥用于生成mac消息验证码。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Extension|
+| HUKS_KEY_PURPOSE_AGREE   | 256  | 表示密钥用于进行密钥协商。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Extension|
 
 ## HuksKeyDigest
 
 表示摘要算法。
 
-**系统能力**：SystemCapability.Security.Huks.Extension
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Security.Huks.Extension
 
 | 名称                   | 值   | 说明                                     |
 | ---------------------- | ---- | ---------------------------------------- |
@@ -2592,89 +2699,92 @@ async function testAbort() {
 
 表示补齐算法。
 
-**系统能力**：SystemCapability.Security.Huks.Core
+**系统能力：** SystemCapability.Security.Huks.Core
 
 | 名称                   | 值   | 说明                                     |
 | ---------------------- | ---- | ---------------------------------------- |
-| HUKS_PADDING_NONE | 0    | 表示不使用补齐算法。 <br> **系统能力：** SystemCapability.Security.Huks.Core|
-| HUKS_PADDING_OAEP | 1    | 表示使用OAEP补齐算法。 <br> **系统能力：** SystemCapability.Security.Huks.Extension|
-| HUKS_PADDING_PSS | 2    | 表示使用PSS补齐算法。 <br> **系统能力：** SystemCapability.Security.Huks.Extension|
-| HUKS_PADDING_PKCS1_V1_5 | 3    | 表示使用PKCS1_V1_5补齐算法。 <br> **系统能力：** SystemCapability.Security.Huks.Extension|
-| HUKS_PADDING_PKCS5 | 4   | 表示使用PKCS5补齐算法。 <br> **系统能力：** SystemCapability.Security.Huks.Extension|
-| HUKS_PADDING_PKCS7 | 5   | 表示使用PKCS7补齐算法。 <br> **系统能力：** SystemCapability.Security.Huks.Core|
+| HUKS_PADDING_NONE | 0    | 表示不使用补齐算法。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Core|
+| HUKS_PADDING_OAEP | 1    | 表示使用OAEP补齐算法。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Extension|
+| HUKS_PADDING_PSS | 2    | 表示使用PSS补齐算法。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Extension|
+| HUKS_PADDING_PKCS1_V1_5 | 3    | 表示使用PKCS1_V1_5补齐算法。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Extension|
+| HUKS_PADDING_PKCS5 | 4   | 表示使用PKCS5补齐算法。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Extension|
+| HUKS_PADDING_PKCS7 | 5   | 表示使用PKCS7补齐算法。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Core|
 
 ## HuksCipherMode
 
 表示加密模式。
 
-**系统能力**：SystemCapability.Security.Huks.Core
+**系统能力：** SystemCapability.Security.Huks.Core
 
 | 名称          | 值   | 说明                  |
 | ------------- | ---- | --------------------- |
-| HUKS_MODE_ECB | 1    | 表示使用ECB加密模式。 <br> **系统能力：** SystemCapability.Security.Huks.Core|
-| HUKS_MODE_CBC | 2    | 表示使用CBC加密模式。 <br> **系统能力：** SystemCapability.Security.Huks.Core|
-| HUKS_MODE_CTR | 3    | 表示使用CTR加密模式。 <br> **系统能力：** SystemCapability.Security.Huks.Core|
-| HUKS_MODE_OFB | 4    | 表示使用OFB加密模式。 <br> **系统能力：** SystemCapability.Security.Huks.Extension|
-| HUKS_MODE_CCM | 31   | 表示使用CCM加密模式。 <br> **系统能力：** SystemCapability.Security.Huks.Extension|
-| HUKS_MODE_GCM | 32   | 表示使用GCM加密模式。 <br> **系统能力：** SystemCapability.Security.Huks.Core|
+| HUKS_MODE_ECB | 1    | 表示使用ECB加密模式。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Core|
+| HUKS_MODE_CBC | 2    | 表示使用CBC加密模式。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Core|
+| HUKS_MODE_CTR | 3    | 表示使用CTR加密模式。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Core|
+| HUKS_MODE_OFB | 4    | 表示使用OFB加密模式。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Extension|
+| HUKS_MODE_CFB<sup>12+</sup> | 5    | 表示使用CFB加密模式。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Extension|
+| HUKS_MODE_CCM | 31   | 表示使用CCM加密模式。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Extension|
+| HUKS_MODE_GCM | 32   | 表示使用GCM加密模式。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Core|
 
 ## HuksKeySize
 
 表示密钥长度。
 
-**系统能力**：SystemCapability.Security.Huks.Core
+**系统能力：** SystemCapability.Security.Huks.Core
 
 | 名称                               | 值   | 说明                                       |
 | ---------------------------------- | ---- | ------------------------------------------ |
-| HUKS_RSA_KEY_SIZE_512              | 512  | 表示使用RSA算法的密钥长度为512bit。 <br> **系统能力：** SystemCapability.Security.Huks.Extension|
-| HUKS_RSA_KEY_SIZE_768              | 768  | 表示使用RSA算法的密钥长度为768bit。  <br> **系统能力：** SystemCapability.Security.Huks.Extension|
-| HUKS_RSA_KEY_SIZE_1024             | 1024 | 表示使用RSA算法的密钥长度为1024bit。 <br> **系统能力：** SystemCapability.Security.Huks.Extension|
-| HUKS_RSA_KEY_SIZE_2048             | 2048 | 表示使用RSA算法的密钥长度为2048bit。 <br> **系统能力：** SystemCapability.Security.Huks.Extension|
-| HUKS_RSA_KEY_SIZE_3072             | 3072 | 表示使用RSA算法的密钥长度为3072bit。 <br> **系统能力：** SystemCapability.Security.Huks.Extension|
-| HUKS_RSA_KEY_SIZE_4096             | 4096 | 表示使用RSA算法的密钥长度为4096bit。  <br> **系统能力：** SystemCapability.Security.Huks.Extension|
-| HUKS_ECC_KEY_SIZE_224              | 224  | 表示使用ECC算法的密钥长度为224bit。 <br> **系统能力：** SystemCapability.Security.Huks.Extension|
-| HUKS_ECC_KEY_SIZE_256              | 256  | 表示使用ECC算法的密钥长度为256bit。  <br> **系统能力：** SystemCapability.Security.Huks.Extension|
-| HUKS_ECC_KEY_SIZE_384              | 384  | 表示使用ECC算法的密钥长度为384bit。  <br> **系统能力：** SystemCapability.Security.Huks.Extension|
-| HUKS_ECC_KEY_SIZE_521              | 521  | 表示使用ECC算法的密钥长度为521bit。   <br> **系统能力：** SystemCapability.Security.Huks.Extension|
-| HUKS_AES_KEY_SIZE_128              | 128  | 表示使用AES算法的密钥长度为128bit。 <br> **系统能力：** SystemCapability.Security.Huks.Core|
-| HUKS_AES_KEY_SIZE_192              | 192  | 表示使用AES算法的密钥长度为192bit。  <br> **系统能力：** SystemCapability.Security.Huks.Core|
-| HUKS_AES_KEY_SIZE_256              | 256  | 表示使用AES算法的密钥长度为256bit。  <br> **系统能力：** SystemCapability.Security.Huks.Core|
-| HUKS_AES_KEY_SIZE_512              | 512  | 表示使用AES算法的密钥长度为512bit。  <br> **系统能力：** SystemCapability.Security.Huks.Core|
-| HUKS_CURVE25519_KEY_SIZE_256       | 256  | 表示使用CURVE25519算法的密钥长度为256bit。 <br> **系统能力：** SystemCapability.Security.Huks.Extension|
-| HUKS_DH_KEY_SIZE_2048              | 2048 | 表示使用DH算法的密钥长度为2048bit。  <br> **系统能力：** SystemCapability.Security.Huks.Extension|
-| HUKS_DH_KEY_SIZE_3072              | 3072 | 表示使用DH算法的密钥长度为3072bit。 <br> **系统能力：** SystemCapability.Security.Huks.Extension|
-| HUKS_DH_KEY_SIZE_4096              | 4096 | 表示使用DH算法的密钥长度为4096bit。  <br> **系统能力：** SystemCapability.Security.Huks.Extension|
-| HUKS_SM2_KEY_SIZE_256<sup>9+</sup> | 256  | 表示SM2算法的密钥长度为256bit。 <br> **系统能力：** SystemCapability.Security.Huks.Extension|
-| HUKS_SM4_KEY_SIZE_128<sup>9+</sup> | 128  | 表示SM4算法的密钥长度为128bit。  <br> **系统能力：** SystemCapability.Security.Huks.Extension|
+| HUKS_RSA_KEY_SIZE_512              | 512  | 表示使用RSA算法的密钥长度为512bit。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Extension|
+| HUKS_RSA_KEY_SIZE_768              | 768  | 表示使用RSA算法的密钥长度为768bit。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Extension|
+| HUKS_RSA_KEY_SIZE_1024             | 1024 | 表示使用RSA算法的密钥长度为1024bit。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Extension|
+| HUKS_RSA_KEY_SIZE_2048             | 2048 | 表示使用RSA算法的密钥长度为2048bit。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Extension|
+| HUKS_RSA_KEY_SIZE_3072             | 3072 | 表示使用RSA算法的密钥长度为3072bit。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Extension|
+| HUKS_RSA_KEY_SIZE_4096             | 4096 | 表示使用RSA算法的密钥长度为4096bit。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Extension|
+| HUKS_ECC_KEY_SIZE_224              | 224  | 表示使用ECC算法的密钥长度为224bit。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Extension|
+| HUKS_ECC_KEY_SIZE_256              | 256  | 表示使用ECC算法的密钥长度为256bit。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Extension|
+| HUKS_ECC_KEY_SIZE_384              | 384  | 表示使用ECC算法的密钥长度为384bit。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Extension|
+| HUKS_ECC_KEY_SIZE_521              | 521  | 表示使用ECC算法的密钥长度为521bit。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Extension|
+| HUKS_AES_KEY_SIZE_128              | 128  | 表示使用AES算法的密钥长度为128bit。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Core|
+| HUKS_AES_KEY_SIZE_192              | 192  | 表示使用AES算法的密钥长度为192bit。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Core|
+| HUKS_AES_KEY_SIZE_256              | 256  | 表示使用AES算法的密钥长度为256bit。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Core|
+| HUKS_AES_KEY_SIZE_512<sup>(deprecated)</sup>              | 512  | 表示使用AES算法的密钥长度为512bit。从API version 11开始废弃。  <br> **系统能力：** SystemCapability.Security.Huks.Core|
+| HUKS_CURVE25519_KEY_SIZE_256       | 256  | 表示使用CURVE25519算法的密钥长度为256bit。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 <br> **系统能力：** SystemCapability.Security.Huks.Extension|
+| HUKS_DH_KEY_SIZE_2048              | 2048 | 表示使用DH算法的密钥长度为2048bit。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Extension|
+| HUKS_DH_KEY_SIZE_3072              | 3072 | 表示使用DH算法的密钥长度为3072bit。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Extension|
+| HUKS_DH_KEY_SIZE_4096              | 4096 | 表示使用DH算法的密钥长度为4096bit。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Extension|
+| HUKS_SM2_KEY_SIZE_256<sup>9+</sup> | 256  | 表示SM2算法的密钥长度为256bit。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Extension|
+| HUKS_SM4_KEY_SIZE_128<sup>9+</sup> | 128  | 表示SM4算法的密钥长度为128bit。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Extension|
 
 ## HuksKeyAlg
 
 表示密钥使用的算法。
 
-**系统能力**：SystemCapability.Security.Huks.Core
+**系统能力：** SystemCapability.Security.Huks.Core
 
 | 名称                      | 值   | 说明                  |
 | ------------------------- | ---- | --------------------- |
-| HUKS_ALG_RSA              | 1    | 表示使用RSA算法。 <br> **系统能力：** SystemCapability.Security.Huks.Extension|
-| HUKS_ALG_ECC              | 2    | 表示使用ECC算法。  <br> **系统能力：** SystemCapability.Security.Huks.Extension|
-| HUKS_ALG_DSA              | 3    | 表示使用DSA算法。  <br> **系统能力：** SystemCapability.Security.Huks.Extension|
-| HUKS_ALG_AES              | 20   | 表示使用AES算法。  <br> **系统能力：** SystemCapability.Security.Huks.Core|
-| HUKS_ALG_HMAC             | 50   | 表示使用HMAC算法。 <br> **系统能力：** SystemCapability.Security.Huks.Extension|
-| HUKS_ALG_HKDF             | 51   | 表示使用HKDF算法。 <br> **系统能力：** SystemCapability.Security.Huks.Extension|
-| HUKS_ALG_PBKDF2           | 52   | 表示使用PBKDF2算法。 <br> **系统能力：** SystemCapability.Security.Huks.Extension|
-| HUKS_ALG_ECDH             | 100  | 表示使用ECDH算法。 <br> **系统能力：** SystemCapability.Security.Huks.Extension|
-| HUKS_ALG_X25519           | 101  | 表示使用X25519算法。  <br> **系统能力：** SystemCapability.Security.Huks.Extension|
-| HUKS_ALG_ED25519          | 102  | 表示使用ED25519算法。 <br> **系统能力：** SystemCapability.Security.Huks.Extension|
-| HUKS_ALG_DH               | 103  | 表示使用DH算法。 <br> **系统能力：** SystemCapability.Security.Huks.Extension|
-| HUKS_ALG_SM2<sup>9+</sup> | 150  | 表示使用SM2算法。 <br> **系统能力：** SystemCapability.Security.Huks.Extension|
-| HUKS_ALG_SM3<sup>9+</sup> | 151  | 表示使用SM3算法。  <br> **系统能力：** SystemCapability.Security.Huks.Extension|
-| HUKS_ALG_SM4<sup>9+</sup> | 152  | 表示使用SM4算法。  <br> **系统能力：** SystemCapability.Security.Huks.Extension|
+| HUKS_ALG_RSA              | 1    | 表示使用RSA算法。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Extension|
+| HUKS_ALG_ECC              | 2    | 表示使用ECC算法。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Extension|
+| HUKS_ALG_DSA              | 3    | 表示使用DSA算法。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Extension|
+| HUKS_ALG_AES              | 20   | 表示使用AES算法。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Core|
+| HUKS_ALG_HMAC             | 50   | 表示使用HMAC算法。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Extension|
+| HUKS_ALG_HKDF             | 51   | 表示使用HKDF算法。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Extension|
+| HUKS_ALG_PBKDF2           | 52   | 表示使用PBKDF2算法。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Extension|
+| HUKS_ALG_ECDH             | 100  | 表示使用ECDH算法。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Extension|
+| HUKS_ALG_X25519           | 101  | 表示使用X25519算法。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Extension|
+| HUKS_ALG_ED25519          | 102  | 表示使用ED25519算法。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Extension|
+| HUKS_ALG_DH               | 103  | 表示使用DH算法。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Extension|
+| HUKS_ALG_SM2<sup>9+</sup> | 150  | 表示使用SM2算法。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Extension|
+| HUKS_ALG_SM3<sup>9+</sup> | 151  | 表示使用SM3算法。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Extension|
+| HUKS_ALG_SM4<sup>9+</sup> | 152  | 表示使用SM4算法。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Extension|
 
 ## HuksKeyGenerateType
 
 表示生成密钥的类型。
 
-**系统能力**：SystemCapability.Security.Huks.Extension
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Security.Huks.Extension
 
 | 名称                           | 值   | 说明             |
 | ------------------------------ | ---- | ---------------- |
@@ -2686,7 +2796,9 @@ async function testAbort() {
 
 表示密钥的产生方式。
 
-**系统能力**：SystemCapability.Security.Huks.Core
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Security.Huks.Core
 
 | 名称                       | 值   | 说明                                 |
 | -------------------------- | ---- | ------------------------------------ |
@@ -2699,20 +2811,22 @@ async function testAbort() {
 
 表示密钥存储方式。
 
-**系统能力**：SystemCapability.Security.Huks.Core
+**系统能力：** SystemCapability.Security.Huks.Core
 
 | 名称                                          | 值   | 说明                           |
 | --------------------------------------------  | ---- | ------------------------------ |
 | HUKS_STORAGE_TEMP<sup>(deprecated)</sup>      | 0    | 表示通过本地直接管理密钥。<br/> > **说明：** 从API version 10开始废弃，由于开发者正常使用密钥管理过程中并不需要使用此TAG，故无替代接口。针对密钥派生场景，可使用HUKS_STORAGE_ONLY_USED_IN_HUKS 与 HUKS_STORAGE_KEY_EXPORT_ALLOWED。 <br> **系统能力：** SystemCapability.Security.Huks.Core|
 | HUKS_STORAGE_PERSISTENT<sup>(deprecated)</sup>      | 1    | 表示通过HUKS service管理密钥。<br/> > **说明：** 从API version 10开始废弃，由于开发者正常使用密钥管理过程中并不需要使用此TAG，故无替代接口。针对密钥派生场景，可使用HUKS_STORAGE_ONLY_USED_IN_HUKS 与 HUKS_STORAGE_KEY_EXPORT_ALLOWED。 <br> **系统能力：** SystemCapability.Security.Huks.Core|
-| HUKS_STORAGE_ONLY_USED_IN_HUKS<sup>10+</sup>  | 2    | 表示主密钥派生的密钥存储于huks中，由HUKS进行托管。<br> **系统能力：** SystemCapability.Security.Huks.Extension|
-| HUKS_STORAGE_KEY_EXPORT_ALLOWED<sup>10+</sup> | 3    | 表示主密钥派生的密钥直接导出给业务方，HUKS不对其进行托管服务。<br> **系统能力：** SystemCapability.Security.Huks.Extension|
+| HUKS_STORAGE_ONLY_USED_IN_HUKS<sup>10+</sup>  | 2    | 表示主密钥派生的密钥存储于huks中，由HUKS进行托管。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Extension|
+| HUKS_STORAGE_KEY_EXPORT_ALLOWED<sup>10+</sup> | 3    | 表示主密钥派生的密钥直接导出给业务方，HUKS不对其进行托管服务。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Extension|
 
 ## HuksSendType
 
 表示发送Tag的方式。
 
-**系统能力**：SystemCapability.Security.Huks.Extension
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Security.Huks.Extension
 
 | 名称                 | 值   | 说明              |
 | -------------------- | ---- | ----------------- |
@@ -2723,7 +2837,9 @@ async function testAbort() {
 
 表示导入加密密钥的算法套件。
 
-**系统能力**：SystemCapability.Security.Huks.Extension
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Security.Huks.Extension
 
 | 名称                                           | 值   | 说明                                                  |
 | ---------------------------------------------- | ---- | ----------------------------------------------------- |
@@ -2734,7 +2850,9 @@ async function testAbort() {
 
 表示导入密钥的密钥类型，默认为导入公钥，导入对称密钥时不需要该字段。
 
-**系统能力**：SystemCapability.Security.Huks.Extension
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Security.Huks.Extension
 
 | 名称                      | 值   | 说明                           |
 | ------------------------- | ---- | ------------------------------ |
@@ -2746,7 +2864,9 @@ async function testAbort() {
 
 表示Rsa在签名验签、padding为pss时需指定的salt_len类型。
 
-**系统能力**：SystemCapability.Security.Huks.Extension
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Security.Huks.Extension
 
 | 名称                                       | 值   | 说明                         |
 | ------------------------------------------ | ---- | ---------------------------- |
@@ -2757,7 +2877,9 @@ async function testAbort() {
 
 表示用户认证类型。
 
-**系统能力**：SystemCapability.Security.Huks.Extension
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Security.Huks.Extension
 
 | 名称                            | 值   | 说明                      |
 | ------------------------------- | ---- | ------------------------- |
@@ -2769,7 +2891,9 @@ async function testAbort() {
 
 表示安全访问控制类型。
 
-**系统能力**：SystemCapability.Security.Huks.Extension
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Security.Huks.Extension
 
 | 名称                                    | 值   | 说明                                             |
 | --------------------------------------- | ---- | ------------------------------------------------ |
@@ -2781,7 +2905,9 @@ async function testAbort() {
 
 表示密钥使用时生成challenge的类型。
 
-**系统能力**：SystemCapability.Security.Huks.Extension
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Security.Huks.Extension
 
 | 名称                            | 值   | 说明                           |
 | ------------------------------- | ---- | ------------------------------ |
@@ -2793,7 +2919,9 @@ async function testAbort() {
 
 表示challenge类型为用户自定义类型时，生成的challenge有效长度仅为8字节连续的数据，且仅支持4种位置 。
 
-**系统能力**：SystemCapability.Security.Huks.Extension
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Security.Huks.Extension
 
 | 名称                            | 值   | 说明                           |
 | ------------------------------- | ---- | ------------------------------ |
@@ -2806,7 +2934,9 @@ async function testAbort() {
 
 表示生成或导入密钥时，指定该密钥的签名类型。
 
-**系统能力**：SystemCapability.Security.Huks.Extension
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Security.Huks.Extension
 
 | 名称                           | 值   | 说明                                                         |
 | ------------------------------ | ---- | ------------------------------------------------------------ |
@@ -2816,7 +2946,9 @@ async function testAbort() {
 
 表示生成或导入密钥时，指定该密钥的存储安全等级。
 
-**系统能力**：SystemCapability.Security.Huks.Extension
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Security.Huks.Extension
 
 | 名称                           | 值   | 说明                                                         |
 | ------------------------------ | ---- | ------------------------------------------------------------ |
@@ -2828,7 +2960,9 @@ async function testAbort() {
 
 表示Tag的数据类型。
 
-**系统能力**：SystemCapability.Security.Huks.Core
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Security.Huks.Core
 
 | 名称                  | 值      | 说明                                    |
 | --------------------- | ------- | --------------------------------------- |
@@ -2843,57 +2977,57 @@ async function testAbort() {
 
 表示调用参数的Tag。
 
-**系统能力**：SystemCapability.Security.Huks.Core
+**系统能力：** SystemCapability.Security.Huks.Core
 
 | 名称                                                        | 值                                       | 说明                                                         |
 | ----------------------------------------------------------- | ---------------------------------------- | ------------------------------------------------------------ |
 | HUKS_TAG_INVALID<sup>(deprecated)</sup>                     | HuksTagType.HUKS_TAG_TYPE_INVALID \| 0   | 表示非法的Tag。从API version 9开始废弃。 <br> **系统能力：** SystemCapability.Security.Huks.Core |
-| HUKS_TAG_ALGORITHM                                          | HuksTagType.HUKS_TAG_TYPE_UINT \| 1      | 表示算法的Tag。    <br> **系统能力：** SystemCapability.Security.Huks.Core |
-| HUKS_TAG_PURPOSE                                            | HuksTagType.HUKS_TAG_TYPE_UINT \| 2      | 表示密钥用途的Tag。    <br> **系统能力：** SystemCapability.Security.Huks.Core |
-| HUKS_TAG_KEY_SIZE                                           | HuksTagType.HUKS_TAG_TYPE_UINT \| 3      | 表示密钥长度的Tag。   <br> **系统能力：** SystemCapability.Security.Huks.Core |
-| HUKS_TAG_DIGEST                                             | HuksTagType.HUKS_TAG_TYPE_UINT \| 4      | 表示摘要算法的Tag。    <br> **系统能力：** SystemCapability.Security.Huks.Extension |
-| HUKS_TAG_PADDING                                            | HuksTagType.HUKS_TAG_TYPE_UINT \| 5      | 表示补齐算法的Tag。    <br> **系统能力：** SystemCapability.Security.Huks.Core |
-| HUKS_TAG_BLOCK_MODE                                         | HuksTagType.HUKS_TAG_TYPE_UINT \| 6      | 表示加密模式的Tag。     <br> **系统能力：** SystemCapability.Security.Huks.Core |
-| HUKS_TAG_KEY_TYPE                                           | HuksTagType.HUKS_TAG_TYPE_UINT \| 7      | 表示密钥类型的Tag。     <br> **系统能力：** SystemCapability.Security.Huks.Core |
-| HUKS_TAG_ASSOCIATED_DATA                                    | HuksTagType.HUKS_TAG_TYPE_BYTES \| 8     | 表示附加身份验证数据的Tag。    <br> **系统能力：** SystemCapability.Security.Huks.Core |
-| HUKS_TAG_NONCE                                              | HuksTagType.HUKS_TAG_TYPE_BYTES \| 9     | 表示密钥加解密的字段。     <br> **系统能力：** SystemCapability.Security.Huks.Core |
-| HUKS_TAG_IV                                                 | HuksTagType.HUKS_TAG_TYPE_BYTES \| 10    | 表示密钥初始化的向量。   <br> **系统能力：** SystemCapability.Security.Huks.Core |
-| HUKS_TAG_INFO                                               | HuksTagType.HUKS_TAG_TYPE_BYTES \| 11    | 表示密钥派生时的info。    <br> **系统能力：** SystemCapability.Security.Huks.Core |
-| HUKS_TAG_SALT                                               | HuksTagType.HUKS_TAG_TYPE_BYTES \| 12    | 表示密钥派生时的盐值。  <br> **系统能力：** SystemCapability.Security.Huks.Extension |
+| HUKS_TAG_ALGORITHM                                          | HuksTagType.HUKS_TAG_TYPE_UINT \| 1      | 表示算法的Tag。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Core |
+| HUKS_TAG_PURPOSE                                            | HuksTagType.HUKS_TAG_TYPE_UINT \| 2      | 表示密钥用途的Tag。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Core |
+| HUKS_TAG_KEY_SIZE                                           | HuksTagType.HUKS_TAG_TYPE_UINT \| 3      | 表示密钥长度的Tag。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Core |
+| HUKS_TAG_DIGEST                                             | HuksTagType.HUKS_TAG_TYPE_UINT \| 4      | 表示摘要算法的Tag。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Extension |
+| HUKS_TAG_PADDING                                            | HuksTagType.HUKS_TAG_TYPE_UINT \| 5      | 表示补齐算法的Tag。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Core |
+| HUKS_TAG_BLOCK_MODE                                         | HuksTagType.HUKS_TAG_TYPE_UINT \| 6      | 表示加密模式的Tag。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Core |
+| HUKS_TAG_KEY_TYPE                                           | HuksTagType.HUKS_TAG_TYPE_UINT \| 7      | 表示密钥类型的Tag。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Core |
+| HUKS_TAG_ASSOCIATED_DATA                                    | HuksTagType.HUKS_TAG_TYPE_BYTES \| 8     | 表示附加身份验证数据的Tag。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Core |
+| HUKS_TAG_NONCE                                              | HuksTagType.HUKS_TAG_TYPE_BYTES \| 9     | 表示密钥加解密的字段。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Core |
+| HUKS_TAG_IV                                                 | HuksTagType.HUKS_TAG_TYPE_BYTES \| 10    | 表示密钥初始化的向量。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Core |
+| HUKS_TAG_INFO                                               | HuksTagType.HUKS_TAG_TYPE_BYTES \| 11    | 表示密钥派生时的info。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Core |
+| HUKS_TAG_SALT                                               | HuksTagType.HUKS_TAG_TYPE_BYTES \| 12    | 表示密钥派生时的盐值。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Extension |
 | HUKS_TAG_PWD<sup>(deprecated)</sup>                         | HuksTagType.HUKS_TAG_TYPE_BYTES \| 13    | 表示密钥派生时的password。从API version 9开始废弃。   <br> **系统能力：** SystemCapability.Security.Huks.Core |
-| HUKS_TAG_ITERATION                                          | HuksTagType.HUKS_TAG_TYPE_UINT \| 14     | 表示密钥派生时的迭代次数。 <br> **系统能力：** SystemCapability.Security.Huks.Extension |
-| HUKS_TAG_KEY_GENERATE_TYPE                                  | HuksTagType.HUKS_TAG_TYPE_UINT \| 15     | 表示生成密钥类型的Tag。   <br> **系统能力：** SystemCapability.Security.Huks.Core |
+| HUKS_TAG_ITERATION                                          | HuksTagType.HUKS_TAG_TYPE_UINT \| 14     | 表示密钥派生时的迭代次数。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Extension |
+| HUKS_TAG_KEY_GENERATE_TYPE                                  | HuksTagType.HUKS_TAG_TYPE_UINT \| 15     | 表示生成密钥类型的Tag。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Core |
 | HUKS_TAG_DERIVE_MAIN_KEY<sup>(deprecated)</sup>             | HuksTagType.HUKS_TAG_TYPE_BYTES \| 16    | 表示密钥派生时的主密钥。从API version 9开始废弃。   <br> **系统能力：** SystemCapability.Security.Huks.Extension |
 | HUKS_TAG_DERIVE_FACTOR<sup>(deprecated)</sup>               | HuksTagType.HUKS_TAG_TYPE_BYTES \| 17    | 表示密钥派生时的派生因子。从API version 9开始废弃。   <br> **系统能力：** SystemCapability.Security.Huks.Extension |
 | HUKS_TAG_DERIVE_ALG<sup>(deprecated)</sup>                  | HuksTagType.HUKS_TAG_TYPE_UINT \| 18     | 表示密钥派生时的算法类型。从API version 9开始废弃。   <br> **系统能力：** SystemCapability.Security.Huks.Extension |
-| HUKS_TAG_AGREE_ALG                                          | HuksTagType.HUKS_TAG_TYPE_UINT \| 19     | 表示密钥协商时的算法类型。   <br> **系统能力：** SystemCapability.Security.Huks.Extension |
-| HUKS_TAG_AGREE_PUBLIC_KEY_IS_KEY_ALIAS                      | HuksTagType.HUKS_TAG_TYPE_BOOL \| 20     | 表示密钥协商时的公钥别名。   <br> **系统能力：** SystemCapability.Security.Huks.Extension |
-| HUKS_TAG_AGREE_PRIVATE_KEY_ALIAS                            | HuksTagType.HUKS_TAG_TYPE_BYTES \| 21    | 表示密钥协商时的私钥别名。    <br> **系统能力：** SystemCapability.Security.Huks.Extension |
-| HUKS_TAG_AGREE_PUBLIC_KEY                                   | HuksTagType.HUKS_TAG_TYPE_BYTES \| 22    | 表示密钥协商时的公钥。     <br> **系统能力：** SystemCapability.Security.Huks.Extension |
-| HUKS_TAG_KEY_ALIAS                                          | HuksTagType.HUKS_TAG_TYPE_BYTES \| 23    | 表示密钥别名。        <br> **系统能力：** SystemCapability.Security.Huks.Core |
-| HUKS_TAG_DERIVE_KEY_SIZE                                    | HuksTagType.HUKS_TAG_TYPE_UINT \| 24     | 表示派生密钥的大小。     <br> **系统能力：** SystemCapability.Security.Huks.Extension |
-| HUKS_TAG_IMPORT_KEY_TYPE<sup>9+</sup>                       | HuksTagType.HUKS_TAG_TYPE_UINT \| 25     | 表示导入的密钥类型。      <br> **系统能力：** SystemCapability.Security.Huks.Extension |
-| HUKS_TAG_UNWRAP_ALGORITHM_SUITE<sup>9+</sup>                | HuksTagType.HUKS_TAG_TYPE_UINT \| 26     | 表示导入加密密钥的套件。        <br> **系统能力：** SystemCapability.Security.Huks.Extension |
-| HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG<sup>10+</sup>      | HuksTagType.HUKS_TAG_TYPE_UINT \|29      | 表示派生密钥/协商密钥的存储类型。  <br> **系统能力：** SystemCapability.Security.Huks.Extension |
-| HUKS_TAG_RSA_PSS_SALT_LEN_TYPE<sup>10+</sup>                | HuksTagType.HUKS_TAG_TYPE_UINT \|30      | 表示rsa_pss_salt_length的类型。  <br> **系统能力：** SystemCapability.Security.Huks.Extension |
+| HUKS_TAG_AGREE_ALG                                          | HuksTagType.HUKS_TAG_TYPE_UINT \| 19     | 表示密钥协商时的算法类型。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Extension |
+| HUKS_TAG_AGREE_PUBLIC_KEY_IS_KEY_ALIAS                      | HuksTagType.HUKS_TAG_TYPE_BOOL \| 20     | 表示密钥协商时的公钥别名。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Extension |
+| HUKS_TAG_AGREE_PRIVATE_KEY_ALIAS                            | HuksTagType.HUKS_TAG_TYPE_BYTES \| 21    | 表示密钥协商时的私钥别名。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Extension |
+| HUKS_TAG_AGREE_PUBLIC_KEY                                   | HuksTagType.HUKS_TAG_TYPE_BYTES \| 22    | 表示密钥协商时的公钥。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Extension |
+| HUKS_TAG_KEY_ALIAS                                          | HuksTagType.HUKS_TAG_TYPE_BYTES \| 23    | 表示密钥别名。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Core |
+| HUKS_TAG_DERIVE_KEY_SIZE                                    | HuksTagType.HUKS_TAG_TYPE_UINT \| 24     | 表示派生密钥的大小。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Extension |
+| HUKS_TAG_IMPORT_KEY_TYPE<sup>9+</sup>                       | HuksTagType.HUKS_TAG_TYPE_UINT \| 25     | 表示导入的密钥类型。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Extension |
+| HUKS_TAG_UNWRAP_ALGORITHM_SUITE<sup>9+</sup>                | HuksTagType.HUKS_TAG_TYPE_UINT \| 26     | 表示导入加密密钥的套件。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Extension |
+| HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG<sup>10+</sup>      | HuksTagType.HUKS_TAG_TYPE_UINT \|29      | 表示派生密钥/协商密钥的存储类型。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Extension |
+| HUKS_TAG_RSA_PSS_SALT_LEN_TYPE<sup>10+</sup>                | HuksTagType.HUKS_TAG_TYPE_UINT \|30      | 表示rsa_pss_salt_length的类型。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Extension |
 | HUKS_TAG_ACTIVE_DATETIME<sup>(deprecated)</sup>             | HuksTagType.HUKS_TAG_TYPE_ULONG \| 201   | 原为证书业务预留字段，当前证书管理已独立，此字段废弃，不再预留。        <br> **系统能力：** SystemCapability.Security.Huks.Extension |
 | HUKS_TAG_ORIGINATION_EXPIRE_DATETIME<sup>(deprecated)</sup> | HuksTagType.HUKS_TAG_TYPE_ULONG \| 202   | 原为证书业务预留字段，当前证书管理已独立，此字段废弃，不再预留。                           <br> **系统能力：** SystemCapability.Security.Huks.Core |
 | HUKS_TAG_USAGE_EXPIRE_DATETIME<sup>(deprecated)</sup>       | HuksTagType.HUKS_TAG_TYPE_ULONG \| 203   | 原为证书业务预留字段，当前证书管理已独立，此字段废弃，不再预留。               <br> **系统能力：** SystemCapability.Security.Huks.Core |
 | HUKS_TAG_CREATION_DATETIME<sup>(deprecated)</sup>           | HuksTagType.HUKS_TAG_TYPE_ULONG \| 204   | 原为证书业务预留字段，当前证书管理已独立，此字段废弃，不再预留。     <br> **系统能力：** SystemCapability.Security.Huks.Core |
-| HUKS_TAG_ALL_USERS                                          | HuksTagType.HUKS_TAG_TYPE_BOOL \| 301    | 预留               <br> **系统能力：** SystemCapability.Security.Huks.Extension |
-| HUKS_TAG_USER_ID                                            | HuksTagType.HUKS_TAG_TYPE_UINT \| 302    | 表示当前密钥属于哪个userID                  <br> **系统能力：** SystemCapability.Security.Huks.Extension |
-| HUKS_TAG_NO_AUTH_REQUIRED                                   | HuksTagType.HUKS_TAG_TYPE_BOOL \| 303    | 预留。                   <br> **系统能力：** SystemCapability.Security.Huks.Extension |
-| HUKS_TAG_USER_AUTH_TYPE                                     | HuksTagType.HUKS_TAG_TYPE_UINT \| 304    | 表示用户认证类型。从[HuksUserAuthType](#huksuserauthtype9)中选择，需要与安全访问控制类型同时设置。支持同时指定两种用户认证类型，如：安全访问控制类型指定为HUKS_SECURE_ACCESS_INVALID_NEW_BIO_ENROLL时，密钥访问认证类型可以指定以下三种： HUKS_USER_AUTH_TYPE_FACE 、HUKS_USER_AUTH_TYPE_FINGERPRINT、HUKS_USER_AUTH_TYPE_FACE \| HUKS_USER_AUTH_TYPE_FINGERPRINT   <br> **系统能力：** SystemCapability.Security.Huks.Extension |
-| HUKS_TAG_AUTH_TIMEOUT                                       | HuksTagType.HUKS_TAG_TYPE_UINT \| 305    | 表示authtoken单次有效期。               <br> **系统能力：** SystemCapability.Security.Huks.Extension |
-| HUKS_TAG_AUTH_TOKEN                                         | HuksTagType.HUKS_TAG_TYPE_BYTES \| 306   | 用于传入authToken的字段                <br> **系统能力：** SystemCapability.Security.Huks.Extension |
-| HUKS_TAG_KEY_AUTH_ACCESS_TYPE<sup>9+</sup>                  | HuksTagType.HUKS_TAG_TYPE_UINT \| 307    | 表示安全访问控制类型。从[HuksAuthAccessType](#huksauthaccesstype9)中选择，需要和用户认证类型同时设置。  <br> **系统能力：** SystemCapability.Security.Huks.Extension |
-| HUKS_TAG_KEY_SECURE_SIGN_TYPE<sup>9+</sup>                  | HuksTagType.HUKS_TAG_TYPE_UINT \| 308    | 表示生成或导入密钥时，指定该密钥的签名类型。  <br> **系统能力：** SystemCapability.Security.Huks.Extension |
-| HUKS_TAG_CHALLENGE_TYPE<sup>9+</sup>                        | HuksTagType.HUKS_TAG_TYPE_UINT \| 309    | 表示密钥使用时生成的challenge类型。从[HuksChallengeType](#hukschallengetype9)中选择   <br> **系统能力：** SystemCapability.Security.Huks.Extension |
-| HUKS_TAG_CHALLENGE_POS<sup>9+</sup>                         | HuksTagType.HUKS_TAG_TYPE_UINT \| 310    | 表示challenge类型为用户自定义类型时，huks产生的challenge有效长度仅为8字节连续的数据。从[HuksChallengePosition](#hukschallengeposition9)中选择。   <br> **系统能力：** SystemCapability.Security.Huks.Extension |
-| HUKS_TAG_KEY_AUTH_PURPOSE<sup>10+</sup>                     | HuksTagType.HUKS_TAG_TYPE_UINT \|311     | 表示密钥认证用途的tag   <br> **系统能力：** SystemCapability.Security.Huks.Extension |
-| HUKS_TAG_AUTH_STORAGE_LEVEL<sup>11+</sup>                     | HuksTagType.HUKS_TAG_TYPE_UINT \|316     | 表示密钥存储安全等级的tag。从[HuksAuthStorageLevel](#huksauthstoragelevel11)中选择。   <br> **系统能力：** SystemCapability.Security.Huks.Extension |
-| HUKS_TAG_ATTESTATION_CHALLENGE                              | HuksTagType.HUKS_TAG_TYPE_BYTES \| 501   | 表示attestation时的挑战值。            <br> **系统能力：** SystemCapability.Security.Huks.Extension |
-| HUKS_TAG_ATTESTATION_APPLICATION_ID                         | HuksTagType.HUKS_TAG_TYPE_BYTES \| 502   | 表示attestation时拥有该密钥的application的Id。     <br> **系统能力：** SystemCapability.Security.Huks.Extension |
+| HUKS_TAG_ALL_USERS                                          | HuksTagType.HUKS_TAG_TYPE_BOOL \| 301    | 预留。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Extension |
+| HUKS_TAG_USER_ID                                            | HuksTagType.HUKS_TAG_TYPE_UINT \| 302    | 表示当前密钥属于哪个userID。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Extension |
+| HUKS_TAG_NO_AUTH_REQUIRED                                   | HuksTagType.HUKS_TAG_TYPE_BOOL \| 303    | 预留。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Extension |
+| HUKS_TAG_USER_AUTH_TYPE                                     | HuksTagType.HUKS_TAG_TYPE_UINT \| 304    | 表示用户认证类型。从[HuksUserAuthType](#huksuserauthtype9)中选择，需要与安全访问控制类型同时设置。支持同时指定两种用户认证类型，如：安全访问控制类型指定为HUKS_SECURE_ACCESS_INVALID_NEW_BIO_ENROLL时，密钥访问认证类型可以指定以下三种： HUKS_USER_AUTH_TYPE_FACE 、HUKS_USER_AUTH_TYPE_FINGERPRINT、HUKS_USER_AUTH_TYPE_FACE \| HUKS_USER_AUTH_TYPE_FINGERPRINT   <br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Extension |
+| HUKS_TAG_AUTH_TIMEOUT                                       | HuksTagType.HUKS_TAG_TYPE_UINT \| 305    | 表示auth token单次有效期。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Extension |
+| HUKS_TAG_AUTH_TOKEN                                         | HuksTagType.HUKS_TAG_TYPE_BYTES \| 306   | 用于传入authToken的字段。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Extension |
+| HUKS_TAG_KEY_AUTH_ACCESS_TYPE<sup>9+</sup>                  | HuksTagType.HUKS_TAG_TYPE_UINT \| 307    | 表示安全访问控制类型。从[HuksAuthAccessType](#huksauthaccesstype9)中选择，需要和用户认证类型同时设置。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Extension |
+| HUKS_TAG_KEY_SECURE_SIGN_TYPE<sup>9+</sup>                  | HuksTagType.HUKS_TAG_TYPE_UINT \| 308    | 表示生成或导入密钥时，指定该密钥的签名类型。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Extension |
+| HUKS_TAG_CHALLENGE_TYPE<sup>9+</sup>                        | HuksTagType.HUKS_TAG_TYPE_UINT \| 309    | 表示密钥使用时生成的challenge类型。从[HuksChallengeType](#hukschallengetype9)中选择。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Extension |
+| HUKS_TAG_CHALLENGE_POS<sup>9+</sup>                         | HuksTagType.HUKS_TAG_TYPE_UINT \| 310    | 表示challenge类型为用户自定义类型时，huks产生的challenge有效长度仅为8字节连续的数据。从[HuksChallengePosition](#hukschallengeposition9)中选择。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Extension |
+| HUKS_TAG_KEY_AUTH_PURPOSE<sup>10+</sup>                     | HuksTagType.HUKS_TAG_TYPE_UINT \|311     | 表示密钥认证用途的tag。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Extension |
+| HUKS_TAG_AUTH_STORAGE_LEVEL<sup>11+</sup>                     | HuksTagType.HUKS_TAG_TYPE_UINT \|316     | 表示密钥存储安全等级的tag。从[HuksAuthStorageLevel](#huksauthstoragelevel11)中选择。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Extension |
+| HUKS_TAG_ATTESTATION_CHALLENGE                              | HuksTagType.HUKS_TAG_TYPE_BYTES \| 501   | 表示attestation时的挑战值。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Extension |
+| HUKS_TAG_ATTESTATION_APPLICATION_ID                         | HuksTagType.HUKS_TAG_TYPE_BYTES \| 502   | 表示attestation时拥有该密钥的application的Id。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Extension |
 | HUKS_TAG_ATTESTATION_ID_BRAND<sup>(deprecated)</sup>        | HuksTagType.HUKS_TAG_TYPE_BYTES \| 503   | 表示设备的品牌。从API version 9开始废弃。                      <br> **系统能力：** SystemCapability.Security.Huks.Extension |
 | HUKS_TAG_ATTESTATION_ID_DEVICE<sup>(deprecated)</sup>       | HuksTagType.HUKS_TAG_TYPE_BYTES \| 504   | 表示设备的设备ID。从API version 9开始废弃。                   <br> **系统能力：** SystemCapability.Security.Huks.Extension |
 | HUKS_TAG_ATTESTATION_ID_PRODUCT<sup>(deprecated)</sup>      | HuksTagType.HUKS_TAG_TYPE_BYTES \| 505   | 表示设备的产品名。从API version 9开始废弃。                  <br> **系统能力：** SystemCapability.Security.Huks.Extension |
@@ -2902,38 +3036,73 @@ async function testAbort() {
 | HUKS_TAG_ATTESTATION_ID_MEID<sup>(deprecated)</sup>         | HuksTagType.HUKS_TAG_TYPE_BYTES \| 508   | 表示设备的MEID号。从API version 9开始废弃。                  <br> **系统能力：** SystemCapability.Security.Huks.Extension |
 | HUKS_TAG_ATTESTATION_ID_MANUFACTURER<sup>(deprecated)</sup> | HuksTagType.HUKS_TAG_TYPE_BYTES \| 509   | 表示设备的制造商。从API version 9开始废弃。                  <br> **系统能力：** SystemCapability.Security.Huks.Extension |
 | HUKS_TAG_ATTESTATION_ID_MODEL<sup>(deprecated)</sup>        | HuksTagType.HUKS_TAG_TYPE_BYTES \| 510   | 表示设备的型号。从API version 9开始废弃。                     <br> **系统能力：** SystemCapability.Security.Huks.Extension |
-| HUKS_TAG_ATTESTATION_ID_ALIAS                               | HuksTagType.HUKS_TAG_TYPE_BYTES \| 511   | 表示attestation时的密钥别名。        <br> **系统能力：** SystemCapability.Security.Huks.Extension |
+| HUKS_TAG_ATTESTATION_ID_ALIAS                               | HuksTagType.HUKS_TAG_TYPE_BYTES \| 511   | 表示attestation时的密钥别名。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Extension |
 | HUKS_TAG_ATTESTATION_ID_SOCID<sup>(deprecated)</sup>        | HuksTagType.HUKS_TAG_TYPE_BYTES \| 512   | 表示设备的SOCID。从API version 9开始废弃。                     <br> **系统能力：** SystemCapability.Security.Huks.Extension |
 | HUKS_TAG_ATTESTATION_ID_UDID<sup>(deprecated)</sup>         | HuksTagType.HUKS_TAG_TYPE_BYTES \| 513   | 表示设备的UDID。从API version 9开始废弃。                   <br> **系统能力：** SystemCapability.Security.Huks.Extension |
-| HUKS_TAG_ATTESTATION_ID_SEC_LEVEL_INFO                      | HuksTagType.HUKS_TAG_TYPE_BYTES \| 514   | 表示attestation时的安全凭据。        <br> **系统能力：** SystemCapability.Security.Huks.Extension |
-| HUKS_TAG_ATTESTATION_ID_VERSION_INFO                        | HuksTagType.HUKS_TAG_TYPE_BYTES \| 515   | 表示attestation时的版本号。         <br> **系统能力：** SystemCapability.Security.Huks.Extension |
-| HUKS_TAG_IS_KEY_ALIAS                                       | HuksTagType.HUKS_TAG_TYPE_BOOL \| 1001   | 表示是否使用生成key时传入的别名的Tag。  <br> **系统能力：** SystemCapability.Security.Huks.Core |
-| HUKS_TAG_KEY_STORAGE_FLAG                                   | HuksTagType.HUKS_TAG_TYPE_UINT \| 1002   | 表示密钥存储方式的Tag。          <br> **系统能力：** SystemCapability.Security.Huks.Core |
-| HUKS_TAG_IS_ALLOWED_WRAP                                    | HuksTagType.HUKS_TAG_TYPE_BOOL \| 1003   | 预留。            <br> **系统能力：** SystemCapability.Security.Huks.Extension |
-| HUKS_TAG_KEY_WRAP_TYPE                                      | HuksTagType.HUKS_TAG_TYPE_UINT \| 1004   | 预留。                <br> **系统能力：** SystemCapability.Security.Huks.Extension |
-| HUKS_TAG_KEY_AUTH_ID                                        | HuksTagType.HUKS_TAG_TYPE_BYTES \| 1005  | 预留。                   <br> **系统能力：** SystemCapability.Security.Huks.Extension |
-| HUKS_TAG_KEY_ROLE                                           | HuksTagType.HUKS_TAG_TYPE_UINT \| 1006   | 预留。                      <br> **系统能力：** SystemCapability.Security.Huks.Extension |
-| HUKS_TAG_KEY_FLAG                                           | HuksTagType.HUKS_TAG_TYPE_UINT \| 1007   | 表示密钥标志的Tag。         <br> **系统能力：** SystemCapability.Security.Huks.Core |
-| HUKS_TAG_IS_ASYNCHRONIZED                                   | HuksTagType.HUKS_TAG_TYPE_UINT \| 1008   | 预留。                           <br> **系统能力：** SystemCapability.Security.Huks.Extension |
+| HUKS_TAG_ATTESTATION_ID_SEC_LEVEL_INFO                      | HuksTagType.HUKS_TAG_TYPE_BYTES \| 514   | 表示attestation时的安全凭据。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Extension |
+| HUKS_TAG_ATTESTATION_ID_VERSION_INFO                        | HuksTagType.HUKS_TAG_TYPE_BYTES \| 515   | 表示attestation时的版本号。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Extension |
+| HUKS_TAG_IS_KEY_ALIAS                                       | HuksTagType.HUKS_TAG_TYPE_BOOL \| 1001   | 表示是否使用生成key时传入的别名的Tag。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Core |
+| HUKS_TAG_KEY_STORAGE_FLAG                                   | HuksTagType.HUKS_TAG_TYPE_UINT \| 1002   | 表示密钥存储方式的Tag。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Core |
+| HUKS_TAG_IS_ALLOWED_WRAP                                    | HuksTagType.HUKS_TAG_TYPE_BOOL \| 1003   | 预留。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Extension |
+| HUKS_TAG_KEY_WRAP_TYPE                                      | HuksTagType.HUKS_TAG_TYPE_UINT \| 1004   | 预留。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Extension |
+| HUKS_TAG_KEY_AUTH_ID                                        | HuksTagType.HUKS_TAG_TYPE_BYTES \| 1005  | 预留。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Extension |
+| HUKS_TAG_KEY_ROLE                                           | HuksTagType.HUKS_TAG_TYPE_UINT \| 1006   | 预留。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Extension |
+| HUKS_TAG_KEY_FLAG                                           | HuksTagType.HUKS_TAG_TYPE_UINT \| 1007   | 表示密钥标志的Tag。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Core |
+| HUKS_TAG_IS_ASYNCHRONIZED                                   | HuksTagType.HUKS_TAG_TYPE_UINT \| 1008   | 预留。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Extension |
 | HUKS_TAG_SECURE_KEY_ALIAS<sup>(deprecated)</sup>            | HuksTagType.HUKS_TAG_TYPE_BOOL \| 1009   | 原为预留字段，从API version 9开始废弃。                          <br> **系统能力：** SystemCapability.Security.Huks.Core |
 | HUKS_TAG_SECURE_KEY_UUID<sup>(deprecated)</sup>             | HuksTagType.HUKS_TAG_TYPE_BYTES \| 1010  | 原为预留字段，从API version 9开始废弃。                            <br> **系统能力：** SystemCapability.Security.Huks.Extension |
-| HUKS_TAG_KEY_DOMAIN                                         | HuksTagType.HUKS_TAG_TYPE_UINT \| 1011   | 预留。                      <br> **系统能力：** SystemCapability.Security.Huks.Core |
-| HUKS_TAG_IS_DEVICE_PASSWORD_SET<sup>11+</sup>                | HuksTagType.HUKS_TAG_TYPE_BOOL \| 1012   | 表示密钥锁屏密码访问控制字段，可限制密钥只有在用户设置了锁屏密码时可用  <br> **系统能力：** SystemCapability.Security.Huks.Extension |
+| HUKS_TAG_KEY_DOMAIN                                         | HuksTagType.HUKS_TAG_TYPE_UINT \| 1011   | 预留。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Core |
+| HUKS_TAG_IS_DEVICE_PASSWORD_SET<sup>11+</sup>                | HuksTagType.HUKS_TAG_TYPE_BOOL \| 1012   | 表示密钥锁屏密码访问控制字段，可限制密钥只有在用户设置了锁屏密码时可用。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Extension |
 | HUKS_TAG_PROCESS_NAME<sup>(deprecated)</sup>                | HuksTagType.HUKS_TAG_TYPE_BYTES \| 10001 | 表示进程名称的Tag。从API version 9开始废弃。          <br> **系统能力：** SystemCapability.Security.Huks.Core |
 | HUKS_TAG_PACKAGE_NAME<sup>(deprecated)</sup>                | HuksTagType.HUKS_TAG_TYPE_BYTES \| 10002 | 原为预留字段，从API version 9开始废弃。             <br> **系统能力：** SystemCapability.Security.Huks.Extension |
 | HUKS_TAG_ACCESS_TIME<sup>(deprecated)</sup>                 | HuksTagType.HUKS_TAG_TYPE_UINT \| 10003  | 原为预留字段，从API version 9开始废弃。                    <br> **系统能力：** SystemCapability.Security.Huks.Extension |
 | HUKS_TAG_USES_TIME<sup>(deprecated)</sup>                   | HuksTagType.HUKS_TAG_TYPE_UINT \| 10004  | 原为预留字段，从API version 9开始废弃。                 <br> **系统能力：** SystemCapability.Security.Huks.Extension |
 | HUKS_TAG_CRYPTO_CTX<sup>(deprecated)</sup>                  | HuksTagType.HUKS_TAG_TYPE_ULONG \| 10005 | 原为预留字段，从API version 9开始废弃。                <br> **系统能力：** SystemCapability.Security.Huks.Extension |
-| HUKS_TAG_KEY                                                | HuksTagType.HUKS_TAG_TYPE_BYTES \| 10006 | 预留。                           <br> **系统能力：** SystemCapability.Security.Huks.Core |
+| HUKS_TAG_KEY                                                | HuksTagType.HUKS_TAG_TYPE_BYTES \| 10006 | 预留。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Core |
 | HUKS_TAG_KEY_VERSION<sup>(deprecated)</sup>                 | HuksTagType.HUKS_TAG_TYPE_UINT \| 10007  | 表示密钥版本的Tag。从API version 9开始废弃。                   <br> **系统能力：** SystemCapability.Security.Huks.Extension |
 | HUKS_TAG_PAYLOAD_LEN<sup>(deprecated)</sup>                 | HuksTagType.HUKS_TAG_TYPE_UINT \| 10008  | 原为预留字段，从API version 9开始废弃。                          <br> **系统能力：** SystemCapability.Security.Huks.Extension |
-| HUKS_TAG_AE_TAG                                             | HuksTagType.HUKS_TAG_TYPE_BYTES \| 10009 | 用于传入GCM模式中的AEAD数据的字段。      <br> **系统能力：** SystemCapability.Security.Huks.Core |
+| HUKS_TAG_AE_TAG                                             | HuksTagType.HUKS_TAG_TYPE_BYTES \| 10009 | 用于传入GCM模式中的AEAD数据的字段。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Core |
 | HUKS_TAG_IS_KEY_HANDLE<sup>(deprecated)</sup>               | HuksTagType.HUKS_TAG_TYPE_ULONG \| 10010 | 原为预留字段，从API version 9开始废弃。              <br> **系统能力：** SystemCapability.Security.Huks.Core |
 | HUKS_TAG_OS_VERSION<sup>(deprecated)</sup>                  | HuksTagType.HUKS_TAG_TYPE_UINT \| 10101  | 表示操作系统版本的Tag。从API version 9开始废弃。      <br> **系统能力：** SystemCapability.Security.Huks.Core |
 | HUKS_TAG_OS_PATCHLEVEL<sup>(deprecated)</sup>               | HuksTagType.HUKS_TAG_TYPE_UINT \| 10102  | 表示操作系统补丁级别的Tag。从API version 9开始废弃。    <br> **系统能力：** SystemCapability.Security.Huks.Core |
-| HUKS_TAG_SYMMETRIC_KEY_DATA                                 | HuksTagType.HUKS_TAG_TYPE_BYTES \| 20001 | 预留。        <br> **系统能力：** SystemCapability.Security.Huks.Core |
-| HUKS_TAG_ASYMMETRIC_PUBLIC_KEY_DATA                         | HuksTagType.HUKS_TAG_TYPE_BYTES \| 20002 | 预留。             <br> **系统能力：** SystemCapability.Security.Huks.Extension |
-| HUKS_TAG_ASYMMETRIC_PRIVATE_KEY_DATA                        | HuksTagType.HUKS_TAG_TYPE_BYTES \| 20003 | 预留。         <br> **系统能力：** SystemCapability.Security.Huks.Extension |
+| HUKS_TAG_SYMMETRIC_KEY_DATA                                 | HuksTagType.HUKS_TAG_TYPE_BYTES \| 20001 | 预留。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Core |
+| HUKS_TAG_ASYMMETRIC_PUBLIC_KEY_DATA                         | HuksTagType.HUKS_TAG_TYPE_BYTES \| 20002 | 预留。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Extension |
+| HUKS_TAG_ASYMMETRIC_PRIVATE_KEY_DATA                        | HuksTagType.HUKS_TAG_TYPE_BYTES \| 20003 | 预留。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。<br> **系统能力：** SystemCapability.Security.Huks.Extension |
+
+## huks.getSdkVersion<sup>(deprecated)</sup>
+
+getSdkVersion(options: HuksOptions) : string
+
+获取当前系统sdk版本。
+
+> **说明：**
+>
+> 从API version 11开始废弃。
+
+**系统能力：** SystemCapability.Security.Huks.Extension
+
+**参数：**
+
+| 参数名  | 类型       | 必填 | 说明                      |
+| ------- | ---------- | ---- | ------------------------- |
+| options | [HuksOptions](#huksoptions) | 是   | 空对象，用于存放sdk版本。 |
+
+**返回值：**
+
+| 类型   | 说明          |
+| ------ | ------------- |
+| string | 返回sdk版本。 |
+
+**示例：**
+
+```ts
+import { huks } from '@kit.UniversalKeystoreKit';
+/* 此处options选择emptyOptions传空 */
+let emptyOptions: huks.HuksOptions = {
+    properties: []
+};
+let result = huks.getSdkVersion(emptyOptions);
+```
 
 ## huks.generateKey<sup>(deprecated)</sup>
 
@@ -2945,7 +3114,7 @@ generateKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<Huk
 >
 > 从API version 9开始废弃，建议使用[huks.generateKeyItem<sup>9+</sup>](#huksgeneratekeyitem9)替代。
 
-**系统能力**：SystemCapability.Security.Huks.Extension
+**系统能力：** SystemCapability.Security.Huks.Extension
 
 **参数：**
 
@@ -2958,7 +3127,7 @@ generateKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<Huk
 **示例：**
 
 ```ts
-import huks from '@ohos.security.huks';
+import { huks } from '@kit.UniversalKeystoreKit';
 /* 以生成RSA512密钥为例 */
 class HuksProperties {
     tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM
@@ -3007,7 +3176,7 @@ generateKey(keyAlias: string, options: HuksOptions) : Promise\<HuksResult>
 >
 > 从API version 9开始废弃，建议使用[huks.generateKeyItem<sup>9+</sup>](#huksgeneratekeyitem9-1)替代。
 
-**系统能力**：SystemCapability.Security.Huks.Extension
+**系统能力：** SystemCapability.Security.Huks.Extension
 
 **参数：**
 
@@ -3025,7 +3194,7 @@ generateKey(keyAlias: string, options: HuksOptions) : Promise\<HuksResult>
 **示例：**
 
 ```ts
-import huks from '@ohos.security.huks';
+import { huks } from '@kit.UniversalKeystoreKit';
 /* 以生成ECC256密钥为例 */
 class HuksProperties {
     tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM
@@ -3070,7 +3239,7 @@ deleteKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksR
 >
 > 从API version 9开始废弃，建议使用[huks.deleteKeyItem<sup>9+</sup>](#huksdeletekeyitem9)替代。
 
-**系统能力**：SystemCapability.Security.Huks.Extension
+**系统能力：** SystemCapability.Security.Huks.Extension
 
 **参数：**
 
@@ -3083,7 +3252,7 @@ deleteKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksR
 **示例：**
 
 ```ts
-import huks from '@ohos.security.huks';
+import { huks } from '@kit.UniversalKeystoreKit';
 /* 此处options选择emptyOptions传空 */
 let keyAlias = 'keyAlias';
 let emptyOptions: huks.HuksOptions = {
@@ -3103,7 +3272,7 @@ deleteKey(keyAlias: string, options: HuksOptions) : Promise\<HuksResult>
 >
 > 从API version 9开始废弃，建议使用[huks.deleteKeyItem<sup>9+</sup>](#huksdeletekeyitem9-1)替代。
 
-**系统能力**：SystemCapability.Security.Huks.Extension
+**系统能力：** SystemCapability.Security.Huks.Extension
 
 **参数：**
 
@@ -3121,7 +3290,7 @@ deleteKey(keyAlias: string, options: HuksOptions) : Promise\<HuksResult>
 **示例：**
 
 ```ts
-import huks from '@ohos.security.huks';
+import { huks } from '@kit.UniversalKeystoreKit';
 /* 此处options选择emptyOptions传空 */
 let keyAlias = 'keyAlias';
 let emptyOptions: huks.HuksOptions = {
@@ -3140,7 +3309,7 @@ importKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksR
 >
 > 从API version 9开始废弃，建议使用[huks.importKeyItem<sup>9+</sup>](#huksimportkeyitem9)替代。
 
-**系统能力**：SystemCapability.Security.Huks.Extension
+**系统能力：** SystemCapability.Security.Huks.Extension
 
 **参数：**
 
@@ -3153,7 +3322,7 @@ importKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksR
 **示例：**
 
 ```ts
-import huks from '@ohos.security.huks';
+import { huks } from '@kit.UniversalKeystoreKit';
 /* 以导入AES256密钥为例 */
 class HuksProperties {
     tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM
@@ -3210,7 +3379,7 @@ importKey(keyAlias: string, options: HuksOptions) : Promise\<HuksResult>
 >
 > 从API version 9开始废弃，建议使用[huks.importKeyItem<sup>9+</sup>](#huksimportkeyitem9-1)替代。
 
-**系统能力**：SystemCapability.Security.Huks.Extension
+**系统能力：** SystemCapability.Security.Huks.Extension
 
 **参数：**
 
@@ -3228,7 +3397,7 @@ importKey(keyAlias: string, options: HuksOptions) : Promise\<HuksResult>
 **示例：**
 
 ```ts
-import huks from '@ohos.security.huks';
+import { huks } from '@kit.UniversalKeystoreKit';
 /* 以导入AES128为例 */
 class HuksProperties {
     tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM
@@ -3267,11 +3436,11 @@ let properties: HuksProperties[] = [
         value: huks.HuksCipherMode.HUKS_MODE_ECB
     }
 ];
-let huksoptions: huks.HuksOptions = {
+let huksOptions: huks.HuksOptions = {
     properties: properties,
     inData: plainTextSize32
 };
-let result = huks.importKey(keyAlias, huksoptions);
+let result = huks.importKey(keyAlias, huksOptions);
 ```
 
 ## huks.exportKey<sup>(deprecated)</sup>
@@ -3284,7 +3453,7 @@ exportKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksR
 >
 > 从API version 9开始废弃，建议使用[huks.exportKeyItem<sup>9+</sup>](#huksexportkeyitem9)替代。
 
-**系统能力**：SystemCapability.Security.Huks.Extension
+**系统能力：** SystemCapability.Security.Huks.Extension
 
 **参数：**
 
@@ -3297,7 +3466,7 @@ exportKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksR
 **示例：**
 
 ```ts
-import huks from '@ohos.security.huks';
+import { huks } from '@kit.UniversalKeystoreKit';
 /* 此处options选择emptyOptions来传空 */
 let keyAlias = 'keyAlias';
 let emptyOptions: huks.HuksOptions = {
@@ -3317,7 +3486,7 @@ exportKey(keyAlias: string, options: HuksOptions) : Promise\<HuksResult>
 >
 > 从API version 9开始废弃，建议使用[huks.exportKeyItem<sup>9+</sup>](#huksexportkeyitem9-1)替代。
 
-**系统能力**：SystemCapability.Security.Huks.Extension
+**系统能力：** SystemCapability.Security.Huks.Extension
 
 **参数：**
 
@@ -3335,7 +3504,7 @@ exportKey(keyAlias: string, options: HuksOptions) : Promise\<HuksResult>
 **示例：**
 
 ```ts
-import huks from '@ohos.security.huks';
+import { huks } from '@kit.UniversalKeystoreKit';
 /* 此处options选择emptyOptions来传空 */
 let keyAlias = 'keyAlias';
 let emptyOptions: huks.HuksOptions = {
@@ -3354,7 +3523,7 @@ getKeyProperties(keyAlias: string, options: HuksOptions, callback: AsyncCallback
 >
 > 从API version 9开始废弃，建议使用[huks.getKeyItemProperties<sup>9+</sup>](#huksgetkeyitemproperties9)替代。
 
-**系统能力**：SystemCapability.Security.Huks.Extension
+**系统能力：** SystemCapability.Security.Huks.Extension
 
 **参数：**
 
@@ -3367,7 +3536,7 @@ getKeyProperties(keyAlias: string, options: HuksOptions, callback: AsyncCallback
 **示例：**
 
 ```ts
-import huks from '@ohos.security.huks';
+import { huks } from '@kit.UniversalKeystoreKit';
 /* 此处options选择emptyOptions来传空 */
 let keyAlias = 'keyAlias';
 let emptyOptions: huks.HuksOptions = {
@@ -3387,7 +3556,7 @@ getKeyProperties(keyAlias: string, options: HuksOptions) : Promise\<HuksResult>
 >
 > 从API version 9开始废弃，建议使用[huks.getKeyItemProperties<sup>9+</sup>](#huksgetkeyitemproperties9-1)替代。
 
-**系统能力**：SystemCapability.Security.Huks.Extension
+**系统能力：** SystemCapability.Security.Huks.Extension
 
 **参数：**
 
@@ -3405,7 +3574,7 @@ getKeyProperties(keyAlias: string, options: HuksOptions) : Promise\<HuksResult>
 **示例：**
 
 ```ts
-import huks from '@ohos.security.huks';
+import { huks } from '@kit.UniversalKeystoreKit';
 /* 此处options选择emptyOptions来传空 */
 let keyAlias = 'keyAlias';
 let emptyOptions: huks.HuksOptions = {
@@ -3424,7 +3593,7 @@ isKeyExist(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<bool
 >
 > 从API version 9开始废弃，建议使用[huks.isKeyItemExist<sup>9+</sup>](#huksiskeyitemexist9)替代。
 
-**系统能力**：SystemCapability.Security.Huks.Extension
+**系统能力：** SystemCapability.Security.Huks.Extension
 
 **参数：**
 
@@ -3437,7 +3606,7 @@ isKeyExist(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<bool
 **示例：**
 
 ```ts
-import huks from '@ohos.security.huks';
+import { huks } from '@kit.UniversalKeystoreKit';
 /* 此处options选择emptyOptions来传空 */
 let keyAlias = 'keyAlias';
 let emptyOptions: huks.HuksOptions = {
@@ -3457,7 +3626,7 @@ isKeyExist(keyAlias: string, options: HuksOptions) : Promise\<boolean>
 >
 > 从API version 9开始废弃，建议使用[huks.isKeyItemExist<sup>9+</sup>](#huksiskeyitemexist9-1)替代。
 
-**系统能力**：SystemCapability.Security.Huks.Extension
+**系统能力：** SystemCapability.Security.Huks.Extension
 
 **参数：**
 
@@ -3475,7 +3644,7 @@ isKeyExist(keyAlias: string, options: HuksOptions) : Promise\<boolean>
 **示例：**
 
 ```ts
-import huks from '@ohos.security.huks';
+import { huks } from '@kit.UniversalKeystoreKit';
 /* 此处options选择emptyOptions来传空 */
 let keyAlias = 'keyAlias';
 let emptyOptions: huks.HuksOptions = {
@@ -3494,7 +3663,7 @@ init操作密钥接口，使用Callback回调异步返回结果。huks.init, huk
 >
 > 从API version 9开始废弃，建议使用[huks.initSession<sup>9+</sup>](#huksinitsession9-1)替代。
 
-**系统能力**：SystemCapability.Security.Huks.Extension
+**系统能力：** SystemCapability.Security.Huks.Extension
 
 **参数：**
 
@@ -3514,7 +3683,7 @@ init操作密钥接口，使用Promise方式异步返回结果。huks.init, huks
 >
 > 从API version 9开始废弃，建议使用[huks.initSession<sup>9+</sup>](#huksinitsession9-1)替代。
 
-**系统能力**：SystemCapability.Security.Huks.Extension
+**系统能力：** SystemCapability.Security.Huks.Extension
 
 **参数：**
 
@@ -3539,7 +3708,7 @@ update操作密钥接口，使用Callback回调异步返回结果。huks.init, h
 >
 > 从API version 9开始废弃，建议使用[huks.updateSession<sup>9+</sup>](#huksupdatesession9-1)替代。
 
-**系统能力**： SystemCapability.Security.Huks.Extension
+**系统能力：**  SystemCapability.Security.Huks.Extension
 
 **参数：**
 
@@ -3560,7 +3729,7 @@ update操作密钥接口，使用Promise方式异步返回结果。huks.init, hu
 >
 > 从API version 9开始废弃，建议使用[huks.updateSession<sup>9+</sup>](#huksupdatesession9-2)替代。
 
-**系统能力**： SystemCapability.Security.Huks.Extension
+**系统能力：**  SystemCapability.Security.Huks.Extension
 
 **参数：**
 
@@ -3586,7 +3755,7 @@ finish操作密钥接口，使用Callback回调异步返回结果。huks.init, h
 >
 > 从API version 9开始废弃，建议使用[huks.finishSession<sup>9+</sup>](#huksfinishsession9)替代。
 
-**系统能力**：SystemCapability.Security.Huks.Extension
+**系统能力：** SystemCapability.Security.Huks.Extension
 
 **参数：**
 
@@ -3606,7 +3775,7 @@ finish操作密钥接口，使用Promise方式异步返回结果。huks.init, hu
 >
 > 从API version 9开始废弃，建议使用[huks.finishSession<sup>9+</sup>](#huksfinishsession9-1)替代。
 
-**系统能力**：SystemCapability.Security.Huks.Extension
+**系统能力：** SystemCapability.Security.Huks.Extension
 
 **参数：**
 
@@ -3631,7 +3800,7 @@ abort操作密钥接口，使用Callback回调异步返回结果。
 >
 > 从API version 9开始废弃，建议使用[huks.abortSession<sup>9+</sup>](#huksabortsession9)替代。
 
-**系统能力**：SystemCapability.Security.Huks.Extension
+**系统能力：** SystemCapability.Security.Huks.Extension
 
 **参数：**
 
@@ -3644,8 +3813,8 @@ abort操作密钥接口，使用Callback回调异步返回结果。
 **示例：**
 
 ```ts
-import huks from '@ohos.security.huks';
-import { BusinessError } from '@ohos.base';
+import { huks } from '@kit.UniversalKeystoreKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 /* huks.init, huks.update, huks.finish为三段式接口，需要一起使用，当huks.init和huks.update
  * 以及huks.finish操作中的任一阶段发生错误时，都需要调用huks.abort来终止密钥的使用。
  *
@@ -3656,7 +3825,7 @@ class HuksProperties {
     value: huks.HuksKeyAlg | huks.HuksKeySize | huks.HuksKeyPurpose |
     huks.HuksKeyDigest | huks.HuksKeyPadding = huks.HuksKeyAlg.HUKS_ALG_ECC
 }
-let keyalias = "HuksDemoRSA";
+let keyAlias = "HuksDemoRSA";
 let properties: HuksProperties[] = [];
 let options: huks.HuksOptions = {
     properties: properties,
@@ -3685,7 +3854,7 @@ async function generateKey() {
         tag: huks.HuksTag.HUKS_TAG_DIGEST,
         value: huks.HuksKeyDigest.HUKS_DIGEST_SHA256
     };
-    huks.generateKey(keyalias, options);
+    huks.generateKey(keyAlias, options);
 }
 function stringToUint8Array(str: string) {
     let arr: number[] = [];
@@ -3696,7 +3865,7 @@ function stringToUint8Array(str: string) {
     return tmpUint8Array;
 }
 async function huksInit() {
-    await huks.init(keyalias, options).then((data) => {
+    await huks.init(keyAlias, options).then((data) => {
         console.log(`test init data: ${JSON.stringify(data)}`);
         handle = data.handle;
     }).catch((err: BusinessError) => {
@@ -3747,7 +3916,7 @@ abort操作密钥接口，使用Promise方式异步返回结果。
 >
 > 从API version 9开始废弃，建议使用[huks.abortSession<sup>9+</sup>](#huksabortsession9-1)替代。
 
-**系统能力**：SystemCapability.Security.Huks.Extension
+**系统能力：** SystemCapability.Security.Huks.Extension
 
 **参数：**
 
@@ -3765,8 +3934,8 @@ abort操作密钥接口，使用Promise方式异步返回结果。
 **示例：**
 
 ```ts
-import huks from '@ohos.security.huks';
-import { BusinessError } from '@ohos.base';
+import { huks } from '@kit.UniversalKeystoreKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 /* huks.init, huks.update, huks.finish为三段式接口，需要一起使用，当huks.init和huks.update
  * 以及huks.finish操作中的任一阶段发生错误时，都需要调用huks.abort来终止密钥的使用。
  *
@@ -3777,7 +3946,7 @@ class HuksProperties {
     value: huks.HuksKeyAlg | huks.HuksKeySize | huks.HuksKeyPurpose |
     huks.HuksKeyPadding | huks.HuksKeyDigest = huks.HuksKeyAlg.HUKS_ALG_ECC
 }
-let keyalias = "HuksDemoRSA";
+let keyAlias = "HuksDemoRSA";
 let properties: HuksProperties[] = [];
 let options: huks.HuksOptions = {
     properties: properties,
@@ -3816,13 +3985,13 @@ async function generateKey() {
         tag: huks.HuksTag.HUKS_TAG_DIGEST,
         value: huks.HuksKeyDigest.HUKS_DIGEST_SHA256
     };
-    huks.generateKey(keyalias, options, (err, data) => {
+    huks.generateKey(keyAlias, options, (err, data) => {
     });
 }
 
 async function huksInit() {
     return new Promise<huks.HuksHandle>((resolve, reject) => {
-        huks.init(keyalias, options, async (err, data) => {
+        huks.init(keyAlias, options, async (err, data) => {
             if (data.errorCode === 0) {
                 resultMessage = "init success!"
                 handle = data.handle;
@@ -3879,7 +4048,8 @@ function huksAbort() {
 
 huks Handle结构体。
 
-**系统能力**：SystemCapability.Security.Huks.Extension
+**系统能力：** SystemCapability.Security.Huks.Extension
+
 > **说明：**
 >
 > 从API version 9开始废弃，建议使用[HuksSessionHandle<sup>9+</sup>](#hukssessionhandle9)替代。
@@ -3894,7 +4064,7 @@ huks Handle结构体。
 
 调用接口返回的result。
 
-**系统能力**：SystemCapability.Security.Huks.Extension
+**系统能力：** SystemCapability.Security.Huks.Extension
 
 > **说明：**
 >
@@ -3912,7 +4082,8 @@ huks Handle结构体。
 
 表示错误码的枚举。
 
-**系统能力**：SystemCapability.Security.Huks.Extension
+**系统能力：** SystemCapability.Security.Huks.Extension
+
 > **说明：**
 >
 > 从API version 9开始废弃，建议使用[HuksExceptionErrCode<sup>9+</sup>](#huksexceptionerrcode9)替代。

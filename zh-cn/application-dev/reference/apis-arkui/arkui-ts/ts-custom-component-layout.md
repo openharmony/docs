@@ -12,6 +12,8 @@ onPlaceChildren?(selfLayoutInfo: GeometryInfo, children: Array&lt;Layoutable&gt;
 
 ArkUI框架会在自定义组件布局时，将该自定义组件的子节点自身的尺寸范围通过onPlaceChildren传递给该自定义组件。不允许在onPlaceChildren函数中改变状态变量。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名            | 类型                                                         | 说明               |
@@ -22,21 +24,31 @@ ArkUI框架会在自定义组件布局时，将该自定义组件的子节点自
 
 ## onMeasureSize<sup>10+</sup>
 
-onMeasureSize?(selfLayoutInfo: GeometryInfo, children: Array&lt;Measurable&gt;, constraint: ConstraintSizeOptions):[SizeResult](#sizeresult10)
+onMeasureSize?(selfLayoutInfo: GeometryInfo, children: Array&lt;Measurable&gt;, constraint: ConstraintSizeOptions): SizeResult
 
 ArkUI框架会在自定义组件确定尺寸时，将该自定义组件的节点信息和尺寸范围通过onMeasureSize传递给该开发者。不允许在onMeasureSize函数中改变状态变量。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **参数：**
 
-| 参数名            | 类型                                                         | 说明               |
-|----------------|------------------------------------------------------------|------------------|
-| selfLayoutInfo | [GeometryInfo](#geometryinfo10)                            | 父组件布局信息。         |
-| children       | Array&lt;[Measurable](#measurable10)&gt;                   | 子组件布局信息。         |
-| constraint     | [ConstraintSizeOptions](ts-types.md#constraintsizeoptions) | 父组件constraint信息。 |
+| 参数名         | 类型                                                       | 说明                                                         |
+| -------------- | ---------------------------------------------------------- | ------------------------------------------------------------ |
+| selfLayoutInfo | [GeometryInfo](#geometryinfo10)                            | 父组件布局信息。                                             |
+| children       | Array&lt;[Measurable](#measurable10)&gt;                   | 子组件布局信息。<br/>**说明：** <br/>如果没有设置子组件的布局信息，子组件会维持上一次的布局信息，当子组件从来没有设置过尺寸时，尺寸默认为0。 |
+| constraint     | [ConstraintSizeOptions](ts-types.md#constraintsizeoptions) | 父组件constraint信息。                                       |
+
+**返回值：** 
+
+| 类型                        | 描述           |
+| --------------------------- | -------------- |
+| [SizeResult](#sizeresult10) | 组件尺寸信息。 |
 
 ## GeometryInfo<sup>10+</sup>
 
 父组件布局信息。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 属性          | 属性类型      | 描述                  |
 |-------------|-----------|---------------------|
@@ -49,24 +61,36 @@ ArkUI框架会在自定义组件确定尺寸时，将该自定义组件的节点
 
 ## Layoutable<sup>10+</sup>
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 子组件布局信息。
 
 | 属性         | 属性类型                                                    | 描述                  |
 |------------|---------------------------------------------------------|---------------------|
 | measureResult| [MeasureResult](#measureresult10)      | 子组件测量后的尺寸信息。   <br>单位：vp     |
 | layout     | (position: [Position](ts-types.md#position))&nbsp;=&gt;&nbsp;void | 调用此方法对子组件的位置信息进行限制。 |
+| getMargin<sup>12+</sup>   | ()&nbsp;=&gt;&nbsp;[DirectionalEdgesT&lt;number&gt;](#directionaledgestt12) | 调用此方法获得子组件的margin信息。<br/>单位：vp |
+| getPadding<sup>12+</sup>   | ()&nbsp;=&gt;&nbsp;[DirectionalEdgesT&lt;number&gt;](#directionaledgestt12) | 调用此方法获得子组件的padding信息。<br/>单位：vp |
+| getBorderWidth<sup>12+</sup>   | ()&nbsp;=&gt;&nbsp;[DirectionalEdgesT&lt;number&gt;](#directionaledgestt12) | 调用此方法获得子组件的boderWidth信息。<br/>单位：vp |
 
 ## Measurable<sup>10+</sup>
 
 子组件位置信息。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 属性         | 属性类型                                                                             | 描述                                    |
 |------------|----------------------------------------------------------------------------------|---------------------------------------|
 | measure    | (childConstraint: [ConstraintSizeOptions](ts-types.md#constraintsizeoptions))&nbsp;=&gt;&nbsp;[MeasureResult](#measureresult10) | 调用此方法对子组件的尺寸范围进行限制。<br/>返回值：子组件测量后的尺寸。 |
+| getMargin<sup>12+</sup>   | ()&nbsp;=&gt;&nbsp;[DirectionalEdgesT&lt;number&gt;](#directionaledgestt12) | 调用此方法获得子组件的margin信息。<br/>单位：vp<br/> **说明：** <br/>如果子组件的margin以百分比形式指定，需要调用完子组件的measure后再调用此方法才能正确的获取margin。如果以具体的数值指定，measure前也可正确获取。 |
+| getPadding<sup>12+</sup>   | ()&nbsp;=&gt;&nbsp;[DirectionalEdgesT&lt;number&gt;](#directionaledgestt12) | 调用此方法获得子组件的padding信息。<br/>单位：vp<br/> **说明：** <br/>如果子组件的padding以百分比形式指定，需要调用完子组件的measure后再调用此方法才能正确的获取padding。如果以具体的数值指定，measure前也可正确获取。|
+| getBorderWidth<sup>12+</sup>   | ()&nbsp;=&gt;&nbsp;[DirectionalEdgesT&lt;number&gt;](#directionaledgestt12) | 调用此方法获得子组件的boderWidth信息。<br/>单位：vp<br/> **说明：** <br/>子组件borderWidth本身不支持百分比形式指定。|
 
 ## MeasureResult<sup>10+</sup>
 
 测量后的组件布局信息。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 属性     | 属性类型   | 描述    |
 |--------|--------|-------|
@@ -78,10 +102,25 @@ ArkUI框架会在自定义组件确定尺寸时，将该自定义组件的节点
 
 组件尺寸信息。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 属性     | 属性类型   | 描述    |
 |--------|--------|-------|
 | width  | number | 测量后的宽。<br>单位：vp |
 | height | number | 测量后的高。<br>单位：vp |
+
+## DirectionalEdgesT\<T><sup>12+</sup>
+
+全球化的边缘属性。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 属性   | 属性类型 | 描述             |
+| ------ | ---- | ---------------- |
+| start   | T    | 起始边缘的属性。在LTR的方向下，为左边缘，在RTL的方向下，为右边缘。 |
+| end    | T    | 终止边缘的属性。在LTR的方向下，为右边缘，在RTL的方向下，为左边缘。 |
+| top  | T    | 顶部边缘的属性。 |
+| bottom | T    | 底部边缘的属性。 |
 
 > **说明：**
 >
@@ -91,6 +130,7 @@ ArkUI框架会在自定义组件确定尺寸时，将该自定义组件的节点
 >- 子组件设置的位置信息，offset、position、markAnchor优先级大于onPlaceChildren设置的位置信息，其他位置设置属性不生效。
 >- 使用自定义布局方法时，需要同时调用onMeasureSize和onPlaceChildren方法，否则可能出现布局异常。
 
+**示例一：**
 ```
 // xxx.ets
 @Entry
@@ -155,6 +195,101 @@ struct CustomLayout {
 ```
 
 ![custom_layout10.png](figures/custom_layout10.png)
+
+**示例二：**
+```
+// xxx.ets
+@Entry
+@Component
+struct Index {
+  build() {
+    Column() {
+      CustomLayout({ builder: ColumnChildren })
+    }
+  }
+}
+
+@Builder
+function ColumnChildren() {
+  ForEach([1, 2, 3], (item: number, index: number) => { //暂不支持lazyForEach的写法
+    Text('S' + item)
+      .fontSize(20)
+      .width(60 + 10 * index)
+      .height(100)
+      .borderWidth(2)
+      .margin({ left:10 })
+      .padding(10)
+  })
+}
+
+@Component
+struct CustomLayout {
+  // 只布局一行，如果布局空间不够的子组件不显示的demo
+  @Builder
+  doNothingBuilder() {
+  };
+
+  @BuilderParam builder: () => void = this.doNothingBuilder;
+  result: SizeResult = {
+    width: 0,
+    height: 0
+  };
+  overFlowIndex: number = -1;
+
+  onPlaceChildren(selfLayoutInfo: GeometryInfo, children: Array<Layoutable>, constraint: ConstraintSizeOptions) {
+    let currentX = 0;
+    let infinity = 100000;
+    if (this.overFlowIndex == -1) {
+      this.overFlowIndex = children.length;
+    }
+    for (let index = 0; index < children.length; ++index) {
+      let child = children[index];
+      if (index >= this.overFlowIndex) {
+        // 如果子组件超出父组件范围，将它布局到较偏的位置，达到不显示的目的
+        child.layout({x: infinity, y: 0});
+        continue;
+      }
+      child.layout({ x: currentX, y: 0 })
+      let margin = child.getMargin();
+      currentX += child.measureResult.width + margin.start + margin.end;
+    }
+  }
+
+  onMeasureSize(selfLayoutInfo: GeometryInfo, children: Array<Measurable>, constraint: ConstraintSizeOptions) {
+    let width = 0;
+    let height = 0;
+    this.overFlowIndex = -1;
+    // 假定该组件的宽度不能超过200vp，也不能超过最大约束
+    let maxWidth = Math.min(200, constraint.maxWidth as number);
+    for (let index = 0; index < children.length; ++index) {
+      let child = children[index];
+      let childResult: MeasureResult = child.measure({
+          minHeight: constraint.minHeight,
+          minWidth: constraint.minWidth,
+          maxWidth: constraint.maxWidth,
+          maxHeight: constraint.maxHeight
+      })
+      let margin = child.getMargin();
+      let newWidth = width + childResult.width + margin.start + margin.end;
+      if (newWidth > maxWidth) {
+        // 记录不该布局的组件的下标
+        this.overFlowIndex = index;
+        break;
+      }
+      // 累积父组件的宽度和高度
+      width = newWidth;
+      height = Math.max(height, childResult.height + margin.top + margin.bottom);
+    }
+    this.result.width = width;
+    this.result.height = height;
+    return this.result;
+  }
+
+  build() {
+    this.builder()
+  }
+}
+```
 
 ## onLayout<sup>(deprecated)</sup>
 

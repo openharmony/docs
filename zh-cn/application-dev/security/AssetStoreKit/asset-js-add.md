@@ -6,6 +6,10 @@
 
 在新增关键资产时，关键资产属性的内容（AssetMap）参数如下表所示：
 
+>**注意：**
+>
+>下表中名称包含“DATA_LABEL”的关键资产属性，用于存储业务自定义信息，其内容不会被加密，请勿存放个人数据。
+
 | 属性名称（Tag）        | 属性内容（Value）                                             | 是否必选  | 说明                                                         |
 | --------------------- | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
 | SECRET                | 类型为Uint8Array，长度为1-1024字节。                           | 必选     | 关键资产明文。                                              |
@@ -15,14 +19,18 @@
 | AUTH_TYPE             | 类型为number，取值范围详见[AuthType](../../reference/apis-asset-store-kit/js-apis-asset.md#authtype)。 | 可选     | 访问关键资产所需的用户认证类型。         |
 | SYNC_TYPE             | 类型为number，取值范围详见[SyncType](../../reference/apis-asset-store-kit/js-apis-asset.md#synctype)。 | 可选     | 关键资产支持的同步类型。                |
 | IS_PERSISTENT         | 类型为bool。                                                   | 可选     | 在应用卸载时是否需要保留关键资产。<br>**需要权限：** ohos.permission.STORE_PERSISTENT_DATA |
-| DATA_LABEL_CRITICAL_1 | 类型为Uint8Array，长度为1-512字节。                            | 可选     | 关键资产附属信息，内容由业务自定义且有完整性保护。             |
-| DATA_LABEL_CRITICAL_2 | 类型为Uint8Array，长度为1-512字节。                           | 可选     | 关键资产附属信息，内容由业务自定义且有完整性保护。             |
-| DATA_LABEL_CRITICAL_3 | 类型为Uint8Array，长度为1-512字节。                            | 可选     | 关键资产附属信息，内容由业务自定义且有完整性保护。             |
-| DATA_LABEL_CRITICAL_4 | 类型为Uint8Array，长度为1-512字节。                            | 可选     | 关键资产附属信息，内容由业务自定义且有完整性保护。             |
-| DATA_LABEL_NORMAL_1   | 类型为Uint8Array，长度为1-512字节。                            | 可选     | 关键资产附属信息，内容由业务自定义且无完整性保护。             |
-| DATA_LABEL_NORMAL_2   | 类型为Uint8Array，长度为1-512字节。                            | 可选     | 关键资产附属信息，内容由业务自定义且无完整性保护。             |
-| DATA_LABEL_NORMAL_3   | 类型为Uint8Array，长度为1-512字节。                            | 可选     | 关键资产附属信息，内容由业务自定义且无完整性保护。             |
-| DATA_LABEL_NORMAL_4   | 类型为Uint8Array，长度为1-512字节。                            | 可选     | 关键资产附属信息，内容由业务自定义且无完整性保护。             |
+| DATA_LABEL_CRITICAL_1 | 类型为Uint8Array，长度为1-2048字节。                         | 可选     | 关键资产附属信息，内容由业务自定义且有完整性保护。<br/>**说明：** API12前长度为1-512字节。 |
+| DATA_LABEL_CRITICAL_2 | 类型为Uint8Array，长度为1-2048字节。                       | 可选     | 关键资产附属信息，内容由业务自定义且有完整性保护。<br/>**说明：** API12前长度为1-512字节。 |
+| DATA_LABEL_CRITICAL_3 | 类型为Uint8Array，长度为1-2048字节。                        | 可选     | 关键资产附属信息，内容由业务自定义且有完整性保护。<br/>**说明：** API12前长度为1-512字节。 |
+| DATA_LABEL_CRITICAL_4 | 类型为Uint8Array，长度为1-2048字节。                        | 可选     | 关键资产附属信息，内容由业务自定义且有完整性保护。<br/>**说明：** API12前长度为1-512字节。 |
+| DATA_LABEL_NORMAL_1   | 类型为Uint8Array，长度为1-2048字节。                        | 可选     | 关键资产附属信息，内容由业务自定义且无完整性保护。<br/>**说明：** API12前长度为1-512字节。 |
+| DATA_LABEL_NORMAL_2   | 类型为Uint8Array，长度为1-2048字节。                        | 可选     | 关键资产附属信息，内容由业务自定义且无完整性保护。<br/>**说明：** API12前长度为1-512字节。 |
+| DATA_LABEL_NORMAL_3   | 类型为Uint8Array，长度为1-2048字节。                        | 可选     | 关键资产附属信息，内容由业务自定义且无完整性保护。<br/>**说明：** API12前长度为1-512字节。 |
+| DATA_LABEL_NORMAL_4   | 类型为Uint8Array，长度为1-2048字节。                        | 可选     | 关键资产附属信息，内容由业务自定义且无完整性保护。<br/>**说明：** API12前长度为1-512字节。 |
+| DATA_LABEL_NORMAL_LOCAL_1<sup>12+</sup> | 类型为Uint8Array，长度为1-2048字节。 | 可选 | 关键资产附属的本地信息，内容由业务自定义且无完整性保护，该项信息不会进行同步。 |
+| DATA_LABEL_NORMAL_LOCAL_2<sup>12+</sup> | 类型为Uint8Array，长度为1-2048字节。 | 可选 | 关键资产附属的本地信息，内容由业务自定义且无完整性保护，该项信息不会进行同步。 |
+| DATA_LABEL_NORMAL_LOCAL_3<sup>12+</sup> | 类型为Uint8Array，长度为1-2048字节。 | 可选 | 关键资产附属的本地信息，内容由业务自定义且无完整性保护，该项信息不会进行同步。 |
+| DATA_LABEL_NORMAL_LOCAL_4<sup>12+</sup> | 类型为Uint8Array，长度为1-2048字节。 | 可选 | 关键资产附属的本地信息，内容由业务自定义且无完整性保护，该项信息不会进行同步。 |
 | CONFLICT_RESOLUTION   | 类型为number，取值范围详见[ConflictResolution](../../reference/apis-asset-store-kit/js-apis-asset.md#conflictresolution)。 | 可选     | 新增关键资产时的冲突（如：别名相同）处理策略。  |
 
 ## 约束和限制
@@ -33,7 +41,7 @@
 
 * 业务自定义数据存储
 
-  ASSET为业务预留了8个关键资产自定义属性，名称以"DATA_LABEL"开头。对于超过8个自定义属性的情况，业务可以将多段数据按照一定的格式（如JSON）拼接到同一个ASSET属性中。
+  ASSET为业务预留了12个关键资产自定义属性，名称以"DATA_LABEL"开头。对于超过12个自定义属性的情况，业务可以将多段数据按照一定的格式（如JSON）拼接到同一个ASSET属性中。
 
   ASSET对部分属性会进行完整性保护，这部分属性名称以"DATA_LABEL_CRITICAL"开头，写入后不支持更新。
 

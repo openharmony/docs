@@ -16,7 +16,7 @@ import privacyManager from '@ohos.privacyManager';
 
 ## privacyManager.addPermissionUsedRecord
 
-addPermissionUsedRecord(tokenID: number, permissionName: Permissions, successCount: number, failCount: number): Promise&lt;void&gt;
+addPermissionUsedRecord(tokenID: number, permissionName: Permissions, successCount: number, failCount: number, options?: AddPermissionUsedRecordOptions): Promise&lt;void&gt;
 
 Adds a permission usage record when an application protected by the permission is called by another service or application. This API uses a promise to return the result.
 The permission usage record includes the application identity (token ID) of the invoker, name of the permission used, and number of successful and failed accesses to the target application.
@@ -33,6 +33,7 @@ The permission usage record includes the application identity (token ID) of the 
 | permissionName | Permissions | Yes  | Name of the permission.|
 | successCount | number | Yes  | Number of successful accesses.|
 | failCount | number | Yes  | Number of failed accesses.|
+| options<sup>12+</sup> | [AddPermissionUsedRecordOptions](#addpermissionusedrecordoptions12) | No  | Options for adding a permission usage record. This parameter is supported since API version 12.|
 
 **Return value**
 
@@ -46,7 +47,7 @@ For details about the error codes, see [Access Control Error Codes](errorcode-ac
 
 | ID| Error Message|
 | -------- | -------- |
-| 12100001 | The parameter is invalid. The tokenID is 0, or the string size of permissionName is larger than 256, or the count value is invalid. |
+| 12100001 | The parameter is invalid. The tokenID is 0, permissionName exceeds 256 characters, the count value is invalid, or usedType in AddPermissionUsedRecordOptions is invalid. |
 | 12100002 | The specified tokenID does not exist or refer to an application process. |
 | 12100003 | The specified permission does not exist or is not an user_grant permission. |
 | 12100007 | Service is abnormal. |
@@ -59,15 +60,20 @@ import privacyManager from '@ohos.privacyManager';
 import { BusinessError } from '@ohos.base';
 
 let tokenID: number = 0; // You can use getApplicationInfo to obtain accessTokenId.
-try {
-    privacyManager.addPermissionUsedRecord(tokenID, 'ohos.permission.READ_AUDIO', 1, 0).then(() => {
-        console.log('addPermissionUsedRecord success');
-    }).catch((err: BusinessError) => {
-        console.log(`addPermissionUsedRecord fail, err->${JSON.stringify(err)}`);
-    });
-} catch(err) {
-    console.log(`catch err->${JSON.stringify(err)}`);
-}
+privacyManager.addPermissionUsedRecord(tokenID, 'ohos.permission.READ_AUDIO', 1, 0).then(() => {
+  console.log('addPermissionUsedRecord success');
+}).catch((err: BusinessError) => {
+  console.log(`addPermissionUsedRecord fail, err->${JSON.stringify(err)}`);
+});
+// with options param
+let optons: privacyManager.AddPermissionUsedRecordOptions = {
+  .usedType = privacyManager.PermissionUsedType.PICKER_TYPE
+};
+privacyManager.addPermissionUsedRecord(tokenID, 'ohos.permission.READ_AUDIO', 1, 0, options).then(() => {
+  console.log('addPermissionUsedRecord success');
+}).catch((err: BusinessError) => {
+  console.log(`addPermissionUsedRecord fail, err->${JSON.stringify(err)}`);
+});
 ```
 
 ## privacyManager.addPermissionUsedRecord
@@ -110,17 +116,13 @@ import privacyManager from '@ohos.privacyManager';
 import { BusinessError } from '@ohos.base';
 
 let tokenID: number = 0; // You can use getApplicationInfo to obtain accessTokenId.
-try {
-    privacyManager.addPermissionUsedRecord(tokenID, 'ohos.permission.READ_AUDIO', 1, 0, (err: BusinessError, data: void) => {
-        if (err) {
-            console.log(`addPermissionUsedRecord fail, err->${JSON.stringify(err)}`);
-        } else {
-            console.log('addPermissionUsedRecord success');
-        }
-    });
-} catch(err) {
-    console.log(`catch err->${JSON.stringify(err)}`);
-}
+privacyManager.addPermissionUsedRecord(tokenID, 'ohos.permission.READ_AUDIO', 1, 0, (err: BusinessError, data: void) => {
+  if (err) {
+    console.log(`addPermissionUsedRecord fail, err->${JSON.stringify(err)}`);
+  } else {
+    console.log('addPermissionUsedRecord success');
+  }
+});
 ```
 
 ## privacyManager.getPermissionUsedRecord
@@ -173,15 +175,12 @@ let request: privacyManager.PermissionUsedRequest = {
     'endTime': 1,
     'flag':privacyManager.PermissionUsageFlag.FLAG_PERMISSION_USAGE_DETAIL,
 };
-try {
-    privacyManager.getPermissionUsedRecord(request).then((data) => {
-        console.log(`getPermissionUsedRecord success, data->${JSON.stringify(data)}`);
-    }).catch((err: BusinessError) => {
-        console.log(`getPermissionUsedRecord fail, err->${JSON.stringify(err)}`);
-    });
-} catch(err) {
-    console.log(`catch err->${JSON.stringify(err)}`);
-}
+
+privacyManager.getPermissionUsedRecord(request).then((data) => {
+  console.log(`getPermissionUsedRecord success, data->${JSON.stringify(data)}`);
+}).catch((err: BusinessError) => {
+  console.log(`getPermissionUsedRecord fail, err->${JSON.stringify(err)}`);
+});
 ```
 
 ## privacyManager.getPermissionUsedRecord
@@ -229,17 +228,14 @@ let request: privacyManager.PermissionUsedRequest = {
     'endTime': 1,
     'flag':privacyManager.PermissionUsageFlag.FLAG_PERMISSION_USAGE_DETAIL,
 };
-try {
-    privacyManager.getPermissionUsedRecord(request, (err: BusinessError, data: privacyManager.PermissionUsedResponse) => {
-        if (err) {
-            console.log(`getPermissionUsedRecord fail, err->${JSON.stringify(err)}`);
-        } else {
-            console.log(`getPermissionUsedRecord success, data->${JSON.stringify(data)}`);
-        }
-    });
-} catch(err) {
-    console.log(`catch err->${JSON.stringify(err)}`);
-}
+
+privacyManager.getPermissionUsedRecord(request, (err: BusinessError, data: privacyManager.PermissionUsedResponse) => {
+  if (err) {
+    console.log(`getPermissionUsedRecord fail, err->${JSON.stringify(err)}`);
+  } else {
+    console.log(`getPermissionUsedRecord success, data->${JSON.stringify(data)}`);
+  }
+});
 ```
 
 ## privacyManager.startUsingPermission
@@ -285,15 +281,11 @@ import privacyManager from '@ohos.privacyManager';
 import { BusinessError } from '@ohos.base';
 
 let tokenID: number = 0; // You can use getApplicationInfo to obtain accessTokenId.
-try {
-    privacyManager.startUsingPermission(tokenID, 'ohos.permission.READ_AUDIO').then(() => {
-        console.log('startUsingPermission success');
-    }).catch((err: BusinessError) => {
-        console.log(`startUsingPermission fail, err->${JSON.stringify(err)}`);
-    });
-} catch(err) {
-    console.log(`catch err->${JSON.stringify(err)}`);
-}
+privacyManager.startUsingPermission(tokenID, 'ohos.permission.READ_AUDIO').then(() => {
+  console.log('startUsingPermission success');
+}).catch((err: BusinessError) => {
+  console.log(`startUsingPermission fail, err->${JSON.stringify(err)}`);
+});
 ```
 
 ## privacyManager.startUsingPermission
@@ -334,17 +326,13 @@ import privacyManager from '@ohos.privacyManager';
 import { BusinessError } from '@ohos.base';
 
 let tokenID: number = 0; // You can use getApplicationInfo to obtain accessTokenId.
-try {
-    privacyManager.startUsingPermission(tokenID, 'ohos.permission.READ_AUDIO', (err: BusinessError, data: void) => {
-        if (err) {
-            console.log(`startUsingPermission fail, err->${JSON.stringify(err)}`);
-        } else {
-            console.log('startUsingPermission success');
-        }
-    });
-} catch(err) {
-    console.log(`catch err->${JSON.stringify(err)}`);
-}
+privacyManager.startUsingPermission(tokenID, 'ohos.permission.READ_AUDIO', (err: BusinessError, data: void) => {
+  if (err) {
+    console.log(`startUsingPermission fail, err->${JSON.stringify(err)}`);
+  } else {
+    console.log('startUsingPermission success');
+  }
+});
 ```
 
 ## privacyManager.stopUsingPermission
@@ -390,15 +378,11 @@ import privacyManager from '@ohos.privacyManager';
 import { BusinessError } from '@ohos.base';
 
 let tokenID: number = 0; // You can use getApplicationInfo to obtain accessTokenId.
-try {
-    privacyManager.stopUsingPermission(tokenID, 'ohos.permission.READ_AUDIO').then(() => {
-        console.log('stopUsingPermission success');
-    }).catch((err: BusinessError) => {
-        console.log(`stopUsingPermission fail, err->${JSON.stringify(err)}`);
-    });
-} catch(err) {
-    console.log(`catch err->${JSON.stringify(err)}`);
-}
+privacyManager.stopUsingPermission(tokenID, 'ohos.permission.READ_AUDIO').then(() => {
+  console.log('stopUsingPermission success');
+}).catch((err: BusinessError) => {
+  console.log(`stopUsingPermission fail, err->${JSON.stringify(err)}`);
+});
 ```
 
 ## privacyManager.stopUsingPermission
@@ -439,17 +423,13 @@ import privacyManager from '@ohos.privacyManager';
 import { BusinessError } from '@ohos.base';
 
 let tokenID: number = 0; // You can use getApplicationInfo to obtain accessTokenId.
-try {
-    privacyManager.stopUsingPermission(tokenID, 'ohos.permission.READ_AUDIO', (err: BusinessError, data: void) => {
-        if (err) {
-            console.log(`stopUsingPermission fail, err->${JSON.stringify(err)}`);
-        } else {
-            console.log('stopUsingPermission success');
-        }
-    });
-} catch(err) {
-    console.log(`catch err->${JSON.stringify(err)}`);
-}
+privacyManager.stopUsingPermission(tokenID, 'ohos.permission.READ_AUDIO', (err: BusinessError, data: void) => {
+  if (err) {
+    console.log(`stopUsingPermission fail, err->${JSON.stringify(err)}`);
+  } else {
+    console.log('stopUsingPermission success');
+  }
+});
 ```
 
 ## privacyManager.on
@@ -471,7 +451,7 @@ The same callback cannot be registered for the **permissionList**s with common v
 | Name            | Type                  | Mandatory| Description                                                         |
 | ------------------ | --------------------- | ---- | ------------------------------------------------------------ |
 | type               | string                | Yes  | Event type. The value is **'activeStateChange'**, which indicates the permission usage change.  |
-| permissionList | Array&lt;Permissions&gt;   | Yes  | List of the permissions to be observed. If this parameter is left empty, this API subscribes to the permission usage status change of all permissions. Valid permission names can be obtained in [Permissions for All Applications](../../security/AccessToken/permissions-for-all.md).|
+| permissionList | Array&lt;Permissions&gt;   | Yes  | Permissions to be observed. If this parameter is left empty, this API subscribes to usage status changes of all permissions. For details about the permissions, see [Permissions for All Applications](../../security/AccessToken/permissions-for-all.md).|
 | callback | Callback&lt;[ActiveChangeResponse](#activechangeresponse)&gt; | Yes| Callback invoked to return a change in the permission usage.|
 
 **Error codes**
@@ -519,7 +499,7 @@ If no callback is passed in **privacyManager.off**, all callbacks of **permissio
 | Name            | Type                  | Mandatory| Description                                                         |
 | ------------------ | --------------------- | ---- | ------------------------------------------------------------ |
 | type               | string                | Yes  | Event type. The value is **'activeStateChange'**, which indicates the permission usage change.  |
-| permissionList | Array&lt;Permissions&gt;   | Yes  | List of permissions. The value must be the same as that of **on()**. If this parameter is left empty, this API unsubscribes from the permission usage change of all permissions. For details about the permissions, see [Permissions for All Applications](../../security/AccessToken/permissions-for-all.md).|
+| permissionList | Array&lt;Permissions&gt;   | Yes  | List of permissions. The value must be the same as that of **on()**. If this parameter is left empty, this API unsubscribes from usage status changes of all permissions. For details about the permissions, see [Permissions for All Applications](../../security/AccessToken/permissions-for-all.md).|
 | callback | Callback&lt;[ActiveChangeResponse](#activechangeresponse)&gt; | No| Callback for the permission usage change event.|
 
 **Error codes**
@@ -544,6 +524,73 @@ try {
 }catch(err) {
     console.log(`catch err->${JSON.stringify(err)}`);
 }
+```
+
+## privacyManager.getPermissionUsedTypeInfos<sup>12+</sup>
+
+getPermissionUsedTypeInfos(tokenId?: number, permissionName?: Permissions): Promise&lt;Array&lt;PermissionUsedTypeInfo&gt;&gt;
+
+Obtains information about how a sensitive permission is used by an application.
+
+**Required permissions**: ohos.permission.PERMISSION_USED_STATS (available only to system applications)
+
+**System capability**: SystemCapability.Security.AccessToken
+
+**Parameters**
+
+| Name            | Type                  | Mandatory| Description                                                         |
+| ------------------ | --------------------- | ---- | ------------------------------------------------------------ |
+| tokenId            | number                | No  | ID of the application that uses the sensitive permission. If this parameter is left empty, this API obtains the sensitive permission access information of all applications.  |
+| permissionName     | Permissions           | No  | Name of the sensitive permission used. If this parameter is left blank, this API obtains the access information about all sensitive permissions.  |
+
+**Return value**
+
+| Type         | Description                                   |
+| ------------- | --------------------------------------- |
+| Promise&lt;Array&lt;[PermissionUsedTypeInfo](#permissionusedtypeinfo12)&gt;&gt; | Promise used to return the information obtained.|
+
+**Error codes**
+
+For details about the error codes, see [Access Control Error Codes](errorcode-access-token.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 12100001 | The parameter is invalid. PermissionName exceeds 256 characters. |
+| 12100002 | The input tokenId does not exist. |
+| 12100003 | The input permissionName does not exist. |
+
+**Example**
+
+```ts
+import privacyManager, { Permissions } from '@ohos.privacyManager';
+import { BusinessError } from '@ohos.base';
+
+let tokenId: number = 0; // You can use bundleManager.getApplicationInfo to obtain accessTokenId.
+let permissionName: Permissions = 'ohos.permission.CAMERA';
+// Without any parameter.
+privacyManager.getPermissionUsedTypeInfos().then(() => {
+  console.log('getPermissionUsedTypeInfos success');
+}).catch((err: BusinessError) => {
+  console.log(`getPermissionUsedTypeInfos fail, err->${JSON.stringify(err)}`);
+});
+// Pass in tokenId only.
+privacyManager.getPermissionUsedTypeInfos(tokenId).then(() => {
+  console.log('getPermissionUsedTypeInfos success');
+}).catch((err: BusinessError) => {
+  console.log(`getPermissionUsedTypeInfos fail, err->${JSON.stringify(err)}`);
+});
+// Pass in permissionName only.
+privacyManager.getPermissionUsedTypeInfos(null, permissionName).then(() => {
+  console.log('getPermissionUsedTypeInfos success');
+}).catch((err: BusinessError) => {
+  console.log(`getPermissionUsedTypeInfos fail, err->${JSON.stringify(err)}`);
+});
+// Pass in tokenId and permissionName.
+privacyManager.getPermissionUsedTypeInfos(tokenId, permissionName).then(() => {
+  console.log('getPermissionUsedTypeInfos success');
+}).catch((err: BusinessError) => {
+  console.log(`getPermissionUsedTypeInfos fail, err->${JSON.stringify(err)}`);
+});
 ```
 
 ## PermissionUsageFlag
@@ -630,6 +677,7 @@ Represents the details of a single access record.
 | timestamp | number         | Yes   | No   | Access timestamp, in ms.|
 | accessDuration  | number         | Yes   | No   | Access duration, in ms.                                |
 | count<sup>11+</sup> | number | Yes| No   | Number of successful or failed accesses.
+| usedType<sup>12+</sup> | [PermissionUsedType](#permissionusedtype12) | Yes| No   | Means for using the sensitive permission.|
 
 ## PermissionActiveStatus
 
@@ -656,4 +704,36 @@ Defines the detailed permission usage information.
 | deviceId       | string                 | Yes  | No  | Device ID.                |
 | activeStatus   | [PermissionActiveStatus](#permissionactivestatus) | Yes  | No  | Permission usage status.       |
 
-<!--no_check-->
+## PermissionUsedType<sup>12+</sup>
+
+Enumerates the means for using a sensitive permission.
+
+**System capability**: SystemCapability.Security.AccessToken
+
+| Name                   | Value| Description             |
+| ----------------------- | -- | ---------------- |
+| NORMAL_TYPE             | 0  | The sensitive permission is used after authorization through a dialog box or a system settings page.  |
+| PICKER_TYPE             | 1  | The sensitive permission is used through a system picker. This access mode does not grant the permissions to the application.|
+| SECURITY_COMPONENT_TYPE | 2  | The sensitive permission is used through a security component, which comes with the authorization.|
+
+## PermissionUsedTypeInfo<sup>12+</sup>
+
+Represents detailed information about the use of a permission.
+
+ **System capability**: SystemCapability.Security.AccessToken
+
+| Name          | Type                   | Readable| Writable| Description                  |
+| -------------- | ---------------------- | ---- | ---- | --------------------- |
+| tokenId        | number                 | Yes  | No  | ID of the application that uses the sensitive permission.|
+| permissionName | Permissions            | Yes  | No  | Name of the sensitive permission.|
+| usedType | [PermissionUsedType](#permissionusedtype12) | Yes| No   | Means for using the sensitive permission.|
+
+## AddPermissionUsedRecordOptions<sup>12+</sup>
+
+Represents the options for adding a permission usage record.
+
+ **System capability**: SystemCapability.Security.AccessToken
+
+| Name          | Type                   | Readable| Writable| Description                  |
+| -------------- | ---------------------- | ---- | ---- | --------------------- |
+| usedType | [PermissionUsedType](#permissionusedtype12) | Yes| No   | Means for using the sensitive permission.|

@@ -6,7 +6,7 @@
 
 - Model层：存储数据和相关逻辑的模型。它表示组件或其他相关业务逻辑之间传输的数据。Model是对原始数据的进一步处理。
 
-- View层：在ArkUI中通常是\@Components修饰组件渲染的UI。
+- View层：在ArkUI中通常是\@Component装饰组件渲染的UI。
 
 - ViewModel层：在ArkUI中，ViewModel是存储在自定义组件的状态变量、LocalStorage和AppStorage中的数据。
   - 自定义组件通过执行其build()方法或者\@Builder装饰的方法来渲染UI，即ViewModel可以渲染View。
@@ -585,7 +585,7 @@ struct Parent {
 
 ### \@Prop和\@ObjectLink嵌套数据结构
 
-推荐设计单独的\@Component来渲染每一个数组或对象。此时，对象数组或嵌套对象（属性是对象的对象称为嵌套对象）需要两个\@Component，一个\@Component呈现外部数组/对象，另一个\@Component呈现嵌套在数组/对象内的类对象。 \@Prop、\@Link、\@ObjectLink修饰的变量只能观察到第一层的变化。
+推荐设计单独的自定义组件来渲染每一个数组或对象。此时，对象数组或嵌套对象（属性是对象的对象称为嵌套对象）需要两个自定义组件，一个自定义组件呈现外部数组/对象，另一个自定义组件呈现嵌套在数组/对象内的类对象。 \@State、\@Prop、\@Link、\@ObjectLink装饰的变量只能观察到第一层的变化。
 
 - 对于类：
   - 可以观察到赋值的变化：this.obj=new ClassObj(...)
@@ -599,7 +599,7 @@ struct Parent {
 
 如果要观察嵌套类的内部对象的变化，可以使用\@ObjectLink或\@Prop。优先考虑\@ObjectLink，其通过嵌套对象内部属性的引用初始化自身。\@Prop会对嵌套在内部的对象的深度拷贝来进行初始化，以实现单向同步。在性能上\@Prop的深度拷贝比\@ObjectLink的引用拷贝慢很多。
 
-\@ObjectLink或\@Prop可以用来存储嵌套内部的类对象，该类必须用\@Observed类装饰器装饰，否则类的属性改变并不会触发更新，UI并不会刷新。\@Observed为其装饰的类实现自定义构造函数，此构造函数创建了一个类的实例，并使用ES6代理包装（由ArkUI框架实现），拦截修饰class属性的所有“get”和“set”。“set”观察属性值，当发生赋值操作时，通知ArkUI框架更新。“get”收集哪些UI组件依赖该状态变量，实现最小化UI更新。
+\@ObjectLink或\@Prop可以用来存储嵌套内部的类对象，该类必须用\@Observed类装饰器装饰，否则类的属性改变并不会触发更新，UI并不会刷新。\@Observed为其装饰的类实现自定义构造函数，此构造函数创建了一个类的实例，并使用ES6代理包装（由ArkUI框架实现），拦截装饰class属性的所有“get”和“set”。“set”观察属性值，当发生赋值操作时，通知ArkUI框架更新。“get”收集哪些UI组件依赖该状态变量，实现最小化UI更新。
 
 如果嵌套场景中，嵌套数据内部是数组或者class时，需根据以下场景使用\@Observed类装饰器。
 
@@ -631,7 +631,7 @@ struct Parent {
   ```
 
 
-### 嵌套数据结构中\@Prop和\@ObjectLink之的区别
+### 嵌套数据结构中\@Prop和\@ObjectLink之间的区别
 
 以下示例中：
 
@@ -757,7 +757,7 @@ struct ViewA {
 }
 ```
 
-与用\@Prop修饰不同，用\@ObjectLink修饰时，点击数组的第一个或第二个元素，后面两个ViewA会发生同步的变化。
+与用\@Prop装饰不同，用\@ObjectLink装饰时，点击数组的第一个或第二个元素，后面两个ViewA会发生同步的变化。
 
 \@Prop是单向数据同步，ViewA内的Button只会触发Button自身的刷新，不会传播到其他的ViewA实例中。在ViewA中的ClassA只是一个副本，并不是其父组件中\@State arrA : Array&lt;ClassA&gt;中的对象，也不是其他ViewA的ClassA，这使得数组的元素和ViewA中的元素表面是传入的同一个对象，实际上在UI上渲染使用的是两个互不相干的对象。
 
@@ -874,7 +874,7 @@ export class Person {
 ```
 
 
-需要注意的是，因为phones是嵌套属性，如果要观察到phones的变化，需要extends array，并用\@Observed修饰它。ObservedArray类的声明如下。
+需要注意的是，因为phones是嵌套属性，如果要观察到phones的变化，需要extends array，并用\@Observed装饰它。ObservedArray类的声明如下。
 
 
 

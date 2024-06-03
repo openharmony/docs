@@ -14,9 +14,12 @@
 
 ## 接口
 
+
 ### XComponent
 
 XComponent(value: {id: string, type: string, libraryname?: string, controller?: XComponentController})
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数:** 
 
@@ -31,6 +34,8 @@ XComponent(value: {id: string, type: string, libraryname?: string, controller?: 
 
 XComponent(value: {id: string, type: XComponentType, libraryname?: string, controller?: XComponentController})
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **参数:** 
 
 | 参数名      | 参数类型                                      | 必填 | 描述                                                         |
@@ -41,6 +46,8 @@ XComponent(value: {id: string, type: XComponentType, libraryname?: string, contr
 | controller  | [XComponentcontroller](#xcomponentcontroller) | 否   | 给组件绑定一个控制器，通过控制器调用组件方法，仅类型为SURFACE或TEXTURE时有效。 |
 
 ## XComponentType<sup>10+</sup>枚举说明
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称      | 描述                                                         |
 | --------- | ------------------------------------------------------------ |
@@ -64,7 +71,7 @@ XComponent(value: {id: string, type: XComponentType, libraryname?: string, contr
 ## 属性
 - XComponent显示的内容，可由开发者自定义绘制，通用属性中的[背景设置](ts-universal-attributes-background.md)、[透明度设置](ts-universal-attributes-opacity.md)和[图像效果](ts-universal-attributes-image-effect.md)按照type类型有限支持。
 
-- type为SURFACE("surface")时仅支持[图像效果](ts-universal-attributes-image-effect.md)中的shadow属性，建议使用EGL/OpenGLES提供的接口设置相关内容。
+- type为SURFACE("surface")时仅支持[图像效果](ts-universal-attributes-image-effect.md)中的shadow和BlendMode属性，建议使用EGL/OpenGLES提供的接口设置相关内容。
 
   > **说明：**
   >
@@ -72,7 +79,7 @@ XComponent(value: {id: string, type: XComponentType, libraryname?: string, contr
 
 - type为COMPONENT("component")时仅支持[图像效果](ts-universal-attributes-image-effect.md)中的shadow属性，建议使用挂载子组件的方式进行设置相关内容。
 
-- type为TEXTURE时通用属性可以支持[背景颜色设置](ts-universal-attributes-background.md#backgroundcolor)、[透明度设置](ts-universal-attributes-opacity.md)和[图像效果](ts-universal-attributes-image-effect.md)中的shadow属性，[除颜色外的背景设置](ts-universal-attributes-background.md)和其他[图像效果](ts-universal-attributes-image-effect.md)暂不支持，建议使用EGL/OpenGLES提供的接口设置相关内容。
+- type为TEXTURE时通用属性可以支持[背景颜色设置](ts-universal-attributes-background.md#backgroundcolor)、[透明度设置](ts-universal-attributes-opacity.md)和[图像效果](ts-universal-attributes-image-effect.md)中的shadow和BlendMode属性，[除颜色外的背景设置](ts-universal-attributes-background.md)和其他[图像效果](ts-universal-attributes-image-effect.md)暂不支持，建议使用EGL/OpenGLES提供的接口设置相关内容。
 
 ### enableAnalyzer<sup>12+</sup>
 
@@ -82,6 +89,8 @@ enableAnalyzer(enable: boolean)
 不能和[overlay](ts-universal-attributes-overlay.md)属性同时使用，两者同时设置时overlay中CustomBuilder属性将失效。该特性依赖设备能力。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -97,13 +106,23 @@ enableAnalyzer(enable: boolean)
 
 ## 事件
 
-仅type为SURFACE("surface")或TEXTURE时以下事件有效。不支持[通用事件](ts-universal-events-click.md)。
+从API version 12开始，type为SURFACE("surface")或TEXTURE时，满足以下条件时支持[通用事件](ts-universal-events-click.md)：
+
+- [点击事件](ts-universal-events-click.md)、[触摸事件](ts-universal-events-touch.md)、[挂载卸载事件](ts-universal-events-show-hide.md)、[按键事件](ts-universal-events-key.md)、[焦点事件](ts-universal-focus-event.md)、[鼠标事件](ts-universal-mouse-key.md)与NDK对应接口互斥，未配置libraryname时生效。
+
+- 其他通用事件无对应NDK接口，无论是否配置libraryname都能生效。
+
+仅type为SURFACE("surface")或TEXTURE时以下事件有效。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 ### onLoad
 
 onLoad(callback: (event?: object) => void )
 
 插件加载完成时回调事件。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数:**
 
@@ -117,9 +136,13 @@ onDestroy(event: () => void )
 
 插件卸载完成时回调事件。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 ## XComponentController
 
 xcomponent 组件的控制器，可以将此对象绑定至XComponent组件，然后通过控制器来调用组件方法。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 ### 创建对象
 
@@ -127,11 +150,15 @@ xcomponent 组件的控制器，可以将此对象绑定至XComponent组件，�
 xcomponentController: XComponentController = new XComponentController()
 ```
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 ### getXComponentSurfaceId
 
 getXComponentSurfaceId(): string
 
 获取XComponent对应Surface的ID，供@ohos接口使用，使用方式可参考[相机管理](../../apis-camera-kit/js-apis-camera.md)，仅XComponent类型为SURFACE("surface")或TEXTURE时有效。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **返回值:**
 
@@ -162,6 +189,8 @@ getXComponentContext(): Object
 
 获取XComponent实例对象的context，仅XComponent类型为SURFACE("surface")或TEXTURE时有效。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **返回值:**
 
 | 类型   | 描述                                                         |
@@ -173,6 +202,8 @@ getXComponentContext(): Object
 setXComponentSurfaceRect(rect: SurfaceRect): void
 
 设置XComponent持有Surface的显示区域，仅XComponent类型为SURFACE("surface")或TEXTURE时有效。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数:**
 
@@ -194,6 +225,8 @@ getXComponentSurfaceRect(): SurfaceRect
 
 获取XComponent持有Surface的显示区域，仅XComponent类型为SURFACE("surface")或TEXTURE时有效。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **返回值:**
 
 | 类型                                 | 描述                                  |
@@ -205,6 +238,8 @@ getXComponentSurfaceRect(): SurfaceRect
 onSurfaceCreated(surfaceId: string): void
 
 当XComponent持有的Surface创建后进行该回调，仅XComponent类型为SURFACE("surface")或TEXTURE时有效。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数:**
 
@@ -221,6 +256,8 @@ onSurfaceCreated(surfaceId: string): void
 onSurfaceChanged(surfaceId: string, rect: SurfaceRect): void
 
 当XComponent持有的Surface大小改变后（包括首次创建时的大小改变）进行该回调，仅XComponent类型为SURFACE("surface")或TEXTURE时有效。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数:**
 
@@ -239,6 +276,8 @@ onSurfaceDestroyed(surfaceId: string): void
 
 当XComponent持有的Surface销毁后进行该回调，仅XComponent类型为SURFACE("surface")或TEXTURE时有效。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **参数:**
 
 | 参数名    | 参数类型 | 必填 | 描述                                              |
@@ -252,6 +291,8 @@ onSurfaceDestroyed(surfaceId: string): void
 ### SurfaceRect<sup>12+</sup>类型说明
 
 用于描述XComponent持有Surface的显示区域。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 | 名称          | 类型   | 必填 | 说明                                                         |
 | ------------- | ------ | ---- | ------------------------------------------------------------ |
@@ -270,6 +311,8 @@ startImageAnalyzer(config: ImageAnalyzerConfig): Promise\<void>
 > 
 > 分析类型不支持动态修改。
 > 该特性依赖设备能力，不支持该能力的情况下，将返回错误码。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -305,6 +348,8 @@ stopImageAnalyzer(): void
 > 
 > 在startImageAnalyzer方法未返回结果时调用本方法，会触发其错误回调。
 > 该特性依赖设备能力。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -399,6 +444,8 @@ struct SurfaceCallbackDemo {
 
 ```ts
 // xxx.ets
+import { BusinessError } from '@ohos.base';
+
 @Entry
 @Component
 struct ImageAnalyzerExample {

@@ -26,7 +26,7 @@ getWindowAvoidArea(type: window.AvoidAreaType): window.AvoidArea
 
 **系统能力**：SystemCapability.ArkUI.ArkUI.Full
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口，三方应用不支持调用。
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -38,19 +38,30 @@ getWindowAvoidArea(type: window.AvoidAreaType): window.AvoidArea
 | -------- | -------- |
 | [window.AvoidArea](js-apis-window.md#avoidarea7) | 宿主窗口内容规避区域。 |
 
+**返回值：** 
+
+| 错误码ID | 错误信息         |
+| -------- | ---------------- |
+| 401      | Parameter error. |
+
 **示例**
 
 ```ts
-import uiExtensionHost from '@ohos.uiExtensionHost';
+// ExtensionProvider.ts
+
+import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
 import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
+import Want from '@ohos.app.ability.Want';
 import window from '@ohos.window';
 
-// 在执行到UIExtensionAbility的'onSessionCreate'时，会将UIExtensionContentSession实例存储到storage中
-session: UIExtensionContentSession | undefined = storage.get<UIExtensionContentSession>('session');
-// 从session上获取当前UIExtensionAbility的UIExtensionHostWindowProxy实例
-extensionWindow: uiExtensionHost.UIExtensionHostWindowProxy | undefined = this.session?.getUIExtensionHostWindowProxy();
-// 获取宿主应用窗口的避让信息
-let avoidArea: window.AvoidArea | undefined = this.extensionWindow?.getWindowAvoidArea(window.AvoidAreaType.TYPE_SYSTEM);
+export default class EntryAbility extends UIExtensionAbility {
+  onSessionCreate(want: Want, session: UIExtensionContentSession) {
+    const extensionHostWindow = session.getUIExtensionHostWindowProxy();
+    // 获取宿主应用窗口的避让信息
+    const avoidArea = extensionHostWindow.getWindowAvoidArea(window.AvoidAreaType.TYPE_SYSTEM);
+    console.log(`avoidArea: ${JSON.stringify(avoidArea)}`);
+  }
+}
 ```
 
 ### on('avoidAreaChange')
@@ -61,27 +72,36 @@ on(type: 'avoidAreaChange', callback: Callback<{ type: window.AvoidAreaType, are
 
 **系统能力**：SystemCapability.ArkUI.ArkUI.Full
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口，三方应用不支持调用。
 
 | 参数名   | 类型   | 必填 | 说明                   |
 | -------- | ------ | ---- | ---------------------- |
 | type     | string | 是   | 监听的事件类型，固定为'avoidAreaChange'，即系统规避区变化事件。 |
 | callback | [Callback](../apis-basic-services-kit/js-apis-base.md#callback)<{ type: [window.AvoidAreaType](js-apis-window.md#avoidareatype7), area: [window.AvoidArea](js-apis-window.md#avoidarea7) }> | 是 | 回调函数：入参用于接收当前规避区的信息，其中，"type"表示窗口规避区类型，"area"表示窗口内容规避区域。 |
 
+**错误码：** 
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: <br/> 1. Mandatory parameters are left unspecified.<br/> 2. Incorrect parameters types.<br/> 3. Parameter verification failed. |
+
 **示例**
 
 ```ts
-import uiExtensionHost from '@ohos.uiExtensionHost';
+// ExtensionProvider.ts
+import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
 import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
+import Want from '@ohos.app.ability.Want';
 
-// 在执行到UIExtensionAbility的'onSessionCreate'时，会将UIExtensionContentSession实例存储到storage中
-session: UIExtensionContentSession | undefined = storage.get<UIExtensionContentSession>('session');
-// 从session上获取当前UIExtensionAbility的UIExtensionHostWindowProxy实例
-extensionWindow: uiExtensionHost.UIExtensionHostWindowProxy | undefined = this.session?.getUIExtensionHostWindowProxy();
-// 注册避让区变化的监听
-this.extensionWindow?.on('avoidAreaChange', (info) => {
-  console.info(`type = ${JSON.stringify(info.type)}, area = ${JSON.stringify(info.area)}`);
-});
+export default class EntryAbility extends UIExtensionAbility {
+  onSessionCreate(want: Want, session: UIExtensionContentSession) {
+    const extensionHostWindow = session.getUIExtensionHostWindowProxy();
+    // 注册避让区变化的监听
+    extensionHostWindow.on('avoidAreaChange', (info) => {
+      console.info(`The avoid area of the host window is: ${JSON.stringify(info.area)}.`);
+    });
+  }
+}
 ```
 
 ### off('avoidAreaChange')
@@ -92,25 +112,33 @@ off(type: 'avoidAreaChange', callback?: Callback<{ type: window.AvoidAreaType, a
 
 **系统能力**：SystemCapability.ArkUI.ArkUI.Full
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口，三方应用不支持调用。
 
 | 参数名   | 类型   | 必填 | 说明                   |
 | -------- | ------ | ---- | ---------------------- |
 | type     | string | 是   | 注销的事件类型，固定为'avoidAreaChange'，即系统规避区变化事件。 |
 | callback | [Callback](../apis-basic-services-kit/js-apis-base.md#callback)<{ type: [window.AvoidAreaType](js-apis-window.md#avoidareatype7), area: [window.AvoidArea](js-apis-window.md#avoidarea7) }> | 否 | 回调函数：如果传入该参数，则关闭该监听。如果未传入参数，则关闭所有系统规避区变化的监听。 |
 
+**错误码：** 
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: <br/> 1. Mandatory parameters are left unspecified.<br/> 2. Incorrect parameters types.<br/> 3. Parameter verification failed. |
+
 **示例**
 
 ```ts
-import uiExtensionHost from '@ohos.uiExtensionHost';
+// ExtensionProvider.ts
+import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
 import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
 
-// 在执行到UIExtensionAbility的'onSessionCreate'时，会将UIExtensionContentSession实例存储到storage中
-session: UIExtensionContentSession | undefined = storage.get<UIExtensionContentSession>('session');
-// 从session上获取当前UIExtensionAbility的UIExtensionHostWindowProxy实例
-extensionWindow: uiExtensionHost.UIExtensionHostWindowProxy | undefined = this.session?.getUIExtensionHostWindowProxy();
-// 注销所有避让区变化的监听
-this.extensionWindow?.off('avoidAreaChange');
+export default class EntryAbility extends UIExtensionAbility {
+  onSessionDestroy(session: UIExtensionContentSession) {
+    const extensionHostWindow = session.getUIExtensionHostWindowProxy();
+    // 注销所有避让区变化的监听
+    extensionHostWindow.off('avoidAreaChange');
+  }
+}
 ```
 
 ### on('windowSizeChange')
@@ -121,27 +149,36 @@ on(type: 'windowSizeChange', callback: Callback<window.Size>): void
 
 **系统能力**：SystemCapability.ArkUI.ArkUI.Full
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口，三方应用不支持调用。
 
 | 参数名   | 类型                  | 必填 | 说明                   |
 | -------- | --------------------- | ---- | ---------------------- |
 | type     | string                | 是   | 监听的事件类型，固定为'windowSizeChange'，即窗口尺寸变化事件。 |
 | callback | [Callback](../apis-basic-services-kit/js-apis-base.md#callback)<[window.Size](js-apis-window.md#size7)> | 是   | 回调函数：入参用于接收当前窗口的尺寸。 |
 
+**错误码：** 
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: <br/> 1. Mandatory parameters are left unspecified.<br/> 2. Incorrect parameters types.<br/> 3. Parameter verification failed. |
+
 **示例**
 
 ```ts
-import uiExtensionHost from '@ohos.uiExtensionHost';
+// ExtensionProvider.ts
+import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
 import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
+import Want from '@ohos.app.ability.Want';
 
-// 在执行到UIExtensionAbility的'onSessionCreate'时，会将UIExtensionContentSession实例存储到storage中
-session: UIExtensionContentSession | undefined = storage.get<UIExtensionContentSession>('session');
-// 从session上获取当前UIExtensionAbility的UIExtensionHostWindowProxy实例
-extensionWindow: uiExtensionHost.UIExtensionHostWindowProxy | undefined = this.session?.getUIExtensionHostWindowProxy();
-// 注册避让区变化的监听
-this.extensionWindow?.on('windowSizeChange', (size) => {
-  console.info(`size = ${JSON.stringify(size)}`);
-});
+export default class EntryAbility extends UIExtensionAbility {
+  onSessionCreate(want: Want, session: UIExtensionContentSession) {
+    const extensionHostWindow = session.getUIExtensionHostWindowProxy();
+    // 注册宿主应用窗口大小变化的监听
+    extensionHostWindow.on('windowSizeChange', (size) => {
+      console.info(`The avoid area of the host window is: ${JSON.stringify(size)}.`);
+    });
+  }
+}
 ```
 
 ### off('windowSizeChange')
@@ -152,25 +189,33 @@ off(type: 'windowSizeChange', callback?: Callback<window.Size>): void
 
 **系统能力**：SystemCapability.ArkUI.ArkUI.Full
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口，三方应用不支持调用。
 
 | 参数名   | 类型                  | 必填 | 说明                   |
 | -------- | --------------------- | ---- | ---------------------- |
 | type     | string                | 是   | 注销的事件类型，固定值：'windowSizeChange'，即窗口尺寸变化事件。 |
 | callback | [Callback](../apis-basic-services-kit/js-apis-base.md#callback)<[window.Size](js-apis-window.md#size7)> | 否   | 回调函数：如果传入该参数，则关闭该监听。如果未传入参数，则关闭所有系统规避区变化的监听。 |
 
+**错误码：** 
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: <br/> 1. Mandatory parameters are left unspecified.<br/> 2. Incorrect parameters types.<br/> 3. Parameter verification failed. |
+
 **示例**
 
 ```ts
-import uiExtensionHost from '@ohos.uiExtensionHost';
+// ExtensionProvider.ts
+import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
 import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
 
-// 在执行到UIExtensionAbility的'onSessionCreate'时，会将UIExtensionContentSession实例存储到storage中
-session: UIExtensionContentSession | undefined = storage.get<UIExtensionContentSession>('session');
-// 从session上获取当前UIExtensionAbility的UIExtensionHostWindowProxy实例
-extensionWindow: uiExtensionHost.UIExtensionHostWindowProxy | undefined = this.session?.getUIExtensionHostWindowProxy();
-// 注销所有宿主应用窗口大小变化的监听
-this.extensionWindow?.off('windowSizeChange');
+export default class EntryAbility extends UIExtensionAbility {
+  onSessionDestroy(session: UIExtensionContentSession) {
+    const extensionHostWindow = session.getUIExtensionHostWindowProxy();
+    // 注销宿主应用窗口大小变化的监听
+    extensionHostWindow.off('windowSizeChange');
+  }
+}
 ```
 
 ### properties
@@ -181,7 +226,7 @@ properties: UIExtensionHostWindowProxyProperties
 
 **系统能力**：SystemCapability.ArkUI.ArkUI.Full
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口，三方应用不支持调用。
 
 | 参数名     | 类型                                 | 说明                             |
 | ---------- | ------------------------------------ | -------------------------------- |
@@ -190,15 +235,19 @@ properties: UIExtensionHostWindowProxyProperties
 **示例**
 
 ```ts
-import uiExtensionHost from '@ohos.uiExtensionHost';
+// ExtensionProvider.ts
+import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
 import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
+import Want from '@ohos.app.ability.Want';
 
-// 在执行到UIExtensionAbility的'onSessionCreate'时，会将UIExtensionContentSession实例存储到storage中
-session: UIExtensionContentSession | undefined = storage.get<UIExtensionContentSession>('session');
-// 从session上获取当前UIExtensionAbility的UIExtensionHostWindowProxy实例
-extensionWindow: uiExtensionHost.UIExtensionHostWindowProxy | undefined = this.session?.getUIExtensionHostWindowProxy();
-// 获取UIExtensionComponent位置和大小信息
-let rect = this.extensionWindow?.properties.uiExtensionHostWindowProxyRect;
+export default class EntryAbility extends UIExtensionAbility {
+  onSessionCreate(want: Want, session: UIExtensionContentSession) {
+    const extensionHostWindow = session.getUIExtensionHostWindowProxy();
+    // 获取UIExtensionComponent位置和大小信息
+    const rect = extensionHostWindow.properties.uiExtensionHostWindowProxyRect;
+    console.log(`Rect Info: ${JSON.stringify(rect)}`);
+  }
+}
 ```
 
 ### hideNonSecureWindows
@@ -212,7 +261,7 @@ hideNonSecureWindows(shouldHide: boolean): Promise&lt;void&gt;
 
 **系统能力**：SystemCapability.ArkUI.ArkUI.Full
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -226,33 +275,45 @@ hideNonSecureWindows(shouldHide: boolean): Promise&lt;void&gt;
 | ------------------- | ------------------------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
+**错误码：** 
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: <br/> 1. Mandatory parameters are left unspecified.<br/> 2. Incorrect parameters types.<br/> 3. Parameter verification failed. |
+
 **示例**
 
 ```ts
-import uiExtensionHost from '@ohos.uiExtensionHost';
-import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
+// ExtensionProvider.ts
 
-// 在执行到UIExtensionAbility的'onSessionCreate'时，会将UIExtensionContentSession实例存储到storage中
-session: UIExtensionContentSession | undefined = storage.get<UIExtensionContentSession>('session');
-// 从session上获取当前UIExtensionAbility的UIExtensionHostWindowProxy实例
-extensionWindow: uiExtensionHost.UIExtensionHostWindowProxy | undefined = this.session?.getUIExtensionHostWindowProxy();
-// 隐藏非安全窗口
-let promise = this.extensionWindow?.hideNonSecureWindows(true);
-promise?.then(()=> {
-  console.log(`Succeeded in hiding the non-secure windows.`);
-}).catch((err: BusinessError)=> {
-  console.log(`Failed to hide the non-secure windows. Cause:${JSON.stringify(err)}`);
-})
-// 取消隐藏非安全窗口
-let promise = this.extensionWindow?.hideNonSecureWindows(false);
-promise?.then(()=> {
-  console.log(`Succeeded in showing the non-secure windows.`);
-}).catch((err: BusinessError)=> {
-  console.log(`Failed to show the non-secure windows. Cause:${JSON.stringify(err)}`);
-})
+import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
+import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+
+export default class EntryAbility extends UIExtensionAbility {
+  onSessionCreate(want: Want, session: UIExtensionContentSession) {
+    const extensionHostWindow = session.getUIExtensionHostWindowProxy();
+    // 隐藏非安全窗口
+    extensionHostWindow.hideNonSecureWindows(true).then(()=> {
+      console.log(`Succeeded in hiding the non-secure windows.`);
+    }).catch((err: BusinessError)=> {
+      console.log(`Failed to hide the non-secure windows. Cause:${JSON.stringify(err)}`);
+    })
+  }
+  onSessionDestroy(session: UIExtensionContentSession) {
+    const extensionHostWindow = session.getUIExtensionHostWindowProxy();
+    // 取消隐藏非安全窗口
+    extensionHostWindow.hideNonSecureWindows(false).then(()=> {
+      console.log(`Succeeded in showing the non-secure windows.`);
+    }).catch((err: BusinessError)=> {
+      console.log(`Failed to show the non-secure windows. Cause:${JSON.stringify(err)}`);
+    })
+  }
+}
 ```
 
-### createSubWindowWithOptions<sup>12+<sup>
+### createSubWindowWithOptions<sup>12+</sup>
 
 createSubWindowWithOptions(name: string, subWindowOptions: window.SubWindowOptions): Promise&lt;window.Window&gt;
 
@@ -261,6 +322,8 @@ createSubWindowWithOptions(name: string, subWindowOptions: window.SubWindowOptio
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **系统接口：** 此接口为系统接口，三方应用不支持调用。
+
+**模型约束：** StageModelOnly
 
 **参数：**
 
@@ -281,65 +344,72 @@ createSubWindowWithOptions(name: string, subWindowOptions: window.SubWindowOptio
 
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------ |
+| 401 | Parameter error. Possible causes: <br/> 1. Mandatory parameters are left unspecified.<br/> 2. Incorrect parameters types.<br/> 3. Parameter verification failed. |
+| 801 | Capability not supported on this device. |
 | 1300002 | This window state is abnormal. |
 | 1300005 | This window proxy is abnormal. |
 
 **示例：**
 
 ```ts
-import uiExtensionHost from '@ohos.uiExtensionHost';
+// ExtensionProvider.ts
+import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
 import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
+import Want from '@ohos.app.ability.Want';
 import window from '@ohos.window';
 import { BusinessError } from '@ohos.base';
 
-// 在执行到UIExtensionAbility的'onSessionCreate'时，会将UIExtensionContentSession实例存储到storage中
-session: UIExtensionContentSession | undefined = storage.get<UIExtensionContentSession>('session');
-// 从session上获取当前UIExtensionAbility的UIExtensionHostWindowProxy实例
-extensionWindow: uiExtensionHost.UIExtensionHostWindowProxy | undefined = this.session?.getUIExtensionHostWindowProxy();
-let subWindowOpts: window.SubWindowOptions = {
-  'title': 'This is a subwindow',
-  decorEnabled: true
-};
-// 创建子窗口
-this.extensionWindow?.createSubWindowWithOptions('subWindowForHost', subWindowOpts)
-  .then((subWindow: window.Window) => {
-    this.subWindow = subWindow;
-    this.subWindow.loadContent('pages/Index', storage, (err, data) =>{
-      if (err && err.code != 0) {
-        return;
-      }
-      this.subWindow?.resize(300, 300, (err, data)=>{
-        if (err && err.code != 0) {
-          return;
-        }
-        this.subWindow?.moveWindowTo(100, 100, (err, data)=>{
+export default class EntryAbility extends UIExtensionAbility {
+  onSessionCreate(want: Want, session: UIExtensionContentSession) {
+    const extensionHostWindow = session.getUIExtensionHostWindowProxy();
+    const subWindowOpts: window.SubWindowOptions = {
+      title: 'This is a subwindow',
+      decorEnabled: true
+    };
+    // 创建子窗口
+    extensionHostWindow.createSubWindowWithOptions('subWindowForHost', subWindowOpts)
+      .then((subWindow: window.Window) => {
+        subWindow.loadContent('pages/Index', (err, data) =>{
           if (err && err.code != 0) {
             return;
           }
-          this.subWindow?.showWindow((err, data) => {
-            if (err && err.code == 0) {
-              console.info(`The subwindow has been shown!`);
-            } else {
-              console.error(`Failed to show the subwindow!`);
+          subWindow?.resize(300, 300, (err, data)=>{
+            if (err && err.code != 0) {
+              return;
             }
+            subWindow?.moveWindowTo(100, 100, (err, data)=>{
+              if (err && err.code != 0) {
+                return;
+              }
+              subWindow?.showWindow((err, data) => {
+                if (err && err.code == 0) {
+                  console.info(`The subwindow has been shown!`);
+                } else {
+                  console.error(`Failed to show the subwindow!`);
+                }
+              });
+            });
           });
         });
-      });
-    });
-  }).catch((error: BusinessError) => {
-    console.error(`Create subwindow failed: ${JSON.stringify(error)}`);
-  })
+      }).catch((error: BusinessError) => {
+        console.error(`Create subwindow failed: ${JSON.stringify(error)}`);
+      })
+  }
+}
 ```
 
-### setWaterMarkFlag<sup>12+<sup>
+### setWaterMarkFlag<sup>12+</sup>
 
 setWaterMarkFlag(enable: boolean): Promise&lt;void&gt;
 
 为当前窗口添加或删除安全水印标志，使用Promise异步回调。
+> **说明：**
+>
+> 添加安全水印标志后，窗口在前台时会将当前全屏幕覆盖水印。全屏、悬浮窗、分屏等场景下只要有添加了安全水印标志的窗口在前台，就会显示全屏水印。
 
 **系统能力**：SystemCapability.ArkUI.ArkUI.Full
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -359,33 +429,37 @@ setWaterMarkFlag(enable: boolean): Promise&lt;void&gt;
 | ------- | ---------------------------------------------- |
 | 1300002 | This window state is abnormal.                 |
 | 1300003 | This window manager service works abnormally.  |
+| 1300008 | The operation is on invalid display. |
 
 **示例**
 
 ```ts
+// ExtensionProvider.ts
+import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
 import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
-import uiExtension from '@ohos.arkui.uiExtension';
-import window from '@ohos.window';
+import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
 
-// 在执行到EmbeddedUIExtensionAbility的'onSessionCreate'时，会将UIExtensionContentSession实例存储到storage中
-session: UIExtensionContentSession | undefined = storage.get<UIExtensionContentSession>('session');
-// 从session上获取当前EmbeddedUIExtensionAbility的WindowProxy实例
-extensionWindow: uiExtension.WindowProxy | undefined = this.session?.getUIExtensionWindowProxy();
-// 添加安全水印标志
-let promise = this.extensionWindow?.setWaterMarkFlag(true);
-promise?.then(() => {
-  console.log(`Succeeded in setting water mark flag of window.`);
-}).catch((err: BusinessError) => {
-  console.log(`Failed to setting water mark flag of window. Cause:${JSON.stringify(err)}`);
-})
-// 删除安全水印标志
-let promise = this.extensionWindow?.setWaterMarkFlag(false);
-promise?.then(() => {
-  console.log(`Succeeded in deleting water mark flag of window.`);
-}).catch((err: BusinessError) => {
-  console.log(`Failed to deleting water mark flag of window. Cause:${JSON.stringify(err)}`);
-})
+export default class EntryAbility extends UIExtensionAbility {
+  onSessionCreate(want: Want, session: UIExtensionContentSession) {
+    const extensionHostWindow = session.getUIExtensionHostWindowProxy();
+    // 添加安全水印标志
+    extensionHostWindow.setWaterMarkFlag(true).then(() => {
+      console.log(`Succeeded in setting water mark flag of window.`);
+    }).catch((err: BusinessError) => {
+      console.log(`Failed to setting water mark flag of window. Cause:${JSON.stringify(err)}`);
+    })
+  }
+  onSessionDestroy(session: UIExtensionContentSession) {
+    const extensionHostWindow = session.getUIExtensionHostWindowProxy();
+    // 删除安全水印标志
+    extensionHostWindow.setWaterMarkFlag(false).then(() => {
+      console.log(`Succeeded in deleting water mark flag of window.`);
+    }).catch((err: BusinessError) => {
+      console.log(`Failed to deleting water mark flag of window. Cause:${JSON.stringify(err)}`);
+    })
+  }
+}
 ```
 
 ## UIExtensionHostWindowProxyProperties
@@ -396,9 +470,9 @@ promise?.then(() => {
 
 **系统接口**：此接口为系统接口
 
-| 属性名                         | 类型        | 说明                             |
-| ------------------------------ | ----------- | -------------------------------- |
-| uiExtensionHostWindowProxyRect | [window.Rect](js-apis-window.md#rect7) | UIExtensionComponent的位置和宽高。 |
+| 名称                         | 类型        | 必填      | 说明                             |
+| ------------------------------ | ----------- | -------------------------------- | -------------------------------- |
+| uiExtensionHostWindowProxyRect | [window.Rect](js-apis-window.md#rect7) | 是 | UIExtensionComponent的位置和宽高。 |
 
 ## 完整示例
 

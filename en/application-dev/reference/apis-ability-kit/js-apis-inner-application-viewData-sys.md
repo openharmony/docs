@@ -19,3 +19,4 @@ ViewData defines the view data used for auto-fill.
 | abilityName    | string        | Yes  | Ability name.   |
 | pageUrl    | string              | Yes  | URL of the page.                              |
 | pageNodeInfos    | Array&lt;[PageNodeInfo](js-apis-inner-application-pageNodeInfo-sys.md)&gt;     | Yes  | Page node information.               |
+| pageRect<sup>12+</sup>    | [AutoFillRect](js-apis-inner-application-autoFillRect-sys.md)     | Yes  | Coordinates, width, and height of the page.               |

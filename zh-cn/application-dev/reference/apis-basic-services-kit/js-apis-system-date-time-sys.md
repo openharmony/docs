@@ -42,6 +42,16 @@ setTime(time : number, callback : AsyncCallback&lt;void&gt;) : void
 | time     | number                    | 是   | 目标时间戳（ms）。                         |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[时间时区错误码](./errorcode-time.md)。
+
+| 错误码ID | 错误信息                                                                                                           |
+| -------- |----------------------------------------------------------------------------------------------------------------|
+| 201       | Permission denied.                                                                                             |
+| 202       | Permission denied, Non system application use system APIs.                                                     |
+| 401       | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **示例：**
 
 ```ts
@@ -87,6 +97,16 @@ setTime(time : number) : Promise&lt;void&gt;
 | ------------------- | ------------------------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[时间时区错误码](./errorcode-time.md)。
+
+| 错误码ID | 错误信息                                                                                                           |
+| -------- |----------------------------------------------------------------------------------------------------------------|
+| 201       | Permission denied.                                                                                             |
+| 202       | Permission denied, Non system application use system APIs.                                                     |
+| 401       | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **示例：**
 
 ```ts
@@ -124,10 +144,20 @@ setDate(date: Date, callback: AsyncCallback&lt;void&gt;): void
 
 **参数：**
 
-| 参数名   | 类型                      | 必填 | 说明             |
-| -------- | ------------- | ---- | --------------------- |
-| date     | Date                      | 是   | 目标日期。                                 |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
+| 参数名   | 类型                      | 必填 | 说明          |
+| -------- | ------------- | ---- |-------------|
+| date     | Date                      | 是   | 目标日期，且必须>0。 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。       |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[时间时区错误码](./errorcode-time.md)。
+
+| 错误码ID | 错误信息                                                                                                                                            |
+| -------- |-------------------------------------------------------------------------------------------------------------------------------------------------|
+| 201       | Permission denied.                                                                                                                              |
+| 202       | Permission denied, Non system application use system APIs.                                                                                      |
+| 401       | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 
 **示例：**
 
@@ -169,13 +199,23 @@ setDate(date: Date): Promise&lt;void&gt;
 
 | 参数名 | 类型 | 必填 | 说明       |
 | ------ | ---- | ---- | ---------- |
-| date   | Date | 是   | 目标日期。 |
+| date   | Date | 是   | 目标日期，且必须。 |
 
 **返回值：**
 
 | 类型                | 说明                 |
 | ------------------- | -------------------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[时间时区错误码](./errorcode-time.md)。
+
+| 错误码ID | 错误信息                                                                                                                                            |
+| -------- |-------------------------------------------------------------------------------------------------------------------------------------------------|
+| 201       | Permission denied.                                                                                                                              |
+| 202       | Permission denied, Non system application use system APIs.                                                                                      |
+| 401       | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 
 **示例：**
 
@@ -213,6 +253,16 @@ setTimezone(timezone: string, callback: AsyncCallback&lt;void&gt;): void
 | -------- | ------------- | ---- | -------------------------- |
 | timezone | string                    | 是   | 系统时区。 具体可见[支持的系统时区](#支持的系统时区) 。        |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[时间时区错误码](./errorcode-time.md)。
+
+| 错误码ID | 错误信息                                                                                                           |
+| -------- |----------------------------------------------------------------------------------------------------------------|
+| 201       | Permission denied.                                                                                             |
+| 202       | Permission denied, Non system application use system APIs.                                                     |
+| 401       | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
 
@@ -257,6 +307,16 @@ setTimezone(timezone: string): Promise&lt;void&gt;
 | ------------------- | -------------------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[时间时区错误码](./errorcode-time.md)。
+
+| 错误码ID | 错误信息                                                                                                           |
+| -------- |----------------------------------------------------------------------------------------------------------------|
+| 201       | Permission denied.                                                                                             |
+| 202       | Permission denied, Non system application use system APIs.                                                     |
+| 401       | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
 **示例：**
 
 ```ts
@@ -276,38 +336,4 @@ try {
 
 ## 支持的系统时区
 
-支持的系统时区及各时区与0时区相比的偏移量（单位：h）可见下表。
-
-| 时区                           | 偏移量         |
-| ------------------------------ | --------------------- |
-| Antarctica/McMurdo             | 12                    |
-| America/Argentina/Buenos_Aires | -3                    |
-| Australia/Sydney               | 10                    |
-| America/Noronha                | -2                    |
-| America/St_Johns               | -3                    |
-| Africa/Kinshasa                | 1                     |
-| America/Santiago               | -3                    |
-| Asia/Shanghai                  | 8                     |
-| Asia/Nicosia                   | 3                     |
-| Europe/Berlin                  | 2                     |
-| America/Guayaquil              | -5                    |
-| Europe/Madrid                  | 2                     |
-| Pacific/Pohnpei                | 11                    |
-| America/Godthab                | -2                    |
-| Asia/Jakarta                   | 7                     |
-| Pacific/Tarawa                 | 12                    |
-| Asia/Almaty                    | 6                     |
-| Pacific/Majuro                 | 12                    |
-| Asia/Ulaanbaatar               | 8                     |
-| America/Mexico_City            | -5                    |
-| Asia/Kuala_Lumpur              | 8                     |
-| Pacific/Auckland               | 12                    |
-| Pacific/Tahiti                 | -10                   |
-| Pacific/Port_Moresby           | 10                    |
-| Asia/Gaza                      | 3                     |
-| Europe/Lisbon                  | 1                     |
-| Europe/Moscow                  | 3                     |
-| Europe/Kiev                    | 3                     |
-| Pacific/Wake                   | 12                    |
-| America/New_York               | -4                    |
-| Asia/Tashkent                  | 5                     |
+支持的系统时区参考接口[I18n.SystemLocaleManager.getTimeZoneCityItemArray()](../apis-localization-kit/js-apis-i18n-sys.md#gettimezonecityitemarray10)。

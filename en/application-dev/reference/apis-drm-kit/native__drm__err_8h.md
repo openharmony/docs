@@ -21,7 +21,7 @@ The **native_drm_err.h** file declares the DRM error codes.
 
 | Name| Description| 
 | -------- | -------- |
-| typedef enum [Drm_ErrCode](_drm.md#drm_errcode) [Drm_ErrCode](_drm.md#drm_errcode) | Defines an enum that enumerates the DRM error codes.| 
+| typedef enum [Drm_ErrCode](_drm.md#drm_errcode) [Drm_ErrCode](_drm.md#drm_errcode) | Defines an enum for the DRM error codes.| 
 
 
 ### Enums

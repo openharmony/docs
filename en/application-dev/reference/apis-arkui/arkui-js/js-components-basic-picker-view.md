@@ -13,7 +13,7 @@ Not supported
 
 ## Attributes
 
-In addition to the [universal attributes](../arkui-js/js-components-common-attributes.md), the following attributes are supported.
+In addition to the [universal attributes](js-components-common-attributes.md), the following attributes are supported.
 
 | Name  | Type    | Default Value | Mandatory  | Description                                      |
 | ---- | ------ | ---- | ---- | ---------------------------------------- |
@@ -66,7 +66,7 @@ In addition to the [universal attributes](../arkui-js/js-components-common-attri
 
 ## Styles
 
-In addition to the [universal styles](../arkui-js/js-components-common-styles.md), the following styles are supported.
+In addition to the [universal styles](js-components-common-styles.md), the following styles are supported.
 
 | Name                              | Type            | Default Value       | Mandatory  | Description                                      |
 | -------------------------------- | -------------- | ---------- | ---- | ---------------------------------------- |
@@ -76,7 +76,7 @@ In addition to the [universal styles](../arkui-js/js-components-common-styles.md
 | selected-font-size               | &lt;length&gt; | 20px       | No   | Font size of the selected item. The value is of the length type, in pixels.                  |
 | disappear-color<sup>5+</sup>     | &lt;color&gt;  | \#ffffff   | No   | Font color of the items that gradually disappear. Disappearing items are the top option and bottom option of a column containing five options in total.  |
 | disappear-font-size<sup>5+</sup> | &lt;length&gt; | 14px       | No   | Font size of the items that gradually disappear. Disappearing items are the top option and bottom option of a column containing five options in total.  |
-| font-family                      | string         | sans-serif | No   | Font family of the selector, in which fonts are separated by commas (,). Each font is set using a font name or font family name. The first font in the family or the specified [custom font](../arkui-js/js-components-common-customizing-font.md) is used for the text.|
+| font-family                      | string         | sans-serif | No   | Font family of the selector, in which fonts are separated by commas (,). Each font is set using a font name or font family name. The first font in the family or the specified [custom font](js-components-common-customizing-font.md) is used for the text.|
 
 
 ## Events

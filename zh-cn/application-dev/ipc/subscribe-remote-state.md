@@ -6,7 +6,7 @@ IPC/RPC提供对远端Stub对象状态的订阅机制，在远端Stub对象消�
 
 这种订阅机制适用于本地Proxy对象需要感知远端Stub对象所在进程消亡，或所在设备离开组网的场景。当Proxy感知到Stub端消亡后，可适当清理本地资源。此外，RPC目前不提供匿名Stub对象的消亡通知，即只有向SAMgr注册过的服务才能被订阅消亡通知，IPC则支持匿名对象的消亡通知。
 
-
+<!--Del-->
 ## Native侧接口
 
 | 接口名                                                              |  描述                     |
@@ -60,7 +60,7 @@ int TestServiceProxy::TestPingAbility(const std::u16string &dummy){
 }
 ```
 
-```c++
+```C++
 #include "iremote_object.h"
 
 class TestDeathRecipient : public IRemoteObject::DeathRecipient {
@@ -79,8 +79,17 @@ sptr<IRemoteObject::DeathRecipient> deathRecipient (new TestDeathRecipient()); /
 bool result = object->AddDeathRecipient(deathRecipient); // 注册消亡通知
 result = object->RemoveDeathRecipient(deathRecipient); // 移除消亡通知
 ```
+<!--DelEnd-->
 
 ## ArkTS侧接口
+
+> **说明：**
+>
+> - 此文档中的示例代码描述的是系统应用跨进程通信。
+>
+> - 当前不支持三方应用实现ServiceExtensionAbility，三方应用的UIAbility组件可以通过Context连接系统提供的ServiceExtensionAbility。
+>
+> - 当前使用场景： 仅限客户端是三方应用，服务端是系统应用。
 
 | 接口名                                                       | 返回值类型 | 功能描述                                                     |
 | ------------------------------------------------------------ | ---------- | ------------------------------------------------------------ |
@@ -88,53 +97,14 @@ result = object->RemoveDeathRecipient(deathRecipient); // 移除消亡通知
 | [unregisterDeathRecipient](../reference/apis-ipc-kit/js-apis-rpc.md#unregisterdeathrecipient9-1) | void       | 注销用于接收远程对象消亡通知的回调。                         |
 | [onRemoteDied](../reference/apis-ipc-kit/js-apis-rpc.md#onremotedied) | void       | 在成功添加死亡通知订阅后，当远端对象死亡时，将自动调用本方法。 |
 
-### 获取context
-
-Stage模型在连接服务前需要先获取context
-
-```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import hilog from '@ohos.hilog';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import window from '@ohos.window';
-
-export default class MainAbility extends UIAbility {
-  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-    hilog.info(0x0000, 'testTag', '%{public}s', 'UIAbility onCreate');
-    let context = this.context;
-  }
-  onDestroy() {
-    hilog.info(0x0000, 'testTag', '%{public}s', 'UIAbility onDestroy');
-  }
-  onWindowStageCreate(windowStage: window.WindowStage) {
-    // Main window is created, set main page for this ability
-  	hilog.info(0x0000, 'testTag', '%{public}s', 'UIAbility onWindowStageCreate');
-  }
-  onWindowStageDestroy() {
-    // Main window is destroyed, release UI related resources
-  	hilog.info(0x0000, 'testTag', '%{public}s', 'UIAbility onWindowStageDestroy');
-  }
-  onForeground() {
-    // Ability has brought to foreground
-    hilog.info(0x0000, 'testTag', '%{public}s', 'UIAbility onForeground');
-  }
-  onBackground() {
-    // Ability has back to background
-    hilog.info(0x0000, 'testTag', '%{public}s', 'UIAbility onBackground');
-  }
-}
-```
-
 ### 参考代码
 
 ```ts
-// 仅FA模型需要导入@ohos.ability.featureAbility
-// import FA from "@ohos.ability.featureAbility";
-import Want from '@ohos.app.ability.Want';
-import common from '@ohos.app.ability.common';
-import rpc from '@ohos.rpc';
-import hilog from '@ohos.hilog';
+// FA模型需要从@kit.AbilityKit导入featureAbility
+// import { featureAbility } from '@kit.AbilityKit';
+import { Want, common } from '@kit.AbilityKit';
+import { rpc } from '@kit.IPCKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 let proxy: rpc.IRemoteObject | undefined;
 let connect: common.ConnectOptions = {
@@ -156,14 +126,17 @@ let want: Want = {
 // FA模型通过此方法连接服务
 // FA.connectAbility(want, connect);
 
-this.context.connectServiceExtensionAbility(want, connect);
+// 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
+let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+// 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
+let connectionId = context.connectServiceExtensionAbility(want, connect);
 ```
 
 上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的[unregisterDeathRecipient](../reference/apis-ipc-kit/js-apis-rpc.md#unregisterdeathrecipient9-1)接口方法注销死亡回调
 
 ```ts
-import rpc from '@ohos.rpc';
-import hilog from '@ohos.hilog';
+import { rpc } from '@kit.IPCKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 class MyDeathRecipient implements rpc.DeathRecipient{
   onRemoteDied() {

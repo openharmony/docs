@@ -1,4 +1,4 @@
-# PixelMap数据处理(C/C++)
+# 使用Image处理PixelMap数据
 
 开发者可以通过本指导了解如何使用Native Image的接口。
 
@@ -6,7 +6,7 @@
 
 **添加依赖**
 
-在进行应用开发之前，开发者需要打开native工程的src/main/cpp/CMakeLists.txt，在target_link_libraries依赖中添加image的libpixelmap_ndk.z.so以及日志依赖libhilog_ndk.z.so。
+在进行应用开发之前，开发者需要打开native工程的src/main/cpp/CMakeLists.txt，在target_link_libraries依赖中添加image的libace_napi.z.so libpixelmap_ndk.z.so以及日志依赖libhilog_ndk.z.so。
 
 ```txt
 target_link_libraries(entry PUBLIC libace_napi.z.so libhilog_ndk.z.so libpixelmap_ndk.z.so)
@@ -32,7 +32,6 @@ static napi_value Init(napi_env env, napi_value exports)
 EXTERN_C_END
 ```
 
-
 **Native接口调用**
 
 具体接口说明请参考[API文档](../../reference/apis-image-kit/image.md)
@@ -41,11 +40,14 @@ EXTERN_C_END
 
 **添加引用文件**
 
-    #include <multimedia/image_framework/image_mdk_common.h>
-    #include <multimedia/image_framework/image_pixel_map_mdk.h>
-    #include <stdlib.h>
-    
+```c++
+#include <multimedia/image_framework/image_mdk_common.h>
+#include <multimedia/image_framework/image_pixel_map_mdk.h>
+#include <stdlib.h>
+```
+
 1. 创建一个 **PixelMap** 对象。
+
     ```c++
     napi_value CreatePixelMapTest(napi_env env, napi_callback_info info) {
         napi_value udfVar = nullptr;
@@ -70,7 +72,9 @@ EXTERN_C_END
         return pixelMap;
     }
     ```
+
 2. 根据Alpha通道的信息，来生成一个仅包含Alpha通道信息的 **PixelMap** 对象。
+
     ```c++
     napi_value CreateAlphaPixelMap(napi_env env, napi_callback_info info) {
         napi_value udfVar = nullptr;
@@ -93,7 +97,9 @@ EXTERN_C_END
         return alphaPixelMap;
     }
     ```
+
 3. 对 **PixelMap** 数据进行处理。
+
     ```c++
     napi_value Transform(napi_env env, napi_callback_info info) {
         napi_value thisVar = nullptr;
@@ -191,7 +197,6 @@ EXTERN_C_END
         return result;
     }
     ```
-
 
 **JS侧调用**
 

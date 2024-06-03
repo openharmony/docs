@@ -985,7 +985,7 @@ let p: Person = {
 };
 
 for (let t in p) {
-  console.log(p[t]);
+  console.log(p[t]);  // log: "tom", "18" 
 }
 ```
 
@@ -998,7 +998,7 @@ let p: Record<string, string> = {
 };
 
 for (let ele of Object.entries(p)) {
-  console.log(ele[1]);
+  console.log(ele[1]);  // log: "tom", "18" 
 }
 ```
 
@@ -2127,6 +2127,43 @@ class Foo {
 }
 ```
 
+## arkts-limited-esobj
+
+**应用代码**
+
+```typescript
+// lib.d.ts
+declare function foo(): any;
+
+// main.ets
+let e0: ESObject = foo();
+
+function f() {
+  let e1 = foo();
+  let e2: ESObject = 1;
+  let e3: ESObject = {};
+  let e4: ESObject = '';
+}
+```
+
+**建议改法**
+
+```typescript
+// lib.d.ts
+declare function foo(): any;
+
+// main.ets
+interface I {}
+
+function f() {
+  let e0: ESObject = foo();
+  let e1: ESObject = foo();
+  let e2: number = 1;
+  let e3: I = {};
+  let e4: string = '';
+}
+```
+
 ## 状态管理使用典型场景
 
 ### Struct组件外使用状态变量
@@ -2241,7 +2278,7 @@ struct StyleExample {
 
 ### Struct支持联合类型的方案
 
-下面这段代码有arkts-no-any-unknown的报错，由于strcut不支持泛型，建议使用联合类型，实现自定义组件类似泛型的功能。
+下面这段代码有arkts-no-any-unknown的报错，由于struct不支持泛型，建议使用联合类型，实现自定义组件类似泛型的功能。
 
 **不推荐用法**
 

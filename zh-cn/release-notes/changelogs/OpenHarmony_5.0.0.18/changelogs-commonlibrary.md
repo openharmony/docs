@@ -15,7 +15,7 @@ taskpool执行并发任务，对于Sendable数据类型，以执行结果返回�
 此变更为非兼容变更
 变更前，使用API11的taskpool.Task.sendData接口发送或直接返回Sendable数据时，会默认拷贝一份。
 变更后，在该场景下，Sendable数据会共享传输，此时如果在主线程修改，子线程也会感知到变化。但是由于taskpool以任务维度执行，对一个对象的同时操作场景较少，后续的数据变化对taskpool的影响可控。
-如下代码，打印出来的值可能时100，也可能被子线程改成200：
+如下代码，打印出来的值可能是100，也可能被子线程改成200：
 ```
 import { taskpool } from '@kit.ArkTS'
 @Sendable

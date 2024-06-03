@@ -10,9 +10,9 @@ A drag event is triggered when a component is dragged.
 
 The ArkUI framework implements the drag and drop capability for the following components, allowing them to serve as the drag source (from which data can be dragged) or drop target (to which data can be dropped). To enable drag and drop for these components, you only need to set their [draggable](ts-universal-attributes-drag-drop.md) attribute to **true**.
 
-- The following component supports drag actions by default: **\<Search>**, **\<TextInput>**, **\<TextArea>**, **\<RichEditor>**, **\<Text>**, **\<Image>**, **\<FormComponent>**, **\<Hyperlink>**
+- The following component supports drag actions by default: [Search](ts-basic-components-search.md), [TextInput](ts-basic-components-textinput.md), [TextArea](ts-basic-components-textarea.md), [RichEditor](ts-basic-components-richeditor.md), [Text](ts-basic-components-text.md), [Image](ts-basic-components-image.md), [FormComponent](ts-basic-components-formcomponent-sys.md), [Hyperlink](ts-container-hyperlink.md)
 
-- The following component supports drop actions by default: **\<Search>**, **\<TextInput>**, **\<TextArea>**, **\<Video>**
+- The following component supports drop actions by default: [Search](ts-basic-components-search.md), [TextInput](ts-basic-components-textinput.md), [TextArea](ts-basic-components-textarea.md), [Video](ts-media-components-video.md)
 
 You can also define drag responses by implementing common drag events.
 
@@ -28,7 +28,7 @@ For components that can serve as the drag source by default, a custom **onDragSt
 - If a custom drag preview is returned, it is used in place of the default drag preview.
 - If drag data is set, it is used in place of the default drag data.
 
-No custom drag preview is supported for dragging selected text in the following components: **\<Text>**, **\<Search>**, **\<TextInput>**, **\<TextArea>**
+No custom drag preview is supported for dragging selected text in the following components: [Text](ts-basic-components-text.md), [Search](ts-basic-components-search.md), [TextInput](ts-basic-components-textinput.md), [TextArea](ts-basic-components-textarea.md), [RichEditor](ts-basic-components-richeditor.md)
 
 **Event priority**:<br>Long press time < 500 ms: Long press event > Drag event<br>Other cases: Drag event > Long press event
 
@@ -39,7 +39,7 @@ No custom drag preview is supported for dragging selected text in the following 
 | Name     | Type                           | Mandatory| Description              |
 | ----------- | ------------------------------- | ---- | ------------------ |
 | event       | [DragEvent](#dragevent)     | Yes  | Information about the drag event.    |
-| extraParams | [extraParams](#extraparams) | No  | Additional information about the drag event.|
+| extraParams | string | No  | Additional information about the drag event.<br>**NOTE**<br>The value needs to be parsed into the JSON format. For details, see [extraParams](#extraparams).|
 
 **Return value**
 
@@ -60,7 +60,7 @@ Triggered when the dragged item enters a valid drop target. This event takes eff
 | Name     | Type                           | Mandatory| Description                          |
 | ----------- | ------------------------------- | ---- | ------------------------------ |
 | event       | [DragEvent](#dragevent)     | Yes  | Information about the drag event, including the coordinates of the item that is being dragged.|
-| extraParams | [extraParams](#extraparams) | No  | Additional information about the drag event.            |
+| extraParams | string | No  | Additional information about the drag event.<br>**NOTE**<br>The value needs to be parsed into the JSON format. For details, see [extraParams](#extraparams).|
 
 ## onDragMove
 
@@ -75,7 +75,7 @@ Triggered when the dragged item moves in a valid drop target. This event takes e
 | Name     | Type                           | Mandatory| Description                          |
 | ----------- | ------------------------------- | ---- | ------------------------------ |
 | event       | [DragEvent](#dragevent)     | Yes  | Information about the drag event, including the coordinates of the item that is being dragged.|
-| extraParams | [extraParams](#extraparams) | No  | Additional information about the drag event.            |
+| extraParams | string | No  | Additional information about the drag event.<br>**NOTE**<br>The value needs to be parsed into the JSON format. For details, see [extraParams](#extraparams).|
 
 ## onDragLeave
 
@@ -90,7 +90,7 @@ Triggered when the dragged item leaves a valid drop target. This event takes eff
 | Name     | Type                           | Mandatory| Description                          |
 | ----------- | ------------------------------- | ---- | ------------------------------ |
 | event       | [DragEvent](#dragevent)     | Yes  | Information about the drag event, including the coordinates of the item that is being dragged.|
-| extraParams | [extraParams](#extraparams) | No  | Additional information about the drag event.            |
+| extraParams | string | No  | Additional information about the drag event.<br>**NOTE**<br>The value needs to be parsed into the JSON format. For details, see [extraParams](#extraparams).|
 
 ## onDrop
 
@@ -105,7 +105,7 @@ Triggered when the dragged item is dropped on a valid drop target. If **event.se
 | Name     | Type                           | Mandatory| Description                          |
 | ----------- | ------------------------------- | ---- | ------------------------------ |
 | event       | [DragEvent](#dragevent)     | Yes  | Information about the drag event, including the coordinates of the item that is being dragged.|
-| extraParams | [extraParams](#extraparams) | No  | Additional information about the drag event.            |
+| extraParams | string | No  | Additional information about the drag event.<br>**NOTE**<br>The value needs to be parsed into the JSON format. For details, see [extraParams](#extraparams).|
 
 ## onDragEnd
 
@@ -120,14 +120,28 @@ Triggered when the dragging of the component bound to the event ends.
 | Name     | Type                           | Mandatory| Description                          |
 | ----------- | ------------------------------- | ---- | ------------------------------ |
 | event       | [DragEvent](#dragevent)     | Yes  | Information about the drag event, including the coordinates of the item that is being dragged.|
-| extraParams | [extraParams](#extraparams) | No  | Additional information about the drag event.            |
+| extraParams | string | No  | Additional information about the drag event.<br>**NOTE**<br>The value needs to be parsed into the JSON format. For details, see [extraParams](#extraparams).|
+
+## onPreDrag<sup>12+</sup>
+
+onPreDrag(event: (preDragStatus: PreDragStatus) => void)
+
+Invoked when the component enters a state prior to a drop and drop operation.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name     | Type                           | Mandatory| Description                          |
+| ----------- | ------------------------------- | ---- | ------------------------------ |
+| preDragStatus       | [PreDragStatus](#predragstatus12)     | Yes  | State prior to a drop and drop operation.|
 
 ## DragItemInfo
 
 | Name     | Type                                    | Mandatory  | Description                               |
 | --------- | ---------------------------------------- | ---- | --------------------------------- |
 | pixelMap  | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) | No   | Image to be displayed during dragging.                    |
-| builder   | [CustomBuilder](ts-types.md#custombuilder8) | No   | Custom component to display during dragging. If **pixelMap** is set, this parameter is ignored.<br> **NOTE**<br>Global builder definition is not supported. If the [\<Image>](ts-basic-components-image.md) component is used in the builder, enable synchronous loading whenever possible, that is, set the [syncLoad](ts-basic-components-image.md#attributes) attribute of the component to **true**. The builder is used only to generate the image displayed during the current dragging. Changes to the builder, if any, apply to the next dragging, but not to the current dragging.|
+| builder   | [CustomBuilder](ts-types.md#custombuilder8) | No   | Custom component to display during dragging. If **pixelMap** is set, this parameter is ignored.<br> **NOTE**<br>Global builder definition is not supported. If the [\<Image>](ts-basic-components-image.md) component is used in the builder, enable synchronous loading whenever possible, that is, set the [syncLoad](ts-basic-components-image.md#syncload8) attribute of the component to **true**. The builder is used only to generate the image displayed during the current dragging. Changes to the builder, if any, apply to the next dragging, but not to the current dragging.|
 | extraInfo | string                                   | No   | Extra information of the dragged item.                          |
 
 
@@ -200,6 +214,17 @@ Provides the drag behavior. This API takes effect only when [DragResult](#dragre
 | COPY | Copy mode.|
 | MOVE| Paste mode.|
 
+## PreDragStatus<sup>12+</sup>
+
+| Name| Value| Description|
+| ---- | - | ----------------- |
+| ACTION_DETECTING_STATUS | 0 | A drag gesture is being detected. (Triggered when the component is long pressed for 50 ms.)|
+| READY_TO_TRIGGER_DRAG_ACTION | 1 | The component is ready to be dragged. (Triggered when the component is long pressed for 500 ms.)|
+| PREVIEW_LIFT_STARTED | 2 | A lift animation is started. (Triggered when the component is long pressed for 800 ms.)|
+| PREVIEW_LIFT_FINISHED | 3 | A lift animation is finished. (Triggered at the completion of the lift animation.)|
+| PREVIEW_LANDING_STARTED | 4 | A drop animation is started. (Triggered when the drop animation starts.)|
+| PREVIEW_LANDING_FINISHED | 5 | A drop animation is finished. (Triggered when the drop animation ends.)|
+| ACTION_CANCELED_BEFORE_DRAG | 6 | A drop animation is terminated. (Triggered when the finger is lifted off the screen after the component enters the **READY_TO_TRIGGER_DRAG_ACTION** state.)|
 
 ## Example
 
@@ -221,6 +246,7 @@ struct Index {
   @State videoSrc: string = 'resource://RAWFILE/02.mp4';
   @State abstractContent: string = "abstract";
   @State textContent: string = "";
+  @State backGroundColor: Color = Color.Transparent;
 
   @Builder
   pixelMapBuilder() {
@@ -257,6 +283,15 @@ struct Index {
     setTimeout(() => {
       this.getDataFromUdmfRetry(event, callback);
     }, 1500);
+  }
+
+  private PreDragChange(preDragStatus: PreDragStatus): void {
+    if (preDragStatus == PreDragStatus.READY_TO_TRIGGER_DRAG_ACTION) {
+      this.backGroundColor = Color.Red;
+    } else if (preDragStatus == PreDragStatus.ACTION_CANCELED_BEFORE_DRAG
+      || preDragStatus == PreDragStatus.PREVIEW_LANDING_FINISHED) {
+      this.backGroundColor = Color.Blue;
+    }
   }
 
   build() {
@@ -319,11 +354,16 @@ struct Index {
         .width('100%')
         .height(100)
         .onDragStart((event) => {
+          this.backGroundColor = Color.Transparent;
           let data: UDC.PlainText = new UDC.PlainText();
           data.abstract = 'this is abstract';
           data.textContent = 'this is content this is content';
           (event as DragEvent).setData(new UDC.UnifiedData(data));
         })
+        .onPreDrag((status: PreDragStatus) => {
+          this.PreDragChange(status);
+        })
+        .backgroundColor(this.backGroundColor)
       }.width('45%')
       .height('100%')
 
@@ -404,3 +444,4 @@ struct Index {
   }
 }
 ```
+![events-drag-drop](figures/events-drag-drop.png) 

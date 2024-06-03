@@ -47,7 +47,9 @@ AVSource模块提供用于构造音视频资源对象功能的函数。
 ```
 typedef struct OH_AVSource OH_AVSource
 ```
+
 **描述**
+
 为媒体资源接口定义native层对象。
 
 **起始版本：** 10
@@ -61,7 +63,9 @@ typedef struct OH_AVSource OH_AVSource
 ```
 OH_AVSource* OH_AVSource_CreateWithDataSource (OH_AVDataSource * dataSource)
 ```
+
 **描述**
+
 为用户自定义数据源的资源对象创建OH_AVSource实例对象，可以通过调用OH_AVSource_Destroy释放实例。
 
 **系统能力：** SystemCapability.Multimedia.Media.Spliter
@@ -76,7 +80,15 @@ OH_AVSource* OH_AVSource_CreateWithDataSource (OH_AVDataSource * dataSource)
 
 **返回：**
 
-返回一个指向OH_AVSource实例的指针。
+如果执行成功，则返回一个指向OH_AVSource实例的指针，否则返回nullptr。
+
+可能失败的原因：
+
+1. dataSource为nullptr。
+2. dataSource->size == 0。
+3. 设置数据源失败。
+4. 内存不足。
+5. 解码器引擎为nullptr。
 
 
 ### OH_AVSource_CreateWithFD()

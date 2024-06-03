@@ -10,6 +10,8 @@
 
 使用AVScreenCapture录制屏幕涉及到AVScreenCapture实例的创建、音视频采集参数的配置、采集的开始与停止、资源的释放等。
 
+开始屏幕录制时正在通话中或者屏幕录制过程中来电，录屏将自动停止。因通话中断的录屏会上报OH_SCREEN_CAPTURE_STATE_STOPPED_BY_CALL状态。
+
 本开发指导将以完成一次屏幕数据录制的过程为例，向开发者讲解如何使用AVScreenCapture进行屏幕录制，详细的API声明请参考[AVScreenCapture API参考](../../reference/apis-media-kit/_a_v_screen_capture.md)。
 
 ## 开发步骤及注意事项
@@ -176,7 +178,10 @@ void OnStateChange(struct OH_AVScreenCapture *capture, OH_AVScreenCaptureStateCo
         //可选 配置录屏旋转
         int32_t retRotation = OH_AVScreenCapture_SetCanvasRotation(capture, true);
     }
-
+    if (stateCode == OH_SCREEN_CAPTURE_STATE_STOPPED_BY_CALL) {
+        // 通话中断状态处理
+        OH_LOG_INFO(LOG_APP, "DEMO OH_SCREEN_CAPTURE_STATE_STOPPED_BY_CALL");
+    }
     if (stateCode == OH_SCREEN_CAPTURE_STATE_INTERRUPTED_BY_OTHER) {
         // 处理状态变更
     }
@@ -201,21 +206,44 @@ void OnBufferAvailable(OH_AVScreenCapture *capture, OH_AVBuffer *buffer,
     }
 }
 
-int main() {
+struct OH_AVScreenCapture *capture;
+static napi_value Screencapture(napi_env env, napi_callback_info info) {
+    // 从js端获取窗口id number[]
+    vector<int> windowIdsExclude = {};
+    size_t argc = 1;
+    napi_value args[1] = {nullptr};
+    // 获取参数
+    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+    // 获取数组长度
+    uint32_t array_length;
+    napi_get_array_length(env, args[0], &array_length);
+    // 读初窗口id
+    for (int32_t i = 0; i < array_length; i++) {
+        napi_value temp;
+        napi_get_element(env, args[0], i, &temp);
+        uint32_t tempValue;
+        napi_get_value_uint32(env, temp, &tempValue);
+        windowIdsExclude.push_back(tempValue);
+     }
     // 实例化ScreenCapture
-    struct OH_AVScreenCapture *capture;
+    capture = OH_AVScreenCapture_Create();
     
     // 设置回调 
     OH_AVScreenCapture_SetErrorCallback(capture, OnError, userData);
     OH_AVScreenCapture_SetStateCallback(capture, OnStateChange, userData);
     OH_AVScreenCapture_SetDataCallback(capture, OnBufferAvailable, userData);
 
+    // 可选 配置录屏旋转，此接口在感知到手机屏幕旋转时调用，如果手机的屏幕实际上没有发生旋转，调用接口是无效的。
+    OH_AVScreenCapture_SetCanvasRotation(capture, true);
     // 可选 [过滤音频]
     OH_AVScreenCapture_ContentFilter contentFilter= OH_AVScreenCapture_CreateContentFilter();
     // 添加过滤通知音
     OH_AVScreenCapture_ContentFilter_AddAudioContent(contentFilter, OH_SCREEN_CAPTURE_NOTIFICATION_AUDIO);
-    // 排除过滤器
-    //OH_AVScreenCapture_ExcludeContent(capture, contentFilter);
+    // 排除指定窗口id
+    OH_AVScreenCapture_ContentFilter_AddWindowContent(contentFilter, &windowIdsExclude[0],
+                                                      static_cast<int32_t>(windowIdsExclude.size()));
+
+    OH_AVScreenCapture_ExcludeContent(capture, contentFilter);
 
     // 初始化录屏，传入配置信息OH_AVScreenRecorderConfig
     OH_AudioCaptureInfo miccapinfo = {.audioSampleRate = 16000, .audioChannels = 2, .audioSource = OH_MIC};
@@ -251,6 +279,10 @@ int main() {
     OH_AVScreenCapture_StopScreenCapture(capture);
     // 释放ScreenCapture
     OH_AVScreenCapture_Release(capture);
-    return 0;
+    // 返回调用结果，示例仅返回随意值
+    napi_value sum;
+    napi_create_double(env, 5, &sum);
+
+    return sum;
 }
 ```

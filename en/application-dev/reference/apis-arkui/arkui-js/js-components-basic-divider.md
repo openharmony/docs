@@ -18,7 +18,7 @@ Not supported
 
 ## Attributes
 
-In addition to the [universal attributes](../arkui-js/js-components-common-attributes.md), the following attributes are supported.
+In addition to the [universal attributes](js-components-common-attributes.md), the following attributes are supported.
 
 | Name      | Type     | Default Value  | Mandatory  | Description                  |
 | -------- | ------- | ----- | ---- | -------------------- |

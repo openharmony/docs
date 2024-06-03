@@ -39,10 +39,13 @@ switchInputMethod(bundleName: string, subtypeId?: string): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
+| 201      | permissions check fails.  |
+| 202      | not system application.  |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800005 | configuration persisting error.        |
 | 12800008 | input method manager service error. |
 
@@ -94,6 +97,14 @@ on(type: 'imeShow', callback: (info: Array\<InputWindowInfo>) => void): void
 | type     | string | 是 | 设置监听类型，固定取值为'imeShow'。 |
 | callback | (info: Array<[InputWindowInfo](js-apis-inputmethod.md#inputwindowinfo10)>) => void | 是 | 回调函数，返回输入法固定态软键盘信息。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                             |
+| -------- | -------------------------------------- |
+| 202      | not system application.  |
+
 **示例：**
 
 ```ts
@@ -122,6 +133,15 @@ on(type: 'imeHide', callback: (info: Array\<InputWindowInfo>) => void): void
 | -------- | ---- | ---- | ---- |
 | type     | string | 是 | 设置监听类型，固定取值为'imeHide'。 |
 | callback | (info: Array<[InputWindowInfo](js-apis-inputmethod.md#inputwindowinfo10)>) => void | 是 | 回调函数，返回输入法固定态软键盘信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                             |
+| -------- | -------------------------------------- |
+| 202      | not system application.  |
+
 
 **示例：**
 
@@ -213,10 +233,12 @@ isPanelShown(panelInfo: PanelInfo): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 202      | not system application.  |
+| 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800008 | input method manager service error. |
 
 **示例：**

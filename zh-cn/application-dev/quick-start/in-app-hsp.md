@@ -1,35 +1,44 @@
 # HSP
 
-HSP（Harmony Shared Package）是动态共享包，可以包含代码、C++库、资源和配置文件，通过HSP可以实现应用内的代码和资源的共享。HSP不支持独立发布，而是跟随其宿主应用的APP包一起发布，与宿主应用同进程，具有相同的包名和生命周期。
+HSP（Harmony Shared Package）是动态共享包，可以包含代码、C++库、资源和配置文件，通过HSP可以实现代码和资源的共享。HSP不支持独立发布，而是跟随其宿主应用的APP包一起发布，与宿主应用同进程，具有相同的包名和生命周期。
 > **说明：**
 > 
-> 仅支持应用内HSP，不支持应用间HSP。
+> 应用内HSP：在编译过程中与应用包名（bundleName）强耦合，只能给某个特定的应用使用。
+> 
+> 集成态HSP：构建、发布过程中，不与特定的应用包名耦合；使用时，工具链支持自动将集成态HSP的包名替换成宿主应用包名。
 
 ## 使用场景
 - 多个HAP/HSP共用的代码和资源放在同一个HSP中，可以提高代码、资源的可重用性和可维护性，同时编译打包时也只保留一份HSP代码和资源，能够有效控制应用包大小。
 
 - HSP在运行时按需加载，有助于提升应用性能。
 
+- 同一个组织内部的多个应用之间，可以使用集成态HSP实现代码和资源的共享。
+
 ## 约束限制
 
 - HSP不支持在设备上单独安装/运行，需要与依赖该HSP的HAP一起安装/运行。HSP的版本号必须与HAP版本号一致。
 - HSP不支持在配置文件中声明[UIAbility](../application-models/uiability-overview.md)组件与[ExtensionAbility](../application-models/extensionability-overview.md)组件。
 - HSP可以依赖其他HAR或HSP，但不支持循环依赖，也不支持依赖传递。
+- 集成态HSP只支持[Stage模型](application-package-structure-stage.md)。
+- 集成态HSP需要API12及以上版本，使用标准化的OHMUrl格式。
 
 
 ## 创建
 通过DevEco Studio创建一个HSP模块，详见[创建HSP模块](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/hsp-0000001521396322-V3#section7717162312546)，我们以创建一个名为`library`的HSP模块为例。基本的工程目录结构如下：
 ```
-library
-├── src
-│   └── main
-│       ├── ets
-│       │   └── pages
-│       │       └── index.ets
-│       ├── resources
-│       └── module.json5
-├── oh-package.json5
-└── index.ets
+MyApplication
+├── library
+│   ├── src
+│   │   └── main
+│   │       ├── ets
+│   │       │   └── pages
+│   │       │       └── index.ets
+│   │       ├── resources
+│   │       └── module.json5
+│   ├── oh-package.json5
+│   ├── index.ets
+│   └── build-profile.json5 //模块级
+└── build-profile.json5     //工程级
 ```
 
 ## 开发
@@ -437,3 +446,40 @@ struct Index3 { // 路径为：`library/src/main/ets/pages/Back.ets
     ```ets
     '@bundle:包名（bundleName）/模块名（moduleName）/路径/页面所在的文件名(不加.ets后缀)'
     ```
+
+## 集成态HSP
+
+### 配置HSP模块为集成态HSP
+修改模块级构建配置文件build-profile.json5，设置配置项integratedHsp为true，指定构建的HSP模块为集成态HSP。
+
+```
+{
+  "apiType": "stageMode",
+  "buildOption": {
+    "arkOptions": {
+      "integratedHsp": true
+    }
+  }
+}
+```
+
+### 配置工程使用标准化的OHMUrl格式
+集成态HSP需要使用标准化的OHMUrl格式，修改工程级构建配置文件build-profile.json5，设置配置项useNormalizedOHMUrl为true，指定工程使用标准化的OHMUrl格式。
+
+```
+{
+  "app": {
+    "products": {
+      "name": "default",
+      "signingConfig": "default",
+      "compatibleSdkVersion": "5.0.0(12)",
+      "runtimeOS": "HarmonyOS",
+      "buildOption": {
+        "strictMode": {
+          "useNormalizedOHMUrl": true
+        }
+      }
+    }
+  }
+}
+```

@@ -25,14 +25,16 @@ The **native_audiostream_base.h** file declares the basic data structure of **OH
 
 ### Types
 
-| Name                                                                                                                                                                      | Description| 
-|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------| -------- |
-| typedef struct OH_AudioStreamBuilderStruct [OH_AudioStreamBuilder](_o_h_audio.md#oh_audiostreambuilder)                                                                  | Defines an audio stream builder. | 
-| typedef struct OH_AudioRendererStruct [OH_AudioRenderer](_o_h_audio.md#oh_audiorenderer)                                                                                 | Defines an audio renderer. | 
-| typedef struct OH_AudioCapturerStruct [OH_AudioCapturer](_o_h_audio.md#oh_audiocapturer)                                                                                 | Defines an audio capturer. | 
+| Name| Description| 
+| -------- | -------- |
+| typedef struct OH_AudioStreamBuilderStruct [OH_AudioStreamBuilder](_o_h_audio.md#oh_audiostreambuilder) | Defines an audio stream builder. | 
+| typedef struct OH_AudioRendererStruct [OH_AudioRenderer](_o_h_audio.md#oh_audiorenderer) | Defines an audio renderer. | 
+| typedef struct OH_AudioCapturerStruct [OH_AudioCapturer](_o_h_audio.md#oh_audiocapturer) | Defines an audio capturer. | 
 | typedef struct [OH_AudioRenderer_Callbacks_Struct](_o_h___audio_renderer___callbacks___struct.md) [OH_AudioRenderer_Callbacks](_o_h_audio.md#oh_audiorenderer_callbacks) | Defines a pointer to the callback functions related to an audio renderer. | 
 | typedef struct [OH_AudioCapturer_Callbacks_Struct](_o_h___audio_capturer___callbacks___struct.md) [OH_AudioCapturer_Callbacks](_o_h_audio.md#oh_audiocapturer_callbacks) | Defines a pointer to the callback functions related to an audio capturer. | 
-| typedef void(\* [OH_AudioRenderer_OutputDeviceChangeCallback](_o_h_audio.md#oh_audiorenderer_outputdevicechangecallback)) ([OH_AudioRenderer](_o_h_audio.md#oh_audiorenderer) \*renderer, void \*userData, [OH_AudioStream_DeviceChangeReason](_o_h_audio.md#oh_audiostream_devicechangereason) reason) | Defines a callback invoked when the audio stream device changes.| 
+| typedef void(\* [OH_AudioRenderer_OutputDeviceChangeCallback](_o_h_audio.md#oh_audiorenderer_outputdevicechangecallback)) ([OH_AudioRenderer](_o_h_audio.md#oh_audiorenderer) \*renderer, void \*userData, [OH_AudioStream_DeviceChangeReason](_o_h_audio.md#oh_audiostream_devicechangereason) reason) | Defines a pointer to the callback invoked when the audio stream device changes. | 
+| typedef void(\* [OH_AudioRenderer_OnMarkReachedCallback](_o_h_audio.md#oh_audiorenderer_onmarkreachedcallback)) ([OH_AudioRenderer](_o_h_audio.md#oh_audiorenderer) \*renderer, uint32_t samplePos, void \*userData) | Defines a pointer to the callback invoked when the mark position is reached. | 
+| typedef int32_t(\* [OH_AudioRenderer_WriteDataWithMetadataCallback](_o_h_audio.md#oh_audiorenderer_writedatawithmetadatacallback)) ([OH_AudioRenderer](_o_h_audio.md#oh_audiorenderer) \*renderer, void \*userData, void \*audioData, int32_t audioDataSize, void \*metadata, int32_t metadataSize) | Defines a function pointer to the callback function used to write audio data and metadata. | 
 
 
 ### Enum
@@ -50,4 +52,7 @@ The **native_audiostream_base.h** file declares the basic data structure of **OH
 | [OH_AudioStream_Event](_o_h_audio.md#oh_audiostream_event) {<br>AUDIOSTREAM_EVENT_ROUTING_CHANGED = 0<br>} | Enumerates the audio stream events.| 
 | [OH_AudioInterrupt_ForceType](_o_h_audio.md#oh_audiointerrupt_forcetype) {<br>AUDIOSTREAM_INTERRUPT_FORCE = 0,<br>AUDIOSTREAM_INTERRUPT_SHARE = 1<br>} | Enumerates the types of force that causes audio interruption.| 
 | [OH_AudioInterrupt_Hint](_o_h_audio.md#oh_audiointerrupt_hint) {<br>AUDIOSTREAM_INTERRUPT_HINT_NONE = 0,<br>AUDIOSTREAM_INTERRUPT_HINT_RESUME = 1,<br>AUDIOSTREAM_INTERRUPT_HINT_PAUSE = 2,<br>AUDIOSTREAM_INTERRUPT_HINT_STOP = 3,<br>AUDIOSTREAM_INTERRUPT_HINT_DUCK = 4,<br>AUDIOSTREAM_INTERRUPT_HINT_UNDUCK = 5<br>} | Enumerates the hints provided along with audio interruption.| 
+| [OH_AudioInterrupt_Mode](_o_h_audio.md#oh_audiointerrupt_mode) {<br> AUDIOSTREAM_INTERRUPT_MODE_SHARE = 0, <br> AUDIOSTREAM_INTERRUPT_MODE_INDEPENDENT = 1 <br>} | Enumerates the audio interrupt modes. | 
+| [OH_AudioStream_AudioEffectMode](_o_h_audio.md#oh_audiostream_audioeffectmode) {<br>  EFFECT_NONE = 0, <br> EFFECT_DEFAULT = 1 <br> } | Enumerates the audio effect modes. | 
 | [OH_AudioStream_DeviceChangeReason](_o_h_audio.md#oh_audiostream_devicechangereason) {<br>REASON_UNKNOWN = 0,<br>REASON_NEW_DEVICE_AVAILABLE = 1,<br>REASON_OLD_DEVICE_UNAVAILABLE = 2,<br>REASON_OVERRODE = 3<br>} | Enumerates the reasons for audio stream device changes.| 
+| [OH_AudioStream_PrivacyType](_o_h_audio.md#oh_audiostream_privacytype) { [AUDIO_STREAM_PRIVACY_TYPE_PUBLIC](_o_h_audio.md) = 0, [AUDIO_STREAM_PRIVACY_TYPE_PRIVATE](_o_h_audio.md) = 1 } | Enumerates the privacy types of an audio stream. The privacy type specifies whether the audio stream can be recorded by other applications. | 

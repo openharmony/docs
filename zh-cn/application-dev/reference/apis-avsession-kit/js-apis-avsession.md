@@ -26,11 +26,13 @@ createAVSession(context: Context, tag: string, type: AVSessionType): Promise\<AV
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名 | 类型                            | 必填 | 说明                           |
 | ------ | ------------------------------- | ---- | ------------------------------ |
-| context| [Context](../apis-ability-kit/js-apis-inner-app-context.md) | 是| 应用上下文，提供获取应用程序环境信息的能力。 |
+| context| [Context](../apis-ability-kit/js-apis-inner-app-context.md) | 是| 需要使用UIAbilityContext，用于系统获取应用组件的相关信息。 |
 | tag    | string                          | 是   | 会话的自定义名称。             |
 | type   | [AVSessionType](#avsessiontype10) | 是   | 会话类型。 |
 
@@ -46,6 +48,7 @@ createAVSession(context: Context, tag: string, type: AVSessionType): Promise\<AV
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 
 **示例：**
@@ -79,7 +82,7 @@ createAVSession(context: Context, tag: string, type: AVSessionType, callback: As
 
 | 参数名   | 类型                                    | 必填 | 说明                                                         |
 | -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
-| context| [Context](../apis-ability-kit/js-apis-inner-app-context.md) | 是| 应用上下文，提供获取应用程序环境信息的能力。     |
+| context| [Context](../apis-ability-kit/js-apis-inner-app-context.md) | 是| 需要使用UIAbilityContext，用于系统获取应用组件的相关信息。     |
 | tag      | string                                  | 是   | 会话的自定义名称。                                           |
 | type     | [AVSessionType](#avsessiontype10)         | 是   | 会话类型。                               |
 | callback | AsyncCallback<[AVSession](#avsession10)\> | 是   | 回调函数。回调返回会话实例对象，可用于获取会话ID，以及设置元数据、播放状态，发送按键事件等操作。 |
@@ -90,6 +93,7 @@ createAVSession(context: Context, tag: string, type: AVSessionType, callback: As
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 
 **示例：**
@@ -115,14 +119,15 @@ avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSe
 
 ## ProtocolType<sup>10+</sup>
 
-远端设备支持的协议类型。
+远端设备支持的协议类型的枚举。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
 | 名称                        | 值   | 说明         |
 | --------------------------- | ---- | ----------- |
-| TYPE_LOCAL<sup>11+</sup>      | 0    | 本地设备，包括设备本身的内置扬声器或音频插孔、A2DP 设备。 |
+| TYPE_LOCAL<sup>11+</sup>      | 0    | 本地设备，包括设备本身的内置扬声器或音频插孔、A2DP 设备。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
 | TYPE_CAST_PLUS_STREAM<sup>11+</sup>      | 2    | Cast+的Stream模式。表示媒体正在其他设备上展示。 |
+| TYPE_DLNA<sup>12+</sup>      | 4    | DLNA协议。表示媒体正在其他设备上展示。 |
 
 ## AVSessionType<sup>10+<sup>
 
@@ -130,11 +135,14 @@ avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSe
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
-| 名称  | 类型   | 说明 |
-| ----- | ------ | ---- |
-| audio | string | 音频 |
-| video | string | 视频 |
-| voice_call<sup>11+<sup> | string | 通话 |
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+| 取值范围  | 说明 |
+| -----  | ---- |
+| audio | 音频 |
+| video | 视频 |
+| voice_call<sup>11+<sup> | 音频通话 |
+| video_call<sup>12+<sup> | 视频通话 |
 
 ## AVSession<sup>10+</sup>
 
@@ -143,6 +151,8 @@ avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSe
 ### 属性
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 | 名称      | 类型   | 可读 | 可写 | 说明                          |
 | :-------- | :----- | :--- | :--- | :---------------------------- |
@@ -164,6 +174,8 @@ setAVMetadata(data: AVMetadata): Promise\<void>
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名 | 类型                      | 必填 | 说明         |
@@ -182,6 +194,7 @@ setAVMetadata(data: AVMetadata): Promise\<void>
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -234,6 +247,7 @@ setAVMetadata(data: AVMetadata, callback: AsyncCallback\<void>): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -293,6 +307,7 @@ setCallMetadata(data: CallMetadata): Promise\<void>
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -334,6 +349,7 @@ setCallMetadata(data: CallMetadata, callback: AsyncCallback\<void>): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -389,6 +405,7 @@ setAVCallState(state: AVCallState): Promise\<void>
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -429,6 +446,7 @@ setAVCallState(state: AVCallState, callback: AsyncCallback\<void>): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -458,6 +476,8 @@ setAVPlaybackState(state: AVPlaybackState): Promise\<void>
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名 | 类型                                | 必填 | 说明                                           |
@@ -476,6 +496,7 @@ setAVPlaybackState(state: AVPlaybackState): Promise\<void>
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -520,6 +541,7 @@ setAVPlaybackState(state: AVPlaybackState, callback: AsyncCallback\<void>): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -571,6 +593,7 @@ setLaunchAbility(ability: WantAgent): Promise\<void>
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -638,6 +661,7 @@ setLaunchAbility(ability: WantAgent, callback: AsyncCallback\<void>): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -716,6 +740,7 @@ dispatchSessionEvent(event: string, args: {[key: string]: Object}): Promise\<voi
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -771,6 +796,7 @@ dispatchSessionEvent(event: string, args: {[key: string]: Object}, callback: Asy
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -826,6 +852,7 @@ setAVQueueItems(items: Array\<AVQueueItem>): Promise\<void>
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -894,6 +921,7 @@ setAVQueueItems(items: Array\<AVQueueItem>, callback: AsyncCallback\<void>): voi
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -969,6 +997,7 @@ setAVQueueTitle(title: string): Promise\<void>
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -1006,6 +1035,7 @@ setAVQueueTitle(title: string, callback: AsyncCallback\<void>): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -1054,6 +1084,7 @@ setExtras(extras: {[key: string]: Object}): Promise\<void>
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -1107,6 +1138,7 @@ setExtras(extras: {[key: string]: Object}, callback: AsyncCallback\<void>): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -1256,6 +1288,8 @@ getAVCastController(): Promise\<AVCastController>
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **返回值：**
 
 | 类型                                                        | 说明                                                         |
@@ -1294,6 +1328,8 @@ getOutputDevice(): Promise\<OutputDeviceInfo>
 通过会话获取播放设备信息。结果通过Promise异步回调方式返回。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **返回值：**
 
@@ -1367,6 +1403,8 @@ activate(): Promise\<void>
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **返回值：**
 
 | 类型           | 说明                          |
@@ -1438,6 +1476,8 @@ deactivate(): Promise\<void>
 禁用当前会话的功能，可通过[activate](#activate10)恢复。结果通过Promise异步回调方式返回。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **返回值：**
 
@@ -1512,6 +1552,8 @@ destroy(): Promise\<void>
 销毁当前会话，使当前会话完全失效。结果通过Promise异步回调方式返回。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **返回值：**
 
@@ -1600,6 +1642,7 @@ on(type: 'play', callback: () => void): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -1634,6 +1677,7 @@ on(type: 'pause', callback: () => void): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -1668,6 +1712,7 @@ on(type:'stop', callback: () => void): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -1702,6 +1747,7 @@ on(type:'playNext', callback: () => void): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -1736,6 +1782,7 @@ on(type:'playPrevious', callback: () => void): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -1770,6 +1817,7 @@ on(type: 'fastForward', callback: (time?: number) => void): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -1802,6 +1850,7 @@ on(type:'rewind', callback: (time?: number) => void): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -1834,6 +1883,7 @@ on(type:'playFromAssetId', callback: (assetId: number) => void): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -1866,6 +1916,7 @@ off(type: 'playFromAssetId', callback?: (assetId: number) => void): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -1896,6 +1947,7 @@ on(type: 'seek', callback: (time: number) => void): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -1928,6 +1980,7 @@ on(type: 'setSpeed', callback: (speed: number) => void): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -1960,6 +2013,7 @@ on(type: 'setLoopMode', callback: (mode: LoopMode) => void): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -1992,6 +2046,7 @@ on(type: 'toggleFavorite', callback: (assetId: string) => void): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -2024,6 +2079,7 @@ on(type: 'skipToQueueItem', callback: (itemId: number) => void): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -2056,6 +2112,7 @@ on(type: 'handleKeyEvent', callback: (event: KeyEvent) => void): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -2078,6 +2135,8 @@ on(type: 'outputDeviceChange', callback: (state: ConnectionState, device: Output
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名   | 类型                                                    | 必填 | 说明                                                         |
@@ -2091,6 +2150,7 @@ on(type: 'outputDeviceChange', callback: (state: ConnectionState, device: Output
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -2123,6 +2183,7 @@ on(type: 'commonCommand', callback: (command: string, args: {[key: string]: Obje
 
 | 错误码ID | 错误信息 |
 | -------- | ------------------------------ |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -2172,6 +2233,7 @@ off(type: 'play', callback?: () => void): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -2204,6 +2266,7 @@ off(type: 'pause', callback?: () => void): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -2236,6 +2299,7 @@ off(type: 'stop', callback?: () => void): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -2268,6 +2332,7 @@ off(type: 'playNext', callback?: () => void): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -2300,6 +2365,7 @@ off(type: 'playPrevious', callback?: () => void): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -2332,6 +2398,7 @@ off(type: 'fastForward', callback?: () => void): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -2362,6 +2429,7 @@ off(type: 'rewind', callback?: () => void): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -2392,6 +2460,7 @@ off(type: 'seek', callback?: (time: number) => void): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -2422,6 +2491,7 @@ off(type: 'setSpeed', callback?: (speed: number) => void): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -2452,6 +2522,7 @@ off(type: 'setLoopMode', callback?: (mode: LoopMode) => void): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -2482,6 +2553,7 @@ off(type: 'toggleFavorite', callback?: (assetId: string) => void): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -2512,6 +2584,7 @@ off(type: 'skipToQueueItem', callback?: (itemId: number) => void): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -2542,6 +2615,7 @@ off(type: 'handleKeyEvent', callback?: (event: KeyEvent) => void): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -2559,6 +2633,8 @@ off(type: 'outputDeviceChange', callback?: (state: ConnectionState, device: Outp
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名   | 类型                                                    | 必填 | 说明                                                      |
@@ -2572,6 +2648,7 @@ off(type: 'outputDeviceChange', callback?: (state: ConnectionState, device: Outp
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -2603,6 +2680,7 @@ off(type: 'commonCommand', callback?: (command: string, args: {[key:string]: Obj
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -2633,6 +2711,7 @@ on(type: 'answer', callback: Callback\<void>): void;
 
 | 错误码ID | 错误信息 |
 | -------- | ------------------------------ |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -2665,6 +2744,7 @@ off(type: 'answer', callback?: Callback\<void>): void;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -2695,6 +2775,7 @@ on(type: 'hangUp', callback: Callback\<void>): void;
 
 | 错误码ID | 错误信息 |
 | -------- | ------------------------------ |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -2727,6 +2808,7 @@ off(type: 'hangUp', callback?: Callback\<void>): void;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -2757,6 +2839,7 @@ on(type: 'toggleCallMute', callback: Callback\<void>): void;
 
 | 错误码ID | 错误信息 |
 | -------- | ------------------------------ |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -2789,6 +2872,7 @@ off(type: 'toggleCallMute', callback?: Callback\<void>): void;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -2819,6 +2903,7 @@ on(type: 'castDisplayChange', callback: Callback\<CastDisplayInfo>): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -2856,6 +2941,7 @@ currentAVSession.on('castDisplayChange', (display: avSession.CastDisplayInfo) =>
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -2908,6 +2994,8 @@ stopCasting(): Promise\<void>
 结束投播。结果通过Promise异步回调方式返回。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **返回值：**
 
@@ -2982,7 +3070,7 @@ getAllCastDisplays(): Promise<Array\<CastDisplayInfo>>
 
 | 类型                                            | 说明                              |
 | ----------------------------------------------- | --------------------------------- |
-| Promise<Array<[CastDisplayInfo](#castdisplayinfo12)>>| 当前支持扩展屏投播的显示设备属性。 |
+| Promise<Array<[CastDisplayInfo](#castdisplayinfo12)>>| Promise对象，返回当前系统中所有支持扩展屏投播的显示设备。 |
 
 **错误码：**
 
@@ -3007,7 +3095,7 @@ currentAVSession.getAllCastDisplays()
        console.info('There is not a cast display');
      }
    })
-   .catch((error: BusinessError) => {
+   .catch((err: BusinessError) => {
      console.info(`getAllCastDisplays BusinessError: code: ${err.code}, message: ${err.message}`);
    });
 ```
@@ -3017,6 +3105,8 @@ currentAVSession.getAllCastDisplays()
 投播控制器可传递的命令。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 | 名称           | 类型   | 说明         |
 | -------------- | ------ | ------------ |
@@ -3038,6 +3128,8 @@ currentAVSession.getAllCastDisplays()
 投播控制器接受的命令的对象描述。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 | 名称      | 类型                                              | 必填 | 说明           |
 | --------- | ------------------------------------------------- | ---- | -------------- |
@@ -3092,6 +3184,8 @@ getAVPlaybackState(): Promise\<AVPlaybackState>
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **返回值：**
 
 | 类型                                                        | 说明                                                         |
@@ -3127,6 +3221,8 @@ sendControlCommand(command: AVCastControlCommand): Promise\<void>
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名    | 类型                                  | 必填 | 说明                           |
@@ -3145,6 +3241,7 @@ sendControlCommand(command: AVCastControlCommand): Promise\<void>
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600105  | Invalid session command. |
 | 6600109  | The remote connection is not established. |
@@ -3184,6 +3281,7 @@ sendControlCommand(command: AVCastControlCommand, callback: AsyncCallback\<void>
 
 | 错误码ID | 错误信息 |
 | -------- | ------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600105  | Invalid session command. |
 | 6600109  | The remote connection is not established. |
@@ -3224,6 +3322,7 @@ prepare(item: AVQueueItem, callback: AsyncCallback\<void>): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600109  | The remote connection is not established. |
 
@@ -3269,6 +3368,8 @@ prepare(item: AVQueueItem): Promise\<void>
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名    | 类型                                  | 必填 | 说明                           |
@@ -3287,6 +3388,7 @@ prepare(item: AVQueueItem): Promise\<void>
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600109  | The remote connection is not established. |
 
@@ -3342,6 +3444,7 @@ start(item: AVQueueItem, callback: AsyncCallback\<void>): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600109  | The remote connection is not established. |
 
@@ -3387,6 +3490,8 @@ start(item: AVQueueItem): Promise\<void>
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名    | 类型                                  | 必填 | 说明                           |
@@ -3405,6 +3510,7 @@ start(item: AVQueueItem): Promise\<void>
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600109  | The remote connection is not established. |
 
@@ -3483,6 +3589,8 @@ getCurrentItem(): Promise\<AVQueueItem>
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **返回值：**
 
 | 类型           | 说明                          |
@@ -3507,6 +3615,80 @@ aVCastController.getCurrentItem().then((value: avSession.AVQueueItem) => {
 }).catch((err: BusinessError) => {
   console.error(`getCurrentItem BusinessError: code: ${err.code}, message: ${err.message}`);
 });
+
+```
+
+### processMediaKeyResponse<sup>12+</sup>
+
+processMediaKeyResponse(assetId: string, response: Uint8Array): Promise\<void>
+
+在线DRM资源投播时，处理许可证响应。结果通过Promise异步回调方式返回。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+**参数：**
+
+| 参数名   | 类型                                  | 必填 | 说明                                  |
+| -------- | ------------------------------------- | ---- | ------------------------------------- |
+| assetId | string                  | 是   | 媒体ID。 |
+| response | Uint8Array             | 是   | 许可证响应。 |
+
+**返回值：**
+
+| 类型           | 说明                          |
+| -------------- | ----------------------------- |
+| Promise\<void> | Promise对象，当处理许可证响应成功，无返回结果，否则返回错误对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体会话管理错误码](errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
+| 6600101  | Session service exception. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+import http from '@ohos.net.http'
+
+private keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string, requestData: Uint8Array) => {
+   let licenseRequestStr: string = TypeConversion.byteToString(requestData);
+   //get media key from DRM server
+   let licenseResponseStr: string = 'defaultStr';
+   let httpRequest = http.createHttp();
+   let drmUrl = 'http://license.xxx.xxx.com:8080/drmproxy/getLicense';
+   try {
+     let response: http.HttpResponse = await httpRequest.request(drmUrl, {
+        method: http.RequestMethod.POST,
+        header: {
+           'Content-Type': 'application/json',
+           'Accept-Encoding': 'gzip, deflate',
+        },
+        extraData: licenseRequestStr,
+        expectDataType: http.HttpDataType.STRING,
+      });
+      if (response?.responseCode == http.ResponseCode.OK) {
+        if (typeof response.result == 'string') {
+          licenseResponseStr = response.result;
+        }
+      }
+      httpRequest.destroy();
+   } catch (e) {
+     console.error(`HttpRequest error, error message: [` + JSON.stringify(e) + ']');
+     return;
+   }
+
+   let licenseResponseData: Uint8Array = TypeConversion.stringToByte(licenseResponseStr);
+   try {
+    await this.aVCastController?.processMediaKeyResponse(assetId, licenseResponseData);
+   } catch (err) {
+    let error = err as BusinessError;
+    console.error(`processMediaKeyResponse error, error code: ${error.code}, error message: ${error.message}`);
+   }
+}
 
 ```
 
@@ -3554,6 +3736,8 @@ release(): Promise\<void>
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **返回值：**
 
 | 类型           | 说明                          |
@@ -3589,6 +3773,8 @@ on(type: 'playbackStateChange', filter: Array\<keyof AVPlaybackState> | 'all', c
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
@@ -3603,6 +3789,7 @@ on(type: 'playbackStateChange', filter: Array\<keyof AVPlaybackState> | 'all', c
 
 | 错误码ID | 错误信息 |
 | -------- | ------------------------------ |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 
 **示例：**
@@ -3626,6 +3813,8 @@ off(type: 'playbackStateChange', callback?: (state: AVPlaybackState) => void): v
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                     |
@@ -3639,6 +3828,7 @@ off(type: 'playbackStateChange', callback?: (state: AVPlaybackState) => void): v
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 
 **示例：**
@@ -3655,6 +3845,8 @@ on(type: 'mediaItemChange', callback: Callback\<AVQueueItem>): void
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
@@ -3668,6 +3860,7 @@ on(type: 'mediaItemChange', callback: Callback\<AVQueueItem>): void
 
 | 错误码ID | 错误信息 |
 | -------- | ------------------------------ |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 
 **示例：**
@@ -3686,6 +3879,8 @@ off(type: 'mediaItemChange'): void
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                     |
@@ -3698,6 +3893,7 @@ off(type: 'mediaItemChange'): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 
 **示例：**
@@ -3714,6 +3910,8 @@ on(type: 'playNext', callback: Callback\<void>): void
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
@@ -3727,6 +3925,7 @@ on(type: 'playNext', callback: Callback\<void>): void
 
 | 错误码ID | 错误信息 |
 | -------- | ------------------------------ |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 
 **示例：**
@@ -3745,6 +3944,8 @@ off(type: 'playNext'): void
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                     |
@@ -3757,6 +3958,7 @@ off(type: 'playNext'): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 
 **示例：**
@@ -3773,6 +3975,8 @@ on(type: 'playPrevious', callback: Callback\<void>): void
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
@@ -3786,6 +3990,7 @@ on(type: 'playPrevious', callback: Callback\<void>): void
 
 | 错误码ID | 错误信息 |
 | -------- | ------------------------------ |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 
 **示例：**
@@ -3804,6 +4009,8 @@ off(type: 'playPrevious'): void
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                     |
@@ -3816,6 +4023,7 @@ off(type: 'playPrevious'): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 
 **示例：**
@@ -3845,6 +4053,7 @@ on(type: 'requestPlay', callback: Callback\<AVQueueItem>): void
 
 | 错误码ID | 错误信息 |
 | -------- | ------------------------------ |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 
 **示例：**
@@ -3876,6 +4085,7 @@ off(type: 'requestPlay', callback?: Callback\<AVQueueItem>): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 
 **示例：**
@@ -3905,6 +4115,7 @@ on(type: 'endOfStream', callback: Callback\<void>): void
 
 | 错误码ID | 错误信息 |
 | -------- | ------------------------------ |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 
 **示例：**
@@ -3936,6 +4147,7 @@ off(type: 'endOfStream', callback?: Callback\<void>): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 
 **示例：**
@@ -3952,6 +4164,8 @@ on(type: 'seekDone', callback: Callback\<number>): void
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
@@ -3965,6 +4179,7 @@ on(type: 'seekDone', callback: Callback\<number>): void
 
 | 错误码ID | 错误信息 |
 | -------- | ------------------------------ |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 
 **示例：**
@@ -3983,6 +4198,8 @@ off(type: 'seekDone'): void
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                     |
@@ -3995,6 +4212,7 @@ off(type: 'seekDone'): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 
 **示例：**
@@ -4024,6 +4242,7 @@ on(type: 'validCommandChange', callback: Callback\<Array\<AVCastControlCommandTy
 
 | 错误码ID | 错误信息 |
 | -------- | ------------------------------ |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
@@ -4057,6 +4276,7 @@ off(type: 'validCommandChange', callback?: Callback\<Array\<AVCastControlCommand
 
 | 错误码ID | 错误信息           |
 | -------- | ---------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
@@ -4074,6 +4294,8 @@ on(type: 'error', callback: ErrorCallback): void
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名   | 类型     | 必填 | 说明                                                         |
@@ -4087,6 +4309,7 @@ on(type: 'error', callback: ErrorCallback): void
 
 | 错误码ID | 错误信息              |
 | -------- | --------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 5400101  | No memory.            |
 | 5400102  | Operation not allowed.   |
 | 5400103  | I/O error.             |
@@ -4114,6 +4337,8 @@ off(type: 'error'): void
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名 | 类型   | 必填 | 说明                                      |
@@ -4126,6 +4351,7 @@ off(type: 'error'): void
 
 | 错误码ID | 错误信息              |
 | -------- | --------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 5400101  | No memory.            |
 | 5400102  | Operation not allowed.   |
 | 5400103  | I/O error.             |
@@ -4140,9 +4366,101 @@ off(type: 'error'): void
 aVCastController.off('error')
 ```
 
+### on('keyRequest')<sup>12+</sup>
+
+on(type: 'keyRequest', callback: KeyRequestCallback): void
+
+在线DRM资源投播时，设置许可证请求的事件监听。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                      |
+| ------ | ------ | ---- | ----------------------------------------- |
+| type     | string  | 是   | 事件回调类型，支持事件`'keyRequest'`：当DRM资源播放需要许可证时，触发该事件。 |
+| callback | [KeyRequestCallback](#keyrequestcallback12)  | 是   | 回调函数，媒体资源及许可证请求数据。|
+
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体会话管理错误码](errorcode-avsession.md)。
+
+| 错误码ID | 错误信息           |
+| -------- | ---------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 6600101  | Session service exception. |
+
+**示例：**
+
+```ts
+private keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string, requestData: Uint8Array) => {
+  console.info(`keyRequestCallback : assetId : ${assetId}`);
+  console.info(`keyRequestCallback : requestData : ${requestData}`);
+}
+aVCastController.on('keyRequest', keyRequestCallback);
+```
+### off('keyRequest')<sup>12+</sup>
+
+off(type: 'keyRequest', callback?: KeyRequestCallback): void
+
+取消监听许可证请求的事件。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                      |
+| ------ | ------ | ---- | ----------------------------------------- |
+| type     | string                                                       | 是   | 取消对应的监听事件，支持的事件是`'keyRequest'`。 |
+| callback |  [KeyRequestCallback](#keyrequestcallback12)  | 否   | 回调函数。当监听事件取消成功，err为undefined，否则返回错误对象。该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。                            |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体会话管理错误码](errorcode-avsession.md)。
+
+| 错误码ID | 错误信息           |
+| -------- | ---------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 6600101  | Session service exception. |
+
+**示例：**
+
+```ts
+aVCastController.off('keyRequest');
+```
+## KeyRequestCallback<sup>12+</sup>
+type KeyRequestCallback = (assetId: string, requestData: Uint8Array) => void
+
+许可证请求事件的回调函数。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                      |
+| ------ | ------ | ---- | ----------------------------------------- |
+| assetId     | string  | 是   | 媒体ID。 |
+| requestData |  Uint8Array  | 是   | 媒体许可证请求数据。                            |
+
+**示例：**
+
+```ts
+private keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string, requestData: Uint8Array) => {
+  console.info(`keyRequestCallback : assetId : ${assetId}`);
+  console.info(`keyRequestCallback : requestData : ${requestData}`);
+}
+```
+
 ## CastDisplayState<sup>12+</sup>
 
-投播显示设备状态。
+投播显示设备状态的枚举。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.ExtendedDisplayCast
 
@@ -4158,19 +4476,21 @@ aVCastController.off('error')
 
 **系统能力：** SystemCapability.Multimedia.AVSession.ExtendedDisplayCast
 
-| 名称            | 类型                      | 可读 | 可写 | 说明                                                                  |
+| 名称            | 类型                      | 只读 | 可选 | 说明                                                                  |
 | --------------- |-------------------------| ---- | ---- |---------------------------------------------------------------------|
-| id            | number                  | 是    | 否    | 投播显示设备的ID，该参数应为整数。  |
-| name     | string                  | 是    | 否    | 投播显示设备的名称。           |
-| state          | [CastDisplayState](#castdisplaystate12)          | 是    | 否    |投播显示设备状态。            |
-| width          | number          | 是    | 否    | 投播显示设备的屏幕宽度，单位为px，该参数应为整数。          |  
-| height          | number          | 是    | 否    | 投播显示设备的屏幕高度，单位为px，该参数应为整数。            |  
+| id            | number                  | 否    | 否    | 投播显示设备的ID，该参数应为整数。  |
+| name     | string                  | 否    | 否    | 投播显示设备的名称。           |
+| state          | [CastDisplayState](#castdisplaystate12)          | 否    | 否    |投播显示设备状态。            |
+| width          | number          | 否    | 否    | 投播显示设备的屏幕宽度，单位为px，该参数应为整数。          |  
+| height          | number          | 否    | 否    | 投播显示设备的屏幕高度，单位为px，该参数应为整数。            |  
 
 ## ConnectionState<sup>10+</sup>
 
 连接状态枚举。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 | 名称                        | 值   | 说明         |
 | --------------------------- | ---- | ----------- |
@@ -4184,26 +4504,30 @@ aVCastController.off('error')
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 | 名称            | 类型                      | 必填 | 说明                                                                  |
 | --------------- |-------------------------| ---- |---------------------------------------------------------------------|
-| assetId         | string                  | 是   | 媒体ID。歌曲的唯一标识，由应用自定义。                                     |
-| title           | string                  | 否   | 标题。                                                                 |
-| artist          | string                  | 否   | 艺术家。                                                                |
-| author          | string                  | 否   | 专辑作者。                                                               |
+| assetId         | string                  | 是   | 媒体ID。歌曲的唯一标识，由应用自定义。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。                                     |
+| title           | string                  | 否   | 标题。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。                                                                 |
+| artist          | string                  | 否   | 艺术家。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。                                                                |
+| author          | string                  | 否   | 专辑作者。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。                                                               |
+| avQueueName<sup>12+</sup>       | string                  | 否   | 歌单（歌曲列表）名称。                                                               |
 | avQueueId<sup>11+</sup>       | string                  | 否   | 歌单（歌曲列表）唯一标识Id。                                                               |
-| avQueueImage<sup>11+</sup>    | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) &#124; string | 否   | 歌单（歌曲列表）封面图，图片的像素数据或者图片路径地址(本地路径或网络路径)。  |                       
-| album           | string                  | 否   | 专辑名称。                                                               |
-| writer          | string                  | 否   | 词作者。                                                                |
+| avQueueImage<sup>11+</sup>    | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) &#124; string | 否   | 歌单（歌曲列表）封面图，图片的像素数据或者图片路径地址(本地路径或网络路径)。<br>应用通过setAVMetadata设置图片数据，当设置的数据类型为PixelMap时，通过getAVMetadata获取的将为PixelMap。设置为url图片路径，获取的亦为url图片路径  |                       
+| album           | string                  | 否   | 专辑名称。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。                                                               |
+| writer          | string                  | 否   | 词作者。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。                                                                |
 | composer        | string                  | 否   | 作曲者。                                                                |
-| duration        | number                  | 否   | 媒体时长，单位毫秒（ms）。                                                  |
-| mediaImage      | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) &#124; string | 否   | 图片的像素数据或者图片路径地址(本地路径或网络路径)。                             |
-| publishDate     | Date                    | 否   | 发行日期。                                                               |
-| subtitle        | string                  | 否   | 子标题。                                                                |
-| description     | string                  | 否   | 媒体描述。                                                               |
+| duration        | number                  | 否   | 媒体时长，单位毫秒（ms）。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。                                                  |
+| mediaImage      | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) &#124; string | 否   | 图片的像素数据或者图片路径地址(本地路径或网络路径)。<br>应用通过setAVMetadata设置图片数据，当设置的数据类型为PixelMap时，通过getAVMetadata获取的将为PixelMap。设置为url图片路径，获取的亦为url图片路径  <br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。                             |
+| publishDate     | Date                    | 否   | 发行日期。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。                                                               |
+| subtitle        | string                  | 否   | 子标题。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。                                                                |
+| description     | string                  | 否   | 媒体描述。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。                                                               |
 | lyric           | string                  | 否   | 歌词文件路径地址(本地路径或网络路径) |
-| previousAssetId | string                  | 否   | 上一首媒体ID。                                                            |
-| nextAssetId     | string                  | 否   | 下一首媒体ID。                                                            |
-| filter<sup>11+</sup>        | number         | 否   | 当前session支持的协议，默认为TYPE_CAST_PLUS_STREAM。具体取值参考[ProtocolType](#protocoltype10)。                   |
+| previousAssetId | string                  | 否   | 上一首媒体ID。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。                                                            |
+| nextAssetId     | string                  | 否   | 下一首媒体ID。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。                                                            |
+| filter<sup>11+</sup>        | number         | 否   | 当前session支持的协议，默认为TYPE_CAST_PLUS_STREAM。具体取值参考[ProtocolType](#protocoltype10)。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。                   |
+| drmSchemes<sup>12+</sup>        | Array\<string>         | 否   | 当前session支持的DRM方案，取值为DRM方案uuid。 <br> **系统能力：** SystemCapability.Multimedia.AVSession.Core|
 | skipIntervals<sup>11+</sup>  | [SkipIntervals](#skipintervals11)        | 否   | 快进快退支持的时间间隔，默认为SECONDS_15，即15秒。                            |
 |displayTags<sup>11+</sup>     | [DisplayTag](#displaytag11)                           | 否   | 媒体资源的金标类型。                                                          |
 
@@ -4213,33 +4537,39 @@ aVCastController.off('error')
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 | 名称         | 类型                    | 必填  | 说明                     |
 | ------------ | ----------------------- | ---- | ----------------------- |
-| assetId      | string                  | 是   | 播放列表媒体ID。          |
-| title        | string                  | 否   | 播放列表媒体标题。        |
-| subtitle     | string                  | 否   | 播放列表媒体子标题。      |
-| description  | string                  | 否   | 播放列表媒体描述的文本。   |
-| mediaImage | image.PixelMap          | 否   | 播放列表媒体图片像素数据。 |
+| assetId      | string                  | 是   | 播放列表媒体ID。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。          |
+| title        | string                  | 否   | 播放列表媒体标题。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。        |
+| subtitle     | string                  | 否   | 播放列表媒体子标题。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。      |
+| description  | string                  | 否   | 播放列表媒体描述的文本。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。   |
+| mediaImage | image.PixelMap          | 否   | 播放列表媒体图片像素数据。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
 | extras       | {[key: string]: any}    | 否   | 播放列表媒体额外字段。     |
-| mediaUri     | string                  | 否   | 播放列表媒体URI。         |
-| mediaType     | string                  | 否   | 播放列表媒体类型。         |
-| mediaSize     | number                  | 否   | 播放列表媒体的大小。         |
-| albumTitle     | string                  | 否   | 播放列表媒体专辑标题。         |
-| albumCoverUri     | string                  | 否   | 播放列表媒体专辑标题URI。    |
-| lyricContent     | string                  | 否   | 播放列表媒体歌词内容。         |
-| lyricUri     | string                  | 否   | 播放列表媒体歌词URI。         |
-| artist     | string                  | 否   | 播放列表媒体专辑作者。         |
-| fdSrc     | media.AVFileDescriptor        | 否   | 播放列表媒体本地文件的句柄。         |
-| duration     | number                  | 否   | 播放列表媒体播放时长。         |
-| startPosition     | number                  | 否   | 播放列表媒体起始播放位置。         |
-| creditsPosition     | number                  | 否   | 播放列表媒体的片尾播放位置。         |
-| appName     | string                  | 否   | 播放列表提供的应用的名字。         |
+| mediaUri     | string                  | 否   | 播放列表媒体URI。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。         |
+| mediaType     | string                  | 否   | 播放列表媒体类型。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。         |
+| mediaSize     | number                  | 否   | 播放列表媒体的大小。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。         |
+| albumTitle     | string                  | 否   | 播放列表媒体专辑标题。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。         |
+| albumCoverUri     | string                  | 否   | 播放列表媒体专辑标题URI。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。    |
+| lyricContent     | string                  | 否   | 播放列表媒体歌词内容。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。         |
+| lyricUri     | string                  | 否   | 播放列表媒体歌词URI。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。         |
+| artist     | string                  | 否   | 播放列表媒体专辑作者。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。         |
+| fdSrc     | media.AVFileDescriptor        | 否   | 播放列表媒体本地文件的句柄。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。         |
+| dataSrc<sup>12+</sup>     | media.AVDataSrcDescriptor        | 否   | 播放列表数据源描述。         |
+| drmScheme<sup>12+</sup>     | string        | 否   | 播放列表媒体支持的DRM方案，由uuid表示。 <br> **系统能力：** SystemCapability.Multimedia.AVSession.Core         |
+| duration     | number                  | 否   | 播放列表媒体播放时长。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。         |
+| startPosition     | number                  | 否   | 播放列表媒体起始播放位置。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。         |
+| creditsPosition     | number                  | 否   | 播放列表媒体的片尾播放位置。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。         |
+| appName     | string                  | 否   | 播放列表提供的应用的名字。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。         |
 
 ## AVQueueItem<sup>10+</sup>
 
 播放列表中单项的相关属性。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 | 名称         | 类型                                        | 必填 | 说明                        |
 | ------------ | ------------------------------------------ | ---- | --------------------------- |
@@ -4252,28 +4582,32 @@ aVCastController.off('error')
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 | 名称         | 类型                                  | 必填 | 说明     |
 | ------------ | ------------------------------------- | ---- | ------- |
-| state        | [PlaybackState](#playbackstate10)       | 否   | 播放状态 |
-| speed        | number                                | 否   | 播放倍速 |
-| position     | [PlaybackPosition](#playbackposition10) | 否   | 播放位置 |
-| bufferedTime | number                                | 否   | 缓冲时间 |
-| loopMode     | [LoopMode](#loopmode10)                 | 否   | 循环模式 |
-| isFavorite   | boolean                               | 否   | 是否收藏 |
-| activeItemId<sup>10+</sup> | number                  | 否   | 正在播放的媒体Id |
-| volume<sup>10+</sup> | number                  | 否   | 正在播放的媒体音量 |
-| maxVolume<sup>11+</sup> | number                    | 否   | 最大音量 |
-| muted<sup>11+</sup>     | boolean                   | 否   | 当前静音状态，true表示静音 |
+| state        | [PlaybackState](#playbackstate10)       | 否   | 播放状态<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| speed        | number                                | 否   | 播放倍速<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| position     | [PlaybackPosition](#playbackposition10) | 否   | 播放位置<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| bufferedTime | number                                | 否   | 缓冲时间<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| loopMode     | [LoopMode](#loopmode10)                 | 否   | 循环模式<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| isFavorite   | boolean                               | 否   | 是否收藏<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| activeItemId<sup>10+</sup> | number                  | 否   | 正在播放的媒体Id<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| volume<sup>10+</sup> | number                  | 否   | 正在播放的媒体音量<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| maxVolume<sup>11+</sup> | number                    | 否   | 最大音量<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| muted<sup>11+</sup>     | boolean                   | 否   | 当前静音状态，true表示静音<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
 | duration<sup>11+</sup>     | number                   | 否   | 当前媒体资源的时长 |
-| videoWidth<sup>11+</sup>  | number                  | 否   | 媒体资源的视频宽度，单位为像素（px）。 |
-| videoHeight<sup>11+</sup> |  number                 | 否   | 媒体资源的视频高度，单位为像素（px）。 |
-| extras<sup>10+</sup> | {[key: string]: Object}       | 否   | 自定义媒体数据 |
+| videoWidth<sup>11+</sup>  | number                  | 否   | 媒体资源的视频宽度，单位为像素（px）。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| videoHeight<sup>11+</sup> |  number                 | 否   | 媒体资源的视频高度，单位为像素（px）。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| extras<sup>10+</sup> | {[key: string]: Object}       | 否   | 自定义媒体数据<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
 
 ## PlaybackPosition<sup>10+</sup>
 
 媒体播放位置的相关属性。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 | 名称        | 类型   | 必填 | 说明               |
 | ----------- | ------ | ---- | ------------------ |
@@ -4335,6 +4669,8 @@ aVCastController.off('error')
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 | 名称                        | 值   | 说明         |
 | --------------------------- | ---- | ----------- |
 | CATEGORY_LOCAL      | 0    | 本地播放，默认播放设备，声音从本机或者连接的蓝牙耳机设备出声。     |
@@ -4345,6 +4681,8 @@ aVCastController.off('error')
 播放设备的类型枚举。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 | 名称                        | 值   | 说明         |
 | --------------------------- | ---- | ----------- |
@@ -4359,6 +4697,8 @@ aVCastController.off('error')
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 | 名称       | 类型           | 必填 | 说明                   |
 | ---------- | -------------- | ---- | ---------------------- |
 | castCategory   | AVCastCategory        | 是   | 投播的类别。         |
@@ -4366,12 +4706,15 @@ aVCastController.off('error')
 | deviceName | string | 是   | 播放设备的名称。    |
 | deviceType | DeviceType | 是   | 播放设备的类型。    |
 | supportedProtocols<sup>11+</sup> | number | 否   | 播放设备支持的协议。默认为TYPE_LOCAL。具体取值参考[ProtocolType](#protocoltype10)。 <br> **系统能力：** SystemCapability.Multimedia.AVSession.AVCast    |
+| supportedDrmCapabilities<sup>12+</sup> | Array\<string> | 否   | 播放设备支持的DRM能力。 <br> **系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
 
 ## OutputDeviceInfo<sup>10+</sup>
 
 播放设备的相关信息。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 | 名称       | 类型           | 必填 | 说明                   |
 | ---------- | -------------- | ---- | ---------------------- |
@@ -4382,6 +4725,8 @@ aVCastController.off('error')
 表示媒体播放循环模式的枚举。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 | 名称               | 值   | 说明     |
 | ------------------ | ---- | -------- |
@@ -4396,6 +4741,8 @@ aVCastController.off('error')
 表示媒体播放状态的枚举。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 | 名称                        | 值   | 说明         |
 | --------------------------- | ---- | ----------- |
@@ -4760,6 +5107,7 @@ skipToQueueItem(itemId: number): Promise\<void>
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 | 6600103  | The session controller does not exist. |
@@ -4798,6 +5146,7 @@ skipToQueueItem(itemId: number, callback: AsyncCallback\<void>): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 | 6600103  | The session controller does not exist. |
@@ -4909,6 +5258,7 @@ sendAVKeyEvent(event: KeyEvent): Promise\<void>
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 600101  | Session service exception. |
 | 600102  | The session does not exist. |
 | 600103  | The session controller does not exist. |
@@ -4958,6 +5308,7 @@ sendAVKeyEvent(event: KeyEvent, callback: AsyncCallback\<void>): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 600101  | Session service exception. |
 | 600102  | The session does not exist. |
 | 600103  | The session controller does not exist. |
@@ -5335,6 +5686,7 @@ sendControlCommand(command: AVControlCommand): Promise\<void>
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 | 6600103  | The session controller does not exist. |
@@ -5380,6 +5732,7 @@ sendControlCommand(command: AVControlCommand, callback: AsyncCallback\<void>): v
 
 | 错误码ID | 错误信息 |
 | -------- | ------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception.                |
 | 6600102  | The session does not exist.     |
 | 6600103  | The session controller does not exist.   |
@@ -5432,6 +5785,7 @@ sendCommonCommand(command: string, args: {[key: string]: Object}): Promise\<void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 | 6600103  | The session controller does not exist. |
@@ -5500,6 +5854,7 @@ sendCommonCommand(command: string, args: {[key: string]: Object}, callback: Asyn
 
 | 错误码ID | 错误信息 |
 | -------- | ------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception.                |
 | 6600102  | The session does not exist.     |
 | 6600103  | The session controller does not exist.   |
@@ -5561,6 +5916,7 @@ getExtras(): Promise\<{[key: string]: Object}>
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 | 6600103  | The session controller does not exist. |
@@ -5621,6 +5977,7 @@ getExtras(callback: AsyncCallback\<{[key: string]: Object}>): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 | 6600103  | The session controller does not exist. |
@@ -5685,6 +6042,7 @@ on(type: 'metadataChange', filter: Array\<keyof AVMetadata> | 'all', callback: (
 
 | 错误码ID | 错误信息 |
 | -------- | ------------------------------ |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
@@ -5722,6 +6080,7 @@ off(type: 'metadataChange', callback?: (data: AVMetadata) => void)
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
@@ -5753,6 +6112,7 @@ on(type: 'playbackStateChange', filter: Array\<keyof AVPlaybackState> | 'all', c
 
 | 错误码ID | 错误信息 |
 | -------- | ------------------------------ |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
@@ -5789,6 +6149,7 @@ off(type: 'playbackStateChange', callback?: (state: AVPlaybackState) => void)
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
@@ -5820,6 +6181,7 @@ on(type: 'callMetadataChange', filter: Array\<keyof CallMetadata> | 'all', callb
 
 | 错误码ID | 错误信息 |
 | -------- | ------------------------------ |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
@@ -5831,7 +6193,7 @@ avsessionController.on('callMetadataChange', 'all', (callmetadata: avSession.Cal
 });
 
 avsessionController.on('callMetadataChange', ['name'], (callmetadata: avSession.CallMetadata) => {
-  console.info(`on callMetadataChange state : ${callmetadata.state}`);
+  console.info(`on callMetadataChange state : ${callmetadata.name}`);
 });
 ```
 
@@ -5856,6 +6218,7 @@ off(type: 'callMetadataChange', callback?: Callback\<CallMetadata>): void;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
@@ -5887,6 +6250,7 @@ on(type: 'callStateChange', filter: Array\<keyof AVCallState> | 'all', callback:
 
 | 错误码ID | 错误信息 |
 | -------- | ------------------------------ |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
@@ -5923,6 +6287,7 @@ off(type: 'callStateChange', callback?: Callback\<AVCallState>): void;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
@@ -5953,6 +6318,7 @@ on(type: 'sessionDestroy', callback: () => void)
 
 | 错误码ID | 错误信息 |
 | -------- | ------------------------------ |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
@@ -5985,6 +6351,7 @@ off(type: 'sessionDestroy', callback?: () => void)
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
@@ -6015,6 +6382,7 @@ on(type: 'activeStateChange', callback: (isActive: boolean) => void)
 
 | 错误码ID | 错误信息 |
 | -------- | ----------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600103  |The session controller does not exist. |
 
@@ -6047,6 +6415,7 @@ off(type: 'activeStateChange', callback?: (isActive: boolean) => void)
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
@@ -6077,6 +6446,7 @@ on(type: 'validCommandChange', callback: (commands: Array\<AVControlCommandType>
 
 | 错误码ID | 错误信息 |
 | -------- | ------------------------------ |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
@@ -6110,6 +6480,7 @@ off(type: 'validCommandChange', callback?: (commands: Array\<AVControlCommandTyp
 
 | 错误码ID | 错误信息           |
 | -------- | ---------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
@@ -6140,6 +6511,7 @@ on(type: 'outputDeviceChange', callback: (state: ConnectionState, device: Output
 
 | 错误码ID | 错误信息 |
 | -------- | ----------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
@@ -6172,6 +6544,7 @@ off(type: 'outputDeviceChange', callback?: (state: ConnectionState, device: Outp
 
 | 错误码ID  | 错误信息          |
 | -------- | ---------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
@@ -6202,6 +6575,7 @@ on(type: 'sessionEvent', callback: (sessionEvent: string, args: {[key:string]: O
 
 | 错误码ID | 错误信息 |
 | -------- | ------------------------------ |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
@@ -6258,6 +6632,7 @@ off(type: 'sessionEvent', callback?: (sessionEvent: string, args: {[key:string]:
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
@@ -6288,6 +6663,7 @@ on(type: 'queueItemsChange', callback: (items: Array<[AVQueueItem](#avqueueitem1
 
 | 错误码ID | 错误信息 |
 | -------- | ------------------------------ |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
@@ -6320,6 +6696,7 @@ off(type: 'queueItemsChange', callback?: (items: Array<[AVQueueItem](#avqueueite
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
@@ -6350,6 +6727,7 @@ on(type: 'queueTitleChange', callback: (title: string) => void): void
 
 | 错误码ID | 错误信息 |
 | -------- | ------------------------------ |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
@@ -6382,6 +6760,7 @@ off(type: 'queueTitleChange', callback?: (title: string) => void): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
@@ -6412,6 +6791,7 @@ on(type: 'extrasChange', callback: (extras: {[key:string]: Object}) => void): vo
 
 | 错误码ID | 错误信息 |
 | -------- | ------------------------------ |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
@@ -6468,6 +6848,7 @@ off(type: 'extrasChange', callback?: (extras: {[key:string]: Object}) => void): 
 
 | 错误码ID | 错误信息 |
 | -------- | ----------------                       |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception.             |
 | 6600103  | The session controller does not exist. |
 
@@ -6919,6 +7300,8 @@ try {
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 | 名称                                   | 值      | 说明                             |
 | -------------------------------------- | ------- | ------------------------------- |
 | ERR_CODE_SERVICE_EXCEPTION             | 6600101 | Session service exception.               |
@@ -6928,12 +7311,12 @@ try {
 | ERR_CODE_COMMAND_INVALID               | 6600105 | Invalid session command.           |
 | ERR_CODE_SESSION_INACTIVE              | 6600106 | The session is not activated.                |
 | ERR_CODE_MESSAGE_OVERLOAD              | 6600107 | Too many commands or events.       |
-| ERR_CODE_DEVICE_CONNECTION_FAILED      | 6600108 | Device connecting failed.       |
+| ERR_CODE_DEVICE_CONNECTION_FAILED      | 6600108 | Device connection failed.       |
 | ERR_CODE_REMOTE_CONNECTION_NOT_EXIST   | 6600109 | The remote connection is not established.       |
 
 ## SkipIntervals<sup>11+</sup>
 
-表示session支持的快进快退时间间隔。
+表示session支持的快进快退时间间隔的枚举。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 

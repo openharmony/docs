@@ -8,8 +8,8 @@
 | SlotType             | 取值   | 分类     | 通知中心 | 横幅 | 锁屏 | 铃声/振动 | 状态栏图标 | 自动亮屏 |
 | -------------------- | ------ | --------| ------- |------|------|----------|-----------|---------|
 | SOCIAL_COMMUNICATION | 1      | 社交通信 | Y | Y | Y | Y | Y | Y |
-| SERVICE_INFORMATION  | 2      | 服务提醒 | Y | N | Y | Y | Y | Y |
-| CONTENT_INFORMATION  | 3      | 内容资讯 | Y | N | N | N | Y | N |
+| SERVICE_INFORMATION  | 2      | 服务提醒 | Y | Y | Y | Y | Y | Y |
+| CONTENT_INFORMATION  | 3      | 内容资讯 | Y | N | N | N | N | N |
 | CUSTOMER_SERVICE     | 5      | 客服消息 | Y | N | N | Y | Y | N |
 | OTHER_TYPES          | 0xFFFF | 其他     | Y | N | N | N | N | N |
 
@@ -59,10 +59,12 @@
             console.error(`getSlot failed, code is ${err.code}, message is ${err.message}`);
         } else {
             console.info(`getSlot success. `);
-            console.info(`slot enable status is ${JSON.stringify(data.enabled)}`);
-            console.info(`slot level is ${JSON.stringify(data.level)}`);
-            console.info(`vibrationEnabled status is ${JSON.stringify(data.vibrationEnabled)}`);
-            console.info(`lightEnabled status is ${JSON.stringify(data.lightEnabled)}`);
+            if (data != null) {
+                console.info(`slot enable status is ${JSON.stringify(data.enabled)}`);
+                console.info(`slot level is ${JSON.stringify(data.level)}`);
+                console.info(`vibrationEnabled status is ${JSON.stringify(data.vibrationEnabled)}`);
+                console.info(`lightEnabled status is ${JSON.stringify(data.lightEnabled)}`);
+            }
         }
     }
     let slotType: notificationManager.SlotType = notificationManager.SlotType.SOCIAL_COMMUNICATION;

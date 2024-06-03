@@ -9,7 +9,7 @@ The **socket** module implements data transfer over TCP, UDP, Web, and TLS socke
 ## Modules to Import
 
 ```ts
-import socket from '@ohos.net.socket';
+import { socket } from '@kit.NetworkKit';
 ```
 
 ## socket.constructUDPSocketInstance
@@ -29,7 +29,7 @@ Creates a **UDPSocket** object.
 **Example**
 
 ```ts
-import socket from '@ohos.net.socket';
+import { socket } from '@kit.NetworkKit';
 let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
 ```
 
@@ -64,8 +64,8 @@ Binds the IP address and port number. The port number can be specified or random
 **Example**
 
 ```ts
-import socket from '@ohos.net.socket';
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
 let bindAddr: socket.NetAddress = {
@@ -113,8 +113,8 @@ Binds the IP address and port number. The port number can be specified or random
 **Example**
 
 ```ts
-import socket from '@ohos.net.socket';
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
 let bindAddr: socket.NetAddress = {
@@ -157,8 +157,8 @@ Before sending data, call [UDPSocket.bind()](#bind) to bind the IP address and p
 **Example**
 
 ```ts
-import socket from '@ohos.net.socket';
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
 
@@ -212,8 +212,8 @@ Before sending data, call [UDPSocket.bind()](#bind) to bind the IP address and p
 **Example**
 
 ```ts
-import socket from '@ohos.net.socket';
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
 
@@ -250,8 +250,8 @@ Closes a UDP socket connection. This API uses an asynchronous callback to return
 **Example**
 
 ```ts
-import socket from '@ohos.net.socket';
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
 udp.close((err: BusinessError) => {
@@ -282,8 +282,8 @@ Closes a UDP socket connection. This API uses a promise to return the result.
 **Example**
 
 ```ts
-import socket from '@ohos.net.socket';
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
 udp.close().then(() => {
@@ -321,8 +321,8 @@ Obtains the status of the UDP socket connection. This API uses an asynchronous c
 **Example**
 
 ```ts
-import socket from '@ohos.net.socket';
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
 let bindAddr: socket.NetAddress = {
@@ -367,8 +367,8 @@ Obtains the status of the UDP socket connection. This API uses a promise to retu
 **Example**
 
 ```ts
-import socket from '@ohos.net.socket';
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
 let bindAddr: socket.NetAddress = {
@@ -419,8 +419,8 @@ Sets other properties of the UDP socket connection. This API uses an asynchronou
 **Example**
 
 ```ts
-import socket from '@ohos.net.socket';
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
 
@@ -486,8 +486,8 @@ Sets other properties of the UDP socket connection. This API uses a promise to r
 **Example**
 
 ```ts
-import socket from '@ohos.net.socket';
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
 
@@ -534,8 +534,9 @@ Subscribes to **message** events of the UDP socket connection. This API uses an 
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
 
 let messageView = '';
@@ -572,8 +573,9 @@ Unsubscribes from **message** events of the UDP socket connection. This API uses
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
 let messageView = '';
 let callback = (value: socket.SocketMessageInfo) => {
@@ -610,8 +612,9 @@ Subscribes to **listening** events or **close** events of the UDP socket connect
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
 udp.on('listening', () => {
   console.log("on listening success");
@@ -642,8 +645,9 @@ Unsubscribes from **listening** events or **close** events of the UDP socket con
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
 let callback1 = () => {
   console.log("on listening, success");
@@ -679,8 +683,9 @@ Subscribes to **error** events of the UDP socket connection. This API uses an as
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
 udp.on('error', (err: BusinessError) => {
   console.log("on error, err:" + JSON.stringify(err))
@@ -708,8 +713,9 @@ Unsubscribes from **error** events of the UDP socket connection. This API uses a
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
 let callback = (err: BusinessError) => {
   console.log("on error, err:" + JSON.stringify(err));
@@ -728,10 +734,9 @@ Defines the destination address.
 
 | Name | Type  | Mandatory| Description                                                        |
 | ------- | ------ | ---- | ------------------------------------------------------------ |
-| address | string | Yes  | Bound IP address.                                          |
+| address<sup>11+</sup> | string | Yes  | Bound IP address.                                          |
 | port    | number | No  | Port number. The value ranges from **0** to **65535**. If this parameter is not specified, the system randomly allocates a port.          |
-| family  | number | No  | Network protocol type.<br>- **1**: IPv4<br>- **2**: IPv6<br>The default value is **1**.|
-
+| family  | number | No  | Network protocol type.<br>- **1**: IPv4<br>- **2**: IPv6<br>The default value is **1**. For an IPv6 address, this field must be explicitly set to **2**.|
 ## UDPSendOptions
 
 Defines the parameters for sending data over a UDP socket connection.
@@ -816,7 +821,7 @@ Creates a **MulticastSocket** object.
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
+import { socket } from '@kit.NetworkKit';
 let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
 ```
 ## MulticastSocket<sup>11+</sup>
@@ -857,7 +862,8 @@ Adds a member to a multicast group. This API uses an asynchronous callback to re
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
+import { socket } from '@kit.NetworkKit';
+
 let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
 let addr: socket.NetAddress = {
   address: '239.255.0.1',
@@ -910,7 +916,8 @@ Adds a member to a multicast group. This API uses a promise to return the result
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
+import { socket } from '@kit.NetworkKit';
+
 let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
 let addr: socket.NetAddress = {
   address: '239.255.0.1',
@@ -956,7 +963,8 @@ Drops a member from a multicast group. This API uses an asynchronous callback to
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
+import { socket } from '@kit.NetworkKit';
+
 let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
 let addr: socket.NetAddress = {
   address: '239.255.0.1',
@@ -1009,7 +1017,8 @@ Drops a member from a multicast group. This API uses a promise to return the res
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
+import { socket } from '@kit.NetworkKit';
+
 let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
 let addr: socket.NetAddress = {
   address: '239.255.0.1',
@@ -1054,7 +1063,8 @@ Sets the time to live (TTL) for multicast packets. This API uses an asynchronous
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
+import { socket } from '@kit.NetworkKit';
+
 let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
 let ttl = 8
 multicast.setMulticastTTL(ttl, (err: Object) => {
@@ -1103,7 +1113,8 @@ Sets the TTL for multicast packets. This API uses a promise to return the result
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
+import { socket } from '@kit.NetworkKit';
+
 let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
 multicast.setMulticastTTL(8).then(() => {
   console.log('set ttl success');
@@ -1142,7 +1153,8 @@ Obtains the TTL for multicast packets. This API uses an asynchronous callback to
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
+import { socket } from '@kit.NetworkKit';
+
 let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
 multicast.getMulticastTTL((err: Object, value: Number) => {
   if (err) {
@@ -1183,7 +1195,8 @@ Obtains the TTL for multicast packets. This API uses a promise to return the res
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
+import { socket } from '@kit.NetworkKit';
+
 let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
 multicast.getMulticastTTL().then((value: Number) => {
   console.log('ttl: ', JSON.stringify(value));
@@ -1222,7 +1235,8 @@ Sets the loopback mode flag for multicast communication. This API uses an asynch
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
+import { socket } from '@kit.NetworkKit';
+
 let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
 multicast.setLoopbackMode(false, (err: Object) => {
   if (err) {
@@ -1268,7 +1282,8 @@ Sets the loopback mode flag for multicast communication. This API uses an asynch
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
+import { socket } from '@kit.NetworkKit';
+
 let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
 multicast.setLoopbackMode(false).then(() => {
   console.log('set loopback mode success');
@@ -1306,7 +1321,8 @@ Obtains the loopback mode flag for multicast communication. This API uses a prom
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
+import { socket } from '@kit.NetworkKit';
+
 let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
 multicast.getLoopbackMode((err: Object, value: Boolean) => {
   if (err) {
@@ -1346,7 +1362,8 @@ Obtains the loopback mode flag for multicast communication. This API uses a prom
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
+import { socket } from '@kit.NetworkKit';
+
 let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
 multicast.getLoopbackMode().then((value: Boolean) => {
   console.log('loopback mode: ', JSON.stringify(value));
@@ -1385,7 +1402,8 @@ Before sending data, call [addMembership](#addmembership11) to add a member to t
 **Example**
 
 ```ts
-import socket from '@ohos.net.socket';
+import { socket } from '@kit.NetworkKit';
+
 let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
 let sendOptions: socket.UDPSendOptions = {
   data: 'Hello, server!',
@@ -1437,7 +1455,8 @@ Before sending data, call [addMembership](#addmembership11) to add a member to t
 **Example**
 
 ```ts
-import socket from '@ohos.net.socket';
+import { socket } from '@kit.NetworkKit';
+
 let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
 let sendOptions: socket.UDPSendOptions = {
   data: 'Hello, server!',
@@ -1471,7 +1490,8 @@ Subscribes to **message** events of a **MulticastSocket** object. This API uses 
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket"
+import { socket } from '@kit.NetworkKit';
+
 let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance()
 
 multicast.on('message', (data) => {
@@ -1502,7 +1522,8 @@ Unsubscribes to **message** events of a **MulticastSocket** object. This API use
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket"
+import { socket } from '@kit.NetworkKit';
+
 let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance()
 multicast.on('message', (data) => {
   console.info ('Received data:' + JSON.stringify (data))
@@ -1534,7 +1555,7 @@ Creates a **TCPSocket** object.
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
+import { socket } from '@kit.NetworkKit';
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
 ```
 
@@ -1574,8 +1595,9 @@ Binds an IP address and a port number. The port number can be specified or rando
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
 let bindAddr: socket.NetAddress = {
   address: '192.168.xx.xxx',
@@ -1627,8 +1649,9 @@ Binds an IP address and a port number. The port number can be specified or rando
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
 let bindAddr: socket.NetAddress = {
   address: '192.168.xx.xxx',
@@ -1671,8 +1694,9 @@ Sets up a connection to the specified IP address and port number. This API uses 
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
 
 let tcpconnectoptions: socket.TCPConnectOptions = {
@@ -1726,8 +1750,9 @@ Sets up a connection to the specified IP address and port number. This API uses 
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
 
 let tcpconnectoptions: socket.TCPConnectOptions = {
@@ -1774,8 +1799,9 @@ Sends data over a TCP socket connection. This API uses an asynchronous callback 
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
 
 let tcpconnectoptions: socket.TCPConnectOptions = {
@@ -1835,8 +1861,9 @@ Sends data over a TCP socket connection. This API uses a promise to return the r
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
 
 let tcpconnectoptions: socket.TCPConnectOptions = {
@@ -1884,8 +1911,9 @@ Closes a TCP socket connection. This API uses an asynchronous callback to return
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
 
 tcp.close((err: BusinessError) => {
@@ -1922,7 +1950,8 @@ Closes a TCP socket connection. This API uses a promise to return the result.
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
+import { socket } from '@kit.NetworkKit';
+
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
 
 tcp.close().then(() => {
@@ -1960,8 +1989,9 @@ Obtains the remote address of a socket connection. This API uses an asynchronous
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
 
 let tcpconnectoptions: socket.TCPConnectOptions = {
@@ -2011,8 +2041,9 @@ Obtains the remote address of a socket connection. This API uses a promise to re
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
 
 let tcpconnectoptions: socket.TCPConnectOptions = {
@@ -2062,8 +2093,9 @@ Obtains the status of the TCP socket connection. This API uses an asynchronous c
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
 
 let tcpconnectoptions: socket.TCPConnectOptions = {
@@ -2113,8 +2145,9 @@ Obtains the status of the TCP socket connection. This API uses a promise to retu
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
 
 let tcpconnectoptions: socket.TCPConnectOptions = {
@@ -2156,8 +2189,9 @@ Obtains the file descriptor of the **TCPSocket** object. This API uses an asynch
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
 let bindAddr: socket.NetAddress = {
   address: '0.0.0.0'
@@ -2196,8 +2230,9 @@ Obtains the file descriptor of the **TCPSocket** object. This API uses a promise
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
 let bindAddr: socket.NetAddress = {
   address: '0.0.0.0'
@@ -2246,8 +2281,9 @@ Sets other properties of the TCP socket connection. This API uses an asynchronou
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
 let tcpconnectoptions: socket.TCPConnectOptions = {
   address: {
@@ -2313,8 +2349,9 @@ Sets other properties of the TCP socket connection. This API uses a promise to r
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
 let tcpconnectoptions: socket.TCPConnectOptions = {
   address: {
@@ -2361,8 +2398,9 @@ Subscribes to **message** events of the TCP socket connection. This API uses an 
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
 let messageView = '';
 tcp.on('message', (value: socket.SocketMessageInfo) => {
@@ -2398,8 +2436,9 @@ Unsubscribes from **message** events of the TCP socket connection. This API uses
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
 let messageView = '';
 let callback = (value: socket.SocketMessageInfo) => {
@@ -2436,8 +2475,9 @@ Subscribes to connection or close events of the TCP socket connection. This API 
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
 tcp.on('connect', () => {
   console.log("on connect success")
@@ -2468,8 +2508,9 @@ Unsubscribes from connection or close events of the TCP socket connection. This 
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
 let callback1 = () => {
   console.log("on connect success");
@@ -2505,8 +2546,9 @@ Subscribes to **error** events of the TCP socket connection. This API uses an as
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
 tcp.on('error', (err: BusinessError) => {
   console.log("on error, err:" + JSON.stringify(err))
@@ -2534,8 +2576,9 @@ Unsubscribes from **error** events of the TCP socket connection. This API uses a
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
 let callback = (err: BusinessError) => {
   console.log("on error, err:" + JSON.stringify(err));
@@ -2602,7 +2645,7 @@ Creates a **TCPSocketServer** object.
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
+import { socket } from '@kit.NetworkKit';
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
 ```
 
@@ -2638,15 +2681,16 @@ Binds the IP address and port number. The port number can be specified or random
 | 201      | Permission denied.                          |
 | 2300002  | System internal error.                      |
 | 2303109  | Bad file number.                            |
-| 2303111  | Resource temporarily unavailable try again. |
+| 2303111  | Resource temporarily unavailable. Try again.|
 | 2303198  | Address already in use.                     |
 | 2303199  | Cannot assign requested address.            |
 
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
 let listenAddr: socket.NetAddress = {
   address:  '192.168.xx.xxx',
@@ -2695,15 +2739,16 @@ Binds the IP address and port number. The port number can be specified or random
 | 201      | Permission denied.                          |
 | 2300002  | System internal error.                      |
 | 2303109  | Bad file number.                            |
-| 2303111  | Resource temporarily unavailable try again. |
+| 2303111  | Resource temporarily unavailable. Try again.|
 | 2303198  | Address already in use.                     |
 | 2303199  | Cannot assign requested address.            |
 
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
 let listenAddr: socket.NetAddress = {
   address:  '192.168.xx.xxx',
@@ -2748,8 +2793,9 @@ Obtains the status of a TCP socket server connection. This API uses an asynchron
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
 let listenAddr: socket.NetAddress = {
   address:  '192.168.xx.xxx',
@@ -2802,8 +2848,9 @@ Obtains the status of a TCP socket server connection. This API uses a promise to
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
 let listenAddr: socket.NetAddress = {
   address:  '192.168.xx.xxx',
@@ -2856,8 +2903,9 @@ Sets other properties of a TCP socket server connection. This API uses an asynch
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
 let listenAddr: socket.NetAddress = {
   address:  '192.168.xx.xxx',
@@ -2928,8 +2976,9 @@ Sets other properties of a TCP socket server connection. This API uses a promise
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
 let listenAddr: socket.NetAddress = {
   address:  '192.168.xx.xxx',
@@ -2988,7 +3037,8 @@ Subscribes to **connect** events of a **TCPSocketServer** object. This API uses 
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
+import { socket } from '@kit.NetworkKit';
+
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
 tcpServer.on('connect', (data: socket.TCPSocketConnection) => {
   console.log(JSON.stringify(data))
@@ -3022,7 +3072,8 @@ Unsubscribes from **connect** events of a **TCPSocketServer** object. This API u
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
+import { socket } from '@kit.NetworkKit';
+
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
 let callback = (data: socket.TCPSocketConnection) => {
   console.log('on connect message: ' + JSON.stringify(data));
@@ -3060,8 +3111,9 @@ Subscribes to **error** events of a **TCPSocketServer** object. This API uses an
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
 tcpServer.on('error', (err: BusinessError) => {
   console.log("on error, err:" + JSON.stringify(err))
@@ -3095,8 +3147,9 @@ Unsubscribes from **error** events of a **TCPSocketServer** object. This API use
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
 let callback = (err: BusinessError) => {
   console.log("on error, err:" + JSON.stringify(err));
@@ -3153,7 +3206,8 @@ Sends data over a **TCPSocketConnection** object. This API uses an asynchronous 
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
+import { socket } from '@kit.NetworkKit';
+
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
 
 tcpServer.on('connect', (client: socket.TCPSocketConnection) => {
@@ -3202,8 +3256,9 @@ Sends data over a **TCPSocketConnection** object. This API uses a promise to ret
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
 
 tcpServer.on('connect', (client: socket.TCPSocketConnection) => {
@@ -3245,8 +3300,9 @@ Closes a TCP socket connection. This API uses an asynchronous callback to return
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
 
 tcpServer.on('connect', (client: socket.TCPSocketConnection) => {
@@ -3286,7 +3342,8 @@ Closes a TCP socket connection. This API uses a promise to return the result.
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
+import { socket } from '@kit.NetworkKit';
+
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
 tcpServer.on('connect', (client: socket.TCPSocketConnection) => {
   client.close().then(() => {
@@ -3328,8 +3385,9 @@ Obtains the remote address of a socket connection. This API uses an asynchronous
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
 tcpServer.on('connect', (client: socket.TCPSocketConnection) => {
   client.getRemoteAddress((err: BusinessError, data: socket.NetAddress) => {
@@ -3372,8 +3430,9 @@ Obtains the remote address of a socket connection. This API uses a promise to re
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
 tcpServer.on('connect', (client: socket.TCPSocketConnection) => {
   client.getRemoteAddress().then(() => {
@@ -3408,8 +3467,9 @@ Subscribes to **message** events of a **TCPSocketConnection** object. This API u
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
 
 tcpServer.on('connect', (client: socket.TCPSocketConnection) => {
@@ -3454,14 +3514,15 @@ Unsubscribes from **message** events of a **TCPSocketConnection** object. This A
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
 let callback = (value: socket.SocketMessageInfo) => {
   let messageView = '';
   for (let i: number = 0; i < value.message.byteLength; i++) {
     let uint8Array = new Uint8Array(value.message) 
-    let messages = uint8Array[i]]
+    let messages = uint8Array[i]
     let message = String.fromCharCode(messages);
     messageView += message;
   }
@@ -3500,8 +3561,9 @@ Subscribes to **close** events of a **TCPSocketConnection** object. This API use
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
 tcpServer.on('connect', (client: socket.TCPSocketConnection) => {
   client.on('close', () => {
@@ -3537,7 +3599,8 @@ Unsubscribes from **close** events of a **TCPSocketConnection** object. This API
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
+import { socket } from '@kit.NetworkKit';
+
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
 let callback = () => {
   console.log("on close success");
@@ -3574,8 +3637,9 @@ Subscribes to **error** events of a **TCPSocketConnection** object. This API use
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
 tcpServer.on('connect', (client: socket.TCPSocketConnection) => {
   client.on('error', (err: BusinessError) => {
@@ -3611,8 +3675,9 @@ Unsubscribes from **error** events of a **TCPSocketConnection** object. This API
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let callback = (err: BusinessError) => {
   console.log("on error, err:" + JSON.stringify(err));
 }
@@ -3648,7 +3713,7 @@ Creates a **LocalSocket** object.
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
+import { socket } from '@kit.NetworkKit';
 let client: socket.LocalSocket = socket.constructLocalSocketInstance();
 ```
 
@@ -3686,7 +3751,7 @@ Binds the address of a local socket file. This API uses a promise to return the 
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
+import { socket } from '@kit.NetworkKit';
 
 let client = socket.constructLocalSocketInstance()
 let sandboxPath: string = getContext().filesDir + '/testSocket'
@@ -3736,7 +3801,7 @@ Connects to the specified socket file. This API uses a promise to return the res
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
+import { socket } from '@kit.NetworkKit';
 
 let client = socket.constructLocalSocketInstance();
 let sandboxPath: string = getContext().filesDir + '/testSocket'
@@ -3786,7 +3851,7 @@ Sends data over a local socket connection. This API uses a promise to return the
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket"
+import { socket } from '@kit.NetworkKit';
 
 let client: socket.LocalSocket = socket.constructLocalSocketInstance()
 let sandboxPath: string = getContext().filesDir + '/testSocket'
@@ -3834,7 +3899,8 @@ Closes a local socket connection. This API uses a promise to return the result.
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
+import { socket } from '@kit.NetworkKit';
+
 let client: socket.LocalSocket = socket.constructLocalSocketInstance();
 
 client.close().then(() => {
@@ -3864,7 +3930,8 @@ Obtains the local socket connection status. This API uses a promise to return th
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
+import { socket } from '@kit.NetworkKit';
+
 let client: socket.LocalSocket = socket.constructLocalSocketInstance();
 let sandboxPath: string = getContext().filesDir + '/testSocket'
 let connectOpt: socket.LocalConnectOptions = {
@@ -3906,7 +3973,8 @@ Obtains the file descriptor of the **LocalSocket** object. This API uses a promi
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
+import { socket } from '@kit.NetworkKit';
+
 let client: socket.LocalSocket = socket.constructLocalSocketInstance();
 let sandboxPath: string = getContext().filesDir + '/testSocket'
 let connectOpt: socket.LocalConnectOptions = {
@@ -3960,7 +4028,8 @@ Sets other properties of the local socket connection. This API uses a promise to
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
+import { socket } from '@kit.NetworkKit';
+
 let client: socket.LocalSocket = socket.constructLocalSocketInstance();
 let sandboxPath: string = getContext().filesDir + '/testSocket'
 let connectOpt: socket.LocalConnectOptions = {
@@ -4012,7 +4081,8 @@ Obtains other properties of the local socket connection. This API uses a promise
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
+import { socket } from '@kit.NetworkKit';
+
 let client: socket.LocalSocket = socket.constructLocalSocketInstance();
 let sandboxPath: string = getContext().filesDir + '/testSocket'
 let connectOpt: socket.LocalConnectOptions = {
@@ -4051,7 +4121,8 @@ Subscribes to **message** events of a **LocalSocket** object. This API uses an a
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
+import { socket } from '@kit.NetworkKit';
+
 let client: socket.LocalSocket = socket.constructLocalSocketInstance();
 client.on('message', (value: socket.LocalSocketMessageInfo) => {
   const uintArray = new Uint8Array(value.message)
@@ -4085,7 +4156,8 @@ Unsubscribes from **message** events of a **LocalSocket** object. This API uses 
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
+import { socket } from '@kit.NetworkKit';
+
 let client: socket.LocalSocket = socket.constructLocalSocketInstance();
 let messageView = '';
 let callback = (value: socket.LocalSocketMessageInfo) => {
@@ -4119,7 +4191,8 @@ Subscribes to **connect** events of a **LocalSocket** object. This API uses an a
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
+import { socket } from '@kit.NetworkKit';
+
 let client: socket.LocalSocket = socket.constructLocalSocketInstance();
 client.on('connect', () => {
   console.log("on connect success")
@@ -4144,7 +4217,8 @@ Unsubscribes from **connect** events of a **LocalSocket** object. This API uses 
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
+import { socket } from '@kit.NetworkKit';
+
 let client: socket.LocalSocket = socket.constructLocalSocketInstance();
 let callback = () => {
   console.log("on connect success");
@@ -4176,7 +4250,8 @@ Subscribes to **close** events of a **LocalSocket** object. This API uses an asy
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
+import { socket } from '@kit.NetworkKit';
+
 let client: socket.LocalSocket = socket.constructLocalSocketInstance();
 let callback = () => {
   console.log("on close success");
@@ -4205,7 +4280,8 @@ Unsubscribes from **close** events of a **LocalSocket** object. This API uses an
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
+import { socket } from '@kit.NetworkKit';
+
 let client: socket.LocalSocket = socket.constructLocalSocketInstance();
 let callback = () => {
   console.log("on close success");
@@ -4234,7 +4310,8 @@ Subscribes to **error** events of a **LocalSocket** object. This API uses an asy
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
+import { socket } from '@kit.NetworkKit';
+
 let client: socket.LocalSocket = socket.constructLocalSocketInstance();
 client.on('error', (err: Object) => {
   console.log("on error, err:" + JSON.stringify(err))
@@ -4262,7 +4339,8 @@ Unsubscribes from **error** events of a **LocalSocket** object. This API uses an
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
+import { socket } from '@kit.NetworkKit';
+
 let client: socket.LocalSocket = socket.constructLocalSocketInstance();
 let callback = (err: Object) => {
   console.log("on error, err:" + JSON.stringify(err));
@@ -4347,7 +4425,7 @@ Creates a **LocalSocketServer** object.
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
+import { socket } from '@kit.NetworkKit';
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
 ```
 
@@ -4391,7 +4469,8 @@ Binds the address of the local socket file. The server listens to and accepts lo
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
+import { socket } from '@kit.NetworkKit';
+
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
 let sandboxPath: string = getContext().filesDir + '/testSocket'
 let addr: socket.LocalAddress = {
@@ -4424,7 +4503,8 @@ Obtains the status of a local socket server connection. This API uses a promise 
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
+import { socket } from '@kit.NetworkKit';
+
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
 let sandboxPath: string = getContext().filesDir + '/testSocket'
 let listenAddr: socket.LocalAddress = {
@@ -4475,7 +4555,8 @@ Sets other properties of the local socket server connection. This API uses a pro
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
+import { socket } from '@kit.NetworkKit';
+
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
 let sandboxPath: string = getContext().filesDir + '/testSocket'
 let listenAddr: socket.NetAddress = {
@@ -4525,7 +4606,8 @@ Obtains other properties of a local socket server connection. This API uses a pr
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
+import { socket } from '@kit.NetworkKit';
+
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
 let sandboxPath: string = getContext().filesDir + '/testSocket'
 let listenAddr: socket.LocalAddress = {
@@ -4570,7 +4652,8 @@ Subscribes to **connect** events of a **LocalSocketServer** object. This API use
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
+import { socket } from '@kit.NetworkKit';
+
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
 server.on('connect', (connection: socket.LocalSocketConnection) => {
   if (connection) {
@@ -4606,7 +4689,8 @@ Unsubscribes from **connect** events of a **LocalSocketServer** object. This API
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
+import { socket } from '@kit.NetworkKit';
+
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
 let callback = (connection: socket.LocalSocketConnection) => {
   if (connection) {
@@ -4646,7 +4730,8 @@ Subscribes to **error** events of a **LocalSocketServer** object. This API uses 
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
+import { socket } from '@kit.NetworkKit';
+
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
 server.on('error', (err: Object) => {
   console.error("on error, err:" + JSON.stringify(err))
@@ -4680,7 +4765,8 @@ Unsubscribes from **error** events of a **LocalSocketServer** object. This API u
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
+import { socket } from '@kit.NetworkKit';
+
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
 let callback = (err: Object) => {
   console.error("on error, err:" + JSON.stringify(err));
@@ -4740,7 +4826,8 @@ Sends data through a local socket connection. This API uses a promise to return 
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
+import { socket } from '@kit.NetworkKit';
+
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
 
 server.on('connect', (connection: socket.LocalSocketConnection) => {
@@ -4779,7 +4866,8 @@ Closes a local socket connection. This API uses a promise to return the result.
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
+import { socket } from '@kit.NetworkKit';
+
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
 server.on('connect', (connection: socket.LocalSocketConnection) => {
   connection.close().then(() => {
@@ -4814,7 +4902,8 @@ Subscribes to **message** events of a **LocalSocketConnection** object. This API
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
+import { socket } from '@kit.NetworkKit';
+
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
 let sandboxPath: string = getContext().filesDir + '/testSocket'
 let listenAddr: socket.LocalAddress = {
@@ -4865,7 +4954,8 @@ Unsubscribes from **message** events of a **LocalSocketConnection** object. This
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
+import { socket } from '@kit.NetworkKit';
+
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
 let callback = (value: socket.LocalSocketMessageInfo) => {
   const uintArray = new Uint8Array(value.message)
@@ -4908,7 +4998,8 @@ Unsubscribes from **close** events of a **LocalSocketConnection** object. This A
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
+import { socket } from '@kit.NetworkKit';
+
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
 server.on('connect', (connection: socket.LocalSocketConnection) => {
   connection.on('close', () => {
@@ -4944,7 +5035,8 @@ Unsubscribes from **close** events of a **LocalSocketConnection** object. This A
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
+import { socket } from '@kit.NetworkKit';
+
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
 let callback = () => {
   console.log("on close success");
@@ -4981,7 +5073,8 @@ Subscribes to **error** events of a **LocalSocketConnection** object. This API u
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
+import { socket } from '@kit.NetworkKit';
+
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
 server.on('connect', (connection: socket.LocalSocketConnection) => {
   connection.on('error', (err: Object) => {
@@ -5017,7 +5110,8 @@ Unsubscribes from **error** events of a **LocalSocketConnection** object. This A
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
+import { socket } from '@kit.NetworkKit';
+
 let callback = (err: Object) => {
   console.error("on error, err: " + JSON.stringify(err));
 }
@@ -5053,7 +5147,8 @@ Creates a **TLSSocket** object.
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
+import { socket } from '@kit.NetworkKit';
+
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 ```
 
@@ -5090,8 +5185,9 @@ Binds the IP address and port number. This API uses an asynchronous callback to 
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 let bindAddr: socket.NetAddress = {
   address: '192.168.xx.xxx',
@@ -5140,8 +5236,9 @@ Binds the IP address and port number. This API uses a promise to return the resu
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 let bindAddr: socket.NetAddress = {
   address: '192.168.xx.xxx',
@@ -5178,8 +5275,9 @@ Obtains the status of the TLS socket connection. This API uses an asynchronous c
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 let bindAddr: socket.NetAddress = {
   address: '192.168.xx.xxx',
@@ -5225,8 +5323,9 @@ Obtains the status of the TLS socket connection. This API uses a promise to retu
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 let bindAddr: socket.NetAddress = {
   address: '192.168.xx.xxx',
@@ -5272,8 +5371,9 @@ Sets other properties of the TCP socket connection after **bind** is successfull
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 let bindAddr: socket.NetAddress = {
   address: '192.168.xx.xxx',
@@ -5337,8 +5437,9 @@ Sets other properties of the TCP socket connection after **bind** is successfull
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 let bindAddr: socket.NetAddress = {
   address: '192.168.xx.xxx',
@@ -5387,8 +5488,9 @@ Subscribes to **message** events of the TLS socket connection. This API uses an 
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 let messageView = '';
 tls.on('message', (value: socket.SocketMessageInfo) => {
@@ -5424,8 +5526,9 @@ Unsubscribes from **message** events of a **TLSSocket** object. This API uses an
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 let messageView = '';
 let callback = (value: socket.SocketMessageInfo) => {
@@ -5460,8 +5563,9 @@ Subscribes to **connect** or **close** events of the TLS socket connection. This
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 tls.on('connect', () => {
   console.log("on connect success")
@@ -5492,8 +5596,9 @@ Unsubscribes from **connect** or **close** events of a **TLSSocket** object. Thi
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 let callback1 = () => {
   console.log("on connect success");
@@ -5528,8 +5633,9 @@ Subscribes to **error** events of the TLS socket connection. This API uses an as
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 tls.on('error', (err: BusinessError) => {
   console.log("on error, err:" + JSON.stringify(err))
@@ -5557,8 +5663,9 @@ Unsubscribes from **error** events of a **TLSSocket** object. This API uses an a
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 let callback = (err: BusinessError) => {
   console.log("on error, err:" + JSON.stringify(err));
@@ -5590,24 +5697,25 @@ Sets up a TLS socket connection, and creates and initializes a TLS session after
 | 401     | Parameter error.                             |
 | 2303104 | Interrupted system call.                     |
 | 2303109 | Bad file number.                             |
-| 2303111 | Resource temporarily unavailable try again.  |
+| 2303111 | Resource temporarily unavailable. Try again. |
 | 2303188 | Socket operation on non-socket.              |
-| 2303191 | Protocol wrong type for socket.              |
+| 2303191 | Incorrect socket protocol type.              |
 | 2303198 | Address already in use.                      |
 | 2303199 | Cannot assign requested address.             |
 | 2303210 | Connection timed out.                        |
 | 2303501 | SSL is null.                                 |
-| 2303502 | Error in tls reading.                        |
-| 2303503 | Error in tls writing                         |
-| 2303505 | Error occurred in the tls system call.       |
-| 2303506 | Error clearing tls connection.               |
+| 2303502 | An error occurred when reading data on the TLS socket.|
+| 2303503 | An error occurred when writing data on the TLS socket.|
+| 2303505 | An error occurred in the TLS system call.    |
+| 2303506 | Failed to close the TLS connection.          |
 | 2300002 | System internal error.                       |
 
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tlsTwoWay: socket.TLSSocket = socket.constructTLSSocketInstance();  // Two way authentication
 let bindAddr: socket.NetAddress = {
   address: '0.0.0.0',
@@ -5642,8 +5750,8 @@ tlsTwoWay.connect(tlsConnectOptions, (err: BusinessError) => {
   console.error("connect callback error" + err);
 });
 
-let tlsTwoWay: socket.TLSSocket = socket.constructTLSSocketInstance(); // One way authentication
-tlsTwoWay.bind(bindAddr, (err: BusinessError) => {
+let tlsOneWay: socket.TLSSocket = socket.constructTLSSocketInstance(); // One way authentication
+tlsOneWay.bind(bindAddr, (err: BusinessError) => {
   if (err) {
     console.log('bind fail');
     return;
@@ -5651,7 +5759,7 @@ tlsTwoWay.bind(bindAddr, (err: BusinessError) => {
   console.log('bind success');
 });
 
-let tlsTwoWayConnectOptions: socket.TLSConnectOptions = {
+let tlsOneWayConnectOptions: socket.TLSConnectOptions = {
   address: {
     address: '192.168.xx.xxx',
     port: 8080
@@ -5661,7 +5769,7 @@ let tlsTwoWayConnectOptions: socket.TLSConnectOptions = {
     cipherSuite: "AES256-SHA256"
   }
 }
-tlsTwoWay.connect(tlsTwoWayConnectOptions, (err: BusinessError) => {
+tlsOneWay.connect(tlsOneWayConnectOptions, (err: BusinessError) => {
   console.error("connect callback error" + err);
 });
 ```
@@ -5693,24 +5801,25 @@ Sets up a TLS socket connection, and creates and initializes a TLS session after
 | 401     | Parameter error.                             |
 | 2303104 | Interrupted system call.                     |
 | 2303109 | Bad file number.                             |
-| 2303111 | Resource temporarily unavailable try again.  |
+| 2303111 | Resource temporarily unavailable. Try again. |
 | 2303188 | Socket operation on non-socket.              |
-| 2303191 | Protocol wrong type for socket.              |
+| 2303191 | Incorrect socket protocol type.              |
 | 2303198 | Address already in use.                      |
 | 2303199 | Cannot assign requested address.             |
 | 2303210 | Connection timed out.                        |
 | 2303501 | SSL is null.                                 |
-| 2303502 | Error in tls reading.                        |
-| 2303503 | Error in tls writing                         |
-| 2303505 | Error occurred in the tls system call.       |
-| 2303506 | Error clearing tls connection.               |
+| 2303502 | An error occurred when reading data on the TLS socket.|
+| 2303503 | An error occurred when writing data on the TLS socket.|
+| 2303505 | An error occurred in the TLS system call.    |
+| 2303506 | Failed to close the TLS connection.          |
 | 2300002 | System internal error.                       |
 
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tlsTwoWay: socket.TLSSocket = socket.constructTLSSocketInstance();  // Two way authentication
 let bindAddr: socket.NetAddress = {
   address: '0.0.0.0',
@@ -5747,8 +5856,8 @@ tlsTwoWay.connect(tlsConnectOptions).then(() => {
   console.log("connect failed " + JSON.stringify(err));
 });
 
-let tlsTwoWay: socket.TLSSocket = socket.constructTLSSocketInstance(); // One way authentication
-tlsTwoWay.bind(bindAddr, (err: BusinessError) => {
+let tlsOneWay: socket.TLSSocket = socket.constructTLSSocketInstance(); // One way authentication
+tlsOneWay.bind(bindAddr, (err: BusinessError) => {
   if (err) {
     console.log('bind fail');
     return;
@@ -5756,7 +5865,7 @@ tlsTwoWay.bind(bindAddr, (err: BusinessError) => {
   console.log('bind success');
 });
 
-let tlsTwoWayConnectOptions: socket.TLSConnectOptions = {
+let tlsOneWayConnectOptions: socket.TLSConnectOptions = {
   address: {
     address: '192.168.xx.xxx',
     port: 8080
@@ -5766,7 +5875,7 @@ let tlsTwoWayConnectOptions: socket.TLSConnectOptions = {
     cipherSuite: "AES256-SHA256"
   }
 }
-tlsTwoWay.connect(tlsTwoWayConnectOptions).then(() => {
+tlsOneWay.connect(tlsOneWayConnectOptions).then(() => {
   console.log("connect successfully");
 }).catch((err: BusinessError) => {
   console.log("connect failed " + JSON.stringify(err));
@@ -5797,8 +5906,9 @@ Obtains the remote address of a TLS socket connection. This API uses an asynchro
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 tls.getRemoteAddress((err: BusinessError, data: socket.NetAddress) => {
   if (err) {
@@ -5833,8 +5943,9 @@ Obtains the remote address of a TLS socket connection. This API uses a promise t
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 tls.getRemoteAddress().then(() => {
   console.log('getRemoteAddress success');
@@ -5862,14 +5973,15 @@ Obtains the local digital certificate after a TLS socket connection is establish
 | ID| Error Message                       |
 | ------- | ------------------------------ |
 | 2303501 | SSL is null.                   |
-| 2303504 | Error looking up x509.         |
+| 2303504 | An error occurred when verifying the X.509 certificate.|
 | 2300002 | System internal error.         |
 
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 tls.getCertificate((err: BusinessError, data: socket.X509CertRawData) => {
   if (err) {
@@ -5899,15 +6011,15 @@ Obtains the local digital certificate after a TLS socket connection is establish
 | ID| Error Message                       |
 | ------- | ------------------------------ |
 | 2303501 | SSL is null.                   |
-| 2303504 | Error looking up x509.         |
+| 2303504 | An error occurred when verifying the X.509 certificate.|
 | 2300002 | System internal error.         |
 
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
-import util from "@ohos.util";
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { util } from '@kit.ArkTS';
 
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 tls.getCertificate().then((data: socket.X509CertRawData) => {
@@ -5943,14 +6055,18 @@ Obtains the digital certificate of the server after a TLS socket connection is e
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { util } from '@kit.ArkTS';
+
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 tls.getRemoteCertificate((err: BusinessError, data: socket.X509CertRawData) => {
   if (err) {
     console.log("getRemoteCertificate callback error = " + err);
   } else {
-    console.log("getRemoteCertificate callback = " + data);
+    const decoder = util.TextDecoder.create();
+    const str = decoder.decodeWithStream(data.data);
+    console.log("getRemoteCertificate callback = " + str);
   }
 });
 ```
@@ -5979,11 +6095,15 @@ Obtains the digital certificate of the server after a TLS socket connection is e
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { util } from '@kit.ArkTS';
+
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 tls.getRemoteCertificate().then((data: socket.X509CertRawData) => {
-  console.log(data);
+  const decoder = util.TextDecoder.create();
+  const str = decoder.decodeWithStream(data.data);
+  console.log("getRemoteCertificate:" + str);
 }).catch((err: BusinessError) => {
   console.error("failed" + err);
 });
@@ -6008,14 +6128,15 @@ Obtains the communication protocol version after a TLS socket connection is esta
 | ID| Error Message                       |
 | ------- | -----------------------------  |
 | 2303501 | SSL is null.                   |
-| 2303505 | Error occurred in the tls system call. |
+| 2303505 | An error occurred in the TLS system call. |
 | 2300002 | System internal error.         |
 
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 tls.getProtocol((err: BusinessError, data: string) => {
   if (err) {
@@ -6045,14 +6166,15 @@ Obtains the communication protocol version after a TLS socket connection is esta
 | ID| Error Message                       |
 | ------- | ------------------------------ |
 | 2303501 | SSL is null.                   |
-| 2303505 | Error occurred in the tls system call. |
+| 2303505 | An error occurred in the TLS system call. |
 | 2300002 | System internal error.         |
 
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 tls.getProtocol().then((data: string) => {
   console.log(data);
@@ -6080,15 +6202,16 @@ Obtains the cipher suite negotiated by both communication parties after a TLS so
 | ID| Error Message                       |
 | ------- | ------------------------------ |
 | 2303501 | SSL is null.                   |
-| 2303502 | Error in tls reading.          |
-| 2303505 | Error occurred in the tls system call. |
+| 2303502 | An error occurred when reading data on the TLS socket.|
+| 2303505 | An error occurred in the TLS system call. |
 | 2300002 | System internal error.         |
 
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 tls.getCipherSuite((err: BusinessError, data: Array<string>) => {
   if (err) {
@@ -6118,15 +6241,16 @@ Obtains the cipher suite negotiated by both communication parties after a TLS so
 | ID| Error Message                       |
 | ------- | ------------------------------ |
 | 2303501 | SSL is null.                   |
-| 2303502 | Error in tls reading.          |
-| 2303505 | Error occurred in the tls system call. |
+| 2303502 | An error occurred when reading data on the TLS socket.|
+| 2303505 | An error occurred in the TLS system call. |
 | 2300002 | System internal error.         |
 
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 tls.getCipherSuite().then((data: Array<string>) => {
   console.log('getCipherSuite success:' + JSON.stringify(data));
@@ -6159,8 +6283,9 @@ Obtains the signing algorithm negotiated by both communication parties after a T
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 tls.getSignatureAlgorithms((err: BusinessError, data: Array<string>) => {
   if (err) {
@@ -6195,8 +6320,9 @@ Obtains the signing algorithm negotiated by both communication parties after a T
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 tls.getSignatureAlgorithms().then((data: Array<string>) => {
   console.log("getSignatureAlgorithms success" + data);
@@ -6226,16 +6352,17 @@ Sends a message to the server after a TLS socket connection is established. This
 | ------- | -------------------------------------------- |
 | 401     | Parameter error.                             |
 | 2303501 | SSL is null.                                 |
-| 2303503 | Error in tls writing.                         |
-| 2303505 | Error occurred in the tls system call.       |
-| 2303506 | Error clearing tls connection.               |
+| 2303503 | An error occurred when writing data on the TLS socket.|
+| 2303505 | An error occurred in the TLS system call.    |
+| 2303506 | Failed to close the TLS connection.          |
 | 2300002 | System internal error.                       |
 
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 tls.send("xxxx", (err: BusinessError) => {
   if (err) {
@@ -6266,9 +6393,9 @@ Sends a message to the server after a TLS socket connection is established. This
 | ------- | -------------------------------------------- |
 | 401     | Parameter error.                             |
 | 2303501 | SSL is null.                                 |
-| 2303503 | Error in tls writing.                         |
-| 2303505 | Error occurred in the tls system call.       |
-| 2303506 | Error clearing tls connection.               |
+| 2303503 | An error occurred when writing data on the TLS socket.|
+| 2303505 | An error occurred in the TLS system call.    |
+| 2303506 | Failed to close the TLS connection.          |
 | 2300002 | System internal error.                       |
 
 **Return value**
@@ -6280,8 +6407,9 @@ Sends a message to the server after a TLS socket connection is established. This
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 tls.send("xxxx").then(() => {
   console.log("send success");
@@ -6310,15 +6438,16 @@ Closes a TLS socket connection. This API uses an asynchronous callback to return
 | ------- | -------------------------------------------- |
 | 401 | Parameter error.                                 |
 | 2303501 | SSL is null.                                 |
-| 2303505 | Error occurred in the tls system call.       |
-| 2303506 | Error clearing tls connection.               |
+| 2303505 | An error occurred in the TLS system call.    |
+| 2303506 | Failed to close the TLS connection.          |
 | 2300002 | System internal error.                       |
 
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 tls.close((err: BusinessError) => {
   if (err) {
@@ -6349,15 +6478,16 @@ Closes a TLS socket connection. This API uses a promise to return the result.
 | ------- | -------------------------------------------- |
 | 401 | Parameter error.                                 |
 | 2303501 | SSL is null.                                 |
-| 2303505 | Error occurred in the tls system call.       |
-| 2303506 | Error clearing tls connection.               |
+| 2303505 | An error occurred in the TLS system call.    |
+| 2303506 | Failed to close the TLS connection.          |
 | 2300002 | System internal error.                       |
 
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 tls.close().then(() => {
   console.log("close success");
@@ -6429,8 +6559,9 @@ Creates a **TLSSocketServer** object.
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
 ```
 
@@ -6463,20 +6594,21 @@ Listens to client connections after **bind** is successfully called. This API us
 | 201      | Permission denied.                          |
 | 2300002  | System internal error.                      |
 | 2303109  | Bad file number.                            |
-| 2303111  | Resource temporarily unavailable try again. |
+| 2303111  | Resource temporarily unavailable. Try again.|
 | 2303198  | Address already in use.                     |
 | 2303199  | Cannot assign requested address.            |
 | 2303501  | SSL is null.                                |
-| 2303502  | Error in tls reading.                       |
-| 2303503  | Error in tls writing                        |
-| 2303505  | Error occurred in the tls system call.      |
-| 2303506  | Error clearing tls connection.              |
+| 2303502  | An error occurred when reading data on the TLS socket.|
+| 2303503  | An error occurred when writing data on the TLS socket.|
+| 2303505  | An error occurred in the TLS system call.   |
+| 2303506  | Failed to close the TLS connection.         |
 
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
 
 let tlsConnectOptions: socket.TLSConnectOptions = {
@@ -6531,20 +6663,21 @@ Listens to client connections after **bind** is successfully called. This API us
 | 201      | Permission denied.                          |
 | 2300002  | System internal error.                      |
 | 2303109  | Bad file number.                            |
-| 2303111  | Resource temporarily unavailable try again. |
+| 2303111  | Resource temporarily unavailable. Try again.|
 | 2303198  | Address already in use.                     |
 | 2303199  | Cannot assign requested address.            |
 | 2303501  | SSL is null.                                |
-| 2303502  | Error in tls reading.                       |
-| 2303503  | Error in tls writing                        |
-| 2303505  | Error occurred in the tls system call.      |
-| 2303506  | Error clearing tls connection.              |
+| 2303502  | An error occurred when reading data on the TLS socket.|
+| 2303503  | An error occurred when writing data on the TLS socket.|
+| 2303505  | An error occurred in the TLS system call.   |
+| 2303506  | Failed to close the TLS connection.         |
 
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
 
 let tlsConnectOptions: socket.TLSConnectOptions = {
@@ -6599,8 +6732,9 @@ Obtains the status of the TLS socket server connection upon successful listening
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
 let tlsConnectOptions: socket.TLSConnectOptions = {
   address: {
@@ -6660,8 +6794,9 @@ Obtains the status of the TLS socket server connection upon successful listening
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
 let tlsConnectOptions: socket.TLSConnectOptions = {
   address: {
@@ -6721,8 +6856,9 @@ Sets other properties of the TLS socket server connection upon successful listen
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
 let tlsConnectOptions: socket.TLSConnectOptions = {
   address: {
@@ -6800,8 +6936,9 @@ Sets other properties of the TLS socket server connection upon successful listen
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
 let tlsConnectOptions: socket.TLSConnectOptions = {
   address: {
@@ -6866,15 +7003,15 @@ Obtains the local digital certificate after a TLS socket server connection is es
 | -------- | ---------------------- |
 | 401      | Parameter error.       |
 | 2303501  | SSL is null.           |
-| 2303504  | Error looking up x509. |
+| 2303504  | An error occurred when verifying the X.509 certificate. |
 | 2300002  | System internal error. |
 
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
-import util from "@ohos.util";
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { util } from '@kit.ArkTS';
 
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
 let tlsConnectOptions: socket.TLSConnectOptions = {
@@ -6932,15 +7069,15 @@ Obtains the local digital certificate after a TLS socket server connection is es
 | ID| Error Message              |
 | -------- | ---------------------- |
 | 2303501  | SSL is null.           |
-| 2303504  | Error looking up x509. |
+| 2303504  | An error occurred when verifying the X.509 certificate. |
 | 2300002  | System internal error. |
 
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
-import util from "@ohos.util";
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { util } from '@kit.ArkTS';
 
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
 let tlsConnectOptions: socket.TLSConnectOptions = {
@@ -6997,14 +7134,15 @@ Obtains the communication protocol version after a TLS socket server connection 
 | -------- | -------------------------------------- |
 | 401      | Parameter error.                       |
 | 2303501  | SSL is null.                           |
-| 2303505  | Error occurred in the tls system call. |
+| 2303505  | An error occurred in the TLS system call. |
 | 2300002  | System internal error.                 |
 
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
 let tlsConnectOptions: socket.TLSConnectOptions = {
   address: {
@@ -7059,14 +7197,15 @@ Obtains the communication protocol version after a TLS socket server connection 
 | ID| Error Message                              |
 | -------- | -------------------------------------- |
 | 2303501  | SSL is null.                           |
-| 2303505  | Error occurred in the tls system call. |
+| 2303505  | An error occurred in the TLS system call. |
 | 2300002  | System internal error.                 |
 
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
 let tlsConnectOptions: socket.TLSConnectOptions = {
   address: {
@@ -7124,8 +7263,9 @@ Subscribes to TLS socket server connection events. This API uses an asynchronous
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
 let tlsConnectOptions: socket.TLSConnectOptions = {
   address: {
@@ -7182,8 +7322,9 @@ Unsubscribes from **connect** events of a **TLSSocketServer** object. This API u
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
 let tlsConnectOptions: socket.TLSConnectOptions = {
   address: {
@@ -7244,8 +7385,9 @@ Subscribes to **error** events of a **TLSSocketServer** object. This API uses an
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
 let tlsConnectOptions: socket.TLSConnectOptions = {
   address: {
@@ -7302,8 +7444,9 @@ Unsubscribes from **error** events of a **TLSSocketServer** object. This API use
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
 let tlsConnectOptions: socket.TLSConnectOptions = {
   address: {
@@ -7373,16 +7516,17 @@ Sends a message to the client after a TLS socket server connection is establishe
 | -------- | -------------------------------------- |
 | 401      | Parameter error.                       |
 | 2303501  | SSL is null.                           |
-| 2303503  | Error in tls writing.                  |
-| 2303505  | Error occurred in the tls system call. |
-| 2303506  | Error clearing tls connection.         |
+| 2303503  | An error occurred when writing data on the TLS socket.|
+| 2303505  | An error occurred in the TLS system call.|
+| 2303506  | Failed to close the TLS connection.    |
 | 2300002  | System internal error.                 |
 
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
 let tlsConnectOptions: socket.TLSConnectOptions = {
   address: {
@@ -7444,16 +7588,17 @@ Sends a message to the server after a TLS socket server connection is establishe
 | -------- | -------------------------------------- |
 | 401      | Parameter error.                       |
 | 2303501  | SSL is null.                           |
-| 2303503  | Error in tls writing.                  |
-| 2303505  | Error occurred in the tls system call. |
-| 2303506  | Error clearing tls connection.         |
+| 2303503  | An error occurred when writing data on the TLS socket.|
+| 2303505  | An error occurred in the TLS system call.|
+| 2303506  | Failed to close the TLS connection.    |
 | 2300002  | System internal error.                 |
 
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
 let tlsConnectOptions: socket.TLSConnectOptions = {
   address: {
@@ -7507,15 +7652,16 @@ Closes a TLS socket server connection. This API uses an asynchronous callback to
 | -------- | -------------------------------------- |
 | 401      | Parameter error.                       |
 | 2303501  | SSL is null.                           |
-| 2303505  | Error occurred in the tls system call. |
-| 2303506  | Error clearing tls connection.         |
+| 2303505  | An error occurred in the TLS system call. |
+| 2303506  | Failed to close the TLS connection.    |
 | 2300002  | System internal error.                 |
 
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
 let tlsConnectOptions: socket.TLSConnectOptions = {
   address: {
@@ -7570,15 +7716,16 @@ Closes a TLS socket server connection. This API uses a promise to return the res
 | ID| Error Message                              |
 | -------- | -------------------------------------- |
 | 2303501  | SSL is null.                           |
-| 2303505  | Error occurred in the tls system call. |
-| 2303506  | Error clearing tls connection.         |
+| 2303505  | An error occurred in the TLS system call. |
+| 2303506  | Failed to close the TLS connection.    |
 | 2300002  | System internal error.                 |
 
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
 let tlsConnectOptions: socket.TLSConnectOptions = {
   address: {
@@ -7636,8 +7783,9 @@ Obtains the remote address of a TLS socket server connection. This API uses an a
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
 let tlsConnectOptions: socket.TLSConnectOptions = {
   address: {
@@ -7696,8 +7844,9 @@ Obtains the remote address of a TLS socket server connection. This API uses a pr
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
 let tlsConnectOptions: socket.TLSConnectOptions = {
   address: {
@@ -7755,9 +7904,9 @@ Obtains the digital certificate of the peer end after a TLS socket server connec
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
-import util from "@ohos.util";
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { util } from '@kit.ArkTS';
 
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
 let tlsConnectOptions: socket.TLSConnectOptions = {
@@ -7819,9 +7968,9 @@ Obtains the digital certificate of the peer end after a TLS socket server connec
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
-import util from "@ohos.util";
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { util } from '@kit.ArkTS';
 
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
 let tlsConnectOptions: socket.TLSConnectOptions = {
@@ -7877,15 +8026,16 @@ Obtains the cipher suite negotiated by both communication parties after a TLS so
 | -------- | -------------------------------------- |
 | 401      | Parameter error.                       |
 | 2303501  | SSL is null.                           |
-| 2303502  | Error in tls reading.                  |
-| 2303505  | Error occurred in the tls system call. |
+| 2303502  | An error occurred when reading data on the TLS socket.|
+| 2303505  | An error occurred in the TLS system call.|
 | 2300002  | System internal error.                 |
 
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
 let tlsConnectOptions: socket.TLSConnectOptions = {
   address: {
@@ -7939,15 +8089,16 @@ Obtains the cipher suite negotiated by both communication parties after a TLS so
 | ID| Error Message                              |
 | -------- | -------------------------------------- |
 | 2303501  | SSL is null.                           |
-| 2303502  | Error in tls reading.                  |
-| 2303505  | Error occurred in the tls system call. |
+| 2303502  | An error occurred when reading data on the TLS socket.|
+| 2303505  | An error occurred in the TLS system call. |
 | 2300002  | System internal error.                 |
 
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
 let tlsConnectOptions: socket.TLSConnectOptions = {
   address: {
@@ -8005,8 +8156,9 @@ Obtains the signing algorithm negotiated by both communication parties after a T
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
 let tlsConnectOptions: socket.TLSConnectOptions = {
   address: {
@@ -8065,8 +8217,9 @@ Obtains the signing algorithm negotiated by both communication parties after a T
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
 let tlsConnectOptions: socket.TLSConnectOptions = {
   address: {
@@ -8123,8 +8276,9 @@ Subscribes to **message** events of a **TLSSocketConnection** object. This API u
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
 let tlsConnectOptions: socket.TLSConnectOptions = {
   address: {
@@ -8191,8 +8345,9 @@ Unsubscribes from **message** events of a **TLSSocketConnection** object. This A
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
 let tlsConnectOptions: socket.TLSConnectOptions = {
   address: {
@@ -8260,8 +8415,9 @@ Subscribes to **close** events of a **TLSSocketConnection** object. This API use
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
 let tlsConnectOptions: socket.TLSConnectOptions = {
   address: {
@@ -8319,8 +8475,9 @@ Unsubscribes from **close** events of a **TLSSocketConnection** object. This API
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
 let tlsConnectOptions: socket.TLSConnectOptions = {
   address: {
@@ -8380,8 +8537,9 @@ Subscribes to **error** events of a **TLSSocketConnection** object. This API use
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
 let tlsConnectOptions: socket.TLSConnectOptions = {
   address: {
@@ -8440,8 +8598,9 @@ Unsubscribes from **error** events of a **TLSSocketConnection** object. This API
 **Example**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
 let tlsConnectOptions: socket.TLSConnectOptions = {
   address: {

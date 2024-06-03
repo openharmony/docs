@@ -45,22 +45,24 @@ Read [AVPlayer](../../reference/apis-media-kit/_a_v_player.md) for the API refer
 
 ```c
 #include "napi/native_api.h"
+
 #include <multimedia/player_framework/avplayer.h>
 #include <multimedia/player_framework/avplayer_base.h>
 #include <multimedia/player_framework/native_averrors.h>
+
+static char *Url;
+
 void OnInfo(OH_AVPlayer *player, AVPlayerOnInfoType type, int32_t extra)
 {
-    const char *url;
     int32_t ret;
     switch (type) {
         case AV_INFO_TYPE_STATE_CHANGE:
             switch (extra) {
                 case AV_IDLE: // This state is reported upon a successful callback of OH_AVPlayer_Reset().
-                    *url = "/data/test/mp3_48000Hz_64kbs_mono.mp3"
-                    ret = OH_AVPlayer_SetURLSource (player, url); // Set the URL.
-                    if (ret != AV_ERR_OK) {
-                    // Exception processing.
-                    }
+//                    ret = OH_AVPlayer_SetURLSource(player, url); // Set the URL.
+//                    if (ret != AV_ERR_OK) {
+//                    // Handle the exception.
+//                    }
                     break;
                 case AV_INITIALIZED: 
                     ret = OH_AVPlayer_Prepare(player); // This state is reported when the AVPlayer sets the playback source.
@@ -75,18 +77,19 @@ void OnInfo(OH_AVPlayer *player, AVPlayerOnInfoType type, int32_t extra)
                     }
                     break;
                 case AV_PLAYING:  
-                    ret = OH_AVPlayer_Pause(player); // Call OH_AVPlayer_Pause() to pause the playback.
-                    if (ret != AV_ERR_OK) {
-                    // Exception processing.
-                    }
+//                    ret = OH_AVPlayer_Pause(player); //Call OH_AVPlayer_Pause() to pause the playback.
+//                    if (ret != AV_ERR_OK) {
+//                    // Handle the exception.
+//                    }
                     break;
                 case AV_PAUSED:  
-                    ret = OH_AVPlayer_Play(player); // Call OH_AVPlayer_Play() again to start playback.
-                    if (ret != AV_ERR_OK) {
-                    // Exception processing.
-                    }break;
+//                    ret = OH_AVPlayer_Play(player); // Call OH_AVPlayer_Play() again to start playback.
+//                    if (ret != AV_ERR_OK) {
+//                    // Handle the exception.
+//                    }
+//                    break;
                 case AV_STOPPED:  
-                    ret = OH_AVPlayer_Reset(player); //Call OH_AVPlayer_Reset() to reset the AVPlayer state.
+                    ret = OH_AVPlayer_Release(player); // Call OH_AVPlayer_Reset() to reset the AVPlayer state.
                     if (ret != AV_ERR_OK) {
                     // Exception processing.
                     }
@@ -114,8 +117,52 @@ void OnError(OH_AVPlayer *player, int32_t errorCode, const char *errorMsg)
     // do something
 }
 
-int main()
+// Describe the mapped play method in the index.d.ts file and pass in a parameter of the string type.
+// When calling the player method in the .ets file, pass in the file path testNapi.play("/data/test/test.mp3").
+static napi_value Play(napi_env env, napi_callback_info info)
 {
+    size_t argc = 1;
+    napi_value args[1] = {nullptr};
+    
+    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+    
+    // Obtain the parameter type.
+    napi_valuetype stringType;
+    if (napi_ok != napi_typeof(env, args[0], &stringType)) {
+        // Exception processing.
+        return nullptr;
+    }
+    
+    // Verify the parameter.
+    if (napi_null == stringType) {
+        // Exception processing.
+        return nullptr;
+    }
+    
+    // Obtain the length of the passed-in string.
+    size_t length = 0;
+    if (napi_ok != napi_get_value_string_utf8(env, args[0], nullptr, 0, &length)) {
+        // Exception processing.
+        return nullptr;
+    }
+    
+    // If "" is passed in, the result is directly returned.
+    if (length == 0) {
+        // Exception processing.
+        return nullptr;
+    }
+    
+    // Read the passed-in string and place it in the buffer.
+    char *url = new char[length + 1];
+    if (napi_ok != napi_get_value_string_utf8(env, args[0], url, length + 1, &length)) {
+        delete[] url;
+        url = nullptr;
+        // Exception processing.
+        return nullptr;
+    }
+
+    Url = url;
+    
     // Create an AVPlayer instance.
     OH_AVPlayer *player = OH_AVPlayer_Create();
     AVPlayerCallback callback;
@@ -126,10 +173,38 @@ int main()
     if (ret != AV_ERR_OK) {
     // Exception processing.
     }
-    const char *url = "/data/test/mp3_48000Hz_64kbs_mono.mp3";
     ret = OH_AVPlayer_SetURLSource (player, url); // Set the URL.
     if (ret != AV_ERR_OK) {
     // Exception processing.
     }
+    napi_value value;
+    napi_create_int32(env, 0, &value);
+    return value;
+}
+
+EXTERN_C_START
+static napi_value Init(napi_env env, napi_value exports)
+{
+    napi_property_descriptor desc[] = {
+        { "play", nullptr, Play, nullptr, nullptr, nullptr, napi_default, nullptr }
+    };
+    napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
+    return exports;
+}
+EXTERN_C_END
+
+static napi_module demoModule = {
+    .nm_version =1,
+    .nm_flags = 0,
+    .nm_filename = nullptr,
+    .nm_register_func = Init,
+    .nm_modname = "entry",
+    .nm_priv = ((void*)0),
+    .reserved = { 0 },
+};
+
+extern "C" __attribute__((constructor)) void RegisterEntryModule(void)
+{
+    napi_module_register(&demoModule);
 }
 ```

@@ -24,6 +24,8 @@ onPrepare(): void
 
 **系统能力：** SystemCapability.Ability.AbilityRuntime.Core
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **示例：**
 
 ```ts
@@ -46,6 +48,8 @@ onRun(): void
 运行测试用例
 
 **系统能力：** SystemCapability.Ability.AbilityRuntime.Core
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **示例：**
 

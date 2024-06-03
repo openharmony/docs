@@ -1,6 +1,6 @@
 # @ohos.arkui.componentSnapshot (组件截图)
 
-本模块提供获取组件截图的能力，包括已加载的组件的截图和没有加载的组件的截图。组件截图只能够截取组件大小的区域，如果组件的绘制超出了它的区域，或子组件的绘制超出了父组件的区域，这些在组件区域外绘制的内容不会在截图中呈现。
+本模块提供获取组件截图的能力，包括已加载的组件的截图和没有加载的组件的截图。组件截图只能够截取组件大小的区域，如果组件的绘制超出了它的区域，或子组件的绘制超出了父组件的区域，这些在组件区域外绘制的内容不会在截图中呈现。兄弟节点堆叠在组件区域内，截图不会显示兄弟组件。
 
 > **说明：**
 >
@@ -38,9 +38,12 @@ get(id: string, callback: AsyncCallback<image.PixelMap>): void
 
 **错误码：** 
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码。
+
 | 错误码ID | 错误信息            |
 | -------- | ------------------- |
-| 100001   | if id is not valid. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 100001   | Invalid ID. |
 
 **示例：**
 
@@ -105,9 +108,12 @@ get(id: string): Promise<image.PixelMap>
 
 **错误码：** 
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码。
+
 | 错误码ID  | 错误信息                |
 | ------ | ------------------- |
-| 100001 | if id is not valid. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 100001 | Invalid ID. |
 
 **示例：**
 
@@ -169,9 +175,12 @@ createFromBuilder(builder: CustomBuilder, callback: AsyncCallback<image.PixelMap
 
 **错误码：** 
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码。
+
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
-| 100001   | if builder is not a valid build function. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 100001   | The builder is not a valid build function. |
 
 **示例：**
 
@@ -261,10 +270,12 @@ createFromBuilder(builder: CustomBuilder): Promise<image.PixelMap>
 | Promise&lt;image.[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | 截图返回的结果。 |
 
 **错误码：** 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码。
 
 | 错误码ID  | 错误信息                                     |
 | ------ | ---------------------------------------- |
-| 100001 | if builder is not a valid build function. |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 100001 | The builder is not a valid build function. |
 
 **示例：**
 

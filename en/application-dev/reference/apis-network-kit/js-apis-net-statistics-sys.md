@@ -9,7 +9,7 @@ The **statistics** module provides APIs to query real-time or historical data tr
 ## Modules to Import
 
 ```js
-import statistics from "@ohos.net.statistics";
+import { statistics } from '@kit.NetworkKit';
 ```
 
 
@@ -41,13 +41,13 @@ For details about the error codes, see [Traffic Management Error Codes](errorcod
 | 201       | Permission denied.                           |
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **Example**
 
 ```js
-import statistics from '@ohos.net.statistics';
+import { statistics } from '@kit.NetworkKit';
 
 class IFace {
   iface: string = ""
@@ -86,13 +86,13 @@ For details about the error codes, see [Traffic Management Error Codes](errorcod
 | 201       | Permission denied.                           |
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **Example**
 
 ```js
-import statistics from '@ohos.net.statistics';
+import { statistics } from '@kit.NetworkKit';
 
 class IFace {
   iface: string = ""
@@ -136,15 +136,15 @@ For details about the error codes, see [Traffic Management Error Codes](errorcod
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
-| 2103017   | Read data from database failed.              |
+| 2103017   | Failed to read the database.                 |
 
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
-import statistics from '@ohos.net.statistics';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { statistics } from '@kit.NetworkKit';
 
 let iFaceInfo: statistics.IfaceInfo | null = null;
 if (iFaceInfo) {
@@ -201,14 +201,14 @@ For details about the error codes, see [Traffic Management Error Codes](errorcod
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
-| 2103017   | Read data from database failed.              |
+| 2103017   | Failed to read the database.                 |
 
 **Example**
 
 ```js
-import statistics from '@ohos.net.statistics';
+import { statistics } from '@kit.NetworkKit';
 
 let iFaceInfo: statistics.IfaceInfo | null = null;
 if (iFaceInfo) {
@@ -262,19 +262,23 @@ For details about the error codes, see [Traffic Management Error Codes](errorcod
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
-| 2103017   | Read data from database failed.              |
+| 2103017   | Failed to read the database.                 |
 
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
-import statistics from '@ohos.net.statistics';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { statistics } from '@kit.NetworkKit';
 
 let uidInfo: statistics.UidInfo = {
   uid: 20010037,
-  ifaceInfo: null
+  ifaceInfo: {
+    iface: '',
+    startTime: 1,
+    endTime: 3,
+  }
 }
 
 statistics.getTrafficStatsByUid(
@@ -335,9 +339,9 @@ For details about the error codes, see [Traffic Management Error Codes](errorcod
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
-| 2103017   | Read data from database failed.              |
+| 2103017   | Failed to read the database.                 |
 
 **Example**
 
@@ -346,7 +350,11 @@ import statistics from '@ohos.net.statistics'
 
 let uidInfo: statistics.UidInfo = {
   uid: 20010037,
-  ifaceInfo: null
+  ifaceInfo: {
+    iface: '',
+    startTime: 1,
+    endTime: 3,
+  }
 }
 
 statistics.getTrafficStatsByUid(uidInfo).then((statsInfo: statistics.NetStatsInfo) => {

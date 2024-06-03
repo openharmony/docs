@@ -20,6 +20,8 @@ onApplicationForeground(): void
 
 Called when the application is switched from the background to the foreground.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **Example**
@@ -31,6 +33,8 @@ For details, see [onApplicationBackground](#applicationstatechangecallbackonappl
 onApplicationBackground(): void
 
 Called when the application is switched from the foreground to the background.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 

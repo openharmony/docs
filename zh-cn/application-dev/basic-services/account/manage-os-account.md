@@ -26,13 +26,13 @@
 2. 导入系统帐号模块。
 
    ```ts
-   import account_osAccount from '@ohos.account.osAccount';
+   import { osAccount, BusinessError } from '@kit.BasicServicesKit';
    ```
 
 3. 获取帐号管理单实例对象。
 
    ```ts
-   let accountManager = account_osAccount.getAccountManager();
+   let accountManager = osAccount.getAccountManager();
    ```
 
 ## 创建系统帐号
@@ -45,9 +45,9 @@
 
 ```ts
 let name: string = 'Bob';
-let type: account_osAccount.OsAccountType = account_osAccount.OsAccount.NORMAL;
+let type: osAccount.OsAccountType = osAccount.OsAccountType.NORMAL;
 
-accountManager.createOsAccount(name, type, (err: BusinessError, osAccountInfo: account_osAccount.OsAccountInfo)=>{
+accountManager.createOsAccount(name, type, (err: BusinessError, osAccountInfo: osAccount.OsAccountInfo)=>{
   console.log('createOsAccount err:' + JSON.stringify(err));
   console.log('createOsAccount osAccountInfo:' + JSON.stringify(osAccountInfo));
 });
@@ -62,7 +62,7 @@ accountManager.createOsAccount(name, type, (err: BusinessError, osAccountInfo: a
 调用[queryAllCreatedOsAccounts](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#queryallcreatedosaccounts)接口查询全量帐号。  
 
 ```ts
-accountManager.queryAllCreatedOsAccounts((err: BusinessError, accountArr: account_osAccount.OsAccountInfo[])=>{
+accountManager.queryAllCreatedOsAccounts((err: BusinessError, accountArr: osAccount.OsAccountInfo[])=>{
   console.log('queryAllCreatedOsAccounts err:' + JSON.stringify(err));
   console.log('queryAllCreatedOsAccounts accountArr:' + JSON.stringify(accountArr));
 });
@@ -78,7 +78,7 @@ accountManager.queryAllCreatedOsAccounts((err: BusinessError, accountArr: accoun
 
 ```ts
 let localId: number = 100;
-accountManager.queryOsAccountById(localId, (err: BusinessError, accountInfo: account_osAccount.OsAccountInfo)=>{
+accountManager.queryOsAccountById(localId, (err: BusinessError, accountInfo: osAccount.OsAccountInfo)=>{
   console.log('queryOsAccountById err:' + JSON.stringify(err));
   console.log('queryOsAccountById accountInfo:' + JSON.stringify(accountInfo));
 });

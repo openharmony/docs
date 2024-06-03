@@ -1,6 +1,6 @@
-# @ohos.app.ability.EmbeddedUIExtensionAbility (ExtensionAbilities for Embeddable UI in Cross-Process Scenarios)
+# @ohos.app.ability.EmbeddedUIExtensionAbility (ExtensionAbilities for Embedded UIs Across Processes)
 
-**EmbeddedUIExtensionAbility**, inherited from [UIExtensionAbility](js-apis-app-ability-uiExtensionAbility.md), provides ExtensionAbilities for the embeddable UI across processes. Currently, the EmbeddedUIExtensionAbility can be started only by the UIAbility of the same application and can be used only in scenarios with multi-process permissions.
+**EmbeddedUIExtensionAbility**, inherited from [UIExtensionAbility](js-apis-app-ability-uiExtensionAbility.md), provides ExtensionAbilities for the embedded UI across processes. Currently, the EmbeddedUIExtensionAbility can be started only by the UIAbility of the same application and can be used only in scenarios with multi-process permissions.
 
 > **NOTE**
 >
@@ -22,7 +22,7 @@ import EmbeddedUIExtensionAbility from '@ohos.app.ability.EmbeddedUIExtensionAbi
 | -------- | -------- | -------- | -------- | -------- |
 | context | [UIExtensionContext](js-apis-inner-application-uiExtensionContext.md) | No| No| Context of the ExtensionAbility.|
 
-## UIExtensionAbility.onCreate
+## EmbeddedUIExtensionAbility.onCreate
 
 onCreate(): void
 
@@ -44,7 +44,7 @@ Called to initialize the service logic when an EmbeddedUIExtensionAbility is cre
   }
   ```
 
-## UIExtensionAbility.onSessionCreate
+## EmbeddedUIExtensionAbility.onSessionCreate
 
 onSessionCreate(want: Want, session: UIExtensionContentSession): void
 
@@ -75,7 +75,7 @@ Called when a **UIExtensionContentSession** instance is created for this Embedde
   }
   ```
 
-## UIExtensionAbility.onSessionDestroy
+## EmbeddedUIExtensionAbility.onSessionDestroy
 
 onSessionDestroy(session: UIExtensionContentSession): void
 
@@ -104,7 +104,7 @@ Called when a **UIExtensionContentSession** instance is destroyed for this Embed
   }
   ```
 
-## UIExtensionAbility.onForeground
+## EmbeddedUIExtensionAbility.onForeground
 
 onForeground(): void
 
@@ -126,7 +126,7 @@ Called when this EmbeddedUIExtensionAbility is switched from the background to t
   }
   ```
 
-## UIExtensionAbility.onBackground
+## EmbeddedUIExtensionAbility.onBackground
 
 onBackground(): void
 
@@ -148,7 +148,7 @@ Called when this EmbeddedUIExtensionAbility is switched from the foreground to t
   }
   ```
 
-## UIExtensionAbility.onDestroy
+## EmbeddedUIExtensionAbility.onDestroy
 
 onDestroy(): void | Promise&lt;void&gt;
 
@@ -162,7 +162,7 @@ After the **onDestroy()** lifecycle callback is executed, the application may ex
 
 | Type             | Description                                                        |
 | ----------------- | ------------------------------------------------------------ |
-| void \| Promise\<void> | No return value or a Promise object that returns no result.      |
+| void \| Promise\<void> | No return value or a Promise object that returns no value.      |
 
 **Example**
 

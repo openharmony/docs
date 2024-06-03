@@ -92,7 +92,7 @@ Connects to this tag. Call this API to set up a connection before reading data f
 
 **System capability**: SystemCapability.Communication.NFC.Tag
 
-**Ability API set**: Since API version 12, this API can be used in abilities.
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **Error codes**
 
@@ -152,7 +152,7 @@ Resets the connection to this tag.
 
 **System capability**: SystemCapability.Communication.NFC.Tag
 
-**Ability API set**: Since API version 12, this API can be used in abilities.
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **Error codes**
 
@@ -215,7 +215,7 @@ Checks whether the tag is connected.
 
 **System capability**: SystemCapability.Communication.NFC.Tag
 
-**Ability API set**: Since API version 12, this API can be used in abilities.
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **Return value**
 
@@ -349,7 +349,7 @@ Obtains the timeout period for sending data to this tag, in milliseconds.
 
 **System capability**: SystemCapability.Communication.NFC.Tag
 
-**Ability API set**: Since API version 12, this API can be used in abilities.
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **Return value**
 
@@ -429,7 +429,7 @@ Sets the maximum time allowed for sending data to this tag, in ms.
 
 **System capability**: SystemCapability.Communication.NFC.Tag
 
-**Ability API set**: Since API version 12, this API can be used in abilities.
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **Parameters**
 
@@ -496,20 +496,22 @@ import { BusinessError } from '@ohos.base';
 // tagInfo is an object provided by the NFC service when a tag is dispatched.
 // getXXX can be getIsoDep, getNdef, getMifareClassic, or any other getter for NFC tags.
 
-// Connect to the tag if it is not connected.
-if (!tag.getIsoDep(tagInfo).isTagConnected()) {
-  if (!tag.getIsoDep(tagInfo).connectTag()) {
-    console.log("tagSession connectTag failed.");
-    return;
-  }
-}
+function tagSessionDemo() {
+    // Connect to the tag if it is not connected.
+    if (!tag.getIsoDep(tagInfo).isTagConnected()) {
+        if (!tag.getIsoDep(tagInfo).connectTag()) {
+            console.log("tagSession connectTag failed.");
+            return;
+        }
+    }  
 
-let cmdData = [0x01, 0x02, 0x03, 0x04]; // Change it as required.
-tag.getIsoDep(tagInfo).sendData(cmdData).then((response) => {
-  console.log("tagSession sendData Promise response: " + response);
-}).catch((err : BusinessError)=> {
-  console.log("tagSession sendData Promise err: " + err);
-});
+    let cmdData = [0x01, 0x02, 0x03, 0x04]; // Change it as required.
+    tag.getIsoDep(tagInfo).sendData(cmdData).then((response) => {
+    console.log("tagSession sendData Promise response: " + response);
+    }).catch((err : BusinessError)=> {
+    console.log("tagSession sendData Promise err: " + err);
+    });
+}
 ```
 
 ### tagSession.sendData<sup>(deprecated)</sup>
@@ -530,7 +532,7 @@ Sends data to this tag. This API uses an asynchronous callback to return the res
 | Name  | Type                   | Mandatory| Description                                  |
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | data | number[] | Yes| Data to send. The data consists of hexadecimal numbers ranging from **0x00** to **0xFF**.|
-| callback | AsyncCallback<number[]> | Yes| Callback invoked to return the response from the tag. The response consists of hexadecimal numbers ranging from **0x00** to **0xFF**.|
+| callback | AsyncCallback<number[]> | Yes| Callback used to return the response from the tag. The response consists of hexadecimal numbers ranging from **0x00** to **0xFF**.|
 
 **Example**
 
@@ -540,22 +542,24 @@ import tag from '@ohos.nfc.tag';
 // tagInfo is an object provided by the NFC service when a tag is dispatched.
 // getXXX can be getIsoDep, getNdef, getMifareClassic, or any other getter for NFC tags.
 
-// Connect to the tag if it is not connected.
-if (!tag.getIsoDep(tagInfo).isTagConnected()) {
-    if (!tag.getIsoDep(tagInfo).connectTag()) {
-        console.log("tagSession connectTag failed.");
-        return;
+function tagSessionDemo() {
+    // Connect to the tag if it is not connected.
+    if (!tag.getIsoDep(tagInfo).isTagConnected()) {
+        if (!tag.getIsoDep(tagInfo).connectTag()) {
+            console.log("tagSession connectTag failed.");
+            return;
+        }
     }
-}
 
-let cmdData = [0x01, 0x02, 0x03, 0x04]; // Change it as required.
-tag.getIsoDep(tagInfo).sendData(cmdData, (err, response)=> {
-    if (err) {
-        console.log("tagSession sendData AsyncCallback err: " + err);
-    } else {
-        console.log("tagSession sendData AsyncCallback response: " + response);
-    }
-});
+    let cmdData = [0x01, 0x02, 0x03, 0x04]; // Change it as required.
+    tag.getIsoDep(tagInfo).sendData(cmdData, (err, response)=> {
+        if (err) {
+            console.log("tagSession sendData AsyncCallback err: " + err);
+        } else {
+            console.log("tagSession sendData AsyncCallback response: " + response);
+        }
+    });
+}
 ```
 
 ### tagSession.transmit<sup>9+</sup>
@@ -568,7 +572,7 @@ Transmits data to this tag. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Communication.NFC.Tag
 
-**Ability API set**: Since API version 12, this API can be used in abilities.
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **Parameters**
 
@@ -589,6 +593,7 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 | ID| Error Message|
 | ------- | -------|
 | 3100201 | Tag running state is abnormal in service. |
+| 3100204 | Tag I/O operation failed. |
 
 **Example**
 
@@ -599,26 +604,28 @@ import { BusinessError } from '@ohos.base';
 // tagInfo is an object provided by the NFC service when a tag is dispatched.
 // getXXX can be getIsoDep, getNdef, getMifareClassic, or any other getter for NFC tags.
 
+function tagSessionDemo() {
 // Connect to the tag if it is not connected.
-try {
-  if (!tag.getIsoDep(tagInfo).isConnected()) {
-    tag.getIsoDep(tagInfo).connect();
-  }
-} catch (busiError) {
-  console.log("tag connect busiError: " + busiError);
-  return;
-}
+    try {
+        if (!tag.getIsoDep(tagInfo).isConnected()) {
+            tag.getIsoDep(tagInfo).connect();
+        }
+    } catch (busiError) {
+        console.log("tag connect busiError: " + busiError);
+        return;
+    }
 
-let cmdData = [0x01, 0x02, 0x03, 0x04]; // Change it as required.
-try {
-  tag.getIsoDep(tagInfo).transmit(cmdData).then((response) => {
-    console.log("tagSession transmit Promise response: " + response);
-  }).catch((err : BusinessError)=> {
-    console.log("tagSession transmit Promise err: " + err);
-  });
-} catch (busiError) {
-  console.log("tag transmit busiError: " + busiError);
-  return;
+    let cmdData = [0x01, 0x02, 0x03, 0x04]; // Change it as required.
+    try {
+    tag.getIsoDep(tagInfo).transmit(cmdData).then((response) => {
+        console.log("tagSession transmit Promise response: " + response);
+    }).catch((err : BusinessError)=> {
+        console.log("tagSession transmit Promise err: " + err);
+    });
+    } catch (busiError) {
+        console.log("tag transmit busiError: " + busiError);
+        return;
+    }
 }
 ```
 
@@ -632,14 +639,14 @@ Transmits data to this tag. This API uses an asynchronous callback to return the
 
 **System capability**: SystemCapability.Communication.NFC.Tag
 
-**Ability API set**: Since API version 12, this API can be used in abilities.
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **Parameters**
 
 | Name  | Type                   | Mandatory| Description                                  |
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | data | number[] | Yes| Data to transmit. The data consists of hexadecimal numbers ranging from **0x00** to **0xFF**. |
-| callback | AsyncCallback<number[]> | Yes| Callback invoked to return the response from the tag. The response consists of hexadecimal numbers ranging from **0x00** to **0xFF**.|
+| callback | AsyncCallback<number[]> | Yes| Callback used to return the response from the tag. The response consists of hexadecimal numbers ranging from **0x00** to **0xFF**.|
 
 **Error codes**
 
@@ -648,6 +655,7 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 | ID| Error Message|
 | ------- | -------|
 | 3100201 | Tag running state is abnormal in service. |
+| 3100204 | Tag I/O operation failed. |
 
 **Example**
 
@@ -657,28 +665,30 @@ import tag from '@ohos.nfc.tag';
 // tagInfo is an object provided by the NFC service when a tag is dispatched.
 // getXXX can be getIsoDep, getNdef, getMifareClassic, or any other getter for NFC tags.
 
-// Connect to the tag if it is not connected.
-try {
-    if (!tag.getIsoDep(tagInfo).isConnected()) {
-        tag.getIsoDep(tagInfo).connect();
-    }
-} catch (busiError) {
-    console.log("tag connect busiError: " + busiError);
-    return;
-}
-
-let cmdData = [0x01, 0x02, 0x03, 0x04]; // Change it as required.
-try {
-    tag.getIsoDep(tagInfo).transmit(cmdData, (err, response)=> {
-        if (err) {
-            console.log("tagSession transmit AsyncCallback err: " + err);
-        } else {
-            console.log("tagSession transmit AsyncCallback response: " + response);
+function tagSessionDemo() {
+    // Connect to the tag if it is not connected.
+    try {
+        if (!tag.getIsoDep(tagInfo).isConnected()) {
+            tag.getIsoDep(tagInfo).connect();
         }
-    });
-} catch (busiError) {
-    console.log("tag transmit busiError: " + busiError);
-    return;
+    } catch (busiError) {
+        console.log("tag connect busiError: " + busiError);
+        return;
+    }
+
+    let cmdData = [0x01, 0x02, 0x03, 0x04]; // Change it as required.
+    try {
+        tag.getIsoDep(tagInfo).transmit(cmdData, (err, response)=> {
+            if (err) {
+                console.log("tagSession transmit AsyncCallback err: " + err);
+            } else {
+                console.log("tagSession transmit AsyncCallback response: " + response);
+            }
+        });
+    } catch (busiError) {
+        console.log("tag transmit busiError: " + busiError);
+        return;
+    }
 }
 
 ```

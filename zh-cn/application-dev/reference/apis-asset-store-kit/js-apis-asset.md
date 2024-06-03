@@ -38,19 +38,19 @@ add(attributes: AssetMap): Promise\<void>
 | -------- | ---------------------------------------------------------- |
 | 201      | The caller doesn't have the permission.                    |
 | 401      | The argument is invalid.                                   |
-| 24000001 | The ASSET Service is unavailable.                          |
-| 24000003 | The Asset already exists.                                  |
-| 24000005 | The screen lock status mismatches.                         |
+| 24000001 | The ASSET service is unavailable.                          |
+| 24000003 | The asset already exists.                                  |
+| 24000005 | The screen lock status does not match.                         |
 | 24000006 | Insufficient memory.                                       |
-| 24000007 | The Asset is corrupted.                                    |
-| 24000008 | The database operation is failed.                          |
-| 24000009 | The cryptography operation is failed.                      |
-| 24000010 | IPC communication is failed                                |
-| 24000011 | The operation of calling Bundle Manager Service is failed. |
-| 24000012 | The operation of calling OS Account Service is failed.     |
-| 24000013 | The operation of calling Access Token Service is failed.   |
-| 24000014 | The operation of file is failed.                           |
-| 24000015 | The operation of getting system time is failed.            |
+| 24000007 | The asset is corrupted.                                    |
+| 24000008 | The database operation failed.                          |
+| 24000009 | The cryptography operation failed.                      |
+| 24000010 | IPC failed.                                |
+| 24000011 | Calling the Bundle Manager service failed. |
+| 24000012 | Calling the OS Account service failed.     |
+| 24000013 | Calling the Access Token service failed.   |
+| 24000014 | The file operation failed.                           |
+| 24000015 | Getting the system time failed.            |
 
 **示例代码：**
 
@@ -101,19 +101,19 @@ addSync(attributes: AssetMap): void
 | -------- | ---------------------------------------------------------- |
 | 201      | The caller doesn't have the permission.                    |
 | 401      | The argument is invalid.                                   |
-| 24000001 | The ASSET Service is unavailable.                          |
-| 24000003 | The Asset already exists.                                  |
-| 24000005 | The screen lock status mismatches.                         |
+| 24000001 | The ASSET service is unavailable.                          |
+| 24000003 | The asset already exists.                                  |
+| 24000005 | The screen lock status does not match.                         |
 | 24000006 | Insufficient memory.                                       |
-| 24000007 | The Asset is corrupted.                                    |
-| 24000008 | The database operation is failed.                          |
-| 24000009 | The cryptography operation is failed.                      |
-| 24000010 | IPC communication is failed                                |
-| 24000011 | The operation of calling Bundle Manager Service is failed. |
-| 24000012 | The operation of calling OS Account Service is failed.     |
-| 24000013 | The operation of calling Access Token Service is failed.   |
-| 24000014 | The operation of file is failed.                           |
-| 24000015 | The operation of getting system time is failed.            |
+| 24000007 | The asset is corrupted.                                    |
+| 24000008 | The database operation failed.                          |
+| 24000009 | The cryptography operation failed.                      |
+| 24000010 | IPC failed.                                |
+| 24000011 | Calling the Bundle Manager service failed. |
+| 24000012 | Calling the OS Account service failed.     |
+| 24000013 | Calling the Access Token service failed.   |
+| 24000014 | The file operation failed.                           |
+| 24000015 | Getting the system time failed.            |
 
 **示例代码：**
 
@@ -165,16 +165,16 @@ remove(query: AssetMap): Promise\<void>
 | 错误码ID | 错误信息                                                   |
 | -------- | ---------------------------------------------------------- |
 | 401      | The argument is invalid.                                   |
-| 24000001 | The ASSET Service is unavailable.                          |
-| 24000002 | The queried Asset can not be found.                        |
+| 24000001 | The ASSET service is unavailable.                          |
+| 24000002 | The asset is not found.                        |
 | 24000006 | Insufficient memory.                                       |
-| 24000007 | The Asset is corrupted.                                    |
-| 24000008 | The database operation is failed.                          |
-| 24000009 | The cryptography operation is failed.                      |
-| 24000010 | IPC communication is failed                                |
-| 24000011 | The operation of calling Bundle Manager Service is failed. |
-| 24000012 | The operation of calling OS Account Service is failed.     |
-| 24000013 | The operation of calling Access Token Service is failed.   |
+| 24000007 | The asset is corrupted.                                    |
+| 24000008 | The database operation failed.                          |
+| 24000010 | IPC failed.                                |
+| 24000011 | Calling the Bundle Manager service failed. |
+| 24000012 | Calling the OS Account service failed.     |
+| 24000013 | Calling the Access Token service failed.   |
+| 24000015 | Getting the system time failed.            |
 
 **示例代码：**
 
@@ -221,16 +221,16 @@ removeSync(query: AssetMap): void
 | 错误码ID | 错误信息                                                   |
 | -------- | ---------------------------------------------------------- |
 | 401      | The argument is invalid.                                   |
-| 24000001 | The ASSET Service is unavailable.                          |
-| 24000002 | The queried Asset can not be found.                        |
+| 24000001 | The ASSET service is unavailable.                          |
+| 24000002 | The asset is not found.                        |
 | 24000006 | Insufficient memory.                                       |
-| 24000007 | The Asset is corrupted.                                    |
-| 24000008 | The database operation is failed.                          |
-| 24000009 | The cryptography operation is failed.                      |
-| 24000010 | IPC communication is failed                                |
-| 24000011 | The operation of calling Bundle Manager Service is failed. |
-| 24000012 | The operation of calling OS Account Service is failed.     |
-| 24000013 | The operation of calling Access Token Service is failed.   |
+| 24000007 | The asset is corrupted.                                    |
+| 24000008 | The database operation failed.                          |
+| 24000010 | IPC failed.                                |
+| 24000011 | Calling the Bundle Manager service failed. |
+| 24000012 | Calling the OS Account service failed.     |
+| 24000013 | Calling the Access Token service failed.   |
+| 24000015 | Getting the system time failed.            |
 
 **示例代码：**
 
@@ -280,18 +280,18 @@ update(query: AssetMap, attributesToUpdate: AssetMap): Promise\<void>
 | 错误码ID | 错误信息                                                   |
 | -------- | ---------------------------------------------------------- |
 | 401      | The argument is invalid.                                   |
-| 24000001 | The ASSET Service is unavailable.                          |
-| 24000002 | The queried Asset can not be found.                        |
-| 24000005 | The screen lock status mismatches.                         |
+| 24000001 | The ASSET service is unavailable.                          |
+| 24000002 | The asset is not found.                        |
+| 24000005 | The screen lock status does not match.                         |
 | 24000006 | Insufficient memory.                                       |
-| 24000007 | The Asset is corrupted.                                    |
-| 24000008 | The database operation is failed.                          |
-| 24000009 | The cryptography operation is failed.                      |
-| 24000010 | IPC communication is failed                                |
-| 24000011 | The operation of calling Bundle Manager Service is failed. |
-| 24000012 | The operation of calling OS Account Service is failed.     |
-| 24000013 | The operation of calling Access Token Service is failed.   |
-| 24000015 | The operation of getting system time is failed.            |
+| 24000007 | The asset is corrupted.                                    |
+| 24000008 | The database operation failed.                          |
+| 24000009 | The cryptography operation failed.                      |
+| 24000010 | IPC failed.                                |
+| 24000011 | Calling the Bundle Manager service failed. |
+| 24000012 | Calling the OS Account service failed.     |
+| 24000013 | Calling the Access Token service failed.   |
+| 24000015 | Getting the system time failed.            |
 
 **示例代码：**
 
@@ -341,18 +341,18 @@ updateSync(query: AssetMap, attributesToUpdate: AssetMap): void
 | 错误码ID | 错误信息                                                   |
 | -------- | ---------------------------------------------------------- |
 | 401      | The argument is invalid.                                   |
-| 24000001 | The ASSET Service is unavailable.                          |
-| 24000002 | The queried Asset can not be found.                        |
-| 24000005 | The screen lock status mismatches.                         |
+| 24000001 | The ASSET service is unavailable.                          |
+| 24000002 | The asset is not found.                        |
+| 24000005 | The screen lock status does not match.                         |
 | 24000006 | Insufficient memory.                                       |
-| 24000007 | The Asset is corrupted.                                    |
-| 24000008 | The database operation is failed.                          |
-| 24000009 | The cryptography operation is failed.                      |
-| 24000010 | IPC communication is failed                                |
-| 24000011 | The operation of calling Bundle Manager Service is failed. |
-| 24000012 | The operation of calling OS Account Service is failed.     |
-| 24000013 | The operation of calling Access Token Service is failed.   |
-| 24000015 | The operation of getting system time is failed.            |
+| 24000007 | The asset is corrupted.                                    |
+| 24000008 | The database operation failed.                          |
+| 24000009 | The cryptography operation failed.                      |
+| 24000010 | IPC failed.                                |
+| 24000011 | Calling the Bundle Manager service failed. |
+| 24000012 | Calling the OS Account service failed.     |
+| 24000013 | Calling the Access Token service failed.   |
+| 24000015 | Getting the system time failed.            |
 
 **示例代码：**
 
@@ -403,17 +403,17 @@ preQuery(query: AssetMap): Promise\<Uint8Array>
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | The argument is invalid.                                     |
-| 24000001 | The ASSET Service is unavailable.                            |
-| 24000002 | The queried Asset can not be found.                          |
-| 24000005 | The screen lock status mismatches.                           |
+| 24000001 | The ASSET service is unavailable.                            |
+| 24000002 | The asset is not found.                          |
+| 24000005 | The screen lock status does not match.                           |
 | 24000006 | Insufficient memory.                                         |
-| 24000007 | The Asset is corrupted.                                      |
-| 24000008 | The database operation is failed.                            |
-| 24000009 | The cryptography operation is failed.                        |
-| 24000010 | IPC communication is failed                                  |
-| 24000011 | The operation of calling Bundle Manager Service is failed.   |
-| 24000012 | The operation of calling OS Account Service is failed.       |
-| 24000013 | The operation of calling Access Token Service is failed.     |
+| 24000007 | The asset is corrupted.                                      |
+| 24000008 | The database operation failed.                            |
+| 24000009 | The cryptography operation failed.                        |
+| 24000010 | IPC failed.                                  |
+| 24000011 | Calling the Bundle Manager service failed.   |
+| 24000012 | Calling the OS Account service failed.       |
+| 24000013 | Calling the Access Token service failed.     |
 | 24000016 | The cache exceeds the limit.                                 |
 | 24000017 | The capability is not supported.                             |
 
@@ -468,17 +468,17 @@ preQuerySync(query: AssetMap): Uint8Array
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | The argument is invalid.                                     |
-| 24000001 | The ASSET Service is unavailable.                            |
-| 24000002 | The queried Asset can not be found.                          |
-| 24000005 | The screen lock status mismatches.                           |
+| 24000001 | The ASSET service is unavailable.                            |
+| 24000002 | The asset is not found.                          |
+| 24000005 | The screen lock status does not match.                           |
 | 24000006 | Insufficient memory.                                         |
-| 24000007 | The Asset is corrupted.                                      |
-| 24000008 | The database operation is failed.                            |
-| 24000009 | The cryptography operation is failed.                        |
-| 24000010 | IPC communication is failed                                  |
-| 24000011 | The operation of calling Bundle Manager Service is failed.   |
-| 24000012 | The operation of calling OS Account Service is failed.       |
-| 24000013 | The operation of calling Access Token Service is failed.     |
+| 24000007 | The asset is corrupted.                                      |
+| 24000008 | The database operation failed.                            |
+| 24000009 | The cryptography operation failed.                        |
+| 24000010 | IPC failed.                                  |
+| 24000011 | Calling the Bundle Manager service failed.   |
+| 24000012 | Calling the OS Account service failed.       |
+| 24000013 | Calling the Access Token service failed.     |
 | 24000016 | The cache exceeds the limit.                                 |
 | 24000017 | The capability is not supported.                             |
 
@@ -529,18 +529,18 @@ query(query: AssetMap): Promise\<Array\<AssetMap>>
 | 错误码ID | 错误信息                                                   |
 | -------- | ---------------------------------------------------------- |
 | 401      | The argument is invalid.                                   |
-| 24000001 | The ASSET Service is unavailable.                          |
-| 24000002 | The queried Asset can not be found.                        |
-| 24000004 | The access to Asset is denied.                             |
-| 24000005 | The screen lock status mismatches.                         |
+| 24000001 | The ASSET service is unavailable.                          |
+| 24000002 | The asset is not found.                        |
+| 24000004 | Access to the asset is denied.                             |
+| 24000005 | The screen lock status does not match.                         |
 | 24000006 | Insufficient memory.                                       |
-| 24000007 | The Asset is corrupted.                                    |
-| 24000008 | The database operation is failed.                          |
-| 24000009 | The cryptography operation is failed.                      |
-| 24000010 | IPC communication is failed                                |
-| 24000011 | The operation of calling Bundle Manager Service is failed. |
-| 24000012 | The operation of calling OS Account Service is failed.     |
-| 24000013 | The operation of calling Access Token Service is failed.   |
+| 24000007 | The asset is corrupted.                                    |
+| 24000008 | The database operation failed.                          |
+| 24000009 | The cryptography operation failed.                      |
+| 24000010 | IPC failed.                                |
+| 24000011 | Calling the Bundle Manager service failed. |
+| 24000012 | Calling the OS Account service failed.     |
+| 24000013 | Calling the Access Token service failed.   |
 | 24000017 | The capability is not supported.                           |
 
 **示例代码：**
@@ -598,18 +598,18 @@ querySync(query: AssetMap): Array\<AssetMap>
 | 错误码ID | 错误信息                                                   |
 | -------- | ---------------------------------------------------------- |
 | 401      | The argument is invalid.                                   |
-| 24000001 | The ASSET Service is unavailable.                          |
-| 24000002 | The queried Asset can not be found.                        |
-| 24000004 | The access to Asset is denied.                             |
-| 24000005 | The screen lock status mismatches.                         |
+| 24000001 | The ASSET service is unavailable.                          |
+| 24000002 | The asset is not found.                        |
+| 24000004 | Access to the asset is denied.                             |
+| 24000005 | The screen lock status does not match.                         |
 | 24000006 | Insufficient memory.                                       |
-| 24000007 | The Asset is corrupted.                                    |
-| 24000008 | The database operation is failed.                          |
-| 24000009 | The cryptography operation is failed.                      |
-| 24000010 | IPC communication is failed                                |
-| 24000011 | The operation of calling Bundle Manager Service is failed. |
-| 24000012 | The operation of calling OS Account Service is failed.     |
-| 24000013 | The operation of calling Access Token Service is failed.   |
+| 24000007 | The asset is corrupted.                                    |
+| 24000008 | The database operation failed.                          |
+| 24000009 | The cryptography operation failed.                      |
+| 24000010 | IPC failed.                                |
+| 24000011 | Calling the Bundle Manager service failed. |
+| 24000012 | Calling the OS Account service failed.     |
+| 24000013 | Calling the Access Token service failed.   |
 | 24000017 | The capability is not supported.                           |
 
 **示例代码：**
@@ -666,12 +666,12 @@ postQuery(handle: AssetMap): Promise\<void>
 | 错误码ID | 错误信息                                                   |
 | -------- | ---------------------------------------------------------- |
 | 401      | The argument is invalid.                                   |
-| 24000001 | The ASSET Service is unavailable.                          |
+| 24000001 | The ASSET service is unavailable.                          |
 | 24000006 | Insufficient memory.                                       |
-| 24000010 | IPC communication is failed                                |
-| 24000011 | The operation of calling Bundle Manager Service is failed. |
-| 24000012 | The operation of calling OS Account Service is failed.     |
-| 24000013 | The operation of calling Access Token Service is failed.   |
+| 24000010 | IPC failed.                                |
+| 24000011 | Calling the Bundle Manager service failed. |
+| 24000012 | Calling the OS Account service failed.     |
+| 24000013 | Calling the Access Token service failed.   |
 
 **示例代码：**
 
@@ -713,12 +713,12 @@ postQuerySync(handle: AssetMap): void
 | 错误码ID | 错误信息                                                   |
 | -------- | ---------------------------------------------------------- |
 | 401      | The argument is invalid.                                   |
-| 24000001 | The ASSET Service is unavailable.                          |
+| 24000001 | The ASSET service is unavailable.                          |
 | 24000006 | Insufficient memory.                                       |
-| 24000010 | IPC communication is failed                                |
-| 24000011 | The operation of calling Bundle Manager Service is failed. |
-| 24000012 | The operation of calling OS Account Service is failed.     |
-| 24000013 | The operation of calling Access Token Service is failed.   |
+| 24000010 | IPC failed.                                |
+| 24000011 | Calling the Bundle Manager service failed. |
+| 24000012 | Calling the OS Account service failed.     |
+| 24000013 | Calling the Access Token service failed.   |
 
 **示例代码：**
 
@@ -779,11 +779,17 @@ try {
 | DATA_LABEL_NORMAL_2 | TagType.BYTES &#124; 0x31 | 关键资产附属信息，内容由业务自定义且**无完整性保护** |
 | DATA_LABEL_NORMAL_3 | TagType.BYTES &#124; 0x32 | 关键资产附属信息，内容由业务自定义且**无完整性保护** |
 | DATA_LABEL_NORMAL_4 | TagType.BYTES &#124; 0x33  | 关键资产附属信息，内容由业务自定义且**无完整性保护** |
+| DATA_LABEL_NORMAL_LOCAL_1<sup>12+</sup> | TagType.BYTES &#124; 0x34 | 关键资产附属的本地信息，内容由业务自定义且**无完整性保护**，该项信息不会进行同步。 |
+| DATA_LABEL_NORMAL_LOCAL_2<sup>12+</sup> | TagType.BYTES &#124; 0x35 | 关键资产附属的本地信息，内容由业务自定义且**无完整性保护**，该项信息不会进行同步。 |
+| DATA_LABEL_NORMAL_LOCAL_3<sup>12+</sup> | TagType.BYTES &#124; 0x36 | 关键资产附属的本地信息，内容由业务自定义且**无完整性保护**，该项信息不会进行同步。 |
+| DATA_LABEL_NORMAL_LOCAL_4<sup>12+</sup> | TagType.BYTES &#124; 0x37 | 关键资产附属的本地信息，内容由业务自定义且**无完整性保护**，该项信息不会进行同步。 |
 | RETURN_TYPE               | TagType.NUMBER &#124; 0x40 | 关键资产查询返回的结果类型                                         |
 | RETURN_LIMIT              | TagType.NUMBER &#124; 0x41                      | 关键资产查询返回的结果数量                                         |
 | RETURN_OFFSET             | TagType.NUMBER &#124; 0x42   | 关键资产查询返回的结果偏移量<br>**说明：** 用于分批查询场景，指定从第几个开始返回                                 |
 | RETURN_ORDERED_BY         | TagType.NUMBER &#124; 0x43 | 关键资产查询返回的结果排序依据，仅支持按照附属信息排序<br>**说明：** 默认按照关键资产新增的顺序返回。 |
 | CONFLICT_RESOLUTION       | TagType.NUMBER &#124; 0x44 | 新增关键资产时的冲突（如：别名相同）处理策略                             |
+| UPDATE_TIME<sup>12+</sup> | TagType.BYTES &#124; 0x45 | 数据的更新时间（时间戳形式） |
+| OPERATION_TYPE<sup>12+</sup> | TagType.NUMBER &#124; 0x46 | 附加的操作类型 |
 
 ## Value
 
@@ -834,11 +840,12 @@ type AssetMap = Map\<Tag, Value>
 
 **系统能力：** SystemCapability.Security.Asset
 
-| 名称           | 值     | 说明                                             |
-| -------------- | ------ | ------------------------------------------------ |
-| NEVER          | 0      | 不允许同步关键资产。                             |
-| THIS_DEVICE    | 1 << 0 | 只在本设备进行同步，如仅在本设备还原的备份场景。 |
-| TRUSTED_DEVICE | 1 << 1 | 只在可信设备间进行同步，如克隆场景。             |
+| 名称                          | 值     | 说明                                             |
+| ----------------------------- | ------ | ------------------------------------------------ |
+| NEVER                         | 0      | 不允许同步关键资产。                             |
+| THIS_DEVICE                   | 1 << 0 | 只在本设备进行同步，如仅在本设备还原的备份场景。 |
+| TRUSTED_DEVICE                | 1 << 1 | 只在可信设备间进行同步，如克隆场景。             |
+| TRUSTED_ACCOUNT<sup>12+</sup> | 1 << 2 | 只在登录可信账号的设备间进行同步，如云同步场景。 |
 
 ## ReturnType
 
@@ -861,3 +868,43 @@ type AssetMap = Map\<Tag, Value>
 | ----------- | ---- | ---------------------------- |
 | OVERWRITE   | 0    | 覆盖原有的关键资产。    |
 | THROW_ERROR | 1    | 抛出异常，由业务进行后续处理。 |
+
+## OperationType<sup>12+</sup>
+
+枚举，附属的操作类型。
+
+**系统能力：** SystemCapability.Security.Asset
+
+| 名称        | 值   | 说明               |
+| ----------- | ---- | ------------------ |
+| NEED_SYNC   | 0    | 需要进行同步操作。 |
+| NEED_LOGOUT | 1    | 需要进行登出操作。 |
+
+## AssetErrorCode
+
+表示错误码的枚举。
+
+**系统能力：** SystemCapability.Security.Asset
+
+| 名称                       | 值    | 说明 |
+| -------------------------- | ----- | ---- |
+| PERMISSION_DENIED | 201     |The caller doesn't have the permission.|
+| NOT_SYSTEM_APPLICATION | 202     |The caller is not a system application.|
+| INVALID_ARGUMENT | 401    |The argument is invalid.|
+| SERVICE_UNAVAILABLE | 24000001    |The ASSET service is unavailable.|
+| NOT_FOUND | 24000002    |The asset is not found.|
+| DUPLICATED | 24000003    |The asset already exists.|
+| ACCESS_DENIED | 24000004    |Access to the asset is denied.|
+| STATUS_MISMATCH | 24000005    |The screen lock status does not match.|
+| OUT_OF_MEMORY | 24000006    |Insufficient memory.|
+| DATA_CORRUPTED | 24000007    |The asset is corrupted.|
+| DATABASE_ERROR | 24000008   |The database operation failed.|
+| CRYPTO_ERROR | 24000009   |The cryptography operation failed.|
+| IPC_ERROR | 24000010   |IPC failed.|
+| BMS_ERROR | 24000011   |Calling the Bundle Manager service failed.|
+| ACCOUNT_ERROR | 24000012   |Calling the OS Account service failed.|
+| ACCESS_TOKEN_ERROR | 24000013   |Calling the Access Token service failed.|
+| FILE_OPERATION_ERROR | 24000014   |The file operation failed.|
+| GET_SYSTEM_TIME_ERROR | 24000015   |Getting the system time failed.|
+| LIMIT_EXCEEDED | 24000016   |The cache exceeds the limit.|
+| UNSUPPORTED | 24000017   |The capability is not supported.|

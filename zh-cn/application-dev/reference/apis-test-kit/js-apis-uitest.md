@@ -13,8 +13,9 @@ UiTest提供模拟UI操作的能力，供开发者在测试场景使用，主要
 - [UiDriver<sup>(deprecated)</sup>](#uidriverdeprecated)：入口类，提供控件匹配/查找，按键注入，坐标点击/滑动，截图等能力。从API version 9开始不再维护，建议使用[Driver<sup>9+</sup>](#driver9)。
 
 > **说明：**
- > - 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
- > - 本模块接口在[自动化测试脚本](../../application-test/arkxtest-guidelines.md)中使用。
+> - 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> - 本模块接口在[自动化测试脚本](../../application-test/arkxtest-guidelines.md)中使用。
+> - 本模块接口不支持并发调用。
 
 
 ## 导入模块
@@ -26,6 +27,8 @@ import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern
 ## MatchPattern
 
 控件属性支持的匹配模式。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -39,6 +42,8 @@ import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern
 ## ResizeDirection<sup>9+</sup>
 
 窗口调整大小的方向。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -57,6 +62,8 @@ import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern
 
 坐标点信息。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 | 名称 | 类型   | 可读 | 可写 | 说明             |
@@ -67,6 +74,8 @@ import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern
 ## Rect<sup>9+</sup>
 
 控件的边框信息。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -81,6 +90,8 @@ import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern
 
 窗口的窗口模式。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 | 名称       | 值   | 说明       |
@@ -94,6 +105,8 @@ import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern
 
 设备显示器的显示方向。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 | 名称         | 值   | 说明                                     |
@@ -106,6 +119,8 @@ import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern
 ## WindowFilter<sup>9+</sup>
 
 窗口的标志属性信息。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -121,6 +136,8 @@ import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern
 
 进行抛滑等UI操作时的方向。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 | 名称  | 值   | 说明   |
@@ -134,6 +151,8 @@ import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern
 
 模拟注入的鼠标按钮。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 | 名称                | 值   | 说明         |
@@ -145,6 +164,8 @@ import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern
 ## UIElementInfo<sup>10+</sup>
 
 UI事件的相关信息。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -170,6 +191,8 @@ text(txt: string, pattern?: MatchPattern): On
 
 指定目标控件文本属性，支持多种匹配模式，返回On对象自身。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
@@ -185,6 +208,14 @@ text(txt: string, pattern?: MatchPattern): On
 | ---------- | ---------------------------------- |
 | [On](#on9) | 返回指定目标控件文本属性的On对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例：**
 
 ```ts
@@ -197,6 +228,8 @@ let on:On = ON.text('123'); // 使用静态构造器ON创建On对象，指定目
 id(id: string): On
 
 指定目标控件id属性，返回On对象自身。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -212,6 +245,14 @@ id(id: string): On
 | ---------- | -------------------------------- |
 | [On](#on9) | 返回指定目标控件id属性的On对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例：**
 
 ```ts
@@ -225,6 +266,8 @@ let on:On = ON.id('123'); // 使用静态构造器ON创建On对象，指定目�
 type(tp: string): On
 
 指定目标控件的控件类型属性，返回On对象自身。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -240,6 +283,14 @@ type(tp: string): On
 | ---------- | ---------------------------------------- |
 | [On](#on9) | 返回指定目标控件的控件类型属性的On对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例：**
 
 ```ts
@@ -253,6 +304,8 @@ let on:On = ON.type('Button'); // 使用静态构造器ON创建On对象，指定
 clickable(b?: boolean): On
 
 指定目标控件的可点击状态属性，返回On对象自身。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -268,6 +321,14 @@ clickable(b?: boolean): On
 | ---------- | ------------------------------------------ |
 | [On](#on9) | 返回指定目标控件的可点击状态属性的On对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | 1. Incorrect parameter types; 2. Parameter verification failed. |
+
 **示例：**
 
 ```ts
@@ -280,6 +341,8 @@ let on:On = ON.clickable(true); // 使用静态构造器ON创建On对象，指�
 longClickable(b?: boolean): On
 
 指定目标控件的可长按点击状态属性，返回On对象自身。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -295,6 +358,14 @@ longClickable(b?: boolean): On
 | ---------- | ---------------------------------------------- |
 | [On](#on9) | 返回指定目标控件的可长按点击状态属性的On对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | 1. Incorrect parameter types; 2. Parameter verification failed. |
+
 **示例：**
 
 ```ts
@@ -308,6 +379,8 @@ let on:On = ON.longClickable(true); // 使用静态构造器ON创建On对象，�
 scrollable(b?: boolean): On
 
 指定目标控件的可滑动状态属性，返回On对象自身。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -323,6 +396,14 @@ scrollable(b?: boolean): On
 | ---------- | ------------------------------------------ |
 | [On](#on9) | 返回指定目标控件的可滑动状态属性的On对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | 1. Incorrect parameter types; 2. Parameter verification failed. |
+
 **示例：**
 
 ```ts
@@ -335,6 +416,8 @@ let on:On = ON.scrollable(true); // 使用静态构造器ON创建On对象，指�
 enabled(b?: boolean): On
 
 指定目标控件的使能状态属性，返回On对象自身。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -349,6 +432,14 @@ enabled(b?: boolean): On
 | 类型       | 说明                                     |
 | ---------- | ---------------------------------------- |
 | [On](#on9) | 返回指定目标控件的使能状态属性的On对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | 1. Incorrect parameter types; 2. Parameter verification failed. |
 
 **示例：**
 
@@ -377,6 +468,14 @@ focused(b?: boolean): On
 | ---------- | ---------------------------------------- |
 | [On](#on9) | 返回指定目标控件的获焦状态属性的On对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | 1. Incorrect parameter types; 2. Parameter verification failed. |
+
 **示例：**
 
 ```ts
@@ -389,6 +488,8 @@ let on:On = ON.focused(true); // 使用静态构造器ON创建On对象，指定�
 selected(b?: boolean): On
 
 指定目标控件的被选中状态属性，返回On对象自身。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -404,6 +505,14 @@ selected(b?: boolean): On
 | ---------- | ------------------------------------------ |
 | [On](#on9) | 返回指定目标控件的被选中状态属性的On对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | 1. Incorrect parameter types; 2. Parameter verification failed. |
+
 **示例：**
 
 ```ts
@@ -416,6 +525,8 @@ let on:On = ON.selected(true); // 使用静态构造器ON创建On对象，指定
 checked(b?: boolean): On
 
 指定目标控件的被勾选状态属性，返回On对象自身。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -431,6 +542,14 @@ checked(b?: boolean): On
 | ---------- | ------------------------------------------ |
 | [On](#on9) | 返回指定目标控件的被勾选状态属性的On对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | 1. Incorrect parameter types; 2. Parameter verification failed. |
+
 **示例：**
 
 ```ts
@@ -443,6 +562,8 @@ let on:On = ON.checked(true); // 使用静态构造器ON创建On对象，指定�
 checkable(b?: boolean): On
 
 指定目标控件能否被勾选状态属性，返回On对象自身。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -458,6 +579,14 @@ checkable(b?: boolean): On
 | ---------- | -------------------------------------------- |
 | [On](#on9) | 返回指定目标控件能否被勾选状态属性的On对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | 1. Incorrect parameter types; 2. Parameter verification failed. |
+
 **示例：**
 
 ```ts
@@ -470,6 +599,8 @@ let on:On = ON.checkable(true); // 使用静态构造器ON创建On对象，指�
 isBefore(on: On): On
 
 指定目标控件位于给出的特征属性控件之前，返回On对象自身。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -484,6 +615,14 @@ isBefore(on: On): On
 | 类型       | 说明                                                 |
 | ---------- | ---------------------------------------------------- |
 | [On](#on9) | 返回指定目标控件位于给出的特征属性控件之前的On对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -500,6 +639,8 @@ isAfter(on: On): On
 
 指定目标控件位于给出的特征属性控件之后，返回On对象自身。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
@@ -513,6 +654,14 @@ isAfter(on: On): On
 | 类型       | 说明                                                 |
 | ---------- | ---------------------------------------------------- |
 | [On](#on9) | 返回指定目标控件位于给出的特征属性控件之后的On对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -529,6 +678,8 @@ within(on: On): On
 
 指定目标控件位于给出的特征属性控件之内，返回On对象自身。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
@@ -542,6 +693,14 @@ within(on: On): On
 | 类型       | 说明                                               |
 | ---------- | -------------------------------------------------- |
 | [On](#on9) | 返回指定目标控件位于给出的特征属性控件内的On对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -557,6 +716,8 @@ inWindow(bundleName: string): On;
 
 指定目标控件位于给出的应用窗口内，返回On对象自身。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
@@ -571,6 +732,14 @@ inWindow(bundleName: string): On;
 | ---------- | ---------------------------------------------- |
 | [On](#on9) | 返回指定目标控件位于给出的应用窗口内的On对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例：**
 
 ```ts
@@ -583,6 +752,8 @@ let on:On = ON.inWindow('com.uitestScene.acts'); // 使用静态构造器ON创�
 description(val: string, pattern?: MatchPattern): On
 
 指定目标控件的描述属性，支持多种匹配模式，返回On对象自身。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -598,6 +769,14 @@ description(val: string, pattern?: MatchPattern): On
 | 类型       | 说明                                      |
 | ---------- | ----------------------------------------- |
 | [On](#on9) | 返回指定目标控件description属性的On对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -616,6 +795,8 @@ UiTest框架在API9中，Component类代表了UI界面上的一个控件，提�
 click(): Promise\<void>
 
 控件对象进行点击操作。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -645,6 +826,8 @@ doubleClick(): Promise\<void>
 
 控件对象进行双击操作。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **错误码：**
@@ -673,6 +856,8 @@ longClick(): Promise\<void>
 
 控件对象进行长按操作。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **错误码：**
@@ -700,6 +885,8 @@ async function demo() {
 getId(): Promise\<string>
 
 获取控件对象的id值。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -735,6 +922,8 @@ getText(): Promise\<string>
 
 获取控件对象的文本信息。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **返回值：**
@@ -768,6 +957,8 @@ async function demo() {
 getType(): Promise\<string>
 
 获取控件对象的控件类型。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -803,6 +994,8 @@ getBounds(): Promise\<Rect>
 
 获取控件对象的边框信息。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **返回值：**
@@ -837,6 +1030,8 @@ getBoundsCenter(): Promise\<Point>
 
 获取控件对象所占区域的中心点信息。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **返回值：**
@@ -870,6 +1065,8 @@ async function demo() {
 isClickable(): Promise\<boolean>
 
 获取控件对象可点击属性。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -909,6 +1106,8 @@ isLongClickable(): Promise\<boolean>
 
 获取控件对象可长按点击属性。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **返回值：**
@@ -946,6 +1145,8 @@ async function demo() {
 isChecked(): Promise\<boolean>
 
 获取控件对象被勾选状态。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -985,6 +1186,8 @@ isCheckable(): Promise\<boolean>
 
 获取控件对象能否被勾选属性。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **返回值：**
@@ -1022,6 +1225,8 @@ async function demo() {
 isScrollable(): Promise\<boolean>
 
 获取控件对象可滑动属性。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -1062,6 +1267,8 @@ isEnabled(): Promise\<boolean>
 
 获取控件使能状态。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **返回值：**
@@ -1099,6 +1306,8 @@ async function demo() {
 isFocused(): Promise\<boolean>
 
 判断控件对象获焦状态。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -1138,6 +1347,8 @@ isSelected(): Promise\<boolean>
 
 获取控件对象被选中状态。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **返回值：**
@@ -1176,6 +1387,8 @@ inputText(text: string): Promise\<void>
 
 向控件中输入文本(适用于文本框控件)。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
@@ -1186,12 +1399,13 @@ inputText(text: string): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | if the async function was not called with await. |
 | 17000004 | if the component is invisible or destroyed.           |
+| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -1209,6 +1423,8 @@ async function demo() {
 clearText(): Promise\<void>
 
 清除控件的文本信息(适用于文本框控件)。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -1237,6 +1453,8 @@ scrollSearch(on: On): Promise\<Component>
 
 在控件上滑动查找目标控件(适用支持滑动的控件)。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
@@ -1253,12 +1471,13 @@ scrollSearch(on: On): Promise\<Component>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | if the async function was not called with await. |
 | 17000004 | if the component is invisible or destroyed.           |
+| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -1277,6 +1496,8 @@ scrollToTop(speed?: number): Promise\<void>
 
 在控件上滑动到顶部(适用支持滑动的控件)。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
@@ -1287,12 +1508,13 @@ scrollToTop(speed?: number): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | if the async function was not called with await. |
 | 17000004 | if the component is invisible or destroyed.           |
+| 401 | 1. Incorrect parameter types; 2. Parameter verification failed. |
 
 **示例：**
 
@@ -1311,6 +1533,8 @@ scrollToBottom(speed?: number): Promise\<void>
 
 在控件上滑动到底部(适用支持滑动的控件)。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
@@ -1321,12 +1545,13 @@ scrollToBottom(speed?: number): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | if the async function was not called with await. |
 | 17000004 | if the component is invisible or destroyed.           |
+| 401 | 1. Incorrect parameter types; 2. Parameter verification failed. |
 
 **示例：**
 
@@ -1345,6 +1570,8 @@ dragTo(target: Component): Promise\<void>
 
 将控件拖拽至目标控件处。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
@@ -1355,12 +1582,13 @@ dragTo(target: Component): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | if the async function was not called with await. |
 | 17000004 | if the component is invisible or destroyed.           |
+| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -1380,22 +1608,25 @@ pinchOut(scale: number): Promise\<void>
 
 将控件按指定的比例进行捏合放大。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 说明             |
-| ------ | ------ | ---- | ---------------- |
-| scale  | number | 是   | 指定放大的比例。 |
+| 参数名 | 类型   | 必填 | 说明                            |
+| ------ | ------ | ---- | ------------------------------- |
+| scale  | number | 是   | 指定放大的比例。取值范围大于1。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | if the async function was not called with await. |
 | 17000004 | if the component is invisible or destroyed.           |
+| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -1414,22 +1645,25 @@ pinchIn(scale: number): Promise\<void>
 
 将控件按指定的比例进行捏合缩小。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 说明             |
-| ------ | ------ | ---- | ---------------- |
-| scale  | number | 是   | 指定缩小的比例。 |
+| 参数名 | 类型   | 必填 | 说明                            |
+| ------ | ------ | ---- | ------------------------------- |
+| scale  | number | 是   | 指定缩小的比例。取值范围为0~1。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | if the async function was not called with await. |
 | 17000004 | if the component is invisible or destroyed.           |
+| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -1448,6 +1682,8 @@ getDescription(): Promise\<string>
 
 获取控件对象的描述信息，使用Promise异步回调。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **返回值：**
@@ -1458,12 +1694,12 @@ getDescription(): Promise\<string>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID | 错误信息                                         |
-| -------- | ------------------------------------------------ |
-| 17000002 | if the async function was not called with await. |
-| 17000004 | if the component is invisible or destroyed.      |
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17000002 | if the async function was not called with await.             |
+| 17000004 | if the component is invisible or destroyed.                  |
 
 **示例：**
 
@@ -1486,6 +1722,8 @@ Driver类为uitest测试框架的总入口，提供控件匹配/查找，按键�
 static create(): Driver
 
 静态方法，构造一个Driver对象，并返回该对象。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -1518,21 +1756,24 @@ delayMs(duration: number): Promise\<void>
 
 Driver对象在给定的时间内延时。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
 
-| 参数名   | 类型   | 必填 | 说明                   |
-| -------- | ------ | ---- | ---------------------- |
-| duration | number | 是   | 给定的时间，单位：ms。 |
+| 参数名   | 类型   | 必填 | 说明                            |
+| -------- | ------ | ---- | ------------------------------- |
+| duration | number | 是   | 给定的时间，单位：ms，取值大于等于0。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | if the async function was not called with await. |
+| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -1550,6 +1791,8 @@ findComponent(on: On): Promise\<Component>
 
 在Driver对象中，根据给出的目标控件属性要求查找目标控件。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
@@ -1566,11 +1809,12 @@ findComponent(on: On): Promise\<Component>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | if the async function was not called with await. |
+| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -1588,6 +1832,8 @@ findComponents(on: On): Promise\<Array\<Component>>
 
 在Driver对象中，根据给出的目标控件属性要求查找出所有匹配控件，以列表保存。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
@@ -1604,11 +1850,12 @@ findComponents(on: On): Promise\<Array\<Component>>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | if the async function was not called with await. |
+| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -1626,6 +1873,8 @@ findWindow(filter: WindowFilter): Promise\<UiWindow>
 
 通过指定窗口的属性来查找目标窗口。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
@@ -1642,11 +1891,12 @@ findWindow(filter: WindowFilter): Promise\<UiWindow>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | if the async function was not called with await. |
+| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -1664,14 +1914,16 @@ waitForComponent(on: On, time: number): Promise\<Component>
 
 在Driver对象中，在用户给定的时间内，持续查找满足控件属性要求的目标控件。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
 
-| 参数名 | 类型       | 必填 | 说明                             |
-| ------ | ---------- | ---- | -------------------------------- |
-| On     | [On](#on9) | 是   | 目标控件的属性要求。             |
-| time   | number     | 是   | 查找目标控件的持续时间。单位ms。 |
+| 参数名 | 类型       | 必填 | 说明                                      |
+| ------ | ---------- | ---- | ----------------------------------------- |
+| On     | [On](#on9) | 是   | 目标控件的属性要求。                      |
+| time   | number     | 是   | 查找目标控件的持续时间。单位ms，取值大于等于0。 |
 
 **返回值：**
 
@@ -1681,11 +1933,12 @@ waitForComponent(on: On, time: number): Promise\<Component>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | if the async function was not called with await. |
+| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -1703,6 +1956,8 @@ assertComponentExist(on: On): Promise\<void>
 
 断言API，用于断言当前界面是否存在满足给出的目标属性的控件。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
@@ -1713,12 +1968,13 @@ assertComponentExist(on: On): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | if the async function was not called with await. |
 | 17000003 | if the assertion failed.    |
+| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -1735,6 +1991,8 @@ async function demo() {
 pressBack(): Promise\<void>
 
 Driver对象进行点击BACK键的操作。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -1762,6 +2020,8 @@ triggerKey(keyCode: number): Promise\<void>
 
 Driver对象采取如下操作：传入key值实现模拟点击对应按键的效果。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
@@ -1772,11 +2032,12 @@ Driver对象采取如下操作：传入key值实现模拟点击对应按键的�
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | if the async function was not called with await. |
+| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -1794,6 +2055,8 @@ triggerCombineKeys(key0: number, key1: number, key2?: number): Promise\<void>
 
 Driver对象通过给定的key值，找到对应组合键并点击。例如，Key值为(2072, 2019)时，Driver对象找到key值对应的组合键并点击，如ctrl+c。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
@@ -1806,11 +2069,12 @@ Driver对象通过给定的key值，找到对应组合键并点击。例如，Ke
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | if the async function was not called with await. |
+| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -1829,22 +2093,25 @@ click(x: number, y: number): Promise\<void>
 
 Driver对象采取如下操作：在目标坐标点单击。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 说明                                   |
-| ------ | ------ | ---- | -------------------------------------- |
-| x      | number | 是   | 以number的形式传入目标点的横坐标信息。 |
-| y      | number | 是   | 以number的形式传入目标点的纵坐标信息。 |
+| 参数名 | 类型   | 必填 | 说明                                            |
+| ------ | ------ | ---- | ----------------------------------------------- |
+| x      | number | 是   | 以number的形式传入目标点的横坐标信息，取值大于等于0。 |
+| y      | number | 是   | 以number的形式传入目标点的纵坐标信息，取值大于等于0。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | if the async function was not called with await. |
+| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -1862,22 +2129,25 @@ doubleClick(x: number, y: number): Promise\<void>
 
 Driver对象采取如下操作：在目标坐标点双击。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 说明                                   |
-| ------ | ------ | ---- | -------------------------------------- |
-| x      | number | 是   | 以number的形式传入目标点的横坐标信息。 |
-| y      | number | 是   | 以number的形式传入目标点的纵坐标信息。 |
+| 参数名 | 类型   | 必填 | 说明                                            |
+| ------ | ------ | ---- | ----------------------------------------------- |
+| x      | number | 是   | 以number的形式传入目标点的横坐标信息，取值大于等于0。 |
+| y      | number | 是   | 以number的形式传入目标点的纵坐标信息，取值大于等于0。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | if the async function was not called with await. |
+| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -1895,22 +2165,25 @@ longClick(x: number, y: number): Promise\<void>
 
 Driver对象采取如下操作：在目标坐标点长按。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 说明                                   |
-| ------ | ------ | ---- | -------------------------------------- |
-| x      | number | 是   | 以number的形式传入目标点的横坐标信息。 |
-| y      | number | 是   | 以number的形式传入目标点的纵坐标信息。 |
+| 参数名 | 类型   | 必填 | 说明                                            |
+| ------ | ------ | ---- | ----------------------------------------------- |
+| x      | number | 是   | 以number的形式传入目标点的横坐标信息，取值大于等于0。 |
+| y      | number | 是   | 以number的形式传入目标点的纵坐标信息，取值大于等于0。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | if the async function was not called with await. |
+| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -1928,25 +2201,28 @@ swipe(startx: number, starty: number, endx: number, endy: number, speed?: number
 
 Driver对象采取如下操作：从起始坐标点滑向目的坐标点。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| startx | number | 是   | 以number的形式传入起始点的横坐标信息。                       |
-| starty | number | 是   | 以number的形式传入起始点的纵坐标信息。                       |
-| endx   | number | 是   | 以number的形式传入目的点的横坐标信息。                       |
-| endy   | number | 是   | 以number的形式传入目的点的纵坐标信息。                       |
+| startx | number | 是   | 以number的形式传入起始点的横坐标信息，取值大于等于0。              |
+| starty | number | 是   | 以number的形式传入起始点的纵坐标信息，取值大于等于0。              |
+| endx   | number | 是   | 以number的形式传入目的点的横坐标信息，取值大于等于0。              |
+| endy   | number | 是   | 以number的形式传入目的点的纵坐标信息，取值大于等于0。              |
 | speed  | number | 否   | 滑动速率，范围：200-40000，不在范围内设为默认值为600，单位：像素点/秒。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | if the async function was not called with await. |
+| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -1964,25 +2240,28 @@ drag(startx: number, starty: number, endx: number, endy: number, speed?: number)
 
 Driver对象采取如下操作：从起始坐标点拖拽至目的坐标点。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| startx | number | 是   | 以number的形式传入起始点的横坐标信息。                       |
-| starty | number | 是   | 以number的形式传入起始点的纵坐标信息。                       |
-| endx   | number | 是   | 以number的形式传入目的点的横坐标信息。                       |
-| endy   | number | 是   | 以number的形式传入目的点的纵坐标信息。                       |
+| startx | number | 是   | 以number的形式传入起始点的横坐标信息，取值大于等于0。              |
+| starty | number | 是   | 以number的形式传入起始点的纵坐标信息，取值大于等于0。              |
+| endx   | number | 是   | 以number的形式传入目的点的横坐标信息，取值大于等于0。              |
+| endy   | number | 是   | 以number的形式传入目的点的纵坐标信息，取值大于等于0。              |
 | speed  | number | 否   | 滑动速率，范围：200-40000，不在范围内设为默认值为600，单位：像素点/秒。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | if the async function was not called with await. |
+| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -2000,13 +2279,15 @@ screenCap(savePath: string): Promise\<boolean>
 
 Driver对象采取如下操作：捕获当前屏幕，并保存为PNG格式的图片至给出的保存路径中。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
 
-| 参数名   | 类型   | 必填 | 说明           |
-| -------- | ------ | ---- | -------------- |
-| savePath | string | 是   | 文件保存路径。 |
+| 参数名   | 类型   | 必填 | 说明                                       |
+| -------- | ------ | ---- | ------------------------------------------ |
+| savePath | string | 是   | 文件保存路径。路径需为当前应用的沙箱路径。 |
 
 **返回值：**
 
@@ -2016,11 +2297,12 @@ Driver对象采取如下操作：捕获当前屏幕，并保存为PNG格式的�
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | if the async function was not called with await. |
+| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -2036,7 +2318,9 @@ async function demo() {
 
 setDisplayRotation(rotation: DisplayRotation): Promise\<void>
 
-将设备的屏幕显示方向设置为指定的显示方向。
+将当前场景的显示方向设置为指定的显示方向。适用于可旋转的应用场景。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -2048,11 +2332,12 @@ setDisplayRotation(rotation: DisplayRotation): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | if the async function was not called with await. |
+| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -2069,6 +2354,8 @@ async function demo() {
 getDisplayRotation(): Promise\<DisplayRotation>
 
 获取当前设备的屏幕显示方向。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -2102,6 +2389,8 @@ setDisplayRotationEnabled(enabled: boolean): Promise\<void>
 
 启用/禁用设备旋转屏幕的功能。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
@@ -2112,11 +2401,12 @@ setDisplayRotationEnabled(enabled: boolean): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | if the async function was not called with await. |
+| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -2133,6 +2423,8 @@ async function demo() {
 getDisplaySize(): Promise\<Point>
 
 获取当前设备的屏幕大小。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -2167,6 +2459,8 @@ getDisplayDensity(): Promise\<Point>
 
 获取当前设备屏幕的分辨率。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **返回值：**
@@ -2199,6 +2493,8 @@ wakeUpDisplay(): Promise\<void>
 
 唤醒当前设备即设备亮屏。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **错误码：**
@@ -2224,6 +2520,8 @@ async function demo() {
 pressHome(): Promise\<void>
 
 设备返回到桌面。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -2251,14 +2549,16 @@ waitForIdle(idleTime: number, timeout: number): Promise\<boolean>
 
 判断当前界面的所有控件是否已经空闲。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
 
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| idleTime | number | 是   | 空闲时间的阈值。在这个时间段控件不发生变化，视为该控件空闲，单位：毫秒。 |
-| timeout  | number | 是   | 等待空闲的最大时间，单位：毫秒。                             |
+| idleTime | number | 是   | 空闲时间的阈值。在这个时间段控件不发生变化，视为该控件空闲，单位：毫秒，取值大于等于0。 |
+| timeout  | number | 是   | 等待空闲的最大时间，单位：毫秒，取值大于等于0。                    |
 
 **返回值：**
 
@@ -2268,11 +2568,12 @@ waitForIdle(idleTime: number, timeout: number): Promise\<boolean>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | if the async function was not called with await. |
+| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -2290,6 +2591,8 @@ fling(from: Point, to: Point, stepLen: number, speed: number): Promise\<void>
 
 模拟手指滑动后脱离屏幕的快速滑动操作。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
@@ -2303,11 +2606,12 @@ fling(from: Point, to: Point, stepLen: number, speed: number): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | if the async function was not called with await. |
+| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -2324,6 +2628,8 @@ async function demo() {
 injectMultiPointerAction(pointers: PointerMatrix, speed?: number): Promise\<boolean>
 
 向设备注入多指操作。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -2342,11 +2648,12 @@ injectMultiPointerAction(pointers: PointerMatrix, speed?: number): Promise\<bool
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | if the async function was not called with await. |
+| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -2375,6 +2682,8 @@ fling(direction: UiDirection, speed: number): Promise\<void>;
 
 指定方向和速度，模拟手指滑动后脱离屏幕的快速滑动操作。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
@@ -2386,11 +2695,12 @@ fling(direction: UiDirection, speed: number): Promise\<void>;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID | 错误信息                                 |
-| -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17000002 | if the async function was not called with await.             |
+| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -2408,14 +2718,16 @@ screenCapture(savePath: string, rect?: Rect): Promise\<boolean>;
 
 捕获当前屏幕的指定区域，并保存为PNG格式的图片至给出的保存路径中。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
 
-| 参数名   | 类型           | 必填 | 说明                   |
-| -------- | -------------- | ---- | ---------------------- |
-| savePath | string         | 是   | 文件保存路径。         |
-| rect     | [Rect](#rect9) | 否   | 截图区域，默认为全屏。 |
+| 参数名   | 类型           | 必填 | 说明                                       |
+| -------- | -------------- | ---- | ------------------------------------------ |
+| savePath | string         | 是   | 文件保存路径。路径需为当前应用的沙箱路径。 |
+| rect     | [Rect](#rect9) | 否   | 截图区域，默认为全屏。                     |
 
 **返回值：**
 
@@ -2425,11 +2737,12 @@ screenCapture(savePath: string, rect?: Rect): Promise\<boolean>;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID | 错误信息                                 |
-| -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17000002 | if the async function was not called with await.             |
+| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -2447,6 +2760,8 @@ mouseClick(p: Point, btnId: MouseButton, key1?: number, key2?: number): Promise\
 
 在指定坐标点注入鼠标点击动作，支持同时按下对应键盘组合键。例如，Key值为2072时，按下ctrl并进行鼠标点击动作。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
@@ -2460,11 +2775,12 @@ mouseClick(p: Point, btnId: MouseButton, key1?: number, key2?: number): Promise\
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID | 错误信息                                 |
-| -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17000002 | if the async function was not called with await.             |
+| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -2482,6 +2798,8 @@ mouseScroll(p: Point, down: boolean, d: number, key1?: number, key2?: number): P
 
 在指定坐标点注入鼠标滚轮滑动动作，支持同时按下对应键盘组合键。例如，Key值为2072时，按下ctrl并进行鼠标滚轮滑动动作。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
@@ -2496,11 +2814,12 @@ mouseScroll(p: Point, down: boolean, d: number, key1?: number, key2?: number): P
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID | 错误信息                                 |
-| -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17000002 | if the async function was not called with await.             |
+| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -2520,6 +2839,8 @@ mouseMoveTo(p: Point): Promise\<void>;
 
 **系统能力**：SystemCapability.Test.UiTest
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名 | 类型             | 必填 | 说明           |
@@ -2528,11 +2849,12 @@ mouseMoveTo(p: Point): Promise\<void>;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID | 错误信息                                 |
-| -------- | ---------------------------------------- |
-| 17000002 | if the async function was not called with await. |
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17000002 | if the async function was not called with await.             |
+| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -2549,6 +2871,8 @@ async function demo() {
 createUIEventObserver(): UIEventObserver;
 
 创建一个UI事件监听器。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -2582,6 +2906,8 @@ mouseScroll(p: Point, down: boolean, d: number, key1?: number, key2?: number, sp
 
 在指定坐标点注入鼠标滚轮滑动动作，支持同时按下对应键盘组合键并且指定滑动速度。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
@@ -2597,11 +2923,12 @@ mouseScroll(p: Point, down: boolean, d: number, key1?: number, key2?: number, sp
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID | 错误信息                                         |
-| -------- | ------------------------------------------------ |
-| 17000002 | if the async function was not called with await. |
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17000002 | if the async function was not called with await.             |
+| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -2619,6 +2946,8 @@ mouseDoubleClick(p: Point, btnId: MouseButton, key1?: number, key2?: number): Pr
 
 在指定坐标点注入鼠标双击动作，支持同时按下对应键盘组合键。例如，Key值为2072时，按下ctrl并进行鼠标双击动作。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
@@ -2632,11 +2961,12 @@ mouseDoubleClick(p: Point, btnId: MouseButton, key1?: number, key2?: number): Pr
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID | 错误信息                                         |
-| -------- | ------------------------------------------------ |
-| 17000002 | if the async function was not called with await. |
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17000002 | if the async function was not called with await.             |
+| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -2654,6 +2984,8 @@ mouseLongClick(p: Point, btnId: MouseButton, key1?: number, key2?: number): Prom
 
 在指定坐标点注入鼠标长按动作，支持同时按下对应键盘组合键。例如，Key值为2072时，按下ctrl并进行鼠标长按动作。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
@@ -2667,11 +2999,12 @@ mouseLongClick(p: Point, btnId: MouseButton, key1?: number, key2?: number): Prom
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID | 错误信息                                         |
-| -------- | ------------------------------------------------ |
-| 17000002 | if the async function was not called with await. |
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17000002 | if the async function was not called with await.             |
+| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -2689,6 +3022,8 @@ mouseMoveWithTrack(from: Point, to: Point, speed?: number): Promise\<void>
 
 鼠标从起始坐标点滑向终点坐标点。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
@@ -2701,11 +3036,12 @@ mouseMoveWithTrack(from: Point, to: Point, speed?: number): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID | 错误信息                                         |
-| -------- | ------------------------------------------------ |
-| 17000002 | if the async function was not called with await. |
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17000002 | if the async function was not called with await.             |
+| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -2723,6 +3059,8 @@ mouseDrag(from: Point, to: Point, speed?: number): Promise\<void>
 
 鼠标按住鼠标左键从起始坐标点拖拽至终点坐标点。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
@@ -2735,11 +3073,12 @@ mouseDrag(from: Point, to: Point, speed?: number): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID | 错误信息                                         |
-| -------- | ------------------------------------------------ |
-| 17000002 | if the async function was not called with await. |
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17000002 | if the async function was not called with await.             |
+| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -2757,6 +3096,8 @@ inputText(p: Point, text: string): Promise\<void>
 
 在指定坐标点输入文本。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
@@ -2768,11 +3109,12 @@ inputText(p: Point, text: string): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID | 错误信息                                         |
-| -------- | ------------------------------------------------ |
-| 17000002 | if the async function was not called with await. |
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17000002 | if the async function was not called with await.             |
+| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -2796,6 +3138,8 @@ static create(fingers: number, steps: number): PointerMatrix
 
 静态方法，构造一个PointerMatrix对象，并返回该对象。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
@@ -2810,6 +3154,14 @@ static create(fingers: number, steps: number): PointerMatrix
 | 类型                             | 说明                          |
 | -------------------------------- | ----------------------------- |
 | [PointerMatrix](#pointermatrix9) | 返回构造的PointerMatrix对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -2826,6 +3178,8 @@ setPoint(finger: number, step: number, point: Point): void
 
 设置PointerMatrix对象中指定手指和步骤对应动作的坐标点。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
@@ -2835,6 +3189,14 @@ setPoint(finger: number, step: number, point: Point): void
 | finger | number           | 是   | 手指的序号。                                               |
 | step   | number           | 是   | 步骤的序号。                                               |
 | point  | [Point](#point9) | 是   | 该行为的坐标点。建议相邻的坐标点距离在10至80像素点范围内。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -2865,6 +3227,8 @@ UiWindow代表了UI界面上的一个窗口，提供窗口属性获取，窗口�
 getBundleName(): Promise\<string>
 
 获取窗口归属应用的包名信息。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -2901,6 +3265,8 @@ getBounds(): Promise\<Rect>
 
 获取窗口的边框信息。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **返回值：**
@@ -2934,6 +3300,8 @@ async function demo() {
 getTitle(): Promise\<string>
 
 获取窗口的标题信息。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -2969,6 +3337,8 @@ getWindowMode(): Promise\<WindowMode>
 
 获取窗口的窗口模式信息。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **返回值：**
@@ -3002,6 +3372,8 @@ async function demo() {
 isFocused(): Promise\<boolean>
 
 判断窗口是否处于获焦状态。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -3073,6 +3445,8 @@ focus(): Promise\<void>
 
 让窗口获焦。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **错误码：**
@@ -3101,24 +3475,27 @@ moveTo(x: number, y: number): Promise\<void>
 
 将窗口移动到目标点。适用于支持移动的窗口。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 说明                                   |
-| ------ | ------ | ---- | -------------------------------------- |
-| x      | number | 是   | 以number的形式传入目标点的横坐标信息。 |
-| y      | number | 是   | 以number的形式传入目标点的纵坐标信息。 |
+| 参数名 | 类型   | 必填 | 说明                                            |
+| ------ | ------ | ---- | ----------------------------------------------- |
+| x      | number | 是   | 以number的形式传入目标点的横坐标信息，取值大于等于0。 |
+| y      | number | 是   | 以number的形式传入目标点的纵坐标信息，取值大于等于0。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | if the async function was not called with await. |
 | 17000004 | if the window is invisible or destroyed.           |
 | 17000005 | if the action is not supported on this window.         |
+| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -3137,6 +3514,8 @@ resize(wide: number, height: number, direction: ResizeDirection): Promise\<void>
 
 根据传入的宽、高和调整方向来调整窗口的大小。适用于支持调整大小的窗口。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
@@ -3149,13 +3528,14 @@ resize(wide: number, height: number, direction: ResizeDirection): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
 | 17000002 | if the async function was not called with await. |
 | 17000004 | if the window is invisible or destroyed.           |
 | 17000005 | if the action is not supported on this window.         |
+| 401 | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -3173,6 +3553,8 @@ async function demo() {
 split(): Promise\<void>
 
 将窗口模式切换成分屏模式。适用于支持切换分屏模式的窗口。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -3203,6 +3585,8 @@ maximize(): Promise\<void>
 
 将窗口最大化。适用于支持窗口最大化操作的窗口。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **错误码：**
@@ -3231,6 +3615,8 @@ async function demo() {
 minimize(): Promise\<void>
 
 将窗口最小化。适用于支持窗口最小化操作的窗口。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -3261,6 +3647,8 @@ resume(): Promise\<void>
 
 将窗口恢复到之前的窗口模式。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **错误码：**
@@ -3290,6 +3678,8 @@ close(): Promise\<void>
 
 将窗口关闭。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **错误码：**
@@ -3318,6 +3708,8 @@ async function demo() {
 isActive(): Promise\<boolean>
 
 判断窗口是否为用户正在交互窗口。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -3357,6 +3749,8 @@ once(type: 'toastShow', callback: Callback\<UIElementInfo>): void;
 
 开始监听toast控件出现的事件，使用callback的形式返回结果。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
@@ -3365,6 +3759,14 @@ once(type: 'toastShow', callback: Callback\<UIElementInfo>): void;
 | -------- | -------------------------------------------- | ---- | --------------------------------- |
 | type     | string                                       | 是   | 订阅的事件类型，取值为'toastShow' |
 | callback | Callback\<[UIElementInfo](#uielementinfo10)> | 是   | 事件发生时执行的回调函数          |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -3388,6 +3790,8 @@ once(type: 'dialogShow', callback: Callback\<UIElementInfo>): void;
 
 开始监听dialog控件出现的事件，使用callback的形式返回结果。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 **参数：**
@@ -3396,6 +3800,14 @@ once(type: 'dialogShow', callback: Callback\<UIElementInfo>): void;
 | -------- | -------------------------------------------- | ---- | ---------------------------------- |
 | type     | string                                       | 是   | 订阅的事件类型，取值为'dialogShow' |
 | callback | Callback\<[UIElementInfo](#uielementinfo10)> | 是   | 事件发生时执行的回调函数           |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 

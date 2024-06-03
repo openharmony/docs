@@ -14,7 +14,7 @@ Not supported
 
 ## Attributes
 
-In addition to the [universal attributes](../arkui-js/js-components-common-attributes.md), the following attributes are supported.
+In addition to the [universal attributes](js-components-common-attributes.md), the following attributes are supported.
 
 | Name                    | Type     | Default Value  | Mandatory  | Description                                      |
 | ---------------------- | ------- | ----- | ---- | ---------------------------------------- |
@@ -30,7 +30,7 @@ In addition to the [universal attributes](../arkui-js/js-components-common-attri
 
 ### When the Button Type Is Not arc
 
-In addition to the [universal styles](../arkui-js/js-components-common-styles.md), the following styles are supported.
+In addition to the [universal styles](js-components-common-styles.md), the following styles are supported.
 
 | Name         | Type                        | Default Value            | Mandatory  | Description                                      |
 | ----------- | -------------------------- | --------------- | ---- | ---------------------------------------- |
@@ -38,8 +38,8 @@ In addition to the [universal styles](../arkui-js/js-components-common-styles.md
 | font-size   | &lt;length&gt;             | 16px      | No   | Font size of the button.                                |
 | allow-scale | boolean                    | true            | No   | Whether the font size changes with the system's font size settings.<br>If the **config-changes** tag of **fontSize** is configured for abilities in the **config.json** file, the setting takes effect without application restart.|
 | font-style  | string                     | normal          | No   | Font style of the button.                                |
-| font-weight | number \| string | normal          | No   | Font weight of the button. For details, see **font-weight** of the [**\<text>** component](../arkui-js/js-components-basic-text.md#styles).|
-| font-family | &lt;string&gt;             | sans-serif      | No   | Font family, in which fonts are separated by commas (,). Each font is set using a font name or font family name. The first font in the family or the specified [custom font](../arkui-js/js-components-common-customizing-font.md) is used for the text.|
+| font-weight | number \| string | normal          | No   | Font weight of the button. For details, see **font-weight** of the [**\<text>** component](js-components-basic-text.md#styles).|
+| font-family | &lt;string&gt;             | sans-serif      | No   | Font family, in which fonts are separated by commas (,). Each font is set using a font name or font family name. The first font in the family or the specified [custom font](js-components-common-customizing-font.md) is used for the text.|
 | icon-width  | &lt;length&gt;             | -               | No   | Width of the internal icon of a circle button. The entire circle button is filled by default.<br>This style must be set when the icon uses the SVG image.|
 | icon-height | &lt;length&gt;             | -               | No   | Height of the internal icon of a circle button. The entire circle button is filled by default.<br>This style must be set when the icon uses the SVG image.|
 | radius      | &lt;length&gt;             | -               | No   | Corner radius of the button. For a circle button, this style takes precedence over **width** and **height** in the universal styles.|
@@ -47,7 +47,7 @@ In addition to the [universal styles](../arkui-js/js-components-common-styles.md
 
 ### When the Button Type Is arc
 
-In addition to the **background-color**, **opacity**, **display**, **visibility**, **position**, and **[left|top|right|bottom]** styles in [Universal Styles](../arkui-js/js-components-common-styles.md), the following styles are supported.
+In addition to the **background-color**, **opacity**, **display**, **visibility**, **position**, and **[left|top|right|bottom]** styles in [Universal Styles](js-components-common-styles.md), the following styles are supported.
 
 | Name         | Type                        | Default Value       | Mandatory  | Description                                      |
 | ----------- | -------------------------- | ---------- | ---- | ---------------------------------------- |
@@ -55,18 +55,18 @@ In addition to the **background-color**, **opacity**, **display**, **visibility*
 | font-size   | &lt;length&gt;             | 37.5px     | No   | Font size of the arc button.                              |
 | allow-scale | boolean                    | true       | No   | Whether the font size changes with the system's font size settings.          |
 | font-style  | string                     | normal     | No   | Font style of the arc button.                              |
-| font-weight | number \| string | normal     | No   | Font weight of the arc button. For details, see **font-weight** of the [**\<text>**](../arkui-js/js-components-basic-text.md#styles) component. |
-| font-family | &lt;string&gt;             | sans-serif | No   | Font family, in which fonts are separated by commas (,). Each font is set using a font name or font family name. The first font in the family or the specified [custom font](../arkui-js/js-components-common-customizing-font.md) is used for the text.|
+| font-weight | number \| string | normal     | No   | Font weight of the arc button. For details, see **font-weight** of the [**\<text>**](js-components-basic-text.md#styles) component. |
+| font-family | &lt;string&gt;             | sans-serif | No   | Font family, in which fonts are separated by commas (,). Each font is set using a font name or font family name. The first font in the family or the specified [custom font](js-components-common-customizing-font.md) is used for the text.|
 
 
 ## Events
 
-The [universal events](../arkui-js/js-components-common-events.md) are supported.
+The [universal events](js-components-common-events.md) are supported.
 
 
 ## Methods
 
-The [universal methods](../arkui-js/js-components-common-methods.md) are supported.
+The [universal methods](js-components-common-methods.md) are supported.
 
 When the button type is **download**, the following methods are supported.
 

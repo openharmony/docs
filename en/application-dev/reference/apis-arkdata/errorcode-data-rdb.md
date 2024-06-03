@@ -12,21 +12,28 @@ Inner error.
 
 **Description**
 
-An error occurs at the underlying database.
+Internal error.
 
 **Possible Causes**
 
-Invalid SQL statement is passed in.
+View the error log to determine the cause of the error. Possible causes include the following:
+1. The SQL statement fails to be executed.
+2. The internal state is abnormal.
+3. There is API that is incorrectly used.
+4. A system error, such as null pointer, insufficient memory, unexpected restart of data service, I/O error, IPC exception, and JS engine exception, occurs.
 
 **Solution**
 
-Determine the cause of the error based on the log information.
+1. Check whether SQL statements and predicates are correctly used.
+2. Check whether a closed object is reused.
+3. Check whether the APIs are correctly used.
+4. If the problem persists, ask the user to restart or upgrade the application or upgrade the device version.
 
 ## 14800010 Invalid Database Path
 
 **Error Message**
 
-Failed to open or delete database by invalid database path.
+Invalid database path.
 
 **Description**
 
@@ -44,7 +51,7 @@ Check the RDB store path.
 
 **Error Message**
 
-Failed to open database by database corrupted.
+Database corrupted.
 
 **Description**
 
@@ -56,7 +63,7 @@ The RDB store file has been corrupted.
 
 **Solution**
 
-1. Restore the RDB store using the backup file.
+1. Restore the RDB store using a backup file.
 2. If no RDB backup file is available, delete the RDB store and create it again.
 
 ## 14800012 Empty Result Set or Invalid Position
@@ -89,16 +96,53 @@ The column value is null, or the column data type is incompatible with the API c
 
 **Possible Causes**
 
-1. The result set is empty.
-2. The current row number in the result set is out of range [0, m - 1]. **m** is **resultsetV9.rowCount**.
-3. The column number is out of the range [0, n - 1]. **n** is **resultsetV9.columnCount**.
-4. The API called does not support the type of the column data.
+- The result set is empty.
+- The current row number in the result set is out of range [0, m - 1]. **m** is **resultsetV9.rowCount**.
+- The column number is out of the range [0, n - 1]. **n** is **resultsetV9.columnCount**.
+- The API called does not support the type of the column data.
 
 **Solution**
 
 1. Check whether the result set is empty.
 2. Check whether the row number and column number of the result set are out of range.
 3. Check whether the column data type is supported.
+
+## 14800015 RDB Store Not Respond
+
+**Error Message**
+
+The database does not respond.
+
+**Description**
+
+The RDB store does not respond.
+
+**Possible Causes**
+
+A read or write operation is being performed, and the current operation cannot be performed within the specified time (2s by default).
+
+**Solution**
+
+1. Try again later.
+2. For the [attach](./js-apis-data-relationalStore.md#attach12) or [detach](./js-apis-data-relationalStore.md#detach12) API, increase the value of **waitTime**.
+
+## 14800016 Duplicate RDB Alias
+
+**Error Message**
+
+The database is already attached.
+
+**Description**
+
+The RDB store alias already exists.
+
+**Possible Causes**
+
+The RDB store alias already exists.
+
+**Solution**
+
+Stop the attach operation or change the RDB store alias.
 
 ## 14800047 WAL File Size Exceeds the Default Limit
 
@@ -119,6 +163,7 @@ Data is added, deleted, and modified continuously without closing the read trans
 1. Check for unclosed result sets or transactions.
 
 2. Close all result sets or transactions.
+
 
 ## 14800050 Failed to Obtain the Subscription Service
 

@@ -31,7 +31,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 | --------- | ------------------------------- |
 | Contain   | The image is scaled with its aspect ratio retained for the content to be completely displayed within the display boundaries.  |
 | Cover     | The image is scaled with its aspect ratio retained for both sides to be greater than or equal to the display boundaries.|
-| Auto      | The image is scaled automatically to fit the display area.                          |
+| Auto      | The image is scaled automatically based on its own size and the size of the component to fit the display area.|
 | Fill      | The image is scaled to fill the display area, and its aspect ratio is not retained.       |
 | ScaleDown | The image is displayed with its aspect ratio retained, in a size smaller than or equal to the original size.            |
 | None      | The original size is retained.                      |
@@ -310,7 +310,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 | Start    | The items in the flex container are aligned with the cross-start edge.                   |
 | Center   | The items in the flex container are centered along the cross axis.                   |
 | End      | The items in the flex container are aligned with the cross-end edge.                   |
-| Stretch  | The items in the flex container are stretched and padded along the cross axis. If the flex container has the **Wrap** attribute set to **FlexWrap.Wrap** or **FlexWrap.WrapReverse**, the items are stretched to the cross size of the widest element on the current row or column. In other cases, the items with no size set are stretched to the container size.|
+| Stretch  | The items in the flex container are stretched and padded along the cross axis. If the flex container has the **Wrap** attribute set to **FlexWrap.Wrap** or **FlexWrap.WrapReverse**, the items are stretched to the cross size of the widest element on the current row or column. In other cases, the items are stretched to the container size regardless of whether their size is set.|
 | Baseline | The items in the flex container are aligned in such a manner that their text baselines are aligned along the cross axis.                 |
 
 ## FlexDirection
@@ -671,10 +671,10 @@ Describes the grayscale blur parameters.
 Describes the background effect.
 | Name       |   Type        |   Mandatory|  Description                       |
 | ----         |  ----         |   ---- | --------------------------  |
-| radius       | number        |   Yes  |   Radius of the background effect.<br>Value range: [0, +∞)<br>Default value: **0**    |
-| saturation   | number        |   No  |   Saturation of the background effect.<br>Value range: [0, +∞)<br>Default value: **0**    |
-| brightness   | number        |   No  |   Brightness of the background effect.<br>Value range: [0, +∞)<br>Default value: **0**      |
-| color        | [Color](ts-appendix-enums.md#color)        |   No  |   Color of the background effect.<br>Default value: Transparent |
+| radius       | number        |   Yes  |   Blur radius.<br>Value range: [0, +∞)<br>Default value: **0**    |
+| saturation   | number        |   No  |   Saturation.<br>Value range: [0, +∞)<br>Default value: **0**    |
+| brightness   | number        |   No  |   Brightness.<br>Value range: [0, +∞)<br>Default value: **0**      |
+| color        | [Color](ts-appendix-enums.md#color)        |   No  |   Color.<br>Default value: transparent |
 | adaptiveColor | [AdaptiveColor](ts-appendix-enums.md#adaptivecolor10) |   No | Adaptive color mode used for the background blur effect.<br>Default value: **DEFAULT**  |
 | blurOptions  | [BlurOptions](ts-appendix-enums.md#bluroptions11) |   No  |   Grayscale blur.<br>Default value: **[0,0]** |
 ## EllipsisMode<sup>11+</sup>
@@ -748,7 +748,7 @@ Enumerates the symbol rendering modes.
 | Name    | Description                           |
 | ------ | ----------------------------- |
 | SINGLE  | Symbols are rendered with one specified color. This is the default value.<br> The default color is black.<br> If you set multiple colors, only the first color is used.|
-| MULTIPLE_COLOR  |  Symbols are rendered with layer-specific colors.<br> A maximum of three colors can be set. If you set only one color, it is used at the first layer and the default colors at other layers are retained.<br> The sequence in which the colors are set must match the sequence of symbol layers. If the number of colors is greater than that of the layers, the extra colors do not take effect.|
+| MULTIPLE_COLOR  |  Symbols are rendered with layer-specific colors.<br> A maximum of three colors can be set. If you set only one color, it is used at the first layer and the default colors at other layers are retained.<br> The sequence in which the colors are set must match the sequence of symbol layers. If the number of colors is greater than that of the layers, the extra colors do not take effect.<br> Only color values are accepted. Opacity setting does not take effect.|
 |  MULTIPLE_OPACITY   | Symbols are rendered as multiple layers with one specified color and layer-specific opacity.<br> The default color is black. If you set multiple colors, only the first color is used.<br> The opacity is 100% for the first layer, 50% for the second layer, and 20% for the third layer. |
 
 ## BlendApplyType<sup>11+</sup>
@@ -766,9 +766,9 @@ Defines the chain style.
 
 | Name    | Description                           |
 | ------ | ----------------------------- |
-| SPREAD | Child components are evenly distributed among constraint anchors.|
-| SPREAD_INSIDE | All child components except the first and last ones are evenly distributed among constraint anchors.                |
-| PACKED  | There is no gap between child components in the chain.                     |
+| SPREAD | Child components are evenly distributed among constraint anchors. For details, see [Example 7 in RelativeContainer](ts-container-relativecontainer.md#example-7).|
+| SPREAD_INSIDE | All child components except the first and last ones are evenly distributed among constraint anchors. For details, see [Example 8 in RelativeContainer](ts-container-relativecontainer.md#example-8).                |
+| PACKED  | There is no gap between child components in the chain. For details, see [Example 9 in RelativeContainer](ts-container-relativecontainer.md#example-9).                     |
 
 ## BarrierDirection<sup>11+</sup>
 
@@ -790,3 +790,10 @@ Defines the pixel-level rounding policy for component boundaries.
 | NO_FORCE_ROUND | The value is not rounded off.|
 | FORCE_CEIL | The value is rounded up to the nearest integer.|
 | FORCE_FLOOR | The value is rounded down to the nearest integer.|
+
+## StyledStringKey<sup>12+</sup>
+
+| Name    | Description                           |
+| ------ | ----------------------------- |
+| FONT | Text style.<br>**NOTE** This option refers to the [TextStyle](./ts-universal-styled-string.md#textstyle) string.|
+<!--no_check-->

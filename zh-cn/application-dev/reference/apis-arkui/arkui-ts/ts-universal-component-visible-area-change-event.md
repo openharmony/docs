@@ -12,6 +12,8 @@ onVisibleAreaChange(ratios: Array&lt;number&gt;, event: (isVisible: boolean, cur
 
 组件可见区域变化时触发该回调。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -29,7 +31,7 @@ onVisibleAreaChange(ratios: Array&lt;number&gt;, event: (isVisible: boolean, cur
 
 > **说明：**
 >
-> 该接口只适用于组件布局区域超出或离开了当前屏幕显示区域的情况，不支持组件堆叠（Stack）导致的面积不可见、使用offset或translate等图形变换接口导致的面积超出情况。
+> 该接口只适用于组件布局区域超出或离开了当前屏幕显示区域的情况，不支持组件堆叠（[Stack](ts-container-stack.md)、[Z序控制](ts-universal-attributes-z-order.md)）导致的面积不可见、使用offset或translate等图形变换接口导致的面积超出情况。子组件超出父组件的区域，该区域视为不可见区域。
 
 
 ## 示例

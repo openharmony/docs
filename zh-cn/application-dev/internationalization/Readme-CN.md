@@ -7,7 +7,9 @@
     - 设置语言与用户偏好
         - [设置系统语言与区域](i18n-system-language-region.md)
         - [设置应用偏好语言](i18n-preferred-language.md)
+        <!--Del-->
         - [设置用户偏好（仅对系统应用开放）](i18n-user-preferences.md)
+        <!--DelEnd-->
     - [时间日期国际化](i18n-time-date.md)
     - [数字与度量衡国际化](i18n-numbers-weights-measures.md)
     - [电话号码格式化](i18n-phone-numbers.md)

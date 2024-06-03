@@ -8,37 +8,15 @@
 
 **变更原因**
 
-OpenHarmony SDK中TypeScript Compiler的target选项配置由ES2017切换至ES2021，以完整支持在TS语言中使用ES2018-ES2021的语法特性。使用限制：不支持ES2020的import.meta特性。
+OpenHarmony SDK中TypeScript Compiler的target选项配置由ES2017切换至ES2021。
 
 **变更影响**
 
-变更前，部分ES2018-ES2021语法特性在TS语言中无法使用，例如：
+对于极少数使用了部分ES2018-ES2021语法特性，但存在语法错误并添加`@ts-nocheck`或`@ts-ignore`注释的场景：
 
-1. Bigint Literals
-    ```
-    let a = 100n;
-    //      ~~~~
-    // BigInt literals are not available when targeting lower than ES2020.
-    ```
+变更前，可以通过注释屏蔽语法错误，编译通过；
 
-2. String.prototype.repalceAll
-    ```
-    'hello'.replaceAll('h', 'H');
-    //      ~~~~~~~~~~
-    // Property 'replaceAll' does not exist on type '"hello"'.
-    ```
-
-3. WeakRef
-    ```
-    let obj = { name: 'weakRefObj' };
-    let info = new WeakRef(obj);
-    //             ~~~~~~~
-    // Cannot find name 'WeakRef'.
-    ```
-
-变更后，以上ES2018-ES2021的标准特性均可使用，限制：不支持ES2020的import.meta特性。
-
-此外，对于极少数以前使用了部分ES2018-ES2021语法特性，但存在语法错误并通过`@ts-nocheck`或`@ts-ignore`屏蔽后编译通过的场景，变更后，由于对这部分语法的检查校验增强，可能存在不兼容问题，可参考适配指导进行修改。
+变更后，由于对这部分语法的检查校验增强，可能存在不兼容编译报错。
 
 
 **起始 API Level**
@@ -55,7 +33,7 @@ OpenHarmony SDK 5.0.0.19
 
 **适配指导**
 
-部分使用了ES2018-ES2021特性，但存在语法错误并通过`@ts-nocheck`或`@ts-ignore`屏蔽后编译通过的场景，需要去掉`@ts-nocheck`和`@ts-ignore`注释，根据编译报错提示进行适配，例如：
+推荐删除`@ts-nocheck`和`@ts-ignore`注释，根据编译报错提示进行适配，例如：
 
 1. ES2018特性：Rest属性
     ```
@@ -101,3 +79,5 @@ OpenHarmony SDK 5.0.0.19
     let b = (true && undefined) ?? "foo";
     ```
 其他可能不兼容的场景同理，删除`@ts-nocheck`和`@ts-ignore`注释后根据编译报错提示修复即可。
+
+开发者也可在工程级别的build-profile.json5文件中配置targetESVersion为ES2017，来保持与变更前一致。

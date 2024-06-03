@@ -45,15 +45,24 @@ create(config: PiPConfiguration): Promise&lt;PiPController&gt;
 
 **参数：**
 
-| 参数名          | 类型                                       | 必填        | 说明             |
-|--------------|------------------------------------------|-----------|----------------|
-| config       | [PiPConfiguration](#pipconfiguration)    | 是         | 创建画中画控制器的参数。   |
+| 参数名          | 类型                                       | 必填        | 说明                                                                                                                                                                                                                                     |
+|--------------|------------------------------------------|-----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| config       | [PiPConfiguration](#pipconfiguration)    | 是         | 创建画中画控制器的参数。该参数不能为空，并且构造该参数的context和componentController不能为空。构造该参数时，如果指定了templateType，需保证templateType是[PiPTemplateType](#piptemplatetype)类型；如果指定了controlGroups，需保证controlGroups与templateType匹配，详见[PiPControlGroup](#pipcontrolgroup12)。 |
 
 **返回值：**
 
 | 类型                                                         | 说明                       |
 |------------------------------------------------------------|--------------------------|
 | Promise&lt;[PiPController](#pipcontroller)&gt;  | Promise对象。返回当前创建的画中画控制器。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                                                                                                         |
+|-------|----------------------------------------------------------------------------------------------------------------------------------------------|
+| 401   | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
+| 801   | Capability not supported                                                                                                                     |
 
 **示例：**
 
@@ -71,6 +80,7 @@ let config: pipWindow.PiPConfiguration = {
   templateType: pipWindow.PiPTemplateType.VIDEO_PLAY,
   contentWidth: contentWidth,
   contentHeight: contentHeight,
+  controlGroups: [pipWindow.VideoPlayControlGroup.VIDEO_PREVIOUS_NEXT],
 };
 
 let promise : Promise<pipWindow.PiPController> = pipWindow.create(config);
@@ -141,7 +151,7 @@ promise.then((data : pipWindow.PiPController) => {
 
 ## VideoPlayControlGroup<sup>12+</sup>
 
-视频播放控件组。
+视频播放控件组。仅当[PiPTemplateType](#piptemplatetype) 为VIDEO_PLAY时使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -152,25 +162,25 @@ promise.then((data : pipWindow.PiPController) => {
 
 ## VideoCallControlGroup<sup>12+</sup>
 
-视频通话控件组。
+视频通话控件组。仅当[PiPTemplateType](#piptemplatetype) 为VIDEO_CALL时使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
 | 名称                   | 值   | 说明                    |
 |----------------------|-----|-----------------------|
 | MICROPHONE_SWITCH       | 201   | 打开/关闭麦克风控件组。            |
-| HANG_UP_BUTTON    | 202   | 挂断控件组。<br/>如开发者需传入可选控件组，则挂断控件组为必传控件组。           |
+| HANG_UP_BUTTON    | 202   | 挂断控件组。           |
 | CAMERA_SWITCH    | 203   | 打开/关闭摄像头控件组。            |
 
 ## VideoMeetingControlGroup<sup>12+</sup>
 
-视频会议控件组。
+视频会议控件组。仅当[PiPTemplateType](#piptemplatetype) 为VIDEO_MEETING时使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
 | 名称                   | 值   | 说明                    |
 |----------------------|-----|-----------------------|
-| HANG_UP_BUTTON       | 301   | 挂断控件组。<br/>如开发者需传入可选控件组，则挂断控件组为必传控件组。           |
+| HANG_UP_BUTTON       | 301   | 挂断控件组。          |
 | CAMERA_SWITCH    | 302   | 打开/关闭摄像头控件组。           |
 | MUTE_SWITCH    | 303   | 静音控件组。            |
 
@@ -329,7 +339,7 @@ setAutoStartEnabled(enable: boolean): void
 
 | 参数名      | 类型        | 必填    | 说明                              |
 |----------|-----------|-------|---------------------------------|
-| enable   | boolean   | 是     | true表示设置返回桌面时自动启动画中画，否则为false。  |
+| enable   | boolean   | 是     | 如返回桌面时需自动启动画中画，则该参数配置为true，否则为false。若设置中自动启动画中画开关为关闭状态，就算该参数配置为true，应用返回桌面时也不会自动启动画中画窗口。  |
 
 ```ts
 let enable: boolean = true;
@@ -346,10 +356,18 @@ updateContentSize(width: number, height: number): void
 
 **参数：**
 
-| 参数名    | 类型     | 必填  | 说明                           |
-|--------|--------|-----|------------------------------|
-| width  | number | 是   | 表示媒体内容宽度，单位为px。用于更新画中画窗口比例。   |
-| height | number | 是   | 表示媒体内容高度，单位为px。用于更新画中画窗口比例。   |
+| 参数名    | 类型     | 必填  | 说明                                     |
+|--------|--------|-----|----------------------------------------|
+| width  | number | 是   | 表示媒体内容宽度，必须为大于0的数字，单位为px。用于更新画中画窗口比例。  |
+| height | number | 是   | 表示媒体内容高度，必须为大于0的数字，单位为px。用于更新画中画窗口比例。  |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                                                                        |
+|-------|-------------------------------------------------------------------------------------------------------------|
+| 401   | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 
 ```ts
 let width: number = 540; // 假设当前内容宽度变为540px。

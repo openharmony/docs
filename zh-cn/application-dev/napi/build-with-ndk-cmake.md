@@ -5,17 +5,16 @@
 
 
 ## 下载NDK开发包
+<!--RP1-->
+1. 推荐使用OpenHarmony正式发布的SDK包。下载链接请从OpenHarmony正式发布版本的 **版本说明** 中获取
 
-1. 推荐使用OpenHarmony正式发布的SDK包。下载链接请从OpenHarmony正式发布版本的 [**版本说明**](../../release-notes/OpenHarmony-v4.0-release.md) 中获取
-
-在Release Notes “从镜像站点获取” 章节下载。 
+在Release Notes 对应正式版本的“从镜像站点获取” 章节下载。 
 
 根据系统的操作类型，下载对应的 SDK 包
 
-![zh-cn_image_20-24-01-16-14-32](figures/zh-cn_image_20-24-01-16-14-32.png)
 
 2. 从DevEco Studio的OpenHarmony SDK Manager中下载。
-
+<!--RP1End-->
 
 ## 解压NDK开发包
 
@@ -35,27 +34,25 @@ mac系统下使用 SDK 包解压
 + 配置 linux 系统下环境变量
 
 
-            ```
-            #打开.bashrc文件
-            vim ~/.bashrc
-            #在文件最后添加CMake路径，具体路径用实际放置SDK路径代替
-            export PATH=~/ohos-sdk/ohos-sdk/linux/native/build-tools/cmake/bin:$PATH
-            #在命令行执行source ~/.bashrc使环境变量生效
-            source ~/.bashrc
-            ```
+        #打开.bashrc文件
+        vim ~/.bashrc
+        #在文件最后添加CMake路径，具体路径用实际放置SDK路径代替
+        export PATH=~/ohos-sdk/ohos-sdk/linux/native/build-tools/cmake/bin:$PATH
+        #在命令行执行source ~/.bashrc使环境变量生效
+        source ~/.bashrc
+            
 + 配置 mac 系统下环境变量
 
      
-            ```
-            # 在当前用户目录下
-            # 打开 .bash_profile 文件
-            # 文件如果不存在，创建即可
-            vim ~/.bash_profile
-            # 在文件最后添加 cmake 路径，该路径是自己的放置文件的路径，之后保存退出
-            export PATH=~/Ndk/mac-sdk-full/sdk/packages/ohos-sdk/darwin/native/build-tools/cmake/bin:$PATH
-            # 在命令行执行 source ~/.bash_profile 使环境变量生效
-            source ~/.bash_profile
-            ```
+        # 在当前用户目录下
+        # 打开 .bash_profile 文件
+        # 文件如果不存在，创建即可
+        vim ~/.bash_profile
+        # 在文件最后添加 cmake 路径，该路径是自己的放置文件的路径，之后保存退出
+        export PATH=~/Ndk/mac-sdk-full/sdk/packages/ohos-sdk/darwin/native/build-tools/cmake/bin:$PATH
+        # 在命令行执行 source ~/.bash_profile 使环境变量生效
+        source ~/.bash_profile
+            
 + 配置 windows 下的环境变量
 
   右键点击我的电脑，在下拉框中选择我的电脑，点击高级系统设置，点击环境变量，点击Path后点编辑，点击新建，将路径添加进去，之后保存退出，打开cmd（若下一步不能够实现，请重启电脑尝试）。
@@ -102,7 +99,7 @@ demo
   └── src
        ├── CMakeLists.txt
        ├── sum.cpp
-       └── main.cpp
+       └── hello.cpp
 ```
 
 **根目录CMakeLists.txt内容**
@@ -182,7 +179,7 @@ int sum(int a, int b)
 #### linux 和 mac 系统环境下
 在工程目录下，创建build目录，用来放置CMake构建时产生的中间文件。注意: ohos-sdk是下载下来的SDK的根目录，开发者需要自行替换成实际的下载目录。
 
-1. 采用OHOS_STL=c++_shared动态链接c++库方式构建工程，如不指定，默认采用c++_shared。
+1. 采用OHOS_STL=c++_shared动态链接c++库方式构建工程，如不指定，默认采用c++_shared；DOHOS_ARCH参数可根据系统架构来决定具体值。
 
    ```
     >mkdir build && cd build
@@ -217,7 +214,7 @@ int sum(int a, int b)
 
 Step 1. 同样在工程目录下创建 build 文件夹并执行以下指令
 ```
- F:\windows\native\build-tools\cmake\bin\cmake.exe -G "Ninja" -D OHOS_STL=c++_shared -D OHOS_ARCH=armeabi-v7a -D OHOS_PLATFORM=OHOS                                                                     -D CMAKE_TOOLCHAIN_FILE=F:\windows\native\build\cmake\ohos.toolchain.cmake ..
+ F:\windows\native\build-tools\cmake\bin\cmake.exe -G "Ninja" -D OHOS_STL=c++_shared -D OHOS_ARCH=armeabi-v7a -D OHOS_PLATFORM=OHOS -D CMAKE_TOOLCHAIN_FILE=F:\windows\native\build\cmake\ohos.toolchain.cmake ..
 ```
 注：如需debug调试，增加参数 -D CMAKE_BUILD_TYPE=normal
 cmake路径和编译工具链ohos.toolchain.cmake路径都是下载好的ndk路径

@@ -2,6 +2,11 @@
 
 在使用本功能前，需申请权限：ohos.permission.ATTEST_KEY。请开发者根据应用的APL等级，参考具体的操作路径[权限申请](../AccessToken/determine-application-mode.md)。
 
+## 在CMake脚本中链接相关动态库
+```txt
+   target_link_libraries(entry PUBLIC libhuks_ndk.z.so)
+```
+
 ## 开发步骤
 
 1. 确定密钥别名keyAlias，密钥别名最大长度为64字节；
@@ -37,48 +42,37 @@ OH_Huks_Result InitParamSet(
 }
 static uint32_t g_size = 4096;
 static uint32_t CERT_COUNT = 4;
-void FreeCertChain(struct OH_Huks_CertChain **certChain, const uint32_t pos)
+void FreeCertChain(struct OH_Huks_CertChain *certChain, const uint32_t pos)
 {
-    if (certChain == nullptr || *certChain == nullptr) {
-        return;
-    }
-    if ((*certChain)->certs == nullptr) {
-        free(*certChain);
-        *certChain = nullptr;
+    if (certChain == nullptr || certChain->certs == nullptr) {
         return;
     }
     for (uint32_t j = 0; j < pos; j++) {
-        if ((*certChain)->certs[j].data != nullptr) {
-            free((*certChain)->certs[j].data);
-            (*certChain)->certs[j].data = nullptr;
+        if (certChain->certs[j].data != nullptr) {
+            free(certChain->certs[j].data);
+            certChain->certs[j].data = nullptr;
         }
     }
-    if ((*certChain)->certs != nullptr) {
-        free((*certChain)->certs);
-        (*certChain)->certs = nullptr;
-    }
-    if (*certChain != nullptr) {
-        free(*certChain);
-        *certChain = nullptr;
+    if (certChain->certs != nullptr) {
+        free(certChain->certs);
+        certChain->certs = nullptr;
     }
 }
-int32_t ConstructDataToCertChain(struct OH_Huks_CertChain **certChain)
+int32_t ConstructDataToCertChain(struct OH_Huks_CertChain *certChain)
 {
-    *certChain = (struct OH_Huks_CertChain *)malloc(sizeof(struct OH_Huks_CertChain));
-    if (*certChain == nullptr) {
+    if (certChain == nullptr) {
         return OH_HUKS_ERR_CODE_ILLEGAL_ARGUMENT;
     }
-    (*certChain)->certsCount = CERT_COUNT;
+    certChain->certsCount = CERT_COUNT;
   
-    (*certChain)->certs = (struct OH_Huks_Blob *)malloc(sizeof(struct OH_Huks_Blob) * ((*certChain)->certsCount));
-    if ((*certChain)->certs == nullptr) {
-        free(*certChain);
-        *certChain = nullptr;
+    certChain->certs = (struct OH_Huks_Blob *)malloc(sizeof(struct OH_Huks_Blob) * (certChain->certsCount));
+    if (certChain->certs == nullptr) {
+        return OH_HUKS_ERR_CODE_INTERNAL_ERROR;
     }
-    for (uint32_t i = 0; i < (*certChain)->certsCount; i++) {
-        (*certChain)->certs[i].size = g_size;
-        (*certChain)->certs[i].data = (uint8_t *)malloc((*certChain)->certs[i].size);
-        if ((*certChain)->certs[i].data == nullptr) {
+    for (uint32_t i = 0; i < certChain->certsCount; i++) {
+        certChain->certs[i].size = g_size;
+        certChain->certs[i].data = (uint8_t *)malloc(certChain->certs[i].size);
+        if (certChain->certs[i].data == nullptr) {
             FreeCertChain(certChain, i);
             return OH_HUKS_ERR_CODE_ILLEGAL_ARGUMENT;
         }
@@ -109,7 +103,8 @@ static napi_value AttestKey(napi_env env, napi_callback_info info)
     struct OH_Huks_ParamSet *genParamSet = nullptr;
     struct OH_Huks_ParamSet *attestParamSet = nullptr;
     OH_Huks_Result ohResult;
-    OH_Huks_CertChain *certChain = NULL;
+    OH_Huks_Blob certs = { 0 };
+    OH_Huks_CertChain certChain = { &certs, 0 };
     do {
         /* 2.初始化密钥参数集 */
         ohResult = InitParamSet(&genParamSet, g_genAttestParams, sizeof(g_genAttestParams) / sizeof(OH_Huks_Param));
@@ -127,11 +122,9 @@ static napi_value AttestKey(napi_env env, napi_callback_info info)
         
         (void)ConstructDataToCertChain(&certChain);
         /* 3.证明密钥 */
-        ohResult = OH_Huks_AttestKeyItem(&genAlias, attestParamSet, certChain);
+        ohResult = OH_Huks_AttestKeyItem(&genAlias, attestParamSet, &certChain);
     } while (0);
-    if (certChain != nullptr) {
-        FreeCertChain(&certChain, certChain->certsCount);
-    }
+    FreeCertChain(&certChain, CERT_COUNT);
     OH_Huks_FreeParamSet(&genParamSet);
     OH_Huks_FreeParamSet(&attestParamSet);
     (void)OH_Huks_DeleteKeyItem(&genAlias, NULL);

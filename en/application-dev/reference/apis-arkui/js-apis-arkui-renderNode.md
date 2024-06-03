@@ -494,7 +494,7 @@ struct Index {
       Button('getNextSibling')
         .onClick(() => {
           const child = renderNode.getChild(1);
-          const nextSibling = child.getNextSibling()
+          const nextSibling = child!.getNextSibling()
           if (child === null || nextSibling === null) {
             console.log('the child or nextChild is null');
           } else {
@@ -711,7 +711,7 @@ struct Index {
 
 set opacity(value: number)
 
-Sets the opacity for this RenderNode.
+Sets the opacity for this RenderNode. If the value passed in is less than **0**, the opacity is set to **0**. If the value passed in is greater than **1**, the opacity is set to **1**.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -719,7 +719,7 @@ Sets the opacity for this RenderNode.
 
 | Name| Type  | Mandatory| Description                                  |
 | ------ | ------ | ---- | -------------------------------------- |
-| value  | number | Yes  | Opacity to set.\<br>Value range: [0, 1]|
+| value  | number | Yes  | Opacity to set.<br>Value range: [0, 1]|
 
 get opacity(): number
 
@@ -1935,7 +1935,7 @@ Sets the border width for this RenderNode.
 
 | Name| Type                                               | Mandatory| Description                  |
 | ------ | --------------------------------------------------- | ---- | ---------------------- |
-| width  | [Edges\<number>](./js-apis-arkui-graphics.md#edges12) | Yes  | Border width of the RenderNode.|
+| width  | [Edges\<number>](./js-apis-arkui-graphics.md#edges12) | Yes  | Border width of the RenderNode, in vp.|
 
 get borderWidth(): Edges\<number>
 
@@ -1947,7 +1947,7 @@ Obtains the border width of this RenderNode.
 
 | Type                                               | Description                  |
 | --------------------------------------------------- | ---------------------- |
-| [Edges\<number>](./js-apis-arkui-graphics.md#edges12) | Border width of the RenderNode.|
+| [Edges\<number>](./js-apis-arkui-graphics.md#edges12) | Border width of the RenderNode. The default width of all borders is 0 vp.|
 
 **Example**
 
@@ -2013,7 +2013,7 @@ Obtains the border color of this RenderNode.
 
 | Type                                               | Description                  |
 | --------------------------------------------------- | ---------------------- |
-| [Edges\<number>](./js-apis-arkui-graphics.md#edges12) | Border color of the RenderNode.|
+| [Edges\<number>](./js-apis-arkui-graphics.md#edges12) | Border color of the RenderNode. By default, the color of all borders is 0XFF000000.|
 
 **Example**
 
@@ -2068,7 +2068,7 @@ Sets the border corner radius for this RenderNode.
 
 | Name| Type                                                        | Mandatory| Description                  |
 | ------ | ------------------------------------------------------------ | ---- | ---------------------- |
-| radius | [BorderRadiuses](./js-apis-arkui-graphics.md#borderradiuses) | Yes  | Border corner radius of the RenderNode.|
+| radius | [BorderRadiuses](./js-apis-arkui-graphics.md#borderradiuses12) | Yes  | Border corner radius of the RenderNode, in vp.|
 
 
 get borderRadius(): BorderRadiuses
@@ -2081,7 +2081,7 @@ Obtains the border corner radius of this RenderNode.
 
 | Type                                                        | Description                  |
 | ------------------------------------------------------------ | ---------------------- |
-| [BorderRadiuses](./js-apis-arkui-graphics.md#borderradiuses) | Border corner radius of the RenderNode.|
+| [BorderRadiuses](./js-apis-arkui-graphics.md#borderradiuses12) | Border corner radius of the RenderNode. By default, the corner radius of all borders is 0 vp.|
 
 **Example**
 
@@ -2135,7 +2135,7 @@ Sets the shape mask for this RenderNode.
 
 | Name   | Type                                              | Mandatory| Description              |
 | --------- | -------------------------------------------------- | ---- | ------------------ |
-| shapeMask | [ShapeMask](./js-apis-arkui-graphics.md#shapemask12) | Yes  | Shape mask of the RenderNode. |
+| shapeMask | [ShapeMask](./js-apis-arkui-graphics.md#shapemask12) | Yes  | Shape mask of the RenderNode.|
 
 get shapeMask(): ShapeMask
 
@@ -2147,7 +2147,7 @@ Obtains the shape mask of this RenderNode.
 
 | Type                                              | Description                  |
 | -------------------------------------------------- | ---------------------- |
-| [ShapeMask](./js-apis-arkui-graphics.md#shapemask12) | Shape mask of the RenderNode. |
+| [ShapeMask](./js-apis-arkui-graphics.md#shapemask12) | Shape mask of the RenderNode.|
 
 **Example**
 
@@ -2190,6 +2190,66 @@ struct Index {
   build() {
     Row() {
       NodeContainer(this.myNodeController)
+    }
+  }
+}
+```
+
+### dispose<sup>12+</sup>
+
+dispose(): void
+
+Releases this RenderNode immediately.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Example**
+
+```ts
+import { RenderNode, FrameNode, NodeController } from "@ohos.arkui.node"
+
+const renderNode = new RenderNode();
+renderNode.frame = { x: 0, y: 100, width: 100, height: 100 };
+renderNode.backgroundColor = 0xffff0000;
+
+class MyNodeController extends NodeController {
+  private rootNode: FrameNode | null = null;
+
+  makeNode(uiContext: UIContext): FrameNode | null {
+    this.rootNode = new FrameNode(uiContext);
+
+    const rootRenderNode = this.rootNode!.getRenderNode();
+    if (rootRenderNode !== null) {
+      rootRenderNode.size = { width: 200, height: 200 };
+      rootRenderNode.backgroundColor = 0xff00ff00;
+      rootRenderNode.appendChild(renderNode);
+    }
+
+    return this.rootNode;
+  }
+
+  disposeRenderNode() {
+    const rootRenderNode = this.rootNode.getRenderNode();
+    if (rootRenderNode !== null) {
+      rootRenderNode.removeChild(renderNode);
+    }
+    renderNode.dispose();
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  private myNodeController: MyNodeController = new MyNodeController();
+
+  build() {
+    Column({ space: 4 }) {
+      NodeContainer(this.myNodeController)
+      Button('RenderNode dispose')
+        .onClick(() => {
+          this.myNodeController.disposeRenderNode();
+        })
+        .width('100%')
     }
   }
 }

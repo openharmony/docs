@@ -8,7 +8,7 @@
 ## 导入模块
 
 ```ts
-import connection from '@ohos.net.connection';
+import { connection } from '@kit.NetworkKit';
 ```
 
 ## connection.createNetConnection
@@ -16,6 +16,8 @@ import connection from '@ohos.net.connection';
 createNetConnection(netSpecifier?: NetSpecifier, timeout?: number): NetConnection
 
 创建一个NetConnection对象，[netSpecifier](#netspecifier)指定关注的网络的各项特征；timeout是超时时间(单位是毫秒)；netSpecifier是timeout的必要条件，两者都没有则表示关注默认网络。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
@@ -35,7 +37,7 @@ createNetConnection(netSpecifier?: NetSpecifier, timeout?: number): NetConnectio
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
+import { connection } from '@kit.NetworkKit';
 
 // 关注默认网络, 不需要传参
 let netConnection = connection.createNetConnection();
@@ -56,6 +58,8 @@ getDefaultNet(callback: AsyncCallback\<NetHandle>): void
 
 **需要权限**：ohos.permission.GET_NETWORK_INFO
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
 **参数：**
@@ -70,14 +74,14 @@ getDefaultNet(callback: AsyncCallback\<NetHandle>): void
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
 | 401     | Parameter error.             |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error.         |
 
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
-import { BusinessError } from '@ohos.base';
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.getDefaultNet((error: BusinessError, data: connection.NetHandle) => {
   if (error) {
@@ -96,6 +100,8 @@ getDefaultNet(): Promise\<NetHandle>
 
 **需要权限**：ohos.permission.GET_NETWORK_INFO
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
 **返回值：**
@@ -106,17 +112,18 @@ getDefaultNet(): Promise\<NetHandle>
 
 **错误码：**
 
-| 错误码ID | 错误信息                        |
-| ------- | -----------------------------  |
-| 201     | Permission denied.             |
-| 401     | Parameter error.             |
-| 2100002 | Operation failed. Cannot connect to service.|
-| 2100003 | System internal error.         |
+| 错误码ID | 错误信息                         |
+| ------- | -------------------------------- |
+| 201     | Permission denied.               |
+| 401     | Parameter error.                 |
+| 2100002 | Failed to connect to the service.|
+| 2100003 | System internal error.           |
 
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
+import { connection } from '@kit.NetworkKit';
+
 connection.getDefaultNet().then((data: connection.NetHandle) => {
   console.info("Succeeded to get data: " + JSON.stringify(data));
 });
@@ -130,6 +137,8 @@ getDefaultNetSync(): NetHandle
 
 **需要权限**：ohos.permission.GET_NETWORK_INFO
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
 **返回值：**
@@ -140,17 +149,17 @@ getDefaultNetSync(): NetHandle
 
 **错误码：**
 
-| 错误码ID | 错误信息                        |
-| ------- | -----------------------------  |
-| 201     | Permission denied.             |
-| 401     | Parameter error.             |
-| 2100002 | Operation failed. Cannot connect to service.|
-| 2100003 | System internal error.         |
+| 错误码ID | 错误信息                         |
+| ------- | -------------------------------- |
+| 201     | Permission denied.               |
+| 401     | Parameter error.                 |
+| 2100002 | Failed to connect to the service.|
+| 2100003 | System internal error.           |
 
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
+import { connection } from '@kit.NetworkKit';
 
 let netHandle = connection.getDefaultNetSync();
 ```
@@ -180,8 +189,8 @@ setAppHttpProxy(httpProxy: HttpProxy): void;
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
-import { BusinessError } from '@ohos.base';
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let exclusionStr = "192.168,baidu.com";
 let exclusionArray = exclusionStr.split(',');
@@ -337,14 +346,14 @@ getDefaultHttpProxy(callback: AsyncCallback\<HttpProxy>): void
 
 | 错误码ID | 错误信息                                     |
 | -------- | -------------------------------------------- |
-| 2100002  | Operation failed. Cannot connect to service. |
+| 2100002  | Failed to connect to the service.            |
 | 2100003  | System internal error.                       |
 
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
-import { BusinessError } from '@ohos.base';
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.getDefaultHttpProxy((error: BusinessError, data: connection.HttpProxy) => {
   if (error) {
@@ -375,14 +384,14 @@ getDefaultHttpProxy(): Promise\<HttpProxy>;
 
 | 错误码ID | 错误信息                                     |
 | -------- | -------------------------------------------- |
-| 2100002  | Operation failed. Cannot connect to service. |
+| 2100002  | Failed to connect to the service.            |
 | 2100003  | System internal error.                       |
 
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
-import { BusinessError } from '@ohos.base';
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.getDefaultHttpProxy().then((data: connection.HttpProxy) => {
   console.info(JSON.stringify(data));
@@ -410,14 +419,14 @@ getAppNet(callback: AsyncCallback\<NetHandle>): void
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
 | 401 | Parameter error.|
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
-import { BusinessError } from '@ohos.base';
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.getAppNet((error: BusinessError, data: connection.NetHandle) => {
   if (error) {
@@ -446,15 +455,14 @@ getAppNet(): Promise\<NetHandle>;
 
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
-| 401 | Parameter error.|
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
-import { BusinessError } from '@ohos.base';
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.getAppNet().then((data: connection.NetHandle) => {
   console.info(JSON.stringify(data));
@@ -481,14 +489,13 @@ getAppNetSync(): NetHandle
 
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
-| 401     | Parameter error.             |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
+import { connection } from '@kit.NetworkKit';
 
 let netHandle = connection.getAppNetSync();
 ```
@@ -517,14 +524,14 @@ setAppNet(netHandle: NetHandle, callback: AsyncCallback\<void>): void
 | 201     | Permission denied.             |
 | 401     | Parameter error.               |
 | 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
-import { BusinessError } from '@ohos.base';
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.getDefaultNet((error: BusinessError, netHandle: connection.NetHandle) => {
   connection.setAppNet(netHandle, (error: BusinessError, data: void) => {
@@ -566,14 +573,14 @@ setAppNet(netHandle: NetHandle): Promise\<void>;
 | 201     | Permission denied.             |
 | 401     | Parameter error.               |
 | 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
-import { BusinessError } from '@ohos.base';
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   connection.setAppNet(netHandle).then(() => {
@@ -606,14 +613,14 @@ getAllNets(callback: AsyncCallback&lt;Array&lt;NetHandle&gt;&gt;): void
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
 | 401     | Parameter error.             |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
-import { BusinessError } from '@ohos.base';
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.getAllNets((error: BusinessError, data: connection.NetHandle[]) => {
   if (error) {
@@ -645,14 +652,13 @@ getAllNets(): Promise&lt;Array&lt;NetHandle&gt;&gt;
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
-| 401     | Parameter error.             |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
+import { connection } from '@kit.NetworkKit';
 
 connection.getAllNets().then((data: connection.NetHandle[]) => {
   console.info("Succeeded to get data: " + JSON.stringify(data));
@@ -680,14 +686,13 @@ getAllNetsSync(): Array&lt;NetHandle&gt;
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
-| 401     | Parameter error.             |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
+import { connection } from '@kit.NetworkKit';
 
 let netHandle = connection.getAllNetsSync();
 ```
@@ -716,14 +721,14 @@ getConnectionProperties(netHandle: NetHandle, callback: AsyncCallback\<Connectio
 | 201     | Permission denied.             |
 | 401     | Parameter error.               |
 | 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
-import { BusinessError } from '@ohos.base';
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   connection.getConnectionProperties(netHandle, (error: BusinessError, data: connection.ConnectionProperties) => {
@@ -765,13 +770,13 @@ getConnectionProperties(netHandle: NetHandle): Promise\<ConnectionProperties>
 | 201     | Permission denied.             |
 | 401     | Parameter error.               |
 | 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
+import { connection } from '@kit.NetworkKit';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   connection.getConnectionProperties(netHandle).then((data: connection.ConnectionProperties) => {
@@ -809,13 +814,13 @@ getConnectionPropertiesSync(netHandle: NetHandle): ConnectionProperties
 | 201     | Permission denied.             |
 | 401     | Parameter error.               |
 | 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
+import { connection } from '@kit.NetworkKit';
 
 let netHandle = connection.getDefaultNetSync();
 let connectionproperties = connection.getConnectionPropertiesSync(netHandle);
@@ -828,6 +833,8 @@ getNetCapabilities(netHandle: NetHandle, callback: AsyncCallback\<NetCapabilitie
 获取netHandle对应的网络的能力信息，使用callback方式作为异步方法。
 
 **需要权限**：ohos.permission.GET_NETWORK_INFO
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
@@ -845,14 +852,14 @@ getNetCapabilities(netHandle: NetHandle, callback: AsyncCallback\<NetCapabilitie
 | 201     | Permission denied.             |
 | 401     | Parameter error.               |
 | 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
-import { BusinessError } from '@ohos.base';
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   connection.getNetCapabilities(netHandle, (error: BusinessError, data: connection.NetCapabilities) => {
@@ -872,6 +879,8 @@ getNetCapabilities(netHandle: NetHandle): Promise\<NetCapabilities>
 获取netHandle对应的网络的能力信息，使用Promise方式作为异步方法。
 
 **需要权限**：ohos.permission.GET_NETWORK_INFO
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
@@ -894,13 +903,13 @@ getNetCapabilities(netHandle: NetHandle): Promise\<NetCapabilities>
 | 201     | Permission denied.             |
 | 401     | Parameter error.               |
 | 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
+import { connection } from '@kit.NetworkKit';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   connection.getNetCapabilities(netHandle).then((data: connection.NetCapabilities) => {
@@ -916,6 +925,8 @@ getNetCapabilitiesSync(netHandle: NetHandle): NetCapabilities
 获取netHandle对应的网络的能力信息，使用同步方式返回。
 
 **需要权限**：ohos.permission.GET_NETWORK_INFO
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
@@ -938,13 +949,13 @@ getNetCapabilitiesSync(netHandle: NetHandle): NetCapabilities
 | 201     | Permission denied.             |
 | 401     | Parameter error.               |
 | 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
+import { connection } from '@kit.NetworkKit';
 
 let netHandle = connection.getDefaultNetSync();
 let getNetCapabilitiesSync = connection.getNetCapabilitiesSync(netHandle);
@@ -972,14 +983,14 @@ isDefaultNetMetered(callback: AsyncCallback\<boolean>): void
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
 | 401     | Parameter error.               |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
-import { BusinessError } from '@ohos.base';
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.isDefaultNetMetered((error: BusinessError, data: boolean) => {
   console.log(JSON.stringify(error));
@@ -1008,14 +1019,13 @@ isDefaultNetMetered(): Promise\<boolean>
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
-| 401     | Parameter error.               |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
+import { connection } from '@kit.NetworkKit';
 
 connection.isDefaultNetMetered().then((data: boolean) => {
   console.log('data: ' + data);
@@ -1043,14 +1053,13 @@ isDefaultNetMeteredSync(): boolean
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
-| 401     | Parameter error.               |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
+import { connection } from '@kit.NetworkKit';
 
 let isMetered = connection.isDefaultNetMeteredSync();
 ```
@@ -1073,18 +1082,18 @@ hasDefaultNet(callback: AsyncCallback\<boolean>): void
 
 **错误码：**
 
-| 错误码ID | 错误信息                        |
-| ------- | -----------------------------  |
-| 201     | Permission denied.             |
-| 401     | Parameter error.               |
-| 2100002 | Operation failed. Cannot connect to service.|
-| 2100003 | System internal error.         |
+| 错误码ID | 错误信息                          |
+| ------- | --------------------------------- |
+| 201     | Permission denied.                |
+| 401     | Parameter error.                  |
+| 2100002 | Failed to connect to the service. |
+| 2100003 | System internal error.            |
 
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
-import { BusinessError } from '@ohos.base';
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.hasDefaultNet((error: BusinessError, data: boolean) => {
   console.log(JSON.stringify(error));
@@ -1114,13 +1123,14 @@ hasDefaultNet(): Promise\<boolean>
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
 | 401     | Parameter error.               |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error.         |
 
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
+import { connection } from '@kit.NetworkKit';
+
 connection.hasDefaultNet().then((data: boolean) => {
   console.log('data: ' + data);
 });
@@ -1147,14 +1157,13 @@ hasDefaultNetSync(): boolean
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
-| 401     | Parameter error.               |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
+import { connection } from '@kit.NetworkKit';
 
 let isDefaultNet = connection.hasDefaultNetSync();
 ```
@@ -1184,14 +1193,14 @@ reportNetConnected(netHandle: NetHandle, callback: AsyncCallback&lt;void&gt;): v
 | 201     | Permission denied.             |
 | 401     | Parameter error.               |
 | 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error.         |
 
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
-import { BusinessError } from '@ohos.base';
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   connection.reportNetConnected(netHandle, (error: BusinessError) => {
@@ -1228,13 +1237,14 @@ reportNetConnected(netHandle: NetHandle): Promise&lt;void&gt;
 | 201     | Permission denied.             |
 | 401     | Parameter error.               |
 | 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error.         |
 
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
+import { connection } from '@kit.NetworkKit';
+
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   connection.reportNetConnected(netHandle).then(() => {
     console.log(`report success`);
@@ -1266,13 +1276,14 @@ reportNetDisconnected(netHandle: NetHandle, callback: AsyncCallback&lt;void&gt;)
 | 201     | Permission denied.             |
 | 401     | Parameter error.               |
 | 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error.         |
 
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
+import { connection } from '@kit.NetworkKit';
+
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   connection.reportNetDisconnected(netHandle).then( () => {
     console.log(`report success`);
@@ -1308,13 +1319,14 @@ reportNetDisconnected(netHandle: NetHandle): Promise&lt;void&gt;
 | 201     | Permission denied.             |
 | 401     | Parameter error.               |
 | 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error.         |
 
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
+import { connection } from '@kit.NetworkKit';
+
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   connection.reportNetDisconnected(netHandle).then( () => {
     console.log(`report success`);
@@ -1346,14 +1358,15 @@ getAddressesByName(host: string, callback: AsyncCallback\<Array\<NetAddress>>): 
 | 201     | Permission denied.             |
 | 401     | Parameter error.               |
 | 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error.         |
 
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
-import { BusinessError } from "@ohos.base";
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 connection.getAddressesByName("xxxx", (error: BusinessError, data: connection.NetAddress[]) => {
   if (error) {
     console.error(`Failed to get addresses. Code:${error.code}, message:${error.message}`);
@@ -1392,13 +1405,14 @@ getAddressesByName(host: string): Promise\<Array\<NetAddress>>
 | 201     | Permission denied.             |
 | 401     | Parameter error.               |
 | 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error.         |
 
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
+import { connection } from '@kit.NetworkKit';
+
 connection.getAddressesByName("xxxx").then((data: connection.NetAddress[]) => {
   console.info("Succeeded to get data: " + JSON.stringify(data));
 });
@@ -1429,14 +1443,15 @@ addCustomDnsRule(host: string, ip: Array\<string\>, callback: AsyncCallback\<voi
 | 201     | Permission denied.             |
 | 401     | Parameter error.               |
 | 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error.         |
 
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
-import { BusinessError } from '@ohos.base';
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 connection.addCustomDnsRule("xxxx", ["xx.xx.xx.xx","xx.xx.xx.xx"], (error: BusinessError, data: void) => {
   if (error) {
     console.error(`Failed to get add custom dns rule. Code:${error.code}, message:${error.message}`);
@@ -1476,14 +1491,15 @@ addCustomDnsRule(host: string, ip: Array\<string\>): Promise\<void\>
 | 201     | Permission denied.             |
 | 401     | Parameter error.               |
 | 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error.         |
 
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
-import { BusinessError } from '@ohos.base';
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 connection.addCustomDnsRule("xxxx", ["xx.xx.xx.xx","xx.xx.xx.xx"]).then(() => {
     console.info("success");
 }).catch((error: BusinessError) => {
@@ -1515,14 +1531,15 @@ removeCustomDnsRule(host: string, callback: AsyncCallback\<void\>): void
 | 201     | Permission denied.             |
 | 401     | Parameter error.               |
 | 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error.         |
 
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
-import { BusinessError } from '@ohos.base';
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 connection.removeCustomDnsRule("xxxx", (error: BusinessError, data: void) => {
   if (error) {
     console.error(`Failed to remove custom dns rule. Code:${error.code}, message:${error.message}`);
@@ -1561,14 +1578,15 @@ removeCustomDnsRule(host: string): Promise\<void\>
 | 201     | Permission denied.             |
 | 401     | Parameter error.               |
 | 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error.         |
 
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
-import { BusinessError } from '@ohos.base';
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 connection.removeCustomDnsRule("xxxx").then(() => {
     console.log("success");
 }).catch((error: BusinessError) => {
@@ -1599,14 +1617,15 @@ clearCustomDnsRules(callback: AsyncCallback\<void\>): void
 | 201     | Permission denied.             |
 | 401     | Parameter error.               |
 | 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error.         |
 
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
-import { BusinessError } from '@ohos.base';
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 connection.clearCustomDnsRules((error: BusinessError, data: void) => {
   if (error) {
     console.error(`Failed to clear custom dns rules. Code:${error.code}, message:${error.message}`);
@@ -1637,16 +1656,16 @@ clearCustomDnsRules(): Promise\<void\>
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
-| 401     | Parameter error.               |
 | 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error.         |
 
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
-import { BusinessError } from '@ohos.base';
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 connection.clearCustomDnsRules().then(() => {
     console.log("success");
 }).catch((error: BusinessError) => {
@@ -1672,6 +1691,8 @@ register(callback: AsyncCallback\<void>): void
 
 **需要权限**：ohos.permission.GET_NETWORK_INFO
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
 **参数：**
@@ -1686,16 +1707,17 @@ register(callback: AsyncCallback\<void>): void
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
 | 401     | Parameter error.             |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
-| 2101008 | The same callback exists.     |
-| 2101022 | The number of requests exceeded the maximum. |
+| 2101008 | The callback already exists.     |
+| 2101022 | The number of requests exceeded the maximum allowed. |
 
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
-import { BusinessError } from "@ohos.base";
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let netCon: connection.NetConnection = connection.createNetConnection();
 netCon.register((error: BusinessError) => {
   console.log(JSON.stringify(error));
@@ -1708,6 +1730,8 @@ unregister(callback: AsyncCallback\<void>): void
 
 取消订阅默认网络状态变化的通知。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
 **参数：**
@@ -1718,19 +1742,20 @@ unregister(callback: AsyncCallback\<void>): void
 
 **错误码：**
 
-| 错误码ID | 错误信息                        |
-| ------- | -----------------------------  |
-| 201 | Permission denied.|
-| 401 | Parameter error.         |
-| 2100002 | Operation failed. Cannot connect to service.|
-| 2100003 | System internal error.         |
-| 2101007 | The callback is not exists.      |
+| 错误码ID | 错误信息                          |
+| ------- | --------------------------------- |
+| 201     | Permission denied.                |
+| 401     | Parameter error.                  |
+| 2100002 | Failed to connect to the service. |
+| 2100003 | System internal error.            |
+| 2101007 | The callback does not exist.      |
 
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
-import { BusinessError } from "@ohos.base";
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let netCon: connection.NetConnection = connection.createNetConnection();
 netCon.unregister((error: BusinessError) => {
   console.log(JSON.stringify(error));
@@ -1745,6 +1770,8 @@ on(type: 'netAvailable', callback: Callback\<NetHandle>): void
 
 **模型约束**：此接口调用之前需要先调用register接口，使用unregister取消订阅默认网络状态变化的通知。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
 **参数：**
@@ -1757,8 +1784,8 @@ on(type: 'netAvailable', callback: Callback\<NetHandle>): void
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
-import { BusinessError } from "@ohos.base";
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // 创建NetConnection对象
 let netCon: connection.NetConnection = connection.createNetConnection();
@@ -1799,8 +1826,8 @@ on(type: 'netBlockStatusChange', callback: Callback\<NetBlockStatusInfo>): void
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
-import { BusinessError } from "@ohos.base";
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // 创建NetConnection对象
 let netCon: connection.NetConnection = connection.createNetConnection();
@@ -1810,7 +1837,7 @@ netCon.register((error: BusinessError) => {
   console.log(JSON.stringify(error));
 });
 
-// 订阅网络可用事件。调用register后，才能接收到此事件通知
+// 订阅网络阻塞状态事件。调用register后，才能接收到此事件通知
 netCon.on('netBlockStatusChange', (data: connection.NetBlockStatusInfo) => {
   console.info("Succeeded to get data: " + JSON.stringify(data));
 });
@@ -1829,6 +1856,8 @@ on(type: 'netCapabilitiesChange', callback: Callback\<NetCapabilityInfo\>): void
 
 **模型约束**：此接口调用之前需要先调用register接口，使用unregister取消订阅默认网络状态变化的通知。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
 **参数：**
@@ -1841,8 +1870,8 @@ on(type: 'netCapabilitiesChange', callback: Callback\<NetCapabilityInfo\>): void
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
-import { BusinessError } from "@ohos.base";
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // 创建NetConnection对象
 let netCon: connection.NetConnection = connection.createNetConnection();
@@ -1883,8 +1912,8 @@ on(type: 'netConnectionPropertiesChange', callback: Callback\<NetConnectionPrope
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
-import { BusinessError } from "@ohos.base";
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // 创建NetConnection对象
 let netCon: connection.NetConnection = connection.createNetConnection();
@@ -1894,7 +1923,7 @@ netCon.register((error: BusinessError) => {
   console.log(JSON.stringify(error));
 });
 
-// 订阅网络可用事件。调用register后，才能接收到此事件通知
+// 订阅网络连接信息变化事件。调用register后，才能接收到此事件通知
 netCon.on('netConnectionPropertiesChange', (data: connection.NetConnectionPropertyInfo) => {
   console.info("Succeeded to get data: " + JSON.stringify(data));
 });
@@ -1913,6 +1942,8 @@ on(type: 'netLost', callback: Callback\<NetHandle>): void
 
 **模型约束**：此接口调用之前需要先调用register接口，使用unregister取消订阅默认网络状态变化的通知。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
 **参数：**
@@ -1925,8 +1956,8 @@ on(type: 'netLost', callback: Callback\<NetHandle>): void
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
-import { BusinessError } from "@ohos.base";
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // 创建NetConnection对象
 let netCon: connection.NetConnection = connection.createNetConnection();
@@ -1936,7 +1967,7 @@ netCon.register((error: BusinessError) => {
   console.log(JSON.stringify(error));
 });
 
-// 订阅网络可用事件。调用register后，才能接收到此事件通知
+// 订阅网络丢失事件。调用register后，才能接收到此事件通知
 netCon.on('netLost', (data: connection.NetHandle) => {
   console.info("Succeeded to get data: " + JSON.stringify(data));
 });
@@ -1955,6 +1986,8 @@ on(type: 'netUnavailable', callback: Callback\<void>): void
 
 **模型约束**：此接口调用之前需要先调用register接口，使用unregister取消订阅默认网络状态变化的通知。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
 **参数：**
@@ -1967,8 +2000,8 @@ on(type: 'netUnavailable', callback: Callback\<void>): void
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
-import { BusinessError } from "@ohos.base";
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // 创建NetConnection对象
 let netCon: connection.NetConnection = connection.createNetConnection();
@@ -2001,7 +2034,7 @@ netCon.unregister((error: BusinessError) => {
 
 | 名称    | 类型   | 必填 | 说明                      |
 | ------ | ------ | --- |------------------------- |
-| netId  | number | 是  |  网络ID，取值为0代表没有默认网络，其余取值必须大于等于100。 |
+| netId  | number | 是  |  网络ID，取值为0代表没有默认网络，其余取值必须大于等于100。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 
 ### bindSocket<sup>9+</sup>
 
@@ -2024,15 +2057,14 @@ bindSocket(socketParam: TCPSocket \| UDPSocket, callback: AsyncCallback\<void>):
 | ------- | -----------------------------  |
 | 401     | Parameter error.               |
 | 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error.         |
 
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
-import connection from '@ohos.net.connection';
-import { BusinessError } from '@ohos.base';
+import { connection, socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 interface Data {
   message: ArrayBuffer,
@@ -2040,8 +2072,8 @@ interface Data {
 }
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
-  let tcp = socket.constructTCPSocketInstance();
-  let udp = socket.constructUDPSocketInstance();
+  let tcp : socket.TCPSocket = socket.constructTCPSocketInstance();
+  let udp : socket.UDPSocket = socket.constructUDPSocketInstance();
   let socketType = "TCPSocket";
   if (socketType == "TCPSocket") {
     tcp.bind({address:"192.168.xxx.xxx",
@@ -2111,23 +2143,23 @@ bindSocket(socketParam: TCPSocket \| UDPSocket): Promise\<void>;
 | ------- | -----------------------------  |
 | 401     | Parameter error.               |
 | 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error.         |
 
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
-import connection from '@ohos.net.connection';
-import { BusinessError } from '@ohos.base';
+import { connection, socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 interface Data {
   message: ArrayBuffer,
   remoteInfo: socket.SocketRemoteInfo
 }
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
-  let tcp = socket.constructTCPSocketInstance();
-  let udp = socket.constructUDPSocketInstance();
+  let tcp : socket.TCPSocket = socket.constructTCPSocketInstance();
+  let udp : socket.UDPSocket = socket.constructUDPSocketInstance();
   let socketType = "TCPSocket";
   if (socketType == "TCPSocket") {
     tcp.bind({address:"192.168.xxx.xxx",
@@ -2137,12 +2169,10 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
         console.log('bind fail');
         return;
       }
-      netHandle.bindSocket(tcp, (error: BusinessError, data: void) => {
-        if (error) {
-          console.error(`Failed to bind socket. Code:${error.code}, message:${error.message}`);
-        } else {
-          console.info(JSON.stringify(data));
-        }
+      netHandle.bindSocket(tcp).then(() => {
+        console.info("bind socket success");
+      }).catch((error: BusinessError) => {
+        console.error(`Failed to bind socket. Code:${error.code}, message:${error.message}`);
       });
     });
   } else {
@@ -2159,12 +2189,10 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
     udp.on('message', (data: Data) => {
       console.info("Succeeded to get data: " + JSON.stringify(data));
     });
-    netHandle.bindSocket(udp, (error: BusinessError, data: void) => {
-      if (error) {
-        console.error(`Failed to bind socket. Code:${error.code}, message:${error.message}`);;
-      } else {
-        console.info(JSON.stringify(data));
-      }
+    netHandle.bindSocket(udp).then(() => {
+      console.info("bind socket success");
+    }).catch((error: BusinessError) => {
+      console.error(`Failed to bind socket. Code:${error.code}, message:${error.message}`);
     });
   });
 }
@@ -2195,14 +2223,14 @@ getAddressesByName(host: string, callback: AsyncCallback\<Array\<NetAddress>>): 
 | 201     | Permission denied.             |
 | 401     | Parameter error.               |
 | 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error.         |
 
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
-import { BusinessError } from "@ohos.base";
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   let host = "xxxx";
@@ -2245,13 +2273,13 @@ getAddressesByName(host: string): Promise\<Array\<NetAddress>>
 | 201     | Permission denied.             |
 | 401     | Parameter error.               |
 | 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error.         |
 
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
+import { connection } from '@kit.NetworkKit';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   let host = "xxxx";
@@ -2285,14 +2313,14 @@ getAddressByName(host: string, callback: AsyncCallback\<NetAddress>): void
 | 201     | Permission denied.             |
 | 401     | Parameter error.               |
 | 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error.         |
 
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
-import { BusinessError } from "@ohos.base";
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   let host = "xxxx";
@@ -2335,13 +2363,13 @@ getAddressByName(host: string): Promise\<NetAddress>
 | 201     | Permission denied.             |
 | 401     | Parameter error.               |
 | 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service.       |
 | 2100003 | System internal error.         |
 
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
+import { connection } from '@kit.NetworkKit';
 
 connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   let host = "xxxx";
@@ -2359,12 +2387,12 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
 
 | 名称                  | 值   | 说明                   |
 | ------------------------ | ---- | ---------------------- |
-| NET_CAPABILITY_MMS | 0 | 表示网络可以访问运营商的MMSC（Multimedia&nbsp;Message&nbsp;Service，多媒体短信服务）发送和接收彩信。 |
-| NET_CAPABILITY_NOT_METERED | 11 | 表示网络流量未被计费。 |
-| NET_CAPABILITY_INTERNET  | 12   | 表示该网络应具有访问Internet的能力，该能力由网络提供者设置。 |
-| NET_CAPABILITY_NOT_VPN | 15 | 表示网络不使用VPN（Virtual&nbsp;Private&nbsp;Network，虚拟专用网络）。 |
-| NET_CAPABILITY_VALIDATED | 16   | 表示该网络访问Internet的能力被网络管理成功验证，该能力由网络管理模块设置。 |
-| NET_CAPABILITY_PORTAL<sup>12+</sup> | 17   | 表示系统发现该网络存在强制网络门户，需要用户登陆认证，该能力由网络管理模块设置。 |
+| NET_CAPABILITY_MMS | 0 | 表示网络可以访问运营商的MMSC（Multimedia&nbsp;Message&nbsp;Service，多媒体短信服务）发送和接收彩信。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| NET_CAPABILITY_NOT_METERED | 11 | 表示网络流量未被计费。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| NET_CAPABILITY_INTERNET  | 12   | 表示该网络应具有访问Internet的能力，该能力由网络提供者设置。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| NET_CAPABILITY_NOT_VPN | 15 | 表示网络不使用VPN（Virtual&nbsp;Private&nbsp;Network，虚拟专用网络）。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| NET_CAPABILITY_VALIDATED | 16   | 表示该网络访问Internet的能力被网络管理成功验证，该能力由网络管理模块设置。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| NET_CAPABILITY_PORTAL<sup>12+</sup> | 17   | 表示系统发现该网络存在强制网络门户，需要用户登陆认证，该能力由网络管理模块设置。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
 
 ## NetBearType
 
@@ -2374,9 +2402,9 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
 
 |            名称         | 值   | 说明        |
 | ----------------------- | ---- | ---------- |
-| BEARER_CELLULAR         | 0    | 蜂窝网络。  |
-| BEARER_WIFI             | 1    | Wi-Fi网络。 |
-| BEARER_ETHERNET         | 3    | 以太网网络。|
+| BEARER_CELLULAR | 0    | 蜂窝网络。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。  |
+| BEARER_WIFI     | 1    | Wi-Fi网络。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| BEARER_ETHERNET | 3    | 以太网网络。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 | BEARER_VPN<sup>12+</sup>| 4    | VPN网络。   |
 
 ## HttpProxy<sup>10+</sup>
@@ -2387,15 +2415,17 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
 
 | 名称    | 类型   | 必填 | 说明                      |
 | ------ | ------ | --- |------------------------- |
-| host  | string | 是  |  代理服务器主机名。 |
-| port  | number | 是  |  主机端口。 |
-| exclusionList  | Array<string> | 是  | 不使用代理的主机名列表，主机名支持域名、IP地址以及通配符形式，详细匹配规则如下：<br/>1、域名匹配规则：<br/>（1）完全匹配：代理服务器主机名只要与列表中的任意一个主机名完全相同，就可以匹配。<br/>（2）包含匹配：代理服务器主机名只要包含列表中的任意一个主机名，就可以匹配。<br/>例如，如果在主机名列表中设置了 “ample.com”，则  “ample.com”、“www.ample.com”、“ample.com:80”都会被匹配，而 “www.example.com”、“ample.com.org”则不会被匹配。<br/>2、IP地址匹配规则：代理服务器主机名只要与列表中的任意一个IP地址完全相同，就可以匹配。<br/>3、域名跟IP地址可以同时添加到列表中进行匹配。<br/>4、单个“*”是唯一有效的通配符，当列表中只有通配符时，将与所有代理服务器主机名匹配，表示禁用代理。通配符只能单独添加，不可以与其他域名、IP地址一起添加到列表中，否则通配符将不生效。<br/>5、匹配规则不区分主机名大小写。<br/>6、匹配主机名时，不考虑http和https等协议前缀。 |
+| host  | string | 是  |  代理服务器主机名。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
+| port  | number | 是  |  主机端口。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| exclusionList  | Array<string> | 是  | 不使用代理的主机名列表，主机名支持域名、IP地址以及通配符形式，详细匹配规则如下：<br/>1、域名匹配规则：<br/>（1）完全匹配：代理服务器主机名只要与列表中的任意一个主机名完全相同，就可以匹配。<br/>（2）包含匹配：代理服务器主机名只要包含列表中的任意一个主机名，就可以匹配。<br/>例如，如果在主机名列表中设置了 “ample.com”，则  “ample.com”、“www.ample.com”、“ample.com:80”都会被匹配，而 “www.example.com”、“ample.com.org”则不会被匹配。<br/>2、IP地址匹配规则：代理服务器主机名只要与列表中的任意一个IP地址完全相同，就可以匹配。<br/>3、域名跟IP地址可以同时添加到列表中进行匹配。<br/>4、单个“\*”是唯一有效的通配符，当列表中只有通配符时，将与所有代理服务器主机名匹配，表示禁用代理。通配符只能单独添加，不可以与其他域名、IP地址一起添加到列表中，否则通配符将不生效。<br/>5、匹配规则不区分主机名大小写。<br/>6、匹配主机名时，不考虑http和https等协议前缀。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 | username<sup>12+</sup>  | string | 否 |  使用代理的用户名。|
 | password<sup>12+</sup>  | string | 否 |  使用代理的用户密码。|
 
 ## NetSpecifier
 
 提供承载数据网络能力的实例。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
@@ -2407,6 +2437,8 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
 ## NetCapabilityInfo<sup>10+</sup>
 
 提供承载数据网络能力的实例。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
@@ -2425,8 +2457,8 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
 | --------------------- | ---------------------------------- | --- | ------------------------ |
 | linkUpBandwidthKbps   | number                             |  否 |  上行（设备到网络）带宽，单位(kb/s)，0表示无法评估当前网络带宽。|
 | linkDownBandwidthKbps | number                             |  否 |  下行（网络到设备）带宽，单位(kb/s)，0表示无法评估当前网络带宽。|
-| networkCap            | Array\<[NetCap](#netcap)>           |  否 |  网络具体能力。           |
-| bearerTypes           | Array\<[NetBearType](#netbeartype)> |  是 |  网络类型。数组里面只包含了一种具体的网络类型。      |
+| networkCap            | Array\<[NetCap](#netcap)>           |  否 |  网络具体能力。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。           |
+| bearerTypes           | Array\<[NetBearType](#netbeartype)> |  是 |  网络类型。数组里面只包含了一种具体的网络类型。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。      |
 
 ## NetConnectionPropertyInfo<sup>11+</sup>
 

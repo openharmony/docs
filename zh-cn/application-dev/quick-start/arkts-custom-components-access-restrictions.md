@@ -13,7 +13,7 @@ ArkTS会对自定义组件的成员变量使用的访问限定符private/public/
 
 - 对于\@State/\@Prop/\@Provide/\@BuilderParam/常规成员变量(不涉及更新的普通变量)，当使用private修饰时，在自定义组件构造时，不允许进行赋值传参，否则会有编译告警日志提示。
 
-- 对于\@StorageLink/\@StorageProp/\@LocalStorageLink/\@LocalStorageLink/\@Consume变量，当使用public修饰时，会有编译告警日志提示。
+- 对于\@StorageLink/\@StorageProp/\@LocalStorageLink/\@LocalStorageProp/\@Consume变量，当使用public修饰时，会有编译告警日志提示。
 
 - 对于\@Link/\@ObjectLink变量，当使用private修饰时，会有编译告警日志提示。
 
@@ -71,7 +71,7 @@ Property 'builder_value' is private and can not be initialized through the compo
 Property 'regular_value' is private and can not be initialized through the component constructor.
 ```
 
-2.当成员变量被public访问限定符和\@StorageLink/\@StorageProp/\@LocalStorageLink/\@LocalStorageLink/\@Consume装饰器同时修饰时，ArkTS会进行校验并产生告警日志。
+2.当成员变量被public访问限定符和\@StorageLink/\@StorageProp/\@LocalStorageLink/\@LocalStorageProp/\@Consume装饰器同时修饰时，ArkTS会进行校验并产生告警日志。
 
 ```ts
 @Entry

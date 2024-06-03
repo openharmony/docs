@@ -15,10 +15,10 @@ Defines the structure for storing 32-bit unsigned integer arrays.
 
 ### Member Variables
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| [data](#data) | Pointer to the unsigned integer array.|
-| [size](#size) | Array length.|
+| uint32_t \* [data](#data) | Pointer to the unsigned integer array.| 
+| uint32_t [size](#size) | Array length.| 
 
 
 ## Member Variable Description
@@ -44,5 +44,3 @@ uint32_t OH_NN_UInt32Array::size
 **Description**
 
 Array length.
-
-<!--no_check-->

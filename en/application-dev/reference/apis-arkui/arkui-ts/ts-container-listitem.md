@@ -41,13 +41,83 @@ This API is deprecated since API version 10. You are advised to use [ListItem<su
 
 In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
 
-| Name| Type| Description|
-| -------- | -------- | -------- |
-| sticky<sup>(deprecated)</sup> | [Sticky](#stickydeprecated) | Sticky effect of the list item.<br>Default value: **Sticky.None**<br>This attribute is deprecated since API version 9. You are advised to use [the sticky attribute of the \<List> component](ts-container-list.md#attributes) instead.|
-| editable<sup>(deprecated)</sup>  | boolean \| [EditMode](#editmodedeprecated) | Whether to enter editing mode, where the list item can be deleted or moved.<br>This API is deprecated since API version 9. There is no substitute API.<br>Default value: **false**|
-| selectable<sup>8+</sup> | boolean | Whether the current list item is selectable by mouse drag.<br>**NOTE**<br>This attribute takes effect only when mouse frame selection is enabled for the parent **\<List>** container.<br>Default value: **true**|
-| selected<sup>10+</sup> | boolean | Whether the list item is selected. This attribute supports [$$](../../quick-start/arkts-two-way-sync.md) for two-way binding of variables.<br>**NOTE**<br>This attribute must be used before the [style for the selected state](./ts-universal-attributes-polymorphic-style.md) is set. Otherwise, the style settings will not take effect.<br>Default value: **false**|
-| swipeAction<sup>9+</sup> | {<br>start?: [CustomBuilder](ts-types.md#custombuilder8) \| [SwipeActionItem](#swipeactionitem10),<br>end?:[CustomBuilder](ts-types.md#custombuilder8) \| [SwipeActionItem](#swipeactionitem10),<br>edgeEffect?: [SwipeEdgeEffect](#swipeedgeeffect9),<br>} | Swipe action displayed when the list item is swiped out from the screen edge.<br>- **start**: swipe action displayed on the left of the list item when the item is swiped right (in vertical list layout) or above the list item when the item is swiped down (in horizontal list layout).<br>- **end**: swipe action displayed on the right of the list item when the item is swiped left (in vertical list layout) or below the list item when the item is swiped up (in horizontal list layout).<br>- **edgeEffect**: scroll effect.<br>**NOTE**<br>- The top level of the **@builder** function corresponding to **start** and **end** must be a single component and cannot be an **if/else**, **ForEach**, or **LazyForEach** statement.<br> - The swipe gesture works only in the list item area. If a swipe causes a child component to extend beyond the list item area, the portion outside the area does not respond to the swipe. In light of this, avoid setting **swipeAction** to a component too wide in a multi-column list.|
+### sticky<sup>(deprecated)</sup>
+
+sticky(value: Sticky)
+
+Sets the sticky effect of the list item.
+
+This attribute is deprecated since API version 9. You are advised to use [the sticky attribute of the \<List> component](ts-container-list.md#attributes) instead.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                               | Mandatory| Description                                      |
+| ------ | ----------------------------------- | ---- | ------------------------------------------ |
+| value  | [Sticky](#stickydeprecated) | Yes  | Sticky effect of the list item.<br>Default value: **Sticky.None**|
+
+### editable<sup>(deprecated)</sup>
+
+editable(value: boolean | EditMode)
+
+Sets whether to enable edit mode, where the list item can be deleted or moved.
+
+This API is deprecated since API version 9. There is no substitute API.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                                        | Mandatory| Description                                      |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------ |
+| value  | boolean \| [EditMode](#editmodedeprecated) | Yes  | Whether to enable edit mode.<br>Default value: **false**|
+
+### selectable<sup>8+</sup>
+
+selectable(value: boolean)
+
+Sets whether the list item is selectable for multiselect. This attribute takes effect only when mouse frame selection is enabled for the parent **\<List>** container.
+
+**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type   | Mandatory| Description                                             |
+| ------ | ------- | ---- | ------------------------------------------------- |
+| value  | boolean | Yes  | whether the list item is selectable for multiselect.<br>Default value: **true**|
+
+### selected<sup>10+</sup>
+
+selected(value: boolean)
+
+Sets whether the list item is selected. This attribute supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md). This attribute must be used before the [style for the selected state](./ts-universal-attributes-polymorphic-style.md) is set. Otherwise, the style settings will not take effect.
+
+**Widget capability**: Since API version 10, this API is supported in ArkTS widgets.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type   | Mandatory| Description                                    |
+| ------ | ------- | ---- | ---------------------------------------- |
+| value  | boolean | Yes  | Whether the list item is selected.<br>Default value: **false**|
+
+### swipeAction<sup>9+</sup>
+
+swipeAction(value: SwipeActionOptions)
+
+Sets the swipe action item displayed when the list item is swiped out from the screen edge.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                             | Mandatory| Description                |
+| ------ | ------------------------------------------------- | ---- | -------------------- |
+| value  | [SwipeActionOptions](#swipeactionoptions) | Yes  | Swipe action item displayed when the list item is swiped out from the screen edge.|
 
 ## Sticky<sup>(deprecated)</sup>
 This API is deprecated since API version 9. You are advised to use [the stickyStyle enum of the \<List> component](ts-container-list.md#stickystyle9) instead.
@@ -71,7 +141,21 @@ This API is deprecated since API version 9. There is no substitute API.
 |   Spring   |    0    | When the list item scrolls to the edge of the list, it can continue to scroll for a distance.<br>If the delete area is set, the list item can continue to scroll after the scroll distance exceeds the delete threshold and,<br>after being released, rebound following the spring curve.|
 |   None   |    1    | The list item cannot scroll beyond the edge of the list.<br>If the delete area is set, the list item cannot continue to scroll after the scroll distance exceeds the delete threshold.<br>If the delete callback is set, it is triggered when the delete threshold is reached and the list item is released.|
 
+## SwipeActionOptions
+
+The top level of the @builder function corresponding to **start** and **end** must be a single component and cannot be an **if/else**, **ForEach**, or **LazyForEach** statement.
+
+The swipe gesture works only in the list item area. If a swipe causes a child component to extend beyond the list item area, the portion outside the area does not respond to the swipe. In light of this, avoid setting **swipeAction** to a component too wide in a multi-column list.
+
+| Name                        | Type                                                        | Mandatory| Description                                                        |
+| ---------------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| start                        | [CustomBuilder](ts-types.md#custombuilder8) \| [SwipeActionItem](#swipeactionitem10) | No  | Swipe action item displayed on the left of the list item when the item is swiped right (in vertical list layout) or above the list item when the item is swiped down (in horizontal list layout).|
+| end                          | [CustomBuilder](ts-types.md#custombuilder8) \| [SwipeActionItem](#swipeactionitem10) | No  | Swipe action item displayed on the right of the list item when the item is swiped left (in vertical list layout) or below the list item when the item is swiped up (in horizontal list layout).|
+| edgeEffect                   | [SwipeEdgeEffect](#swipeedgeeffect9)                 | No  | Scroll effect.                                                  |
+| onOffsetChange<sup>11+</sup> | (offset: number) => void                                     | No  | Triggered when the scroll offset changes.                                  |
+
 ## SwipeActionItem<sup>10+</sup>
+
 Describes the swipe action item.
 
 For a list in vertical layout, it refers to the delete option displayed on the left (or right) of the list item when the list item is swiped right (or left).
@@ -109,15 +193,27 @@ For a list in horizontal layout, it refers to the delete option displayed below 
 
 | Name     | Value    | Description                                                        |
 | --------- | --------- | ------------------------------------------------------------ |
-| COLLAPSED | 0 | Collapsed state.<br>When the list item is swiped left or right (in vertical list layout) or up or down (in horizontal list layout), the swipe action is hidden.|
-| EXPANDED  | 1 | Expanded state.<br>When the list item is swiped left or right (in vertical list layout) or up or down (in horizontal list layout), the swipe action is shown.<br>**NOTE**<br>When the list item is swiped left or right (in vertical list layout)<br>or up or down (in horizontal list layout), the swipe action is shown.|
+| COLLAPSED | 0 | Collapsed state.<br>When the list item is swiped left or right (in vertical list layout) or up or down (in horizontal list layout), the swipe action item is hidden.|
+| EXPANDED  | 1 | Expanded state.<br>When the list item is swiped left or right (in vertical list layout) or up or down (in horizontal list layout), the swipe action item is shown.<br>**NOTE**<br>When the list item is swiped left or right (in vertical list layout)<br>or up or down (in horizontal list layout), the swipe action item is shown.|
 | ACTIONING | 2 | In-action state. The list item is in this state when it enters the delete area.<br>**NOTE**<br>A list item can enter this state only when it is released in a position that meets or goes beyond the specified swipe distance threshold (which must be valid) for deleting the list item.|
 
 ## Events
 
-| Name| Description|
-| -------- | -------- |
-| onSelect(event: (isSelected: boolean) =&gt; void)<sup>8+</sup> | Triggered when the selected state of the **\<ListItem>** changes.<br>**isSelected**: Returns **true** if the **\<ListItem>** is selected by mouse drag; returns **false** otherwise.|
+### onSelect<sup>8+</sup>
+
+onSelect(event: (isSelected: boolean) =&gt; void)
+
+Triggered when the selected state of the list item for multiselect changes.
+
+**Widget capability**: Since API version 10, this API is supported in ArkTS widgets.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name    | Type   | Mandatory| Description                                                        |
+| ---------- | ------- | ---- | ------------------------------------------------------------ |
+| isSelected | boolean | Yes  | Returns **true** if the list item is selected for multselect; returns **false** otherwise.|
 
 ## Example
 

@@ -186,7 +186,7 @@
 - [Video](ts-media-components-video.md)
 
     A component that is used to play a video and control its playback.
-- [PluginComponent](ts-basic-components-plugincomponent.md)
+- [PluginComponent](ts-basic-components-plugincomponent-sys.md)
 
     A component that allows the UI provided by an external application to be displayed in the application.
 - [XComponent](ts-basic-components-xcomponent.md)
@@ -263,13 +263,6 @@
     A parent component of the drawing components. The attributes provided by this component are universal attributes supported by all the drawing components.
 
 
-## Web
-
-- [Web](ts-basic-components-web.md)
-
-    A component that is used to display web pages.
-
-
 ## Miscellaneous
 
 - [ScrollBar](ts-basic-components-scrollbar.md)
@@ -292,15 +285,15 @@
 
     A container that provides the pull-to-refresh feature.
 
-- [AbilityComponent](ts-container-ability-component.md)
+- [AbilityComponent](ts-container-ability-component-sys.md)
 
     A container that is used for independently displaying an ability.
 
-- [RemoteWindow](ts-basic-components-remotewindow.md)
+- [RemoteWindow](ts-basic-components-remotewindow-sys.md)
 
     A component that is used to control the application window, providing the component animator and application window linkage animator during application startup and exit.
 
-- [FormComponent](ts-basic-components-formcomponent.md)
+- [FormComponent](ts-basic-components-formcomponent-sys.md)
 
     A component that is used to display widgets.
 
@@ -324,9 +317,9 @@
 
     A component that is used to represent a group of menu items.
 
-- [UIExtensionComponent](ts-container-ui-extension-component.md)
+- [UIExtensionComponent](ts-container-ui-extension-component-sys.md)
 
-    A component that is used to embed UIs provided by other applications in the local application UI.
+    A component that is used to embed UIs provided by other applications in the local application UI. 
 
 - [LocationButton](ts-security-components-locationbutton.md)
 

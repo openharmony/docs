@@ -18,6 +18,8 @@ import bundleManager from '@ohos.bundle.bundleManager';
 
 Enumerates the bundle flags, which indicate the type of bundle information to obtain.
 
+ **Atomic service API**: This API can be used in atomic services since API version 11.
+
  **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
 | Name                                     | Value        | Description                                                        |
@@ -33,6 +35,7 @@ Enumerates the bundle flags, which indicate the type of bundle information to ob
 | GET_BUNDLE_INFO_WITH_SIGNATURE_INFO       | 0x00000080 | Used to obtain the bundle information with signature information. The obtained information does not contain information about the application, HAP module, ability, ExtensionAbility, or permission.|
 | GET_BUNDLE_INFO_WITH_MENU<sup>11+</sup>   | 0x00000100 | Used to obtain the bundle information with the file context menu configuration. It must be used together with **GET_BUNDLE_INFO_WITH_HAP_MODULE**.|
 | GET_BUNDLE_INFO_WITH_ROUTER_MAP<sup>12+</sup>   | 0x00000200 | Used to obtain the bundle information with the router map. It must be used together with **GET_BUNDLE_INFO_WITH_HAP_MODULE**.|
+| GET_BUNDLE_INFO_WITH_SKILL<sup>12+</sup>   | 0x00000800 | Used to obtain the bundle information with the skills. It must be used together with **GET_BUNDLE_INFO_WITH_HAP_MODULE**, **GET_BUNDLE_INFO_WITH_ABILITY**, and **GET_BUNDLE_INFO_WITH_EXTENSION_ABILITY**.|
 
 ### ExtensionAbilityType
 
@@ -42,7 +45,7 @@ Enumerates the types of ExtensionAbilities.
 
 | Name| Value| Description|
 |:----------------:|:---:|-----|
-| FORM             | 0   | [FormExtensionAbility](../apis-form-kit/js-apis-app-form-formExtensionAbility.md): provides APIs for widget development.|
+| FORM             | 0   | [FormExtensionAbility](../apis-form-kit/js-apis-app-form-formExtensionAbility.md): provides APIs for widget development.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | WORK_SCHEDULER   | 1   | [WorkSchedulerExtensionAbility](../apis-backgroundtasks-kit/js-apis-WorkSchedulerExtensionAbility.md): enables applications to execute non-real-time tasks when the system is idle.|
 | INPUT_METHOD     | 2   | [InputMethodExtensionAbility](../apis-ime-kit/js-apis-inputmethod-extension-ability.md): provides APIs for developing input method applications.|
 | SERVICE          | 3   | [ServiceExtensionAbility](js-apis-app-ability-serviceExtensionAbility-sys.md): enables applications to run in the background and provide services.|
@@ -70,6 +73,8 @@ Enumerates the types of ExtensionAbilities.
 
 Enumerates the permission grant states.
 
+ **Atomic service API**: This API can be used in atomic services since API version 11.
+
  **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
 | Name| Value| Description|
@@ -80,6 +85,8 @@ Enumerates the permission grant states.
 ### SupportWindowMode
 
 Enumerates the window modes supported by the ability.
+
+ **Atomic service API**: This API can be used in atomic services since API version 11.
 
  **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
@@ -92,6 +99,8 @@ Enumerates the window modes supported by the ability.
 ### LaunchType
 
 Enumerates the launch types of the ability.
+
+ **Atomic service API**: This API can be used in atomic services since API version 11.
 
  **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
@@ -119,6 +128,8 @@ Enumerates the types of abilities.
 
 Enumerates the display orientations of the ability. This attribute applies only to the ability using the Page template.
 
+ **Atomic service API**: This API can be used in atomic services since API version 11.
+
  **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
 | Name                              |Value|Description|
@@ -141,6 +152,8 @@ Enumerates the display orientations of the ability. This attribute applies only 
 
 Defines the version compatibility type of the shared library.
 
+ **Atomic service API**: This API can be used in atomic services since API version 11.
+
  **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
 | Name                  | Value  | Description                            |
@@ -150,6 +163,8 @@ Defines the version compatibility type of the shared library.
 ### ModuleType
 
 Enumerates the module types.
+
+ **Atomic service API**: This API can be used in atomic services since API version 11.
 
  **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
@@ -163,6 +178,8 @@ Enumerates the module types.
 
 Enumerates the bundle types.
 
+ **Atomic service API**: This API can be used in atomic services since API version 11.
+
  **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
 | Name          | Value  | Description           |
@@ -174,9 +191,11 @@ Enumerates the bundle types.
 
 ### bundleManager.getBundleInfoForSelf
 
-getBundleInfoForSelf(bundleFlags: [number](js-apis-bundleManager.md#bundleflag)): Promise\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)>
+getBundleInfoForSelf(bundleFlags: number): Promise\<BundleInfo>
 
 Obtains the bundle information of this bundle based on the given bundle flags. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
@@ -184,13 +203,21 @@ Obtains the bundle information of this bundle based on the given bundle flags. T
 
 | Name    | Type  | Mandatory| Description               |
 | ----------- | ------ | ---- | --------------------- |
-| bundleFlags | [number](js-apis-bundleManager.md#bundleflag) | Yes  | Type of the bundle information to obtain.|
+| [bundleFlags](js-apis-bundleManager.md#bundleflag) | number | Yes  | Type of the bundle information to obtain.|
 
 **Return value**
 
 | Type                                                       | Description                                 |
 | ----------------------------------------------------------- | ------------------------------------- |
 | Promise\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)> | Promise used to return the bundle information.|
+
+**Error codes**
+
+For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 
 **Example**
 
@@ -214,9 +241,11 @@ try {
 
 ### bundleManager.getBundleInfoForSelf
 
-getBundleInfoForSelf(bundleFlags: [number](js-apis-bundleManager.md#bundleflag), callback: AsyncCallback\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)>): void
+getBundleInfoForSelf(bundleFlags: number, callback: AsyncCallback\<BundleInfo>): void
 
 Obtains the bundle information of this bundle based on the given bundle flags. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
@@ -224,8 +253,16 @@ Obtains the bundle information of this bundle based on the given bundle flags. T
 
 | Name    | Type  | Mandatory| Description               |
 | ----------- | ------ | ---- | --------------------- |
-| bundleFlags | [number](js-apis-bundleManager.md#bundleflag) | Yes  | Type of the bundle information to obtain.|
+| [bundleFlags](js-apis-bundleManager.md#bundleflag) | number | Yes  | Type of the bundle information to obtain.|
 | callback | AsyncCallback\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)> | Yes| Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the bundle information obtained. Otherwise, **err** is an error object.|
+
+**Error codes**
+
+For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 
 **Example**
 
@@ -260,6 +297,8 @@ Obtains the JSON string array of the current application's configuration file in
 > 
 > If the profile uses the resource reference format, the return value retains this format (for example, **$string:res_id**). You can obtain the referenced resources through related APIs of the resource management module.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
 **Parameters**
@@ -277,6 +316,7 @@ For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md)
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700002 | The specified moduleName is not existed.                      |
 | 17700003 | The specified abilityName is not existed.                     |
 | 17700024 | Failed to get the profile because there is no profile in the HAP. |
@@ -317,6 +357,8 @@ Obtains the JSON string array of the current application's configuration file in
 > 
 > If the profile uses the resource reference format, the return value retains this format (for example, **$string:res_id**). You can obtain the referenced resources through related APIs of the resource management module.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
 **Parameters**
@@ -339,6 +381,7 @@ For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md)
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700002 | The specified moduleName is not existed.                      |
 | 17700003 | The specified abilityName is not existed.                     |
 | 17700024 | Failed to get the profile because there is no profile in the HAP. |
@@ -395,6 +438,8 @@ Obtains the JSON string array of the current application's configuration file in
 > 
 > If the profile uses the resource reference format, the return value retains this format (for example, **$string:res_id**). You can obtain the referenced resources through related APIs of the resource management module.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
 **Parameters**
@@ -417,6 +462,7 @@ For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md)
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700002 | The specified moduleName is not existed.                      |
 | 17700003 | The specified abilityName is not existed.                     |
 | 17700024 | Failed to get the profile because there is no profile in the HAP. |
@@ -467,6 +513,8 @@ Obtains the JSON string array of the current application's configuration file in
 > 
 > If the profile uses the resource reference format, the return value retains this format (for example, **$string:res_id**). You can obtain the referenced resources through related APIs of the resource management module.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
 **Parameters**
@@ -484,6 +532,7 @@ For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md)
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700002 | The specified moduleName is not existed.                      |
 | 17700003 | The specified extensionAbilityName not existed.            |
 | 17700024 | Failed to get the profile because there is no profile in the HAP. |
@@ -523,6 +572,8 @@ Obtains the JSON string array of the current application's configuration file in
 > 
 > If the profile uses the resource reference format, the return value retains this format (for example, **$string:res_id**). You can obtain the referenced resources through related APIs of the resource management module.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
 **Parameters**
@@ -545,6 +596,7 @@ For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md)
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700002 | The specified moduleName is not existed.                      |
 | 17700003 | The specified extensionAbilityName not existed.            |
 | 17700024 | Failed to get the profile because there is no profile in the HAP. |
@@ -593,6 +645,8 @@ Obtains the JSON string array of the current application's configuration file in
 > 
 > If the profile uses the resource reference format, the return value retains this format (for example, **$string:res_id**). You can obtain the referenced resources through related APIs of the resource management module.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
 **Parameters**
@@ -615,6 +669,7 @@ For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md)
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700002 | The specified moduleName is not existed.                      |
 | 17700003 | The specified extensionAbilityName not existed.            |
 | 17700024 | Failed to get the profile because there is no profile in the HAP. |
@@ -653,19 +708,29 @@ getBundleInfoForSelfSync(bundleFlags: number): BundleInfo
 
 Obtains the bundle information of this bundle based on the given bundle flags. This API returns the result synchronously.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
 **Parameters**
 
 | Name    | Type  | Mandatory| Description               |
 | ----------- | ------ | ---- | --------------------- |
-| bundleFlags | [number](js-apis-bundleManager.md#bundleflag) | Yes  | Type of the bundle information to obtain.|
+| [bundleFlags](js-apis-bundleManager.md#bundleflag) | number | Yes  | Type of the bundle information to obtain.|
 
 **Return value**
 
 | Type                                             | Description                |
 | ------------------------------------------------- | -------------------- |
 | [BundleInfo](js-apis-bundleManager-bundleInfo.md) | Bundle information obtained.|
+
+**Error codes**
+
+For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 
 **Example**
 
@@ -707,6 +772,8 @@ For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md)
 
 | ID| Error Message                             |
 | -------- | ------------------------------------- |
+| 201 | Permission denied. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700201 | verifyAbc failed. |
 
 **Example**
@@ -760,6 +827,8 @@ For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md)
 
 | ID| Error Message                           |
 | -------- | --------------------------------------|
+| 201 | Permission denied. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700201 | verifyAbc failed. |
 
 **Example**
@@ -810,6 +879,8 @@ For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md)
 
 | ID| Error Message                           |
 | -------- | --------------------------------------|
+| 201 | Permission denied. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700202 | deleteAbc failed. |
 
 **Example**
@@ -832,11 +903,234 @@ try {
 }
 ```
 
+### bundleManager.getExtResource<sup>12+</sup>
+
+getExtResource(bundleName: string): Promise\<Array\<string>>;
+
+Obtains the module names corresponding to the extended resources based on the given bundle name. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
+
+**Parameters**
+
+| Name    | Type  | Mandatory| Description                      |
+| ----------- | ------ | ---- | ---------------------------- |
+| bundleName  | string | Yes  | Bundle name based on which the extended resources are to be queried.|
+
+**Return value**
+
+| Type                                                       | Description                       |
+| ----------------------------------------------------------- | --------------------------- |
+| Promise\<Array\<string>> | Promise used to return the API call result and the module names corresponding to the extended resources.|
+
+**Error codes**
+
+For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+
+| ID| Error Message                           |
+| -------- | --------------------------------------|
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 17700001 | The specified bundleName is not found. |
+| 17700303 | GetExtResource failed due to no extend resource. |
+
+**Example**
+
+```ts
+import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
+import hilog from '@ohos.hilog';
+let bundleName : string = 'com.ohos.demo';
+
+try {
+    bundleManager.getExtResource(bundleName).then((modules : Array<string>) => {
+        for (let i = 0; i < modules.length; i++) {
+            hilog.info(0x0000, 'testTag', 'getExtResource item: %s', modules[i]);
+        }
+    }).catch((err: BusinessError) => {
+        hilog.error(0x0000, 'testTag', 'getExtResource failed. Cause: %{public}s', err.message);
+    });
+} catch (err) {
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'getExtResource failed. Cause: %{public}s', message);
+}
+```
+
+### bundleManager.enableDynamicIcon<sup>12+</sup>
+
+enableDynamicIcon(bundleName: string, moduleName: string): Promise\<void>;
+
+Enables the dynamic icon based on the given bundle name and module name. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.ACCESS_DYNAMIC_ICON
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
+
+**Parameters**
+
+| Name    | Type  | Mandatory| Description                      |
+| ----------- | ------ | ---- | ---------------------------- |
+| bundleName  | string | Yes  | Bundle name based on which the dynamic icon is to be enabled.|
+| moduleName  | string | Yes  | Module name based on which the dynamic icon is to be enabled.|
+
+**Return value**
+
+| Type                                                       | Description                       |
+| ----------------------------------------------------------- | --------------------------- |
+| Promise\<void> | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+
+| ID| Error Message                           |
+| -------- | --------------------------------------|
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 17700001 | The specified bundleName is not found. |
+| 17700002 | The specified moduleName is not found. |
+| 17700304 | EnableDynamicIcon failed due to parse dynamic icon failed. |
+
+**Example**
+
+```ts
+import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
+import hilog from '@ohos.hilog';
+let bundleName : string = 'com.ohos.demo';
+let moduleName : string = 'moduleTest';
+
+try {
+    bundleManager.enableDynamicIcon(bundleName, moduleName).then((data) => {
+        hilog.info(0x0000, 'testTag', 'enableDynamicIcon successfully');
+    }).catch((err: BusinessError) => {
+        hilog.error(0x0000, 'testTag', 'enableDynamicIcon failed. Cause: %{public}s', err.message);
+    });
+} catch (err) {
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'enableDynamicIcon failed. Cause: %{public}s', message);
+}
+```
+
+### bundleManager.disableDynamicIcon<sup>12+</sup>
+
+disableDynamicIcon(bundleName: string): Promise\<void>;
+
+Disables the dynamic icon based on the given bundle name. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.ACCESS_DYNAMIC_ICON
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
+
+**Parameters**
+
+| Name    | Type  | Mandatory| Description                      |
+| ----------- | ------ | ---- | ---------------------------- |
+| bundleName  | string | Yes  | Bundle name based on which the dynamic icon is to be disabled.|
+
+**Return value**
+
+| Type                                                       | Description                       |
+| ----------------------------------------------------------- | --------------------------- |
+| Promise\<void> | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+
+| ID| Error Message                           |
+| -------- | --------------------------------------|
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 17700001 | The specified bundleName is not found. |
+| 17700305 | DisableDynamicIcon failed due to no dynamic icon. |
+
+**Example**
+
+```ts
+import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
+import hilog from '@ohos.hilog';
+let bundleName : string = 'com.ohos.demo';
+
+try {
+    bundleManager.disableDynamicIcon(bundleName).then((data) => {
+        hilog.info(0x0000, 'testTag', 'disableDynamicIcon successfully');
+    }).catch((err: BusinessError) => {
+        hilog.error(0x0000, 'testTag', 'disableDynamicIcon failed. Cause: %{public}s', err.message);
+    });
+} catch (err) {
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'disableDynamicIcon failed. Cause: %{public}s', message);
+}
+```
+
+### bundleManager.getDynamicIcon<sup>12+</sup>
+
+getDynamicIcon(bundleName: string): Promise\<string>;
+
+Obtains the module name corresponding to the dynamic icon based on the specified bundle name. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED or ohos.permission.GET_BUNDLE_INFO
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
+
+**Parameters**
+
+| Name    | Type  | Mandatory| Description                      |
+| ----------- | ------ | ---- | ---------------------------- |
+| bundleName  | string | Yes  | Bundle name based on which the dynamic icon is to be queried.|
+
+**Return value**
+
+| Type                                                       | Description                       |
+| ----------------------------------------------------------- | --------------------------- |
+| Promise\<string> | Promise used to return the API call result and module name corresponding to the dynamic icon.|
+
+**Error codes**
+
+For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+
+| ID| Error Message                           |
+| -------- | --------------------------------------|
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 17700001 | The specified bundleName is not found. |
+| 17700306 | No dynamic icon. |
+
+**Example**
+
+```ts
+import bundleManager from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
+import hilog from '@ohos.hilog';
+let bundleName : string = 'com.ohos.demo';
+
+try {
+    bundleManager.getDynamicIcon(bundleName).then((data) => {
+        hilog.info(0x0000, 'testTag', 'getDynamicIcon successfully %s', JSON.stringify(data));
+    }).catch((err: BusinessError) => {
+        hilog.error(0x0000, 'testTag', 'getDynamicIcon failed. Cause: %{public}s', err.message);
+    });
+} catch (err) {
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'getDynamicIcon failed. Cause: %{public}s', message);
+}
+```
+
 ### bundleManager.canOpenLink<sup>12+</sup>
 
 canOpenLink(link: string): boolean
 
-Checks whether a link can be opened.
+Checks whether a link can be opened. The scheme of the specified link must be configured in the **querySchemes** field of the **module.json** file.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
@@ -858,6 +1152,7 @@ For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md)
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700055 | The specified link is invalid.                      |
 | 17700056 | The scheme of the specified link is not in the querySchemes.        |
 
@@ -876,5 +1171,3 @@ try {
     hilog.error(0x0000, 'testTag', 'canOpenLink failed: %{public}s', message);
 }
 ```
-
- <!--no_check--> 

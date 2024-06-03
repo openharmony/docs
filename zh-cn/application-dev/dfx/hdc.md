@@ -71,7 +71,7 @@ hdc工具通过OpenHarmony SDK获取，存放于SDK的toolchains目录下，首�
 
 在**此电脑 &gt; 属性 &gt; 高级系统设置 &gt; 高级 &gt; 环境变量 &gt; 系统变量**中，将SDK的toolchains完整路径添加到Path变量值中，具体路径信息以SDK**实际配置路径**为准。
 
-以下图示内容以本地SDK的toolchains完整路径_/User/username/sdk/openharmony/10/toolchains_为例：
+以下图示内容以本地SDK的toolchains完整路径<!--RP1-->_/User/username/sdk/openharmony/10/toolchains_<!--RP1End-->为例：
 
 ![系统变量](figures/hdc_img_002.PNG)
 
@@ -101,7 +101,7 @@ hdc工具通过OpenHarmony SDK获取，存放于SDK的toolchains目录下，首�
 
 3. 输入以下内容，在PATH路径下**增加**SDK路径信息，具体路径信息以SDK**实际配置路径**为准。
 
-   以下内容以本地SDK的toolchains完整路径_/User/username/sdk/openharmony/10/toolchains_为例：
+   以下内容以本地SDK的toolchains完整路径<!--RP1-->_/User/username/sdk/openharmony/10/toolchains_<!--RP1End-->为例：
 
    ```shell
    HDC_SDK_PATH=/User/username/sdk/openharmony/10/toolchains
@@ -124,7 +124,7 @@ hdc工具通过OpenHarmony SDK获取，存放于SDK的toolchains目录下，首�
       ```shell
       source ~/.zshrc
       ```
-
+<!--Del-->
 **（Linux可选）开启非root用户USB设备操作权限**
 
 - （临时权限）设置USB设备操作权限最大化
@@ -167,6 +167,7 @@ hdc工具通过OpenHarmony SDK获取，存放于SDK的toolchains目录下，首�
 >
 > - 命令行中被[]修饰的参数表示可选参数。
 > - 命令行中的参数若是斜体，表示在使用时该参数需替换为具体的信息，例如：file send _local remote_命令中的local和remote，使用时需替换为本地待发送和远端待接收的文件路径。
+<!--DelEnd-->
 
 ## 开发指导
 
@@ -231,7 +232,7 @@ hdc工具通过OpenHarmony SDK获取，存放于SDK的toolchains目录下，首�
    | -------- | -------- |
    | 命令执行返回内容 | 请参考对应命令的返回值 |
    | [Fail]Not match target founded, check connect-key please | 连接的设备不存在 |
-   | [Fail]ExecuteCommand need connect-key? | 连接的设备不存在 |
+   | [Fail]ExecuteCommand need connect-key? | 连接的设备不存在或同时连接多台设备时，未指定连接设备标识 |
    | Unknown operation command... | 不支持的命令 |
 
    **使用方法**：

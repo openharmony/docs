@@ -3,6 +3,10 @@
 
 以HKDF256密钥为例，完成密钥派生。具体的场景介绍及支持的算法规格，请参考[密钥生成支持的算法](huks-key-generation-overview.md#支持的算法)。
 
+## 在CMake脚本中链接相关动态库
+```txt
+   target_link_libraries(entry PUBLIC libhuks_ndk.z.so)
+```
 
 ## 开发步骤
 
@@ -10,9 +14,13 @@
 
 1. 指定密钥别名。
 
-2. 初始化密钥属性集，可指定参数TAG(可选)，OH_HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG：
-   - OH_HUKS_STORAGE_ONLY_USED_IN_HUKS：表示由该密钥派生出的密钥存储于HUKS中，由HUKS进行托管。
-   - OH_HUKS_STORAGE_KEY_EXPORT_ALLOWED(默认)：表示由该密钥派生出的密钥直接导出给业务方，HUKS不对其进行托管服务。
+2. 初始化密钥属性集，可指定参数，OH_HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG（可选），用于标识基于该密钥派生出的密钥是否由HUKS管理。
+
+    - 当TAG设置为OH_HUKS_STORAGE_ONLY_USED_IN_HUKS时，表示基于该密钥派生出的密钥，由HUKS管理，可保证派生密钥全生命周期不出安全环境。
+
+    - 当TAG设置为OH_HUKS_STORAGE_KEY_EXPORT_ALLOWED时，表示基于该密钥派生出的密钥，返回给调用方管理，由业务自行保证密钥安全。
+
+    - 若业务未设置TAG的具体值，表示基于该密钥派生出的密钥，即可由HUKS管理，也可返回给调用方管理，业务可在后续派生时再选择使用何种方式保护密钥。
 
 3. 调用OH_Huks_GenerateKeyItem生成密钥，具体请参考[密钥生成](huks-key-generation-overview.md)。
 
@@ -22,11 +30,17 @@
 
 1. 获取密钥别名、指定对应的属性参数HuksOptions。
 
-   应用在派生密钥时建议传入指定参数TAG：OH_HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG，使用[OH_Huks_KeyStorageType](../../reference/apis-universal-keystore-kit/_huks_type_api.md#oh_huks_keystoragetype)中定义的类型：
+   可指定参数OH_HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG（可选），用于标识派生得到的密钥是否由HUKS管理。
 
-   - OH_HUKS_STORAGE_ONLY_USED_IN_HUKS：表示协商出的密钥仅在HUKS内使用。
-   - OH_HUKS_STORAGE_KEY_EXPORT_ALLOWED：表示不在HUKS内存储，协商后直接导出。
-   - 若不传入，则默认同时支持存储和导出，存在安全风险，不推荐业务使用。
+    | 生成 | 派生 | 规格 |
+    | -------- | -------- | -------- |
+    | OH_HUKS_STORAGE_ONLY_USED_IN_HUKS | OH_HUKS_STORAGE_ONLY_USED_IN_HUKS | 密钥由HUKS管理 |
+    | OH_HUKS_STORAGE_KEY_EXPORT_ALLOWED | OH_HUKS_STORAGE_KEY_EXPORT_ALLOWED | 密钥返回给调用方管理 |
+    | 未指定TAG具体值 | OH_HUKS_STORAGE_ONLY_USED_IN_HUKS | 密钥由HUKS管理 |
+    | 未指定TAG具体值 | OH_HUKS_STORAGE_KEY_EXPORT_ALLOWED | 密钥返回给调用方管理 |
+    | 未指定TAG具体值 | 未指定TAG具体值 | 密钥返回给调用方管理 |
+
+    注：派生时指定的TAG值，不可与生成时指定的TAG值冲突。表格中仅列举有效的指定方式。
 
 2. 调用[OH_Huks_InitSession](../../reference/apis-universal-keystore-kit/_huks_key_api.md#oh_huks_initsession)初始化密钥会话，并获取会话的句柄handle。
 

@@ -20,6 +20,8 @@
     - [多线程安全注意事项](multi-thread-safety.md)
     - [\@Concurrent装饰器：声明并校验并发函数](arkts-concurrent.md)
     - [Sendable开发指导](arkts-sendable.md)
+    - [已接入Sendable的系统对象](arkts-sendable-system-object-list.md)
+    - [共享模块开发指导](arkts-sendable-module.md)
 - 容器类库
   - [容器类库概述](container-overview.md)
   - [线性容器](linear-container.md)
@@ -29,3 +31,6 @@
   - [XML生成](xml-generation.md)
   - [XML解析](xml-parsing.md)
   - [XML转换](xml-conversion.md)
+- [代码混淆](source-obfuscation.md)
+- 内存管理
+  - [GC介绍](gc-introduction.md)

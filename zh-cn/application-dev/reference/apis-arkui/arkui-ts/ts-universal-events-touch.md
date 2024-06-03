@@ -14,6 +14,8 @@ onTouch(event: (event: TouchEvent) => void): T
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -29,16 +31,18 @@ onTouch(event: (event: TouchEvent) => void): T
 | T | 返回当前组件。 |
 
 ## TouchEvent对象说明
+继承于[BaseEvent](ts-gesture-customize-judge.md#baseevent对象说明)。
 
 | 名称                | 类型                                       | 描述           |
 | ------------------- | ---------------------------------------- | ------------ |
-| type                | [TouchType](ts-appendix-enums.md#touchtype)      | 触摸事件的类型。     |
-| touches             | Array&lt;[TouchObject](#touchobject对象说明)&gt; | 全部手指信息。      |
-| changedTouches      | Array&lt;[TouchObject](#touchobject对象说明)&gt; | 当前发生变化的手指信息。 |
-| stopPropagation      | () => void | 阻塞事件冒泡。 |
-| timestamp<sup>8+</sup> | number | 事件时间戳，触发事件时距离系统启动的时间间隔。<br/>例如，当系统启动时间为2023/10/12 11:33, 在2023/10/12 11:34时触发触摸事件，时间戳返回的值为60,000,000,000ns。<br>单位：纳秒 |
-| target<sup>8+</sup> | [EventTarget](ts-universal-events-click.md#eventtarget8对象说明) | 触发事件的元素对象显示区域。 |
-| source<sup>8+</sup> | [SourceType](ts-gesture-settings.md#sourcetype枚举说明) | 事件输入设备。 |
+| type                | [TouchType](ts-appendix-enums.md#touchtype)      | 触摸事件的类型。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。     |
+| touches             | Array&lt;[TouchObject](#touchobject对象说明)&gt; | 全部手指信息。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。      |
+| changedTouches      | Array&lt;[TouchObject](#touchobject对象说明)&gt; | 当前发生变化的手指信息。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| stopPropagation      | () => void | 阻塞事件冒泡。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| timestamp<sup>8+</sup> | number | 事件时间戳，触发事件时距离系统启动的时间间隔。<br/>例如，当系统启动时间为2023/10/12 11:33, 在2023/10/12 11:34时触发触摸事件，时间戳返回的值为60,000,000,000ns。<br>单位：ns <br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
+| target<sup>8+</sup> | [EventTarget](ts-universal-events-click.md#eventtarget8对象说明) | 触发事件的元素对象显示区域。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| source<sup>8+</sup> | [SourceType](ts-gesture-settings.md#sourcetype枚举说明) | 事件输入设备。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| preventDefault<sup>12+</sup>      | () => void | 阻止默认事件。 |
 
 
 ### getHistoricalPoints<sup>10+</sup>
@@ -46,6 +50,8 @@ onTouch(event: (event: TouchEvent) => void): T
 getHistoricalPoints(): Array&lt;HistoricalPoint&gt;
 
 获取当前帧所有的历史点。不同设备每帧的触摸事件频率不同，且该接口只能在[TouchEvent](#touchevent对象说明)中调用，可以通过该接口获取触发[onTouch](#ontouch)时当前帧历史点的相关信息。[onTouch](#ontouch)一帧只会调用一次，若当前帧收到的[TouchEvent](#touchevent对象说明)大于1，会将该帧最后一个点通过[onTouch](#ontouch)返还，剩余点作为历史点。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **返回值:**
 
@@ -58,18 +64,20 @@ getHistoricalPoints(): Array&lt;HistoricalPoint&gt;
 
 | 名称    | 类型                                        | 描述                                  |
 | ------- | ------------------------------------------- | ------------------------------------- |
-| type    | [TouchType](ts-appendix-enums.md#touchtype) | 触摸事件的类型。                      |
-| id      | number                                      | 手指唯一标识符。                      |
-| x       | number                                      | 触摸点相对于被触摸元素原始区域左上角的X坐标。<br/>单位：vp |
-| y       | number                                      | 触摸点相对于被触摸元素原始区域左上角的Y坐标。<br/>单位：vp |
-| windowX<sup>10+</sup>  | number                       | 触摸点相对于应用窗口左上角的X坐标。<br/>单位：vp   |
-| windowY<sup>10+</sup>  | number                       | 触摸点相对于应用窗口左上角的Y坐标。<br/>单位：vp   |
-| displayX<sup>10+</sup> | number                       | 触摸点相对于应用屏幕左上角的X坐标。<br/>单位：vp   |
-| displayY<sup>10+</sup> | number                       | 触摸点相对于应用屏幕左上角的Y坐标。<br/>单位：vp   |
+| type    | [TouchType](ts-appendix-enums.md#touchtype) | 触摸事件的类型。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。                      |
+| id      | number                                      | 手指唯一标识符。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。                      |
+| x       | number                                      | 触摸点相对于被触摸元素原始区域左上角的X坐标。<br/>单位：vp<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| y       | number                                      | 触摸点相对于被触摸元素原始区域左上角的Y坐标。<br/>单位：vp<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| windowX<sup>10+</sup>  | number                       | 触摸点相对于应用窗口左上角的X坐标。<br/>单位：vp<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。   |
+| windowY<sup>10+</sup>  | number                       | 触摸点相对于应用窗口左上角的Y坐标。<br/>单位：vp<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。   |
+| displayX<sup>10+</sup> | number                       | 触摸点相对于应用屏幕左上角的X坐标。<br/>单位：vp<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。   |
+| displayY<sup>10+</sup> | number                       | 触摸点相对于应用屏幕左上角的Y坐标。<br/>单位：vp<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。   |
 | screenX<sup>(deprecated)</sup> | number               | 触摸点相对于应用窗口左上角的X坐标。<br/>单位：vp <br>从API version 10开始不再维护，建议使用windowX代替。   |
 | screenY<sup>(deprecated)</sup> | number               | 触摸点相对于应用窗口左上角的Y坐标。<br/>单位：vp <br>从API version 10开始不再维护，建议使用windowX代替。   |
 
 ## HistoricalPoint<sup>10+</sup>对象说明
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称         | 类型                                 | 描述                                                                         |
 | ----------- | ----------------------------------- | ----------------------------------------------------------------------------- |

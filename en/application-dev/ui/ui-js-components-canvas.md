@@ -1,7 +1,7 @@
 # &lt;canvas&gt; Development
 
 
-The **&lt;canvas&gt;** component provides a canvas for drawing customized graphics. For details, see [canvas](../reference/arkui-js/js-components-canvas-canvas.md).
+The **&lt;canvas&gt;** component provides a canvas for drawing customized graphics. For details, see [canvas](../reference/apis-arkui/arkui-js/js-components-canvas-canvas.md).
 
 
 ## Creating a &lt;canvas&gt; Component

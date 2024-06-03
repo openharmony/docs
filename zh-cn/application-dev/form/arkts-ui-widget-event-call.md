@@ -9,7 +9,7 @@
 
 ## 约束限制
 
--提供方应用需要具备后台运行权限([ohos.permission.KEEP_BACKGROUND_RUNNING](../security/AccessToken/permissions-for-all.md#ohospermissionkeep_background_running))。
+提供方应用需要具备后台运行权限([ohos.permission.KEEP_BACKGROUND_RUNNING](../security/AccessToken/permissions-for-all.md#ohospermissionkeep_background_running))。
 
 ## 开发步骤
 
@@ -18,86 +18,66 @@
 
 - 在卡片页面中布局两个按钮，点击其中一个按钮时调用postCardAction向指定UIAbility发送call事件，并在事件内定义需要调用的方法和传递的数据。需要注意的是，method参数为必选参数，且类型需要为string类型，用于触发UIAbility中对应的方法。
   
-  ```ts
-  @Entry
-  @Component
-  struct WidgetEventCallCard {
-    @LocalStorageProp('formId') formId: string = '12400633174999288';
-  
-    build() {
-      Column() {
-        Text($r('app.string.WidgetEventCallEntryAbility_desc'))
-          .fontColor('#FFFFFF')
-          .opacity(0.9)
-          .fontSize(14)
-          .margin({ top: '8%', left: '10%' })
-        Row() {
-          Column() {
-            Button() {
-              Text($r('app.string.ButtonA_label'))
-                .fontColor('#45A6F4')
-                .fontSize(12)
-            }
-            .width(120)
-            .height(32)
-            .margin({ top: '20%' })
-            .backgroundColor('#FFFFFF')
-            .borderRadius(16)
-            .onClick(() => {
-              postCardAction(this, {
-                action: 'call',
-                abilityName: 'WidgetEventCallEntryAbility', // 只能跳转到当前应用下的UIAbility
-                params: {
-                  formId: this.formId,
-                  method: 'funA' // 在EntryAbility中调用的方法名
-                }
-              });
-            })
-  
-            Button() {
-              Text($r('app.string.ButtonB_label'))
-                .fontColor('#45A6F4')
-                .fontSize(12)
-            }
-            .width(120)
-            .height(32)
-            .margin({ top: '8%', bottom: '15vp' })
-            .backgroundColor('#FFFFFF')
-            .borderRadius(16)
-            .onClick(() => {
-              postCardAction(this, {
-                action: 'call',
-                abilityName: 'WidgetEventCallEntryAbility', // 只能跳转到当前应用下的UIAbility
-                params: {
-                  formId: this.formId,
-                  method: 'funB', // 在EntryAbility中调用的方法名
-                  num: 1 // 需要传递的其他参数
-                }
-              });
-            })
+```ts
+@Entry
+@Component
+struct WidgetEventCallCard {
+  @LocalStorageProp('formId') formId: string = '12400633174999288';
+
+  build() {
+    Column() {
+      //...
+      Row() {
+        Column() {
+          Button() {
+          //...
           }
-        }.width('100%').height('80%')
-        .justifyContent(FlexAlign.Center)
-      }
-      .width('100%')
-      .height('100%')
-      .alignItems(HorizontalAlign.Start)
-      .backgroundImage($r('app.media.CardEvent'))
-      .backgroundImageSize(ImageSize.Cover)
+          //...
+          .onClick(() => {
+            postCardAction(this, {
+              action: 'call',
+              abilityName: 'WidgetEventCallEntryAbility', // 只能跳转到当前应用下的UIAbility
+              params: {
+                formId: this.formId,
+                method: 'funA' // 在EntryAbility中调用的方法名
+              }
+            });
+          })
+
+          Button() {
+          //...
+          }
+          //...
+          .onClick(() => {
+            postCardAction(this, {
+              action: 'call',
+              abilityName: 'WidgetEventCallEntryAbility', // 只能跳转到当前应用下的UIAbility
+              params: {
+                formId: this.formId,
+                method: 'funB', // 在EntryAbility中调用的方法名
+                num: 1 // 需要传递的其他参数
+              }
+            });
+          })
+        }
+      }.width('100%').height('80%')
+      .justifyContent(FlexAlign.Center)
     }
+    .width('100%')
+    .height('100%')
+    .alignItems(HorizontalAlign.Center)
   }
-  ```
+}
+```
   
 - 在UIAbility中接收call事件并获取参数，根据传递的method不同，执行不同的方法。其余数据可以通过[readString](../reference/apis-ipc-kit/js-apis-rpc.md#readstring)方法获取。需要注意的是，UIAbility需要onCreate生命周期中监听所需的方法。
   
   ```ts
-  import type AbilityConstant from '@ohos.app.ability.AbilityConstant';
-  import type Base from '@ohos.base';
-  import hilog from '@ohos.hilog';
-  import promptAction from '@ohos.promptAction';
-  import type rpc from '@ohos.rpc';
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  import type Want from '@ohos.app.ability.Want';
+  import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+  import { promptAction } from '@kit.ArkUI';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { rpc } from '@kit.IPCKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
   
   const TAG: string = 'WidgetEventCallEntryAbility';
   const DOMAIN_NUMBER: number = 0xFF00;
@@ -148,8 +128,8 @@
           return new MyParcelable(CONST_NUMBER_2, 'bbb');
         });
       } catch (err) {
-        hilog.error(DOMAIN_NUMBER, TAG, `Failed to register callee on. Cause: ${JSON.stringify(err as Base.BusinessError)}`);
-      };
+        hilog.error(DOMAIN_NUMBER, TAG, `Failed to register callee on. Cause: ${JSON.stringify(err as BusinessError)}`);
+      }
     }
   
     // 进程退出时，解除监听
@@ -158,8 +138,8 @@
         this.callee.off('funA');
         this.callee.off('funB');
       } catch (err) {
-        hilog.error(DOMAIN_NUMBER, TAG, `Failed to register callee off. Cause: ${JSON.stringify(err as Base.BusinessError)}`);
-      };
+        hilog.error(DOMAIN_NUMBER, TAG, `Failed to register callee off. Cause: ${JSON.stringify(err as BusinessError)}`);
+      }
     }
   }
   ```

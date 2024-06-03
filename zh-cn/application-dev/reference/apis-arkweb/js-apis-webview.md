@@ -83,7 +83,7 @@ postMessageEvent(message: WebMessage): void
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
-| 17100010 | Can not post message using this port. |
+| 17100010 | Failed to post messages through the port. |
 
 **示例：**
 
@@ -137,7 +137,7 @@ onMessageEvent(callback: (result: WebMessage) => void): void
 
 | 错误码ID | 错误信息                                        |
 | -------- | ----------------------------------------------- |
-| 17100006 | Can not register message event using this port. |
+| 17100006 | Failed to register a message event for the port.|
 
 **示例：**
 
@@ -188,7 +188,7 @@ struct WebComponent {
 
 | 名称         | 类型   | 可读 | 可写 | 说明                                              |
 | ------------ | ------ | ---- | ---- | ------------------------------------------------|
-| isExtentionType | boolean | 是   | 否 | 创建WebMessagePort时是否指定使用扩展增强接口。   |
+| isExtentionType | boolean | 是   | 是 | 创建WebMessagePort时是否指定使用扩展增强接口。   |
 
 ### postMessageEventExt<sup>10+</sup>
 
@@ -210,7 +210,7 @@ postMessageEventExt(message: WebMessageExt): void
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
-| 17100010 | Can not post message using this port. |
+| 17100010 | Failed to post messages through the port. |
 
 ### onMessageEventExt<sup>10+</sup>
 
@@ -232,7 +232,7 @@ onMessageEventExt(callback: (result: WebMessageExt) => void): void
 
 | 错误码ID | 错误信息                                        |
 | -------- | ----------------------------------------------- |
-| 17100006 | Can not register message event using this port. |
+| 17100006 | Failed to register a message event for the port. |
 
 **示例：**
 
@@ -688,7 +688,7 @@ static initializeWebEngine(): void
 本示例以EntryAbility为例，描述了在 Ability 创建阶段完成 Web 组件动态库加载的功能。
 
 ```ts
-// xxx.ts
+// xxx.ets
 import UIAbility from '@ohos.app.ability.UIAbility';
 import web_webview from '@ohos.web.webview';
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
@@ -718,10 +718,18 @@ static setHttpDns(secureDnsMode:SecureDnsMode, secureDnsConfig:string): void
 | secureDnsMode         |   [SecureDnsMode](#securednsmode10)   | 是   | 使用HTTPDNS的模式。|
 | secureDnsConfig       | string | 是 | HTTPDNS server的配置，必须是https协议并且只允许配置一个server。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                  |
+| -------- | ----------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                                   |
+
 **示例：**
 
 ```ts
-// xxx.ts
+// xxx.ets
 import UIAbility from '@ohos.app.ability.UIAbility';
 import web_webview from '@ohos.web.webview';
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
@@ -1524,9 +1532,16 @@ struct WebComponent {
 
 ### registerJavaScriptProxy
 
-registerJavaScriptProxy(object: object, name: string, methodList: Array\<string>): void
+registerJavaScriptProxy(object: object, name: string, methodList: Array\<string>, asyncMethodList?: Array\<string>): void
 
-注入JavaScript对象到window对象中，并在window对象中调用该对象的方法。注册后，须调用[refresh](#refresh)接口生效。
+registerJavaScriptProxy提供了应用与Web组件加载的网页之间强大的交互能力。
+<br>注入JavaScript对象到window对象中，并在window对象中调用该对象的方法。注册后，须调用[refresh](#refresh)接口生效。
+
+> **说明：**
+>
+> - 请尽可能只在可信的URL及安全通信HTTPS场景下进行registerJavaScriptProxy注册。在非可信的Web组件中注入JavaScript对象，可能会导致应用被恶意攻击。
+> - 在注册registerJavaScriptProxy后，应用会将JavaScript对象暴露给所有的页面frames。
+> - 同一方法在同步与异步列表中重复注册，将默认异步调用。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1536,7 +1551,8 @@ registerJavaScriptProxy(object: object, name: string, methodList: Array\<string>
 | ---------- | -------------- | ---- | ------------------------------------------------------------ |
 | object     | object         | 是   | 参与注册的应用侧JavaScript对象。可以声明方法，也可以声明属性，但是不支持h5直接调用。<br>方法的参数和返回类型可以为string，number，boolean。<br>方法的参数和返回类型支持Dictionary，Array，最多嵌套10层，每层1w个数据。<br>方法的参数和返回类型支持Object，需要在Object里添加属性methodNameListForJsProxy:[fun1, fun2]，fun1和fun2为可被调用的方法。<br>方法的参数支持Function，Promise，它们的Callback不能有返回值。<br>方法的返回类型支持Promise，Promise的Callback不能有返回值。<br>示例请参考[前端页面调用应用侧函数](../../web/web-in-page-app-function-invoking.md)。 |
 | name       | string         | 是   | 注册对象的名称，与window中调用的对象名一致。注册后window对象可以通过此名字访问应用侧JavaScript对象。 |
-| methodList | Array\<string> | 是   | 参与注册的应用侧JavaScript对象的方法。                       |
+| methodList | Array\<string> | 是   | 参与注册的应用侧JavaScript对象的同步方法。                       |
+| asyncMethodList<sup>12+</sup> | Array\<string> | 否   | 参与注册的应用侧JavaScript对象的异步方法，默认为空。异步方法无法获取返回值。  |
 
 **错误码：**
 
@@ -1571,9 +1587,8 @@ class TestObj {
     return testNum;
   }
 
-  testBool(testBol:boolean): boolean {
+  asyncTestBool(testBol:boolean): void {
     console.log('Web Component boolean' + testBol);
-    return testBol;
   }
 }
 
@@ -1591,12 +1606,26 @@ class WebObj {
   }
 }
 
+class AsyncObj {
+  constructor() {
+  }
+
+  asyncTest(): void {
+    console.log('Async test');
+  }
+
+  asyncString(testStr:string): void {
+    console.log('Web async string' + testStr);
+  }
+}
+
 @Entry
 @Component
 struct Index {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
   @State testObjtest: TestObj = new TestObj();
   @State webTestObj: WebObj = new WebObj();
+  @State asyncTestObj: AsyncObj = new AsyncObj();
   build() {
     Column() {
       Button('refresh')
@@ -1611,8 +1640,9 @@ struct Index {
       Button('Register JavaScript To Window')
         .onClick(() => {
           try {
-            this.controller.registerJavaScriptProxy(this.testObjtest, "objName", ["test", "toString", "testNumber", "testBool"]);
+            this.controller.registerJavaScriptProxy(this.testObjtest, "objName", ["test", "toString", "testNumber"], ["asyncTestBool"]);
             this.controller.registerJavaScriptProxy(this.webTestObj, "objTestName", ["webTest", "webString"]);
+            this.controller.registerJavaScriptProxy(this.asyncTestObj, "objAsyncName", [], ["asyncTest", "asyncString"]);
           } catch (error) {
             let e: business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -1635,13 +1665,14 @@ struct Index {
       <button type="button" onclick="htmlTest()">Click Me!</button>
       <p id="demo"></p>
       <p id="webDemo"></p>
+      <p id="asyncDemo"></p>
     </body>
     <script type="text/javascript">
     function htmlTest() {
       // This function call expects to return "ArkUI Web Component"
       let str=objName.test("webtest data");
       objName.testNumber(1);
-      objName.testBool(true);
+      objName.asyncTestBool(true);
       document.getElementById("demo").innerHTML=str;
       console.log('objName.test result:'+ str)
 
@@ -1649,6 +1680,9 @@ struct Index {
       let webStr = objTestName.webTest();
       document.getElementById("webDemo").innerHTML=webStr;
       console.log('objTestName.webTest result:'+ webStr)
+
+      objAsyncName.asyncTest();
+      objAsyncName.asyncString("async test data");
     }
 </script>
 </html>
@@ -1837,7 +1871,7 @@ runJavaScriptExt(script: string | ArrayBuffer, callback : AsyncCallback\<JsMessa
 
 | 参数名   | 类型                 | 必填 | 说明                         |
 | -------- | -------------------- | ---- | ---------------------------- |
-| script   | string \| ArrayBuffer<sup>12+</sup>         | 是   | JavaScript脚本。                                             |
+| script   | string \| ArrayBuffer         | 是   | JavaScript脚本，ArrayBuffer类型从API　version12开始支持。                                             |
 | callback | AsyncCallback\<[JsMessageExt](#jsmessageext10)\> | 是   | 回调执行JavaScript脚本结果。 |
 
 **错误码：**
@@ -2052,7 +2086,7 @@ runJavaScriptExt(script: string | ArrayBuffer): Promise\<JsMessageExt>
 
 | 参数名 | 类型 | 必填 | 说明         |
 | ------ | -------- | ---- | ---------------- |
-| script | string \| ArrayBuffer<sup>12+</sup>  | 是   | JavaScript脚本。 |
+| script | string \| ArrayBuffer | 是   | JavaScript脚本，ArrayBuffer类型从API　version12开始支持。 |
 
 **返回值：**
 
@@ -2266,7 +2300,7 @@ deleteJavaScriptRegister(name: string): void
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
-| 17100008 | Cannot delete JavaScriptProxy.                               |
+| 17100008 | Failed to delete JavaScriptProxy because it does not exist.                               |
 
 **示例：**
 
@@ -2371,7 +2405,7 @@ zoom(factor: number): void
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
-| 17100004 | Function not enable.                                         |
+| 17100004 | Function not enabled.                                         |
 
 **示例：**
 
@@ -2735,7 +2769,7 @@ postMessage(name: string, ports: Array\<WebMessagePort>, uri: string): void
 | 参数名 | 类型                   | 必填 | 说明                             |
 | ------ | ---------------------- | ---- | :------------------------------- |
 | name   | string                 | 是   | 要发送的消息名称。            |
-| ports  | Array\<WebMessagePort> | 是   | 要发送的消息端口。            |
+| ports  | Array\<[WebMessagePort](#webmessageport)> | 是   | 要发送的消息端口。            |
 | uri    | string                 | 是   | 接收该消息的URI。                |
 
 **错误码：**
@@ -2945,7 +2979,7 @@ zoomIn(): void
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
-| 17100004 | Function not enable.                                         |
+| 17100004 | Function not enabled.                                         |
 
 **示例：**
 
@@ -2991,7 +3025,7 @@ zoomOut(): void
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
-| 17100004 | Function not enable.                                         |
+| 17100004 | Function not enabled.                                         |
 
 **示例：**
 
@@ -3276,7 +3310,7 @@ getPageHeight(): number
 
 | 类型   | 说明                 |
 | ------ | -------------------- |
-| number | 当前网页的页面高度。 |
+| number | 当前网页的页面高度。单位：px。 |
 
 **错误码：**
 
@@ -3338,6 +3372,7 @@ storeWebArchive(baseName: string, autoName: boolean, callback: AsyncCallback\<st
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                                   |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 | 17100003 | Invalid resource path or file type.                          |
 
@@ -3406,6 +3441,7 @@ storeWebArchive(baseName: string, autoName: boolean): Promise\<string>
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                                   |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 | 17100003 | Invalid resource path or file type.                          |
 
@@ -4382,7 +4418,7 @@ struct WebComponent {
 2.修改EntryAbility.ets。
 获取应用缓存文件路径。
 ```ts
-// xxx.ts
+// xxx.ets
 import UIAbility from '@ohos.app.ability.UIAbility';
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import Want from '@ohos.app.ability.Want';
@@ -4468,7 +4504,7 @@ struct WebComponent {
 2.修改EntryAbility.ets。
 获取应用缓存文件路径。
 ```ts
-// xxx.ts
+// xxx.ets
 import UIAbility from '@ohos.app.ability.UIAbility';
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import Want from '@ohos.app.ability.Want';
@@ -4501,8 +4537,8 @@ static customizeSchemes(schemes: Array\<WebCustomScheme\>): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-|  401 | Invalid input parameter.    |
-| 17100020 | Register custom schemes failed. |
+|  401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.    |
+| 17100020 | Failed to register custom schemes. |
 
 **示例：**
 
@@ -4547,7 +4583,7 @@ struct WebComponent {
 
 getCertificate(): Promise<Array<cert.X509Cert>>
 
-获取当前网站的证书信息。使用web组件加载https网站，会进行SSL证书校验，该接口会通过Promise异步返回当前网站的X509格式证书（X509Cert证书类型定义见[X509Cert](../apis-device-certificate-kit/js-apis-cert.md#x509cert)定义），便于开发者展示网站证书信息。
+获取当前网站的证书信息。使用Web组件加载https网站，会进行SSL证书校验，该接口会通过Promise异步返回当前网站的X509格式证书（X509Cert证书类型定义见[X509Cert](../apis-device-certificate-kit/js-apis-cert.md#x509cert)定义），便于开发者展示网站证书信息。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -4710,7 +4746,7 @@ struct Index {
 
 getCertificate(callback: AsyncCallback<Array<cert.X509Cert>>): void
 
-获取当前网站的证书信息。使用web组件加载https网站，会进行SSL证书校验，该接口会通过AsyncCallback异步返回当前网站的X509格式证书（X509Cert证书类型定义见[X509Cert定义](../apis-device-certificate-kit/js-apis-cert.md)），便于开发者展示网站证书信息。
+获取当前网站的证书信息。使用Web组件加载https网站，会进行SSL证书校验，该接口会通过AsyncCallback异步返回当前网站的X509格式证书（X509Cert证书类型定义见[X509Cert定义](../apis-device-certificate-kit/js-apis-cert.md)），便于开发者展示网站证书信息。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -4889,6 +4925,7 @@ setAudioMuted(mute: boolean): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Incorrect parameter types. 2. Parameter verification failed. |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
@@ -4974,7 +5011,7 @@ struct WebComponent {
 
 static prefetchResource(request: RequestInfo, additionalHeaders?: Array\<WebHeader>, cacheKey?: string, cacheValidTime?: number): void
 
-根据指定的请求信息和附加的http请求头去预获取资源请求，存入内存缓存，并指定其缓存密钥和有效期，以加快加载速度。目前仅支持Content-Type为application/x-www-form-urlencoded的post请求。最多可以预获取6个post请求。如果要预获取第7个，请清除不需要的post请求缓存，否则会自动清除最早预获取的post缓存。
+根据指定的请求信息和附加的http请求头去预获取资源请求，存入内存缓存，并指定其缓存key和有效期，以加快加载速度。目前仅支持Content-Type为application/x-www-form-urlencoded的post请求。最多可以预获取6个post请求。如果要预获取第7个，请通过[clearPrefetchedResource](#clearprefetchedresource12)清除不需要的post请求缓存，否则会自动清除最早预获取的post缓存。如果要使用预获取的资源缓存，开发者需要在正式发起的post请求的请求头中增加键值“ArkWebPostCacheKey”，其内容为对应缓存的cacheKey。
 
 **系统能力：**  SystemCapability.Web.Webview.Core
 
@@ -4984,7 +5021,7 @@ static prefetchResource(request: RequestInfo, additionalHeaders?: Array\<WebHead
 | ------------------| ------------------------------- | ---- | ------------------------------------------------------------------ |
 | request           | [RequestInfo](#requestinfo12)   | 是   | 预获取请求的信息。                                                      |
 | additionalHeaders | Array\<[WebHeader](#webheader)> | 否   | 预获取请求的附加HTTP请求头。                                             |
-| cacheKey          | string                          | 否   | 用于后续查询预获取资源缓存的密钥。仅支持字母和数字，未传入或传入空则取默认值url作为密钥。 |
+| cacheKey          | string                          | 否   | 用于后续查询预获取资源缓存的key。仅支持字母和数字，未传入或传入空则取默认值url作为key。 |
 | cacheValidTime    | number                          | 否   | 预获取资源缓存的有效期。取值范围：(0, 2147483647]。单位：秒。默认值：300秒。          |
 
 **错误码：**
@@ -4993,12 +5030,13 @@ static prefetchResource(request: RequestInfo, additionalHeaders?: Array\<WebHead
 
 | 错误码ID  | 错误信息                                                      |
 | -------- | ------------------------------------------------------------ |
+| 401      | Invalid input parameter.Possible causes: 1. Mandatory parameters are left unspecified.2. Incorrect parameter types.3. Parameter verification failed. |
 | 17100002 | Invalid url.                                                 |
 
 **示例：**
 
 ```ts
-// xxx.ts
+// xxx.ets
 import UIAbility from '@ohos.app.ability.UIAbility';
 import web_webview from '@ohos.web.webview';
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
@@ -5019,6 +5057,52 @@ export default class EntryAbility extends UIAbility {
         AppStorage.setOrCreate("abilityWant", want);
         console.log("EntryAbility onCreate done");
     }
+}
+```
+
+### clearPrefetchedResource<sup>12+</sup>
+
+static clearPrefetchedResource(cacheKeyList: Array\<string>): void
+
+根据指定的缓存key列表清除对应的预获取资源缓存。入参中的缓存key必须是[prefetchResource](#prefetchresource12)指定预获取到的资源缓存key。
+
+**系统能力：**  SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名             | 类型        | 必填  | 说明                                                                       |
+| ------------------| ----------- | ---- | ------------------------------------------------------------------------- |
+| cacheKeyList      | Array\<string>      | 是   | 用于后续查询预获取资源缓存的key。仅支持字母和数字，未传入或传入空则取默认值url作为key。 |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  build() {
+    Column() {
+      Web({ src: "https://www.example.com/", controller: this.controller})
+        .onAppear(() => {
+            // 预获取时，需要將"https://www.example1.com/post?e=f&g=h"替换成真实要访问的网站地址。
+            web_webview.WebviewController.prefetchResource(
+              {url:"https://www.example1.com/post?e=f&g=h",
+              method:"POST",
+              formData:"a=x&b=y",},
+              [{headerKey:"c",
+                headerValue:"z",},],
+              "KeyX", 500);
+        })
+        .onPageEnd(() => {
+            // 清除后续不再使用的预获取缓存。
+            web_webview.WebviewController.clearPrefetchedResource(["KeyX",]);
+        })
+    }
+  }
 }
 ```
 
@@ -5050,7 +5134,7 @@ static prepareForPageLoad(url: string, preconnectable: boolean, numSockets: numb
 **示例：**
 
 ```ts
-// xxx.ts
+// xxx.ets
 import UIAbility from '@ohos.app.ability.UIAbility';
 import web_webview from '@ohos.web.webview';
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
@@ -5077,7 +5161,7 @@ setCustomUserAgent(userAgent: string): void
 > **说明：**
 >
 >setCustomUserAgent设置后与web页面的跳转时序是web跳转后才设置UserAgent，这就导致页面跳转了但新agent关联的页面堆栈数仍只有一个,webviewController.accessBackward()总是返回false。
->若需要setCustomUserAgent，在setCustomUserAgent方法后添加this.controller.loadUrl(this.webUrl)，webUrl为要加载的web页面，在原始的web组件的src可以设置一个空字符串。
+>若需要setCustomUserAgent，在setCustomUserAgent方法后添加this.controller.loadUrl(this.webUrl)，webUrl为要加载的web页面，在原始的Web组件的src可以设置一个空字符串。
 
 **系统能力：**  SystemCapability.Web.Webview.Core
 
@@ -5228,7 +5312,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('www.example.com');
+            this.controller.startDownload('https://www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -5305,7 +5389,15 @@ static setConnectionTimeout(timeout: number): void
 
 | 参数名          | 类型    |  必填  | 说明                                            |
 | ---------------| ------- | ---- | ------------- |
-| timeout        | number  | 是   | socket连接超时时间，以秒为单位。 |
+| timeout        | number  | 是   | socket连接超时时间，以秒为单位，socket必须为大于0的整数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 
 **示例：**
 
@@ -5343,6 +5435,46 @@ struct WebComponent {
 }
 ```
 
+### warmupServiceWorker<sup>12+</sup>
+
+static warmupServiceWorker(url: string): void
+
+预热ServiceWorker，以提升首屏页面的加载速度（仅限于会使用ServiceWorker的页面）。在加载url之前调用此API。
+
+**系统能力：**  SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名          | 类型    |  必填  | 说明                                            |
+| ---------------| ------- | ---- | ------------- |
+| url            | string  | 是   | 需要预热ServiceWorker的url。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md).
+
+| 错误码ID  | 错误信息                                                      |
+| -------- | ------------------------------------------------------------ |
+| 17100002 | Invalid url.                                                 |
+
+**示例：**
+
+```ts
+// xxx.ts
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { window } from '@kit.ArkUI';
+import { webview } from '@kit.ArkWeb';
+
+export default class EntryAbility extends UIAbility {
+    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+        console.log("EntryAbility onCreate");
+        webview.WebviewController.warmupServiceWorker("https://www.example.com");
+        AppStorage.setOrCreate("abilityWant", want);
+    }
+}
+```
+
 ### enableSafeBrowsing<sup>11+</sup>
 
 enableSafeBrowsing(enable: boolean): void
@@ -5363,7 +5495,7 @@ enableSafeBrowsing(enable: boolean): void
 
 | 错误码ID | 错误信息                  |
 | -------- | ----------------------- |
-|  401 | Invalid input parameter.    |
+| 401      | Parameter error. Possible causes: 1. Incorrect parameter types. 2. Parameter verification failed. |
 
 **示例：**
 
@@ -5454,7 +5586,7 @@ enableIntelligentTrackingPrevention(enable: boolean): void
 | 错误码ID | 错误信息                  |
 | -------- | ----------------------- |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
-|  401 | Invalid input parameter.    |
+|  401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -5558,7 +5690,7 @@ static addIntelligentTrackingPreventionBypassingList(hostList: Array\<string>): 
 
 | 错误码ID  | 错误信息                  |
 | -------- | ------------------------ |
-|  401     | Invalid input parameter. |
+|  401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -5610,7 +5742,7 @@ static removeIntelligentTrackingPreventionBypassingList(hostList: Array\<string>
 
 | 错误码ID  | 错误信息                  |
 | -------- | ------------------------ |
-|  401     | Invalid input parameter. |
+|  401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -5692,13 +5824,14 @@ static setRenderProcessMode(mode: RenderProcessMode): void
 
 | 错误码ID  | 错误信息                  |
 | -------- | ------------------------ |
-|  401     | Invalid input parameter. |
+|  401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **示例：**
 
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
 
 @Entry
 @Component
@@ -5755,6 +5888,47 @@ struct WebComponent {
         .onClick(() => {
           let mode = web_webview.WebviewController.getRenderProcessMode();
           console.log("getRenderProcessMode: " + mode);
+      })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### terminateRenderProcess<sup>12+</sup>
+
+terminateRenderProcess(): boolean
+
+销毁渲染进程。
+
+调用该接口将会主动销毁相关联的渲染进程。如果渲染进程尚未启动，或者已销毁则没有任何影响。此外销毁渲染进程会同时影响所有与该渲染进程关联的其他实例。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型                                                         | 说明                   |
+| ------------------------------------------------------------ | ---------------------- |
+| boolean | 返回销毁渲染进程的结果，如果渲染进程可以被销毁则返回true，否则返回false。 |
+
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('terminateRenderProcess')
+        .onClick(() => {
+          let result = this.controller.terminateRenderProcess();
+          console.log("terminateRenderProcess result: " + result);
       })
       Web({ src: 'www.example.com', controller: this.controller })
     }
@@ -5859,7 +6033,7 @@ createWebPrintDocumentAdapter(jobName: string): print.PrintDocumentAdapter
 
 | 错误码ID | 错误信息                                                                    |
 | -------- | -------------------------------------------------------------------------- |
-| 401 | Invalid input parameter.                                                        |
+| 401      | Invalid input parameter.Possible causes: 1. Mandatory parameters are left unspecified.2. Incorrect parameter types.3. Parameter verification failed. |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
@@ -6011,7 +6185,7 @@ setScrollable(enable: boolean): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-|  401 | Invalid input parameter. |
+| 401      | Invalid input parameter.Possible causes: 1. Mandatory parameters are left unspecified.2. Incorrect parameter types.3. Parameter verification failed. |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
@@ -6115,7 +6289,7 @@ setPrintBackground(enable: boolean): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401 | Invalid input parameter.                                           |
+| 401      | Invalid input parameter.Possible causes: 1. Mandatory parameters are left unspecified.2. Incorrect parameter types.3. Parameter verification failed. |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
@@ -6539,7 +6713,7 @@ getMediaPlaybackState(): MediaPlaybackState
 
 | 类型                                        | 说明                                                      |
 | ------------------------------------------- | --------------------------------------------------------- |
-| [MediaPlaybackState](#mediaplaybackstate12) | 当前网页的播控状态，具体值为NONE、PLAYING、PAUSED、STOP。 |
+| [MediaPlaybackState](#mediaplaybackstate12) | 当前网页的播控状态，具体值为NONE、PLAYING、PAUSED、STOPPED。 |
 
 **错误码：**
 
@@ -6582,7 +6756,7 @@ struct WebComponent {
 
 setWebSchemeHandler(scheme: string, handler: WebSchemeHandler): void
 
-为当前web组件设置[WebSchemeHandler](#webschemehandler12), [WebSchemeHandler](#webschemehandler12)类用于拦截指定scheme的请求。
+为当前Web组件设置[WebSchemeHandler](#webschemehandler12), [WebSchemeHandler](#webschemehandler12)类用于拦截指定scheme的请求。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -6591,7 +6765,7 @@ setWebSchemeHandler(scheme: string, handler: WebSchemeHandler): void
 | 参数名 | 类型   | 必填 | 说明                      |
 | ------ | ------ | ---- | :------------------------ |
 | scheme    | string | 是   | 要拦截的协议。 |
-| handler    | WebSchemeHandler | 是   | 拦截此协议的拦截器。 |
+| handler    | [WebSchemeHandler](#webschemehandler12) | 是   | 拦截此协议的拦截器。 |
 
 **错误码：**
 
@@ -6599,7 +6773,7 @@ setWebSchemeHandler(scheme: string, handler: WebSchemeHandler): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Invalid input parameter.                                     |
+| 401      | Parameter error. Possible causes: 1. Incorrect parameter types.                                    |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
@@ -6636,7 +6810,7 @@ struct WebComponent {
 
 clearWebSchemeHandler(): void
 
-清除当前web组件设置的所有WebSchemeHandler。
+清除当前Web组件设置的所有WebSchemeHandler。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -6698,7 +6872,7 @@ setServiceWorkerWebSchemeHandler(scheme: string, handler: WebSchemeHandler): voi
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Invalid input parameter.                                     |
+| 401      | Parameter error. Possible causes: 1. Incorrect parameter types. |
 
 **示例：**
 
@@ -6938,9 +7112,811 @@ closeCamera(): void
 
 完整示例代码参考[startCamera](#startcamera12)。
 
+### precompileJavaScript<sup>12+</sup>
+
+precompileJavaScript(url: string, script: string | Uint8Array, cacheOptions: CacheOptions): Promise\<number\>
+
+预编译JavaScript生成字节码缓存或根据提供的参数更新已有的字节码缓存。   
+接口通过提供的文件信息、E-Tag响应头和Last-Modified响应头判断是否需要更新已有的字节码缓存。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名  | 类型    | 必填 | 说明                  |
+| ------- | ------ | ---- | :-------------------- |
+| url | string | 是   | 本地JavaScript文件对应的网络地址，即业务网页请求该文件的服务器版本时使用的网络地址。网络地址仅支持http或https协议，长度不超过2048。如果该网络地址对应的缓存失效，则业务网页将通过网络请求对应的资源。      |
+| script | string \| Uint8Array | 是   | 本地JavaScript的文本内容。内容不能为空。      |
+| cacheOptions | [CacheOptions](#cacheoptions12) | 是   | 用于控制字节码缓存更新。      |
+
+**返回值：**
+
+| 类型                                | 说明                        |
+| ----------------------------------- | --------------------------- |
+| Promise\<number\> | 生成字节码缓存的错误码，0表示无错误，-1表示内部错误。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Invalid input parameter.Possible causes: 1. Mandatory parameters are left unspecified.2. Incorrect parameter types.3. Parameter verification failed.                                     |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+
+**示例：**
+
+接口推荐配合动态组件使用，使用离线的Web组件用于生成字节码缓存，并在适当的时机加载业务用Web组件使用这些字节码缓存。下方是代码示例：
+
+1. 首先，在EntryAbility中将UIContext存到localStorage中。
+
+   ```ts
+   // EntryAbility.ets
+   import UIAbility from '@ohos.app.ability.UIAbility';
+   import window from '@ohos.window';
+
+   const localStorage: LocalStorage = new LocalStorage('uiContext');
+
+   export default class EntryAbility extends UIAbility {
+     storage: LocalStorage = localStorage
+
+     onWindowStageCreate(windowStage: window.WindowStage) {
+       windowStage.loadContent('pages/Index', this.storage, (err, data) => {
+         if (err.code) {
+           return;
+         }
+
+         this.storage.setOrCreate<UIContext>("uiContext", windowStage.getMainWindowSync().getUIContext());
+       });
+     }
+   }
+   ```
+
+2. 编写动态组件所需基础代码。
+
+   ```ts
+   // DynamicComponent.ets
+   import { NodeController, BuilderNode, FrameNode }  from '@ohos.arkui.node';
+   import { UIContext } from '@ohos.arkui.UIContext';
+   
+   export interface BuilderData {
+     url: string;
+     controller: WebviewController;
+   }
+
+   const storage = LocalStorage.getShared();
+
+   export class NodeControllerImpl extends NodeController {
+     private rootNode: BuilderNode<BuilderData[]> | null = null;
+     private wrappedBuilder: WrappedBuilder<BuilderData[]> | null = null;
+
+     constructor(wrappedBuilder: WrappedBuilder<BuilderData[]>) {
+       super();
+       this.wrappedBuilder = wrappedBuilder;
+     }
+
+     makeNode(): FrameNode | null {
+       if (this.rootNode != null) {
+         return this.rootNode.getFrameNode();
+       }
+       return null;
+     }
+
+     initWeb(url: string, controller: WebviewController) {
+       if(this.rootNode != null) {
+         return;
+       }
+
+       const uiContext: UIContext = storage.get<UIContext>("uiContext") as UIContext;
+       if (!uiContext) {
+         return;
+       }
+       this.rootNode = new BuilderNode(uiContext);
+       this.rootNode.build(this.wrappedBuilder, { url: url, controller: controller });
+     }
+   }
+
+   export const createNode = (wrappedBuilder: WrappedBuilder<BuilderData[]>, data: BuilderData) => {
+     const baseNode = new NodeControllerImpl(wrappedBuilder);
+     baseNode.initWeb(data.url, data.controller);
+     return baseNode;
+   }
+   ```
+
+3. 编写用于生成字节码缓存的组件，本例中的本地Javascript资源内容通过文件读取接口读取rawfile目录下的本地文件。
+
+   <!--code_no_check-->
+   ```ts
+   // PrecompileWebview.ets
+   import { BuilderData } from "./DynamicComponent";
+   import { Config, configs } from "./PrecompileConfig";
+
+   @Builder
+   function WebBuilder(data: BuilderData) {
+     Web({ src: data.url, controller: data.controller })
+       .onControllerAttached(() => {
+         precompile(data.controller, configs);
+       })
+       .fileAccess(true)
+   }
+
+   export const precompileWebview = wrapBuilder<BuilderData[]>(WebBuilder);
+
+   export const precompile = async (controller: WebviewController, configs: Array<Config>) => {
+     for (const config of configs) {
+       let content = await readRawFile(config.localPath);
+
+       try {
+         controller.precompileJavaScript(config.url, content, config.options)
+           .then(errCode => {
+             console.error("precompile successfully! " + errCode);
+           }).catch((errCode: number) => {
+             console.error("precompile failed. " + errCode);
+         });
+       } catch (err) {
+         console.error("precompile failed. " + err.code + " " + err.message);
+       }
+     }
+   }
+
+   async function readRawFile(path: string) {
+     try {
+       return await getContext().resourceManager.getRawFileContent(path);;
+     } catch (err) {
+       return new Uint8Array(0);
+     }
+   }
+   ```
+
+JavaScript资源的获取方式也可通过[网络请求](../apis-network-kit/js-apis-http.md)的方式获取，但此方法获取到的http响应头非标准HTTP响应头格式，需额外将响应头转换成标准HTTP响应头格式后使用。如通过网络请求获取到的响应头是e-tag，则需要将其转换成E-Tag后使用。
+
+4. 编写业务用组件代码。
+
+   <!--code_no_check-->
+   ```ts
+   // BusinessWebview.ets
+   import { BuilderData } from "./DynamicComponent";
+
+   @Builder
+   function WebBuilder(data: BuilderData) {
+     // 此处组件可根据业务需要自行扩展
+     Web({ src: data.url, controller: data.controller })
+       .cacheMode(CacheMode.Default)
+   }
+
+   export const businessWebview = wrapBuilder<BuilderData[]>(WebBuilder);
+   ```
+
+5. 编写资源配置信息。
+
+   ```ts
+   // PrecompileConfig.ets
+   import { webview } from '@kit.ArkWeb'
+
+   export interface Config {
+     url:  string,
+     localPath: string, // 本地资源路径
+     options: webview.CacheOptions
+   }
+
+   export let configs: Array<Config> = [
+     {
+       url: "https://www.example.com/example.js",
+       localPath: "example.js",
+       options: {
+         responseHeaders: [
+           { headerKey: "E-Tag", headerValue: "aWO42N9P9dG/5xqYQCxsx+vDOoU="},
+           { headerKey: "Last-Modified", headerValue: "Wed, 21 Mar 2024 10:38:41 GMT"}
+         ]
+       }
+     }
+   ]
+   ```
+
+6. 在页面中使用。
+
+   ```ts
+   // Index.ets
+   import web_webview from '@ohos.web.webview';
+   import { NodeController } from '@kit.ArkUI';
+   import { createNode } from "./DynamicComponent"
+   import { precompileWebview } from "./PrecompileWebview"
+   import { businessWebview } from "./BusinessWebview"
+   
+   @Entry
+   @Component
+   struct Index {
+     @State precompileNode: NodeController | undefined = undefined;
+     precompileController: web_webview.WebviewController = new web_webview.WebviewController();
+   
+     @State businessNode: NodeController | undefined = undefined;
+     businessController: web_webview.WebviewController = new web_webview.WebviewController();
+   
+     aboutToAppear(): void {
+       // 初始化用于注入本地资源的Web组件
+       this.precompileNode = createNode(precompileWebview,
+         { url: "https://www.example.com/empty.html", controller: this.precompileController});
+     }
+
+     build() {
+       Column() {
+         // 在适当的时机加载业务用Web组件，本例以Button点击触发为例
+         Button("加载页面")
+           .onClick(() => {
+             this.businessNode = createNode(businessWebview, {
+               url:  "https://www.example.com/business.html",
+               controller: this.businessController
+             });
+           })
+         // 用于业务的Web组件
+         NodeContainer(this.businessNode);
+       }
+     }
+   }
+   ```
+
+当需要更新本地已经生成的编译字节码时，修改cacheOptions参数中responseHeaders中的E-Tag或Last-Modified响应头对应的值，再次调用接口即可。
+
+### onCreateNativeMediaPlayer<sup>12+</sup>
+
+onCreateNativeMediaPlayer(callback: CreateNativeMediaPlayerCallback): void
+
+注册回调函数，开启[应用接管网页媒体播放功能](ts-basic-components-web.md#enablenativemediaplayer12)后，当网页中有播放媒体时，触发注册的回调函数。  
+如果应用接管网页媒体播放功能未开启，则注册的回调函数不会被触发。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+|--------|------|------|------|
+| callback | [CreateNativeMediaPlayerCallback](#createnativemediaplayercallback12) | 是 | 接管网页媒体播放的回调函数。 |
+
+**示例：**
+
+```ts
+// xxx.ets
+import webview from '@ohos.web.webview'
+
+class ActualNativeMediaPlayerListener {
+  handler: webview.NativeMediaPlayerHandler;
+
+  constructor(handler: webview.NativeMediaPlayerHandler) {
+    this.handler = handler;
+  }
+
+  onPlaying() {
+    // 本地播放器开始播放。
+    this.handler.handleStatusChanged(webview.PlaybackStatus.PLAYING);
+  }
+  onPaused() {
+    // 本地播放器暂停播放。
+    this.handler.handleStatusChanged(webview.PlaybackStatus.PAUSED);
+  }
+  onSeeking() {
+    // 本地播放器开始执行跳转到目标时间点。
+    this.handler.handleSeeking();
+  }
+  onSeekDone() {
+    // 本地播放器 seek 完成。
+    this.handler.handleSeekFinished();
+  }
+  onEnded() {
+    // 本地播放器播放完成。
+    this.handler.handleEnded();
+  }
+  onVolumeChanged() {
+    // 获取本地播放器的音量。
+    let volume: number = getVolume();
+    this.handler.handleVolumeChanged(volume);
+  }
+  onCurrentPlayingTimeUpdate() {
+    // 更新播放时间。
+    let currentTime: number = getCurrentPlayingTime();
+    // 将时间单位换算成秒。
+    let currentTimeInSeconds = convertToSeconds(currentTime);
+    this.handler.handleTimeUpdate(currentTimeInSeconds);
+  }
+  onBufferedChanged() {
+    // 缓存发生了变化。
+    // 获取本地播放器的缓存时长。
+    let bufferedEndTime: number = getCurrentBufferedTime();
+    // 将时间单位换算成秒。
+    let bufferedEndTimeInSeconds = convertToSeconds(bufferedEndTime);
+    this.handler.handleBufferedEndTimeChanged(bufferedEndTimeInSeconds);
+
+    // 检查缓存状态。
+    // 如果缓存状态发生了变化，则向 ArkWeb 内核通知缓存状态。
+    let lastReadyState: webview.ReadyState = getLastReadyState();
+    let currentReadyState:  webview.ReadyState = getCurrentReadyState();
+    if (lastReadyState != currentReadyState) {
+      this.handler.handleReadyStateChanged(currentReadyState);
+    }
+  }
+  onEnterFullscreen() {
+    // 本地播放器进入了全屏状态。
+    let isFullscreen: boolean = true;
+    this.handler.handleFullscreenChanged(isFullscreen);
+  }
+  onExitFullscreen() {
+    // 本地播放器退出了全屏状态。
+    let isFullscreen: boolean = false;
+    this.handler.handleFullscreenChanged(isFullscreen);
+  }
+  onUpdateVideoSize(width: number, height: number) {
+    // 当本地播放器解析出视频宽高时， 通知 ArkWeb 内核。
+    this.handler.handleVideoSizeChanged(width, height);
+  }
+
+  // ... 监听本地播放器其他的状态 ...
+}
+
+class NativeMediaPlayerImpl implements webview.NativeMediaPlayerBridge {
+  constructor(handler: webview.NativeMediaPlayerHandler, mediaInfo: webview.MediaInfo) {
+    // 1. 创建一个本地播放器的状态监听。
+    let listener: ActualNativeMediaPlayerListener = new ActualNativeMediaPlayerListener(handler);
+    // 2. 创建一个本地播放器。
+    // 3. 监听该本地播放器。
+    // ...
+  }
+
+  updateRect(x: number, y: number, width: number, height: number) {
+    // <video> 标签的位置和大小发生了变化。
+    // 根据该信息变化，作出相应的改变。
+  }
+
+  play() {
+    // 启动本地播放器播放。
+  }
+
+  pause() {
+    // 暂停本地播放器播放。
+  }
+
+  seek(targetTime: number) {
+    // 本地播放器跳转到指定的时间点。
+  }
+
+  release() {
+    // 销毁本地播放器。
+  }
+
+  setVolume(volume: number) {
+    // ArkWeb 内核要求调整本地播放器的音量。
+    // 设置本地播放器的音量。
+  }
+
+  setMuted(muted: boolean) {
+    // 将本地播放器静音或取消静音。
+  }
+
+  setPlaybackRate(playbackRate: number) {
+    // 调整本地播放器的播放速度。
+  }
+
+  enterFullscreen() {
+    // 将本地播放器设置为全屏播放。
+  }
+
+  exitFullscreen() {
+    // 将本地播放器退出全屏播放。
+  }
+}
+
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController()
+  build() {
+    Column() {
+      Web({ src: 'www.example.com', controller: this.controller })
+        .enableNativeMediaPlayer({enable: true, shouldOverlay: false})
+        .onPageBegin((event) => {
+          this.controller.onCreateNativeMediaPlayer((handler: webview.NativeMediaPlayerHandler, mediaInfo: webview.MediaInfo) => {
+            if (!shouldHandle(mediaInfo)) {
+              // 本地播放器不接管该媒体。
+              // ArkWeb 内核将用自己的播放器来播放该媒体。
+              return null;
+            }
+            let nativePlayer: webview.NativeMediaPlayerBridge = new NativeMediaPlayerImpl(handler, mediaInfo);
+            return nativePlayer;
+          });
+        })
+    }
+  }
+}
+
+// stub
+function getVolume() {
+  return 1;
+}
+function getCurrentPlayingTime() {
+  return 1;
+}
+function getCurrentBufferedTime() {
+  return 1;
+}
+function convertToSeconds(input: number) {
+  return input;
+}
+function getLastReadyState() {
+  return webview.ReadyState.HAVE_NOTHING;
+}
+function getCurrentReadyState() {
+  return webview.ReadyState.HAVE_NOTHING;
+}
+function shouldHandle(mediaInfo: webview.MediaInfo) {
+  return true;
+}
+```
+
+### injectOfflineResources<sup>12+</sup>
+
+injectOfflineResources(resourceMaps: Array\<[OfflineResourceMap](#offlineresourcemap12)\>): void
+
+将本地离线资源注入到内存缓存中，以提升页面首次启动速度。   
+内存缓存中的资源由内核自动管理，当注入的资源过多导致内存压力过大，内核自动释放未使用的资源，应避免注入大量资源到内存缓存中。   
+正常情况下，资源的有效期由提供的Cache-Control或Expires响应头控制其有效期，默认的有效期为86400秒，即1天。   
+资源的MIMEType通过提供的Content-Type响应头配置，Content-Type需符合标准，否则无法正常使用，MODULE_JS必须提供有效的MIMEType，其他类型可不提供。
+以此方式注入的资源，仅支持通过HTML中的标签加载。如果业务网页中的script标签使用了crossorigin属性，则必须在接口的responseHeaders参数中设置Cross-Origin响应头的值为anoymous或use-credentials。
+当调用`web_webview.WebviewController.SetRenderProcessMode(web_webview.RenderProcessMode.MULTIPLE)`接口后，应用会启动多渲染进程模式，此接口在此场景下不会生效。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名  | 类型    | 必填 | 说明                  |
+| ------- | ------ | ---- | :-------------------- |
+| resourceMaps | Array\<[OfflineResourceMap](#offlineresourcemap12)\> | 是   | 本地离线资源配置对象，单次调用最大支持注入30个资源，单个资源最大支持10Mb。      |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Invalid input parameter.Possible causes: 1. Mandatory parameters are left unspecified.2. Incorrect parameter types.3. Parameter verification failed.                                     |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+| 17100002 | Invalid url.                                                 |
+
+**示例：**
+
+接口推荐配合动态组件使用，使用离线的Web组件用于将资源注入到内核的内存缓存中，并在适当的时机加载业务用Web组件使用这些资源。下方是代码示例：
+1. 首先，在EntryAbility中将UIContext存到localStorage中。
+
+   ```ts
+   // EntryAbility.ets
+   import UIAbility from '@ohos.app.ability.UIAbility';
+   import window from '@ohos.window';
+
+   const localStorage: LocalStorage = new LocalStorage('uiContext');
+
+   export default class EntryAbility extends UIAbility {
+     storage: LocalStorage = localStorage
+
+     onWindowStageCreate(windowStage: window.WindowStage) {
+       windowStage.loadContent('pages/Index', this.storage, (err, data) => {
+         if (err.code) {
+           return;
+         }
+
+         this.storage.setOrCreate<UIContext>("uiContext", windowStage.getMainWindowSync().getUIContext());
+       });
+     }
+   }
+   ```
+
+2. 编写动态组件所需基础代码。
+
+   ```ts
+   // DynamicComponent.ets
+   import { NodeController, BuilderNode, FrameNode }  from '@ohos.arkui.node';
+   import { UIContext } from '@ohos.arkui.UIContext';
+
+   export interface BuilderData {
+     url: string;
+     controller: WebviewController;
+   }
+
+   const storage = LocalStorage.getShared();
+
+   export class NodeControllerImpl extends NodeController {
+     private rootNode: BuilderNode<BuilderData[]> | null = null;
+     private wrappedBuilder: WrappedBuilder<BuilderData[] > | null = null;
+
+     constructor(wrappedBuilder: WrappedBuilder<BuilderData[]>) {
+       super();
+       this.wrappedBuilder = wrappedBuilder;
+     }
+
+     makeNode(): FrameNode | null {
+       if (this.rootNode != null) {
+         return this.rootNode.getFrameNode();
+       }
+       return null;
+     }
+
+     initWeb(url: string, controller: WebviewController) {
+       if(this.rootNode != null) {
+         return;
+       }
+
+       const uiContext: UIContext = storage.get<UIContext>("uiContext") as UIContext;
+       if (!uiContext) {
+         return;
+       }
+       this.rootNode = new BuilderNode(uiContext);
+       this.rootNode.build(this.wrappedBuilder, { url: url, controller: controller });
+     }
+   }
+
+   export const createNode = (wrappedBuilder: WrappedBuilder<BuilderData[]>, data: BuilderData) => {
+     const baseNode = new NodeControllerImpl(wrappedBuilder);
+     baseNode.initWeb(data.url, data.controller);
+     return baseNode;
+   }
+   ```
+
+3. 编写用于注入资源的组件代码，本例中的本地资源内容通过文件读取接口读取rawfile目录下的本地文件。
+
+   <!--code_no_check-->
+   ```ts
+   // InjectWebview.ets
+   import web_webview from '@ohos.web.webview';
+
+   import { resourceConfigs } from "./Resource";
+   import { BuilderData } from "./DynamicComponent";
+
+   @Builder
+   function WebBuilder(data: BuilderData) {
+     Web({ src: data.url, controller: data.controller })
+       .onControllerAttached(async () => {
+         try {
+           data.controller.injectOfflineResources(await getData ());
+         } catch (err) {
+           console.error("error: " + err.code + " " + err.message);
+         }
+       })
+       .fileAccess(true)
+   }
+
+   export const injectWebview = wrapBuilder<BuilderData[]>(WebBuilder);
+
+   export async function getData() {
+     const resourceMapArr: Array<web_webview.OfflineResourceMap> = [];
+
+     // 读取配置，从rawfile目录中读取文件内容
+     for (let config of resourceConfigs) {
+       let buf: Uint8Array = new Uint8Array(0);
+       if (config.localPath) {
+         buf = await readRawFile(config.localPath);
+       }
+
+       resourceMapArr.push({
+         urlList: config.urlList,
+         resource: buf,
+         responseHeaders: config.responseHeaders,
+         type: config.type,
+       })
+     }
+
+     return resourceMapArr;
+   }
+
+   export async function readRawFile(url: string) {
+     try {
+       return await getContext().resourceManager.getRawFileContent(url);
+     } catch (err) {
+       return new Uint8Array(0);
+     }
+   }
+   ```
+
+4. 编写业务用组件代码。
+
+   <!--code_no_check-->
+   ```ts
+   // BusinessWebview.ets
+   import { BuilderData } from "./DynamicComponent";
+
+   @Builder
+   function WebBuilder(data: BuilderData) {
+     // 此处组件可根据业务需要自行扩展
+     Web({ src: data.url, controller: data.controller })
+       .cacheMode(CacheMode.Default)
+   }
+
+   export const businessWebview = wrapBuilder<BuilderData[]>(WebBuilder);
+   ```
+
+5. 编写资源配置信息。
+
+   ```ts
+   // Resource.ets
+   import web_webview from '@ohos.web.webview';
+
+   export interface ResourceConfig {
+     urlList: Array<string>,
+     type: web_webview.OfflineResourceType,
+     responseHeaders: Array<Header>,
+     localPath: string, // 本地资源存放在rawfile目录下的路径
+   }
+
+   export const resourceConfigs: Array<ResourceConfig> = [
+     {
+       localPath: "example.png",
+       urlList: [
+         "https://www.example.com/",
+         "https://www.example.com/path1/example.png",
+         "https://www.example.com/path2/example.png",
+       ],
+       type: web_webview.OfflineResourceType.IMAGE,
+       responseHeaders: [
+         { headerKey: "Cache-Control", headerValue: "max-age=1000" },
+         { headerKey: "Content-Type", headerValue: "image/png" },
+       ]
+     },
+     {
+       localPath: "example.js",
+       urlList: [ // 仅提供一个url，这个url既作为资源的源，也作为资源的网络请求地址
+         "https://www.example.com/example.js",
+       ],
+       type: web_webview.OfflineResourceType.CLASSIC_JS,
+       responseHeaders: [
+         // 以<script crossorigin="anoymous" />方式使用，提供额外的响应头
+         { headerKey: "Cross-Origin", headerValue:"anonymous" }
+       ]
+     },
+   ];
+   ```
+
+6. 在页面中使用。
+   ```ts
+   // Index.ets
+   import web_webview from '@ohos.web.webview';
+   import { NodeController } from '@kit.ArkUI';
+   import { createNode } from "./DynamicComponent"
+   import { injectWebview } from "./InjectWebview"
+   import { businessWebview } from "./BusinessWebview"
+
+   @Entry
+   @Component
+   struct Index {
+     @State injectNode: NodeController | undefined = undefined;
+     injectController: web_webview.WebviewController = new web_webview.WebviewController();
+
+     @State businessNode: NodeController | undefined = undefined;
+     businessController: web_webview.WebviewController = new web_webview.WebviewController();
+
+     aboutToAppear(): void {
+       // 初始化用于注入本地资源的Web组件, 提供一个空的html页面作为url即可
+       this.injectNode = createNode(injectWebview,
+           { url: "https://www.example.com/empty.html", controller: this.injectController});
+     }
+
+     build() {
+       Column() {
+         // 在适当的时机加载业务用Web组件，本例以Button点击触发为例
+         Button("加载页面")
+           .onClick(() => {
+             this.businessNode = createNode(businessWebview, {
+               url: "https://www.example.com/business.html",
+               controller: this.businessController
+             });
+           })
+         // 用于业务的Web组件
+         NodeContainer(this.businessNode);
+       }
+     }
+   }
+   ```
+
+7. 加载的HTML网页示例。
+
+   ```HTML
+   <!DOCTYPE html>
+   <html lang="en">
+   <head></head>
+   <body>
+     <img src="https://www.example.com/path1/request.png" />
+     <img src="https://www.example.com/path2/request.png" />
+     <script src="https://www.example.com/example.js" crossorigin="anonymous"></script>
+   </body>
+   </html>
+   ```
+
+### setHostIP<sup>12+</sup>
+
+static setHostIP(hostName: string, address: string, aliveTime: number): void
+
+设置主机域名解析后的IP地址。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名    | 参数类型 | 必填 | 参数描述                             |
+| --------- | -------- | ---- | ------------------------------------ |
+| hostName  | string   | 是   | 要添加DNS记录的主机域名。            |
+| address   | string   | 是   | 主机域名解析地址（支持IPv4，IPv6）。 |
+| aliveTime | number   | 是   | 缓存有效时间（秒）。                 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                 |
+| -------- | ------------------------ |
+| 401      | Invalid input parameter.Possible causes: 1. Mandatory parameters are left unspecified.2. Incorrect parameter types.3. Parameter verification failed. |
+
+**示例：**
+
+请参考[clearHostIP](#clearhostip12)。
+
+### clearHostIP<sup>12+</sup>
+
+static clearHostIP(hostName: string): void
+
+清除指定主机域名解析后的IP地址。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名   | 参数类型 | 必填 | 参数描述                  |
+| -------- | -------- | ---- | ------------------------- |
+| hostName | string   | 是   | 要清除DNS记录的主机域名。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                 |
+| -------- | ------------------------ |
+| 401      | Invalid input parameter.Possible causes: 1. Mandatory parameters are left unspecified.2. Incorrect parameter types.3. Parameter verification failed. |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview';
+import business_error from '@ohos.base';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      // url加载前设置生效.
+      Button('setHostIP')
+        .onClick(() => {
+          try {
+            web_webview.WebviewController.setHostIP('www.example.com', '127.0.0.1', 30);
+          } catch (error) {
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+       Button('clearHostIP')
+        .onClick(() => {
+          try {
+            web_webview.WebviewController.clearHostIP('www.example.com');
+          } catch (error) {
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
 ## WebCookieManager
 
-通过WebCookie可以控制Web组件中的cookie的各种行为，其中每个应用中的所有web组件共享一个WebCookieManager实例。
+通过WebCookie可以控制Web组件中的cookie的各种行为，其中每个应用中的所有Web组件共享一个WebCookieManager实例。
 
 ### getCookie<sup>(deprecated)</sup>
 
@@ -7084,7 +8060,7 @@ static fetchCookie(url: string, callback: AsyncCallback\<string>): void
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
-| 401 | Invalid input parameter.                                           |
+| 401      | Invalid input parameter.Possible causes: 1. Mandatory parameters are left unspecified.2. Incorrect parameter types.3. Parameter verification failed. |
 | 17100002 | Invalid url.                                           |
 
 **示例：**
@@ -7151,7 +8127,7 @@ static fetchCookie(url: string): Promise\<string>
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
-| 401 | Invalid input parameter.                                           |
+| 401      | Invalid input parameter.Possible causes: 1. Mandatory parameters are left unspecified.2. Incorrect parameter types.3. Parameter verification failed. |
 | 17100002 | Invalid url.                                           |
 
 **示例：**
@@ -7329,7 +8305,7 @@ static configCookie(url: string, value: string, callback: AsyncCallback\<void>):
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
-| 401      | Invalid input parameter.                               |
+| 401      | Invalid input parameter.Possible causes: 1. Mandatory parameters are left unspecified.2. Incorrect parameter types.3. Parameter verification failed. |
 | 17100002 | Invalid url.                                           |
 | 17100005 | Invalid cookie value.                                  |
 
@@ -7394,7 +8370,7 @@ static configCookie(url: string, value: string): Promise\<void>
 
 | 错误码ID | 错误信息                                                |
 | -------- | ------------------------------------------------------ |
-| 401      | Invalid input parameter.                               |
+| 401      | Invalid input parameter.Possible causes: 1. Mandatory parameters are left unspecified.2. Incorrect parameter types.3. Parameter verification failed. |
 | 17100002 | Invalid url.                                           |
 | 17100005 | Invalid cookie value.                                  |
 
@@ -8617,7 +9593,7 @@ struct WebComponent {
 
 ## WebDataBase
 
-web组件数据库管理对象。
+Web组件数据库管理对象。
 
 > **说明：**
 >
@@ -8807,7 +9783,7 @@ struct WebComponent {
 
 ## GeolocationPermissions
 
-web组件地理位置权限管理对象。
+Web组件地理位置权限管理对象。
 
 > **说明：**
 >
@@ -9258,8 +10234,8 @@ Web组件发送的资源请求信息。
 
 | 名称 | 类型 | 可读 | 可写 | 说明|
 | ---- | ---- | ---- | ---- |---- |
-| type | [WebHitTestType](#webhittesttype) | 是 | 否 | 当前被点击区域的元素类型。|
-| extra | string        | 是 | 否 |点击区域的附加参数信息。若被点击区域为图片或链接，则附加参数信息为其url地址。 |
+| type | [WebHitTestType](#webhittesttype) | 是 | 是 | 当前被点击区域的元素类型。|
+| extra | string        | 是 | 是 |点击区域的附加参数信息。若被点击区域为图片或链接，则附加参数信息为其url地址。 |
 
 ## WebMessage
 
@@ -9314,7 +10290,7 @@ Web组件发送的资源请求信息。
 | NONE    | 0    | 页面无音视频启播。 |
 | PLAYING | 1    | 页面音视频播放中。 |
 | PAUSED  | 2    | 页面音视频暂停。   |
-| STOP    | 3    | 页面音视频停止。   |
+| STOPPED | 3    | 页面音视频停止。   |
 
 ## RenderProcessMode<sup>12+</sup>
 
@@ -9366,7 +10342,7 @@ getString(): string
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
-| 17100014 | The type does not match with the value of the result. |
+| 17100014 | The type and value of the message do not match. |
 
 ### getNumber<sup>10+</sup>
 
@@ -9388,7 +10364,7 @@ getNumber(): number
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
-| 17100014 | The type does not match with the value of the result. |
+| 17100014 | The type and value of the message do not match. |
 
 ### getBoolean<sup>10+</sup>
 
@@ -9410,7 +10386,7 @@ getBoolean(): boolean
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
-| 17100014 | The type does not match with the value of the result. |
+| 17100014 | The type and value of the message do not match. |
 
 ### getArrayBuffer<sup>10+</sup>
 
@@ -9432,7 +10408,7 @@ getArrayBuffer(): ArrayBuffer
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
-| 17100014 | The type does not match with the value of the result. |
+| 17100014 | The type and value of the message do not match. |
 
 ### getArray<sup>10+</sup>
 
@@ -9454,11 +10430,11 @@ getArray(): Array\<string | number | boolean\>
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
-| 17100014 | The type does not match with the value of the result. |
+| 17100014 | The type and value of the message do not match. |
 
 ## WebMessageExt<sup>10+</sup>
 
-[webMessagePort](#webmessageport)接口接收、发送的的数据对象。
+[webMessagePort](#webmessageport)接口接收、发送的数据对象。
 
 ### getType<sup>10+</sup>
 
@@ -9494,7 +10470,7 @@ getString(): string
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
-| 17100014 | The type does not match with the value of the web message. |
+| 17100014 | The type and value of the message do not match. |
 
 ### getNumber<sup>10+</sup>
 
@@ -9516,7 +10492,7 @@ getNumber(): number
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
-| 17100014 | The type does not match with the value of the web message. |
+| 17100014 | The type and value of the message do not match. |
 
 ### getBoolean<sup>10+</sup>
 
@@ -9538,7 +10514,7 @@ getBoolean(): boolean
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
-| 17100014 | The type does not match with the value of the web message. |
+| 17100014 | The type and value of the message do not match. |
 
 ### getArrayBuffer<sup>10+</sup>
 
@@ -9560,7 +10536,7 @@ getArrayBuffer(): ArrayBuffer
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
-| 17100014 | The type does not match with the value of the web message. |
+| 17100014 | The type and value of the message do not match. |
 
 ### getArray<sup>10+</sup>
 
@@ -9582,7 +10558,7 @@ getArray(): Array\<string | number | boolean\>
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
-| 17100014 | The type does not match with the value of the web message. |
+| 17100014 | The type and value of the message do not match. |
 
 ### getError<sup>10+</sup>
 
@@ -9604,7 +10580,7 @@ getError(): Error
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
-| 17100014 | The type does not match with the value of the web message. |
+| 17100014 | The type and value of the message do not match. |
 
 ### setType<sup>10+</sup>
 
@@ -9624,7 +10600,7 @@ setType(type: WebMessageType): void
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
-| 17100014 | The type does not match with the value of the web message. |
+| 17100014 | The type and value of the message do not match. |
 
 ### setString<sup>10+</sup>
 
@@ -9644,7 +10620,7 @@ setString(message: string): void
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
-| 17100014 | The type does not match with the value of the web message. |
+| 17100014 | The type and value of the message do not match. |
 
 ### setNumber<sup>10+</sup>
 
@@ -9664,7 +10640,7 @@ setNumber(message: number): void
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
-| 17100014 | The type does not match with the value of the web message. |
+| 17100014 | The type and value of the message do not match. |
 
 ### setBoolean<sup>10+</sup>
 
@@ -9684,7 +10660,7 @@ setBoolean(message: boolean): void
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
-| 17100014 | The type does not match with the value of the web message. |
+| 17100014 | The type and value of the message do not match. |
 
 ### setArrayBuffer<sup>10+</sup>
 
@@ -9706,7 +10682,7 @@ setArrayBuffer(message: ArrayBuffer): void
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
-| 17100014 | The type does not match with the value of the web message. |
+| 17100014 | The type and value of the message do not match. |
 
 ### setArray<sup>10+</sup>
 
@@ -9728,7 +10704,7 @@ setArray(message: Array\<string | number | boolean\>): void
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
-| 17100014 | The type does not match with the value of the web message. |
+| 17100014 | The type and value of the message do not match. |
 
 ### setError<sup>10+</sup>
 
@@ -9750,7 +10726,7 @@ setError(message: Error): void
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
-| 17100014 | The type does not match with the value of the web message. |
+| 17100014 | The type and value of the message do not match. |
 
 ## WebStorageOrigin
 
@@ -9760,9 +10736,9 @@ setError(message: Error): void
 
 | 名称   | 类型   | 可读 | 可写 | 说明 |
 | ------ | ------ | ---- | ---- | ---- |
-| origin | string | 是  | 否 | 指定源的字符串索引。 |
-| usage  | number | 是  | 否 | 指定源的存储量。     |
-| quota  | number | 是  | 否 | 指定源的存储配额。   |
+| origin | string | 是  | 是 | 指定源的字符串索引。 |
+| usage  | number | 是  | 是 | 指定源的存储量。     |
+| quota  | number | 是  | 是 | 指定源的存储配额。   |
 
 ## BackForwardList
 
@@ -9772,8 +10748,8 @@ setError(message: Error): void
 
 | 名称         | 类型   | 可读 | 可写 | 说明                                                         |
 | ------------ | ------ | ---- | ---- | ------------------------------------------------------------ |
-| currentIndex | number | 是   | 否   | 当前在页面历史列表中的索引。                                 |
-| size         | number | 是   | 否   | 历史列表中索引的数量，最多保存50条，超过时起始记录会被覆盖。 |
+| currentIndex | number | 是   | 是   | 当前在页面历史列表中的索引。                                 |
+| size         | number | 是   | 是   | 历史列表中索引的数量，最多保存50条，超过时起始记录会被覆盖。 |
 
 ### getItemAtIndex
 
@@ -9837,10 +10813,10 @@ struct WebComponent {
 
 | 名称          | 类型                                   | 可读 | 可写 | 说明                         |
 | ------------- | -------------------------------------- | ---- | ---- | ---------------------------- |
-| icon          | [PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 是   | 否   | 历史页面图标的PixelMap对象。 |
-| historyUrl    | string                                 | 是   | 否   | 历史记录项的url地址。        |
-| historyRawUrl | string                                 | 是   | 否   | 历史记录项的原始url地址。    |
-| title         | string                                 | 是   | 否   | 历史记录项的标题。           |
+| icon          | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 是   | 否   | 历史页面图标的PixelMap对象。 |
+| historyUrl    | string                                 | 是   | 是   | 历史记录项的url地址。        |
+| historyRawUrl | string                                 | 是   | 是   | 历史记录项的原始url地址。    |
+| title         | string                                 | 是   | 是   | 历史记录项的标题。           |
 
 ## WebCustomScheme
 
@@ -9850,7 +10826,7 @@ struct WebComponent {
 
 | 名称           | 类型       | 可读 | 可写 | 说明                         |
 | -------------- | --------- | ---- | ---- | ---------------------------- |
-| schemeName     | string    | 是   | 是   | 自定义协议名称。最大长度为32，其字符仅支持小写字母、数字、'.'、'+'、'-'。        |
+| schemeName     | string    | 是   | 是   | 自定义协议名称。最大长度为32，其字符仅支持小写字母、数字、'.'、'+'、'-', 同时需要以字母开头。        |
 | isSupportCORS  | boolean   | 是   | 是   | 是否支持跨域请求。    |
 | isSupportFetch | boolean   | 是   | 是   | 是否支持fetch请求。           |
 | isStandard<sup>12+</sup> | boolean   | 是   | 是   | 设置了该选项的scheme是否将作为标准scheme进行处理。标准scheme需要符合[RFC 1738](http://www.ietf.org/rfc/rfc1738.txt)第3.1节中定义的URL规范化和解析规则。           |
@@ -9858,6 +10834,7 @@ struct WebComponent {
 | isDisplayIsolated<sup>12+</sup> | boolean   | 是   | 是   | 设置了该选项的scheme的内容是否只能从相同scheme的其他内容中显示或访问。           |
 | isSecure<sup>12+</sup> | boolean   | 是   | 是   | 设置了该选项的scheme是否将使用与应用于“https”的安全规则相同的安全规则来处理。           |
 | isCspBypassing<sup>12+</sup> | boolean   | 是   | 是   | 设置了该选项的scheme可以绕过内容安全策略（CSP）检查。在大多数情况下，当设置isStandard为true时，不应设置此值。         |
+| isCodeCacheSupported<sup>12+</sup> | boolean   | 是   | 是   | 设置了该选项的scheme的js资源，支持生成code cache。         |
 
 ## SecureDnsMode<sup>10+</sup>
 
@@ -9967,7 +10944,7 @@ struct WebComponent {
             this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("will start a download.");
               // 传入一个下载路径，并开始下载。
-              webDownloadItem.start("xxxxxxxx");
+              webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
             this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download update guid: " + webDownloadItem.getGuid());
@@ -9987,7 +10964,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('www.example.com');
+            this.controller.startDownload('https://www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -10034,7 +11011,7 @@ struct WebComponent {
             this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("will start a download.");
               // 传入一个下载路径，并开始下载。
-              webDownloadItem.start("xxxxxxxx");
+              webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
             this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download update current speed: " + webDownloadItem.getCurrentSpeed());
@@ -10054,7 +11031,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('www.example.com');
+            this.controller.startDownload('https://www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -10101,7 +11078,7 @@ struct WebComponent {
             this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("will start a download.");
               // 传入一个下载路径，并开始下载。
-              webDownloadItem.start("xxxxxxxx");
+              webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
             this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
@@ -10121,7 +11098,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('www.example.com');
+            this.controller.startDownload('https://www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -10168,7 +11145,7 @@ struct WebComponent {
             this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("will start a download.");
               // 传入一个下载路径，并开始下载。
-              webDownloadItem.start("xxxxxxxx");
+              webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
             this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download update total bytes: " + webDownloadItem.getTotalBytes());
@@ -10188,7 +11165,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('www.example.com');
+            this.controller.startDownload('https://www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -10235,7 +11212,7 @@ struct WebComponent {
             this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("will start a download.");
               // 传入一个下载路径，并开始下载。
-              webDownloadItem.start("xxxxxxxx");
+              webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
             this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download update download state: " + webDownloadItem.getState());
@@ -10255,7 +11232,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('www.example.com');
+            this.controller.startDownload('https://www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -10279,7 +11256,7 @@ getLastErrorCode(): WebDownloadErrorCode
 
 | 类型   | 说明                      |
 | ------ | ------------------------- |
-| number | 下载发生错误的时候的错误码。 |
+| [WebDownloadErrorCode](#webdownloaderrorcode11) | 下载发生错误的时候的错误码。 |
 
 **示例：**
 
@@ -10302,7 +11279,7 @@ struct WebComponent {
             this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("will start a download.");
               // 传入一个下载路径，并开始下载。
-              webDownloadItem.start("xxxxxxxx");
+              webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
             this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
@@ -10323,7 +11300,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('www.example.com');
+            this.controller.startDownload('https://www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -10370,7 +11347,7 @@ struct WebComponent {
             this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("will start a download， method:" + webDownloadItem.getMethod());
               // 传入一个下载路径，并开始下载。
-              webDownloadItem.start("xxxxxxxx");
+              webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
             this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
@@ -10390,7 +11367,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('www.example.com');
+            this.controller.startDownload('https://www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -10437,7 +11414,7 @@ struct WebComponent {
             this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("will start a download， mime type:" + webDownloadItem.getMimeType());
               // 传入一个下载路径，并开始下载。
-              webDownloadItem.start("xxxxxxxx");
+              webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
             this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
@@ -10457,7 +11434,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('www.example.com');
+            this.controller.startDownload('https://www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -10504,7 +11481,7 @@ struct WebComponent {
             this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("will start a download, url:" + webDownloadItem.getUrl());
               // 传入一个下载路径，并开始下载。
-              webDownloadItem.start("xxxxxxxx");
+              webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
             this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
@@ -10524,7 +11501,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('www.example.com');
+            this.controller.startDownload('https://www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -10571,7 +11548,7 @@ struct WebComponent {
             this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("will start a download, suggest name:" + webDownloadItem.getSuggestedFileName());
               // 传入一个下载路径，并开始下载。
-              webDownloadItem.start("xxxxxxxx");
+              webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
             this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
@@ -10591,7 +11568,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('www.example.com');
+            this.controller.startDownload('https://www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -10638,7 +11615,7 @@ struct WebComponent {
             this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("will start a download.");
               // 传入一个下载路径，并开始下载。
-              webDownloadItem.start("xxxxxxxx");
+              webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
             this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
@@ -10659,7 +11636,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('www.example.com');
+            this.controller.startDownload('https://www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -10706,7 +11683,7 @@ struct WebComponent {
             this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("will start a download.");
               // 传入一个下载路径，并开始下载。
-              webDownloadItem.start("xxxxxxxx");
+              webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
             this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
@@ -10727,7 +11704,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('www.example.com');
+            this.controller.startDownload('https://www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -10775,7 +11752,7 @@ struct WebComponent {
             this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("will start a download.");
               // 传入一个下载路径，并开始下载。
-              webDownloadItem.start("xxxxxxxx");
+              webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
             this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
@@ -10797,7 +11774,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('www.example.com');
+            this.controller.startDownload('https://www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -10829,6 +11806,14 @@ static deserialize(serializedData: Uint8Array): WebDownloadItem
 | ------ | ------------------------- |
 | [WebDownloadItem](#webdownloaditem11) | 从字节数组反序列化为一个WebDownloadItem对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Incorrect parameter types. 2. Parameter verification failed.  |
+
 **示例：**
 
 ```ts
@@ -10851,7 +11836,7 @@ struct WebComponent {
             this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("will start a download.");
               // 传入一个下载路径，并开始下载。
-              webDownloadItem.start("xxxxxxxx");
+              webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
             this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
@@ -10873,7 +11858,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('www.example.com');
+            this.controller.startDownload('https://www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -10908,6 +11893,14 @@ start(downloadPath: string): void
 | ------ | ---------------------- | ---- | ------------------------------|
 | downloadPath   | string     | 是  | 下载文件的路径(包含文件名)。|
 
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Incorrect parameter types. 2. Parameter verification failed.  |
+
 **示例：**
 
 ```ts
@@ -10930,7 +11923,7 @@ struct WebComponent {
             this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("will start a download.");
               // 传入一个下载路径，并开始下载。
-              webDownloadItem.start("xxxxxxxx");
+              webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
             this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
@@ -10952,7 +11945,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('www.example.com');
+            this.controller.startDownload('https://www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -11004,7 +11997,7 @@ struct WebComponent {
             this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("will start a download.");
               // 传入一个下载路径，并开始下载。
-              webDownloadItem.start("xxxxxxxx");
+              webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
             this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
@@ -11027,7 +12020,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('www.example.com');
+            this.controller.startDownload('https://www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -11071,7 +12064,7 @@ pause(): void
 
 | 错误码ID  | 错误信息                                                      |
 | -------- | ------------------------------------------------------------ |
-| 17100019 | The download has not been started yet. |
+| 17100019 | The download task is not started yet. |
 
 **示例：**
 
@@ -11096,7 +12089,7 @@ struct WebComponent {
             this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("will start a download.");
               // 传入一个下载路径，并开始下载。
-              webDownloadItem.start("xxxxxxxx");
+              webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
             this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
@@ -11119,7 +12112,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('www.example.com');
+            this.controller.startDownload('https://www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -11172,7 +12165,7 @@ resume(): void
 
 | 错误码ID  | 错误信息                                                      |
 | -------- | ------------------------------------------------------------ |
-| 17100016 | The download is not paused. |
+| 17100016 | The download task is not paused. |
 
 **示例：**
 
@@ -11197,7 +12190,7 @@ struct WebComponent {
             this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("will start a download.");
               // 传入一个下载路径，并开始下载。
-              webDownloadItem.start("xxxxxxxx");
+              webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
             this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
@@ -11220,7 +12213,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('www.example.com');
+            this.controller.startDownload('https://www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -11280,6 +12273,12 @@ onBeforeDownload(callback: Callback\<WebDownloadItem>): void
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
+**参数：**
+
+| 参数名  | 类型   | 必填 | 说明           |
+| ------- | ------ | ---- | :------------- |
+| callback | Callback\<[WebDownloadItem](#webdownloaditem11)> | 是   | 触发下载的回调。 |
+
 **示例：**
 
 ```ts
@@ -11303,7 +12302,7 @@ struct WebComponent {
             this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("will start a download.");
               // 传入一个下载路径，并开始下载。
-              webDownloadItem.start("xxxxxxxx");
+              webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
             this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
@@ -11326,7 +12325,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('www.example.com');
+            this.controller.startDownload('https://www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -11382,6 +12381,12 @@ onDownloadUpdated(callback: Callback\<WebDownloadItem>): void
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
+**参数：**
+
+| 参数名  | 类型   | 必填 | 说明           |
+| ------- | ------ | ---- | :------------- |
+| callback | Callback\<[WebDownloadItem](#webdownloaditem11)> | 是   | 下载的回调已更新。 |
+
 **示例：**
 
 ```ts
@@ -11405,7 +12410,7 @@ struct WebComponent {
             this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("will start a download.");
               // 传入一个下载路径，并开始下载。
-              webDownloadItem.start("xxxxxxxx");
+              webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
             this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
@@ -11428,7 +12433,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('www.example.com');
+            this.controller.startDownload('https://www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -11484,6 +12489,12 @@ onDownloadFinish(callback: Callback\<WebDownloadItem>): void
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
+**参数：**
+
+| 参数名  | 类型   | 必填 | 说明           |
+| ------- | ------ | ---- | :------------- |
+| callback | Callback\<[WebDownloadItem](#webdownloaditem11)> | 是   | 下载的回调已完成。 |
+
 **示例：**
 
 ```ts
@@ -11507,7 +12518,7 @@ struct WebComponent {
             this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("will start a download.");
               // 传入一个下载路径，并开始下载。
-              webDownloadItem.start("xxxxxxxx");
+              webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
             this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
@@ -11530,7 +12541,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('www.example.com');
+            this.controller.startDownload('https://www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -11586,6 +12597,12 @@ onDownloadFailed(callback: Callback\<WebDownloadItem>): void
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
+**参数：**
+
+| 参数名  | 类型   | 必填 | 说明           |
+| ------- | ------ | ---- | :------------- |
+| callback | Callback\<[WebDownloadItem](#webdownloaditem11)> | 是   | 下载回调失败。 |
+
 **示例：**
 
 ```ts
@@ -11609,7 +12626,7 @@ struct WebComponent {
             this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("will start a download.");
               // 传入一个下载路径，并开始下载。
-              webDownloadItem.start("xxxxxxxx");
+              webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
             this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
@@ -11632,7 +12649,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('www.example.com');
+            this.controller.startDownload('https://www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -11721,7 +12738,7 @@ struct WebComponent {
             this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("will start a download.");
               // 传入一个下载路径，并开始下载。
-              webDownloadItem.start("xxxxxxxx");
+              webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
             this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
@@ -11736,6 +12753,7 @@ struct WebComponent {
               console.log("download finish guid: " + webDownloadItem.getGuid());
             })
             this.controller.setDownloadDelegate(this.delegate);
+            web_webview.WebDownloadManager.setDownloadDelegate(this.delegate);
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -11744,7 +12762,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('www.example.com');
+            this.controller.startDownload('https://www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -11837,7 +12855,7 @@ struct WebComponent {
             this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("will start a download.");
               // 传入一个下载路径，并开始下载。
-              webDownloadItem.start("xxxxxxxx");
+              webDownloadItem.start("/data/storage/el2/base/cache/web/" + webDownloadItem.getSuggestedFileName());
             })
             this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
@@ -11852,6 +12870,7 @@ struct WebComponent {
               console.log("download finish guid: " + webDownloadItem.getGuid());
             })
             this.controller.setDownloadDelegate(this.delegate);
+            web_webview.WebDownloadManager.setDownloadDelegate(this.delegate);
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -11860,7 +12879,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('www.example.com');
+            this.controller.startDownload('https://www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -12059,7 +13078,7 @@ initialize(): Promise\<void\>
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
-| 17100022 | The http body stream init failed. |
+| 17100022 | Failed to initialize the HTTP body stream. |
 
 **示例：**
 
@@ -12176,7 +13195,7 @@ read(size: number): Promise\<ArrayBuffer\>
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
-|  401 | Invalid input parameter.    |
+|  401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.    |
 
 **示例：**
 
@@ -12402,6 +13421,42 @@ getHttpBodyStream(): WebHttpBodyStream | null
 
 完整示例代码参考[onRequestStart](#onrequeststart12)。
 
+### getRequestResourceType<sup>12+</sup>
+
+getRequestResourceType(): WebResourceType
+
+获取资源请求的资源类型。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型     | 说明            |
+| ------ | ------------- |
+| [WebResourceType](#webresourcetype12) | 返回资源请求的资源类型。 |
+
+**示例：**
+
+完整示例代码参考[onRequestStart](#onrequeststart12)。
+
+### getFrameUrl<sup>12+</sup>
+
+getFrameUrl(): string
+
+获取触发此请求的Frame的URL。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型     | 说明            |
+| ------ | ------------- |
+| string | 返回触发此请求的Frame的URL。 |
+
+**示例：**
+
+完整示例代码参考[onRequestStart](#onrequeststart12)。
+
 ## WebSchemeHandlerResponse<sup>12+</sup>
 
 请求的响应，可以为被拦截的请求创建一个Response并填充自定义的内容返回给Web组件。
@@ -12484,7 +13539,7 @@ setUrl(url: string): void
 
 | 错误码ID | 错误信息                  |
 | -------- | ----------------------- |
-|  401 | Invalid input parameter.    |
+|  401 | Parameter error. Possible causes: 1. Incorrect parameter types.    |
 
 ### setNetErrorCode<sup>12+</sup>
 
@@ -12506,7 +13561,7 @@ setNetErrorCode(code: WebNetErrorList): void
 
 | 错误码ID | 错误信息                  |
 | -------- | ----------------------- |
-|  401 | Invalid input parameter.    |
+|  401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.    |
 
 **示例：**
 
@@ -12532,7 +13587,7 @@ setStatus(code: number): void
 
 | 错误码ID | 错误信息                  |
 | -------- | ----------------------- |
-|  401 | Invalid input parameter.    |
+|  401 | Parameter error. Possible causes: 1. Incorrect parameter types. |
 
 **示例：**
 
@@ -12558,7 +13613,7 @@ setStatusText(text: string): void
 
 | 错误码ID | 错误信息                  |
 | -------- | ----------------------- |
-|  401 | Invalid input parameter.    |
+|  401 | Parameter error. Possible causes: 1. Incorrect parameter types.    |
 
 **示例：**
 
@@ -12584,7 +13639,7 @@ setMimeType(type: string): void
 
 | 错误码ID | 错误信息                  |
 | -------- | ----------------------- |
-|  401 | Invalid input parameter.    |
+|  401 | Parameter error. Possible causes: 1. Incorrect parameter types.    |
 
 **示例：**
 
@@ -12610,7 +13665,7 @@ setEncoding(encoding: string): void
 
 | 错误码ID | 错误信息                  |
 | -------- | ----------------------- |
-|  401 | Invalid input parameter.    |
+|  401 | Parameter error. Possible causes: 1. Incorrect parameter types.    |
 
 **示例：**
 
@@ -12638,7 +13693,7 @@ setHeaderByName(name: string, value: string, overwrite: boolean): void
 
 | 错误码ID | 错误信息                  |
 | -------- | ----------------------- |
-|  401 | Invalid input parameter.    |
+|  401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.    |
 
 **示例：**
 
@@ -12801,8 +13856,8 @@ didReceiveResponse(response: WebSchemeHandlerResponse): void
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
-|  401 | Invalid input parameter.    |
-| 17100021 | Resource handler is invalid. |
+|  401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.    |
+| 17100021 | The resource handler is invalid. |
 
 **示例：**
 
@@ -12828,8 +13883,8 @@ didReceiveResponseBody(data: ArrayBuffer): void
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
-|  401 | Invalid input parameter.    |
-| 17100021 | Resource handler is invalid. |
+|  401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.    |
+| 17100021 | The resource handler is invalid. |
 
 **示例：**
 
@@ -12849,7 +13904,7 @@ didFinish(): void
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
-| 17100021 | Resource handler is invalid. |
+| 17100021 | The resource handler is invalid. |
 
 **示例：**
 
@@ -12899,7 +13954,7 @@ onRequestStart(callback: (request: WebSchemeHandlerRequest, handler: WebResource
 
 | 参数名   | 类型                 | 必填 | 说明       |
 | -------- | -------------------- | ---- | ---------- |
-| callback   | (request: WebSchemeHandlerRequest, handler: WebResourceHandler) => boolean | 是 | 拦截对应scheme请求开始时触发的回调。request为请求，handler用于提供自定义的返回头以及返回体给Web组件，返回值表示该请求是否拦截。 |
+| callback   | (request: [WebSchemeHandlerRequest](#webschemehandlerrequest12), handler: [WebResourceHandler](#webresourcehandler12)) => boolean | 是 | 拦截对应scheme请求开始时触发的回调。request为请求，handler用于提供自定义的返回头以及返回体给Web组件，返回值表示该请求是否拦截。 |
 
 **示例：**
 
@@ -12931,6 +13986,8 @@ struct WebComponent {
                 console.log("[schemeHandler] onRequestStart isMainFrame:" + request.isMainFrame())
                 console.log("[schemeHandler] onRequestStart hasGesture:" + request.hasGesture())
                 console.log("[schemeHandler] onRequestStart header size:" + request.getHeader().length)
+                console.log("[schemeHandler] onRequestStart resource type:" + request.getRequestResourceType())
+                console.log("[schemeHandler] onRequestStart frame url:" + request.getFrameUrl())
                 let header = request.getHeader();
                 for (let i = 0; i < header.length; i++) {
                   console.log("[schemeHandler] onRequestStart header:" + header[i].headerKey + " " + header[i].headerValue);
@@ -13013,8 +14070,662 @@ onRequestStop(callback: Callback\<WebSchemeHandlerRequest\>): void
 
 | 参数名   | 类型                 | 必填 | 说明       |
 | -------- | -------------------- | ---- | ---------- |
-| callback | Callback\<WebSchemeHandlerRequest\> | 是   | 对应请求结束的回调函数。 |
+| callback | Callback\<[WebSchemeHandlerRequest](#webschemehandlerrequest12)\> | 是   | 对应请求结束的回调函数。 |
 
 **示例：**
 
 完整示例代码参考[onRequestStart](#onrequeststart12)。
+
+## CacheOptions<sup>12+</sup>
+
+Web组件预编译JavaScript生成字节码缓存的配置对象，用于控制字节码缓存更新。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称        | 类型   | 可读 | 可写 |说明                 |
+| ----------- | ------ | -----|------|------------------- |
+| responseHeaders   | Array<[WebHeader](#webheader)> | 是 | 是 | 请求此JavaScript文件时服务器返回的响应头，使用E-Tag或Last-Modified标识文件版本，判断是否需要更新。   |
+
+## PlaybackStatus<sup>12+</sup>
+
+[handleStatusChanged](#handlestatuschanged12) 接口参数， 用于表示播放器的播放状态。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称 | 值 | 说明 |
+|------|----|------|
+| PAUSED  | 0 | 播放状态为播放状态。 |
+| PLAYING | 1 | 播放状态为暂停状态。 |
+
+## NetworkState<sup>12+<sup>
+
+播放器的网络状态。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称 | 值 | 说明 |
+|------|----|------|
+| EMPTY         | 0 | 播放器还没有开始下载数据。 |
+| IDLE          | 1 | 播放器网络状态空闲，比如媒体分片下载完成，下一个分片还没有开始下载。 |
+| LOADING       | 2 | 播放器正在下载媒体数据。 |
+| NETWORK_ERROR | 3 | 发生了网络错误。 |
+
+## ReadyState<sup>12+<sup>
+
+播放器的缓存状态。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称 | 值 | 说明 |
+|------|----|------|
+| HAVE_NOTHING      | 0 | 没有缓存。 |
+| HAVE_METADATA     | 1 | 只缓存了媒体元数据。 |
+| HAVE_CURRENT_DATA | 2 | 只缓存到当前的播放进度。 |
+| HAVE_FUTURE_DATA  | 3 | 缓存时长超过了当前的播放进度, 但是仍有可能导致卡顿。 |
+| HAVE_ENOUGH_DATA  | 4 | 缓存了足够的数据，保证播放流畅。 |
+
+## MediaError<sup>12+<sup>
+
+播放器的错误类型。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称 | 值 | 说明 |
+|------|----|------|
+| NETWORK_ERROR | 1 | 网络错误。 |
+| FORMAT_ERROR  | 2 | 媒体格式错误。 |
+| DECODE_ERROR  | 3 | 解码错误。 |
+
+## NativeMediaPlayerHandler<sup>12+<sup>
+
+[CreateNativeMediaPlayerCallback](#createnativemediaplayercallback12) 回调函数的参数。  
+应用通过该对象，将播放器的状态报告给ArkWeb内核。
+
+### handleStatusChanged<sup>12+<sup>
+
+handleStatusChanged(status: PlaybackStatus): void
+
+当播放器的播放状态发生变化时，调用该方法将播放状态通知给 ArkWeb 内核。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+|--------|------|------|------|
+| status | [PlaybackStatus](#playbackstatus12) | 是 | 播放器的播放状态。 |
+
+**示例：**
+
+完整示例代码参考[onCreateNativeMediaPlayer](#oncreatenativemediaplayer12)。
+
+### handleVolumeChanged<sup>12+<sup>
+
+handleVolumeChanged(volume: number): void
+
+当播放器的音量发生变化时，调用该方法将音量通知给 ArkWeb 内核。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+|--------|------|------|------|
+| volume | number | 是 | 播放器的音量。 |
+
+**示例：**
+
+完整示例代码参考[onCreateNativeMediaPlayer](#oncreatenativemediaplayer12)。
+
+### handleMutedChanged<sup>12+<sup>
+
+handleMutedChanged(muted: boolean): void
+
+当播放器的静音状态发生变化时，调用该方法将静音状态通知给 ArkWeb 内核。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+|--------|------|------|------|
+| muted | boolean | 是 | 当前播放器是否静音。 |
+
+**示例：**
+
+完整示例代码参考[onCreateNativeMediaPlayer](#oncreatenativemediaplayer12)。
+
+### handlePlaybackRateChanged<sup>12+<sup>
+
+handlePlaybackRateChanged(playbackRate: number): void
+
+当播放器的播放速度发生变化时，调用该方法将播放速度通知给 ArkWeb 内核。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+|--------|------|------|------|
+| playbackRate | number | 是 | 播放速率。 |
+
+**示例：**
+
+完整示例代码参考[onCreateNativeMediaPlayer](#oncreatenativemediaplayer12)。
+
+### handleDurationChanged<sup>12+<sup>
+
+handleDurationChanged(duration: number): void
+
+当播放器解析出媒体的总时长时，调用该方法将媒体的总时长通知给 ArkWeb 内核。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+|--------|------|------|------|
+| duration | number | 是 | 媒体的总时长。单位： 秒 。 |
+
+**示例：**
+
+完整示例代码参考[onCreateNativeMediaPlayer](#oncreatenativemediaplayer12)。
+
+### handleTimeUpdate<sup>12+<sup>
+
+handleTimeUpdate(currentPlayTime: number): void
+
+当媒体的播放进度发生变化时，调用该方法将媒体的播放进度通知给 ArkWeb 内核。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+|--------|------|------|------|
+| currentPlayTime | number | 是 | 当前播放时间。单位： 秒。  |
+
+**示例：**
+
+完整示例代码参考[onCreateNativeMediaPlayer](#oncreatenativemediaplayer12)。
+
+### handleBufferedEndTimeChanged<sup>12+<sup>
+
+handleBufferedEndTimeChanged(bufferedEndTime: number): void
+
+当媒体的缓冲时长发生变化时，调用该方法将媒体的缓冲时长通知给 ArkWeb 内核。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+|--------|------|------|------|
+| bufferedEndTime | number | 是 | 媒体缓冲的时长。 |
+
+**示例：**
+
+完整示例代码参考[onCreateNativeMediaPlayer](#oncreatenativemediaplayer12)。
+
+### handleEnded<sup>12+<sup>
+
+handleEnded(): void
+
+当媒体播放结束时，调用该方法通知给 ArkWeb 内核。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**示例：**
+
+完整示例代码参考[onCreateNativeMediaPlayer](#oncreatenativemediaplayer12)。
+
+### handleNetworkStateChanged<sup>12+<sup>
+
+handleNetworkStateChanged(state: NetworkState): void
+
+当播放器的网络状态发生变化时，调用该方法将播放器的网络状态通知给 ArkWeb 内核。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+|--------|------|------|------|
+| state | [NetworkState](#networkstate12) | 是 | 播放器的网络状态。 |
+
+**示例：**
+
+完整示例代码参考[onCreateNativeMediaPlayer](#oncreatenativemediaplayer12)。
+
+### handleReadyStateChanged<sup>12+<sup>
+
+handleReadyStateChanged(state: ReadyState): void
+
+当播放器的缓存状态发生变化时，调用该方法将播放器的缓存状态通知给 ArkWeb 内核。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+|--------|------|------|------|
+| state | [ReadyState](#readystate12) | 是 | 播放器的缓存状态。 |
+
+**示例：**
+
+完整示例代码参考[onCreateNativeMediaPlayer](#oncreatenativemediaplayer12)。
+
+### handleFullscreenChanged<sup>12+<sup>
+
+handleFullscreenChanged(fullscreen: boolean): void
+
+当播放器的全屏状态发生变化时，调用该方法将播放器的全屏状态通知给 ArkWeb 内核。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+|--------|------|------|------|
+| fullscreen | boolean | 是 | 是否全屏。 |
+
+**示例：**
+
+完整示例代码参考[onCreateNativeMediaPlayer](#oncreatenativemediaplayer12)。
+
+### handleSeeking<sup>12+<sup>
+
+handleSeeking(): void
+
+当播放器进入seek 状态时，调用该方法通知 ArkWeb 内核。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**示例：**
+
+完整示例代码参考[onCreateNativeMediaPlayer](#oncreatenativemediaplayer12)。
+
+### handleSeekFinished<sup>12+<sup>
+
+handleSeekFinished(): void
+
+当播放器 seek 完成后，调用该方法通知 ArkWeb 内核。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**示例：**
+
+完整示例代码参考[onCreateNativeMediaPlayer](#oncreatenativemediaplayer12)。
+
+### handleError<sup>12+<sup>
+
+handleError(error: MediaError, errorMessage: string): void
+
+当播放器发生错误时， 调用该方法通知 ArkWeb 内核。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+|--------|------|------|------|
+| error | [MediaError](#mediaerror12) | 是 | 错误类型。 |
+| errorMessage | string | 是 | 错误的详细描述。 |
+
+**示例：**
+
+完整示例代码参考[onCreateNativeMediaPlayer](#oncreatenativemediaplayer12)。
+
+### handleVideoSizeChanged<sup>12+<sup>
+
+handleVideoSizeChanged(width: number, height: number): void
+
+当播放器解析出视频的尺寸时， 调用该方法通知 ArkWeb 内核。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+|--------|------|------|------|
+| width  | number | 是 | 视频的宽。 |
+| height | number | 是 | 视频的高。 |
+
+**示例：**
+
+完整示例代码参考[onCreateNativeMediaPlayer](#oncreatenativemediaplayer12)。
+
+
+## NativeMediaPlayerBridge<sup>12+<sup>
+
+[CreateNativeMediaPlayerCallback](#createnativemediaplayercallback12) 回调函数的返回值类型。  
+接管网页媒体的播放器和 ArkWeb 内核之间的一个接口类。  
+ArkWeb 内核通过该接口类的实例对象来控制应用创建的用来接管网页媒体的播放器。
+
+### updateRect<sup>12+<sup>
+
+updateRect(x: number, y: number, width: number, height: number): void
+
+更新 surface 位置信息。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+|--------|------|------|------|
+| x | number | 是 | surface 相对于 Web 组件的 x 坐标信息。 |
+| y | number | 是 | surface 相对于 Web 组件的 y 坐标信息。 |
+| width  | number | 是 | surface 的宽度。 |
+| height | number | 是 | surface 的高度。 |
+
+**示例：**
+
+完整示例代码参考[onCreateNativeMediaPlayer](#oncreatenativemediaplayer12)。
+
+### play<sup>12+<sup>
+
+play(): void
+
+播放视频。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**示例：**
+
+完整示例代码参考[onCreateNativeMediaPlayer](#oncreatenativemediaplayer12)。
+
+### pause<sup>12+<sup>
+
+pause(): void
+
+暂停播放。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**示例：**
+
+完整示例代码参考[onCreateNativeMediaPlayer](#oncreatenativemediaplayer12)。
+
+### seek<sup>12+<sup>
+
+seek(targetTime: number): void
+
+播放跳转到某个时间点。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+|--------|------|------|------|
+| targetTime | number | 是 | 单位： 秒。 |
+
+**示例：**
+
+完整示例代码参考[onCreateNativeMediaPlayer](#oncreatenativemediaplayer12)。
+
+### setVolume<sup>12+<sup>
+
+setVolume(volume: number): void
+
+设置播放器音量值。  
+取值范围: [0, 1.0]
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+|--------|------|------|------|
+| volume | number | 是 | 播放器的音量。取值范围是从 0 到 1.0 。 其中 0 表示静音， 1.0 表示最大音量。 |
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**示例：**
+
+完整示例代码参考[onCreateNativeMediaPlayer](#oncreatenativemediaplayer12)。
+
+### setMuted<sup>12+<sup>
+
+setMuted(muted: boolean): void
+
+设置静音状态。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+|--------|------|------|------|
+| muted | boolean | 是 | 是否静音。 |
+
+**示例：**
+
+完整示例代码参考[onCreateNativeMediaPlayer](#oncreatenativemediaplayer12)。
+
+### setPlaybackRate<sup>12+<sup>
+
+setPlaybackRate(playbackRate: number): void
+
+设置播放速度。  
+取值范围: [0, 10.0]
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+|--------|------|------|------|
+| playbackRate | number | 是 | 播放倍率。取值范围是从 0 到 10.0 。其中 1 表示原速播放。 |
+
+**示例：**
+
+完整示例代码参考[onCreateNativeMediaPlayer](#oncreatenativemediaplayer12)。
+
+### release<sup>12+<sup>
+
+release(): void
+
+销毁播放器。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**示例：**
+
+完整示例代码参考[onCreateNativeMediaPlayer](#oncreatenativemediaplayer12)。
+
+### enterFullscreen<sup>12+<sup>
+
+enterFullscreen(): void
+
+播放器进入全屏。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**示例：**
+
+完整示例代码参考[onCreateNativeMediaPlayer](#oncreatenativemediaplayer12)。
+
+### exitFullscreen<sup>12+<sup>
+
+exitFullscreen(): void
+
+播放器退出全屏。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**示例：**
+
+完整示例代码参考[onCreateNativeMediaPlayer](#oncreatenativemediaplayer12)。
+
+## MediaType<sup>12+<sup>
+
+表示媒体类型。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称 | 值 | 说明 |
+|------|----|------|
+| VIDEO | 0 | 视频。 |
+| AUDIO | 1 | 音频。 |
+
+## SourceType<sup>12+<sup>
+
+表示媒体源的类型。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称 | 值 | 说明 |
+|------|----|------|
+| URL | 0 | 媒体源的类型是 URL 。 |
+| MSE | 1 | 媒体源的类型是 blob 。 |
+
+## MediaSourceInfo<sup>12+<sup>
+
+表示媒体源的信息。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称 | 类型 | 只读 | 必填 | 说明 |
+|------|------|------|------|------|
+| type | [SourceType](#sourcetype12) | 否 | N/A | 媒体源的类型。 |
+| source | string | 否 | N/A | 媒体源地址。 |
+| format | string | 否 | N/A | 媒体源格式， 可能为空， 需要使用者自己去判断格式。 |
+
+## NativeMediaPlayerSurfaceInfo<sup>12+<sup>
+
+[应用接管网页媒体播放功能](ts-basic-components-web.md#enablenativemediaplayer12)中用于同层渲染的 surface 信息。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称 | 类型 | 只读 | 必填 | 说明 |
+|------|------|------|------|------|
+| id | string | 否 | N/A | surface 的id ， 用于同层渲染的NativeImage的 psurfaceid。<br/>详见[NativeEmbedDataInfo](ts-basic-components-web.md#nativeembeddatainfo11)。 |
+| rect | [RectEvent](#rectevent12) | 否 | N/A | surface 的位置信息。 |
+
+## Preload<sup>12+<sup>
+
+播放器预加载媒体数据。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称 | 值 | 说明 |
+|------|----|------|
+| NONE     | 0 | 不预加载。 |
+| METADATA | 1 | 只预加载媒体的元数据。 |
+| AUTO     | 2 | 预加载足够多的媒体数据，以保证能流畅地播放。 |
+
+## MediaInfo<sup>12+<sup>
+
+[CreateNativeMediaPlayerCallback](#createnativemediaplayercallback12)回调函数的一个参数。  
+包含了网页中媒体的信息。应用可以根据这些信息来创建接管网页媒体播放的播放器。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称 | 类型 | 只读 | 必填 | 说明 |
+|------|------|------|------|------|
+| embedID | string | 否 | N/A | 网页中的 `<video>` 或 `<audio>` 的 ID 。|
+| mediaType | [MediaType](#mediatype12) | 否 | N/A | 媒体的类型。 |
+| mediaSrcList | Array\<[MediaSourceInfo](#mediasourceinfo12)\> | 否 | N/A | 媒体的源。可能有多个源，应用需要选择一个支持的源来播放。 |
+| surfaceInfo | [NativeMediaPlayerSurfaceInfo](#nativemediaplayersurfaceinfo12) | 否 | N/A | 用于同层渲染的 surface 信息。 |
+| controlsShown | boolean | 否 | N/A | `<video>` 或 `<audio>` 中是否有 `controls`属性。 |
+| controlList | Array\<string\> | 否 | N/A | `<video>` 或 `<audio>` 中的 `controlslist` 属性的值。 |
+| muted | boolean | 否 | N/A | 是否要求静音播放。 |
+| posterUrl | string | 否 | N/A | 海报的地址。 |
+| preload | [Preload](#preload12) | 否 | N/A | 是否需要预加载。 |
+| headers | Record\<string, string\> | 否 | N/A | 播放器请求媒体资源时，需要携带的 HTTP 头。 |
+| attributes | Record\<string, string\> | 否 | N/A | `<video>` 或 `<audio>` 标签中的属性。 |
+
+
+## CreateNativeMediaPlayerCallback<sup>12+<sup>
+
+[onCreateNativeMediaPlayer](#oncreatenativemediaplayer12)方法的参数。  
+一个回调函数， 创建一个播放器, 用于接管网页中的媒体播放。
+
+type CreateNativeMediaPlayerCallback = (handler: NativeMediaPlayerHandler, mediaInfo: MediaInfo) => NativeMediaPlayerBridge
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+|--------|------|------|------|
+| handler | [NativeMediaPlayerHandler](#nativemediaplayerhandler12) | 是 | 通过该对象，将播放器的状态报告给 ArkWeb 内核。 |
+| mediaInfo | [MediaInfo](#mediainfo12) | 是 | 网页媒体的信息。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+|------|------|
+| [NativeMediaPlayerBridge](#nativemediaplayerbridge12) | 接管网页媒体的播放器和 ArkWeb 内核之间的一个接口类。<br/>应用需要实现该接口类。<br/> ArkWeb 内核通过该接口类的对象来控制应用创建的用来接管网页媒体的播放器。<br/>如果应用返回了 null ， 则表示应用不接管这个媒体，由 ArkWeb 内核来播放该媒体。 |
+
+**示例：**
+
+完整示例代码参考[onCreateNativeMediaPlayer](#oncreatenativemediaplayer12)。
+
+## OfflineResourceMap<sup>12+</sup>
+
+本地离线资源配置对象，用于配置将被[injectOfflineResources](#injectofflineresources12)接口注入到内存缓存的本地离线资源的相关信息, 内核会根据此信息生成资源缓存，并据此控制缓存的有效期。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称        | 类型   | 可读 | 可写 |说明                 |
+| ----------- | ------ | -----|------|------------------- |
+| urlList | Array\<string\> | 是   | 是   | 本地离线资源对应的网络地址列表，列表的第一项将作为资源的源(Origin), 如果仅提供一个网络地址，则使用该地址作为这个资源的源。url仅支持http或https协议，长度不超过2048。      |
+| resource | Uint8Array | 是   | 是   | 本地离线资源的内容。      |
+| responseHeaders | Array<[WebHeader](#webheader)> | 是   | 是   | 资源对应的HTTP响应头。其中提供的Cache-Control或Expires响应头将被用于控制资源在内存缓存中的有效期。如果不提供，默认的有效期为86400秒，即1天。其中提供的Content-Type响应头将被用于定义资源的MIMEType，MODULE_JS必须提供有效的MIMEType，其他类型可不提供，无默认值，不符合标准的MIMEType会导致内存缓存失效。如果业务网页中的script标签使用了crossorigin属性，则必须在接口的responseHeaders参数中设置Cross-Origin响应头的值为anoymous或use-credentials。      |
+| type | [OfflineResourceType](#offlineresourcetype12) | 是   | 是   | 资源的类型，目前仅支持Javascript、图片和CSS类型的资源。      |
+
+## OfflineResourceType<sup>12+</sup>
+
+[OfflineResourceMap](#offlineresourcemap12)对象对应的本地离线资源的接口类型。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称         | 值 | 说明                              |
+| ------------ | -- |--------------------------------- |
+| IMAGE  | 0 | 图片类型的资源。 |
+| CSS       | 1 | CSS类型的资源。|
+| CLASSIC_JS       | 2 | 通过<script src="" /\>标签加载的Javascript资源。|
+| MODULE_JS      | 3 |通过<script src="" type="module" /\>标签加载的Javascript资源。|
+
+## WebResourceType<sup>12+</sup>
+
+资源请求的资源类型。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称         | 值 | 说明                              |
+| ------------ | -- |--------------------------------- |
+| MAIN_FRAME | 0 | 顶层页面。 |
+| SUB_FRAME | 1 | Frame或Iframe。 |
+| STYLE_SHEET | 2 | CSS样式表。 |
+| SCRIPT | 3 | 外部脚本。 |
+| IMAGE | 4 | 图片（jpg/gif/png/以及其他）。 |
+| FONT_RESOURCE | 5 | 字体。 |
+| SUB_RESOURCE | 6 | 其他子资源。如果实际类型未知，则是默认类型。 |
+| OBJECT | 7 | 插件的Object（或embed）标签，或者插件请求的资源。 |
+| MEDIA | 8 | 媒体资源。 |
+| WORKER | 9 | 专用工作线程的主资源。 |
+| SHARED_WORKER | 10 | 共享工作线程的主资源。 |
+| PREFETCH | 11 | 明确的预取请求。 |
+| FAVICON | 12 | 网站图标。 |
+| XHR | 13 | XMLHttpRequest。 |
+| PING | 14 | <a ping\>/sendBeacon的Ping请求。 |
+| SERVICE_WORKER | 15 | service worker的主资源。 |
+| CSP_REPORT | 16 | 内容安全策略违规报告。 |
+| PLUGIN_RESOURCE | 17 | 插件请求的资源。 |
+| NAVIGATION_PRELOAD_MAIN_FRAME | 19 | 触发service worker预热的主frame跳转请求。 |
+| NAVIGATION_PRELOAD_SUB_FRAME | 20 | 触发service worker预热的子frame跳转请求。 |
+
+# RectEvent<sup>12+<sup>
+
+矩形定义。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称           | 类型       | 可读 | 可写 | 说明                         |
+| -------------- | --------- | ---- | ---- | ---------------------------- |
+| x  | number   | 是   | 是   | 矩形区域左上角x坐标。    |
+| y  | number   | 是   | 是   | 矩形区域左上角y坐标。    |
+| width  | number   | 是   | 是   | 矩形的宽度。    |
+| height  | number   | 是   | 是   | 矩形的高度。    |

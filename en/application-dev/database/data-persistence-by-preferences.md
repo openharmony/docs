@@ -12,7 +12,7 @@ User applications call **Preference** through the ArkTS interface to read and wr
 
 The preference persistent file of an application is stored in the application sandbox. You can use **context** to obtain the file path. For details, see [Obtaining Application File Paths](../application-models/application-context-stage.md#obtaining-application-file-paths).
 
-**Figure 1** Preferences working mechanism
+**Figure 1** Preferences working mechanism 
 
 ![preferences](figures/preferences.jpg)
 
@@ -36,9 +36,9 @@ The following table lists the APIs used for persisting user preference data. For
 | putSync(key: string, value: ValueType): void                 | Writes data to the **Preferences** instance. This API returns the result synchronously. An asynchronous API is also provided.<br/>You can use **flush()** to persist the **Preferences** instance data. |
 | hasSync(key: string): void                                   | Checks whether the **Preferences** instance contains a KV pair with the given key. The key cannot be empty. This API returns the result synchronously.<br/> An asynchronous API is also provided.|
 | getSync(key: string, defValue: ValueType): void              | Obtains the value of the specified key. If the value is null or not of the default value type, **defValue** is returned. This API returns the result synchronously.<br/> An asynchronous API is also provided.|
-| deleteSync(key: string): void                                | Deletes a KV pair with the given key from the **Preferences** instance. This API returns the result synchronously.<br/> An asynchronous API is also provided.|
+| deleteSync(key: string): void                                | Deletes a KV pair from the **Preferences** instance. This API returns the result synchronously.<br/> An asynchronous API is also provided.|
 | flush(callback: AsyncCallback&lt;void&gt;): void             | Flushes the data of this **Preferences** instance to a file for data persistence.|
-| on(type: 'change', callback: Callback&lt;string&gt;): void | Subscribes to data changes of the specified key. When the value of the specified key is changed and saved by **flush()**, a callback will be invoked to return the new data.|
+| on(type: 'change', callback: Callback&lt;string&gt;): void | Subscribes to data changes. A callback will be invoked after **flush()** is executed for the data changed.|
 | off(type: 'change', callback?: Callback&lt;string&gt;): void | Unsubscribes from data changes.                                          |
 | deletePreferences(context: Context, options: Options, callback: AsyncCallback&lt;void&gt;): void | Deletes a **Preferences** instance from memory. If the **Preferences** instance has a persistent file, this API also deletes the persistent file.|
 
@@ -51,7 +51,7 @@ The following table lists the APIs used for persisting user preference data. For
    import dataPreferences from '@ohos.data.preferences';
    ```
 
-2. Obtain a **Preferences** instance. Read data from a file and load the data to a **Preferences** instance for data operations.
+2. Obtain a **Preferences** instance.
 
    Stage model:
 
@@ -108,7 +108,7 @@ The following table lists the APIs used for persisting user preference data. For
    }
    ```
 
-3. Read data.
+4. Read data.
 
    Use **getSync()** to obtain the value of the specified key. If the value is null or is not of the default value type, the default data is returned.
 
@@ -125,7 +125,7 @@ The following table lists the APIs used for persisting user preference data. For
    console.info("The 'uInt8' value is " + val);
    ```
 
-4. Delete data.
+5. Delete data.
 
    Use **deleteSync()** to delete a KV pair.<br>Example:
 
@@ -187,16 +187,15 @@ The following table lists the APIs used for persisting user preference data. For
    > - The deleted data and files cannot be restored.
 
    Example:
-   
+
+
    ```ts
    let options: dataPreferences.Options = { name: 'myStore' };
-        dataPreferences.deletePreferences(this.context, options, (err: BusinessError) => {
-          if (err) {
-            console.error(`Failed to delete preferences. Code:${err.code}, message:${err.message}`);
-              return;
-          }
-          console.info('Succeeded in deleting preferences.');
-      })
+     dataPreferences.deletePreferences(this.context, options, (err: BusinessError) => {
+       if (err) {
+         console.error(`Failed to delete preferences. Code:${err.code}, message:${err.message}`);
+           return;
+       }
+       console.info('Succeeded in deleting preferences.');
+   })
    ```
-   
-   

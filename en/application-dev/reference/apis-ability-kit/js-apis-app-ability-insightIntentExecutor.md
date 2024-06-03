@@ -18,6 +18,8 @@ import InsightIntentExecutor from '@ohos.app.ability.InsightIntentExecutor';
 
 **Model restriction**: This API can be used only in the stage model.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 | Name| Type| Read-only| Mandatory| Description|
@@ -32,6 +34,8 @@ onExecuteInUIAbilityForegroundMode(name: string, param: Record<string, Object>, 
 Called when the InsightIntent call displays a UIAbility in the foreground. Both synchronous calls and asynchronous calls using Promise are supported.
 
 **Model restriction**: This API can be used only in the stage model.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -142,6 +146,8 @@ onExecuteInUIAbilityBackgroundMode(name: string, param: Record<string, Object>):
 Called when the InsightIntent call displays a UIAbility in the background. Both synchronous calls and asynchronous calls using Promise are supported.
 
 **Model restriction**: This API can be used only in the stage model.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 

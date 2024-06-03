@@ -22,7 +22,7 @@ resourceManager.getRawFileContent('test.xml', (error, value) => {
 
 **Reference Link**
 
-[Resource Manager](../reference/apis/js-apis-resource-manager.md)
+[ResourceManager \(Resource Management\)](../reference/apis-localization-kit/js-apis-resource-manager.md)
 
 
 ## How do I obtain resources in the stage model? (API 9)
@@ -62,7 +62,7 @@ To obtain the path of the **resource** directory, try either of the following wa
 
 **Reference Link**
 
-[Resource Categories and Access](../quick-start/resource-categories-and-access.md) and [Resource Manager](../reference/apis/js-apis-resource-manager.md)
+[Resource Categories and Access](../quick-start/resource-categories-and-access.md) and [ResourceManager \(Resource Management\)](../reference/apis-localization-kit/js-apis-resource-manager.md)
 
 
 ## Why does getPluralString return an incorrect value? (API 9)
@@ -84,7 +84,7 @@ Use **getStringValue** of the **ResourceManager** module.
 
 **Reference Link**
 
-[Resource Manager](../reference/apis/js-apis-resource-manager.md#getstringvalue9)
+[ResourceManager \(Resource Management\)](../reference/apis-localization-kit/js-apis-resource-manager.md#getstringvalue9)
 
 
 ## How do I reference resources such as images and text in AppScope? (API 9)
@@ -102,7 +102,7 @@ If the resource type is set to **string**, the qualifier directory can be set as
 
 **Reference Link**
 
-[Resource Manager](../reference/apis/js-apis-resource-manager.md#getstringsync9)
+[ResourceManager \(Resource Management\)](../reference/apis-localization-kit/js-apis-resource-manager.md#getstringsync9)
 
 
 ## Can $ be used to reference constants in the form\_config.json file? (API 9)

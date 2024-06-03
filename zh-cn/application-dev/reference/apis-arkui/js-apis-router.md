@@ -26,6 +26,8 @@ pushUrl(options: RouterOptions): Promise&lt;void&gt;
 
 跳转到应用内的指定页面。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -42,13 +44,14 @@ pushUrl(options: RouterOptions): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.router(页面路由)](errorcode-router.md)错误码。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 100001    | if UI execution context not found. |
-| 100002    | if the uri is not exist. |
-| 100003    | if the pages are pushed too much. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 100001    | Internal error. |
+| 100002    | Uri error. The URI of the page to redirect is incorrect or does not exist. |
+| 100003    | Page stack error. Too many pages are pushed. |
 
 **示例：**
 
@@ -89,6 +92,8 @@ pushUrl(options: RouterOptions, callback: AsyncCallback&lt;void&gt;): void
 
 跳转到应用内的指定页面。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -100,13 +105,14 @@ pushUrl(options: RouterOptions, callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.router(页面路由)](errorcode-router.md)错误码。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 100001    | if UI execution context not found. |
-| 100002    | if the uri is not exist. |
-| 100003    | if the pages are pushed too much. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 100001    | Internal error. |
+| 100002    | Uri error. The URI of the page to redirect is incorrect or does not exist. |
+| 100003    | Page stack error. Too many pages are pushed. |
 
 **示例：**
 
@@ -146,6 +152,8 @@ pushUrl(options: RouterOptions, mode: RouterMode): Promise&lt;void&gt;
 
 跳转到应用内的指定页面。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -163,13 +171,14 @@ pushUrl(options: RouterOptions, mode: RouterMode): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.router(页面路由)](errorcode-router.md)错误码。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 100001    | if UI execution context not found. |
-| 100002    | if the uri is not exist. |
-| 100003    | if the pages are pushed too much. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 100001    | Internal error. |
+| 100002    | Uri error. The URI of the page to redirect is incorrect or does not exist. |
+| 100003    | Page stack error. Too many pages are pushed. |
 
 **示例：**
 
@@ -210,6 +219,8 @@ pushUrl(options: RouterOptions, mode: RouterMode, callback: AsyncCallback&lt;voi
 
 跳转到应用内的指定页面。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -222,13 +233,14 @@ pushUrl(options: RouterOptions, mode: RouterMode, callback: AsyncCallback&lt;voi
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.router(页面路由)](errorcode-router.md)错误码。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 100001    | if UI execution context not found. |
-| 100002    | if the uri is not exist. |
-| 100003    | if the pages are pushed too much. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 100001    | Internal error. |
+| 100002    | Uri error. The URI of the page to redirect is incorrect or does not exist. |
+| 100003    | Page stack error. Too many pages are pushed. |
 
 **示例：**
 
@@ -269,6 +281,8 @@ replaceUrl(options: RouterOptions): Promise&lt;void&gt;
 
 用应用内的某个页面替换当前页面，并销毁被替换的页面。不支持设置页面转场动效，如需设置，推荐使用[Navigation组件](../../ui/arkts-navigation-navigation.md)。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Lite
 
 **参数：**
@@ -285,12 +299,13 @@ replaceUrl(options: RouterOptions): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.router(页面路由)](errorcode-router.md)错误码。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 100001    | if UI execution context not found, only throw in standard system. |
-| 200002    | if the uri is not exist. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 100001    | The UI execution context is not found. This error code is thrown only in the standard system. |
+| 200002    | Uri error. The URI of the page to be used for replacement is incorrect or does not exist. |
 
 **示例：**
 
@@ -321,6 +336,8 @@ replaceUrl(options: RouterOptions, callback: AsyncCallback&lt;void&gt;): void
 
 用应用内的某个页面替换当前页面，并销毁被替换的页面。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Lite
 
 **参数：**
@@ -332,12 +349,13 @@ replaceUrl(options: RouterOptions, callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.router(页面路由)](errorcode-router.md)错误码。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 100001    | if UI execution context not found, only throw in standard system. |
-| 200002    | if the uri is not exist. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 100001    | The UI execution context is not found. This error code is thrown only in the standard system. |
+| 200002    | Uri error. The URI of the page to be used for replacement is incorrect or does not exist. |
 
 **示例：**
 
@@ -368,6 +386,8 @@ replaceUrl(options: RouterOptions, mode: RouterMode): Promise&lt;void&gt;
 
 用应用内的某个页面替换当前页面，并销毁被替换的页面。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Lite
 
 **参数：**
@@ -386,12 +406,13 @@ replaceUrl(options: RouterOptions, mode: RouterMode): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.router(页面路由)](errorcode-router.md)错误码。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 | 100001    | if can not get the delegate, only throw in standard system. |
-| 200002    | if the uri is not exist. |
+| 200002    | Uri error. The URI of the page to be used for replacement is incorrect or does not exist. |
 
 **示例：**
 
@@ -422,6 +443,8 @@ replaceUrl(options: RouterOptions, mode: RouterMode, callback: AsyncCallback&lt;
 
 用应用内的某个页面替换当前页面，并销毁被替换的页面。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Lite
 
 **参数：**
@@ -434,12 +457,13 @@ replaceUrl(options: RouterOptions, mode: RouterMode, callback: AsyncCallback&lt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.router(页面路由)](errorcode-router.md)错误码。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 100001    | if UI execution context not found, only throw in standard system. |
-| 200002    | if the uri is not exist. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 100001    | The UI execution context is not found. This error code is thrown only in the standard system. |
+| 200002    | Uri error. The URI of the page to be used for replacement is incorrect or does not exist. |
 
 **示例：**
 
@@ -471,6 +495,8 @@ pushNamedRoute(options: NamedRouterOptions): Promise&lt;void&gt;
 
 跳转到指定的命名路由页面。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -487,13 +513,14 @@ pushNamedRoute(options: NamedRouterOptions): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.router(页面路由)](errorcode-router.md)错误码。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 100001    | if UI execution context not found. |
-| 100003    | if the pages are pushed too much. |
-| 100004    | if the named route is not exist. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 100001    | Internal error. |
+| 100003    | Page stack error. Too many pages are pushed. |
+| 100004    | Named route error. The named route does not exist. |
 
 **示例：** 
 
@@ -536,6 +563,8 @@ pushNamedRoute(options: NamedRouterOptions, callback: AsyncCallback&lt;void&gt;)
 
 跳转到指定的命名路由页面。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -547,13 +576,14 @@ pushNamedRoute(options: NamedRouterOptions, callback: AsyncCallback&lt;void&gt;)
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.router(页面路由)](errorcode-router.md)错误码。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 100001    | if UI execution context not found. |
-| 100003    | if the pages are pushed too much. |
-| 100004    | if the named route is not exist. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 100001    | Internal error. |
+| 100003    | Page stack error. Too many pages are pushed. |
+| 100004    | Named route error. The named route does not exist. |
 
 **示例：**
 
@@ -593,6 +623,8 @@ pushNamedRoute(options: NamedRouterOptions, mode: RouterMode): Promise&lt;void&g
 
 跳转到指定的命名路由页面。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -610,13 +642,14 @@ pushNamedRoute(options: NamedRouterOptions, mode: RouterMode): Promise&lt;void&g
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.router(页面路由)](errorcode-router.md)错误码。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 100001    | if UI execution context not found. |
-| 100003    | if the pages are pushed too much. |
-| 100004    | if the named route is not exist. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 100001    | Internal error. |
+| 100003    | Page stack error. Too many pages are pushed. |
+| 100004    | Named route error. The named route does not exist. |
 
 **示例：**
 
@@ -657,6 +690,8 @@ pushNamedRoute(options: NamedRouterOptions, mode: RouterMode, callback: AsyncCal
 
 跳转到指定的命名路由页面。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -669,13 +704,14 @@ pushNamedRoute(options: NamedRouterOptions, mode: RouterMode, callback: AsyncCal
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.router(页面路由)](errorcode-router.md)错误码。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 100001    | if UI execution context not found. |
-| 100003    | if the pages are pushed too much. |
-| 100004    | if the named route is not exist. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 100001    | Internal error. |
+| 100003    | Page stack error. Too many pages are pushed. |
+| 100004    | Named route error. The named route does not exist. |
 
 **示例：**
 
@@ -716,6 +752,8 @@ replaceNamedRoute(options: NamedRouterOptions): Promise&lt;void&gt;
 
 用指定的命名路由页面替换当前页面，并销毁被替换的页面。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -732,12 +770,13 @@ replaceNamedRoute(options: NamedRouterOptions): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.router(页面路由)](errorcode-router.md)错误码。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 100001    | if UI execution context not found, only throw in standard system. |
-| 100004    | if the named route is not exist. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 100001    | The UI execution context is not found. This error code is thrown only in the standard system. |
+| 100004    | Named route error. The named route does not exist. |
 
 **示例：**
 
@@ -768,6 +807,8 @@ replaceNamedRoute(options: NamedRouterOptions, callback: AsyncCallback&lt;void&g
 
 用指定的命名路由页面替换当前页面，并销毁被替换的页面。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -779,12 +820,13 @@ replaceNamedRoute(options: NamedRouterOptions, callback: AsyncCallback&lt;void&g
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.router(页面路由)](errorcode-router.md)错误码。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 100001    | if UI execution context not found, only throw in standard system. |
-| 100004    | if the named route is not exist. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 100001    | The UI execution context is not found. This error code is thrown only in the standard system. |
+| 100004    | Named route error. The named route does not exist. |
 
 **示例：**
 
@@ -815,6 +857,8 @@ replaceNamedRoute(options: NamedRouterOptions, mode: RouterMode): Promise&lt;voi
 
 用指定的命名路由页面替换当前页面，并销毁被替换的页面。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -833,12 +877,13 @@ replaceNamedRoute(options: NamedRouterOptions, mode: RouterMode): Promise&lt;voi
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.router(页面路由)](errorcode-router.md)错误码。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 | 100001    | if can not get the delegate, only throw in standard system. |
-| 100004    | if the named route is not exist. |
+| 100004    | Named route error. The named route does not exist. |
 
 **示例：**
 
@@ -869,6 +914,8 @@ replaceNamedRoute(options: NamedRouterOptions, mode: RouterMode, callback: Async
 
 用指定的命名路由页面替换当前页面，并销毁被替换的页面。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -881,12 +928,13 @@ replaceNamedRoute(options: NamedRouterOptions, mode: RouterMode, callback: Async
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.router(页面路由)](errorcode-router.md)错误码。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 100001    | if UI execution context not found, only throw in standard system. |
-| 100004    | if the named route is not exist. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 100001    | The UI execution context is not found. This error code is thrown only in the standard system. |
+| 100004    | Named route error. The named route does not exist. |
 
 **示例：**
 
@@ -918,13 +966,15 @@ back(options?: RouterOptions ): void
 
 返回上一页面或指定的页面。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
 | 参数名  | 类型                            | 必填 | 说明                                                         |
 | ------- | ------------------------------- | ---- | ------------------------------------------------------------ |
-| options | [RouterOptions](#routeroptions) | 否   | 返回页面描述信息，其中参数url指路由跳转时会返回到指定url的界面，如果页面栈上没有url页面，则不响应该情况。如果url未设置，则返回上一页，页面不会重新构建，页面栈里面的page不会回收，出栈后会被回收。 |
+| options | [RouterOptions](#routeroptions) | 否   | 返回页面描述信息，其中参数url指路由跳转时会返回到指定url的界面，如果页面栈上没有url页面，则不响应该情况。如果url未设置，则返回上一页，页面不会重新构建，页面栈里面的page不会回收，出栈后会被回收。back是返回接口，url设置为特殊值"/"不生效。 |
 
 **示例：**
 
@@ -962,6 +1012,8 @@ clear(): void
 
 清空页面栈中的所有历史页面，仅保留当前页面作为栈顶页面。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **示例：**
@@ -975,6 +1027,8 @@ router.clear();
 getLength(): string
 
 获取当前在页面栈内的页面数量。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -996,6 +1050,8 @@ console.log('pages stack size = ' + size);
 getState(): RouterState
 
 获取当前页面的状态信息。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1086,9 +1142,9 @@ for (let i: number = 0; i < options.length; i++) {
 
 | 名称  | 类型   | 必填 | 说明                                                         |
 | ----- | ------ | ---- | ------------------------------------------------------------ |
-| index | number | 是   | 表示当前页面在页面栈中的索引。从栈底到栈顶，index从1开始递增。 |
-| name  | string | 否   | 表示当前页面的名称，即对应文件名。                           |
-| path  | string | 是   | 表示当前页面的路径。                                         |
+| index | number | 是   | 表示当前页面在页面栈中的索引。从栈底到栈顶，index从1开始递增。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| name  | string | 否   | 表示当前页面的名称，即对应文件名。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| path  | string | 是   | 表示当前页面的路径。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 | params<sup>12+</sup>  | Object |  否  | 表示当前页面携带的参数。                                         |
 
 ## router.showAlertBeforeBackPage<sup>9+</sup>
@@ -1096,6 +1152,8 @@ for (let i: number = 0; i < options.length; i++) {
 showAlertBeforeBackPage(options: EnableAlertOptions): void
 
 开启页面返回询问对话框。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1107,11 +1165,12 @@ showAlertBeforeBackPage(options: EnableAlertOptions): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.router(页面路由)](errorcode-router.md)错误码。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 100001    | if UI execution context not found. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 100001    | Internal error. |
 
 **示例：**
 
@@ -1130,6 +1189,8 @@ try {
 
 页面返回询问对话框选项。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.ArkUI.ArkUI.Full。
 
 | 名称      | 类型     | 必填   | 说明       |
@@ -1141,6 +1202,8 @@ try {
 hideAlertBeforeBackPage(): void
 
 禁用页面返回询问对话框。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1155,6 +1218,8 @@ router.hideAlertBeforeBackPage();
 getParams(): Object
 
 获取发起跳转的页面往当前页传入的参数。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1174,6 +1239,8 @@ router.getParams();
 
 路由跳转选项。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Lite。
 
 | 名称   | 类型   | 必填 | 说明                                                         |
@@ -1189,6 +1256,8 @@ router.getParams();
 
 路由跳转模式。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full。
 
 | 名称     | 说明                                                         |
@@ -1199,6 +1268,8 @@ router.getParams();
 ## NamedRouterOptions<sup>10+</sup>
 
 命名路由跳转选项。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1212,11 +1283,14 @@ router.getParams();
 ### 基于JS扩展的类Web开发范式
 
 以下代码仅适用于javascript文件，不适用于ArkTS文件
+
+<!--code_no_check-->
+
 ```js
 // 在当前页面中
 export default {
   pushPage() {
-    router.push({
+    router.pushUrl({
       url: 'pages/detail/detail',
       params: {
         data1: 'message'
@@ -1225,6 +1299,8 @@ export default {
   }
 }
 ```
+<!--code_no_check-->
+
 ```js
 // 在detail页面中
 export default {

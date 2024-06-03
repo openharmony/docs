@@ -81,11 +81,11 @@ Provides C APIs for the network protocol stack module.
 | [WebSocket_Header::fieldValue](#fieldvalue) | Header field content. | 
 | [WebSocket_Header](_web_socket___header.md) \* [WebSocket_Header::next](#next) | Next pointer of the header linked list. | 
 | [WebSocket_Header](_web_socket___header.md) \* WebSocket_RequestOptions::headers | Header information.| 
-| [WebSocket_OnOpenCallback](#websocket_onopencallback)[WebSocket::onOpen](#onopen) | Pointer to the callback invoked when the WebSocket client receives a connection message. | 
-| [WebSocket_OnMessageCallback](#websocket_onmessagecallback)[WebSocket::onMessage](#onmessage) | Pointer to the callback invoked when the WebSocket client receives a message. | 
-| [WebSocket_OnErrorCallback](#websocket_onerrorcallback)[WebSocket::onError](#onerror) | Pointer to the callback invoked when the WebSocket client receives an error message. | 
-| [WebSocket_OnCloseCallback](#websocket_onclosecallback)[WebSocket::onClose](#onclose) | Pointer to the callback invoked when the WebSocket client receives a **close** message. | 
-| [WebSocket_RequestOptions](_web_socket___request_options.md)[WebSocket::requestOptions](#requestoptions) | Content of the request for establishing a connection on the client.| 
+| [WebSocket_OnOpenCallback](#websocket_onopencallback) [WebSocket::onOpen](#onopen) | Pointer to the callback invoked when the WebSocket client receives a connection message. | 
+| [WebSocket_OnMessageCallback](#websocket_onmessagecallback) [WebSocket::onMessage](#onmessage) | Pointer to the callback invoked when the WebSocket client receives a message. | 
+| [WebSocket_OnErrorCallback](#websocket_onerrorcallback) [WebSocket::onError](#onerror) | Pointer to the callback invoked when the WebSocket client receives an error message. | 
+| [WebSocket_OnCloseCallback](#websocket_onclosecallback) [WebSocket::onClose](#onclose) | Pointer to the callback invoked when the WebSocket client receives a **close** message. | 
+| [WebSocket_RequestOptions](_web_socket___request_options.md) [WebSocket::requestOptions](#requestoptions) | Content of the request for establishing a connection on the client.| 
 
 
 ## Type Description
@@ -436,8 +436,6 @@ Sends data from the WebSocket client to the server.
 | length | Length of the data sent by the WebSocket client. | 
 
 **Returns**
-
- 
 
 Returns **0** if the operation is successful. For details about error codes, see **OH_Websocket_ErrCode**.
 

@@ -5,35 +5,35 @@
 ```json
 {
   "module": {
-    ...
     "abilities": [
       {
-        ...
+        // 入口配置
         "skills": [
           {
-            "entities": [
-              "entity.system.home",
-              "entity.system.browsable"
-              ...
-            ],
             "actions": [
-              "action.system.home",
-              "ohos.want.action.viewData"
-              ...
+              "action.system.home"
             ],
-            "uris": [
-              {
+            "entities": [
+              "entity.system.home"
+            ]
+          },
+        // 浏览器配置
+          {
+            "actions": [
+              "ohos.want.action.viewData"
+            ],
+            "entities": [
+              "entity.system.browsable"
+            ],
+            "uris": [{
                 "scheme": "https",
                 "host": "www.test.com",
                 "port": "8080",
-                // prefix matching
                 "pathStartWith": "query"
               },
               {
-                "scheme": "http",
-                ...
+                "scheme": "http"
               }
-              ...
             ]
           }
         ]

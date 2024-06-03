@@ -11,7 +11,7 @@ access模块提供了打开和关闭蓝牙、获取蓝牙状态的方法。
 ## 导入模块
 
 ```js
-import access from '@ohos.bluetooth.access';
+import { access } from '@kit.ConnectivityKit';
 ```
 
 
@@ -39,13 +39,17 @@ factoryReset(callback: AsyncCallback&lt;void&gt;): void
 
 |错误码ID   | 错误信息           |
 | -------- | ------------------ |
+|201 | Permission denied.                 |
+|202 | Non-system applications are not allowed to use system APIs. |
+|401 | Invalid parameter.                 |
+|801 | Capability not supported.          |
 |2900001   | Service stopped.   |
 |2900099   | Operation failed.  |
 
 **示例：**
 
 ```js
-import { AsyncCallback, BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     access.factoryReset((err: BusinessError) => {
         if (err) {
@@ -82,13 +86,16 @@ factoryReset(): Promise&lt;void&gt;
 
 |错误码ID   | 错误信息           |
 | -------- | ------------------ |
+|201 | Permission denied.                 |
+|202 | Non-system applications are not allowed to use system APIs. |
+|801 | Capability not supported.          |
 |2900001   | Service stopped.   |
 |2900099   | Operation failed.  |
 
 **示例：**
 
 ```js
-import { AsyncCallback, BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     access.factoryReset().then(() => {
         console.info("factoryReset");
@@ -123,6 +130,9 @@ getLocalAddress(): string;
 
 |错误码ID   | 错误信息           |
 | -------- | ------------------ |
+|201 | Permission denied.                 |
+|202 | Non-system applications are not allowed to use system APIs. |
+|801 | Capability not supported.          |
 |2900001   | Service stopped.   |
 |2900099   | Operation failed.  |
 

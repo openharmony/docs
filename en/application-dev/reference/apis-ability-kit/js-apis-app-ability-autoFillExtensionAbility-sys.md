@@ -154,6 +154,35 @@ Called when automatic or manual saving is initiated.
   }
   ```
 
+## AutoFillExtensionAbility.onUpdateRequest<sup>12+</sup>
+
+onUpdateRequest(request: UpdateRequest): void
+
+Called when an update request is received.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| request | [UpdateRequest](js-apis-inner-application-autoFillRequest-sys.md#updaterequest12)  | Yes| Update request.|
+
+**Example**
+
+  ```ts
+  import AutoFillExtensionAbility from '@ohos.app.ability.AutoFillExtensionAbility';
+  import autoFillManager from '@ohos.app.ability.autoFillManager';
+  import hilog from '@ohos.hilog';
+
+  class MyAutoFillExtensionAbility extends AutoFillExtensionAbility {
+    onUpdateRequest(request: autoFillManager.UpdateRequest) {
+      hilog.info(0x0000, 'testTag', '%{public}s', 'on update request, view data is: %{public}s',
+        JSON.stringify(request.viewData));
+    }
+  }
+  ```
+
 ## AutoFillExtensionAbility.onSessionDestroy
 
 onSessionDestroy(session: UIExtensionContentSession): void

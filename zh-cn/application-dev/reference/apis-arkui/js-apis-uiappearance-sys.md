@@ -48,10 +48,12 @@ setDarkMode(mode: DarkMode, callback: AsyncCallback\<void>): void
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-uiappearance](errorcode-uiappearance.md)。
+错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[errcode-uiappearance](errorcode-uiappearance.md)。
 
 | 错误码ID | 错误信息 |
 | -- | -- |
+| 201 | Permission denied. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 | 500001 | Internal error. |
 
 **示例：** 
@@ -98,10 +100,12 @@ setDarkMode(mode: DarkMode): Promise\<void>;
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-uiappearance](errorcode-uiappearance.md)。
+错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[errcode-uiappearance](errorcode-uiappearance.md)。
 
 | 错误码ID | 错误信息 |
 | -- | -- |
+| 201 | Permission denied. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 | 500001 | Internal error. |
 
 **示例：** 
@@ -140,10 +144,12 @@ getDarkMode(): DarkMode;
 
 **错误码：**
 
-错误码详细介绍请参考[errcode-uiappearance](errorcode-uiappearance.md)。
+错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[errcode-uiappearance](errorcode-uiappearance.md)。
 
 | 错误码ID | 错误信息 |
 | -- | -- |
+| 201 | Permission denied. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 | 500001 | Internal error. |
 
 **示例：** 

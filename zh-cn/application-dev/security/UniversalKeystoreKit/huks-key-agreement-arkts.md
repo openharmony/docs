@@ -10,11 +10,13 @@
 
 设备A、设备B各自生成一个非对称密钥，具体请参考[密钥生成](huks-key-generation-overview.md)或[密钥导入](huks-key-import-overview.md)。
 
-密钥生成时，可指定参数TAG(可选)，HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG：
+密钥生成时，可指定参数HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG（可选），用于标识基于该密钥协商出的密钥是否由HUKS管理。
 
-- HUKS_STORAGE_ONLY_USED_IN_HUKS：表示由该密钥协商出的密钥存储于HUKS中，由HUKS进行托管。
+- 当TAG设置为HUKS_STORAGE_ONLY_USED_IN_HUKS时，表示基于该密钥协商出的密钥，由HUKS管理，可保证协商密钥全生命周期不出安全环境。
 
-- HUKS_STORAGE_KEY_EXPORT_ALLOWED(默认)：表示由该密钥协商出的密钥直接导出给业务方，HUKS不对其进行托管服务。
+- 当TAG设置为HUKS_STORAGE_KEY_EXPORT_ALLOWED时，表示基于该密钥协商出的密钥，返回给调用方管理，由业务自行保证密钥安全。
+
+- 若业务未设置TAG的具体值，表示基于该密钥协商出的密钥，即可由HUKS管理，也可返回给调用方管理，业务可在后续协商时再选择使用何种方式保护密钥。
 
 **导出密钥**
 
@@ -24,6 +26,18 @@
 
 设备A、B分别基于本端私钥和对端设备的公钥，协商出共享密钥。
 
+密钥协商时，可指定参数HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG（可选），用于标识协商得到的密钥是否由HUKS管理。
+
+| 生成 | 协商 | 规格 |
+| -------- | -------- | -------- |
+| HUKS_STORAGE_ONLY_USED_IN_HUKS | HUKS_STORAGE_ONLY_USED_IN_HUKS | 密钥由HUKS管理 |
+| HUKS_STORAGE_KEY_EXPORT_ALLOWED | HUKS_STORAGE_KEY_EXPORT_ALLOWED | 密钥返回给调用方管理 |
+| 未指定TAG具体值 | HUKS_STORAGE_ONLY_USED_IN_HUKS | 密钥由HUKS管理 |
+| 未指定TAG具体值 | HUKS_STORAGE_KEY_EXPORT_ALLOWED | 密钥返回给调用方管理 |
+| 未指定TAG具体值 | 未指定TAG具体值 | 密钥返回给调用方管理 |
+
+注：协商时指定的TAG值，不可与生成时指定的TAG值冲突。表格中仅列举有效的指定方式。
+
 **删除密钥**
 
 当密钥废弃不用时，设备A、B均需要删除密钥，具体请参考[密钥删除](huks-delete-key-arkts.md)。
@@ -32,8 +46,8 @@
 /*
  *以下以X25519 256密钥的Promise操作使用为例
  */
- import huks from '@ohos.security.huks';
- import { BusinessError } from '@ohos.base';
+ import { huks } from "@kit.UniversalKeystoreKit";
+ import { BusinessError} from "@kit.BasicServicesKit"
  /*
   * 确定密钥别名和封装密钥属性参数集
   */
@@ -43,7 +57,7 @@
  let finishOutData: Uint8Array;
  let handle: number;
  let exportKey: Uint8Array;
- let exportKeyFrist: Uint8Array;
+ let exportKeyFirst: Uint8Array;
  let exportKeySecond: Uint8Array;
  /* 集成生成密钥参数集 */
  let properties: Array<huks.HuksParam> = new Array();
@@ -119,7 +133,7 @@
      tag: huks.HuksTag.HUKS_TAG_BLOCK_MODE,
      value: huks.HuksCipherMode.HUKS_MODE_ECB,
  }
- let finishOptionsFrist: huks.HuksOptions = {
+ let finishOptionsFirst: huks.HuksOptions = {
      properties: finishProperties,
      inData: StringToUint8Array(agreeX25519InData)
  }
@@ -365,7 +379,7 @@
              }
          });
      } catch (error) {
-         console.error(`promise: deletKeeyItem input arg invalid` + error);
+         console.error(`promise: deleteKeyItem input arg invalid` + error);
      }
  }
  async function testAgree() {
@@ -376,17 +390,17 @@
      await publicGenKeyFunc(srcKeyAliasSecond, HuksOptions);
      /* 4.设备A、B导出非对称密钥的公钥 */
      await publicExportKeyFunc(srcKeyAliasFirst, HuksOptions);
-     exportKeyFrist = exportKey;
+     exportKeyFirst = exportKey;
      await publicExportKeyFunc(srcKeyAliasFirst, HuksOptions);
      exportKeySecond = exportKey;
      /* 5.对第一个密钥进行协商（三段式）*/
      await publicInitFunc(srcKeyAliasFirst, HuksOptions);
      HuksOptions.inData = exportKeySecond;
      await publicUpdateFunc(handle, HuksOptions);
-     await publicFinishFunc(handle, finishOptionsFrist);
+     await publicFinishFunc(handle, finishOptionsFirst);
      /* 5.对第二个密钥进行协商（三段式） */
      await publicInitFunc(srcKeyAliasSecond, HuksOptions);
-     HuksOptions.inData = exportKeyFrist;
+     HuksOptions.inData = exportKeyFirst;
      await publicUpdateFunc(handle, HuksOptions);
      await publicFinishFunc(handle, finishOptionsSecond);
      /* 6.设备A、B删除密钥 */

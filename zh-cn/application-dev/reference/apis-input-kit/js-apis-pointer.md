@@ -27,6 +27,14 @@ setPointerVisible(visible: boolean, callback: AsyncCallback&lt;void&gt;): void
 | visible  | boolean                   | 是    | 鼠标指针是否显示。true表示显示，false表示不显示 |
 | callback | AsyncCallback&lt;void&gt; | 是    | 回调函数。 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例**：
 
 ```js
@@ -63,6 +71,14 @@ setPointerVisible(visible: boolean): Promise&lt;void&gt;
 | ------------------- | ------------------- |
 | Promise&lt;void&gt; | Promise对象。 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例**：
 
 ```js
@@ -89,6 +105,14 @@ setPointerVisibleSync(visible: boolean): void
 | ------- | ------- | ---- | ---------------------------------------- |
 | visible | boolean | 是    | 鼠标指针是否显示。true表示显示，false表示不显示。 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例**：
 
 ```js
@@ -113,6 +137,14 @@ isPointerVisible(callback: AsyncCallback&lt;boolean&gt;): void
 | 参数名       | 类型                           | 必填   | 说明             |
 | -------- | ---------------------------- | ---- | -------------- |
 | callback | AsyncCallback&lt;boolean&gt; | 是    | 回调函数，异步返回鼠标指针状态，true为显示，false为隐藏。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例**：
 
@@ -196,6 +228,14 @@ getPointerStyle(windowId: number, callback: AsyncCallback&lt;PointerStyle&gt;): 
 | windowId | number                                   | 是    | 窗口id。    |
 | callback | AsyncCallback&lt;[PointerStyle](#pointerstyle)&gt; | 是    | 回调函数，异步返回鼠标样式类型。 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例**：
 
 ```js
@@ -242,6 +282,14 @@ getPointerStyle(windowId: number): Promise&lt;PointerStyle&gt;
 | 参数                                       | 说明                  |
 | ---------------------------------------- | ------------------- |
 | Promise&lt;[PointerStyle](#pointerstyle)&gt; | Promise实例，异步返回鼠标样式类型。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例**：
 
@@ -290,6 +338,14 @@ getPointerStyleSync(windowId: number): PointerStyle
 | ---------------------------------------- | ------------------- |
 | [PointerStyle](#pointerstyle) | 返回鼠标样式类型。 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例**：
 
 ```js
@@ -316,6 +372,14 @@ setPointerStyle(windowId: number, pointerStyle: PointerStyle, callback: AsyncCal
 | windowId     | number                         | 是    | 窗口id。                          |
 | pointerStyle | [PointerStyle](#pointerstyle) | 是    | 鼠标样式。                             |
 | callback     | AsyncCallback&lt;void&gt;      | 是    | 回调函数。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例**：
 
@@ -358,6 +422,14 @@ setPointerStyle(windowId: number, pointerStyle: PointerStyle): Promise&lt;void&g
 | pointerStyle        | [PointerStyle](#pointerstyle) | 是    | 鼠标样式。          |
 | Promise&lt;void&gt; | void                           | 是    | Promise对象。 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例**：
 
 ```js
@@ -398,6 +470,14 @@ setPointerStyleSync(windowId: number, pointerStyle: PointerStyle): void
 | ------------------- | ------------------------------ | ---- | ---------------- |
 | windowId            | number                         | 是    | 窗口id。       |
 | pointerStyle        | [PointerStyle](#pointerstyle) | 是    | 鼠标样式。          |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例**：
 ```js
@@ -522,26 +602,35 @@ setCustomCursor(windowId: number, pixelMap: image.PixelMap, focusX?: number, foc
 | ------------------- | ---------------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例**：
 
 ```js
 import image from '@ohos.multimedia.image';
 import window from '@ohos.window';
 import { BusinessError } from '@ohos.base';
-const svgFileData = getContext().resourceManager.getMediaContent($r("app.media.icon"));
-const svgBuffer: image.Buffer = svgFileData.buffer;
-let svgImagesource: image.ImageSource = image.createImageSource(svgBuffer);
-let svgDecodingOptions: image.DecodingOptions = {desiredSize: { width: 50, height:50 }};
-svgImagesource.createPixelMap(svgDecodingOptions).then((pixelMap) => {
-  window.getLastWindow(getContext(), (error: BusinessError, win: window.Window) => {
-    let windowId = win.getWindowProperties().id;
-      try {
-        pointer.setCustomCursor(windowId, pixelMap).then(() => {
-          console.log(`setCustomCursor success`);
-        });
-      } catch (error) {
-        console.log(`setCustomCursor failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
-      }
+getContext().resourceManager.getMediaContent($r("app.media.app_icon")).then((svgFileData) => {
+  const svgBuffer: ArrayBuffer = svgFileData.buffer.slice(0);
+  let svgImagesource: image.ImageSource = image.createImageSource(svgBuffer);
+  let svgDecodingOptions: image.DecodingOptions = {desiredSize: { width: 50, height:50 }};
+  svgImagesource.createPixelMap(svgDecodingOptions).then((pixelMap) => {
+    window.getLastWindow(getContext(), (error: BusinessError, win: window.Window) => {
+      let windowId = win.getWindowProperties().id;
+        try {
+          pointer.setCustomCursor(windowId, pixelMap).then(() => {
+            console.log(`setCustomCursor success`);
+          });
+        } catch (error) {
+          console.log(`setCustomCursor failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+        }
+      });
   });
 });
 ```
@@ -563,25 +652,34 @@ setCustomCursorSync(windowId: number, pixelMap: image.PixelMap, focusX?: number,
 | focusX  | number | 否    | 自定义光标焦点x, 取值范围：大于等于0，默认为0。 |
 | focusY  | number | 否    | 自定义光标焦点y，取值范围：大于等于0，默认为0。 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例**：
 
 ```js
 import image from '@ohos.multimedia.image';
 import window from '@ohos.window';
 import { BusinessError } from '@ohos.base';
-const svgFileData = getContext().resourceManager.getMediaContent($r("app.media.icon"));
-const svgBuffer: image.Buffer = svgFileData.buffer;
-let svgImagesource: image.ImageSource = image.createImageSource(svgBuffer);
-let svgDecodingOptions: image.DecodingOptions = {desiredSize: { width: 50, height:50 }};
-svgImagesource.createPixelMap(svgDecodingOptions).then((pixelMap) => {
-  window.getLastWindow(getContext(), (error: BusinessError, win: window.Window) => {
-    let windowId = win.getWindowProperties().id;
-      try {
-        pointer.setCustomCursorSync(windowId, pixelMap, 25, 25);
-        console.log(`setCustomCursorSync success`);
-      } catch (error) {
-        console.log(`setCustomCursorSync failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
-      }
+const svgFileData = getContext().resourceManager.getMediaContent($r("app.media.app_icon")).then((svgFileData) => {
+  const svgBuffer: ArrayBuffer = svgFileData.buffer.slice(0);
+  let svgImagesource: image.ImageSource = image.createImageSource(svgBuffer);
+  let svgDecodingOptions: image.DecodingOptions = {desiredSize: { width: 50, height:50 }};
+  svgImagesource.createPixelMap(svgDecodingOptions).then((pixelMap) => {
+    window.getLastWindow(getContext(), (error: BusinessError, win: window.Window) => {
+      let windowId = win.getWindowProperties().id;
+        try {
+          pointer.setCustomCursorSync(windowId, pixelMap, 25, 25);
+          console.log(`setCustomCursorSync success`);
+        } catch (error) {
+          console.log(`setCustomCursorSync failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+        }
+    });
   });
 });
 ```

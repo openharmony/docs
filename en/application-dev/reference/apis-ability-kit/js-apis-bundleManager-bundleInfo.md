@@ -8,6 +8,8 @@ The **BundleInfo** module defines the bundle information. A third-party applicat
 
 ## BundleInfo
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
 | Name                             | Type                                                        | Readable| Writable| Description                                                        |
@@ -25,11 +27,14 @@ The **BundleInfo** module defines the bundle information. A third-party applicat
 | signatureInfo          | [SignatureInfo](#signatureinfo)                                          | Yes  | No  | Signature information of the bundle. The information can be obtained by passing in **GET_BUNDLE_INFO_WITH_SIGNATURE_INFO** to the **bundleFlags** parameter of [getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself).|
 | installTime                       | number                                                       | Yes  | No  | Time when the bundle was installed.                                         |
 | updateTime                        | number                                                       | Yes  | No  | Time when the bundle was updated.                                           |
+| routerMap<sup>12+</sup>           | Array\<[RouterItem](js-apis-bundleManager-hapModuleInfo.md#routeritem12)>           | Yes  | No  | Router table of the application. The table is obtained by deduplicating and combining the **routerMap** information under **hapModulesInfo** based on the **name** field in **RouterItem**. The information can be obtained by passing in **GET_BUNDLE_INFO_WITH_HAP_MODULE** and **GET_BUNDLE_INFO_WITH_ROUTER_MAP** to the **bundleFlags** parameter of [getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself).|
 
 
 ## ReqPermissionDetail
 
 Provides the detailed information of the permissions to request from the system.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
@@ -45,6 +50,8 @@ Provides the detailed information of the permissions to request from the system.
 
 Describes the use scenario and timing for using the permission.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
 | Name     | Type          | Readable| Writable| Description                       |
@@ -56,10 +63,12 @@ Describes the use scenario and timing for using the permission.
 
 Describes the signature information of the bundle.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
 | Name     | Type          | Readable| Writable| Description                       |
 | --------- | -------------- | ---- | ---- | --------------------------- |
 | appId     | string         | Yes  | No  | Application ID.                |
-|fingerprint| string         | Yes  | No  | Fingerprint information of the bundle.           |
+|fingerprint| string         | Yes  | No  | Fingerprint information of the bundle. This field changes when the used signing certificate changes.           |
 |appIdentifier<sup>11</sup>| string         | Yes  | No  | Unique ID of the application, which is allocated by the cloud. This ID does not change along the application lifecycle, including version updates, certificate changes, public and private key changes, and application transfers.           |

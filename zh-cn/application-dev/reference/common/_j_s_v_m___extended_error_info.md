@@ -20,7 +20,7 @@
 | const char \* [errorMessage](#errormessage) | UTF8编码的字符串，包含异常信息描述。  | 
 | void \* [engineReserved](#enginereserved) | 特定于VM的详细异常信息。目前尚未为任何VM实现此功能。  | 
 | uint32_t [engineErrorCode](#engineerrorcode) | 特定于VM的异常代码。目前尚未为任何VM实现此功能。  | 
-| [JSVM_Status](_j_s_v_m.md#jsvm_status)[errorCode](#errorcode) | 源自最后一个异常的JSVM-API状态代码。  | 
+| [JSVM_Status](_j_s_v_m.md#jsvm_status) [errorCode](#errorcode) | 源自最后一个异常的JSVM-API状态代码。  | 
 
 
 ## 结构体成员变量说明

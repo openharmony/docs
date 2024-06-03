@@ -13,7 +13,7 @@
 ## 导入模块
 
 ```ts
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import { AbilityConstant } from '@kit.AbilityKit';
 ```
 
 ## AbilityConstant.WindowMode
@@ -33,11 +33,8 @@ import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import StartOptions from '@ohos.app.ability.StartOptions';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import { UIAbility, StartOptions, Want, AbilityConstant } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let want: Want = {
   bundleName: 'com.example.myapplication',
@@ -50,9 +47,9 @@ let option: StartOptions = {
 // 确保从上下文获取到context
 class MyAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-    this.context.startAbility(want, option).then(()=>{
+    this.context.startAbility(want, option).then(() => {
       console.log('Succeed to start ability.');
-    }).catch((error: BusinessError)=>{
+    }).catch((error: BusinessError) => {
       console.error('Failed to start ability with error: ${JSON.stringify(error)}');
     });
   }

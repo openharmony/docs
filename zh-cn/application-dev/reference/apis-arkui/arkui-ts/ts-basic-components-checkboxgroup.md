@@ -16,6 +16,8 @@ CheckboxGroup(options?: CheckboxGroupOptions)
 
 创建多选框群组，可以控制群组内的Checkbox全选或者不全选，group值相同的Checkbox和CheckboxGroup为同一群组。
 
+在结合带缓存组件使用时(如List)，未被创建的Checkbox选中状态需要应用手动控制。
+
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -27,6 +29,10 @@ CheckboxGroup(options?: CheckboxGroupOptions)
 | options | [CheckboxGroupOptions](#checkboxgroupoptions对象说明) | 否   | 配置多选框群组参数。 |
 
 ## CheckboxGroupOptions对象说明
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -46,6 +52,8 @@ selectAll(value: boolean)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -61,6 +69,8 @@ selectedColor(value: ResourceColor)
 设置被选中或部分选中状态的颜色。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -78,6 +88,8 @@ unselectedColor(value: ResourceColor)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -94,6 +106,8 @@ mark(value: MarkStyle)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -101,6 +115,24 @@ mark(value: MarkStyle)
 | 参数名 | 类型                              | 必填 | 说明                 |
 | ------ | --------------------------------- | ---- | -------------------- |
 | value  | [MarkStyle](#markstyle10对象说明) | 是   | 多选框内部图标样式。 |
+
+### checkboxShape<sup>12</sup>
+
+checkboxShape(value: CheckBoxShape)
+
+设置CheckboxGroup组件形状， 包括圆形和圆角方形。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                | 必填 | 说明               |
+| ------ | --------------------------------------------------- | ---- | ------------------ |
+| value  | [CheckBoxShape](ts-basic-components-checkbox.md#checkboxshape11枚举类型说明) | 是   | 设置CheckboxGroup组件形状， 包括圆形和圆角方形。<br/>默认值:CheckBoxShape.CIRCLE。 <br />**说明**：<br/>CheckboxGroup组件形状按照设置显示。<br/>CheckboxGroup内所有没有单独设置shape类型的Checkbox形状和CheckboxGroup的保持一致。<br/>CheckboxGroup内有单独设置shape类型的Checkbox形状则优先于CheckboxGroup，按照设置形状显示。
 
 ## 事件
 
@@ -114,6 +146,8 @@ CheckboxGroup的选中状态或群组内的Checkbox的选中状态发生变化�
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -124,7 +158,9 @@ CheckboxGroup的选中状态或群组内的Checkbox的选中状态发生变化�
 
 ## CheckboxGroupResult对象说明
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称     | 类型   | 描述      |
 | ------ | ------ | ------- |
@@ -133,7 +169,9 @@ CheckboxGroup的选中状态或群组内的Checkbox的选中状态发生变化�
 
 ## SelectStatus枚举说明
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称  | 描述 |
 | ----- | -------------------- |
@@ -164,6 +202,7 @@ struct CheckboxExample {
         // 全选按钮
         Flex({ justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
           CheckboxGroup({ group: 'checkboxGroup' })
+            .checkboxShape(CheckBoxShape.ROUNDED_SQUARE)
             .selectedColor('#007DFF')
             .onChange((itemName: CheckboxGroupResult) => {
               console.info("checkbox group content" + JSON.stringify(itemName))
@@ -223,6 +262,7 @@ struct Index {
       Column() {
         Flex({ justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
           CheckboxGroup({ group: 'checkboxGroup' })
+            .checkboxShape(CheckBoxShape.ROUNDED_SQUARE)
             .selectedColor(Color.Orange)
             .onChange((itemName: CheckboxGroupResult) => {
               console.info("checkbox group content" + JSON.stringify(itemName))

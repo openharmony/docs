@@ -32,7 +32,7 @@ import fileUri from "@ohos.file.fileuri";
 
 **系统能力**：SystemCapability.FileManagement.AppFileService
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 只读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | path<sup>10+</sup> | string | 是 | 否 | 获取FileUri对应路径名。 |
 | name<sup>10+</sup> | string | 是 | 否 | 获取FileUri对应文件名。 |
@@ -58,6 +58,8 @@ constructor是FileUri的构造函数。
 | ---------------------------- | ---------- |
 | 13900005 | I/O error |
 | 13900042 | Unknown error |
+| 13900020 | invalid argument |
+| 13900002 | invalid uri |
 
 **示例：**
 
@@ -193,7 +195,7 @@ getUriFromPath(path: string): string
 以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 | 错误码ID                     | 错误信息        |
 | ---------------------------- | ---------- |
-| 401 | The input parameter is invalid |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types |
 
 **示例：**
 

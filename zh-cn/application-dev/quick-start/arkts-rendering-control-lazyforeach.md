@@ -24,6 +24,22 @@ LazyForEach(
 | itemGenerator | (item:&nbsp;any， index:number)&nbsp;=&gt;&nbsp;void  | 是   | 子组件生成函数，为数组中的每一个数据项创建一个子组件。<br/>**说明：**<br/>item是当前数据项，index是数据项索引值。<br/>itemGenerator的函数体必须使用大括号{...}。itemGenerator每次迭代只能并且必须生成一个子组件。itemGenerator中可以使用if语句，但是必须保证if语句每个分支都会创建一个相同类型的子组件。itemGenerator中不允许使用ForEach和LazyForEach语句。 |
 | keyGenerator  | (item:&nbsp;any, index:number)&nbsp;=&gt;&nbsp;string | 否   | 键值生成函数，用于给数据源中的每一个数据项生成唯一且固定的键值。当数据项在数组中的位置更改时，其键值不得更改，当数组中的数据项被新项替换时，被替换项的键值和新项的键值必须不同。键值生成器的功能是可选的，但是，为了使开发框架能够更好地识别数组更改，提高性能，建议提供。如将数组反向时，如果没有提供键值生成器，则LazyForEach中的所有节点都将重建。<br/>**说明：**<br/>item是当前数据项，index是数据项索引值。<br/>数据源中的每一个数据项生成的键值不能重复。 |
 
+## 事件
+### onMove
+
+onMove(handler: Optional<(from: index, to: index) => void>)
+
+拖拽排序数据移动回调。只有在List组件中使用，并且LazyForEach每次迭代都生成一个ListItem组件时才生效拖拽排序。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型      | 必填 | 说明       |
+| ------ | --------- | ---- | ---------- |
+| from  | number | 是   | 数据源移动起始索引号。 |
+| to  | number | 是   | 数据源移动目标索引号。 |
+
 ## IDataSource类型说明
 
 ```ts
@@ -152,7 +168,7 @@ interface DataExchangeOperation {
 ### DataReloadOperation
 
 ```ts
-interface DataReloadOperation {     // 当onDatasetChange含有DataOperationType.RELOAD操作时，                                        其余操作全部失效，框架会自己调用keygenerator进行键值比对
+interface DataReloadOperation {     // 当onDatasetChange含有DataOperationType.RELOAD操作时，其余操作全部失效，框架会自己调用keygenerator进行键值比对
   type: DataOperationType.RELOAD    // 数据全部重载类型
 }
 ```
@@ -433,7 +449,7 @@ struct MyComponent {
 }
  ```
 
-运行效果如下图所示。可以看到`Hello 0`在滑动过程中被错误渲染为`Hello 13`。
+运行效果如下图所示。
 
 **图2**  LazyForEach存在相同键值  
 ![LazyForEach-Render-SameKey](./figures/LazyForEach-Render-SameKey.gif)
@@ -481,7 +497,7 @@ class BasicDataSource implements IDataSource {
   notifyDataAdd(index: number): void {
     this.listeners.forEach(listener => {
       listener.onDataAdd(index);
-      // 写法2：listener.onDatasetChange({type: DataOperationType.ADD, index: index});
+      // 写法2：listener.onDatasetChange([{type: DataOperationType.ADD, index: index}]);
     })
   }
 
@@ -616,7 +632,7 @@ class BasicDataSource implements IDataSource {
   notifyDataDelete(index: number): void {
     this.listeners.forEach(listener => {
       listener.onDataDelete(index);
-      // 写法2：listener.onDatasetChange({type: DataOperationType.DELETE, index: index});
+      // 写法2：listener.onDatasetChange([{type: DataOperationType.DELETE, index: index}]);
     })
   }
 
@@ -750,7 +766,7 @@ class BasicDataSource implements IDataSource {
     this.listeners.forEach(listener => {
       listener.onDataMove(from, to);
       // 写法2：listener.onDatasetChange(
-      //         {type: DataOperationType.EXCHANGE, index: {from: from, to: to}});
+      //         [{type: DataOperationType.EXCHANGE, index: {start: from, end: to}}]);
     })
   }
 }
@@ -877,7 +893,7 @@ class BasicDataSource implements IDataSource {
   notifyDataChange(index: number): void {
     this.listeners.forEach(listener => {
       listener.onDataChange(index);
-      // 写法2：listener.onDatasetChange({type: DataOperationType.CHANGE, index: index});
+      // 写法2：listener.onDatasetChange([{type: DataOperationType.CHANGE, index: index}]);
     })
   }
 
@@ -998,7 +1014,7 @@ class BasicDataSource implements IDataSource {
   notifyDataReload(): void {
     this.listeners.forEach(listener => {
       listener.onDataReloaded();
-      // 写法2：listener.onDatasetChange({type: DataOperationType.RELOAD});
+      // 写法2：listener.onDatasetChange([{type: DataOperationType.RELOAD}]);
     })
   }
 
@@ -1367,6 +1383,138 @@ struct ChildComponent {
 **图9**  LazyForEach改变数据子属性  
 ![LazyForEach-Change-SubProperty](./figures/LazyForEach-Change-SubProperty.gif)
 
+## 拖拽排序
+当LazyForEach在List组件下使用，并且设置了onMove事件，可以使能拖拽排序。拖拽排序离手后，如果数据位置发生变化，则会触发onMove事件，上报数据移动原始索引号和目标索引号。在onMove事件中，需要根据上报的起始索引号和目标索引号修改数据源。onMove中修改数据源不需要调用DataChangeListener中接口通知数据源变化。
+
+```ts
+class BasicDataSource implements IDataSource {
+  private listeners: DataChangeListener[] = [];
+  private originDataArray: string[] = [];
+
+  public totalCount(): number {
+    return 0;
+  }
+
+  public getData(index: number): string {
+    return this.originDataArray[index];
+  }
+
+  registerDataChangeListener(listener: DataChangeListener): void {
+    if (this.listeners.indexOf(listener) < 0) {
+      console.info('add listener');
+      this.listeners.push(listener);
+    }
+  }
+
+  unregisterDataChangeListener(listener: DataChangeListener): void {
+    const pos = this.listeners.indexOf(listener);
+    if (pos >= 0) {
+      console.info('remove listener');
+      this.listeners.splice(pos, 1);
+    }
+  }
+
+  notifyDataReload(): void {
+    this.listeners.forEach(listener => {
+      listener.onDataReloaded();
+    })
+  }
+
+  notifyDataAdd(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataAdd(index);
+    })
+  }
+
+  notifyDataChange(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataChange(index);
+    })
+  }
+
+  notifyDataDelete(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataDelete(index);
+    })
+  }
+
+  notifyDataMove(from: number, to: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataMove(from, to);
+    })
+  }
+}
+
+class MyDataSource extends BasicDataSource {
+  private dataArray: string[] = [];
+
+  public totalCount(): number {
+    return this.dataArray.length;
+  }
+
+  public getData(index: number): string {
+    return this.dataArray[index];
+  }
+
+  public addData(index: number, data: string): void {
+    this.dataArray.splice(index, 0, data);
+    this.notifyDataAdd(index);
+  }
+
+  public moveDataWithoutNotify(from: number, to: number): void {
+    let tmp = this.dataArray.splice(from, 1);
+    this.dataArray.splice(to, 0, tmp[0])
+  }
+
+  public pushData(data: string): void {
+    this.dataArray.push(data);
+    this.notifyDataAdd(this.dataArray.length - 1);
+  }
+
+  public deleteData(index: number): void {
+    this.dataArray.splice(index, 1);
+    this.notifyDataDelete(index);
+  }
+}
+
+@Entry
+@Component
+struct Parent {
+  private data: MyDataSource = new MyDataSource();
+
+  build() {
+    Row() {
+      List() {
+        LazyForEach(this.data, (item: string) => {
+            ListItem() {
+              Text(item.toString())
+                .fontSize(16)
+                .textAlign(TextAlign.Center)
+                .size({height: 100, width: "100%"})
+            }.margin(10)
+            .borderRadius(10)
+            .backgroundColor("#FFFFFFFF")
+          }, (item: string) => item)
+          .onMove((from:number, to:number)=>{
+            this.data.moveDataWithoutNotify(from, to)
+          })
+      }
+      .width('100%')
+      .height('100%')
+      .backgroundColor("#FFDCDCDC")
+    }
+  }
+  aboutToAppear(): void {
+    for (let i = 0; i < 100; i++) {
+      this.data.pushData(i.toString())
+    }
+  }
+}
+```
+
+**图10** LazyForEach拖拽排序效果图  
+![LazyForEach-Drag-Sort](figures/ForEach-Drag-Sort.gif)
+
 ## 常见使用问题
 
 - ### 渲染结果非预期
@@ -1489,7 +1637,7 @@ struct ChildComponent {
   }
   ```
 
-  **图10**  LazyForEach删除数据非预期  
+  **图11**  LazyForEach删除数据非预期  
   ![LazyForEach-Render-Not-Expected](./figures/LazyForEach-Render-Not-Expected.gif)
 
   当我们多次点击子组件时，会发现删除的并不一定是我们点击的那个子组件。原因是当我们删除了某一个子组件后，位于该子组件对应的数据项之后的各数据项，其`index`均应减1，但实际上后续的数据项对应的子组件仍然使用的是最初分配的`index`，其`itemGenerator`中的`index`并没有发生变化，所以删除结果和预期不符。
@@ -1622,7 +1770,7 @@ struct ChildComponent {
 
   在删除一个数据项后调用`reloadData`方法，重建后面的数据项，以达到更新`index`索引的目的。
 
-  **图11**  修复LazyForEach删除数据非预期  
+  **图12**  修复LazyForEach删除数据非预期  
   ![LazyForEach-Render-Not-Expected-Repair](./figures/LazyForEach-Render-Not-Expected-Repair.gif)
 
 - ### 重渲染时图片闪烁
@@ -1757,7 +1905,7 @@ struct ChildComponent {
   }
   ```
 
-  **图12**  LazyForEach仅改变文字但是图片闪烁问题  
+  **图13**  LazyForEach仅改变文字但是图片闪烁问题  
   ![LazyForEach-Image-Flush](./figures/LazyForEach-Image-Flush.gif)
 
   在我们点击`ListItem`子组件时，我们只改变了数据项的`message`属性，但是`LazyForEach`的刷新机制会导致整个`ListItem`被重建。由于`Image`组件是异步刷新，所以视觉上图片会发生闪烁。为了解决这种情况我们应该使用`@ObjectLink`和`@Observed`去单独刷新使用了`item.message`的`Text`组件。
@@ -1897,7 +2045,7 @@ struct ChildComponent {
   }
   ```
 
-  **图13**  修复LazyForEach仅改变文字但是图片闪烁问题  
+  **图14**  修复LazyForEach仅改变文字但是图片闪烁问题  
   ![LazyForEach-Image-Flush-Repair](./figures/LazyForEach-Image-Flush-Repair.gif)
 
 - ### @ObjectLink属性变化UI未更新
@@ -2039,7 +2187,7 @@ struct ChildComponent {
   }
   ```
 
-  **图14**  ObjectLink属性变化后UI未更新  
+  **图15**  ObjectLink属性变化后UI未更新  
   ![LazyForEach-ObjectLink-NotRenderUI](./figures/LazyForEach-ObjectLink-NotRenderUI.gif)
   
   @ObjectLink装饰的成员变量仅能监听到其子属性的变化，再深入嵌套的属性便无法观测到了，因此我们只能改变它的子属性去通知对应组件重新渲染，具体[请查看@ObjectLink与@Observed的详细使用方法和限制条件](./arkts-observed-and-objectlink.md)。

@@ -20,11 +20,11 @@ Web组件的状态主要包括：Controller绑定到Web组件、网页加载开�
 
 - [onLoadIntercept](../reference/apis-arkweb/ts-basic-components-web.md#onloadintercept10)事件：当Web组件加载url之前触发该回调，用于判断是否阻止此次访问。默认允许加载。
 
-- [onOverrideUrlLoading](../reference/apis-arkweb/ts-basic-components-web.md#onoverrideurlloading12)事件：当URL将要加载到当前Web中时，让宿主应用程序有机会获得控制权，回调函数返回true将导致当前Web中止加载URL，而返回false则会导致Web继续照常加载URL。onLoadIntercept接口和onOverrideUrlLoading接口行为不一致，触发时机也不同，所以在应用场景上存在一定区别。主要是在LoadUrl和iframe加载时，onLoadIntercept事件会正常回调到，但onOverrideUrlLoading事件则不会回调到。详细介绍请见[onLoadIntercept](../reference/apis-arkweb/ts-basic-components-web.md#onloadintercept10)和[onOverrideUrlLoading](../reference/apis-arkweb/ts-basic-components-web.md#onoverrideurlloading12)的说明。
+- [onOverrideUrlLoading](../reference/apis-arkweb/ts-basic-components-web.md#onoverrideurlloading12)事件：当URL将要加载到当前Web中时，让宿主应用程序有机会获得控制权，回调函数返回true将导致当前Web中止加载URL，而返回false则会导致Web继续照常加载URL。onLoadIntercept接口和onOverrideUrlLoading接口行为不一致，触发时机也不同，所以在应用场景上存在一定区别。主要是在LoadUrl和iframe（HTML标签，表示HTML内联框架元素，用于将另一个页面嵌入到当前页面中）加载时，onLoadIntercept事件会正常回调到，但onOverrideUrlLoading事件则不会回调到。详细介绍请见[onLoadIntercept](../reference/apis-arkweb/ts-basic-components-web.md#onloadintercept10)和[onOverrideUrlLoading](../reference/apis-arkweb/ts-basic-components-web.md#onoverrideurlloading12)的说明。
 
-- [onInterceptRequest](../reference/apis-arkweb/ts-basic-components-web.md#oninterceptrequest9)事件：当Web组件加载url之前触发该回调，用于拦截url并返回响应数据。 
+- [onInterceptRequest](../reference/apis-arkweb/ts-basic-components-web.md#oninterceptrequest9)事件：当Web组件加载url之前触发该回调，用于拦截url并返回响应数据。
 
-- [onPageBegin](../reference/apis-arkweb/ts-basic-components-web.md#onpagebegin)事件：网页开始加载时触发该回调，且只在主frame触发。如果是iframe或者frameset的内容加载时则不会触发此回调。多frame页面有可能同时开始加载，即使主frame已经加载结束，子frame也有可能才开始或者继续加载中。同一页面导航（片段、历史状态等）或者在提交前失败、被取消的导航等也不会触发该回调。
+- [onPageBegin](../reference/apis-arkweb/ts-basic-components-web.md#onpagebegin)事件：网页开始加载时触发该回调，且只在主frame（表示一个HTML元素，用于展示HTML页面的HTML元素）触发。如果是iframe或者frameset（用于包含frame的HTML标签）的内容加载时则不会触发此回调。多frame页面有可能同时开始加载，即使主frame已经加载结束，子frame也有可能才开始或者继续加载中。同一页面导航（片段、历史状态等）或者在提交前失败、被取消的导航等也不会触发该回调。
 
 - [onProgressChange](../reference/apis-arkweb/ts-basic-components-web.md#onprogresschange)事件：告知开发者当前页面加载的进度。多frame页面或者子frame有可能还在继续加载而主frame可能已经加载结束，所以在[onPageEnd](../reference/apis-arkweb/ts-basic-components-web.md#onpageend)事件后依然有可能收到该事件。
 
@@ -41,11 +41,24 @@ Web组件的状态主要包括：Controller绑定到Web组件、网页加载开�
   ```ts
   // xxx.ets
   import web_webview from '@ohos.web.webview';
+  import business_error from '@ohos.base';
+  import promptAction from '@ohos.promptAction';
 
   @Entry
   @Component
   struct WebComponent {
     controller: web_webview.WebviewController = new web_webview.WebviewController()
+    responseweb: WebResourceResponse = new WebResourceResponse()
+    heads:Header[] = new Array()
+    @State webdata: string = "<!DOCTYPE html>\n" +
+    "<html>\n" +
+    "<head>\n" +
+    "<title>intercept test</title>\n" +
+    "</head>\n" +
+    "<body>\n" +
+    "<h1>intercept test</h1>\n" +
+    "</body>\n" +
+    "</html>"
 
   aboutToAppear(): void {
     try {

@@ -9,7 +9,7 @@
 
 **错误信息**
 
-Resource Unavailable.
+Resource unavailable.
 
 **可能原因**
 
@@ -41,7 +41,7 @@ Transaction operation failed.
 
 **错误信息**
 
-Rpc error.
+RPC error.
 
 **可能原因**
 
@@ -167,7 +167,7 @@ Image initialization abnormal.
 
 **错误信息**
 
-Image get data abnormal.
+Failed to get the image data.
 
 **可能原因**
 
@@ -255,7 +255,7 @@ The image source data is abnormal.
 
 **错误信息**
 
-The image source data incomplete.
+The image source data is incomplete.
 
 **可能原因**
 
@@ -283,7 +283,7 @@ The image format does not match.
 
 **错误信息**
 
-Image unknown format.
+Unknown image format.
 
 **可能原因**
 
@@ -341,7 +341,7 @@ Decoding failed.
 
 **错误信息**
 
-Failed to register plugin.
+Failed to register the plugin.
 
 **可能原因**
 
@@ -356,7 +356,7 @@ Failed to register plugin.
 
 **错误信息**
 
-Failed to create plugin.
+Failed to create the plugin.
 
 **可能原因**
 
@@ -386,7 +386,7 @@ Image encoding failed.
 
 **错误信息**
 
-Image addition pixel mapping failed.
+Failed to add the pixel mappings.
 
 **可能原因**
 
@@ -415,7 +415,7 @@ Image hardware decoding is not supported.
 
 **错误信息**
 
-Decoding image header abnormal.
+Failed to decode the image header.
 
 **可能原因**
 
@@ -430,7 +430,7 @@ Decoding image header abnormal.
 
 **错误信息**
 
-Image decoding exif support.
+The image does not support EXIF decoding.
 
 **可能原因**
 
@@ -483,11 +483,39 @@ The EXIF value is invalid.
 
 更换图片或检查图片数据。
 
+## 62980137 图片操作无效
+
+**错误信息**
+
+Invalid media operation.
+
+**可能原因**
+
+1. 目标图片格式不支持该操作。
+
+**处理步骤**
+
+更换图片。
+
+## 62980149 图片参数无效
+
+**错误信息**
+
+Invalid MIME type for the image source.
+
+**可能原因**
+
+1. 目标图片格式不支持该操作。
+
+**处理步骤**
+
+更换图片。
+
 ## 62980246 读取像素地图失败
 
 **错误信息**
 
-Failed to read pixel map.
+Failed to read the pixel map.
 
 **可能原因**
 
@@ -502,7 +530,7 @@ Failed to read pixel map.
 
 **错误信息**
 
-Writing to pixel mapping failed.
+Failed to write the pixel map.
 
 **可能原因**
 

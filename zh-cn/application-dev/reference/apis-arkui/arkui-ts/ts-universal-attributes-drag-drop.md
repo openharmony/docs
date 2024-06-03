@@ -6,9 +6,9 @@
 > 
 > 从API Version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
-ArkUI框架对以下组件实现了默认的拖拽能力，支持对数据的拖出或拖入响应，开发者只需要将这些组件的draggable属性设置为true，即可使用默认拖拽能力。
+ArkUI框架对以下组件实现了默认的拖拽能力，支持对数据的拖出或拖入响应，开发者只需要将这些组件的draggable属性设置为true，即可使用默认拖拽能力。<!--RP1--><!--RP1End-->
 
-- 默认支持拖出能力的组件（可从组件上拖出数据）：[Search](ts-basic-components-search.md)、[TextInput](ts-basic-components-textinput.md)、[TextArea](ts-basic-components-textarea.md)、[RichEditor](ts-basic-components-richeditor.md)、[Text](ts-basic-components-text.md)、[Image](ts-basic-components-image.md)、[FormComponent](ts-basic-components-formcomponent-sys.md)、[Hyperlink](ts-container-hyperlink.md)
+- 默认支持拖出能力的组件（可从组件上拖出数据）：[Search](ts-basic-components-search.md)、[TextInput](ts-basic-components-textinput.md)、[TextArea](ts-basic-components-textarea.md)、[RichEditor](ts-basic-components-richeditor.md)、[Text](ts-basic-components-text.md)、[Image](ts-basic-components-image.md)、<!--Del-->[FormComponent](ts-basic-components-formcomponent-sys.md)、<!--DelEnd-->[Hyperlink](ts-container-hyperlink.md)
 
 - 默认支持拖入能力的组件（目标组件可响应拖入数据）：[Search](ts-basic-components-search.md)、[TextInput](ts-basic-components-textinput.md)、[TextArea](ts-basic-components-textarea.md)、[Video](ts-media-components-video.md)
 
@@ -18,9 +18,11 @@ ArkUI框架对以下组件实现了默认的拖拽能力，支持对数据的拖
 
 ## allowDrop
 
-allowDrop(value: Array&lt;UniformDataType&gt;)
+allowDrop(value: Array&lt;UniformDataType&gt; | null)
 
 设置该组件上允许落入的数据类型。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -28,13 +30,15 @@ allowDrop(value: Array&lt;UniformDataType&gt;)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                            |
 | ------ | ------------------------------------------------------------ | ---- | ----------------------------------------------- |
-| value  | Array\<[UniformDataType](../../apis-arkdata/js-apis-data-uniformTypeDescriptor.md#uniformdatatype)> | 是   | 设置该组件上允许落入的数据类型。<br/>默认值：空 |
+| value  | Array\<[UniformDataType](../../apis-arkdata/js-apis-data-uniformTypeDescriptor.md#uniformdatatype)> \| null<sup>12+</sup> | 是   | 设置该组件上允许落入的数据类型。从API version 12开始，允许设置成null使该组件不接受所有的数据类型。<br/>默认值：空 |
 
 ## draggable
 
 draggable(value: boolean)
 
 设置该组件是否允许进行拖拽。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -50,6 +54,8 @@ dragPreview(value: CustomBuilder | DragItemInfo | string)
 
 设置组件拖拽过程中的预览图。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -62,7 +68,9 @@ dragPreview(value: CustomBuilder | DragItemInfo | string)
 
 dragPreviewOptions(value: DragPreviewOptions, options?: DragInteractionOptions)
 
-设置拖拽过程中背板图处理模式，仅在onDragStart拖拽方式有效。
+设置拖拽过程中背板图处理模式及数量角标的显示。不支持onItemDragStart拖拽方式。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -70,28 +78,36 @@ dragPreviewOptions(value: DragPreviewOptions, options?: DragInteractionOptions)
 
 | 参数名 | 类型                                                            | 必填 | 说明                                                         |
 | ------ | -------------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [DragPreviewOptions](#dragpreviewoptions11)<sup>11+</sup>      | 是   | 设置拖拽过程中背板图处理模式。<br/>默认值：空 |
+| value  | [DragPreviewOptions](#dragpreviewoptions11)<sup>11+</sup>      | 是   | 设置拖拽过程中背板图处理模式及数量角标的显示。<br/>默认值：空 |
 | options<sup>12+</sup>| [DragInteractionOptions](#draginteractionoptions12)<sup>12+</sup>| 否   | 设置拖拽过程中背板图浮起的交互模式。<br/>默认值：空|
 
 ## DragPreviewOptions<sup>11+</sup>
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 | 名称 | 类型 | 必填 | 描述 |
 | -------- | -------- | -------- | -------- |
-| mode | [DragPreviewMode](#dragpreviewmode11枚举说明) | 否 | 表示拖拽过程中背板图处理模式。<br/>默认值：DragPreviewMode.AUTO<br/> |
+| mode | [DragPreviewMode](#dragpreviewmode11枚举说明) &nbsp;\|&nbsp; Array<[DragPreviewMode](#dragpreviewmode11枚举说明)><sup>12+</sup> | 否 | 表示拖拽过程中背板图处理模式。<br/>默认值：DragPreviewMode.AUTO<br/>当组件同时设置DragPreviewMode.AUTO和其它枚举值时，以DragPreviewMode.AUTO为准，其它枚举值设置无效。<br/> |
+| numberBadge<sup>12+</sup> | boolean &nbsp;\|&nbsp; number | 否 | 控制数量角标是否显示，或强制设置显示的数量。当设置数量角标时取值范围为[0，2<sup>31</sup>-1]，当设置为浮点数时，只显示整数部分。<br/>注：在多选拖拽场景，需通过该接口设置拖拽对象的数量。<br/>默认值：true<br/> |
+| modifier<sup>12+</sup> | [ImageModifier](ts-universal-attributes-attribute-modifier.md)| 否 | 用于配置拖拽背板图的样式Modifier对象，可使用图片组件所支持的属性和样式来配置背板图样式(参考示例6)，当前支持透明度，阴影，背景模糊度，圆角。<br/>1.透明度<br/>通过[opacity](ts-universal-attributes-opacity.md#opacity)设置透明度，不透明度的取值范围为大于0并且小于等于1，1表示完全不透明，其它场合采用默认值0.95。<br/>2.阴影<br/>通过[shadow](ts-universal-attributes-image-effect.md#shadow)设置阴影。<br/>3.背景模糊度<br/>通过[backgroundEffect](ts-appendix-enums.md#backgroundeffectoptions)或[backgroundBlurStyle](ts-universal-attributes-background.md#backgroundblurstyle)设置背景模糊度，如果两者同时设置，以backgroundEffect为准。<br/>4.圆角<br/>通过[border](ts-universal-attributes-border.md#border)或[borderRadius](ts-universal-attributes-border.md#borderRadius)设置圆角，当同时在mode和modifier中设置圆角，mode设置的圆角显示优先级低于modifier设置。<br/>默认值：空，无法修改属性<br/> |
 
 ## DragPreviewMode<sup>11+</sup>枚举说明
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 | 名称 | 枚举值 | 描述 |
 | -------- | ------- | -------- |
 | AUTO  | 1 | 系统根据拖拽场景自动改变跟手点位置，根据规则自动对拖拽背板图进行缩放变换等。 |
 | DISABLE_SCALE  | 2 | 禁用系统对拖拽背板图的缩放行为。 |
+| ENABLE_DEFAULT_SHADOW<sup>12+</sup> | 3 | 启用非文本类组件默认阴影效果。 |
+| ENABLE_DEFAULT_RADIUS<sup>12+</sup> | 4 | 启用非文本类组件统一圆角效果，默认值12vp。当应用自身设置的圆角值大于默认值或modifier设置的圆角时，则显示应用自定义圆角效果。 |
 
 ## DragInteractionOptions<sup>12+</sup>
 
 | 名称 | 类型 | 必填 | 描述 |
 | -------- | -------- | -------- | -------- |
-| isMultiSelectionEnabled | boolean | 否 | 表示拖拽过程中背板图是否支持多选聚拢效果。该参数只在[Grid](ts-container-grid.md)和[List](ts-container-list.md)组件中的[GridItem](ts-container-griditem.md)组件和[ListItem](ts-container-listitem.md)组件生效。<br/>当一个组件设置为多选拖拽时，该组件的子组件不可拖拽。聚拢组件预览图设置的优先级为[dragPreview](#dragpreview11)中的string，dragPreview中的PixelMap，组件自截图，不支持dragPreview中的Builder形式。<br/>不支持组件绑定[bindContextMenu](ts-universal-attributes-menu.md#bindcontextmenu12)中设置isShown为true的模式。<br/>默认值：false<br/> |
-| defaultAnimationBeforeLifting | boolean | 否 | 表示是否执行长按浮起发起前组件自身的默认缩小动效。<br/>默认值：false <br/> |
+| isMultiSelectionEnabled | boolean | 否 | 表示拖拽过程中背板图是否支持多选聚拢效果。该参数只在[Grid](ts-container-grid.md)和[List](ts-container-list.md)组件中的[GridItem](ts-container-griditem.md)组件和[ListItem](ts-container-listitem.md)组件生效。<br/>当一个item组件设置为多选拖拽时，该组件的子组件不可拖拽。聚拢组件预览图设置的优先级为[dragPreview](#dragpreview11)中的string，dragPreview中的PixelMap，组件自截图，不支持dragPreview中的Builder形式。<br/>不支持组件绑定[bindContextMenu](ts-universal-attributes-menu.md#bindcontextmenu12)中参数存在isShown的模式。<br/>默认值：false<br/> |
+| defaultAnimationBeforeLifting | boolean | 否 | 表示是否启用长按浮起阶段组件自身的默认点按效果（缩小）。<br/>默认值：false <br/> |
 
 ## 示例
 ### 示例1
@@ -292,6 +308,12 @@ struct dragPreviewOptionsDemo{
           .width("100%")
           .draggable(true)
           .dragPreviewOptions({ mode: DragPreviewMode.AUTO })
+        Image('/resource/image.jpeg')
+          .margin({ top: 10 })
+          .width("80%")
+          .border({ radius: { topLeft: 1, topRight: 2, bottomLeft: 4, bottomRight: 8 } })
+          .draggable(true)
+          .dragPreviewOptions({ mode: [ DragPreviewMode.ENABLE_DEFAULT_SHADOW, DragPreviewMode.ENABLE_DEFAULT_RADIUS ] })
       }
       .width("100%")
       .height("100%")
@@ -317,9 +339,11 @@ struct Example {
           GridItem() {
             Column()
               .backgroundColor(Color.Red)
-              .width(90)
-              .height(90)
+              .width('100%')
+              .height('100%')
           }
+          .width(90)
+          .height(90)
           .selectable(true)
           .selected(true)
           .dragPreviewOptions({}, {isMultiSelectionEnabled:true})
@@ -337,6 +361,8 @@ struct Example {
 }
 ```
 
+![isMultiSelectionEnabled.gif](figures/isMultiSelectionEnabled.gif)
+
 ### 示例5
 DragInteractionOptions属性中defaultAnimationBeforeLifting参数使用方法用例。
 ```ts
@@ -351,9 +377,11 @@ struct Example {
           GridItem() {
             Column()
               .backgroundColor(Color.Red)
-              .width(90)
-              .height(90)
+              .width('100%')
+              .height('100%')
           }
+          .width(90)
+          .height(90)
           .selectable(true)
           .selected(true)
           .dragPreviewOptions({}, {isMultiSelectionEnabled:true, defaultAnimationBeforeLifting:true})
@@ -370,3 +398,50 @@ struct Example {
   }
 }
 ```
+
+![defaultAnimationBeforeLifting.gif](figures/defaultAnimationBeforeLifting.gif)
+
+### 示例6
+dragPreviewOptions属性中ImageModifier参数使用方法用例。
+```ts
+// xxx.ets
+import { ImageModifier } from '@ohos.arkui.modifier'
+
+@Entry
+@Component
+struct dragPreviewOptionsDemo{
+  @State myModifier: ImageAttribute = new ImageModifier().opacity(0.5)
+  @State vis: boolean = true
+  @State changeValue: string = ''
+  @State submitValue: string = ''
+  @State positionInfo: CaretOffset = { index: 0, x: 0, y: 0 }
+  controller: SearchController = new SearchController()
+  @State OpacityIndex: number = 0
+  @State OpacityList:(number | undefined | null)[]=[
+    0.3,0.5,0.7,1,-50,0,10,undefined,null
+  ]
+  build() {
+    Row() {
+      Column() {
+        Text(this.OpacityList[this.OpacityIndex] + "")
+        Button("Opacity")
+          .onClick(()=> {
+            this.OpacityIndex++
+            if(this.OpacityIndex > this.OpacityList.length - 1){
+              this.OpacityIndex = 0
+            }
+          })
+        Image($r('app.media.image'))
+          .margin({ top: 10 })
+          .width("100%")
+          .draggable(true)
+          .dragPreviewOptions({modifier: this.myModifier.opacity(this.OpacityList[this.OpacityIndex]) as ImageModifier})
+      }
+      .width("50%")
+      .height("50%")
+    }
+  }
+}
+```
+
+![imageModifier.gif](figures/imageModifier.gif)

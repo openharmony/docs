@@ -9,13 +9,15 @@
 ## 导入模块
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import cryptoFramework from '@ohos.security.cryptoFramework';
+import { cert } from '@kit.DeviceCertificateKit';
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 ```
 
 ## CertResult
 
  表示执行结果的枚举。
+
+ **元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
  **系统能力：** SystemCapability.Security.Cert
 
@@ -35,6 +37,9 @@ import cryptoFramework from '@ohos.security.cryptoFramework';
 
 ## DataBlob
 buffer数组。
+
+ **元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
  **系统能力：** SystemCapability.Security.Cert
 | 名称           | 类型           | 可读 | 可写 | 说明              |
 | -------------- | -------------- | ---- | ---- | ----------------|
@@ -43,6 +48,9 @@ buffer数组。
 ## DataArray
 
 buffer数组的列表。
+
+ **元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
  **系统能力：** SystemCapability.Security.Cert
 | 名称           | 类型           | 可读 | 可写 | 说明               |
 | -------------- | -------------- | ---- | ---- | ----------------|
@@ -51,6 +59,8 @@ buffer数组的列表。
 ## EncodingFormat
 
  表示证书编码格式的枚举。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
  **系统能力：** SystemCapability.Security.Cert
 
@@ -63,6 +73,8 @@ buffer数组的列表。
 ## CertItemType<sup>10+</sup>
 
  表示获取证书字段的枚举。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
  **系统能力：** SystemCapability.Security.Cert
 
@@ -78,6 +90,8 @@ buffer数组的列表。
 
  表示获取扩展域中对象标识符类型的枚举。
 
+ **元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
  **系统能力：** SystemCapability.Security.Cert
 
 | 名称                          | 值   | 说明                                          |
@@ -90,6 +104,8 @@ buffer数组的列表。
 
  表示获取扩展域中对象类型的枚举。
 
+ **元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
  **系统能力：** SystemCapability.Security.Cert
 
 | 名称                                | 值   | 说明                         |
@@ -98,11 +114,25 @@ buffer数组的列表。
 | EXTENSION_ENTRY_TYPE_ENTRY_CRITICAL | 1    | 表示获取对象的critical属性。 |
 | EXTENSION_ENTRY_TYPE_ENTRY_VALUE    | 2    | 表示获取对象的数据。         |
 
+## EncodingType<sup>12+</sup>
+
+ 表示获取X509证书主体名称编码格式的枚举。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+ **系统能力：** SystemCapability.Security.Cert
+
+| 名称       | 值 |  说明      |
+| ---------- | ------ | --------- |
+| ENCODING_UTF8 | 0      | UTF8编码格式。 |
+
 ## EncodingBlob
 
 带编码格式的证书二进制数组。
 
 ### 属性
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -118,6 +148,8 @@ buffer数组的列表。
 
 ### 属性
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.Cert
 
 | 名称           | 类型                              | 可读 | 可写 | 说明                                                         |
@@ -129,6 +161,8 @@ buffer数组的列表。
 ## GeneralNameType<sup>12+</sup>
 
 表示证书主体用途的枚举。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -148,6 +182,8 @@ buffer数组的列表。
 
 用于表示证书主体信息对象。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.Cert
 
 | 名称           | 类型                              | 必填 | 说明               |
@@ -158,6 +194,8 @@ buffer数组的列表。
 ## X509CertMatchParameters<sup>11+</sup>
 
 用于匹配证书的过滤参数。如果参数中任一项都未指定，则匹配所有证书。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -185,6 +223,8 @@ buffer数组的列表。
 
 用于匹配证书吊销列表的过滤参数。如果参数中任一项都未指定，则匹配所有证书吊销列表。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.Cert
 
 | 名称           | 类型                              | 必填 | 说明               |
@@ -199,17 +239,21 @@ buffer数组的列表。
 
 用于指定证书链创建参数。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.Cert
 
 | 名称           | 类型                              | 必填 | 说明               |
 | -------------- | --------------------------------- | ---- | ------------------ |
 | certMatchParameters | [X509CertMatchParameters](#x509certmatchparameters11) | 是  | 指定过滤条件。 |
-| maxlength | number | 否  | 指定最终证书链中CA证书的最大长度。 |
-| validateParameters | [CertChainValidateParameters](#certchainvalidationparameters11) | 是  | 指定验证条件。 |
+| maxLength | number | 否  | 指定最终证书链中CA证书的最大长度。 |
+| validationParameters | [CertChainValidateParameters](#certchainvalidationparameters11) | 是  | 指定验证条件。 |
 
-## CertChainValidateResult<sup>12+</sup>
+## CertChainValidateResult<sup>11+</sup>
 
 用于指定证书链验证结果。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -222,16 +266,20 @@ buffer数组的列表。
 
 用于指定证书链创建结果。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.Cert
 
 | 名称           | 类型                              | 必填 | 说明               |
 | -------------- | --------------------------------- | ---- | ------------------ |
 | certChain | [X509CertChain](#x509certchain11) | 是  | 生成的证书链对象。 |
-| validateResult | [CertChainValidateResult](#certchainvalidateresult12) | 是  | 指定最终证书链的最大长度。 |
+| validationResult | [CertChainValidateResult](#certchainvalidateresult11) | 是  | 指定最终证书链的最大长度。 |
 
 ## CertChainValidateParameters<sup>11+</sup>
 
 用于指定证书链验证参数。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -245,6 +293,8 @@ buffer数组的列表。
 
 表示X509信任锚，用于校验证书链。使用信任锚中的证书或者公钥作为可信根，对证书链进行校验。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.Cert
 
 | 名称      | 类型                  | 可读 | 可写 | 说明                        |
@@ -253,9 +303,76 @@ buffer数组的列表。
 | CAPubKey  | Uint8Array            | 是   | 是   | 信任的CA证书公钥, DER格式。 |
 | CASubject | Uint8Array            | 是   | 是   | 信任的CA证书主题, DER格式。 |
 
+## RevocationCheckOption<sup>12+</sup>
+
+ 表示证书链在线校验证书吊销状态选项的枚举。
+
+ **元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+ **系统能力：** SystemCapability.Security.Cert
+
+| 名称                                  | 值   | 说明                          |
+| --------------------------------------| -------- | -----------------------------|
+| REVOCATION_CHECK_OPTION_PREFER_OCSP | 0 | 优先采用OCSP进行校验，默认采用CRL校验。 |
+| REVOCATION_CHECK_OPTION_ACCESS_NETWORK | 1 | 支持通过访问网络获取CRL或OCSP响应进行吊销状态的校验，默认为关闭。 |
+| REVOCATION_CHECK_OPTION_FALLBACK_NO_PREFER | 2 | 当ACCESS_NETWORK选项打开时有效，如果优选的校验方法由于网络原因导致无法校验证书状态，则采用备选的方案进行校验。 |
+| REVOCATION_CHECK_OPTION_FALLBACK_LOCAL | 3 | 当ACCESS_NETWORK选项打开时有效，如果在线获取CRL和OCSP响应都由于网络的原因导致无法校验证书状态，则采用本地设置的CRL和OCSP响应进行校验。 |
+
+## ValidationPolicyType<sup>12+</sup>
+
+ 表示证书链在线校验策略的枚举。
+
+ **元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+ **系统能力：** SystemCapability.Security.Cert
+
+| 名称                                  | 值   | 说明                          |
+| --------------------------------------| -------- | -----------------------------|
+| VALIDATION_POLICY_TYPE_X509 | 0 | 默认值，不需要校验证书中的sslHostname或dNSName。 |
+| VALIDATION_POLICY_TYPE_SSL | 1 | 需要校验证书中的sslHostname或dNSName。 |
+
+## KeyUsageType<sup>12+</sup>
+
+ 表示证书中密钥用途的枚举。
+ **元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+ **系统能力：** SystemCapability.Security.Cert
+
+| 名称                                  | 值   | 说明                          |
+| --------------------------------------| -------- | -----------------------------|
+| KEYUSAGE_DIGITAL_SIGNATURE | 0 | 证书持有者可以用证书中包含的私钥进行数字签名操作。 |
+| KEYUSAGE_NON_REPUDIATION | 1 | 证书持有者不可否认使用证书中包含的私钥进行的数字签名操作。 |
+| KEYUSAGE_KEY_ENCIPHERMENT | 2 | 证书持有者可以使用证书中包含的公钥进行密钥加密操作。 |
+| KEYUSAGE_DATA_ENCIPHERMENT | 3 | 证书持有者可以使用证书中包含的公钥进行数据加密操作。 |
+| KEYUSAGE_KEY_AGREEMENT | 4 | 证书持有者可以使用证书中包含的私钥进行密钥协商操作。 |
+| KEYUSAGE_KEY_CERT_SIGN | 5 | 证书持有者可以使用证书中包含的私钥对其他证书进行签名。 |
+| KEYUSAGE_CRL_SIGN | 6 | 证书持有者可以使用证书中包含的私钥对证书吊销列表（CRL）进行签名。 |
+| KEYUSAGE_ENCIPHER_ONLY | 7 | 证书持有者只能进行加密操作，不能进行解密操作。 |
+| KEYUSAGE_DECIPHER_ONLY | 8 | 证书持有者只能进行解密操作，不能进行加密操作。 |
+
+## RevocationCheckParameter<sup>12+</sup>
+
+表示证书链校验证书吊销状态的参数。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Security.Cert
+
+| 名称         | 类型                                              | 必填 | 说明                                   |
+| ------------ | ------------------------------------------------- | ---- | -------------------------------------- |
+| ocspRequestExtension | Array\<Uint8Array> | 否   | 表示发送OCSP请求的扩展字段。|
+| ocspResponderURI | string | 否   | 表示用于OCSP请求的备选服务器URL地址，支持HTTP/HTTPS，具体配置由与服务器协商决定。 |
+| ocspResponderCert | X509Cert | 否   | 表示用于OCSP响应的签名校验的签名证书。 |
+| ocspResponses | Uint8Array | 否   | 表示用于OCSP服务器响应的备选数据。 |
+| crlDownloadURI | string | 否   | 表示用于CRL请求的备选下载地址。 |
+| options | Array\<[RevocationCheckOption](#revocationcheckoption12)> | 否   | 表示证书吊销状态查询的策略组合。 |
+| ocspDigest | string | 否   | 表示OCSP通信时创建证书ID使用的哈希算法。默认为SHA256，支持可配置MD5、SHA1、SHA224、SHA256、SHA384、SHA512算法。 |
+
 ## CertChainValidationParameters<sup>11+</sup>
 
 表示证书链校验的参数。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -264,10 +381,16 @@ buffer数组的列表。
 | date         | string                                            | 否   | 表示需要校验证书的有效期。             |
 | trustAnchors | Array\<[X509TrustAnchor](#x509trustanchor11)>     | 是   | 表示信任锚列表。                       |
 | certCRLs     | Array\<[CertCRLCollection](#certcrlcollection11)> | 否   | 表示需要校验证书是否在证书吊销列表中。 |
+| revocationCheckParam<sup>12+</sup>      | [RevocationCheckParameter](#revocationcheckparameter12) | 否   | 表示需要在线校验证证书吊销状态的参数对象。 |
+| policy<sup>12+</sup>     | [ValidationPolicyType](#validationpolicytype12) | 否   | 表示需要校验证书的策略类型。 |
+| sslHostname<sup>12+</sup> | string | 否   | 表示需要校验证书中主机名，与policy配合使用。 |
+| keyUsage<sup>12+</sup>     | Array\<[KeyUsageType](#keyusagetype12)> | 否   | 表示需要校验证书中的密钥用途。 |
 
 ## CertChainValidationResult<sup>11+</sup>
 
 表示证书链校验的返回值。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -276,11 +399,13 @@ buffer数组的列表。
 | trustAnchor | [X509TrustAnchor](#x509trustanchor11) | 是   | 否   | 表示信任锚。   |
 | entityCert  | [X509Cert](#x509cert)                 | 是   | 否   | 表示实体证书。 |
 
-## cryptoCert.createX509Cert
+## cert.createX509Cert
 
 createX509Cert(inStream : EncodingBlob, callback : AsyncCallback\<X509Cert>) : void
 
 表示创建X509证书对象，使用Callback回调异步返回结果。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -297,12 +422,14 @@ createX509Cert(inStream : EncodingBlob, callback : AsyncCallback\<X509Cert>) : v
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 801 | this operation is not supported. |
 | 19020001 | memory error. |
 
 **示例：**
 
 ```ts
-import certFramework from '@ohos.security.cert';
+import { cert } from '@kit.DeviceCertificateKit';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -324,13 +451,13 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
   'Qw==\n' +
   '-----END CERTIFICATE-----\n';
 
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
   // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509Cert(encodingBlob, (error, x509Cert) => {
+cert.createX509Cert(encodingBlob, (error, x509Cert) => {
   if (error != null) {
     console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
@@ -339,11 +466,13 @@ certFramework.createX509Cert(encodingBlob, (error, x509Cert) => {
 });
 ```
 
-## cryptoCert.createX509Cert
+## cert.createX509Cert
 
 createX509Cert(inStream : EncodingBlob) : Promise\<X509Cert>
 
 表示创建X509证书对象，使用Promise方式异步返回结果。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -365,13 +494,15 @@ createX509Cert(inStream : EncodingBlob) : Promise\<X509Cert>
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 801 | this operation is not supported. |
 | 19020001 | memory error. |
 
 **示例：**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -393,13 +524,13 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
   'Qw==\n' +
   '-----END CERTIFICATE-----\n';
 
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
   // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509Cert(encodingBlob).then(x509Cert => {
+cert.createX509Cert(encodingBlob).then(x509Cert => {
   console.log('createX509Cert success');
 }).catch((error: BusinessError) => {
   console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
@@ -416,13 +547,15 @@ verify(key : cryptoFramework.PubKey, callback : AsyncCallback\<void>) : void
 
 表示对证书验签，使用Callback回调异步返回结果。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.Cert
 
 **参数：**
 
 | 参数名   | 类型                  | 必填 | 说明                                                         |
 | -------- | --------------------- | ---- | ------------------------------------------------------------ |
-| key      | cryptoFramework.PubKey     | 是   | 用于验签的公钥对象                                           |
+| key      | [cryptoFramework.PubKey](../apis-crypto-architecture-kit/js-apis-cryptoFramework.md#pubkey) | 是   | 用于验签的公钥对象                                           |
 | callback | AsyncCallback\<void> | 是   | 回调函数。使用AsyncCallback的第一个error参数判断是否验签成功，error为null表示成功，不为null表示失败 |
 
 **错误码：**
@@ -431,13 +564,14 @@ verify(key : cryptoFramework.PubKey, callback : AsyncCallback\<void>) : void
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19030001 | crypto operation error.      |
 
 **示例：**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -459,13 +593,13 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
   'Qw==\n' +
   '-----END CERTIFICATE-----\n';
 
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
   // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509Cert(encodingBlob, (error, x509Cert) => {
+cert.createX509Cert(encodingBlob, (error, x509Cert) => {
   if (error != null) {
     console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
@@ -497,13 +631,15 @@ verify(key : cryptoFramework.PubKey) : Promise\<void>
 
 表示对证书验签，使用Promise方式异步返回结果。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.Cert
 
 **参数：**
 
 | 参数名 | 类型   | 必填 | 说明               |
 | ------ | ------ | ---- | ------------------ |
-| key    | cryptoFramework.PubKey | 是   | 用于验签的公钥对象 |
+| key    | [cryptoFramework.PubKey](../apis-crypto-architecture-kit/js-apis-cryptoFramework.md#pubkey) | 是   | 用于验签的公钥对象 |
 
 **返回值：**
 
@@ -517,13 +653,14 @@ verify(key : cryptoFramework.PubKey) : Promise\<void>
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19030001 | crypto operation error.      |
 
 **示例：**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -545,13 +682,13 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
   'Qw==\n' +
   '-----END CERTIFICATE-----\n';
 
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
   // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509Cert(encodingBlob).then(x509Cert => {
+cert.createX509Cert(encodingBlob).then(x509Cert => {
   console.log('createX509Cert success');
 
   try {
@@ -576,6 +713,8 @@ getEncoded(callback : AsyncCallback\<EncodingBlob>) : void
 
 表示获取X509证书序列化数据，使用Callback回调异步返回结果。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.Cert
 
 **参数**：
@@ -590,6 +729,7 @@ getEncoded(callback : AsyncCallback\<EncodingBlob>) : void
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19020001 | memory error.                                     |
 | 19020002 | runtime error.                                    |
 | 19030001 | crypto operation error.|
@@ -597,7 +737,7 @@ getEncoded(callback : AsyncCallback\<EncodingBlob>) : void
 **示例：**
 
 ```ts
-import certFramework from '@ohos.security.cert';
+import { cert } from '@kit.DeviceCertificateKit';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -619,13 +759,13 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
   'Qw==\n' +
   '-----END CERTIFICATE-----\n';
 
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
   // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509Cert(encodingBlob, (error, x509Cert) => {
+cert.createX509Cert(encodingBlob, (error, x509Cert) => {
   if (error != null) {
     console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
@@ -647,6 +787,8 @@ getEncoded() : Promise\<EncodingBlob>
 
 表示获取X509证书序列化数据，使用Promise方式异步返回结果。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.Cert
 
 **返回值**：
@@ -661,6 +803,7 @@ getEncoded() : Promise\<EncodingBlob>
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19020001 | memory error.                                     |
 | 19020002 | runtime error.                                    |
 | 19030001 | crypto operation error.|
@@ -668,8 +811,8 @@ getEncoded() : Promise\<EncodingBlob>
 **示例：**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -692,12 +835,12 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
   '-----END CERTIFICATE-----\n';
 
 // 证书二进制数据，需业务自行赋值
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
   // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
-certFramework.createX509Cert(encodingBlob).then(x509Cert => {
+cert.createX509Cert(encodingBlob).then(x509Cert => {
   console.log('createX509Cert success');
   x509Cert.getEncoded().then(result => {
     console.log('getEncoded success');
@@ -715,13 +858,15 @@ getPublicKey() : cryptoFramework.PubKey
 
 表示获取X509证书公钥。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.Cert
 
 **返回值**：
 
 | 类型   | 说明             |
 | ------ | ---------------- |
-| cryptoFramework.PubKey | X509证书公钥对象：仅用于X509Cert的verify接口 |
+| [cryptoFramework.PubKey](../apis-crypto-architecture-kit/js-apis-cryptoFramework.md#pubkey) | X509证书公钥对象：仅用于X509Cert的verify接口 |
 
 **错误码：**
 
@@ -735,8 +880,8 @@ getPublicKey() : cryptoFramework.PubKey
 **示例：**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -758,13 +903,13 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
   'Qw==\n' +
   '-----END CERTIFICATE-----\n';
 
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
   // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509Cert(encodingBlob, (error, x509Cert) => {
+cert.createX509Cert(encodingBlob, (error, x509Cert) => {
   if (error != null) {
     console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
@@ -785,13 +930,15 @@ checkValidityWithDate(date: string) : void
 
 表示检查X509证书有效期。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.Cert
 
 **参数**：
 
 | 参数名   | 类型            | 必填 | 说明        |
 | -------- | -------------- | ---- | ---------- |
-| date     | string         | 是   | 日期（格式：YYMMDDHHMMSSZ 或 YYYYMMDDHHMMSSZ，时间必须以Z结尾：表示标准时间） |
+| date     | string         | 是   | 日期，为ASN.1时间格式。 |
 
 **错误码：**
 
@@ -799,6 +946,7 @@ checkValidityWithDate(date: string) : void
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19020001 | memory error.                                     |
 | 19030001 | crypto operation error.|
 | 19030003 | the certificate has not taken effect.                                     |
@@ -807,8 +955,8 @@ checkValidityWithDate(date: string) : void
 **示例：**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -830,13 +978,13 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
   'Qw==\n' +
   '-----END CERTIFICATE-----\n';
 
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
   // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509Cert(encodingBlob, (error, x509Cert) => {
+cert.createX509Cert(encodingBlob, (error, x509Cert) => {
   if (error != null) {
     console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
@@ -860,6 +1008,8 @@ getVersion() : number
 
 表示获取X509证书版本。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.Cert
 
 **返回值**：
@@ -871,7 +1021,7 @@ getVersion() : number
 **示例：**
 
 ```ts
-import certFramework from '@ohos.security.cert';
+import { cert } from '@kit.DeviceCertificateKit';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -893,12 +1043,12 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
   'Qw==\n' +
   '-----END CERTIFICATE-----\n';
 
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
   // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
-certFramework.createX509Cert(encodingBlob, (error, x509Cert) => {
+cert.createX509Cert(encodingBlob, (error, x509Cert) => {
   if (error != null) {
     console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
@@ -929,7 +1079,7 @@ getSerialNumber() : number
 **示例：**
 
 ```ts
-import certFramework from '@ohos.security.cert';
+import { cert } from '@kit.DeviceCertificateKit';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -951,13 +1101,13 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
   'Qw==\n' +
   '-----END CERTIFICATE-----\n';
 
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
   // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509Cert(encodingBlob, (error, x509Cert) => {
+cert.createX509Cert(encodingBlob, (error, x509Cert) => {
   if (error != null) {
     console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
@@ -972,6 +1122,8 @@ certFramework.createX509Cert(encodingBlob, (error, x509Cert) => {
 getCertSerialNumber() : bigint
 
 表示获取X509证书序列号。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -992,8 +1144,8 @@ getCertSerialNumber() : bigint
 **示例：**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -1015,13 +1167,13 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
   'Qw==\n' +
   '-----END CERTIFICATE-----\n';
 
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
   // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509Cert(encodingBlob, (error, x509Cert) => {
+cert.createX509Cert(encodingBlob, (error, x509Cert) => {
   if (error != null) {
     console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
@@ -1041,6 +1193,8 @@ certFramework.createX509Cert(encodingBlob, (error, x509Cert) => {
 getIssuerName() : DataBlob
 
 表示获取X509证书颁发者名称。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -1063,8 +1217,8 @@ getIssuerName() : DataBlob
 **示例：**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -1086,13 +1240,13 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
   'Qw==\n' +
   '-----END CERTIFICATE-----\n';
 
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
   // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509Cert(encodingBlob, (error, x509Cert) => {
+cert.createX509Cert(encodingBlob, (error, x509Cert) => {
   if (error != null) {
     console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
@@ -1109,11 +1263,19 @@ certFramework.createX509Cert(encodingBlob, (error, x509Cert) => {
 
 ### getSubjectName
 
-getSubjectName() : DataBlob
+getSubjectName(encodingType?: EncodingType) : DataBlob
 
 表示获取X509证书主体名称。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.Cert
+
+**参数**：
+
+| 参数名   | 类型                                  | 必填 | 说明                           |
+| -------- | ------------------------------------- | ---- | ------------------------------ |
+| encodingType<sup>12+</sup> | [EncodingType](#encodingtype12)     | 否   |  编码类型。设置参数表示获取UTF8格式编码；不设置默认获取ASCII格式编码。<br>API 12后支持设置此参数。  |
 
 **返回值**：
 
@@ -1127,6 +1289,7 @@ getSubjectName() : DataBlob
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
+| 401 | invalid parameters.  Possible causes: <br>1. Incorrect parameter types;<br>2. Parameter verification failed.           |
 | 19020001 | memory error.                                     |
 | 19020002 | runtime error.                                    |
 | 19030001 | crypto operation error.|
@@ -1134,8 +1297,8 @@ getSubjectName() : DataBlob
 **示例：**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -1157,13 +1320,13 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
   'Qw==\n' +
   '-----END CERTIFICATE-----\n';
 
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
   // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509Cert(encodingBlob, (error, x509Cert) => {
+cert.createX509Cert(encodingBlob, (error, x509Cert) => {
   if (error != null) {
     console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
@@ -1173,6 +1336,12 @@ certFramework.createX509Cert(encodingBlob, (error, x509Cert) => {
     } catch (err) {
       let e: BusinessError = err as BusinessError;
       console.error('getSubjectName failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+    }
+    try {
+      let subjectNameutf8 = x509Cert.getSubjectName(cert.EncodingType.ENCODING_UTF8);
+    } catch (err) {
+      let e: BusinessError = err as BusinessError;
+      console.error('getSubjectNameUtf8 failed, errCode: ' + e.code + ', errMsg: ' + e.message);
     }
   }
 });
@@ -1184,13 +1353,15 @@ getNotBeforeTime() : string
 
 表示获取X509证书有效期起始时间。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.Cert
 
 **返回值**：
 
 | 类型   | 说明                                                         |
 | ------ | ------------------------------------------------------------ |
-| string | 表示X509证书有效期起始时间（格式：YYMMDDHHMMSSZ 或 YYYYMMDDHHMMSSZ，时间以Z结尾：表示标准时间） |
+| string | 表示X509证书有效期起始时间，日期为ASN.1时间格式。 |
 
 **错误码：**
 
@@ -1205,8 +1376,8 @@ getNotBeforeTime() : string
 **示例：**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -1228,13 +1399,13 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
   'Qw==\n' +
   '-----END CERTIFICATE-----\n';
 
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
   // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509Cert(encodingBlob, (error, x509Cert) => {
+cert.createX509Cert(encodingBlob, (error, x509Cert) => {
   if (error != null) {
     console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
@@ -1255,13 +1426,15 @@ getNotAfterTime() : string
 
 表示获取X509证书有效期截止时间。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.Cert
 
 **返回值**：
 
 | 类型   | 说明                                                         |
 | ------ | ------------------------------------------------------------ |
-| string | 表示X509证书有效期截止时间（格式：YYMMDDHHMMSSZ 或 YYYYMMDDHHMMSSZ，时间以Z结尾：表示标准时间） |
+| string | 表示X509证书有效期截止时间，日期为ASN.1时间格式。 |
 
 **错误码：**
 
@@ -1276,9 +1449,9 @@ getNotAfterTime() : string
 **示例：**
 
 ```ts
-import certFramework from '@ohos.security.cert';
+import { cert } from '@kit.DeviceCertificateKit';
 
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -1300,13 +1473,13 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
   'Qw==\n' +
   '-----END CERTIFICATE-----\n';
 
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
   // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509Cert(encodingBlob, (error, x509Cert) => {
+cert.createX509Cert(encodingBlob, (error, x509Cert) => {
   if (error != null) {
     console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
@@ -1326,6 +1499,8 @@ certFramework.createX509Cert(encodingBlob, (error, x509Cert) => {
 getSignature() : DataBlob
 
 表示获取X509证书签名数据。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -1348,9 +1523,9 @@ getSignature() : DataBlob
 **示例：**
 
 ```ts
-import certFramework from '@ohos.security.cert';
+import { cert } from '@kit.DeviceCertificateKit';
 
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -1372,13 +1547,13 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
   'Qw==\n' +
   '-----END CERTIFICATE-----\n';
 
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
   // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509Cert(encodingBlob, (error, x509Cert) => {
+cert.createX509Cert(encodingBlob, (error, x509Cert) => {
   if (error != null) {
     console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
@@ -1398,6 +1573,8 @@ certFramework.createX509Cert(encodingBlob, (error, x509Cert) => {
 getSignatureAlgName() : string
 
 表示获取X509证书签名算法名称。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -1420,9 +1597,9 @@ getSignatureAlgName() : string
 **示例：**
 
 ```ts
-import certFramework from '@ohos.security.cert';
+import { cert } from '@kit.DeviceCertificateKit';
 
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -1444,13 +1621,13 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
   'Qw==\n' +
   '-----END CERTIFICATE-----\n';
 
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
   // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509Cert(encodingBlob, (error, x509Cert) => {
+cert.createX509Cert(encodingBlob, (error, x509Cert) => {
   if (error != null) {
     console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
@@ -1470,6 +1647,8 @@ certFramework.createX509Cert(encodingBlob, (error, x509Cert) => {
 getSignatureAlgOid() : string
 
 表示获取X509证书签名算法的对象标志符OID(Object Identifier)。OID是由国际标准组织(ISO)的名称注册机构分配。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -1492,8 +1671,8 @@ getSignatureAlgOid() : string
 **示例：**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -1515,13 +1694,13 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
   'Qw==\n' +
   '-----END CERTIFICATE-----\n';
 
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
   // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509Cert(encodingBlob, (error, x509Cert) => {
+cert.createX509Cert(encodingBlob, (error, x509Cert) => {
   if (error != null) {
     console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
@@ -1542,6 +1721,8 @@ getSignatureAlgParams() : DataBlob
 
 表示获取X509证书签名算法参数。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.Cert
 
 **返回值**：
@@ -1556,6 +1737,7 @@ getSignatureAlgParams() : DataBlob
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
+| 801 | this operation is not supported. |
 | 19020001 | memory error.                                     |
 | 19020002 | runtime error.                                    |
 | 19030001 | crypto operation error.|
@@ -1563,8 +1745,8 @@ getSignatureAlgParams() : DataBlob
 **示例：**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -1586,13 +1768,13 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
   'Qw==\n' +
   '-----END CERTIFICATE-----\n';
 
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
   // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509Cert(encodingBlob, (error, x509Cert) => {
+cert.createX509Cert(encodingBlob, (error, x509Cert) => {
   if (error != null) {
     console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
@@ -1612,6 +1794,8 @@ certFramework.createX509Cert(encodingBlob, (error, x509Cert) => {
 getKeyUsage() : DataBlob
 
 表示获取X509证书秘钥用途。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -1633,8 +1817,8 @@ getKeyUsage() : DataBlob
 **示例：**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -1656,13 +1840,13 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
   'Qw==\n' +
   '-----END CERTIFICATE-----\n';
 
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
   // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509Cert(encodingBlob, (error, x509Cert) => {
+cert.createX509Cert(encodingBlob, (error, x509Cert) => {
   if (error != null) {
     console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
@@ -1682,6 +1866,8 @@ certFramework.createX509Cert(encodingBlob, (error, x509Cert) => {
 getExtKeyUsage() : DataArray
 
 表示获取X509证书扩展秘钥用途。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -1704,8 +1890,8 @@ getExtKeyUsage() : DataArray
 **示例：**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -1727,13 +1913,13 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
   'Qw==\n' +
   '-----END CERTIFICATE-----\n';
 
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
   // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509Cert(encodingBlob, (error, x509Cert) => {
+cert.createX509Cert(encodingBlob, (error, x509Cert) => {
   if (error != null) {
     console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
@@ -1754,6 +1940,8 @@ getBasicConstraints() : number
 
 表示获取X509证书基本约束。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.Cert
 
 **返回值**：
@@ -1765,7 +1953,7 @@ getBasicConstraints() : number
 **示例：**
 
 ```ts
-import certFramework from '@ohos.security.cert';
+import { cert } from '@kit.DeviceCertificateKit';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -1787,13 +1975,13 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
   'Qw==\n' +
   '-----END CERTIFICATE-----\n';
 
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
   // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509Cert(encodingBlob, (error, x509Cert) => {
+cert.createX509Cert(encodingBlob, (error, x509Cert) => {
   if (error != null) {
     console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
@@ -1808,6 +1996,8 @@ certFramework.createX509Cert(encodingBlob, (error, x509Cert) => {
 getSubjectAltNames() : DataArray
 
 表示获取X509证书主体可选名称。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -1830,8 +2020,8 @@ getSubjectAltNames() : DataArray
 **示例：**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -1853,13 +2043,13 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
   'Qw==\n' +
   '-----END CERTIFICATE-----\n';
 
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
   // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509Cert(encodingBlob, (error, x509Cert) => {
+cert.createX509Cert(encodingBlob, (error, x509Cert) => {
   if (error != null) {
     console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
@@ -1879,6 +2069,8 @@ certFramework.createX509Cert(encodingBlob, (error, x509Cert) => {
 getIssuerAltNames() : DataArray
 
 表示获取X509证书颁发者可选名称。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -1901,8 +2093,8 @@ getIssuerAltNames() : DataArray
 **示例：**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -1924,13 +2116,13 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
   'Qw==\n' +
   '-----END CERTIFICATE-----\n';
 
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
   // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509Cert(encodingBlob, (error, x509Cert) => {
+cert.createX509Cert(encodingBlob, (error, x509Cert) => {
   if (error != null) {
     console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
@@ -1951,6 +2143,8 @@ getItem(itemType: CertItemType) : DataBlob
 
 表示获取X509证书对应的字段。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.Cert
 
 **返回值**：
@@ -1965,6 +2159,7 @@ getItem(itemType: CertItemType) : DataBlob
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19020001 | memory error.           |
 | 19020002 | runtime error.          |
 | 19030001 | crypto operation error. |
@@ -1972,8 +2167,8 @@ getItem(itemType: CertItemType) : DataBlob
 **示例：**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -1995,20 +2190,20 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
   'Qw==\n' +
   '-----END CERTIFICATE-----\n';
 
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
   // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509Cert(encodingBlob, (error, x509Cert) => {
+cert.createX509Cert(encodingBlob, (error, x509Cert) => {
   if (error != null) {
     console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Cert success');
     try {
-      let tbs = x509Cert.getItem(certFramework.CertItemType.CERT_ITEM_TYPE_TBS);
-      let pubKey = x509Cert.getItem(certFramework.CertItemType.CERT_ITEM_TYPE_PUBLIC_KEY);
+      let tbs = x509Cert.getItem(cert.CertItemType.CERT_ITEM_TYPE_TBS);
+      let pubKey = x509Cert.getItem(cert.CertItemType.CERT_ITEM_TYPE_PUBLIC_KEY);
     } catch (err) {
       let e: BusinessError = err as BusinessError;
       console.error('getItem failed, errCode: ' + e.code + ', errMsg: ' + e.message);
@@ -2021,6 +2216,8 @@ certFramework.createX509Cert(encodingBlob, (error, x509Cert) => {
 match(param: X509CertMatchParameters): boolean
 
 判断证书是否与输入参数匹配。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -2042,14 +2239,15 @@ match(param: X509CertMatchParameters): boolean
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19020001 | memory error. |
 | 19030001 | crypto operation error. |
 
 **示例：**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -2060,7 +2258,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-async function createX509Cert(): Promise<certFramework.X509Cert> {
+async function createX509Cert(): Promise<cert.X509Cert> {
   let certData = '-----BEGIN CERTIFICATE-----\n' +
     'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
     'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
@@ -2071,15 +2269,15 @@ async function createX509Cert(): Promise<certFramework.X509Cert> {
     'Qw==\n' +
     '-----END CERTIFICATE-----\n';
 
-  let encodingBlob: certFramework.EncodingBlob = {
+  let encodingBlob: cert.EncodingBlob = {
     data: stringToUint8Array(certData),
     // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-    encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+    encodingFormat: cert.EncodingFormat.FORMAT_PEM
   };
 
-  let x509Cert: certFramework.X509Cert = {} as certFramework.X509Cert;
+  let x509Cert: cert.X509Cert = {} as cert.X509Cert;
   try {
-    x509Cert = await certFramework.createX509Cert(encodingBlob);
+    x509Cert = await cert.createX509Cert(encodingBlob);
   } catch (err) {
     let e: BusinessError = err as BusinessError;
     console.error('createX509Cert failed, errCode: ' + e.code + ', errMsg: ' + e.message);
@@ -2091,7 +2289,7 @@ async function matchX509Cert() {
   const x509Cert = await createX509Cert();
   try {
     // 需业务自行赋值
-    const param: certFramework.X509CertMatchParameters = {
+    const param: cert.X509CertMatchParameters = {
       x509Cert,
       validDate: '20231121074700Z',
       issuer: new Uint8Array([0x30, 0x64, 0x31]), // 数据需要业务自行赋值
@@ -2110,11 +2308,514 @@ async function matchX509Cert() {
   }
 }
 ```
-## cryptoCert.createCertExtension<sup>10+</sup>
+
+### getCRLDistributionPoint<sup>12+</sup>
+
+getCRLDistributionPoint(): DataArray
+
+获取X509证书CRL的分发点统一资源标识符。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Security.Cert
+
+**返回值**：
+
+| 类型                    | 说明                       |
+| ----------------------- | -------------------------- |
+| [DataArray](#dataarray) | 表示X509证书CRL的分发点统一资源标识符 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[证书错误码](errorcode-cert.md)。
+
+| 错误码ID | 错误信息      |
+| -------- | ------------- |
+| 19020001 | memory error. |
+| 19020002 | runtime error. |
+| 19030001 | crypto operation error. |
+
+**示例：**
+
+```ts
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+let certData = "-----BEGIN CERTIFICATE-----\n" +
+  "MIIB/jCCAaSgAwIBAgICA+gwCgYIKoZIzj0EAwIwLDELMAkGA1UEBhMCQ04xDTAL\n" +
+  "BgNVBAoMBHRlc3QxDjAMBgNVBAMMBXN1YmNhMB4XDTIzMTAwNzA0MDEwOFoXDTMz\n" +
+  "MTAwNDA0MDEwOFowLDELMAkGA1UEBhMCQ04xDTALBgNVBAoMBHRlc3QxDjAMBgNV\n" +
+  "BAMMBWxvY2FsMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEZDPvdlJI6Yv4fiaR\n" +
+  "nQHcusXVbukk90mQ0rBGOYRikFvgvm5cjTdaUGcQKEtwYIKDQl5n6Pf7ElCJ7GRz\n" +
+  "raWZ+qOBtTCBsjAJBgNVHRMEAjAAMCwGCWCGSAGG+EIBDQQfFh1PcGVuU1NMIEdl\n" +
+  "bmVyYXRlZCBDZXJ0aWZpY2F0ZTAdBgNVHQ4EFgQU63Gbl8gIsUn0VyZ4rya3PCjm\n" +
+  "sfEwHwYDVR0jBBgwFoAU77mynM0rz1SD43DQjleWM7bF+MEwNwYDVR0fBDAwLjAs\n" +
+  "oCqgKIYmaHR0cDovL3Rlc3QudGVzdENSTGRwLmNvbS9DUkxfRFBfMS5jcmwwCgYI\n" +
+  "KoZIzj0EAwIDSAAwRQIhAISKHH9u221mBgdDWfll3loLvEHJ3or9NUO5Zn6SrX6L\n" +
+  "AiAtRlOa6/mTD68faQTdhsAaQP955QfW34B4yFqU2Bq72A==\n" +
+  "-----END CERTIFICATE-----\n";
+
+  // 证书二进制数据，需业务自行赋值
+let encodingBlob: certFramework.EncodingBlob = {
+  data: stringToUint8Array(certData),
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+};
+
+async function certGetCRLDistributionPoint() {
+  let x509Cert: cert.X509Cert = {} as cert.X509Cert;
+  try {
+    x509Cert = await cert.createX509Cert(encodingBlob);
+    console.log('createX509Cert success');
+    let point = x509Cert.getCRLDistributionPoint();
+  } catch (err) {
+    let e: BusinessError = err as BusinessError;
+    console.error('createX509Cert failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+  }
+}
+```
+
+### getIssuerX500DistinguishedName<sup>12+</sup>
+
+getIssuerX500DistinguishedName(): X500DistinguishedName
+
+获取颁发者的X509可分辨名称。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Security.Cert
+
+**返回值**：
+
+| 类型                  | 说明                                      |
+| --------------------- | ----------------------------------------- |
+| [X500DistinguishedName](#x500distinguishedname12) | X509的可分辨对象。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[证书错误码](errorcode-cert.md)。
+
+| 错误码ID | 错误信息      |
+| -------- | ------------- |
+| 19020001 | memory error. |
+| 19020002 | runtime error. |
+| 19030001 | crypto operation error. |
+
+**示例：**
+
+```ts
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+let certData = "-----BEGIN CERTIFICATE-----\n" +
+    "MIID1TCCAr2gAwIBAgIITXr1++kFUU4wDQYJKoZIhvcNAQELBQAwcDELMAkGA1UE\n" +
+    "BhMCQ04xEjAQBgNVBAgTCWd1YW5nZG9uZzERMA8GA1UEBxMIc2hlbnpoZW4xEjAQ\n" +
+    "BgNVBAoTCXRlc3RTZWNDYTESMBAGA1UECxMJdGVzdFNlY0NhMRIwEAYDVQQDEwl0\n" +
+    "ZXN0U2VjQ2EwHhcNMjMxMjIxMDAwMDAwWhcNMjcxMjIwMjM1OTU5WjBxMQswCQYD\n" +
+    "VQQGEwJDTjEOMAwGA1UECBMFZ2Fuc3UxEDAOBgNVBAcTB2xhbnpob3UxFDASBgNV\n" +
+    "BAoTC3Rlc3RUaGlyZENhMRQwEgYDVQQLEwt0ZXN0VGhpcmRDYTEUMBIGA1UEAxML\n" +
+    "dGVzdFRoaXJkQ2EwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDJMKSq\n" +
+    "Fn4G4EJATauw+4s+n/JbINBAiuhzURzzdt2T8JJQLDV9RHj4mZt84yv6lqEpl2fm\n" +
+    "gIClfu173pEV51/PSq5IaV481u/Dz/OTy9TwfxmIXAWdNpyodDOg4I9K7LC01ge8\n" +
+    "xxyKFi7k7m2eTGA4dYQM0E0AEXzCpg2JN3IIIPhzHCIVJmYjcbVxiaFkvT4ZFFUk\n" +
+    "4rDSbAQdn6dJ29msrFm8iGhMGC/bzq9Bii38Qg4y4o89QYiboRWCxv3XfuibT+jw\n" +
+    "O3pmfsFuT8/bKOWVm94FmRxiKuj6iE8UVewxtByzDgAsBtJKDjaCv3IkqfbIu+sq\n" +
+    "/eeJkVJRJXAP3ZpLAgMBAAGjcjBwMA8GA1UdEwEB/wQFMAMBAf8wHQYDVR0OBBYE\n" +
+    "FIxvPSwEmjOMW10H+gn2gy5HvMmMMAsGA1UdDwQEAwIBBjARBglghkgBhvhCAQEE\n" +
+    "BAMCAAcwHgYJYIZIAYb4QgENBBEWD3hjYSBjZXJ0aWZpY2F0ZTANBgkqhkiG9w0B\n" +
+    "AQsFAAOCAQEAWu0u72g5y1weexPoJQnUgcwVtuC+/tTS9YvyCtKYE91gn97LSWn9\n" +
+    "mXXGmLceU27B8JwhER9JeiQO1SUdDcvlfb5vt6eB+5cbZcgeERUBP8t0znh7DbMg\n" +
+    "4TFjt9gZ970PZ1OlTBNPoZNRBKIox61KVUhiVKTVSbXlVP1yUF1uSlSq+0NYayHw\n" +
+    "MnX1BeLxbAcAsTPYHjoeFJIrGkKlydLyt/8hDQzpLRW5uEUTjjqLh7vef0OaOP80\n" +
+    "MmADt6ojRYvwdMDHF0ASJyupLQ+hiRLVadciK8Z5W34JGN2jwEw5X3nXyAgErIJZ\n" +
+    "pqdTflnFLnSwy5M3QHB+xjYAcS9l1br2LA==\n" +
+    "-----END CERTIFICATE-----\n"
+
+  // 证书二进制数据，需业务自行赋值
+  let encodingBlob: cert.EncodingBlob = {
+    data: stringToUint8Array(certData),
+    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+    encodingFormat: cert.EncodingFormat.FORMAT_PEM
+  };
+
+async function certGetIssuerX500DistinguishedName() {
+  let x509Cert: cert.X509Cert = {} as cert.X509Cert;
+  try {
+    x509Cert = await cert.createX509Cert(encodingBlob);
+    console.log('createX509Cert success');
+    let name = x509Cert.getIssuerX500DistinguishedName();
+  } catch (err) {
+    let e: BusinessError = err as BusinessError;
+    console.error('createX509Cert failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+  }
+}
+```
+
+### getSubjectX500DistinguishedName<sup>12+</sup>
+
+getSubjectX500DistinguishedName(): X500DistinguishedName
+
+获取证书主题的X509可分辨名称。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Security.Cert
+
+**返回值**：
+
+| 类型                  | 说明                                      |
+| --------------------- | ----------------------------------------- |
+| [X500DistinguishedName](#x500distinguishedname12) | X509的可分辨对象。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[证书错误码](errorcode-cert.md)。
+
+| 错误码ID | 错误信息      |
+| -------- | ------------- |
+| 19020001 | memory error. |
+| 19020002 | runtime error. |
+| 19030001 | crypto operation error. |
+
+**示例：**
+
+```ts
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+let certData = "-----BEGIN CERTIFICATE-----\n" +
+    "MIID1TCCAr2gAwIBAgIITXr1++kFUU4wDQYJKoZIhvcNAQELBQAwcDELMAkGA1UE\n" +
+    "BhMCQ04xEjAQBgNVBAgTCWd1YW5nZG9uZzERMA8GA1UEBxMIc2hlbnpoZW4xEjAQ\n" +
+    "BgNVBAoTCXRlc3RTZWNDYTESMBAGA1UECxMJdGVzdFNlY0NhMRIwEAYDVQQDEwl0\n" +
+    "ZXN0U2VjQ2EwHhcNMjMxMjIxMDAwMDAwWhcNMjcxMjIwMjM1OTU5WjBxMQswCQYD\n" +
+    "VQQGEwJDTjEOMAwGA1UECBMFZ2Fuc3UxEDAOBgNVBAcTB2xhbnpob3UxFDASBgNV\n" +
+    "BAoTC3Rlc3RUaGlyZENhMRQwEgYDVQQLEwt0ZXN0VGhpcmRDYTEUMBIGA1UEAxML\n" +
+    "dGVzdFRoaXJkQ2EwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDJMKSq\n" +
+    "Fn4G4EJATauw+4s+n/JbINBAiuhzURzzdt2T8JJQLDV9RHj4mZt84yv6lqEpl2fm\n" +
+    "gIClfu173pEV51/PSq5IaV481u/Dz/OTy9TwfxmIXAWdNpyodDOg4I9K7LC01ge8\n" +
+    "xxyKFi7k7m2eTGA4dYQM0E0AEXzCpg2JN3IIIPhzHCIVJmYjcbVxiaFkvT4ZFFUk\n" +
+    "4rDSbAQdn6dJ29msrFm8iGhMGC/bzq9Bii38Qg4y4o89QYiboRWCxv3XfuibT+jw\n" +
+    "O3pmfsFuT8/bKOWVm94FmRxiKuj6iE8UVewxtByzDgAsBtJKDjaCv3IkqfbIu+sq\n" +
+    "/eeJkVJRJXAP3ZpLAgMBAAGjcjBwMA8GA1UdEwEB/wQFMAMBAf8wHQYDVR0OBBYE\n" +
+    "FIxvPSwEmjOMW10H+gn2gy5HvMmMMAsGA1UdDwQEAwIBBjARBglghkgBhvhCAQEE\n" +
+    "BAMCAAcwHgYJYIZIAYb4QgENBBEWD3hjYSBjZXJ0aWZpY2F0ZTANBgkqhkiG9w0B\n" +
+    "AQsFAAOCAQEAWu0u72g5y1weexPoJQnUgcwVtuC+/tTS9YvyCtKYE91gn97LSWn9\n" +
+    "mXXGmLceU27B8JwhER9JeiQO1SUdDcvlfb5vt6eB+5cbZcgeERUBP8t0znh7DbMg\n" +
+    "4TFjt9gZ970PZ1OlTBNPoZNRBKIox61KVUhiVKTVSbXlVP1yUF1uSlSq+0NYayHw\n" +
+    "MnX1BeLxbAcAsTPYHjoeFJIrGkKlydLyt/8hDQzpLRW5uEUTjjqLh7vef0OaOP80\n" +
+    "MmADt6ojRYvwdMDHF0ASJyupLQ+hiRLVadciK8Z5W34JGN2jwEw5X3nXyAgErIJZ\n" +
+    "pqdTflnFLnSwy5M3QHB+xjYAcS9l1br2LA==\n" +
+    "-----END CERTIFICATE-----\n"
+
+  // 证书二进制数据，需业务自行赋值
+  let encodingBlob: cert.EncodingBlob = {
+    data: stringToUint8Array(certData),
+    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+    encodingFormat: cert.EncodingFormat.FORMAT_PEM
+  };
+
+async function certGetSubjectX500DistinguishedName() {
+  let x509Cert: cert.X509Cert = {} as cert.X509Cert;
+  try {
+    x509Cert = await cert.createX509Cert(encodingBlob);
+    console.log('createX509Cert success');
+    let name = x509Cert.getSubjectX500DistinguishedName();
+  } catch (err) {
+    let e: BusinessError = err as BusinessError;
+    console.error('createX509Cert failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+  }
+}
+```
+
+### toString<sup>12+</sup>
+
+toString(): string
+
+获取对象的字符串类型数据。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Security.Cert
+
+**返回值**：
+
+| 类型                  | 说明                                      |
+| --------------------- | ----------------------------------------- |
+| string | 对象的字符串类型数据。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[证书错误码](errorcode-cert.md)。
+
+| 错误码ID | 错误信息      |
+| -------- | ------------- |
+| 19020001 | memory error. |
+| 19020002 | runtime error. |
+| 19030001 | crypto operation error. |
+
+**示例：**
+
+```ts
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+let certData = "-----BEGIN CERTIFICATE-----\n" +
+    "MIID1TCCAr2gAwIBAgIITXr1++kFUU4wDQYJKoZIhvcNAQELBQAwcDELMAkGA1UE\n" +
+    "BhMCQ04xEjAQBgNVBAgTCWd1YW5nZG9uZzERMA8GA1UEBxMIc2hlbnpoZW4xEjAQ\n" +
+    "BgNVBAoTCXRlc3RTZWNDYTESMBAGA1UECxMJdGVzdFNlY0NhMRIwEAYDVQQDEwl0\n" +
+    "ZXN0U2VjQ2EwHhcNMjMxMjIxMDAwMDAwWhcNMjcxMjIwMjM1OTU5WjBxMQswCQYD\n" +
+    "VQQGEwJDTjEOMAwGA1UECBMFZ2Fuc3UxEDAOBgNVBAcTB2xhbnpob3UxFDASBgNV\n" +
+    "BAoTC3Rlc3RUaGlyZENhMRQwEgYDVQQLEwt0ZXN0VGhpcmRDYTEUMBIGA1UEAxML\n" +
+    "dGVzdFRoaXJkQ2EwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDJMKSq\n" +
+    "Fn4G4EJATauw+4s+n/JbINBAiuhzURzzdt2T8JJQLDV9RHj4mZt84yv6lqEpl2fm\n" +
+    "gIClfu173pEV51/PSq5IaV481u/Dz/OTy9TwfxmIXAWdNpyodDOg4I9K7LC01ge8\n" +
+    "xxyKFi7k7m2eTGA4dYQM0E0AEXzCpg2JN3IIIPhzHCIVJmYjcbVxiaFkvT4ZFFUk\n" +
+    "4rDSbAQdn6dJ29msrFm8iGhMGC/bzq9Bii38Qg4y4o89QYiboRWCxv3XfuibT+jw\n" +
+    "O3pmfsFuT8/bKOWVm94FmRxiKuj6iE8UVewxtByzDgAsBtJKDjaCv3IkqfbIu+sq\n" +
+    "/eeJkVJRJXAP3ZpLAgMBAAGjcjBwMA8GA1UdEwEB/wQFMAMBAf8wHQYDVR0OBBYE\n" +
+    "FIxvPSwEmjOMW10H+gn2gy5HvMmMMAsGA1UdDwQEAwIBBjARBglghkgBhvhCAQEE\n" +
+    "BAMCAAcwHgYJYIZIAYb4QgENBBEWD3hjYSBjZXJ0aWZpY2F0ZTANBgkqhkiG9w0B\n" +
+    "AQsFAAOCAQEAWu0u72g5y1weexPoJQnUgcwVtuC+/tTS9YvyCtKYE91gn97LSWn9\n" +
+    "mXXGmLceU27B8JwhER9JeiQO1SUdDcvlfb5vt6eB+5cbZcgeERUBP8t0znh7DbMg\n" +
+    "4TFjt9gZ970PZ1OlTBNPoZNRBKIox61KVUhiVKTVSbXlVP1yUF1uSlSq+0NYayHw\n" +
+    "MnX1BeLxbAcAsTPYHjoeFJIrGkKlydLyt/8hDQzpLRW5uEUTjjqLh7vef0OaOP80\n" +
+    "MmADt6ojRYvwdMDHF0ASJyupLQ+hiRLVadciK8Z5W34JGN2jwEw5X3nXyAgErIJZ\n" +
+    "pqdTflnFLnSwy5M3QHB+xjYAcS9l1br2LA==\n" +
+    "-----END CERTIFICATE-----\n"
+
+  // 证书二进制数据，需业务自行赋值
+  let encodingBlob: cert.EncodingBlob = {
+    data: stringToUint8Array(certData),
+    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+    encodingFormat: cert.EncodingFormat.FORMAT_PEM
+  };
+
+async function certToString() {
+  let x509Cert: cert.X509Cert = {} as cert.X509Cert;
+  try {
+    x509Cert = await cert.createX509Cert(encodingBlob);
+    console.log('createX509Cert success');
+    console.info('certToString success: ' + JSON.stringify(x509Cert.toString()));
+  } catch (err) {
+    let e: BusinessError = err as BusinessError;
+    console.error('createX509Cert failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+  }
+}
+```
+
+### hashCode<sup>12+</sup>
+
+hashCode(): Uint8Array
+
+获取DER格式数据的哈希值。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Security.Cert
+
+**返回值**：
+
+| 类型                  | 说明                                      |
+| --------------------- | ----------------------------------------- |
+| Uint8Array | DER格式数据的哈希值。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[证书错误码](errorcode-cert.md)。
+
+| 错误码ID | 错误信息      |
+| -------- | ------------- |
+| 19020001 | memory error. |
+| 19020002 | runtime error. |
+| 19030001 | crypto operation error. |
+
+**示例：**
+
+```ts
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+let certData = "-----BEGIN CERTIFICATE-----\n" +
+    "MIID1TCCAr2gAwIBAgIITXr1++kFUU4wDQYJKoZIhvcNAQELBQAwcDELMAkGA1UE\n" +
+    "BhMCQ04xEjAQBgNVBAgTCWd1YW5nZG9uZzERMA8GA1UEBxMIc2hlbnpoZW4xEjAQ\n" +
+    "BgNVBAoTCXRlc3RTZWNDYTESMBAGA1UECxMJdGVzdFNlY0NhMRIwEAYDVQQDEwl0\n" +
+    "ZXN0U2VjQ2EwHhcNMjMxMjIxMDAwMDAwWhcNMjcxMjIwMjM1OTU5WjBxMQswCQYD\n" +
+    "VQQGEwJDTjEOMAwGA1UECBMFZ2Fuc3UxEDAOBgNVBAcTB2xhbnpob3UxFDASBgNV\n" +
+    "BAoTC3Rlc3RUaGlyZENhMRQwEgYDVQQLEwt0ZXN0VGhpcmRDYTEUMBIGA1UEAxML\n" +
+    "dGVzdFRoaXJkQ2EwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDJMKSq\n" +
+    "Fn4G4EJATauw+4s+n/JbINBAiuhzURzzdt2T8JJQLDV9RHj4mZt84yv6lqEpl2fm\n" +
+    "gIClfu173pEV51/PSq5IaV481u/Dz/OTy9TwfxmIXAWdNpyodDOg4I9K7LC01ge8\n" +
+    "xxyKFi7k7m2eTGA4dYQM0E0AEXzCpg2JN3IIIPhzHCIVJmYjcbVxiaFkvT4ZFFUk\n" +
+    "4rDSbAQdn6dJ29msrFm8iGhMGC/bzq9Bii38Qg4y4o89QYiboRWCxv3XfuibT+jw\n" +
+    "O3pmfsFuT8/bKOWVm94FmRxiKuj6iE8UVewxtByzDgAsBtJKDjaCv3IkqfbIu+sq\n" +
+    "/eeJkVJRJXAP3ZpLAgMBAAGjcjBwMA8GA1UdEwEB/wQFMAMBAf8wHQYDVR0OBBYE\n" +
+    "FIxvPSwEmjOMW10H+gn2gy5HvMmMMAsGA1UdDwQEAwIBBjARBglghkgBhvhCAQEE\n" +
+    "BAMCAAcwHgYJYIZIAYb4QgENBBEWD3hjYSBjZXJ0aWZpY2F0ZTANBgkqhkiG9w0B\n" +
+    "AQsFAAOCAQEAWu0u72g5y1weexPoJQnUgcwVtuC+/tTS9YvyCtKYE91gn97LSWn9\n" +
+    "mXXGmLceU27B8JwhER9JeiQO1SUdDcvlfb5vt6eB+5cbZcgeERUBP8t0znh7DbMg\n" +
+    "4TFjt9gZ970PZ1OlTBNPoZNRBKIox61KVUhiVKTVSbXlVP1yUF1uSlSq+0NYayHw\n" +
+    "MnX1BeLxbAcAsTPYHjoeFJIrGkKlydLyt/8hDQzpLRW5uEUTjjqLh7vef0OaOP80\n" +
+    "MmADt6ojRYvwdMDHF0ASJyupLQ+hiRLVadciK8Z5W34JGN2jwEw5X3nXyAgErIJZ\n" +
+    "pqdTflnFLnSwy5M3QHB+xjYAcS9l1br2LA==\n" +
+    "-----END CERTIFICATE-----\n"
+
+  // 证书二进制数据，需业务自行赋值
+  let encodingBlob: cert.EncodingBlob = {
+    data: stringToUint8Array(certData),
+    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+    encodingFormat: cert.EncodingFormat.FORMAT_PEM
+  };
+
+async function certHashCode() {
+  let x509Cert: cert.X509Cert = {} as cert.X509Cert;
+  try {
+    x509Cert = await cert.createX509Cert(encodingBlob);
+    console.log('createX509Cert success');
+    console.info('certHashCode success: ' + JSON.stringify(x509Cert.hashCode()));
+  } catch (err) {
+    let e: BusinessError = err as BusinessError;
+    console.error('createX509Cert failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+  }
+}
+```
+
+### getExtensionsObject<sup>12+</sup>
+
+getExtensionsObject(): CertExtension
+
+获取对应实体的扩展域DER格式数据。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Security.Cert
+
+**返回值**：
+
+| 类型                  | 说明                                      |
+| --------------------- | ----------------------------------------- |
+| [CertExtension](#certextension10) | 证书扩展域段类对象。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[证书错误码](errorcode-cert.md)。
+
+| 错误码ID | 错误信息      |
+| -------- | ------------- |
+| 19020001 | memory error. |
+| 19020002 | runtime error. |
+| 19030001 | crypto operation error. |
+
+**示例：**
+
+```ts
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+let certData = "-----BEGIN CERTIFICATE-----\n" +
+    "MIID1TCCAr2gAwIBAgIITXr1++kFUU4wDQYJKoZIhvcNAQELBQAwcDELMAkGA1UE\n" +
+    "BhMCQ04xEjAQBgNVBAgTCWd1YW5nZG9uZzERMA8GA1UEBxMIc2hlbnpoZW4xEjAQ\n" +
+    "BgNVBAoTCXRlc3RTZWNDYTESMBAGA1UECxMJdGVzdFNlY0NhMRIwEAYDVQQDEwl0\n" +
+    "ZXN0U2VjQ2EwHhcNMjMxMjIxMDAwMDAwWhcNMjcxMjIwMjM1OTU5WjBxMQswCQYD\n" +
+    "VQQGEwJDTjEOMAwGA1UECBMFZ2Fuc3UxEDAOBgNVBAcTB2xhbnpob3UxFDASBgNV\n" +
+    "BAoTC3Rlc3RUaGlyZENhMRQwEgYDVQQLEwt0ZXN0VGhpcmRDYTEUMBIGA1UEAxML\n" +
+    "dGVzdFRoaXJkQ2EwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDJMKSq\n" +
+    "Fn4G4EJATauw+4s+n/JbINBAiuhzURzzdt2T8JJQLDV9RHj4mZt84yv6lqEpl2fm\n" +
+    "gIClfu173pEV51/PSq5IaV481u/Dz/OTy9TwfxmIXAWdNpyodDOg4I9K7LC01ge8\n" +
+    "xxyKFi7k7m2eTGA4dYQM0E0AEXzCpg2JN3IIIPhzHCIVJmYjcbVxiaFkvT4ZFFUk\n" +
+    "4rDSbAQdn6dJ29msrFm8iGhMGC/bzq9Bii38Qg4y4o89QYiboRWCxv3XfuibT+jw\n" +
+    "O3pmfsFuT8/bKOWVm94FmRxiKuj6iE8UVewxtByzDgAsBtJKDjaCv3IkqfbIu+sq\n" +
+    "/eeJkVJRJXAP3ZpLAgMBAAGjcjBwMA8GA1UdEwEB/wQFMAMBAf8wHQYDVR0OBBYE\n" +
+    "FIxvPSwEmjOMW10H+gn2gy5HvMmMMAsGA1UdDwQEAwIBBjARBglghkgBhvhCAQEE\n" +
+    "BAMCAAcwHgYJYIZIAYb4QgENBBEWD3hjYSBjZXJ0aWZpY2F0ZTANBgkqhkiG9w0B\n" +
+    "AQsFAAOCAQEAWu0u72g5y1weexPoJQnUgcwVtuC+/tTS9YvyCtKYE91gn97LSWn9\n" +
+    "mXXGmLceU27B8JwhER9JeiQO1SUdDcvlfb5vt6eB+5cbZcgeERUBP8t0znh7DbMg\n" +
+    "4TFjt9gZ970PZ1OlTBNPoZNRBKIox61KVUhiVKTVSbXlVP1yUF1uSlSq+0NYayHw\n" +
+    "MnX1BeLxbAcAsTPYHjoeFJIrGkKlydLyt/8hDQzpLRW5uEUTjjqLh7vef0OaOP80\n" +
+    "MmADt6ojRYvwdMDHF0ASJyupLQ+hiRLVadciK8Z5W34JGN2jwEw5X3nXyAgErIJZ\n" +
+    "pqdTflnFLnSwy5M3QHB+xjYAcS9l1br2LA==\n" +
+    "-----END CERTIFICATE-----\n"
+
+  // 证书二进制数据，需业务自行赋值
+  let encodingBlob: cert.EncodingBlob = {
+    data: stringToUint8Array(certData),
+    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+    encodingFormat: cert.EncodingFormat.FORMAT_PEM
+  };
+
+async function certGetExtensionsObject() {
+  let x509Cert: cert.X509Cert = {} as cert.X509Cert;
+  try {
+    x509Cert = await cert.createX509Cert(encodingBlob);
+    console.log('createX509Cert success');
+    let object = x509Cert.getExtensionsObject();
+  } catch (err) {
+    let e: BusinessError = err as BusinessError;
+    console.error('createX509Cert failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+  }
+}
+```
+
+## cert.createCertExtension<sup>10+</sup>
 
 createCertExtension(inStream : EncodingBlob, callback : AsyncCallback\<CertExtension>) : void
 
 表示创建证书扩展域段的对象，使用Callback回调异步返回结果。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -2131,12 +2832,14 @@ createCertExtension(inStream : EncodingBlob, callback : AsyncCallback\<CertExten
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 801 | this operation is not supported. |
 | 19020001 | memory error. |
 
 **示例：**
 
 ```ts
-import certFramework from '@ohos.security.cert';
+import { cert } from '@kit.DeviceCertificateKit';
 
 // 证书扩展域段二进制数据，需业务自行赋值
 let extData = new Uint8Array([
@@ -2151,13 +2854,13 @@ let extData = new Uint8Array([
   0xD9, 0xE4
 ]);
 
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: extData,
   // 根据encodingData的格式进行赋值，仅支持FORMAT_DER
-  encodingFormat: certFramework.EncodingFormat.FORMAT_DER
+  encodingFormat: cert.EncodingFormat.FORMAT_DER
 };
 
-certFramework.createCertExtension(encodingBlob, (error, certExt) => {
+cert.createCertExtension(encodingBlob, (error, certExt) => {
   if (error != null) {
     console.error('createCertExtension failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
@@ -2166,11 +2869,13 @@ certFramework.createCertExtension(encodingBlob, (error, certExt) => {
 });
 ```
 
-## cryptoCert.createCertExtension<sup>10+</sup>
+## cert.createCertExtension<sup>10+</sup>
 
 createCertExtension(inStream : EncodingBlob) : Promise\<CertExtension>
 
 表示创建证书扩展域段的对象，使用Promise方式异步返回结果。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -2192,13 +2897,15 @@ createCertExtension(inStream : EncodingBlob) : Promise\<CertExtension>
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 801 | this operation is not supported. |
 | 19020001 | memory error. |
 
 **示例：**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // 证书扩展域段二进制数据，需业务自行赋值
 let extData = new Uint8Array([
@@ -2213,13 +2920,13 @@ let extData = new Uint8Array([
   0xD9, 0xE4
 ]);
 
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: extData,
   // 根据encodingData的格式进行赋值，仅支持FORMAT_DER
-  encodingFormat: certFramework.EncodingFormat.FORMAT_DER
+  encodingFormat: cert.EncodingFormat.FORMAT_DER
 };
 
-certFramework.createCertExtension(encodingBlob).then(certExt => {
+cert.createCertExtension(encodingBlob).then(certExt => {
   console.log('createCertExtension success');
 }).catch((error: BusinessError) => {
   console.error('createCertExtension failed, errCode: ' + error.code + ', errMsg: ' + error.message);
@@ -2235,6 +2942,8 @@ certFramework.createCertExtension(encodingBlob).then(certExt => {
 getEncoded() : EncodingBlob
 
 表示获取证书扩展域段序列化数据。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -2257,8 +2966,8 @@ getEncoded() : EncodingBlob
 **示例：**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // 证书扩展域段二进制数据，需业务自行赋值
 let extData = new Uint8Array([
@@ -2273,13 +2982,13 @@ let extData = new Uint8Array([
   0xD9, 0xE4
 ]);
 
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: extData,
   // 根据encodingData的格式进行赋值，仅支持FORMAT_DER
-  encodingFormat: certFramework.EncodingFormat.FORMAT_DER
+  encodingFormat: cert.EncodingFormat.FORMAT_DER
 };
 
-certFramework.createCertExtension(encodingBlob, (error, certExt) => {
+cert.createCertExtension(encodingBlob, (error, certExt) => {
   if (error != null) {
     console.error('createCertExtension failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
@@ -2299,6 +3008,8 @@ certFramework.createCertExtension(encodingBlob, (error, certExt) => {
 getOidList(valueType : ExtensionOidType) : DataArray
 
 表示获取证书扩展域段对象标识符列表。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -2320,6 +3031,7 @@ getOidList(valueType : ExtensionOidType) : DataArray
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19020001 | memory error.           |
 | 19020002 | runtime error.          |
 | 19030001 | crypto operation error. |
@@ -2327,8 +3039,8 @@ getOidList(valueType : ExtensionOidType) : DataArray
 **示例：**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // 证书扩展域段二进制数据，需业务自行赋值
 let extData = new Uint8Array([
@@ -2343,19 +3055,19 @@ let extData = new Uint8Array([
   0xD9, 0xE4
 ]);
 
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: extData,
   // 根据encodingData的格式进行赋值，仅支持FORMAT_DER
-  encodingFormat: certFramework.EncodingFormat.FORMAT_DER
+  encodingFormat: cert.EncodingFormat.FORMAT_DER
 };
 
-certFramework.createCertExtension(encodingBlob, (error, certExt) => {
+cert.createCertExtension(encodingBlob, (error, certExt) => {
   if (error != null) {
     console.error('createCertExtension failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createCertExtension success');
     try {
-      let oidList = certExt.getOidList(certFramework.ExtensionOidType.EXTENSION_OID_TYPE_ALL);
+      let oidList = certExt.getOidList(cert.ExtensionOidType.EXTENSION_OID_TYPE_ALL);
     } catch (err) {
       let e: BusinessError = err as BusinessError;
       console.error('ext getOidList failed, errCode: ' + e.code + ', errMsg: ' + e.message);
@@ -2369,6 +3081,8 @@ certFramework.createCertExtension(encodingBlob, (error, certExt) => {
 getEntry(valueType: ExtensionEntryType, oid : DataBlob) : DataBlob
 
 表示获取证书扩展域段对象信息。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -2391,6 +3105,7 @@ getEntry(valueType: ExtensionEntryType, oid : DataBlob) : DataBlob
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19020001 | memory error.           |
 | 19020002 | runtime error.          |
 | 19030001 | crypto operation error. |
@@ -2398,8 +3113,8 @@ getEntry(valueType: ExtensionEntryType, oid : DataBlob) : DataBlob
 **示例：**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // 证书扩展域段二进制数据，需业务自行赋值
 let extData = new Uint8Array([
@@ -2414,23 +3129,23 @@ let extData = new Uint8Array([
   0xD9, 0xE4
 ]);
 
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: extData,
   // 根据encodingData的格式进行赋值，仅支持FORMAT_DER
-  encodingFormat: certFramework.EncodingFormat.FORMAT_DER
+  encodingFormat: cert.EncodingFormat.FORMAT_DER
 };
 
-certFramework.createCertExtension(encodingBlob, (error, certExt) => {
+cert.createCertExtension(encodingBlob, (error, certExt) => {
   if (error != null) {
     console.error('createCertExtension failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createCertExtension success');
     let oid = new Uint8Array([0x32, 0x2e, 0x35, 0x2e, 0x32, 0x39, 0x2e, 0x31, 0x35]);
-    let oidBlob: certFramework.DataBlob = {
+    let oidBlob: cert.DataBlob = {
       data: oid
     }
     try {
-      let entry = certExt.getEntry(certFramework.ExtensionEntryType.EXTENSION_ENTRY_TYPE_ENTRY, oidBlob);
+      let entry = certExt.getEntry(cert.ExtensionEntryType.EXTENSION_ENTRY_TYPE_ENTRY, oidBlob);
     } catch (err) {
       let e: BusinessError = err as BusinessError;
       console.error('ext getEntry failed, errCode: ' + e.code + ', errMsg: ' + e.message);
@@ -2445,6 +3160,8 @@ certFramework.createCertExtension(encodingBlob, (error, certExt) => {
 checkCA() : number
 
 表示校验证书是否为CA证书。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -2467,8 +3184,8 @@ checkCA() : number
 **示例：**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // 证书扩展域段二进制数据，需业务自行赋值
 let extData = new Uint8Array([
@@ -2483,12 +3200,12 @@ let extData = new Uint8Array([
   0xD9, 0xE4
 ]);
 
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: extData,
   // 根据encodingData的格式进行赋值，仅支持FORMAT_DER
-  encodingFormat: certFramework.EncodingFormat.FORMAT_DER
+  encodingFormat: cert.EncodingFormat.FORMAT_DER
 };
-certFramework.createCertExtension(encodingBlob, (error, certExt) => {
+cert.createCertExtension(encodingBlob, (error, certExt) => {
   if (error != null) {
     console.error('createCertExtension failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
@@ -2508,6 +3225,8 @@ certFramework.createCertExtension(encodingBlob, (error, certExt) => {
 hasUnsupportedCriticalExtension(): boolean
 
 判断是否存在不支持的关键扩展。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -2530,8 +3249,8 @@ hasUnsupportedCriticalExtension(): boolean
 **示例：**
 
 ```ts
-import cert from "@ohos.security.cert";
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const encodingData = [
   0x30, 0x40, 0x30, 0x0f, 0x06, 0x03, 0x55, 0x1d, 0x13, 0x01, 0x01, 0xff, 0x04,
@@ -2551,7 +3270,7 @@ cert.createCertExtension(encodingBlob).then((extensionObj) => {
 });
 ```
 
-## cryptoCert.createX509Crl<sup>(deprecated)</sup>
+## cert.createX509Crl<sup>(deprecated)</sup>
 
 createX509Crl(inStream : EncodingBlob, callback : AsyncCallback\<X509Crl>) : void
 
@@ -2559,7 +3278,7 @@ createX509Crl(inStream : EncodingBlob, callback : AsyncCallback\<X509Crl>) : voi
 
 > **说明：**
 >
-> 从API version 11开始废弃，建议使用[cryptoCert.createX509CRL](#cryptocertcreatex509crl11)替代。
+> 从API version 11开始废弃，建议使用[cert.createX509CRL](#certcreatex509crl11)替代。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -2576,12 +3295,14 @@ createX509Crl(inStream : EncodingBlob, callback : AsyncCallback\<X509Crl>) : voi
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 801 | this operation is not supported. |
 | 19020001 | memory error. |
 
 **示例：**
 
 ```ts
-import certFramework from '@ohos.security.cert';
+import { cert } from '@kit.DeviceCertificateKit';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -2602,13 +3323,13 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   '-----END X509 CRL-----\n';
 
 // 证书吊销列表二进制数据，需业务自行赋值
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
   // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509Crl(encodingBlob, (error, x509Crl) => {
+cert.createX509Crl(encodingBlob, (error, x509Crl) => {
   if (error != null) {
     console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
@@ -2617,7 +3338,7 @@ certFramework.createX509Crl(encodingBlob, (error, x509Crl) => {
 });
 ```
 
-## cryptoCert.createX509Crl<sup>(deprecated)</sup>
+## cert.createX509Crl<sup>(deprecated)</sup>
 
 createX509Crl(inStream : EncodingBlob) : Promise\<X509Crl>
 
@@ -2625,7 +3346,7 @@ createX509Crl(inStream : EncodingBlob) : Promise\<X509Crl>
 
 > **说明：**
 >
-> 从API version 11开始废弃，建议使用[cryptoCert.createX509CRL](#cryptocertcreatex509crl11-1)替代。
+> 从API version 11开始废弃，建议使用[cert.createX509CRL](#certcreatex509crl11-1)替代。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -2647,13 +3368,15 @@ createX509Crl(inStream : EncodingBlob) : Promise\<X509Crl>
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 801 | this operation is not supported. |
 | 19020001 | memory error. |
 
 **示例：**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -2674,24 +3397,26 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   '-----END X509 CRL-----\n';
 
 // 证书吊销列表二进制数据，需业务自行赋值
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
   // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509Crl(encodingBlob).then(x509Crl => {
+cert.createX509Crl(encodingBlob).then(x509Crl => {
   console.log('createX509Crl success');
 }).catch((error: BusinessError) => {
   console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
 });
 ```
 
-## cryptoCert.createX509CRL<sup>11+</sup>
+## cert.createX509CRL<sup>11+</sup>
 
 createX509CRL(inStream : EncodingBlob, callback : AsyncCallback\<X509CRL>) : void
 
 表示创建X509证书吊销列表的对象，使用Callback回调异步返回结果。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -2708,12 +3433,14 @@ createX509CRL(inStream : EncodingBlob, callback : AsyncCallback\<X509CRL>) : voi
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 801 | this operation is not supported. |
 | 19020001 | memory error. |
 
 **示例：**
 
 ```ts
-import certFramework from '@ohos.security.cert';
+import { cert } from '@kit.DeviceCertificateKit';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -2734,13 +3461,13 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   '-----END X509 CRL-----\n';
 
 // 证书吊销列表二进制数据，需业务自行赋值
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
   // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509CRL(encodingBlob, (error, X509CRL) => {
+cert.createX509CRL(encodingBlob, (error, X509CRL) => {
   if (error != null) {
     console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
@@ -2749,11 +3476,13 @@ certFramework.createX509CRL(encodingBlob, (error, X509CRL) => {
 });
 ```
 
-## cryptoCert.createX509CRL<sup>11+</sup>
+## cert.createX509CRL<sup>11+</sup>
 
 createX509CRL(inStream : EncodingBlob) : Promise\<X509CRL>
 
 表示创建X509证书吊销列表的对象，使用Promise方式异步返回结果。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -2775,13 +3504,15 @@ createX509CRL(inStream : EncodingBlob) : Promise\<X509CRL>
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 801 | this operation is not supported. |
 | 19020001 | memory error. |
 
 **示例：**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -2802,13 +3533,13 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   '-----END X509 CRL-----\n';
 
 // 证书吊销列表二进制数据，需业务自行赋值
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
   // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509CRL(encodingBlob).then(X509CRL => {
+cert.createX509CRL(encodingBlob).then(X509CRL => {
   console.log('createX509CRL success');
 }).catch((error: BusinessError) => {
   console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
@@ -2847,11 +3578,19 @@ isRevoked(cert : X509Cert) : boolean
 | --------- | --------------------------------------------- |
 | boolean   | 表示证书吊销状态，true表示已吊销，false表示未吊销 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[证书错误码](errorcode-cert.md)。
+
+| 错误码ID | 错误信息      |
+| -------- | ------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+
 **示例：**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -2882,25 +3621,25 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
   '-----END CERTIFICATE-----\n';
 
 // 证书吊销列表二进制数据，需业务自行赋值
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
   // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-let certEncodingBlob: certFramework.EncodingBlob = {
+let certEncodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
   // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509Crl(encodingBlob, (error, x509Crl) => {
+cert.createX509Crl(encodingBlob, (error, x509Crl) => {
   if (error != null) {
     console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Crl success');
     // Create an X509Cert instance.
-    certFramework.createX509Cert(certEncodingBlob, (error, x509Cert) => {
+    cert.createX509Cert(certEncodingBlob, (error, x509Cert) => {
       if (error == null) {
         try {
           let revokedFlag = x509Crl.isRevoked(x509Cert);
@@ -2935,7 +3674,7 @@ getType() : string
 **示例：**
 
 ```ts
-import certFramework from '@ohos.security.cert';
+import { cert } from '@kit.DeviceCertificateKit';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -2956,13 +3695,13 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   '-----END X509 CRL-----\n';
 
 // 证书吊销列表二进制数据，需业务自行赋值
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
   // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509Crl(encodingBlob, (error, x509Crl) => {
+cert.createX509Crl(encodingBlob, (error, x509Crl) => {
   if (error != null) {
     console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
@@ -2996,6 +3735,7 @@ getEncoded(callback : AsyncCallback\<EncodingBlob>) : void
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19020001 | memory error.           |
 | 19020002 | runtime error.          |
 | 19030001 | crypto operation error. |
@@ -3003,7 +3743,7 @@ getEncoded(callback : AsyncCallback\<EncodingBlob>) : void
 **示例：**
 
 ```ts
-import certFramework from '@ohos.security.cert';
+import { cert } from '@kit.DeviceCertificateKit';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -3024,13 +3764,13 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   '-----END X509 CRL-----\n';
 
 // 证书吊销列表二进制数据，需业务自行赋值
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
   // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509Crl(encodingBlob, (error, x509Crl) => {
+cert.createX509Crl(encodingBlob, (error, x509Crl) => {
   if (error != null) {
     console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
@@ -3070,6 +3810,7 @@ getEncoded() : Promise\<EncodingBlob>
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19020001 | memory error.           |
 | 19020002 | runtime error.          |
 | 19030001 | crypto operation error. |
@@ -3077,8 +3818,8 @@ getEncoded() : Promise\<EncodingBlob>
 **示例：**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -3099,13 +3840,13 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   '-----END X509 CRL-----\n';
 
 // 证书吊销列表二进制数据，需业务自行赋值
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
   // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509Crl(encodingBlob).then(x509Crl => {
+cert.createX509Crl(encodingBlob).then(x509Crl => {
   console.log('createX509Crl success');
   x509Crl.getEncoded().then(result => {
     console.log('getEncoded success');
@@ -3133,7 +3874,7 @@ verify(key : cryptoFramework.PubKey, callback : AsyncCallback\<void>) : void
 
 | 参数名   | 类型                 | 必填 | 说明                                                         |
 | -------- | -------------------- | ---- | ------------------------------------------------------------ |
-| key      | cryptoFramework.PubKey | 是   | 表示用于验签的公钥对象                                       |
+| key      | [cryptoFramework.PubKey](../apis-crypto-architecture-kit/js-apis-cryptoFramework.md#pubkey) | 是   | 表示用于验签的公钥对象                                       |
 | callback | AsyncCallback\<void> | 是   | 回调函数,使用AsyncCallback的第一个error参数判断是否验签成功，error为null表示成功，error不为null表示失败。 |
 
 **错误码：**
@@ -3142,14 +3883,15 @@ verify(key : cryptoFramework.PubKey, callback : AsyncCallback\<void>) : void
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19030001 | crypto operation error. |
 
 **示例：**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import cryptoFramework from '@ohos.security.cryptoFramework';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -3227,13 +3969,13 @@ let priKeyData = new Uint8Array([
 ]);
 
 // 证书吊销列表二进制数据，需业务自行赋值
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
   // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509Crl(encodingBlob, (error, x509Crl) => {
+cert.createX509Crl(encodingBlob, (error, x509Crl) => {
   if (error != null) {
     console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
@@ -3286,7 +4028,7 @@ verify(key : cryptoFramework.PubKey) : Promise\<void>
 
 | 参数名 | 类型   | 必填 | 说明                   |
 | ------ | ------ | ---- | ---------------------- |
-| key    | cryptoFramework.PubKey | 是   | 表示用于验签的公钥对象。 |
+| key    | [cryptoFramework.PubKey](../apis-crypto-architecture-kit/js-apis-cryptoFramework.md#pubkey) | 是   | 表示用于验签的公钥对象。 |
 
 **返回值**：
 
@@ -3300,14 +4042,15 @@ verify(key : cryptoFramework.PubKey) : Promise\<void>
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19030001 | crypto operation error. |
 
 **示例：**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import cryptoFramework from '@ohos.security.cryptoFramework'
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { cryptoFramework } from '@kit.CryptoArchitectureKit'
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -3385,13 +4128,13 @@ let priKeyData = new Uint8Array([
 ]);
 
 // 证书吊销列表二进制数据，需业务自行赋值
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
   // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509Crl(encodingBlob).then(x509Crl => {
+cert.createX509Crl(encodingBlob).then(x509Crl => {
   console.log('createX509Crl success');
 
   try {
@@ -3444,7 +4187,7 @@ getVersion() : number
 **示例：**
 
 ```ts
-import certFramework from '@ohos.security.cert';
+import { cert } from '@kit.DeviceCertificateKit';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -3465,13 +4208,13 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   '-----END X509 CRL-----\n';
 
 // 证书吊销列表二进制数据，需业务自行赋值
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
   // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509Crl(encodingBlob, (error, x509Crl) => {
+cert.createX509Crl(encodingBlob, (error, x509Crl) => {
   if (error != null) {
     console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
@@ -3512,8 +4255,8 @@ getIssuerName() : DataBlob
 **示例：**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -3534,13 +4277,13 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   '-----END X509 CRL-----\n';
 
 // 证书吊销列表二进制数据，需业务自行赋值
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
   // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509Crl(encodingBlob, (error, x509Crl) => {
+cert.createX509Crl(encodingBlob, (error, x509Crl) => {
   if (error != null) {
     console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
@@ -3586,8 +4329,8 @@ getLastUpdate() : string
 **示例：**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -3608,13 +4351,13 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   '-----END X509 CRL-----\n';
 
 // 证书吊销列表二进制数据，需业务自行赋值
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
   // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509Crl(encodingBlob, (error, x509Crl) => {
+cert.createX509Crl(encodingBlob, (error, x509Crl) => {
   if (error != null) {
     console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
@@ -3660,8 +4403,8 @@ getNextUpdate() : string
 **示例：**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -3682,13 +4425,13 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   '-----END X509 CRL-----\n';
 
 // 证书吊销列表二进制数据，需业务自行赋值
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
   // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509Crl(encodingBlob, (error, x509Crl) => {
+cert.createX509Crl(encodingBlob, (error, x509Crl) => {
   if (error != null) {
     console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
@@ -3733,14 +4476,15 @@ getRevokedCert(serialNumber : number) : X509CrlEntry
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19020001 | memory error.           |
 | 19030001 | crypto operation error. |
 
 **示例：**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -3761,13 +4505,13 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   '-----END X509 CRL-----\n';
 
 // 证书吊销列表二进制数据，需业务自行赋值
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
   // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509Crl(encodingBlob, (error, x509Crl) => {
+cert.createX509Crl(encodingBlob, (error, x509Crl) => {
   if (error != null) {
     console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
@@ -3813,14 +4557,15 @@ getRevokedCertWithCert(cert : X509Cert) : X509CrlEntry
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19020001 | memory error.           |
 | 19030001 | crypto operation error. |
 
 **示例：**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -3851,26 +4596,26 @@ let certData = '-----BEGIN CERTIFICATE-----\n'
   'Qw==\n'
   '-----END CERTIFICATE-----\n';
 
-let certEncodingBlob: certFramework.EncodingBlob = {
+let certEncodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
   // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
 // 证书吊销列表二进制数据，需业务自行赋值
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
   // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509Crl(encodingBlob, (error, x509Crl) => {
+cert.createX509Crl(encodingBlob, (error, x509Crl) => {
   if (error != null) {
     console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Crl success');
     // 创建X509证书对象.
-    certFramework.createX509Cert(certEncodingBlob).then((x509Cert) => {
+    cert.createX509Cert(certEncodingBlob).then((x509Cert) => {
       try {
         let entry = x509Crl.getRevokedCertWithCert(x509Cert);
       } catch (error) {
@@ -3908,14 +4653,15 @@ getRevokedCerts(callback : AsyncCallback<Array\<X509CrlEntry>>) : void
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19020001 | memory error.           |
 | 19030001 | crypto operation error. |
 
 **示例：**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -3936,13 +4682,13 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   '-----END X509 CRL-----\n';
 
 // 证书吊销列表二进制数据，需业务自行赋值
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
   // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509Crl(encodingBlob, (error, x509Crl) => {
+cert.createX509Crl(encodingBlob, (error, x509Crl) => {
   if (error != null) {
     console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
@@ -3982,14 +4728,15 @@ getRevokedCerts() : Promise<Array\<X509CrlEntry>>
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19020001 | memory error.           |
 | 19030001 | crypto operation error. |
 
 **示例：**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -4010,13 +4757,13 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   '-----END X509 CRL-----\n';
 
 // 证书吊销列表二进制数据，需业务自行赋值
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
   // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509Crl(encodingBlob).then(x509Crl => {
+cert.createX509Crl(encodingBlob).then(x509Crl => {
   console.log('createX509Crl success');
   x509Crl.getRevokedCerts().then(array => {
     console.log('getRevokedCerts success');
@@ -4059,8 +4806,8 @@ getTbsInfo() : DataBlob
 **示例：**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -4081,13 +4828,13 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   '-----END X509 CRL-----\n';
 
 // 证书吊销列表二进制数据，需业务自行赋值
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
   // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509Crl(encodingBlob, (error, x509Crl) => {
+cert.createX509Crl(encodingBlob, (error, x509Crl) => {
   if (error != null) {
     console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
@@ -4133,8 +4880,8 @@ getSignature() : DataBlob
 **示例：**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -4155,13 +4902,13 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   '-----END X509 CRL-----\n';
 
 // 证书吊销列表二进制数据，需业务自行赋值
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
   // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509Crl(encodingBlob, (error, x509Crl) => {
+cert.createX509Crl(encodingBlob, (error, x509Crl) => {
   if (error != null) {
     console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
@@ -4207,8 +4954,8 @@ getSignatureAlgName() : string
 **示例：**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -4229,13 +4976,13 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   '-----END X509 CRL-----\n';
 
 // 证书吊销列表二进制数据，需业务自行赋值
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
   // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509Crl(encodingBlob, (error, x509Crl) => {
+cert.createX509Crl(encodingBlob, (error, x509Crl) => {
   if (error != null) {
     console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
@@ -4281,8 +5028,8 @@ getSignatureAlgOid() : string
 **示例：**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -4303,13 +5050,13 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   '-----END X509 CRL-----\n';
 
 // 证书吊销列表二进制数据，需业务自行赋值
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
   // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509Crl(encodingBlob, (error, x509Crl) => {
+cert.createX509Crl(encodingBlob, (error, x509Crl) => {
   if (error != null) {
     console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
@@ -4348,6 +5095,7 @@ getSignatureAlgParams() : DataBlob
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
+| 801 | this operation is not supported. |
 | 19020001 | memory error.           |
 | 19020002 | runtime error.          |
 | 19030001 | crypto operation error. |
@@ -4355,8 +5103,8 @@ getSignatureAlgParams() : DataBlob
 **示例：**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -4377,13 +5125,13 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   '-----END X509 CRL-----\n';
 
 // 证书吊销列表二进制数据，需业务自行赋值
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
   // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509Crl(encodingBlob, (error, x509Crl) => {
+cert.createX509Crl(encodingBlob, (error, x509Crl) => {
   if (error != null) {
     console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
@@ -4407,6 +5155,8 @@ isRevoked(cert : X509Cert) : boolean
 
 表示检查证书是否吊销。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.Cert
 
 **参数**：
@@ -4421,11 +5171,19 @@ isRevoked(cert : X509Cert) : boolean
 | ------- | ------------------------------------------------- |
 | boolean | 表示证书吊销状态，true表示已吊销，false表示未吊销 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[证书错误码](errorcode-cert.md)。
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+
 **示例：**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -4456,25 +5214,25 @@ let certData = '-----BEGIN CERTIFICATE-----\n' +
   '-----END CERTIFICATE-----\n';
 
 // 证书吊销列表二进制数据，需业务自行赋值
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
   // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-let certEncodingBlob: certFramework.EncodingBlob = {
+let certEncodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
   // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509CRL(encodingBlob, (error, x509CRL) => {
+cert.createX509CRL(encodingBlob, (error, x509CRL) => {
   if (error != null) {
     console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509CRL success');
     // Create an X509Cert instance.
-    certFramework.createX509Cert(certEncodingBlob, (error, x509Cert) => {
+    cert.createX509Cert(certEncodingBlob, (error, x509Cert) => {
       if (error == null) {
         try {
           let revokedFlag = x509CRL.isRevoked(x509Cert);
@@ -4494,6 +5252,8 @@ getType() : string
 
 表示获取证书吊销列表类型。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.Cert
 
 **返回值**：
@@ -4505,7 +5265,7 @@ getType() : string
 **示例：**
 
 ```ts
-import certFramework from '@ohos.security.cert';
+import { cert } from '@kit.DeviceCertificateKit';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -4526,13 +5286,13 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   '-----END X509 CRL-----\n';
 
 // 证书吊销列表二进制数据，需业务自行赋值
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
   // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509CRL(encodingBlob, (error, x509CRL) => {
+cert.createX509CRL(encodingBlob, (error, x509CRL) => {
   if (error != null) {
     console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
@@ -4548,6 +5308,8 @@ getEncoded(callback : AsyncCallback\<EncodingBlob>) : void
 
 表示获取X509证书吊销列表的序列化数据，使用Callback回调异步返回结果。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.Cert
 
 **参数**：
@@ -4562,6 +5324,7 @@ getEncoded(callback : AsyncCallback\<EncodingBlob>) : void
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19020001 | memory error.           |
 | 19020002 | runtime error.          |
 | 19030001 | crypto operation error. |
@@ -4569,7 +5332,7 @@ getEncoded(callback : AsyncCallback\<EncodingBlob>) : void
 **示例：**
 
 ```ts
-import certFramework from '@ohos.security.cert';
+import { cert } from '@kit.DeviceCertificateKit';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -4590,13 +5353,13 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   '-----END X509 CRL-----\n';
 
 // 证书吊销列表二进制数据，需业务自行赋值
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
   // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509CRL(encodingBlob, (error, x509CRL) => {
+cert.createX509CRL(encodingBlob, (error, x509CRL) => {
   if (error != null) {
     console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
@@ -4618,6 +5381,8 @@ getEncoded() : Promise\<EncodingBlob>
 
 表示获取X509证书吊销列表的序列化数据，使用Promise方式异步返回结果。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.Cert
 
 **返回值**：
@@ -4631,6 +5396,7 @@ getEncoded() : Promise\<EncodingBlob>
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19020001 | memory error.           |
 | 19020002 | runtime error.          |
 | 19030001 | crypto operation error. |
@@ -4638,8 +5404,8 @@ getEncoded() : Promise\<EncodingBlob>
 **示例：**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -4660,13 +5426,13 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   '-----END X509 CRL-----\n';
 
 // 证书吊销列表二进制数据，需业务自行赋值
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
   // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509CRL(encodingBlob).then(x509CRL => {
+cert.createX509CRL(encodingBlob).then(x509CRL => {
   console.log('createX509CRL success');
   x509CRL.getEncoded().then(result => {
     console.log('getEncoded success');
@@ -4684,6 +5450,8 @@ verify(key : cryptoFramework.PubKey, callback : AsyncCallback\<void>) : void
 
 表示对X509证书吊销列表进行验签，使用Callback回调异步返回结果。验签支持RSA算法。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.Cert
 
 **参数**：
@@ -4699,14 +5467,15 @@ verify(key : cryptoFramework.PubKey, callback : AsyncCallback\<void>) : void
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19030001 | crypto operation error. |
 
 **示例：**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import cryptoFramework from '@ohos.security.cryptoFramework';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -4739,13 +5508,13 @@ let priKeyData = new Uint8Array([
 ]);
 
 // 证书吊销列表二进制数据，需业务自行赋值
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
   // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509CRL(encodingBlob, (error, x509CRL) => {
+cert.createX509CRL(encodingBlob, (error, x509CRL) => {
   if (error != null) {
     console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
@@ -4788,6 +5557,8 @@ verify(key : cryptoFramework.PubKey) : Promise\<void>
 
 表示对X509证书吊销列表进行验签，使用Promise方式异步返回结果。验签支持RSA算法。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.Cert
 
 **参数**：
@@ -4808,14 +5579,15 @@ verify(key : cryptoFramework.PubKey) : Promise\<void>
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19030001 | crypto operation error. |
 
 **示例：**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import cryptoFramework from '@ohos.security.cryptoFramework'
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { cryptoFramework } from '@kit.CryptoArchitectureKit'
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -4848,13 +5620,13 @@ let priKeyData = new Uint8Array([
 ]);
 
 // 证书吊销列表二进制数据，需业务自行赋值
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
   // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509CRL(encodingBlob).then(x509CRL => {
+cert.createX509CRL(encodingBlob).then(x509CRL => {
   console.log('createX509Crl success');
 
   try {
@@ -4892,6 +5664,8 @@ getVersion() : number
 
 表示获取X509证书吊销列表的版本号。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.Cert
 
 **返回值**：
@@ -4903,7 +5677,7 @@ getVersion() : number
 **示例：**
 
 ```ts
-import certFramework from '@ohos.security.cert';
+import { cert } from '@kit.DeviceCertificateKit';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -4924,13 +5698,13 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   '-----END X509 CRL-----\n';
 
 // 证书吊销列表二进制数据，需业务自行赋值
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
   // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509CRL(encodingBlob, (error, x509CRL) => {
+cert.createX509CRL(encodingBlob, (error, x509CRL) => {
   if (error != null) {
     console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
@@ -4945,6 +5719,8 @@ certFramework.createX509CRL(encodingBlob, (error, x509CRL) => {
 getIssuerName() : DataBlob
 
 表示获取X509证书吊销列表颁发者名称。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -4967,8 +5743,8 @@ getIssuerName() : DataBlob
 **示例：**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -4989,13 +5765,13 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   '-----END X509 CRL-----\n';
 
 // 证书吊销列表二进制数据，需业务自行赋值
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
   // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509CRL(encodingBlob, (error, x509CRL) => {
+cert.createX509CRL(encodingBlob, (error, x509CRL) => {
   if (error != null) {
     console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
@@ -5015,6 +5791,8 @@ certFramework.createX509CRL(encodingBlob, (error, x509CRL) => {
 getLastUpdate() : string
 
 表示获取X509证书吊销列表最后一次更新日期，日期为ASN.1时间格式。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -5037,8 +5815,8 @@ getLastUpdate() : string
 **示例：**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -5059,13 +5837,13 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   '-----END X509 CRL-----\n';
 
 // 证书吊销列表二进制数据，需业务自行赋值
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
   // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509CRL(encodingBlob, (error, x509CRL) => {
+cert.createX509CRL(encodingBlob, (error, x509CRL) => {
   if (error != null) {
     console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
@@ -5085,6 +5863,8 @@ certFramework.createX509CRL(encodingBlob, (error, x509CRL) => {
 getNextUpdate() : string
 
 表示获取证书吊销列表下一次更新的日期，日期为ASN.1时间格式。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -5107,8 +5887,8 @@ getNextUpdate() : string
 **示例：**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -5129,13 +5909,13 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   '-----END X509 CRL-----\n';
 
 // 证书吊销列表二进制数据，需业务自行赋值
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
   // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509CRL(encodingBlob, (error, x509CRL) => {
+cert.createX509CRL(encodingBlob, (error, x509CRL) => {
   if (error != null) {
     console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
@@ -5155,6 +5935,8 @@ certFramework.createX509CRL(encodingBlob, (error, x509CRL) => {
 getRevokedCert(serialNumber : bigint) : X509CRLEntry
 
 表示通过指定证书序列号获取被吊销X509证书对象。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -5176,14 +5958,15 @@ getRevokedCert(serialNumber : bigint) : X509CRLEntry
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19020001 | memory error.           |
 | 19030001 | crypto operation error. |
 
 **示例：**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -5204,13 +5987,13 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   '-----END X509 CRL-----\n';
 
 // 证书吊销列表二进制数据，需业务自行赋值
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
   // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509CRL(encodingBlob, (error, x509CRL) => {
+cert.createX509CRL(encodingBlob, (error, x509CRL) => {
   if (error != null) {
     console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
@@ -5232,6 +6015,8 @@ getRevokedCertWithCert(cert : X509Cert) : X509CRLEntry
 
 表示通过指定证书对象获取被吊销X509证书对象。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.Cert
 
 **参数**：
@@ -5252,14 +6037,15 @@ getRevokedCertWithCert(cert : X509Cert) : X509CRLEntry
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19020001 | memory error.           |
 | 19030001 | crypto operation error. |
 
 **示例：**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -5290,26 +6076,26 @@ let certData = '-----BEGIN CERTIFICATE-----\n'
 'Qw==\n'
 '-----END CERTIFICATE-----\n';
 
-let certEncodingBlob: certFramework.EncodingBlob = {
+let certEncodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
   // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
 // 证书吊销列表二进制数据，需业务自行赋值
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
   // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509CRL(encodingBlob, (error, x509CRL) => {
+cert.createX509CRL(encodingBlob, (error, x509CRL) => {
   if (error != null) {
     console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509CRL success');
     // 创建X509证书对象.
-    certFramework.createX509Cert(certEncodingBlob).then((x509Cert) => {
+    cert.createX509Cert(certEncodingBlob).then((x509Cert) => {
       try {
         let entry = x509CRL.getRevokedCertWithCert(x509Cert);
       } catch (error) {
@@ -5329,6 +6115,8 @@ getRevokedCerts(callback : AsyncCallback<Array\<X509CRLEntry>>) : void
 
 表示获取被吊销X509证书列表，使用Callback回调异步返回结果。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.Cert
 
 **参数**：
@@ -5343,14 +6131,15 @@ getRevokedCerts(callback : AsyncCallback<Array\<X509CRLEntry>>) : void
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19020001 | memory error.           |
 | 19030001 | crypto operation error. |
 
 **示例：**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -5371,13 +6160,13 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   '-----END X509 CRL-----\n';
 
 // 证书吊销列表二进制数据，需业务自行赋值
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
   // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509CRL(encodingBlob, (error, x509CRL) => {
+cert.createX509CRL(encodingBlob, (error, x509CRL) => {
   if (error != null) {
     console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
@@ -5399,6 +6188,8 @@ getRevokedCerts() : Promise<Array\<X509CRLEntry>>
 
 表示获取被吊销X509证书列表，使用Promise方式异步返回结果。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.Cert
 
 **返回值**:
@@ -5413,14 +6204,15 @@ getRevokedCerts() : Promise<Array\<X509CRLEntry>>
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19020001 | memory error.           |
 | 19030001 | crypto operation error. |
 
 **示例：**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -5441,13 +6233,13 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   '-----END X509 CRL-----\n';
 
 // 证书吊销列表二进制数据，需业务自行赋值
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
   // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509CRL(encodingBlob).then(x509CRL => {
+cert.createX509CRL(encodingBlob).then(x509CRL => {
   console.log('createX509CRL success');
   x509CRL.getRevokedCerts().then(array => {
     console.log('getRevokedCerts success');
@@ -5464,6 +6256,8 @@ certFramework.createX509CRL(encodingBlob).then(x509CRL => {
 getSignature() : DataBlob
 
 表示获取X509证书吊销列表的签名数据。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -5486,8 +6280,8 @@ getSignature() : DataBlob
 **示例：**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -5508,13 +6302,13 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   '-----END X509 CRL-----\n';
 
 // 证书吊销列表二进制数据，需业务自行赋值
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
   // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509CRL(encodingBlob, (error, x509CRL) => {
+cert.createX509CRL(encodingBlob, (error, x509CRL) => {
   if (error != null) {
     console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
@@ -5534,6 +6328,8 @@ certFramework.createX509CRL(encodingBlob, (error, x509CRL) => {
 getSignatureAlgName() : string
 
 表示获取X509证书吊销列表签名的算法名称。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -5556,8 +6352,8 @@ getSignatureAlgName() : string
 **示例：**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -5578,13 +6374,13 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   '-----END X509 CRL-----\n';
 
 // 证书吊销列表二进制数据，需业务自行赋值
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
   // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509CRL(encodingBlob, (error, x509CRL) => {
+cert.createX509CRL(encodingBlob, (error, x509CRL) => {
   if (error != null) {
     console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
@@ -5604,6 +6400,8 @@ certFramework.createX509CRL(encodingBlob, (error, x509CRL) => {
 getSignatureAlgOid() : string
 
 表示获取X509证书吊销列表签名算法的对象标志符OID(Object Identifier)。OID是由国际标准组织(ISO)的名称注册机构分配。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -5626,8 +6424,8 @@ getSignatureAlgOid() : string
 **示例：**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -5648,13 +6446,13 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   '-----END X509 CRL-----\n';
 
 // 证书吊销列表二进制数据，需业务自行赋值
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
   // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509CRL(encodingBlob, (error, x509CRL) => {
+cert.createX509CRL(encodingBlob, (error, x509CRL) => {
   if (error != null) {
     console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
@@ -5675,6 +6473,8 @@ getSignatureAlgParams() : DataBlob
 
 表示获取X509证书吊销列表签名的算法参数。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.Cert
 
 **返回值**：
@@ -5689,6 +6489,7 @@ getSignatureAlgParams() : DataBlob
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
+| 801 | this operation is not supported. |
 | 19020001 | memory error.           |
 | 19020002 | runtime error.          |
 | 19030001 | crypto operation error. |
@@ -5696,8 +6497,8 @@ getSignatureAlgParams() : DataBlob
 **示例：**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -5718,13 +6519,13 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   '-----END X509 CRL-----\n';
 
 // 证书吊销列表二进制数据，需业务自行赋值
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
   // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509CRL(encodingBlob, (error, x509CRL) => {
+cert.createX509CRL(encodingBlob, (error, x509CRL) => {
   if (error != null) {
     console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
@@ -5744,6 +6545,8 @@ certFramework.createX509CRL(encodingBlob, (error, x509CRL) => {
 getTBSInfo() : DataBlob
 
 表示获取证书吊销列表的tbsCertList信息。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -5766,8 +6569,8 @@ getTBSInfo() : DataBlob
 **示例：**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -5788,13 +6591,13 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   '-----END X509 CRL-----\n';
 
 // 证书吊销列表二进制数据，需业务自行赋值
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
   // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509CRL(encodingBlob, (error, x509CRL) => {
+cert.createX509CRL(encodingBlob, (error, x509CRL) => {
   if (error != null) {
     console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
@@ -5814,6 +6617,8 @@ certFramework.createX509CRL(encodingBlob, (error, x509CRL) => {
 getExtensions(): DataBlob
 
 表示获取CRL的扩展。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -5836,8 +6641,8 @@ getExtensions(): DataBlob
 **示例：**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -5858,13 +6663,13 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   '-----END X509 CRL-----\n';
 
 // 证书吊销列表二进制数据，需业务自行赋值
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
   // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509CRL(encodingBlob, (error, x509CRL) => {
+cert.createX509CRL(encodingBlob, (error, x509CRL) => {
   if (error != null) {
     console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
@@ -5884,6 +6689,8 @@ certFramework.createX509CRL(encodingBlob, (error, x509CRL) => {
 match(param: X509CRLMatchParameters): boolean
 
 判断证书吊销列表是否与输入参数匹配。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -5905,14 +6712,15 @@ match(param: X509CRLMatchParameters): boolean
 
 | 错误码ID | 错误信息       |
 | -------- | -------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19020001 | memory error.  |
 | 19030001 | crypto operation error. |
 
 **示例：**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -5933,10 +6741,10 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   '-----END X509 CRL-----\n';
 
 // 证书吊销列表二进制数据，需业务自行赋值
-let crlEncodingBlob: certFramework.EncodingBlob = {
+let crlEncodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
   // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
 const certData = "-----BEGIN CERTIFICATE-----\r\n" +
@@ -5957,27 +6765,27 @@ const certData = "-----BEGIN CERTIFICATE-----\r\n" +
   "V4SYZIO7ihr8+n4LQDQP+spvX4cf925a3kyZrftfvGCJ2ZNwvsPhyumYhaBqAgSy\r\n" +
   "Up2BImymAqPi157q9EeYcQz170TtDZHGmjYzdQxhOAHRb6/IdQ==\r\n" +
   "-----END CERTIFICATE-----\r\n";
-const certEncodingBlob: certFramework.EncodingBlob = {
+const certEncodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM,
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM,
 };
 
 async function crlMatch() {
-  let x509Cert: certFramework.X509Cert = {} as certFramework.X509Cert;
+  let x509Cert: cert.X509Cert = {} as cert.X509Cert;
   try {
-    x509Cert = await certFramework.createX509Cert(certEncodingBlob);
+    x509Cert = await cert.createX509Cert(certEncodingBlob);
     console.log('createX509Cert success');
   } catch (err) {
     console.error('createX509Cert failed');
   }
 
-  certFramework.createX509CRL(crlEncodingBlob, (error, x509CRL) => {
+  cert.createX509CRL(crlEncodingBlob, (error, x509CRL) => {
     if (error != null) {
       console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
     } else {
       console.log('createX509CRL success');
       try {
-        const param: certFramework.X509CRLMatchParameters = {
+        const param: cert.X509CRLMatchParameters = {
           issuer: [new Uint8Array([0x30, 0x58, 0x31, 0x0B, 0x30, 0x09, 0x06, 0x03, 0x55, 0x04, 0x06, 0x13, 0x02, 0x43, 0x4E, 0x31, 0x10, 0x30, 0x0E, 0x06, 0x03, 0x55, 0x04, 0x08, 0x13, 0x07, 0x4A, 0x69, 0x61, 0x6E, 0x67, 0x73, 0x75, 0x31, 0x10, 0x30, 0x0E, 0x06, 0x03, 0x55, 0x04, 0x07, 0x13, 0x07, 0x4E, 0x61, 0x6E, 0x6A, 0x69, 0x6E, 0x67, 0x31, 0x0B, 0x30, 0x09, 0x06, 0x03, 0x55, 0x04, 0x0A, 0x13, 0x02, 0x74, 0x73, 0x31, 0x0B, 0x30, 0x09, 0x06, 0x03, 0x55, 0x04, 0x0B, 0x13, 0x02, 0x74, 0x73, 0x31, 0x0B, 0x30, 0x09, 0x06, 0x03, 0x55, 0x04, 0x03, 0x13, 0x02, 0x74, 0x73])],
           x509Cert: x509Cert
         }
@@ -5991,11 +6799,298 @@ async function crlMatch() {
 }
 ```
 
-## cryptoCert.createCertChainValidator
+### getIssuerX500DistinguishedName<sup>12+</sup>
+
+getIssuerX500DistinguishedName(): X500DistinguishedName
+
+获取颁发者的X509可分辨名称。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Security.Cert
+
+**返回值**：
+
+| 类型                  | 说明                                      |
+| --------------------- | ----------------------------------------- |
+| [X500DistinguishedName](#x500distinguishedname12) | X509的可分辨对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[证书错误码](errorcode-cert.md)。
+
+| 错误码ID | 错误信息       |
+| -------- | -------------- |
+| 19020001 | memory error.  |
+| 19020002 | runtime error. |
+| 19030001 | crypto operation error. |
+
+**示例：**
+
+```ts
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+let crlData = '-----BEGIN X509 CRL-----\n' +
+  'MIHzMF4CAQMwDQYJKoZIhvcNAQEEBQAwFTETMBEGA1UEAxMKQ1JMIGlzc3VlchcN\n' +
+  'MTcwODA3MTExOTU1WhcNMzIxMjE0MDA1MzIwWjAVMBMCAgPoFw0zMjEyMTQwMDUz\n' +
+  'MjBaMA0GCSqGSIb3DQEBBAUAA4GBACEPHhlaCTWA42ykeaOyR0SGQIHIOUR3gcDH\n' +
+  'J1LaNwiL+gDxI9rMQmlhsUGJmPIPdRs9uYyI+f854lsWYisD2PUEpn3DbEvzwYeQ\n' +
+  '5SqQoPDoM+YfZZa23hoTLsu52toXobP74sf/9K501p/+8hm4ROMLBoRT86GQKY6g\n' +
+  'eavsH0Q3\n' +
+  '-----END X509 CRL-----\n';
+
+// 证书吊销列表二进制数据，需业务自行赋值
+let crlEncodingBlob: cert.EncodingBlob = {
+  data: stringToUint8Array(crlData),
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
+};
+
+async function crlGetIssuerX500DistinguishedName() {
+  let x509Crl: cert.X509CRL = {} as cert.X509CRL;
+  try {
+    x509Crl = await cert.createX509CRL(crlEncodingBlob);
+    console.log('createX509CRL success');
+    let name = x509Crl.getIssuerX500DistinguishedName();
+  } catch (err) {
+    let e: BusinessError = err as BusinessError;
+    console.error('createX509CRL failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+  }
+}
+```
+
+### toString<sup>12+</sup>
+
+toString(): string
+
+获取对象的字符串类型数据。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Security.Cert
+
+**返回值**：
+
+| 类型                  | 说明                                      |
+| --------------------- | ----------------------------------------- |
+| string | 对象的字符串类型数据。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[证书错误码](errorcode-cert.md)。
+
+| 错误码ID | 错误信息       |
+| -------- | -------------- |
+| 19020001 | memory error.  |
+| 19020002 | runtime error. |
+| 19030001 | crypto operation error. |
+
+**示例：**
+
+```ts
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+let crlData = '-----BEGIN X509 CRL-----\n' +
+  'MIHzMF4CAQMwDQYJKoZIhvcNAQEEBQAwFTETMBEGA1UEAxMKQ1JMIGlzc3VlchcN\n' +
+  'MTcwODA3MTExOTU1WhcNMzIxMjE0MDA1MzIwWjAVMBMCAgPoFw0zMjEyMTQwMDUz\n' +
+  'MjBaMA0GCSqGSIb3DQEBBAUAA4GBACEPHhlaCTWA42ykeaOyR0SGQIHIOUR3gcDH\n' +
+  'J1LaNwiL+gDxI9rMQmlhsUGJmPIPdRs9uYyI+f854lsWYisD2PUEpn3DbEvzwYeQ\n' +
+  '5SqQoPDoM+YfZZa23hoTLsu52toXobP74sf/9K501p/+8hm4ROMLBoRT86GQKY6g\n' +
+  'eavsH0Q3\n' +
+  '-----END X509 CRL-----\n';
+
+// 证书吊销列表二进制数据，需业务自行赋值
+let crlEncodingBlob: cert.EncodingBlob = {
+  data: stringToUint8Array(crlData),
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
+};
+
+async function crlToString() {
+  let x509Crl: cert.X509CRL = {} as cert.X509CRL;
+  try {
+    x509Crl = await cert.createX509CRL(crlEncodingBlob);
+    console.log('createX509CRL success');
+    console.info('crlToString success: ' + JSON.stringify(x509Crl.toString()));
+  } catch (err) {
+    let e: BusinessError = err as BusinessError;
+    console.error('createX509CRL failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+  }
+}
+```
+
+### hashCode<sup>12+</sup>
+
+hashCode(): Uint8Array
+
+获取DER格式数据的哈希值。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Security.Cert
+
+**返回值**：
+
+| 类型                  | 说明                                      |
+| --------------------- | ----------------------------------------- |
+| Uint8Array | DER格式数据的哈希值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[证书错误码](errorcode-cert.md)。
+
+| 错误码ID | 错误信息       |
+| -------- | -------------- |
+| 19020001 | memory error.  |
+| 19020002 | runtime error. |
+| 19030001 | crypto operation error. |
+
+**示例：**
+
+```ts
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+let crlData = '-----BEGIN X509 CRL-----\n' +
+  'MIHzMF4CAQMwDQYJKoZIhvcNAQEEBQAwFTETMBEGA1UEAxMKQ1JMIGlzc3VlchcN\n' +
+  'MTcwODA3MTExOTU1WhcNMzIxMjE0MDA1MzIwWjAVMBMCAgPoFw0zMjEyMTQwMDUz\n' +
+  'MjBaMA0GCSqGSIb3DQEBBAUAA4GBACEPHhlaCTWA42ykeaOyR0SGQIHIOUR3gcDH\n' +
+  'J1LaNwiL+gDxI9rMQmlhsUGJmPIPdRs9uYyI+f854lsWYisD2PUEpn3DbEvzwYeQ\n' +
+  '5SqQoPDoM+YfZZa23hoTLsu52toXobP74sf/9K501p/+8hm4ROMLBoRT86GQKY6g\n' +
+  'eavsH0Q3\n' +
+  '-----END X509 CRL-----\n';
+
+// 证书吊销列表二进制数据，需业务自行赋值
+let crlEncodingBlob: cert.EncodingBlob = {
+  data: stringToUint8Array(crlData),
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
+};
+
+async function crlHashCode() {
+  let x509Crl: cert.X509CRL = {} as cert.X509CRL;
+  try {
+    x509Crl = await cert.createX509CRL(crlEncodingBlob);
+    console.log('createX509CRL success');
+    console.info('crlHashCode success: ' + JSON.stringify(x509Crl.hashCode()));
+  } catch (err) {
+    let e: BusinessError = err as BusinessError;
+    console.error('createX509CRL failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+  }
+}
+```
+
+### getExtensionsObject<sup>12+</sup>
+
+getExtensionsObject(): CertExtension
+
+获取对应实体的扩展域DER格式数据。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Security.Cert
+
+**返回值**：
+
+| 类型                  | 说明                                      |
+| --------------------- | ----------------------------------------- |
+| [CertExtension](#certextension10) | 证书扩展域段类对象。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[证书错误码](errorcode-cert.md)。
+
+| 错误码ID | 错误信息       |
+| -------- | -------------- |
+| 19020001 | memory error.  |
+| 19020002 | runtime error. |
+| 19030001 | crypto operation error. |
+
+**示例：**
+
+```ts
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+let crlData = '-----BEGIN X509 CRL-----\n' +
+    'MIIB6DCB0QIBATANBgkqhkiG9w0BAQsFADCBjjELMAkGA1UEBhMCUlUxFTATBgNV\n' +
+    'BAgMDNCc0L7RgdC60LLQsDELMAkGA1UECgwC0K8xCzAJBgNVBAsMAtCvMSowKAYD\n' +
+    'VQQDDCHQlNC80LjRgtGA0LjQuSDQkdC10LvRj9Cy0YHQutC40LkxIjAgBgkqhkiG\n' +
+    '9w0BCQEWE2JlbGRtaXRAZXhhbXBsZS5jb20XDTE3MDQyNDEzMjUzMVoXDTE3MDUy\n' +
+    'NDEzMjUzMVqgDjAMMAoGA1UdFAQDAgEBMA0GCSqGSIb3DQEBCwUAA4IBAQCF5eX+\n' +
+    '1BM/BxoHU2/3pQHJgPSKevN0/K/daiFHiJl7Kb9GCwKY14B1RvbN2rUP/58Mt+aq\n' +
+    'jvauf1yBzlaJQeJKZcsCmG9p6Tr1y0BJXhrq5kC0SLyNDsfGUTfuxnwmo+clHXRU\n' +
+    '+gKuk+h0WkJL022ZYbJ38w588k4NT3CWVHeE23EDC264p942mlDE7en6MyL152Pe\n' +
+    'Ld9YrWiq5iOIOrIbQLErq0EjwxvHG9sMiYFUa6VrwmRf26nyZ7u9RKJDP+o2dltw\n' +
+    'diBaSXC3Qt3pZ8BIfv/l81lwp8Dr63SwCII2pIRplyICdQqmX/a+1q8kThXIP2Kx\n' +
+    '+X48g7VE2o2X4cfy\n' +
+    '-----END X509 CRL-----\n';
+
+// 证书吊销列表二进制数据，需业务自行赋值
+let crlEncodingBlob: cert.EncodingBlob = {
+  data: stringToUint8Array(crlData),
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
+};
+
+async function crlHashCode() {
+  let x509Crl: cert.X509CRL = {} as cert.X509CRL;
+  try {
+    x509Crl = await cert.createX509CRL(crlEncodingBlob);
+    console.log('createX509CRL success');
+    let object = x509Crl.getExtensionsObject();
+  } catch (err) {
+    let e: BusinessError = err as BusinessError;
+    console.error('createX509CRL failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+  }
+}
+```
+
+## cert.createCertChainValidator
 
 createCertChainValidator(algorithm :string) : CertChainValidator
 
 表示创建证书链校验器对象。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -6009,7 +7104,7 @@ createCertChainValidator(algorithm :string) : CertChainValidator
 
 | 类型               | 说明                 |
 | ------------------ | -------------------- |
-| CertChainValidator | 表示证书链校验器对象 |
+| [CertChainValidator](#certchainvalidator) | 表示证书链校验器对象 |
 
 **错误码：**
 
@@ -6017,6 +7112,8 @@ createCertChainValidator(algorithm :string) : CertChainValidator
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 801 | this operation is not supported. |
 | 19020001 | memory error.           |
 | 19020002 | runtime error.          |
 | 19030001 | crypto operation error. |
@@ -6024,11 +7121,11 @@ createCertChainValidator(algorithm :string) : CertChainValidator
 **示例：**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  let validator = certFramework.createCertChainValidator('PKIX');
+  let validator = cert.createCertChainValidator('PKIX');
 } catch (error) {
   let e: BusinessError = error as BusinessError;
   console.error('createCertChainValidator failed, errCode: ' + e.code + ', errMsg: ' + e.message);
@@ -6041,6 +7138,8 @@ try {
 
 
 ### 属性
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -6055,6 +7154,8 @@ validate(certChain : CertChainData, callback : AsyncCallback\<void>) : void
 
 表示校验X509证书链，使用Callback回调异步返回结果。
 由于端侧系统时间不可信，证书链校验不包含对证书有效时间的校验。如果需要检查证书的时间有效性，可使用X509证书的[checkValidityWithDate](#checkvaliditywithdate)方法进行检查。详见[证书规格](../../security/DeviceCertificateKit/certificate-framework-overview.md#证书规格)。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -6071,6 +7172,7 @@ validate(certChain : CertChainData, callback : AsyncCallback\<void>) : void
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19020001 | memory error.                                     |
 | 19020002 | runtime error.                                    |
 | 19030001 | crypto operation error.                           |
@@ -6084,22 +7186,22 @@ validate(certChain : CertChainData, callback : AsyncCallback\<void>) : void
 **示例：**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // 证书链二进制数据，需业务自行赋值
 let certChainBuff = new Uint8Array([0x30, 0x82, 0x44]);
 
-let certChainData: certFramework.CertChainData = {
+let certChainData: cert.CertChainData = {
   data: certChainBuff,
   // 证书链包含的证书个数，需业务自行赋值
   count: 2,
   // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
 try {
-  let validator = certFramework.createCertChainValidator('PKIX');
+  let validator = cert.createCertChainValidator('PKIX');
   validator.validate(certChainData, (error, data) => {
     if (error != null) {
       console.error('validate failed, errCode: ' + error.code + ', errMsg: ' + error.message);
@@ -6119,6 +7221,8 @@ validate(certChain : CertChainData) : Promise\<void>
 
 表示校验X509证书链，使用Promise方式异步返回结果。
 由于端侧系统时间不可信，证书链校验不包含对证书有效时间的校验。如果需要检查证书的时间有效性，可使用X509证书的[checkValidityWithDate](#checkvaliditywithdate)方法进行检查。详见[证书规格](../../security/DeviceCertificateKit/certificate-framework-overview.md#证书规格)。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -6140,6 +7244,7 @@ validate(certChain : CertChainData) : Promise\<void>
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19020001 | memory error.                                     |
 | 19020002 | runtime error.                                    |
 | 19030001 | crypto operation error.                           |
@@ -6153,22 +7258,22 @@ validate(certChain : CertChainData) : Promise\<void>
 **示例：**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // 证书链二进制数据，需业务自行赋值
 let certChainBuff = new Uint8Array([0x30, 0x82, 0x44]);
 
-let certChainData: certFramework.CertChainData = {
+let certChainData: cert.CertChainData = {
   data: certChainBuff,
   // 证书链包含的证书个数，需业务自行赋值
   count: 2,
   // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
 try {
-  let validator = certFramework.createCertChainValidator('PKIX');
+  let validator = cert.createCertChainValidator('PKIX');
   validator.validate(certChainData).then(result => {
     console.log('validate success');
   }).catch((error: BusinessError) => {
@@ -6186,6 +7291,8 @@ algorithm : string
 
 表示X509证书链校验器算法名称。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.Cert
 
 **返回值**：
@@ -6197,11 +7304,11 @@ algorithm : string
 **示例：**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  let validator = certFramework.createCertChainValidator('PKIX');
+  let validator = cert.createCertChainValidator('PKIX');
   let algorithm = validator.algorithm;
 } catch (error) {
   let e: BusinessError = error as BusinessError;
@@ -6241,6 +7348,7 @@ getEncoded(callback : AsyncCallback\<EncodingBlob>) : void
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19020001 | memory error.           |
 | 19020002 | runtime error.          |
 | 19030001 | crypto operation error. |
@@ -6248,8 +7356,8 @@ getEncoded(callback : AsyncCallback\<EncodingBlob>) : void
 **示例：**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -6269,13 +7377,13 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n'
 
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
   // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509Crl(encodingBlob, (err, x509Crl) => {
+cert.createX509Crl(encodingBlob, (err, x509Crl) => {
   if (err != null) {
     console.error('createX509Crl failed, errCode: ' + err.code + ', errMsg: ' + err.message);
   } else {
@@ -6323,6 +7431,7 @@ getEncoded() : Promise\<EncodingBlob>
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19020001 | memory error.           |
 | 19020002 | runtime error.          |
 | 19030001 | crypto operation error. |
@@ -6330,8 +7439,8 @@ getEncoded() : Promise\<EncodingBlob>
 **示例：**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -6351,13 +7460,13 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n'
 
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
   // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509Crl(encodingBlob, (err, x509Crl) => {
+cert.createX509Crl(encodingBlob, (err, x509Crl) => {
   if (err != null) {
     console.error('createX509Crl failed, errCode: ' + err.code + ', errMsg: ' + err.message);
   } else {
@@ -6400,8 +7509,8 @@ getSerialNumber() : number
 **示例：**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -6421,13 +7530,13 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n'
 
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
   // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509Crl(encodingBlob, (err, x509Crl) => {
+cert.createX509Crl(encodingBlob, (err, x509Crl) => {
   if (err != null) {
     console.error('createX509Crl failed, errCode: ' + err.code + ', errMsg: ' + err.message);
   } else {
@@ -6469,14 +7578,15 @@ getCertIssuer() : DataBlob
 
 | 错误码ID | 错误信息       |
 | -------- | -------------- |
+| 801 | this operation is not supported. |
 | 19020001 | memory error.  |
 | 19020002 | runtime error. |
 
 **示例：**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -6496,13 +7606,13 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n'
 
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
   // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509Crl(encodingBlob, (err, x509Crl) => {
+cert.createX509Crl(encodingBlob, (err, x509Crl) => {
   if (err != null) {
     console.error('createX509Crl failed, errCode: ' + err.code + ', errMsg: ' + err.message);
   } else {
@@ -6551,8 +7661,8 @@ getRevocationDate() : string
 **示例：**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -6572,13 +7682,13 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n'
 
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
   // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509Crl(encodingBlob, (err, x509Crl) => {
+cert.createX509Crl(encodingBlob, (err, x509Crl) => {
   if (err != null) {
     console.error('createX509Crl failed, errCode: ' + err.code + ', errMsg: ' + err.message);
   } else {
@@ -6606,6 +7716,8 @@ getEncoded(callback : AsyncCallback\<EncodingBlob>) : void
 
 表示获取被吊销证书的序列化数据，使用Callback回调异步返回结果。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.Cert
 
 **参数**：
@@ -6620,6 +7732,7 @@ getEncoded(callback : AsyncCallback\<EncodingBlob>) : void
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19020001 | memory error.           |
 | 19020002 | runtime error.          |
 | 19030001 | crypto operation error. |
@@ -6627,8 +7740,8 @@ getEncoded(callback : AsyncCallback\<EncodingBlob>) : void
 **示例：**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -6648,13 +7761,13 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n'
 
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
   // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509CRL(encodingBlob, (err, x509CRL) => {
+cert.createX509CRL(encodingBlob, (err, x509CRL) => {
   if (err != null) {
     console.error('createX509CRL failed, errCode: ' + err.code + ', errMsg: ' + err.message);
   } else {
@@ -6684,6 +7797,8 @@ getEncoded() : Promise\<EncodingBlob>
 
 表示获取被吊销证书的序列化数据，使用Promise方式异步返回结果。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.Cert
 
 **返回值**：
@@ -6698,6 +7813,7 @@ getEncoded() : Promise\<EncodingBlob>
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19020001 | memory error.           |
 | 19020002 | runtime error.          |
 | 19030001 | crypto operation error. |
@@ -6705,8 +7821,8 @@ getEncoded() : Promise\<EncodingBlob>
 **示例：**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -6726,13 +7842,13 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n'
 
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
   // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509CRL(encodingBlob, (err, x509CRL) => {
+cert.createX509CRL(encodingBlob, (err, x509CRL) => {
   if (err != null) {
     console.error('createX509CRL failed, errCode: ' + err.code + ', errMsg: ' + err.message);
   } else {
@@ -6760,6 +7876,8 @@ getSerialNumber() : bigint
 
 表示获取被吊销证书的序列号。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.Cert
 
 **返回值**：
@@ -6781,8 +7899,8 @@ getSerialNumber() : bigint
 **示例：**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -6802,13 +7920,13 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n'
 
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
   // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509CRL(encodingBlob, (err, x509CRL) => {
+cert.createX509CRL(encodingBlob, (err, x509CRL) => {
   if (err != null) {
     console.error('createX509Crl failed, errCode: ' + err.code + ', errMsg: ' + err.message);
   } else {
@@ -6832,6 +7950,8 @@ getCertIssuer() : DataBlob
 
 表示获取被吊销证书的颁发者信息。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.Cert
 
 **返回值**：
@@ -6846,6 +7966,7 @@ getCertIssuer() : DataBlob
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
+| 801 | this operation is not supported. |
 | 19020001 | memory error.           |
 | 19020002 | runtime error.          |
 | 19030001 | crypto operation error. |
@@ -6853,8 +7974,8 @@ getCertIssuer() : DataBlob
 **示例：**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -6874,13 +7995,13 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n'
 
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
   // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509CRL(encodingBlob, (err, x509CRL) => {
+cert.createX509CRL(encodingBlob, (err, x509CRL) => {
   if (err != null) {
     console.error('createX509CRL failed, errCode: ' + err.code + ', errMsg: ' + err.message);
   } else {
@@ -6904,6 +8025,8 @@ getRevocationDate() : string
 
 表示获取证书被吊销的日期，日期为ASN.1时间格式。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.Cert
 
 **返回值**：
@@ -6925,8 +8048,8 @@ getRevocationDate() : string
 **示例：**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -6946,13 +8069,13 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n'
 
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
   // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509CRL(encodingBlob, (err, x509CRL) => {
+cert.createX509CRL(encodingBlob, (err, x509CRL) => {
   if (err != null) {
     console.error('createX509CRL failed, errCode: ' + err.code + ', errMsg: ' + err.message);
   } else {
@@ -6976,6 +8099,8 @@ getExtensions(): DataBlob
 
 表示获取CRL的扩展。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.Cert
 
 **返回值**：
@@ -6997,8 +8122,8 @@ getExtensions(): DataBlob
 **示例：**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -7018,13 +8143,13 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n'
 
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
   // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509CRL(encodingBlob, (err, x509CRL) => {
+cert.createX509CRL(encodingBlob, (err, x509CRL) => {
   if (err != null) {
     console.error('createX509CRL failed, errCode: ' + err.code + ', errMsg: ' + err.message);
   } else {
@@ -7048,6 +8173,8 @@ hasExtensions(): boolean
 
 表示判断CRL Entry是否有扩展。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.Cert
 
 **返回值**：
@@ -7069,8 +8196,8 @@ hasExtensions(): boolean
 **示例：**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -7090,13 +8217,13 @@ let crlData = '-----BEGIN X509 CRL-----\n' +
   'eavsH0Q3\n' +
   '-----END X509 CRL-----\n'
 
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(crlData),
   // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509CRL(encodingBlob, (err, x509CRL) => {
+cert.createX509CRL(encodingBlob, (err, x509CRL) => {
   if (err != null) {
     console.error('createX509CRL failed, errCode: ' + err.code + ', errMsg: ' + err.message);
   } else {
@@ -7113,11 +8240,357 @@ certFramework.createX509CRL(encodingBlob, (err, x509CRL) => {
   }
 })
 ```
-## cryptoCert.createCertCRLCollection<sup>11+</sup>
+
+### getCertIssuerX500DistinguishedName<sup>12+</sup>
+
+getCertIssuerX500DistinguishedName(): X500DistinguishedName
+
+获取证书颁发者的X509可分辨名称。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Security.Cert
+
+**返回值**：
+
+| 类型    | 说明                                                 |
+| ------- | ---------------------------------------------------- |
+| [X500DistinguishedName](#x500distinguishedname12) | X509的可分辨对象。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[证书错误码](errorcode-cert.md)。
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 19020001 | memory error.           |
+| 19020002 | runtime error.          |
+| 19030001 | crypto operation error. |
+
+**示例：**
+
+```ts
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+let crlData = '-----BEGIN X509 CRL-----\n' +
+  'MIHzMF4CAQMwDQYJKoZIhvcNAQEEBQAwFTETMBEGA1UEAxMKQ1JMIGlzc3VlchcN\n' +
+  'MTcwODA3MTExOTU1WhcNMzIxMjE0MDA1MzIwWjAVMBMCAgPoFw0zMjEyMTQwMDUz\n' +
+  'MjBaMA0GCSqGSIb3DQEBBAUAA4GBACEPHhlaCTWA42ykeaOyR0SGQIHIOUR3gcDH\n' +
+  'J1LaNwiL+gDxI9rMQmlhsUGJmPIPdRs9uYyI+f854lsWYisD2PUEpn3DbEvzwYeQ\n' +
+  '5SqQoPDoM+YfZZa23hoTLsu52toXobP74sf/9K501p/+8hm4ROMLBoRT86GQKY6g\n' +
+  'eavsH0Q3\n' +
+  '-----END X509 CRL-----\n'
+
+let encodingBlob: cert.EncodingBlob = {
+  data: stringToUint8Array(crlData),
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
+};
+
+async function certGetCertIssuerX500DistinguishedName() {
+  let x509Crl: cert.X509CRL = {} as cert.X509CRL;
+  try {
+    x509Crl = await cert.createX509CRL(encodingBlob);
+    console.log('createX509CRL success');
+    let name = x509Crl.getRevokedCert(BigInt(1000)).getCertIssuerX500DistinguishedName();
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    console.error('createX509CRL failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+  }
+}
+```
+
+### toString<sup>12+</sup>
+
+toString(): string
+
+获取对象的字符串类型数据。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Security.Cert
+
+**返回值**：
+
+| 类型    | 说明                                                 |
+| ------- | ---------------------------------------------------- |
+| string | 对象的字符串类型数据。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[证书错误码](errorcode-cert.md)。
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 19020001 | memory error.           |
+| 19020002 | runtime error.          |
+| 19030001 | crypto operation error. |
+
+**示例：**
+
+```ts
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+let crlData = '-----BEGIN X509 CRL-----\n' +
+  'MIHzMF4CAQMwDQYJKoZIhvcNAQEEBQAwFTETMBEGA1UEAxMKQ1JMIGlzc3VlchcN\n' +
+  'MTcwODA3MTExOTU1WhcNMzIxMjE0MDA1MzIwWjAVMBMCAgPoFw0zMjEyMTQwMDUz\n' +
+  'MjBaMA0GCSqGSIb3DQEBBAUAA4GBACEPHhlaCTWA42ykeaOyR0SGQIHIOUR3gcDH\n' +
+  'J1LaNwiL+gDxI9rMQmlhsUGJmPIPdRs9uYyI+f854lsWYisD2PUEpn3DbEvzwYeQ\n' +
+  '5SqQoPDoM+YfZZa23hoTLsu52toXobP74sf/9K501p/+8hm4ROMLBoRT86GQKY6g\n' +
+  'eavsH0Q3\n' +
+  '-----END X509 CRL-----\n'
+
+let encodingBlob: cert.EncodingBlob = {
+  data: stringToUint8Array(crlData),
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
+};
+
+async function certToString() {
+  let x509Crl: cert.X509CRL = {} as cert.X509CRL;
+  try {
+    x509Crl = await cert.createX509CRL(encodingBlob);
+    console.log('createX509CRL success');
+    console.info('toString success: ' + JSON.stringify(x509Crl.getRevokedCert(BigInt(1000)).toString()));
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    console.error('createX509CRL failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+  }
+}
+```
+
+### hashCode<sup>12+</sup>
+
+hashCode(): Uint8Array
+
+获取DER格式数据的哈希值。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Security.Cert
+
+**返回值**：
+
+| 类型    | 说明                                                 |
+| ------- | ---------------------------------------------------- |
+| Uint8Array | DER格式数据的哈希值。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[证书错误码](errorcode-cert.md)。
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 19020001 | memory error.           |
+| 19020002 | runtime error.          |
+| 19030001 | crypto operation error. |
+
+**示例：**
+
+```ts
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+let crlData = '-----BEGIN X509 CRL-----\n' +
+  'MIHzMF4CAQMwDQYJKoZIhvcNAQEEBQAwFTETMBEGA1UEAxMKQ1JMIGlzc3VlchcN\n' +
+  'MTcwODA3MTExOTU1WhcNMzIxMjE0MDA1MzIwWjAVMBMCAgPoFw0zMjEyMTQwMDUz\n' +
+  'MjBaMA0GCSqGSIb3DQEBBAUAA4GBACEPHhlaCTWA42ykeaOyR0SGQIHIOUR3gcDH\n' +
+  'J1LaNwiL+gDxI9rMQmlhsUGJmPIPdRs9uYyI+f854lsWYisD2PUEpn3DbEvzwYeQ\n' +
+  '5SqQoPDoM+YfZZa23hoTLsu52toXobP74sf/9K501p/+8hm4ROMLBoRT86GQKY6g\n' +
+  'eavsH0Q3\n' +
+  '-----END X509 CRL-----\n'
+
+let encodingBlob: cert.EncodingBlob = {
+  data: stringToUint8Array(crlData),
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
+};
+
+async function certHashCode() {
+  let x509Crl: cert.X509CRL = {} as cert.X509CRL;
+  try {
+    x509Crl = await cert.createX509CRL(encodingBlob);
+    console.log('createX509CRL success');
+    console.info('hashCode success: ' + JSON.stringify(x509Crl.getRevokedCert(BigInt(1000)).hashCode()));
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    console.error('createX509CRL failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+  }
+}
+```
+
+### getExtensionsObject<sup>12+</sup>
+
+getExtensionsObject(): CertExtension
+
+获取对应实体的扩展域DER格式数据。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Security.Cert
+
+**返回值**：
+
+| 类型    | 说明                                                 |
+| ------- | ---------------------------------------------------- |
+| [CertExtension](#certextension10) | 证书扩展域段类对象。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[证书错误码](errorcode-cert.md)。
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 19020001 | memory error.           |
+| 19020002 | runtime error.          |
+| 19030001 | crypto operation error. |
+
+**示例：**
+
+```ts
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+let crlData = '-----BEGIN X509 CRL-----\n' +
+  'MIINlTCCDH0CAQEwDQYJKoZIhvcNAQELBQAwTDELMAkGA1UEBhMCVVMxFTATBgNV\n' +
+  'BAoTDERpZ2lDZXJ0IEluYzEmMCQGA1UEAxMdRGlnaUNlcnQgU2VjdXJlIFNpdGUg\n' +
+  'Q04gQ0EgRzMXDTI0MDMxMjE4NDQ0NVoXDTI0MDMxOTE4NDQ0NVowggvJMCECEAbk\n' +
+  'wC/+N2YXfpw7vgDJ2xAXDTIzMDIwNzA1NTg1OFowIQIQDonqcHww7uhlmWH+OfIe\n' +
+  'PhcNMjMwMzA5MDcwMzI1WjAvAhAM4CTrULrJUEinWgT9AFPvFw0yMzAzMjAxOTE4\n' +
+  'NTRaMAwwCgYDVR0VBAMKAQQwIQIQBQP4xflKkcRehoJ2NaA/jhcNMjMwMzIyMDk0\n' +
+  'NTI5WjAvAhAOmgzoiIqznAaFec53PVPUFw0yMzAzMjcyMDI4MDNaMAwwCgYDVR0V\n' +
+  'BAMKAQQwLwIQBaC2Z3D4dcQ/O7HnzFU9KBcNMjMwMzI5MTc1OTQ1WjAMMAoGA1Ud\n' +
+  'FQQDCgEFMCECEAlz9Rg1b+9La4oFqsHUc4AXDTIzMDMzMTAyMzk0MVowIQIQD9yW\n' +
+  '92pX6BinUKVBVSSTmBcNMjMwNDExMDExNjI5WjAvAhAIIarHUWWee4V9W/Yzm86k\n' +
+  'Fw0yMzA0MTQyMDE5MTJaMAwwCgYDVR0VBAMKAQQwIQIQC2OiM3VIJX2dEe8/pf8f\n' +
+  'hRcNMjMwNDIxMDMzMDIyWjAhAhAP0ueyg5n/7b2Hotml7f42Fw0yMzA0MjYwMjU3\n' +
+  'NDJaMCECEAqMu61nkOEmTOdMbUZTMrkXDTIzMDUxNzAxMzI0NVowLwIQDYv1rt0K\n' +
+  'olvP+nQoi5LeLRcNMjMwNTIzMTc0MDE4WjAMMAoGA1UdFQQDCgEEMC8CEA8WMKlw\n' +
+  'iCK36PruJvup5bUXDTIzMDUyMzE3NDA1M1owDDAKBgNVHRUEAwoBBDAvAhAJ5uwT\n' +
+  'aqwgLzNVpxh4u9EPFw0yMzA1MjUxNzEwNTBaMAwwCgYDVR0VBAMKAQQwIQIQCg0k\n' +
+  '5UadwDH5xm14yxcgLRcNMjMwNjA3MDcyNDAwWjAhAhAEByUhbBR6/pZRFUH2PTxE\n' +
+  'Fw0yMzA2MDgwMjIwMzBaMCECEATquAQcy3W1kUOkb4VoOvEXDTIzMDYyNjA5MDIw\n' +
+  'NlowIQIQBrF5sueIjk1snKdO0ISOXhcNMjMwNjMwMDI0MDA0WjAhAhAJEG72WQtV\n' +
+  'lTOYiA0xjVk5Fw0yMzA3MDUwMjEyMzdaMCECEAmXIuCMJv9gllYuKfCHm5EXDTIz\n' +
+  'MDcwNTAyMTIzN1owIQIQAotQots0ngzRwACzrS9mCBcNMjMwNzA2MDU0NDU3WjAh\n' +
+  'AhAG2hyGc9SfXrLc0Uk2J1BeFw0yMzA3MjQwMTUwNDBaMCECEAJhm5FSlVyTG9UK\n' +
+  'zS+ecUgXDTIzMDcyNjA2NDQzM1owIQIQC4mlxBQuFxWC4pF7/P8BDxcNMjMwNzMx\n' +
+  'MTAzMjU0WjAhAhADCEp333/avF3m6HZtBImOFw0yMzA3MzExMDMzNTBaMCECEAKd\n' +
+  'P7fydlXUcS4v/YnZMMwXDTIzMDczMTEwMzQzOFowIQIQC+m5EUcRd1E0lEIPj17Z\n' +
+  'rRcNMjMwODAxMDYwNDE4WjAvAhAF4QcgQQlWpAi4FVflzbKxFw0yMzA4MDMxNjIz\n' +
+  'MTdaMAwwCgYDVR0VBAMKAQQwIQIQAn01GEZ50Y5ugIcEuGfF9BcNMjMwODA4MDE1\n' +
+  'NzM1WjAhAhAFHj3FDKeP9q9CM924d8RIFw0yMzA4MDgwMTU5NDhaMC8CEAnkNPSD\n' +
+  'U5yiMsV3fU06a6oXDTIzMDgwODE5MjIwMlowDDAKBgNVHRUEAwoBBDAvAhAETU4z\n' +
+  '13iMKiwQujsxJDRhFw0yMzA4MTAyMDU4NDdaMAwwCgYDVR0VBAMKAQQwIQIQB1oD\n' +
+  'M2mOYuse7e/nTqx+8xcNMjMwOTA0MDUwOTU3WjAhAhALf3Bp63so6O+R5QbWPWu6\n' +
+  'Fw0yMzEwMDkwNjE5NTVaMCECEAKFHdXcy/zBXRtMj3BVhO0XDTIzMTAwOTA2MTk1\n' +
+  'N1owIQIQDNNmVHN4tMu1xth6IAe4ZhcNMjMxMDEyMDc0MjQ1WjAhAhACNNJA2oMM\n' +
+  'pr+giIgczvHOFw0yMzEwMTYwNTEyMzdaMCECEAoQun7uSHhvy6GBoxG7XOkXDTIz\n' +
+  'MTExNjA3MDAzN1owLwIQA1NsI22PLvohCvKwdtAJwBcNMjMxMjA2MTgyNzUzWjAM\n' +
+  'MAoGA1UdFQQDCgEEMCECEAWagozDt4jfBzi+aDGFr88XDTIzMTIxMTA3MjM1OFow\n' +
+  'IQIQD1g7NdEk7t05zg6yweYc5hcNMjMxMjExMDcyNTM3WjAhAhAMJnRjUQAzFQFH\n' +
+  'kwIguRz2Fw0yMzEyMTEwNzI2NDJaMCECEAT0bVxyPKkeTV8JQuPxfcwXDTIzMTIx\n' +
+  'MTA3MjcyNlowIQIQA/5BlE0Ushtw24Ol9L2sexcNMjMxMjExMDcyODA2WjAhAhAL\n' +
+  'Ij6FAKVJDnKAwwt19+/RFw0yMzEyMTEwNzI5MDJaMCECEAmPyfX3FuOHgryS2i8c\n' +
+  'SrUXDTIzMTIxMTA3Mjk0M1owIQIQC+uGa6tmPRPCB0jW+6WWUhcNMjMxMjExMDcz\n' +
+  'MDIzWjAhAhAJCq59mFZj6SWLH/m18Fq2Fw0yMzEyMTEwNzMwNTJaMCECEAp0Po24\n' +
+  'WHmdEMTVyp9AMssXDTIzMTIxMTA3MzEyNlowIQIQAcf+793qPEHipkAhjf7MghcN\n' +
+  'MjMxMjExMDczMTQ5WjAhAhAElLuCARMBoDIH0Y2D1DpSFw0yMzEyMTEwNzMyMTla\n' +
+  'MCECEAWlgWhTXqKOB61zA7Ao8vQXDTIzMTIxMTA3MzI0OFowIQIQAeZqfkFYc/6t\n' +
+  'zO7j/FVYwBcNMjMxMjExMDczMzM1WjAhAhAHzftyRhskxV6opTfHb59OFw0yMzEy\n' +
+  'MTEwNzM0MDNaMCECEASXrBHdRYUm9VIZ1wN4qAsXDTIzMTIxMTA3MzQyN1owIQIQ\n' +
+  'BDFb/OY65CZ1sTdMPAc+IhcNMjMxMjExMDczNTEzWjAhAhAFg7mRyWvWXc+KT014\n' +
+  'Ro5AFw0yMzEyMTEwNzM1NDhaMCECEA+wAstqfBUEkSvinYlWeOwXDTIzMTIxMTA3\n' +
+  'MzYyNVowIQIQB3Z75ksHGnvGmuHbvwbheRcNMjMxMjExMDczNjU5WjAhAhALfrIn\n' +
+  'OGRVeePivKkJ+d1xFw0yMzEyMTEwNzM4MDFaMCECEAnm5NfU36m+FXNlJiUsXpMX\n' +
+  'DTIzMTIxMTA3MzgzNVowIQIQCrBoHo4X2md3Amteqh7h3RcNMjMxMjExMDczOTA3\n' +
+  'WjAhAhAGxHlqrHu66ifOwTTMhHHFFw0yMzEyMTEwNzM5NDNaMCECEA2BDG1SI7Se\n' +
+  '2GAt+b9UnF8XDTIzMTIxMTA3NDAyNFowLwIQDZvl5jkmAwjTweDCtrXbLRcNMjMx\n' +
+  'MjExMjA0NDQ3WjAMMAoGA1UdFQQDCgEEMCECEAzgcwGVpyXXZSmLLF4MExQXDTIz\n' +
+  'MTIxOTE3MjczMlowIQIQARB9nVoMuE5GSFeb3U553hcNMjMxMjE5MTcyODA1WjAh\n' +
+  'AhAD+JIH7lFcX9UNqTogrMcPFw0yMzEyMTkxNzI5MDZaMCECEAux1kd8ugXs4mI+\n' +
+  'xMfXgpsXDTIzMTIxOTE3MjkyOFowIQIQCUO5VqAmbxA8Jdly97msLhcNMjMxMjE5\n' +
+  'MTcyOTU0WjAhAhAFyzrU1JtsiPNPeWrfdvGvFw0yMzEyMTkxNzMwNDlaMCECEAwT\n' +
+  'tMq5EsBTUhQwm6nWhnAXDTIzMTIyMDE3NDc1NlowIQIQBx3qL8rMclE9gxamaa14\n' +
+  'xBcNMjMxMjIwMTc0ODM2WjAhAhAOnKUlrCaxs+lRqLrBmk2PFw0yNDAxMzAxOTMw\n' +
+  'MTVaMCECEAtYs/5ZRsrMAxQVDA44eWYXDTI0MDIwNjA2MjYwMFowIQIQDjrMV1d3\n' +
+  '0NhxngX5rqqxjBcNMjQwMjIxMDc0ODEwWjAhAhAPGohz3+JyS6H4JzHCjLrXFw0y\n' +
+  'NDAyMjgyMDQxMjZaMC8CEAqZ2QktAMprzZmtolbOXlgXDTI0MDIyOTE4MDYzMVow\n' +
+  'DDAKBgNVHRUEAwoBBDAhAhAMAHgNfiburtKDp8OJuzRCFw0yNDAzMDQwNjA3MzJa\n' +
+  'MCECEA/HgrXcSBqkb2JdfrFDAfgXDTI0MDMwNDA2MDczMlqgMDAuMB8GA1UdIwQY\n' +
+  'MBaAFETZyEozjtNSjaeSlGEfmsilt+zLMAsGA1UdFAQEAgIFrDANBgkqhkiG9w0B\n' +
+  'AQsFAAOCAQEAJ5rSr0Av5sH59J2LXW5hZ8SJTzDbR8ADdi/CCLolbUUnE0oaAZ+2\n' +
+  '9z0niAD5m8HQikNz8K+FKAsQatN/CAj4bzRMeF37hQCiZpqNtxP69JDGeWpGPiH2\n' +
+  'K/YfpzL9iSbBOxFmosxUX8J/iX36mCUl+3OUHh+qSYeElboxeAmTCnY5Pl5Bq9is\n' +
+  'gp0MmzNYCo7GEFrtS03p2msK25uRqQl6Qn0NZS0yGjdUG7RTZe4xua5drjEkB1o/\n' +
+  '15f+mtYj6DtWM1twi1q3VYVxhRSsk6XmmS0BViTEl+MT0BRAPwBSdlyt++1Pnnrd\n' +
+  'BsQoO8O2EVpJ54fxKMCSDOkJf1hNCxi3eQ==\n' +
+  '-----END X509 CRL-----\n';
+
+let encodingBlob: cert.EncodingBlob = {
+  data: stringToUint8Array(crlData),
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
+};
+
+async function certGetExtensionsObject() {
+  let x509Crl: cert.X509CRL = {} as cert.X509CRL;
+  try {
+    x509Crl = await cert.createX509CRL(encodingBlob);
+    console.log('createX509CRL success');
+    let object = x509Crl.getRevokedCert(BigInt('14091103387070223745671018446433705560')).getExtensionsObject();
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    console.error('createX509CRL failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+  }
+}
+```
+
+## cert.createCertCRLCollection<sup>11+</sup>
 
 createCertCRLCollection(certs: Array\<X509Cert>, crls?: Array\<X509CRL>): CertCRLCollection
 
 表示创建证书和证书吊销列表集合对象，并返回相应的结果。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -7140,13 +8613,14 @@ createCertCRLCollection(certs: Array\<X509Cert>, crls?: Array\<X509CRL>): CertCR
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19020001 | memory error.           |
 
 **示例：**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -7157,7 +8631,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-async function createX509CRL(): Promise<certFramework.X509CRL> {
+async function createX509CRL(): Promise<cert.X509CRL> {
   let crlData = '-----BEGIN X509 CRL-----\n' +
     'MIHzMF4CAQMwDQYJKoZIhvcNAQEEBQAwFTETMBEGA1UEAxMKQ1JMIGlzc3VlchcN\n' +
     'MTcwODA3MTExOTU1WhcNMzIxMjE0MDA1MzIwWjAVMBMCAgPoFw0zMjEyMTQwMDUz\n' +
@@ -7168,14 +8642,14 @@ async function createX509CRL(): Promise<certFramework.X509CRL> {
     '-----END X509 CRL-----\n';
 
   // 证书吊销列表二进制数据，需业务自行赋值
-  let encodingBlob: certFramework.EncodingBlob = {
+  let encodingBlob: cert.EncodingBlob = {
     data: stringToUint8Array(crlData),
     // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-    encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+    encodingFormat: cert.EncodingFormat.FORMAT_PEM
   };
-  let x509CRL: certFramework.X509CRL = {} as certFramework.X509CRL;
+  let x509CRL: cert.X509CRL = {} as cert.X509CRL;
   try {
-    x509CRL = await certFramework.createX509CRL(encodingBlob);
+    x509CRL = await cert.createX509CRL(encodingBlob);
   } catch (err) {
     let e: BusinessError = err as BusinessError;
     console.error('createX509CRL failed, errCode: ' + e.code + ', errMsg: ' + e.message);
@@ -7183,7 +8657,7 @@ async function createX509CRL(): Promise<certFramework.X509CRL> {
   return x509CRL;
 }
 
-async function createX509Cert(): Promise<certFramework.X509Cert> {
+async function createX509Cert(): Promise<cert.X509Cert> {
   let certData = '-----BEGIN CERTIFICATE-----\n' +
     'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
     'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
@@ -7194,15 +8668,15 @@ async function createX509Cert(): Promise<certFramework.X509Cert> {
     'Qw==\n' +
     '-----END CERTIFICATE-----\n';
 
-  let encodingBlob: certFramework.EncodingBlob = {
+  let encodingBlob: cert.EncodingBlob = {
     data: stringToUint8Array(certData),
     // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-    encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+    encodingFormat: cert.EncodingFormat.FORMAT_PEM
   };
 
-  let x509Cert: certFramework.X509Cert = {} as certFramework.X509Cert;
+  let x509Cert: cert.X509Cert = {} as cert.X509Cert;
   try {
-    x509Cert = await certFramework.createX509Cert(encodingBlob);
+    x509Cert = await cert.createX509Cert(encodingBlob);
   } catch (err) {
     let e: BusinessError = err as BusinessError;
     console.error('createX509Cert failed, errCode: ' + e.code + ', errMsg: ' + e.message);
@@ -7214,7 +8688,7 @@ async function createCollection() {
   const x509Cert = await createX509Cert();
   const x509CRL = await createX509CRL();
   try {
-    const collection: certFramework.CertCRLCollection = certFramework.createCertCRLCollection([x509Cert], [x509CRL]);
+    const collection: cert.CertCRLCollection = cert.createCertCRLCollection([x509Cert], [x509CRL]);
     console.log('createCertCRLCollection success');
   } catch (err) {
     console.error('createCertCRLCollection failed');
@@ -7231,6 +8705,8 @@ async function createCollection() {
 selectCerts(param: X509CertMatchParameters): Promise\<Array\<X509Cert>>
 
 查找证书和证书吊销列表集合中所有与参数匹配的证书对象，使用Promise方式异步返回结果。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -7252,14 +8728,15 @@ selectCerts(param: X509CertMatchParameters): Promise\<Array\<X509Cert>>
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19020001 | memory error.           |
 | 19030001 | crypto operation error. |
 
 **示例：**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -7270,7 +8747,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-async function createX509Cert(): Promise<certFramework.X509Cert> {
+async function createX509Cert(): Promise<cert.X509Cert> {
   let certData = '-----BEGIN CERTIFICATE-----\n' +
     'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
     'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
@@ -7281,15 +8758,15 @@ async function createX509Cert(): Promise<certFramework.X509Cert> {
     'Qw==\n' +
     '-----END CERTIFICATE-----\n';
 
-  let encodingBlob: certFramework.EncodingBlob = {
+  let encodingBlob: cert.EncodingBlob = {
     data: stringToUint8Array(certData),
     // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-    encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+    encodingFormat: cert.EncodingFormat.FORMAT_PEM
   };
 
-  let x509Cert: certFramework.X509Cert = {} as certFramework.X509Cert;
+  let x509Cert: cert.X509Cert = {} as cert.X509Cert;
   try {
-    x509Cert = await certFramework.createX509Cert(encodingBlob);
+    x509Cert = await cert.createX509Cert(encodingBlob);
   } catch (err) {
     let e: BusinessError = err as BusinessError;
     console.error('createX509Cert failed, errCode: ' + e.code + ', errMsg: ' + e.message);
@@ -7299,10 +8776,10 @@ async function createX509Cert(): Promise<certFramework.X509Cert> {
 
 async function selectCerts() {
   const x509Cert = await createX509Cert();
-  const collection = certFramework.createCertCRLCollection([x509Cert]);
+  const collection = cert.createCertCRLCollection([x509Cert]);
 
   try {
-    const param: certFramework.X509CertMatchParameters = {
+    const param: cert.X509CertMatchParameters = {
       x509Cert,
       validDate: '20231121074700Z',
       issuer: new Uint8Array([0x30, 0x64, 0x31]), // 数据需要业务自行赋值      
@@ -7328,6 +8805,8 @@ selectCerts(param: X509CertMatchParameters, callback: AsyncCallback\<Array\<X509
 
 查找证书和证书吊销列表集合中所有与参数匹配的证书对象, 使用Callback回调异步返回结果。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.Cert
 
 **参数**：
@@ -7343,14 +8822,15 @@ selectCerts(param: X509CertMatchParameters, callback: AsyncCallback\<Array\<X509
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19020001 | memory error.           |
 | 19030001 | crypto operation error. |
 
 **示例：**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -7361,7 +8841,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-async function createX509Cert(): Promise<certFramework.X509Cert> {
+async function createX509Cert(): Promise<cert.X509Cert> {
   let certData = '-----BEGIN CERTIFICATE-----\n' +
     'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
     'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
@@ -7372,15 +8852,15 @@ async function createX509Cert(): Promise<certFramework.X509Cert> {
     'Qw==\n' +
     '-----END CERTIFICATE-----\n';
 
-  let encodingBlob: certFramework.EncodingBlob = {
+  let encodingBlob: cert.EncodingBlob = {
     data: stringToUint8Array(certData),
     // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-    encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+    encodingFormat: cert.EncodingFormat.FORMAT_PEM
   };
 
-  let x509Cert: certFramework.X509Cert = {} as certFramework.X509Cert;
+  let x509Cert: cert.X509Cert = {} as cert.X509Cert;
   try {
-    x509Cert = await certFramework.createX509Cert(encodingBlob);
+    x509Cert = await cert.createX509Cert(encodingBlob);
   } catch (err) {
     let e: BusinessError = err as BusinessError;
     console.error('createX509Cert failed, errCode: ' + e.code + ', errMsg: ' + e.message);
@@ -7390,9 +8870,9 @@ async function createX509Cert(): Promise<certFramework.X509Cert> {
 
 async function selectCerts() {
   const x509Cert = await createX509Cert();
-  const collection = certFramework.createCertCRLCollection([x509Cert]);
+  const collection = cert.createCertCRLCollection([x509Cert]);
   // 需业务自行赋值
-  const param: certFramework.X509CertMatchParameters = {
+  const param: cert.X509CertMatchParameters = {
     x509Cert,
     validDate: '20231121074700Z',
     issuer: new Uint8Array([0x30, 0x64, 0x31]), // 数据需要业务自行赋值
@@ -7420,6 +8900,8 @@ selectCRLs(param: X509CRLMatchParameters): Promise\<Array\<X509CRL>>
 
 查找证书和证书吊销列表集合中所有与参数匹配的证书吊销列表对象, 使用Promise方式异步返回结果。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.Cert
 
 **参数**：
@@ -7432,7 +8914,7 @@ selectCRLs(param: X509CRLMatchParameters): Promise\<Array\<X509CRL>>
 
 | 类型           | 说明        |
 | -------------- | ----------- |
-| Promise\<Array\<[X509CRL](#x509crldeprecated)>> | Promise对象。表示匹配到的证书吊销列表对象数组。 |
+| Promise\<Array\<[X509CRL](#x509crl11)>> | Promise对象。表示匹配到的证书吊销列表对象数组。 |
 
 **错误码：**
 
@@ -7440,14 +8922,15 @@ selectCRLs(param: X509CRLMatchParameters): Promise\<Array\<X509CRL>>
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19020001 | memory error.           |
 | 19030001 | crypto operation error. |
 
 **示例：**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -7458,7 +8941,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-async function createX509CRL(): Promise<certFramework.X509CRL> {
+async function createX509CRL(): Promise<cert.X509CRL> {
   let crlData = '-----BEGIN X509 CRL-----\n' +
     'MIHzMF4CAQMwDQYJKoZIhvcNAQEEBQAwFTETMBEGA1UEAxMKQ1JMIGlzc3VlchcN\n' +
     'MTcwODA3MTExOTU1WhcNMzIxMjE0MDA1MzIwWjAVMBMCAgPoFw0zMjEyMTQwMDUz\n' +
@@ -7469,14 +8952,14 @@ async function createX509CRL(): Promise<certFramework.X509CRL> {
     '-----END X509 CRL-----\n';
 
   // 证书吊销列表二进制数据，需业务自行赋值
-  let encodingBlob: certFramework.EncodingBlob = {
+  let encodingBlob: cert.EncodingBlob = {
     data: stringToUint8Array(crlData),
     // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-    encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+    encodingFormat: cert.EncodingFormat.FORMAT_PEM
   };
-  let x509CRL: certFramework.X509CRL = {} as certFramework.X509CRL;
+  let x509CRL: cert.X509CRL = {} as cert.X509CRL;
   try {
-    x509CRL = await certFramework.createX509CRL(encodingBlob);
+    x509CRL = await cert.createX509CRL(encodingBlob);
   } catch (err) {
     let e: BusinessError = err as BusinessError;
     console.error('createX509CRL failed, errCode: ' + e.code + ', errMsg: ' + e.message);
@@ -7484,7 +8967,7 @@ async function createX509CRL(): Promise<certFramework.X509CRL> {
   return x509CRL;
 }
 
-async function createX509Cert(): Promise<certFramework.X509Cert> {
+async function createX509Cert(): Promise<cert.X509Cert> {
   const certData = "-----BEGIN CERTIFICATE-----\r\n" +
     "MIIC8TCCAdmgAwIBAgIIFB75m06RTHwwDQYJKoZIhvcNAQELBQAwWDELMAkGA1UE\r\n" +
     "BhMCQ04xEDAOBgNVBAgTB0ppYW5nc3UxEDAOBgNVBAcTB05hbmppbmcxCzAJBgNV\r\n" +
@@ -7503,14 +8986,14 @@ async function createX509Cert(): Promise<certFramework.X509Cert> {
     "V4SYZIO7ihr8+n4LQDQP+spvX4cf925a3kyZrftfvGCJ2ZNwvsPhyumYhaBqAgSy\r\n" +
     "Up2BImymAqPi157q9EeYcQz170TtDZHGmjYzdQxhOAHRb6/IdQ==\r\n" +
     "-----END CERTIFICATE-----\r\n";
-  const certEncodingBlob: certFramework.EncodingBlob = {
+  const certEncodingBlob: cert.EncodingBlob = {
     data: stringToUint8Array(certData),
-    encodingFormat: certFramework.EncodingFormat.FORMAT_PEM,
+    encodingFormat: cert.EncodingFormat.FORMAT_PEM,
   };
 
-  let x509Cert: certFramework.X509Cert = {} as certFramework.X509Cert;
+  let x509Cert: cert.X509Cert = {} as cert.X509Cert;
   try {
-    x509Cert = await certFramework.createX509Cert(certEncodingBlob);
+    x509Cert = await cert.createX509Cert(certEncodingBlob);
     console.log('createX509Cert success');
   } catch (err) {
     console.error('createX509Cert failed');
@@ -7521,9 +9004,9 @@ async function createX509Cert(): Promise<certFramework.X509Cert> {
 async function selectCRLs() {
   const x509CRL = await createX509CRL();
   const x509Cert = await createX509Cert();
-  const collection = certFramework.createCertCRLCollection([], [x509CRL]);
+  const collection = cert.createCertCRLCollection([], [x509CRL]);
 
-  const param: certFramework.X509CRLMatchParameters = {
+  const param: cert.X509CRLMatchParameters = {
     issuer: [new Uint8Array([0x30, 0x58, 0x31, 0x0B, 0x30, 0x09, 0x06, 0x03, 0x55, 0x04, 0x06, 0x13, 0x02, 0x43, 0x4E, 0x31, 0x10, 0x30, 0x0E, 0x06, 0x03, 0x55, 0x04, 0x08, 0x13, 0x07, 0x4A, 0x69, 0x61, 0x6E, 0x67, 0x73, 0x75, 0x31, 0x10, 0x30, 0x0E, 0x06, 0x03, 0x55, 0x04, 0x07, 0x13, 0x07, 0x4E, 0x61, 0x6E, 0x6A, 0x69, 0x6E, 0x67, 0x31, 0x0B, 0x30, 0x09, 0x06, 0x03, 0x55, 0x04, 0x0A, 0x13, 0x02, 0x74, 0x73, 0x31, 0x0B, 0x30, 0x09, 0x06, 0x03, 0x55, 0x04, 0x0B, 0x13, 0x02, 0x74, 0x73, 0x31, 0x0B, 0x30, 0x09, 0x06, 0x03, 0x55, 0x04, 0x03, 0x13, 0x02, 0x74, 0x73])],
     x509Cert: x509Cert
   }
@@ -7542,6 +9025,8 @@ selectCRLs(param: X509CRLMatchParameters, callback: AsyncCallback\<Array\<X509CR
 
 查找证书和证书吊销列表集合中所有与参数匹配的证书吊销列表对象, 使用Callback回调异步返回结果。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.Cert
 
 **参数**：
@@ -7549,7 +9034,7 @@ selectCRLs(param: X509CRLMatchParameters, callback: AsyncCallback\<Array\<X509CR
 | 参数名    | 类型                            | 必填 | 说明            |
 | --------- | ------------------------------- | ---- | ----------------- |
 | param | [X509CRLMatchParameters](#x509crlmatchparameters11) | 是   | 表示证书吊销列表需匹配的参数对象。 |
-| callback  | AsyncCallback\<Array\<[X509CRL](#x509crldeprecated)>>    | 是   | 回调函数。表示匹配到的证书吊销列表对象数组。 |
+| callback  | AsyncCallback\<Array\<[X509CRL](#x509crl11)>>    | 是   | 回调函数。表示匹配到的证书吊销列表对象数组。 |
 
 **错误码：**
 
@@ -7557,14 +9042,15 @@ selectCRLs(param: X509CRLMatchParameters, callback: AsyncCallback\<Array\<X509CR
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19020001 | memory error.           |
 | 19030001 | crypto operation error. |
 
 **示例：**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -7575,7 +9061,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-async function createX509CRL(): Promise<certFramework.X509CRL> {
+async function createX509CRL(): Promise<cert.X509CRL> {
   let crlData = '-----BEGIN X509 CRL-----\n' +
     'MIHzMF4CAQMwDQYJKoZIhvcNAQEEBQAwFTETMBEGA1UEAxMKQ1JMIGlzc3VlchcN\n' +
     'MTcwODA3MTExOTU1WhcNMzIxMjE0MDA1MzIwWjAVMBMCAgPoFw0zMjEyMTQwMDUz\n' +
@@ -7586,14 +9072,14 @@ async function createX509CRL(): Promise<certFramework.X509CRL> {
     '-----END X509 CRL-----\n';
 
   // 证书吊销列表二进制数据，需业务自行赋值
-  let encodingBlob: certFramework.EncodingBlob = {
+  let encodingBlob: cert.EncodingBlob = {
     data: stringToUint8Array(crlData),
     // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-    encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+    encodingFormat: cert.EncodingFormat.FORMAT_PEM
   };
-  let x509CRL: certFramework.X509CRL = {} as certFramework.X509CRL;
+  let x509CRL: cert.X509CRL = {} as cert.X509CRL;
   try {
-    x509CRL = await certFramework.createX509CRL(encodingBlob);
+    x509CRL = await cert.createX509CRL(encodingBlob);
   } catch (err) {
     let e: BusinessError = err as BusinessError;
     console.error('createX509CRL failed, errCode: ' + e.code + ', errMsg: ' + e.message);
@@ -7601,7 +9087,7 @@ async function createX509CRL(): Promise<certFramework.X509CRL> {
   return x509CRL;
 }
 
-async function createX509Cert(): Promise<certFramework.X509Cert> {
+async function createX509Cert(): Promise<cert.X509Cert> {
   const certData = "-----BEGIN CERTIFICATE-----\r\n" +
     "MIIC8TCCAdmgAwIBAgIIFB75m06RTHwwDQYJKoZIhvcNAQELBQAwWDELMAkGA1UE\r\n" +
     "BhMCQ04xEDAOBgNVBAgTB0ppYW5nc3UxEDAOBgNVBAcTB05hbmppbmcxCzAJBgNV\r\n" +
@@ -7620,14 +9106,14 @@ async function createX509Cert(): Promise<certFramework.X509Cert> {
     "V4SYZIO7ihr8+n4LQDQP+spvX4cf925a3kyZrftfvGCJ2ZNwvsPhyumYhaBqAgSy\r\n" +
     "Up2BImymAqPi157q9EeYcQz170TtDZHGmjYzdQxhOAHRb6/IdQ==\r\n" +
     "-----END CERTIFICATE-----\r\n";
-  const certEncodingBlob: certFramework.EncodingBlob = {
+  const certEncodingBlob: cert.EncodingBlob = {
     data: stringToUint8Array(certData),
-    encodingFormat: certFramework.EncodingFormat.FORMAT_PEM,
+    encodingFormat: cert.EncodingFormat.FORMAT_PEM,
   };
 
-  let x509Cert: certFramework.X509Cert = {} as certFramework.X509Cert;
+  let x509Cert: cert.X509Cert = {} as cert.X509Cert;
   try {
-    x509Cert = await certFramework.createX509Cert(certEncodingBlob);
+    x509Cert = await cert.createX509Cert(certEncodingBlob);
     console.log('createX509Cert success');
   } catch (err) {
     console.error('createX509Cert failed');
@@ -7638,9 +9124,9 @@ async function createX509Cert(): Promise<certFramework.X509Cert> {
 async function selectCRLs() {
   const x509CRL = await createX509CRL();
   const x509Cert = await createX509Cert();
-  const collection = certFramework.createCertCRLCollection([], [x509CRL]);
+  const collection = cert.createCertCRLCollection([], [x509CRL]);
 
-  const param: certFramework.X509CRLMatchParameters = {
+  const param: cert.X509CRLMatchParameters = {
     issuer: [new Uint8Array([0x30, 0x58, 0x31, 0x0B, 0x30, 0x09, 0x06, 0x03, 0x55, 0x04, 0x06, 0x13, 0x02, 0x43, 0x4E, 0x31, 0x10, 0x30, 0x0E, 0x06, 0x03, 0x55, 0x04, 0x08, 0x13, 0x07, 0x4A, 0x69, 0x61, 0x6E, 0x67, 0x73, 0x75, 0x31, 0x10, 0x30, 0x0E, 0x06, 0x03, 0x55, 0x04, 0x07, 0x13, 0x07, 0x4E, 0x61, 0x6E, 0x6A, 0x69, 0x6E, 0x67, 0x31, 0x0B, 0x30, 0x09, 0x06, 0x03, 0x55, 0x04, 0x0A, 0x13, 0x02, 0x74, 0x73, 0x31, 0x0B, 0x30, 0x09, 0x06, 0x03, 0x55, 0x04, 0x0B, 0x13, 0x02, 0x74, 0x73, 0x31, 0x0B, 0x30, 0x09, 0x06, 0x03, 0x55, 0x04, 0x03, 0x13, 0x02, 0x74, 0x73])],
     x509Cert: x509Cert
   }
@@ -7654,11 +9140,13 @@ async function selectCRLs() {
 }
 ```
 
-## cryptoCert.createX509CertChain<sup>11+</sup>
+## cert.createX509CertChain<sup>11+</sup>
 
 createX509CertChain(inStream: EncodingBlob): Promise\<X509CertChain>
 
 表示创建X509证书链对象，使用Promise方式异步返回结果。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -7680,14 +9168,15 @@ createX509CertChain(inStream: EncodingBlob): Promise\<X509CertChain>
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19020001 | memory error. |
 | 19030001 | crypto operation error. |
 
 **示例：**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -7698,7 +9187,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-async function createX509CertChain(): Promise<certFramework.X509CertChain> {
+async function createX509CertChain(): Promise<cert.X509CertChain> {
   let certChainData = "-----BEGIN CERTIFICATE-----\n" +
     "MIID6jCCAtKgAwIBAgIIIM2q/TmRoLcwDQYJKoZIhvcNAQELBQAwWjELMAkGA1UE\n" +
     "BhMCRU4xEDAOBgNVBAgTB0VuZ2xhbmQxDzANBgNVBAcTBkxvbmRvbjEMMAoGA1UE\n" +
@@ -7755,14 +9244,14 @@ async function createX509CertChain(): Promise<certFramework.X509CertChain> {
     "-----END CERTIFICATE-----\n";
 
   // 证书链二进制数据，需业务自行赋值
-  let encodingBlob: certFramework.EncodingBlob = {
+  let encodingBlob: cert.EncodingBlob = {
     data: stringToUint8Array(certChainData),
     // 根据encodingData的格式进行赋值，支持FORMAT_PEM、FORMAT_DER和FORMAT_PKCS7
-    encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+    encodingFormat: cert.EncodingFormat.FORMAT_PEM
   };
-  let x509CertChain: certFramework.X509CertChain = {} as certFramework.X509CertChain;
+  let x509CertChain: cert.X509CertChain = {} as cert.X509CertChain;
   try {
-    x509CertChain = await certFramework.createX509CertChain(encodingBlob);
+    x509CertChain = await cert.createX509CertChain(encodingBlob);
   } catch (error) {
     let e: BusinessError = error as BusinessError;
     console.error('createX509CertChain failed, errCode: ' + e.code + ', errMsg: ' + e.message);
@@ -7773,11 +9262,13 @@ async function createX509CertChain(): Promise<certFramework.X509CertChain> {
 createX509CertChain();
 ```
 
-## cryptoCert.createX509CertChain<sup>11+</sup>
+## cert.createX509CertChain<sup>11+</sup>
 
 createX509CertChain(inStream: EncodingBlob, callback: AsyncCallback\<X509CertChain>): void
 
 表示创建X509证书链对象，使用Callback回调异步返回结果。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -7794,13 +9285,14 @@ createX509CertChain(inStream: EncodingBlob, callback: AsyncCallback\<X509CertCha
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19020001 | memory error. |
 | 19030001 | crypto operation error. |
 
 **示例：**
 
 ```ts
-import certFramework from '@ohos.security.cert';
+import { cert } from '@kit.DeviceCertificateKit';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -7867,13 +9359,13 @@ let certChainData = "-----BEGIN CERTIFICATE-----\n" +
   "-----END CERTIFICATE-----\n";
 
 // 证书链二进制数据，需业务自行赋值
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certChainData),
   // 根据encodingData的格式进行赋值，支持FORMAT_PEM、FORMAT_DER和FORMAT_PKCS7
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509CertChain(encodingBlob, (err, certChain) => {
+cert.createX509CertChain(encodingBlob, (err, certChain) => {
   if (err != null) {
     console.error('createX509CertChain failed, errCode: ' + err.code + ', errMsg: ' + err.message);
   } else {
@@ -7882,11 +9374,13 @@ certFramework.createX509CertChain(encodingBlob, (err, certChain) => {
 });
 ```
 
-## cryptoCert.createX509CertChain<sup>11+</sup>
+## cert.createX509CertChain<sup>11+</sup>
 
 createX509CertChain(certs: Array\<X509Cert>): X509CertChain
 
 表示使用X509Cert数组方式创建X509证书链对象，并同步返回结果。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -7908,108 +9402,15 @@ createX509CertChain(certs: Array\<X509Cert>): X509CertChain
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19020001 | memory error. |
 | 19030001 | crypto operation error. |
 
 **示例：**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
-
-// string转Uint8Array
-function stringToUint8Array(str: string): Uint8Array {
-  let arr: Array<number> = [];
-  for (let i = 0, j = str.length; i < j; i++) {
-    arr.push(str.charCodeAt(i));
-  }
-  return new Uint8Array(arr);
-}
-
-async function createX509Cert(): Promise<certFramework.X509Cert> {
-  let certData = '-----BEGIN CERTIFICATE-----\n' +
-    'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
-    'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
-    'RXhhbXBsZSBSb290IENBMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEHjG74yMI\n' +
-    'ueO7z3T+dyuEIrhxTg2fqgeNB3SGfsIXlsiUfLTatUsU0i/sePnrKglj2H8Abbx9\n' +
-    'PK0tsW/VgqwDIDAKBggqhkjOPQQDAgNJADBGAiEApVZno/Z7WyDc/muRN1y57uaY\n' +
-    'Mjrgnvp/AMdE8qmFiDwCIQCrIYdHVO1awaPgcdALZY+uLQi6mEs/oMJLUcmaag3E\n' +
-    'Qw==\n' +
-    '-----END CERTIFICATE-----\n';
-
-  // 证书二进制数据，需业务自行赋值
-  let encodingBlob: certFramework.EncodingBlob = {
-    data: stringToUint8Array(certData),
-    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-    encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
-  };
-
-  let x509Cert: certFramework.X509Cert = {} as certFramework.X509Cert;
-  try {
-    x509Cert = await certFramework.createX509Cert(encodingBlob);
-  } catch (error) {
-    let e: BusinessError = error as BusinessError;
-    console.error('createX509Cert failed, errCode: ' + e.code + ', errMsg: ' + e.message);
-  }
-  return x509Cert;
-}
-
-async function createX509CertChain(): Promise<certFramework.X509CertChain> {
-  const x509Cert = await createX509Cert();
-  let x509CertChain: certFramework.X509CertChain = {} as certFramework.X509CertChain;
-  try {
-    x509CertChain = certFramework.createX509CertChain([x509Cert]);
-  } catch (error) {
-    let e: BusinessError = error as BusinessError;
-    console.error('createX509CertChain failed, errCode: ' + e.code + ', errMsg: ' + e.message);
-  }
-  return x509CertChain;
-}
-
-createX509CertChain();
-```
-
-## cryptoCert.buildX509CertChain<sup>12+</sup>
-
-buildX509CertChain(param: [CertChainBuildParameters](#certchainbuildparameters12)): Promise<CertChainBuildResult>
-
-表示使用CertChainBuildParameters对象方式创建X509证书链对象，并用Promise方式返回结果。
-
-**系统能力：** SystemCapability.Security.Cert
-
-**参数：**
-
-| 参数名   | 类型                  | 必填 | 说明                       |
-| -------- | -------------------- | ---- | -------------------------- |
-| param | [CertChainBuildParameters](#certchainbuildparameters12) | 是   | 构建证书链的参数对象。 |
-
-**返回值：**
-
-| 类型                              | 说明                 |
-| --------------------------------- | -------------------- |
-| [CertChainBuildResult](#certchainbuildresult12) | 表示X509证书链对象。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[证书错误码](errorcode-cert.md)。
-
-| 错误码ID | 错误信息                                          |
-| -------- | ------------------------------------------------- |
-| 19020001 | memory error.                                     |
-| 19020002 | runtime error.                                    |
-| 19030001 | crypto operation error.                           |
-| 19030002 | the certificate signature verification failed.    |
-| 19030003 | the certificate has not taken effect.             |
-| 19030004 | the certificate has expired.                      |
-| 19030005 | failed to obtain the certificate issuer.          |
-| 19030006 | the key cannot be used for signing a certificate. |
-| 19030007 | the key cannot be used for digital signature.     |
-
-**示例：**
-
-```ts
-import cert from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -8032,15 +9433,112 @@ async function createX509Cert(): Promise<cert.X509Cert> {
     '-----END CERTIFICATE-----\n';
 
   // 证书二进制数据，需业务自行赋值
-  let encodingBlob: certFramework.EncodingBlob = {
+  let encodingBlob: cert.EncodingBlob = {
     data: stringToUint8Array(certData),
     // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-    encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+    encodingFormat: cert.EncodingFormat.FORMAT_PEM
   };
 
-  let x509Cert: certFramework.X509Cert = {} as certFramework.X509Cert;
+  let x509Cert: cert.X509Cert = {} as cert.X509Cert;
   try {
-    x509Cert = await certFramework.createX509Cert(encodingBlob);
+    x509Cert = await cert.createX509Cert(encodingBlob);
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    console.error('createX509Cert failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+  }
+  return x509Cert;
+}
+
+async function createX509CertChain(): Promise<cert.X509CertChain> {
+  const x509Cert = await createX509Cert();
+  let x509CertChain: cert.X509CertChain = {} as cert.X509CertChain;
+  try {
+    x509CertChain = cert.createX509CertChain([x509Cert]);
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    console.error('createX509CertChain failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+  }
+  return x509CertChain;
+}
+
+createX509CertChain();
+```
+
+## cert.buildX509CertChain<sup>12+</sup>
+
+buildX509CertChain(param: [CertChainBuildParameters](#certchainbuildparameters12)): Promise\<CertChainBuildResult>
+
+表示使用CertChainBuildParameters对象方式创建X509证书链对象，并用Promise方式返回结果。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Security.Cert
+
+**参数：**
+
+| 参数名   | 类型                  | 必填 | 说明                       |
+| -------- | -------------------- | ---- | -------------------------- |
+| param | [CertChainBuildParameters](#certchainbuildparameters12) | 是   | 构建证书链的参数对象。 |
+
+**返回值：**
+
+| 类型                              | 说明                 |
+| --------------------------------- | -------------------- |
+| [CertChainBuildResult](#certchainbuildresult12) | 表示X509证书链对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[证书错误码](errorcode-cert.md)。
+
+| 错误码ID | 错误信息                                          |
+| -------- | ------------------------------------------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 19020001 | memory error.                                     |
+| 19020002 | runtime error.                                    |
+| 19030001 | crypto operation error.                           |
+| 19030002 | the certificate signature verification failed.    |
+| 19030003 | the certificate has not taken effect.             |
+| 19030004 | the certificate has expired.                      |
+| 19030005 | failed to obtain the certificate issuer.          |
+| 19030006 | the key cannot be used for signing a certificate. |
+| 19030007 | the key cannot be used for digital signature.     |
+
+**示例：**
+
+```ts
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+async function createX509Cert(): Promise<cert.X509Cert> {
+  let certData = '-----BEGIN CERTIFICATE-----\n' +
+    'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
+    'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
+    'RXhhbXBsZSBSb290IENBMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEHjG74yMI\n' +
+    'ueO7z3T+dyuEIrhxTg2fqgeNB3SGfsIXlsiUfLTatUsU0i/sePnrKglj2H8Abbx9\n' +
+    'PK0tsW/VgqwDIDAKBggqhkjOPQQDAgNJADBGAiEApVZno/Z7WyDc/muRN1y57uaY\n' +
+    'Mjrgnvp/AMdE8qmFiDwCIQCrIYdHVO1awaPgcdALZY+uLQi6mEs/oMJLUcmaag3E\n' +
+    'Qw==\n' +
+    '-----END CERTIFICATE-----\n';
+
+  // 证书二进制数据，需业务自行赋值
+  let encodingBlob: cert.EncodingBlob = {
+    data: stringToUint8Array(certData),
+    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+    encodingFormat: cert.EncodingFormat.FORMAT_PEM
+  };
+
+  let x509Cert: cert.X509Cert = {} as cert.X509Cert;
+  try {
+    x509Cert = await cert.createX509Cert(encodingBlob);
   } catch (error) {
     let e: BusinessError = error as BusinessError;
     console.error('createX509Cert failed, errCode: ' + e.code + ', errMsg: ' + e.message);
@@ -8052,15 +9550,14 @@ async function buildX509CertChain(): Promise<cert.CertChainBuildParameters> {
   const x509Cert = await createX509Cert();
   let certChainResult: cert.CertChainBuildParameters = {} as cert.CertChainBuildParameters;
   let param: cert.CertChainBuildParameters = {
-      certCollection: [x509Cert,x509Cert],
       certMatchParameters: {validDate:'20130212080000Z'},
-      maxlength: 3,
-      validateParameters: {
+      maxLength: 3,
+      validationParameters: {
         date: '20130212080000Z',
         trustAnchors: [{CACert:x509Cert}]}
   }
   try {
-    certChainResult = cert.buildX509CertChain();
+    let certChainBuildResult = cert.buildX509CertChain(certChainResult);
   } catch (error) {
     let e: BusinessError = error as BusinessError;
     console.error('createX509CertChain failed, errCode: ' + e.code + ', errMsg: ' + e.message);
@@ -8071,11 +9568,13 @@ async function buildX509CertChain(): Promise<cert.CertChainBuildParameters> {
 buildX509CertChain();
 ```
 
-## cryptoCert.createTrustAnchorsWithKeyStore<sup>11+</sup>
+## cert.createTrustAnchorsWithKeyStore<sup>12+</sup>
 
 createTrustAnchorsWithKeyStore(keystore: Uint8Array, pwd: string): Promise<Array\<[X509TrustAnchor](#x509trustanchor11)>>
 
 表示从P12文件中读取ca证书来构造[TrustAnchor](#x509trustanchor11)对象数组，并用Promise方式返回结果。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -8098,6 +9597,7 @@ createTrustAnchorsWithKeyStore(keystore: Uint8Array, pwd: string): Promise<Array
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19020001 | memory error.                                     |
 | 19020002 | runtime error.                                    |
 | 19030001 | crypto operation error.                           |
@@ -8111,19 +9611,19 @@ createTrustAnchorsWithKeyStore(keystore: Uint8Array, pwd: string): Promise<Array
 **示例：**
 
 ```ts
-import cert from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   cert.createTrustAnchorsWithKeyStore(
     new Uint8Array([0x04,0x14,0xAF,0x32,0x84,0xC3,0x94,0x50,0x74,0x69,0x58]),
     '123456').then((data) => {
-      console.log('createTrustAnchorsWithKeyStore sucess, number of the result is: ' + JSON.stringify(data.length))
-  }).cache((err) => {
-    console.err('createTrustAnchorsWithKeyStore failed:' + JSON.stringify(err))
+      console.log('createTrustAnchorsWithKeyStore sucess, number of the result is: ' + JSON.stringify(data.length));
+  }).catch((err : BusinessError) => {
+    console.error('createTrustAnchorsWithKeyStore failed:' + JSON.stringify(err));
   })
 } catch (error) {
-  console.err('createTrustAnchorsWithKeyStore failed:' + JSON.stringify(error))
+  console.error('createTrustAnchorsWithKeyStore failed:' + JSON.stringify(error));
 }
 ```
 
@@ -8136,6 +9636,8 @@ X509证书链对象。
 getCertList(): Array\<X509Cert>
 
 获取X509证书列表。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -8151,14 +9653,15 @@ getCertList(): Array\<X509Cert>
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19020001 | memory error.           |
 | 19030001 | crypto operation error. |
 
 **示例：**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -8225,13 +9728,13 @@ let certChainData = "-----BEGIN CERTIFICATE-----\n" +
   "-----END CERTIFICATE-----\n";
 
 // 证书链二进制数据，需业务自行赋值
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certChainData),
   // 根据encodingData的格式进行赋值，支持FORMAT_PEM、FORMAT_DER和FORMAT_PKCS7
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
-certFramework.createX509CertChain(encodingBlob, (err, certChain) => {
+cert.createX509CertChain(encodingBlob, (err, certChain) => {
   if (err != null) {
     console.error('createX509CertChain failed, errCode: ' + err.code + ', errMsg: ' + err.message);
   } else {
@@ -8251,6 +9754,8 @@ certFramework.createX509CertChain(encodingBlob, (err, certChain) => {
 validate(param: CertChainValidationParameters): Promise\<CertChainValidationResult>
 
 校验证书链，并使用Promise方式异步返回结果。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -8272,6 +9777,7 @@ validate(param: CertChainValidationParameters): Promise\<CertChainValidationResu
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19020001 | memory error.           |
 | 19020002 | runtime error. |
 | 19030001 | crypto operation error.           |
@@ -8285,8 +9791,8 @@ validate(param: CertChainValidationParameters): Promise\<CertChainValidationResu
 **示例：**
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import { BusinessError } from '@ohos.base';
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -8297,7 +9803,7 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-async function createX509CertChain(): Promise<certFramework.X509CertChain> {
+async function createX509CertChain(): Promise<cert.X509CertChain> {
   let certChainData = "-----BEGIN CERTIFICATE-----\n" +
     "MIID6jCCAtKgAwIBAgIIIM2q/TmRoLcwDQYJKoZIhvcNAQELBQAwWjELMAkGA1UE\n" +
     "BhMCRU4xEDAOBgNVBAgTB0VuZ2xhbmQxDzANBgNVBAcTBkxvbmRvbjEMMAoGA1UE\n" +
@@ -8354,14 +9860,14 @@ async function createX509CertChain(): Promise<certFramework.X509CertChain> {
     "-----END CERTIFICATE-----\n";
 
   // 证书链二进制数据，需业务自行赋值
-  let encodingBlob: certFramework.EncodingBlob = {
+  let encodingBlob: cert.EncodingBlob = {
     data: stringToUint8Array(certChainData),
     // 根据encodingData的格式进行赋值，支持FORMAT_PEM、FORMAT_DER和FORMAT_PKCS7
-    encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+    encodingFormat: cert.EncodingFormat.FORMAT_PEM
   };
-  let x509CertChain: certFramework.X509CertChain = {} as certFramework.X509CertChain;
+  let x509CertChain: cert.X509CertChain = {} as cert.X509CertChain;
   try {
-    x509CertChain = await certFramework.createX509CertChain(encodingBlob);
+    x509CertChain = await cert.createX509CertChain(encodingBlob);
   }
   catch (error) {
     let e: BusinessError = error as BusinessError;
@@ -8373,7 +9879,7 @@ async function createX509CertChain(): Promise<certFramework.X509CertChain> {
 async function validate() {
   const certChain = await createX509CertChain();
   // 证书链校验数据，需业务自行赋值
-  const param: certFramework.CertChainValidationParameters = {
+  const param: cert.CertChainValidationParameters = {
     date: '20231212080000Z',
     trustAnchors: [{
         CAPubKey: new Uint8Array([0x30, 0x2a, 0x30, 0x05, 0x06, 0x03, 0x2b, 0x65, 0x70, 0x03, 0x21, 0x00, 0xbb, 0x16,0x9d, 0x8f, 0x5c, 0x30, 0xd0, 0xba, 0x8f, 0x37, 0x6e, 0x33, 0xaf, 0x6f, 0x23, 0x71, 0x23, 0xa5, 0x49, 0x60,0x1e, 0xd1, 0x07, 0x4b, 0xc9, 0x11, 0x7e, 0x66, 0x01, 0xba, 0x92, 0x52]),
@@ -8398,6 +9904,8 @@ validate(param: CertChainValidationParameters, callback: AsyncCallback\<CertChai
 
 使用校验参数校验证书链并使用callback方式异步返回结果。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Security.Cert
 
 **参数**：
@@ -8413,6 +9921,7 @@ validate(param: CertChainValidationParameters, callback: AsyncCallback\<CertChai
 
 | 错误码ID | 错误信息                |
 | -------- | ----------------------- |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19020001 | memory error.           |
 | 19020002 | runtime error. |
 | 19030001 | crypto operation error.           |
@@ -8426,7 +9935,7 @@ validate(param: CertChainValidationParameters, callback: AsyncCallback\<CertChai
 **示例：**
 
 ```ts
-import certFramework from '@ohos.security.cert';
+import { cert } from '@kit.DeviceCertificateKit';
 
 // string转Uint8Array
 function stringToUint8Array(str: string): Uint8Array {
@@ -8493,14 +10002,14 @@ let certChainData = "-----BEGIN CERTIFICATE-----\n" +
   "-----END CERTIFICATE-----\n";
 
 // 证书链二进制数据，需业务自行赋值
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certChainData),
   // 根据encodingData的格式进行赋值，支持FORMAT_PEM、FORMAT_DER和FORMAT_PKCS7
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
 // 证书链校验数据，需业务自行赋值
-let param: certFramework.CertChainValidationParameters = {
+let param: cert.CertChainValidationParameters = {
   date: '20231212080000Z',
   trustAnchors: [{
     CAPubKey: new Uint8Array([0x30, 0x2a, 0x30, 0x05, 0x06, 0x03, 0x2b, 0x65, 0x70, 0x03, 0x21, 0x00, 0xbb, 0x16,0x9d, 0x8f, 0x5c, 0x30, 0xd0, 0xba, 0x8f, 0x37, 0x6e, 0x33, 0xaf, 0x6f, 0x23, 0x71, 0x23, 0xa5, 0x49, 0x60,0x1e, 0xd1, 0x07, 0x4b, 0xc9, 0x11, 0x7e, 0x66, 0x01, 0xba, 0x92, 0x52]),
@@ -8508,7 +10017,7 @@ let param: certFramework.CertChainValidationParameters = {
   }]
 };
 
-certFramework.createX509CertChain(encodingBlob, (err, certChain) => {
+cert.createX509CertChain(encodingBlob, (err, certChain) => {
   if (err != null) {
     console.error('createX509CertChain failed, errCode: ' + err.code + ', errMsg: ' + err.message);
   } else {
@@ -8522,4 +10031,590 @@ certFramework.createX509CertChain(encodingBlob, (err, certChain) => {
     });
   }
 });
+```
+
+### toString<sup>12+</sup>
+
+toString(): string
+
+获取对象的字符串类型数据。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Security.Cert
+
+**返回值**：
+
+| 类型    | 说明                                                 |
+| ------- | ---------------------------------------------------- |
+| string | 对象的字符串类型数据。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[证书错误码](errorcode-cert.md)。
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 19020001 | memory error. |
+| 19020002 | runtime error. |
+| 19030001 | crypto operation error. |
+
+**示例：**
+
+```ts
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+let certChainData = '-----BEGIN CERTIFICATE-----\n' +
+  'MIIGVjCCBT6gAwIBAgIQBMO0W3CU9LWVw1bE/jqYojANBgkqhkiG9w0BAQsFADBE\n' +
+  'MQswCQYDVQQGEwJVUzEVMBMGA1UEChMMRGlnaUNlcnQgSW5jMR4wHAYDVQQDExVH\n' +
+  'ZW9UcnVzdCBSU0EgQ04gQ0EgRzIwHhcNMjMwMzIzMDAwMDAwWhcNMjQwNDIyMjM1\n' +
+  'OTU5WjB1MQswCQYDVQQGEwJDTjERMA8GA1UECBMIemhlamlhbmcxETAPBgNVBAcT\n' +
+  'CGhhbmd6aG91MSwwKgYDVQQKEyNOZXRFYXNlIChIYW5nemhvdSkgTmV0d29yayBD\n' +
+  'by4sIEx0ZDESMBAGA1UEAwwJKi4xNjMuY29tMIIBIjANBgkqhkiG9w0BAQEFAAOC\n' +
+  'AQ8AMIIBCgKCAQEAwELks0Q1Z81u1OpbGdEFE2Snm/WpLfmiC5YFj5nFrinSX+UZ\n' +
+  'MIk42euBdjYSsWFxbljmWDdUCjstMhG8vRAjz3Nt1QniMCunHHFGujR5rSNLWYHE\n' +
+  'vCPhfptIhqOaE/rvkWGZZr2KjTQQN0dRf8dm9Oewy8DHu95c9jW6c9AVgKWUVOni\n' +
+  'tTOcJCnrndWjgCIPfKmKgrwaNaMnuQyy5nPIUHl/5EGzuGHrwjwlF+w+cT+Fwdix\n' +
+  'C3msEOCwX6wzo6baDs4og2EzuPNyTp4n4UqH5aHhLePgBFboOAyJwWp3+XJNpNGw\n' +
+  'GkU56cUUy7+AAn268EVvUNr7uQ65t2t+Ys32bQIDAQABo4IDETCCAw0wHwYDVR0j\n' +
+  'BBgwFoAUJG+RP4mHhw4ywkAY38VM60/ISTIwHQYDVR0OBBYEFD1HyRYJ5jqkvYL7\n' +
+  'C6TSt8/y3e7hMB0GA1UdEQQWMBSCCSouMTYzLmNvbYIHMTYzLmNvbTAOBgNVHQ8B\n' +
+  'Af8EBAMCBaAwHQYDVR0lBBYwFAYIKwYBBQUHAwEGCCsGAQUFBwMCMD0GA1UdHwQ2\n' +
+  'MDQwMqAwoC6GLGh0dHA6Ly9jcmwuZGlnaWNlcnQuY24vR2VvVHJ1c3RSU0FDTkNB\n' +
+  'RzIuY3JsMD4GA1UdIAQ3MDUwMwYGZ4EMAQICMCkwJwYIKwYBBQUHAgEWG2h0dHA6\n' +
+  'Ly93d3cuZGlnaWNlcnQuY29tL0NQUzBxBggrBgEFBQcBAQRlMGMwIwYIKwYBBQUH\n' +
+  'MAGGF2h0dHA6Ly9vY3NwLmRpZ2ljZXJ0LmNuMDwGCCsGAQUFBzAChjBodHRwOi8v\n' +
+  'Y2FjZXJ0cy5kaWdpY2VydC5jbi9HZW9UcnVzdFJTQUNOQ0FHMi5jcnQwCQYDVR0T\n' +
+  'BAIwADCCAX4GCisGAQQB1nkCBAIEggFuBIIBagFoAHUA7s3QZNXbGs7FXLedtM0T\n' +
+  'ojKHRny87N7DUUhZRnEftZsAAAGHDSE15QAABAMARjBEAiBRpmsJ3F9AI8wFxqOQ\n' +
+  'bHp+RL6F8cvNydajQ0Bqxjvd3AIgefAU/po3jBm+96dFVdbX+AG1uss67DL3VL5I\n' +
+  'nUmVva8AdgBz2Z6JG0yWeKAgfUed5rLGHNBRXnEZKoxrgBB6wXdytQAAAYcNITZS\n' +
+  'AAAEAwBHMEUCID/sUP12odF7uTTEyE0PjCpKo3nF7A3ba3b5wJJsZrDrAiEAxrat\n' +
+  'W2eeZTD458LPSPrMMBb1/o6zibWXqJCQye+bVFwAdwBIsONr2qZHNA/lagL6nTDr\n' +
+  'HFIBy1bdLIHZu7+rOdiEcwAAAYcNITYeAAAEAwBIMEYCIQCCJ2ktM1F+d1I5mQju\n' +
+  'Tn7oDYxy3GCGyG3u/yhu8k7EaAIhANSP8cAaMQFV6y8B2tubKY5eSQtgkF3a6NNq\n' +
+  'QJjtPnoHMA0GCSqGSIb3DQEBCwUAA4IBAQC8dK/G4nvs/SyQe/mnK+rUYIdSFs+4\n' +
+  'lgzatmq8V/I1tBly+Sv/FPhnn4F3iCrqy9j8y202FP51ev95DGbjlJRTIFPqVAO8\n' +
+  'ywYrLhvl1SJhV0b/8NF0Pr3dZVnK5Vfn11+LSBUg0cBB2hcVV30nv3IuVhz3d12n\n' +
+  'P+VseYQgMpQf7ad+ttpZtA7yqHzrUm4fzr03G7q88GztACRSHoYiPbOlz99SeTgW\n' +
+  '7bzZl1I4taxy2Q3b0ZBGfUt/kPY05tpKzKwDTbbqSErYszCt5X1RfVvf3coxF8Mo\n' +
+  '9bHbs2wYIzQBdujDQ/hU0u6ItERer3SUItZoxaSIxdrZ9eXFwVvXsT/g\n' +
+  '-----END CERTIFICATE-----\n' +
+  '-----BEGIN CERTIFICATE-----\n' +
+  'MIIFDzCCA/egAwIBAgIQCxNitu5qnT6WiTDxbiB9OTANBgkqhkiG9w0BAQsFADBh\n' +
+  'MQswCQYDVQQGEwJVUzEVMBMGA1UEChMMRGlnaUNlcnQgSW5jMRkwFwYDVQQLExB3\n' +
+  'd3cuZGlnaWNlcnQuY29tMSAwHgYDVQQDExdEaWdpQ2VydCBHbG9iYWwgUm9vdCBD\n' +
+  'QTAeFw0yMDAzMDQxMjA0NDBaFw0zMDAzMDQxMjA0NDBaMEQxCzAJBgNVBAYTAlVT\n' +
+  'MRUwEwYDVQQKEwxEaWdpQ2VydCBJbmMxHjAcBgNVBAMTFUdlb1RydXN0IFJTQSBD\n' +
+  'TiBDQSBHMjCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBANA1OZJJtZUI\n' +
+  '7zj4qFHT79g+Otks4TEfmUEDhrNKBEEjb/i29GBfnpvFdT36azCg2VODJRSjIzFn\n' +
+  '4qADcc84EmfKiDEM97HFsQPp9RRkqxH5cB51EU2eBE9Ua95x+wQp/KSdCqITCQ/v\n' +
+  'yvm3J4Upjl0wlW8wRCPCWcYw3pKClGRkNzVtI1KXnfpn7fG3N84n7wlBb9IGKJFa\n' +
+  'c/6+hxvZx2qnfLsxdIKR0Q/biGoU6Z8Iy/R/p7GoPO8vamV090+QHEL5AdSzKtEh\n' +
+  'U9vdvcuWjjLxVnaJLfj/6WoGZj8UWn3zFbEoTVaAfp2xqdzW7yRvi2r148m9ev7l\n' +
+  'jDqHo8UX69sCAwEAAaOCAd4wggHaMB0GA1UdDgQWBBQkb5E/iYeHDjLCQBjfxUzr\n' +
+  'T8hJMjAfBgNVHSMEGDAWgBQD3lA1VtFMu2bwo+IbG8OXsj3RVTAOBgNVHQ8BAf8E\n' +
+  'BAMCAYYwHQYDVR0lBBYwFAYIKwYBBQUHAwEGCCsGAQUFBwMCMBIGA1UdEwEB/wQI\n' +
+  'MAYBAf8CAQAwMwYIKwYBBQUHAQEEJzAlMCMGCCsGAQUFBzABhhdodHRwOi8vb2Nz\n' +
+  'cC5kaWdpY2VydC5jbjBABgNVHR8EOTA3MDWgM6Axhi9odHRwOi8vY3JsLmRpZ2lj\n' +
+  'ZXJ0LmNuL0RpZ2lDZXJ0R2xvYmFsUm9vdENBLmNybDCB3QYDVR0gBIHVMIHSMIHF\n' +
+  'BglghkgBhv1sAQEwgbcwKAYIKwYBBQUHAgEWHGh0dHBzOi8vd3d3LmRpZ2ljZXJ0\n' +
+  'LmNvbS9DUFMwgYoGCCsGAQUFBwICMH4MfEFueSB1c2Ugb2YgdGhpcyBDZXJ0aWZp\n' +
+  'Y2F0ZSBjb25zdGl0dXRlcyBhY2NlcHRhbmNlIG9mIHRoZSBSZWx5aW5nIFBhcnR5\n' +
+  'IEFncmVlbWVudCBsb2NhdGVkIGF0IGh0dHBzOi8vd3d3LmRpZ2ljZXJ0LmNvbS9y\n' +
+  'cGEtdWEwCAYGZ4EMAQICMA0GCSqGSIb3DQEBCwUAA4IBAQCzkcXq0TN0oSn4UeXp\n' +
+  'FBW7U8zrHBIhH9MXHNBp+Yy/yN19133UY05uuHXHaU2Uv0hxefckjPdkaX7ARso+\n' +
+  'O3Ar6nf7YfBwCqSpqsNckKT7KKtf3Ot95wYFpKDa64jcRUfxzRWnmq12IVzczqHI\n' +
+  'sIvUZQINw/UHSQcWekdUnMg58bQSHyTjwkj9jcX2RURxaVZkr15wxo/Z3Ydo2PVK\n' +
+  '3afEr0/vcuFvE7QeGXiI2DJdVt3JefatZ3rj4VTW2aUZwHGUiWWIUudBfQKR0JEp\n' +
+  'lJ8MFaKDh4/A2VEJnXILu1iwvc1m3jCaPuzZKdoHM/1234bznJI2aAfhfIhoHw90\n' +
+  'tPO+\n' +
+  '-----END CERTIFICATE-----\n';
+
+// 证书链二进制数据，需业务自行赋值
+let encodingBlob: cert.EncodingBlob = {
+  data: stringToUint8Array(certChainData),
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM、FORMAT_DER和FORMAT_PKCS7
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
+};
+
+async function certChainToString() {
+  let x509CertChain: cert.X509CertChain = {} as cert.X509CertChain;
+  try {
+    x509CertChain = await cert.createX509CertChain(encodingBlob);
+    console.log('createX509CertChain success');
+    console.info('toString success: ' + JSON.stringify(x509CertChain.toString()));
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    console.error('createX509CertChain failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+  }
+}
+```
+### hashCode<sup>12+</sup>
+
+hashCode(): Uint8Array
+
+获取DER格式数据的哈希值。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Security.Cert
+
+**返回值**：
+
+| 类型    | 说明                                                 |
+| ------- | ---------------------------------------------------- |
+| Uint8Array | DER格式数据的哈希值。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[证书错误码](errorcode-cert.md)。
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 19020001 | memory error. |
+| 19020002 | runtime error. |
+| 19030001 | crypto operation error. |
+
+**示例：**
+
+```ts
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+let certChainData = '-----BEGIN CERTIFICATE-----\n' +
+  'MIIGVjCCBT6gAwIBAgIQBMO0W3CU9LWVw1bE/jqYojANBgkqhkiG9w0BAQsFADBE\n' +
+  'MQswCQYDVQQGEwJVUzEVMBMGA1UEChMMRGlnaUNlcnQgSW5jMR4wHAYDVQQDExVH\n' +
+  'ZW9UcnVzdCBSU0EgQ04gQ0EgRzIwHhcNMjMwMzIzMDAwMDAwWhcNMjQwNDIyMjM1\n' +
+  'OTU5WjB1MQswCQYDVQQGEwJDTjERMA8GA1UECBMIemhlamlhbmcxETAPBgNVBAcT\n' +
+  'CGhhbmd6aG91MSwwKgYDVQQKEyNOZXRFYXNlIChIYW5nemhvdSkgTmV0d29yayBD\n' +
+  'by4sIEx0ZDESMBAGA1UEAwwJKi4xNjMuY29tMIIBIjANBgkqhkiG9w0BAQEFAAOC\n' +
+  'AQ8AMIIBCgKCAQEAwELks0Q1Z81u1OpbGdEFE2Snm/WpLfmiC5YFj5nFrinSX+UZ\n' +
+  'MIk42euBdjYSsWFxbljmWDdUCjstMhG8vRAjz3Nt1QniMCunHHFGujR5rSNLWYHE\n' +
+  'vCPhfptIhqOaE/rvkWGZZr2KjTQQN0dRf8dm9Oewy8DHu95c9jW6c9AVgKWUVOni\n' +
+  'tTOcJCnrndWjgCIPfKmKgrwaNaMnuQyy5nPIUHl/5EGzuGHrwjwlF+w+cT+Fwdix\n' +
+  'C3msEOCwX6wzo6baDs4og2EzuPNyTp4n4UqH5aHhLePgBFboOAyJwWp3+XJNpNGw\n' +
+  'GkU56cUUy7+AAn268EVvUNr7uQ65t2t+Ys32bQIDAQABo4IDETCCAw0wHwYDVR0j\n' +
+  'BBgwFoAUJG+RP4mHhw4ywkAY38VM60/ISTIwHQYDVR0OBBYEFD1HyRYJ5jqkvYL7\n' +
+  'C6TSt8/y3e7hMB0GA1UdEQQWMBSCCSouMTYzLmNvbYIHMTYzLmNvbTAOBgNVHQ8B\n' +
+  'Af8EBAMCBaAwHQYDVR0lBBYwFAYIKwYBBQUHAwEGCCsGAQUFBwMCMD0GA1UdHwQ2\n' +
+  'MDQwMqAwoC6GLGh0dHA6Ly9jcmwuZGlnaWNlcnQuY24vR2VvVHJ1c3RSU0FDTkNB\n' +
+  'RzIuY3JsMD4GA1UdIAQ3MDUwMwYGZ4EMAQICMCkwJwYIKwYBBQUHAgEWG2h0dHA6\n' +
+  'Ly93d3cuZGlnaWNlcnQuY29tL0NQUzBxBggrBgEFBQcBAQRlMGMwIwYIKwYBBQUH\n' +
+  'MAGGF2h0dHA6Ly9vY3NwLmRpZ2ljZXJ0LmNuMDwGCCsGAQUFBzAChjBodHRwOi8v\n' +
+  'Y2FjZXJ0cy5kaWdpY2VydC5jbi9HZW9UcnVzdFJTQUNOQ0FHMi5jcnQwCQYDVR0T\n' +
+  'BAIwADCCAX4GCisGAQQB1nkCBAIEggFuBIIBagFoAHUA7s3QZNXbGs7FXLedtM0T\n' +
+  'ojKHRny87N7DUUhZRnEftZsAAAGHDSE15QAABAMARjBEAiBRpmsJ3F9AI8wFxqOQ\n' +
+  'bHp+RL6F8cvNydajQ0Bqxjvd3AIgefAU/po3jBm+96dFVdbX+AG1uss67DL3VL5I\n' +
+  'nUmVva8AdgBz2Z6JG0yWeKAgfUed5rLGHNBRXnEZKoxrgBB6wXdytQAAAYcNITZS\n' +
+  'AAAEAwBHMEUCID/sUP12odF7uTTEyE0PjCpKo3nF7A3ba3b5wJJsZrDrAiEAxrat\n' +
+  'W2eeZTD458LPSPrMMBb1/o6zibWXqJCQye+bVFwAdwBIsONr2qZHNA/lagL6nTDr\n' +
+  'HFIBy1bdLIHZu7+rOdiEcwAAAYcNITYeAAAEAwBIMEYCIQCCJ2ktM1F+d1I5mQju\n' +
+  'Tn7oDYxy3GCGyG3u/yhu8k7EaAIhANSP8cAaMQFV6y8B2tubKY5eSQtgkF3a6NNq\n' +
+  'QJjtPnoHMA0GCSqGSIb3DQEBCwUAA4IBAQC8dK/G4nvs/SyQe/mnK+rUYIdSFs+4\n' +
+  'lgzatmq8V/I1tBly+Sv/FPhnn4F3iCrqy9j8y202FP51ev95DGbjlJRTIFPqVAO8\n' +
+  'ywYrLhvl1SJhV0b/8NF0Pr3dZVnK5Vfn11+LSBUg0cBB2hcVV30nv3IuVhz3d12n\n' +
+  'P+VseYQgMpQf7ad+ttpZtA7yqHzrUm4fzr03G7q88GztACRSHoYiPbOlz99SeTgW\n' +
+  '7bzZl1I4taxy2Q3b0ZBGfUt/kPY05tpKzKwDTbbqSErYszCt5X1RfVvf3coxF8Mo\n' +
+  '9bHbs2wYIzQBdujDQ/hU0u6ItERer3SUItZoxaSIxdrZ9eXFwVvXsT/g\n' +
+  '-----END CERTIFICATE-----\n' +
+  '-----BEGIN CERTIFICATE-----\n' +
+  'MIIFDzCCA/egAwIBAgIQCxNitu5qnT6WiTDxbiB9OTANBgkqhkiG9w0BAQsFADBh\n' +
+  'MQswCQYDVQQGEwJVUzEVMBMGA1UEChMMRGlnaUNlcnQgSW5jMRkwFwYDVQQLExB3\n' +
+  'd3cuZGlnaWNlcnQuY29tMSAwHgYDVQQDExdEaWdpQ2VydCBHbG9iYWwgUm9vdCBD\n' +
+  'QTAeFw0yMDAzMDQxMjA0NDBaFw0zMDAzMDQxMjA0NDBaMEQxCzAJBgNVBAYTAlVT\n' +
+  'MRUwEwYDVQQKEwxEaWdpQ2VydCBJbmMxHjAcBgNVBAMTFUdlb1RydXN0IFJTQSBD\n' +
+  'TiBDQSBHMjCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBANA1OZJJtZUI\n' +
+  '7zj4qFHT79g+Otks4TEfmUEDhrNKBEEjb/i29GBfnpvFdT36azCg2VODJRSjIzFn\n' +
+  '4qADcc84EmfKiDEM97HFsQPp9RRkqxH5cB51EU2eBE9Ua95x+wQp/KSdCqITCQ/v\n' +
+  'yvm3J4Upjl0wlW8wRCPCWcYw3pKClGRkNzVtI1KXnfpn7fG3N84n7wlBb9IGKJFa\n' +
+  'c/6+hxvZx2qnfLsxdIKR0Q/biGoU6Z8Iy/R/p7GoPO8vamV090+QHEL5AdSzKtEh\n' +
+  'U9vdvcuWjjLxVnaJLfj/6WoGZj8UWn3zFbEoTVaAfp2xqdzW7yRvi2r148m9ev7l\n' +
+  'jDqHo8UX69sCAwEAAaOCAd4wggHaMB0GA1UdDgQWBBQkb5E/iYeHDjLCQBjfxUzr\n' +
+  'T8hJMjAfBgNVHSMEGDAWgBQD3lA1VtFMu2bwo+IbG8OXsj3RVTAOBgNVHQ8BAf8E\n' +
+  'BAMCAYYwHQYDVR0lBBYwFAYIKwYBBQUHAwEGCCsGAQUFBwMCMBIGA1UdEwEB/wQI\n' +
+  'MAYBAf8CAQAwMwYIKwYBBQUHAQEEJzAlMCMGCCsGAQUFBzABhhdodHRwOi8vb2Nz\n' +
+  'cC5kaWdpY2VydC5jbjBABgNVHR8EOTA3MDWgM6Axhi9odHRwOi8vY3JsLmRpZ2lj\n' +
+  'ZXJ0LmNuL0RpZ2lDZXJ0R2xvYmFsUm9vdENBLmNybDCB3QYDVR0gBIHVMIHSMIHF\n' +
+  'BglghkgBhv1sAQEwgbcwKAYIKwYBBQUHAgEWHGh0dHBzOi8vd3d3LmRpZ2ljZXJ0\n' +
+  'LmNvbS9DUFMwgYoGCCsGAQUFBwICMH4MfEFueSB1c2Ugb2YgdGhpcyBDZXJ0aWZp\n' +
+  'Y2F0ZSBjb25zdGl0dXRlcyBhY2NlcHRhbmNlIG9mIHRoZSBSZWx5aW5nIFBhcnR5\n' +
+  'IEFncmVlbWVudCBsb2NhdGVkIGF0IGh0dHBzOi8vd3d3LmRpZ2ljZXJ0LmNvbS9y\n' +
+  'cGEtdWEwCAYGZ4EMAQICMA0GCSqGSIb3DQEBCwUAA4IBAQCzkcXq0TN0oSn4UeXp\n' +
+  'FBW7U8zrHBIhH9MXHNBp+Yy/yN19133UY05uuHXHaU2Uv0hxefckjPdkaX7ARso+\n' +
+  'O3Ar6nf7YfBwCqSpqsNckKT7KKtf3Ot95wYFpKDa64jcRUfxzRWnmq12IVzczqHI\n' +
+  'sIvUZQINw/UHSQcWekdUnMg58bQSHyTjwkj9jcX2RURxaVZkr15wxo/Z3Ydo2PVK\n' +
+  '3afEr0/vcuFvE7QeGXiI2DJdVt3JefatZ3rj4VTW2aUZwHGUiWWIUudBfQKR0JEp\n' +
+  'lJ8MFaKDh4/A2VEJnXILu1iwvc1m3jCaPuzZKdoHM/1234bznJI2aAfhfIhoHw90\n' +
+  'tPO+\n' +
+  '-----END CERTIFICATE-----\n';
+
+// 证书链二进制数据，需业务自行赋值
+let encodingBlob: cert.EncodingBlob = {
+  data: stringToUint8Array(certChainData),
+  // 根据encodingData的格式进行赋值，支持FORMAT_PEM、FORMAT_DER和FORMAT_PKCS7
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
+};
+
+async function certChainHashCode() {
+  let x509CertChain: cert.X509CertChain = {} as cert.X509CertChain;
+  try {
+    x509CertChain = await cert.createX509CertChain(encodingBlob);
+    console.log('createX509CertChain success');
+    console.info('hashCode success: ' + JSON.stringify(x509CertChain.hashCode()));
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    console.error('createX509CertChain failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+  }
+}
+```
+## cert.createX500DistinguishedName<sup>12+</sup>
+
+createX500DistinguishedName(nameStr: string): Promise\<X500DistinguishedName>
+
+表示使用字符串格式的名称创建X500DistinguishedName对象，使用Promise方式异步返回结果。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Security.Cert
+
+**参数：**
+
+| 参数名   | 类型                          | 必填 | 说明                 |
+| -------- | ----------------------------- | ---- | -------------------- |
+| nameStr | string | X509定义的Name类型的字符串格式数据。|
+
+**返回值：**
+
+| 类型                            | 说明             |
+| ------------------------------- | ---------------- |
+| Promise\<[X500DistinguishedName](#x500distinguishedname12)> | 表示X509的可分辨对象。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[证书错误码](errorcode-cert.md)。
+
+| 错误码ID | 错误信息      |
+| -------- | ------------- |
+| 401 | invalid parameters. |
+| 19020001 | memory error. |
+| 19020002 | runtime error. |
+| 19030001 | crypto operation error. |
+| 19030002 | the certificate signature verification failed. |
+| 19030003 | the certificate has not taken effect. |
+| 19030004 | the certificate has expired. |
+| 19030005 | failed to obtain the certificate issuer. |
+| 19030006 | the key cannot be used for signing a certificate. |
+| 19030007 | the key cannot be used for digital signature. |
+
+**示例：**
+
+```ts
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+let nameStr = '/CN=John Doe/OU=IT Department/O=ACME Inc./L=San Francisco/ST=California/C=US/CN=ALN C/CN=XTS';
+async function createX500DistinguishedName() {
+  try {
+    cert.createX500DistinguishedName(nameStr)
+      .then((data) => {
+        console.log('createX500DistinguishedName success');
+      })
+      .catch((err: BusinessError) => {
+        console.error('createX500DistinguishedName catch, errCode: ' + err.code + ', errMsg: ' + err.message);
+      })
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    console.error('createX500DistinguishedName catch, errCode: ' + e.code + ', errMsg: ' + e.message);
+  }
+}
+```
+
+## cert.createX500DistinguishedName<sup>12+</sup>
+
+createX500DistinguishedName(nameDer: Uint8Array): Promise\<X500DistinguishedName>
+
+表示使用DER格式的名称创建X500DistinguishedName对象，使用Promise方式异步返回结果。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Security.Cert
+
+**参数：**
+
+| 参数名   | 类型                          | 必填 | 说明                 |
+| -------- | ----------------------------- | ---- | -------------------- |
+| nameDer | Uint8Array | X509定义的Name类型的DER格式数据。|
+
+**返回值：**
+
+| 类型                            | 说明             |
+| ------------------------------- | ---------------- |
+| Promise\<[X500DistinguishedName](#x500distinguishedname12)> | 表示X509的可分辨对象。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[证书错误码](errorcode-cert.md)。
+
+| 错误码ID | 错误信息      |
+| -------- | ------------- |
+| 401 | invalid parameters. |
+| 19020001 | memory error. |
+| 19020002 | runtime error. |
+| 19030001 | crypto operation error. |
+| 19030002 | the certificate signature verification failed. |
+| 19030003 | the certificate has not taken effect. |
+| 19030004 | the certificate has expired. |
+| 19030005 | failed to obtain the certificate issuer. |
+| 19030006 | the key cannot be used for signing a certificate. |
+| 19030007 | the key cannot be used for digital signature. |
+
+**示例：**
+
+```ts
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+let nameStr = '/CN=John Doe/OU=IT Department/O=ACME Inc./L=San Francisco/ST=California/C=US/CN=ALN C/CN=XTS';
+let nameDer = stringToUint8Array(nameStr);
+async function createX500DistinguishedName() {
+  try {
+    cert.createX500DistinguishedName(nameDer)
+      .then((data) => {
+        console.log('createX500DistinguishedName success');
+      })
+      .catch((err: BusinessError) => {
+        console.error('createX500DistinguishedName catch, errCode: ' + err.code + ', errMsg: ' + err.message);
+      })
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    console.error('createX500DistinguishedName catch, errCode: ' + e.code + ', errMsg: ' + e.message);
+  }
+}
+```
+## X500DistinguishedName<sup>12+</sup>
+
+X509定义的Name类型的对象。
+
+### getName<sup>12+</sup>
+
+getName(): string
+
+获取可分辨名的字符串。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Security.Cert
+
+**返回值**：
+
+| 类型    | 说明                                              |
+| ------- | ------------------------------------------------- |
+| string | 可分辨名的字符串。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[证书错误码](errorcode-cert.md)。
+
+| 错误码ID | 错误信息      |
+| -------- | ------------- |
+| 19020001 | memory error. |
+| 19020002 | runtime error. |
+| 19030001 | crypto operation error. |
+
+**示例：**
+
+```ts
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+let nameStr = '/CN=John Doe/OU=IT Department/O=ACME Inc./L=San Francisco/ST=California/C=US/CN=ALN C/CN=XTS';
+let nameDer = stringToUint8Array(nameStr);
+async function getName() {
+  try {
+    cert.createX500DistinguishedName(nameDer)
+      .then((data) => {
+        console.log('createX500DistinguishedName success');
+        console.info('createX500DistinguishedName getName: ' + JSON.stringify(data.getName()))
+      })
+      .catch((err: BusinessError) => {
+        console.error('createX500DistinguishedName catch, errCode: ' + err.code + ', errMsg: ' + err.message);
+      })
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    console.error('createX500DistinguishedName catch, errCode: ' + e.code + ', errMsg: ' + e.message);
+  }
+}
+```
+
+### getName<sup>12+</sup>
+
+getName(type: string): Array\<string>
+
+按类型获取可分辨名的字符串。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Security.Cert
+
+**参数**：
+
+| 参数名       | 类型   | 必填 | 说明           |
+| ------------ | ------ | ---- | -------------- |
+| type | string | 是 | 指定类型的名称。|
+
+**返回值**：
+
+| 类型    | 说明                                              |
+| ------- | ------------------------------------------------- |
+| Array\<string> | 可分辨名的字符串数组。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[证书错误码](errorcode-cert.md)。
+
+| 错误码ID | 错误信息      |
+| -------- | ------------- |
+| 19020001 | memory error. |
+| 19020002 | runtime error. |
+| 19030001 | crypto operation error. |
+
+**示例：**
+
+```ts
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+let nameStr = '/CN=John Doe/OU=IT Department/O=ACME Inc./L=San Francisco/ST=California/C=US/CN=ALN C/CN=XTS';
+let nameDer = stringToUint8Array(nameStr);
+async function getName() {
+  try {
+    cert.createX500DistinguishedName(nameDer)
+      .then((data) => {
+        console.log('createX500DistinguishedName success');
+        console.info('createX500DistinguishedName getName: ' + JSON.stringify(data.getName("CN")))
+      })
+      .catch((err: BusinessError) => {
+        console.error('createX500DistinguishedName catch, errCode: ' + err.code + ', errMsg: ' + err.message);
+      })
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    console.error('createX500DistinguishedName catch, errCode: ' + e.code + ', errMsg: ' + e.message);
+  }
+}
+```
+
+### getEncoded<sup>12+</sup>
+
+getEncoded(): EncodingBlob
+
+获取X509证书扩展域的数据。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Security.Cert
+
+**返回值**：
+
+| 类型    | 说明                                              |
+| ------- | ------------------------------------------------- |
+| [EncodingBlob](#encodingblob) | X509证书序列化数据。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[证书错误码](errorcode-cert.md)。
+
+| 错误码ID | 错误信息      |
+| -------- | ------------- |
+| 19020001 | memory error. |
+| 19020002 | runtime error. |
+| 19030001 | crypto operation error. |
+
+**示例：**
+
+```ts
+import { cert } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+let nameStr = '/CN=John Doe/OU=IT Department/O=ACME Inc./L=San Francisco/ST=California/C=US/CN=ALN C/CN=XTS';
+let nameDer = stringToUint8Array(nameStr);
+async function getEncoded() {
+  try {
+    cert.createX500DistinguishedName(nameDer)
+      .then((data) => {
+        console.log('createX500DistinguishedName success');
+        let encodingBlobData = data.getEncoded();
+      })
+      .catch((err: BusinessError) => {
+        console.error('createX500DistinguishedName catch, errCode: ' + err.code + ', errMsg: ' + err.message);
+      })
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    console.error('createX500DistinguishedName catch, errCode: ' + e.code + ', errMsg: ' + e.message);
+  }
+}
 ```

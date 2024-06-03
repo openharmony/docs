@@ -102,7 +102,7 @@ SDK提供的开放能力以Kit维度呈现给开发者。开发者可按Kit查�
 
 - 支持系统根据动画调节帧率，支持开发者调节应用业务帧率。
 
-- 动效能力增强，支持硬件挖空，屏幕圆角，Navigation导航转场动画支持共享元素等。
+- 动效能力增强，支持硬件挖孔，屏幕圆角，Navigation导航转场动画支持共享元素等。
 
 - 图形渲染管线支持vulkan后端。
 
@@ -433,8 +433,8 @@ MindSpore Lite轻量化端侧学习能力开放C API。
 | -------- | -------- | -------- |
 | OpenHarmony | 4.1 Release | NA | 
 | Public SDK | Ohos_sdk_public 4.1.7.5 (API Version 11 Release) | 面向应用开发者提供，不包含需要使用系统权限的系统接口。 | 
-| HUAWEI DevEco Studio（可选） | 4.1 Release | OpenHarmony应用开发推荐使用。 | 
-| HUAWEI DevEco Device Tool（可选） | 4.1 Release | OpenHarmony智能设备集成开发环境推荐使用。 | 
+| HUAWEI DevEco Studio（可选） | 4.1 Release | OpenHarmony应用开发推荐使用。获取方式：<br />[Windows(64-bit)](https://contentcenter-vali-drcn.dbankcdn.cn/pvt_2/DeveloperAlliance_package_901_9/ee/v3/HqJ-6O2FQny86xtk_dg9HQ/devecostudio-windows-4.1.0.400.zip?HW-CC-KV=V1&HW-CC-Date=20240409T033730Z&HW-CC-Expire=315360000&HW-CC-Sign=BFA444BC43A041331E695AE2CFA9035A957AF107E06C97E793FD3D31D7096A0D)  <br />SHA256校验码：c46be4f3cfde27af1806cfc9860d9c366e66a20e31e15180cf3a90ab05464650<br />[Mac(X86)](https://contentcenter-vali-drcn.dbankcdn.cn/pvt_2/DeveloperAlliance_package_901_9/3b/v3/JgGp8n0bShOkm1MpBFJ73w/devecostudio-mac-4.1.0.400.zip?HW-CC-KV=V1&HW-CC-Date=20240409T034037Z&HW-CC-Expire=315360000&HW-CC-Sign=35C1F8B3FC19325EBBC32D8E11106DDB074A8ECC6BB3A77FF2EADBA2A8A223DA)  <br />SHA256校验码：15d6136959b715e4bb2160c41d405b889820ea26ceadbb416509a43e59ed7f09<br />[Mac(ARM)](https://contentcenter-vali-drcn.dbankcdn.cn/pvt_2/DeveloperAlliance_package_901_9/21/v3/D7Jy1StbTwSLUXaA20VrAw/devecostudio-mac-arm-4.1.0.400.zip?HW-CC-KV=V1&HW-CC-Date=20240409T034235Z&HW-CC-Expire=315360000&HW-CC-Sign=19598AAC650D2AB24CAC6DFDF0DBD312188FB0438A8233B7687E6ACDC43A51F8)  <br />SHA256校验码：ac04ca7c2344ec8f27531d5a59261ff037deed2c5a3d42ef88e6f90f4ed45484 | 
+| HUAWEI DevEco Device Tool（可选） | 4.0 Release | OpenHarmony智能设备集成开发环境推荐使用。<br />[请点击这里获取](https://device.harmonyos.com/cn/develop/ide#download)。  | 
 
 
 ## 源码获取

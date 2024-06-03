@@ -11,7 +11,7 @@ FormExtensionAbility为卡片扩展模块，提供卡片创建、销毁、刷新
 ## 导入模块
 
 ```ts
-import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
+import { FormExtensionAbility } from '@kit.FormKit';
 ```
 
 ## onShareForm
@@ -39,7 +39,7 @@ onShareForm?(formId: string): Record\<string, Object>
 **示例：**
 
 ```ts
-import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
+import { FormExtensionAbility } from '@kit.FormKit';
 
 export default class MyFormExtensionAbility extends FormExtensionAbility {
   onShareForm(formId: string) {
@@ -78,7 +78,7 @@ onAcquireFormData?(formId: string): Record\<string, Object>
 **示例：**
 
 ```ts
-import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
+import { FormExtensionAbility } from '@kit.FormKit';
 
 export default class MyFormExtensionAbility extends FormExtensionAbility {
   onAcquireFormData(formId: string) {

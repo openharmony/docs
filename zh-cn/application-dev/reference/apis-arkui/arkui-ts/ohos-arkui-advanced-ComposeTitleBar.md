@@ -30,25 +30,28 @@ ComposeTitleBar({item?: ComposeTitleBarMenuItem, title: ResourceStr, subtitle?: 
 
 **装饰器类型：**\@Component
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
-| 名称 | 参数类型 | 必填 | 说明 | 
+| 名称 | 参数类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| item | [ComposeTitleBarMenuItem](#composetitlebarmenuitem) | 否 | 用于左侧头像的单个菜单项目。 | 
-| title | [ResourceStr](ts-types.md#resourcestr) | 是 | 标题。 | 
-| subtitle | [ResourceStr](ts-types.md#resourcestr) | 否 | 副标题。 | 
-| menuItems | Array&lt;[ComposeTitleBarMenuItem](#composetitlebarmenuitem)&gt; | 否 | 右侧菜单项目列表。 | 
-
+| item | [ComposeTitleBarMenuItem](#composetitlebarmenuitem) | 否 | 用于左侧头像的单个菜单项目。 |
+| title | [ResourceStr](ts-types.md#resourcestr) | 是 | 标题。 |
+| subtitle | [ResourceStr](ts-types.md#resourcestr) | 否 | 副标题。 |
+| menuItems | Array&lt;[ComposeTitleBarMenuItem](#composetitlebarmenuitem)&gt; | 否 | 右侧菜单项目列表。 |
 
 ## ComposeTitleBarMenuItem
 
-| 名称 | 类型 | 必填 | 说明 | 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | [ResourceStr](ts-types.md#resourcestr) | 是 | 图标资源。 | 
-| isEnabled | boolean | 否 | 是否启用，默认禁用。<br> isEnabled为true时，表示为启用。<br> isEnabled为false时，表示为禁用。 | 
-| action | ()&nbsp;=&gt;&nbsp;void | 否 | 触发时的动作闭包，item属性不支持触发action事件。 | 
+| value | [ResourceStr](ts-types.md#resourcestr) | 是 | 图标资源。 |
+| isEnabled | boolean | 否 | 是否启用，默认禁用。<br> isEnabled为true时，表示为启用。<br> isEnabled为false时，表示为禁用。 |
+| action | ()&nbsp;=&gt;&nbsp;void | 否 | 触发时的动作闭包，item属性不支持触发action事件。 |
 
 ## 事件
 不支持[通用事件](ts-universal-events-click.md)

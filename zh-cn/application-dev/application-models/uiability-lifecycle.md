@@ -46,13 +46,15 @@ UIAbility实例创建完成之后，在进入Foreground之前，系统会创建�
 在onWindowStageCreate()回调中通过[`loadContent()`](../reference/apis-arkui/js-apis-window.md#loadcontent9-2)方法设置应用要加载的页面，并根据需要调用[`on('windowStageEvent')`](../reference/apis-arkui/js-apis-window.md#onwindowstageevent9)方法订阅WindowStage的[事件](../reference/apis-arkui/js-apis-window.md#windowstageeventtype9)（获焦/失焦、可见/不可见）。
 
 ```ts
-import Logger from '../utils/Logger';
 import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
+import hilog from '@ohos.hilog';
+
+const TAG: string = '[EntryAbility]';
+const DOMAIN_NUMBER: number = 0xFF00;
 
 export default class EntryAbility extends UIAbility {
   // ...
-
   onWindowStageCreate(windowStage: window.WindowStage): void {
     // 设置WindowStage的事件订阅（获焦/失焦、可见/不可见）
     try {
@@ -60,25 +62,25 @@ export default class EntryAbility extends UIAbility {
         let stageEventType: window.WindowStageEventType = data;
         switch (stageEventType) {
           case window.WindowStageEventType.SHOWN: // 切到前台
-            Logger.info('windowStage foreground.');
+            hilog.info(DOMAIN_NUMBER, TAG, 'windowStage foreground.');
             break;
           case window.WindowStageEventType.ACTIVE: // 获焦状态
-            Logger.info('windowStage active.');
+            hilog.info(DOMAIN_NUMBER, TAG, 'windowStage active.');
             break;
           case window.WindowStageEventType.INACTIVE: // 失焦状态
-            Logger.info('windowStage inactive.');
+            hilog.info(DOMAIN_NUMBER, TAG, 'windowStage inactive.');
             break;
           case window.WindowStageEventType.HIDDEN: // 切到后台
-            Logger.info('windowStage background.');
+            hilog.info(DOMAIN_NUMBER, TAG, 'windowStage background.');
             break;
           default:
             break;
         }
       });
     } catch (exception) {
-      Logger.error('Failed to enable the listener for window stage event changes. Cause:' + JSON.stringify(exception));
+      hilog.error(DOMAIN_NUMBER, TAG, 'Failed to enable the listener for window stage event changes. Cause:' + JSON.stringify(exception));
     }
-
+    hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', 'Ability onWindowStageCreate');
     // 设置UI加载
     windowStage.loadContent('pages/Index', (err, data) => {
       // ...
@@ -94,25 +96,63 @@ export default class EntryAbility extends UIAbility {
 对应于`onWindowStageCreate()`回调。在UIAbility实例销毁之前，则会先进入`onWindowStageDestroy()`回调，可以在该回调中释放UI资源。
 
 ```ts
-import Logger from '../utils/Logger';
 import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
+import hilog from '@ohos.hilog';
 import type { BusinessError } from '@ohos.base';
+
+const TAG: string = '[EntryAbility]';
+const DOMAIN_NUMBER: number = 0xFF00;
 
 export default class EntryAbility extends UIAbility {
   windowStage: window.WindowStage | undefined = undefined;
   // ...
-
   onWindowStageCreate(windowStage: window.WindowStage): void {
     this.windowStage = windowStage;
     // ...
   }
+  onWindowStageDestroy() {
+    // 释放UI资源
+    // 例如在onWindowStageDestroy()中注销获焦/失焦等WindowStage事件
+    try {
+      if (this.windowStage) {
+        this.windowStage.off('windowStageEvent');
+      }
+    } catch (err) {
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      hilog.error(DOMAIN_NUMBER, TAG, `Failed to disable the listener for windowStageEvent. Code is ${code}, message is ${message}`);
+    };
+  }
+}
+```
 
+### WindowStageWillDestroy状态
+对应`onWindowStageWillDestroy()`回调，在WindowStage销毁前执行，此时WindowStage可以使用。
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
+
+export default class EntryAbility extends UIAbility {
+  windowStage: window.WindowStage | undefined = undefined;
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    this.windowStage = windowStage;
+    // ...
+  }
+  onWindowStageWillDestroy(windowStage: window.WindowStage) {
+    // 释放通过windowStage对象获取的资源
+  }
   onWindowStageDestroy() {
     // 释放UI资源
   }
 }
 ```
+
+> **说明：**
+>
+> WindowStage的相关使用请参见[窗口开发指导](../windowmanager/application-window-stage.md)。
 
 
 ### Foreground和Background状态
@@ -145,12 +185,27 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
+当应用的UIAbility实例已创建，且UIAbility配置为[singleton](uiability-launch-type.md#singleton启动模式)启动模式时，再次调用[`startAbility()`](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)方法启动该UIAbility实例时，只会进入该UIAbility的[`onNewWant()`](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonnewwant)回调，不会进入其[`onCreate()`](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncreate)和[`onWindowStageCreate()`](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonwindowstagecreate)生命周期回调。应用可以在该回调中更新要加载的资源和数据等，用于后续的UI展示。
+
+```ts
+import type AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import UIAbility from '@ohos.app.ability.UIAbility';
+import type Want from '@ohos.app.ability.Want';
+
+export default class EntryAbility extends UIAbility {
+  // ...
+
+  onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    // 更新资源、数据
+  }
+}
+```
 
 ### Destroy状态
 
 Destroy状态在UIAbility实例销毁时触发。可以在onDestroy()回调中进行系统资源的释放、数据的保存等操作。
 
-例如调用`terminateSelf()`方法停止当前UIAbility实例，从而完成UIAbility实例的销毁；或者用户使用最近任务列表关闭该UIAbility实例，完成UIAbility的销毁。
+例如调用[terminateSelf()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself)方法停止当前UIAbility实例，从而完成UIAbility实例的销毁；或者用户使用最近任务列表关闭该UIAbility实例，完成UIAbility的销毁。
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';

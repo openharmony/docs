@@ -1,20 +1,21 @@
-# 位图操作
+# 使用PixelMap完成位图操作
 
 当需要对目标图片中的部分区域进行处理时，可以使用位图操作功能。此功能常用于图片美化等操作。
 
 如下图所示，一张图片中，将指定的矩形区域像素数据读取出来，进行修改后，再写回原图片对应区域。
 
-**图1** 位图操作示意图  
+**图1** 位图操作示意图
+
 ![Bitmap operation](figures/bitmap-operation.png)
 
 ## 开发步骤
 
 位图操作相关API的详细介绍请参见[API参考](../../reference/apis-image-kit/js-apis-image.md#pixelmap7)。
 
-1. 完成[图片解码](image-decoding.md#开发步骤)，获取PixelMap位图对象。
+1. 完成[图片解码](image-decoding.md)，获取PixelMap位图对象。
 
 2. 从PixelMap位图对象中获取信息。
-     
+
    ```ts
    import image from '@ohos.multimedia.image';
    // 获取图像像素的总字节数
@@ -26,7 +27,7 @@
    ```
 
 3. 读取并修改目标区域像素数据，写回原图。
-     
+
    ```ts
    import {BusinessError} from '@ohos.base'
    // 场景一：将读取的整张图像像素数据结果写入ArrayBuffer中

@@ -17,7 +17,7 @@
 ## **导入模块**
 
 ```js
-import secureElement from '@ohos.secureElement';
+import { omapi } from '@kit.ConnectivityKit';
 ```
 
 ## secureElement.ServiceState
@@ -51,28 +51,69 @@ newSEService(type: 'serviceState', callback: Callback<[ServiceState](#secureelem
 **返回值：**
 
 | **类型**  | **说明**   |
-| :-------- | :--------- |
+| -------- | --------- |
 | SEService | SE服务实例。 |
 
 **示例：**
 
 ```js
-import secureElement from '@ohos.secureElement';
-import { BusinessError } from '@ohos.base';
+import { omapi } from '@kit.ConnectivityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
-let seService : secureElement.SEService;
+let seService : omapi.SEService;
 
-// get the service
-try {
-    seService = secureElement.newSEService("serviceState", (state) => {
-    hilog.info(0x0000, 'testTag', 'se service state = %{public}s', JSON.stringify(state));
-    });
-} catch (error) {
-    hilog.error(0x0000, 'testTag', 'newSEService error %{public}s', JSON.stringify(error));
+function secureElementDemo() {
+    // get the service
+    try {
+        seService = omapi.newSEService("serviceState", (state) => {
+        hilog.info(0x0000, 'testTag', 'se service state = %{public}s', JSON.stringify(state));
+        });
+    } catch (error) {
+        hilog.error(0x0000, 'testTag', 'newSEService error %{public}s', JSON.stringify(error));
+    }
+    if (seService == undefined || !seService.isConnected()) {
+        hilog.error(0x0000, 'testTag', 'secure element service disconnected.');
+        return;
+    }
 }
-if (seService == undefined || !seService.isConnected()) {
-    hilog.error(0x0000, 'testTag', 'secure element service disconnected.');
-    return;
+```
+
+## secureElement.createService<sup>12+</sup>
+
+createService(): Promise\<SEService>;
+
+建立一个可用于连接到系统中所有可用SE的新连接（服务）。连接过程较为耗时，所以此方法仅提供异步方式进行的。
+
+仅当[isConnected](#seserviceisconnected)方法返回true时，该返回SEService对象是可用的。
+
+**系统能力：**  SystemCapability.Communication.SecureElement
+
+**返回值：**
+
+| **类型**  | **说明**   |
+| :-------- | :--------- |
+| Promise\<SEService> | 以Promise形式异步返回可用的SE服务实例。 |
+
+**示例：**
+
+```js
+import { omapi } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+let seService : omapi.SEService;
+
+function secureElementDemo() {
+    omapi.createService().then((data) => {
+        seService = data;
+        if (seService == undefined || !seService.isConnected()) {
+            hilog.error(0x0000, 'testTag', 'seservice state disconnected');
+            return;
+        }
+        hilog.info(0x0000, 'testTag', 'seservice state connected');
+    }).catch((error : BusinessError)=> {
+        hilog.error(0x0000, 'testTag', 'createService error %{public}s', JSON.stringify(error));
+    });
 }
 ```
 
@@ -93,23 +134,24 @@ getReaders(): Reader[]
 **示例：**
 
 ```js
-import secureElement from '@ohos.secureElement';
-import { BusinessError } from '@ohos.base';
+import { omapi } from '@kit.ConnectivityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
-let seService : secureElement.SEService;
-let seReaders : omasecureElementpi.Reader[];
+let seService : omapi.SEService;
+let seReaders : omapi.Reader[];
 
 // Before use seService, initialization for seService is required
-
-// get readers
-try {
-    seReaders = seService.getReaders();
-} catch (error) {
-    hilog.error(0x0000, 'testTag', 'getReaders error %{public}s', JSON.stringify(error));
-}
-if (seReaders == undefined || seReaders.length == 0) {
-    hilog.error(0x0000, 'testTag', 'no valid reader found.');
-    return;
+function secureElementDemo() {
+    // get readers
+    try {
+        seReaders = seService.getReaders();
+    } catch (error) {
+        hilog.error(0x0000, 'testTag', 'getReaders error %{public}s', JSON.stringify(error));
+    }
+    if (seReaders == undefined || seReaders.length == 0) {
+        hilog.error(0x0000, 'testTag', 'no valid reader found.');
+        return;
+    }
 }
 ```
 
@@ -130,22 +172,25 @@ isConnected(): boolean
 **示例：**
 
 ```JS
-import secureElement from '@ohos.secureElement';
-import { BusinessError } from '@ohos.base';
+import { omapi } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
-let seService : secureElement.SEService;
+let seService : omapi.SEService;
 
-// get the service
-try {
-    seService = secureElement.newSEService("serviceState", (state) => {
-    hilog.info(0x0000, 'testTag', 'se service state = %{public}s', JSON.stringify(state));
-    });
-} catch (error) {
-    hilog.error(0x0000, 'testTag', 'newSEService error %{public}s', JSON.stringify(error));
-}
-if (seService == undefined || !seService.isConnected()) {
-    hilog.error(0x0000, 'testTag', 'secure element service disconnected.');
-    return;
+function secureElementDemo() {
+    // get the service
+    try {
+        seService = omapi.newSEService("serviceState", (state) => {
+        hilog.info(0x0000, 'testTag', 'se service state = %{public}s', JSON.stringify(state));
+        });
+    } catch (error) {
+        hilog.error(0x0000, 'testTag', 'newSEService error %{public}s', JSON.stringify(error));
+    }
+    if (seService == undefined || !seService.isConnected()) {
+        hilog.error(0x0000, 'testTag', 'secure element service disconnected.');
+        return;
+    }
 }
 ```
 
@@ -160,10 +205,11 @@ shutdown(): void
 **示例：**
 
 ```js
-import secureElement from '@ohos.secureElement';
-import { BusinessError } from '@ohos.base';
+import { omapi } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
-let seService : secureElement.SEService;
+let seService : omapi.SEService;
 
 // Before use seService, initialization for seService is required
 
@@ -191,10 +237,11 @@ getVersion(): string
 **示例：**
 
 ```JS
-import secureElement from '@ohos.secureElement';
-import { BusinessError } from '@ohos.base';
+import { omapi } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
-let seService : secureElement.SEService;
+let seService : omapi.SEService;
 
 // Before use seService, initialization for seService is required
 
@@ -223,7 +270,10 @@ getName(): string
 **示例：**
 
 ```js
-let seReaders : omasecureElementpi.Reader[];
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { omapi } from '@kit.ConnectivityKit';
+
+let seReaders : omapi.Reader[];
 
 // Before use seReaders, initialization for seReaders is required
 
@@ -261,7 +311,10 @@ isSecureElementPresent(): boolean
 **示例：**
 
 ```js
-let seReaders : omasecureElementpi.Reader[];
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { omapi } from '@kit.ConnectivityKit';
+
+let seReaders : omapi.Reader[];
 
 // Before use seReaders, initialization for seReaders is required
 
@@ -300,20 +353,24 @@ try {
 **示例：**
 
 ```js
-let seReaders : omasecureElementpi.Reader[];
-let seSession : secureElement.Session;
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { omapi } from '@kit.ConnectivityKit';
+
+let seReaders : omapi.Reader[];
+let seSession : omapi.Session;
 
 // Before use seReaders, initialization for seReaders is required
-
-try {
-    let reader = seReaders[0]; // change it to the selected reader, ese or sim.
-    seSession = reader.openSession();
-} catch (error) {
-    hilog.error(0x0000, 'testTag', 'openSession error %{public}s', JSON.stringify(error));
-}
-if (seSession == undefined) {
-    hilog.error(0x0000, 'testTag', 'seSession invalid.');
-    return;
+function secureElementDemo() {
+    try {
+        let reader = seReaders[0]; // change it to the selected reader, ese or sim.
+        seSession = reader.openSession();
+    } catch (error) {
+        hilog.error(0x0000, 'testTag', 'openSession error %{public}s', JSON.stringify(error));
+    }
+    if (seSession == undefined) {
+        hilog.error(0x0000, 'testTag', 'seSession invalid.');
+        return;
+    }
 }
 ```
 
@@ -336,26 +393,30 @@ if (seSession == undefined) {
 **示例：**
 
 ```js
-let seReaders : omasecureElementpi.Reader[];
-let seSession : secureElement.Session;
-let reader : omasecureElementpi.Reader;
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { omapi } from '@kit.ConnectivityKit';
+
+let seReaders : omapi.Reader[];
+let seSession : omapi.Session;
+let reader : omapi.Reader;
 
 // Before use seReaders, initialization for seReaders is required
-
-try {
-    reader = seReaders[0]; // change it to the selected reader, ese or sim.
-    seSession = reader.openSession();
-} catch (error) {
-    hilog.error(0x0000, 'testTag', 'openSession error %{public}s', JSON.stringify(error));
-}
-if (seSession == undefined) {
-    hilog.error(0x0000, 'testTag', 'seSession invalid.');
-    return;
-}
-try {
-    reader.closeSessions();
-} catch (error) {
-    hilog.error(0x0000, 'testTag', 'closeSessions error %{public}s', JSON.stringify(error));
+function secureElementDemo() {
+    try {
+        reader = seReaders[0]; // change it to the selected reader, ese or sim.
+        seSession = reader.openSession();
+    } catch (error) {
+        hilog.error(0x0000, 'testTag', 'openSession error %{public}s', JSON.stringify(error));
+    }
+    if (seSession == undefined) {
+        hilog.error(0x0000, 'testTag', 'seSession invalid.');
+        return;
+    }
+    try {
+        reader.closeSessions();
+    } catch (error) {
+        hilog.error(0x0000, 'testTag', 'closeSessions error %{public}s', JSON.stringify(error));
+    }
 }
 ```
 
@@ -376,26 +437,30 @@ getReader(): Reader
 **示例：**
 
 ```js
-let seReaders : omasecureElementpi.Reader[];
-let seSession : secureElement.Session;
-let reader : omasecureElementpi.Reader;
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { omapi } from '@kit.ConnectivityKit';
+
+let seReaders : omapi.Reader[];
+let seSession : omapi.Session;
+let reader : omapi.Reader;
 
 // Before use seReaders, initialization for seReaders is required
-
-try {
-    reader = seReaders[0]; // change it to the selected reader, ese or sim.
-    seSession = reader.openSession();
-} catch (error) {
-    hilog.error(0x0000, 'testTag', 'openSession error %{public}s', JSON.stringify(error));
-}
-if (seSession == undefined) {
-    hilog.error(0x0000, 'testTag', 'seSession invalid.');
-    return;
-}
-try {
-    let sessionReader = seSession.getReader();
-} catch (error) {
-    hilog.error(0x0000, 'testTag', 'getReader error %{public}s', JSON.stringify(error));
+function secureElementDemo() {
+    try {
+        reader = seReaders[0]; // change it to the selected reader, ese or sim.
+        seSession = reader.openSession();
+    } catch (error) {
+        hilog.error(0x0000, 'testTag', 'openSession error %{public}s', JSON.stringify(error));
+    }
+    if (seSession == undefined) {
+        hilog.error(0x0000, 'testTag', 'seSession invalid.');
+        return;
+    }
+    try {
+        let sessionReader = seSession.getReader();
+    } catch (error) {
+        hilog.error(0x0000, 'testTag', 'getReader error %{public}s', JSON.stringify(error));
+    }
 }
 ```
 
@@ -424,7 +489,10 @@ getATR(): number[]
 **示例：**
 
 ```js
-let seSession : secureElement.Session;
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { omapi } from '@kit.ConnectivityKit';
+
+let seSession : omapi.Session;
 
 // Before use seSession, initialization for seSession is required
 
@@ -455,7 +523,10 @@ close(): void
 **示例：**
 
 ```js
-let seSession : secureElement.Session;
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { omapi } from '@kit.ConnectivityKit';
+
+let seSession : omapi.Session;
 
 // Before use seSession, initialization for seSession is required
 
@@ -487,7 +558,10 @@ isClosed(): boolean
 **示例：**
 
 ```Js
-let seSession : secureElement.Session;
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { omapi } from '@kit.ConnectivityKit';
+
+let seSession : omapi.Session;
 
 // Before use seSession, initialization for seSession is required
 
@@ -518,7 +592,10 @@ closeChannels(): void
 **示例：**
 
 ```js
-let seSession : secureElement.Session;
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { omapi } from '@kit.ConnectivityKit';
+
+let seSession : omapi.Session;
 
 // Before use seSession, initialization for seSession is required
 
@@ -563,25 +640,29 @@ openBasicChannel(aid: number[]): Promise\<Channel>
 **示例：**
 
 ```js
-let seSession : secureElement.Session;
-let seChannel : secureElement.Channel;
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { omapi } from '@kit.ConnectivityKit';
+
+let seSession : omapi.Session;
+let seChannel : omapi.Channel;
 let aidArray : number[] = [0xA0, 0x00, 0x00, 0x00, 0x03, 0x10, 0x10];
 
 // Before use seSession, initialization for seSession is required
-
-try {
-    // change the aid value for open channel.
-    seSession.openBasicChannel(aidArray).then((data) => {
-        seChannel = data;
-    }).catch((error : BusinessError)=> {
-        hilog.error(0x0000, 'testTag', 'openBasicChannel error %{public}s', JSON.stringify(error));
-    });
-} catch (exception) {
-    hilog.error(0x0000, 'testTag', 'openBasicChannel exception %{public}s', JSON.stringify(exception));
-}
-if (seChannel == undefined) {
-    hilog.error(0x0000, 'testTag', 'seChannel invalid.');
-    return;
+function secureElementDemo() {
+    try {
+        // change the aid value for open channel.
+        seSession.openBasicChannel(aidArray).then((data) => {
+            seChannel = data;
+        }).catch((error : BusinessError)=> {
+            hilog.error(0x0000, 'testTag', 'openBasicChannel error %{public}s', JSON.stringify(error));
+        });
+    } catch (exception) {
+        hilog.error(0x0000, 'testTag', 'openBasicChannel exception %{public}s', JSON.stringify(exception));
+    }
+    if (seChannel == undefined) {
+        hilog.error(0x0000, 'testTag', 'seChannel invalid.');
+        return;
+    }
 }
 ```
 
@@ -614,27 +695,31 @@ if (seChannel == undefined) {
 **示例：**
 
 ```js
-let seSession : secureElement.Session;
-let seChannel : secureElement.Channel;
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { omapi } from '@kit.ConnectivityKit';
+
+let seSession : omapi.Session;
+let seChannel : omapi.Channel;
 let aidArray : number[] = [0xA0, 0x00, 0x00, 0x00, 0x03, 0x10, 0x10];
 
 // Before use seSession, initialization for seSession is required
-
-try {
-    // change the aid value for open channel.
-    seSession.openBasicChannel(aidArray, (error, data) => {
-        if (error) {
-            hilog.error(0x0000, 'testTag', 'openBasicChannel error %{public}s', JSON.stringify(error));
-        } else {
-            seChannel = data;
-        }
-    });
-} catch (exception) {
-    hilog.error(0x0000, 'testTag', 'openBasicChannel exception %{public}s', JSON.stringify(exception));
-}
-if (seChannel == undefined) {
-    hilog.error(0x0000, 'testTag', 'seChannel invalid.');
-    return;
+function secureElementDemo() {
+    try {
+        // change the aid value for open channel.
+        seSession.openBasicChannel(aidArray, (error, data) => {
+            if (error) {
+                hilog.error(0x0000, 'testTag', 'openBasicChannel error %{public}s', JSON.stringify(error));
+            } else {
+                seChannel = data;
+            }
+        });
+    } catch (exception) {
+        hilog.error(0x0000, 'testTag', 'openBasicChannel exception %{public}s', JSON.stringify(exception));
+    }
+    if (seChannel == undefined) {
+        hilog.error(0x0000, 'testTag', 'seChannel invalid.');
+        return;
+    }
 }
 ```
 
@@ -642,7 +727,7 @@ if (seChannel == undefined) {
 
 openBasicChannel(aid: number[], p2: number): Promise\<Channel>
 
-打开基础通道，参考[ISO 7816-4]协议，返回基础hannel实例对象。SE不能提供基础Channel或应用程序没有访问SE的权限时，返回null。
+打开基础通道，参考[ISO 7816-4]协议，返回基础Channel实例对象。SE不能提供基础Channel或应用程序没有访问SE的权限时，返回null。
 
 **系统能力：**  SystemCapability.Communication.SecureElement
 
@@ -673,26 +758,30 @@ openBasicChannel(aid: number[], p2: number): Promise\<Channel>
 **示例：**
 
 ```js
-let seSession : secureElement.Session;
-let seChannel : secureElement.Channel;
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { omapi } from '@kit.ConnectivityKit';
+
+let seSession : omapi.Session;
+let seChannel : omapi.Channel;
 let aidArray : number[] = [0xA0, 0x00, 0x00, 0x00, 0x03, 0x10, 0x10];
 let p2 : number = 0x00;
 
 // Before use seSession, initialization for seSession is required
-
-try {
-    // change the aid value for open channel.
-    seSession.openBasicChannel(aidArray, p2).then((data) => {
-        seChannel = data;
-    }).catch((error : BusinessError)=> {
-        hilog.error(0x0000, 'testTag', 'openBasicChannel error %{public}s', JSON.stringify(error));
-    });
-} catch (exception) {
-    hilog.error(0x0000, 'testTag', 'openBasicChannel exception %{public}s', JSON.stringify(exception));
-}
-if (seChannel == undefined) {
-    hilog.error(0x0000, 'testTag', 'seChannel invalid.');
-    return;
+function secureElementDemo() {
+    try {
+        // change the aid value for open channel.
+        seSession.openBasicChannel(aidArray, p2).then((data) => {
+            seChannel = data;
+        }).catch((error : BusinessError)=> {
+            hilog.error(0x0000, 'testTag', 'openBasicChannel error %{public}s', JSON.stringify(error));
+        });
+    } catch (exception) {
+        hilog.error(0x0000, 'testTag', 'openBasicChannel exception %{public}s', JSON.stringify(exception));
+    }
+    if (seChannel == undefined) {
+        hilog.error(0x0000, 'testTag', 'seChannel invalid.');
+        return;
+    }
 }
 ```
 
@@ -726,28 +815,32 @@ openBasicChannel(aid: number[], p2:number, callback: AsyncCallback\<Channel>): v
 **示例：**
 
 ```js
-let seSession : secureElement.Session;
-let seChannel : secureElement.Channel;
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { omapi } from '@kit.ConnectivityKit';
+
+let seSession : omapi.Session;
+let seChannel : omapi.Channel;
 let aidArray : number[] = [0xA0, 0x00, 0x00, 0x00, 0x03, 0x10, 0x10];
 let p2 : number = 0x00;
 
 // Before use seSession, initialization for seSession is required
-
-try {
-    // change the aid value for open channel.
-    seSession.openBasicChannel(aidArray, p2, (error, data) => {
-        if (error) {
-            hilog.error(0x0000, 'testTag', 'openBasicChannel error %{public}s', JSON.stringify(error));
-        } else {
-            seChannel = data;
-        }
-    });
-} catch (exception) {
-    hilog.error(0x0000, 'testTag', 'openBasicChannel exception %{public}s', JSON.stringify(exception));
-}
-if (seChannel == undefined) {
-    hilog.error(0x0000, 'testTag', 'seChannel invalid.');
-    return;
+function secureElementDemo() {
+    try {
+        // change the aid value for open channel.
+        seSession.openBasicChannel(aidArray, p2, (error, data) => {
+            if (error) {
+                hilog.error(0x0000, 'testTag', 'openBasicChannel error %{public}s', JSON.stringify(error));
+            } else {
+                seChannel = data;
+            }
+        });
+    } catch (exception) {
+        hilog.error(0x0000, 'testTag', 'openBasicChannel exception %{public}s', JSON.stringify(exception));
+    }
+    if (seChannel == undefined) {
+        hilog.error(0x0000, 'testTag', 'seChannel invalid.');
+        return;
+    }
 }
 ```
 
@@ -785,25 +878,29 @@ openLogicalChannel(aid: number[]): Promise\<Channel>
 **示例：**
 
 ```js
-let seSession : secureElement.Session;
-let seChannel : secureElement.Channel;
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { omapi } from '@kit.ConnectivityKit';
+
+let seSession : omapi.Session;
+let seChannel : omapi.Channel;
 let aidArray : number[] = [0xA0, 0x00, 0x00, 0x00, 0x03, 0x10, 0x10];
 
 // Before use seSession, initialization for seSession is required
-
-try {
-    // change the aid value for open channel.
-    seSession.openLogicalChannel(aidArray).then((data) => {
-        seChannel = data;
-    }).catch((error : BusinessError)=> {
-        hilog.error(0x0000, 'testTag', 'openLogicalChannel error %{public}s', JSON.stringify(error));
-    });
-} catch (exception) {
-    hilog.error(0x0000, 'testTag', 'openLogicalChannel exception %{public}s', JSON.stringify(exception));
-}
-if (seChannel == undefined) {
-    hilog.error(0x0000, 'testTag', 'seChannel invalid.');
-    return;
+function secureElementDemo() {
+    try {
+        // change the aid value for open channel.
+        seSession.openLogicalChannel(aidArray).then((data) => {
+            seChannel = data;
+        }).catch((error : BusinessError)=> {
+            hilog.error(0x0000, 'testTag', 'openLogicalChannel error %{public}s', JSON.stringify(error));
+        });
+    } catch (exception) {
+        hilog.error(0x0000, 'testTag', 'openLogicalChannel exception %{public}s', JSON.stringify(exception));
+    }
+    if (seChannel == undefined) {
+        hilog.error(0x0000, 'testTag', 'seChannel invalid.');
+        return;
+    }
 }
 ```
 
@@ -836,27 +933,31 @@ if (seChannel == undefined) {
 **示例：**
 
 ```js
-let seSession : secureElement.Session;
-let seChannel : secureElement.Channel;
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { omapi } from '@kit.ConnectivityKit';
+
+let seSession : omapi.Session;
+let seChannel : omapi.Channel;
 let aidArray : number[] = [0xA0, 0x00, 0x00, 0x00, 0x03, 0x10, 0x10];
 
 // Before use seSession, initialization for seSession is required
-
-try {
-    // change the aid value for open channel.
-    seSession.openLogicalChannel(aidArray, (error, data) => {
-        if (error) {
-            hilog.error(0x0000, 'testTag', 'openLogicalChannel error %{public}s', JSON.stringify(error));
-        } else {
-            seChannel = data;
-        }
-    });
-} catch (exception) {
-    hilog.error(0x0000, 'testTag', 'openLogicalChannel exception %{public}s', JSON.stringify(exception));
-}
-if (seChannel == undefined) {
-    hilog.error(0x0000, 'testTag', 'seChannel invalid.');
-    return;
+function secureElementDemo() {
+    try {
+        // change the aid value for open channel.
+        seSession.openLogicalChannel(aidArray, (error, data) => {
+            if (error) {
+                hilog.error(0x0000, 'testTag', 'openLogicalChannel error %{public}s', JSON.stringify(error));
+            } else {
+                seChannel = data;
+            }
+        });
+    } catch (exception) {
+        hilog.error(0x0000, 'testTag', 'openLogicalChannel exception %{public}s', JSON.stringify(exception));
+    }
+    if (seChannel == undefined) {
+        hilog.error(0x0000, 'testTag', 'seChannel invalid.');
+        return;
+    }
 }
 ```
 
@@ -895,26 +996,30 @@ openLogicalChannel(aid: number[], p2: number): Promise\<Channel>
 **示例：**
 
 ```js
-let seSession : secureElement.Session;
-let seChannel : secureElement.Channel;
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { omapi } from '@kit.ConnectivityKit';
+
+let seSession : omapi.Session;
+let seChannel : omapi.Channel;
 let aidArray : number[] = [0xA0, 0x00, 0x00, 0x00, 0x03, 0x10, 0x10];
 let p2 : number = 0x00;
 
 // Before use seSession, initialization for seSession is required
-
-try {
-    // change the aid value for open channel.
-    seSession.openLogicalChannel(aidArray, p2).then((data) => {
-        seChannel = data;
-    }).catch((error : BusinessError)=> {
-        hilog.error(0x0000, 'testTag', 'openLogicalChannel error %{public}s', JSON.stringify(error));
-    });
-} catch (exception) {
-    hilog.error(0x0000, 'testTag', 'openLogicalChannel exception %{public}s', JSON.stringify(exception));
-}
-if (seChannel == undefined) {
-    hilog.error(0x0000, 'testTag', 'seChannel invalid.');
-    return;
+function secureElementDemo() {
+    try {
+        // change the aid value for open channel.
+        seSession.openLogicalChannel(aidArray, p2).then((data) => {
+            seChannel = data;
+        }).catch((error : BusinessError)=> {
+            hilog.error(0x0000, 'testTag', 'openLogicalChannel error %{public}s', JSON.stringify(error));
+        });
+    } catch (exception) {
+        hilog.error(0x0000, 'testTag', 'openLogicalChannel exception %{public}s', JSON.stringify(exception));
+    }
+    if (seChannel == undefined) {
+        hilog.error(0x0000, 'testTag', 'seChannel invalid.');
+        return;
+    }
 }
 ```
 
@@ -948,28 +1053,32 @@ openLogicalChannel(aid: number[], p2: number, callback: AsyncCallback\<Channel>)
 **示例：**
 
 ```js
-let seSession : secureElement.Session;
-let seChannel : secureElement.Channel;
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { omapi } from '@kit.ConnectivityKit';
+
+let seSession : omapi.Session;
+let seChannel : omapi.Channel;
 let aidArray : number[] = [0xA0, 0x00, 0x00, 0x00, 0x03, 0x10, 0x10];
 let p2 : number = 0x00;
 
 // Before use seSession, initialization for seSession is required
-
-try {
+function secureElementDemo() {
+    try {
     // change the aid value for open channel.
-    seSession.openLogicalChannel(aidArray, p2, (error, data) => {
-        if (error) {
-            hilog.error(0x0000, 'testTag', 'openLogicalChannel error %{public}s', JSON.stringify(error));
-        } else {
-            seChannel = data;
-        }
-    });
-} catch (exception) {
-    hilog.error(0x0000, 'testTag', 'openLogicalChannel exception %{public}s', JSON.stringify(exception));
-}
-if (seChannel == undefined) {
-    hilog.error(0x0000, 'testTag', 'seChannel invalid.');
-    return;
+        seSession.openLogicalChannel(aidArray, p2, (error, data) => {
+            if (error) {
+                hilog.error(0x0000, 'testTag', 'openLogicalChannel error %{public}s', JSON.stringify(error));
+            } else {
+                seChannel = data;
+            }
+        });
+    } catch (exception) {
+        hilog.error(0x0000, 'testTag', 'openLogicalChannel exception %{public}s', JSON.stringify(exception));
+    }
+    if (seChannel == undefined) {
+        hilog.error(0x0000, 'testTag', 'seChannel invalid.');
+        return;
+    }
 }
 ```
 
@@ -990,8 +1099,11 @@ if (seChannel == undefined) {
 **示例：**
 
 ```js
-let seSession : secureElement.Session;
-let seChannel : secureElement.Channel;
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { omapi } from '@kit.ConnectivityKit';
+
+let seSession : omapi.Session;
+let seChannel : omapi.Channel;
 
 // Before use seChannel, initialization for seChannel is required
 
@@ -1013,7 +1125,10 @@ close(): void
 **示例：**
 
 ```js
-let seChannel : secureElement.Channel;
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { omapi } from '@kit.ConnectivityKit';
+
+let seChannel : omapi.Channel;
 
 // Before use seChannel, initialization for seChannel is required
 
@@ -1041,7 +1156,10 @@ isBasicChannel(): boolean
 **示例：**
 
 ```js
-let seChannel : secureElement.Channel;
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { omapi } from '@kit.ConnectivityKit';
+
+let seChannel : omapi.Channel;
 
 // Before use seChannel, initialization for seChannel is required
 
@@ -1070,7 +1188,10 @@ isClosed(): boolean
 **示例：**
 
 ```js
-let seChannel : secureElement.Channel;
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { omapi } from '@kit.ConnectivityKit';
+
+let seChannel : omapi.Channel;
 
 // Before use seChannel, initialization for seChannel is required
 
@@ -1103,7 +1224,10 @@ getSelectResponse(): number[]
 **示例：**
 
 ```js
-let seChannel : secureElement.Channel;
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { omapi } from '@kit.ConnectivityKit';
+
+let seChannel : omapi.Channel;
 
 // Before use seChannel, initialization for seChannel is required
 
@@ -1148,11 +1272,14 @@ transmit(command: number[]): Promise\<number[]>
 **示例：**
 
 ```js
-let seChannel : secureElement.Channel;
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { omapi } from '@kit.ConnectivityKit';
+
+let seChannel : omapi.Channel;
 
 // Before use seChannel, initialization for seChannel is required
 
-var cmdData = [0x01, 0x02, 0x03, 0x04]; // please change the raw data to be correct.
+let cmdData = [0x01, 0x02, 0x03, 0x04]; // please change the raw data to be correct.
 try {
     seChannel.transmit(cmdData).then((response) => {
         hilog.info(0x0000, 'testTag', 'transmit response = %{public}s.', JSON.stringify(response));
@@ -1192,11 +1319,14 @@ transmit(command: number[], callback: AsyncCallback\<number[]>): void
 **示例：**
 
 ```js
-let seChannel : secureElement.Channel;
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { omapi } from '@kit.ConnectivityKit';
+
+let seChannel : omapi.Channel;
 
 // Before use seChannel, initialization for seChannel is required
 
-var cmdData = [0x01, 0x02, 0x03, 0x04]; // please change the raw data to be correct.
+let cmdData = [0x01, 0x02, 0x03, 0x04]; // please change the raw data to be correct.
 try {
     seChannel.transmit(cmdData, (error, response) => {
     if (error) {

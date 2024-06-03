@@ -10,6 +10,8 @@
 ## onGestureJudgeBegin
 onGestureJudgeBegin(callback: (gestureInfo: GestureInfo, event: BaseGestureEvent) => GestureJudgeResult): T
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **参数：**
 | 参数名        | 参数类型                    | 必填  | 参数描述                          |
 | ---------- | -------------------------- | ------- | ----------------------------- |
@@ -23,6 +25,8 @@ onGestureJudgeBegin(callback: (gestureInfo: GestureInfo, event: BaseGestureEvent
 
 ## GestureInfo对象说明
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 | 名称            | 类型                        | 描述         |
 | ---------------  | -------------------------   | -----------|
 | tag              | string                      | 手势标记。<br/>**说明：**<br/>如果未设置事件标识tag属性的情况下，此处tag不返回或者返回undefined。  |
@@ -32,15 +36,21 @@ onGestureJudgeBegin(callback: (gestureInfo: GestureInfo, event: BaseGestureEvent
 ## BaseEvent对象说明
 | 名称    | 类型                                      | 描述         |
 | ---------| ----------------------------------------  | -----------|
-| target   | [EventTarget](ts-universal-events-click.md#eventtarget8对象说明) | 触发手势事件的元素对象显示区域。  |
-| timestamp| number | 事件时间戳。  |
-| source   | [SourceType](ts-gesture-settings.md#sourcetype枚举说明) | 事件输入设备。  |
-| pressure | number | 按压的压力大小。  |
-| titleX | number | 手写笔在设备平面上的投影与设备平面X轴的夹角。  |
-| titleY | number | 手写笔在设备平面上的投影与设备平面Y轴的夹角。  |
-| sourceTool | [SourceTool](ts-gesture-settings.md#sourcetool枚举说明9) | 事件输入源。  |
+| target   | [EventTarget](ts-universal-events-click.md#eventtarget8对象说明) | 触发手势事件的元素对象显示区域。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。  |
+| timestamp| number | 事件时间戳。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。  |
+| source   | [SourceType](ts-gesture-settings.md#sourcetype枚举说明) | 事件输入设备。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。  |
+| pressure | number | 按压的压力大小。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。  |
+| titleX | number | 手写笔在设备平面上的投影与设备平面X轴的夹角。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。  |
+| titleY | number | 手写笔在设备平面上的投影与设备平面Y轴的夹角。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。  |
+| sourceTool | [SourceTool](ts-gesture-settings.md#sourcetool枚举说明9) | 事件输入源。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。  |
+| axisHorizontal<sup>12+</sup> | number | 水平轴值。<br/>**说明：**<br/>当前仅在由鼠标滚轮或者触控板双指滑动场景下触发的Pan手势中可以获取。|
+| axisVertical<sup>12+</sup> | number | 垂直轴值。<br/>**说明：**<br/>当前仅在由鼠标滚轮或者触控板双指滑动场景下触发的Pan手势中可以获取。 |
+
 ## BaseGestureEvent对象说明
 继承于[BaseEvent](#baseevent对象说明)。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 | 名称      | 类型                                      | 描述         |
 | ---------  | ----------------------------------------  | -----------|
 | fingerList | [FingerInfo[]](ts-gesture-settings.md#fingerinfo对象说明8) | 触发事件的所有手指信息。  |
@@ -48,14 +58,22 @@ onGestureJudgeBegin(callback: (gestureInfo: GestureInfo, event: BaseGestureEvent
 ## TapGestureEvent对象说明
 继承于[BaseGestureEvent](#basegestureevent对象说明)。可将该对象作为[onGestureJudgeBegin](#ongesturejudgebegin)的event参数来传递。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 ## LongPressGestureEvent对象说明
 继承于[BaseGestureEvent](#basegestureevent对象说明)。可将该对象作为[onGestureJudgeBegin](#ongesturejudgebegin)的event参数来传递。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 | 名称      | 类型                                      | 描述         |
 | ---------  | ----------------------------------------  | -----------|
 | repeat     | boolean | 是否为重复触发事件。  |
 
 ## PanGestureEvent对象说明
 继承于[BaseGestureEvent](#basegestureevent对象说明)。可将该对象作为[onGestureJudgeBegin](#ongesturejudgebegin)的event参数来传递。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 | 名称      | 类型                                      | 描述         |
 | ---------  | ----------------------------------------  | -----------|
 | offsetX    | number | 手势事件x轴相对当前组件元素原始区域的偏移量，单位为vp，从左向右滑动offsetX为正，反之为负。  |
@@ -65,6 +83,9 @@ onGestureJudgeBegin(callback: (gestureInfo: GestureInfo, event: BaseGestureEvent
 | velocity   | number | 获取当前的主方向速度。为xy轴方向速度的平方和的算术平方根。  |
 
 ## PinchGestureEvent对象说明
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 继承于[BaseGestureEvent](#basegestureevent对象说明)。可将该对象作为[onGestureJudgeBegin](#ongesturejudgebegin)的event参数来传递。
 | 名称         | 类型                                      | 描述         |
 | ------------  | ----------------------------------------  | -----------|
@@ -73,6 +94,9 @@ onGestureJudgeBegin(callback: (gestureInfo: GestureInfo, event: BaseGestureEvent
 | pinchCenterY  | number | 捏合手势中心点相对于当前组件元素原始区域左上角y轴坐标，单位为vp。  |
 
 ## RotationGestureEvent对象说明
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 继承于[BaseGestureEvent](#basegestureevent对象说明)。可将该对象作为[onGestureJudgeBegin](#ongesturejudgebegin)的event参数来传递。
 | 名称         | 类型                                      | 描述         |
 | ------------  | ----------------------------------------  | -----------|
@@ -80,6 +104,9 @@ onGestureJudgeBegin(callback: (gestureInfo: GestureInfo, event: BaseGestureEvent
 
 ## SwipeGestureEvent对象说明
 继承于[BaseGestureEvent](#basegestureevent对象说明)。可将该对象作为[onGestureJudgeBegin](#ongesturejudgebegin)的event参数来传递。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 | 名称         | 类型                                      | 描述         |
 | ------------  | ----------------------------------------  | -----------|
 | angle         | number | 表示滑动手势的角度，即两根手指间的线段与水平方向的夹角变化的度数，单位为deg。<br/>**说明：**<br/>角度计算方式：滑动手势被识别到后，连接两根手指之间的线被识别为起始线条，随着手指的滑动，手指之间的线条会发生旋转，根据起始线条两端点和当前线条两端点的坐标，使用反正切函数分别计算其相对于水平方向的夹角，最后arctan2(cy2-cy1,cx2-cx1)-arctan2(y2-y1,x2-x1)为旋转的角度。以起始线条为坐标系，顺时针旋转为0到180度，逆时针旋转为-180到0度。|

@@ -1,6 +1,6 @@
 # XComponentNode
 
-The **XComponentNode** provide APIs a XComponentNode – a **\<XComponent>** in the component tree. You can write EGL/OpenGL ES and media data and display it on the **\<XComponent>**, whose rendering type can be dynamically modified.
+The **XComponentNode** module provides APIs for the XComponentNode, which represent an [\<XComponent>](arkui-ts/ts-basic-components-xcomponent.md#xcomponent) in the component tree. You can write [EGL](../native-lib/egl.md)/[OpenGL ES](../native-lib/opengles.md) and media data and display it on the **\<XComponent>**, whose rendering type can be dynamically modified.
 
 > **NOTE**
 >
@@ -36,7 +36,7 @@ Constructor used to create an XComponentNode.
 
 > **NOTE**
 >
-> You need to explicitly specify **selfIdealSize** in **RenderOptions**. Otherwise, the XComponentNode's content size is empty and therefore no content is displayed.
+> You need to explicitly specify **selfIdealSize** in [RenderOptions](./js-apis-arkui-builderNode.md#renderoptions). Otherwise, the XComponentNode's content size is empty, resulting in no content being displayed.
 
 ### onCreate
 
@@ -48,9 +48,9 @@ Called when the XComponentNode loading is complete.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description                                                        |
-| ------ | -------- | ---- | ------------------------------------------------------------ |
-| event  | object   | No  | Context of the **\<XComponent>** object. The APIs contained in the context are defined by you at the C++ layer.|
+| Name| Type  | Mandatory| Description                                                        |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| event  | Object | No  | Context of the **\<XComponent>** object. The APIs contained in the context are defined by you at the C++ layer.|
 
 ### onDestroy
 
@@ -133,3 +133,9 @@ struct Index {
   }
 }
 ```
+
+![XComponentNodeSample](figures/xcomponent_node.jpg)
+
+> **NOTE**
+>
+> For details about the dynamic library (as build output) of the native layer in the example, see [OpenGL Triangular Pyramid (API Version 10)](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/NdkOpenGL).

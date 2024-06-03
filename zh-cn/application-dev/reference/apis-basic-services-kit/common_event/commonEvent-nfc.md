@@ -13,7 +13,7 @@ NFC子系统面向应用发布如下系统公共事件，应用如需订阅系�
 检测到NFC场强进入的公共事件。
 
 - 常量值：usual.event.nfc.action.RF_FIELD_ON_DETECTED
-- 订阅者所需权限：ohos.permission.MANAGE_SECURE_SETTINGS
+- 订阅者所需权限：无
 
 当检测到NFC场强进入时，将会触发事件通知服务发布该系统公共事件。
 
@@ -21,6 +21,6 @@ NFC子系统面向应用发布如下系统公共事件，应用如需订阅系�
 检测到NFC场强离开的公共事件。
 
 - 常量值：usual.event.nfc.action.RF_FIELD_OFF_DETECTED
-- 订阅者所需权限：ohos.permission.MANAGE_SECURE_SETTINGS
+- 订阅者所需权限：无
 
 当检测到NFC场强离开时，将会触发事件通知服务发布该系统公共事件。

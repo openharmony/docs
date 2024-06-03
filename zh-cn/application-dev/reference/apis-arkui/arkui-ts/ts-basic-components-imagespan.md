@@ -20,18 +20,36 @@ ImageSpan(value: ResourceStr | PixelMap)
 
 | 参数名 | 参数类型 | 必填 | 参数描述 |
 | -------- | -------- | -------- | -------- |
-| value | [ResourceStr](ts-types.md#resourcestr) \|&nbsp;[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)&nbsp; | 是 | 图片的数据源，支持本地图片和网络图片。<br/>当使用相对路径引用图片资源时，例如`ImageSpan("common/test.jpg")`，不支持跨包/跨模块调用该ImageSpan组件，建议使用`$r`方式来管理需全局使用的图片资源。<br/>\- 支持的图片格式包括png、jpg、bmp、svg和gif。<br/>\- 支持`Base64`字符串。格式`data:image/[png\|jpeg\|bmp\|webp];base64,[base64 data]`, 其中`[base64 data]`为`Base64`字符串数据。<br/>\- 支持file:///data/storage路径前缀的字符串，用于读取本应用安装目录下files文件夹下的图片资源。需要保证目录包路径下的文件有可读权限。 |
+| value | [ResourceStr](ts-types.md#resourcestr) \|&nbsp;[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)&nbsp; | 是 | 图片的数据源，支持本地图片和网络图片。<br/>当使用相对路径引用图片资源时，例如`ImageSpan("common/test.jpg")`，不支持跨包/跨模块调用该ImageSpan组件，建议使用`$r`方式来管理需全局使用的图片资源。<br/>\- 支持的图片格式包括png、jpg、bmp、svg、gif和heif。<br/>\- 支持`Base64`字符串。格式`data:image/[png\|jpeg\|bmp\|webp\|heif];base64,[base64 data]`, 其中`[base64 data]`为`Base64`字符串数据。<br/>\- 支持file:///data/storage路径前缀的字符串，用于读取本应用安装目录下files文件夹下的图片资源。需要保证目录包路径下的文件有可读权限。 |
 
 
 ## 属性
 
 [通用属性](ts-universal-attributes-size.md)方法支持尺寸设置、背景设置、边框设置。
 
+### alt<sup>12+</sup>
+
+alt(value:&nbsp;PixelMap)
+
+设置图片加载时显示的占位图。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                     | 必填 | 说明                                                         |
+| ------ | -------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| value  | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) | 是   | 加载时显示的占位图，支持[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)类型。<br/>默认值：null |
+
 ### verticalAlign
 
 verticalAlign(value: ImageSpanAlignment)
 
 设置图片基于文本的对齐方式。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -47,6 +65,8 @@ objectFit(value: ImageFit)
 
 设置图片的缩放类型。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -57,9 +77,11 @@ objectFit(value: ImageFit)
 
 ### textBackgroundStyle<sup>11+</sup>
 
-textBackgroundStyle(value: TextBackgroundStyle)
+textBackgroundStyle(style: TextBackgroundStyle)
 
 设置图片的背景样式。作为[ContainerSpan](ts-basic-components-containerspan.md)的子组件时可以继承它的此属性值，优先使用其自身的此属性。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -67,9 +89,25 @@ textBackgroundStyle(value: TextBackgroundStyle)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [TextBackgroundStyle](ts-basic-components-containerspan.md#textbackgroundstyle对象说明) | 是   | 背景样式。<br />默认值:<br /> {<br />  color: Color.Transparent,<br />  radius: 0<br />} |
+| style | [TextBackgroundStyle](ts-basic-components-containerspan.md#textbackgroundstyle对象说明) | 是   | 背景样式。<br />默认值:<br /> {<br />  color: Color.Transparent,<br />  radius: 0<br />} |
+
+### baselineOffset<sup>12+</sup>
+
+baselineOffset(value: LengthMetrics)
+
+设置ImageSpan基线的偏移量。此属性与父组件的baselineOffset是共存的。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 描述                                                         |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 是   | 设置ImageSpan基线的偏移量，设置该值为百分比时，按默认值显示。<br/>正数内容向上偏移，负数向下偏移。<br/>默认值：0<br/>设置为非0时会导致设置verticalAlign失效。 |
 
 ## ImageSpanAlignment
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称     | 描述                           |
 | -------- | ------------------------------ |
@@ -80,11 +118,70 @@ textBackgroundStyle(value: TextBackgroundStyle)
 
 ## 事件
 
-通用事件仅支持[点击事件](ts-universal-attributes-click.md)。
+通用事件仅支持[点击事件](ts-universal-attributes-click.md)。还支持以下事件：
+
+### onComplete<sup>12+</sup>
+
+onComplete(callback: ImageCompleteCallback)
+
+图片数据加载成功和解码成功时均触发该回调，返回成功加载的图片尺寸。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名   | 类型                                       | 必填 | 说明                       |
+| -------- | ------------------------------------------ | ---- | -------------------------- |
+| callback | [ImageCompleteCallback](#imagecompletecallback12) | 是   | 图片数据加载成功和解码成功时触发的回调。 |
+
+### onError<sup>12+</sup>
+
+onError(callback: ImageErrorCallback)
+
+图片加载异常时触发该回调。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名   | 类型                                       | 必填 | 说明                       |
+| -------- | ------------------------------------------ | ---- | -------------------------- |
+| callback | [ImageErrorCallback](ts-basic-components-image.md#imageerrorcallback9) | 是   | 图片加载异常时触发的回调。 |
+
+## ImageCompleteCallback<sup>12+</sup>
+
+type ImageCompleteCallback = (result: ImageLoadResult) => void
+
+图片加载异常时触发的回调。
+
+| 参数名 | 类型                       | 必填 | 说明                               |
+| ------ | -------------------------- | ---- | ---------------------------------- |
+| result  | [ImageLoadResult](#imageloadresult12) | 是   | 图片数据加载成功和解码成功触发回调时返回的对象。 |
+
+## ImageLoadResult<sup>12+</sup>
+
+图片数据加载成功和解码成功触发回调时返回的对象。
+
+| 参数名                       | 类型   | 必填 | 说明                                                         |
+| ---------------------------- | ------ | ---- | ------------------------------------------------------------ |
+| width                        | number | 是   | 图片的宽。<br/>单位：像素                                    |
+| height                       | number | 是   | 图片的高。<br/>单位：像素                                    |
+| componentWidth               | number | 是   | 组件的宽。<br/>单位：像素                                    |
+| componentHeight              | number | 是   | 组件的高。<br/>单位：像素                                    |
+| loadingStatus                | number | 是   | 图片加载成功的状态值。<br/>**说明：**<br/>返回的状态值为0时，表示图片数据加载成功。返回的状态值为1时，表示图片解码成功。 |
+| contentWidth   | number | 是   | 图片实际绘制的宽度。<br/>单位：像素<br>**说明：**<br/>仅在loadingStatus返回1时有效。 |
+| contentHeight  | number | 是   | 图片实际绘制的高度。<br/>单位：像素<br/>**说明：**<br/>仅在loadingStatus返回1时有效。 |
+| contentOffsetX | number | 是   | 实际绘制内容相对于组件自身的x轴偏移。<br/>单位：像素<br/>**说明：**<br/>仅在loadingStatus返回1时有效。 |
+| contentOffsetY | number | 是   | 实际绘制内容相对于组件自身的y轴偏移。<br/>单位：像素<br/>**说明：**<br/>仅在loadingStatus返回1时有效。 |
+
+
 
 ## 示例
 
 ### 示例1
+
+该示例实现了设置ImageSpan的基本属性和图片基于文本的对齐方式。
+
 ```ts
 // xxx.ets
 @Entry
@@ -133,6 +230,9 @@ struct SpanExample {
 ![imagespan](figures/imagespan.png)
 
 ### 示例2
+
+该示例实现了如何设置ImageSpan图片的背景样式。
+
 ```ts
 // xxx.ets
 @Component
@@ -152,3 +252,28 @@ struct Index {
 }
 ```
 ![imagespan](figures/image_span_textbackgroundstyle.png)
+
+### 示例3
+ImageSpan设置图片成功加载解码和图片加载异常事件回调。
+```ts
+// xxx.ets
+@Entry
+@Component
+struct Index {
+  @State src: ResourceStr = $r('app.media.icon');
+  build(){
+    Column(){
+      Text(){
+        ImageSpan(this.src)
+          .width(100).height(100)
+          .onError((err)=>{
+            console.log("onError:" + err.message)
+          })
+          .onComplete((event)=>{
+            console.log("onComplete: " + event.loadingStatus)
+          })
+      }
+    }.width('100%').height('100%')
+  }
+}
+```

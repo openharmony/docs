@@ -30,6 +30,14 @@ getDeviceList(callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): void
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | callback | AsyncCallback&lt;Array&lt;number&gt;&gt; | 是   | 回调函数，异步返回所有输入设备的id列表。 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码]（../errorcode-universal.md）。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例**：
 
 ```js
@@ -87,6 +95,14 @@ getDeviceInfo(deviceId: number, callback: AsyncCallback&lt;InputDeviceData&gt;):
 | deviceId | number                                                   | 是   | 输入设备id。                  |
 | callback | AsyncCallback&lt;[InputDeviceData](#inputdevicedata)&gt; | 是   | 回调函数，异步返回输入设备信息。 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码]（../errorcode-universal.md）。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例**：
 
 ```js
@@ -124,6 +140,14 @@ getDeviceInfo(deviceId: number): Promise&lt;InputDeviceData&gt;
 | -------------------------------------------------- | ------------------------------- |
 | Promise&lt;[InputDeviceData](#inputdevicedata)&gt; | Promise对象，异步返回输入设备信息。 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码]（../errorcode-universal.md）。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例**：
 
 ```js
@@ -157,6 +181,14 @@ getDeviceInfoSync(deviceId: number): InputDeviceData
 | -------------------------------------------------- | ------------------------------- |
 | [InputDeviceData](#inputdevicedata) | 返回输入设备信息。 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码]（../errorcode-universal.md）。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例**：
 
 ```js
@@ -183,6 +215,14 @@ on(type: "change", listener: Callback&lt;DeviceListener&gt;): void
 | -------- | ---------------------------------------- | ---- | ----------- |
 | type     | string                                   | 是    | 输入设备的事件【鼠标、键盘、触摸屏等】类型。  |
 | listener | Callback&lt;[DeviceListener](#devicelistener9)&gt; | 是    | 回调函数，异步上报输入设备热插拔事件。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码]（../errorcode-universal.md）。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例**：
 
@@ -222,6 +262,14 @@ off(type: "change", listener?: Callback&lt;DeviceListener&gt;): void
 | -------- | ---------------------------------------- | ---- | ----------- |
 | type     | string                                   | 是    | 输入设备的事件【鼠标、键盘、触摸屏等】类型。  |
 | listener | Callback&lt;[DeviceListener](#devicelistener9)&gt; | 否    | 取消监听的回调函数。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码]（../errorcode-universal.md）。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例**：
 
@@ -380,6 +428,14 @@ supportKeys(deviceId: number, keys: Array&lt;KeyCode&gt;, callback: AsyncCallbac
 | keys     | Array[&lt;KeyCode&gt;](js-apis-keycode.md#keycode)  | 是   | 需要查询的键码值，最多支持5个按键查询。                |
 | callback | AsyncCallback&lt;Array&lt;boolean&gt;&gt; | 是   | 回调函数，异步返回查询结果。                           |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码]（../errorcode-universal.md）。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例**：
 
 ```js
@@ -413,6 +469,14 @@ supportKeys(deviceId: number, keys: Array&lt;KeyCode&gt;): Promise&lt;Array&lt;b
 | 参数                                | 说明                            |
 | ----------------------------------- | ------------------------------- |
 | Promise&lt;Array&lt;boolean&gt;&gt; | Promise对象，异步返回查询结果。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码]（../errorcode-universal.md）。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例**：
 
@@ -448,6 +512,14 @@ supportKeysSync(deviceId: number, keys: Array&lt;KeyCode&gt;): Array&lt;boolean&
 | ----------------------------------- | ------------------------------- |
 | Array&lt;boolean&gt; | 返回查询结果。true表示支持，false表示不支持。 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码]（../errorcode-universal.md）。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例**：
 
 ```js
@@ -474,6 +546,14 @@ getKeyboardType(deviceId: number, callback: AsyncCallback&lt;KeyboardType&gt;): 
 | -------- | --------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | deviceId | number                                              | 是   | 输入设备的唯一标识，同一个物理设备反复插拔，设备id会发生变化。 |
 | callback | AsyncCallback&lt;[KeyboardType](#keyboardtype9)&gt; | 是   | 回调函数，异步返回查询结果。                                 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码]（../errorcode-universal.md）。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例**：
 
@@ -512,6 +592,14 @@ getKeyboardType(deviceId: number): Promise&lt;KeyboardType&gt;
 | --------------------------------------------- | ------------------------------- |
 | Promise&lt;[KeyboardType](#keyboardtype9)&gt; | Promise对象，异步返回查询结果。 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码]（../errorcode-universal.md）。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例**：
 
 ```js
@@ -544,6 +632,14 @@ getKeyboardTypeSync(deviceId: number): KeyboardType
 | 参数                                          | 说明                            |
 | --------------------------------------------- | ------------------------------- |
 | [KeyboardType](#keyboardtype9) | 返回查询结果。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码]（../errorcode-universal.md）。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例**：
 

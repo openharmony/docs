@@ -84,6 +84,7 @@ Provides the C APIs of the network connection module for network management.
 | [OH_NetConn_GetAllNets](#oh_netconn_getallnets) ([NetConn_NetHandleList](_net_conn___net_handle_list.md) \*netHandleList) | Obtains all activated data networks.| 
 | [OHOS_NetConn_RegisterDnsResolver](#ohos_netconn_registerdnsresolver) ([OH_NetConn_CustomDnsResolver](#oh_netconn_customdnsresolver) resolver) | Registers a custom DNS resolver.| 
 | [OHOS_NetConn_UnregisterDnsResolver](#ohos_netconn_unregisterdnsresolver) (void) | Unregisters a custom DNS resolver.| 
+| [OH_NetConn_BindSocket](#oh_netconn_bindsocket) (int32_t socketFd, [NetConn_NetHandle](_net_conn___net_handle.md) \*netHandle) | Binds a socket to the specified network.|
 
 
 ## Type Description
@@ -92,7 +93,7 @@ Provides the C APIs of the network connection module for network management.
 ### NetConn_ConnectionProperties
 
 ```
-typedef struct NetConn_ConnectionPropertiesNetConn_ConnectionProperties
+typedef struct NetConn_ConnectionProperties NetConn_ConnectionProperties
 ```
 
 **Description**
@@ -105,7 +106,7 @@ Network connection information.
 ### NetConn_HttpProxy
 
 ```
-typedef struct NetConn_HttpProxyNetConn_HttpProxy
+typedef struct NetConn_HttpProxy NetConn_HttpProxy
 ```
 
 **Description**
@@ -118,7 +119,7 @@ Proxy configuration information.
 ### NetConn_NetAddr
 
 ```
-typedef struct NetConn_NetAddrNetConn_NetAddr
+typedef struct NetConn_NetAddr NetConn_NetAddr
 ```
 
 **Description**
@@ -131,7 +132,7 @@ Network address.
 ### NetConn_NetBearerType
 
 ```
-typedef enum NetConn_NetBearerTypeNetConn_NetBearerType
+typedef enum NetConn_NetBearerType NetConn_NetBearerType
 ```
 
 **Description**
@@ -144,7 +145,7 @@ Network carrier type.
 ### NetConn_NetCap
 
 ```
-typedef enum NetConn_NetCapNetConn_NetCap
+typedef enum NetConn_NetCap NetConn_NetCap
 ```
 
 **Description**
@@ -157,7 +158,7 @@ Network capability set.
 ### NetConn_NetCapabilities
 
 ```
-typedef struct NetConn_NetCapabilitiesNetConn_NetCapabilities
+typedef struct NetConn_NetCapabilities NetConn_NetCapabilities
 ```
 
 **Description**
@@ -170,7 +171,7 @@ Network capability set.
 ### NetConn_NetHandle
 
 ```
-typedef struct NetConn_NetHandleNetConn_NetHandle
+typedef struct NetConn_NetHandle NetConn_NetHandle
 ```
 
 **Description**
@@ -183,7 +184,7 @@ Network ID.
 ### NetConn_NetHandleList
 
 ```
-typedef struct NetConn_NetHandleListNetConn_NetHandleList
+typedef struct NetConn_NetHandleList NetConn_NetHandleList
 ```
 
 **Description**
@@ -196,7 +197,7 @@ Network list.
 ### NetConn_Route
 
 ```
-typedef struct NetConn_RouteNetConn_Route
+typedef struct NetConn_Route NetConn_Route
 ```
 
 **Description**
@@ -675,3 +676,35 @@ Unregisters a custom DNS resolver.
 **Required permissions**:
 
 ohos.permission.INTERNET
+
+
+### OH_NetConn_BindSocket()
+
+```
+int32_t OH_NetConn_BindSocket (int32_t socketFd, NetConn_NetHandle * netHandle)
+```
+
+**Description**
+
+Binds a socket to the specified network.
+
+**System capability**: SystemCapability.Communication.NetManager.Core
+
+**Since**: 12
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| socketFd | File descriptor of the socket created by the user.|
+| netHandle | Network ID.|
+
+**Returns**
+
+**0**: success.
+
+**401**: parameter error.
+
+**2100002**: failed to connect to the service.
+
+**2100003**: internal error.

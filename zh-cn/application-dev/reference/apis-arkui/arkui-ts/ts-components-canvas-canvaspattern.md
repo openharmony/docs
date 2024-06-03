@@ -14,7 +14,9 @@ setTransform(transform?: Matrix2D): void
 
 使用Matrix2D对象作为参数、对当前CanvasPattern进行矩阵变换。
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **参数：**
 
