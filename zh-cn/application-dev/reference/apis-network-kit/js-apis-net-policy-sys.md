@@ -2213,15 +2213,15 @@ try {
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
-| 名称              | 类型                            | 必填 | 说明                                                                                     |
-| ----------------- |-------------------------------| ---- | ---------------------------------------------------------------------------------------- |
+| 名称              | 类型                            | 必填 | 说明                                                  |
+| ----------------- |-------------------------------| ---- |-----------------------------------------------------|
 | periodDuration    | string                        | 是   | 流量限制计量周期。D1，M1，Y1 分别代表 1 天，1 个月，1 年内流量限制，超出时间则不受限制。 |
-| warningBytes      | number                        | 是   | 发出警告的流量阈值。                                                                     |
-| limitBytes        | number                        | 是   | 流量设置的配额。                                                                         |
-| metered           | boolean                       | 是   | 是否为计量网络。                                                                         |
-| limitAction       | [LimitAction](#limitaction10) | 是   | 到达流量限制后的动作。                                                                   |
-| lastWarningRemind | number                        | 否   | 最新一次发出警告的时间。                                                                 |
-| lastLimitRemind   | number                        | 否   | 最新一次配额耗尽的时间。                                                                 |
+| warningBytes      | number                        | 是   | 发出警告的流量阈值。                                          |
+| limitBytes        | number                        | 是   | 流量设置的配额。                                            |
+| metered           | boolean                       | 是   | 是否为计量网络。                                            |
+| limitAction       | [LimitAction](#limitaction10) | 是   | 到达流量限制后的动作。                                         |
+| lastWarningRemind | number                        | 否   | 最新一次发出警告的时间。默认值：-1                                  |
+| lastLimitRemind   | number                        | 否   | 最新一次配额耗尽的时间。默认值：-1                                        |
 
 ## LimitAction<sup>10+</sup>
 
