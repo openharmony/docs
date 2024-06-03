@@ -4,8 +4,16 @@
 
 > **说明：**
 >
-> 从API Version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
-> 默认摄像头挖孔区域不为非安全区域，页面不避让挖孔。
+> 从API Version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。<br />
+> 默认摄像头挖孔区域不为非安全区域，页面不避让挖孔。<br />
+> 从API Version 12开始，可在module.json5中添加配置项, 摄像头挖孔区域视为非安全区，实现页面默认避让挖孔：<br />
+  "metadata": [<br />
+    &nbsp;&nbsp;{<br />
+    &nbsp;&nbsp;&nbsp;&nbsp;"name": "avoid_cutout",<br />
+    &nbsp;&nbsp;&nbsp;&nbsp;"value": "true",<br />
+    &nbsp;&nbsp;}<br />
+  ],<br />
+  
 
 ## expandSafeArea
 
@@ -21,7 +29,7 @@ expandSafeArea(types?: Array&lt;SafeAreaType&gt;, edges?: Array&lt;SafeAreaEdge&
 
 | 参数名 | 类型                                               | 必填 | 说明                                                         |
 | ------ | -------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| types  | Array <[SafeAreaType](ts-types.md#safeareatype10)> | 否   | 非必填，配置扩展安全区域的类型。页面不避让挖孔时, CUTOUT类型不生效。<br />默认值: <br />[SafeAreaType.SYSTEM, SafeAreaType.CUTOUT, SafeAreaType.KEYBOARD] |
+| types  | Array <[SafeAreaType](ts-types.md#safeareatype10)> | 否   | 非必填，配置扩展安全区域的类型。未添加metadata配置项时，页面不避让挖孔, CUTOUT类型不生效。<br />默认值: <br />[SafeAreaType.SYSTEM, SafeAreaType.CUTOUT, SafeAreaType.KEYBOARD] |
 | edges  | Array <[SafeAreaEdge](ts-types.md#safeareaedge10)> | 否   | 非必填，配置扩展安全区域的方向。<br /> [SafeAreaEdge.TOP, SafeAreaEdge.BOTTOM, SafeAreaEdge.START, SafeAreaEdge.END]<br />扩展至所有非安全区域。 |
 
 >  **说明：**
