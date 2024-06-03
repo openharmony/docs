@@ -799,7 +799,7 @@ attach(showKeyboard: boolean, textConfig: TextConfig, callback: AsyncCallback&lt
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| showKeyboard | boolean | 是 | 绑定输入法成功后，是否拉起输入法键盘。<br>- ture表示拉起，false表示不拉起。 |
+| showKeyboard | boolean | 是 | 绑定输入法成功后，是否拉起输入法键盘。<br>- true表示拉起，false表示不拉起。 |
 | textConfig | [TextConfig](#textconfig10) | 是 | 编辑框的配置信息。 |
 | callback | AsyncCallback&lt;void&gt; | 否 | 回调函数。当绑定输入法成功后，err为undefined；否则为错误对象。 |
 
@@ -853,7 +853,7 @@ attach(showKeyboard: boolean, textConfig: TextConfig): Promise&lt;void&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| showKeyboard | boolean | 是 | 绑定输入法成功后，是否拉起输入法键盘。<br>- ture表示拉起，false表示不拉起。|
+| showKeyboard | boolean | 是 | 绑定输入法成功后，是否拉起输入法键盘。<br>- true表示拉起，false表示不拉起。|
 | textConfig | [TextConfig](#textconfig10) | 是 | 编辑框的配置信息。 |
 
 **返回值：**
