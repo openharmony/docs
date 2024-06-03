@@ -331,6 +331,18 @@
 
 **起始版本**：12
 
+### ohos.permission.FILE_ACCESS_PERSIST
+
+允许应用支持持久化访问文件Uri。
+
+**权限级别**：API version 11为system_basic; 从API version 12开始为normal。
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：11
+
 ## user_grant（用户授权）权限列表
 
 以下权限的授权方式均为[user_grant（用户授权）](app-permission-mgmt-overview.md#user_grant用户授权)，申请方式请参考[声明权限](declare-permissions.md) &gt; [向用户申请授权](request-user-authorization.md) 。
@@ -512,3 +524,27 @@
 **授权方式**：user_grant
 
 **起始版本**：12
+
+### ohos.permission.READ_WRITE_DOWNLOAD_DIRECTORY
+
+允许应用访问公共目录下DownLoad目录及子目录。
+
+**权限级别**：API version 11为system_basic; 从API version 12开始为normal。
+
+**授权方式**：user_grant
+
+**ACL使能**：true
+
+**起始版本**：11
+
+### ohos.permission.READ_WRITE_DOCUMENTS_DIRECTORY
+
+允许应用访问公共目录下的Documents目录及子目录。
+
+**权限级别**：API version 11为system_basic; 从API version 12开始为normal。
+
+**授权方式**：user_grant
+
+**ACL使能**：true
+
+**起始版本**：11

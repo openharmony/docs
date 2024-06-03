@@ -16,7 +16,7 @@ import environment from '@ohos.file.environment';
 
 getUserDownloadDir(): string
 
-获取当前用户预授权下载目录的沙箱路径，该接口仅对具有该系统能力的设备开放。
+获取当前用户预授权下载目录的沙箱路径。
 
 **需要权限**：ohos.permission.READ_WRITE_DOWNLOAD_DIRECTORY
 
@@ -96,7 +96,7 @@ function getUserDesktopDirExample() {
 
 getUserDocumentDir(): string
 
-获取当前用户预授权文档目录的沙箱路径，该接口仅对具有该系统能力的设备开放。
+获取当前用户预授权文档目录的沙箱路径。
 
 **需要权限**：ohos.permission.READ_WRITE_DOCUMENTS_DIRECTORY
 

@@ -23,8 +23,6 @@ FileShare提供了支持基于URI的文件及目录授于持久化权限、权�
 
 - 在调用文件分享的相关接口前，需要申请权限："ohos.permission.FILE_ACCESS_PERSIST"，申请方式请参考[访问控制-申请应用权限](../security/AccessToken/determine-application-mode.md)。
 
-- 该权限APL等级为system_basic，APL等级为normal的应用需要通过ACL的方式跨级别申请。
-
 ## 开发步骤
 
 以下步骤描述了如何使用`FileShare`提供的Native API接口
@@ -48,7 +46,7 @@ target_link_libraries(sample PUBLIC libohfileshare.so)
     static const uint32_t POLICY_NUM = 2;
     char strTestPath1[] = "file://com.example.fileshare/data/storage/el2/base/files/test1.txt";
     char strTestPath2[] = "file://com.example.fileshare/data/storage/el2/base/files/test2.txt";
-    FileShare_PolicyInfo policy[POLICY_NUM] = { 
+    FileShare_PolicyInfo policy[POLICY_NUM] = {
         {strTestPath1, static_cast<unsigned int>(strlen(strTestPath1)), FileShare_OperationMode::READ_MODE},
         {strTestPath2, static_cast<unsigned int>(strlen(strTestPath2)), FileShare_OperationMode::WRITE_MODE}};
     FileShare_PolicyErrorResult* result = nullptr;
