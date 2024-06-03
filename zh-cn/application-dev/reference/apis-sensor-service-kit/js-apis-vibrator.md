@@ -823,6 +823,17 @@ try {
 | ------------------ | -------------------- | -------------------------------- |
 | EFFECT_CLOCK_TIMER | "haptic.clock.timer" | 描述用户调整计时器时的振动效果。|
 
+## HapticFeedback
+
+简单而通用的振动效果。
+
+**系统能力：** SystemCapability.Sensors.MiscDevice
+
+| 名称         | 值                    | 说明                         |
+| ------------ | --------------------- | ---------------------------- |
+| EFFECT_SOFT  | "haptic.effect.soft"  | 较松散的振动效果，频率偏低。 |
+| EFFECT_HARD  | "haptic.effect.hard"  | 较沉重的振动效果，频率居中。 |
+| EFFECT_SHARP | "haptic.effect.sharp" | 较尖锐的振动效果，频率偏高。 |
 
 ## VibratorStopMode
 
@@ -870,7 +881,8 @@ try {
 | -------- | -------- | ---- |------------------------------ |
 | type     | string   |  是  | 值为"preset"，按照预置振动效果触发马达振动。 |
 | effectId | string   |  是  | 预置的振动效果ID。             |
-| count    | number   |  是  | 重复振动的次数。               |
+| count    | number   |  否  | 可选参数，振动的重复次数，默认值为1。 |
+| intensity | number | 否 | 可选参数，振动调节强度，范围为0到100，默认值为100。 |
 
 ## VibrateFromFile<sup>10+</sup>
 
