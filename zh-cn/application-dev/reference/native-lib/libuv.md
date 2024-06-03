@@ -406,7 +406,7 @@ napi_status napi_release_threadsafe_function(napi_threadsafe_function function);
 
 #### 事件循环运行的三种方式
 
-事件循环运行的三种方式分别为UV_RUN_DEFAULT、UV_RUN_ONCE和UV_RUN_NOWAIT。
+事件循环运行的三种方式分别为**UV_RUN_DEFAULT**、**UV_RUN_ONCE**和**UV_RUN_NOWAIT**。
 
 `UV_RUN_DEFAULT`：默认轮询方式，该模式将会一直运行下去，直到loop中没有活跃的句柄和请求。
 
@@ -482,6 +482,8 @@ int stop_loop(uv_loop_t* loop)
     return 0;
 }
 ```
+
+
 
 ### libuv中的Handles和Requests
 
@@ -560,7 +562,9 @@ class UvHandle {
 
 在这里，需要特别说明一下`uv_close`的使用方法。`uv_close`被用来关闭一个handle，但是它是异步地关闭handle。函数原型为：
 
-void **uv_close**(uv_handle_t* handle, uv_close_cb close_cb)
+```cpp
+void uv_close(uv_handle_t* handle, uv_close_cb close_cb)
+```
 
   handle：要关闭的句柄。 
   close_cb：处理该句柄的函数，用来进行内存管理等操作。
@@ -587,7 +591,9 @@ uv_queue_work(loop, work, [](uv_work_t* req) {
 
 libuv的线程间通信是通过uv_async_t句柄来进行的，相关函数如下：
 
-int **uv_async_init**(uv_loop_t*loop, uv_async_t* handle, uv_async_cb async_cb)
+```cpp
+int uv_async_init(uv_loop_t* loop, uv_async_t* handle, uv_async_cb async_cb)
+```
 
   loop：事件循环loop。
 
@@ -597,7 +603,9 @@ int **uv_async_init**(uv_loop_t*loop, uv_async_t* handle, uv_async_cb async_cb)
 
   返回：成功，返回0。失败，返回错误码。
 
-int **uv_async_send**(uv_async_t* handle)
+```cpp
+int uv_async_send(uv_async_t* handle)
+```
 
   handle：线程间通信句柄。
 
