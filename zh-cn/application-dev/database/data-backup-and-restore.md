@@ -95,9 +95,9 @@
 3. 使用backup()方法备份数据。
      
    ```ts
-   let file = 'BK001';
+   let backupFile = 'BK001';
    try {
-     kvStore.backup(file, (err) => {
+     kvStore.backup(backupFile, (err) => {
        if (err) {
          console.error(`Fail to backup data.code:${err.code},message:${err.message}`);
        } else {
@@ -130,9 +130,9 @@
 5. 使用restore()方法恢复数据。
      
    ```ts
-   let file = 'BK001';
+   let backupFile = 'BK001';
    try {
-     kvStore.restore(file, (err) => {
+     kvStore.restore(backupFile, (err) => {
        if (err) {
          console.error(`Fail to restore data. Code:${err.code},message:${err.message}`);
        } else {
