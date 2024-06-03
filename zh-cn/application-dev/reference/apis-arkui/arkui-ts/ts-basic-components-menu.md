@@ -244,31 +244,69 @@ struct Index {
 ```ts
 // xxx.ets
 import { SymbolGlyphModifier } from '@ohos.arkui.modifier';
+
 @Entry
 @Component
-struct MenuExample {
+struct Index {
   @State startIconModifier: SymbolGlyphModifier = new SymbolGlyphModifier($r('sys.symbol.ohos_mic')).fontSize('24vp');
   @State endIconModifier: SymbolGlyphModifier = new SymbolGlyphModifier($r('sys.symbol.ohos_trash')).fontSize('24vp');
-  @State selectIconModifier: SymbolGlyphModifier = new SymbolGlyphModifier($r('sys.symbol.ohos_trash')).fontSize('24vp');
+  @State selectIconModifier: SymbolGlyphModifier =
+    new SymbolGlyphModifier($r('sys.symbol.checkmark')).fontSize('24vp');
   @State select: boolean = true;
-  build() {
-    Column() {
-      Menu(){
-        MenuItem({symbolStartIcon: this.startIconModifier, content: "菜单选项", symbolEndIcon: this.endIconModifier })
-        MenuItem({content: "菜单选项" })
-          .selected(this.select).selectIcon(this.selectIconModifier)
-        MenuItemGroup({header: '小标题' }){
-          MenuItem({
-            symbolStartIcon: this.startIconModifier,
-            content: "菜单选项",
-            symbolEndIcon: this.endIconModifier
-          })
-        }
-      }
+
+  @Builder
+  SubMenu() {
+    Menu() {
+      MenuItem({ content: "复制", labelInfo: "Ctrl+C" })
+      MenuItem({ content: "粘贴", labelInfo: "Ctrl+V" })
     }
-    .width('100%')
+  }
+
+  @Builder
+  MyMenu() {
+    Menu() {
+      MenuItem({ symbolStartIcon: this.startIconModifier, content: "菜单选项" })
+      MenuItem({ symbolStartIcon: this.startIconModifier, content: "菜单选项" })
+        .enabled(false)
+      MenuItem({
+        symbolStartIcon: this.startIconModifier,
+        content: "菜单选项",
+        symbolEndIcon: this.endIconModifier,
+        builder: (): void => this.SubMenu()
+      })
+      MenuItemGroup({ header: '小标题' }) {
+        MenuItem({
+          symbolStartIcon: this.startIconModifier,
+          content: "菜单选项",
+          symbolEndIcon: this.endIconModifier,
+          builder: (): void => this.SubMenu()
+        })
+        MenuItem({
+          symbolStartIcon: this.startIconModifier,
+          content: "菜单选项",
+          symbolEndIcon: this.endIconModifier,
+          builder: (): void => this.SubMenu()
+        })
+      }
+      MenuItem({
+        content: "菜单选项",
+      }).selected(this.select).selectIcon(this.selectIconModifier)
+    }
+  }
+
+  build() {
+    Row() {
+      Column() {
+        Text('click to show menu')
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+      }
+      .bindMenu(this.MyMenu)
+      .width('100%')
+    }
+    .height('100%')
   }
 }
 ```
 
-![zh-cn_image_0000001174582862](figures/normal-symbol.jpeg)
+![zh-cn_image_0000001174582862](figures/normal-symbol.jpg)
