@@ -53,6 +53,8 @@
       - [模态转场](arkts-modal-transition.md)
       - [共享元素转场](arkts-shared-element-transition.md)
       - [页面转场动画 (不推荐)](arkts-page-transition-animation.md)
+      - [旋转屏动画增强](arkts-rotation-transition-animation.md)
+    - [粒子动画](arkts-particle-animation.md)
     - [组件动画](arkts-component-animation.md)
     - 动画曲线
       - [动画曲线概述](arkts-curve-overview.md)
