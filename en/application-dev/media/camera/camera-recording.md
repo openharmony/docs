@@ -6,10 +6,11 @@ As another important function of the camera application, video recording is the 
 
 Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API reference.
 
-1. Import the media module. The [APIs](../../reference/apis-media-kit/js-apis-media.md) provided by this module are used to obtain the surface ID and create a photo output stream.
+1. Import the media module. The [APIs](../../reference/apis-media-kit/js-apis-media.md) provided by this module are used to obtain the surface ID and create a video output stream.
      
    ```ts
    import { BusinessError } from '@ohos.base';
+   import camera from '@ohos.multimedia.camera';
    import media from '@ohos.multimedia.media';
    ```
 

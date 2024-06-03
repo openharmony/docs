@@ -26,7 +26,7 @@ import { EditableTitleBar } from "@ohos.arkui.advanced.EditableTitleBar"
 
 ## EditableTitleBar
 
-EditableTitleBar({leftIconStyle: EditableLeftIconType, imageItem?: EditableTitleBarItem, title: ResourceStr, subtitle?: ResourceStr, menuItems?: Array&lt;EditableTitleBarMenuItem&gt;, isSaveIconRequired?: boolean, onSave?: () =&gt; void, onCancel?: () =&gt;void, options?: EditableTitleBarOptions})
+EditableTitleBar({leftIconStyle: EditableLeftIconType, imageItem?: EditableTitleBarItem, title: ResourceStr, subtitle?: ResourceStr, menuItems?: Array&lt;EditableTitleBarMenuItem&gt;, isSaveIconRequired?: boolean, onSave?: () =&gt; void, onCancel?: () =&gt;void, options?: EditableTitleBarOptions, contentMargin?: LocalizedMargin})
 
 **装饰器类型：**\@Component
 
@@ -34,17 +34,18 @@ EditableTitleBar({leftIconStyle: EditableLeftIconType, imageItem?: EditableTitle
 
 **参数：**
 
-| 名称 | 参数类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| leftIconStyle | [EditableLeftIconType](#editablelefticontype) | 是 | 左侧按钮类型。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| imageItem<sup>12+</sup> | [EditableTitleBarItem](#editabletitlebaritem12) | 否 | 用于左侧头像的单个菜单项目。 |
-| title | [ResourceStr](ts-types.md#resourcestr) | 是 | 标题。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| subtitle<sup>12+</sup> | [ResourceStr](ts-types.md#resourcestr) | 否 | 副标题。 |
-| menuItems | Array&lt;[EditableTitleBarMenuItem](#editabletitlebarmenuitem)&gt; | 否 | 右侧菜单项目列表。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| isSaveIconRequired<sup>12+</sup> | boolean | 否 | 是否需要右侧的保存按钮。<br />默认值：true，表示需要右侧的保存按钮。 |
-| onSave | ()&nbsp;=&gt;&nbsp;void | 否 | 保存时的动作闭包。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| onCancel | ()&nbsp;=&gt;&nbsp;void | 否 | 当左侧按钮类型为&nbsp;Cancel，触发取消时的动作闭包。<br />从API version 12开始，当左侧按钮类型为&nbsp;Back，触发返回时的动作闭包。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| options<sup>12+</sup> | [EditableTitleBarOptions](#editabletitlebaroptions12) | 否 | 标题样式。 |
+| 名称 | 参数类型 | 必填 | 装饰器类型 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| leftIconStyle | [EditableLeftIconType](#editablelefticontype) | 是 | - | 左侧按钮类型。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| imageItem<sup>12+</sup> | [EditableTitleBarItem](#editabletitlebaritem12) | 否 | - | 用于左侧头像的单个菜单项目。 |
+| title | [ResourceStr](ts-types.md#resourcestr) | 是 | - | 标题。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| subtitle<sup>12+</sup> | [ResourceStr](ts-types.md#resourcestr) | 否 | - | 副标题。 |
+| menuItems | Array&lt;[EditableTitleBarMenuItem](#editabletitlebarmenuitem)&gt; | 否 | - | 右侧菜单项目列表。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| isSaveIconRequired<sup>12+</sup> | boolean | 否 | - | 是否需要右侧的保存按钮。<br />默认值：true，表示需要右侧的保存按钮。 |
+| onSave | ()&nbsp;=&gt;&nbsp;void | 否 | - | 保存时的动作闭包。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| onCancel | ()&nbsp;=&gt;&nbsp;void | 否 | - | 当左侧按钮类型为&nbsp;Cancel，触发取消时的动作闭包。<br />从API version 12开始，当左侧按钮类型为&nbsp;Back，触发返回时的动作闭包。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| options<sup>12+</sup> | [EditableTitleBarOptions](#editabletitlebaroptions12) | 否 | - | 标题样式。 |
+| contentMargin<sup>12+</sup> | [LocalizedMargin](ts-types.md#localizedmargin12) | 否 | @Prop | 标题栏外边距，不支持设置负数。<br />默认值：<br />页面断点<600vp:<br /> {start: LengthMetrics.vp(16), end: LengthMetrics.vp(16)};<br />600vp<=页面断点<840vp:<br /> {start: LengthMetrics.vp(24), end: LengthMetrics.vp(24)};<br />页面断点>=840vp:<br /> {start: LengthMetrics.vp(32), end: LengthMetrics.vp(32)}。 |
 
 ## EditableLeftIconType
 
@@ -89,9 +90,7 @@ EditableTitleBar({leftIconStyle: EditableLeftIconType, imageItem?: EditableTitle
 
 ```ts
 // 该示例主要演示EditableTitleBar设置左侧图标、主标题及自定义右侧图标区的效果。
-import { EditableLeftIconType } from "@ohos.arkui.advanced.EditableTitleBar"
-import { EditableTitleBar } from "@ohos.arkui.advanced.EditableTitleBar"
-import promptAction from '@ohos.promptAction'
+import { EditableLeftIconType, EditableTitleBar, promptAction } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -99,54 +98,58 @@ struct Index {
   build() {
     Row() {
       Column() {
-		Divider().height(2).color(0xCCCCCC)
+        Divider().height(2).color(0xCCCCCC)
         EditableTitleBar({
           leftIconStyle: EditableLeftIconType.Cancel,
-          title: "编辑页面",
+          title: '编辑页面',
           menuItems: [],
           onCancel: () => {
-            promptAction.showToast({ message: "on cancel" })
+            promptAction.showToast({ message: 'on cancel' });
           },
           onSave: () => {
-            promptAction.showToast({ message: "on save" })
+            promptAction.showToast({ message: 'on save' });
           }
         })
         Divider().height(2).color(0xCCCCCC)
         EditableTitleBar({
           leftIconStyle: EditableLeftIconType.Back,
-          title: "编辑页面",
+          title: '编辑页面',
           menuItems: [
-            { value: $r('app.media.ic_public_reduce'),
+            {
+              value: $r('app.media.ic_public_reduce'),
               isEnabled: false,
               action: () => {
-                promptAction.showToast({ message: "show toast index 2" })
+                promptAction.showToast({ message: 'show toast index 2' });
               }
             }
           ],
           onSave: () => {
-            promptAction.showToast({ message: "on save" })
+            promptAction.showToast({ message: 'on save' })
           }
         })
-		Divider().height(2).color(0xCCCCCC)
+        Divider().height(2).color(0xCCCCCC)
       }.width('100%')
     }.height('100%')
   }
 }
 ```
 
-![zh-cn_image_0000001617073302](figures/zh-cn_image_0000001617073302.jpg)
+![zh-cn_image_0000001617073302](figures/zh-cn_image_0000001617073302.PNG)
 
 ### 示例2
 
 ```ts
-// 该示例主要演示EditableTitleBar设置背景模糊、头像和取消右侧保存图标的效果。
-import { EditableLeftIconType, EditableTitleBar } from '@ohos.arkui.advanced.EditableTitleBar';
-import promptAction from '@ohos.promptAction';
-import router from '@ohos.router';
+// 该示例主要演示EditableTitleBar设置背景模糊、头像；取消右侧保存图标及自定义标题栏外边距的效果。
+import { EditableLeftIconType, EditableTitleBar, LengthMetrics, promptAction, router } from '@kit.ArkUI';
 
 @Entry
 @Component
 struct Index {
+  @State titlebarMargin: LocalizedMargin = {
+    start: LengthMetrics.vp(35),
+    end: LengthMetrics.vp(35),
+  };
+
   build() {
     Row() {
       Column() {
@@ -170,7 +173,7 @@ struct Index {
           title: '主标题',
           subtitle: '副标题',
           // 取消右侧保存按钮
-          isSaveIconRequired: false, 
+          isSaveIconRequired: false,
         })
 
         Divider().height(2).color(0xCCCCCC);
@@ -221,6 +224,8 @@ struct Index {
               promptAction.showToast({ message: "show toast index 2" });
             }
           },
+          // 设置标题栏外边距
+          contentMargin: this.titlebarMargin,
           // 右侧图标配置
           menuItems: [
             {

@@ -3,7 +3,9 @@
 - ArkTS API
   - [@ohos.multimedia.camera (相机管理)](js-apis-camera.md)
   - [@ohos.multimedia.cameraPicker (相机选择器)](js-apis-cameraPicker.md)
+  <!--Del-->
   - [@ohos.multimedia.camera (相机管理)(系统接口)](js-apis-camera-sys.md)
+  <!--DelEnd-->
 - C API
   - 模块
     - [OH_Camera](_o_h___camera.md)

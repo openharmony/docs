@@ -1,6 +1,6 @@
 # \@Monitor装饰器：状态变量修改监听
 
-为了增强现有状态管理框架对状态变量变化的监听能力，开发者可以使用\@Monitor装饰器对状态变量进行监听。
+为了增强状态管理框架对状态变量变化的监听能力，开发者可以使用\@Monitor装饰器对状态变量进行监听。
 
 >**说明：**
 >
@@ -10,7 +10,7 @@
 
 \@Monitor装饰器用于监听状态变量修改，使得状态变量具有深度监听的能力：
 
-- \@Monitor装饰器支持在\@ComponentV2装饰的自定义组件中使用，未被状态变量装饰器[\@Local](arkts-new-local.md)、[\@Param](arkts-new-param.md)、[\@Provider](arkts-new-Provider-and-Consumer.md)、[\@Comsumer](arkts-new-Provider-and-Consumer.md)、[\@Computed]((arkts-new-Computed.md))装饰的变量无法被\@Monitor监听到变化。
+- \@Monitor装饰器支持在\@ComponentV2装饰的自定义组件中使用，未被状态变量装饰器[\@Local](arkts-new-local.md)、[\@Param](arkts-new-param.md)、[\@Provider](arkts-new-Provider-and-Consumer.md)、[\@Comsumer](arkts-new-Provider-and-Consumer.md)、[\@Computed](arkts-new-Computed.md)装饰的变量无法被\@Monitor监听到变化。
 
 - \@Monitor装饰器支持在类中与[\@ObservedV2、\@Trace](arkts-new-observedV2-and-trace.md)配合使用，不允许在未被\@ObservedV2装饰的类中使用\@Monitor装饰器。未被\@Trace装饰的属性无法被\@Monitor监听到变化。
 - 当观测的属性变化时，\@Monitor装饰器定义的回调方法将被调用。判断属性是否变化使用的是严格相等（===），当严格相等为false的情况下，就会触发\@Monitor的回调。当在一次事件中多次改变同一个属性时，将会使用初始值和最终值进行比较以判断是否变化。
@@ -19,9 +19,9 @@
 - 在继承类场景中，可以在父子组件中对同一个属性分别定义\@Monitor进行监听，当属性变化时，父子组件中定义的\@Monitor回调均会被调用。
 - 和[\@Watch装饰器](arkts-watch.md)类似，开发者需要自己定义回调函数，区别在于\@Watch装饰器将函数名作为参数，而\@Monitor直接装饰回调函数。\@Monitor与\@Watch的对比可以查看[\@Monitor与\@Watch的对比](#\@Monitor与\@Watch对比)。
 
-## 现有状态管理框架的局限性
+## 状态管理V1版本的局限性
 
-现有状态管理框架无法实现对对象、数组中某一单个属性或数组项变化的监听，且无法获取变化之前的值。
+现有状态管理V1版本无法实现对对象、数组中某一单个属性或数组项变化的监听，且无法获取变化之前的值。
 
 ```ts
 @Observed
@@ -68,7 +68,7 @@ struct Index {
 }
 ```
 
-上述代码中，点击"change info name"更改info中的name属性或点击"change info age"更改age时，均会触发info注册的\@Watch回调。点击"change numArr[2]"更改numArr中的第3个元素或点击"change numArr[3]"更改第4个元素时，均会触发numArr注册的\@Watch回调。在这两个回调中，由于无法获取数据更改前的值，在业务逻辑更加复杂的场景下，无法准确知道是哪一个属性或元素发生了改变从而触发了@Watch事件，这不便于开发者对变量的更改进行准确监听。
+上述代码中，点击"change info name"更改info中的name属性或点击"change info age"更改age时，均会触发info注册的\@Watch回调。点击"change numArr[2]"更改numArr中的第3个元素或点击"change numArr[3]"更改第4个元素时，均会触发numArr注册的\@Watch回调。在这两个回调中，由于无法获取数据更改前的值，在业务逻辑更加复杂的场景下，无法准确知道是哪一个属性或元素发生了改变从而触发了\@Watch事件，这不便于开发者对变量的更改进行准确监听。
 
 ## 装饰器说明
 

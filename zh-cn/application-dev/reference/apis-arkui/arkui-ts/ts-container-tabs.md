@@ -60,7 +60,7 @@ vertical(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | boolean | 是   | 是否为纵向Tab。<br/>默认值：false，横向Tabs，为true时纵向Tabs。<br/>当横向Tabs设置height为auto时，Tabs组件高度自适应子组件高度，即为tabBar高度+divider线宽+TabContent高度+上下padding值+上下border宽度。<br/>当纵向Tabs设置width为auto时，Tabs组件宽度自适应子组件宽度，即为tabBar宽度+divider线宽+TabContent宽度+左右padding值+左右border宽度。 |
+| value  | boolean | 是   | 是否为纵向Tab。<br/>默认值：false，横向Tabs，为true时纵向Tabs。<br/>当横向Tabs设置height为auto时，Tabs组件高度自适应子组件高度，即为tabBar高度+divider线宽+TabContent高度+上下padding值+上下border宽度。<br/>当纵向Tabs设置width为auto时，Tabs组件宽度自适应子组件宽度，即为tabBar宽度+divider线宽+TabContent宽度+左右padding值+左右border宽度。<br/>尽量保持每一个页面中的子组件尺寸大小一致，避免滑动页面时出现页面切换动画跳动现象。 |
 
 ### scrollable
 
@@ -287,7 +287,7 @@ barGridAlign(value: BarGridColumnOptions)
 | 名称         | 描述                                       |
 | ---------- | ---------------------------------------- |
 | ALWAYS_CENTER | 当页签内容超过TabBar宽度时，TabBar可滚动。<br/>当页签内容不超过TabBar宽度时，TabBar不可滚动，页签紧凑居中。|
-| ALWAYS_AVERAGE_SPLITE      | 当页签内容超过TabBar宽度时，TabBar可滚动。<br/>当页签内容不超过TabBar宽度时，TabBar不可滚动，且所有页签平均分配TabBar宽度。<br/>仅水平模式下有效，否则视为LayoutStyle.ALWAYS_CENTER。|
+| ALWAYS_AVERAGE_SPLIT | 当页签内容超过TabBar宽度时，TabBar可滚动。<br/>当页签内容不超过TabBar宽度时，TabBar不可滚动，且所有页签平均分配TabBar宽度。<br/>仅水平模式下有效，否则视为LayoutStyle.ALWAYS_CENTER。|
 | SPACE_BETWEEN_OR_CENTER      | 当页签内容超过TabBar宽度时，TabBar可滚动。<br/>当页签内容不超过TabBar宽度但超过TabBar宽度一半时，TabBar不可滚动，页签紧凑居中。<br/>当页签内容不超过TabBar宽度一半时，TabBar不可滚动，保证页签居中排列在TabBar宽度一半，且间距相同。|
 
 ## 事件
@@ -299,11 +299,6 @@ barGridAlign(value: BarGridColumnOptions)
 onChange(event:&nbsp;(index:&nbsp;number)&nbsp;=&gt;&nbsp;void)
 
 Tab页签切换后触发的事件。
-
-> **说明：**
->
-> - 由于该接口会在布局变化的时候同步触发，容易造成循环反复刷新布局，导致性能问题或其他异常行为。因此不推荐在该回调中更新状态变量。如果必须更新可以通过异步任务的方式如[setTimeout](../../common/js-apis-timer.md#settimeout)来更新状态变量。
->
 
 触发该事件的条件：
 
@@ -1242,6 +1237,8 @@ struct TabsExample {
 
 ```ts
 // xxx.ets
+import ComponentUtils from '@ohos.arkui.UIContext';
+
 @Entry
 @Component
 struct TabsExample {
@@ -1250,6 +1247,7 @@ struct TabsExample {
   @State indicatorLeftMargin: number = 0
   @State indicatorWidth: number = 0
   private tabsWidth: number = 0
+  private componentUtils: ComponentUtils.ComponentUtils = this.getUIContext().getComponentUtils()
 
   @Builder
   tabBuilder(index: number, name: string) {
@@ -1332,14 +1330,8 @@ struct TabsExample {
   }
 
   private getTextInfo(index: number): Record<string, number> {
-    let strJson = getInspectorByKey(index.toString())
-    try {
-      let obj: Record<string, string> = JSON.parse(strJson)
-      let rectInfo: number[][] = JSON.parse('[' + obj.$rect + ']')
-      return { 'left': px2vp(rectInfo[0][0]), 'width': px2vp(rectInfo[1][0] - rectInfo[0][0]) }
-    } catch (error) {
-      return { 'left': 0, 'width': 0 }
-    }
+    let rectangle = this.componentUtils.getRectangleById(index.toString())
+    return { 'left': px2vp(rectangle.windowOffset.x), 'width': px2vp(rectangle.size.width) }
   }
 
   private getCurrentIndicatorInfo(index: number, event: TabsAnimationEvent): Record<string, number> {

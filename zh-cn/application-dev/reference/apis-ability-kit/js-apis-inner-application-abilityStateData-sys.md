@@ -25,9 +25,9 @@ import appManager from '@ohos.application.appManager';
 | bundleName              | string   | 是   | 否  | 应用Bundle名称。          |
 | abilityName            | string   | 是   | 否   | Ability名称。               |
 | uid                    | number   | 是   | 否   | 用户ID。                  |
-| state                   | number   | 是   | 否   | [Ability状态](../apis/#ability状态)。                |
+| state                   | number   | 是   | 否   | [Ability状态](#ability状态)。                |
 | moduleName<sup>9+</sup> | string   | 是   | 否   | Ability所属的HAP的名称。    |
-| abilityType | number | 是   | 否   | [Ability类型](../apis/#ability类型)：页面或服务等。 |
+| abilityType | number | 是   | 否   | [Ability类型](#ability类型)：页面或服务等。 |
 | isAtomicService<sup>12+</sup>| boolean   | 是  | 否  | 判断Ability所属的应用是否是原子化服务。<br>true:Ability所属的应用是原子化服务。<br>false:Ability所属的应用不是原子化服务。     |
 
 #### Ability状态

@@ -10,7 +10,7 @@
 ## 导入模块
 
 ```js
-import sharing from '@ohos.net.sharing';
+import { sharing } from '@kit.NetworkKit';
 ```
 
 ## sharing.isSharingSupported
@@ -37,15 +37,15 @@ isSharingSupported(callback: AsyncCallback\<boolean>): void
 | --------- | -------------------------------------------- |
 | 201       | Permission denied.                           |
 | 202       | Non-system applications use system APIs.     |
-| 2200002   | Operation failed. Cannot connect to service. |
+| 2200002   | Failed to connect to the service.            |
 | 2200003   | System internal error.                       |
 | 2202011   | Cannot get network sharing configuration.    |
 
 **示例：**
 
 ```js
-import sharing from '@ohos.net.sharing';
-import { BusinessError } from '@ohos.base';
+import { sharing } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 sharing.isSharingSupported((error: BusinessError, data: boolean) => {
   console.log(JSON.stringify(error));
@@ -77,15 +77,15 @@ isSharingSupported(): Promise\<boolean>
 | --------- | -------------------------------------------- |
 | 201       | Permission denied.                           |
 | 202       | Non-system applications use system APIs.     |
-| 2200002   | Operation failed. Cannot connect to service. |
+| 2200002   | Failed to connect to the service.            |
 | 2200003   | System internal error.                       |
 | 2202011   | Cannot get network sharing configuration.    |
 
 **示例：**
 
 ```js
-import sharing from '@ohos.net.sharing';
-import { BusinessError } from '@ohos.base';
+import { sharing } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 sharing
   .isSharingSupported()
@@ -121,15 +121,15 @@ isSharing(callback: AsyncCallback\<boolean>): void
 | --------- | -------------------------------------------- |
 | 201       | Permission denied.                           |
 | 202       | Non-system applications use system APIs.     |
-| 2200002   | Operation failed. Cannot connect to service. |
+| 2200002   | Failed to connect to the service.            |
 | 2200003   | System internal error.                       |
 | 2202011   | Cannot get network sharing configuration.    |
 
 **示例：**
 
 ```js
-import sharing from '@ohos.net.sharing';
-import { BusinessError } from '@ohos.base';
+import { sharing } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 sharing.isSharing((error: BusinessError, data: boolean) => {
   console.log(JSON.stringify(error));
@@ -161,15 +161,15 @@ isSharing(): Promise\<boolean>
 | --------- | -------------------------------------------- |
 | 201       | Permission denied.                           |
 | 202       | Non-system applications use system APIs.     |
-| 2200002   | Operation failed. Cannot connect to service. |
+| 2200002   | Failed to connect to the service.            |
 | 2200003   | System internal error.                       |
 | 2202011   | Cannot get network sharing configuration.    |
 
 **示例：**
 
 ```js
-import sharing from '@ohos.net.sharing';
-import { BusinessError } from '@ohos.base';
+import { sharing } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 sharing
   .isSharing()
@@ -208,19 +208,19 @@ startSharing(type: SharingIfaceType, callback: AsyncCallback\<void>): void
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2200001   | Invalid parameter value.                     |
-| 2200002   | Operation failed. Cannot connect to service. |
+| 2200002   | Failed to connect to the service.            |
 | 2200003   | System internal error.                       |
 | 2202004   | Try to share an unavailable iface.           |
 | 2202005   | WiFi sharing failed.                         |
 | 2202006   | Bluetooth sharing failed.                    |
-| 2202009   | Network share enable forwarding error.       |
+| 2202009   | Failed to enable forwarding for network sharing.       |
 | 2202011   | Cannot get network sharing configuration.    |
 
 **示例：**
 
 ```js
-import sharing from '@ohos.net.sharing';
-import { BusinessError } from '@ohos.base';
+import { sharing } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let SHARING_WIFI = 0;
 sharing.startSharing(SHARING_WIFI, (error: BusinessError) => {
@@ -260,19 +260,19 @@ startSharing(type: SharingIfaceType): Promise\<void>
 | 201       | Permission denied.                           |
 | 401       | Parameter error.                             |
 | 2200001   | Invalid parameter value.                     |
-| 2200002   | Operation failed. Cannot connect to service. |
+| 2200002   | Failed to connect to the service.            |
 | 2200003   | System internal error.                       |
 | 2202004   | Try to share an unavailable iface.           |
 | 2202005   | WiFi sharing failed.                         |
 | 2202006   | Bluetooth sharing failed.                    |
-| 2202009   | Network share enable forwarding error.       |
+| 2202009   | Failed to enable forwarding for network sharing.       |
 | 2202011   | Cannot get network sharing configuration.    |
 
 **示例：**
 
 ```js
-import sharing from '@ohos.net.sharing';
-import { BusinessError } from '@ohos.base';
+import { sharing } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let SHARING_WIFI = 0;
 sharing
@@ -312,7 +312,7 @@ stopSharing(type: SharingIfaceType, callback: AsyncCallback\<void>): void
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2200001   | Invalid parameter value.                     |
-| 2200002   | Operation failed. Cannot connect to service. |
+| 2200002   | Failed to connect to the service.            |
 | 2200003   | System internal error.                       |
 | 2202004   | Try to share an unavailable iface.           |
 | 2202005   | WiFi sharing failed.                         |
@@ -322,8 +322,8 @@ stopSharing(type: SharingIfaceType, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
-import sharing from '@ohos.net.sharing';
-import { BusinessError } from '@ohos.base';
+import { sharing } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let SHARING_WIFI = 0;
 sharing.stopSharing(SHARING_WIFI, (error: BusinessError) => {
@@ -363,7 +363,7 @@ stopSharing(type: SharingIfaceType): Promise\<void>
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2200001   | Invalid parameter value.                     |
-| 2200002   | Operation failed. Cannot connect to service. |
+| 2200002   | Failed to connect to the service.            |
 | 2200003   | System internal error.                       |
 | 2202004   | Try to share an unavailable iface.           |
 | 2202005   | WiFi sharing failed.                         |
@@ -373,8 +373,8 @@ stopSharing(type: SharingIfaceType): Promise\<void>
 **示例：**
 
 ```js
-import sharing from '@ohos.net.sharing';
-import { BusinessError } from '@ohos.base';
+import { sharing } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let SHARING_WIFI = 0;
 sharing
@@ -412,14 +412,14 @@ getStatsRxBytes(callback: AsyncCallback\<number>): void
 | 201       | Permission denied.                           |
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
-| 2200002   | Operation failed. Cannot connect to service. |
+| 2200002   | Failed to connect to the service.            |
 | 2200003   | System internal error.                       |
 
 **示例：**
 
 ```js
-import sharing from '@ohos.net.sharing';
-import { BusinessError } from '@ohos.base';
+import { sharing } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 sharing.getStatsRxBytes((error: BusinessError, data: number) => {
   console.log(JSON.stringify(error));
@@ -452,14 +452,14 @@ getStatsRxBytes(): Promise\<number>
 | 201       | Permission denied.                           |
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
-| 2200002   | Operation failed. Cannot connect to service. |
+| 2200002   | Failed to connect to the service.            |
 | 2200003   | System internal error.                       |
 
 **示例：**
 
 ```js
-import sharing from '@ohos.net.sharing';
-import { BusinessError } from '@ohos.base';
+import { sharing } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 sharing
   .getStatsRxBytes()
@@ -496,14 +496,14 @@ getStatsTxBytes(callback: AsyncCallback\<number>): void
 | 201       | Permission denied.                           |
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
-| 2200002   | Operation failed. Cannot connect to service. |
+| 2200002   | Failed to connect to the service.            |
 | 2200003   | System internal error.                       |
 
 **示例：**
 
 ```js
-import sharing from '@ohos.net.sharing';
-import { BusinessError } from '@ohos.base';
+import { sharing } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 sharing.getStatsTxBytes((error: BusinessError, data: number) => {
   console.log(JSON.stringify(error));
@@ -536,14 +536,14 @@ getStatsTxBytes(): Promise\<number>
 | 201       | Permission denied.                           |
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
-| 2200002   | Operation failed. Cannot connect to service. |
+| 2200002   | Failed to connect to the service.            |
 | 2200003   | System internal error.                       |
 
 **示例：**
 
 ```js
-import sharing from '@ohos.net.sharing';
-import { BusinessError } from '@ohos.base';
+import { sharing } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 sharing
   .getStatsTxBytes()
@@ -580,14 +580,14 @@ getStatsTotalBytes(callback: AsyncCallback\<number>): void
 | 201       | Permission denied.                           |
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
-| 2200002   | Operation failed. Cannot connect to service. |
+| 2200002   | Failed to connect to the service.            |
 | 2200003   | System internal error.                       |
 
 **示例：**
 
 ```js
-import sharing from '@ohos.net.sharing';
-import { BusinessError } from '@ohos.base';
+import { sharing } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 sharing.getStatsTotalBytes((error: BusinessError, data: number) => {
   console.log(JSON.stringify(error));
@@ -620,14 +620,14 @@ getStatsTotalBytes(): Promise\<number>
 | 201       | Permission denied.                           |
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
-| 2200002   | Operation failed. Cannot connect to service. |
+| 2200002   | Failed to connect to the service.            |
 | 2200003   | System internal error.                       |
 
 **示例：**
 
 ```js
-import sharing from '@ohos.net.sharing';
-import { BusinessError } from '@ohos.base';
+import { sharing } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 sharing
   .getStatsTotalBytes()
@@ -666,14 +666,14 @@ getSharingIfaces(state: SharingIfaceState, callback: AsyncCallback\<Array\<strin
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2200001   | Invalid parameter value.                     |
-| 2200002   | Operation failed. Cannot connect to service. |
+| 2200002   | Failed to connect to the service.            |
 | 2200003   | System internal error.                       |
 
 **示例：**
 
 ```js
-import sharing from '@ohos.net.sharing';
-import { BusinessError } from '@ohos.base';
+import { sharing } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let SHARING_BLUETOOTH = 2;
 sharing.getSharingIfaces(SHARING_BLUETOOTH, (error: BusinessError, data: string[]) => {
@@ -714,14 +714,14 @@ getSharingIfaces(state: SharingIfaceState): Promise\<Array\<string>>
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2200001   | Invalid parameter value.                     |
-| 2200002   | Operation failed. Cannot connect to service. |
+| 2200002   | Failed to connect to the service.            |
 | 2200003   | System internal error.                       |
 
 **示例：**
 
 ```js
-import sharing from '@ohos.net.sharing';
-import { BusinessError } from '@ohos.base';
+import { sharing } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let SHARING_BLUETOOTH = 2;
 sharing
@@ -761,14 +761,14 @@ getSharingState(type: SharingIfaceType, callback: AsyncCallback\<SharingIfaceSta
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2200001   | Invalid parameter value.                     |
-| 2200002   | Operation failed. Cannot connect to service. |
+| 2200002   | Failed to connect to the service.            |
 | 2200003   | System internal error.                       |
 
 **示例：**
 
 ```js
-import sharing from '@ohos.net.sharing';
-import { BusinessError } from '@ohos.base';
+import { sharing } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let SHARING_WIFI = 0;
 sharing.getSharingState(SHARING_WIFI, (error: BusinessError, data: sharing.SharingIfaceState) => {
@@ -803,7 +803,7 @@ getSharingState(type: SharingIfaceType): Promise\<SharingIfaceState\>
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2200001   | Invalid parameter value.                     |
-| 2200002   | Operation failed. Cannot connect to service. |
+| 2200002   | Failed to connect to the service.            |
 | 2200003   | System internal error.                       |
 
 **返回值：**
@@ -815,8 +815,8 @@ getSharingState(type: SharingIfaceType): Promise\<SharingIfaceState\>
 **示例：**
 
 ```js
-import sharing from '@ohos.net.sharing';
-import { BusinessError } from '@ohos.base';
+import { sharing } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let SHARING_WIFI = 0;
 sharing
@@ -856,14 +856,14 @@ getSharableRegexes(type: SharingIfaceType, callback: AsyncCallback\<Array\<strin
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2200001   | Invalid parameter value.                     |
-| 2200002   | Operation failed. Cannot connect to service. |
+| 2200002   | Failed to connect to the service.            |
 | 2200003   | System internal error.                       |
 
 **示例：**
 
 ```js
-import sharing from '@ohos.net.sharing';
-import { BusinessError } from '@ohos.base';
+import { sharing } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let SHARING_WIFI = 0;
 sharing.getSharableRegexes(SHARING_WIFI, (error: BusinessError, data: string[]) => {
@@ -904,14 +904,14 @@ getSharableRegexes(type: SharingIfaceType): Promise\<Array\<string>>
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2200001   | Invalid parameter value.                     |
-| 2200002   | Operation failed. Cannot connect to service. |
+| 2200002   | Failed to connect to the service.            |
 | 2200003   | System internal error.                       |
 
 **示例：**
 
 ```js
-import sharing from '@ohos.net.sharing';
-import { BusinessError } from '@ohos.base';
+import { sharing } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let SHARING_WIFI = 0;
 sharing
@@ -954,7 +954,7 @@ on(type: 'sharingStateChange', callback: Callback\<boolean>): void
 **示例：**
 
 ```js
-import sharing from '@ohos.net.sharing';
+import { sharing } from '@kit.NetworkKit';
 
 sharing.on('sharingStateChange', (data: boolean) => {
   console.log('on sharingStateChange: ' + JSON.stringify(data));
@@ -991,7 +991,7 @@ off(type: 'sharingStateChange', callback?: Callback\<boolean>): void
 **示例：**
 
 ```js
-import sharing from '@ohos.net.sharing';
+import { sharing } from '@kit.NetworkKit';
 
 sharing.off('sharingStateChange', (data: boolean) => {
   console.log(JSON.stringify(data));
@@ -1028,7 +1028,7 @@ on(type: 'interfaceSharingStateChange', callback: Callback\<InterfaceSharingStat
 **示例：**
 
 ```js
-import sharing from '@ohos.net.sharing';
+import { sharing } from '@kit.NetworkKit';
 
 sharing.on('interfaceSharingStateChange', (data: object) => {
   console.log('on interfaceSharingStateChange:' + JSON.stringify(data));
@@ -1065,7 +1065,7 @@ off(type: 'interfaceSharingStateChange', callback?: Callback\<InterfaceSharingSt
 **示例：**
 
 ```js
-import sharing from '@ohos.net.sharing';
+import { sharing } from '@kit.NetworkKit';
 
 sharing.off('interfaceSharingStateChange', (data: object) => {
   console.log(JSON.stringify(data));
@@ -1102,7 +1102,7 @@ on(type: 'sharingUpstreamChange', callback: Callback\<NetHandle>): void
 **示例：**
 
 ```js
-import sharing from '@ohos.net.sharing';
+import { sharing } from '@kit.NetworkKit';
 
 sharing.on('sharingUpstreamChange', (data: object) => {
   console.log('on sharingUpstreamChange:' + JSON.stringify(data));
@@ -1139,7 +1139,7 @@ off(type: 'sharingUpstreamChange', callback?: Callback\<NetHandle>): void
 **示例：**
 
 ```js
-import sharing from '@ohos.net.sharing';
+import { sharing } from '@kit.NetworkKit';
 
 sharing.off('sharingUpstreamChange', (data: object) => {
   console.log(JSON.stringify(data));

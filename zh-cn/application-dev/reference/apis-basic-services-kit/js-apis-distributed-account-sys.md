@@ -10,7 +10,7 @@
 ## 导入模块
 
 ```ts
-import account_distributedAccount from '@ohos.account.distributedAccount';
+import { distributedAccount } from '@kit.BasicServicesKit';
 ```
 
 ## DistributedAccountAbility
@@ -40,6 +40,8 @@ getOsAccountDistributedInfoByLocalId(localId: number, callback: AsyncCallback&lt
 
 | 错误码ID | 错误信息|
 | -------- | ------------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300003 | Account not found. |
@@ -47,12 +49,12 @@ getOsAccountDistributedInfoByLocalId(localId: number, callback: AsyncCallback&lt
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-const accountAbility: account_distributedAccount.DistributedAccountAbility = account_distributedAccount.getDistributedAccountAbility();
+const accountAbility: distributedAccount.DistributedAccountAbility = distributedAccount.getDistributedAccountAbility();
 try {
   accountAbility.getOsAccountDistributedInfoByLocalId(100,
-    (err: BusinessError, data: account_distributedAccount.DistributedInfo) => {
+    (err: BusinessError, data: distributedAccount.DistributedInfo) => {
       if (err) {
         console.log('getOsAccountDistributedInfoByLocalId exception: ' + JSON.stringify(err));
       } else {
@@ -86,6 +88,8 @@ getOsAccountDistributedInfoByLocalId(localId: number): Promise&lt;DistributedInf
 
 | 错误码ID | 错误信息|
 | -------- | ------------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300003 | Account not found. |
@@ -93,12 +97,12 @@ getOsAccountDistributedInfoByLocalId(localId: number): Promise&lt;DistributedInf
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-const accountAbility: account_distributedAccount.DistributedAccountAbility = account_distributedAccount.getDistributedAccountAbility();
+const accountAbility: distributedAccount.DistributedAccountAbility = distributedAccount.getDistributedAccountAbility();
 try {
   accountAbility.getOsAccountDistributedInfoByLocalId(100).then((
-    data: account_distributedAccount.DistributedInfo) => {
+    data: distributedAccount.DistributedInfo) => {
     console.log('distributed information: ' + JSON.stringify(data));
   }).catch((err: BusinessError) => {
     console.log('getOsAccountDistributedInfoByLocalId exception: '  + JSON.stringify(err));
@@ -132,6 +136,8 @@ setOsAccountDistributedInfoByLocalId(localId: number, distributedInfo: Distribut
 
 | 错误码ID | 错误信息|
 | -------- | ------------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid distributedInfo. |
@@ -141,10 +147,10 @@ setOsAccountDistributedInfoByLocalId(localId: number, distributedInfo: Distribut
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-const accountAbility: account_distributedAccount.DistributedAccountAbility = account_distributedAccount.getDistributedAccountAbility();
-let accountInfo: account_distributedAccount.DistributedInfo =
+const accountAbility: distributedAccount.DistributedAccountAbility = distributedAccount.getDistributedAccountAbility();
+let accountInfo: distributedAccount.DistributedInfo =
   {id: '12345', name: 'ZhangSan', event: 'Ohos.account.event.LOGIN'};
 try {
   accountAbility.setOsAccountDistributedInfoByLocalId(100, accountInfo, (err: BusinessError) => {
@@ -188,6 +194,8 @@ setOsAccountDistributedInfoByLocalId(localId: number, distributedInfo: Distribut
 
 | 错误码ID | 错误信息|
 | -------- | ------------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid distributedInfo. |
@@ -197,10 +205,10 @@ setOsAccountDistributedInfoByLocalId(localId: number, distributedInfo: Distribut
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-const accountAbility: account_distributedAccount.DistributedAccountAbility = account_distributedAccount.getDistributedAccountAbility();
-let accountInfo: account_distributedAccount.DistributedInfo =
+const accountAbility: distributedAccount.DistributedAccountAbility = distributedAccount.getDistributedAccountAbility();
+let accountInfo: distributedAccount.DistributedInfo =
   {id: '12345', name: 'ZhangSan', event: 'Ohos.account.event.LOGIN'};
 try {
   accountAbility.setOsAccountDistributedInfoByLocalId(100, accountInfo).then(() => {

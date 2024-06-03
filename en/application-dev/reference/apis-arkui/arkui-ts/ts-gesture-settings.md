@@ -12,6 +12,8 @@ Bind different types of gesture events to components and set response methods fo
 Use the following attributes to bind gesture recognition to a component. When a gesture is recognized, the event callback is invoked to notify the component.
 A region in which a gesture can be recognized may be specified by the [touch target](ts-universal-attributes-touch-target.md).
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 | Name| Type| Default Value| Description|
 | -------- | -------- | -------- | -------- |
 | gesture | gesture: [GestureType](#gesturetype),<br>mask?: [GestureMask](#gesturemask) | gesture: -,<br>mask: GestureMask.Normal | Gesture to bind.<br>- **gesture**: type of the gesture to bind. <br>- **mask**: mask for gesture events.|
@@ -32,6 +34,9 @@ A region in which a gesture can be recognized may be specified by the [touch tar
 
 
 ## GestureMask
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 | Name| Description|
 | -------- | -------- |
 | Normal | The gestures of child components are enabled and recognized based on the default gesture recognition sequence.|
@@ -48,6 +53,9 @@ The component binds gesture objects of different **GestureType** instances throu
 | onAction((event:GestureEvent) =&gt; void) | Callback invoked when a tap gesture is recognized.|
 
 ## GestureEvent
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 | Name| Type| Description|
 | -------- | -------- | -------- |
 | repeat | boolean | Whether the event is triggered repeatedly. This attribute is used for the **LongPressGesture** event.|
@@ -78,6 +86,9 @@ The component binds gesture objects of different **GestureType** instances throu
 | TouchScreen | Touchscreen.|
 
 ## FingerInfo<sup>8+</sup>
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 | Name| Type| Description|
 | -------- | -------- | -------- |
 | id | number | Index of a finger.|

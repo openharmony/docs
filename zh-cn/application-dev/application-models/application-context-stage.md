@@ -33,8 +33,8 @@
     
      ```ts
      import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
-     import Want from '@ohos.app.ability.Want';
-     export default class MyService extends ServiceExtensionAbility {
+     import type Want from '@ohos.app.ability.Want';
+     export default class ServiceExtAbility extends ServiceExtensionAbility {
        onCreate(want: Want) {
          let serviceExtensionContext = this.context;
          //...
@@ -109,31 +109,40 @@
   @Entry
   @Component
   struct Page_Context {
-  
     private context = getContext(this) as common.UIAbilityContext;
   
     build() {
-      //...
-      Button()
-        .onClick(() => {
-          let applicationContext = this.context.getApplicationContext();
-          let cacheDir = applicationContext.cacheDir;
-          let tempDir = applicationContext.tempDir;
-          let filesDir = applicationContext.filesDir;
-          let databaseDir = applicationContext.databaseDir;
-          let bundleCodeDir = applicationContext.bundleCodeDir;
-          let distributedFilesDir = applicationContext.distributedFilesDir;
-          let preferencesDir = applicationContext.preferencesDir;
-          let cloudFileDir = applicationContext.cloudFileDir;
-          // 获取应用文件路径
-          let filePath = tempDir + 'test.txt';
-          hilog.info(DOMAIN_NUMBER, TAG, `filePath: ${filePath}`);
-          if (filePath !== null) {
-            promptAction.showToast({
-            message: filePath
-            });
+      Column() {
+        //...
+        List({ initialIndex: 0 }) {
+          ListItem() {
+            Row() {
+              //...
+            }
+            .onClick(() => {
+              let applicationContext = this.context.getApplicationContext();
+              let cacheDir = applicationContext.cacheDir;
+              let tempDir = applicationContext.tempDir;
+              let filesDir = applicationContext.filesDir;
+              let databaseDir = applicationContext.databaseDir;
+              let bundleCodeDir = applicationContext.bundleCodeDir;
+              let distributedFilesDir = applicationContext.distributedFilesDir;
+              let preferencesDir = applicationContext.preferencesDir;
+              // 获取应用文件路径
+              let filePath = tempDir + 'test.txt';
+              hilog.info(DOMAIN_NUMBER, TAG, `filePath: ${filePath}`);
+              if (filePath !== null) {
+                promptAction.showToast({
+                  message: filePath
+                });
+              }
+            })
           }
-        })
+          //...
+        }
+        //...
+      }
+      //...
     }
   }
   ```
@@ -163,30 +172,39 @@
   @Entry
   @Component
   struct Page_Context {
-  
     private context = getContext(this) as common.UIAbilityContext;
   
     build() {
-      //...
-      Button()
-        .onClick(() => {
-          let cacheDir = this.context.cacheDir;
-          let tempDir = this.context.tempDir;
-          let filesDir = this.context.filesDir;
-          let databaseDir = this.context.databaseDir;
-          let bundleCodeDir = this.context.bundleCodeDir;
-          let distributedFilesDir = this.context.distributedFilesDir;
-          let preferencesDir = this.context.preferencesDir;
-          let cloudFileDir = this.context.cloudFileDir;
-          // 获取应用文件路径
-          let filePath = tempDir + 'test.txt';
-          hilog.info(DOMAIN_NUMBER, TAG, `filePath: ${filePath}`);
-          if (filePath !== null) {
-            promptAction.showToast({
-              message: filePath
-            });
+      Column() {
+        //...
+        List({ initialIndex: 0 }) {
+          ListItem() {
+            Row() {
+              //...
+            }
+            .onClick(() => {
+              let cacheDir = this.context.cacheDir;
+              let tempDir = this.context.tempDir;
+              let filesDir = this.context.filesDir;
+              let databaseDir = this.context.databaseDir;
+              let bundleCodeDir = this.context.bundleCodeDir;
+              let distributedFilesDir = this.context.distributedFilesDir;
+              let preferencesDir = this.context.preferencesDir;
+              // 获取应用文件路径
+              let filePath = tempDir + 'test.txt';
+              hilog.info(DOMAIN_NUMBER, TAG, `filePath: ${filePath}`);
+              if (filePath !== null) {
+                promptAction.showToast({
+                  message: filePath
+                });
+              }
+            })
           }
-        })
+          //...
+        }
+        //...
+      }
+      //...
     }
   }
   ```
@@ -240,37 +258,48 @@ import promptAction from '@ohos.promptAction';
 @Entry
 @Component
 struct Page_Context {
-
   private context = getContext(this) as common.UIAbilityContext;
 
   build() {
-    //...
-    Button()
-      .onClick(() => {
-        // 存储普通信息前，切换到EL1设备级加密
-        if (this.context.area === contextConstant.AreaMode.EL2) { // 获取area
-          this.context.area = contextConstant.AreaMode.EL1; // 修改area
-          promptAction.showToast({
-            message: 'SwitchToEL1'
-          });
+    Column() {
+      //...
+      List({ initialIndex: 0 }) {
+        //...
+        ListItem() {
+          Row() {
+            //...
+          }
+          .onClick(() => {
+            // 存储普通信息前，切换到EL1设备级加密
+            if (this.context.area === contextConstant.AreaMode.EL2) { // 获取area
+              this.context.area = contextConstant.AreaMode.EL1; // 修改area
+              promptAction.showToast({
+                message: $r('app.string.SwitchToEL1')
+              });
+            }
+            // 存储普通信息
+          })
         }
-        // 存储普通信息
-      })
-    
-    //...
-
-    Button()
-      .onClick(() => {
-        // 存储敏感信息前，切换到EL2用户级加密
-        if (this.context.area === contextConstant.AreaMode.EL1) { // 获取area
-          this.context.area = contextConstant.AreaMode.EL2; // 修改area
-          promptAction.showToast({
-            message: 'SwitchToEL2'
-          });
+        //...
+        ListItem() {
+          Row() {
+            //...
+          }
+          .onClick(() => {
+            // 存储敏感信息前，切换到EL2用户级加密
+            if (this.context.area === contextConstant.AreaMode.EL1) { // 获取area
+              this.context.area = contextConstant.AreaMode.EL2; // 修改area
+              promptAction.showToast({
+                message: $r('app.string.SwitchToEL2')
+              });
+            }
+            // 存储敏感信息
+          })
         }
-        // 存储敏感信息
-      })
-    
+        //...
+      }
+      //...
+    }
     //...
   }
 }
@@ -289,19 +318,32 @@ struct Page_Context {
   
   @Entry(storageEventCall)
   @Component
-  struct Page_ContextAbility {
+  struct Page_Context {
     private context = getContext(this) as common.UIAbilityContext;
+
     build() {
-      Button()
-        .onClick(() => {
-          let moduleName2: string = 'entry';
-          let moduleContext: Context = this.context.createModuleContext(moduleName2);
-          if (moduleContext !== null) {
-            promptAction.showToast({
-              message: ('成功获取Context')
-            });
+      Column() {
+        //...
+        List({ initialIndex: 0 }) {
+          ListItem() {
+            Row() {
+              //...
+            }
+            .onClick(() => {
+              let moduleName2: string = 'entry';
+              let moduleContext: Context = this.context.createModuleContext(moduleName2);
+              if (moduleContext !== null) {
+                promptAction.showToast({
+                  message: ('成功获取Context')
+                });
+              }
+            })
           }
-        })
+          //...
+        }
+        //...
+      }
+      //...
     }
   }
   ```

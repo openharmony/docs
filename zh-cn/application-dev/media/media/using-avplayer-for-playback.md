@@ -61,10 +61,10 @@
 参考以下示例，完整地播放一首音乐。
 
 ```ts
-import media from '@ohos.multimedia.media';
-import fs from '@ohos.file.fs';
-import common from '@ohos.app.ability.common';
-import { BusinessError } from '@ohos.base';
+import { media } from '@kit.MediaKit';
+import { fileIo } from '@kit.CoreFileKit';
+import { common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export class AVPlayerDemo {
   private count: number = 0;
@@ -146,7 +146,7 @@ export class AVPlayerDemo {
     let pathDir = context.filesDir;
     let path = pathDir + '/01.mp3';
     // 打开相应的资源文件地址获取fd，并为url赋值触发initialized状态机上报
-    let file = await fs.open(path);
+    let file = await fileIo.open(path);
     fdPath = fdPath + '' + file.fd;
     this.isSeek = true; // 支持seek操作
     avPlayer.url = fdPath;
@@ -183,7 +183,7 @@ export class AVPlayerDemo {
         if (buf == undefined || length == undefined || pos == undefined) {
           return -1;
         }
-        num = fs.readSync(this.fd, buf, { offset: pos, length: length });
+        num = fileIo.readSync(this.fd, buf, { offset: pos, length: length });
         if (num > 0 && (this.fileSize >= pos)) {
           return num;
         }
@@ -194,11 +194,11 @@ export class AVPlayerDemo {
     // 通过UIAbilityContext获取沙箱地址filesDir，以Stage模型为例
     let pathDir = context.filesDir;
     let path = pathDir  + '/01.mp3';
-    await fs.open(path).then((file: fs.File) => {
+    await fileIo.open(path).then((file: fileIo.File) => {
       this.fd = file.fd;
     })
     // 获取播放文件的大小
-    this.fileSize = fs.statSync(path).size;
+    this.fileSize = fileIo.statSync(path).size;
     src.fileSize = this.fileSize;
     this.isSeek = true; // 支持seek操作
     avPlayer.dataSrc = src;
@@ -218,7 +218,7 @@ export class AVPlayerDemo {
         if (buf == undefined || length == undefined) {
           return -1;
         }
-        num = fs.readSync(this.fd, buf);
+        num = fileIo.readSync(this.fd, buf);
         if (num > 0) {
           return num;
         }
@@ -228,7 +228,7 @@ export class AVPlayerDemo {
     // 通过UIAbilityContext获取沙箱地址filesDir，以Stage模型为例
     let pathDir = context.filesDir;
     let path = pathDir  + '/01.mp3';
-    await fs.open(path).then((file: fs.File) => {
+    await fileIo.open(path).then((file: fileIo.File) => {
       this.fd = file.fd;
     })
     this.isSeek = false; // 不支持seek操作

@@ -2687,7 +2687,6 @@ try {
   console.error(`catch error, code: ${e.code}, message: ${e.message}`);
 }
 ```
-## 
 
 ## updateFormLocation<sup>12+</sup>
 updateFormLocation(formId: string, location: formInfo.FormLocation): void;
@@ -2736,4 +2735,53 @@ try {
   console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
-##
+
+## addForm<sup>12+</sup>
+addForm(want: Want): Promise<formInfo.RunningFormInfo>;
+
+Creates a widget with the Want information. Currently, this API can be used only in the theme widget scenario.
+
+**Model restriction**: This API can be used only in the stage model.
+
+**Required permissions**: ohos.permission.REQUIRE_FORM
+
+**System capability**: SystemCapability.Ability.Form
+
+**Parameters**
+
+| Name| Type   | Mandatory| Description   |
+| ------ | ------ | ---- | ------- |
+| want | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | Want information carried to create the widget. The information must contain the bundle name, ability name, module name, widget name, and widget dimensions.|
+
+**Error codes**
+
+| Error Code ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permissions denied.                                          |
+| 202      | caller is not system app.                                    |
+| 401      | If the input parameter is not valid parameter.               |
+| 16500050 | An IPC connection error happened.                            |
+| 16500060 | A service connection error happened, please try again later. |
+| 16501000 | An internal functional error occurred.                       |
+
+For details about the error codes, see [Form Error Codes](errorcode-form.md).
+
+**Example**
+
+```ts
+let want: Want = {
+  bundleName: 'com.ohos.exampledemo',
+  abilityName: 'FormAbility',
+  parameters: {
+    'ohos.extra.param.key.form_dimension': FormDimension.Dimension_2_2,
+    'ohos.extra.param.key.form_name': 'widget',
+    'ohos.extra.param.key.module_name': 'entry',
+    'ohos.extra.param.key.form_is_theme': true,
+    'themeId': 0,
+    'themeFormId': 0,
+  }
+};
+formHost.addForm(want).then((formInfo: formInfo.RunningFormInfo) => {
+  console.log(`formHost addForm Result: ${JSON.stringify(formInfo)}`)
+});
+```

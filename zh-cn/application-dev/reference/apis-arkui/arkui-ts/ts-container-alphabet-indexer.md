@@ -203,7 +203,7 @@ alignStyle(value: IndexerAlign, offset?: Length)
 
 | 参数名               | 类型                                  | 必填 | 说明                                                         |
 | -------------------- | ------------------------------------- | ---- | ------------------------------------------------------------ |
-| value                | [IndexerAlign](#indexeralign枚举说明) | 是   | 字母索引条弹框的对齐样式，支持弹窗显示在索引条右侧和左侧。<br/>默认值: IndexerAlign.Right。 |
+| value                | [IndexerAlign](#indexeralign枚举说明) | 是   | 字母索引条弹框的对齐样式，支持弹窗显示在索引条右侧和左侧。<br/>默认值: IndexerAlign.END。 |
 | offset<sup>10+</sup> | [Length](ts-types.md#length)          | 否   | 提示弹窗与索引条之间间距，大于等于0为有效值，在不设置或设置为小于0的情况下间距与popupPosition.x相同。与popupPosition同时设置时，水平方向上offset生效，竖直方向上popupPosition.y生效。 |
 
 ### selected<sup>8+</sup>
@@ -380,6 +380,14 @@ popupTitleBackground(value: ResourceColor)
 | ------ | ------------------------------------------ | ---- | ------------------------------------------------------------ |
 | value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 设置提示弹窗首个索引项背板颜色。<br/>默认值：<br/>提示弹窗只有一个索引项：#00FFFFFF。<br/>提示弹窗有多个索引项：#0c182431。 |
 
+### enableHapticFeedback<sup>12+</sup>
+
+enableHapticFeedback(enable: boolean)
+
+| 参数名         | 类型                                                  | 必填 | 说明                         |
+|-------------|-----------------------------------------------------|----|----------------------------|
+| enable | boolean | 否  | 支持触控反馈。<br/>默认值：true。<br/> |
+
 ## IndexerAlign枚举说明
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
@@ -388,6 +396,8 @@ popupTitleBackground(value: ResourceColor)
 | -------- | -------- |
 | Left | 弹框显示在索引条右侧。 |
 | Right | 弹框显示在索引条左侧。 |
+| START<sup>12+</sup> | 在LTR场景下，弹框显示在索引条右侧的位置。在RTL场景下，弹框显示在索引条左侧的位置。 |
+| END<sup>12+</sup> | 在LTR场景下，弹框显示在索引条左侧的位置。在RTL场景下，弹框显示在索引条右侧的位置。 |
 
 ## 事件
 

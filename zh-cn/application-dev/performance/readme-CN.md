@@ -9,6 +9,7 @@
   - 减少卡顿丢帧
     - [正确使用LazyForEach优化](lazyforeach_optimization.md)
     - [组件复用使用指导](component-recycle.md)
+    - [组件复用性能优化指导](component_recycle_case.md)
     - [WaterFlow高性能开发指导](waterflow_optimization.md)
     - [Swiper高性能开发指导](swiper_optimization.md)
     - [合理进行状态管理](proper_state_management.md)
@@ -17,6 +18,8 @@
     - [减少动画丢帧](reduce-animation-frame-loss.md)
     - [合理使用多线程共享内存](thread_memory_shared.md)
     - [Grid高性能开发指导](grid_optimization.md)
+    - [合理使用自定义组件冻结功能](custom_component_freeze.md)
+    - [避免在滑动场景的高频回调接口中处理耗时操作](avoid_high_frequency_callback_execute_lengthy_operation.md)
   - 提升应用启动和响应速度
     - [提升应用冷启动速度](improve-application-cold-start-speed.md)
     - [提升应用响应速度](improve-application-response.md)
@@ -32,6 +35,7 @@
     - [运行时动态加载页面提升性能](performance-dynamic-import.md)
     - [合理运行后台任务](reasonable-running-backgroundTask.md)
     - [Web组件开发性能提升指导](performance-web-import.md)
+    - [使用同层渲染在Webview上渲染原生组件](webview-render-app-components.md)
   - [减小应用包大小](reduce-package-size.md)
   - 性能工具
     - [性能分析工具CPU Profiler](application-performance-analysis.md)
@@ -39,3 +43,4 @@
     - [性能优化工具SmartPerf-Host](performance-optimization-using-smartperf-host.md)
     - [常用trace使用指导](common-trace-using-instructions.md)
     - [状态变量组件定位工具实践](state_variable_dfx_pratice.md)
+    - [应用滑动场景帧率问题分析实践](long-frame-optimization.md)

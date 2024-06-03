@@ -20,7 +20,7 @@
 ## 导入模块
 
 ```ts
-import deviceManager from '@ohos.distributedDeviceManager';
+import { distributedDeviceManager } from '@kit.DistributedServiceKit';
 ```
 
 ### replyUiAction
@@ -54,9 +54,10 @@ replyUiAction(action: number, actionResult: string): void;
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](js-apis-distributedDeviceManager.md#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](js-apis-distributedDeviceManager.md#distributeddevicemanagercreatedevicemanager)
+<!--code_no_check-->
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
  try {
     /*
@@ -105,9 +106,10 @@ on(type: 'replyResult', callback: Callback&lt;{ param: string}&gt;): void;
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](js-apis-distributedDeviceManager.md#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](js-apis-distributedDeviceManager.md#distributeddevicemanagercreatedevicemanager)
+<!--code_no_check-->
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   class Data {
     param: string = '';
@@ -160,9 +162,10 @@ off(type: 'replyResult', callback?: Callback&lt;{ param: string}&gt;): void;
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](js-apis-distributedDeviceManager.md#devicemanagercreatedevicemanager)
+示例中`dmInstance`的初始化请参见[DM初始化](js-apis-distributedDeviceManager.md#distributeddevicemanagercreatedevicemanager)
+<!--code_no_check-->
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     dmInstance.off('replyResult');

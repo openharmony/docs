@@ -59,8 +59,8 @@
 | -------- | -------- |
 | [OH_AudioCommon_Result](#oh_audiocommon_result) {<br/>AUDIOCOMMON_RESULT_SUCCESS = 0,<br/>AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM = 6800101,<br/>AUDIOCOMMON_RESULT_ERROR_NO_MEMORY = 6800102,<br/>AUDIOCOMMON_RESULT_ERROR_ILLEGAL_STATE = 6800103,<br/>AUDIOCOMMON_RESULT_ERROR_UNSUPPORTED = 6800104,<br/>AUDIOCOMMON_RESULT_ERROR_TIMEOUT = 6800105,<br/>AUDIOCOMMON_RESULT_ERROR_STREAM_LIMIT = 6800201,<br/>AUDIOCOMMON_RESULT_ERROR_SYSTEM = 6800301<br/>} | 音频错误码。 | 
 | [OH_AudioDevice_ChangeType](#oh_audiodevice_changetype) {<br/>AUDIO_DEVICE_CHANGE_TYPE_CONNECT = 0,<br/>AUDIO_DEVICE_CHANGE_TYPE_DISCONNECT = 1<br/>} | 定义音频设备更改类型。 | 
-| [OH_AudioDevice_Role](#oh_audiodevice_role) {<br/>AUDIO_DEVICE_ROLE_INPUT = 1,<br/>AUDIO_DEVICE_ROLE_OUTPUT = 2<br/>} | 定义音频设备设备角色。 | 
-| [OH_AudioDevice_Type](#oh_audiodevice_type) {<br/>AUDIO_DEVICE_TYPE_INVALID = 0,<br/>AUDIO_DEVICE_TYPE_EARPIECE = 1,<br/>AUDIO_DEVICE_TYPE_SPEAKER = 2,<br/>AUDIO_DEVICE_TYPE_WIRED_HEADSET = 3,<br/>AUDIO_DEVICE_TYPE_WIRED_HEADPHONES = 4,<br/>AUDIO_DEVICE_TYPE_BLUETOOTH_SCO = 7,<br/>AUDIO_DEVICE_TYPE_BLUETOOTH_A2DP = 8,<br/>AUDIO_DEVICE_TYPE_MIC = 15,<br/>AUDIO_DEVICE_TYPE_USB_HEADSET = 22,<br/>AUDIO_DEVICE_TYPE_DISPLAY_PORT = 23,<br/>AUDIO_DEVICE_TYPE_DEFAULT = 1000<br/>} | 定义音频设备设备类型。 | 
+| [OH_AudioDevice_Role](#oh_audiodevice_role) {<br/>AUDIO_DEVICE_ROLE_INPUT = 1,<br/>AUDIO_DEVICE_ROLE_OUTPUT = 2<br/>} | 定义音频设备角色。 | 
+| [OH_AudioDevice_Type](#oh_audiodevice_type) {<br/>AUDIO_DEVICE_TYPE_INVALID = 0,<br/>AUDIO_DEVICE_TYPE_EARPIECE = 1,<br/>AUDIO_DEVICE_TYPE_SPEAKER = 2,<br/>AUDIO_DEVICE_TYPE_WIRED_HEADSET = 3,<br/>AUDIO_DEVICE_TYPE_WIRED_HEADPHONES = 4,<br/>AUDIO_DEVICE_TYPE_BLUETOOTH_SCO = 7,<br/>AUDIO_DEVICE_TYPE_BLUETOOTH_A2DP = 8,<br/>AUDIO_DEVICE_TYPE_MIC = 15,<br/>AUDIO_DEVICE_TYPE_USB_HEADSET = 22,<br/>AUDIO_DEVICE_TYPE_DISPLAY_PORT = 23,<br/>AUDIO_DEVICE_TYPE_REMOTE_CAST = 24,<br/>AUDIO_DEVICE_TYPE_DEFAULT = 1000<br/>} | 定义音频设备类型。 | 
 | [OH_AudioDevice_Flag](#oh_audiodevice_flag) {<br/>AUDIO_DEVICE_FLAG_NONE = 0,<br/>AUDIO_DEVICE_FLAG_OUTPUT = 1,<br/>AUDIO_DEVICE_FLAG_INPUT = 2,<br/>AUDIO_DEVICE_FLAG_ALL = 3<br/>} | 定义音频设备标志。 | 
 | [OH_AudioStream_Result](#oh_audiostream_result) {<br/>AUDIOSTREAM_SUCCESS = 0,<br/>AUDIOSTREAM_ERROR_INVALID_PARAM = 1,<br/>AUDIOSTREAM_ERROR_ILLEGAL_STATE = 2,<br/>AUDIOSTREAM_ERROR_SYSTEM = 3<br/>} | 音频错误码。 | 
 | [OH_AudioStream_Type](#oh_audiostream_type) {<br/>AUDIOSTREAM_TYPE_RERNDERER = 1,<br/>AUDIOSTREAM_TYPE_CAPTURER = 2<br/>} | 音频流类型。 | 
@@ -76,6 +76,7 @@
 | [OH_AudioInterrupt_Mode](#oh_audiointerrupt_mode) {<br/> AUDIOSTREAM_INTERRUPT_MODE_SHARE = 0, <br/>AUDIOSTREAM_INTERRUPT_MODE_INDEPENDENT = 1 <br/>} | 定义音频中断模式。  | 
 | [OH_AudioStream_AudioEffectMode](#oh_audiostream_audioeffectmode) { <br/>EFFECT_NONE = 0, <br/>EFFECT_DEFAULT = 1 <br/>} | 定义音效模式。  | 
 | [OH_AudioStream_DeviceChangeReason](#oh_audiostream_devicechangereason) {<br/>REASON_UNKNOWN = 0,<br/>REASON_NEW_DEVICE_AVAILABLE = 1,<br/>REASON_OLD_DEVICE_UNAVAILABLE = 2,<br/>REASON_OVERRODE = 3<br/>} | 流设备变更原因。 | 
+| [OH_AudioStream_PrivacyType](#oh_audiostream_privacytype) { <br/>AUDIO_STREAM_PRIVACY_TYPE_PUBLIC = 0, <br/>AUDIO_STREAM_PRIVACY_TYPE_PRIVATE = 1 <br/>} | 用于标识对应播放音频流是否支持被其他应用录制。  | 
 
 
 ### 函数
@@ -140,6 +141,7 @@
 | [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioRenderer_GetChannelLayout](#oh_audiorenderer_getchannellayout) ([OH_AudioRenderer](#oh_audiorenderer) \*renderer, [OH_AudioChannelLayout](../apis-avcodec-kit/_core.md#oh_audiochannellayout-1) \*channelLayout) | 查询当前音频流声道布局。  | 
 | [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioRenderer_GetEffectMode](#oh_audiorenderer_geteffectmode) ([OH_AudioRenderer](#oh_audiorenderer) \*renderer, [OH_AudioStream_AudioEffectMode](#oh_audiostream_audioeffectmode) \*effectMode) | 查询当前音频流音效模式。  | 
 | [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioRenderer_SetEffectMode](#oh_audiorenderer_seteffectmode) ([OH_AudioRenderer](#oh_audiorenderer) \*renderer, [OH_AudioStream_AudioEffectMode](#oh_audiostream_audioeffectmode) effectMode) | 设置当前音频流音效模式。  | 
+| [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioRenderer_GetRendererPrivacy](#oh_audiorenderer_getrendererprivacy) ([OH_AudioRenderer](#oh_audiorenderer) \*renderer, [OH_AudioStream_PrivacyType](#oh_audiostream_privacytype) \*privacy) | 查询当前播放音频流是否会被其它应用录制。  | 
 | [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioStreamBuilder_Create](#oh_audiostreambuilder_create)([OH_AudioStreamBuilder](#oh_audiostreambuilder) \*\*builder, [OH_AudioStream_Type](#oh_audiostream_type) type)                        | 创建一个输入或者输出类型的音频流构造器。 | 
 | [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioStreamBuilder_Destroy](#oh_audiostreambuilder_destroy)([OH_AudioStreamBuilder](#oh_audiostreambuilder) \*builder)                                                                        | 销毁一个音频流构造器。 | 
 | [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioStreamBuilder_SetSamplingRate](#oh_audiostreambuilder_setsamplingrate)([OH_AudioStreamBuilder](#oh_audiostreambuilder) \*builder, int32_t rate)                                          | 设置音频流的采样率属性。 | 
@@ -152,6 +154,7 @@
 | [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioStreamBuilder_SetCapturerInfo](#oh_audiostreambuilder_setcapturerinfo)([OH_AudioStreamBuilder](#oh_audiostreambuilder) \*builder, [OH_AudioStream_SourceType](#oh_audiostream_sourcetype) sourceType) | 设置输入音频流的工作场景。 | 
 | [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioStreamBuilder_SetRendererCallback](#oh_audiostreambuilder_setrenderercallback)([OH_AudioStreamBuilder](#oh_audiostreambuilder) \*builder, [OH_AudioRenderer_Callbacks](#oh_audiorenderer_callbacks) callbacks, void \*userData) | 设置输出音频流的回调。 | 
 | [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioStreamBuilder_SetRendererOutputDeviceChangeCallback](#oh_audiostreambuilder_setrendereroutputdevicechangecallback) ([OH_AudioStreamBuilder](#oh_audiostreambuilder) \*builder, [OH_AudioRenderer_OutputDeviceChangeCallback](#oh_audiorenderer_outputdevicechangecallback) callback, void \*userData) | 设置输出音频流设备变更的回调。 |
+| [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioStreamBuilder_SetRendererPrivacy](#oh_audiostreambuilder_setrendererprivacy) ([OH_AudioStreamBuilder](#oh_audiostreambuilder) \*builder, [OH_AudioStream_PrivacyType](#oh_audiostream_privacytype) privacy) | 设置当前播放音频流是否会被其它应用录制。  | 
 | [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioStreamBuilder_SetCapturerCallback](#oh_audiostreambuilder_setcapturercallback)([OH_AudioStreamBuilder](#oh_audiostreambuilder) \*builder, [OH_AudioCapturer_Callbacks](#oh_audiocapturer_callbacks) callbacks, void \*userData) | 设置输入音频流的回调。 | 
 | [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioStreamBuilder_SetWriteDataWithMetadataCallback](#oh_audiostreambuilder_setwritedatawithmetadatacallback) ([OH_AudioStreamBuilder](#oh_audiostreambuilder) \*builder, [OH_AudioRenderer_WriteDataWithMetadataCallback](#oh_audiorenderer_writedatawithmetadatacallback) callback, void \*userData) | 设置同时写入音频数据和元数据的回调。  | 
 | [OH_AudioStream_Result](#oh_audiostream_result) [OH_AudioStreamBuilder_GenerateRenderer](#oh_audiostreambuilder_generaterenderer)([OH_AudioStreamBuilder](#oh_audiostreambuilder) \*builder, [OH_AudioRenderer](#oh_audiorenderer) \*\*audioRenderer) | 创建输出音频流实例。 | 
@@ -454,7 +457,7 @@ enum OH_AudioDevice_Role
 
 **描述**
 
-定义音频设备设备角色。
+定义音频设备角色。
 
 **起始版本：** 12
 
@@ -488,7 +491,8 @@ enum OH_AudioDevice_Type
 | AUDIO_DEVICE_TYPE_MIC | 内置麦克风。 | 
 | AUDIO_DEVICE_TYPE_USB_HEADSET | USB音频耳机。 | 
 | AUDIO_DEVICE_TYPE_DISPLAY_PORT | 显示端口（DisplayPort）设备。 | 
-| AUDIO_DEVICE_TYPE_DEFAULT | 默认设备类型。 | 
+| AUDIO_DEVICE_TYPE_REMOTE_CAST | 音频被系统应用投送到其他远程的设备。 | 
+| AUDIO_DEVICE_TYPE_DEFAULT | 默认设备类型。<br>**起始版本：** 12 | 
 
 
 ### OH_AudioInterrupt_ForceType
@@ -664,6 +668,25 @@ enum OH_AudioStream_LatencyMode
 | AUDIOSTREAM_LATENCY_MODE_FAST | 该模式代表一个低时延的音频流。 | 
 
 
+### OH_AudioStream_PrivacyType
+
+```
+enum OH_AudioStream_PrivacyType
+```
+**描述**
+
+用于标识对应播放音频流是否支持被其他应用录制。
+
+**系统能力：** SystemCapability.Multimedia.Audio.PlaybackCapture
+
+**起始版本：** 12
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| AUDIO_STREAM_PRIVACY_TYPE_PUBLIC  | 表示音频流可以被其他应用录制。   | 
+| AUDIO_STREAM_PRIVACY_TYPE_PRIVATE  | 表示音频流不可以被其他应用录制。   | 
+
+
 ### OH_AudioStream_Result
 
 ```
@@ -836,7 +859,13 @@ OH_AudioStream_Result OH_AudioCapturer_Flush(OH_AudioCapturer *capturer)
 
 **返回：**
 
-AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
+函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+
+AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
+
+AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：参数capturer为nullptr。
+
+AUDIOSTREAM_ERROR_ILLEGAL_STATE：执行状态异常。
 
 
 ### OH_AudioCapturer_GetCapturerInfo()
@@ -862,7 +891,11 @@ OH_AudioStream_Result OH_AudioCapturer_GetCapturerInfo(OH_AudioCapturer *capture
 
 **返回：**
 
-AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
+函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+
+AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
+
+AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：参数capturer为nullptr。
 
 
 ### OH_AudioCapturer_GetChannelCount()
@@ -888,7 +921,11 @@ OH_AudioStream_Result OH_AudioCapturer_GetChannelCount(OH_AudioCapturer *capture
 
 **返回：**
 
-AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
+函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+
+AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
+
+AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：参数capturer为nullptr。
 
 
 ### OH_AudioCapturer_GetCurrentState()
@@ -914,7 +951,11 @@ OH_AudioStream_Result OH_AudioCapturer_GetCurrentState(OH_AudioCapturer *capture
 
 **返回：**
 
-AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
+函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+
+AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
+
+AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：参数capturer为nullptr。
 
 
 ### OH_AudioCapturer_GetEncodingType()
@@ -940,7 +981,11 @@ OH_AudioStream_Result OH_AudioCapturer_GetEncodingType(OH_AudioCapturer *capture
 
 **返回：**
 
-AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
+函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+
+AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
+
+AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：参数capturer为nullptr。
 
 
 ### OH_AudioCapturer_GetFrameSizeInCallback()
@@ -966,7 +1011,13 @@ OH_AudioStream_Result OH_AudioCapturer_GetFrameSizeInCallback(OH_AudioCapturer *
 
 **返回：**
 
-AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
+函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+
+AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
+
+AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：参数capturer为nullptr。
+
+AUDIOSTREAM_ERROR_ILLEGAL_STATE：执行状态异常。
 
 
 ### OH_AudioCapturer_GetFramesRead()
@@ -992,7 +1043,11 @@ OH_AudioStream_Result OH_AudioCapturer_GetFramesRead (OH_AudioCapturer *capturer
 
 **返回：**
 
-AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
+函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+
+AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
+
+AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：参数capturer为nullptr。
 
 
 ### OH_AudioCapturer_GetLatencyMode()
@@ -1018,7 +1073,11 @@ OH_AudioStream_Result OH_AudioCapturer_GetLatencyMode(OH_AudioCapturer *capturer
 
 **返回：**
 
-AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
+函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+
+AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
+
+AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：参数capturer为nullptr。
 
 
 ### OH_AudioCapturer_GetOverflowCount()
@@ -1042,7 +1101,11 @@ OH_AudioStream_Result OH_AudioCapturer_GetOverflowCount (OH_AudioCapturer *captu
 
 **返回：**
 
-AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
+函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+
+AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
+
+AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：参数capturer为nullptr。
 
 
 ### OH_AudioCapturer_GetSampleFormat()
@@ -1068,7 +1131,11 @@ OH_AudioStream_Result OH_AudioCapturer_GetSampleFormat(OH_AudioCapturer *capture
 
 **返回：**
 
-AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
+函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+
+AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
+
+AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：参数capturer为nullptr。
 
 
 ### OH_AudioCapturer_GetSamplingRate()
@@ -1094,7 +1161,11 @@ OH_AudioStream_Result OH_AudioCapturer_GetSamplingRate(OH_AudioCapturer *capture
 
 **返回：**
 
-AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
+函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+
+AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
+
+AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：参数capturer为nullptr。
 
 
 ### OH_AudioCapturer_GetStreamId()
@@ -1120,7 +1191,11 @@ OH_AudioStream_Result OH_AudioCapturer_GetStreamId(OH_AudioCapturer *capturer, u
 
 **返回：**
 
-AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
+函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+
+AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
+
+AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：参数capturer为nullptr。
 
 
 ### OH_AudioCapturer_GetTimestamp()
@@ -1148,7 +1223,16 @@ OH_AudioStream_Result OH_AudioCapturer_GetTimestamp(OH_AudioCapturer *capturer, 
 
 **返回：**
 
-AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
+函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+
+AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
+
+AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：
+
+  1. 参数capturer为nullptr；
+  2. 参数clockId无效。
+
+AUDIOSTREAM_ERROR_ILLEGAL_STATE：执行状态异常。
 
 
 ### OH_AudioCapturer_Pause()
@@ -1177,7 +1261,13 @@ ohos.permission.MICROPHONE
 
 **返回：**
 
-AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
+函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+
+AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
+
+AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：参数capturer为nullptr。
+
+AUDIOSTREAM_ERROR_ILLEGAL_STATE：执行状态异常。
 
 
 ### OH_AudioCapturer_Release()
@@ -1206,7 +1296,13 @@ ohos.permission.MICROPHONE
 
 **返回：**
 
-AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
+函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+
+AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
+
+AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：参数capturer为nullptr。
+
+AUDIOSTREAM_ERROR_ILLEGAL_STATE：执行状态异常。
 
 
 ### OH_AudioCapturer_Start()
@@ -1235,7 +1331,13 @@ ohos.permission.MICROPHONE
 
 **返回：**
 
-AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
+函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+
+AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
+
+AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：参数capturer为nullptr。
+
+AUDIOSTREAM_ERROR_ILLEGAL_STATE：执行状态异常。
 
 
 ### OH_AudioCapturer_Stop()
@@ -1246,7 +1348,7 @@ OH_AudioStream_Result OH_AudioCapturer_Stop(OH_AudioCapturer *capturer)
 
 **描述**
 
-停止输入音频流
+停止输入音频流。
 
 **起始版本：** 10
 
@@ -1264,10 +1366,13 @@ ohos.permission.MICROPHONE
 
 **返回：**
 
-AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
+函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
 
+AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
 
+AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：参数capturer为nullptr。
 
+AUDIOSTREAM_ERROR_ILLEGAL_STATE：执行状态异常。
 
 
 ### OH_AudioDeviceDescriptor_GetDeviceAddress()
@@ -1509,7 +1614,9 @@ OH_AudioCommon_Result OH_AudioManager_GetAudioRoutingManager (OH_AudioRoutingMan
 
 **返回：**
 
-AUDIOCOMMON_RESULT_SUCCESS。
+函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+
+AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
 
 
 ### OH_AudioRenderer_CancelMark()
@@ -1534,7 +1641,11 @@ OH_AudioStream_Result OH_AudioRenderer_CancelMark (OH_AudioRenderer *renderer)
 
 **返回：**
 
-AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
+函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+
+AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
+
+AUDIOSTREAM_ERROR_INVALID_PARAM：参数renderer为nullptr。
 
 
 ### OH_AudioRenderer_Flush()
@@ -1559,7 +1670,13 @@ OH_AudioStream_Result OH_AudioRenderer_Flush(OH_AudioRenderer *renderer)
 
 **返回：**
 
-AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
+函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+
+AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
+
+AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：参数renderer为nullptr。
+
+AUDIOSTREAM_ERROR_ILLEGAL_STATE：执行状态异常。
 
 
 ### OH_AudioRenderer_GetChannelCount()
@@ -1585,7 +1702,11 @@ OH_AudioStream_Result OH_AudioRenderer_GetChannelCount(OH_AudioRenderer *rendere
 
 **返回：**
 
-AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
+函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+
+AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
+
+AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：参数renderer为nullptr。
 
 
 ### OH_AudioRenderer_GetChannelLayout()
@@ -1611,7 +1732,11 @@ OH_AudioStream_Result OH_AudioRenderer_GetChannelLayout (OH_AudioRenderer *rende
 
 **返回：**
 
-AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
+函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+
+AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
+
+AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：参数renderer为nullptr。
 
 
 ### OH_AudioRenderer_GetCurrentState()
@@ -1637,7 +1762,11 @@ OH_AudioStream_Result OH_AudioRenderer_GetCurrentState(OH_AudioRenderer *rendere
 
 **返回：**
 
-AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
+函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+
+AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
+
+AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：参数renderer为nullptr。
 
 
 ### OH_AudioRenderer_GetEffectMode()
@@ -1663,7 +1792,11 @@ OH_AudioStream_Result OH_AudioRenderer_GetEffectMode (OH_AudioRenderer *renderer
 
 **返回：**
 
-AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
+函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+
+AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
+
+AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：参数renderer为nullptr。
 
 
 ### OH_AudioRenderer_GetEncodingType()
@@ -1689,7 +1822,11 @@ OH_AudioStream_Result OH_AudioRenderer_GetEncodingType(OH_AudioRenderer *rendere
 
 **返回：**
 
-AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
+函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+
+AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
+
+AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：参数renderer为nullptr。
 
 
 ### OH_AudioRenderer_GetFrameSizeInCallback()
@@ -1715,7 +1852,11 @@ OH_AudioStream_Result OH_AudioRenderer_GetFrameSizeInCallback(OH_AudioRenderer *
 
 **返回：**
 
-AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
+函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+
+AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
+
+AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：参数renderer为nullptr。
 
 
 ### OH_AudioRenderer_GetFramesWritten()
@@ -1741,7 +1882,11 @@ OH_AudioStream_Result OH_AudioRenderer_GetFramesWritten(OH_AudioRenderer *render
 
 **返回：**
 
-AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
+函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+
+AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
+
+AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：参数renderer为nullptr。
 
 
 ### OH_AudioRenderer_GetLatencyMode()
@@ -1767,7 +1912,11 @@ OH_AudioStream_Result OH_AudioRenderer_GetLatencyMode(OH_AudioRenderer *renderer
 
 **返回：**
 
-AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
+函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+
+AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
+
+AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：参数renderer为nullptr。
 
 
 ### OH_AudioRenderer_GetRendererInfo()
@@ -1793,7 +1942,40 @@ OH_AudioStream_Result OH_AudioRenderer_GetRendererInfo(OH_AudioRenderer *rendere
 
 **返回：**
 
-AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
+函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+
+AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
+
+AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：参数renderer为nullptr。
+
+
+### OH_AudioRenderer_GetRendererPrivacy()
+
+```
+OH_AudioStream_Result OH_AudioRenderer_GetRendererPrivacy (OH_AudioRenderer *renderer, OH_AudioStream_PrivacyType *privacy)
+```
+**描述**
+
+查询当前播放音频流是否会被其它应用录制。
+
+**起始版本：** 12
+
+**系统能力：** SystemCapability.Multimedia.Audio.PlaybackCapture
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| renderer | 指向[OH_AudioStreamBuilder_GenerateRenderer](#oh_audiostreambuilder_generaterenderer)创建的音频流实例。  | 
+| privacy | 用于返回当前流的内录策略。  | 
+
+**返回：**
+
+函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+
+AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
+
+AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：参数renderer为nullptr。
 
 
 ### OH_AudioRenderer_GetSampleFormat()
@@ -1819,7 +2001,11 @@ OH_AudioStream_Result OH_AudioRenderer_GetSampleFormat(OH_AudioRenderer *rendere
 
 **返回：**
 
-AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
+函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+
+AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
+
+AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：参数renderer为nullptr。
 
 
 ### OH_AudioRenderer_GetSamplingRate()
@@ -1845,7 +2031,11 @@ OH_AudioStream_Result OH_AudioRenderer_GetSamplingRate(OH_AudioRenderer *rendere
 
 **返回：**
 
-AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
+函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+
+AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
+
+AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：参数renderer为nullptr。
 
 
 ### OH_AudioRenderer_GetSpeed()
@@ -1871,7 +2061,11 @@ OH_AudioStream_Result OH_AudioRenderer_GetSpeed (OH_AudioRenderer * renderer, fl
 
 **返回：**
 
-AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
+函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+
+AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
+
+AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：参数renderer为nullptr。
 
 
 ### OH_AudioRenderer_GetStreamId()
@@ -1897,7 +2091,11 @@ OH_AudioStream_Result OH_AudioRenderer_GetStreamId(OH_AudioRenderer *renderer, u
 
 **返回：**
 
-AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
+函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+
+AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
+
+AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：参数renderer为nullptr。
 
 
 ### OH_AudioRenderer_GetTimestamp()
@@ -1925,7 +2123,16 @@ OH_AudioStream_Result OH_AudioRenderer_GetTimestamp(OH_AudioRenderer *renderer, 
 
 **返回：**
 
-AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
+函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+
+AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
+
+AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：
+
+  1. 参数renderer为nullptr；
+  2. 参数clockId无效。
+
+AUDIOSTREAM_ERROR_ILLEGAL_STATE：执行状态异常。
 
 
 ### OH_AudioRenderer_GetUnderflowCount()
@@ -1949,7 +2156,14 @@ OH_AudioStream_Result OH_AudioRenderer_GetUnderflowCount (OH_AudioRenderer *rend
 
 **返回：**
 
-AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
+函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+
+AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
+
+AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：
+
+  1. 参数renderer为nullptr；
+  2. 参数count为nullptr。
 
 
 ### OH_AudioRenderer_GetVolume()
@@ -1975,7 +2189,14 @@ OH_AudioStream_Result OH_AudioRenderer_GetVolume (OH_AudioRenderer *renderer, fl
 
 **返回：**
 
-AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
+函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+
+AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
+
+AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：
+  
+  1. 参数renderer为nullptr；
+  2. 参数volume为nullptr。
 
 
 ### OH_AudioRenderer_Pause()
@@ -2000,7 +2221,13 @@ OH_AudioStream_Result OH_AudioRenderer_Pause(OH_AudioRenderer *renderer)
 
 **返回：**
 
-AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
+函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+
+AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
+
+AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：参数renderer为nullptr。
+
+AUDIOSTREAM_ERROR_ILLEGAL_STATE：执行状态异常。
 
 
 ### OH_AudioRenderer_Release()
@@ -2025,7 +2252,13 @@ OH_AudioStream_Result OH_AudioRenderer_Release(OH_AudioRenderer *renderer)
 
 **返回：**
 
-AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
+函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+
+AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
+
+AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：参数renderer为nullptr。
+
+AUDIOSTREAM_ERROR_ILLEGAL_STATE：执行状态异常。
 
 
 ### OH_AudioRenderer_SetEffectMode()
@@ -2051,7 +2284,11 @@ OH_AudioStream_Result OH_AudioRenderer_SetEffectMode (OH_AudioRenderer *renderer
 
 **返回：**
 
-AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
+函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+
+AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
+
+AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：参数renderer为nullptr。
 
 
 ### OH_AudioRenderer_SetMarkPosition()
@@ -2079,7 +2316,18 @@ OH_AudioStream_Result OH_AudioRenderer_SetMarkPosition (OH_AudioRenderer *render
 
 **返回：**
 
-AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
+函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+
+AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
+
+AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：
+
+  1. 参数renderer为nullptr；
+  2. 参数samplePos无效。
+
+AUDIOSTREAM_ERROR_ILLEGAL_STATE：执行状态异常。
+
+AUDIOSTREAM_ERROR_SYSTEM：出现系统错误。
 
 
 ### OH_AudioRenderer_SetSpeed()
@@ -2105,7 +2353,11 @@ OH_AudioStream_Result OH_AudioRenderer_SetSpeed (OH_AudioRenderer * renderer, fl
 
 **返回：**
 
-AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
+函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+
+AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
+
+AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：参数renderer为nullptr。
 
 
 ### OH_AudioRenderer_SetVolume()
@@ -2131,7 +2383,18 @@ OH_AudioStream_Result OH_AudioRenderer_SetVolume (OH_AudioRenderer *renderer, fl
 
 **返回：**
 
-AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
+函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+
+AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
+
+AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：
+  
+  1. 参数renderer为nullptr；
+  2. 参数volume无效。
+
+AUDIOSTREAM_ERROR_ILLEGAL_STATE：执行状态异常。
+
+AUDIOSTREAM_ERROR_SYSTEM：出现系统错误。
 
 
 ### OH_AudioRenderer_SetVolumeWithRamp()
@@ -2158,7 +2421,18 @@ OH_AudioStream_Result OH_AudioRenderer_SetVolumeWithRamp (OH_AudioRenderer *rend
 
 **返回：**
 
-AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
+函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+
+AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
+
+AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：
+  
+  1. 参数renderer为nullptr；
+  2. 参数volume无效。
+
+AUDIOSTREAM_ERROR_ILLEGAL_STATE：执行状态异常。
+
+AUDIOSTREAM_ERROR_SYSTEM：出现系统错误。
 
 
 ### OH_AudioRenderer_Start()
@@ -2208,7 +2482,13 @@ OH_AudioStream_Result OH_AudioRenderer_Stop(OH_AudioRenderer *renderer)
 
 **返回：**
 
-AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
+函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+
+AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
+
+AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：参数renderer为nullptr。
+
+AUDIOSTREAM_ERROR_ILLEGAL_STATE：执行状态异常。
 
 
 ### OH_AudioRoutingManager_GetDevices()
@@ -2233,8 +2513,17 @@ OH_AudioCommon_Result OH_AudioRoutingManager_GetDevices (OH_AudioRoutingManager 
 
 **返回：**
 
-AUDIOCOMMON_RESULT_SUCCESS 或 AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM 或 AUDIOCOMMON_RESULT_ERROR_NO_MEMORY。 
+函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
 
+AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
+
+AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：
+
+  1. 参数audioRoutingManager为nullptr；
+  2. 参数deviceFlag无效；
+  3. 参数audioDeviceDescriptorArray为nullptr。
+
+AUDIOCOMMON_RESULT_ERROR_NO_MEMORY：内存不足。
 
 ### OH_AudioRoutingManager_RegisterDeviceChangeCallback()
 
@@ -2258,7 +2547,15 @@ OH_AudioCommon_Result OH_AudioRoutingManager_RegisterDeviceChangeCallback (OH_Au
 
 **返回：**
 
-AUDIOCOMMON_RESULT_SUCCESS 或 AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM。
+函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+
+AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
+
+AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：
+
+  1. 参数audioRoutingManager为nullptr；
+  2. 参数deviceFlag无效；
+  3. 参数callback为nullptr。
 
 
 ### OH_AudioRoutingManager_ReleaseDevices()
@@ -2282,7 +2579,14 @@ OH_AudioCommon_Result OH_AudioRoutingManager_ReleaseDevices (OH_AudioRoutingMana
 
 **返回：**
 
-AUDIOCOMMON_RESULT_SUCCESS 或 AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM。
+函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+
+AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
+
+AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：
+
+  1. 参数audioRoutingManager为nullptr；
+  2. 参数audioDeviceDescriptorArray为nullptr。
 
 
 ### OH_AudioRoutingManager_UnregisterDeviceChangeCallback()
@@ -2306,7 +2610,14 @@ OH_AudioCommon_Result OH_AudioRoutingManager_UnregisterDeviceChangeCallback (OH_
 
 **返回：**
 
-AUDIOCOMMON_RESULT_SUCCESS 或 AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM。
+函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+
+AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
+
+AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM：
+
+  1. 参数audioRoutingManager为nullptr；
+  2. 参数callback为nullptr。
 
 
 ### OH_AudioStreamBuilder_Create()
@@ -2334,7 +2645,9 @@ OH_AudioStream_Result OH_AudioStreamBuilder_Create(OH_AudioStreamBuilder **build
 
 **返回：**
 
-AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
+函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+
+AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
 
 
 ### OH_AudioStreamBuilder_Destroy()
@@ -2361,7 +2674,13 @@ OH_AudioStream_Result OH_AudioStreamBuilder_Destroy(OH_AudioStreamBuilder *build
 
 **返回：**
 
-AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
+函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+
+AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
+
+AUDIOSTREAM_ERROR_INVALID_PARAM：参数builder为nullptr。
+
+AUDIOSTREAM_ERROR_ILLEGAL_STATE：执行状态异常。
 
 
 ### OH_AudioStreamBuilder_GenerateCapturer()
@@ -2387,7 +2706,15 @@ OH_AudioStream_Result OH_AudioStreamBuilder_GenerateCapturer(OH_AudioStreamBuild
 
 **返回：**
 
-AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
+函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+
+AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
+
+AUDIOSTREAM_ERROR_INVALID_PARAM：
+
+  1. 参数builder为nullptr；
+  2. StreamType无效；
+  3. 创建OHAudioRenderer失败。
 
 
 ### OH_AudioStreamBuilder_GenerateRenderer()
@@ -2413,7 +2740,15 @@ OH_AudioStream_Result OH_AudioStreamBuilder_GenerateRenderer(OH_AudioStreamBuild
 
 **返回：**
 
-AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
+函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+
+AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
+
+AUDIOSTREAM_ERROR_INVALID_PARAM：
+
+  1. 参数builder为nullptr；
+  2. StreamType无效；
+  3. 创建OHAudioRenderer失败。
 
 
 ### OH_AudioStreamBuilder_SetCapturerCallback()
@@ -2440,7 +2775,14 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetCapturerCallback(OH_AudioStreamBu
 
 **返回：**
 
-AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
+函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+
+AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
+
+AUDIOSTREAM_ERROR_INVALID_PARAM：
+
+  1. 参数builder为nullptr；
+  2. StreamType无效。
 
 
 ### OH_AudioStreamBuilder_SetCapturerInfo()
@@ -2466,7 +2808,14 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetCapturerInfo(OH_AudioStreamBuilde
 
 **返回：**
 
-AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
+函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+
+AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
+
+AUDIOSTREAM_ERROR_INVALID_PARAM：
+
+  1. 参数builder为nullptr；
+  2. 参数sourceType无效。
 
 
 ### OH_AudioStreamBuilder_SetChannelCount()
@@ -2492,7 +2841,14 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetChannelCount(OH_AudioStreamBuilde
 
 **返回：**
 
-AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
+函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+
+AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
+
+AUDIOSTREAM_ERROR_INVALID_PARAM：
+
+  1. 参数builder为nullptr；
+  2. 参数channelCount无效。
 
 
 ### OH_AudioStreamBuilder_SetChannelLayout()
@@ -2518,7 +2874,11 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetChannelLayout (OH_AudioStreamBuil
 
 **返回：**
 
-AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
+函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+
+AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
+
+AUDIOSTREAM_ERROR_INVALID_PARAM：参数builder为nullptr。
 
 
 ### OH_AudioStreamBuilder_SetEncodingType()
@@ -2544,8 +2904,11 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetEncodingType(OH_AudioStreamBuilde
 
 **返回：**
 
-AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
+函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
 
+AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
+
+AUDIOSTREAM_ERROR_INVALID_PARAM：参数builder为nullptr。
 
 ### OH_AudioStreamBuilder_SetFrameSizeInCallback()
 
@@ -2573,7 +2936,11 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetFrameSizeInCallback(OH_AudioStrea
 
 **返回：**
 
-AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
+函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+
+AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
+
+AUDIOSTREAM_ERROR_INVALID_PARAM：参数builder为nullptr。
 
 
 ### OH_AudioStreamBuilder_SetLatencyMode()
@@ -2599,7 +2966,11 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetLatencyMode(OH_AudioStreamBuilder
 
 **返回：**
 
-AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
+函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+
+AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
+
+AUDIOSTREAM_ERROR_INVALID_PARAM：参数builder为nullptr。
 
 
 ### OH_AudioStreamBuilder_SetRendererCallback()
@@ -2626,7 +2997,14 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetRendererCallback(OH_AudioStreamBu
 
 **返回：**
 
-AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
+函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+
+AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
+
+AUDIOSTREAM_ERROR_INVALID_PARAM：
+
+  1. 参数builder为nullptr；
+  2. StreamType无效。
 
 
 ### OH_AudioStreamBuilder_SetRendererInfo()
@@ -2652,7 +3030,14 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetRendererInfo(OH_AudioStreamBuilde
 
 **返回：**
 
-AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
+函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+
+AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
+
+AUDIOSTREAM_ERROR_INVALID_PARAM：
+
+  1. 参数builder为nullptr；
+  2. 参数usage无效。
 
 
 ### OH_AudioStreamBuilder_SetRendererInterruptMode()
@@ -2676,7 +3061,15 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetRendererInterruptMode (OH_AudioSt
 
 **返回：**
 
-AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
+函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+
+AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
+
+AUDIOSTREAM_ERROR_INVALID_PARAM：
+
+  1. 参数builder为nullptr；
+  2. 参数mode无效；
+  3. StreamType无效。
 
 
 ### OH_AudioStreamBuilder_SetRendererOutputDeviceChangeCallback()
@@ -2703,7 +3096,45 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetRendererOutputDeviceChangeCallbac
 
 **返回：**
 
-AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
+函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+
+AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
+
+AUDIOSTREAM_ERROR_INVALID_PARAM：
+
+  1. 参数builder为nullptr；
+  2. StreamType无效。
+
+
+### OH_AudioStreamBuilder_SetRendererPrivacy()
+
+```
+OH_AudioStream_Result OH_AudioStreamBuilder_SetRendererPrivacy (OH_AudioStreamBuilder * builder, OH_AudioStream_PrivacyType privacy)
+```
+**描述**
+设置当前播放音频流是否会被其它应用录制。
+
+**起始版本：** 12
+
+**系统能力：** SystemCapability.Multimedia.Audio.PlaybackCapture
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| builder | 指向[OH_AudioStreamBuilder_Create()](#oh_audiostreambuilder_create)创建的构造器实例。  | 
+| privacy | 标识对应播放音频流是否会被其它应用录制。  | 
+
+**返回：**
+
+函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+
+AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
+
+AUDIOSTREAM_ERROR_INVALID_PARAM：
+
+  1. 参数builder为nullptr；
+  2. StreamType无效。
 
 
 ### OH_AudioStreamBuilder_SetSampleFormat()
@@ -2729,7 +3160,11 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetSampleFormat(OH_AudioStreamBuilde
 
 **返回：**
 
-AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
+函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+
+AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
+
+AUDIOSTREAM_ERROR_INVALID_PARAM：参数builder为nullptr。
 
 
 ### OH_AudioStreamBuilder_SetSamplingRate()
@@ -2755,7 +3190,14 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetSamplingRate(OH_AudioStreamBuilde
 
 **返回：**
 
-AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
+函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+
+AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
+
+AUDIOSTREAM_ERROR_INVALID_PARAM：
+
+  1. 参数builder为nullptr；
+  2. 参数rate无效。
 
 
 ### OH_AudioStreamBuilder_SetWriteDataWithMetadataCallback()
@@ -2782,6 +3224,13 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetWriteDataWithMetadataCallback (OH
 
 **返回：**
 
-AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
+函数返回值[OH_AudioCommon_Result](#oh_audiocommon_result)：
+
+AUDIOCOMMON_RESULT_SUCCESS：函数执行成功。
+
+AUDIOSTREAM_ERROR_INVALID_PARAM：
+
+  1. 参数builder为nullptr；
+  2. StreamType无效。
 
 

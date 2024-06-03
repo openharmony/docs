@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```ts
-import { DrawContext, Size, Offset, Position, Pivot, Scale, Translation, Matrix4, Rotation, Frame } from "@ohos.arkui.node";
+import { DrawContext, Size, Offset, Position, Pivot, Scale, Translation, Matrix4, Rotation, Frame, LengthMetricsUnit } from "@ohos.arkui.node";
 ```
 
 ## Size
@@ -181,7 +181,7 @@ get size(): Size
 
 ### canvas
 
-get canvas(): Canvas
+get canvas(): drawing.Canvas
 
 获取用于绘制的画布。
 
@@ -193,7 +193,7 @@ get canvas(): Canvas
 
 | 类型          | 说明             |
 | ------------- | ---------------- |
-| [Canvas](../apis-arkgraphics2d/js-apis-graphics-drawing.md#canvas) | 用于绘制的画布。 |
+| [drawing.Canvas](../apis-arkgraphics2d/js-apis-graphics-drawing.md#canvas) | 用于绘制的画布。 |
 
 **示例：**
 
@@ -241,9 +241,7 @@ struct Index {
 }
 ```
 
-## Edges<sup>12+</sup>
-
-Edges\<T>
+## Edges\<T><sup>12+</sup>
 
 用于设置边框的属性。
 
@@ -283,9 +281,20 @@ SizeT\<T>
 | width   | T    | 是   | 是   | 宽度的属性。 |
 | height    | T    | 是   | 是   | 高度的属性。 |
 
+## LengthMetricsUnit<sup>12+</sup>
+
+长度属性单位枚举。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 值 | 说明 |
+| -------- | -------- | -------- |
+| DEFAULT | 0 | 长度类型，用于描述以默认的vp像素单位为单位的长度。 |
+| PX | 1 | 长度类型，用于描述以px像素单位为单位的长度。 |
+
 ## LengthMetrics<sup>12+</sup>
 
-用于设置长度属性。
+用于设置长度属性，当长度单位为[PERCENT](arkui-ts/ts-types.md#percentage10)时，值为1表示100%。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -313,7 +322,7 @@ LengthMetrics的构造函数。
 
 ### px<sup>12+</sup>
 
-px(value: number): void
+px(value: number): LengthMetrics
 
 用于生成单位为PX的长度属性。
 
@@ -325,9 +334,15 @@ px(value: number): void
 | ------ | ------------- | ---- | ------------ |
 | value   | number | 是   | 长度属性的值。 |
 
+**返回值：**
+
+| 类型          | 说明             |
+| ------------- | ---------------- |
+| [LengthMetrics](#lengthmetrics12) | LengthMetrics 类的实例。 |
+
 ### vp<sup>12+</sup>
 
-vp(value: number): void
+vp(value: number): LengthMetrics
 
 用于生成单位为VP的长度属性。
 
@@ -339,9 +354,15 @@ vp(value: number): void
 | ------ | ------------- | ---- | ------------ |
 | value   | number | 是   | 长度属性的值。 |
 
+**返回值：**
+
+| 类型          | 说明             |
+| ------------- | ---------------- |
+| [LengthMetrics](#lengthmetrics12) | LengthMetrics 类的实例。 |
+
 ### fp<sup>12+</sup>
 
-fp(value: number): void
+fp(value: number): LengthMetrics
 
 用于生成单位为FP的长度属性。
 
@@ -353,9 +374,15 @@ fp(value: number): void
 | ------ | ------------- | ---- | ------------ |
 | value   | number | 是   | 长度属性的值。 |
 
+**返回值：**
+
+| 类型          | 说明             |
+| ------------- | ---------------- |
+| [LengthMetrics](#lengthmetrics12) | LengthMetrics 类的实例。 |
+
 ### percent<sup>12+</sup>
 
-percent(value: number): void
+percent(value: number): LengthMetrics
 
 用于生成单位为PERCENT的长度属性。
 
@@ -367,9 +394,15 @@ percent(value: number): void
 | ------ | ------------- | ---- | ------------ |
 | value   | number | 是   | 长度属性的值。 |
 
+**返回值：**
+
+| 类型          | 说明             |
+| ------------- | ---------------- |
+| [LengthMetrics](#lengthmetrics12) | LengthMetrics 类的实例。 |
+
 ### lpx<sup>12+</sup>
 
-lpx(value: number): void
+lpx(value: number): LengthMetrics
 
 用于生成单位为LPX的长度属性。
 
@@ -381,9 +414,192 @@ lpx(value: number): void
 | ------ | ------------- | ---- | ------------ |
 | value   | number | 是   | 长度属性的值。 |
 
-## Corners<sup>12+</sup>
+**返回值：**
 
-Corners\<T>
+| 类型          | 说明             |
+| ------------- | ---------------- |
+| [LengthMetrics](#lengthmetrics12) | LengthMetrics 类的实例。 |
+
+### resource<sup>12+</sup>
+
+resource(value: Resource): LengthMetrics
+
+用于生成Resource类型资源的长度属性。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型          | 必填 | 说明         |
+| ------ | ------------- | ---- | ------------ |
+| value   | Resource | 是   | 长度属性的值。 |
+
+**返回值：**
+
+| 类型          | 说明             |
+| ------------- | ---------------- |
+| [LengthMetrics](#lengthmetrics12) | LengthMetrics 类的实例。 |
+
+## ColorMetrics<sup>12+</sup>
+
+用于混合颜色。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### numeric<sup>12+</sup>
+
+static numeric(value: number): ColorMetrics
+
+使用HEX格式颜色实例化 ColorMetrics 类。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型          | 必填 | 说明         |
+| ------ | ------------- | ---- | ------------ |
+| value   | number | 是   | HEX格式颜色，支持rgb或者argb。 |
+
+**返回值：**
+
+| 类型          | 说明             |
+| ------------- | ---------------- |
+| [ColorMetrics](#colormetrics12) | ColorMetrics 类的实例。 |
+
+### rgba<sup>12+</sup>
+
+static rgba(red: number, green: number, blue: number, alpha?: number): ColorMetrics
+
+使用rgb或者rgba格式颜色实例化 ColorMetrics 类。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型          | 必填 | 说明         |
+| ------ | ------------- | ---- | ------------ |
+| red   | number | 是   | 颜色的R分量（红色），值是0~255的整数。 |
+| green | number | 是   | 颜色的G分量（绿色），值是0~255的整数。 |
+| blue  | number | 是   | 颜色的B分量（蓝色），值是0~255的整数。 |
+| alpha | number | 否   | 颜色的A分量（透明度），值是0~1.0的浮点数。 |
+
+**返回值：**
+
+| 类型          | 说明             |
+| ------------- | ---------------- |
+| [ColorMetrics](#colormetrics12) | ColorMetrics 类的实例。 |
+
+### resourceColor<sup>12+</sup>
+
+static resourceColor(color: ResourceColor): ColorMetrics
+
+使用资源格式颜色实例化 ColorMetrics 类。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型          | 必填 | 说明         |
+| ------ | ------------- | ---- | ------------ |
+| color | [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 是 | 资源格式颜色 |
+
+**返回值：**
+
+| 类型          | 说明             |
+| ------------- | ---------------- |
+| [ColorMetrics](#colormetrics12) | ColorMetrics 类的实例。 |
+
+### blendColor<sup>12+</sup>
+
+blendColor(overlayColor: ColorMetrics): ColorMetrics
+
+颜色混合。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型          | 必填 | 说明         |
+| ------ | ------------- | ---- | ------------ |
+| overlayColor | [ColorMetrics](#colormetrics12) | 是 | 叠加颜色的 ColorMetrics 类的实例 |
+
+**返回值：**
+
+| 类型          | 说明             |
+| ------------- | ---------------- |
+| [ColorMetrics](#colormetrics12) | 混合后的ColorMetrics 类的实例。 |
+
+### color<sup>12+</sup>
+
+get color(): string
+
+获取ColorMetrics的颜色，返回的是rgba字符串的格式。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型          | 说明             |
+| ------------- | ---------------- |
+| string | rgba字符串格式的颜色。 示例：'rgba(255, 100, 255, 0.5)'|
+
+### red<sup>12+</sup>
+
+get red(): number
+
+获取ColorMetrics颜色的R分量（红色）。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型          | 说明             |
+| ------------- | ---------------- |
+| number | 颜色的R分量（红色），值是0~255的整数。|
+
+### green<sup>12+</sup>
+
+get green(): number
+
+获取ColorMetrics颜色的G分量（绿色）。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型          | 说明             |
+| ------------- | ---------------- |
+| number | 颜色的G分量（绿色），值是0~255的整数。|
+
+### blue<sup>12+</sup>
+
+get blue(): number
+
+获取ColorMetrics颜色的B分量（蓝色）。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型          | 说明             |
+| ------------- | ---------------- |
+| number | 颜色的B分量（蓝色），值是0~255的整数。|
+
+### alpha<sup>12+</sup>
+
+get alpha(): number
+
+获取ColorMetrics颜色的A分量（透明度）。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型          | 说明             |
+| ------------- | ---------------- |
+| number | 颜色的A分量（透明度），值是0~255的整数。|
+
+## Corners\<T><sup>12+</sup>
 
 用于设置四个角的圆角度数。
 
@@ -398,7 +614,7 @@ Corners\<T>
 
 ## CornerRadius<sup>12+</sup>
 
-类型定义为[Corners](#corners12)[\<Vector2>](#vector2)，用于设置四个角的圆角度数。
+类型定义为[Corners](#cornerst12)[\<Vector2>](#vector2)，用于设置四个角的圆角度数。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -411,7 +627,7 @@ Corners\<T>
 
 ## BorderRadiuses<sup>12+</sup>
 
-类型定义为[Corners\<number>](#corners12)，用于设置四个角的圆角度数。
+类型定义为[Corners\<number>](#cornerst12)，用于设置四个角的圆角度数。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -931,7 +1147,7 @@ struct Index {
 
 ## edgeColors<sup>12+</sup>
 
-function edgeColors(all: number): Edges\<number>
+edgeColors(all: number): Edges\<number>
 
 用于生成边框颜色均设置为传入值的边框颜色对象。
 
@@ -947,7 +1163,7 @@ function edgeColors(all: number): Edges\<number>
 
 | 类型                     | 说明                                   |
 | ------------------------ | -------------------------------------- |
-| [Edges\<number>](#edges12) | 边框颜色均设置为传入值的边框颜色对象。 |
+| [Edges\<number>](#edgest12) | 边框颜色均设置为传入值的边框颜色对象。 |
 
 **示例：**
 
@@ -991,7 +1207,7 @@ struct Index {
 
 ## edgeWidths<sup>12+</sup>
 
-function edgeWidths(all: number): Edges\<number>
+edgeWidths(all: number): Edges\<number>
 
 用于生成边框宽度均设置为传入值的边框宽度对象。
 
@@ -1007,7 +1223,7 @@ function edgeWidths(all: number): Edges\<number>
 
 | 类型                     | 说明                                   |
 | ------------------------ | -------------------------------------- |
-| [Edges\<number>](#edges12) | 边框宽度均设置为传入值的边框宽度对象。 |
+| [Edges\<number>](#edgest12) | 边框宽度均设置为传入值的边框宽度对象。 |
 
 **示例：**
 
@@ -1051,7 +1267,7 @@ struct Index {
 
 ## borderStyles<sup>12+</sup>
 
-function borderStyles(all: BorderStyle): Edges\<BorderStyle>
+borderStyles(all: BorderStyle): Edges\<BorderStyle>
 
 用于生成边框样式均设置为传入值的边框样式对象。
 
@@ -1067,7 +1283,7 @@ function borderStyles(all: BorderStyle): Edges\<BorderStyle>
 
 | 类型                                                                        | 说明                                   |
 | --------------------------------------------------------------------------- | -------------------------------------- |
-| [Edges](#edges12)<[BorderStyle](./arkui-ts/ts-appendix-enums.md#borderstyle)> | 边框样式均设置为传入值的边框样式对象。 |
+| [Edges](#edgest12)<[BorderStyle](./arkui-ts/ts-appendix-enums.md#borderstyle)> | 边框样式均设置为传入值的边框样式对象。 |
 
 **示例：**
 
@@ -1112,7 +1328,7 @@ struct Index {
 
 ## borderRadiuses<sup>12+</sup>
 
-function borderRadiuses(all: number): BorderRadiuses
+borderRadiuses(all: number): BorderRadiuses
 
 用于生成边框圆角均设置为传入值的边框圆角对象。
 

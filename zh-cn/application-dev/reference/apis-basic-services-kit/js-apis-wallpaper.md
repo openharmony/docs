@@ -384,6 +384,79 @@ wallpaper.getMinWidth().then((data: Number) => {
 });
 ```
 
+## wallpaper.getFile<sup>(deprecated)</sup>
+
+getFile(wallpaperType: WallpaperType, callback: AsyncCallback&lt;number&gt;): void
+
+获取指定类型的壁纸文件。
+
+> **说明：**
+> 
+> 从 API version 8开始支持，从API version 9开始废弃。
+
+**需要权限**：ohos.permission.GET_WALLPAPER
+
+**系统能力**: SystemCapability.MiscServices.Wallpaper
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| wallpaperType | [WallpaperType](js-apis-wallpaper.md#wallpapertype7) | 是 | 壁纸类型。 |
+| callback | AsyncCallback&lt;number&gt; | 是 | 回调函数，调用成功则返回壁纸文件描述符ID，调用失败则返回error信息。 |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+wallpaper.getFile(wallpaper.WallpaperType.WALLPAPER_SYSTEM, (error: BusinessError, data: number) => {
+    if (error) {
+        console.error(`failed to getFile because: ${JSON.stringify(error)}`);
+        return;
+    }
+    console.log(`success to getFile: ${JSON.stringify(data)}`);
+});
+```
+
+## wallpaper.getFile<sup>(deprecated)</sup>
+
+getFile(wallpaperType: WallpaperType): Promise&lt;number&gt;
+
+获取指定类型的壁纸文件。
+
+> **说明：**
+>
+> 从 API version 8开始支持，从API version 9开始废弃。
+
+**需要权限**：ohos.permission.GET_WALLPAPER
+
+**系统能力**: SystemCapability.MiscServices.Wallpaper
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| wallpaperType | [WallpaperType](js-apis-wallpaper.md#wallpapertype7) | 是 | 壁纸类型。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;number&gt; | 调用成功则返回壁纸文件描述符ID，调用失败则返回error信息。 |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+wallpaper.getFile(wallpaper.WallpaperType.WALLPAPER_SYSTEM).then((data: number) => {
+    console.log(`success to getFile: ${JSON.stringify(data)}`);
+  }).catch((error: BusinessError) => {
+    console.error(`failed to getFile because: ${JSON.stringify(error)}`);
+});
+```
+
 ## wallpaper.isChangePermitted<sup>(deprecated)</sup>
 
 isChangePermitted(callback: AsyncCallback&lt;boolean&gt;): void
@@ -569,16 +642,6 @@ reset(wallpaperType: WallpaperType): Promise&lt;void&gt;
 | -------- | -------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| **错误码ID** | **错误信息**                                |
-| ------------ | ------------------------------------------- |
-| 201          | permission denied.                                                                              |
-| 202          | permission verification failed, application which is not a system application uses system API.  |
-| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
-
 **示例：**
 
 ```ts
@@ -676,16 +739,6 @@ setWallpaper(source: string | image.PixelMap, wallpaperType: WallpaperType): Pro
 | 类型 | 说明 |
 | -------- | -------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| **错误码ID** | **错误信息**                                |
-| ------------ | ------------------------------------------- |
-| 201          | permission denied.                                                                              |
-| 202          | permission verification failed, application which is not a system application uses system API.  |
-| 401          | 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed.  |
 
 **示例：**
 

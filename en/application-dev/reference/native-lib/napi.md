@@ -39,9 +39,9 @@ The usage and behavior of the APIs exported from the Node-API standard library a
 |FUNC|napi_reference_ref|Increments the reference count for the reference passed in and returns the count.|10|
 |FUNC|napi_reference_unref|Decrements the reference count for the reference passed in and returns the count.|10|
 |FUNC|napi_get_reference_value|Obtains the JS **Object** associated with the reference.|10|
-|FUNC|napi_create_array|Creates a JS **Array**.|10|
-|FUNC|napi_create_array_with_length|Creates a JS **Array** of the specified length.|10|
-|FUNC|napi_create_arraybuffer|Creates a JS **ArrayBuffer** of the specified size.|10|
+|FUNC|napi_create_array|Creates a JS array.|10|
+|FUNC|napi_create_array_with_length|Creates a JS array of the specified length.|10|
+|FUNC|napi_create_arraybuffer|Creates a JS ArrayBuffer of the specified size.|10|
 |FUNC|napi_create_external|Allocates a JS value with external data.|10|
 |FUNC|napi_create_external_arraybuffer|Allocates a JS **ArrayBuffer** with external data.|10|
 |FUNC|napi_create_object|Creates a default JS **Object**.|10|
@@ -80,7 +80,7 @@ The usage and behavior of the APIs exported from the Node-API standard library a
 |FUNC|napi_typeof|Obtains the JS type of a JS value.|10|
 |FUNC|napi_instanceof|Checks whether an object is an instance of the specified constructor.|10|
 |FUNC|napi_is_array|Checks whether a JS value is an array.|10|
-|FUNC|napi_is_arraybuffer|Checks whether a JS value is a `ArrayBuffer`.|10|
+|FUNC|napi_is_arraybuffer|Checks whether a JS value is a **ArrayBuffer**.|10|
 |FUNC|napi_is_typedarray|Checks whether a JS value is a **TypedArray**.|10|
 |FUNC|napi_is_dataview|Checks whether a JS value is a **DataView**.|10|
 |FUNC|napi_is_date|Checks whether a JS value is a JS **Date** object.|10|
@@ -101,7 +101,7 @@ The usage and behavior of the APIs exported from the Node-API standard library a
 |FUNC|napi_define_properties|Defines multiple properties for an object.|10|
 |FUNC|napi_type_tag_object|Associates the value of a tag pointer with an object.|10|
 |FUNC|napi_check_object_type_tag|Checks whether a tag pointer is associated with a JS object.|10|
-|FUNC|napi_call_function|Calls a JS function object in a native method, that is, native call JS.|10|
+|FUNC|napi_call_function|Calls a JS function object in a native method, that is, native calls JS.|10|
 |FUNC|napi_create_function|Creates a function object in native code for JS to call.|10|
 |FUNC|napi_get_cb_info|Obtains detailed information about the call, such as the parameters and **this** pointer, from the given callback information.|10|
 |FUNC|napi_get_new_target|Obtains the **new.target** of the constructor call.|10|
@@ -134,7 +134,7 @@ The usage and behavior of the APIs exported from the Node-API standard library a
 |FUNC|napi_ref_threadsafe_function|Indicates that the event loop running on the main thread should not exit until the thread-safe function is destroyed.|10|
 |FUNC|napi_unref_threadsafe_function|Indicates that the event loop running on the main thread may exit before the thread-safe function is destroyed.|10|
 |FUNC|napi_create_date|Creates a JS **Date** object from C double data.|10|
-|FUNC|napi_get_date_value|Obtains the C double equivalent of the given JS **Date** object.|10|
+|FUNC|napi_get_date_value|Obtains the C double equivalent of the given JS **Date**.|10|
 |FUNC|napi_create_bigint_int64|Creates a JS BigInt from C int64 data.|10|
 |FUNC|napi_create_bigint_uint64|Creates a JS BigInt from C uint64 data.|10|
 |FUNC|napi_create_bigint_words|Creates a single JS BigInt from a C uint64 array.|10|
@@ -178,3 +178,403 @@ The usage and behavior of the APIs exported from the Node-API standard library a
 |FUNC|napi_create_object_with_properties|Creates a JS object using the given **napi_property_descriptor**. The key of the descriptor must be a string and cannot be converted into a number.|11|
 |FUNC|napi_create_object_with_named_properties|Creates a JS object using the given **napi_value** and key. The key must be a string and cannot be converted into a number.|11|
 |FUNC|napi_coerce_to_native_binding_object|Forcibly binds a JS object and a native object.|11|
+|FUNC|napi_create_ark_runtime|Creates an ArkTS runtime environment.|12|
+|FUNC|napi_destroy_ark_runtime|Destroys the ArkTS runtime environment.|12|
+|FUNC|napi_run_event_loop|Runs the underlying event loop.|12|
+|FUNC|napi_stop_event_loop|Stops the underlying event loop.|12|
+|FUNC|napi_load_module_with_info|Loads an .abc file as a module. This API returns the namespace of the module. It can be used in the newly created ArkTS runtime environment.|12|
+|FUNC|napi_serialize|Converts an ArkTS object into native data.|12|
+|FUNC|napi_deserialize|Converts native data into an ArkTS object.|12|
+|FUNC|napi_delete_serialization_data|Deletes serialized data.|12|
+|FUNC|napi_call_threadsafe_function_with_priority|Calls a task with the specified priority and enqueuing mode into an ArkTS thread.|12|
+
+### napi_qos_t
+
+```cpp
+typedef enum {
+    napi_qos_background = 0,      // Low priority for works invisible to users, such as data synchronization and backup.
+    napi_qos_utility = 1, // Medium priority for works that do not require immediate response, such as downloading or importing data.
+    napi_qos_default = 2,  // Default priority.
+    napi_qos_user_initiated = 3, // High priority for user-triggered works with visible progress, for example, opening a file.
+} napi_qos_t;
+```
+
+**Description**
+
+Enumerates the QoS levels, which determine the priority of thread scheduling.
+
+### napi_event_mode
+
+```cpp
+typedef enum {
+    napi_event_mode_default = 0, //  Run the underlying event loop while blocking the current thread, and exit the event loop only when there is no task in the loop.
+    napi_event_mode_nowait = 1, // Run the underlying event loop without blocking the current thread. Process a task and exit the event loop after the task is complete. If there is no task in the event loop, exit the event loop immediately.
+} napi_event_mode;
+```
+
+**Description**
+
+Enumerates the modes for running the underlying event loop.
+
+### napi_queue_async_work_with_qos
+
+```cpp
+napi_status napi_queue_async_work_with_qos(napi_env env,
+                                           napi_async_work work,
+                                           napi_qos_t qos);
+```
+
+**Description**
+
+Adds an asynchronous work object to the queue so that it can be scheduled for execution based on the QoS priority passed in.
+
+**Parameters**
+
+- **env**: environment, in which the API is invoked.
+
+- **work**: handle to the asynchronous work object to schedule. This object is created by **napi_create_async_work**.
+
+- **qos**: priority of the task to schedule.
+
+**Return value**
+
+Returns **napi_ok** if the operation is successful.
+
+### napi_run_script_path
+
+```cpp
+napi_status napi_run_script_path(napi_env env,
+                                 const char* abcPath,
+                                 napi_value* result);
+```
+
+**Description**
+
+Runs an .abc file.
+
+**Parameters**
+
+- **env**: environment, in which the API is invoked.
+
+- **abcPath**: JS path of the script to run. The value is a string that specifies the location of the script file to run.
+
+- **result**: pointer to **napi_value**, which holds the script execution result.
+
+**Return value**
+
+Returns **napi_ok** if the operation is successful.
+
+### napi_load_module
+
+```cpp
+napi_status napi_load_module(napi_env env,
+                             const char* path,
+                             napi_value* result);
+```
+
+**Description**
+
+Loads a system module or a customized module. This API returns the namespace of the module loaded.
+
+**Parameters**
+
+- **env**: environment, in which the API is invoked.
+
+- **path**: name of the system module to load or path of the customized module to load.
+
+- **result**: pointer to **napi_value**, which holds the module loading result.
+
+**Return value**
+
+Returns **napi_ok** if the operation is successful.
+
+### napi_create_object_with_properties
+
+```cpp
+napi_status napi_create_object_with_properties(napi_env env,
+                                               napi_value* result,
+                                               size_t property_count,
+                                               const napi_property_descriptor* properties);
+```
+
+**Description**
+
+Creates a JS object using the given **napi_property_descriptor**.<br>**napi_property_descriptor** defines a property, including the property attributes and the methods used to obtain and set the property. By passing **napi_property_descriptor**, you can define the properties when creating an object.
+
+The key in **napi_property_descriptor** must be a string that cannot be converted into a number.
+
+**Parameters**
+
+- **env**: environment, in which the API is invoked.
+
+- **result**: pointer to **napi_value**, which holds the created object.
+
+- **property_count**: number of properties to be added to the object.
+
+- **properties**: pointer to a **napi_property_descriptor** array containing information about the properties to be added to the object.
+
+**Return value**
+
+Returns **napi_ok** if the operation is successful.
+
+### napi_create_object_with_named_properties
+
+```cpp
+napi_status napi_create_object_with_named_properties(napi_env env,
+                                                     napi_value* result,
+                                                     size_t property_count,
+                                                     const char** keys,
+                                                     const napi_value* values);
+```
+
+**Description**
+
+Creates a JS object using the given **napi_value**s and keys. The key must be a string and cannot be converted into a number.
+
+**Parameters**
+
+- **env**: environment, in which the API is invoked.
+
+- **result**: pointer to **napi_value**, which holds the created object.
+
+- **property_count**: number of properties to be added to the object.
+
+- **keys**: pointer to a const char array containing the keys of the properties to add.
+
+- **values**: pointer to a **napi_value** array containing the properties to add. The keys and properties are in one-to-one mapping.
+
+**Return value**
+
+Returns **napi_ok** if the operation is successful.
+
+### napi_coerce_to_native_binding_object
+
+```cpp
+napi_status napi_coerce_to_native_binding_object(napi_env env,
+                                                 napi_value js_object,
+                                                 napi_native_binding_detach_callback detach_cb,
+                                                 napi_native_binding_attach_callback attach_cb,
+                                                 void* native_object,
+                                                 void* hint);
+```
+
+**Description**
+
+Converts a JS object into an object carrying native information by forcibly binding callbacks and callback data to the JS object.
+
+**Parameters**
+
+- **env**: environment, in which the API is invoked.
+
+- **js_object**: JS object to convert.
+
+- **detach_cb**: callback to be invoked to perform cleanup operations when the object is detached during serialization.
+
+- **attach_cb**: callback to be invoked when the object is attached during serialization.
+
+- **native_object**: parameters to be passed to the callbacks. This object cannot be empty.
+
+- **hint**: pointer to the additional information to be passed to the callbacks.
+
+**Return value**
+
+Returns **napi_ok** if the operation is successful.
+
+### napi_create_ark_runtime
+
+```cpp
+napi_status napi_create_ark_runtime(napi_env *env)
+```
+
+**Description**
+
+Creates an ArkTS runtime environment.
+
+**Parameters**
+
+- **env**: environment, in which the API is invoked.
+
+**Return value**
+
+Returns **napi_ok** if the operation is successful.
+
+### napi_destroy_ark_runtime
+
+```cpp
+napi_status napi_destroy_ark_runtime(napi_env *env)
+```
+
+**Description**
+
+Destroys an ArkTS runtime environment.
+
+**Parameters**
+
+- **env**: environment, in which the API is invoked.
+
+**Return value**
+
+Returns **napi_ok** if the operation is successful.
+
+### napi_run_event_loop
+
+```cpp
+napi_status napi_run_event_loop(napi_env env, napi_event_mode mode)
+```
+
+**Description**
+
+Runs the underlying event loop.
+
+**Parameters**
+
+- **env**: environment, in which the API is invoked.
+- **mode**: event mode for running the event loop.
+
+**Return value**
+
+Returns **napi_ok** if the operation is successful.
+
+### napi_stop_event_loop
+
+```cpp
+napi_status napi_stop_event_loop(napi_env env)
+```
+
+**Description**
+
+Stops the underlying event loop.
+
+**Parameters**
+
+- **env**: environment, in which the API is invoked.
+
+**Return value**
+
+Returns **napi_ok** if the operation is successful.
+
+### napi_load_module_with_info
+
+```cpp
+napi_status napi_load_module_with_info(napi_env env,
+                                       const char* path,
+                                       const char* module_info,
+                                       napi_value* result)
+```
+
+**Description**
+
+Loads an .abc file as a module. This API returns the namespace of the module. It can be used in the newly created ArkTS runtime environment.
+
+**Parameters**
+
+- **env**: environment, in which the API is invoked.
+
+- **path**: path of the module to load.
+
+- **module_info**: module information. The value is a string containing module information. The module information contains detailed module information, such as the version, author, and related description.
+
+- **result**: pointer to **napi_value**, which holds the module loading result.
+
+**Return value**
+
+Returns **napi_ok** if the operation is successful.
+
+### napi_serialize
+
+```cpp
+napi_status napi_serialize(napi_env env,
+                           napi_value object,
+                           napi_value transfer_list,
+                           napi_value clone_list,
+                           void** result)
+```
+
+**Description**
+
+Converts an ArkTS object into native data.
+
+**Parameters**
+
+- **env**: environment, in which the API is invoked.
+
+- **object**: JS object to be serialized.
+
+- **transfer_list**: list of JS objects to be passed during serialization.
+
+- **clone_list**: list of JS objects to be cloned during serialization.
+
+- **result**: pointer to the serialization result. After the call is complete, the pointer to the native data converted is stored in this position.
+
+**Return value**
+
+Returns **napi_ok** if the operation is successful.
+
+### napi_deserialize
+
+```cpp
+napi_status napi_deserialize(napi_env env, void* buffer, napi_value* object)
+```
+
+**Description**
+
+Converts native data into an ArkTS object.
+
+**Parameters**
+
+- **env**: environment, in which the API is invoked.
+
+- **buffer**: pointer to the binary data, which needs to be deserialized into a JS object.
+
+- **object**: pointer to the deserialized JS object.
+
+**Return value**
+
+Returns **napi_ok** if the operation is successful.
+
+### napi_delete_serialization_data
+
+```cpp
+napi_status napi_delete_serialization_data(napi_env env, void* buffer)
+```
+
+**Description**
+
+Deletes serialized data.
+
+**Parameters**
+
+- **env**: environment, in which the API is invoked.
+
+- **buffer**: pointer to the buffer that contains the serialized data to delete. If the serialized data is not longer required, you can use this API to delete the data and release the memory occupied.
+
+**Return value**
+
+Returns **napi_ok** if the operation is successful.
+
+### napi_call_threadsafe_function_with_priority
+
+```cpp
+napi_status napi_call_threadsafe_function_with_priority(napi_threadsafe_function func,
+                                                        void *data,
+                                                        napi_task_priority priority,
+                                                        bool isTail)
+```
+
+**Description**
+
+Calls a task with the specified priority and enqueuing mode into an ArkTS thread.
+
+**Parameters**
+
+- **func**: thread-safe function object, which is returned when a thread-safe function is created.
+
+- **data**: pointer to the data to be passed to the JS callback function.
+
+- **priority**: priority of the task that calls the JS callback function.
+
+- **isTail**: whether the task is added to the tail of the task queue. If the value is **true**, the task will be added to the tail of the event loop. If it is **false**, the task will be executed immediately.
+
+**Return value**
+
+Returns **napi_ok** if the operation is successful.

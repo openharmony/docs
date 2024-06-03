@@ -93,16 +93,18 @@ PageTransitionExit(value: PageTransitionOptions)
 
 ## SlideEffect枚举说明
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
-
-| 名称   | 描述                                               |
-| ------ | -------------------------------------------------- |
-| Left   | 设置到入场时表示从左边滑入，出场时表示滑出到左边。 |
-| Right  | 设置到入场时表示从右边滑入，出场时表示滑出到右边。 |
-| Top    | 设置到入场时表示从上边滑入，出场时表示滑出到上边。 |
-| Bottom | 设置到入场时表示从下边滑入，出场时表示滑出到下边。 |
+| 名称                | 描述                                                         |
+| ------------------- | ------------------------------------------------------------ |
+| Left                | 设置到入场时表示从左边滑入，出场时表示滑出到左边。<br />**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| Right               | 设置到入场时表示从右边滑入，出场时表示滑出到右边。<br />**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| Top                 | 设置到入场时表示从上边滑入，出场时表示滑出到上边。<br />**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| Bottom              | 设置到入场时表示从下边滑入，出场时表示滑出到下边。<br />**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| START<sup>12+</sup> | 设置LTR入场时表示从左边滑入，出场时表示滑出到左边。RTL入场时表示从右边滑入，出场时表示滑出到右边。<br />**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| END<sup>12+</sup>   | 设置LTR入场时表示从右边滑入，出场时表示滑出到右边。RTL入场时表示从左边滑入，出场时表示滑出到左边。<br />**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
 
 ## 示例
+
+### 示例1
 
 自定义方式1：通过不同的退入场类型配置不同的退场，入场动画。
 
@@ -247,3 +249,131 @@ struct PageTransitionExample1 {
 ```
 
 ![pageTransition2](figures/pageTransition2.gif)
+
+### 示例2
+
+自定义方式1：配置提供的不同退入场平移效果，将系统语言排版模式改为RTL。
+
+```ts
+// index.ets
+import { router } from '@kit.ArkUI'
+
+@Entry
+@Component
+struct PageTransitionExample {
+  @State scale1: number = 1
+  @State opacity1: number = 1
+
+  build() {
+    Column() {
+      Button("页面1").onClick(()=>{
+        router.pushUrl({
+          url:"pages/page1"
+        })
+      })
+        .width(200)
+        .height(60)
+        .fontSize(36)
+    }.scale({ x: this.scale1 }).opacity(this.opacity1).height("100%").width("100%").justifyContent(FlexAlign.Center)
+  }
+}
+
+  // 自定义方式2：使用系统提供的多种默认效果(平移、缩放、透明度等)
+  pageTransition() {
+    //设置入场动效
+    PageTransitionEnter({ duration: 200 })
+      .slide(SlideEffect.START)
+    //设置退场动效
+    PageTransitionExit({ delay: 100 })
+      .slide(SlideEffect.START) //Left
+  }
+}
+
+// page1.ets
+import { router } from '@kit.ArkUI'
+
+@Entry
+@Component
+struct PageTransitionExample {
+  @State scale1: number = 1
+  @State opacity1: number = 1
+
+  build() {
+    Column() {
+      Button("页面2").onClick(()=>{
+        router.pushUrl({
+          url:"pages/Index"
+        })
+      })
+        .width(200)
+        .height(60)
+        .fontSize(36)
+    }.scale({ x: this.scale1 }).opacity(this.opacity1).height("100%").width("100%").justifyContent(FlexAlign.Center)
+  }
+}
+
+  // 自定义方式2：使用系统提供的多种默认效果(平移、缩放、透明度等)
+  pageTransition() {
+    PageTransitionEnter({ duration: 200 })
+      .slide(SlideEffect.END) //Right
+    PageTransitionExit({ delay:100 })
+      .slide(SlideEffect.END) //Right
+  }
+}
+
+```
+
+![pageTransition1](figures/pageRTL.gif)
+
+自定义方式2：使用系统默认的退入场效果，将系统语言排版模式改为RTL。
+
+```ts
+// index.ets
+import { router } from '@kit.ArkUI'
+
+@Entry
+@Component
+struct PageTransitionExample {
+  @State scale1: number = 1
+  @State opacity1: number = 1
+
+  build() {
+    Column() {
+      Button("页面1").onClick(()=>{
+        router.pushUrl({
+          url:"pages/page1"
+        })
+      })
+        .width(200)
+        .height(60)
+        .fontSize(36)
+    }.scale({ x: this.scale1 }).opacity(this.opacity1).height("100%").width("100%").justifyContent(FlexAlign.Center)
+  }
+}
+
+// page1.ets
+import { router } from '@kit.ArkUI'
+
+@Entry
+@Component
+struct PageTransitionExample {
+  @State scale1: number = 1
+  @State opacity1: number = 1
+
+  build() {
+    Column() {
+      Button("页面2").onClick(()=>{
+        router.pushUrl({
+          url:"pages/Index"
+        })
+      })
+        .width(200)
+        .height(60)
+        .fontSize(36)
+    }.scale({ x: this.scale1 }).opacity(this.opacity1).height("100%").width("100%").justifyContent(FlexAlign.Center)
+  }
+}
+
+```
+
+![pageTransition1](figures/pageRTL2.gif)

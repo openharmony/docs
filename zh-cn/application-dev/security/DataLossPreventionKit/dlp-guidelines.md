@@ -50,7 +50,7 @@ DLP是系统提供的系统级的数据防泄漏解决方案，提供一种称�
 1. 引入[dlpPermission](../../reference/apis-data-loss-prevention-kit/js-apis-dlppermission.md)模块。
 
    ```ts
-   import dlpPermission from '@ohos.dlpPermission';
+   import { dlpPermission } from '@kit.DataLossPreventionKit';
    ```
 
 2. 打开DLP文件，系统会自动安装应用的DLP沙箱分身应用。以下代码应在应用页Ability中使用。
@@ -132,19 +132,19 @@ DLP是系统提供的系统级的数据防泄漏解决方案，提供一种称�
 6. 判断当前打开文件是否是DLP文件。
 
    ```ts
-   import dlpPermission from '@ohos.dlpPermission';
-   import fs from '@ohos.file.fs';
-   import { BusinessError } from '@ohos.base';
+   import { dlpPermission } from '@kit.DataLossPreventionKit';
+   import { fileIo } from '@kit.CoreFileKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
 
    let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
-   let file = fs.openSync(uri);
+   let file = fileIo.openSync(uri);
    try {
      let res = dlpPermission.isDLPFile(file.fd); // 是否加密DLP文件
      console.info('res', res);
    } catch (err) {
      console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
    }
-   fs.closeSync(file);
+   fileIo.closeSync(file);
    ```
 
 7. 订阅、取消订阅DLP打开事件。
@@ -241,12 +241,9 @@ DLP是系统提供的系统级的数据防泄漏解决方案，提供一种称�
 13. 以无边框形式打开DLP权限管理应用。此方法只能在UIAbility上下文中调用，只支持Stage模式。
 
     ```ts
-    import dlpPermission from '@ohos.dlpPermission';
-    import common from '@ohos.app.ability.common';
-    import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-    import UIAbility from '@ohos.app.ability.UIAbility'
-    import Want from '@ohos.app.ability.Want';
-    import { BusinessError } from '@ohos.base';
+    import { dlpPermission } from '@kit.DataLossPreventionKit';
+    import { common, UIAbility, AbilityConstant, Want } from '@kit.AbilityKit';
+    import { BusinessError } from '@kit.BasicServicesKit';
 
     try {
       let context = getContext() as common.UIAbilityContext; // 获取当前UIAbilityContext
@@ -267,14 +264,12 @@ DLP是系统提供的系统级的数据防泄漏解决方案，提供一种称�
 
 14. 查询当前系统是否提供DLP特性。
     ```ts
-    import dlpPermission from '@ohos.dlpPermission';
-    import { BusinessError } from '@ohos.base';
+    import { dlpPermission } from '@kit.DataLossPreventionKit';
+    import { BusinessError } from '@kit.BasicServicesKit';
 
-    async checkIsDLPFeatureProvided() {
-      dlpPermission.isDLPFeatureProvided().then((res) => {
-        console.info('res', JSON.stringify(res));
-      }).catch((err: BusinessError) => {
-        console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
-      });
-    }
+    dlpPermission.isDLPFeatureProvided().then((res) => {
+      console.info('res', JSON.stringify(res));
+    }).catch((err: BusinessError) => {
+      console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
+    });
     ```

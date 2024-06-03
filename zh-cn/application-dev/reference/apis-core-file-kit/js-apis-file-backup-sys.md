@@ -607,7 +607,7 @@ getBackupInfo(bundleToBackup: string): string;
 
   function getBackupInfo() {
     try {
-      let backupApp = "com.example.hiworld"；
+      let backupApp = "com.example.hiworld";
       let result = backup.getBackupInfo(backupApp);
       console.info('getBackupInfo success， result: ' + result);
     } catch (error) {
@@ -654,7 +654,7 @@ updateTimer(bundleName: string, timeout: number): void;
   import { BusinessError } from '@ohos.base';
   import backup form '@ohos.file.backup';
 
-  updateTimer() {
+  function updateTimer() {
     try {
       let timeout = 30000;
       let bundleName = "com.example.hiworld";
@@ -706,14 +706,14 @@ constructor(callbacks: GeneralCallbacks);
       console.info('onFileReady success');
       fs.closeSync(file.fd);
     },
-    onBundleBegin: (err: BusinessError<string>, bundleName: string) => {
+    onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
       if (err) {
         console.error('onBundleBegin failed with err.code: ' + JSON.stringify(err.code) + err.data);
         return;
       }
       console.info('onBundleBegin success');
     },
-    onBundleEnd: (err: BusinessError<string>, bundleName: string) => {
+    onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
       if (err) {
         console.error('onBundleBegin failed with err.code: ' + JSON.stringify(err.code) + err.data);
         return;
@@ -729,7 +729,14 @@ constructor(callbacks: GeneralCallbacks);
     },
     onBackupServiceDied: () => {
       console.info('service died');
-    }
+    },
+    onResultReport: (err: BusinessError, result: string) => {
+      if (err) {
+        console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
+        return;
+      }
+      console.info('onResultReport success, result: ' + result);
+  }
   };
   let sessionBackup = new backup.SessionBackup(generalCallbacks); // 创建备份流程
   ```
@@ -780,14 +787,14 @@ appendBundles(bundlesToBackup: string[], callback: AsyncCallback&lt;void&gt;): v
       console.info('onFileReady success');
       fs.closeSync(file.fd);
     },
-    onBundleBegin: (err: BusinessError<string>, bundleName: string) => {
+    onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
       if (err) {
         console.error('onBundleBegin failed with err.code: ' + JSON.stringify(err.code) + err.data);
         return;
       }
       console.info('onBundleBegin success');
     },
-    onBundleEnd: (err: BusinessError<string>, bundleName: string) => {
+    onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
       if (err) {
         console.error('onBundleBegin failed with err.code: ' + JSON.stringify(err.code) + err.data);
         return;
@@ -803,6 +810,13 @@ appendBundles(bundlesToBackup: string[], callback: AsyncCallback&lt;void&gt;): v
     },
     onBackupServiceDied: () => {
       console.info('service died');
+    },
+    onResultReport: (err: BusinessError, result: string) => {
+      if (err) {
+        console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
+        return;
+      }
+      console.info('onResultReport success, result: ' + result);
     }
   };
   let sessionBackup = new backup.SessionBackup(generalCallbacks); // 创建备份流程
@@ -825,9 +839,11 @@ appendBundles(bundlesToBackup: string[], callback: AsyncCallback&lt;void&gt;): v
 
 ### appendBundles
 
-appendBundles(bundlesToBackup: string[]): Promise&lt;void&gt;
+appendBundles(bundlesToBackup: string[], infos?: string[]): Promise&lt;void&gt;
 
 添加需要备份的应用。当前整个流程中，在获取SessionBackup类的实例后只能调用一次。使用Promise异步回调。
+
+从API version 12开始, 新增可选参数infos, 可携带备份所需要的信息
 
 **需要权限**：ohos.permission.BACKUP
 
@@ -838,6 +854,7 @@ appendBundles(bundlesToBackup: string[]): Promise&lt;void&gt;
 | 参数名          | 类型     | 必填 | 说明                       |
 | --------------- | -------- | ---- | -------------------------- |
 | bundlesToBackup | string[] | 是   | 需要备份的应用名称的数组。 |
+| infos           | string[] | 否   | 备份所需信息的数组, 需与bundlesToBackup相同索引的内容对应, 从API version 12开始支持。|
 
 **返回值：**
 
@@ -874,14 +891,14 @@ appendBundles(bundlesToBackup: string[]): Promise&lt;void&gt;
       console.info('onFileReady success');
       fs.closeSync(file.fd);
     },
-    onBundleBegin: (err: BusinessError, bundleName: string) => {
+    onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
       if (err) {
         console.error('onBundleBegin failed with err: ' + JSON.stringify(err));
         return;
       }
       console.info('onBundleBegin success');
     },
-    onBundleEnd: (err: BusinessError, bundleName: string) => {
+    onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
       if (err) {
         console.error('onBundleEnd failed with err: ' + JSON.stringify(err));
         return;
@@ -897,6 +914,13 @@ appendBundles(bundlesToBackup: string[]): Promise&lt;void&gt;
     },
     onBackupServiceDied: () => {
       console.info('service died');
+    },
+    onResultReport: (err: BusinessError, result: string) => {
+      if (err) {
+        console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
+        return;
+      }
+      console.info('onResultReport success, result: ' + result);
     }
   };
   let sessionBackup = new backup.SessionBackup(generalCallbacks); // 创建备份流程
@@ -906,6 +930,30 @@ appendBundles(bundlesToBackup: string[]): Promise&lt;void&gt;
         "com.example.hiworld",
       ];
       await sessionBackup.appendBundles(backupApps);
+      console.info('appendBundles success');
+      let infos: Array<string> = [
+        `
+         {
+          "infos":[
+            {
+              "details": [
+                {
+                  "detail": [
+                    {
+                      "source": "com.example.hiworld", // 应用旧系统包名
+                      "target": "com.example.helloworld" // 应用新系统包名
+                    }
+                  ]，
+                  "type": "app_mapping_relation"
+                }
+              ],
+              "type":"unitcast"
+            }
+          ]
+         }
+        `
+      ]
+      await sessionBackup.appendBundles(backupApps, infos);
       console.info('appendBundles success');
     } catch (error) {
     let err: BusinessError = error as BusinessError;
@@ -960,14 +1008,14 @@ release(): Promise&lt;void&gt;
       console.info('onFileReady success');
       fs.closeSync(file.fd);
     },
-    onBundleBegin: (err: BusinessError, bundleName: string) => {
+    onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
       if (err) {
         console.error('onBundleBegin failed with err: ' + JSON.stringify(err));
         return;
       }
       console.info('onBundleBegin success');
     },
-    onBundleEnd: (err: BusinessError, bundleName: string) => {
+    onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
       if (err) {
         console.error('onBundleEnd failed with err: ' + JSON.stringify(err));
         return;
@@ -983,6 +1031,13 @@ release(): Promise&lt;void&gt;
     },
     onBackupServiceDied: () => {
       console.info('service died');
+    },
+    onResultReport: (err: BusinessError, result: string) => {
+      if (err) {
+        console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
+        return;
+      }
+      console.info('onResultReport success, result: ' + result);
     }
   };
   let sessionBackup = new backup.SessionBackup(generalCallbacks); // 创建备份流程
@@ -1032,14 +1087,14 @@ constructor(callbacks: GeneralCallbacks);
       console.info('onFileReady success');
       fs.closeSync(file.fd);
     },
-    onBundleBegin: (err: BusinessError, bundleName: string) => {
+    onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
       if (err) {
         console.error('onBundleBegin failed with err: ' + JSON.stringify(err));
         return;
       }
       console.info('onBundleBegin success');
     },
-    onBundleEnd: (err: BusinessError, bundleName: string) => {
+    onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
       if (err) {
         console.error('onBundleEnd failed with err: ' + JSON.stringify(err));
         return;
@@ -1119,14 +1174,14 @@ appendBundles(remoteCapabilitiesFd: number, bundlesToBackup: string[], callback:
       console.info('onFileReady success');
       fs.closeSync(file.fd);
     },
-    onBundleBegin: (err: BusinessError, bundleName: string) => {
+    onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
       if (err) {
         console.error('onBundleBegin failed with err: ' + JSON.stringify(err));
         return;
       }
       console.info('onBundleBegin success');
     },
-    onBundleEnd: (err: BusinessError, bundleName: string) => {
+    onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
       if (err) {
         console.error('onBundleEnd failed with err: ' + JSON.stringify(err));
         return;
@@ -1235,14 +1290,14 @@ appendBundles(remoteCapabilitiesFd: number, bundlesToBackup: string[], infos?: s
       console.info('onFileReady success');
       fs.closeSync(file.fd);
     },
-    onBundleBegin: (err: BusinessError, bundleName: string) => {
+    onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
       if (err) {
         console.error('onBundleBegin failed with err: ' + JSON.stringify(err));
         return;
       }
       console.info('onBundleBegin success');
     },
-    onBundleEnd: (err: BusinessError, bundleName: string) => {
+    onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
       if (err) {
         console.error('onBundleEnd failed with err: ' + JSON.stringify(err));
         return;
@@ -1360,14 +1415,14 @@ getFileHandle(fileMeta: FileMeta, callback: AsyncCallback&lt;void&gt;): void
       console.info('onFileReady success');
       fs.closeSync(file.fd);
     },
-    onBundleBegin: (err: BusinessError, bundleName: string) => {
+    onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
       if (err) {
         console.error('onBundleBegin failed with err: ' + JSON.stringify(err));
         return;
       }
       console.info('onBundleBegin success');
     },
-    onBundleEnd: (err: BusinessError, bundleName: string) => {
+    onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
       if (err) {
         console.error('onBundleEnd failed with err: ' + JSON.stringify(err));
         return;
@@ -1460,14 +1515,14 @@ getFileHandle(fileMeta: FileMeta): Promise&lt;void&gt;
       console.info('onFileReady success');
       fs.closeSync(file.fd);
     },
-    onBundleBegin: (err: BusinessError, bundleName: string) => {
+    onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
       if (err) {
         console.error('onBundleBegin failed with err: ' + JSON.stringify(err));
         return;
       }
       console.info('onBundleBegin success');
     },
-    onBundleEnd: (err: BusinessError, bundleName: string) => {
+    onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
       if (err) {
         console.error('onBundleEnd failed with err: ' + JSON.stringify(err));
         return;
@@ -1518,7 +1573,7 @@ publishFile(fileMeta: FileMeta, callback: AsyncCallback&lt;void&gt;): void
 >
 > - 这个接口是零拷贝特性（减少不必要的内存拷贝，实现了更高效率的传输）的一部分。零拷贝方法可参考由[@ohos.file.fs](js-apis-file-fs.md)提供的[fs.copyFile](js-apis-file-fs.md#fscopyfile)等相关零拷贝接口。
 > - 服务端通过onFileReady返回文件句柄后，客户端可通过零拷贝操作将其对应的文件内容拷贝到服务端提供的文件句柄中。
-> - 在完成拷贝操作后可使用publishFile通知备份服务文件已经准备完成。
+> - 在完成每个包所有文件拷贝操作后可使用publishFile通知备份服务文件已经准备完成。
 
 **需要权限**：ohos.permission.BACKUP
 
@@ -1549,6 +1604,12 @@ publishFile(fileMeta: FileMeta, callback: AsyncCallback&lt;void&gt;): void
   import { BusinessError } from '@ohos.base';
 
   let g_session: backup.SessionRestore;
+  let initMap = new Map<string, number>();
+  let testFileNum = 123; // 123: 初始化文件个数
+  let testBundleName = 'com.example.myapplication'; // 测试包名
+  initMap.set(testBundleName, testFileNum);
+  let countMap = new Map<string, number>();
+  countMap.set(testBundleName, 0); // 初始化计数
   function createSessionRestore() {
     let generalCallbacks: backup.GeneralCallbacks = {
       onFileReady: (err: BusinessError, file: backup.File) => {
@@ -1558,26 +1619,29 @@ publishFile(fileMeta: FileMeta, callback: AsyncCallback&lt;void&gt;): void
         }
         console.info('onFileReady success');
         fs.closeSync(file.fd);
-        let fileMeta: backup.FileMeta = {
-          bundleName: file.bundleName,
-          uri: file.uri
-        }
-        g_session.publishFile(fileMeta, (err: BusinessError) => {
-          if (err) {
-            console.error('publishFile failed with err: ' + JSON.stringify(err));
-            return;
+        countMap[file.bundleName]++;
+        if (countMap[file.bundleName] == initMap[file.bundleName]) { // 每个包的所有文件收到后触发publishFile
+          let fileMeta: backup.FileMeta = {
+            bundleName: file.bundleName,
+            uri: ''
           }
-          console.info('publishFile success');
-        });
+          g_session.publishFile(fileMeta, (err: BusinessError) => {
+            if (err) {
+              console.error('publishFile failed with err: ' + JSON.stringify(err));
+              return;
+            }
+            console.info('publishFile success');
+          });
+        }
       },
-      onBundleBegin: (err: BusinessError, bundleName: string) => {
+      onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
         if (err) {
           console.error('onBundleBegin failed with err: ' + JSON.stringify(err));
           return;
         }
         console.info('onBundleBegin success');
       },
-      onBundleEnd: (err: BusinessError, bundleName: string) => {
+      onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
         if (err) {
           console.error('onBundleEnd failed with err: ' + JSON.stringify(err));
           return;
@@ -1618,7 +1682,7 @@ publishFile(fileMeta: FileMeta): Promise&lt;void&gt;
 >
 > - 这个接口是零拷贝特性（减少不必要的内存拷贝，实现了更高效率的传输）的一部分。零拷贝方法可参考由[@ohos.file.fs](js-apis-file-fs.md)提供的[fs.copyFile](js-apis-file-fs.md#fscopyfile)等相关零拷贝接口。
 > - 服务端通过onFileReady返回文件句柄后，客户端可通过零拷贝操作将其对应的文件内容拷贝到服务端提供的文件句柄中。
-> - 在完成拷贝操作后可使用publishFile通知备份服务文件已经准备完成。
+> - 在完成每个包的拷贝操作后可使用publishFile通知备份服务文件已经准备完成。
 
 **需要权限**：ohos.permission.BACKUP
 
@@ -1654,10 +1718,16 @@ publishFile(fileMeta: FileMeta): Promise&lt;void&gt;
   import { BusinessError } from '@ohos.base';
 
   let g_session: backup.SessionRestore;
+  let initMap = new Map<string, number>();
+  let testFileNum = 123; // 123: 初始化文件个数
+  let testBundleName = 'com.example.myapplication'; // 测试包名
+  initMap.set(testBundleName, testFileNum);
+  let countMap = new Map<string, number>();
+  countMap.set(testBundleName, 0); // 初始化计数
   async function publishFile(file: backup.FileMeta) {
     let fileMeta: backup.FileMeta = {
       bundleName: file.bundleName,
-      uri: file.uri
+      uri: ''
     }
     await g_session.publishFile(fileMeta);
   }
@@ -1670,17 +1740,20 @@ publishFile(fileMeta: FileMeta): Promise&lt;void&gt;
         }
         console.info('onFileReady success');
         fs.closeSync(file.fd);
-        publishFile(file);
+        countMap[file.bundleName]++;
+        if (countMap[file.bundleName] == initMap[file.bundleName]) { // 每个包的所有文件收到后触发publishFile
+          publishFile(file);
+        }
         console.info('publishFile success');
       },
-      onBundleBegin: (err: BusinessError, bundleName: string) => {
+      onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
         if (err) {
           console.error('onBundleBegin failed with err: ' + JSON.stringify(err));
           return;
         }
         console.info('onBundleBegin success');
       },
-      onBundleEnd: (err: BusinessError, bundleName: string) => {
+      onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
         if (err) {
           console.error('onBundleEnd failed with err: ' + JSON.stringify(err));
           return;
@@ -1696,7 +1769,7 @@ publishFile(fileMeta: FileMeta): Promise&lt;void&gt;
       },
       onBackupServiceDied: () => {
         console.info('service died');
-      }
+      },
       onResultReport: (err: BusinessError, result: string) => {
         if (err) {
           console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
@@ -1748,6 +1821,12 @@ release(): Promise&lt;void&gt;
   import { BusinessError } from '@ohos.base';
 
   let g_session: backup.SessionRestore;
+  let initMap = new Map<string, number>();
+  let testFileNum = 123; // 123: 初始化文件个数
+  let testBundleName = 'com.example.myapplication'; // 测试包名
+  initMap.set(testBundleName, testFileNum);
+  let countMap = new Map<string, number>();
+  countMap.set(testBundleName, 0); // 初始化计数
   function createSessionRestore() {
     let generalCallbacks: backup.GeneralCallbacks = {
       onFileReady: (err: BusinessError, file: backup.File) => {
@@ -1757,26 +1836,28 @@ release(): Promise&lt;void&gt;
         }
         console.info('onFileReady success');
         fs.closeSync(file.fd);
-        let fileMeta: backup.FileMeta = {
-          bundleName: file.bundleName,
-          uri: file.uri
-        }
-        g_session.publishFile(fileMeta, (err: BusinessError) => {
-          if (err) {
-            console.error('publishFile failed with err: ' + JSON.stringify(err));
-            return;
+        if (countMap[file.bundleName] == initMap[file.bundleName]) { // 每个包的所有文件收到后触发publishFile
+          let fileMeta: backup.FileMeta = {
+            bundleName: file.bundleName,
+            uri: ''
           }
-          console.info('publishFile success');
-        });
+          g_session.publishFile(fileMeta, (err: BusinessError) => {
+            if (err) {
+              console.error('publishFile failed with err: ' + JSON.stringify(err));
+              return;
+            }
+            console.info('publishFile success');
+          });
+        }
       },
-      onBundleBegin: (err: BusinessError<string>, bundleName: string) => {
+      onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
         if (err) {
           console.error('onBundleBegin failed with err.code: ' + JSON.stringify(err.code) + err.data);
           return;
         }
         console.info('onBundleBegin success');
       },
-      onBundleEnd: (err: BusinessError<string>, bundleName: string) => {
+      onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
         if (err) {
           console.error('onBundleBegin failed with err.code: ' + JSON.stringify(err.code) + err.data);
           return;
@@ -1854,14 +1935,14 @@ constructor(callbacks: GeneralCallbacks);
       console.info('onFileReady success');
       fs.closeSync(file.fd);
     },
-    onBundleBegin: (err: BusinessError<string>, bundleName: string) => {
+    onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
       if (err) {
         console.error('onBundleBegin failed with err.code: ' + JSON.stringify(err.code) + err.data);
         return;
       }
       console.info('onBundleBegin success');
     },
-    onBundleEnd: (err: BusinessError<string>, bundleName: string) => {
+    onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
       if (err) {
         console.error('onBundleBegin failed with err.code: ' + JSON.stringify(err.code) + err.data);
         return;
@@ -1877,6 +1958,13 @@ constructor(callbacks: GeneralCallbacks);
     },
     onBackupServiceDied: () => {
       console.info('service died');
+    },
+    onResultReport: (err: BusinessError, result: string) => {
+      if (err) {
+        console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
+        return;
+      }
+      console.info('onResultReport success, result: ' + result);
     }
   };
   let incrementalBackupSession = new backup.IncrementalBackupSession(generalCallbacks); // 创建增量备份流程
@@ -1884,7 +1972,7 @@ constructor(callbacks: GeneralCallbacks);
 
 ### appendBundles<sup>12+</sup>
 
-appendBundles(bundlesToBackup: Array&lt;IncrementalBackupData&gt;): promise&lt;void&gt;
+appendBundles(bundlesToBackup: Array&lt;IncrementalBackupData&gt;): Promise&lt;void&gt;
 
 添加需要增量备份的应用。当前整个流程中，触发Release接口之前都可以进行appendBundles的调用。使用Promise异步回调。
 
@@ -1936,14 +2024,14 @@ appendBundles(bundlesToBackup: Array&lt;IncrementalBackupData&gt;): promise&lt;v
       console.info('onFileReady success');
       fs.closeSync(file.fd);
     },
-    onBundleBegin: (err: BusinessError<string>, bundleName: string) => {
+    onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
       if (err) {
         console.error('onBundleBegin failed with err.code: ' + JSON.stringify(err.code) + err.data);
         return;
       }
       console.info('onBundleBegin success');
     },
-    onBundleEnd: (err: BusinessError<string>, bundleName: string) => {
+    onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
       if (err) {
         console.error('onBundleBegin failed with err.code: ' + JSON.stringify(err.code) + err.data);
         return;
@@ -1959,6 +2047,13 @@ appendBundles(bundlesToBackup: Array&lt;IncrementalBackupData&gt;): promise&lt;v
     },
     onBackupServiceDied: () => {
       console.info('service died');
+    },
+    onResultReport: (err: BusinessError, result: string) => {
+      if (err) {
+        console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
+        return;
+      }
+      console.info('onResultReport success, result: ' + result);
     }
   };
   let incrementalBackupSession = new backup.IncrementalBackupSession(generalCallbacks); // 创建增量备份流程
@@ -2021,14 +2116,14 @@ release(): Promise&lt;void&gt;
       console.info('onFileReady success');
       fs.closeSync(file.fd);
     },
-    onBundleBegin: (err: BusinessError<string>, bundleName: string) => {
+    onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
       if (err) {
         console.error('onBundleBegin failed with err.code: ' + JSON.stringify(err.code) + err.data);
         return;
       }
       console.info('onBundleBegin success');
     },
-    onBundleEnd: (err: BusinessError<string>, bundleName: string) => {
+    onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
       if (err) {
         console.error('onBundleBegin failed with err.code: ' + JSON.stringify(err.code) + err.data);
         return;
@@ -2044,6 +2139,13 @@ release(): Promise&lt;void&gt;
     },
     onBackupServiceDied: () => {
       console.info('service died');
+    },
+    onResultReport: (err: BusinessError, result: string) => {
+      if (err) {
+        console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
+        return;
+      }
+      console.info('onResultReport success, result: ' + result);
     }
   };
   let incrementalBackupSession = new backup.IncrementalBackupSession(generalCallbacks); // 创建增量备份流程

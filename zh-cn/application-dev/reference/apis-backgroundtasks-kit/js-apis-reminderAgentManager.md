@@ -538,8 +538,6 @@ getAllValidReminders(): Promise\<Array\<ReminderInfo>>
 >
 > 当代理提醒类型是闹钟时，若设置每天提醒，无论是否点击关闭/CLOSE按钮，代理提醒都是有效的。
 
-**需要权限**： ohos.permission.PUBLISH_AGENT_REMINDER
-
 **系统能力**： SystemCapability.Notification.ReminderAgent
 
 **返回值**：
@@ -547,6 +545,14 @@ getAllValidReminders(): Promise\<Array\<ReminderInfo>>
 | 类型                                              | 说明                                                         |
 | ------------------------------------------------- | ------------------------------------------------------------ |
 | Promise\<Array\<[ReminderInfo](#reminderinfo12)>> | Promise对象，返回当前应用设置的所有有效（未过期）的代理提醒。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[reminderAgentManager错误码](errorcode-reminderAgentManager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 201      | Permission denied. |
 
 **示例**：
 
@@ -586,16 +592,16 @@ reminderAgentManager.getAllValidReminders().then((reminders: Array<reminderAgent
 
 addExcludeDate(reminderId: number, date: Date): Promise\<void>
 
-为指定id的日历添加不提醒日期，即在设定的日期范围内不提醒。使用Promise异步回调。
+为指定id的重复日历添加不提醒日期，即在设定的日期范围内不提醒。使用Promise异步回调。
 
 **系统能力**： SystemCapability.Notification.ReminderAgent
 
 **参数**：
 
-| 参数名     | 类型   | 必填 | 说明                         |
-| ---------- | ------ | ---- | ---------------------------- |
-| reminderId | number | 是   | 需要添加不提醒日期的日历Id。 |
-| date       | Date   | 是   | 不提醒的日期。               |
+| 参数名     | 类型   | 必填 | 说明                             |
+| ---------- | ------ | ---- | -------------------------------- |
+| reminderId | number | 是   | 需要添加不提醒日期的重复日历Id。 |
+| date       | Date   | 是   | 不提醒的日期。                   |
 
 **返回值**：
 
@@ -607,11 +613,11 @@ addExcludeDate(reminderId: number, date: Date): Promise\<void>
 
 以下错误码的详细介绍请参见[reminderAgentManager错误码](errorcode-reminderAgentManager.md)和[通用错误码](../errorcode-universal.md)。
 
-| 错误码ID | 错误信息                        |
-| -------- | ------------------------------- |
-| 201      | Permission verification failed. |
-| 401      | Parameter error.                |
-| 1700003  | The reminder does not exist.    |
+| 错误码ID | 错误信息                                       |
+| -------- | ---------------------------------------------- |
+| 201      | Permission verification failed.                |
+| 401      | If the input parameter is not valid parameter. |
+| 1700003  | The reminder does not exist.                   |
 
 **示例**：
 
@@ -631,15 +637,15 @@ reminderAgentManager.addExcludeDate(reminderId, date).then(() => {
 
 deleteExcludeDates(reminderId: number): Promise\<void>
 
-删除日历设置的所有不提醒日期，通过Id指定具体日历。使用Promise异步回调。
+删除重复日历设置的所有不提醒日期，通过Id指定具体重复日历。使用Promise异步回调。
 
 **系统能力**： SystemCapability.Notification.ReminderAgent
 
 **参数**：
 
-| 参数名     | 类型   | 必填 | 说明                         |
-| ---------- | ------ | ---- | ---------------------------- |
-| reminderId | number | 是   | 需要删除不提醒日期的日历Id。 |
+| 参数名     | 类型   | 必填 | 说明                             |
+| ---------- | ------ | ---- | -------------------------------- |
+| reminderId | number | 是   | 需要删除不提醒日期的重复日历Id。 |
 
 **返回值**：
 
@@ -654,7 +660,6 @@ deleteExcludeDates(reminderId: number): Promise\<void>
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------- |
 | 201      | Permission verification failed. |
-| 401      | Parameter error.                |
 | 1700003  | The reminder does not exist.    |
 
 **示例**：
@@ -674,15 +679,15 @@ reminderAgentManager.deleteExcludeDates(reminderId).then(() => {
 
 getExcludeDates(reminderId: number): Promise\<Array\<Date>>
 
-查询日历设置的所有不提醒日期，通过Id指定具体日历。使用Promise异步回调。
+查询重复日历设置的所有不提醒日期，通过Id指定具体重复日历。使用Promise异步回调。
 
 **系统能力**： SystemCapability.Notification.ReminderAgent
 
 **参数**：
 
-| 参数名     | 类型   | 必填 | 说明                         |
-| ---------- | ------ | ---- | ---------------------------- |
-| reminderId | number | 是   | 需要查询不提醒日期的日历Id。 |
+| 参数名     | 类型   | 必填 | 说明                             |
+| ---------- | ------ | ---- | -------------------------------- |
+| reminderId | number | 是   | 需要查询不提醒日期的重复日历Id。 |
 
 **返回值**：
 
@@ -697,7 +702,6 @@ getExcludeDates(reminderId: number): Promise\<Array\<Date>>
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------- |
 | 201      | Permission verification failed. |
-| 401      | Parameter error.                |
 | 1700003  | The reminder does not exist.    |
 
 **示例**：
@@ -875,6 +879,6 @@ ReminderRequestTimer extends ReminderRequest
 
 | 名称        | 类型                                | 必填 | 说明                  |
 | ----------- | ----------------------------------- | ---- | --------------------- |
-| reminderId  | number                              | 否   | 发布提醒后返回的 Id。 |
-| reminderReq | [ReminderRequest](#reminderrequest) | 否   | 代理提醒对象。        |
+| reminderId  | number                              | N/A  | 发布提醒后返回的 Id。 |
+| reminderReq | [ReminderRequest](#reminderrequest) | N/A  | 代理提醒对象。        |
 

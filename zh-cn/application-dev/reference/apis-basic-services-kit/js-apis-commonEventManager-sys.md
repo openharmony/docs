@@ -40,10 +40,12 @@ publishAsUser(event: string, userId: number, callback: AsyncCallback\<void>): vo
 
 **错误码：**
 
-错误码介绍请参考[@ohos.commonEventManager(事件)](./errorcode-CommonEventService.md)
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[事件错误码](./errorcode-CommonEventService.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 202      | not system app.                     |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |  
 | 1500004  | not System services.                |
 | 1500007  | error sending message to Common Event Service. |
 | 1500008  | Common Event Service does not complete initialization. |
@@ -96,10 +98,12 @@ publishAsUser(event: string, userId: number, options: CommonEventPublishData, ca
 
 **错误码：**
 
-错误码介绍请参考[@ohos.commonEventManager(事件)](./errorcode-CommonEventService.md)
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[事件错误码](./errorcode-CommonEventService.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 202      | not system app.                     |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |  
 | 1500004  | not System services or System app.                |
 | 1500007  | error sending message to Common Event Service. |
 | 1500008  | Common Event Service does not complete initialization. |
@@ -159,10 +163,13 @@ removeStickyCommonEvent(event: string, callback: AsyncCallback\<void>): void
 
 **错误码：**
 
-错误码介绍请参考[@ohos.commonEventManager(事件)](./errorcode-CommonEventService.md)
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[事件错误码](./errorcode-CommonEventService.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                     |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |   
 | 1500004  | not system service.                 |
 | 1500007  | error sending message to Common Event Service.             |
 | 1500008  | Common Event Service does not complete initialization.     |
@@ -175,10 +182,10 @@ import Base from '@ohos.base';
 
 CommonEventManager.removeStickyCommonEvent("sticky_event", (err:Base.BusinessError) => {
     if (err) {
-        console.info(`Remove sticky event AsyncCallback failed, errCode: ${err.code}, errMes: ${err.message}`);
+        console.info(`removeStickyCommonEvent failed, errCode: ${err.code}, errMes: ${err.message}`);
         return;
     }
-    console.info(`Remove sticky event AsyncCallback success`);
+    console.info(`removeStickyCommonEvent success`);
 });
 ```
 
@@ -208,10 +215,13 @@ removeStickyCommonEvent(event: string): Promise\<void>
 
 **错误码：**
 
-错误码介绍请参考[@ohos.commonEventManager(事件)](./errorcode-CommonEventService.md)
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[事件错误码](./errorcode-CommonEventService.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201      | The application dose not have permission to call the interface.     |  
+| 202      | not system app.                     |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1500004  | not system service.                 |
 | 1500007  | error sending message to Common Event Service.             |
 | 1500008  | Common Event Service does not complete initialization.     |
@@ -223,9 +233,9 @@ removeStickyCommonEvent(event: string): Promise\<void>
 import Base from '@ohos.base';
 
 CommonEventManager.removeStickyCommonEvent("sticky_event").then(() => {
-    console.info(`Remove sticky event AsyncCallback success`);
+    console.info(`removeStickyCommonEvent success`);
 }).catch ((err:Base.BusinessError) => {
-    console.info(`Remove sticky event AsyncCallback failed, errCode: ${err.code}, errMes: ${err.message}`);
+    console.info(`removeStickyCommonEvent failed, errCode: ${err.code}, errMes: ${err.message}`);
 });
 ```
 
@@ -250,10 +260,12 @@ setStaticSubscriberState(enable: boolean, callback: AsyncCallback\<void>): void;
 
 **错误码：**
 
-错误码介绍请参考[@ohos.commonEventManager(事件)](./errorcode-CommonEventService.md)
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[事件错误码](./errorcode-CommonEventService.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 202      | not system app.                     |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1500007  | error sending message to Common Event Service.             |
 | 1500008  | Common Event Service does not complete initialization.     |
 
@@ -265,14 +277,14 @@ import Base from '@ohos.base';
 
 CommonEventManager.setStaticSubscriberState(true, (err:Base.BusinessError) => {
     if (!err) {
-        console.info(`Set static subscriber state callback failed, err is null.`);
+        console.info(`setStaticSubscriberState failed, err is null.`);
         return;
     }
     if (err.code !== undefined && err.code != null) {
-        console.info(`Set static subscriber state callback failed, errCode: ${err.code}, errMes: ${err.message}`);
+        console.info(`setStaticSubscriberState failed, errCode: ${err.code}, errMes: ${err.message}`);
         return;
     }
-    console.info(`Set static subscriber state callback success`);
+    console.info(`setStaticSubscriberState success`);
 });
 ```
 
@@ -302,10 +314,12 @@ setStaticSubscriberState(enable: boolean): Promise\<void>;
 
 **错误码：**
 
-错误码介绍请参考[@ohos.commonEventManager(事件)](./errorcode-CommonEventService.md)
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[事件错误码](./errorcode-CommonEventService.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 202      | not system app.                     |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1500007  | error sending message to Common Event Service.             |
 | 1500008  | Common Event Service does not complete initialization.     |
 
@@ -316,9 +330,9 @@ setStaticSubscriberState(enable: boolean): Promise\<void>;
 import Base from '@ohos.base';
 
 CommonEventManager.setStaticSubscriberState(false).then(() => {
-    console.info(`Set static subscriber state promise success`);
+    console.info(`setStaticSubscriberState success`);
 }).catch ((err:Base.BusinessError) => {
-    console.info(`Set static subscriber state promise failed, errCode: ${err.code}, errMes: ${err.message}`);
+    console.info(`setStaticSubscriberState failed, errCode: ${err.code}, errMes: ${err.message}`);
 });
 ```
 
@@ -349,10 +363,12 @@ setStaticSubscriberState(enable: boolean, events?: Array<string>): Promise<void>
 
 **错误码：**
 
-错误码介绍请参考[@ohos.commonEventManager(事件)](./errorcode-CommonEventService.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[事件错误码](./errorcode-CommonEventService.md)。。
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
+| 202      | not system app.                     |  
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1500007  | error sending message to Common Event Service.         |
 | 1500008  | Common Event Service does not complete initialization. |
 
@@ -372,10 +388,10 @@ CommonEventManager.setStaticSubscriberState(true, evenName).then(() => {
       duration: 2000,
     });
   } catch (error) {
-    console.error(`showToast args error code is ${error.code}, message is ${error.message}`);
+    console.error(`showToast error code is ${error.code}, message is ${error.message}`);
   }
-  console.info(`Set static subscriber state success, state is ${true}`);
+  console.info(`setStaticSubscriberState success, state is ${true}`);
 }).catch((err: Base.BusinessError) => {
-  console.info(`Set static subscriber state failed, errCode: ${err.code}, errMes: ${err.message}`);
+  console.info(`setStaticSubscriberState failed, errCode: ${err.code}, errMes: ${err.message}`);
 });
 ```

@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```ts
-import pasteboard from '@ohos.pasteboard';
+import { pasteboard } from '@kit.BasicServicesKit';
 ```
 
 ## 常量
@@ -225,7 +225,7 @@ createWantData(want: Want): PasteData
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 
 let object: Want = {
     bundleName: "com.example.aafwk.test",
@@ -347,7 +347,7 @@ createWantRecord(want: Want): PasteDataRecord
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 
 let object: Want = {
     bundleName: "com.example.aafwk.test",
@@ -505,7 +505,7 @@ convertToText(callback: AsyncCallback&lt;string&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let record: pasteboard.PasteDataRecord = pasteboard.createUriRecord('dataability:///com.example.myapplication1/user.txt');
 record.convertToText((err: BusinessError, data: string) => {
@@ -537,7 +537,7 @@ convertToText(): Promise&lt;string&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let record: pasteboard.PasteDataRecord = pasteboard.createUriRecord('dataability:///com.example.myapplication1/user.txt');
 record.convertToText().then((data: string) => {
@@ -621,7 +621,7 @@ getPrimaryWant(): Want
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 
 let object: Want = {
     bundleName: "com.example.aafwk.test",
@@ -673,7 +673,7 @@ getPrimaryPixelMap(): image.PixelMap
 **示例：**
 
 ```ts
-import image from '@ohos.multimedia.image';
+import { image } from '@kit.ImageKit';
 
 let buffer = new ArrayBuffer(128);
 let realSize: image.Size = { height: 3, width: 5 };
@@ -1133,7 +1133,7 @@ addWantRecord(want: Want): void
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 
 let pasteData: pasteboard.PasteData = pasteboard.createPlainTextData('hello');
 let object: Want = {
@@ -1468,7 +1468,7 @@ clearData(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 systemPasteboard.clearData().then((data: void) => {
@@ -1554,7 +1554,7 @@ setData(data: PasteData): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let pasteData: pasteboard.PasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_PLAIN, 'content');
 let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
@@ -1595,7 +1595,7 @@ getData( callback: AsyncCallback&lt;PasteData&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 systemPasteboard.getData((err: BusinessError, pasteData: pasteboard.PasteData) => {
@@ -1637,7 +1637,7 @@ getData(): Promise&lt;PasteData&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 systemPasteboard.getData().then((pasteData: pasteboard.PasteData) => {
@@ -1674,7 +1674,7 @@ hasData(callback:  AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 systemPasteboard.hasData((err: BusinessError, data: boolean) => {
@@ -1705,7 +1705,7 @@ hasData(): Promise&lt;boolean&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 systemPasteboard.hasData().then((data: boolean) => {
@@ -1773,7 +1773,7 @@ clear(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 systemPasteboard.clear().then((data) => {
@@ -1811,7 +1811,7 @@ getPasteData( callback: AsyncCallback&lt;PasteData&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 systemPasteboard.getPasteData((err: BusinessError, pasteData: pasteboard.PasteData) => {
@@ -1843,7 +1843,7 @@ getPasteData(): Promise&lt;PasteData&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 systemPasteboard.getPasteData().then((pasteData: pasteboard.PasteData) => {
@@ -1881,7 +1881,7 @@ hasPasteData(callback:  AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 systemPasteboard.hasPasteData((err: BusinessError, data: boolean) => {
@@ -1913,7 +1913,7 @@ hasPasteData(): Promise&lt;boolean&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 systemPasteboard.hasPasteData().then((data: boolean) => {
@@ -1988,7 +1988,7 @@ setPasteData(data: PasteData): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let pasteData: pasteboard.PasteData = pasteboard.createPlainTextData('content');
 let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
@@ -2254,4 +2254,190 @@ try {
 } catch (err) {
     console.error('Failed to check the PasteData. Cause:' + err.message);
 };    
+```
+
+### getUnifiedData<sup>12+</sup>
+
+getUnifiedData(): Promise&lt;unifiedDataChannel.UnifiedData&gt;
+
+读取系统剪贴板内容，使用Promise异步回调。
+
+**需要权限**：ohos.permission.READ_PASTEBOARD
+
+**系统能力：** SystemCapability.MiscServices.Pasteboard
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;[unifiedDataChannel.UnifiedData](../apis-arkdata/js-apis-data-unifiedDataChannel.md#unifieddata)&gt; | Promise对象，返回系统剪贴板数据。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[剪贴板错误码](errorcode-pasteboard.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 201      | Permission denied. |
+| 12900003 | Another copy or paste is in progress. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { unifiedDataChannel } from '@kit.ArkData';
+import { uniformTypeDescriptor } from '@kit.ArkData';
+
+let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+systemPasteboard.getUnifiedData().then((data) => {
+    let records: Array<unifiedDataChannel.UnifiedRecord> = data.getRecords();
+    for (let j = 0; j < records.length; j++) {
+        if (records[j].getType() === uniformTypeDescriptor.UniformDataType.PLAIN_TEXT) {
+            let text = records[j] as unifiedDataChannel.PlainText;
+            console.info(`${j + 1}.${text.textContent}`);
+        }
+    }
+}).catch((err: BusinessError) => {
+    console.error('Failed to get UnifiedData. Cause: ' + err.message);
+});
+```
+
+### getUnifiedDataSync<sup>12+</sup>
+
+getUnifiedDataSync(): unifiedDataChannel.UnifiedData
+
+读取系统剪贴板内容, 此接口为同步接口。
+
+**需要权限**：ohos.permission.READ_PASTEBOARD
+
+**系统能力：** SystemCapability.MiscServices.Pasteboard
+
+**返回值：**
+
+| 类型                 | 说明                 |
+| -------------------- | -------------------- |
+| [unifiedDataChannel.UnifiedData](../apis-arkdata/js-apis-data-unifiedDataChannel.md#unifieddata) | 返回系统剪贴板数据。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[剪贴板错误码](errorcode-pasteboard.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 201      | Permission denied. |
+| 12900005 | Request time out. |
+
+**示例：**
+
+```ts
+import { unifiedDataChannel } from '@kit.ArkData';
+
+let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+try {
+    let result: unifiedDataChannel.UnifiedData = systemPasteboard.getUnifiedDataSync();
+    console.info('Succeeded in getting UnifiedData.');
+} catch (err) {
+    console.error('Failed to get UnifiedData. Cause:' + err.message);
+};   
+```
+
+### setUnifiedData<sup>12+</sup>
+
+setUnifiedData(data: unifiedDataChannel.UnifiedData): Promise&lt;void&gt;
+
+将数据写入系统剪贴板，使用Promise异步回调。
+
+**系统能力：** SystemCapability.MiscServices.Pasteboard
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| data | [unifiedDataChannel.UnifiedData](../apis-arkdata/js-apis-data-unifiedDataChannel.md#unifieddata) | 是 | 	需要写入剪贴板中的数据。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[剪贴板错误码](errorcode-pasteboard.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 12900003 | Another copy or paste is in progress. |
+| 12900004 | Replication is prohibited. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { unifiedDataChannel } from '@kit.ArkData';
+
+let plainTextData = new unifiedDataChannel.UnifiedData();
+let plainText = new unifiedDataChannel.PlainText();
+plainText.details = {
+    Key: 'delayPlaintext',
+    Value: 'delayPlaintext',
+};
+plainText.textContent = 'delayTextContent';
+plainText.abstract = 'delayTextContent';
+plainTextData.addRecord(plainText);
+
+let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+systemPasteboard.setUnifiedData(plainTextData).then((data: void) => {
+    console.info('Succeeded in setting UnifiedData.');
+}).catch((err: BusinessError) => {
+    console.error('Failed to set UnifiedData. Cause: ' + err.message);
+});
+```
+
+### setUnifiedDataSync<sup>12+</sup>
+
+setUnifiedDataSync(data: unifiedDataChannel.UnifiedData): void
+
+将数据写入系统剪贴板, 此接口为同步接口。
+
+**系统能力：** SystemCapability.MiscServices.Pasteboard
+
+**参数：**
+
+| 参数名 | 类型        | 必填 | 说明             |
+| ------ | ----------- | ---- | ---------------- |
+| data   | [unifiedDataChannel.UnifiedData](../apis-arkdata/js-apis-data-unifiedDataChannel.md#unifieddata) | 是   | 需要写入剪贴板中的数据。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[剪贴板错误码](errorcode-pasteboard.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 12900005 | Request time out. |
+
+**示例：**
+
+```ts
+import { unifiedDataChannel } from '@kit.ArkData';
+
+let plainTextData = new unifiedDataChannel.UnifiedData();
+let plainText = new unifiedDataChannel.PlainText();
+plainText.details = {
+    Key: 'delayPlaintext',
+    Value: 'delayPlaintext',
+};
+plainText.textContent = 'delayTextContent';
+plainText.abstract = 'delayTextContent';
+plainTextData.addRecord(plainText);
+
+let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+try {
+    systemPasteboard.setUnifiedDataSync(plainTextData);
+    console.info('Succeeded in setting UnifiedData.');
+} catch (err) {
+    console.error('Failed to set UnifiedData. Cause:' + err.message);
+};  
 ```

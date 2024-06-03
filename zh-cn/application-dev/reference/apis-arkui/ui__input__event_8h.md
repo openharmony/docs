@@ -21,18 +21,20 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| typedef struct [ArkUI_UIInputEvent](_ark_u_i___event_module.md#arkui_uiinputevent)[ArkUI_UIInputEvent](_ark_u_i___event_module.md#arkui_uiinputevent) | UI输入事件定义。  | 
+| typedef struct [ArkUI_UIInputEvent](_ark_u_i___event_module.md#arkui_uiinputevent) [ArkUI_UIInputEvent](_ark_u_i___event_module.md#arkui_uiinputevent) | UI输入事件定义。  | 
 
 
 ### 枚举
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [ArkUI_UIInputEvent_Type](_ark_u_i___event_module.md#arkui_uiinputevent_type) { ARKUI_UIINPUTEVENT_TYPE_UNKNOWN = 0, ARKUI_UIINPUTEVENT_TYPE_TOUCH = 1, ARKUI_UIINPUTEVENT_TYPE_AXIS = 2 } | UI输入事件类型定义。  | 
+| [ArkUI_UIInputEvent_Type](_ark_u_i___event_module.md#arkui_uiinputevent_type) { ARKUI_UIINPUTEVENT_TYPE_UNKNOWN = 0, ARKUI_UIINPUTEVENT_TYPE_TOUCH = 1, ARKUI_UIINPUTEVENT_TYPE_AXIS = 2, ARKUI_UIINPUTEVENT_TYPE_MOUSE = 3 } | UI输入事件类型定义。  | 
 | { [UI_TOUCH_EVENT_ACTION_CANCEL](_ark_u_i___event_module.md) = 0, [UI_TOUCH_EVENT_ACTION_DOWN](_ark_u_i___event_module.md) = 1, [UI_TOUCH_EVENT_ACTION_MOVE](_ark_u_i___event_module.md) = 2, [UI_TOUCH_EVENT_ACTION_UP](_ark_u_i___event_module.md) = 3 } | 定义输入事件的Action Code。  | 
 | {<br/>[UI_INPUT_EVENT_TOOL_TYPE_UNKNOWN](_ark_u_i___event_module.md) = 0, [UI_INPUT_EVENT_TOOL_TYPE_FINGER](_ark_u_i___event_module.md) = 1, [UI_INPUT_EVENT_TOOL_TYPE_PEN](_ark_u_i___event_module.md) = 2, [UI_INPUT_EVENT_TOOL_TYPE_MOUSE](_ark_u_i___event_module.md) = 3,<br/>[UI_INPUT_EVENT_TOOL_TYPE_TOUCHPAD](_ark_u_i___event_module.md) = 4, [UI_INPUT_EVENT_TOOL_TYPE_JOYSTICK](_ark_u_i___event_module.md) = 5<br/>} | 产生输入事件的工具类型定义。  | 
 | { [UI_INPUT_EVENT_SOURCE_TYPE_UNKNOWN](_ark_u_i___event_module.md) = 0, [UI_INPUT_EVENTT_SOURCE_TYPE_MOUSE](_ark_u_i___event_module.md) = 1, [UI_INPUT_EVENTT_SOURCE_TYPE_TOUCH_SCREEN](_ark_u_i___event_module.md) = 2 } | 产生输入事件的来源类型定义。  | 
 | [HitTestMode](_ark_u_i___event_module.md#hittestmode) { [HTMDEFAULT](_ark_u_i___event_module.md) = 0, [HTMBLOCK](_ark_u_i___event_module.md), [HTMTRANSPARENT](_ark_u_i___event_module.md), [HTMNONE](_ark_u_i___event_module.md) } | 定义触摸测试类型的枚举值。  | 
+| { [UI_MOUSE_EVENT_ACTION_UNKNOWN](_ark_u_i___event_module.md) = 0, [UI_MOUSE_EVENT_ACTION_PRESS](_ark_u_i___event_module.md) = 1, [UI_MOUSE_EVENT_ACTION_RELEASE](_ark_u_i___event_module.md) = 2, [UI_MOUSE_EVENT_ACTION_MOVE](_ark_u_i___event_module.md) = 3 } | 定义鼠标事件的Action Code。  | 
+| {<br/>[UI_MOUSE_EVENT_BUTTON_NONE](_ark_u_i___event_module.md) = 0, [UI_MOUSE_EVENT_BUTTON_LEFT](_ark_u_i___event_module.md) = 1, [UI_MOUSE_EVENT_BUTTON_RIGHT](_ark_u_i___event_module.md) = 2, [UI_MOUSE_EVENT_BUTTON_MIDDLE](_ark_u_i___event_module.md) = 3,<br/>[UI_MOUSE_EVENT_BUTTON_BACK](_ark_u_i___event_module.md) = 4, [UI_MOUSE_EVENT_BUTTON_FORWARD](_ark_u_i___event_module.md) = 5<br/>} | 定义鼠标事件的按键类型。  | 
 
 
 ### 函数

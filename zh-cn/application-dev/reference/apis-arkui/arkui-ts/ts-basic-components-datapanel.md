@@ -39,7 +39,7 @@ DataPanel(options: DataPanelOptions)
 
 ## DataPanelType<sup>8+</sup>枚举说明
 
-**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
@@ -238,7 +238,7 @@ struct DataPanelExample {
         }
       }.margin({ bottom: 59 })
 
-      DataPanel({ values: this.valueArr, max: 100, type: DataPanelType.Line }).width(300).height(10)
+      DataPanel({ values: this.valueArr, max: 100, type: DataPanelType.Line }).width(300).height(20)
     }.width('100%').margin({ top: 5 })
   }
 }

@@ -11,7 +11,7 @@ connection模块提供了对蓝牙操作和管理的方法。
 ## 导入模块
 
 ```js
-import connection from '@ohos.bluetooth.connection';
+import { connection } from '@kit.ConnectivityKit';
 ```
 
 
@@ -22,6 +22,8 @@ pairDevice(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
 发起蓝牙配对。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
+
+**元服务API**：从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -38,6 +40,9 @@ pairDevice(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
 |2900099 | Operation failed.                        |
@@ -45,7 +50,7 @@ pairDevice(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     // 实际的地址可由扫描流程获取
     connection.pairDevice('XX:XX:XX:XX:XX:XX');
@@ -62,6 +67,8 @@ pairDevice(deviceId: string): Promise&lt;void&gt;
 发起蓝牙配对。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
+
+**元服务API**：从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -83,6 +90,9 @@ pairDevice(deviceId: string): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
 |2900099 | Operation failed.                        |
@@ -90,7 +100,7 @@ pairDevice(deviceId: string): Promise&lt;void&gt;
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     // 实际的地址可由扫描流程获取
     connection.pairDevice('XX:XX:XX:XX:XX:XX');
@@ -128,6 +138,9 @@ getRemoteDeviceName(deviceId: string): string
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
 |2900099 | Operation failed.                        |
@@ -135,7 +148,7 @@ getRemoteDeviceName(deviceId: string): string
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let remoteDeviceName: string = connection.getRemoteDeviceName('XX:XX:XX:XX:XX:XX');
 } catch (err) {
@@ -172,6 +185,9 @@ getRemoteDeviceClass(deviceId: string): DeviceClass
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
 |2900099 | Operation failed.                        |
@@ -179,7 +195,7 @@ getRemoteDeviceClass(deviceId: string): DeviceClass
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let remoteDeviceClass: connection.DeviceClass = connection.getRemoteDeviceClass('XX:XX:XX:XX:XX:XX');
 } catch (err) {
@@ -210,13 +226,15 @@ getLocalName(): string
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900099 | Operation failed.                        |
 
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let localName: string = connection.getLocalName();
 } catch (err) {
@@ -233,6 +251,8 @@ getPairedDevices(): Array&lt;string&gt;
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
+**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 **返回值：**
@@ -247,6 +267,8 @@ getPairedDevices(): Array&lt;string&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
 |2900099 | Operation failed.                        |
@@ -254,7 +276,7 @@ getPairedDevices(): Array&lt;string&gt;
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let devices: Array<string> = connection.getPairedDevices();
 } catch (err) {
@@ -270,6 +292,8 @@ getPairState(deviceId: string): BondState
 获取蓝牙配对状态。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
+
+**元服务API**：从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -291,6 +315,9 @@ getPairState(deviceId: string): BondState
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
 |2900099 | Operation failed.                        |
@@ -298,7 +325,7 @@ getPairState(deviceId: string): BondState
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let res: connection.BondState = connection.getPairState("XX:XX:XX:XX:XX:XX");
     console.log('getPairState: ' + res);
@@ -336,6 +363,9 @@ getProfileConnectionState(profileId?: ProfileId): ProfileConnectionState
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
 |2900004 | Profile is not supported.                |
@@ -344,8 +374,8 @@ getProfileConnectionState(profileId?: ProfileId): ProfileConnectionState
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
-import constant from '@ohos.bluetooth.constant';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
+import { constant } from '@kit.ConnectivityKit';
 try {
     let result: connection.ProfileConnectionState = connection.getProfileConnectionState(constant.ProfileId.PROFILE_A2DP_SOURCE);
 } catch (err) {
@@ -377,6 +407,9 @@ setDevicePairingConfirmation(deviceId: string, accept: boolean): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
 |2900099 | Operation failed.                        |
@@ -384,7 +417,7 @@ setDevicePairingConfirmation(deviceId: string, accept: boolean): void
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 // 订阅“pinRequired”配对请求事件，收到远端配对请求后设置配对确认
 function onReceivePinRequiredEvent(data: connection.PinRequiredParam) { // data为配对请求的入参，配对请求参数
     console.info('pin required  = '+ JSON.stringify(data));
@@ -422,6 +455,9 @@ setDevicePinCode(deviceId: string, code: string, callback: AsyncCallback&lt;void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
 |2900099 | Operation failed.                        |
@@ -429,7 +465,7 @@ setDevicePinCode(deviceId: string, code: string, callback: AsyncCallback&lt;void
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 //callback
 try {
     connection.setDevicePinCode('11:22:33:44:55:66', '12345', (err: BusinessError) => {
@@ -470,6 +506,9 @@ setDevicePinCode(deviceId: string, code: string): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
 |2900099 | Operation failed.                        |
@@ -477,7 +516,7 @@ setDevicePinCode(deviceId: string, code: string): Promise&lt;void&gt;
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 //promise
 try {
     connection.setDevicePinCode('11:22:33:44:55:66', '12345').then(() => {
@@ -514,6 +553,9 @@ setLocalName(name: string): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
 |2900099 | Operation failed.                        |
@@ -521,7 +563,7 @@ setLocalName(name: string): void
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     connection.setLocalName('device_name');
 } catch (err) {
@@ -553,6 +595,9 @@ setBluetoothScanMode(mode: ScanMode, duration: number): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
 |2900099 | Operation failed.                        |
@@ -560,7 +605,7 @@ setBluetoothScanMode(mode: ScanMode, duration: number): void
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     // 设置为可连接可发现才可被远端设备扫描到，可以连接。
     connection.setBluetoothScanMode(connection.ScanMode.SCAN_MODE_CONNECTABLE_GENERAL_DISCOVERABLE, 100);
@@ -592,6 +637,8 @@ getBluetoothScanMode(): ScanMode
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
 |2900099 | Operation failed.                        |
@@ -599,7 +646,7 @@ getBluetoothScanMode(): ScanMode
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let scanMode: connection.ScanMode = connection.getBluetoothScanMode();
 } catch (err) {
@@ -616,6 +663,8 @@ startBluetoothDiscovery(): void
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
+**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 **错误码**：
@@ -624,6 +673,8 @@ startBluetoothDiscovery(): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
 |2900099 | Operation failed.                        |
@@ -631,7 +682,7 @@ startBluetoothDiscovery(): void
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 function onReceiveEvent(data: Array<string>) {
     console.log('data length' + data.length);
 }
@@ -652,6 +703,8 @@ stopBluetoothDiscovery(): void
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
+**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 **错误码**：
@@ -660,6 +713,8 @@ stopBluetoothDiscovery(): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
 |2900099 | Operation failed.                        |
@@ -667,7 +722,7 @@ stopBluetoothDiscovery(): void
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     connection.stopBluetoothDiscovery();
 } catch (err) {
@@ -698,6 +753,8 @@ isBluetoothDiscovering(): boolean
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
 |2900099 | Operation failed.                        |
@@ -705,7 +762,7 @@ isBluetoothDiscovering(): boolean
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let res: boolean = connection.isBluetoothDiscovering();
     console.log('isBluetoothDiscovering: ' + res);
@@ -743,13 +800,15 @@ setRemoteDeviceName(deviceId: string, name: string): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter.            |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
 
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 //promise
 try {
     connection.setRemoteDeviceName('11:22:33:44:55:66', 'RemoteDeviceName').then(() => {
@@ -764,6 +823,138 @@ try {
 ```
 
 
+## connection.getRemoteDeviceBatteryInfo<sup>12+</sup>
+
+getRemoteDeviceBatteryInfo(deviceId: string): Promise&lt;BatteryInfo&gt;
+
+获取蓝牙远端设备的电量信息。
+
+**需要权限**：ohos.permission.ACCESS_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+**参数：**
+
+| 参数名    | 类型      | 必填   | 说明                               |
+| ------ | ------- | ---- | -------------------------------- |
+| deviceId | string  | 是    | 表示远端设备MAC地址，例如："11:22:33:AA:BB:FF"。 |
+
+**返回值：**
+
+| 类型                  | 说明         |
+| ------------------- | ------------- |
+| Promise&lt;[BatteryInfo](#batteryinfo12)&gt; | 以Promise形式返回蓝牙远端设备的电量信息。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+
+**示例：**
+
+```js
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
+// promise
+try {
+    connection.getRemoteDeviceBatteryInfo('11:22:33:AA:BB:FF').then((data: connection.BatteryInfo) => {
+        console.info('getRemoteDeviceBatteryInfo success, DeviceType:' + JSON.stringify(data));
+    });
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```
+
+
+## connection.on('batteryChange')<sup>12+</sup>
+
+on(type: 'batteryChange', callback: Callback&lt;BatteryInfo&gt;): void
+
+订阅蓝牙远程设备的电量信息变更事件。
+
+**需要权限**：ohos.permission.ACCESS_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+**参数：**
+
+| 参数名      | 类型                                  | 必填   | 说明                                     |
+| -------- | ----------------------------------- | ---- | -------------------------------------- |
+| type     | string                              | 是    | 填写"batteryChange"字符串，表示蓝牙远端设备的电池信息变更事件。 |
+| callback | Callback&lt;[BatteryInfo](#batteryinfo12)&gt; | 是    | 表示回调函数的入参，返回电量信息。    |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter.                 |
+|801 | Capability not supported.          |
+|2900099 | Operation failed.                        |
+
+**示例：**
+
+```js
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
+let onReceiveEvent: (data: connection.BatteryInfo) => void = (data: connection.BatteryInfo) => {
+    console.info('BatteryInfo = '+ JSON.stringify(data));
+}
+try {
+    connection.on('batteryChange', onReceiveEvent);
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```
+
+
+## connection.off('batteryChange')<sup>12+</sup>
+
+off(type: 'batteryChange', callback?: Callback&lt;BatteryInfo&gt;): void
+
+取消订阅蓝牙远程设备的电量信息变更事件。
+
+**需要权限**：ohos.permission.ACCESS_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+**参数：**
+
+| 参数名      | 类型                                  | 必填   | 说明                                       |
+| -------- | ----------------------------------- | ---- | ---------------------------------------- |
+| type     | string                              | 是    | 填写"batteryChange"字符串，表示取消蓝牙远端设备的电池信息变更事件。   |
+| callback | Callback&lt;[BatteryInfo](#batteryinfo12)&gt; | 否    | 表示回调函数的入参，返回电量信息。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
+|2900099 | Operation failed.                        |
+
+**示例：**
+
+```js
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
+let onReceiveEvent: (data: connection.BatteryInfo) => void = (data: connection.BatteryInfo) => {
+    console.info('BatteryInfo = '+ JSON.stringify(data));
+}
+try {
+    connection.on('batteryChange', onReceiveEvent);
+    connection.off('batteryChange', onReceiveEvent);
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```
+
+
 ## connection.on('bluetoothDeviceFind')
 
 on(type: 'bluetoothDeviceFind', callback: Callback&lt;Array&lt;string&gt;&gt;): void
@@ -771,6 +962,8 @@ on(type: 'bluetoothDeviceFind', callback: Callback&lt;Array&lt;string&gt;&gt;): 
 订阅蓝牙设备发现上报事件。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
+
+**元服务API**：从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -787,12 +980,15 @@ on(type: 'bluetoothDeviceFind', callback: Callback&lt;Array&lt;string&gt;&gt;): 
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter.                 |
+|801 | Capability not supported.          |
 |2900099 | Operation failed.                        |
 
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 function onReceiveEvent(data: Array<string>) { // data为蓝牙设备地址集合
     console.info('bluetooth device find = '+ JSON.stringify(data));
 }
@@ -812,6 +1008,8 @@ off(type: 'bluetoothDeviceFind', callback?: Callback&lt;Array&lt;string&gt;&gt;)
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
+**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 **参数：**
@@ -827,12 +1025,15 @@ off(type: 'bluetoothDeviceFind', callback?: Callback&lt;Array&lt;string&gt;&gt;)
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter.                 |
+|801 | Capability not supported.          |
 |2900099 | Operation failed.                        |
 
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 function onReceiveEvent(data: Array<string>) {
     console.info('bluetooth device find = '+ JSON.stringify(data));
 }
@@ -873,7 +1074,7 @@ on(type: 'bondStateChange', callback: Callback&lt;BondStateParam&gt;): void
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 function onReceiveEvent(data: connection.BondStateParam) { // data为回调函数入参，表示配对的状态
     console.info('pair state = '+ JSON.stringify(data));
 }
@@ -908,12 +1109,15 @@ off(type: 'bondStateChange', callback?: Callback&lt;BondStateParam&gt;): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter.                 |
+|801 | Capability not supported.          |
 |2900099 | Operation failed.                        |
 
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 function onReceiveEvent(data: connection.BondStateParam) {
     console.info('bond state = '+ JSON.stringify(data));
 }
@@ -949,12 +1153,15 @@ on(type: 'pinRequired', callback: Callback&lt;PinRequiredParam&gt;): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter.                 |
+|801 | Capability not supported.          |
 |2900099 | Operation failed.                        |
 
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 function onReceiveEvent(data: connection.PinRequiredParam) { // data为配对请求参数
     console.info('pin required = '+ JSON.stringify(data));
 }
@@ -989,12 +1196,15 @@ off(type: 'pinRequired', callback?: Callback&lt;PinRequiredParam&gt;): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter.                 |
+|801 | Capability not supported.          |
 |2900099 | Operation failed.                        |
 
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 function onReceiveEvent(data: connection.PinRequiredParam) {
     console.info('pin required = '+ JSON.stringify(data));
 }
@@ -1046,6 +1256,23 @@ try {
 | classOfDevice   | number                              | 是    | 否    | 表示设备类别。          |
 
 
+## BatteryInfo<sup>12+</sup>
+
+描述电量信息的内容。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+| 名称       | 类型   | 可读   | 可写   | 说明          |
+| -------- | ------ | ---- | ---- | ----------- |
+| batteryLevel  | number | 是    | 否    | 表示远端设备的电量值，如果值为-1，表示没有电量信息。   |
+| leftEarBatteryLevel  | number | 是    | 否    | 表示左侧耳机的电量值，如果值为-1，表示没有电量信息。   |
+| leftEarChargeState  | [DeviceChargeState](#devicechargestate12) | 是    | 否    | 表示左侧耳机的充电状态。   |
+| rightEarBatteryLevel  | number | 是    | 否    | 表示右侧耳机的电量值，如果值为-1，表示没有电量信息。   |
+| rightEarChargeState  | [DeviceChargeState](#devicechargestate12) | 是    | 否    | 表示右侧耳机的充电状态。   |
+| boxBatteryLevel  | number | 是    | 否    | 表示耳机仓的电量值，如果值为-1，表示没有电量信息。   |
+| boxChargeState  | [DeviceChargeState](#devicechargestate12) | 是    | 否    | 表示耳机仓的充电状态。   |
+
+
 ## BluetoothTransport
 
 枚举，表示设备类型。例如传统蓝牙设备或低功耗蓝牙设备，支持双模默认使用TRANSPORT_BR_EDR。
@@ -1078,6 +1305,8 @@ try {
 
 枚举，配对状态。
 
+**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 | 名称                 | 值  | 说明     |
@@ -1100,3 +1329,17 @@ try {
 | AUTH_FAILURE        | 2    | PIN码错误。|
 | AUTH_REJECTED       | 3    | 远端设备鉴权拒绝。|
 | INTERNAL_ERROR      | 4    | 内部错误。|
+
+
+## DeviceChargeState<sup>12+</sup>
+
+枚举，表示充电状态。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+| 名称                 | 值  | 说明     |
+| ------------------ | ---- | ------ |
+| DEVICE_NORMAL_CHARGE_NOT_CHARGED        | 0    | 未充电，不支持超级充电。|
+| DEVICE_NORMAL_CHARGE_IN_CHARGING       | 1    | 正在充电，不支持超级充电。|
+| DEVICE_SUPER_CHARGE_NOT_CHARGED        | 2    | 未充电，支持超级充电。|
+| DEVICE_SUPER_CHARGE_IN_CHARGING       | 3    | 正在充电，支持超级充电。|

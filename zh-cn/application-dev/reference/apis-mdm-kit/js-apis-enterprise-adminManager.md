@@ -12,7 +12,7 @@
 ## 导入模块
 
 ```ts
-import adminManager from '@ohos.enterprise.adminManager';
+import { adminManager } from '@kit.MDMKit';
 ```
 
 ## adminManager.disableAdmin
@@ -48,15 +48,15 @@ disableAdmin(admin: Want, userId?: number): Promise\<void>
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 9200005  | failed to disable the administrator application of the device. |
-| 201      | the application does not have permission to call this function. |
+| 9200005  | Failed to deactivate the administrator application of the device. |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例**：
 
 ```ts
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 let wantTemp: Want = {
   bundleName: 'bundleName',
   abilityName: 'abilityName',
@@ -94,15 +94,15 @@ subscribeManagedEventSync(admin: Want, managedEvents: Array\<ManagedEvent>): voi
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 9200001  | the application is not an administrator of the device.       |
-| 9200008  | the specified system events enum is invalid.                 |
-| 201      | the application does not have permission to call this function. |
+| 9200001  | The application is not an administrator application of the device. |
+| 9200008  | The specified system event is invalid.                       |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'bundleName',
   abilityName: 'abilityName',
@@ -144,15 +144,15 @@ unsubscribeManagedEventSync(admin: Want, managedEvents: Array\<ManagedEvent>): v
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 9200001  | the application is not an administrator of the device.       |
-| 9200008  | the specified system events enum is invalid.                 |
-| 201      | the application does not have permission to call this function. |
+| 9200001  | The application is not an administrator application of the device. |
+| 9200008  | The specified system event is invalid.                       |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'bundleName',
   abilityName: 'abilityName',

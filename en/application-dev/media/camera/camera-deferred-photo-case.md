@@ -20,16 +20,16 @@ import image from '@ohos.multimedia.image';
 import { BusinessError } from '@ohos.base';
 import common from '@ohos.app.ability.common';
 import fs from '@ohos.file.fs';
-import PhotoAccessHelper from '@ohos.file.photoAccessHelper';
+import photoAccessHelper from '@ohos.file.photoAccessHelper';
 
 let context = getContext(this);
 
 // Flush the original image in write-file mode.
 async function savePicture(photoObj: camera.Photo): Promise<void> {
-  let photoAccessHelper = PhotoAccessHelper.getPhotoAccessHelper(context);
+  let accessHelper = photoAccessHelper.getPhotoAccessHelper(context);
   let testFileName = 'testFile' + Date.now() + '.jpg';
   // To call createAsset(), the application must have the ohos.permission.READ_IMAGEVIDEO and ohos.permission.WRITE_IMAGEVIDEO permissions.
-  let photoAsset = await photoAccessHelper.createAsset(testFileName);
+  let photoAsset = await accessHelper.createAsset(testFileName);
   const fd = await photoAsset.open('rw');
   let buffer: ArrayBuffer | undefined = undefined;
   photoObj.main.getComponent(image.ComponentType.JPEG, (errCode: BusinessError, component: image.Component): void => {
@@ -55,13 +55,13 @@ async function savePicture(photoObj: camera.Photo): Promise<void> {
 async function saveDeferredPhoto(proxyObj: camera.DeferredPhotoProxy): Promise<void> {    
   try {
     // Create a photoAsset.
-    let photoAccessHelper = PhotoAccessHelper.getPhotoAccessHelper(context);
+    let accessHelper = photoAccessHelper.getPhotoAccessHelper(context);
     let testFileName = 'testFile' + Date.now() + '.jpg';
-    let photoAsset = await photoAccessHelper.createAsset(testFileName);
+    let photoAsset = await accessHelper.createAsset(testFileName);
     // Pass the thumbnail proxy class object to the mediaLibrary.
-    let mediaRequest: PhotoAccessHelper.MediaAssetChangeRequest = new PhotoAccessHelper.MediaAssetChangeRequest(photoAsset);
-    mediaRequest.addResource(PhotoAccessHelper.ResourceType.PHOTO_PROXY, proxyObj);
-    let res = await photoAccessHelper.applyChanges(mediaRequest);
+    let mediaRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest(photoAsset);
+    mediaRequest.addResource(photoAccessHelper.ResourceType.PHOTO_PROXY, proxyObj);
+    let res = await accessHelper.applyChanges(mediaRequest);
     console.info('saveDeferredPhoto success.');
   } catch (err) {
     console.error(`Failed to saveDeferredPhoto. error: ${JSON.stringify(err)}`);

@@ -5,6 +5,7 @@
 > **说明：**
 >
 > 该组件从API Version 12开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 当前不支持在预览器中使用MovingPhotoView组件。
 
 ## 导入模块
 
@@ -13,6 +14,12 @@ import { MovingPhotoView, MovingPhotoViewController, MovingPhotoViewAttribute } 
 ```
 
 ## MovingPhotoView
+
+> **说明：**
+>
+> - 当前不支持动态属性设置。
+> - 该组件长按触发播放时组件区域放大为1.1倍。
+> - 该组件使用[AVPlayer](../../reference/apis-media-kit/_a_v_player.md#avplayer)进行播放，同时开启的[AVPlayer](../../reference/apis-media-kit/_a_v_player.md#avplayer)个数不建议超过3个，超过3个可能会出现视频播放卡顿现象。
 
 MovingPhotoView(options: MovingPhotoViewOptions)
 
@@ -274,7 +281,7 @@ struct MovingPhotoViewDemo {
     try {
       photoAccessHelper.MediaAssetManager.requestMovingPhoto(context, asset, requestOptions, handler)
     } catch (err) {
-      console.error("freeloop request error: ", err)
+      console.error("request error: ", err)
     }
   }
 }

@@ -446,6 +446,66 @@ try {
 }
 ```
 
+## zlib.compressFiles<sup>12+</sup>
+
+compressFiles(inFiles: Array&lt;string&gt;, outFile: string, options: Options): Promise&lt;void&gt;
+
+压缩指定的多个文件，使用Promise异步返回。成功时返回null，失败时返回错误码。
+
+**系统能力：** SystemCapability.BundleManager.Zlib
+
+**参数：**
+
+| 参数名  | 类型                | 必填 | 说明                                                         |
+| ------- | ------------------- | ---- | ------------------------------------------------------------ |
+| inFiles | Array&lt;string&gt; | 是   | 指定压缩的文件夹路径或者文件路径，路径必须为沙箱路径，沙箱路径可以通过context获取，可参考[FA模型](../apis-ability-kit/js-apis-inner-app-context.md)，[Stage模型](../apis-ability-kit/js-apis-inner-application-context.md)。待压缩的文件夹不可为空，否则使用[decompressFile](#zlibdecompressfile9)对压缩后的文件解压时会报错。 |
+| outFile | string              | 是   | 指定的压缩结果的文件路径。多个线程同时压缩文件时，outFile不能相同。 |
+| options | [Options](#options) | 是   | 压缩的配置参数。                                             |
+
+**返回值：**
+
+| 类型                | 说明                    |
+| ------------------- | ----------------------- |
+| Promise&lt;void&gt; | Promise对象，无返回值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.zlib错误码](./errorcode-zlib.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 900001   | The input source file is invalid.                            |
+| 900002   | The input destination file is invalid.                       |
+
+**示例：**
+
+```typescript
+// 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/temp，也可以通过context获取。
+import zlib from '@ohos.zlib';
+import { BusinessError } from '@ohos.base';
+
+let inFile = '/xxx/filename.xxx';
+let pathDir = '';
+let outFile = '/xxx/xxx.zip';
+let options: zlib.Options = {
+  level: zlib.CompressLevel.COMPRESS_LEVEL_DEFAULT_COMPRESSION,
+  memLevel: zlib.MemLevel.MEM_LEVEL_DEFAULT,
+  strategy: zlib.CompressStrategy.COMPRESS_STRATEGY_DEFAULT_STRATEGY
+};
+try {
+    zlib.compressFiles([inFile, pathDir, pathDir], outFile, options).then((data: void) => {
+        console.info('compressFiles success. data: ' + JSON.stringify(data));
+    }).catch((errData: BusinessError) => {
+        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+    })
+} catch(errData) {
+    let code = (errData as BusinessError).code;
+    let message = (errData as BusinessError).message;
+    console.error(`errData is errCode:${code}  message:${message}`);
+}
+```
+
 ## zlib.createChecksum<sup>12+</sup>
 
 createChecksum(): Promise&lt;Checksum&gt;
@@ -505,6 +565,8 @@ let checksum = zlib.createChecksumSync()
 adler32(adler: number, buf: ArrayBuffer): Promise&lt;number&gt;
 
 计算Adler-32校验和，使用Promise异步返回。成功时返回计算后的Adler-32校验和，失败时返回错误码。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.BundleManager.Zlib
 
@@ -890,11 +952,11 @@ import zlib from '@ohos.zlib';
 let zip = zlib.createZipSync();
 ```
 
-## Zip12+
+## Zip<sup>12+</sup>
 
 压缩解压缩对象实例。
 
-### getZStream12+
+### getZStream<sup>12+</sup>
 
 getZStream(): Promise&lt;ZStream&gt;
 
@@ -921,7 +983,7 @@ zip.getZStream().then(data => {
 })
 ```
 
-### zlibVersion12+
+### zlibVersion<sup>12+</sup>
 
 zlibVersion(): Promise&lt;string&gt;
 
@@ -948,7 +1010,7 @@ zip.zlibVersion().then((data) => {
 })
 ```
 
-### zlibCompileFlags12+
+### zlibCompileFlags<sup>12+</sup>
 
 zlibCompileFlags(): Promise&lt;number&gt;
 
@@ -975,7 +1037,7 @@ zip.zlibCompileFlags().then((data) => {
 })
 ```
 
-### compress12+
+### compress<sup>12+</sup>
 
 compress(dest: ArrayBuffer, source: ArrayBuffer, sourceLen?: number): Promise&lt;ZipOutputInfo&gt;
 
@@ -1001,7 +1063,7 @@ compress(dest: ArrayBuffer, source: ArrayBuffer, sourceLen?: number): Promise&lt
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.zlib错误码](./errorcode-zlib.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.zlib错误码](./errorcode-zlib.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1029,7 +1091,7 @@ zip.compress(arrayBufferOut, arrayBufferOut, 20).then((data) => {
 })
 ```
 
-### compress212+
+### compress2<sup>12+</sup>
 
 compress2(dest: ArrayBuffer, source: ArrayBuffer, level: CompressLevel, sourceLen?: number,): Promise&lt;ZipOutputInfo&gt;
 
@@ -1056,11 +1118,12 @@ compress2(dest: ArrayBuffer, source: ArrayBuffer, level: CompressLevel, sourceLe
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.zlib错误码](./errorcode-zlib.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.zlib错误码](./errorcode-zlib.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
+| 17800004 | ZStream error.                                               |
 | 17800007 | Buffer error.                                                |
 
 **示例：**
@@ -1084,7 +1147,7 @@ zip.compress2(arrayBufferOut, arrayBufferIn, zlib.CompressLevel.COMPRESS_LEVEL_B
 })
 ```
 
-### uncompress12+
+### uncompress<sup>12+</sup>
 
 uncompress(dest:ArrayBuffer, source: ArrayBuffer, sourceLen?: number): Promise&lt;ZipOutputInfo&gt;
 
@@ -1110,7 +1173,7 @@ uncompress(dest:ArrayBuffer, source: ArrayBuffer, sourceLen?: number): Promise&l
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.zlib错误码](./errorcode-zlib.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.zlib错误码](./errorcode-zlib.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1146,7 +1209,7 @@ async function demo() {
 }
 ```
 
-### uncompress212+
+### uncompress2<sup>12+</sup>
 
 uncompress2(dest: ArrayBuffer, source: ArrayBuffer, sourceLen?: number): Promise&lt;DecompressionOutputInfo&gt;
 
@@ -1172,12 +1235,13 @@ uncompress2(dest: ArrayBuffer, source: ArrayBuffer, sourceLen?: number): Promise
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.zlib错误码](./errorcode-zlib.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.zlib错误码](./errorcode-zlib.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
 | 17800005 | Data error.                                                  |
+| 17800007 | Buffer error.                                                |
 
 **示例：**
 
@@ -1207,7 +1271,7 @@ async function demo() {
 }
 ```
 
-### compressBound12+
+### compressBound<sup>12+</sup>
 
 compressBound(sourceLen: number): Promise&lt;number&gt;
 
@@ -1231,7 +1295,7 @@ compressBound(sourceLen: number): Promise&lt;number&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.zlib错误码](./errorcode-zlib.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1257,7 +1321,7 @@ zip.compressBound(str.length).then((data) => {
 })
 ```
 
-### inflateValidate12+
+### inflateValidate<sup>12+</sup>
 
 inflateValidate(strm: ZStream, check: number): Promise&lt;ReturnStatus&gt;
 
@@ -1282,7 +1346,7 @@ inflateValidate(strm: ZStream, check: number): Promise&lt;ReturnStatus&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.zlib错误码](./errorcode-zlib.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.zlib错误码](./errorcode-zlib.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1318,69 +1382,7 @@ async function demo() {
 }
 ```
 
-### inflateUndermine12+
-
-inflateUndermine(strm: ZStream, subvert: number): Promise&lt;ReturnStatus&gt;
-
-验证压缩流结构内部的校验和，使用Promise异步返回。成功时返回结果状态。
-
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
-
-**系统能力：** SystemCapability.BundleManager.Zlib
-
-**参数：**
-
-| 参数名  | 类型    | 必填 | 说明                            |
-| ------- | ------- | ---- | ------------------------------- |
-| strm    | ZStream | 是   | 参考[ZStream定义](#zstream12)。 |
-| subvert | number  | 是   | 是否破坏内部的标志。            |
-
-**返回值：**
-
-| 类型                                              | 说明                        |
-| ------------------------------------------------- | --------------------------- |
-| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise对象。返回结果状态。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[ohos.zlib错误码](./errorcode-zlib.md)。
-
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
-| 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
-| 17800004 | ZStream error.                                               |
-| 17800005 | Data error                                                   |
-
-**示例：**
-
-```ts
-import zlib from '@ohos.zlib';
-import base from '@ohos.base';
-
-async function demo() {
-    let str = 'hello world!';
-    let arrayBufferIn = new ArrayBuffer(str.length);
-    let byteArray = new Uint8Array(arrayBufferIn);
-    for (let i = 0, j = str.length; i < j; i++) {
-        byteArray[i] = str.charCodeAt(i)
-    }
-    let arrayBufferOut = new ArrayBuffer(100);
-    let zip = zlib.createZipSync();
-    await zip.inflateInit({nextIn: arrayBufferIn, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1}
-    ).then(data => {
-        console.info('inflateInit success');
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
-    await zip.inflateUndermine({availableOut: 1}, 5).then(data => {
-        console.info('inflateUndermine success');
-    }).catch((errData: base.BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
-}
-```
-
-### inflateSyncPoint12+
+### inflateSyncPoint<sup>12+</sup>
 
 inflateSyncPoint(strm: ZStream): Promise&lt;ReturnStatus&gt;
 
@@ -1404,7 +1406,7 @@ inflateSyncPoint(strm: ZStream): Promise&lt;ReturnStatus&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.zlib错误码](./errorcode-zlib.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.zlib错误码](./errorcode-zlib.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1440,7 +1442,7 @@ async function demo() {
 }
 ```
 
-### inflateSync12+
+### inflateSync<sup>12+</sup>
 
 inflateSync(strm: ZStream): Promise&lt;ReturnStatus&gt;
 
@@ -1464,13 +1466,14 @@ inflateSync(strm: ZStream): Promise&lt;ReturnStatus&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.zlib错误码](./errorcode-zlib.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.zlib错误码](./errorcode-zlib.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
 | 17800004 | ZStream error.                                               |
 | 17800005 | Data error.                                                  |
+| 17800007 | Buffer error.                                                |
 
 **示例：**
 
@@ -1532,7 +1535,7 @@ async function demo() {
 }
 ```
 
-### inflateResetKeep12+
+### inflateResetKeep<sup>12+</sup>
 
 inflateResetKeep(strm: ZStream): Promise&lt;ReturnStatus&gt;
 
@@ -1556,7 +1559,7 @@ inflateResetKeep(strm: ZStream): Promise&lt;ReturnStatus&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.zlib错误码](./errorcode-zlib.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.zlib错误码](./errorcode-zlib.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1592,7 +1595,7 @@ async function demo() {
 }
 ```
 
-### inflateSetDictionary12+
+### inflateSetDictionary<sup>12+</sup>
 
 inflateSetDictionary(strm: ZStream, dictionary: ArrayBuffer): Promise&lt;ReturnStatus&gt;
 
@@ -1617,12 +1620,13 @@ inflateSetDictionary(strm: ZStream, dictionary: ArrayBuffer): Promise&lt;ReturnS
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.zlib错误码](./errorcode-zlib.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.zlib错误码](./errorcode-zlib.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
 | 17800004 | ZStream error.                                               |
+| 17800005 | Data error.                                                  |
 
 **示例：**
 
@@ -1690,7 +1694,7 @@ async function demo() {
 }
 ```
 
-### inflateReset212+
+### inflateReset2<sup>12+</sup>
 
 inflateReset2(strm: ZStream, windowBits: number): Promise&lt;ReturnStatus&gt;
 
@@ -1715,7 +1719,7 @@ inflateReset2(strm: ZStream, windowBits: number): Promise&lt;ReturnStatus&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.zlib错误码](./errorcode-zlib.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.zlib错误码](./errorcode-zlib.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1751,7 +1755,7 @@ async function demo() {
 }
 ```
 
-### inflateReset12+
+### inflateReset<sup>12+</sup>
 
 inflateReset(strm: ZStream): Promise&lt;ReturnStatus&gt;
 
@@ -1775,7 +1779,7 @@ inflateReset(strm: ZStream): Promise&lt;ReturnStatus&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.zlib错误码](./errorcode-zlib.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.zlib错误码](./errorcode-zlib.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1811,7 +1815,7 @@ async function demo() {
 }
 ```
 
-### inflatePrime12+
+### inflatePrime<sup>12+</sup>
 
 inflatePrime(strm: ZStream, bits: number, value: number): Promise&lt;ReturnStatus&gt;
 
@@ -1837,7 +1841,7 @@ inflatePrime(strm: ZStream, bits: number, value: number): Promise&lt;ReturnStatu
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.zlib错误码](./errorcode-zlib.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.zlib错误码](./errorcode-zlib.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1873,7 +1877,7 @@ async function demo() {
 }
 ```
 
-### inflateMark12+
+### inflateMark<sup>12+</sup>
 
 inflateMark(strm: ZStream): Promise&lt;number&gt;
 
@@ -1897,7 +1901,7 @@ inflateMark(strm: ZStream): Promise&lt;number&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.zlib错误码](./errorcode-zlib.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1932,7 +1936,7 @@ async function demo() {
 }
 ```
 
-### inflateInit212+
+### inflateInit2<sup>12+</sup>
 
 inflateInit2(strm: ZStream, windowBits: number): Promise&lt;ReturnStatus&gt;
 
@@ -1957,7 +1961,7 @@ inflateInit2(strm: ZStream, windowBits: number): Promise&lt;ReturnStatus&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.zlib错误码](./errorcode-zlib.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.zlib错误码](./errorcode-zlib.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1986,7 +1990,7 @@ zip.inflateInit2({nextIn: arrayBufferIn, availableIn: 1, nextOut: arrayBufferOut
 })
 ```
 
-### inflateInit12+
+### inflateInit<sup>12+</sup>
 
 inflateInit(strm: ZStream): Promise&lt;ReturnStatus&gt;
 
@@ -2010,7 +2014,7 @@ inflateInit(strm: ZStream): Promise&lt;ReturnStatus&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.zlib错误码](./errorcode-zlib.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2038,7 +2042,7 @@ zip.inflateInit({nextIn: arrayBufferOut, availableIn: 1, nextOut: arrayBufferOut
 })
 ```
 
-### inflateGetHeader12+
+### inflateGetHeader<sup>12+</sup>
 
 inflateGetHeader(strm: ZStream, header: GzHeader): Promise&lt;ReturnStatus&gt;
 
@@ -2063,7 +2067,7 @@ inflateGetHeader(strm: ZStream, header: GzHeader): Promise&lt;ReturnStatus&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.zlib错误码](./errorcode-zlib.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.zlib错误码](./errorcode-zlib.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2099,7 +2103,7 @@ async function demo() {
 }
 ```
 
-### inflateGetDictionary12+
+### inflateGetDictionary<sup>12+</sup>
 
 inflateGetDictionary(strm: ZStream, dictionary: ArrayBuffer): Promise&lt;DictionaryOutputInfo&gt;
 
@@ -2124,7 +2128,7 @@ inflateGetDictionary(strm: ZStream, dictionary: ArrayBuffer): Promise&lt;Diction
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.zlib错误码](./errorcode-zlib.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.zlib错误码](./errorcode-zlib.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2160,7 +2164,7 @@ async function demo() {
 }
 ```
 
-### inflateEnd12+
+### inflateEnd<sup>12+</sup>
 
 inflateEnd(strm: ZStream): Promise&lt;ReturnStatus&gt;
 
@@ -2184,7 +2188,7 @@ inflateEnd(strm: ZStream): Promise&lt;ReturnStatus&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.zlib错误码](./errorcode-zlib.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.zlib错误码](./errorcode-zlib.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2225,9 +2229,9 @@ async function demo() {
 }
 ```
 
-### inflateCopy12+
+### inflateCopy<sup>12+</sup>
 
-inflateCopy(source: Zip): Promise&lt;Zip&gt;
+inflateCopy(source: Zip): Promise&lt;ReturnStatus&gt;
 
 复制解压流，使用Promise异步返回。成功时返回结果状态。
 
@@ -2249,7 +2253,7 @@ inflateCopy(source: Zip): Promise&lt;Zip&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.zlib错误码](./errorcode-zlib.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.zlib错误码](./errorcode-zlib.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2285,7 +2289,7 @@ async function demo() {
 }
 ```
 
-### inflateCodesUsed12+
+### inflateCodesUsed<sup>12+</sup>
 
 inflateCodesUsed(strm: ZStream): Promise&lt;number&gt;
 
@@ -2309,7 +2313,7 @@ inflateCodesUsed(strm: ZStream): Promise&lt;number&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.zlib错误码](./errorcode-zlib.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2344,7 +2348,7 @@ async function demo() {
 }
 ```
 
-### inflateBackInit12+
+### inflateBackInit<sup>12+</sup>
 
 inflateBackInit(strm: ZStream, windowBits: number, window: ArrayBuffer): Promise&lt;ReturnStatus&gt;
 
@@ -2356,11 +2360,11 @@ inflateBackInit(strm: ZStream, windowBits: number, window: ArrayBuffer): Promise
 
 **参数：**
 
-| 参数名     | 类型        | 必填 | 说明                            |
-| ---------- | ----------- | ---- | ------------------------------- |
-| strm       | ZStream     | 是   | 参考[ZStream定义](#zstream12)。 |
-| windowBits | number      | 是   | 最大窗口大小的以2为底的对数。   |
-| window     | ArrayBuffer | 是   | 预设的窗口缓冲区。              |
+| 参数名     | 类型        | 必填 | 说明                                          |
+| ---------- | ----------- | ---- | --------------------------------------------- |
+| strm       | ZStream     | 是   | 参考[ZStream定义](#zstream12)。               |
+| windowBits | number      | 是   | 最大窗口大小的以2为底的对数，取值范围在8~15。 |
+| window     | ArrayBuffer | 是   | 预设的窗口缓冲区。                            |
 
 **返回值：**
 
@@ -2370,15 +2374,16 @@ inflateBackInit(strm: ZStream, windowBits: number, window: ArrayBuffer): Promise
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.zlib错误码](./errorcode-zlib.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.zlib错误码](./errorcode-zlib.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
+| 17800004 | ZStream error.                                               |
 
 **示例：**参考[inflateBack](#inflateback12)
 
-### inflateBackEnd12+
+### inflateBackEnd<sup>12+</sup>
 
 inflateBackEnd(strm: ZStream): Promise&lt;ReturnStatus&gt;
 
@@ -2402,7 +2407,7 @@ inflateBackInit()函数分配的所有内存都被释放，使用Promise异步�
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.zlib错误码](./errorcode-zlib.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.zlib错误码](./errorcode-zlib.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2411,7 +2416,7 @@ inflateBackInit()函数分配的所有内存都被释放，使用Promise异步�
 
 **示例：**参考[inflateBack](#inflateback12)
 
-### inflateBack12+
+### inflateBack<sup>12+</sup>
 
 inflateBack(strm: ZStream, backIn: InflateBackInputCallback, inDesc: object, backOut: InflateBackOutputCallback, outDesc: object): Promise&lt;ReturnStatus&gt;
 
@@ -2426,10 +2431,28 @@ inflateBack(strm: ZStream, backIn: InflateBackInputCallback, inDesc: object, bac
 | 参数名  | 类型                      | 必填 | 说明                                                         |
 | ------- | ------------------------- | ---- | ------------------------------------------------------------ |
 | strm    | ZStream                   | 是   | 参考[ZStream定义](#zstream12)。                              |
-| backIn  | InflateBackInputCallback  | 是   | 参考[InflateBackInputCallback定义](#inflatebackinputcallback12)。 |
+| backIn  | InflateBackInputCallback  | 是   | 一种函数，用于从末尾解压缩数据，以从输入源读取原始压缩数据。 |
 | inDesc  | object                    | 是   | 通用对象。                                                   |
-| backOut | InflateBackOutputCallback | 是   | 参考[InflateBackOutputCallback定义](#inflatebackoutputcallback12)。 |
+| backOut | InflateBackOutputCallback | 是   | 将解压缩的数据写入目标输出。                                 |
 | outDesc | object                    | 是   | 通用对象。                                                   |
+
+InflateBackInputCallback的说明：
+
+InflateBackInputCallback = (inDesc: object) => ArrayBuffer
+
+| 名称   | 类型   | 必填 | 说明             |
+| ------ | ------ | ---- | ---------------- |
+| inDesc | object | 是   | 用户定义数据对象 |
+
+InflateBackOutputCallback的说明：
+
+InflateBackOutputCallback = (outDesc: object, buf: ArrayBuffer, length: number) => number
+
+| 名称    | 类型        | 必填 | 说明                   |
+| ------- | ----------- | ---- | ---------------------- |
+| outDesc | object      | 是   | 用户定义数据对象       |
+| buf     | ArrayBuffer | 是   | 用于存储要写入的数据。 |
+| length  | number      | 是   | 写入输出缓冲区的长度。 |
 
 **返回值：**
 
@@ -2439,7 +2462,7 @@ inflateBack(strm: ZStream, backIn: InflateBackInputCallback, inDesc: object, bac
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.zlib错误码](./errorcode-zlib.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.zlib错误码](./errorcode-zlib.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2584,7 +2607,7 @@ async function demo() {
 }
 ```
 
-### inflate12+
+### inflate<sup>12+</sup>
 
 inflate(strm: ZStream, flush: CompressFlushMode): Promise&lt;ReturnStatus&gt;
 
@@ -2609,7 +2632,7 @@ inflate(strm: ZStream, flush: CompressFlushMode): Promise&lt;ReturnStatus&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.zlib错误码](./errorcode-zlib.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.zlib错误码](./errorcode-zlib.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -2666,6 +2689,1002 @@ async function demo() {
     })
     await zip.inflateEnd({nextOut: arrayBufferOut}).then((data) => {
         console.info('inflateEnd success')
+    }).catch((errData: base.BusinessError) => {
+        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+    })
+}
+```
+
+### deflateInit<sup>12+</sup>
+
+deflateInit(strm: ZStream, level: CompressLevel): Promise&lt;ReturnStatus&gt;
+
+初始化内部流状态以进行压缩，使用Promise异步返回。成功时返回结果状态。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.BundleManager.Zlib
+
+**参数：**
+
+| 参数名 | 类型          | 必填 | 说明                                                 |
+| ------ | ------------- | ---- | ---------------------------------------------------- |
+| strm   | ZStream       | 是   | 参考[ZStream定义](#zstream12)。                      |
+| level  | CompressLevel | 是   | 参考[zip.CompressLevel枚举定义](#zipcompresslevel)。 |
+
+**返回值：**
+
+| 类型                                              | 说明                        |
+| ------------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise对象。返回结果状态。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.zlib错误码](./errorcode-zlib.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
+| 17800004 | ZStream error.                                               |
+
+**示例：**
+
+```ts
+import zlib from '@ohos.zlib';
+import base from '@ohos.base';
+
+async function demo() {
+    let str = 'hello world!';
+    let arrayBufferIn = new ArrayBuffer(str.length);
+    let byteArray = new Uint8Array(arrayBufferIn);
+    for (let i = 0, j = str.length; i < j; i++) {
+        byteArray[i] = str.charCodeAt(i)
+    }
+    let arrayBufferOut = new ArrayBuffer(100);
+    let zStream: zlib.ZStream = {
+        nextIn: arrayBufferIn,
+        availableIn: 1,
+        nextOut: arrayBufferOut,
+        availableOut: 1
+    };
+    let zip = zlib.createZipSync();
+    await zip.deflateInit(zStream, zlib.CompressLevel.COMPRESS_LEVEL_BEST_SPEED).then((data) => {
+        console.info('deflateInit success')
+    }).catch((errData: base.BusinessError) => {
+        console.error(`errData is errCode:${errData.code}  message:${errData.message}`)
+    })
+}
+```
+
+### deflateInit2<sup>12+</sup>
+
+deflateInit2(strm: ZStream, level: CompressLevel, method: CompressMethod, windowBits: number, memLevel: MemLevel, strategy: CompressStrategy): Promise&lt;ReturnStatus&gt;
+
+初始化内部流状态以进行压缩，使用Promise异步返回。成功时返回结果状态。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.BundleManager.Zlib
+
+**参数：**
+
+| 参数名     | 类型             | 必填 | 说明                                                       |
+| ---------- | ---------------- | ---- | ---------------------------------------------------------- |
+| strm       | ZStream          | 是   | 参考[ZStream定义](#zstream12)。                            |
+| level      | CompressLevel    | 是   | 参考[zip.CompressLevel枚举定义](#zipcompresslevel)。       |
+| method     | CompressMethod   | 是   | 参考[zip.CompressMethod枚举定义](#zipcompressmethod12)。   |
+| windowBits | number           | 是   | 最大窗口大小的以2为底的对数。                              |
+| memLevel   | MemLevel         | 是   | 参考[zip.MemLevel枚举定义](#zipmemlevel)。                 |
+| strategy   | CompressStrategy | 是   | 参考[zip.CompressStrategy枚举定义](#zipcompressstrategy)。 |
+
+**返回值：**
+
+| 类型                                              | 说明                        |
+| ------------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise对象。返回结果状态。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.zlib错误码](./errorcode-zlib.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
+| 17800004 | ZStream error.                                               |
+
+**示例：**
+
+```ts
+import zlib from '@ohos.zlib';
+import base from '@ohos.base';
+
+async function demo() {
+    let str = 'hello world!';
+    let arrayBufferIn = new ArrayBuffer(str.length);
+    let byteArray = new Uint8Array(arrayBufferIn);
+    for (let i = 0, j = str.length; i < j; i++) {
+        byteArray[i] = str.charCodeAt(i)
+    }
+    let arrayBufferOut = new ArrayBuffer(100);
+    let zStream: zlib.ZStream = {
+        nextIn: arrayBufferIn,
+        availableIn: 1,
+        nextOut: arrayBufferOut,
+        availableOut: 1
+    };
+    let zip = zlib.createZipSync()
+    await zip.deflateInit2(zStream, zlib.CompressLevel.COMPRESS_LEVEL_BEST_SPEED, zlib.CompressMethod.DEFLATED, 28,
+      zlib.MemLevel.MEM_LEVEL_DEFAULT, zlib.CompressStrategy.COMPRESS_STRATEGY_DEFAULT_STRATEGY).then((data) => {
+        console.info('deflateInit2 success');
+    }).catch((errData: base.BusinessError) => {
+        console.error(`errData is errCode:${errData.code}  message:${errData.message}`)
+    })
+}
+```
+
+### deflate<sup>12+</sup>
+
+deflate(strm: ZStream, flush: CompressFlushMode): Promise&lt;ReturnStatus&gt;
+
+压缩数据，使用Promise异步返回。成功时返回结果状态。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.BundleManager.Zlib
+
+**参数：**
+
+| 参数名 | 类型              | 必填 | 说明                                                   |
+| ------ | ----------------- | ---- | ------------------------------------------------------ |
+| strm   | ZStream           | 是   | 参考[ZStream定义](#zstream12)。                        |
+| flush  | CompressFlushMode | 是   | 参考[CompressFlushMode定义](#zipcompressflushmode12)。 |
+
+**返回值：**
+
+| 类型                                              | 说明                        |
+| ------------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise对象。返回结果状态。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.zlib错误码](./errorcode-zlib.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
+| 17800004 | ZStream error.                                               |
+| 17800007 | Buffer error.                                                |
+
+**示例：**
+
+```ts
+import zlib from '@ohos.zlib';
+import base from '@ohos.base';
+
+async function demo() {
+    let str = 'hello world!';
+    let arrayBufferIn = new ArrayBuffer(str.length);
+    let byteArray = new Uint8Array(arrayBufferIn);
+    for (let i = 0, j = str.length; i < j; i++) {
+        byteArray[i] = str.charCodeAt(i)
+    }
+    let arrayBufferOut = new ArrayBuffer(100);
+    let zStream: zlib.ZStream = {
+        nextIn: arrayBufferIn,
+        availableIn: 1,
+        nextOut: arrayBufferOut,
+        availableOut: 1
+    };
+    let zip = zlib.createZipSync();
+    await zip.deflateInit(zStream, zlib.CompressLevel.COMPRESS_LEVEL_BEST_SPEED).then((data) => {
+        console.info('deflateInit success')
+    }).catch((errData: base.BusinessError) => {
+        console.error(`errData is errCode:${errData.code}  message:${errData.message}`)
+    })
+    await zip.deflate({availableOut: 8}, zlib.CompressFlushMode.FINISH).then((data) => {
+        console.info('deflate success')
+    }).catch((errData: base.BusinessError) => {
+        console.error(`errData is errCode:${errData.code}  message:${errData.message}`)
+    })
+}
+```
+
+### deflateEnd<sup>12+</sup>
+
+deflateEnd(strm: ZStream): Promise&lt;ReturnStatus&gt;
+
+压缩流的所有动态分配的数据结构都被释放，使用Promise异步返回。成功时返回结果状态。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.BundleManager.Zlib
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明                            |
+| ------ | ------- | ---- | ------------------------------- |
+| strm   | ZStream | 是   | 参考[ZStream定义](#zstream12)。 |
+
+**返回值：**
+
+| 类型                                              | 说明                        |
+| ------------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise对象。返回结果状态。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.zlib错误码](./errorcode-zlib.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
+| 17800004 | ZStream error.                                               |
+
+**示例：**
+
+```ts
+import zlib from '@ohos.zlib';
+import base from '@ohos.base';
+
+async function demo() {
+    let str = 'hello world!';
+    let arrayBufferIn = new ArrayBuffer(str.length);
+    let byteArray = new Uint8Array(arrayBufferIn);
+    for (let i = 0, j = str.length; i < j; i++) {
+        byteArray[i] = str.charCodeAt(i)
+    }
+    let arrayBufferOut = new ArrayBuffer(100);
+    let zStream: zlib.ZStream = {
+        nextIn: arrayBufferIn,
+        availableIn: 1,
+        nextOut: arrayBufferOut,
+        availableOut: 1
+    };
+    let zip = zlib.createZipSync();
+    await zip.deflateInit(zStream, zlib.CompressLevel.COMPRESS_LEVEL_BEST_SPEED).then((data) => {
+        console.info('deflateInit success')
+    }).catch((errData: base.BusinessError) => {
+        console.error(`errData is errCode:${errData.code}  message:${errData.message}`)
+    })
+    await zip.deflate({availableOut: 8}, zlib.CompressFlushMode.FINISH).then((data) => {
+        console.info('deflate success')
+    }).catch((errData: base.BusinessError) => {
+        console.error(`errData is errCode:${errData.code}  message:${errData.message}`)
+    })
+    await zip.deflateEnd({ nextOut: arrayBufferOut }).then(data => {
+        console.info('deflateEnd success')
+    }).catch((errData: base.BusinessError) => {
+        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+    })
+}
+```
+
+### deflateBound<sup>12+</sup>
+
+deflateBound(strm: ZStream, sourceLength: number): Promise&lt;number&gt;
+
+计算压缩大小的上限，使用Promise异步返回。成功时返回压缩大小的上限。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.BundleManager.Zlib
+
+**参数：**
+
+| 参数名    | 类型    | 必填 | 说明                            |
+| --------- | ------- | ---- | ------------------------------- |
+| strm      | ZStream | 是   | 参考[ZStream定义](#zstream12)。 |
+| sourceLen | number  | 是   | 源数据长度。                    |
+
+**返回值：**
+
+| 类型                  | 说明                              |
+| --------------------- | --------------------------------- |
+| Promise&lt;number&gt; | Promise对象。返回压缩大小的上限。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
+
+**示例：**
+
+```ts
+import zlib from '@ohos.zlib';
+import base from '@ohos.base';
+
+async function demo() {
+    let str = 'hello world!';
+    let arrayBufferIn = new ArrayBuffer(str.length);
+    let byteArray = new Uint8Array(arrayBufferIn);
+    for (let i = 0, j = str.length; i < j; i++) {
+        byteArray[i] = str.charCodeAt(i)
+    }
+    let arrayBufferOut = new ArrayBuffer(100);
+    let zStream: zlib.ZStream = {
+        nextIn: arrayBufferIn,
+        availableIn: 1,
+        nextOut: arrayBufferOut,
+        availableOut: 1
+    };
+    let zip = zlib.createZipSync();
+    await zip.deflateInit(zStream, zlib.CompressLevel.COMPRESS_LEVEL_BEST_SPEED).then((data) => {
+        console.info('deflateInit success')
+    }).catch((errData: base.BusinessError) => {
+        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+    })
+    await zip.deflateBound({nextOut: arrayBufferOut}, 12).then((data) => {
+        console.info('deflateBound success')
+    }).catch((errData: base.BusinessError) => {
+        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+    })
+}
+```
+
+### deflateSetHeader<sup>12+</sup>
+
+deflateSetHeader(strm: ZStream, header: GzHeader): Promise&lt;ReturnStatus&gt;
+
+当deflateInit2()请求gzip流时，提供gzip标头信息，使用Promise异步返回。成功时返回结果状态。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.BundleManager.Zlib
+
+**参数：**
+
+| 参数名 | 类型                    | 必填 | 说明                             |
+| ------ | ----------------------- | ---- | -------------------------------- |
+| strm   | ZStream                 | 是   | 参考[ZStream定义](#zstream12)。  |
+| header | [GzHeader](#gzheader12) | 是   | 从压缩数据流中提取的gzip头信息。 |
+
+**返回值：**
+
+| 类型                                              | 说明                        |
+| ------------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise对象。返回结果状态。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.zlib错误码](./errorcode-zlib.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
+| 17800004 | ZStream error.                                               |
+
+**示例：**
+
+```ts
+import zlib from '@ohos.zlib';
+import base from '@ohos.base';
+
+async function demo() {
+    let str = 'hello world!';
+    let arrayBufferIn = new ArrayBuffer(str.length);
+    let byteArray = new Uint8Array(arrayBufferIn);
+    for (let i = 0, j = str.length; i < j; i++) {
+        byteArray[i] = str.charCodeAt(i)
+    }
+    let arrayBufferOut = new ArrayBuffer(100);
+    let zStream: zlib.ZStream = {
+        nextIn: arrayBufferIn,
+        availableIn: 1,
+        nextOut: arrayBufferOut,
+        availableOut: 1
+    };
+    let zip = zlib.createZipSync()
+    await zip.deflateInit2(zStream, zlib.CompressLevel.COMPRESS_LEVEL_BEST_SPEED, zlib.CompressMethod.DEFLATED, 28,
+      zlib.MemLevel.MEM_LEVEL_DEFAULT, zlib.CompressStrategy.COMPRESS_STRATEGY_DEFAULT_STRATEGY).then((data) => {
+        console.info('deflateInit2 success');
+    }).catch((errData: base.BusinessError) => {
+        console.error(`errData is errCode:${errData.code}  message:${errData.message}`)
+    })
+    await zip.deflateSetHeader({nextIn: arrayBufferIn, availableIn: 1, nextOut: arrayBufferOut,availableOut: 1},{isText: true, os: 1, time: 1, xflags: 1, extra: arrayBufferIn, extraLen: 12, name: arrayBufferIn, comment: arrayBufferOut, hcrc: true, done: true}).then((data)=>{
+        console.info('deflateSetHeader success');
+    }).catch((errData: base.BusinessError) => {
+        console.error(`errData is errCode:${errData.code}  message:${errData.message}`)
+    })
+}
+```
+
+### deflateCopy<sup>12+</sup>
+
+eflateCopy(source: Zip): Promise&lt;ReturnStatus&gt;
+
+复制压缩流，使用Promise异步返回。成功时返回结果状态。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.BundleManager.Zlib
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明                    |
+| ------ | ---- | ---- | ----------------------- |
+| source | Zip  | 是   | 参考[Zip定义](#zip12)。 |
+
+**返回值：**
+
+| 类型                                              | 说明                        |
+| ------------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise对象。返回结果状态。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.zlib错误码](./errorcode-zlib.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
+| 17800004 | ZStream error.                                               |
+
+**示例：**
+
+```ts
+import zlib from '@ohos.zlib';
+import base from '@ohos.base';
+
+async function demo() {
+    let str = 'hello world!';
+    let arrayBufferIn = new ArrayBuffer(str.length);
+    let byteArray = new Uint8Array(arrayBufferIn);
+    for (let i = 0, j = str.length; i < j; i++) {
+        byteArray[i] = str.charCodeAt(i)
+    }
+    let arrayBufferOut = new ArrayBuffer(100);
+    let zStream: zlib.ZStream = {
+        nextIn: arrayBufferIn,
+        availableIn: 1,
+        nextOut: arrayBufferOut,
+        availableOut: 1
+    };
+    let zip = zlib.createZipSync();
+    await zip.deflateInit(zStream, zlib.CompressLevel.COMPRESS_LEVEL_BEST_SPEED).then((data) => {
+        console.info('deflateInit success')
+    }).catch((errData: base.BusinessError) => {
+        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+    })
+    await zip.deflateCopy(zip).then((data) => {
+        console.info('deflateCopy success')
+    }).catch((errData: base.BusinessError) => {
+        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+    })
+}
+```
+
+### deflateSetDictionary<sup>12+</sup>
+
+deflateSetDictionary(strm: ZStream, dictionary: ArrayBuffer): Promise&lt;ReturnStatus&gt;
+
+从给定的字节序列初始化压缩字典，使用Promise异步返回。成功时返回结果状态。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.BundleManager.Zlib
+
+**参数：**
+
+| 参数名     | 类型        | 必填 | 说明                            |
+| ---------- | ----------- | ---- | ------------------------------- |
+| strm       | ZStream     | 是   | 参考[ZStream定义](#zstream12)。 |
+| dictionary | ArrayBuffer | 是   | 字典数据。                      |
+
+**返回值：**
+
+| 类型                                              | 说明                        |
+| ------------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise对象。返回结果状态。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.zlib错误码](./errorcode-zlib.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
+| 17800004 | ZStream error.                                               |
+
+**示例：**
+
+```ts
+import zlib from '@ohos.zlib';
+import base from '@ohos.base';
+
+async function demo() {
+    let str = 'hello world!';
+    let arrayBufferIn = new ArrayBuffer(str.length);
+    let byteArray = new Uint8Array(arrayBufferIn);
+    for (let i = 0, j = str.length; i < j; i++) {
+        byteArray[i] = str.charCodeAt(i)
+    }
+    let arrayBufferOut = new ArrayBuffer(100);
+    let zStream: zlib.ZStream = {
+        nextIn: arrayBufferIn,
+        availableIn: 1,
+        nextOut: arrayBufferOut,
+        availableOut: 1
+    };
+    let zip = zlib.createZipSync();
+    await zip.deflateInit(zStream, zlib.CompressLevel.COMPRESS_LEVEL_BEST_SPEED).then((data) => {
+        console.info('deflateInit success')
+    }).catch((errData: base.BusinessError) => {
+        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+    })
+    await zip.deflateSetDictionary({nextOut:arrayBufferOut}, arrayBufferOut).then((data) => {
+        console.info('deflateSetDictionary success')
+    }).catch((errData: base.BusinessError) => {
+        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+    })
+}
+```
+
+### deflateGetDictionary<sup>12+</sup>
+
+deflateGetDictionary(strm: ZStream, dictionary: ArrayBuffer): Promise&lt;DictionaryOutputInfo&gt;
+
+获取当前解压缩流中使用的解压缩字典内容及其长度，使用Promise异步返回。成功时返回结果状态和字典的长度。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.BundleManager.Zlib
+
+**参数：**
+
+| 参数名     | 类型        | 必填 | 说明                            |
+| ---------- | ----------- | ---- | ------------------------------- |
+| strm       | ZStream     | 是   | 参考[ZStream定义](#zstream12)。 |
+| dictionary | ArrayBuffer | 是   | 接收解压缩字典的实际内容。      |
+
+**返回值：**
+
+| 类型                                                         | 说明                                    |
+| ------------------------------------------------------------ | --------------------------------------- |
+| Promise&lt;[DictionaryOutputInfo](#dictionaryoutputinfo12)&gt; | Promise对象。返回结果状态和字典的长度。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.zlib错误码](./errorcode-zlib.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
+| 17800004 | ZStream error.                                               |
+
+**示例：**
+
+```ts
+import zlib from '@ohos.zlib';
+import base from '@ohos.base';
+
+async function demo() {
+    let str = 'hello world!';
+    let arrayBufferIn = new ArrayBuffer(str.length);
+    let byteArray = new Uint8Array(arrayBufferIn);
+    for (let i = 0, j = str.length; i < j; i++) {
+        byteArray[i] = str.charCodeAt(i)
+    }
+    let arrayBufferOut = new ArrayBuffer(100);
+    let zStream: zlib.ZStream = {
+        nextIn: arrayBufferIn,
+        availableIn: 1,
+        nextOut: arrayBufferOut,
+        availableOut: 1
+    };
+    let zip = zlib.createZipSync();
+    await zip.deflateInit(zStream, zlib.CompressLevel.COMPRESS_LEVEL_BEST_SPEED).then((data) => {
+        console.info('deflateInit success')
+    }).catch((errData: base.BusinessError) => {
+        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+    })
+    await zip.deflateSetDictionary({nextOut:arrayBufferOut}, arrayBufferOut).then((data) => {
+        console.info('deflateSetDictionary success')
+    }).catch((errData: base.BusinessError) => {
+        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+    })
+    await zip.deflateGetDictionary({nextOut:arrayBufferOut}, arrayBufferOut).then((data) => {
+        console.info('deflateGetDictionary success')
+    }).catch((errData: base.BusinessError) => {
+        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+    })
+}
+```
+
+### deflateTune<sup>12+</sup>
+
+deflateTune(strm: ZStream, goodLength: number, maxLazy: number, niceLength: number, maxChain: number): Promise&lt;ReturnStatus&gt;
+
+微调deflate的内部压缩参数，使用Promise异步返回。成功时返回结果状态。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.BundleManager.Zlib
+
+**参数：**
+
+| 参数名     | 类型    | 必填 | 说明                            |
+| ---------- | ------- | ---- | ------------------------------- |
+| strm       | ZStream | 是   | 参考[ZStream定义](#zstream12)。 |
+| goodLength | number  | 是   | 匹配的长度阈值。                |
+| maxLazy    | number  | 是   | 最大延迟匹配时间。              |
+| niceLength | number  | 是   | 适合的延迟长度阈值              |
+| maxChain   | number  | 是   | 最大链条长度                    |
+
+**返回值：**
+
+| 类型                                              | 说明                        |
+| ------------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise对象。返回结果状态。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.zlib错误码](./errorcode-zlib.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
+| 17800004 | ZStream error.                                               |
+
+**示例：**
+
+```ts
+import zlib from '@ohos.zlib';
+import base from '@ohos.base';
+
+async function demo() {
+    let str = 'hello world!';
+    let arrayBufferIn = new ArrayBuffer(str.length);
+    let byteArray = new Uint8Array(arrayBufferIn);
+    for (let i = 0, j = str.length; i < j; i++) {
+        byteArray[i] = str.charCodeAt(i)
+    }
+    let arrayBufferOut = new ArrayBuffer(100);
+    let zStream: zlib.ZStream = {
+        nextIn: arrayBufferIn,
+        availableIn: 1,
+        nextOut: arrayBufferOut,
+        availableOut: 1
+    };
+    let zip = zlib.createZipSync();
+    await zip.deflateInit(zStream, zlib.CompressLevel.COMPRESS_LEVEL_BEST_SPEED).then((data) => {
+        console.info('deflateInit success')
+    }).catch((errData: base.BusinessError) => {
+        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+    })
+    await zip.deflateTune({nextOut:arrayBufferOut}, 2, 2, 2, 2).then((data) => {
+        console.info('deflateTune success:')
+    }).catch((errData: base.BusinessError) => {
+        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+    })
+}
+```
+
+### deflateReset<sup>12+</sup>
+
+deflateReset(strm: ZStream): Promise&lt;ReturnStatus&gt;
+
+这个函数相当于先调用deflateEnd再调用deflateInit，但是并不会释放和重新分配内部解压缩状态，使用Promise异步返回。成功时返回结果状态。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.BundleManager.Zlib
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明                            |
+| ------ | ------- | ---- | ------------------------------- |
+| strm   | ZStream | 是   | 参考[ZStream定义](#zstream12)。 |
+
+**返回值：**
+
+| 类型                                              | 说明                        |
+| ------------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise对象。返回结果状态。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.zlib错误码](./errorcode-zlib.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
+| 17800004 | ZStream error.                                               |
+
+**示例：**
+
+```ts
+import zlib from '@ohos.zlib';
+import base from '@ohos.base';
+
+async function demo() {
+    let str = 'hello world!';
+    let arrayBufferIn = new ArrayBuffer(str.length);
+    let byteArray = new Uint8Array(arrayBufferIn);
+    for (let i = 0, j = str.length; i < j; i++) {
+        byteArray[i] = str.charCodeAt(i)
+    }
+    let arrayBufferOut = new ArrayBuffer(100);
+    let zStream: zlib.ZStream = {
+        nextIn: arrayBufferIn,
+        availableIn: 1,
+        nextOut: arrayBufferOut,
+        availableOut: 1
+    };
+    let zip = zlib.createZipSync();
+    await zip.deflateInit(zStream, zlib.CompressLevel.COMPRESS_LEVEL_BEST_SPEED).then((data) => {
+        console.info('deflateInit success')
+    }).catch((errData: base.BusinessError) => {
+        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+    })
+    await zip.deflateReset({nextOut:arrayBufferOut}).then((data) => {
+        console.info('deflateReset success')
+    }).catch((errData: base.BusinessError) => {
+        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+    })
+}
+```
+
+### deflateResetKeep<sup>12+</sup>
+
+deflateResetKeep(strm: ZStream): Promise&lt;ReturnStatus&gt;
+
+重置初始化的deflate压缩流，但保留其设置的压缩参数和字典，使用Promise异步返回。成功时返回结果状态。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.BundleManager.Zlib
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明                            |
+| ------ | ------- | ---- | ------------------------------- |
+| strm   | ZStream | 是   | 参考[ZStream定义](#zstream12)。 |
+
+**返回值：**
+
+| 类型                                              | 说明                        |
+| ------------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise对象。返回结果状态。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.zlib错误码](./errorcode-zlib.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
+| 17800004 | ZStream error.                                               |
+
+**示例：**
+
+```ts
+import zlib from '@ohos.zlib';
+import base from '@ohos.base';
+
+async function demo() {
+    let str = 'hello world!';
+    let arrayBufferIn = new ArrayBuffer(str.length);
+    let byteArray = new Uint8Array(arrayBufferIn);
+    for (let i = 0, j = str.length; i < j; i++) {
+        byteArray[i] = str.charCodeAt(i)
+    }
+    let arrayBufferOut = new ArrayBuffer(100);
+    let zStream: zlib.ZStream = {
+        nextIn: arrayBufferIn,
+        availableIn: 1,
+        nextOut: arrayBufferOut,
+        availableOut: 1
+    };
+    let zip = zlib.createZipSync();
+    await zip.deflateInit(zStream, zlib.CompressLevel.COMPRESS_LEVEL_BEST_SPEED).then((data) => {
+        console.info('deflateInit success')
+    }).catch((errData: base.BusinessError) => {
+        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+    })
+    await zip.deflateResetKeep({nextOut: arrayBufferOut}).then((data) => {
+        console.info('deflateResetKeep success')
+    }).catch((errData: base.BusinessError) => {
+        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+    })
+}
+```
+
+### deflatePending<sup>12+</sup>
+
+deflatePending(strm: ZStream): Promise&lt;DeflatePendingOutputInfo&gt;
+
+返回已生成但尚未在可用输出中提供的输出的字节数和位数，使用Promise异步返回。成功时返回结果状态、输出位数和输出字节数。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.BundleManager.Zlib
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明                            |
+| ------ | ------- | ---- | ------------------------------- |
+| strm   | ZStream | 是   | 参考[ZStream定义](#zstream12)。 |
+
+**返回值：**
+
+| 类型                                                         | 说明                                              |
+| ------------------------------------------------------------ | ------------------------------------------------- |
+| Promise&lt;[DeflatePendingOutputInfo](#deflatependingoutputinfo12)&gt; | Promise对象。返回结果状态、输出位数和输出字节数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.zlib错误码](./errorcode-zlib.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
+| 17800004 | ZStream error.                                               |
+
+**示例：**
+
+```ts
+import zlib from '@ohos.zlib';
+import base from '@ohos.base';
+
+async function demo() {
+    let str = 'hello world!';
+    let arrayBufferIn = new ArrayBuffer(str.length);
+    let byteArray = new Uint8Array(arrayBufferIn);
+    for (let i = 0, j = str.length; i < j; i++) {
+        byteArray[i] = str.charCodeAt(i)
+    }
+    let arrayBufferOut = new ArrayBuffer(100);
+    let zStream: zlib.ZStream = {
+        nextIn: arrayBufferIn,
+        availableIn: 1,
+        nextOut: arrayBufferOut,
+        availableOut: 1
+    };
+    let zip = zlib.createZipSync();
+    await zip.deflateInit(zStream, zlib.CompressLevel.COMPRESS_LEVEL_BEST_SPEED).then((data) => {
+        console.info('deflateInit success')
+    }).catch((errData: base.BusinessError) => {
+        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+    })
+    await zip.deflatePending({nextOut: arrayBufferOut}).then((data) => {
+        console.info('deflatePending success')
+    }).catch((errData: base.BusinessError) => {
+        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+    })
+}
+```
+
+### deflateParams<sup>12+</sup>
+
+deflateParams(strm: ZStream, level: CompressLevel, strategy: CompressStrategy): Promise&lt;ReturnStatus&gt;
+
+动态更新压缩级别和压缩策略，使用Promise异步返回。成功时返回结果状态。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.BundleManager.Zlib
+
+**参数：**
+
+| 参数名   | 类型             | 必填 | 说明                                                       |
+| -------- | ---------------- | ---- | ---------------------------------------------------------- |
+| strm     | ZStream          | 是   | 参考[ZStream定义](#zstream12)。                            |
+| level    | CompressLevel    | 是   | 参考[zip.CompressLevel枚举定义](#zipcompresslevel)。       |
+| strategy | CompressStrategy | 是   | 参考[zip.CompressStrategy枚举定义](#zipcompressstrategy)。 |
+
+**返回值：**
+
+| 类型                                              | 说明                        |
+| ------------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise对象。返回结果状态。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.zlib错误码](./errorcode-zlib.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
+| 17800004 | ZStream error.                                               |
+
+**示例：**
+
+```ts
+import zlib from '@ohos.zlib';
+import base from '@ohos.base';
+
+async function demo() {
+    let str = 'hello world!';
+    let arrayBufferIn = new ArrayBuffer(str.length);
+    let byteArray = new Uint8Array(arrayBufferIn);
+    for (let i = 0, j = str.length; i < j; i++) {
+        byteArray[i] = str.charCodeAt(i)
+    }
+    let arrayBufferOut = new ArrayBuffer(100);
+    let zStream: zlib.ZStream = {
+        nextIn: arrayBufferIn,
+        availableIn: 1,
+        nextOut: arrayBufferOut,
+        availableOut: 1
+    };
+    let zip = zlib.createZipSync()
+    await zip.deflateInit(zStream, zlib.CompressLevel.COMPRESS_LEVEL_BEST_SPEED).then((data) => {
+        console.info('deflateInit success')
+    }).catch((errData: base.BusinessError) => {
+        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+    })
+    await zip.deflateParams(zStream, zlib.CompressLevel.COMPRESS_LEVEL_DEFAULT_COMPRESSION, zlib.CompressStrategy.COMPRESS_STRATEGY_DEFAULT_STRATEGY).then((data) => {
+        console.info('deflateParams success')
+    }).catch((errData: base.BusinessError) => {
+        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+    })
+}
+```
+
+### deflatePrime<sup>12+</sup>
+
+deflatePrime(strm: ZStream, bits: number, value: number): Promise&lt;ReturnStatus&gt;
+
+在压缩流中插入位和值，使用Promise异步返回。成功时返回结果状态。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.BundleManager.Zlib
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明                            |
+| ------ | ------- | ---- | ------------------------------- |
+| strm   | ZStream | 是   | 参考[ZStream定义](#zstream12)。 |
+| bits   | number  | 是   | 要插入的位数，取值范围在0~16。  |
+| value  | number  | 是   | 与位数相对应的位值。            |
+
+**返回值：**
+
+| 类型                                              | 说明                        |
+| ------------------------------------------------- | --------------------------- |
+| Promise&lt;[ReturnStatus](#zipreturnstatus12)&gt; | Promise对象。返回结果状态。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.zlib错误码](./errorcode-zlib.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
+| 17800004 | ZStream error.                                               |
+
+**示例：**
+
+```ts
+import zlib from '@ohos.zlib';
+import base from '@ohos.base';
+
+async function demo() {
+    let str = 'hello world!';
+    let arrayBufferIn = new ArrayBuffer(str.length);
+    let byteArray = new Uint8Array(arrayBufferIn);
+    for (let i = 0, j = str.length; i < j; i++) {
+        byteArray[i] = str.charCodeAt(i)
+    }
+    let arrayBufferOut = new ArrayBuffer(100);
+    let zStream: zlib.ZStream = {
+        nextIn: arrayBufferIn,
+        availableIn: 1,
+        nextOut: arrayBufferOut,
+        availableOut: 1
+    };
+    let zip = zlib.createZipSync();
+    await zip.deflateInit(zStream, zlib.CompressLevel.COMPRESS_LEVEL_BEST_SPEED).then((data) => {
+        console.info('deflateInit success')
+    }).catch((errData: base.BusinessError) => {
+        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+    })
+    await zip.deflatePrime({nextOut: arrayBufferOut}, 5, 2).then((data) => {
+        console.info('deflatePrime success')
     }).catch((errData: base.BusinessError) => {
         console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
     })
@@ -2851,30 +3870,6 @@ async function demo() {
 | hcrc     | boolean     | 是   | 否   | 如果存在crc标头，则为True。          |
 | done     | boolean     | 是   | 否   | 读取gzip标头后为True。               |
 
-## InflateBackInputCallback<sup>12+</sup>
-
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
-
-**系统能力：** SystemCapability.BundleManager.Zlib
-
-| 名称         | 类型   | 可读 | 可写 | 说明                 |
-| ------------ | ------ | ---- | ---- | -------------------- |
-| inDesc       | object | 是   | 否   | 用户定义数据对象     |
-| destLength   | number | 是   | 否   | 目标缓冲区的总长度。 |
-| sourceLength | number | 是   | 否   | 源数据缓冲区长度。   |
-
-## InflateBackOutputCallback<sup>12+</sup>
-
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
-
-**系统能力：** SystemCapability.BundleManager.Zlib
-
-| 名称         | 类型   | 可读 | 可写 | 说明                 |
-| ------------ | ------ | ---- | ---- | -------------------- |
-| inDesc       | object | 是   | 否   | 用户定义数据对象     |
-| destLength   | number | 是   | 否   | 目标缓冲区的总长度。 |
-| sourceLength | number | 是   | 否   | 源数据缓冲区长度。   |
-
 ## zlib.createGZip<sup>12+</sup>
 
 createGZip(): Promise&lt;Gzip&gt;
@@ -2954,12 +3949,12 @@ gzdopen(fd: number, mode: string): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.zlib错误码](./errorcode-zlib.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.zlib错误码](./errorcode-zlib.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
-| 17800002 | No such file or directory.                                   |
+| 17800002 | No such file or access mode error.                           |
 
 **示例：**
 
@@ -3023,7 +4018,7 @@ gzbuffer(size: number):Promise&lt;number&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.zlib错误码](./errorcode-zlib.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3094,12 +4089,12 @@ gzopen(path: string, mode: string): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.zlib错误码](./errorcode-zlib.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.zlib错误码](./errorcode-zlib.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
-| 17800002 | No such file or directory.                                   |
+| 17800002 | No such file or No such file or access mode error.           |
 
 **示例：**
 
@@ -3239,7 +4234,7 @@ struct Index {
   build() {
     Row() {
       Column() {
-        Button('test gzip interface')ts
+        Button('test gzip interface')
           .type(ButtonType.Capsule)
           .height(60)
           .width(200)
@@ -3276,9 +4271,10 @@ gzclose(): Promise&lt;ReturnStatus&gt;
 
 以下错误码的详细介绍请参见[ohos.zlib错误码](./errorcode-zlib.md)。
 
-| 错误码ID | 错误信息       |
-| -------- | -------------- |
-| 17800004 | ZStream error. |
+| 错误码ID | 错误信息                  |
+| -------- | ------------------------- |
+| 17800004 | ZStream error.            |
+| 17800006 | Memory allocation failed. |
 
 **示例：**
 
@@ -3546,7 +4542,7 @@ gzflush(flush: CompressFlushMode): Promise&lt;ReturnStatus&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.zlib错误码](./errorcode-zlib.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.zlib错误码](./errorcode-zlib.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3617,7 +4613,7 @@ gzfwrite(buf: ArrayBuffer, size: number, nitems: number): Promise&lt;number&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.zlib错误码](./errorcode-zlib.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.zlib错误码](./errorcode-zlib.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3693,7 +4689,7 @@ gzfread(buf: ArrayBuffer, size: number, nitems: number): Promise&lt;number&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.zlib错误码](./errorcode-zlib.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.zlib错误码](./errorcode-zlib.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3767,9 +4763,10 @@ gzclosew(): Promise&lt;ReturnStatus&gt;
 
 以下错误码的详细介绍请参见[ohos.zlib错误码](./errorcode-zlib.md)。
 
-| 错误码ID | 错误信息       |
-| -------- | -------------- |
-| 17800004 | ZStream error. |
+| 错误码ID | 错误信息                  |
+| -------- | ------------------------- |
+| 17800004 | ZStream error.            |
+| 17800006 | Memory allocation failed. |
 
 **示例：**
 
@@ -3894,7 +4891,7 @@ gzwrite(buf: ArrayBuffer, len: number): Promise&lt;number&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.zlib错误码](./errorcode-zlib.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.zlib错误码](./errorcode-zlib.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3966,7 +4963,7 @@ gzungetc(c: number): Promise&lt;number&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.zlib错误码](./errorcode-zlib.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.zlib错误码](./errorcode-zlib.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -4101,7 +5098,7 @@ gzsetparams(level: CompressLevel, strategy: CompressStrategy): Promise&lt;Return
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.zlib错误码](./errorcode-zlib.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.zlib错误码](./errorcode-zlib.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -4172,7 +5169,7 @@ gzseek(offset: number, whence: OffsetReferencePoint): Promise&lt;number&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.zlib错误码](./errorcode-zlib.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.zlib错误码](./errorcode-zlib.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -4305,7 +5302,7 @@ gzread(buf: ArrayBuffer): Promise&lt;number&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.zlib错误码](./errorcode-zlib.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.zlib错误码](./errorcode-zlib.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -4383,7 +5380,7 @@ gzputs(str: string): Promise&lt;number&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.zlib错误码](./errorcode-zlib.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.zlib错误码](./errorcode-zlib.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -4452,7 +5449,7 @@ gzputc(char: number): Promise&lt;number&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.zlib错误码](./errorcode-zlib.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.zlib错误码](./errorcode-zlib.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -4522,7 +5519,7 @@ gzprintf(format: string, ...args: Array&lt;string | number&gt;): Promise&lt;numb
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.zlib错误码](./errorcode-zlib.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.zlib错误码](./errorcode-zlib.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -4654,7 +5651,7 @@ gzgets(buf: ArrayBuffer): Promise&lt;string&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.zlib错误码](./errorcode-zlib.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.zlib错误码](./errorcode-zlib.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |

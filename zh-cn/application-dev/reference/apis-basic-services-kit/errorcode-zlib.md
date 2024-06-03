@@ -65,11 +65,11 @@ The input source file is not ZIP format or damaged.
 1. 检查源文件压缩格式是否为ZIP格式。
 2. 检查源文件是否完整，如果是网络下载的，需要确保文件下载完成后再调用decompress接口。
 
-## 17800002 传入的文件或目录错误
+## 17800002 传入的文件或访问模式错误
 
 **错误信息**
 
-No such file or directory.
+No such file or access mode error.
 
 **错误描述**
 
@@ -83,6 +83,7 @@ No such file or directory.
 **处理步骤**
 
 1. 检查gz文件路径或文件描述符是否正确，如果是新建gz文件的操作，需要确保文件访问模式为压缩模式(w或wb等)。
+2. 检查文件访问模式，是否为"w"、"wb"、"r"、"rb"、"a"、"ab"等。
 
 ## 17800004 压缩流或解压流错误
 
@@ -124,6 +125,24 @@ Data error.
 
 先使用compress进行压缩后再通过uncompress2或uncompress进行解压。
 
+## 17800006 内存分配失败错误
+
+**错误信息**
+
+Memory allocation failed.
+
+**错误描述**
+
+当调用gzclose或gzclosew接口时，内存分配失败。
+
+**可能原因**
+
+在调用gzclose或gzclosew接口前，调用了gzsetparams接口，传入错误的压缩级别或压缩策略。
+
+**处理步骤**
+
+检查gzsetparams接口的调用，传入正确的压缩级别和压缩策略。
+
 ## 17800007 传入的缓冲区错误
 
 **错误信息**
@@ -132,12 +151,13 @@ Buffer error.
 
 **错误描述**
 
-当调用compress或compress2或uncompress接口时，传入的缓冲区错误。
+当调用compress或compress2或uncompress或uncompress2接口时，传入的缓冲区错误。
 
 **可能原因**
 
-1. 当调用uncompress接口时，传入的输入buffer大小大于解压后输出buffer的大小。
+1. 当调用uncompress或uncompress2接口时，传入的输入buffer大小大于解压后输出buffer的大小。
 2. 当调用compress或compress2接口时，传入的输入buffer大小大于压缩后输出buffer的大小。
+3. 当调用compress或compress2或uncompress或uncompress2接口，传入的buffer大小为0。
 
 **处理步骤**
 

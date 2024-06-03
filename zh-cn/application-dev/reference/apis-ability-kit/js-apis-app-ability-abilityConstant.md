@@ -11,7 +11,7 @@ AbilityConstant提供UIAbility相关的枚举，包括设置初次启动原因�
 ## 导入模块
 
 ```ts
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import { AbilityConstant } from '@kit.AbilityKit';
 ```
 
 ## AbilityConstant.LaunchParam
@@ -46,16 +46,14 @@ Ability初次启动原因，该类型为枚举，可配合UIAbility的[onCreate(
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import { UIAbility, Want, AbilityConstant } from '@kit.AbilityKit';
 
 class MyAbility extends UIAbility {
-    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-        if (launchParam.launchReason === AbilityConstant.LaunchReason.START_ABILITY) {
-            console.log('The ability has been started by the way of startAbility.');
-        }
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    if (launchParam.launchReason === AbilityConstant.LaunchReason.START_ABILITY) {
+      console.log('The ability has been started by the way of startAbility.');
     }
+  }
 }
 ```
 
@@ -73,23 +71,24 @@ Ability上次退出原因，该类型为枚举，可配合UIAbility的[onCreate(
 | CPP_CRASH<sup>10+</sup>  | 3    | 本机异常信号，导致应用程序退出。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 | JS_ERROR<sup>10+</sup>  | 4    | 当应用存在JS语法错误并未被开发者捕获时，触发JS_ERROR故障，导致应用程序退出。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 | APP_FREEZE<sup>10+</sup>  | 5    | 由于watchdog检测出应用Freeze故障，导致应用程序退出。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| PERFORMANCE_CONTROL<sup>10+</sup>  | 6    | 由于系统性能问题（如设备内存不足），导致应用程序退出。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| RESOURCE_CONTROL<sup>10+</sup>  | 7    | 由于系统资源违规使用（超过CPU、I/O、内存的使用量），导致应用程序退出。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| PERFORMANCE_CONTROL(deprecated)<sup>10+</sup>  | 6    | 由于系统性能问题（如设备内存不足），导致应用程序退出。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。<br> **说明:** 从API version 12开始废弃，使用RESOURCE_CONTROL替代。 |
+| RESOURCE_CONTROL<sup>10+</sup>  | 7    | 系统资源使用不当，导致应用程序退出。具体错误原因可以通过[LaunchParam.lastExitMessage](#abilityconstantlaunchparam)获取，可能原因如下: <br> - CPU Highload，CPU高负载。<br> - CPU_EXT Highload，快速CPU负载检测。<br> - IO Manage Control，I/O管控。<br> - App Memory Deterioration，应用内存超限劣化。<br> - Temperature Control，温度管控。<br> - Memory Pressure，整机低内存触发按优先级由低到高查杀。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
 | UPGRADE<sup>10+</sup>  | 8    | 应用程序因升级而退出。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import { UIAbility, Want, AbilityConstant } from '@kit.AbilityKit';
 
 class MyAbility extends UIAbility {
-    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-        if (launchParam.lastExitReason === AbilityConstant.LastExitReason.APP_FREEZE) {
-            console.log('The ability has exit last because the ability was not responding.');
-        }
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    if (launchParam.lastExitReason === AbilityConstant.LastExitReason.APP_FREEZE) {
+      console.log('The ability has exit last because the ability was not responding.');
     }
+    if (launchParam.lastExitReason === AbilityConstant.LastExitReason.RESOURCE_CONTROL) {
+      console.log('The ability has exit last because the rss control，the lastExitReason is '+  launchParam.lastExitReason + ', the lastExitMessage is ' + launchParam.lastExitMessage);
+    }
+  }
 }
 ```
 
@@ -110,13 +109,12 @@ Ability迁移结果，该类型为枚举，可配合UIAbility的[onContinue(want
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import { UIAbility, AbilityConstant } from '@kit.AbilityKit';
 
 class MyAbility extends UIAbility {
-    onContinue(wantParam: Record<string, Object>) {
-        return AbilityConstant.OnContinueResult.AGREE;
-    }
+  onContinue(wantParam: Record<string, Object>) {
+    return AbilityConstant.OnContinueResult.AGREE;
+  }
 }
 ```
 
@@ -137,15 +135,14 @@ class MyAbility extends UIAbility {
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import { UIAbility, AbilityConstant } from '@kit.AbilityKit';
 
 class MyAbility extends UIAbility {
-    onMemoryLevel(level: AbilityConstant.MemoryLevel) {
-        if (level === AbilityConstant.MemoryLevel.MEMORY_LEVEL_CRITICAL) {
-            console.log('The memory of device is critical, please release some memory.');
-        }
+  onMemoryLevel(level: AbilityConstant.MemoryLevel) {
+    if (level === AbilityConstant.MemoryLevel.MEMORY_LEVEL_CRITICAL) {
+      console.log('The memory of device is critical, please release some memory.');
     }
+  }
 }
 ```
 
@@ -163,11 +160,8 @@ class MyAbility extends UIAbility {
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import StartOptions from '@ohos.app.ability.StartOptions';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import { UIAbility, StartOptions, Want, AbilityConstant } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let want: Want = {
   bundleName: 'com.example.myapplication',
@@ -180,10 +174,10 @@ let option: StartOptions = {
 // 确保从上下文获取到context
 class MyAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-    this.context.startAbility(want, option).then(()=>{
+    this.context.startAbility(want, option).then(() => {
       console.log('Succeed to start ability.');
-    }).catch((error: BusinessError)=>{
-      console.error('Failed to start ability with error: ${JSON.stringify(error)}');
+    }).catch((error: BusinessError) => {
+      console.error(`Failed to start ability with error: ${JSON.stringify(error)}`);
     });
   }
 }
@@ -209,13 +203,12 @@ class MyAbility extends UIAbility {
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import { UIAbility, AbilityConstant } from '@kit.AbilityKit';
 
 class MyAbility extends UIAbility {
-    onSaveState(reason: AbilityConstant.StateType, wantParam: Record<string, Object>) {
-        return AbilityConstant.OnSaveResult.ALL_AGREE;
-    }
+  onSaveState(reason: AbilityConstant.StateType, wantParam: Record<string, Object>) {
+    return AbilityConstant.OnSaveResult.ALL_AGREE;
+  }
 }
 ```
 
@@ -235,16 +228,15 @@ class MyAbility extends UIAbility {
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import { UIAbility, AbilityConstant } from '@kit.AbilityKit';
 
 class MyAbility extends UIAbility {
-    onSaveState(reason: AbilityConstant.StateType, wantParam: Record<string, Object>) {
-        if (reason === AbilityConstant.StateType.CONTINUATION) {
-            console.log('Save the ability data when the ability continuation.');
-        } 
-        return AbilityConstant.OnSaveResult.ALL_AGREE;
+  onSaveState(reason: AbilityConstant.StateType, wantParam: Record<string, Object>) {
+    if (reason === AbilityConstant.StateType.CONTINUATION) {
+      console.log('Save the ability data when the ability continuation.');
     }
+    return AbilityConstant.OnSaveResult.ALL_AGREE;
+  }
 }
 ```
 
@@ -264,10 +256,8 @@ class MyAbility extends UIAbility {
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import { UIAbility, Want, AbilityConstant } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class MyAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {

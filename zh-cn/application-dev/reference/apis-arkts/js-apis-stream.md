@@ -11,7 +11,7 @@
 ## 导入模块
 
 ```ts
-import stream from '@ohos.util.stream'
+import { stream  } from '@kit.ArkTS';
 ```
 
 ## Writable
@@ -493,6 +493,16 @@ writableStream.uncork();
 writableStream.end();
 ```
 
+## ReadableOptions
+
+Readable构造函数的选项信息。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+| 名称 | 类型 | 必填 | 说明 |
+| ---- | -------- | ---- | -------------- |
+| encoding | string  | 否 | 指定数据的编码格式，如果传入非法字符串，将会在Readable构造函数中抛出异常。<br/>-&nbsp;支持格式：utf-8、UTF-8、GBK、GB2312、gb2312、GB18030、gb18030、ibm866、iso-8859-2、iso-8859-3、iso-8859-4、iso-8859-5、iso-8859-6、iso-8859-7、iso-8859-8、iso-8859-8-i、iso-8859-10、iso-8859-13、iso-8859-14、iso-8859-15、koi8-r、koi8-u、macintosh、windows-874、windows-1250、windows-1251、windows-1252、windows-1253、windows-1254、windows-1255、windows-1256、windows-1257、windows-1258、gbk、big5、euc-jp、iso-2022-jp、shift_jis、euc-kr、x-mac-cyrillic、utf-16be、utf-16le。 <br/>-&nbsp; 默认值是：'utf-8'。|
+
 ## Readable
 
 表示可读取数据的流。可读流用于从数据源（如文件、网络套接字等）读取数据。
@@ -523,6 +533,29 @@ Readable的构造函数。
 
 ```ts
 let readableStream = new stream.Readable();
+```
+
+### constructor
+
+constructor(options: ReadableOptions)
+
+Readable的构造函数。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名  | 类型 | 必填 | 说明 |
+| ------ | -------- | -------- | -------- |
+| options   | [ReadableOptions](#readableoptions)   | 是 | Readable构造函数的选项信息。|
+
+**示例：**
+
+```ts
+let option : stream.ReadableOptions = {
+  encoding : 'utf-8'
+};
+let readableStream = new stream.Readable(option);
 ```
 
 ### read

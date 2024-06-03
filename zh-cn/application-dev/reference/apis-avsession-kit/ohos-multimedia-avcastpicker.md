@@ -5,8 +5,8 @@
 > **说明：**
 >
 > - 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-> - 示例效果请以真机为准，当前IDE预览器无实际投播功能。
-> - 当前组件的使用，依赖于设备支持“设备选择界面”。当前暂无OpenHarmony设备支持，需要OEM厂商实现具体的“设备选择界面”。
+> - 示例效果请以真机为准，当前IDE预览器无实际投播功能。<!--Del-->
+> - 当前组件的使用，依赖于设备支持“设备选择界面”。当前暂无OpenHarmony设备支持，需要OEM厂商实现具体的“设备选择界面”。<!--DelEnd-->
 
 ## 导入模块
 
@@ -14,7 +14,7 @@
 import AVCastPicker from '@ohos.multimedia.avCastPicker';
 ```
 
-## 接口
+## AVCastPicker
 
 AVCastPicker()
 
@@ -30,11 +30,15 @@ AVCastPicker()
 
 除支持[通用属性](../apis-arkui/arkui-ts/ts-universal-attributes-size.md)外，还支持以下属性：
 
-| 名称 | 参数类型 | 描述 |
-| -------- | -------- | -------- |
-| normalColor | Color &#124; number &#124; string | 指正常状态下投播组件的颜色 |
-| activeColor | Color &#124; number &#124; string | 指设备切换成功状态下投播组件的颜色 |
-| onStateChange | (state: [AVCastPickerState](js-apis-avCastPickerParam.md)) => void | 投播状态更改回调 |
+| 名称 | 参数类型 | 必填 | 装饰器修饰类型 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| normalColor | Color &#124; number &#124; string | 否 | @Prop | 指正常状态下投播组件的颜色 |
+| activeColor | Color &#124; number &#124; string | 否 | @Prop | 指设备切换成功状态下投播组件的颜色 |
+| pickerStyle | [AVCastPickerStyle](js-apis-avCastPickerParam.md#avcastpickerstyle12) | 否 | @Prop | 投播样式 |
+| colorMode | [AVCastPickerColorMode](js-apis-avCastPickerParam.md#avcastpickercolormode12) | 否 |  @Prop |显示模式 |
+| sessionType | string | 否| @Prop | 会话类型 |
+| customPicker | [CustomBuilder](../apis-arkui/arkui-ts/ts-types.md#custombuilder8) | 否 | @Prop | 自定义样式 |
+| onStateChange | (state: [AVCastPickerState](js-apis-avCastPickerParam.md)) => void | 否 | @Prop | 投播状态更改回调 |
 
 ## 事件
 

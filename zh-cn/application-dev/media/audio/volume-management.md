@@ -27,9 +27,11 @@ audioVolumeManager.on('volumeChange', (volumeEvent: audio.VolumeEvent) => {
 });
 ```
 
+<!--Del-->
 ### 调节系统音量（仅对系统应用开放）
 
 目前调节系统音量主要是靠SystemAPI，具体服务于物理音量按键和设置。通过音量按键可以调节系统音量的大小，根据按下的具体按键调用系统接口，实现系统音量的大小调节。调节的音量类型包括媒体、铃声和通知。
+<!--DelEnd-->
 
 ### 使用音量面板调节系统音量
 

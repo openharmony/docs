@@ -13,7 +13,7 @@
 ## 导入模块
 
 ```ts
-import common from '@ohos.app.ability.common';
+import { common } from '@kit.AbilityKit';
 ```
 ## 属性
 
@@ -29,7 +29,7 @@ import common from '@ohos.app.ability.common';
 **示例：**
 
 ```ts
-import common from '@ohos.app.ability.common';
+import { common } from '@kit.AbilityKit';
 
 let uiAbilityContext: common.UIAbilityContext;
 let abilityStageContext: common.AbilityStageContext;

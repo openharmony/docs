@@ -6,7 +6,7 @@ Before image development, be familiar with the following basic concepts:
 
 - Image decoding
   
-  The operation of decoding an archived image in a supported format into a pixel map for image display or processing. Currently, the following image formats are supported: JPEG, PNG, GIF, RAW, WebP, BMP, SVG, and ICO.
+  The operation of decoding an archived image in a supported format into a pixel map for image display or processing. Currently, the following image formats are supported: JPEG, PNG, GIF, WebP, BMP, SVG, ICO, and DNG.
 
 - Pixel map
   

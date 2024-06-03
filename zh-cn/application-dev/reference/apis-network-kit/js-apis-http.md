@@ -10,15 +10,15 @@
 ## 导入模块
 
 ```ts
-import http from '@ohos.net.http';
+import { http } from '@kit.NetworkKit';
 ```
 
 ## 完整示例
 
 ```ts
 // 引入包名
-import http from '@ohos.net.http';
-import { BusinessError } from '@ohos.base';
+import { http } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // 每一个httpRequest对应一个HTTP请求任务，不可复用
 let httpRequest = http.createHttp();
@@ -121,7 +121,7 @@ createHttp(): HttpRequest
 **示例：**
 
 ```ts
-import http from '@ohos.net.http';
+import { http } from '@kit.NetworkKit';
 
 let httpRequest = http.createHttp();
 ```
@@ -154,39 +154,39 @@ request(url: string, callback: AsyncCallback\<HttpResponse\>): void
 
 **错误码：**
 
-| 错误码ID   | 错误信息                                                  |
-|---------|-------------------------------------------------------|
-| 401     | Parameter error.                                      |
-| 201     | Permission denied.                                    |
-| 2300001 | Unsupported protocol.                                 |
-| 2300003 | URL using bad/illegal format or missing URL.          |
-| 2300005 | Couldn't resolve proxy name.                          |
-| 2300006 | Couldn't resolve host name.                           |
-| 2300007 | Couldn't connect to server.                           |
-| 2300008 | Weird server reply.                                   |
-| 2300009 | Access denied to remote resource.                     |
-| 2300016 | Error in the HTTP2 framing layer.                     |
-| 2300018 | Transferred a partial file.                           |
-| 2300023 | Failed writing received data to disk/application.     |
-| 2300025 | Upload failed.                                        |
-| 2300026 | Failed to open/read local data from file/application. |
-| 2300027 | Out of memory.                                        |
-| 2300028 | Timeout was reached.                                  |
-| 2300047 | Number of redirects hit maximum amount.               |
-| 2300052 | Server returned nothing (no headers, no data).        |
-| 2300055 | Failed sending data to the peer.                      |
-| 2300056 | Failure when receiving data from the peer.            |
-| 2300058 | Problem with the local SSL certificate.               |
-| 2300059 | Couldn't use specified SSL cipher.                    |
-| 2300060 | SSL peer certificate or SSH remote key was not OK.    |
-| 2300061 | Unrecognized or bad HTTP Content or Transfer-Encoding.|
-| 2300063 | Maximum file size exceeded.                           |
-| 2300070 | Disk full or allocation exceeded.                     |
-| 2300073 | Remote file already exists.                           |
-| 2300077 | Problem with the SSL CA cert (path? access rights?).  |
-| 2300078 | Remote file not found.                                |
-| 2300094 | An authentication function returned an error.         |
-| 2300999 | Unknown Other Error.                                  |
+| 错误码ID   | 错误信息                                                         |
+|---------|----------------------------------------------------------------|
+| 401     | Parameter error.                                               |
+| 201     | Permission denied.                                             |
+| 2300001 | Unsupported protocol.                                          |
+| 2300003 | Invalid URL format or missing URL.                             |
+| 2300005 | Failed to resolve the proxy name.                              |
+| 2300006 | Failed to resolve the host name.                               |
+| 2300007 | Failed to connect to the server.                               |
+| 2300008 | Invalid server response.                                       |
+| 2300009 | Access to the remote resource denied.                          |
+| 2300016 | Error in the HTTP2 framing layer.                              |
+| 2300018 | Transferred a partial file.                                    |
+| 2300023 | Failed to write the received data to the disk or application.  |
+| 2300025 | Upload failed.                                                 |
+| 2300026 | Failed to open or read local data from the file or application.|
+| 2300027 | Out of memory.                                                 |
+| 2300028 | Operation timeout.                                             |
+| 2300047 | The number of redirections reaches the maximum allowed.        |
+| 2300052 | The server returned nothing (no header or data).               |
+| 2300055 | Failed to send data to the peer.                               |
+| 2300056 | Failed to receive data from the peer.                          |
+| 2300058 | Local SSL certificate error.                                   |
+| 2300059 | The specified SSL cipher cannot be used.                       |
+| 2300060 | Invalid SSL peer certificate or SSH remote key.                |
+| 2300061 | Invalid HTTP encoding format.                                  |
+| 2300063 | Maximum file size exceeded.                                    |
+| 2300070 | Remote disk full.                                              |
+| 2300073 | Remote file already exists.                                    |
+| 2300077 | The SSL CA certificate does not exist or is unaccessible.      |
+| 2300078 | Remote file not found.                                         |
+| 2300094 | Authentication error.                                          |
+| 2300999 | Unknown Error.                                                 |
 
 > **错误码说明：**
 > 以上错误码的详细介绍参见[HTTP错误码](errorcode-net-http.md)。
@@ -195,7 +195,7 @@ request(url: string, callback: AsyncCallback\<HttpResponse\>): void
 **示例：**
 
 ```ts
-import http from '@ohos.net.http';
+import { http } from '@kit.NetworkKit';
 
 let httpRequest = http.createHttp();
 httpRequest.request("EXAMPLE_URL", (err: Error, data: http.HttpResponse) => {
@@ -236,39 +236,39 @@ request(url: string, options: HttpRequestOptions, callback: AsyncCallback\<HttpR
 
 **错误码：**
 
-| 错误码ID   | 错误信息                                                  |
-|---------|-------------------------------------------------------|
-| 401     | Parameter error.                                      |
-| 201     | Permission denied.                                    |
-| 2300001 | Unsupported protocol.                                 |
-| 2300003 | URL using bad/illegal format or missing URL.          |
-| 2300005 | Couldn't resolve proxy name.                          |
-| 2300006 | Couldn't resolve host name.                           |
-| 2300007 | Couldn't connect to server.                           |
-| 2300008 | Weird server reply.                                   |
-| 2300009 | Access denied to remote resource.                     |
-| 2300016 | Error in the HTTP2 framing layer.                     |
-| 2300018 | Transferred a partial file.                           |
-| 2300023 | Failed writing received data to disk/application.     |
-| 2300025 | Upload failed.                                        |
-| 2300026 | Failed to open/read local data from file/application. |
-| 2300027 | Out of memory.                                        |
-| 2300028 | Timeout was reached.                                  |
-| 2300047 | Number of redirects hit maximum amount.               |
-| 2300052 | Server returned nothing (no headers, no data).        |
-| 2300055 | Failed sending data to the peer.                      |
-| 2300056 | Failure when receiving data from the peer.            |
-| 2300058 | Problem with the local SSL certificate.               |
-| 2300059 | Couldn't use specified SSL cipher.                    |
-| 2300060 | SSL peer certificate or SSH remote key was not OK.    |
-| 2300061 | Unrecognized or bad HTTP Content or Transfer-Encoding.|
-| 2300063 | Maximum file size exceeded.                           |
-| 2300070 | Disk full or allocation exceeded.                     |
-| 2300073 | Remote file already exists.                           |
-| 2300077 | Problem with the SSL CA cert (path? access rights?).  |
-| 2300078 | Remote file not found.                                |
-| 2300094 | An authentication function returned an error.         |
-| 2300999 | Unknown Other Error.                                  |
+| 错误码ID   | 错误信息                                                         |
+|---------|----------------------------------------------------------------|
+| 401     | Parameter error.                                               |
+| 201     | Permission denied.                                             |
+| 2300001 | Unsupported protocol.                                          |
+| 2300003 | Invalid URL format or missing URL.                             |
+| 2300005 | Failed to resolve the proxy name.                              |
+| 2300006 | Failed to resolve the host name.                               |
+| 2300007 | Failed to connect to the server.                               |
+| 2300008 | Invalid server response.                                       |
+| 2300009 | Access to the remote resource denied.                          |
+| 2300016 | Error in the HTTP2 framing layer.                              |
+| 2300018 | Transferred a partial file.                                    |
+| 2300023 | Failed to write the received data to the disk or application.  |
+| 2300025 | Upload failed.                                                 |
+| 2300026 | Failed to open or read local data from the file or application.|
+| 2300027 | Out of memory.                                                 |
+| 2300028 | Operation timeout.                                             |
+| 2300047 | The number of redirections reaches the maximum allowed.        |
+| 2300052 | The server returned nothing (no header or data).               |
+| 2300055 | Failed to send data to the peer.                               |
+| 2300056 | Failed to receive data from the peer.                          |
+| 2300058 | Local SSL certificate error.                                   |
+| 2300059 | The specified SSL cipher cannot be used.                       |
+| 2300060 | Invalid SSL peer certificate or SSH remote key.                |
+| 2300061 | Invalid HTTP encoding format.                                  |
+| 2300063 | Maximum file size exceeded.                                    |
+| 2300070 | Remote disk full.                                              |
+| 2300073 | Remote file already exists.                                    |
+| 2300077 | The SSL CA certificate does not exist or is unaccessible.      |
+| 2300078 | Remote file not found.                                         |
+| 2300094 | Authentication error.                                          |
+| 2300999 | Unknown Error.                                                 |
 
 > **错误码说明：**
 > 以上错误码的详细介绍参见[HTTP错误码](errorcode-net-http.md)。
@@ -277,7 +277,7 @@ request(url: string, options: HttpRequestOptions, callback: AsyncCallback\<HttpR
 **示例：**
 
 ```ts
-import http from '@ohos.net.http';
+import { http } from '@kit.NetworkKit';
 
 class Header {
   public contentType: string;
@@ -346,39 +346,39 @@ request(url: string, options? : HttpRequestOptions): Promise\<HttpResponse\>
 
 **错误码：**
 
-| 错误码ID   | 错误信息                                                  |
-|---------|-------------------------------------------------------|
-| 401     | Parameter error.                                      |
-| 201     | Permission denied.                                    |
-| 2300001 | Unsupported protocol.                                 |
-| 2300003 | URL using bad/illegal format or missing URL.          |
-| 2300005 | Couldn't resolve proxy name.                          |
-| 2300006 | Couldn't resolve host name.                           |
-| 2300007 | Couldn't connect to server.                           |
-| 2300008 | Weird server reply.                                   |
-| 2300009 | Access denied to remote resource.                     |
-| 2300016 | Error in the HTTP2 framing layer.                     |
-| 2300018 | Transferred a partial file.                           |
-| 2300023 | Failed writing received data to disk/application.     |
-| 2300025 | Upload failed.                                        |
-| 2300026 | Failed to open/read local data from file/application. |
-| 2300027 | Out of memory.                                        |
-| 2300028 | Timeout was reached.                                  |
-| 2300047 | Number of redirects hit maximum amount.               |
-| 2300052 | Server returned nothing (no headers, no data).        |
-| 2300055 | Failed sending data to the peer.                      |
-| 2300056 | Failure when receiving data from the peer.            |
-| 2300058 | Problem with the local SSL certificate.               |
-| 2300059 | Couldn't use specified SSL cipher.                    |
-| 2300060 | SSL peer certificate or SSH remote key was not OK.    |
-| 2300061 | Unrecognized or bad HTTP Content or Transfer-Encoding.|
-| 2300063 | Maximum file size exceeded.                           |
-| 2300070 | Disk full or allocation exceeded.                     |
-| 2300073 | Remote file already exists.                           |
-| 2300077 | Problem with the SSL CA cert (path? access rights?).  |
-| 2300078 | Remote file not found.                                |
-| 2300094 | An authentication function returned an error.         |
-| 2300999 | Unknown Other Error.                                  |
+| 错误码ID   | 错误信息                                                         |
+|---------|----------------------------------------------------------------|
+| 401     | Parameter error.                                               |
+| 201     | Permission denied.                                             |
+| 2300001 | Unsupported protocol.                                          |
+| 2300003 | Invalid URL format or missing URL.                             |
+| 2300005 | Failed to resolve the proxy name.                              |
+| 2300006 | Failed to resolve the host name.                               |
+| 2300007 | Failed to connect to the server.                               |
+| 2300008 | Invalid server response.                                       |
+| 2300009 | Access to the remote resource denied.                          |
+| 2300016 | Error in the HTTP2 framing layer.                              |
+| 2300018 | Transferred a partial file.                                    |
+| 2300023 | Failed to write the received data to the disk or application.  |
+| 2300025 | Upload failed.                                                 |
+| 2300026 | Failed to open or read local data from the file or application.|
+| 2300027 | Out of memory.                                                 |
+| 2300028 | Operation timeout.                                             |
+| 2300047 | The number of redirections reaches the maximum allowed.        |
+| 2300052 | The server returned nothing (no header or data).               |
+| 2300055 | Failed to send data to the peer.                               |
+| 2300056 | Failed to receive data from the peer.                          |
+| 2300058 | Local SSL certificate error.                                   |
+| 2300059 | The specified SSL cipher cannot be used.                       |
+| 2300060 | Invalid SSL peer certificate or SSH remote key.                |
+| 2300061 | Invalid HTTP encoding format.                                  |
+| 2300063 | Maximum file size exceeded.                                    |
+| 2300070 | Remote disk full.                                              |
+| 2300073 | Remote file already exists.                                    |
+| 2300077 | The SSL CA certificate does not exist or is unaccessible.      |
+| 2300078 | Remote file not found.                                         |
+| 2300094 | Authentication error.                                          |
+| 2300999 | Unknown Error.                                                 |
 
 > **错误码说明：**
 > 以上错误码的详细介绍参见[HTTP错误码](errorcode-net-http.md)。
@@ -387,7 +387,7 @@ request(url: string, options? : HttpRequestOptions): Promise\<HttpResponse\>
 **示例：**
 
 ```ts
-import http from '@ohos.net.http';
+import { http } from '@kit.NetworkKit';
 
 class Header {
   public contentType: string;
@@ -430,7 +430,7 @@ destroy(): void
 **示例：**
 
 ```ts
-import http from '@ohos.net.http';
+import { http } from '@kit.NetworkKit';
 let httpRequest = http.createHttp();
 
 httpRequest.destroy();
@@ -455,39 +455,39 @@ requestInStream(url: string, callback: AsyncCallback\<number\>): void
 
 **错误码：**
 
-| 错误码ID   | 错误信息                                                  |
-|---------|-------------------------------------------------------|
-| 401     | Parameter error.                                      |
-| 201     | Permission denied.                                    |
-| 2300001 | Unsupported protocol.                                 |
-| 2300003 | URL using bad/illegal format or missing URL.          |
-| 2300005 | Couldn't resolve proxy name.                          |
-| 2300006 | Couldn't resolve host name.                           |
-| 2300007 | Couldn't connect to server.                           |
-| 2300008 | Weird server reply.                                   |
-| 2300009 | Access denied to remote resource.                     |
-| 2300016 | Error in the HTTP2 framing layer.                     |
-| 2300018 | Transferred a partial file.                           |
-| 2300023 | Failed writing received data to disk/application.     |
-| 2300025 | Upload failed.                                        |
-| 2300026 | Failed to open/read local data from file/application. |
-| 2300027 | Out of memory.                                        |
-| 2300028 | Timeout was reached.                                  |
-| 2300047 | Number of redirects hit maximum amount.               |
-| 2300052 | Server returned nothing (no headers, no data).        |
-| 2300055 | Failed sending data to the peer.                      |
-| 2300056 | Failure when receiving data from the peer.            |
-| 2300058 | Problem with the local SSL certificate.               |
-| 2300059 | Couldn't use specified SSL cipher.                    |
-| 2300060 | SSL peer certificate or SSH remote key was not OK.    |
-| 2300061 | Unrecognized or bad HTTP Content or Transfer-Encoding.|
-| 2300063 | Maximum file size exceeded.                           |
-| 2300070 | Disk full or allocation exceeded.                     |
-| 2300073 | Remote file already exists.                           |
-| 2300077 | Problem with the SSL CA cert (path? access rights?).  |
-| 2300078 | Remote file not found.                                |
-| 2300094 | An authentication function returned an error.         |
-| 2300999 | Unknown Other Error.                                  |
+| 错误码ID   | 错误信息                                                         |
+|---------|----------------------------------------------------------------|
+| 401     | Parameter error.                                               |
+| 201     | Permission denied.                                             |
+| 2300001 | Unsupported protocol.                                          |
+| 2300003 | Invalid URL format or missing URL.                             |
+| 2300005 | Failed to resolve the proxy name.                              |
+| 2300006 | Failed to resolve the host name.                               |
+| 2300007 | Failed to connect to the server.                               |
+| 2300008 | Invalid server response.                                       |
+| 2300009 | Access to the remote resource denied.                          |
+| 2300016 | Error in the HTTP2 framing layer.                              |
+| 2300018 | Transferred a partial file.                                    |
+| 2300023 | Failed to write the received data to the disk or application.  |
+| 2300025 | Upload failed.                                                 |
+| 2300026 | Failed to open or read local data from the file or application.|
+| 2300027 | Out of memory.                                                 |
+| 2300028 | Operation timeout.                                             |
+| 2300047 | The number of redirections reaches the maximum allowed.        |
+| 2300052 | The server returned nothing (no header or data).               |
+| 2300055 | Failed to send data to the peer.                               |
+| 2300056 | Failed to receive data from the peer.                          |
+| 2300058 | Local SSL certificate error.                                   |
+| 2300059 | The specified SSL cipher cannot be used.                       |
+| 2300060 | Invalid SSL peer certificate or SSH remote key.                |
+| 2300061 | Invalid HTTP encoding format.                                  |
+| 2300063 | Maximum file size exceeded.                                    |
+| 2300070 | Remote disk full.                                              |
+| 2300073 | Remote file already exists.                                    |
+| 2300077 | The SSL CA certificate does not exist or is unaccessible.      |
+| 2300078 | Remote file not found.                                         |
+| 2300094 | Authentication error.                                          |
+| 2300999 | Unknown Error.                                                 |
 
 > **错误码说明：**
 > 以上错误码的详细介绍参见[HTTP错误码](errorcode-net-http.md)。
@@ -496,8 +496,8 @@ requestInStream(url: string, callback: AsyncCallback\<number\>): void
 **示例：**
 
 ```ts
-import http from '@ohos.net.http';
-import { BusinessError } from '@ohos.base';
+import { http } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let httpRequest = http.createHttp();
 httpRequest.requestInStream("EXAMPLE_URL", (err: BusinessError, data: number) => {
@@ -529,39 +529,39 @@ requestInStream(url: string, options: HttpRequestOptions, callback: AsyncCallbac
 
 **错误码：**
 
-| 错误码ID   | 错误信息                                                  |
-|---------|-------------------------------------------------------|
-| 401     | Parameter error.                                      |
-| 201     | Permission denied.                                    |
-| 2300001 | Unsupported protocol.                                 |
-| 2300003 | URL using bad/illegal format or missing URL.          |
-| 2300005 | Couldn't resolve proxy name.                          |
-| 2300006 | Couldn't resolve host name.                           |
-| 2300007 | Couldn't connect to server.                           |
-| 2300008 | Weird server reply.                                   |
-| 2300009 | Access denied to remote resource.                     |
-| 2300016 | Error in the HTTP2 framing layer.                     |
-| 2300018 | Transferred a partial file.                           |
-| 2300023 | Failed writing received data to disk/application.     |
-| 2300025 | Upload failed.                                        |
-| 2300026 | Failed to open/read local data from file/application. |
-| 2300027 | Out of memory.                                        |
-| 2300028 | Timeout was reached.                                  |
-| 2300047 | Number of redirects hit maximum amount.               |
-| 2300052 | Server returned nothing (no headers, no data).        |
-| 2300055 | Failed sending data to the peer.                      |
-| 2300056 | Failure when receiving data from the peer.            |
-| 2300058 | Problem with the local SSL certificate.               |
-| 2300059 | Couldn't use specified SSL cipher.                    |
-| 2300060 | SSL peer certificate or SSH remote key was not OK.    |
-| 2300061 | Unrecognized or bad HTTP Content or Transfer-Encoding.|
-| 2300063 | Maximum file size exceeded.                           |
-| 2300070 | Disk full or allocation exceeded.                     |
-| 2300073 | Remote file already exists.                           |
-| 2300077 | Problem with the SSL CA cert (path? access rights?).  |
-| 2300078 | Remote file not found.                                |
-| 2300094 | An authentication function returned an error.         |
-| 2300999 | Unknown Other Error.                                  |
+| 错误码ID   | 错误信息                                                         |
+|---------|----------------------------------------------------------------|
+| 401     | Parameter error.                                               |
+| 201     | Permission denied.                                             |
+| 2300001 | Unsupported protocol.                                          |
+| 2300003 | Invalid URL format or missing URL.                             |
+| 2300005 | Failed to resolve the proxy name.                              |
+| 2300006 | Failed to resolve the host name.                               |
+| 2300007 | Failed to connect to the server.                               |
+| 2300008 | Invalid server response.                                       |
+| 2300009 | Access to the remote resource denied.                          |
+| 2300016 | Error in the HTTP2 framing layer.                              |
+| 2300018 | Transferred a partial file.                                    |
+| 2300023 | Failed to write the received data to the disk or application.  |
+| 2300025 | Upload failed.                                                 |
+| 2300026 | Failed to open or read local data from the file or application.|
+| 2300027 | Out of memory.                                                 |
+| 2300028 | Operation timeout.                                             |
+| 2300047 | The number of redirections reaches the maximum allowed.        |
+| 2300052 | The server returned nothing (no header or data).               |
+| 2300055 | Failed to send data to the peer.                               |
+| 2300056 | Failed to receive data from the peer.                          |
+| 2300058 | Local SSL certificate error.                                   |
+| 2300059 | The specified SSL cipher cannot be used.                       |
+| 2300060 | Invalid SSL peer certificate or SSH remote key.                |
+| 2300061 | Invalid HTTP encoding format.                                  |
+| 2300063 | Maximum file size exceeded.                                    |
+| 2300070 | Remote disk full.                                              |
+| 2300073 | Remote file already exists.                                    |
+| 2300077 | The SSL CA certificate does not exist or is unaccessible.      |
+| 2300078 | Remote file not found.                                         |
+| 2300094 | Authentication error.                                          |
+| 2300999 | Unknown Error.                                                 |
 
 > **错误码说明：**
 > 以上错误码的详细介绍参见[HTTP错误码](errorcode-net-http.md)。
@@ -570,8 +570,8 @@ requestInStream(url: string, options: HttpRequestOptions, callback: AsyncCallbac
 **示例：**
 
 ```ts
-import http from '@ohos.net.http';
-import { BusinessError } from '@ohos.base';
+import { http } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class Header {
   public contentType: string;
@@ -630,39 +630,39 @@ requestInStream(url: string, options? : HttpRequestOptions): Promise\<number\>
 
 **错误码：**
 
-| 错误码ID   | 错误信息                                                  |
-|---------|-------------------------------------------------------|
-| 401     | Parameter error.                                      |
-| 201     | Permission denied.                                    |
-| 2300001 | Unsupported protocol.                                 |
-| 2300003 | URL using bad/illegal format or missing URL.          |
-| 2300005 | Couldn't resolve proxy name.                          |
-| 2300006 | Couldn't resolve host name.                           |
-| 2300007 | Couldn't connect to server.                           |
-| 2300008 | Weird server reply.                                   |
-| 2300009 | Access denied to remote resource.                     |
-| 2300016 | Error in the HTTP2 framing layer.                     |
-| 2300018 | Transferred a partial file.                           |
-| 2300023 | Failed writing received data to disk/application.     |
-| 2300025 | Upload failed.                                        |
-| 2300026 | Failed to open/read local data from file/application. |
-| 2300027 | Out of memory.                                        |
-| 2300028 | Timeout was reached.                                  |
-| 2300047 | Number of redirects hit maximum amount.               |
-| 2300052 | Server returned nothing (no headers, no data).        |
-| 2300055 | Failed sending data to the peer.                      |
-| 2300056 | Failure when receiving data from the peer.            |
-| 2300058 | Problem with the local SSL certificate.               |
-| 2300059 | Couldn't use specified SSL cipher.                    |
-| 2300060 | SSL peer certificate or SSH remote key was not OK.    |
-| 2300061 | Unrecognized or bad HTTP Content or Transfer-Encoding.|
-| 2300063 | Maximum file size exceeded.                           |
-| 2300070 | Disk full or allocation exceeded.                     |
-| 2300073 | Remote file already exists.                           |
-| 2300077 | Problem with the SSL CA cert (path? access rights?).  |
-| 2300078 | Remote file not found.                                |
-| 2300094 | An authentication function returned an error.         |
-| 2300999 | Unknown Other Error.                                  |
+| 错误码ID   | 错误信息                                                         |
+|---------|----------------------------------------------------------------|
+| 401     | Parameter error.                                               |
+| 201     | Permission denied.                                             |
+| 2300001 | Unsupported protocol.                                          |
+| 2300003 | Invalid URL format or missing URL.                             |
+| 2300005 | Failed to resolve the proxy name.                              |
+| 2300006 | Failed to resolve the host name.                               |
+| 2300007 | Failed to connect to the server.                               |
+| 2300008 | Invalid server response.                                       |
+| 2300009 | Access to the remote resource denied.                          |
+| 2300016 | Error in the HTTP2 framing layer.                              |
+| 2300018 | Transferred a partial file.                                    |
+| 2300023 | Failed to write the received data to the disk or application.  |
+| 2300025 | Upload failed.                                                 |
+| 2300026 | Failed to open or read local data from the file or application.|
+| 2300027 | Out of memory.                                                 |
+| 2300028 | Operation timeout.                                             |
+| 2300047 | The number of redirections reaches the maximum allowed.        |
+| 2300052 | The server returned nothing (no header or data).               |
+| 2300055 | Failed to send data to the peer.                               |
+| 2300056 | Failed to receive data from the peer.                          |
+| 2300058 | Local SSL certificate error.                                   |
+| 2300059 | The specified SSL cipher cannot be used.                       |
+| 2300060 | Invalid SSL peer certificate or SSH remote key.                |
+| 2300061 | Invalid HTTP encoding format.                                  |
+| 2300063 | Maximum file size exceeded.                                    |
+| 2300070 | Remote disk full.                                              |
+| 2300073 | Remote file already exists.                                    |
+| 2300077 | The SSL CA certificate does not exist or is unaccessible.      |
+| 2300078 | Remote file not found.                                         |
+| 2300094 | Authentication error.                                          |
+| 2300999 | Unknown Error.                                                 |
 
 > **错误码说明：**
 > 以上错误码的详细介绍参见[HTTP错误码](errorcode-net-http.md)。
@@ -671,7 +671,7 @@ requestInStream(url: string, options? : HttpRequestOptions): Promise\<number\>
 **示例：**
 
 ```ts
-import http from '@ohos.net.http';
+import { http } from '@kit.NetworkKit';
 
 class Header {
   public contentType: string;
@@ -716,8 +716,8 @@ on(type: "headerReceive", callback: AsyncCallback\<Object\>): void
 **示例：**
 
 ```ts
-import http from '@ohos.net.http';
-import { BusinessError } from '@ohos.base';
+import { http } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let httpRequest = http.createHttp();
 httpRequest.on("headerReceive", (data: BusinessError) => {
@@ -749,7 +749,7 @@ off(type: "headerReceive", callback?: AsyncCallback\<Object\>): void
 **示例：**
 
 ```ts
-import http from '@ohos.net.http';
+import { http } from '@kit.NetworkKit';
 
 let httpRequest = http.createHttp();
 httpRequest.off("headerReceive");
@@ -775,7 +775,7 @@ on(type: "headersReceive", callback: Callback\<Object\>): void
 **示例：**
 
 ```ts
-import http from '@ohos.net.http';
+import { http } from '@kit.NetworkKit';
 
 let httpRequest = http.createHttp();
 httpRequest.on("headersReceive", (header: Object) => {
@@ -807,7 +807,7 @@ off(type: "headersReceive", callback?: Callback\<Object\>): void
 **示例：**
 
 ```ts
-import http from '@ohos.net.http';
+import { http } from '@kit.NetworkKit';
 
 let httpRequest = http.createHttp();
 httpRequest.on("headersReceive", (header: Object) => {
@@ -834,7 +834,7 @@ once(type: "headersReceive", callback: Callback\<Object\>): void
 **示例：**
 
 ```ts
-import http from '@ohos.net.http';
+import { http } from '@kit.NetworkKit';
 
 let httpRequest = http.createHttp();
 httpRequest.once("headersReceive", (header: Object) => {
@@ -863,7 +863,7 @@ on(type: "dataReceive", callback: Callback\<ArrayBuffer\>): void
 **示例：**
 
 ```ts
-import http from '@ohos.net.http';
+import { http } from '@kit.NetworkKit';
 
 let httpRequest = http.createHttp();
 httpRequest.on("dataReceive", (data: ArrayBuffer) => {
@@ -893,7 +893,7 @@ off(type: "dataReceive", callback?: Callback\<ArrayBuffer\>): void
 **示例：**
 
 ```ts
-import http from '@ohos.net.http';
+import { http } from '@kit.NetworkKit';
 
 let httpRequest = http.createHttp();
 httpRequest.on("dataReceive", (data: ArrayBuffer) => {
@@ -923,7 +923,7 @@ on(type: "dataEnd", callback: Callback\<void\>): void
 **示例：**
 
 ```ts
-import http from '@ohos.net.http';
+import { http } from '@kit.NetworkKit';
 
 let httpRequest = http.createHttp();
 httpRequest.on("dataEnd", () => {
@@ -953,7 +953,7 @@ off(type: "dataEnd", callback?: Callback\<void\>): void
 **示例：**
 
 ```ts
-import http from '@ohos.net.http';
+import { http } from '@kit.NetworkKit';
 
 let httpRequest = http.createHttp();
 httpRequest.on("dataEnd", () => {
@@ -983,7 +983,7 @@ on(type: "dataReceiveProgress", callback: Callback\<DataReceiveProgressInfo\>): 
 **示例：**
 
 ```ts
-import http from '@ohos.net.http';
+import { http } from '@kit.NetworkKit';
 
 let httpRequest = http.createHttp();
 httpRequest.on("dataReceiveProgress", (data: http.DataReceiveProgressInfo) => {
@@ -1013,7 +1013,7 @@ off(type: "dataReceiveProgress", callback?: Callback\<DataReceiveProgressInfo\>)
 **示例：**
 
 ```ts
-import http from '@ohos.net.http';
+import { http } from '@kit.NetworkKit';
 
 let httpRequest = http.createHttp();
 httpRequest.on("dataReceiveProgress", (data: http.DataReceiveProgressInfo) => {
@@ -1040,7 +1040,7 @@ on(type: "dataSendProgress", callback: Callback\<DataSendProgressInfo\>): void
 **示例：**
 
 ```ts
-import http from '@ohos.net.http';
+import { http } from '@kit.NetworkKit';
 
 let httpRequest = http.createHttp();
 httpRequest.on("dataSendProgress", (data: http.DataSendProgressInfo) => {
@@ -1070,7 +1070,7 @@ off(type: "dataSendProgress", callback?: Callback\<DataSendProgressInfo\>): void
 **示例：**
 
 ```ts
-import http from '@ohos.net.http';
+import { http } from '@kit.NetworkKit';
 
 let httpRequest = http.createHttp();
 httpRequest.on("dataSendProgress", (data: http.DataSendProgressInfo) => {
@@ -1280,7 +1280,7 @@ createHttpResponseCache(cacheSize?: number): HttpResponseCache
 **示例：**
 
 ```ts
-import http from '@ohos.net.http';
+import { http } from '@kit.NetworkKit';
 
 let httpResponseCache = http.createHttpResponseCache();
 ```
@@ -1344,8 +1344,8 @@ flush(callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```ts
-import http from '@ohos.net.http';
-import { BusinessError } from '@ohos.base';
+import { http } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let httpResponseCache = http.createHttpResponseCache();
 let httpRequest = http.createHttp();
@@ -1385,8 +1385,8 @@ flush(): Promise\<void\>
 **示例：**
 
 ```ts
-import http from '@ohos.net.http';
-import { BusinessError } from '@ohos.base';
+import { http } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let httpRequest = http.createHttp();
 let httpResponseCache = http.createHttpResponseCache();
@@ -1422,8 +1422,8 @@ delete(callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```ts
-import http from '@ohos.net.http';
-import { BusinessError } from '@ohos.base';
+import { http } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let httpRequest = http.createHttp();
 httpRequest.request("EXAMPLE_URL").then(data => {
@@ -1464,8 +1464,8 @@ delete(): Promise\<void\>
 **示例：**
 
 ```ts
-import http from '@ohos.net.http';
-import { BusinessError } from '@ohos.base';
+import { http } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let httpRequest = http.createHttp();
 httpRequest.request("EXAMPLE_URL").then(data => {

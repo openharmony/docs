@@ -210,6 +210,7 @@ function getCameraManager(context: common.BaseContext): camera.CameraManager | u
 | CONFLICT_CAMERA            | 7400107    | 设备重复打开返回。     |
 | DEVICE_DISABLED            | 7400108    | 安全原因摄像头被禁用。     |
 | DEVICE_PREEMPTED           | 7400109    | 相机被抢占导致无法使用。     |
+| UNRESOLVED_CONFLICTS_WITH_CURRENT_CONFIGURATIONS<sup>12+</sup> | 7400110   | 与当前配置存在冲突。     |
 | SERVICE_FATAL_ERROR        | 7400201    | 相机服务错误返回。     |
 
 ## CameraManager
@@ -1688,6 +1689,81 @@ function unregisterPreviewOutputError(previewOutput: camera.PreviewOutput): void
 }
 ```
 
+### getSupportedFrameRates<sup>12+</sup>
+
+ getSupportedFrameRates(): Array<FrameRateRange>
+
+查询支持的帧率范围。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+|      类型      |     说明     |
+| -------------  | ------------ |
+| Array<[FrameRateRange](#frameraterange)> | 支持的帧率范围列表 |
+
+**示例：**
+
+```ts
+function getSupportedFrameRates(previewOutput: camera.PreviewOutput): Array<FrameRateRange> {
+  let supportedFrameRatesArray: Array<camera.FrameRateRange> = previewOutput.getSupportedFrameRates();
+  return supportedFrameRatesArray;
+}
+```
+
+### setFrameRate<sup>12+</sup>
+
+setFrameRate(minFps: number, maxFps: number): void
+
+设置预览流帧率范围，设置的范围必须在支持的帧率范围内。
+进行设置前，可通过[getSupportedFrameRates](#getsupportedframerates12)查询支持的帧率范围。
+
+> **说明：**
+> 仅在[VideoSession](#videosession11)模式下支持。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型         | 必填 | 说明                       |
+| -------- | --------------| ---- | ------------------------ |
+| minFps   | number        | 是   | 最小帧率 |
+| maxFps   | number        | 是   | 最大帧率 |
+
+**示例：**
+
+```ts
+function setFrameRateRange(previewOutput: camera.PreviewOutput, frameRateRange: Array<number>): void {
+  previewOutput.setFrameRate(frameRateRange[0], frameRateRange[1]);
+}
+```
+
+### getActiveFrameRate<sup>12+</sup>
+
+getActiveFrameRate(): FrameRateRange
+
+获取已设置的帧率范围。
+
+使用[setFrameRate](#setframerate12)对预览流设置过帧率后可查询。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**返回值：**
+
+|      类型      |     说明     |
+| -------------  | ------------ |
+| [FrameRateRange](#frameraterange) | 帧率范围 |
+
+**示例：**
+
+```ts
+function getActiveFrameRate(previewOutput: camera.PreviewOutput): FrameRateRange {
+  let activeFrameRate: camera.FrameRateRange = previewOutput.getActiveFrameRate();
+  return activeFrameRate;
+}
+```
+
 ## ImageRotation
 
 枚举，图片旋转角度。
@@ -2076,6 +2152,118 @@ function unRegisterCaptureStartWithInfo(photoOutput: camera.PhotoOutput): void {
 }
 ```
 
+### isMovingPhotoSupported<sup>12+</sup>
+
+isMovingPhotoSupported(): boolean
+
+查询是否支持动态照片拍摄。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**返回值：**
+
+| 类型            | 说明                     |
+| -------------- | ----------------------- |
+| boolean | 返回是否支持动态照片拍照，true表示支持，false表示不支持。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |                               |
+| 7400201                |  Camera service fatal error. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+function isMovingPhotoSupported(photoOutput: camera.PhotoOutput): boolean {
+  let isSupported: boolean = false;
+  try {
+    isSupported = photoOutput.isMovingPhotoSupported();
+  } catch (error) {
+    // 失败返回错误码error.code并处理
+    let err = error as BusinessError;
+    console.error(`The isMovingPhotoSupported call failed. error code: ${err.code}`);
+  }
+  return isSupported;
+}
+```
+
+### enableMovingPhoto<sup>12+</sup>
+
+enableMovingPhoto(enabled: boolean): void
+
+使能动态照片拍照。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名      | 类型                    | 必填 | 说明                                       |
+| -------- | ---------------------- | ---- | ------------------------------------------ |
+| enabled  | boolean                | 是   | true为开启动态照片，false为关闭动态照片。     |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |     
+| 7400101                |  Parameter missing or parameter type incorrect.        |
+| 7400201                |  Camera service fatal error. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+function enableMovingPhoto(photoOutput: camera.PhotoOutput): void {
+  try {
+    photoOutput.enableMovingPhoto(true);
+  } catch (error) {
+    // 失败返回错误码error.code并处理
+    let err = error as BusinessError;
+    console.error(`The enableMovingPhoto call failed. error code: ${err.code}`);
+  }
+}
+```
+
+### on('photoAssetAvailable')<sup>12+</sup>
+
+on(type: 'photoAssetAvailable', callback: AsyncCallback\<PhotoAsset\>): void
+
+注册监听photoAsset上报。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型      | 必填 | 说明                                  |
+| -------- | ---------- | --- | ------------------------------------ |
+| type     | string     | 是   | 监听事件，固定为'photoAssetAvailable'，photoOutput创建成功后可监听。 |
+| callback | AsyncCallback\<[PhotoAsset](../apis-media-library-kit/js-apis-photoAccessHelper.md#photoasset)\> | 是   | 回调函数，用于监听photoAsset上报。 |
+
+**示例：**
+
+```ts
+import photoAccessHelper from '@ohos.file.photoAccessHelper';
+
+function onPhotoOutputPhotoAssetAvailable(photoOutput: camera.PhotoOutput): void {
+  photoOutput.on('photoAssetAvailable', (err: BusinessError, photoAsset: photoAccessHelper.PhotoAsset): void => {
+    if (err) {
+      console.info(`photoAssetAvailable error: ${JSON.stringify(err)}.`);
+      return;
+    }
+    console.info('photoOutPutCallBack photoAssetAvailable');
+    // 保存或使用照片，需开发者实现
+    photoAsset.saveCameraPhoto();
+  });
+}
+```
+
 ### isMirrorSupported
 
 isMirrorSupported(): boolean
@@ -2379,7 +2567,7 @@ on(type: 'estimatedCaptureDuration', callback: AsyncCallback\<number\>): void;
 
 | 参数名   | 类型                   | 必填 | 说明                                                         |
 | -------- | ---------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                 | 是   | 监听事件，固定为'captureReady'，photoOutput创建成功后可监听。拍照完全结束可触发该事件发生并返回相应信息。 |
+| type     | string                 | 是   | 监听事件，固定为'estimatedCaptureDuration'，photoOutput创建成功后可监听。拍照完全结束可触发该事件发生并返回相应信息。 |
 | callback | AsyncCallback\<number> | 是   | 回调函数，用于获取相关信息。                                 |
 
 **示例：**
@@ -2806,6 +2994,83 @@ function unregisterVideoOutputError(videoOutput: camera.VideoOutput): void {
   videoOutput.off('error');
 }
 ```
+
+### getSupportedFrameRates<sup>12+</sup>
+
+getSupportedFrameRates(): Array\<FrameRateRange>
+
+查询支持的帧率范围。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+|      类型      |     说明     |
+| -------------  | ------------ |
+| Array<[FrameRateRange](#frameraterange)> | 支持的帧率范围列表 |
+
+**示例：**
+
+```ts
+function getSupportedFrameRates(videoOutput: camera.VideoOutput): Array<FrameRateRange> {
+  let supportedFrameRatesArray: Array<camera.FrameRateRange> = videoOutput.getSupportedFrameRates();
+  return supportedFrameRatesArray;
+}
+```
+
+### setFrameRate<sup>12+</sup>
+
+setFrameRate(minFps: number, maxFps: number): void
+
+设置预览流帧率范围，设置的范围必须在支持的帧率范围内。
+
+进行设置前，可通过[getSupportedFrameRates](#getsupportedframerates12-1)查询支持的帧率范围。
+
+> **说明：**
+> 仅在[VideoSession](#videosession11)模式下支持。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型         | 必填 | 说明                       |
+| -------- | --------------| ---- | ------------------------ |
+| minFps   | number        | 是   | 最小帧率 |
+| maxFps   | number        | 是   | 最大帧率 |
+
+**示例：**
+
+```ts
+function setFrameRateRange(videoOutput: camera.VideoOutput, frameRateRange: Array<number>): void {
+  videoOutput.setFrameRate(frameRateRange[0], frameRateRange[1]);
+}
+```
+
+### getActiveFrameRate<sup>12+</sup>
+
+getActiveFrameRate(): FrameRateRange
+
+获取已设置的帧率范围。
+
+使用[setFrameRate](#setframerate12-1)对预览流设置过帧率后可查询。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**返回值：**
+
+|      类型      |     说明     |
+| -------------  | ------------ |
+| [FrameRateRange](#frameraterange) | 帧率范围 |
+
+**示例：**
+
+```ts
+function getActiveFrameRate(videoOutput: camera.VideoOutput): FrameRateRange {
+  let activeFrameRate: camera.FrameRateRange = videoOutput.getActiveFrameRate();
+  return activeFrameRate;
+}
+```
+
 
 ## MetadataOutput
 

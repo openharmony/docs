@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```ts
-import socket from '@ohos.net.socket';
+import { socket } from '@kit.NetworkKit';
 ```
 
 ## socket.constructUDPSocketInstance
@@ -29,7 +29,7 @@ constructUDPSocketInstance(): UDPSocket
 **示例：**
 
 ```ts
-import socket from '@ohos.net.socket';
+import { socket } from '@kit.NetworkKit';
 let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
 ```
 
@@ -64,8 +64,8 @@ bind(address: NetAddress, callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```ts
-import socket from '@ohos.net.socket';
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
 let bindAddr: socket.NetAddress = {
@@ -113,8 +113,8 @@ bind(address: NetAddress): Promise\<void\>
 **示例：**
 
 ```ts
-import socket from '@ohos.net.socket';
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
 let bindAddr: socket.NetAddress = {
@@ -157,17 +157,17 @@ send(options: UDPSendOptions, callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```ts
-import socket from '@ohos.net.socket';
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
-
+let netAddress: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
 let sendOptions: socket.UDPSendOptions = {
   data: 'Hello, server!',
-  address: {
-    address: '192.168.xx.xxx',
-    port: 8080
-  }
+  address: netAddress
 }
 udp.send(sendOptions, (err: BusinessError) => {
   if (err) {
@@ -212,17 +212,17 @@ send(options: UDPSendOptions): Promise\<void\>
 **示例：**
 
 ```ts
-import socket from '@ohos.net.socket';
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
-
+let netAddress: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
 let sendOptions: socket.UDPSendOptions = {
   data: 'Hello, server!',
-  address: {
-    address: '192.168.xx.xxx',
-    port: 8080
-  }
+  address: netAddress
 }
 udp.send(sendOptions).then(() => {
   console.log('send success');
@@ -247,11 +247,17 @@ close(callback: AsyncCallback\<void\>): void
 | -------- | --------------------- | ---- | ---------- |
 | callback | AsyncCallback\<void\> | 是   | 回调函数。关闭UDPSocket连接后触发回调函数。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 201     | Permission denied.      |
+
 **示例：**
 
 ```ts
-import socket from '@ohos.net.socket';
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
 udp.close((err: BusinessError) => {
@@ -273,6 +279,12 @@ close(): Promise\<void\>
 
 **系统能力**：SystemCapability.Communication.NetStack
 
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 201     | Permission denied.      |
+
 **返回值：**
 
 | 类型            | 说明                                       |
@@ -282,8 +294,8 @@ close(): Promise\<void\>
 **示例：**
 
 ```ts
-import socket from '@ohos.net.socket';
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
 udp.close().then(() => {
@@ -321,8 +333,8 @@ getState(callback: AsyncCallback\<SocketStateBase\>): void
 **示例：**
 
 ```ts
-import socket from '@ohos.net.socket';
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
 let bindAddr: socket.NetAddress = {
@@ -358,6 +370,12 @@ getState(): Promise\<SocketStateBase\>
 
 **系统能力**：SystemCapability.Communication.NetStack
 
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 201     | Permission denied.      |
+
 **返回值：**
 
 | 类型                                             | 说明                                       |
@@ -367,8 +385,8 @@ getState(): Promise\<SocketStateBase\>
 **示例：**
 
 ```ts
-import socket from '@ohos.net.socket';
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
 let bindAddr: socket.NetAddress = {
@@ -419,8 +437,8 @@ setExtraOptions(options: UDPExtraOptions, callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```ts
-import socket from '@ohos.net.socket';
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
 
@@ -486,8 +504,8 @@ setExtraOptions(options: UDPExtraOptions): Promise\<void\>
 **示例：**
 
 ```ts
-import socket from '@ohos.net.socket';
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
 
@@ -534,8 +552,9 @@ on(type: 'message', callback: Callback\<SocketMessageInfo\>): void
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
 
 let messageView = '';
@@ -572,8 +591,9 @@ off(type: 'message', callback?: Callback\<SocketMessageInfo\>): void
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
 let messageView = '';
 let callback = (value: socket.SocketMessageInfo) => {
@@ -610,8 +630,9 @@ on(type: 'listening' | 'close', callback: Callback\<void\>): void
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
 udp.on('listening', () => {
   console.log("on listening success");
@@ -642,8 +663,9 @@ off(type: 'listening' | 'close', callback?: Callback\<void\>): void
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
 let callback1 = () => {
   console.log("on listening, success");
@@ -679,8 +701,9 @@ on(type: 'error', callback: ErrorCallback): void
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
 udp.on('error', (err: BusinessError) => {
   console.log("on error, err:" + JSON.stringify(err))
@@ -708,8 +731,9 @@ off(type: 'error', callback?: ErrorCallback): void
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
 let callback = (err: BusinessError) => {
   console.log("on error, err:" + JSON.stringify(err));
@@ -815,7 +839,7 @@ constructMulticastSocketInstance(): MulticastSocket
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
+import { socket } from '@kit.NetworkKit';
 let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
 ```
 ## MulticastSocket<sup>11+</sup>
@@ -856,7 +880,8 @@ addMembership(multicastAddress: NetAddress, callback: AsyncCallback\<void\>): vo
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
+import { socket } from '@kit.NetworkKit';
+
 let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
 let addr: socket.NetAddress = {
   address: '239.255.0.1',
@@ -909,7 +934,8 @@ addMembership(multicastAddress: NetAddress): Promise\<void\>;
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
+import { socket } from '@kit.NetworkKit';
+
 let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
 let addr: socket.NetAddress = {
   address: '239.255.0.1',
@@ -955,7 +981,8 @@ dropMembership(multicastAddress: NetAddress, callback: AsyncCallback\<void\>): v
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
+import { socket } from '@kit.NetworkKit';
+
 let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
 let addr: socket.NetAddress = {
   address: '239.255.0.1',
@@ -1008,7 +1035,8 @@ dropMembership(multicastAddress: NetAddress): Promise\<void\>;
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
+import { socket } from '@kit.NetworkKit';
+
 let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
 let addr: socket.NetAddress = {
   address: '239.255.0.1',
@@ -1053,7 +1081,8 @@ setMulticastTTL(ttl: number, callback: AsyncCallback\<void\>): void;
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
+import { socket } from '@kit.NetworkKit';
+
 let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
 let ttl = 8
 multicast.setMulticastTTL(ttl, (err: Object) => {
@@ -1102,7 +1131,8 @@ setMulticastTTL(ttl: number): Promise\<void\>;
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
+import { socket } from '@kit.NetworkKit';
+
 let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
 multicast.setMulticastTTL(8).then(() => {
   console.log('set ttl success');
@@ -1141,7 +1171,8 @@ getMulticastTTL(callback: AsyncCallback\<number\>): void;
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
+import { socket } from '@kit.NetworkKit';
+
 let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
 multicast.getMulticastTTL((err: Object, value: Number) => {
   if (err) {
@@ -1182,7 +1213,8 @@ getMulticastTTL(): Promise\<number\>;
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
+import { socket } from '@kit.NetworkKit';
+
 let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
 multicast.getMulticastTTL().then((value: Number) => {
   console.log('ttl: ', JSON.stringify(value));
@@ -1221,7 +1253,8 @@ setLoopbackMode(flag: boolean, callback: AsyncCallback\<void\>): void;
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
+import { socket } from '@kit.NetworkKit';
+
 let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
 multicast.setLoopbackMode(false, (err: Object) => {
   if (err) {
@@ -1267,7 +1300,8 @@ setLoopbackMode(flag: boolean): Promise\<void\>;
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
+import { socket } from '@kit.NetworkKit';
+
 let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
 multicast.setLoopbackMode(false).then(() => {
   console.log('set loopback mode success');
@@ -1305,7 +1339,8 @@ getLoopbackMode(callback: AsyncCallback\<boolean\>): void;
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
+import { socket } from '@kit.NetworkKit';
+
 let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
 multicast.getLoopbackMode((err: Object, value: Boolean) => {
   if (err) {
@@ -1345,7 +1380,8 @@ getLoopbackMode(): Promise\<boolean\>;
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
+import { socket } from '@kit.NetworkKit';
+
 let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
 multicast.getLoopbackMode().then((value: Boolean) => {
   console.log('loopback mode: ', JSON.stringify(value));
@@ -1384,14 +1420,16 @@ send(options: UDPSendOptions, callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```ts
-import socket from '@ohos.net.socket';
+import { socket } from '@kit.NetworkKit';
+
 let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
+let netAddress: socket.NetAddress = {
+  address: '239.255.0.1',
+  port: 8080
+}
 let sendOptions: socket.UDPSendOptions = {
   data: 'Hello, server!',
-  address: {
-    address: '239.255.0.1',
-    port: 8080
-  }
+  address: netAddress
 }
 multicast.send(sendOptions, (err: Object) => {
   if (err) {
@@ -1436,14 +1474,16 @@ send(options: UDPSendOptions): Promise\<void\>
 **示例：**
 
 ```ts
-import socket from '@ohos.net.socket';
+import { socket } from '@kit.NetworkKit';
+
 let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
+let netAddress: socket.NetAddress = {
+  address: '239.255.0.1',
+  port: 8080
+}
 let sendOptions: socket.UDPSendOptions = {
   data: 'Hello, server!',
-  address: {
-    address: '239.255.0.1',
-    port: 8080
-  }
+  address: netAddress
 }
 multicast.send(sendOptions).then(() => {
   console.log('send success');
@@ -1470,10 +1510,11 @@ on(type: 'message', callback: Callback\<SocketMessageInfo\>): void
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket"
+import { socket } from '@kit.NetworkKit';
+
 let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance()
 
-multicast.on('message', (data) => {
+multicast.on('message', (data: socket.SocketMessageInfo) => {
   console.info('接收的数据: ' + JSON.stringify(data))
   const uintArray = new Uint8Array(data.message)
   let str = ''
@@ -1501,9 +1542,10 @@ off(type: 'message', callback?: Callback\<SocketMessageInfo\>): void
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket"
+import { socket } from '@kit.NetworkKit';
+
 let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance()
-multicast.on('message', (data) => {
+multicast.on('message', (data: socket.SocketMessageInfo) => {
   console.info('接收的数据: ' + JSON.stringify(data))
   const uintArray = new Uint8Array(data.message)
   let str = ''
@@ -1533,7 +1575,7 @@ constructTCPSocketInstance(): TCPSocket
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
+import { socket } from '@kit.NetworkKit';
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
 ```
 
@@ -1573,8 +1615,9 @@ bind(address: NetAddress, callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
 let bindAddr: socket.NetAddress = {
   address: '192.168.xx.xxx',
@@ -1626,8 +1669,9 @@ bind(address: NetAddress): Promise\<void\>
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
 let bindAddr: socket.NetAddress = {
   address: '192.168.xx.xxx',
@@ -1670,15 +1714,16 @@ connect(options: TCPConnectOptions, callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
-let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
+let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
+let netAddress: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
 let tcpconnectoptions: socket.TCPConnectOptions = {
-  address: {
-    address: '192.168.xx.xxx',
-    port: 8080
-  },
+  address: netAddress,
   timeout: 6000
 }
 tcp.connect(tcpconnectoptions, (err: BusinessError) => {
@@ -1725,15 +1770,16 @@ connect(options: TCPConnectOptions): Promise\<void\>
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
-let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
+let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
+let netAddress: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
 let tcpconnectoptions: socket.TCPConnectOptions = {
-  address: {
-    address: '192.168.xx.xxx',
-    port: 8080
-  },
+  address: netAddress,
   timeout: 6000
 }
 tcp.connect(tcpconnectoptions).then(() => {
@@ -1773,15 +1819,16 @@ send(options: TCPSendOptions, callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
-let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
+let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
+let netAddress: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
 let tcpconnectoptions: socket.TCPConnectOptions = {
-  address: {
-    address: '192.168.xx.xxx',
-    port: 8080
-  },
+  address: netAddress,
   timeout: 6000
 }
 tcp.connect(tcpconnectoptions, () => {
@@ -1834,15 +1881,16 @@ send(options: TCPSendOptions): Promise\<void\>
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
-let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
+let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
+let netAddress: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
 let tcpconnectoptions: socket.TCPConnectOptions = {
-  address: {
-    address: '192.168.xx.xxx',
-    port: 8080
-  },
+  address: netAddress,
   timeout: 6000
 }
 tcp.connect(tcpconnectoptions, () => {
@@ -1883,8 +1931,9 @@ close(callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
 
 tcp.close((err: BusinessError) => {
@@ -1921,7 +1970,8 @@ close(): Promise\<void\>
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
+import { socket } from '@kit.NetworkKit';
+
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
 
 tcp.close().then(() => {
@@ -1959,15 +2009,16 @@ getRemoteAddress(callback: AsyncCallback\<NetAddress\>): void
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
-let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
+let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
+let netAddress: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
 let tcpconnectoptions: socket.TCPConnectOptions = {
-  address: {
-    address: '192.168.xx.xxx',
-    port: 8080
-  },
+  address: netAddress,
   timeout: 6000
 }
 tcp.connect(tcpconnectoptions, () => {
@@ -2010,15 +2061,16 @@ getRemoteAddress(): Promise\<NetAddress\>
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
-let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
+let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
+let netAddress: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
 let tcpconnectoptions: socket.TCPConnectOptions = {
-  address: {
-    address: '192.168.xx.xxx',
-    port: 8080
-  },
+  address: netAddress,
   timeout: 6000
 }
 tcp.connect(tcpconnectoptions).then(() => {
@@ -2061,15 +2113,16 @@ getState(callback: AsyncCallback\<SocketStateBase\>): void
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
-let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
+let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
+let netAddress: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
 let tcpconnectoptions: socket.TCPConnectOptions = {
-  address: {
-    address: '192.168.xx.xxx',
-    port: 8080
-  },
+  address: netAddress,
   timeout: 6000
 }
 tcp.connect(tcpconnectoptions, () => {
@@ -2112,15 +2165,16 @@ getState(): Promise\<SocketStateBase\>
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
-let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
+let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
+let netAddress: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
 let tcpconnectoptions: socket.TCPConnectOptions = {
-  address: {
-    address: '192.168.xx.xxx',
-    port: 8080
-  },
+  address: netAddress,
   timeout: 6000
 }
 tcp.connect(tcpconnectoptions).then(() => {
@@ -2155,18 +2209,20 @@ getSocketFd(callback: AsyncCallback\<number\>): void
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
 let bindAddr: socket.NetAddress = {
   address: '0.0.0.0'
 }
 tcp.bind(bindAddr)
+let netAddress: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
 let tcpconnectoptions: socket.TCPConnectOptions = {
-  address: {
-    address: '192.168.xx.xxx',
-    port: 8080
-  },
+  address: netAddress,
   timeout: 6000
 }
 tcp.connect(tcpconnectoptions)
@@ -2195,18 +2251,20 @@ getSocketFd(): Promise\<number\>
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
 let bindAddr: socket.NetAddress = {
   address: '0.0.0.0'
 }
 tcp.bind(bindAddr)
+let netAddress: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
 let tcpconnectoptions: socket.TCPConnectOptions = {
-  address: {
-    address: '192.168.xx.xxx',
-    port: 8080
-  },
+  address: netAddress,
   timeout: 6000
 }
 tcp.connect(tcpconnectoptions)
@@ -2245,14 +2303,16 @@ setExtraOptions(options: TCPExtraOptions, callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
+let netAddress: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
 let tcpconnectoptions: socket.TCPConnectOptions = {
-  address: {
-    address: '192.168.xx.xxx',
-    port: 8080
-  },
+  address: netAddress,
   timeout: 6000
 }
 tcp.connect(tcpconnectoptions, () => {
@@ -2312,14 +2372,16 @@ setExtraOptions(options: TCPExtraOptions): Promise\<void\>
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
+let netAddress: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
 let tcpconnectoptions: socket.TCPConnectOptions = {
-  address: {
-    address: '192.168.xx.xxx',
-    port: 8080
-  },
+  address: netAddress,
   timeout: 6000
 }
 tcp.connect(tcpconnectoptions, () => {
@@ -2360,8 +2422,9 @@ on(type: 'message', callback: Callback<SocketMessageInfo\>): void
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
 let messageView = '';
 tcp.on('message', (value: socket.SocketMessageInfo) => {
@@ -2397,8 +2460,9 @@ off(type: 'message', callback?: Callback<SocketMessageInfo\>): void
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
 let messageView = '';
 let callback = (value: socket.SocketMessageInfo) => {
@@ -2435,8 +2499,9 @@ on(type: 'connect' | 'close', callback: Callback\<void\>): void
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
 tcp.on('connect', () => {
   console.log("on connect success")
@@ -2467,8 +2532,9 @@ off(type: 'connect' | 'close', callback?: Callback\<void\>): void
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
 let callback1 = () => {
   console.log("on connect success");
@@ -2504,8 +2570,9 @@ on(type: 'error', callback: ErrorCallback): void
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
 tcp.on('error', (err: BusinessError) => {
   console.log("on error, err:" + JSON.stringify(err))
@@ -2533,8 +2600,9 @@ off(type: 'error', callback?: ErrorCallback): void
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
 let callback = (err: BusinessError) => {
   console.log("on error, err:" + JSON.stringify(err));
@@ -2601,7 +2669,7 @@ constructTCPSocketServerInstance(): TCPSocketServer
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
+import { socket } from '@kit.NetworkKit';
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
 ```
 
@@ -2637,15 +2705,16 @@ listen(address: NetAddress, callback: AsyncCallback\<void\>): void
 | 201      | Permission denied.                          |
 | 2300002  | System internal error.                      |
 | 2303109  | Bad file number.                            |
-| 2303111  | Resource temporarily unavailable try again. |
+| 2303111  | Resource temporarily unavailable. Try again.|
 | 2303198  | Address already in use.                     |
 | 2303199  | Cannot assign requested address.            |
 
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
 let listenAddr: socket.NetAddress = {
   address:  '192.168.xx.xxx',
@@ -2694,15 +2763,16 @@ listen(address: NetAddress): Promise\<void\>
 | 201      | Permission denied.                          |
 | 2300002  | System internal error.                      |
 | 2303109  | Bad file number.                            |
-| 2303111  | Resource temporarily unavailable try again. |
+| 2303111  | Resource temporarily unavailable. Try again.|
 | 2303198  | Address already in use.                     |
 | 2303199  | Cannot assign requested address.            |
 
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
 let listenAddr: socket.NetAddress = {
   address:  '192.168.xx.xxx',
@@ -2747,8 +2817,9 @@ getState(callback: AsyncCallback\<SocketStateBase\>): void
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
 let listenAddr: socket.NetAddress = {
   address:  '192.168.xx.xxx',
@@ -2801,8 +2872,9 @@ getState(): Promise\<SocketStateBase\>
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
 let listenAddr: socket.NetAddress = {
   address:  '192.168.xx.xxx',
@@ -2855,8 +2927,9 @@ setExtraOptions(options: TCPExtraOptions, callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
 let listenAddr: socket.NetAddress = {
   address:  '192.168.xx.xxx',
@@ -2927,8 +3000,9 @@ setExtraOptions(options: TCPExtraOptions): Promise\<void\>
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
 let listenAddr: socket.NetAddress = {
   address:  '192.168.xx.xxx',
@@ -2987,7 +3061,8 @@ on(type: 'connect', callback: Callback\<TCPSocketConnection\>): void
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
+import { socket } from '@kit.NetworkKit';
+
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
 tcpServer.on('connect', (data: socket.TCPSocketConnection) => {
   console.log(JSON.stringify(data))
@@ -3021,7 +3096,8 @@ off(type: 'connect', callback?: Callback\<TCPSocketConnection\>): void
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
+import { socket } from '@kit.NetworkKit';
+
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
 let callback = (data: socket.TCPSocketConnection) => {
   console.log('on connect message: ' + JSON.stringify(data));
@@ -3059,8 +3135,9 @@ on(type: 'error', callback: ErrorCallback): void
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
 tcpServer.on('error', (err: BusinessError) => {
   console.log("on error, err:" + JSON.stringify(err))
@@ -3094,8 +3171,9 @@ off(type: 'error', callback?: ErrorCallback): void
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
 let callback = (err: BusinessError) => {
   console.log("on error, err:" + JSON.stringify(err));
@@ -3152,7 +3230,8 @@ send(options: TCPSendOptions, callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
+import { socket } from '@kit.NetworkKit';
+
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
 
 tcpServer.on('connect', (client: socket.TCPSocketConnection) => {
@@ -3201,8 +3280,9 @@ send(options: TCPSendOptions): Promise\<void\>
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
 
 tcpServer.on('connect', (client: socket.TCPSocketConnection) => {
@@ -3244,8 +3324,9 @@ close(callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
 
 tcpServer.on('connect', (client: socket.TCPSocketConnection) => {
@@ -3285,7 +3366,8 @@ close(): Promise\<void\>
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
+import { socket } from '@kit.NetworkKit';
+
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
 tcpServer.on('connect', (client: socket.TCPSocketConnection) => {
   client.close().then(() => {
@@ -3327,8 +3409,9 @@ getRemoteAddress(callback: AsyncCallback\<NetAddress\>): void
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
 tcpServer.on('connect', (client: socket.TCPSocketConnection) => {
   client.getRemoteAddress((err: BusinessError, data: socket.NetAddress) => {
@@ -3371,8 +3454,9 @@ getRemoteAddress(): Promise\<NetAddress\>
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
 tcpServer.on('connect', (client: socket.TCPSocketConnection) => {
   client.getRemoteAddress().then(() => {
@@ -3407,8 +3491,9 @@ on(type: 'message', callback: Callback<SocketMessageInfo\>): void
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
 
 tcpServer.on('connect', (client: socket.TCPSocketConnection) => {
@@ -3453,8 +3538,9 @@ off(type: 'message', callback?: Callback<SocketMessageInfo\>): void
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
 let callback = (value: socket.SocketMessageInfo) => {
   let messageView = '';
@@ -3499,8 +3585,9 @@ on(type: 'close', callback: Callback\<void\>): void
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
 tcpServer.on('connect', (client: socket.TCPSocketConnection) => {
   client.on('close', () => {
@@ -3536,7 +3623,8 @@ off(type: 'close', callback?: Callback\<void\>): void
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
+import { socket } from '@kit.NetworkKit';
+
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
 let callback = () => {
   console.log("on close success");
@@ -3573,8 +3661,9 @@ on(type: 'error', callback: ErrorCallback): void
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tcpServer: socket.TCPSocketServer = socket.constructTCPSocketServerInstance();
 tcpServer.on('connect', (client: socket.TCPSocketConnection) => {
   client.on('error', (err: BusinessError) => {
@@ -3610,8 +3699,9 @@ off(type: 'error', callback?: ErrorCallback): void
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let callback = (err: BusinessError) => {
   console.log("on error, err:" + JSON.stringify(err));
 }
@@ -3647,7 +3737,7 @@ constructLocalSocketInstance(): LocalSocket
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
+import { socket } from '@kit.NetworkKit';
 let client: socket.LocalSocket = socket.constructLocalSocketInstance();
 ```
 
@@ -3685,9 +3775,9 @@ bind(address: LocalAddress): Promise\<void\>;
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
+import { socket } from '@kit.NetworkKit';
 
-let client = socket.constructLocalSocketInstance()
+let client: socket.LocalSocket = socket.constructLocalSocketInstance()
 let sandboxPath: string = getContext().filesDir + '/testSocket'
 let address : socket.LocalAddress = {
   address: sandboxPath
@@ -3735,14 +3825,15 @@ connect(options: LocalConnectOptions): Promise\<void\>
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
+import { socket } from '@kit.NetworkKit';
 
-let client = socket.constructLocalSocketInstance();
+let client: socket.LocalSocket = socket.constructLocalSocketInstance();
 let sandboxPath: string = getContext().filesDir + '/testSocket'
+let localAddress : socket.LocalAddress = {
+  address: sandboxPath
+}
 let connectOpt: socket.LocalConnectOptions = {
-  address: {
-    address: sandboxPath
-  },
+  address: localAddress,
   timeout: 6000
 }
 client.connect(connectOpt).then(() => {
@@ -3785,14 +3876,15 @@ send(options: LocalSendOptions): Promise\<void\>
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket"
+import { socket } from '@kit.NetworkKit';
 
 let client: socket.LocalSocket = socket.constructLocalSocketInstance()
 let sandboxPath: string = getContext().filesDir + '/testSocket'
+let localAddress : socket.LocalAddress = {
+  address: sandboxPath
+}
 let connectOpt: socket.LocalConnectOptions = {
-  address: {
-    address: sandboxPath
-  },
+  address: localAddress,
   timeout: 6000
 }
 client.connect(connectOpt).then(() => {
@@ -3833,7 +3925,8 @@ close(): Promise\<void\>
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
+import { socket } from '@kit.NetworkKit';
+
 let client: socket.LocalSocket = socket.constructLocalSocketInstance();
 
 client.close().then(() => {
@@ -3863,13 +3956,15 @@ getState(): Promise\<SocketStateBase\>
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
+import { socket } from '@kit.NetworkKit';
+
 let client: socket.LocalSocket = socket.constructLocalSocketInstance();
 let sandboxPath: string = getContext().filesDir + '/testSocket'
+let localAddress : socket.LocalAddress = {
+  address: sandboxPath
+}
 let connectOpt: socket.LocalConnectOptions = {
-  address: {
-    address: sandboxPath
-  },
+  address: localAddress,
   timeout: 6000
 }
 client.connect(connectOpt).then(() => {
@@ -3905,13 +4000,15 @@ getSocketFd(): Promise\<number\>
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
+import { socket } from '@kit.NetworkKit';
+
 let client: socket.LocalSocket = socket.constructLocalSocketInstance();
 let sandboxPath: string = getContext().filesDir + '/testSocket'
+let localAddress : socket.LocalAddress = {
+  address: sandboxPath
+}
 let connectOpt: socket.LocalConnectOptions = {
-  address: {
-    address: sandboxPath
-  },
+  address: localAddress,
   timeout: 6000
 }
 client.connect(connectOpt).then(() => {
@@ -3959,13 +4056,15 @@ setExtraOptions(options: ExtraOptionsBase): Promise\<void\>
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
+import { socket } from '@kit.NetworkKit';
+
 let client: socket.LocalSocket = socket.constructLocalSocketInstance();
 let sandboxPath: string = getContext().filesDir + '/testSocket'
+let localAddress : socket.LocalAddress = {
+  address: sandboxPath
+}
 let connectOpt: socket.LocalConnectOptions = {
-  address: {
-    address: sandboxPath
-  },
+  address: localAddress,
   timeout: 6000
 }
 client.connect(connectOpt).then(() => {
@@ -4011,13 +4110,15 @@ getExtraOptions(): Promise\<ExtraOptionsBase\>;
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
+import { socket } from '@kit.NetworkKit';
+
 let client: socket.LocalSocket = socket.constructLocalSocketInstance();
 let sandboxPath: string = getContext().filesDir + '/testSocket'
+let localAddress : socket.LocalAddress = {
+  address: sandboxPath
+}
 let connectOpt: socket.LocalConnectOptions = {
-  address: {
-    address: sandboxPath
-  },
+  address: localAddress,
   timeout: 6000
 }
 client.connect(connectOpt).then(() => {
@@ -4047,10 +4148,17 @@ on(type: 'message', callback: Callback\<LocalSocketMessageInfo\>): void
 | type     | string                                          | 是   | 订阅的事件类型。'message'：接收消息事件。 |
 | callback | Callback\<[LocalSocketMessageInfo](#localsocketmessageinfo11)\> | 是   | 以callback的形式异步返回接收的消息。|
 
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
+import { socket } from '@kit.NetworkKit';
+
 let client: socket.LocalSocket = socket.constructLocalSocketInstance();
 client.on('message', (value: socket.LocalSocketMessageInfo) => {
   const uintArray = new Uint8Array(value.message)
@@ -4081,10 +4189,17 @@ off(type: 'message', callback?: Callback\<LocalSocketMessageInfo\>): void
 | type     | string                                           | 是   | 订阅的事件类型。'message'：接收消息事件。 |
 | callback | Callback\<[LocalSocketMessageInfo](#localsocketmessageinfo11)\> | 否   | 指定传入on中的callback取消一个订阅。|
 
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
+import { socket } from '@kit.NetworkKit';
+
 let client: socket.LocalSocket = socket.constructLocalSocketInstance();
 let messageView = '';
 let callback = (value: socket.LocalSocketMessageInfo) => {
@@ -4115,10 +4230,17 @@ on(type: 'connect', callback: Callback\<void\>): void;
 | type     | string           | 是   | 订阅的事件类型。                                             |
 | callback | Callback\<void\> | 是   | 以callback的形式异步返回与服务端连接的结果。                     |
 
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
+import { socket } from '@kit.NetworkKit';
+
 let client: socket.LocalSocket = socket.constructLocalSocketInstance();
 client.on('connect', () => {
   console.log("on connect success")
@@ -4140,10 +4262,17 @@ off(type: 'connect', callback?: Callback\<void\>): void;
 | type     | string           | 是   | 订阅的事件类型。                                             |
 | callback | Callback\<void\> | 否   | 指定传入on中的callback取消一个订阅。                           |
 
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
+import { socket } from '@kit.NetworkKit';
+
 let client: socket.LocalSocket = socket.constructLocalSocketInstance();
 let callback = () => {
   console.log("on connect success");
@@ -4172,10 +4301,17 @@ on(type: 'close', callback: Callback\<void\>): void;
 | type     | string           | 是   | 订阅LocalSocket的关闭事件。 |
 | callback | Callback\<void\> | 是   | 以callback的形式异步返回关闭localsocket的结果。|
 
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
+import { socket } from '@kit.NetworkKit';
+
 let client: socket.LocalSocket = socket.constructLocalSocketInstance();
 let callback = () => {
   console.log("on close success");
@@ -4201,10 +4337,17 @@ off(type: 'close', callback?: Callback\<void\>): void;
 | type     | string           | 是   | 订阅LocalSocket的关闭事件。 |
 | callback | Callback\<void\> | 否   | 取消指定传入on中的callback取消一个订阅。|
 
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
+import { socket } from '@kit.NetworkKit';
+
 let client: socket.LocalSocket = socket.constructLocalSocketInstance();
 let callback = () => {
   console.log("on close success");
@@ -4230,10 +4373,17 @@ on(type: 'error', callback: ErrorCallback): void
 | type     | string        | 是   | 订阅LocalSocket的error事件。   |
 | callback | ErrorCallback | 是   | 以callback的形式异步返回出现错误的结果。|
 
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
+import { socket } from '@kit.NetworkKit';
+
 let client: socket.LocalSocket = socket.constructLocalSocketInstance();
 client.on('error', (err: Object) => {
   console.log("on error, err:" + JSON.stringify(err))
@@ -4258,10 +4408,17 @@ off(type: 'error', callback?: ErrorCallback): void;
 | type     | string        | 是   | 取消订阅LocalSocket的error事件。 |
 | callback | ErrorCallback | 否   | 指定传入on中的callback取消一个订阅。|
 
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
+import { socket } from '@kit.NetworkKit';
+
 let client: socket.LocalSocket = socket.constructLocalSocketInstance();
 let callback = (err: Object) => {
   console.log("on error, err:" + JSON.stringify(err));
@@ -4346,7 +4503,7 @@ constructLocalSocketServerInstance(): LocalSocketServer
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
+import { socket } from '@kit.NetworkKit';
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
 ```
 
@@ -4390,7 +4547,8 @@ listen(address: LocalAddress): Promise\<void\>
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
+import { socket } from '@kit.NetworkKit';
+
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
 let sandboxPath: string = getContext().filesDir + '/testSocket'
 let addr: socket.LocalAddress = {
@@ -4423,7 +4581,8 @@ getState(): Promise\<SocketStateBase\>
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
+import { socket } from '@kit.NetworkKit';
+
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
 let sandboxPath: string = getContext().filesDir + '/testSocket'
 let listenAddr: socket.LocalAddress = {
@@ -4474,7 +4633,8 @@ setExtraOptions(options: ExtraOptionsBase): Promise\<void\>
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
+import { socket } from '@kit.NetworkKit';
+
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
 let sandboxPath: string = getContext().filesDir + '/testSocket'
 let listenAddr: socket.NetAddress = {
@@ -4524,7 +4684,8 @@ getExtraOptions(): Promise\<ExtraOptionsBase\>;
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
+import { socket } from '@kit.NetworkKit';
+
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
 let sandboxPath: string = getContext().filesDir + '/testSocket'
 let listenAddr: socket.LocalAddress = {
@@ -4569,7 +4730,8 @@ on(type: 'connect', callback: Callback\<LocalSocketConnection\>): void
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
+import { socket } from '@kit.NetworkKit';
+
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
 server.on('connect', (connection: socket.LocalSocketConnection) => {
   if (connection) {
@@ -4605,7 +4767,8 @@ off(type: 'connect', callback?: Callback\<LocalSocketConnection\>): void
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
+import { socket } from '@kit.NetworkKit';
+
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
 let callback = (connection: socket.LocalSocketConnection) => {
   if (connection) {
@@ -4645,7 +4808,8 @@ on(type: 'error', callback: ErrorCallback): void
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
+import { socket } from '@kit.NetworkKit';
+
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
 server.on('error', (err: Object) => {
   console.error("on error, err:" + JSON.stringify(err))
@@ -4679,7 +4843,8 @@ off(type: 'error', callback?: ErrorCallback): void
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
+import { socket } from '@kit.NetworkKit';
+
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
 let callback = (err: Object) => {
   console.error("on error, err:" + JSON.stringify(err));
@@ -4739,7 +4904,8 @@ send(options: LocalSendOptions): Promise\<void\>
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
+import { socket } from '@kit.NetworkKit';
+
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
 
 server.on('connect', (connection: socket.LocalSocketConnection) => {
@@ -4772,13 +4938,13 @@ close(): Promise\<void\>
 
 | 错误码ID | 错误信息               |
 | -------- | -------------------- |
-| 201      | Permission denied.   |
 | 2301009  | Bad file descriptor. |
 
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
+import { socket } from '@kit.NetworkKit';
+
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
 server.on('connect', (connection: socket.LocalSocketConnection) => {
   connection.close().then(() => {
@@ -4813,7 +4979,8 @@ on(type: 'message', callback: Callback\<LocalSocketMessageInfo\>): void;
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
+import { socket } from '@kit.NetworkKit';
+
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
 let sandboxPath: string = getContext().filesDir + '/testSocket'
 let listenAddr: socket.LocalAddress = {
@@ -4864,7 +5031,8 @@ off(type: 'message', callback?: Callback\<LocalSocketMessageInfo\>): void
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
+import { socket } from '@kit.NetworkKit';
+
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
 let callback = (value: socket.LocalSocketMessageInfo) => {
   const uintArray = new Uint8Array(value.message)
@@ -4907,7 +5075,8 @@ on(type: 'close', callback: Callback\<void\>): void
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
+import { socket } from '@kit.NetworkKit';
+
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
 server.on('connect', (connection: socket.LocalSocketConnection) => {
   connection.on('close', () => {
@@ -4943,7 +5112,8 @@ off(type: 'close', callback?: Callback\<void\>): void
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
+import { socket } from '@kit.NetworkKit';
+
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
 let callback = () => {
   console.log("on close success");
@@ -4980,7 +5150,8 @@ on(type: 'error', callback: ErrorCallback): void
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
+import { socket } from '@kit.NetworkKit';
+
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
 server.on('connect', (connection: socket.LocalSocketConnection) => {
   connection.on('error', (err: Object) => {
@@ -5016,7 +5187,8 @@ off(type: 'error', callback?: ErrorCallback): void
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
+import { socket } from '@kit.NetworkKit';
+
 let callback = (err: Object) => {
   console.error("on error, err: " + JSON.stringify(err));
 }
@@ -5052,7 +5224,8 @@ constructTLSSocketInstance(): TLSSocket
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
+import { socket } from '@kit.NetworkKit';
+
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 ```
 
@@ -5089,8 +5262,9 @@ bind(address: NetAddress, callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 let bindAddr: socket.NetAddress = {
   address: '192.168.xx.xxx',
@@ -5139,8 +5313,9 @@ bind(address: NetAddress): Promise\<void\>
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 let bindAddr: socket.NetAddress = {
   address: '192.168.xx.xxx',
@@ -5177,8 +5352,9 @@ getState(callback: AsyncCallback\<SocketStateBase\>): void
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 let bindAddr: socket.NetAddress = {
   address: '192.168.xx.xxx',
@@ -5224,8 +5400,9 @@ getState(): Promise\<SocketStateBase\>
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 let bindAddr: socket.NetAddress = {
   address: '192.168.xx.xxx',
@@ -5271,8 +5448,9 @@ setExtraOptions(options: TCPExtraOptions, callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 let bindAddr: socket.NetAddress = {
   address: '192.168.xx.xxx',
@@ -5336,8 +5514,9 @@ setExtraOptions(options: TCPExtraOptions): Promise\<void\>
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 let bindAddr: socket.NetAddress = {
   address: '192.168.xx.xxx',
@@ -5383,11 +5562,18 @@ on(type: 'message', callback: Callback\<SocketMessageInfo\>): void;
 | type     | string                                                       | 是   | 订阅的事件类型。'message'：接收消息事件。 |
 | callback | Callback\<[SocketMessageInfo](#socketmessageinfo11)\> | 是   | 回调函数。TLSSocket连接订阅某类接受消息事件触发的调用函数，返回TLSSocket连接信息。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                        |
+| ------- | ------------------------------ |
+| 401     | Parameter error.               |
+
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 let messageView = '';
 tls.on('message', (value: socket.SocketMessageInfo) => {
@@ -5420,11 +5606,18 @@ off(type: 'message', callback?: Callback\<SocketMessageInfo\>): void
 | type     | string                                                       | 是   | 订阅的事件类型。'message'：接收消息事件。 |
 | callback | Callback\<[SocketMessageInfo](#socketmessageinfo11)\> | 否   | 回调函数。TLSSocket连接取消订阅某类接受消息事件触发的调用函数，返回TLSSocket连接信息。 |
 
+**错误码：**
+
+| 错误码ID | 错误信息                        |
+| ------- | ------------------------------ |
+| 401     | Parameter error.               |
+
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 let messageView = '';
 let callback = (value: socket.SocketMessageInfo) => {
@@ -5456,11 +5649,18 @@ on(type: 'connect' | 'close', callback: Callback\<void\>): void
 | type     | string           | 是   | 订阅的事件类型。<br />- 'connect'：连接事件。<br />- 'close'：关闭事件。 |
 | callback | Callback\<void\> | 是   | 回调函数。TLSSocket连接订阅某类事件触发的调用函数。                                                   |
 
+**错误码：**
+
+| 错误码ID | 错误信息                        |
+| ------- | ------------------------------ |
+| 401     | Parameter error.               |
+
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 tls.on('connect', () => {
   console.log("on connect success")
@@ -5488,11 +5688,18 @@ off(type: 'connect' | 'close', callback?: Callback\<void\>): void
 | type     | string           | 是   | 订阅的事件类型。<br />- 'connect'：连接事件。<br />- 'close'：关闭事件。 |
 | callback | Callback\<void\> | 否   | 回调函数。TLSSocket连接订阅某类事件触发的调用函数。          |
 
+**错误码：**
+
+| 错误码ID | 错误信息                        |
+| ------- | ------------------------------ |
+| 401     | Parameter error.               |
+
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 let callback1 = () => {
   console.log("on connect success");
@@ -5524,11 +5731,18 @@ on(type: 'error', callback: ErrorCallback): void
 | type     | string        | 是   | 订阅的事件类型。'error'：error事件。 |
 | callback | ErrorCallback | 是   | 回调函数。TLSSocket连接订阅某类error事件触发的调用函数。        |
 
+**错误码：**
+
+| 错误码ID | 错误信息                        |
+| ------- | ------------------------------ |
+| 401     | Parameter error.               |
+
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 tls.on('error', (err: BusinessError) => {
   console.log("on error, err:" + JSON.stringify(err))
@@ -5553,11 +5767,18 @@ off(type: 'error', callback?: ErrorCallback): void
 | type     | string        | 是   | 订阅的事件类型。'error'：error事件。 |
 | callback | ErrorCallback | 否   | 回调函数。TLSSocket连接取消订阅某类error事件触发的调用函数。                           |
 
+**错误码：**
+
+| 错误码ID | 错误信息                        |
+| ------- | ------------------------------ |
+| 401     | Parameter error.               |
+
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 let callback = (err: BusinessError) => {
   console.log("on error, err:" + JSON.stringify(err));
@@ -5589,24 +5810,25 @@ connect(options: TLSConnectOptions, callback: AsyncCallback\<void\>): void
 | 401     | Parameter error.                             |
 | 2303104 | Interrupted system call.                     |
 | 2303109 | Bad file number.                             |
-| 2303111 | Resource temporarily unavailable try again.  |
+| 2303111 | Resource temporarily unavailable. Try again. |
 | 2303188 | Socket operation on non-socket.              |
-| 2303191 | Protocol wrong type for socket.              |
+| 2303191 | Incorrect socket protocol type.              |
 | 2303198 | Address already in use.                      |
 | 2303199 | Cannot assign requested address.             |
 | 2303210 | Connection timed out.                        |
 | 2303501 | SSL is null.                                 |
-| 2303502 | Error in tls reading.                        |
-| 2303503 | Error in tls writing                         |
-| 2303505 | Error occurred in the tls system call.       |
-| 2303506 | Error clearing tls connection.               |
+| 2303502 | An error occurred when reading data on the TLS socket.|
+| 2303503 | An error occurred when writing data on the TLS socket.|
+| 2303505 | An error occurred in the TLS system call.    |
+| 2303506 | Failed to close the TLS connection.          |
 | 2300002 | System internal error.                       |
 
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tlsTwoWay: socket.TLSSocket = socket.constructTLSSocketInstance();  // Two way authentication
 let bindAddr: socket.NetAddress = {
   address: '0.0.0.0',
@@ -5618,22 +5840,23 @@ tlsTwoWay.bind(bindAddr, (err: BusinessError) => {
   }
   console.log('bind success');
 });
-
+let twoWayNetAddr: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
+let twoWaySecureOptions: socket.TLSSecureOptions = {
+  key: "xxxx",
+  cert: "xxxx",
+  ca: ["xxxx"],
+  password: "xxxx",
+  protocols: socket.Protocol.TLSv12,
+  useRemoteCipherPrefer: true,
+  signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+  cipherSuite: "AES256-SHA256"
+}
 let tlsConnectOptions: socket.TLSConnectOptions = {
-  address: {
-    address: '192.168.xx.xxx',
-    port: 8080
-  },
-  secureOptions: {
-    key: "xxxx",
-    cert: "xxxx",
-    ca: ["xxxx"],
-    password: "xxxx",
-    protocols: socket.Protocol.TLSv12,
-    useRemoteCipherPrefer: true,
-    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
-    cipherSuite: "AES256-SHA256"
-  },
+  address: twoWayNetAddr,
+  secureOptions: twoWaySecureOptions,
   ALPNProtocols: ["spdy/1", "http/1.1"]
 }
 
@@ -5649,16 +5872,17 @@ tlsOneWay.bind(bindAddr, (err: BusinessError) => {
   }
   console.log('bind success');
 });
-
+let oneWayNetAddr: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
+let oneWaySecureOptions: socket.TLSSecureOptions = {
+  ca: ["xxxx", "xxxx"],
+  cipherSuite: "AES256-SHA256"
+}
 let tlsOneWayConnectOptions: socket.TLSConnectOptions = {
-  address: {
-    address: '192.168.xx.xxx',
-    port: 8080
-  },
-  secureOptions: {
-    ca: ["xxxx", "xxxx"],
-    cipherSuite: "AES256-SHA256"
-  }
+  address: oneWayNetAddr,
+  secureOptions: oneWaySecureOptions
 }
 tlsOneWay.connect(tlsOneWayConnectOptions, (err: BusinessError) => {
   console.error("connect callback error" + err);
@@ -5692,24 +5916,25 @@ connect(options: TLSConnectOptions): Promise\<void\>
 | 401     | Parameter error.                             |
 | 2303104 | Interrupted system call.                     |
 | 2303109 | Bad file number.                             |
-| 2303111 | Resource temporarily unavailable try again.  |
+| 2303111 | Resource temporarily unavailable. Try again. |
 | 2303188 | Socket operation on non-socket.              |
-| 2303191 | Protocol wrong type for socket.              |
+| 2303191 | Incorrect socket protocol type.              |
 | 2303198 | Address already in use.                      |
 | 2303199 | Cannot assign requested address.             |
 | 2303210 | Connection timed out.                        |
 | 2303501 | SSL is null.                                 |
-| 2303502 | Error in tls reading.                        |
-| 2303503 | Error in tls writing                         |
-| 2303505 | Error occurred in the tls system call.       |
-| 2303506 | Error clearing tls connection.               |
+| 2303502 | An error occurred when reading data on the TLS socket.|
+| 2303503 | An error occurred when writing data on the TLS socket.|
+| 2303505 | An error occurred in the TLS system call.    |
+| 2303506 | Failed to close the TLS connection.          |
 | 2300002 | System internal error.                       |
 
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tlsTwoWay: socket.TLSSocket = socket.constructTLSSocketInstance();  // Two way authentication
 let bindAddr: socket.NetAddress = {
   address: '0.0.0.0',
@@ -5721,22 +5946,23 @@ tlsTwoWay.bind(bindAddr, (err: BusinessError) => {
   }
   console.log('bind success');
 });
-
+let twoWayNetAddr: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
+let twoWaySecureOptions: socket.TLSSecureOptions = {
+  key: "xxxx",
+  cert: "xxxx",
+  ca: ["xxxx"],
+  password: "xxxx",
+  protocols: socket.Protocol.TLSv12,
+  useRemoteCipherPrefer: true,
+  signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+  cipherSuite: "AES256-SHA256"
+}
 let tlsConnectOptions: socket.TLSConnectOptions = {
-  address: {
-    address: '192.168.xx.xxx',
-    port: 8080
-  },
-  secureOptions: {
-    key: "xxxx",
-    cert: "xxxx",
-    ca: ["xxxx"],
-    password: "xxxx",
-    protocols: socket.Protocol.TLSv12,
-    useRemoteCipherPrefer: true,
-    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
-    cipherSuite: "AES256-SHA256"
-  },
+  address: twoWayNetAddr,
+  secureOptions: twoWaySecureOptions,
   ALPNProtocols: ["spdy/1", "http/1.1"]
 }
 
@@ -5754,16 +5980,17 @@ tlsOneWay.bind(bindAddr, (err: BusinessError) => {
   }
   console.log('bind success');
 });
-
+let oneWayNetAddr: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
+let oneWaySecureOptions: socket.TLSSecureOptions = {
+  ca: ["xxxx", "xxxx"],
+  cipherSuite: "AES256-SHA256"
+}
 let tlsOneWayConnectOptions: socket.TLSConnectOptions = {
-  address: {
-    address: '192.168.xx.xxx',
-    port: 8080
-  },
-  secureOptions: {
-    ca: ["xxxx", "xxxx"],
-    cipherSuite: "AES256-SHA256"
-  }
+  address: oneWayNetAddr,
+  secureOptions: oneWaySecureOptions
 }
 tlsOneWay.connect(tlsOneWayConnectOptions).then(() => {
   console.log("connect successfully");
@@ -5796,8 +6023,9 @@ getRemoteAddress(callback: AsyncCallback\<NetAddress\>): void
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 tls.getRemoteAddress((err: BusinessError, data: socket.NetAddress) => {
   if (err) {
@@ -5832,8 +6060,9 @@ getRemoteAddress(): Promise\<NetAddress\>
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 tls.getRemoteAddress().then(() => {
   console.log('getRemoteAddress success');
@@ -5861,14 +6090,15 @@ getCertificate(callback: AsyncCallback\<[X509CertRawData](#x509certrawdata9)\>):
 | 错误码ID | 错误信息                        |
 | ------- | ------------------------------ |
 | 2303501 | SSL is null.                   |
-| 2303504 | Error looking up x509.         |
+| 2303504 | An error occurred when verifying the X.509 certificate.|
 | 2300002 | System internal error.         |
 
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 tls.getCertificate((err: BusinessError, data: socket.X509CertRawData) => {
   if (err) {
@@ -5898,15 +6128,15 @@ getCertificate():Promise\<[X509CertRawData](#x509certrawdata9)\>
 | 错误码ID | 错误信息                        |
 | ------- | ------------------------------ |
 | 2303501 | SSL is null.                   |
-| 2303504 | Error looking up x509.         |
+| 2303504 | An error occurred when verifying the X.509 certificate.|
 | 2300002 | System internal error.         |
 
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
-import util from "@ohos.util";
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { util } from '@kit.ArkTS';
 
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 tls.getCertificate().then((data: socket.X509CertRawData) => {
@@ -5942,9 +6172,10 @@ getRemoteCertificate(callback: AsyncCallback\<[X509CertRawData](#x509certrawdata
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
-import util from "@ohos.util";
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { util } from '@kit.ArkTS';
+
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 tls.getRemoteCertificate((err: BusinessError, data: socket.X509CertRawData) => {
   if (err) {
@@ -5981,9 +6212,10 @@ getRemoteCertificate():Promise\<[X509CertRawData](#x509certrawdata9)\>
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
-import util from "@ohos.util";
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { util } from '@kit.ArkTS';
+
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 tls.getRemoteCertificate().then((data: socket.X509CertRawData) => {
   const decoder = util.TextDecoder.create();
@@ -6013,14 +6245,15 @@ getProtocol(callback: AsyncCallback\<string\>): void
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
 | 2303501 | SSL is null.                   |
-| 2303505 | Error occurred in the tls system call. |
+| 2303505 | An error occurred in the TLS system call. |
 | 2300002 | System internal error.         |
 
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 tls.getProtocol((err: BusinessError, data: string) => {
   if (err) {
@@ -6050,14 +6283,15 @@ getProtocol():Promise\<string\>
 | 错误码ID | 错误信息                        |
 | ------- | ------------------------------ |
 | 2303501 | SSL is null.                   |
-| 2303505 | Error occurred in the tls system call. |
+| 2303505 | An error occurred in the TLS system call. |
 | 2300002 | System internal error.         |
 
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 tls.getProtocol().then((data: string) => {
   console.log(data);
@@ -6085,15 +6319,16 @@ getCipherSuite(callback: AsyncCallback\<Array\<string\>\>): void
 | 错误码ID | 错误信息                        |
 | ------- | ------------------------------ |
 | 2303501 | SSL is null.                   |
-| 2303502 | Error in tls reading.          |
-| 2303505 | Error occurred in the tls system call. |
+| 2303502 | An error occurred when reading data on the TLS socket.|
+| 2303505 | An error occurred in the TLS system call. |
 | 2300002 | System internal error.         |
 
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 tls.getCipherSuite((err: BusinessError, data: Array<string>) => {
   if (err) {
@@ -6123,15 +6358,16 @@ getCipherSuite(): Promise\<Array\<string\>\>
 | 错误码ID | 错误信息                        |
 | ------- | ------------------------------ |
 | 2303501 | SSL is null.                   |
-| 2303502 | Error in tls reading.          |
-| 2303505 | Error occurred in the tls system call. |
+| 2303502 | An error occurred when reading data on the TLS socket.|
+| 2303505 | An error occurred in the TLS system call. |
 | 2300002 | System internal error.         |
 
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 tls.getCipherSuite().then((data: Array<string>) => {
   console.log('getCipherSuite success:' + JSON.stringify(data));
@@ -6164,8 +6400,9 @@ getSignatureAlgorithms(callback: AsyncCallback\<Array\<string\>\>): void
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 tls.getSignatureAlgorithms((err: BusinessError, data: Array<string>) => {
   if (err) {
@@ -6200,8 +6437,9 @@ getSignatureAlgorithms(): Promise\<Array\<string\>\>
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 tls.getSignatureAlgorithms().then((data: Array<string>) => {
   console.log("getSignatureAlgorithms success" + data);
@@ -6231,16 +6469,17 @@ send(data: string \| ArrayBuffer, callback: AsyncCallback\<void\>): void
 | ------- | -------------------------------------------- |
 | 401     | Parameter error.                             |
 | 2303501 | SSL is null.                                 |
-| 2303503 | Error in tls writing.                         |
-| 2303505 | Error occurred in the tls system call.       |
-| 2303506 | Error clearing tls connection.               |
+| 2303503 | An error occurred when writing data on the TLS socket.|
+| 2303505 | An error occurred in the TLS system call.    |
+| 2303506 | Failed to close the TLS connection.          |
 | 2300002 | System internal error.                       |
 
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 tls.send("xxxx", (err: BusinessError) => {
   if (err) {
@@ -6271,9 +6510,9 @@ send(data: string \| ArrayBuffer): Promise\<void\>
 | ------- | -------------------------------------------- |
 | 401     | Parameter error.                             |
 | 2303501 | SSL is null.                                 |
-| 2303503 | Error in tls writing.                         |
-| 2303505 | Error occurred in the tls system call.       |
-| 2303506 | Error clearing tls connection.               |
+| 2303503 | An error occurred when writing data on the TLS socket.|
+| 2303505 | An error occurred in the TLS system call.    |
+| 2303506 | Failed to close the TLS connection.          |
 | 2300002 | System internal error.                       |
 
 **返回值：**
@@ -6285,8 +6524,9 @@ send(data: string \| ArrayBuffer): Promise\<void\>
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 tls.send("xxxx").then(() => {
   console.log("send success");
@@ -6315,15 +6555,16 @@ close(callback: AsyncCallback\<void\>): void
 | ------- | -------------------------------------------- |
 | 401 | Parameter error.                                 |
 | 2303501 | SSL is null.                                 |
-| 2303505 | Error occurred in the tls system call.       |
-| 2303506 | Error clearing tls connection.               |
+| 2303505 | An error occurred in the TLS system call.    |
+| 2303506 | Failed to close the TLS connection.          |
 | 2300002 | System internal error.                       |
 
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 tls.close((err: BusinessError) => {
   if (err) {
@@ -6354,15 +6595,16 @@ close(): Promise\<void\>
 | ------- | -------------------------------------------- |
 | 401 | Parameter error.                                 |
 | 2303501 | SSL is null.                                 |
-| 2303505 | Error occurred in the tls system call.       |
-| 2303506 | Error clearing tls connection.               |
+| 2303505 | An error occurred in the TLS system call.    |
+| 2303506 | Failed to close the TLS connection.          |
 | 2300002 | System internal error.                       |
 
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
 tls.close().then(() => {
   console.log("close success");
@@ -6434,8 +6676,9 @@ constructTLSSocketServerInstance(): TLSSocketServer
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
 ```
 
@@ -6468,37 +6711,39 @@ listen(options: TLSConnectOptions, callback: AsyncCallback\<void\>): void
 | 201      | Permission denied.                          |
 | 2300002  | System internal error.                      |
 | 2303109  | Bad file number.                            |
-| 2303111  | Resource temporarily unavailable try again. |
+| 2303111  | Resource temporarily unavailable. Try again.|
 | 2303198  | Address already in use.                     |
 | 2303199  | Cannot assign requested address.            |
 | 2303501  | SSL is null.                                |
-| 2303502  | Error in tls reading.                       |
-| 2303503  | Error in tls writing                        |
-| 2303505  | Error occurred in the tls system call.      |
-| 2303506  | Error clearing tls connection.              |
+| 2303502  | An error occurred when reading data on the TLS socket.|
+| 2303503  | An error occurred when writing data on the TLS socket.|
+| 2303505  | An error occurred in the TLS system call.   |
+| 2303506  | Failed to close the TLS connection.         |
 
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
-let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
+let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
+let netAddress: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
+let tlsSecureOptions: socket.TLSSecureOptions = {
+  key: "xxxx",
+  cert: "xxxx",
+  ca: ["xxxx"],
+  password: "xxxx",
+  protocols: socket.Protocol.TLSv12,
+  useRemoteCipherPrefer: true,
+  signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+  cipherSuite: "AES256-SHA256"
+}
 let tlsConnectOptions: socket.TLSConnectOptions = {
-  address: {
-    address: '192.168.xx.xxx',
-    port: 8080
-  },
-  secureOptions: {
-    key: "xxxx",
-    cert: "xxxx",
-    ca: ["xxxx"],
-    password: "xxxx",
-    protocols: socket.Protocol.TLSv12,
-    useRemoteCipherPrefer: true,
-    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
-    cipherSuite: "AES256-SHA256"
-  },
+  address: netAddress,
+  secureOptions: tlsSecureOptions,
   ALPNProtocols: ["spdy/1", "http/1.1"]
 }
 tlsServer.listen(tlsConnectOptions, (err: BusinessError) => {
@@ -6536,37 +6781,39 @@ listen(options: TLSConnectOptions): Promise\<void\>
 | 201      | Permission denied.                          |
 | 2300002  | System internal error.                      |
 | 2303109  | Bad file number.                            |
-| 2303111  | Resource temporarily unavailable try again. |
+| 2303111  | Resource temporarily unavailable. Try again.|
 | 2303198  | Address already in use.                     |
 | 2303199  | Cannot assign requested address.            |
 | 2303501  | SSL is null.                                |
-| 2303502  | Error in tls reading.                       |
-| 2303503  | Error in tls writing                        |
-| 2303505  | Error occurred in the tls system call.      |
-| 2303506  | Error clearing tls connection.              |
+| 2303502  | An error occurred when reading data on the TLS socket.|
+| 2303503  | An error occurred when writing data on the TLS socket.|
+| 2303505  | An error occurred in the TLS system call.   |
+| 2303506  | Failed to close the TLS connection.         |
 
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
-let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
+let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
+let netAddress: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
+let tlsSecureOptions: socket.TLSSecureOptions = {
+  key: "xxxx",
+  cert: "xxxx",
+  ca: ["xxxx"],
+  password: "xxxx",
+  protocols: socket.Protocol.TLSv12,
+  useRemoteCipherPrefer: true,
+  signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+  cipherSuite: "AES256-SHA256"
+}
 let tlsConnectOptions: socket.TLSConnectOptions = {
-  address: {
-    address: '192.168.xx.xxx',
-    port: 8080
-  },
-  secureOptions: {
-    key: "xxxx",
-    cert: "xxxx",
-    ca: ["xxxx"],
-    password: "xxxx",
-    protocols: socket.Protocol.TLSv12,
-    useRemoteCipherPrefer: true,
-    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
-    cipherSuite: "AES256-SHA256"
-  },
+  address: netAddress,
+  secureOptions: tlsSecureOptions,
   ALPNProtocols: ["spdy/1", "http/1.1"]
 }
 tlsServer.listen(tlsConnectOptions).then(() => {
@@ -6604,24 +6851,27 @@ getState(callback: AsyncCallback\<SocketStateBase\>): void
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
+let netAddress: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
+let tlsSecureOptions: socket.TLSSecureOptions = {
+  key: "xxxx",
+  cert: "xxxx",
+  ca: ["xxxx"],
+  password: "xxxx",
+  protocols: socket.Protocol.TLSv12,
+  useRemoteCipherPrefer: true,
+  signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+  cipherSuite: "AES256-SHA256"
+}
 let tlsConnectOptions: socket.TLSConnectOptions = {
-  address: {
-    address: '192.168.xx.xxx',
-    port: 8080
-  },
-  secureOptions: {
-    key: "xxxx",
-    cert: "xxxx",
-    ca: ["xxxx"],
-    password: "xxxx",
-    protocols: socket.Protocol.TLSv12,
-    useRemoteCipherPrefer: true,
-    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
-    cipherSuite: "AES256-SHA256"
-  },
+  address: netAddress,
+  secureOptions: tlsSecureOptions,
   ALPNProtocols: ["spdy/1", "http/1.1"]
 }
 tlsServer.listen(tlsConnectOptions).then(() => {
@@ -6665,24 +6915,27 @@ getState(): Promise\<SocketStateBase\>
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
+let netAddress: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
+let tlsSecureOptions: socket.TLSSecureOptions = {
+  key: "xxxx",
+  cert: "xxxx",
+  ca: ["xxxx"],
+  password: "xxxx",
+  protocols: socket.Protocol.TLSv12,
+  useRemoteCipherPrefer: true,
+  signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+  cipherSuite: "AES256-SHA256"
+}
 let tlsConnectOptions: socket.TLSConnectOptions = {
-  address: {
-    address: '192.168.xx.xxx',
-    port: 8080
-  },
-  secureOptions: {
-    key: "xxxx",
-    cert: "xxxx",
-    ca: ["xxxx"],
-    password: "xxxx",
-    protocols: socket.Protocol.TLSv12,
-    useRemoteCipherPrefer: true,
-    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
-    cipherSuite: "AES256-SHA256"
-  },
+  address: netAddress,
+  secureOptions: tlsSecureOptions,
   ALPNProtocols: ["spdy/1", "http/1.1"]
 }
 tlsServer.listen(tlsConnectOptions).then(() => {
@@ -6726,24 +6979,27 @@ setExtraOptions(options: TCPExtraOptions, callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
+let netAddress: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
+let tlsSecureOptions: socket.TLSSecureOptions = {
+  key: "xxxx",
+  cert: "xxxx",
+  ca: ["xxxx"],
+  password: "xxxx",
+  protocols: socket.Protocol.TLSv12,
+  useRemoteCipherPrefer: true,
+  signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+  cipherSuite: "AES256-SHA256"
+}
 let tlsConnectOptions: socket.TLSConnectOptions = {
-  address: {
-    address: '192.168.xx.xxx',
-    port: 8080
-  },
-  secureOptions: {
-    key: "xxxx",
-    cert: "xxxx",
-    ca: ["xxxx"],
-    password: "xxxx",
-    protocols: socket.Protocol.TLSv12,
-    useRemoteCipherPrefer: true,
-    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
-    cipherSuite: "AES256-SHA256"
-  },
+  address: netAddress,
+  secureOptions: tlsSecureOptions,
   ALPNProtocols: ["spdy/1", "http/1.1"]
 }
 tlsServer.listen(tlsConnectOptions).then(() => {
@@ -6805,24 +7061,27 @@ setExtraOptions(options: TCPExtraOptions): Promise\<void\>
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
+let netAddress: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
+let tlsSecureOptions: socket.TLSSecureOptions = {
+  key: "xxxx",
+  cert: "xxxx",
+  ca: ["xxxx"],
+  password: "xxxx",
+  protocols: socket.Protocol.TLSv12,
+  useRemoteCipherPrefer: true,
+  signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+  cipherSuite: "AES256-SHA256"
+}
 let tlsConnectOptions: socket.TLSConnectOptions = {
-  address: {
-    address: '192.168.xx.xxx',
-    port: 8080
-  },
-  secureOptions: {
-    key: "xxxx",
-    cert: "xxxx",
-    ca: ["xxxx"],
-    password: "xxxx",
-    protocols: socket.Protocol.TLSv12,
-    useRemoteCipherPrefer: true,
-    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
-    cipherSuite: "AES256-SHA256"
-  },
+  address: netAddress,
+  secureOptions: tlsSecureOptions,
   ALPNProtocols: ["spdy/1", "http/1.1"]
 }
 tlsServer.listen(tlsConnectOptions).then(() => {
@@ -6871,32 +7130,34 @@ getCertificate(callback: AsyncCallback\<[X509CertRawData](#x509certrawdata9)\>):
 | -------- | ---------------------- |
 | 401      | Parameter error.       |
 | 2303501  | SSL is null.           |
-| 2303504  | Error looking up x509. |
+| 2303504  | An error occurred when verifying the X.509 certificate. |
 | 2300002  | System internal error. |
 
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
-import util from "@ohos.util";
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { util } from '@kit.ArkTS';
 
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
+let netAddress: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
+let tlsSecureOptions: socket.TLSSecureOptions = {
+  key: "xxxx",
+  cert: "xxxx",
+  ca: ["xxxx"],
+  password: "xxxx",
+  protocols: socket.Protocol.TLSv12,
+  useRemoteCipherPrefer: true,
+  signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+  cipherSuite: "AES256-SHA256"
+}
 let tlsConnectOptions: socket.TLSConnectOptions = {
-  address: {
-    address: '192.168.xx.xxx',
-    port: 8080
-  },
-  secureOptions: {
-    key: "xxxx",
-    cert: "xxxx",
-    ca: ["xxxx"],
-    password: "xxxx",
-    protocols: socket.Protocol.TLSv12,
-    useRemoteCipherPrefer: true,
-    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
-    cipherSuite: "AES256-SHA256"
-  },
+  address: netAddress,
+  secureOptions: tlsSecureOptions,
   ALPNProtocols: ["spdy/1", "http/1.1"]
 }
 tlsServer.listen(tlsConnectOptions).then(() => {
@@ -6937,32 +7198,34 @@ getCertificate():Promise\<[X509CertRawData](#x509certrawdata9)\>
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
 | 2303501  | SSL is null.           |
-| 2303504  | Error looking up x509. |
+| 2303504  | An error occurred when verifying the X.509 certificate. |
 | 2300002  | System internal error. |
 
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
-import util from "@ohos.util";
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { util } from '@kit.ArkTS';
 
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
+let netAddress: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
+let tlsSecureOptions: socket.TLSSecureOptions = {
+  key: "xxxx",
+  cert: "xxxx",
+  ca: ["xxxx"],
+  password: "xxxx",
+  protocols: socket.Protocol.TLSv12,
+  useRemoteCipherPrefer: true,
+  signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+  cipherSuite: "AES256-SHA256"
+}
 let tlsConnectOptions: socket.TLSConnectOptions = {
-  address: {
-    address: '192.168.xx.xxx',
-    port: 8080
-  },
-  secureOptions: {
-    key: "xxxx",
-    cert: "xxxx",
-    ca: ["xxxx"],
-    password: "xxxx",
-    protocols: socket.Protocol.TLSv12,
-    useRemoteCipherPrefer: true,
-    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
-    cipherSuite: "AES256-SHA256"
-  },
+  address: netAddress,
+  secureOptions: tlsSecureOptions,
   ALPNProtocols: ["spdy/1", "http/1.1"]
 }
 tlsServer.listen(tlsConnectOptions).then(() => {
@@ -7002,30 +7265,33 @@ getProtocol(callback: AsyncCallback\<string\>): void
 | -------- | -------------------------------------- |
 | 401      | Parameter error.                       |
 | 2303501  | SSL is null.                           |
-| 2303505  | Error occurred in the tls system call. |
+| 2303505  | An error occurred in the TLS system call. |
 | 2300002  | System internal error.                 |
 
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
+let netAddress: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
+let tlsSecureOptions: socket.TLSSecureOptions = {
+  key: "xxxx",
+  cert: "xxxx",
+  ca: ["xxxx"],
+  password: "xxxx",
+  protocols: socket.Protocol.TLSv12,
+  useRemoteCipherPrefer: true,
+  signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+  cipherSuite: "AES256-SHA256"
+}
 let tlsConnectOptions: socket.TLSConnectOptions = {
-  address: {
-    address: '192.168.xx.xxx',
-    port: 8080
-  },
-  secureOptions: {
-    key: "xxxx",
-    cert: "xxxx",
-    ca: ["xxxx"],
-    password: "xxxx",
-    protocols: socket.Protocol.TLSv12,
-    useRemoteCipherPrefer: true,
-    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
-    cipherSuite: "AES256-SHA256"
-  },
+  address: netAddress,
+  secureOptions: tlsSecureOptions,
   ALPNProtocols: ["spdy/1", "http/1.1"]
 }
 tlsServer.listen(tlsConnectOptions).then(() => {
@@ -7064,30 +7330,33 @@ getProtocol():Promise\<string\>
 | 错误码ID | 错误信息                               |
 | -------- | -------------------------------------- |
 | 2303501  | SSL is null.                           |
-| 2303505  | Error occurred in the tls system call. |
+| 2303505  | An error occurred in the TLS system call. |
 | 2300002  | System internal error.                 |
 
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
+let netAddress: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
+let tlsSecureOptions: socket.TLSSecureOptions = {
+  key: "xxxx",
+  cert: "xxxx",
+  ca: ["xxxx"],
+  password: "xxxx",
+  protocols: socket.Protocol.TLSv12,
+  useRemoteCipherPrefer: true,
+  signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+  cipherSuite: "AES256-SHA256"
+}
 let tlsConnectOptions: socket.TLSConnectOptions = {
-  address: {
-    address: '192.168.xx.xxx',
-    port: 8080
-  },
-  secureOptions: {
-    key: "xxxx",
-    cert: "xxxx",
-    ca: ["xxxx"],
-    password: "xxxx",
-    protocols: socket.Protocol.TLSv12,
-    useRemoteCipherPrefer: true,
-    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
-    cipherSuite: "AES256-SHA256"
-  },
+  address: netAddress,
+  secureOptions: tlsSecureOptions,
   ALPNProtocols: ["spdy/1", "http/1.1"]
 }
 tlsServer.listen(tlsConnectOptions).then(() => {
@@ -7129,24 +7398,27 @@ on(type: 'connect', callback: Callback\<TLSSocketConnection\>): void
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
+let netAddress: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
+let tlsSecureOptions: socket.TLSSecureOptions = {
+  key: "xxxx",
+  cert: "xxxx",
+  ca: ["xxxx"],
+  password: "xxxx",
+  protocols: socket.Protocol.TLSv12,
+  useRemoteCipherPrefer: true,
+  signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+  cipherSuite: "AES256-SHA256"
+}
 let tlsConnectOptions: socket.TLSConnectOptions = {
-  address: {
-    address: '192.168.xx.xxx',
-    port: 8080
-  },
-  secureOptions: {
-    key: "xxxx",
-    cert: "xxxx",
-    ca: ["xxxx"],
-    password: "xxxx",
-    protocols: socket.Protocol.TLSv12,
-    useRemoteCipherPrefer: true,
-    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
-    cipherSuite: "AES256-SHA256"
-  },
+  address: netAddress,
+  secureOptions: tlsSecureOptions,
   ALPNProtocols: ["spdy/1", "http/1.1"]
 }
 tlsServer.listen(tlsConnectOptions).then(() => {
@@ -7187,24 +7459,27 @@ off(type: 'connect', callback?: Callback\<TLSSocketConnection\>): void
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
+let netAddress: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
+let tlsSecureOptions: socket.TLSSecureOptions = {
+  key: "xxxx",
+  cert: "xxxx",
+  ca: ["xxxx"],
+  password: "xxxx",
+  protocols: socket.Protocol.TLSv12,
+  useRemoteCipherPrefer: true,
+  signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+  cipherSuite: "AES256-SHA256"
+}
 let tlsConnectOptions: socket.TLSConnectOptions = {
-  address: {
-    address: '192.168.xx.xxx',
-    port: 8080
-  },
-  secureOptions: {
-    key: "xxxx",
-    cert: "xxxx",
-    ca: ["xxxx"],
-    password: "xxxx",
-    protocols: socket.Protocol.TLSv12,
-    useRemoteCipherPrefer: true,
-    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
-    cipherSuite: "AES256-SHA256"
-  },
+  address: netAddress,
+  secureOptions: tlsSecureOptions,
   ALPNProtocols: ["spdy/1", "http/1.1"]
 }
 tlsServer.listen(tlsConnectOptions).then(() => {
@@ -7249,24 +7524,27 @@ on(type: 'error', callback: ErrorCallback): void
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
+let netAddress: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
+let tlsSecureOptions: socket.TLSSecureOptions = {
+  key: "xxxx",
+  cert: "xxxx",
+  ca: ["xxxx"],
+  password: "xxxx",
+  protocols: socket.Protocol.TLSv12,
+  useRemoteCipherPrefer: true,
+  signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+  cipherSuite: "AES256-SHA256"
+}
 let tlsConnectOptions: socket.TLSConnectOptions = {
-  address: {
-    address: '192.168.xx.xxx',
-    port: 8080
-  },
-  secureOptions: {
-    key: "xxxx",
-    cert: "xxxx",
-    ca: ["xxxx"],
-    password: "xxxx",
-    protocols: socket.Protocol.TLSv12,
-    useRemoteCipherPrefer: true,
-    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
-    cipherSuite: "AES256-SHA256"
-  },
+  address: netAddress,
+  secureOptions: tlsSecureOptions,
   ALPNProtocols: ["spdy/1", "http/1.1"]
 }
 tlsServer.listen(tlsConnectOptions).then(() => {
@@ -7307,24 +7585,27 @@ off(type: 'error', callback?: ErrorCallback): void
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
+let netAddress: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
+let tlsSecureOptions: socket.TLSSecureOptions = {
+  key: "xxxx",
+  cert: "xxxx",
+  ca: ["xxxx"],
+  password: "xxxx",
+  protocols: socket.Protocol.TLSv12,
+  useRemoteCipherPrefer: true,
+  signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+  cipherSuite: "AES256-SHA256"
+}
 let tlsConnectOptions: socket.TLSConnectOptions = {
-  address: {
-    address: '192.168.xx.xxx',
-    port: 8080
-  },
-  secureOptions: {
-    key: "xxxx",
-    cert: "xxxx",
-    ca: ["xxxx"],
-    password: "xxxx",
-    protocols: socket.Protocol.TLSv12,
-    useRemoteCipherPrefer: true,
-    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
-    cipherSuite: "AES256-SHA256"
-  },
+  address: netAddress,
+  secureOptions: tlsSecureOptions,
   ALPNProtocols: ["spdy/1", "http/1.1"]
 }
 tlsServer.listen(tlsConnectOptions).then(() => {
@@ -7378,32 +7659,35 @@ send(data: string \| ArrayBuffer, callback: AsyncCallback\<void\>): void
 | -------- | -------------------------------------- |
 | 401      | Parameter error.                       |
 | 2303501  | SSL is null.                           |
-| 2303503  | Error in tls writing.                  |
-| 2303505  | Error occurred in the tls system call. |
-| 2303506  | Error clearing tls connection.         |
+| 2303503  | An error occurred when writing data on the TLS socket.|
+| 2303505  | An error occurred in the TLS system call.|
+| 2303506  | Failed to close the TLS connection.    |
 | 2300002  | System internal error.                 |
 
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
+let netAddress: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
+let tlsSecureOptions: socket.TLSSecureOptions = {
+  key: "xxxx",
+  cert: "xxxx",
+  ca: ["xxxx"],
+  password: "xxxx",
+  protocols: socket.Protocol.TLSv12,
+  useRemoteCipherPrefer: true,
+  signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+  cipherSuite: "AES256-SHA256"
+}
 let tlsConnectOptions: socket.TLSConnectOptions = {
-  address: {
-    address: '192.168.xx.xxx',
-    port: 8080
-  },
-  secureOptions: {
-    key: "xxxx",
-    cert: "xxxx",
-    ca: ["xxxx"],
-    password: "xxxx",
-    protocols: socket.Protocol.TLSv12,
-    useRemoteCipherPrefer: true,
-    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
-    cipherSuite: "AES256-SHA256"
-  },
+  address: netAddress,
+  secureOptions: tlsSecureOptions,
   ALPNProtocols: ["spdy/1", "http/1.1"]
 }
 tlsServer.listen(tlsConnectOptions).then(() => {
@@ -7449,32 +7733,35 @@ send(data: string \| ArrayBuffer): Promise\<void\>
 | -------- | -------------------------------------- |
 | 401      | Parameter error.                       |
 | 2303501  | SSL is null.                           |
-| 2303503  | Error in tls writing.                  |
-| 2303505  | Error occurred in the tls system call. |
-| 2303506  | Error clearing tls connection.         |
+| 2303503  | An error occurred when writing data on the TLS socket.|
+| 2303505  | An error occurred in the TLS system call.|
+| 2303506  | Failed to close the TLS connection.    |
 | 2300002  | System internal error.                 |
 
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
+let netAddress: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
+let tlsSecureOptions: socket.TLSSecureOptions = {
+  key: "xxxx",
+  cert: "xxxx",
+  ca: ["xxxx"],
+  password: "xxxx",
+  protocols: socket.Protocol.TLSv12,
+  useRemoteCipherPrefer: true,
+  signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+  cipherSuite: "AES256-SHA256"
+}
 let tlsConnectOptions: socket.TLSConnectOptions = {
-  address: {
-    address: '192.168.xx.xxx',
-    port: 8080
-  },
-  secureOptions: {
-    key: "xxxx",
-    cert: "xxxx",
-    ca: ["xxxx"],
-    password: "xxxx",
-    protocols: socket.Protocol.TLSv12,
-    useRemoteCipherPrefer: true,
-    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
-    cipherSuite: "AES256-SHA256"
-  },
+  address: netAddress,
+  secureOptions: tlsSecureOptions,
   ALPNProtocols: ["spdy/1", "http/1.1"]
 }
 tlsServer.listen(tlsConnectOptions).then(() => {
@@ -7512,31 +7799,34 @@ close(callback: AsyncCallback\<void\>): void
 | -------- | -------------------------------------- |
 | 401      | Parameter error.                       |
 | 2303501  | SSL is null.                           |
-| 2303505  | Error occurred in the tls system call. |
-| 2303506  | Error clearing tls connection.         |
+| 2303505  | An error occurred in the TLS system call. |
+| 2303506  | Failed to close the TLS connection.    |
 | 2300002  | System internal error.                 |
 
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
+let netAddress: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
+let tlsSecureOptions: socket.TLSSecureOptions = {
+  key: "xxxx",
+  cert: "xxxx",
+  ca: ["xxxx"],
+  password: "xxxx",
+  protocols: socket.Protocol.TLSv12,
+  useRemoteCipherPrefer: true,
+  signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+  cipherSuite: "AES256-SHA256"
+}
 let tlsConnectOptions: socket.TLSConnectOptions = {
-  address: {
-    address: '192.168.xx.xxx',
-    port: 8080
-  },
-  secureOptions: {
-    key: "xxxx",
-    cert: "xxxx",
-    ca: ["xxxx"],
-    password: "xxxx",
-    protocols: socket.Protocol.TLSv12,
-    useRemoteCipherPrefer: true,
-    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
-    cipherSuite: "AES256-SHA256"
-  },
+  address: netAddress,
+  secureOptions: tlsSecureOptions,
   ALPNProtocols: ["spdy/1", "http/1.1"]
 }
 tlsServer.listen(tlsConnectOptions).then(() => {
@@ -7575,31 +7865,34 @@ close(): Promise\<void\>
 | 错误码ID | 错误信息                               |
 | -------- | -------------------------------------- |
 | 2303501  | SSL is null.                           |
-| 2303505  | Error occurred in the tls system call. |
-| 2303506  | Error clearing tls connection.         |
+| 2303505  | An error occurred in the TLS system call. |
+| 2303506  | Failed to close the TLS connection.    |
 | 2300002  | System internal error.                 |
 
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
+let netAddress: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
+let tlsSecureOptions: socket.TLSSecureOptions = {
+  key: "xxxx",
+  cert: "xxxx",
+  ca: ["xxxx"],
+  password: "xxxx",
+  protocols: socket.Protocol.TLSv12,
+  useRemoteCipherPrefer: true,
+  signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+  cipherSuite: "AES256-SHA256"
+}
 let tlsConnectOptions: socket.TLSConnectOptions = {
-  address: {
-    address: '192.168.xx.xxx',
-    port: 8080
-  },
-  secureOptions: {
-    key: "xxxx",
-    cert: "xxxx",
-    ca: ["xxxx"],
-    password: "xxxx",
-    protocols: socket.Protocol.TLSv12,
-    useRemoteCipherPrefer: true,
-    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
-    cipherSuite: "AES256-SHA256"
-  },
+  address: netAddress,
+  secureOptions: tlsSecureOptions,
   ALPNProtocols: ["spdy/1", "http/1.1"]
 }
 tlsServer.listen(tlsConnectOptions).then(() => {
@@ -7641,24 +7934,27 @@ getRemoteAddress(callback: AsyncCallback\<NetAddress\>): void
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
+let netAddress: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
+let tlsSecureOptions: socket.TLSSecureOptions = {
+  key: "xxxx",
+  cert: "xxxx",
+  ca: ["xxxx"],
+  password: "xxxx",
+  protocols: socket.Protocol.TLSv12,
+  useRemoteCipherPrefer: true,
+  signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+  cipherSuite: "AES256-SHA256"
+}
 let tlsConnectOptions: socket.TLSConnectOptions = {
-  address: {
-    address: '192.168.xx.xxx',
-    port: 8080
-  },
-  secureOptions: {
-    key: "xxxx",
-    cert: "xxxx",
-    ca: ["xxxx"],
-    password: "xxxx",
-    protocols: socket.Protocol.TLSv12,
-    useRemoteCipherPrefer: true,
-    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
-    cipherSuite: "AES256-SHA256"
-  },
+  address: netAddress,
+  secureOptions: tlsSecureOptions,
   ALPNProtocols: ["spdy/1", "http/1.1"]
 }
 tlsServer.listen(tlsConnectOptions).then(() => {
@@ -7701,24 +7997,27 @@ getRemoteAddress(): Promise\<NetAddress\>
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
+let netAddress: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
+let tlsSecureOptions: socket.TLSSecureOptions = {
+  key: "xxxx",
+  cert: "xxxx",
+  ca: ["xxxx"],
+  password: "xxxx",
+  protocols: socket.Protocol.TLSv12,
+  useRemoteCipherPrefer: true,
+  signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+  cipherSuite: "AES256-SHA256"
+}
 let tlsConnectOptions: socket.TLSConnectOptions = {
-  address: {
-    address: '192.168.xx.xxx',
-    port: 8080
-  },
-  secureOptions: {
-    key: "xxxx",
-    cert: "xxxx",
-    ca: ["xxxx"],
-    password: "xxxx",
-    protocols: socket.Protocol.TLSv12,
-    useRemoteCipherPrefer: true,
-    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
-    cipherSuite: "AES256-SHA256"
-  },
+  address: netAddress,
+  secureOptions: tlsSecureOptions,
   ALPNProtocols: ["spdy/1", "http/1.1"]
 }
 tlsServer.listen(tlsConnectOptions).then(() => {
@@ -7760,26 +8059,28 @@ getRemoteCertificate(callback: AsyncCallback\<[X509CertRawData](#x509certrawdata
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
-import util from "@ohos.util";
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { util } from '@kit.ArkTS';
 
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
+let netAddress: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
+let tlsSecureOptions: socket.TLSSecureOptions = {
+  key: "xxxx",
+  cert: "xxxx",
+  ca: ["xxxx"],
+  password: "xxxx",
+  protocols: socket.Protocol.TLSv12,
+  useRemoteCipherPrefer: true,
+  signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+  cipherSuite: "AES256-SHA256"
+}
 let tlsConnectOptions: socket.TLSConnectOptions = {
-  address: {
-    address: '192.168.xx.xxx',
-    port: 8080
-  },
-  secureOptions: {
-    key: "xxxx",
-    cert: "xxxx",
-    ca: ["xxxx"],
-    password: "xxxx",
-    protocols: socket.Protocol.TLSv12,
-    useRemoteCipherPrefer: true,
-    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
-    cipherSuite: "AES256-SHA256"
-  },
+  address: netAddress,
+  secureOptions: tlsSecureOptions,
   ALPNProtocols: ["spdy/1", "http/1.1"]
 }
 tlsServer.listen(tlsConnectOptions).then(() => {
@@ -7824,26 +8125,28 @@ getRemoteCertificate():Promise\<[X509CertRawData](#x509certrawdata9)\>
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
-import util from "@ohos.util";
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { util } from '@kit.ArkTS';
 
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
+let netAddress: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
+let tlsSecureOptions: socket.TLSSecureOptions = {
+  key: "xxxx",
+  cert: "xxxx",
+  ca: ["xxxx"],
+  password: "xxxx",
+  protocols: socket.Protocol.TLSv12,
+  useRemoteCipherPrefer: true,
+  signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+  cipherSuite: "AES256-SHA256"
+}
 let tlsConnectOptions: socket.TLSConnectOptions = {
-  address: {
-    address: '192.168.xx.xxx',
-    port: 8080
-  },
-  secureOptions: {
-    key: "xxxx",
-    cert: "xxxx",
-    ca: ["xxxx"],
-    password: "xxxx",
-    protocols: socket.Protocol.TLSv12,
-    useRemoteCipherPrefer: true,
-    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
-    cipherSuite: "AES256-SHA256"
-  },
+  address: netAddress,
+  secureOptions: tlsSecureOptions,
   ALPNProtocols: ["spdy/1", "http/1.1"]
 }
 tlsServer.listen(tlsConnectOptions).then(() => {
@@ -7882,31 +8185,34 @@ getCipherSuite(callback: AsyncCallback\<Array\<string\>\>): void
 | -------- | -------------------------------------- |
 | 401      | Parameter error.                       |
 | 2303501  | SSL is null.                           |
-| 2303502  | Error in tls reading.                  |
-| 2303505  | Error occurred in the tls system call. |
+| 2303502  | An error occurred when reading data on the TLS socket.|
+| 2303505  | An error occurred in the TLS system call.|
 | 2300002  | System internal error.                 |
 
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
+let netAddress: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
+let tlsSecureOptions: socket.TLSSecureOptions = {
+  key: "xxxx",
+  cert: "xxxx",
+  ca: ["xxxx"],
+  password: "xxxx",
+  protocols: socket.Protocol.TLSv12,
+  useRemoteCipherPrefer: true,
+  signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+  cipherSuite: "AES256-SHA256"
+}
 let tlsConnectOptions: socket.TLSConnectOptions = {
-  address: {
-    address: '192.168.xx.xxx',
-    port: 8080
-  },
-  secureOptions: {
-    key: "xxxx",
-    cert: "xxxx",
-    ca: ["xxxx"],
-    password: "xxxx",
-    protocols: socket.Protocol.TLSv12,
-    useRemoteCipherPrefer: true,
-    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
-    cipherSuite: "AES256-SHA256"
-  },
+  address: netAddress,
+  secureOptions: tlsSecureOptions,
   ALPNProtocols: ["spdy/1", "http/1.1"]
 }
 tlsServer.listen(tlsConnectOptions).then(() => {
@@ -7944,31 +8250,34 @@ getCipherSuite(): Promise\<Array\<string\>\>
 | 错误码ID | 错误信息                               |
 | -------- | -------------------------------------- |
 | 2303501  | SSL is null.                           |
-| 2303502  | Error in tls reading.                  |
-| 2303505  | Error occurred in the tls system call. |
+| 2303502  | An error occurred when reading data on the TLS socket.|
+| 2303505  | An error occurred in the TLS system call. |
 | 2300002  | System internal error.                 |
 
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
+let netAddress: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
+let tlsSecureOptions: socket.TLSSecureOptions = {
+  key: "xxxx",
+  cert: "xxxx",
+  ca: ["xxxx"],
+  password: "xxxx",
+  protocols: socket.Protocol.TLSv12,
+  useRemoteCipherPrefer: true,
+  signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+  cipherSuite: "AES256-SHA256"
+}
 let tlsConnectOptions: socket.TLSConnectOptions = {
-  address: {
-    address: '192.168.xx.xxx',
-    port: 8080
-  },
-  secureOptions: {
-    key: "xxxx",
-    cert: "xxxx",
-    ca: ["xxxx"],
-    password: "xxxx",
-    protocols: socket.Protocol.TLSv12,
-    useRemoteCipherPrefer: true,
-    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
-    cipherSuite: "AES256-SHA256"
-  },
+  address: netAddress,
+  secureOptions: tlsSecureOptions,
   ALPNProtocols: ["spdy/1", "http/1.1"]
 }
 tlsServer.listen(tlsConnectOptions).then(() => {
@@ -8010,24 +8319,27 @@ getSignatureAlgorithms(callback: AsyncCallback\<Array\<string\>\>): void
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
+let netAddress: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
+let tlsSecureOptions: socket.TLSSecureOptions = {
+  key: "xxxx",
+  cert: "xxxx",
+  ca: ["xxxx"],
+  password: "xxxx",
+  protocols: socket.Protocol.TLSv12,
+  useRemoteCipherPrefer: true,
+  signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+  cipherSuite: "AES256-SHA256"
+}
 let tlsConnectOptions: socket.TLSConnectOptions = {
-  address: {
-    address: '192.168.xx.xxx',
-    port: 8080
-  },
-  secureOptions: {
-    key: "xxxx",
-    cert: "xxxx",
-    ca: ["xxxx"],
-    password: "xxxx",
-    protocols: socket.Protocol.TLSv12,
-    useRemoteCipherPrefer: true,
-    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
-    cipherSuite: "AES256-SHA256"
-  },
+  address: netAddress,
+  secureOptions: tlsSecureOptions,
   ALPNProtocols: ["spdy/1", "http/1.1"]
 }
 tlsServer.listen(tlsConnectOptions).then(() => {
@@ -8070,24 +8382,27 @@ getSignatureAlgorithms(): Promise\<Array\<string\>\>
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
+let netAddress: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
+let tlsSecureOptions: socket.TLSSecureOptions = {
+  key: "xxxx",
+  cert: "xxxx",
+  ca: ["xxxx"],
+  password: "xxxx",
+  protocols: socket.Protocol.TLSv12,
+  useRemoteCipherPrefer: true,
+  signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+  cipherSuite: "AES256-SHA256"
+}
 let tlsConnectOptions: socket.TLSConnectOptions = {
-  address: {
-    address: '192.168.xx.xxx',
-    port: 8080
-  },
-  secureOptions: {
-    key: "xxxx",
-    cert: "xxxx",
-    ca: ["xxxx"],
-    password: "xxxx",
-    protocols: socket.Protocol.TLSv12,
-    useRemoteCipherPrefer: true,
-    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
-    cipherSuite: "AES256-SHA256"
-  },
+  address: netAddress,
+  secureOptions: tlsSecureOptions},
   ALPNProtocols: ["spdy/1", "http/1.1"]
 }
 tlsServer.listen(tlsConnectOptions).then(() => {
@@ -8128,24 +8443,27 @@ on(type: 'message', callback: Callback\<SocketMessageInfo\>): void
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
+let netAddress: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
+let tlsSecureOptions: socket.TLSSecureOptions = {
+  key: "xxxx",
+  cert: "xxxx",
+  ca: ["xxxx"],
+  password: "xxxx",
+  protocols: socket.Protocol.TLSv12,
+  useRemoteCipherPrefer: true,
+  signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+  cipherSuite: "AES256-SHA256"
+}
 let tlsConnectOptions: socket.TLSConnectOptions = {
-  address: {
-    address: '192.168.xx.xxx',
-    port: 8080
-  },
-  secureOptions: {
-    key: "xxxx",
-    cert: "xxxx",
-    ca: ["xxxx"],
-    password: "xxxx",
-    protocols: socket.Protocol.TLSv12,
-    useRemoteCipherPrefer: true,
-    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
-    cipherSuite: "AES256-SHA256"
-  },
+  address: netAddress,
+  secureOptions: tlsSecureOptions,
   ALPNProtocols: ["spdy/1", "http/1.1"]
 }
 tlsServer.listen(tlsConnectOptions).then(() => {
@@ -8196,24 +8514,27 @@ off(type: 'message', callback?: Callback\<SocketMessageInfo\>): void
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
+let netAddress: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
+let tlsSecureOptions: socket.TLSSecureOptions = {
+  key: "xxxx",
+  cert: "xxxx",
+  ca: ["xxxx"],
+  password: "xxxx",
+  protocols: socket.Protocol.TLSv12,
+  useRemoteCipherPrefer: true,
+  signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+  cipherSuite: "AES256-SHA256"
+}
 let tlsConnectOptions: socket.TLSConnectOptions = {
-  address: {
-    address: '192.168.xx.xxx',
-    port: 8080
-  },
-  secureOptions: {
-    key: "xxxx",
-    cert: "xxxx",
-    ca: ["xxxx"],
-    password: "xxxx",
-    protocols: socket.Protocol.TLSv12,
-    useRemoteCipherPrefer: true,
-    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
-    cipherSuite: "AES256-SHA256"
-  },
+  address: netAddress,
+  secureOptions: tlsSecureOptions,
   ALPNProtocols: ["spdy/1", "http/1.1"]
 }
 tlsServer.listen(tlsConnectOptions).then(() => {
@@ -8265,24 +8586,27 @@ on(type: 'close', callback: Callback\<void\>): void
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
+let netAddress: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
+let tlsSecureOptions: socket.TLSSecureOptions = {
+  key: "xxxx",
+  cert: "xxxx",
+  ca: ["xxxx"],
+  password: "xxxx",
+  protocols: socket.Protocol.TLSv12,
+  useRemoteCipherPrefer: true,
+  signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+  cipherSuite: "AES256-SHA256"
+}
 let tlsConnectOptions: socket.TLSConnectOptions = {
-  address: {
-    address: '192.168.xx.xxx',
-    port: 8080
-  },
-  secureOptions: {
-    key: "xxxx",
-    cert: "xxxx",
-    ca: ["xxxx"],
-    password: "xxxx",
-    protocols: socket.Protocol.TLSv12,
-    useRemoteCipherPrefer: true,
-    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
-    cipherSuite: "AES256-SHA256"
-  },
+  address: netAddress,
+  secureOptions: tlsSecureOptions,
   ALPNProtocols: ["spdy/1", "http/1.1"]
 }
 tlsServer.listen(tlsConnectOptions).then(() => {
@@ -8324,24 +8648,27 @@ off(type: 'close', callback?: Callback\<void\>): void
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
+let netAddress: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
+let tlsSecureOptions: socket.TLSSecureOptions = {
+  key: "xxxx",
+  cert: "xxxx",
+  ca: ["xxxx"],
+  password: "xxxx",
+  protocols: socket.Protocol.TLSv12,
+  useRemoteCipherPrefer: true,
+  signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+  cipherSuite: "AES256-SHA256"
+}
 let tlsConnectOptions: socket.TLSConnectOptions = {
-  address: {
-    address: '192.168.xx.xxx',
-    port: 8080
-  },
-  secureOptions: {
-    key: "xxxx",
-    cert: "xxxx",
-    ca: ["xxxx"],
-    password: "xxxx",
-    protocols: socket.Protocol.TLSv12,
-    useRemoteCipherPrefer: true,
-    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
-    cipherSuite: "AES256-SHA256"
-  },
+  address: netAddress,
+  secureOptions: tlsSecureOptions,
   ALPNProtocols: ["spdy/1", "http/1.1"]
 }
 tlsServer.listen(tlsConnectOptions).then(() => {
@@ -8385,24 +8712,27 @@ on(type: 'error', callback: ErrorCallback): void
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
+let netAddress: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
+let tlsSecureOptions: socket.TLSSecureOptions = {
+  key: "xxxx",
+  cert: "xxxx",
+  ca: ["xxxx"],
+  password: "xxxx",
+  protocols: socket.Protocol.TLSv12,
+  useRemoteCipherPrefer: true,
+  signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+  cipherSuite: "AES256-SHA256"
+}
 let tlsConnectOptions: socket.TLSConnectOptions = {
-  address: {
-    address: '192.168.xx.xxx',
-    port: 8080
-  },
-  secureOptions: {
-    key: "xxxx",
-    cert: "xxxx",
-    ca: ["xxxx"],
-    password: "xxxx",
-    protocols: socket.Protocol.TLSv12,
-    useRemoteCipherPrefer: true,
-    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
-    cipherSuite: "AES256-SHA256"
-  },
+  address: netAddress,
+  secureOptions: tlsSecureOptions,
   ALPNProtocols: ["spdy/1", "http/1.1"]
 }
 tlsServer.listen(tlsConnectOptions).then(() => {
@@ -8445,24 +8775,27 @@ off(type: 'error', callback?: ErrorCallback): void
 **示例：**
 
 ```ts
-import socket from "@ohos.net.socket";
-import { BusinessError } from '@ohos.base';
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
+let netAddress: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
+let tlsSecureOptions: socket.TLSSecureOptions = {
+  key: "xxxx",
+  cert: "xxxx",
+  ca: ["xxxx"],
+  password: "xxxx",
+  protocols: socket.Protocol.TLSv12,
+  useRemoteCipherPrefer: true,
+  signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+  cipherSuite: "AES256-SHA256"
+}
 let tlsConnectOptions: socket.TLSConnectOptions = {
-  address: {
-    address: '192.168.xx.xxx',
-    port: 8080
-  },
-  secureOptions: {
-    key: "xxxx",
-    cert: "xxxx",
-    ca: ["xxxx"],
-    password: "xxxx",
-    protocols: socket.Protocol.TLSv12,
-    useRemoteCipherPrefer: true,
-    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
-    cipherSuite: "AES256-SHA256"
-  },
+  address: netAddress,
+  secureOptions: tlsSecureOptions,
   ALPNProtocols: ["spdy/1", "http/1.1"]
 }
 tlsServer.listen(tlsConnectOptions).then(() => {

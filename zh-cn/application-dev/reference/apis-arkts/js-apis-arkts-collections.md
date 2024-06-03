@@ -18,6 +18,105 @@ ArkTS容器并不是线程安全的，内部使用了fail-fast（快速失败）
 import { collections } from '@kit.ArkTS';
 ```
 
+## ISendable
+
+type ISendable = lang.ISendable
+
+ISendable是所有Sendable类型（除`null`和`undefined`）的父类型。自身没有任何必须的方法和属性。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+| 类型 | 说明   |
+| ------ | ------ |
+| [lang.ISendable](js-apis-arkts-lang.md#langisendable)   | 所有Sendable类型的父类型。 |
+
+## collections.ConcatArray
+表示可以进行连接的类似数组的对象。该接口扩展了`ISendable`接口。
+
+文档中存在泛型的使用，涉及以下泛型标记符：
+
+- T：Type，支持[Sendable的数据类型](../../arkts-utils/arkts-sendable.md)。
+
+### 属性
+
+**系统能力：** SystemCapability.Utils.Lang
+
+| 名称   | 类型   | 可读 | 可写 | 说明              |
+| ------ | ------ | ---- | ---- | ----------------- |
+| length | number | 是   | 否   | ConcatArray的元素个数。 |
+
+### join
+
+join(separator?: string): string
+
+将ConcatArray的所有元素连接成一个字符串，元素之间可以用指定的分隔符分隔。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名    | 类型   | 必填 | 说明                                                 |
+| --------- | ------ | ---- | ---------------------------------------------------- |
+| separator | string | 否   | 用于分隔ConcatArray元素的字符串。如果省略，则使用逗号分隔。 |
+
+**返回值：**
+
+| 类型   | 说明                                                         |
+| ------ | ------------------------------------------------------------ |
+| string | 包含所有ConcatArray元素连接成的字符串。如果ConcatArray为空，则返回空字符串。 |
+
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401 |  Parameter error. Invalid separator. |
+
+**示例：**
+
+```ts
+let concatArray : collections.ConcatArray<string> = new collections.Array<string>('a', 'b', 'c');
+let joinedString = concatArray.join('-'); // 返回 "a-b-c"
+```
+
+### slice
+
+slice(start?: number, end?: number): ConcatArray\<T>
+
+返回一个新的ConcatArray，该ConcatArray是原始ConcatArray的切片。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+| 参数名 | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| start  | number | 否   | 开始索引。如果`start < 0`，则会从`start + array.length`位置开始。默认值为0。   |
+| end    | number | 否   | 结束索引（不包括该元素）。如果`end < 0`，则会到`end + array.length`位置结束。默认为ArkTS Array的长度。 |
+
+**返回值：**
+
+| 类型      | 说明                       |
+| --------- | -------------------------- |
+| ConcatArray\<T> | 包含原始ConcatArray切片的新ConcatArray。 |
+
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401 |  Parameter error. Invalid `start` or `end` parameters. |
+
+**示例：**
+
+```ts
+let concatArray : collections.ConcatArray<number> = new collections.Array<number>(1, 2, 3, 4, 5);
+let slicedArray = concatArray.slice(1, 3); // 返回[2, 3]，原Array保持不变
+```
+
 ## collections.Array
 
 一种线性数据结构，底层基于数组实现，可以在ArkTS上并发实例间传递。
@@ -1024,6 +1123,40 @@ let array2 = new collections.Array(1, 2, 3);
 array2.extendTo(1, 10); // array内容不变
 ```
 
+### concat
+
+concat(...items: ConcatArray<T>[]): Array<T>
+
+拼接两个或多个数组。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明                               |
+| ------ | ---- | ---- | ---------------------------------- |
+| items  | ConcatArray<T>[]  | 是   | 拼接两个或多个数组。 |
+
+**错误码：**
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
+
+| 错误码ID | 错误信息                         |
+| ------- | -------- |
+| 401 |  Parameter error. Not a valid array. |
+| 10200011 | The concat method cannot be bound. |
+| 10200201 | Concurrent modification error.   |
+
+**示例：**
+
+```ts
+let array = new collections.Array(1, 2, 3);
+let array1 = new collections.Array(4, 5, 6);
+let array2 = new collections.Array(7, 8, 9);
+
+let concatArray = array.concat(array1, array2); // concatArray的内容为：[1, 2, 3, 4, 5, 6, 7, 8, 9]
+```
+
 ## collections.Map
 
 一种非线性数据结构。
@@ -1093,11 +1226,10 @@ class SharedClass {
   }
 }
 let sObj = new SharedClass();
-const myMap1 = new collections.Map<number, SharedClass>([[1, sObj]]);
-
-// Throw exception `Parameter error. Only accept sendable value`
+const myMap1: collections.Map<number, SharedClass> = new collections.Map<number, SharedClass>([[1, sObj]]);
+// Type arguments of generic "Sendable" type must be a "Sendable" data type (arkts-sendable-generic-types)
 let obj = new Object();
-const myMap2 = new collections.Map<number, Object>([[1, obj]]);
+const myMap2: collections.Map<number, Object> = new collections.Map<number, Object>([[1, obj]]);
 ```
 
 ### entries
@@ -1141,20 +1273,18 @@ console.info(iterator.next().value);
 
 ```ts
 // 例2：
-const myMap = new collections.Map<number, string>([
+const myMap: collections.Map<number, string> = new collections.Map<number, string>([
   [0, "one"],
   [1, "two"],
   [2, "three"],
   [3, "four"]
 ]);
-
-const entriesIter = myMap.entries();
+const entriesIter: IterableIterator<[number, string]> = myMap.entries();
 for (const entry of entriesIter) {
-    if (entry[1].startsWith('t')) {
-        myMap.delete(entry[0]);
-    }
+  if (entry[1].startsWith('t')) {
+    myMap.delete(entry[0]);
+  }
 }
-
 // Expected output: 2
 console.info("size:" + myMap.size);
 ```
@@ -1481,9 +1611,9 @@ myMap.set("foo", "bar")
 ```ts
 // 反例：
 let obj = new Object();
-const myMap = new collections.Map<string, Object>();
-// Throw exception `Parameter error. Only accept sendable value`
-myMap.set("foo", obj)
+const myMap: collections.Map<string, Object> = new collections.Map<string, Object>();
+// Type arguments of generic "Sendable" type must be a "Sendable" data type (arkts-sendable-generic-types)
+myMap.set("foo", obj);
 ```
 
 
@@ -1550,11 +1680,10 @@ class SharedClass {
 }
 
 let sObj = new SharedClass();
-const mySet1 = new collections.Set<number|SharedClass>([1, sObj]);
-
-// Throw exception `Parameter error. Only accept sendable value`
+const mySet1: collections.Set<number|SharedClass> = new collections.Set<number|SharedClass>([1, sObj]);
+// Type arguments of generic "Sendable" type must be a "Sendable" data type (arkts-sendable-generic-types)
 let obj = new Object();
-const mySet2 = new collections.Set<number|Object>([1, obj]);
+const mySet2: collections.Set<number|SharedClass> = new collections.Set<number|Object>([1, obj]);
 ```
 
 ### entries
@@ -1860,16 +1989,16 @@ add(value: T): Set\<T>
 
 ```ts
 // 正例：
-const mySet = new collections.Set<string>();
-mySet.add("foo", "bar")
+const mySet: collections.Set<string> = new collections.Set<string>();
+mySet.add("foo");
 ```
 
 ```ts
 // 反例：
 let obj = new Object();
-const mySet = new collections.Set<Object>();
-// Throw exception `Parameter error. Only accept sendable value`
-mySet.add(obj)
+const mySet: collections.Set<Object> = new collections.Set<Object>();
+// Type arguments of generic "Sendable" type must be a "Sendable" data type (arkts-sendable-generic-types)
+mySet.add(obj);
 ```
 
 ## collections.ArrayBuffer
@@ -3213,4 +3342,601 @@ let iterator: IterableIterator<number> = array.values();
 for (const value of iterator) {
   console.info("" + value); // 依次输出 1,2,3,4,5
 }
+```
+
+## collections.BitVector
+
+BitVector是一种线性数据结构，底层基于数组实现。BitVector中存储元素为bit值，能存储和处理bit级别的操作。
+
+### 属性
+
+**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+| 名称   | 类型   | 可读 | 可写 | 说明                  |
+| ------ | ------ | ---- | ---- | --------------------- |
+| length | number | 是   | 否   | BitVector的元素个数。 |
+
+
+### constructor
+
+constructor(length: number)
+
+BitVector的构造函数。
+
+**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                    |
+| ------ | ------ | ---- | ----------------------- |
+| length | number | 是   | 初始化BitVector的长度。 |
+
+**示例：**
+
+```ts
+let bitVector ：collections.BitVector = new collections.BitVector(0);
+```
+
+
+### push
+
+push(element:number): boolean
+
+在BitVector尾部插入元素。
+
+**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名  | 类型   | 必填 | 说明                                |
+| ------- | ------ | ---- | ----------------------------------- |
+| element | number | 是   | 待插入的元素，0表示0，其余值表示1。 |
+
+**返回值：**
+
+| 类型    | 说明                              |
+| ------- | --------------------------------- |
+| boolean | 插入成功返回true，失败返回false。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes:<br/>1.Mandatory parameters are left unspecified；<br/>2.Incorrect parameter types. |
+| 10200011 | The push method cannot be bound.                             |
+| 10200201 | Concurrent modification error.                               |
+
+**示例：**
+
+```ts
+let bitVector ：collections.BitVector = new collections.BitVector(0);
+bitVector.push(0);
+bitVector.push(1);
+bitVector.push(0);
+bitVector.push(1);
+bitVector.push(0); // bitVector: [0, 1, 0, 1, 0]
+```
+
+### pop
+
+pop(): number
+
+弹出BitVector尾部的元素。
+
+**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**返回值：**
+
+| 类型   | 说明                                       |
+| ------ | ------------------------------------------ |
+| number | 弹出BitVector尾部的元素，其值为对应bit值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+
+| 错误码ID | 错误信息                        |
+| -------- | ------------------------------- |
+| 10200011 | The pop method cannot be bound. |
+| 10200201 | Concurrent modification error.  |
+
+**示例：**
+
+```ts
+let bitVector ：collections.BitVector = new collections.BitVector(0);
+bitVector.push(0);
+bitVector.push(1);
+bitVector.push(0);
+bitVector.push(1);
+bitVector.push(0); // bitVector: [0, 1, 0, 1, 0]
+let res = bitVector.pop(); // bitVector: [0, 1, 0, 1]
+console.info("bitVector pop:", res) // 0
+```
+
+### has
+
+has(element: number, fromIndex: number, toIndex: number): boolean
+
+判断范围内是否包含特定bit值。
+
+**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名    | 类型   | 必填 | 说明                                 |
+| --------- | ------ | ---- | ------------------------------------ |
+| element   | number | 是   | 待判断的bit值，0表示0，其余值表示1。 |
+| fromIndex | number | 是   | 范围起始索引，包含本索引值。         |
+| toIndex   | number | 是   | 范围终止索引，不包含本索引值。       |
+
+**返回值：**
+
+| 类型    | 说明                                   |
+| ------- | -------------------------------------- |
+| boolean | 包含特定bit值返回true，否则返回false。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes:<br/>1.Mandatory parameters are left unspecified；<br/>2.Incorrect parameter types. |
+| 10200001 | The value of fromIndex or toIndex is out of range.           |
+| 10200011 | The has method cannot be bound.                              |
+| 10200201 | Concurrent modification error.                               |
+
+**示例：**
+
+```ts
+let bitVector ：collections.BitVector = new collections.BitVector(0);
+bitVector.push(0);
+bitVector.push(1);
+bitVector.push(0);
+bitVector.push(1);
+bitVector.push(0); // bitVector: [0, 1, 0, 1, 0]
+let res0: boolean = bitVector.has(0, 1, 4);
+console.info("bitVector has 0:", res0) // true
+```
+
+### setBitsByRange
+
+setBitsByRange(element: number, fromIndex: number, toIndex: number): void
+
+将BitVector中指定范围的元素均设为特定bit值。
+
+**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名    | 类型   | 必填 | 说明                               |
+| --------- | ------ | ---- | ---------------------------------- |
+| element   | number | 是   | 待设置的bit值，0表示0，其余表示1。 |
+| fromIndex | number | 是   | 范围起始索引，包含本索引值。       |
+| toIndex   | number | 是   | 范围终止索引，不包含本索引值。     |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes:<br/>1.Mandatory parameters are left unspecified；<br/>2.Incorrect parameter types. |
+| 10200001 | The value of fromIndex or toIndex is out of range.           |
+| 10200011 | The setBitsByRange method cannot be bound.                   |
+| 10200201 | Concurrent modification error.                               |
+
+**示例：**
+
+```ts
+let bitVector ：collections.BitVector = new collections.BitVector(0);
+bitVector.push(0);
+bitVector.push(1);
+bitVector.push(0);
+bitVector.push(1);
+bitVector.push(0); // bitVector: [0, 1, 0, 1, 0]
+bitVector.setBitsByRange(1, 1, 3); // bitVector: [0, 1, 1, 1, 0]
+```
+
+### setAllBits
+
+setAllBits(element: number): void
+
+将BitVector中所有元素均设为特定bit值。
+
+**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名  | 类型   | 必填 | 说明                                |
+| ------- | ------ | ---- | ----------------------------------- |
+| element | number | 是   | 待设置的元素，0表示0，其余值表示1。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes:<br/>1.Mandatory parameters are left unspecified；<br/>2.Incorrect parameter types. |
+| 10200011 | The setAllBits method cannot be bound.                       |
+| 10200201 | Concurrent modification error.                               |
+
+**示例：**
+
+```ts
+let bitVector ：collections.BitVector = new collections.BitVector(0);
+bitVector.push(0);
+bitVector.push(1);
+bitVector.push(0);
+bitVector.push(1);
+bitVector.push(0); // bitVector: [0, 1, 0, 1, 0]
+bitVector.setAllBits(1); // bitVector: [1, 1, 1, 1, 1]
+```
+
+### getBitsByRange
+
+getBitsByRange(fromIndex: number, toIndex: number): BitVector
+
+获取指定范围内的bit值。
+
+**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名    | 类型   | 必填 | 说明                           |
+| --------- | ------ | ---- | ------------------------------ |
+| fromIndex | number | 是   | 范围起始索引，包含本索引值。   |
+| toIndex   | number | 是   | 范围终止索引，不包含本索引值。 |
+
+**返回值：**
+
+| 类型      | 说明                               |
+| --------- | ---------------------------------- |
+| BitVector | 指定范围内的bit值组成的BitVector。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes:<br/>1.Mandatory parameters are left unspecified；<br/>2.Incorrect parameter types. |
+| 10200001 | The value of fromIndex or toIndex is out of range.           |
+| 10200011 | The getBitsByRange method cannot be bound.                   |
+| 10200201 | Concurrent modification error.                               |
+
+**示例：**
+
+```ts
+let bitVector ：collections.BitVector = new collections.BitVector(0);
+bitVector.push(0);
+bitVector.push(1);
+bitVector.push(0);
+bitVector.push(1);
+bitVector.push(0); // bitVector: [0, 1, 0, 1, 0]
+let bitVector2 = bitVector.getBitsByRange(1, 3); // bitVector2: [1, 0]
+console.info("bitVector2 length:", bitVector2.length) // 2
+```
+
+### resize
+
+resize(size: number): void
+
+改变BitVector的长度。
+
+若size大于原BitVector的长度，则扩充原BitVector的长度，多出的部分其元素设置为0；
+
+若size小于等于原BitVector的长度，则将原BitVector按size长度大小裁剪。
+
+**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明             |
+| ------ | ------ | ---- | ---------------- |
+| size   | number | 是   | 需要改变的长度。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes:<br/>1.Mandatory parameters are left unspecified；<br/>2.Incorrect parameter types. |
+| 10200011 | The resize method cannot be bound.                           |
+| 10200201 | Concurrent modification error.                               |
+
+**示例：**
+
+```ts
+let bitVector ：collections.BitVector = new collections.BitVector(0);
+bitVector.push(0);
+bitVector.push(1);
+bitVector.push(0);
+bitVector.push(1);
+bitVector.push(0); // bitVector: [0, 1, 0, 1, 0]
+bitVector.resize(10); // bitVector: [0, 1, 0, 1, 0, 0, 0, 0, 0, 0]
+console.info("bitVector get bit vector's length:", bitVector.length) // 10
+bitVector.resize(3); // bitVector: [0, 1, 0]
+console.info("bitVector get bit vector's length:", bitVector.length) // 3
+```
+
+### getBitCountByRange
+
+getBitCountByRange(element: number, fromIndex: number, toIndex: number): number
+
+统计指定范围内获取指定bit值的数量。
+
+**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名    | 类型   | 必填 | 说明                                 |
+| --------- | ------ | ---- | ------------------------------------ |
+| element   | number | 是   | 待统计的bit值，0表示0，其余值表示1。 |
+| fromIndex | number | 是   | 范围起始索引，包含本索引值。         |
+| toIndex   | number | 是   | 范围终止索引，不包含本索引值。       |
+
+**返回值：**
+
+| 类型   | 说明                                |
+| ------ | ----------------------------------- |
+| number | 统计指定范围内获取指定bit值的数量。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes:<br/>1.Mandatory parameters are left unspecified；<br/>2.Incorrect parameter types. |
+| 10200001 | The value of fromIndex or toIndex is out of range.           |
+| 10200011 | The getBitCountByRange method cannot be bound.               |
+| 10200201 | Concurrent modification error.                               |
+
+**示例：**
+
+```ts
+let bitVector ：collections.BitVector = new collections.BitVector(0);
+bitVector.push(0);
+bitVector.push(1);
+bitVector.push(0);
+bitVector.push(1);
+bitVector.push(0); // bitVector: [0, 1, 0, 1, 0]
+let res: number = bitVector.getBitCountByRange(1, 1, 4);
+console.info("bitVector getBitCountByRange:", res) // 2
+```
+
+### getIndexOf
+
+getIndexOf(element: number, fromIndex: number, toIndex: number): number
+
+返回指定bit值首次出现时的索引值，查找失败返回-1。
+
+**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名    | 类型   | 必填 | 说明                                 |
+| --------- | ------ | ---- | ------------------------------------ |
+| element   | number | 是   | 待统计的bit值，0表示0，其余值表示1。 |
+| fromIndex | number | 是   | 范围起始索引，包含本索引值。         |
+| toIndex   | number | 是   | 范围终止索引，不包含本索引值。       |
+
+**返回值：**
+
+| 类型   | 说明                                              |
+| ------ | ------------------------------------------------- |
+| number | 返回指定bit值首次出现时的下标值，查找失败返回-1。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes:<br/>1.Mandatory parameters are left unspecified；<br/>2.Incorrect parameter types. |
+| 10200001 | The value of fromIndex or toIndex is out of range.           |
+| 10200011 | The getIndexOf method cannot be bound.                       |
+| 10200201 | Concurrent modification error.                               |
+
+**示例：**
+
+```ts
+let bitVector ：collections.BitVector = new collections.BitVector(0);
+bitVector.push(0);
+bitVector.push(1);
+bitVector.push(0);
+bitVector.push(1);
+bitVector.push(0); // bitVector: [0, 1, 0, 1, 0]
+let res: number = bitVector.getIndexOf(0, 1, 4);
+console.info("bitVector getIndexOf:", res) // 2
+```
+
+### getLastIndexOf
+
+getLastIndexOf(element: number, fromIndex: number, toIndex: number): number
+
+返回指定bit值最后一次出现时的下标值，查找失败返回-1。
+
+**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名    | 类型   | 必填 | 说明                                 |
+| --------- | ------ | ---- | ------------------------------------ |
+| element   | number | 是   | 待统计的bit值，0表示0，其余值表示1。 |
+| fromIndex | number | 是   | 范围起始索引，包含本索引值。         |
+| toIndex   | number | 是   | 范围终止索引，不包含本索引值。       |
+
+**返回值：**
+
+| 类型   | 说明                                                  |
+| ------ | ----------------------------------------------------- |
+| number | 返回指定bit值最后一次出现时的下标值，查找失败返回-1。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes:<br/>1.Mandatory parameters are left unspecified；<br/>2.Incorrect parameter types. |
+| 10200001 | The value of fromIndex or toIndex is out of range.           |
+| 10200011 | The getLastIndexOf method cannot be bound.                   |
+| 10200201 | Concurrent modification error.                               |
+
+**示例：**
+
+```ts
+let bitVector ：collections.BitVector = new collections.BitVector(0);
+bitVector.push(0);
+bitVector.push(1);
+bitVector.push(0);
+bitVector.push(1);
+bitVector.push(0); // bitVector: [0, 1, 0, 1, 0]
+let res: number = bitVector.getLastIndexOf(0, 1, 4);
+console.info("bitVector getLastIndexOf:", res) // 2
+```
+
+### flipBitByIndex
+
+flipBitByIndex(index: number): void
+
+翻转BitVector指定索引处的bit值，0翻转为1，1翻转为0。
+
+**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明       |
+| ------ | ------ | ---- | ---------- |
+| index  | number | 是   | 指定索引。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes:<br/>1.Mandatory parameters are left unspecified；<br/>2.Incorrect parameter types. |
+| 10200001 | The value of index is out of range.                          |
+| 10200011 | The flipBitByIndex method cannot be bound.                   |
+| 10200201 | Concurrent modification error.                               |
+
+**示例：**
+
+```ts
+let bitVector ：collections.BitVector = new collections.BitVector(0);
+bitVector.push(0);
+bitVector.push(1);
+bitVector.push(0);
+bitVector.push(1);
+bitVector.push(0); // bitVector: [0, 1, 0, 1, 0]
+bitVector.flipBitByIndex(3); // bitVector: [0, 1, 0, 0, 0]
+```
+
+### flipBitsByRange
+
+flipBitsByRange(fromIndex: number, toIndex: number): void
+
+翻转BitVector指定范围内的bit值，0翻转为1，1翻转为0。
+
+**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名    | 类型   | 必填 | 说明                           |
+| --------- | ------ | ---- | ------------------------------ |
+| fromIndex | number | 是   | 范围起始索引，包含本索引值。   |
+| toIndex   | number | 是   | 范围终止索引，不包含本索引值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes:<br/>1.Mandatory parameters are left unspecified；<br/>2.Incorrect parameter types. |
+| 10200001 | The value of fromIndex or toIndex is out of range.           |
+| 10200011 | The flipBitsByRange method cannot be bound.                  |
+| 10200201 | Concurrent modification error.                               |
+
+**示例：**
+
+```ts
+let bitVector ：collections.BitVector = new collections.BitVector(0);
+bitVector.push(0);
+bitVector.push(1);
+bitVector.push(0);
+bitVector.push(1);
+bitVector.push(0); // bitVector: [0, 1, 0, 1, 0]
+bitVector.flipBitsByRange(1, 4); // bitVector: [0, 0, 1, 0, 0]
+```
+
+### values
+
+values(): IterableIterator\<number>
+
+返回一个新的迭代器对象，该对象包含BitVector中每个元素的值。
+
+**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**返回值：**
+
+| 类型                           | 说明                          |
+| ------------------------------ | ----------------------------- |
+| IterableIterator&lt;number&gt; | 返回一个BitVector迭代器对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+
+| 错误码ID | 错误信息                           |
+| -------- | ---------------------------------- |
+| 10200011 | The values method cannot be bound. |
+| 10200201 | Concurrent modification error.     |
+
+**示例：**
+
+```ts
+let iter = bitVector.values();
+let temp: IteratorResult<number> = iter.next();
+while (!temp.done) {
+    console.info("bitVector value" + temp.value);
+    temp = iter.next();
+} // 依次输出 0,1,0,1,0
 ```

@@ -55,6 +55,8 @@
 ## OutlineStyle<sup>11+</sup>
 **卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 | 名称     | 描述                            |
 | ------ | ----------------------------- |
 | DOTTED | 显示为一系列圆点，圆点半径为outlineWidth的一半。 |
@@ -421,13 +423,11 @@
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
-
 | 类型      | 描述                                  |
 | ------- | ----------------------------------- |
-| Cover   | 默认值，保持宽高比进行缩小或者放大，使得图片两边都大于或等于显示边界。 |
-| Contain | 保持宽高比进行缩小或者放大，使得图片完全显示在显示边界内。       |
-| Auto    | 保持原图的比例不变。                          |
+| Cover   | 默认值，保持宽高比进行缩小或者放大，使得图片两边都大于或等于显示边界。<br />**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| Contain | 保持宽高比进行缩小或者放大，使得图片完全显示在显示边界内。<br /> **元服务API：** 从API version 11开始，该接口支持在元服务中使用。      |
+| Auto    | 保持原图的比例不变。<br /> **元服务API：** 从API version 11开始，该接口支持在元服务中使用。                         |
 | FILL<sup>12+</sup> | 不保持宽高比进行放大缩小，使得图片充满显示边界。|
 
 ## GradientDirection
@@ -513,8 +513,8 @@
 
 | 名称                    | 描述                  |
 | --------------------- | ------------------- |
-| None                  | 文本超长时裁剪显示。          |
-| Clip                  | 文本超长时进行裁剪显示。        |
+| None                  | 文本超长时按最大行截断显示。          |
+| Clip                  | 文本超长时按最大行截断显示。        |
 | Ellipsis              | 文本超长时显示不下的文本用省略号代替。 |
 | MARQUEE<sup>10+</sup> | 文本超长时以跑马灯的方式展示。     |
 
@@ -601,7 +601,7 @@
 | None        | 不支持复制。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。   |
 | InApp       | 支持应用内复制。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 | LocalDevice | 支持设备内复制。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| CROSS_DEVICE<sup>11+</sup> | 支持跨设备复制。 |
+| CROSS_DEVICE<sup>11+</sup> | 支持跨设备复制。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
 
 ## HitTestMode<sup>9+</sup>
 
@@ -628,11 +628,11 @@
 | BACKGROUND_THICK      | 远距景深模糊。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。   |
 | BACKGROUND_ULTRA_THICK | 超远距景深模糊。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。  |
 | NONE<sup>10+</sup> | 关闭模糊。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。  |
-| COMPONENT_ULTRA_THIN<sup>11+</sup> | 组件超轻薄材质模糊。 |
-| COMPONENT_THIN<sup>11+</sup> | 组件轻薄材质模糊。 |
-| COMPONENT_REGULAR<sup>11+</sup> | 组件普通材质模糊。 |
-| COMPONENT_THICK<sup>11+</sup> | 组件厚材质模糊。 |
-| COMPONENT_ULTRA_THICK<sup>11+</sup> | 组件超厚材质模糊。 |
+| COMPONENT_ULTRA_THIN<sup>11+</sup> | 组件超轻薄材质模糊。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| COMPONENT_THIN<sup>11+</sup> | 组件轻薄材质模糊。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| COMPONENT_REGULAR<sup>11+</sup> | 组件普通材质模糊。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| COMPONENT_THICK<sup>11+</sup> | 组件厚材质模糊。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| COMPONENT_ULTRA_THICK<sup>11+</sup> | 组件超厚材质模糊。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
 
 ## ThemeColorMode<sup>10+</sup>
 
@@ -696,6 +696,8 @@
 
 ## FoldStatus<sup>11+</sup>
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 | 名称                      | 描述         |
 | ----------------------  | ---------- |
 | FOLD_STATUS_UNKNOWN     | 表示设备当前折叠状态未知。 |
@@ -714,6 +716,8 @@
 
 ## MenuPreviewMode<sup>11+</sup>
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 | 名称  | 描述                                   |
 | ----- | -------------------------------------- |
 | NONE  | 不显示预览内容。                       |
@@ -728,6 +732,8 @@ Nullable\<T> {
 }
 
 开发者在使用该类型时候，该类型的对象可以是自定义类型，也可以是undefined。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.ArkUI.ArkUI.Full
 
@@ -776,6 +782,8 @@ Nullable\<T> {
 
 **卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 | 名称       | 描述                                                         |
 | --------- | ------------------------------------------------------------ |
 | REMOVED   | 当整个动画结束并立即删除时，将触发回调。                         |
@@ -783,9 +791,12 @@ Nullable\<T> {
 
 ## BlurOptions<sup>11+<sup>
 灰阶模糊参数。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 | 名称        |   类型   |   必填 | 说明                        |
 | ----        |  ----   |   ---- | --------------------------  |
-| grayscale   |  [number, number]   |   是   |  灰阶模糊参数，两参数取值范围均为[0,127] 。对图像中的黑白色进行色阶调整，使其趋于灰色更为柔和美观，对图像中的彩色调整没有效果。参数一表示对黑色的提亮程度，参数二表示对白色的压暗程度，参数值越大调整效果越明显（黑白色变得越灰），有效值范围0-127。例如：设置参数为（20,20），图片中的黑色像素RGB:[0, 0, 0]会调整为[20,20,20]，白色像素RGB:[255,255,25]会调整为[235,235,235]（255-20），图像中的彩色像素维持不变。 |
+| grayscale   |  [number, number]   |   是   |  灰阶模糊参数，两参数取值范围均为[0,127] 。对图像中的黑白色进行色阶调整，使其趋于灰色更为柔和美观，对图像中的彩色调整没有效果。参数一表示对黑色的提亮程度，参数二表示对白色的压暗程度，参数值越大调整效果越明显（黑白色变得越灰），有效值范围0-127。例如：设置参数为（20,20），图片中的黑色像素RGB:[0, 0, 0]会调整为[20,20,20]，白色像素RGB:[255,255,255]会调整为[235,235,235]（255-20），图像中的彩色像素维持不变。 |
 
 ## ForegroundEffectOptions<sup>12+<sup>
 前景效果参数。
@@ -795,6 +806,9 @@ Nullable\<T> {
 
 ## BackgroundEffectOptions<sup>11+<sup>
 背景效果参数。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 | 名称        |   类型         |   必填 |  说明                        |
 | ----         |  ----         |   ---- | --------------------------  |
 | radius       | number        |   是   |   模糊半径，取值范围：[0, +∞)，默认为0。     |
@@ -807,6 +821,8 @@ Nullable\<T> {
 
 **卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 | 名称  | 描述                                   |
 | ----- | -------------------------------------- |
 | START  | 省略行首内容。|
@@ -814,6 +830,8 @@ Nullable\<T> {
 | END | 省略行末内容。|
 
 ## ArrowPointPosition<sup>11+</sup>
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 | 名称            | 描述                                     |
 | ------------- | -------------------------------------- |
@@ -953,3 +971,59 @@ Nullable\<T> {
 | DOTTED    | 点线。  |
 | DASHED        | 虚线。 |
 | WAVY        | 波浪线。 |
+
+## FlexSpaceOptions<sup>12+</sup>
+
+| 名称          | 类型        |  只读     | 必填      | 说明      |
+| ----------- | --------- | ----------- | --------- |----------- |
+| main   | [LengthMetrics](ts-types.md#lengthmetrics12)  | 是 | 否 | Flex容器主轴上的space。<br/> space: {main: LengthMetrics.unit(value)} |
+| cross  | [LengthMetrics](ts-types.md#lengthmetrics12) | 是 | 否 | Flex容器交叉轴上的space。<br/> space: {cross: LengthMetrics.unit(value)} |
+
+## MenuPolicy<sup>12+</sup>
+
+菜单弹出的策略。
+
+| 名称    | 值   | 描述                               |
+| ------- | ---- | ---------------------------------- |
+| DEFAULT | 0    | 按照底层默认逻辑决定是否弹出菜单。 |
+| HIDE    | 1    | 始终不弹出菜单。                   |
+| SHOW    | 2    | 始终弹出菜单。                     |
+
+## EmbeddedType<sup>12+</sup>
+枚举类型，用于指定EmbeddedComponent可拉起的提供方类型。
+
+| 名称                  | 值 | 说明                                                |
+| --------------------- | - | ---------------------------------------------------- |
+| EMBEDDED_UI_EXTENSION | 0 | 表示当前拉起的提供方类型为EmbeddedUIExtensionAbility。|
+
+## MarqueeUpdateStrategy<sup>12+</sup>枚举说明
+| 名称       | 值      | 描述                     |
+| ---------- | ------------------------ | ------------------------ |
+| DEFAULT | 0 | 跑马灯组件属性更新后， 从开始位置， 运行跑马灯效果。     |
+| PRESERVE_POSITION  | 1 | 跑马灯组件属性更新后， 保持当前位置， 运行跑马灯效果。 |
+
+## FocusPriority<sup>12+</sup>
+
+| 名称          | 描述        |
+| ----------- | --------- |
+| AUTO | 默认的优先级，缺省时组件的获焦优先级。 |
+| PRIOR | 容器内优先获焦的优先级。优先级高于AUTO。 |
+| PREVIOUS | 上一次容器整体失焦时获焦节点的优先级。优先级高于PRIOR。 |
+
+## AppRotation<sup>12+</sup>
+
+| 名称     | 描述                            |
+| ------ | ----------------------------- |
+| ROTATION_0 | 应用方向为0度。|
+| ROTATION_90 |应用方向为90度。|
+| ROTATION_180 | 应用方向为180度。|
+| ROTATION_270 | 应用方向为270度。|
+
+## TextDeleteDirection<sup>12+</sup>
+
+定义删除文本方向。
+
+| 名称    | 值   | 描述                               |
+| ------- | ---- | ---------------------------------- |
+| BACKWARD | 0    | 向后删除。 |
+| FORWARD    | 1    | 向前删除。 |

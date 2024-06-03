@@ -27,7 +27,7 @@ Check whether the start time and end time are properly set.
 
 **Error Information**
 
-Operation failed. Cannot connect to service.
+Failed to connect to the service.
 
 **Description**
 
@@ -67,7 +67,7 @@ This error code is reported if an internal system error occurs.
 
 **Error Information**
 
-Failed to read map.
+Failed to read the system map.
 
 **Description**
 
@@ -85,7 +85,7 @@ Check whether traffic is generated for the specified NIC or application.
 
 **Error Information**
 
-Failed to create map.
+Failed to create a system map.
 
 **Description**
 
@@ -103,7 +103,7 @@ Ensure that traffic is generated on the NIC.
 
 **Error Information**
 
-Get iface name failed.
+Failed to obtain the NIC name.
 
 **Description**
 
@@ -121,7 +121,7 @@ Check whether the input NIC name is correct.
 
 **Error Information**
 
-Read data from database failed.
+Failed to read the database.
 
 **Description**
 

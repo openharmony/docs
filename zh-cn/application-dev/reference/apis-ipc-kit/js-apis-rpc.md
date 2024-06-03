@@ -11,7 +11,7 @@
 ## 导入模块
 
 ```
-import rpc from '@ohos.rpc';
+import { rpc } from '@kit.IPCKit';
 ```
 
 ## ErrorCode<sup>9+</sup>
@@ -59,7 +59,7 @@ import rpc from '@ohos.rpc';
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageSequence.create();
   hilog.info(0x0000, 'testTag', 'RpcClient: data is ' + data);
@@ -100,14 +100,15 @@ writeRemoteObject(object: IRemoteObject): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401      | check param failed |
   | 1900008  | proxy or remote object is invalid |
   | 1900009  | write data to message sequence failed |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   class TestRemoteObject extends rpc.RemoteObject {
     constructor(descriptor: string) {
@@ -151,8 +152,8 @@ readRemoteObject(): IRemoteObject
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   class TestRemoteObject extends rpc.RemoteObject {
     constructor(descriptor: string) {
@@ -192,13 +193,14 @@ writeInterfaceToken(token: string): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401      | check param failed |
   | 1900009  | write data to message sequence failed |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -235,8 +237,8 @@ readInterfaceToken(): string
 **示例：**
 
 ```ts
-import hilog from '@ohos.hilog';
-import { BusinessError } from '@ohos.base';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class Stub extends rpc.RemoteObject {
   onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
@@ -270,7 +272,7 @@ getSize(): number
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageSequence.create();
   let size = data.getSize();
@@ -294,7 +296,7 @@ getCapacity(): number
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageSequence.create();
   let result = data.getCapacity();
@@ -315,11 +317,19 @@ setSize(size: number): void
   | ------ | ------ | ---- | ------ |
   | size   | number | 是   | MessageSequence实例的数据大小。以字节为单位。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401      | check param failed |
+
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   data.writeString('Hello World');
@@ -352,13 +362,14 @@ setCapacity(size: number): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401      | check param failed |
   | 1900011  | parcel memory alloc failed |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -387,7 +398,7 @@ getWritableBytes(): number
 **示例：**
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 class Stub extends rpc.RemoteObject {
   onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
@@ -415,7 +426,7 @@ getReadableBytes(): number
 **示例：**
 
 ```ts
-import hilog from '@ohos.hilog';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 class Stub extends rpc.RemoteObject {
   onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
@@ -443,7 +454,7 @@ getReadPosition(): number
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageSequence.create();
   let readPos = data.getReadPosition();
@@ -467,7 +478,7 @@ getWritePosition(): number
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageSequence.create();
   data.writeInt(10);
@@ -489,11 +500,19 @@ rewindRead(pos: number): void
   | ------ | ------ | ---- | ------- |
   | pos    | number | 是   | 开始读取数据的目标位置。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401      | check param failed |
+
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   data.writeInt(12);
@@ -525,11 +544,19 @@ rewindWrite(pos: number): void
   | ------ | ------ | ---- | ----- |
   | pos    | number | 是   | 开始写入数据的目标位置。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401      | check param failed |
+
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   data.writeInt(4);
@@ -565,13 +592,14 @@ writeByte(val: number): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------  |
+  | 401      | check param failed |
   | 1900009  | write data to message sequence failed |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -608,8 +636,8 @@ readByte(): number
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -649,13 +677,14 @@ writeShort(val: number): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401      | check param failed |
   | 1900009  | write data to message sequence failed |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -692,8 +721,8 @@ readShort(): number
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -733,13 +762,14 @@ writeInt(val: number): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401      | check param failed |
   | 1900009  | write data to message sequence failed |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -776,8 +806,8 @@ readInt(): number
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -817,13 +847,14 @@ writeLong(val: number): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401      | check param failed |
   | 1900009  | write data to message sequence failed |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -860,8 +891,8 @@ readLong(): number
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -901,13 +932,14 @@ writeFloat(val: number): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401      | check param failed |
   | 1900009  | write data to message sequence failed |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -944,8 +976,8 @@ readFloat(): number
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -985,13 +1017,14 @@ writeDouble(val: number): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401      | check param failed |
   | 1900009  | write data to message sequence failed |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -1028,8 +1061,8 @@ readDouble(): number
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -1069,13 +1102,14 @@ writeBoolean(val: boolean): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401      | check param failed |
   | 1900009  | write data to message sequence failed |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -1112,8 +1146,8 @@ readBoolean(): boolean
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -1153,13 +1187,14 @@ writeChar(val: number): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401      | check param failed |
   | 1900009  | write data to message sequence failed |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -1196,8 +1231,8 @@ readChar(): number
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -1237,13 +1272,14 @@ writeString(val: string): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401      | check param failed |
   | 1900009  | write data to message sequence failed |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -1280,8 +1316,8 @@ readString(): string
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -1321,13 +1357,14 @@ writeParcelable(val: Parcelable): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401      | check param failed |
   | 1900009  | write data to message sequence failed |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   class MyParcelable implements rpc.Parcelable {
     num: number = 0;
@@ -1378,14 +1415,15 @@ readParcelable(dataIn: Parcelable): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401      | check param failed |
   | 1900010  | read data from message sequence failed |
   | 1900012  | call js callback function failed |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   class MyParcelable implements rpc.Parcelable {
     num: number = 0;
@@ -1438,13 +1476,14 @@ writeByteArray(byteArray: number[]): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401      | check param failed |
   | 1900009  | write data to message sequence failed |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   let ByteArrayVar = [1, 2, 3, 4, 5];
@@ -1477,13 +1516,14 @@ readByteArray(dataIn: number[]): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401      | check param failed |
   | 1900010  | read data from message sequence failed |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   let ByteArrayVar = [1, 2, 3, 4, 5];
@@ -1524,13 +1564,14 @@ readByteArray(): number[]
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401      | check param failed |
   | 1900010  | read data from message sequence failed |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   let byteArrayVar = [1, 2, 3, 4, 5];
@@ -1571,13 +1612,14 @@ writeShortArray(shortArray: number[]): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401      | check param failed |
   | 1900009  | write data to message sequence failed |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -1609,13 +1651,14 @@ readShortArray(dataIn: number[]): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401      | check param failed |
   | 1900010  | read data from message sequence failed |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -1660,8 +1703,8 @@ readShortArray(): number[]
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -1701,13 +1744,14 @@ writeIntArray(intArray: number[]): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401      | check param failed |
   | 1900009  | write data to message sequence failed |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -1739,13 +1783,14 @@ readIntArray(dataIn: number[]): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401      | check param failed |
   | 1900010  | read data from message sequence failed |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -1790,8 +1835,8 @@ readIntArray(): number[]
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -1831,13 +1876,14 @@ writeLongArray(longArray: number[]): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401      | check param failed |
   | 1900009  | write data to message sequence failed |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -1869,13 +1915,14 @@ readLongArray(dataIn: number[]): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401      | check param failed |
   | 1900010  | read data from message sequence failed |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -1920,8 +1967,8 @@ readLongArray(): number[]
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -1961,13 +2008,14 @@ writeFloatArray(floatArray: number[]): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401      | check param failed |
   | 1900009  | write data to message sequence failed |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -1999,13 +2047,14 @@ readFloatArray(dataIn: number[]): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401      | check param failed |
   | 1900010  | read data from message sequence failed |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -2050,8 +2099,8 @@ readFloatArray(): number[]
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -2091,13 +2140,14 @@ writeDoubleArray(doubleArray: number[]): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401      | check param failed |
   | 1900009  | write data to message sequence failed |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -2129,13 +2179,14 @@ readDoubleArray(dataIn: number[]): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401      | check param failed |
   | 1900010  | read data from message sequence failed |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -2180,8 +2231,8 @@ readDoubleArray(): number[]
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -2221,13 +2272,14 @@ writeBooleanArray(booleanArray: boolean[]): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401      | check param failed |
   | 1900009  | write data to message sequence failed |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -2259,13 +2311,14 @@ readBooleanArray(dataIn: boolean[]): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401      | check param failed |
   | 1900010  | read data from message sequence failed |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -2310,8 +2363,8 @@ readBooleanArray(): boolean[]
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -2351,13 +2404,14 @@ writeCharArray(charArray: number[]): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401      | check param failed |
   | 1900009  | write data to message sequence failed |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -2389,13 +2443,14 @@ readCharArray(dataIn: number[]): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401      | check param failed |
   | 1900010  | read data from message sequence failed |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -2440,8 +2495,8 @@ readCharArray(): number[]
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -2481,13 +2536,14 @@ writeStringArray(stringArray: string[]): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401      | check param failed |
   | 1900009  | write data to message sequence failed |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -2519,13 +2575,14 @@ readStringArray(dataIn: string[]): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401      | check param failed |
   | 1900010  | read data from message sequence failed |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -2570,8 +2627,8 @@ readStringArray(): string[]
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let data = rpc.MessageSequence.create();
   try {
@@ -2610,8 +2667,8 @@ writeNoException(): void
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   class TestRemoteObject extends rpc.RemoteObject {
     constructor(descriptor: string) {
@@ -2654,14 +2711,11 @@ readException(): void
 
 **示例：**
 
-  Stage模型的应用在获取服务前需要先获取context，具体方法可参考[获取context](#获取context)
-
   ```ts
-  // 仅FA模型需要导入@ohos.ability.featureAbility
-  // import FA from "@ohos.ability.featureAbility";
-  import Want from '@ohos.app.ability.Want';
-  import common from '@ohos.app.ability.common';
-  import hilog from '@ohos.hilog';
+  // FA模型需要从@kit.AbilityKit导入featureAbility
+  // import { featureAbility } from '@kit.AbilityKit';
+  import { Want, common } from '@kit.AbilityKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let proxy: rpc.IRemoteObject | undefined;
   let connect: common.ConnectOptions = {
@@ -2684,14 +2738,17 @@ readException(): void
   // FA模型使用此方法连接服务
   // FA.connectAbility(want,connect);
 
-  this.context.connectServiceExtensionAbility(want, connect);
+  // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
+  let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
+  let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
 
   上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的sendMessageRequest接口方法发送消息
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import hilog from '@ohos.hilog';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let option = new rpc.MessageOption();
   let data = rpc.MessageSequence.create();
@@ -2745,13 +2802,14 @@ writeParcelableArray(parcelableArray: Parcelable[]): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401      | check param failed |
   | 1900009  | write data to message sequence failed |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   class MyParcelable implements rpc.Parcelable {
     num: number = 0;
@@ -2805,14 +2863,15 @@ readParcelableArray(parcelableArray: Parcelable[]): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401      | check param failed |
   | 1900010  | read data from message sequence failed |
   | 1900012  | call js callback function failed |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   class MyParcelable implements rpc.Parcelable {
     num: number = 0;
@@ -2868,13 +2927,14 @@ writeRemoteObjectArray(objectArray: IRemoteObject[]): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401      | check param failed |
   | 1900009  | write data to message sequence failed |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   class TestRemoteObject extends rpc.RemoteObject {
     constructor(descriptor: string) {
@@ -2917,13 +2977,14 @@ readRemoteObjectArray(objects: IRemoteObject[]): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401      | check param failed |
   | 1900010  | read data from message sequence failed |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   class TestRemoteObject extends rpc.RemoteObject {
     constructor(descriptor: string) {
@@ -2973,8 +3034,8 @@ readRemoteObjectArray(): IRemoteObject[]
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   class TestRemoteObject extends rpc.RemoteObject {
     constructor(descriptor: string) {
@@ -3013,15 +3074,23 @@ static closeFileDescriptor(fd: number): void
   | ------ | ------ | ---- | -------------------- |
   | fd     | number | 是   | 要关闭的文件描述符。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401      | check param failed |
+
 **示例：**
 
   ```ts
-  import fs from '@ohos.file.fs';
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { fileIo } from '@kit.CoreFileKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let filePath = "path/to/file";
-  let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+  let file = fileIo.openSync(filePath, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
   try {
     rpc.MessageSequence.closeFileDescriptor(file.fd);
   } catch (error) {
@@ -3033,7 +3102,7 @@ static closeFileDescriptor(fd: number): void
 
 ### dupFileDescriptor
 
-static dupFileDescriptor(fd: number) :number
+static dupFileDescriptor(fd: number): number
 
 静态方法，复制给定的文件描述符。
 
@@ -3057,17 +3126,18 @@ static dupFileDescriptor(fd: number) :number
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401      | check param failed |
   | 1900013  | call os dup function failed |
 
 **示例：**
 
   ```ts
-  import fs from '@ohos.file.fs';
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { fileIo } from '@kit.CoreFileKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let filePath = "path/to/file";
-  let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+  let file = fileIo.openSync(filePath, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
   try {
     rpc.MessageSequence.dupFileDescriptor(file.fd);
   } catch (error) {
@@ -3094,13 +3164,13 @@ containFileDescriptors(): boolean
 **示例：**
 
   ```ts
-  import fs from '@ohos.file.fs';
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { fileIo } from '@kit.CoreFileKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let sequence = new rpc.MessageSequence();
   let filePath = "path/to/file";
-  let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+  let file = fileIo.openSync(filePath, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
   try {
     sequence.writeFileDescriptor(file.fd);
   } catch (error) {
@@ -3138,18 +3208,19 @@ writeFileDescriptor(fd: number): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401      | check param failed |
   | 1900009  | write data to message sequence failed |
 
 **示例：**
 
   ```ts
-  import fs from '@ohos.file.fs';
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { fileIo } from '@kit.CoreFileKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let sequence = new rpc.MessageSequence();
   let filePath = "path/to/file";
-  let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+  let file = fileIo.openSync(filePath, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
   try {
     sequence.writeFileDescriptor(file.fd);
   } catch (error) {
@@ -3184,13 +3255,13 @@ readFileDescriptor(): number
 **示例：**
 
   ```ts
-  import fs from '@ohos.file.fs';
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { fileIo } from '@kit.CoreFileKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let sequence = new rpc.MessageSequence();
   let filePath = "path/to/file";
-  let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+  let file = fileIo.openSync(filePath, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
   try {
     sequence.writeFileDescriptor(file.fd);
   } catch (error) {
@@ -3228,13 +3299,14 @@ writeAshmem(ashmem: Ashmem): void
 
   | 错误码ID | 错误信息 |
   | -------- | ------- |
+  | 401      | check param failed |
   | 1900003  | write to ashmem failed |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let sequence = new rpc.MessageSequence();
   let ashmem: rpc.Ashmem | undefined = undefined;
@@ -3274,13 +3346,14 @@ readAshmem(): Ashmem
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401      | check param failed |
   | 1900004  | read from ashmem failed |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let sequence = new rpc.MessageSequence();
   let ashmem: rpc.Ashmem | undefined = undefined;
@@ -3324,7 +3397,7 @@ getRawDataCapacity(): number
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let sequence = new rpc.MessageSequence();
   let result = sequence.getRawDataCapacity();
@@ -3354,13 +3427,14 @@ writeRawData(rawData: number[], size: number): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401      | check param failed |
   | 1900009  | write data to message sequence failed |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let sequence = new rpc.MessageSequence();
   let arr = [1, 2, 3, 4, 5];
@@ -3394,13 +3468,14 @@ writeRawDataBuffer(rawData: ArrayBuffer, size: number): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401      | check param failed |
   | 1900009  | write data to message sequence failed |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let buffer = new ArrayBuffer(64 * 1024);
   let int32View = new Int32Array(buffer);
@@ -3446,13 +3521,14 @@ readRawData(size: number): number[]
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401      | check param failed |
   | 1900010  | read data from message sequence failed |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let sequence = new rpc.MessageSequence();
   let arr = [1, 2, 3, 4, 5];
@@ -3499,13 +3575,14 @@ readRawDataBuffer(size: number): ArrayBuffer
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401      | check param failed |
   | 1900010  | read data from message sequence failed |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let buffer = new ArrayBuffer(64 * 1024);
   let int32View = new Int32Array(buffer);
@@ -3555,7 +3632,7 @@ static create(): MessageParcel
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   hilog.info(0x0000, 'testTag', 'RpcClient: data is ' + data);
@@ -3599,7 +3676,7 @@ writeRemoteObject(object: IRemoteObject): boolean
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class MyDeathRecipient implements rpc.DeathRecipient {
     onRemoteDied() {
@@ -3642,7 +3719,7 @@ readRemoteObject(): IRemoteObject
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class MyDeathRecipient implements rpc.DeathRecipient {
     onRemoteDied() {
@@ -3693,7 +3770,7 @@ writeInterfaceToken(token: string): boolean
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeInterfaceToken("aaa");
@@ -3717,7 +3794,7 @@ readInterfaceToken(): string
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class Stub extends rpc.RemoteObject {
     onRemoteRequest(code: number, data: rpc.MessageParcel, reply: rpc.MessageParcel, option: rpc.MessageOption): boolean {
@@ -3745,7 +3822,7 @@ getSize(): number
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let size = data.getSize();
@@ -3769,7 +3846,7 @@ getCapacity(): number
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.getCapacity();
@@ -3799,7 +3876,7 @@ setSize(size: number): boolean
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let setSize = data.setSize(16);
@@ -3829,7 +3906,7 @@ setCapacity(size: number): boolean
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.setCapacity(100);
@@ -3853,7 +3930,7 @@ getWritableBytes(): number
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class Stub extends rpc.RemoteObject {
     onRemoteRequest(code: number, data: rpc.MessageParcel, reply: rpc.MessageParcel, option: rpc.MessageOption): boolean {
@@ -3881,7 +3958,7 @@ getReadableBytes(): number
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class Stub extends rpc.RemoteObject {
     onRemoteRequest(code: number, data: rpc.MessageParcel, reply: rpc.MessageParcel, option: rpc.MessageOption): boolean {
@@ -3909,7 +3986,7 @@ getReadPosition(): number
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let readPos = data.getReadPosition();
@@ -3933,7 +4010,7 @@ getWritePosition(): number
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   data.writeInt(10);
@@ -3964,7 +4041,7 @@ rewindRead(pos: number): boolean
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   data.writeInt(12);
@@ -3999,7 +4076,7 @@ rewindWrite(pos: number): boolean
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   data.writeInt(4);
@@ -4032,7 +4109,7 @@ writeByte(val: number): boolean
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeByte(2);
@@ -4056,7 +4133,7 @@ readByte(): number
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeByte(2);
@@ -4088,7 +4165,7 @@ writeShort(val: number): boolean
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeShort(8);
@@ -4112,7 +4189,7 @@ readShort(): number
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeShort(8);
@@ -4144,7 +4221,7 @@ writeInt(val: number): boolean
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeInt(10);
@@ -4168,7 +4245,7 @@ readInt(): number
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeInt(10);
@@ -4200,7 +4277,7 @@ writeLong(val: number): boolean
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeLong(10000);
@@ -4224,7 +4301,7 @@ readLong(): number
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeLong(10000);
@@ -4256,7 +4333,7 @@ writeFloat(val: number): boolean
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeFloat(1.2);
@@ -4280,7 +4357,7 @@ readFloat(): number
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeFloat(1.2);
@@ -4312,7 +4389,7 @@ writeDouble(val: number): boolean
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeDouble(10.2);
@@ -4336,7 +4413,7 @@ readDouble(): number
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeDouble(10.2);
@@ -4368,7 +4445,7 @@ writeBoolean(val: boolean): boolean
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeBoolean(false);
@@ -4392,7 +4469,7 @@ readBoolean(): boolean
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeBoolean(false);
@@ -4424,7 +4501,7 @@ writeChar(val: number): boolean
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeChar(97);
@@ -4448,7 +4525,7 @@ readChar(): number
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeChar(97);
@@ -4480,7 +4557,7 @@ writeString(val: string): boolean
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeString('abc');
@@ -4504,7 +4581,7 @@ readString(): string
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeString('abc');
@@ -4536,7 +4613,7 @@ writeSequenceable(val: Sequenceable): boolean
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class MySequenceable implements rpc.Sequenceable {
     num: number = 0;
@@ -4585,7 +4662,7 @@ readSequenceable(dataIn: Sequenceable): boolean
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class MySequenceable implements rpc.Sequenceable {
     num: number = 0;
@@ -4637,7 +4714,7 @@ writeByteArray(byteArray: number[]): boolean
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let ByteArrayVar = [1, 2, 3, 4, 5];
@@ -4662,7 +4739,7 @@ readByteArray(dataIn: number[]): void
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let ByteArrayVar = [1, 2, 3, 4, 5];
@@ -4689,7 +4766,7 @@ readByteArray(): number[]
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let ByteArrayVar = [1, 2, 3, 4, 5];
@@ -4722,7 +4799,7 @@ writeShortArray(shortArray: number[]): boolean
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeShortArray([11, 12, 13]);
@@ -4746,7 +4823,7 @@ readShortArray(dataIn: number[]): void
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeShortArray([11, 12, 13]);
@@ -4772,7 +4849,7 @@ readShortArray(): number[]
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeShortArray([11, 12, 13]);
@@ -4804,7 +4881,7 @@ writeIntArray(intArray: number[]): boolean
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeIntArray([100, 111, 112]);
@@ -4828,7 +4905,7 @@ readIntArray(dataIn: number[]): void
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeIntArray([100, 111, 112]);
@@ -4854,7 +4931,7 @@ readIntArray(): number[]
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeIntArray([100, 111, 112]);
@@ -4886,7 +4963,7 @@ writeLongArray(longArray: number[]): boolean
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeLongArray([1111, 1112, 1113]);
@@ -4910,7 +4987,7 @@ readLongArray(dataIn: number[]): void
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeLongArray([1111, 1112, 1113]);
@@ -4936,7 +5013,7 @@ readLongArray(): number[]
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeLongArray([1111, 1112, 1113]);
@@ -4968,7 +5045,7 @@ writeFloatArray(floatArray: number[]): boolean
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeFloatArray([1.2, 1.3, 1.4]);
@@ -4992,7 +5069,7 @@ readFloatArray(dataIn: number[]): void
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeFloatArray([1.2, 1.3, 1.4]);
@@ -5018,7 +5095,7 @@ readFloatArray(): number[]
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeFloatArray([1.2, 1.3, 1.4]);
@@ -5050,7 +5127,7 @@ writeDoubleArray(doubleArray: number[]): boolean
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeDoubleArray([11.1, 12.2, 13.3]);
@@ -5074,7 +5151,7 @@ readDoubleArray(dataIn: number[]): void
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeDoubleArray([11.1, 12.2, 13.3]);
@@ -5100,7 +5177,7 @@ readDoubleArray(): number[]
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeDoubleArray([11.1, 12.2, 13.3]);
@@ -5132,7 +5209,7 @@ writeBooleanArray(booleanArray: boolean[]): boolean
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeBooleanArray([false, true, false]);
@@ -5156,7 +5233,7 @@ readBooleanArray(dataIn: boolean[]): void
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeBooleanArray([false, true, false]);
@@ -5182,7 +5259,7 @@ readBooleanArray(): boolean[]
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeBooleanArray([false, true, false]);
@@ -5214,7 +5291,7 @@ writeCharArray(charArray: number[]): boolean
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeCharArray([97, 98, 88]);
@@ -5238,7 +5315,7 @@ readCharArray(dataIn: number[]): void
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeCharArray([97, 98, 99]);
@@ -5264,7 +5341,7 @@ readCharArray(): number[]
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeCharArray([97, 98, 99]);
@@ -5296,7 +5373,7 @@ writeStringArray(stringArray: string[]): boolean
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeStringArray(["abc", "def"]);
@@ -5320,7 +5397,7 @@ readStringArray(dataIn: string[]): void
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeStringArray(["abc", "def"]);
@@ -5346,7 +5423,7 @@ readStringArray(): string[]
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let data = rpc.MessageParcel.create();
   let result = data.writeStringArray(["abc", "def"]);
@@ -5366,7 +5443,7 @@ writeNoException(): void
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class MyDeathRecipient implements rpc.DeathRecipient {
     onRemoteDied() {
@@ -5409,14 +5486,11 @@ readException(): void
 
 **示例：**
 
-  Stage模型的应用在获取服务前需要先获取context，具体方法可参考[获取context](#获取context)
-
   ```ts
-  // 仅FA模型需要导入@ohos.ability.featureAbility
-  // import FA from "@ohos.ability.featureAbility";
-  import Want from '@ohos.app.ability.Want';
-  import common from '@ohos.app.ability.common';
-  import hilog from '@ohos.hilog';
+  // FA模型需要从@kit.AbilityKit导入featureAbility
+  // import { featureAbility } from '@kit.AbilityKit';
+  import { Want, common } from '@kit.AbilityKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let proxy: rpc.IRemoteObject | undefined;
   let connect: common.ConnectOptions = {
@@ -5439,13 +5513,16 @@ readException(): void
   // FA模型使用此方法连接服务
   // FA.connectAbility(want,connect);
 
-  this.context.connectServiceExtensionAbility(want, connect);
+  // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
+  let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
+  let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
 
   上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的sendRequest接口方法发送消息
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let option = new rpc.MessageOption();
   let data = rpc.MessageParcel.create();
@@ -5497,7 +5574,7 @@ writeSequenceableArray(sequenceableArray: Sequenceable[]): boolean
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class MySequenceable implements rpc.Sequenceable {
     num: number = 0;
@@ -5543,7 +5620,7 @@ readSequenceableArray(sequenceableArray: Sequenceable[]): void
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class MySequenceable implements rpc.Sequenceable {
     num: number = 0;
@@ -5597,7 +5674,7 @@ writeRemoteObjectArray(objectArray: IRemoteObject[]): boolean
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class MyDeathRecipient implements rpc.DeathRecipient {
     onRemoteDied() {
@@ -5645,7 +5722,7 @@ readRemoteObjectArray(objects: IRemoteObject[]): void
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class MyDeathRecipient implements rpc.DeathRecipient {
     onRemoteDied() {
@@ -5694,7 +5771,7 @@ readRemoteObjectArray(): IRemoteObject[]
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class MyDeathRecipient implements rpc.DeathRecipient {
     onRemoteDied() {
@@ -5744,10 +5821,10 @@ static closeFileDescriptor(fd: number): void
 **示例：**
 
   ```ts
-  import fs from '@ohos.file.fs';
+  import { fileIo } from '@kit.CoreFileKit';
 
   let filePath = "path/to/file";
-  let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+  let file = fileIo.openSync(filePath, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
   rpc.MessageParcel.closeFileDescriptor(file.fd);
   ```
 
@@ -5774,10 +5851,10 @@ static dupFileDescriptor(fd: number) :number
 **示例：**
 
   ```ts
-  import fs from '@ohos.file.fs';
+  import { fileIo } from '@kit.CoreFileKit';
 
   let filePath = "path/to/file";
-  let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+  let file = fileIo.openSync(filePath, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
   rpc.MessageParcel.dupFileDescriptor(file.fd);
   ```
 
@@ -5798,12 +5875,12 @@ containFileDescriptors(): boolean
 **示例：**
 
   ```ts
-  import fs from '@ohos.file.fs';
-  import hilog from '@ohos.hilog';
+  import { fileIo } from '@kit.CoreFileKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let parcel = new rpc.MessageParcel();
   let filePath = "path/to/file";
-  let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+  let file = fileIo.openSync(filePath, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
   let writeResult = parcel.writeFileDescriptor(file.fd);
   hilog.info(0x0000, 'testTag', 'RpcTest: parcel writeFd result is ' + writeResult);
   let containFD = parcel.containFileDescriptors();
@@ -5833,12 +5910,12 @@ writeFileDescriptor(fd: number): boolean
 **示例：**
 
   ```ts
-  import fs from '@ohos.file.fs';
-  import hilog from '@ohos.hilog';
+  import { fileIo } from '@kit.CoreFileKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let parcel = new rpc.MessageParcel();
   let filePath = "path/to/file";
-  let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+  let file = fileIo.openSync(filePath, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
   let writeResult = parcel.writeFileDescriptor(file.fd);
   hilog.info(0x0000, 'testTag', 'RpcTest: parcel writeFd result is ' + writeResult);
   ```
@@ -5860,12 +5937,12 @@ readFileDescriptor(): number
 **示例：**
 
   ```ts
-  import fs from '@ohos.file.fs';
-  import hilog from '@ohos.hilog';
+  import { fileIo } from '@kit.CoreFileKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let parcel = new rpc.MessageParcel();
   let filePath = "path/to/file";
-  let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+  let file = fileIo.openSync(filePath, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
   parcel.writeFileDescriptor(file.fd);
   let readFD = parcel.readFileDescriptor();
   hilog.info(0x0000, 'testTag', 'RpcTest: parcel read fd is ' + readFD);
@@ -5894,7 +5971,7 @@ writeAshmem(ashmem: Ashmem): boolean
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let parcel = new rpc.MessageParcel();
   let ashmem = rpc.Ashmem.createAshmem("ashmem", 1024);
@@ -5919,7 +5996,7 @@ readAshmem(): Ashmem
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let parcel = new rpc.MessageParcel();
   let ashmem = rpc.Ashmem.createAshmem("ashmem", 1024);
@@ -5946,7 +6023,7 @@ getRawDataCapacity(): number
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let parcel = new rpc.MessageParcel();
   let result = parcel.getRawDataCapacity();
@@ -5977,7 +6054,7 @@ writeRawData(rawData: number[], size: number): boolean
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let parcel = new rpc.MessageParcel();
   let arr = [1, 2, 3, 4, 5];
@@ -6008,7 +6085,7 @@ readRawData(size: number): number[]
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let parcel = new rpc.MessageParcel();
   let arr = [1, 2, 3, 4, 5];
@@ -6045,7 +6122,7 @@ marshalling(dataOut: MessageSequence): boolean
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class MyParcelable implements rpc.Parcelable {
     num: number = 0;
@@ -6097,7 +6174,7 @@ unmarshalling(dataIn: MessageSequence): boolean
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class MyParcelable implements rpc.Parcelable {
     num: number = 0;
@@ -6155,7 +6232,7 @@ marshalling(dataOut: MessageParcel): boolean
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class MySequenceable implements rpc.Sequenceable {
     num: number = 0;
@@ -6207,7 +6284,7 @@ unmarshalling(dataIn: MessageParcel): boolean
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class MySequenceable implements rpc.Sequenceable {
     num: number = 0;
@@ -6267,15 +6344,11 @@ asObject(): IRemoteObject
 
 **示例：**
 
-  Stage模型的应用在获取服务前需要先获取context，具体方法可参考[获取context](#获取context)
-
   ```ts
-  // 仅FA模型需要导入@ohos.ability.featureAbility
-  // import FA from "@ohos.ability.featureAbility";
-
-  import Want from '@ohos.app.ability.Want';
-  import common from '@ohos.app.ability.common';
-  import hilog from '@ohos.hilog';
+  // FA模型需要从@kit.AbilityKit导入featureAbility
+  // import { featureAbility } from '@kit.AbilityKit';
+  import { Want, common } from '@kit.AbilityKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let proxy: rpc.IRemoteObject | undefined;
   let connect: common.ConnectOptions = {
@@ -6298,7 +6371,10 @@ asObject(): IRemoteObject
   // FA模型使用此方法连接服务
   // FA.connectAbility(want,connect);
 
-  this.context.connectServiceExtensionAbility(want, connect);
+  // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
+  let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
+  let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
 
   上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的asObject接口方法获取代理或远端对象
@@ -6333,7 +6409,7 @@ onRemoteDied(): void
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class MyDeathRecipient implements rpc.DeathRecipient {
     onRemoteDied() {
@@ -6393,6 +6469,14 @@ getLocalInterface(descriptor: string): IRemoteBroker
 | 类型          | 说明                                          |
 | ------------- | --------------------------------------------- |
 | [IRemoteBroker](#iremotebroker) | 返回绑定到指定接口描述符的IRemoteBroker对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401      | check param failed |
 
 ### queryLocalInterface<sup>(deprecated)</sup>
 
@@ -6464,6 +6548,14 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
   | ---------------------------- | ----------------------------------------- |
   | Promise&lt;[RequestResult](#requestresult9)&gt; | 返回一个期约，兑现值是requestResult实例。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401      | check param failed |
+
 ### sendRequest<sup>8+(deprecated)</sup>
 
 >从API version 9 开始不再维护，建议使用[sendMessageRequest](#sendmessagerequest9)类替代。
@@ -6507,6 +6599,14 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
   | options  | [MessageOption](#messageoption)      | 是   | 本次请求的同异步模式，默认同步调用。                                                   |
   | callback | AsyncCallback&lt;[RequestResult](#requestresult9)&gt;   | 是   | 接收发送结果的回调。                                                                   |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401      | check param failed |
+
 ### sendRequest<sup>8+(deprecated)</sup>
 
 >从API version 9 开始不再维护，建议使用[sendMessageRequest](#sendmessagerequest9-1)类替代。
@@ -6548,6 +6648,7 @@ registerDeathRecipient(recipient: DeathRecipient, flags: number): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401      | check param failed |
   | 1900008  | proxy or remote object is invalid |
 
 ### addDeathrecipient<sup>(deprecated)</sup>
@@ -6594,6 +6695,7 @@ unregisterDeathRecipient(recipient: DeathRecipient, flags: number): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401      | check param failed |
   | 1900008  | proxy or remote object is invalid |
 
 ### removeDeathRecipient<sup>(deprecated)</sup>
@@ -6712,15 +6814,11 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 
 **示例：**
 
-  Stage模型的应用在获取服务前需要先获取context，具体方法可参考[获取context](#获取context)
-
   ```ts
-  // 仅FA模型需要导入@ohos.ability.featureAbility
-  // import FA from "@ohos.ability.featureAbility";
-
-  import Want from '@ohos.app.ability.Want';
-  import common from '@ohos.app.ability.common';
-  import hilog from '@ohos.hilog';
+  // FA模型需要从@kit.AbilityKit导入featureAbility
+  // import { featureAbility } from '@kit.AbilityKit';
+  import { Want, common } from '@kit.AbilityKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let proxy: rpc.IRemoteObject | undefined;
   let connect: common.ConnectOptions = {
@@ -6743,13 +6841,16 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
   // FA模型使用此方法连接服务
   // FA.connectAbility(want,connect);
 
-  this.context.connectServiceExtensionAbility(want, connect);
+  // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
+  let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
+  let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
 
   上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的sendRequest接口方法发送消息
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let option = new rpc.MessageOption();
   let data = rpc.MessageParcel.create();
@@ -6794,16 +6895,22 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
   | ---------------------------- | ----------------------------------------- |
   | Promise&lt;[RequestResult](#requestresult9)&gt; | 返回一个期约，兑现值是requestResult实例。 |
 
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401      | check param failed |
+
 **示例：**
 
-  Stage模型的应用在获取服务前需要先获取context，具体方法可参考[获取context](#获取context)
-
   ```ts
-  // 仅FA模型需要导入@ohos.ability.featureAbility
-  // import FA from "@ohos.ability.featureAbility";
-  import Want from '@ohos.app.ability.Want';
-  import common from '@ohos.app.ability.common';
-  import hilog from '@ohos.hilog';
+  // FA模型需要从@kit.AbilityKit导入featureAbility
+  // import { featureAbility } from '@kit.AbilityKit';
+  import { Want, common } from '@kit.AbilityKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let proxy: rpc.IRemoteObject | undefined;
   let connect: common.ConnectOptions = {
@@ -6826,13 +6933,16 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
   // FA模型使用此方法连接服务
   // FA.connectAbility(want,connect);
 
-  this.context.connectServiceExtensionAbility(want, connect);
+  // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
+  let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
+  let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
 
   上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的sendMessageRequest接口方法发送消息
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let option = new rpc.MessageOption();
   let data = rpc.MessageSequence.create();
@@ -6888,14 +6998,11 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 
 **示例：**
 
-  Stage模型的应用在获取服务前需要先获取context，具体方法可参考[获取context](#获取context)
-
   ```ts
-  // 仅FA模型需要导入@ohos.ability.featureAbility
-  // import FA from "@ohos.ability.featureAbility";
-  import Want from '@ohos.app.ability.Want';
-  import common from '@ohos.app.ability.common';
-  import hilog from '@ohos.hilog';
+  // FA模型需要从@kit.AbilityKit导入featureAbility
+  // import { featureAbility } from '@kit.AbilityKit';
+  import { Want, common } from '@kit.AbilityKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let proxy: rpc.IRemoteObject | undefined;
   let connect: common.ConnectOptions = {
@@ -6918,13 +7025,16 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
   // FA模型使用此方法连接服务
   // FA.connectAbility(want,connect);
 
-  this.context.connectServiceExtensionAbility(want, connect);
+  // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
+  let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
+  let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
 
   上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的sendRequest接口方法发送消息
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let option = new rpc.MessageOption();
   let data = rpc.MessageParcel.create();
@@ -6972,17 +7082,23 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
   | options  | [MessageOption](#messageoption)      | 是   | 本次请求的同异步模式，默认同步调用。                                                   |
   | callback | AsyncCallback&lt;[RequestResult](#requestresult9)&gt;   | 是   | 接收发送结果的回调。                                                                   |
 
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401      | check param failed |
+
 **示例：**
 
-  Stage模型的应用在获取服务前需要先获取context，具体方法可参考[获取context](#获取context)
-
   ```ts
-  // 仅FA模型需要导入@ohos.ability.featureAbility
-  // import FA from "@ohos.ability.featureAbility";
-  import Want from '@ohos.app.ability.Want';
-  import common from '@ohos.app.ability.common';
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base'; 
+  // FA模型需要从@kit.AbilityKit导入featureAbility
+  // import { featureAbility } from '@kit.AbilityKit';
+  import { Want, common } from '@kit.AbilityKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let proxy: rpc.IRemoteObject | undefined;
   let connect: common.ConnectOptions = {
@@ -7019,14 +7135,17 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
   // FA模型使用此方法连接服务
   // FA.connectAbility(want,connect);
 
-  this.context.connectServiceExtensionAbility(want, connect);
+  // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
+  let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
+  let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
 
   上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的sendMessageRequest接口方法发送消息
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let option = new rpc.MessageOption();
   let data = rpc.MessageSequence.create();
@@ -7066,15 +7185,12 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 
 **示例：**
 
-  Stage模型的应用在获取服务前需要先获取context，具体方法可参考[获取context](#获取context)
-
   ```ts
-  // 仅FA模型需要导入@ohos.ability.featureAbility
-  // import FA from "@ohos.ability.featureAbility";
-  import Want from '@ohos.app.ability.Want';
-  import common from '@ohos.app.ability.common';
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  // FA模型需要从@kit.AbilityKit导入featureAbility
+  // import { featureAbility } from '@kit.AbilityKit';
+  import { Want, common } from '@kit.AbilityKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let proxy: rpc.IRemoteObject | undefined;
   let connect: common.ConnectOptions = {
@@ -7111,7 +7227,10 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
   // FA模型使用此方法连接服务
   // FA.connectAbility(want,connect);
 
-  this.context.connectServiceExtensionAbility(want, connect); 
+  // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
+  let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
+  let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
 
   上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的sendRequest接口方法发送消息
@@ -7153,18 +7272,16 @@ getLocalInterface(interface: string): IRemoteBroker
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401      | check param failed |
   | 1900006  | only remote object permitted |
 
 **示例：**
 
-  Stage模型的应用在获取服务前需要先获取context，具体方法可参考[获取context](#获取context)
-
   ```ts
-  // 仅FA模型需要导入@ohos.ability.featureAbility
-  // import FA from "@ohos.ability.featureAbility";
-  import Want from '@ohos.app.ability.Want';
-  import common from '@ohos.app.ability.common';
-  import hilog from '@ohos.hilog';
+  // FA模型需要从@kit.AbilityKit导入featureAbility
+  // import { featureAbility } from '@kit.AbilityKit';
+  import { Want, common } from '@kit.AbilityKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let proxy: rpc.IRemoteObject | undefined;
   let connect: common.ConnectOptions = {
@@ -7187,14 +7304,17 @@ getLocalInterface(interface: string): IRemoteBroker
   // FA模型使用此方法连接服务
   // FA.connectAbility(want,connect);
 
-  this.context.connectServiceExtensionAbility(want, connect);
+  // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
+  let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
+  let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
 
   上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的getLocalInterface接口方法查询接口对象
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   if (proxy != undefined) {
     try {
@@ -7232,14 +7352,11 @@ queryLocalInterface(interface: string): IRemoteBroker
 
 **示例：**
 
-  Stage模型的应用在获取服务前需要先获取context，具体方法可参考[获取context](#获取context)
-
   ```ts
-  // 仅FA模型需要导入@ohos.ability.featureAbility
-  // import FA from "@ohos.ability.featureAbility";
-  import Want from '@ohos.app.ability.Want';
-  import common from '@ohos.app.ability.common';
-  import hilog from '@ohos.hilog';
+  // FA模型需要从@kit.AbilityKit导入featureAbility
+  // import { featureAbility } from '@kit.AbilityKit';
+  import { Want, common } from '@kit.AbilityKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let proxy: rpc.IRemoteObject | undefined;
   let connect: common.ConnectOptions = {
@@ -7262,13 +7379,16 @@ queryLocalInterface(interface: string): IRemoteBroker
   // FA模型使用此方法连接服务
   // FA.connectAbility(want,connect);
 
-  this.context.connectServiceExtensionAbility(want, connect);
+  // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
+  let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
+  let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
 
   上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的queryLocalInterface接口获取接口对象
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   if (proxy != undefined) {
     let broker: rpc.IRemoteBroker = proxy.queryLocalInterface("testObject");
@@ -7297,18 +7417,16 @@ registerDeathRecipient(recipient: DeathRecipient, flags: number): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401      | check param failed |
   | 1900008  | proxy or remote object is invalid |
 
 **示例：**
 
-  Stage模型的应用在获取服务前需要先获取context，具体方法可参考[获取context](#获取context)
-
   ```ts
-  // 仅FA模型需要导入@ohos.ability.featureAbility
-  // import FA from "@ohos.ability.featureAbility";
-  import Want from '@ohos.app.ability.Want';
-  import common from '@ohos.app.ability.common';
-  import hilog from '@ohos.hilog';
+  // FA模型需要从@kit.AbilityKit导入featureAbility
+  // import { featureAbility } from '@kit.AbilityKit';
+  import { Want, common } from '@kit.AbilityKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let proxy: rpc.IRemoteObject | undefined;
   let connect: common.ConnectOptions = {
@@ -7331,14 +7449,17 @@ registerDeathRecipient(recipient: DeathRecipient, flags: number): void
   // FA模型使用此方法连接服务
   // FA.connectAbility(want,connect);
 
-  this.context.connectServiceExtensionAbility(want, connect);
+  // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
+  let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
+  let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
 
   上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的registerDeathRecipient接口注册死亡回调
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   class MyDeathRecipient implements rpc.DeathRecipient {
     onRemoteDied() {
@@ -7382,14 +7503,11 @@ addDeathRecipient(recipient: DeathRecipient, flags: number): boolean
 
 **示例：**
 
-  Stage模型的应用在获取服务前需要先获取context，具体方法可参考[获取context](#获取context)
-
   ```ts
-  // 仅FA模型需要导入@ohos.ability.featureAbility
-  // import FA from "@ohos.ability.featureAbility";
-  import Want from '@ohos.app.ability.Want';
-  import common from '@ohos.app.ability.common';
-  import hilog from '@ohos.hilog';
+  // FA模型需要从@kit.AbilityKit导入featureAbility
+  // import { featureAbility } from '@kit.AbilityKit';
+  import { Want, common } from '@kit.AbilityKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let proxy: rpc.IRemoteObject | undefined;
   let connect: common.ConnectOptions = {
@@ -7412,13 +7530,16 @@ addDeathRecipient(recipient: DeathRecipient, flags: number): boolean
   // FA模型使用此方法连接服务
   // FA.connectAbility(want,connect);
 
-  this.context.connectServiceExtensionAbility(want, connect);
+  // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
+  let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
+  let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
 
   上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的addDeathRecipient接口方法新增死亡回调
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class MyDeathRecipient implements rpc.DeathRecipient {
     onRemoteDied() {
@@ -7452,18 +7573,16 @@ unregisterDeathRecipient(recipient: DeathRecipient, flags: number): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401      | check param failed |
   | 1900008  | proxy or remote object is invalid |
 
 **示例：**
 
-  Stage模型的应用在获取服务前需要先获取context，具体方法可参考[获取context](#获取context)
-
   ```ts
-  // 仅FA模型需要导入@ohos.ability.featureAbility
-  // import FA from "@ohos.ability.featureAbility";
-  import Want from '@ohos.app.ability.Want';
-  import common from '@ohos.app.ability.common';
-  import hilog from '@ohos.hilog';
+  // FA模型需要从@kit.AbilityKit导入featureAbility
+  // import { featureAbility } from '@kit.AbilityKit';
+  import { Want, common } from '@kit.AbilityKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let proxy: rpc.IRemoteObject | undefined;
   let connect: common.ConnectOptions = {
@@ -7486,14 +7605,17 @@ unregisterDeathRecipient(recipient: DeathRecipient, flags: number): void
   // FA模型使用此方法连接服务
   // FA.connectAbility(want,connect);
 
-  this.context.connectServiceExtensionAbility(want, connect);
+  // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
+  let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
+  let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
 
   上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的unregisterDeathRecipient接口方法注销死亡回调
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   class MyDeathRecipient implements rpc.DeathRecipient {
     onRemoteDied() {
@@ -7538,14 +7660,11 @@ removeDeathRecipient(recipient: DeathRecipient, flags: number): boolean
 
 **示例：**
 
-  Stage模型的应用在获取服务前需要先获取context，具体方法可参考[获取context](#获取context)
-
   ```ts
-  // 仅FA模型需要导入@ohos.ability.featureAbility
-  // import FA from "@ohos.ability.featureAbility";
-  import Want from '@ohos.app.ability.Want';
-  import common from '@ohos.app.ability.common';
-  import hilog from '@ohos.hilog';
+  // FA模型需要从@kit.AbilityKit导入featureAbility
+  // import { featureAbility } from '@kit.AbilityKit';
+  import { Want, common } from '@kit.AbilityKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let proxy: rpc.IRemoteObject | undefined;
   let connect: common.ConnectOptions = {
@@ -7568,13 +7687,16 @@ removeDeathRecipient(recipient: DeathRecipient, flags: number): boolean
   // FA模型使用此方法连接服务
   // FA.connectAbility(want,connect);
 
-  this.context.connectServiceExtensionAbility(want, connect);
+  // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
+  let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
+  let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
 
   上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的removeDeathRecipient接口方法去注册死亡回调
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class MyDeathRecipient implements rpc.DeathRecipient {
     onRemoteDied() {
@@ -7613,14 +7735,11 @@ getDescriptor(): string
 
 **示例：**
 
-  Stage模型的应用在获取服务前需要先获取context，具体方法可参考[获取context](#获取context)
-
   ```ts
-  // 仅FA模型需要导入@ohos.ability.featureAbility
-  // import FA from "@ohos.ability.featureAbility";
-  import Want from '@ohos.app.ability.Want';
-  import common from '@ohos.app.ability.common';
-  import hilog from '@ohos.hilog';
+  // FA模型需要从@kit.AbilityKit导入featureAbility
+  // import { featureAbility } from '@kit.AbilityKit';
+  import { Want, common } from '@kit.AbilityKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let proxy: rpc.IRemoteObject | undefined;
   let connect: common.ConnectOptions = {
@@ -7643,13 +7762,16 @@ getDescriptor(): string
   // FA模型使用此方法连接服务
   // FA.connectAbility(want,connect);
 
-  this.context.connectServiceExtensionAbility(want, connect);
+  // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
+  let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
+  let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
   上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的getDescriptor接口方法获取对象的接口描述符
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   if (proxy != undefined) {
     try {
@@ -7681,14 +7803,11 @@ getInterfaceDescriptor(): string
 
 **示例：**
 
-  Stage模型的应用在获取服务前需要先获取context，具体方法可参考[获取context](#获取context)
-
   ```ts
-  // 仅FA模型需要导入@ohos.ability.featureAbility
-  // import FA from "@ohos.ability.featureAbility";
-  import Want from '@ohos.app.ability.Want';
-  import common from '@ohos.app.ability.common';
-  import hilog from '@ohos.hilog';
+  // FA模型需要从@kit.AbilityKit导入featureAbility
+  // import { featureAbility } from '@kit.AbilityKit';
+  import { Want, common } from '@kit.AbilityKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let proxy: rpc.IRemoteObject | undefined;
   let connect: common.ConnectOptions = {
@@ -7711,13 +7830,16 @@ getInterfaceDescriptor(): string
   // FA模型使用此方法连接服务
   // FA.connectAbility(want,connect);
 
-  this.context.connectServiceExtensionAbility(want, connect);
+  // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
+  let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
+  let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
 
   上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的getInterfaceDescriptor接口方法查询当前代理对象接口的描述符
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   if (proxy != undefined) {
     let descriptor: string = proxy.getInterfaceDescriptor();
@@ -7741,14 +7863,11 @@ isObjectDead(): boolean
 
 **示例：**
 
-  Stage模型的应用在获取服务前需要先获取context，具体方法可参考[获取context](#获取context)
-
   ```ts
-  // 仅FA模型需要导入@ohos.ability.featureAbility
-  // import FA from "@ohos.ability.featureAbility";
-  import Want from '@ohos.app.ability.Want';
-  import common from '@ohos.app.ability.common';
-  import hilog from '@ohos.hilog';
+  // FA模型需要从@kit.AbilityKit导入featureAbility
+  // import { featureAbility } from '@kit.AbilityKit';
+  import { Want, common } from '@kit.AbilityKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let proxy: rpc.IRemoteObject | undefined;
   let connect: common.ConnectOptions = {
@@ -7771,13 +7890,16 @@ isObjectDead(): boolean
   // FA模型使用此方法连接服务
   // FA.connectAbility(want,connect);
 
-  this.context.connectServiceExtensionAbility(want, connect);
+  // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
+  let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
+  let connectionId = context.connectServiceExtensionAbility(want, connect);
   ```
 
   上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的isObjectDead接口方法判断当前对象是否已经死亡
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   if (proxy != undefined) {
     let isDead: boolean = proxy.isObjectDead();
@@ -7884,7 +8006,7 @@ setAsync(async: boolean): void
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let option = new rpc.MessageOption();
   option.setAsync(true);
@@ -7908,7 +8030,7 @@ getFlags(): number
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   try {
     let option = new rpc.MessageOption();
@@ -7941,7 +8063,7 @@ setFlags(flags: number): void
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   try {
     let option = new rpc.MessageOption();
@@ -7971,7 +8093,7 @@ getWaitTime(): number
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   try {
     let option = new rpc.MessageOption();
@@ -8002,7 +8124,7 @@ setWaitTime(waitTime: number): void
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   try {
     let option = new rpc.MessageOption();
@@ -8035,7 +8157,7 @@ static getContextObject(): IRemoteObject
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let samgr = rpc.IPCSkeleton.getContextObject();
   hilog.info(0x0000, 'testTag', 'RpcServer: getContextObject result: ' + samgr);
@@ -8058,7 +8180,7 @@ static getCallingPid(): number
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class Stub extends rpc.RemoteObject {
     onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
@@ -8086,7 +8208,7 @@ static getCallingUid(): number
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class Stub extends rpc.RemoteObject {
     onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
@@ -8114,7 +8236,7 @@ static getCallingTokenId(): number
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class Stub extends rpc.RemoteObject {
     onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
@@ -8142,7 +8264,7 @@ static getCallingDeviceID(): string
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class Stub extends rpc.RemoteObject {
     onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
@@ -8170,7 +8292,7 @@ static getLocalDeviceID(): string
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class Stub extends rpc.RemoteObject {
     onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
@@ -8198,7 +8320,7 @@ static isLocalCalling(): boolean
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class Stub extends rpc.RemoteObject {
     onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
@@ -8223,11 +8345,19 @@ static flushCmdBuffer(object: IRemoteObject): void
   | ------ | ------------------------------- | ---- | ------------------- |
   | object | [IRemoteObject](#iremoteobject) | 是   | 指定的RemoteProxy。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401      | check param failed |
+
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   class TestRemoteObject extends rpc.RemoteObject {
     constructor(descriptor: string) {
@@ -8269,7 +8399,7 @@ static flushCommands(object: IRemoteObject): number
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class MyDeathRecipient implements rpc.DeathRecipient {
     onRemoteDied() {
@@ -8312,7 +8442,7 @@ static resetCallingIdentity(): string
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class Stub extends rpc.RemoteObject {
     onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
@@ -8337,10 +8467,18 @@ static restoreCallingIdentity(identity: string): void
   | -------- | ------ | ---- | ------------------------------------------------------------------ |
   | identity | string | 是   | 标识表示包含远程用户UID和PID的字符串。由resetCallingIdentity返回。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401      | check param failed |
+
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class Stub extends rpc.RemoteObject {
     onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
@@ -8377,7 +8515,7 @@ static setCallingIdentity(identity: string): boolean
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class Stub extends rpc.RemoteObject {
     onRemoteMessageRequest(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption): boolean | Promise<boolean> {
@@ -8436,7 +8574,7 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class MyDeathRecipient implements rpc.DeathRecipient {
     onRemoteDied() {
@@ -8499,10 +8637,19 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
 | ----------------------------------------------- | ----------------------------------------- |
 | Promise&lt;[RequestResult](#requestresult9)&gt; | 返回一个期约，兑现值是RequestResult实例。 |
 
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401      | check param failed |
+
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class TestRemoteObject extends rpc.RemoteObject {
     constructor(descriptor: string) {
@@ -8563,7 +8710,7 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class MyDeathRecipient implements rpc.DeathRecipient {
     onRemoteDied() {
@@ -8629,11 +8776,20 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
 | options       | [MessageOption](#messageoption)                       | 是   | 本次请求的同异步模式，默认同步调用。                         |
 | AsyncCallback | AsyncCallback&lt;[RequestResult](#requestresult9)&gt; | 是   | 接收发送结果的回调。                                         |
 
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401      | check param failed |
+
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   class TestRemoteObject extends rpc.RemoteObject {
     constructor(descriptor: string) {
@@ -8686,8 +8842,8 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   class MyDeathRecipient implements rpc.DeathRecipient {
     onRemoteDied() {
@@ -8763,7 +8919,7 @@ sendMessageRequest请求的响应处理函数，服务端在该函数里同步�
 **重载onRemoteMessageRequest方法同步处理请求示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class TestRemoteObject extends rpc.RemoteObject {
     constructor(descriptor: string) {
@@ -8785,7 +8941,7 @@ sendMessageRequest请求的响应处理函数，服务端在该函数里同步�
   **重载onRemoteMessageRequest方法异步处理请求示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class TestRemoteObject extends rpc.RemoteObject {
     constructor(descriptor: string) {
@@ -8810,7 +8966,7 @@ sendMessageRequest请求的响应处理函数，服务端在该函数里同步�
 **同时重载onRemoteMessageRequest和onRemoteRequest方法同步处理请求示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class TestRemoteObject extends rpc.RemoteObject {
     constructor(descriptor: string) {
@@ -8842,7 +8998,7 @@ sendMessageRequest请求的响应处理函数，服务端在该函数里同步�
   **同时重载onRemoteMessageRequest和onRemoteRequest方法异步处理请求示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
   class TestRemoteObject extends rpc.RemoteObject {
     constructor(descriptor: string) {
       super(descriptor);
@@ -8901,7 +9057,7 @@ sendRequest请求的响应处理函数，服务端在该函数里处理请求，
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class MyDeathRecipient implements rpc.DeathRecipient {
     onRemoteDied() {
@@ -8949,7 +9105,7 @@ getCallingUid(): number
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class TestRemoteObject extends rpc.RemoteObject {
     constructor(descriptor: string) {
@@ -8977,7 +9133,7 @@ getCallingPid(): number
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class TestRemoteObject extends rpc.RemoteObject {
     constructor(descriptor: string) {
@@ -9008,11 +9164,19 @@ getLocalInterface(descriptor: string): IRemoteBroker
   | ------------- | --------------------------------------------- |
   | IRemoteBroker | 返回绑定到指定接口描述符的IRemoteBroker对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401      | check param failed |
+
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   class MyDeathRecipient implements rpc.DeathRecipient {
     onRemoteDied() {
@@ -9072,7 +9236,7 @@ queryLocalInterface(descriptor: string): IRemoteBroker
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class MyDeathRecipient implements rpc.DeathRecipient {
     onRemoteDied() {
@@ -9126,8 +9290,8 @@ getDescriptor(): string
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   class MyDeathRecipient implements rpc.DeathRecipient {
     onRemoteDied() {
@@ -9178,7 +9342,7 @@ getInterfaceDescriptor(): string
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class MyDeathRecipient implements rpc.DeathRecipient {
     onRemoteDied() {
@@ -9219,11 +9383,19 @@ modifyLocalInterface(localInterface: IRemoteBroker, descriptor: string): void
 | localInterface | [IRemoteBroker](#iremotebroker) | 是   | 将与描述符绑定的IRemoteBroker对象。   |
 | descriptor     | string                          | 是   | 用于与IRemoteBroker对象绑定的描述符。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401      | check param failed |
+
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   class MyDeathRecipient implements rpc.DeathRecipient {
     onRemoteDied() {
@@ -9277,7 +9449,7 @@ attachLocalInterface(localInterface: IRemoteBroker, descriptor: string): void
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   class MyDeathRecipient implements rpc.DeathRecipient {
     onRemoteDied() {
@@ -9341,11 +9513,19 @@ static create(name: string, size: number): Ashmem
 | ------------------ | ---------------------------------------------- |
 | [Ashmem](#ashmem8) | 返回创建的Ashmem对象；如果创建失败，返回null。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401      | check param failed |
+
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let ashmem: rpc.Ashmem | undefined = undefined;
   try {
@@ -9385,7 +9565,7 @@ static createAshmem(name: string, size: number): Ashmem
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let ashmem = rpc.Ashmem.createAshmem("ashmem", 1024*1024);
   let size = ashmem.getAshmemSize();
@@ -9412,11 +9592,19 @@ static create(ashmem: Ashmem): Ashmem
 | ------------------ | ---------------------- |
 | [Ashmem](#ashmem8) | 返回创建的Ashmem对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.rpc错误码](errorcode-rpc.md)
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 401      | check param failed |
+
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
@@ -9455,7 +9643,7 @@ static createAshmemFromExisting(ashmem: Ashmem): Ashmem
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
   let ashmem2 = rpc.Ashmem.createAshmemFromExisting(ashmem);
@@ -9510,7 +9698,7 @@ getAshmemSize(): number
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
   let size = ashmem.getAshmemSize();
@@ -9537,13 +9725,14 @@ mapTypedAshmem(mapType: number): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401      | check param failed |
   | 1900001  | call mmap function failed |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
   try {
@@ -9580,7 +9769,7 @@ mapAshmem(mapType: number): boolean
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
   let mapReadAndWrite = ashmem.mapAshmem(ashmem.PROT_READ | ashmem.PROT_WRITE);
@@ -9606,8 +9795,8 @@ mapReadWriteAshmem(): void
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
   try {
@@ -9638,7 +9827,7 @@ mapReadAndWriteAshmem(): boolean
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
   let mapResult = ashmem.mapReadAndWriteAshmem();
@@ -9664,8 +9853,8 @@ mapReadonlyAshmem(): void
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
   try {
@@ -9696,7 +9885,7 @@ mapReadOnlyAshmem(): boolean
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
   let mapResult = ashmem.mapReadOnlyAshmem();
@@ -9723,13 +9912,14 @@ setProtectionType(protectionType: number): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401      | check param failed |
   | 1900002  | call os ioctl function failed |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
   try {
@@ -9766,7 +9956,7 @@ setProtection(protectionType: number): boolean
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
   let result = ashmem.setProtection(ashmem.PROT_READ);
@@ -9795,13 +9985,14 @@ writeDataToAshmem(buf: ArrayBuffer, size: number, offset: number): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401      | check param failed |
   | 1900003  | write to ashmem failed |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let buffer = new ArrayBuffer(1024);
   let int32View = new Int32Array(buffer);
@@ -9844,13 +10035,14 @@ writeAshmem(buf: number[], size: number, offset: number): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401      | check param failed |
   | 1900003  | write to ashmem failed |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
   ashmem.mapReadWriteAshmem();
@@ -9891,7 +10083,7 @@ writeToAshmem(buf: number[], size: number, offset: number): boolean
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
   let mapResult = ashmem.mapReadAndWriteAshmem();
@@ -9928,13 +10120,14 @@ readDataFromAshmem(size: number, offset: number): ArrayBuffer
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401      | check param failed |
   | 1900004  | read from ashmem failed |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let buffer = new ArrayBuffer(1024);
   let int32View = new Int32Array(buffer);
@@ -9991,13 +10184,14 @@ readAshmem(size: number, offset: number): number[]
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
+  | 401      | check param failed |
   | 1900004  | read from ashmem failed |
 
 **示例：**
 
   ```ts
-  import hilog from '@ohos.hilog';
-  import { BusinessError } from '@ohos.base';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
   ashmem.mapReadWriteAshmem();
@@ -10039,7 +10233,7 @@ readFromAshmem(size: number, offset: number): number[]
 **示例：**
 
  ``` ts
-  import hilog from '@ohos.hilog';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
   let mapResult = ashmem.mapReadAndWriteAshmem();
@@ -10049,42 +10243,4 @@ readFromAshmem(size: number, offset: number): number[]
   hilog.info(0x0000, 'testTag', 'RpcTest: write to Ashmem result is ' + writeResult);
   let readResult = ashmem.readFromAshmem(5, 0);
   hilog.info(0x0000, 'testTag', 'RpcTest: read to Ashmem result is ' + readResult);
- ```
-
-## 获取context
-
-**示例：**
-此处只介绍一种获取context的方式，更多获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
- ```ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  import Want from '@ohos.app.ability.Want';
-  import hilog from '@ohos.hilog';
-  import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-  import window from '@ohos.window';
-  
-  export default class MainAbility extends UIAbility {
-    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-      hilog.info(0x0000, 'testTag', '%{public}s', 'UIAbility onCreate');
-      let context = this.context;
-    }
-    onDestroy() {
-      hilog.info(0x0000, 'testTag', '%{public}s', 'UIAbility onDestroy');
-    }
-    onWindowStageCreate(windowStage: window.WindowStage) {
-      // Main window is created, set main page for this ability
-  	  hilog.info(0x0000, 'testTag', '%{public}s', 'UIAbility onWindowStageCreate');
-    }
-    onWindowStageDestroy() {
-      // Main window is destroyed, release UI related resources
-  	  hilog.info(0x0000, 'testTag', '%{public}s', 'UIAbility onWindowStageDestroy');
-    }
-    onForeground() {
-      // Ability has brought to foreground
-      hilog.info(0x0000, 'testTag', '%{public}s', 'UIAbility onForeground');
-    }
-    onBackground() {
-      // Ability has back to background
-      hilog.info(0x0000, 'testTag', '%{public}s', 'UIAbility onBackground');
-    }
-  }
  ```

@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```js
-import tag from '@ohos.nfc.tag';
+import { tag } from '@kit.ConnectivityKit';
 ```
 
 ## NfcATag
@@ -39,7 +39,7 @@ getSak(): number
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
+import { tag } from '@kit.ConnectivityKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'nfcA' correctly.
 let sak : number = nfcA.getSak();
@@ -65,7 +65,7 @@ getAtqa(): number[]
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
+import { tag } from '@kit.ConnectivityKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'nfcA' correctly.
 let atqa : number[] = nfcA.getAtqa();
@@ -99,7 +99,7 @@ getRespAppData(): number[]
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
+import { tag } from '@kit.ConnectivityKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'nfcB' correctly.
 let respAppData : number[] = nfcB.getRespAppData();
@@ -125,7 +125,7 @@ getRespProtocol(): number[]
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
+import { tag } from '@kit.ConnectivityKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'nfcB' correctly.
 let respProtocol : number[] = nfcB.getRespProtocol();
@@ -159,7 +159,7 @@ getSystemCode(): number[]
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
+import { tag } from '@kit.ConnectivityKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'nfcF' correctly.
 let systemCode : number[] = nfcF.getSystemCode();
@@ -185,7 +185,7 @@ getPmm(): number[]
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
+import { tag } from '@kit.ConnectivityKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'nfcF' correctly.
 let pmm : number[] = nfcF.getPmm();
@@ -219,7 +219,7 @@ getResponseFlags(): number
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
+import { tag } from '@kit.ConnectivityKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'nfcV' correctly.
 let responseFlags : number = nfcV.getResponseFlags();
@@ -245,7 +245,7 @@ getDsfId(): number
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
+import { tag } from '@kit.ConnectivityKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'nfcV' correctly.
 let dsfId : number = nfcV.getDsfId();
@@ -279,7 +279,7 @@ getHistoricalBytes(): number[]
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
+import { tag } from '@kit.ConnectivityKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'isoDep' correctly.
 let historicalBytes : number[] = isoDep.getHistoricalBytes();
@@ -305,7 +305,7 @@ getHiLayerResponse(): number[]
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
+import { tag } from '@kit.ConnectivityKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'isoDep' correctly.
 let hiLayerResponse : number[] = isoDep.getHiLayerResponse();
@@ -336,14 +336,16 @@ isExtendedApduSupported(): Promise&lt;boolean&gt;
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+| 201  | Permission denied. |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | Tag running state is abnormal in service. |
 | 3100204 | Tag I/O operation failed. |
 
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
-import {BusinessError} from '@ohos.base';
+import { tag } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'isoDep' correctly.
 function nfcTechDemo() {
@@ -361,9 +363,9 @@ function nfcTechDemo() {
         }).catch((err: BusinessError) => {
             console.error("isoDep isExtendedApduSupported Promise Code: ${err.code}, message: ${err.message}");
         });
-    } catch (busiError) {
-        console.error("isoDep isExtendedApduSupported Promise Code: ${(busiError as Businsess).code}, " +
-            "message: ${(busiError as Businsess).message}");
+    } catch (businessError) {
+        console.error("isoDep isExtendedApduSupported Promise Code: ${(businessError as Businsess).code}, " +
+            "message: ${(businessError as Businsess).message}");
     }
 }
 
@@ -393,14 +395,16 @@ isExtendedApduSupported(callback: AsyncCallback\<boolean>): void
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+| 201  | Permission denied. |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | Tag running state is abnormal in service. |
 | 3100204 | Tag I/O operation failed. |
 
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
-import {BusinessError} from '@ohos.base';
+import { tag } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'isoDep' correctly.
 function nfcTechDemo() {
@@ -421,7 +425,7 @@ function nfcTechDemo() {
             }
         });
     } catch (busiErr) {
-        console.error("isoDep isExtendedApduSupported AsyncCallback Code: ${(busiError as Business).code}, " + "message: ${(busiError as Business).message}");
+        console.error("isoDep isExtendedApduSupported AsyncCallback Code: ${(businessError as Business).code}, " + "message: ${(businessError as Business).message}");
     }
 }
 
@@ -448,7 +452,7 @@ getNdefRecords(): [tag.NdefRecord](js-apis-nfcTag.md#ndefrecord9)[]
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
+import { tag } from '@kit.ConnectivityKit';
 
 // Obtains ndefMessage from tag.ndef.createNdefMessage or ndefTag.getNdefMessage.
 // let ndefMessage : tag.NdefMessage = tag.ndef.createNdefMessage(...);
@@ -485,7 +489,7 @@ getNdefTagType(): [tag.NfcForumType](js-apis-nfcTag.md#nfcforumtype9)
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
+import { tag } from '@kit.ConnectivityKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'ndefTag' correctly.
 let ndefTagType : tag.NfcForumType = ndefTag.getNdefTagType();
@@ -510,7 +514,7 @@ getNdefMessage(): [NdefMessage](#ndefmessage9)
 
 **示例：**
 ```js
-import tag from '@ohos.nfc.tag';
+import { tag } from '@kit.ConnectivityKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'ndefTag' correctly.
 let ndefMessage : tag.NdefMessage = ndefTag.getNdefMessage();
@@ -536,7 +540,7 @@ isNdefWritable(): boolean
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
+import { tag } from '@kit.ConnectivityKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'ndefTag' correctly.
 let isWritable : boolean = ndefTag.isNdefWritable();
@@ -567,14 +571,16 @@ readNdef(): Promise\<[NdefMessage](#ndefmessage9)>
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+| 201  | Permission denied. |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | Tag running state is abnormal in service. |
 | 3100204 | Tag I/O operation failed. |
 
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
-import {BusinessError} from '@ohos.base';
+import { tag } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'ndefTag' correctly.
 function nfcTechDemo(){
@@ -592,9 +598,9 @@ function nfcTechDemo(){
         }).catch((err : BusinessError)=> {
             console.error("ndef readNdef Promise err Code: ${err.code}, message: ${err.message}");
         });
-    } catch (busiError) {
-        console.error("ndef readNdef Promise catched busiError Code: ${(busiError as BusinessError).code}, " +
-        "message: ${(busiError as BusinessError).message}");
+    } catch (businessError) {
+        console.error("ndef readNdef Promise catch businessError Code: ${(businessError as BusinessError).code}, " +
+        "message: ${(businessError as BusinessError).message}");
     }
 }
 
@@ -624,14 +630,16 @@ readNdef(callback: AsyncCallback\<[NdefMessage](#ndefmessage9)>): void
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+| 201  | Permission denied. |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | Tag running state is abnormal in service. |
 | 3100204 | Tag I/O operation failed. |
 
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
-import {BusinessError} from '@ohos.base';
+import { tag } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'ndefTag' correctly.
 function nfcTechDemo() {
@@ -651,9 +659,9 @@ function nfcTechDemo() {
             console.log("ndef readNdef AsyncCallback ndefmessage: " + ndefmessage);
             }
         });
-    } catch (busiError) {
-        console.log("ndef readNdef AsyncCallback catched Code: ${(busiError : BusinessError).code}," +
-        " message: ${(busiError : BusinessError).message}");
+    } catch (businessError) {
+        console.log("ndef readNdef AsyncCallback catch Code: ${(businessError : BusinessError).code}," +
+        " message: ${(businessError : BusinessError).message}");
     }
 }
 
@@ -689,14 +697,16 @@ writeNdef(msg: [NdefMessage](#ndefmessage9)): Promise\<void>
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+| 201  | Permission denied. |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | Tag running state is abnormal in service. |
 | 3100204 | Tag I/O operation failed. |
 
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
-import {BusinessError} from '@ohos.base';
+import { tag } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'ndefTag' correctly.
 // ndefMessage created from raw data, such as:
@@ -719,9 +729,9 @@ function nfcTechDemo() {
         }).catch((err : BusinessError)=> {
             console.error("ndef writeNdef err Code: ${err.code}, message: ${err.message}");
         });
-    } catch (busiError) {
-        console.error("ndef writeNdef Promise catch busiError Code: ${(busiError as Businsess).code}, " +
-            "message: ${(busiError as Businsess).message}");
+    } catch (businessError) {
+        console.error("ndef writeNdef Promise catch businessError Code: ${(businessError as Businsess).code}, " +
+            "message: ${(businessError as Businsess).message}");
     }
 }
 ```
@@ -751,14 +761,16 @@ writeNdef(msg: [NdefMessage](#ndefmessage9), callback: AsyncCallback\<void>): vo
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+| 201  | Permission denied. |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | Tag running state is abnormal in service. |
 | 3100204 | Tag I/O operation failed. |
 
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
-import {BusinessError} from '@ohos.base';
+import { tag } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'ndefTag' correctly.
 // ndefMessage created from raw data, such as:
@@ -783,9 +795,9 @@ function nfcTechDemo() {
                 console.log("ndef writeNdef AsyncCallback success.");
             }
         }); 
-    } catch (busiError) {
-        console.error("ndef writeNdef AsyncCallback catch busiError Code: ${(busiError as Businsess).code}," +
-            " message: ${(busiError as Businsess).message}");
+    } catch (businessError) {
+        console.error("ndef writeNdef AsyncCallback catch businessError Code: ${(businessError as Businsess).code}," +
+            " message: ${(businessError as Businsess).message}");
     }
 }
 ```
@@ -814,12 +826,13 @@ canSetReadOnly(): boolean
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+| 201  | Permission denied. |
 | 3100201 | Tag running state is abnormal in service. |
 
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
+import { tag } from '@kit.ConnectivityKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'ndefTag' correctly.
 let canSetReadOnly : boolean = ndefTag.canSetReadOnly();
@@ -850,14 +863,16 @@ setReadOnly(): Promise\<void>
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+| 201  | Permission denied. |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | Tag running state is abnormal in service. |
 | 3100204 | Tag I/O operation failed. |
 
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
-import {BusinessError} from '@ohos.base';
+import { tag } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'ndefTag' correctly.
 
@@ -876,9 +891,9 @@ function nfcTechDemo() {
         }).catch((err : BusinessError)=> {
             console.error("ndef setReadOnly Promise err Code: ${err.code}, message: ${err.message}");
         });
-    } catch (busiError) {
-        console.error("ndef setReadOnly Promise catch busiError Code: ${(busiError as Businsess).code}, " +
-            "message: ${(busiError as Businsess).message}");
+    } catch (businessError) {
+        console.error("ndef setReadOnly Promise catch businessError Code: ${(businessError as Businsess).code}, " +
+            "message: ${(businessError as Businsess).message}");
     }
 }
 ```
@@ -907,14 +922,16 @@ setReadOnly(callback: AsyncCallback\<void>): void
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+| 201  | Permission denied. |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | Tag running state is abnormal in service. |
 | 3100204 | Tag I/O operation failed. |
 
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
-import {BusinessError} from '@ohos.base';
+import { tag } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'ndefTag' correctly.
 
@@ -935,9 +952,9 @@ function nfcTechDemo() {
                 console.log("ndef setReadOnly AsyncCallback success.");
             }
         });
-    } catch (busiError) {
-        console.error("ndef setReadOnly AsyncCallback catch busiError Code: ${(busiError as Businsess).code}, " +
-            "message: ${(busiError as Businsess).message}");
+    } catch (businessError) {
+        console.error("ndef setReadOnly AsyncCallback catch businessError Code: ${(businessError as Businsess).code}, " +
+            "message: ${(businessError as Businsess).message}");
     }
 }
 ```
@@ -964,20 +981,28 @@ getNdefTagTypeString(type: [tag.NfcForumType](js-apis-nfcTag.md#nfcforumtype9)):
 | ------------------ | --------------------------|
 | string | NFC论坛类型的字符串描述。|
 
+**错误码：**
+
+以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
+
+| 错误码ID | 错误信息|
+| ------- | -------|
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
-import {BusinessError} from '@ohos.base';
+import { tag } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'ndefTag' correctly.
 
 try {
     let ndefTypeString : tag.NfcForumType = ndefTag.getNdefTagTypeString(tag.NfcForumType.NFC_FORUM_TYPE_1);
     console.log("ndef ndefTypeString: " + ndefTypeString);
-} catch (busiError) {
-    console.error("ndef getNdefTagTypeString catch busiError Code: ${(busiError as Businsess).code}, " +
-        "message: ${(busiError as Businsess).message}");
+} catch (businessError) {
+    console.error("ndef getNdefTagTypeString catch businessError Code: ${(businessError as Businsess).code}, " +
+        "message: ${(businessError as Businsess).message}");
 }
 ```
 
@@ -1021,14 +1046,16 @@ authenticateSector(sectorIndex: number, key: number[], isKeyA: boolean): Promise
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+| 201  | Permission denied. |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | Tag running state is abnormal in service. |
 | 3100204 | Tag I/O operation failed. |
 
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
-import {BusinessError} from '@ohos.base';
+import { tag } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'mifareClassic' correctly.
 
@@ -1049,9 +1076,9 @@ function nfcTechDemo() {
         }).catch((err : BusinessError)=> {
             console.error("mifareClassic authenticateSector Promise errCode: ${err.code}, " + "message: ${err.message}");
         });
-    } catch (busiError) {
-        console.error("mifareClassic authenticateSector Promise catch busiError Code: ${(busiError as Businsess).code}, " +
-            "message: ${(busiError as Businsess).message}");
+    } catch (businessError) {
+        console.error("mifareClassic authenticateSector Promise catch businessError Code: ${(businessError as Businsess).code}, " +
+            "message: ${(businessError as Businsess).message}");
     }
 }
 ```
@@ -1083,13 +1110,15 @@ authenticateSector(sectorIndex: number, key: number[], isKeyA: boolean, callback
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+| 201  | Permission denied. |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | Tag running state is abnormal in service. |
 | 3100204 | Tag I/O operation failed. |
 
 **示例：**
 ```js
-import tag from '@ohos.nfc.tag';
-import {BusinessError} from '@ohos.base';
+import { tag } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'mifareClassic' correctly.
 
@@ -1112,9 +1141,9 @@ function nfcTechDemo() {
                 console.log("mifareClassic authenticateSector AsyncCallback success.");
             }
         });
-    } catch (busiError) {
-        console.error("mifareClassic authenticateSector AsyncCallback catch Code: ${(busiError as Businsess).code}, " +
-            "message: ${(busiError as Businsess).message}");
+    } catch (businessError) {
+        console.error("mifareClassic authenticateSector AsyncCallback catch Code: ${(businessError as Businsess).code}, " +
+            "message: ${(businessError as Businsess).message}");
     }
 }
 ```
@@ -1149,14 +1178,16 @@ readSingleBlock(blockIndex: number): Promise\<number[]>
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+| 201  | Permission denied. |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | Tag running state is abnormal in service. |
 | 3100204 | Tag I/O operation failed. |
 
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
-import {BusinessError} from '@ohos.base';
+import { tag } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'mifareClassic' correctly.
 
@@ -1176,9 +1207,9 @@ function nfcTechDemo() {
         }).catch((err : BusinessError)=> {
             console.error("mifareClassic readSingleBlock Promise errCode: ${err.code}, message: ${err.message}");
         });
-    } catch (busiError) {
-        console.error("mifareClassic readSingleBlock Promise catch busiError Code: ${(busiError as Businsess).code}, " +
-            "message: ${(busiError as Businsess).message}");
+    } catch (businessError) {
+        console.error("mifareClassic readSingleBlock Promise catch businessError Code: ${(businessError as Businsess).code}, " +
+            "message: ${(businessError as Businsess).message}");
     }
 }
 ```
@@ -1208,14 +1239,16 @@ readSingleBlock(blockIndex: number, callback: AsyncCallback\<number[]>): void
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+| 201  | Permission denied. |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | Tag running state is abnormal in service. |
 | 3100204 | Tag I/O operation failed. |
 
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
-import {BusinessError} from '@ohos.base';
+import { tag } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'mifareClassic' correctly.
 
@@ -1237,9 +1270,9 @@ function nfcTechDemo() {
                 console.log("mifareClassic readSingleBlock AsyncCallback data: " + data);
             }
         });
-    } catch (busiError) {
-        console.error("mifareClassic readSingleBlock AsyncCallback catch busiError Code: " + 
-        " ${(busiError as Businsess).code}, message: ${(busiError as Businsess).message}");
+    } catch (businessError) {
+        console.error("mifareClassic readSingleBlock AsyncCallback catch businessError Code: " + 
+        " ${(businessError as Businsess).code}, message: ${(businessError as Businsess).message}");
     }
 }
 ```
@@ -1275,14 +1308,16 @@ writeSingleBlock(blockIndex: number, data: number[]): Promise\<void>
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+| 201  | Permission denied. |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | Tag running state is abnormal in service. |
 | 3100204 | Tag I/O operation failed. |
 
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
-import {BusinessError} from '@ohos.base';
+import { tag } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'mifareClassic' correctly.
 
@@ -1304,9 +1339,9 @@ function nfcTechDemo() {
         }).catch((err : BusinessError)=> {
             console.error("mifareClassic writeSingleBlock Promise errCode: ${err.code}, message: ${err.message}");
         });
-    } catch (busiError) {
-        console.error("mifareClassic writeSingleBlock Promise catch busiError Code: ${(busiError as Businsess).code}, "
-        + "message: ${(busiError as Businsess).message}");
+    } catch (businessError) {
+        console.error("mifareClassic writeSingleBlock Promise catch businessError Code: ${(businessError as Businsess).code}, "
+        + "message: ${(businessError as Businsess).message}");
     }
 }
 ```
@@ -1337,14 +1372,16 @@ writeSingleBlock(blockIndex: number, data: number[], callback: AsyncCallback\<vo
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+| 201  | Permission denied. |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | Tag running state is abnormal in service. |
 | 3100204 | Tag I/O operation failed. |
 
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
-import {BusinessError} from '@ohos.base';
+import { tag } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'mifareClassic' correctly.
 
@@ -1369,9 +1406,9 @@ function nfcTechDemo() {
                 console.log("mifareClassic writeSingleBlock AsyncCallback success.");
             }
         });
-    } catch (busiError) {
-        console.error("mifareClassic writeSingleBlock AsyncCallback catch Code: ${(busiError as Businsess).code}, " +
-            "message: ${(busiError as Businsess).message}");
+    } catch (businessError) {
+        console.error("mifareClassic writeSingleBlock AsyncCallback catch Code: ${(businessError as Businsess).code}, " +
+            "message: ${(businessError as Businsess).message}");
     }
 }
 ```
@@ -1407,14 +1444,16 @@ incrementBlock(blockIndex: number, value: number): Promise\<void>
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+| 201  | Permission denied. |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | Tag running state is abnormal in service. |
 | 3100204 | Tag I/O operation failed. |
 
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
-import {BusinessError} from '@ohos.base';
+import { tag } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'mifareClassic' correctly.
 
@@ -1435,9 +1474,9 @@ function nfcTechDemo() {
         }).catch((err : BusinessError)=> {
             console.error("mifareClassic incrementBlock Promise err Code: ${err.code}, message: ${err.message}");
         });
-    } catch (busiError) {
-        console.error("mifareClassic incrementBlock Promise catch Code: ${(busiError as Businsess).code}, " +
-           "message: ${(busiError as Businsess).message}");
+    } catch (businessError) {
+        console.error("mifareClassic incrementBlock Promise catch Code: ${(businessError as Businsess).code}, " +
+           "message: ${(businessError as Businsess).message}");
     }
 }
 ```
@@ -1468,14 +1507,16 @@ incrementBlock(blockIndex: number, value: number, callback: AsyncCallback\<void>
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+| 201  | Permission denied. |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | Tag running state is abnormal in service. |
 | 3100204 | Tag I/O operation failed. |
 
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
-import {BusinessError} from '@ohos.base';
+import { tag } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'mifareClassic' correctly.
 
@@ -1498,9 +1539,9 @@ function nfcTechDemo() {
                 console.log("mifareClassic incrementBlock AsyncCallback success.");
             }
         });
-    } catch (busiError) {
-        console.error("mifareClassic incrementBlock AsyncCallback catch busiError Code: ${(busiError as Businsess).code}, " +
-            "message: ${(busiError as Businsess).message}");
+    } catch (businessError) {
+        console.error("mifareClassic incrementBlock AsyncCallback catch businessError Code: ${(businessError as Businsess).code}, " +
+            "message: ${(businessError as Businsess).message}");
     }
 }
 ```
@@ -1536,14 +1577,16 @@ decrementBlock(blockIndex: number, value: number): Promise\<void>
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+| 201  | Permission denied. |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | Tag running state is abnormal in service. |
 | 3100204 | Tag I/O operation failed. |
 
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
-import {BusinessError} from '@ohos.base';
+import { tag } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'mifareClassic' correctly.
 
@@ -1564,9 +1607,9 @@ function nfcTechDemo() {
         }).catch((err : BusinessError)=> {
             console.error("mifareClassic decrementBlock Promise errCode: ${err.code}, message: ${err.message}");
         });
-    } catch (busiError) {
-        console.error("mifareClassic decrementBlock Promise catch busiError: Code: ${(busiError as Businsess).code}, " +
-            "message: ${(busiError as Businsess).message}");
+    } catch (businessError) {
+        console.error("mifareClassic decrementBlock Promise catch businessError: Code: ${(businessError as Businsess).code}, " +
+            "message: ${(businessError as Businsess).message}");
     }
 }
 ```
@@ -1597,14 +1640,16 @@ decrementBlock(blockIndex: number, value: number, callback: AsyncCallback\<void>
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+| 201  | Permission denied. |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | Tag running state is abnormal in service. |
 | 3100204 | Tag I/O operation failed. |
 
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
-import {BusinessError} from '@ohos.base';
+import { tag } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'mifareClassic' correctly.
 
@@ -1628,9 +1673,9 @@ function nfcTechDemo() {
                 console.log("mifareClassic decrementBlock AsyncCallback success.");
             }
         });
-    } catch (busiError) {
-        console.error("mifareClassic decrementBlock AsyncCallback catch Code: ${(busiError as Businsess).code}, " +
-          "message: ${(busiError as Businsess).message}");
+    } catch (businessError) {
+        console.error("mifareClassic decrementBlock AsyncCallback catch Code: ${(businessError as Businsess).code}, " +
+          "message: ${(businessError as Businsess).message}");
     }
 }
 ```
@@ -1665,14 +1710,16 @@ transferToBlock(blockIndex: number): Promise\<void>
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+| 201  | Permission denied. |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | Tag running state is abnormal in service. |
 | 3100204 | Tag I/O operation failed. |
 
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
-import {BusinessError} from '@ohos.base';
+import { tag } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'mifareClassic' correctly.
 
@@ -1692,9 +1739,9 @@ function nfcTechDemo() {
         }).catch((err : BusinessError)=> {
             console.error("mifareClassic transferToBlock Promise err Code: ${err.code}, message: ${err.message}");
         });
-    } catch (busiError) {
-        console.error("mifareClassic transferToBlock Promise catch Code: ${(busiError as Businsess).code}, " +
-            "message: ${(busiError as Businsess).message}");
+    } catch (businessError) {
+        console.error("mifareClassic transferToBlock Promise catch Code: ${(businessError as Businsess).code}, " +
+            "message: ${(businessError as Businsess).message}");
     }
 }
 ```
@@ -1724,14 +1771,16 @@ transferToBlock(blockIndex: number, callback: AsyncCallback\<void>): void
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+| 201  | Permission denied. |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | Tag running state is abnormal in service. |
 | 3100204 | Tag I/O operation failed. |
 
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
-import {BusinessError} from '@ohos.base';
+import { tag } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'mifareClassic' correctly.
 
@@ -1754,9 +1803,9 @@ function nfcTechDemo() {
                 console.log("mifareClassic transferToBlock AsyncCallback success.");
             }
         });
-    } catch (busiError) {
-        console.error("mifareClassic transferToBlock AsyncCallback catch Code: ${(busiError as Businsess).code}, " +
-            "message: ${(busiError as Businsess).message}");
+    } catch (businessError) {
+        console.error("mifareClassic transferToBlock AsyncCallback catch Code: ${(businessError as Businsess).code}, " +
+            "message: ${(businessError as Businsess).message}");
     }
 }
 ```
@@ -1791,14 +1840,16 @@ restoreFromBlock(blockIndex: number): Promise\<void>
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+| 201  | Permission denied. |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | Tag running state is abnormal in service. |
 | 3100204 | Tag I/O operation failed. |
 
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
-import {BusinessError} from '@ohos.base';
+import { tag } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'mifareClassic' correctly.
 
@@ -1818,9 +1869,9 @@ function nfcTechDemo() {
         }).catch((err : BusinessError)=> {
             console.error("mifareClassic restoreFromBlock Promise errCode: ${err.code}, message: ${err.message}");
         });
-    } catch (busiError) {
-        console.error("mifareClassic restoreFromBlock Promise catch busiError Code: ${(busiError as Businsess).code}," +
-            " message: ${(busiError as Businsess).message}");
+    } catch (businessError) {
+        console.error("mifareClassic restoreFromBlock Promise catch businessError Code: ${(businessError as Businsess).code}," +
+            " message: ${(businessError as Businsess).message}");
     }
 }
 ```
@@ -1850,14 +1901,16 @@ restoreFromBlock(blockIndex: number, callback: AsyncCallback\<void>): void
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+| 201  | Permission denied. |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | Tag running state is abnormal in service. |
 | 3100204 | Tag I/O operation failed. |
 
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
-import {BusinessError} from '@ohos.base';
+import { tag } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'mifareClassic' correctly.
 
@@ -1880,9 +1933,9 @@ function nfcTechDemo() {
                 console.log("mifareClassic restoreFromBlock AsyncCallback success.");
             }
         });
-    } catch (busiError) {
-        console.error("mifareClassic restoreFromBlock AsyncCallback catch Code: ${(busiError as Businsess).code}, " +
-            "message: ${(busiError as Businsess).message}");
+    } catch (businessError) {
+        console.error("mifareClassic restoreFromBlock AsyncCallback catch Code: ${(businessError as Businsess).code}, " +
+            "message: ${(businessError as Businsess).message}");
     }
 }
 ```
@@ -1906,8 +1959,8 @@ getSectorCount(): number
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
-import {BusinessError} from '@ohos.base';
+import { tag } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'mifareClassic' correctly.
 let sectorCount : number = mifareClassic.getSectorCount();
@@ -1936,11 +1989,19 @@ getBlockCountInSector(sectorIndex: number): number
 | ------------------ | --------------------------|
 | number | 该扇区内的块数量。|
 
+**错误码：**
+
+以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
+
+| 错误码ID | 错误信息|
+| ------- | -------|
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
-import {BusinessError} from '@ohos.base';
+import { tag } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'mifareClassic' correctly.
 
@@ -1948,9 +2009,9 @@ try {
     let sectorIndex = 1; // change it to be correct index.
     let blockCnt : number = mifareClassic.getBlockCountInSector(sectorIndex);
     console.log("mifareClassic blockCnt: " + blockCnt);
-} catch (busiError) {
-    console.error("mifareClassic getBlockCountInSector catch busiError Code: ${(busiError as Businsess).code}, " +
-        "message: ${(busiError as Businsess).message}");
+} catch (businessError) {
+    console.error("mifareClassic getBlockCountInSector catch businessError Code: ${(businessError as Businsess).code}, " +
+        "message: ${(businessError as Businsess).message}");
 }
 ```
 
@@ -1973,7 +2034,7 @@ getType(): [tag.MifareClassicType](js-apis-nfcTag.md#mifareclassictype9)
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
+import { tag } from '@kit.ConnectivityKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'mifareClassic' correctly.
 let getType : tag.MifareClassicType = mifareClassic.getType();
@@ -1999,8 +2060,8 @@ getTagSize(): number
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
-import {BusinessError} from '@ohos.base';
+import { tag } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'mifareClassic' correctly.
 let tagSize : number = mifareClassic.getTagSize();
@@ -2026,8 +2087,8 @@ isEmulatedTag(): boolean
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
-import {BusinessError} from '@ohos.base';
+import { tag } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'mifareClassic' correctly.
 let isEmulatedTag : boolean = mifareClassic.isEmulatedTag();
@@ -2056,11 +2117,19 @@ getBlockIndex(sectorIndex: number): number
 | ------------------ | --------------------------|
 | number | 该扇区内的第一个块的序号，从0开始。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
+
+| 错误码ID | 错误信息|
+| ------- | -------|
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
-import {BusinessError} from '@ohos.base';
+import { tag } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'mifareClassic' correctly.
 
@@ -2068,9 +2137,9 @@ try {
     let sectorIndex = 1; // change it to be correct index.
     let blockIndex : number = mifareClassic.getBlockIndex(sectorIndex);
     console.log("mifareClassic blockIndex: " + blockIndex);
-} catch (busiError) {
-    console.error("mifareClassic getBlockIndex catch busiError Code: ${(busiError as Businsess).code}, " +
-        "message: ${(busiError as Businsess).message}");
+} catch (businessError) {
+    console.error("mifareClassic getBlockIndex catch businessError Code: ${(businessError as Businsess).code}, " +
+        "message: ${(businessError as Businsess).message}");
 }
 ```
 
@@ -2096,11 +2165,19 @@ getSectorIndex(blockIndex: number): number
 | ------------------ | --------------------------|
 | number | 扇区序号，从0开始。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
+
+| 错误码ID | 错误信息|
+| ------- | -------|
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
-import {BusinessError} from '@ohos.base';
+import { tag } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'mifareClassic' correctly.
 
@@ -2108,9 +2185,9 @@ try {
     let blockIndex = 1; // change it to be correct index.
     let sectorIndex : number = mifareClassic.getSectorIndex(blockIndex);
     console.log("mifareClassic sectorIndex: " + sectorIndex);
-} catch (busiError) {
-    console.error("mifareClassic getSectorIndex catch busiError Code: ${(busiError as Businsess).code}, " +
-       "message: ${(busiError as Businsess).message}");
+} catch (businessError) {
+    console.error("mifareClassic getSectorIndex catch businessError Code: ${(businessError as Businsess).code}, " +
+       "message: ${(businessError as Businsess).message}");
 }
 ```
 
@@ -2152,6 +2229,8 @@ readMultiplePages(pageIndex: number): Promise\<number[]>
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+| 201  | Permission denied. |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | Tag running state is abnormal in service. |
 | 3100204 | Tag I/O operation failed. |
 
@@ -2159,8 +2238,8 @@ readMultiplePages(pageIndex: number): Promise\<number[]>
 
 ```js
 
-import tag from '@ohos.nfc.tag';
-import {BusinessError} from '@ohos.base';
+import { tag } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'mifareUltralight' correctly.
 
@@ -2180,9 +2259,9 @@ function nfcTechDemo() {
         }).catch((err : BusinessError)=> {
             console.error("mifareUltralight readMultiplePages Promise Code: ${err.code}, message: ${err.message}");
         });
-    } catch (busiError) {
-        console.error("mifareUltralight readMultiplePages Promise catch busiError" +
-            " Code: ${(busiError as Businsess).code}, message: ${(busiError as Businsess).message}");
+    } catch (businessError) {
+        console.error("mifareUltralight readMultiplePages Promise catch businessError" +
+            " Code: ${(businessError as Businsess).code}, message: ${(businessError as Businsess).message}");
     }
 }
 ```
@@ -2212,14 +2291,16 @@ readMultiplePages(pageIndex: number, callback: AsyncCallback\<number[]>): void
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+| 201  | Permission denied. |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | Tag running state is abnormal in service. |
 | 3100204 | Tag I/O operation failed. |
 
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
-import {BusinessError} from '@ohos.base';
+import { tag } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'mifareUltralight' correctly.
 
@@ -2241,9 +2322,9 @@ function nfcTechDemo() {
                 console.log("mifareUltralight readMultiplePages AsyncCallback data: " + data);
             }
         });
-    } catch (busiError) {
-        console.error("mifareUltralight readMultiplePages AsyncCallback catch Code: ${(busiError as Businsess).code}, " +
-            "message: ${(busiError as Businsess).message}");
+    } catch (businessError) {
+        console.error("mifareUltralight readMultiplePages AsyncCallback catch Code: ${(businessError as Businsess).code}, " +
+            "message: ${(businessError as Businsess).message}");
     }
 }
 ```
@@ -2279,14 +2360,16 @@ writeSinglePage(pageIndex: number, data: number[]): Promise\<void>
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+| 201  | Permission denied. |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | Tag running state is abnormal in service. |
 | 3100204 | Tag I/O operation failed. |
 
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
-import {BusinessError} from '@ohos.base';
+import { tag } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'mifareUltralight' correctly.
 
@@ -2307,9 +2390,9 @@ function nfcTechDemo() {
         }).catch((err : BusinessError)=> {
             console.error("mifareUltralight writeSinglePage Promise err Code: ${err.code}, message: ${err.message}");
         });
-    } catch (busiError) {
-        console.error("mifareUltralight writeSinglePage Promise catch Code: ${(busiError as Businsess).code}, " +
-            "message: ${(busiError as Businsess).message}");
+    } catch (businessError) {
+        console.error("mifareUltralight writeSinglePage Promise catch Code: ${(businessError as Businsess).code}, " +
+            "message: ${(businessError as Businsess).message}");
     }
 }
 ```
@@ -2340,14 +2423,16 @@ writeSinglePage(pageIndex: number, data: number[], callback: AsyncCallback\<void
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+| 201  | Permission denied. |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | Tag running state is abnormal in service. |
 | 3100204 | Tag I/O operation failed. |
 
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
-import {BusinessError} from '@ohos.base';
+import { tag } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'mifareUltralight' correctly.
 
@@ -2371,9 +2456,9 @@ function nfcTechDemo() {
                 console.log("mifareUltralight writeSinglePage AsyncCallback success.");
             }
         });
-    } catch (busiError) {
-        console.error("mifareUltralight writeSinglePage AsyncCallback catch Code: ${(busiError as Businsess).code}, " +
-            "message: ${(busiError as Businsess).message}");
+    } catch (businessError) {
+        console.error("mifareUltralight writeSinglePage AsyncCallback catch Code: ${(businessError as Businsess).code}, " +
+            "message: ${(businessError as Businsess).message}");
     }
 }
 ```
@@ -2397,7 +2482,7 @@ getType(): [tag.MifareUltralightType](js-apis-nfcTag.md#mifareultralighttype9)
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
+import { tag } from '@kit.ConnectivityKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'mifareUltralight' correctly.
 let getType : tag.MifareUltralightType = mifareClassic.getType();
@@ -2442,14 +2527,16 @@ format(message: [NdefMessage](#ndefmessage9)): Promise\<void>
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+| 201  | Permission denied. |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | Tag running state is abnormal in service. |
 | 3100204 | Tag I/O operation failed. |
 
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
-import {BusinessError} from '@ohos.base';
+import { tag } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'ndefFormatable' correctly.
 
@@ -2473,9 +2560,9 @@ function nfcTechDemo() {
         }).catch((err : BusinessError)=> {
             console.error("ndefFormatable format Promise err Code: ${err.code}, message: ${err.message}");
         });
-    } catch (busiError) {
-        console.error("ndefFormatable format Promise catch busiError Code: ${(busiError as Businsess).code}, " +
-            "message: ${(busiError as Businsess).message}");
+    } catch (businessError) {
+        console.error("ndefFormatable format Promise catch businessError Code: ${(businessError as Businsess).code}, " +
+            "message: ${(businessError as Businsess).message}");
     }
 }
 ```
@@ -2510,14 +2597,16 @@ format(message: [NdefMessage](#ndefmessage9), callback: AsyncCallback\<void>): v
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+| 201  | Permission denied. |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | Tag running state is abnormal in service. |
 | 3100204 | Tag I/O operation failed. |
 
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
-import {BusinessError} from '@ohos.base';
+import { tag } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'ndefFormatable' correctly.
 
@@ -2542,9 +2631,9 @@ function nfcTechDemo() {
                 console.log("ndefFormatable format AsyncCallback success.");
             }
         });
-    } catch (busiError) {
-        console.log("ndefFormatable format AsyncCallback catch Code: ${(busiError as Businsess).code}, " +
-            "message: ${(busiError as Businsess).message}");
+    } catch (businessError) {
+        console.log("ndefFormatable format AsyncCallback catch Code: ${(businessError as Businsess).code}, " +
+            "message: ${(businessError as Businsess).message}");
     }
 }
 ```
@@ -2579,14 +2668,16 @@ formatReadOnly(message: [NdefMessage](#ndefmessage9)): Promise\<void>
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+| 201  | Permission denied. |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | Tag running state is abnormal in service. |
 | 3100204 | Tag I/O operation failed. |
 
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
-import {BusinessError} from '@ohos.base';
+import { tag } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'ndefFormatable' correctly.
 
@@ -2610,9 +2701,9 @@ function nfcTechDemo() {
         }).catch((err : BusinessError)=> {
             console.log("ndefFormatable formatReadOnly Promise Code: ${err.code}, message: ${err.message}");
         });
-    } catch (busiError) {
-        console.error("ndefFormatable formatReadOnly Promise catch Code: ${(busiError as Businsess).code}, " +
-            "message: ${(busiError as Businsess).message}");
+    } catch (businessError) {
+        console.error("ndefFormatable formatReadOnly Promise catch Code: ${(businessError as Businsess).code}, " +
+            "message: ${(businessError as Businsess).message}");
     }
 }
 ```
@@ -2647,14 +2738,16 @@ formatReadOnly(message: [NdefMessage](#ndefmessage9), callback: AsyncCallback\<v
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+| 201  | Permission denied. |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 3100201 | Tag running state is abnormal in service. |
 | 3100204 | Tag I/O operation failed. |
 
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
-import {BusinessError} from '@ohos.base';
+import { tag } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', obtains the 'ndefFormatable' correctly.
 
@@ -2680,9 +2773,9 @@ function nfcTechDemo() {
                 console.log("ndefFormatable formatReadOnly AsyncCallback success.");
             }
         });
-    } catch (busiError) {
-        console.error("ndefFormatable formatReadOnly AsyncCallback catch Code: ${(busiError as Businsess).code}, " +
-            "message: ${(busiError as Businsess).message}");
+    } catch (businessError) {
+        console.error("ndefFormatable formatReadOnly AsyncCallback catch Code: ${(businessError as Businsess).code}, " +
+            "message: ${(businessError as Businsess).message}");
     }
 }
 ```

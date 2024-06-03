@@ -471,7 +471,7 @@ save(option: DocumentSaveOptions, callback: AsyncCallback&lt;Array&lt;string&gt;
 
 **注意**：此接口返回的uri数组的具体使用方式参见用户文件uri介绍中的[文档类uri的使用方式](../../file-management/user-file-uri-intro.md#文档类uri的使用方式)。
 
-**元服务API:** 从API version 11开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -806,35 +806,41 @@ async function example18() {
 
 枚举，可选择的媒体文件类型。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.FileManagement.UserFileService
 
 | 名称  |  值 |  说明 |
 | ----- |  ---- | ---- |
-| IMAGE_TYPE  |  'image/*' | 图片类型 <br>**元服务API:** 从API version 11开始，该接口支持在元服务中使用。 |
-| VIDEO_TYPE |  'video/*' | 视频类型 <br>**元服务API:** 从API version 11开始，该接口支持在元服务中使用。 |
-| IMAGE_VIDEO_TYPE |  '\*/*' | 图片和视频类型 <br>**元服务API:** 从API version 11开始，该接口支持在元服务中使用。 |
+| IMAGE_TYPE  |  'image/*' | 图片类型  |
+| VIDEO_TYPE |  'video/*' | 视频类型  |
+| IMAGE_VIDEO_TYPE |  '\*/*' | 图片和视频类型  |
 
 ## PhotoSelectOptions
 
 图库选择选项。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.FileManagement.UserFileService
 
 | 名称                    | 类型                | 必填 | 说明                          |
 | ----------------------- | ------------------- | ---- | -------------------------------- |
-| MIMEType              | [PhotoViewMIMETypes](#photoviewmimetypes)   | 否   | 可选择的媒体文件类型，若无此参数，则默认为图片和视频类型 <br>**元服务API:** 从API version 11开始，该接口支持在元服务中使用。 |
-| maxSelectNumber       | number | 否   | 选择媒体文件数量的最大值(默认值为50，最大值为500)     <br>**元服务API:** 从API version 11开始，该接口支持在元服务中使用。 |
+| MIMEType              | [PhotoViewMIMETypes](#photoviewmimetypes)   | 否   | 可选择的媒体文件类型，若无此参数，则默认为图片和视频类型  |
+| maxSelectNumber       | number | 否   | 选择媒体文件数量的最大值(默认值为50，最大值为500)      |
 
 ## PhotoSelectResult
 
 返回图库选择后的结果集。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.FileManagement.UserFileService
 
 | 名称                    | 类型                | 只读 | 可写 | 说明                           |
 | ----------------------- | ------------------- | ---- | ---- | ------------------------------ |
-| photoUris        | Array&lt;string&gt;    | 是   | 是   | 返回图库选择后的媒体文件的uri数组，此uri数组只能通过临时授权的方式调用[photoAccessHelper.getAssets接口](../apis-media-library-kit/js-apis-photoAccessHelper.md#getassets)去使用，具体使用方式参见用户文件uri介绍中的[媒体文件uri的使用方式](../../file-management/user-file-uri-intro.md#媒体文件uri的使用方式)。 <br>**元服务API:** 从API version 11开始，该接口支持在元服务中使用。 |
-| isOriginalPhoto        | boolean    | 是   | 是   | 返回图库选择后的媒体文件是否为原图。true为原图，false不是原图。 <br>**元服务API:** 从API version 11开始，该接口支持在元服务中使用。 |
+| photoUris        | Array&lt;string&gt;    | 是   | 是   | 返回图库选择后的媒体文件的uri数组，此uri数组只能通过临时授权的方式调用[photoAccessHelper.getAssets接口](../apis-media-library-kit/js-apis-photoAccessHelper.md#getassets)去使用，具体使用方式参见用户文件uri介绍中的[媒体文件uri的使用方式](../../file-management/user-file-uri-intro.md#媒体文件uri的使用方式)。  |
+| isOriginalPhoto        | boolean    | 是   | 是   | 返回图库选择后的媒体文件是否为原图。true为原图，false不是原图。  |
 
 ## PhotoSaveOptions
 
@@ -850,28 +856,42 @@ async function example18() {
 
 枚举，picker选择的文档类型。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.FileManagement.UserFileService.FolderSelection
 
 | 名称  |  值 |  说明 |
 | ----- |  ---- | ---- |
-| FILE  | 0  | 文件类型 <br>**元服务API:** 从API version 12开始，该接口支持在元服务中使用。 |
-| FOLDER | 1  | 文件夹类型 <br>**元服务API:** 从API version 12开始，该接口支持在元服务中使用。 |
-| MIXED | 2  | 文件和文件夹混合类型 <br>**元服务API:** 从API version 12开始，该接口支持在元服务中使用。 |
+| FILE  | 0  | 文件类型  |
+| FOLDER | 1  | 文件夹类型  |
+| MIXED | 2  | 文件和文件夹混合类型  |
 
 ## DocumentSelectOptions
 
 文档选择选项。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.FileManagement.UserFileService
 
 | 名称                    | 类型                                          | 必填 | 说明                                       |
 | :---------------------- |---------------------------------------------| ---- |------------------------------------------|
-| maxSelectNumber<sup>10+</sup>       | number                                      | 否   | 选择文件最大个数，上限500，有效值范围1-500（选择目录仅对具有该系统能力的设备开放。且目录选择的最大个数为1）。默认值是1。**系统能力：** SystemCapability.FileManagement.UserFileService.FolderSelection <br>**元服务API:** 从API version 12开始，该接口支持在元服务中使用。 |
-| defaultFilePathUri<sup>10+</sup>    | string                                      | 否   | 指定选择的文件或者目录路径                           <br>**元服务API:** 从API version 12开始，该接口支持在元服务中使用。 |
-| fileSuffixFilters<sup>10+</sup>     | Array&lt;string&gt;                         | 否   | 选择文件的后缀类型，若选择项存在多个后缀名，则每一个后缀名之间用英文逗号进行分隔，后缀类型名添加不能超过100。仅对具有该系统能力的设备开放。**系统能力：** SystemCapability.FileManagement.UserFileService.FolderSelection  <br>**元服务API:** 从API version 12开始，该接口支持在元服务中使用。 |
-| selectMode<sup>11+</sup>         | [DocumentSelectMode](#documentselectmode11) | 否   | 支持选择的资源类型，比如：文件、文件夹和二者混合，仅对具有该系统能力的设备开放，默认值是文件类型。**系统能力：** SystemCapability.FileManagement.UserFileService.FolderSelection <br>**元服务API:** 从API version 12开始，该接口支持在元服务中使用。 |
-| authMode<sup>12+</sup>    | boolean                              | 否   | 拉起授权picker，默认为false（非授权模式）。当authMode为true时为授权模式，defaultFilePathUri必填，表明待授权uri。仅对具有该系统能力的设备开放，**系统能力：** SystemCapability.FileManagement.UserFileService.FolderSelection <br>**元服务API:** 从API version 12开始，该接口支持在元服务中使用。 |     
+| maxSelectNumber<sup>10+</sup>       | number                                      | 否   | 选择文件最大个数，上限500，有效值范围1-500（选择目录仅对具有该系统能力的设备开放。且目录选择的最大个数为1）。默认值是1。**系统能力：** SystemCapability.FileManagement.UserFileService  |
+| defaultFilePathUri<sup>10+</sup>    | string                                      | 否   | 指定选择的文件或者目录路径                            |
+| fileSuffixFilters<sup>10+</sup>     | Array&lt;string&gt;                         | 否   | 选择文件的后缀类型，若选择项存在多个后缀名，则每一个后缀名之间用英文逗号进行分隔，后缀类型名添加不能超过100。仅对具有该系统能力的设备开放。**系统能力：** SystemCapability.FileManagement.UserFileService   |
+| selectMode<sup>11+</sup>         | [DocumentSelectMode](#documentselectmode11) | 否   | 支持选择的资源类型，比如：文件、文件夹和二者混合，仅对具有该系统能力的设备开放，默认值是文件类型。**系统能力：** SystemCapability.FileManagement.UserFileService.FolderSelection  |
+| authMode<sup>12+</sup>    | boolean                              | 否   | 拉起授权picker，默认为false（非授权模式）。当authMode为true时为授权模式，defaultFilePathUri必填，表明待授权uri。仅对具有该系统能力的设备开放，**系统能力：** SystemCapability.FileManagement.UserFileService.FolderSelection  |     
 
+## DocumentPickerMode<sup>12+</sup>
+
+枚举，picker选择的文档类型。
+
+**系统能力：** SystemCapability.FileManagement.UserFileService.FolderSelection
+
+| 名称  |  值 |  说明 |
+| ----- |  ---- | ---- |
+| DEFAULT  | 0  | 标准模式 |
+| DOWNLOAD | 1  | 下载模式 |
 
 ## DocumentSaveOptions
 
@@ -884,12 +904,16 @@ async function example18() {
 | newFileNames            | Array&lt;string&gt;    | 否   | 拉起documentPicker进行保存的文件名，若无此参数，则默认需要用户自行输入 <br>**元服务API:** 从API version 12开始，该接口支持在元服务中使用。 |
 | defaultFilePathUri<sup>10+</sup>    | string  | 否   | 指定保存的文件或者目录路径 <br>**元服务API:** 从API version 12开始，该接口支持在元服务中使用。 |
 | fileSuffixChoices<sup>10+</sup>     | Array&lt;string&gt; | 否   | 保存文件的后缀类型 <br>**元服务API:** 从API version 12开始，该接口支持在元服务中使用。 |
+| pickerMode     | [DocumentPickerMode](#documentpickermode12) | 否   | 拉起picker的类型, 默认为DEFAULT。当pickerMode设置为DOWNLOAD时，用户配置的参数newFileNames、defaultFilePathUri和fileSuffixChoices将不会生效 |
 
 ## AudioSelectOptions
 
-音频选择选项，目前不支持参数配置。
+音频选择选项。
 
 **系统能力：** SystemCapability.FileManagement.UserFileService
+| 名称                    | 类型                                          | 必填 | 说明                                       |
+| :---------------------- |---------------------------------------------| ---- |------------------------------------------|
+| maxSelectNumber       | number                                      | 否   | 选择文件最大个数，默认值为1，上限500，有效值范围1-500 |
 
 ## AudioSaveOptions
 

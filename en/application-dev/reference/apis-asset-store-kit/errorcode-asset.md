@@ -8,7 +8,7 @@
 
 **Error Message**
 
-The ASSET Service is unavailable.
+The ASSET service is unavailable.
 
 **Possible Cause**
 
@@ -22,7 +22,7 @@ Re-initiate a request for processing the asset.
 
 **Error Message**
 
-The queried Asset can not be found.
+The asset is not found.
 
 **Possible Cause**
 
@@ -38,7 +38,7 @@ The queried Asset can not be found.
 
 **Error Message**
 
-The Asset already exists.
+The asset already exists.
 
 **Possible Cause**
 
@@ -55,7 +55,7 @@ Check whether the alias of the asset to add is correct. If the alias is incorrec
 
 **Error Message**
 
-The access to Asset is denied.
+Access to the asset is denied.
 
 **Possible Cause**
 
@@ -73,7 +73,7 @@ The access to Asset is denied.
 
 **Error Message**
 
-The screen lock status mismatches.
+The screen lock status does not match.
 
 **Possible Cause**
 
@@ -103,7 +103,7 @@ Close unnecessary applications to release memory and initiate a processing reque
 
 **Error Message**
 
-The Asset is corrupted.
+The asset is corrupted.
 
 **Possible Cause**
 
@@ -117,7 +117,7 @@ Restore factory settings.
 
 **Error Message**
 
-The database operation is failed.
+The database operation failed.
 
 **Possible Cause**
 
@@ -127,11 +127,11 @@ The access to the database fails.
 
 Locate the cause of the database access failure based on error information.
 
-## 24000009 Cryptographic Operation Failed 
+## 24000009 Cryptographic Operation Failed
 
 **Error Message**
 
-The cryptography operation is failed.
+The cryptography operation failed.
 
 **Possible Cause**
 
@@ -145,7 +145,7 @@ Locate the cause of the operation failure based on error information.
 
 **Error Message**
 
-IPC communication is failed.
+IPC failed.
 
 **Possible Cause**
 
@@ -159,7 +159,7 @@ Locate the cause of the IPC failure based on error information.
 
 **Error Message**
 
-The operation of calling Bundle Manager Service is failed.
+Calling the Bundle Manager service failed.
 
 **Possible Cause**
 
@@ -173,7 +173,7 @@ Locate the cause of the exception based on error information.
 
 **Error Message**
 
-The operation of calling OS Account Service is failed.
+Calling the OS Account service failed.
 
 **Possible Cause**
 
@@ -187,7 +187,7 @@ Locate the cause of the exception based on error information.
 
 **Error Message**
 
-The operation of calling Access Token Service is failed.
+Calling the Access Token service failed.
 
 **Possible Cause**
 
@@ -201,7 +201,7 @@ Locate the cause of the exception based on error information.
 
 **Error Message**
 
-The operation of file is failed.
+The file operation failed.
 
 **Possible Cause**
 
@@ -216,7 +216,7 @@ Restart the device. If the problem persists, restore factory settings of the dev
 
 **Error Message**
 
-The operation of getting system time is failed.
+Getting the system time failed.
 
 **Possible Cause**
 

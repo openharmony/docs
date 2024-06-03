@@ -120,9 +120,9 @@ Swiper(this.swiperController) {
 
 ## Navigation Dots Indicator
 
-The **\<Swiper>** component provides a navigation dots indicator, which is displayed in the bottom center of the component. You can customize the position and style of the navigation dots indicator through the **indicatorStyle **attribute.
+The **\<Swiper>** component provides a navigation dots indicator, which is displayed in the bottom center of the component. You can customize the position and style of the navigation dots indicator through the **indicator**attribute.
 
-With the **indicatorStyle** attribute, you can set the position of the navigation dots indicator relative to the edges of the **\<Swiper>** component, in addition to the size, color, and mask of each navigation dot as well as the color of the selected navigation dot.
+With the **indicator** attribute, you can set the position of the navigation dots indicator relative to the edges of the **\<Swiper>** component, in addition to the size, color, and mask of each navigation dot as well as the color of the selected navigation dot.
 
 - Example of using the navigation dots indicator in its default style:
 
@@ -158,7 +158,6 @@ Swiper(this.swiperController) {
  
 
 ```ts
-let swco:Record<string, number | Color> = {'size':30,'left':0,'color':Color.Red}
 Swiper(this.swiperController) {
   Text('0')
     .width('90%')

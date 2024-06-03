@@ -10,7 +10,7 @@ FormProvider模块提供了卡片提供方相关接口的能力，开发者在�
 ## 导入模块
 
 ```ts
-import formProvider from '@ohos.app.form.formProvider';
+import { formProvider } from '@kit.FormKit';
 ```
 
 
@@ -37,8 +37,8 @@ requestPublishForm(want: Want, formBindingData: formBindingData.FormBindingData,
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000 | An internal functional error occurred. |
 
@@ -47,10 +47,9 @@ requestPublishForm(want: Want, formBindingData: formBindingData.FormBindingData,
 **示例：**
 
 ```ts
-import formBindingData from '@ohos.app.form.formBindingData';
-import Want from '@ohos.app.ability.Want';
-import Base from '@ohos.base';
-import formProvider from '@ohos.app.form.formProvider';
+import { formBindingData, formProvider } from '@kit.FormKit';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let want: Want = {
   abilityName: 'FormAbility',
@@ -66,15 +65,15 @@ try {
     'time': '22:00'
   }
   let obj: formBindingData.FormBindingData = formBindingData.createFormBindingData(param);
-  formProvider.requestPublishForm(want, obj, (error: Base.BusinessError, data: string) => {
+  formProvider.requestPublishForm(want, obj, (error: BusinessError, data: string) => {
     if (error) {
-      console.error(`callback error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message})`);
+      console.error(`callback error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message})`);
       return;
     }
     console.log(`formProvider requestPublishForm, form ID is: ${JSON.stringify(data)}`);
   });
 } catch (error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message})`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message})`);
 }
 ```
 
@@ -100,8 +99,8 @@ requestPublishForm(want: Want, callback: AsyncCallback&lt;string&gt;): void
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000 | An internal functional error occurred. |
 
@@ -110,9 +109,9 @@ requestPublishForm(want: Want, callback: AsyncCallback&lt;string&gt;): void
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
-import Base from '@ohos.base';
-import formProvider from '@ohos.app.form.formProvider';
+import { formProvider } from '@kit.FormKit';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let want: Want = {
   abilityName: 'FormAbility',
@@ -123,7 +122,7 @@ let want: Want = {
   }
 };
 try {
-  formProvider.requestPublishForm(want, (error: Base.BusinessError, data: string) => {
+  formProvider.requestPublishForm(want, (error: BusinessError, data: string) => {
     if (error) {
       console.error(`callback error, code: ${error.code}, message: ${error.message})`);
       return;
@@ -131,7 +130,7 @@ try {
     console.log(`formProvider requestPublishForm, form ID is: ${JSON.stringify(data)}`);
   });
 } catch (error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message})`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message})`);
 }
 ```
 
@@ -163,8 +162,8 @@ requestPublishForm(want: Want, formBindingData?: formBindingData.FormBindingData
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000 | An internal functional error occurred. |
 
@@ -173,9 +172,9 @@ requestPublishForm(want: Want, formBindingData?: formBindingData.FormBindingData
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
-import Base from '@ohos.base';
-import formProvider from '@ohos.app.form.formProvider';
+import { formProvider } from '@kit.FormKit';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let want: Want = {
   abilityName: 'FormAbility',
@@ -188,11 +187,11 @@ let want: Want = {
 try {
   formProvider.requestPublishForm(want).then((data: string) => {
     console.log(`formProvider requestPublishForm success, form ID is : ${JSON.stringify(data)}`);
-  }).catch((error: Base.BusinessError) => {
+  }).catch((error: BusinessError) => {
     console.error(`promise error, code: ${error.code}, message: ${error.message})`);
   });
 } catch (error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message})`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message})`);
 }
 ```
 
@@ -216,9 +215,9 @@ isRequestPublishFormSupported(callback: AsyncCallback&lt;boolean&gt;): void
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 202 | If the application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
+| 202 | The application is not a system application. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
 | 16501000 | An internal functional error occurred. |
 
 以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
@@ -226,12 +225,12 @@ isRequestPublishFormSupported(callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
-import Base from '@ohos.base';
-import formProvider from '@ohos.app.form.formProvider';
+import { formProvider } from '@kit.FormKit';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  formProvider.isRequestPublishFormSupported((error: Base.BusinessError, isSupported: boolean) => {
+  formProvider.isRequestPublishFormSupported((error: BusinessError, isSupported: boolean) => {
     if (error) {
       console.error(`callback error, code: ${error.code}, message: ${error.message})`);
     } else {
@@ -245,7 +244,7 @@ try {
           }
         };
         try {
-          formProvider.requestPublishForm(want, (error: Base.BusinessError, data: string) => {
+          formProvider.requestPublishForm(want, (error: BusinessError, data: string) => {
             if (error) {
               console.error(`callback error, code: ${error.code}, message: ${error.message})`);
               return;
@@ -253,13 +252,13 @@ try {
             console.log(`formProvider requestPublishForm, form ID is: ${JSON.stringify(data)}`);
           });
         } catch (error) {
-          console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message})`);
+          console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message})`);
         }
       }
     }
   });
 } catch (error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message})`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message})`);
 }
 ```
 
@@ -283,8 +282,8 @@ isRequestPublishFormSupported(): Promise&lt;boolean&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 202 | If the application is not a system application. |
-| 16500050 | An IPC connection error happened. |
+| 202 | The application is not a system application. |
+| 16500050 | IPC connection error. |
 | 16501000 | An internal functional error occurred. |
 
 以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
@@ -292,9 +291,9 @@ isRequestPublishFormSupported(): Promise&lt;boolean&gt;
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
-import Base from '@ohos.base';
-import formProvider from '@ohos.app.form.formProvider';
+import { formProvider } from '@kit.FormKit';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   formProvider.isRequestPublishFormSupported().then((isSupported: boolean) => {
@@ -310,17 +309,17 @@ try {
       try {
         formProvider.requestPublishForm(want).then((data: string) => {
           console.log(`formProvider requestPublishForm success, form ID is : ${JSON.stringify(data)}`);
-        }).catch((error: Base.BusinessError) => {
+        }).catch((error: BusinessError) => {
           console.error(`promise error, code: ${error.code}, message: ${error.message})`);
         });
       } catch (error) {
-        console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message})`);
+        console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message})`);
       }
     }
-  }).catch((error: Base.BusinessError) => {
+  }).catch((error: BusinessError) => {
     console.error(`promise error, code: ${error.code}, message: ${error.message})`);
   });
 } catch (error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message})`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message})`);
 }
 ```

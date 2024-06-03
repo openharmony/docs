@@ -36,6 +36,8 @@ Button(label: ResourceStr, options?: ButtonOptions)
 
 使用文本内容创建相应的按钮组件，此时Button无法包含子组件。
 
+文本内容默认单行显示。
+
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full

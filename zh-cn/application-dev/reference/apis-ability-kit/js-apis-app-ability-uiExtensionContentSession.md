@@ -11,7 +11,7 @@ UIExtensionContentSession是[UIExtensionAbility](js-apis-app-ability-uiExtension
 ## 导入模块
 
 ```ts
-import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
+import { UIExtensionContentSession } from '@kit.AbilityKit';
 ```
 
 ## UIExtensionContentSession.loadContent
@@ -195,7 +195,7 @@ startAbilityByType(type: string, wantParam: Record<string, Object>,
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| type | string | 是 | 显示拉起的UIExtensionAbility类型。 |
+| type | string | 是 | 显示拉起的UIExtensionAbility类型<!--Del-->，取值详见[通过startAbilityByType拉起特定场景的意图面板](../../../application-dev/application-models/start-intent-panel.md#接口说明)<!--DelEnd-->。 |
 | wantParam | Record<string, Object> | 是 | 表示扩展参数。 |
 | abilityStartCallback | [AbilityStartCallback](js-apis-inner-application-abilityStartCallback.md) | 是 | 回调函数，返回启动失败后的详细错误信息。 |
 | callback | AsyncCallback\<void> | 是 |回调函数。当启动Ability成功，err为undefined，否则为错误对象。 |
@@ -206,13 +206,8 @@ startAbilityByType(type: string, wantParam: Record<string, Object>,
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 201      | The application does not have permission to call the interface. |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 16000001 | The specified ability does not exist. |
-| 16000002 | Incorrect ability type. |
-| 16000004 | Can not start invisible component. |
 | 16000050 | Internal error. |
-| 16200001 | The caller has been released. |
 
 ## UIExtensionContentSession.startAbilityByType<sup>11+</sup>
 
@@ -227,7 +222,7 @@ startAbilityByType(type: string, wantParam: Record<string, Object>,
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| type | string | 是 | 显示拉起的UIExtensionAbility类型。 |
+| type | string | 是 | 显示拉起的UIExtensionAbility类型<!--Del-->，取值详见[通过startAbilityByType拉起特定场景的意图面板](../../../application-dev/application-models/start-intent-panel.md#接口说明)<!--DelEnd-->。 |
 | wantParam | Record<string, Object> | 是 | 表示扩展参数。 |
 | abilityStartCallback | [AbilityStartCallback](js-apis-inner-application-abilityStartCallback.md) | 是 | 回调函数，返回启动失败后的详细错误信息。 |
 
@@ -243,10 +238,68 @@ startAbilityByType(type: string, wantParam: Record<string, Object>,
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 201      | The application does not have permission to call the interface. |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 16000001 | The specified ability does not exist. |
-| 16000002 | Incorrect ability type. |
-| 16000004 | Can not start invisible component. |
 | 16000050 | Internal error. |
-| 16200001 | The caller has been released. |
+
+## UIExtensionContentSession.getUIExtensionWindowProxy<sup>12+</sup>
+
+getUIExtensionWindowProxy(): uiExtension.WindowProxy
+
+获取UIExtension窗口代理。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| uiExtension.WindowProxy | 返回UIExtension的窗口代理。 |
+
+**错误码：**
+
+以下错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 16000050 | Internal error. |
+
+**示例：**
+
+```ts
+// Index.ets
+import { UIExtensionContentSession } from '@kit.AbilityKit';
+import uiExtension from '@ohos.arkui.uiExtension';
+
+let storage = LocalStorage.getShared();
+
+@Entry(storage)
+@Component
+struct Extension {
+  @State message: string = 'EmbeddedUIExtensionAbility Index';
+  private session: UIExtensionContentSession | undefined = storage.get<UIExtensionContentSession>('session');
+  private extensionWindow: uiExtension.WindowProxy | undefined = this.session?.getUIExtensionWindowProxy();
+
+  aboutToAppear(): void {
+    this.extensionWindow?.on('windowSizeChange', (size) => {
+      console.info(`size = ${JSON.stringify(size)}`);
+    });
+    this.extensionWindow?.on('avoidAreaChange', (info) => {
+      console.info(`type = ${JSON.stringify(info.type)}, area = ${JSON.stringify(info.area)}`);
+    });
+  }
+
+  aboutToDisappear(): void {
+    this.extensionWindow?.off('windowSizeChange');
+    this.extensionWindow?.off('avoidAreaChange');
+  }
+
+  build() {
+    Column() {
+      Text(this.message)
+        .fontSize(20)
+        .fontWeight(FontWeight.Bold)
+    }
+    .width('100%')
+  }
+}
+```

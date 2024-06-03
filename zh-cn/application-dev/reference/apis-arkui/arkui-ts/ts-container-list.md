@@ -125,7 +125,7 @@ scrollBar(value: BarState)
 
 cachedCount(value: number)
 
-设置列表中ListItem/ListItemGroup的预加载数量，只在[LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md)中生效，其中ListItemGroup将作为一个整体进行计算，ListItemGroup中的所有ListItem会一次性全部加载出来。具体使用可参考[减少应用白块说明](../../../performance/arkts-performance-improvement-recommendation.md#减少应用滑动白块)。
+设置列表中ListItem/ListItemGroup的预加载数量，只在[LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md)中生效，其中ListItemGroup将作为一个整体进行计算，ListItemGroup中的所有ListItem会一次性全部加载出来。<!--Del-->具体使用可参考[减少应用白块说明](../../../performance/arkts-performance-improvement-recommendation.md#减少应用滑动白块)。<!--DelEnd-->
 
 单列模式下，会在List显示的ListItem前后各缓存cachedCount个ListItem。
 
@@ -458,6 +458,8 @@ value为false时，不启用List渐隐；value为true时，启用List渐隐。
 childrenMainSize(value: ChildrenMainSize)
 
 设置List组件的子组件在主轴方向的大小信息。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -988,12 +990,16 @@ closeAllSwipeActions(options?: [CloseSwipeActionOptions](#closeallswipeactions11
 ## OnScrollVisibleContentChangeCallback<sup>12+</sup>对象说明
 有子组件划入或划出List显示区域时触发。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ------ | ------ | ------|
 | start | [VisibleListContentInfo](#visiblelistcontentinfo12) | 是 | 当前显示界面第一个ListItem或ListItemGroup的详细信息。 |
 | end | [VisibleListContentInfo](#visiblelistcontentinfo12) | 是 | 当前显示界面最后一个ListItem或ListItemGroup的详细信息。 |
 
 ## VisibleListContentInfo<sup>12+</sup>
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ------ | ------ | ------|
@@ -1002,6 +1008,8 @@ closeAllSwipeActions(options?: [CloseSwipeActionOptions](#closeallswipeactions11
 | itemIndexInGroup | number | 否 | 如果当前可视页面的上边或下边在某个Group之中，将会显示Star或End的ListItem在Group中的索引。 |
 
 ## ListItemGroupArea<sup>12+</sup>枚举说明
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 | 名称     |  枚举值  | 描述                                       |
 | ------ | ------ | ---------------------------------------- |
@@ -1014,11 +1022,15 @@ closeAllSwipeActions(options?: [CloseSwipeActionOptions](#closeallswipeactions11
 
 维护List组件或ListItemGroup组件的子组件在主轴方向的大小信息，仅支持一对一绑定到List组件或ListItemGroup组件。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 ### constructor<sup>12+</sup>
 
 constructor(childDefaultSize: number): void
 
 ChildrenMainSize有参构造函数。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -1032,6 +1044,8 @@ ChildrenMainSize有参构造函数。
 set childDefaultSize(value: number): void
 
 修改子组件在主轴方向的默认大小。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -1059,9 +1073,11 @@ get childDefaultSize(): number
 
 ### splice<sup>12+</sup>
 
-splice(start: number, deleteCount?: number, childrenSize?: Array<number>): void
+splice(start: number, deleteCount?: number, childrenSize?: Array\<number>): void
 
 批量增删改子组件在主轴方向的大小信息。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -1069,7 +1085,7 @@ splice(start: number, deleteCount?: number, childrenSize?: Array<number>): void
 | ---- | ----------------------------- | ---- | -------------------- |
 | start | number | 是    | 从0开始计算的索引值，表示要开始修改子组件在主轴方向大小信息的位置。<br/>**说明：** <br/>1. 必须是有限的非负数值，否则抛出异常。<br/>2. 非整数会被截断为整数。<br/>3. 超过最大索引值不生效。 |
 | deleteCount | number | 否    | 从start开始删除的大小信息的数量。<br/>**说明：** <br/>1.  必须是有限的非负数值，否则处理为0。<br/>2. 非整数会被截断为整数。<br/>3. start + deleteCount - 1可以超过最大索引值，会删除索引值start开始之后的所有子组件的大小信息。 |
-| childrenSize | Array< number > | 否    | 要在start位置插入的所有子组件的主轴方向的大小。<br/>Array中各个数值单位：vp <br/>**说明：** <br/>1.数组中数值如果是有限的非负值，则认为是指定的大小，后续不随默认大小的变化而变化。<br/>2. 数组中数值如果不是有限的非负值，会被处理成默认大小，后续会随默认大小的变化而变化。  |
+| childrenSize | Array\<number > | 否    | 要在start位置插入的所有子组件的主轴方向的大小。<br/>Array中各个数值单位：vp <br/>**说明：** <br/>1.数组中数值如果是有限的非负值，则认为是指定的大小，后续不随默认大小的变化而变化。<br/>2. 数组中数值如果不是有限的非负值，会被处理成默认大小，后续会随默认大小的变化而变化。  |
 
 
 **错误码**：
@@ -1093,6 +1109,8 @@ splice(start: number, deleteCount?: number, childrenSize?: Array<number>): void
 update(index: number, childSize: number): void
 
 修改指定索引值对应的子组件的主轴方向的大小信息。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -1149,7 +1167,7 @@ struct ListExample {
                     ' end item group area: ' + end.itemGroupArea +
                     ' end index in group: ' + end.itemIndexInGroup)
       })
-      .onScroll((scrollOffset: number, scrollState: ScrollState) => {
+      .onDidScroll((scrollOffset: number, scrollState: ScrollState) => {
         console.info(`onScroll scrollState = ScrollState` + scrollState + `, scrollOffset = ` + scrollOffset)
       })
       .width('90%')

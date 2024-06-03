@@ -24,8 +24,8 @@ import dataPreferences from '@ohos.data.preferences';
 
 | 名称             | 参数类型 | 可读 | 可写 | 说明                                    |
 | ---------------- | -------- | ---- | ---- | --------------------------------------- |
-| MAX_KEY_LENGTH   | number   | 是   | 否   | Key的最大长度限制为80个字节。     |
-| MAX_VALUE_LENGTH | number   | 是   | 否   | Value的最大长度限制为8192个字节。 |
+| MAX_KEY_LENGTH   | number   | 是   | 否   | Key的最大长度限制为1024个字节。     |
+| MAX_VALUE_LENGTH | number   | 是   | 否   | Value的最大长度限制为16 * 1024 * 1024个字节。 |
 
 
 ## dataPreferences.getPreferences
@@ -48,7 +48,7 @@ getPreferences(context: Context, name: string, callback: AsyncCallback&lt;Prefer
 
 **错误码：**
 
-以下错误码的详细介绍请参见[用户首选项错误码](errorcode-preferences.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[用户首选项错误码](errorcode-preferences.md)。
 
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------ |
@@ -59,6 +59,7 @@ getPreferences(context: Context, name: string, callback: AsyncCallback&lt;Prefer
 
 FA模型示例：
 
+<!--code_no_check_fa-->
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 import { BusinessError } from '@ohos.base';
@@ -124,7 +125,7 @@ getPreferences(context: Context, name: string): Promise&lt;Preferences&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[用户首选项错误码](errorcode-preferences.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[用户首选项错误码](errorcode-preferences.md)。
 
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------ |
@@ -135,6 +136,7 @@ getPreferences(context: Context, name: string): Promise&lt;Preferences&gt;
 
 FA模型示例：
 
+<!--code_no_check_fa-->
 ```ts
 // 获取context
 import featureAbility from '@ohos.ability.featureAbility';
@@ -194,7 +196,7 @@ getPreferences(context: Context, options: Options, callback: AsyncCallback&lt;Pr
 
 **错误码：**
 
-以下错误码的详细介绍请参见[用户首选项错误码](errorcode-preferences.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[用户首选项错误码](errorcode-preferences.md)。
 
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------ |
@@ -208,6 +210,7 @@ getPreferences(context: Context, options: Options, callback: AsyncCallback&lt;Pr
 
 FA模型示例：
 
+<!--code_no_check_fa-->
 ```ts
 // 获取context
 import featureAbility from '@ohos.ability.featureAbility';
@@ -277,7 +280,7 @@ getPreferences(context: Context, options: Options): Promise&lt;Preferences&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[用户首选项错误码](errorcode-preferences.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[用户首选项错误码](errorcode-preferences.md)。
 
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------ |
@@ -291,6 +294,7 @@ getPreferences(context: Context, options: Options): Promise&lt;Preferences&gt;
 
 FA模型示例：
 
+<!--code_no_check_fa-->
 ```ts
 // 获取context
 import featureAbility from '@ohos.ability.featureAbility';
@@ -357,7 +361,7 @@ getPreferencesSync(context: Context, options: Options): Preferences
 
 **错误码：**
 
-以下错误码的详细介绍请参见[用户首选项错误码](errorcode-preferences.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[用户首选项错误码](errorcode-preferences.md)。
 
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------ |
@@ -371,6 +375,7 @@ getPreferencesSync(context: Context, options: Options): Preferences
 
 FA模型示例：
 
+<!--code_no_check_fa-->
 ```ts
 // 获取context
 import featureAbility from '@ohos.ability.featureAbility';
@@ -420,7 +425,7 @@ deletePreferences(context: Context, name: string, callback: AsyncCallback&lt;voi
 
 **错误码：**
 
-以下错误码的详细介绍请参见[用户首选项错误码](errorcode-preferences.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[用户首选项错误码](errorcode-preferences.md)。
 
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------ |
@@ -432,6 +437,7 @@ deletePreferences(context: Context, name: string, callback: AsyncCallback&lt;voi
 
 FA模型示例：
 
+<!--code_no_check_fa-->
 ```ts
 // 获取context
 import featureAbility from '@ohos.ability.featureAbility';
@@ -495,7 +501,7 @@ deletePreferences(context: Context, name: string): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[用户首选项错误码](errorcode-preferences.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[用户首选项错误码](errorcode-preferences.md)。
 
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------ |
@@ -507,6 +513,7 @@ deletePreferences(context: Context, name: string): Promise&lt;void&gt;
 
 FA模型示例：
 
+<!--code_no_check_fa-->
 ```ts
 // 获取context
 import featureAbility from '@ohos.ability.featureAbility';
@@ -563,7 +570,7 @@ deletePreferences(context: Context, options: Options, callback: AsyncCallback&lt
 
 **错误码：**
 
-以下错误码的详细介绍请参见[用户首选项错误码](errorcode-preferences.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[用户首选项错误码](errorcode-preferences.md)。
 
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------ |
@@ -578,6 +585,7 @@ deletePreferences(context: Context, options: Options, callback: AsyncCallback&lt
 
 FA模型示例：
 
+<!--code_no_check_fa-->
 ```ts
 // 获取context
 import featureAbility from '@ohos.ability.featureAbility';
@@ -644,7 +652,7 @@ deletePreferences(context: Context, options: Options): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[用户首选项错误码](errorcode-preferences.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[用户首选项错误码](errorcode-preferences.md)。
 
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------ |
@@ -659,6 +667,7 @@ deletePreferences(context: Context, options: Options): Promise&lt;void&gt;
 
 FA模型示例：
 
+<!--code_no_check_fa-->
 ```ts
 // 获取context
 import featureAbility from '@ohos.ability.featureAbility';
@@ -720,7 +729,7 @@ removePreferencesFromCache(context: Context, name: string, callback: AsyncCallba
 
 **错误码：**
 
-以下错误码的详细介绍请参见[用户首选项错误码](errorcode-preferences.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[用户首选项错误码](errorcode-preferences.md)。
 
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------ |
@@ -731,6 +740,7 @@ removePreferencesFromCache(context: Context, name: string, callback: AsyncCallba
 
 FA模型示例：
 
+<!--code_no_check_fa-->
 ```ts
 // 获取context
 import featureAbility from '@ohos.ability.featureAbility';
@@ -795,7 +805,7 @@ removePreferencesFromCache(context: Context, name: string): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[用户首选项错误码](errorcode-preferences.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[用户首选项错误码](errorcode-preferences.md)。
 
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------ |
@@ -806,6 +816,7 @@ removePreferencesFromCache(context: Context, name: string): Promise&lt;void&gt;
 
 FA模型示例：
 
+<!--code_no_check_fa-->
 ```ts
 // 获取context
 import featureAbility from '@ohos.ability.featureAbility';
@@ -862,7 +873,7 @@ removePreferencesFromCacheSync(context: Context, name: string): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[用户首选项错误码](errorcode-preferences.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[用户首选项错误码](errorcode-preferences.md)。
 
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------ |
@@ -873,6 +884,7 @@ removePreferencesFromCacheSync(context: Context, name: string): void
 
 FA模型示例：
 
+<!--code_no_check_fa-->
 ```ts
 // 获取context
 import featureAbility from '@ohos.ability.featureAbility';
@@ -917,7 +929,7 @@ removePreferencesFromCache(context: Context, options: Options, callback: AsyncCa
 
 **错误码：**
 
-以下错误码的详细介绍请参见[用户首选项错误码](errorcode-preferences.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[用户首选项错误码](errorcode-preferences.md)。
 
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------ |
@@ -931,6 +943,7 @@ removePreferencesFromCache(context: Context, options: Options, callback: AsyncCa
 
 FA模型示例：
 
+<!--code_no_check_fa-->
 ```ts
 // 获取context
 import featureAbility from '@ohos.ability.featureAbility';
@@ -997,7 +1010,7 @@ removePreferencesFromCache(context: Context, options: Options): Promise&lt;void&
 
 **错误码：**
 
-以下错误码的详细介绍请参见[用户首选项错误码](errorcode-preferences.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[用户首选项错误码](errorcode-preferences.md)。
 
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------ |
@@ -1011,6 +1024,7 @@ removePreferencesFromCache(context: Context, options: Options): Promise&lt;void&
 
 FA模型示例：
 
+<!--code_no_check_fa-->
 ```ts
 // 获取context
 import featureAbility from '@ohos.ability.featureAbility';
@@ -1069,7 +1083,7 @@ removePreferencesFromCacheSync(context: Context, options: Options):void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[用户首选项错误码](errorcode-preferences.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[用户首选项错误码](errorcode-preferences.md)。
 
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------ |
@@ -1083,6 +1097,7 @@ removePreferencesFromCacheSync(context: Context, options: Options):void
 
 FA模型示例：
 
+<!--code_no_check_fa-->
 ```ts
 // 获取context
 import featureAbility from '@ohos.ability.featureAbility';
@@ -1146,7 +1161,7 @@ get(key: string, defValue: ValueType, callback: AsyncCallback&lt;ValueType&gt;):
 
 **错误码：**
 
-以下错误码的详细介绍请参见[用户首选项错误码](errorcode-preferences.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[用户首选项错误码](errorcode-preferences.md)。
 
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------ |
@@ -1192,7 +1207,7 @@ get(key: string, defValue: ValueType): Promise&lt;ValueType&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[用户首选项错误码](errorcode-preferences.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[用户首选项错误码](errorcode-preferences.md)。
 
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------ |
@@ -1237,7 +1252,7 @@ getSync(key: string, defValue: ValueType): ValueType
 
 **错误码：**
 
-以下错误码的详细介绍请参见[用户首选项错误码](errorcode-preferences.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[用户首选项错误码](errorcode-preferences.md)。
 
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------ |
@@ -1268,7 +1283,7 @@ getAll(callback: AsyncCallback&lt;Object&gt;): void;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[用户首选项错误码](errorcode-preferences.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[用户首选项错误码](errorcode-preferences.md)。
 
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------ |
@@ -1409,7 +1424,7 @@ put(key: string, value: ValueType, callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[用户首选项错误码](errorcode-preferences.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[用户首选项错误码](errorcode-preferences.md)。
 
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------ |
@@ -1460,7 +1475,7 @@ put(key: string, value: ValueType): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[用户首选项错误码](errorcode-preferences.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[用户首选项错误码](errorcode-preferences.md)。
 
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------ |
@@ -1504,7 +1519,7 @@ putSync(key: string, value: ValueType): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[用户首选项错误码](errorcode-preferences.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[用户首选项错误码](errorcode-preferences.md)。
 
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------ |
@@ -1537,7 +1552,7 @@ has(key: string, callback: AsyncCallback&lt;boolean&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[用户首选项错误码](errorcode-preferences.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[用户首选项错误码](errorcode-preferences.md)。
 
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------ |
@@ -1587,7 +1602,7 @@ has(key: string): Promise&lt;boolean&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[用户首选项错误码](errorcode-preferences.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[用户首选项错误码](errorcode-preferences.md)。
 
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------ |
@@ -1636,7 +1651,7 @@ hasSync(key: string): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[用户首选项错误码](errorcode-preferences.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[用户首选项错误码](errorcode-preferences.md)。
 
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------ |
@@ -1674,7 +1689,7 @@ delete(key: string, callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[用户首选项错误码](errorcode-preferences.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[用户首选项错误码](errorcode-preferences.md)。
 
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------ |
@@ -1720,7 +1735,7 @@ delete(key: string): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[用户首选项错误码](errorcode-preferences.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[用户首选项错误码](errorcode-preferences.md)。
 
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------ |
@@ -1759,7 +1774,7 @@ deleteSync(key: string): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[用户首选项错误码](errorcode-preferences.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[用户首选项错误码](errorcode-preferences.md)。
 
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------ |
@@ -1791,7 +1806,7 @@ flush(callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[用户首选项错误码](errorcode-preferences.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[用户首选项错误码](errorcode-preferences.md)。
 
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------ |
@@ -1869,7 +1884,7 @@ clear(callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[用户首选项错误码](errorcode-preferences.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[用户首选项错误码](errorcode-preferences.md)。
 
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------ |
@@ -1965,7 +1980,7 @@ on(type: 'change', callback: Callback&lt;string&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[用户首选项错误码](errorcode-preferences.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[用户首选项错误码](errorcode-preferences.md)。
 
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------ |
@@ -2010,7 +2025,7 @@ on(type: 'multiProcessChange', callback: Callback&lt;string&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[用户首选项错误码](errorcode-preferences.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[用户首选项错误码](errorcode-preferences.md)。
 
 | 错误码ID | 错误信息                                |
 | -------- | -------------------------------------- |
@@ -2057,7 +2072,7 @@ on(type: 'dataChange', keys: Array&lt;string&gt;,  callback: Callback&lt;Record&
 
 **错误码：**
 
-以下错误码的详细介绍请参见[用户首选项错误码](errorcode-preferences.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[用户首选项错误码](errorcode-preferences.md)。
 
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------ |
@@ -2107,7 +2122,7 @@ off(type: 'change', callback?: Callback&lt;string&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[用户首选项错误码](errorcode-preferences.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[用户首选项错误码](errorcode-preferences.md)。
 
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------ |
@@ -2153,7 +2168,7 @@ off(type: 'multiProcessChange', callback?: Callback&lt;string&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[用户首选项错误码](errorcode-preferences.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[用户首选项错误码](errorcode-preferences.md)。
 
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------ |
@@ -2199,7 +2214,7 @@ off(type: 'dataChange', keys: Array&lt;string&gt;,  callback?: Callback&lt;Recor
 
 **错误码：**
 
-以下错误码的详细介绍请参见[用户首选项错误码](errorcode-preferences.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[用户首选项错误码](errorcode-preferences.md)。
 
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------ |

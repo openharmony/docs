@@ -518,7 +518,7 @@ The specified shared bundle does not exist.
 
 ## 17700039 不允许安装应用间共享库
 **错误信息**<br/>
-Failed to install the HSP because disallow install a shared bundle by hapFilePaths.
+Failed to install the HSP because installing a shared bundle specified by hapFilePaths is not allowed.
 
 **错误描述**<br/>
 安装应用时，传入的安装包为应用间共享库类型。
@@ -548,7 +548,7 @@ The specified bundle is a shared bundle which cannot be uninstalled.
 
 ## 17700041 企业设备管理不允许安装该应用
 **错误信息**<br/>
-Failed to install the HAP because enterprise device management disallow install.
+Failed to install the HAP because the installation is forbidden by enterprise device management.
 
 **错误描述**<br/>
 安装应用时，企业设备管理不允许安装。
@@ -605,7 +605,7 @@ Failed to install the HAP because the isolationMode configured is not supported.
 
 ## 17700045 企业设备管理不允许卸载该应用
 **错误信息**<br/>
-Failed to uninstall the HAP because enterprise device management disallow uninstall.
+Failed to uninstall the HAP because the uninstall is forbidden by enterprise device management.
 
 **错误描述**<br/>
 卸载应用时，企业设备管理不允许卸载。
@@ -663,7 +663,7 @@ Failed to install the HAP because the bundleName is different from the bundleNam
 
 ## 17700050 企业设备校验失败
 **错误信息**<br/>
-Failed to install the HAP because an enterprise normal/MDM bundle cannot be installed on non-enterprise device.
+Failed to install the HAP because an enterprise normal/MDM bundle cannot be installed on non-enterprise devices.
 
 **错误描述**<br/>
 安装应用时，企业normal应用或企业mdm应用无法在非企业设备上安装。
@@ -726,8 +726,8 @@ Failed to install the HAP because the HAP requests wrong permissions.
 2. 应用的权限级别比其申请权限的权限级别低。
 
 **处理步骤**<br/>
-1. 排查是否申请了[MDM类型的权限](../../security/AccessToken/permissions-for-mdm-apps.md)，MDM类型的权限仅针对应用类型为MDM的应用开放。
-2. 排查申请的权限的[权限级别](../../security/AccessToken/permissions-for-all.md)是否比[应用的权限级别](../../security/app-provision-structure.md#bundle-info对象内部结构)高。由于默认应用等级为normal，只能使用normal等级的权限，如果使用了system_basic或system_core等级的权限，将导致报错。在UnsgnedDebugProfileTemplate.json文件中修改apl等级，调整成system_basic或system_core等级，重新签名打包即可。
+1. 排查是否申请了<!--Del-->[<!--DelEnd-->MDM类型的权限<!--Del-->](../../security/AccessToken/permissions-for-mdm-apps.md)<!--DelEnd-->，MDM类型的权限仅针对应用类型为MDM的应用开放。
+2. 排查申请的权限是否为开放权限。详情请见[权限列表](../../security/AccessToken/permissions-for-all.md)。
 
 ## 17700055 指定的link无效
 
@@ -799,6 +799,24 @@ The specified application cannot be uninstalled.
 **处理步骤**<br/>
 检查指定的应用是否具有不可卸载特权。
 
+## 17700061 指定的应用分身索引无效
+
+**错误信息**<br/>
+The appIndex is invalid.
+
+**错误描述**<br/>
+调用应用分身相关的接口时，指定的应用分身索引无效。
+
+**可能原因**<br/>
+1. 分身索引超出允许的范围。
+2. 应用没有该索引的分身。
+3. 创建应用分身时，该索引已存在。
+
+**处理步骤**<br/>
+1. 检查索引是否再允许范围内。
+2. 检查应用是否有该索引的分身。
+3. 检查是否调用createAppClone，且该索引的应用分身是否已存在。
+
 ## 17700065 ShortcutInfo结构体中指定的want，不支持被拉起
 
 **错误信息**<br/>
@@ -812,6 +830,21 @@ ShortcutInfo结构体中的want指定的ability不存在，ShortcutInfo结构体
 
 **处理步骤**<br/>
 检查ShortcutInfo结构体中的want有效性。
+
+## 17700068 应用支持分身后，最大分身数量在更新时不可减小
+
+**错误信息**<br/>
+Failed to install the HAP because the maximum count of clone app cannot be reduced.
+
+**错误描述**<br/>
+应用多开模式为appClone，在更新时，maxCount数值不允许减小。
+
+**可能原因**<br/>
+支持分身的应用在更新时，最大分身数量减小了。
+
+**处理步骤**<br/>
+1. 检查更新应用是否支持分身。
+2. 检查应用在更新前后，支持最大分身数量是否减小。
 
 ## 17700201 abc文件校验失败
 **错误信息**<br/>

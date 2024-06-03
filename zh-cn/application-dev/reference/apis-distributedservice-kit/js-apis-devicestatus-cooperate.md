@@ -81,6 +81,7 @@ prepareCooperate(): Promise&lt;void&gt;;
 | -------- | ----------------- |
 | 201 | Permission denied. |
 | 202 | Not system application. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
 
 **示例**：
 
@@ -451,7 +452,6 @@ getCooperateSwitchState(networkId: string): Promise&lt;boolean&gt;;
 | 201 | Permission denied. |
 | 202 | Not system application. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
-| 20900001 | Operation failed. |
 
 **示例**：
 
@@ -698,6 +698,20 @@ try {
 | state     | CooperateState | 是   | 否   | 键鼠穿越的状态。         |
 
 
+## MouseLocation<sup>12+</sup>
+
+键鼠穿越的位置。
+
+**系统能力**：SystemCapability.Msdp.DeviceStatus.Cooperate
+
+| 名称           | 类型            | 可读 | 可写 | 说明                           |
+| ---------      | -------------- | ---- | ---- | ------------------------       |
+| displayX       | number         | 是   | 否   | 鼠标指针位于屏幕的X坐标上的位置。 |
+| displayY       | number         | 是   | 否   | 鼠标指针位于屏幕的y坐标上的位置。 |
+| displayWidth   | number         | 是   | 否   | 屏幕宽度。                      |
+| displayHeight  | number         | 是   | 否   | 屏幕高度。                      |
+
+
 
 ## CooperateState<sup>11+</sup>
 
@@ -705,17 +719,18 @@ try {
 
 **系统能力**：SystemCapability.Msdp.DeviceStatus.Cooperate
 
-| 名称                           | 类型   | 可读 | 可写 | 说明                   |
+| 名称                           | 类型    | 可读 | 可写 | 说明                   |
 | ------------------------------ | ------ | ---- | ---- | ---------------------- |
 | COOPERATE_PREPARE              | number | 是   | 否   | 表示准备键鼠穿越。     |
 | COOPERATE_UNPREPARE            | number | 是   | 否   | 表示取消键鼠穿越准备。 |
 | COOPERATE_ACTIVATE             | number | 是   | 否   | 表示启动键鼠穿越。     |
 | COOPERATE_ACTIVATE_SUCCESS     | number | 是   | 否   | 表示键鼠穿越启动成功。 |
-| COOPERATE_ACTIVATE_FAIL     | number | 是   | 否   | 表示键鼠穿越启动失败。 |
+| COOPERATE_ACTIVATE_FAIL        | number | 是   | 否   | 表示键鼠穿越启动失败。 |
 | COOPERATE_DEACTIVATE_SUCCESS   | number | 是   | 否   | 表示键鼠穿越停止成功。 |
-| COOPERATE_DEACTIVATE_FAIL   | number | 是   | 否   | 表示键鼠穿越停止失败。 |
+| COOPERATE_DEACTIVATE_FAIL      | number | 是   | 否   | 表示键鼠穿越停止失败。 |
 | COOPERATE_SESSION_DISCONNECTED | number | 是   | 否   | 表示键鼠穿越会话断开。 |
-
+| COOPERATE_ACTIVATE_FAILURE     | number | 是   | 否   | 表示键鼠穿越无法启动。 |
+| COOPERATE_DEACTIVATE_FAILURE   | number | 是   | 否   | 表示键鼠穿越无法停止。 |
 
 
 ## MouseLocation<sup>12+</sup>

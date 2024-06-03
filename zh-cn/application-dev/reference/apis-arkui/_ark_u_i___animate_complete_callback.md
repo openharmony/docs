@@ -17,7 +17,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [ArkUI_FinishCallbackType](_ark_u_i___native_module.md#arkui_finishcallbacktype)[type](#type) | 在动画中定义onFinish回调的类型。  | 
+| [ArkUI_FinishCallbackType](_ark_u_i___native_module.md#arkui_finishcallbacktype) [type](#type) | 在动画中定义onFinish回调的类型。  | 
 | void(\* [callback](#callback) )(void \*[userData](#userdata)) | 动画播放完成回调。  | 
 | void \* [userData](#userdata) | 自定义类型。  | 
 

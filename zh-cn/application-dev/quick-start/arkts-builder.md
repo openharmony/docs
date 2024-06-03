@@ -10,7 +10,8 @@
 > **说明：**
 >
 > 从API version 9开始，该装饰器支持在ArkTS卡片中使用。
-> 从API version 11开始，该接口支持在元服务中使用。
+>
+> 从API version 11开始，该装饰器支持在元服务中使用。
 
 ## 装饰器使用说明
 
@@ -53,9 +54,6 @@ this.MyBuilderFunction()
 ```ts
 MyGlobalBuilderFunction()
 ```
-
-
-- 全局的自定义构建函数可以被整个应用获取，不允许使用this和bind方法。
 
 - 如果不涉及组件状态变化，建议使用全局的自定义构建方法。
 

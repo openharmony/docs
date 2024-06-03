@@ -64,3 +64,15 @@
     return description;
    }
    ```
+
+6. 通过getMediaKeySystemUuid方法，获取设备支持对应的插件类型的uuid。
+
+   > **说明：**
+   >
+   > 如果查询出的uuid的长度为0，说明该设备中不存在支持的插件。
+
+   ```ts
+   function getMediaKeySystemUuid(name: string): string{
+    let uuid: string = drm.getMediaKeySystemUuid(name);
+      return uuid;
+   ```

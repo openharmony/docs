@@ -14,7 +14,7 @@
 ## 导入模块
 
 ```ts
-import window from '@ohos.window';
+import { window } from '@kit.ArkUI';
 ```
 
 ## WindowType<sup>7+</sup>
@@ -43,6 +43,8 @@ import window from '@ohos.window';
 | ctx        | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | 否 | 当前应用上下文信息。不设置，则默认为空。<br>FA模型下不需要使用该参数，即可创建子窗口，使用该参数时会报错。<br>Stage模型必须使用该参数，用于创建悬浮窗、模态窗或系统窗口。 |
 | displayId  | number                     | 否 | 当前物理屏幕id。不设置，则默认为-1，该参数应为整数。                                             |
 | parentId   | number                     | 否 | 父窗口id。不设置，则默认为-1，该参数应为整数。                                                           |
+| decorEnabled<sup>12+</sup> | bool | 否 | 是否显示窗口装饰，仅在windowType为TYPE_DIALOG时生效。true表示显示，false表示不显示。此参数默认值为false。<br>**系统能力：** SystemCapability.Window.SessionManager |
+| title<sup>12+</sup> | string| 否 | `decorEnabled`属性设置为true时，窗口的标题内容。不设置，则默认为空字符串。 <br>**系统能力：** SystemCapability.Window.SessionManager |
 
 ## AvoidAreaType<sup>7+</sup>
 
@@ -89,18 +91,18 @@ import window from '@ohos.window';
 | LANDSCAPE                             | 2    | 表示横屏显示模式。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。<br> **元服务API：** 从API version 12开始，该接口支持在元服务中使用。|
 | PORTRAIT_INVERTED                     | 3    | 表示反向竖屏显示模式。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。<br> **元服务API：** 从API version 12开始，该接口支持在元服务中使用。|
 | LANDSCAPE_INVERTED                    | 4    | 表示反向横屏显示模式。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。<br> **元服务API：** 从API version 12开始，该接口支持在元服务中使用。|
-| AUTO_ROTATION                         | 5    | 表示传感器自动旋转模式。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。<br> **元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
-| AUTO_ROTATION_PORTRAIT                | 6    | 表示传感器自动竖向旋转模式。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。|
-| AUTO_ROTATION_LANDSCAPE               | 7    | 表示传感器自动横向旋转模式。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。<br> **元服务API：** 从API version 12开始，该接口支持在元服务中使用。|
-| AUTO_ROTATION_RESTRICTED              | 8    | 表示受开关控制的自动旋转模式。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。<br> **元服务API：** 从API version 12开始，该接口支持在元服务中使用。|
-| AUTO_ROTATION_PORTRAIT_RESTRICTED     | 9    | 表示受开关控制的自动竖向旋转模式。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。|
-| AUTO_ROTATION_LANDSCAPE_RESTRICTED    | 10   | 表示受开关控制的自动横向旋转模式。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。|
+| AUTO_ROTATION                         | 5    | 跟随传感器自动旋转，可以旋转到竖屏、横屏、反向竖屏、反向横屏四个方向。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。<br> **元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
+| AUTO_ROTATION_PORTRAIT                | 6    | 跟随传感器自动竖向旋转，可以旋转到竖屏、反向竖屏，无法旋转到横屏、反向横屏。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。|
+| AUTO_ROTATION_LANDSCAPE               | 7    | 跟随传感器自动横向旋转，可以旋转到横屏、反向横屏，无法旋转到竖屏、反向竖屏。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。<br> **元服务API：** 从API version 12开始，该接口支持在元服务中使用。|
+| AUTO_ROTATION_RESTRICTED              | 8    | 跟随传感器自动旋转，可以旋转到竖屏、横屏、反向竖屏、反向横屏四个方向，且受控制中心的旋转开关控制。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。<br> **元服务API：** 从API version 12开始，该接口支持在元服务中使用。|
+| AUTO_ROTATION_PORTRAIT_RESTRICTED     | 9    | 跟随传感器自动竖向旋转，可以旋转到竖屏、反向竖屏，无法旋转到横屏、反向横屏，且受控制中心的旋转开关控制。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。|
+| AUTO_ROTATION_LANDSCAPE_RESTRICTED    | 10   | 跟随传感器自动横向旋转，可以旋转到横屏、反向横屏，无法旋转到竖屏、反向竖屏，且受控制中心的旋转开关控制。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。|
 | LOCKED                                | 11   | 表示锁定模式。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。|
-| AUTO_ROTATION_UNSPECIFIED<sup>12+</sup>        | 12   | 表示受开关控制和系统判定的自动旋转模式。<br> **系统能力：** SystemCapability.Window.SessionManager。|
-| USER_ROTATION_PORTRAIT<sup>12+</sup>           | 13   | 表示临时竖屏后受开关控制和系统判定的自动旋转模式。<br> **系统能力：** SystemCapability.Window.SessionManager。|
-| USER_ROTATION_LANDSCAPE<sup>12+</sup>          | 14   | 表示临时横屏后受开关控制和系统判定的自动旋转模式。<br> **系统能力：** SystemCapability.Window.SessionManager。|
-| USER_ROTATION_PORTRAIT_INVERTED<sup>12+</sup>  | 15   | 表示临时反向竖屏后受开关控制和系统判定的自动旋转模式。<br> **系统能力：** SystemCapability.Window.SessionManager。|
-| USER_ROTATION_LANDSCAPE_INVERTED<sup>12+</sup> | 16   | 表示临时反向横屏后受开关控制和系统判定的自动旋转模式。<br> **系统能力：** SystemCapability.Window.SessionManager。|
+| AUTO_ROTATION_UNSPECIFIED<sup>12+</sup>        | 12   | 跟随传感器自动旋转，受控制中心的旋转开关控制，且可旋转方向受系统判定（如在某种设备，可以旋转到竖屏、横屏、反向横屏三个方向，无法旋转到反向竖屏）。<br> **系统能力：** SystemCapability.Window.SessionManager。|
+| USER_ROTATION_PORTRAIT<sup>12+</sup>           | 13   | 调用时临时旋转到竖屏，之后跟随传感器自动旋转，受控制中心的旋转开关控制，且可旋转方向受系统判定。<br> **系统能力：** SystemCapability.Window.SessionManager。|
+| USER_ROTATION_LANDSCAPE<sup>12+</sup>          | 14   | 调用时临时旋转到横屏，之后跟随传感器自动旋转，受控制中心的旋转开关控制，且可旋转方向受系统判定。<br> **系统能力：** SystemCapability.Window.SessionManager。|
+| USER_ROTATION_PORTRAIT_INVERTED<sup>12+</sup>  | 15   | 调用时临时旋转到反向竖屏，之后跟随传感器自动旋转，受控制中心的旋转开关控制，且可旋转方向受系统判定。<br> **系统能力：** SystemCapability.Window.SessionManager。|
+| USER_ROTATION_LANDSCAPE_INVERTED<sup>12+</sup> | 16   | 调用时临时旋转到反向横屏，之后跟随传感器自动旋转，受控制中心的旋转开关控制，且可旋转方向受系统判定。<br> **系统能力：** SystemCapability.Window.SessionManager。|
 | FOLLOW_DESKTOP<sup>12+</sup>                   | 17   | 表示跟随桌面的旋转模式。<br> **系统能力：** SystemCapability.Window.SessionManager。|
 
 ## Rect<sup>7+</sup>
@@ -309,17 +311,17 @@ createWindow(config: Configuration, callback: AsyncCallback&lt;Window&gt;): void
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 201     | Permission verification failed. |
-| 401     | Parameter error. Possible cause: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 201     | Permission verification failed. The application does not have the permission required to call the API. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300001 | Repeated operation. |
 | 1300006 | This window context is abnormal. |
-| 1300008 | The operation is on invalid display. |
+| 1300008 | The display device is abnormal. |
 | 1300009 | The parent window is invalid. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let windowClass: window.Window | undefined = undefined;
 let config: window.Configuration = {
@@ -369,17 +371,17 @@ createWindow(config: Configuration): Promise&lt;Window&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 201     | Permission verification failed. |
-| 401     | Parameter error. Possible cause: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 201     | Permission verification failed. The application does not have the permission required to call the API. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300001 | Repeated operation. |
 | 1300006 | This window context is abnormal. |
-| 1300008 | The operation is on invalid display. |
+| 1300008 | The display device is abnormal. |
 | 1300009 | The parent window is invalid. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let windowClass: window.Window | undefined = undefined;
 let config: window.Configuration = {
@@ -428,7 +430,7 @@ findWindow(name: string): Window
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 401     | Parameter error. Possible cause: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002 | This window state is abnormal. |
 
 **示例：**
@@ -463,7 +465,7 @@ getLastWindow(ctx: BaseContext, callback: AsyncCallback&lt;Window&gt;): void
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 401     | Parameter error. Possible cause: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002 | This window state is abnormal.   |
 | 1300006 | This window context is abnormal. |
 
@@ -471,9 +473,8 @@ getLastWindow(ctx: BaseContext, callback: AsyncCallback&lt;Window&gt;): void
 
 ```ts
 // EntryAbility.ets
-import UIAbility from '@ohos.app.ability.UIAbility';
-import window from '@ohos.window';
-import { BusinessError } from '@ohos.base';
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   // ...
@@ -523,7 +524,7 @@ getLastWindow(ctx: BaseContext): Promise&lt;Window&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 401     | Parameter error. Possible cause: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002 | This window state is abnormal.   |
 | 1300006 | This window context is abnormal. |
 
@@ -531,9 +532,8 @@ getLastWindow(ctx: BaseContext): Promise&lt;Window&gt;
 
 ```ts
 // EntryAbility.ets
-import UIAbility from '@ohos.app.ability.UIAbility';
-import window from '@ohos.window';
-import { BusinessError } from '@ohos.base';
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   // ...
@@ -581,8 +581,8 @@ shiftAppWindowFocus(sourceWindowId: number, targetWindowId: number): Promise&lt;
 
 | 错误码ID | 错误信息                                      |
 | ------- | --------------------------------------------- |
-| 401     | Parameter error. Parameter error. Possible cause: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 801     | Capability not supported.                     |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300002 | This window state is abnormal.                |
 | 1300003 | This window manager service works abnormally. |
 | 1300004 | Unauthorized operation.                       |
@@ -590,9 +590,9 @@ shiftAppWindowFocus(sourceWindowId: number, targetWindowId: number): Promise&lt;
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import window from '@ohos.window';
-import { BusinessError } from '@ohos.base';
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
@@ -616,14 +616,14 @@ export default class EntryAbility extends UIAbility {
         try {
           windowClassId = windowClass.getWindowProperties().id;
         } catch (exception) {
-          console.error('Failed to obtain the window. Cause: ' + JSON.stringify(exception))
+          console.error(`Failed to obtain the window. Cause code: ${exception.code}, message: ${exception.message}`);
         }
         console.info('Succeeded in obtaining the window')
       }).catch((err: BusinessError) => {
-        console.error('Failed to obtaining the window. Cause: ' + JSON.stringify(err))
-      })
+        console.error(`Failed to obtaining the window. Cause code: ${err.code}, message: ${err.message}`);
+      });
     } catch (exception) {
-      console.error('Failed to obtain the window. Cause: ' + JSON.stringify(exception))
+      console.error(`Failed to obtain the window. Cause code: ${exception.code}, message: ${exception.message}`);
     }
 
     // 创建或获取子窗及ID，此时子窗口获焦
@@ -638,7 +638,7 @@ export default class EntryAbility extends UIAbility {
         try {
           subWindowClassId = subWindowClass.getWindowProperties().id;
         } catch (exception) {
-          console.error('Failed to obtain the window. Cause: ' + JSON.stringify(exception))
+          console.error(`Failed to obtain the window. Cause code: ${exception.code}, message: ${exception.message}`);
         }
         subWindowClass.resize(500, 500);
         subWindowClass.setUIContent("pages/Index2");
@@ -653,16 +653,16 @@ export default class EntryAbility extends UIAbility {
               promise.then(() => {
                 console.info('Succeeded in shifting app window focus');
               }).catch((err: BusinessError) => {
-                console.error('Failed to shift app window focus. Cause: ' + JSON.stringify(err));
-              })
+                console.error(`Failed to shift app window focus. Cause code: ${err.code}, message: ${err.message}`);
+              });
             } catch (exception) {
-              console.error('Failed to shift app window focus. Cause: ' + JSON.stringify(exception));
+              console.error(`Failed to shift app window focus. Cause code: ${exception.code}, message: ${exception.message}`);
             }
           }
-        })
-      })
+        });
+      });
     } catch (exception) {
-      console.error('Failed to create the subWindow. Cause: ' + JSON.stringify(exception));
+      console.error(`Failed to create the subWindow. Cause code: ${exception.code}, message: ${exception.message}`);
     }
   }
 }
@@ -696,12 +696,12 @@ create(id: string, type: WindowType, callback: AsyncCallback&lt;Window&gt;): voi
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 401     | Parameter error. Incorrect parameter types. |
+| 401     | Parameter error. Possible cause: Incorrect parameter types. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let windowClass: window.Window | undefined = undefined;
 window.create('test', window.WindowType.TYPE_APP, (err: BusinessError, data) => {
@@ -748,12 +748,12 @@ create(id: string, type: WindowType): Promise&lt;Window&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 401     | Parameter error. Incorrect parameter types. |
+| 401     | Parameter error. Possible cause: Incorrect parameter types. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let windowClass: window.Window | undefined = undefined;
 let promise = window.create('test', window.WindowType.TYPE_APP);
@@ -792,12 +792,12 @@ create(ctx: BaseContext, id: string, type: WindowType, callback: AsyncCallback&l
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 401     | Parameter error. Incorrect parameter types. |
+| 401     | Parameter error. Possible cause: Incorrect parameter types. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let windowClass: window.Window | undefined = undefined;
 window.create('test', window.WindowType.TYPE_SYSTEM_ALERT, (err: BusinessError, data) => {
@@ -844,12 +844,12 @@ create(ctx: BaseContext, id: string, type: WindowType): Promise&lt;Window&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 401     | Parameter error. Incorrect parameter types. |
+| 401     | Parameter error. Possible cause: Incorrect parameter types. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let windowClass: window.Window | undefined = undefined;
 let promise = window.create('test', window.WindowType.TYPE_SYSTEM_ALERT);
@@ -883,7 +883,7 @@ find(id: string, callback: AsyncCallback&lt;Window&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let windowClass: window.Window | undefined = undefined;
 window.find('test', (err: BusinessError, data) => {
@@ -924,7 +924,7 @@ find(id: string): Promise&lt;Window&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let windowClass: window.Window | undefined = undefined;
 let promise = window.find('test');
@@ -959,7 +959,7 @@ getTopWindow(callback: AsyncCallback&lt;Window&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let windowClass: window.Window | undefined = undefined;
 window.getTopWindow((err: BusinessError, data) => {
@@ -996,7 +996,7 @@ getTopWindow(): Promise&lt;Window&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let windowClass: window.Window | undefined = undefined;
 let promise = window.getTopWindow();
@@ -1031,7 +1031,8 @@ getTopWindow(ctx: BaseContext, callback: AsyncCallback&lt;Window&gt;): void
 
 ```ts
 // EntryAbility.ets
-import { BusinessError } from '@ohos.base';
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage:window.WindowStage){
@@ -1082,7 +1083,8 @@ getTopWindow(ctx: BaseContext): Promise&lt;Window&gt;
 
 ```ts
 // EntryAbility.ets
-import { BusinessError } from '@ohos.base';
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage:window.WindowStage) {
@@ -1146,7 +1148,7 @@ showWindow(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 windowClass.showWindow((err: BusinessError) => {
   const errCode: number = err.code;
@@ -1185,7 +1187,7 @@ showWindow(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let promise = windowClass.showWindow();
 promise.then(() => {
@@ -1223,7 +1225,7 @@ destroyWindow(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 windowClass.destroyWindow((err) => {
   const errCode: number = err.code;
@@ -1263,7 +1265,7 @@ destroyWindow(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let promise = windowClass.destroyWindow();
 promise.then(() => {
@@ -1299,14 +1301,14 @@ moveWindowTo(x: number, y: number, callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002 | This window state is abnormal.               |
 | 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   windowClass.moveWindowTo(300, 300, (err: BusinessError) => {
@@ -1353,14 +1355,14 @@ moveWindowTo(x: number, y: number): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002 | This window state is abnormal.               |
 | 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let promise = windowClass.moveWindowTo(300, 300);
@@ -1409,14 +1411,14 @@ resize(width: number, height: number, callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 1300002 | This window state is abnormal.               |
 | 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   windowClass.resize(500, 1000, (err: BusinessError) => {
@@ -1472,14 +1474,14 @@ resize(width: number, height: number): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 1300002 | This window state is abnormal.               |
 | 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let promise = windowClass.resize(500, 1000);
@@ -1531,7 +1533,7 @@ try {
 
 getWindowAvoidArea(type: AvoidAreaType): AvoidArea
 
-获取窗口内容规避的区域；如系统栏区域、刘海屏区域、手势区域、软键盘区域等与窗口内容重叠时，需要窗口内容避让的区域。
+获取主窗口内容规避的区域；如系统栏区域、刘海屏区域、手势区域、软键盘区域等与窗口内容重叠时，需要窗口内容避让的区域。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -1555,17 +1557,36 @@ getWindowAvoidArea(type: AvoidAreaType): AvoidArea
 
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------ |
-| 401     | Parameter error. Possible cause: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 1300002 | This window state is abnormal. |
 
 **示例：**
 
 ```ts
-let type = window.AvoidAreaType.TYPE_SYSTEM;
-try {
-  let avoidArea = windowClass.getWindowAvoidArea(type);
-} catch (exception) {
-  console.error(`Failed to obtain the area. Cause code: ${exception.code}, message: ${exception.message}`);
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      windowClass = data;
+      let type = window.AvoidAreaType.TYPE_SYSTEM;
+      try {
+        let avoidArea = windowClass.getWindowAvoidArea(type);
+      } catch (exception) {
+        console.error(`Failed to obtain the area. Cause code: ${exception.code}, message: ${exception.message}`);
+      }
+    });
+  }
 }
 ```
 
@@ -1573,7 +1594,7 @@ try {
 
 setWindowLayoutFullScreen(isLayoutFullScreen: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-设置窗口的布局是否为沉浸式布局，使用callback异步回调。
+设置主窗口的布局是否为沉浸式布局，使用callback异步回调。
 沉浸式布局是指布局不避让状态栏与导航栏，组件可能产生与其重叠的情况。
 非沉浸式布局是指布局避让状态栏与导航栏，组件不会与其重叠。
 
@@ -1594,27 +1615,44 @@ setWindowLayoutFullScreen(isLayoutFullScreen: boolean, callback: AsyncCallback&l
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002 | This window state is abnormal.               |
 | 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let isLayoutFullScreen = true;
-try {
-  windowClass.setWindowLayoutFullScreen(isLayoutFullScreen, (err: BusinessError) => {
-    const errCode: number = err.code;
-    if (errCode) {
-      console.error(`Failed to set the window layout to full-screen mode. Cause code: ${err.code}, message: ${err.message}`);
-      return;
-    }
-    console.info('Succeeded in setting the window layout to full-screen mode.');
-  });
-} catch (exception) {
-  console.error(`Failed to set the window layout to full-screen mode. Cause code: ${exception.code}, message: ${exception.message}`);
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      windowClass = data;
+      let isLayoutFullScreen = true;
+      try {
+        windowClass.setWindowLayoutFullScreen(isLayoutFullScreen, (err: BusinessError) => {
+          const errCode: number = err.code;
+          if (errCode) {
+            console.error(`Failed to set the window layout to full-screen mode. Cause code: ${err.code}, message: ${err.message}`);
+            return;
+          }
+          console.info('Succeeded in setting the window layout to full-screen mode.');
+        });
+      } catch (exception) {
+        console.error(`Failed to set the window layout to full-screen mode. Cause code: ${exception.code}, message: ${exception.message}`);
+      }
+    });
+  }
 }
 ```
 
@@ -1622,7 +1660,7 @@ try {
 
 setWindowLayoutFullScreen(isLayoutFullScreen: boolean): Promise&lt;void&gt;
 
-设置窗口的布局是否为沉浸式布局，使用Promise异步回调。
+设置主窗口的布局是否为沉浸式布局，使用Promise异步回调。
 沉浸式布局是指布局不避让状态栏与导航栏，组件可能产生与其重叠的情况。
 非沉浸式布局是指布局避让状态栏与导航栏，组件不会与其重叠。
 
@@ -1648,25 +1686,145 @@ setWindowLayoutFullScreen(isLayoutFullScreen: boolean): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002 | This window state is abnormal.               |
 | 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let isLayoutFullScreen = true;
-try {
-  let promise = windowClass.setWindowLayoutFullScreen(isLayoutFullScreen);
-  promise.then(() => {
-    console.info('Succeeded in setting the window layout to full-screen mode.');
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to set the window layout to full-screen mode. Cause code: ${err.code}, message: ${err.message}`);
-  });
-} catch (exception) {
-  console.error(`Failed to set the window layout to full-screen mode. Cause code: ${exception.code}, message: ${exception.message}`);
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      windowClass = data;
+      let isLayoutFullScreen = true;
+      try {
+        let promise = windowClass.setWindowLayoutFullScreen(isLayoutFullScreen);
+        promise.then(() => {
+          console.info('Succeeded in setting the window layout to full-screen mode.');
+        }).catch((err: BusinessError) => {
+          console.error(`Failed to set the window layout to full-screen mode. Cause code: ${err.code}, message: ${err.message}`);
+        });
+      } catch (exception) {
+        console.error(`Failed to set the window layout to full-screen mode. Cause code: ${exception.code}, message: ${exception.message}`);
+      }
+    });
+  }
+}
+```
+
+### setImmersiveModeEnabledState<sup>12+</sup>
+
+setImmersiveModeEnabledState(enabled: boolean): void
+
+设置主窗口是否开启沉浸式布局，该调用不会改变窗口模式。
+
+**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**参数：**
+
+| 参数名      | 类型    | 必填 | 说明                                                         |
+| ---------- | ------- | ---- | ------------------------------------------------------------ |
+| enabled    | boolean | 是   | 是否开启沉浸式布局。<br>true表示开启，false表示关闭。</br> |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------------------- |
+| 401     | Parameter error.                             |
+| 1300002 | This window state is abnormal.               |
+| 1300003 | This window manager service work abnormally. |
+| 1300004 | This operation is not access.                |
+
+**示例：**
+
+```ts
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      windowClass = data;
+      let enabled = false;
+      windowClass.setImmersiveModeEnabledState(enabled);
+    });
+  }
+}
+```
+
+### getImmersiveModeEnabledState<sup>12+</sup>
+
+getImmersiveModeEnabledState(): boolean
+
+查询主窗口是否已经开启沉浸式布局。
+
+**系统能力**：SystemCapability.WindowManager.WindowManager.Core
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**返回值：**
+| 类型     | 说明                                                                                 |
+| ------- | ------------------------------------------------------------------------------------ |
+| boolean | 是否已经开启沉浸式布局。<br>true表示开启，false表示关闭。</br> |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------------------------------------------- |
+| 1300002  | This window state is abnormal.               |
+| 1300003  | This window manager service work abnormally. |
+| 1300004  | This operation is not access.                |
+
+**示例：**
+
+```ts
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      windowClass = data;
+      let isEnabled = windowClass.getImmersiveModeEnabledState();
+    });
+  }
 }
 ```
 
@@ -1674,7 +1832,9 @@ try {
 
 setWindowSystemBarEnable(names: Array<'status' | 'navigation'>, callback: AsyncCallback&lt;void&gt;): void
 
-设置窗口全屏模式时导航栏、状态栏的可见模式，使用callback异步回调。
+设置主窗口全屏模式时导航栏、状态栏的可见模式，使用callback异步回调。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -1691,7 +1851,7 @@ setWindowSystemBarEnable(names: Array<'status' | 'navigation'>, callback: AsyncC
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002 | This window state is abnormal.               |
 | 1300003 | This window manager service works abnormally. |
 
@@ -1699,20 +1859,37 @@ setWindowSystemBarEnable(names: Array<'status' | 'navigation'>, callback: AsyncC
 
 ```ts
 // 此处以不显示导航栏、状态栏为例
-import { BusinessError } from '@ohos.base';
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let names: Array<'status' | 'navigation'> = [];
-try {
-  windowClass.setWindowSystemBarEnable(names, (err: BusinessError) => {
-    const errCode: number = err.code;
-    if (errCode) {
-      console.error(`Failed to set the system bar to be invisible. Cause code: ${err.code}, message: ${err.message}`);
-      return;
-    }
-    console.info('Succeeded in setting the system bar to be invisible.');
-  });
-} catch (exception) {
-  console.error(`Failed to set the system bar to be invisible. Cause code: ${exception.code}, message: ${exception.message}`);
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      windowClass = data;
+      let names: Array<'status' | 'navigation'> = [];
+      try {
+        windowClass.setWindowSystemBarEnable(names, (err: BusinessError) => {
+          const errCode: number = err.code;
+          if (errCode) {
+            console.error(`Failed to set the system bar to be invisible. Cause code: ${err.code}, message: ${err.message}`);
+            return;
+          }
+          console.info('Succeeded in setting the system bar to be invisible.');
+        });
+      } catch (exception) {
+        console.error(`Failed to set the system bar to be invisible. Cause code: ${exception.code}, message: ${exception.message}`);
+      }
+    });
+  }
 }
 ```
 
@@ -1720,7 +1897,9 @@ try {
 
 setWindowSystemBarEnable(names: Array<'status' | 'navigation'>): Promise&lt;void&gt;
 
-设置窗口全屏模式时导航栏、状态栏的可见模式，使用Promise异步回调。
+设置主窗口全屏模式时导航栏、状态栏的可见模式，使用Promise异步回调。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -1742,7 +1921,7 @@ setWindowSystemBarEnable(names: Array<'status' | 'navigation'>): Promise&lt;void
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002 | This window state is abnormal.               |
 | 1300003 | This window manager service works abnormally. |
 
@@ -1750,18 +1929,35 @@ setWindowSystemBarEnable(names: Array<'status' | 'navigation'>): Promise&lt;void
 
 ```ts
 // 此处以不显示导航栏、状态栏为例
-import { BusinessError } from '@ohos.base';
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let names: Array<'status' | 'navigation'> = [];
-try {
-  let promise = windowClass.setWindowSystemBarEnable(names);
-  promise.then(() => {
-    console.info('Succeeded in setting the system bar to be invisible.');
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to set the system bar to be invisible. Cause code: ${err.code}, message: ${err.message}`);
-  });
-} catch (exception) {
-  console.error(`Failed to set the system bar to be invisible. Cause code: ${exception.code}, message: ${exception.message}`);
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      windowClass = data;
+      let names: Array<'status' | 'navigation'> = [];
+      try {
+        let promise = windowClass.setWindowSystemBarEnable(names);
+        promise.then(() => {
+          console.info('Succeeded in setting the system bar to be invisible.');
+        }).catch((err: BusinessError) => {
+          console.error(`Failed to set the system bar to be invisible. Cause code: ${err.code}, message: ${err.message}`);
+        });
+      } catch (exception) {
+        console.error(`Failed to set the system bar to be invisible. Cause code: ${exception.code}, message: ${exception.message}`);
+      }
+    });
+  }
 }
 ```
 
@@ -1769,7 +1965,7 @@ try {
 
 setSpecificSystemBarEnabled(name: SpecificSystemBar, enable: boolean, enableAnimation?: boolean): Promise&lt;void&gt;
 
-设置窗口全屏模式时导航栏、状态栏、底部导航条的显示和隐藏，使用Promise异步回调。
+设置主窗口全屏模式时导航栏、状态栏、底部导航条的显示和隐藏，使用Promise异步回调。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -1795,7 +1991,7 @@ setSpecificSystemBarEnabled(name: SpecificSystemBar, enable: boolean, enableAnim
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002 | This window state is abnormal.               |
 | 1300003 | This window manager service works abnormally. |
 
@@ -1803,17 +1999,34 @@ setSpecificSystemBarEnabled(name: SpecificSystemBar, enable: boolean, enableAnim
 
 ```ts
 // 此处以隐藏底部导航条为例
-import { BusinessError } from '@ohos.base';
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-try {
-  let promise = windowClass.setSpecificSystemBarEnabled('navigationIndicator', false);
-  promise.then(() => {
-    console.info('Succeeded in setting the system bar to be invisible.');
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to set the system bar to be invisible. Cause code: ${err.code}, message: ${err.message}`);
-  });
-} catch (exception) {
-  console.error(`Failed to set the system bar to be invisible. Cause code: ${exception.code}, message: ${exception.message}`);
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      windowClass = data;
+      try {
+        let promise = windowClass.setSpecificSystemBarEnabled('navigationIndicator', false);
+        promise.then(() => {
+          console.info('Succeeded in setting the system bar to be invisible.');
+        }).catch((err: BusinessError) => {
+          console.error(`Failed to set the system bar to be invisible. Cause code: ${err.code}, message: ${err.message}`);
+        });
+      } catch (exception) {
+        console.error(`Failed to set the system bar to be invisible. Cause code: ${exception.code}, message: ${exception.message}`);
+      }
+    });
+  }
 }
 ```
 
@@ -1821,7 +2034,7 @@ try {
 
 setWindowSystemBarProperties(systemBarProperties: SystemBarProperties, callback: AsyncCallback&lt;void&gt;): void
 
-设置窗口全屏模式时窗口内导航栏、状态栏的属性，使用callback异步回调。
+设置主窗口全屏模式时窗口内导航栏、状态栏的属性，使用callback异步回调。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -1840,34 +2053,51 @@ setWindowSystemBarProperties(systemBarProperties: SystemBarProperties, callback:
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 801     | Capability not supported. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300002 | This window state is abnormal.               |
 | 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let SystemBarProperties: window.SystemBarProperties = {
-  statusBarColor: '#ff00ff',
-  navigationBarColor: '#00ff00',
-  //以下两个属性从API Version8开始支持
-  statusBarContentColor: '#ffffff',
-  navigationBarContentColor: '#00ffff'
-};
-try {
-  windowClass.setWindowSystemBarProperties(SystemBarProperties, (err: BusinessError) => {
-    const errCode: number = err.code;
-    if (errCode) {
-      console.error(`Failed to set the system bar properties. Cause code: ${err.code}, message: ${err.message}`);
-      return;
-    }
-    console.info('Succeeded in setting the system bar properties.');
-  });
-} catch (exception) {
-  console.error(`Failed to set the system bar properties. Cause code: ${exception.code}, message: ${exception.message}`);
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      windowClass = data;
+      let SystemBarProperties: window.SystemBarProperties = {
+        statusBarColor: '#ff00ff',
+        navigationBarColor: '#00ff00',
+        //以下两个属性从API Version8开始支持
+        statusBarContentColor: '#ffffff',
+        navigationBarContentColor: '#00ffff'
+      };
+      try {
+        windowClass.setWindowSystemBarProperties(SystemBarProperties, (err: BusinessError) => {
+          const errCode: number = err.code;
+          if (errCode) {
+            console.error(`Failed to set the system bar properties. Cause code: ${err.code}, message: ${err.message}`);
+            return;
+          }
+          console.info('Succeeded in setting the system bar properties.');
+        });
+      } catch (exception) {
+        console.error(`Failed to set the system bar properties. Cause code: ${exception.code}, message: ${exception.message}`);
+      }
+    });
+  }
 }
 ```
 
@@ -1899,32 +2129,49 @@ setWindowSystemBarProperties(systemBarProperties: SystemBarProperties): Promise&
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 801     | Capability not supported. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300002 | This window state is abnormal.               |
 | 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let SystemBarProperties: window.SystemBarProperties = {
-  statusBarColor: '#ff00ff',
-  navigationBarColor: '#00ff00',
-  //以下两个属性从API Version8开始支持
-  statusBarContentColor: '#ffffff',
-  navigationBarContentColor: '#00ffff'
-};
-try {
-  let promise = windowClass.setWindowSystemBarProperties(SystemBarProperties);
-  promise.then(() => {
-    console.info('Succeeded in setting the system bar properties.');
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to set the system bar properties. Cause code: ${err.code}, message: ${err.message}`);
-  });
-} catch (exception) {
-  console.error(`Failed to set the system bar properties. Cause code: ${exception.code}, message: ${exception.message}`);
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      windowClass = data;
+      let SystemBarProperties: window.SystemBarProperties = {
+        statusBarColor: '#ff00ff',
+        navigationBarColor: '#00ff00',
+        //以下两个属性从API Version8开始支持
+        statusBarContentColor: '#ffffff',
+        navigationBarContentColor: '#00ffff'
+      };
+      try {
+        let promise = windowClass.setWindowSystemBarProperties(SystemBarProperties);
+        promise.then(() => {
+          console.info('Succeeded in setting the system bar properties.');
+        }).catch((err: BusinessError) => {
+          console.error(`Failed to set the system bar properties. Cause code: ${err.code}, message: ${err.message}`);
+        });
+      } catch (exception) {
+        console.error(`Failed to set the system bar properties. Cause code: ${exception.code}, message: ${exception.message}`);
+      }
+    });
+  }
 }
 ```
 
@@ -1959,9 +2206,8 @@ getWindowSystemBarProperties(): SystemBarProperties
 
 ```ts
 // EntryAbility.ets
-import UIAbility from '@ohos.app.ability.UIAbility';
-import window from '@ohos.window';
-import { BusinessError } from '@ohos.base';
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   // ...
@@ -1990,7 +2236,7 @@ export default class EntryAbility extends UIAbility {
 
 setPreferredOrientation(orientation: Orientation, callback: AsyncCallback&lt;void&gt;): void
 
-设置窗口的显示方向属性，使用callback异步回调。
+设置主窗口的显示方向属性，使用callback异步回调。仅在支持跟随sensor旋转的设备上生效。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -2009,26 +2255,43 @@ setPreferredOrientation(orientation: Orientation, callback: AsyncCallback&lt;voi
 
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------ |
-| 401     | Parameter error. Possible cause: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 1300002 | This window state is abnormal. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let orientation = window.Orientation.AUTO_ROTATION;
-try {
-  windowClass.setPreferredOrientation(orientation, (err: BusinessError) => {
-    const errCode: number = err.code;
-    if (errCode) {
-      console.error(`Failed to set window orientation. Cause code: ${err.code}, message: ${err.message}`);
-      return;
-    }
-    console.info('Succeeded in setting window orientation.');
-  });
-} catch (exception) {
-  console.error(`Failed to set window orientation. Cause code: ${exception.code}, message: ${exception.message}`);
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      windowClass = data;
+      let orientation = window.Orientation.AUTO_ROTATION;
+      try {
+        windowClass.setPreferredOrientation(orientation, (err: BusinessError) => {
+          const errCode: number = err.code;
+          if (errCode) {
+            console.error(`Failed to set window orientation. Cause code: ${err.code}, message: ${err.message}`);
+            return;
+          }
+          console.info('Succeeded in setting window orientation.');
+        });
+      } catch (exception) {
+        console.error(`Failed to set window orientation. Cause code: ${exception.code}, message: ${exception.message}`);
+      }
+    });
+  }
 }
 ```
 
@@ -2036,7 +2299,7 @@ try {
 
 setPreferredOrientation(orientation: Orientation): Promise&lt;void&gt;
 
-设置窗口的显示方向属性，使用Promise异步回调。
+设置主窗口的显示方向属性，使用Promise异步回调。仅在支持跟随sensor旋转的设备上生效。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -2060,24 +2323,41 @@ setPreferredOrientation(orientation: Orientation): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------ |
-| 401     | Parameter error. Possible cause: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 1300002 | This window state is abnormal. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let orientation = window.Orientation.AUTO_ROTATION;
-try {
-  let promise = windowClass.setPreferredOrientation(orientation);
-  promise.then(() => {
-    console.info('Succeeded in setting the window orientation.');
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to set the window orientation. Cause code: ${err.code}, message: ${err.message}`);
-  });
-} catch (exception) {
-  console.error(`Failed to set window orientation. Cause code: ${exception.code}, message: ${exception.message}`);
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      windowClass = data;
+      let orientation = window.Orientation.AUTO_ROTATION;
+      try {
+        let promise = windowClass.setPreferredOrientation(orientation);
+        promise.then(() => {
+          console.info('Succeeded in setting the window orientation.');
+        }).catch((err: BusinessError) => {
+          console.error(`Failed to set the window orientation. Cause code: ${err.code}, message: ${err.message}`);
+        });
+      } catch (exception) {
+        console.error(`Failed to set window orientation. Cause code: ${exception.code}, message: ${exception.message}`);
+      }
+    });
+  }
 }
 ```
 
@@ -2109,9 +2389,8 @@ getPreferredOrientation(): Orientation
 
 ```ts
 // EntryAbility.ets
-import UIAbility from '@ohos.app.ability.UIAbility';
-import window from '@ohos.window';
-import { BusinessError } from '@ohos.base';
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 export default class EntryAbility extends UIAbility {
   // ...
 
@@ -2165,10 +2444,9 @@ getUIContext(): UIContext
 
 ```ts
 // EntryAbility.ets
-import UIAbility from '@ohos.app.ability.UIAbility';
-import window from '@ohos.window';
-import { BusinessError } from '@ohos.base';
-import { UIContext } from '@ohos.arkui.UIContext';
+import { UIAbility } from '@kit.AbilityKit';
+import { window, UIContext } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
@@ -2193,7 +2471,7 @@ export default class EntryAbility extends UIAbility {
         // 获取UIContext实例。
         let uiContext: UIContext | null = null;
         uiContext = windowClass.getUIContext();
-      })
+      });
     });
   }
 };
@@ -2222,14 +2500,14 @@ setUIContent(path: string, callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002 | This window state is abnormal.               |
 | 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   windowClass.setUIContent('pages/page2/page3', (err: BusinessError) => {
@@ -2273,14 +2551,14 @@ setUIContent(path: string): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002 | This window state is abnormal.               |
 | 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let promise = windowClass.setUIContent('pages/page2/page3');
@@ -2320,14 +2598,14 @@ loadContent(path: string, storage: LocalStorage, callback: AsyncCallback&lt;void
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002 | This window state is abnormal.               |
 | 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let storage: LocalStorage = new LocalStorage();
 storage.setOrCreate('storageSimpleProp', 121);
@@ -2372,14 +2650,14 @@ loadContent(path: string, storage: LocalStorage): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002 | This window state is abnormal.               |
 | 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let storage: LocalStorage = new LocalStorage();
 storage.setOrCreate('storageSimpleProp', 121);
@@ -2417,15 +2695,14 @@ loadContentByName(name: string, storage: LocalStorage, callback: AsyncCallback&l
 
 | 错误码ID | 错误信息                                      |
 | -------- | --------------------------------------------- |
-| 401      | Parameter error. Possible cause: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 401      | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002  | This window state is abnormal.                |
 | 1300003  | This window manager service works abnormally. |
 
 **示例：**
 
 ```ts
-import window from '@ohos.window';
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 import * as Index from '../pages/Index'; // 导入命名路由页面
 
 console.info('onWindowStageCreate');
@@ -2490,15 +2767,14 @@ loadContentByName(name: string, callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID | 错误信息                                      |
 | -------- | --------------------------------------------- |
-| 401      | Parameter error. Possible cause: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 401      | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002  | This window state is abnormal.                |
 | 1300003  | This window manager service works abnormally. |
 
 **示例：**
 
 ```ts
-import window from '@ohos.window';
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 import * as Index from '../pages/Index'; // 导入命名路由页面
 
 try {  
@@ -2566,15 +2842,14 @@ loadContentByName(name: string, storage?: LocalStorage): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息                                      |
 | -------- | --------------------------------------------- |
-| 401      | Parameter error. Possible cause: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 401      | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002  | This window state is abnormal.                |
 | 1300003  | This window manager service works abnormally. |
 
 **示例：**
 
 ```ts
-import window from '@ohos.window';
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 import * as Index from '../pages/Index'; // 导入命名路由页面
 
 let storage: LocalStorage = new LocalStorage();
@@ -2669,7 +2944,7 @@ on(type:  'windowSizeChange', callback: Callback&lt;Size&gt;): void
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -2706,7 +2981,7 @@ off(type: 'windowSizeChange', callback?: Callback&lt;Size&gt;): void
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1.Incorrect parameter types; 2.Parameter verification failed. |
+| 401     | Parameter error. Possible cause: 1. Incorrect parameter types; 2. Parameter verification failed. |
 
 **示例：**
 
@@ -2717,7 +2992,7 @@ const callback = (size: window.Size) => {
 try {
   windowClass.on('windowSizeChange', callback);
 } catch (exception) {
-  console.error('Failed to enable the listener for window size changes. Cause: ' + JSON.stringify(exception));
+  console.error(`Failed to enable the listener for window size changes. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 try {
   windowClass.off('windowSizeChange', callback);
@@ -2732,7 +3007,7 @@ try {
 
 on(type: 'avoidAreaChange', callback: Callback&lt;AvoidAreaOptions&gt;): void
 
-开启系统规避区变化的监听。
+开启主窗口系统规避区变化的监听。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -2751,18 +3026,37 @@ on(type: 'avoidAreaChange', callback: Callback&lt;AvoidAreaOptions&gt;): void
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
 ```ts
-try {
-  windowClass.on('avoidAreaChange', (data) => {
-    console.info('Succeeded in enabling the listener for system avoid area changes. type:' +
-    JSON.stringify(data.type) + ', area: ' + JSON.stringify(data.area));
-  });
-} catch (exception) {
-  console.error(`Failed to enable the listener for system avoid area changes. Cause code: ${exception.code}, message: ${exception.message}`);
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      windowClass = data;
+      try {
+        windowClass.on('avoidAreaChange', (data) => {
+          console.info('Succeeded in enabling the listener for system avoid area changes. type:' +
+          JSON.stringify(data.type) + ', area: ' + JSON.stringify(data.area));
+        });
+      } catch (exception) {
+        console.error(`Failed to enable the listener for system avoid area changes. Cause code: ${exception.code}, message: ${exception.message}`);
+      }
+    });
+  }
 }
 ```
 
@@ -2770,7 +3064,7 @@ try {
 
 off(type: 'avoidAreaChange', callback?: Callback&lt;AvoidAreaOptions&gt;): void
 
-关闭系统规避区变化的监听。
+关闭主窗口系统规避区变化的监听。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -2789,25 +3083,48 @@ off(type: 'avoidAreaChange', callback?: Callback&lt;AvoidAreaOptions&gt;): void
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1.Incorrect parameter types; 2.Parameter verification failed. |
+| 401     | Parameter error. Possible cause: 1. Incorrect parameter types; 2. Parameter verification failed. |
 
 **示例：**
 
 ```ts
-const callback = (data: { type: window.AvoidAreaType, area: window.AvoidArea }) => {
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class EntryAbility extends UIAbility {
   // ...
-}
-try {
-  windowClass.on('avoidAreaChange', callback);
-} catch (exception) {
-  console.error('Failed to enable the listener for system avoid area changes. Cause: ' + JSON.stringify(exception));
-}
-try {
-  windowClass.off('avoidAreaChange', callback);
-  // 如果通过on开启多个callback进行监听，同时关闭所有监听：
-  windowClass.off('avoidAreaChange');
-} catch (exception) {
-  console.error(`Failed to disable the listener for system avoid area changes. Cause code: ${exception.code}, message: ${exception.message}`);
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      windowClass = data;
+	  interface Param {
+		type: window.AvoidAreaType,
+		area: window.AvoidArea
+	  }
+	  const callback = (data: Param) => {
+		// ...
+	  }
+	  try {
+		windowClass.on('avoidAreaChange', callback);
+	  } catch (exception) {
+		console.error('Failed to enable the listener for system avoid area changes. Cause: ' + JSON.stringify(exception));
+	  }
+	  try {
+		windowClass.off('avoidAreaChange', callback);
+		// 如果通过on开启多个callback进行监听，同时关闭所有监听：
+		windowClass.off('avoidAreaChange');
+	  } catch (exception) {
+		console.error(`Failed to disable the listener for system avoid area changes. Cause code: ${exception.code}, message: ${exception.message}`);
+	  }
+    });
+  }
 }
 ```
 
@@ -2815,7 +3132,7 @@ try {
 
 on(type: 'keyboardHeightChange', callback: Callback&lt;number&gt;): void
 
-开启固定态输入法窗口软键盘高度变化的监听。从API version 10开始，改变输入法窗口为固定态或者悬浮态方法详细介绍请参见[输入法服务](../apis-ime-kit/js-apis-inputmethodengine.md#changeflag10)。
+开启主窗口固定态输入法窗口软键盘高度变化的监听。从API version 10开始，改变输入法窗口为固定态或者悬浮态方法详细介绍请参见[输入法服务](../apis-ime-kit/js-apis-inputmethodengine.md#changeflag10)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -2832,17 +3149,36 @@ on(type: 'keyboardHeightChange', callback: Callback&lt;number&gt;): void
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
 ```ts
-try {
-  windowClass.on('keyboardHeightChange', (data) => {
-    console.info('Succeeded in enabling the listener for keyboard height changes. Data: ' + JSON.stringify(data));
-  });
-} catch (exception) {
-  console.error(`Failed to enable the listener for keyboard height changes. Cause code: ${exception.code}, message: ${exception.message}`);
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      windowClass = data;
+      try {
+        windowClass.on('keyboardHeightChange', (data) => {
+          console.info('Succeeded in enabling the listener for keyboard height changes. Data: ' + JSON.stringify(data));
+        });
+      } catch (exception) {
+        console.error(`Failed to enable the listener for keyboard height changes. Cause code: ${exception.code}, message: ${exception.message}`);
+      }
+    });
+  }
 }
 ```
 
@@ -2850,7 +3186,7 @@ try {
 
 off(type: 'keyboardHeightChange', callback?: Callback&lt;number&gt;): void
 
-关闭固定态输入法窗口软键盘高度变化的监听。从API version 10开始，改变输入法窗口为固定态或者悬浮态方法详细介绍请参见[输入法服务](../apis-ime-kit/js-apis-inputmethodengine.md#changeflag10)。
+关闭主窗口固定态输入法窗口软键盘高度变化的监听。从API version 10开始，改变输入法窗口为固定态或者悬浮态方法详细介绍请参见[输入法服务](../apis-ime-kit/js-apis-inputmethodengine.md#changeflag10)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -2867,25 +3203,44 @@ off(type: 'keyboardHeightChange', callback?: Callback&lt;number&gt;): void
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1.Incorrect parameter types; 2.Parameter verification failed. |
+| 401     | Parameter error. Possible cause: 1. Incorrect parameter types; 2. Parameter verification failed. |
 
 **示例：**
 
 ```ts
-const callback = (height: number) => {
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class EntryAbility extends UIAbility {
   // ...
-}
-try {
-  windowClass.on('keyboardHeightChange', callback);
-} catch (exception) {
-  console.error('Failed to enable the listener for keyboard height changes. Cause: ' + JSON.stringify(exception));
-}
-try {
-  windowClass.off('keyboardHeightChange', callback);
-  // 如果通过on开启多个callback进行监听，同时关闭所有监听：
-  windowClass.off('keyboardHeightChange');
-} catch (exception) {
-  console.error(`Failed to disable the listener for keyboard height changes. Cause code: ${exception.code}, message: ${exception.message}`);
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      windowClass = data;
+      const callback = (height: number) => {
+        // ...
+      }
+      try {
+        windowClass.on('keyboardHeightChange', callback);
+      } catch (exception) {
+        console.error(`Failed to enable the listener for keyboard height changes. Cause code: ${exception.code}, message: ${exception.message}`);
+      }
+      try {
+        windowClass.off('keyboardHeightChange', callback);
+        // 如果通过on开启多个callback进行监听，同时关闭所有监听：
+        windowClass.off('keyboardHeightChange');
+      } catch (exception) {
+        console.error(`Failed to disable the listener for keyboard height changes. Cause code: ${exception.code}, message: ${exception.message}`);
+      }
+    });
+  }
 }
 ```
 
@@ -2912,7 +3267,7 @@ on(type: 'touchOutside', callback: Callback&lt;void&gt;): void
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -2949,7 +3304,7 @@ off(type: 'touchOutside', callback?: Callback&lt;void&gt;): void
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1.Incorrect parameter types; 2.Parameter verification failed. |
+| 401     | Parameter error. Possible cause: 1. Incorrect parameter types; 2. Parameter verification failed. |
 
 **示例：**
 
@@ -2960,7 +3315,7 @@ const callback = () => {
 try {
   windowClass.on('touchOutside', callback);
 } catch (exception) {
-  console.error('Failed to register callback. Cause: ' + JSON.stringify(exception));
+  console.error(`Failed to register callback. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 try {
   windowClass.off('touchOutside', callback);
@@ -2992,7 +3347,7 @@ on(type: 'screenshot', callback: Callback&lt;void&gt;): void
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -3027,7 +3382,7 @@ off(type: 'screenshot', callback?: Callback&lt;void&gt;): void
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1.Incorrect parameter types; 2.Parameter verification failed. |
+| 401     | Parameter error. Possible cause: 1. Incorrect parameter types; 2. Parameter verification failed. |
 
 **示例：**
 
@@ -3070,7 +3425,7 @@ on(type: 'dialogTargetTouch', callback: Callback&lt;void&gt;): void
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -3105,7 +3460,7 @@ off(type: 'dialogTargetTouch', callback?: Callback&lt;void&gt;): void
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1.Incorrect parameter types; 2.Parameter verification failed. |
+| 401     | Parameter error. Possible cause: 1. Incorrect parameter types; 2. Parameter verification failed. |
 
 **示例：**
 
@@ -3116,7 +3471,7 @@ const callback = () => {
 try {
   windowClass.on('dialogTargetTouch', callback);
 } catch (exception) {
-  console.error('Failed to register callback. Cause: ' + JSON.stringify(exception));
+  console.error(`Failed to register callback. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 try {
   windowClass.off('dialogTargetTouch', callback);
@@ -3150,7 +3505,7 @@ on(type: 'windowEvent', callback: Callback&lt;WindowEventType&gt;): void
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -3187,7 +3542,7 @@ off(type: 'windowEvent', callback?: Callback&lt;WindowEventType&gt;): void
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1.Incorrect parameter types; 2.Parameter verification failed. |
+| 401     | Parameter error. Possible cause: 1. Incorrect parameter types; 2. Parameter verification failed. |
 
 **示例：**
 
@@ -3198,7 +3553,7 @@ const callback = (windowEventType: window.WindowEventType) => {
 try {
   windowClass.on('windowEvent', callback);
 } catch (exception) {
-  console.error('Failed to register callback. Cause: ' + JSON.stringify(exception));
+  console.error(`Failed to register callback. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 try {
   windowClass.off('windowEvent', callback);
@@ -3230,8 +3585,8 @@ on(type: 'windowVisibilityChange', callback: Callback&lt;boolean&gt;): void
 
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------ |
-| 401     | Parameter error. Possible cause: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
-| 801     | Capability not supported on this device. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300002 | This window state is abnormal.                |
 | 1300003 | This window manager service works abnormally. |
 
@@ -3268,8 +3623,8 @@ off(type: 'windowVisibilityChange', callback?: Callback&lt;boolean&gt;): void
 
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------ |
-| 401     | Parameter error. Possible cause: 1.Incorrect parameter types; 2.Parameter verification failed. |
-| 801     | Capability not supported on this device. |
+| 401     | Parameter error. Possible cause: 1. Incorrect parameter types; 2. Parameter verification failed. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300002 | This window state is abnormal.                |
 | 1300003 | This window manager service works abnormally. |
 
@@ -3282,7 +3637,7 @@ const callback = (bool: boolean) => {
 try {
   windowClass.on('windowVisibilityChange', callback);
 } catch (exception) {
-  console.error('Failed to register callback. Cause: ' + JSON.stringify(exception));
+  console.error(`Failed to register callback. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 try {
   windowClass.off('windowVisibilityChange', callback);
@@ -3315,8 +3670,8 @@ on(type: 'noInteractionDetected', timeout: number, callback: Callback&lt;void&gt
 
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------ |
-| 401     | Parameter error. Possible cause: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
-| 801     | Capability not supported on this device. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300002 | This window state is abnormal.                |
 | 1300003 | This window manager service works abnormally. |
 
@@ -3353,8 +3708,8 @@ off(type: 'noInteractionDetected', callback?: Callback&lt;void&gt;): void
 
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------ |
-| 401     | Parameter error. Possible cause: 1.Incorrect parameter types; 2.Parameter verification failed. |
-| 801     | Capability not supported on this device. |
+| 401     | Parameter error. Possible cause: 1. Incorrect parameter types; 2. Parameter verification failed. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300002 | This window state is abnormal.                |
 | 1300003 | This window manager service works abnormally. |
 
@@ -3367,7 +3722,7 @@ const callback = () => {
 try {
   windowClass.on('noInteractionDetected', 60, callback);
 } catch (exception) {
-  console.error('Failed to register callback. Cause: ' + JSON.stringify(exception));
+  console.error(`Failed to register callback. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 try {
   windowClass.off('noInteractionDetected', callback);
@@ -3382,7 +3737,7 @@ try {
 
 on(type:  'windowStatusChange', callback: Callback&lt;WindowStatusType&gt;): void
 
-开启窗口模式变化的监听。
+开启主窗口模式变化的监听。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -3399,18 +3754,37 @@ on(type:  'windowStatusChange', callback: Callback&lt;WindowStatusType&gt;): voi
 
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------ |
-| 401     | Parameter error. Possible cause: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
-| 801     | Capability not supported on this device. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
 
 **示例：**
 
 ```ts
-try {
-  windowClass.on('windowStatusChange', (WindowStatusType) => {
-      console.info('Succeeded in enabling the listener for window status changes. Data: ' + JSON.stringify(WindowStatusType));
-  });
-} catch (exception) {
-  console.error(`Failed to enable the listener for window status changes. Cause code: ${exception.code}, message: ${exception.message}`);
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      windowClass = data;
+      try {
+        windowClass.on('windowStatusChange', (WindowStatusType) => {
+          console.info('Succeeded in enabling the listener for window status changes. Data: ' + JSON.stringify(WindowStatusType));
+        });
+      } catch (exception) {
+        console.error(`Failed to enable the listener for window status changes. Cause code: ${exception.code}, message: ${exception.message}`);
+      }
+    });
+  }
 }
 ```
 
@@ -3418,7 +3792,7 @@ try {
 
 off(type: 'windowStatusChange', callback?: Callback&lt;WindowStatusType&gt;): void
 
-关闭窗口模式变化的监听。
+关闭主窗口模式变化的监听。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -3435,26 +3809,45 @@ off(type: 'windowStatusChange', callback?: Callback&lt;WindowStatusType&gt;): vo
 
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------ |
-| 401     | Parameter error. Possible cause: 1.Incorrect parameter types; 2.Parameter verification failed. |
-| 801     | Capability not supported on this device. |
+| 401     | Parameter error. Possible cause: 1. Incorrect parameter types; 2. Parameter verification failed. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
 
 **示例：**
 
 ```ts
-const callback = (windowStatusType: window.WindowStatusType) => {
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class EntryAbility extends UIAbility {
   // ...
-}
-try {
-  windowClass.on('windowStatusChange', callback);
-} catch (exception) {
-  console.error('Failed to enable the listener for window status changes. Cause: ' + JSON.stringify(exception));
-}
-try {
-  windowClass.off('windowStatusChange', callback);
-  // 如果通过on开启多个callback进行监听，同时关闭所有监听：
-  windowClass.off('windowStatusChange');
-} catch (exception) {
-  console.error(`Failed to disable the listener for window status changes. Cause code: ${exception.code}, message: ${exception.message}`);
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      windowClass = data;
+      const callback = (windowStatusType: window.WindowStatusType) => {
+        // ...
+      }
+      try {
+        windowClass.on('windowStatusChange', callback);
+      } catch (exception) {
+        console.error(`Failed to enable the listener for window status changes. Cause code: ${exception.code}, message: ${exception.message}`);
+      }
+      try {
+        windowClass.off('windowStatusChange', callback);
+        // 如果通过on开启多个callback进行监听，同时关闭所有监听：
+        windowClass.off('windowStatusChange');
+      } catch (exception) {
+        console.error(`Failed to disable the listener for window status changes. Cause code: ${exception.code}, message: ${exception.message}`);
+      }
+    });
+  }
 }
 ```
 
@@ -3484,15 +3877,15 @@ setWindowGrayScale(grayScale: number): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
-| 801     | Capability not supported. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300002 | This window state is abnormal.                |
 | 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let grayScale: number = 0.5;
 try {
@@ -3513,7 +3906,7 @@ try {
 
 on(type: 'windowTitleButtonRectChange', callback: Callback&lt;TitleButtonRect&gt;): void
 
-开启标题栏上的最小化、最大化、关闭按钮矩形区域变化的监听。
+开启应用窗口标题栏上的最小化、最大化、关闭按钮矩形区域变化的监听。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -3530,8 +3923,8 @@ on(type: 'windowTitleButtonRectChange', callback: Callback&lt;TitleButtonRect&gt
 
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------ |
-| 401      | Parameter error. Possible cause: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
-| 801      | Capability not supported on this device. |
+| 401      | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300002  | This window state is abnormal. |
 
 **示例：**
@@ -3550,7 +3943,7 @@ try {
 
 off(type: 'windowTitleButtonRectChange', callback?: Callback&lt;TitleButtonRect&gt;): void
 
-关闭标题栏上的最小化、最大化、关闭按钮矩形区域变化的监听。
+关闭应用窗口标题栏上的最小化、最大化、关闭按钮矩形区域变化的监听。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -3567,8 +3960,8 @@ off(type: 'windowTitleButtonRectChange', callback?: Callback&lt;TitleButtonRect&
 
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------ |
-| 401      | Parameter error. Possible cause: 1.Incorrect parameter types; 2.Parameter verification failed. |
-| 801      | Capability not supported on this device. |
+| 401      | Parameter error. Possible cause: 1. Incorrect parameter types; 2. Parameter verification failed. |
+| 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300002  | This window state is abnormal. |
 
 **示例：**
@@ -3580,7 +3973,7 @@ const callback = (titleButtonRect: window.TitleButtonRect) => {
 try {
   windowClass.on('windowTitleButtonRectChange', callback);
 } catch (exception) {
-  console.error('Failed to enable the listener for window title buttons area changes. Cause: ' + JSON.stringify(exception));
+  console.error(`Failed to enable the listener for window title buttons area changes. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 try {
   windowClass.off('windowTitleButtonRectChange', callback);
@@ -3614,8 +4007,8 @@ on(type:  'windowRectChange', callback: Callback&lt;RectChangeOptions&gt;): void
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
-| 801     | Capability not supported. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300002 | This window state is abnormal. |
 | 1300003 | This window manager service works abnormally. |
 
@@ -3650,8 +4043,8 @@ off(type: 'windowRectChange', callback?: Callback&lt;RectChangeOptions&gt;): voi
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1.Incorrect parameter types; 2.Parameter verification failed. |
-| 801     | Capability not supported. |
+| 401     | Parameter error. Possible cause: 1. Incorrect parameter types; 2. Parameter verification failed. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300002 | This window state is abnormal. |
 | 1300003 | This window manager service works abnormally. |
 
@@ -3692,7 +4085,7 @@ isWindowSupportWideGamut(callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 windowClass.isWindowSupportWideGamut((err: BusinessError, data) => {
   const errCode: number = err.code;
@@ -3729,7 +4122,7 @@ isWindowSupportWideGamut(): Promise&lt;boolean&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let promise = windowClass.isWindowSupportWideGamut();
 promise.then((data) => {
@@ -3760,13 +4153,13 @@ setWindowColorSpace(colorSpace:ColorSpace, callback: AsyncCallback&lt;void&gt;):
 
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------ |
-| 401     | Parameter error. Possible cause: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 1300002 | This window state is abnormal. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   windowClass.setWindowColorSpace(window.ColorSpace.WIDE_GAMUT, (err: BusinessError) => {
@@ -3808,13 +4201,13 @@ setWindowColorSpace(colorSpace:ColorSpace): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------ |
-| 401     | Parameter error. Possible cause: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 1300002 | This window state is abnormal. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let promise = windowClass.setWindowColorSpace(window.ColorSpace.WIDE_GAMUT);
@@ -3878,13 +4271,13 @@ setWindowBackgroundColor(color: string): void
 
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------ |
-| 401     | Parameter error. Possible cause: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002 | This window state is abnormal. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 private SetUIContent(windowClass: window.Window) {
     windowClass.setUIContent("pages/ButtonWindow",(err: BusinessError) => {
@@ -3928,14 +4321,14 @@ setWindowBrightness(brightness: number, callback: AsyncCallback&lt;void&gt;): vo
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002 | This window state is abnormal.               |
 | 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let brightness: number = 1;
 try {
@@ -3982,14 +4375,14 @@ setWindowBrightness(brightness: number): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002 | This window state is abnormal.               |
 | 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let brightness: number = 1;
 try {
@@ -4025,14 +4418,14 @@ setWindowFocusable(isFocusable: boolean, callback: AsyncCallback&lt;void&gt;): v
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002 | This window state is abnormal.               |
 | 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let isFocusable: boolean = true;
 try {
@@ -4075,14 +4468,14 @@ setWindowFocusable(isFocusable: boolean): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002 | This window state is abnormal.               |
 | 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let isFocusable: boolean = true;
 try {
@@ -4120,14 +4513,14 @@ setWindowKeepScreenOn(isKeepScreenOn: boolean, callback: AsyncCallback&lt;void&g
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002 | This window state is abnormal.               |
 | 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let isKeepScreenOn: boolean = true;
 try {
@@ -4172,14 +4565,14 @@ setWindowKeepScreenOn(isKeepScreenOn: boolean): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002 | This window state is abnormal.               |
 | 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let isKeepScreenOn: boolean = true;
 try {
@@ -4187,7 +4580,7 @@ try {
   promise.then(() => {
     console.info('Succeeded in setting the screen to be always on.');
   }).catch((err: BusinessError) => {
-    console.info('Failed to set the screen to be always on. Cause:  ' + JSON.stringify(err));
+    console.info(`Failed to set the screen to be always on. Cause code: ${err.code}, message: ${err.message}`);
   });
 } catch (exception) {
   console.error(`Failed to set the screen to be always on. Cause code: ${exception.code}, message: ${exception.message}`);
@@ -4219,14 +4612,14 @@ setWindowPrivacyMode(isPrivacyMode: boolean, callback: AsyncCallback&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------ |
-| 201     | Permission verification failed. |
-| 401     | Parameter error. Possible cause: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 201     | Permission verification failed. The application does not have the permission required to call the API. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002 | This window state is abnormal. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let isPrivacyMode: boolean = true;
 try {
@@ -4273,14 +4666,14 @@ setWindowPrivacyMode(isPrivacyMode: boolean): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------ |
-| 201     | Permission verification failed. |
-| 401     | Parameter error. Possible cause: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 201     | Permission verification failed. The application does not have the permission required to call the API. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002 | This window state is abnormal. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let isPrivacyMode: boolean = true;
 try {
@@ -4316,14 +4709,14 @@ setWindowTouchable(isTouchable: boolean, callback: AsyncCallback&lt;void&gt;): v
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002 | This window state is abnormal.               |
 | 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let isTouchable = true;
 try {
@@ -4366,14 +4759,14 @@ setWindowTouchable(isTouchable: boolean): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002 | This window state is abnormal.               |
 | 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let isTouchable: boolean = true;
 try {
@@ -4413,8 +4806,8 @@ snapshot(callback: AsyncCallback&lt;image.PixelMap&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import image from '@ohos.multimedia.image';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { image } from '@kit.ImageKit';
 
 windowClass.snapshot((err: BusinessError, pixelMap: image.PixelMap) => {
   const errCode: number = err.code;
@@ -4452,8 +4845,8 @@ snapshot(): Promise&lt;image.PixelMap&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import image from '@ohos.multimedia.image';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { image } from '@kit.ImageKit';
 
 let promise = windowClass.snapshot();
 promise.then((pixelMap: image.PixelMap) => {
@@ -4492,16 +4885,16 @@ setAspectRatio(ratio: number): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 1300002 | This window state is abnormal.               |
 | 1300004 | Unauthorized operation.                      |
 
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import window from '@ohos.window';
-import { BusinessError } from '@ohos.base';
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
 
@@ -4550,16 +4943,16 @@ setAspectRatio(ratio: number, callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 1300002 | This window state is abnormal.               |
 | 1300004 | Unauthorized operation.                      |
 
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import window from '@ohos.window';
-import { BusinessError } from '@ohos.base';
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
 
@@ -4616,9 +5009,9 @@ resetAspectRatio(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import window from '@ohos.window';
-import { BusinessError } from '@ohos.base';
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
 
@@ -4671,9 +5064,9 @@ resetAspectRatio(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import window from '@ohos.window';
-import { BusinessError } from '@ohos.base';
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
 
@@ -4726,14 +5119,14 @@ minimize(callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------ |
-| 801     | Capability not supported on this device. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300002 | This window state is abnormal. |
 | 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 windowClass.minimize((err: BusinessError) => {
   const errCode: number = err.code;
@@ -4771,14 +5164,14 @@ minimize(): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------ |
-| 801     | Capability not supported on this device. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300002 | This window state is abnormal. |
 | 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let promise = windowClass.minimize();
 promise.then(() => {
@@ -4808,7 +5201,7 @@ maximize(): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------ |
-| 801     | Capability not supported on this device. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300002 | This window state is abnormal.                |
 | 1300003 | This window manager service works abnormally. |
 | 1300004 | Unauthorized operation.                       |
@@ -4818,9 +5211,8 @@ maximize(): Promise&lt;void&gt;
 
 ```ts
 // EntryAbility.ets
-import UIAbility from '@ohos.app.ability.UIAbility';
-import window from '@ohos.window';
-import { BusinessError } from '@ohos.base';
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 export default class EntryAbility extends UIAbility {
   // ...
 
@@ -4865,28 +5257,45 @@ recover(): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------ |
-| 801     | Capability not supported on this device. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300001 | Repeated operation. |
 | 1300002 | This window state is abnormal. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let promise = windowClass.recover();
-promise.then(() => {
-  console.info('Succeeded in recovering the window.');
-}).catch((err: BusinessError) => {
-  console.error(`Failed to recover the window. Cause code: ${err.code}, message: ${err.message}`);
-});
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      windowClass = data;
+      let promise = windowClass.recover();
+      promise.then(() => {
+        console.info('Succeeded in recovering the window.');
+      }).catch((err: BusinessError) => {
+        console.error(`Failed to recover the window. Cause code: ${err.code}, message: ${err.message}`);
+      });
+    });
+  }
+}
 ```
 
 ### getWindowLimits<sup>11+</sup>
 
 getWindowLimits(): WindowLimits
 
-获取当前窗口的尺寸限制。
+获取当前应用窗口的尺寸限制。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -4902,7 +5311,7 @@ getWindowLimits(): WindowLimits
 
 | 错误码ID | 错误信息                       |
 | :------- | :----------------------------- |
-| 801      | Capability not supported on this device. |
+| 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300002  | This window state is abnormal. |
 
 **示例：**
@@ -4919,7 +5328,7 @@ try {
 
 setWindowLimits(windowLimits: WindowLimits): Promise&lt;WindowLimits&gt;
 
-设置当前窗口的尺寸限制，使用Promise异步回调。
+设置当前应用窗口的尺寸限制，使用Promise异步回调。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -4941,8 +5350,8 @@ setWindowLimits(windowLimits: WindowLimits): Promise&lt;WindowLimits&gt;
 
 | 错误码ID | 错误信息                                      |
 | :------- | :-------------------------------------------- |
-| 401      | Parameter error. Possible cause: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
-| 801      | Capability not supported on this device. |
+| 401      | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300002  | This window state is abnormal.                |
 | 1300003  | This window manager service works abnormally. |
 | 1300004 | Unauthorized operation.                |
@@ -4950,7 +5359,7 @@ setWindowLimits(windowLimits: WindowLimits): Promise&lt;WindowLimits&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 try {
   let windowLimits: window.WindowLimits = {
     maxWidth: 1500,
@@ -4995,15 +5404,15 @@ setWindowMask(windowMask: Array&lt;Array&lt;number&gt;&gt;): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息                                      |
 | :------- | :-------------------------------------------- |
-| 401      | Parameter error. Possible cause: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 801      | Capability not supported on this device. |
+| 401      | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300002  | This window state is abnormal.                |
 | 1300003  | This window manager service works abnormally. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 try {
   let windowMask: Array<Array<number>> = [
       [0, 0, 0, 1, 0, 0, 0],
@@ -5042,8 +5451,8 @@ keepKeyboardOnFocus(keepKeyboardFlag: boolean): void
 
 | 错误码ID | 错误信息 |
 | ------- | ---------------------------------------- |
-| 401     | Parameter error. Possible cause: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 801     | Capability not supported on this device. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300002 | This window state is abnormal.           |
 | 1300004 | Unauthorized operation.                  |
 
@@ -5077,8 +5486,8 @@ setWindowDecorVisible(isVisible: boolean): void
 
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------ |
-| 401      | Parameter error. Possible cause: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 801      | Capability not supported on this device. |
+| 401      | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300002  | This window state is abnormal. |
 | 1300004  | Unauthorized operation.        |
 
@@ -5086,8 +5495,8 @@ setWindowDecorVisible(isVisible: boolean): void
 
 ```ts
 // EntryAbility.ets
-import UIAbility from '@ohos.app.ability.UIAbility';
-import { BusinessError } from '@ohos.base';
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
@@ -5116,7 +5525,7 @@ export default class EntryAbility extends UIAbility {
         } catch (exception) {
             console.error(`Failed to set the visibility of window decor. Cause code: ${exception.code}, message: ${exception.message}`);
         }
-      })
+      });
     });
   }
 };
@@ -5153,29 +5562,51 @@ setSubWindowModal(isModal: boolean): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------ |
-| 401      | Parameter error. Possible cause: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 801      | Capability not supported on this device. |
+| 401      | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300002  | This window state is abnormal. |
 | 1300004  | Unauthorized operation.        |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let promise = windowClass.setSubWindowModal(true);
-promise.then(() => {
-  console.info('Succeeded in setting subwindow modal');
-}).catch((err: BusinessError) => {
-  console.error(`Failed to set subwindow modal. Cause code: ${err.code}, message: ${err.message}`);
-})
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    // 创建子窗
+    try {
+      let subWindow = windowStage.createSubWindow("testSubWindow");
+      subWindow.then((data) => {
+        if (data == null) {
+          console.error("Failed to create the subWindow. Cause: The data is empty");
+          return;
+        }
+        windowClass = data;
+        let promise = windowClass.setSubWindowModal(true);
+        promise.then(() => {
+          console.info('Succeeded in setting subwindow modal');
+        }).catch((err: BusinessError) => {
+          console.error(`Failed to set subwindow modal. Cause code: ${err.code}, message: ${err.message}`);
+        });
+      });
+    } catch (exception) {
+      console.error(`Failed to create the subWindow. Cause code: ${exception.code}, message: ${exception.message}`);
+    }
+  }
+}
 ```
 
 ### setWindowDecorHeight<sup>11+</sup>
 
 setWindowDecorHeight(height: number): void
 
-设置窗口标题栏高度。
+设置主窗口标题栏高度。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -5191,18 +5622,37 @@ setWindowDecorHeight(height: number): void
 
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------ |
-| 401      | Parameter error. Possible cause: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
-| 801      | Capability not supported on this device. |
+| 401      | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300002  | This window state is abnormal. |
 
 **示例：**
 
 ```ts
-let height: number = 50;
-try {
-  windowClass.setWindowDecorHeight(height);
-} catch (exception) {
-  console.error(`Failed to set the height of window decor. Cause code: ${exception.code}, message: ${exception.message}`);
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      windowClass = data;
+      let height: number = 50;
+      try {
+        windowClass.setWindowDecorHeight(height);
+      } catch (exception) {
+        console.error(`Failed to set the height of window decor. Cause code: ${exception.code}, message: ${exception.message}`);
+      }
+    });
+  }
 }
 ```
 
@@ -5210,7 +5660,7 @@ try {
 
 getWindowDecorHeight(): number
 
-获取窗口标题栏高度。
+获取主窗口标题栏高度。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -5226,16 +5676,35 @@ getWindowDecorHeight(): number
 
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------ |
-| 801      | Capability not supported on this device. |
+| 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300002  | This window state is abnormal. |
 
 **示例：**
 
 ```ts
-try {
-  let height = windowClass.getWindowDecorHeight();
-} catch (exception) {
-  console.error(`Failed to get the height of window decor. Cause code: ${exception.code}, message: ${exception.message}`);
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      windowClass = data;
+      try {
+        let height = windowClass.getWindowDecorHeight();
+      } catch (exception) {
+        console.error(`Failed to get the height of window decor. Cause code: ${exception.code}, message: ${exception.message}`);
+      }
+    });
+  }
 }
 ```
 
@@ -5243,7 +5712,7 @@ try {
 
 getTitleButtonRect(): TitleButtonRect
 
-获取标题栏上的最小化、最大化、关闭按钮矩形区域。
+获取主窗口标题栏上的最小化、最大化、关闭按钮矩形区域。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -5259,17 +5728,36 @@ getTitleButtonRect(): TitleButtonRect
 
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------ |
-| 801      | Capability not supported on this device. |
+| 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300002  | This window state is abnormal. |
 
 **示例：**
 
 ```ts
-try {
-  let titleButtonArea = windowClass.getTitleButtonRect();
-  console.info('Succeeded in obtaining the area of title buttons. Data: ' + JSON.stringify(titleButtonArea));
-} catch (exception) {
-  console.error(`Failed to get the area of title buttons. Cause code: ${exception.code}, message: ${exception.message}`);
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      windowClass = data;
+      try {
+        let titleButtonArea = windowClass.getTitleButtonRect();
+        console.info('Succeeded in obtaining the area of title buttons. Data: ' + JSON.stringify(titleButtonArea));
+      } catch (exception) {
+        console.error(`Failed to get the area of title buttons. Cause code: ${exception.code}, message: ${exception.message}`);
+      }
+    });
+  }
 }
 ```
 
@@ -5301,7 +5789,7 @@ enableLandscapeMultiWindow(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let promise = windowClass.enableLandscapeMultiWindow();
 promise.then(() => {
@@ -5339,7 +5827,7 @@ disableLandscapeMultiWindow(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let promise = windowClass.disableLandscapeMultiWindow();
 promise.then(() => {
@@ -5370,7 +5858,7 @@ show(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 windowClass.show((err: BusinessError) => {
   const errCode: number = err.code;
@@ -5403,7 +5891,7 @@ show(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let promise = windowClass.show();
 promise.then(() => {
@@ -5434,7 +5922,7 @@ destroy(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 windowClass.destroy((err: BusinessError) => {
   const errCode: number = err.code;
@@ -5467,7 +5955,7 @@ destroy(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let promise = windowClass.destroy();
 promise.then(() => {
@@ -5502,7 +5990,7 @@ moveTo(x: number, y: number, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 windowClass.moveTo(300, 300, (err: BusinessError) => {
   const errCode: number = err.code;
@@ -5544,7 +6032,7 @@ moveTo(x: number, y: number): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let promise = windowClass.moveTo(300, 300);
 promise.then(() => {
@@ -5588,7 +6076,7 @@ resetSize(width: number, height: number, callback: AsyncCallback&lt;void&gt;): v
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 windowClass.resetSize(500, 1000, (err: BusinessError) => {
   const errCode: number = err.code;
@@ -5639,7 +6127,7 @@ resetSize(width: number, height: number): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let promise = windowClass.resetSize(500, 1000);
 promise.then(() => {
@@ -5670,7 +6158,7 @@ getProperties(callback: AsyncCallback&lt;WindowProperties&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 windowClass.getProperties((err: BusinessError, data) => {
   const errCode: number = err.code;
@@ -5703,7 +6191,7 @@ getProperties(): Promise&lt;WindowProperties&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let promise = windowClass.getProperties();
 promise.then((data) => {
@@ -5717,7 +6205,7 @@ promise.then((data) => {
 
 getAvoidArea(type: [AvoidAreaType](#avoidareatype7), callback: AsyncCallback&lt;[AvoidArea](#avoidarea7)&gt;): void
 
-获取窗口内容规避的区域；如系统栏区域、刘海屏区域、手势区域、软键盘区域等与窗口内容重叠时，需要窗口内容避让的区域。
+获取主窗口内容规避的区域；如系统栏区域、刘海屏区域、手势区域、软键盘区域等与窗口内容重叠时，需要窗口内容避让的区域。
 
 > **说明：**
 >
@@ -5735,24 +6223,41 @@ getAvoidArea(type: [AvoidAreaType](#avoidareatype7), callback: AsyncCallback&lt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let type = window.AvoidAreaType.TYPE_SYSTEM;
-windowClass.getAvoidArea(type, (err: BusinessError, data) => {
-  const errCode: number = err.code;
-  if (errCode) {
-    console.error(`Failed to obtain the area. Cause code: ${err.code}, message: ${err.message}`);
-    return;
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      windowClass = data;
+      let type = window.AvoidAreaType.TYPE_SYSTEM;
+      windowClass.getAvoidArea(type, (err: BusinessError, data) => {
+        const errCode: number = err.code;
+        if (errCode) {
+          console.error(`Failed to obtain the area. Cause code: ${err.code}, message: ${err.message}`);
+          return;
+        }
+        console.info('Succeeded in obtaining the area. Data:' + JSON.stringify(data));
+      });
+    });
   }
-  console.info('Succeeded in obtaining the area. Data:' + JSON.stringify(data));
-});
+}
 ```
 
 ### getAvoidArea<sup>(deprecated)</sup>
 
 getAvoidArea(type: [AvoidAreaType](#avoidareatype7)): Promise&lt;[AvoidArea](#avoidarea7)&gt;
 
-获取窗口内容规避的区域；如系统栏区域、刘海屏区域、手势区域、软键盘区域等与窗口内容重叠时，需要窗口内容避让的区域。
+获取主窗口内容规避的区域；如系统栏区域、刘海屏区域、手势区域、软键盘区域等与窗口内容重叠时，需要窗口内容避让的区域。
 
 > **说明：**
 >
@@ -5775,22 +6280,39 @@ getAvoidArea(type: [AvoidAreaType](#avoidareatype7)): Promise&lt;[AvoidArea](#av
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let type = window.AvoidAreaType.TYPE_SYSTEM;
-let promise = windowClass.getAvoidArea(type);
-promise.then((data) => {
-  console.info('Succeeded in obtaining the area. Data:' + JSON.stringify(data));
-}).catch((err: BusinessError) => {
-  console.error(`Failed to obtain the area. Cause code: ${err.code}, message: ${err.message}`);
-});
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      windowClass = data;
+      let type = window.AvoidAreaType.TYPE_SYSTEM;
+      let promise = windowClass.getAvoidArea(type);
+      promise.then((data) => {
+        console.info('Succeeded in obtaining the area. Data:' + JSON.stringify(data));
+      }).catch((err: BusinessError) => {
+        console.error(`Failed to obtain the area. Cause code: ${err.code}, message: ${err.message}`);
+      });
+    });
+  }
+}
 ```
 
 ### setFullScreen<sup>(deprecated)</sup>
 
 setFullScreen(isFullScreen: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-设置窗口的布局是否为全屏布局，使用callback异步回调。
+设置主窗口的布局是否为全屏布局，使用callback异步回调。
 全屏布局是指窗口大小为全屏幕，状态栏与导航栏不显示。
 非全屏布局是指状态栏与导航栏显示，窗口大小避让状态栏与导航栏位置。
 
@@ -5813,29 +6335,46 @@ setFullScreen(isFullScreen: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let isFullScreen: boolean = true;
-windowClass.setFullScreen(isFullScreen, (err: BusinessError) => {
-  const errCode: number = err.code;
-  if (errCode) {
-    console.error(`Failed to enable the full-screen mode. Cause code: ${err.code}, message: ${err.message}`);
-    return;
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      windowClass = data;
+      let isFullScreen: boolean = true;
+      windowClass.setFullScreen(isFullScreen, (err: BusinessError) => {
+        const errCode: number = err.code;
+        if (errCode) {
+          console.error(`Failed to enable the full-screen mode. Cause code: ${err.code}, message: ${err.message}`);
+          return;
+        }
+        console.info('Succeeded in enabling the full-screen mode.');
+      });
+    });
   }
-  console.info('Succeeded in enabling the full-screen mode.');
-});
+}
 ```
 
 ### setFullScreen<sup>(deprecated)</sup>
 
 setFullScreen(isFullScreen: boolean): Promise&lt;void&gt;
 
-设置窗口的布局是否为全屏布局，使用Promise异步回调。
+设置主窗口的布局是否为全屏布局，使用Promise异步回调。
 全屏布局是指窗口大小为全屏幕，状态栏与导航栏不显示。
 非全屏布局是指状态栏与导航栏显示，窗口大小避让状态栏与导航栏位置。
 
@@ -5863,27 +6402,44 @@ setFullScreen(isFullScreen: boolean): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let isFullScreen: boolean = true;
-let promise = windowClass.setFullScreen(isFullScreen);
-promise.then(() => {
-  console.info('Succeeded in enabling the full-screen mode.');
-}).catch((err: BusinessError) => {
-  console.error(`Failed to enable the full-screen mode. Cause code: ${err.code}, message: ${err.message}`);
-});
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      windowClass = data;
+      let isFullScreen: boolean = true;
+      let promise = windowClass.setFullScreen(isFullScreen);
+      promise.then(() => {
+        console.info('Succeeded in enabling the full-screen mode.');
+      }).catch((err: BusinessError) => {
+        console.error(`Failed to enable the full-screen mode. Cause code: ${err.code}, message: ${err.message}`);
+      });
+    });
+  }
+}
 ```
 
 ### setLayoutFullScreen<sup>(deprecated)</sup>
 
 setLayoutFullScreen(isLayoutFullScreen: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-设置窗口的布局是否为沉浸式布局，使用callback异步回调。
+设置主窗口的布局是否为沉浸式布局，使用callback异步回调。
 沉浸式布局是指布局不避让状态栏与导航栏，组件可能产生与其重叠的情况。
 非沉浸式布局是指布局避让状态栏与导航栏，组件不会与其重叠。
 
@@ -5906,29 +6462,46 @@ setLayoutFullScreen(isLayoutFullScreen: boolean, callback: AsyncCallback&lt;void
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let isLayoutFullScreen: boolean = true;
-windowClass.setLayoutFullScreen(isLayoutFullScreen, (err: BusinessError) => {
-  const errCode: number = err.code;
-  if (errCode) {
-    console.error(`Failed to set the window layout to full-screen mode. Cause code: ${err.code}, message: ${err.message}`);
-    return;
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      windowClass = data;
+      let isLayoutFullScreen: boolean = true;
+      windowClass.setLayoutFullScreen(isLayoutFullScreen, (err: BusinessError) => {
+        const errCode: number = err.code;
+        if (errCode) {
+          console.error(`Failed to set the window layout to full-screen mode. Cause code: ${err.code}, message: ${err.message}`);
+          return;
+        }
+        console.info('Succeeded in setting the window layout to full-screen mode.');
+      });
+    });
   }
-  console.info('Succeeded in setting the window layout to full-screen mode.');
-});
+}
 ```
 
 ### setLayoutFullScreen<sup>(deprecated)</sup>
 
 setLayoutFullScreen(isLayoutFullScreen: boolean): Promise&lt;void&gt;
 
-设置窗口的布局是否为沉浸式布局，使用Promise异步回调。
+设置主窗口的布局是否为沉浸式布局，使用Promise异步回调。
 沉浸式布局是指布局不避让状态栏与导航栏，组件可能产生与其重叠的情况。
 非沉浸式布局是指布局避让状态栏与导航栏，组件不会与其重叠。
 
@@ -5956,27 +6529,44 @@ setLayoutFullScreen(isLayoutFullScreen: boolean): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let isLayoutFullScreen: boolean = true;
-let promise = windowClass.setLayoutFullScreen(isLayoutFullScreen);
-promise.then(() => {
-  console.info('Succeeded in setting the window layout to full-screen mode.');
-}).catch((err: BusinessError) => {
-  console.error(`Failed to set the window layout to full-screen mode. Cause code: ${err.code}, message: ${err.message}`);
-});
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      windowClass = data;
+      let isLayoutFullScreen: boolean = true;
+      let promise = windowClass.setLayoutFullScreen(isLayoutFullScreen);
+      promise.then(() => {
+        console.info('Succeeded in setting the window layout to full-screen mode.');
+      }).catch((err: BusinessError) => {
+        console.error(`Failed to set the window layout to full-screen mode. Cause code: ${err.code}, message: ${err.message}`);
+      });
+    });
+  }
+}
 ```
 
 ### setSystemBarEnable<sup>(deprecated)</sup>
 
 setSystemBarEnable(names: Array<'status' | 'navigation'>, callback: AsyncCallback&lt;void&gt;): void
 
-设置窗口全屏模式时导航栏、状态栏的可见模式，使用callback异步回调。
+设置主窗口全屏模式时导航栏、状态栏的可见模式，使用callback异步回调。
 
 > **说明：**
 >
@@ -5997,30 +6587,47 @@ setSystemBarEnable(names: Array<'status' | 'navigation'>, callback: AsyncCallbac
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
 ```ts
 // 此处以不显示导航栏、状态栏为例
-import { BusinessError } from '@ohos.base';
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let names: Array<'status' | 'navigation'> = [];
-windowClass.setSystemBarEnable(names, (err: BusinessError) => {
-  const errCode: number = err.code;
-  if (errCode) {
-    console.error(`Failed to set the system bar to be invisible. Cause code: ${err.code}, message: ${err.message}`);
-    return;
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      windowClass = data;
+      let names: Array<'status' | 'navigation'> = [];
+      windowClass.setSystemBarEnable(names, (err: BusinessError) => {
+        const errCode: number = err.code;
+        if (errCode) {
+          console.error(`Failed to set the system bar to be invisible. Cause code: ${err.code}, message: ${err.message}`);
+          return;
+        }
+        console.info('Succeeded in setting the system bar to be invisible.');
+      });
+    });
   }
-  console.info('Succeeded in setting the system bar to be invisible.');
-});
+}
 ```
 
 ### setSystemBarEnable<sup>(deprecated)</sup>
 
 setSystemBarEnable(names: Array<'status' | 'navigation'>): Promise&lt;void&gt;
 
-设置窗口全屏模式时导航栏、状态栏的可见模式，使用Promise异步回调。
+设置主窗口全屏模式时导航栏、状态栏的可见模式，使用Promise异步回调。
 
 > **说明：**
 >
@@ -6046,28 +6653,45 @@ setSystemBarEnable(names: Array<'status' | 'navigation'>): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
 ```ts
 // 此处以不显示导航栏、状态栏为例
-import { BusinessError } from '@ohos.base';
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let names: Array<'status' | 'navigation'> = [];
-let promise = windowClass.setSystemBarEnable(names);
-promise.then(() => {
-  console.info('Succeeded in setting the system bar to be invisible.');
-}).catch((err: BusinessError) => {
-  console.error(`Failed to set the system bar to be invisible. Cause code: ${err.code}, message: ${err.message}`);
-});
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      windowClass = data;
+      let names: Array<'status' | 'navigation'> = [];
+      let promise = windowClass.setSystemBarEnable(names);
+      promise.then(() => {
+        console.info('Succeeded in setting the system bar to be invisible.');
+      }).catch((err: BusinessError) => {
+        console.error(`Failed to set the system bar to be invisible. Cause code: ${err.code}, message: ${err.message}`);
+      });
+    });
+  }
+}
 ```
 
 ### setSystemBarProperties<sup>(deprecated)</sup>
 
 setSystemBarProperties(systemBarProperties: SystemBarProperties, callback: AsyncCallback&lt;void&gt;): void
 
-设置窗口全屏模式时窗口内导航栏、状态栏的属性，使用callback异步回调。
+设置主窗口全屏模式时窗口内导航栏、状态栏的属性，使用callback异步回调。
 
 > **说明：**
 >
@@ -6088,35 +6712,52 @@ setSystemBarProperties(systemBarProperties: SystemBarProperties, callback: Async
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let SystemBarProperties: window.SystemBarProperties = {
-  statusBarColor: '#ff00ff',
-  navigationBarColor: '#00ff00',
-  //以下两个属性从API Version8开始支持
-  statusBarContentColor: '#ffffff',
-  navigationBarContentColor: '#00ffff'
-};
-windowClass.setSystemBarProperties(SystemBarProperties, (err) => {
-  const errCode: number = err.code;
-  if (errCode) {
-    console.error(`Failed to set the system bar properties. Cause code: ${err.code}, message: ${err.message}`);
-    return;
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      windowClass = data;
+      let SystemBarProperties: window.SystemBarProperties = {
+        statusBarColor: '#ff00ff',
+        navigationBarColor: '#00ff00',
+        //以下两个属性从API Version8开始支持
+        statusBarContentColor: '#ffffff',
+        navigationBarContentColor: '#00ffff'
+      };
+      windowClass.setSystemBarProperties(SystemBarProperties, (err) => {
+        const errCode: number = err.code;
+        if (errCode) {
+          console.error(`Failed to set the system bar properties. Cause code: ${err.code}, message: ${err.message}`);
+          return;
+        }
+        console.info('Succeeded in setting the system bar properties.');
+      });
+    });
   }
-  console.info('Succeeded in setting the system bar properties.');
-});
+}
 ```
 
 ### setSystemBarProperties<sup>(deprecated)</sup>
 
 setSystemBarProperties(systemBarProperties: SystemBarProperties): Promise&lt;void&gt;
 
-设置窗口全屏模式时窗口内导航栏、状态栏的属性，使用Promise异步回调。
+设置主窗口全屏模式时窗口内导航栏、状态栏的属性，使用Promise异步回调。
 
 > **说明：**
 >
@@ -6142,26 +6783,43 @@ setSystemBarProperties(systemBarProperties: SystemBarProperties): Promise&lt;voi
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let SystemBarProperties: window.SystemBarProperties = {
-  statusBarColor: '#ff00ff',
-  navigationBarColor: '#00ff00',
-  //以下两个属性从API Version8开始支持
-  statusBarContentColor: '#ffffff',
-  navigationBarContentColor: '#00ffff'
-};
-let promise = windowClass.setSystemBarProperties(SystemBarProperties);
-promise.then(() => {
-  console.info('Succeeded in setting the system bar properties.');
-}).catch((err: BusinessError) => {
-  console.error(`Failed to set the system bar properties. Cause code: ${err.code}, message: ${err.message}`);
-});
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      windowClass = data;
+      let SystemBarProperties: window.SystemBarProperties = {
+        statusBarColor: '#ff00ff',
+        navigationBarColor: '#00ff00',
+        //以下两个属性从API Version8开始支持
+        statusBarContentColor: '#ffffff',
+        navigationBarContentColor: '#00ffff'
+      };
+      let promise = windowClass.setSystemBarProperties(SystemBarProperties);
+      promise.then(() => {
+        console.info('Succeeded in setting the system bar properties.');
+      }).catch((err: BusinessError) => {
+        console.error(`Failed to set the system bar properties. Cause code: ${err.code}, message: ${err.message}`);
+      });
+    });
+  }
+}
 ```
 
 ### loadContent<sup>(deprecated)</sup>
@@ -6186,7 +6844,7 @@ loadContent(path: string, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 windowClass.loadContent('pages/page2/page3', (err: BusinessError) => {
   const errCode: number = err.code;
@@ -6225,7 +6883,7 @@ loadContent(path: string): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let promise = windowClass.loadContent('pages/page2/page3');
 promise.then(() => {
@@ -6256,7 +6914,7 @@ isShowing(callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 windowClass.isShowing((err: BusinessError, data) => {
   const errCode: number = err.code;
@@ -6289,7 +6947,7 @@ isShowing(): Promise&lt;boolean&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let promise = windowClass.isShowing();
 promise.then((data) => {
@@ -6303,7 +6961,7 @@ promise.then((data) => {
 
 on(type: 'systemAvoidAreaChange', callback: Callback&lt;AvoidArea&gt;): void
 
-开启系统规避区变化的监听。
+开启主窗口系统规避区变化的监听。
 
 > **说明：**
 >
@@ -6324,21 +6982,40 @@ on(type: 'systemAvoidAreaChange', callback: Callback&lt;AvoidArea&gt;): void
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
 ```ts
-windowClass.on('systemAvoidAreaChange', (data) => {
-  console.info('Succeeded in enabling the listener for system avoid area changes. Data: ' + JSON.stringify(data));
-});
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      windowClass = data;
+      windowClass.on('systemAvoidAreaChange', (data) => {
+        console.info('Succeeded in enabling the listener for system avoid area changes. Data: ' + JSON.stringify(data));
+      });
+    });
+  }
+}
 ```
 
 ### off('systemAvoidAreaChange')<sup>(deprecated)</sup>
 
 off(type: 'systemAvoidAreaChange', callback?: Callback&lt;AvoidArea&gt;): void
 
-关闭系统规避区变化的监听。
+关闭主窗口系统规避区变化的监听。
 
 > **说明：**
 >
@@ -6359,18 +7036,37 @@ off(type: 'systemAvoidAreaChange', callback?: Callback&lt;AvoidArea&gt;): void
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1.Incorrect parameter types; 2.Parameter verification failed. |
+| 401     | Parameter error. Possible cause: 1. Incorrect parameter types; 2. Parameter verification failed. |
 
 **示例：**
 
 ```ts
-const callback = (avoidArea: window.AvoidArea) => {
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class EntryAbility extends UIAbility {
   // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      windowClass = data;
+      const callback = (avoidArea: window.AvoidArea) => {
+        // ...
+      }
+      windowClass.on('systemAvoidAreaChange', callback);
+      windowClass.off('systemAvoidAreaChange', callback);
+      // 如果通过on开启多个callback进行监听，同时关闭所有监听：
+      windowClass.off('systemAvoidAreaChange');
+    });
+  }
 }
-windowClass.on('systemAvoidAreaChange', callback);
-windowClass.off('systemAvoidAreaChange', callback);
-// 如果通过on开启多个callback进行监听，同时关闭所有监听：
-windowClass.off('systemAvoidAreaChange');
 ```
 
 ### isSupportWideGamut<sup>(deprecated)</sup>
@@ -6394,7 +7090,7 @@ isSupportWideGamut(callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 windowClass.isSupportWideGamut((err: BusinessError, data) => {
   const errCode: number = err.code;
@@ -6427,7 +7123,7 @@ isSupportWideGamut(): Promise&lt;boolean&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let promise = windowClass.isSupportWideGamut();
 promise.then((data) => {
@@ -6462,12 +7158,12 @@ setColorSpace(colorSpace:ColorSpace, callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 windowClass.setColorSpace(window.ColorSpace.WIDE_GAMUT, (err: BusinessError) => {
   const errCode: number = err.code;
@@ -6509,12 +7205,12 @@ setColorSpace(colorSpace:ColorSpace): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let promise = windowClass.setColorSpace(window.ColorSpace.WIDE_GAMUT);
 promise.then(() => {
@@ -6545,7 +7241,7 @@ getColorSpace(callback: AsyncCallback&lt;ColorSpace&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 windowClass.getColorSpace((err: BusinessError, data) => {
   const errCode: number = err.code;
@@ -6578,7 +7274,7 @@ getColorSpace(): Promise&lt;ColorSpace&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let promise = windowClass.getColorSpace();
 promise.then((data) => {
@@ -6613,12 +7309,12 @@ setBackgroundColor(color: string, callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let color: string = '#00ff33';
 windowClass.setBackgroundColor(color, (err: BusinessError) => {
@@ -6661,12 +7357,12 @@ setBackgroundColor(color: string): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let color: string = '#00ff33';
 let promise = windowClass.setBackgroundColor(color);
@@ -6704,12 +7400,12 @@ setBrightness(brightness: number, callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let brightness: number = 1;
 windowClass.setBrightness(brightness, (err: BusinessError) => {
@@ -6754,12 +7450,12 @@ setBrightness(brightness: number): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let brightness: number = 1;
 let promise = windowClass.setBrightness(brightness);
@@ -6792,7 +7488,7 @@ setDimBehind(dimBehindValue: number, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 windowClass.setDimBehind(0.5, (err: BusinessError) => {
   const errCode: number = err.code;
@@ -6831,7 +7527,7 @@ setDimBehind(dimBehindValue: number): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let promise = windowClass.setDimBehind(0.5);
 promise.then(() => {
@@ -6866,12 +7562,12 @@ setFocusable(isFocusable: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let isFocusable: boolean = true;
 windowClass.setFocusable(isFocusable, (err: BusinessError) => {
@@ -6914,12 +7610,12 @@ setFocusable(isFocusable: boolean): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let isFocusable: boolean = true;
 let promise = windowClass.setFocusable(isFocusable);
@@ -6955,12 +7651,12 @@ setKeepScreenOn(isKeepScreenOn: boolean, callback: AsyncCallback&lt;void&gt;): v
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let isKeepScreenOn: boolean = true;
 windowClass.setKeepScreenOn(isKeepScreenOn, (err: BusinessError) => {
@@ -7003,19 +7699,19 @@ setKeepScreenOn(isKeepScreenOn: boolean): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let isKeepScreenOn: boolean = true;
 let promise = windowClass.setKeepScreenOn(isKeepScreenOn);
 promise.then(() => {
   console.info('Succeeded in setting the screen to be always on.');
 }).catch((err: BusinessError) => {
-  console.info('Failed to set the screen to be always on. Cause:  ' + JSON.stringify(err));
+  console.info(`Failed to set the screen to be always on. Cause code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -7043,7 +7739,7 @@ setOutsideTouchable(touchable: boolean, callback: AsyncCallback&lt;void&gt;): vo
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 windowClass.setOutsideTouchable(true, (err: BusinessError) => {
   const errCode: number = err.code;
@@ -7084,7 +7780,7 @@ setOutsideTouchable(touchable: boolean): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let promise = windowClass.setOutsideTouchable(true);
 promise.then(() => {
@@ -7119,12 +7815,12 @@ setPrivacyMode(isPrivacyMode: boolean, callback: AsyncCallback&lt;void&gt;): voi
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let isPrivacyMode: boolean = true;
 windowClass.setPrivacyMode(isPrivacyMode, (err: BusinessError) => {
@@ -7167,12 +7863,12 @@ setPrivacyMode(isPrivacyMode: boolean): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let isPrivacyMode: boolean = true;
 let promise = windowClass.setPrivacyMode(isPrivacyMode);
@@ -7208,12 +7904,12 @@ setTouchable(isTouchable: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let isTouchable = true;
 windowClass.setTouchable(isTouchable, (err: BusinessError) => {
@@ -7256,12 +7952,12 @@ setTouchable(isTouchable: boolean): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let isTouchable = true;
 let promise = windowClass.setTouchable(isTouchable);
@@ -7340,9 +8036,8 @@ getMainWindow(callback: AsyncCallback&lt;Window&gt;): void
 
 ```ts
 // EntryAbility.ets
-import UIAbility from '@ohos.app.ability.UIAbility';
-import window from '@ohos.window';
-import { BusinessError } from '@ohos.base';
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   // ...
@@ -7394,9 +8089,8 @@ getMainWindow(): Promise&lt;Window&gt;
 
 ```ts
 // EntryAbility.ets
-import UIAbility from '@ohos.app.ability.UIAbility';
-import window from '@ohos.window';
-import { BusinessError } from '@ohos.base';
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   // ...
@@ -7446,8 +8140,7 @@ getMainWindowSync(): Window
 
 ```ts
 // EntryAbility.ets
-import UIAbility from '@ohos.app.ability.UIAbility';
-import window from '@ohos.window';
+import { UIAbility } from '@kit.AbilityKit';
 
 export default class EntryAbility extends UIAbility {
   // ...
@@ -7488,7 +8181,7 @@ createSubWindow(name: string, callback: AsyncCallback&lt;Window&gt;): void
 
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------ |
-| 401     | Parameter error. Incorrect parameter types. |
+| 401     | Parameter error. Possible cause: Incorrect parameter types. |
 | 1300002 | This window state is abnormal. |
 | 1300005 | This window stage is abnormal. |
 
@@ -7496,9 +8189,8 @@ createSubWindow(name: string, callback: AsyncCallback&lt;Window&gt;): void
 
 ```ts
 // EntryAbility.ets
-import UIAbility from '@ohos.app.ability.UIAbility';
-import window from '@ohos.window';
-import { BusinessError } from '@ohos.base';
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   // ...
@@ -7522,7 +8214,6 @@ export default class EntryAbility extends UIAbility {
           (windowClass as window.Window).resize(500, 1000);
         }
       });
-
     } catch (exception) {
       console.error(`Failed to create the subwindow. Cause code: ${exception.code}, message: ${exception.message}`);
     }
@@ -7560,7 +8251,7 @@ createSubWindow(name: string): Promise&lt;Window&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------ |
-| 401     | Parameter error. Incorrect parameter types. |
+| 401     | Parameter error. Possible cause: Incorrect parameter types. |
 | 1300002 | This window state is abnormal. |
 | 1300005 | This window stage is abnormal. |
 
@@ -7568,9 +8259,8 @@ createSubWindow(name: string): Promise&lt;Window&gt;
 
 ```ts
 // EntryAbility.ets
-import UIAbility from '@ohos.app.ability.UIAbility';
-import window from '@ohos.window';
-import { BusinessError } from '@ohos.base';
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   // ...
@@ -7622,7 +8312,7 @@ createSubWindowWithOptions(name: string, options: SubWindowOptions): Promise&lt;
 
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------ |
-| 401     | Parameter error. Incorrect parameter types. |
+| 401     | Parameter error. Possible cause: Incorrect parameter types. |
 | 1300002 | This window state is abnormal. |
 | 1300005 | This window stage is abnormal. |
 
@@ -7630,9 +8320,8 @@ createSubWindowWithOptions(name: string, options: SubWindowOptions): Promise&lt;
 
 ```ts
 // EntryAbility.ets
-import UIAbility from '@ohos.app.ability.UIAbility';
-import window from '@ohos.window';
-import { BusinessError } from '@ohos.base';
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   // ...
@@ -7689,9 +8378,8 @@ getSubWindow(callback: AsyncCallback&lt;Array&lt;Window&gt;&gt;): void
 
 ```ts
 // EntryAbility.ets
-import UIAbility from '@ohos.app.ability.UIAbility';
-import window from '@ohos.window';
-import { BusinessError } from '@ohos.base';
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   // ...
@@ -7742,9 +8430,8 @@ getSubWindow(): Promise&lt;Array&lt;Window&gt;&gt;
 
 ```ts
 // EntryAbility.ets
-import UIAbility from '@ohos.app.ability.UIAbility';
-import window from '@ohos.window';
-import { BusinessError } from '@ohos.base';
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   // ...
@@ -7758,7 +8445,7 @@ export default class EntryAbility extends UIAbility {
       console.info('Succeeded in obtaining the subwindow. Data: ' + JSON.stringify(data));
     }).catch((err: BusinessError) => {
       console.error(`Failed to obtain the subwindow. Cause code: ${err.code}, message: ${err.message}`);
-    })
+    });
   }
 };
 ```
@@ -7789,7 +8476,7 @@ loadContent(path: string, storage: LocalStorage, callback: AsyncCallback&lt;void
 
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------ |
-| 401     | Parameter error. Possible cause: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002 | This window state is abnormal. |
 | 1300005 | This window stage is abnormal. |
 
@@ -7797,9 +8484,8 @@ loadContent(path: string, storage: LocalStorage, callback: AsyncCallback&lt;void
 
 ```ts
 // EntryAbility.ets
-import UIAbility from '@ohos.app.ability.UIAbility';
-import window from '@ohos.window';
-import { BusinessError } from '@ohos.base';
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   // ...
@@ -7856,7 +8542,7 @@ loadContent(path: string, storage?: LocalStorage): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------ |
-| 401     | Parameter error. Possible cause: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002 | This window state is abnormal. |
 | 1300005 | This window stage is abnormal. |
 
@@ -7864,9 +8550,8 @@ loadContent(path: string, storage?: LocalStorage): Promise&lt;void&gt;
 
 ```ts
 // EntryAbility.ets
-import UIAbility from '@ohos.app.ability.UIAbility';
-import window from '@ohos.window';
-import { BusinessError } from '@ohos.base';
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   // ...
@@ -7916,7 +8601,7 @@ loadContent(path: string, callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------ |
-| 401     | Parameter error. Possible cause: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002 | This window state is abnormal. |
 | 1300005 | This window stage is abnormal. |
 
@@ -7924,9 +8609,8 @@ loadContent(path: string, callback: AsyncCallback&lt;void&gt;): void
 
 ```ts
 // EntryAbility.ets
-import UIAbility from '@ohos.app.ability.UIAbility';
-import window from '@ohos.window';
-import { BusinessError } from '@ohos.base';
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   // ...
@@ -7975,17 +8659,17 @@ loadContentByName(name: string, storage: LocalStorage, callback: AsyncCallback&l
 
 | 错误码ID | 错误信息                                      |
 | -------- | --------------------------------------------- |
-| 401      | Parameter error. Possible cause: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 401      | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002  | This window state is abnormal.                |
 | 1300003  | This window manager service works abnormally. |
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 // EntryAbility.ets
-import UIAbility from '@ohos.app.ability.UIAbility';
-import window from '@ohos.window';
-import { BusinessError } from '@ohos.base';
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 import * as Index from '../pages/Index'; // 导入命名路由页面
 
 export default class EntryAbility extends UIAbility {
@@ -8011,6 +8695,7 @@ export default class EntryAbility extends UIAbility {
   }
 };
 ```
+<!--code_no_check-->
 ```ts
 // ets/pages/Index.ets
 export const entryName : string = 'Index';
@@ -8057,17 +8742,17 @@ loadContentByName(name: string, callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID | 错误信息                                      |
 | -------- | --------------------------------------------- |
-| 401      | Parameter error. Possible cause: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 401      | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002  | This window state is abnormal.                |
 | 1300003  | This window manager service works abnormally. |
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 // EntryAbility.ets
-import UIAbility from '@ohos.app.ability.UIAbility';
-import window from '@ohos.window';
-import { BusinessError } from '@ohos.base';
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 import * as Index from '../pages/Index'; // 导入命名路由页面
 
 export default class EntryAbility extends UIAbility {
@@ -8090,6 +8775,7 @@ export default class EntryAbility extends UIAbility {
   }
 };
 ```
+<!--code_no_check-->
 ```ts
 // ets/pages/Index.ets
 export const entryName : string = 'Index';
@@ -8136,17 +8822,17 @@ loadContentByName(name: string, storage?: LocalStorage): Promise&lt;void&gt;;
 
 | 错误码ID | 错误信息                                      |
 | -------- | --------------------------------------------- |
-| 401      | Parameter error. Possible cause: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 401      | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 1300002  | This window state is abnormal.                |
 | 1300003  | This window manager service works abnormally. |
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 // EntryAbility.ets
-import UIAbility from '@ohos.app.ability.UIAbility';
-import window from '@ohos.window';
-import { BusinessError } from '@ohos.base';
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 import * as Index from '../pages/Index'; // 导入命名路由页面
 
 export default class EntryAbility extends UIAbility {
@@ -8170,6 +8856,7 @@ export default class EntryAbility extends UIAbility {
   }
 };
 ```
+<!--code_no_check-->
 ```ts
 // ets/pages/Index.ets
 export const entryName : string = 'Index';
@@ -8216,7 +8903,7 @@ on(eventType: 'windowStageEvent', callback: Callback&lt;WindowStageEventType&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------ |
-| 401     | Parameter error. Possible cause: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 1300002 | This window state is abnormal. |
 | 1300005 | This window stage is abnormal. |
 
@@ -8224,8 +8911,7 @@ on(eventType: 'windowStageEvent', callback: Callback&lt;WindowStageEventType&gt;
 
 ```ts
 // EntryAbility.ets
-import UIAbility from '@ohos.app.ability.UIAbility';
-import window from '@ohos.window';
+import { UIAbility } from '@kit.AbilityKit';
 
 export default class EntryAbility extends UIAbility {
   // ...
@@ -8269,7 +8955,7 @@ off(eventType: 'windowStageEvent', callback?: Callback&lt;WindowStageEventType&g
 
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------ |
-| 401     | Parameter error. Parameter error. Possible cause: 1.Incorrect parameter types; 2.Parameter verification failed. |
+| 401     | Parameter error. Possible cause: 1. Incorrect parameter types; 2. Parameter verification failed. |
 | 1300002 | This window state is abnormal. |
 | 1300005 | This window stage is abnormal. |
 
@@ -8277,8 +8963,7 @@ off(eventType: 'windowStageEvent', callback?: Callback&lt;WindowStageEventType&g
 
 ```ts
 // EntryAbility.ets
-import UIAbility from '@ohos.app.ability.UIAbility';
-import window from '@ohos.window';
+import { UIAbility } from '@kit.AbilityKit';
 
 export default class EntryAbility extends UIAbility {
   // ...
@@ -8328,8 +9013,8 @@ setDefaultDensityEnabled(enabled: boolean): void
 
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------ |
-| 401     | Parameter error. Possible cause: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 801     | Capability not supported on this device. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300002 | This window state is abnormal. |
 | 1300005 | This window stage is abnormal. |
 
@@ -8337,8 +9022,7 @@ setDefaultDensityEnabled(enabled: boolean): void
 
 ```ts
 // EntryAbility.ets
-import UIAbility from '@ohos.app.ability.UIAbility';
-import window from '@ohos.window';
+import { UIAbility } from '@kit.AbilityKit';
 
 export default class EntryAbility extends UIAbility {
   // ...

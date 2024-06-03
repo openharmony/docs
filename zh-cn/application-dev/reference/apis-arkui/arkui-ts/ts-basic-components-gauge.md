@@ -671,7 +671,7 @@ struct refreshExample {
 ```ts
 @Entry
 @Component
-struct ProgressExample {
+struct GaugeExample {
   build() {
     Scroll() {
       Column({ space: 15 }) {
@@ -706,3 +706,4 @@ struct ProgressExample {
   }
 }
 ```
+![gauge](figures/gauge-privacysensitive.gif)

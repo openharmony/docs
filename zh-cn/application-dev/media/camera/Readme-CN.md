@@ -9,13 +9,18 @@
   - [拍照(ArkTS)](camera-shooting.md)
   - [录像(ArkTS)](camera-recording.md)
   - [元数据(ArkTS)](camera-metadata.md)
+  <!--Del-->
   - [高性能拍照(仅对系统应用开放)(ArkTS)](camera-deferred-photo.md)
+  <!--DelEnd-->
+  - [动态照片(ArkTS)](camera-moving-photo.md)
 - 相机最佳实践(ArkTS)
   - [拍照实现方案(ArkTS)](camera-shooting-case.md)
   - [录像实现方案(ArkTS)](camera-recording-case.md)
   - [双路预览(ArkTS)](camera-dual-channel-preview.md)
+  <!--Del-->
   - [性能提升方案(仅对系统应用开放)(ArkTS)](camera-performance-improvement.md)
   - [高性能拍照实现方案(仅对系统应用开放)(ArkTS)](camera-deferred-photo-case.md)
+  <!--DelEnd-->
 - 相机开发指导(C/C++)
   - [设备输入(C/C++)](native-camera-device-input.md)
   - [会话管理(C/C++)](native-camera-session-management.md)

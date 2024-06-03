@@ -142,7 +142,7 @@ searchIcon(value: IconOptions)
 
 | 参数名 | 类型                                  | 必填 | 说明               |
 | ------ | ------------------------------------- | ---- | ------------------ |
-| value  | [IconOptions](#iconoptions10对象说明) | 是   | 左侧搜索图标样式。<br />默认值：<br />{<br />fontSize: '16vp',<br />color: '#99ffffff',<br />src: ' '<br />} |
+| value  | [IconOptions](#iconoptions10对象说明) | 是   | 左侧搜索图标样式。<br />默认值：<br />{<br />size: '16vp',<br />color: '#99ffffff',<br />src: ' '<br />} |
 
 ### cancelButton<sup>10+</sup>
 
@@ -190,7 +190,7 @@ caretStyle(value: CaretStyle)
 
 | 参数名 | 类型                                | 必填 | 说明                                                         |
 | ------ | ----------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [CaretStyle](#caretstyle10对象说明) | 是   | 光标样式。<br />默认值：<br />{<br />width: '1.5vp',<br />color: '#007DFF'<br />} |
+| value  | [CaretStyle](ts-text-common.md#caretstyle10) | 是   | 光标样式。<br />默认值：<br />{<br />width: '1.5vp',<br />color: '#007DFF'<br />} |
 
 >  **说明：**     
 >   从API version 12开始，此接口支持设置文本手柄颜色，光标和文本手柄颜色保持一致。
@@ -322,7 +322,7 @@ lineHeight(value: number | string | Resource)
 
 decoration(value: TextDecorationOptions)
 
-设置文本装饰线样式及其颜色。
+设置文本装饰线类型样式及其颜色。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -330,7 +330,7 @@ decoration(value: TextDecorationOptions)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [TextDecorationOptions](#textdecorationoptions12对象说明) | 是   | 文本装饰线样式及其颜色。<br />默认值：{<br/>type:&nbsp;TextDecorationType.None,<br/>color：Color.Black<br/>} |
+| value  | [TextDecorationOptions](#textdecorationoptions12对象说明) | 是   | 文本装饰线对象。<br />默认值：{<br/>&nbsp;type:&nbsp;TextDecorationType.None,<br/>&nbsp;color:&nbsp;Color.Black,<br/>&nbsp;style:&nbsp;TextDecorationStyle.SOLID&nbsp;<br/>} |
 
 ### letterSpacing<sup>12+</sup>
 
@@ -370,6 +370,7 @@ fontFeature(value: string)
 | ------ | ------ | ---- | -------------- |
 | value  | string | 是   | 文字特性效果。 |
 
+Font Feature当前支持的属性见 [fontFeature属性列表](ts-basic-components-text.md#fontfeature12)。
 设置 Font Feature 属性，Font Feature 是 OpenType 字体的高级排版能力，如支持连字、数字等宽等特性，一般用在自定义字体中，其能力需要字体本身支持。
 更多 Font Feature 能力介绍可参考 https://www.w3.org/TR/css-fonts-3/#font-feature-settings-prop 和 https://sparanoid.com/lab/opentype-features/
 
@@ -464,15 +465,6 @@ maxFontSize(value: number | string | Resource)
 | color  | [ResourceColor](ts-types.md#resourcecolor) | 否   | 图标颜色。    |
 | src    | [ResourceStr](ts-types.md#resourcestr)     | 否   | 图标/图片源。 |
 
-## CaretStyle<sup>10+</sup>对象说明
-
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
-
-| 参数名 | 参数类型                                   | 必填 | 参数描述 |
-| ------ | ------------------------------------------ | ---- | -------- |
-| width  | [Length](ts-types.md#length)               | 否   | 光标尺寸，不支持百分比。 |
-| color  | [ResourceColor](ts-types.md#resourcecolor) | 否   | 光标颜色。 |
-
 ## SearchButtonOptions<sup>10+</sup>对象说明
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
@@ -490,6 +482,21 @@ maxFontSize(value: number | string | Resource)
 | color  | &nbsp;[ResourceColor](ts-types.md#resourcecolor) | 否   | 设置文本装饰线颜色。 |
 | style | [TextDecorationStyle](ts-appendix-enums.md#textdecorationstyle12) | 否   | 设置文本装饰线样式。 |
 
+## InsertValue<sup>12+</sup>对象说明
+
+| 名称    | 参数类型                                                    | 必填 | 描述                                                         |
+| ------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| insertOffset  | number | 是   | 插入的值的位置信息。 |
+| insertValue  | string | 是   | 插入的值。 |
+
+## DeleteValue<sup>12+</sup>对象说明
+
+| 名称    | 参数类型                                                    | 必填 | 描述                                                         |
+| ------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| deleteOffset  | number | 是   | 删除的值的位置信息。 |
+| direction  | [TextDeleteDirection](ts-appendix-enums.md#textdeletedirection12) | 是   | 删除值的方向。 |
+| deleteValue  | string | 是   | 删除的值。 | 
+
 ## CancelButtonStyle<sup>10+</sup>枚举说明
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
@@ -502,32 +509,21 @@ maxFontSize(value: number | string | Resource)
 
 ## SearchType<sup>11+</sup>枚举说明
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
-
-| 名称                 | 描述            |
-| ------------------ | ------------- |
-| NORMAL   | 基本输入模式。<br/>支持输入数字、字母、下划线、空格、特殊字符。 |
-| EMAIL    | 邮箱地址输入模式。支持数字，字母，下划线，以及@字符（只能存在一个@字符）。 |
-| NUMBER   | 纯数字输入模式。      |
-| PHONE_NUMBER | 电话号码输入模式。<br/>支持输入数字、空格、+ 、-、*、#、(、)，长度不限。 |
+| 名称                 | 值            | 描述            |
+| ------------------ | ------ | ------------- |
+| NORMAL   | 0 | 基本输入模式。<br/>支持输入数字、字母、下划线、空格、特殊字符。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| NUMBER   | 2 | 纯数字输入模式。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。      |
+| PHONE_NUMBER | 3 | 电话号码输入模式。<br/>支持输入数字、空格、+ 、-、*、#、(、)，长度不限。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| EMAIL    | 5 | 邮箱地址输入模式。<br/>支持数字，字母，下划线，以及@字符（只能存在一个@字符）。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| NUMBER_DECIMAL<sup>12+</sup>  | 12 | 带小数点的数字输入模式。<br/>支持数字，小数点（只能存在一个小数点）。 |
 
 ## SelectionOptions<sup>12+</sup>
 
 setTextSelection的选中文字时的配置。
 
-| 名称       | 类型                        | 必填 | 说明             |
-| ---------- | --------------------------- | ---- | ---------------- |
-| menuPolicy | [MenuPolicy](#menupolicy12) | 否   | 菜单弹出的策略。 |
-
-## MenuPolicy<sup>12+</sup>
-
-菜单弹出的策略。
-
-| 名称    | 描述                     |
-| ------- | ------------------------ |
-| DEFAULT | 按照底层默认逻辑决定是否弹出菜单。 |
-| HIDE   | 始终不弹出菜单。         |
-| SHOW  | 始终弹出菜单。           |
+| 名称       | 类型                                            | 必填 | 说明             |
+| ---------- | ----------------------------------------------- | ---- | ---------------- |
+| menuPolicy | [MenuPolicy](ts-appendix-enums.md#menupolicy12) | 否   | 菜单弹出的策略。 |
 
 ## 事件
 
@@ -661,6 +657,62 @@ onEditChange(callback:&nbsp;Callback<&nbsp;boolean&nbsp;>)
 | 参数名    | 类型                                | 必填 | 说明                 |
 | --------- | ---------------------------------- | ---- | -------------------- |
 | isEditing | &nbsp;Callback<&nbsp;boolean&nbsp;> | 是   | 为true表示正在输入。 |
+
+### onWillInsert<sup>12+</sup>
+
+onWillInsert(callback: Callback\<InsertValue, boolean>)
+
+在将要输入时，触发该回调。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                                         | 必填 | 说明               |
+| ------ | ------------------------------------------------------------ | ---- | ------------------ |
+| callback  | Callback\<[InsertValue](#insertvalue12对象说明), boolean> | 是   | 在将要输入时调用的回调。<br/>在返回true时，表示正常插入，返回false时，表示不插入。 |
+
+### onDidInsert<sup>12+</sup>
+
+onDidInsert(callback: Callback\<InsertValue>)
+
+在输入完成时，触发该回调。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                                         | 必填 | 说明               |
+| ------ | ------------------------------------------------------------ | ---- | ------------------ |
+| callback  | Callback\<[InsertValue](#insertvalue12对象说明)> | 是   | 在输入完成时调用的回调。 |
+
+### onWillDelete<sup>12+</sup>
+
+onWillDelete(callback: Callback\<DeleteValue, boolean>)
+
+在将要删除时，触发该回调。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                                         | 必填 | 说明               |
+| ------ | ------------------------------------------------------------ | ---- | ------------------ |
+| callback  | Callback\<[DeleteValue](#deletevalue12对象说明), boolean> | 是   | 在将要删除时调用的回调。<br/>在返回true时，表示正常删除，返回false时，表示不删除。 |
+
+### onDidDelete<sup>12+</sup>
+
+onDidDelete(callback: Callback\<DeleteValue>)
+
+在删除完成时，触发该回调。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                                         | 必填 | 说明               |
+| ------ | ------------------------------------------------------------ | ---- | ------------------ |
+| callback  | Callback\<[DeleteValue](#deletevalue12对象说明)> | 是   | 在删除完成时调用的回调。 |
 
 ## SearchController
 
@@ -1120,3 +1172,58 @@ struct SearchExample {
 ```
 
 ![searchAdaptFont](figures/search_adapt_font.png)
+
+### 示例9
+
+该实例展示输入框支持插入和删除回调。
+
+```ts
+// xxx.ets
+// xxx.ets
+@Entry
+@Component
+struct SearchExample {
+  @State insertValue: string = ""
+  @State deleteValue: string = ""
+  @State insertOffset: number = 0
+  @State deleteOffset: number = 0
+  @State deleteDirection: number = 0
+
+  build() {
+    Row() {
+      Column() {
+        Search({ value: "Search支持插入回调文本" })
+          .height(60)
+          .onWillInsert((info) => {
+            this.insertValue = info.insertValue
+            return true;
+          })
+          .onDidInsert((info) => {
+            this.insertOffset = info.insertOffset
+          })
+
+        Text("insertValue:" + this.insertValue + "  insertOffset:" + this.insertOffset).height(30)
+
+        Search({ value: "Search支持删除回调文本b" })
+          .height(60)
+          .onWillDelete((info) => {
+            this.deleteValue = info.deleteValue
+            info.direction
+            return true;
+          })
+          .onDidDelete((info) => {
+            this.deleteOffset = info.deleteOffset
+            this.deleteDirection = info.direction
+          })
+
+        Text("deleteValue:" + this.deleteValue + "  deleteOffset:" + this.deleteOffset).height(30)
+        Text("deleteDirection:" + (this.deleteDirection == 0 ? "BACKWARD" : "FORWARD")).height(30)
+
+      }.width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+![SearchInsertAndDelete](figures/SearchInsertAndDelete.PNG)

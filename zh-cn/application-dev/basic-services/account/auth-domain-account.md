@@ -7,7 +7,7 @@
 导入系统帐号模块。
 
 ```ts
-import account_osAccount from '@ohos.account.osAccount';
+import { osAccount } from '@kit.BasicServicesKit';
 ```
 
 ## 使用密码认证域帐号
@@ -21,7 +21,7 @@ import account_osAccount from '@ohos.account.osAccount';
 2. 获取用户输入，包括域帐号信息和域帐号密码。
 
    ```ts
-     let domainAccountInfo: account_osAccount.DomainAccountInfo = {
+     let domainAccountInfo: osAccount.DomainAccountInfo = {
        domain: 'CHINA',
        accountName: 'zhangsan'
      }
@@ -31,8 +31,8 @@ import account_osAccount from '@ohos.account.osAccount';
 3. 定义认证结果回调。
 
    ```ts
-   let callback: IUserAuthCallback = {
-     onResult: (resultCode: number, authResult: account_osAccount.AuthResult) => {
+   let callback: osAccount.IUserAuthCallback = {
+     onResult: (resultCode: number, authResult: osAccount.AuthResult) => {
        console.log('auth resultCode = ' + resultCode);
        console.log('auth authResult = ' + JSON.stringify(authResult));
      }
@@ -43,7 +43,7 @@ import account_osAccount from '@ohos.account.osAccount';
 
    ```ts
    try {
-     account_osAccount.DomainAccountManager.auth(domainAccountInfo, credential, callback);
+     osAccount.DomainAccountManager.auth(domainAccountInfo, credential, callback);
    } catch (err) {
      console.log('auth exception = ' + JSON.stringify(err));
    }
@@ -58,8 +58,8 @@ import account_osAccount from '@ohos.account.osAccount';
 1. 定义认证结果回调对象。
 
    ```ts
-   let callback: IUserCallback = {
-     onResult: (resultCode: number, authResult: account_osAccount.AuthResult) => {
+   let callback: osAccount.IUserAuthCallback = {
+     onResult: (resultCode: number, authResult: osAccount.AuthResult) => {
        console.log('authWithPopup resultCode = ' + resultCode);
        console.log('authWithPopup authResult = ' + JSON.stringify(authResult));
      }
@@ -70,7 +70,7 @@ import account_osAccount from '@ohos.account.osAccount';
 
    ```ts
    try {
-     account_osAccount.DomainAccountManager.authWithPopup(callback)
+     osAccount.DomainAccountManager.authWithPopup(callback)
    } catch (err) {
      console.log('authWithPopup exception = ' + JSON.stringify(err));
    }

@@ -8,7 +8,7 @@
 
 **错误信息**
 
-Internal Error.
+Internal error.
 
 **错误描述**
 
@@ -26,7 +26,7 @@ Malloc等内核通用错误。
 
 **错误信息**
 
-An IPC connection error happened.
+IPC connection error.
 
 **错误描述**
 
@@ -44,7 +44,7 @@ An IPC connection error happened.
 
 **错误信息**
 
-A service connection error happened, please try again later.
+Service connection error.
 
 **错误描述**
 
@@ -108,7 +108,7 @@ The ID of the form to be operated does not exist.
 
 **错误信息**
 
-The number of forms exceeds the upper bound.
+The number of forms exceeds the maximum allowed.
 
 **错误描述**
 
@@ -126,7 +126,7 @@ The number of forms exceeds the upper bound.
 
 **错误信息**
 
-The form can not be operated by the current application.
+The form cannot be operated by the current application.
 
 **错误描述**
 
@@ -163,11 +163,29 @@ The ability is not installed.
 
 **错误信息**
 
-Connect FormRenderService failed, please try again later.
+Failed to connect to FormRenderService.
 
 **错误描述**
 
 连接卡片渲染服务失败时，系统会报此错误码。
+
+**可能原因**
+
+服务繁忙。
+
+**处理步骤**
+
+服务繁忙，请稍后重试。
+
+## 16501008 等待卡片加桌超时
+
+**错误信息**
+
+Waiting for the form addition to the desktop timed out.
+
+**错误描述**
+
+发送卡片加桌请求后，等待卡片加桌超时，系统会报此错误码。
 
 **可能原因**
 

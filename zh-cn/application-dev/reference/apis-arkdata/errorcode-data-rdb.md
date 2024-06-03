@@ -70,7 +70,7 @@ Database corrupted.
 
 **错误信息**
 
-The result set is empty or the specified location is invalid.
+Row out of bounds.
 
 **错误描述**
 
@@ -88,7 +88,7 @@ The result set is empty or the specified location is invalid.
 
 **错误信息**
 
-The column value is  null or the column type is incompatible.
+Column out of bounds.
 
 **错误描述**
 
