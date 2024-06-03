@@ -1,7 +1,7 @@
 # @ohos.data.relationalStore (关系型数据库)
 
 关系型数据库（Relational Database，RDB）是一种基于关系模型来管理数据的数据库。关系型数据库基于SQLite组件提供了一套完整的对本地数据库进行管理的机制，对外提供了一系列的增、删、改、查等接口，也可以直接运行用户输入的SQL语句来满足复杂的场景需要。不支持Worker线程。
-ArkTS侧支持的基本数据类型：number、string、二进制类型数据、boolean。为保证插入并读取数据成功，建议一条数据不要超过2M。超出该大小，插入成功，读取失败。
+ArkTS侧支持的基本数据类型：number、string、二进制数据类型、boolean。为保证插入并读取数据成功，建议一条数据不要超过2M。超出该大小，插入成功，读取失败。
 
 该模块提供以下关系型数据库相关的常用功能：
 
@@ -56,7 +56,7 @@ import featureAbility from '@ohos.ability.featureAbility';
 import { BusinessError } from "@ohos.base";
 
 let store: relationalStore.RdbStore | undefined = undefined;
-let context = getContext(this);
+let context = featureAbility.getContext();
 
 const STORE_CONFIG: relationalStore.StoreConfig = {
   name: "RdbTest.db",
@@ -143,7 +143,7 @@ import featureAbility from '@ohos.ability.featureAbility';
 import { BusinessError } from "@ohos.base";
 
 let store: relationalStore.RdbStore | undefined = undefined;
-let context = getContext(this);
+let context = featureAbility.getContext();
 
 const STORE_CONFIG: relationalStore.StoreConfig = {
   name: "RdbTest.db",
@@ -220,7 +220,7 @@ import featureAbility from '@ohos.ability.featureAbility';
 import { BusinessError } from "@ohos.base";
 
 let store: relationalStore.RdbStore | undefined = undefined;
-let context = getContext(this);
+let context = featureAbility.getContext();
 
 relationalStore.deleteRdbStore(context, "RdbTest.db", (err: BusinessError) => {
   if (err) {
@@ -296,7 +296,7 @@ import featureAbility from '@ohos.ability.featureAbility';
 import { BusinessError } from "@ohos.base";
 
 let store: relationalStore.RdbStore | undefined = undefined;
-let context = getContext(this);
+let context = featureAbility.getContext();
 
 relationalStore.deleteRdbStore(context, "RdbTest.db").then(()=>{
   store = undefined;
@@ -365,7 +365,7 @@ import featureAbility from '@ohos.ability.featureAbility';
 import { BusinessError } from "@ohos.base";
 
 let store: relationalStore.RdbStore | undefined = undefined;
-let context = getContext(this);
+let context = featureAbility.getContext();
 
 const STORE_CONFIG: relationalStore.StoreConfig = {
   name: "RdbTest.db",
@@ -453,7 +453,7 @@ import featureAbility from '@ohos.ability.featureAbility';
 import { BusinessError } from "@ohos.base";
 
 let store: relationalStore.RdbStore | undefined = undefined;
-let context = getContext(this);
+let context = featureAbility.getContext();
 
 const STORE_CONFIG: relationalStore.StoreConfig = {
   name: "RdbTest.db",
@@ -696,7 +696,7 @@ class EntryAbility extends UIAbility {
 
 ## ConflictResolution<sup>10+</sup>
 
-插入和修改接口的冲突解决方式。请使用枚举名称而非枚举值。
+插入和修改接口的冲突解决模式。请使用枚举名称而非枚举值。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1753,7 +1753,7 @@ insert(table: string, values: ValuesBucket,  conflict: ConflictResolution, callb
 | -------- | ------------------------------------------- | ---- | ---------------------------------------------------------- |
 | table    | string                                      | 是   | 指定的目标表名。                                           |
 | values   | [ValuesBucket](#valuesbucket)               | 是   | 表示要插入到表中的数据行。                                 |
-| conflict | [ConflictResolution](#conflictresolution10) | 是   | 指定冲突解决方式。                                         |
+| conflict | [ConflictResolution](#conflictresolution10) | 是   | 指定冲突解决模式。                                         |
 | callback | AsyncCallback&lt;number&gt;                 | 是   | 指定callback回调函数。如果操作成功，返回行ID；否则返回-1。 |
 
 **错误码：**
@@ -1891,7 +1891,7 @@ insert(table: string, values: ValuesBucket,  conflict: ConflictResolution):Promi
 | -------- | ------------------------------------------- | ---- | -------------------------- |
 | table    | string                                      | 是   | 指定的目标表名。           |
 | values   | [ValuesBucket](#valuesbucket)               | 是   | 表示要插入到表中的数据行。 |
-| conflict | [ConflictResolution](#conflictresolution10) | 是   | 指定冲突解决方式。         |
+| conflict | [ConflictResolution](#conflictresolution10) | 是   | 指定冲突解决模式。         |
 
 **返回值**：
 
@@ -2182,7 +2182,7 @@ update(values: ValuesBucket, predicates: RdbPredicates, conflict: ConflictResolu
 | ---------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
 | values     | [ValuesBucket](#valuesbucket)               | 是   | values指示数据库中要更新的数据行。键值对与数据库表的列名相关联。 |
 | predicates | [RdbPredicates](#rdbpredicates)            | 是   | RdbPredicates的实例对象指定的更新条件。                      |
-| conflict   | [ConflictResolution](#conflictresolution10) | 是   | 指定冲突解决方式。                                           |
+| conflict   | [ConflictResolution](#conflictresolution10) | 是   | 指定冲突解决模式。                                           |
 | callback   | AsyncCallback&lt;number&gt;                 | 是   | 指定的callback回调方法。返回受影响的行数。                   |
 
 **错误码：**
@@ -2323,7 +2323,7 @@ update(values: ValuesBucket, predicates: RdbPredicates, conflict: ConflictResolu
 | ---------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
 | values     | [ValuesBucket](#valuesbucket)               | 是   | values指示数据库中要更新的数据行。键值对与数据库表的列名相关联。 |
 | predicates | [RdbPredicates](#rdbpredicates)            | 是   | RdbPredicates的实例对象指定的更新条件。                      |
-| conflict   | [ConflictResolution](#conflictresolution10) | 是   | 指定冲突解决方式。                                           |
+| conflict   | [ConflictResolution](#conflictresolution10) | 是   | 指定冲突解决模式。                                           |
 
 **返回值**：
 
