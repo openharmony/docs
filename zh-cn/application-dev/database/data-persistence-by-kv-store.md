@@ -82,6 +82,7 @@
    
    // FA模型
    import featureAbility from '@ohos.ability.featureAbility';
+   import { BusinessError } from '@kit.BasicServicesKit';
    
    let kvManager: distributedKVStore.KVManager | undefined = undefined;
    let context = featureAbility.getContext(); // 获取context
