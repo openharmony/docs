@@ -11,47 +11,42 @@
 
    ```ts
    import { huks } from "@kit.UniversalKeystoreKit";
-   import { BusinessError} from "@kit.BasicServicesKit"
    /*
     * 确定密钥别名和封装密钥属性参数集
     */
    let keyAlias = 'test_sm4_key_alias';
-   let properties: Array<huks.HuksParam> = new Array();
-   properties[0] = {
+   let properties: Array<huks.HuksParam> = [{
        tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
-       value: huks.HuksKeyAlg.HUKS_ALG_SM4,
-   }
-   properties[1] = {
+       value: huks.HuksKeyAlg.HUKS_ALG_SM4
+   }, {
        tag: huks.HuksTag.HUKS_TAG_PURPOSE,
-       value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT | huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT,
-   }
-   properties[2] = {
+       value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT | huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT
+   }, {
        tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
        value: huks.HuksKeySize.HUKS_SM4_KEY_SIZE_128,
-   }
-   properties[3] = {
+   }, {
        tag: huks.HuksTag.HUKS_TAG_BLOCK_MODE,
        value: huks.HuksCipherMode.HUKS_MODE_CBC,
-   }
-   properties[4] = {
+   }, {
        tag: huks.HuksTag.HUKS_TAG_PADDING,
        value: huks.HuksKeyPadding.HUKS_PADDING_NONE,
-   }
+   },
    // 指定密钥身份认证的类型：指纹
-   properties[5] = {
+   {
        tag: huks.HuksTag.HUKS_TAG_USER_AUTH_TYPE,
        value: huks.HuksUserAuthType.HUKS_USER_AUTH_TYPE_FINGERPRINT
-   }
+   },
    // 指定密钥安全授权的类型（失效类型）：新录入生物特征（指纹）后无效
-   properties[6] = {
+   {
        tag: huks.HuksTag.HUKS_TAG_KEY_AUTH_ACCESS_TYPE,
        value: huks.HuksAuthAccessType.HUKS_AUTH_ACCESS_INVALID_NEW_BIO_ENROLL
-   }
+   },
    // 指定挑战值的类型：默认类型
-   properties[7] = {
+   {
        tag: huks.HuksTag.HUKS_TAG_CHALLENGE_TYPE,
        value: huks.HuksChallengeType.HUKS_CHALLENGE_TYPE_NORMAL
-   }
+   }];
+
    let huksOptions : huks.HuksOptions = {
        properties: properties,
        inData: new Uint8Array(new Array())
@@ -86,7 +81,7 @@
            .then((data) => {
                console.info(`promise: generateKeyItem success, data = ${JSON.stringify(data)}`);
            })
-           .catch((error : BusinessError) => {
+           .catch((error) => {
                if (throwObject.isThrow) {
                    throw(error as Error);
                } else {
@@ -107,7 +102,6 @@
    ```ts
    import { huks } from "@kit.UniversalKeystoreKit";
    import userIAM_userAuth from '@ohos.userIAM.userAuth';
-   import { BusinessError} from "@kit.BasicServicesKit"
    /*
     * 确定密钥别名和封装密钥属性参数集
     */
@@ -118,31 +112,26 @@
    let authType = userIAM_userAuth.UserAuthType.FINGERPRINT;
    let authTrustLevel = userIAM_userAuth.AuthTrustLevel.ATL1;
    /* 集成生成密钥参数集 & 加密参数集 */
-   let properties : Array<huks.HuksParam> = new Array();
-   properties[0] = {
+   let properties : Array<huks.HuksParam> = [{
        tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
        value: huks.HuksKeyAlg.HUKS_ALG_SM4,
-   }
-   properties[1] = {
+   }, {
        tag: huks.HuksTag.HUKS_TAG_PURPOSE,
        value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT,
-   }
-   properties[2] = {
+   }, {
        tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
        value: huks.HuksKeySize.HUKS_SM4_KEY_SIZE_128,
-   }
-   properties[3] = {
+   }, {
        tag: huks.HuksTag.HUKS_TAG_BLOCK_MODE,
        value: huks.HuksCipherMode.HUKS_MODE_CBC,
-   }
-   properties[4] = {
+   }, {
        tag: huks.HuksTag.HUKS_TAG_PADDING,
        value: huks.HuksKeyPadding.HUKS_PADDING_NONE,
-   }
-   properties[5] = {
+   }, {
        tag: huks.HuksTag.HUKS_TAG_IV,
        value: StringToUint8Array(IV),
-   }
+   }];
+
    let huksOptions : huks.HuksOptions = {
        properties: properties,
        inData: new Uint8Array(new Array())
@@ -176,7 +165,7 @@
                handle = data.handle;
                challenge = data.challenge as Uint8Array;
            })
-           .catch((error : BusinessError) => {
+           .catch((error) => {
                if (throwObject.isThrow) {
                    throw(error as Error);
                } else {
@@ -189,8 +178,7 @@
    }
    function userIAMAuthFinger(huksChallenge:Uint8Array) {
        // 获取认证对象
-       let authTypeList:userIAM_userAuth.UserAuthType[]= new Array();
-       authTypeList[0] = authType;
+       let authTypeList:userIAM_userAuth.UserAuthType[]= [ authType ];
        const authParam:userIAM_userAuth.AuthParam = {
          challenge: huksChallenge,
          authType: authTypeList,
@@ -242,7 +230,6 @@
    * 以下以SM4 128密钥为例
    */
    import { huks } from "@kit.UniversalKeystoreKit";
-   import { BusinessError} from "@kit.BasicServicesKit"
    /*
    * 确定封装密钥属性参数集
    */
@@ -321,7 +308,7 @@
            .then ((data) => {
                console.info(`promise: doUpdate success, data = ${JSON.stringify(data)}`);
            })
-           .catch((error: BusinessError) => {
+           .catch((error) => {
                if (throwObject.isThrow) {
                    throw(error as Error);
                } else {
@@ -357,7 +344,7 @@
                finishOutData = data.outData as Uint8Array;
                console.info(`promise: doFinish success, data = ${JSON.stringify(data)}`);
            })
-           .catch((error: BusinessError) => {
+           .catch((error) => {
                if (throwObject.isThrow) {
                    throw(error as Error);
                } else {
