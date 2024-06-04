@@ -10,8 +10,8 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
 
 | 接口名                                              | 描述                                         |
 | --------------------------------------------------- | -------------------------------------------- |
-| addWatcher(watcher: Watcher): AppEventPackageHolder | 添加应用事件观察者，以添加对应用事件的订阅。 |
-| removeWatcher(watcher: Watcher): void               | 移除应用事件观察者，以移除对应用事件的订阅。 |
+| write(info: AppEventInfo, callback: AsyncCallback\<void>): void | 应用事件异步打点方法，使用callback方式作为异步回调。 |
+| write(info: AppEventInfo): Promise\<void>               | 应用事件异步打点方法，使用Promise方式作为异步回调。 |
 
 **订阅接口功能介绍：**
 
