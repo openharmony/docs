@@ -818,6 +818,8 @@ get commonEvent(): UICommonEvent
 
 获取FrameNode中持有的UICommonEvent对象，用于设置基础事件。设置的基础事件与声明式定义的事件平行，参与事件竞争；设置的基础事件不覆盖原有的声明式事件。同时设置两个事件回调的时候，优先回调声明式事件。
 
+LazyForEach场景下，由于存在节点的销毁重建，对于重建的节点需要重新设置事件回调才能保证监听事件正常响应。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：**
@@ -828,7 +830,7 @@ get commonEvent(): UICommonEvent
 
 **示例：**
 
-请参考[基础事件示例](#基础事件示例)。
+请参考[基础事件示例](#基础事件示例)和[LazyForEach场景基础事件使用示例](#lazyforeach场景基础事件使用示例)。
 
 ### onDraw<sup>12+</sup>
 
@@ -1842,7 +1844,6 @@ struct FrameNodeTypeTest {
 
 ![FrameNodeTextTest](figures/FrameNodeTextTest.png)
 
-
 ## 节点操作示例
 ```ts
 import { FrameNode, NodeController } from "@ohos.arkui.node";
@@ -2255,9 +2256,7 @@ struct Index {
   }
 }
 ```
-
 ## 基础事件示例
-
 ```ts
 import { FrameNode, NodeController } from '@ohos.arkui.node'
 
@@ -2365,6 +2364,327 @@ struct Index {
 }
 ```
 
+
+## LazyForEach场景基础事件使用示例
+```ts
+// index.ets
+import {Track, TrackManager, TrackNode} from "./track"
+
+@Builder
+function page1() {
+  Column() {
+    Text("Page1")
+    PageList().height("90%")
+    Button("DumpMessage")
+      .onClick(() => {
+        TrackManager.get().dump()
+      })
+
+  }.width("100%").height("100%")
+}
+
+class BasicDataSource implements IDataSource {
+  private listeners: DataChangeListener[] = [];
+  private originDataArray: string[] = [];
+
+  public totalCount(): number {
+    return 0;
+  }
+
+  public getData(index: number): string {
+    return this.originDataArray[index];
+  }
+
+  // 该方法为框架侧调用，为LazyForEach组件向其数据源处添加listener监听
+  registerDataChangeListener(listener: DataChangeListener): void {
+    if (this.listeners.indexOf(listener) < 0) {
+      console.info('add listener');
+      this.listeners.push(listener);
+    }
+  }
+
+  // 该方法为框架侧调用，为对应的LazyForEach组件在数据源处去除listener监听
+  unregisterDataChangeListener(listener: DataChangeListener): void {
+    const pos = this.listeners.indexOf(listener);
+    if (pos >= 0) {
+      console.info('remove listener');
+      this.listeners.splice(pos, 1);
+    }
+  }
+
+  // 通知LazyForEach组件需要重载所有子组件
+  notifyDataReload(): void {
+    this.listeners.forEach(listener => {
+      listener.onDataReloaded();
+    })
+  }
+
+  // 通知LazyForEach组件需要在index对应索引处添加子组件
+  notifyDataAdd(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataAdd(index);
+    })
+  }
+
+  // 通知LazyForEach组件在index对应索引处数据有变化，需要重建该子组件
+  notifyDataChange(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataChange(index);
+    })
+  }
+
+  // 通知LazyForEach组件需要在index对应索引处删除该子组件
+  notifyDataDelete(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataDelete(index);
+    })
+  }
+
+  // 通知LazyForEach组件将from索引和to索引处的子组件进行交换
+  notifyDataMove(from: number, to: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataMove(from, to);
+    })
+  }
+}
+
+class MyDataSource extends BasicDataSource {
+  private dataArray: string[] = [];
+
+  public totalCount(): number {
+    return this.dataArray.length;
+  }
+
+  public getData(index: number): string {
+    return this.dataArray[index];
+  }
+
+  public addData(index: number, data: string): void {
+    this.dataArray.splice(index, 0, data);
+    this.notifyDataAdd(index);
+  }
+
+  public pushData(data: string): void {
+    this.dataArray.push(data);
+    this.notifyDataAdd(this.dataArray.length - 1);
+  }
+}
+
+@Component
+struct PageList {
+  private data: MyDataSource = new MyDataSource();
+
+  aboutToAppear() {
+    for (let i = 0; i <= 100; i++) {
+      this.data.pushData(`Hello ${i}`)
+    }
+  }
+
+  build() {
+    List({ space: 3 }) {
+      LazyForEach(this.data, (item: string, index: number) => {
+        ListItem() {
+          // 通过TrackNode对组件进行封装埋点
+          TrackNode({track: new Track().tag("xxx"+ item).id(index + 30000)}) {
+            Row() {
+              Text(item).fontSize(30)
+                .onClick(() => {
+                })
+            }.margin({ left: 10, right: 10 })
+          }
+        }
+      }, (item: string) => item)
+    }.cachedCount(5)
+  }
+}
+
+
+@Entry
+@Component
+struct TrackTest {
+  pageInfos: NavPathStack = new NavPathStack()
+  build() {
+    Row() {
+      TrackNode({ track: new Track().tag("root").id(10000)}) {
+        page1()
+      }
+    }
+  }
+
+  aboutToAppear(): void {
+    TrackManager.get().startListenClick(this.getUIContext())
+  }
+}
+```
+
+```ts
+// ./track.ets
+import { FrameNode } from '@kit.ArkUI';
+import { Rect } from '@ohos.arkui.node';
+
+@Component
+export struct TrackNode {
+  @BuilderParam closer: VoidCallback = this.defaultBuilder
+  track: Track | null = null
+  trackShadow: TrackShadow = new TrackShadow()
+
+  @Builder defaultBuilder() {
+  }
+
+  build() {
+    this.closer()
+  }
+
+  aboutToAppear(): void {
+    // use onDidBuild later
+  }
+
+  aboutToDisappear(): void {
+    TrackManager.get().removeTrack(this.trackShadow.id)
+    console.log("Track disappear:" + this.trackShadow.id)
+  }
+
+  onDidBuild(): void {
+    // 构建埋点的虚拟树，获取的node为当前页面的根节点（用例中为Row）。
+    let uid = this.getUniqueId()
+    let node: FrameNode | null = this.getUIContext().getFrameNodeByUniqueId(uid);
+    console.log("Track onDidBuild node:" + node?.getNodeType())
+    if (node === null) {
+      return
+    }
+    this.trackShadow.node = node
+    this.trackShadow.id = node?.getUniqueId()
+    this.trackShadow.track = this.track;
+    TrackManager.get().addTrack(this.trackShadow.id, this.trackShadow)
+    // 通过setOnVisibleAreaApproximateChange监听记录埋点组件的可视区域。
+    node?.commonEvent.setOnVisibleAreaApproximateChange(
+      { ratios: [0, 0.1, 0.2, 0.5, 0.8, 1], expectedUpdateInterval: 500 },
+      (ratioInc: boolean, ratio: number) => {
+        console.log(`Node ${node?.getUniqueId()}:${node?.getNodeType()} is visibleRatio is ${ratio}`);
+        this.trackShadow.visibleRatio = ratio
+      })
+
+    let parent: FrameNode | null = node?.getParent()
+
+    let attachTrackToParent: (parent: FrameNode | null) => boolean =
+      (parent: FrameNode | null) => {
+        while (parent !== null) {
+          let parentTrack = TrackManager.get().getTrackById(parent.getUniqueId())
+          if (parentTrack !== undefined) {
+            parentTrack.childIds.add(this.trackShadow.id)
+            this.trackShadow.parentId = parentTrack.id
+            return true;
+          }
+          parent = parent.getParent()
+        }
+        return false;
+      }
+    let attached = attachTrackToParent(parent);
+
+    if (!attached) {
+      node?.commonEvent.setOnAppear(() => {
+        let attached = attachTrackToParent(parent);
+        if (attached) {
+          console.log("Track lazy attached:" + this.trackShadow.id)
+        }
+      })
+    }
+  }
+}
+
+export class Track {
+  public areaPercent: number = 0
+  private trackTag: string = ""
+  private trackId: number = 0
+
+  constructor() {
+  }
+
+  tag(newTag: string): Track {
+    this.trackTag = newTag;
+    return this;
+  }
+
+  id(newId: number): Track {
+    this.trackId = newId;
+    return this;
+  }
+}
+
+export class TrackShadow {
+  public node: FrameNode | null = null
+  public id: number = -1
+  public track: Track | null = null
+  public childIds: Set<number> = new Set()
+  public parentId: number = -1
+  public visibleRect: Rect = { left: 0, top: 0, right: 0, bottom: 0 }
+  public area: number = 0
+  public visibleRatio: number = 0
+
+  // 通过全局dump输出埋点树的信息
+  dump(depth: number = 0): void {
+    console.log("Track Dp:" + depth + " id:" + this.id + " areaPer:" + this.track?.areaPercent + " visibleRatio:" + this.visibleRatio)
+    this.childIds.forEach((value: number) => {
+      TrackManager.get().getTrackById(value)?.dump(depth + 1)
+    })
+  }
+}
+
+export class TrackManager {
+  static instance: TrackManager
+  private trackMap: Map<number, TrackShadow> = new Map()
+  private rootTrack: TrackShadow | null = null
+
+  static get(): TrackManager {
+    if (TrackManager.instance !== undefined) {
+      return TrackManager.instance
+    }
+    TrackManager.instance = new TrackManager()
+    return TrackManager.instance
+  }
+
+  addTrack(id: number, track: TrackShadow) {
+    if (this.trackMap.size == 0) {
+      this.rootTrack = track
+    }
+    console.log("Track add id:" + id)
+    this.trackMap.set(id, track)
+  }
+
+  removeTrack(id: number) {
+    let current = this.getTrackById(id)
+    if (current !== undefined) {
+      this.trackMap.delete(id)
+      let parent = this.getTrackById(current?.parentId)
+      parent?.childIds.delete(id)
+    }
+  }
+
+  getTrackById(id: number): TrackShadow | undefined {
+    return this.trackMap.get(id)
+  }
+
+  startListenClick(context: UIContext) {
+    // 通过无感监听获取FrameNode查找埋点信息。
+    context.getUIObserver().on("willClick", (event: ClickEvent, node?: FrameNode) => {
+      console.log("Track clicked:" + node)
+      if (node == undefined) {
+        return
+      }
+      let track = this.getTrackById(node.getUniqueId())
+      track?.dump(0);
+    })
+  }
+
+  updateVisibleInfo(track: TrackShadow): void {
+    // do something
+  }
+
+  dump(): void {
+    this.rootTrack?.dump(0)
+  }
+}
+```
 ## 节点自定义示例
 
 ```ts
