@@ -35,7 +35,7 @@ A sandbox application cannot send common events.
 ##  1500003 事件发送频率过高
 
 **错误信息**
-Too many common events are send in a short period of time.
+Too many common events are sent in a short period of time.
 
 **错误描述**
 应用发送事件过于频繁。
