@@ -334,7 +334,7 @@ bm dump-dependencies -n com.ohos.app -m entry
 **解决措施**
 
 该问题是由于安装未签名的HAP导致，需要开发者对开发的HAP进行签名之后再安装。
-1. 使用[自动签名](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/signing-0000001587684945-V3#section18815157237)。在连接设备后，重新为应用进行签名。
+1. 使用<!--RP1-->[自动签名](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/signing-0000001587684945-V3#section18815157237)<!--RP1End-->。在连接设备后，重新为应用进行签名。
 1. 如果使用的是手动签名，对于OpenHarmony应用，请参考[OpenHarmony应用手动签名](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/hapsigntool-guidelines.md)
 
 ### 安装HAP时提示“code:9568347 error: install parse native so failed”错误
@@ -356,7 +356,7 @@ bm dump-dependencies -n com.ohos.app -m entry
     hdc shell
     param get const.product.cpu.abilist
     ```
-4. 根据查询返回结果，检查[模块级build-profile.json5](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/build_config-0000001052902431-V3#section6887184182020)文件中的“abiFilters”参数中的配置，规则如下：
+4. 根据查询返回结果，检查<!--RP2-->[模块级build-profile.json5](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/build_config-0000001052902431-V3#section6887184182020)<!--RP2End-->文件中的“abiFilters”参数中的配置，规则如下：
     * 若返回结果为default，请执行如下命令，查询是否存在lib64文件夹。
       ```
       cd /system/
@@ -493,7 +493,7 @@ bm dump-dependencies -n com.ohos.app -m entry
 
 该问题是由于签名中未包含该调试设备的UDID，请通过如下步骤进行解决。
 
-* 使用[自动签名](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/signing-0000001587684945-V3#section18815157237)。在连接设备后，重新为应用进行签名。
+* 使用<!--RP3-->[自动签名](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/signing-0000001587684945-V3#section18815157237)<!--RP3End-->。在连接设备后，重新为应用进行签名。
 * 如果使用的是手动签名，对于OpenHarmony应用，请参考[OpenHarmony应用手动签名](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/hapsigntool-guidelines.md)，在UnsgnedDebugProfileTemplate.json文件中添加该调试设备的**UDID**
 ```
 //UDID获取命令
