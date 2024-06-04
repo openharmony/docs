@@ -8,18 +8,24 @@ You can use the custom gesture judgment APIs to specify whether to respond to sp
 
 
 ## onGestureJudgeBegin
-onGestureJudgeBegin(callback: (gestureInfo: GestureInfo, event: BaseGestureEvent) => GestureJudgeResult)
+onGestureJudgeBegin(callback: (gestureInfo: GestureInfo, event: BaseGestureEvent) => GestureJudgeResult): T
 
 **Parameters**
 | Name       | Type                   | Mandatory | Description                         |
 | ---------- | -------------------------- | ------- | ----------------------------- |
 | callback      | (gestureInfo: [GestureInfo](#gestureinfo), event: [BaseGestureEvent](#basegestureevent)) => [GestureJudgeResult](ts-appendix-enums.md#gesturejudgeresult11) | Yes    |  Callback for custom gesture judgment. When the gesture bound to the component is accepted, the defined callback is triggered to obtain the result.|
 
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| T | Current component.|
+
 ## GestureInfo
 
 | Name           | Type                       | Description        |
 | ---------------  | -------------------------   | -----------|
-| tag              | string                      | Gesture tag. |
+| tag              | string                      | Gesture tag.<br>**NOTE**<br>If the event tag is not set, **undefined** or no gesture tag is returned. |
 | type             | [GestureControl.GestureType](ts-appendix-enums.md#gesturetype11)  | Gesture type.|
 | isSystemGesture  | boolean                     | Whether the gesture is a system gesture.|
 
@@ -32,12 +38,12 @@ onGestureJudgeBegin(callback: (gestureInfo: GestureInfo, event: BaseGestureEvent
 | pressure | number | Press pressure. |
 | titleX | number | Angle between the projection of the stylus on the device plane and the x-axis. |
 | titleY | number | Angle between the projection of the stylus on the device plane and the y-axis. |
-| sourceTool | [SourceTool](ts-gesture-settings.md#sourcetool) | Event input source. |
+| sourceTool | [SourceTool](ts-gesture-settings.md#sourcetool9) | Event input source. |
 ## BaseGestureEvent
 Extended from [BaseEvent](#baseevent).
 | Name     | Type                                     | Description        |
 | ---------  | ----------------------------------------  | -----------|
-| fingerList | [FingerInfo[]](ts-gesture-settings.md#fingerinfo) | Information about all fingers that trigger the event. |
+| fingerList | [FingerInfo[]](ts-gesture-settings.md#fingerinfo8) | Information about all fingers that trigger the event. |
 
 ## TapGestureEvent
 Extended from [BaseGestureEvent](#basegestureevent). This object can be passed in as the **event** parameter of [onGestureJudgeBegin](#ongesturejudgebegin).

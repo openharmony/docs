@@ -19,7 +19,7 @@ PanGesture(value?: { fingers?: number; direction?: PanDirection; distance?: numb
 | -------- | -------- | -------- | -------- |
 | fingers | number | No| Minimum number of fingers to trigger a pan gesture. The value ranges from 1 to 10.<br>Default value: **1**<br>Value range: 1 to 10<br>**NOTE**<br>If the value is less than 1 or is not set, the default value is used.|
 | direction | [PanDirection](#pandirection) | No| Pan direction. The enumerated value supports the AND (&amp;) and OR (\|) operations.<br>Default value: **PanDirection.All**|
-| distance | number | No| Minimum pan distance to trigger the gesture, in vp.<br>Default value: **5**<br>**NOTE**<br>If a pan gesture and [tab](ts-container-tabs.md) swipe occur at the same time, set **distance** to **1** so that the gesture can be more easily recognized.<br>If this parameter is set to a value less than or equal to 0, the default value **5** is used.|
+| distance | number | No| Minimum pan distance to trigger the gesture, in vp.<br>Default value: **5**<br>**NOTE**<br>If a pan gesture and [tab](ts-container-tabs.md) swipe occur at the same time, set **distance** to **1** so that the gesture can be more easily recognized.<br>If this parameter is set to a value less than or equal to **0**, the default value **5** is used.|
 
 ## PanDirection
 
@@ -47,7 +47,7 @@ PanGestureOptions(value?: { fingers?: number; direction?: PanDirection; distance
 | --------- | ------------------------------------- | ---- | ------------------------------------------------------------ |
 | fingers   | number                                | No  | Minimum number of fingers to trigger a pan gesture. The value ranges from 1 to 10.<br>Default value: **1**|
 | direction | [PanDirection](#pandirection) | No  | Pan direction. The enumerated value supports the AND (&amp;) and OR (\|) operations.<br>Default value: **PanDirection.All**|
-| distance  | number                                | No  | Minimum pan distance to trigger the gesture, in vp.<br>Default value: **5**<br>**NOTE**<br>If a pan gesture and [tab](ts-container-tabs.md) swipe occur at the same time, set **distance** to **1** so that the gesture can be more easily recognized.<br>If this parameter is set to a value less than or equal to 0, the default value **5** is used.|
+| distance  | number                                | No  | Minimum pan distance to trigger the gesture, in vp.<br>Default value: **5**<br>**NOTE**<br>If a pan gesture and [tab](ts-container-tabs.md) swipe occur at the same time, set **distance** to **1** so that the gesture can be more easily recognized.<br>If the value specified is less than **0**, the default value **5** is used.|
 
 **APIs**
 
@@ -62,9 +62,9 @@ PanGestureOptions(value?: { fingers?: number; direction?: PanDirection; distance
 
 | Name| Description|
 | -------- | -------- |
-| onActionStart(event: (event?: [GestureEvent](ts-gesture-settings.md#gestureevent)) =&gt; void) | Invoked when a pan gesture is recognized.|
-| onActionUpdate(event: (event?: [GestureEvent](ts-gesture-settings.md#gestureevent)) =&gt; void) | Invoked when the pan gesture status is updated.<br>If **fingerList** contains multiple fingers, this callback updates the location information of only one finger each time.|
-| onActionEnd(event: (event?: [GestureEvent](ts-gesture-settings.md#gestureevent)) =&gt; void) | Invoked when the finger used for a pan gesture is lift.|
+| onActionStart(event: (event: [GestureEvent](ts-gesture-settings.md#gestureevent)) =&gt; void) | Invoked when a pan gesture is recognized.|
+| onActionUpdate(event: (event: [GestureEvent](ts-gesture-settings.md#gestureevent)) =&gt; void) | Invoked when the pan gesture status is updated.<br>If **fingerList** contains multiple fingers, this callback updates the location information of only one finger each time.|
+| onActionEnd(event: (event: [GestureEvent](ts-gesture-settings.md#gestureevent)) =&gt; void) | Invoked when the finger used for a pan gesture is lift.|
 | onActionCancel(event: () =&gt; void) | Invoked when a tap cancellation event is received after a pan gesture is recognized.<br>**NOTE**<br>This event is triggered when the window loses focus.|
 
 ## Attributes
@@ -99,10 +99,10 @@ struct PanGestureExample {
       // Pan left or right to trigger the gesture event.
       .gesture(
       PanGesture(this.panOption)
-        .onActionStart((event?: GestureEvent) => {
+        .onActionStart((event: GestureEvent) => {
           console.info('Pan start')
         })
-        .onActionUpdate((event?: GestureEvent) => {
+        .onActionUpdate((event: GestureEvent) => {
           if (event) {
             this.offsetX = this.positionX + event.offsetX
             this.offsetY = this.positionY + event.offsetY
@@ -132,6 +132,6 @@ Panning to the left:
 
 ![en-us_image_0000001174264374](figures/en-us_image_0000001174264374.png) 
 
-Click **Set PanGesture Trigger Condition** to two fingers moving toward the lower left corner.
+Click **Set PanGesture Trigger Condition** to set the pan gesture to be triggered by two fingers moving toward the lower left corner.
 
  ![en-us_image1_0000001174264374](figures/en-us_image1_0000001174264374.png) 
