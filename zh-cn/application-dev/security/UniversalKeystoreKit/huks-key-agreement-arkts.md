@@ -61,89 +61,72 @@
  let exportKeyFirst: Uint8Array;
  let exportKeySecond: Uint8Array;
  /* 集成生成密钥参数集 */
- let properties: Array<huks.HuksParam> = new Array();
- properties[0] = {
+ let properties: Array<huks.HuksParam> = [{
      tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
      value: huks.HuksKeyAlg.HUKS_ALG_X25519,
- }
- properties[1] = {
+ }, {
      tag: huks.HuksTag.HUKS_TAG_PURPOSE,
      value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_AGREE,
- }
- properties[2] = {
+ }, {
      tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
      value: huks.HuksKeySize.HUKS_CURVE25519_KEY_SIZE_256,
- }
- properties[3] = {
+ }, {
      tag: huks.HuksTag.HUKS_TAG_DIGEST,
      value: huks.HuksKeyDigest.HUKS_DIGEST_NONE,
- }
- properties[4] = {
+ }, {
      tag: huks.HuksTag.HUKS_TAG_PADDING,
      value: huks.HuksKeyPadding.HUKS_PADDING_NONE,
- }
- properties[5] = {
+ }, {
      tag: huks.HuksTag.HUKS_TAG_BLOCK_MODE,
      value: huks.HuksCipherMode.HUKS_MODE_CBC,
- }
- properties[6] = {
+ }, {
      tag: huks.HuksTag.HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG,
      value: huks.HuksKeyStorageType.HUKS_STORAGE_ONLY_USED_IN_HUKS,
- }
+ }];
  let HuksOptions: huks.HuksOptions = {
      properties: properties,
      inData: new Uint8Array(new Array())
  }
  /* 集成第一个协商参数集 */
- let finishProperties: Array<huks.HuksParam> = new Array();
- finishProperties[0] = {
+ let finishProperties: Array<huks.HuksParam> = [{
      tag: huks.HuksTag.HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG,
      value: huks.HuksKeyStorageType.HUKS_STORAGE_ONLY_USED_IN_HUKS,
- }
- finishProperties[1] = {
+ }, {
      tag: huks.HuksTag.HUKS_TAG_IS_KEY_ALIAS,
      value: true
- }
- finishProperties[2] = {
+ }, {
      tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
      value: huks.HuksKeyAlg.HUKS_ALG_AES,
- }
- finishProperties[3] = {
+ }, {
      tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
      value: huks.HuksKeySize.HUKS_AES_KEY_SIZE_256,
- }
- finishProperties[4] = {
+ }, {
      tag: huks.HuksTag.HUKS_TAG_PURPOSE,
      value:
      huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT |
      huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT,
- }
- finishProperties[5] = {
+ }, {
      tag: huks.HuksTag.HUKS_TAG_DIGEST,
      value: huks.HuksKeyDigest.HUKS_DIGEST_NONE,
- }
- finishProperties[6] = {
+ }, {
      tag: huks.HuksTag.HUKS_TAG_KEY_ALIAS,
      value: StringToUint8Array(srcKeyAliasFirst+ 'final'),
- }
- finishProperties[7] = {
+ }, {
      tag: huks.HuksTag.HUKS_TAG_PADDING,
      value: huks.HuksKeyPadding.HUKS_PADDING_NONE,
- }
- finishProperties[8] = {
+ }, {
      tag: huks.HuksTag.HUKS_TAG_BLOCK_MODE,
      value: huks.HuksCipherMode.HUKS_MODE_ECB,
- }
+ }];
  let finishOptionsFirst: huks.HuksOptions = {
      properties: finishProperties,
      inData: StringToUint8Array(agreeX25519InData)
  }
  /* 集成第二个协商参数集 */
- let finishPropertiesSecond = [...finishProperties]
- finishPropertiesSecond[6] = {
+ let finishPropertiesSecond = [...finishProperties, {
     tag: huks.HuksTag.HUKS_TAG_KEY_ALIAS,
     value: StringToUint8Array(srcKeyAliasSecond + 'final'),
- }
+ }];
  let finishOptionsSecond: huks.HuksOptions = {
      properties: finishPropertiesSecond,
      inData: StringToUint8Array(agreeX25519InData)

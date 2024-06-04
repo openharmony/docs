@@ -16,9 +16,9 @@ HMAC是密钥相关的哈希运算消息认证码（Hash-based Message Authentic
 
 2. 初始化密钥属性集。
 
-3. 调用OH_Huks_GenerateKeyItem生成密钥，具体请参考[密钥生成](huks-key-generation-overview.md)。
+3. 调用OH_Huks_GenerateKeyItem生成密钥，HMAC支持的规格请参考[密钥生成](huks-key-generation-overview.md#支持的算法)。
 
-除此之外，开发者也可以参考[密钥导入](huks-key-import-overview.md)，导入已有的密钥。
+除此之外，开发者也可以参考[密钥导入](huks-key-import-overview.md#支持的算法)的规格介绍，导入已有的密钥。
 
 **执行HMAC**
 

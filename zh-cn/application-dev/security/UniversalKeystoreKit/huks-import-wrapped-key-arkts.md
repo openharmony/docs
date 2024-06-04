@@ -591,11 +591,10 @@ import { huks } from "@kit.UniversalKeystoreKit";
  */
 let keyAlias = 'test_import_key_ecdh_aes192';
 let isKeyExist:Boolean;
-let keyProperties: Array<huks.HuksParam> = new Array();
-keyProperties[0] = {
+let keyProperties: Array<huks.HuksParam> = [{
     tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
     value: huks.HuksKeyAlg.HUKS_ALG_AES,
-}
+}];
 let huksOptions:huks.HuksOptions = {
     properties: keyProperties, // 非空填充
     inData: new Uint8Array(new Array()) // 非空填充

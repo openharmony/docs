@@ -19,12 +19,8 @@
    class throwObject {
        isThrow: boolean = false;
    }
-   class propertyType {
-       tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM;
-       value: huks.HuksKeyAlg | huks.HuksKeyPurpose | huks.HuksKeySize | huks.HuksCipherMode | huks.HuksKeyPadding
-           | huks.HuksUserAuthType | huks.HuksAuthAccessType | huks.HuksChallengeType = huks.HuksKeyAlg.HUKS_ALG_SM4
-   }
-   let properties: propertyType[] = [
+
+   let properties: Array<huks.HuksParam> = [
        {
            tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
            value: huks.HuksKeyAlg.HUKS_ALG_SM4,
@@ -61,7 +57,8 @@
            tag: huks.HuksTag.HUKS_TAG_KEY_AUTH_PURPOSE,
            value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT
        }
-   ]
+   ];
+
    let huksOptions: huks.HuksOptions = {
        properties: properties,
        inData: new Uint8Array(new Array())
@@ -345,8 +342,7 @@
    }
    function userIAMAuthFinger(huksChallenge: Uint8Array) {
        // 获取认证对象
-       let authTypeList:userIAM_userAuth.UserAuthType[]= new Array();
-       authTypeList[0] = authType;
+       let authTypeList:userIAM_userAuth.UserAuthType[]= [ authType ];
        const authParam:userIAM_userAuth.AuthParam = {
          challenge: huksChallenge,
          authType: authTypeList,

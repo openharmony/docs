@@ -13,9 +13,9 @@ HMAC是密钥相关的哈希运算消息认证码（Hash-based Message Authentic
 
 2. 初始化密钥属性集。
 
-3. 调用[generateKeyItem](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksgeneratekeyitem9)生成密钥，具体请参考[密钥生成](huks-key-generation-overview.md)。
+3. 调用[generateKeyItem](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksgeneratekeyitem9)生成密钥，HMAC支持的规格请参考[密钥生成](huks-key-generation-overview.md#支持的算法)。
 
-除此之外，开发者也可以参考[密钥导入](huks-key-import-overview.md)，导入已有的密钥。
+除此之外，开发者也可以参考[密钥导入](huks-key-import-overview.md#支持的算法)的规格介绍，导入已有的密钥。
 
 **执行HMAC**
 
@@ -53,24 +53,19 @@ function Uint8ArrayToString(fileData:Uint8Array) {
 }
 
 function GetHMACProperties() {
-  var properties = new Array();
-  var index = 0;
-  properties[index++] = {
+  const properties : Array<huks.HuksParam> = [{
     tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
     value: huks.HuksKeyAlg.HUKS_ALG_HMAC
-  };
-  properties[index++] = {
+  }, {
     tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
     value: huks.HuksKeySize.HUKS_AES_KEY_SIZE_256
-  };
-  properties[index++] = {
+  }, {
     tag: huks.HuksTag.HUKS_TAG_PURPOSE,
     value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_MAC
-  };
-  properties[index++] = {
+  }, {
     tag: huks.HuksTag.HUKS_TAG_DIGEST,
     value: huks.HuksKeyDigest.HUKS_DIGEST_SHA384,
-  }
+  }];
   return properties;
 }
 

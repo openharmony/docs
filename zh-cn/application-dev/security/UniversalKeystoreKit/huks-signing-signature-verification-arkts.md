@@ -72,67 +72,52 @@ function Uint8ArrayToString(fileData: Uint8Array) {
   return dataString;
 }
 function GetEccGenerateProperties() {
-  let properties: Array<huks.HuksParam> = new Array();
-  let index = 0;
-  properties[index++] = {
+  let properties: Array<huks.HuksParam> =[{
     tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
     value: huks.HuksKeyAlg.HUKS_ALG_ECC
-  };
-  properties[index++] = {
+  }, {
     tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
     value: huks.HuksKeySize.HUKS_AES_KEY_SIZE_256
-  };
-  properties[index++] = {
+  }, {
     tag: huks.HuksTag.HUKS_TAG_PURPOSE,
     value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_SIGN |
     huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_VERIFY
-  };
-  properties[index++] = {
+  }, {
     tag: huks.HuksTag.HUKS_TAG_DIGEST,
     value: huks.HuksKeyDigest.HUKS_DIGEST_SHA256
-  }
+  }];
   return properties;
 }
 function GetEccSignProperties() {
-  let properties: Array<huks.HuksParam> = new Array();
-  let index = 0;
-  properties[index++] = {
+  let properties: Array<huks.HuksParam> = [{
     tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
     value: huks.HuksKeyAlg.HUKS_ALG_ECC
-  };
-  properties[index++] = {
+  }, {
     tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
     value: huks.HuksKeySize.HUKS_AES_KEY_SIZE_256
-  };
-  properties[index++] = {
+  }, {
     tag: huks.HuksTag.HUKS_TAG_PURPOSE,
     value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_SIGN
-  };
-  properties[index++] = {
+  }, {
     tag: huks.HuksTag.HUKS_TAG_DIGEST,
     value: huks.HuksKeyDigest.HUKS_DIGEST_SHA256
-  }
+  }];
   return properties;
 }
 function GetEccVerifyProperties() {
-  let properties: Array<huks.HuksParam> = new Array();
-  let index = 0;
-  properties[index++] = {
+  let properties: Array<huks.HuksParam> = [{
     tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
     value: huks.HuksKeyAlg.HUKS_ALG_ECC
-  };
-  properties[index++] = {
+  }, {
     tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
     value: huks.HuksKeySize.HUKS_AES_KEY_SIZE_256
-  };
-  properties[index++] = {
+  }, {
     tag: huks.HuksTag.HUKS_TAG_PURPOSE,
     value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_VERIFY
-  };
-  properties[index++] = {
+  }, {
     tag: huks.HuksTag.HUKS_TAG_DIGEST,
     value: huks.HuksKeyDigest.HUKS_DIGEST_SHA256
-  }
+  }];
   return properties;
 }
 async function GenerateEccKey(keyAlias: string) {

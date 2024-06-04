@@ -71,79 +71,61 @@ function Uint8ArrayToString(fileData:Uint8Array) {
     return dataString;
 }
 function GetAesGenerateProperties() {
-    let properties: Array<huks.HuksParam> = new Array();
-    let index = 0;
-    properties[index++] = {
+    let properties: Array<huks.HuksParam> =[{
         tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
         value: huks.HuksKeyAlg.HUKS_ALG_AES
-    };
-    properties[index++] = {
+    }, {
         tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
         value: huks.HuksKeySize.HUKS_AES_KEY_SIZE_128
-    };
-    properties[index++] = {
+    }, {
         tag: huks.HuksTag.HUKS_TAG_PURPOSE,
         value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT |
         huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT
-    }
+    }];
     return properties;
 }
 function GetAesEncryptProperties() {
-    let properties: Array<huks.HuksParam> = new Array();
-    let index = 0;
-    properties[index++] = {
+    let properties: Array<huks.HuksParam> = [{
         tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
         value: huks.HuksKeyAlg.HUKS_ALG_AES
-    };
-    properties[index++] = {
+    }, {
         tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
         value: huks.HuksKeySize.HUKS_AES_KEY_SIZE_128
-    };
-    properties[index++] = {
+    }, {
         tag: huks.HuksTag.HUKS_TAG_PURPOSE,
         value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT
-    }
-    properties[index++] = {
+    }, {
         tag: huks.HuksTag.HUKS_TAG_PADDING,
         value: huks.HuksKeyPadding.HUKS_PADDING_PKCS7
-    }
-    properties[index++] = {
+    }, {
         tag: huks.HuksTag.HUKS_TAG_BLOCK_MODE,
         value: huks.HuksCipherMode.HUKS_MODE_CBC
-    }
-    properties[index++] = {
+    }, {
         tag: huks.HuksTag.HUKS_TAG_IV,
         value: StringToUint8Array(IV)
-    }
+    }];
     return properties;
 }
 function GetAesDecryptProperties() {
-    let properties: Array<huks.HuksParam> = new Array();
-    let index = 0;
-    properties[index++] = {
+    let properties: Array<huks.HuksParam> = [{
         tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
         value: huks.HuksKeyAlg.HUKS_ALG_AES
-    };
-    properties[index++] = {
+    }, {
         tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
         value: huks.HuksKeySize.HUKS_AES_KEY_SIZE_128
-    };
-    properties[index++] = {
+    }, {
         tag: huks.HuksTag.HUKS_TAG_PURPOSE,
         value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT
-    }
-    properties[index++] = {
+    }, {
         tag: huks.HuksTag.HUKS_TAG_PADDING,
         value: huks.HuksKeyPadding.HUKS_PADDING_PKCS7
-    }
-    properties[index++] = {
+    }, {
         tag: huks.HuksTag.HUKS_TAG_BLOCK_MODE,
         value: huks.HuksCipherMode.HUKS_MODE_CBC
-    }
-    properties[index++] = {
+    }, {
         tag: huks.HuksTag.HUKS_TAG_IV,
         value: StringToUint8Array(IV)
-    }
+    }];
     return properties;
 }
 async function GenerateAesKey() {

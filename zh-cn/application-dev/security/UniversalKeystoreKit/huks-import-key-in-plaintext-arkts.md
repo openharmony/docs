@@ -26,11 +26,8 @@ let plainTextSize32 = new Uint8Array([
 /* 1.确定密钥别名 */
 let keyAlias = 'AES256Alias_sample';
 /* 2.封装密钥属性集和密钥材料 */
-class propertyType {
-    tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM;
-    value: huks.HuksKeyAlg | huks.HuksKeySize | huks.HuksKeyPurpose = huks.HuksKeyAlg.HUKS_ALG_RSA;
-}
-let properties: propertyType[] = [
+
+let properties: Array<huks.HuksParam> = [
     {
         tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
         value:huks.HuksKeyAlg.HUKS_ALG_AES
@@ -112,11 +109,7 @@ let rsa2048KeyPairMaterial = new Uint8Array([
 /* 1.确定密钥别名 */
 let keyAlias = 'RSA_sample';
 /* 2.封装密钥属性集和密钥材料 */
-class propertyType {
-  tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM;
-  value: huks.HuksKeyAlg | huks.HuksKeySize | huks.HuksKeyPurpose = huks.HuksKeyAlg.HUKS_ALG_RSA;
-}
-let properties: propertyType[] = [
+let properties: Array<huks.HuksParam> = [
   {
     tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
     value:huks.HuksKeyAlg.HUKS_ALG_RSA
@@ -164,15 +157,12 @@ try {
 import { huks } from "@kit.UniversalKeystoreKit";
 let keyAlias = 'AES256Alias_sample';
 let isKeyExist = false;
-class keyPropertyType {
-    tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM;
-    value: huks.HuksKeyAlg = huks.HuksKeyAlg.HUKS_ALG_RSA;
-}
-let keyProperties: keyPropertyType[] = [
+
+let keyProperties: Array<huks.HuksParam> = [
     {
         tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
         value: huks.HuksKeyAlg.HUKS_ALG_AES
-    },
+    }
 ]
 let huksOptions: huks.HuksOptions = {
     properties: keyProperties, // 非空填充
