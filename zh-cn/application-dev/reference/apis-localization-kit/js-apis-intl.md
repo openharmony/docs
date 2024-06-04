@@ -9,6 +9,8 @@
 >  - Intl模块包含国际化能力基础接口（在ECMA 402中定义），包括时间日期格式化、数字格式化、排序等，国际化增强能力请参考[I18N模块](js-apis-i18n.md)。
 >
 >  - 从API version 11开始，本模块部分接口支持在ArkTS卡片中使用。
+>
+>  - 从API version 12开始，本模块全接口支持在元服务中使用。
 
 
 ## 导入模块
@@ -23,6 +25,8 @@ import { intl } from '@kit.LocalizationKit';
 ### 属性
 
 **卡片能力**：从API version 11开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API**：从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -47,6 +51,8 @@ constructor()
 
 **卡片能力**：从API version 11开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.I18n
 
 **示例：** 
@@ -65,6 +71,8 @@ constructor(locale: string, options?: LocaleOptions)
 创建区域对象
 
 **卡片能力**：从API version 11开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API**：从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -91,6 +99,8 @@ toString(): string
 
 **卡片能力**：从API version 11开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.I18n
 
 **返回值：** 
@@ -114,6 +124,8 @@ maximize(): Locale
 最大化区域信息，若缺少脚本与地区信息，则补齐。
 
 **卡片能力**：从API version 11开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API**：从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -147,6 +159,8 @@ minimize(): Locale
 
 **卡片能力**：从API version 11开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.I18n
 
 **返回值：** 
@@ -179,6 +193,8 @@ minimize(): Locale
 
 **卡片能力**：从API version 11开始，该类型支持在ArkTS卡片中使用。
 
+**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.I18n
 
 | 名称              | 类型      | 必填   |  说明                                       |
@@ -200,6 +216,8 @@ constructor()
 
 **卡片能力**：从API version 11开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.I18n
 
 **示例：** 
@@ -216,6 +234,8 @@ constructor(locale: string | Array&lt;string&gt;, options?: DateTimeOptions)
 创建时间日期格式化对象。
 
 **卡片能力**：从API version 11开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API**：从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -247,6 +267,8 @@ format(date: Date): string
 格式化时间日期字符串。
 
 **卡片能力**：从API version 11开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API**：从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -283,6 +305,8 @@ formatRange(startDate: Date, endDate: Date): string
 
 **卡片能力**：从API version 11开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.I18n
 
 **参数：** 
@@ -316,6 +340,8 @@ resolvedOptions(): DateTimeOptions
 
 **卡片能力**：从API version 11开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.I18n
 
 **返回值：** 
@@ -341,6 +367,8 @@ resolvedOptions(): DateTimeOptions
 从API9开始，DateTimeOptions中的属性改为可选。
 
 **卡片能力**：从API version 11开始，该类型支持在ArkTS卡片中使用。
+
+**元服务API**：从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -375,6 +403,8 @@ constructor()
 
 创建数字格式化对象。
 
+**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.I18n
 
 **示例：** 
@@ -389,6 +419,8 @@ constructor()
 constructor(locale: string | Array&lt;string&gt;, options?: NumberOptions)
 
 创建数字格式化对象。
+
+**元服务API**：从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -411,6 +443,8 @@ constructor(locale: string | Array&lt;string&gt;, options?: NumberOptions)
 format(number: number): string
 
 格式化数字字符串。
+
+**元服务API**：从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -441,6 +475,8 @@ resolvedOptions(): NumberOptions
 
 获取NumberFormat 对象的格式化选项。
 
+**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.I18n
 
 **返回值：** 
@@ -465,6 +501,8 @@ resolvedOptions(): NumberOptions
 表示设备支持的能力。
 
 从API9开始，NumberOptions中的属性改为可选。
+
+**元服务API**：从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -498,6 +536,8 @@ constructor()
 
 创建排序对象。
 
+**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.I18n
 
 **示例：** 
@@ -512,6 +552,8 @@ constructor()
 constructor(locale: string | Array&lt;string&gt;, options?: CollatorOptions)
 
 创建排序对象。
+
+**元服务API**：从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -534,6 +576,8 @@ constructor(locale: string | Array&lt;string&gt;, options?: CollatorOptions)
 compare(first: string, second: string): number
 
 依据Collator的排序策略对两个字符串进行比较。
+
+**元服务API**：从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -565,6 +609,8 @@ resolvedOptions(): CollatorOptions
 
 返回Collator对象的属性。
 
+**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.I18n
 
 **返回值：** 
@@ -589,6 +635,8 @@ resolvedOptions(): CollatorOptions
 
 从API9中，CollatorOptions中的属性改为可选。
 
+**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.I18n
 
 | 名称                | 类型      | 必填   | 说明                                       |
@@ -610,6 +658,8 @@ constructor()
 
 创建单复数对象来计算数字的单复数类别。
 
+**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.I18n
 
 **示例：** 
@@ -624,6 +674,8 @@ constructor()
 constructor(locale: string | Array&lt;string&gt;, options?: PluralRulesOptions)
 
 创建单复数对象来计算数字的单复数类别。
+
+**元服务API**：从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -646,6 +698,8 @@ constructor(locale: string | Array&lt;string&gt;, options?: PluralRulesOptions)
 select(n: number): string
 
 返回一个字符串表示该数字的单复数类别。
+
+**元服务API**：从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -680,6 +734,8 @@ select(n: number): string
 表示PluralRules对象可设置的属性。
 从API9开始，PluralRulesOptions中的属性改为可选。
 
+**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.I18n
 
 | 名称                       | 类型     | 可读   | 可写   | 说明                                       |
@@ -702,6 +758,8 @@ constructor()
 
 创建相对时间格式化对象。
 
+**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.I18n
 
 **示例：** 
@@ -716,6 +774,8 @@ constructor()
 constructor(locale: string | Array&lt;string&gt;, options?: RelativeTimeFormatInputOptions)
 
 创建相对时间格式化对象。
+
+**元服务API**：从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -738,6 +798,8 @@ constructor(locale: string | Array&lt;string&gt;, options?: RelativeTimeFormatIn
 format(value: number, unit: string): string
 
 依据locale和格式化选项，对value和unit进行格式化。
+
+**元服务API**：从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -769,6 +831,8 @@ formatToParts(value: number, unit: string): Array&lt;object&gt;
 
 返回一个对象数组，表示可用于自定义区域设置格式的相对时间格式。
 
+**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.I18n
 
 **参数：** 
@@ -798,6 +862,8 @@ resolvedOptions(): RelativeTimeFormatResolvedOptions
 
 获取RelativeTimeFormat对象的格式化选项。
 
+**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.I18n
 
 **返回值：** 
@@ -822,6 +888,8 @@ resolvedOptions(): RelativeTimeFormatResolvedOptions
 
 从API9开始，RelativeTimeFormatInputOptions中的属性改为可选。
 
+**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.I18n
 
 | 名称            | 类型     | 必填   |说明                                       |
@@ -833,6 +901,8 @@ resolvedOptions(): RelativeTimeFormatResolvedOptions
 ## RelativeTimeFormatResolvedOptions<sup>8+</sup>
 
 表示RelativeTimeFormat对象可设置的属性。
+
+**元服务API**：从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
