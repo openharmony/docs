@@ -30,10 +30,11 @@ Starts a deferred task.
 
 **Error codes**
 
-For details about the error codes, see [workScheduler Error Codes](errorcode-workScheduler.md).
+For details about the error codes, see [workScheduler Error Codes](errorcode-workScheduler.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID | Error Message            |
 | ---- | --------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
 | 9700001 | Memory operation failed. |
 | 9700002 | Parcel operation failed. |
 | 9700003 | System service operation failed. |
@@ -84,10 +85,11 @@ Stops a deferred task.
 
 **Error codes**
 
-For details about the error codes, see [workScheduler Error Codes](errorcode-workScheduler.md).
+For details about the error codes, see [workScheduler Error Codes](errorcode-workScheduler.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID | Error Message            |
 | ---- | --------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
 | 9700001 | Memory operation failed. |
 | 9700002 | Parcel operation failed. |
 | 9700003 | System service operation failed. |
@@ -137,10 +139,11 @@ Obtains the information a deferred task. This API uses an asynchronous callback 
 
 **Error codes**
 
-For details about the error codes, see [workScheduler Error Codes](errorcode-workScheduler.md).
+For details about the error codes, see [workScheduler Error Codes](errorcode-workScheduler.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID | Error Message            |
 | ---- | --------------------- |
+| 401 | Parameter error. Possible causes: Parameter verification failed. |
 | 9700001 | Memory operation failed. |
 | 9700002 | Parcel operation failed. |
 | 9700003 | System service operation failed. |
@@ -182,10 +185,11 @@ Obtains the information a deferred task. This API uses a promise to return the r
 
 **Error codes**
 
-For details about the error codes, see [workScheduler Error Codes](errorcode-workScheduler.md).
+For details about the error codes, see [workScheduler Error Codes](errorcode-workScheduler.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID | Error Message            |
 | ---- | --------------------- |
+| 401 | Parameter error. Possible causes: Parameter verification failed. |
 | 9700001 | Memory operation failed. |
 | 9700002 | Parcel operation failed. |
 | 9700003 | System service operation failed. |
@@ -220,10 +224,11 @@ Obtains all the deferred tasks. This API uses an asynchronous callback to return
 
 **Error codes**
 
-For details about the error codes, see [workScheduler Error Codes](errorcode-workScheduler.md).
+For details about the error codes, see [workScheduler Error Codes](errorcode-workScheduler.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID | Error Message            |
 | ---- | --------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 | 9700001 | Memory operation failed. |
 | 9700002 | Parcel operation failed. |
 | 9700003 | System service operation failed. |
@@ -248,6 +253,7 @@ For details about the error codes, see [workScheduler Error Codes](errorcode-wor
 
 | ID | Error Message            |
 | ---- | --------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 | 9700001 | Memory operation failed. |
 | 9700002 | Parcel operation failed. |
 | 9700003 | System service operation failed. |
@@ -282,10 +288,11 @@ Obtains all the deferred tasks. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [workScheduler Error Codes](errorcode-workScheduler.md).
+For details about the error codes, see [workScheduler Error Codes](errorcode-workScheduler.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID | Error Message            |
 | ---- | --------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 | 9700001 | Memory operation failed. |
 | 9700002 | Parcel operation failed. |
 | 9700003 | System service operation failed. |
@@ -312,10 +319,11 @@ Stops and clears all the deferred tasks.
 
 **Error codes**
 
-For details about the error codes, see [workScheduler Error Codes](errorcode-workScheduler.md).
+For details about the error codes, see [workScheduler Error Codes](errorcode-workScheduler.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID | Error Message            |
 | ---- | --------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 | 9700001 | Memory operation failed. |
 | 9700002 | Parcel operation failed. |
 | 9700003 | System service operation failed. |
@@ -352,10 +360,11 @@ Checks whether the last execution of a task timed out. This API uses an asynchro
 
 **Error codes**
 
-For details about the error codes, see [workScheduler Error Codes](errorcode-workScheduler.md).
+For details about the error codes, see [workScheduler Error Codes](errorcode-workScheduler.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID | Error Message            |
 | ---- | --------------------- |
+| 401 | Parameter error. Possible causes: Parameter verification failed. |
 | 9700001 | Memory operation failed. |
 | 9700002 | Parcel operation failed. |
 | 9700003 | System service operation failed. |
@@ -378,10 +387,11 @@ Checks whether the last execution of a task timed out. This API uses an asynchro
 
 **Error codes**
 
-For details about the error codes, see [workScheduler Error Codes](errorcode-workScheduler.md).
+For details about the error codes, see [workScheduler Error Codes](errorcode-workScheduler.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID | Error Message            |
 | ---- | --------------------- |
+| 401 | Parameter error. Possible causes: Parameter verification failed. |
 | 9700001 | Memory operation failed. |
 | 9700002 | Parcel operation failed. |
 | 9700003 | System service operation failed. |
@@ -423,10 +433,11 @@ Checks whether the last execution of a task timed out. This API uses a promise t
 
 **Error codes**
 
-For details about the error codes, see [workScheduler Error Codes](errorcode-workScheduler.md).
+For details about the error codes, see [workScheduler Error Codes](errorcode-workScheduler.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID | Error Message            |
 | ---- | --------------------- |
+| 401 | Parameter error. Possible causes: Parameter verification failed. |
 | 9700001 | Memory operation failed. |
 | 9700002 | Parcel operation failed. |
 | 9700003 | System service operation failed. |

@@ -33,10 +33,13 @@ Requests efficiency resources.
 
 **Error codes**
 
-For details about the error codes, see [backgroundTaskManager Error Codes](errorcode-backgroundTaskMgr.md).
+For details about the error codes, see [backgroundTaskManager Error Codes](errorcode-backgroundTaskMgr.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID | Error Message            |
 | ---- | --------------------- |
+| 201 | Permission denied. |
+| 202 | Not System App. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
 | 9800003 | Inner transact failed. | |
@@ -76,10 +79,13 @@ Releases all efficiency resources.
 
 **Error codes**
 
-For details about the error codes, see [backgroundTaskManager Error Codes](errorcode-backgroundTaskMgr.md).
+For details about the error codes, see [backgroundTaskManager Error Codes](errorcode-backgroundTaskMgr.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID | Error Message            |
 | ---- | --------------------- |
+| 201 | Permission denied. |
+| 202 | Not System App. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
 | 9800003 | Inner transact failed. | |
