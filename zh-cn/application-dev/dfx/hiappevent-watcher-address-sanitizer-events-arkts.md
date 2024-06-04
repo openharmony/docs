@@ -102,7 +102,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
        napi_property_descriptor desc[] = {
            {"test", nullptr, Test, nullptr, nullptr, nullptr, napi_default, nullptr }
        };
-       napi_define_properties(envv, exports, sizeof(desc) / sizeof(desc[0]), desc);
+       napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
        return exports;
    }
    EXTERN_C_END
