@@ -78,11 +78,9 @@ Generally, a button is used to start a page. Below is an example:
 - The UIAbility receives the router event and obtains parameters. It then starts the page specified by **params**.
   
   ```ts
-  import type AbilityConstant from '@ohos.app.ability.AbilityConstant';
-  import hilog from '@ohos.hilog';
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  import type Want from '@ohos.app.ability.Want';
-  import type window from '@ohos.window';
+  import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+  import { window } from '@kit.ArkUI';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
   
   const TAG: string = 'EntryAbility';
   const DOMAIN_NUMBER: number = 0xFF00;

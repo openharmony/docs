@@ -10,7 +10,7 @@ The **formObserver** module provides APIs related to widget listeners. You can u
 ## Modules to Import
 
 ```ts
-import formObserver from '@ohos.app.form.formObserver';
+import { formObserver } from '@kit.FormKit';
 ```
 
 ## on('formAdd')
@@ -30,11 +30,19 @@ Subscribes to widget addition events. This API uses an asynchronous callback to 
 | type | string | Yes  | Event type. The value **'formAdd'** indicates a widget addition event.|
 | observerCallback | Callback&lt;formInfo.[RunningFormInfo](js-apis-app-form-formInfo-sys.md#runningforminfo10)&gt; | Yes| Callback used to return the information about the new widget.|
 
+**Error codes**
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 202      | The application is not a system application.                                    |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+
+For details about the error codes, see [Form Error Codes](errorcode-form.md).
+
 **Example**
 
 ```ts
-import formObserver from '@ohos.app.form.formObserver';
-import formInfo from '@ohos.app.form.formInfo';
+import { formInfo, formObserver } from '@kit.FormKit';
 
 let callback = (data: formInfo.RunningFormInfo) => {
   console.log(`a new form added, data: ${JSON.stringify(data)}`);
@@ -61,12 +69,17 @@ Subscribes to widget addition events for a given bundle that functions as the wi
 | hostBundleName | string | Yes| Name of the bundle that functions as the widget host. If no value is passed in, widget addition events of all widget hosts are subscribed to.|
 | observerCallback | Callback&lt;formInfo.[RunningFormInfo](js-apis-app-form-formInfo-sys.md#runningforminfo10)&gt; | Yes| Callback used to return the information about the new widget.|
 
+**Error codes**
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 202      | The application is not a system application.                                    |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 
 **Example**
 
 ```ts
-import formObserver from '@ohos.app.form.formObserver';
-import formInfo from '@ohos.app.form.formInfo';
+import { formInfo, formObserver } from '@kit.FormKit';
 
 let bundleName: string = 'ohos.samples.FormApplication';
 
@@ -95,12 +108,17 @@ Unsubscribes from widget addition events. This API uses an asynchronous callback
 | hostBundleName | string | No| Name of the bundle that functions as the widget host.<br> To cancel the subscription for a given bundle name, this parameter must be set to the same value as **bundleName** in **on('formAdd')**.<br> If no value is passed in, the subscriptions for all the widget hosts are canceled.|
 | observerCallback | Callback&lt;formInfo.[RunningFormInfo](js-apis-app-form-formInfo-sys.md#runningforminfo10)&gt; | No| Callback used to return the information about the new widget. If no value is passed in, all the subscriptions to the specified event are canceled.<br> To cancel the subscription with a given callback, this parameter must be set to the same value as **callback** in **on('formAdd')**.|
 
+**Error codes**
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 202      | The application is not a system application.                                    |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 
 **Example**
 
 ```ts
-import formObserver from '@ohos.app.form.formObserver';
-import formInfo from '@ohos.app.form.formInfo';
+import { formInfo, formObserver } from '@kit.FormKit';
 
 let bundleName: string = 'ohos.samples.FormApplication';
 
@@ -134,11 +152,17 @@ Subscribes to widget removal events. This API uses an asynchronous callback to r
 | type | string | Yes  | Event type. The value **'formRemove'** indicates a widget removal event.|
 | observerCallback | Callback&lt;formInfo.[RunningFormInfo](js-apis-app-form-formInfo-sys.md#runningforminfo10)&gt; | Yes| Callback used to return the information about the widget removed.|
 
+**Error codes**
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 202      | The application is not a system application.                                    |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+
 **Example**
 
 ```ts
-import formObserver from '@ohos.app.form.formObserver';
-import formInfo from '@ohos.app.form.formInfo';
+import { formInfo, formObserver } from '@kit.FormKit';
 
 let callback = (data: formInfo.RunningFormInfo) => {
   console.log(`form deleted, data: ${JSON.stringify(data)}`);
@@ -165,11 +189,17 @@ Subscribes to widget removal events for a given bundle that functions as the wid
 | hostBundleName | string | Yes| Name of the bundle that functions as the widget host. If no value is passed in, widget removal events of all widget hosts are subscribed to.|
 | observerCallback | Callback&lt;formInfo.[RunningFormInfo](js-apis-app-form-formInfo-sys.md#runningforminfo10)&gt; | Yes| Callback used to return the information about the widget removed.|
 
+**Error codes**
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 202      | The application is not a system application.                                    |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+
 **Example**
 
 ```ts
-import formObserver from '@ohos.app.form.formObserver';
-import formInfo from '@ohos.app.form.formInfo';
+import { formInfo, formObserver } from '@kit.FormKit';
 
 let bundleName: string = 'ohos.samples.FormApplication';
 
@@ -198,11 +228,17 @@ Unsubscribes from widget removal events. This API uses an asynchronous callback 
 | hostBundleName | string | No| Name of the bundle that functions as the widget host.<br>To cancel the subscription for a given bundle name, this parameter must be set to the same value as **bundleName** in **on('formRemove')**.<br> If no value is passed in, the subscriptions for all the widget hosts are canceled.|
 | observerCallback | Callback&lt;formInfo.[RunningFormInfo](js-apis-app-form-formInfo-sys.md#runningforminfo10)&gt; | No| Callback used to return the information about the widget removed. If no value is passed in, all the subscriptions to the specified event are canceled.<br> To cancel the subscription with a given callback, this parameter must be set to the same value as **callback** in **on('formRemove')**.|
 
+**Error codes**
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 202      | The application is not a system application.                                    |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+
 **Example**
 
 ```ts
-import formObserver from '@ohos.app.form.formObserver';
-import formInfo from '@ohos.app.form.formInfo';
+import { formInfo, formObserver } from '@kit.FormKit';
 
 let bundleName: string = 'ohos.samples.FormApplication';
 
@@ -237,11 +273,17 @@ Subscribes to events indicating that a widget becomes visible. This API uses an 
 | type       | string                                                       | Yes  | Event type. This value **'notifyVisible'** indicates a widget visibility event.     |
 | observerCallback   | Callback &lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo-sys.md#runningforminfo10)&gt;&gt; | Yes  | Callback used to return an array of widgets that have subscribed to the event.           |
 
+**Error codes**
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 202      | The application is not a system application.                                    |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+
 **Example**
 
 ```ts
-import formObserver from '@ohos.app.form.formObserver';
-import formInfo from '@ohos.app.form.formInfo';
+import { formInfo, formObserver } from '@kit.FormKit';
 
 let callback = (data: formInfo.RunningFormInfo[]) => {
   console.log(`form change visibility, data: ${JSON.stringify(data)}`);
@@ -271,12 +313,18 @@ Subscribes to events indicating that a widget becomes visible for a given bundle
 | hostBundleName | string                                                       | Yes  | Name of the bundle that functions as the widget host, on which the widget visibility state changes are subscribed.|
 | observerCallback   | Callback &lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo-sys.md#runningforminfo10)&gt;&gt; | Yes  | Callback used to return an array of widgets that have subscribed to the event.           |
 
+**Error codes**
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 202      | The application is not a system application.                                    |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+
 
 **Example**
 
 ```ts
-import formObserver from '@ohos.app.form.formObserver';
-import formInfo from '@ohos.app.form.formInfo';
+import { formInfo, formObserver } from '@kit.FormKit';
 
 let bundleName: string = 'ohos.samples.FormApplication';
 
@@ -305,12 +353,17 @@ Unsubscribes from events indicating that a widget becomes visible. This API uses
 | hostBundleName | string                                                       | No  | Name of the bundle that functions as the widget host, on which the widget visibility state changes are subscribed.<br> To cancel the subscription for a given bundle name, this parameter must be set to the same value as **bundleName** in **on('notifyVisible')**.|
 | observerCallback   | Callback &lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo-sys.md#runningforminfo10)&gt;&gt; | No  | Callback used to return an array of widgets that have unsubscribed from the event. If no value is passed in, all the subscriptions to the specified event are canceled.<br> To cancel the subscription with a given callback, this parameter must be set to the same value as **callback** in **on('notifyVisible')**.|
 
+**Error codes**
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 202      | The application is not a system application.                                    |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 
 **Example**
 
 ```ts
-import formObserver from '@ohos.app.form.formObserver';
-import formInfo from '@ohos.app.form.formInfo';
+import { formInfo, formObserver } from '@kit.FormKit';
 
 let bundleName: string = 'ohos.samples.FormApplication';
 
@@ -346,11 +399,17 @@ Subscribes to events indicating that a widget becomes invisible. This API uses a
 | type       | string                                                       | Yes  | Event type. This value **'notifyInvisible'** indicates a widget invisibility event.     |
 | observerCallback   | Callback &lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo-sys.md#runningforminfo10)&gt;&gt; | Yes  | Callback used to return an array of widgets that have subscribed to the event.         |
 
+**Error codes**
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 202      | The application is not a system application.                                    |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+
 **Example**
 
 ```ts
-import formObserver from '@ohos.app.form.formObserver';
-import formInfo from '@ohos.app.form.formInfo';
+import { formInfo, formObserver } from '@kit.FormKit';
 
 let callback = (data: formInfo.RunningFormInfo[]) => {
   console.log(`form change invisibility, data: ${JSON.stringify(data)}`);
@@ -380,11 +439,17 @@ Subscribes to events indicating that a widget becomes invisible for a given bund
 | hostBundleName | string                                                       | Yes  | Name of the bundle that functions as the widget host, on which the widget visibility state changes are subscribed.|
 | observerCallback   | Callback &lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo-sys.md#runningforminfo10)&gt;&gt; | Yes  | Callback used to return an array of widgets that have subscribed to the event.         |
 
+**Error codes**
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 202      | The application is not a system application.                                    |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+
 **Example**
 
 ```ts
-import formObserver from '@ohos.app.form.formObserver';
-import formInfo from '@ohos.app.form.formInfo';
+import { formInfo, formObserver } from '@kit.FormKit';
 
 let bundleName: string = 'ohos.samples.FormApplication';
 
@@ -413,11 +478,17 @@ Unsubscribes from events indicating that a widget becomes invisible. This API us
 | hostBundleName | string                                                       | No  | Name of the bundle that functions as the widget host, on which the widget visibility state changes are subscribed.<br> To cancel the subscription for a given bundle name, this parameter must be set to the same value as **bundleName** in **on('notifyVisible')**.<br> |
 | observerCallback   | Callback &lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo-sys.md#runningforminfo10)&gt;&gt; | No  | Callback used to return an array of widgets that have unsubscribed from the event. If no value is passed in, all the subscriptions to the specified event are canceled.<br> To cancel the subscription with a given callback, this parameter must be set to the same value as **callback** in **on('notifyInvisible')**.|
 
+**Error codes**
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 202      | The application is not a system application.                                    |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+
 **Example**
 
 ```ts
-import formObserver from '@ohos.app.form.formObserver';
-import formInfo from '@ohos.app.form.formInfo';
+import { formInfo, formObserver } from '@kit.FormKit';
 
 let bundleName: string = 'ohos.samples.FormApplication';
 
@@ -457,18 +528,20 @@ For details about the error codes, see [Form Error Codes](errorcode-form.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
+| 201      | Permissions denied.                                          |
+| 202      | The application is not a system application.                                    |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error.                            |
+| 16500060 | Service connection error. |
 
 **Example**
 
 ```ts
-import formObserver from '@ohos.app.form.formObserver';
-import formInfo from '@ohos.app.form.formInfo';
-import Base from '@ohos.base';
+import { formInfo, formObserver } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  formObserver.getRunningFormInfos((error: Base.BusinessError, data: formInfo.RunningFormInfo[]) => {
+  formObserver.getRunningFormInfos((error: BusinessError, data: formInfo.RunningFormInfo[]) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     } else {
@@ -476,7 +549,7 @@ try {
     }
   }, 'com.example.ohos.formjsdemo');
 } catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -504,18 +577,20 @@ For details about the error codes, see [Form Error Codes](errorcode-form.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
+| 201      | Permissions denied.                                          |
+| 202      | The application is not a system application.                                    |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error.                            |
+| 16500060 | Service connection error. |
 
 **Example**
 
 ```ts
-import formObserver from '@ohos.app.form.formObserver';
-import formInfo from '@ohos.app.form.formInfo';
-import Base from '@ohos.base';
+import { formInfo, formObserver } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  formObserver.getRunningFormInfos((error: Base.BusinessError, data: formInfo.RunningFormInfo[]) => {
+  formObserver.getRunningFormInfos((error: BusinessError, data: formInfo.RunningFormInfo[]) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     } else {
@@ -523,7 +598,7 @@ try {
     }
   }, true, 'com.example.ohos.formjsdemo');
 } catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -550,28 +625,31 @@ Obtains the information about all non-temporary widgets running on the device. T
 | Promise&lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo-sys.md#runningforminfo10)&gt;&gt; | Promise used to return the information about all non-temporary widgets.|
 
 **Error codes**
+
 For details about the error codes, see [Form Error Codes](errorcode-form.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
+| 201      | Permissions denied.                                          |
+| 202      | The application is not a system application.                                    |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error.                            |
+| 16500060 | Service connection error. |
 
 **Example**
 
 ```ts
-import formObserver from '@ohos.app.form.formObserver';
-import formInfo from '@ohos.app.form.formInfo';
-import Base from '@ohos.base';
+import { formInfo, formObserver } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   formObserver.getRunningFormInfos('com.example.ohos.formjsdemo').then((data: formInfo.RunningFormInfo[]) => {
     console.log(`formObserver getRunningFormInfos, data: ${JSON.stringify(data)}`);
-  }).catch((error: Base.BusinessError) => {
+  }).catch((error: BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -604,24 +682,26 @@ For details about the error codes, see [Form Error Codes](errorcode-form.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
+| 201      | Permissions denied.                                          |
+| 202      | The application is not a system application.                                    |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error.                            |
+| 16500060 | Service connection error. |
 
 **Example**
 
 ```ts
-import formObserver from '@ohos.app.form.formObserver';
-import formInfo from '@ohos.app.form.formInfo';
-import Base from '@ohos.base';
+import { formInfo, formObserver } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   formObserver.getRunningFormInfos(true, 'com.example.ohos.formjsdemo').then((data: formInfo.RunningFormInfo[]) => {
     console.log(`formObserver getRunningFormInfos, data: ${JSON.stringify(data)}`);
-  }).catch((error: Base.BusinessError) => {
+  }).catch((error: BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -657,16 +737,15 @@ For details about the error codes, see [Form Error Codes](errorcode-form.md).
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000  | An internal functional error occurred. |
 
 
 ```ts
-import formObserver from '@ohos.app.form.formObserver';
-import formInfo from '@ohos.app.form.formInfo';
-import Base from '@ohos.base';
+import { formInfo, formObserver } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let formInstanceFilter: formInfo.FormProviderFilter = {
   bundleName: "com.example.formprovide",
@@ -677,11 +756,11 @@ let formInstanceFilter: formInfo.FormProviderFilter = {
 try {
   formObserver.getRunningFormInfosByFilter(formInstanceFilter).then((data: formInfo.RunningFormInfo[]) => {
     console.info('formObserver getRunningFormInfosByFilter success, data:' + JSON.stringify(data));
-  }).catch((error: Base.BusinessError) => {
+  }).catch((error: BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -712,17 +791,16 @@ For details about the error codes, see [Form Error Codes](errorcode-form.md).
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000  | An internal functional error occurred. |
 
 **Example**
 
 ```ts
-import formObserver from '@ohos.app.form.formObserver';
-import formInfo from '@ohos.app.form.formInfo';
-import Base from '@ohos.base';
+import { formInfo, formObserver } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let formInstanceFilter: formInfo.FormProviderFilter = {
   bundleName: "com.example.formprovide",
@@ -731,7 +809,7 @@ let formInstanceFilter: formInfo.FormProviderFilter = {
   moduleName: "entry"
 }
 try {
-  formObserver.getRunningFormInfosByFilter(formInstanceFilter,(error: Base.BusinessError, data: formInfo.RunningFormInfo[]) => {
+  formObserver.getRunningFormInfosByFilter(formInstanceFilter,(error: BusinessError, data: formInfo.RunningFormInfo[]) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     } else {
@@ -739,7 +817,7 @@ try {
     }
   });
 } catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -775,27 +853,26 @@ For details about the error codes, see [Form Error Codes](errorcode-form.md).
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000  | An internal functional error occurred. |
 
 **Example**
 
 ```ts
-import formObserver from '@ohos.app.form.formObserver';
-import formInfo from '@ohos.app.form.formInfo';
-import Base from '@ohos.base';
+import { formInfo, formObserver } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let formId: string = '12400633174999288';
 try {
   formObserver.getRunningFormInfoById(formId).then((data: formInfo.RunningFormInfo) => {
     console.info('formObserver getRunningFormInfoById success, data:' + JSON.stringify(data));
-  }).catch((error: Base.BusinessError) => {
+  }).catch((error: BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -830,26 +907,28 @@ For details about the error codes, see [Form Error Codes](errorcode-form.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 16500050 | An IPC connection error happened. |
+| 201      | Permissions denied.                             |
+| 202      | The application is not a system application.                       |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000  | An internal functional error occurred. |
 
 **Example**
 
 ```ts
-import formObserver from '@ohos.app.form.formObserver';
-import formInfo from '@ohos.app.form.formInfo';
-import Base from '@ohos.base';
+import { formInfo, formObserver } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let formId: string = '12400633174999288';
 try {
   formObserver.getRunningFormInfoById(formId, true).then((data: formInfo.RunningFormInfo) => {
     console.info('formObserver getRunningFormInfoById success, data:' + JSON.stringify(data));
-  }).catch((error: Base.BusinessError) => {
+  }).catch((error: BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -880,21 +959,20 @@ For details about the error codes, see [Form Error Codes](errorcode-form.md).
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000  | An internal functional error occurred. |
 
 **Example**
 
 ```ts
-import formObserver from '@ohos.app.form.formObserver';
-import formInfo from '@ohos.app.form.formInfo';
-import Base from '@ohos.base';
+import { formInfo, formObserver } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let formId: string = '12400633174999288';
 try {
-  formObserver.getRunningFormInfoById(formId,(error: Base.BusinessError, data: formInfo.RunningFormInfo) => {
+  formObserver.getRunningFormInfoById(formId,(error: BusinessError, data: formInfo.RunningFormInfo) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     } else {
@@ -902,7 +980,7 @@ try {
     }
   });
 } catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -932,20 +1010,22 @@ For details about the error codes, see [Form Error Codes](errorcode-form.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 16500050 | An IPC connection error happened. |
+| 201      | Permissions denied.                             |
+| 202      | The application is not a system application.                       |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000  | An internal functional error occurred. |
 
 **Example**
 
 ```ts
-import formObserver from '@ohos.app.form.formObserver';
-import formInfo from '@ohos.app.form.formInfo';
-import Base from '@ohos.base';
+import { formInfo, formObserver } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let formId: string = '12400633174999288';
 try {
-  formObserver.getRunningFormInfoById(formId, true, (error: Base.BusinessError, data: formInfo.RunningFormInfo) => {
+  formObserver.getRunningFormInfoById(formId, true, (error: BusinessError, data: formInfo.RunningFormInfo) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     } else {
@@ -953,7 +1033,7 @@ try {
     }
   });
 } catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -974,11 +1054,19 @@ Subscribes to widget router events. This API uses an asynchronous callback to re
 | type             | string                                   | Yes  | Event type. The value **'router'** indicates a widget router event.         |
 | observerCallback | Callback&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo-sys.md#runningforminfo10)&gt; | Yes  | Callback used to return the widget information.|
 
+**Error codes**
+
+For details about the error codes, see [Form Error Codes](errorcode-form.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 202 | The application is not a system application. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+
 **Example**
 
 ```ts
-import formObserver from '@ohos.app.form.formObserver';
-import formInfo from '@ohos.app.form.formInfo';
+import { formInfo, formObserver } from '@kit.FormKit';
 
 let callback = (data: formInfo.RunningFormInfo) => {
   console.log('Router event listening in registered form.' + JSON.stringify(data));
@@ -1004,11 +1092,19 @@ Subscribes to widget router events for a given bundle that functions as the widg
 | hostBundleName   | string                                   | Yes  | Name of the bundle that functions as the widget host. If no value is passed in, widget router events of all widget hosts are subscribed to.|
 | observerCallback | Callback&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo-sys.md#runningforminfo10)&gt; | Yes  | Callback used to return the widget information.                   |
 
+**Error codes**
+
+For details about the error codes, see [Form Error Codes](errorcode-form.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 202 | The application is not a system application. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+
 **Example**
 
 ```ts
-import formObserver from '@ohos.app.form.formObserver';
-import formInfo from '@ohos.app.form.formInfo';
+import { formInfo, formObserver } from '@kit.FormKit';
 
 let hostBundleName: string = 'ohos.samples.FormApplication';
 let callback = (data: formInfo.RunningFormInfo) => {
@@ -1035,11 +1131,19 @@ Unsubscribes from widget router events. This API uses an asynchronous callback t
 | hostBundleName   | string                                   | No  | Name of the bundle that functions as the widget host.<br>To cancel the subscription for a given bundle name, this parameter must be set to the same value as **bundleName** in **on('router')**.<br>If no value is passed in, the subscriptions for all the widget hosts are canceled.|
 | observerCallback | Callback&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo-sys.md#runningforminfo10)&gt; | No  | Callback used to return the widget information. If no value is passed in, all the subscriptions to the specified event are canceled.<br>To cancel the subscription with a given callback, this parameter must be set to the same value as **callback** in **on('router')**.|
 
+**Error codes**
+
+For details about the error codes, see [Form Error Codes](errorcode-form.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 202 | The application is not a system application. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+
 **Example**
 
 ```ts
-import formObserver from '@ohos.app.form.formObserver';
-import formInfo from '@ohos.app.form.formInfo';
+import { formInfo, formObserver } from '@kit.FormKit';
 
 let hostBundleName: string = 'ohos.samples.FormApplication';
 let callback = (data: formInfo.RunningFormInfo) => {
@@ -1065,11 +1169,19 @@ Subscribes to widget message events. This API uses an asynchronous callback to r
 | type             | string                                   | Yes  | Event type. This value **'message'** indicates a widget message event.        |
 | observerCallback | Callback&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo-sys.md#runningforminfo10)&gt; | Yes  | Callback used to return the widget information.|
 
+**Error codes**
+
+For details about the error codes, see [Form Error Codes](errorcode-form.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 202 | The application is not a system application. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+
 **Example**
 
 ```ts
-import formObserver from '@ohos.app.form.formObserver';
-import formInfo from '@ohos.app.form.formInfo';
+import { formInfo, formObserver } from '@kit.FormKit';
 
 let callback = (data: formInfo.RunningFormInfo) => {
   console.log('Message event listening in registered form.' + JSON.stringify(data));
@@ -1095,11 +1207,19 @@ Subscribes to widget message events for a given bundle that functions as the wid
 | hostBundleName   | string                                   | Yes  | Name of the bundle that functions as the widget host. If no value is passed in, widget message events of all widget hosts are subscribed to.|
 | observerCallback | Callback&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo-sys.md#runningforminfo10)&gt; | Yes  | Callback used to return the widget information.                   |
 
+**Error codes**
+
+For details about the error codes, see [Form Error Codes](errorcode-form.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 202 | The application is not a system application. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+
 **Example**
 
 ```ts
-import formObserver from '@ohos.app.form.formObserver';
-import formInfo from '@ohos.app.form.formInfo';
+import { formInfo, formObserver } from '@kit.FormKit';
 
 let hostBundleName: string = 'ohos.samples.FormApplication';
 let callback = (data: formInfo.RunningFormInfo) => {
@@ -1126,11 +1246,19 @@ Unsubscribes from widget message events. This API uses an asynchronous callback 
 | hostBundleName   | string                                   | No  | Name of the bundle that functions as the widget host.<br>To cancel the subscription for a given bundle name, this parameter must be set to the same value as **bundleName** in **on('message')**.<br>If no value is passed in, the subscriptions for all the widget hosts are canceled.|
 | observerCallback | Callback&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo-sys.md#runningforminfo10)&gt; | No  | Callback used to return the widget information. If no value is passed in, all the subscriptions to the specified event are canceled.<br>To cancel the subscription with a given callback, this parameter must be set to the same value as **callback** in **on('message')**.|
 
+**Error codes**
+
+For details about the error codes, see [Form Error Codes](errorcode-form.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 202 | The application is not a system application. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+
 **Example**
 
 ```ts
-import formObserver from '@ohos.app.form.formObserver';
-import formInfo from '@ohos.app.form.formInfo';
+import { formInfo, formObserver } from '@kit.FormKit';
 
 let hostBundleName: string = 'ohos.samples.FormApplication';
 let callback = (data: formInfo.RunningFormInfo) => {
@@ -1156,11 +1284,19 @@ Subscribes to widget call events. This API uses an asynchronous callback to retu
 | type             | string                                   | Yes  | Event type. This value **'call'** indicates a widget call event.           |
 | observerCallback | Callback&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo-sys.md#runningforminfo10)&gt; | Yes  | Callback used to return the widget information.|
 
+**Error codes**
+
+For details about the error codes, see [Form Error Codes](errorcode-form.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 202 | The application is not a system application. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+
 **Example**
 
 ```ts
-import formObserver from '@ohos.app.form.formObserver';
-import formInfo from '@ohos.app.form.formInfo';
+import { formInfo, formObserver } from '@kit.FormKit';
 
 let callback = (data: formInfo.RunningFormInfo) => {
   console.log('Call event listening in registered form.' + JSON.stringify(data));
@@ -1186,11 +1322,19 @@ Subscribes to widget call events for a given bundle that functions as the widget
 | hostBundleName   | string                                   | Yes  | Name of the bundle that functions as the widget host. If no value is passed in, widget call events of all widget hosts are subscribed to.|
 | observerCallback | Callback&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo-sys.md#runningforminfo10)&gt; | Yes  | Callback used to return the widget information.                   |
 
+**Error codes**
+
+For details about the error codes, see [Form Error Codes](errorcode-form.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 202 | The application is not a system application. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+
 **Example**
 
 ```ts
-import formObserver from '@ohos.app.form.formObserver';
-import formInfo from '@ohos.app.form.formInfo';
+import { formInfo, formObserver } from '@kit.FormKit';
 
 let hostBundleName: string = 'ohos.samples.FormApplication';
 let callback = (data: formInfo.RunningFormInfo) => {
@@ -1217,11 +1361,19 @@ Unsubscribes from widget call events. This API uses an asynchronous callback to 
 | hostBundleName   | string                                   | No  | Name of the bundle that functions as the widget host.<br>To cancel the subscription for a given bundle name, this parameter must be set to the same value as **bundleName** in **on('call')**.<br>If no value is passed in, the subscriptions for all the widget hosts are canceled.|
 | observerCallback | Callback&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo-sys.md#runningforminfo10)&gt; | No  | Callback used to return the widget information. If no value is passed in, all the subscriptions to the specified event are canceled.<br>To cancel the subscription with a given callback, this parameter must be set to the same value as **callback** in **on('call')**.|
 
+**Error codes**
+
+For details about the error codes, see [Form Error Codes](errorcode-form.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 202 | The application is not a system application. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+
 **Example**
 
 ```ts
-import formObserver from '@ohos.app.form.formObserver';
-import formInfo from '@ohos.app.form.formInfo';
+import { formInfo, formObserver } from '@kit.FormKit';
 
 let hostBundleName: string = 'ohos.samples.FormApplication';
 let callback = (data: formInfo.RunningFormInfo) => {

@@ -77,10 +77,9 @@ The widget framework provides the following modes of updating widgets periodical
 - Setting the next update time: The widget will be updated next time at the specified time. You can specify the time by calling the [setFormNextRefreshTime()](../reference/apis-form-kit/js-apis-app-form-formProvider.md#setformnextrefreshtime) API. The minimum update interval is 5 minutes. For example, you can configure the widget to update within 5 minutes after the API is called.
 
   ```ts
-  import type Base from '@ohos.base';
-  import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
-  import formProvider from '@ohos.app.form.formProvider';
-  import hilog from '@ohos.hilog';
+  import { FormExtensionAbility, formProvider } from '@kit.FormKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   const TAG: string = 'UpdateByTimeFormAbility';
   const FIVE_MINUTE: number = 5;
@@ -92,7 +91,7 @@ The widget framework provides the following modes of updating widgets periodical
       hilog.info(DOMAIN_NUMBER, TAG, `FormAbility onFormEvent, formId = ${formId}, message: ${JSON.stringify(message)}`);
       try {
         // Configure the widget to update in 5 minutes.
-        formProvider.setFormNextRefreshTime(formId, FIVE_MINUTE, (err: Base.BusinessError) => {
+        formProvider.setFormNextRefreshTime(formId, FIVE_MINUTE, (err: BusinessError) => {
           if (err) {
             hilog.info(DOMAIN_NUMBER, TAG, `Failed to setFormNextRefreshTime. Code: ${err.code}, message: ${err.message}`);
             return;
@@ -101,7 +100,7 @@ The widget framework provides the following modes of updating widgets periodical
           }
         });
       } catch (err) {
-        hilog.info(DOMAIN_NUMBER, TAG, `Failed to setFormNextRefreshTime. Code: ${(err as Base.BusinessError).code}, message: ${(err as Base.BusinessError).message}`);
+        hilog.info(DOMAIN_NUMBER, TAG, `Failed to setFormNextRefreshTime. Code: ${(err as BusinessError).code}, message: ${(err as BusinessError).message}`);
       }
     }
     ...    

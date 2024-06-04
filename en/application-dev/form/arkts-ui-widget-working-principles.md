@@ -11,9 +11,9 @@
 
 - Widget provider: an application that provides the widget content to display and controls how widget components are laid out and how they interact with users.
 
-- Widget Manager: a resident agent that manages widgets in the system. It provides the formProvider](../reference/apis-form-kit/js-apis-app-form-formProvider.md) and [formHost](../reference/apis-form-kit/js-apis-app-form-formHost-sys.md) APIs as well as the APIs for widget management, usage, and periodic updates. 
+- Widget Manager: a resident agent that manages widgets in the system. It provides [formProvider](../reference/apis-form-kit/js-apis-app-form-formProvider.md)<!--Del--> and [formHost](../reference/apis-form-kit/js-apis-app-form-formHost-sys.md)<!--DelEnd--> as well as the APIs for widget management, usage, and periodic updates. 
 
-- Widget rendering service: a service that manages widget rendering instances. Widget rendering instances are bound to the [FormComponent](../reference/apis-arkui/arkui-ts/ts-basic-components-formcomponent-sys.md) on the widget host on a one-to-one basis. The widget rendering service runs the widget page code **widgets.abc** for rendering, and sends the rendered data to the corresponding [FormComponent](../reference/apis-arkui/arkui-ts/ts-basic-components-formcomponent-sys.md) on the widget host.
+- Widget rendering service: a service that manages widget rendering instances. Widget rendering instances are bound to the <!--Del-->[<!--DelEnd-->FormComponent<!--Del-->](../reference/apis-arkui/arkui-ts/ts-basic-components-formcomponent-sys.md)<!--DelEnd--> on the widget host on a one-to-one basis. The widget rendering service runs the widget page code **widgets.abc** for rendering, and sends the rendered data to the corresponding <!--Del-->[<!--DelEnd-->FormComponent<!--Del-->](../reference/apis-arkui/arkui-ts/ts-basic-components-formcomponent-sys.md)<!--DelEnd--> on the widget host.
 
   **Figure 2** Working principles of the ArkTS widget rendering service
 

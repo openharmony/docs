@@ -39,6 +39,7 @@ Widget-related configuration includes **FormExtensionAbility** configuration and
    | Field| Description| Data Type| Default Value Allowed|
    | -------- | -------- | -------- | -------- |
    | name | Name of the widget. The value is a string with a maximum of 127 bytes.| String| No|
+   | displayName | Display name of the widget. The value can be a string or a resource index to the name in multiple languages. The string must contain 1 to 30 bytes.| String| Yes|
    | description | Description of the widget. The value can be a string or a resource index to descriptions in multiple languages. The value is a string with a maximum of 255 bytes.| String| Yes (initial value: left empty)|
    | src | Full path of the UI code corresponding to the widget. For an ArkTS widget, the full path must contain the widget file name extension, for example, **./ets/widget/pages/WidgetCard.ets**. For a JS widget, the full path does not need to contain the widget file name extension, for example, **./js/widget/pages/WidgetCard**.| String| No|
    | uiSyntax | Type of the widget.<br>- **arkts**: ArkTS widget<br>- **hml**: JS widget| String| Yes (initial value: **hml**)|
@@ -54,8 +55,10 @@ Widget-related configuration includes **FormExtensionAbility** configuration and
    | metadata | Metadata of the widget. For details, see [Metadata](../reference/apis-ability-kit/js-apis-bundleManager-metadata.md).| Object| Yes (initial value: left empty)|
    | dataProxyEnabled | Whether the widget supports the [update-through-proxy](./arkts-ui-widget-update-by-proxy.md) feature.<br>- **true**: The widget supports the update-through-proxy feature.<br>- **false**: The widget does not support the update-through-proxy feature.<br>If this tag is set to **true**, [the settings for the scheduled update time will still take effect, but the settings for the update interval and next update time will not](./arkts-ui-widget-update-by-time.md).| Boolean| Yes (initial value: **false**)|
    | isDynamic | Whether the widget is a dynamic widget. This tag applies only to ArkTS widgets.<br>- **true**: The widget is a dynamic widget.<br>- **false**: The widget is a static widget.<br>| Boolean| Yes (initial value: **true**)|
-   | transparencyEnabled | Whether the widget host is allowed to set the background transparency of the widget. This tag applies only to ArkTS widgets.<br>- **true**: The widget host is allowed to set the background transparency of the widget.<br>- **false**: The widget host is not allowed to set the background transparency of the widget.<br>| Boolean| Yes (initial value: **false**)|
+   | formVisibleNotify | Whether the widget is allowed to use the widget visibility notification. This parameter is valid only for widgets of system applications.| Boolean| Yes (initial value: **false**)|
+   | transparencyEnabled | Whether the widget host is allowed to set the background transparency of the widget. This tag applies only to ArkTS widgets.  <br>- **true**: The widget host is allowed to set the background transparency of the widget.<br>- **false**: The widget host is not allowed to set the background transparency of the widget.<br>| Boolean| Yes (initial value: **false**)|
    | fontScaleFollowSystem | Whether the font size of the widget changes with the system font size.<br>- **true**: The font size varies with the system font size.<br>- **false**: The font size cannot change with the system font size.<br>| Boolean| Yes (initial value: **true**)|
+   | supportShapes | Shapes that the widget can be displayed. The options are as follows:<br>- **rect**: square widget.<br>- **circle**: circular widget.| String| Yes (initial value: **rect**)|
 
    **Table 2** Internal structure of the window object
 
@@ -72,6 +75,7 @@ Widget-related configuration includes **FormExtensionAbility** configuration and
      "forms": [
        {
          "name": "widget",
+         "displayName": "2*2 Widget",
          "description": "This is a service widget.",
          "src": "./ets/widget/pages/WidgetCard.ets",
          "uiSyntax": "arkts",

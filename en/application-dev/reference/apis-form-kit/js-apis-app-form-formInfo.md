@@ -9,7 +9,7 @@ The **formInfo** module provides types and enums related to the widget informati
 ## Modules to Import
 
 ```ts
-import formInfo from '@ohos.app.form.formInfo';
+import { formInfo } from '@kit.FormKit';
 ```
 
 ## FormInfo
@@ -122,6 +122,7 @@ Enumerates the widget parameters.
 | PARAM_FORM_CUSTOMIZE_KEY<sup>10+</sup>    | 'ohos.extra.param.key.form_customize'   | Custom data.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | FORM_RENDERING_MODE_KEY<sup>11+</sup>    | 'ohos.extra.param.key.form_rendering_mode'   | Widget rendering mode.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | HOST_BG_INVERSE_COLOR_KEY<sup>12+</sup>    | 'ohos.extra.param.key.host_bg_inverse_color'   | Inverse background color of the widget client.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| FORM_LOCATION_KEY<sup>12+</sup>    | 'ohos.extra.param.key.form_location'   | Widget location.|
 
 ##  FormDimension
 

@@ -63,8 +63,8 @@ struct CustomCanvasDrawingCard {
             this.context.lineTo(startX + 8, startY + 40);
             this.context.strokeStyle = '#FFFFFF';
             this.context.lineWidth = 15;
-            this.context.lineCap = 'round'
-            this.context.lineJoin = 'round'
+            this.context.lineCap = 'round';
+            this.context.lineJoin = 'round';
             this.context.stroke();
             // Draw the mouth of the smiling face.
             let mouthR = radius / 2;

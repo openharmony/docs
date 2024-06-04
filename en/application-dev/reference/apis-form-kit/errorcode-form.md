@@ -8,7 +8,7 @@
 
 **Error Message**
 
-Internal Error.
+Internal error.
 
 **Description**
 
@@ -26,7 +26,7 @@ Analyze the memory usage of the entire process, and check whether memory leakage
 
 **Error Message**
 
-An IPC connection error happened.
+IPC connection error.
 
 **Description**
 
@@ -44,7 +44,7 @@ Pass appropriate parameter values.
 
 **Error Message**
 
-A service connection error happened, please try again later.
+Service connection error.
 
 **Description**
 
@@ -108,7 +108,7 @@ Use a valid widget ID.
 
 **Error Message**
 
-The number of forms exceeds the upper bound.
+The number of forms exceeds the maximum allowed.
 
 **Description**
 
@@ -126,7 +126,7 @@ Delete unnecessary widgets and then add the required widgets.
 
 **Error Message**
 
-The form can not be operated by the current application.
+The form cannot be operated by the current application.
 
 **Description**
 
@@ -163,11 +163,29 @@ Pass in valid **abilityName** and **bundleName**.
 
 **Error Message**
 
-Connect FormRenderService failed, please try again later.
+Failed to connect to FormRenderService.
 
 **Description**
 
 The FormRenderService fails to be connected.
+
+**Possible Causes**
+
+The service is busy.
+
+**Solution**
+
+Try again later.
+
+## 16501008 Adding a Widget to the Home Screen Times Out
+
+**Error Message**
+
+Waiting for the form addition to the desktop timed out.
+
+**Description**
+
+A request for adding a widget to the home screen is sent, but the widget is not added within the specified duration.
 
 **Possible Causes**
 
