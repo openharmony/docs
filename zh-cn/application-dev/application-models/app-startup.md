@@ -38,7 +38,7 @@
         "StartupTask_002",
         "StartupTask_003"
       ],
-      "runOnThread": "taskpool",
+      "runOnThread": "taskPool",
       "waitOnMainThread": false
     },
     {
@@ -47,19 +47,19 @@
       "dependencies": [
         "StartupTask_004"
       ],
-      "runOnThread": "taskpool",
+      "runOnThread": "taskPool",
       "waitOnMainThread": false
     },
     {
       "name": "StartupTask_003",
       "srcEntry": "./ets/startup/StartupTask_003.ets",
-      "runOnThread": "taskpool",
+      "runOnThread": "taskPool",
       "waitOnMainThread": false
     },
     {
       "name": "StartupTask_004",
       "srcEntry": "./ets/startup/StartupTask_004.ets",
-      "runOnThread": "taskpool",
+      "runOnThread": "taskPool",
       "waitOnMainThread": false
     },
     {
@@ -96,7 +96,7 @@
 | dependencies | 当前组件所依赖组件实现[StartupTask](../reference/apis-ability-kit/js-apis-app-appstartup-startupTask.md)接口的类名称数组。 | 对象数组 | 该标签可缺省，缺省值为空。 |
 | excludeFromAutoStart | 是否排除自动模式。 <br/>-&nbsp;true：手动模式。 <br/>-&nbsp;false：自动模式。 | 布尔值 | 该标签可缺省，缺省值为false。 |
 | waitOnMainThread | 是否在主线程等待。 <br/>-&nbsp;true：主线程等待组件初始化。 <br/>-&nbsp;false：主线程不等待组件初始化。 | 布尔值 | 该标签可缺省，缺省值为true。 |
-| runOnThread | 执行初始化所在的线程。<br/>-&nbsp;`mainThread`：在主线程中执行。<br/>-&nbsp;`taskpool`：在异步线程中执行。 | 字符串 | 该标签可缺省，缺省值为`mainThread`。 |
+| runOnThread | 执行初始化所在的线程。<br/>-&nbsp;`mainThread`：在主线程中执行。<br/>-&nbsp;`taskPool`：在异步线程中执行。 | 字符串 | 该标签可缺省，缺省值为`mainThread`。 |
 
 
 ### 添加启动框架组件
