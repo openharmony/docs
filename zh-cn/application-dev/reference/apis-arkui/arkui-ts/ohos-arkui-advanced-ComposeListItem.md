@@ -154,6 +154,32 @@ struct ComposeListItemExample {
             })
           })
         }
+        ListItem() {
+          ComposeListItem({
+            contentItem: ({
+              iconStyle: IconType.NORMAL_ICON,
+              icon: $r('sys.media.ohos_app_icon'),
+              primaryText: '双行列表',
+              secondaryText: '辅助文字',
+              description: '描述内容文字',
+              iconImageModifier: this.iconImageModifier,
+              primaryTextModifier: this.primaryTextModifier,
+              secondaryTextModifier: this.secondaryTextModifier,
+              descriptionModifier: this.descriptionModifier
+            }),
+            operateItem: ({
+              icon: {
+                value: $r('sys.media.ohos_app_icon'),
+                action: () => {
+                  promptAction.showToast({ message: 'icon' });
+                }
+              },
+              text: '右侧文本'
+            }),
+            itemSpace: 12,
+            composeItemPadding: { start: LengthMetrics.vp(12), end: LengthMetrics.vp(12) }
+          })
+        }
       }
     }
   }
