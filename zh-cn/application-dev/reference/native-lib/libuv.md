@@ -683,7 +683,7 @@ int uv_async_send(uv_async_t* handle)
 **提示1：** uv_async_t从调用`uv_async_init`开始后就一直处于活跃状态，除非用`uv_close`将其关闭。
 **提示2：** uv_async_t的执行顺序严格按照`uv_async_init`的顺序，而非通过`uv_async_send`的顺序来执行的。因此按照初始化的顺序来管理好时序问题是必要的。
 
-
+![线程间通信原理](./figures/libuv-image-1.png)
 
 示例代码：
 
@@ -727,7 +727,9 @@ int main()
 2. 新建一个子线程，在里面每隔100毫秒触发一次`uv_async_send`。10次以后调用`uv_close`关闭async句柄。
 3. 在主线程运行事件循环。
 
-每触发一次，主线程都会执行一次回调函数。
+可以看到，每触发一次，主线程都会执行一次回调函数。
+
+![代码运行效果](./figures/libuv-image-2.png)
 
 ### 线程池
 
@@ -745,6 +747,10 @@ work_cb：提交给工作线程的任务。
 after_work_cb：loop所在线程的要执行的回调函数。
 
 **注意：** work_cb与after_work_cb的执行有一个时序问题，只有work_cb执行完，通过`uv_async_send(loop->wq_async)`触发fd事件，loop所在线程在下一次迭代中才会执行after_work_cb。只有执行到after_work_cb时，与之相关的uv_work_t生命周期才算结束。
+
+下图为libuv的线程池工作流程，图中流程已简化，默认句柄的pending标志为1，worker线程个数不代表线程池中线程的真实数量。
+
+![libuv线程池工作原理](./figures/libuv-image-3.png)
 
 ## OpenHarmony中libuv的使用现状
 
