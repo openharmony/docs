@@ -13,8 +13,8 @@ skill标签对象，三方应用可以通过[bundleManager.getBundleInfoForSelf]
 **系统能力**: SystemCapability.BundleManager.BundleFramework.Core
 | 名称     | 类型   | 可读 | 可选 | 说明       |
 | -------- | ------ | ---- | ---- | ---------- |
-| actions     | Array\<String> | 是   | 否   | Skill接收的Action集合。 |
-| entities    | Array\<String> | 是   | 否   | Skill接收的Entity集合。   |
+| actions     | Array\<string> | 是   | 否   | Skill接收的Action集合。 |
+| entities    | Array\<string> | 是   | 否   | Skill接收的Entity集合。   |
 | uris | Array<\<SkillUri>> | 是   | 否   | Want匹配的Uri集合。 |
 | domainVerify     | boolean | 是   | 否   | Skill接收的DomainVerify值, 仅在AbilityInfo中存在。 |
 
