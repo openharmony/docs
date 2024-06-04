@@ -1,14 +1,10 @@
-# Development of Performance Tracing (Native)
+# Using HiTraceMeter to Trace Performance (C/C++)
 
-## Overview
-
-hiTraceMeter provides APIs for system performance tracing. You can call the APIs provided by the hiTraceMeter module in your own service logic to effectively track service processes and check the system performance.
-> **NOTE**
->
-> - This development guide is applicable only when you use Native APIs for application development. For details about APIs, see [API Reference](../reference/native-apis/_hitrace.md).
-> - For details about how to use ArkTS APIs for application development, see [Development Guidelines](hitracemeter-guidelines.md) and [API Reference](../reference/apis/js-apis-hitracemeter.md).
+The **HiTraceMeter** module provides APIs to implement call chain tracing throughout a service process. With HiTraceMeter, you can quickly obtain the run log specific to the call chain of a service process and locate faults in inter-device, inter-process, or inter-thread communications.
 
 ## Available APIs
+
+The performance tracing APIs are provided by the **HiTraceMeter** module. For details, see [Hitrace](../reference/apis-performance-analysis-kit/_hitrace.md).
 
 | API| Description|
 | -------- | -------- |
@@ -41,7 +37,7 @@ hiTraceMeter provides APIs for system performance tracing. You can call the APIs
     ```
 
 3. Perform a performance trace. The following uses an asynchronous trace as an example. (The sample code is a part of the default **hello.cpp** file. You only need to put related APIs at the required positions according to the usage instruction.)
-    
+
     ```c++
     #include "napi/native_api.h"
     #include "hitrace/trace.h"

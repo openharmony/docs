@@ -1,14 +1,34 @@
-# DFX
+# Performance Analysis Kit
 
-- [Development of Application Event Logging](hiappevent-guidelines.md)
-- [Development of Distributed Call Chain Tracing](hitracechain-guidelines.md)
-- [HiLog Development (Native)](hilog-guidelines.md)
-- Performance Tracing
-  - [Development of Performance Tracing (ArkTS)](hitracemeter-guidelines.md)
-  - [Development of Performance Tracing (Native)](hitracemeter-native-guidelines.md)
+- [Introduction to Performance Analysis Kit](performance-analysis-kit-overview.md)
+- HiLog Usage
+  - [Using HiLog to Print Logs (ArkTS)](hilog-guidelines-arkts.md)
+  - [Using HiLog to Print Logs (C/C++)](hilog-guidelines-ndk.md)
+- HiAppEvent Usage
+  - [Introduction to HiAppEvent](hiappevent-intro.md)
+  - Event Subscription
+    - [Subscribing to Application Events](hiappevent-watcher-app-events.md)
+    - [Subscribing to System Events (Crash Events)](hiappevent-watcher-crash-events.md)
+    - [Subscribing to System Events (Freeze Events)](hiappevent-watcher-freeze-events.md)
+    - [Subscribing to System Events (Resource Leak Events)](hiappevent-watcher-resourceleak-events.md)
+  - [Reporting Events](hiappevent-event-reporting.md)
+- HiTraceMeter Usage
+  - [Using HiTraceMeter to Trace Performance (ArkTS/JS)](hitracemeter-guidelines-arkts.md)
+  - [Using HiTraceMeter to Trace Performance (C/C++)](hitracemeter-guidelines-ndk.md)
+  - [Viewing HiTraceMeter Logs](hitracemeter-view.md)
+- [HiTraceChain Usage](hitracechain-guidelines.md)
 - Error Management
   - [Development of Error Manager](errormanager-guidelines.md)
   - [Development of Application Recovery](apprecovery-guidelines.md)
-- Log Management
-  - [Application Freeze (appfreeze) Log Analysis](appfreeze-guidelines.md)
-  - [Process Crash (cppcrash) Log Analysis](cppcrash-guidelines.md)
+- Fault Analysis
+  - [Analyzing JS Crash (Process Crash)](jscrash-guidelines.md)
+  - [Analyzing CPP Crash (Process Crash)](cppcrash-guidelines.md)
+  - [Analyzing Application Freeze (appfreeze)](appfreeze-guidelines.md)
+- Command Line Tools
+  - [hdc](hdc.md)
+  - [hilog](hilog.md)
+  - [hidumper](hidumper.md)
+  - [hitrace](hitrace.md)
+  - [hiperf](hiperf.md)
+  - [hisysevent](hisysevent.md)
+  - [uinput](uinput.md)

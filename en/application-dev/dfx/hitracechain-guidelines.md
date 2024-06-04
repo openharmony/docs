@@ -1,18 +1,16 @@
-# Development of Distributed Call Chain Tracing
+# HiTraceChain Usage
 
 ## Overview
 
-hiTraceChain is a lightweight implementation of the cloud-based distributed call chain tracing. It allows applications to trace cross-thread, cross-process, and cross-device service calls. The hiTraceChain module generates a unique **chainId** for a service process and passes it to various information (including application events, system time, and logs) specific to the service process. During debugging and fault locating, you can use the unique **chainId** to quickly correlate various information related to the service process. The hiTraceChain module provides APIs to implement call chain tracing throughout a service process. This can help you quickly obtain the run log for the call chain of a specified service process and locate faults in inter-device, inter-process, or inter-thread communications.
+HiTraceChain is a lightweight implementation of the cloud-based distributed call chain tracing. It allows applications to trace cross-thread, cross-process, and cross-device service calls. The hiTraceChain module generates a unique **chainId** for a service process and passes it to various information (including application events, system time, and logs) specific to the service process. During debugging and fault locating, you can use the unique **chainId** to quickly correlate various information related to the service process. The hiTraceChain module provides APIs to implement call chain tracing throughout a service process. This can help you quickly obtain the run log for the call chain of a specified service process and locate faults in inter-device, inter-process, or inter-thread communications.
 
 ## Basic Concepts
 
-- **chainId**
-
-  Distributed call chain tracing ID, which is a part of **HiTraceId** and is used to identify the service process being traced.
+**chainId**: distributed call chain tracing ID, which is a part of **HiTraceId** and is used to identify the service process being traced.
 
 ## Available APIs
 
-The APIs for distributed call chain tracing are provided by the **hiTraceChain** module. For details, see [API Reference](../reference/apis/js-apis-hitracechain.md).
+The APIs for distributed call chain tracing are provided by the **HiTraceChain** module. For details, see [API Reference](../reference/apis-performance-analysis-kit/js-apis-hitracechain.md).
 
 **APIs for distributed call chain tracing**
 
@@ -23,7 +21,7 @@ The APIs for distributed call chain tracing are provided by the **hiTraceChain**
 
 ## How to Develop
 
-The following example illustrates how to simulate one-time [system event logging](../reference/apis/js-apis-hiviewdfx-hiappevent.md) to implement distributed call chain tracing.
+The following example illustrates how to simulate one-time [system event logging](../reference/apis-performance-analysis-kit/js-apis-hiviewdfx-hiappevent.md) to implement distributed call chain tracing.
 
 1. Create an eTS application project. In the displayed **Project** window, choose **entry** > **src** > **main** > **ets** > **pages** > **index.ets**, and double-click **index.ets**. Then, add a button to trigger system event logging.
 
