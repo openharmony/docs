@@ -446,7 +446,7 @@ napi_status napi_release_threadsafe_function(napi_threadsafe_function function);
 - uv_async_init()：初始化异步句柄。
 - uv_async_send()：向异步句柄发送信号，可以在任何线程中调用。
 - uv_thread_create()：创建一个新线程并执行指定的函数，可以在任何线程中调用。
-- uv_fs\_\*()：文件相关操作（uv\_fs\_\\* 表示以uv\_fs\_开头的支持文件IO的系列函数）。
+- uv_fs\_\*()：文件相关操作（uv\_fs\_\* 表示以uv\_fs\_开头的支持文件IO的系列函数）。
 - uv_poll\_\*()：poll事件相关函数（uv\_poll\_\* 表示以uv\_poll\_开头的支持poll IO的系列函数）。
 - 锁相关的操作，如uv\_mutex\_lock()、uv\_mutex\_unlock()等等。
 
