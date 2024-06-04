@@ -183,9 +183,9 @@ async function Demo() {
 
 ## image.createPixelMapFromSurface<sup>11+</sup>
 
-从Surface id创建一个pixelmap对象
-
 createPixelMapFromSurface(surfaceId: string, region: Region): Promise\<PixelMap>
+
+从Surface id创建一个PixelMap对象。使用Promise异步回调，返回PixelMap。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -224,6 +224,48 @@ async function Demo(surfaceId: string) {
         console.error(`Failed to create pixelmap. code is ${error.code}, message is ${error.message}`);
     });
 } 
+```
+
+## image.createPixelMapFromSurfaceSync<sup>12+</sup>
+
+createPixelMapFromSurfaceSync(surfaceId: string, region: Region): PixelMap
+
+从Surface id创建一个pixelMap对象，同步返回PixelMap结果。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名                 | 类型                 | 必填 | 说明                                     |
+| ---------------------- | -------------       | ---- | ---------------------------------------- |
+| surfaceId              | string              | 是   | 从[XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)组件获取的surfaceId。|
+| region                 | [Region](#region7)  | 是   | 裁剪的尺寸                         |
+
+**返回值：**
+| 类型                             | 说明                  |
+| -------------------------------- | --------------------- |
+| [PixelMap](#pixelmap7) | 成功同步返回PixelMap对象，失败抛出异常。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed|
+| 62980105 | Failed to get the data|
+| 62980178 | Failed to create the PixelMap|
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+async function Demo(surfaceId: string) {
+    let region: image.Region = { x: 0, y: 0, size: { height: 100, width: 100 } };
+    let pixelMap : image.PixelMap = image.createPixelMapFromSurfaceSync(surfaceId, region);
+    return pixelMap;
+}
 ```
 
 ## image.createPixelMapSync<sup>12+</sup>
@@ -5238,12 +5280,12 @@ img.release().then(() => {
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
-| 名称   | 类型               | 可读 | 可写 | 说明                                                         |
-| ------ | ------------------ | ---- | ---- | ------------------------------------------------------------ |
-| pixels | ArrayBuffer        | 是   | 是   | 像素。                                                       |
-| offset | number             | 是   | 是   | 偏移量。                                                     |
-| stride | number             | 是   | 是   | 跨距，内存中每行像素所占的空间。stride >= region.size.width*4。                   |
-| region | [Region](#region7) | 是   | 是   | 区域，按照区域读写。写入的区域宽度加X坐标不能大于原图的宽度，写入的区域高度加Y坐标不能大于原图的高度。 |
+| 名称   | 类型               | 只读|  可选| 说明                                                         |
+| ------ | ------------------ | ---| -----|------------------------------------------------------- |
+| pixels | ArrayBuffer        | 否 |   否   | 像素。                                                       |
+| offset | number             | 否 |   否  |  偏移量。                                                     |
+| stride | number             | 否 |   否  | 跨距，内存中每行像素所占的空间。stride >= region.size.width*4。                   |
+| region | [Region](#region7) | 否 |   否  |区域，按照区域读写。写入的区域宽度加X坐标不能大于原图的宽度，写入的区域高度加Y坐标不能大于原图的高度。 |
 
 ## ImageInfo
 
@@ -5251,15 +5293,15 @@ img.release().then(() => {
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
-| 名称 | 类型          | 可读 | 可写 | 说明       |
-| ---- | ------------- | ---- | ---- | ---------- |
-| size<sup>6+</sup> | [Size](#size) | 是   | 是   | 图片大小。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。 |
-| density<sup>9+</sup> | number | 是   | 是   | 像素密度，单位为ppi。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。 |
-| stride<sup>11+</sup> | number | 是   | 是   | 跨距，内存中每行像素所占的空间。stride >= region.size.width*4 <br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。 |
-| pixelFormat<sup>12+</sup> | [PixelMapFormat](#pixelmapformat7) | 是   | 是   | 像素格式。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。 |
-| alphaType<sup>12+</sup> | [AlphaType](#alphatype9)  | 是   | 是   | 透明度。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。 |
-| mimeType<sup>12+</sup> | string  | 是   | 是   | 图片真实格式（MIME type）。  |
-| isHdr<sup>12+</sup> | boolean  | 是   | 否   | 图片是否为高动态范围（HDR）。对于[ImageSource](#imagesource)，代表源图片是否为HDR；对于[PixelMap](#pixelmap7)，代表解码后的pixelmap是否为HDR。 |
+| 名称 | 类型          | 只读 | 可选 | 说明       |
+| ---- | ------------- | --- |-----|---------- |
+| size<sup>6+</sup> | [Size](#size) | 否 |  否  |图片大小。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。 |
+| density<sup>9+</sup> | number | 否  | 否 |像素密度，单位为ppi。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。 |
+| stride<sup>11+</sup> | number | 否  | 否  | 跨距，内存中每行像素所占的空间。stride >= region.size.width*4 <br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。 |
+| pixelFormat<sup>12+</sup> | [PixelMapFormat](#pixelmapformat7) | 否  |  否 | 像素格式。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。 |
+| alphaType<sup>12+</sup> | [AlphaType](#alphatype9)  | 否  |  否  |透明度。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。 |
+| mimeType<sup>12+</sup> | string  |  否  |   否  |图片真实格式（MIME type）。  |
+| isHdr<sup>12+</sup> | boolean  |  否  | 否  | 图片是否为高动态范围（HDR）。对于[ImageSource](#imagesource)，代表源图片是否为HDR；对于[PixelMap](#pixelmap7)，代表解码后的pixelmap是否为HDR。 |
 
 ## Size
 
@@ -5271,10 +5313,10 @@ img.release().then(() => {
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
-| 名称   | 类型   | 可读 | 可写 | 说明           |
-| ------ | ------ | ---- | ---- | -------------- |
-| height | number | 是   | 是   | 输出图片的高，单位：像素。 |
-| width  | number | 是   | 是   | 输出图片的宽，单位：像素。 |
+| 名称   | 类型   | 只读 |  可选  |说明           |
+| ------ | ------ | -- |-----| -------------- |
+| height | number | 否  |  否  |输出图片的高，单位：像素。 |
+| width  | number | 否  |  否 | 输出图片的宽，单位：像素。 |
 
 ## PixelMapFormat<sup>7+</sup>
 
@@ -5357,8 +5399,8 @@ PixelMap的初始化选项。
 | ------------------------ | ---------------------------------- | ----| -----|  -------------- |
 | alphaType<sup>9+</sup>   | [AlphaType](#alphatype9)           | 否   | 是| 透明度。默认值为IMAGE_ALPHA_TYPE_PREMUL。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。      |
 | editable                 | boolean                            | 否   | 是| 是否可编辑。默认值为false。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。|
-| srcPixelFormat<sup>12+</sup>  | [PixelMapFormat](#pixelmapformat7) | 否 | 是 | 传入的原始数据像素格式。默认值为BGRA_8888。|
-| pixelFormat              | [PixelMapFormat](#pixelmapformat7) | 否 | 是|像素格式。默认值为RGBA_8888。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。     |
+| srcPixelFormat<sup>12+</sup>  | [PixelMapFormat](#pixelmapformat7) | 否 | 是 | 传入的buffer数据的像素格式。默认值为BGRA_8888。|
+| pixelFormat              | [PixelMapFormat](#pixelmapformat7) | 否 | 是| 生成的pixelMap的像素格式。默认值为RGBA_8888。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。     |
 | scaleMode<sup>9+</sup>   | [ScaleMode](#scalemode9)           | 否  | 是 | 缩略值。默认值为0。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。       |
 | size                     | [Size](#size)                      | 否  | 否|创建图片大小。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。 |
 
@@ -5391,11 +5433,11 @@ PixelMap的初始化选项。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
-| 名称 | 类型          | 可读 | 可写 | 说明         |
+| 名称 | 类型          | 只读 | 可选| 说明         |
 | ---- | ------------- | ---- | ---- | ------------ |
-| size | [Size](#size) | 是   | 是   | 区域大小。   |
-| x    | number        | 是   | 是   | 区域横坐标。 |
-| y    | number        | 是   | 是   | 区域纵坐标。 |
+| size | [Size](#size) | 否   | 否   | 区域大小。   |
+| x    | number        | 否   | 否  | 区域横坐标。 |
+| y    | number        | 否  | 否  | 区域纵坐标。 |
 
 ## PackingOption
 

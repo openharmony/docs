@@ -230,6 +230,7 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 
 | 名称 | 描述 | 
 | -------- | -------- |
+| [OH_Drawing_ErrorCode](#oh_drawing_errorcode)  [OH_Drawing_MatrixGetAll](#oh_drawing_matrixgetall) ([OH_Drawing_Matrix](#oh_drawing_matrix) \*matrix, float value[9]) | 获取矩阵所有元素值。 |
 | [OH_Drawing_ErrorCode](#oh_drawing_errorcode)  [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget) () | 获取本模块的错误码。 | 
 | [OH_Drawing_Brush](#oh_drawing_brush) \* [OH_Drawing_BrushCopy](#oh_drawing_brushcopy) ([OH_Drawing_Brush](#oh_drawing_brush) \*brush) | 创建一个画刷对象副本[OH_Drawing_Brush](#oh_drawing_brush)，用于拷贝一个已有画刷对象。 | 
 | void [OH_Drawing_FilterSetImageFilter](#oh_drawing_filtersetimagefilter) ([OH_Drawing_Filter](#oh_drawing_filter) \*, [OH_Drawing_ImageFilter](#oh_drawing_imagefilter) \*) | 为滤波器对象设置图像滤波器对象。 | 
@@ -2838,6 +2839,32 @@ enum OH_Drawing_WordBreakType
 
 
 ## 函数说明
+
+### OH_Drawing_MatrixGetAll()
+
+```
+OH_Drawing_ErrorCode OH_Drawing_MatrixGetAll (OH_Drawing_Matrix* matrix, float value[9] )
+```
+
+**描述**
+
+获取矩阵所有元素值。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| matrix | 指向矩阵对象[OH_Drawing_Matrix](#oh_drawing_matrix)的指针。 |
+| value | 用于存储得到的矩阵元素值的数组。 |
+
+**返回：**
+
+返回错误码。 返回OH_DRAWING_SUCCESS，表示成功获取矩阵的所有元素值。 返回OH_DRAWING_ERROR_INVALID_PARAMETER，表示获取矩阵元素值失败，原因是矩阵对象或者存储矩阵元素值数组为空。
+
 
 
 ### OH_Drawing_ErrorCodeGet()

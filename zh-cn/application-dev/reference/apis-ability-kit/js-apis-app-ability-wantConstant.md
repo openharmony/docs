@@ -29,6 +29,7 @@ want的Params操作的常量。
 | SUPPORT_CONTINUE_SOURCE_EXIT_KEY<sup>10+</sup>  | ohos.extra.param.key.supportContinueSourceExit      | 指示跨端迁移源端应用是否退出，默认值为true，源端应用自动退出。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
 | SHOW_MODE_KEY<sup>12+</sup>  | ohos.extra.param.key.showMode      | 指示展示模式，值为枚举类型wantConstant.ShowMode<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。|
 | PARAMS_STREAM<sup>12+</sup>  | ability.params.stream  | 指示携带的文件URI要授权给目标方。对应的value必须是string类型的文件URI数组。文件URI的获取参考[fileUri](../apis-core-file-kit/js-apis-file-fileuri.md#fileurigeturifrompath) <br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| APP_CLONE_INDEX_KEY<sup>12+</sup>  | ohos.extra.param.key.appCloneIndex  | 指示分身应用索引。 <br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
 
 ## wantConstant.Flags
 

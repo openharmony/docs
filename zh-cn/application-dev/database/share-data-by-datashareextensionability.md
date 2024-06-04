@@ -141,15 +141,15 @@
 
      **表1** module.json5对应属性字段
    
-   | 属性名称 | 备注说明 | 必填 | 
+   | 属性名称 | 备注说明 | 必填 |
    | -------- | -------- | -------- |
-   | name | Ability名称，对应Ability派生的ExtensionAbility类名。 | 是 | 
-   | type | Ability类型，DataShare对应的Ability类型为“dataShare”，表示基于datashare模板开发的。 | 是 | 
-   | uri | 通信使用的URI，是客户端链接服务端的唯一标识。 | 是 | 
-   | exported | 对其他应用是否可见，设置为true时，才能与其他应用进行通信传输数据。 | 是 | 
-   | readPermission | 访问数据时需要的权限，不配置默认不进行读权限校验。 | 否 | 
-   | writePermission | 修改数据时需要的权限，不配置默认不进行写权限校验。 | 否 | 
-   | metadata   | 增加静默访问所需的额外配置项，包含name和resource字段。<br /> name类型固定为"ohos.extension.dataShare"，是配置的唯一标识。 <br /> resource类型固定为"$profile:data_share_config"，表示配置文件的名称为data_share_config.json。 | 若Ability启动模式为"singleton"，则metadata必填，Ability启动模式可见[abilities对象的内部结构-launchType](../quick-start/module-structure.md#abilities对象的内部结构)；其他情况下无需填写。 | 
+   | name | Ability名称，对应Ability派生的ExtensionAbility类名。 | 是 |
+   | type | Ability类型，DataShare对应的Ability类型为“dataShare”，表示基于datashare模板开发的。 | 是 |
+   | uri | 通信使用的URI，是客户端链接服务端的唯一标识。 | 是 |
+   | exported | 对其他应用是否可见，设置为true时，才能与其他应用进行通信传输数据。 | 是 |
+   | readPermission | 访问数据时需要的权限，不配置默认不进行读权限校验。 | 否 |
+   | writePermission | 修改数据时需要的权限，不配置默认不进行写权限校验。 | 否 |
+   | metadata   | 增加静默访问所需的额外配置项，包含name和resource字段。<br /> name类型固定为"ohos.extension.dataShare"，是配置的唯一标识。 <br /> resource类型固定为"$profile:data_share_config"，表示配置文件的名称为data_share_config.json。 | 若Ability启动模式为"singleton"，则metadata必填，Ability启动模式可见[abilities对象的内部结构-launchType](../quick-start/module-structure.md#abilities对象的内部结构)；其他情况下无需填写。 |
 
    **module.json5配置样例：**
    
@@ -167,18 +167,17 @@
      }
    ]
    ```
-   
+
    **表2** data_share_config.json对应属性字段
 
    | 属性名称            | 备注说明                                                     | 必填 |
    | ------------------- | ------------------------------------------------------------ | ---- |
-   | tableConfig         | 配置标签。                                                   | 是   |
-   | uri                 | 指定配置生效的范围，uri支持以下三种格式，优先级为**表配置>库配置>\***，如果同时配置，高优先级会覆盖低优先级 。<br /> 1. "*" : 所有的数据库和表。<br /> 2. "datashare:///{bundleName}/{moduleName}/{storeName}" : 指定数据库。<br /> 3. "datashare:///{bundleName}/{moduleName}/{storeName}/{tableName}" : 指定表。 | 是   |
-   | crossUserMode       | 标识数据是否为多用户共享，配置为1则多用户数据共享，配置为2则多用户数据隔离。 | 是   |
+   | tableConfig         | 配置标签。包括uri和crossUserMode。<br>**-uri：** 指定配置生效的范围，uri支持以下三种格式，优先级为**表配置>库配置>\***，如果同时配置，高优先级会覆盖低优先级 。<br /> 1. "*" : 所有的数据库和表。<br /> 2. "datashare:///{bundleName}/{moduleName}/{storeName}" : 指定数据库。<br /> 3. "datashare:///{bundleName}/{moduleName}/{storeName}/{tableName}" : 指定表<br>**-crossUserMode：** 标识数据是否为多用户共享，配置为1则多用户数据共享，配置为2则多用户数据隔离。 | 是   |
    | isSilentProxyEnable | 标识该ExtensionAbility是否关闭静默访问。<br />false：代表关闭静默访问。<br />true：代表打开静默访问。<br />不填写默认为true，即默认开启静默访问。<br />如果该应用下存在多个ExtensionAbility，其中一个配置了该属性为false，代表应用关闭静默访问。<br />如果数据提供方调用过enableSilentProxy和disableSilentProxy接口，则按照接口的设置结果来开启或关闭静默访问。否则会读取该配置来开启或关闭静默访问。 | 否   |
+   | launchInfos         | 包括storeId和tableNames。<br>该配置中表粒度的数据变更时，通过所属extensionAbilities中的uri拉起extension。若业务方需要在非主动数据变更时做处理，则配置此项，拉起extension即时处理；若不需要，则可以不配置。<br>**-storeId：** 数据库名。该配置需要去掉数据库名后缀，如：数据库名为test.db时，配置信息填入test即可。<br>**-tableNames：** 数据库表名集合。集合内单个表数据变更就会拉起extension。 | 否   |
    
    **data_share_config.json配置样例**
-
+   
    ```json
    {
        "tableConfig":[
@@ -195,7 +194,13 @@
                "crossUserMode":2
            }
        ],
-       "isSilentProxyEnable":true
+       "isSilentProxyEnable":true,
+       "launchInfos":[
+           {
+               "storeId": "test",
+               "tableNames":["test1", "test2"]
+           }
+       ]
    }
    ```
 

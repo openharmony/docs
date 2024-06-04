@@ -153,6 +153,58 @@ audio.createAudioRenderer(audioRendererOptions).then((data) => {
 });
 ```
 
+### setSilentModeAndMixWithOthers<sup>12+</sup>
+
+setSilentModeAndMixWithOthers(on: bool): void
+
+设置静音并发播放模式。
+
+当设置为true，打开静音并发播放模式，系统将让此音频流静音播放，并且不会打断其它音频流。设置为false，将关闭静音并发播放，音频流可根据系统焦点策略抢占焦点。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
+
+**参数：**
+
+| 参数名 | 类型                                     | 必填 | 说明                   |
+| ------ | ---------------------------------------- | ---- |----------------------|
+| on | bool | 是   | 打开/关闭静音并发播放模式，true打开，false关闭。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
+| 6800103 | Operation not permit at current state. |
+
+**示例：**
+
+```ts
+audioRenderer.setSilentModeAndMixWithOthers(true);
+```
+
+### getSilentModeAndMixWithOthers<sup>12+</sup>
+
+getSilentModeAndMixWithOthers(): bool
+
+获取静音并发播放模式。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
+
+**返回值：**
+
+| 类型                                              | 说明        |
+| ------------------------------------------------- |-----------|
+| bool | 返回静音并发播放模式状态，true打开，false关闭。 |
+
+**示例：**
+
+```ts
+let on = audioRenderer.getSilentModeAndMixWithOthers();
+```
+
 ## audio.createAudioCapturer<sup>8+</sup>
 
 createAudioCapturer(options: AudioCapturerOptions, callback: AsyncCallback<AudioCapturer\>): void
@@ -2322,6 +2374,39 @@ audioVolumeManager.on('volumeChange', (volumeEvent: audio.VolumeEvent) => {
   console.info(`VolumeType of stream: ${volumeEvent.volumeType} `);
   console.info(`Volume level: ${volumeEvent.volume} `);
   console.info(`Whether to updateUI: ${volumeEvent.updateUi} `);
+});
+```
+
+### off('volumeChange')<sup>12+</sup>
+
+off(type: 'volumeChange', callback: Callback\<VolumeEvent>): void
+
+取消监听系统音量变化事件，使用callback方式返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Volume
+
+**参数：**
+
+| 参数名   | 类型                                   | 必填 | 说明                                                         |
+| -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                 | 是   | 事件回调类型，支持的事件为：'volumeChange'。 |
+| callback | Callback<[VolumeEvent](#volumeevent9)> | 是   | 回调函数，返回变化后的音量信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
+
+**示例：**
+
+```ts
+audioVolumeManager.off('volumeChange', (volumeEvent: audio.VolumeEvent) => {
+  console.info('An event to release the audio volumeChange starts.');
+  console.info(`volumeChange release event: ${volumeEvent} `);
 });
 ```
 
@@ -4837,6 +4922,34 @@ audio.getAudioManager().getDevices(1).then((value: audio.AudioDeviceDescriptors)
   }
 });
 ```
+## AudioDataCallbackResult<sup>12+</sup>
+
+枚举，表示音频数据回调的结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
+
+| 名称                 | 值      | 说明         |
+| ---------------------| --------| ----------------- |
+| INVALID  | -1 | 表示该回调数据无效。      |
+| VALID      | 0 | 表示该回调数据有效。     |
+
+## AudioRendererWriteDataCallback<sup>12+</sup>
+
+type AudioRendererWriteDataCallback = (data: ArrayBuffer) => AudioDataCallbackResult | void
+
+回调函数类型，用于音频渲染器的数据写入。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
+
+| 参数名          | 类型      |必填   | 说明         |
+| :--------------| :--------| :----- | :------------ |
+| data           | ArrayBuffer  | 是 | 待写入缓冲区的数据。 |
+
+**返回值：** 
+
+| 类型 | 说明 |
+| ----- | ------- |
+| AudioDataCallbackResult \| void | 如果返回 void 或 AudioRendererWriteDataCallback.VALID ，表示数据有效并将被播放；如果返回 AudioRendererWriteDataCallback.INVALID ，表示数据无效并将不会被播放。|
 
 ## AudioRenderer<sup>8+</sup>
 
@@ -5555,7 +5668,7 @@ write(buffer: ArrayBuffer, callback: AsyncCallback\<number>): void
 写入缓冲区。使用callback方式异步返回结果。
 
 > **说明：**
-> 从 API version 8 开始支持，从 API version 11 开始废弃，建议使用AudioRenderer中的[on('writeData')](#onwritedata11)替代。
+> 从 API version 8 开始支持，从 API version 11 开始废弃，建议使用AudioRenderer中的[on('writeData')](#onwritedata12)替代。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -5618,7 +5731,7 @@ write(buffer: ArrayBuffer): Promise\<number>
 写入缓冲区。使用Promise方式异步返回结果。
 
 > **说明：**
-> 从 API version 8 开始支持，从 API version 11 开始废弃，建议使用AudioRenderer中的[on('writeData')](#onwritedata11)替代。
+> 从 API version 8 开始支持，从 API version 11 开始废弃，建议使用AudioRenderer中的[on('writeData')](#onwritedata12)替代。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -7002,11 +7115,14 @@ audioRenderer.off('outputDeviceChangeWithInfo', (deviceChangeInfo: audio.AudioSt
 });
 ```
 
-### on('writeData')<sup>11+</sup>
+### on('writeData')<sup>(deprecated)</sup>
 
 on(type: 'writeData', callback: Callback\<ArrayBuffer>): void
 
 订阅监听音频数据写入回调，使用callback方式返回结果。
+
+> **说明：**
+> 从 API version 11 开始支持，从 API version 12 开始废弃，建议使用 AudioRenderer 中的 [on('writeData')](#onwritedata12) 替代。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -7052,18 +7168,21 @@ let writeDataCallback = (buffer: ArrayBuffer) => {
 }
 
 audioRenderer.on('writeData', writeDataCallback);
-audioRenderer.start().then(() => {
+audioRenderer.start().then(() =>  {
   console.info('Renderer started');
 }).catch((err: BusinessError) => {
   console.error(`ERROR: ${err}`);
 });
 ```
 
-### off('writeData')<sup>11+</sup>
+### off('writeData')<sup>(deprecated)</sup>
 
 off(type: 'writeData', callback?: Callback\<ArrayBuffer>): void
 
 取消订阅监听音频数据写入回调，使用callback方式返回结果。
+
+> **说明：**
+> 从 API version 11 开始支持，从 API version 12 开始废弃，建议使用 AudioRenderer 中的 [off('writeData')](#offwritedata12) 替代。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -7089,6 +7208,101 @@ off(type: 'writeData', callback?: Callback\<ArrayBuffer>): void
 audioRenderer.off('writeData', (data: ArrayBuffer) => {
     console.info(`write data: ${data}`);
 });
+```
+
+### on('writeData')<sup>12+</sup>
+
+on(type: 'writeData', callback: AudioRendererWriteDataCallback): void
+
+订阅监听音频数据写入回调，使用 callback 方式返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
+
+**参数：**
+
+| 参数名   | 类型                             | 必填 | 说明                                  |
+| :------- |:--------------------------------| :--- |:--------------------------------------|
+| type     | string                           | 是   | 事件回调类型，支持的事件为：'writeData'。 |
+| callback | [AudioRendererWriteDataCallback](#audiorendererwritedatacallback12)   | 是   | 回调函数，返回待写入的数据缓冲区。          |
+
+**错误码：**
+
+以下错误码的详细介绍请参见 [Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import {fileIo} from '@kit.CoreFileKit';
+
+let bufferSize: number = 0;
+class Options {
+  offset?: number;
+  length?: number;
+}
+
+let writeDataCallback = (buffer: ArrayBuffer): AudioDataCallbackResult => {
+  let path = getContext().cacheDir;
+  // 确保该路径下存在该资源
+  let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
+  let file: fileIo.File = fileIo.openSync(filePath, fileIo.OpenMode.READ_ONLY);
+  let options: Options = {
+    offset: bufferSize,
+    length: buffer.byteLength
+  };
+
+  try {
+    fileIo.readSync(file.fd, buffer, options);
+    bufferSize += buffer.byteLength;
+    return audio.AudioDataCallbackResult.VALID;
+  } catch (error) {
+    console.error('Error reading file:', error);
+    return audio.AudioDataCallbackResult.INVALID;
+  }
+};
+
+audioRenderer.on('writeData', writeDataCallback);
+audioRenderer.start().then(() => {
+  console.info('Renderer started');
+}).catch((err: BusinessError) => {
+  console.error(`ERROR: ${err}`);
+});
+```
+
+### off('writeData')<sup>12+</sup>
+
+off(type: 'writeData', callback?: AudioRendererWriteDataCallback): void
+
+取消订阅监听音频数据写入回调，使用 callback 方式返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
+
+**参数：**
+
+| 参数名   | 类型                             | 必填 | 说明                                  |
+| :------- |:--------------------------------| :--- |:--------------------------------------|
+| type     | string                           | 是   | 事件回调类型，支持的事件为：'writeData'。 |
+| callback | [AudioRendererWriteDataCallback](#audiorendererwritedatacallback12)   | 否   | 回调函数，返回待写入的数据缓冲区。          |
+
+**错误码：**
+
+以下错误码的详细介绍请参见 [Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
+
+**示例：**
+
+```ts
+// 确保writeDataCallback已经被注册
+audioRenderer.off('writeData', writeDataCallback);
 ```
 
 ## AudioCapturer<sup>8+</sup>

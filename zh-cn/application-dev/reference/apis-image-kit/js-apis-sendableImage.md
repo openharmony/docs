@@ -1618,7 +1618,7 @@ async function Demo() {
    for (let i = 0; i < bufferArr.length; i++) {
       bufferArr[i] = 0x80;
    }
-   let opts: sendableImage.InitializationOptions = {
+   let opts: image.InitializationOptions = {
       editable: true,
       pixelFormat: 4,
       size: { height: 4, width: 6 },

@@ -26,6 +26,7 @@ import appManager from '@ohos.app.ability.appManager';
 | bundleNames | Array&lt;string&gt; | 是 | 否 | 进程中所有运行的Bundle名称。 |
 | state<sup>10+</sup> | [appManager.ProcessState](js-apis-app-ability-appManager.md#processstate10)| 是 | 否 | 当前进程运行状态。|
 | bundleType<sup>12+</sup> | [bundleManager.BundleType](js-apis-bundleManager.md#bundletype) | 是 | 否 | 当前进程运行的包类型。 |
+| appCloneIndex          | number   | 是   | 否   | 分身应用索引。                  |
 
 ## 使用说明
 

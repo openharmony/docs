@@ -250,15 +250,15 @@ If the permission activation of some URIs fails, error code 13900001 will be ret
       let policies: Array<fileShare.PolicyInfo> = [policyInfo];
       fileShare.activatePermission(policies).then(() => {
         console.info("activatePermission successfully");
-      }).catch((err: BusinessError<Array<fileShare.PolicyErrorResult>>) => {
+      }).catch(async (err: BusinessError<Array<fileShare.PolicyErrorResult>>) => {
         console.info("activatePermission failed with error message: " + err.message + ", error code: " + err.code);
           if (err.code == 13900001 && err.data) {
             for (let i = 0; i < err.data.length; i++) {
               console.log("error code : " + JSON.stringify(err.data[i].code));
               console.log("error uri : " + JSON.stringify(err.data[i].uri));
               console.log("error reason : " + JSON.stringify(err.data[i].message));
-              if(err.data[i].code == fileshare.PolicyErrorCode.PERMISSION_NOT_PERSISTED){
-                await fileshare.persistPermission(policies);
+              if(err.data[i].code == fileShare.PolicyErrorCode.PERMISSION_NOT_PERSISTED){
+                await fileShare.persistPermission(policies);
               }
             }
           }
