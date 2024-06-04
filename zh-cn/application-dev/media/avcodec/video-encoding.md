@@ -212,7 +212,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_VIDEO_ENCODE_BITRATE_MODE, rateMode);
     OH_AVFormat_SetLongValue(format, OH_MD_KEY_BITRATE, bitRate);
     //只有当OH_MD_KEY_BITRATE = CQ时，才需要配置OH_MD_KEY_QUALITY
-    if(rateMode = static_cast<int32_t>(OH_VideoEncodeBitrateMode::CQ)){
+    if (rateMode == static_cast<int32_t>(OH_VideoEncodeBitrateMode::CQ)) {
         OH_AVFormat_SetIntValue(format, OH_MD_KEY_QUALITY, quality);
     }
     int32_t ret = OH_VideoEncoder_Configure(videoEnc, format);
@@ -223,7 +223,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     ```
 
     > **注意：**
-    > 配置错误后返回错误码。OH_VideoEncoder_Configure()不失败，继续执行。
+    > 配置非必须参数错误时，会返回AV_ERR_INVAILD_VAL错误码。但OH_VideoEncoder_Configure()不会失败，而是使用默认值继续执行。
     >
 
 6. 获取Surface。
