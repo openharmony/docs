@@ -322,10 +322,6 @@ drawRect(rect: common2D.Rect): void
 
 用于绘制一个矩形，默认使用黑色填充。
 
-> **说明：**
->
-> 矩形的左上角点的坐标值如果大于右下角的坐标值，可以绘制出矩形；如果左上角和右下角在同一x轴或者y轴，可以绘制出一条直线；如果左上角和右下角是同一点，不会绘制任何内容。
-
 **系统能力**：SystemCapability.Graphics.Drawing
 
 **参数：**
@@ -708,6 +704,47 @@ class DrawingRenderNode extends RenderNode {
     canvas.attachBrush(brush);
     canvas.drawTextBlob(textBlob, 20, 20);
     canvas.detachBrush();
+  }
+}
+```
+
+### drawRegion<sup>12+</sup>
+
+drawRegion(region: Region): void
+
+用于绘制一个区域。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**参数**
+
+| 参数名 | 类型                | 必填 | 说明        |
+| ------ | ------------------- | ---- | ----------- |
+| region   | [Region](#region12) | 是   | 绘制的区域  |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**示例**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+class DrawingRenderNode extends RenderNode {
+  draw(context : DrawContext) {
+    const canvas = context.canvas;
+    const pen = new drawing.Pen();
+    let region = new drawing.Region();
+    pen.setStrokeWidth(10);
+    pen.setColor({ alpha: 255, red: 255, green: 0, blue: 0 });
+    canvas.attachPen(pen);
+    region.setRect(100, 100, 400, 400);
+    canvas.drawRegion(region);
+    canvas.detachPen();
   }
 }
 ```
@@ -2067,6 +2104,47 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
+### createCornerPathEffect<sup>12+</sup>
+
+static createCornerPathEffect(radius: number): PathEffect
+
+用于创建将路径的夹角变成指定半径的圆角的路径效果对象。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名     | 类型           | 必填    | 说明                                               |
+| ---------- | ------------- | ------- | -------------------------------------------------- |
+| radius     | number        | 是      | 圆角的半径，必须大于0，该参数为浮点数。                |
+
+**返回值：**
+
+| 类型                      | 说明                   |
+| ------------------------- | --------------------- |
+| [PathEffect](#patheffect12) | 返回创建的路径效果对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed. |
+
+**示例：**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+import { drawing } from '@kit.ArkGraphics2D';
+class DrawingRenderNode extends RenderNode {
+  draw(context : DrawContext) {
+    const canvas = context.canvas;
+    let effect = drawing.PathEffect.createCornerPathEffect(30);
+  }
+}
+```
+
 ## ShadowLayer<sup>12+</sup>
 
 阴影层对象。
@@ -2855,3 +2933,342 @@ import { drawing } from '@kit.ArkGraphics2D';
 const brush = new drawing.Brush();
 brush.setBlendMode(drawing.BlendMode.SRC);
 ```
+
+## Region<sup>12+</sup>
+
+区域对象，用于描述所绘制图形的区域信息。
+
+### isPointContained<sup>12+</sup>
+
+isPointContained(x: number, y: number) : boolean
+
+用于判断测试点是否在区域内。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                    |
+| ------ | ------ | ---- | ----------------------- |
+| x      | number | 是   | 测试点的x轴坐标。该参数必须为整数。当输入的数字带小数时，小数部分会被舍去。 |
+| y      | number | 是   | 测试点的y轴坐标。该参数必须为整数。当输入的数字带小数时，小数部分会被舍去。 |
+
+**返回值：**
+
+| 类型    | 说明           |
+| ------- | -------------- |
+| boolean | 返回测试点是否在区域内的结果。true表示测试点在区域内，false表示测试点不在区域内。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+class DrawingRenderNode extends RenderNode {
+  draw(context : DrawContext) {
+    const canvas = context.canvas;
+    const pen = new drawing.Pen();
+    pen.setColor({ alpha: 255, red: 255, green: 0, blue: 0 });
+    pen.setStrokeWidth(10);
+    canvas.attachPen(pen);
+    let region = new drawing.Region();
+    region.setRect(100, 100, 400, 400);
+    let flag: boolean = false;
+    flag = region.isPointContained(200,200);
+    console.info("region isPointContained : " + flag);
+    canvas.drawPoint(200,200);
+    canvas.drawRegion(region);
+    canvas.detachPen();
+  }
+}
+```
+
+### isRegionContained<sup>12+</sup>
+
+isRegionContained(other: Region) : boolean
+
+用于判断其他区域是否在当前区域内。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                    |
+| ------ | ------ | ---- | ----------------------- |
+| other      | [Region](#region12) | 是   | 区域对象。 |
+
+**返回值：**
+
+| 类型    | 说明           |
+| ------- | -------------- |
+| boolean | 返回其他区域是否在当前区域内的结果。true表示其他区域在当前区域内，false表示其他区域不在当前区域内。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+class DrawingRenderNode extends RenderNode {
+  draw(context : DrawContext) {
+    const canvas = context.canvas;
+    const pen = new drawing.Pen();
+    pen.setColor({ alpha: 255, red: 255, green: 0, blue: 0 });
+    pen.setStrokeWidth(10);
+    canvas.attachPen(pen);
+    let region = new drawing.Region();
+    let other = new drawing.Region();
+    region.setRect(100, 100, 400, 400);
+    other.setRect(150, 150, 250 ,250);
+    let flag: boolean = false;
+    flag = region.isRegionContained(other);
+    console.info("region isRegionContained : " + flag);
+    canvas.drawRegion(region);
+    canvas.drawRegion(other);
+    canvas.detachPen();
+  }
+}
+```
+
+### op<sup>12+</sup>
+
+op(region: Region, regionOp: RegionOp) : boolean
+
+用于将当前区域与指定区域进行指定运算操作，并将当前区域替换为运算结果。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                    |
+| ------ | ------ | ---- | ----------------------- |
+| region      | [Region](#region12) | 是   | 区域对象。 |
+| regionOp      | [RegionOp](#regionop12) | 是   | 区域合并操作类型。 |
+
+**返回值：**
+
+| 类型    | 说明           |
+| ------- | -------------- |
+| boolean | 返回区域运算结果是否成功替换当前区域。true表示区域运算结果替换当前区域成功，false表示区域运算结果替换当前区域失败。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+class DrawingRenderNode extends RenderNode {
+  draw(context : DrawContext) {
+    const canvas = context.canvas;
+    const pen = new drawing.Pen();
+    pen.setColor({ alpha: 255, red: 255, green: 0, blue: 0 });
+    pen.setStrokeWidth(10);
+    canvas.attachPen(pen);
+    let region = new drawing.Region();
+    region.setRect(200, 200, 400, 400);
+    let othregion = new drawing.Region();
+    othregion.setRect(110, 110, 240, 240);
+    let flag: boolean = false;
+    flag = region.op(othregion,drawing.RegionOp.REPLACE);
+    console.info("region op : " + flag);
+    canvas.drawRegion(region);
+    canvas.detachPen();
+  }
+}
+```
+
+### quickReject<sup>12+</sup>
+
+quickReject(left: number, top: number, right: number, bottom: number) : boolean
+
+用于判断矩形和区域是否不相交。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                    |
+| ------ | ------ | ---- | ----------------------- |
+| left   | number | 是   | 矩形区域的左侧位置。该参数必须为整数。当输入的数字带小数时，小数部分会被舍去。 |
+| top    | number | 是   | 矩形区域的顶部位置。该参数必须为整数。当输入的数字带小数时，小数部分会被舍去。 |
+| right  | number | 是   | 矩形区域的右侧位置。该参数必须为整数。当输入的数字带小数时，小数部分会被舍去。 |
+| bottom | number | 是   | 矩形区域的底部位置。该参数必须为整数。当输入的数字带小数时，小数部分会被舍去。 |
+
+**返回值：**
+
+| 类型    | 说明           |
+| ------- | -------------- |
+| boolean | 返回矩形是否与区域不相交的结果。true表示矩形与区域不相交，false表示矩形与区域相交。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+class DrawingRenderNode extends RenderNode {
+  draw(context : DrawContext) {
+    const canvas = context.canvas;
+    const pen = new drawing.Pen();
+    pen.setColor({ alpha: 255, red: 255, green: 0, blue: 0 });
+    pen.setStrokeWidth(10);
+    canvas.attachPen(pen);
+    let region = new drawing.Region();
+    region.setRect(100, 100, 400, 400);
+    let flag: boolean = false;
+    flag = region.quickReject(50, 50, 70, 70);
+    console.info("region quickReject : " + flag);
+    canvas.drawRegion(region);
+    canvas.detachPen();
+  }
+}
+```
+
+### setPath<sup>12+</sup>
+
+setPath(path: Path, clip: Region) : boolean
+
+设置一个与裁剪区域内路径的轮廓相匹配的区域。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                    |
+| ------ | ------ | ---- | ----------------------- |
+| path      | [Path](#path) | 是   | 路径对象。 |
+| clip      | [Region](#region12) | 是   | 区域对象。 |
+
+**返回值：**
+
+| 类型    | 说明           |
+| ------- | -------------- |
+| boolean | 返回是否成功设置一个与裁剪区域内路径的轮廓相匹配的区域。true表示设置成功，false表示设置失败。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+class DrawingRenderNode extends RenderNode {
+  draw(context : DrawContext) {
+    const canvas = context.canvas;
+    const pen = new drawing.Pen();
+    pen.setColor({ alpha: 255, red: 255, green: 0, blue: 0 });
+    pen.setStrokeWidth(10);
+    canvas.attachPen(pen);
+    let region = new drawing.Region();
+    let path = new drawing.Path();
+    region.setRect(100, 100, 400, 400);
+    path.arcTo(50, 50, 300, 300, 0, 359);
+    let flag: boolean = false;
+    flag = region.setPath(path,region);
+    console.info("region setPath : " + flag);
+    canvas.drawRegion(region);
+    canvas.detachPen();
+  }
+}
+```
+
+### setRect<sup>12+</sup>
+
+setRect(left: number, top: number, right: number, bottom: number) : boolean
+
+设置一个矩形区域。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                    |
+| ------ | ------ | ---- | ----------------------- |
+| left   | number | 是   | 矩形区域的左侧位置。该参数必须为整数。当输入的数字带小数时，小数部分会被舍去。 |
+| top    | number | 是   | 矩形区域的顶部位置。该参数必须为整数。当输入的数字带小数时，小数部分会被舍去。 |
+| right  | number | 是   | 矩形区域的右侧位置。该参数必须为整数。当输入的数字带小数时，小数部分会被舍去。 |
+| bottom | number | 是   | 矩形区域的底部位置。该参数必须为整数。当输入的数字带小数时，小数部分会被舍去。 |
+
+**返回值：**
+
+| 类型    | 说明           |
+| ------- | -------------- |
+| boolean | 返回设置矩形区域是否成功的结果。true表示设置矩形区域成功，false表示设置矩形区域失败。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+class DrawingRenderNode extends RenderNode {
+  draw(context : DrawContext) {
+    const canvas = context.canvas;
+    const pen = new drawing.Pen();
+    pen.setColor({ alpha: 255, red: 255, green: 0, blue: 0 });
+    pen.setStrokeWidth(10);
+    canvas.attachPen(pen);
+    let region = new drawing.Region();
+    let flag: boolean = false;
+    flag = region.setRect(50, 50, 300, 300);
+    console.info("region setRect : " + flag);
+    canvas.drawRegion(region);
+    canvas.detachPen();
+  }
+}
+```
+
+## RegionOp<sup>12+</sup>
+
+两个区域合并时的操作的枚举。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+| 名称                   | 值   | 说明                           | 示意图   |
+| --------------------- | ---- | ------------------------------ | -------- |
+| DIFFERENCE         | 0    | 两个区域相减操作。  | ![CLEAR](./figures/zh-ch_image_RegionOp_Difference.png) |
+| INTERSECT          | 1    | 两个区域相交操作。 | ![INTERSECT](./figures/zh-ch_image_RegionOp_Intersect.png) |
+| UNION              | 2    | 两个区域联合操作。   | ![UNION](./figures/zh-ch_image_RegionOpe_Union.png) |
+| XOR                | 3    | 两个区域异或操作。   | ![XOR](./figures/zh-ch_image_RegionOp_Xor.png) |
+| REVERSE_DIFFERENCE | 4    | 两个区域反向相减操作。   | ![REVERSE_DIFFERENCE](./figures/zh-ch_image_RegionOp_Reverse_difference.png) |
+| REPLACE            | 5    | 两个区域替换操作。   | ![REPLACE](./figures/zh-ch_image_RegionOp_Replace.png) |
+
+> **说明：**
+>
+> 示意图展示的是以一个红色区域为基础，使用不同枚举值与另一个蓝色区域合并后获得的结果，其中绿色区域为最终得到的区域。
