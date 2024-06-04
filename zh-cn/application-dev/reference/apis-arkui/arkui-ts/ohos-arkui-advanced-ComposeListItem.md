@@ -190,10 +190,8 @@ struct ComposeListItemExample {
 ### 示例二：
 ```ts
 // 该示例主要演示该组件在基础功能上，对图片、文字进行自定义功能
-import { IconType, ComposeListItem } from '@kit.ArkUI';
-import promptAction from '@ohos.promptAction';
+import { IconType, ComposeListItem, promptAction, LengthMetrics } from '@kit.ArkUI';
 import { TextModifier, ImageModifier } from '@ohos.arkui.modifier';
-import { LengthMetrics } from '@ohos.arkui.node';
 
 @Entry
 @Component
