@@ -673,7 +673,28 @@ int main()
 
 可以看到，每触发一次，主线程都会执行一次回调函数。
 
-![代码运行效果](./figures/libuv-image-2.png)
+```
+0th:subThread triggered
+ohos async print
+1th:subThread triggered
+ohos async print
+2th:subThread triggered
+ohos async print
+3th:subThread triggered
+ohos async print
+4th:subThread triggered
+ohos async print
+5th:subThread triggered
+ohos async print
+6th:subThread triggered
+ohos async print
+7th:subThread triggered
+ohos async print
+8th:subThread triggered
+ohos async print
+9th:subThread triggered
+delete async
+```
 
 ### 线程池
 
@@ -702,7 +723,9 @@ after_work_cb：loop所在线程的要执行的回调函数。
 
 综上所述，开发者会发现这样一种现象：**同样的libuv接口在主线程上不生效，但在JS Worker线程中就没问题。这主要还是因为主线程上所有不通过触发fd来驱动的uv接口都不会得到及时的响应。**
 
-另外，在应用主线程中，所有的异步任务尽管最终都是通过libuv得到执行的。但是在当前系统中，[libuv的线程池已经对接到了FFRT中](https://gitee.com/openharmony/third_party_libuv/wikis/06-Wiki-%E6%8A%80%E6%9C%AF%E8%B5%84%E6%BA%90/%20libuv%E5%B7%A5%E4%BD%9C%E7%BA%BF%E7%A8%8B%E6%8E%A5%E5%85%A5FFRT%E6%96%B9%E6%A1%88%E5%88%86%E6%9E%90)，任何抛向libuv的异步任务都会在FFRT的线程中得到调度。应用主线程的回调函数也通过PostTask接口插入到eventhandler的队列上。这就意味着主线程上的异步任务完成后不再通过`uv_async_send`的方式触发主线程的回调。
+另外，在应用主线程中，所有的异步任务尽管最终都是通过libuv得到执行的。但是在当前系统中，[libuv的线程池已经对接到了FFRT中](https://gitee.com/openharmony/third_party_libuv/wikis/06-Wiki-%E6%8A%80%E6%9C%AF%E8%B5%84%E6%BA%90/%20libuv%E5%B7%A5%E4%BD%9C%E7%BA%BF%E7%A8%8B%E6%8E%A5%E5%85%A5FFRT%E6%96%B9%E6%A1%88%E5%88%86%E6%9E%90)，任何抛向libuv的异步任务都会在FFRT的线程中得到调度。应用主线程的回调函数也通过PostTask接口插入到eventhandler的队列上。这就意味着主线程上的异步任务完成后不再通过`uv_async_send`的方式触发主线程的回调。过程如下图:
+
+![libuv的异步线程池在OpenHarmony中的应用现状](./figures/libuv-ffrt.png)
 
 我们总结了五种类型的请求任务是直接可以按照正常用法在应用主循环中生效的：
 
