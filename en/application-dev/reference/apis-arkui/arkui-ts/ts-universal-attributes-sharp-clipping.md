@@ -36,7 +36,7 @@ Adds a mask of the specified shape to the component.
 
 | Name| Type                                                        | Mandatory| Description                            |
 | ------ | ------------------------------------------------------------ | ---- | -------------------------------- |
-| value  | [ProgressMask](#progressmask10)<sup>10+</sup> \| [CircleAttribute](ts-drawing-components-circle.md) \| [EllipseAttribute](ts-drawing-components-ellipse.md) \| [PathAttribute](ts-drawing-components-path.md) \| [RectAttribute](ts-drawing-components-rect.md) | Yes  | Mask of the specified shape to add to the component.|
+| value  | [CircleAttribute](ts-drawing-components-circle.md) \| [EllipseAttribute](ts-drawing-components-ellipse.md) \| [PathAttribute](ts-drawing-components-path.md) \| [RectAttribute](ts-drawing-components-rect.md) \| [ProgressMask](#progressmask10)<sup>10+</sup> | Yes  | Mask of the specified shape to add to the component.|
 
 ## ProgressMask<sup>10+</sup>
 
@@ -166,7 +166,7 @@ struct ProgressMaskExample {
           this.progressflag1 = !this.progressflag1
         }).width(200).height(50).margin(20)
 
-      // Restores the progress mask.
+      // Restore the progress mask.
       Button('click reset!')
         .onClick((event?: ClickEvent) => {
           this.value = 0;
@@ -179,4 +179,4 @@ struct ProgressMaskExample {
 }
 ```
 
-![progressMask](figures/progressMask.PNG)
+![progressMask](figures/progressMask.gif)
