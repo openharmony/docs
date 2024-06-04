@@ -2377,6 +2377,39 @@ audioVolumeManager.on('volumeChange', (volumeEvent: audio.VolumeEvent) => {
 });
 ```
 
+### off('volumeChange')<sup>12+</sup>
+
+off(type: 'volumeChange', callback: Callback\<VolumeEvent>): void
+
+取消监听系统音量变化事件，使用callback方式返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Volume
+
+**参数：**
+
+| 参数名   | 类型                                   | 必填 | 说明                                                         |
+| -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                 | 是   | 事件回调类型，支持的事件为：'volumeChange'。 |
+| callback | Callback<[VolumeEvent](#volumeevent9)> | 是   | 回调函数，返回变化后的音量信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
+
+**示例：**
+
+```ts
+audioVolumeManager.off('volumeChange', (volumeEvent: audio.VolumeEvent) => {
+  console.info('An event to release the audio volumeChange starts.');
+  console.info(`volumeChange release event: ${volumeEvent} `);
+});
+```
+
 ## AudioVolumeGroupManager<sup>9+</sup>
 
 管理音频组音量。在调用AudioVolumeGroupManager的接口前，需要先通过 [getVolumeGroupManager](#getvolumegroupmanager9) 创建实例。
