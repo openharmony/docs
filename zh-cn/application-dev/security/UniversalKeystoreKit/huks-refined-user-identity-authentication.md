@@ -12,7 +12,6 @@
    
    ```ts
    import { huks } from "@kit.UniversalKeystoreKit";
-   import { BusinessError} from "@kit.BasicServicesKit"
    /*
     * 确定密钥别名和封装密钥属性参数集
     */
@@ -20,12 +19,8 @@
    class throwObject {
        isThrow: boolean = false;
    }
-   class propertyType {
-       tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM;
-       value: huks.HuksKeyAlg | huks.HuksKeyPurpose | huks.HuksKeySize | huks.HuksCipherMode | huks.HuksKeyPadding
-           | huks.HuksUserAuthType | huks.HuksAuthAccessType | huks.HuksChallengeType = huks.HuksKeyAlg.HUKS_ALG_SM4
-   }
-   let properties: propertyType[] = [
+
+   let properties: Array<huks.HuksParam> = [
        {
            tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
            value: huks.HuksKeyAlg.HUKS_ALG_SM4,
@@ -62,7 +57,8 @@
            tag: huks.HuksTag.HUKS_TAG_KEY_AUTH_PURPOSE,
            value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT
        }
-   ]
+   ];
+
    let huksOptions: huks.HuksOptions = {
        properties: properties,
        inData: new Uint8Array(new Array())
@@ -94,7 +90,7 @@
            .then((data) => {
                console.info(`promise: generateKeyItem success, data = ${JSON.stringify(data)}`);
            })
-           .catch((error: BusinessError) => {
+           .catch((error) => {
                if (throwObject.isThrow) {
                    throw(error as Error);
                } else {
@@ -114,7 +110,6 @@
    
    ```ts
    import { huks } from "@kit.UniversalKeystoreKit";
-   import { BusinessError} from "@kit.BasicServicesKit"
    class HuksProperties {
        tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM;
        value: huks.HuksKeyAlg | huks.HuksKeySize | huks.HuksKeyPurpose | huks.HuksKeyPadding | huks.HuksCipherMode 
@@ -123,7 +118,6 @@
    /*
     * 确定密钥别名和封装密钥属性参数集
     */
-   let srcKeyAlias = 'sm4_key_fingerprint_access';
    let cipherInData = 'Hks_SM4_Cipher_Test_101010101010101010110_string'; // 明文数据
    let IV = '1234567890123456';
    let handle = 0;
@@ -194,7 +188,7 @@
                console.info(`promise: doInit success, data = ${JSON.stringify(data)}`);
                handle = data.handle as number;
            })
-           .catch((error: BusinessError) => {
+           .catch((error) => {
                if (throwObject.isThrow) {
                    throw (error as Error);
                } else {
@@ -230,7 +224,7 @@
                cipherText = data.outData as Uint8Array;
                console.info(`promise: doFinish success, data = ${JSON.stringify(data)}`);
            })
-           .catch((error: BusinessError) => {
+           .catch((error) => {
                if (throwObject.isThrow) {
                    throw (error as Error);
                } else {
@@ -243,7 +237,7 @@
    }
    async function testSm4Cipher() {
        /* 初始化密钥会话获取挑战值 */
-       await publicInitFunc(srcKeyAlias, encryptOptions);
+       await publicInitFunc(keyAlias, encryptOptions);
        /* 加密 */
        encryptOptions.inData = StringToUint8Array(cipherInData);
        await publicFinishFunc(handle, encryptOptions);
@@ -255,14 +249,9 @@
    ```ts
    import { huks } from "@kit.UniversalKeystoreKit";
    import userIAM_userAuth from '@ohos.userIAM.userAuth';
-   import { BusinessError} from "@kit.BasicServicesKit"
    /*
-    * 确定密钥别名和封装密钥属性参数集
+    * 确定封装密钥属性参数集
     */
-   let srcKeyAlias = 'sm4_key_fingerprint_access';
-   let cipherText = 'r56ywtTJUQC6JFJ2VV2kZw=='; // 加密时得到的密文数据, 业务需根据实际加密结果修改
-   let IV = '1234567890123456';
-   let handle: number;
    let finishOutData: Uint8Array; // 解密后的明文数据
    let fingerAuthToken: Uint8Array;
    let challenge: Uint8Array;
@@ -340,7 +329,7 @@
                handle = data.handle;
                challenge = data.challenge as Uint8Array;
            })
-           .catch((error: BusinessError) => {
+           .catch((error) => {
                if (throwObject.isThrow) {
                    throw(error as Error);
                } else {
@@ -353,8 +342,7 @@
    }
    function userIAMAuthFinger(huksChallenge: Uint8Array) {
        // 获取认证对象
-       let authTypeList:userIAM_userAuth.UserAuthType[]= new Array();
-       authTypeList[0] = authType;
+       let authTypeList:userIAM_userAuth.UserAuthType[]= [ authType ];
        const authParam:userIAM_userAuth.AuthParam = {
          challenge: huksChallenge,
          authType: authTypeList,
@@ -416,7 +404,7 @@
                finishOutData = data.outData as Uint8Array;
                console.info(`promise: doFinish success, data = ${JSON.stringify(data)}`);
            })
-           .catch((error: BusinessError) => {
+           .catch((error) => {
                if (throwObject.isThrow) {
                    throw(error as Error);
                } else {
@@ -429,7 +417,7 @@
    }
    async function testSm4Cipher() {
        /* 初始化密钥会话获取挑战值 */
-       await publicInitFunc(srcKeyAlias, decryptOptions);
+       await publicInitFunc(keyAlias, decryptOptions);
        /* 调用userIAM进行身份认证 */
        userIAMAuthFinger(challenge);
        /* 认证成功后进行解密, 需要传入Auth获取到的authToken值 */

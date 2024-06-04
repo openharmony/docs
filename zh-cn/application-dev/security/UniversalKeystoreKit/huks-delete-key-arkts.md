@@ -17,7 +17,6 @@
  * 以下以HKDF256密钥的Promise操作使用为例
  */
 import { huks } from "@kit.UniversalKeystoreKit";
-import { BusinessError} from "@kit.BasicServicesKit"
 /* 1.确定密钥别名 */
 let keyAlias = "test_Key";
 /* 2.构造空对象 */
@@ -52,7 +51,7 @@ async function publicDeleteKeyFunc(keyAlias:string, huksOptions:huks.HuksOptions
       .then ((data) => {
         console.info(`promise: deleteKeyItem key success, data = ${JSON.stringify(data)}`);
       })
-      .catch((error: BusinessError) => {
+      .catch((error) => {
         if (throwObject.isThrow) {
           throw(error as Error);
         } else {
