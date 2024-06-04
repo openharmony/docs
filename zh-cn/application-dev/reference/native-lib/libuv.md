@@ -43,6 +43,15 @@ OpenHarmony 还将长期通过Node-API来为开发者提供和主线程交互及
 在native层直接通过调用`napi_get_uv_event_loop`接口获取系统loop，调用libuv NDK接口实现相关功能。
 
 ```cpp
+#include "napi/native_api.h"
+#include "uv.h"
+#define LOG_DOMAIN 0X0202
+#define LOG_TAG "MyTag"
+#include <hilog/log.h>
+#include <thread>
+#include <sys/eventfd.h>
+#include <unistd.h>
+
 static void execute(uv_work_t *work) {
     OH_LOG_INFO(LOG_APP, "ohos in execute");
 }
@@ -65,6 +74,27 @@ static napi_value Add(napi_env env, napi_callback_info info)
     }
     return 0;
 }
+
+EXTERN_C_START
+static napi_value Init(napi_env env, napi_value exports){
+    napi_property_descriptor desc[] = {{"add", nullptr, Add, nullptr, nullptr, nullptr, napi_default, nullptr}};
+    napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0], desc));
+    return exports;
+EXTERN_C_END
+    
+static napi_module demoModule = {
+    .nm_version = 1,
+    .nm_flags = 0,
+    .nm_filename = nullptr,
+    .nm_register_func = Init,
+    .nm_modname = "entry",
+    .nm_priv = ((void *)0),
+    .reserved = {0},
+};
+
+extern "C" __attribute__((constructor)) void RegisterEntryModule(void){
+    napi_module_register(&demoModule);
+}
 ```
 
 **正确示例：**
@@ -72,6 +102,27 @@ static napi_value Add(napi_env env, napi_callback_info info)
 可通过`napi_create_async_work`、`napi_queue_async_work`搭配使用。
 
 ```cpp
+#include "napi/native_api.h"
+#include "uv.h"
+#define LOG_DOMAIN 0X0202
+#define LOG_TAG "MyTag"
+#include <hilog/log.h>
+#include <thread>
+#include <sys/eventfd.h>
+#include <unistd.h>
+uv_loop_t *loop;
+napi_value jsCb;
+int fd = -1;
+
+static void execute(uv_work_t *work) {
+    OH_LOG_INFO(LOG_APP, "ohos in execute");
+}
+
+static void complete(uv_work_t *work, int status) {
+    OH_LOG_INFO(LOG_APP, "ohos in complete"); 
+    delete work;
+}
+
 static napi_value Add(napi_env env, napi_callback_info info)
 {
     napi_value work_name;
@@ -79,7 +130,7 @@ static napi_value Add(napi_env env, napi_callback_info info)
     napi_create_string_utf8(env, "ohos", NAPI_AUTO_LENGTH, &work_name);
     /* 第四个参数是异步线程的work任务，第五个参数为主线程的回调 */
     napi_create_async_work(env, nullptr, work_name, [](napi_env env, void* data){
-        OH_LOG_INFO(LOG_APP, "ohos in execute, %{public}d\n");
+        OH_LOG_INFO(LOG_APP, "ohos in execute");
     }, [](napi_env env, napi_status status, void *data){
         /* 不关心具体实现 */
         napi_delete_async_work(env, (napi_async_work)data);
@@ -88,6 +139,27 @@ static napi_value Add(napi_env env, napi_callback_info info)
     /* 通过napi_queue_async_work触发异步任务执行 */
     napi_queue_async_work(env, work);
     return 0;
+}
+
+EXTERN_C_START
+static napi_value Init(napi_env env, napi_value exports){
+    napi_property_descriptor desc[] = {{"testClose", nullptr, TestClose, nullptr, nullptr, nullptr, napi_default, nullptr}};
+    napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0], desc));
+    return exports;
+EXTERN_C_END
+    
+static napi_module demoModule = {
+    .nm_version = 1,
+    .nm_flags = 0,
+    .nm_filename = nullptr,
+    .nm_register_func = Init,
+    .nm_modname = "entry",
+    .nm_priv = ((void *)0),
+    .reserved = {0},
+};
+
+extern "C" __attribute__((constructor)) void RegisterEntryModule(void){
+    napi_module_register(&demoModule);
 }
 ```
 
@@ -120,7 +192,7 @@ static napi_value TestClose(napi_env env, napi_callback_info info){
     size_t argc = 1;
     napi_value workBname;
     
-    napi_create_string_utf8(env, "test", NAPI_AUTO_LENGTH, &workBName);
+    napi_create_string_utf8(env, "test", NAPI_AUTO_LENGTH, &workBname);
     
     napi_get_cb_info(env, info, &argc, &jsCb, nullptr, nullptr);
     // 获取事件循环
@@ -215,7 +287,7 @@ static napi_value TestClose(napi_env env, napi_callback_info info){
     OH_LOG_INFO(LOG_APP, "fd is %{public}d\n",fd);
     uv_poll_t* poll_handle = new uv_poll_t;
     uv_poll_init(loop, poll_handle, fd);
-    uv_pool_start(poll_handle, UV_READABLE, poll_handler);
+    uv_poll_start(poll_handle, UV_READABLE, poll_handler);
 
     // 主动触发一次fd事件，让主线程执行一次uv_run
     uv_async_send(&loop->wq_async);
@@ -610,6 +682,8 @@ int uv_async_send(uv_async_t* handle)
 
 **提示1：** uv_async_t从调用`uv_async_init`开始后就一直处于活跃状态，除非用`uv_close`将其关闭。
 **提示2：** uv_async_t的执行顺序严格按照`uv_async_init`的顺序，而非通过`uv_async_send`的顺序来执行的。因此按照初始化的顺序来管理好时序问题是必要的。
+
+
 
 示例代码：
 
