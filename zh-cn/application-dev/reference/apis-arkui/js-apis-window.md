@@ -3541,7 +3541,7 @@ try {
 
 on(type: 'windowTitleButtonRectChange', callback: Callback&lt;TitleButtonRect&gt;): void
 
-开启标题栏上的最小化、最大化、关闭按钮矩形区域变化的监听。
+开启主窗口标题栏上的最小化、最大化、关闭按钮矩形区域变化的监听，仅2in1设备可用。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -3565,12 +3565,31 @@ on(type: 'windowTitleButtonRectChange', callback: Callback&lt;TitleButtonRect&gt
 **示例：**
 
 ```ts
-try {
-  windowClass.on('windowTitleButtonRectChange', (titleButtonRect) => {
-      console.info('Succeeded in enabling the listener for window title buttons area changes. Data: ' + JSON.stringify(titleButtonRect));
-  });
-} catch (exception) {
-  console.error(`Failed to enable the listener for window title buttons area changes. Cause code: ${exception.code}, message: ${exception.message}`);
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      windowClass = data;
+      try {
+        windowClass.on('windowTitleButtonRectChange', (titleButtonRect) => {
+          console.info('Succeeded in enabling the listener for window title buttons area changes. Data: ' + JSON.stringify(titleButtonRect));
+        });
+      } catch (exception) {
+        console.error(`Failed to enable the listener for window title buttons area changes. Cause code: ${exception.code}, message: ${exception.message}`);
+      }
+    });
+  }
 }
 ```
 
@@ -3578,7 +3597,7 @@ try {
 
 off(type: 'windowTitleButtonRectChange', callback?: Callback&lt;TitleButtonRect&gt;): void
 
-关闭标题栏上的最小化、最大化、关闭按钮矩形区域变化的监听。
+关闭主窗口标题栏上的最小化、最大化、关闭按钮矩形区域变化的监听，仅2in1设备可用。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -3602,20 +3621,39 @@ off(type: 'windowTitleButtonRectChange', callback?: Callback&lt;TitleButtonRect&
 **示例：**
 
 ```ts
-const callback = (titleButtonRect: window.TitleButtonRect) => {
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class EntryAbility extends UIAbility {
   // ...
-}
-try {
-  windowClass.on('windowTitleButtonRectChange', callback);
-} catch (exception) {
-  console.error('Failed to enable the listener for window title buttons area changes. Cause: ' + JSON.stringify(exception));
-}
-try {
-  windowClass.off('windowTitleButtonRectChange', callback);
-  // 如果通过on开启多个callback进行监听，同时关闭所有监听：
-  windowClass.off('windowTitleButtonRectChange');
-} catch (exception) {
-  console.error(`Failed to disable the listener for window title buttons area changes. Cause code: ${exception.code}, message: ${exception.message}`);
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      windowClass = data;
+      const callback = (titleButtonRect: window.TitleButtonRect) => {
+        // ...
+      }
+      try {
+        windowClass.on('windowTitleButtonRectChange', callback);
+      } catch (exception) {
+        console.error(`Failed to enable the listener for window title buttons area changes. Cause code: ${exception.code}, message: ${exception.message}`);
+      }
+      try {
+        windowClass.off('windowTitleButtonRectChange', callback);
+        // 如果通过on开启多个callback进行监听，同时关闭所有监听：
+        windowClass.off('windowTitleButtonRectChange');
+      } catch (exception) {
+        console.error(`Failed to disable the listener for window title buttons area changes. Cause code: ${exception.code}, message: ${exception.message}`);
+      }
+    });
+  }
 }
 ```
 
