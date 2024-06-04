@@ -12,6 +12,8 @@ accessibilityGroup(value: boolean)
 
 无障碍组。
 
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -27,6 +29,8 @@ accessibilityGroup(value: boolean)
 accessibilityText(value: string)
 
 无障碍文本。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
@@ -44,6 +48,8 @@ accessibilityDescription(value: string)
 
 无障碍说明。
 
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -60,6 +66,8 @@ accessibilityLevel(value: string)
 
 无障碍重要性。
 
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -75,6 +83,8 @@ accessibilityLevel(value: string)
 accessibilityVirtualNode(builder: CustomBuilder)
 
 无障碍虚拟节点。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
@@ -123,5 +133,4 @@ struct Index {
   }
 }
 ```
-
 
