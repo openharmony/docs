@@ -42,12 +42,13 @@
 
 当密钥废弃不用时，设备A、B均需要删除密钥，具体请参考[密钥删除](huks-delete-key-arkts.md)。
 
+
+下面分别以X25519 与 DH密钥为例，进行协商。
 ```ts
 /*
  *以下以X25519 256密钥的Promise操作使用为例
  */
  import { huks } from "@kit.UniversalKeystoreKit";
- import { BusinessError} from "@kit.BasicServicesKit"
  /*
   * 确定密钥别名和封装密钥属性参数集
   */
@@ -60,89 +61,72 @@
  let exportKeyFirst: Uint8Array;
  let exportKeySecond: Uint8Array;
  /* 集成生成密钥参数集 */
- let properties: Array<huks.HuksParam> = new Array();
- properties[0] = {
+ let properties: Array<huks.HuksParam> = [{
      tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
      value: huks.HuksKeyAlg.HUKS_ALG_X25519,
- }
- properties[1] = {
+ }, {
      tag: huks.HuksTag.HUKS_TAG_PURPOSE,
      value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_AGREE,
- }
- properties[2] = {
+ }, {
      tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
      value: huks.HuksKeySize.HUKS_CURVE25519_KEY_SIZE_256,
- }
- properties[3] = {
+ }, {
      tag: huks.HuksTag.HUKS_TAG_DIGEST,
      value: huks.HuksKeyDigest.HUKS_DIGEST_NONE,
- }
- properties[4] = {
+ }, {
      tag: huks.HuksTag.HUKS_TAG_PADDING,
      value: huks.HuksKeyPadding.HUKS_PADDING_NONE,
- }
- properties[5] = {
+ }, {
      tag: huks.HuksTag.HUKS_TAG_BLOCK_MODE,
      value: huks.HuksCipherMode.HUKS_MODE_CBC,
- }
- properties[6] = {
+ }, {
      tag: huks.HuksTag.HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG,
      value: huks.HuksKeyStorageType.HUKS_STORAGE_ONLY_USED_IN_HUKS,
- }
+ }];
  let HuksOptions: huks.HuksOptions = {
      properties: properties,
      inData: new Uint8Array(new Array())
  }
  /* 集成第一个协商参数集 */
- let finishProperties: Array<huks.HuksParam> = new Array();
- finishProperties[0] = {
+ let finishProperties: Array<huks.HuksParam> = [{
      tag: huks.HuksTag.HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG,
      value: huks.HuksKeyStorageType.HUKS_STORAGE_ONLY_USED_IN_HUKS,
- }
- finishProperties[1] = {
+ }, {
      tag: huks.HuksTag.HUKS_TAG_IS_KEY_ALIAS,
      value: true
- }
- finishProperties[2] = {
+ }, {
      tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
      value: huks.HuksKeyAlg.HUKS_ALG_AES,
- }
- finishProperties[3] = {
+ }, {
      tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
      value: huks.HuksKeySize.HUKS_AES_KEY_SIZE_256,
- }
- finishProperties[4] = {
+ }, {
      tag: huks.HuksTag.HUKS_TAG_PURPOSE,
      value:
      huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT |
      huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT,
- }
- finishProperties[5] = {
+ }, {
      tag: huks.HuksTag.HUKS_TAG_DIGEST,
      value: huks.HuksKeyDigest.HUKS_DIGEST_NONE,
- }
- finishProperties[6] = {
+ }, {
      tag: huks.HuksTag.HUKS_TAG_KEY_ALIAS,
      value: StringToUint8Array(srcKeyAliasFirst+ 'final'),
- }
- finishProperties[7] = {
+ }, {
      tag: huks.HuksTag.HUKS_TAG_PADDING,
      value: huks.HuksKeyPadding.HUKS_PADDING_NONE,
- }
- finishProperties[8] = {
+ }, {
      tag: huks.HuksTag.HUKS_TAG_BLOCK_MODE,
      value: huks.HuksCipherMode.HUKS_MODE_ECB,
- }
+ }];
  let finishOptionsFirst: huks.HuksOptions = {
      properties: finishProperties,
      inData: StringToUint8Array(agreeX25519InData)
  }
  /* 集成第二个协商参数集 */
- let finishPropertiesSecond = [...finishProperties]
- finishPropertiesSecond[6] = {
+ let finishPropertiesSecond = [...finishProperties, {
     tag: huks.HuksTag.HUKS_TAG_KEY_ALIAS,
     value: StringToUint8Array(srcKeyAliasSecond + 'final'),
- }
+ }];
  let finishOptionsSecond: huks.HuksOptions = {
      properties: finishPropertiesSecond,
      inData: StringToUint8Array(agreeX25519InData)
@@ -183,7 +167,7 @@
          .then((data) => {
              console.info(`promise: generateKeyItem success, data = ${JSON.stringify(data)}`);
          })
-         .catch((error: BusinessError) => {
+         .catch((error) => {
              if (throwObject.isThrow) {
                  throw(error as Error);
              } else {
@@ -221,7 +205,7 @@
              console.info(`promise: doInit success, data = ${JSON.stringify(data)}`);
              handle = data.handle;
          })
-         .catch((error: BusinessError) => {
+         .catch((error) => {
              if (throwObject.isThrow) {
                  throw(error as Error);
              } else {
@@ -258,7 +242,7 @@
          .then ((data) => {
              console.info(`promise: doUpdate success, data = ${JSON.stringify(data)}`);
          })
-         .catch((error: BusinessError) => {
+         .catch((error) => {
              if (throwObject.isThrow) {
                  throw(error as Error);
              } else {
@@ -296,7 +280,7 @@
              finishOutData = data.outData as Uint8Array;
              console.info(`promise: doFinish success, data = ${JSON.stringify(data)}`);
          })
-         .catch((error: BusinessError) => {
+         .catch((error) => {
              if (throwObject.isThrow) {
                  throw(error as Error);
              } else {
@@ -334,7 +318,7 @@
              console.info(`promise: exportKeyItem success, data = ${JSON.stringify(data)}`);
              exportKey = data.outData as Uint8Array;
          })
-         .catch((error: BusinessError) => {
+         .catch((error) => {
              if (throwObject.isThrow) {
                  throw(error as Error);
              } else {
@@ -371,7 +355,7 @@
          .then ((data) => {
             console.info(`promise: deleteKeyItem key success, data = ${JSON.stringify(data)}`);
          })
-         .catch((error :BusinessError) => {
+         .catch((error) => {
              if (throwObject.isThrow) {
                  throw(error as Error);
              } else {
@@ -391,7 +375,7 @@
      /* 4.设备A、B导出非对称密钥的公钥 */
      await publicExportKeyFunc(srcKeyAliasFirst, HuksOptions);
      exportKeyFirst = exportKey;
-     await publicExportKeyFunc(srcKeyAliasFirst, HuksOptions);
+     await publicExportKeyFunc(srcKeyAliasSecond, HuksOptions);
      exportKeySecond = exportKey;
      /* 5.对第一个密钥进行协商（三段式）*/
      await publicInitFunc(srcKeyAliasFirst, HuksOptions);
@@ -407,4 +391,160 @@
      await publicDeleteKeyFunc(srcKeyAliasFirst, HuksOptions);
      await publicDeleteKeyFunc(srcKeyAliasSecond, HuksOptions);
  }
+```
+
+下面以DH密钥协商为例
+
+```ts
+/*
+ *以下以 DH密钥的Promise操作使用为例
+ */
+import { huks } from '@kit.UniversalKeystoreKit'
+
+function StringToUint8Array(str: string) {
+  let arr: number[] = []
+  for (let i = 0, j = str.length; i < j; ++i) {
+    arr.push(str.charCodeAt(i))
+  }
+  return new Uint8Array(arr)
+}
+
+function Uint8ArrayToBigInt(arr: Uint8Array): bigint {
+  let i = 0
+  const byteMax: bigint = BigInt('0x100')
+  let result: bigint = BigInt('0')
+  while (i < arr.length) {
+    result = result * byteMax
+    result = result + BigInt(arr[i])
+    i += 1
+  }
+  return result
+}
+
+const dhAgree: Array<huks.HuksParam> = [{
+  tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
+  value: huks.HuksKeyAlg.HUKS_ALG_DH,
+}, {
+  tag: huks.HuksTag.HUKS_TAG_PURPOSE,
+  value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_AGREE,
+}]
+const dh2048Agree: Array<huks.HuksParam> = [
+  ...dhAgree, {
+  tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
+  value: huks.HuksKeySize.HUKS_DH_KEY_SIZE_2048,
+}]
+const dhGenOptions: huks.HuksOptions = {
+  properties: dh2048Agree,
+  inData: new Uint8Array([])
+}
+const emptyOptions: huks.HuksOptions = {
+  properties: [],
+  inData: new Uint8Array([])
+}
+
+async function HuksDhAgreeExportKey(keyAlias: string, peerPubKey: huks.HuksReturnResult): Promise<huks.HuksReturnResult> {
+  const initHandle = await huks.initSession(keyAlias, dhGenOptions)
+  const dhAgreeUpdateBobPubKey: huks.HuksOptions = {
+    properties: [
+      ...dh2048Agree, {
+      tag: huks.HuksTag.HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG,
+      value: huks.HuksKeyStorageType.HUKS_STORAGE_KEY_EXPORT_ALLOWED,
+    }],
+    inData: peerPubKey.outData
+  }
+  await huks.updateSession(initHandle.handle, dhAgreeUpdateBobPubKey)
+  return await huks.finishSession(initHandle.handle, emptyOptions)
+}
+
+async function HuksDhAgreeExportTest(
+  aliasA: string, aliasB: string,
+  pubKeyA: huks.HuksReturnResult, pubKeyB: huks.HuksReturnResult) {
+
+  const agreedKeyFromAlice = await HuksDhAgreeExportKey(aliasA, pubKeyB)
+  console.log(`ok! agreedKeyFromAlice export is 0x${Uint8ArrayToBigInt(agreedKeyFromAlice.outData).toString(16)}`)
+
+  const agreedKeyFromBob = await HuksDhAgreeExportKey(aliasB, pubKeyA)
+  console.log(`ok! agreedKeyFromBob export is 0x${Uint8ArrayToBigInt(agreedKeyFromBob.outData).toString(16)}`)
+}
+
+async function HuksDhAgreeInHuks(keyAlias: string, peerPubKey: huks.HuksReturnResult, aliasAgreedKey: string): Promise<huks.HuksReturnResult> {
+  const onlyUsedInHuks: Array<huks.HuksParam> = [{
+    tag: huks.HuksTag.HUKS_TAG_KEY_STORAGE_FLAG,
+    value: huks.HuksKeyStorageType.HUKS_STORAGE_ONLY_USED_IN_HUKS,
+  }, {
+    tag: huks.HuksTag.HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG,
+    value: huks.HuksKeyStorageType.HUKS_STORAGE_ONLY_USED_IN_HUKS,
+  }]
+  const dhAgreeInit: huks.HuksOptions = {
+    properties: [
+      ...dhAgree,
+      { tag: huks.HuksTag.HUKS_TAG_KEY_SIZE, value: huks.HuksKeySize.HUKS_AES_KEY_SIZE_256, },
+      ...onlyUsedInHuks],
+    inData: new Uint8Array([])
+  }
+  const dhAgreeFinishParams: Array<huks.HuksParam> = [
+    ...onlyUsedInHuks,
+    { tag: huks.HuksTag.HUKS_TAG_IS_KEY_ALIAS, value: true },
+    { tag: huks.HuksTag.HUKS_TAG_ALGORITHM, value: huks.HuksKeyAlg.HUKS_ALG_AES },
+    { tag: huks.HuksTag.HUKS_TAG_KEY_SIZE, value: huks.HuksKeySize.HUKS_AES_KEY_SIZE_256 },
+    {
+      tag: huks.HuksTag.HUKS_TAG_PURPOSE,
+      value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT | huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT
+    }]
+
+  const handle = await huks.initSession(keyAlias, dhAgreeInit)
+  const dhAgreeUpdatePubKey: huks.HuksOptions = {
+    properties: [...dhAgree, ...onlyUsedInHuks],
+    inData: peerPubKey.outData
+  }
+  await huks.updateSession(handle.handle, dhAgreeUpdatePubKey)
+  const dhAgreeAliceFinnish: huks.HuksOptions = {
+    properties: [...dhAgreeFinishParams, {
+      tag: huks.HuksTag.HUKS_TAG_KEY_ALIAS, value: StringToUint8Array(aliasAgreedKey)
+    }], inData: new Uint8Array([])
+  }
+  return await huks.finishSession(handle.handle, dhAgreeAliceFinnish)
+}
+
+async function HuksDhAgreeInHuksTest(
+  aliasA: string, aliasB: string,
+  pubKeyA: huks.HuksReturnResult, pubKeyB: huks.HuksReturnResult,
+  aliasAgreedKeyFromA: string, aliasAgreedKeyFromB: string) {
+
+  const finishAliceResult = await HuksDhAgreeInHuks(aliasA, pubKeyB, aliasAgreedKeyFromA)
+  console.log(`ok! finishAliceResult in huks is 0x${Uint8ArrayToBigInt(finishAliceResult.outData).toString(16)}`)
+  const aliceAgreedExist = await huks.isKeyItemExist(aliasAgreedKeyFromA, emptyOptions)
+  console.log(`ok! aliceAgreedExist in huks is ${aliceAgreedExist}`)
+
+  const finishBobResult = await HuksDhAgreeInHuks(aliasB, pubKeyA, aliasAgreedKeyFromB)
+  console.log(`ok! finishBobResult in huks is 0x${Uint8ArrayToBigInt(finishBobResult.outData).toString(16)}`)
+  const bobAgreedExist = await huks.isKeyItemExist(aliasAgreedKeyFromB, emptyOptions)
+  console.log(`ok! bobAgreedExist in huks is ${bobAgreedExist}`)
+
+  await huks.deleteKeyItem(aliasAgreedKeyFromA, emptyOptions)
+  await huks.deleteKeyItem(aliasAgreedKeyFromB, emptyOptions)
+}
+
+export default async function HuksDhAgreeTest() {
+  const aliasAlice = 'alice'
+  const aliasBob = 'bob'
+
+ /* 调用generateKeyItem生成别名为alice与bob的两个密钥 */
+  await huks.generateKeyItem(aliasAlice, dhGenOptions)
+  await huks.generateKeyItem(aliasBob, dhGenOptions)
+
+ /* 导出非对称密钥alice与bob的的公钥 */
+  const pubKeyAlice = await huks.exportKeyItem(aliasAlice, emptyOptions)
+  const pubKeyBob = await huks.exportKeyItem(aliasBob, emptyOptions)
+
+ /* 开始协商，协商生成的密钥返回给业务管理 */
+  await HuksDhAgreeExportTest(aliasAlice, aliasBob, pubKeyAlice, pubKeyBob)
+
+ /* 开始协商，协商生成的密钥由HUKS管理 */
+  await HuksDhAgreeInHuksTest(aliasAlice, aliasBob, pubKeyAlice, pubKeyBob, 'agreedKeyFromAlice', 'agreedKeyFromBob')
+
+  await huks.deleteKeyItem(aliasAlice, emptyOptions)
+  await huks.deleteKeyItem(aliasBob, emptyOptions)
+}
+
 ```
