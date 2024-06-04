@@ -349,7 +349,7 @@ struct ViewB {
 
 ![Observed_ObjectLink_nested_object](figures/Observed_ObjectLink_nested_object.gif)
 
-被@Observed装饰的ClassC类，可以观测到继承基类的属性的变化。
+被@Observed装饰的BookName类，可以观测到继承基类的属性的变化。
 
 
 ViewB中的事件句柄：
