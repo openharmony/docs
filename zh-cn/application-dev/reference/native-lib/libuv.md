@@ -424,11 +424,11 @@ napi_status napi_release_threadsafe_function(napi_threadsafe_function function);
 |   [loop概念及相关接口](#libuv中的事件循环)   |   uv_run   |
 |   [loop概念及相关接口](#libuv中的事件循环)   |    uv_loop_alive  |
 |   [loop概念及相关接口](#libuv中的事件循环)   |  uv_stop    |
-|   [Handle概念及相关接口](#libuv中的handles和requests)   |  uv_poll_\* |
-|   [Handle概念及相关接口](#libuv中的handles和requests)   |  uv_timer_\* |
-|   [Handle概念及相关接口](#libuv中的handles和requests)   |  uv_async_\* |
-|   [Handle概念及相关接口](#libuv中的handles和requests)   |   uv_signal_\*   |
-|   [Handle概念及相关接口](#libuv中的handles和requests)   |   uv_fs_\*  |
+|   [Handle概念及相关接口](#libuv中的handles和requests)   |  uv_poll\_\* |
+|   [Handle概念及相关接口](#libuv中的handles和requests)   |  uv_timer\_\* |
+|   [Handle概念及相关接口](#libuv中的handles和requests)   |  uv_async\_\* |
+|   [Handle概念及相关接口](#libuv中的handles和requests)   |   uv_signal\_\*   |
+|   [Handle概念及相关接口](#libuv中的handles和requests)   |   uv_fs\_\*  |
 |   [Request概念及相关接口](#libuv中的handles和requests)   |  uv_random    |
 |   [Request概念及相关接口](#libuv中的handles和requests)   |  uv_getaddrinfo    |
 |   [Request概念及相关接口](#libuv中的handles和requests)   |  uv_getnameinfo    |
