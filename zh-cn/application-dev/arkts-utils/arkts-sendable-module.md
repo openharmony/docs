@@ -50,7 +50,7 @@
 
     ```ts
     // 共享模块sharedModule.ets
-    import {testStr} from "./test"
+    import { testStr } from "./test"
     import { ArkTSUtils } from '@kit.ArkTS';
     
     "use shared"
@@ -102,9 +102,9 @@
 
     ```ts
     import taskpool from '@ohos.taskpool';
-    import { SingletonA, A } from './sendableTest'
+    import { SingletonA, A } from './sharedModule'
     
-    let sig = SingletonA.getInstance();
+    let sig: SingletonA = SingletonA.getInstance();
     
     @Concurrent
     async function test2(sig: SingletonA, a: A) {
