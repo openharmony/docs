@@ -134,7 +134,7 @@ static napi_value Add(napi_env env, napi_callback_info info)
 
 EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports){
-    napi_property_descriptor desc[] = {{"testClose", nullptr, TestClose, nullptr, nullptr, nullptr, napi_default, nullptr}};
+    napi_property_descriptor desc[] = {{"add", nullptr, Add, nullptr, nullptr, nullptr, napi_default, nullptr}};
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0], desc));
     return exports;
 EXTERN_C_END
@@ -160,7 +160,7 @@ extern "C" __attribute__((constructor)) void RegisterEntryModule(void){
 
 **错误示例：**
 
-我们以`uv_poll_start`接口举例，来说明在OpenHarmony中，我们像使用原生libuv一样调用`uv_pool_start`接口时无法生效的问题。
+我们以`uv_poll_start`接口举例，来说明在OpenHarmony中，我们像使用原生libuv一样调用`uv_poll_start`接口时无法生效的问题。
 
 ```cpp
 #include "napi/native_api.h"
@@ -215,6 +215,7 @@ static napi_value Init(napi_env env, napi_value exports){
     napi_property_descriptor desc[] = {{"testClose", nullptr, TestClose, nullptr, nullptr, nullptr, napi_default, nullptr}};
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0], desc));
     return exports;
+}
 EXTERN_C_END
     
 static napi_module demoModule = {
@@ -343,7 +344,7 @@ extern "C" __attribute__((constructor)) void RegisterEntryModule(void){
 // async_resource_name：可选的字符串，用于描述异步资源
 // execute：一个回调函数，它将在一个新的线程中执行异步操作
 // complete：一个回调函数，它将在异步操作完成后被调用
-// data：用户定义的数据，它将被传递给execute和complate回调函数
+// data：用户定义的数据，它将被传递给execute和complete回调函数
 // result：指向新创建的异步工作的指针
 napi_status napi_create_async_work(napi_env env,
                                   napi_value async_resource,
@@ -468,8 +469,6 @@ napi_status napi_release_threadsafe_function(napi_threadsafe_function function);
 
 #### 事件循环运行的三种方式
 
-事件循环运行的三种方式分别为**UV_RUN_DEFAULT**、**UV_RUN_ONCE**和**UV_RUN_NOWAIT**。
-
 `UV_RUN_DEFAULT`：默认轮询方式，该模式将会一直运行下去，直到loop中没有活跃的句柄和请求。
 
 `UV_RUN_ONCE`：一次轮询模式，如果pending_queue中有回调函数，则执行，然后跳过`uv__io_poll`函数。此模式默认认为loop中一定有事件发生。
@@ -549,7 +548,7 @@ int stop_loop(uv_loop_t* loop)
 
 handle表示一个持久性的对象，通常挂载到loop中对应的handle_queue队列上。如果handle处于活跃状态，每次`uv_run`都会处理handle中的回调函数。
 
-retuest表示一个短暂性的请求，一个request只触发一次回调操作。
+request表示一个短暂性的请求，一个request只触发一次回调操作。
 
 下面是OpenHarmony系统中最常用的几个Handles和Requests：
 
