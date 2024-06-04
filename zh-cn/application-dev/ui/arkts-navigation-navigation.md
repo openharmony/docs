@@ -435,7 +435,7 @@ Navigation作为路由容器，其生命周期承载在NavDestination组件上�
 - **onShown**：NavDestination组件布局显示之后执行，此时页面已完成布局。
 - **onWillHide**：NavDestination组件触发隐藏之前执行（应用切换到后台不会触发）。
 - **onHidden**：NavDestination组件触发隐藏后执行（非栈顶页面push进栈，栈顶页面pop出栈或应用切换到后台）。
-- **onWillAppear**：NavDestination组件即将销毁之前执行，如果有转场动画，会在动画前触发（栈顶页面pop出栈）。
+- **onWillDisappear**：NavDestination组件即将销毁之前执行，如果有转场动画，会在动画前触发（栈顶页面pop出栈）。
 - **onDisappear**：通用生命周期事件，NavDestination组件从组件树上卸载销毁时执行。
 - **aboutToDisappear**：自定义组件析构销毁之前执行，不允许在该方法中改变状态变量。
 
