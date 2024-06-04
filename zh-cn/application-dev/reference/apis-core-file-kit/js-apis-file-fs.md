@@ -921,7 +921,7 @@ onStatus(networkId: string, status: number): void;
 
 connectDfs(networkId: string, listeners: DfsListeners): Promise<void>
 
-业务调用connectDfs接口，传入networkId和listeners回调这两个参数，触发建链并将对端设备公共文档目录挂载到沙箱路径下，如哦对端设备出现异常，业务执行·回调DfsListeners内onStatus通知应用。
+业务调用connectDfs接口，传入networkId和listeners回调这两个参数，触发建链并将对端设备公共文档目录挂载到沙箱路径下，如果对端设备出现异常，业务执行回调DfsListeners内onStatus通知应用。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
