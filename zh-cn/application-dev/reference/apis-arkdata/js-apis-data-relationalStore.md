@@ -1,7 +1,7 @@
 # @ohos.data.relationalStore (关系型数据库)
 
-关系型数据库（Relational Database，RDB）是一种基于关系模型来管理数据的数据库。关系型数据库基于SQLite组件提供了一套完整的对本地数据库进行管理的机制，对外提供了一系列的增、删、改、查等接口，也可以直接运行用户输入的SQL语句来满足复杂的场景需要。不支持Worker线程。
-ArkTS侧支持的基本数据类型：number、string、二进制数据类型、boolean。为保证插入并读取数据成功，建议一条数据不要超过2M。超出该大小，插入成功，读取失败。
+关系型数据库（Relational Database，RDB）是一种基于关系模型来管理数据的数据库。关系型数据库基于SQLite组件提供了一套完整的对本地数据库进行管理的机制，对外提供了一系列的增、删、改、查等接口，也可以直接运行用户输入的SQL语句来满足复杂的场景需要。不支持Sendable跨线程传递。
+为保证插入并读取数据成功，建议一条数据不要超过2M。超出该大小，插入成功，读取失败。
 
 该模块提供以下关系型数据库相关的常用功能：
 
@@ -611,7 +611,7 @@ class EntryAbility extends UIAbility {
 
 ## ValuesBucket
 
-用于存储键值对的类型。该类型不是多线程安全的，如果应用中存在多线程同时操作该类派生出的实例，注意加锁保护。
+用于存储键值对的类型。不支持Sendable跨线程传递。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -845,7 +845,7 @@ class EntryAbility extends UIAbility {
 
 ## RdbPredicates
 
-表示关系型数据库（RDB）的谓词。该类确定RDB中条件表达式的值是true还是false。该类型不是多线程安全的，如果应用中存在多线程同时操作该类派生出的实例，注意加锁保护。
+表示关系型数据库（RDB）的谓词。该类确定RDB中条件表达式的值是true还是false。不支持Sendable跨线程传递。 
 
 ### constructor
 
