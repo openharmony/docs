@@ -159,6 +159,7 @@ OpenHarmony的Node-API组件对Node-API的接口进行了重新实现，底层�
 |FUNC|napi_remove_async_cleanup_hook|取消清理异步钩子函数。|11|
 |FUNC|node_api_get_module_file_name|用于获取加载项加载位置的绝对路径。|11|
 |FUNC|napi_add_finalizer|当js `Object`中的对象被垃圾回收时调用注册的napi_finalize回调。|11|
+|FUNC|napi_fatal_exception|向js抛出 `UncaughtException`。|12|
 
 ## 未从Node-API组件标准库中导出的符号列表
 
@@ -166,7 +167,6 @@ OpenHarmony的Node-API组件对Node-API的接口进行了重新实现，底层�
 | --- | --- | --- |
 |FUNC|napi_run_script|将给定对象作为js代码运行。|
 |FUNC|napi_adjust_external_memory|调整js `Object`持有的外部内存。|
-|FUNC|napi_fatal_exception|向js抛出 `UncaughtException`。|
 
 ## Node-API组件扩展的符号列表
 
