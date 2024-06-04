@@ -485,8 +485,8 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
         // 可通过format获取到变化后的视频宽、高、跨距等
         (void)codec;
         (void)userData;
-        OH_AVFormat_GetIntValue(format, OH_MD_KEY_WIDTH, width);
-        OH_AVFormat_GetIntValue(format, OH_MD_KEY_HEIGHT, height);
+        OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_PIC_WIDTH, width);
+        OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_PIC_HEIGHT, height);
         OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_STRIDE, widthStride);
         OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_SLICE_HEIGHT, heightStride);
         // 获取裁剪矩形信息可选
@@ -513,8 +513,8 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
         // 获取视频宽、高、跨距
         if (isFirstFrame) {
             OH_AVFormat *format = OH_VideoDecoder_GetOutputDescription(codec);
-            OH_AVFormat_GetIntValue(format, OH_MD_KEY_WIDTH, width);
-            OH_AVFormat_GetIntValue(format, OH_MD_KEY_HEIGHT, height);
+            OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_PIC_WIDTH, width);
+            OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_PIC_HEIGHT, height);
             OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_STRIDE, widthStride);
             OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_SLICE_HEIGHT, heightStride);
             // 获取裁剪矩形信息可选
