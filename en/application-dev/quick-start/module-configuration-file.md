@@ -48,6 +48,16 @@ This topic gives an overview of the **module.json5** configuration file. To star
         ]
       }
     ],
+    "definePermissions": [
+      {
+        "name": "ohos.abilitydemo.permission.PROVIDER",
+        "grantMode": "system_grant",
+        "availableLevel": "system_core",
+        "provisionEnable": true,
+        "distributedSceneEnable": false,
+        "label": "$string:EntryAbility_label"
+      }
+    ],
     "requestPermissions": [
       {
         "name": "ohos.abilitydemo.permission.PROVIDER",

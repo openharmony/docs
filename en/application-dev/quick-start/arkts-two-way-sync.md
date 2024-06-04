@@ -43,6 +43,8 @@ What the internal state is depends on the component. For example, for the [\<Tex
   | [BindSheet](../reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md) | isShow | 10          |
   | [BindContentCover](../reference/apis-arkui/arkui-ts/ts-universal-attributes-modal-transition.md) | isShow | 10          |
   | [Refresh](../reference/apis-arkui/arkui-ts/ts-container-refresh.md) | refreshing | 8 |
+  | [GridItem](../reference/apis-arkui/arkui-ts/ts-container-griditem.md) | selected | 10 |
+  | [ListItem](../reference/apis-arkui/arkui-ts/ts-container-listitem.md) | selected | 10 |
 
 - When the variable bound to $$ changes, the UI is re-rendered synchronously.
 

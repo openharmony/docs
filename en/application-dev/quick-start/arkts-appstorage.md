@@ -37,7 +37,7 @@ By decorating a variable with \@StorageProp(key), a one-way data synchronization
 | Decorator parameters             | **key**: constant string, mandatory (the string must be quoted)                 |
 | Allowed variable types     | Object, class, string, number, Boolean, enum, and array of these types. For details about the scenarios of nested objects, see [Observed Changes and Behavior](#observed-changes-and-behavior).<br>The type must be specified. Whenever possible, use the same type as that of the corresponding attribute in AppStorage. Otherwise, implicit type conversion occurs, which may cause application behavior exceptions. **any** is not supported. The **undefined** and **null** values are not allowed.|
 | Synchronization type               | One-way: from the attribute in AppStorage to the component variable.<br>The component variable can be changed locally, but an update from AppStorage will overwrite local changes.|
-| Initial value for the decorated variable     | Mandatory. It is used as the default value for initialization if the corresponding attribute does not exist in AppStorage.|
+| Initial value for the decorated variable     | Mandatory. If the attribute does not exist in AppStorage, it is initialized with this value and saved to AppStorage.|
 
 
 ### Variable Transfer/Access Rules
@@ -62,7 +62,7 @@ By decorating a variable with \@StorageProp(key), a one-way data synchronization
 
 - When the decorated variable is of the Boolean, string, or number type, its value change can be observed.
 
-- When the decorated variable is of the class or object type, its value change as well as value changes of all its attributes (the attributes that **Object.keys(observedObject)** returns) can be observed.
+- When the decorated variable is of the class or object type, its value change as well as value changes of all its attributes can be observed. For details, see [Example of Using AppStorage and LocalStorage Inside the UI](#example-of-using-appstorage-and-localstorage-inside-the-ui).
 
 - When the decorated variable is of the array type, the addition, deletion, and updates of array items can be observed.
 
@@ -95,7 +95,7 @@ By decorating a variable with \@StorageProp(key), a one-way data synchronization
 | Decorator parameters             | **key**: constant string, mandatory (the string must be quoted)                 |
 | Allowed variable types         | Object, class, string, number, Boolean, enum, and array of these types. For details about the scenarios of nested objects, see [Observed Changes and Behavior](#observed-changes-and-behavior-1).<br>The type must be specified. Whenever possible, use the same type as that of the corresponding attribute in AppStorage. Otherwise, implicit type conversion occurs, which may cause application behavior exceptions. **any** is not supported. The **undefined** and **null** values are not allowed.|
 | Synchronization type              | Two-way: from the attribute in AppStorage to the custom component variable and vice versa|
-| Initial value for the decorated variable         | Mandatory. It is used as the default value for initialization if the corresponding attribute does not exist in AppStorage.|
+| Initial value for the decorated variable         | Mandatory. If the attribute does not exist in AppStorage, it is initialized with this value and saved to AppStorage.|
 
 
 ### Variable Transfer/Access Rules
@@ -120,7 +120,7 @@ By decorating a variable with \@StorageProp(key), a one-way data synchronization
 
 - When the decorated variable is of the Boolean, string, or number type, its value change can be observed.
 
-- When the decorated variable is of the class or object type, its value change as well as value changes of all its attributes (the attributes that **Object.keys(observedObject)** returns) can be observed.
+- When the decorated variable is of the class or object type, its value change as well as value changes of all its attributes can be observed. For details, see [Example of Using AppStorage and LocalStorage Inside the UI](#example-of-using-appstorage-and-localstorage-inside-the-ui).
 
 - When the decorated variable is of the array type, the addition, deletion, and updates of array items can be observed.
 
@@ -174,26 +174,48 @@ prop.get() // == 49
 
 
 ```ts
+class PropB {
+  code: number;
+
+  constructor(code: number) {
+    this.code = code;
+  }
+}
+
 AppStorage.setOrCreate('PropA', 47);
+AppStorage.setOrCreate('PropB', new PropB(50));
 let storage = new LocalStorage();
 storage.setOrCreate('PropA', 48);
+storage.setOrCreate('PropB', new PropB(100));
 
 @Entry(storage)
 @Component
 struct CompA {
   @StorageLink('PropA') storageLink: number = 1;
   @LocalStorageLink('PropA') localStorageLink: number = 1;
+  @StorageLink('PropB') storageLinkObject: PropB = new PropB(1);
+  @LocalStorageLink('PropB') localStorageLinkObject: PropB = new PropB(1);
 
   build() {
     Column({ space: 20 }) {
       Text(`From AppStorage ${this.storageLink}`)
         .onClick(() => {
-          this.storageLink += 1
+          this.storageLink += 1;
         })
 
       Text(`From LocalStorage ${this.localStorageLink}`)
         .onClick(() => {
-          this.localStorageLink += 1
+          this.localStorageLink += 1;
+        })
+
+      Text(`From AppStorage ${this.storageLinkObject.code}`)
+        .onClick(() => {
+          this.storageLinkObject.code += 1;
+        })
+
+      Text(`From LocalStorage ${this.localStorageLinkObject.code}`)
+        .onClick(() => {
+          this.localStorageLinkObject.code += 1;
         })
     }
   }
@@ -440,7 +462,6 @@ struct Gallery2 {
 @Component
 export struct TapImage {
   @StorageLink('tapIndex') tapIndex: number = -1;
-  @State tapColor: Color = Color.Black;
   private index: number = 0;
   private uri: Resource = {
     id: 0,
@@ -472,7 +493,7 @@ export struct TapImage {
 
 When using AppStorage together with [PersistentStorage](arkts-persiststorage.md) and [Environment](arkts-environment.md), pay attention to the following:
 
-- After an attribute is created in AppStorage, a call to **PersistentStorage.persistProp()** uses the attribute value in AppStorage and overwrites any attribute with the same name in PersistentStorage. In light of this, the opposite order of calls is recommended. For an example of incorrect usage, see [Accessing Attribute in AppStorage Before PersistentStorage](arkts-persiststorage.md#accessing-attribute-in-appstorage-before-persistentstorage).
+- After an attribute is created in AppStorage, a call to **PersistentStorage.persistProp()** uses the attribute value in AppStorage and overwrites any attribute with the same name in PersistentStorage. In light of this, the opposite order of calls is recommended. For an example of incorrect usage, see [Accessing an Attribute in AppStorage Before PersistentStorage](arkts-persiststorage.md#accessing-an-attribute-in-appstorage-before-persistentstorage).
 
 - After an attribute is created in AppStorage, a call to **Environment.envProp()** with the same attribute name will fail. This is because environment variables will not be written into AppStorage. Therefore, you are advised not to use the preset environment variable names in AppStorage.
 

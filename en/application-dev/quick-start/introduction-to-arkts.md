@@ -853,7 +853,7 @@ class Person {
     // that name can be undefined. The most correct would be
     // to write the return type as "string | undefined". By doing so
     // we tell the users of our API about all possible return values.
-    return this.name
+    return this.name;
   }
 }
 
@@ -878,6 +878,7 @@ class Person {
     return this.name;
   }
 }
+  
 
 let jack = new Person();
 // Let's assume that the developer forgets to call setName:
@@ -889,9 +890,7 @@ And here how our code behaves if the field `name` can be `undefined`
 
 ```typescript
 class Person {
-  name?: string // The field may be undefined, great
-  // More explicit syntax may also be used:
-  // name: string | undefined = undefined
+  name?: string // The field may be undefined
 
   setName(n:string): void {
     this.name = n;
@@ -901,11 +900,11 @@ class Person {
   // name can be "undefined", so we cannot say to those who use this API
   // that it returns only strings:
   getNameWrong(): string {
-    return this.name
+    return this.name;
   }
 
   getName(): string | undefined { // Return type matches the type of name
-    return this.name
+    return this.name;
   }
 }
 
@@ -1067,12 +1066,12 @@ class RectangleSize {
 class FilledRectangle extends RectangleSize {
   color = ''
   constructor (h: number, w: number, c: string) {
-    super(h, w) // call of super constructor
-    this.color = c
+    super(h, w); // call of super constructor
+    this.color = c;
   }
 
   draw() {
-    super.draw() // call of super methods
+    super.draw(); // call of super methods
     // super.height - can be used here
     /* fill rectangle */
   }
@@ -1089,7 +1088,7 @@ class RectangleSize {
   // ...
   area(): number {
     // implementation
-    return 0
+    return 0;
   }
 }
 class Square extends RectangleSize {
@@ -1205,9 +1204,9 @@ class C {
     this.y = new_y // ok, as y is accessible within the class itself
   }
 }
-let c = new C()
-c.x = 'a' // ok, the field is public
-c.y = 'b' // compile-time error: 'y' is not visible
+let c = new C();
+c.x = 'a'; // ok, the field is public
+c.y = 'b'; // compile-time error: 'y' is not visible
 ```
 
 #### Protected Visibility
@@ -1354,7 +1353,9 @@ A property field is just a shortcut notation of a getter/setter pair, and the fo
 interface Style {
   color: string
 }
+```
 
+```typescript
 interface Style {
   get color(): string
   set color(x: string)
@@ -1373,8 +1374,6 @@ class StyledRectangle implements Style {
 }
 ```
 
-The short notation implicitly defines a private field and getter and setter:
-
 ```typescript
 interface Style {
   color: string
@@ -1382,8 +1381,8 @@ interface Style {
 
 class StyledRectangle implements Style {
   private _color: string = ''
-  get color(): string { return this._color }
-  set color(x: string) { this._color = x }
+  get color(): string { return this._color; }
+  set color(x: string) { this._color = x; }
 }
 ```
 
@@ -1422,16 +1421,16 @@ class CustomStack<Element> {
 To use type CustomStack, the type argument must be specified for each type parameter:
 
 ```typescript
-let s = new CustomStack<string>()
-s.push('hello')
+let s = new CustomStack<string>();
+s.push('hello');
 ```
 
 Compiler ensures type safety while working with generic types and functions.
 See below:
 
 ```typescript
-let s = new CustomStack<string>()
-s.push(55) /* That will be a compile-time error as 55 is not compatible
+let s = new CustomStack<string>();
+s.push(55); /* That will be a compile-time error as 55 is not compatible
   with type string */
 ```
 
@@ -1445,7 +1444,7 @@ interface Hashable {
 }
 class HasMap<Key extends Hashable, Value> {
   public set(k: Key, v: Value) {
-    let h = k.hash()
+    let h = k.hash();
     // ... other code ...
   }
 }
@@ -1459,7 +1458,7 @@ Use a generic function to create a more universal code. Consider a function that
 
 ```typescript
 function last(x: number[]): number {
-  return x[x.length - 1]
+  return x[x.length - 1];
 }
 last([1, 2, 3]); // output: 3
 ```
@@ -1468,7 +1467,7 @@ If the same function needs to be defined for any array, then define it as a gene
 
 ```typescript
 function last<T>(x: T[]): T {
-  return x[x.length - 1]
+  return x[x.length - 1];
 }
 ```
 
@@ -1502,9 +1501,9 @@ class Derived2 extends Base<SomeType> implements Interface<SomeType> { }
 function foo<T = number>(): T {
   // ...
 }
-foo()
+foo();
 // such function is semantically equivalent to the call below
-foo<number>()
+foo<number>();
 ```
 
 ## Null Safety
@@ -1515,17 +1514,17 @@ It is similar to TypeScript behavior in strict null checking mode (`strictNullCh
 In the example below, all lines cause a compile-time error:
 
 ```typescript
-let x: number = null    // Compile-time error
-let y: string = null    // Compile-time error
-let z: number[] = null  // Compile-time error
+let x: number = null;    // Compile-time error
+let y: string = null;    // Compile-time error
+let z: number[] = null;  // Compile-time error
 ```
 
 A variable that can have a null value is defined with a union type `T | null`.
 
 ```typescript
-let x: number | null = null
-x = 1    // ok
-x = null // ok
+let x: number | null = null;
+x = 1;    // ok
+x = null; // ok
 if (x != null) { /* do something */ }
 ```
 
@@ -1560,7 +1559,7 @@ class Person {
   // ...
   nick: string | null = null
   getNick(): string {
-    return this.nick ?? ''
+    return this.nick ?? '';
   }
 }
 ```
@@ -1575,16 +1574,16 @@ class Person {
   spouse?: Person
 
   setSpouse(spouse: Person): void {
-    this.spouse = spouse
+    this.spouse = spouse;
   }
 
   getSpouseNick(): string | null | undefined {
-    return this.spouse?.nick
+    return this.spouse?.nick;
   }
 
   constructor(nick: string) {
-    this.nick = nick
-    this.spouse = undefined
+    this.nick = nick;
+    this.spouse = undefined;
   }
 }
 ```
@@ -1603,13 +1602,13 @@ class Person {
   spouse?: Person
 
   constructor(nick: string) {
-    this.nick = nick
-    this.spouse = undefined
+    this.nick = nick;
+    this.spouse = undefined;
   }
 }
 
-let p: Person = new Person('Alice')
-p.spouse?.nick // undefined
+let p: Person = new Person('Alice');
+p.spouse?.nick; // undefined
 ```
 
 ## Modules
@@ -1633,17 +1632,19 @@ export class Point {
   x: number = 0
   y: number = 0
   constructor(x: number, y: number) {
-    this.x = x
-    this.y = y
+    this.x = x;
+    this.y = y;
   }
 }
-export let Origin = new Point(0, 0)
+export let Origin = new Point(0, 0);
 export function Distance(p1: Point, p2: Point): number {
-  return Math.sqrt((p2.x - p1.x) * (p2.x - p1.x) + (p2.y - p1.y) * (p2.y - p1.y))
+  return Math.sqrt((p2.x - p1.x) * (p2.x - p1.x) + (p2.y - p1.y) * (p2.y - p1.y));
 }
 ```
 
 ### Import
+
+#### Static Import
 
 Import declarations are used to import entities exported from other modules and provide their bindings in the current module.
 An import declaration consists of two parts:
@@ -1655,8 +1656,7 @@ Import bindings may have several forms.
 
 Let's assume a module has the path './utils' and export entities 'X' and 'Y'.
 
-An import binding of the form `* as A` binds the name 'A', and all entities exported from the module defined by the import path can be accessed by using
-the qualified name `A.name`:
+An import binding of the form `* as A` binds the name 'A', and all entities exported from the module defined by the import path can be accessed by using the qualified name `A.name`:
 
 ```typescript
 import * as Utils from './utils'
@@ -1680,6 +1680,43 @@ Z // denotes X from Utils
 Y // denotes Y from Utils
 X // Compile-time error: 'X' is not visible
 ```
+#### Dynamic Import
+Unlike static import, static import allows you to load a module conditionally or on demand.
+The **import() **syntax, commonly called dynamic import, is a function-like expression that allows for dynamic loading of a module. It returns a promise.
+In the following example, **import(modulePath)** loads the module and returns a promise that resolves into a module object that contains all its exports. This expression can be called from any place in the code.
+
+```typescript
+let modulePath = prompt("Which module to load?");
+import(modulePath)
+.then(obj => <module object>)
+.catch(err => <loading error, e.g. if no such module>)
+```
+
+You can also use **let module = await import(modulePath)** inside an async function.
+
+```typescript
+// say.ts
+export function hi() {
+  console.log('Hello');
+}
+export function bye() {
+  console.log('Bye');
+}
+```
+
+Then dynamic import can be like this:
+
+```typescript
+async function test() {
+  let ns = await import('./say');
+  let hi = ns.hi;
+  let bye = ns.bye;
+  hi();
+  bye();
+}
+```
+
+For more details about dynamic import, see [Dynamic Import](arkts-dynamic-import.md).
 
 ### Top-Level Statements
 
@@ -1695,7 +1732,7 @@ The `main` function must have either an empty parameter list or a single paramet
 
 ```typescript
 function main() {
-  console.log('this is the program entry')
+  console.log('this is the program entry');
 }
 ```
 

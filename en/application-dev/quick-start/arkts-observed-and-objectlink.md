@@ -6,7 +6,7 @@ The aforementioned decorators can observe only the changes of the first layer. H
 
 > **NOTE**
 >
-> Since API version 9, these two decorators are supported in ArkTS widgets.
+> These two decorators can be used in ArkTS widgets since API version 9.
 
 
 ## Overview
@@ -17,7 +17,7 @@ The aforementioned decorators can observe only the changes of the first layer. H
 
 - The \@ObjectLink decorated state variable in the child component is used to accept the instance of the \@Observed decorated class and establish two-way data binding with the corresponding state variable in the parent component. The instance can be an \@Observed decorated item in the array or an \@Observed decorated attribute in the class object.
 
-- Using \@Observed alone has no effect. It needs to be used with \@ObjectLink for two-way synchronization or with [\@Prop](arkts-prop.md) for one-way synchronization.
+- Using \@Observed alone has no effect in nested classes. To observe changes of class properties, it must be used with a custom component. (For examples, see [Nested Object](#nested-object)). To create a two-way or one-way synchronization, it must be used with \@ObjectLink or with \@Prop. (For examples, see [Differences Between \@Prop and \@ObjectLink](#differences-between-prop-and-objectlink).)
 
 
 ## Constraints
@@ -37,8 +37,7 @@ The aforementioned decorators can observe only the changes of the first layer. H
 | \@ObjectLink Decorator| Description                                      |
 | ----------------- | ---------------------------------------- |
 | Decorator parameters            | None.                                       |
-| Synchronization type             | No synchronization with the parent component.                        |
-| Allowed variable types        | Objects of \@Observed decorated classes. The type must be specified.<br>Simple type variables are not supported. Use [\@Prop](arkts-prop.md) instead.<br>Objects of classes that extend **Date**, **Array**, **Map**, and **Set** (the latter two are supported since API version 11). For an example, see [Observed Changes](#observed-changes).<br>(Applicable to API version 11 or later) Union type of @Observed decorated classes and **undefined** or **null**, for example, ClassA \| ClassB, ClassA \| undefined or ClassA \| null. For details, see [Union Type @ObjectLink](#union-type).<br>An \@ObjectLink decorated variable accepts changes to its attributes, but assignment is not allowed. In other words, an \@ObjectLink decorated variable is read-only and cannot be changed.|
+| Allowed variable types        | Objects of \@Observed decorated classes. The type must be specified.<br>Simple type variables are not supported. Use [\@Prop](arkts-prop.md) instead.<br>Objects of classes that extend **Date**, **Array**, **Map**, and **Set** (the latter two are supported since API version 11). For an example, see [Observed Changes](#observed-changes).<br>(Applicable to API version 11 or later) Union type of @Observed decorated classes and **undefined** or **null**, for example, ClassA \| ClassB, ClassA \| undefined or ClassA \| null. For details, see [Union Type @ObjectLink](#union-type-objectlink).<br>An \@ObjectLink decorated variable accepts changes to its attributes, but assignment is not allowed. In other words, an \@ObjectLink decorated variable is read-only and cannot be changed.|
 | Initial value for the decorated variable        | Not allowed.                                    |
 
 Example of a read-only \@ObjectLink decorated variable:
@@ -118,7 +117,7 @@ this.b.b = 5
 this.b.a.c = 5
 ```
 
-\@ObjectLink: \@ObjectLink can only accept instances of classes decorated by \@Observed. The following can be observed:
+\@ObjectLink: \@ObjectLink can only accept instances of classes decorated by \@Observed. When possible, design a separate custom component to render each array or object. In this case, an object array or nested object (which is an object whose property is an object) requires two custom components: one for rendering an external array/object, and the other for rendering a class object nested within the array/object. The following can be observed:
 
 - Value changes of the attributes that **Object.keys(observedObject)** returns. For details, see [Nested Object](#nested-object).
 
@@ -204,8 +203,6 @@ For a class that extends **Set**, the value changes of the **Set** instance can 
 
 ### Nested Object
 
-The following is the data structure of a nested class object.
-
 > **NOTE**
 >
 > **NextID** is used to generate a unique, persistent key for each array item during [ForEach rendering](./arkts-rendering-control-foreach.md), so as to identify the corresponding component.
@@ -216,71 +213,97 @@ The following is the data structure of a nested class object.
 let NextID: number = 1;
 
 @Observed
-class ClassA {
+class Bag {
   public id: number;
-  public c: number;
+  public size: number;
 
-  constructor(c: number) {
+  constructor(size: number) {
     this.id = NextID++;
-    this.c = c;
+    this.size = size;
   }
 }
 
 @Observed
-class ClassB {
-  public a: ClassA;
+class User {
+  public bag: Bag;
 
-  constructor(a: ClassA) {
-    this.a = a;
+  constructor(bag: Bag) {
+    this.bag = bag;
   }
 }
 
 @Observed
-class ClassD {
-  public c: ClassC;
+class Book {
+  public bookName: BookName;
 
-  constructor(c: ClassC) {
-    this.c = c;
+  constructor(bookName: BookName) {
+    this.bookName = bookName;
   }
 }
 
 @Observed
-class ClassC extends ClassA {
-  public k: number;
+class BookName extends Bag {
+  public nameSize: number;
 
-  constructor(k: number) {
-    // Invoke the parent class method to process k.
-    super(k);
-    this.k = k;
+  constructor(nameSize: number) {
+    // Invoke the parent class method to process nameSize.
+    super(nameSize);
+    this.nameSize = nameSize;
   }
 }
-```
 
+@Component
+struct ViewA {
+  label: string = 'ViewA';
+  @ObjectLink bag: Bag;
 
-  The following component hierarchy presents the data structure of a nested class object.
+  build() {
+    Column() {
+      Text(`ViewC [${this.label}] this.bag.size = ${this.bag.size}`)
+        .fontColor('#ffffffff')
+        .backgroundColor('#ff3d9dba')
+        .width(320)
+        .height(50)
+        .borderRadius(25)
+        .margin(10)
+        .textAlign(TextAlign.Center)
+      Button(`ViewA: this.bag.size add 1`)
+        .width(320)
+        .backgroundColor('#ff17a98d')
+        .margin(10)
+        .onClick(() => {
+          this.bag.size += 1;
+        })
+    }
+  }
+}
 
-```ts
 @Component
 struct ViewC {
   label: string = 'ViewC1';
-  @ObjectLink c: ClassC;
+  @ObjectLink bookName: BookName;
 
   build() {
     Row() {
       Column() {
-        Text(`ViewC [${this.label}] this.a.c = ${this.c.c}`)
+        Text(`ViewC [${this.label}] this.bookName.size = ${this.bookName.size}`)
           .fontColor('#ffffffff')
-          .backgroundColor('#ff3fc4c4')
+          .backgroundColor('#ff3d9dba')
+          .width(320)
           .height(50)
           .borderRadius(25)
-        Button(`ViewC: this.c.c add 1`)
-          .backgroundColor('#ff7fcf58')
+          .margin(10)
+          .textAlign(TextAlign.Center)
+        Button(`ViewC: this.bookName.size add 1`)
+          .width(320)
+          .backgroundColor('#ff17a98d')
+          .margin(10)
           .onClick(() => {
-            this.c.c += 1;
-            console.log('this.c.c:' + this.c.c)
+            this.bookName.size += 1;
+            console.log('this.bookName.size:' + this.bookName.size)
           })
       }
-      .width(300)
+      .width(320)
     }
   }
 }
@@ -288,23 +311,43 @@ struct ViewC {
 @Entry
 @Component
 struct ViewB {
-  @State b: ClassB = new ClassB(new ClassA(0));
-  @State child: ClassD = new ClassD(new ClassC(0));
+  @State user: User = new User(new Bag(0));
+  @State child: Book = new Book(new BookName(0));
 
   build() {
     Column() {
-      ViewC({ label: 'ViewC #3',
-        c: this.child.c })
-      Button(`ViewC: this.child.c.c add 10`)
-        .backgroundColor('#ff7fcf58')
+      ViewA({ label: 'ViewA #1', bag: this.user.bag })
+        .width(320)
+      ViewC({ label: 'ViewC #3', bookName: this.child.bookName })
+        .width(320)
+      Button(`ViewC: this.child.bookName.size add 10`)
+        .width(320)
+        .backgroundColor('#ff17a98d')
+        .margin(10)
         .onClick(() => {
-          this.child.c.c += 10
-          console.log('this.child.c.c:' + this.child.c.c)
+          this.child.bookName.size += 10
+          console.log('this.child.bookName.size:' + this.child.bookName.size)
+        })
+      Button(`ViewB: this.user.bag = new Bag(10)`)
+        .width(320)
+        .backgroundColor('#ff17a98d')
+        .margin(10)
+        .onClick(() => {
+          this.user.bag = new Bag(10);
+        })
+      Button(`ViewB: this.user = new User(new Bag(20))`)
+        .width(320)
+        .backgroundColor('#ff17a98d')
+        .margin(10)
+        .onClick(() => {
+          this.user = new User(new Bag(20));
         })
     }
   }
 }
 ```
+
+![Observed_ObjectLink_nested_object](figures/Observed_ObjectLink_nested_object.gif)
 
 The @Observed decorated **ClassC** class can observe changes in the attributes inherited from the base class.
 
@@ -312,17 +355,17 @@ The @Observed decorated **ClassC** class can observe changes in the attributes i
 Event handles in **ViewB**:
 
 
-- this.child.c = new ClassA(0) and this.b = new ClassB(new ClassA(0)): Change to the \@State decorated variable **b** and its attributes.
+- **this.user.bag = new Bag(10)** and **this.user = new User(new Bag(20))**: Change to the \@State decorated variable **b** and its attributes.
 
-- this.child.c.c = ...: Change at the second layer. Though \@State cannot observe changes at the second layer, the change of an attribute of \@Observed decorated ClassA, which is attribute **c** in this example, can be observed by \@ObjectLink.
+- **this.child.bookName.size += ...**: Change at the second layer. Though \@State cannot observe changes at the second layer, the change of an attribute of \@Observed decorated ClassA, which is attribute **c** in this example, can be observed by \@ObjectLink.
 
 
 Event handle in **ViewC**:
 
 
-- this.c.c += 1: A change to the \@ObjectLink decorated variable **a** causes the button label to be updated. Unlike \@Prop, \@ObjectLink does not have a copy of its source. Instead, \@ObjectLink creates a reference to its source.
+- **this.bookName.size += 1**: A change to the \@ObjectLink decorated variable **a** causes the button label to be updated. Unlike \@Prop, \@ObjectLink does not have a copy of its source. Instead, \@ObjectLink creates a reference to its source.
 
-- The \@ObjectLink decorated variable is read-only. Assigning **this.a = new ClassA(...)** is not allowed. Once value assignment occurs, the reference to the data source is reset and the synchronization is interrupted.
+- The \@ObjectLink decorated variable is read-only. Assigning **this.bookName = new bookName(...)** is not allowed. Once value assignment occurs, the reference to the data source is reset and the synchronization is interrupted.
 
 
 ### Object Array
@@ -353,6 +396,8 @@ struct ViewA {
   build() {
     Row() {
       Button(`ViewA [${this.label}] this.a.c = ${this.a ? this.a.c : "undefined"}`)
+        .width(320)
+        .margin(10)
         .onClick(() => {
           this.a.c += 1;
         })
@@ -379,14 +424,20 @@ struct ViewB {
       ViewA({ label: `ViewA this.arrA[last]`, a: this.arrA[this.arrA.length-1] })
 
       Button(`ViewB: reset array`)
+        .width(320)
+        .margin(10)
         .onClick(() => {
           this.arrA = [new ClassA(0), new ClassA(0)];
         })
       Button(`ViewB: push`)
+        .width(320)
+        .margin(10)
         .onClick(() => {
           this.arrA.push(new ClassA(0))
         })
       Button(`ViewB: shift`)
+        .width(320)
+        .margin(10)
         .onClick(() => {
           if (this.arrA.length > 0) {
             this.arrA.shift()
@@ -395,10 +446,14 @@ struct ViewB {
           }
         })
       Button(`ViewB: chg item property in middle`)
+        .width(320)
+        .margin(10)
         .onClick(() => {
           this.arrA[Math.floor(this.arrA.length / 2)].c = 10;
         })
       Button(`ViewB: chg item property in middle`)
+        .width(320)
+        .margin(10)
         .onClick(() => {
           this.arrA[Math.floor(this.arrA.length / 2)] = new ClassA(11);
         })
@@ -406,6 +461,8 @@ struct ViewB {
   }
 }
 ```
+
+![Observed_ObjectLink_object_array](figures/Observed_ObjectLink_object_array.gif)
 
 - this.arrA[Math.floor(this.arrA.length/2)] = new ClassA(..): The change of this state variable triggers two updates.
   1. ForEach: The value assignment of the array item causes the change of [itemGenerator](arkts-rendering-control-foreach.md#available-apis) of **ForEach**. Therefore, the array item is identified as changed, and the item builder of **ForEach** is executed to create a **ViewA** component instance.
@@ -485,7 +542,7 @@ struct IndexPage {
         .onClick(() => {
           console.error('Update all items in arr');
           if ((this.arr[0] as Array<String>)[0] !== undefined) {
-            // We should have a real ID to use with ForEach, but we do no.
+            // We should have a real ID to use with ForEach, but we do not.
             // Therefore, we need to make sure the pushed strings are unique.
             this.arr[0].push(`${this.arr[0].slice(-1).pop()}${this.arr[0].slice(-1).pop()}`);
             this.arr[1].push(`${this.arr[1].slice(-1).pop()}${this.arr[1].slice(-1).pop()}`);
@@ -500,6 +557,8 @@ struct IndexPage {
   }
 }
 ```
+
+![Observed_ObjectLink_2D_array](figures/Observed_ObjectLink_2D_array.gif)
 
 ### Extended Map Class
 
@@ -563,18 +622,30 @@ struct MapSampleNestedChild {
           Divider()
         })
 
-        Button('set new one').onClick(() => {
-          this.myMap.set(4, "d")
-        })
-        Button('clear').onClick(() => {
-          this.myMap.clear()
-        })
-        Button('replace the first one').onClick(() => {
-          this.myMap.set(0, "aa")
-        })
-        Button('delete the first one').onClick(() => {
-          this.myMap.delete(0)
-        })
+        Button('set new one')
+          .width(200)
+          .margin(10)
+          .onClick(() => {
+            this.myMap.set(4, "d")
+          })
+        Button('clear')
+          .width(200)
+          .margin(10)
+          .onClick(() => {
+            this.myMap.clear()
+          })
+        Button('replace the first one')
+          .width(200)
+          .margin(10)
+          .onClick(() => {
+            this.myMap.set(0, "aa")
+          })
+        Button('delete the first one')
+          .width(200)
+          .margin(10)
+          .onClick(() => {
+            this.myMap.delete(0)
+          })
       }
       .width('100%')
     }
@@ -582,6 +653,8 @@ struct MapSampleNestedChild {
   }
 }
 ```
+
+![Observed_ObjectLink_inherit_map](figures/Observed_ObjectLink_inherit_map.gif)
 
 ### Extended Set Class
 
@@ -643,15 +716,24 @@ struct SetSampleNestedChild {
           Text(`${item}`).fontSize(30)
           Divider()
         })
-        Button('set new one').onClick(() => {
-          this.mySet.add(5)
-        })
-        Button('clear').onClick(() => {
-          this.mySet.clear()
-        })
-        Button('delete the first one').onClick(() => {
-          this.mySet.delete(0)
-        })
+        Button('set new one')
+          .width(200)
+          .margin(10)
+          .onClick(() => {
+            this.mySet.add(5)
+          })
+        Button('clear')
+          .width(200)
+          .margin(10)
+          .onClick(() => {
+            this.mySet.clear()
+          })
+        Button('delete the first one')
+          .width(200)
+          .margin(10)
+          .onClick(() => {
+            this.mySet.delete(0)
+          })
       }
       .width('100%')
     }
@@ -660,7 +742,9 @@ struct SetSampleNestedChild {
 }
 ```
 
-## Union Type
+![Observed_ObjectLink_inherit_set](figures/Observed_ObjectLink_inherit_set.gif)
+
+## Union Type @ObjectLink
 
 @ObjectLink supports union types of @Observed decorated classes and **undefined** or **null**. In the following example, the type of **count** is ClassA | ClassB | undefined. If the attribute or type of **count** is changed when the button in the parent component **Page2** is clicked, the change will be synchronized to the child component.
 
@@ -740,6 +824,8 @@ struct Child {
   }
 }
 ```
+
+![ObjectLink-support-union-types](figures/ObjectLink-support-union-types.gif)
 
 ## FAQs
 
@@ -845,7 +931,7 @@ struct Parent {
 
 If you find your application UI not updating after an attribute in a nested object is changed, you may want to check the decorators in use.
 
-Each decorator has its scope of observable changes, and only those observed changes can cause the UI to update. The \@Observed decorator can observe the attribute changes of nested objects, while other decorators can observe only the changes at the second layer.
+Each decorator has its scope of observable changes, and only those observed changes can cause the UI to update. The \@Observed decorator can observe the attribute changes of nested objects, while other decorators can observe only the changes at the first layer.
 
 [Nonexample]
 
@@ -1561,7 +1647,9 @@ The following figure shows the copy relationship.
 
 ### Member Variable Changes in the @Observed Decorated Class Constructor Not Taking Effect
 
-In state management, @Observed decorated classes are wrapped with a proxy. When a member variable of a class is changed in a component, the proxy intercepts the change. When the value in the data source is changed, the proxy notifies the bound component of the change. In this way, the change can be observed and trigger UI re-rendering. If the value change of a member variable occurs in the class constructor, the change does not pass through the proxy (because the change occurs in the data source). Therefore, even if the change is successful with a timer in the class constructor, the UI cannot be re-rendered.
+In state management, @Observed decorated classes are wrapped with a proxy. When a member variable of a class is changed in a component, the proxy intercepts the change. When the value in the data source is changed, the proxy notifies the bound component of the change. In this way, the change can be observed and trigger UI re-rendering.
+
+If the value change of a member variable occurs in the class constructor, the change does not pass through the proxy (because the change occurs in the data source). Therefore, even if the change is successful with a timer in the class constructor, the UI cannot be re-rendered.
 
 [Nonexample]
 
@@ -1652,66 +1740,3 @@ struct Index {
 In the preceding example, the timer is moved to the component. In this case, the page content changes from "Render Class Change waitToRender is false" to "Render Class Change waitToRender is true" when the timer is triggered.
 
 In sum, it is recommended that you change the class members decorated by @Observed in components to implement UI re-rendering.
-
-### Using the static Method for Initialization in an @Observed Decorated Class
-
-In an @Observed decorated class, avoid using the static method for initialization, because it will cause the @Observed implementation to be bypassed, as a result of which, the class object cannot be wrapped in a proxy and the UI is not re-rendered.
-
-```ts
-@Entry
-@Component
-struct MainPage {
-  @State viewModel: ViewModel = ViewModel.build();
-
-  build() {
-    Column() {
-      Button("Click")
-        .onClick((event) => {
-          this.viewModel.subViewModel.isShow = !this.viewModel.subViewModel.isShow;
-        })
-      SubComponent({ viewModel: this.viewModel.subViewModel })
-    }
-    .padding({ top: 60 })
-    .width('100%')
-    .alignItems(HorizontalAlign.Center)
-  }
-}
-
-@Component
-struct SubComponent {
-  @ObjectLink viewModel: SubViewModel;
-
-  build() {
-    Column() {
-      if (this.viewModel.isShow) {
-        Text("click to take effect");
-      }
-    }
-  }
-}
-
-class ViewModel {
-  subViewModel: SubViewModel = SubViewModel.build(); // Create a static method.
-
-  static build() {
-    console.log("ViewModel build()")
-    return new ViewModel();
-  }
-}
-
-@Observed
-class SubViewModel {
-  isShow?: boolean = false;
-
-  static build() {
-    // Only the static method in SubViewModel can be used to create objects, which affects linkage.
-    console.log("SubViewModel build()")
-    let viewModel = new SubViewModel();
-    return viewModel;
-  }
-}
-```
-
-In the preceding example, the static method is used for initialization in the custom component **ViewModel**. In this case, when you click **Click**, **click to take effect** is not displayed on the page.
-
-In conclusion, avoid using the static method for initialization in an @Observed decorated class.
