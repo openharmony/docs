@@ -969,6 +969,10 @@
   - Location Kit（位置服务）
     - [Location Kit简介](device/location/location-kit-intro.md)
     - [Location Kit开发指南](device/location/location-guidelines.md)
+  - MDM Kit（企业设备管理服务）
+    - [MDM Kit简介](mdm-kit-intro.md)
+    - [MDM Kit开发指南](mdm-kit-guide.md)
+    - [EnterpriseAdminExtensionAbility开发指南](mdm-kit-admin.md)
   - Media Kit（媒体服务）
     - [Media Kit简介](media/media/media-kit-intro.md)
     - 音频播放和录制
@@ -3085,7 +3089,6 @@
       - [位置服务错误码](reference/apis-location-kit/errorcode-geoLocationManager.md)
   - MDM Kit API参考
     - ArkTS API
-      - [企业设备管理概述 ](reference/apis-mdm-kit/enterpriseDeviceManagement-overview.md)
       - [@ohos.enterprise.accountManager（帐户管理）](reference/apis-mdm-kit/js-apis-enterprise-accountManager.md)
       - [@ohos.enterprise.adminManager (企业设备管理)](reference/apis-mdm-kit/js-apis-enterprise-adminManager.md)
       - [@ohos.enterprise.applicationManager（应用管理）](reference/apis-mdm-kit/js-apis-enterprise-applicationManager.md)
