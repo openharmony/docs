@@ -7259,10 +7259,10 @@ let writeDataCallback = (buffer: ArrayBuffer): AudioDataCallbackResult => {
   try {
     fileIo.readSync(file.fd, buffer, options);
     bufferSize += buffer.byteLength;
-    return AudioDataCallbackResult.VALID;
+    return audio.AudioDataCallbackResult.VALID;
   } catch (error) {
     console.error('Error reading file:', error);
-    return AudioDataCallbackResult.INVALID;
+    return audio.AudioDataCallbackResult.INVALID;
   }
 };
 
