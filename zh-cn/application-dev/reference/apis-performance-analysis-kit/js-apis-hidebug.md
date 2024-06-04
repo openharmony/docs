@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```ts
-import hidebug from '@ohos.hidebug';
+import { hidebug } from '@kit.PerformanceAnalysisKit';
 ```
 
 ## hidebug.getNativeHeapSize
@@ -28,9 +28,11 @@ getNativeHeapSize(): bigint
 
 **示例：**
 
-  ```ts
-  let nativeHeapSize: bigint = hidebug.getNativeHeapSize();
-  ```
+```ts
+import { hidebug } from '@kit.PerformanceAnalysisKit';
+
+let nativeHeapSize: bigint = hidebug.getNativeHeapSize();
+```
 
 ## hidebug.getNativeHeapAllocatedSize
 
@@ -48,9 +50,11 @@ getNativeHeapAllocatedSize(): bigint
 
 
 **示例：**
-  ```ts
-  let nativeHeapAllocatedSize: bigint = hidebug.getNativeHeapAllocatedSize();
-  ```
+```ts
+import { hidebug } from '@kit.PerformanceAnalysisKit';
+
+let nativeHeapAllocatedSize: bigint = hidebug.getNativeHeapAllocatedSize();
+```
 
 ## hidebug.getNativeHeapFreeSize
 
@@ -67,9 +71,11 @@ getNativeHeapFreeSize(): bigint
 | bigint | 返回内存分配器持有的缓存内存大小，单位为Byte。 |
 
 **示例：**
-  ```ts
-  let nativeHeapFreeSize: bigint = hidebug.getNativeHeapFreeSize();
-  ```
+```ts
+import { hidebug } from '@kit.PerformanceAnalysisKit';
+
+let nativeHeapFreeSize: bigint = hidebug.getNativeHeapFreeSize();
+```
 
 ## hidebug.getPss
 
@@ -86,9 +92,11 @@ getPss(): bigint
 | bigint | 返回应用进程实际使用的物理内存大小，单位为kB。 |
 
 **示例：**
-  ```ts
-  let pss: bigint = hidebug.getPss();
-  ```
+```ts
+import { hidebug } from '@kit.PerformanceAnalysisKit';
+
+let pss: bigint = hidebug.getPss();
+```
 
 ## hidebug.getVss<sup>11+<sup>
 
@@ -106,9 +114,11 @@ getVss(): bigint
 
 **示例：**
 
-  ```ts
+```ts
+import { hidebug } from '@kit.PerformanceAnalysisKit';
+
 let vss: bigint = hidebug.getVss();
-  ```
+```
 
 ## hidebug.getSharedDirty
 
@@ -126,9 +136,11 @@ getSharedDirty(): bigint
 
 
 **示例：**
-  ```ts
-  let sharedDirty: bigint = hidebug.getSharedDirty();
-  ```
+```ts
+import { hidebug } from '@kit.PerformanceAnalysisKit';
+
+let sharedDirty: bigint = hidebug.getSharedDirty();
+```
 
 ## hidebug.getPrivateDirty<sup>9+<sup>
 
@@ -145,9 +157,11 @@ getPrivateDirty(): bigint
 | bigint | 返回进程的私有脏内存大小，单位为kB。 |
 
 **示例：**
-  ```ts
-  let privateDirty: bigint = hidebug.getPrivateDirty();
-  ```
+```ts
+import { hidebug } from '@kit.PerformanceAnalysisKit';
+
+let privateDirty: bigint = hidebug.getPrivateDirty();
+```
 
 ## hidebug.getCpuUsage<sup>9+<sup>
 
@@ -167,9 +181,11 @@ getCpuUsage(): number
 
 
 **示例：**
-  ```ts
-  let cpuUsage: number = hidebug.getCpuUsage();
-  ```
+```ts
+import { hidebug } from '@kit.PerformanceAnalysisKit';
+
+let cpuUsage: number = hidebug.getCpuUsage();
+```
 
 ## hidebug.getServiceDump<sup>9+<sup>
 
@@ -203,7 +219,7 @@ getServiceDump(serviceid : number, fd : number, args : Array\<string>) : void
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
 import fs from '@ohos.file.fs';
-import hidebug from '@ohos.hidebug';
+import { hidebug } from '@kit.PerformanceAnalysisKit';
 import common from '@ohos.app.ability.common';
 import { BusinessError } from '@ohos.base';
 
@@ -261,7 +277,7 @@ startJsCpuProfiling(filename : string) : void
 **示例：**
 
 ```ts
-import hidebug from '@ohos.hidebug';
+import { hidebug } from '@kit.PerformanceAnalysisKit';
 import { BusinessError } from '@ohos.base';
 
 try {
@@ -284,7 +300,7 @@ stopJsCpuProfiling() : void
 **示例：**
 
 ```ts
-import hidebug from '@ohos.hidebug';
+import { hidebug } from '@kit.PerformanceAnalysisKit';
 import { BusinessError } from '@ohos.base';
 
 try {
@@ -321,7 +337,7 @@ dumpJsHeapData(filename : string) : void
 **示例：**
 
 ```ts
-import hidebug from '@ohos.hidebug';
+import { hidebug } from '@kit.PerformanceAnalysisKit';
 import { BusinessError } from '@ohos.base';
 
 try {
@@ -351,6 +367,8 @@ startProfiling(filename : string) : void
 **示例：**
 
 ```ts
+import { hidebug } from '@kit.PerformanceAnalysisKit';
+
 hidebug.startProfiling("cpuprofiler-20220216");
 // code block
 // ...
@@ -372,6 +390,8 @@ stopProfiling() : void
 **示例：**
 
 ```ts
+import { hidebug } from '@kit.PerformanceAnalysisKit';
+
 hidebug.startProfiling("cpuprofiler-20220216");
 // code block
 // ...
@@ -399,6 +419,8 @@ dumpHeapData(filename : string) : void
 **示例：**
 
 ```ts
+import { hidebug } from '@kit.PerformanceAnalysisKit';
+
 hidebug.dumpHeapData("heap-20220216");
 ```
 
@@ -418,15 +440,14 @@ getAppVMMemoryInfo(): VMMemoryInfo
 
 **示例：**
 
-  ```ts
-import hidebug from '@ohos.hidebug';
-import hilog from '@ohos.hilog';
+```ts
+import { hidebug, hilog } from '@kit.PerformanceAnalysisKit';
 
 let vmMemory: hidebug.VMMemoryInfo = hidebug.getAppVMMemoryInfo();
 hilog.info(0x0000, "example", "totalHeap = %{public}d", vmMemory.totalHeap);
 hilog.info(0x0000, "example", "heapUsed = %{public}d", vmMemory.heapUsed);
 hilog.info(0x0000, "example", "allArraySize = %{public}d", vmMemory.allArraySize);
-  ```
+```
 
 ## hidebug.getAppThreadCpuUsage<sup>12+</sup>
 
@@ -446,16 +467,15 @@ getAppThreadCpuUsage(): ThreadCpuUsage[]
 
 **示例：**
 
-  ```ts
-import hidebug from '@ohos.hidebug';
-import hilog from '@ohos.hilog';
+```ts
+import { hidebug, hilog } from '@kit.PerformanceAnalysisKit';
 
 let appThreadCpuUsage: hidebug.ThreadCpuUsage[] = hidebug.getAppThreadCpuUsage();
 for (let ii = 0; ii < appThreadCpuUsage.length; ii++) {
     hilog.info(0x0000, "example", "threadId=%{public}d, cpuUsage=%{public}f", appThreadCpuUsage[ii].threadId,
     appThreadCpuUsage[ii].cpuUsage);
 }
-  ```
+```
 
 ## hidebug.startAppTraceCapture<sup>12+</sup>
 
@@ -495,7 +515,7 @@ startAppTraceCapture(tags : number[], flag: TraceFlag, limitSize: number) : stri
 **示例：**
 
 ```ts
-import hidebug from '@ohos.hidebug';
+import { hidebug } from '@kit.PerformanceAnalysisKit';
 
 let tags: number[] = [hidebug.tags.ABILITY_MANAGER, hidebug.tags.ARKUI];
 let flag: hidebug.TraceFlag = hidebug.TraceFlag.MAIN_THREAD;
@@ -529,7 +549,7 @@ stopAppTraceCapture() : void
 **示例：**
 
 ```ts
-import hidebug from '@ohos.hidebug';
+import { hidebug } from '@kit.PerformanceAnalysisKit';
 
 let tags: number[] = [hidebug.tags.ABILITY_MANAGER, hidebug.tags.ARKUI];
 let flag: hidebug.TraceFlag = hidebug.TraceFlag.MAIN_THREAD;
@@ -558,9 +578,9 @@ getAppMemoryLimit() : MemoryLimit
 **示例**
 
 ```ts
- import hidebug from '@ohos.hidebug';
+import { hidebug } from '@kit.PerformanceAnalysisKit';
 
- let appMemoryLimit:hidebug.MemoryLimit = hidebug.getAppMemoryLimit();
+let appMemoryLimit:hidebug.MemoryLimit = hidebug.getAppMemoryLimit();
 ```
 
 ## hidebug.getSystemCpuUsage<sup>12+</sup>
@@ -588,11 +608,11 @@ getSystemCpuUsage() : number
 | 11400104 | The status of the system cpu usage is abnormal. |
 
 **示例**
-  ```ts
-  import hidebug from '@ohos.hidebug';
+```ts
+import { hidebug } from '@kit.PerformanceAnalysisKit';
 
-  let cpuUsage: number = hidebug.getSystemCpuUsage();
-  ```
+let cpuUsage: number = hidebug.getSystemCpuUsage();
+```
 
 ## hidebug.setAppResourceLimit<sup>12+</sup>
 
@@ -625,7 +645,7 @@ setAppResourceLimit(type: string, value: number, enableDebugLog: boolean) : void
 **示例：**
 
 ```ts
-import hidebug from '@ohos.hidebug';
+import { hidebug } from '@kit.PerformanceAnalysisKit';
 
 let type: string = 'js_heap';
 let value: number = 85;
@@ -650,8 +670,7 @@ getAppNativeMemInfo(): NativeMemInfo
 **示例**
 
 ```ts
-import hidebug from '@ohos.hidebug';
-import hilog from '@ohos.hilog';
+import { hidebug, hilog } from '@kit.PerformanceAnalysisKit';
 
 let nativeMemInfo: hidebug.NativeMemInfo = hidebug.getAppNativeMemInfo();
 
@@ -687,8 +706,7 @@ getSystemMemInfo(): SystemMemInfo
 **示例**
 
 ```ts
-import hidebug from '@ohos.hidebug';
-import hilog from '@ohos.hilog';
+import { hidebug, hilog } from '@kit.PerformanceAnalysisKit';
 
 let systemMemInfo: hidebug.SystemMemInfo = hidebug.getSystemMemInfo();
 
@@ -716,8 +734,7 @@ getVMRuntimeStats(): GcStats
 **示例**
 
 ```ts
-import hidebug from '@ohos.hidebug';
-import hilog from '@ohos.hilog';
+import { hidebug, hilog } from '@kit.PerformanceAnalysisKit';
 
 let vMRuntimeStats: hidebug.GcStats = hidebug.getVMRuntimeStats();
 hilog.info(0x0000, "testTag", `gc-count: ${vMRuntimeStats['ark.gc.gc-count']}`);
@@ -758,8 +775,7 @@ getVMRuntimeStat(item : string): number
 **示例**
 
 ```ts
-import hidebug from '@ohos.hidebug';
-import hilog from '@ohos.hilog';
+import { hidebug, hilog } from '@kit.PerformanceAnalysisKit';
 
 hilog.info(0x0000, "testTag", `gc-count: ${hidebug.getVMRuntimeStat('ark.gc.gc-count')}`);
 hilog.info(0x0000, "testTag", `gc-time: ${hidebug.getVMRuntimeStat('ark.gc.gc-time')}`);
