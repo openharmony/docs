@@ -503,6 +503,7 @@ let taskpoolInfo: taskpool.TaskPoolInfo = taskpool.getTaskPoolInfo();
 | HIGH   | 0    | 任务为高优先级。 |
 | MEDIUM | 1 | 任务为中优先级。 |
 | LOW | 2 | 任务为低优先级。 |
+| IDLE<sup>12+</sup> | 3 | 任务为后台任务。 |
 
 **示例：**
 
@@ -519,21 +520,24 @@ function printArgs(args: number): number {
 
 let allCount = 100; // 100: test number
 let taskArray: Array<taskpool.Task> = [];
-// 创建300个任务并添加至taskArray
-for (let i: number = 1; i < allCount; i++) {
+// 创建400个任务并添加至taskArray
+for (let i: number = 0; i < allCount; i++) {
   let task1: taskpool.Task = new taskpool.Task(printArgs, i);
   taskArray.push(task1);
   let task2: taskpool.Task = new taskpool.Task(printArgs, i * 10); // 10: test number
   taskArray.push(task2);
   let task3: taskpool.Task = new taskpool.Task(printArgs, i * 100); // 100: test number
   taskArray.push(task3);
+  let task4: taskpool.Task = new taskpool.Task(printArgs, i * 1000); // 1000: test number
+  taskArray.push(task4);
 }
 
 // 从taskArray中获取不同的任务并给定不同优先级执行
-for (let i: number = 0; i < allCount; i+=3) { // 3: 每次执行3个任务，循环取任务时需后移3项，确保执行的是不同的任务
+for (let i: number = 0; i < taskArray.length; i+=4) { // 4: 每次执行4个任务，循环取任务时需后移4项，确保执行的是不同的任务
   taskpool.execute(taskArray[i], taskpool.Priority.HIGH);
   taskpool.execute(taskArray[i + 1], taskpool.Priority.LOW);
   taskpool.execute(taskArray[i + 2], taskpool.Priority.MEDIUM);
+  taskpool.execute(taskArray[i + 3], taskpool.Priority.IDLE);
 }
 ```
 
