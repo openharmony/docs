@@ -6,8 +6,7 @@
 >
 > 本模块首批接口从API version 12开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
-> 本模块接口仅对[设备管理应用](enterpriseDeviceManagement-overview.md#基本概念)开放，实现相应功能。
->
+> 本模块接口仅对[设备管理应用](../../mdm/mdm-kit-guide.md#功能介绍)开放，实现相应功能。
 
 ## 导入模块
 
@@ -24,8 +23,6 @@ disableAdmin(admin: Want, userId?: number): Promise\<void>
 **需要权限：** ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
-
-
 
 **模型约束**: 此接口仅可在Stage模型下使用。
 
@@ -77,8 +74,6 @@ subscribeManagedEventSync(admin: Want, managedEvents: Array\<ManagedEvent>): voi
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-
-
 **模型约束**: 此接口仅可在Stage模型下使用。
 
 **参数：**
@@ -127,8 +122,6 @@ unsubscribeManagedEventSync(admin: Want, managedEvents: Array\<ManagedEvent>): v
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
-
-
 **模型约束**: 此接口仅可在Stage模型下使用。
 
 **参数：**
@@ -172,8 +165,6 @@ try {
 可订阅的系统管理事件。
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
-
-
 
 | 名称                         | 值   | 说明           |
 | ---------------------------- | ---- | -------------- |
