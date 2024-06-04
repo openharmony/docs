@@ -45,6 +45,8 @@ Enumerates the orientations of the display.
 
 Enumerates the folding statuses of a foldable device.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Window.SessionManager
 
 | Name| Value| Description|
@@ -57,6 +59,8 @@ Enumerates the folding statuses of a foldable device.
 ## FoldDisplayMode<sup>10+</sup>
 
 Enumerates the display modes of a foldable device.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Window.SessionManager
 
@@ -124,6 +128,8 @@ Obtains the default display object. This API returns the result synchronously.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **Return value**
 
 | Type                          | Description                                          |
@@ -144,11 +150,8 @@ For details about the error codes, see [Display Error Codes](errorcode-display.m
 import display from '@ohos.display';
 
 let displayClass: display.Display | null = null;
-try {
-  displayClass = display.getDefaultDisplaySync();
-} catch (exception) {
-  console.error('Failed to obtain the default display object. Code: ' + JSON.stringify(exception));
-}
+
+displayClass = display.getDefaultDisplaySync();
 ```
 
 ## display.getAllDisplays<sup>9+</sup>
@@ -184,7 +187,7 @@ display.getAllDisplays((err: BusinessError, data: Array<display.Display>) => {
   displayClass = data;
   const errCode: number = err.code;
   if (errCode) {
-    console.error('Failed to obtain all the display objects. Code: ' + JSON.stringify(err));
+    console.error('Failed to obtain all the display objects. Code: ${err.code}, message: ${err.message}');
     return;
   }
   console.info('Succeeded in obtaining all the display objects. Data: ' + JSON.stringify(data));
@@ -225,7 +228,7 @@ promise.then((data: Array<display.Display>) => {
   displayClass = data;
   console.info('Succeeded in obtaining all the display objects. Data: ' + JSON.stringify(data));
 }).catch((err: BusinessError) => {
-  console.error('Failed to obtain all the display objects. Code: ' + JSON.stringify(err));
+  console.error('Failed to obtain all the display objects. Code: ${err.code}, message: ${err.message}');
 });
 ```
 
@@ -234,6 +237,8 @@ promise.then((data: Array<display.Display>) => {
 on(type: 'add'|'remove'|'change', callback: Callback&lt;number&gt;): void
 
 Subscribes to display changes.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -244,6 +249,14 @@ Subscribes to display changes.
 | type | string | Yes| Event type.<br>- **add**, indicating the display addition event. Example: event that a display is connected.<br>- **remove**, indicating the display removal event. Example: event that a display is disconnected.<br>- **change**, indicating the display change event. Example: event that the display orientation is changed.|
 | callback | Callback&lt;number&gt; | Yes| Callback used to return the ID of the display, which is an integer.                                                                                                    |
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | ----------------------- |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
+
 **Example**
 
 ```ts
@@ -252,11 +265,8 @@ import { Callback } from '@ohos.base';
 let callback: Callback<number> = (data: number) => {
   console.info('Listening enabled. Data: ' + JSON.stringify(data));
 };
-try {
-  display.on("add", callback);
-} catch (exception) {
-  console.error('Failed to register callback. Code: ' + JSON.stringify(exception));
-}
+
+display.on("add", callback);
 ```
 
 ## display.off('add'|'remove'|'change')
@@ -265,6 +275,8 @@ off(type: 'add'|'remove'|'change', callback?: Callback&lt;number&gt;): void
 
 Unsubscribes from display changes.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
 **Parameters**
@@ -272,16 +284,28 @@ Unsubscribes from display changes.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Event type.<br>- **add**, indicating the display addition event. Example: event that a display is connected.<br>- **remove**, indicating the display removal event. Example: event that a display is disconnected.<br>- **change**, indicating the display change event. Example: event that the display orientation is changed.|
-| callback | Callback&lt;number&gt; | No| Callback used for unsubscription. If this parameter is not specified, all callbacks of the current type will be unregistered.|
+| callback | Callback&lt;number&gt; | No| Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified type will be unregistered.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | ----------------------- |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
 
 **Example**
 
 ```ts
-try {
-  display.off("remove");
-} catch (exception) {
-  console.error('Failed to unregister callback. Code: ' + JSON.stringify(exception));
-}
+
+// Unregister all the callbacks that have been registered through on().
+display.off("remove");
+
+let callback: Callback<number> = (data: number) => {
+  console.info('Succeeded in unregistering the callback for display remove. Data: ' + JSON.stringify(data))
+};
+// Unregister the specified callback.
+display.off('remove', callback);
 ```
 
 ## display.isFoldable<sup>10+</sup>
@@ -310,27 +334,8 @@ For details about the error codes, see [Display Error Codes](errorcode-display.m
 ```ts
 import display from '@ohos.display';
 
-let displayClass: display.Display | null = null;
-try {
-  displayClass = display.getDefaultDisplaySync();
-
-  let ret: boolean = false;
-  try {
-    ret = display.isFoldable();
-  } catch (exception) {
-    console.error('Failed to check is foldable or not. Code: ' + JSON.stringify(exception));
-  }
-  if (ret == undefined) {
-    console.log("Failed to check is foldable or not.");
-  }
-  if (ret) {
-    console.log("The device is foldable.");
-  } else if (!ret) {
-    console.log("The device is not foldable.");
-  }
-} catch (exception) {
-  console.error('Failed to obtain the default display object. Code: ' + JSON.stringify(exception));
-}
+let ret: boolean = false;
+ret = display.isFoldable();
 ```
 
 ## display.getFoldStatus<sup>10+</sup>
@@ -359,11 +364,8 @@ For details about the error codes, see [Display Error Codes](errorcode-display.m
 ```ts
 import display from '@ohos.display';
 
-try {
-  display.getFoldStatus();
-} catch (exception) {
-  console.error('Failed to obtain the fold status. Code: ' + JSON.stringify(exception));
-}
+let data: display.FoldStatus = display.getFoldStatus();
+console.info('Succeeded in obtaining fold status. Data: ' + JSON.stringify(data));
 ```
 
 ## display.getFoldDisplayMode<sup>10+</sup>
@@ -392,11 +394,8 @@ For details about the error codes, see [Display Error Codes](errorcode-display.m
 ```ts
 import display from '@ohos.display';
 
-try {
-  display.getFoldDisplayMode();
-} catch (exception) {
-  console.error('Failed to obtain the fold display mode. Code: ' + JSON.stringify(exception));
-}
+let data: display.FoldDisplayMode = display.getFoldDisplayMode();
+console.info('Succeeded in obtaining fold display mode. Data: ' + JSON.stringify(data));
 ```
 
 ## display.getCurrentFoldCreaseRegion<sup>10+</sup>
@@ -425,11 +424,8 @@ For details about the error codes, see [Display Error Codes](errorcode-display.m
 ```ts
 import display from '@ohos.display';
 
-try {
-  display.getCurrentFoldCreaseRegion();
-} catch (exception) {
-  console.error('Failed to obtain the current fold crease region. Code: ' + JSON.stringify(exception));
-}
+let data: display.FoldCreaseRegion = display.getCurrentFoldCreaseRegion();
+console.info('Succeeded in obtaining current fold crease region. Data: ' + JSON.stringify(data));
 ```
 
 ## display.on('foldStatusChange')<sup>10+</sup>
@@ -437,6 +433,8 @@ try {
 on(type: 'foldStatusChange', callback: Callback&lt;FoldStatus&gt;): void
 
 Subscribes to folding status change events of the foldable device.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Window.SessionManager
 
@@ -449,10 +447,11 @@ Subscribes to folding status change events of the foldable device.
 
 **Error codes**
 
-For details about the error codes, see [Display Error Codes](errorcode-display.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Display Error Codes](errorcode-display.md).
 
 | ID| Error Message|
 | ------- | ----------------------- |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
 | 1400003 | This display manager service works abnormally. |
 
 **Example**
@@ -463,11 +462,7 @@ import { Callback } from '@ohos.base';
 let callback: Callback<display.FoldStatus> = (data: display.FoldStatus) => {
   console.info('Listening enabled. Data: ' + JSON.stringify(data));
 };
-try {
-  display.on('foldStatusChange', callback);
-} catch (exception) {
-  console.error('Failed to register callback. Code: ' + JSON.stringify(exception));
-}
+display.on('foldStatusChange', callback);
 ```
 
 ## display.off('foldStatusChange')<sup>10+</sup>
@@ -476,6 +471,8 @@ off(type: 'foldStatusChange', callback?: Callback&lt;FoldStatus&gt;): void
 
 Unsubscribes from folding status change events of the foldable device.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Window.SessionManager
 
 **Parameters**
@@ -483,7 +480,181 @@ Unsubscribes from folding status change events of the foldable device.
 | Name  | Type                                      | Mandatory| Description                                                   |
 | -------- |------------------------------------------| ---- | ------------------------------------------------------- |
 | type     | string                                   | Yes  | Event type. The event **'foldStatusChange'** is triggered when the folding status of the device changes.|
-| callback | Callback&lt;[FoldStatus](#foldstatus10)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the current type will be unregistered.|
+| callback | Callback&lt;[FoldStatus](#foldstatus10)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified type will be unregistered.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Display Error Codes](errorcode-display.md).
+
+| ID| Error Message|
+| ------- | ----------------------- |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
+| 1400003 | This display manager service works abnormally. |
+
+**Example**
+
+```ts
+
+// Unregister all the callbacks that have been registered through on().
+display.off('foldStatusChange');
+
+let callback: Callback<display.FoldStatus> = (data: display.FoldStatus) => {
+  console.info('unregistering FoldStatus changes callback. Data: ' + JSON.stringify(data));
+};
+// Unregister the specified callback.
+display.off('foldStatusChange', callback);
+```
+
+## display.on('foldAngleChange')<sup>12+</sup>
+
+on(type: 'foldAngleChange', callback: Callback&lt;Array&lt;number&gt;&gt;): void
+
+Subscribes to folding angle change events of the foldable device.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+**Parameters**
+
+| Name  | Type                                     | Mandatory| Description                                                   |
+| -------- |------------------------------------------| ---- | ------------------------------------------------------- |
+| type     | string                                   | Yes| Event type. The event **'foldAngleChange'** is triggered when the folding angle of the device changes.|
+| callback | Callback&lt;Array&lt;number&gt;&gt; | Yes| Callback used to return the folding angle (0–180 degrees).|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Display Error Codes](errorcode-display.md).
+
+| ID| Error Message|
+| ------- | ----------------------- |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
+| 1400003 | This display manager service works abnormally. |
+
+**Example**
+
+```ts
+import { Callback } from '@ohos.base';
+
+let callback: Callback<Array<number>> = (angles: Array<number>) => {
+  console.info('Listening fold angles length: ' + angles.length);
+};
+display.on('foldAngleChange', callback);
+```
+
+## display.off('foldAngleChange')<sup>12+</sup>
+
+off(type: 'foldAngleChange', callback?: Callback&lt;Array&lt;number&gt;&gt;): void
+
+Unsubscribes from folding angle change events of the foldable device.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+**Parameters**
+
+| Name  | Type                                      | Mandatory| Description                                                   |
+| -------- |-------------------------------------------| ---- | ------------------------------------------------------- |
+| type     | string                                    | Yes | Event type. The event **'foldAngleChange'** is triggered when the folding angle of the device changes.|
+| callback | Callback&lt;Array&lt;number&gt;&gt; | No | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified type will be unregistered.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Display Error Codes](errorcode-display.md).
+
+| ID| Error Message|
+| ------- | ----------------------- |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
+| 1400003 | This display manager service works abnormally. |
+
+**Example**
+
+```ts
+display.off('foldAngleChange');
+```
+
+## display.on('captureStatusChange')<sup>12+</sup>
+
+on(type: 'captureStatusChange', callback: Callback&lt;boolean&gt;): void
+
+Subscribes to screen capture, projection, or recording status changes.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+**Parameters**
+
+| Name  | Type                                      | Mandatory| Description                                                   |
+| -------- |-------------------------------------------| ---- | ------------------------------------------------------- |
+| type     | string                                   | Yes| Event type. The event **'captureStatusChange'** is triggered when the screen capture, projection, or recording status changes.|
+| callback | Callback&lt;boolean&gt; | Yes| Callback used to return the screen capture, projection, or recording status change. The value **true** means that the device starts screen capture, projection, or recording, and **false** means that the device stops screen capture, projection, or recording.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Display Error Codes](errorcode-display.md).
+
+| ID| Error Message|
+| ------- | ----------------------- |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
+| 1400003 | This display manager service works abnormally. |
+
+**Example**
+
+```ts
+import { Callback } from '@ohos.base';
+
+let callback: Callback<boolean> = (captureStatus: boolean) => {
+  console.info('Listening capture status: ' + captureStatus);
+};
+display.on('captureStatusChange', callback);
+```
+
+## display.off('captureStatusChange')<sup>12+</sup>
+
+off(type: 'captureStatusChange', callback?: Callback&lt;boolean&gt;): void
+
+Unsubscribes from screen capture, projection, or recording status changes.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+**Parameters**
+
+| Name  | Type                                      | Mandatory| Description                                                   |
+| -------- |-------------------------------------------| ---- | ------------------------------------------------------- |
+| type     | string                                   | Yes| Event type. The event **'captureStatusChange'** is triggered when the screen capture, projection, or recording status changes.|
+| callback | Callback&lt;boolean&gt; | No| Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified type will be unregistered.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Display Error Codes](errorcode-display.md).
+
+| ID| Error Message|
+| ------- | ----------------------- |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
+| 1400003 | This display manager service works abnormally. |
+
+**Example**
+
+```ts
+display.off('captureStatusChange');
+```
+
+## display.isCaptured<sup>12+</sup>
+isCaptured(): boolean
+
+Checks whether the device screen is being captured, projected, or recorded.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+**Return value**
+
+| Type| Description|
+| ----------------------------------------------- | ------------------------------------------------------- |
+| boolean | **true**: The device screen is being captured, projected, or recorded.<br> **false**: The device screen is not being captured, projected, or recorded.|
 
 **Error codes**
 
@@ -496,11 +667,10 @@ For details about the error codes, see [Display Error Codes](errorcode-display.m
 **Example**
 
 ```ts
-try {
-  display.off('foldStatusChange');
-} catch (exception) {
-  console.error('Failed to unregister callback. Code: ' + JSON.stringify(exception));
-}
+import display from '@ohos.display';
+
+let ret: boolean = false;
+ret = display.isCaptured();
 ```
 
 ## display.on('foldDisplayModeChange')<sup>10+</sup>
@@ -508,6 +678,8 @@ try {
 on(type: 'foldDisplayModeChange', callback: Callback&lt;FoldDisplayMode&gt;): void
 
 Subscribes to display mode change events of the foldable device.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Window.SessionManager
 
@@ -520,10 +692,11 @@ Subscribes to display mode change events of the foldable device.
 
 **Error codes**
 
-For details about the error codes, see [Display Error Codes](errorcode-display.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Display Error Codes](errorcode-display.md).
 
 | ID| Error Message|
 | ------- | ----------------------- |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
 | 1400003 | This display manager service works abnormally. |
 
 **Example**
@@ -534,11 +707,7 @@ import { Callback } from '@ohos.base';
 let callback: Callback<display.FoldDisplayMode> = (data: display.FoldDisplayMode) => {
   console.info('Listening enabled. Data: ' + JSON.stringify(data));
 };
-try {
-  display.on('foldDisplayModeChange', callback);
-} catch (exception) {
-  console.error('Failed to register callback. Code: ' + JSON.stringify(exception));
-}
+display.on('foldDisplayModeChange', callback);
 ```
 
 ## display.off('foldDisplayModeChange')<sup>10+</sup>
@@ -547,6 +716,8 @@ off(type: 'foldDisplayModeChange', callback?: Callback&lt;FoldDisplayMode&gt;): 
 
 Unsubscribes from display mode change events of the foldable device.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Window.SessionManager
 
 **Parameters**
@@ -554,25 +725,31 @@ Unsubscribes from display mode change events of the foldable device.
 | Name  | Type                                      | Mandatory| Description                                                   |
 | -------- |------------------------------------------| ---- | ------------------------------------------------------- |
 | type     | string                                   | Yes  | Event type. The event **'foldDisplayModeChange'** is triggered when the display mode of the device changes.|
-| callback | Callback&lt;[FoldDisplayMode](#folddisplaymode10)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the current type will be unregistered.|
+| callback | Callback&lt;[FoldDisplayMode](#folddisplaymode10)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified type will be unregistered.|
 
 **Error codes**
 
-For details about the error codes, see [Display Error Codes](errorcode-display.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Display Error Codes](errorcode-display.md).
 
 | ID| Error Message|
 | ------- | ----------------------- |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
 | 1400003 | This display manager service works abnormally. |
 
 **Example**
 
 ```ts
-try {
-  display.off('foldDisplayModeChange');
-} catch (exception) {
-  console.error('Failed to unregister callback. Code: ' + JSON.stringify(exception));
-}
+
+// Unregister all the callbacks that have been registered through on().
+display.off('foldDisplayModeChange');
+
+let callback: Callback<display.FoldDisplayMode> = (data: display.FoldDisplayMode) => {
+  console.info('unregistering FoldDisplayMode changes callback. Data: ' + JSON.stringify(data));
+};
+// Unregister the specified callback.
+display.off('foldDisplayModeChange', callback);
 ```
+
 
 ## display.getDefaultDisplay<sup>(deprecated)</sup>
 
@@ -601,7 +778,7 @@ let displayClass: display.Display | null = null;
 display.getDefaultDisplay((err: BusinessError, data: display.Display) => {
   const errCode: number = err.code;
   if (errCode) {
-    console.error('Failed to obtain the default display object. Code:  ' + JSON.stringify(err));
+    console.error('Failed to obtain the default display object. Code: ${err.code}, message: ${err.message}');
     return;
   }
   console.info('Succeeded in obtaining the default display object. Data:' + JSON.stringify(data));
@@ -638,7 +815,7 @@ promise.then((data: display.Display) => {
   displayClass = data;
   console.info('Succeeded in obtaining the default display object. Data:' + JSON.stringify(data));
 }).catch((err: BusinessError) => {
-  console.error('Failed to obtain the default display object. Code:  ' + JSON.stringify(err));
+  console.error('Failed to obtain the default display object. Code: ${err.code}, message: ${err.message}');
 });
 ```
 
@@ -668,7 +845,7 @@ import { BusinessError } from '@ohos.base';
 display.getAllDisplay((err: BusinessError, data: Array<display.Display>) => {
   const errCode: number = err.code;
   if (errCode) {
-    console.error('Failed to obtain all the display objects. Code: ' + JSON.stringify(err));
+    console.error('Failed to obtain all the display objects. Code: ${err.code}, message: ${err.message}');
     return;
   }
   console.info('Succeeded in obtaining all the display objects. Data: ' + JSON.stringify(data));
@@ -702,7 +879,7 @@ let promise: Promise<Array<display.Display>> = display.getAllDisplay();
 promise.then((data: Array<display.Display>) => {
   console.info('Succeeded in obtaining all the display objects. Data: ' + JSON.stringify(data));
 }).catch((err: BusinessError) => {
-  console.error('Failed to obtain all the display objects. Code: ' + JSON.stringify(err));
+  console.error('Failed to obtain all the display objects. Code: ${err.code}, message: ${err.message}');
 });
 ```
 
@@ -722,12 +899,12 @@ Before calling any API in **Display**, you must use [getAllDisplays()](#displayg
 | alive | boolean | Yes| No| Whether the display is alive.                                                                                                    |
 | state | [DisplayState](#displaystate) | Yes| No| State of the display.                                                                                                     |
 | refreshRate | number | Yes| No| Refresh rate of the display, in hz. The value must be an integer.                                                                                            |
-| rotation | number | Yes| No| Clockwise rotation angle of the screen of the display.<br>The value **0** indicates that the screen of the display rotates clockwise by 0°.<br>The value **1** indicates that the screen of the display rotates clockwise by 90°.<br>The value **2** indicates that the screen of the display rotates clockwise by 180°.<br>The value **3** indicates that the screen of the display rotates clockwise by 270°.|
-| width | number | Yes| No| Screen width of the display, in px. The value must be an integer.                                                                                       |
-| height | number | Yes| No| Screen height of the display, in px. The value must be an integer.                                                                                       |
+| rotation | number | Yes| No| Clockwise rotation angle of the screen of the display.<br>The value **0** indicates that the screen of the display rotates clockwise by 0°.<br>The value **1** indicates that the screen of the display rotates clockwise by 90°.<br>The value **2** indicates that the screen of the display rotates clockwise by 180°.<br>The value **3** indicates that the screen of the display rotates clockwise by 270°.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| width | number | Yes| No| Screen width of the display, in px. The value must be an integer.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                                                       |
+| height | number | Yes| No| Screen height of the display, in px. The value must be an integer.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                                                       |
 | densityDPI | number | Yes| No| Physical pixel density of the display, that is, the number of pixels per inch. The value is a floating point number, in px. The value range is [80.0, 640.0]. Generally, the value is **160.0** or **480.0**. The actual value depends on the optional values provided by the device in use.                                                                  |
 | orientation<sup>10+</sup> | [Orientation](#orientation10) | Yes| No| Orientation of the display.                                                                                                 |
-| densityPixels | number | Yes| No| Logical pixel density of the display, which is the scaling coefficient between physical pixels and logical pixels. The calculation method is as follows:<br>![densityPixels](figures/densityPixels.jpg)<br>The value is a floating point number and is restricted by the range of **densityDPI**. The value range is [0.5, 4.0]. Generally, the value is **1.0** or **3.0**. The actual value depends on the density DPI provided by the device in use.                                                                 |
+| densityPixels | number | Yes| No| Logical pixel density of the display, which is the scaling coefficient between physical pixels and logical pixels. The calculation method is as follows:<br>![densityPixels](figures/densityPixels.jpg)<br>The value is a floating point number and is restricted by the range of **densityDPI**. The value range is [0.5, 4.0]. Generally, the value is **1.0** or **3.0**. The actual value depends on the density DPI provided by the device in use.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                                 |
 | scaledDensity | number | Yes| No| Scaling factor for fonts displayed on the display. The value must be a floating point number. Generally, the value is the same as that of **densityPixels**.                                                                   |
 | xDPI | number | Yes| No| Exact physical dots per inch of the screen in the horizontal direction. The value must be a floating point number.                                                                                   |
 | yDPI | number | Yes| No| Exact physical dots per inch of the screen in the vertical direction. The value must be a floating point number.                                                                                   |
@@ -761,20 +938,16 @@ For details about the error codes, see [Display Error Codes](errorcode-display.m
 import { BusinessError } from '@ohos.base';
 
 let displayClass: display.Display | null = null;
-try {
-  displayClass = display.getDefaultDisplaySync();
+displayClass = display.getDefaultDisplaySync();
 
-  displayClass.getCutoutInfo((err: BusinessError, data: display.CutoutInfo) => {
-    const errCode: number = err.code;
-    if (errCode) {
-      console.error('Failed to get cutoutInfo. Code: ' + JSON.stringify(err));
-      return;
-    }
-    console.info('Succeeded in getting cutoutInfo. data: ' + JSON.stringify(data));
-  });
-} catch (exception) {
-  console.error('Failed to obtain the default display object. Code: ' + JSON.stringify(exception));
-}
+displayClass.getCutoutInfo((err: BusinessError, data: display.CutoutInfo) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error('Failed to get cutoutInfo. Code: ${err.code}, message: ${err.message}');
+    return;
+  }
+  console.info('Succeeded in getting cutoutInfo. data: ' + JSON.stringify(data));
+});
 ```
 ### getCutoutInfo<sup>9+</sup>
 getCutoutInfo(): Promise&lt;CutoutInfo&gt;
@@ -803,16 +976,11 @@ For details about the error codes, see [Display Error Codes](errorcode-display.m
 import { BusinessError } from '@ohos.base';
 
 let displayClass: display.Display | null = null;
-try {
-  displayClass = display.getDefaultDisplaySync();
-
-  let promise: Promise<display.CutoutInfo> = displayClass.getCutoutInfo();
-  promise.then((data: display.CutoutInfo) => {
-    console.info('Succeeded in getting cutoutInfo. Data: ' + JSON.stringify(data));
-  }).catch((err: BusinessError) => {
-    console.error('Failed to obtain all the display objects. Code: ' + JSON.stringify(err));
-  });
-} catch (exception) {
-  console.error('Failed to obtain the default display object. Code: ' + JSON.stringify(exception));
-}
+displayClass = display.getDefaultDisplaySync();
+let promise: Promise<display.CutoutInfo> = displayClass.getCutoutInfo();
+promise.then((data: display.CutoutInfo) => {
+  console.info('Succeeded in getting cutoutInfo. Data: ' + JSON.stringify(data));
+}).catch((err: BusinessError) => {
+  console.error('Failed to obtain all the display objects. Code: ${err.code}, message: ${err.message}');
+});
 ```
