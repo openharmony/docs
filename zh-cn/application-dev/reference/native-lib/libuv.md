@@ -573,52 +573,6 @@ typedef struct uv_fs_s uv_fs_t;
 2. 若由于业务问题，句柄需要在其他工作线程初始化，在使用之前用原子变量判断是否初始化完成。
 3. 句柄在确定后续不再使用后，调用`uv_close`将句柄从loop中摘除。
 
-针对上面第三条，开发者可以参考[electron项目](https://github.com/electron/electron/pull/25332)中的做法对handles进行封装。代码如下：
-
-```cpp
-template <typename T,
-          typename std::enable_if<
-              // these are the C-style 'subclasses' of uv_handle_t
-              std::is_same<T, uv_async_t>::value ||
-              std::is_same<T, uv_check_t>::value ||
-              std::is_same<T, uv_fs_event_t>::value ||
-              std::is_same<T, uv_fs_poll_t>::value ||
-              std::is_same<T, uv_idle_t>::value ||
-              std::is_same<T, uv_pipe_t>::value ||
-              std::is_same<T, uv_poll_t>::value ||
-              std::is_same<T, uv_prepare_t>::value ||
-              std::is_same<T, uv_process_t>::value ||
-              std::is_same<T, uv_signal_t>::value ||
-              std::is_same<T, uv_stream_t>::value ||
-              std::is_same<T, uv_tcp_t>::value ||
-              std::is_same<T, uv_timer_t>::value ||
-              std::is_same<T, uv_tty_t>::value ||
-              std::is_same<T, uv_udp_t>::value>::type* = nullptr>
-class UvHandle {
- public:
-  UvHandle() : t_(new T) {}
-  ~UvHandle() { reset(); }
-  T* get() { return t_; }
-  uv_handle_t* handle() { return reinterpret_cast<uv_handle_t*>(t_); }
-
-  void reset() {
-    auto* h = handle();
-    if (h != nullptr) {
-      DCHECK(!uv_is_closing(handle()));
-      uv_close(handle(), OnClosed);
-      t_ = nullptr;
-    }
-  }
-
- private:
-  static void OnClosed(uv_handle_t* handle) {
-    delete reinterpret_cast<T*>(handle);
-  }
-
-  T* t_ = {};
-};
-```
-
 在这里，需要特别说明一下`uv_close`的使用方法。`uv_close`被用来关闭一个handle，但是它是异步地关闭handle。函数原型为：
 
 ```cpp
@@ -757,6 +711,18 @@ after_work_cb：loop所在线程的要执行的回调函数。
   函数原型：
 
 ```cpp
+/**
+* 将一个工作请求添加到事件循环的队列中。
+* 
+* @param loop 事件循环对象
+* @param req 随机数请求对象
+* @param buf 存储随机数的缓冲区
+* @param buflen 缓冲区的长度
+* @param flags 随机数生成后的回调函数
+* @param cb  随机数生成完成后的回调函数
+*
+* @return 成功返回0，失败返回错误码
+*/
 int uv_random(uv_loop_t* loop,
              uv_random_t* req,
              void* buf,
@@ -776,10 +742,11 @@ int uv_random(uv_loop_t* loop,
 * 当事件循环在下一次迭代时，work_cb函数将会在一个新的线程中被调用。
 * 当work_cb函数完成时，after_work_cb函数将会在事件循环的线程中被调用。
 * 
-* @param loop 事件循环
-* @param req 工作请求
+* @param loop 事件循环对象
+* @param req 工作请求对象
 * @param work_cb 在新线程中被调用的函数
 * @param after_work_cb 在事件循环线程中被调用的函数
+*
 * @return 成功返回0，失败返回-1
 */
 int uv_queue_work(uv_loop_t* loop,
@@ -796,8 +763,8 @@ int uv_queue_work(uv_loop_t* loop,
 /**
 * 异步读取文件
 *
-* @param loop 事件循环
-* @param req 文件操作请求
+* @param loop 事件循环对象
+* @param req 文件操作请求对象
 * @param file 文件描述符
 * @param bufs 读取数据的缓冲区
 * @param nbufs 缓冲区的数量
@@ -815,12 +782,13 @@ int uv_fs_read(uv_loop_t* loop, uv_fs_t* req,
 /**
 * 异步打开文件
 *
-* @param loop 事件循环
-* @param req 文件操作请求
+* @param loop 事件循环对象
+* @param req 文件操作请求对象
 * @param path 文件路径
 * @param flags 打开文件的方式
 * @param mode 文件权限
 * @param cb 完成后的回调函数
+*
 * @return 成功返回0，失败返回-1
 */
 int uv_fs_open(uv_loop_t* loop, 
@@ -833,13 +801,14 @@ int uv_fs_open(uv_loop_t* loop,
 /**
 * 异步发送文件
 *
-* @param loop 事件循环
-* @param req 文件操作请求
+* @param loop 事件循环对象
+* @param req 文件操作请求对象
 * @param out_fd 输出文件描述符
 * @param in_fd 输入文件描述符
 * @param off 文件的偏移量
 * @param len 发送的长度
 * @param cb 完成后的回调函数
+*
 * @return 成功返回0，失败返回-1
 */
 int uv_fs_sendfile(uv_loop_t* loop,
@@ -853,13 +822,14 @@ int uv_fs_sendfile(uv_loop_t* loop,
 /**
 * 异步写入文件
 *
-* @param loop 事件循环
-* @param req 文件操作请求
+* @param loop 事件循环对象
+* @param req 文件操作请求对象
 * @param file 文件描述符
 * @param bufs 要写入的数据
 * @param nbufs 数据的数量
 * @param off 文件的偏移量
 * @param cb 完成后的回调函数
+*
 * @return 成功返回0，失败返回-1
 */
 int uv_fs_write(uv_loop_t* loop, 
@@ -879,6 +849,7 @@ int uv_fs_write(uv_loop_t* loop,
 * @param new_path 目标文件路径
 * @param flags 复制选项
 * @param cb 完成后的回调函数
+*
 * @return 成功返回0，失败返回-1
 */
 int uv_fs_copyfile(uv_loop_t* loop,
@@ -903,6 +874,7 @@ int uv_fs_copyfile(uv_loop_t* loop,
 * @param hostname 主机名
 * @param service 服务名
 * @param hints 地址信息提示
+*
 * @return 成功返回0，失败返回-1
 */
 int uv_getaddrinfo(uv_loop_t* loop,
@@ -926,6 +898,7 @@ int uv_getaddrinfo(uv_loop_t* loop,
 * @param getnameinfo_cb 完成后的回调函数
 * @param addr 地址
 * @param flags 标志
+*
 * @return 成功返回0，失败返回-1
 */
 int uv_getnameinfo(uv_loop_t* loop,
