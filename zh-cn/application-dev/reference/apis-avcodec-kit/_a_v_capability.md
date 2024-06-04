@@ -270,6 +270,8 @@ OH_AVErrCode OH_AVCapability_GetAudioChannelCountRange (OH_AVCapability *capabil
 
 如果执行成功，则返回AV_ERR_OK， 否则返回特定错误代码，请参阅[OH_AVErrCode](_core.md#oh_averrcode)。
 
+当能力实例无效，或者指向音频通道计数范围的指针为空指针，返回AV_ERR_INVALID_VAL。
+
 
 ### OH_AVCapability_GetAudioSupportedSampleRates()
 
@@ -287,13 +289,15 @@ OH_AVErrCode OH_AVCapability_GetAudioSupportedSampleRates (OH_AVCapability *capa
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| capability | 音频编解码能力指针。不能填入视频编解码器能力指针。 | 
-| sampleRates | 输出参数。指向采样率数组的指针。 | 
-| sampleRateNum | 输出参数。采样率数组的元素数目。 | 
+| capability | 音频编解码能力指针。不能填入视频编解码器能力指针。  | 
+| sampleRates | 输出参数。指向采样率数组的指针。  | 
+| sampleRateNum | 输出参数。采样率数组的元素数目。  | 
 
 **返回：**
 
 如果执行成功，则返回AV_ERR_OK， 否则返回特定错误代码，请参阅[OH_AVErrCode](_core.md#oh_averrcode)。
+
+当能力实例无效，或者指向采样率数组的指针为空指针，或者指向采样率数组的元素数目的指针为空指针，返回AV_ERR_INVALID_VAL。 当遇到未知错误，返回AV_ERR_UNKNOWN。 当内部使用内存分配失败，返回AV_ERR_NO_MEMORY。
 
 
 ### OH_AVCapability_GetEncoderBitrateRange()
@@ -319,6 +323,8 @@ OH_AVErrCode OH_AVCapability_GetEncoderBitrateRange (OH_AVCapability *capability
 
 如果执行成功，则返回AV_ERR_OK， 否则返回特定错误代码，请参阅[OH_AVErrCode](_core.md#oh_averrcode)。
 
+当能力实例无效，或者指向编码器码率范围的指针为空指针，返回AV_ERR_INVALID_VAL。
+
 
 ### OH_AVCapability_GetEncoderComplexityRange()
 
@@ -343,6 +349,8 @@ OH_AVErrCode OH_AVCapability_GetEncoderComplexityRange (OH_AVCapability *capabil
 
 如果执行成功，则返回AV_ERR_OK， 否则返回特定错误代码，请参阅[OH_AVErrCode](_core.md#oh_averrcode)。
 
+当能力实例无效，或者指向编码器复杂度范围的指针为空指针，返回AV_ERR_INVALID_VAL。
+
 
 ### OH_AVCapability_GetEncoderQualityRange()
 
@@ -366,6 +374,8 @@ OH_AVErrCode OH_AVCapability_GetEncoderQualityRange (OH_AVCapability *capability
 **返回：**
 
 如果执行成功，则返回AV_ERR_OK， 否则返回特定错误代码，请参阅[OH_AVErrCode](_core.md#oh_averrcode)。
+
+当能力实例无效，或者指向编码器质量范围的指针为空指针，返回AV_ERR_INVALID_VAL。
 
 
 ### OH_AVCapability_GetFeatureProperties()
@@ -463,6 +473,8 @@ OH_AVErrCode OH_AVCapability_GetSupportedLevelsForProfile (OH_AVCapability *capa
 
 如果执行成功，则返回AV_ERR_OK， 否则返回特定错误代码，请参阅[OH_AVErrCode](_core.md#oh_averrcode)。
 
+当能力实例无效，或者档次不在通过[OH_AVCapability_GetSupportedProfiles](#oh_avcapability_getsupportedprofiles)获取支持的档次数组中， 或者指向级别数组的指针为空指针，或者指向级别数组的元素数目的指针为空指针，返回AV_ERR_INVALID_VAL。 当遇到未知错误，返回AV_ERR_UNKNOWN。 当内部使用内存分配失败，返回AV_ERR_NO_MEMORY。
+
 
 ### OH_AVCapability_GetSupportedProfiles()
 
@@ -488,6 +500,8 @@ OH_AVErrCode OH_AVCapability_GetSupportedProfiles (OH_AVCapability *capability, 
 
 如果执行成功，则返回AV_ERR_OK， 否则返回特定错误代码，请参阅[OH_AVErrCode](_core.md#oh_averrcode)。
 
+当能力实例无效，或者指向档次数组的指针为空指针，或者指向档次数组的元素数目的指针为空指针，返回AV_ERR_INVALID_VAL。 当遇到未知错误，返回AV_ERR_UNKNOWN。 当内部使用内存分配失败，返回AV_ERR_NO_MEMORY。
+
 
 ### OH_AVCapability_GetVideoFrameRateRange()
 
@@ -511,6 +525,8 @@ OH_AVErrCode OH_AVCapability_GetVideoFrameRateRange (OH_AVCapability *capability
 **返回：**
 
 如果执行成功，则返回AV_ERR_OK， 否则返回特定错误代码，请参阅[OH_AVErrCode](_core.md#oh_averrcode)。
+
+当能力实例无效，或者指向视频帧率范围的指针为空指针，返回AV_ERR_INVALID_VAL。
 
 
 ### OH_AVCapability_GetVideoFrameRateRangeForSize()
@@ -538,6 +554,8 @@ OH_AVErrCode OH_AVCapability_GetVideoFrameRateRangeForSize (OH_AVCapability *cap
 
 如果执行成功，则返回AV_ERR_OK， 否则返回特定错误代码，请参阅[OH_AVErrCode](_core.md#oh_averrcode)。
 
+当能力实例无效，或者宽度和高度组合不支持，或者指向帧率范围的指针为空指针，返回AV_ERR_INVALID_VAL。
+
 
 ### OH_AVCapability_GetVideoHeightAlignment()
 
@@ -562,6 +580,8 @@ OH_AVErrCode OH_AVCapability_GetVideoHeightAlignment (OH_AVCapability *capabilit
 
 如果执行成功，则返回AV_ERR_OK， 否则返回特定错误代码，请参阅[OH_AVErrCode](_core.md#oh_averrcode)。
 
+当能力实例无效，或者指向视频高度对齐的指针为空指针，返回AV_ERR_INVALID_VAL。
+
 
 ### OH_AVCapability_GetVideoHeightRange()
 
@@ -585,6 +605,8 @@ OH_AVErrCode OH_AVCapability_GetVideoHeightRange (OH_AVCapability *capability, O
 **返回：**
 
 如果执行成功，则返回AV_ERR_OK， 否则返回特定错误代码，请参阅[OH_AVErrCode](_core.md#oh_averrcode)。
+
+当能力实例无效，或者指向视频高度范围的指针为空指针，返回AV_ERR_INVALID_VAL。
 
 
 ### OH_AVCapability_GetVideoHeightRangeForWidth()
@@ -611,6 +633,8 @@ OH_AVErrCode OH_AVCapability_GetVideoHeightRangeForWidth (OH_AVCapability *capab
 
 如果执行成功，则返回AV_ERR_OK， 否则返回特定错误代码，请参阅[OH_AVErrCode](_core.md#oh_averrcode)。
 
+当能力实例无效，或者宽度不在通过[OH_AVCapability_GetVideoWidthRange](#oh_avcapability_getvideowidthrange)获取支持的宽度范围中， 或者指向高度范围的指针为空指针，返回AV_ERR_INVALID_VAL。
+
 
 ### OH_AVCapability_GetVideoSupportedPixelFormats()
 
@@ -636,6 +660,8 @@ OH_AVErrCode OH_AVCapability_GetVideoSupportedPixelFormats (OH_AVCapability *cap
 
 如果执行成功，则返回AV_ERR_OK， 否则返回特定错误代码，请参阅[OH_AVErrCode](_core.md#oh_averrcode)。
 
+当能力实例无效，或者指向视频像素格式数组的指针为空指针，或者指向像素格式数组的元素数目的指针为空指针，返回AV_ERR_INVALID_VAL。 当遇到未知错误，返回AV_ERR_UNKNOWN。 当内部使用内存分配失败，返回AV_ERR_NO_MEMORY。
+
 
 ### OH_AVCapability_GetVideoWidthAlignment()
 
@@ -659,6 +685,8 @@ OH_AVErrCode OH_AVCapability_GetVideoWidthAlignment (OH_AVCapability *capability
 **返回：**
 
 如果执行成功，则返回AV_ERR_OK， 否则返回特定错误代码，请参阅[OH_AVErrCode](_core.md#oh_averrcode)。
+
+当能力实例无效，或者指向视频宽度对齐的指针为空指针，返回AV_ERR_INVALID_VAL。
 
 
 ### OH_AVCapability_GetVideoWidthRange()
@@ -684,6 +712,8 @@ OH_AVErrCode OH_AVCapability_GetVideoWidthRange (OH_AVCapability *capability, OH
 
 如果执行成功，则返回AV_ERR_OK， 否则返回特定错误代码，请参阅[OH_AVErrCode](_core.md#oh_averrcode)。
 
+当能力实例无效，或者指向视频宽度范围的指针为空指针，返回AV_ERR_INVALID_VAL。
+
 
 ### OH_AVCapability_GetVideoWidthRangeForHeight()
 
@@ -708,6 +738,8 @@ OH_AVErrCode OH_AVCapability_GetVideoWidthRangeForHeight (OH_AVCapability *capab
 **返回：**
 
 如果执行成功，则返回AV_ERR_OK， 否则返回特定错误代码，请参阅[OH_AVErrCode](_core.md#oh_averrcode)。
+
+当能力实例无效，或者高度不在通过[OH_AVCapability_GetVideoHeightRange](#oh_avcapability_getvideoheightrange)获取支持的高度范围中， 或者指向宽度范围的指针为空指针，返回AV_ERR_INVALID_VAL。
 
 
 ### OH_AVCapability_IsEncoderBitrateModeSupported()
@@ -853,5 +885,3 @@ OH_AVCapability* OH_AVCodec_GetCapabilityByCategory (const char *mime, bool isEn
 **返回：**
 
 如果现有编解码器匹配，则返回能力实例， 如果指定的MIME类型与任何现有编解码器不匹配，则返回NULL。
-
-
