@@ -1,7 +1,6 @@
 # MDM Kit API参考
 
 - ArkTS API
-  - [企业设备管理概述 ](enterpriseDeviceManagement-overview.md)
   - [@ohos.enterprise.accountManager（帐户管理）](js-apis-enterprise-accountManager.md)
   - [@ohos.enterprise.adminManager (企业设备管理)](js-apis-enterprise-adminManager.md)
   - [@ohos.enterprise.applicationManager（应用管理）](js-apis-enterprise-applicationManager.md)
