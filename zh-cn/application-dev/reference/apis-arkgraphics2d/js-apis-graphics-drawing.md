@@ -440,7 +440,7 @@ class DrawingRenderNode extends RenderNode {
   async draw(context : DrawContext) {
     const canvas = context.canvas;
     if (this.pixelMap != null) {
-      const brush = new drawing.Brush(); // 只支持brush，使用pen没有绘制效果。
+      const brush = new drawing.Brush(); // only support brush
       canvas.attachBrush(brush);
       let verts : Array<number> = [0, 0, 50, 0, 410, 0, 0, 180, 50, 180, 410, 180, 0, 360, 50, 360, 410, 360]; // 18
       canvas.drawPixelMapMesh(this.pixelMap, 2, 2, verts, 0, null, 0);
