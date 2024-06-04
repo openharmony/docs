@@ -18,7 +18,7 @@ static napi_value IncorrectDemo1(napi_env env, napi_callbackk_info info) {
 }
 
 static napi_value IncorrectDemo2(napi_env env, napi_callback_info info) {
-    // argc 声明的数量大与 argv 实际初始化的长度，导致 napi_get_cb_info 接口在写入 argv 时数据越界。
+    // argc 声明的数量大于 argv 实际初始化的长度，导致 napi_get_cb_info 接口在写入 argv 时数据越界。
     size_t argc = 5;
     napi_value argv[3] = {nullptr};
     napi_get_cb_info(env, info, &argc, argv, nullptr, nullptr);
