@@ -8,8 +8,7 @@
 >
 > 本模块接口仅可在Stage模型下使用。
 >
-> 本模块接口仅对[设备管理应用](enterpriseDeviceManagement-overview.md#基本概念)开放，需将设备管理应用激活后调用，实现相应功能。
->
+> 本模块接口仅对[设备管理应用](../mdm/mdm-kit-guide.md#功能介绍)开放，需将设备管理应用激活后调用，实现相应功能。
 
 ## 导入模块
 
@@ -26,8 +25,6 @@ disallowOsAccountAddition(admin: Want, disallow: boolean, accountId?: number): v
 **需要权限：** ohos.permission.ENTERPRISE_SET_ACCOUNT_POLICY
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
-
-
 
 **参数：**
 
@@ -127,8 +124,6 @@ addOsAccountAsync(admin: Want, name: string, type: osAccount.OsAccountType): Pro
 **需要权限：** ohos.permission.ENTERPRISE_SET_ACCOUNT_POLICY
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
-
-
 
 **参数：**
 
