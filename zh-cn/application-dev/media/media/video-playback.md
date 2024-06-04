@@ -266,28 +266,6 @@ export class AVPlayerDemo {
     // 设置媒体来源和播放策略
     avPlayer.setMediaSource(mediaSource, playbackStrategy);
   }
-
-  // 以下demo为通过selectTrack设置音频轨道，通过deselectTrack取消上次设置的音频轨道并恢复到视频默认音频轨道。
-  async multiTrackDemo() {
-    // 创建avPlayer实例对象
-    let avPlayer: media.AVPlayer = await media.createAVPlayer();
-    avPlayer.getTrackDescription((error: BusinessError, arrList: Array<media.MediaDescription>) => {
-      if (arrList != null) {
-        for (let i = 0; i < arrList.length; i++) {
-          if (i != 0) {
-            // 获取音频轨道列表
-            let audioTrackIndex: Object = arrList[i][media.MediaDescriptionKey.MD_KEY_TRACK_INDEX];
-          }
-        }
-      } else {
-        console.error(`audio getTrackDescription fail, error:${error}`);
-      }
-    });
-    // 选择其中一个音频轨道
-    avPlayer.selectTrack(parseInt(audioTrackIndex.toString()));
-    // 取消选择上次选中的音频轨道，并恢复到默认音频轨道。
-    avPlayer.deselectTrack(parseInt(audioTrackIndex.toString()));
-  }
 }
 ```
 
