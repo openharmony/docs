@@ -360,6 +360,50 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
+### drawRect<sup>12+</sup>
+
+drawRect(left: number, top: number, right: number, bottom: number): void
+
+用于绘制一个矩形，默认使用黑色填充。性能优于[drawRect](#drawrect)接口，推荐使用本接口。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明           |
+| ------ | ------ | ---- | -------------- |
+| left   | number | 是   | 矩形的左上角x轴坐标，该参数为浮点数。 |
+| top    | number | 是   | 矩形的左上角y轴坐标，该参数为浮点数。 |
+| right  | number | 是   | 矩形的右下角x轴坐标，该参数为浮点数。 |
+| bottom | number | 是   | 矩形的右下角y轴坐标，该参数为浮点数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+import { drawing } from '@kit.ArkGraphics2D';
+class DrawingRenderNode extends RenderNode {
+
+  draw(context : DrawContext) {
+    const canvas = context.canvas;
+    const pen = new drawing.Pen();
+    pen.setStrokeWidth(5);
+    pen.setColor({alpha: 255, red: 255, green: 0, blue: 0});
+    canvas.attachPen(pen);
+    canvas.drawRect(0, 0, 10, 10);
+    canvas.detachPen();
+  }
+}
+```
+
 ### drawCircle
 
 drawCircle(x: number, y: number, radius: number): void
@@ -484,6 +528,45 @@ class DrawingRenderNode extends RenderNode {
       blue: 10
     }
     canvas.drawColor(color, drawing.BlendMode.CLEAR);
+  }
+}
+```
+
+### drawColor<sup>12+</sup>
+
+drawColor(alpha: number, red: number, green: number, blue: number, blendMode?: BlendMode): void
+
+绘制背景颜色。性能优于[drawColor](#drawcolor)接口，推荐使用本接口。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名     | 类型                    | 必填 | 说明                                               |
+| --------- | ----------------------- | ---- | ------------------------------------------------- |
+| alpha     | number                  | 是   | ARGB格式颜色的透明度通道值，该参数是0到255之间的整数，传入范围内的浮点数会向下取整。 |
+| red       | number                  | 是   | ARGB格式颜色的红色通道值，该参数是0到255之间的整数，传入范围内的浮点数会向下取整。   |
+| green     | number                  | 是   | ARGB格式颜色的绿色通道值，该参数是0到255之间的整数，传入范围内的浮点数会向下取整。   |
+| blue      | number                  | 是   | ARGB格式颜色的蓝色通道值，该参数是0到255之间的整数，传入范围内的浮点数会向下取整。   |
+| blendMode | [BlendMode](#blendmode) | 否   | 颜色混合模式，默认模式为SRC_OVER。                   |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed. |
+
+**示例：**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+import { drawing } from '@kit.ArkGraphics2D';
+class DrawingRenderNode extends RenderNode {
+  draw(context : DrawContext) {
+    const canvas = context.canvas;
+    canvas.drawColor(255, 0, 10, 10, drawing.BlendMode.CLEAR);
   }
 }
 ```
@@ -2151,6 +2234,39 @@ const pen = new drawing.Pen();
 pen.setColor(color);
 ```
 
+### setColor<sup>12+</sup>
+
+setColor(alpha: number, red: number, green: number, blue: number): void
+
+用于设置画笔的颜色。性能优于[setColor](#setcolor)接口，推荐使用本接口。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明                                                |
+| ------ | ------ | ---- | -------------------------------------------------- |
+| alpha  | number | 是   | ARGB格式颜色的透明度通道值，该参数是0到255之间的整数，传入范围内的浮点数会向下取整。 |
+| red    | number | 是   | ARGB格式颜色的红色通道值，该参数是0到255之间的整数，传入范围内的浮点数会向下取整。   |
+| green  | number | 是   | ARGB格式颜色的绿色通道值，该参数是0到255之间的整数，传入范围内的浮点数会向下取整。   |
+| blue   | number | 是   | ARGB格式颜色的蓝色通道值，该参数是0到255之间的整数，传入范围内的浮点数会向下取整。   |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+const pen = new drawing.Pen();
+pen.setColor(255, 255, 0, 0);
+```
+
 ### setStrokeWidth
 
 setStrokeWidth(width: number) : void
@@ -2631,6 +2747,39 @@ import { common2D, drawing } from '@kit.ArkGraphics2D';
 const color : common2D.Color = { alpha: 255, red: 255, green: 0, blue: 0 };
 const brush = new drawing.Brush();
 brush.setColor(color);
+```
+
+### setColor<sup>12+</sup>
+
+setColor(alpha: number, red: number, green: number, blue: number): void
+
+用于设置画刷的颜色。性能优于[setColor](#setcolor-1)接口，推荐使用本接口。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+ 
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明                                               |
+| ------ | ------ | ---- | -------------------------------------------------- |
+| alpha  | number | 是   | ARGB格式颜色的透明度通道值，该参数是0到255之间的整数，传入范围内的浮点数会向下取整。 |
+| red    | number | 是   | ARGB格式颜色的红色通道值，该参数是0到255之间的整数，传入范围内的浮点数会向下取整。   |
+| green  | number | 是   | ARGB格式颜色的绿色通道值，该参数是0到255之间的整数，传入范围内的浮点数会向下取整。   |
+| blue   | number | 是   | ARGB格式颜色的蓝色通道值，该参数是0到255之间的整数，传入范围内的浮点数会向下取整。   |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed. |
+
+**示例：**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+const brush = new drawing.Brush();
+brush.setColor(255, 255, 0, 0);
 ```
 
 ### setAntiAlias
