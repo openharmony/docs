@@ -1,7 +1,7 @@
-# Encryption and Decryption with an AES Symmetric Key (GCM Mode)
+# Encryption and Decryption with an SM4 Symmetric Key (GCM Mode)
 
 
-For details about the algorithm specifications, see [AES](crypto-sym-encrypt-decrypt-spec.md#aes).
+For details about the algorithm specifications, see [SM4](crypto-sym-encrypt-decrypt-spec.md#sm4).
 
 
 **Encryption**
@@ -9,18 +9,18 @@ For details about the algorithm specifications, see [AES](crypto-sym-encrypt-dec
 
 1. Use [cryptoFramework.createSymKeyGenerator](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatesymkeygenerator) and [SymKeyGenerator.generateSymKey](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatesymkey-1) to generate a 128-bit AES symmetric key (**SymKey**).
    
-   In addition to the example in this topic, [AES](crypto-sym-key-generation-conversion-spec.md#aes) and [Randomly Generating a Symmetric Key](crypto-generate-sym-key-randomly.md) may help you better understand how to generate an AES symmetric key. Note that the input parameters in the reference documents may be different from those in the example below.
+   In addition to the example in this topic, [SM4](crypto-sym-key-generation-conversion-spec.md#sm4) and [Randomly Generating a Symmetric Key](crypto-generate-sym-key-randomly.md) may help you better understand how to generate an SM4 symmetric key. Note that the input parameters in the reference documents may be different from those in the example below.
 
-2. Use [cryptoFramework.createCipher](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatecipher) with the string parameter **'AES128|GCM|PKCS7'** to create a **Cipher** instance. The key type is **AES128**, block cipher mode is **GCM**, and the padding mode is **PKCS7**.
+2. Use [cryptoFramework.createCipher](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatecipher) with the string parameter **'SM4_128|GCM|PKCS7'** to create a **Cipher** instance. The key type is **SM4_128**, block cipher mode is **GCM**, and the padding mode is **PKCS7**.
 
 3. Use [Cipher.init](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#init-1) to initialize the **Cipher** instance. In the **Cipher.init** API, set **opMode** to **CryptoMode.ENCRYPT_MODE** (encryption), **key** to **SymKey** (the key for encryption), and **params** to **GcmParamsSpec** corresponding to the GCM mode.
 
 4. Use [Cipher.update](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#update-1) to pass in the data to be encrypted (plaintext).
    
-   Currently, the data to be passed in by a single **update()** is not size bound. You can determine how to pass in data based on the data volume.
+   Currently, the amount of the data to be passed in by a single **update()** is not limited. You can determine how to pass in data based on the data volume.
 
-   - If the data to be encrypted is short, you can use **doFinal** immediately after **init**.
-   - If the data to be encrypted is considerably long, you can call **update()** multiple times to [pass in the data by segment](crypto-aes-sym-encrypt-decrypt-gcm-by-segment.md).
+   - If a small amount of data is to be encrypted, you can use **doFinal** immediately after **init**.
+   - If a large amount of data is to be encrypted, you can call **update()** multiple times to [pass in the data by segment](crypto-sm4-sym-encrypt-decrypt-gcm-by-segment.md).
 
 5. Use [Cipher.doFinal](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#dofinal-1) to obtain the encrypted data.
    - If data has been passed in by **update()**, pass in **null** in the **data** parameter of **Cipher.doFinal**.
@@ -72,7 +72,7 @@ For details about the algorithm specifications, see [AES](crypto-sym-encrypt-dec
 
   // Encrypt the message.
   async function encryptMessagePromise(symKey: cryptoFramework.SymKey, plainText: cryptoFramework.DataBlob) {
-    let cipher = cryptoFramework.createCipher('AES128|GCM|PKCS7');
+    let cipher = cryptoFramework.createCipher('SM4_128|GCM|PKCS7');
     await cipher.init(cryptoFramework.CryptoMode.ENCRYPT_MODE, symKey, gcmParams);
     let encryptUpdate = await cipher.update(plainText);
     // In GCM mode, pass in null in doFinal() in encryption. Obtain the tag data and fill it in the gcmParams object.
@@ -81,7 +81,7 @@ For details about the algorithm specifications, see [AES](crypto-sym-encrypt-dec
   }
   // Decrypt the message.
   async function decryptMessagePromise(symKey: cryptoFramework.SymKey, cipherText: cryptoFramework.DataBlob) {
-    let decoder = cryptoFramework.createCipher('AES128|GCM|PKCS7');
+    let decoder = cryptoFramework.createCipher('SM4_128|GCM|PKCS7');
     await decoder.init(cryptoFramework.CryptoMode.DECRYPT_MODE, symKey, gcmParams);
     let decryptUpdate = await decoder.update(cipherText);
     // In GCM mode, pass in null in doFinal() in decryption. Verify the tag data passed in **init**. If the verification fails, an exception will be thrown.
@@ -93,8 +93,8 @@ For details about the algorithm specifications, see [AES](crypto-sym-encrypt-dec
   }
   async function genSymKeyByData(symKeyData: Uint8Array) {
     let symKeyBlob: cryptoFramework.DataBlob = { data: symKeyData };
-    let aesGenerator = cryptoFramework.createSymKeyGenerator('AES128');
-    let symKey = await aesGenerator.convertKey(symKeyBlob);
+    let sm4Generator = cryptoFramework.createSymKeyGenerator('SM4_128');
+    let symKey = await sm4Generator.convertKey(symKeyBlob);
     console.info('convertKey success');
     return symKey;
   }
@@ -147,7 +147,7 @@ For details about the algorithm specifications, see [AES](crypto-sym-encrypt-dec
 
   // Encrypt the message.
   function encryptMessage(symKey: cryptoFramework.SymKey, plainText: cryptoFramework.DataBlob) {
-    let cipher = cryptoFramework.createCipher('AES128|GCM|PKCS7');
+    let cipher = cryptoFramework.createCipher('SM4_128|GCM|PKCS7');
     cipher.initSync(cryptoFramework.CryptoMode.ENCRYPT_MODE, symKey, gcmParams);
     let encryptUpdate = cipher.updateSync(plainText);
     // In GCM mode, pass in null in doFinal() in encryption. Obtain the tag data and fill it in the gcmParams object.
@@ -156,7 +156,7 @@ For details about the algorithm specifications, see [AES](crypto-sym-encrypt-dec
   }
   // Decrypt the message.
   function decryptMessage(symKey: cryptoFramework.SymKey, cipherText: cryptoFramework.DataBlob) {
-    let decoder = cryptoFramework.createCipher('AES128|GCM|PKCS7');
+    let decoder = cryptoFramework.createCipher('SM4_128|GCM|PKCS7');
     decoder.initSync(cryptoFramework.CryptoMode.DECRYPT_MODE, symKey, gcmParams);
     let decryptUpdate = decoder.updateSync(cipherText);
     // In GCM mode, pass in null in doFinal() in decryption. Verify the tag data passed in **init**. If the verification fails, an exception will be thrown.
@@ -168,8 +168,8 @@ For details about the algorithm specifications, see [AES](crypto-sym-encrypt-dec
   }
   async function genSymKeyByData(symKeyData: Uint8Array) {
     let symKeyBlob: cryptoFramework.DataBlob = { data: symKeyData };
-    let aesGenerator = cryptoFramework.createSymKeyGenerator('AES128');
-    let symKey = await aesGenerator.convertKey(symKeyBlob);
+    let sm4Generator = cryptoFramework.createSymKeyGenerator('SM4_128');
+    let symKey = await sm4Generator.convertKey(symKeyBlob);
     console.info('convertKey success');
     return symKey;
   }
