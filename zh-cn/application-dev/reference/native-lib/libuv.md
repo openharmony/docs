@@ -114,15 +114,6 @@ uv_loop_t *loop;
 napi_value jsCb;
 int fd = -1;
 
-static void execute(uv_work_t *work) {
-    OH_LOG_INFO(LOG_APP, "ohos in execute");
-}
-
-static void complete(uv_work_t *work, int status) {
-    OH_LOG_INFO(LOG_APP, "ohos in complete"); 
-    delete work;
-}
-
 static napi_value Add(napi_env env, napi_callback_info info)
 {
     napi_value work_name;
@@ -133,9 +124,9 @@ static napi_value Add(napi_env env, napi_callback_info info)
         OH_LOG_INFO(LOG_APP, "ohos in execute");
     }, [](napi_env env, napi_status status, void *data){
         /* 不关心具体实现 */
+        OH_LOG_INFO(LOG_APP, "ohos in complete");
         napi_delete_async_work(env, (napi_async_work)data);
     }, nullptr, &work);
-
     /* 通过napi_queue_async_work触发异步任务执行 */
     napi_queue_async_work(env, work);
     return 0;
