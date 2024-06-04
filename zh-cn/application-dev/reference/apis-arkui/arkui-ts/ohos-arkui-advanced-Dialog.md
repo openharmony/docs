@@ -203,7 +203,7 @@ CustomContentDialog({controller: CustomDialogController, contentBuilder: () => v
 ### 示例1
 
 ```ts
-import { TipsDialog } from '@ohos.arkui.advanced.Dialog';
+import { TipsDialog } from '@kit.ArkUI';
 import { image } from '@kit.ImageKit';
 
 @Entry
@@ -278,7 +278,7 @@ struct Index {
 ### 示例2
 
 ```ts
-import { SelectDialog } from '@ohos.arkui.advanced.Dialog'
+import { SelectDialog } from '@kit.ArkUI'
 @Entry
 @Component
 struct Index {
@@ -340,7 +340,7 @@ struct Index {
 ### 示例3
 
 ```ts
-import { ConfirmDialog } from '@ohos.arkui.advanced.Dialog'
+import { ConfirmDialog } from '@kit.ArkUI'
 @Entry
 @Component
 struct Index {
@@ -396,7 +396,7 @@ struct Index {
 ### 示例4
 
 ```ts
-import { AlertDialog } from '@ohos.arkui.advanced.Dialog'
+import { AlertDialog } from '@kit.ArkUI'
 
 @Entry
 @Component
@@ -447,7 +447,7 @@ struct Index {
 ### 示例5
 
 ```ts
-import { LoadingDialog } from '@ohos.arkui.advanced.Dialog'
+import { LoadingDialog } from '@kit.ArkUI'
 @Entry
 @Component
 struct Index {
@@ -484,7 +484,7 @@ struct Index {
 
 ```ts
 import { CustomColors, CustomTheme } from '@ohos.arkui.theme'
-import { LoadingDialog } from '@ohos.arkui.advanced.Dialog';
+import { LoadingDialog } from '@kit.ArkUI';
 
 class CustomThemeImpl implements CustomTheme {
   colors?: CustomColors;
@@ -536,7 +536,7 @@ struct Index {
 ### 示例7
 
 ```ts
-import { CustomContentDialog } from '@ohos.arkui.advanced.Dialog'
+import { CustomContentDialog } from '@kit.ArkUI'
 
 @Entry
 @Component
