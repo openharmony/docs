@@ -1624,6 +1624,7 @@
             - [图像效果 (系统接口)](reference/apis-arkui/arkui-ts/ts-universal-attributes-image-effect-sys.md)
             - [背景设置 (系统接口)](reference/apis-arkui/arkui-ts/ts-universal-attributes-background-sys.md)
             - [组件内容模糊 (系统接口)](reference/apis-arkui/arkui-ts/ts-universal-attributes-foreground-blur-style-sys.md)
+            - [点光源设置 (系统接口)](reference/apis-arkui/arkui-ts/ts-universal-attributes-point-light-style-sys.md)
           - 手势处理
             - [绑定手势方法](reference/apis-arkui/arkui-ts/ts-gesture-settings.md)
             - 基础手势
@@ -1720,8 +1721,12 @@
           - [Tabs](reference/apis-arkui/arkui-ts/ts-container-tabs.md)
           - [TabContent](reference/apis-arkui/arkui-ts/ts-container-tabcontent.md)
           - [WaterFlow](reference/apis-arkui/arkui-ts/ts-container-waterflow.md)
+          - [Column (系统接口)](reference/apis-arkui/arkui-ts/ts-container-column-sys.md)
           - [EffectComponent (系统接口)](reference/apis-arkui/arkui-ts/ts-container-effectcomponent-sys.md)
+          - [Flex (系统接口)](arkui-ts/ts-container-flex-sys.md)
           - [List (系统接口)](reference/apis-arkui/arkui-ts/ts-container-list-sys.md)
+          - [Row (系统接口)](reference/apis-arkui/arkui-ts/ts-container-row-sys.md)
+          - [Stack (系统接口)](reference/apis-arkui/arkui-ts/ts-container-stack-sys.md)
           - [UIExtensionComponent (系统接口)](reference/apis-arkui/arkui-ts/ts-container-ui-extension-component-sys.md)
         - 媒体组件
           - [Video](reference/apis-arkui/arkui-ts/ts-media-components-video.md)
@@ -1800,6 +1805,7 @@
         - [像素单位](reference/apis-arkui/arkui-ts/ts-pixel-units.md)
         - [枚举说明](reference/apis-arkui/arkui-ts/ts-appendix-enums.md)
         - [类型定义](reference/apis-arkui/arkui-ts/ts-types.md)
+        - [枚举说明 (系统接口)](reference/apis-arkui/arkui-ts/ts-appendix-enums-sys.md)
         - 已停止维护的组件
           - [AbilityComponent (系统接口)](reference/apis-arkui/arkui-ts/ts-container-ability-component-sys.md)
           - [GridContainer](reference/apis-arkui/arkui-ts/ts-container-gridcontainer.md)
