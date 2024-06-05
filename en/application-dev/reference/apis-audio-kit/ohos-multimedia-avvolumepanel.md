@@ -35,10 +35,10 @@ In addition to the [universal attributes](../apis-arkui/arkui-ts/ts-universal-at
 
 **Parameters**
 
-| Name| Type| Mandatory| Decorator| Description|
-| -------- | -------- | -------- | -------- | -------- |
-|volumeLevel | number | No| @Prop |  Target volume. The value must be between the minimum volume and the maximum volume supported by the device. If the value is greater than the maximum volume supported, the maximum volume is used. If the value is less than the minimum volume supported, the minimum volume is used.|
-|volumeParameter | [AVVolumePanelParameter](#avvolumepanelparameter)  | No|  @Prop | Custom parameter of the volume panel. If this parameter is not passed in, the system volume bar is invoked.|
+| Name| Type| Mandatory| Decorator| Description                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| -------- | -------- | -------- | -------- |----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|volumeLevel | number | No| @Prop | Target volume. The value must be between the minimum volume and the maximum volume supported by the device. If the value is greater than the maximum volume supported, the maximum volume is used. If the value is less than the minimum volume supported, the minimum volume is used.The maximum and minimum values for obtaining system volume can be referred to in [AudioManager](../apis-audio-kit/js-apis-audio.md#audiomanager) |
+|volumeParameter | [AVVolumePanelParameter](#avvolumepanelparameter)  | No|  @Prop | Custom parameter of the volume panel. If this parameter is not passed in, the system volume bar is invoked.                                                                                                                                                                                                                                                                                                                            |
 
 ## AVVolumePanelParameter
 
