@@ -1,15 +1,14 @@
-# @ohos.arkui.advanced.FormMenu (应用内添加卡片到桌面菜单的高级组件API)
+# @ohos.arkui.advanced.FormMenu (应用内添加卡片到桌面菜单)
 
-本高级组件API封装了一个“添加到桌面”菜单，用于实现应用内长按组件生成“添加到桌面”菜单，点击该菜单，触发卡片添加到桌面操作。通过桌面访问该组件快捷卡片，可以直接访问该组件功能。该API能满足开发者需求，在应用使用过程中，吸引用户将功能快捷添加到桌面，作为留存和复访入口。
+本组件封装了一个“添加至桌面”菜单，用于实现应用内长按组件生成“添加至桌面”菜单，点击该菜单，触发卡片添加至桌面操作。通过桌面访问该应用快捷卡片，可以直接访问该组件功能。在应用使用过程中，该组件作为留存和复访入口，可吸引用户将功能快捷添加到桌面。
 
-API支持：
-应用内支持长按菜单快捷添加卡片到桌面：
+本组件支持应用内支持长按菜单快捷添加卡片到桌面：
 
-1） 提供API给开发者，开发者将卡片数据以及应用内功能组件ID传给卡片框架
+1） 开发者将卡片数据以及应用内功能组件ID传给卡片框架。
 
-2） 点击事件会根据组件ID获取应用内功能组件的快照和位置，用于添加到桌面时的过渡动效
+2） 点击事件会根据组件ID获取应用内功能组件的快照和位置，用于添加到桌面时的过渡动效。
 
-3） 卡片框架通过将加桌数据通知给桌面，触发卡片添加到桌面操作
+3） 卡片框架通过将加桌数据通知给桌面，触发卡片添加到桌面操作。
 
 
 > **说明：**
@@ -29,65 +28,65 @@ import { AddFormMenuItem } from '@kit.ArkUI';
 无
 
 ## 属性
-不支持[通用属性](ts-universal-attributes-size.md)
+不支持[通用属性](ts-universal-attributes-size.md)。
 
 ## AddFormMenuItem 
 
-```
-export declare function AddFormMenuItem(
+
+AddFormMenuItem(
   want: Want,
   componentId: string,
   options?: AddFormOptions
 ): void;
-```
+
 
 **装饰器类型：**@Component
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
-apis-ability-kit/js-apis-app-ability-want.md
+
 | 名称           | 参数类型                        | 必填 | 装饰器类型 | 说明                                                             |
 | -------------- | ------------------------------- | ---- | ---------- | ---------------------------------------------------------------- |
-| want           | [Want](../../apis-ability-kit/js-apis-app-ability-want.md#want)                            | 是   | \@Prop     | 待发布功能组件的want信息                                         |
-| componentId    | string                          | 是   | -          | 应用内功能组件ID，组件ID对应的界面与待添加的服务卡片界面相似 |
-| AddFormOptions| [AddFormOptions](#addformoptions) | 否   | -          | 添加卡片选项                                                         |
+| want           | [Want](../../apis-ability-kit/js-apis-app-ability-want.md#want)                            | 是   | \@Prop     | 待发布功能组件的want信息。                                         |
+| componentId    | string                          | 是   | -          | 应用内功能组件ID，组件ID对应的界面与待添加的服务卡片界面相似。 |
+| AddFormOptions| [AddFormOptions](#addformoptions) | 否   | -          | 添加卡片选项。                                                         |
 
 ## AddFormOptions
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 | 名称             | 参数类型                | 必填 | 说明                                                      |
 | --------------- | ---- | ---- | ---------------------------------------------------------------- |
-| formBindingData | [formBindingData.FormBindingData](../../apis-form-kit/js-apis-app-form-formBindingData.md#formbindingdata) | 否 | 卡片数据 |
-| callback        | AsyncCallback<string>                                                                                                | 否 | 返回结果的回调  |
-| style           | [FormMenuItemStyle](#formmenuitemstyle)                                                                              | 否 | 菜单自定义样式信息|
+| formBindingData | [formBindingData.FormBindingData](../../apis-form-kit/js-apis-app-form-formBindingData.md#formbindingdata) | 否 | 卡片数据。 |
+| callback        | AsyncCallback<string>                                                                                                | 否 | 返回结果的回调。  |
+| style           | [FormMenuItemStyle](#formmenuitemstyle)                                                                              | 否 | 菜单自定义样式信息。|
 
 
 ## FormMenuItemStyle
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 | 名称            | 参数类型           | 必填 | 说明 |
 | --------------- | ----------------- | ---- | ---- |
-| options | [MenuItemOptions](ts-basic-components-menuitem.md#menuitemoptions类型说明) | 否   | 包含设置MenuItem的各项信息|
+| options | [MenuItemOptions](ts-basic-components-menuitem.md#menuitemoptions类型说明) | 否   | 包含设置MenuItem的各项信息。|
 
 > **说明：**
 >
-> 仅在 style配置为空或不配置时，使用默认的图标和menu文字
+> 仅在 style配置为空或不配置时，使用默认的图标和menu文字。
 
 ## 事件
-支持菜单点击事件
+支持菜单点击事件。
 
 ## 示例
-**index.ets:**
 
 ```ts
+// index.ets
 import { AddFormMenuItem } from '@kit.ArkUI';
 import { formBindingData } from '@kit.FormKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -123,7 +122,7 @@ struct Index {
           },
           style: {
             // options: {
-            //   startIcon: $r("app.media.icon"), // 菜单图标,可以自己提供。系统默认采用"sys.media.ohos_ic_public_add"
+            //   startIcon: $r("app.media.icon"), // 菜单图标,可以自己提供。系统默认采用"sys.media.ic_public_add"
             //   content: "添加到桌面",  // 菜单内容，可以自己提供。默认使用"sys.string.ohos_add_form_to_desktop"
             //   endIcon: $r("app.media.icon") // 菜单图标，可以自己提供
             // }
@@ -136,7 +135,7 @@ struct Index {
   build() {
     Row() {
       Column() {
-        Image($r("app.media.CardEvent"))   // 自定义图片
+        Image($r("app.media.startIcon"))   // 自定义图片
           .id(this.compId)
           .width(200)
           .height(200)
@@ -151,8 +150,8 @@ struct Index {
 }
 ```
 
-**WidgetCard.ets:**
 ```ts
+// WidgetCard.ets
 const local = new LocalStorage()
 
 @Entry(local)
@@ -191,7 +190,7 @@ struct WidgetCard {
       .width(this.FULL_WIDTH_PERCENT)
     }
     .height(this.FULL_HEIGHT_PERCENT)
-    .backgroundImage($r('app.media.CardEvent'))
+    .backgroundImage($r('app.media.startIcon'))
     .backgroundImageSize({ width: '100%', height: '100%' })
     .onClick(() => {
       postCardAction(this, {
@@ -212,6 +211,6 @@ struct WidgetCard {
 
 **调用高级自定义控件桌面加桌结果**
 
-左侧是formbdingdata为空加桌结果，右侧是formbindingdata为{ data: 'share' }的加桌结果
+左侧是formbdingdata为空加桌结果，右侧是formbindingdata为{ data: 'share' }的加桌结果。
 
 ![zh-cn_image_0000001616959836](figures/zh-cn_image_add_form_to_desktop_result.jpeg)
