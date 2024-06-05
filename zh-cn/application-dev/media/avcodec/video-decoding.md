@@ -401,7 +401,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     > Flush之后，重新Start时，需要重新传XPS。
     >
 
-     ```c++
+    ```c++
     // 配置帧数据XPS信息
     OH_AVCodecBufferAttr info;
     info.flags = AVCODEC_BUFFER_FLAG_CODEC_DATA;
