@@ -1723,7 +1723,7 @@
           - [WaterFlow](reference/apis-arkui/arkui-ts/ts-container-waterflow.md)
           - [Column (系统接口)](reference/apis-arkui/arkui-ts/ts-container-column-sys.md)
           - [EffectComponent (系统接口)](reference/apis-arkui/arkui-ts/ts-container-effectcomponent-sys.md)
-          - [Flex (系统接口)](arkui-ts/ts-container-flex-sys.md)
+          - [Flex (系统接口)](reference/apis-arkui/arkui-ts/ts-container-flex-sys.md)
           - [List (系统接口)](reference/apis-arkui/arkui-ts/ts-container-list-sys.md)
           - [Row (系统接口)](reference/apis-arkui/arkui-ts/ts-container-row-sys.md)
           - [Stack (系统接口)](reference/apis-arkui/arkui-ts/ts-container-stack-sys.md)
