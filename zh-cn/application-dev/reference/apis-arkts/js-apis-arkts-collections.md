@@ -1125,7 +1125,7 @@ array2.extendTo(1, 10); // array内容不变
 
 ### concat
 
-concat(...items: ConcatArray<T>[]): Array<T>
+concat(...items: ConcatArray\<T>[]): Array\<T>
 
 拼接两个或多个数组。
 
@@ -1135,7 +1135,7 @@ concat(...items: ConcatArray<T>[]): Array<T>
 
 | 参数名 | 类型 | 必填 | 说明                               |
 | ------ | ---- | ---- | ---------------------------------- |
-| items  | ConcatArray<T>[]  | 是   | 拼接两个或多个数组。 |
+| items  | ConcatArray\<T>[]  | 是   | 拼接两个或多个数组。 |
 
 **错误码：**
 
