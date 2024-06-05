@@ -93,7 +93,7 @@ function requestAd(context: common.Context): void {
     // 广告类型
     adType: 3,
     // 测试广告位ID
-    adId: "testy63txaom8",
+    adId: "testy63txaom86",
   };
   const adOptions: advertising.AdOptions = {
     // 可选自定义参数，设置是否允许使用流量下载广告素材 0：不允许，1：允许
@@ -170,13 +170,13 @@ function requestMultiAd(context: common.Context): void {
     // 广告类型
     adType: 3,
     // 测试广告位ID
-    adId: "testy63txaom8",
+    adId: "testy63txaom86",
   } as advertising.AdRequestParams,
     {
       // 广告类型
       adType: 3,
       // 测试广告位ID
-      adId: "testy63txaom8",
+      adId: "testy63txaom86",
     } as advertising.AdRequestParams
   ];
   const adOptions: advertising.AdOptions = {
