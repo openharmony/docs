@@ -152,7 +152,7 @@ Failed to install the HAP because the HAP signature fails to be verified.
 1. 确认hap包是否签名成功。
 2. 确认hap包的签名证书是从应用市场申请。
 3. 确认多个hap包签名时使用的证书相同。
-4. 确认升级的ha包p签名证书与已安装的hap包相同。
+4. 确认升级的hap包签名证书与已安装的hap包相同。
 
 ## 17700012 安装包路径无效或者文件过大导致应用安装失败
 
