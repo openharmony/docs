@@ -2379,7 +2379,7 @@ audioVolumeManager.on('volumeChange', (volumeEvent: audio.VolumeEvent) => {
 
 ### off('volumeChange')<sup>12+</sup>
 
-off(type: 'volumeChange', callback: Callback\<VolumeEvent>): void
+off(type: 'volumeChange', callback?: Callback\<VolumeEvent>): void
 
 取消监听系统音量变化事件，使用callback方式返回结果。
 
@@ -2390,7 +2390,7 @@ off(type: 'volumeChange', callback: Callback\<VolumeEvent>): void
 | 参数名   | 类型                                   | 必填 | 说明                                                         |
 | -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                 | 是   | 事件回调类型，支持的事件为：'volumeChange'。 |
-| callback | Callback<[VolumeEvent](#volumeevent9)> | 是   | 回调函数，返回变化后的音量信息。 |
+| callback | Callback<[VolumeEvent](#volumeevent9)> | 否   | 回调函数，返回变化后的音量信息。 |
 
 **错误码：**
 
@@ -2398,16 +2398,13 @@ off(type: 'volumeChange', callback: Callback\<VolumeEvent>): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters missing; 2.Incorrect parameter types. |
 | 6800101 | Parameter verification failed. |
 
 **示例：**
 
 ```ts
-audioVolumeManager.off('volumeChange', (volumeEvent: audio.VolumeEvent) => {
-  console.info('An event to release the audio volumeChange starts.');
-  console.info(`volumeChange release event: ${volumeEvent} `);
-});
+audioVolumeManager.off('volumeChange');
 ```
 
 ## AudioVolumeGroupManager<sup>9+</sup>
