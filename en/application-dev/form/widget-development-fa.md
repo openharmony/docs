@@ -153,10 +153,10 @@ let deleteFormInfo = async (formId: string, context: featureAbility.Context) => 
     const storage = await dataPreferences.getPreferences(context, DATA_STORAGE_PATH);
     // Delete the widget information.
     await storage.delete(formId);
-    console.info(`deleteFormInfo, del form info successfully, formId: ${formId}`);
+    hilog.info(domain, TAG, `deleteFormInfo, del form info successfully, formId: ${formId}`);
     await storage.flush();
   } catch (err) {
-    console.error(`failed to deleteFormInfo, err: ${JSON.stringify(err)}`);
+    hilog.error(domain, TAG, `failed to deleteFormInfo, err: ${JSON.stringify(err)}`);
   }
 }
 
@@ -384,10 +384,10 @@ let deleteFormInfo = async (formId: string, context: featureAbility.Context) => 
     const storage = await dataPreferences.getPreferences(context, DATA_STORAGE_PATH);
     // Delete the widget information.
     await storage.delete(formId);
-    console.info(`deleteFormInfo, del form info successfully, formId: ${formId}`);
+    hilog.info(domain, TAG, `deleteFormInfo, del form info successfully, formId: ${formId}`);
     await storage.flush();
   } catch (err) {
-    console.error(`failed to deleteFormInfo, err: ${JSON.stringify(err)}`);
+    hilog.error(domain, TAG, `failed to deleteFormInfo, err: ${JSON.stringify(err)}`);
   }
 }
 

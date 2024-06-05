@@ -58,6 +58,10 @@ httpRequest.request(// 填写HTTP请求的URL地址，可以带参数也可以�
       certType: http.CertType.PEM, // 可选，默认使用PEM，自API 11开始支持该属性
       keyPassword: "passwordToKey" // 可选，输入key文件的密码，自API 11开始支持该属性
     },
+    certificatePinning:{ // 可选，支持证书锁定配置信息的动态设置，自API 12开始支持该属性
+      publicKeyHash: '', // 由应用传入的证书PIN码，自API 12开始支持该属性
+      hashAlgorithm: 'SHA-256', // 加密算法，当前仅支持sha256，自API 12开始支持该属性
+    },
     multiFormDataList: [ // 可选，仅当Header中，'content-Type'为'multipart/form-data'时生效，自API 11开始支持该属性
       {
         name: "Part1", // 数据名，自API 11开始支持该属性
@@ -1105,6 +1109,7 @@ httpRequest.off("dataSendProgress");
 | dnsServers<sup>11+</sup> | Array<string> | 否 | 设置指定的DNS服务器进行DNS解析。<br />-可以设置多个DNS解析服务器，最多3个服务器。如果有3个以上，只取前3个。<br />-服务器必须是IPV4或者IPV6地址。 |
 | maxLimit<sup>11+</sup>   | number   | 否 | 响应消息的最大字节限制，默认值为5\*1024\*1024，以字节为单位。最大值为100\*1024\*1024，以字节为单位。  |
 | multiFormDataList<sup>11+</sup> | Array<[MultiFormData](#multiformdata11)> | 否 | 当'content-Type'为'multipart/form-data'时，则上传该字段定义的数据字段表单列表。 |
+| certificatePinning<sup>12+</sup> | [CertificatePinning](#certificatepinning12) \| CertificatePinning[] | 否 | 支持动态设置证书锁定配置，可以传入单个或多个证书PIN码。 |
 
 ## RequestMethod
 
@@ -1518,3 +1523,14 @@ http协议版本。
 | PEM | 证书类型PEM |
 | DER | 证书类型DER |
 | P12 | 证书类型P12 |
+
+## CertificatePinning<sup>12+</sup>
+
+由应用配置的证书。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+|  名称  |  类型  |   说明     |
+| ------------------  | -- | ----------- |
+| publicKeyHash       | string | 字符串类型的证书PIN码。 |
+| hashAlgorithm        | 'SHA-256' | 加密算法，当前仅支持该算法。 |

@@ -27,6 +27,7 @@
 | napi_get_and_clear_last_exception | 当你需要获取最近一次出现的异常，并将异常队列清空时，可以使用这个函数。 |
 | napi_is_exception_pending | 当你需要判断是否有未处理的异常时，可以使用这个函数。 |
 | napi_fatal_error | 当遇到严重错误或不可恢复的情况时，可以使用这个函数引发致命错误来立即终止进程。 |
+| napi_fatal_exception | 抛出一个致命异常并终止进程, 同时产生相应的crash日志。|
 
 ## 使用示例
 
@@ -587,6 +588,59 @@ try {
 } catch (error) {
   hilog.error(0x0000, 'testTag', 'Test Node-API napi_fatal_error error');
 }
+```
+
+以上代码如果要在native cpp中打印日志，需在CMakeLists.txt文件中添加以下配置信息（并添加头文件：#include "hilog/log.h"）：
+
+```text
+// CMakeLists.txt
+add_definitions( "-DLOG_DOMAIN=0xd0d0" )
+add_definitions( "-DLOG_TAG=\"testTag\"" )
+target_link_libraries(entry PUBLIC libhilog_ndk.z.so)
+```
+
+### napi_fatal_exception
+在主线程的上下文环境中调用napi_fatal_exception函数后，抛出一个致命异常，导致应用程序终止，同时会生成相应的crash日志。因此应该慎重使用，避免在正常操作中频繁调用该函数。
+
+cpp部分代码
+
+```cpp
+#include "napi/native_api.h"
+
+static napi_value FatalException(napi_env env, napi_callback_info info)
+{
+    size_t argc = 1;
+    napi_value args[1] = {nullptr};
+
+    napi_status status = napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+    if (status != napi_ok) {
+      return nullptr;
+    }
+    // 请注意，使用napi_fatal_exception函数会导致应用进程直接终止，因此应该谨慎使用，仅在主线程遇到无法恢复的严重错误时才应该调用该函数
+    // 模拟一个致命错误条件
+    status = napi_fatal_exception(env, args[0]);
+    if (status != napi_ok) {
+      return nullptr;
+    }
+    return nullptr;
+}
+```
+
+接口声明
+
+```ts
+// index.d.ts
+export const fatalException: (err: Error) => void;
+```
+
+ArkTS侧示例代码
+
+```ts
+import hilog from '@ohos.hilog'
+import testNapi from 'libentry.so'
+
+const err = new Error("a fatal exception occurred");
+testNapi.fatalException(err);
 ```
 
 以上代码如果要在native cpp中打印日志，需在CMakeLists.txt文件中添加以下配置信息（并添加头文件：#include "hilog/log.h"）：
