@@ -851,6 +851,8 @@ getRemoteDeviceBatteryInfo(deviceId: string): Promise&lt;BatteryInfo&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter.            |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
 
@@ -893,8 +895,6 @@ on(type: 'batteryChange', callback: Callback&lt;BatteryInfo&gt;): void
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
-|801 | Capability not supported.          |
 |2900099 | Operation failed.                        |
 
 **示例：**
@@ -936,7 +936,6 @@ off(type: 'batteryChange', callback?: Callback&lt;BatteryInfo&gt;): void
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|801 | Capability not supported.          |
 |2900099 | Operation failed.                        |
 
 **示例：**
@@ -1026,7 +1025,6 @@ off(type: 'bluetoothDeviceFind', callback?: Callback&lt;Array&lt;string&gt;&gt;)
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
 |201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
 |801 | Capability not supported.          |
 |2900099 | Operation failed.                        |
 

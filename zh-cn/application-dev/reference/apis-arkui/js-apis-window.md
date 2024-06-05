@@ -474,7 +474,6 @@ getLastWindow(ctx: BaseContext, callback: AsyncCallback&lt;Window&gt;): void
 ```ts
 // EntryAbility.ets
 import { UIAbility } from '@kit.AbilityKit';
-import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
@@ -534,7 +533,6 @@ getLastWindow(ctx: BaseContext): Promise&lt;Window&gt;
 ```ts
 // EntryAbility.ets
 import { UIAbility } from '@kit.AbilityKit';
-import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
@@ -592,8 +590,8 @@ shiftAppWindowFocus(sourceWindowId: number, targetWindowId: number): Promise&lt;
 **示例：**
 
 ```ts
+// EntryAbility.ets
 import { UIAbility } from '@kit.AbilityKit';
-import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
@@ -618,14 +616,14 @@ export default class EntryAbility extends UIAbility {
         try {
           windowClassId = windowClass.getWindowProperties().id;
         } catch (exception) {
-          console.error('Failed to obtain the window. Cause: ' + JSON.stringify(exception))
+          console.error(`Failed to obtain the window. Cause code: ${exception.code}, message: ${exception.message}`);
         }
         console.info('Succeeded in obtaining the window')
       }).catch((err: BusinessError) => {
-        console.error('Failed to obtaining the window. Cause: ' + JSON.stringify(err))
-      })
+        console.error(`Failed to obtaining the window. Cause code: ${err.code}, message: ${err.message}`);
+      });
     } catch (exception) {
-      console.error('Failed to obtain the window. Cause: ' + JSON.stringify(exception))
+      console.error(`Failed to obtain the window. Cause code: ${exception.code}, message: ${exception.message}`);
     }
 
     // 创建或获取子窗及ID，此时子窗口获焦
@@ -640,7 +638,7 @@ export default class EntryAbility extends UIAbility {
         try {
           subWindowClassId = subWindowClass.getWindowProperties().id;
         } catch (exception) {
-          console.error('Failed to obtain the window. Cause: ' + JSON.stringify(exception))
+          console.error(`Failed to obtain the window. Cause code: ${exception.code}, message: ${exception.message}`);
         }
         subWindowClass.resize(500, 500);
         subWindowClass.setUIContent("pages/Index2");
@@ -655,16 +653,16 @@ export default class EntryAbility extends UIAbility {
               promise.then(() => {
                 console.info('Succeeded in shifting app window focus');
               }).catch((err: BusinessError) => {
-                console.error('Failed to shift app window focus. Cause: ' + JSON.stringify(err));
-              })
+                console.error(`Failed to shift app window focus. Cause code: ${err.code}, message: ${err.message}`);
+              });
             } catch (exception) {
-              console.error('Failed to shift app window focus. Cause: ' + JSON.stringify(exception));
+              console.error(`Failed to shift app window focus. Cause code: ${exception.code}, message: ${exception.message}`);
             }
           }
-        })
-      })
+        });
+      });
     } catch (exception) {
-      console.error('Failed to create the subWindow. Cause: ' + JSON.stringify(exception));
+      console.error(`Failed to create the subWindow. Cause code: ${exception.code}, message: ${exception.message}`);
     }
   }
 }
@@ -1033,6 +1031,7 @@ getTopWindow(ctx: BaseContext, callback: AsyncCallback&lt;Window&gt;): void
 
 ```ts
 // EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
@@ -1084,6 +1083,7 @@ getTopWindow(ctx: BaseContext): Promise&lt;Window&gt;
 
 ```ts
 // EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
@@ -1533,7 +1533,7 @@ try {
 
 getWindowAvoidArea(type: AvoidAreaType): AvoidArea
 
-获取窗口内容规避的区域；如系统栏区域、刘海屏区域、手势区域、软键盘区域等与窗口内容重叠时，需要窗口内容避让的区域。
+获取主窗口内容规避的区域；如系统栏区域、刘海屏区域、手势区域、软键盘区域等与窗口内容重叠时，需要窗口内容避让的区域。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -1563,11 +1563,30 @@ getWindowAvoidArea(type: AvoidAreaType): AvoidArea
 **示例：**
 
 ```ts
-let type = window.AvoidAreaType.TYPE_SYSTEM;
-try {
-  let avoidArea = windowClass.getWindowAvoidArea(type);
-} catch (exception) {
-  console.error(`Failed to obtain the area. Cause code: ${exception.code}, message: ${exception.message}`);
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      windowClass = data;
+      let type = window.AvoidAreaType.TYPE_SYSTEM;
+      try {
+        let avoidArea = windowClass.getWindowAvoidArea(type);
+      } catch (exception) {
+        console.error(`Failed to obtain the area. Cause code: ${exception.code}, message: ${exception.message}`);
+      }
+    });
+  }
 }
 ```
 
@@ -1575,7 +1594,7 @@ try {
 
 setWindowLayoutFullScreen(isLayoutFullScreen: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-设置窗口的布局是否为沉浸式布局，使用callback异步回调。
+设置主窗口的布局是否为沉浸式布局，使用callback异步回调。
 沉浸式布局是指布局不避让状态栏与导航栏，组件可能产生与其重叠的情况。
 非沉浸式布局是指布局避让状态栏与导航栏，组件不会与其重叠。
 
@@ -1603,20 +1622,37 @@ setWindowLayoutFullScreen(isLayoutFullScreen: boolean, callback: AsyncCallback&l
 **示例：**
 
 ```ts
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let isLayoutFullScreen = true;
-try {
-  windowClass.setWindowLayoutFullScreen(isLayoutFullScreen, (err: BusinessError) => {
-    const errCode: number = err.code;
-    if (errCode) {
-      console.error(`Failed to set the window layout to full-screen mode. Cause code: ${err.code}, message: ${err.message}`);
-      return;
-    }
-    console.info('Succeeded in setting the window layout to full-screen mode.');
-  });
-} catch (exception) {
-  console.error(`Failed to set the window layout to full-screen mode. Cause code: ${exception.code}, message: ${exception.message}`);
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      windowClass = data;
+      let isLayoutFullScreen = true;
+      try {
+        windowClass.setWindowLayoutFullScreen(isLayoutFullScreen, (err: BusinessError) => {
+          const errCode: number = err.code;
+          if (errCode) {
+            console.error(`Failed to set the window layout to full-screen mode. Cause code: ${err.code}, message: ${err.message}`);
+            return;
+          }
+          console.info('Succeeded in setting the window layout to full-screen mode.');
+        });
+      } catch (exception) {
+        console.error(`Failed to set the window layout to full-screen mode. Cause code: ${exception.code}, message: ${exception.message}`);
+      }
+    });
+  }
 }
 ```
 
@@ -1624,7 +1660,7 @@ try {
 
 setWindowLayoutFullScreen(isLayoutFullScreen: boolean): Promise&lt;void&gt;
 
-设置窗口的布局是否为沉浸式布局，使用Promise异步回调。
+设置主窗口的布局是否为沉浸式布局，使用Promise异步回调。
 沉浸式布局是指布局不避让状态栏与导航栏，组件可能产生与其重叠的情况。
 非沉浸式布局是指布局避让状态栏与导航栏，组件不会与其重叠。
 
@@ -1657,18 +1693,35 @@ setWindowLayoutFullScreen(isLayoutFullScreen: boolean): Promise&lt;void&gt;
 **示例：**
 
 ```ts
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let isLayoutFullScreen = true;
-try {
-  let promise = windowClass.setWindowLayoutFullScreen(isLayoutFullScreen);
-  promise.then(() => {
-    console.info('Succeeded in setting the window layout to full-screen mode.');
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to set the window layout to full-screen mode. Cause code: ${err.code}, message: ${err.message}`);
-  });
-} catch (exception) {
-  console.error(`Failed to set the window layout to full-screen mode. Cause code: ${exception.code}, message: ${exception.message}`);
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      windowClass = data;
+      let isLayoutFullScreen = true;
+      try {
+        let promise = windowClass.setWindowLayoutFullScreen(isLayoutFullScreen);
+        promise.then(() => {
+          console.info('Succeeded in setting the window layout to full-screen mode.');
+        }).catch((err: BusinessError) => {
+          console.error(`Failed to set the window layout to full-screen mode. Cause code: ${err.code}, message: ${err.message}`);
+        });
+      } catch (exception) {
+        console.error(`Failed to set the window layout to full-screen mode. Cause code: ${exception.code}, message: ${exception.message}`);
+      }
+    });
+  }
 }
 ```
 
@@ -1676,7 +1729,7 @@ try {
 
 setWindowSystemBarEnable(names: Array<'status' | 'navigation'>, callback: AsyncCallback&lt;void&gt;): void
 
-设置窗口全屏模式时导航栏、状态栏的可见模式，使用callback异步回调。
+设置主窗口全屏模式时导航栏、状态栏的可见模式，使用callback异步回调。
 
 **元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
@@ -1703,20 +1756,37 @@ setWindowSystemBarEnable(names: Array<'status' | 'navigation'>, callback: AsyncC
 
 ```ts
 // 此处以不显示导航栏、状态栏为例
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let names: Array<'status' | 'navigation'> = [];
-try {
-  windowClass.setWindowSystemBarEnable(names, (err: BusinessError) => {
-    const errCode: number = err.code;
-    if (errCode) {
-      console.error(`Failed to set the system bar to be invisible. Cause code: ${err.code}, message: ${err.message}`);
-      return;
-    }
-    console.info('Succeeded in setting the system bar to be invisible.');
-  });
-} catch (exception) {
-  console.error(`Failed to set the system bar to be invisible. Cause code: ${exception.code}, message: ${exception.message}`);
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      windowClass = data;
+      let names: Array<'status' | 'navigation'> = [];
+      try {
+        windowClass.setWindowSystemBarEnable(names, (err: BusinessError) => {
+          const errCode: number = err.code;
+          if (errCode) {
+            console.error(`Failed to set the system bar to be invisible. Cause code: ${err.code}, message: ${err.message}`);
+            return;
+          }
+          console.info('Succeeded in setting the system bar to be invisible.');
+        });
+      } catch (exception) {
+        console.error(`Failed to set the system bar to be invisible. Cause code: ${exception.code}, message: ${exception.message}`);
+      }
+    });
+  }
 }
 ```
 
@@ -1724,7 +1794,7 @@ try {
 
 setWindowSystemBarEnable(names: Array<'status' | 'navigation'>): Promise&lt;void&gt;
 
-设置窗口全屏模式时导航栏、状态栏的可见模式，使用Promise异步回调。
+设置主窗口全屏模式时导航栏、状态栏的可见模式，使用Promise异步回调。
 
 **元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
@@ -1756,18 +1826,35 @@ setWindowSystemBarEnable(names: Array<'status' | 'navigation'>): Promise&lt;void
 
 ```ts
 // 此处以不显示导航栏、状态栏为例
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let names: Array<'status' | 'navigation'> = [];
-try {
-  let promise = windowClass.setWindowSystemBarEnable(names);
-  promise.then(() => {
-    console.info('Succeeded in setting the system bar to be invisible.');
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to set the system bar to be invisible. Cause code: ${err.code}, message: ${err.message}`);
-  });
-} catch (exception) {
-  console.error(`Failed to set the system bar to be invisible. Cause code: ${exception.code}, message: ${exception.message}`);
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      windowClass = data;
+      let names: Array<'status' | 'navigation'> = [];
+      try {
+        let promise = windowClass.setWindowSystemBarEnable(names);
+        promise.then(() => {
+          console.info('Succeeded in setting the system bar to be invisible.');
+        }).catch((err: BusinessError) => {
+          console.error(`Failed to set the system bar to be invisible. Cause code: ${err.code}, message: ${err.message}`);
+        });
+      } catch (exception) {
+        console.error(`Failed to set the system bar to be invisible. Cause code: ${exception.code}, message: ${exception.message}`);
+      }
+    });
+  }
 }
 ```
 
@@ -1775,7 +1862,7 @@ try {
 
 setSpecificSystemBarEnabled(name: SpecificSystemBar, enable: boolean, enableAnimation?: boolean): Promise&lt;void&gt;
 
-设置窗口全屏模式时导航栏、状态栏、底部导航条的显示和隐藏，使用Promise异步回调。
+设置主窗口全屏模式时导航栏、状态栏、底部导航条的显示和隐藏，使用Promise异步回调。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -1809,17 +1896,34 @@ setSpecificSystemBarEnabled(name: SpecificSystemBar, enable: boolean, enableAnim
 
 ```ts
 // 此处以隐藏底部导航条为例
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-try {
-  let promise = windowClass.setSpecificSystemBarEnabled('navigationIndicator', false);
-  promise.then(() => {
-    console.info('Succeeded in setting the system bar to be invisible.');
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to set the system bar to be invisible. Cause code: ${err.code}, message: ${err.message}`);
-  });
-} catch (exception) {
-  console.error(`Failed to set the system bar to be invisible. Cause code: ${exception.code}, message: ${exception.message}`);
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      windowClass = data;
+      try {
+        let promise = windowClass.setSpecificSystemBarEnabled('navigationIndicator', false);
+        promise.then(() => {
+          console.info('Succeeded in setting the system bar to be invisible.');
+        }).catch((err: BusinessError) => {
+          console.error(`Failed to set the system bar to be invisible. Cause code: ${err.code}, message: ${err.message}`);
+        });
+      } catch (exception) {
+        console.error(`Failed to set the system bar to be invisible. Cause code: ${exception.code}, message: ${exception.message}`);
+      }
+    });
+  }
 }
 ```
 
@@ -1827,7 +1931,7 @@ try {
 
 setWindowSystemBarProperties(systemBarProperties: SystemBarProperties, callback: AsyncCallback&lt;void&gt;): void
 
-设置窗口全屏模式时窗口内导航栏、状态栏的属性，使用callback异步回调。
+设置主窗口全屏模式时窗口内导航栏、状态栏的属性，使用callback异步回调。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -1854,26 +1958,43 @@ setWindowSystemBarProperties(systemBarProperties: SystemBarProperties, callback:
 **示例：**
 
 ```ts
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let SystemBarProperties: window.SystemBarProperties = {
-  statusBarColor: '#ff00ff',
-  navigationBarColor: '#00ff00',
-  //以下两个属性从API Version8开始支持
-  statusBarContentColor: '#ffffff',
-  navigationBarContentColor: '#00ffff'
-};
-try {
-  windowClass.setWindowSystemBarProperties(SystemBarProperties, (err: BusinessError) => {
-    const errCode: number = err.code;
-    if (errCode) {
-      console.error(`Failed to set the system bar properties. Cause code: ${err.code}, message: ${err.message}`);
-      return;
-    }
-    console.info('Succeeded in setting the system bar properties.');
-  });
-} catch (exception) {
-  console.error(`Failed to set the system bar properties. Cause code: ${exception.code}, message: ${exception.message}`);
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      windowClass = data;
+      let SystemBarProperties: window.SystemBarProperties = {
+        statusBarColor: '#ff00ff',
+        navigationBarColor: '#00ff00',
+        //以下两个属性从API Version8开始支持
+        statusBarContentColor: '#ffffff',
+        navigationBarContentColor: '#00ffff'
+      };
+      try {
+        windowClass.setWindowSystemBarProperties(SystemBarProperties, (err: BusinessError) => {
+          const errCode: number = err.code;
+          if (errCode) {
+            console.error(`Failed to set the system bar properties. Cause code: ${err.code}, message: ${err.message}`);
+            return;
+          }
+          console.info('Succeeded in setting the system bar properties.');
+        });
+      } catch (exception) {
+        console.error(`Failed to set the system bar properties. Cause code: ${exception.code}, message: ${exception.message}`);
+      }
+    });
+  }
 }
 ```
 
@@ -1913,24 +2034,41 @@ setWindowSystemBarProperties(systemBarProperties: SystemBarProperties): Promise&
 **示例：**
 
 ```ts
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let SystemBarProperties: window.SystemBarProperties = {
-  statusBarColor: '#ff00ff',
-  navigationBarColor: '#00ff00',
-  //以下两个属性从API Version8开始支持
-  statusBarContentColor: '#ffffff',
-  navigationBarContentColor: '#00ffff'
-};
-try {
-  let promise = windowClass.setWindowSystemBarProperties(SystemBarProperties);
-  promise.then(() => {
-    console.info('Succeeded in setting the system bar properties.');
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to set the system bar properties. Cause code: ${err.code}, message: ${err.message}`);
-  });
-} catch (exception) {
-  console.error(`Failed to set the system bar properties. Cause code: ${exception.code}, message: ${exception.message}`);
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      windowClass = data;
+      let SystemBarProperties: window.SystemBarProperties = {
+        statusBarColor: '#ff00ff',
+        navigationBarColor: '#00ff00',
+        //以下两个属性从API Version8开始支持
+        statusBarContentColor: '#ffffff',
+        navigationBarContentColor: '#00ffff'
+      };
+      try {
+        let promise = windowClass.setWindowSystemBarProperties(SystemBarProperties);
+        promise.then(() => {
+          console.info('Succeeded in setting the system bar properties.');
+        }).catch((err: BusinessError) => {
+          console.error(`Failed to set the system bar properties. Cause code: ${err.code}, message: ${err.message}`);
+        });
+      } catch (exception) {
+        console.error(`Failed to set the system bar properties. Cause code: ${exception.code}, message: ${exception.message}`);
+      }
+    });
+  }
 }
 ```
 
@@ -1966,7 +2104,6 @@ getWindowSystemBarProperties(): SystemBarProperties
 ```ts
 // EntryAbility.ets
 import { UIAbility } from '@kit.AbilityKit';
-import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
@@ -1996,7 +2133,7 @@ export default class EntryAbility extends UIAbility {
 
 setPreferredOrientation(orientation: Orientation, callback: AsyncCallback&lt;void&gt;): void
 
-设置窗口的显示方向属性，使用callback异步回调。仅在支持跟随sensor旋转的设备上生效。
+设置主窗口的显示方向属性，使用callback异步回调。仅在支持跟随sensor旋转的设备上生效。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -2021,20 +2158,37 @@ setPreferredOrientation(orientation: Orientation, callback: AsyncCallback&lt;voi
 **示例：**
 
 ```ts
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let orientation = window.Orientation.AUTO_ROTATION;
-try {
-  windowClass.setPreferredOrientation(orientation, (err: BusinessError) => {
-    const errCode: number = err.code;
-    if (errCode) {
-      console.error(`Failed to set window orientation. Cause code: ${err.code}, message: ${err.message}`);
-      return;
-    }
-    console.info('Succeeded in setting window orientation.');
-  });
-} catch (exception) {
-  console.error(`Failed to set window orientation. Cause code: ${exception.code}, message: ${exception.message}`);
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      windowClass = data;
+      let orientation = window.Orientation.AUTO_ROTATION;
+      try {
+        windowClass.setPreferredOrientation(orientation, (err: BusinessError) => {
+          const errCode: number = err.code;
+          if (errCode) {
+            console.error(`Failed to set window orientation. Cause code: ${err.code}, message: ${err.message}`);
+            return;
+          }
+          console.info('Succeeded in setting window orientation.');
+        });
+      } catch (exception) {
+        console.error(`Failed to set window orientation. Cause code: ${exception.code}, message: ${exception.message}`);
+      }
+    });
+  }
 }
 ```
 
@@ -2042,7 +2196,7 @@ try {
 
 setPreferredOrientation(orientation: Orientation): Promise&lt;void&gt;
 
-设置窗口的显示方向属性，使用Promise异步回调。仅在支持跟随sensor旋转的设备上生效。
+设置主窗口的显示方向属性，使用Promise异步回调。仅在支持跟随sensor旋转的设备上生效。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -2072,18 +2226,35 @@ setPreferredOrientation(orientation: Orientation): Promise&lt;void&gt;
 **示例：**
 
 ```ts
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let orientation = window.Orientation.AUTO_ROTATION;
-try {
-  let promise = windowClass.setPreferredOrientation(orientation);
-  promise.then(() => {
-    console.info('Succeeded in setting the window orientation.');
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to set the window orientation. Cause code: ${err.code}, message: ${err.message}`);
-  });
-} catch (exception) {
-  console.error(`Failed to set window orientation. Cause code: ${exception.code}, message: ${exception.message}`);
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      windowClass = data;
+      let orientation = window.Orientation.AUTO_ROTATION;
+      try {
+        let promise = windowClass.setPreferredOrientation(orientation);
+        promise.then(() => {
+          console.info('Succeeded in setting the window orientation.');
+        }).catch((err: BusinessError) => {
+          console.error(`Failed to set the window orientation. Cause code: ${err.code}, message: ${err.message}`);
+        });
+      } catch (exception) {
+        console.error(`Failed to set window orientation. Cause code: ${exception.code}, message: ${exception.message}`);
+      }
+    });
+  }
 }
 ```
 
@@ -2116,7 +2287,6 @@ getPreferredOrientation(): Orientation
 ```ts
 // EntryAbility.ets
 import { UIAbility } from '@kit.AbilityKit';
-import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 export default class EntryAbility extends UIAbility {
   // ...
@@ -2198,7 +2368,7 @@ export default class EntryAbility extends UIAbility {
         // 获取UIContext实例。
         let uiContext: UIContext | null = null;
         uiContext = windowClass.getUIContext();
-      })
+      });
     });
   }
 };
@@ -2429,7 +2599,6 @@ loadContentByName(name: string, storage: LocalStorage, callback: AsyncCallback&l
 **示例：**
 
 ```ts
-import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 import * as Index from '../pages/Index'; // 导入命名路由页面
 
@@ -2502,7 +2671,6 @@ loadContentByName(name: string, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 import * as Index from '../pages/Index'; // 导入命名路由页面
 
@@ -2578,7 +2746,6 @@ loadContentByName(name: string, storage?: LocalStorage): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 import * as Index from '../pages/Index'; // 导入命名路由页面
 
@@ -2722,7 +2889,7 @@ const callback = (size: window.Size) => {
 try {
   windowClass.on('windowSizeChange', callback);
 } catch (exception) {
-  console.error('Failed to enable the listener for window size changes. Cause: ' + JSON.stringify(exception));
+  console.error(`Failed to enable the listener for window size changes. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 try {
   windowClass.off('windowSizeChange', callback);
@@ -2737,7 +2904,7 @@ try {
 
 on(type: 'avoidAreaChange', callback: Callback&lt;AvoidAreaOptions&gt;): void
 
-开启系统规避区变化的监听。
+开启主窗口系统规避区变化的监听。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -2761,13 +2928,32 @@ on(type: 'avoidAreaChange', callback: Callback&lt;AvoidAreaOptions&gt;): void
 **示例：**
 
 ```ts
-try {
-  windowClass.on('avoidAreaChange', (data) => {
-    console.info('Succeeded in enabling the listener for system avoid area changes. type:' +
-    JSON.stringify(data.type) + ', area: ' + JSON.stringify(data.area));
-  });
-} catch (exception) {
-  console.error(`Failed to enable the listener for system avoid area changes. Cause code: ${exception.code}, message: ${exception.message}`);
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      windowClass = data;
+      try {
+        windowClass.on('avoidAreaChange', (data) => {
+          console.info('Succeeded in enabling the listener for system avoid area changes. type:' +
+          JSON.stringify(data.type) + ', area: ' + JSON.stringify(data.area));
+        });
+      } catch (exception) {
+        console.error(`Failed to enable the listener for system avoid area changes. Cause code: ${exception.code}, message: ${exception.message}`);
+      }
+    });
+  }
 }
 ```
 
@@ -2775,7 +2961,7 @@ try {
 
 off(type: 'avoidAreaChange', callback?: Callback&lt;AvoidAreaOptions&gt;): void
 
-关闭系统规避区变化的监听。
+关闭主窗口系统规避区变化的监听。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -2843,7 +3029,7 @@ export default class EntryAbility extends UIAbility {
 
 on(type: 'keyboardHeightChange', callback: Callback&lt;number&gt;): void
 
-开启固定态输入法窗口软键盘高度变化的监听。从API version 10开始，改变输入法窗口为固定态或者悬浮态方法详细介绍请参见[输入法服务](../apis-ime-kit/js-apis-inputmethodengine.md#changeflag10)。
+开启主窗口固定态输入法窗口软键盘高度变化的监听。从API version 10开始，改变输入法窗口为固定态或者悬浮态方法详细介绍请参见[输入法服务](../apis-ime-kit/js-apis-inputmethodengine.md#changeflag10)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -2865,12 +3051,31 @@ on(type: 'keyboardHeightChange', callback: Callback&lt;number&gt;): void
 **示例：**
 
 ```ts
-try {
-  windowClass.on('keyboardHeightChange', (data) => {
-    console.info('Succeeded in enabling the listener for keyboard height changes. Data: ' + JSON.stringify(data));
-  });
-} catch (exception) {
-  console.error(`Failed to enable the listener for keyboard height changes. Cause code: ${exception.code}, message: ${exception.message}`);
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      windowClass = data;
+      try {
+        windowClass.on('keyboardHeightChange', (data) => {
+          console.info('Succeeded in enabling the listener for keyboard height changes. Data: ' + JSON.stringify(data));
+        });
+      } catch (exception) {
+        console.error(`Failed to enable the listener for keyboard height changes. Cause code: ${exception.code}, message: ${exception.message}`);
+      }
+    });
+  }
 }
 ```
 
@@ -2878,7 +3083,7 @@ try {
 
 off(type: 'keyboardHeightChange', callback?: Callback&lt;number&gt;): void
 
-关闭固定态输入法窗口软键盘高度变化的监听。从API version 10开始，改变输入法窗口为固定态或者悬浮态方法详细介绍请参见[输入法服务](../apis-ime-kit/js-apis-inputmethodengine.md#changeflag10)。
+关闭主窗口固定态输入法窗口软键盘高度变化的监听。从API version 10开始，改变输入法窗口为固定态或者悬浮态方法详细介绍请参见[输入法服务](../apis-ime-kit/js-apis-inputmethodengine.md#changeflag10)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -2900,20 +3105,39 @@ off(type: 'keyboardHeightChange', callback?: Callback&lt;number&gt;): void
 **示例：**
 
 ```ts
-const callback = (height: number) => {
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class EntryAbility extends UIAbility {
   // ...
-}
-try {
-  windowClass.on('keyboardHeightChange', callback);
-} catch (exception) {
-  console.error('Failed to enable the listener for keyboard height changes. Cause: ' + JSON.stringify(exception));
-}
-try {
-  windowClass.off('keyboardHeightChange', callback);
-  // 如果通过on开启多个callback进行监听，同时关闭所有监听：
-  windowClass.off('keyboardHeightChange');
-} catch (exception) {
-  console.error(`Failed to disable the listener for keyboard height changes. Cause code: ${exception.code}, message: ${exception.message}`);
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      windowClass = data;
+      const callback = (height: number) => {
+        // ...
+      }
+      try {
+        windowClass.on('keyboardHeightChange', callback);
+      } catch (exception) {
+        console.error(`Failed to enable the listener for keyboard height changes. Cause code: ${exception.code}, message: ${exception.message}`);
+      }
+      try {
+        windowClass.off('keyboardHeightChange', callback);
+        // 如果通过on开启多个callback进行监听，同时关闭所有监听：
+        windowClass.off('keyboardHeightChange');
+      } catch (exception) {
+        console.error(`Failed to disable the listener for keyboard height changes. Cause code: ${exception.code}, message: ${exception.message}`);
+      }
+    });
+  }
 }
 ```
 
@@ -2988,7 +3212,7 @@ const callback = () => {
 try {
   windowClass.on('touchOutside', callback);
 } catch (exception) {
-  console.error('Failed to register callback. Cause: ' + JSON.stringify(exception));
+  console.error(`Failed to register callback. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 try {
   windowClass.off('touchOutside', callback);
@@ -3144,7 +3368,7 @@ const callback = () => {
 try {
   windowClass.on('dialogTargetTouch', callback);
 } catch (exception) {
-  console.error('Failed to register callback. Cause: ' + JSON.stringify(exception));
+  console.error(`Failed to register callback. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 try {
   windowClass.off('dialogTargetTouch', callback);
@@ -3226,7 +3450,7 @@ const callback = (windowEventType: window.WindowEventType) => {
 try {
   windowClass.on('windowEvent', callback);
 } catch (exception) {
-  console.error('Failed to register callback. Cause: ' + JSON.stringify(exception));
+  console.error(`Failed to register callback. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 try {
   windowClass.off('windowEvent', callback);
@@ -3310,7 +3534,7 @@ const callback = (bool: boolean) => {
 try {
   windowClass.on('windowVisibilityChange', callback);
 } catch (exception) {
-  console.error('Failed to register callback. Cause: ' + JSON.stringify(exception));
+  console.error(`Failed to register callback. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 try {
   windowClass.off('windowVisibilityChange', callback);
@@ -3395,7 +3619,7 @@ const callback = () => {
 try {
   windowClass.on('noInteractionDetected', 60, callback);
 } catch (exception) {
-  console.error('Failed to register callback. Cause: ' + JSON.stringify(exception));
+  console.error(`Failed to register callback. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 try {
   windowClass.off('noInteractionDetected', callback);
@@ -3410,7 +3634,7 @@ try {
 
 on(type:  'windowStatusChange', callback: Callback&lt;WindowStatusType&gt;): void
 
-开启窗口模式变化的监听。
+开启主窗口模式变化的监听。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -3433,12 +3657,31 @@ on(type:  'windowStatusChange', callback: Callback&lt;WindowStatusType&gt;): voi
 **示例：**
 
 ```ts
-try {
-  windowClass.on('windowStatusChange', (WindowStatusType) => {
-      console.info('Succeeded in enabling the listener for window status changes. Data: ' + JSON.stringify(WindowStatusType));
-  });
-} catch (exception) {
-  console.error(`Failed to enable the listener for window status changes. Cause code: ${exception.code}, message: ${exception.message}`);
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      windowClass = data;
+      try {
+        windowClass.on('windowStatusChange', (WindowStatusType) => {
+          console.info('Succeeded in enabling the listener for window status changes. Data: ' + JSON.stringify(WindowStatusType));
+        });
+      } catch (exception) {
+        console.error(`Failed to enable the listener for window status changes. Cause code: ${exception.code}, message: ${exception.message}`);
+      }
+    });
+  }
 }
 ```
 
@@ -3446,7 +3689,7 @@ try {
 
 off(type: 'windowStatusChange', callback?: Callback&lt;WindowStatusType&gt;): void
 
-关闭窗口模式变化的监听。
+关闭主窗口模式变化的监听。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -3469,20 +3712,39 @@ off(type: 'windowStatusChange', callback?: Callback&lt;WindowStatusType&gt;): vo
 **示例：**
 
 ```ts
-const callback = (windowStatusType: window.WindowStatusType) => {
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class EntryAbility extends UIAbility {
   // ...
-}
-try {
-  windowClass.on('windowStatusChange', callback);
-} catch (exception) {
-  console.error('Failed to enable the listener for window status changes. Cause: ' + JSON.stringify(exception));
-}
-try {
-  windowClass.off('windowStatusChange', callback);
-  // 如果通过on开启多个callback进行监听，同时关闭所有监听：
-  windowClass.off('windowStatusChange');
-} catch (exception) {
-  console.error(`Failed to disable the listener for window status changes. Cause code: ${exception.code}, message: ${exception.message}`);
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      windowClass = data;
+      const callback = (windowStatusType: window.WindowStatusType) => {
+        // ...
+      }
+      try {
+        windowClass.on('windowStatusChange', callback);
+      } catch (exception) {
+        console.error(`Failed to enable the listener for window status changes. Cause code: ${exception.code}, message: ${exception.message}`);
+      }
+      try {
+        windowClass.off('windowStatusChange', callback);
+        // 如果通过on开启多个callback进行监听，同时关闭所有监听：
+        windowClass.off('windowStatusChange');
+      } catch (exception) {
+        console.error(`Failed to disable the listener for window status changes. Cause code: ${exception.code}, message: ${exception.message}`);
+      }
+    });
+  }
 }
 ```
 
@@ -3541,7 +3803,7 @@ try {
 
 on(type: 'windowTitleButtonRectChange', callback: Callback&lt;TitleButtonRect&gt;): void
 
-开启标题栏上的最小化、最大化、关闭按钮矩形区域变化的监听。
+开启主窗口标题栏上的最小化、最大化、关闭按钮矩形区域变化的监听，仅2in1设备可用。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -3565,12 +3827,31 @@ on(type: 'windowTitleButtonRectChange', callback: Callback&lt;TitleButtonRect&gt
 **示例：**
 
 ```ts
-try {
-  windowClass.on('windowTitleButtonRectChange', (titleButtonRect) => {
-      console.info('Succeeded in enabling the listener for window title buttons area changes. Data: ' + JSON.stringify(titleButtonRect));
-  });
-} catch (exception) {
-  console.error(`Failed to enable the listener for window title buttons area changes. Cause code: ${exception.code}, message: ${exception.message}`);
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      windowClass = data;
+      try {
+        windowClass.on('windowTitleButtonRectChange', (titleButtonRect) => {
+          console.info('Succeeded in enabling the listener for window title buttons area changes. Data: ' + JSON.stringify(titleButtonRect));
+        });
+      } catch (exception) {
+        console.error(`Failed to enable the listener for window title buttons area changes. Cause code: ${exception.code}, message: ${exception.message}`);
+      }
+    });
+  }
 }
 ```
 
@@ -3578,7 +3859,7 @@ try {
 
 off(type: 'windowTitleButtonRectChange', callback?: Callback&lt;TitleButtonRect&gt;): void
 
-关闭标题栏上的最小化、最大化、关闭按钮矩形区域变化的监听。
+关闭主窗口标题栏上的最小化、最大化、关闭按钮矩形区域变化的监听，仅2in1设备可用。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -3602,20 +3883,39 @@ off(type: 'windowTitleButtonRectChange', callback?: Callback&lt;TitleButtonRect&
 **示例：**
 
 ```ts
-const callback = (titleButtonRect: window.TitleButtonRect) => {
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class EntryAbility extends UIAbility {
   // ...
-}
-try {
-  windowClass.on('windowTitleButtonRectChange', callback);
-} catch (exception) {
-  console.error('Failed to enable the listener for window title buttons area changes. Cause: ' + JSON.stringify(exception));
-}
-try {
-  windowClass.off('windowTitleButtonRectChange', callback);
-  // 如果通过on开启多个callback进行监听，同时关闭所有监听：
-  windowClass.off('windowTitleButtonRectChange');
-} catch (exception) {
-  console.error(`Failed to disable the listener for window title buttons area changes. Cause code: ${exception.code}, message: ${exception.message}`);
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      windowClass = data;
+      const callback = (titleButtonRect: window.TitleButtonRect) => {
+        // ...
+      }
+      try {
+        windowClass.on('windowTitleButtonRectChange', callback);
+      } catch (exception) {
+        console.error(`Failed to enable the listener for window title buttons area changes. Cause code: ${exception.code}, message: ${exception.message}`);
+      }
+      try {
+        windowClass.off('windowTitleButtonRectChange', callback);
+        // 如果通过on开启多个callback进行监听，同时关闭所有监听：
+        windowClass.off('windowTitleButtonRectChange');
+      } catch (exception) {
+        console.error(`Failed to disable the listener for window title buttons area changes. Cause code: ${exception.code}, message: ${exception.message}`);
+      }
+    });
+  }
 }
 ```
 
@@ -4215,7 +4515,7 @@ try {
   promise.then(() => {
     console.info('Succeeded in setting the screen to be always on.');
   }).catch((err: BusinessError) => {
-    console.info('Failed to set the screen to be always on. Cause:  ' + JSON.stringify(err));
+    console.info(`Failed to set the screen to be always on. Cause code: ${err.code}, message: ${err.message}`);
   });
 } catch (exception) {
   console.error(`Failed to set the screen to be always on. Cause code: ${exception.code}, message: ${exception.message}`);
@@ -4527,8 +4827,8 @@ setAspectRatio(ratio: number): Promise&lt;void&gt;
 **示例：**
 
 ```ts
+// EntryAbility.ets
 import { UIAbility } from '@kit.AbilityKit';
-import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
@@ -4585,8 +4885,8 @@ setAspectRatio(ratio: number, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
+// EntryAbility.ets
 import { UIAbility } from '@kit.AbilityKit';
-import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
@@ -4644,8 +4944,8 @@ resetAspectRatio(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
+// EntryAbility.ets
 import { UIAbility } from '@kit.AbilityKit';
-import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
@@ -4699,8 +4999,8 @@ resetAspectRatio(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
+// EntryAbility.ets
 import { UIAbility } from '@kit.AbilityKit';
-import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
@@ -4847,7 +5147,6 @@ maximize(): Promise&lt;void&gt;
 ```ts
 // EntryAbility.ets
 import { UIAbility } from '@kit.AbilityKit';
-import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 export default class EntryAbility extends UIAbility {
   // ...
@@ -4900,21 +5199,38 @@ recover(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let promise = windowClass.recover();
-promise.then(() => {
-  console.info('Succeeded in recovering the window.');
-}).catch((err: BusinessError) => {
-  console.error(`Failed to recover the window. Cause code: ${err.code}, message: ${err.message}`);
-});
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      windowClass = data;
+      let promise = windowClass.recover();
+      promise.then(() => {
+        console.info('Succeeded in recovering the window.');
+      }).catch((err: BusinessError) => {
+        console.error(`Failed to recover the window. Cause code: ${err.code}, message: ${err.message}`);
+      });
+    });
+  }
+}
 ```
 
 ### getWindowLimits<sup>11+</sup>
 
 getWindowLimits(): WindowLimits
 
-获取当前窗口的尺寸限制。
+获取当前应用窗口的尺寸限制。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -4947,7 +5263,7 @@ try {
 
 setWindowLimits(windowLimits: WindowLimits): Promise&lt;WindowLimits&gt;
 
-设置当前窗口的尺寸限制，使用Promise异步回调。
+设置当前应用窗口的尺寸限制，使用Promise异步回调。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -5144,7 +5460,7 @@ export default class EntryAbility extends UIAbility {
         } catch (exception) {
             console.error(`Failed to set the visibility of window decor. Cause code: ${exception.code}, message: ${exception.message}`);
         }
-      })
+      });
     });
   }
 };
@@ -5189,21 +5505,43 @@ setSubWindowModal(isModal: boolean): Promise&lt;void&gt;
 **示例：**
 
 ```ts
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let promise = windowClass.setSubWindowModal(true);
-promise.then(() => {
-  console.info('Succeeded in setting subwindow modal');
-}).catch((err: BusinessError) => {
-  console.error(`Failed to set subwindow modal. Cause code: ${err.code}, message: ${err.message}`);
-})
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    // 创建子窗
+    try {
+      let subWindow = windowStage.createSubWindow("testSubWindow");
+      subWindow.then((data) => {
+        if (data == null) {
+          console.error("Failed to create the subWindow. Cause: The data is empty");
+          return;
+        }
+        windowClass = data;
+        let promise = windowClass.setSubWindowModal(true);
+        promise.then(() => {
+          console.info('Succeeded in setting subwindow modal');
+        }).catch((err: BusinessError) => {
+          console.error(`Failed to set subwindow modal. Cause code: ${err.code}, message: ${err.message}`);
+        });
+      });
+    } catch (exception) {
+      console.error(`Failed to create the subWindow. Cause code: ${exception.code}, message: ${exception.message}`);
+    }
+  }
+}
 ```
 
 ### setWindowDecorHeight<sup>11+</sup>
 
 setWindowDecorHeight(height: number): void
 
-设置窗口标题栏高度。
+设置主窗口标题栏高度。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -5226,11 +5564,30 @@ setWindowDecorHeight(height: number): void
 **示例：**
 
 ```ts
-let height: number = 50;
-try {
-  windowClass.setWindowDecorHeight(height);
-} catch (exception) {
-  console.error(`Failed to set the height of window decor. Cause code: ${exception.code}, message: ${exception.message}`);
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      windowClass = data;
+      let height: number = 50;
+      try {
+        windowClass.setWindowDecorHeight(height);
+      } catch (exception) {
+        console.error(`Failed to set the height of window decor. Cause code: ${exception.code}, message: ${exception.message}`);
+      }
+    });
+  }
 }
 ```
 
@@ -5238,7 +5595,7 @@ try {
 
 getWindowDecorHeight(): number
 
-获取窗口标题栏高度。
+获取主窗口标题栏高度。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -5260,10 +5617,29 @@ getWindowDecorHeight(): number
 **示例：**
 
 ```ts
-try {
-  let height = windowClass.getWindowDecorHeight();
-} catch (exception) {
-  console.error(`Failed to get the height of window decor. Cause code: ${exception.code}, message: ${exception.message}`);
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      windowClass = data;
+      try {
+        let height = windowClass.getWindowDecorHeight();
+      } catch (exception) {
+        console.error(`Failed to get the height of window decor. Cause code: ${exception.code}, message: ${exception.message}`);
+      }
+    });
+  }
 }
 ```
 
@@ -5271,7 +5647,7 @@ try {
 
 getTitleButtonRect(): TitleButtonRect
 
-获取标题栏上的最小化、最大化、关闭按钮矩形区域。
+获取主窗口标题栏上的最小化、最大化、关闭按钮矩形区域。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -5293,11 +5669,30 @@ getTitleButtonRect(): TitleButtonRect
 **示例：**
 
 ```ts
-try {
-  let titleButtonArea = windowClass.getTitleButtonRect();
-  console.info('Succeeded in obtaining the area of title buttons. Data: ' + JSON.stringify(titleButtonArea));
-} catch (exception) {
-  console.error(`Failed to get the area of title buttons. Cause code: ${exception.code}, message: ${exception.message}`);
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      windowClass = data;
+      try {
+        let titleButtonArea = windowClass.getTitleButtonRect();
+        console.info('Succeeded in obtaining the area of title buttons. Data: ' + JSON.stringify(titleButtonArea));
+      } catch (exception) {
+        console.error(`Failed to get the area of title buttons. Cause code: ${exception.code}, message: ${exception.message}`);
+      }
+    });
+  }
 }
 ```
 
@@ -5745,7 +6140,7 @@ promise.then((data) => {
 
 getAvoidArea(type: [AvoidAreaType](#avoidareatype7), callback: AsyncCallback&lt;[AvoidArea](#avoidarea7)&gt;): void
 
-获取窗口内容规避的区域；如系统栏区域、刘海屏区域、手势区域、软键盘区域等与窗口内容重叠时，需要窗口内容避让的区域。
+获取主窗口内容规避的区域；如系统栏区域、刘海屏区域、手势区域、软键盘区域等与窗口内容重叠时，需要窗口内容避让的区域。
 
 > **说明：**
 >
@@ -5763,24 +6158,41 @@ getAvoidArea(type: [AvoidAreaType](#avoidareatype7), callback: AsyncCallback&lt;
 **示例：**
 
 ```ts
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let type = window.AvoidAreaType.TYPE_SYSTEM;
-windowClass.getAvoidArea(type, (err: BusinessError, data) => {
-  const errCode: number = err.code;
-  if (errCode) {
-    console.error(`Failed to obtain the area. Cause code: ${err.code}, message: ${err.message}`);
-    return;
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      windowClass = data;
+      let type = window.AvoidAreaType.TYPE_SYSTEM;
+      windowClass.getAvoidArea(type, (err: BusinessError, data) => {
+        const errCode: number = err.code;
+        if (errCode) {
+          console.error(`Failed to obtain the area. Cause code: ${err.code}, message: ${err.message}`);
+          return;
+        }
+        console.info('Succeeded in obtaining the area. Data:' + JSON.stringify(data));
+      });
+    });
   }
-  console.info('Succeeded in obtaining the area. Data:' + JSON.stringify(data));
-});
+}
 ```
 
 ### getAvoidArea<sup>(deprecated)</sup>
 
 getAvoidArea(type: [AvoidAreaType](#avoidareatype7)): Promise&lt;[AvoidArea](#avoidarea7)&gt;
 
-获取窗口内容规避的区域；如系统栏区域、刘海屏区域、手势区域、软键盘区域等与窗口内容重叠时，需要窗口内容避让的区域。
+获取主窗口内容规避的区域；如系统栏区域、刘海屏区域、手势区域、软键盘区域等与窗口内容重叠时，需要窗口内容避让的区域。
 
 > **说明：**
 >
@@ -5803,22 +6215,39 @@ getAvoidArea(type: [AvoidAreaType](#avoidareatype7)): Promise&lt;[AvoidArea](#av
 **示例：**
 
 ```ts
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let type = window.AvoidAreaType.TYPE_SYSTEM;
-let promise = windowClass.getAvoidArea(type);
-promise.then((data) => {
-  console.info('Succeeded in obtaining the area. Data:' + JSON.stringify(data));
-}).catch((err: BusinessError) => {
-  console.error(`Failed to obtain the area. Cause code: ${err.code}, message: ${err.message}`);
-});
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      windowClass = data;
+      let type = window.AvoidAreaType.TYPE_SYSTEM;
+      let promise = windowClass.getAvoidArea(type);
+      promise.then((data) => {
+        console.info('Succeeded in obtaining the area. Data:' + JSON.stringify(data));
+      }).catch((err: BusinessError) => {
+        console.error(`Failed to obtain the area. Cause code: ${err.code}, message: ${err.message}`);
+      });
+    });
+  }
+}
 ```
 
 ### setFullScreen<sup>(deprecated)</sup>
 
 setFullScreen(isFullScreen: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-设置窗口的布局是否为全屏布局，使用callback异步回调。
+设置主窗口的布局是否为全屏布局，使用callback异步回调。
 全屏布局是指窗口大小为全屏幕，状态栏与导航栏不显示。
 非全屏布局是指状态栏与导航栏显示，窗口大小避让状态栏与导航栏位置。
 
@@ -5846,24 +6275,41 @@ setFullScreen(isFullScreen: boolean, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let isFullScreen: boolean = true;
-windowClass.setFullScreen(isFullScreen, (err: BusinessError) => {
-  const errCode: number = err.code;
-  if (errCode) {
-    console.error(`Failed to enable the full-screen mode. Cause code: ${err.code}, message: ${err.message}`);
-    return;
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      windowClass = data;
+      let isFullScreen: boolean = true;
+      windowClass.setFullScreen(isFullScreen, (err: BusinessError) => {
+        const errCode: number = err.code;
+        if (errCode) {
+          console.error(`Failed to enable the full-screen mode. Cause code: ${err.code}, message: ${err.message}`);
+          return;
+        }
+        console.info('Succeeded in enabling the full-screen mode.');
+      });
+    });
   }
-  console.info('Succeeded in enabling the full-screen mode.');
-});
+}
 ```
 
 ### setFullScreen<sup>(deprecated)</sup>
 
 setFullScreen(isFullScreen: boolean): Promise&lt;void&gt;
 
-设置窗口的布局是否为全屏布局，使用Promise异步回调。
+设置主窗口的布局是否为全屏布局，使用Promise异步回调。
 全屏布局是指窗口大小为全屏幕，状态栏与导航栏不显示。
 非全屏布局是指状态栏与导航栏显示，窗口大小避让状态栏与导航栏位置。
 
@@ -5896,22 +6342,39 @@ setFullScreen(isFullScreen: boolean): Promise&lt;void&gt;
 **示例：**
 
 ```ts
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let isFullScreen: boolean = true;
-let promise = windowClass.setFullScreen(isFullScreen);
-promise.then(() => {
-  console.info('Succeeded in enabling the full-screen mode.');
-}).catch((err: BusinessError) => {
-  console.error(`Failed to enable the full-screen mode. Cause code: ${err.code}, message: ${err.message}`);
-});
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      windowClass = data;
+      let isFullScreen: boolean = true;
+      let promise = windowClass.setFullScreen(isFullScreen);
+      promise.then(() => {
+        console.info('Succeeded in enabling the full-screen mode.');
+      }).catch((err: BusinessError) => {
+        console.error(`Failed to enable the full-screen mode. Cause code: ${err.code}, message: ${err.message}`);
+      });
+    });
+  }
+}
 ```
 
 ### setLayoutFullScreen<sup>(deprecated)</sup>
 
 setLayoutFullScreen(isLayoutFullScreen: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-设置窗口的布局是否为沉浸式布局，使用callback异步回调。
+设置主窗口的布局是否为沉浸式布局，使用callback异步回调。
 沉浸式布局是指布局不避让状态栏与导航栏，组件可能产生与其重叠的情况。
 非沉浸式布局是指布局避让状态栏与导航栏，组件不会与其重叠。
 
@@ -5939,24 +6402,41 @@ setLayoutFullScreen(isLayoutFullScreen: boolean, callback: AsyncCallback&lt;void
 **示例：**
 
 ```ts
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let isLayoutFullScreen: boolean = true;
-windowClass.setLayoutFullScreen(isLayoutFullScreen, (err: BusinessError) => {
-  const errCode: number = err.code;
-  if (errCode) {
-    console.error(`Failed to set the window layout to full-screen mode. Cause code: ${err.code}, message: ${err.message}`);
-    return;
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      windowClass = data;
+      let isLayoutFullScreen: boolean = true;
+      windowClass.setLayoutFullScreen(isLayoutFullScreen, (err: BusinessError) => {
+        const errCode: number = err.code;
+        if (errCode) {
+          console.error(`Failed to set the window layout to full-screen mode. Cause code: ${err.code}, message: ${err.message}`);
+          return;
+        }
+        console.info('Succeeded in setting the window layout to full-screen mode.');
+      });
+    });
   }
-  console.info('Succeeded in setting the window layout to full-screen mode.');
-});
+}
 ```
 
 ### setLayoutFullScreen<sup>(deprecated)</sup>
 
 setLayoutFullScreen(isLayoutFullScreen: boolean): Promise&lt;void&gt;
 
-设置窗口的布局是否为沉浸式布局，使用Promise异步回调。
+设置主窗口的布局是否为沉浸式布局，使用Promise异步回调。
 沉浸式布局是指布局不避让状态栏与导航栏，组件可能产生与其重叠的情况。
 非沉浸式布局是指布局避让状态栏与导航栏，组件不会与其重叠。
 
@@ -5989,22 +6469,39 @@ setLayoutFullScreen(isLayoutFullScreen: boolean): Promise&lt;void&gt;
 **示例：**
 
 ```ts
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let isLayoutFullScreen: boolean = true;
-let promise = windowClass.setLayoutFullScreen(isLayoutFullScreen);
-promise.then(() => {
-  console.info('Succeeded in setting the window layout to full-screen mode.');
-}).catch((err: BusinessError) => {
-  console.error(`Failed to set the window layout to full-screen mode. Cause code: ${err.code}, message: ${err.message}`);
-});
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      windowClass = data;
+      let isLayoutFullScreen: boolean = true;
+      let promise = windowClass.setLayoutFullScreen(isLayoutFullScreen);
+      promise.then(() => {
+        console.info('Succeeded in setting the window layout to full-screen mode.');
+      }).catch((err: BusinessError) => {
+        console.error(`Failed to set the window layout to full-screen mode. Cause code: ${err.code}, message: ${err.message}`);
+      });
+    });
+  }
+}
 ```
 
 ### setSystemBarEnable<sup>(deprecated)</sup>
 
 setSystemBarEnable(names: Array<'status' | 'navigation'>, callback: AsyncCallback&lt;void&gt;): void
 
-设置窗口全屏模式时导航栏、状态栏的可见模式，使用callback异步回调。
+设置主窗口全屏模式时导航栏、状态栏的可见模式，使用callback异步回调。
 
 > **说明：**
 >
@@ -6031,24 +6528,41 @@ setSystemBarEnable(names: Array<'status' | 'navigation'>, callback: AsyncCallbac
 
 ```ts
 // 此处以不显示导航栏、状态栏为例
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let names: Array<'status' | 'navigation'> = [];
-windowClass.setSystemBarEnable(names, (err: BusinessError) => {
-  const errCode: number = err.code;
-  if (errCode) {
-    console.error(`Failed to set the system bar to be invisible. Cause code: ${err.code}, message: ${err.message}`);
-    return;
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      windowClass = data;
+      let names: Array<'status' | 'navigation'> = [];
+      windowClass.setSystemBarEnable(names, (err: BusinessError) => {
+        const errCode: number = err.code;
+        if (errCode) {
+          console.error(`Failed to set the system bar to be invisible. Cause code: ${err.code}, message: ${err.message}`);
+          return;
+        }
+        console.info('Succeeded in setting the system bar to be invisible.');
+      });
+    });
   }
-  console.info('Succeeded in setting the system bar to be invisible.');
-});
+}
 ```
 
 ### setSystemBarEnable<sup>(deprecated)</sup>
 
 setSystemBarEnable(names: Array<'status' | 'navigation'>): Promise&lt;void&gt;
 
-设置窗口全屏模式时导航栏、状态栏的可见模式，使用Promise异步回调。
+设置主窗口全屏模式时导航栏、状态栏的可见模式，使用Promise异步回调。
 
 > **说明：**
 >
@@ -6080,22 +6594,39 @@ setSystemBarEnable(names: Array<'status' | 'navigation'>): Promise&lt;void&gt;
 
 ```ts
 // 此处以不显示导航栏、状态栏为例
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let names: Array<'status' | 'navigation'> = [];
-let promise = windowClass.setSystemBarEnable(names);
-promise.then(() => {
-  console.info('Succeeded in setting the system bar to be invisible.');
-}).catch((err: BusinessError) => {
-  console.error(`Failed to set the system bar to be invisible. Cause code: ${err.code}, message: ${err.message}`);
-});
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      windowClass = data;
+      let names: Array<'status' | 'navigation'> = [];
+      let promise = windowClass.setSystemBarEnable(names);
+      promise.then(() => {
+        console.info('Succeeded in setting the system bar to be invisible.');
+      }).catch((err: BusinessError) => {
+        console.error(`Failed to set the system bar to be invisible. Cause code: ${err.code}, message: ${err.message}`);
+      });
+    });
+  }
+}
 ```
 
 ### setSystemBarProperties<sup>(deprecated)</sup>
 
 setSystemBarProperties(systemBarProperties: SystemBarProperties, callback: AsyncCallback&lt;void&gt;): void
 
-设置窗口全屏模式时窗口内导航栏、状态栏的属性，使用callback异步回调。
+设置主窗口全屏模式时窗口内导航栏、状态栏的属性，使用callback异步回调。
 
 > **说明：**
 >
@@ -6121,30 +6652,47 @@ setSystemBarProperties(systemBarProperties: SystemBarProperties, callback: Async
 **示例：**
 
 ```ts
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let SystemBarProperties: window.SystemBarProperties = {
-  statusBarColor: '#ff00ff',
-  navigationBarColor: '#00ff00',
-  //以下两个属性从API Version8开始支持
-  statusBarContentColor: '#ffffff',
-  navigationBarContentColor: '#00ffff'
-};
-windowClass.setSystemBarProperties(SystemBarProperties, (err) => {
-  const errCode: number = err.code;
-  if (errCode) {
-    console.error(`Failed to set the system bar properties. Cause code: ${err.code}, message: ${err.message}`);
-    return;
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      windowClass = data;
+      let SystemBarProperties: window.SystemBarProperties = {
+        statusBarColor: '#ff00ff',
+        navigationBarColor: '#00ff00',
+        //以下两个属性从API Version8开始支持
+        statusBarContentColor: '#ffffff',
+        navigationBarContentColor: '#00ffff'
+      };
+      windowClass.setSystemBarProperties(SystemBarProperties, (err) => {
+        const errCode: number = err.code;
+        if (errCode) {
+          console.error(`Failed to set the system bar properties. Cause code: ${err.code}, message: ${err.message}`);
+          return;
+        }
+        console.info('Succeeded in setting the system bar properties.');
+      });
+    });
   }
-  console.info('Succeeded in setting the system bar properties.');
-});
+}
 ```
 
 ### setSystemBarProperties<sup>(deprecated)</sup>
 
 setSystemBarProperties(systemBarProperties: SystemBarProperties): Promise&lt;void&gt;
 
-设置窗口全屏模式时窗口内导航栏、状态栏的属性，使用Promise异步回调。
+设置主窗口全屏模式时窗口内导航栏、状态栏的属性，使用Promise异步回调。
 
 > **说明：**
 >
@@ -6175,21 +6723,38 @@ setSystemBarProperties(systemBarProperties: SystemBarProperties): Promise&lt;voi
 **示例：**
 
 ```ts
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let SystemBarProperties: window.SystemBarProperties = {
-  statusBarColor: '#ff00ff',
-  navigationBarColor: '#00ff00',
-  //以下两个属性从API Version8开始支持
-  statusBarContentColor: '#ffffff',
-  navigationBarContentColor: '#00ffff'
-};
-let promise = windowClass.setSystemBarProperties(SystemBarProperties);
-promise.then(() => {
-  console.info('Succeeded in setting the system bar properties.');
-}).catch((err: BusinessError) => {
-  console.error(`Failed to set the system bar properties. Cause code: ${err.code}, message: ${err.message}`);
-});
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      windowClass = data;
+      let SystemBarProperties: window.SystemBarProperties = {
+        statusBarColor: '#ff00ff',
+        navigationBarColor: '#00ff00',
+        //以下两个属性从API Version8开始支持
+        statusBarContentColor: '#ffffff',
+        navigationBarContentColor: '#00ffff'
+      };
+      let promise = windowClass.setSystemBarProperties(SystemBarProperties);
+      promise.then(() => {
+        console.info('Succeeded in setting the system bar properties.');
+      }).catch((err: BusinessError) => {
+        console.error(`Failed to set the system bar properties. Cause code: ${err.code}, message: ${err.message}`);
+      });
+    });
+  }
+}
 ```
 
 ### loadContent<sup>(deprecated)</sup>
@@ -6331,7 +6896,7 @@ promise.then((data) => {
 
 on(type: 'systemAvoidAreaChange', callback: Callback&lt;AvoidArea&gt;): void
 
-开启系统规避区变化的监听。
+开启主窗口系统规避区变化的监听。
 
 > **说明：**
 >
@@ -6357,16 +6922,35 @@ on(type: 'systemAvoidAreaChange', callback: Callback&lt;AvoidArea&gt;): void
 **示例：**
 
 ```ts
-windowClass.on('systemAvoidAreaChange', (data) => {
-  console.info('Succeeded in enabling the listener for system avoid area changes. Data: ' + JSON.stringify(data));
-});
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      windowClass = data;
+      windowClass.on('systemAvoidAreaChange', (data) => {
+        console.info('Succeeded in enabling the listener for system avoid area changes. Data: ' + JSON.stringify(data));
+      });
+    });
+  }
+}
 ```
 
 ### off('systemAvoidAreaChange')<sup>(deprecated)</sup>
 
 off(type: 'systemAvoidAreaChange', callback?: Callback&lt;AvoidArea&gt;): void
 
-关闭系统规避区变化的监听。
+关闭主窗口系统规避区变化的监听。
 
 > **说明：**
 >
@@ -6392,13 +6976,32 @@ off(type: 'systemAvoidAreaChange', callback?: Callback&lt;AvoidArea&gt;): void
 **示例：**
 
 ```ts
-const callback = (avoidArea: window.AvoidArea) => {
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class EntryAbility extends UIAbility {
   // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      windowClass = data;
+      const callback = (avoidArea: window.AvoidArea) => {
+        // ...
+      }
+      windowClass.on('systemAvoidAreaChange', callback);
+      windowClass.off('systemAvoidAreaChange', callback);
+      // 如果通过on开启多个callback进行监听，同时关闭所有监听：
+      windowClass.off('systemAvoidAreaChange');
+    });
+  }
 }
-windowClass.on('systemAvoidAreaChange', callback);
-windowClass.off('systemAvoidAreaChange', callback);
-// 如果通过on开启多个callback进行监听，同时关闭所有监听：
-windowClass.off('systemAvoidAreaChange');
 ```
 
 ### isSupportWideGamut<sup>(deprecated)</sup>
@@ -7043,7 +7646,7 @@ let promise = windowClass.setKeepScreenOn(isKeepScreenOn);
 promise.then(() => {
   console.info('Succeeded in setting the screen to be always on.');
 }).catch((err: BusinessError) => {
-  console.info('Failed to set the screen to be always on. Cause:  ' + JSON.stringify(err));
+  console.info(`Failed to set the screen to be always on. Cause code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -7369,7 +7972,6 @@ getMainWindow(callback: AsyncCallback&lt;Window&gt;): void
 ```ts
 // EntryAbility.ets
 import { UIAbility } from '@kit.AbilityKit';
-import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
@@ -7423,7 +8025,6 @@ getMainWindow(): Promise&lt;Window&gt;
 ```ts
 // EntryAbility.ets
 import { UIAbility } from '@kit.AbilityKit';
-import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
@@ -7475,7 +8076,6 @@ getMainWindowSync(): Window
 ```ts
 // EntryAbility.ets
 import { UIAbility } from '@kit.AbilityKit';
-import { window } from '@kit.ArkUI';
 
 export default class EntryAbility extends UIAbility {
   // ...
@@ -7525,7 +8125,6 @@ createSubWindow(name: string, callback: AsyncCallback&lt;Window&gt;): void
 ```ts
 // EntryAbility.ets
 import { UIAbility } from '@kit.AbilityKit';
-import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
@@ -7550,7 +8149,6 @@ export default class EntryAbility extends UIAbility {
           (windowClass as window.Window).resize(500, 1000);
         }
       });
-
     } catch (exception) {
       console.error(`Failed to create the subwindow. Cause code: ${exception.code}, message: ${exception.message}`);
     }
@@ -7597,7 +8195,6 @@ createSubWindow(name: string): Promise&lt;Window&gt;
 ```ts
 // EntryAbility.ets
 import { UIAbility } from '@kit.AbilityKit';
-import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
@@ -7659,7 +8256,6 @@ createSubWindowWithOptions(name: string, options: SubWindowOptions): Promise&lt;
 ```ts
 // EntryAbility.ets
 import { UIAbility } from '@kit.AbilityKit';
-import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
@@ -7718,7 +8314,6 @@ getSubWindow(callback: AsyncCallback&lt;Array&lt;Window&gt;&gt;): void
 ```ts
 // EntryAbility.ets
 import { UIAbility } from '@kit.AbilityKit';
-import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
@@ -7771,7 +8366,6 @@ getSubWindow(): Promise&lt;Array&lt;Window&gt;&gt;
 ```ts
 // EntryAbility.ets
 import { UIAbility } from '@kit.AbilityKit';
-import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
@@ -7786,7 +8380,7 @@ export default class EntryAbility extends UIAbility {
       console.info('Succeeded in obtaining the subwindow. Data: ' + JSON.stringify(data));
     }).catch((err: BusinessError) => {
       console.error(`Failed to obtain the subwindow. Cause code: ${err.code}, message: ${err.message}`);
-    })
+    });
   }
 };
 ```
@@ -7826,7 +8420,6 @@ loadContent(path: string, storage: LocalStorage, callback: AsyncCallback&lt;void
 ```ts
 // EntryAbility.ets
 import { UIAbility } from '@kit.AbilityKit';
-import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
@@ -7893,7 +8486,6 @@ loadContent(path: string, storage?: LocalStorage): Promise&lt;void&gt;
 ```ts
 // EntryAbility.ets
 import { UIAbility } from '@kit.AbilityKit';
-import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
@@ -7953,7 +8545,6 @@ loadContent(path: string, callback: AsyncCallback&lt;void&gt;): void
 ```ts
 // EntryAbility.ets
 import { UIAbility } from '@kit.AbilityKit';
-import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
@@ -8013,7 +8604,6 @@ loadContentByName(name: string, storage: LocalStorage, callback: AsyncCallback&l
 ```ts
 // EntryAbility.ets
 import { UIAbility } from '@kit.AbilityKit';
-import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 import * as Index from '../pages/Index'; // 导入命名路由页面
 
@@ -8097,7 +8687,6 @@ loadContentByName(name: string, callback: AsyncCallback&lt;void&gt;): void
 ```ts
 // EntryAbility.ets
 import { UIAbility } from '@kit.AbilityKit';
-import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 import * as Index from '../pages/Index'; // 导入命名路由页面
 
@@ -8178,7 +8767,6 @@ loadContentByName(name: string, storage?: LocalStorage): Promise&lt;void&gt;;
 ```ts
 // EntryAbility.ets
 import { UIAbility } from '@kit.AbilityKit';
-import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 import * as Index from '../pages/Index'; // 导入命名路由页面
 
@@ -8259,7 +8847,6 @@ on(eventType: 'windowStageEvent', callback: Callback&lt;WindowStageEventType&gt;
 ```ts
 // EntryAbility.ets
 import { UIAbility } from '@kit.AbilityKit';
-import { window } from '@kit.ArkUI';
 
 export default class EntryAbility extends UIAbility {
   // ...
@@ -8312,7 +8899,6 @@ off(eventType: 'windowStageEvent', callback?: Callback&lt;WindowStageEventType&g
 ```ts
 // EntryAbility.ets
 import { UIAbility } from '@kit.AbilityKit';
-import { window } from '@kit.ArkUI';
 
 export default class EntryAbility extends UIAbility {
   // ...
@@ -8372,7 +8958,6 @@ setDefaultDensityEnabled(enabled: boolean): void
 ```ts
 // EntryAbility.ets
 import { UIAbility } from '@kit.AbilityKit';
-import { window } from '@kit.ArkUI';
 
 export default class EntryAbility extends UIAbility {
   // ...

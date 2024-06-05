@@ -71,11 +71,10 @@
        /* 安装私有凭据 */
        const res = await certManager.installPrivateCertificate(keystore, keystorePwd, "testPriCredential");
        appKeyUri = (res.uri != undefined) ? res.uri : '';
-     } catch (err) {
-       let e: BusinessError = err as BusinessError;
-       console.error("installPrivateCertificates error, errcode:" + e.code);
+     } catch (err: BusinessError) {
+       console.error(`Failed to install private certificate. Code: ${err.code}, message: ${err.message}`);
      }
-   
+
      try {
        /* srcData为待签名、验签的数据，业务自行赋值 */
        let srcData: Uint8Array = new Uint8Array([
@@ -105,18 +104,16 @@
        const verifyHandle: certManager.CMHandle = await certManager.init(appKeyUri, verifySpec);
        await certManager.update(verifyHandle.handle, srcData);
        const verifyResult = await certManager.finish(verifyHandle.handle, signResult.outData);
-       console.log("sign and verify success");
-     } catch (err) {
-       let e: BusinessError = err as BusinessError;
-       console.error("sign or verify failed, errcode:" + e.code);
+       console.info(`Succeeded in signing and verifying.`);
+     } catch (err: BusinessError) {
+       console.error(`Failed to sign or verify. Code: ${err.code}, message: ${err.message}`);
      }
-   
+
      try {
        /* 卸载私有凭据 */
        await certManager.uninstallPrivateCertificate(appKeyUri);
-     } catch (err) {
-       let e: BusinessError = err as BusinessError;
-       console.error("uninstallPrivateCertificate failed, errcode:" + e.code);
+     } catch (err: BusinessError) {
+       console.error(`Failed to uninstall private certificate. Code: ${err.code}, message: ${err.message}`);
      }
    }
    ```
