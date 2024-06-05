@@ -18,3 +18,5 @@ HiAppEvent提供接口用于订阅主线程超时事件。
 | uid | number | 应用的用户id。 |
 | begin_time | number | 主线程任务开始时间。 |
 | end_time | number | 主线程任务结束时间。 |
+| external_log| string[] | 故障日志文件路径。 |
+| log_over_limit| boolean | 生成的日志文件与已存在的日志文件总大小是否超过5M上限。true表示超过上限，日志写入失败；false表示未超过上限。|
