@@ -33,13 +33,19 @@ target_link_libraries(sample PUBLIC libavplayer.so)
 
 3. 设置资源：调用OH_AVPlayer_SetURLSource(),设置属性url，AVPlayer进入initialized状态。
 
-4. 准备播放：调用OH_AVPlayer_Prepare()，AVPlayer进入prepared状态，此时可以获取时长，设置音量。
+4. （可选）设置音频流类型：调用OH_AVPlayer_SetAudioRendererInfo()，设置AVPlayer音频流类型。
 
-5. 音频播控：播放OH_AVPlayer_Play()，暂停OH_AVPlayer_Pause()，跳转OH_AVPlayer_Seek()，停止OH_AVPlayer_Stop() 等操作。
+5. （可选）设置音频打断模式：调用OH_AVPlayer_SetAudioInterruptMode()，设置AVPlayer音频流打断模式。
 
-6. （可选）更换资源：调用OH_AVPlayer_Reset()重置资源，AVPlayer重新进入idle状态，允许更换资源url。
+6. （可选）设置音频音效模式：调用OH_AVPlayer_SetAudioEffectMode()，设置AVPlayer音频音效模式。
 
-7. 退出播放：调用OH_AVPlayer_Release()销毁实例，AVPlayer进入released状态，退出播放。
+7. 准备播放：调用OH_AVPlayer_Prepare()，AVPlayer进入prepared状态，此时可以获取时长，设置音量。
+
+8. 音频播控：播放OH_AVPlayer_Play()，暂停OH_AVPlayer_Pause()，跳转OH_AVPlayer_Seek()，停止OH_AVPlayer_Stop() 等操作。
+
+9. （可选）更换资源：调用OH_AVPlayer_Reset()重置资源，AVPlayer重新进入idle状态，允许更换资源url。
+
+10. 退出播放：调用OH_AVPlayer_Release()销毁实例，AVPlayer进入released状态，退出播放。
 
 ## 完整示例
 
@@ -176,6 +182,24 @@ static napi_value Play(napi_env env, napi_callback_info info)
     ret = OH_AVPlayer_SetURLSource(player, url); // 设置url
     if (ret != AV_ERR_OK) {
     // 处理异常
+    }
+    // 设置音频流类型
+    OH_AudioStream_Usage streamUsage = OH_AudioStream_Usage::AUDIOSTREAM_USAGE_UNKNOWN;
+    ret = OH_AVPlayer_SetAudioRendererInfo(player, streamUsage);
+    if (ret != AV_ERR_OK) {
+    //处理异常    
+    }
+    // 设置音频流打断模式
+    OH_AudioInterrupt_Mode interruptMode = OH_AudioInterrupt_Mode::AUDIOSTREAM_INTERRUPT_MODE_INDEPENDENT;
+    ret = OH_AVPlayer_SetAudioInterruptMode(player, interruptMode);
+    if (ret != AV_ERR_OK) {
+    //处理异常    
+    }
+    // 设置音频音效模式
+    OH_AudioStream_AudioEffectMode effectMode = OH_AudioStream_AudioEffectMode::EFFECT_NONE;
+    ret = OH_AVPlayer_SetAudioEffectMode(player, effectMode);
+    if (ret != AV_ERR_OK) {
+    //处理异常    
     }
     napi_value value;
     napi_create_int32(env, 0, &value);
