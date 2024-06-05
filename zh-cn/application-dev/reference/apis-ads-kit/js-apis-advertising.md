@@ -509,7 +509,7 @@ let adInteractionListener: advertising.AdInteractionListener = {
 ## getAdRequestBody<sup>12+</sup>  
 getAdRequestBody(adParams: AdRequestParams[], adOptions: AdOptions): Promise<string>
 
-获取广告请求体。
+获取广告请求响应体，使用Promise异步回调。
 
 **元服务API：** 从API version12开始，该接口支持在元服务中使用。
 
