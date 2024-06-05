@@ -67,7 +67,7 @@ Provides USB DDK APIs to open and close USB interfaces, perform non-isochronous 
 #### Description of deviceId
 
 You can call **queryDevices()** to obtain the device ID, that is, **deviceId**.
-For details, see [Peripheral Management Development](../../device/externaldevice-guidelines.md).
+For details, see [Peripheral Management Development](../../device/driver/externaldevice-guidelines.md).
 
 #### deviceId Conversion
 
