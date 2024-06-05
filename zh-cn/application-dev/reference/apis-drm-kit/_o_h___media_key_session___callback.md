@@ -3,7 +3,7 @@
 
 ## 概述
 
-OH_MediaKeySession_Callback结构体，用于监听密钥过期、密钥更改等事件。
+OH_MediaKeySession_Callback结构体，用于监听密钥过期、密钥更改等事件，返回媒体密钥会话实例，适用多个媒体密钥会话解密场景。
 
 **起始版本：** 12
 

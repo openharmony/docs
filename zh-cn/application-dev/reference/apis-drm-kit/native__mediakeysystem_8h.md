@@ -21,8 +21,8 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| typedef [Drm_ErrCode](_drm.md#drm_errcode)(\* [MediaKeySystem_Callback](_drm.md#mediakeysystem_callback)) ([DRM_EventType](_drm.md#drm_eventtype) eventType, uint8_t \*info, int32_t infoLen, char \*extra) | 事件触发时将调用的回调。  | 
-| typedef [Drm_ErrCode](_drm.md#drm_errcode)(\* [OH_MediaKeySystem_Callback](_drm.md#oh_mediakeysystem_callback)) ([MediaKeySystem](_drm.md#mediakeysystem) \*mediaKeySystem, [DRM_EventType](_drm.md#drm_eventtype) eventType, uint8_t \*info, int32_t infoLen, char \*extra) | 事件触发时将调用的回调。支持获取MediaKeySystem指针。  | 
+| typedef [Drm_ErrCode](_drm.md#drm_errcode)(\* [MediaKeySystem_Callback](_drm.md#mediakeysystem_callback)) ([DRM_EventType](_drm.md#drm_eventtype) eventType, uint8_t \*info, int32_t infoLen, char \*extra) | 事件触发时将调用的回调，不返回媒体密钥系统实例，适用于单个媒体密钥系统场景。  | 
+| typedef [Drm_ErrCode](_drm.md#drm_errcode)(\* [OH_MediaKeySystem_Callback](_drm.md#oh_mediakeysystem_callback)) ([MediaKeySystem](_drm.md#mediakeysystem) \*mediaKeySystem, [DRM_EventType](_drm.md#drm_eventtype) eventType, uint8_t \*info, int32_t infoLen, char \*extra) | 事件触发时将调用的回调，返回媒体密钥系统实例，适用于多个媒体密钥系统场景。  | 
 
 
 ### 函数
