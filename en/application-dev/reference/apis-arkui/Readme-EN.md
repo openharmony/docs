@@ -117,6 +117,7 @@
         - [Image Effects (System API)](arkui-ts/ts-universal-attributes-image-effect-sys.md)
         - [Background (System API)](arkui-ts/ts-universal-attributes-background-sys.md)
         - [Foreground Blur (System API)](arkui-ts/ts-universal-attributes-foreground-blur-style-sys.md)
+        - [Point Light Style (System API)](arkui-ts/ts-universal-attributes-point-light-style-sys.md)
       - Gesture Handling
         - [Gesture Binding Methods](arkui-ts/ts-gesture-settings.md)
         - Basic Gestures
@@ -213,8 +214,12 @@
       - [Tabs](arkui-ts/ts-container-tabs.md)
       - [TabContent](arkui-ts/ts-container-tabcontent.md)
       - [WaterFlow](arkui-ts/ts-container-waterflow.md)
+      - [Column (System API)](arkui-ts/ts-container-column-sys.md)
       - [EffectComponent (System API)](arkui-ts/ts-container-effectcomponent-sys.md)
+      - [Flex (System API)](arkui-ts/ts-container-flex-sys.md)
       - [List (System API)](arkui-ts/ts-container-list-sys.md)
+      - [Row (System API)](arkui-ts/ts-container-row-sys.md)
+      - [Stack (System API)](arkui-ts/ts-container-stack-sys.md)
       - [UIExtensionComponent (System API)](arkui-ts/ts-container-ui-extension-component-sys.md)
     - Media Components
       - [Video](arkui-ts/ts-media-components-video.md)
@@ -242,7 +247,7 @@
       - [@ohos.arkui.advanced.Chip (Chip)](arkui-ts/ts-composite-components-chip.md)
       - [@ohos.arkui.advanced.ComposeListItem (List)](arkui-ts/ts-composite-components-composelistitem.md)
       - [@ohos.arkui.advanced.ComposeTitleBar (One- or Two-Row Title Bar with Profile Picture)](arkui-ts/ts-composite-components-composetitlebar.md)
-      - [@@ohos.arkui.advanced.Counter (Counter)](arkui-ts/ohos-arkui-advanced-counter.md)
+      - [@ohos.arkui.advanced.Counter (Counter)](arkui-ts/ohos-arkui-advanced-counter.md)
       - [@ohos.arkui.advanced.Dialog (Dialog Box)](arkui-ts/ts-composite-components-dialog.md)
       - [@ohos.arkui.advanced.EditableTitleBar (Editable Title Bar)](arkui-ts/ts-composite-components-editabletitlebar.md)
       - [@ohos.arkui.advanced.ExceptionPrompt (Exception Prompt)](arkui-ts/ts-composite-components-exceptionprompt.md)
@@ -293,6 +298,7 @@
     - [Pixel Units](arkui-ts/ts-pixel-units.md)
     - [Enums](arkui-ts/ts-appendix-enums.md)
     - [Types](arkui-ts/ts-types.md)
+    - [Enums (System API)](arkui-ts/ts-appendix-enums-sys.md)
     - Components No Longer Maintained
       - [AbilityComponent (System API)](arkui-ts/ts-container-ability-component-sys.md)
       - [GridContainer](arkui-ts/ts-container-gridcontainer.md)

@@ -239,7 +239,7 @@ Custom dialog boxes can be used for data interactions to complete a series of re
    
    ```ts
    // Index2.ets
-   import { router } from '@kit.ArkUI';
+   import router from '@ohos.router'
    
    @Entry
    @Component
