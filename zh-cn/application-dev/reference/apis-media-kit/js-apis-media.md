@@ -2201,6 +2201,141 @@ off(type: 'audioOutputDeviceChangeWithInfo', callback?: Callback\<audio.AudioStr
 avPlayer.off('audioOutputDeviceChangeWithInfo');
 ```
 
+### addSubtitleFromFd<sup>12+</sup>
+
+addSubtitleFromFd(fd: number, offset?: number, length?: number): Promise\<void>
+
+为视频添加外挂字幕，当前仅支持与视频资源同时设置（在avplayer设置fdSrc视频资源后设置外挂字幕）。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
+
+**参数：**
+
+| 参数名 | 类型                   | 必填 | 说明                                                         |
+| ------ | ---------------------- | ---- | ------------------------------------------------------------ |
+| fd | number   | 是   | 资源句柄，通过[resourceManager.getRawFd](../apis-localization-kit/js-apis-resource-manager.md#getrawfd9)获取。 |
+| offset | number | 否   | 资源偏移量，需要基于预置资源的信息输入，非法值会造成字幕频资源解析错误。 |
+| length | number | 否   | 资源长度，默认值为文件中从偏移量开始的剩余字节，需要基于预置资源的信息输入，非法值会造成字幕频资源解析错误。 |
+
+**返回值：**
+
+| 类型           | 说明                                       |
+| -------------- | ------------------------------------------ |
+| Promise\<void> | 添加外挂字幕addSubtitleFromFd方法的Promise返回值。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                   |
+| -------- | ------------------------------------------ |
+| 401      | The parameter check failed. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
+| 5400102  | Operation not allowed. Possible causes: Incorrect timing setting. |
+
+**示例：**
+
+```ts
+import { media } from '@kit.MediaKit'
+
+let context = getContext(this) as common.UIAbilityContext
+let fileDescriptor = await context.resourceManager.getRawFd('xxx.srt')
+
+avPlayer.addSubtitleFromFd(fileDescriptor.fd, fileDescriptor.offset, fileDescriptor.length)
+```
+
+### addSubtitleUrl<sup>12+</sup>
+
+addSubtitleFromUrl(url: string): Promise\<void>
+
+为视频添加外挂字幕，当前仅支持与视频资源同时设置（在avplayer设置fdSrc视频资源后设置外挂字幕）。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| url    | string | 是   | 外挂字幕文件地址（fd://资源句柄?offset=资源偏移量&size=资源长度）。 |
+
+**返回值：**
+
+| 类型           | 说明                                       |
+| -------------- | ------------------------------------------ |
+| Promise\<void> | 添加外挂字幕addSubtitleFromUrl方法的Promise返回值。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                   |
+| -------- | ------------------------------------------ |
+| 401      | The parameter check failed. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
+| 5400102  | Operation not allowed. Possible causes: Incorrect timing setting. |
+
+**示例：**
+
+```ts
+import { media } from '@kit.MediaKit'
+
+let context = getContext(this) as common.UIAbilityContext
+let fileDescriptor = await context.resourceManager.getRawFd('xxx.srt')
+
+let fd:string = fileDescriptor.fd.toString()
+let offset:string = fileDescriptor.offset.toString()
+let length:string = fileDescriptor.length.toString()
+let fdUrl:string = 'fd://' + fd + '?offset=' + offset + '&size=' + length
+
+let avPlayer: media.AVPlayer = await media.createAVPlayer()
+avPlayer.addSubtitleUrl(fdUrl)
+```
+
+### on('subtitleUpdate')<sup>12+</sup>
+
+on(type: 'subtitleUpdate', callback: Callback\<SubtitleInfo>): void
+
+订阅获取外挂字幕的事件，当有外挂字幕时，会通过订阅的回调方法通知用户。用户只能订阅一个外挂字幕事件的回调方法，当用户重复订阅时，以最后一次订阅的回调接口为准。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
+
+**参数：**
+
+| 参数名   | 类型     | 必填 | 说明                                                         |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| type | string | 是   | 事件回调类型，支持的事件为：'subtitleUpdate'。 |
+| callback | function | 是   | 外挂字幕事件回调方法。 |
+
+**示例：**
+
+```ts
+avPlayer.on('subtitleUpdate', async (info: media.SubtitleInfo) => {
+  if (!!info) {
+    let text = (!info.text) ? '' : info.text
+    let startTime = (!info.startTime) ? 0 : info.startTime
+    let duration = (!info.duration) ? 0 : info.duration
+    console.info('subtitleUpdate info: text=' + text + ' startTime=' + startTime +' duration=' + duration)
+  } else {
+    console.info('subtitleUpdate info is null')
+  }
+})
+```
+
+### off('subtitleUpdate')<sup>12+</sup>
+
+off(type: 'subtitleUpdate', callback?: Callback\<SubtitleInfo>): void
+
+取消订阅获取外挂字幕的事件。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
+
+**参数：**
+
+| 参数名   | 类型     | 必填 | 说明                                                         |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| type | string | 是   | 事件回调类型，支持的事件为：'subtitleUpdate'。 |
+| callback | function | 否   | 取消外挂字幕事件的回调方法。 |
+
+**示例：**
+
+```ts
+avPlayer.off('subtitleUpdate')
+```
+
 ## AVPlayerState<sup>9+</sup>
 
 [AVPlayer](#avplayer9)的状态机，可通过state属性主动获取当前状态，也可通过监听[stateChange](#onstatechange9)事件上报当前状态，状态机之间的切换规则，可参考[音频播放开发指导](../../media/media/using-avplayer-for-playback.md)。
@@ -2248,6 +2383,17 @@ avPlayer.off('audioOutputDeviceChangeWithInfo');
 | fileSize     | number | 是   | 待播放文件大小（字节），-1代表大小未知。如果fileSize设置为-1, 播放模式类似于直播，不能进行seek及setSpeed操作，不能设置loop属性，因此不能重新播放。 |
 | callback | function | 是   | 用户设置的回调函数，用于填写数据。<br>- 函数列式：callback: (buffer: ArrayBuffer, length: number, pos?:number) => number;<br>- buffer，ArrayBuffer类型，表示被填写的内存，必选。<br>- length，number类型，表示被填写内存的最大长度，必选。<br>- pos，number类型，表示填写的数据在资源文件中的位置，可选，当fileSize设置为-1时，该参数禁止被使用。 <br>- 返回值，number类型，返回要填充数据的长度。 |
 
+## SubtitleInfo<sup>12+</sup>
+
+外挂字幕信息，使用场景：订阅外挂字幕事件，回调返回外挂字幕详细信息。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
+
+| 名称   | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| text | string | 否  | 字幕文本信息。 |
+| startTime | number | 否  | 显示当前字幕文本的开始时间（单位：毫秒）。 |
+| duration | number | 否 | 显示当前字幕文本的持续时间（单位：毫秒）。 |
 
 ## SeekMode<sup>8+</sup>
 
