@@ -65,14 +65,17 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
       ```c++
       //定义一变量，用来缓存创建的观察者的指针。
       static HiAppEvent_Watcher *systemEventWatcher; 
-      
+
       static void OnReceive(const char *domain, const struct HiAppEvent_AppEventGroup *appEventGroups, uint32_t groupLen) {
           for (int i = 0; i < groupLen; ++i) {
               for (int j = 0; j < appEventGroups[i].infoLen; ++j) {
-                  OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.domain=%{public}s", appEventGroups[i].appEventInfos[j].domain);
-                  OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.name=%{public}s", appEventGroups[i].appEventInfos[j].name);
-                  OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.eventType=%{public}d", appEventGroups[i].appEventInfos[j].type);
-                  if (strcmp(appEventGroups[i].appEventInfos[j].domain, DOMAIN_OS) == 0 && 
+                  OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.domain=%{public}s",
+                              appEventGroups[i].appEventInfos[j].domain);
+                  OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.name=%{public}s",
+                              appEventGroups[i].appEventInfos[j].name);
+                  OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.eventType=%{public}d",
+                              appEventGroups[i].appEventInfos[j].type);
+                  if (strcmp(appEventGroups[i].appEventInfos[j].domain, DOMAIN_OS) == 0 &&
                       strcmp(appEventGroups[i].appEventInfos[j].name, EVENT_MAIN_THREAD_JANK) == 0) {
                       Json::Value params;
                       Json::Reader reader(Json::Features::strictMode());
@@ -84,25 +87,30 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
                           auto bundleName = params["bundle_name"].asString();
                           auto bundleVersion = params["bundle_version"].asString();
                           auto beginTime = params["begin_time"].asInt64();
-                          auto endTime = params["end_time"].size();
-                          auto externalLogSize = params["external_log"].asInt64();
-			  auto logOverLimit = params["logOverLimit"].asBool();
+                          auto endTime = params["end_time"].asInt64();
+                          auto externalLogSize = params["external_log"].size();
+                          auto logOverLimit = params["logOverLimit"].asBool();
                           OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.time=%{public}lld", time);
                           OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.pid=%{public}d", pid);
                           OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.uid=%{public}d", uid);
-                          OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.bundle_name=%{public}s", bundleName.c_str());
-                          OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.bundle_version=%{public}s", bundleVersion.c_str());
+                          OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.bundle_name=%{public}s",
+                                      bundleName.c_str());
+                          OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.bundle_version=%{public}s",
+                                      bundleVersion.c_str());
                           OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.begin_time=%{public}lld", beginTime);
-			  OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.end_time=%{public}lld", endTime);
-			  OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.external_log=%{public}d", externalLogSize);
-                          OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.log_over_limit=%{public}d", logOverLimit);
+                          OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.end_time=%{public}lld", endTime);
+                          OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.external_log=%{public}d",
+                                      externalLogSize);
+                          OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.log_over_limit=%{public}d",
+                                      logOverLimit);
                       }
                   }
               }
           }
       }
-      
+
       static napi_value RegisterWatcher(napi_env env, napi_callback_info info) {
+          OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent RegisterWatcher");
           // 开发者自定义观察者名称，系统根据不同的名称来识别不同的观察者。
           systemEventWatcher = OH_HiAppEvent_CreateWatcher("onReceiverWatcher");
           // 设置订阅的事件类型为EVENT_MAIN_THREAD_JANK。
@@ -114,7 +122,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
           // 使观察者开始监听订阅的事件。
           OH_HiAppEvent_AddWatcher(systemEventWatcher);
           return {};
-      }
+      }	  
       ```
     
 5. 将RegisterWathcer注册为ArkTS接口：
@@ -158,18 +166,18 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
 9. 主线程超时事件上报后，可以在Log窗口看到对系统事件数据的处理日志：
 
    ```text
-     HiAppEvent eventInfo.domain=OS
-     HiAppEvent eventInfo.name=MAIN_THREAD_JANK
-     HiAppEvent eventInfo.eventType=1
-     HiAppEvent eventInfo.params.time=1717593620518
-     HiAppEvent eventInfo.params.bundle_version=1.0.0
-     HiAppEvent eventInfo.params.bundle_name=com.example.main_thread_jank
-     HiAppEvent eventInfo.params.pid=40986
-     HiAppEvent eventInfo.params.uid=20020150
-     HiAppEvent eventInfo.params.crash_type=1717593620016
-     HiAppEvent eventInfo.params.foreground=1717593620518
-     HiAppEvent eventInfo.params.external_log=1
-     HiAppEvent eventInfo.params.log_over_limit=false
+      HiAppEvent eventInfo.domain=OS
+      HiAppEvent eventInfo.name=MAIN_THREAD_JANK
+      HiAppEvent eventInfo.eventType=1
+      HiAppEvent eventInfo.params.time=1717597063727
+      HiAppEvent eventInfo.params.pid=45572
+      HiAppEvent eventInfo.params.uid=20020151
+      HiAppEvent eventInfo.params.bundle_name=com.example.nativemainthread
+      HiAppEvent eventInfo.params.bundle_version=1.0.0
+      HiAppEvent eventInfo.params.begin_time=1717597063225
+      HiAppEvent eventInfo.params.end_time=1717597063727
+      HiAppEvent eventInfo.params.external_log=1
+      HiAppEvent eventInfo.params.log_over_limit=0
    ```
    
 10. 移除应用事件观察者：
