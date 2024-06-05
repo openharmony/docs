@@ -3640,3 +3640,15 @@
 **ACL使能**：true
 
 **起始版本**：11
+
+### ohos.permission.INJECT_INPUT_EVENT
+
+允许系统应用注入输入事件。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
