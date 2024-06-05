@@ -3386,11 +3386,11 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let AVRecorderConfig: AVRecorderConfig;
+let avConfig: AVRecorderConfig;
 
 avRecorder.getAVRecorderConfig().then((config: AVRecorderConfig) => {
   console.info('getAVRecorderConfig success');
-  AVRecorderConfig = config;
+  avConfig = config;
 }).catch((err: BusinessError) => {
   console.error('getAVRecorderConfig failed and catch error is ' + err.message);
 });
