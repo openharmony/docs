@@ -914,8 +914,8 @@ connectDfs(networkId: string, listeners: DfsListeners): Promise<void>
   fs.connectDfs(networkId, listeners).then(() => {
     console.info("Success to connectDfs");
   }).catch((err) => {
-    console.error('connectDfs failed with error message: ${JSON.stringify(err)}')；
-  })；
+    console.error('connectDfs failed with error message: ${JSON.stringify(err)}');
+  });
   ```
 
 ## fs.disconnectDfs<sup>12+</sup>
