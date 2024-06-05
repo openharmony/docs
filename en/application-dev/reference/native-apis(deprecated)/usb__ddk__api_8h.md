@@ -11,7 +11,7 @@ Declares the USB DDK APIs used by the USB host to access USB devices.
 
 **Related Modules**
 
-[UsbDdk](_usb_ddk.md)
+[USB DDK](_usb_ddk.md)
 
 
 ## Summary
@@ -22,7 +22,7 @@ Declares the USB DDK APIs used by the USB host to access USB devices.
 | Name| Description|
 | -------- | -------- |
 | [OH_Usb_Init](_usb_ddk.md#oh_usb_init)&nbsp;(void) | Initializes the DDK.|
-| [OH_Usb_Release](_usb_ddk.md#oh_usb_release)&nbsp;(void) | Releases the DDK.|
+| [OH_Usb_Release](_usb_ddk.md#oh_usb_release)&nbsp;(void) | Releases the USB DDK.|
 | [OH_Usb_GetDeviceDescriptor](_usb_ddk.md#oh_usb_getdevicedescriptor)&nbsp;(uint64_t&nbsp;deviceId,&nbsp;struct&nbsp;[UsbDeviceDescriptor](_usb_device_descriptor.md)&nbsp;\*desc) | Obtains the device descriptor.|
 | [OH_Usb_GetConfigDescriptor](_usb_ddk.md#oh_usb_getconfigdescriptor)&nbsp;(uint64_t&nbsp;deviceId,&nbsp;uint8_t&nbsp;configIndex,&nbsp;struct&nbsp;[UsbDdkConfigDescriptor](_usb_ddk_config_descriptor.md)&nbsp;\*\*const&nbsp;config) | Obtains the configuration descriptor. To avoid memory leakage, use [OH_Usb_FreeConfigDescriptor()](_usb_ddk.md#oh_usb_freeconfigdescriptor) to release a descriptor after use.|
 | [OH_Usb_FreeConfigDescriptor](_usb_ddk.md#oh_usb_freeconfigdescriptor)&nbsp;(const&nbsp;struct&nbsp;[UsbDdkConfigDescriptor](_usb_ddk_config_descriptor.md)&nbsp;\*const&nbsp;config) | Releases the configuration descriptor. To avoid memory leakage, release a descriptor after use.|

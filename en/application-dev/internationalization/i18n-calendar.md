@@ -2,11 +2,11 @@
 
 ## Use Cases
 
-Users in different locales use different calendars. To be specific, the Gregorian calendar is used in most locales, whereas calendars such as the lunar, Islamic, and Hebrew calendars are used in some other locales. What's more, the date and time on the calendar also vary according to the time zone and DST. Therefore, the system should allow users to choose calendars that comply with their local habits. This is made real with the complete set of internationalization (i18n) APIs provided by the [Calendar](../reference/apis/js-apis-i18n.md#calendar8) class. Besides setting the calendar type, date (year, month, and day), time zone, start date of a week, minimum number of days in the first week of a year, user can even determine whether a day is a weekend on the calendar and calculate the day difference between two dates. During application development, you can choose functions that suit your needs in a flexible manner.
+Users in different locales use different calendars. To be specific, the Gregorian calendar is used in most locales, whereas calendars such as the lunar, Islamic, and Hebrew calendars are used in some other locales. What's more, the date and time on the calendar also vary according to the time zone and DST. Therefore, the system should allow users to choose calendars that comply with their local habits. This is made real with the complete set of internationalization (i18n) APIs provided by the [Calendar](../reference/apis-localization-kit/js-apis-i18n.md#calendar8) class. Besides setting the calendar type, date (year, month, and day), time zone, start date of a week, minimum number of days in the first week of a year, user can even determine whether a day is a weekend on the calendar and calculate the day difference between two dates. During application development, you can choose functions that suit your needs in a flexible manner.
 
 ## How to Develop
 
-The following illustrates how to view the lunar calendar date corresponding to the Gregorian calendar date as an example to help you understand the usage of [Calendar](../reference/apis/js-apis-i18n.md#calendar8) APIs.
+The following illustrates how to view the lunar calendar date corresponding to the Gregorian calendar date as an example to help you understand the usage of [Calendar](../reference/apis-localization-kit/js-apis-i18n.md#calendar8) APIs.
 
 1. Import the **i18n** module.
 
@@ -44,13 +44,13 @@ let minimalDaysInFirstWeek : number = calendar.getMinimalDaysInFirstWeek(); // 1
 calendar.setMinimalDaysInFirstWeek(3);
 
 // Obtain the value of the specified field in the Calendar object.
-let value: number = calendar.get("year"); // 2023
+let value: number = calendar.get("year"); // 2022
 
 // Obtain the localized name of the Calendar object.
 let calendarName: string = calendar.getDisplayName("zh-Hans"); // Gregorian calendar
 
 // Check whether a given date is a weekend for the Calendar object.
-let isWeekend : boolean= calendar.isWeekend(new Date(2023, 10, 15)); // true
+let isWeekend : boolean= calendar.isWeekend(new Date(2023, 9, 15)); // true
 
 // Perform addition and subtraction operations on the specified field of the Calendar object.
 calendar.set(2023, 10, 15);
@@ -69,7 +69,7 @@ let calendar : I18n.Calendar = I18n.getCalendar("zh-Hans", "chinese");
 calendar.setTime(new Date(2023, 6, 25, 8, 0, 0));
 // Obtain the year, month, and day of the lunar calendar.
 calendar.get("year"); // Year expressed in a heavenly stem and earthly branch, which is 40 in this example. The value ranges from 1 to 60.
-calendar.get("month"); // Month, which is 5 in this example.
+calendar.get("month"); // The value 5 indicates June.
 calendar.get ("date"); // Day, which is 8 in this example.
 ```
 
