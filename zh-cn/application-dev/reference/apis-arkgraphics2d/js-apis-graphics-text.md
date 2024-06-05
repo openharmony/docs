@@ -214,13 +214,13 @@ import { drawing } from '@kit.ArkGraphics2D'
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
-| 名称               | 类型                                                 | 只读 | 必填 | 说明                                      |
+| 名称               | 类型                                                 | 只读 | 可选 | 说明                                      |
 | -----------------  | ---------------------------------------------------- | --  | ---  | ---------------------------------------- |
-| color              | [common2D.Color](js-apis-graphics-common2D.md#color) | 是  |  是   | 矩形框的颜色，默认为黑色。                 |
-| leftTopRadius      | number                                               | 是  |  是   | 矩形框的左上半径，浮点数，默认为0.0。       |
-| rightTopRadius     | number                                               | 是  |  是   | 矩形框的右上半径，浮点数，默认为0.0。       |
-| rightBottomRadius  | number                                               | 是  |  是   | 矩形框的右下半径，浮点数，默认为0.0。       |
-| leftBottomRadius   | number                                               | 是  |  是   | 矩形框的左下半径，浮点数，默认为0.0。       |
+| color              | [common2D.Color](js-apis-graphics-common2D.md#color) | 是  |  否   | 矩形框的颜色。                 |
+| leftTopRadius      | number                                               | 是  |  否   | 矩形框的左上半径。       |
+| rightTopRadius     | number                                               | 是  |  否   | 矩形框的右上半径。       |
+| rightBottomRadius  | number                                               | 是  |  否   | 矩形框的右下半径。       |
+| leftBottomRadius   | number                                               | 是  |  否   | 矩形框的左下半径。       |
 
 ## FontFeature
 
