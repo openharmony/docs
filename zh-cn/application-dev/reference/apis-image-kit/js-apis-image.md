@@ -5379,7 +5379,7 @@ PixelMap的初始化选项。
 | index              | number                             | 是   | 是   | 解码图片序号。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。   |
 | fitDensity<sup>9+</sup> | number                        | 是   | 是   | 图像像素密度，单位为ppi。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。   |
 | desiredColorSpace<sup>11+</sup> | [colorSpaceManager.ColorSpaceManager](../apis-arkgraphics2d/js-apis-colorSpaceManager.md#colorspacemanager) | 是   | 是   | 目标色彩空间。 |
-| desiredDynamicRange<sup>12+</sup> | [DecodingDynamicRange](#decodingdynamicrange12) | 是   | 是   | 目标动态范围。 |
+| desiredDynamicRange<sup>12+</sup> | [DecodingDynamicRange](#decodingdynamicrange12) | 是   | 是   | 目标动态范围。通过[CreateIncrementalSource](#imagecreateincrementalsource9)创建的imagesource不支持该操作，默认解码为SDR内容。 |
 
 ## Region<sup>7+</sup>
 
@@ -5664,9 +5664,9 @@ PixelMap的初始化选项。
 
 | 名称          | 类型       | 说明         |
 | ------------- | ----------| ------------ |
-| AUTO          | number    | 值为0。自适应，根据图片信息处理。即如果图片本身为HDR图片，则会按照HDR内容解码；反之按照SDR内容解码。  |
+| AUTO          | number    | 值为0。自适应，根据图片信息处理。即如果图片本身为HDR图片，则会按照HDR内容解码；反之按照SDR内容解码。通过[CreateIncrementalSource](#imagecreateincrementalsource9)创建的imagesource会解码为SDR内容。  |
 | SDR           | number    | 值为1。按照标准动态范围处理图片。   |
-| HDR           | number    | 值为2。按照高动态范围处理图片。     |
+| HDR           | number    | 值为2。按照高动态范围处理图片。通过[CreateIncrementalSource](#imagecreateincrementalsource9)创建的imagesource会解码为SDR内容。     |
 
 ## PackingDynamicRange<sup>12+</sup>
 
