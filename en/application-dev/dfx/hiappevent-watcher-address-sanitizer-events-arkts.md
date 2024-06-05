@@ -77,7 +77,7 @@ The following describes how to subscribe to an address sanitizer event for an ar
    });
    ```
 
-4. In the **entry/src/main/cpp/types/libentry/index.d.ets** file, define the **test** interface. The sample code is as follows:
+4. Edit the **entry/src/main/cpp/types/libentry/index.d.ets** file. The sample code is as follows:
 
    ```ts
    export const test: () => void;
@@ -102,7 +102,7 @@ The following describes how to subscribe to an address sanitizer event for an ar
        napi_property_descriptor desc[] = {
            {"test", nullptr, Test, nullptr, nullptr, nullptr, napi_default, nullptr }
        };
-       napi_define_properties(envv, exports, sizeof(desc) / sizeof(desc[0]), desc);
+       napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
        return exports;
    }
    EXTERN_C_END

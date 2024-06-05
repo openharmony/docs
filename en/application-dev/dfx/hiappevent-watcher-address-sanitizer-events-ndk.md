@@ -1,4 +1,4 @@
-# Subscribing to Address Sanitizer Events (C++)
+# Subscribing to Address Sanitizer Events (C/C++)
 
 ## **Available APIs**
 
@@ -126,7 +126,7 @@ The following describes how to subscribe an address sanitizer event for an array
      // Define a variable to cache the pointer to the created watcher.
      static HiAppEvent_Watcher *systemEventWatcher;
      
-     // Implement the callback function for return the listened events. The content pointed by the events pointer is valid only in this function.
+     // Implement the callback function used to return the listened events. The content pointed by the events pointer is valid only in this function.
      static void OnTake(const char *const *events, uint32_t eventLen) {
          Json::Reader reader(Json::Features::strictMode());
          Json::FastWriter writer;
