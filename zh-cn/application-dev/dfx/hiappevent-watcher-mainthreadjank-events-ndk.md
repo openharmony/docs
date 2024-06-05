@@ -51,7 +51,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
    #include "json/json.h"
    #include "hilog/log.h"
    #include "hiappevent/hiappevent.h"
-   
+   #include "hiappevent/hiappevent_event.h"
    #undef LOG_TAG
    #define LOG_TAG "testTag"
    ```
@@ -86,15 +86,15 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
                           auto beginTime = params["begin_time"].asInt64();
                           auto endTime = params["end_time"].size();
                           auto externalLogSize = params["external_log"].asInt64();
-						  auto logOverLimit = params["logOverLimit"].asBool();
+			  auto logOverLimit = params["logOverLimit"].asBool();
                           OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.time=%{public}lld", time);
                           OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.pid=%{public}d", pid);
                           OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.uid=%{public}d", uid);
                           OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.bundle_name=%{public}s", bundleName.c_str());
                           OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.bundle_version=%{public}s", bundleVersion.c_str());
                           OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.begin_time=%{public}lld", beginTime);
-						  OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.end_time=%{public}lld", endTime);
-						  OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.external_log=%{public}d", externalLogSize);
+			  OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.end_time=%{public}lld", endTime);
+			  OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.external_log=%{public}d", externalLogSize);
                           OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.log_over_limit=%{public}d", logOverLimit);
                       }
                   }
@@ -168,7 +168,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
      HiAppEvent eventInfo.params.uid=20020150
      HiAppEvent eventInfo.params.crash_type=1717593620016
      HiAppEvent eventInfo.params.foreground=1717593620518
-     HiAppEvent eventInfo.params.external_log=["/data/storage/el2/log/watchdog/MAIN_THREAD_JANK_1717593623735_40986.trace"]
+     HiAppEvent eventInfo.params.external_log=1
      HiAppEvent eventInfo.params.log_over_limit=false
    ```
    
