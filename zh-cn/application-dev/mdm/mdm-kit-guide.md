@@ -4,15 +4,14 @@
 
 设备管理应用可以提供企业设备管理与事件监听、应用管理、禁用管理、安全管理、设备设置、设备控制、设备信息获取、硬件外设管理、系统管理、网络通信管理等功能。具体功能内容可参考接口说明。
 
-设备管理应用：具备[企业设备管理扩展能力](./mdm-kit-admin.md)的应用。
-
+设备管理应用：具备[企业设备管理扩展能力](../mdm-kit-admin.md)的应用。
 
 
 ## 开发步骤
 
 要完成一个设备管理应用开发，需要完成以下步骤：
 
-<!--RP1--><!--RP1End-->
+<!--RP1-->
 
 1. 创建EnterpriseAdminExtensionAbility；
 
@@ -20,17 +19,13 @@
 
 3. MDM功能开发与调试；
 
-   <!--RP2--><!--RP2End-->
+<!--RP1End-->
 
-<!--RP3--><!--RP3End-->
-
-
+<!--RP2--><!--RP2End-->
 
 ### 创建EnterpriseAdminExtensionAbility
 
 请参阅[EnterpriseAdminExtensionAbility开发指南](./mdm-kit-admin.md)完成EnterpriseAdminExtensionAbility的创建。
-
-
 
 ### 声明接口所需权限
 
@@ -48,9 +43,7 @@
 
 > 所需要申请的权限请参考具体接口，这里提供了[企业设备管理](../reference/apis-mdm-kit/js-apis-enterprise-adminManager.md)的链接，可基于该文档查看MDM Kit内其他API文档。
 >
-> <!--RP4--><!--RP4End-->
-
-
+> <!--RP3--><!--RP3End-->
 
 ### MDM功能开发
 
@@ -94,6 +87,6 @@ hdc shell edm disable-admin -n 包名
 
 > 正式使用时，在同一设备上只能能激活一个超级设备管理应用。
 >
-> <!--RP5--><!--RP5End-->
+> <!--RP4--><!--RP4End-->
 
-<!--RP6--><!--RP6End-->
+<!--RP5--><!--RP5End-->
