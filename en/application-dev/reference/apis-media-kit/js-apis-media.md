@@ -3343,12 +3343,12 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let avConfig: AVRecorderConfig;
+let AVRecorderConfig: AVRecorderConfig;
 
 avRecorder.getAVRecorderConfig((err: BusinessError, config: AVRecorderConfig) => {
   if (err == null) {
     console.info('getAVRecorderConfig success');
-    avConfig = config;
+    AVRecorderConfig = config;
   } else {
     console.error('getAVRecorderConfig failed and error is ' + err.message);
   }
@@ -3386,11 +3386,11 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let avConfig: AVRecorderConfig;
+let AVRecorderConfig: AVRecorderConfig;
 
 avRecorder.getAVRecorderConfig().then((config: AVRecorderConfig) => {
   console.info('getAVRecorderConfig success');
-  avConfig = config;
+  AVRecorderConfig = config;
 }).catch((err: BusinessError) => {
   console.error('getAVRecorderConfig failed and catch error is ' + err.message);
 });
