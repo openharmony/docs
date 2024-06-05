@@ -2321,7 +2321,7 @@ keyboardController.exitCurrentInputType().then(() => {
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | start  | number | 是 | 是 | 选中文本的首字符在编辑框的索引值。|
 | end  | number | 是 | 是 | 选中文本的末字符在编辑框的索引值。|
@@ -2332,7 +2332,7 @@ keyboardController.exitCurrentInputType().then(() => {
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | direction  | [Direction](#direction10) | 是 | 是 | 选中文本时，光标的移动方向。|
 
@@ -4051,11 +4051,11 @@ try {
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
-| 名称         | 类型 | 可读 | 可写 | 说明               |
+| 名称         | 类型 | 只读 | 可选 | 说明               |
 | ------------ | -------- | ---- | ---- | ------------------ |
 | enterKeyType | number   | 是   | 否   | 编辑框的功能属性。 |
 | inputPattern | number   | 是   | 否   | 编辑框的文本属性。 |
-| isTextPreviewSupported | boolean | 是 | 是 | 编辑框是否支持预上屏。 |
+| isTextPreviewSupported | boolean | 否 | 否 | 编辑框是否支持预上屏。 |
 
 ## KeyEvent
 
@@ -4063,7 +4063,7 @@ try {
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
-| 名称      | 类型 | 可读 | 可写 | 说明         |
+| 名称      | 类型 | 只读 | 可选 | 说明         |
 | --------- | -------- | ---- | ---- | ------------ |
 | keyCode   | number   | 是   | 否   | 按键的键值。键码值说明参考[KeyCode](../apis-input-kit/js-apis-keycode.md#keycode)。 |
 | keyAction | number   | 是   | 否   | 按键事件类型。<br/>- 当值为2时，表示按下事件；<br/>- 当值为3时，表示抬起事件。 |
@@ -4096,7 +4096,7 @@ try {
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
-| 名称      | 类型 | 可读 | 可写 | 说明         |
+| 名称      | 类型 | 只读 | 可选 | 说明         |
 | --------- | -------- | ---- | ---- | ------------ |
 | type   	| number   | 是   | 是   | 面板的类型。 |
 | flag	    | number   | 是   | 是   | 面板的状态类型。 |
@@ -4107,7 +4107,7 @@ try {
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
-| 名称         | 类型 | 可读 | 可写 | 说明               |
+| 名称         | 类型 | 只读 | 可选 | 说明               |
 | ------------ | -------- | ---- | ---- | ------------------ |
 | landscapeRect | [window.Rect](../apis-arkui/js-apis-window.md#rect7)   | 是   | 是   | 横屏状态时输入法面板窗口的位置大小。 |
 | portraitRect | [window.Rect](../apis-arkui/js-apis-window.md#rect7)   | 是   | 是   | 竖屏状态时输入法面板窗口的位置大小。 |
@@ -4118,7 +4118,7 @@ try {
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
-| 名称   | 类型                                                         | 可读 | 可写 | 说明           |
+| 名称   | 类型                                                         | 只读 | 可选 | 说明           |
 | ------ | ------------------------------------------------------------ | ---- | ---- | -------------- |
 | rect   | [window.Rect](../apis-arkui/js-apis-window.md#rect7)         | 是   | 是   | 窗口矩形区域。 |
 | status | [window.WindowStatusType](../apis-arkui/js-apis-window.md#windowstatustype11) | 是   | 是   | 窗口模式类型。 |
