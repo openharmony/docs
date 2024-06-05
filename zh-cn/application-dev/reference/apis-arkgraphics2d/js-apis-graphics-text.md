@@ -202,11 +202,11 @@ import { drawing } from '@kit.ArkGraphics2D'
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
-| 名称          | 类型                                                 | 只读 | 必填 | 说明                               |
+| 名称          | 类型                                                 | 只读 | 可选 | 说明                               |
 | ------------- | ---------------------------------------------------- | --  | ---  | --------------------------------- |
-| color         | [common2D.Color](js-apis-graphics-common2D.md#color) | 是  |  否   | 字体阴影的颜色，默认为黑色。        |
-| point         | [common2D.Point](js-apis-graphics-common2D.md#point) | 是  |  否   | 字体阴影基于当前文本的偏移位置。    |
-| blurRadius    | number                                               | 是  |  否   | 模糊半径，浮点数，默认为0.0。       |
+| color         | [common2D.Color](js-apis-graphics-common2D.md#color) | 是  |  是   | 字体阴影的颜色，默认为黑色Color(255, 0, 0, 0)。        |
+| point         | [common2D.Point](js-apis-graphics-common2D.md#point) | 是  |  是   | 字体阴影基于当前文本的偏移位置。    |
+| blurRadius    | number                                               | 是  |  是   | 模糊半径，浮点数，默认为0.0。       |
 
 ## RectStyle
 
@@ -228,10 +228,10 @@ import { drawing } from '@kit.ArkGraphics2D'
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
-| 名称      | 类型                                                 | 只读 | 必填 | 说明                                       |
+| 名称      | 类型                                                 | 只读 | 可选 | 说明                                       |
 | --------- | ---------------------------------------------------- | --  | ---  | ----------------------------------------- |
-| name      | string                                               | 是  |  是   | 字体特征键值对中关键字所标识的字符串。       |
-| value     | number                                               | 是  |  是   | 字体特征键值对的值。                        |
+| name      | string                                               | 是  |  否   | 字体特征键值对中关键字所标识的字符串。       |
+| value     | number                                               | 是  |  否   | 字体特征键值对的值。                        |
 
 ## TextStyle
 
@@ -239,27 +239,27 @@ import { drawing } from '@kit.ArkGraphics2D'
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
-| 名称                      | 类型                                     | 只读 | 必填 | 说明                                                   |
+| 名称                      | 类型                                     | 只读 | 可选 | 说明                                                   |
 | ------------- | ---------------------------------------------------- | -- | -- | --------------------------------------------------------- |
-| decoration    | [Decoration](#decoration)                            | 是 | 否 | 装饰线置，默认初始的Decoration。             |
-| color         | [common2D.Color](js-apis-graphics-common2D.md#color) | 是 | 否 | 字体色，默认为白色。                         |
-| fontWeight    | [FontWeight](#fontweight)                            | 是 | 否 | 字重，默认为W400。                          |
-| fontStyle     | [FontStyle](#fontstyle)                              | 是 | 否 | 字体样式，默认为常规样式。                          |
-| baseline      | [TextBaseline](#textbaseline)                        | 是 | 否 | 文本基线型，默认为ALPHABETIC。               |
-| fontFamilies  | Array\<string>                                       | 是 | 否 | 字体类型，默认为系统字体。                    |
-| fontSize      | number                                               | 是 | 否 | 字体大小，浮点数，默认为14.0，单位为逻辑像素。  |
-| letterSpacing | number                                               | 是 | 否 | 字符间距，正数拉开字符距离，若是负数则拉近字符距离，浮点数，默认为0.0，单位为逻辑像素。|
-| wordSpacing   | number                                               | 是 | 否 | 单词间距，浮点数，默认为0.0，单位为逻辑像素。                 |
-| heightScale   | number                                               | 是 | 否 | 行高缩放倍数，浮点数，默认为1.0。              |
-| halfLeading   | boolean                                              | 是 | 否 | true表示将行间距平分至行的顶部与底部，false则不平分，默认为false。|
-| heightOnly    | boolean                                              | 是 | 否 | true表示根据字体大小计算文本框的高度，false表示根据行高和行距，默认为false。|
-| ellipsis      | string                                               | 是 | 否 | 省略号样式，表示省略号生效后使用该字段值替换省略号部分。       |
-| ellipsisMode  | [EllipsisMode](#ellipsismode)                        | 是 | 否 | 省略号类型，默认为END。                        |
-| locale        | string                                               | 是 | 否 | 语言类型，如'en'，具体请参照ISO 639-1规范，默认为空字符串。|
-| baselineShift | number                                               | 是 | 否 | 文本下划线的偏移距离，浮点数，默认为0.0。                 |
-| fontFeatures  | Array\<[FontFeature](#fontfeature)>                  | 是 | 否 | 文本字体特征数组。|
-| textShadows   | Array\<[TextShadow](#textshadow)>                    | 是 | 否 | 文本字体阴影数组。|
-| backgroundRect| [RectStyle](#rectstyle)                              | 是 | 否 | 文本矩形框样式。|
+| decoration    | [Decoration](#decoration)                            | 是 | 是 | 装饰线置，默认初始的Decoration。             |
+| color         | [common2D.Color](js-apis-graphics-common2D.md#color) | 是 | 是 | 字体色，默认为白色。                         |
+| fontWeight    | [FontWeight](#fontweight)                            | 是 | 是 | 字重，默认为W400。                          |
+| fontStyle     | [FontStyle](#fontstyle)                              | 是 | 是 | 字体样式，默认为常规样式。                          |
+| baseline      | [TextBaseline](#textbaseline)                        | 是 | 是 | 文本基线型，默认为ALPHABETIC。               |
+| fontFamilies  | Array\<string>                                       | 是 | 是 | 字体类型，默认为系统字体。                    |
+| fontSize      | number                                               | 是 | 是 | 字体大小，浮点数，默认为14.0，单位为逻辑像素。  |
+| letterSpacing | number                                               | 是 | 是 | 字符间距，正数拉开字符距离，若是负数则拉近字符距离，浮点数，默认为0.0，单位为逻辑像素。|
+| wordSpacing   | number                                               | 是 | 是 | 单词间距，浮点数，默认为0.0，单位为逻辑像素。                 |
+| heightScale   | number                                               | 是 | 是 | 行高缩放倍数，浮点数，默认为1.0。              |
+| halfLeading   | boolean                                              | 是 | 是 | true表示将行间距平分至行的顶部与底部，false则不平分，默认为false。|
+| heightOnly    | boolean                                              | 是 | 是 | true表示根据字体大小计算文本框的高度，false表示根据行高和行距，默认为false。|
+| ellipsis      | string                                               | 是 | 是 | 省略号样式，表示省略号生效后使用该字段值替换省略号部分。       |
+| ellipsisMode  | [EllipsisMode](#ellipsismode)                        | 是 | 是 | 省略号类型，默认为END。                        |
+| locale        | string                                               | 是 | 是 | 语言类型，如'en'，具体请参照ISO 639-1规范，默认为空字符串。|
+| baselineShift | number                                               | 是 | 是 | 文本下划线的偏移距离，浮点数，默认为0.0。                 |
+| fontFeatures  | Array\<[FontFeature](#fontfeature)>                  | 是 | 是 | 文本字体特征数组。|
+| textShadows   | Array\<[TextShadow](#textshadow)>                    | 是 | 是 | 文本字体阴影数组。|
+| backgroundRect| [RectStyle](#rectstyle)                              | 是 | 是 | 文本矩形框样式。|
 
 ## StrutStyle
 
@@ -267,19 +267,19 @@ import { drawing } from '@kit.ArkGraphics2D'
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
-| 名称                      | 类型                                       | 只读 | 必填 | 说明                                                                 |
+| 名称                      | 类型                                       | 只读 | 可选 | 说明                                                                 |
 | -------------  | ---------------------------------------------------- | ---- | -- | --------------------------------------------------------------------- |
-| fontFamilies   | Array\<string>                                       | 是   | 否 | 字体类型，默认为系统字体。                                               |
-| fontStyle      | [FontStyle](#fontstyle)                              | 是   | 否 | 字体样式，默认为常规样式。                                               |
-| fontWidth      | [FontWidth](#fontwidth)                              | 是   | 否 | 字体宽度，默认为NORMAL。                                                |
-| fontWeight     | [FontWeight](#fontweight)                            | 是   | 否 | 字重，默认为W400。                                                      |
-| fontSize       | number                                               | 是   | 否 | 字体大小，浮点数，默认为14.0，单位为逻辑像素。                             |
-| height         | number                                               | 是   | 否 | 行高缩放倍数，浮点数，默认为1.0。                                         |
-| leading        | number                                               | 是   | 否 | 以自定义行距应用于支柱的行距，浮点数，默认为-1.0。                          |
-| forceHeight    | boolean                                              | 是   | 否 | 否所有行都将使用支柱的高度，true表示使用，false表示不使用，默认为false。     |
-| enabled        | boolean                                              | 是   | 否 | 是否启用支柱样式，true表示使用，false表示不使用，默认为false。              |
-| heightOverride | boolean                                              | 是   | 否 | 是否覆盖高度，true表示覆盖，false表示不覆盖，默认为false。                  |
-| halfLeading    | boolean                                              | 是   | 否 | true表示将行间距平分至行的顶部与底部，false则不平分，默认为false。           |
+| fontFamilies   | Array\<string>                                       | 是   | 是 | 字体类型，默认为系统字体。                                               |
+| fontStyle      | [FontStyle](#fontstyle)                              | 是   | 是 | 字体样式，默认为常规样式。                                               |
+| fontWidth      | [FontWidth](#fontwidth)                              | 是   | 是 | 字体宽度，默认为NORMAL。                                                |
+| fontWeight     | [FontWeight](#fontweight)                            | 是   | 是 | 字重，默认为W400。                                                      |
+| fontSize       | number                                               | 是   | 是 | 字体大小，浮点数，默认为14.0，单位为逻辑像素。                             |
+| height         | number                                               | 是   | 是 | 行高缩放倍数，浮点数，默认为1.0。                                         |
+| leading        | number                                               | 是   | 是 | 以自定义行距应用于支柱的行距，浮点数，默认为-1.0。                          |
+| forceHeight    | boolean                                              | 是   | 是 | 是否所有行都将使用支柱的高度，true表示使用，false表示不使用，默认为false。     |
+| enabled        | boolean                                              | 是   | 是 | 是否启用支柱样式，true表示使用，false表示不使用，默认为false。              |
+| heightOverride | boolean                                              | 是   | 是 | 是否覆盖高度，true表示覆盖，false表示不覆盖，默认为false。                  |
+| halfLeading    | boolean                                              | 是   | 是 | true表示将行间距平分至行的顶部与底部，false则不平分，默认为false。           |
 
 ## FontCollection
 
@@ -368,16 +368,16 @@ struct Index {
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
-| 名称                 | 类型                                        | 只读 | 必填 | 说明                                          |
+| 名称                 | 类型                                        | 只读 | 可选 | 说明                                          |
 | -------------------- | ------------------------------------------ | ---- | ---- | -------------------------------------------- |
-| textStyle            | [TextStyle](#textstyle)                    | 是   | 否   | 作用于整个段落的文本样式，默认为初始的TextStyle。|
-| textDirection        | [TextDirection](#textdirection)            | 是   | 否   | 文本方向，默认为LTR。                          |
-| align                | [TextAlign](#textalign)                    | 是   | 否   | 文本对齐方式，默认为START。                     |
-| wordBreak            | [WordBreak](#wordbreak)                    | 是   | 否   | 断词类型，默认为BREAK_WORD。                    |
-| maxLines             | number                                     | 是   | 否   | 最大行数限制，整数，默认为1e9。                  |
-| breakStrategy        | [BreakStrategy](#breakstrategy)            | 是   | 否   | 断行策略，默认为GREEDY。                        |
-| strutStyle           | [StrutStyle](#strutstyle)                  | 是   | 否   | 支柱样式，默认为初始的StrutStyle。               |
-| textHeightBehavior   | [TextHeightBehavior](#textheightbehavior)  | 是   | 否   | 字重，默认为W400。                              |
+| textStyle            | [TextStyle](#textstyle)                    | 是   | 是   | 作用于整个段落的文本样式，默认为初始的TextStyle。|
+| textDirection        | [TextDirection](#textdirection)            | 是   | 是   | 文本方向，默认为LTR。                          |
+| align                | [TextAlign](#textalign)                    | 是   | 是   | 文本对齐方式，默认为START。                     |
+| wordBreak            | [WordBreak](#wordbreak)                    | 是   | 是   | 断词类型，默认为BREAK_WORD。                    |
+| maxLines             | number                                     | 是   | 是   | 最大行数限制，整数，默认为1e9。                  |
+| breakStrategy        | [BreakStrategy](#breakstrategy)            | 是   | 是   | 断行策略，默认为GREEDY。                        |
+| strutStyle           | [StrutStyle](#strutstyle)                  | 是   | 是   | 支柱样式，默认为初始的StrutStyle。               |
+| textHeightBehavior   | [TextHeightBehavior](#textheightbehavior)  | 是   | 是   | 文本高度修饰符模式，默认为ALL。                              |
 
 
 ## PlaceholderAlignment
@@ -1145,7 +1145,7 @@ struct Index {
 
 ### getActualTextRange
 
-getActualTextRange(lineNumber: number, includeSpaces: boolean): [Range](#range);
+getActualTextRange(lineNumber: number, includeSpaces: boolean): Range
 
 获取指定行号上的实际可见文本范围，这不包括由于文本溢出而显示的省略号。
 
@@ -1156,13 +1156,13 @@ getActualTextRange(lineNumber: number, includeSpaces: boolean): [Range](#range);
 | 参数名 | 类型   | 必填 | 说明      |
 | ----- | ------ | ---- | --------- |
 | lineNumber  | number | 是   | 要获取文本范围的行号，行号从0开始。|
-| includeSpaces  | boolean | 是   | 指示是否应包含空白字符。|
+| includeSpaces  | boolean | 是   | 指示是否应包含空白字符。true表示包含空白字符，false表示不包含空白字符。|
 
 **返回值：**
 
 | 类型             | 说明                                              |
 | ---------------- | ------------------------------------------------ |
-| [Range](#range)  | 标示了实际文本范围。                               |
+| [Range](#range)  | 表明了对应行数的实际文本范围。                               |
 
 **示例：**
 
@@ -1198,9 +1198,10 @@ struct Index {
 }
 ```
 
+
 ### getLineMetrics
 
-getLineMetrics(): Array\<LineMetrics>;
+getLineMetrics(): Array\<LineMetrics>
 
 获取文本行的行度量数组。
 
@@ -1248,7 +1249,7 @@ struct Index {
 
 ### getLineMetrics
 
-getLineMetrics(lineNumber: number): LineMetrics | undefined;
+getLineMetrics(lineNumber: number): LineMetrics | undefined
 
 获取特定行号的行度量信息。
 
@@ -1258,13 +1259,13 @@ getLineMetrics(lineNumber: number): LineMetrics | undefined;
 
 | 参数名 | 类型   | 必填 | 说明      |
 | ----- | ------ | ---- | --------- |
-| lineNumber  | number | 是   | 要查询度量信息的行的编号, 行号从0开始|
+| lineNumber  | number | 是   | 要查询度量信息的行的编号, 行号从0开始。|
 
 **返回值：**
 
 | 类型             | 说明                                              |
 | ---------------- | ------------------------------------------------ |
-| [LineMetrics](#linemetrics) | 如果指定的行号有效且度量信息存在，则返回一个包含该行度量数据的 LineMetrics 对象；如果行号无效或无法获取度量信息，则返回 undefined。                  |
+| [LineMetrics](#linemetrics) | 如果指定的行号有效且度量信息存在，则返回一个包含该行度量数据的LineMetrics对象；如果行号无效或无法获取度量信息，则返回undefined。                  |
 
 **示例：**
 
@@ -1306,10 +1307,10 @@ struct Index {
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
-| 名称      | 类型                                                | 只读 | 必填 | 说明        |
+| 名称      | 类型                                                | 只读 | 可选 | 说明        |
 | --------- | -------------------------------------------------- | ---- | ---- | ----------- |
-| textStyle | [TextStyle](#textstyle)                             | 是   | 是   | 字体的样式信息。|
-| fontMetrics | [FontMetrics](js-apis-graphics-drawing.md#fontmetrics)| 是   | 是   | 字体度量信息。    |
+| textStyle | [TextStyle](#textstyle)                             | 是   | 否   | 字体的样式信息。|
+| fontMetrics | [FontMetrics](js-apis-graphics-drawing.md#fontmetrics)| 是   | 否   | 字体度量信息。    |
 
 ## LineMetrics
 
@@ -1317,19 +1318,19 @@ struct Index {
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
-| 名称      | 类型                                                | 只读 | 必填 | 说明        |
+| 名称      | 类型                                                | 只读 | 可选 | 说明        |
 | --------- | -------------------------------------------------- | ---- | ---- | ----------- |
-| startIndex | number                                            | 是   | 是   | 文本缓冲区中该行开始的索引位置。|
-| endIndex   | number                                            | 是   | 是   | 文本缓冲区中该行结束的索引位置。|
-| ascent     | number                                            | 是   | 是   | 文字上升高度，即从基线到字符顶部的距离。|
-| descent    | number                                            | 是   | 是   | 文字下降高度，即从基线到字符底部的距离。|
-| height     | number                                            | 是   | 是   | 当前行的高度，计算方式为 `Math.round(ascent + descent)`|
-| width      | number                                            | 是   | 是   | 行的宽度。                      |
-| left       | number                        | 是   | 是   | 行的左边缘位置。右边缘可通过 `left +width` 计算得出。|
-| baseline   | number                        | 是   | 是   | 该行基线相对于段落顶部的 Y 坐标位置。|
-| lineNumber   | number                        | 是   | 是   | 行号，从0开始计数。|
-| topHeight   | number                        | 是   | 是   | 从顶部到当前行的高度。|
-| runMetrics   | Map<number, [RunMetrics](#runmetrics)>                        | 是   | 是   | 文本索引范围与关联的字体度量信息之间的映射。|
+| startIndex | number                                            | 是   | 否   | 文本缓冲区中该行开始的索引位置。|
+| endIndex   | number                                            | 是   | 否   | 文本缓冲区中该行结束的索引位置。|
+| ascent     | number                                            | 是   | 否   | 文字上升高度，即从基线到字符顶部的距离。|
+| descent    | number                                            | 是   | 否   | 文字下降高度，即从基线到字符底部的距离。|
+| height     | number                                            | 是   | 否   | 当前行的高度，计算方式为 `Math.round(ascent + descent)`|
+| width      | number                                            | 是   | 否   | 行的宽度。                      |
+| left       | number                        | 是   | 否   | 行的左边缘位置。右边缘可通过 `left+width` 计算得出。|
+| baseline   | number                        | 是   | 否   | 该行基线相对于段落顶部的 Y 坐标位置。|
+| lineNumber   | number                        | 是   | 否   | 行号，从0开始计数。|
+| topHeight   | number                        | 是   | 否   | 从顶部到当前行的高度。|
+| runMetrics   | Map<number, [RunMetrics](#runmetrics)>                        | 是   | 否   | 文本索引范围与关联的字体度量信息之间的映射。|
 
 ## TextBox
 
@@ -1699,7 +1700,7 @@ addSymbol(symbolId: number): void
 
 | 参数名    | 类型    | 必填 | 说明                       |
 | -------- | ------- | ---- | -------------------------- |
-| symbolId | number  | 是   | 要设置的符号，可支持设置的符号参见链接json文件中的value值, https://gitee.com/openharmony/global_system_resources/blob/master/systemres/main/resources/base/element/symbol.json |
+| symbolId | number  | 是   | 要设置的符号，十六进制。|
 
 **示例：**
 
