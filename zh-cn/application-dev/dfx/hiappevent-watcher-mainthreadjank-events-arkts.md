@@ -39,11 +39,25 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
           // 开发者可以根据事件集合中的事件名称区分不同的系统事件
           hilog.info(0x0000, 'testTag', `HiAppEvent eventName=${eventGroup.name}`);
           for (const eventInfo of eventGroup.appEventInfos) {
-            // 开发者可以获取到资源泄漏事件发生时内存信息
-            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.name = ${eventInfo.name}`);
-            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.domain = ${eventInfo.domain}`);
-            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.eventType = ${eventInfo.eventType}`);
-            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.eventType = ${JSON.stringify(eventInfo.params)}`);
+            // 开发者可以对事件集合中的事件数据进行自定义处理，此处是将事件数据打印在日志中
+            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.domain=${eventInfo.domain}`);
+            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.name=${eventInfo.name}`);
+            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.eventType=${eventInfo.eventType}`);
+            // 开发者可以获取到崩溃事件发生的时间戳
+            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.time=${eventInfo.params['time']}`);
+            // 开发者可以获取到崩溃应用的版本信息
+            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.bundle_version=${eventInfo.params['bundle_version']}`);
+            // 开发者可以获取到崩溃应用的包名
+            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.bundle_name=${eventInfo.params['bundle_name']}`);
+            // 开发者可以获取到崩溃应用的pid、uid
+            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.pid=${eventInfo.params['pid']}`);
+            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.uid=${eventInfo.params['uid']}`);
+            // 开发者可以主线程处理开始和结束时间
+            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.crash_type=${eventInfo.params['begin_time']}`);
+            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.foreground=${eventInfo.params['end_time']}`);
+            // 开发者可以获取到崩溃事件发生时的故障日志文件
+            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.external_log=${JSON.stringify(eventInfo.params['external_log'])}`);
+            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.log_over_limit=${eventInfo.params['log_over_limit']}`);
           }
         }
       }
@@ -71,10 +85,16 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
 5. 主线程超时事件上报后，系统会回调应用的onReceive函数，可以在Log窗口看到对系统事件数据的处理日志：
 
    ```text
-    HiAppEvent eventInfo.name = MAIN_THREAD_JANK
-    HiAppEvent eventInfo.domain = OS
-    HiAppEvent eventInfo.eventType = 1
-    HiAppEvent eventInfo.params = {"begin_time":1717589857684,"bundle_name":"com.example.main_thread_jank","bundle_version":"1.0.0","end_time":1717589858188,"external_log": 
-["/data/storage/el2/log/watchdog/MAIN_THREAD_JANK_1717589861408_31593.trace"],"log_over_limit":false,"pid":31593,"time":1717589858188,"uid":20020150}
-   
+    HiAppEvent eventInfo.domain=OS
+    HiAppEvent eventInfo.name=MAIN_THREAD_JANK
+    HiAppEvent eventInfo.eventType=1
+    HiAppEvent eventInfo.params.time=1717593620518
+    HiAppEvent eventInfo.params.bundle_version=1.0.0
+    HiAppEvent eventInfo.params.bundle_name=com.example.main_thread_jank
+    HiAppEvent eventInfo.params.pid=40986
+    HiAppEvent eventInfo.params.uid=20020150
+    HiAppEvent eventInfo.params.crash_type=1717593620016
+    HiAppEvent eventInfo.params.foreground=1717593620518
+    HiAppEvent eventInfo.params.external_log=["/data/storage/el2/log/watchdog/MAIN_THREAD_JANK_1717593623735_40986.trace"]
+    HiAppEvent eventInfo.params.log_over_limit=false
    ```
