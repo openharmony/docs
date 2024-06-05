@@ -2597,6 +2597,18 @@
 
 **起始版本**：11
 
+### ohos.permission.READ_PRIVACY_PUSH_DATA
+
+允许应用读取另一个应用中的Push隐私数据。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
 ### ohos.permission.MANAGE_NEARLINK
 
 允许应用配对星闪设备，并对设备的电话簿或消息进行访问。
