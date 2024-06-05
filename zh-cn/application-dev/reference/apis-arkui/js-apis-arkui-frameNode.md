@@ -992,7 +992,7 @@ invalidate(): void
 
 ### addComponentContent<sup>12+</sup>
 
-addComponentContent<T>(content: ComponentContent<T>): void
+addComponentContent\<T>(content: ComponentContent\<T>): void
 
 支持添加ComponentContent类型的组件内容。
 
