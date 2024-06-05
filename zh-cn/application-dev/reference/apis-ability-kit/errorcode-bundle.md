@@ -543,7 +543,7 @@ The specified bundle is a shared bundle which cannot be uninstalled.
 2. 通过uninstall接口卸载应用时，bundleName传入的是应用间共享库的包名。
 
 **处理步骤**<br/>
-1. 通过-s参数指定卸载的应用为共享库应用。
+1. 通过-n参数指定卸载的应用为共享库应用。
 2. 通过UninstallParam参数的bundleName及versionCode指定卸载的共享库的包名及版本。
 
 ## 17700041 企业设备管理不允许安装该应用
