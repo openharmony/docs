@@ -31,6 +31,8 @@ bindSheet(isShow: Optional\<boolean\>, builder: CustomBuilder, options?: SheetOp
 > 在非双向绑定情况下，以拖拽方式关闭半模态页面不会改变isShow参数的值。
 >
 > 为了使isShow参数值与半模态界面的状态同步，建议使用[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定isShow参数。
+>
+> 在半模态单挡位向上拖拽或是多挡位上滑换挡请况下，内容在拖拽结束或换挡结束后更新显示区域。
 ## SheetOptions
 
 继承自[BindOptions](#bindoptions)。
