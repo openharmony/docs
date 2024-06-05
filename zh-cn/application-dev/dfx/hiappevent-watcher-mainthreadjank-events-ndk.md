@@ -1,4 +1,4 @@
-# 订阅资源泄漏事件（C/C++）
+# 订阅主线程超时事件（C/C++）
 
 ## 接口说明
 
@@ -81,17 +81,21 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
                           auto time = params["time"].asInt64();
                           auto pid = params["pid"].asInt();
                           auto uid = params["uid"].asInt();
-                          auto resourceType = params["resourceType"].asString();
                           auto bundleName = params["bundle_name"].asString();
                           auto bundleVersion = params["bundle_version"].asString();
-                          auto memory = writer.write(params["memory"]);
+                          auto beginTime = params["begin_time"].asInt64();
+                          auto endTime = params["end_time"].size();
+                          auto externalLogSize = params["external_log"].asInt64();
+						  auto logOverLimit = params["logOverLimit"].asBool();
                           OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.time=%{public}lld", time);
                           OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.pid=%{public}d", pid);
                           OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.uid=%{public}d", uid);
-                          OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.resource_type=%{public}s", resourceType.c_str());
                           OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.bundle_name=%{public}s", bundleName.c_str());
                           OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.bundle_version=%{public}s", bundleVersion.c_str());
-                          OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.memory=%{public}s", memory.c_str());
+                          OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.begin_time=%{public}lld", beginTime);
+						  OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.end_time=%{public}lld", endTime);
+						  OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.external_log=%{public}d", externalLogSize);
+                          OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.log_over_limit=%{public}d", logOverLimit);
                       }
                   }
               }
@@ -101,8 +105,8 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
       static napi_value RegisterWatcher(napi_env env, napi_callback_info info) {
           // 开发者自定义观察者名称，系统根据不同的名称来识别不同的观察者。
           systemEventWatcher = OH_HiAppEvent_CreateWatcher("onReceiverWatcher");
-          // 设置订阅的事件类型为EVENT_RESOURCE_OVERLIMIT。
-          const char *names[] = {EVENT_RESOURCE_OVERLIMIT};
+          // 设置订阅的事件类型为EVENT_MAIN_THREAD_JANK。
+          const char *names[] = {EVENT_MAIN_THREAD_JANK};
           // 开发者订阅感兴趣的应用事件，此处订阅了系统事件。
           OH_HiAppEvent_SetAppEventFilter(systemEventWatcher, DOMAIN_OS, 0, names, 1);
           // 开发者设置已实现的回调函数，观察者接收到事件后回立即触发OnReceive回调。
@@ -131,21 +135,25 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
                   OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.domain=%{public}s", domain.c_str());
                   OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.name=%{public}s", name.c_str());
                   OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.eventType=%{public}d", type);
-                  if (domain ==  DOMAIN_OS && name == EVENT_RESOURCE_OVERLIMIT) {
+                  if (domain ==  DOMAIN_OS && name == EVENT_MAIN_THREAD_JANK) {
                       auto time = eventInfo["time"].asInt64();
                       auto pid = eventInfo["pid"].asInt();
                       auto uid = eventInfo["uid"].asInt();
-                      auto resourceType = eventInfo["resourceType"].asString();
-                      auto bundleName = eventInfo["bundle_name"].asString();
-                      auto bundleVersion = eventInfo["bundle_version"].asString();
-                      auto memory = writer.write(eventInfo["memory"]);
+                      auto bundleName = params["bundle_name"].asString();
+                      auto bundleVersion = params["bundle_version"].asString();
+                      auto beginTime = params["begin_time"].asInt64();
+                      auto endTime = params["end_time"].size();
+                      auto externalLogSize = params["external_log"].asInt64();
+					  auto logOverLimit = params["logOverLimit"].asBool();
                       OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.time=%{public}lld", time);
                       OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.pid=%{public}d", pid);
                       OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.uid=%{public}d", uid);
-                      OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.resource_type=%{public}s", resourceType.c_str());
                       OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.bundle_name=%{public}s", bundleName.c_str());
                       OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.bundle_version=%{public}s", bundleVersion.c_str());
-                      OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.memory=%{public}s", memory.c_str());
+                      OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.begin_time=%{public}lld", beginTime);
+					  OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.end_time=%{public}lld", endTime);
+					  OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.external_log=%{public}d", externalLogSize);
+                      OH_LOG_INFO(LogType::LOG_APP, "HiAppEvent eventInfo.params.log_over_limit=%{public}d", logOverLimit);
                   }
               }
           }
@@ -208,25 +216,25 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
    ```
 
 7. 运行`hdc shell param set hiviewdfx.ucollection.testapptrace true`，使能主线程超时采集trace测试。
+   运行service_control stop hiview停止服务，清除设备缓存rm -rf /data/log/hiview/unified_collection/trace，运行service_control start hiview启动服务。
 
-   运行`hdc shell killall hiview`，重启hiview，使能主线程超时采集trace测试才会生效。
+8. 点击IDE界面中的运行按钮，运行应用工程，连续构造两个主线程超时450ms的任务，会触发主线程超时事件。同一个应用一天仅会触发一次。
 
-8. 点击IDE界面中的运行按钮，运行应用工程，主线程处理任务超过450ms,下一个任务处理超过150ms，会触发主线程超时事件。
-   同一个应用，5小时内至多上报一次内存泄漏，如果短时间内要二次上报，需要重启hiview。
-
-9. 内存泄漏事件上报后，可以在Log窗口看到对系统事件数据的处理日志：
+9. 主线程超时事件上报后，可以在Log窗口看到对系统事件数据的处理日志：
 
    ```text
-   08-07 03:53:35.314 1719-1738/? I A00000/testTag: HiAppEvent eventInfo.domain=OS
-   08-07 03:53:35.314 1719-1738/? I A00000/testTag: HiAppEvent eventInfo.name=EVENT_MAIN_THREAD_JANK
-   08-07 03:53:35.314 1719-1738/? I A00000/testTag: HiAppEvent eventInfo.eventType=1
-   08-07 03:53:35.349 1719-1738/? I A00000/testTag: HiAppEvent eventInfo.params.time=1502049167732
-   08-07 03:53:35.349 1719-1738/? I A00000/testTag: HiAppEvent eventInfo.params.pid=1587
-   08-07 03:53:35.349 1719-1738/? I A00000/testTag: HiAppEvent eventInfo.params.uid=20010043
-   08-07 03:53:35.349 1719-1738/? I A00000/testTag: HiAppEvent eventInfo.params.resource_type=pss_memory
-   08-07 03:53:35.349 1719-1738/? I A00000/testTag: HiAppEvent eventInfo.params.bundle_name=com.example.myapplication
-   08-07 03:53:35.349 1719-1738/? I A00000/testTag: HiAppEvent eventInfo.params.bundle_version=1.0.0
-   08-07 03:53:35.350 1719-1738/? I A00000/testTag: HiAppEvent eventInfo.params.memory={"pss":2100257,"rss":1352644,"sys_avail_mem":250272,"sys_free_mem":60004,"sys_total_mem":1992340,"vss":2462936}
+     HiAppEvent eventInfo.domain=OS
+     HiAppEvent eventInfo.name=MAIN_THREAD_JANK
+     HiAppEvent eventInfo.eventType=1
+     HiAppEvent eventInfo.params.time=1717593620518
+     HiAppEvent eventInfo.params.bundle_version=1.0.0
+     HiAppEvent eventInfo.params.bundle_name=com.example.main_thread_jank
+     HiAppEvent eventInfo.params.pid=40986
+     HiAppEvent eventInfo.params.uid=20020150
+     HiAppEvent eventInfo.params.crash_type=1717593620016
+     HiAppEvent eventInfo.params.foreground=1717593620518
+     HiAppEvent eventInfo.params.external_log=["/data/storage/el2/log/watchdog/MAIN_THREAD_JANK_1717593623735_40986.trace"]
+     HiAppEvent eventInfo.params.log_over_limit=false
    ```
    
 10. 移除应用事件观察者：
