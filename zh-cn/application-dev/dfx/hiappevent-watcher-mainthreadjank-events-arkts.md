@@ -74,8 +74,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
     HiAppEvent eventInfo.name = MAIN_THREAD_JANK
     HiAppEvent eventInfo.domain = OS
     HiAppEvent eventInfo.eventType = 1
-    HiAppEvent eventInfo.params = 
-       {"begin_time":1717589857684,"bundle_name":"com.example.main_thread_jank","bundle_version":"1.0.0","end_time":1717589858188,"external_log": 
+    HiAppEvent eventInfo.params = {"begin_time":1717589857684,"bundle_name":"com.example.main_thread_jank","bundle_version":"1.0.0","end_time":1717589858188,"external_log": 
 ["/data/storage/el2/log/watchdog/MAIN_THREAD_JANK_1717589861408_31593.trace"],"log_over_limit":false,"pid":31593,"time":1717589858188,"uid":20020150}
    
-  ```
+   ```
