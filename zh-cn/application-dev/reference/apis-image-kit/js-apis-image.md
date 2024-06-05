@@ -5319,11 +5319,11 @@ ImageSource的初始化选项。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
-| 名称              | 类型                               | 可读 | 可写 | 说明               |
+| 名称              | 类型                               | 只读 | 可选 | 说明               |
 | ----------------- | ---------------------------------- | ---- | ---- | ------------------ |
-| sourceDensity     | number                             | 是   | 是   | ImageSource的密度。|
-| sourcePixelFormat | [PixelMapFormat](#pixelmapformat7) | 是   | 是   | 图片像素格式。     |
-| sourceSize        | [Size](#size)                      | 是   | 是   | 图像像素大小。     |
+| sourceDensity     | number                             | 否   | 否   | ImageSource的密度。|
+| sourcePixelFormat | [PixelMapFormat](#pixelmapformat7) | 否   | 是   | 图片像素格式，默认值为UNKNOWN。     |
+| sourceSize        | [Size](#size)                      | 否   | 是   | 图像像素大小，默认值为空。     |
 
 
 ## InitializationOptions<sup>8+</sup>
@@ -5347,18 +5347,18 @@ PixelMap的初始化选项。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
-| 名称               | 类型                               | 可读 | 可写 | 说明             |
+| 名称               | 类型                               | 只读 | 可选 | 说明             |
 | ------------------ | ---------------------------------- | ---- | ---- | ---------------- |
-| sampleSize         | number                             | 是   | 是   | 缩略图采样大小，当前只能取1。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。 |
-| rotate             | number                             | 是   | 是   | 旋转角度。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。       |
-| editable           | boolean                            | 是   | 是   | 是否可编辑。当取值为false时，图片不可二次编辑，如crop等操作将失败。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。  |
-| desiredSize        | [Size](#size)                      | 是   | 是   | 期望输出大小。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。   |
-| desiredRegion      | [Region](#region7)                 | 是   | 是   | 解码区域。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。       |
-| desiredPixelFormat | [PixelMapFormat](#pixelmapformat7) | 是   | 是   | 解码的像素格式。仅支持设置：RGBA_8888、BGRA_8888和RGB_565。有透明通道图片格式不支持设置RGB_565，如PNG、GIF、ICO和WEBP。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。 |
-| index              | number                             | 是   | 是   | 解码图片序号。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。   |
-| fitDensity<sup>9+</sup> | number                        | 是   | 是   | 图像像素密度，单位为ppi。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。   |
-| desiredColorSpace<sup>11+</sup> | [colorSpaceManager.ColorSpaceManager](../apis-arkgraphics2d/js-apis-colorSpaceManager.md#colorspacemanager) | 是   | 是   | 目标色彩空间。 |
-| desiredDynamicRange<sup>12+</sup> | [DecodingDynamicRange](#decodingdynamicrange12) | 是   | 是   | 目标动态范围。通过[CreateIncrementalSource](#imagecreateincrementalsource9)创建的imagesource不支持该操作，默认解码为SDR内容。 |
+| sampleSize         | number                             | 否   | 是   | 缩略图采样大小，默认值为1。当前只能取1。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。 |
+| rotate             | number                             | 否   | 是   | 旋转角度。默认值为0。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。       |
+| editable           | boolean                            | 否   | 是   | 是否可编辑。默认值为false。当取值为false时，图片不可二次编辑，如crop等操作将失败。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。  |
+| desiredSize        | [Size](#size)                      | 否   | 是   | 期望输出大小。默认值为空。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。   |
+| desiredRegion      | [Region](#region7)                 | 否   | 是   | 解码区域。默认值为空。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。       |
+| desiredPixelFormat | [PixelMapFormat](#pixelmapformat7) | 否   | 是   | 解码的像素格式。默认值为RGBA_8888。仅支持设置：RGBA_8888、BGRA_8888和RGB_565。有透明通道图片格式不支持设置RGB_565，如PNG、GIF、ICO和WEBP。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。 |
+| index              | number                             | 否   | 是   | 解码图片序号。默认值为0。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。   |
+| fitDensity<sup>9+</sup> | number                        | 否   | 是   | 图像像素密度，单位为ppi。默认值为0。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。   |
+| desiredColorSpace<sup>11+</sup> | [colorSpaceManager.ColorSpaceManager](../apis-arkgraphics2d/js-apis-colorSpaceManager.md#colorspacemanager) | 否   | 是   | 目标色彩空间。 |
+| desiredDynamicRange<sup>12+</sup> | [DecodingDynamicRange](#decodingdynamicrange12) | 否   | 是   | 目标动态范围。通过[CreateIncrementalSource](#imagecreateincrementalsource9)创建的imagesource不支持该操作，默认解码为SDR内容。默认值为SDR。 |
 
 ## Region<sup>7+</sup>
 
@@ -5384,12 +5384,12 @@ PixelMap的初始化选项。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImagePacker
 
-| 名称    | 类型   | 必填 | 说明                                                |
-| ------- | ------ | ---- | --------------------------------------------------- |
-| format  | string | 是   | 目标格式。</br>当前只支持"image/jpeg"、"image/webp" 和 "image/png"。 |
-| quality | number | 是   | JPEG编码中设定输出图片质量的参数，取值范围为0-100。0质量最低，100质量最高，质量越高生成图片所占空间越大。 |
-| bufferSize<sup>9+</sup> | number | 否   | 接收编码数据的缓冲区大小，单位为Byte。默认为10MB。bufferSize需大于编码后图片大小。使用[packToFile](#packtofile11)不受此参数限制。 |
-| desiredDynamicRange<sup>12+</sup> | [PackingDynamicRange](#packingdynamicrange12) | 否   | 目标动态范围。默认值为SDR。 |
+| 名称    | 类型   | 只读 | 可选 | 说明                                                |
+| ------- | ------ | ---- | ---- | --------------------------------------------------- |
+| format  | string | 否   | 否   | 目标格式。</br>当前只支持"image/jpeg"、"image/webp" 和 "image/png"。 |
+| quality | number | 否   | 否   | JPEG编码中设定输出图片质量的参数，取值范围为0-100。0质量最低，100质量最高，质量越高生成图片所占空间越大。 |
+| bufferSize<sup>9+</sup> | number | 否   | 是   | 接收编码数据的缓冲区大小，单位为Byte。默认为10MB。bufferSize需大于编码后图片大小。使用[packToFile](#packtofile11)不受此参数限制。 |
+| desiredDynamicRange<sup>12+</sup> | [PackingDynamicRange](#packingdynamicrange12) | 否   | 是   | 目标动态范围。默认值为SDR。 |
 
 ## ImagePropertyOptions<sup>11+</sup>
 
@@ -5397,10 +5397,10 @@ PixelMap的初始化选项。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
-| 名称         | 类型   | 可读 | 可写 | 说明         |
+| 名称         | 类型   | 只读 | 可选 | 说明         |
 | ------------ | ------ | ---- | ---- | ------------ |
-| index        | number | 是   | 是   | 图片序号。   |
-| defaultValue | string | 是   | 是   | 默认属性值。 |
+| index        | number | 是   | 是   | 图片序号。默认值为0。   |
+| defaultValue | string | 是   | 是   | 默认属性值。默认值为空。 |
 
 ## GetImagePropertyOptions<sup>(deprecated)</sup>
 
@@ -5412,10 +5412,10 @@ PixelMap的初始化选项。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
-| 名称         | 类型   | 可读 | 可写 | 说明         |
+| 名称         | 类型   | 只读 | 可选 | 说明         |
 | ------------ | ------ | ---- | ---- | ------------ |
-| index        | number | 是   | 是   | 图片序号。   |
-| defaultValue | string | 是   | 是   | 默认属性值。 |
+| index        | number | 否   | 是   | 图片序号。默认值为0。   |
+| defaultValue | string | 否   | 是   | 默认属性值。默认值为空。 |
 
 ## PropertyKey<sup>7+</sup>
 
@@ -5628,7 +5628,7 @@ PixelMap的初始化选项。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
-| 名称          | 类型                             | 可读 | 可写 | 说明         |
+| 名称          | 类型                             | 只读 | 可选 | 说明         |
 | ------------- | -------------------------------- | ---- | ---- | ------------ |
 | componentType | [ComponentType](#componenttype9) | 是   | 否   | 组件类型。   |
 | rowStride     | number                           | 是   | 否   | 行距。       |
@@ -5641,11 +5641,11 @@ PixelMap的初始化选项。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
-| 名称          | 类型       | 说明         |
+| 名称          | 值       | 说明         |
 | ------------- | ----------| ------------ |
-| AUTO          | number    | 值为0。自适应，根据图片信息处理。即如果图片本身为HDR图片，则会按照HDR内容解码；反之按照SDR内容解码。通过[CreateIncrementalSource](#imagecreateincrementalsource9)创建的imagesource会解码为SDR内容。  |
-| SDR           | number    | 值为1。按照标准动态范围处理图片。   |
-| HDR           | number    | 值为2。按照高动态范围处理图片。通过[CreateIncrementalSource](#imagecreateincrementalsource9)创建的imagesource会解码为SDR内容。     |
+| AUTO          | 0    | 自适应，根据图片信息处理。即如果图片本身为HDR图片，则会按照HDR内容解码；反之按照SDR内容解码。通过[CreateIncrementalSource](#imagecreateincrementalsource9)创建的imagesource会解码为SDR内容。  |
+| SDR           | 1    | 按照标准动态范围处理图片。   |
+| HDR           | 2    | 按照高动态范围处理图片。通过[CreateIncrementalSource](#imagecreateincrementalsource9)创建的imagesource会解码为SDR内容。     |
 
 ## PackingDynamicRange<sup>12+</sup>
 
@@ -5653,10 +5653,10 @@ PixelMap的初始化选项。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
-| 名称          | 类型       | 说明         |
+| 名称          | 值       | 说明         |
 | ------------- | ----------| ------------ |
-| AUTO          | number    | 值为0。自适应，根据[pixelmap](#pixelmap7)内容处理。即如果pixelmap本身为HDR，则会按照HDR内容进行编码；反之按照SDR内容解码。  |
-| SDR           | number    | 值为1。按照标准动态范围处理图片。   |
+| AUTO          | 0    | 自适应，根据[pixelmap](#pixelmap7)内容处理。即如果pixelmap本身为HDR，则会按照HDR内容进行编码；反之按照SDR内容解码。  |
+| SDR           | 1    | 按照标准动态范围处理图片。   |
 
 ## 补充说明
 ### SVG标签说明
