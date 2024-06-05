@@ -123,7 +123,7 @@ ComposeListItem({contentItem?: ContentItem, operateItem?: OperateItem})
 
 ## 示例
 
-### 示例一：
+### 示例1
 
 ```ts
 // 该示例主要演示该组件的基础功能使用，包含左侧右侧元素的情况
@@ -187,7 +187,7 @@ struct ComposeListItemExample {
 ```
 ![示例4-左右元素+文本](figures/zh-cn_image_composelistitem_demo_01.jpg)
 
-### 示例二：
+### 示例2
 ```ts
 // 该示例主要演示该组件在基础功能上，对图片、文字进行自定义功能
 import { IconType, ComposeListItem, promptAction, LengthMetrics } from '@kit.ArkUI';
