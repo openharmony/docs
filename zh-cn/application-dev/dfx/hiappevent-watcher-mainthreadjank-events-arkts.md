@@ -16,8 +16,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
 1. 新建一个ArkTS应用工程，编辑工程中的“entry > src > main > ets  > entryability > EntryAbility.ets”文件，导入依赖模块：
 
    ```ts
-   import hiAppEvent from '@ohos.hiviewdfx.hiAppEvent';
-   import hilog from '@ohos.hilog';
+   import { hiAppEvent, hilog } from '@kit.PerformanceAnalysisKit';
    ```
 
 2. 编辑工程中的“entry > src > main > ets  > entryability > EntryAbility.ets”文件，在onCreate函数中添加系统事件的订阅，示例代码如下：
@@ -41,7 +40,10 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
           hilog.info(0x0000, 'testTag', `HiAppEvent eventName=${eventGroup.name}`);
           for (const eventInfo of eventGroup.appEventInfos) {
             // 开发者可以获取到资源泄漏事件发生时内存信息
-            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.params.memory=${JSON.stringify(eventInfo)}`);
+            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.name = ${eventInfo.name}`);
+            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.domain = ${eventInfo.domain}`);
+            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.eventType = ${eventInfo.eventType}`);
+            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.eventType = ${JSON.stringify(eventInfo.params)}`);
           }
         }
       }
@@ -50,15 +52,29 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
 
 3. 运行`hdc shell param set hiviewdfx.ucollection.testapptrace true`，使能主线程超时采集trace测试，主线程。
 
-   运行`hdc shell killall hiview`，重启hiview，使能主线程超时采集trace测试才会生效。
+   运行`service_control stop hiview`停止服务，清除设备缓存`rm -rf /data/log/hiview/unified_collection/trace`，运行`service_control start hiview`启动服务。
 
-4. 点击IDE界面中的运行按钮，运行应用工程，主线程处理任务超过450ms,下一个任务处理超过150ms，会触发主线程超时事件。
-   同一个应用，5小时内至多上报一次内存泄漏，如果短时间内要二次上报，需要重启hiview
+4. 点击IDE界面中的运行按钮，运行应用工程，连续构造两个主线程超时450ms的任务，会触发主线程超时事件。同一个应用一天仅会触发一次。
+  主线程超时450ms任务构造示例代码
+   ```ts
+     Button("timeOut450")
+     .fontSize(50)
+     .fontWeight(FontWeight.Bold)
+     .onClick(() => {
+         let t = Date.now();
+         while (Date.now() - t <= 450){
+           //console.log('wait');
+         }
+     })
+   ```
 
 5. 主线程超时事件上报后，系统会回调应用的onReceive函数，可以在Log窗口看到对系统事件数据的处理日志：
 
    ```text
-   HiAppEvent onReceive: domain=OS
-   HiAppEvent eventName=RESOURCE_OVERLIMIT
-   HiAppEvent eventInfo={"domain":"OS","name":"RESOURCE_OVERLIMIT","eventType":1,"params":{"bundle_name":"com.example.myapplication","bundle_version"::"1.0.0","memory":{"pss":2100257,"rss":1352644,"sys_avail_mem":250272,"sys_free_mem":60004,"sys_total_mem":1992340,"vss":2462936},"pid":20731,"resource_type":"pss_memory","time":1502348798106,"uid":20010044}}
+    HiAppEvent eventInfo.name = MAIN_THREAD_JANK
+    HiAppEvent eventInfo.domain = OS
+    HiAppEvent eventInfo.eventType = 1
+    HiAppEvent eventInfo.params = 
+       {"begin_time":1717589857684,"bundle_name":"com.example.main_thread_jank","bundle_version":"1.0.0","end_time":1717589858188,"external_log": 
+["/data/storage/el2/log/watchdog/MAIN_THREAD_JANK_1717589861408_31593.trace"],"log_over_limit":false,"pid":31593,"time":1717589858188,"uid":20020150}
    ```
