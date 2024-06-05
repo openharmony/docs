@@ -865,15 +865,6 @@ struct Index {
           .onDeleteComplete(() => {
             console.log("---------------------- onDeleteComplete ------------------------")
           })
-          .placeholder("input...", {
-            fontColor: Color.Gray,
-            font: {
-              size: 16,
-              weight: FontWeight.Normal,
-              family: "HarmonyOS Sans",
-              style: FontStyle.Normal
-            }
-          })
           .borderWidth(1)
           .borderColor(Color.Green)
           .width("100%")
