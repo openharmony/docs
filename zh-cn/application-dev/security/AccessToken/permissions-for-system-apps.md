@@ -1227,7 +1227,7 @@
 
 **起始版本**：8
 
-### ohos.permission.ACCESS_HWBOOSTER_SERVICE
+### ohos.permission.ACCESS_BOOSTER_SERVICE
 
 允许系统服务或系统应用调用网络增强服务中的网络质量感知，网络场景预测、或网络加速等功能接口。
 
