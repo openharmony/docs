@@ -290,19 +290,24 @@ import { UIAbility } from '@kit.AbilityKit';
 
 // 导入GlobalContext，以开发者自己声明的路径为准
 import { GlobalContext } from '../GlobalContext'
+import { BusinessError } from '@ohos.base';
 
 export default class MySecondAbility extends UIAbility {
   onDestroy() {
     let applicationContext = this.context.getApplicationContext();
     let lifecycleId = GlobalContext.getContext().getObject("lifecycleId") as number;
+    try {
     // 3.通过applicationContext注销监听应用内生命周期
-    applicationContext.off('abilityLifecycle', lifecycleId, (error) => {
-      if (error && error.code !== 0) {
-        console.error(`unregisterAbilityLifecycleCallback fail, error: ${JSON.stringify(error)}`);
-      } else {
-        console.log('unregisterAbilityLifecycleCallback success.');
-      }
-    });
+      applicationContext.off('abilityLifecycle', lifecycleId, (error) => {
+        if (error && error.code !== 0) {
+          console.error(`unregisterAbilityLifecycleCallback fail, error: ${JSON.stringify(error)}`);
+        } else {
+          console.log('unregisterAbilityLifecycleCallback success.');
+        }
+      });
+    } catch (paramError) {
+      console.error(`error: ${(paramError as BusinessError).code}, ${(paramError as BusinessError).message}`);
+    }
   }
 }
 ```
