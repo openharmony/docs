@@ -210,8 +210,8 @@ install(hapFilePaths: Array&lt;string&gt;, installParam: InstallParam, callback:
 | 17700050 | Failed to install the HAP because an enterprise normal/MDM bundle cannot be installed on non-enterprise devices. |
 | 17700052 | Failed to install the HAP because a debug bundle can be installed only in developer mode. |
 | 17700054 | Failed to install the HAP because the HAP requests wrong permissions.|
+| 17700066 | Failed to install the HAP because installing the native package failed. |
 | 17700068 | Failed to install the HAP because the maximum count of clone app cannot be reduced. |
-| 17700066 | Failed to install the HAP because installing the native **package** failed. |
 
 **示例：**
 
@@ -298,8 +298,8 @@ install(hapFilePaths: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;):
 | 17700050 | Failed to install the HAP because an enterprise normal/MDM bundle cannot be installed on non-enterprise devices. |
 | 17700052 | Failed to install the HAP because a debug bundle can be installed only in developer mode. |
 | 17700054 | Failed to install the HAP because the HAP requests wrong permissions.|
+| 17700066 | Failed to install the HAP because installing the native package failed. |
 | 17700068 | Failed to install the HAP because the maximum count of clone app cannot be reduced. |
-| 17700066 | Failed to install the HAP because installing the native **package** failed. |
 
 **示例：**
 
@@ -390,8 +390,8 @@ install(hapFilePaths: Array\<string\>, installParam?: InstallParam) : Promise\<v
 | 17700050 | Failed to install the HAP because an enterprise normal/MDM bundle cannot be installed on non-enterprise devices. |
 | 17700052 | Failed to install the HAP because a debug bundle can be installed only in developer mode. |
 | 17700054 | Failed to install the HAP because the HAP requests wrong permissions.|
+| 17700066 | Failed to install the HAP because installing the native package failed. |
 | 17700068 | Failed to install the HAP because the maximum count of clone app cannot be reduced. |
-| 17700066 | Failed to install the HAP because installing the native **package** failed. |
 
 **示例：**
 
