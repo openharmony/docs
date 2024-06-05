@@ -668,6 +668,8 @@
       - [示例服务器开发指导](basic-services/update/sample-server-guidelines.md)
     - 剪贴板服务
       - [使用剪贴板的延迟复制粘贴功能](basic-services/pasteboard/pasteboard-time-lapse-copy-and-paste.md)
+    - 上传下载
+      - [应用文件上传下载]((basic-services/request/app-file-upload-download.md)
   - Calendar Kit（日历服务）
     - [Calendar Kit简介](calendarmanager/calendarmanager-overview.md)
     - [Calendar Kit开发指南](calendarmanager/calendarmanager-guidelines.md)
@@ -970,9 +972,9 @@
     - [Location Kit简介](device/location/location-kit-intro.md)
     - [Location Kit开发指南](device/location/location-guidelines.md)
   - MDM Kit（企业设备管理服务）
-    - [MDM Kit简介](mdm-kit-intro.md)
-    - [MDM Kit开发指南](mdm-kit-guide.md)
-    - [EnterpriseAdminExtensionAbility开发指南](mdm-kit-admin.md)
+    - [MDM Kit简介](mdm/mdm-kit-intro.md)
+    - [MDM Kit开发指南](mdm/mdm-kit-guide.md)
+    - [EnterpriseAdminExtensionAbility开发指南](mdm/mdm-kit-admin.md)
   - Media Kit（媒体服务）
     - [Media Kit简介](media/media/media-kit-intro.md)
     - 音频播放和录制
@@ -1176,6 +1178,9 @@
       - 查询密钥别名集
         - [查询密钥别名集(ArkTS)](security/UniversalKeystoreKit/huks-list-aliases-arkts.md)
         - [查询密钥别名集(C/C++)](security/UniversalKeystoreKit/huks-list-aliases-ndk.md)
+      - HMAC
+        - [HMAC(ArkTS)](security/UniversalKeystoreKit/huks-hmac-arkts.md)
+        - [HMAC(C/C++)](security/UniversalKeystoreKit/huks-hmac-ndk.md)
       <!--Del-->
       - [指定用户身份操作(仅对系统应用开放)](security/UniversalKeystoreKit/huks-as-user-sys.md)
       <!--DelEnd-->
@@ -1898,6 +1903,9 @@
             - [事件独占控制](reference/apis-arkui/arkui-ts/ts-universal-attributes-monopolize-events.md)
             - [鼠标光标控制](reference/apis-arkui/arkui-ts/ts-universal-attributes-cursor.md)
             - [特效绘制合并](reference/apis-arkui/arkui-ts/ts-universal-attributes-use-effect.md)
+            <!--Del-->
+            - [点光源设置 (系统接口)](reference/apis-arkui/arkui-ts/ts-universal-attributes-point-light-style-sys.md)
+            <!--DelEnd-->
           - 手势处理
             - [绑定手势方法](reference/apis-arkui/arkui-ts/ts-gesture-settings.md)
             - 基础手势
@@ -3174,6 +3182,7 @@
         <!--DelEnd-->
     - ArkTS组件
       - [@ohos.multimedia.movingphotoview (动态照片)](reference/apis-media-library-kit/ohos-multimedia-movingphotoview.md)
+      - [@ohos.file.PhotoPickerComponent (photo picker组件)](reference/apis-media-library-kit/ohos-file-PhotoPickerComponent.md)
     - C API
       - 模块
         - [MediaAssetManager](reference/apis-media-library-kit/_media_asset_manager.md)
