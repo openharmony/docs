@@ -639,13 +639,13 @@ hdc list targets -v
 
 | 命令 | 说明 |
 | -------- | -------- |
-| install [-r/-d/-g] _packageFile_ | 安装指定的应用package文件。 |
+| install [-r/-g] _packageFile_ | 安装指定的应用package文件。 |
 | uninstall_ packageName_ | 卸载指定的应用包package包名。 |
 
 1. 安装APP package，命令格式如下：
 
    ```shell
-   hdc install [-r/-d/-g] packageFile
+   hdc install [-r/-g] packageFile
    ```
 
    **参数：**
@@ -653,7 +653,6 @@ hdc list targets -v
    | -------- | -------- |
    | packageFile | 应用安装包文件名。 |
    | -r | 替换已存在应用。 |
-   | -d | 允许降级安装。 |
    | -g | 应用动态授权。 |
 
    **返回值：**
