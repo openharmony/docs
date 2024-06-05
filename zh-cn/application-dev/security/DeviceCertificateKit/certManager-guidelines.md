@@ -104,7 +104,7 @@
        const verifyHandle: certManager.CMHandle = await certManager.init(appKeyUri, verifySpec);
        await certManager.update(verifyHandle.handle, srcData);
        const verifyResult = await certManager.finish(verifyHandle.handle, signResult.outData);
-       console.info(`Succeeded in signing and verifying.`);
+       console.info('Succeeded in signing and verifying.');
      } catch (err: BusinessError) {
        console.error(`Failed to sign or verify. Code: ${err.code}, message: ${err.message}`);
      }
