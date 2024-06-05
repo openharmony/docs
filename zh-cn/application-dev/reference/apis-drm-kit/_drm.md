@@ -33,8 +33,8 @@
 | struct  [DRM_MediaKeyStatus](_d_r_m___media_key_status.md) | 媒体密钥状态。 | 
 | struct  [DRM_PsshInfo](_d_r_m___pssh_info.md) | uuid的PSSH信息。 | 
 | struct  [DRM_MediaKeySystemInfo](_d_r_m___media_key_system_info.md) | 播放器从媒体源获取媒体密钥系统信息。 | 
-| struct  [MediaKeySession_Callback](_media_key_session___callback.md) | MediaKeySession_Callback结构体，用于监听密钥过期、密钥更改等事件。 | 
-| struct  [OH_MediaKeySession_Callback](_o_h___media_key_session___callback.md) | OH_MediaKeySession_Callback结构体，用于监听密钥过期、密钥更改等事件。支持获取MediaKeySession指针。 | 
+| struct  [MediaKeySession_Callback](_media_key_session___callback.md) | MediaKeySession_Callback结构体，用于监听密钥过期、密钥更改等事件，不返回媒体密钥会话实例，适用于单媒体密钥会话解密场景。 | 
+| struct  [OH_MediaKeySession_Callback](_o_h___media_key_session___callback.md) | OH_MediaKeySession_Callback结构体，用于监听密钥过期、密钥更改等事件，返回媒体密钥会话实例，适用多个媒体密钥会话解密场景。 | 
 | struct  [DRM_MediaKeySystemDescription](_d_r_m___media_key_system_description.md) | DRM插件的名称和UUID。  | 
 
 
@@ -92,12 +92,12 @@
 | typedef enum [Drm_ErrCode](#drm_errcode-1) [Drm_ErrCode](#drm_errcode) | DRM错误码。 | 
 | typedef [Drm_ErrCode](#drm_errcode)(\* [MediaKeySession_EventCallback](#mediakeysession_eventcallback)) ([DRM_EventType](#drm_eventtype) eventType, uint8_t \*info, int32_t infoLen, char \*extra) | 事件触发时将调用的回调。 | 
 | typedef [Drm_ErrCode](#drm_errcode)(\* [MediaKeySession_KeyChangeCallback](#mediakeysession_keychangecallback)) ([DRM_KeysInfo](_d_r_m___keys_info.md) \*keysInfo, bool newKeysAvailable) | 密钥更改时将调用回调。 | 
-| typedef struct [MediaKeySession_Callback](_media_key_session___callback.md) [MediaKeySession_Callback](#mediakeysession_callback) | MediaKeySession_Callback结构体，用于监听密钥过期、密钥更改等事件。 | 
+| typedef struct [MediaKeySession_Callback](_media_key_session___callback.md) [MediaKeySession_Callback](#mediakeysession_callback) | MediaKeySession_Callback结构体，用于监听密钥过期、密钥更改等事件，不返回媒体密钥会话实例，适用于单媒体密钥会话解密场景。 | 
 | typedef [Drm_ErrCode](#drm_errcode)(\* [OH_MediaKeySession_EventCallback](#oh_mediakeysession_eventcallback)) ([MediaKeySession](#mediakeysession) \*mediaKeySessoin, [DRM_EventType](#drm_eventtype) eventType, uint8_t \*info, int32_t infoLen, char \*extra) | 事件触发时将调用的回调。 | 
 | typedef [Drm_ErrCode](#drm_errcode)(\* [OH_MediaKeySession_KeyChangeCallback](#oh_mediakeysession_keychangecallback)) ([MediaKeySession](#mediakeysession) \*mediaKeySessoin, [DRM_KeysInfo](_d_r_m___keys_info.md) \*keysInfo, bool newKeysAvailable) | 密钥更改时将调用的回调。 | 
-| typedef struct [OH_MediaKeySession_Callback](_o_h___media_key_session___callback.md) [OH_MediaKeySession_Callback](#oh_mediakeysession_callback) | OH_MediaKeySession_Callback结构体，用于监听密钥过期、密钥更改等事件。 | 
-| typedef [Drm_ErrCode](#drm_errcode)(\* [MediaKeySystem_Callback](#mediakeysystem_callback)) ([DRM_EventType](#drm_eventtype) eventType, uint8_t \*info, int32_t infoLen, char \*extra) | 事件触发时将调用的回调。 | 
-| typedef [Drm_ErrCode](#drm_errcode)(\* [OH_MediaKeySystem_Callback](#oh_mediakeysystem_callback)) (MediaKeySystem \*mediaKeySystem, [DRM_EventType](#drm_eventtype) eventType, uint8_t \*info, int32_t infoLen, char \*extra) | 事件触发时将调用的回调。 | 
+| typedef struct [OH_MediaKeySession_Callback](_o_h___media_key_session___callback.md) [OH_MediaKeySession_Callback](#oh_mediakeysession_callback) | OH_MediaKeySession_Callback结构体，用于监听密钥过期、密钥更改等事件，返回媒体密钥会话实例，适用多个媒体密钥会话解密场景。 | 
+| typedef [Drm_ErrCode](#drm_errcode)(\* [MediaKeySystem_Callback](#mediakeysystem_callback)) ([DRM_EventType](#drm_eventtype) eventType, uint8_t \*info, int32_t infoLen, char \*extra) | 事件触发时将调用的回调，不返回媒体密钥系统实例，适用于单个媒体密钥系统场景。 | 
+| typedef [Drm_ErrCode](#drm_errcode)(\* [OH_MediaKeySystem_Callback](#oh_mediakeysystem_callback)) (MediaKeySystem \*mediaKeySystem, [DRM_EventType](#drm_eventtype) eventType, uint8_t \*info, int32_t infoLen, char \*extra) | 事件触发时将调用的回调，返回媒体密钥系统实例，适用于多个媒体密钥系统场景。 | 
 
 
 ### 枚举
@@ -754,7 +754,7 @@ typedef struct MediaKeySession_Callback MediaKeySession_Callback
 
 **描述**
 
-MediaKeySession_Callback结构体，用于监听密钥过期、密钥更改等事件。
+MediaKeySession_Callback结构体，用于监听密钥过期、密钥更改等事件，不返回媒体密钥会话实例，适用于单媒体密钥会话解密场景。
 
 **起始版本：** 11
 
@@ -830,7 +830,7 @@ typedef Drm_ErrCode(* MediaKeySystem_Callback) (DRM_EventType eventType, uint8_t
 
 **描述**
 
-事件触发时将调用的回调。
+事件触发时将调用的回调，不返回媒体密钥系统实例，适用于单个媒体密钥系统场景。
 
 **起始版本：** 11
 
@@ -856,7 +856,7 @@ typedef struct OH_MediaKeySession_CallbackOH_MediaKeySession_Callback
 
 **描述**
 
-OH_MediaKeySession_Callback结构体，用于监听密钥过期、密钥更改等事件。
+OH_MediaKeySession_Callback结构体，用于监听密钥过期、密钥更改等事件，返回媒体密钥会话实例，适用多个媒体密钥会话解密场景。
 
 **起始版本：** 12
 
@@ -921,7 +921,7 @@ typedef Drm_ErrCode(* OH_MediaKeySystem_Callback) (MediaKeySystem *mediaKeySyste
 
 **描述**
 
-事件触发时将调用的回调。
+事件触发时将调用的回调，返回媒体密钥系统实例，适用于多个媒体密钥系统场景。
 
 **起始版本：** 12
 
