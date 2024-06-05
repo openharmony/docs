@@ -415,6 +415,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     if (ret != AV_ERR_OK) {
         // 异常处理
     }
+     ```
 
 14. （可选）调用OH_VideoDecoder_Reset()重置解码器。
 
