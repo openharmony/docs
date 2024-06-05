@@ -855,3 +855,65 @@ export default class MyAbility extends UIAbility {
   }
 }
 ```
+
+## ApplicationContext.setFont<sup>12+</sup>
+
+setFont(font: string): void
+
+设置应用的字体类型。
+
+> **说明：**
+>
+> 当页面窗口创建完成后，才能调用该接口，即需要在[onWindowStageCreate()](js-apis-app-ability-uiAbility.md#uiabilityonwindowstagecreate)生命周期之后调用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名 | 类型          | 必填 | 说明                 |
+| ------ | ------------- | ---- | -------------------- |
+| font | string | 是   | 设置字体类型，字体可以通过[font.registerFont](../apis-arkui/js-apis-font.md#fontregisterfont)方法进行注册使用。  |
+
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
+
+
+**示例：**
+
+```ts
+import font from '@ohos.font';
+
+@Entry
+@Component
+struct Index {
+  @State message: string = 'Hello World'
+
+  aboutToAppear() {
+    font.registerFont({
+      familyName: 'fontName',
+      familySrc: $rawfile('font/medium.ttf')
+    })
+    
+    getContext().getApplicationContext().setFont("fontName");
+  }
+
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(50)
+          .fontWeight(50)
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
