@@ -2262,7 +2262,7 @@ on(type: 'willClick', callback: GestureEventListenerCallback): void
 // 在页面Component中使用
 import { UIContext, UIObserver } from '@ohos.arkui.UIContext';
 // callback是开发者定义的监听回调函数
-let callback = (event: GestureEvent, frameNode: FrameNode) => {};
+let callback = (event: GestureEvent, frameNode?: FrameNode) => {};
 let observer: UIObserver = this.getUIContext().getUIObserver();
 observer.on('willClick', callback);
 ```
@@ -2288,7 +2288,7 @@ off(type: 'willClick', callback?: GestureEventListenerCallback): void
 // 在页面Component中使用
 import { UIContext, UIObserver } from '@ohos.arkui.UIContext';
 // callback是开发者定义的监听回调函数
-let callback = (event: GestureEvent, frameNode: FrameNode) => {};
+let callback = (event: GestureEvent, frameNode?: FrameNode) => {};
 let observer: UIObserver = this.getUIContext().getUIObserver();
 observer.off('willClick', callback);
 ```
@@ -2314,7 +2314,7 @@ on(type: 'didClick', callback: GestureEventListenerCallback): void
 // 在页面Component中使用
 import { UIContext, UIObserver } from '@ohos.arkui.UIContext';
 // callback是开发者定义的监听回调函数
-let callback = (event: GestureEvent, frameNode: FrameNode) => {};
+let callback = (event: GestureEvent, frameNode?: FrameNode) => {};
 let observer: UIObserver = this.getUIContext().getUIObserver();
 observer.on('didClick', callback);
 ```
@@ -2340,7 +2340,7 @@ off(type: 'didClick', callback?: GestureEventListenerCallback): void
 // 在页面Component中使用
 import { UIContext, UIObserver } from '@ohos.arkui.UIContext';
 // callback是开发者定义的监听回调函数
-let callback = (event: GestureEvent, frameNode: FrameNode) => {};
+let callback = (event: GestureEvent, frameNode?: FrameNode) => {};
 let observer: UIObserver = this.getUIContext().getUIObserver();
 observer.off('didClick', callback);
 ```
@@ -2366,7 +2366,7 @@ on(type: 'willClick', callback: ClickEventListenerCallback): void
 // 在页面Component中使用
 import { UIContext, UIObserver } from '@ohos.arkui.UIContext';
 // callback是开发者定义的监听回调函数
-let callback = (event: ClickEvent, frameNode: FrameNode) => {};
+let callback = (event: ClickEvent, frameNode?: FrameNode) => {};
 let observer: UIObserver = this.getUIContext().getUIObserver();
 observer.on('willClick', callback);
 ```
@@ -2392,7 +2392,7 @@ off(type: 'willClick', callback?: ClickEventListenerCallback): void
 // 在页面Component中使用
 import { UIContext, UIObserver } from '@ohos.arkui.UIContext';
 // callback是开发者定义的监听回调函数
-let callback = (event: ClickEvent, frameNode: FrameNode) => {};
+let callback = (event: ClickEvent, frameNode?: FrameNode) => {};
 let observer: UIObserver = this.getUIContext().getUIObserver();
 observer.off('willClick', callback);
 ```
@@ -2418,7 +2418,7 @@ on(type: 'didClick', callback: ClickEventListenerCallback): void
 // 在页面Component中使用
 import { UIContext, UIObserver } from '@ohos.arkui.UIContext';
 // callback是开发者定义的监听回调函数
-let callback = (event: ClickEvent, frameNode: FrameNode) => {};
+let callback = (event: ClickEvent, frameNode?: FrameNode) => {};
 let observer: UIObserver = this.getUIContext().getUIObserver();
 observer.on('didClick', callback);
 ```
@@ -2444,7 +2444,7 @@ off(type: 'didClick', callback?: ClickEventListenerCallback): void
 // 在页面Component中使用
 import { UIContext, UIObserver } from '@ohos.arkui.UIContext';
 // callback是开发者定义的监听回调函数
-let callback = (event: ClickEvent, frameNode: FrameNode) => {};
+let callback = (event: ClickEvent, frameNode?: FrameNode) => {};
 let observer: UIObserver = this.getUIContext().getUIObserver();
 observer.off('didClick', callback);
 ```
