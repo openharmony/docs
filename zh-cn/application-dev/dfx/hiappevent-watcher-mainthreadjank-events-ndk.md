@@ -146,7 +146,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
    export const registerWatcher: () => void;
    ```
 
-6. 编辑"EntryAbility.ts"文件，在onCreate()函数中新增接口调用：
+6. 编辑工程中的“entry > src > main > ets > entryability> EntryAbility.ets”文件，在onCreate()函数中新增接口调用：
 
    ```typescript
    import testNapi from 'libentry.so'
@@ -158,12 +158,25 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
    }
    ```
 
-7. 运行`hdc shell param set hiviewdfx.ucollection.testapptrace true`，使能主线程超时采集trace测试。
+7. 编辑工程中的“entry > src > main > ets > pages> Index.ets”文件，添加一个Button控件onClick中实现主线程超时代码，示例代码如下：
+   ```typescript
+      Button("timeOut500")
+      .fontSize(50)
+      .fontWeight(FontWeight.Bold)
+      .onClick(() => {
+          let t = Date.now();
+          while (Date.now() - t <= 500){
+          
+          }
+      })
+   ```
+
+8. 运行`hdc shell param set hiviewdfx.ucollection.testapptrace true`，使能主线程超时采集trace测试。
    运行service_control stop hiview停止服务，清除设备缓存rm -rf /data/log/hiview/unified_collection/trace，运行service_control start hiview启动服务。
 
-8. 点击IDE界面中的运行按钮，运行应用工程，连续构造两个主线程超时450ms的任务，会触发主线程超时事件。同一个应用一天仅会触发一次。
+9. 点击IDE界面中的运行按钮，运行应用工程，连续构造两个主线程超时450ms的任务，会触发主线程超时事件。同一个应用一天仅会触发一次。
 
-9. 主线程超时事件上报后，可以在Log窗口看到对系统事件数据的处理日志：
+10. 主线程超时事件上报后，可以在Log窗口看到对系统事件数据的处理日志：
 
    ```text
       HiAppEvent eventInfo.domain=OS
@@ -180,7 +193,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
       HiAppEvent eventInfo.params.log_over_limit=0
    ```
    
-10. 移除应用事件观察者：
+11. 移除应用事件观察者：
 
     ```c++
     static napi_value RemoveWatcher(napi_env env, napi_callback_info info) {
@@ -190,7 +203,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
     }
     ```
 
-11. 销毁应用事件观察者：
+12. 销毁应用事件观察者：
 
     ```c++
     static napi_value DestroyWatcher(napi_env env, napi_callback_info info) {
