@@ -53,3 +53,4 @@ Callback of the common event of a static subscriber.
         }
     }
   ```
+
