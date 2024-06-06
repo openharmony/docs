@@ -6,6 +6,7 @@ The **\<GridItem>** component provides a single item in a grid.
 >
 >  - This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 >  - This component can be used only as a child of [\<Grid>](ts-container-grid.md).
+>  - When this component is used with **LazyForEach**, its child components are created when it is created. When this component is used with **if/else** or **ForEach**, or when the parent component is **\<Grid>**, its child components are created when it is laid out.
 
 
 ## Child Components

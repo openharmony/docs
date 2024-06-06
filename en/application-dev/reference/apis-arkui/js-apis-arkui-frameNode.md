@@ -1,6 +1,6 @@
 # FrameNode
 
-**FrameNode** represents an entity node in the component tree. It can be used by a [NodeController](./js-apis-arkui-nodeController.md#nodecontroller) to mount a [BuilderNode](./js-apis-arkui-builderNode.md#buildernode) (that holds the to FrameNode) to a [\<NodeContainer>](../arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer) or mount a [RenderNode](./js-apis-arkui-renderNode.md#rendernode) to another FrameNode.
+**FrameNode** represents an entity node in the component tree. It can be used by a [NodeController](./js-apis-arkui-nodeController.md#nodecontroller) to mount a [BuilderNode](./js-apis-arkui-builderNode.md#buildernode) (that holds the to FrameNode) to a [\<NodeContainer>](arkui-ts/ts-basic-components-nodecontainer.md#nodecontainer) or mount a [RenderNode](./js-apis-arkui-renderNode.md#rendernode) to another FrameNode.
 
 > **NOTE**
 >
@@ -58,7 +58,7 @@ class MyNodeController extends NodeController {
     const renderNode = this.rootNode.getRenderNode();
     if (renderNode !== null) {
       renderNode.size = { width: 100, height: 100 };
-      renderNode.backgroundColor = 0XFF0000;
+      renderNode.backgroundColor = 0XFFFF0000;
     }
 
     return this.rootNode;

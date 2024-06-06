@@ -3,7 +3,7 @@
 
 ## Overview
 
-Linear layout is the most frequently used layout in development, built with the [\<Row>](../reference/arkui-ts/ts-container-row.md) and [\<Column>](../reference/arkui-ts/ts-container-column.md) linear containers. The linear layout is the basis of other layouts. Its child elements are arranged in sequence linearly in the horizontal direction, as in a **\<Row>** container, or vertical direction, as in a **\<Column>** container.  
+Linear layout is the most frequently used layout in development, built with the [\<Row>](../reference/apis-arkui/arkui-ts/ts-container-row.md) and [\<Column>](../reference/apis-arkui/arkui-ts/ts-container-column.md) linear containers. The linear layout is the basis of other layouts. Its child elements are arranged in sequence linearly in the horizontal direction, as in a **\<Row>** container, or vertical direction, as in a **\<Column>** container.  
 
 
   **Figure 1** Child element arrangement in a \<Column> container 
@@ -74,7 +74,7 @@ Row({ space: 35 }) {
 
 ## Alignment of Child Elements Along Cross Axis
 
-In the layout container, use the **alignItems** attribute to set the alignment mode of child elements along the cross axis. The alignment performance is consistent across screens of various sizes. The value is of the [VerticalAlign Type](../reference/arkui-ts/ts-appendix-enums.md#verticalalign) type when the cross axis is in the vertical direction and the [HorizontalAlign](../reference/arkui-ts/ts-appendix-enums.md#horizontalalign) type when the cross axis is in the horizontal direction.
+In the layout container, use the **alignItems** attribute to set the alignment mode of child elements along the cross axis. The alignment performance is consistent across screens of various sizes. The value is of the [VerticalAlign Type](../reference/apis-arkui/arkui-ts/ts-appendix-enums.md#verticalalign) type when the cross axis is in the vertical direction and the [HorizontalAlign](../reference/apis-arkui/arkui-ts/ts-appendix-enums.md#horizontalalign) type when the cross axis is in the horizontal direction.
 
 The layout container also provides the **alignSelf** attribute to control the alignment mode of a single child element along the cross axis. This attribute has a higher priority than the **alignItems** attribute. This means that, if **alignSelf** is set, it will overwrite the **alignItems** setting on the corresponding child element.
 
@@ -420,7 +420,7 @@ In the layout container, you can use the **justifyContent** attribute to set the
 
 ## Adaptive Stretching
 
-In linear layout, adaptive stretching is achieved by using the [\<Blank>](../reference/arkui-ts/ts-basic-components-blank.md) component, which automatically fills the empty spaces in the container – **\<Row>** or **\<Column>** – along the main axis. Just add the width and height as a percentage, and then adaptive scaling will take effect once the screen width and height change.
+In linear layout, adaptive stretching is achieved by using the [\<Blank>](../reference/apis-arkui/arkui-ts/ts-basic-components-blank.md) component, which automatically fills the empty spaces in the container – **\<Row>** or **\<Column>** – along the main axis. Just add the width and height as a percentage, and then adaptive scaling will take effect once the screen width and height change.
 
 
 ```ts

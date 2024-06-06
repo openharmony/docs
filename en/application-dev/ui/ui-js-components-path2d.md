@@ -1,7 +1,7 @@
 # Path2D
 
 
-**\<Path2D>** allows you to describe a path through an existing path. This path can be drawn through the **stroke** API of **Canvas**. For details, see [Path2D](../reference/arkui-js/js-components-canvas-path2d.md).
+**\<Path2D>** allows you to describe a path through an existing path. This path can be drawn through the **stroke** API of **Canvas**. For details, see [Path2D](../reference/apis-arkui/arkui-js/js-components-canvas-path2d.md).
 
 
 ## Drawing Line Segments

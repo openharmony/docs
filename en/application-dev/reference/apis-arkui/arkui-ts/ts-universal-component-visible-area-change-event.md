@@ -29,7 +29,7 @@ Called when the visible area of the component changes.
 
 > **NOTE**
 >
-> This API applies only to the scenario where the component layout area exceeds or is not within the current screen display area. It does not apply to the scenario where the area becomes invisible due to component stacking or the visible area exceeds the allowed range as a result of calling transformation APIs such as **offset** or **translate**.
+> This API applies only to the scenario where the component's layout area exceeds or is not within the current screen display area. It does not apply to the scenario where the visible area changes due to component stacking (by using [\<Stack>](ts-container-stack.md) or [z-order control](ts-universal-attributes-z-order.md)) or as a result of calling transformation APIs such as **offset** or **translate**. Any area of a component that extends beyond its parent component regarded as an invisible area.
 
 
 ## Example

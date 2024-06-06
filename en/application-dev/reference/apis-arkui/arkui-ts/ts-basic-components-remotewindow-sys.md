@@ -56,7 +56,7 @@ The [universal attributes](ts-universal-attributes-size.md) are supported.
 The [universal events](ts-universal-events-click.md) are supported.
 
 ## Example
-The **\<RemoteWindow>** component needs to receive the **WindowAnimationTarget** object passed from the **WindowAnimationController** object set through [windowAnimationManager](../apis/js-apis-windowAnimationManager.md). You can create a **RemoteWindowExample.ets** file and encapsulate the **RemoteWindowExample** component and the passed **WindowAnimationTarget** object.
+The **\<RemoteWindow>** component needs to receive the **WindowAnimationTarget** object passed from the **WindowAnimationController** object set through [windowAnimationManager](../js-apis-windowAnimationManager-sys.md). You can create a **RemoteWindowExample.ets** file and encapsulate the **RemoteWindowExample** component and the passed **WindowAnimationTarget** object.
 The **\<RemoteWindow>** component can be used only in the system application Launcher. Therefore, you can place the **RemoteWindowExample** component in the **build** function of the **EntryView.ets** page of Launcher, compile Launcher, and push the Launcher installation package to the device system.
 
 ```ts

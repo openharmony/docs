@@ -434,8 +434,8 @@ This API can be used in ArkTS widgets since API version 9.
 
 | Name                   | Description                 |
 | --------------------- | ------------------- |
-| None                  | Extra-long text is clipped.         |
-| Clip                  | Extra-long text is clipped.       |
+| None                  | Overflowing content is clipped at the limit of the maximum line width.         |
+| Clip                  | Overflowing content is clipped at the limit of the maximum line width.       |
 | Ellipsis              | An ellipsis (...) is used to represent text overflow.|
 | MARQUEE<sup>10+</sup> | Text continuously scrolls when text overflow occurs.    |
 

@@ -30,10 +30,10 @@ Creates a time picker, which is in 24-hour format by default.
 
 | Name                | Type                                         | Mandatory| Description                                                        |
 | -------------------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
-| selected             | Date                                          | No  | Time of the selected item.<br>Default value: current system time<br>Since API version 10, this parameter supports [$$](../../quick-start/arkts-two-way-sync.md) for two-way binding of variables.|
-| format<sup>11+</sup> | [TimePickerFormat](#timepickerformat) | No  | Time format.                            |
+| selected             | Date                                          | No  | Time of the selected item.<br>Default value: current system time<br>Since API version 10, this parameter supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md).|
+| format<sup>11+</sup> | [TimePickerFormat](#timepickerformat11) | No  | Time format.                            |
 
-## TimePickerFormat
+## TimePickerFormat<sup>11+</sup>
 
 | Name              | Description                    |
 | ------------------ | ------------------------ |
@@ -93,7 +93,7 @@ struct TimePickerExample {
       })
         .useMilitaryTime(this.isMilitaryTime)
         .onChange((value: TimePickerResult) => {
-          if(value.hour) {
+          if(value.hour >= 0) {
             this.selectedTime.setHours(value.hour, value.minute)
             console.info('select current date is: ' + JSON.stringify(value))
           }

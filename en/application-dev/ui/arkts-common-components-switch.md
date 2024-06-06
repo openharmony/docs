@@ -1,7 +1,7 @@
 # Toggle
 
 
-The **\<Toggle>** component provides a clickable element in the check box, button, or switch type, typically used to switch between two states. For details, see [Toggle](../reference/arkui-ts/ts-basic-components-toggle.md).
+The **\<Toggle>** component provides a clickable element in the check box, button, or switch type, typically used to switch between two states. For details, see [Toggle](../reference/apis-arkui/arkui-ts/ts-basic-components-toggle.md).
 
 
 ## Creating a Toggle
@@ -88,7 +88,7 @@ The API can be called in either of the following ways:
 
 ## Adding Events
 
-The **\<Toggle>** component supports the [universal events](../reference/arkui-ts/ts-universal-events-click.md). In addition, it can be bound to the **onChange** event so that it responds with custom behavior after being turned on or off.
+The **\<Toggle>** component supports the [universal events](../reference/apis-arkui/arkui-ts/ts-universal-events-click.md). In addition, it can be bound to the **onChange** event so that it responds with custom behavior after being turned on or off.
 
 
 ```ts

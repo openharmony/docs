@@ -78,7 +78,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 | Name                                                        | Description                                                    |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| onSelect(callback: (index: number, value?: string) => void) | Invoked when an option in the drop-down list box is selected.<br>**index**: index of the selected option.<br>**value**: value of the selected option.|
+| onSelect(callback: (index: number, value: string) => void) | Invoked when an option in the drop-down list box is selected.<br>**index**: index of the selected option.<br>**value**: value of the selected option.|
 
 ##  Example
 
@@ -107,7 +107,7 @@ struct SelectExample {
         .arrowPosition(this.arrowPosition)
         .menuAlign(MenuAlignType.START, {dx:0, dy:0})
         .optionWidth(200)
-        .optionHeight(100)
+        .optionHeight(300)
         .onSelect((index:number, text?: string | undefined)=>{
           console.info('Select:' + index)
           this.index = index;
@@ -120,4 +120,4 @@ struct SelectExample {
 }
 ```
 
-![](figures/selectExample.jpg)
+![](figures/selectExample.png)

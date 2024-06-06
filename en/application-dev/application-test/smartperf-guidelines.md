@@ -585,8 +585,8 @@ Click **Report** to access the report list. Touch a report to view its details.
     | soc_thermal       | System chip temperature.         |Unit: °C|
     | system_h          | System temperature.            |Unit: °C|
     | Battery           | Battery temperature.            |Unit: °C|
-    | memAvailable      | Available memory of the system.        |Unit: byte|
-    | memFree           | Free memory of the system.        |Unit: byte|
-    | memTotal          | Total memory of the system.          |Unit: byte|
-    | pss               | Proportional set size (PSS) of the process.            |Unit: byte|
+    | memAvailable      | Available memory of the system.        |Unit: KB |
+    | memFree           | Free memory of the system.        |Unit: KB |
+    | memTotal          | Total memory of the system.          |Unit: KB |
+    | pss               | Proportional set size (PSS) of the process.            |Unit: KB |
     | timeStamp         | Timestamp.          |Collection time.|
