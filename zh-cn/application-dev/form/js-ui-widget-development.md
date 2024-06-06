@@ -108,54 +108,53 @@ Stage卡片开发，即基于[Stage模型](../application-models/stage-model-dev
 
 2. 在EntryFormAbility.ets中，实现FormExtension生命周期接口。
 
-   
-```ts
-export default class EntryFormAbility extends FormExtensionAbility {
-  onAddForm(want: Want): formBindingData.FormBindingData {
-    hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onAddForm');
-    // 使用方创建卡片时触发，提供方需要返回卡片数据绑定类
-    let obj: Record<string, string> = {
-      'title': 'titleOnCreate',
-      'detail': 'detailOnCreate'
-    };
-    let formData: formBindingData.FormBindingData = formBindingData.createFormBindingData(obj);
-    return formData;
-  }
-  onCastToNormalForm(formId: string): void {
-    // 使用方将临时卡片转换为常态卡片触发，提供方需要做相应的处理
-    hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onCastToNormalForm');
-  }
-  onUpdateForm(formId: string): void {
-    // 若卡片支持定时更新/定点更新/卡片使用方主动请求更新功能，则提供方需要重写该方法以支持数据更新
-    hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onUpdateForm');
-    let obj: Record<string, string> = {
-      'title': 'titleOnUpdate',
-      'detail': 'detailOnUpdate'
-    };
-    let formData: formBindingData.FormBindingData = formBindingData.createFormBindingData(obj);
-    formProvider.updateForm(formId, formData).catch((error: BusinessError) => {
-      hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] updateForm, error:' + JSON.stringify(error));
-    });
-  }
-  onChangeFormVisibility(newStatus: Record<string, number>): void {
-    // 使用方发起可见或者不可见通知触发，提供方需要做相应的处理，仅系统应用生效
-    hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onChangeFormVisibility');
-    //...
-  }
-  onFormEvent(formId: string, message: string): void {
-    // 若卡片支持触发事件，则需要重写该方法并实现对事件的触发
-    hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onFormEvent');
-  }
-  onRemoveForm(formId: string): void {
-    // 删除卡片实例数据
-    hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onRemoveForm');
-    //...
-  }
-  onAcquireFormState(want: Want): formInfo.FormState {
-    return formInfo.FormState.READY;
-  }
-}
-```
+    ```ts
+    export default class EntryFormAbility extends FormExtensionAbility {
+      onAddForm(want: Want): formBindingData.FormBindingData {
+        hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onAddForm');
+        // 使用方创建卡片时触发，提供方需要返回卡片数据绑定类
+        let obj: Record<string, string> = {
+          'title': 'titleOnCreate',
+          'detail': 'detailOnCreate'
+        };
+        let formData: formBindingData.FormBindingData = formBindingData.createFormBindingData(obj);
+        return formData;
+      }
+      onCastToNormalForm(formId: string): void {
+        // 使用方将临时卡片转换为常态卡片触发，提供方需要做相应的处理
+        hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onCastToNormalForm');
+      }
+      onUpdateForm(formId: string): void {
+        // 若卡片支持定时更新/定点更新/卡片使用方主动请求更新功能，则提供方需要重写该方法以支持数据更新
+        hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onUpdateForm');
+        let obj: Record<string, string> = {
+          'title': 'titleOnUpdate',
+          'detail': 'detailOnUpdate'
+        };
+        let formData: formBindingData.FormBindingData = formBindingData.createFormBindingData(obj);
+        formProvider.updateForm(formId, formData).catch((error: BusinessError) => {
+          hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] updateForm, error:' + JSON.stringify(error));
+        });
+      }
+      onChangeFormVisibility(newStatus: Record<string, number>): void {
+        // 使用方发起可见或者不可见通知触发，提供方需要做相应的处理，仅系统应用生效
+        hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onChangeFormVisibility');
+        //...
+      }
+      onFormEvent(formId: string, message: string): void {
+        // 若卡片支持触发事件，则需要重写该方法并实现对事件的触发
+        hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onFormEvent');
+      }
+      onRemoveForm(formId: string): void {
+        // 删除卡片实例数据
+        hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onRemoveForm');
+        //...
+      }
+      onAcquireFormState(want: Want): formInfo.FormState {
+        return formInfo.FormState.READY;
+      }
+    }
+    ```
 
 > **说明：**
 > FormExtensionAbility不能常驻后台，即在卡片生命周期回调函数中无法处理长时间的任务。
