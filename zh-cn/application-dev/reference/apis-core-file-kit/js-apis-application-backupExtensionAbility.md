@@ -35,7 +35,7 @@ import BackupExtension from '@ohos.application.BackupExtensionAbility';
 
 | 名称                  | 类型                                                              | 只读 | 可写 | 说明                                                |
 | --------------------- | ----------------------------------------------------------------- | ---- | ---- | --------------------------------------------------- |
-| context<sup>11+</sup> | [ExtensionContext](../apis-ability-kit/js-apis-inner-application-extensionContext.md) | 是   | 否   | BackupExtensionAbility的上下文环境，继承自Context。 |
+| context<sup>11+</sup> | [BackupExtensionContext](js-apis-file-backupextensioncontext.md) | 是   | 否   | BackupExtensionAbility的上下文环境，继承自[ExtensionContext](../apis-ability-kit/js-apis-inner-application-extensionContext.md)。 |
 
 ### onBackup
 
