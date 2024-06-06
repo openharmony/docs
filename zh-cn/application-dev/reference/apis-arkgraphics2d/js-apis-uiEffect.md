@@ -129,7 +129,7 @@ backgroundColorBlender(blender: BrightnessBlender): VisualEffect
 **参数：**
 | 参数名  | 类型                                      | 必填 | 说明                       |
 | ------- | ---------------------------------------- | ---- | ------------------------- |
-| blender | [BrightnessBlender](# BrightnessBlender) | 是   | 用于混合背景颜色的blender。 |
+| blender | [BrightnessBlender](#BrightnessBlender) | 是   | 用于混合背景颜色的blender。 |
 
 **返回值：**
 
