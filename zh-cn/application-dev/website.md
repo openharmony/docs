@@ -1739,6 +1739,7 @@
     - ArkTS API 
       - [@arkts.collections (ArkTS容器集)](reference/apis-arkts/js-apis-arkts-collections.md)
       - [@arkts.lang (ArkTS语言基础能力)](reference/apis-arkts/js-apis-arkts-lang.md)
+      - [@arkts.math.Decimal (高精度数学库Decimal)](reference/apis-arkts/js-apis-arkts-decimal.md)
       - [@arkts.utils (ArkTS工具库)](reference/apis-arkts/js-apis-arkts-utils.md)
       - [@ohos.buffer (Buffer)](reference/apis-arkts/js-apis-buffer.md)
       - [@ohos.convertxml (xml转换JavaScript)](reference/apis-arkts/js-apis-convertxml.md)
