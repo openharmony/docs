@@ -1,6 +1,6 @@
 # Certificate and CRL Collection Development
 
-This topic walks you through on how to filter certificates or CRLs based on a [CertCRLCollection](../../reference/apis/js-apis-cert.md#certcrlcollection11) object.
+This topic walks you through on how to filter certificates or CRLs based on a **CertCRLCollection** object.
 
 ## How to Develop
 
