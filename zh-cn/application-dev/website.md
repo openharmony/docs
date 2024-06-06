@@ -88,12 +88,12 @@
           - [\@Computed装饰器：计算属性](quick-start/arkts-new-Computed.md)
           - [!!语法：双向绑定](quick-start/arkts-new-binding.md)
     - 渲染控制
-        - [渲染控制概述](quick-start/arkts-rendering-control-overview.md)
-        - [if/else：条件渲染](quick-start/arkts-rendering-control-ifelse.md)
-        - [ForEach：循环渲染](quick-start/arkts-rendering-control-foreach.md)
-        - [LazyForEach：数据懒加载](quick-start/arkts-rendering-control-lazyforeach.md)
-        - [Repeat：循环渲染(推荐)](quick-start/arkts-rendering-control-repeat.md)
-        - [ContentSlot：混合开发](quick-start/arkts-rendering-control-contentslot.md)
+      - [渲染控制概述](quick-start/arkts-rendering-control-overview.md)
+      - [if/else：条件渲染](quick-start/arkts-rendering-control-ifelse.md)
+      - [ForEach：循环渲染](quick-start/arkts-rendering-control-foreach.md)
+      - [LazyForEach：数据懒加载](quick-start/arkts-rendering-control-lazyforeach.md)
+      - [Repeat：循环渲染(推荐)](quick-start/arkts-rendering-control-repeat.md)
+      - [ContentSlot：混合开发](quick-start/arkts-rendering-control-contentslot.md)
 - 开发
   - Ability Kit（程序框架服务）
     - [Ability Kit简介](application-models/abilitykit-overview.md)
@@ -2892,6 +2892,7 @@
         - [DRM_PsshInfo](reference/apis-drm-kit/_d_r_m___pssh_info.md)
         - [DRM_Statistics](reference/apis-drm-kit/_d_r_m___statistics.md)
         - [MediaKeySession_Callback](reference/apis-drm-kit/_media_key_session___callback.md)
+        - [OH_MediaKeySession_Callback](reference/apis-drm-kit/_o_h___media_key_session___callback.md)
     - 错误码
       - [DRM错误码](reference/apis-drm-kit/errorcode-drm.md)
   - Function Flow Runtime Kit API参考
