@@ -80,7 +80,7 @@
        relationalStore.getRdbStore(this.context, {
          name: DB_NAME,
          securityLevel: relationalStore.SecurityLevel.S1
-       }, (err, data) => {
+       }, (err:BusinessError, data:relationalStore.RdbStore) => {
          rdbStore = data;
          rdbStore.executeSql(DDL_TBL_CREATE, [], (err) => {
            console.info(`DataShareExtAbility onCreate, executeSql done err:${err}`);
@@ -97,7 +97,7 @@
          console.info('invalid predicates');
        }
        try {
-         rdbStore.query(TBL_NAME, predicates, columns, (err, resultSet) => {
+         rdbStore.query(TBL_NAME, predicates, columns, (err:BusinessError, resultSet:relationalStore.ResultSet) => {
            if (resultSet !== undefined) {
              console.info(`resultSet.rowCount:${resultSet.rowCount}`);
            }
@@ -271,19 +271,19 @@
    
    if (dsHelper != undefined) {
      // 插入一条数据
-     (dsHelper as dataShare.DataShareHelper).insert(dseUri, valuesBucket, (err, data) => {
+     (dsHelper as dataShare.DataShareHelper).insert(dseUri, valuesBucket, (err:BusinessError, data:number) => {
        console.info(`dsHelper insert result:${data}`);
      });
      // 更新数据
-     (dsHelper as dataShare.DataShareHelper).update(dseUri, predicates, updateBucket, (err, data) => {
+     (dsHelper as dataShare.DataShareHelper).update(dseUri, predicates, updateBucket, (err:BusinessError, data:number) => {
        console.info(`dsHelper update result:${data}`);
      });
      // 查询数据
-     (dsHelper as dataShare.DataShareHelper).query(dseUri, predicates, valArray, (err, data) => {
+     (dsHelper as dataShare.DataShareHelper).query(dseUri, predicates, valArray, (err:BusinessError, data:number) => {
        console.info(`dsHelper query result:${data}`);
      });
      // 删除指定的数据
-     (dsHelper as dataShare.DataShareHelper).delete(dseUri, predicates, (err, data) => {
+     (dsHelper as dataShare.DataShareHelper).delete(dseUri, predicates, (err:BusinessError, data:number) => {
        console.info(`dsHelper delete result:${data}`);
      });
      // 批量更新数据
