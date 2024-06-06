@@ -4,6 +4,15 @@
 >
 > 本模块首批接口从API version 12开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
+## 导入模块
+```ts
+import { ToneMappingType, ToneMappingSettings, PostProcessSettings,
+  Vec2, Vec3, Vec4, Color, Rect, Quaternion, Aabb, Position3, Rotation3, Scale3,
+  SceneResourceType, SceneResource, Shader, MaterialType, Material, ShaderMaterial,
+  SubMesh, Mesh, Animation, EnvironmentBackgroundType, Environment, Image,
+  LayerMask, NodeType, Container, Node, Geometry, LightType, Light, SpotLight, DirectionalLight, Camera,
+  SceneResourceParameters, SceneNodeParameters, SceneResourceFactory, Scene } from '@ohos.graphics.scene';
+```
 
 Scene将自定义的二级模块API组织在一起，方便开发者进行导出使用。
 - [Scene](js-apis-inner-scene.md)：ArkGraphics 3D基础模块，提供SceneResourceParamters、SceneNodeParamters等通用数据类型。同时提供glTF模型加载，场景元素、资源创建等基础方法。
