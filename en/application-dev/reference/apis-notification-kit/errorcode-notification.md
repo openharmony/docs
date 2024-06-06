@@ -26,7 +26,7 @@ Make sure the system resources are sufficient.
 
 **Error Message**
 
-marshalling or unmarshalling error.
+Marshalling or unmarshalling error.
 
 **Description**
 
@@ -112,7 +112,7 @@ The notification attribute **isUnremovable** is set to true.
 
 **Solution**
 
-Set **isUnremovable** as needed. For details, see [NotificationRequest](./js-apis-notificationManager.md#notificationrequest).
+See [NotificationRequest](./js-apis-notificationManager.md#notificationrequest) to check the notification attribute **isUnremovable**.
 
 ## 1600007 Notification Not Found
 
@@ -186,7 +186,7 @@ The distributed database could not be operated or the distributed API could not 
 
 Verify the distributed connection.
 
-## 1600011 Failed to Read the Template Configuration
+## 1600011 Failed to Read Template Configuration
 
 **Error Message**
 
@@ -222,6 +222,97 @@ A memory allocation error occurs.
 
 Ensure sufficient system memory.
 
+## 1600013 Notification Pop-up Window Displayed
+
+**Error Message**
+
+Enable Notification Dialog has been popping already.
+
+**Description**
+
+This error code is reported when the notification pop-up window is displayed.
+
+**Cause**
+
+The notification pop-up window is displayed.
+
+**Solution**
+
+Check whether the notification pop-up window is displayed.
+
+
+## 1600014 No Related Permission
+
+**Error Message**
+
+No relevant right.
+
+**Description**
+
+This error code is reported when you do not have the related permission.
+
+**Cause**
+
+You do not have the related permission.
+
+**Solution**
+
+Check whether you have the related permission.
+
+## 1600015 Duplicate Configurations not Allowed for the Current Notification Status
+
+**Error Message**
+
+The current notification status does not support duplicate configurations.
+
+**Description**
+
+This error code is reported when the current notification status does not support duplicate configurations.
+
+**Cause**
+
+The current notification status does not support duplicate configurations.
+
+**Solution**
+
+Check whether the notification status is duplicately configured.
+
+## 1600016 Updated Notification Version Outdated
+
+**Error Message**
+
+The notification version for this update is too low.
+
+**Description**
+
+This error code is reported when the notification version for this update is outdated.
+
+**Cause**
+
+The notification version for this update is outdated.
+
+**Solution**
+
+Check the notification version.
+
+## 2300007 Network Access Failure
+
+**Error Message**
+
+Network is unreachable.
+
+**Description**
+
+This error code is reported when the network cannot be accessed.
+
+**Cause**
+
+The network cannot be accessed.
+
+**Solution**
+
+Check the network status.
+
 ## 17700001 Bundle Name Not Found
 
 **Error Message**
@@ -239,4 +330,4 @@ This error code is reported when the bundle name is incorrect or the application
 
 **Solution**
 
-Verify the bundle name and make sure the application is installed.
+1. Verify the bundle name and make sure the application is installed.
