@@ -258,7 +258,9 @@ import Want from '@ohos.app.ability.Want';
 import common from '@ohos.app.ability.common';
 import fileAccess from '@ohos.file.fileAccess';
 
-async example() {
+// context 是EntryAbility 传过来的context
+let context = getContext(this) as common.UIAbilityContext;
+async function example() {
     let fileAccessHelper: fileAccess.FileAccessHelper;
     // wantInfos 从getFileAccessAbilityInfo()获取
     let wantInfos: Array<Want> = [
@@ -268,8 +270,6 @@ async example() {
       },
     ]
     try {
-      // context 是EntryAbility 传过来的context
-      let context = getContext(this) as common.UIAbilityContext;
       fileAccessHelper = fileAccess.createFileAccessHelper(context, wantInfos);
       if (!fileAccessHelper) {
         console.error("createFileAccessHelper interface returns an undefined object");
