@@ -612,7 +612,7 @@ class EntryAbility extends UIAbility {
 
 ## ValuesBucket
 
-type ValuesBucket = Record<string, ValueType>;
+type ValuesBucket = Record<string, ValueType>
 
 用于存储键值对的类型。不支持Sendable跨线程传递。
 
