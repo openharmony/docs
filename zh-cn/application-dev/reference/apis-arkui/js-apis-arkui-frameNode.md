@@ -992,11 +992,17 @@ invalidate(): void
 
 ### addComponentContent<sup>12+</sup>
 
-addComponentContent<T>(content: ComponentContent<T>): void
+addComponentContent\<T>(content: ComponentContent\<T>): void
 
 支持添加ComponentContent类型的组件内容。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                                                   | 必填 | 说明             |
+| ------- | ------------------------------------------------------ | ---- | ---------------- |
+| content | [ComponentContent](./js-apis-arkui-ComponentContent.md#componentcontent)\<T> | 是   | FrameNode节点中显示的组件内容。 |
 
 ```ts
 import { typeNode, NodeController, FrameNode, ComponentContent } from '@ohos.arkui.node';
@@ -1399,7 +1405,7 @@ GridRow类型的FrameNode节点类型。
 
 | 类型                            | 说明                   |
 | ----------------------------- | -------------------- |
-| TypedFrameNode&lt;GridRowInterface, GridRowAttribute&gt; | 提供GridRow类型FrameNode节点。<br/>**说明：**<br/> GridRowInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为Stack组件的构造函数类型。 <br/> GridRowAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回GridRow组件的属性设置对象。 |
+| TypedFrameNode&lt;GridRowInterface, GridRowAttribute&gt; | 提供GridRow类型FrameNode节点。<br/>**说明：**<br/> GridRowInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为GridRow组件的构造函数类型。 <br/> GridRowAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回GridRow组件的属性设置对象。 |
 
 ### createNode('GridRow')<sup>12+</sup>
 createNode(context: UIContext, nodeType: 'GridRow'): GridRow
@@ -1433,7 +1439,7 @@ GridCol类型的FrameNode节点类型。
 
 | 类型                            | 说明                   |
 | ----------------------------- | -------------------- |
-| TypedFrameNode&lt;GridColInterface, GridColAttribute&gt; | 提供GridCol类型FrameNode节点。<br/>**说明：**<br/> GridColInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为Stack组件的构造函数类型。 <br/> GridColAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回GridCol组件的属性设置对象。 |
+| TypedFrameNode&lt;GridColInterface, GridColAttribute&gt; | 提供GridCol类型FrameNode节点。<br/>**说明：**<br/> GridColInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为GridCol组件的构造函数类型。 <br/> GridColAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回GridCol组件的属性设置对象。 |
 
 ### createNode('GridCol')<sup>12+</sup>
 createNode(context: UIContext, nodeType: 'GridCol'): GridCol
@@ -1467,7 +1473,7 @@ Flex类型的FrameNode节点类型。
 
 | 类型                            | 说明                   |
 | ----------------------------- | -------------------- |
-| TypedFrameNode&lt;FlexInterface, FlexAttribute&gt; | 提供Flex类型FrameNode节点。<br/>**说明：**<br/> FlexInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为Stack组件的构造函数类型。 <br/> FlexAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回Flex组件的属性设置对象。 |
+| TypedFrameNode&lt;FlexInterface, FlexAttribute&gt; | 提供Flex类型FrameNode节点。<br/>**说明：**<br/> FlexInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为Flex组件的构造函数类型。 <br/> FlexAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回Flex组件的属性设置对象。 |
 
 ### createNode('Flex')<sup>12+</sup>
 createNode(context: UIContext, nodeType: 'Flex'): Flex
@@ -1501,7 +1507,7 @@ Swiper类型的FrameNode节点类型。
 
 | 类型                            | 说明                   |
 | ----------------------------- | -------------------- |
-| TypedFrameNode&lt;SwiperInterface, SwiperAttribute&gt; | 提供Swiper类型FrameNode节点。<br/>**说明：**<br/> SwiperInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为Stack组件的构造函数类型。 <br/> SwiperAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回Swiper组件的属性设置对象。 |
+| TypedFrameNode&lt;SwiperInterface, SwiperAttribute&gt; | 提供Swiper类型FrameNode节点。<br/>**说明：**<br/> SwiperInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为Swiper组件的构造函数类型。 <br/> SwiperAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回Swiper组件的属性设置对象。 |
 
 ### createNode('Swiper')<sup>12+</sup>
 createNode(context: UIContext, nodeType: 'Swiper'): Swiper
@@ -1535,7 +1541,7 @@ Progress类型的FrameNode节点类型。
 
 | 类型                            | 说明                   |
 | ----------------------------- | -------------------- |
-| TypedFrameNode&lt;ProgressInterface, ProgressAttribute&gt; | 提供Progress类型FrameNode节点。<br/>**说明：**<br/> ProgressInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为Stack组件的构造函数类型。 <br/> ProgressAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回Progress组件的属性设置对象。 |
+| TypedFrameNode&lt;ProgressInterface, ProgressAttribute&gt; | 提供Progress类型FrameNode节点。<br/>**说明：**<br/> ProgressInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为Progress组件的构造函数类型。 <br/> ProgressAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回Progress组件的属性设置对象。 |
 
 ### createNode('Progress')<sup>12+</sup>
 createNode(context: UIContext, nodeType: 'Progress'): Progress
@@ -1569,7 +1575,7 @@ Scroll类型的FrameNode节点类型。
 
 | 类型                            | 说明                   |
 | ----------------------------- | -------------------- |
-| TypedFrameNode&lt;ScrollInterface, ScrollAttribute&gt; | 提供Scroll类型FrameNode节点。<br/>**说明：**<br/> ScrollInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为Stack组件的构造函数类型。 <br/> ScrollAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回Scroll组件的属性设置对象。 |
+| TypedFrameNode&lt;ScrollInterface, ScrollAttribute&gt; | 提供Scroll类型FrameNode节点。<br/>**说明：**<br/> ScrollInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为Scroll组件的构造函数类型。 <br/> ScrollAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回Scroll组件的属性设置对象。 |
 
 ### createNode('Scroll')<sup>12+</sup>
 createNode(context: UIContext, nodeType: 'Scroll'): Scroll
@@ -1603,7 +1609,7 @@ RelativeContainer类型的FrameNode节点类型。
 
 | 类型                            | 说明                   |
 | ----------------------------- | -------------------- |
-| TypedFrameNode&lt;RelativeContainerInterface, RelativeContainerAttribute&gt; | 提供RelativeContainer类型FrameNode节点。<br/>**说明：**<br/> RelativeContainerInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为Stack组件的构造函数类型。 <br/> RelativeContainerAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回RelativeContainer组件的属性设置对象。 |
+| TypedFrameNode&lt;RelativeContainerInterface, RelativeContainerAttribute&gt; | 提供RelativeContainer类型FrameNode节点。<br/>**说明：**<br/> RelativeContainerInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为RelativeContainer组件的构造函数类型。 <br/> RelativeContainerAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回RelativeContainer组件的属性设置对象。 |
 
 ### createNode('RelativeContainer')<sup>12+</sup>
 createNode(context: UIContext, nodeType: 'RelativeContainer'): RelativeContaine
@@ -1637,7 +1643,7 @@ Divider类型的FrameNode节点类型。
 
 | 类型                            | 说明                   |
 | ----------------------------- | -------------------- |
-| TypedFrameNode&lt;DividerInterface, DividerAttribute&gt; | 提供Divider类型FrameNode节点。<br/>**说明：**<br/> DividerInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为Stack组件的构造函数类型。 <br/> DividerAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回Divider组件的属性设置对象。 |
+| TypedFrameNode&lt;DividerInterface, DividerAttribute&gt; | 提供Divider类型FrameNode节点。<br/>**说明：**<br/> DividerInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为RelativeContainer组件的构造函数类型。 <br/> DividerAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回Divider组件的属性设置对象。 |
 
 ### createNode('Divider')<sup>12+</sup>
 createNode(context: UIContext, nodeType: 'Divider'): Divider
@@ -1671,7 +1677,7 @@ LoadingProgress类型的FrameNode节点类型。
 
 | 类型                            | 说明                   |
 | ----------------------------- | -------------------- |
-| TypedFrameNode&lt;LoadingProgressInterface, LoadingProgressAttribute&gt; | 提供LoadingProgress类型FrameNode节点。<br/>**说明：**<br/> LoadingProgressInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为Stack组件的构造函数类型。 <br/> LoadingProgressAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回LoadingProgress组件的属性设置对象。 |
+| TypedFrameNode&lt;LoadingProgressInterface, LoadingProgressAttribute&gt; | 提供LoadingProgress类型FrameNode节点。<br/>**说明：**<br/> LoadingProgressInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为LoadingProgress组件的构造函数类型。 <br/> LoadingProgressAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回LoadingProgress组件的属性设置对象。 |
 
 ### createNode('LoadingProgress')<sup>12+</sup>
 createNode(context: UIContext, nodeType: 'LoadingProgress'): LoadingProgress
@@ -1705,7 +1711,7 @@ Search类型的FrameNode节点类型。
 
 | 类型                            | 说明                   |
 | ----------------------------- | -------------------- |
-| TypedFrameNode&lt;SearchInterface, SearchAttribute&gt; | 提供Search类型FrameNode节点。<br/>**说明：**<br/> SearchInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为Stack组件的构造函数类型。 <br/> SearchAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回Search组件的属性设置对象。 |
+| TypedFrameNode&lt;SearchInterface, SearchAttribute&gt; | 提供Search类型FrameNode节点。<br/>**说明：**<br/> SearchInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为Search组件的构造函数类型。 <br/> SearchAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回Search组件的属性设置对象。 |
 
 ### createNode('Search')<sup>12+</sup>
 createNode(context: UIContext, nodeType: 'Search'): Search
@@ -1739,7 +1745,7 @@ Blank类型的FrameNode节点类型。
 
 | 类型                            | 说明                   |
 | ----------------------------- | -------------------- |
-| TypedFrameNode&lt;BlankInterface, BlankAttribute&gt; | 提供Blank类型FrameNode节点。<br/>**说明：**<br/> BlankInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为Stack组件的构造函数类型。 <br/> BlankAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回Blank组件的属性设置对象。 |
+| TypedFrameNode&lt;BlankInterface, BlankAttribute&gt; | 提供Blank类型FrameNode节点。<br/>**说明：**<br/> BlankInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为Blank组件的构造函数类型。 <br/> BlankAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回Blank组件的属性设置对象。 |
 
 ### createNode('Blank')<sup>12+</sup>
 createNode(context: UIContext, nodeType: 'Blank'): Blank;
@@ -1773,7 +1779,7 @@ Image类型的FrameNode节点类型。
 
 | 类型                            | 说明                   |
 | ----------------------------- | -------------------- |
-| TypedFrameNode&lt;ImageInterface, ImageAttribute&gt; | 提供Image类型FrameNode节点。<br/>**说明：**<br/> ImageInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为Stack组件的构造函数类型。 <br/> ImageAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回Image组件的属性设置对象。 |
+| TypedFrameNode&lt;ImageInterface, ImageAttribute&gt; | 提供Image类型FrameNode节点。<br/>**说明：**<br/> ImageInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为Image组件的构造函数类型。 <br/> ImageAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回Image组件的属性设置对象。 |
 
 ### createNode('Image')<sup>12+</sup>
 createNode(context: UIContext, nodeType: 'Image'): Image
@@ -1799,6 +1805,74 @@ createNode(context: UIContext, nodeType: 'Image'): Image
 
 ```ts
 typeNode.createNode(uiContext, 'Image');
+```
+### List<sup>12+</sup>
+type List = TypedFrameNode&lt;ListInterface, ListAttribute&gt;
+
+List类型的FrameNode节点类型。
+
+| 类型                            | 说明                   |
+| ----------------------------- | -------------------- |
+| TypedFrameNode&lt;ListInterface, ListAttribute&gt; | 提供List类型FrameNode节点。<br/>**说明：**<br/> ListInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为List组件的构造函数类型。 <br/> ListAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回List组件的属性设置对象。 |
+
+### createNode('List')<sup>12+</sup>
+createNode(context: UIContext, nodeType: 'List'): List
+
+创建List类型的FrameNode节点。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明  |
+| ------------------ | ------------------ | ------------------- | ------------------- |
+| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时候所需要的UI上下文。 |
+| nodeType | 'List' | 是 | 创建List类型的节点。 |
+
+**返回值：**
+
+| 类型                  | 说明      |
+| ------------------ | ------------------ |
+| [List](#list12) | List类型的FrameNode节点。 |
+
+**示例：**
+
+```ts
+typeNode.createNode(uiContext, 'List');
+```
+### ListItem<sup>12+</sup>
+type ListItem = TypedFrameNode&lt;ListItemInterface, ListItemAttribute&gt;
+
+ListItem类型的FrameNode节点类型。
+
+| 类型                            | 说明                   |
+| ----------------------------- | -------------------- |
+| TypedFrameNode&lt;ListItemInterface, ListItemAttribute&gt; | 提供ListItem类型FrameNode节点。<br/>**说明：**<br/> ListItemInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为ListItem组件的构造函数类型。 <br/> ListItemAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回ListItem组件的属性设置对象。 |
+
+### createNode('ListItem')<sup>12+</sup>
+createNode(context: UIContext, nodeType: 'ListItem'): ListItem
+
+创建ListItem类型的FrameNode节点。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明  |
+| ------------------ | ------------------ | ------------------- | ------------------- |
+| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时候所需要的UI上下文。 |
+| nodeType | 'ListItem' | 是 | 创建ListItem类型的节点。 |
+
+**返回值：**
+
+| 类型                  | 说明      |
+| ------------------ | ------------------ |
+| [ListItem](#listitem12) | ListItem类型的FrameNode节点。 |
+
+**示例：**
+
+```ts
+typeNode.createNode(uiContext, 'ListItem');
 ```
 
 ## 自定义具体类型节点示例
