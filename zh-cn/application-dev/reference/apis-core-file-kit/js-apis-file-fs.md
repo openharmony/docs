@@ -959,6 +959,7 @@ disconnectDfs(networkId: string): Promise<void>
   })
   ```
 
+
 ## fs.mkdir
 
 mkdir(path: string): Promise&lt;void&gt;
@@ -1035,6 +1036,7 @@ mkdir(path: string, recursion: boolean): Promise\<void>
     console.error("mkdir failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
+
 
 ## fs.mkdir
 
