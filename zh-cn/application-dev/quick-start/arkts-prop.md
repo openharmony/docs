@@ -473,7 +473,7 @@ struct Library {
         .borderRadius(20)
         .colorBlend('#e6000000')
       Divider()
-      Text('Books on loaan to a reader')
+      Text('Books on loan to a reader')
         .width(312)
         .height(40)
         .backgroundColor('#0d000000')
