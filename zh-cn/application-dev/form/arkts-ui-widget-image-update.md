@@ -79,53 +79,53 @@
    
           let httpRequest = http.createHttp()
           httpRequest.request(netFile, (err, data) => {
-           if (!err && data.responseCode == http.ResponseCode.OK) {
-             let imgFile = fileIo.openSync(tmpFile, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
-             fileIo.write(imgFile.fd, data.result as ArrayBuffer).then((writeLen: number) => {
-               hilog.info(DOMAIN_NUMBER, TAG, "write data to file succeed and size is:" + writeLen);
-             }).catch((err: BusinessError) => {
-               hilog.error(DOMAIN_NUMBER, TAG, "write data to file failed with error message: " + err.message + ", error code: " + err.code);
-             }).finally(() => {
-               fileIo.closeSync(imgFile);
-             });
+            if (!err && data.responseCode == http.ResponseCode.OK) {
+              let imgFile = fileIo.openSync(tmpFile, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
+              fileIo.write(imgFile.fd, data.result as ArrayBuffer).then((writeLen: number) => {
+                hilog.info(DOMAIN_NUMBER, TAG, "write data to file succeed and size is:" + writeLen);
+              }).catch((err: BusinessError) => {
+                hilog.error(DOMAIN_NUMBER, TAG, "write data to file failed with error message: " + err.message + ", error code: " + err.code);
+              }).finally(() => {
+                fileIo.closeSync(imgFile);
+              });
    
-             hilog.info(DOMAIN_NUMBER, TAG, 'ArkTSCard download complete: %{public}s', tmpFile);
-             let fileInfo: Record<string, string | number> = {};
-             try {
-               let file = fileIo.openSync(tmpFile);
-               fileInfo[fileName] = file.fd;
-             } catch (e) {
-               hilog.error(DOMAIN_NUMBER, TAG, `openSync failed: ${JSON.stringify(e as BusinessError)}`);
-             }
+              hilog.info(DOMAIN_NUMBER, TAG, 'ArkTSCard download complete: %{public}s', tmpFile);
+              let fileInfo: Record<string, string | number> = {};
+              try {
+                let file = fileIo.openSync(tmpFile);
+                fileInfo[fileName] = file.fd;
+              } catch (e) {
+                hilog.error(DOMAIN_NUMBER, TAG, `openSync failed: ${JSON.stringify(e as BusinessError)}`);
+              }
    
-             class FormDataClass {
-               text: string = 'Image: Bear' + fileName;
-               imgName: string = fileName;
-               loaded: boolean = true;
-               formImages: object = fileInfo;
-             }
-   
-             let formData = new FormDataClass();
-             let formInfo = formBindingData.createFormBindingData(formData);
-             formProvider.updateForm(formId, formInfo).then(() => {
-               hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', 'FormAbility updateForm success.');
-             }).catch((error: BusinessError) => {
-               hilog.error(DOMAIN_NUMBER, TAG, `FormAbility updateForm failed: ${JSON.stringify(error)}`);
-             });
-           } else {
-             hilog.error(DOMAIN_NUMBER, TAG, `ArkTSCard download task failed. Cause: ${JSON.stringify(err)}`);
-             let param: Record<string, string> = {
-               'text': '刷新失败'
-             };
-             let formInfo: formBindingData.FormBindingData = formBindingData.createFormBindingData(param);
-             formProvider.updateForm(formId, formInfo);
-           }
-           httpRequest.destroy();
-         })
-       }
-       //...
-     }
-     ```
+              class FormDataClass {
+                text: string = 'Image: Bear' + fileName;
+                imgName: string = fileName;
+                loaded: boolean = true;
+                formImages: object = fileInfo;
+              }
+    
+              let formData = new FormDataClass();
+              let formInfo = formBindingData.createFormBindingData(formData);
+              formProvider.updateForm(formId, formInfo).then(() => {
+                hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', 'FormAbility updateForm success.');
+              }).catch((error: BusinessError) => {
+                hilog.error(DOMAIN_NUMBER, TAG, `FormAbility updateForm failed: ${JSON.stringify(error)}`);
+              });
+            } else {
+              hilog.error(DOMAIN_NUMBER, TAG, `ArkTSCard download task failed. Cause: ${JSON.stringify(err)}`);
+              let param: Record<string, string> = {
+                'text': '刷新失败'
+              };
+              let formInfo: formBindingData.FormBindingData = formBindingData.createFormBindingData(param);
+              formProvider.updateForm(formId, formInfo);
+            }
+            httpRequest.destroy();
+          })
+        }
+        //...
+      }
+      ```
 
 4. 在卡片页面通过backgroundImage属性展示EntryFormAbility传递过来的卡片内容。
 
