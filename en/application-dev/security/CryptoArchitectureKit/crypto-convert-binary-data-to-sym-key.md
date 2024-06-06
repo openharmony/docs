@@ -19,8 +19,8 @@ For details about the algorithm specifications, see [3DES](crypto-sym-key-genera
 - Example: Convert binary data into a 192-bit 3DES key (using callback-based APIs).
 
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
-  import { BusinessError } from '@ohos.base';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   function genKeyMaterialBlob(): cryptoFramework.DataBlob {
     let arr = [
@@ -57,7 +57,7 @@ For details about the algorithm specifications, see [3DES](crypto-sym-key-genera
 
 - Example using synchronous API [convertKeySync](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#convertkeysync12):
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
   function genKeyMaterialBlob(): cryptoFramework.DataBlob {
     let arr = [
@@ -94,8 +94,8 @@ For details about the algorithm specifications, see [HMAC](crypto-sym-key-genera
 - Example: Convert binary data into an HMAC key in await mode.
 
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
-  import buffer from '@ohos.buffer';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+  import { buffer } from '@kit.ArkTS';
 
   async function testConvertHmacKey() {
     // The symmetric key length is 64 bytes and 512 bits.
@@ -112,8 +112,8 @@ For details about the algorithm specifications, see [HMAC](crypto-sym-key-genera
 
 - Example using synchronous API [convertKeySync](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#convertkeysync12):
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
-  import buffer from '@ohos.buffer';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+  import { buffer } from '@kit.ArkTS';
 
   function testConvertKeySync() {
     // The symmetric key length is 64 bytes and 512 bits.
