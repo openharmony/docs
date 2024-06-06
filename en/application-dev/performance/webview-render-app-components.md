@@ -289,7 +289,7 @@ You need to add the getEmbedSize method on the HTML5 side to obtain the element 
 In the foregoing solution, an implementation method is very simple. However, this is limited to the situation where the underlying H5 web page is simple and does not scroll. If an HTML5 page can be swiped up or down or zoomed in or out, a problem occurs in this solution. As a result, it is difficult to locate the native component and scroll with the HTML5 page. In terms of performance, the web is rendered as a whole, and even the part covered by native components consumes performance. Therefore, we can solve this problem through same-layer rendering. The solution is as follows: 
 
 ### Implementation of Same-Layer Rendering 
-Simply speaking, rendering at the same layer is as follows: The bottom layer uses blank HTML5 pages, Embed tags as placeholders, and native **NodeContainer** are used. Finally, the surface ID on the web side is bound to the native component and rendered on the **NodeContainer**. For details, see the link in [What Is Same-Layer Rendering](#What Is Same-Layer Rendering). Here are some general steps.
+Simply speaking, rendering at the same layer is as follows: The bottom layer uses blank HTML5 pages, Embed tags as placeholders, and native **NodeContainer** are used. Finally, the surface ID on the web side is bound to the native component and rendered on the **NodeContainer**. For details, see the link in [What Is Same-Layer Rendering](#what-is-same-layer-rendering). Here are some general steps.
 
 1. Use the Stack component to cascade NodeContainer and Web components, and enable the enableNativeEmbedMode mode.
     ```typescript

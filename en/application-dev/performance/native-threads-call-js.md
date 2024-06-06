@@ -333,7 +333,7 @@ work_cb is located in the subthread and executes the actual service logic. after
     
         napi_close_handle_scope(context->env, scope);
         if (context != nullptr) {
-            napi_delete_reference(context->env, co[readme-CN.md](readme-CN.md)ntext->callbackRef);
+            napi_delete_reference(context->env, co[readme-EN.md](readme-EN.md)ntext->callbackRef);
             delete context;
             OH_LOG_INFO(LOG_APP, "UvWorkTest delete context");
             context = nullptr;

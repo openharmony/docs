@@ -204,7 +204,7 @@ Figure 6 Preview of the Moments scenario
 
 Procedure:
 
-1. Import the TaskPool module. For details about the TaskPool API, see [@ohos.taskpool](../reference/apis/js-apis-taskpool.md).
+1. Import the TaskPool module. For details about the TaskPool API, see [@ohos.taskpool](../reference/apis-arkts/js-apis-taskpool.md).
 
     ```typescript
     import taskpool from '@ohos.taskpool';
