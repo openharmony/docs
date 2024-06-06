@@ -7974,6 +7974,105 @@ struct Example{
 }
 ```
 
+### setUrlTrustList<sup>12+</sup>
+
+setUrlTrustList(urlTrustList: string): void
+
+设置当前web的url白名单，只有白名单内的url才能允许加载/跳转，否则将拦截并弹出告警页。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名  | 类型    | 必填 | 说明                  |
+| ------- | ------ | ---- | :-------------------- |
+| urlTrustList | string | 是   | url白名单列表，使用json格式配置，最大支持10MB。<br/>白名单设置接口为覆盖方式，多次调用接口时，以最后一次设置为准。<br/>当本参数为空字符串时，表示取消白名单，放行所有url的访问。<br/>json格式示例： &nbsp;<br/>{<br>&emsp;"UrlPermissionList":[{<br/>&emsp;&emsp;"scheme":"https",<br/>&emsp;&emsp;"host":"www.example1.com",<br/>&emsp;&emsp;"port":443,<br/>&emsp;&emsp;"path":"pathA/pathB"<br/>&emsp;},<br/>&emsp;{<br/>&emsp;&emsp;"scheme":"http",<br/>&emsp;&emsp;"host":"www.example2.com"<br/>&emsp;&emsp;"port":80,<br/>&emsp;&emsp;"path":"test1/test2/test3"<br/>&emsp;}]<br/>}      |
+
+**白名单json格式参数**
+| 字段   | 参数类型 | 必填 | 参数描述                  |
+| -------- | -------- | ---- | ------------------------- |
+| scheme | string   | 否 | 可选参数，不设置即不匹配该项，支持协议：http、https。 |
+| host | string | 是 | 必选参数，精准匹配，即url的host字段和规则字段完全一致才会放行，可允许同一host多条规则同时生效。 |
+| port | number | 否 | 可选字段，不设置即不匹配该项。 |
+| path | string | 否 | 可选字段，不设置即不匹配该项，匹配方式为前缀匹配，以"pathA/pathB/pathC"为例：pathA/pathB/pathC三级目录下全部允许访问，其中pathC必须是完整的目录名或者文件名，不允许部分匹配。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Invalid input parameter.Possible causes: 1. Mandatory parameters are left unspecified.2. Parameter string is too long.3. Parameter verification failed.                                     |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+
+**示例：**
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview';
+  import business_error from '@ohos.base';
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController();
+    urltrustList: string = "{\"UrlPermissionList\":[{\"scheme\":\"http\", \"host\":\"trust.example.com\", \"port\":80, \"path\":\"test\"}]}"
+
+    build() {
+      Column() {
+        Button('Setting the trustlist')
+          .onClick(() => {
+            try {
+              // 设置白名单，只允许访问trust网页
+              this.controller.setUrlTrustList(this.urltrustList);
+            } catch (error) {
+              let e: business_error.BusinessError = error as business_error.BusinessError;
+              console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            }
+          })
+        Button('Cancel the trustlist.')
+          .onClick(() => {
+            try {
+              // 白名单传入空字符串表示关闭白名单机制，所有url都可以允许访问
+              this.controller.setUrlTrustList("");
+            } catch (error) {
+              let e: business_error.BusinessError = error as business_error.BusinessError;
+              console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            }
+          })
+        Button('Access the trust web')
+          .onClick(() => {
+            try {
+              // 白名单生效，可以访问untrust网页
+              this.controller.loadUrl('http://trust.example.com/test');
+            } catch (error) {
+              let e: business_error.BusinessError = error as business_error.BusinessError;
+              console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            }
+          })
+        Button('Access the untrust web')
+          .onClick(() => {
+            try {
+              // 白名单生效，此时不可以访问untrust网页，并弹出错误页
+              this.controller.loadUrl('http://untrust.example.com/test');
+            } catch (error) {
+              let e: business_error.BusinessError = error as business_error.BusinessError;
+              console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            }
+          })
+        Web({ src: 'http://untrust.example.com/test', controller: this.controller }).onControllerAttached(() => {
+            try {
+              // onControllerAttached回调中设置白名单，可以保证在加载url之前生效，此时不可以访问untrust网页，并弹出错误页
+              this.controller.setUrlTrustList(this.urltrustList);
+            } catch (error) {
+              let e: business_error.BusinessError = error as business_error.BusinessError;
+              console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            }
+        })
+      }
+    }
+  }
+  ```
+
 ## WebCookieManager
 
 通过WebCookie可以控制Web组件中的cookie的各种行为，其中每个应用中的所有Web组件共享一个WebCookieManager实例。
