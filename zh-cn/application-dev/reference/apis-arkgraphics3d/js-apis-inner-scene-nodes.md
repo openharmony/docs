@@ -386,7 +386,6 @@ function getNode() : void {
 | fov | number | 否 | 是 | 视场，取值在0到π弧度之间。 |
 | nearPlane | number | 否 | 是 | 近平面，取值大于0。 |
 | farPlane | number | 否 | 是 | 远平面，取值大于nearPlane。 |
-| viewPort | [Rect](js-apis-inner-scene-types.md#rect) | 否 | 是 | 视口。 |
-| renderResolution | [Vec2](js-apis-inner-scene-types.md#vec2) | 否 | 是 | 渲染分辨率。 |
+| enabled | boolean | 否 | 是 | 是否使能相机，true表示使用相机，false表示不使用相机。 |
 | postProcess | [PostProcessSettings](js-apis-inner-scene-post-process-settings.md#postprocesssettings) \| null | 否 | 是 | 后处理设置。 |
 | clearColor | [Color](js-apis-inner-scene-types.md#color) \| null | 否 | 是 | 将渲染目标（render target）清空后的特定颜色。 |
