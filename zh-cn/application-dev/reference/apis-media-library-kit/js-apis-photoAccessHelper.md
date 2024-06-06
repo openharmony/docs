@@ -894,7 +894,7 @@ get(member: string): MemberType
 
 | 参数名      | 类型                        | 必填   | 说明    |
 | -------- | ------------------------- | ---- | ----- |
-| member | string | 是    | 成员参数名称，在get时，除了uri、photoType、photoSubtype和displayName四个属性之外，其他的属性都需要在fetchColumns中填入需要get的[PhotoKeys](#photokeys)，例如：get title属性fetchColumns: ['title']。 |
+| member | string | 是    | 成员参数名称，在get时，除了'uri'、'media_type'、'subtype'和'display_name'四个属性之外，其他的属性都需要在fetchColumns中填入需要get的[PhotoKeys](#photokeys)，例如：get title属性fetchColumns: ['title']。 |
 
 **返回值：**
 
@@ -4442,7 +4442,7 @@ title参数规格为：
 
 | 名称                   | 类型                | 可读 | 可写 | 说明                                              |
 | ---------------------- | ------------------- | ---- |---- | ------------------------------------------------ |
-| fetchColumns           | Array&lt;string&gt; | 是   | 是   | 检索条件，指定列名查询，如果该参数为空时默认查询uri、name、photoType、photoSubtype（具体字段名称以检索对象定义为准）且使用[get](#get)接口去获取当前对象的其他属性时将会报错。示例：<br />fetchColumns: ['uri', 'title']。 |
+| fetchColumns           | Array&lt;string&gt; | 是   | 是   | 检索条件，指定列名查询。对于照片，如果该参数为空，默认查询'uri'、'media_type'、'subtype'和'display_name',使用[get](#get)接口获取当前对象的其他属性时将会报错。示例：<br />fetchColumns: ['uri', 'title']。对于相册，如果该参数为空，默认查询'uri'和'album_name'。 |
 | predicates           | [dataSharePredicates.DataSharePredicates](../apis-arkdata/js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | 是   | 谓词查询，显示过滤条件。 |
 
 ## RequestOptions<sup>11+</sup>
