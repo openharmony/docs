@@ -183,9 +183,9 @@ async function Demo() {
 
 ## image.createPixelMapFromSurface<sup>11+</sup>
 
-从Surface id创建一个pixelmap对象
-
 createPixelMapFromSurface(surfaceId: string, region: Region): Promise\<PixelMap>
+
+从Surface id创建一个PixelMap对象。使用Promise异步回调，返回PixelMap。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
@@ -224,6 +224,48 @@ async function Demo(surfaceId: string) {
         console.error(`Failed to create pixelmap. code is ${error.code}, message is ${error.message}`);
     });
 } 
+```
+
+## image.createPixelMapFromSurfaceSync<sup>12+</sup>
+
+createPixelMapFromSurfaceSync(surfaceId: string, region: Region): PixelMap
+
+从Surface id创建一个pixelMap对象，同步返回PixelMap结果。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名                 | 类型                 | 必填 | 说明                                     |
+| ---------------------- | -------------       | ---- | ---------------------------------------- |
+| surfaceId              | string              | 是   | 从[XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)组件获取的surfaceId。|
+| region                 | [Region](#region7)  | 是   | 裁剪的尺寸                         |
+
+**返回值：**
+| 类型                             | 说明                  |
+| -------------------------------- | --------------------- |
+| [PixelMap](#pixelmap7) | 成功同步返回PixelMap对象，失败抛出异常。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed|
+| 62980105 | Failed to get the data|
+| 62980178 | Failed to create the PixelMap|
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+async function Demo(surfaceId: string) {
+    let region: image.Region = { x: 0, y: 0, size: { height: 100, width: 100 } };
+    let pixelMap : image.PixelMap = image.createPixelMapFromSurfaceSync(surfaceId, region);
+    return pixelMap;
+}
 ```
 
 ## image.createPixelMapSync<sup>12+</sup>
