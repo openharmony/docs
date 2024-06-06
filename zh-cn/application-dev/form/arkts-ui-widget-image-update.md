@@ -50,7 +50,7 @@
      //...
     }
     ```
-    3. 在EntryFormAbility中的onFormEvent生命周期回调中实现网络文件的刷新。
+3. 在EntryFormAbility中的onFormEvent生命周期回调中实现网络文件的刷新。
     
       ```ts
       import { BusinessError } from '@kit.BasicServicesKit';
@@ -59,12 +59,12 @@
       import { http } from '@kit.NetworkKit';
       import { hilog } from '@kit.PerformanceAnalysisKit';
    
-   const TAG: string = 'WgtImgUpdateEntryFormAbility';
-   const DOMAIN_NUMBER: number = 0xFF00;
+       const TAG: string = 'WgtImgUpdateEntryFormAbility';
+       const DOMAIN_NUMBER: number = 0xFF00;
    
-   export default class WgtImgUpdateEntryFormAbility extends FormExtensionAbility {
-     onFormEvent(formId: string, message: string): void {
-       let param: Record<string, string> = {
+       export default class WgtImgUpdateEntryFormAbility extends FormExtensionAbility {
+         onFormEvent(formId: string, message: string): void {
+           let param: Record<string, string> = {
          'text': '刷新中...'
        };
        let formInfo: formBindingData.FormBindingData = formBindingData.createFormBindingData(param);
