@@ -616,10 +616,10 @@ class EntryAbility extends UIAbility {
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
-| 键类型 | 值类型                   |
-| ------ | ----------------------- |
-| number | 主键的类型可以是number。 |
-| string | 主键的类型可以是string。 |
+| 类型              | 说明                           |
+| ---------------- | ---------------------------- |
+| string | 表示键的类型为string。 |
+| ValueType | 表示值的类型为[ValueType](#valuetype)。 |
 
 ## PRIKeyType<sup>10+</sup> 
 
