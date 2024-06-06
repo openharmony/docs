@@ -203,7 +203,7 @@ struct Index {
   @Entry
   @ComponentV2
   struct Index {
-    @Local infoArr: Info[] = [new Info("Ocean", 28, 120), new Info("Moutain", 26, 20)];
+    @Local infoArr: Info[] = [new Info("Ocean", 28, 120), new Info("Mountain", 26, 20)];
     @Local originInfo: Info = new Info("Origin", 0, 0);
     build() {
       Column() {
