@@ -8,7 +8,7 @@
 
 2. 在EntryFormAbility中的onAddForm生命周期回调中实现本地文件的刷新。
 
-      ```ts
+    ```ts
       import { Want } from '@kit.AbilityKit';
       import { BusinessError } from '@kit.BasicServicesKit';
       import { fileIo } from '@kit.CoreFileKit';
@@ -49,7 +49,7 @@
          }
          //...
        }
-       ```
+     ```
 
 3. 在EntryFormAbility中的onFormEvent生命周期回调中实现网络文件的刷新。
 
