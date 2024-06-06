@@ -10,12 +10,6 @@ MindSpore Lite 是一个轻量化、高性能的端侧AI引擎，提供了标准
 > 
 > - 本模块接口仅可在Stage模型下使用。
 
-## 缩略语清单
-
-| 缩略语 | 英文全名               | 中文解释       |
-| ------ | ---------------------- | -------------- |
-| NNRt   | Neural Network Runtime | 神经网络运行时 |
-
 ## 导入模块
 
 ```ts
@@ -501,7 +495,7 @@ Neural Network Runtime表示神经网络运行时，简称NNRt。作为中间桥
 
 | 名称                          | 类型                                | 必填 | 说明                     |
 | ----------------------------- | ----------------------------------- | ---- | ------------------------ |
-| deviceID<sup>12+</sup>        | bigint                              | 是   | NNRt设备ID。             |
+| deviceID<sup>12+</sup>        | bigint                              | 否  | NNRt设备ID。             |
 | performanceMode<sup>12+</sup> | [PerformanceMode](#performancemode12) | 否   | NNRt设备的工作性能模式。 |
 | priority<sup>12+</sup>        | [Priority](#priority12)               | 否   | NNRt推理任务优先级。    |
 | extensions<sup>12+</sup>      | [Extension](#extension12)             | 否   | NNRt设备的扩展配置。    |
@@ -566,6 +560,22 @@ deviceID() : bigint
 | ------ | ------------ |
 | bigint | NNRt设备ID。 |
 
+**示例：** 
+
+```ts
+let allDevices = mindSporeLite.getAllNNRTDeviceDescriptions();
+if (allDevices == null) {
+  console.info('=========getAllNNRTDeviceDescriptions is NULL==========');
+  return
+}
+let context: mindSporeLite.Context = {};
+context.target = ["nnrt"];
+context.nnrt = {};
+for (let i:number = 0; i<allDevices.length; i++){
+  console.info(allDevices[i].deviceID().toString());
+}
+```
+
 ### deviceType
 
 deviceType() : NNRTDeviceType
@@ -580,6 +590,22 @@ deviceType() : NNRTDeviceType
 | ----------------------------------- | -------------- |
 | [NNRTDeviceType](#nnrtdevicetype12) | NNRt设备类型。 |
 
+**示例：** 
+
+```ts
+let allDevices = mindSporeLite.getAllNNRTDeviceDescriptions();
+if (allDevices == null) {
+  console.info('=========getAllNNRTDeviceDescriptions is NULL==========');
+  return
+}
+let context: mindSporeLite.Context = {};
+context.target = ["nnrt"];
+context.nnrt = {};
+for (let i:number = 0; i<allDevices.length; i++){
+  console.info(allDevices[i].deviceType().toString());
+}
+```
+
 ### deviceName
 
 deviceName() : string
@@ -593,6 +619,22 @@ deviceName() : string
 | 类型   | 说明           |
 | ------ | -------------- |
 | string | NNRt设备名称。 |
+
+**示例：** 
+
+```ts
+let allDevices = mindSporeLite.getAllNNRTDeviceDescriptions();
+if (allDevices == null) {
+  console.info('=========getAllNNRTDeviceDescriptions is NULL==========');
+  return
+}
+let context: mindSporeLite.Context = {};
+context.target = ["nnrt"];
+context.nnrt = {};
+for (let i:number = 0; i<allDevices.length; i++){
+  console.info(allDevices[i].deviceName().toString());
+}
+```
 
 ## NNRTDeviceType<sup>12+</sup>
 
@@ -838,7 +880,7 @@ runStep(inputs: MSTensor[]): boolean
 
 | 类型    | 说明                                                         |
 | ------- | ------------------------------------------------------------ |
-| boolean | 返回单步训练模型是否成功。true表示单步训练模型成功，false表示单步训练模型失败。 |
+| boolean | 返回单步训练模型是否成功的结果。true表示单步训练模型成功，false表示单步训练模型失败。 |
 
 **示例：** 
 
@@ -917,7 +959,7 @@ updateWeights(weights: MSTensor[]): boolean
 
 | 类型    | 说明                                                         |
 | ------- | ------------------------------------------------------------ |
-| boolean | 返回是否更新权重成功。true表示更新权重成功，false表示更新权重失败。 |
+| boolean | 返回是否更新权重成功的结果。true表示更新权重成功，false表示更新权重失败。 |
 
 **示例：** 
 
@@ -971,7 +1013,7 @@ setupVirtualBatch(virtualBatchMultiplier: number, lr: number, momentum: number):
 
 | 类型    | 说明                                                         |
 | ------- | ------------------------------------------------------------ |
-| boolean | 返回是否设置虚拟批次成功。true表示设置虚拟批次成功，false表示设置虚拟批次失败。 |
+| boolean | 返回是否设置虚拟批次成功的结果。true表示设置虚拟批次成功，false表示设置虚拟批次失败。 |
 
 **示例：** 
 
@@ -1006,7 +1048,7 @@ exportModel(modelFile: string, quantizationType?: QuantizationType, exportInfere
 
 | 类型    | 说明                                                         |
 | ------- | ------------------------------------------------------------ |
-| boolean | 返回是否导出训练模型成功。true表示导出训练模型成功，false表示导出训练模型失败。 |
+| boolean | 返回是否导出训练模型成功的结果。true表示导出训练模型成功，false表示导出训练模型失败。 |
 
 **示例：** 
 
@@ -1023,7 +1065,8 @@ exportWeightsCollaborateWithMicro(weightFile: string, isInference?: boolean, ena
 
 导出供**micro推理**使用的模型权重，仅用于端侧训练。
 
-**micro推理**：MindSpore Lite针对MCUs（MicroControllerUnits）部署硬件后端，提供了一种超轻量Micro AI部署解决方案：离线阶段直接将模型生成轻量化代码，不再需要在线解析模型和图编译。
+**micro推理**：MindSpore Lite针对MCUs（MicroControllerUnits）部署硬件后端，提供了一种超轻量Micro AI部署解决方案，离线阶段直接将模型生成轻量化代码，不再需要在线解析模型和图编译。
+
 **系统能力：** SystemCapability.AI.MindSporeLite
 
 **参数：**
@@ -1039,7 +1082,7 @@ exportWeightsCollaborateWithMicro(weightFile: string, isInference?: boolean, ena
 
 | 类型    | 说明                                                         |
 | ------- | ------------------------------------------------------------ |
-| boolean | 返回是否导出供micro推理使用的模型权重成功。true表示导出供micro推理使用的模型权重成功，false表示导出供micro推理使用的模型权重失败。 |
+| boolean | 返回是否导出供micro推理使用的模型权重成功的结果。true表示导出供micro推理使用的模型权重成功，false表示导出供micro推理使用的模型权重失败。 |
 
 **示例：** 
 

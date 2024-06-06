@@ -275,7 +275,7 @@ buffer数组的列表。
 | CACert    | [X509Cert](#x509cert) | 是   | 是   | 信任的CA证书。              |
 | CAPubKey  | Uint8Array            | 是   | 是   | 信任的CA证书公钥, DER格式。 |
 | CASubject | Uint8Array            | 是   | 是   | 信任的CA证书主题, DER格式。 |
-| nameConstraints | Uint8Array      | 是   | 是   | 名称约束, DER格式。 |
+| nameConstraints<sup>12+</sup> | Uint8Array      | 是   | 是   | 名称约束, DER格式。 |
 
 ## RevocationCheckOptions<sup>12+</sup>
 

@@ -1393,7 +1393,8 @@ createAppClone(bundleName: string, createAppCloneParam?: CreateAppCloneParam): P
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundleName cannot be found or the bundle is not installed by the specified user. |
 | 17700004 | The userId is invalid. |
-| 17700061 | The appIndex is invalid. |
+| 17700061 | The appIndex is not in valid range or already exists. |
+| 17700069 | The app does not support the creation of an appClone instance. |
 
 **示例：**
 ```ts

@@ -57,7 +57,7 @@ startAbilityForResultAsCaller(want: Want, options?: StartOptions): Promise&lt;Ab
 | 16000001 | The specified ability does not exist.                   |
 | 16000004 | Can not start invisible component.                      |
 | 16000050 | Internal error.                                         |
-| 16000073 | The target app clone with the specified index does not exist. |
+| 16000073 | The app clone index is invalid. |
 
 **示例：**
 

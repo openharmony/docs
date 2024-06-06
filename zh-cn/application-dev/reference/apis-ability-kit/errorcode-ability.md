@@ -238,7 +238,7 @@ The application is controlled by EDM.
 
 **错误描述**
 
-当应用受到企业设备管理[Enterprise Device Manager](../apis-mdm-kit/enterpriseDeviceManagement-overview.md)管控时，方法将返回该错误码。
+当应用受到企业设备管理[Enterprise Device Manager](../../enterprise-device-management/enterpriseDeviceManagement-overview.md)管控时，方法将返回该错误码。
 
 **可能原因**
 
@@ -656,6 +656,65 @@ Ability already running.
 **处理步骤**
 
 当目标Ability的launchType是singleton或者specified时，避免通过指定processMode和startupVisibility的方式重复startAbility。
+
+## 16000071 不支持应用分身模式
+
+**错误信息**
+
+App clone is not supported.
+
+**错误描述**
+
+当应用不支持分身模式时，返回该错误码。
+
+**可能原因**
+
+在不支持应用分身的应用中调用getCurrentAppCloneIndex时，则返回该错误码。
+
+**处理步骤**
+
+在不支持应用分身的应用中，避免调用getCurrentAppCloneIndex。
+
+<!--Del-->
+## 16000072 不支持应用多开
+
+**错误信息**
+
+App clone or multi-instance is not supported.
+
+**错误描述**
+
+当应用不支持多开时，返回该错误码。
+
+**可能原因**
+
+调用getRunningMultiAppInfo查询不支持应用多开的应用多开信息，则返回该错误码。
+
+**处理步骤**
+
+调用getCurrentAppCloneIndex时确保查询的应用支持应用多开。
+<!--DelEnd-->
+
+## 16000073 传入的appCloneIndex是一个无效值
+
+**错误信息**
+
+The app clone index is invalid.
+
+**错误描述**
+
+传入一个无效的appCloneIndex，返回该错误码。
+
+**可能原因**
+
+1.调用startAbility时，使用ohos.extra.param.key.appCloneIndex携带的appCloneIndex是一个无效值，则返回该错误码。
+<!--Del-->
+2.调用isAppRunning是，入参appCloneIndex是一个无效值，则返回该错误码。
+<!--DelEnd-->
+
+**处理步骤**
+
+确认appCloneIndex的约束条件是否满足。
 
 ## 16000100 监听Ability生命周期变化的AbilityMonitor方法执行失败
 
