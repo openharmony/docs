@@ -1454,6 +1454,8 @@ get shadowAlpha(): number
 | ------ | ---------------------------------------------- |
 | number | 当前RenderNode的阴影颜色的Alpha值，默认值为0。 |
 
+**示例：**
+
 ```ts
 import { RenderNode, FrameNode, NodeController } from "@ohos.arkui.node"
 
@@ -1519,6 +1521,8 @@ get shadowElevation(): number
 | 类型   | 说明                                  |
 | ------ | ------------------------------------- |
 | number | 当前RenderNode的阴影高度，默认值为0。 |
+
+**示例：**
 
 ```ts
 import { RenderNode, FrameNode, NodeController } from "@ohos.arkui.node"

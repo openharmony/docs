@@ -56,11 +56,11 @@ routerPage生命周期触发时对应的状态。
 
 | 名称              | 值  | 说明                    |
 | ----------------- | --- | ----------------------- |
-| ABOUT_TO_APPEAR       | 0   | page即将显示            |
-| ABOUT_TO_DISAPPEAR    | 1   | page即将销毁            |
-| ON_PAGE_SHOW          | 2   | page显示                |
-| ON_PAGE_HIDE          | 3   | page隐藏                |
-| ON_BACK_PRESS         | 4   | page返回时              |
+| ABOUT_TO_APPEAR       | 0   | page即将显示。            |
+| ABOUT_TO_DISAPPEAR    | 1   | page即将销毁。         |
+| ON_PAGE_SHOW          | 2   | page显示。                |
+| ON_PAGE_HIDE          | 3   | page隐藏。                |
+| ON_BACK_PRESS         | 4   | page返回时。              |
 
 ## NavDestinationInfo
 
@@ -128,12 +128,12 @@ RouterPageInfo包含的信息。
 
 | 名称                 | 类型                                                         | 必填 | 说明                                         |
 | -------------------- | ------------------------------------------------------------ | ---- | -------------------------------------------- |
-| context              | [UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) / [UIContext](./js-apis-arkui-UIContext.md) | 是   | 触发生命周期的routerPage页面对应的上下文信息 |
+| context              | [UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) / [UIContext](./js-apis-arkui-UIContext.md) | 是   | 触发生命周期的routerPage页面对应的上下文信息。 |
 | index                | number                                                       | 是   | 触发生命周期的routerPage在栈中的位置。       |
 | name                 | string                                                       | 是   | 触发生命周期的routerPage页面的名称。         |
 | path                 | string                                                       | 是   | 触发生命周期的routerPage页面的路径。         |
-| state                | [RouterPageState](#routerpagestate)                          | 是   | 触发生命周期的routerPage页面的状态           |
-| pageId<sup>12+</sup> | string                                                       | 是   | 触发生命周期的routerPage页面的唯一标识       |
+| state                | [RouterPageState](#routerpagestate)                          | 是   | 触发生命周期的routerPage页面的状态。           |
+| pageId<sup>12+</sup> | string                                                       | 是   | 触发生命周期的routerPage页面的唯一标识。       |
 
 ## DensityInfo<sup>12+</sup>
 
@@ -145,7 +145,7 @@ RouterPageInfo包含的信息。
 
 | 名称    | 类型                                      | 必填 | 说明                                   |
 | ------- | ----------------------------------------- | ---- | -------------------------------------- |
-| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 屏幕像素密度变化时页面对应的上下文信息 |
+| context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 屏幕像素密度变化时页面对应的上下文信息。 |
 | density | number                                    | 是   | 变化后的屏幕像素密度。                 |
 
 ## NavDestinationSwitchInfo<sup>12+</sup>
@@ -292,7 +292,7 @@ on(type: 'scrollEvent', callback: Callback\<ScrollEventInfo\>): void
 
 **示例：**
 
-请参考[offscrollevent示例](#observeroffscrollevent12-1)
+参考[offscrollevent](#observeroffscrollevent12-1)示例。
 
 ## observer.off('scrollEvent')<sup>12+</sup>
 
@@ -313,7 +313,7 @@ off(type: 'scrollEvent', callback?: Callback\<ScrollEventInfo\>): void
 
 **示例：**
 
-请参考[offscrollevent示例](#observeroffscrollevent12-1)
+参考[offscrollevent](#observeroffscrollevent12-1)示例。
 
 ## observer.on('scrollEvent')<sup>12+</sup>
 
@@ -333,7 +333,7 @@ on(type: 'scrollEvent', options: ObserverOptions, callback: Callback\<ScrollEven
 
 **示例：**
 
-请参考[offscrollevent示例](#observeroffscrollevent12-1)
+参考[offscrollevent](#observeroffscrollevent12-1)示例。
 
 ## observer.off('scrollEvent')<sup>12+</sup>
 
@@ -433,7 +433,7 @@ on(type: 'routerPageUpdate', context: UIAbilityContext | UIContext, callback: Ca
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 监听事件，固定为'routerPageUpdate'，即router中page页面的状态变化。 |
-| context  | [UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)&nbsp;\|&nbsp;[UIContext](./js-apis-arkui-UIContext.md) | 是   | 上下文信息，用以指定监听页面的范围 |
+| context  | [UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)&nbsp;\|&nbsp;[UIContext](./js-apis-arkui-UIContext.md) | 是   | 上下文信息，用以指定监听页面的范围。 |
 | callback | Callback\<[RouterPageInfo](#routerpageinfo)\>        | 是   | 回调函数。携带pageInfo，返回当前的page页面状态。                 |
 
 **示例：**
@@ -537,7 +537,7 @@ on(type: 'densityUpdate', context: UIContext, callback: Callback\<DensityInfo\>)
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 监听事件，固定为'densityUpdate'，即屏幕像素密度变化。 |
-| context  | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 上下文信息，用以指定监听页面的范围 |
+| context  | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 上下文信息，用以指定监听页面的范围。 |
 | callback | Callback\<[DensityInfo](#densityinfo12)\>        | 是   | 回调函数。携带densityInfo，返回变化后的屏幕像素密度。                 |
 
 **示例：**
@@ -586,7 +586,7 @@ off(type: 'densityUpdate', context: UIContext, callback?: Callback\<DensityInfo\
 | 参数名   | 类型                                      | 必填 | 说明                                                                                           |
 | -------- | ----------------------------------------- | ---- | ---------------------------------------------------------------------------------------------- |
 | type     | string                                    | 是   | 监听事件，固定为'densityUpdate'，即屏幕像素密度变化。                                          |
-| context  | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 上下文信息，用以指定监听页面的范围                                                             |
+| context  | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 上下文信息，用以指定监听页面的范围。                                                             |
 | callback | Callback\<[DensityInfo](#densityinfo12)\> | 否   | 需要被注销的回调函数。若不指定具体的回调函数，则注销指定UIContext下所有densityUpdate事件监听。 |
 
 ```ts
@@ -863,7 +863,9 @@ export default class EntryAbility extends UIAbility {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onBackground');
   }
 }
+```
 
+```ts
 // Index.ets
 // 演示 observer.on('navDestinationSwitch', UIContext, callback)
 // observer.off('navDestinationSwitch', UIContext, callback)
@@ -934,7 +936,9 @@ off(type: 'navDestinationSwitch', context: UIAbilityContext | UIContext, callbac
 | context  | [UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md)&nbsp;\|&nbsp;[UIContext](./js-apis-arkui-UIContext.md) | 是   | 上下文信息，用以指定监听页面切换事件的范围。 |
 | callback | Callback\<[NavDestinationSwitchInfo](#navdestinationswitchinfo12)\>        | 否   | 需要被注销的回调函数。                 |
 
-**示例代码参考上述observer.on('navDestinationSwitch')接口的示例代码**
+**示例：**
+
+参考[observer.on('navDestinationSwitch')](#observeronnavdestinationswitch12)示例。
 
 ## observer.on('navDestinationSwitch')<sup>12+</sup>
 
@@ -1011,7 +1015,9 @@ export default class EntryAbility extends UIAbility {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onBackground');
   }
 }
+```
 
+```ts
 // Index.ets
 // 演示 observer.on('navDestinationSwitch', UIContext, NavDestinationSwitchObserverOptions, callback)
 // observer.off('navDestinationSwitch', UIContext, NavDestinationSwitchObserverOptions, callback)
@@ -1084,4 +1090,6 @@ off(type: 'navDestinationSwitch', context: UIAbilityContext | UIContext, observe
 | observerOptions | [NavDestinationSwitchObserverOptions](#navdestinationswitchobserveroptions12)        | 是   | 监听选项。   |
 | callback | Callback\<[NavDestinationSwitchInfo](#navdestinationswitchinfo12)\>        | 否   | 需要被注销的回调函数。                 |
 
-**示例代码参考上述observer.on('navDestinationSwitch')接口的示例代码**
+**示例：**
+
+参考[observer.on('navDestinationSwitch')](#observeronnavdestinationswitch12-1)接口示例。

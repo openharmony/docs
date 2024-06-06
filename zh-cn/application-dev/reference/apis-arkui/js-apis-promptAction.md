@@ -70,11 +70,11 @@ struct toastExample {
   }
 }
 ```
-API version 11及之前Toast样式
+API version 11及之前Toast样式。
 
 ![zh-cn_image_0001](figures/toast-api11.gif)
 
-API version 12及之后Toast样式
+API version 12及之后Toast样式。
 
 ![zh-cn_image_0001](figures/toast-api12.gif)
 
@@ -206,7 +206,7 @@ try {
 
 ![zh-cn_image_0002](figures/zh-cn_image_0002.gif)
 
-当弹窗的showInSubWindow属性为true时，弹窗可显示在窗口外
+当弹窗的showInSubWindow属性为true时，弹窗可显示在窗口外。
 
 ```ts
 import promptAction from '@ohos.promptAction';
@@ -463,7 +463,7 @@ struct Index {
   }
 }
 ```
-该示例定义了弹窗样式，如宽度、高度、背景色、阴影等等
+该示例定义了弹窗样式，如宽度、高度、背景色、阴影等等。
 ```ts
 import promptAction from '@ohos.promptAction'
 @Builder
