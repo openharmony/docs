@@ -174,7 +174,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
 8. 运行`hdc shell param set hiviewdfx.ucollection.testapptrace true`，使能主线程超时采集trace测试。
    运行service_control stop hiview停止服务，清除设备缓存rm -rf /data/log/hiview/unified_collection/trace，运行service_control start hiview启动服务。
 
-9. 点击IDE界面中的运行按钮，运行应用工程，连续构造两个主线程超时450ms的任务，会触发主线程超时事件。同一个应用一天仅会触发一次。
+9. 点击IDE界面中的运行按钮，运行应用工程，连续点击两次timeOut500按钮，会触发主线程超时事件。同一个应用一天仅会触发一次。
 
 10. 主线程超时事件上报后，可以在Log窗口看到对系统事件数据的处理日志：
 
