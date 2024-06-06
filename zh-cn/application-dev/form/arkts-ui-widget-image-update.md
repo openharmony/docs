@@ -48,8 +48,8 @@
         return formBindingData.createFormBindingData(formData);
       }
       //...
-     }
-     ```
+    }
+    ```
 3. 在EntryFormAbility中的onFormEvent生命周期回调中实现网络文件的刷新。
     
       ```ts
