@@ -582,14 +582,16 @@ class EntryAbility extends UIAbility {
 
 ## ValuesBucket
 
+type ValuesBucket = Record<string, ValueType>
+
 用于存储键值对的类型。该类型不是多线程安全的，如果应用中存在多线程同时操作该类派生出的实例，注意加锁保护。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
-| 键类型 | 值类型                   |
-| ------ | ----------------------- |
-| number | 主键的类型可以是number。 |
-| string | 主键的类型可以是string。 |
+| 类型              | 说明                           |
+| ---------------- | ---------------------------- |
+| string | 表示键的类型为string。 |
+| ValueType | 表示值的类型为[ValueType](#valuetype)。 |
 
 ## PRIKeyType<sup>10+</sup> 
 
