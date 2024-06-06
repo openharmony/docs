@@ -1,7 +1,7 @@
 # Using HiLog to Print Logs (ArkTS)
 
 
-During application development, you can log from your application's key code. You can find out how your application is running through logs. For example, the logs can tell you whether the application is running correctly, whether the code running time sequence is normal, and whether the running logic and branch is normal).
+During application development, you can log from your application's key code. You can find out how your application is running through logs. For example, the logs can tell you whether the application is running properly, whether the code running time sequence is normal, and whether the running logic and branch are correct.
 
 
 To print logs, you can call HiLog or console APIs. This document covers HiLog APIs. For details about the console APIs, see [console](../reference/common/js-apis-logs.md).
@@ -11,7 +11,7 @@ To print logs, you can call HiLog or console APIs. This document covers HiLog AP
 
 HiLog defines five log levels: DEBUG, INFO, WARN, ERROR, and FATAL, and provides the following APIs to output logs at different levels. For details, see [hilog](../reference/apis-performance-analysis-kit/js-apis-hilog.md).
 
-| API| Description| 
+| API| Description|
 | -------- | -------- |
 | isLoggable(domain: number, tag: string, level: LogLevel) | Checks whether logs are printable based on the specified service domain, log tag, and log level.|
 | debug(domain: number, tag: string, format: string, ...args: any[]) | Outputs debug-level logs. This level of log only applies to information for debugging purposes.<br>To set the output log level to **DEBUG**, run the **hdc shell hilogcat** command in the CLI or in the **Terminal** window of DevEco Studio.|

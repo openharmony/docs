@@ -19,6 +19,8 @@ addProcessor(processor: Processor): number
 
 Adds a data processor for migrating events to the cloud. The implementation of data processors can be preset in the device. You can set attributes of the data processor based on its constraints.
 
+The configuration information of **Processor** must be provided by the data processor. Yet, as no data processor is preset in the device for interaction for the moment, migrating events to the cloud is unavailable.
+
 **System capability**: SystemCapability.HiviewDFX.HiAppEvent
 
 **Parameters**
