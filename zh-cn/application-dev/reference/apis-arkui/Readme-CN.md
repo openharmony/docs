@@ -202,7 +202,7 @@
       - [Toggle](arkui-ts/ts-basic-components-toggle.md)
       - [XComponent](arkui-ts/ts-basic-components-xcomponent.md)
       <!--Del-->
-      - [Component3D (系统接口)](arkui-ts/ts-basic-components-component3d-sys.md)
+      - [Component3D](arkui-ts/ts-basic-components-component3d-sys.md)
       - [FormComponent (系统接口)](arkui-ts/ts-basic-components-formcomponent-sys.md)
       - [Image (系统接口)](arkui-ts/ts-basic-components-image-sys.md)
       - [MediaCachedImage (系统接口)](arkui-ts/ts-basic-components-mediacachedimage-sys.md)
