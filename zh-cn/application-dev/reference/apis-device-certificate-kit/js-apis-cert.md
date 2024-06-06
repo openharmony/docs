@@ -186,7 +186,7 @@ buffer数组的列表。
 
 **系统能力：** SystemCapability.Security.Cert
 
-| 名称           | 类型                              | 必填 | 说明               |
+| 参数名           | 类型                              | 必填 | 说明               |
 | -------------- | --------------------------------- | ---- | ------------------ |
 | type | [GeneralNameType](#generalname12)    | 是 |  指定具体的证书主体类型。  |
 | name | Uint8Array    | 是  |  指定具体的证书主体DER格式内容。  |
@@ -199,7 +199,7 @@ buffer数组的列表。
 
 **系统能力：** SystemCapability.Security.Cert
 
-| 名称           | 类型                              | 必填 | 说明               |
+| 参数名           | 类型                              | 必填 | 说明               |
 | -------------- | --------------------------------- | ---- | ------------------ |
 | x509Cert | [X509Cert](#x509cert)    | 否 |  指定具体的证书对象。  |
 | validDate | string    | 否  |  指定证书有效期。  |
@@ -227,7 +227,7 @@ buffer数组的列表。
 
 **系统能力：** SystemCapability.Security.Cert
 
-| 名称           | 类型                              | 必填 | 说明               |
+| 参数名           | 类型                              | 必填 | 说明               |
 | -------------- | --------------------------------- | ---- | ------------------ |
 | issuer | Array\<Uint8Array> | 否  | 指定颁发者作为过滤条件, 至少要匹配到其中一个issuer。 |
 | x509Cert | [X509Cert](#x509cert) | 否  | 指定具体的证书对象作为过滤条件, 判断该证书是否在CRL列表中。 |
@@ -243,7 +243,7 @@ buffer数组的列表。
 
 **系统能力：** SystemCapability.Security.Cert
 
-| 名称           | 类型                              | 必填 | 说明               |
+| 参数名           | 类型                              | 必填 | 说明               |
 | -------------- | --------------------------------- | ---- | ------------------ |
 | certMatchParameters | [X509CertMatchParameters](#x509certmatchparameters11) | 是  | 指定过滤条件。 |
 | maxLength | number | 否  | 指定最终证书链中CA证书的最大长度。 |
@@ -257,7 +257,7 @@ buffer数组的列表。
 
 **系统能力：** SystemCapability.Security.Cert
 
-| 名称           | 类型                              | 必填 | 说明               |
+| 参数名           | 类型                              | 必填 | 说明               |
 | -------------- | --------------------------------- | ---- | ------------------ |
 | certChain | [X509CertChain](#x509certchain11) | 是  | 生成的证书链对象。 |
 | validationResult | [CertChainValidationResult](#certchainvalidationresult11) | 是  | 指定最终证书链的最大长度。 |
@@ -332,7 +332,7 @@ buffer数组的列表。
 
 **系统能力：** SystemCapability.Security.Cert
 
-| 名称         | 类型                                              | 必填 | 说明                                   |
+| 参数名         | 类型                                              | 必填 | 说明                                   |
 | ------------ | ------------------------------------------------- | ---- | -------------------------------------- |
 | ocspRequestExtension | Array\<Uint8Array> | 否   | 表示发送OCSP请求的扩展字段。|
 | ocspResponderURI | string | 否   | 表示用于OCSP请求的备选服务器URL地址，支持HTTP/HTTPS，具体配置由与服务器协商决定。 |
@@ -350,7 +350,7 @@ buffer数组的列表。
 
 **系统能力：** SystemCapability.Security.Cert
 
-| 名称         | 类型                                              | 必填 | 说明                                   |
+| 参数名         | 类型                                              | 必填 | 说明                                   |
 | ------------ | ------------------------------------------------- | ---- | -------------------------------------- |
 | date         | string                                            | 否   | 表示需要校验证书的有效期。             |
 | trustAnchors | Array\<[X509TrustAnchor](#x509trustanchor11)>     | 是   | 表示信任锚列表。                       |
@@ -2339,10 +2339,10 @@ let certData = "-----BEGIN CERTIFICATE-----\n" +
   "-----END CERTIFICATE-----\n";
 
   // 证书二进制数据，需业务自行赋值
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
   // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
 async function certGetCRLDistributionPoint() {
@@ -10248,7 +10248,7 @@ createX500DistinguishedName(nameStr: string): Promise\<X500DistinguishedName>
 
 | 参数名   | 类型                          | 必填 | 说明                 |
 | -------- | ----------------------------- | ---- | -------------------- |
-| nameStr | string | X509定义的Name类型的字符串格式数据。|
+| nameStr | string | 是 |X509定义的string类型的Name字符串格式数据。|
 
 **返回值：**
 
@@ -10262,7 +10262,7 @@ createX500DistinguishedName(nameStr: string): Promise\<X500DistinguishedName>
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 401 | invalid parameters. |
+| 401 | invalid parameters.  Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19020001 | memory error. |
 | 19020002 | runtime error. |
 | 19030001 | crypto operation error. |
@@ -10319,7 +10319,7 @@ createX500DistinguishedName(nameDer: Uint8Array): Promise\<X500DistinguishedName
 
 | 参数名   | 类型                          | 必填 | 说明                 |
 | -------- | ----------------------------- | ---- | -------------------- |
-| nameDer | Uint8Array | X509定义的Name类型的DER格式数据。|
+| nameDer | Uint8Array | 是 |X509定义的Uint8Array类型的DER格式数据。|
 
 **返回值：**
 
@@ -10333,7 +10333,7 @@ createX500DistinguishedName(nameDer: Uint8Array): Promise\<X500DistinguishedName
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 401 | invalid parameters. |
+| 401 | invalid parameters.  Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19020001 | memory error. |
 | 19020002 | runtime error. |
 | 19030001 | crypto operation error. |
@@ -10468,6 +10468,7 @@ getName(type: string): Array\<string>
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
+| 401 | invalid parameters.  Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19020001 | memory error. |
 | 19020002 | runtime error. |
 | 19030001 | crypto operation error. |
