@@ -4613,7 +4613,6 @@ unlock(): void
   fs.closeSync(file);
   ```
 
-
   ## fs.DfsListeners<sup>12+</sup>
 
 interface DfsListeners {
@@ -4638,7 +4637,6 @@ onStatus(networkId: string, status: number): void;
   | ---- | ------ | ---- | ---------------------------------------- |
   | networkId   | string | 是    | 设备的网络Id。                             |
   | status | number | 是    | 分布式文件系统的状态码（以connectDfs回调onStatus的特定错误码作为入参）。触发场景为connectDfs调用过程中出现对端设备异常，对应错误码为：<br/>-&nbsp;[13900046](errorcode-filemanagement.md#13900046)：软件造成连接中断。  
-
 
 ## RandomAccessFile
 
