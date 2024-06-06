@@ -155,7 +155,7 @@ import { formInfo } from '@kit.FormKit';
 | ----------- | ---- | ------------ |------------ |
 | bundleName    | string    |否    | 选填，仅保留含bundleName与提供值相符的卡片信息，<br>未填写时则不通过bundleName进行过滤。   |
 | moduleName    | string    |否    | 选填，仅保留含moduleName与提供值相符的卡片信息，<br>未填写时则不通过moduleName进行过滤。   |
-| supportedDimensions | Array<number> |否    | 选填，仅保留含supportedDimensions提供值相符的卡片信息，<br>未填写时则不通过supportedDimensions进行过滤。   |
+| supportedDimensions | Array\<number> |否    | 选填，仅保留含supportedDimensions提供值相符的卡片信息，<br>未填写时则不通过supportedDimensions进行过滤。   |
 
 ## VisibilityType
 
