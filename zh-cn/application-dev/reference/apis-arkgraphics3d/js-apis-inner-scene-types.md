@@ -89,7 +89,7 @@ type Position3 = Vec3
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
-| 取值范围 | 说明 |
+| 类型  | 说明 |
 | ---- | ---- |
 | [Vec3](#vec3) | 类型为三维向量，可取任意值。 |
 
@@ -100,7 +100,7 @@ type Rotation3 = Vec3
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
-| 取值范围 | 说明 |
+| 类型  | 说明 |
 | ---- | ---- |
 | [Vec3](#vec3) | 类型为三维向量，可取任意值。 |
 
@@ -111,6 +111,6 @@ type Scale3 = Vec3
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
-| 取值范围 | 说明 |
+| 类型 | 说明 |
 | ---- | ---- |
 | [Vec3](#vec3) | 类型为三维向量，可取任意值。 |
