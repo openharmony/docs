@@ -528,7 +528,7 @@ Failed to install the HSP because disallow install a shared bundle by hapFilePat
 2. 通过install接口安装应用时，hapFilePaths参数传入了应用间共享库的安装包路径。
 
 **处理步骤**<br/>
-1. 通过-s参数指定应用间共享库的安装包路径。
+1. 通过-p参数指定应用间共享库的安装包路径。
 2. 通过installParam参数的sharedBundleDirPaths字段指定应用间共享库的安装包路径。
 
 ## 17700040 不允许卸载应用间共享库
