@@ -14,20 +14,21 @@ RenderNode提供了节点创建和删除的能力。可以通过RenderNode的构
 
 RenderNode提供了节点的增、删、查、改的能力，能够修改节点的子树结构；可以对所有RenderNode的节点的父子节点做出查询操作，并返回查询结果。
 
-> **说明**
-> RenderNode中查询获取得到的子树结构按照开发通过RenderNode的接口传递的参数构建。
+> **说明：**
 >
-> RenderNode如果要与原生组件结合显示，使用需要依赖FrameNode中获取的RenderNode进行挂载上树。
+> - RenderNode中查询获取得到的子树结构按照开发通过RenderNode的接口传递的参数构建。
+>
+> - RenderNode如果要与原生组件结合显示，使用需要依赖FrameNode中获取的RenderNode进行挂载上树。
 
 ## 设置和获取渲染相关属性
 
 RenderNode中可以设置渲染相关的属性，包括：backgroundColor，clipToFrame，opacity，size，position，frame，pivot，scale，translation，rotation，transform，shadowColor，shadowOffset，shadowAlpha，shadowElevation，shadowRadius，borderStyle，borderWidth，borderColor，borderRadius，shapeMask。
 
-> **说明**
+> **说明：**
 > 
-> 1、RenderNode中查询获取得到的属性为设置的属性值。
+> - RenderNode中查询获取得到的属性为设置的属性值。
 > 
-> 2、若未传入参数或者传入参数为非法值则查询获得的为默认值。
+> - 若未传入参数或者传入参数为非法值则查询获得的为默认值。
 
 ```ts
 import { FrameNode, NodeController, RenderNode } from '@kit.ArkUI';
@@ -90,13 +91,14 @@ struct Index {
 
 通过重写RenderNode中的[draw](../reference/apis-arkui/js-apis-arkui-renderNode.md#draw)方法，可以自定义RenderNode的绘制内容，通过[invalidate](../reference/apis-arkui/js-apis-arkui-renderNode.md#invalidate)接口可以主动触发节点的重新绘制。
 
-> **说明**
+> **说明：**
 > 
-> 1、同时同步触发多个invalidate仅会触发一次重新绘制。
+> - 同时同步触发多个invalidate仅会触发一次重新绘制。
 > 
-> 2、自定义绘制有两种绘制方式：通过ArkTS接口进行调用和通过Node-API进行调用。
+> - 自定义绘制有两种绘制方式：通过ArkTS接口进行调用和通过Node-API进行调用。
 
 **ArkTS接口调用示例：**
+
 ```ts
 import { FrameNode, NodeController, RenderNode } from '@kit.ArkUI';
 import { drawing } from '@kit.ArkGraphics2D';
