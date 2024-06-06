@@ -518,9 +518,9 @@ getUserConfigSize(): SizeT\<LengthMetrics\>
 
 **返回值：**
 
-| 类型                                                           | 说明                                                                  |
-| -------------------------------------------------------------- | --------------------------------------------------------------------- |
-| [SizeT](./js-apis-arkui-graphics.md#sizet12)\<[LengthMetrics](./js-apis-arkui-graphics.md#lengthmetrics12)\> | 用户设置的宽高。 |
+| 类型                                                         | 说明             |
+| ------------------------------------------------------------ | ---------------- |
+| [SizeT](./js-apis-arkui-graphics.md#sizett12)\<[LengthMetrics](./js-apis-arkui-graphics.md#lengthmetrics12)\> | 用户设置的宽高。 |
 
 **示例：**
 
@@ -869,8 +869,6 @@ FrameNode的自定义测量方法，该方法会重写默认测量方法，在Fr
 请参考[节点自定义示例](#节点自定义示例)。
 
 ### LayoutConstraint<sup>12+</sup>
-
-LayoutConstraint
 
 描述组件的布局约束。
 
@@ -1608,7 +1606,7 @@ RelativeContainer类型的FrameNode节点类型。
 | TypedFrameNode&lt;RelativeContainerInterface, RelativeContainerAttribute&gt; | 提供RelativeContainer类型FrameNode节点。<br/>**说明：**<br/> RelativeContainerInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#initialize12)接口的入参，入参为Stack组件的构造函数类型。 <br/> RelativeContainerAttribute用于TypedFrameNode的[attribute](#attribute12)接口的返回值，返回RelativeContainer组件的属性设置对象。 |
 
 ### createNode('RelativeContainer')<sup>12+</sup>
-createNode(context: UIContext, nodeType: 'RelativeContainer'): RelativeContaine
+createNode(context: UIContext, nodeType: 'RelativeContainer'): RelativeContainer
 
 创建RelativeContainer类型的FrameNode节点。
 
