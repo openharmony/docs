@@ -605,9 +605,28 @@ hover事件的回调类型。
 
 HoverCallback = (isHover: boolean, event: [HoverEvent](./ts-universal-mouse-key.md#hoverevent10对象说明)) => void
 
-| 名称            | 类型定义                   | 描述                                       |
+| 名称            | 类型                  | 描述                                       |
 | ------------- | ---------------------- | ---------------------------------------- |
 | HoverCallback | (isHover: boolean, event: [HoverEvent](./ts-universal-mouse-key.md#hoverevent10对象说明)) => void | hover事件的回调。 |
+
+## VisibleAreaEventOptions<sup>12+</sup>
+
+关于区域变化相关的参数。
+
+| 参数名 | 类型                                                | 必填 | 说明                                                         |
+| ------ | --------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| ratios | Array&lt;number&gt;                                 | 是   | 阈值数组。其中，每个阈值代表组件可见面积（即组件在屏幕显示区的面积，只计算父组件内的面积，超出父组件部分不会计算）与组件自身面积的比值。每个阈值的取值范围为[0.0, 1.0]，如果开发者设置的阈值超出该范围，则会实际取值0.0或1.0。 |
+| expectedUpdateInterval | number | 否 | 预期更新间隔，单位为ms。定义了开发者期望的更新间隔。默认值：1000。|
+
+## VisibleAreaChangeCallback<sup>12+</sup>
+
+组件可见区域变化事件的回调类型。
+
+VisibleAreaChangeCallback = (isVisible: boolean, currentRatio: number) => void
+
+| 名称            | 类型                   | 描述                                       |
+| ------------- | ---------------------- | ---------------------------------------- |
+| VisibleAreaChangeCallback | (isVisible: boolean, currentRatio: number) => void | 组件可见区域变化事件的回调。<br/>-isVisible：表示组件的可见面积与自身面积的比值与上一次变化相比的情况，比值变大为true，比值变小为false。<br/>-currentRatio：触发回调时，组件可见面积与自身面积的比值。 |
 
 ## StyledStringValue<sup>12+</sup>
 

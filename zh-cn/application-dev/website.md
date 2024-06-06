@@ -88,12 +88,12 @@
           - [\@Computed装饰器：计算属性](quick-start/arkts-new-Computed.md)
           - [!!语法：双向绑定](quick-start/arkts-new-binding.md)
     - 渲染控制
-        - [渲染控制概述](quick-start/arkts-rendering-control-overview.md)
-        - [if/else：条件渲染](quick-start/arkts-rendering-control-ifelse.md)
-        - [ForEach：循环渲染](quick-start/arkts-rendering-control-foreach.md)
-        - [LazyForEach：数据懒加载](quick-start/arkts-rendering-control-lazyforeach.md)
-        - [Repeat：循环渲染(推荐)](quick-start/arkts-rendering-control-repeat.md)
-        - [ContentSlot：混合开发](quick-start/arkts-rendering-control-contentslot.md)
+      - [渲染控制概述](quick-start/arkts-rendering-control-overview.md)
+      - [if/else：条件渲染](quick-start/arkts-rendering-control-ifelse.md)
+      - [ForEach：循环渲染](quick-start/arkts-rendering-control-foreach.md)
+      - [LazyForEach：数据懒加载](quick-start/arkts-rendering-control-lazyforeach.md)
+      - [Repeat：循环渲染(推荐)](quick-start/arkts-rendering-control-repeat.md)
+      - [ContentSlot：混合开发](quick-start/arkts-rendering-control-contentslot.md)
 - 开发
   - Ability Kit（程序框架服务）
     - [Ability Kit简介](application-models/abilitykit-overview.md)
@@ -663,11 +663,15 @@
       - USB服务
         - [USB服务开发概述](basic-services/usb/usb-overview.md)
         - [USB服务开发指导](basic-services/usb/usb-guidelines.md)
+    <!--Del-->
     - 升级服务
       - [示例服务器开发概述](basic-services/update/sample-server-overview.md)
       - [示例服务器开发指导](basic-services/update/sample-server-guidelines.md)
+    <!--DelEnd-->
     - 剪贴板服务
       - [使用剪贴板的延迟复制粘贴功能](basic-services/pasteboard/pasteboard-time-lapse-copy-and-paste.md)
+    - 上传下载
+      - [应用文件上传下载]((basic-services/request/app-file-upload-download.md)
   - Calendar Kit（日历服务）
     - [Calendar Kit简介](calendarmanager/calendarmanager-overview.md)
     - [Calendar Kit开发指南](calendarmanager/calendarmanager-guidelines.md)
@@ -970,9 +974,9 @@
     - [Location Kit简介](device/location/location-kit-intro.md)
     - [Location Kit开发指南](device/location/location-guidelines.md)
   - MDM Kit（企业设备管理服务）
-    - [MDM Kit简介](mdm-kit-intro.md)
-    - [MDM Kit开发指南](mdm-kit-guide.md)
-    - [EnterpriseAdminExtensionAbility开发指南](mdm-kit-admin.md)
+    - [MDM Kit简介](mdm/mdm-kit-intro.md)
+    - [MDM Kit开发指南](mdm/mdm-kit-guide.md)
+    - [EnterpriseAdminExtensionAbility开发指南](mdm/mdm-kit-admin.md)
   - Media Kit（媒体服务）
     - [Media Kit简介](media/media/media-kit-intro.md)
     - 音频播放和录制
@@ -1176,6 +1180,9 @@
       - 查询密钥别名集
         - [查询密钥别名集(ArkTS)](security/UniversalKeystoreKit/huks-list-aliases-arkts.md)
         - [查询密钥别名集(C/C++)](security/UniversalKeystoreKit/huks-list-aliases-ndk.md)
+      - HMAC
+        - [HMAC(ArkTS)](security/UniversalKeystoreKit/huks-hmac-arkts.md)
+        - [HMAC(C/C++)](security/UniversalKeystoreKit/huks-hmac-ndk.md)
       <!--Del-->
       - [指定用户身份操作(仅对系统应用开放)](security/UniversalKeystoreKit/huks-as-user-sys.md)
       <!--DelEnd-->
@@ -1898,6 +1905,9 @@
             - [事件独占控制](reference/apis-arkui/arkui-ts/ts-universal-attributes-monopolize-events.md)
             - [鼠标光标控制](reference/apis-arkui/arkui-ts/ts-universal-attributes-cursor.md)
             - [特效绘制合并](reference/apis-arkui/arkui-ts/ts-universal-attributes-use-effect.md)
+            <!--Del-->
+            - [点光源设置 (系统接口)](reference/apis-arkui/arkui-ts/ts-universal-attributes-point-light-style-sys.md)
+            <!--DelEnd-->
           - 手势处理
             - [绑定手势方法](reference/apis-arkui/arkui-ts/ts-gesture-settings.md)
             - 基础手势
@@ -2622,7 +2632,9 @@
       - [系统参数错误码](reference/apis-basic-services-kit/errorcode-system-parameterV9.md)
       - [系统电源管理错误码](reference/apis-basic-services-kit/errorcode-power.md)
       - [帐号管理错误码](reference/apis-basic-services-kit/errorcode-account.md)
+       <!--Del-->
       - [升级错误码](reference/apis-basic-services-kit/errorcode-update.md)
+       <!--DelEnd-->
       - [锁屏服务错误码](reference/apis-basic-services-kit/errorcode-screenlock.md)
       - [打印服务错误码](reference/apis-basic-services-kit/errorcode-print.md)
       - [设备证明错误码](reference/apis-basic-services-kit/errorcode-deviceAttest.md)
@@ -2884,6 +2896,7 @@
         - [DRM_PsshInfo](reference/apis-drm-kit/_d_r_m___pssh_info.md)
         - [DRM_Statistics](reference/apis-drm-kit/_d_r_m___statistics.md)
         - [MediaKeySession_Callback](reference/apis-drm-kit/_media_key_session___callback.md)
+        - [OH_MediaKeySession_Callback](reference/apis-drm-kit/_o_h___media_key_session___callback.md)
     - 错误码
       - [DRM错误码](reference/apis-drm-kit/errorcode-drm.md)
   - Function Flow Runtime Kit API参考
@@ -3174,6 +3187,7 @@
         <!--DelEnd-->
     - ArkTS组件
       - [@ohos.multimedia.movingphotoview (动态照片)](reference/apis-media-library-kit/ohos-multimedia-movingphotoview.md)
+      - [@ohos.file.PhotoPickerComponent (photo picker组件)](reference/apis-media-library-kit/ohos-file-PhotoPickerComponent.md)
     - C API
       - 模块
         - [MediaAssetManager](reference/apis-media-library-kit/_media_asset_manager.md)

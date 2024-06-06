@@ -31,8 +31,11 @@
 - **交互事件**
 
   交互事件是UI和用户交互的必要元素。方舟开发框架提供了多种交互事件，除了触摸事件、鼠标事件、键盘按键事件、焦点事件等通用事件外，还包括基于通用事件进行进一步识别的手势事件。手势事件有单一手势如点击手势、长按手势、拖动手势、捏合手势、旋转手势、滑动手势，以及通过单一手势事件进行组合的组合手势事件。
+<!--Del-->
+- **自定义能力**
 
-
+  自定义能力是UI开发框架提供给开发者对UI界面进行开发和定制化的能力。现阶段提供的自定义能力包括：自定义节点。提供给开发者不同层次的自定义能力用于实现不同场景的应用的开发。自定义能力的层次越低，开发的灵活程度越高，但是相应应用的开发难度以及对于开发者能力的要求越高。
+<!--DelEnd-->
 ## 特点
 
 - 开发效率高，开发体验好
@@ -86,7 +89,8 @@
 | 设置页面路由和组件导航 | 介绍了如何设置页面路由以及组件间的导航。                | -&nbsp;[页面路由](arkts-routing.md)<br/>-&nbsp;[组件导航](arkts-navigation-navigation.md) |
 | 显示图形        | 介绍了如何显示图片、绘制自定义几何图形以及使用画布绘制自定义图形。   | -&nbsp;[图片](arkts-graphics-display.md)<br/>-&nbsp;[几何图形](arkts-geometric-shape-drawing.md)<br/>-&nbsp;[画布](arkts-drawing-customization-on-canvas.md) |
 | 使用动画        | 介绍了组件和页面使用动画的典型场景。                  | - [属性动画](arkts-attribute-animation-overview.md)<br>- [转场动画](arkts-transition-overview.md)<br>- [组件动画](arkts-component-animation.md)<br>- [动画曲线](arkts-traditional-curve.md)<br>- [动画衔接](arkts-animation-smoothing.md)<br>- [动画效果](arkts-blur-effect.md) |
-| 绑定事件        | 介绍了事件的基本概念和如何使用通用事件和手势事件。           | -&nbsp;[通用事件](arkts-common-events-touch-screen-event.md)<br/>-&nbsp;[手势事件](arkts-gesture-events-binding.md) |
+| 绑定事件        | 介绍了事件的基本概念和如何使用通用事件和手势事件。           | -&nbsp;[通用事件](arkts-common-events-touch-screen-event.md)<br/>-&nbsp;[手势事件](arkts-gesture-events-binding.md) |<!--Del-->
+| 使用自定义能力        | 介绍了自定义能力的基本概念和如何使用自定义能力。       | -&nbsp;[自定义节点](arkts-user-defined-node.md)<br/>|<!--DelEnd-->
 
 ## 相关实例
 

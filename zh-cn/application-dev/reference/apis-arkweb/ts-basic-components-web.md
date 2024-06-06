@@ -689,6 +689,10 @@ multiWindowAccess(multiWindow: boolean)
 horizontalScrollBarAccess(horizontalScrollBar: boolean)
 
 设置是否显示横向滚动条，包括系统默认滚动条和用户自定义滚动条。默认显示。
+> **说明：**
+>
+> - 通过@State变量控制横向滚动条的隐藏/显示后，需要调用controller.refresh()生效。
+> - 通过@State变量频繁动态改变时，建议切换开关变量和Web组件一一对应。
 
 **参数：**
 
@@ -706,10 +710,22 @@ horizontalScrollBarAccess(horizontalScrollBar: boolean)
   @Component
   struct WebComponent {
     controller: web_webview.WebviewController = new web_webview.WebviewController()
+    @State isShow: boolean = false
     build() {
       Column() {
+        //通过@State变量改变横向滚动条的隐藏/显示后，需调用this.controller.refresh()后生效
+        Button('refresh')
+        .onClick(() => {
+          this.isShow = true;
+          try {
+            this.controller.refresh();
+          } catch (error) {
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
         Web({ src: $rawfile('index.html'), controller: this.controller })
-        .horizontalScrollBarAccess(true)
+        .horizontalScrollBarAccess(this.isShow)
       }
     }
   }
@@ -744,6 +760,11 @@ verticalScrollBarAccess(verticalScrollBar: boolean)
 
 设置是否显示纵向滚动条，包括系统默认滚动条和用户自定义滚动条。默认显示。
 
+> **说明：**
+>
+> - 通过@State变量控制纵向滚动条的隐藏/显示后，需要调用controller.refresh()生效。
+> - 通过@State变量频繁动态改变时，建议切换开关变量和Web组件一一对应。
+
 **参数：**
 
 | 参数名               | 参数类型    | 必填   | 默认值  | 参数描述         |
@@ -760,10 +781,22 @@ verticalScrollBarAccess(verticalScrollBar: boolean)
   @Component
   struct WebComponent {
     controller: web_webview.WebviewController = new web_webview.WebviewController()
+    @State isShow: boolean = false
     build() {
       Column() {
+        //通过@State变量改变纵向滚动条的隐藏/显示后，需调用this.controller.refresh()后生效
+        Button('refresh')
+        .onClick(() => {
+          this.isShow = true;
+          try {
+            this.controller.refresh();
+          } catch (error) {
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
         Web({ src: $rawfile('index.html'), controller: this.controller })
-        .verticalScrollBarAccess(true)
+        .verticalScrollBarAccess(this.isShow)
       }
     }
   }

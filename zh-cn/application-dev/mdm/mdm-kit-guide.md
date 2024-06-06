@@ -4,7 +4,7 @@
 
 设备管理应用可以提供企业设备管理与事件监听、应用管理、禁用管理、安全管理、设备设置、设备控制、设备信息获取、硬件外设管理、系统管理、网络通信管理等功能。具体功能内容可参考接口说明。
 
-设备管理应用：具备[企业设备管理扩展能力](../mdm-kit-admin.md)的应用。
+设备管理应用：具备[企业设备管理扩展能力](mdm-kit-admin.md)的应用。
 
 
 ## 开发步骤
@@ -25,7 +25,7 @@
 
 ### 创建EnterpriseAdminExtensionAbility
 
-请参阅[EnterpriseAdminExtensionAbility开发指南](./mdm-kit-admin.md)完成EnterpriseAdminExtensionAbility的创建。
+请参阅[EnterpriseAdminExtensionAbility开发指南](mdm-kit-admin.md)完成EnterpriseAdminExtensionAbility的创建。
 
 ### 声明接口所需权限
 

@@ -313,11 +313,11 @@ HiTraceId OH_HiTrace_BeginChain (const char * name, int flags )
 | 名称 | 描述 | 
 | -------- | -------- |
 | name | 跟踪业务名 | 
-| flags | 跟踪功能标志 | 
+| flags | 跟踪功能标志，见[HiTrace_Flag](#hitrace_flag)。  | 
 
 **返回：**
 
-生成的HitraceId。
+生成的HitraceId，见[HiTraceId](_hi_trace_id.md)。
 
 
 ### OH_HiTrace_ClearId()
@@ -377,7 +377,7 @@ HiTraceId OH_HiTrace_CreateSpan (void )
 
 **返回：**
 
-有效的跨度跟踪ID。否则，如果不允许创建跨度，则跟踪当前线程的ID。
+有效的跨度跟踪ID，见[HiTraceId](_hi_trace_id.md)。否则，如果不允许创建跨度，则跟踪当前线程的ID。
 
 
 ### OH_HiTrace_EnableFlag()
@@ -400,8 +400,8 @@ void OH_HiTrace_EnableFlag (const HiTraceId * id, HiTrace_Flag flag )
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| id | 需要启用标志的跟踪ID。 | 
-| flag | 跟踪ID中需要启用的指定跟踪标志。 | 
+| id | 需要启用标志的跟踪ID，见[HiTraceId](_hi_trace_id.md)。  | 
+| flag | 跟踪ID中需要启用的指定跟踪标志，见[HiTrace_Flag](#hitrace_flag)。 | 
 
 
 ### OH_HiTrace_EndChain()
@@ -476,7 +476,7 @@ uint64_t OH_HiTrace_GetChainId (const HiTraceId * id)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| id | 需要获取跟踪链ID的HiTraceId结构体。 | 
+| id | 需要获取跟踪链ID的HiTraceId结构体，见[HiTraceId](_hi_trace_id.md)。 | 
 
 **返回：**
 
@@ -500,7 +500,7 @@ int OH_HiTrace_GetFlags (const HiTraceId * id)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| id | 需要获取标志位的HiTraceId结构体。 | 
+| id | 需要获取标志位的HiTraceId结构体，见[HiTraceId](_hi_trace_id.md)。 | 
 
 **返回：**
 
@@ -512,10 +512,8 @@ HiTraceId结构体中设置的标志位。
 ```
 HiTraceId OH_HiTrace_GetId ()
 ```
-
 **描述**
-
-获取当前线程的跟踪ID，如果没有属于当前线程的跟踪ID，则返回一个无效的跟踪ID
+获取当前线程的跟踪ID，如果没有属于当前线程的跟踪ID，则返回一个无效的跟踪ID。
 
 从当前线程TLS中获取跟踪标识。
 
@@ -525,7 +523,7 @@ HiTraceId OH_HiTrace_GetId ()
 
 **返回：**
 
-当前线程的HiTraceId。如果调用线程没有HiTraceId，则返回无效的HiTraceId。
+当前线程的[HiTraceId](_hi_trace_id.md)。如果调用线程没有HiTraceId，则返回无效的HiTraceId。
 
 
 ### OH_HiTrace_GetParentSpanId()
@@ -546,7 +544,11 @@ uint64_t OH_HiTrace_GetParentSpanId (const HiTraceId * id)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| id | 需要获取父分支ID的HiTraceId结构体中。 | 
+| id | 需要获取父分支ID的HiTraceId结构体中，见[HiTraceId](_hi_trace_id.md)。 | 
+
+**返回：**
+
+HiTraceId结构体中设置的父分支ID。
 
 
 ### OH_HiTrace_GetSpanId()
@@ -567,7 +569,7 @@ uint64_t OH_HiTrace_GetSpanId (const HiTraceId * id)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| id | 需要获取分支ID的HiTraceId结构体。 | 
+| id | 需要获取分支ID的HiTraceId结构体，见[HiTraceId](_hi_trace_id.md)。 | 
 
 **返回：**
 
@@ -591,8 +593,8 @@ void OH_HiTrace_IdFromBytes (HiTraceId * id, const uint8_t * pIdArray, int len )
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| id | 需要创建的HiTraceId。 | 
-| pIdArray | 字节数组。 | 
+| id | 需要创建的[HiTraceId](_hi_trace_id.md)。  | 
+| pIdArray | 字节数组。  | 
 | len | 字节数组长度。 | 
 
 
@@ -614,8 +616,8 @@ int OH_HiTrace_IdToBytes (const HiTraceId * id, uint8_t * pIdArray, int len )
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| id | 需要转换的HiTraceId。 | 
-| pIdArray | 字节数组。 | 
+| id | 需要转换的HiTraceId，见[HiTraceId](_hi_trace_id.md)。  | 
+| pIdArray | 字节数组。  | 
 | len | 字节数组长度。 | 
 
 **返回：**
@@ -640,7 +642,7 @@ void OH_HiTrace_InitId (HiTraceId * id)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| id | 需要初始化的HiTraceId。 | 
+| id | 需要初始化的[HiTraceId](_hi_trace_id.md)。 | 
 
 
 ### OH_HiTrace_IsFlagEnabled()
@@ -663,8 +665,8 @@ HiTraceId结构体的某标志是否置位。
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| id | 需要判断的Trace id。 | 
-| flag | 需要判断的flag。 | 
+| id | 需要判断的Trace id，见[HiTraceId](_hi_trace_id.md)。  | 
+| flag | 需要判断的flag，见[HiTrace_Flag](#hitrace_flag)。  | 
 
 **返回：**
 
@@ -691,7 +693,7 @@ HiTraceId结构体是否有效。
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| id | 需要判断的Trace id。 | 
+| id | 需要判断的Trace id，见[HiTraceId](_hi_trace_id.md)。  | 
 
 **返回：**
 
@@ -716,7 +718,7 @@ void OH_HiTrace_SetChainId (HiTraceId * id, uint64_t chainId )
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| id | 需要设置跟踪链ID的HiTraceId结构体。 | 
+| id | 需要设置跟踪链ID的HiTraceId结构体，见[HiTraceId](_hi_trace_id.md)。  | 
 | chainId | 需要设置的跟踪链ID。 | 
 
 
@@ -738,8 +740,8 @@ void OH_HiTrace_SetFlags (HiTraceId * id, int flags )
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| id | 需要设置跟踪标志位的HiTraceId结构体。 | 
-| flags | 跟踪ID中需要设置的指定跟踪标志。 | 
+| id | 需要设置跟踪标志位的HiTraceId结构体，见[HiTraceId](_hi_trace_id.md)。  | 
+| flags | 跟踪ID中需要设置的指定跟踪标志，见[HiTrace_Flag](#hitrace_flag)。 | 
 
 
 ### OH_HiTrace_SetId()
@@ -762,7 +764,7 @@ void OH_HiTrace_SetId (const HiTraceId * id)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| id | 将id设置为当前线程的跟踪id。 | 
+| id | 将id设置为当前线程的跟踪id，见[HiTraceId](_hi_trace_id.md)。 | 
 
 
 ### OH_HiTrace_SetParentSpanId()
@@ -783,7 +785,7 @@ void OH_HiTrace_SetParentSpanId (HiTraceId * id, uint64_t parentSpanId )
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| id | 需要设置父分支ID的HiTraceId结构体中。 | 
+| id | 需要设置父分支ID的HiTraceId结构体中，见[HiTraceId](_hi_trace_id.md)。  | 
 | parentSpanId | 需要设置的父分支ID。 | 
 
 
@@ -805,7 +807,7 @@ void OH_HiTrace_SetSpanId (HiTraceId * id, uint64_t spanId )
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| id | 需要设置分支ID的HiTraceId结构体。 | 
+| id | 需要设置分支ID的HiTraceId结构体。  | 
 | spanId | 需要设置的分支ID。 | 
 
 
@@ -872,9 +874,9 @@ void OH_HiTrace_Tracepoint (HiTrace_Communication_Mode mode, HiTrace_Tracepoint_
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| mode | 跟踪通信模式。 | 
-| type | 跟踪信息类型。 | 
-| id | 需要打印的跟踪ID。 | 
+| mode | 跟踪通信模式，见[HiTrace_Communication_Mode](#hitrace_communication_mode)。  | 
+| type | 跟踪信息类型，见[HiTrace_Tracepoint_Type](#hitrace_tracepoint_type)。  | 
+| id | 需要打印的跟踪ID，见[HiTraceId](_hi_trace_id.md)。  | 
 | fmt | 需要打印的自定义信息。 | 
 
 
