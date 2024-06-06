@@ -60,7 +60,7 @@ TipsDialog({controller: CustomDialogController, imageRes: Resource, imageSize?: 
 
 SelectDialog({controller: CustomDialogController, title: ResourceStr, content?: ResourceStr, selectedIndex?: number, confirm?: ButtonOptions, radioContent: Array&lt;SheetInfo&gt;})
 
-选择类弹出框，弹框中以列表或网格的形式提供可选的的内容。
+选择类弹出框，弹框中以列表或网格的形式提供可选的内容。
 
 **装饰器类型：**\@CustomDialog
 
