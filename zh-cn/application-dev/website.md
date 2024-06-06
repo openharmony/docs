@@ -663,9 +663,11 @@
       - USB服务
         - [USB服务开发概述](basic-services/usb/usb-overview.md)
         - [USB服务开发指导](basic-services/usb/usb-guidelines.md)
+    <!--Del-->
     - 升级服务
       - [示例服务器开发概述](basic-services/update/sample-server-overview.md)
       - [示例服务器开发指导](basic-services/update/sample-server-guidelines.md)
+    <!--DelEnd-->
     - 剪贴板服务
       - [使用剪贴板的延迟复制粘贴功能](basic-services/pasteboard/pasteboard-time-lapse-copy-and-paste.md)
     - 上传下载
@@ -2630,7 +2632,9 @@
       - [系统参数错误码](reference/apis-basic-services-kit/errorcode-system-parameterV9.md)
       - [系统电源管理错误码](reference/apis-basic-services-kit/errorcode-power.md)
       - [帐号管理错误码](reference/apis-basic-services-kit/errorcode-account.md)
+       <!--Del-->
       - [升级错误码](reference/apis-basic-services-kit/errorcode-update.md)
+       <!--DelEnd-->
       - [锁屏服务错误码](reference/apis-basic-services-kit/errorcode-screenlock.md)
       - [打印服务错误码](reference/apis-basic-services-kit/errorcode-print.md)
       - [设备证明错误码](reference/apis-basic-services-kit/errorcode-deviceAttest.md)
