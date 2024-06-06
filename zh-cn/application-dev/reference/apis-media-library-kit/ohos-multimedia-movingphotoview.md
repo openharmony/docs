@@ -91,6 +91,21 @@ onStart(callback: MovingPhotoViewEventCallback)
 | -------- | ------------------------------------------------------------- | ---- | ------------------------------ |
 | callback | [MovingPhotoViewEventCallback](#movingphotovieweventcallback) | 是   | 动态照片开始播放时触发的回调。 |
 
+### onPause
+
+onPause(callback: MovingPhotoViewEventCallback)
+
+播放暂停时触发该事件。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+
+| 参数名   | 类型                                                          | 必填 | 说明                           |
+| -------- | ------------------------------------------------------------- | ---- | ------------------------------ |
+| callback | [MovingPhotoViewEventCallback](#movingphotovieweventcallback) | 是   | 动态照片播放暂停时触发的回调。 |
+
 ### onFinish
 
 onFinish(callback: MovingPhotoViewEventCallback)
