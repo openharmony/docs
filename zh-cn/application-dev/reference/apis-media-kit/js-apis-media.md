@@ -3370,12 +3370,12 @@ getAVRecorderConfig(callback: AsyncCallback\<AVRecorderConfig>): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let AVRecorderConfig: AVRecorderConfig;
+let avConfig: AVRecorderConfig;
 
 avRecorder.getAVRecorderConfig((err: BusinessError, config: AVRecorderConfig) => {
   if (err == null) {
     console.info('getAVRecorderConfig success');
-    AVRecorderConfig = config;
+    avConfig = config;
   } else {
     console.error('getAVRecorderConfig failed and error is ' + err.message);
   }
@@ -3413,11 +3413,11 @@ getAVRecorderConfig(): Promise\<AVRecorderConfig>;
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let AVRecorderConfig: AVRecorderConfig;
+let avConfig: AVRecorderConfig;
 
 avRecorder.getAVRecorderConfig().then((config: AVRecorderConfig) => {
   console.info('getAVRecorderConfig success');
-  AVRecorderConfig = config;
+  avConfig = config;
 }).catch((err: BusinessError) => {
   console.error('getAVRecorderConfig failed and catch error is ' + err.message);
 });

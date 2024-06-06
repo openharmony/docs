@@ -31,6 +31,8 @@ bindSheet(isShow: Optional\<boolean\>, builder: CustomBuilder, options?: SheetOp
 > 在非双向绑定情况下，以拖拽方式关闭半模态页面不会改变isShow参数的值。
 >
 > 为了使isShow参数值与半模态界面的状态同步，建议使用[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定isShow参数。
+>
+> 在半模态单挡位向上拖拽或是多挡位上滑换挡请况下，内容在拖拽结束或换挡结束后更新显示区域。
 ## SheetOptions
 
 继承自[BindOptions](#bindoptions)。
@@ -71,7 +73,7 @@ bindSheet(isShow: Optional\<boolean\>, builder: CustomBuilder, options?: SheetOp
 
 | 名称            | 类型                                       | 必填 | 说明                     |
 | --------------- | ------------------------------------------ | ---- | ------------------------ |
-| backgroundColor | [ResourceColor](ts-types.md#resourcecolor) | 否   | 半模态页面的背板颜色。<br />**元服务API：** 从API version 11开始，该接口支持在元服务中使用。   |
+| backgroundColor | [ResourceColor](ts-types.md#resourcecolor) | 否   | 半模态页面的背板颜色，默认为白色。<br />**元服务API：** 从API version 11开始，该接口支持在元服务中使用。   |
 | onWillAppear<sup>12+</sup>        | () => void                                 | 否   | 半模态页面显示（动画开始前）回调函数。 |
 | onAppear        | () => void                                 | 否   | 半模态页面显示（动画结束后）回调函数。<br />**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 | onWillDisappear<sup>12+</sup>     | () => void                                 | 否   | 半模态页面回退（动画开始前）回调函数。<br />**说明：**<br />不允许在onWillDisappear函数中修改状态变量，可能会导致组件行为不稳定。 |

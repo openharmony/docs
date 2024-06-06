@@ -2,7 +2,7 @@
 
 使用AVPlayer可以实现端到端播放原始媒体资源，本开发指导将以完整地播放一首音乐作为示例，向开发者讲解AVPlayer音频播放相关功能。
 
-以下指导仅介绍如何实现媒体资源播放，如果要实现后台播放或熄屏播放，需要使用[AVSession（媒体会话）](../avsession/avsession-overview.md)和[申请长时任务](../../task-management/continuous-task.md)，避免播放被系统强制中断。
+以下指导仅介绍如何实现媒体资源播放，如果要实现后台播放或熄屏播放，需要使用[AVSession（媒体会话）](../avsession/avsession-overview.md)和[申请长时任务](../../task-management/continuous-task.md)，避免播放被系统强制中断。同时，应用可参考[多音频并发](../audio/audio-playback-concurrency.md)处理音频焦点。应用应主动监听音频打断事件，根据其内容提示，做出相应的处理，避免出现应用状态与预期效果不一致的问题。
 
 
 播放的全流程包含：创建AVPlayer，设置播放资源，设置播放参数（音量/倍速/焦点模式），播放控制（播放/暂停/跳转/停止），重置，销毁资源。

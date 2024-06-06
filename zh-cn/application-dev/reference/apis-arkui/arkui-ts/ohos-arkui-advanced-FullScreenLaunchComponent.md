@@ -7,6 +7,8 @@
 > **说明：**
 >
 > 该组件从API Version 12开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>
+> 如果需要在该组件中实现一个可嵌入式运行的元服务时，必须继承自[EmbeddableUIAbility](../../apis-ability-kit/js-apis-app-ability-embeddableUIAbility.md)。若不继承自EmbeddableUIAbility，系统无法保证元服务功能正常。
 
 
 ## 导入模块

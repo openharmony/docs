@@ -25,6 +25,18 @@
 
 **起始版本**：12
 
+### ohos.permission.ACCESS_SCREEN_LOCK
+
+允许应用访问锁屏信息。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
 ### ohos.permission.SYSTEM_FLOAT_WINDOW
 
 允许应用使用悬浮窗的能力。
@@ -1215,7 +1227,7 @@
 
 **起始版本**：8
 
-### ohos.permission.ACCESS_HWBOOSTER_SERVICE
+### ohos.permission.ACCESS_BOOSTER_SERVICE
 
 允许系统服务或系统应用调用网络增强服务中的网络质量感知，网络场景预测、或网络加速等功能接口。
 
@@ -2585,6 +2597,18 @@
 
 **起始版本**：11
 
+### ohos.permission.READ_PRIVACY_PUSH_DATA
+
+允许应用读取另一个应用中的Push隐私数据。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
 ### ohos.permission.MANAGE_NEARLINK
 
 允许应用配对星闪设备，并对设备的电话簿或消息进行访问。
@@ -3094,6 +3118,18 @@
 允许系统应用调用融合搜索服务提供的本地搜索能力。
 
 **权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+### ohos.permission.INJECT_INPUT_EVENT
+
+允许系统应用注入输入事件。
+
+**权限级别**：system_core
 
 **授权方式**：system_grant
 

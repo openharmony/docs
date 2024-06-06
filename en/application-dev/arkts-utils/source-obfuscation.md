@@ -94,6 +94,10 @@ contain any rule by default. Obfuscation rules can be written to these files, or
 
 There are two types of obfuscation rules, one is [obfuscation options](#obfuscation-options) and the other is [keep options](#keep-options); the former provides multiple obfuscation rules switches such as top-level scope names, attribute names, file names, etc., and the latter provides whitelist configurations for various obfuscation abilities.  
 
+**Note**
+
+To Modify the application obfuscation rules, the new rules will take effect only after the application is fully compiled.
+
 ### Obfuscation options
 
 #### -disable-obfuscation
@@ -126,7 +130,6 @@ following:
     will not be obfuscated.
 * the property names that are specified by [keep options](#keep-options).
 * the property names in SDK API list. SDK API list is a name set which is extracted from SDK automatically by default. The cache file is systemApiCache.json, and the path is build/cache/{...}/release/obfuscation in the module directory.
-* in the Native API scenario, the APIs in the d.ts file of so library will not be obfuscated.
 * the property names that are string literals. For example, the property names "name" and "age" in the following code will not be obfuscated.
 
     ```
@@ -313,7 +316,7 @@ export class MyClass {
 }
 ```
 
-For APIs that are not declared in the d.ts file of the so library (such as `foo` below), if you want to use it in the ArkTS/TS/JS file, you need to manually keep the names of the APIs.
+For APIs of the so library (such as `foo` below), if you want to use it in the ArkTS/TS/JS file, you need to manually keep the names of the APIs.
 
 ```
 import testNapi from 'library.so'
@@ -419,6 +422,7 @@ The path only supports relative paths, `./` and `../` are relative to the direct
 This option does not affect the function of file name obfuscation `-enable-filename-obfuscation`
 
 #### Wildcards supported in keep options
+
 ##### Wildcards for name categories
 
 The usage of name categories wildcards is as follows:
@@ -431,12 +435,14 @@ The usage of name categories wildcards is as follows:
 **Examples**：
 
 Retains all property names starting with 'a':
+
 ```
 -keep-property-name
 a*
 ```
 
 Retains all single-character property names:
+
 ```
 -keep-property-name
 ?
@@ -449,9 +455,7 @@ Retains all property names:
 *
 ```
 
-
 ##### Wildcards for path categories
-
 
 The usage of path categories wildcards is as follows:
 
@@ -465,12 +469,14 @@ The usage of path categories wildcards is as follows:
 **Examples**：
 
 Indicates that the c.ets files in all folders in ../a/b/ (excluding subfolders) will not be obfuscated:
+
 ```
 -keep
 ../a/b/*/c.ets
 ```
 
 Indicates that the c.ets files in all folders in ../a/b/ (including subfolders) will not be obfuscated:
+
 ```
 -keep
 ../a/b/**/c.ets
@@ -496,6 +502,7 @@ Indicates that all files will not be obfuscated:
 (1)The above options do not support configuring wildcards '*', '?', '!' for other meanings.
 
 For example:
+
 ```
 class A {
   '*'= 1

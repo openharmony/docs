@@ -109,7 +109,7 @@ foo(arr);
 
 ### 6. 避免使用可选参数
 
-函数的可选参数表示参数可能为`undefined`，在函数内部使用改参数时，需要进行非空值的判断，造成额外的开销。
+函数的可选参数表示参数可能为`undefined`，在函数内部使用该参数时，需要进行非空值的判断，造成额外的开销。
 
 ``` TypeScript
 function add(left?: number, right?: number): number | undefined {

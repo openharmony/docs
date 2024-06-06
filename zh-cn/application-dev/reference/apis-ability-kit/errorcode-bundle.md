@@ -152,7 +152,7 @@ Failed to install the HAP because the HAP signature fails to be verified.
 1. 确认hap包是否签名成功。
 2. 确认hap包的签名证书是从应用市场申请。
 3. 确认多个hap包签名时使用的证书相同。
-4. 确认升级的ha包p签名证书与已安装的hap包相同。
+4. 确认升级的hap包签名证书与已安装的hap包相同。
 
 ## 17700012 安装包路径无效或者文件过大导致应用安装失败
 
@@ -543,7 +543,7 @@ The specified bundle is a shared bundle which cannot be uninstalled.
 2. 通过uninstall接口卸载应用时，bundleName传入的是应用间共享库的包名。
 
 **处理步骤**<br/>
-1. 通过-s参数指定卸载的应用为共享库应用。
+1. 通过-n参数指定卸载的应用为共享库应用。
 2. 通过UninstallParam参数的bundleName及versionCode指定卸载的共享库的包名及版本。
 
 ## 17700041 企业设备管理不允许安装该应用
@@ -675,7 +675,7 @@ Failed to install the HAP because an enterprise normal/MDM bundle cannot be inst
 1. 检查安装设备是否为企业设备。
 2. 检查设备参数const.bms.allowenterprisebundle是否为true
 
-## 17700051 应用自升级时安装的应用与调用方包名不同
+## 17700051 应用自升级时调用方的分发类型不是企业mdm
 **错误信息**<br/>
 Failed to install the HAP because the distribution type of the caller application is not enterprise_mdm.
 
