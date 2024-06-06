@@ -2,9 +2,9 @@
 
 本模块提供组件效果的一些基础能力，包括边缘像素扩展，模糊，提亮等。效果被分为Filter和VisualEffect大类，同类效果可以级联在一个效果大类的实例下。
 
-- [Filter](#Filter)：用于添加指定Filter效果到组件上。
-- [VisualEffect](#VisualEffect): 用于添加指定VisualEffect效果到组件上。
-- [BrightnessBlender](#BrightnessBlender): 提亮blender，用于将提亮效果添加到指定的控件上。
+- [Filter](#filter)：用于添加指定Filter效果到组件上。
+- [VisualEffect](#visualeffect): 用于添加指定VisualEffect效果到组件上。
+- [BrightnessBlender](#brightnessblender): 提亮blender，用于将提亮效果添加到指定的控件上。
 
 > **说明：**
 > 
@@ -29,7 +29,7 @@ createFilter(): Filter
 
 | 类型              | 说明                 |
 | ------------------| ------------------- |
-| [Filter](#Filter) | 返回Filter的头节点。 |
+| [Filter](#filter) | 返回Filter的头节点。 |
 
 ## uiEffect.createEffect
 createEffect(): VisualEffect
@@ -44,7 +44,7 @@ createEffect(): VisualEffect
 
 | 类型                          | 说明                       |
 | ----------------------------- | ------------------------- |
-| [VisualEffect](#VisualEffect) | 返回VisualEffect的头节点。 |
+| [VisualEffect](#visualeffect) | 返回VisualEffect的头节点。 |
 
 ## uiEffect.createBrightnessBlender
 createBrightnessBlender(param: BrightnessBlenderParam): BrightnessBlender
@@ -56,16 +56,16 @@ createBrightnessBlender(param: BrightnessBlenderParam): BrightnessBlender
 **参数：**
 | 参数名  | 类型                                              | 必填 | 说明                        |
 | ------ | ------------------------------------------------- | ---- | --------------------------- |
-| param  | [BrightnessBlenderParam](#BrightnessBlenderParam) | 是   | 用于BrightnessBlender的参数。 |
+| param  | [BrightnessBlenderParam](#brightnessblenderparam) | 是   | 用于BrightnessBlender的参数。 |
 
 **返回值：**
 
 | 类型                                     | 说明                     |
 | ---------------------------------------- | ----------------------- |
-| [BrightnessBlender ](#BrightnessBlender) | 返回BrightnessBlender。 |
+| [BrightnessBlender ](#brightnessblender) | 返回BrightnessBlender。 |
 
 ## Filter
-Filter效果类，用于将相应的效果添加到指定的控件上。在调用Filter的方法前，需要先通过[createFilter](#uiEffectcreateFilter)创建一个Filter实例。
+Filter效果类，用于将相应的效果添加到指定的控件上。在调用Filter的方法前，需要先通过[createFilter](#uieffectcreatefilter)创建一个Filter实例。
 
 ### pixelStretch
 pixelStretch(stretchSizes: Array<number>, tileMode: TileMode): Filter
@@ -78,13 +78,13 @@ pixelStretch(stretchSizes: Array<number>, tileMode: TileMode): Filter
 | 参数名         | 类型                  | 必填 | 说明                       |
 | ------------- | --------------------- | ---- | ------------------------- |
 | stretchSizes  | Array<number>         | 是   | 上下左右四个方向边缘像素扩展的百分比比例，取值范围为[-1, 1]。<br>正值表示向外扩展，上下左右四个方向分别用指定原图比例的边缘像素填充；负值表示内缩，但是最终图像大小不变。<br>注意四个方向对应的参数需统一为非正值或非负值。|
-| tileMode      | [TileMode](#TileMode) | 是   | 边缘像素扩展的像素填充模式。 |
+| tileMode      | [TileMode](#tilemode) | 是   | 边缘像素扩展的像素填充模式。 |
 
 **返回值：**
 
 | 类型              | 说明                               |
 | ----------------- | --------------------------------- |
-| [Filter](#Filter) | 返回挂载了边缘像素扩展效果的Filter。 |
+| [Filter](#filter) | 返回挂载了边缘像素扩展效果的Filter。 |
 
 ### blur
 blur(blurRadius: number): Filter
@@ -102,10 +102,10 @@ blur(blurRadius: number): Filter
 
 | 类型               | 说明                       |
 | ----------------- | -------------------------- |
-| [Filter](#Filter) | 返回挂载了模糊效果的Filter。 |
+| [Filter](#filter) | 返回挂载了模糊效果的Filter。 |
 
 ### TileMode
-[pixelStretch](#pixelStretch)的平铺模式枚举。
+[pixelStretch](#pixelstretch)的平铺模式枚举。
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
@@ -117,7 +117,7 @@ blur(blurRadius: number): Filter
 | DECAL  | 3 | 透明 |
 
 ## VisualEffect
-VisualEffect效果类，用于将相应的效果添加到指定的控件上。在调用VisualEffect的方法前，需要先通过[createEffect](#uiEffectcreateEffect)创建一个VisualEffect实例。
+VisualEffect效果类，用于将相应的效果添加到指定的控件上。在调用VisualEffect的方法前，需要先通过[createEffect](#uieffectcreateeffect)创建一个VisualEffect实例。
 
 ### backgroundColorBlender
 backgroundColorBlender(blender: BrightnessBlender): VisualEffect
@@ -135,10 +135,10 @@ backgroundColorBlender(blender: BrightnessBlender): VisualEffect
 
 | 类型                          | 说明                                               |
 | ----------------------------- | ------------------------------------------------- |
-| [VisualEffect](#VisualEffect) | 返回添加了backgroundColorEffect效果的VisualEffect。 |
+| [VisualEffect](#visualeffect) | 返回添加了backgroundColorEffect效果的VisualEffect。 |
 
 ## BrightnessBlender
-提亮blender，用于将提亮效果添加到指定的控件上。在调用BrightnessBlender前，需要先通过[createBrightnessBlender](#uiEffectcreateBrightnessBlender)创建一个BrightnessBlender实例。
+提亮blender，用于将提亮效果添加到指定的控件上。在调用BrightnessBlender前，需要先通过[createBrightnessBlender](#uieffectcreatebrightnessblender)创建一个BrightnessBlender实例。
 
 ### BrightnessBlenderParam
 BrightnessBlender参数列表
