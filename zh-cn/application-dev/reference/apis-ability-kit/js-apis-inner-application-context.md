@@ -30,7 +30,7 @@ import common from '@ohos.app.ability.common';
 | databaseDir         | string | 否    | 是    | 数据库目录。                                                           |
 | preferencesDir      | string | 否    | 是    | preferences目录。                                                   |
 | bundleCodeDir       | string | 否    | 是    | 安装包目录。不能拼接路径访问资源文件，请使用[资源管理接口](../apis-localization-kit/js-apis-resource-manager.md)访问资源。 |
-| distributedFilesDir | string | 是    | 是    | 分布式文件目录。                                                         |
+| distributedFilesDir | string | 否    | 是    | 分布式文件目录。                                                         |
 | eventHub            | [EventHub](js-apis-inner-application-eventHub.md) | 否    | 是    | 事件中心，提供订阅、取消订阅、触发事件对象。                                           |
 | area                | contextConstant.[AreaMode](js-apis-app-ability-contextConstant.md) | 否    | 是    | 文件分区信息。                                                          |
 
