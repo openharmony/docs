@@ -571,6 +571,22 @@ lineBreakStrategy(value: LineBreakStrategy)
 | ------ | --------------------------------------------- | ---- | --------------------------------------------- |
 | value  | [LineBreakStrategy](ts-appendix-enums.md#linebreakstrategy12) | 否   | 文本的折行规则。 <br />默认值：LineBreakStrategy.GREEDY |
 
+### textSelectable<sup>12+</sup>
+
+textSelectable(value: TextSelectableMode)
+
+设置是否支持文本可选择、可获焦以及Touch后能否获取焦点。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                          | 必填 | 说明                                          |
+| ------ | --------------------------------------------- | ---- | --------------------------------------------- |
+| value  | [TextSelectableMode](ts-appendix-enums.md#textselectablemode12) | 否   | 文本是否支持可选择、可获焦。 <br />默认值：TextSelectableMode.SELECTABEL_UNFOCUSABLE |
+
 ## TextDataDetectorConfig<sup>11+</sup>对象说明
 
 **元服务API：** 从API version 12开始，该接口支持在元服务中使用。
@@ -1467,3 +1483,32 @@ export struct TextMessageClick {
 ```
 
 ![textLayoutManager](figures/textLayoutManager.gif)
+
+### 示例13
+textSelectable使用示例，展示了设置TextSelectMode.SELECTABLE_FOCUSABEL属性时能够触发键盘框选文本功能。
+
+```ts
+@Entry
+@Component
+struct TextExample {
+@Entry
+@Component
+struct Index {
+  @State message: string = 'TextTextTextTextTextTextTextText' + 'TextTextTextTextTextTextTextTextTextTextTextTextTextTextTextText';
+  
+  build() {
+    Column() {
+      Text(this.message)
+        .width(300)
+        .height(100)
+        .maxLines(5)
+        .fontColor(Color.Black)
+        .copyOption(CopyOptions.InApp)
+        .selection(3, 8)
+        .textSelectable(TextSelectableMode.SELECTABLE_FOCUSABLE)
+    }.width('100%').margin({ top: 100 })
+  }
+}
+```
+
+![textTextSelectableMode](figures/textTextSelectableMode.gif)
