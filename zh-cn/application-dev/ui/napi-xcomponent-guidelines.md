@@ -2,7 +2,7 @@
 
 ## 场景介绍
 
-Native XComponent是XComponent组件提供在Native层的实例，可作为JS层和Native层XComponent绑定的桥梁。XComponent所提供的的NDK接口都依赖于该实例。接口能力包括获取Native Window实例、获取XComponent的布局/事件信息、注册XComponent的生命周期回调、注册XComponent的触摸、鼠标、按键等事件回调。针对Native XComponent，主要的开发场景如下：
+Native XComponent是XComponent组件提供在Native层的实例，可作为JS层和Native层XComponent绑定的桥梁。XComponent所提供的NDK接口都依赖于该实例。接口能力包括获取Native Window实例、获取XComponent的布局/事件信息、注册XComponent的生命周期回调、注册XComponent的触摸、鼠标、按键等事件回调。针对Native XComponent，主要的开发场景如下：
 
 - 利用Native XComponent提供的接口注册XComponent的生命周期和事件回调。
 - 在这些回调中进行初始化环境、获取当前状态、响应各类事件的开发。
