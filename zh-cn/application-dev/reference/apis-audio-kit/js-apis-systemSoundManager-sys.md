@@ -13,6 +13,17 @@
 import systemSoundManager from '@ohos.multimedia.systemSoundManager';
 ```
 
+## 常量
+
+**系统能力：** SystemCapability.Multimedia.SystemSound.Core
+
+| 名称                                      | 值   | 说明      |
+|------------------------------------------|-----|---------|
+| TONE_CATEGORY_RINGTONE<sup>12+</sup>     | 1   | 铃声类别。   |
+| TONE_CATEGORY_TEXT_MESSAGE<sup>12+</sup> | 2   | 短信铃声类别。 |
+| TONE_CATEGORY_NOTIFICATION<sup>12+</sup> | 4   | 通知铃声类别。 |
+| TONE_CATEGORY_ALARM<sup>12+</sup>        | 8   | 闹钟铃声类别。 |
+
 ## RingtoneType
 
 枚举，铃声类型。
@@ -38,9 +49,9 @@ import systemSoundManager from '@ohos.multimedia.systemSoundManager';
 
 | 名称                            | 值   | 说明         |
 | ------------------------------- |-----|------------|
-| SYSTEM_TONE_TYPE_SIM_CARD_0           | 0   | sim卡1的短信提示音。 |
-| SYSTEM_TONE_TYPE_SIM_CARD_1            | 1   | sim卡2的短信提示音。 |
-| SYSTEM_TONE_TYPE_NOTIFICATION          | 32  | 通知提示音。     |
+| SYSTEM_TONE_TYPE_SIM_CARD_0     | 0   | sim卡1的短信提示音。 |
+| SYSTEM_TONE_TYPE_SIM_CARD_1     | 1   | sim卡2的短信提示音。 |
+| SYSTEM_TONE_TYPE_NOTIFICATION   | 32  | 通知提示音。     |
 
 
 ## ToneCustomizedType<sup>12+</sup>
@@ -51,68 +62,14 @@ import systemSoundManager from '@ohos.multimedia.systemSoundManager';
 
 **系统能力：** SystemCapability.Multimedia.SystemSound.Core
 
-| 名称                            | 值   | 说明         |
-| ------------------------------- |-----|------------|
-| PRE_INSTALLED<sup>12+</sup>           | 0   | 预安装铃声类型。 |
-| CUSTOMIZED<sup>12+</sup>            | 1   | 自定义铃声类型。 |
-
-
-## TONE_CATEGORY_RINGTONE<sup>12+</sup>
-
-常量数字，定义铃声类别。
-
-**系统接口：** 该接口为系统接口。
-
-**系统能力：** SystemCapability.Multimedia.SystemSound.Core
-
-| 类型                          | 说明         |
-| ----------------------------- | ------------ |
-| const number | 定义铃声类别。 |
-
-
-## TONE_CATEGORY_TEXT_MESSAGE<sup>12+</sup>
-
-常量数字，定义短信铃声类别。
-
-**系统接口：** 该接口为系统接口。
-
-**系统能力：** SystemCapability.Multimedia.SystemSound.Core
-
-| 类型                          | 说明         |
-| ----------------------------- | ------------ |
-| const number | 定义短信铃声类别。 |
-
-
-## TONE_CATEGORY_NOTIFICATION<sup>12+</sup>
-
-常量数字，定义通知铃声类别。
-
-**系统接口：** 该接口为系统接口。
-
-**系统能力：** SystemCapability.Multimedia.SystemSound.Core
-
-| 类型                          | 说明         |
-| ----------------------------- | ------------ |
-| const number | 定义通知铃声类别。 |
-
-
-## TONE_CATEGORY_ALARM<sup>12+</sup>
-
-常量数字，定义闹钟铃声类别。
-
-**系统接口：** 该接口为系统接口。
-
-**系统能力：** SystemCapability.Multimedia.SystemSound.Core
-
-| 类型                          | 说明         |
-| ----------------------------- | ------------ |
-| const number | 定义闹钟铃声类别。 |
-
+| 名称                         | 值   | 说明         |
+| ----------------------------|-----|------------|
+| PRE_INSTALLED<sup>12+</sup> | 0   | 预安装铃声类型。 |
+| CUSTOMIZED<sup>12+</sup>    | 1   | 自定义铃声类型。 |
 
 ## ToneAttrs<sup>12+</sup>
 
 管理铃声属性。在调用ToneAttrs<sup>12+</sup>的接口前，需要先通过[createCustomizedToneAttrs](#systemsoundmanagercreatecustomizedtoneattrs-sup-12-sup)创建实例。
-管理系统声音。在调用SystemSoundManager的接口前，需要先通过[getSystemSoundManager](#systemsoundmanagergetsystemsoundmanager)创建实例
 
 ### getTitle<sup>12+</sup>
 
@@ -120,15 +77,15 @@ getTitle(): string
 
 获取铃声标题。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.SystemSound.Core
 
 **返回值：**
 
-| 类型                  | 说明  |
-|---------------------|-----|
-| string | 标题. |
+| 类型    | 说明  |
+|--------|-----|
+| string | 标题。 |
 
 **错误码：**
 
@@ -148,15 +105,15 @@ setTitle(title: string): void
 
 设置铃声标题。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.SystemSound.Core
 
 **参数：**
 
-| 参数名   | 类型                                      | 必填 | 说明                     |
-| -------- | ---------------------------------------- | ---- | ------------------------ |
-| title  | string                                  | 是   | 铃声的标题。           |
+| 参数名  | 类型    | 必填 | 说明          |
+| -------| -------| ---- | ------------|
+| title  | string | 是   | 铃声的标题。   |
 
 **错误码：**
 
@@ -178,19 +135,19 @@ getFileName(): string
 
 获取铃声文件名。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.SystemSound.Core
 
 **返回值：**
 
-| 类型                  | 说明  |
-|---------------------|-----|
-| string | 文件名 |
+| 类型    | 说明   |
+|--------|------|
+| string | 文件名。 |
 
 **错误码：**
 
-| 错误码ID   | 错误信息              |
+| 错误码ID | 错误信息              |
 |---------| -------------------- |
 | 202     | Caller is not a system application. |
 
@@ -207,15 +164,15 @@ setFileName(name: string): void
 
 设置铃声文件名。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.SystemSound.Core
 
 **参数：**
 
-| 参数名   | 类型                                      | 必填 | 说明                     |
-| -------- | ---------------------------------------- | ---- | ------------------------ |
-| name  | string                                  | 是   | 铃声的文件名。           |
+| 参数名 | 类型    | 必填 | 说明         |
+| ------| -------|-----| ------------|
+| name  | string | 是   | 铃声的文件名。 |
 
 **错误码：**
 
@@ -237,19 +194,19 @@ getUri(): string
 
 获取铃声资源路径。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.SystemSound.Core
 
 **返回值：**
 
-| 类型                  | 说明     |
-|---------------------|--------|
-| string | uri. |
+| 类型    | 说明                                                      |
+|--------|---------------------------------------------------------|
+| string | uri（如：'/data/storage/el2/base/RingTone/alarms/test.ogg'）。 |
 
 **错误码：**
 
-| 错误码ID   | 错误信息              |
+| 错误码ID | 错误信息              |
 |---------| -------------------- |
 | 202     | Caller is not a system application. |
 
@@ -265,7 +222,7 @@ getCustomizedType(): string
 
 获取铃声自定义类型。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.SystemSound.Core
 
@@ -273,7 +230,7 @@ getCustomizedType(): string
 
 | 类型                                                   | 说明      |
 |------------------------------------------------------|---------|
-| [ToneCustomizedType](#tonecustomizedtype-sup-12-sup) | 定制铃音类型. |
+| [ToneCustomizedType](#tonecustomizedtype-sup-12-sup) | 定制铃音类型。 |
 
 **错误码：**
 
@@ -293,15 +250,15 @@ setCategory(category: number): void
 
 设置铃声类别。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.SystemSound.Core
 
 **参数：**
 
-| 参数名   | 类型                                      | 必填 | 说明                     |
-| -------- | ---------------------------------------- | ---- | ------------------------ |
-| category  | number                                  | 是   | 铃声的类别。           |
+| 参数名      | 类型      | 必填 | 说明       |
+|----------| ---------| ---- |----------|
+| category | number   | 是   | 铃声的类型常量。 |
 
 **错误码：**
 
@@ -313,7 +270,7 @@ setCategory(category: number): void
 **示例：**
 
 ```ts
-let categoryValue = systemSoundManager.TONE_CATEGORY_ALARM; // 需更改为实际所需类型
+let categoryValue = systemSoundManager.TONE_CATEGORY_ALARM; // 需更改为实际所需类型常量
 toneAttrs.setCategory(categoryValue);
 ```
 
@@ -323,15 +280,15 @@ getCategory(): string
 
 获取铃声类别。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.SystemSound.Core
 
 **返回值：**
 
-| 类型                  | 说明     |
-|---------------------|--------|
-| number | 铃声的类别. |
+| 类型    | 说明     |
+|--------|--------|
+| number | 铃声的类别。 |
 
 **错误码：**
 
@@ -347,7 +304,16 @@ toneAttrs.getCategory();
 ```
 
 ## ToneAttrsArray<sup>12+</sup>
+
 type ToneAttrsArray = Array&lt;[ToneAttrs](#toneattrs-sup-12-sup)&gt;
+
+铃音属性数组。
+
+**系统能力：** SystemCapability.Multimedia.SystemSound.Core
+
+| 类型             | 说明      |
+|----------------|---------|
+| Array&lt;[ToneAttrs](#toneattrs-sup-12-sup)&gt | 铃音属性数组。 |
 
 ## systemSoundManager.createCustomizedToneAttrs<sup>12+</sup>
 
@@ -355,7 +321,7 @@ createCustomizedToneAttrs(): ToneAttrs
 
 创建自定义铃声属性。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.SystemSound.Core
 
@@ -384,7 +350,7 @@ getSystemSoundManager(): SystemSoundManager
 
 获取系统声音管理器。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.SystemSound.Core
 
@@ -412,7 +378,7 @@ setSystemRingtoneUri(context: Context, uri: string, type: RingtoneType, callback
 > **说明：**
 > 从 API version 10 开始支持，从 API version 11 开始废弃，建议使用[setRingtoneUri](#setringtoneuri11)替代。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.SystemSound.Core
 
@@ -420,7 +386,7 @@ setSystemRingtoneUri(context: Context, uri: string, type: RingtoneType, callback
 
 | 参数名   | 类型                                      | 必填 | 说明                     |
 | -------- | ---------------------------------------- | ---- | ------------------------ |
-| context  | Context                                  | 是   | 当前应用的上下文。           |
+| context  | [Context](../apis-ability-kit/js-apis-inner-application-context.md)   | 是   | 当前应用的上下文。           |
 | uri      | string                                   | 是   | 被设置的系统铃声的uri，资源支持可参考[media.AVPlayer](../apis-media-kit/js-apis-media.md#avplayer9)。 |
 | type     | [RingtoneType](#ringtonetype)            | 是   | 被设置的系统铃声的类型。     |
 | callback | AsyncCallback&lt;void&gt;                | 是   | 回调返回设置成功或失败。     |
@@ -452,7 +418,7 @@ setSystemRingtoneUri(context: Context, uri: string, type: RingtoneType): Promise
 > **说明：**
 > 从 API version 10 开始支持，从 API version 11 开始废弃，建议使用[setRingtoneUri](#setringtoneuri11)替代。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.SystemSound.Core
 
@@ -460,7 +426,7 @@ setSystemRingtoneUri(context: Context, uri: string, type: RingtoneType): Promise
 
 | 参数名   | 类型                                      | 必填 | 说明                     |
 | -------- | ---------------------------------------- | ---- | ------------------------ |
-| context  | Context                                  | 是   | 当前应用的上下文。         |
+| context  | [Context](../apis-ability-kit/js-apis-inner-application-context.md)  | 是   | 当前应用的上下文。         |
 | uri      | string                                   | 是   | 被设置的系统铃声的uri，资源支持可参考[media.AVPlayer](../apis-media-kit/js-apis-media.md#avplayer9)。 |
 | type     | [RingtoneType](#ringtonetype)            | 是   | 被设置的系统铃声的类型。   |
 
@@ -495,17 +461,17 @@ getSystemRingtoneUri(context: Context, type: RingtoneType, callback: AsyncCallba
 > **说明：**
 > 从 API version 10 开始支持，从 API version 11 开始废弃，建议使用[getRingtoneUri](#getringtoneuri11)替代。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.SystemSound.Core
 
 **参数：**
 
-| 参数名   | 类型                                      | 必填 | 说明                     |
-| -------- | ---------------------------------------- | ---- | ------------------------ |
-| context  | Context                                  | 是   | 当前应用的上下文。         |
-| type     | [RingtoneType](#ringtonetype)            | 是   | 待获取的系统铃声的类型。    |
-| callback | AsyncCallback&lt;string&gt;              | 是   | 回调返回获取的系统铃声uri。 |
+| 参数名   | 类型                                                                    | 必填 | 说明                     |
+| -------- |-----------------------------------------------------------------------| ---- | ------------------------ |
+| context  | [Context](../apis-ability-kit/js-apis-inner-application-context.md)   | 是   | 当前应用的上下文。         |
+| type     | [RingtoneType](#ringtonetype)                                         | 是   | 待获取的系统铃声的类型。    |
+| callback | AsyncCallback&lt;string&gt;                                           | 是   | 回调返回获取的系统铃声uri。 |
 
 **示例：**
 
@@ -533,16 +499,16 @@ getSystemRingtoneUri(context: Context, type: RingtoneType): Promise&lt;string&gt
 > **说明：**
 > 从 API version 10 开始支持，从 API version 11 开始废弃，建议使用[getRingtoneUri](#getringtoneuri11)替代。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.SystemSound.Core
 
 **参数：**
 
-| 参数名   | 类型                                      | 必填 | 说明                     |
-| -------- | ---------------------------------------- | ---- | ------------------------ |
-| context  | Context                                  | 是   | 当前应用的上下文。         |
-| type     | [RingtoneType](#ringtonetype)            | 是   | 被设置的系统铃声的类型。   |
+| 参数名   | 类型                                                                   | 必填 | 说明                     |
+| -------- |----------------------------------------------------------------------| ---- | ------------------------ |
+| context  | [Context](../apis-ability-kit/js-apis-inner-application-context.md)  | 是   | 当前应用的上下文。         |
+| type     | [RingtoneType](#ringtonetype)                                        | 是   | 被设置的系统铃声的类型。   |
 
 **返回值：**
 
@@ -574,7 +540,7 @@ getSystemRingtonePlayer(context: Context, type: RingtoneType, callback: AsyncCal
 > **说明：**
 > 从 API version 10 开始支持，从 API version 11 开始废弃，建议使用[getRingtonePlayer](#getringtoneplayer11)替代。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.SystemSound.Core
 
@@ -582,7 +548,7 @@ getSystemRingtonePlayer(context: Context, type: RingtoneType, callback: AsyncCal
 
 | 参数名   | 类型                                      | 必填 | 说明                         |
 | -------- | -----------------------------------------| ---- | --------------------------- |
-| context  | Context                                  | 是   | 当前应用的上下文。            |
+| context  | [Context](../apis-ability-kit/js-apis-inner-application-context.md)  | 是   | 当前应用的上下文。            |
 | type     | [RingtoneType](#ringtonetype)            | 是   | 待获取播放器的系统铃声的类型。 |
 | callback | AsyncCallback&lt;[RingtonePlayer](js-apis-inner-multimedia-ringtonePlayer-sys.md#ringtoneplayer)&gt; | 是 | 回调返回获取的系统铃声播放器。 |
 
@@ -614,16 +580,16 @@ getSystemRingtonePlayer(context: Context, type: RingtoneType): Promise&lt;Ringto
 > **说明：**
 > 从 API version 10 开始支持，从 API version 11 开始废弃，建议使用[getRingtonePlayer](#getringtoneplayer11)替代。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.SystemSound.Core
 
 **参数：**
 
-| 参数名   | 类型                                      | 必填 | 说明                         |
-| -------- | -----------------------------------------| ---- | --------------------------- |
-| context  | Context                                  | 是   | 当前应用的上下文。            |
-| type     | [RingtoneType](#ringtonetype)            | 是   | 待获取播放器的系统铃声的类型。 |
+| 参数名   | 类型                                                                  | 必填 | 说明                         |
+| -------- |---------------------------------------------------------------------| ---- | --------------------------- |
+| context  | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | 是   | 当前应用的上下文。            |
+| type     | [RingtoneType](#ringtonetype)                                       | 是   | 待获取播放器的系统铃声的类型。 |
 
 **返回值：**
 
@@ -654,17 +620,17 @@ setRingtoneUri(context: BaseContext, uri: string, type: RingtoneType): Promise&l
 
 设置系统铃声uri，使用Promise方式异步返回结果。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.SystemSound.Core
 
 **参数：**
 
-| 参数名   | 类型                                      | 必填 | 说明                     |
-| -------- | ---------------------------------------- | ---- | ------------------------ |
-| context  | BaseContext                                  | 是   | 当前应用的上下文。         |
-| uri      | string                                   | 是   | 被设置的系统铃声的uri，资源支持可参考[media.AVPlayer](../apis-media-kit/js-apis-media.md#avplayer9)。 |
-| type     | [RingtoneType](#ringtonetype)            | 是   | 被设置的系统铃声的类型。   |
+| 参数名   | 类型                            | 必填 | 说明                     |
+| -------- |-------------------------------| ---- | ------------------------ |
+| context  | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md)            | 是   | 当前应用的上下文。         |
+| uri      | string                        | 是   | 被设置的系统铃声的uri，资源支持可参考[media.AVPlayer](../apis-media-kit/js-apis-media.md#avplayer9)。 |
+| type     | [RingtoneType](#ringtonetype) | 是   | 被设置的系统铃声的类型。   |
 
 **返回值：**
 
@@ -705,16 +671,16 @@ getRingtoneUri(context: BaseContext, type: RingtoneType): Promise&lt;string&gt;
 
 获取系统铃声uri，使用Promise方式异步返回结果。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.SystemSound.Core
 
 **参数：**
 
-| 参数名   | 类型                                      | 必填 | 说明                     |
-| -------- | ---------------------------------------- | ---- | ------------------------ |
-| context  | BaseContext                                  | 是   | 当前应用的上下文。         |
-| type     | [RingtoneType](#ringtonetype)            | 是   | 被设置的系统铃声的类型。   |
+| 参数名   | 类型                             | 必填 | 说明                     |
+| -------- | -------------------------------| ---- | ------------------------ |
+| context  | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md)| 是   | 当前应用的上下文。         |
+| type     | [RingtoneType](#ringtonetype)  | 是   | 被设置的系统铃声的类型。   |
 
 **返回值：**
 
@@ -754,16 +720,16 @@ getRingtonePlayer(context: BaseContext, type: RingtoneType): Promise&lt;Ringtone
 
 获取系统铃声播放器，使用Promise方式异步返回结果。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.SystemSound.Core
 
 **参数：**
 
-| 参数名   | 类型                                      | 必填 | 说明                         |
-| -------- | -----------------------------------------| ---- | --------------------------- |
-| context  | BaseContext                                  | 是   | 当前应用的上下文。            |
-| type     | [RingtoneType](#ringtonetype)            | 是   | 待获取播放器的系统铃声的类型。 |
+| 参数名   | 类型                              | 必填 | 说明                         |
+| -------- | --------------------------------| ---- | --------------------------- |
+| context  | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | 是   | 当前应用的上下文。            |
+| type     | [RingtoneType](#ringtonetype)   | 是   | 待获取播放器的系统铃声的类型。 |
 
 **返回值：**
 
@@ -804,7 +770,7 @@ setSystemToneUri(context: BaseContext, uri: string, type: SystemToneType): Promi
 
 设置系统提示音uri，使用Promise方式异步返回结果。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.SystemSound.Core
 
@@ -812,7 +778,7 @@ setSystemToneUri(context: BaseContext, uri: string, type: SystemToneType): Promi
 
 | 参数名   | 类型                                  | 必填 | 说明                     |
 | -------- |-------------------------------------| ---- | ------------------------ |
-| context  | BaseContext                         | 是   | 当前应用的上下文。         |
+| context  | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | 是   | 当前应用的上下文。         |
 | uri      | string                              | 是   | 被设置的系统提示音的uri，资源支持可参考[media.AVPlayer](../apis-media-kit/js-apis-media.md#avplayer9)。 |
 | type     | [SystemToneType](#systemtonetype11) | 是   | 被设置的系统提示音的类型。   |
 
@@ -855,7 +821,7 @@ getSystemToneUri(context: BaseContext, type: SystemToneType): Promise&lt;string&
 
 获取系统提示音uri，使用Promise方式异步返回结果。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.SystemSound.Core
 
@@ -863,7 +829,7 @@ getSystemToneUri(context: BaseContext, type: SystemToneType): Promise&lt;string&
 
 | 参数名   | 类型                                  | 必填 | 说明                     |
 | -------- |-------------------------------------| ---- | ------------------------ |
-| context  | BaseContext                         | 是   | 当前应用的上下文。         |
+| context  | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | 是   | 当前应用的上下文。         |
 | type     | [SystemToneType](#systemtonetype11) | 是   | 被设置的系统提示音的类型。   |
 
 **返回值：**
@@ -904,7 +870,7 @@ getSystemTonePlayer(context: BaseContext, type: SystemToneType): Promise&lt;Syst
 
 获取系统提示音播放器，使用Promise方式异步返回结果。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.SystemSound.Core
 
@@ -912,7 +878,7 @@ getSystemTonePlayer(context: BaseContext, type: SystemToneType): Promise&lt;Syst
 
 | 参数名   | 类型                                  | 必填 | 说明                         |
 | -------- |-------------------------------------| ---- | --------------------------- |
-| context  | BaseContext                         | 是   | 当前应用的上下文。            |
+| context  | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | 是   | 当前应用的上下文。            |
 | type     | [SystemToneType](#systemtonetype11) | 是   | 待获取播放器的系统提示音的类型。 |
 
 **返回值：**
@@ -949,11 +915,12 @@ systemSoundManagerInstance.getSystemTonePlayer(context, type).then((value: syste
 ```
 
 ### getDefaultRingtoneAttrs<sup>12+</sup>
+
 getDefaultRingtoneAttrs(context: BaseContext, type: RingtoneType): Promise&lt;ToneAttrs&gt;
 
 获取系统铃声的属性，使用Promise方式异步返回结果。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.SystemSound.Core
 
@@ -961,7 +928,7 @@ getDefaultRingtoneAttrs(context: BaseContext, type: RingtoneType): Promise&lt;To
 
 | 参数名   | 类型                                  | 必填 | 说明                         |
 | -------- |-------------------------------------| ---- | --------------------------- |
-| context  | BaseContext                         | 是   | 当前应用的上下文。            |
+| context  |[BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | 是   | 当前应用的上下文。            |
 | type     |[RingtoneType](#ringtonetype)        | 是   | 被设置的系统铃声的类型。  |
 
 **返回值：**
@@ -997,11 +964,12 @@ systemSoundManagerInstance.getDefaultRingtoneAttrs(context, type).then((value: s
 ```
 
 ### getRingtoneAttrList<sup>12+</sup>
+
 getRingtoneAttrList(context: BaseContext, type: RingtoneType): Promise&lt;ToneAttrsArray&gt;
 
 获取系统铃声的属性列表，使用Promise方式异步返回结果。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.SystemSound.Core
 
@@ -1009,7 +977,7 @@ getRingtoneAttrList(context: BaseContext, type: RingtoneType): Promise&lt;ToneAt
 
 | 参数名   | 类型                                  | 必填 | 说明                         |
 | -------- |-------------------------------------| ---- | --------------------------- |
-| context  | BaseContext                         | 是   | 当前应用的上下文。            |
+| context  |[BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | 是   | 当前应用的上下文。            |
 | type     |[RingtoneType](#ringtonetype)        | 是   | 被设置的系统铃声的类型。  |
 
 **返回值：**
@@ -1045,11 +1013,12 @@ systemSoundManagerInstance.getRingtoneAttrList(context, type).then((value: syste
 ```
 
 ### getDefaultSystemToneAttrs<sup>12+</sup>
+
 getDefaultSystemToneAttrs(context: BaseContext, type: SystemToneType): Promise&lt;ToneAttrs&gt;
 
 获取系统提示音的属性，使用Promise方式异步返回结果。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.SystemSound.Core
 
@@ -1057,7 +1026,7 @@ getDefaultSystemToneAttrs(context: BaseContext, type: SystemToneType): Promise&l
 
 | 参数名   | 类型                                           | 必填 | 说明                         |
 | -------- |----------------------------------------------| ---- | --------------------------- |
-| context  | BaseContext                                  | 是   | 当前应用的上下文。            |
+| context  | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | 是   | 当前应用的上下文。            |
 | type     | [SystemToneType](#systemtonetype-sup-11-sup) | 是   | 待获取播放器的系统提示音的类型。 |
 
 **返回值：**
@@ -1093,11 +1062,12 @@ systemSoundManagerInstance.getDefaultSystemToneAttrs(context, type).then((value:
 ```
 
 ### getSystemToneAttrList<sup>12+</sup>
+
 getSystemToneAttrList(context: BaseContext, type: SystemToneType): Promise&lt;ToneAttrsArray&gt;
 
 获取系统提示音的属性列表，使用Promise方式异步返回结果。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.SystemSound.Core
 
@@ -1105,7 +1075,7 @@ getSystemToneAttrList(context: BaseContext, type: SystemToneType): Promise&lt;To
 
 | 参数名   | 类型                                  | 必填 | 说明                         |
 | -------- |-------------------------------------| ---- | --------------------------- |
-| context  | BaseContext                         | 是   | 当前应用的上下文。            |
+| context  | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | 是   | 当前应用的上下文。            |
 | type     | [SystemToneType](#systemtonetype-sup-11-sup) | 是   | 待获取播放器的系统提示音的类型。  |
 
 **返回值：**
@@ -1141,24 +1111,25 @@ systemSoundManagerInstance.getSystemToneAttrList(context, type).then((value: sys
 ```
 
 ### getDefaultAlarmToneAttrs<sup>12+</sup>
+
 getDefaultAlarmToneAttrs(context: BaseContext): Promise&lt;ToneAttrs&gt;
 
 获取系统闹铃的属性，使用Promise方式异步返回结果。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.SystemSound.Core
 
 **参数：**
 
-| 参数名   | 类型                                  | 必填 | 说明                         |
-| -------- |-------------------------------------| ---- | --------------------------- |
-| context  | BaseContext                         | 是   | 当前应用的上下文。            |
+| 参数名   | 类型         | 必填 | 说明        |
+| --------|------------| ---- |-----------|
+| context | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | 是   | 当前应用的上下文。 |
 
 **返回值：**
 
-| 类型                                                                                               | 说明                  |
-|--------------------------------------------------------------------------------------------------|---------------------|
+| 类型                                                | 说明                  |
+|---------------------------------------------------|---------------------|
 | Promise&lt;[ToneAttrs](#toneattrs-sup-12-sup)&gt; | Promise回调返回系统闹铃的属性。 |
 
 **错误码：**
@@ -1187,26 +1158,27 @@ systemSoundManagerInstance.getDefaultAlarmToneAttrs(context).then((value: system
 ```
 
 ### setAlarmToneUri<sup>12+</sup>
+
 setAlarmToneUri(context: Context, uri: string): Promise&lt;void&gt;
 
 设置系统闹铃uri，使用Promise方式异步返回结果。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.SystemSound.Core
 
 **参数：**
 
-| 参数名   | 类型                                      | 必填 | 说明                                                                                  |
-| -------- | ---------------------------------------- | ---- |-------------------------------------------------------------------------------------|
-| context  | Context                                  | 是   | 当前应用的上下文。                                                                           |
-| uri      | string                                   | 是   | 被设置的系统闹铃的uri，资源支持可参考[media.AVPlayer](../apis-media-kit/js-apis-media.md#avplayer9)。 |
+| 参数名   | 类型        | 必填 | 说明   |
+| -------- | --------- | ---- |--------------------------|
+| context  | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | 是   | 当前应用的上下文。                                                                           |
+| uri      | string    | 是   | 被设置的系统闹铃的uri，资源支持可参考[media.AVPlayer](../apis-media-kit/js-apis-media.md#avplayer9)。 |
 
 **返回值：**
 
-| 类型                | 说明                            |
-| ------------------- | ------------------------------- |
-| Promise&lt;void&gt; | Promise回调返回设置成功或失败。   |
+| 类型                | 说明                   |
+| ------------------- |----------------------|
+| Promise&lt;void&gt; | Promise回调返回设置成功或失败。  |
 
 **示例：**
 
@@ -1224,19 +1196,20 @@ systemSoundManagerInstance.setAlarmToneUri(context, uri).then(() => {
 ```
 
 ### getAlarmToneUri<sup>12+</sup>
+
 getAlarmToneUri(context: Context): Promise&lt;string&gt;
 
 获取系统当前闹铃uri，使用Promise方式异步返回结果。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.SystemSound.Core
 
 **参数：**
 
-| 参数名   | 类型                                      | 必填 | 说明                                                                                  |
-| -------- | ---------------------------------------- | ---- |-------------------------------------------------------------------------------------|
-| context  | Context                                  | 是   | 当前应用的上下文。                                                                           |
+| 参数名   | 类型      | 必填 | 说明              |
+| -------- | --------| ---- |-----------------|
+| context  | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | 是   | 当前应用的上下文。  |
 
 **返回值：**
 
@@ -1259,19 +1232,20 @@ systemSoundManagerInstance.getAlarmToneUri(context).then((value: string) => {
 ```
 
 ### getAlarmToneAttrList<sup>12+</sup>
+
 getAlarmToneAttrList(context: BaseContext): Promise&lt;ToneAttrsArray&gt;
 
 获取全部闹铃属性列表，使用Promise方式异步返回结果。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.SystemSound.Core
 
 **参数：**
 
-| 参数名   | 类型                                  | 必填 | 说明                         |
-| -------- |-------------------------------------| ---- | --------------------------- |
-| context  | BaseContext                         | 是   | 当前应用的上下文。            |
+| 参数名   | 类型            | 必填 | 说明                         |
+| -------- |--------------| ---- | --------------------------- |
+| context  | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md)  | 是   | 当前应用的上下文。            |
 
 **返回值：**
 
@@ -1306,20 +1280,21 @@ systemSoundManagerInstance.getSystemToneAttrList(context, type).then((value: sys
 ```
 
 ### openAlarmTone<sup>12+</sup>
+
 openAlarmTone(context: Context, uri: string): Promise&lt;number&gt;
 
 打开闹铃文件，使用Promise方式异步返回结果。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.SystemSound.Core
 
 **参数：**
 
-| 参数名   | 类型                                      | 必填 | 说明                                                                                  |
-| -------- | ---------------------------------------- | ---- |-------------------------------------------------------------------------------------|
-| context  | Context                                  | 是   | 当前应用的上下文。                                                                           |
-| uri      | string                                   | 是   | 被设置的系统闹铃的uri，资源支持可参考[media.AVPlayer](../apis-media-kit/js-apis-media.md#avplayer9)。 |
+| 参数名   | 类型       | 必填 | 说明                                                                                  |
+| -------- | ---------| ---- |-------------------------------------------------------------------------------------|
+| context  | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | 是   | 当前应用的上下文。                                                                           |
+| uri      | string   | 是   | 被设置的系统闹铃的uri，资源支持可参考[media.AVPlayer](../apis-media-kit/js-apis-media.md#avplayer9)。 |
 
 **返回值：**
 
@@ -1354,9 +1329,10 @@ systemSoundManagerInstance.openAlarmTone(context, uri).then((value: number) => {
 ```
 
 ### close<sup>12+</sup>
+
 close(fd: number): Promise&lt;void&gt;
 
-打开闹铃文件，使用Promise方式异步返回结果。
+关闭闹铃文件，使用Promise方式异步返回结果。
 
 **系统接口：** 该接口为系统接口
 
@@ -1364,9 +1340,9 @@ close(fd: number): Promise&lt;void&gt;
 
 **参数：**
 
-| 参数名 | 类型                                      | 必填 | 说明                                                                                  |
-|-----| ---------------------------------------- | ---- |-------------------------------------------------------------------------------------|
-| fd  | number                                  | 是   | 文件描述符。                                                                           |
+| 参数名 | 类型   | 必填 | 说明          |
+|-----| --------| ---- |-------------|
+| fd  | number  | 是   | 文件描述符。   |
 
 **返回值：**
 
@@ -1400,11 +1376,12 @@ systemSoundManagerInstance.close(fd).then(() => {
 ```
 
 ### addCustomizedTone<sup>12+</sup>
+
 addCustomizedTone(context: BaseContext, toneAttr: ToneAttrs, externalUri: string): Promise&lt;string&gt;
 
-将自定义铃音添加到铃音库，使用Promise方式异步返回结果。
+通过铃音uri将自定义铃音添加到铃音库，使用Promise方式异步返回结果。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.SystemSound.Core
 
@@ -1412,7 +1389,7 @@ addCustomizedTone(context: BaseContext, toneAttr: ToneAttrs, externalUri: string
 
 | 参数名 | 类型        | 必填 | 说明            |
 |-----|-----------| ---- |---------------|
-| context  | Context   | 是   | 当前应用的上下文。     |
+| context  | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | 是   | 当前应用的上下文。     |
 | toneAttr  | ToneAttrs | 是   | 铃音属性。         |
 | externalUri  | string    | 是   | 外部存储器中的铃音uri。 |
 
@@ -1458,11 +1435,12 @@ systemSoundManagerInstance.addCustomizedTone(context, toneAttrs, path).then((val
 ```
 
 ### addCustomizedTone<sup>12+</sup>
+
 addCustomizedTone(context: BaseContext, toneAttr: ToneAttrs, fd: number, offset?: number, length?: number): Promise&lt;string&gt;
 
-将自定义铃音添加到铃音库，使用Promise方式异步返回结果。
+通过文件描述符fd将自定义铃音添加到铃音库，使用Promise方式异步返回结果。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.SystemSound.Core
 
@@ -1470,7 +1448,7 @@ addCustomizedTone(context: BaseContext, toneAttr: ToneAttrs, fd: number, offset?
 
 | 参数名 | 类型        | 必填 | 说明                                     |
 |-----|-----------|----|----------------------------------------|
-| context  | Context   | 是  | 当前应用的上下文。                              |
+| context  | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | 是  | 当前应用的上下文。                              |
 | toneAttr  | ToneAttrs | 是  | 铃音属性。                                  |
 | fd  | number    | 是  | 文件描述符。                                 |
 | offset  | number    | 否  | 读取数据的偏移量（以字节为单位）。默认情况下为0。              |
@@ -1520,11 +1498,12 @@ systemSoundManagerInstance.addCustomizedTone(context, toneAttrs, fd, offset, len
 ```
 
 ### removeCustomizedTone<sup>12+</sup>
+
 removeCustomizedTone(context: BaseContext, uri: string): Promise&lt;void&gt;
 
 从铃音库中删除自定义铃音，使用Promise方式异步返回结果。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.SystemSound.Core
 
@@ -1532,7 +1511,7 @@ removeCustomizedTone(context: BaseContext, uri: string): Promise&lt;void&gt;
 
 | 参数名 | 类型        | 必填 | 说明     |
 |-----|-----------| ---- |--------|
-| context  | Context   | 是   | 当前应用的上下文。 |
+| context  | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | 是   | 当前应用的上下文。 |
 | uri  | string    | 是   | 铃音uri。 |
 
 **返回值：**
@@ -1568,17 +1547,52 @@ systemSoundManagerInstance.removeCustomizedTone(context, uri).then(() => {
 ```
 
 ## RingtonePlayer<sup>10+</sup>
+
 type RingtonePlayer = _RingtonePlayer;
 
+系统铃音播放器对象。
+
+**系统能力：** SystemCapability.Multimedia.SystemSound.Core
+
+| 类型              |说明     |
+|-----------------|-------|
+| _RingtonePlayer | 系统铃音播放器。 |
+
 ## SystemTonePlayer<sup>11+</sup>
+
 type SystemTonePlayer = _SystemTonePlayer;
 
+系统提示音播放器对象。
+
+**系统能力：** SystemCapability.Multimedia.SystemSound.Core
+
+| 类型              | 说明        |
+|-----------------|-----------|
+| _SystemTonePlayer | 系统提示音播放器。 |
+
 ## RingtoneOptions<sup>10+</sup>
+
 type RingtoneOptions = _RingtoneOptions;
 
+系统铃音播放器配置项。
+
+**系统能力：** SystemCapability.Multimedia.SystemSound.Core
+
+| 类型              | 说明          |
+|-----------------|-------------|
+| _RingtoneOptions | 系统铃音播放器配置项。 |
+
 ## SystemToneOptions<sup>11+</sup>
+
 type SystemToneOptions = _SystemToneOptions;
 
+系统提示音播放器配置项。
+
+**系统能力：** SystemCapability.Multimedia.SystemSound.Core
+
+| 类型              | 说明            |
+|-----------------|---------------|
+| _SystemToneOptions | 系统提示音音播放器配置项。 |
 
 
 
