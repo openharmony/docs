@@ -1083,8 +1083,6 @@ writeBufferToPixelsSync(src: ArrayBuffer): void
 
 读取缓冲区中的图片数据，结果写入PixelMap并同步返回结果。
 
-**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
-
 **元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
