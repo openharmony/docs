@@ -145,7 +145,7 @@ function destroy() : void {
 | progress | number | 是 | 是 | 动画进度状态，取值区间为[0, 1]。 |
 
 ### onFinished
-onFinished(callback: CallBack\<void>): void
+onFinished(callback: Callback\<void>): void
 
 动画播放结束时执行的的回调函数，动画播放完成或者finish操作会触发这个回调。
 
@@ -183,7 +183,7 @@ onStarted(callback: Callback\<void>): void
 **参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | ---- | ---- | ---- | ---- |
-| callback | CallBack\<void> | 是 | 回调函数，返回值为空。 |
+| callback | Callback\<void> | 是 | 回调函数，返回值为空。 |
 
 动画开始时会执行传入的回调函数。
 
