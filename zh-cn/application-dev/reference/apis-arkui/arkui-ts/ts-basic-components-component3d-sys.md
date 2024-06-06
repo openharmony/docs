@@ -231,7 +231,7 @@ struct Index {
       Column() {
         Text('custom rendering')
         Component3D()
-          .shader($rawfile('assets/app/shaders'))
+          .shader($rawfile('assets/app/shaders/London.shader'))
           .shaderImageTexture($rawfile('assets/London.jpg'))
           .shaderInputBuffer(this.timeDelta)
           .customRender($rawfile('assets/app/rendernodegraphs/London.rng'), true)
