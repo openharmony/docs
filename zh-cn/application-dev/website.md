@@ -1928,6 +1928,7 @@
           - [CalendarPicker](reference/apis-arkui/arkui-ts/ts-basic-components-calendarpicker.md)
           - [Checkbox](reference/apis-arkui/arkui-ts/ts-basic-components-checkbox.md)
           - [CheckboxGroup](reference/apis-arkui/arkui-ts/ts-basic-components-checkboxgroup.md)
+          - [Component3D](reference/apis-arkui/arkui-ts/ts-basic-components-component3d.md)
           - [ContainerSpan](reference/apis-arkui/arkui-ts/ts-basic-components-containerspan.md)
           - [DataPanel](reference/apis-arkui/arkui-ts/ts-basic-components-datapanel.md)
           - [DatePicker](reference/apis-arkui/arkui-ts/ts-basic-components-datepicker.md)
@@ -1972,7 +1973,6 @@
           - [XComponent](reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)
           - [WithTheme](reference/apis-arkui/arkui-ts/ts-container-with-theme.md)
           <!--Del-->
-          - [Component3D (系统接口)](reference/apis-arkui/arkui-ts/ts-basic-components-component3d-sys.md)
           - [FormComponent (系统接口)](reference/apis-arkui/arkui-ts/ts-basic-components-formcomponent-sys.md)
           - [Image (系统接口)](reference/apis-arkui/arkui-ts/ts-basic-components-image-sys.md)
           - [MediaCachedImage (系统接口)](reference/apis-arkui/arkui-ts/ts-basic-components-mediacachedimage-sys.md)
