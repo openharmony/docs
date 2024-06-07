@@ -511,8 +511,6 @@ getAdRequestBody(adParams: AdRequestParams[], adOptions: AdOptions): Promise&lt;
 
 获取广告请求响应体，使用Promise异步回调。
 
-**元服务API：** 从API version12开始，该接口支持在元服务中使用。
-
 **系统能力：** SystemCapability.Advertising.Ads
 
 **参数：**
@@ -587,8 +585,6 @@ function getAdRequestBody(): void {
 parseAdResponse(adResponse: string, listener: MultiSlotsAdLoadListener, context: common.UIAbilityContext): void
 
 解析并处理广告响应体。
-
-**元服务API：** 从API version12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Advertising.Ads
 
