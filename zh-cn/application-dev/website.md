@@ -2357,7 +2357,8 @@
         - [用户界面外观服务错误码](reference/apis-arkui/errorcode-uiappearance.md)
         - [拖拽事件错误码](reference/apis-arkui/errorcode-drag-event.md)
         - [图像AI分析错误码](reference/apis-arkui/errorcode-image-analyzer.md)
-        - [焦点错误码](reference/apis-arkui/errorcode-focus.md)    
+        - [焦点错误码](reference/apis-arkui/errorcode-focus.md)
+        - [系统资源错误码](reference/apis-arkui/errorcode-system-resource.md)    
       - 图形图像
         - [屏幕错误码](reference/apis-arkui/errorcode-display.md)
         - [窗口错误码](reference/apis-arkui/errorcode-window.md)
