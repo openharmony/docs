@@ -6,7 +6,7 @@ The **NotificationManager** module provides notification management capabilities
 >
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
-> This topic describes only system APIs provided by the module. For details about its public APIs, see [NotificationManager](./js-apis-notificationManager.md).
+> This topic describes only system APIs provided by the module. For details about its public APIs, see [[NotificationManager](./js-apis-notificationManager.md).
 
 ## Modules to Import
 
@@ -30,7 +30,7 @@ Publishes a notification to a specified user. This API uses an asynchronous call
 
 | Name    | Type                                       | Mandatory| Description                                       |
 | -------- | ----------------------------------------- | ---- | ------------------------------------------- |
-| request  | [NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest) | Yes  | Content and related configuration of the notification to publish.|
+| request  | [NotificationRequest](js-apis-inner-notification-notificationRequest-sys.md#notificationrequest) | Yes  | Content and related configuration of the notification to publish.|
 | userId   | number                                      | Yes  | User ID.                          |
 | callback | AsyncCallback\<void\>                       | Yes  | Callback used to return the result.                          |
 
@@ -46,7 +46,7 @@ For details about the error codes, see [Notification Error Codes](./errorcode-no
 | 1600004  | Notification is not enabled.                         |
 | 1600005  | Notification slot is not enabled.                    |
 | 1600007  | The notification is not exist.                       |
-| 1600008  | The user is not exist.                               |
+| 1600008  | The user does not exist.                               |
 | 1600009  | Over max number notifications per second.            |
 | 1600012  | No memory space.                                     |
 | 1600014  | No relevant right.                                   |
@@ -100,14 +100,14 @@ Publishes a notification to a specified user. This API uses a promise to return 
 
 | Name    |  Type                                       | Mandatory| Description                                       |
 | -------- | ----------------------------------------- | ---- | ------------------------------------------- |
-| request  | [NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest) | Yes  | Content and related configuration of the notification to publish.|
+| request  | [NotificationRequest](js-apis-inner-notification-notificationRequest-sys.md#notificationrequest) | Yes  | Content and related configuration of the notification to publish.|
 | userId   | number                                      | Yes  | User ID.                          |
 
 **Return value**
 
-| Type    | Description       |
+| Type    | Description       | 
 | ------- |-----------|
-| Promise\<void\> | Promise that returns no value.|
+| Promise\<void\> | Promise that returns no value.| 
 
 **Error codes**
 
@@ -121,7 +121,7 @@ For details about the error codes, see [Notification Error Codes](./errorcode-no
 | 1600004  | Notification is not enabled.                         |
 | 1600005  | Notification slot is not enabled.                    |
 | 1600007  | The notification is not exist.                       |
-| 1600008  | The user is not exist.                               |
+| 1600008  | The user does not exist.                               |
 | 1600009  | Over max number notifications per second.            |
 | 1600012  | No memory space.                                     |
 | 1600014  | No relevant right.                                   |
@@ -225,9 +225,9 @@ Adds a notification slot. This API uses a promise to return the result.
 
 **Return value**
 
-| Type    | Description       |
+| Type    | Description       | 
 | ------- |-----------|
-| Promise\<void\> | Promise that returns no value.|
+| Promise\<void\> | Promise that returns no value.| 
 
 **Error codes**
 
@@ -330,9 +330,9 @@ Adds an array of notification slots. This API uses a promise to return the resul
 
 **Return value**
 
-| Type     | Description       |
+| Type     | Description       | 
 |---------|-----------|
-| Promise\<void\> | Promise that returns no value.|
+| Promise\<void\> | Promise that returns no value.| 
 
 **Error codes**
 
@@ -436,9 +436,9 @@ Sets whether to enable notification for a specified application. This API uses a
 
 **Return value**
 
-| Type     | Description       |
+| Type     | Description       | 
 |---------|-----------|
-| Promise\<void\> | Promise that returns no value.|
+| Promise\<void\> | Promise that returns no value.| 
 
 **Error codes**
 
@@ -520,7 +520,7 @@ notificationManager.isNotificationEnabled(bundle, isNotificationEnabledCallback)
 
 isNotificationEnabled(bundle: BundleOption): Promise\<boolean\>
 
-Checks whether notification is enabled for a specified application. This API uses a promise to return the result.
+Checks whether notification is enabled for the specified application. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -594,7 +594,7 @@ For details about the error codes, see [Notification Error Codes](./errorcode-no
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
-| 1600008  | The user is not exist.              |
+| 1600008  | The user does not exist.              |
 
 **Example**
 
@@ -647,7 +647,7 @@ For details about the error codes, see [Notification Error Codes](./errorcode-no
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
-| 1600008  | The user is not exist..                  |
+| 1600008  | The user does not exist..                  |
 
 **Example**
 
@@ -733,9 +733,9 @@ Sets whether to enable the notification badge for a specified application. This 
 
 **Return value**
 
-| Type     | Description       |
+| Type     | Description       | 
 |---------|-----------|
-| Promise\<void\> | Promise that returns no value.|
+| Promise\<void\> | Promise that returns no value.| 
 
 **Error codes**
 
@@ -883,9 +883,9 @@ Sets the notification slot for a specified application. This API uses a promise 
 
 **Return value**
 
-| Type     | Description       |
+| Type     | Description       | 
 |---------|-----------|
-| Promise\<void\> | Promise that returns no value.|
+| Promise\<void\> | Promise that returns no value.| 
 
 **Error codes**
 
@@ -989,9 +989,9 @@ Sets the notification slot for a specified application. This API uses a promise 
 
 **Return value**
 
-| Type     | Description       |
+| Type     | Description       | 
 |---------|-----------|
-| Promise\<void\> | Promise that returns no value.|
+| Promise\<void\> | Promise that returns no value.| 
 
 **Error codes**
 
@@ -1111,7 +1111,7 @@ import Base from '@ohos.base';
 
 let getSlotsByBundleCallback = (err: Base.BusinessError, data: Array<notificationManager.NotificationSlot>): void => {
     if (err) {
-        console.error(`getSlotByBundle failed, code is ${err.code}, message is ${err.message}`);
+        console.error(`getSlotsByBundle failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info(`getSlotsByBundle success, data is ${JSON.stringify(data)}`);
     }
@@ -1210,7 +1210,7 @@ import Base from '@ohos.base';
 
 let getSlotNumByBundleCallback = (err: Base.BusinessError, data: number): void => {
     if (err) {
-        console.error(`getSlotByBundle failed, code is ${err.code}, message is ${err.message}`);
+        console.error(`getSlotNumByBundle failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info(`getSlotNumByBundle success data is ${JSON.stringify(data)}`);
     }
@@ -1270,7 +1270,7 @@ let bundle: notificationManager.BundleOption = {
 notificationManager.getSlotNumByBundle(bundle).then((data: number) => {
 	console.info("getSlotNumByBundle success, data: " + JSON.stringify(data));
 }).catch((err: Base.BusinessError) => {
-    console.error(`getSlotsByBundle fail: ${JSON.stringify(err)}`);
+    console.error(`getSlotNumByBundle fail: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -1291,7 +1291,7 @@ Obtains all active notifications. This API uses an asynchronous callback to retu
 
 | Name    | Type                                                        | Mandatory| Description                |
 | -------- | ------------------------------------------------------------ | ---- | -------------------- |
-| callback | AsyncCallback\<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest)>> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest-sys.md#notificationrequest)>> | Yes  | Callback used to return the result.|
 
 **Error codes**
 
@@ -1321,7 +1321,7 @@ notificationManager.getAllActiveNotifications(getAllActiveNotificationsCallback)
 
 ## notificationManager.getAllActiveNotifications
 
-getAllActiveNotifications(): Promise\<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest)\>\>
+getAllActiveNotifications(): Promise\<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest-sys.md#notificationrequest)\>\>
 
 Obtains all active notifications. This API uses a promise to return the result.
 
@@ -1335,7 +1335,7 @@ Obtains all active notifications. This API uses a promise to return the result.
 
 | Type                                                       | Description                                                        |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest)\>\> | Promise used to return the result.|
+| Promise\<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest-sys.md#notificationrequest)\>\> | Promise used to return the result.|
 
 **Error codes**
 
@@ -1377,7 +1377,7 @@ Obtains information about the common live view that matches the specified filter
 | Name    | Type                                                        | Mandatory| Description                          |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------ |
 | filter   | [NotificationFilter](js-apis-inner-notification-notificationRequest-sys.md#notificationfilter11) | Yes  | Filter criteria for querying the common live view.|
-| callback | AsyncCallback\<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest)>> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest-sys.md#notificationrequest)>> | Yes  | Callback used to return the result.|
 
 **Error codes**
 
@@ -1439,7 +1439,7 @@ Obtains information about the common live view that matches the specified filter
 
 | Type                                                        | Description                                   |
 | ------------------------------------------------------------ | --------------------------------------- |
-| Promise\<[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest)\> | Promise used to return the result.|
+| Promise\<[NotificationRequest](js-apis-inner-notification-notificationRequest-sys.md#notificationrequest)\> | Promise used to return the result.|
 
 **Error codes**
 
@@ -1546,9 +1546,9 @@ Removes notifications under a notification group of the specified application. T
 
 **Return value**
 
-| Type     | Description       |
+| Type     | Description       | 
 |---------|-----------|
-| Promise\<void\> | Promise that returns no value.|
+| Promise\<void\> | Promise that returns no value.| 
 
 **Error codes**
 
@@ -1649,9 +1649,9 @@ Sets the DND time. This API uses a promise to return the result.
 
 **Return value**
 
-| Type     | Description       |
+| Type     | Description       | 
 |---------|-----------|
-| Promise\<void\> | Promise that returns no value.|
+| Promise\<void\> | Promise that returns no value.| 
 
 **Error codes**
 
@@ -1711,7 +1711,7 @@ For details about the error codes, see [Notification Error Codes](./errorcode-no
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
-| 1600008  | The user is not exist.              |
+| 1600008  | The user does not exist.              |
 | 1600012  | No memory space.                          |
 
 **Example**
@@ -1759,9 +1759,9 @@ Sets the DND time for a specified user. This API uses a promise to return the re
 
 **Return value**
 
-| Type     | Description       |
+| Type     | Description       | 
 |---------|-----------|
-| Promise\<void\> | Promise that returns no value.|
+| Promise\<void\> | Promise that returns no value.| 
 
 **Error codes**
 
@@ -1772,7 +1772,7 @@ For details about the error codes, see [Notification Error Codes](./errorcode-no
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
-| 1600008  | The user is not exist.              |
+| 1600008  | The user does not exist.              |
 | 1600012  | No memory space.                          |
 
 **Example**
@@ -1911,7 +1911,7 @@ For details about the error codes, see [Notification Error Codes](./errorcode-no
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
-| 1600008  | The user is not exist.              |
+| 1600008  | The user does not exist.              |
 | 1600012  | No memory space.                          |
 
 **Example**
@@ -1965,7 +1965,7 @@ For details about the error codes, see [Notification Error Codes](./errorcode-no
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
-| 1600008  | The user is not exist.              |
+| 1600008  | The user does not exist.              |
 | 1600012  | No memory space.                          |
 
 **Example**
@@ -2131,6 +2131,12 @@ Sets whether to enable distributed notification on this device. This API uses a 
 | -------- | ------------------------ | ---- | -------------------------- |
 | enable   | boolean                  | Yes  | Whether to enable distributed notification. The value **true** means to enable distributed notification, and **false** means the opposite.|
 
+**Return value**
+
+| Type             | Description       | 
+|-----------------|-----------|
+| Promise\<void\> | Promise that returns no value.| 
+
 **Error codes**
 
 For details about the error codes, see [Notification Error Codes](./errorcode-notification.md).
@@ -2151,7 +2157,7 @@ let enable: boolean = true;
 notificationManager.setDistributedEnable(enable).then(() => {
     console.info("setDistributedEnable success");
 }).catch((err: Base.BusinessError) => {
-    console.error(`requestEnableNotification fail: ${JSON.stringify(err)}`);
+    console.error(`setDistributedEnable fail: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -2226,6 +2232,12 @@ Sets whether to enable distributed notification for a specified application. Thi
 | -------- | ------------------------ | ---- | -------------------------- |
 | bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)             | Yes  | Bundle information of the application.               |
 | enable   | boolean                  | Yes  | Whether to enable distributed notification. The value **true** means to enable distributed notification, and **false** means the opposite.                 |
+
+**Return value**
+
+| Type             | Description       | 
+|-----------------|-----------|
+| Promise\<void\> | Promise that returns no value.| 
 
 **Error codes**
 
@@ -2456,7 +2468,7 @@ Publishes a notification through the reminder agent. This API uses an asynchrono
 
 | Name              | Type                                       | Mandatory| Description                                    |
 | -------------------- | ------------------------------------------- | ---- | ---------------------------------------- |
-| request              | [NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest) | Yes  | Content and related configuration of the notification to publish.|
+| request              | [NotificationRequest](js-apis-inner-notification-notificationRequest-sys.md#notificationrequest) | Yes  | Content and related configuration of the notification to publish.|
 | representativeBundle | string                                      | Yes  | Bundle name of the application whose notification function is taken over by the reminder agent.                      |
 | userId               | number                                      | Yes  | User ID.                                |
 | callback             | AsyncCallback\<void\>                        | Yes  | Callback used to return the result.                |
@@ -2472,7 +2484,7 @@ For details about the error codes, see [Notification Error Codes](./errorcode-no
 | 1600003  | Failed to connect service.                |
 | 1600004  | Notification is not enabled.              |
 | 1600005  | Notification slot is not enabled.         |
-| 1600008  | The user is not exist.                    |
+| 1600008  | The user does not exist.                    |
 | 1600009  | Over max number notifications per second. |
 | 1600012  | No memory space.                          |
 
@@ -2525,15 +2537,15 @@ Publishes a notification through the reminder agent. This API uses a promise to 
 
 | Name              | Type                                       | Mandatory| Description                                         |
 | -------------------- | ------------------------------------------- | ---- | --------------------------------------------- |
-| request              | [NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest) | Yes  | Content and related configuration of the notification to publish.|
+| request              | [NotificationRequest](js-apis-inner-notification-notificationRequest-sys.md#notificationrequest) | Yes  | Content and related configuration of the notification to publish.|
 | representativeBundle | string                                      | Yes  | Bundle name of the application whose notification function is taken over by the reminder agent.                           |
 | userId               | number                                      | Yes  | User ID.                           |
 
 **Return value**
 
-| Type             | Description       |
+| Type             | Description       | 
 |-----------------|-----------|
-| Promise\<void\> | Promise that returns no value.|
+| Promise\<void\> | Promise that returns no value.| 
 
 **Error codes**
 
@@ -2546,7 +2558,7 @@ For details about the error codes, see [Notification Error Codes](./errorcode-no
 | 1600003  | Failed to connect service.                |
 | 1600004  | Notification is not enabled.              |
 | 1600005  | Notification slot is not enabled.         |
-| 1600008  | The user is not exist.                    |
+| 1600008  | The user does not exist.                    |
 | 1600009  | Over max number notifications per second. |
 | 1600012  | No memory space.                          |
 
@@ -2597,7 +2609,7 @@ Cancels a notification published through the reminder agent. This API uses an as
 | id                   | number        | Yes  | Notification ID.                |
 | representativeBundle | string        | Yes  | Bundle name of the application whose notification function is taken over by the reminder agent.      |
 | userId               | number        | Yes  | User ID.      |
-| callback             | AsyncCallback | Yes  | Callback used to return the result.|
+| callback             | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
 
 **Error codes**
 
@@ -2609,7 +2621,7 @@ For details about the error codes, see [Notification Error Codes](./errorcode-no
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
 | 1600007  | The notification is not exist.      |
-| 1600008  | The user is not exist.              |
+| 1600008  | The user does not exist.              |
 
 **Example**
 
@@ -2653,9 +2665,9 @@ Cancels a notification published through the reminder agent. This API uses a pro
 
 **Return value**
 
-| Type             | Description       |
+| Type             | Description       | 
 |-----------------|-----------|
-| Promise\<void\> | Promise that returns no value.|
+| Promise\<void\> | Promise that returns no value.| 
 
 **Error codes**
 
@@ -2667,7 +2679,7 @@ For details about the error codes, see [Notification Error Codes](./errorcode-no
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
 | 1600007  | The notification is not exist.      |
-| 1600008  | The user is not exist.              |
+| 1600008  | The user does not exist.              |
 
 **Example**
 
@@ -2973,7 +2985,7 @@ For details about the error codes, see [Notification Error Codes](./errorcode-no
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
-| 1600008  | The user is not exist.              |
+| 1600008  | The user does not exist.              |
 
 **Example**
 
@@ -3027,7 +3039,7 @@ For details about the error codes, see [Notification Error Codes](./errorcode-no
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
-| 1600008  | The user is not exist.              |
+| 1600008  | The user does not exist.              |
 
 **Example**
 
@@ -3072,7 +3084,7 @@ For details about the error codes, see [Notification Error Codes](./errorcode-no
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
-| 1600008  | The user is not exist.              |
+| 1600008  | The user does not exist.              |
 
 **Example**
 
@@ -3124,7 +3136,7 @@ For details about the error codes, see [Notification Error Codes](./errorcode-no
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
-| 1600008  | The user is not exist.              |
+| 1600008  | The user does not exist.              |
 
 **Example**
 
@@ -3227,7 +3239,7 @@ try{
   notificationManager.on('checkNotification',{
     contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_LIVE_VIEW,
     slotType: notificationManager.SlotType.LIVE_VIEW ,
-    extraKeys: ["event"],
+    extraInfoKeys: ["event"],
   },
     async (checkInfo)=>{
       return { code: 1, message: "INVALID_PARAMETERS"};
