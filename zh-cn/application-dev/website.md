@@ -2449,6 +2449,7 @@
         - [Core](reference/apis-avcodec-kit/_core.md)
         - [VideoDecoder](reference/apis-avcodec-kit/_video_decoder.md)
         - [VideoEncoder](reference/apis-avcodec-kit/_video_encoder.md)
+        - [Multimedia_Drm](reference/apis-avcodec-kit/_multimedia___drm.md)
       - 头文件
         - [avcodec_audio_channel_layout.h](reference/apis-avcodec-kit/avcodec__audio__channel__layout_8h.md)
         - [native_audio_channel_layout.h](reference/apis-avcodec-kit/native__audio__channel__layout_8h.md)
@@ -2467,12 +2468,14 @@
         - [native_avmemory.h](reference/apis-avcodec-kit/native__avmemory_8h.md)
         - [native_avmuxer.h](reference/apis-avcodec-kit/native__avmuxer_8h.md)
         - [native_avsource.h](reference/apis-avcodec-kit/native__avsource_8h.md)
+        - [native_cencinfo.h](reference/apis-avcodec-kit/native__cencinfo_8h.md)
       - 结构体
         - [OH_AVCodecAsyncCallback](reference/apis-avcodec-kit/_o_h___a_v_codec_async_callback.md)
         - [OH_AVCodecBufferAttr](reference/apis-avcodec-kit/_o_h___a_v_codec_buffer_attr.md)
         - [OH_AVCodecCallback](reference/apis-avcodec-kit/_o_h___a_v_codec_callback.md)
         - [OH_AVDataSource](reference/apis-avcodec-kit/_o_h___a_v_data_source.md)
         - [OH_AVRange](reference/apis-avcodec-kit/_o_h___a_v_range.md)
+        - [DrmSubsample](reference/apis-avcodec-kit/_drm_subsample.md)
   - AVSession Kit API参考
     - ArkTS API
       - [@ohos.multimedia.avsession (媒体会话管理)](reference/apis-avsession-kit/js-apis-avsession.md)
