@@ -507,7 +507,7 @@ let adInteractionListener: advertising.AdInteractionListener = {
 ```
 
 ## getAdRequestBody<sup>12+</sup>  
-getAdRequestBody(adParams: AdRequestParams[], adOptions: AdOptions): Promise<string>
+getAdRequestBody(adParams: AdRequestParams[], adOptions: AdOptions): Promise&lt;string&gt;
 
 获取广告请求响应体，使用Promise异步回调。
 
