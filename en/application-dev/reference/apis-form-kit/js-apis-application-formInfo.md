@@ -100,4 +100,4 @@ Enumerates the widget parameters.
 | HEIGHT_KEY         | 'ohos.extra.param.key.form_height'   | Widget height.  |
 | TEMPORARY_KEY          | 'ohos.extra.param.key.form_temporary'   | Temporary widget.  |
 
- <!--no_check--> 
+   

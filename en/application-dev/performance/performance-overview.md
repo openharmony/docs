@@ -49,7 +49,7 @@ Users expect applications to be loading fast and highly responsive. To improve t
 
 - **Delay loading.**
   
-  Delaying loading of unnecessary resources can speed up application startup. When using container components such as [\<List>](../reference/arkui-ts/ts-container-list.md), [\<Grid>](../reference/arkui-ts/ts-container-grid.md), and [\<Swiper>](../reference/arkui-ts/ts-container-swiper.md), make sure of the provided [LazyForEach](../quick-start/arkts-rendering-control-lazyforeach.md) capability to effectively reduce the application startup time and memory usage.
+  Delaying loading of unnecessary resources can speed up application startup. When using container components such as [\<List>](../reference/apis-arkui/arkui-ts/ts-container-list.md), [\<Grid>](../reference/apis-arkui/arkui-ts/ts-container-grid.md), and [\<Swiper>](../reference/apis-arkui/arkui-ts/ts-container-swiper.md), make sure of the provided [LazyForEach](../quick-start/arkts-rendering-control-lazyforeach.md) capability to effectively reduce the application startup time and memory usage.
   
 - **Use cache.**
   
@@ -92,4 +92,4 @@ Use to identify performance issues with each phase of the launch process.
   
   Use to monitor CPU usage of the application.
 
- <!--no_check--> 
+   

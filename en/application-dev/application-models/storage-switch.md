@@ -12,4 +12,4 @@
 | [static clear(options?: ClearStorageOptions): void;](../reference/apis-arkdata/js-apis-system-storage.md#storageclear) | \@ohos.data.preferences.d.ts | [clear(callback: AsyncCallback&lt;void&gt;): void;](../reference/apis-arkdata/js-apis-data-preferences.md#clear)<br>[clear(): Promise&lt;void&gt;;](../reference/apis-arkdata/js-apis-data-preferences.md#clear-1) |
 | [static delete(options: DeleteStorageOptions): void;](../reference/apis-arkdata/js-apis-system-storage.md#storagedelete) | \@ohos.data.preferences.d.ts | [delete(key: string, callback: AsyncCallback&lt;void&gt;): void;](../reference/apis-arkdata/js-apis-data-preferences.md#delete)<br>[delete(key: string): Promise&lt;void&gt;;](../reference/apis-arkdata/js-apis-data-preferences.md#delete-1) |
 
- <!--no_check--> 
+   

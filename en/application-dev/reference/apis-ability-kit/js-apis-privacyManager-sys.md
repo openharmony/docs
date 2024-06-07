@@ -656,4 +656,4 @@ Defines the detailed permission usage information.
 | deviceId       | string                 | Yes  | No  | Device ID.                |
 | activeStatus   | [PermissionActiveStatus](#permissionactivestatus) | Yes  | No  | Permission usage status.       |
 
-<!--no_check-->
+ 

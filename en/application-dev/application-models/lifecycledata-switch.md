@@ -17,4 +17,4 @@
 | executeBatch?(ops: Array&lt;DataAbilityOperation&gt;, callback: AsyncCallback&lt;Array&lt;DataAbilityResult&gt;&gt;): void; | There is no corresponding API in the stage model.| No corresponding API is provided.|
 | call?(method: string, arg: string, extras: PacMap, callback: AsyncCallback&lt;PacMap&gt;): void; | There is no corresponding API in the stage model.| No corresponding API is provided.|
 
- <!--no_check--> 
+   

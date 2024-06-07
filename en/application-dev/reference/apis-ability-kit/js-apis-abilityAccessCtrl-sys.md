@@ -461,4 +461,4 @@ Defines detailed information about the permission grant state change.
 | tokenID        | number                    | Yes  | No  | Application token ID.|
 | permissionName | Permissions                    | Yes  | No  | Permission whose grant state changes. For details about the permissions, see the [Permissions for All Applications](../../security/AccessToken/permissions-for-all.md). |
 
-<!--no_check-->
+ 
