@@ -129,7 +129,7 @@ let config: pipWindow.PiPConfiguration = {
   contentWidth: contentWidth,
   contentHeight: contentHeight,
   controlGroups: [pipWindow.VideoPlayControlGroup.VIDEO_PREVIOUS_NEXT],
-  customUIController: nodeController, // 可选，如果需要在画中画显示内容上方展示自定义UI，可设置该参数
+  customUIController: nodeController, // 可选，如果需要在画中画显示内容上方展示自定义UI，可设置该参数。
 };
 
 let promise : Promise<pipWindow.PiPController> = pipWindow.create(config);
