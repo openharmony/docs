@@ -73,6 +73,8 @@ constructor(options?: PathShapeOptions)
 
 commands(commands: string): PathShape
 
+设置路径的绘制指令。
+
 | 参数名         | 类型                                               | 必填 | 说明                                         |
 | ----------- | -------------------------------------------------- | ---- | -------------------------------------------- |
 | commands | string | 是 | 路径的绘制指令。 |
