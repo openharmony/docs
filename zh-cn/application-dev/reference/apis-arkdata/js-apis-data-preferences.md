@@ -13,7 +13,7 @@
 ## 导入模块
 
 ```ts
-import dataPreferences from '@ohos.data.preferences';
+import { dataPreferences } from '@kit.ArkData';
 ```
 
 ## 常量
@@ -61,8 +61,8 @@ FA模型示例：
 
 <!--code_no_check_fa-->
 ```ts
-import featureAbility from '@ohos.ability.featureAbility';
-import { BusinessError } from '@ohos.base';
+import { featureAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let context = featureAbility.getContext();
 let preferences: dataPreferences.Preferences | null = null;
@@ -80,9 +80,9 @@ dataPreferences.getPreferences(context, 'myStore', (err: BusinessError, val: dat
 Stage模型示例：
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import { BusinessError } from '@ohos.base';
-import window from '@ohos.window';
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { window } from '@kit.ArkUI';
 
 let preferences: dataPreferences.Preferences | null = null;
 
@@ -139,8 +139,8 @@ FA模型示例：
 <!--code_no_check_fa-->
 ```ts
 // 获取context
-import featureAbility from '@ohos.ability.featureAbility';
-import { BusinessError } from '@ohos.base'
+import { featureAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let context = featureAbility.getContext();
 
@@ -157,9 +157,9 @@ promise.then((object: dataPreferences.Preferences) => {
 Stage模型示例：
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import { BusinessError } from '@ohos.base'
-import window from '@ohos.window';
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { window } from '@kit.ArkUI';
 
 let preferences: dataPreferences.Preferences | null = null;
 
@@ -213,8 +213,8 @@ FA模型示例：
 <!--code_no_check_fa-->
 ```ts
 // 获取context
-import featureAbility from '@ohos.ability.featureAbility';
-import { BusinessError } from '@ohos.base'
+import { featureAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let context = featureAbility.getContext();
 let preferences: dataPreferences.Preferences | null = null;
@@ -234,9 +234,9 @@ dataPreferences.getPreferences(context, options, (err: BusinessError, val: dataP
 Stage模型示例：
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import { BusinessError } from '@ohos.base'
-import window from '@ohos.window';
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { window } from '@kit.ArkUI';
 
 let preferences: dataPreferences.Preferences | null = null;
 
@@ -297,8 +297,8 @@ FA模型示例：
 <!--code_no_check_fa-->
 ```ts
 // 获取context
-import featureAbility from '@ohos.ability.featureAbility';
-import { BusinessError } from '@ohos.base'
+import { featureAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let context = featureAbility.getContext();
 
@@ -316,9 +316,9 @@ promise.then((object: dataPreferences.Preferences) => {
 Stage模型示例：
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import { BusinessError } from '@ohos.base'
-import window from '@ohos.window';
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { window } from '@kit.ArkUI';
 
 let preferences: dataPreferences.Preferences | null = null;
 
@@ -378,7 +378,7 @@ FA模型示例：
 <!--code_no_check_fa-->
 ```ts
 // 获取context
-import featureAbility from '@ohos.ability.featureAbility';
+import { featureAbility } from '@kit.AbilityKit';
 
 let context = featureAbility.getContext();
 let preferences: dataPreferences.Preferences | null = null;
@@ -390,8 +390,8 @@ preferences = dataPreferences.getPreferencesSync(context, options);
 Stage模型示例：
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import window from '@ohos.window';
+import { UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
 
 let preferences: dataPreferences.Preferences | null = null;
 
@@ -440,8 +440,8 @@ FA模型示例：
 <!--code_no_check_fa-->
 ```ts
 // 获取context
-import featureAbility from '@ohos.ability.featureAbility';
-import { BusinessError } from '@ohos.base'
+import { featureAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let context = featureAbility.getContext();
 
@@ -457,9 +457,9 @@ dataPreferences.deletePreferences(context, 'myStore', (err: BusinessError) => {
 Stage模型示例：
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import { BusinessError } from '@ohos.base'
-import window from '@ohos.window';
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { window } from '@kit.ArkUI';
 
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
@@ -516,8 +516,8 @@ FA模型示例：
 <!--code_no_check_fa-->
 ```ts
 // 获取context
-import featureAbility from '@ohos.ability.featureAbility';
-import { BusinessError } from '@ohos.base'
+import { featureAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let context = featureAbility.getContext();
 
@@ -532,9 +532,9 @@ promise.then(() => {
 Stage模型示例：
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import { BusinessError } from '@ohos.base'
-import window from '@ohos.window';
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { window } from '@kit.ArkUI';
 
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
@@ -588,8 +588,8 @@ FA模型示例：
 <!--code_no_check_fa-->
 ```ts
 // 获取context
-import featureAbility from '@ohos.ability.featureAbility';
-import { BusinessError } from '@ohos.base'
+import { featureAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let context = featureAbility.getContext();
 
@@ -606,9 +606,9 @@ dataPreferences.deletePreferences(context, options, (err: BusinessError) => {
 Stage模型示例：
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import { BusinessError } from '@ohos.base'
-import window from '@ohos.window';
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { window } from '@kit.ArkUI';
 
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
@@ -670,8 +670,8 @@ FA模型示例：
 <!--code_no_check_fa-->
 ```ts
 // 获取context
-import featureAbility from '@ohos.ability.featureAbility';
-import { BusinessError } from '@ohos.base'
+import { featureAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let context = featureAbility.getContext();
 
@@ -687,9 +687,9 @@ promise.then(() => {
 Stage模型示例：
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import { BusinessError } from '@ohos.base'
-import window from '@ohos.window';
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { window } from '@kit.ArkUI';
 
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
@@ -743,8 +743,8 @@ FA模型示例：
 <!--code_no_check_fa-->
 ```ts
 // 获取context
-import featureAbility from '@ohos.ability.featureAbility';
-import { BusinessError } from '@ohos.base'
+import { featureAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let context = featureAbility.getContext();
 dataPreferences.removePreferencesFromCache(context, 'myStore', (err: BusinessError) => {
@@ -759,9 +759,9 @@ dataPreferences.removePreferencesFromCache(context, 'myStore', (err: BusinessErr
 Stage模型示例：
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import { BusinessError } from '@ohos.base'
-import window from '@ohos.window';
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { window } from '@kit.ArkUI';
 
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
@@ -819,8 +819,8 @@ FA模型示例：
 <!--code_no_check_fa-->
 ```ts
 // 获取context
-import featureAbility from '@ohos.ability.featureAbility';
-import { BusinessError } from '@ohos.base'
+import { featureAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let context = featureAbility.getContext();
 let promise = dataPreferences.removePreferencesFromCache(context, 'myStore');
@@ -834,9 +834,9 @@ promise.then(() => {
 Stage模型示例：
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import { BusinessError } from '@ohos.base'
-import window from '@ohos.window';
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { window } from '@kit.ArkUI';
 
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
@@ -887,7 +887,7 @@ FA模型示例：
 <!--code_no_check_fa-->
 ```ts
 // 获取context
-import featureAbility from '@ohos.ability.featureAbility';
+import { featureAbility } from '@kit.AbilityKit';
 let context = featureAbility.getContext();
 dataPreferences.removePreferencesFromCacheSync(context, 'myStore');
 ```
@@ -895,8 +895,8 @@ dataPreferences.removePreferencesFromCacheSync(context, 'myStore');
 Stage模型示例：
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import window from '@ohos.window';
+import { UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
 
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
@@ -946,8 +946,8 @@ FA模型示例：
 <!--code_no_check_fa-->
 ```ts
 // 获取context
-import featureAbility from '@ohos.ability.featureAbility';
-import { BusinessError } from '@ohos.base'
+import { featureAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let context = featureAbility.getContext();
 let options: dataPreferences.Options = { name: 'myStore' };
@@ -963,9 +963,9 @@ dataPreferences.removePreferencesFromCache(context, options, (err: BusinessError
 Stage模型示例：
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import { BusinessError } from '@ohos.base'
-import window from '@ohos.window';
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { window } from '@kit.ArkUI';
 
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
@@ -1027,8 +1027,8 @@ FA模型示例：
 <!--code_no_check_fa-->
 ```ts
 // 获取context
-import featureAbility from '@ohos.ability.featureAbility';
-import { BusinessError } from '@ohos.base'
+import { featureAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let context = featureAbility.getContext();
 let options: dataPreferences.Options = { name: 'myStore' };
@@ -1043,9 +1043,9 @@ promise.then(() => {
 Stage模型示例：
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import { BusinessError } from '@ohos.base'
-import window from '@ohos.window';
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { window } from '@kit.ArkUI';
 
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
@@ -1100,7 +1100,7 @@ FA模型示例：
 <!--code_no_check_fa-->
 ```ts
 // 获取context
-import featureAbility from '@ohos.ability.featureAbility';
+import { featureAbility } from '@kit.AbilityKit';
 let context = featureAbility.getContext();
 let options: dataPreferences.Options = { name: 'myStore' };
 dataPreferences.removePreferencesFromCacheSync(context, options);
@@ -1109,8 +1109,8 @@ dataPreferences.removePreferencesFromCacheSync(context, options);
 Stage模型示例：
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import window from '@ohos.window';
+import { UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
 
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
@@ -1171,7 +1171,7 @@ get(key: string, defValue: ValueType, callback: AsyncCallback&lt;ValueType&gt;):
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 preferences.get('startup', 'default', (err: BusinessError, val: dataPreferences.ValueType) => {
   if (err) {
@@ -1217,7 +1217,7 @@ get(key: string, defValue: ValueType): Promise&lt;ValueType&gt;
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let promise = preferences.get('startup', 'default');
 promise.then((data: dataPreferences.ValueType) => {
@@ -1293,7 +1293,7 @@ getAll(callback: AsyncCallback&lt;Object&gt;): void;
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // 由于ArkTS中无Object.keys，且无法使用for..in...
 // 若报ArkTS问题，请将此方法单独抽离至一个ts文件中并暴露，在需要用到的ets文件中引入使用
@@ -1341,7 +1341,7 @@ getAll(): Promise&lt;Object&gt;
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // 由于ArkTS中无Object.keys，且无法使用for..in...
 // 若报ArkTS问题，请将此方法单独抽离至一个ts文件中并暴露，在需要用到的ets文件中引入使用
@@ -1434,7 +1434,7 @@ put(key: string, value: ValueType, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 preferences.put('startup', 'auto', (err: BusinessError) => {
   if (err) {
@@ -1485,7 +1485,7 @@ put(key: string, value: ValueType): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let promise = preferences.put('startup', 'auto');
 promise.then(() => {
@@ -1562,7 +1562,7 @@ has(key: string, callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 preferences.has('startup', (err: BusinessError, val: boolean) => {
   if (err) {
@@ -1612,7 +1612,7 @@ has(key: string): Promise&lt;boolean&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let promise = preferences.has('startup');
 promise.then((val: boolean) => {
@@ -1699,7 +1699,7 @@ delete(key: string, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 preferences.delete('startup', (err: BusinessError) => {
   if (err) {
@@ -1745,7 +1745,7 @@ delete(key: string): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let promise = preferences.delete('startup');
 promise.then(() => {
@@ -1816,7 +1816,7 @@ flush(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 preferences.flush((err: BusinessError) => {
   if (err) {
@@ -1855,7 +1855,7 @@ flush(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let promise = preferences.flush();
 promise.then(() => {
@@ -1894,7 +1894,7 @@ clear(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 preferences.clear((err: BusinessError) =>{
   if (err) {
@@ -1933,7 +1933,7 @@ clear(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let promise = preferences.clear();
 promise.then(() => {
@@ -1990,7 +1990,7 @@ on(type: 'change', callback: Callback&lt;string&gt;): void
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let observer = (key: string) => {
   console.info("The key " + key + " changed.");
@@ -2036,7 +2036,7 @@ on(type: 'multiProcessChange', callback: Callback&lt;string&gt;): void
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let observer = (key: string) => {
   console.info("The key " + key + " changed.");
@@ -2082,7 +2082,7 @@ on(type: 'dataChange', keys: Array&lt;string&gt;,  callback: Callback&lt;Record&
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let observer = (data: Record<string, dataPreferences.ValueType>) => {
   for (const keyValue of Object.entries(data)) {
@@ -2132,7 +2132,7 @@ off(type: 'change', callback?: Callback&lt;string&gt;): void
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let observer = (key: string) => {
   console.info("The key " + key + " changed.");
@@ -2178,7 +2178,7 @@ off(type: 'multiProcessChange', callback?: Callback&lt;string&gt;): void
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let observer = (key: string) => {
   console.info("The key " + key + " changed.");
@@ -2224,7 +2224,7 @@ off(type: 'dataChange', keys: Array&lt;string&gt;,  callback?: Callback&lt;Recor
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let observer = (data: Record<string, dataPreferences.ValueType>) => {
   for (const keyValue of Object.entries(data)) {

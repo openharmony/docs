@@ -45,10 +45,10 @@
 
 ## 开发步骤
 
-1. 导入`@ohos.data.preferences`模块。
+1. 导入`@kit.ArkData`模块。
    
    ```ts
-   import dataPreferences from '@ohos.data.preferences';
+   import { dataPreferences } from '@kit.ArkData';
    ```
 
 2. 获取Preferences实例。
@@ -57,9 +57,9 @@
 
 
    ```ts
-   import UIAbility from '@ohos.app.ability.UIAbility';
-   import { BusinessError } from '@ohos.base';
-   import window from '@ohos.window';
+   import { UIAbility } from '@kit.AbilityKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
+   import { window } from '@kit.ArkUI';
 
    let preferences: dataPreferences.Preferences | null = null;
 
@@ -76,8 +76,8 @@
 
    ```ts
    // 获取context
-   import featureAbility from '@ohos.ability.featureAbility';
-   import { BusinessError } from '@ohos.base';
+   import { featureAbility } from '@kit.AbilityKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    
    let context = featureAbility.getContext();
    let options: dataPreferences.Options =  { name: 'myStore' };
@@ -95,7 +95,7 @@
    示例代码如下所示：
 
    ```ts
-   import util from '@ohos.util';
+   import { util } from '@kit.ArkTS';
    if (preferences.hasSync('startup')) {
      console.info("The key 'startup' is contained.");
    } else {
@@ -115,7 +115,7 @@
    示例代码如下所示：
 
    ```ts
-   import util from '@ohos.util';
+   import { util } from '@kit.ArkTS';
    let val = preferences.getSync('startup', 'default');
    console.info("The 'startup' value is " + val);
    // 当获取的值为带有特殊字符的字符串时，需要将获取到的Uint8Array转换为字符串
