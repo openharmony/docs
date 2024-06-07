@@ -15447,8 +15447,8 @@ webPageSnapshot(info: SnapshotInfo, callback: AsyncCallback\<SnapshotResult>): v
 
 | 参数名       | 类型           | 必填  | 说明                      |
 | ----------- | ------------- | ---- | ------------------------ |
-| info        | [SnapshotInfo](#snapshotInfo)| 是   | 全量绘制结果入参。 |
-| callback        | [SnapshotResult](#snapshotResult)| 是   | 全量绘制回调结果。 
+| info        | [SnapshotInfo](#snapshotinfo)| 是   | 全量绘制结果入参。 |
+| callback        | [SnapshotResult](#snapshotresult)| 是   | 全量绘制回调结果。 
 
 **错误码：**
 
