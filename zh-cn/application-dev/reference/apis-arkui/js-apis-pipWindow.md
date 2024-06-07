@@ -69,7 +69,7 @@ create(config: PiPConfiguration): Promise&lt;PiPController&gt;
 ```ts
 import pipWindow from '@ohos.PiPWindow';
 import { BusinessError } from '@ohos.base';
-import { NodeController } from '@ohos.arkui.node';
+import { BuilderNode, FrameNode, NodeController, Size } from '@ohos.arkui.node';
 
 class Params {
   text: string = '';
@@ -129,7 +129,7 @@ let config: pipWindow.PiPConfiguration = {
   contentWidth: contentWidth,
   contentHeight: contentHeight,
   controlGroups: [pipWindow.VideoPlayControlGroup.VIDEO_PREVIOUS_NEXT],
-  customUIController: nodeController,
+  customUIController: nodeController, // 可选，如果需要在画中画显示内容上方展示自定义UI，可设置该参数
 };
 
 let promise : Promise<pipWindow.PiPController> = pipWindow.create(config);
