@@ -25,8 +25,8 @@
 1. 导入文件和媒体库依赖。
    
    ```ts
-   import photoAccessHelper from '@ohos.file.photoAccessHelper';
-   import fs from '@ohos.file.fs';
+   import { photoAccessHelper } from '@kit.MediaLibraryKit';
+   import { fileIo } from '@kit.CoreFileKit';
    ```
 
 2. 设置图片资源，并添加保存控件。
@@ -36,11 +36,11 @@
    当前示例使用默认参数。具体请参见[SaveButton控件](../../reference/apis-arkui/arkui-ts/ts-security-components-savebutton.md)。此外，所有安全控件都继承[安全控件通用属性](../../reference/apis-arkui/arkui-ts/ts-securitycomponent-attributes.md)，可用于定制样式。
    
    ```ts
-   import photoAccessHelper from '@ohos.file.photoAccessHelper';
-   import fs from '@ohos.file.fs';
-   import common from '@ohos.app.ability.common';
-   import promptAction from '@ohos.promptAction';
-   import { BusinessError } from '@ohos.base';
+   import { photoAccessHelper } from '@kit.MediaLibraryKit';
+   import { fileIo } from '@kit.CoreFileKit';
+   import { common } from '@kit.AbilityKit';
+   import { promptAction } from '@kit.ArkUI';
+   import { BusinessError } from '@kit.BasicServicesKit';
    
    async function savePhotoToGallery(context: common.UIAbilityContext) {
      let helper = photoAccessHelper.getPhotoAccessHelper(context);
@@ -48,13 +48,13 @@
        // onClick触发后5秒内通过createAsset接口创建图片文件，5秒后createAsset权限收回。
        let uri = await helper.createAsset(photoAccessHelper.PhotoType.IMAGE, 'jpg');
        // 使用uri打开文件，可以持续写入内容，写入过程不受时间限制
-       let file = await fs.open(uri, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+       let file = await fileIo.open(uri, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
        context.resourceManager.getMediaContent($r('app.media.icon').id, 0)
          .then(async value => {
            let media = value.buffer;
            // 写到媒体库文件中
-           await fs.write(file.fd, media);
-           await fs.close(file.fd);
+           await fileIo.write(file.fd, media);
+           await fileIo.close(file.fd);
            promptAction.showToast({ message: '已保存至相册！' });
          });
      }

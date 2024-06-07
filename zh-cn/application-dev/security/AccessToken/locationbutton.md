@@ -29,7 +29,7 @@
 1. 引入位置服务依赖。
    
    ```ts
-   import geoLocationManager from '@ohos.geoLocationManager';
+   import { geoLocationManager } from '@kit.LocationKit';
    ```
 
 2. 添加位置控件和获取当前位置信息。
@@ -41,9 +41,9 @@
    在LocationButton的onClick()回调中通过调用[geoLocationManager](../../reference/apis-location-kit/js-apis-geoLocationManager.md)模块提供的方法获取当前位置信息。
 
    ```ts
-   import geoLocationManager from '@ohos.geoLocationManager';
-   import promptAction from '@ohos.promptAction';
-   import { BusinessError } from '@ohos.base';
+   import { geoLocationManager } from '@kit.LocationKit';
+   import { promptAction } from '@kit.ArkUI';
+   import { BusinessError } from '@kit.BasicServicesKit';
    
    // 获取当前位置信息
    function getCurrentLocationInfo() {

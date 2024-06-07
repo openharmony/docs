@@ -18,10 +18,54 @@ import picker from '@ohos.file.picker';
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
+### constructor<sup>12+</sup>
+
+constructor(context: Context)
+
+**系统能力**：SystemCapability.FileManagement.UserFileService
+
+创建PhotoViewPicker对象，推荐使用该构造函数，获取context参考[getContext](../apis-arkui/js-apis-getContext.md)
+
 **示例：**
 
 ```ts
-let photoPicker = new picker.PhotoViewPicker();
+import common from '@ohos.app.ability.common';
+import picker from '@ohos.file.picker';
+@Entry
+@Component
+struct Index {
+  @State message: string = 'hello World';
+
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+          .onClick(()=>{
+            let context = getContext(this) as common.Context; // 请确保 getContext(this) 返回结果为 UIAbilityContext
+            let photoPicker = new picker.PhotoViewPicker(context);
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+### constructor<sup>12+</sup>
+
+constructor()
+
+**系统能力**：SystemCapability.FileManagement.UserFileService
+
+创建PhotoViewPicker对象，不推荐使用该构造函数，会出现概率性失败问题
+
+**示例：**
+
+```ts
+let photoPicker = new picker.PhotoViewPicker(); // 不推荐使用无参构造，会出现概率性拉起失败问题
 ```
 
 ### select
@@ -53,12 +97,13 @@ select(option?: PhotoSelectOptions): Promise&lt;PhotoSelectResult&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 import picker from '@ohos.file.picker';
-async function example01() {
-  try {  
+import common from '@ohos.app.ability.common';
+async function example01(context: common.Context) { // 需确保 context 由 UIAbilityContext 转换而来
+  try {
     let photoSelectOptions = new picker.PhotoSelectOptions();
     photoSelectOptions.MIMEType = picker.PhotoViewMIMETypes.IMAGE_TYPE;
     photoSelectOptions.maxSelectNumber = 5;
-    let photoPicker = new picker.PhotoViewPicker();
+    let photoPicker = new picker.PhotoViewPicker(context);
     photoPicker.select(photoSelectOptions).then((photoSelectResult: picker.PhotoSelectResult) => {
       console.info('PhotoViewPicker.select successfully, photoSelectResult uri: ' + JSON.stringify(photoSelectResult));
     }).catch((err: BusinessError) => {
@@ -95,12 +140,13 @@ select(option: PhotoSelectOptions, callback: AsyncCallback&lt;PhotoSelectResult&
 ```ts
 import { BusinessError } from '@ohos.base';
 import picker from '@ohos.file.picker';
-async function example02() {
+import common from '@ohos.app.ability.common';
+async function example02(context: common.Context) { // 需确保 context 由 UIAbilityContext 转换而来
   try {
     let photoSelectOptions = new picker.PhotoSelectOptions();
     photoSelectOptions.MIMEType = picker.PhotoViewMIMETypes.IMAGE_TYPE;
     photoSelectOptions.maxSelectNumber = 5;
-    let photoPicker = new picker.PhotoViewPicker();
+    let photoPicker = new picker.PhotoViewPicker(context);
     photoPicker.select(photoSelectOptions, (err: BusinessError, photoSelectResult: picker.PhotoSelectResult) => {
       if (err) {
         console.error('PhotoViewPicker.select failed with err: ' + JSON.stringify(err));
@@ -138,9 +184,10 @@ select(callback: AsyncCallback&lt;PhotoSelectResult&gt;): void
 ```ts
 import { BusinessError } from '@ohos.base';
 import picker from '@ohos.file.picker';
-async function example03() {
+import common from '@ohos.app.ability.common';
+async function example03(context: common.Context) { // 需确保 context 由 UIAbilityContext 转换而来
   try {
-    let photoPicker = new picker.PhotoViewPicker();
+    let photoPicker = new picker.PhotoViewPicker(context);
     photoPicker.select((err: BusinessError, photoSelectResult: picker.PhotoSelectResult) => {
       if (err) {
         console.error('PhotoViewPicker.select failed with err: ' + JSON.stringify(err));
@@ -182,11 +229,12 @@ save(option?: PhotoSaveOptions): Promise&lt;Array&lt;string&gt;&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 import picker from '@ohos.file.picker';
-async function example04() {
+import common from '@ohos.app.ability.common';
+async function example04(context: common.Context) { // 需确保 context 由 UIAbilityContext 转换而来
   try {
     let photoSaveOptions = new picker.PhotoSaveOptions();
     photoSaveOptions.newFileNames = ['PhotoViewPicker01.jpg', 'PhotoViewPicker01.mp4'];
-    let photoPicker = new picker.PhotoViewPicker();
+    let photoPicker = new picker.PhotoViewPicker(context);
     photoPicker.save(photoSaveOptions).then((photoSaveResult: Array<string>) => {
       console.info('PhotoViewPicker.save successfully, photoSaveResult uri: ' + JSON.stringify(photoSaveResult));
     }).catch((err: BusinessError) => {
@@ -221,11 +269,12 @@ save(option: PhotoSaveOptions, callback: AsyncCallback&lt;Array&lt;string&gt;&gt
 ```ts
 import { BusinessError } from '@ohos.base';
 import picker from '@ohos.file.picker';
-async function example05() {
+import common from '@ohos.app.ability.common';
+async function example05(context: common.Context) { // 需确保 context 由 UIAbilityContext 转换而来
   try {
     let photoSaveOptions = new picker.PhotoSaveOptions();
     photoSaveOptions.newFileNames = ['PhotoViewPicker02.jpg','PhotoViewPicker02.mp4'];
-    let photoPicker = new picker.PhotoViewPicker();
+    let photoPicker = new picker.PhotoViewPicker(context);
     photoPicker.save(photoSaveOptions, (err: BusinessError, photoSaveResult: Array<string>) => {
       if (err) {
         console.error('PhotoViewPicker.save failed with err: ' + JSON.stringify(err));
@@ -261,9 +310,10 @@ save(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 ```ts
 import { BusinessError } from '@ohos.base';
 import picker from '@ohos.file.picker';
-async function example06() {
+import common from '@ohos.app.ability.common';
+async function example06(context: common.Context) { // 需确保 context 由 UIAbilityContext 转换而来
   try {
-    let photoPicker = new picker.PhotoViewPicker();
+    let photoPicker = new picker.PhotoViewPicker(context);
     photoPicker.save((err: BusinessError, photoSaveResult: Array<string>) => {
       if (err) {
         console.error('PhotoViewPicker.save failed with err: ' + JSON.stringify(err));
@@ -284,10 +334,54 @@ async function example06() {
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
+### constructor<sup>12+</sup>
+
+constructor(context: Context)
+
+**系统能力**：SystemCapability.FileManagement.UserFileService
+
+创建DocumentViewPicker对象，推荐使用该构造函数，获取context参考[getContext](../apis-arkui/js-apis-getContext.md)
+
 **示例：**
 
 ```ts
-let documentPicker = new picker.DocumentViewPicker();
+import common from '@ohos.app.ability.common';
+import picker from '@ohos.file.picker';
+@Entry
+@Component
+struct Index {
+  @State message: string = 'hello World';
+
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+          .onClick(()=>{
+            let context = getContext(this) as common.Context; // 请确保getContext(this)返回结果为UIAbilityContext
+            let documentPicker = new picker.DocumentViewPicker(context);
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+### constructor<sup>12+</sup>
+
+constructor()
+
+**系统能力**：SystemCapability.FileManagement.UserFileService
+
+创建DocumentViewPicker对象，不推荐使用该构造函数，会出现概率性失败问题
+
+**示例：**
+
+```ts
+let documentPicker = new picker.DocumentViewPicker(); // 不推荐使用无参构造，会出现概率性拉起失败问题
 ```
 
 ### select
@@ -319,10 +413,11 @@ select(option?: DocumentSelectOptions): Promise&lt;Array&lt;string&gt;&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 import picker from '@ohos.file.picker';
-async function example07() {
+import common from '@ohos.app.ability.common';
+async function example07(context: common.Context) { // 需确保 context 由 UIAbilityContext 转换而来
   try {
     let documentSelectOptions = new picker.DocumentSelectOptions();
-    let documentPicker = new picker.DocumentViewPicker();
+    let documentPicker = new picker.DocumentViewPicker(context);
     documentPicker.select(documentSelectOptions).then((documentSelectResult: Array<string>) => {
       console.info('DocumentViewPicker.select successfully, documentSelectResult uri: ' + JSON.stringify(documentSelectResult));
     }).catch((err: BusinessError) => {
@@ -359,10 +454,11 @@ select(option: DocumentSelectOptions, callback: AsyncCallback&lt;Array&lt;string
 ```ts
 import { BusinessError } from '@ohos.base';
 import picker from '@ohos.file.picker';
-async function example08() {
+import common from '@ohos.app.ability.common';
+async function example08(context: common.Context) { // 需确保 context 由 UIAbilityContext 转换而来
   try {
     let documentSelectOptions = new picker.DocumentSelectOptions();
-    let documentPicker = new picker.DocumentViewPicker();
+    let documentPicker = new picker.DocumentViewPicker(context);
     documentPicker.select(documentSelectOptions, (err: BusinessError, documentSelectResult: Array<string>) => {
       if (err) {
         console.error('DocumentViewPicker.select failed with err: ' + JSON.stringify(err));
@@ -400,9 +496,10 @@ select(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 ```ts
 import { BusinessError } from '@ohos.base';
 import picker from '@ohos.file.picker';
-async function example09() {
+import common from '@ohos.app.ability.common';
+async function example09(context: common.Context) { // 需确保 context 由 UIAbilityContext 转换而来
   try {
-    let documentPicker = new picker.DocumentViewPicker();
+    let documentPicker = new picker.DocumentViewPicker(context);
     documentPicker.select((err: BusinessError, documentSelectResult: Array<string>) => {
       if (err) {
         console.error('DocumentViewPicker.select failed with err: ' + JSON.stringify(err));
@@ -446,11 +543,12 @@ save(option?: DocumentSaveOptions): Promise&lt;Array&lt;string&gt;&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 import picker from '@ohos.file.picker';
-async function example10() {
+import common from '@ohos.app.ability.common';
+async function example10(context: common.Context) { // 需确保 context 由 UIAbilityContext 转换而来
   try {
     let documentSaveOptions = new picker.DocumentSaveOptions();
     documentSaveOptions.newFileNames = ['DocumentViewPicker01.txt'];
-    let documentPicker = new picker.DocumentViewPicker();
+    let documentPicker = new picker.DocumentViewPicker(context);
     documentPicker.save(documentSaveOptions).then((documentSaveResult: Array<string>) => {
       console.info('DocumentViewPicker.save successfully, documentSaveResult uri: ' + JSON.stringify(documentSaveResult));
     }).catch((err: BusinessError) => {
@@ -471,7 +569,7 @@ save(option: DocumentSaveOptions, callback: AsyncCallback&lt;Array&lt;string&gt;
 
 **注意**：此接口返回的uri数组的具体使用方式参见用户文件uri介绍中的[文档类uri的使用方式](../../file-management/user-file-uri-intro.md#文档类uri的使用方式)。
 
-**元服务API:** 从API version 11开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -487,11 +585,12 @@ save(option: DocumentSaveOptions, callback: AsyncCallback&lt;Array&lt;string&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 import picker from '@ohos.file.picker';
-async function example11() {
+import common from '@ohos.app.ability.common';
+async function example11(context: common.Context) { // 需确保 context 由 UIAbilityContext 转换而来
   try {
     let documentSaveOptions = new picker.DocumentSaveOptions();
     documentSaveOptions.newFileNames = ['DocumentViewPicker02.txt'];
-    let documentPicker = new picker.DocumentViewPicker();
+    let documentPicker = new picker.DocumentViewPicker(context);
     documentPicker.save(documentSaveOptions, (err: BusinessError, documentSaveResult: Array<string>) => {
       if (err) {
         console.error('DocumentViewPicker.save failed with err: ' + JSON.stringify(err));
@@ -529,9 +628,10 @@ save(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 ```ts
 import { BusinessError } from '@ohos.base';
 import picker from '@ohos.file.picker';
-async function example12() {
+import common from '@ohos.app.ability.common';
+async function example12(context: common.Context) { // 需确保 context 由 UIAbilityContext 转换而来
   try {
-    let documentPicker = new picker.DocumentViewPicker();
+    let documentPicker = new picker.DocumentViewPicker(context);
     documentPicker.save((err: BusinessError, documentSaveResult: Array<string>) => {
       if (err) {
         console.error('DocumentViewPicker.save failed with err: ' + JSON.stringify(err));
@@ -552,10 +652,53 @@ async function example12() {
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
+### constructor<sup>12+</sup>
+
+constructor(context: Context)
+
+**系统能力**：SystemCapability.FileManagement.UserFileService
+
+创建AudioViewPicker对象，推荐使用该构造函数，获取context参考[getContext](../apis-arkui/js-apis-getContext.md)
+
 **示例：**
 
 ```ts
-let audioPicker = new picker.AudioViewPicker();
+import common from '@ohos.app.ability.common';
+import picker from '@ohos.file.picker';
+@Entry
+@Component
+struct Index {
+  @State message: string = 'hello World';
+
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+          .onClick(()=>{
+            let context = getContext(this) as common.Context; // 请确保getContext(this)返回结果为UIAbilityContext
+            let audioPicker = new picker.AudioViewPicker(context);
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+### constructor<sup>12+</sup>
+
+constructor()
+
+**系统能力**：SystemCapability.FileManagement.UserFileService
+
+创建AudioViewPicker对象，不推荐使用该构造函数，会出现概率性失败问题
+
+**示例：**
+
+```ts
+let audioPicker = new picker.AudioViewPicker(); // 不推荐使用无参构造，会出现概率性拉起失败问题
 ```
 
 ### select
@@ -585,10 +728,11 @@ select(option?: AudioSelectOptions): Promise&lt;Array&lt;string&gt;&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 import picker from '@ohos.file.picker';
-async function example13() {
+import common from '@ohos.app.ability.common';
+async function example13(context: common.Context) { // 需确保 context 由 UIAbilityContext 转换而来
   try {
     let audioSelectOptions = new picker.AudioSelectOptions();
-    let audioPicker = new picker.AudioViewPicker();
+    let audioPicker = new picker.AudioViewPicker(context);
     audioPicker.select(audioSelectOptions).then((audioSelectResult: Array<string>) => {
       console.info('AudioViewPicker.select successfully, audioSelectResult uri: ' + JSON.stringify(audioSelectResult));
     }).catch((err: BusinessError) => {
@@ -623,10 +767,11 @@ select(option: AudioSelectOptions, callback: AsyncCallback&lt;Array&lt;string&gt
 ```ts
 import { BusinessError } from '@ohos.base';
 import picker from '@ohos.file.picker';
-async function example14() {
+import common from '@ohos.app.ability.common';
+async function example14(context: common.Context) { // 需确保 context 由 UIAbilityContext 转换而来
   try {
     let audioSelectOptions = new picker.AudioSelectOptions();
-    let audioPicker = new picker.AudioViewPicker();
+    let audioPicker = new picker.AudioViewPicker(context);
     audioPicker.select(audioSelectOptions, (err: BusinessError, audioSelectResult: Array<string>) => {
       if (err) {
         console.error('AudioViewPicker.select failed with err: ' + JSON.stringify(err));
@@ -662,9 +807,10 @@ select(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 ```ts
 import { BusinessError } from '@ohos.base';
 import picker from '@ohos.file.picker';
-async function example15() {
+import common from '@ohos.app.ability.common';
+async function example15(context: common.Context) { // 需确保 context 由 UIAbilityContext 转换而来
   try {
-    let audioPicker = new picker.AudioViewPicker();
+    let audioPicker = new picker.AudioViewPicker(context);
     audioPicker.select((err: BusinessError, audioSelectResult: Array<string>) => {
       if (err) {
         console.error('AudioViewPicker.select failed with err: ' + JSON.stringify(err));
@@ -706,11 +852,12 @@ save(option?: AudioSaveOptions): Promise&lt;Array&lt;string&gt;&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 import picker from '@ohos.file.picker';
-async function example16() {
+import common from '@ohos.app.ability.common';
+async function example16(context: common.Context) { // 需确保 context 由 UIAbilityContext 转换而来
   try {
     let audioSaveOptions = new picker.AudioSaveOptions();
     audioSaveOptions.newFileNames = ['AudioViewPicker01.mp3'];
-    let audioPicker = new picker.AudioViewPicker();
+    let audioPicker = new picker.AudioViewPicker(context);
     audioPicker.save(audioSaveOptions).then((audioSaveResult: Array<string>) => {
       console.info('AudioViewPicker.save successfully, audioSaveResult uri: ' + JSON.stringify(audioSaveResult))
     }).catch((err: BusinessError) => {
@@ -745,11 +892,12 @@ save(option: AudioSaveOptions, callback: AsyncCallback&lt;Array&lt;string&gt;&gt
 ```ts
 import { BusinessError } from '@ohos.base';
 import picker from '@ohos.file.picker';
-async function example17() {
+import common from '@ohos.app.ability.common';
+async function example17(context: common.Context) { // 需确保 context 由 UIAbilityContext 转换而来
   try {
     let audioSaveOptions = new picker.AudioSaveOptions();
     audioSaveOptions.newFileNames = ['AudioViewPicker02.mp3'];
-    let audioPicker = new picker.AudioViewPicker();
+    let audioPicker = new picker.AudioViewPicker(context);
     audioPicker.save(audioSaveOptions, (err: BusinessError, audioSaveResult: Array<string>) => {
       if (err) {
         console.error('AudioViewPicker.save failed with err: ' + JSON.stringify(err));
@@ -785,9 +933,10 @@ save(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 ```ts
 import { BusinessError } from '@ohos.base';
 import picker from '@ohos.file.picker';
-async function example18() {
+import common from '@ohos.app.ability.common';
+async function example18(context: common.Context) { // 需确保 context 由 UIAbilityContext 转换而来
   try {
-    let audioPicker = new picker.AudioViewPicker();
+    let audioPicker = new picker.AudioViewPicker(context);
     audioPicker.save((err: BusinessError, audioSaveResult: Array<string>) => {
       if (err) {
         console.error('AudioViewPicker.save failed with err: ' + JSON.stringify(err));
@@ -806,35 +955,41 @@ async function example18() {
 
 枚举，可选择的媒体文件类型。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.FileManagement.UserFileService
 
 | 名称  |  值 |  说明 |
 | ----- |  ---- | ---- |
-| IMAGE_TYPE  |  'image/*' | 图片类型 <br>**元服务API:** 从API version 11开始，该接口支持在元服务中使用。 |
-| VIDEO_TYPE |  'video/*' | 视频类型 <br>**元服务API:** 从API version 11开始，该接口支持在元服务中使用。 |
-| IMAGE_VIDEO_TYPE |  '\*/*' | 图片和视频类型 <br>**元服务API:** 从API version 11开始，该接口支持在元服务中使用。 |
+| IMAGE_TYPE  |  'image/*' | 图片类型  |
+| VIDEO_TYPE |  'video/*' | 视频类型  |
+| IMAGE_VIDEO_TYPE |  '\*/*' | 图片和视频类型  |
 
 ## PhotoSelectOptions
 
 图库选择选项。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.FileManagement.UserFileService
 
 | 名称                    | 类型                | 必填 | 说明                          |
 | ----------------------- | ------------------- | ---- | -------------------------------- |
-| MIMEType              | [PhotoViewMIMETypes](#photoviewmimetypes)   | 否   | 可选择的媒体文件类型，若无此参数，则默认为图片和视频类型 <br>**元服务API:** 从API version 11开始，该接口支持在元服务中使用。 |
-| maxSelectNumber       | number | 否   | 选择媒体文件数量的最大值(默认值为50，最大值为500)     <br>**元服务API:** 从API version 11开始，该接口支持在元服务中使用。 |
+| MIMEType              | [PhotoViewMIMETypes](#photoviewmimetypes)   | 否   | 可选择的媒体文件类型，若无此参数，则默认为图片和视频类型  |
+| maxSelectNumber       | number | 否   | 选择媒体文件数量的最大值(默认值为50，最大值为500)      |
 
 ## PhotoSelectResult
 
 返回图库选择后的结果集。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.FileManagement.UserFileService
 
 | 名称                    | 类型                | 只读 | 可写 | 说明                           |
 | ----------------------- | ------------------- | ---- | ---- | ------------------------------ |
-| photoUris        | Array&lt;string&gt;    | 是   | 是   | 返回图库选择后的媒体文件的uri数组，此uri数组只能通过临时授权的方式调用[photoAccessHelper.getAssets接口](../apis-media-library-kit/js-apis-photoAccessHelper.md#getassets)去使用，具体使用方式参见用户文件uri介绍中的[媒体文件uri的使用方式](../../file-management/user-file-uri-intro.md#媒体文件uri的使用方式)。 <br>**元服务API:** 从API version 11开始，该接口支持在元服务中使用。 |
-| isOriginalPhoto        | boolean    | 是   | 是   | 返回图库选择后的媒体文件是否为原图。true为原图，false不是原图。 <br>**元服务API:** 从API version 11开始，该接口支持在元服务中使用。 |
+| photoUris        | Array&lt;string&gt;    | 是   | 是   | 返回图库选择后的媒体文件的uri数组，此uri数组只能通过临时授权的方式调用[photoAccessHelper.getAssets接口](../apis-media-library-kit/js-apis-photoAccessHelper.md#getassets)去使用，具体使用方式参见用户文件uri介绍中的[媒体文件uri的使用方式](../../file-management/user-file-uri-intro.md#媒体文件uri的使用方式)。  |
+| isOriginalPhoto        | boolean    | 是   | 是   | 返回图库选择后的媒体文件是否为原图。true为原图，false不是原图。  |
 
 ## PhotoSaveOptions
 
@@ -850,28 +1005,42 @@ async function example18() {
 
 枚举，picker选择的文档类型。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.FileManagement.UserFileService.FolderSelection
 
 | 名称  |  值 |  说明 |
 | ----- |  ---- | ---- |
-| FILE  | 0  | 文件类型 <br>**元服务API:** 从API version 12开始，该接口支持在元服务中使用。 |
-| FOLDER | 1  | 文件夹类型 <br>**元服务API:** 从API version 12开始，该接口支持在元服务中使用。 |
-| MIXED | 2  | 文件和文件夹混合类型 <br>**元服务API:** 从API version 12开始，该接口支持在元服务中使用。 |
+| FILE  | 0  | 文件类型  |
+| FOLDER | 1  | 文件夹类型  |
+| MIXED | 2  | 文件和文件夹混合类型  |
 
 ## DocumentSelectOptions
 
 文档选择选项。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.FileManagement.UserFileService
 
 | 名称                    | 类型                                          | 必填 | 说明                                       |
 | :---------------------- |---------------------------------------------| ---- |------------------------------------------|
-| maxSelectNumber<sup>10+</sup>       | number                                      | 否   | 选择文件最大个数，上限500，有效值范围1-500（选择目录仅对具有该系统能力的设备开放。且目录选择的最大个数为1）。默认值是1。**系统能力：** SystemCapability.FileManagement.UserFileService.FolderSelection <br>**元服务API:** 从API version 12开始，该接口支持在元服务中使用。 |
-| defaultFilePathUri<sup>10+</sup>    | string                                      | 否   | 指定选择的文件或者目录路径                           <br>**元服务API:** 从API version 12开始，该接口支持在元服务中使用。 |
-| fileSuffixFilters<sup>10+</sup>     | Array&lt;string&gt;                         | 否   | 选择文件的后缀类型，若选择项存在多个后缀名，则每一个后缀名之间用英文逗号进行分隔 <br>**元服务API:** 从API version 12开始，该接口支持在元服务中使用。 |
-| selectMode<sup>11+</sup>         | [DocumentSelectMode](#documentselectmode11) | 否   | 支持选择的资源类型，比如：文件、文件夹和二者混合，仅对具有该系统能力的设备开放，默认值是文件类型。**系统能力：** SystemCapability.FileManagement.UserFileService.FolderSelection <br>**元服务API:** 从API version 12开始，该接口支持在元服务中使用。 |
-| authMode<sup>12+</sup>    | boolean                              | 否   | 拉起授权picker，默认为false（非授权模式）。当authMode为true时为授权模式，defaultFilePathUri必填，表明待授权uri。仅对具有该系统能力的设备开放，**系统能力：** SystemCapability.FileManagement.UserFileService.FolderSelection <br>**元服务API:** 从API version 12开始，该接口支持在元服务中使用。 |     
+| maxSelectNumber<sup>10+</sup>       | number                                      | 否   | 选择文件最大个数，上限500，有效值范围1-500（选择目录仅对具有该系统能力的设备开放。且目录选择的最大个数为1）。默认值是1。**系统能力：** SystemCapability.FileManagement.UserFileService  |
+| defaultFilePathUri<sup>10+</sup>    | string                                      | 否   | 指定选择的文件或者目录路径                            |
+| fileSuffixFilters<sup>10+</sup>     | Array&lt;string&gt;                         | 否   | 选择文件的后缀类型，若选择项存在多个后缀名，则每一个后缀名之间用英文逗号进行分隔，后缀类型名添加不能超过100。仅对具有该系统能力的设备开放。**系统能力：** SystemCapability.FileManagement.UserFileService   |
+| selectMode<sup>11+</sup>         | [DocumentSelectMode](#documentselectmode11) | 否   | 支持选择的资源类型，比如：文件、文件夹和二者混合，仅对具有该系统能力的设备开放，默认值是文件类型。**系统能力：** SystemCapability.FileManagement.UserFileService.FolderSelection  |
+| authMode<sup>12+</sup>    | boolean                              | 否   | 拉起授权picker，默认为false（非授权模式）。当authMode为true时为授权模式，defaultFilePathUri必填，表明待授权uri。仅对具有该系统能力的设备开放，**系统能力：** SystemCapability.FileManagement.UserFileService.FolderSelection  |     
 
+## DocumentPickerMode<sup>12+</sup>
+
+枚举，picker选择的文档类型。
+
+**系统能力：** SystemCapability.FileManagement.UserFileService
+
+| 名称  |  值 |  说明 |
+| ----- |  ---- | ---- |
+| DEFAULT  | 0  | 标准模式 |
+| DOWNLOAD | 1  | 下载模式 |
 
 ## DocumentSaveOptions
 
@@ -884,12 +1053,16 @@ async function example18() {
 | newFileNames            | Array&lt;string&gt;    | 否   | 拉起documentPicker进行保存的文件名，若无此参数，则默认需要用户自行输入 <br>**元服务API:** 从API version 12开始，该接口支持在元服务中使用。 |
 | defaultFilePathUri<sup>10+</sup>    | string  | 否   | 指定保存的文件或者目录路径 <br>**元服务API:** 从API version 12开始，该接口支持在元服务中使用。 |
 | fileSuffixChoices<sup>10+</sup>     | Array&lt;string&gt; | 否   | 保存文件的后缀类型 <br>**元服务API:** 从API version 12开始，该接口支持在元服务中使用。 |
+| pickerMode<sup>12+</sup>     | [DocumentPickerMode](#documentpickermode12) | 否   | 拉起picker的类型, 默认为DEFAULT。当pickerMode设置为DOWNLOAD时，用户配置的参数newFileNames、defaultFilePathUri和fileSuffixChoices将不会生效 |
 
 ## AudioSelectOptions
 
-音频选择选项，目前不支持参数配置。
+音频选择选项。
 
 **系统能力：** SystemCapability.FileManagement.UserFileService
+| 名称                    | 类型                                          | 必填 | 说明                                       |
+| :---------------------- |---------------------------------------------| ---- |------------------------------------------|
+| maxSelectNumber<sup>12+</sup>       | number                                      | 否   | 选择文件最大个数，默认值为1，上限500，有效值范围1-500 |
 
 ## AudioSaveOptions
 

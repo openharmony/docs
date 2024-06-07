@@ -64,7 +64,7 @@ textOverflow(value: { overflow: TextOverflow })
 
 当overflow设置为TextOverflow.None、TextOverflow.Clip、TextOverflow.Ellipsis时，需配合maxLines使用，单独设置不生效。设置TextOverflow.None与TextOverflow.Clip效果一样。
 
-当overflow设置为TextOverflow.MARQUEE时，文本在一行内滚动显示，设置maxLines及copyOption属性均不生效，此时不支持ImageSpan组件，并且在文本不可滚动时，设置textAlign属性生效；在文本可滚动时，设置textAlign属性不生效。在跑马灯模式下，Text组件clip属性默认为true。
+当overflow设置为TextOverflow.MARQUEE时，文本在一行内滚动显示，设置maxLines及copyOption属性均不生效，此时不支持ImageSpan组件，并且在文本不可滚动时，设置textAlign属性生效；在文本可滚动时，设置textAlign属性不生效。在跑马灯模式下，Text组件clip属性默认为true。属性字符串的[CustomSpan](ts-universal-styled-string.md#customspan)不支持跑马灯模式。
 
 从API version 12开始，当overflow设置为TextOverflow.MARQUEE时，支持ImageSpan组件，文本和图片在一行内滚动显示。
 
@@ -132,7 +132,7 @@ decoration(value: DecorationStyleInterface)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [DecorationStyleInterface<sup>12+</sup>](ts-universal-styled-string.md#decorationstyleinterface对象说明) | 是   | 文本装饰线样式对象。<br/>默认值：<br/>{&nbsp;type:&nbsp;TextDecorationType.None,&nbsp;color:&nbsp;Color.Black,&nbsp;style:&nbsp;TextDecorationStyle.SOLID&nbsp;} |
+| value  | [DecorationStyleInterface<sup>12+</sup>](ts-universal-styled-string.md#decorationstyleinterface对象说明) | 是   | 文本装饰线样式对象。<br/>默认值：<br/>{<br/>&nbsp;type:&nbsp;TextDecorationType.None,<br/>&nbsp;color:&nbsp;Color.Black,<br/>&nbsp;style:&nbsp;TextDecorationStyle.SOLID&nbsp;<br/>} |
 
 ### baselineOffset
 
@@ -421,7 +421,7 @@ enableDataDetector(enable: boolean)
 
 设置使能文本识别。所识别实体的fontColor和decoration会被更改为如下样式：
 
-fontColor：Color.Blue<br/>decoration:&nbsp;{<br/>type:&nbsp;TextDecorationType.Underline,<br/>color:&nbsp;Color.Blue<br/>}
+fontColor：Color.Blue<br/>decoration:&nbsp;{<br/>type:&nbsp;TextDecorationType.Underline,<br/>color:&nbsp;Color.Blue,<br/>style:&nbsp;TextDecorationStyle.SOLID<br/>}
 
 该接口依赖设备底层应具有文本识别能力，否则设置不会生效。
 
@@ -429,7 +429,7 @@ fontColor：Color.Blue<br/>decoration:&nbsp;{<br/>type:&nbsp;TextDecorationType.
 
 当copyOption设置为CopyOptions.None时，该功能不会生效。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -509,6 +509,9 @@ fontFeature(value: string)
 | ------ | ------ | ---- | -------------- |
 | value  | string | 是   | 文字特性效果。 |
 
+fontFeature属性列表<br/>
+![alt text](figures/arkts-fontfeature.png)
+
 设置 Font Feature 属性，Font Feature 是 OpenType 字体的高级排版能力，如支持连字、数字等宽等特性，一般用在自定义字体中，其能力需要字体本身支持。
 更多 Font Feature 能力介绍可参考 https://www.w3.org/TR/css-fonts-3/#font-feature-settings-prop 和 https://sparanoid.com/lab/opentype-features/
 
@@ -551,6 +554,38 @@ privacySensitive(supported: boolean)
 | 参数名    | 类型    | 必填 | 说明                     |
 | --------- | ------- | ---- | ------------------------ |
 | supported | boolean | 是   | 是否支持卡片敏感隐私信息 |
+
+### lineBreakStrategy<sup>12+</sup>
+
+lineBreakStrategy(value: LineBreakStrategy)
+
+设置折行规则。该属性在wordBreak不等于breakAll的时候生效，不支持连词符。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                          | 必填 | 说明                                          |
+| ------ | --------------------------------------------- | ---- | --------------------------------------------- |
+| value  | [LineBreakStrategy](ts-appendix-enums.md#linebreakstrategy12) | 否   | 文本的折行规则。 <br />默认值：LineBreakStrategy.GREEDY |
+
+### textSelectable<sup>12+</sup>
+
+textSelectable(value: TextSelectableMode)
+
+设置是否支持文本可选择、可获焦以及Touch后能否获取焦点。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                          | 必填 | 说明                                          |
+| ------ | --------------------------------------------- | ---- | --------------------------------------------- |
+| value  | [TextSelectableMode](ts-appendix-enums.md#textselectablemode12) | 否   | 文本是否支持可选择、可获焦。 <br />默认值：TextSelectableMode.SELECTABEL_UNFOCUSABLE |
 
 ## TextDataDetectorConfig<sup>11+</sup>对象说明
 
@@ -602,6 +637,22 @@ onTextSelectionChange(callback: (selectionStart: number, selectionEnd: number) =
 | selectionStart | number | 是   | 所选文本的起始位置。 |
 | selectionEnd   | number | 是   | 所选文本的结束位置。 |
 
+### onMarqueeStateChange<sup>12+</sup>
+
+onMarqueeStateChange(callback: Callback<MarqueeState>)
+
+跑马灯动画在开始、完成一次滚动和停止时，触发该回调。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名    | 类型                                  | 必填  | 说明                       |
+|--------|-------------------------------------|-----|--------------------------|
+| state  | [MarqueeState](#marqueestate12枚举说明) | 是   | 开始滚动时、每一次滚动时以及在滚动结束时触发。 |
+
 ## TextOptions<sup>11+</sup>
 
 Text初始化参数。
@@ -643,6 +694,61 @@ setStyledString(value: StyledString): void
 | 参数名   | 参数类型   | 必填   | 参数描述                |
 | ----- | ------ | ---- | ------------------- |
 | value | [StyledString](ts-universal-styled-string.md#styledstring) | 是    | 属性字符串。<br/>**说明：** <br/>StyledString的子类[MutableStyledString](ts-universal-styled-string.md#mutablestyledstring)也可以作为入参值。 |
+
+### getLayoutManager<sup>12+</sup>
+
+getLayoutManager(): LayoutManager
+
+获取布局管理器对象。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**返回值：**
+
+| 类型                                       | 说明      |
+| ---------------------------------------- | ------- |
+| [LayoutManager](ts-text-common.md#LayoutManager) | 布局管理器对象。 |
+
+## marqueeOptions<sup>12+</sup>
+
+当overflow设置为TextOverflow.MARQUEE时，可以进行初始化。
+
+| 名称             | 类型                                             | 必填 | 说明            |
+|----------------|------------------------------------------------| -------- |---------------|
+| marqueeOptions | [MarqueeOptions](#marqueeoptions12) | 是 | marquee自定义选项。 |
+
+## MarqueeOptions<sup>12+</sup>
+
+marquee初始化参数。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名                | 类型                                              | 必填 | 说明                                                                                  |
+|--------------------|-------------------------------------------------|----|-------------------------------------------------------------------------------------|
+| start              | boolean                                         | 是  | 控制跑马灯进入播放状态。                                                                        |
+| step               | number                                          | 否  | 滚动动画文本滚动步长。<br/>默认值：4.0vp                                                           |
+| loop               | number                                          | 否  | 设置重复滚动的次数，小于等于零时无限循环。<br/>默认值：-1                                                    |
+| fromStart          | boolean                                         | 否  | 设置文本从头开始滚动或反向滚动。<br/>默认值：true                                                       |
+| delay              | number                                          | 否  | 设置每次滚动的时间间隔。<br/>默认值：0                                                              |
+| fadeout            | boolean                                         | 否  | 设置文字超长渐隐。开启默认渐隐后，在非输入态默认使能；输入态超长时，有未展示的文字的一侧生效渐隐，两侧都有未展示的文字时，两侧同时渐隐。<br/>默认值：false  |
+| marqueeStartPolicy | [MarqueeStartPolicy](#marqueestartpolicy12枚举说明) | 否  | 设置跑马灯启动策略。<br/>默认值：MarqueeStartPolicy.DEFAULT                                       |
+
+## MarqueeStartPolicy<sup>12+</sup>枚举说明
+
+| 名称       | 描述            |
+|----------|---------------|
+| DEFAULT  | 默认持续滚动。       |
+| ON_FOCUS | 获焦以及鼠标悬浮时开始滚动。 |
+
+## MarqueeState<sup>12+</sup>枚举说明
+
+| 名称     | 描述                            |
+|--------|-------------------------------|
+| START  | 滚动开始时触发。                      |
+| BOUNCE | 完成一次滚动时触发，若循环次数不为1，则该事件会多次触发。 |
+| FINISH | 滚动全部循环次数完成时触发回调。              |
 
 ## 示例
 
@@ -898,6 +1004,24 @@ struct TextExample {
         .width(300)
         .borderWidth(1)
         .textOverflow({ overflow: TextOverflow.MARQUEE })
+        .marqueeOptions({
+            start:true,
+            fromStart: true,
+            step:6,
+            loop:-1,
+            delay:0,
+            fadeout:false,
+            marqueeStartPolicy:MarqueeStartPolicy.DEFAULT
+          })
+        .onMarqueeStateChange((state:MarqueeState)=>{
+            if(state == MarqueeState.START){
+              //"收到状态: START";
+            }else if(state == MarqueeState.BOUNCE){
+              //"收到状态: BOUNCE";
+            }else if(state == MarqueeState.FINISH){
+              //"收到状态: FINISH";
+            }
+          })
     }
   }
 }
@@ -1251,3 +1375,140 @@ struct LineSpacingExample {
 ```
 
 ![lineSpacing](figures/Text_lineSpacing.png)
+
+### 示例11
+lineBreakStrategy使用示例，对比了不设置lineBreakStrategy与lineBreakStrategy设置不同挡位的效果。
+
+```ts
+@Entry
+@Component
+struct TextExample1 {
+  @State message1: string = "They can be classified as built-in components–those directly provided by the ArkUI framework and custom components – those defined by developers" +
+    "The built-in components include buttons radio buttonsprogress indicators and text You can set the rendering effectof thesecomponents in method chaining mode," +
+    "page components are divided into independent UI units to implementindependent creation development and reuse of different units on pages making pages more engineering-oriented.";
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start }) {
+      Text('LineBreakStrategy.GREEDY').fontSize(9).fontColor(0xCCCCCC).width('90%').padding(10)
+      Text(this.message1)
+        .fontSize(12)
+        .border({ width: 1 })
+        .padding(10)
+        .width('100%')
+        .lineBreakStrategy(LineBreakStrategy.GREEDY)
+      Text('LineBreakStrategy.HIGH_QUALITY').fontSize(9).fontColor(0xCCCCCC).width('90%').padding(10)
+      Text(this.message1)
+        .fontSize(12)
+        .border({ width: 1 })
+        .padding(10)
+        .width('100%')
+        .lineBreakStrategy(LineBreakStrategy.HIGH_QUALITY)
+      Text('LineBreakStrategy.BALANCED').fontSize(9).fontColor(0xCCCCCC).width('90%').padding(10)
+      Text(this.message1)
+        .fontSize(12)
+        .border({ width: 1 })
+        .padding(10)
+        .width('100%')
+        .lineBreakStrategy(LineBreakStrategy.BALANCED)
+    }.height(700).width(370).padding({ left: 35, right: 35, top: 35 })
+  }
+}
+```
+
+![textLineBreakStrategy](figures/textLineBreakStrategy.PNG)
+
+### 示例12
+getLayoutManager使用示例。
+
+```ts
+@Entry
+@Component
+export struct TextMessageClick {
+  @State lineCount: string = ""
+  @State glyphPositionAtCoordinate: string = ""
+  @State lineMetrics: string = ""
+  controller: TextController = new TextController();
+  @State textStr: string =
+    'Hello World! 您好，世界！'
+
+  build() {
+    Scroll() {
+      Column() {
+        Text('Text组件getLayoutManager接口获取段落相对组件的信息')
+          .fontSize(9)
+          .fontColor(0xCCCCCC)
+          .width('90%')
+          .padding(10)
+        Text(this.textStr, { controller: this.controller })
+          .fontSize(25)
+          .borderWidth(1)
+          .onAreaChange(() => {
+            let layoutManager = this.controller.getLayoutManager();
+            this.lineCount = "LineCount: " + layoutManager.getLineCount()
+          })
+
+        Text('LineCount').fontSize(9).fontColor(0xCCCCCC).width('90%').padding(10)
+        Text(this.lineCount)
+
+        Text('GlyphPositionAtCoordinate').fontSize(9).fontColor(0xCCCCCC).width('90%').padding(10)
+        Button("相对组件坐标[150,50]字形信息")
+          .onClick(() => {
+            let layoutManager: LayoutManager = this.controller.getLayoutManager()
+            let position = layoutManager.getGlyphPositionAtCoordinate(150, 50)
+            this.glyphPositionAtCoordinate =
+              "相对组件坐标[150,50] glyphPositionAtCoordinate position: " + position.position + " affinity: " +
+              position.affinity
+          })
+          .margin({ bottom: 20, top: 10 })
+        Text(this.glyphPositionAtCoordinate)
+
+        Text('LineMetrics').fontSize(9).fontColor(0xCCCCCC).width('90%').padding(10)
+        Button("首行行信息、文本样式信息、以及字体属性信息")
+          .onClick(() => {
+            let layoutManager: LayoutManager = this.controller.getLayoutManager()
+            let lineMetrics = layoutManager.getLineMetrics(0)
+            this.lineMetrics = "lineMetrics is " + JSON.stringify(lineMetrics) + '\n\n'
+            let runMetrics = lineMetrics.runMetrics
+            runMetrics.forEach((value, key) => {
+              this.lineMetrics += "runMetrics key is " + key + " " + JSON.stringify(value) + "\n\n"
+            });
+          })
+          .margin({ bottom: 20, top: 10 })
+        Text(this.lineMetrics)
+      }
+      .margin({ top: 100, left: 8, right: 8 })
+    }
+  }
+}
+```
+
+![textLayoutManager](figures/textLayoutManager.gif)
+
+### 示例13
+textSelectable使用示例，展示了设置TextSelectMode.SELECTABLE_FOCUSABEL属性时能够触发键盘框选文本功能。
+
+```ts
+@Entry
+@Component
+struct TextExample {
+@Entry
+@Component
+struct Index {
+  @State message: string = 'TextTextTextTextTextTextTextText' + 'TextTextTextTextTextTextTextTextTextTextTextTextTextTextTextText';
+  
+  build() {
+    Column() {
+      Text(this.message)
+        .width(300)
+        .height(100)
+        .maxLines(5)
+        .fontColor(Color.Black)
+        .copyOption(CopyOptions.InApp)
+        .selection(3, 8)
+        .textSelectable(TextSelectableMode.SELECTABLE_FOCUSABLE)
+    }.width('100%').margin({ top: 100 })
+  }
+}
+```
+
+![textTextSelectableMode](figures/textTextSelectableMode.gif)

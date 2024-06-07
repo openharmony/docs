@@ -23,3 +23,4 @@ import wantAgent from '@ohos.app.ability.wantAgent';
 | permission | string               | 否   | 权限定义。    |
 | extraInfo  | {[key: string]: any} | 否   | 额外数据。    |
 | extraInfos<sup>11+<sup>  | Record\<string, Object> | 否   | 额外数据。推荐使用该属性替代extraInfo，设置该属性后，extraInfo不再生效。    |
+| startOptions<sup>12+<sup>|[StartOptions](js-apis-app-ability-startOptions.md)         | 否  | 触发启动Ability的wantAgent时，由该属性指定启动参数。 |

@@ -2555,7 +2555,7 @@ client端获取蓝牙低功耗设备的所有服务，即服务发现 。
 
 ```js
 import { BusinessError } from '@ohos.base';
-// callkback 模式
+// callback 模式
 function getServices(code : BusinessError, gattServices : Array<bluetooth.GattService>) {
   if (code.code == 0) {
       let services : Array<bluetooth.GattService> = gattServices;

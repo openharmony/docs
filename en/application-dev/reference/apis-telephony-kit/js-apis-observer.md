@@ -10,7 +10,7 @@ The **observer** module provides event subscription management functions. You ca
 ## Modules to Import
 
 ```ts
-import observer from '@ohos.telephony.observer';
+import { observer } from '@kit.TelephonyKit';
 ```
 
 ## observer.on('networkStateChange')
@@ -168,7 +168,7 @@ For details about the error codes, see[ohos.telephony (Telephony) Error Codes](e
 **Example**
 
 ```ts
-import radio from '@ohos.telephony.radio';
+import { radio } from '@kit.TelephonyKit';
 
 observer.on('signalInfoChange', (data: Array<radio.SignalInformation>) => {
     console.log("on signalInfoChange, data:" + JSON.stringify(data));
@@ -207,7 +207,7 @@ For details about the error codes, see[ohos.telephony (Telephony) Error Codes](e
 **Example**
 
 ```ts
-import radio from '@ohos.telephony.radio';
+import { radio } from '@kit.TelephonyKit';
 
 let options: observer.ObserverOptions = {
     slotId: 0
@@ -252,7 +252,7 @@ For details about the error codes, see[ohos.telephony (Telephony) Error Codes](e
 **Example**
 
 ```ts
-import radio from '@ohos.telephony.radio';
+import { radio } from '@kit.TelephonyKit';
 
 let callback: (data: Array<radio.SignalInformation>) => void = (data: Array<radio.SignalInformation>) => {
     console.log("on signalInfoChange, data:" + JSON.stringify(data));
@@ -534,7 +534,7 @@ For details about the error codes, see[ohos.telephony (Telephony) Error Codes](e
 **Example**
 
 ```ts
-import data from '@ohos.telephony.data';
+import { data } from '@kit.TelephonyKit';
 
 observer.on('cellularDataFlowChange', (data: data.DataFlowType) => {
     console.log("on cellularDataFlowChange, data:" + JSON.stringify(data));
@@ -573,7 +573,7 @@ For details about the error codes, see[ohos.telephony (Telephony) Error Codes](e
 **Example**
 
 ```ts
-import data from '@ohos.telephony.data';
+import { data } from '@kit.TelephonyKit';
 
 let options: observer.ObserverOptions = {
     slotId: 0
@@ -618,7 +618,7 @@ For details about the error codes, see[ohos.telephony (Telephony) Error Codes](e
 **Example**
 
 ```ts
-import data from '@ohos.telephony.data';
+import { data } from '@kit.TelephonyKit';
 
 let callback: (data: data.DataFlowType) => void = (data: data.DataFlowType) => {
     console.log("on cellularDataFlowChange, data:" + JSON.stringify(data));

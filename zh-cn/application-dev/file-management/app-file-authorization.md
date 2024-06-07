@@ -277,7 +277,7 @@ function getFullDirectoryUriExample01() {
   }
 }
 ```
-
+<!--Del-->
 ## 获取公共目录、外卡目录、内卡目录（仅对系统应用开放）
 
 应用可以获得公共目录中的下载目录、桌面目录和文档目录，但获取外卡根目录和当前用户下应用沙箱路径的内卡目录仅对文件管理器应用开放，通过获取目录环境能力接口（[ohos.file.environment](../reference/apis-core-file-kit/js-apis-file-environment.md)）获取环境路径。
@@ -306,3 +306,4 @@ function getDirectoryExample01() {
   }
 }
 ```
+<!--DelEnd-->

@@ -38,8 +38,8 @@ WebSocket连接功能主要由webSocket模块提供。使用该功能需要申�
 5. 使用完WebSocket连接之后，主动断开连接。
 
 ```js
-import webSocket from '@ohos.net.webSocket';
-import { BusinessError } from '@ohos.base';
+import { webSocket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let defaultIpAddress = "ws://";
 let ws = webSocket.createWebSocket();

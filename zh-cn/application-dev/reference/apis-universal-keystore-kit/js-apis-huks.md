@@ -10,7 +10,7 @@ HUKS所管理的密钥可以由应用导入或者由应用调用HUKS接口生成
 ## 导入模块
 
 ```ts
-import huks from '@ohos.security.huks'
+import { huks } from '@kit.UniversalKeystoreKit';
 ```
 
 ## HuksParam
@@ -121,7 +121,7 @@ generateKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\
 **示例：**
 
 ```ts
-import huks from '@ohos.security.huks';
+import { huks } from '@kit.UniversalKeystoreKit';
 /* 以生成ECC256密钥为例 */
 class HuksProperties {
     tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM
@@ -210,8 +210,8 @@ generateKeyItem(keyAlias: string, options: HuksOptions) : Promise\<void>
 
 ```ts
 /* 以生成ECC256密钥为例 */
-import huks from '@ohos.security.huks';
-import { BusinessError } from '@ohos.base';
+import { huks } from '@kit.UniversalKeystoreKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 class HuksProperties {
     tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM
     value: huks.HuksKeyAlg | huks.HuksKeySize | huks.HuksKeyPurpose | huks.HuksKeyDigest = huks.HuksKeyAlg.HUKS_ALG_ECC
@@ -288,7 +288,7 @@ deleteKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<v
 **示例：**
 
 ```ts
-import huks from '@ohos.security.huks';
+import { huks } from '@kit.UniversalKeystoreKit';
 /* 此处options选择emptyOptions传空 */
 let keyAlias = 'keyAlias';
 let emptyOptions: huks.HuksOptions = {
@@ -347,8 +347,8 @@ deleteKeyItem(keyAlias: string, options: HuksOptions) : Promise\<void>
 **示例：**
 
 ```ts
-import huks from '@ohos.security.huks';
-import { BusinessError } from '@ohos.base';
+import { huks } from '@kit.UniversalKeystoreKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 /* 此处options选择emptyOptions传空 */
 let keyAlias = 'keyAlias';
 let emptyOptions: huks.HuksOptions = {
@@ -408,7 +408,7 @@ importKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<v
 **示例：**
 
 ```ts
-import huks from '@ohos.security.huks';
+import { huks } from '@kit.UniversalKeystoreKit';
 /* 以导入AES256密钥为例 */
 class HuksProperties {
     tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM
@@ -510,8 +510,8 @@ importKeyItem(keyAlias: string, options: HuksOptions) : Promise\<void>
 **示例：**
 
 ```ts
-import huks from '@ohos.security.huks';
-import { BusinessError } from '@ohos.base';
+import { huks } from '@kit.UniversalKeystoreKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 /* 以导入AES128为例 */
 class HuksProperties {
     tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM
@@ -607,7 +607,7 @@ attestKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<H
 **示例：**
 
 ```ts
-import huks from '@ohos.security.huks';
+import { huks } from '@kit.UniversalKeystoreKit';
 class HuksProperties {
     tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM
     value: huks.HuksKeyAlg | huks.HuksKeySize | huks.HuksKeyPurpose | huks.HuksKeyDigest |
@@ -754,8 +754,8 @@ attestKeyItem(keyAlias: string, options: HuksOptions) : Promise\<HuksReturnResul
 **示例：**
 
 ```ts
-import huks from '@ohos.security.huks';
-import { BusinessError } from '@ohos.base';
+import { huks } from '@kit.UniversalKeystoreKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 class HuksProperties {
     tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM
     value: huks.HuksKeyAlg | huks.HuksKeySize | huks.HuksKeyPurpose | huks.HuksKeyDigest |
@@ -900,7 +900,7 @@ anonAttestKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallbac
 **示例：**
 
 ```ts
-import huks from '@ohos.security.huks';
+import { huks } from '@kit.UniversalKeystoreKit';
 class HuksProperties {
     tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM
     value: huks.HuksKeyAlg | huks.HuksKeySize | huks.HuksKeyPurpose | huks.HuksKeyDigest |
@@ -1048,7 +1048,7 @@ anonAttestKeyItem(keyAlias: string, options: HuksOptions) : Promise\<HuksReturnR
 **示例：**
 
 ```ts
-import huks from '@ohos.security.huks';
+import { huks } from '@kit.UniversalKeystoreKit';
 class HuksProperties {
     tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM
     value: huks.HuksKeyAlg | huks.HuksKeySize | huks.HuksKeyPurpose | huks.HuksKeyDigest |
@@ -1182,8 +1182,8 @@ importWrappedKeyItem(keyAlias: string, wrappingKeyAlias: string, options: HuksOp
 **示例：**
 
 ```ts
-import huks from '@ohos.security.huks';
-import { BusinessError } from '@ohos.base';
+import { huks } from '@kit.UniversalKeystoreKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 class HuksProperties {
     tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM
     value: huks.HuksKeyAlg | huks.HuksKeySize | huks.HuksKeyPurpose |
@@ -1422,8 +1422,8 @@ importWrappedKeyItem(keyAlias: string, wrappingKeyAlias: string, options: HuksOp
 **示例：**
 
 ```ts
-import huks from '@ohos.security.huks';
-import { BusinessError } from '@ohos.base';
+import { huks } from '@kit.UniversalKeystoreKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 /* 处理流程与callback类似，主要差异点为如下函数： */
 /* 该处为示例代码，实际运行过程中，应使用实际导入密钥数据。数据构造方式由上注释可见说明 */
 async function TestImportWrappedFunc(alias: string, wrappingAlias: string, options: huks.HuksOptions) {
@@ -1480,7 +1480,7 @@ exportKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<H
 **示例：**
 
 ```ts
-import huks from '@ohos.security.huks';
+import { huks } from '@kit.UniversalKeystoreKit';
 /* 此处options选择emptyOptions来传空 */
 let keyAlias = 'keyAlias';
 let emptyOptions: huks.HuksOptions = {
@@ -1543,8 +1543,8 @@ exportKeyItem(keyAlias: string, options: HuksOptions) : Promise\<HuksReturnResul
 **示例：**
 
 ```ts
-import huks from '@ohos.security.huks';
-import { BusinessError } from '@ohos.base';
+import { huks } from '@kit.UniversalKeystoreKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 /* 此处options选择emptyOptions来传空 */
 let keyAlias = 'keyAlias';
 let emptyOptions: huks.HuksOptions = {
@@ -1602,7 +1602,7 @@ getKeyItemProperties(keyAlias: string, options: HuksOptions, callback: AsyncCall
 **示例：**
 
 ```ts
-import huks from '@ohos.security.huks';
+import { huks } from '@kit.UniversalKeystoreKit';
 /* 此处options选择emptyOptions来传空 */
 let keyAlias = 'keyAlias';
 let emptyOptions: huks.HuksOptions = {
@@ -1665,8 +1665,8 @@ getKeyItemProperties(keyAlias: string, options: HuksOptions) : Promise\<HuksRetu
 **示例：**
 
 ```ts
-import huks from '@ohos.security.huks';
-import { BusinessError } from '@ohos.base';
+import { huks } from '@kit.UniversalKeystoreKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 /* 此处options选择emptyOptions来传空 */
 let keyAlias = 'keyAlias';
 let emptyOptions: huks.HuksOptions = {
@@ -1721,8 +1721,8 @@ isKeyItemExist(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<
 **示例：**
 
 ```ts
-import huks from '@ohos.security.huks';
-import promptAction from '@ohos.promptAction';
+import { huks } from '@kit.UniversalKeystoreKit';
+import { promptAction } from '@kit.ArkUI';
 /* 此处options选择emptyOptions来传空 */
 let keyAlias = 'keyAlias';
 let emptyOptions: huks.HuksOptions = {
@@ -1784,9 +1784,9 @@ isKeyItemExist(keyAlias: string, options: HuksOptions) : Promise\<boolean>
 **示例：**
 
 ```ts
-import huks from '@ohos.security.huks';
-import { BusinessError } from '@ohos.base';
-import promptAction from '@ohos.promptAction';
+import { huks } from '@kit.UniversalKeystoreKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { promptAction } from '@kit.ArkUI';
 
 /* 此处options选择emptyOptions来传空 */
 let keyAlias = 'keyAlias';
@@ -1843,8 +1843,8 @@ hasKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<bool
 **示例：**
 
 ```ts
-import huks from '@ohos.security.huks';
-import promptAction from '@ohos.promptAction';
+import { huks } from '@kit.UniversalKeystoreKit';
+import { promptAction } from '@kit.ArkUI';
 /* 此处options选择emptyOptions来传空 */
 let keyAlias = 'keyAlias';
 let emptyOptions: huks.HuksOptions = {
@@ -1912,9 +1912,9 @@ hasKeyItem(keyAlias: string, options: HuksOptions) : Promise\<boolean>
 **示例：**
 
 ```ts
-import huks from '@ohos.security.huks';
-import { BusinessError } from '@ohos.base';
-import promptAction from '@ohos.promptAction';
+import { huks } from '@kit.UniversalKeystoreKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { promptAction } from '@kit.ArkUI';
 
 /* 此处options选择emptyOptions来传空 */
 let keyAlias = 'keyAlias';
@@ -2303,7 +2303,7 @@ abortSession操作密钥接口，使用Callback回调异步返回结果 。
 **示例：**
 
 ```ts
-import huks from '@ohos.security.huks';
+import { huks } from '@kit.UniversalKeystoreKit';
 /* huks.initSession, huks.updateSession, huks.finishSession为三段式接口，需要一起使用，当
  * huks.initSession和huks.updateSession
  * 以及huks.finishSession操作中的任一阶段发生错误时，
@@ -2417,8 +2417,8 @@ abortSession操作密钥接口，使用Promise方式异步返回结果。
 **示例：**
 
 ```ts
-import huks from '@ohos.security.huks';
-import { BusinessError } from '@ohos.base';
+import { huks } from '@kit.UniversalKeystoreKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 /* huks.initSession, huks.updateSession, huks.finishSession为三段式接口，需要一起使用，当
  * huks.initSession和huks.updateSession
  * 以及huks.finishSession操作中的任一阶段发生错误时，
@@ -2597,8 +2597,8 @@ listAliases(options: HuksOptions): Promise\<HuksListAliasesReturnResult>;
 **示例：**
 
 ```ts
-import { huks } from "@kit.UniversalKeystoreKit"
-import { BusinessError } from "@kit.BasicServicesKit"
+import { huks } from '@kit.UniversalKeystoreKit'
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class HuksProperties {
   tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_AUTH_STORAGE_LEVEL
@@ -3096,7 +3096,7 @@ getSdkVersion(options: HuksOptions) : string
 **示例：**
 
 ```ts
-import huks from '@ohos.security.huks';
+import { huks } from '@kit.UniversalKeystoreKit';
 /* 此处options选择emptyOptions传空 */
 let emptyOptions: huks.HuksOptions = {
     properties: []
@@ -3127,7 +3127,7 @@ generateKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<Huk
 **示例：**
 
 ```ts
-import huks from '@ohos.security.huks';
+import { huks } from '@kit.UniversalKeystoreKit';
 /* 以生成RSA512密钥为例 */
 class HuksProperties {
     tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM
@@ -3194,7 +3194,7 @@ generateKey(keyAlias: string, options: HuksOptions) : Promise\<HuksResult>
 **示例：**
 
 ```ts
-import huks from '@ohos.security.huks';
+import { huks } from '@kit.UniversalKeystoreKit';
 /* 以生成ECC256密钥为例 */
 class HuksProperties {
     tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM
@@ -3252,7 +3252,7 @@ deleteKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksR
 **示例：**
 
 ```ts
-import huks from '@ohos.security.huks';
+import { huks } from '@kit.UniversalKeystoreKit';
 /* 此处options选择emptyOptions传空 */
 let keyAlias = 'keyAlias';
 let emptyOptions: huks.HuksOptions = {
@@ -3290,7 +3290,7 @@ deleteKey(keyAlias: string, options: HuksOptions) : Promise\<HuksResult>
 **示例：**
 
 ```ts
-import huks from '@ohos.security.huks';
+import { huks } from '@kit.UniversalKeystoreKit';
 /* 此处options选择emptyOptions传空 */
 let keyAlias = 'keyAlias';
 let emptyOptions: huks.HuksOptions = {
@@ -3322,7 +3322,7 @@ importKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksR
 **示例：**
 
 ```ts
-import huks from '@ohos.security.huks';
+import { huks } from '@kit.UniversalKeystoreKit';
 /* 以导入AES256密钥为例 */
 class HuksProperties {
     tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM
@@ -3397,7 +3397,7 @@ importKey(keyAlias: string, options: HuksOptions) : Promise\<HuksResult>
 **示例：**
 
 ```ts
-import huks from '@ohos.security.huks';
+import { huks } from '@kit.UniversalKeystoreKit';
 /* 以导入AES128为例 */
 class HuksProperties {
     tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM
@@ -3466,7 +3466,7 @@ exportKey(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksR
 **示例：**
 
 ```ts
-import huks from '@ohos.security.huks';
+import { huks } from '@kit.UniversalKeystoreKit';
 /* 此处options选择emptyOptions来传空 */
 let keyAlias = 'keyAlias';
 let emptyOptions: huks.HuksOptions = {
@@ -3504,7 +3504,7 @@ exportKey(keyAlias: string, options: HuksOptions) : Promise\<HuksResult>
 **示例：**
 
 ```ts
-import huks from '@ohos.security.huks';
+import { huks } from '@kit.UniversalKeystoreKit';
 /* 此处options选择emptyOptions来传空 */
 let keyAlias = 'keyAlias';
 let emptyOptions: huks.HuksOptions = {
@@ -3536,7 +3536,7 @@ getKeyProperties(keyAlias: string, options: HuksOptions, callback: AsyncCallback
 **示例：**
 
 ```ts
-import huks from '@ohos.security.huks';
+import { huks } from '@kit.UniversalKeystoreKit';
 /* 此处options选择emptyOptions来传空 */
 let keyAlias = 'keyAlias';
 let emptyOptions: huks.HuksOptions = {
@@ -3574,7 +3574,7 @@ getKeyProperties(keyAlias: string, options: HuksOptions) : Promise\<HuksResult>
 **示例：**
 
 ```ts
-import huks from '@ohos.security.huks';
+import { huks } from '@kit.UniversalKeystoreKit';
 /* 此处options选择emptyOptions来传空 */
 let keyAlias = 'keyAlias';
 let emptyOptions: huks.HuksOptions = {
@@ -3606,7 +3606,7 @@ isKeyExist(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<bool
 **示例：**
 
 ```ts
-import huks from '@ohos.security.huks';
+import { huks } from '@kit.UniversalKeystoreKit';
 /* 此处options选择emptyOptions来传空 */
 let keyAlias = 'keyAlias';
 let emptyOptions: huks.HuksOptions = {
@@ -3644,7 +3644,7 @@ isKeyExist(keyAlias: string, options: HuksOptions) : Promise\<boolean>
 **示例：**
 
 ```ts
-import huks from '@ohos.security.huks';
+import { huks } from '@kit.UniversalKeystoreKit';
 /* 此处options选择emptyOptions来传空 */
 let keyAlias = 'keyAlias';
 let emptyOptions: huks.HuksOptions = {
@@ -3813,8 +3813,8 @@ abort操作密钥接口，使用Callback回调异步返回结果。
 **示例：**
 
 ```ts
-import huks from '@ohos.security.huks';
-import { BusinessError } from '@ohos.base';
+import { huks } from '@kit.UniversalKeystoreKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 /* huks.init, huks.update, huks.finish为三段式接口，需要一起使用，当huks.init和huks.update
  * 以及huks.finish操作中的任一阶段发生错误时，都需要调用huks.abort来终止密钥的使用。
  *
@@ -3934,8 +3934,8 @@ abort操作密钥接口，使用Promise方式异步返回结果。
 **示例：**
 
 ```ts
-import huks from '@ohos.security.huks';
-import { BusinessError } from '@ohos.base';
+import { huks } from '@kit.UniversalKeystoreKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 /* huks.init, huks.update, huks.finish为三段式接口，需要一起使用，当huks.init和huks.update
  * 以及huks.finish操作中的任一阶段发生错误时，都需要调用huks.abort来终止密钥的使用。
  *

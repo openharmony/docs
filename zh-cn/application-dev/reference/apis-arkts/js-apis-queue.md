@@ -17,7 +17,7 @@ Queue和[Deque](js-apis-deque.md)相比，Queue只能在一端删除一端增加
 ## 导入模块
 
 ```ts
-import Queue from '@ohos.util.Queue';  
+import { Queue } from '@kit.ArkTS';
 ```
 
 
@@ -192,10 +192,11 @@ callbackfn的参数说明：
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200011 | The forEach method cannot be bound. |
 
 **示例：**

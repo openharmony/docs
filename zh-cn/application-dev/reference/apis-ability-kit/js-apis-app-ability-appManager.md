@@ -9,7 +9,7 @@ appManager模块提供App管理的能力，包括查询当前是否处于稳定�
 ## 导入模块
 
 ```ts
-import appManager from '@ohos.app.ability.appManager';
+import { appManager } from '@kit.AbilityKit';
 ```
 
 ## ProcessState<sup>10+</sup>
@@ -56,15 +56,15 @@ isRunningInStabilityTest(callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
 ```ts
-import appManager from '@ohos.app.ability.appManager';
+import { appManager } from '@kit.AbilityKit';
 
 appManager.isRunningInStabilityTest((err, flag) => {
-    if (err) {
-        console.error(`isRunningInStabilityTest fail, err: ${JSON.stringify(err)}`);
-    } else {
-        console.log(`The result of isRunningInStabilityTest is: ${JSON.stringify(flag)}`);
-    }
-});  
+  if (err) {
+    console.error(`isRunningInStabilityTest fail, err: ${JSON.stringify(err)}`);
+  } else {
+    console.log(`The result of isRunningInStabilityTest is: ${JSON.stringify(flag)}`);
+  }
+});
 ```
 
 
@@ -95,13 +95,13 @@ isRunningInStabilityTest(): Promise&lt;boolean&gt;
 **示例：**
 
 ```ts
-import appManager from '@ohos.app.ability.appManager';
-import { BusinessError } from '@ohos.base';
+import { appManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 appManager.isRunningInStabilityTest().then((flag) => {
-    console.log(`The result of isRunningInStabilityTest is: ${JSON.stringify(flag)}`);
+  console.log(`The result of isRunningInStabilityTest is: ${JSON.stringify(flag)}`);
 }).catch((error: BusinessError) => {
-    console.error(`error: ${JSON.stringify(error)}`);
+  console.error(`error: ${JSON.stringify(error)}`);
 });
 ```
 
@@ -133,13 +133,13 @@ isRamConstrainedDevice(): Promise\<boolean>
 **示例：**
 
 ```ts
-import appManager from '@ohos.app.ability.appManager';
-import { BusinessError } from '@ohos.base';
+import { appManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 appManager.isRamConstrainedDevice().then((data) => {
-    console.log(`The result of isRamConstrainedDevice is: ${JSON.stringify(data)}`);
+  console.log(`The result of isRamConstrainedDevice is: ${JSON.stringify(data)}`);
 }).catch((error: BusinessError) => {
-    console.error(`error: ${JSON.stringify(error)}`);
+  console.error(`error: ${JSON.stringify(error)}`);
 });
 ```
 
@@ -171,14 +171,14 @@ isRamConstrainedDevice(callback: AsyncCallback\<boolean>): void
 **示例：**
 
 ```ts
-import appManager from '@ohos.app.ability.appManager';
+import { appManager } from '@kit.AbilityKit';
 
 appManager.isRamConstrainedDevice((err, data) => {
-    if (err) {
-        console.error(`isRamConstrainedDevice fail, err: ${JSON.stringify(err)}`);
-    } else {
-        console.log(`The result of isRamConstrainedDevice is: ${JSON.stringify(data)}`);
-    }
+  if (err) {
+    console.error(`isRamConstrainedDevice fail, err: ${JSON.stringify(err)}`);
+  } else {
+    console.log(`The result of isRamConstrainedDevice is: ${JSON.stringify(data)}`);
+  }
 });
 ```
 
@@ -209,13 +209,13 @@ getAppMemorySize(): Promise\<number>
 **示例：**
 
 ```ts
-import appManager from '@ohos.app.ability.appManager';
-import { BusinessError } from '@ohos.base';
+import { appManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 appManager.getAppMemorySize().then((data) => {
-    console.log(`The size of app memory is: ${JSON.stringify(data)}`);
+  console.log(`The size of app memory is: ${JSON.stringify(data)}`);
 }).catch((error: BusinessError) => {
-    console.error(`error: ${JSON.stringify(error)}`);
+  console.error(`error: ${JSON.stringify(error)}`);
 });
 ```
 
@@ -247,14 +247,14 @@ getAppMemorySize(callback: AsyncCallback\<number>): void
 **示例：**
 
 ```ts
-import appManager from '@ohos.app.ability.appManager';
+import { appManager } from '@kit.AbilityKit';
 
 appManager.getAppMemorySize((err, data) => {
-    if (err) {
-        console.error(`getAppMemorySize fail, err: ${JSON.stringify(err)}`);
-    } else {
-        console.log(`The size of app memory is: ${JSON.stringify(data)}`);
-    }
+  if (err) {
+    console.error(`getAppMemorySize fail, err: ${JSON.stringify(err)}`);
+  } else {
+    console.log(`The size of app memory is: ${JSON.stringify(data)}`);
+  }
 });
 ```
 
@@ -289,13 +289,13 @@ getRunningProcessInformation(): Promise\<Array\<ProcessInformation>>
 **示例：**
 
 ```ts
-import appManager from '@ohos.app.ability.appManager';
-import { BusinessError } from '@ohos.base';
+import { appManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 appManager.getRunningProcessInformation().then((data) => {
-    console.log(`The running process information is: ${JSON.stringify(data)}`);
+  console.log(`The running process information is: ${JSON.stringify(data)}`);
 }).catch((error: BusinessError) => {
-    console.error(`error: ${JSON.stringify(error)}`);
+  console.error(`error: ${JSON.stringify(error)}`);
 });
 ```
 
@@ -331,13 +331,13 @@ getRunningProcessInformation(callback: AsyncCallback\<Array\<ProcessInformation>
 **示例：**
 
 ```ts
-import appManager from '@ohos.app.ability.appManager';
+import { appManager } from '@kit.AbilityKit';
 
 appManager.getRunningProcessInformation((err, data) => {
-    if (err) {
-        console.error(`getRunningProcessInformation fail, err: ${JSON.stringify(err)}`);
-    } else {
-        console.log(`The running process information is: ${JSON.stringify(data)}`);
-    }
+  if (err) {
+    console.error(`getRunningProcessInformation fail, err: ${JSON.stringify(err)}`);
+  } else {
+    console.log(`The running process information is: ${JSON.stringify(data)}`);
+  }
 });
 ```

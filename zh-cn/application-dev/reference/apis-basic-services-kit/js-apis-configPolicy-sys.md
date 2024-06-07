@@ -30,6 +30,13 @@ getOneCfgFile(relPath: string, callback: AsyncCallback&lt;string&gt;)
 | relPath  | string                      | 是   | 配置文件名                                 |
 | callback | AsyncCallback&lt;string&gt; | 是   | 异步回调，用于返回最高优先级配置文件的路径 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                                       |
+| ------- | ---------------------------------------------------------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 
 **示例：**
 
@@ -65,6 +72,14 @@ getOneCfgFile(relPath: string): Promise&lt;string&gt;
 | 参数名  | 类型   | 必填 | 说明       |
 | ------- | ------ | ---- | ---------- |
 | relPath | string | 是   | 配置文件名 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                                       |
+| ------- | ---------------------------------------------------------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 
 **返回值：**
 
@@ -107,6 +122,14 @@ getCfgFiles(relPath: string, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;)
 | relPath  | string                                   | 是   | 配置文件名                 |
 | callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | 是   | 异步回调，用于返回文件列表 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                                       |
+| ------- | ---------------------------------------------------------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+
 **示例：**
 
   ```ts
@@ -140,6 +163,14 @@ getCfgFiles(relPath: string): Promise&lt;Array&lt;string&gt;&gt;
 | 参数名  | 类型   | 必填 | 说明       |
 | ------- | ------ | ---- | ---------- |
 | relPath | string | 是   | 配置文件名 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                                       |
+| ------- | ---------------------------------------------------------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 
 **返回值：**
 
@@ -179,6 +210,14 @@ getCfgDirList(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;)
 | 参数名   | 类型                                     | 必填 | 说明                               |
 | -------- | ---------------------------------------- | ---- | ---------------------------------- |
 | callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | 是   | 异步回调，用于返回配置层级目录列表 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                                       |
+| ------- | ---------------------------------------------------------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 
 **示例：**
 
@@ -249,6 +288,13 @@ getOneCfgFile(relPath: string, followMode: FollowXMode, callback: AsyncCallback&
 | followMode | [FollowXMode](#followxmode11) | 是   | 跟随模式                                   |
 | callback   | AsyncCallback&lt;string&gt;   | 是   | 异步回调，用于返回最高优先级配置文件的路径 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                                       |
+| ------- | ---------------------------------------------------------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 
 **示例：**
 
@@ -290,6 +336,14 @@ getOneCfgFile(relPath: string, followMode: FollowXMode, extra: string, callback:
 | extra      | string                        | 是   | 用户自定义跟随规则，仅在followMode为USER_DEFINED时有效 |
 | callback   | AsyncCallback&lt;string&gt;   | 是   | 异步回调，用于返回最高优先级配置文件的路径             |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                                       |
+| ------- | ---------------------------------------------------------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+
 **示例：**
 
   ```ts
@@ -329,6 +383,14 @@ getOneCfgFile(relPath: string, followMode: FollowXMode, extra?: string): Promise
 | followMode | [FollowXMode](#followxmode11) | 是   | 跟随模式                                               |
 | extra      | string                        | 否   | 用户自定义跟随规则，仅在followMode为USER_DEFINED时必填 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                                       |
+| ------- | ---------------------------------------------------------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3.Parameter verification failed.|
+
 **返回值：**
 
 | 类型                   | 说明                     |
@@ -365,11 +427,19 @@ getOneCfgFileSync(relPath: string, followMode?: FollowXMode, extra?: string): st
 
 **参数：**
 
-| 参数名     | 类型                          | 必填 | 说明                                                   |
-| ---------- | ----------------------------- | ---- | ------------------------------------------------------ |
-| relPath    | string                        | 是   | 配置文件名                                             |
-| followMode | [FollowXMode](#followxmode11) | 否   | 跟随模式，不设置时，默认使用DEFAULT                                               |
+| 参数名     | 类型                          | 必填 | 说明                                                 |
+| ---------- | ----------------------------- | ---- | ----------------------------------------------------|
+| relPath    | string                        | 是   | 配置文件名                                           |
+| followMode | [FollowXMode](#followxmode11) | 否   | 跟随模式，不设置时，默认使用DEFAULT                    |
 | extra      | string                        | 否   | 用户自定义跟随规则，仅在followMode为USER_DEFINED时必填 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                                       |
+| ------- | ---------------------------------------------------------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3.Parameter verification failed.|
 
 **返回值：**
 
@@ -412,6 +482,14 @@ getCfgFiles(relPath: string, followMode: FollowXMode, callback: AsyncCallback&lt
 | followMode | [FollowXMode](#followxmode11)            | 是   | 跟随模式                   |
 | callback   | AsyncCallback&lt;Array&lt;string&gt;&gt; | 是   | 异步回调，用于返回文件列表 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                                       |
+| ------- | ---------------------------------------------------------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+
 **示例：**
 
   ```ts
@@ -452,6 +530,14 @@ getCfgFiles(relPath: string, followMode: FollowXMode, extra: string, callback: A
 | extra      | string                                   | 是   | 用户自定义跟随规则，仅在followMode为USER_DEFINED时有效 |
 | callback   | AsyncCallback&lt;Array&lt;string&gt;&gt; | 是   | 异步回调，用于返回文件列表                             |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                                       |
+| ------- | ---------------------------------------------------------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+
 **示例：**
 
   ```ts
@@ -490,6 +576,14 @@ getCfgFiles(relPath: string, followMode: FollowXMode, extra?: string): Promise&l
 | relPath    | string                        | 是   | 配置文件名                                             |
 | followMode | [FollowXMode](#followxmode11) | 是   | 跟随模式                                               |
 | extra      | string                        | 否   | 用户自定义跟随规则，仅在followMode为USER_DEFINED时必填 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                                       |
+| ------- | ---------------------------------------------------------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3.Parameter verification failed.|
 
 **返回值：**
 
@@ -532,6 +626,14 @@ getCfgFilesSync(relPath: string, followMode?: FollowXMode, extra?: string): Arra
 | relPath    | string                        | 是   | 配置文件名                                             |
 | followMode | [FollowXMode](#followxmode11) | 否   | 跟随模式，不设置时，默认使用DEFAULT                    |
 | extra      | string                        | 否   | 用户自定义跟随规则，仅在followMode为USER_DEFINED时必填 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                                       |
+| ------- | ---------------------------------------------------------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3.Parameter verification failed.|
 
 **返回值：**
 

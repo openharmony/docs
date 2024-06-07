@@ -16,10 +16,10 @@ sensor模块提供订阅传感器数据基本能力，主要包含查询传感�
 
 
 ```
-import sensor from '@system.sensor';
+import { Sensor } from '@kit.SensorServiceKit';
 ```
 
-## sensor.subscribeAccelerometer
+## Sensor.subscribeAccelerometer
 
  subscribeAccelerometer(options: subscribeAccelerometerOptions): void
 
@@ -38,8 +38,7 @@ import sensor from '@system.sensor';
 **示例：** 
 
 ```ts
-import sensor from '@system.sensor';
-import { AccelerometerResponse, subscribeAccelerometerOptions } from '@system.sensor';
+import { Sensor, AccelerometerResponse, subscribeAccelerometerOptions } from '@kit.SensorServiceKit';
 
 let accelerometerOptions: subscribeAccelerometerOptions = {
   interval: 'normal',
@@ -52,13 +51,13 @@ let accelerometerOptions: subscribeAccelerometerOptions = {
     console.error(`Failed to subscription. Code: ${code}, data: ${data}`);
   },
 };
-sensor.subscribeAccelerometer(accelerometerOptions);
+Sensor.subscribeAccelerometer(accelerometerOptions);
 ```
 
 > **说明：**
 > 建议在页面销毁时，即onDestroy回调中，取消数据订阅，避免不必要的性能开销。
 
-## sensor.unsubscribeAccelerometer
+## Sensor.unsubscribeAccelerometer
 
 unsubscribeAccelerometer(): void
 
@@ -71,10 +70,10 @@ unsubscribeAccelerometer(): void
 **示例：**
 
 ```ts
-sensor.unsubscribeAccelerometer();
+Sensor.unsubscribeAccelerometer();
 ```
 
-## sensor.subscribeCompass
+## Sensor.subscribeCompass
 
  subscribeCompass(options: SubscribeCompassOptions): void
 
@@ -91,8 +90,7 @@ sensor.unsubscribeAccelerometer();
 **示例：** 
 
 ```ts
-import sensor from '@system.sensor';
-import { CompassResponse, SubscribeCompassOptions } from '@system.sensor';
+import { Sensor, CompassResponse, SubscribeCompassOptions } from '@kit.SensorServiceKit';
 
 let subscribeCompassOptions: SubscribeCompassOptions = {
   success: (ret: CompassResponse) => {
@@ -102,13 +100,13 @@ let subscribeCompassOptions: SubscribeCompassOptions = {
     console.error(`Failed to subscription. Code: ${code}, data: ${data}`);
   },
 };
-sensor.subscribeCompass(subscribeCompassOptions);
+Sensor.subscribeCompass(subscribeCompassOptions);
 ```
 
 > **说明：**
 > 建议在页面销毁时，即onDestroy回调中，取消数据订阅，避免不必要的性能开销。
 
-## sensor.unsubscribeCompass
+## Sensor.unsubscribeCompass
 
 unsubscribeCompass(): void
 
@@ -119,10 +117,10 @@ unsubscribeCompass(): void
 **示例：**
 
 ```ts
-sensor.unsubscribeCompass();
+Sensor.unsubscribeCompass();
 ```
 
-## sensor.subscribeProximity
+## Sensor.subscribeProximity
 
  subscribeProximity(options: SubscribeProximityOptions): void
 
@@ -139,8 +137,7 @@ sensor.unsubscribeCompass();
 **示例：** 
 
 ```ts
-import sensor from '@system.sensor';
-import { ProximityResponse, SubscribeProximityOptions } from '@system.sensor';
+import { Sensor, ProximityResponse, SubscribeProximityOptions } from '@kit.SensorServiceKit';
 
 let subscribeProximityOptions: SubscribeProximityOptions = {
   success: (ret: ProximityResponse) => {
@@ -150,13 +147,13 @@ let subscribeProximityOptions: SubscribeProximityOptions = {
     console.error(`Failed to subscription. Code: ${code}, data: ${data}`);
   },
 };
-sensor.subscribeProximity(subscribeProximityOptions);
+Sensor.subscribeProximity(subscribeProximityOptions);
 ```
 
 > **说明：**
 > 建议在页面销毁时，即onDestroy回调中，取消数据订阅，避免不必要的性能开销。
 
-## sensor.unsubscribeProximity
+## Sensor.unsubscribeProximity
 
 unsubscribeProximity(): void
 
@@ -167,10 +164,10 @@ unsubscribeProximity(): void
 **示例：**
 
 ```ts
-sensor.unsubscribeProximity();
+Sensor.unsubscribeProximity();
 ```
 
-## sensor.subscribeLight
+## Sensor.subscribeLight
 
  subscribeLight(options: SubscribeLightOptions): void
 
@@ -187,8 +184,7 @@ sensor.unsubscribeProximity();
 **示例：** 
 
 ```ts
-import sensor from '@system.sensor';
-import { LightResponse, SubscribeLightOptions } from '@system.sensor';
+import { Sensor, LightResponse, SubscribeLightOptions } from '@kit.SensorServiceKit';
 
 let subscribeLightOptions: SubscribeLightOptions = {
   success: (ret: LightResponse) => {
@@ -198,13 +194,13 @@ let subscribeLightOptions: SubscribeLightOptions = {
     console.error(`Failed to subscription. Code: ${code}, data: ${data}`);
   },
 };
-sensor.subscribeLight(subscribeLightOptions);
+Sensor.subscribeLight(subscribeLightOptions);
 ```
 
 > **说明：**
 > 建议在页面销毁时，即onDestroy回调中，取消数据订阅，避免不必要的性能开销。
 
-## sensor.unsubscribeLight
+## Sensor.unsubscribeLight
 
 unsubscribeLight(): void
 
@@ -215,10 +211,10 @@ unsubscribeLight(): void
 **示例：** 
 
 ```ts
-sensor.unsubscribeLight();
+Sensor.unsubscribeLight();
 ```
 
-## sensor.subscribeStepCounter
+## Sensor.subscribeStepCounter
 
  subscribeStepCounter(options: SubscribeStepCounterOptions): void
 
@@ -237,8 +233,7 @@ sensor.unsubscribeLight();
 **示例：** 
 
 ```ts
-import sensor from '@system.sensor';
-import { StepCounterResponse, SubscribeStepCounterOptions } from '@system.sensor';
+import { Sensor, StepCounterResponse, SubscribeStepCounterOptions } from '@kit.SensorServiceKit';
 
 let subscribeStepCounterOptions: SubscribeStepCounterOptions = {
   success: (ret: StepCounterResponse) => {
@@ -248,13 +243,13 @@ let subscribeStepCounterOptions: SubscribeStepCounterOptions = {
     console.error(`Failed to subscription. Code: ${code}, data: ${data}`);
   },
 };
-sensor.subscribeStepCounter(subscribeStepCounterOptions);
+Sensor.subscribeStepCounter(subscribeStepCounterOptions);
 ```
 
 > **说明：**
 > 建议在页面销毁时，即onDestroy回调中，取消数据订阅，避免不必要的性能开销。
 
-## sensor.unsubscribeStepCounter
+## Sensor.unsubscribeStepCounter
 
 unsubscribeStepCounter(): void
 
@@ -267,11 +262,11 @@ unsubscribeStepCounter(): void
 **示例：** 
 
 ```ts
-sensor.unsubscribeStepCounter();
+Sensor.unsubscribeStepCounter();
 ```
 
 
-## sensor.subscribeBarometer
+## Sensor.subscribeBarometer
 
 subscribeBarometer(options: SubscribeBarometerOptions): void
 
@@ -288,8 +283,7 @@ subscribeBarometer(options: SubscribeBarometerOptions): void
 **示例：** 
 
 ```ts
-import sensor from '@system.sensor';
-import { BarometerResponse, SubscribeBarometerOptions } from '@system.sensor';
+import { Sensor, BarometerResponse, SubscribeBarometerOptions } from '@kit.SensorServiceKit';
 
 let subscribeBarometerOptions: SubscribeBarometerOptions = {
   success: (ret: BarometerResponse) => {
@@ -299,14 +293,14 @@ let subscribeBarometerOptions: SubscribeBarometerOptions = {
     console.error(`Failed to subscription. Code: ${code}, data: ${data}`);
   },
 };
-sensor.subscribeBarometer(subscribeBarometerOptions);
+Sensor.subscribeBarometer(subscribeBarometerOptions);
 ```
 
 > **说明：**
 > 建议在页面销毁时，即onDestroy回调中，取消数据订阅，避免不必要的性能开销。
 
 
-## sensor.unsubscribeBarometer
+## Sensor.unsubscribeBarometer
 
 unsubscribeBarometer(): void
 
@@ -317,11 +311,11 @@ unsubscribeBarometer(): void
 **示例：** 
 
 ```ts
-sensor.unsubscribeBarometer();
+Sensor.unsubscribeBarometer();
 ```
 
 
-## sensor.subscribeHeartRate
+## Sensor.subscribeHeartRate
 
  subscribeHeartRate(options: SubscribeHeartRateOptions): void
 
@@ -340,8 +334,7 @@ sensor.unsubscribeBarometer();
 **示例：** 
 
 ```ts
-import sensor from '@system.sensor';
-import { HeartRateResponse, SubscribeHeartRateOptions } from '@system.sensor';
+import { Sensor, HeartRateResponse, SubscribeHeartRateOptions } from '@kit.SensorServiceKit';
 
 let subscribeHeartRateOptions: SubscribeHeartRateOptions = {
   success: (ret: HeartRateResponse) => {
@@ -351,14 +344,14 @@ let subscribeHeartRateOptions: SubscribeHeartRateOptions = {
     console.error(`Failed to subscription. Code: ${code}, data: ${data}`);
   },
 };
-sensor.subscribeHeartRate(subscribeHeartRateOptions);
+Sensor.subscribeHeartRate(subscribeHeartRateOptions);
 ```
 
 > **说明：**
 > 建议在页面销毁时，即onDestroy回调中，取消数据订阅，避免不必要的性能开销。
 
 
-## sensor.unsubscribeHeartRate
+## Sensor.unsubscribeHeartRate
 
 unsubscribeHeartRate(): void
 
@@ -371,10 +364,10 @@ unsubscribeHeartRate(): void
 **示例：** 
 
 ```ts
-sensor.unsubscribeHeartRate();
+Sensor.unsubscribeHeartRate();
 ```
 
-## sensor.subscribeOnBodyState
+## Sensor.subscribeOnBodyState
 
  subscribeOnBodyState(options: SubscribeOnBodyStateOptions): void
 
@@ -391,8 +384,7 @@ sensor.unsubscribeHeartRate();
 **示例：** 
 
 ```ts
-import sensor from '@system.sensor';
-import { OnBodyStateResponse, SubscribeOnBodyStateOptions } from '@system.sensor';
+import { Sensor, OnBodyStateResponse, SubscribeOnBodyStateOptions } from '@kit.SensorServiceKit';
 
 let subscribeOnBodyStateOptions: SubscribeOnBodyStateOptions = {
   success: (ret: OnBodyStateResponse) => {
@@ -402,13 +394,13 @@ let subscribeOnBodyStateOptions: SubscribeOnBodyStateOptions = {
     console.error(`Failed to subscription. Code: ${code}, data: ${data}`);
   },
 };
-sensor.subscribeOnBodyState(subscribeOnBodyStateOptions);
+Sensor.subscribeOnBodyState(subscribeOnBodyStateOptions);
 ```
 
 > **说明：**
 > 建议在页面销毁时，即onDestroy回调中，取消数据订阅，避免不必要的性能开销。
 
-## sensor.unsubscribeOnBodyState
+## Sensor.unsubscribeOnBodyState
 
 unsubscribeOnBodyState(): void
 
@@ -419,10 +411,10 @@ unsubscribeOnBodyState(): void
 **示例：** 
 
 ```ts
-sensor.unsubscribeOnBodyState();
+Sensor.unsubscribeOnBodyState();
 ```
 
-## sensor.getOnBodyState
+## Sensor.getOnBodyState
 
  getOnBodyState(options: GetOnBodyStateOptions): void
 
@@ -439,8 +431,7 @@ sensor.unsubscribeOnBodyState();
 **示例：** 
 
 ```ts
-import sensor from '@system.sensor';
-import { OnBodyStateResponse, GetOnBodyStateOptions } from '@system.sensor';
+import { Sensor, OnBodyStateResponse, GetOnBodyStateOptions } from '@kit.SensorServiceKit';
 
 let getOnBodyStateOptions: GetOnBodyStateOptions = {
   success: (ret: OnBodyStateResponse) => {
@@ -450,10 +441,10 @@ let getOnBodyStateOptions: GetOnBodyStateOptions = {
     console.error(`Failed to subscription. Code: ${code}, data: ${data}`);
   },
 };
-sensor.getOnBodyState(getOnBodyStateOptions);
+Sensor.getOnBodyState(getOnBodyStateOptions);
 ```
 
-## sensor.subscribeDeviceOrientation<sup>6+</sup>
+## Sensor.subscribeDeviceOrientation<sup>6+</sup>
 
  subscribeDeviceOrientation(options: SubscribeDeviceOrientationOptions): void
 
@@ -472,8 +463,7 @@ sensor.getOnBodyState(getOnBodyStateOptions);
 **示例：** 
 
 ```ts
-import sensor from '@system.sensor';
-import { DeviceOrientationResponse, SubscribeDeviceOrientationOptions } from '@system.sensor';
+import { Sensor, DeviceOrientationResponse, SubscribeDeviceOrientationOptions } from '@kit.SensorServiceKit';
 
 let subscribeDeviceOrientationOptions: SubscribeDeviceOrientationOptions = {
   interval: 'normal',
@@ -486,13 +476,13 @@ let subscribeDeviceOrientationOptions: SubscribeDeviceOrientationOptions = {
     console.error(`Failed to subscription. Code: ${code}, data: ${data}`);
   }
 };
-sensor.subscribeDeviceOrientation(subscribeDeviceOrientationOptions);
+Sensor.subscribeDeviceOrientation(subscribeDeviceOrientationOptions);
 ```
 
 > **说明：**
 > 建议在页面销毁时，即onDestroy回调中，取消数据订阅，避免不必要的性能开销。
 
-## sensor.unsubscribeDeviceOrientation<sup>6+</sup>
+## Sensor.unsubscribeDeviceOrientation<sup>6+</sup>
 
 unsubscribeDeviceOrientation(): void
 
@@ -503,10 +493,10 @@ unsubscribeDeviceOrientation(): void
 **示例：**
 
 ```ts
-sensor.unsubscribeDeviceOrientation();
+Sensor.unsubscribeDeviceOrientation();
 ```
 
-## sensor.subscribeGyroscope<sup>6+</sup>
+## Sensor.subscribeGyroscope<sup>6+</sup>
 
  subscribeGyroscope(options: SubscribeGyroscopeOptions): void
 
@@ -527,8 +517,7 @@ sensor.unsubscribeDeviceOrientation();
 **示例：** 
 
 ```ts
-import sensor from '@system.sensor';
-import { GyroscopeResponse, SubscribeGyroscopeOptions } from '@system.sensor';
+import { Sensor, GyroscopeResponse, SubscribeGyroscopeOptions } from '@kit.SensorServiceKit';
 
 let subscribeGyroscopeOptions: SubscribeGyroscopeOptions = {
   interval: 'normal',
@@ -541,13 +530,13 @@ let subscribeGyroscopeOptions: SubscribeGyroscopeOptions = {
     console.error(`Failed to subscription. Code: ${code}, data: ${data}`);
   }
 };
-sensor.subscribeGyroscope(subscribeGyroscopeOptions);
+Sensor.subscribeGyroscope(subscribeGyroscopeOptions);
 ```
 
 > **说明：**
 > 建议在页面销毁时，即onDestroy回调中，取消数据订阅，避免不必要的性能开销。
 
-## sensor.unsubscribeGyroscope<sup>6+</sup>
+## Sensor.unsubscribeGyroscope<sup>6+</sup>
 
 unsubscribeGyroscope(): void
 
@@ -560,7 +549,7 @@ unsubscribeGyroscope(): void
 **示例：** 
 
 ```ts
-sensor.unsubscribeGyroscope();
+Sensor.unsubscribeGyroscope();
 ```
 
 ## subscribeAccelerometerOptions

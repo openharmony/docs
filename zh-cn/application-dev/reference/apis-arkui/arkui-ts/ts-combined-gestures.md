@@ -21,6 +21,8 @@ GestureGroup(mode: GestureMode, ...gesture: GestureType[])
 
 ## GestureMode枚举说明
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称        | 描述                                       |
 | --------- | ---------------------------------------- |
 | Sequence  | 顺序识别，按照手势的注册顺序识别手势，直到所有手势识别成功。若有一个手势识别失败，后续手势识别均失败。<br>顺序识别手势组仅有最后一个手势可以响应onActionEnd。 |
@@ -32,7 +34,7 @@ GestureGroup(mode: GestureMode, ...gesture: GestureType[])
 
 | 名称                                       | 功能描述                                 |
 | ---------------------------------------- | ------------------------------------ |
-| onCancel(event:&nbsp;()&nbsp;=&gt;&nbsp;void) | 顺序组合手势（GestureMode.Sequence）取消后触发回调。 <br/>**说明：** <br/>在窗口失焦的时候会触发。|
+| onCancel(event:&nbsp;()&nbsp;=&gt;&nbsp;void) | 顺序组合手势（GestureMode.Sequence）取消后触发回调。 <br/>**说明：** <br/>在窗口失焦的时候会触发。**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
 
 
 ## 示例

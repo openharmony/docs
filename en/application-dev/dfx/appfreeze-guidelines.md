@@ -32,7 +32,7 @@ The logs are displayed by the bundle name, fault, and time.
 
 ### Collecting Logs by Using faultLogger APIs
 
-The FaultLogger module provides APIs to query various fault information. For details, see [@ohos.faultLogger](../reference/apis/js-apis-faultLogger.md).
+The FaultLogger module provides APIs to query various fault information. For details, see [@ohos.faultLogger](../reference/apis-performance-analysis-kit/js-apis-faultLogger.md).
 
 
 ## appfreeze Detection

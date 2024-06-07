@@ -2,7 +2,7 @@
 
 ## 场景介绍
 
-Native XComponent是XComponent组件提供在Native层的实例，可作为JS层和Native层XComponent绑定的桥梁。XComponent所提供的的NDK接口都依赖于该实例。接口能力包括获取Native Window实例、获取XComponent的布局/事件信息、注册XComponent的生命周期回调、注册XComponent的触摸、鼠标、按键等事件回调。针对Native XComponent，主要的开发场景如下：
+Native XComponent是XComponent组件提供在Native层的实例，可作为JS层和Native层XComponent绑定的桥梁。XComponent所提供的NDK接口都依赖于该实例。接口能力包括获取Native Window实例、获取XComponent的布局/事件信息、注册XComponent的生命周期回调、注册XComponent的触摸、鼠标、按键等事件回调。针对Native XComponent，主要的开发场景如下：
 
 - 利用Native XComponent提供的接口注册XComponent的生命周期和事件回调。
 - 在这些回调中进行初始化环境、获取当前状态、响应各类事件的开发。
@@ -14,7 +14,7 @@ Native XComponent是XComponent组件提供在Native层的实例，可作为JS层
 | -------- | -------- |
 |OH_NativeXComponent_GetXComponentId(OH_NativeXComponent* component, char* id, uint64_t* size)|获取XComponent的id。|
 |OH_NativeXComponent_GetXComponentSize(OH_NativeXComponent* component, const void* window, uint64_t* width, uint64_t* height)|获取XComponent持有的surface的大小。|
-|OH_NativeXComponent_GetXComponentOffset(OH_NativeXComponent* component, const void* window, double* x, double* y)|获取XComponent持有的surface相对窗口左上角的偏移量。|
+|OH_NativeXComponent_GetXComponentOffset(OH_NativeXComponent* component, const void* window, double* x, double* y)|获取XComponent持有的surface相对其父组件左顶点的偏移量。|
 |OH_NativeXComponent_GetTouchEvent(OH_NativeXComponent* component, const void* window, OH_NativeXComponent_TouchEvent* touchEvent)|获取由XComponent触发的触摸事件。touchEvent内的具体属性值可参考[OH_NativeXComponent_TouchEvent](../reference/apis-arkui/_o_h___native_x_component___touch_event.md)。|
 |OH_NativeXComponent_GetTouchPointToolType(OH_NativeXComponent* component, uint32_t pointIndex, OH_NativeXComponent_TouchPointToolType* toolType)|获取XComponent触摸点的工具类型。|
 |OH_NativeXComponent_GetTouchPointTiltX(OH_NativeXComponent* component, uint32_t pointIndex, float* tiltX)|获取XComponent触摸点处相对X轴的倾斜角度。|
@@ -352,7 +352,7 @@ function myComponent() {
        PluginRender* render = PluginRender::GetInstance(id);
        double offsetX;
        double offsetY;
-       // 获取XComponent持有的surface相对窗口左上角的偏移量
+       // 获取XComponent持有的surface相对其父组件左顶点的偏移量
        OH_NativeXComponent_GetXComponentOffset(component, window, &offsetX, &offsetY);
        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "OH_NativeXComponent_GetXComponentOffset",
            "offsetX = %{public}lf, offsetY = %{public}lf", offsetX, offsetY);

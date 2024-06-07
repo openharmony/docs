@@ -8,7 +8,7 @@ ErrorManager模块提供对错误观察器的注册和注销的能力。
 
 ## 导入模块
 ```ts
-import errorManager from '@ohos.app.ability.errorManager';
+import { errorManager } from '@kit.AbilityKit';
 ```
 
 ## ErrorManager.on
@@ -36,37 +36,39 @@ on(type: 'error', observer: ErrorObserver): number
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 | 16000003 | Id does not exist. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
     
 ```ts
-import errorManager from '@ohos.app.ability.errorManager';
-import { BusinessError } from '@ohos.base';
+import { errorManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let observer: errorManager.ErrorObserver = {
-    onUnhandledException(errorMsg) {
-        console.log('onUnhandledException, errorMsg: ', errorMsg);
-    },
-    onException(errorObj) {
-        console.log('onException, name: ', errorObj.name);
-        console.log('onException, message: ', errorObj.message);
-        if (typeof(errorObj.stack) === 'string') {
-            console.log('onException, stack: ', errorObj.stack);
-        }
+  onUnhandledException(errorMsg) {
+    console.log('onUnhandledException, errorMsg: ', errorMsg);
+  },
+  onException(errorObj) {
+    console.log('onException, name: ', errorObj.name);
+    console.log('onException, message: ', errorObj.message);
+    if (typeof(errorObj.stack) === 'string') {
+      console.log('onException, stack: ', errorObj.stack);
     }
+  }
 };
 let observerId = -1;
+
 try {
-    observerId = errorManager.on('error', observer);
+  observerId = errorManager.on('error', observer);
 } catch (paramError) {
-    let code = (paramError as BusinessError).code;
-    let message = (paramError as BusinessError).message;
-    console.error(`error: ${code}, ${message}`);
+  let code = (paramError as BusinessError).code;
+  let message = (paramError as BusinessError).message;
+  console.error(`error: ${code}, ${message}`);
 }
 ```
 
@@ -90,31 +92,33 @@ off(type: 'error', observerId: number,  callback: AsyncCallback\<void>): void
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 | 16000003 | Id does not exist. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
     
 ```ts
-import errorManager from '@ohos.app.ability.errorManager';
-import { BusinessError } from '@ohos.base';
+import { errorManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let observerId = 100;
 
 function unregisterErrorObserverCallback(err: BusinessError) {
-    if (err) {
-        console.error('------------ unregisterErrorObserverCallback ------------', err);
-    }
+  if (err) {
+    console.error('------------ unregisterErrorObserverCallback ------------', err);
+  }
 }
+
 try {
-    errorManager.off('error', observerId, unregisterErrorObserverCallback);
+  errorManager.off('error', observerId, unregisterErrorObserverCallback);
 } catch (paramError) {
-    let code = (paramError as BusinessError).code;
-    let message = (paramError as BusinessError).message;
-    console.error(`error: ${code}, ${message}`);
+  let code = (paramError as BusinessError).code;
+  let message = (paramError as BusinessError).message;
+  console.error(`error: ${code}, ${message}`);
 }
 ```
 
@@ -143,31 +147,33 @@ off(type: 'error', observerId: number): Promise\<void>
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 | 16000003 | Id does not exist. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
     
 ```ts
-import errorManager from '@ohos.app.ability.errorManager';
-import { BusinessError } from '@ohos.base';
+import { errorManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let observerId = 100;
+
 try {
-    errorManager.off('error', observerId)
-        .then((data) => {
-            console.log('----------- unregisterErrorObserver success ----------', data);
-        })
-        .catch((err: BusinessError) => {
-            console.error('----------- unregisterErrorObserver fail ----------', err);
+  errorManager.off('error', observerId)
+    .then((data) => {
+      console.log('----------- unregisterErrorObserver success ----------', data);
+    })
+    .catch((err: BusinessError) => {
+      console.error('----------- unregisterErrorObserver fail ----------', err);
     });
 } catch (paramError) {
-    let code = (paramError as BusinessError).code;
-    let message = (paramError as BusinessError).message;
-    console.error(`error: ${code}, ${message}`);
+  let code = (paramError as BusinessError).code;
+  let message = (paramError as BusinessError).message;
+  console.error(`error: ${code}, ${message}`);
 }
 ```
 
@@ -189,16 +195,25 @@ on(type: 'loopObserver', timeout: number, observer: LoopObserver): void
 | timeout | number | 是 |  表示事件执行阈值（单位：毫秒）。 阈值必须大于0。 |
 | observer | [LoopObserver](js-apis-inner-application-loopObserver.md) | 是 | 注册主线程消息处理耗时监听器。 |
 
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+
 **示例：**
     
 ```ts
-import errorManager from '@ohos.app.ability.errorManager';
+import { errorManager } from '@kit.AbilityKit';
 
 let observer: errorManager.LoopObserver = {
-    onLoopTimeOut(timeout: number) {
-        console.log('Duration timeout: ' + timeout);
-    }
+  onLoopTimeOut(timeout: number) {
+    console.log('Duration timeout: ' + timeout);
+  }
 };
+
 errorManager.on("loopObserver", 1, observer);
 ```
 
@@ -206,7 +221,7 @@ errorManager.on("loopObserver", 1, observer);
 
 on(type: 'unhandledRejection', observer: UnhandledRejectionObserver): void
 
-注册主线程被拒绝promise监听器。注册后可以捕获到应用主线程中未被捕获到的promise rejection。
+注册被拒绝promise监听器。注册后可以捕获到当前线程中未被捕获到的promise rejection。
 
 **元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
@@ -216,21 +231,22 @@ on(type: 'unhandledRejection', observer: UnhandledRejectionObserver): void
  
 | 参数名                   | 类型                                                          | 必填 | 说明                                       |
 |-----------------------|-------------------------------------------------------------| -------- |------------------------------------------|
-| type                  | string                                                      | 是 | 填写'unhandledRejection'，表示注册主线程被拒绝promise监听器。 |
-| observer              | [UnhandledRejectionObserver](#unhandledrejectionobserver12) | 是 | 注册主线程被拒绝promise监听器。                          |
+| type                  | string                                                      | 是 | 填写'unhandledRejection'，表示注册被拒绝promise监听器。 |
+| observer              | [UnhandledRejectionObserver](#unhandledrejectionobserver12) | 是 | 注册被拒绝promise监听器。                          |
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
-| 16200001 | Invalid caller. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 16200001 | If the caller is invalid. |
 
 **示例：**
     
 ```ts
-import errorManager from '@ohos.app.ability.errorManager';
+import { errorManager } from '@kit.AbilityKit';
 
 let observer: errorManager.UnhandledRejectionObserver = (reason: Error, promise: Promise<void>) => {
   if (promise === promise1) {
@@ -239,15 +255,15 @@ let observer: errorManager.UnhandledRejectionObserver = (reason: Error, promise:
   console.log("reason.name: ", reason.name);
   console.log("reason.message: ", reason.message);
   if (reason.stack) {
-      console.log("reason.stack: ", reason.stack);
+    console.log("reason.stack: ", reason.stack);
   }
 };
 
 errorManager.on("unhandledRejection", observer);
 
 let promise1 = new Promise<void>(() => {}).then(() => {
-    throw new Error("uncaught error")
-})
+  throw new Error("uncaught error");
+});
 ```
 
 ## ErrorManager.off<sup>12+</sup>
@@ -267,10 +283,18 @@ off(type: 'loopObserver', observer?: LoopObserver): void
 | type | string | 是 | 填写'loopObserver'，表示应用主线程观察器。 |
 | observer | [LoopObserver](js-apis-inner-application-loopObserver.md) | 否 | 应用主线程观察器标志。 |
 
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+
 **示例：**
     
 ```ts
-import errorManager from '@ohos.app.ability.errorManager';
+import { errorManager } from '@kit.AbilityKit';
 
 errorManager.off("loopObserver");
 ```
@@ -279,7 +303,7 @@ errorManager.off("loopObserver");
 
 off(type: 'unhandledRejection', observer?: UnhandledRejectionObserver): void
 
-注销主线程被拒绝promise监听器。
+注销被拒绝promise监听器。
 
 **元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
@@ -289,22 +313,25 @@ off(type: 'unhandledRejection', observer?: UnhandledRejectionObserver): void
 
 | 参数名                   | 类型                              | 必填 | 说明                                           |
 |-----------------------|---------------------------------|----|----------------------------------------------|
-| type                  | string                          | 是  | 填写'unhandledRejection'，表示注册主线程被拒绝promise监听器。 |
-| observer              | [UnhandledRejectionObserver](#unhandledrejectionobserver12) | 否  | 注册了的主线程被拒绝promise监听器。                        |
+| type                  | string                          | 是  | 填写'unhandledRejection'，表示注册被拒绝promise监听器。 |
+| observer              | [UnhandledRejectionObserver](#unhandledrejectionobserver12) | 否  | 注册了被拒绝promise监听器。                        |
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
-| 16200001 | Invalid caller. |
-| 16300004 | observer not found. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 16200001 | If the caller is invalid. |
+| 16300004 | If the observer does not exist. |
 
 以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
     
 ```ts
-import errorManager from '@ohos.app.ability.errorManager';
+import { errorManager } from '@kit.AbilityKit';
 
 let observer: errorManager.UnhandledRejectionObserver = (reason: Error, promise: Promise<void>) => {
   if (promise === promise1) {
@@ -327,7 +354,7 @@ errorManager.off("unhandledRejection");
 ```
 或者
 ```ts
-import errorManager from '@ohos.app.ability.errorManager';
+import { errorManager } from '@kit.AbilityKit';
 
 let observer: errorManager.UnhandledRejectionObserver = (reason: Error, promise: Promise<void>) => {
   if (promise === promise1) {
@@ -353,7 +380,7 @@ errorManager.off("unhandledRejection", observer);
 
 type UnhandledRejectionObserver = (reason: Error | any, promise: Promise\<any>) => void
 
-将在js运行时应用主线程中用户未捕获到的rejection。
+将在js运行时应用中用户未捕获到的rejection。
 
 **元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
@@ -364,4 +391,4 @@ type UnhandledRejectionObserver = (reason: Error | any, promise: Promise\<any>) 
 | 参数名    | 类型            | 必填 | 说明 |
 |--------|---------------|---| -------- |
 | reason | Error \| any  | 是 | 通常是`Error`类型，表示被拒绝的理由。 |
-| promise | Promise\<any> | 否 | 被拒绝的promise。 |
+| promise | Promise\<any> | 是 | 被拒绝的promise。 |

@@ -9,13 +9,13 @@ OEM厂商可以通过[分布式帐号SDK](../../reference/apis-basic-services-ki
 2. 导入分布式帐号模块。
 
    ```ts
-   import account_distributedAccount from '@ohos.account.distributedAccount';
+   import { distributedAccount, BusinessError } from '@kit.BasicServicesKit';
    ```
 
 3. 获取分布式帐号的单实例对象。
 
    ```ts
-   const distributedAccountAbility = account_distributedAccount.getDistributedAccountAbility();
+   const distributedAccountAbility = distributedAccount.getDistributedAccountAbility();
    ```
 
 ## 在当前系统帐号上登录绑定分布式帐号
@@ -25,7 +25,7 @@ OEM厂商可以通过[分布式帐号SDK](../../reference/apis-basic-services-ki
 1. 定义待登录的分布式帐号信息。其中，登录场景下需将event指定为"Ohos.account.event.LOGIN"。
 
    ```ts
-   let distributedInfo: account_distributedAccount.DistributedInfo = {
+   let distributedInfo: distributedAccount.DistributedInfo = {
        name: 'ZhangSan',
        id: '12345',
        event: 'Ohos.account.event.LOGIN',
@@ -45,7 +45,7 @@ OEM厂商可以通过[分布式帐号SDK](../../reference/apis-basic-services-ki
 3. 在帐号绑定之后，可以调用[getOsAccountDistributedInfo](../../reference/apis-basic-services-kit/js-apis-distributed-account.md#getosaccountdistributedinfo9)接口查看分布式帐号的登录信息。
 
    ```ts
-   distributedAccountAbility.getOsAccountDistributedInfo().then((data: account_distributedAccount.DistributedInfo) => {
+   distributedAccountAbility.getOsAccountDistributedInfo().then((data: distributedAccount.DistributedInfo) => {
        console.log('distributed information: ' + JSON.stringify(data));
    }).catch((err: BusinessError) => {
        console.log('getOsAccountDistributedInfo exception: '  + JSON.stringify(err));
@@ -60,7 +60,7 @@ OEM厂商可以通过[分布式帐号SDK](../../reference/apis-basic-services-ki
 
    ```ts
    let localId: number = 100;
-   let distributedInfo: account_distributedAccount.DistributedInfo = {
+   let distributedInfo: distributedAccount.DistributedInfo = {
        name: 'ZhangSan',
        id: '12345',
        event: 'Ohos.account.event.LOGIN',
@@ -80,7 +80,7 @@ OEM厂商可以通过[分布式帐号SDK](../../reference/apis-basic-services-ki
 3. 在帐号绑定之后，可以调用[getOsAccountDistributedInfo](../../reference/apis-basic-services-kit/js-apis-distributed-account-sys.md#setosaccountdistributedinfobylocalid10)接口查看分布式帐号的登录信息。
 
    ```ts
-   distributedAccountAbility.getOsAccountDistributedInfoByLocalId(localId).then((data: account_distributedAccount.DistributedInfo) => {
+   distributedAccountAbility.getOsAccountDistributedInfoByLocalId(localId).then((data: distributedAccount.DistributedInfo) => {
        console.log('distributed information: ' + JSON.stringify(data));
    }).catch((err: BusinessError) => {
        console.log('getOsAccountDistributedInfoByLocalId exception: '  + JSON.stringify(err));
@@ -94,7 +94,7 @@ OEM厂商可以通过[分布式帐号SDK](../../reference/apis-basic-services-ki
 1. 定义待登出的分布式帐号信息。其中，登录场景下需将event指定为"Ohos.account.event.LOGOUT"。
 
    ```ts
-   let distributedInfo: account_distributedAccount.DistributedInfo = {
+   let distributedInfo: distributedAccount.DistributedInfo = {
        name: 'ZhangSan',
        id: '12345',
        event: 'Ohos.account.event.LOGOUT',
@@ -119,7 +119,7 @@ OEM厂商可以通过[分布式帐号SDK](../../reference/apis-basic-services-ki
 
    ```ts
    let localId: number = 100;
-   let distributedInfo: account_distributedAccount.DistributedInfo = {
+   let distributedInfo: distributedAccount.DistributedInfo = {
        name: 'ZhangSan',
        id: '12345',
        event: 'Ohos.account.event.LOGOUT',

@@ -26,7 +26,7 @@ function createCB(err:Base.BusinessError, commonEventSubscriber:CommonEventManag
     if (err.code !== undefined && err.code != null) {
         console.error(`createSubscriber failed, code is ${err.code}`);
     } else {
-        console.info("createSubscriber");
+        console.info("createSubscriber success");
         subscriber = commonEventSubscriber;
     }
 }
@@ -55,14 +55,14 @@ getCode(callback: AsyncCallback\<number>): void
 
 ```ts
 //获取有序公共事件代码回调
-function getCodeCB(err:Base.BusinessError, code:number) {
+function getCodeCallback(err:Base.BusinessError, code:number) {
     if (err.code !== undefined && err.code != null) {
         console.error(`getCode failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("getCode " + JSON.stringify(code));
     }
 }
-subscriber.getCode(getCodeCB);
+subscriber.getCode(getCodeCallback);
 ```
 
 ## getCode
@@ -135,14 +135,14 @@ setCode(code: number, callback: AsyncCallback\<void>): void
 
 ```ts
 //设置有序公共事件的代码回调
-function setCodeCB(err:Base.BusinessError) {
+function setCodeCallback(err:Base.BusinessError) {
     if (err.code !== undefined && err.code != null) {
         console.error(`setCode failed, code is ${err.code}, message is ${err.message}`);
     } else {
-        console.info("setCode");
+        console.info("setCode success");
     }
 }
-subscriber.setCode(1, setCodeCB);
+subscriber.setCode(1, setCodeCallback);
 ```
 
 ## setCode
@@ -171,7 +171,7 @@ setCode(code: number): Promise\<void>
 
 ```ts
 subscriber.setCode(1).then(() => {
-    console.info("setCode");
+    console.info("setCode success");
 }).catch((err:Base.BusinessError) => {
     console.error(`setCode failed, code is ${err.code}, message is ${err.message}`);
 });
@@ -193,6 +193,13 @@ setCodeSync(code: number): void
 | ------ | ------ | ---- | ------------------ |
 | code   | number | 是   | 公共事件的代码。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 401      | parameter error.                    | 
 
 **示例：**
 
@@ -226,14 +233,14 @@ getData(callback: AsyncCallback\<string>): void
 
 ```ts
 //获取有序公共事件代码数据回调
-function getDataCB(err:Base.BusinessError, data:string) {
+function getDataCallback(err:Base.BusinessError, data:string) {
     if (err.code !== undefined && err.code != null) {
         console.error(`getData failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("getData " + JSON.stringify(data));
     }
 }
-subscriber.getData(getDataCB);
+subscriber.getData(getDataCallback);
 ```
 
 ## getData
@@ -306,14 +313,14 @@ setData(data: string, callback: AsyncCallback\<void>): void
 
 ```ts
 //设置有序公共事件的结果数据回调
-function setDataCB(err:Base.BusinessError) {
+function setDataCallback(err:Base.BusinessError) {
     if (err.code !== undefined && err.code != null) {
-        console.error(`setCode failed, code is ${err.code}, message is ${err.message}`);
+        console.error(`setData failed, code is ${err.code}, message is ${err.message}`);
     } else {
-        console.info("setData");
+        console.info("setData success");
     }
 }
-subscriber.setData("publish_data_changed", setDataCB);
+subscriber.setData("publish_data_changed", setDataCallback);
 ```
 
 ## setData
@@ -342,9 +349,9 @@ setData(data: string): Promise\<void>
 
 ```ts
 subscriber.setData("publish_data_changed").then(() => {
-    console.info("setData");
+    console.info("setData success");
 }).catch((err:Base.BusinessError) => {
-    console.error(`setCode failed, code is ${err.code}, message is ${err.message}`);
+    console.error(`setData failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -363,6 +370,14 @@ setDataSync(data: string): void
 | 参数名 | 类型   | 必填 | 说明                 |
 | ------ | ------ | ---- | -------------------- |
 | data   | string | 是   | 公共事件的数据。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 401      | parameter error.                    | 
 
 **示例：**
 
@@ -397,14 +412,14 @@ setCodeAndData(code: number, data: string, callback:AsyncCallback\<void>): void
 
 ```ts
 //设置有序公共事件的代码和数据回调
-function setCodeDataCB(err:Base.BusinessError) {
+function setCodeAndDataCallback(err:Base.BusinessError) {
     if (err.code !== undefined && err.code != null) {
         console.error(`setCodeAndData failed, code is ${err.code}, message is ${err.message}`);
     } else {
-        console.info("setCodeDataCallback");
+        console.info("setCodeAndData success");
     }
 }
-subscriber.setCodeAndData(1, "publish_data_changed", setCodeDataCB);
+subscriber.setCodeAndData(1, "publish_data_changed", setCodeAndDataCallback);
 ```
 
 ## setCodeAndData
@@ -434,7 +449,7 @@ setCodeAndData(code: number, data: string): Promise\<void>
 
 ```ts
 subscriber.setCodeAndData(1, "publish_data_changed").then(() => {
-    console.info("setCodeAndData");
+    console.info("setCodeAndData success");
 }).catch((err:Base.BusinessError) => {
     console.error(`setCodeAndData failed, code is ${err.code}, message is ${err.message}`);
 });
@@ -457,6 +472,14 @@ setCodeAndDataSync(code: number, data: string): void
 | code   | number | 是   | 公共事件的代码。 |
 | data   | string | 是   | 公共事件的数据。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 401      | parameter error.                    | 
+
 **示例：**
 
 ```ts
@@ -464,7 +487,7 @@ try {
     subscriber.setCodeAndDataSync(1, "publish_data_changed");
 } catch (error) {
     let err:Base.BusinessError = error as Base.BusinessError;
-    console.error(`setCodeAndData failed, code is ${err.code}, message is ${err.message}`);
+    console.error(`setCodeAndDataSync failed, code is ${err.code}, message is ${err.message}`);
 }
 
 ```
@@ -489,14 +512,14 @@ isOrderedCommonEvent(callback: AsyncCallback\<boolean>): void
 
 ```ts
 //获取当前公共事件是否为有序事件的回调
-function isOrderedCB(err:Base.BusinessError, isOrdered:boolean) {
+function isOrderedCommonEventCallback(err:Base.BusinessError, isOrdered:boolean) {
     if (err.code !== undefined && err.code != null) {
         console.error(`isOrderedCommonEvent failed, code is ${err.code}, message is ${err.message}`);
     } else {
-        console.info("isOrdered " + JSON.stringify(isOrdered));
+        console.info("isOrderedCommonEvent " + JSON.stringify(isOrdered));
     }
 }
-subscriber.isOrderedCommonEvent(isOrderedCB);
+subscriber.isOrderedCommonEvent(isOrderedCommonEventCallback);
 ```
 
 ## isOrderedCommonEvent
@@ -519,9 +542,9 @@ isOrderedCommonEvent(): Promise\<boolean>
 
 ```ts
 subscriber.isOrderedCommonEvent().then((isOrdered:boolean) => {
-    console.info("isOrdered " + JSON.stringify(isOrdered));
+    console.info("isOrderedCommonEvent " + JSON.stringify(isOrdered));
 }).catch((err:Base.BusinessError) => {
-    console.error(`isOrdered failed, code is ${err.code}, message is ${err.message}`);
+    console.error(`isOrderedCommonEvent failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -545,7 +568,7 @@ isOrderedCommonEventSync(): boolean
 
 ```ts
 let isOrdered  = subscriber.isOrderedCommonEventSync();
-console.info("isOrdered " + JSON.stringify(isOrdered));
+console.info("isOrderedCommonEventSync " + JSON.stringify(isOrdered));
 ```
 
 ## isStickyCommonEvent
@@ -568,14 +591,14 @@ isStickyCommonEvent(callback: AsyncCallback\<boolean>): void
 
 ```ts
 //获取当前公共事件是否为粘性事件的回调
-function isStickyCB(err:Base.BusinessError, isSticky:boolean) {
+function isStickyCommonEventCallback(err:Base.BusinessError, isSticky:boolean) {
     if (err.code !== undefined && err.code != null) {
         console.error(`isStickyCommonEvent failed, code is ${err.code}, message is ${err.message}`);
     } else {
-        console.info("isSticky " + JSON.stringify(isSticky));
+        console.info("isStickyCommonEvent " + JSON.stringify(isSticky));
     }
 }
-subscriber.isStickyCommonEvent(isStickyCB);
+subscriber.isStickyCommonEvent(isStickyCommonEventCallback);
 ```
 
 ## isStickyCommonEvent
@@ -598,9 +621,9 @@ isStickyCommonEvent(): Promise\<boolean>
 
 ```ts
 subscriber.isStickyCommonEvent().then((isSticky:boolean) => {
-    console.info("isSticky " + JSON.stringify(isSticky));
+    console.info("isStickyCommonEvent " + JSON.stringify(isSticky));
 }).catch((err:Base.BusinessError) => {
-    console.error(`isSticky failed, code is ${err.code}, message is ${err.message}`);
+    console.error(`isStickyCommonEvent failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -624,7 +647,7 @@ isStickyCommonEventSync(): boolean
 
 ```ts
 let isSticky  = subscriber.isStickyCommonEventSync();
-console.info("isSticky " + JSON.stringify(isSticky));
+console.info("isStickyCommonEventSync " + JSON.stringify(isSticky));
 ```
 
 ## abortCommonEvent
@@ -645,14 +668,14 @@ abortCommonEvent(callback: AsyncCallback\<void>): void
 
 ```ts
 //取消当前有序公共事件的回调
-function abortCB(err:Base.BusinessError) {
+function abortCommonEventCallback(err:Base.BusinessError) {
     if (err.code !== undefined && err.code != null) {
 		console.error(`abortCommonEvent failed, code is ${err.code}, message is ${err.message}`);
     } else {
-        console.info("abortCommonEvent");
+        console.info("abortCommonEvent success");
     }
 }
-subscriber.abortCommonEvent(abortCB);
+subscriber.abortCommonEvent(abortCommonEventCallback);
 ```
 
 ## abortCommonEvent
@@ -673,7 +696,7 @@ abortCommonEvent(): Promise\<void>
 
 ```ts
 subscriber.abortCommonEvent().then(() => {
-    console.info("abortCommonEvent");
+    console.info("abortCommonEvent success");
 }).catch((err:Base.BusinessError) => {
     console.error(`abortCommonEvent failed, code is ${err.code}, message is ${err.message}`);
 });
@@ -711,14 +734,14 @@ clearAbortCommonEvent(callback: AsyncCallback\<void>): void
 
 ```ts
 //清除当前公共事件取消状态的回调
-function clearAbortCB(err:Base.BusinessError) {
+function clearAbortCommonEventCallback(err:Base.BusinessError) {
     if (err.code !== undefined && err.code != null) {
         console.error(`clearAbortCommonEvent failed, code is ${err.code}, message is ${err.message}`);
     } else {
-        console.info("clearAbortCommonEvent");
+        console.info("clearAbortCommonEvent success");
     }
 }
-subscriber.clearAbortCommonEvent(clearAbortCB);
+subscriber.clearAbortCommonEvent(clearAbortCommonEventCallback);
 ```
 
 ## clearAbortCommonEvent
@@ -739,7 +762,7 @@ clearAbortCommonEvent(): Promise\<void>
 
 ```ts
 subscriber.clearAbortCommonEvent().then(() => {
-    console.info("clearAbortCommonEvent");
+    console.info("clearAbortCommonEvent success");
 }).catch((err:Base.BusinessError) => {
     console.error(`clearAbortCommonEvent failed, code is ${err.code}, message is ${err.message}`);
 });
@@ -777,14 +800,14 @@ getAbortCommonEvent(callback: AsyncCallback\<boolean>): void
 
 ```ts
 //获取当前有序公共事件是否取消的回调
-function getAbortCB(err:Base.BusinessError, abortEvent:boolean) {
+function getAbortCommonEventCallback(err:Base.BusinessError, abortEvent:boolean) {
     if (err.code !== undefined && err.code != null) {
         console.error(`getAbortCommonEvent failed, code is ${err.code}, message is ${err.message}`);
     } else {
-        console.info("abortCommonEvent " + abortEvent)
+        console.info("getAbortCommonEvent " + JSON.stringify(abortEvent));
     }
 }
-subscriber.getAbortCommonEvent(getAbortCB);
+subscriber.getAbortCommonEvent(getAbortCommonEventCallback);
 ```
 
 ## getAbortCommonEvent
@@ -805,7 +828,7 @@ getAbortCommonEvent(): Promise\<boolean>
 
 ```ts
 subscriber.getAbortCommonEvent().then((abortEvent:boolean) => {
-    console.info("abortCommonEvent " + JSON.stringify(abortEvent));
+    console.info("getAbortCommonEvent " + JSON.stringify(abortEvent));
 }).catch((err:Base.BusinessError) => {
     console.error(`getAbortCommonEvent failed, code is ${err.code}, message is ${err.message}`);
 });
@@ -852,14 +875,14 @@ getSubscribeInfo(callback: AsyncCallback\<CommonEventSubscribeInfo>): void
 
 ```ts
 //获取订阅者信息回调
-function getCB(err:Base.BusinessError, subscribeInfo:CommonEventManager.CommonEventSubscribeInfo) {
+function getSubscribeInfoCallback(err:Base.BusinessError, subscribeInfo:CommonEventManager.CommonEventSubscribeInfo) {
     if (err.code !== undefined && err.code != null) {
         console.error(`getSubscribeInfo failed, code is ${err.code}, message is ${err.message}`);
     } else {
-        console.info("subscribeInfo " + JSON.stringify(subscribeInfo));
+        console.info("getSubscribeInfo " + JSON.stringify(subscribeInfo));
     }
 }
-subscriber.getSubscribeInfo(getCB);
+subscriber.getSubscribeInfo(getSubscribeInfoCallback);
 ```
 
 ## getSubscribeInfo
@@ -882,7 +905,7 @@ getSubscribeInfo(): Promise\<CommonEventSubscribeInfo>
 
 ```ts
 subscriber.getSubscribeInfo().then((subscribeInfo:CommonEventManager.CommonEventSubscribeInfo) => {
-    console.info("subscribeInfo " + JSON.stringify(subscribeInfo));
+    console.info("getSubscribeInfo " + JSON.stringify(subscribeInfo));
 }).catch((err:Base.BusinessError) => {
     console.error(`getSubscribeInfo failed, code is ${err.code}, message is ${err.message}`);
 });
@@ -908,7 +931,7 @@ getSubscribeInfoSync(): CommonEventSubscribeInfo
 
 ```ts
 let subscribeInfo = subscriber.getSubscribeInfoSync();
-console.info("subscribeInfo " + JSON.stringify(subscribeInfo));
+console.info("getSubscribeInfoSync " + JSON.stringify(subscribeInfo));
 ```
 
 ## finishCommonEvent<sup>9+</sup>
@@ -929,15 +952,14 @@ finishCommonEvent(callback: AsyncCallback\<void>): void
 
 ```ts
 //结束当前有序公共事件的回调
-function finishCB(err:Base.BusinessError) {
+function finishCommonEventCallback(err:Base.BusinessError) {
   if (err.code !== undefined && err.code != null) {
     console.error(`finishCommonEvent failed, code is ${err.code}, message is ${err.message}`);
   } else {
-    console.info("FinishCommonEvent");
+    console.info("finishCommonEvent success");
   }
 }
-
-subscriber.finishCommonEvent(finishCB);
+subscriber.finishCommonEvent(finishCommonEventCallback);
 ```
 
 ## finishCommonEvent<sup>9+</sup>
@@ -958,7 +980,7 @@ finishCommonEvent(): Promise\<void>
 
 ```ts
 subscriber.finishCommonEvent().then(() => {
-    console.info("FinishCommonEvent");
+    console.info("finishCommonEvent success");
 }).catch((err:Base.BusinessError) => {
     console.error(`finishCommonEvent failed, code is ${err.code}, message is ${err.message}`);
 });

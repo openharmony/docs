@@ -39,6 +39,13 @@ Cross-device migration supports the following features:
 2. The distributed framework provides a mechanism for saving and restoring application UI, page stacks, and service data across devices. It sends the data from the source device to the target device.
 3. On the target device, the same UIAbility uses the [onCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncreate) callback (in the case of cold start) or [onNewWant()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonnewwant) callback (in the case of hot start) to restore the service data.
 
+## Cross-Device Migration Process
+
+The following figure shows the cross-device migration process when a migration request is initiated from the migration entry of the peer device.
+
+![hop-cross-device-migration](figures/hop-cross-device-migration7.png)
+
+
 
 ## Constraints
 
@@ -72,8 +79,8 @@ Cross-device migration supports the following features:
    When a migration is triggered for the UIAbility, [onContinue()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncontinue) is called on the source device. You can use either synchronous or asynchronous mode to save the data in this method to implement application compatibility check and migration decision.
 
    - Saving data to migrate: You can save the data to migrate in key-value pairs in **wantParam**.
-   - Checking application compatibility: You can obtain the application version on the target device from **wantParam.version** in the [onContinue()](../reference/apis/js-apis-app-ability-uiAbility.md#uiabilityoncontinue) callback and compare it with the application version on the source device.
-   - Making a migration decision: You can determine whether migration is supported based on the return value of [onContinue()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncontinue).
+   - Checking application compatibility: You can obtain the application version on the target device from **wantParam.version** in the [onContinue()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncontinue) callback and compare it with the application version on the source device.
+   - Making a migration decision: You can determine whether migration is supported based on the return value of [onContinue()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncontinue). For details about the return values, see [AbilityConstant.OnContinueResult](../reference/apis-ability-kit/js-apis-app-ability-abilityConstant.md#abilityconstantoncontinueresult).
 
    ```ts
    import AbilityConstant from '@ohos.app.ability.AbilityConstant';
@@ -109,48 +116,55 @@ Cross-device migration supports the following features:
 
 3. On the source device, call APIs to restore data and load the UI. The APIs vary according to the cold or hot start mode in use. For the UIAbility on the target device, implement [onCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncreate) or [onNewWant()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonnewwant) to restore the data.
    
-   The **launchReason** parameter in the [onCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncreate) or [onNewWant()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonnewwant) callback specifies whether the launch is triggered by migration. If the launch is triggered by migration, you must obtain the saved data from **want** and call **restoreWindowStage()** to trigger page restoration, including page stack information, after data restoration.
-   
+
+In the stage model, applications with different launch types can call different APIs to restore data and load the UI, as shown below.
+
+![hop-cross-device-migration](figures/hop-cross-device-migration8.png)
+
+   - The **launchReason** parameter in the [onCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncreate) or [onNewWant()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonnewwant) callback specifies whether the launch is triggered by migration.
+   - You can obtain the saved data from the **want** parameter.
+   - After data restoration is complete, call **restoreWindowStage()** to trigger page restoration, including page stack information.
+
    ```ts
-      import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-      import hilog from '@ohos.hilog';
-      import UIAbility from '@ohos.app.ability.UIAbility';
-      import type Want from '@ohos.app.ability.Want';
-      
-      const TAG: string = '[MigrationAbility]';
-      const DOMAIN_NUMBER: number = 0xFF00;
-      
-      export default class MigrationAbility extends UIAbility {
-        storage : LocalStorage = new LocalStorage();
-      
-        onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
-          hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', 'Ability onCreate');
-          if (launchParam.launchReason === AbilityConstant.LaunchReason.CONTINUATION) {
-            // Restore the saved data from want.parameters.
-            let continueInput = '';
-            if (want.parameters !== undefined) {
-              continueInput = JSON.stringify(want.parameters.data);
-              hilog.info(DOMAIN_NUMBER, TAG, `continue input ${continueInput}`);
-            }
-            // Trigger page restoration.
-            this.context.restoreWindowStage(this.storage);
-          }
-        }
-      
-        onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void {
-           hilog.info(DOMAIN_NUMBER, TAG, 'onNewWant');
-           if (launchParam.launchReason === AbilityConstant.LaunchReason.CONTINUATION) {
-             // Restore the saved data from want.parameters.
-             let continueInput = '';
-             if (want.parameters !== undefined) {
-               continueInput = JSON.stringify(want.parameters.data);
-               hilog.info(DOMAIN_NUMBER, TAG, `continue input ${continueInput}`);
-             }
-             // Trigger page restoration. 
-             this.context.restoreWindowStage(this.storage);
-           }
+   import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+   import hilog from '@ohos.hilog';
+   import UIAbility from '@ohos.app.ability.UIAbility';
+   import type Want from '@ohos.app.ability.Want';
+   
+   const TAG: string = '[MigrationAbility]';
+   const DOMAIN_NUMBER: number = 0xFF00;
+   
+   export default class MigrationAbility extends UIAbility {
+     storage : LocalStorage = new LocalStorage();
+   
+     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+       hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', 'Ability onCreate');
+       if (launchParam.launchReason === AbilityConstant.LaunchReason.CONTINUATION) {
+         // Restore the saved data from want.parameters.
+         let continueInput = '';
+         if (want.parameters !== undefined) {
+           continueInput = JSON.stringify(want.parameters.data);
+           hilog.info(DOMAIN_NUMBER, TAG, `continue input ${continueInput}`);
          }
+         // Trigger page restoration.
+         this.context.restoreWindowStage(this.storage);
+       }
+     }
+   
+     onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+        hilog.info(DOMAIN_NUMBER, TAG, 'onNewWant');
+        if (launchParam.launchReason === AbilityConstant.LaunchReason.CONTINUATION) {
+          // Restore the saved data from want.parameters.
+          let continueInput = '';
+          if (want.parameters !== undefined) {
+            continueInput = JSON.stringify(want.parameters.data);
+            hilog.info(DOMAIN_NUMBER, TAG, `continue input ${continueInput}`);
+          }
+          // Trigger page restoration. 
+          this.context.restoreWindowStage(this.storage);
+        }
       }
+   }
    ```
 
 ## Configuring Optional Migration Features
@@ -428,7 +442,7 @@ A mission center demo is provided for you to verify the migration capability of 
 
 #### Environment Configuration
 
-[Switch to the full SDK](../../application-dev/faqs/full-sdk-switch-guide.md) on DevEco Studio. This is because the mission center uses the system API [@ohos.distributedDeviceManager](../../application-dev/reference/apis-distributedservice-kit/js-apis-distributedDeviceManager.md), which is not provided in the public SDK.
+[Switch to the full SDK](../../application-dev/faqs/full-sdk-switch-guide.md) in DevEco Studio. This is because the mission center uses the system API [@ohos.distributedDeviceManager](../../application-dev/reference/apis-distributedservice-kit/js-apis-distributedDeviceManager.md), which is not provided in the public SDK.
 
 > **NOTE**
 >

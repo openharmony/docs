@@ -4,7 +4,9 @@ The **Image** module provides APIs for image processing. You can use the APIs to
 
 > **NOTE**
 >
-> The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>
+> - Since API version 12, the APIs of this module are supported in ArkTS widgets.
 
 ## Modules to Import
 
@@ -44,7 +46,7 @@ async function Demo() {
     image.createPixelMap(color, opts).then((pixelMap: image.PixelMap) => {
         console.info('Succeeded in creating pixelmap.');
     }).catch((error: BusinessError) => {
-        console.error('Failed to create pixelmap.');
+        console.error(`Failed to create pixelmap. code is ${error.code}, message is ${error.message}`);
     })
 }
 ```
@@ -63,7 +65,7 @@ Creates a **PixelMap** object with the default BGRA_8888 format and pixel proper
 | -------- | ------------------------------------------------ | ---- | -------------------------- |
 | colors   | ArrayBuffer                                      | Yes  | Color array in BGRA_8888 format. |
 | options  | [InitializationOptions](#initializationoptions8) | Yes  | Pixel properties.                    |
-| callback | AsyncCallback\<[PixelMap](#pixelmap7)>           | Yes  | Callback used to return the **PixelMap** object.|
+| callback | AsyncCallback\<[PixelMap](#pixelmap7)>           | Yes  | Callback used to return the result. If the operation is successful, **err** is undefined and **data** is the **PixelMap** object obtained; otherwise, **err** is an error object.|
 
 **Example**
 
@@ -75,7 +77,7 @@ async function Demo() {
     let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
     image.createPixelMap(color, opts, (error: BusinessError, pixelMap: image.PixelMap) => {
         if(error) {
-            console.error('Failed to create pixelmap.');
+            console.error(`Failed to create pixelmap. code is ${error.code}, message is ${error.message}`);
             return;
         } else {
             console.info('Succeeded in creating pixelmap.');
@@ -141,7 +143,7 @@ class MySequence implements rpc.Parcelable {
             this.pixel_map = image.createPixelMapFromParcel(messageSequence);
         } catch(e) {
             let error = e as BusinessError;
-            console.error(`createPixelMapFromParcel error: ${error}`);
+            console.error(`createPixelMapFromParcel error. code is ${error.code}, message is ${error.message}`);
             return false;
         }
       return true;
@@ -160,7 +162,7 @@ async function Demo() {
       alphaType: 3
    }
    let pixelMap: image.PixelMap | undefined = undefined;
-   await image.createPixelMap(color, opts).then((srcPixelMap: image.PixelMap) => {
+   image.createPixelMap(color, opts).then((srcPixelMap: image.PixelMap) => {
       pixelMap = srcPixelMap;
    })
    if (pixelMap != undefined) {
@@ -197,7 +199,7 @@ createPixelMapFromSurface(surfaceId: string, region: Region): Promise\<PixelMap>
 **Return value**
 | Type                            | Description                 |
 | -------------------------------- | --------------------- |
-| Promise\<[PixelMap](#pixelmap7)> | Returns a **PixelMap** object if the operation is successful; throws an error otherwise.|
+| Promise\<[PixelMap](#pixelmap7)> | Promise used to return the **PixelMap** object.|
 
 **Error codes**
 
@@ -216,10 +218,10 @@ import { BusinessError } from '@ohos.base';
 
 async function Demo(surfaceId: string) {
     let region: image.Region = { x: 0, y: 0, size: { height: 100, width: 100 } };
-    await image.createPixelMapFromSurface(surfaceId, region).then(() => {
+    image.createPixelMapFromSurface(surfaceId, region).then(() => {
         console.info('Succeeded in creating pixelmap from Surface');
     }).catch((error: BusinessError) => {
-        console.error('Failed to create pixelmap');
+        console.error(`Failed to create pixelmap. code is ${error.code}, message is ${error.message}`);
     });
 } 
 ```
@@ -250,7 +252,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-|  401    | Invalid input parameter|
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed|
 
 **Example**
 
@@ -264,6 +266,270 @@ async function Demo() {
     return pixelMap;
 }
 ```
+
+## image.createPixelMapSync<sup>12+</sup>
+
+createPixelMapSync(options: InitializationOptions): PixelMap
+
+Creates a **PixelMap** object with the pixel properties specified. This API returns the result synchronously.
+
+**System capability**: SystemCapability.Multimedia.Image.Core
+
+**Parameters**
+
+| Name | Type                                            | Mandatory| Description                                                            |
+| ------- | ------------------------------------------------ | ---- | ---------------------------------------------------------------- |
+| options | [InitializationOptions](#initializationoptions8) | Yes  | Pixel properties, including the alpha type, size, scale mode, pixel format, and editable.|
+
+**Return value**
+| Type                            | Description                 |
+| -------------------------------- | --------------------- |
+| [PixelMap](#pixelmap7) | Returns a **PixelMap** object if the operation is successful; throws an error otherwise.|
+
+**Error codes**
+
+For details about the error codes, see [Image Error Codes](errorcode-image.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed|
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+async function Demo() {
+    let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
+    let pixelMap : image.PixelMap = image.createPixelMapSync(opts);
+    return pixelMap;
+}
+```
+
+## image.createPremultipliedPixelMap<sup>12+</sup>
+
+createPremultipliedPixelMap(src: PixelMap, dst: PixelMap, callback: AsyncCallback\<void>): void
+
+Converts a non-premultiplied alpha of a pixel map to a premultiplied one and stores the converted data to a target pixel map. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Multimedia.Image.Core
+
+**Parameters**
+
+| Name  | Type                                            | Mandatory| Description                      |
+| -------- | ------------------------------------------------ | ---- | -------------------------- |
+| src | [PixelMap](#pixelmap7) | Yes  | Source **PixelMap** object.|
+| dst | [PixelMap](#pixelmap7) | Yes  | Target **PixelMap** object.|
+|callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
+
+**Error codes**
+
+For details about the error codes, see [Image Error Codes](errorcode-image.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+|  401          | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed|
+|  62980103     | The image data is not supported |
+|  62980246      | Failed to read the pixelMap |
+|  62980248     | Pixelmap not allow modify |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+async function Demo() {
+    const color: ArrayBuffer = new ArrayBuffer(16); // 16 is the size of the pixel map buffer to create. The value is calculated as follows: height x width x 4.
+    let bufferArr = new Uint8Array(color);
+    for (let i = 0; i < bufferArr.length; i += 4) {
+        bufferArr[i] = 255;
+        bufferArr[i+1] = 255;
+        bufferArr[i+2] = 122;
+        bufferArr[i+3] = 122;
+    }
+    let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 2, width: 2 } , alphaType: 3}
+    let srcPixelmap = image.createPixelMapSync(color, opts);
+    let dstPixelMap = image.createPixelMapSync(opts);
+    image.createPremultipliedPixelMap(srcPixelmap, dstPixelMap, (error: BusinessError) => {
+        if(error) {
+            console.error(`Failed to convert pixelmap. code is ${error.code}, message is ${error.message}`);
+            return;
+        } else {
+            console.info('Succeeded in converting pixelmap.');
+        }
+    })
+}
+```
+
+## image.createPremultipliedPixelMap<sup>12+</sup>
+
+createPremultipliedPixelMap(src: PixelMap, dst: PixelMap): Promise\<void>
+
+Converts a non-premultiplied alpha of a pixel map to a premultiplied one and stores the converted data to a target pixel map. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Multimedia.Image.Core
+
+**Parameters**
+
+| Name  | Type                                            | Mandatory| Description                      |
+| -------- | ------------------------------------------------ | ---- | -------------------------- |
+| src | [PixelMap](#pixelmap7) | Yes  | Source **PixelMap** object.|
+| dst | [PixelMap](#pixelmap7) | Yes  | Target **PixelMap** object.|
+
+**Return value**
+
+| Type                            | Description                                                                   |
+| -------------------------------- | ----------------------------------------------------------------------- |
+| Promise\<void> | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Image Error Codes](errorcode-image.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+|  401          | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed|
+|  62980103     | The image data is not supported |
+|  62980246      | Failed to read the pixelMap |
+|  62980248     | Pixelmap not allow modify |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+async function Demo() {
+    const color: ArrayBuffer = new ArrayBuffer(16); // 16 is the size of the pixel map buffer to create. The value is calculated as follows: height x width x 4.
+    let bufferArr = new Uint8Array(color);
+    for (let i = 0; i < bufferArr.length; i += 4) {
+        bufferArr[i] = 255;
+        bufferArr[i+1] = 255;
+        bufferArr[i+2] = 122;
+        bufferArr[i+3] = 122;
+    }
+    let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 2, width: 2 } , alphaType: 2}
+    let srcPixelmap = image.createPixelMapSync(color, opts);
+    let dstPixelMap = image.createPixelMapSync(opts);
+    image.createPremultipliedPixelMap(srcPixelmap, dstPixelMap).then(() => {
+        console.info('Succeeded in converting pixelmap.');
+    }).catch((error: BusinessError) => {
+        console.error(`Failed to convert pixelmap. code is ${error.code}, message is ${error.message}`);
+    })
+}
+```
+
+## image.createUnpremultipliedPixelMap<sup>12+</sup>
+
+createUnpremultipliedPixelMap(src: PixelMap, dst: PixelMap, callback: AsyncCallback\<void>): void
+
+Converts a premultiplied alpha of a pixel map to a non-premultiplied one and stores the converted data to a target pixel map. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Multimedia.Image.Core
+
+**Parameters**
+
+| Name  | Type                                            | Mandatory| Description                      |
+| -------- | ------------------------------------------------ | ---- | -------------------------- |
+| src | [PixelMap](#pixelmap7) | Yes  | Source **PixelMap** object.|
+| dst | [PixelMap](#pixelmap7) | Yes  | Target **PixelMap** object.|
+|callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
+
+**Error codes**
+
+For details about the error codes, see [Image Error Codes](errorcode-image.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+|  401          | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed|
+|  62980103     | The image data is not supported |
+|  62980246      | Failed to read the pixelMap |
+|  62980248     | Pixelmap not allow modify |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+async function Demo() {
+    const color: ArrayBuffer = new ArrayBuffer(16); // 16 is the size of the pixel map buffer to create. The value is calculated as follows: height x width x 4.
+    let bufferArr = new Uint8Array(color);
+    for (let i = 0; i < bufferArr.length; i += 4) {
+        bufferArr[i] = 255;
+        bufferArr[i+1] = 255;
+        bufferArr[i+2] = 122;
+        bufferArr[i+3] = 122;
+    }
+    let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 2, width: 2 } , alphaType: 2}
+    let srcPixelmap = image.createPixelMapSync(color, opts);
+    let dstPixelMap = image.createPixelMapSync(opts);
+    image.createUnpremultipliedPixelMap(srcPixelmap, dstPixelMap, (error: BusinessError) => {
+        if(error) {
+            console.error(`Failed to convert pixelmap. code is ${error.code}, message is ${error.message}`);
+            return;
+        } else {
+            console.info('Succeeded in converting pixelmap.');
+        }
+    })
+}
+```
+
+## image.createUnpremultipliedPixelMap<sup>12+</sup>
+
+createUnpremultipliedPixelMap(src: PixelMap, dst: PixelMap): Promise\<void>
+
+Converts a premultiplied alpha of a pixel map to a non-premultiplied one and stores the converted data to a target pixel map. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Multimedia.Image.Core
+
+**Parameters**
+
+| Name | Type                                            | Mandatory| Description                                                            |
+| ------- | ------------------------------------------------ | ---- | ---------------------------------------------------------------- |
+| src | [PixelMap](#pixelmap7) | Yes  | Source **PixelMap** object.|
+| dst | [PixelMap](#pixelmap7) | Yes  | Target **PixelMap** object.|
+
+**Return value**
+
+| Type                            | Description                                                                   |
+| -------------------------------- | ----------------------------------------------------------------------- |
+| Promise\<void> |  Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Image Error Codes](errorcode-image.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+|  401          | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed|
+|  62980103    | The image data is not supported |
+|  60980246    | Failed to read the PixelMap |
+|  60980248    | PixelMap does not allow modification |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+async function Demo() {
+    const color: ArrayBuffer = new ArrayBuffer(16); // 16 is the size of the pixel map buffer to create. The value is calculated as follows: height x width x 4.
+    let bufferArr = new Uint8Array(color);
+    for (let i = 0; i < bufferArr.length; i += 4) {
+        bufferArr[i] = 255;
+        bufferArr[i+1] = 255;
+        bufferArr[i+2] = 122;
+        bufferArr[i+3] = 122;
+    }
+    let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 2, width: 2 } , alphaType: 3}
+    let srcPixelmap = image.createPixelMapSync(color, opts);
+    let dstPixelMap = image.createPixelMapSync(opts);
+    image.createUnpremultipliedPixelMap(srcPixelmap, dstPixelMap).then(() => {
+        console.info('Succeeded in converting pixelmap.');
+    }).catch((error: BusinessError) => {
+        console.error(`Failed to convert pixelmap. code is ${error.code}, message is ${error.message}`);
+    })
+}
+```
+
 
 ## PixelMap<sup>7+</sup>
 
@@ -279,14 +545,18 @@ Before calling any API in **PixelMap**, you must use [image.createPixelMap](#ima
 
 | Name             | Type   | Readable| Writable| Description                      |
 | -----------------| ------- | ---- | ---- | -------------------------- |
-| isEditable        | boolean | Yes  | No  | Whether the image pixel map is editable.|
-| isStrideAlignment<sup>11+</sup> | boolean | Yes  | No  | Whether the image memory is the DMA memory.|
+| isEditable        | boolean | Yes  | No  | Indicates whether the image pixel map is editable.<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.|
+| isStrideAlignment<sup>11+</sup> | boolean | Yes  | No  | Indicates whether the image memory is the DMA memory.|
 
 ### readPixelsToBuffer<sup>7+</sup>
 
 readPixelsToBuffer(dst: ArrayBuffer): Promise\<void>
 
 Reads the pixel map data of this image and writes the data to an **ArrayBuffer**. This API uses a promise to return the result. If this pixel map is created in the BGRA_8888 format, the data read is the same as the original data.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 12.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -300,7 +570,7 @@ Reads the pixel map data of this image and writes the data to an **ArrayBuffer**
 
 | Type          | Description                                           |
 | -------------- | ----------------------------------------------- |
-| Promise\<void> | Promise used to return the result. If the operation fails, an error message is returned.|
+| Promise\<void> | Promise that returns no value. |
 
 **Example**
 
@@ -313,7 +583,7 @@ async function Demo() {
         pixelMap.readPixelsToBuffer(readBuffer).then(() => {
             console.info('Succeeded in reading image pixel data.'); // Called if the condition is met.
         }).catch((error: BusinessError) => {
-            console.error('Failed to read image pixel data.'); // Called if no condition is met.
+            console.error(`Failed to read image pixel data. code is ${error.code}, message is ${error.message}`);//  Called if no condition is met.
         })
     }
 }
@@ -325,6 +595,10 @@ readPixelsToBuffer(dst: ArrayBuffer, callback: AsyncCallback\<void>): void
 
 Reads the pixel map data of this image and writes the data to an **ArrayBuffer**. This API uses an asynchronous callback to return the result. If this pixel map is created in the BGRA_8888 format, the data read is the same as the original data.
 
+**Widget capability**: This API can be used in ArkTS widgets since API version 12.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Multimedia.Image.Core
 
 **Parameters**
@@ -332,7 +606,7 @@ Reads the pixel map data of this image and writes the data to an **ArrayBuffer**
 | Name  | Type                | Mandatory| Description                                                                                                 |
 | -------- | -------------------- | ---- | ----------------------------------------------------------------------------------------------------- |
 | dst      | ArrayBuffer          | Yes  | Buffer to which the pixel map data will be written. The buffer size is obtained by calling [getPixelBytesNumber](#getpixelbytesnumber7).|
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the operation fails, an error message is returned.                                                                       |
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object. |
 
 **Example**
 
@@ -342,9 +616,9 @@ import { BusinessError } from '@ohos.base';
 async function Demo() {
     const readBuffer: ArrayBuffer = new ArrayBuffer(96); // 96 is the size of the pixel map buffer to create. The value is calculated as follows: height x width x 4.
     if (pixelMap != undefined) {
-        pixelMap.readPixelsToBuffer(readBuffer, (err: BusinessError, res: void) => {
-            if(err) {
-                console.error('Failed to read image pixel data.');  // Called if no condition is met.
+        pixelMap.readPixelsToBuffer(readBuffer, (error: BusinessError, res: void) => {
+            if(error) {
+                console.error(`Failed to read image pixel data. code is ${error.code}, message is ${error.message}`);//  Called if no condition is met.
                 return;
             } else {
                 console.info('Succeeded in reading image pixel data.');  // Called if the condition is met.
@@ -360,6 +634,10 @@ readPixelsToBufferSync(dst: ArrayBuffer): void
 
 Reads the pixel map data of this image and writes the data to an **ArrayBuffer**. This API returns the result synchronously.
 
+**Widget capability**: This API can be used in ArkTS widgets since API version 12.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Multimedia.Image.Core
 
 **Parameters**
@@ -374,7 +652,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-|  401    | Invalid input parameter |
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
 |  501    | Resource Unavailable |
 
 **Example**
@@ -396,6 +674,10 @@ readPixels(area: PositionArea): Promise\<void>
 
 Reads the pixel map data in an area. This API uses a promise to return the result.
 
+**Widget capability**: This API can be used in ArkTS widgets since API version 12.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Multimedia.Image.Core
 
 **Parameters**
@@ -408,7 +690,7 @@ Reads the pixel map data in an area. This API uses a promise to return the resul
 
 | Type          | Description                                               |
 | :------------- | :-------------------------------------------------- |
-| Promise\<void> | Promise used to return the result. If the operation fails, an error message is returned.|
+| Promise\<void> | Promise that returns no value. |
 
 **Example**
 
@@ -426,7 +708,7 @@ async function Demo() {
         pixelMap.readPixels(area).then(() => {
             console.info('Succeeded in reading the image data in the area.'); // Called if the condition is met.
         }).catch((error: BusinessError) => {
-            console.error('Failed to read the image data in the area.'); // Called if no condition is met.
+            console.error(`Failed to read the image data in the area. code is ${error.code}, message is ${error.message}`);// Called if no condition is met.
         })
     }
 }
@@ -438,6 +720,10 @@ readPixels(area: PositionArea, callback: AsyncCallback\<void>): void
 
 Reads the pixel map data in an area. This API uses an asynchronous callback to return the result.
 
+**Widget capability**: This API can be used in ArkTS widgets since API version 12.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Multimedia.Image.Core
 
 **Parameters**
@@ -445,7 +731,7 @@ Reads the pixel map data in an area. This API uses an asynchronous callback to r
 | Name  | Type                          | Mandatory| Description                          |
 | -------- | ------------------------------ | ---- | ------------------------------ |
 | area     | [PositionArea](#positionarea7) | Yes  | Area from which the pixel map data will be read.      |
-| callback | AsyncCallback\<void>           | Yes  | Callback used to return the result. If the operation fails, an error message is returned.|
+| callback | AsyncCallback\<void>           | Yes  |  Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Example**
 
@@ -460,14 +746,57 @@ async function Demo() {
         region: { size: { height: 1, width: 2 }, x: 0, y: 0 }
     };
     if (pixelMap != undefined) {
-        pixelMap.readPixels(area, (err: BusinessError) => {
-            if (err != undefined) {
-                console.error('Failed to read pixelmap from the specified area.');
+        pixelMap.readPixels(area, (error: BusinessError) => {
+            if (error) {
+                console.error(`Failed to read pixelmap from the specified area. code is ${error.code}, message is ${error.message}`);
                 return;
             } else {
-                console.info('Succeeded to read pixelmap from the specified area.');
+                console.info('Succeeded in reading pixelmap from the specified area.');
             }
         })
+    }
+}
+```
+
+### readPixelsSync<sup>12+</sup>
+
+readPixelsSync(area: PositionArea): void
+
+Reads the pixel map data in an area. This API returns the result synchronously.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Multimedia.Image.Core
+
+**Parameters**
+
+| Name| Type                          | Mandatory| Description                    |
+| ------ | ------------------------------ | ---- | ------------------------ |
+| area   | [PositionArea](#positionarea7) | Yes  | Area from which the pixel map data will be read.|
+
+**Error codes**
+
+For details about the error codes, see [Image Error Codes](errorcode-image.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
+|  501    | Resource Unavailable |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+async function Demo() {
+    const area : image.PositionArea = {
+        pixels: new ArrayBuffer(8),
+        offset: 0,
+        stride: 8,
+        region: { size: { height: 1, width: 2 }, x: 0, y: 0 }
+    };
+    if (pixelMap != undefined) {
+        pixelMap.readPixelsSync(area);
     }
 }
 ```
@@ -477,6 +806,10 @@ async function Demo() {
 writePixels(area: PositionArea): Promise\<void>
 
 Writes the pixel map data to an area. This API uses a promise to return the result.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 12.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -490,7 +823,7 @@ Writes the pixel map data to an area. This API uses a promise to return the resu
 
 | Type          | Description                                               |
 | :------------- | :-------------------------------------------------- |
-| Promise\<void> | Promise used to return the result. If the operation fails, an error message is returned.|
+| Promise\<void> | Promise that returns no value. |
 
 **Example**
 
@@ -510,7 +843,7 @@ async function Demo() {
     }
     if (pixelMap != undefined) {
         pixelMap.writePixels(area).then(() => {
-            console.info('Succeeded to write pixelmap into the specified area.');
+            console.info('Succeeded in writing pixelmap into the specified area.');
         }).catch((error: BusinessError) => {
             console.error(`Failed to write pixelmap into the specified area. code is ${error.code}, message is ${error.message}`);
         })
@@ -524,6 +857,10 @@ writePixels(area: PositionArea, callback: AsyncCallback\<void>): void
 
 Writes the pixel map data to an area. This API uses an asynchronous callback to return the result.
 
+**Widget capability**: This API can be used in ArkTS widgets since API version 12.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Multimedia.Image.Core
 
 **Parameters**
@@ -531,7 +868,7 @@ Writes the pixel map data to an area. This API uses an asynchronous callback to 
 | Name   | Type                          | Mandatory| Description                          |
 | --------- | ------------------------------ | ---- | ------------------------------ |
 | area      | [PositionArea](#positionarea7) | Yes  | Area to which the pixel map data will be written.          |
-| callback  | AsyncCallback\<void>           | Yes  | Callback used to return the result. If the operation fails, an error message is returned.|
+| callback  | AsyncCallback\<void>           | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Example**
 
@@ -550,22 +887,26 @@ async function Demo() {
     }
     if (pixelMap != undefined) {
         pixelMap.writePixels(area, (error : BusinessError) => {
-            if (error != undefined) {
-                console.error('Failed to write pixelmap into the specified area.');
+            if (error) {
+                console.error(`Failed to write pixelmap into the specified area. code is ${error.code}, message is ${error.message}`);
                 return;
             } else {
-                console.info('Succeeded to write pixelmap into the specified area.');
+                console.info('Succeeded in writing pixelmap into the specified area.');
             }
         })
     }
 }
 ```
 
- ### writePixelsSync<sup>12+</sup>
+### writePixelsSync<sup>12+</sup>
 
 writePixelsSync(area: PositionArea): void
 
 Writes the pixel map data to an area. This API returns the result synchronously.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 12.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -581,7 +922,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-|  401    | Invalid input parameter |
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
 |  501    | Resource Unavailable |
 
 **Example**
@@ -612,6 +953,10 @@ writeBufferToPixels(src: ArrayBuffer): Promise\<void>
 
 Reads image data in an **ArrayBuffer** and writes the data to a **PixelMap** object. This API uses a promise to return the result.
 
+**Widget capability**: This API can be used in ArkTS widgets since API version 12.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Multimedia.Image.Core
 
 **Parameters**
@@ -624,7 +969,7 @@ Reads image data in an **ArrayBuffer** and writes the data to a **PixelMap** obj
 
 | Type          | Description                                           |
 | -------------- | ----------------------------------------------- |
-| Promise\<void> | Promise used to return the result. If the operation fails, an error message is returned.|
+| Promise\<void> | Promise that returns no value. |
 
 **Example**
 
@@ -641,7 +986,7 @@ async function Demo() {
         pixelMap.writeBufferToPixels(color).then(() => {
             console.info("Succeeded in writing data from a buffer to a PixelMap.");
         }).catch((error: BusinessError) => {
-            console.error("Failed to write data from a buffer to a PixelMap.");
+            console.error(`Failed to write data from a buffer to a PixelMap. code is ${error.code}, message is ${error.message}`);
         })
     }
 }
@@ -653,6 +998,10 @@ writeBufferToPixels(src: ArrayBuffer, callback: AsyncCallback\<void>): void
 
 Reads image data in an **ArrayBuffer** and writes the data to a **PixelMap** object. This API uses an asynchronous callback to return the result.
 
+**Widget capability**: This API can be used in ArkTS widgets since API version 12.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Multimedia.Image.Core
 
 **Parameters**
@@ -660,7 +1009,7 @@ Reads image data in an **ArrayBuffer** and writes the data to a **PixelMap** obj
 | Name  | Type                | Mandatory| Description                          |
 | -------- | -------------------- | ---- | ------------------------------ |
 | src      | ArrayBuffer          | Yes  | Buffer from which the image data will be read.                |
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the operation fails, an error message is returned.|
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Example**
 
@@ -674,9 +1023,9 @@ async function Demo() {
         bufferArr[i] = i + 1;
     }
     if (pixelMap != undefined) {
-        pixelMap.writeBufferToPixels(color, (err: BusinessError) => {
-            if (err != undefined) {
-                console.error("Failed to write data from a buffer to a PixelMap.");
+        pixelMap.writeBufferToPixels(color, (error: BusinessError) => {
+            if (error) {
+                console.error(`Failed to write data from a buffer to a PixelMap. code is ${error.code}, message is ${error.message}`);
                 return;
             } else {
                 console.info("Succeeded in writing data from a buffer to a PixelMap.");
@@ -686,11 +1035,60 @@ async function Demo() {
 }
 ```
 
+### writeBufferToPixelsSync<sup>12+</sup>
+
+writeBufferToPixelsSync(src: ArrayBuffer): void
+
+Reads image data in an ArrayBuffer and writes the data to a **PixelMap** object. This API returns the result synchronously.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 12.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Multimedia.Image.Core
+
+**Parameters**
+
+| Name| Type       | Mandatory| Description          |
+| ------ | ----------- | ---- | -------------- |
+| src    | ArrayBuffer | Yes  | Buffer from which the image data will be read.|
+
+**Error codes**
+
+For details about the error codes, see [Image Error Codes](errorcode-image.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
+|  501    | Resource Unavailable |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+async function Demo() {
+    const color : ArrayBuffer = new ArrayBuffer(96);  // 96 is the size of the pixel map buffer to create. The value is calculated as follows: height x width x 4.
+    let bufferArr : Uint8Array = new Uint8Array(color);
+    for (let i = 0; i < bufferArr.length; i++) {
+        bufferArr[i] = i + 1;
+    }
+    if (pixelMap != undefined) {
+        pixelMap.writeBufferToPixelsSync(color);
+    }
+}
+```
+
+
 ### getImageInfo<sup>7+</sup>
 
 getImageInfo(): Promise\<ImageInfo>
 
 Obtains pixel map information of this image. This API uses a promise to return the result.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 12.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -698,7 +1096,7 @@ Obtains pixel map information of this image. This API uses a promise to return t
 
 | Type                             | Description                                                       |
 | --------------------------------- | ----------------------------------------------------------- |
-| Promise\<[ImageInfo](#imageinfo)> | Promise used to return the pixel map information. If the operation fails, an error message is returned.|
+| Promise\<[ImageInfo](#imageinfo)> | Promise used to return the pixel map information.|
 
 **Example**
 
@@ -708,12 +1106,11 @@ import { BusinessError } from '@ohos.base';
 async function Demo() {
     if (pixelMap != undefined) {
         pixelMap.getImageInfo().then((imageInfo: image.ImageInfo) => {
-            if (imageInfo == undefined) {
-                console.error("Failed to obtain the image pixel map information.");
+            if (imageInfo != undefined) {
+                console.info("Succeeded in obtaining the image pixel map information."+ imageInfo.size.height);
             }
-            if (imageInfo.size.height == 4 && imageInfo.size.width == 6) {
-                console.info("Succeeded in obtaining the image pixel map information.");
-            }
+        }).catch((error: BusinessError) => {
+            console.error(`Failed to obtain the image pixel map information. code is ${error.code}, message is ${error.message}`);
         })
     }
 }
@@ -725,13 +1122,17 @@ getImageInfo(callback: AsyncCallback\<ImageInfo>): void
 
 Obtains pixel map information of this image. This API uses an asynchronous callback to return the result.
 
+**Widget capability**: This API can be used in ArkTS widgets since API version 12.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Multimedia.Image.Core
 
 **Parameters**
 
 | Name  | Type                                   | Mandatory| Description                                                        |
 | -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback\<[ImageInfo](#imageinfo)> | Yes  | Callback used to return the pixel map information. If the operation fails, an error message is returned.|
+| callback | AsyncCallback\<[ImageInfo](#imageinfo)> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the pixel map information obtained; otherwise, **err** is an error object.|
 
 **Example**
 
@@ -740,13 +1141,12 @@ import { BusinessError } from '@ohos.base';
 
 async function Demo() {
     if (pixelMap != undefined) {
-        pixelMap.getImageInfo((err: BusinessError, imageInfo: image.ImageInfo) => {
-            if (imageInfo == undefined) {
-                console.error("Failed to obtain the image pixel map information.");
+        pixelMap.getImageInfo((error: BusinessError, imageInfo: image.ImageInfo) => {
+            if (error) {
+                console.error(`Failed to obtain the image pixel map information. code is ${error.code}, message is ${error.message}`);
                 return;
-            }
-            if (imageInfo.size.height == 4 && imageInfo.size.width == 6) {
-                console.info("Succeeded in obtaining the image pixel map information.");
+            } else {
+                console.info("Succeeded in obtaining the image pixel map information."+ imageInfo.size.height);
             }
         })
     }
@@ -758,6 +1158,10 @@ async function Demo() {
 getImageInfoSync(): ImageInfo
 
 Obtains pixel map information of this image. This API returns the result synchronously.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 12.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.Image.ImageSource
 
@@ -782,9 +1186,10 @@ import { BusinessError } from '@ohos.base';
 
 async function Demo() {
     if (pixelMap != undefined) {
-        let imageInfo : image.PixelMap = pixelMap.getImageInfoSync();
+        let imageInfo : image.ImageInfo = pixelMap.getImageInfoSync();
         return imageInfo;
     }
+    rteurn undefined;
 }
 ```
 
@@ -793,6 +1198,10 @@ async function Demo() {
 getBytesNumberPerRow(): number
 
 Obtains the number of bytes per row of this image.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 12.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -814,6 +1223,10 @@ getPixelBytesNumber(): number
 
 Obtains the total number of bytes of this image.
 
+**Widget capability**: This API can be used in ArkTS widgets since API version 12.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Multimedia.Image.Core
 
 **Return value**
@@ -833,6 +1246,10 @@ let pixelBytesNumber: number = pixelMap.getPixelBytesNumber();
 getDensity():number
 
 Obtains the density of this image.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 12.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -854,6 +1271,10 @@ opacity(rate: number, callback: AsyncCallback\<void>): void
 
 Sets an opacity rate for this image. This API uses an asynchronous callback to return the result.
 
+**Widget capability**: This API can be used in ArkTS widgets since API version 12.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Multimedia.Image.Core
 
 **Parameters**
@@ -861,7 +1282,7 @@ Sets an opacity rate for this image. This API uses an asynchronous callback to r
 | Name  | Type                | Mandatory| Description                          |
 | -------- | -------------------- | ---- | ------------------------------ |
 | rate     | number               | Yes  | Opacity rate to set.  |
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the operation fails, an error message is returned.|
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the setting is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Example**
 
@@ -873,7 +1294,7 @@ async function Demo() {
     if (pixelMap != undefined) {
         pixelMap.opacity(rate, (err: BusinessError) => {
             if (err) {
-                console.error("Failed to set opacity.");
+                console.error(`Failed to set opacity. code is ${err.code}, message is ${err.message}`);
                 return;
             } else {
                 console.info("Succeeded in setting opacity.");
@@ -889,6 +1310,10 @@ opacity(rate: number): Promise\<void>
 
 Sets an opacity rate for this image. This API uses a promise to return the result.
 
+**Widget capability**: This API can be used in ArkTS widgets since API version 12.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Multimedia.Image.Core
 
 **Parameters**
@@ -901,7 +1326,7 @@ Sets an opacity rate for this image. This API uses a promise to return the resul
 
 | Type          | Description                                           |
 | -------------- | ----------------------------------------------- |
-| Promise\<void> | Promise used to return the result. If the operation fails, an error message is returned.|
+| Promise\<void> | Promise that returns no value. |
 
 **Example**
 
@@ -911,11 +1336,49 @@ import { BusinessError } from '@ohos.base';
 async function Demo() {
     let rate: number = 0.5;
     if (pixelMap != undefined) {
-        await pixelMap.opacity(rate).then(() => {
-            console.info('Sucessed in setting opacity.');
+        pixelMap.opacity(rate).then(() => {
+            console.info('Succeeded in setting opacity.');
         }).catch((err: BusinessError) => {
-            console.error('Failed to set opacity.');
+            console.error(`Failed to set opacity. code is ${err.code}, message is ${err.message}`);
         })
+    }
+}
+```
+
+### opacitySync<sup>12+</sup>
+
+opacitySync(rate: number): void
+
+Sets an opacity rate for this pixel map and initializes the pixel map. This API returns the result synchronously.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Multimedia.Image.Core
+
+**Parameters**
+
+| Name  | Type                | Mandatory| Description                          |
+| -------- | -------------------- | ---- | ------------------------------ |
+| rate     | number               | Yes  | Opacity rate to set.  |
+
+**Error codes**
+
+For details about the error codes, see [Image Error Codes](errorcode-image.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
+|  501    | Resource Unavailable |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+async function Demo() {
+    let rate : number = 0.5;
+    if (pixelMap != undefined) {
+        pixelMap.opacitySync(rate);
     }
 }
 ```
@@ -925,6 +1388,10 @@ async function Demo() {
 createAlphaPixelmap(): Promise\<PixelMap>
 
 Creates a **PixelMap** object that contains only the alpha channel information. This object can be used for the shadow effect. This API uses a promise to return the result.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 12.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -941,10 +1408,10 @@ import { BusinessError } from '@ohos.base';
 
 async function Demo() {
     if (pixelMap != undefined) {
-        await pixelMap.createAlphaPixelmap().then((alphaPixelMap: image.PixelMap) => {
+        pixelMap.createAlphaPixelmap().then((alphaPixelMap: image.PixelMap) => {
             console.info('Succeeded in creating alpha pixelmap.');
         }).catch((error: BusinessError) => {
-            console.error('Failed to create alpha pixelmap.');
+            console.error(`Failed to create alpha pixelmap. code is ${error.code}, message is ${error.message}`);
         })
     }
 }
@@ -956,13 +1423,17 @@ createAlphaPixelmap(callback: AsyncCallback\<PixelMap>): void
 
 Creates a **PixelMap** object that contains only the alpha channel information. This object can be used for the shadow effect. This API uses an asynchronous callback to return the result.
 
+**Widget capability**: This API can be used in ArkTS widgets since API version 12.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Multimedia.Image.Core
 
 **Parameters**
 
 | Name  | Type                    | Mandatory| Description                    |
 | -------- | ------------------------ | ---- | ------------------------ |
-| callback | AsyncCallback\<[PixelMap](#pixelmap7)> | Yes  | Callback used to return the **PixelMap** object.|
+| callback | AsyncCallback\<[PixelMap](#pixelmap7)> | Yes  |  Callback used to return the result. If the operation is successful, **err** is undefined and **data** is the **PixelMap** object obtained; otherwise, **err** is an error object.|
 
 **Example**
 
@@ -973,13 +1444,52 @@ async function Demo() {
     if (pixelMap != undefined) {
         pixelMap.createAlphaPixelmap((err: BusinessError, alphaPixelMap: image.PixelMap) => {
             if (alphaPixelMap == undefined) {
-                console.error('Failed to obtain new pixel map.');
+                console.error(`Failed to obtain new pixel map. code is ${err.code}, message is ${err.message}`);
                 return;
             } else {
-                console.info('Succeed in obtaining new pixel map.');
+                console.info('Succeeded in obtaining new pixel map.');
             }
         }) 
     }
+}
+```
+
+### createAlphaPixelmapSync<sup>12+</sup>
+
+createAlphaPixelmapSync(): PixelMap
+
+Creates a **PixelMap** object that contains only the alpha channel information. This object can be used for the shadow effect. This API returns the result synchronously.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Multimedia.Image.Core
+
+**Return value**
+
+| Type                            | Description                 |
+| -------------------------------- | --------------------- |
+| [PixelMap](#pixelmap7) | Returns a **PixelMap** object if the operation is successful; throws an error otherwise.|
+
+**Error codes**
+
+For details about the error codes, see [Image Error Codes](errorcode-image.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+|  401    | Parameter error. Possible causes: 1.Parameter verification failed |
+|  501    | Resource Unavailable |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+async function Demo() {
+    if (pixelMap != undefined) {
+        let pixelmap : image.PixelMap = pixelMap.createAlphaPixelmapSync();
+        return pixelmap;
+    }
+    rteurn undefined;
 }
 ```
 
@@ -989,6 +1499,10 @@ scale(x: number, y: number, callback: AsyncCallback\<void>): void
 
 Scales this image based on the input scaling multiple of the width and height. This API uses an asynchronous callback to return the result.
 
+**Widget capability**: This API can be used in ArkTS widgets since API version 12.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Multimedia.Image.Core
 
 **Parameters**
@@ -997,7 +1511,7 @@ Scales this image based on the input scaling multiple of the width and height. T
 | -------- | -------------------- | ---- | ------------------------------- |
 | x        | number               | Yes  | Scaling multiple of the width.|
 | y        | number               | Yes  | Scaling multiple of the height.|
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the operation fails, an error message is returned. |
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Example**
 
@@ -1010,7 +1524,7 @@ async function Demo() {
     if (pixelMap != undefined) {
         pixelMap.scale(scaleX, scaleY, (err: BusinessError) => {
             if (err) {
-                console.error("Failed to scale pixelmap.");
+                console.error(`Failed to scale pixelmap. code is ${err.code}, message is ${err.message}`);
                 return;
             } else {
                 console.info("Succeeded in scaling pixelmap.");
@@ -1026,6 +1540,10 @@ scale(x: number, y: number): Promise\<void>
 
 Scales this image based on the input scaling multiple of the width and height. This API uses a promise to return the result.
 
+**Widget capability**: This API can be used in ArkTS widgets since API version 12.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Multimedia.Image.Core
 
 **Parameters**
@@ -1039,7 +1557,7 @@ Scales this image based on the input scaling multiple of the width and height. T
 
 | Type          | Description                       |
 | -------------- | --------------------------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> |  Promise that returns no value.|
 
 **Example**
 
@@ -1050,10 +1568,11 @@ async function Demo() {
     let scaleX: number = 2.0;
     let scaleY: number = 1.0;
     if (pixelMap != undefined) {
-        await pixelMap.scale(scaleX, scaleY).then(() => {
-            console.info('Sucessed in scaling pixelmap.');
+        pixelMap.scale(scaleX, scaleY).then(() => {
+            console.info('Succeeded in scaling pixelmap.');
         }).catch((err: BusinessError) => {
-            console.error('Failed to scale pixelmap.');
+            console.error(`Failed to scale pixelmap. code is ${err.code}, message is ${err.message}`);
+            
         })   
     }
 }
@@ -1064,6 +1583,8 @@ async function Demo() {
 scaleSync(x: number, y: number): void
 
 Scales this image based on the input width and height. This API returns the result synchronously.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -1080,7 +1601,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-|  401    | Invalid input parameter |
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
 |  501    | Resource Unavailable |
 
 **Example**
@@ -1103,6 +1624,10 @@ translate(x: number, y: number, callback: AsyncCallback\<void>): void
 
 Translates this image based on the input coordinates. This API uses an asynchronous callback to return the result.
 
+**Widget capability**: This API can be used in ArkTS widgets since API version 12.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Multimedia.Image.Core
 
 **Parameters**
@@ -1111,7 +1636,7 @@ Translates this image based on the input coordinates. This API uses an asynchron
 | -------- | -------------------- | ---- | ----------------------------- |
 | x        | number               | Yes  | X coordinate to translate.                 |
 | y        | number               | Yes  | Y coordinate to translate.                 |
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the operation fails, an error message is returned.|
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Example**
 
@@ -1124,7 +1649,7 @@ async function Demo() {
     if (pixelMap != undefined) {
         pixelMap.translate(translateX, translateY, (err: BusinessError) => {
             if (err) {
-                console.error("Failed to translate pixelmap.");
+                console.error(`Failed to translate pixelmap. code is ${err.code}, message is ${err.message}`);
                 return;
             } else {
                 console.info("Succeeded in translating pixelmap.");
@@ -1140,6 +1665,10 @@ translate(x: number, y: number): Promise\<void>
 
 Translates this image based on the input coordinates. This API uses a promise to return the result.
 
+**Widget capability**: This API can be used in ArkTS widgets since API version 12.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Multimedia.Image.Core
 
 **Parameters**
@@ -1153,7 +1682,7 @@ Translates this image based on the input coordinates. This API uses a promise to
 
 | Type          | Description                       |
 | -------------- | --------------------------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> |  Promise that returns no value.|
 
 **Example**
 
@@ -1164,11 +1693,51 @@ async function Demo() {
     let translateX: number = 50.0;
     let translateY: number = 10.0;
     if (pixelMap != undefined) {
-        await pixelMap.translate(translateX, translateY).then(() => {
-            console.info('Sucessed in translating pixelmap.');
+        pixelMap.translate(translateX, translateY).then(() => {
+            console.info('Succeeded in translating pixelmap.');
         }).catch((err: BusinessError) => {
-            console.error('Failed to translate pixelmap.');
+            console.error(`Failed to translate pixelmap. code is ${err.code}, message is ${err.message}`);
         })
+    }
+}
+```
+
+### translateSync<sup>12+</sup>
+
+translateSync(x: number, y: number): void
+
+Translates this image based on the input coordinates. This API returns the result synchronously.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Multimedia.Image.Core
+
+**Parameters**
+
+| Name  | Type                | Mandatory| Description                           |
+| -------- | -------------------- | ---- | ------------------------------- |
+| x        | number               | Yes  | Scaling multiple of the width.|
+| y        | number               | Yes  | Scaling multiple of the height.|
+
+**Error codes**
+
+For details about the error codes, see [Image Error Codes](errorcode-image.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
+|  501    | Resource Unavailable |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+async function Demo() {
+    let translateX : number = 50.0;
+    let translateY : number = 10.0;
+    if (pixelMap != undefined) {
+        pixelMap.translateSync(translateX, translateY);
     }
 }
 ```
@@ -1179,6 +1748,10 @@ rotate(angle: number, callback: AsyncCallback\<void>): void
 
 Rotates this image based on the input angle. This API uses an asynchronous callback to return the result.
 
+**Widget capability**: This API can be used in ArkTS widgets since API version 12.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Multimedia.Image.Core
 
 **Parameters**
@@ -1186,7 +1759,7 @@ Rotates this image based on the input angle. This API uses an asynchronous callb
 | Name  | Type                | Mandatory| Description                         |
 | -------- | -------------------- | ---- | ----------------------------- |
 | angle    | number               | Yes  | Angle to rotate.             |
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the operation fails, an error message is returned.|
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Example**
 
@@ -1195,11 +1768,10 @@ import { BusinessError } from '@ohos.base';
 
 async function Demo() {
     let angle: number = 90.0;
-    let angle: number = 90.0;]
     if (pixelMap != undefined) {
         pixelMap.rotate(angle, (err: BusinessError) => {
-            if (err != undefined) {
-                console.error("Failed to rotate pixelmap.");
+            if (err) {
+                console.error(`Failed to rotate pixelmap. code is ${err.code}, message is ${err.message}`);
                 return;
             } else {
                 console.info("Succeeded in rotating pixelmap.");
@@ -1215,6 +1787,10 @@ rotate(angle: number): Promise\<void>
 
 Rotates this image based on the input angle. This API uses a promise to return the result.
 
+**Widget capability**: This API can be used in ArkTS widgets since API version 12.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Multimedia.Image.Core
 
 **Parameters**
@@ -1227,7 +1803,7 @@ Rotates this image based on the input angle. This API uses a promise to return t
 
 | Type          | Description                       |
 | -------------- | --------------------------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> |  Promise that returns no value.|
 
 **Example**
 
@@ -1237,11 +1813,49 @@ import { BusinessError } from '@ohos.base';
 async function Demo() {
     let angle: number = 90.0;
     if (pixelMap != undefined) {
-        await pixelMap.rotate(angle).then(() => {
-            console.info('Sucessed in rotating pixelmap.');
+        pixelMap.rotate(angle).then(() => {
+            console.info('Succeeded in rotating pixelmap.');
         }).catch((err: BusinessError) => {
-            console.error('Failed to rotate pixelmap.');
+            console.error(`Failed to rotate pixelmap. code is ${err.code}, message is ${err.message}`); 
         })
+    }
+}
+```
+
+### rotateSync<sup>12+</sup>
+
+rotateSync(angle: number): void
+
+Rotates this image based on the input angle. This API returns the result synchronously.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Multimedia.Image.Core
+
+**Parameters**
+
+| Name  | Type                | Mandatory| Description                         |
+| -------- | -------------------- | ---- | ----------------------------- |
+| angle    | number               | Yes  | Angle to rotate.             |
+
+**Error codes**
+
+For details about the error codes, see [Image Error Codes](errorcode-image.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
+|  501    | Resource Unavailable |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+async function Demo() {
+    let angle : number = 90.0;
+    if (pixelMap != undefined) {
+        pixelMap.rotateSync(angle);
     }
 }
 ```
@@ -1252,15 +1866,19 @@ flip(horizontal: boolean, vertical: boolean, callback: AsyncCallback\<void>): vo
 
 Flips this image horizontally or vertically, or both. This API uses an asynchronous callback to return the result.
 
+**Widget capability**: This API can be used in ArkTS widgets since API version 12.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Multimedia.Image.Core
 
 **Parameters**
 
 | Name    | Type                | Mandatory| Description                         |
 | ---------- | -------------------- | ---- | ----------------------------- |
-| horizontal | boolean              | Yes  | Whether to flip the image horizontally.                   |
-| vertical   | boolean              | Yes  | Whether to flip the image vertically.                   |
-| callback   | AsyncCallback\<void> | Yes  | Callback used to return the result. If the operation fails, an error message is returned.|
+| horizontal | boolean              | Yes  | Indicates whether to flip the image horizontally.                   |
+| vertical   | boolean              | Yes  | Indicates whether to flip the image vertically.                   |
+| callback   | AsyncCallback\<void> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Example**
 
@@ -1272,8 +1890,8 @@ async function Demo() {
     let vertical: boolean = false;
     if (pixelMap != undefined) {
         pixelMap.flip(horizontal, vertical, (err: BusinessError) => {
-            if (err != undefined) {
-                console.error("Failed to flip pixelmap.");
+            if (err) {
+                console.error(`Failed to flip pixelmap. code is ${err.code}, message is ${err.message}`);
                 return;
             } else {
                 console.info("Succeeded in flipping pixelmap.");
@@ -1289,20 +1907,24 @@ flip(horizontal: boolean, vertical: boolean): Promise\<void>
 
 Flips this image horizontally or vertically, or both. This API uses a promise to return the result.
 
+**Widget capability**: This API can be used in ArkTS widgets since API version 12.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Multimedia.Image.Core
 
 **Parameters**
 
 | Name    | Type   | Mandatory| Description     |
 | ---------- | ------- | ---- | --------- |
-| horizontal | boolean | Yes  | Whether to flip the image horizontally.|
-| vertical   | boolean | Yes  | Whether to flip the image vertically.|
+| horizontal | boolean | Yes  | Indicates whether to flip the image horizontally.|
+| vertical   | boolean | Yes  | Indicates whether to flip the image vertically.|
 
 **Return value**
 
 | Type          | Description                       |
 | -------------- | --------------------------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> |  Promise that returns no value.|
 
 **Example**
 
@@ -1313,11 +1935,52 @@ async function Demo() {
     let horizontal: boolean = true;
     let vertical: boolean = false;
     if (pixelMap != undefined) {
-        await pixelMap.flip(horizontal, vertical).then(() => {
-            console.info('Sucessed in flipping pixelmap.');
+        pixelMap.flip(horizontal, vertical).then(() => {
+            console.info('Succeeded in flipping pixelmap.');
         }).catch((err: BusinessError) => {
-            console.error('Failed to flip pixelmap.');
+            console.error(`Failed to flip pixelmap. code is ${err.code}, message is ${err.message}`);
+            
         })
+    }
+}
+```
+
+### flipSync<sup>12+</sup>
+
+flipSync(horizontal: boolean, vertical: boolean): void
+
+Flips this image horizontally or vertically, or both. This API returns the result synchronously.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Multimedia.Image.Core
+
+**Parameters**
+
+| Name    | Type                | Mandatory| Description                         |
+| ---------- | -------------------- | ---- | ----------------------------- |
+| horizontal | boolean              | Yes  | Indicates whether to flip the image horizontally.                   |
+| vertical   | boolean              | Yes  | Indicates whether to flip the image vertically.                   |
+
+**Error codes**
+
+For details about the error codes, see [Image Error Codes](errorcode-image.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
+|  501    | Resource Unavailable |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+async function Demo() {
+    let horizontal : boolean = true;
+    let vertical : boolean = false;
+    if (pixelMap != undefined) {
+        pixelMap.flipSync(horizontal, vertical);
     }
 }
 ```
@@ -1328,6 +1991,10 @@ crop(region: Region, callback: AsyncCallback\<void>): void
 
 Crops this image based on the input size. This API uses an asynchronous callback to return the result.
 
+**Widget capability**: This API can be used in ArkTS widgets since API version 12.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Multimedia.Image.Core
 
 **Parameters**
@@ -1335,7 +2002,7 @@ Crops this image based on the input size. This API uses an asynchronous callback
 | Name  | Type                | Mandatory| Description                         |
 | -------- | -------------------- | ---- | ----------------------------- |
 | region   | [Region](#region7)   | Yes  | Size of the image after cropping.                 |
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the operation fails, an error message is returned.|
+| callback | AsyncCallback\<void> | Yes  |  Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Example**
 
@@ -1346,8 +2013,8 @@ async function Demo() {
     let region: image.Region = { x: 0, y: 0, size: { height: 100, width: 100 } };
     if (pixelMap != undefined) {
         pixelMap.crop(region, (err: BusinessError) => {
-            if (err != undefined) {
-                console.error("Failed to crop pixelmap.");
+            if (err) {
+                console.error(`Failed to crop pixelmap. code is ${err.code}, message is ${err.message}`);
                 return;
             } else {
                 console.info("Succeeded in cropping pixelmap.");
@@ -1363,6 +2030,10 @@ crop(region: Region): Promise\<void>
 
 Crops this image based on the input size. This API uses a promise to return the result.
 
+**Widget capability**: This API can be used in ArkTS widgets since API version 12.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Multimedia.Image.Core
 
 **Parameters**
@@ -1375,7 +2046,7 @@ Crops this image based on the input size. This API uses a promise to return the 
 
 | Type          | Description                       |
 | -------------- | --------------------------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> |  Promise that returns no value.|
 
 **Example**
 
@@ -1384,12 +2055,51 @@ import { BusinessError } from '@ohos.base';
 
 async function Demo() {
     let region: image.Region = { x: 0, y: 0, size: { height: 100, width: 100 } };
-     if (pixelMap != undefined) {
-        await pixelMap.crop(region).then(() => {
-            console.info('Sucessed in cropping pixelmap.');
+    if (pixelMap != undefined) {
+        pixelMap.crop(region).then(() => {
+            console.info('Succeeded in cropping pixelmap.');
         }).catch((err: BusinessError) => {
-            console.error('Failed to crop pixelmap.');
+            console.error(`Failed to crop pixelmap. code is ${err.code}, message is ${err.message}`);
+
         });
+    }
+}
+```
+
+### cropSync<sup>12+</sup>
+
+cropSync(region: Region): void
+
+Crops this image based on the input size. This API returns the result synchronously.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Multimedia.Image.Core
+
+**Parameters**
+
+| Name  | Type                | Mandatory| Description                         |
+| -------- | -------------------- | ---- | ----------------------------- |
+| region   | [Region](#region7)   | Yes  | Size of the image after cropping.                 |
+
+**Error codes**
+
+For details about the error codes, see [Image Error Codes](errorcode-image.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+|  401    | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
+|  501    | Resource Unavailable |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+async function Demo() {
+    let region : image.Region = { x: 0, y: 0, size: { height: 100, width: 100 } };
+    if (pixelMap != undefined) {
+        pixelMap.cropSync(region);
     }
 }
 ```
@@ -1477,7 +2187,7 @@ Performs color space conversion (CSC) on the image pixel color based on a given 
 | Name  | Type                | Mandatory| Description                         |
 | -------- | -------------------- | ---- | ----------------------------- |
 | targetColorSpace | [colorSpaceManager.ColorSpaceManager](../apis-arkgraphics2d/js-apis-colorSpaceManager.md#colorspacemanager) | Yes  | Target color space. SRGB, DCI_P3, DISPLAY_P3, and ADOBE_RGB_1998 are supported.|
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the operation fails, an error message is returned.|
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the setting is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -1485,7 +2195,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | ------------------------------------------|
-| 401 | The parameter check failed. |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
 | 62980104| Failed to initialize the internal object. |
 | 62980108| Failed to convert the color space.       |
 | 62980115| Invalid image parameter.            |
@@ -1502,7 +2212,7 @@ async function Demo() {
     if (pixelMap != undefined) {
         pixelMap.applyColorSpace(targetColorSpace, (err: BusinessError) => {
             if (err) {
-                console.error('Failed to apply color space for pixelmap object.');
+                console.error(`Failed to apply color space for pixelmap object. code is ${err.code}, message is ${err.message}`);
                 return;
             } else {
                 console.info('Succeeded in applying color space for pixelmap object.');
@@ -1530,7 +2240,7 @@ Performs CSC on the image pixel color based on a given color space. This API use
 
 | Type          | Description                       |
 | -------------- | --------------------------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> |  Promise that returns no value.|
 
 **Error codes**
 
@@ -1538,7 +2248,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | ------------------------------------------|
-| 401 | The parameter check failed. |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed |
 | 62980104| Failed to initialize the internal object. |
 | 62980108| Failed to convert the color space.       |
 | 62980115| Invalid image parameter.            |
@@ -1552,11 +2262,13 @@ import { BusinessError } from '@ohos.base'
 async function Demo() {
     let colorSpaceName = colorSpaceManager.ColorSpace.SRGB;
     let targetColorSpace: colorSpaceManager.ColorSpaceManager = colorSpaceManager.create(colorSpaceName);
-    pixelmap.applyColorSpace(targetColorSpace).then(() => {
-        console.info('Succeeded in applying color space for pixelmap object.');
-    }).catch((error: BusinessError) => {
-        console.error('Failed to apply color space for pixelmap object.');
-    })
+    if (pixelMap != undefined) {
+        pixelMap.applyColorSpace(targetColorSpace).then(() => {
+            console.info('Succeeded in applying color space for pixelmap object.');
+        }).catch((error: BusinessError) => {
+            console.error(`Failed to apply color space for pixelmap object. code is ${error.code}, message is ${error.message}`); 
+        })
+    }
 }
 ```
 
@@ -1603,7 +2315,7 @@ class MySequence implements rpc.Parcelable {
       image.createPixelMap(new ArrayBuffer(96), {size: { height:4, width: 6}}).then((pixelParcel: image.PixelMap) => {
         pixelParcel.unmarshalling(messageSequence).then(async (pixelMap: image.PixelMap) => {
           this.pixel_map = pixelMap;
-          await pixelMap.getImageInfo().then((imageInfo: image.ImageInfo) => {
+          pixelMap.getImageInfo().then((imageInfo: image.ImageInfo) => {
             console.info("unmarshalling information h:" + imageInfo.size.height + "w:" + imageInfo.size.width);
           })
         })
@@ -1624,7 +2336,7 @@ async function Demo() {
       alphaType: 3
    }
    let pixelMap: image.PixelMap | undefined = undefined;
-   await image.createPixelMap(color, opts).then((srcPixelMap: image.PixelMap) => {
+   image.createPixelMap(color, opts).then((srcPixelMap: image.PixelMap) => {
       pixelMap = srcPixelMap;
    })
    if (pixelMap != undefined) {
@@ -1659,7 +2371,7 @@ To create a **PixelMap** object in synchronous mode, use [createPixelMapFromParc
 
 | Type                            | Description                 |
 | -------------------------------- | --------------------- |
-| Promise\<[PixelMap](#pixelmap7)> | Promise used to return the result. If the operation fails, an error message is returned.|
+| Promise\<[PixelMap](#pixelmap7)> |Promise used to return the **PixelMap** object.|
 
 **Error codes**
 
@@ -1691,7 +2403,7 @@ class MySequence implements rpc.Parcelable {
       image.createPixelMap(new ArrayBuffer(96), {size: { height:4, width: 6}}).then((pixelParcel : image.PixelMap) => {
         pixelParcel.unmarshalling(messageSequence).then(async (pixelMap : image.PixelMap) => {
           this.pixel_map = pixelMap;
-          await pixelMap.getImageInfo().then((imageInfo : image.ImageInfo) => {
+          pixelMap.getImageInfo().then((imageInfo : image.ImageInfo) => {
             console.info("unmarshalling information h:" + imageInfo.size.height + "w:" + imageInfo.size.width);
           })
         })
@@ -1712,7 +2424,7 @@ async function Demo() {
       alphaType: 3
    }
    let pixelMap: image.PixelMap | undefined = undefined;
-   await image.createPixelMap(color, opts).then((srcPixelMap : image.PixelMap) => {
+   image.createPixelMap(color, opts).then((srcPixelMap : image.PixelMap) => {
       pixelMap = srcPixelMap;
    })
    if (pixelMap != undefined) {
@@ -1720,7 +2432,6 @@ async function Demo() {
      let parcelable: MySequence = new MySequence(pixelMap);
      let data : rpc.MessageSequence = rpc.MessageSequence.create();
      data.writeParcelable(parcelable);
-
 
     // Deserialize to obtain data through the RPC.
      let ret : MySequence = new MySequence(pixelMap);
@@ -1735,13 +2446,17 @@ release():Promise\<void>
 
 Releases this **PixelMap** object. This API uses a promise to return the result.
 
+**Widget capability**: This API can be used in ArkTS widgets since API version 12.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Multimedia.Image.Core
 
 **Return value**
 
 | Type          | Description                           |
 | -------------- | ------------------------------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> | Promise that returns no value.|
 
 **Example**
 
@@ -1753,7 +2468,7 @@ async function Demo() {
         pixelMap.release().then(() => {
             console.info('Succeeded in releasing pixelmap object.');
         }).catch((error: BusinessError) => {
-            console.error('Failed to release pixelmap object.');
+            console.error(`Failed to release pixelmap object. code is ${error.code}, message is ${error.message}`);
         })
     }
 }
@@ -1765,13 +2480,17 @@ release(callback: AsyncCallback\<void>): void
 
 Releases this **PixelMap** object. This API uses an asynchronous callback to return the result.
 
+**Widget capability**: This API can be used in ArkTS widgets since API version 12.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Multimedia.Image.Core
 
 **Parameters**
 
 | Name  | Type                | Mandatory| Description              |
 | -------- | -------------------- | ---- | ------------------ |
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Example**
 
@@ -1781,8 +2500,8 @@ import { BusinessError } from '@ohos.base';
 async function Demo() {
     if (pixelMap != undefined) {
         pixelMap.release((err: BusinessError) => {
-            if (err != undefined) {
-                console.error('Failed to release pixelmap object.');
+            if (err) {
+                console.error(`Failed to release pixelmap object. code is ${err.code}, message is ${err.message}`);
                 return;
             } else {
                 console.info('Succeeded in releasing pixelmap object.');
@@ -1798,13 +2517,16 @@ createImageSource(uri: string): ImageSource
 
 Creates an **ImageSource** instance based on the URI.
 
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Multimedia.Image.ImageSource
 
 **Parameters**
 
 | Name| Type  | Mandatory| Description                              |
 | ------ | ------ | ---- | ---------------------------------- |
-| uri    | string | Yes  | Image path. Currently, only the application sandbox path is supported.<br>Currently, the following formats are supported: .jpg, .png, .gif, .bmp, .webp, raw [SVG<sup>10+</sup>](#svg-tags), and .ico<sup>11+</sup>.|
+| uri    | string | Yes  | Image path. Currently, only the application sandbox path is supported.<br>Currently, the following formats are supported: .jpg, .png, .gif, .bmp, .webp, .dng, [SVG<sup>10+</sup>](#svg-tags), and .ico<sup>11+</sup>.|
 
 **Return value**
 
@@ -1826,13 +2548,17 @@ createImageSource(uri: string, options: SourceOptions): ImageSource
 
 Creates an **ImageSource** instance based on the URI.
 
+**Widget capability**: This API can be used in ArkTS widgets since API version 12.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Multimedia.Image.ImageSource
 
 **Parameters**
 
 | Name | Type                           | Mandatory| Description                               |
 | ------- | ------------------------------- | ---- | ----------------------------------- |
-| uri     | string                          | Yes  | Image path. Currently, only the application sandbox path is supported.<br>Currently, the following formats are supported: .jpg, .png, .gif, .bmp, .webp, raw [SVG<sup>10+</sup>](#svg-tags), and .ico<sup>11+</sup>.|
+| uri     | string                          | Yes  | Image path. Currently, only the application sandbox path is supported.<br>Currently, the following formats are supported: .jpg, .png, .gif, .bmp, .webp, .dng, [SVG<sup>10+</sup>](#svg-tags), and .ico<sup>11+</sup>.|
 | options | [SourceOptions](#sourceoptions9) | Yes  | Image properties, including the image pixel density, pixel format, and image size.|
 
 **Return value**
@@ -1845,7 +2571,9 @@ Creates an **ImageSource** instance based on the URI.
 
 ```ts
 let sourceOptions: image.SourceOptions = { sourceDensity: 120 };
-let imageSourceApi: image.ImageSource = image.createImageSource('test.png', sourceOptions);
+const context: Context = getContext(this);
+const path: string = context.filesDir + "/test.png";
+let imageSourceApi: image.ImageSource = image.createImageSource(path, sourceOptions);
 ```
 
 ## image.createImageSource<sup>7+</sup>
@@ -1853,6 +2581,8 @@ let imageSourceApi: image.ImageSource = image.createImageSource('test.png', sour
 createImageSource(fd: number): ImageSource
 
 Creates an **ImageSource** instance based on the file descriptor.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Multimedia.Image.ImageSource
 
@@ -1879,6 +2609,10 @@ const imageSourceApi: image.ImageSource = image.createImageSource(0);
 createImageSource(fd: number, options: SourceOptions): ImageSource
 
 Creates an **ImageSource** instance based on the file descriptor.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 12.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Multimedia.Image.ImageSource
 
@@ -1908,6 +2642,10 @@ createImageSource(buf: ArrayBuffer): ImageSource
 
 Creates an **ImageSource** instance based on the buffers.
 
+**Widget capability**: This API can be used in ArkTS widgets since API version 12.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Multimedia.Image.ImageSource
 
 **Parameters**
@@ -1935,6 +2673,10 @@ const imageSourceApi: image.ImageSource = image.createImageSource(buf);
 createImageSource(buf: ArrayBuffer, options: SourceOptions): ImageSource
 
 Creates an **ImageSource** instance based on the buffers.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 12.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Multimedia.Image.ImageSource
 
@@ -1964,6 +2706,8 @@ const imageSourceApi: image.ImageSource = image.createImageSource(data, sourceOp
 createImageSource(rawfile: resourceManager.RawFileDescriptor, options?: SourceOptions): ImageSource
 
 Creates an **ImageSource** instance by using the raw file descriptor of the image resource file.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Multimedia.Image.ImageSource
 
@@ -2061,13 +2805,17 @@ Provides APIs to obtain image information. Before calling any API in **ImageSour
 
 | Name            | Type          | Readable| Writable| Description                                                        |
 | ---------------- | -------------- | ---- | ---- | ------------------------------------------------------------ |
-| supportedFormats | Array\<string> | Yes  | No  | Supported image formats, including PNG, JPEG, BMP, GIF, WebP, and RAW.|
+| supportedFormats | Array\<string> | Yes  | No  | Supported image formats, including PNG, JPEG, BMP, GIF, WebP, and DNG.|
 
 ### getImageInfo
 
 getImageInfo(index: number, callback: AsyncCallback\<ImageInfo>): void
 
 Obtains information about an image with the specified index. This API uses an asynchronous callback to return the result.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 12.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Multimedia.Image.ImageSource
 
@@ -2076,7 +2824,7 @@ Obtains information about an image with the specified index. This API uses an as
 | Name  | Type                                  | Mandatory| Description                                    |
 | -------- | -------------------------------------- | ---- | ---------------------------------------- |
 | index    | number                                 | Yes  | Index of the image.                    |
-| callback | AsyncCallback<[ImageInfo](#imageinfo)> | Yes  | Callback used to return the image information.|
+| callback | AsyncCallback<[ImageInfo](#imageinfo)> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the image information obtained; otherwise, **err** is an error object.|
 
 **Example**
 
@@ -2085,9 +2833,9 @@ import { BusinessError } from '@ohos.base';
 
 imageSourceApi.getImageInfo(0, (error: BusinessError, imageInfo: image.ImageInfo) => { 
     if (error) {
-        console.error('getImageInfo failed.');
+        console.error(`Failed to obtain the image information.code is ${error.code}, message is ${error.message}`);
     } else {
-        console.info('getImageInfo succeeded.');
+        console.info('Succeeded in obtaining the image information.');
     }
 })
 ```
@@ -2098,13 +2846,17 @@ getImageInfo(callback: AsyncCallback\<ImageInfo>): void
 
 Obtains information about this image. This API uses an asynchronous callback to return the result.
 
+**Widget capability**: This API can be used in ArkTS widgets since API version 12.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Multimedia.Image.ImageSource
 
 **Parameters**
 
 | Name  | Type                                  | Mandatory| Description                                    |
 | -------- | -------------------------------------- | ---- | ---------------------------------------- |
-| callback | AsyncCallback<[ImageInfo](#imageinfo)> | Yes  | Callback used to return the image information.|
+| callback | AsyncCallback<[ImageInfo](#imageinfo)> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the image information obtained; otherwise, **err** is an error object.|
 
 **Example**
 
@@ -2112,8 +2864,8 @@ Obtains information about this image. This API uses an asynchronous callback to 
 import { BusinessError } from '@ohos.base';
 
 imageSourceApi.getImageInfo((err: BusinessError, imageInfo: image.ImageInfo) => { 
-    if (err != undefined) {
-        console.error(`Failed to obtaining the image information.code is ${err.code}, message is ${err.message}`);
+    if (err) {
+        console.error(`Failed to obtain the image information.code is ${err.code}, message is ${err.message}`);
     } else {
         console.info('Succeeded in obtaining the image information.');
     }
@@ -2125,6 +2877,10 @@ imageSourceApi.getImageInfo((err: BusinessError, imageInfo: image.ImageInfo) => 
 getImageInfo(index?: number): Promise\<ImageInfo>
 
 Obtains information about an image with the specified index. This API uses a promise to return the result.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 12.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Multimedia.Image.ImageSource
 
@@ -2138,7 +2894,7 @@ Obtains information about an image with the specified index. This API uses a pro
 
 | Type                            | Description                  |
 | -------------------------------- | ---------------------- |
-| Promise<[ImageInfo](#imageinfo)> | Promise used to return the image information.|
+| Promise<[ImageInfo](#imageinfo)> | Promise used to return the image information obtained.|
 
 **Example**
 
@@ -2149,15 +2905,52 @@ imageSourceApi.getImageInfo(0)
     .then((imageInfo: image.ImageInfo) => {
 		console.info('Succeeded in obtaining the image information.');
 	}).catch((error: BusinessError) => {
-		console.error('Failed to obtain the image information.');
+        console.error(`Failed to obtain the image information.code is ${error.code}, message is ${error.message}`);
 	})
+```
+
+### getImageInfoSync<sup>12+</sup>
+
+getImageInfoSync(index?: number): ImageInfo
+
+Obtains information about an image with the specified index. This API returns the result synchronously.
+
+**System capability**: SystemCapability.Multimedia.Image.ImageSource
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                 |
+| ----- | ------ | ---- | ------------------------------------- |
+| index | number | No  | Index of the image. If this parameter is not set, the default value **0** is used.|
+
+**Return value**
+
+| Type                            | Description                  |
+| -------------------------------- | ---------------------- |
+| [ImageInfo](#imageinfo) | Image information.|
+
+**Example**
+
+```ts
+import image from "@ohos.multimedia.image";
+
+let filePath = "/test"
+let imageSource = image.createImageSource(filePath);
+let imageInfo = imageSource.getImageInfoSync(0);
+if (imageInfo == undefined) {
+    console.error('Failed to obtain the image information.');
+} else {
+    console.info('Succeeded in obtaining the image information.');
+    console.info('imageInfo.size.height:' + imageInfo.size.height);
+    console.info('imageInfo.size.width:' + imageInfo.size.width);
+}
 ```
 
 ### getImageProperty<sup>11+</sup>
 
 getImageProperty(key:PropertyKey, options?: ImagePropertyOptions): Promise\<string>
 
-Obtains the value of a property with the specified index in this image. This API uses a promise to return the result. The image must be in JPEG format and contain EXIF information.
+Obtains the value of a property with the specified index in this image. This API uses a promise to return the result. The image must be in JPEG or PNG format and contain EXIF information.
 
 **System capability**: SystemCapability.Multimedia.Image.ImageSource
 
@@ -2180,7 +2973,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-| 401  | The parameter check failed.              |
+| 401  | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed;              |
 | 62980096| The operation failed.             |
 | 62980103| The image data is not supported.            |
 | 62980110| The image source data is incorrect.            |
@@ -2212,7 +3005,7 @@ imageSourceApi.getImageProperty(image.PropertyKey.BITS_PER_SAMPLE, options)
 
 getImageProperty(key:string, options?: GetImagePropertyOptions): Promise\<string>
 
-Obtains the value of a property with the specified index in this image. This API uses a promise to return the result. The image must be in JPEG format and contain EXIF information.
+Obtains the value of a property with the specified index in this image. This API uses a promise to return the result. The image must be in JPEG or PNG format and contain EXIF information.
 
 > **NOTE**
 >
@@ -2250,7 +3043,7 @@ imageSourceApi.getImageProperty("BitsPerSample")
 
 getImageProperty(key:string, callback: AsyncCallback\<string>): void
 
-Obtains the value of a property with the specified index in this image. This API uses an asynchronous callback to return the result. The image must be in JPEG format and contain EXIF information.
+Obtains the value of a property with the specified index in this image. This API uses an asynchronous callback to return the result. The image must be in JPEG or PNG format and contain EXIF information.
 
 > **NOTE**
 >
@@ -2263,7 +3056,7 @@ Obtains the value of a property with the specified index in this image. This API
 | Name  | Type                  | Mandatory| Description                                                        |
 | -------- | ---------------------- | ---- | ------------------------------------------------------------ |
 | key      | string                 | Yes  | Name of the property.                                                |
-| callback | AsyncCallback\<string> | Yes  | Callback used to return the property value. If the operation fails, the default value is returned.|
+| callback | AsyncCallback\<string> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the property value obtained; otherwise, **err** is an error object.|
 
 **Example**
 
@@ -2283,7 +3076,7 @@ imageSourceApi.getImageProperty("BitsPerSample", (error: BusinessError, data: st
 
 getImageProperty(key:string, options: GetImagePropertyOptions, callback: AsyncCallback\<string>): void
 
-Obtains the value of a property in this image. This API uses an asynchronous callback to return the result. The image must be in JPEG format and contain EXIF information.
+Obtains the value of a property in this image. This API uses an asynchronous callback to return the result. The image must be in JPEG or PNG format and contain EXIF information.
 
 > **NOTE**
 >
@@ -2297,7 +3090,7 @@ Obtains the value of a property in this image. This API uses an asynchronous cal
 | -------- | ---------------------------------------------------- | ---- | ------------------------------------------------------------- |
 | key      | string                                               | Yes  | Name of the property.                                                 |
 | options  | [GetImagePropertyOptions](#getimagepropertyoptionsdeprecated) | Yes  | Image properties, including the image index and default property value.                         |
-| callback | AsyncCallback\<string>                               | Yes  | Callback used to return the property value. If the operation fails, the default value is returned.|
+| callback | AsyncCallback\<string>                               | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the property value obtained; otherwise, **err** is an error object.|
 
 **Example**
 
@@ -2312,6 +3105,62 @@ imageSourceApi.getImageProperty("BitsPerSample", property, (error: BusinessError
         console.info('Succeeded in getting the value of the specified attribute key of the image.');
     }
 })
+```
+
+### getImageProperties<sup>12+</sup>
+
+getImageProperties(key: Array&#60;PropertyKey&#62;): Promise<Record<PropertyKey, string|null>>
+
+Obtains the values of properties with the given names in this image. This API uses a promise to return the result. The image must be in JPEG or PNG format and contain EXIF information.
+
+**System capability**: SystemCapability.Multimedia.Image.ImageSource
+
+**Parameters**
+
+| Name | Type                                                | Mandatory| Description                                |
+| ------- | ---------------------------------------------------- | ---- | ------------------------------------ |
+| key     | Array\<[PropertyKey](#propertykey7)>                                 | Yes  | Array of properties names.                        |
+
+**Return value**
+
+| Type            | Description                                                             |
+| ---------------- | ----------------------------------------------------------------- |
+| Promise\<Record<[PropertyKey](#propertykey7), string \| null>> | Promise used to return the property values. If the operation fails, **null** is returned.|
+
+**Error codes**
+
+For details about the error codes, see [Image Error Codes](errorcode-image.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 401  | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed;     |
+| 62980123| Images in EXIF format are not supported.             |
+| 62980133| The EXIF data is out of range.            |
+| 62980135| The EXIF value is invalid.            |
+| 62980146| The EXIF data failed to be written to the file.            |
+
+**Example**
+
+```ts
+import image from "@ohos.multimedia.image";
+import fileio from "@ohos.fileio";
+import featureAbility from "@ohos.ability.featureAbility";
+
+let filePath;
+let context = await featureAbility.getContext();
+await context.getFilesDir().then((data) => {
+    filePath = data + "/" + "test_exif1.jpg";
+    console.info("image case filePath is " + filePath);
+});
+let key = ["ImageWidth","ImageLength"];
+let imageSourceApi = image.createImageSource(filePath);
+if (imageSourceApi == undefined) {
+    console.info(`create image source failed`);
+} else {
+    imageSourceApi.getImageProperties(key)
+        .then((data) => {console.info(JSON.stringify(data));})
+        .catch((error) => {console.log(error);});
+}
 ```
 
 ### modifyImageProperty<sup>11+</sup>
@@ -2333,7 +3182,7 @@ Modifies the value of a property in this image. This API uses a promise to retur
 
 | Type          | Description                       |
 | -------------- | --------------------------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
@@ -2341,7 +3190,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-| 401  | The parameter check failed.              |
+| 401  | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;    |
 | 62980123| Images in EXIF format are not supported.             |
 | 62980133| The EXIF data is out of range.    |
 | 62980135| The EXIF value is invalid.             |
@@ -2386,7 +3235,7 @@ Modifies the value of a property in this image. This API uses a promise to retur
 
 | Type          | Description                       |
 | -------------- | --------------------------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> |  Promise that returns no value.|
 
 **Example**
 
@@ -2422,7 +3271,7 @@ Modifies the value of a property in this image. This API uses an asynchronous ca
 | -------- | ------------------- | ---- | ------------------------------ |
 | key      | string              | Yes  | Name of the property.                  |
 | value    | string              | Yes  | New value of the property.                      |
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Example**
 
@@ -2430,12 +3279,74 @@ Modifies the value of a property in this image. This API uses an asynchronous ca
 import { BusinessError } from '@ohos.base';
 
 imageSourceApi.modifyImageProperty("ImageWidth", "120", (err: BusinessError) => {
-    if (err != undefined) {
-        console.error('modifyImageProperty Failed');
+    if (err) {
+        console.error(`Failed to modify the Image Width.code is ${err.code}, message is ${err.message}`);
     } else {
-        console.info('modifyImageProperty Succeeded');
+        console.info('Succeeded in modifying the Image Width.');
     }
 })
+```
+
+### modifyImageProperties<sup>12+</sup>
+
+modifyImageProperties(records: Record<PropertyKey, string|null>): Promise\<void>
+
+Modifies the values of properties in this image. This API uses a promise to return the result. The image must be in JPEG or PNG format and contain EXIF information.
+
+**System capability**: SystemCapability.Multimedia.Image.ImageSource
+
+**Parameters**
+
+| Name | Type  | Mandatory| Description        |
+| ------- | ------ | ---- | ------------ |
+| records     | [Record<[PropertyKey](#propertykey7), string \| null>]   | Yes  | Array of property names and property values.|
+
+**Return value**
+
+| Type          | Description                       |
+| -------------- | --------------------------- |
+| Promise\<void> |  Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Image Error Codes](errorcode-image.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 401  | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed;      |
+| 62980123| Images in EXIF format are not supported.             |
+| 62980133| The EXIF data is out of range.             |
+| 62980135| The EXIF value is invalid.             |
+| 62980146| The EXIF data failed to be written to the file.             |
+
+**Example**
+
+```ts
+import image from "@ohos.multimedia.image";
+import fileio from "@ohos.fileio";
+import featureAbility from "@ohos.ability.featureAbility";
+
+let filePath;
+let context = await featureAbility.getContext();
+await context.getFilesDir().then((data) => {
+    filePath = data + "/" + "test_exif1.jpg";
+    console.info("image case filePath is " + filePath);
+});
+let imageSourceApi = image.createImageSource(filePath);
+let key = {"ImageWidth": "1024", "ImageLength": "2048"};
+let checkKey = ["ImageWidth","ImageLength"];
+if (imageSourceApi == undefined) {
+    console.info(`create image source failed`);
+} else {
+    imageSourceApi.modifyImageProperties(key)
+        .then(() => {
+            imageSourceApi.getImageProperties(checkKey)
+                .then((data) => {console.info(JSON.stringify(data));})
+                .catch((err) => {console.info(err);});})
+        .catch((err) => {
+            console.info(err);
+        });
+}
 ```
 
 ### updateData<sup>9+</sup>
@@ -2451,7 +3362,7 @@ Updates incremental data. This API uses a promise to return the result.
 | Name    | Type       | Mandatory| Description        |
 | ---------- | ----------- | ---- | ------------ |
 | buf        | ArrayBuffer | Yes  | Incremental data.  |
-| isFinished | boolean     | Yes  | Whether the update is complete.|
+| isFinished | boolean     | Yes  | Indicates whether the update is complete.|
 | offset      | number      | Yes  | Offset for data reading.    |
 | length     | number      | Yes  | Array length.    |
 
@@ -2459,7 +3370,7 @@ Updates incremental data. This API uses a promise to return the result.
 
 | Type          | Description                      |
 | -------------- | -------------------------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> | Promise that returns no value.|
 
 **Example**
 
@@ -2488,10 +3399,10 @@ Updates incremental data. This API uses an asynchronous callback to return the r
 | Name    | Type               | Mandatory| Description                |
 | ---------- | ------------------- | ---- | -------------------- |
 | buf        | ArrayBuffer         | Yes  | Incremental data.          |
-| isFinished | boolean             | Yes  | Whether the update is complete.        |
+| isFinished | boolean             | Yes  | Indicates whether the update is complete.        |
 | offset      | number              | Yes  | Offset for data reading.            |
 | length     | number              | Yes  | Array length.            |
-| callback   | AsyncCallback\<void> | Yes  | Callback used to return the result.|
+| callback   | AsyncCallback\<void> | Yes  |  Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Example**
 
@@ -2500,7 +3411,7 @@ import { BusinessError } from '@ohos.base';
 
 const array: ArrayBuffer = new ArrayBuffer(100);
 imageSourceApi.updateData(array, false, 0, 10, (err: BusinessError) => {
-    if (err != undefined) {
+    if (err) {
         console.error(`Failed to update data.code is ${err.code},message is ${err.message}`);
     } else {
         console.info('Succeeded in updating data.');
@@ -2513,6 +3424,10 @@ imageSourceApi.updateData(array, false, 0, 10, (err: BusinessError) => {
 createPixelMap(options?: DecodingOptions): Promise\<PixelMap>
 
 Creates a **PixelMap** object based on image decoding parameters. This API uses a promise to return the result.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 12.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Multimedia.Image.ImageSource
 
@@ -2546,13 +3461,17 @@ createPixelMap(callback: AsyncCallback\<PixelMap>): void
 
 Creates a **PixelMap** object based on the default parameters. This API uses an asynchronous callback to return the result.
 
+**Widget capability**: This API can be used in ArkTS widgets since API version 12.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Multimedia.Image.ImageSource
 
 **Parameters**
 
 | Name    | Type                                 | Mandatory| Description                      |
 | -------- | ------------------------------------- | ---- | -------------------------- |
-| callback | AsyncCallback<[PixelMap](#pixelmap7)> | Yes  | Callback used to return the **PixelMap** object.|
+| callback | AsyncCallback<[PixelMap](#pixelmap7)> | Yes  | Callback used to return the result. If the operation is successful, **err** is undefined and **data** is the **PixelMap** object obtained; otherwise, **err** is an error object.|
 
 **Example**
 
@@ -2560,7 +3479,7 @@ Creates a **PixelMap** object based on the default parameters. This API uses an 
 import { BusinessError } from '@ohos.base';
 
 imageSourceApi.createPixelMap((err: BusinessError, pixelMap: image.PixelMap) => {
-    if (err != undefined) {
+    if (err) {
         console.error(`Failed to create pixelMap.code is ${err.code},message is ${err.message}`);
     } else {
         console.info('Succeeded in creating pixelMap object.');
@@ -2574,6 +3493,10 @@ createPixelMap(options: DecodingOptions, callback: AsyncCallback\<PixelMap>): vo
 
 Creates a **PixelMap** object based on image decoding parameters. This API uses an asynchronous callback to return the result.
 
+**Widget capability**: This API can be used in ArkTS widgets since API version 12.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Multimedia.Image.ImageSource
 
 **Parameters**
@@ -2581,7 +3504,7 @@ Creates a **PixelMap** object based on image decoding parameters. This API uses 
 | Name  | Type                                 | Mandatory| Description                      |
 | -------- | ------------------------------------- | ---- | -------------------------- |
 | options  | [DecodingOptions](#decodingoptions7)  | Yes  | Image decoding parameters.                |
-| callback | AsyncCallback<[PixelMap](#pixelmap7)> | Yes  | Callback used to return the **PixelMap** object.|
+| callback | AsyncCallback<[PixelMap](#pixelmap7)> | Yes  | Callback used to return the result. If the operation is successful, **err** is undefined and **data** is the **PixelMap** object obtained; otherwise, **err** is an error object.|
 
 **Example**
 
@@ -2598,12 +3521,56 @@ let decodingOptions: image.DecodingOptions = {
     index: 0
 };
 imageSourceApi.createPixelMap(decodingOptions, (err: BusinessError, pixelMap: image.PixelMap) => { 
-    if (err != undefined) {
+    if (err) {
         console.error(`Failed to create pixelMap.code is ${err.code},message is ${err.message}`);
     } else {
         console.info('Succeeded in creating pixelMap object.');
     }
 })
+```
+
+### createPixelMapSync<sup>12+</sup>
+
+createPixelMapSync(options?: DecodingOptions): PixelMap
+
+Creates a **PixelMap** object based on image decoding parameters. This API returns the result synchronously.
+
+**System capability**: SystemCapability.Multimedia.Image.ImageSource
+
+**Parameters**
+
+| Name  | Type                                 | Mandatory| Description                      |
+| -------- | ------------------------------------- | ---- | -------------------------- |
+| options  | [DecodingOptions](#decodingoptions7)  | No  | Image decoding parameters.                |
+
+**Return value**
+
+| Type                            | Description                 |
+| -------------------------------- | --------------------- |
+| [PixelMap](#pixelmap7) | **PixelMap** object.|
+
+**Example**
+
+```ts
+import image from "@ohos.multimedia.image";
+
+let filePath = "/test"
+let imageSource = image.createImageSource(filePath);
+let decodingOptions: image.DecodingOptions = {
+    sampleSize: 1,
+    editable: true,
+    desiredSize: { width: 1, height: 2 },
+    rotate: 10,
+    desiredPixelFormat: 3,
+    desiredRegion: { size: { height: 1, width: 2 }, x: 0, y: 0 },
+    index: 0
+};
+let pixelmap = imageSource.createPixelMapSync(decodingOptions);
+    if (pixelmap != undefined) {
+        console.info('Succeeded in creating pixelMap object.');
+    } else {
+        console.info('Failed to create pixelMap.');
+    }
 ```
 
 ### createPixelMapList<sup>10+</sup>
@@ -2632,6 +3599,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
+| 401 | The parameter check failed.             |
 | 62980096| The operation failed.              |
 | 62980099 | The shared memory data is abnormal. |
 | 62980101 | The image data is abnormal. |
@@ -2682,7 +3650,7 @@ Creates an array of **PixelMap** objects based on the default parameters. This A
 
 | Name    | Type                                 | Mandatory| Description                      |
 | -------- | ------------------------------------- | ---- | -------------------------- |
-| callback | AsyncCallback<Array<[PixelMap](#pixelmap7)>> | Yes  | Callback used to return an array of **PixelMap** objects.|
+| callback | AsyncCallback<Array<[PixelMap](#pixelmap7)>> | Yes  | Callback used to return the result. If the operation is successful, **err** is undefined and **data** is the array of **PixelMap** objects obtained; otherwise, **err** is an error object. |
 
 **Error codes**
 
@@ -2690,6 +3658,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
+| 401 | The parameter check failed.             |
 | 62980096 | The operation failed.             |
 | 62980099 | The shared memory data is abnormal.  |
 | 62980101 | The image data is abnormal.          |
@@ -2714,7 +3683,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 import { BusinessError } from '@ohos.base';
 
 imageSourceApi.createPixelMapList((err: BusinessError, pixelMapList: Array<image.PixelMap>) => {
-    if (err != undefined) {
+    if (err) {
         console.error(`Failed to create pixelMapList object.code is ${err.code},message is ${err.message}`);
     } else {
         console.info('Succeeded in creating pixelMapList object.');
@@ -2735,7 +3704,7 @@ Creates an array of **PixelMap** objects based on image decoding parameters. Thi
 | Name  | Type                | Mandatory| Description                              |
 | -------- | -------------------- | ---- | ---------------------------------- |
 | options | [DecodingOptions](#decodingoptions7) | Yes| Image decoding parameters.|
-| callback | AsyncCallback<Array<[PixelMap](#pixelmap7)>> | Yes  | Callback used to return an array of **PixelMap** objects.|
+| callback | AsyncCallback<Array<[PixelMap](#pixelmap7)>> | Yes  | Callback used to return the result. If the operation is successful, **err** is undefined and **data** is the array of **PixelMap** objects obtained; otherwise, **err** is an error object. |
 
 **Error codes**
 
@@ -2743,6 +3712,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
+| 401 | The parameter check failed.             |
 | 62980096 | The operation failed.            |
 | 62980099 | The shared memory data is abnormal.  |
 | 62980101 | The image data is abnormal.         |
@@ -2775,7 +3745,7 @@ let decodeOpts: image.DecodingOptions = {
     index: 0,
 };
 imageSourceApi.createPixelMapList(decodeOpts, (err: BusinessError, pixelMapList: Array<image.PixelMap>) => {
-    if (err != undefined) {
+    if (err) {
         console.error(`Failed to create pixelMapList object.code is ${err.code},message is ${err.message}`);
     } else {
         console.info('Succeeded in creating pixelMapList object.');
@@ -2787,7 +3757,7 @@ imageSourceApi.createPixelMapList(decodeOpts, (err: BusinessError, pixelMapList:
 
 getDelayTimeList(callback: AsyncCallback<Array\<number>>): void
 
-Obtains an array of delay times. This API uses an asynchronous callback to return the result. It is used only for GIF images.
+Obtains an array of delay times. This API uses an asynchronous callback to return the result. This API applies only to images in GIF or WebP format.
 
 **System capability**: SystemCapability.Multimedia.Image.ImageSource
 
@@ -2795,7 +3765,7 @@ Obtains an array of delay times. This API uses an asynchronous callback to retur
 
 | Name  | Type                | Mandatory| Description                              |
 | -------- | -------------------- | ---- | ---------------------------------- |
-| callback | AsyncCallback<Array\<number>> | Yes  | Callback used to return an array of delay times.|
+| callback | AsyncCallback<Array\<number>> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the array of delay times obtained; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -2803,6 +3773,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
+| 401 | The parameter check failed.             |
 | 62980096| The operation failed.              |
 | 62980110| The image source data is incorrect.             |
 | 62980111| The image source data is incomplete.            |
@@ -2821,10 +3792,10 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 import { BusinessError } from '@ohos.base';
 
 imageSourceApi.getDelayTimeList((err: BusinessError, delayTimes: Array<number>) => {
-    if (err != undefined) {
+    if (err) {
         console.error(`Failed to get delayTimes object.code is ${err.code},message is ${err.message}`);
     } else {
-        console.info('Succeeded in delayTimes object.');
+        console.info('Succeeded in getting delayTimes object.');
     }
 })
 ```
@@ -2833,7 +3804,7 @@ imageSourceApi.getDelayTimeList((err: BusinessError, delayTimes: Array<number>) 
 
 getDelayTimeList(): Promise<Array\<number>>
 
-Obtains an array of delay times. This API uses a promise to return the result. It is used only for GIF images.
+Obtains an array of delay times. This API uses a promise to return the result. This API applies only to images in GIF or WebP format.
 
 **System capability**: SystemCapability.Multimedia.Image.ImageSource
 
@@ -2849,6 +3820,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
+| 401 | The parameter check failed.             |
 | 62980096 | The operation failed.             |
 | 62980110 | The image source data is incorrect.      |
 | 62980111 | The image source data is incomplete. |
@@ -2867,7 +3839,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 import { BusinessError } from '@ohos.base';
 
 imageSourceApi.getDelayTimeList().then((delayTimes: Array<number>) => {
-    console.info('Succeeded in delayTimes object.');
+    console.info('Succeeded in getting delayTimes object.');
 }).catch((err: BusinessError) => {
     console.error(`Failed to get delayTimes object.code is ${err.code},message is ${err.message}`);
 })
@@ -2885,7 +3857,7 @@ Obtains the number of frames. This API uses an asynchronous callback to return t
 
 | Name  | Type                | Mandatory| Description                              |
 | -------- | -------------------- | ---- | ---------------------------------- |
-| callback | AsyncCallback\<number> | Yes  | Callback used to return the number of frames.|
+| callback | AsyncCallback\<number> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the number of frames obtained; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -2893,6 +3865,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
+| 401 | The parameter check failed.             |
 | 62980096| The operation failed.              |
 | 62980110| The image source data is incorrect. |
 | 62980111| The image source data is incomplete. |
@@ -2910,7 +3883,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 import { BusinessError } from '@ohos.base';
 
 imageSourceApi.getFrameCount((err: BusinessError, frameCount: number) => {
-    if (err != undefined) {
+    if (err) {
         console.error(`Failed to get frame count.code is ${err.code},message is ${err.message}`);
     } else {
         console.info('Succeeded in getting frame count.');
@@ -2938,6 +3911,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
+| 401 | The parameter check failed.             |
 | 62980096 | The operation failed.             |
 | 62980110 | The image source data is incorrect.      |
 | 62980111 | The image source data is incomplete. |
@@ -2961,6 +3935,43 @@ imageSourceApi.getFrameCount().then((frameCount: number) => {
 })
 ```
 
+### getDisposalTypeList<sup>12+</sup>
+
+getDisposalTypeList(): Promise\<Array\<number>>
+
+Obtains the list of disposal types. This API uses a promise to return the result. It is used only for GIF images.
+
+**System capability**: SystemCapability.Multimedia.Image.ImageSource
+
+**Return value**
+
+| Type          | Description                       |
+| -------------- | --------------------------- |
+| Promise\<Array\<number>> | Promise used to return an array of disposal types.|
+
+**Error codes**
+
+For details about the error codes, see [Image Error Codes](errorcode-image.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 401 | The parameter check failed.             |
+| 62980096 | The operation failed.      |
+| 62980101 | The image data is abnormal. |
+| 62980137 | Invalid media operation.        |
+| 62980149 | Invalid image source mime type.      |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+imageSourceApi.getDisposalTypeList().then((disposalTypes: Array<number>) => {
+    console.info('Succeeded in getting disposalTypes object.');
+}).catch((err: BusinessError) => {
+    console.error(`Failed to get disposalTypes object.code ${err.code},message is ${err.message}`);
+})
+```
+
 ### release
 
 release(callback: AsyncCallback\<void>): void
@@ -2973,7 +3984,7 @@ Releases this **ImageSource** instance. This API uses an asynchronous callback t
 
 | Name  | Type                | Mandatory| Description                              |
 | -------- | -------------------- | ---- | ---------------------------------- |
-| callback | AsyncCallback\<void> | Yes  | Callback invoked for instance release. If the operation fails, an error message is returned.|
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object. |
 
 **Example**
 
@@ -2981,8 +3992,8 @@ Releases this **ImageSource** instance. This API uses an asynchronous callback t
 import { BusinessError } from '@ohos.base';
 
 imageSourceApi.release((err: BusinessError) => { 
-    if (err != undefined) {
-        console.error('Failed to release the image source instance.');
+    if (err) {
+        console.error(`Failed to release the image source instance.code ${err.code},message is ${err.message}`);
     } else {
         console.info('Succeeded in releasing the image source instance.');
     }
@@ -3001,7 +4012,7 @@ Releases this **ImageSource** instance. This API uses a promise to return the re
 
 | Type          | Description                       |
 | -------------- | --------------------------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> |  Promise that returns no value.|
 
 **Example**
 
@@ -3020,6 +4031,8 @@ imageSourceApi.release().then(() => {
 createImagePacker(): ImagePacker
 
 Creates an **ImagePacker** instance.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Multimedia.Image.ImagePacker
 
@@ -3053,6 +4066,8 @@ packing(source: ImageSource, option: PackingOption, callback: AsyncCallback\<Arr
 
 Packs an image. This API uses an asynchronous callback to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Multimedia.Image.ImagePacker
 
 **Parameters**
@@ -3061,7 +4076,7 @@ Packs an image. This API uses an asynchronous callback to return the result.
 | -------- | ---------------------------------- | ---- | ---------------------------------- |
 | source   | [ImageSource](#imagesource)        | Yes  | Image to pack.                    |
 | option   | [PackingOption](#packingoption)    | Yes  | Option for image packing.                     |
-| callback | AsyncCallback\<ArrayBuffer>        | Yes  | Callback used to return the packed data.|
+| callback | AsyncCallback\<ArrayBuffer>        | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the packed image data; otherwise, **err** is an error object. |
 
 **Example**
 
@@ -3072,9 +4087,9 @@ const imageSourceApi: image.ImageSource = image.createImageSource(0);
 let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 };
 imagePackerApi.packing(imageSourceApi, packOpts, (err: BusinessError, data: ArrayBuffer) => {
     if (err) {
-        console.error('packing failed.');
+        console.error(`Failed to pack the image.code ${err.code},message is ${err.message}`);
     } else {
-        console.info('packing succeeded.');
+        console.info('Succeeded in packing the image.');
     }
 })
 ```
@@ -3084,6 +4099,8 @@ imagePackerApi.packing(imageSourceApi, packOpts, (err: BusinessError, data: Arra
 packing(source: ImageSource, option: PackingOption): Promise\<ArrayBuffer>
 
 Packs an image. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Multimedia.Image.ImagePacker
 
@@ -3098,7 +4115,7 @@ Packs an image. This API uses a promise to return the result.
 
 | Type                        | Description                                         |
 | ---------------------------- | --------------------------------------------- |
-| Promise\<ArrayBuffer>        | Promise used to return the packed data.|
+| Promise\<ArrayBuffer>        | Promise used to return the packed image data.|
 
 **Example**
 
@@ -3109,9 +4126,9 @@ const imageSourceApi: image.ImageSource = image.createImageSource(0);
 let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 }
 imagePackerApi.packing(imageSourceApi, packOpts)
     .then((data: ArrayBuffer) => {
-        console.info('packing succeeded.');
+        console.info('Succeeded in packing the image.');
 	}).catch((error: BusinessError) => {
-	    console.error('packing failed.');
+        console.error(`Failed to pack the image.code ${error.code},message is ${error.message}`);
 	})
 ```
 
@@ -3121,6 +4138,8 @@ packing(source: PixelMap, option: PackingOption, callback: AsyncCallback\<ArrayB
 
 Packs an image. This API uses an asynchronous callback to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Multimedia.Image.ImagePacker
 
 **Parameters**
@@ -3129,7 +4148,7 @@ Packs an image. This API uses an asynchronous callback to return the result.
 | -------- | ------------------------------- | ---- | ---------------------------------- |
 | source   | [PixelMap](#pixelmap7)           | Yes  | **PixelMap** object to pack.              |
 | option   | [PackingOption](#packingoption) | Yes  | Option for image packing.                    |
-| callback | AsyncCallback\<ArrayBuffer>     | Yes  | Callback used to return the packed data.|
+| callback | AsyncCallback\<ArrayBuffer>     | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the packed image data; otherwise, **err** is an error object. |
 
 **Example**
 
@@ -3154,6 +4173,8 @@ packing(source: PixelMap, option: PackingOption): Promise\<ArrayBuffer>
 
 Packs an image. This API uses a promise to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Multimedia.Image.ImagePacker
 
 **Parameters**
@@ -3167,7 +4188,7 @@ Packs an image. This API uses a promise to return the result.
 
 | Type                 | Description                                        |
 | --------------------- | -------------------------------------------- |
-| Promise\<ArrayBuffer> | Promise used to return the packed data.|
+| Promise\<ArrayBuffer> | Promise used to return the packed image data.|
 
 **Example**
 
@@ -3182,10 +4203,10 @@ image.createPixelMap(color, opts).then((pixelMap: image.PixelMap) => {
         .then((data: ArrayBuffer) => {
             console.info('Succeeded in packing the image.');
         }).catch((error: BusinessError) => {
-            console.error('Failed to pack the image..');
+            console.error(`Failed to pack the image.code ${error.code},message is ${error.message}`);
         })
 }).catch((error: BusinessError) => {
-	console.error('createPixelMap failed.');
+	console.error(`Failed to create PixelMap.code ${error.code},message is ${error.message}`);
 })
 ```
 
@@ -3201,7 +4222,7 @@ Releases this **ImagePacker** instance. This API uses an asynchronous callback t
 
 | Name  | Type                | Mandatory| Description                          |
 | -------- | -------------------- | ---- | ------------------------------ |
-| callback | AsyncCallback\<void> | Yes  | Callback invoked for instance release. If the operation fails, an error message is returned.|
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Example**
 
@@ -3209,7 +4230,7 @@ Releases this **ImagePacker** instance. This API uses an asynchronous callback t
 import { BusinessError } from '@ohos.base';
 
 imagePackerApi.release((err: BusinessError)=>{ 
-    if (err != undefined) {
+    if (err) {
         console.error('Failed to release image packaging.'); 
     } else {
         console.info('Succeeded in releasing image packaging.');
@@ -3229,7 +4250,7 @@ Releases this **ImagePacker** instance. This API uses a promise to return the re
 
 | Type          | Description                                                  |
 | -------------- | ------------------------------------------------------ |
-| Promise\<void> | Promise used to return the instance release result. If the operation fails, an error message is returned.|
+| Promise\<void> |  Promise that returns no value.|
 
 **Example**
 
@@ -3258,7 +4279,7 @@ Encodes an **ImageSource** instance and packs it into a file. This API uses an a
 | source   | [ImageSource](#imagesource)     | Yes  | Image to pack.                |
 | fd       | number                          | Yes  | File descriptor.                  |
 | options   | [PackingOption](#packingoption) | Yes  | Option for image packing.                |
-| callback | AsyncCallback\<void>            | Yes  | Callback used to return the result. If the operation fails, an error message is returned.|
+| callback | AsyncCallback\<void>            | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object. |
 
 **Example**
 
@@ -3275,9 +4296,9 @@ let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
 const imagePackerApi: image.ImagePacker = image.createImagePacker();
 imagePackerApi.packToFile(imageSourceApi, file.fd, packOpts, (err: BusinessError) => {
     if (err) {
-        console.error('packToFile failed.');
+        console.error(`Failed to pack the image to file.code ${err.code},message is ${err.message}`);
     } else {
-        console.info('packToFile succeeded.');
+        console.info('Succeeded in packing the image to file.');
     }
 })
 ```
@@ -3302,7 +4323,7 @@ Encodes an **ImageSource** instance and packs it into a file. This API uses a pr
 
 | Type          | Description                             |
 | -------------- | --------------------------------- |
-| Promise\<void> | Promise used to return the result. If the operation fails, an error message is returned.|
+| Promise\<void> |  Promise that returns no value.|
 
 **Example**
 
@@ -3318,9 +4339,9 @@ const filePath: string = context.cacheDir + "/image_source.jpg";
 let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
 const imagePackerApi: image.ImagePacker = image.createImagePacker();
 imagePackerApi.packToFile(imageSourceApi, file.fd, packOpts).then(() => {
-    console.info('Succeeded in packToFile.');
+    console.info('Succeeded in packing the image to file.');
 }).catch((error: BusinessError) => { 
-    console.error('Failed to packToFile.'); 
+    console.error(`Failed to pack the image to file.code ${err.code},message is ${err.message}`);
 }) 
 ```
 
@@ -3339,7 +4360,7 @@ Encodes a **PixelMap** instance and packs it into a file. This API uses an async
 | source   | [PixelMap](#pixelmap7)          | Yes  | **PixelMap** object to pack.          |
 | fd       | number                          | Yes  | File descriptor.                  |
 | options   | [PackingOption](#packingoption) | Yes  | Option for image packing.                |
-| callback | AsyncCallback\<void>            | Yes  | Callback used to return the result. If the operation fails, an error message is returned.|
+| callback | AsyncCallback\<void>            | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object. |
 
 **Example**
 
@@ -3357,9 +4378,9 @@ image.createPixelMap(color, opts).then((pixelmap: image.PixelMap) => {
     const imagePackerApi: image.ImagePacker = image.createImagePacker();
     imagePackerApi.packToFile(pixelmap, file.fd, packOpts, (err: BusinessError) => {
         if (err) {
-            console.error('packToFile failed.');
+            console.error(`Failed to pack the image to file.code ${err.code},message is ${err.message}`);
         } else {
-            console.info('packToFile succeeded.');
+            console.info('Succeeded in packing the image to file.');
         }
     })
 })
@@ -3385,7 +4406,7 @@ Encodes a **PixelMap** instance and packs it into a file. This API uses a promis
 
 | Type          | Description                             |
 | -------------- | --------------------------------- |
-| Promise\<void> | Promise used to return the result. If the operation fails, an error message is returned.|
+| Promise\<void> |  Promise that returns no value.|
 
 **Example**
 
@@ -3403,9 +4424,9 @@ image.createPixelMap(color, opts).then((pixelmap: image.PixelMap) => {
     const imagePackerApi: image.ImagePacker = image.createImagePacker();
     imagePackerApi.packToFile(pixelmap, file.fd, packOpts)
         .then(() => {
-            console.info('Succeeded in packToFile.');
+            console.info('Succeeded in packing the image to file.');
         }).catch((error: BusinessError) => {
-            console.error('Failed to packToFile.');
+            console.error(`Failed to pack the image to file.code ${error.code},message is ${error.message}`);
         })
 })
 ```
@@ -3438,7 +4459,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-| 401| The parameter check failed.            |
+| 401| Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;   |
 
 **Example**
 
@@ -3511,7 +4532,7 @@ Obtains a surface ID for the camera or other components. This API uses an asynch
 
 | Name  | Type                  | Mandatory| Description                      |
 | -------- | ---------------------- | ---- | -------------------------- |
-| callback | AsyncCallback\<string> | Yes  | Callback used to return the surface ID.|
+| callback | AsyncCallback\<string> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the surface ID obtained. Otherwise, **err** is an error object.|
 
 **Example**
 
@@ -3520,9 +4541,9 @@ import { BusinessError } from '@ohos.base';
 
 receiver.getReceivingSurfaceId((err: BusinessError, id: string) => { 
     if (err) {
-        console.error('getReceivingSurfaceId failed.');
+        console.error(`Failed to get the ReceivingSurfaceId.code ${err.code},message is ${err.message}`);
     } else {
-        console.info('getReceivingSurfaceId succeeded.');
+        console.info('Succeeded in getting the ReceivingSurfaceId.');
     }
 });
 ```
@@ -3547,9 +4568,9 @@ Obtains a surface ID for the camera or other components. This API uses a promise
 import { BusinessError } from '@ohos.base';
 
 receiver.getReceivingSurfaceId().then((id: string) => { 
-    console.info('getReceivingSurfaceId succeeded.');
+    console.info('Succeeded in getting the ReceivingSurfaceId.');
 }).catch((error: BusinessError) => {
-    console.error('getReceivingSurfaceId failed.');
+    console.error(`Failed to get the ReceivingSurfaceId.code ${error.code},message is ${error.message}`);
 })
 ```
 
@@ -3565,7 +4586,7 @@ Reads the latest image from the **ImageReceiver** instance. This API uses an asy
 
 | Name    | Type                           | Mandatory| Description                    |
 | -------- | ------------------------------- | ---- | ------------------------ |
-| callback | AsyncCallback<[Image](#image9)> | Yes  | Callback used to return the latest image.|
+| callback | AsyncCallback<[Image](#image9)> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the latest image obtained; otherwise, **err** is an error object. |
 
 **Example**
 
@@ -3574,9 +4595,9 @@ import { BusinessError } from '@ohos.base';
 
 receiver.readLatestImage((err: BusinessError, img: image.Image) => { 
     if (err) {
-        console.error('readLatestImage failed.');
+        console.error(`Failed to read the latest Image.code ${err.code},message is ${err.message}`);
     } else {
-        console.info('readLatestImage succeeded.');
+        console.info('Succeeded in reading the latest Image.');
     }
 });
 ```
@@ -3601,9 +4622,9 @@ Reads the latest image from the **ImageReceiver** instance. This API uses a prom
 import { BusinessError } from '@ohos.base';
 
 receiver.readLatestImage().then((img: image.Image) => {
-    console.info('readLatestImage succeeded.');
+    console.info('Succeeded in reading the latest Image.');
 }).catch((error: BusinessError) => {
-    console.error('readLatestImage failed.');
+    console.error(`Failed to read the latest Image.code ${error.code},message is ${error.message}`);
 })
 ```
 
@@ -3619,7 +4640,7 @@ Reads the next image from the **ImageReceiver** instance. This API uses an async
 
 | Name  | Type                           | Mandatory| Description                      |
 | -------- | ------------------------------- | ---- | -------------------------- |
-| callback | AsyncCallback<[Image](#image9)> | Yes  | Callback used to return the next image.|
+| callback | AsyncCallback<[Image](#image9)> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the next image obtained. Otherwise, **err** is an error object. |
 
 **Example**
 
@@ -3628,9 +4649,9 @@ import { BusinessError } from '@ohos.base';
 
 receiver.readNextImage((err: BusinessError, img: image.Image) => { 
     if (err) {
-        console.error('readNextImage failed.');
+        console.error(`Failed to read the next Image.code ${err.code},message is ${err.message}`);
     } else {
-        console.info('readNextImage succeeded.');
+        console.info('Succeeded in reading the next Image.');
     }
 });
 ```
@@ -3655,9 +4676,9 @@ Reads the next image from the **ImageReceiver** instance. This API uses a promis
 import { BusinessError } from '@ohos.base';
 
 receiver.readNextImage().then((img: image.Image) => {
-    console.info('readNextImage succeeded.');
+    console.info('Succeeded in reading the next Image.');
 }).catch((error: BusinessError) => {
-    console.error('readNextImage failed.');
+    console.error(`Failed to read the next Image.code ${error.code},message is ${error.message}`);
 })
 ```
 
@@ -3674,7 +4695,7 @@ Listens for image arrival events.
 | Name  | Type                | Mandatory| Description                                                  |
 | -------- | -------------------- | ---- | ------------------------------------------------------ |
 | type     | string               | Yes  | Type of event to listen for. The value is fixed at **imageArrival**, which is triggered when an image is received.|
-| callback | AsyncCallback\<void> | Yes  | Callback invoked for the event.                                      |
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.                                       |
 
 **Example**
 
@@ -3696,7 +4717,7 @@ Releases this **ImageReceiver** instance. This API uses an asynchronous callback
 
 | Name  | Type                | Mandatory| Description                    |
 | -------- | -------------------- | ---- | ------------------------ |
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object. |
 
 **Example**
 
@@ -3705,9 +4726,9 @@ import { BusinessError } from '@ohos.base'
 
 receiver.release((err: BusinessError) => {
     if (err) {
-        console.error('release ImageReceiver failed.');
+        console.error(`Failed to release the receiver.code ${err.code},message is ${err.message}`);
     } else {
-        console.info('release ImageReceiver succeeded.');
+        console.info('Succeeded in releaseing the receiver.');
     }
 })
 ```
@@ -3724,7 +4745,7 @@ Releases this **ImageReceiver** instance. This API uses a promise to return the 
 
 | Type          | Description              |
 | -------------- | ------------------ |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> |  Promise that returns no value.|
 
 **Example**
 
@@ -3732,9 +4753,9 @@ Releases this **ImageReceiver** instance. This API uses a promise to return the 
 import { BusinessError } from '@ohos.base';
 
 receiver.release().then(() => {
-    console.info('release succeeded.');
+    console.info('Succeeded in releaseing the receiver.');
 }).catch((error: BusinessError) => {
-    console.error('release failed.');
+    console.error(`Failed to release the receiver.code ${error.code},message is ${error.message}`);
 })
 ```
 
@@ -3767,7 +4788,7 @@ For details about the error codes, see [Image Error Codes](errorcode-image.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-| 401| The parameter check failed.            |
+| 401| Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;          |
 
 **Example**
 
@@ -3838,7 +4859,7 @@ Obtains an image buffer from the idle queue and writes image data into it. This 
 
 | Name       | Type                                   | Mandatory| Description                |
 | ------------- | ---------------------------------------| ---- | -------------------- |
-| callback      | AsyncCallback\<[Image](#image9)>                   | Yes  | Callback used to return the drawn image.|
+| callback      | AsyncCallback\<[Image](#image9)>  | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the latest image obtained; otherwise, **err** is an error object. |
 
 **Example**
 
@@ -3847,9 +4868,9 @@ import { BusinessError } from '@ohos.base';
 
 creator.dequeueImage((err: BusinessError, img: image.Image) => {
     if (err) {
-        console.error('dequeueImage failed.');
+        console.error(`Failed to dequeue the Image.code ${err.code},message is ${err.message}`);
     } else {
-        console.info('dequeueImage succeeded.');
+        console.info('Succeeded in dequeuing the Image.');
     }
 });
 ```
@@ -3866,7 +4887,7 @@ Obtains an image buffer from the idle queue and writes image data into it. This 
 
 | Type            | Description          |
 | --------------- | ------------- |
-| Promise\<[Image](#image9)> | Promise used to return the drawn image.|
+| Promise\<[Image](#image9)> | Promise used to return the latest image.|
 
 **Example**
 
@@ -3874,9 +4895,9 @@ Obtains an image buffer from the idle queue and writes image data into it. This 
 import { BusinessError } from '@ohos.base';
 
 creator.dequeueImage().then((img: image.Image) => {
-    console.info('dequeueImage succeeded.');
+    console.info('Succeeded in dequeuing the Image.');
 }).catch((error: BusinessError) => {
-    console.error('dequeueImage failed: ' + error);
+    console.error(`Failed to dequeue the Image.code ${error.code},message is ${error.message}`);
 })
 ```
 
@@ -3893,7 +4914,7 @@ Places the drawn image in the dirty queue. This API uses an asynchronous callbac
 | Name       | Type                    | Mandatory| Description                |
 | ------------- | -------------------------| ---- | -------------------- |
 | interface     | [Image](#image9)                    | Yes  | Drawn image.|
-| callback      | AsyncCallback\<void>     | Yes  | Callback used to return the result. If the operation fails, an error message is returned.|
+| callback      | AsyncCallback\<void>     | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object. |
 
 **Example**
 
@@ -3913,9 +4934,9 @@ creator.dequeueImage().then((img: image.Image) => {
     })
     creator.queueImage(img, (err: BusinessError) => {
         if (err) {
-            console.error('queueImage failed: ' + err);
+            console.error(`Failed to queue the Image.code ${err.code},message is ${err.message}`);
         } else {
-            console.info('queueImage succeeded');
+            console.info('Succeeded in queuing the Image.');
         }
     })
 })
@@ -3940,7 +4961,7 @@ Places the drawn image in the dirty queue. This API uses a promise to return the
 
 | Type           | Description          |
 | -------------- | ------------- |
-| Promise\<void> | Promise used to return the result. If the operation fails, an error message is returned.|
+| Promise\<void> | Promise that returns no value.|
 
 **Example**
 
@@ -3959,9 +4980,9 @@ creator.dequeueImage().then((img: image.Image) => {
         }
     })
     creator.queueImage(img).then(() => {
-        console.info('queueImage succeeded.');
+        console.info('Succeeded in queuing the Image.');
     }).catch((error: BusinessError) => {
-        console.error('queueImage failed: ' + error);
+        console.error(`Failed to queue the Image.code ${error.code},message is ${error.message}`);
     })
 })
 
@@ -3980,7 +5001,7 @@ Listens for image release events. This API uses an asynchronous callback to retu
 | Name       | Type                    | Mandatory| Description                |
 | ------------- | -------------------------| ---- | -------------------- |
 | type          | string                   | Yes  | Type of event, which is **'imageRelease'**.|
-| callback      | AsyncCallback\<void>     | Yes  | Callback used to return the result. If the operation fails, an error message is returned.|
+| callback      | AsyncCallback\<void>     | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object. |
 
 **Example**
 
@@ -3989,9 +5010,9 @@ import { BusinessError } from '@ohos.base';
 
 creator.on('imageRelease', (err: BusinessError) => {
     if (err) {
-        console.error('on faild' + err);
+        console.error(`Failed to get the imageRelease callback.code ${err.code},message is ${err.message}`);
     } else {
-        console.info('on succeeded');
+        console.info('Succeeded in getting imageRelease callback.');
     }
 })
 ```
@@ -4008,7 +5029,7 @@ Releases this **ImageCreator** instance. This API uses an asynchronous callback 
 
 | Name          | Type                    | Mandatory| Description                |
 | ------------- | -------------------------| ---- | -------------------- |
-| callback      | AsyncCallback\<void>     | Yes  | Callback used to return the result. If the operation fails, an error message is returned.|
+| callback      | AsyncCallback\<void>     | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Example**
 
@@ -4017,9 +5038,9 @@ import { BusinessError } from '@ohos.base';
 
 creator.release((err: BusinessError) => {
     if (err) {
-        console.error('release failed: ' + err);
+        console.error(`Failed to release the creator.code ${err.code},message is ${err.message}`);
     } else {
-        console.info('release succeeded');
+        console.info('Succeeded in releasing creator.');
     }
 });
 ```
@@ -4035,7 +5056,7 @@ Releases this **ImageCreator** instance. This API uses a promise to return the r
 
 | Type           | Description          |
 | -------------- | ------------- |
-| Promise\<void> | Promise used to return the result. If the operation fails, an error message is returned.|
+| Promise\<void> | Promise that returns no value.|
 
 **Example**
 
@@ -4043,9 +5064,9 @@ Releases this **ImageCreator** instance. This API uses a promise to return the r
 import { BusinessError } from '@ohos.base';
 
 creator.release().then(() => {
-    console.info('release succeeded');
+    console.info('Succeeded in releasing creator.');
 }).catch((error: BusinessError) => {
-    console.error('release failed');
+    console.error(`Failed to release the creator.code ${error.code},message is ${error.message}`);
 })
 ```
 
@@ -4062,6 +5083,7 @@ Provides APIs for basic image operations, including obtaining image information 
 | clipRect | [Region](#region7) | Yes  | Yes  | Image area to be cropped.                                |
 | size     | [Size](#size)      | Yes  | No  | Image size.                                        |
 | format   | number             | Yes  | No  | Image format. For details, see [OH_NativeBuffer_Format](../apis-arkgraphics2d/_o_h___native_buffer.md#oh_nativebuffer_format).|
+| timestamp<sup>12+</sup> | number         | Yes     | No  | Image timestamp.|
 
 ### getComponent<sup>9+</sup>
 
@@ -4076,7 +5098,7 @@ Obtains the component buffer from the **Image** instance based on the color comp
 | Name       | Type                                   | Mandatory| Description                |
 | ------------- | --------------------------------------- | ---- | -------------------- |
 | componentType | [ComponentType](#componenttype9)        | Yes  | Color component type of the image.    |
-| callback      | AsyncCallback<[Component](#component9)> | Yes  | Callback used to return the component buffer.|
+| callback      | AsyncCallback<[Component](#component9)> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the component buffer obtained; otherwise, **err** is an error object. |
 
 **Example**
 
@@ -4085,9 +5107,9 @@ import { BusinessError } from '@ohos.base';
 
 img.getComponent(4, (err: BusinessError, component: image.Component) => {
     if (err) {
-        console.error('getComponent failed.');
+        console.error(`Failed to get the component.code ${err.code},message is ${err.message}`);
     } else {
-        console.info('getComponent succeeded.');
+        console.info('Succeeded in getting component.');
     }
 })
 ```
@@ -4118,9 +5140,9 @@ Obtains the component buffer from the **Image** instance based on the color comp
 import { BusinessError } from '@ohos.base';
 
 img.getComponent(4).then((component: image.Component) => {
-    console.info('getComponent succeeded.');
+    console.info('Succeeded in getting component.');
 }).catch((error: BusinessError) => {
-    console.error('getComponent failed');
+    console.error(`Failed to get the component.code ${error.code},message is ${error.message}`);
 })
 ```
 
@@ -4138,7 +5160,7 @@ The corresponding resources must be released before another image arrives.
 
 | Name  | Type                | Mandatory| Description          |
 | -------- | -------------------- | ---- | -------------- |
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object. |
 
 **Example**
 
@@ -4146,10 +5168,10 @@ The corresponding resources must be released before another image arrives.
 import { BusinessError } from '@ohos.base';
 
 img.release((err: BusinessError) => {
-    if (err != undefined) {
-        console.error('Failed to release the image source instance.');
+    if (err) {
+        console.error(`Failed to release the image instance.code ${err.code},message is ${err.message}`);
     } else {
-        console.info('Succeeded in releasing the image source instance.');
+        console.info('Succeeded in releasing the image instance.');
     }
 })
 ```
@@ -4168,7 +5190,7 @@ The corresponding resources must be released before another image arrives.
 
 | Type          | Description                 |
 | -------------- | --------------------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> |  Promise that returns no value.|
 
 **Example**
 
@@ -4176,15 +5198,19 @@ The corresponding resources must be released before another image arrives.
 import { BusinessError } from '@ohos.base';
 
 img.release().then(() => {
-    console.info('release succeeded.');
+    console.info('Succeeded in releasing the image instance.');
 }).catch((error: BusinessError) => {
-    console.error('release failed.');
+    console.error(`Failed to release the image instance.code ${error.code},message is ${error.message}`);
 })
 ```
 
 ## PositionArea<sup>7+</sup>
 
 Describes area information in an image.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 12.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -4203,15 +5229,21 @@ Describes image information.
 
 | Name| Type         | Readable| Writable| Description      |
 | ---- | ------------- | ---- | ---- | ---------- |
-| size | [Size](#size) | Yes  | Yes  | Image size.|
-| density<sup>9+</sup> | number | Yes  | Yes  | Pixel density, in ppi.|
-| stride<sup>11+</sup> | number | Yes  | Yes  | Number of bytes from one row of pixels in memory to the next row of pixels in memory.stride >= region.size.width*4  |
-| pixelFormat<sup>12+</sup> | [PixelMapFormat](#pixelmapformat7) | Yes  | Yes  | Pixel map format.|
-| alphaType<sup>12+</sup> | [AlphaType](#alphatype9)  | Yes  | Yes  | Alpha type. |
+| size<sup>6+</sup> | [Size](#size) | Yes  | Yes  | Image size.<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.|
+| density<sup>9+</sup> | number | Yes  | Yes  | Pixel density, in ppi.<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.|
+| stride<sup>11+</sup> | number | Yes  | Yes  | Number of bytes from one row of pixels in memory to the next row of pixels in memory.stride >= region.size.width*4 <br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.|
+| pixelFormat<sup>12+</sup> | [PixelMapFormat](#pixelmapformat7) | Yes  | Yes  | Pixel format.<br>**Atomic service API**: This API can be used in atomic services since API version 12.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.|
+| alphaType<sup>12+</sup> | [AlphaType](#alphatype9)  | Yes  | Yes  | Alpha type.<br>**Atomic service API**: This API can be used in atomic services since API version 12.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.|
+| mimeType<sup>12+</sup> | string  | Yes  | Yes  | Actual image format (MIME type). |
+| isHdr<sup>12+</sup> | boolean  | Yes  | No  | Whether the image is in High Dynamic Range (HDR) format. For [ImageSource](#imagesource), this parameter specifies whether the source image is in HDR format. For [PixelMap](#pixelmap7), this parameter specifies whether the decoded pixel map is in HDR format.|
 
 ## Size
 
 Describes the size of an image.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 12.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -4223,6 +5255,10 @@ Describes the size of an image.
 ## PixelMapFormat<sup>7+</sup>
 
 Enumerates the pixel formats of images.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 12.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -4242,6 +5278,10 @@ Enumerates the pixel formats of images.
 
 Enumerates the alpha types of images.
 
+**Widget capability**: This API can be used in ArkTS widgets since API version 12.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Multimedia.Image.Core
 
 | Name    |   Value  | Description                   |
@@ -4255,6 +5295,10 @@ Enumerates the alpha types of images.
 
 Enumerates the scale modes of images.
 
+**Widget capability**: This API can be used in ArkTS widgets since API version 12.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Multimedia.Image.Core
 
 | Name           |   Value  | Description                                              |
@@ -4265,6 +5309,10 @@ Enumerates the scale modes of images.
 ## SourceOptions<sup>9+</sup>
 
 Defines image source initialization options.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 12.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -4281,35 +5329,41 @@ Defines pixel map initialization options.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
-| Name                    | Type                              | Readable| Writable| Description          |
-| ------------------------ | ---------------------------------- | ---- | ---- | -------------- |
-| alphaType<sup>9+</sup>   | [AlphaType](#alphatype9)           | Yes  | Yes  | Alpha type.      |
-| editable                 | boolean                            | Yes  | Yes  | Whether the image is editable.  |
-| pixelFormat              | [PixelMapFormat](#pixelmapformat7) | Yes  | Yes  | Pixel map format.    |
-| scaleMode<sup>9+</sup>   | [ScaleMode](#scalemode9)           | Yes  | Yes  | Scale mode.      |
-| size                     | [Size](#size)                      | Yes  | Yes  | Image size.|
+| Name                    | Type                              | Read Only|Optional|  Description          |
+| ------------------------ | ---------------------------------- | ----| -----|  -------------- |
+| alphaType<sup>9+</sup>   | [AlphaType](#alphatype9)           | No  | Yes| Alpha type. The default value is **UNKNOWN**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.     |
+| editable                 | boolean                            | No  | Yes| Indicates whether the image is editable. The default value is **false**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.|
+| srcPixelFormat<sup>12+</sup>  | [PixelMapFormat](#pixelmapformat7) | No| Yes| Pixel format of the input raw data. The default value is **BGRA_8888**.|
+| pixelFormat              | [PixelMapFormat](#pixelmapformat7) | No| Yes|Pixel format. The default value is **UNKNOWN**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.    |
+| scaleMode<sup>9+</sup>   | [ScaleMode](#scalemode9)           | No | Yes| Scale mode. The default value is **0**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.      |
+| size                     | [Size](#size)                      | No | No|Image size.<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.|
 
 ## DecodingOptions<sup>7+</sup>
 
-Defines image decoding options.
+Describes the image decoding options.
 
 **System capability**: SystemCapability.Multimedia.Image.ImageSource
 
 | Name              | Type                              | Readable| Writable| Description            |
 | ------------------ | ---------------------------------- | ---- | ---- | ---------------- |
-| sampleSize         | number                             | Yes  | Yes  | Thumbnail sampling size. Currently, this option can only be set to **1**.|
-| rotate             | number                             | Yes  | Yes  | Rotation angle.      |
-| editable           | boolean                            | Yes  | Yes  | Whether the image is editable. If this option is set to **false**, the image cannot be edited again, and operations such as cropping will fail. |
-| desiredSize        | [Size](#size)                      | Yes  | Yes  | Expected output size.  |
-| desiredRegion      | [Region](#region7)                 | Yes  | Yes  | Region to decode.      |
-| desiredPixelFormat | [PixelMapFormat](#pixelmapformat7) | Yes  | Yes  | Pixel map format for decoding. RGB_565 is not supported for images with alpha channels, such as PNG, GIF, ICO, and WEBP.|
-| index              | number                             | Yes  | Yes  | Index of the image to decode.  |
-| fitDensity<sup>9+</sup> | number                        | Yes  | Yes  | Image pixel density, in ppi.  |
+| sampleSize         | number                             | Yes  | Yes  | Thumbnail sampling size. Currently, this option can only be set to **1**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.|
+| rotate             | number                             | Yes  | Yes  | Rotation angle.<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.      |
+| editable           | boolean                            | Yes  | Yes  | Indicates whether the image is editable. If this option is set to **false**, the image cannot be edited again, and operations such as cropping will fail.<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12. |
+| desiredSize        | [Size](#size)                      | Yes  | Yes  | Expected output size.<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.  |
+| desiredRegion      | [Region](#region7)                 | Yes  | Yes  | Region to decode.<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.      |
+| desiredPixelFormat | [PixelMapFormat](#pixelmapformat7) | Yes  | Yes  | Pixel format for decoding. Only RGBA_8888, BGRA_8888, and RGB_565 are supported. RGB_565 is not supported for images with alpha channels, such as PNG, GIF, ICO, and WEBP.<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.|
+| index              | number                             | Yes  | Yes  | Index of the image to decode.<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.  |
+| fitDensity<sup>9+</sup> | number                        | Yes  | Yes  | Pixel density, in ppi.<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.  |
 | desiredColorSpace<sup>11+</sup> | [colorSpaceManager.ColorSpaceManager](../apis-arkgraphics2d/js-apis-colorSpaceManager.md#colorspacemanager) | Yes  | Yes  | Target color space.|
+| desiredDynamicRange<sup>12+</sup> | [DecodingDynamicRange](#decodingdynamicrange12) | Yes  | Yes  | Desired dynamic range.|
 
 ## Region<sup>7+</sup>
 
 Describes region information.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 12.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -4321,19 +5375,22 @@ Describes region information.
 
 ## PackingOption
 
-Defines the option for image packing.
+Describes the options for image packing.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Multimedia.Image.ImagePacker
 
-| Name   | Type  | Readable| Writable| Description                                               |
-| ------- | ------ | ---- | ---- | --------------------------------------------------- |
-| format  | string | Yes  | Yes  | Format of the packed image.<br>Currently, only JPG, WebP, and PNG are supported.|
-| quality | number | Yes  | Yes  | Quality of the output image in JPEG encoding. The value ranges from 0 to 100.|
-| bufferSize<sup>9+</sup> | number | Yes  | Yes  | Size of the buffer for receiving the encoded data, in bytes. The default value is 10 MB. The value of **bufferSize** must be greater than the size of the encoded image.|
+| Name   | Type  | Mandatory| Description                                               |
+| ------- | ------ | ---- | --------------------------------------------------- |
+| format  | string | Yes  | Format of the packed image.<br>Currently, only JPG, WebP, and PNG are supported.|
+| quality | number | Yes  | Quality of the output image in JPEG encoding. The value ranges from 0 to 100. The value **0** means the lowest quality, and **100** means the highest quality. The higher the quality, the larger the space occupied by the generated image.|
+| bufferSize<sup>9+</sup> | number | No  | Size of the buffer for receiving the encoded data, in bytes. The default value is 10 MB. The value of **bufferSize** must be greater than the size of the encoded image. The use of [packToFile](#packtofile11) is not restricted by this parameter.|
+| desiredDynamicRange<sup>12+</sup> | [PackingDynamicRange](#packingdynamicrange12) | No  | Desired dynamic range. The default value is **SDR**.|
 
 ## ImagePropertyOptions<sup>11+</sup>
 
-Describes image properties.
+Describes the image properties.
 
 **System capability**: SystemCapability.Multimedia.Image.ImageSource
 
@@ -4344,7 +5401,7 @@ Describes image properties.
 
 ## GetImagePropertyOptions<sup>(deprecated)</sup>
 
-Describes image properties.
+Describes the image properties.
 
 > **NOTE**
 >
@@ -4365,20 +5422,20 @@ Describes the exchangeable image file format (EXIF) data of an image.
 
 | Name             |   Value                   | Description                    |
 | ----------------- | ----------------------- | ------------------------ |
-| BITS_PER_SAMPLE                           | "BitsPerSample"              | Number of bits per pixel.                           |
-| ORIENTATION                               | "Orientation"                | Image orientation.                                 |
+| BITS_PER_SAMPLE                           | "BitsPerSample"              | Number of bits per component.                           |
+| ORIENTATION                               | "Orientation"                | Image orientation.<br>- **Top-left**: The image is not rotated.<br>- **Top-right**: The image is flipped horizontally.<br>- **Bottom-right**: The image is rotated by 180°.<br>- **Bottom-left**: The image is flipped vertically.<br>- **Left-top**: The image is flipped horizontally and then rotated clockwise by 270°.<br>- **Right-top**: The image is rotated clockwise by 90°.<br>- **Right-bottom**: The image is vertically flipped and then rotated clockwise by 90°.<br>- **Left-bottom**: The image is rotated clockwise by 270°.<br>- **Unknown Value**: No value is defined.|
 | IMAGE_LENGTH                              | "ImageLength"                | Image length.                                 |
 | IMAGE_WIDTH                               | "ImageWidth"                 | Image width.                                 |
 | GPS_LATITUDE                              | "GPSLatitude"                | Image latitude.                                 |
 | GPS_LONGITUDE                             | "GPSLongitude"               | Image longitude.                                 |
-| GPS_LATITUDE_REF                          | "GPSLatitudeRef"             | Latitude reference, for example, N or S.                       |
-| GPS_LONGITUDE_REF                         | "GPSLongitudeRef"            | Longitude reference, for example, W or E.                       |
-| DATE_TIME_ORIGINAL<sup>9+</sup>           | "DateTimeOriginal"           | Shooting time, for example, 2022:09:06 15:48:00.        |
-| EXPOSURE_TIME<sup>9+</sup>                | "ExposureTime"               | Exposure time, for example, 1/33 sec.                   |
-| SCENE_TYPE<sup>9+</sup>                   | "SceneType"                  | Shooting scene type, for example, portrait, scenery, motion, and night.|
+| GPS_LATITUDE_REF                          | "GPSLatitudeRef"             | Indicates whether the latitude is north or south latitude.                       |
+| GPS_LONGITUDE_REF                         | "GPSLongitudeRef"            | Indicates whether the longitude is east or west longitude.                       |
+| DATE_TIME_ORIGINAL<sup>9+</sup>           | "DateTimeOriginal"           | Time when the original image data was generated, for example, 2022:09:06 15:48:00.        |
+| EXPOSURE_TIME<sup>9+</sup>                | "ExposureTime"               | Exposure time, for example, 1/33 seconds.                   |
+| SCENE_TYPE<sup>9+</sup>                   | "SceneType"                  | Type of the scene, for example, portrait, scenery, motion, and night.|
 | ISO_SPEED_RATINGS<sup>9+</sup>            | "ISOSpeedRatings"            | ISO sensitivity or ISO speed, for example, 400.                       |
-| F_NUMBER<sup>9+</sup>                     | "FNumber"                    | Aperture, for example, f/1.8.                        |
-| DATE_TIME<sup>10+</sup>                   | "DateTime"                   | Date and time.                                 |
+| F_NUMBER<sup>9+</sup>                     | "FNumber"                    | F number, for example, f/1.8.                        |
+| DATE_TIME<sup>10+</sup>                   | "DateTime"                   | Date and time of image creation.                                 |
 | GPS_TIME_STAMP<sup>10+</sup>              | "GPSTimeStamp"               | GPS timestamp.                                  |
 | GPS_DATE_STAMP<sup>10+</sup>              | "GPSDateStamp"               | GPS date stamp.                                  |
 | IMAGE_DESCRIPTION<sup>10+</sup>           | "ImageDescription"           | Image description.                               |
@@ -4389,33 +5446,154 @@ Describes the exchangeable image file format (EXIF) data of an image.
 | STANDARD_OUTPUT_SENSITIVITY<sup>10+</sup> | "StandardOutputSensitivity"  | Standard output sensitivity.                             |
 | RECOMMENDED_EXPOSURE_INDEX<sup>10+</sup>  | "RecommendedExposureIndex"   | Recommended exposure index.                               |
 | ISO_SPEED<sup>10+</sup>                   | "ISOSpeedRatings"            | ISO speed.                                |
-| APERTURE_VALUE<sup>10+</sup>              | "ApertureValue"              | Aperture value.                                     |
-| EXPOSURE_BIAS_VALUE<sup>10+</sup>         | "ExposureBiasValue"          | Exposure bias value.                                 |
+| APERTURE_VALUE<sup>10+</sup>              | "ApertureValue"              | Lens aperture.                                     |
+| EXPOSURE_BIAS_VALUE<sup>10+</sup>         | "ExposureBiasValue"          | Exposure bias.                                 |
 | METERING_MODE<sup>10+</sup>               | "MeteringMode"               | Metering mode.                                   |
 | LIGHT_SOURCE<sup>10+</sup>                | "LightSource"                | Light source.                                       |
 | FLASH <sup>10+</sup>                      | "Flash"                      | Flash status.                      |
-| FOCAL_LENGTH <sup>10+</sup>               | "FocalLength"                | Focal length.                                       |
-| USER_COMMENT <sup>10+</sup>               | "UserComment"                | User comment.                                   |
+| FOCAL_LENGTH <sup>10+</sup>               | "FocalLength"                | Focal length of the lens.                                       |
+| USER_COMMENT <sup>10+</sup>               | "UserComment"                | User comments.                                   |
 | PIXEL_X_DIMENSION <sup>10+</sup>          | "PixelXDimension"            | Pixel X dimension.                                  |
 | PIXEL_Y_DIMENSION<sup>10+</sup>           | "PixelYDimension"            | Pixel Y dimension.                                  |
 | WHITE_BALANCE <sup>10+</sup>              | "WhiteBalance"               | White balance.                                     |
 | FOCAL_LENGTH_IN_35_MM_FILM <sup>10+</sup> | "FocalLengthIn35mmFilm"      | Focal length in 35mm film.                             |
-| CAPTURE_MODE <sup>10+</sup>               | "HwMnoteCaptureMode"         | Capture mode. Currently, this attribute is read-only.                 |
-| PHYSICAL_APERTURE <sup>10+</sup>          | "HwMnotePhysicalAperture"    | Physical aperture. Currently, this attribute is read-only.       |
-| ROLL_ANGLE <sup>11+</sup>                 | "HwMnoteRollAngle"           | Rolling angle. Currently, this attribute is read-only.                 |
-| PITCH_ANGLE<sup>11+</sup>                | "HwMnotePitchAngle"          | Pitch angle. Currently, this attribute is read-only.                 |
-| SCENE_FOOD_CONF<sup>11+</sup>             | "HwMnoteSceneFoodConf"       | Photographing scene: food. Currently, this attribute is read-only.           |
-| SCENE_STAGE_CONF<sup>11+</sup>           | "HwMnoteSceneStageConf"     | Photographing scene: stage. Currently, this attribute is read-only.           |
-| SCENE_BLUE_SKY_CONF<sup>11+</sup>       | "HwMnoteSceneBlueSkyConf"    | Photographing scene: blue sky. Currently, this attribute is read-only.           |
-| SCENE_GREEN_PLANT_CONF<sup>11+</sup>      | "HwMnoteSceneGreenPlantConf" | Photographing scene: green plants. Currently, this attribute is read-only.      |
-| SCENE_BEACH_CONF<sup>11+</sup>            | "HwMnoteSceneBeachConf"      | Photographing scene: beach. Currently, this attribute is read-only.           |
-| SCENE_SNOW_CONF<sup>11+</sup>             | "HwMnoteSceneSnowConf"       | Photographing scene: snow. Currently, this attribute is read-only.           |
-| SCENE_SUNSET_CONF<sup>11+</sup>           | "HwMnoteSceneSunsetConf"     | Photographing scene: sunset. Currently, this attribute is read-only.           |
-| SCENE_FLOWERS_CONF<sup>11+</sup>          | "HwMnoteSceneFlowersConf"    | Photographing scene: flowers. Currently, this attribute is read-only.             |
-| SCENE_NIGHT_CONF<sup>11+</sup>            | "HwMnoteSceneNightConf"      | Photographing scene: night. Currently, this attribute is read-only.           |
-| SCENE_TEXT_CONF<sup>11+</sup>             | "HwMnoteSceneTextConf"       | Photographing scene: text. Currently, this attribute is read-only.           |
-| FACE_COUNT<sup>11+</sup>                  | "HwMnoteFaceCount"           | Number of faces. Currently, this attribute is read-only.                 |
-| FOCUS_MODE<sup>11+</sup>                  | "HwMnoteFocusMode"           | Focus mode. Currently, this attribute is read-only.                 |
+| CAPTURE_MODE <sup>10+</sup>               | "HwMnoteCaptureMode"         | Capture mode. Currently, this property is read-only.                 |
+| PHYSICAL_APERTURE <sup>10+</sup>          | "HwMnotePhysicalAperture"    | Physical aperture. Currently, this property is read-only.       |
+| ROLL_ANGLE <sup>11+</sup>                 | "HwMnoteRollAngle"           | Rolling angle. Currently, this property is read-only.                 |
+| PITCH_ANGLE<sup>11+</sup>                | "HwMnotePitchAngle"          | Pitch angle. Currently, this property is read-only.                 |
+| SCENE_FOOD_CONF<sup>11+</sup>             | "HwMnoteSceneFoodConf"       | Photographing scene: food. Currently, this property is read-only.           |
+| SCENE_STAGE_CONF<sup>11+</sup>           | "HwMnoteSceneStageConf"     | Photographing scene: stage. Currently, this property is read-only.           |
+| SCENE_BLUE_SKY_CONF<sup>11+</sup>       | "HwMnoteSceneBlueSkyConf"    | Photographing scene: blue sky. Currently, this property is read-only.           |
+| SCENE_GREEN_PLANT_CONF<sup>11+</sup>      | "HwMnoteSceneGreenPlantConf" | Photographing scene: green plants. Currently, this property is read-only.      |
+| SCENE_BEACH_CONF<sup>11+</sup>            | "HwMnoteSceneBeachConf"      | Photographing scene: beach. Currently, this property is read-only.           |
+| SCENE_SNOW_CONF<sup>11+</sup>             | "HwMnoteSceneSnowConf"       | Photographing scene: snow. Currently, this property is read-only.           |
+| SCENE_SUNSET_CONF<sup>11+</sup>           | "HwMnoteSceneSunsetConf"     | Photographing scene: sunset. Currently, this property is read-only.           |
+| SCENE_FLOWERS_CONF<sup>11+</sup>          | "HwMnoteSceneFlowersConf"    | Photographing scene: flowers. Currently, this property is read-only.             |
+| SCENE_NIGHT_CONF<sup>11+</sup>            | "HwMnoteSceneNightConf"      | Photographing scene: night. Currently, this property is read-only.           |
+| SCENE_TEXT_CONF<sup>11+</sup>             | "HwMnoteSceneTextConf"       | Photographing scene: text. Currently, this property is read-only.           |
+| FACE_COUNT<sup>11+</sup>                  | "HwMnoteFaceCount"           | Number of faces. Currently, this property is read-only.                 |
+| FOCUS_MODE<sup>11+</sup>                  | "HwMnoteFocusMode"           | Focus mode. Currently, this property is read-only.                 |
+| COMPRESSION <sup>12+</sup> | "Compression" | Compression scheme used on the image data.|
+| PHOTOMETRIC_INTERPRETATION <sup>12+</sup> | "PhotometricInterpretation" | Color space of the image data, for example, RGB or YCbCr.|
+| STRIP_OFFSETS <sup>12+</sup> | "StripOffsets" | Byte offset of each strip.|
+| SAMPLES_PER_PIXEL <sup>12+</sup> | "SamplesPerPixel" | Number of components per pixel. The value is 3 for RGB and YCbCr images. The **JPEG** key is used in JPEG compressed data.|
+| ROWS_PER_STRIP <sup>12+</sup> | "RowsPerStrip" | Number of rows per strip.|
+| STRIP_BYTE_COUNTS <sup>12+</sup> | "StripByteCounts"      | Number of bytes in each strip after compression.                             |
+| X_RESOLUTION <sup>12+</sup> | "XResolution"      | Number of pixels per ResolutionUnit in the ImageWidth direction.                            |
+| Y_RESOLUTION <sup>12+</sup> | "YResolution"      | Number of pixels per ResolutionUnit in the ImageLength direction.                            |
+| PLANAR_CONFIGURATION <sup>12+</sup> | "PlanarConfiguration"      | Storage format of components of each pixel, which can be chunky or planar.                            |
+| RESOLUTION_UNIT <sup>12+</sup> | "ResolutionUnit"      | Unit of measurement for XResolution and YResolution.                            |
+| TRANSFER_FUNCTION <sup>12+</sup> | "TransferFunction"      | Transfer function for the image, which is usually used for color correction.                            |
+| SOFTWARE <sup>12+</sup> | "Software"      | Name and version number of the software used to create the image.                            |
+| ARTIST <sup>12+</sup> | "Artist"      | Person who created the image.                            |
+| WHITE_POINT <sup>12+</sup> | "WhitePoint"      | Chromaticity of the white point of the image.                            |
+| PRIMARY_CHROMATICITIES <sup>12+</sup> | "PrimaryChromaticities"      | Chromaticities of the primaries of the image.                            |
+| YCBCR_COEFFICIENTS <sup>12+</sup> | "YCbCrCoefficients"      | Transformation from RGB to YCbCr image data.                            |
+| YCBCR_SUB_SAMPLING <sup>12+</sup> | "YCbCrSubSampling"      | Subsampling factors used for the chrominance components of a YCbCr image.                            |
+| YCBCR_POSITIONING <sup>12+</sup> | "YCbCrPositioning"      | Positioning of subsampled chrominance components relative to luminance samples.                            |
+| REFERENCE_BLACK_WHITE <sup>12+</sup> | "ReferenceBlackWhite"      | A pair of headroom and footroom image data values (codes) for each pixel component.                            |
+| COPYRIGHT <sup>12+</sup> | "Copyright"      | Copyright notice of the image.                            |
+| JPEG_INTERCHANGE_FORMAT <sup>12+</sup> | "JPEGInterchangeFormat" | Offset of the SOI marker of a JPEG interchange format bitstream.|
+| JPEG_INTERCHANGE_FORMAT_LENGTH <sup>12+</sup> | "JPEGInterchangeFormatLength" | Number of bytes of the JPEG stream.|
+| EXPOSURE_PROGRAM <sup>12+</sup> | "ExposureProgram" | Class of the program used by the camera to set exposure when the image was captured.|
+| SPECTRAL_SENSITIVITY <sup>12+</sup> | "SpectralSensitivity" | Spectral sensitivity of each channel of the camera.|
+| OECF <sup>12+</sup> | "OECF" | Opto-Electric Conversion Function (OECF) specified in ISO 14524.|
+| EXIF_VERSION <sup>12+</sup> | "ExifVersion" | Version of the supported EXIF standard.|
+| DATE_TIME_DIGITIZED <sup>12+</sup> | "DateTimeDigitized" | Date and time when the image was stored as digital data, in the format of YYYY:MM:DD HH:MM:SS.|
+| COMPONENTS_CONFIGURATION <sup>12+</sup> | "ComponentsConfiguration" | Specific information about compressed data.|
+| SHUTTER_SPEED <sup>12+</sup> | "ShutterSpeedValue" | Shutter speed, expressed in Additive System of Photographic Exposure (APEX) values.|
+| BRIGHTNESS_VALUE <sup>12+</sup> | "BrightnessValue" | Value of brightness, expressed in Additive System of Photographic Exposure (APEX) values.|
+| MAX_APERTURE_VALUE <sup>12+</sup> | "MaxApertureValue" | Smallest F number of the lens.|
+| SUBJECT_DISTANCE <sup>12+</sup> | "SubjectDistance" | Distance to the subject, in meters.|
+| SUBJECT_AREA <sup>12+</sup> | "SubjectArea" | Location and area of the main subject in the entire scene.|
+| MAKER_NOTE <sup>12+</sup> | "MakerNote" | Marker used by EXIF/DCF manufacturers to record any required information.|
+| SUBSEC_TIME <sup>12+</sup> | "SubsecTime" | Tag used to record fractions of seconds for the **DateTime** tag.|
+| SUBSEC_TIME_ORIGINAL <sup>12+</sup> | "SubsecTimeOriginal" | Tag used to record fractions of seconds for the **DateTimeOriginal** tag.|
+| SUBSEC_TIME_DIGITIZED <sup>12+</sup> | "SubsecTimeDigitized" | Tag used to record fractions of seconds for the **DateTimeDigitized** tag.|
+| FLASHPIX_VERSION <sup>12+</sup> | "FlashpixVersion" | FlashPix format version supported by an FPXR file. It is used to enhance device compatibility.|
+| COLOR_SPACE <sup>12+</sup> | "ColorSpace" | Color space information, which is usually recorded as a color space specifier.|
+| RELATED_SOUND_FILE <sup>12+</sup> | "RelatedSoundFile" | Name of an audio file related to the image data.|
+| FLASH_ENERGY <sup>12+</sup> | "FlashEnergy" | Strobe energy at the time the image was captured, in Beam Candle Power Seconds (BCPS).|
+| SPATIAL_FREQUENCY_RESPONSE <sup>12+</sup> | "SpatialFrequencyResponse" | Spatial frequency table of the camera or input device.|
+| FOCAL_PLANE_X_RESOLUTION <sup>12+</sup> | "FocalPlaneXResolution" | Number of pixels in the image width (X) direction per FocalPlaneResolutionUnit.|
+| FOCAL_PLANE_Y_RESOLUTION <sup>12+</sup> | "FocalPlaneYResolution" | Number of pixels in the image height (Y) direction per FocalPlaneResolutionUnit.|
+| FOCAL_PLANE_RESOLUTION_UNIT <sup>12+</sup> | "FocalPlaneResolutionUnit" | Unit for measuring FocalPlaneXResolution and FocalPlaneYResolution.|
+| SUBJECT_LOCATION <sup>12+</sup> | "SubjectLocation" | Location of the main subject relative to the left edge.|
+| EXPOSURE_INDEX <sup>12+</sup> | "ExposureIndex" | Exposure index selected at the time the image is captured.|
+| SENSING_METHOD <sup>12+</sup> | "SensingMethod" | Type of the image sensor on the camera.|
+| FILE_SOURCE <sup>12+</sup> | "FileSource" | Image source.|
+| CFA_PATTERN <sup>12+</sup> | "CFAPattern" | Color Filter Array (CFA) geometric pattern of the image sensor.|
+| CUSTOM_RENDERED <sup>12+</sup> | "CustomRendered"      | Special processing on image data.                             |
+| EXPOSURE_MODE <sup>12+</sup> | "ExposureMode"      | Exposure mode set when the image was captured.                             |
+| DIGITAL_ZOOM_RATIO <sup>12+</sup> | "DigitalZoomRatio"      | Digital zoom ratio when the image was captured.                             |
+| SCENE_CAPTURE_TYPE <sup>12+</sup> | "SceneCaptureType"      | Type of the scene that was captured.                             |
+| GAIN_CONTROL <sup>12+</sup> | "GainControl"      | Degree of overall image gain adjustment.                             |
+| CONTRAST <sup>12+</sup> | "Contrast"      | Direction of contrast processing used by the camera.                             |
+| SATURATION <sup>12+</sup> | "Saturation"      | Direction of saturation processing used by the camera.                             |
+| SHARPNESS <sup>12+</sup> | "Sharpness"      | Direction of sharpness processing used by the camera.                             |
+| DEVICE_SETTING_DESCRIPTION <sup>12+</sup> | "DeviceSettingDescription"      | Information about the photographing conditions of a specific camera model.                             |
+| SUBJECT_DISTANCE_RANGE <sup>12+</sup> | "SubjectDistanceRange"      | Distance to the subject.                             |
+| IMAGE_UNIQUE_ID <sup>12+</sup> | "ImageUniqueID"      | Unique identifier assigned to each image.                            |
+| GPS_VERSION_ID <sup>12+</sup> | "GPSVersionID"      | Version of GPSInfoIFD.                            |
+| GPS_ALTITUDE_REF <sup>12+</sup> | "GPSAltitudeRef"      | Indicates whether the latitude is north or south latitude.                            |
+| GPS_ALTITUDE <sup>12+</sup> | "GPSAltitude"      | Altitude based on the reference in GPSAltitudeRef.                            |
+| GPS_SATELLITES <sup>12+</sup> | "GPSSatellites"      | GPS satellites used for measurement.                            |
+| GPS_STATUS <sup>12+</sup> | "GPSStatus"      | Status of the GPS receiver when the image was recorded.                            |
+| GPS_MEASURE_MODE <sup>12+</sup> | "GPSMeasureMode"      | GPS measurement pmode.                            |
+| GPS_DOP <sup>12+</sup> | "GPSDOP"      | GPS DOP (data degree of precision)                            |
+| GPS_SPEED_REF <sup>12+</sup> | "GPSSpeedRef"      | Unit used to express the movement speed of the GPS receiver.                            |
+| GPS_SPEED <sup>12+</sup> | "GPSSpeed"      | Movement speed of the GPS receiver.                            |
+| GPS_TRACK_REF <sup>12+</sup> | "GPSTrackRef"      | Reference of the movement direction of the GPS receiver.                            |
+| GPS_TRACK <sup>12+</sup> | "GPSTrack"      | Movement direction of the GPS receiver.                            |
+| GPS_IMG_DIRECTION_REF <sup>12+</sup> | "GPSImgDirectionRef"      | Reference of the direction of the image when it was captured.                            |
+| GPS_IMG_DIRECTION <sup>12+</sup> | "GPSImgDirection"      | Direction of the image when it was captured.                            |
+| GPS_MAP_DATUM <sup>12+</sup> | "GPSMapDatum"      | Geodetic survey data used by the GPS receiver.                            |
+| GPS_DEST_LATITUDE_REF <sup>12+</sup> | "GPSDestLatitudeRef"      | Indicates whether the latitude of the destination point is north or south latitude.                            |
+| GPS_DEST_LATITUDE <sup>12+</sup> | "GPSDestLatitude"      | Latitude of the destination point.                            |
+| GPS_DEST_LONGITUDE_REF <sup>12+</sup> | "GPSDestLongitudeRef"      | Indicates whether the longitude of the destination point is east or west longitude.                            |
+| GPS_DEST_LONGITUDE <sup>12+</sup> | "GPSDestLongitude"      | Longitude of the destination point.                            |
+| GPS_DEST_BEARING_REF <sup>12+</sup> | "GPSDestBearingRef"      | Reference of the bearing to the destination point.                            |
+| GPS_DEST_BEARING <sup>12+</sup> | "GPSDestBearing" | Bearing to the destination point.|
+| GPS_DEST_DISTANCE_REF <sup>12+</sup> | "GPSDestDistanceRef" | Unit used to express the distance to the destination point.|
+| GPS_DEST_DISTANCE <sup>12+</sup> | "GPSDestDistance" | Distance to the destination point.|
+| GPS_PROCESSING_METHOD <sup>12+</sup> | "GPSProcessingMethod" | Character string that records the name of the method used for positioning.|
+| GPS_AREA_INFORMATION <sup>12+</sup> | "GPSAreaInformation" | Character string that records the name of the GPS area.|
+| GPS_DIFFERENTIAL <sup>12+</sup> | "GPSDifferential" | Indicates whether differential correction is applied to the GPS receiver. It is critical to accurate location accuracy.|
+| BODY_SERIAL_NUMBER <sup>12+</sup> | "BodySerialNumber" | Serial number of the camera body.|
+| CAMERA_OWNER_NAME <sup>12+</sup> | "CameraOwnerName" | Name of the camera owner.|
+| COMPOSITE_IMAGE <sup>12+</sup> | "CompositeImage" | Indicates whether the image is a composite image.|
+| COMPRESSED_BITS_PER_PIXEL <sup>12+</sup> | "CompressedBitsPerPixel" | Number of bits per pixel. It is specific to compressed data.|
+| DNG_VERSION <sup>12+</sup> | "DNGVersion" | DNG version. It encodes the DNG 4-tier version number.|
+| DEFAULT_CROP_SIZE <sup>12+</sup> | "DefaultCropSize" | Size of the final image area, in raw image coordinates, taking into account extra pixels around the edges of the final image.|
+| GAMMA <sup>12+</sup> | "Gamma" | Gamma value.|
+| ISO_SPEED_LATITUDE_YYY <sup>12+</sup> | "ISOSpeedLatitudeyyy" | ISO speed latitude yyy value of the camera or input device, which is defined in ISO 12232.|
+| ISO_SPEED_LATITUDE_ZZZ <sup>12+</sup> | "ISOSpeedLatitudezzz" | ISO speed latitude zzz value of the camera or input device, which is defined in ISO 12232.|
+| LENS_MAKE <sup>12+</sup> | "LensMake" | Manufacturer of the lens.|
+| LENS_MODEL <sup>12+</sup> | "LensModel" | Model of the lens.|
+| LENS_SERIAL_NUMBER <sup>12+</sup> | "LensSerialNumber" | Serial number of the lens.|
+| LENS_SPECIFICATION <sup>12+</sup> | "LensSpecification" | Specifications of the lens.|
+| NEW_SUBFILE_TYPE <sup>12+</sup> | "NewSubfileType" | Data type of a subfile, such as a full-resolution image, a thumbnail, or a part of a multi-frame image. The value is a bit mask. The value 0 indicates a full-resolution image, **1** indicates a thumbnail, and **2** indicates a part of a multi-frame image.|
+| OFFSET_TIME <sup>12+</sup> | "OffsetTime"      | Time with an offset from UTC when the image was captured, in the format of ±HH:MM.                             |
+| OFFSET_TIME_DIGITIZED <sup>12+</sup> | "OffsetTimeDigitized"      | Time with an offset from UTC when the image was digitized. It helps to accurately adjust the timestamp.                             |
+| OFFSET_TIME_ORIGINAL <sup>12+</sup> | "OffsetTimeOriginal"      | Time with an offset from UTC when the original image was created. It is critical for time-sensitive applications.                             |
+| SOURCE_EXPOSURE_TIMES_OF_COMPOSITE_IMAGE <sup>12+</sup> | "SourceExposureTimesOfCompositeImage"      | Exposure time of source images of the composite image.                             |
+| SOURCE_IMAGE_NUMBER_OF_COMPOSITE_IMAGE <sup>12+</sup> | "SourceImageNumberOfCompositeImage"      | Number of source images of the composite image.                             |
+| SUBFILE_TYPE <sup>12+</sup> | "SubfileType"      | Type of data contained in this subfile. This tag has been deprecated. Use **NewSubfileType** instead.                             |
+| GPS_H_POSITIONING_ERROR <sup>12+</sup> | "GPSHPositioningError"      | Horizontal positioning error, in meters.                             |
+| PHOTOGRAPHIC_SENSITIVITY <sup>12+</sup> | "PhotographicSensitivity"      | Sensitivity of the camera or input device when the image was captured.                             |
+| BURST_NUMBER <sup>12+</sup> | "HwMnoteBurstNumber"      | Number of burst shooting times.                             |
+| FACE_CONF <sup>12+</sup> | "HwMnoteFaceConf"      | Face confidence.                             |
+| FACE_LEYE_CENTER <sup>12+</sup> | "HwMnoteFaceLeyeCenter" | Left eye centered.|
+| FACE_MOUTH_CENTER <sup>12+</sup> | "HwMnoteFaceMouthCenter" | Mouth centered.|
+| FACE_POINTER <sup>12+</sup> | "HwMnoteFacePointer" | Face pointer.|
+| FACE_RECT <sup>12+</sup> | "HwMnoteFaceRect" | Face rectangle.|
+| FACE_REYE_CENTER <sup>12+</sup> | "HwMnoteFaceReyeCenter" | Right eye centered.|
+| FACE_SMILE_SCORE <sup>12+</sup> | "HwMnoteFaceSmileScore" | Smile score of for faces.|
+| FACE_VERSION <sup>12+</sup> | "HwMnoteFaceVersion" | Facial recognition algorithm version.|
+| FRONT_CAMERA <sup>12+</sup> | "HwMnoteFrontCamera" | Indicates whether the front camera is used to take a selfie.|
+| SCENE_POINTER <sup>12+</sup> | "HwMnoteScenePointer" | Pointer to the scene.|
+| SCENE_VERSION <sup>12+</sup> | "HwMnoteSceneVersion" | Scene algorithm version.|
+| GIF_LOOP_COUNT <sup>12+</sup> | "GIFLoopCount" | Number of GIF loops.|
 
 ## ImageFormat<sup>9+</sup>
 
@@ -4454,10 +5632,33 @@ Describes the color components of an image.
 | pixelStride   | number                           | Yes  | No  | Pixel stride.  |
 | byteBuffer    | ArrayBuffer                      | Yes  | No  | Component buffer.|
 
+## DecodingDynamicRange<sup>12+</sup>
+
+Describes the desired dynamic range of an image during decoding.
+
+**System capability**: SystemCapability.Multimedia.Image.Core
+
+| Name         | Type      | Description        |
+| ------------- | ----------| ------------ |
+| AUTO          | number    | The value is **0**. The image is decoded based on the format. If the image is in HDR format, it is decoded based on the HDR content; otherwise, it is decoded based on the SDR content. |
+| SDR           | number    | The value is **1**. The image is decoded according to the standard dynamic range.  |
+| HDR           | number    | The value is **2**. The image is decoded according to the high dynamic range.    |
+
+## PackingDynamicRange<sup>12+</sup>
+
+Describes the desired dynamic range of a pixel map during encoding.
+
+**System capability**: SystemCapability.Multimedia.Image.Core
+
+| Name         | Type      | Description        |
+| ------------- | ----------| ------------ |
+| AUTO          | number    | The value is **0**. Adaptive. The [pixelmap](#pixelmap7) is encoded based on the format. If the pixel map is in HDR format, it is encoded based on the HDR content; otherwise, it is encoded based on the SDR content. |
+| SDR           | number    | The value is **1**. The pixel map is encoded according to the standard dynamic range.  |
+
 ## Supplementary Information
 ### SVG Tags
 
-The SVG tags are supported since API version 10. The used version is (SVG) 1.1. Currently, the following tags are supported:
+The SVG tags are supported since API version 10. The used version is (SVG) 1.1. An XML declaration that starts with **<?xml** needs to be added to an SVG file, and the width and height of the SVG tag need to be set. Currently, the following tags are supported:
 - a
 - circla
 - clipPath

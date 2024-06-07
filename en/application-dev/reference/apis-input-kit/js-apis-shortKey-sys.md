@@ -11,7 +11,7 @@ The **shortKey** module provides APIs to set the delay for starting an ability u
 ##  Modules to Import
 
 ```js
-import shortKey from '@ohos.multimodalInput.shortKey';
+import { shortKey } from '@kit.InputKit';
 ```
 
 ##  shortKey.setKeyDownDuration
@@ -30,10 +30,19 @@ Sets the delay for starting an ability using shortcut keys. This API uses an asy
 | delay      | number              | Yes  | Delay for starting an ability using shortcut keys, in milliseconds. This field is invalid only when shortcut keys are used.|
 | callback   | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object. |                                               
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```js
-import shortKey from '@ohos.multimodalInput.shortKey';
+import { shortKey } from '@kit.InputKit';
 try {
   shortKey.setKeyDownDuration("screenshot", 500, (error) => {
     if (error) {
@@ -68,10 +77,19 @@ Sets the delay for starting an ability using shortcut keys. This API uses a prom
 | ------------- | ------------- |
 | Promise&lt;void&gt; | Promise that returns no value.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```js
-import shortKey from '@ohos.multimodalInput.shortKey';
+import { shortKey } from '@kit.InputKit';
 try {
   shortKey.setKeyDownDuration("screenshot", 500).then(() => {
     console.log(`Set key down duration success`);

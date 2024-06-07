@@ -10,7 +10,7 @@ The **Sensor** module provides APIs for obtaining the sensor list and subscribin
 ## Modules to Import
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 ```
 ## sensor.on
 
@@ -21,6 +21,8 @@ on(type: SensorId.ACCELEROMETER, callback: Callback&lt;AccelerometerResponse&gt;
 Subscribes to data of the acceleration sensor.
 
 **Required permissions**: ohos.permission.ACCELEROMETER
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Sensors.Sensor
 
@@ -36,15 +38,17 @@ Subscribes to data of the acceleration sensor.
 
 For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
-| ID| Error Message          |
-| -------- | ------------------ |
-| 14500101 | Service exception. |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission denied.                                           |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+| 14500101 | Service exception.                                           |
 
 **Example**
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   sensor.on(sensor.SensorId.ACCELEROMETER, (data: sensor.AccelerometerResponse) => {
@@ -56,7 +60,7 @@ try {
     sensor.off(sensor.SensorId.ACCELEROMETER);
   }, 500);
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -83,15 +87,17 @@ Subscribes to data of the uncalibrated acceleration sensor.
 
 For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
-| ID| Error Message          |
-| -------- | ------------------ |
-| 14500101 | Service exception. |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission denied.                                           |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+| 14500101 | Service exception.                                           |
 
 **Example**
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   sensor.on(sensor.SensorId.ACCELEROMETER_UNCALIBRATED, (data: sensor.AccelerometerUncalibratedResponse) => {
@@ -106,7 +112,7 @@ try {
     sensor.off(sensor.SensorId.ACCELEROMETER_UNCALIBRATED);
   }, 500);
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -131,15 +137,16 @@ Subscribes to data of the ambient light sensor.
 
 For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
-| ID| Error Message          |
-| -------- | ------------------ |
-| 14500101 | Service exception. |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+| 14500101 | Service exception.                                           |
 
 **Example**
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   sensor.on(sensor.SensorId.AMBIENT_LIGHT, (data: sensor.LightResponse) => {
@@ -149,7 +156,7 @@ try {
     sensor.off(sensor.SensorId.AMBIENT_LIGHT);
   }, 500);
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -174,15 +181,16 @@ Subscribes to data of the ambient temperature sensor.
 
 For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
-| ID| Error Message          |
-| -------- | ------------------ |
-| 14500101 | Service exception. |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+| 14500101 | Service exception.                                           |
 
 **Example**
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   sensor.on(sensor.SensorId.AMBIENT_TEMPERATURE, (data: sensor.AmbientTemperatureResponse) => {
@@ -192,7 +200,7 @@ try {
     sensor.off(sensor.SensorId.AMBIENT_TEMPERATURE);
   }, 500);
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -217,15 +225,16 @@ Subscribes to data of the barometer sensor.
 
 For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
-| ID| Error Message          |
-| -------- | ------------------ |
-| 14500101 | Service exception. |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+| 14500101 | Service exception.                                           |
 
 **Example**
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   sensor.on(sensor.SensorId.BAROMETER, (data: sensor.BarometerResponse) => {
@@ -235,7 +244,7 @@ try {
     sensor.off(sensor.SensorId.BAROMETER);
   }, 500);
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -260,15 +269,16 @@ Subscribes to data of the gravity sensor.
 
 For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
-| ID| Error Message          |
-| -------- | ------------------ |
-| 14500101 | Service exception. |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+| 14500101 | Service exception.                                           |
 
 **Example**
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   sensor.on(sensor.SensorId.GRAVITY, (data: sensor.GravityResponse) => {
@@ -280,7 +290,7 @@ try {
     sensor.off(sensor.SensorId.GRAVITY);
   }, 500);
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -292,6 +302,8 @@ on(type: SensorId.GYROSCOPE, callback: Callback&lt;GyroscopeResponse&gt;, option
 Subscribes to data of the gyroscope sensor.
 
 **Required permissions**: ohos.permission.GYROSCOPE
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Sensors.Sensor
 
@@ -307,15 +319,17 @@ Subscribes to data of the gyroscope sensor.
 
 For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
-| ID| Error Message          |
-| -------- | ------------------ |
-| 14500101 | Service exception. |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission denied.                                           |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+| 14500101 | Service exception.                                           |
 
 **Example**
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   sensor.on(sensor.SensorId.GYROSCOPE, (data: sensor.GyroscopeResponse) => {
@@ -327,7 +341,7 @@ try {
     sensor.off(sensor.SensorId.GYROSCOPE);
   }, 500);
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -355,15 +369,17 @@ Subscribes to data of the uncalibrated gyroscope sensor.
 
 For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
-| ID| Error Message          |
-| -------- | ------------------ |
-| 14500101 | Service exception. |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission denied.                                           |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+| 14500101 | Service exception.                                           |
 
 **Example**
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   sensor.on(sensor.SensorId.GYROSCOPE_UNCALIBRATED, (data: sensor.GyroscopeUncalibratedResponse) => {
@@ -378,7 +394,7 @@ try {
     sensor.off(sensor.SensorId.GYROSCOPE_UNCALIBRATED);
   }, 500);
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
 }
 
@@ -404,15 +420,16 @@ Subscribes to data of the Hall effect sensor.
 
 For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
-| ID| Error Message          |
-| -------- | ------------------ |
-| 14500101 | Service exception. |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+| 14500101 | Service exception.                                           |
 
 **Example**
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   sensor.on(sensor.SensorId.HALL, (data: sensor.HallResponse) => {
@@ -422,7 +439,7 @@ try {
     sensor.off(sensor.SensorId.HALL);
   }, 500);
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
 }
 
@@ -450,15 +467,17 @@ Subscribes to data of the heart rate sensor.
 
 For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
-| ID| Error Message          |
-| -------- | ------------------ |
-| 14500101 | Service exception. |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission denied.                                           |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+| 14500101 | Service exception.                                           |
 
 **Example**
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   sensor.on(sensor.SensorId.HEART_RATE, (data: sensor.HeartRateResponse) => {
@@ -468,7 +487,7 @@ try {
     sensor.off(sensor.SensorId.HEART_RATE);
   }, 500);
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -493,15 +512,16 @@ Subscribes to data of the humidity sensor.
 
 For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
-| ID| Error Message          |
-| -------- | ------------------ |
-| 14500101 | Service exception. |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+| 14500101 | Service exception.                                           |
 
 **Example**
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   sensor.on(sensor.SensorId.HUMIDITY, (data: sensor.HumidityResponse) => {
@@ -511,7 +531,7 @@ try {
     sensor.off(sensor.SensorId.HUMIDITY);
   }, 500);
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -539,15 +559,17 @@ Subscribes to data of the linear acceleration sensor.
 
 For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
-| ID| Error Message          |
-| -------- | ------------------ |
-| 14500101 | Service exception. |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission denied.                                           |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+| 14500101 | Service exception.                                           |
 
 **Example**
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   sensor.on(sensor.SensorId.LINEAR_ACCELEROMETER, (data: sensor.LinearAccelerometerResponse) => {
@@ -559,7 +581,7 @@ try {
     sensor.off(sensor.SensorId.LINEAR_ACCELEROMETER);
   }, 500);
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -584,15 +606,16 @@ Subscribes to data of the magnetic field sensor.
 
 For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
-| ID| Error Message          |
-| -------- | ------------------ |
-| 14500101 | Service exception. |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+| 14500101 | Service exception.                                           |
 
 **Example**
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   sensor.on(sensor.SensorId.MAGNETIC_FIELD, (data: sensor.MagneticFieldResponse) => {
@@ -604,7 +627,7 @@ try {
     sensor.off(sensor.SensorId.MAGNETIC_FIELD);
   }, 500);
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -629,15 +652,16 @@ Subscribes to data of the uncalibrated magnetic field sensor.
 
 For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
-| ID| Error Message          |
-| -------- | ------------------ |
-| 14500101 | Service exception. |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+| 14500101 | Service exception.                                           |
 
 **Example**
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   sensor.on(sensor.SensorId.MAGNETIC_FIELD_UNCALIBRATED, (data: sensor.MagneticFieldUncalibratedResponse) => {
@@ -652,7 +676,7 @@ try {
     sensor.off(sensor.SensorId.MAGNETIC_FIELD_UNCALIBRATED);
   }, 500);
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -663,15 +687,18 @@ on(type: SensorId.ORIENTATION, callback: Callback&lt;OrientationResponse&gt;, op
 
 Subscribes to data of the orientation sensor.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Sensors.Sensor
 
 **Error codes**
 
 For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
-| ID| Error Message          |
-| -------- | ------------------ |
-| 14500101 | Service exception. |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+| 14500101 | Service exception.                                           |
 
 **Parameters**
 
@@ -684,8 +711,8 @@ For details about the following error codes, see [Sensor Error Codes](errorcode-
 **Example**
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   sensor.on(sensor.SensorId.ORIENTATION, (data: sensor.OrientationResponse) => {
@@ -697,7 +724,7 @@ try {
     sensor.off(sensor.SensorId.ORIENTATION);
   }, 500);
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -716,9 +743,11 @@ Subscribes to data of the pedometer sensor.
 
 For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
-| ID| Error Message          |
-| -------- | ------------------ |
-| 14500101 | Service exception. |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission denied.                                           |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+| 14500101 | Service exception.                                           |
 
 **Parameters**
 
@@ -731,8 +760,8 @@ For details about the following error codes, see [Sensor Error Codes](errorcode-
 **Example**
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   sensor.on(sensor.SensorId.PEDOMETER, (data: sensor.PedometerResponse) => {
@@ -742,7 +771,7 @@ try {
     sensor.off(sensor.SensorId.PEDOMETER);
   }, 500);
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -770,15 +799,17 @@ Subscribes to data of the pedometer detection sensor.
 
 For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
-| ID| Error Message          |
-| -------- | ------------------ |
-| 14500101 | Service exception. |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission denied.                                           |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+| 14500101 | Service exception.                                           |
 
 **Example**
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   sensor.on(sensor.SensorId.PEDOMETER_DETECTION, (data: sensor.PedometerDetectionResponse) => {
@@ -788,7 +819,7 @@ try {
     sensor.off(sensor.SensorId.PEDOMETER_DETECTION);
   }, 500);
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -813,15 +844,16 @@ Subscribes to data of the proximity sensor.
 
 For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
-| ID| Error Message          |
-| -------- | ------------------ |
-| 14500101 | Service exception. |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3.Parameter verification failed. |
+| 14500101 | Service exception.                                           |
 
 **Example**
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   sensor.on(sensor.SensorId.PROXIMITY, (data: sensor.ProximityResponse) => {
@@ -831,7 +863,7 @@ try {
     sensor.off(sensor.SensorId.PROXIMITY);
   }, 500);
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -857,15 +889,16 @@ Subscribes to data of the rotation vector sensor.
 
 For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
-| ID| Error Message          |
-| -------- | ------------------ |
-| 14500101 | Service exception. |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3.Parameter verification failed. |
+| 14500101 | Service exception.                                           |
 
 **Example**
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   sensor.on(sensor.SensorId.ROTATION_VECTOR, (data: sensor.RotationVectorResponse) => {
@@ -878,7 +911,7 @@ try {
     sensor.off(sensor.SensorId.ROTATION_VECTOR);
   }, 500);
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -904,15 +937,16 @@ Subscribes to data of the significant motion sensor.
 
 For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
-| ID| Error Message          |
-| -------- | ------------------ |
-| 14500101 | Service exception. |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3.Parameter verification failed. |
+| 14500101 | Service exception.                                           |
 
 **Example**
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   sensor.on(sensor.SensorId.SIGNIFICANT_MOTION, (data: sensor.SignificantMotionResponse) => {
@@ -922,7 +956,7 @@ try {
     sensor.off(sensor.SensorId.SIGNIFICANT_MOTION);
   }, 500);
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -948,15 +982,16 @@ Subscribes to data of the wear detection sensor.
 
 For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
-| ID| Error Message          |
-| -------- | ------------------ |
-| 14500101 | Service exception. |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3.Parameter verification failed. |
+| 14500101 | Service exception.                                           |
 
 **Example**
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   sensor.on(sensor.SensorId.WEAR_DETECTION, (data: sensor.WearDetectionResponse) => {
@@ -966,7 +1001,7 @@ try {
     sensor.off(sensor.SensorId.WEAR_DETECTION);
   }, 500);
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke on. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -994,15 +1029,17 @@ Obtains data of the acceleration sensor once.
 
 For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
-| ID| Error Message          |
-| -------- | ------------------ |
-| 14500101 | Service exception. |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission denied.                                           |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+| 14500101 | Service exception.                                           |
 
 **Example**
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   sensor.once(sensor.SensorId.ACCELEROMETER, (data: sensor.AccelerometerResponse) => {
@@ -1011,7 +1048,7 @@ try {
     console.info('Succeeded in invoking once. Z-coordinate component: ' + data.z);
   });
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke once. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -1037,15 +1074,17 @@ Obtains data of the uncalibrated acceleration sensor once.
 
 For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
-| ID| Error Message          |
-| -------- | ------------------ |
-| 14500101 | Service exception. |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission denied.                                           |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+| 14500101 | Service exception.                                           |
 
 **Example**
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   sensor.once(sensor.SensorId.ACCELEROMETER_UNCALIBRATED, (data: sensor.AccelerometerUncalibratedResponse) => {
@@ -1057,7 +1096,7 @@ try {
     console.info('Succeeded in invoking once. Z-coordinate bias: ' + data.biasZ);
   });
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke once. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -1081,22 +1120,23 @@ Obtains data of the ambient light sensor once.
 
 For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
-| ID| Error Message          |
-| -------- | ------------------ |
-| 14500101 | Service exception. |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+| 14500101 | Service exception.                                           |
 
 **Example**
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   sensor.once(sensor.SensorId.AMBIENT_LIGHT, (data: sensor.LightResponse) => {
     console.info('Succeeded in invoking once. the ambient light intensity: ' + data.intensity);
   });
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke once. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -1120,22 +1160,23 @@ Obtains data of the temperature sensor once.
 
 For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
-| ID| Error Message          |
-| -------- | ------------------ |
-| 14500101 | Service exception. |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+| 14500101 | Service exception.                                           |
 
 **Example**
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   sensor.once(sensor.SensorId.AMBIENT_TEMPERATURE, (data: sensor.AmbientTemperatureResponse) => {
     console.info('Succeeded in invoking once. Temperature: ' + data.temperature);
   });
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke once. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -1159,22 +1200,23 @@ Obtains data of the barometer sensor once.
 
 For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
-| ID| Error Message          |
-| -------- | ------------------ |
-| 14500101 | Service exception. |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+| 14500101 | Service exception.                                           |
 
 **Example**
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   sensor.once(sensor.SensorId.BAROMETER, (data: sensor.BarometerResponse) => {
     console.info('Succeeded in invoking once. Atmospheric pressure: ' + data.pressure);
   });
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke once. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -1198,15 +1240,16 @@ Obtains data of the gravity sensor once.
 
 For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
-| ID| Error Message          |
-| -------- | ------------------ |
-| 14500101 | Service exception. |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+| 14500101 | Service exception.                                           |
 
 **Example**
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   sensor.once(sensor.SensorId.GRAVITY, (data: sensor.GravityResponse) => {
@@ -1215,7 +1258,7 @@ try {
     console.info('Succeeded in invoking once. Z-coordinate component: ' + data.z);
   });
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke once. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -1241,15 +1284,17 @@ Obtains to data of the gyroscope sensor once.
 
 For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
-| ID| Error Message          |
-| -------- | ------------------ |
-| 14500101 | Service exception. |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission denied.                                           |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+| 14500101 | Service exception.                                           |
 
 **Example**
 
 ```ts
-import sensor from '@ohos.sensor';
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   sensor.once(sensor.SensorId.GYROSCOPE, (data: sensor.GyroscopeResponse) => {
@@ -1258,7 +1303,7 @@ try {
     console.info('Succeeded in invoking once. Z-coordinate component: ' + data.z);
   });
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke once. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -1284,15 +1329,17 @@ Obtains data of the uncalibrated gyroscope sensor once.
 
 For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
-| ID| Error Message          |
-| -------- | ------------------ |
-| 14500101 | Service exception. |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission denied.                                           |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+| 14500101 | Service exception.                                           |
 
 **Example**
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   sensor.once(sensor.SensorId.GYROSCOPE_UNCALIBRATED, (data: sensor.GyroscopeUncalibratedResponse) => {
@@ -1304,7 +1351,7 @@ try {
     console.info('Succeeded in invoking once. Z-coordinate bias: ' + data.biasZ);
   });
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke once. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -1328,22 +1375,23 @@ Obtains data of the Hall effect sensor once.
 
 For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
-| ID| Error Message          |
-| -------- | ------------------ |
-| 14500101 | Service exception. |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+| 14500101 | Service exception.                                           |
 
 **Example**
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   sensor.once(sensor.SensorId.HALL, (data: sensor.HallResponse) => {
     console.info('Succeeded in invoking once. Status: ' + data.status);
   });
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke once. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -1369,22 +1417,24 @@ Obtains data of the heart rate sensor once.
 
 For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
-| ID| Error Message          |
-| -------- | ------------------ |
-| 14500101 | Service exception. |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission denied.                                           |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+| 14500101 | Service exception.                                           |
 
 **Example**
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   sensor.once(sensor.SensorId.HEART_RATE, (data: sensor.HeartRateResponse) => {
     console.info('Succeeded in invoking once. Heart rate: ' + data.heartRate);
   });
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke once. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -1408,22 +1458,23 @@ Obtains data of the humidity sensor once.
 
 For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
-| ID| Error Message          |
-| -------- | ------------------ |
-| 14500101 | Service exception. |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+| 14500101 | Service exception.                                           |
 
 **Example**
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   sensor.once(sensor.SensorId.HUMIDITY, (data: sensor.HumidityResponse) => {
     console.info('Succeeded in invoking once. Humidity: ' + data.humidity);
   });
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke once. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -1449,15 +1500,17 @@ Obtains data of the linear acceleration sensor once.
 
 For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
-| ID| Error Message          |
-| -------- | ------------------ |
-| 14500101 | Service exception. |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission denied.                                           |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+| 14500101 | Service exception.                                           |
 
 **Example**
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   sensor.once(sensor.SensorId.LINEAR_ACCELEROMETER, (data: sensor.LinearAccelerometerResponse) => {
@@ -1466,7 +1519,7 @@ try {
     console.info('Succeeded in invoking once. Z-coordinate component: ' + data.z);
   });
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke once. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -1490,15 +1543,16 @@ Obtains data of the magnetic field sensor once.
 
 For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
-| ID| Error Message          |
-| -------- | ------------------ |
-| 14500101 | Service exception. |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+| 14500101 | Service exception.                                           |
 
 **Example**
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   sensor.once(sensor.SensorId.MAGNETIC_FIELD, (data: sensor.MagneticFieldResponse) => {
@@ -1507,7 +1561,7 @@ try {
     console.info('Succeeded in invoking once. Z-coordinate component: ' + data.z);
   });
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke once. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -1531,15 +1585,16 @@ Obtains data of the uncalibrated magnetic field sensor once.
 
 For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
-| ID| Error Message          |
-| -------- | ------------------ |
-| 14500101 | Service exception. |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+| 14500101 | Service exception.                                           |
 
 **Example**
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   sensor.once(sensor.SensorId.MAGNETIC_FIELD_UNCALIBRATED, (data: sensor.MagneticFieldUncalibratedResponse) => {
@@ -1551,7 +1606,7 @@ try {
     console.info('Succeeded in invoking once. Z-coordinate bias: ' + data.biasZ);
   });
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke once. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -1575,15 +1630,16 @@ Obtains data of the orientation sensor once.
 
 For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
-| ID| Error Message          |
-| -------- | ------------------ |
-| 14500101 | Service exception. |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+| 14500101 | Service exception.                                           |
 
 **Example**
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   sensor.once(sensor.SensorId.ORIENTATION, (data: sensor.OrientationResponse) => {
@@ -1592,7 +1648,7 @@ try {
     console.info('Succeeded in the device rotating at an angle around the Z axis: ' + data.alpha);
   });
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke once. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -1618,22 +1674,24 @@ Obtains data of the pedometer sensor once.
 
 For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
-| ID| Error Message          |
-| -------- | ------------------ |
-| 14500101 | Service exception. |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission denied.                                           |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+| 14500101 | Service exception.                                           |
 
 **Example**
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   sensor.once(sensor.SensorId.PEDOMETER, (data: sensor.PedometerResponse) => {
     console.info('Succeeded in invoking once. Step count: ' + data.steps);
   });
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke once. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -1659,22 +1717,24 @@ Obtains data of the pedometer sensor once.
 
 For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
-| ID| Error Message          |
-| -------- | ------------------ |
-| 14500101 | Service exception. |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission denied.                                           |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+| 14500101 | Service exception.                                           |
 
 **Example**
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   sensor.once(sensor.SensorId.PEDOMETER_DETECTION, (data: sensor.PedometerDetectionResponse) => {
     console.info('Succeeded in invoking once. Scalar data: ' + data.scalar);
   });
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke once. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -1698,22 +1758,23 @@ Obtains data of the proximity sensor once.
 
 For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
-| ID| Error Message          |
-| -------- | ------------------ |
-| 14500101 | Service exception. |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+| 14500101 | Service exception.                                           |
 
 **Example**
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   sensor.once(sensor.SensorId.PROXIMITY, (data: sensor.ProximityResponse) => {
     console.info('Succeeded in invoking once. Distance: ' + data.distance);
   });
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke once. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -1737,15 +1798,16 @@ Obtains data of the rotation vector sensor once.
 
 For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
-| ID| Error Message          |
-| -------- | ------------------ |
-| 14500101 | Service exception. |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+| 14500101 | Service exception.                                           |
 
 **Example**
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   sensor.once(sensor.SensorId.ROTATION_VECTOR, (data: sensor.RotationVectorResponse) => {
@@ -1755,7 +1817,7 @@ try {
     console.info('Succeeded in invoking once. Scalar quantity: ' + data.w);
   });
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke once. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -1779,22 +1841,23 @@ Obtains data of the significant motion sensor once.
 
 For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
-| ID| Error Message          |
-| -------- | ------------------ |
-| 14500101 | Service exception. |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+| 14500101 | Service exception.                                           |
 
 **Example**
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   sensor.once(sensor.SensorId.SIGNIFICANT_MOTION, (data: sensor.SignificantMotionResponse) => {
     console.info('Succeeded in invoking once. Scalar data: ' + data.scalar);
   });
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke once. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -1818,22 +1881,23 @@ Obtains data of the wear detection sensor once.
 
 For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
-| ID| Error Message          |
-| -------- | ------------------ |
-| 14500101 | Service exception. |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+| 14500101 | Service exception.                                           |
 
 **Example**
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   sensor.once(sensor.SensorId.WEAR_DETECTION, (data: sensor.WearDetectionResponse) => {
     console.info('Succeeded in invoking once. Wear status: ' + data.value);
   });
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke once. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -1842,11 +1906,13 @@ try {
 
 ### ACCELEROMETER<sup>9+</sup> 
 
-off(type: SensorId.ACCELEROMETER, callback?: CallbackAccelerometerResponse&gt;): void
+off(type: SensorId.ACCELEROMETER, callback?: Callback&lt;AccelerometerResponse&gt;): void
 
 Unsubscribes from data of the acceleration sensor.
 
 **Required permissions**: ohos.permission.ACCELEROMETER
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Sensors.Sensor
 
@@ -1857,11 +1923,21 @@ Unsubscribes from data of the acceleration sensor.
 | type     | [SensorId](#sensorid9).ACCELEROMETER                         | Yes  | Sensor type. The value is fixed at **SensorId.ACCELEROMETER**.              |
 | callback | Callback&lt;[AccelerometerResponse](#accelerometerresponse)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
 
+**Error codes**
+
+For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission denied.                                           |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+| 14500101 | Service exception.                                           |
+
 **Example**
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function callback1(data: object) {
   console.info('Succeeded in getting callback1 data: ' + JSON.stringify(data));
@@ -1879,7 +1955,7 @@ try {
   // Unsubscribe from all callbacks of the SensorId.ACCELEROMETER type.
   sensor.off(sensor.SensorId.ACCELEROMETER);
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke off. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -1901,11 +1977,21 @@ Unsubscribes from data of the uncalibrated acceleration sensor.
 | type     | [SensorId](#sensorid9).ACCELEROMETER_UNCALIBRATED            | Yes  | Sensor type. The value is fixed at **SensorId.ACCELEROMETER_UNCALIBRATED**. |
 | callback | Callback&lt;[AccelerometerUncalibratedResponse](#accelerometeruncalibratedresponse)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
 
+**Error codes**
+
+For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission denied.                                           |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+| 14500101 | Service exception.                                           |
+
 **Example**
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function callback1(data: object) {
   console.info('Succeeded in getting callback1 data: ' + JSON.stringify(data));
@@ -1923,7 +2009,7 @@ try {
   // Unsubscribe from all callbacks of the SensorId.ACCELEROMETER_UNCALIBRATED type.
   sensor.off(sensor.SensorId.ACCELEROMETER_UNCALIBRATED);
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke off. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -1943,11 +2029,20 @@ Unsubscribes from data of the ambient light sensor.
 | type     | [SensorId](#sensorid9).AMBIENT_LIGHT            | Yes  | Sensor type. The value is fixed at **SensorId.AMBIENT_LIGHT**.              |
 | callback | Callback&lt;[LightResponse](#lightresponse)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
 
+**Error codes**
+
+For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+| 14500101 | Service exception.                                           |
+
 **Example**
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function callback1(data: object) {
   console.info('Succeeded in getting callback1 data: ' + JSON.stringify(data));
@@ -1965,7 +2060,7 @@ try {
   // Unsubscribe from all callbacks of the SensorId.AMBIENT_LIGHT type.
   sensor.off(sensor.SensorId.AMBIENT_LIGHT);
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke off. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -1985,11 +2080,20 @@ Unsubscribes from data of the ambient temperature sensor.
 | type     | [SensorId](#sensorid9).AMBIENT_TEMPERATURE                   | Yes  | Sensor type. The value is fixed at **SensorId.AMBIENT_TEMPERATURE**.        |
 | callback | Callback&lt;[AmbientTemperatureResponse](#ambienttemperatureresponse)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
 
+**Error codes**
+
+For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+| 14500101 | Service exception.                                           |
+
 **Example**
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function callback1(data: object) {
   console.info('Succeeded in getting callback1 data: ' + JSON.stringify(data));
@@ -2007,7 +2111,7 @@ try {
   // Unsubscribe from all callbacks of the SensorId.AMBIENT_TEMPERATURE type.
   sensor.off(sensor.SensorId.AMBIENT_TEMPERATURE);
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke off. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -2027,11 +2131,20 @@ Unsubscribes from data of the barometer sensor.
 | type     | [SensorId](#sensorid9).BAROMETER                        | Yes  | Sensor type. The value is fixed at **SensorId.BAROMETER**.                  |
 | callback | Callback&lt;[BarometerResponse](#barometerresponse)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
 
+**Error codes**
+
+For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+| 14500101 | Service exception.                                           |
+
 **Example**
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function callback1(data: object) {
     console.info('Succeeded in getting callback1 data: ' + JSON.stringify(data));
@@ -2049,7 +2162,7 @@ try {
     // Unsubscribe from all callbacks of the SensorId.BAROMETER type.
     sensor.off(sensor.SensorId.BAROMETER);
 } catch (error) {
-    let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+    let e: BusinessError = error as BusinessError;
     console.error(`Failed to invoke off. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -2069,11 +2182,20 @@ Unsubscribes from data of the gravity sensor.
 | type     | [SensorId](#sensorid9).GRAVITY                      | Yes  | Sensor type. The value is fixed at **SensorId.GRAVITY**.                    |
 | callback | Callback&lt;[GravityResponse](#gravityresponse)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
 
+**Error codes**
+
+For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+| 14500101 | Service exception.                                           |
+
 **Example**
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function callback1(data: object) {
   console.info('Succeeded in getting callback1 data: ' + JSON.stringify(data));
@@ -2091,7 +2213,7 @@ try {
   // Unsubscribe from all callbacks of the SensorId.GRAVITY type.
   sensor.off(sensor.SensorId.GRAVITY);
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke off. Code: ${e.code}, message: ${e.message}`);
 }
 
@@ -2105,6 +2227,8 @@ Unsubscribes from data of the gyroscope sensor.
 
 **Required permissions**: ohos.permission.GYROSCOPE
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Sensors.Sensor
 
 **Parameters**
@@ -2114,11 +2238,21 @@ Unsubscribes from data of the gyroscope sensor.
 | type     | [SensorId](#sensorid9).GYROSCOPE                        | Yes  | Sensor type. The value is fixed at **SensorId.GYROSCOPE**.                  |
 | callback | Callback&lt;[GyroscopeResponse](#gyroscoperesponse)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
 
+**Error codes**
+
+For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission denied.                                           |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+| 14500101 | Service exception.                                           |
+
 **Example**
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function callback1(data: object) {
   console.info('Succeeded in getting callback1 data: ' + JSON.stringify(data));
@@ -2136,7 +2270,7 @@ try {
   // Unsubscribe from all callbacks of the SensorId.GYROSCOPE type.
   sensor.off(sensor.SensorId.GYROSCOPE);
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke off. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -2158,11 +2292,21 @@ off(type: SensorId.GYROSCOPE_UNCALIBRATED, callback?: Callback&lt;GyroscopeUncal
 | type     | [SensorId](#sensorid9).GYROSCOPE_UNCALIBRATED                | Yes  | Sensor type. The value is fixed at **SensorId.GYROSCOPE_UNCALIBRATED**.     |
 | callback | Callback&lt;[GyroscopeUncalibratedResponse](#gyroscopeuncalibratedresponse)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
 
+**Error codes**
+
+For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission denied.                                           |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+| 14500101 | Service exception.                                           |
+
 **Example**
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function callback1(data: object) {
   console.info('Succeeded in getting callback1 data: ' + JSON.stringify(data));
@@ -2180,7 +2324,7 @@ try {
   // Unsubscribe from all callbacks of the SensorId.GYROSCOPE_UNCALIBRATED type.
   sensor.off(sensor.SensorId.GYROSCOPE_UNCALIBRATED);
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke off. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -2200,11 +2344,20 @@ Unsubscribes from data of the Hall effect sensor.
 | type     | [SensorId](#sensorid9).HALL                   | Yes  | Sensor type. The value is fixed at **SensorId.HALL**.                       |
 | callback | Callback&lt;[HallResponse](#hallresponse)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
 
+**Error codes**
+
+For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+| 14500101 | Service exception.                                           |
+
 **Example**
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function callback1(data: object) {
   console.info('Succeeded in getting callback1 data: ' + JSON.stringify(data));
@@ -2222,7 +2375,7 @@ try {
   // Unsubscribe from all callbacks of the SensorId.HALL type.
   sensor.off(sensor.SensorId.HALL);
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke off. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -2244,11 +2397,21 @@ Unsubscribes from data of the heart rate sensor.
 | type     | [SensorId](#sensorid9).HEART_RATE                       | Yes  | Sensor type. The value is fixed at **SensorId.HEART_RATE**.                 |
 | callback | Callback&lt;[HeartRateResponse](#heartrateresponse)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
 
+**Error codes**
+
+For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission denied.                                           |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+| 14500101 | Service exception.                                           |
+
 **Example**
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function callback1(data: object) {
   console.info('Succeeded in getting callback1 data: ' + JSON.stringify(data));
@@ -2266,7 +2429,7 @@ try {
   // Unsubscribe from all callbacks of the SensorId.HEART_RATE type.
   sensor.off(sensor.SensorId.HEART_RATE);
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke off. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -2286,11 +2449,20 @@ Unsubscribes from data of the humidity sensor.
 | type     | [SensorId](#sensorid9).HUMIDITY                       | Yes  | Sensor type. The value is fixed at **SensorId.HUMIDITY**.                   |
 | callback | Callback&lt;[HumidityResponse](#humidityresponse)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
 
+**Error codes**
+
+For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+| 14500101 | Service exception.                                           |
+
 **Example**
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function callback1(data: object) {
   console.info('Succeeded in getting callback1 data: ' + JSON.stringify(data));
@@ -2308,7 +2480,7 @@ try {
   // Unsubscribe from all callbacks of the SensorId.HUMIDITY type.
   sensor.off(sensor.SensorId.HUMIDITY);
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke off. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -2330,11 +2502,21 @@ Unsubscribes from data of the linear acceleration sensor.
 | type     | [SensorId](#sensorid9).LINEAR_ACCELEROMETER                  | Yes  | Sensor type. The value is fixed at **SensorId.LINEAR_ACCELERATION**.        |
 | callback | Callback&lt;[LinearAccelerometerResponse](#linearaccelerometerresponse)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
 
+**Error codes**
+
+For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission denied.                                           |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+| 14500101 | Service exception.                                           |
+
 **Example**
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function callback1(data: object) {
   console.info('Succeeded in getting callback1 data: ' + JSON.stringify(data));
@@ -2352,7 +2534,7 @@ try {
   // Unsubscribe from all callbacks of the SensorId.LINEAR_ACCELEROMETER type.
   sensor.off(sensor.SensorId.LINEAR_ACCELEROMETER);
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke off. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -2372,11 +2554,20 @@ Unsubscribes from data of the magnetic field sensor.
 | type     | [SensorId](#sensorid9).MAGNETIC_FIELD                        | Yes  | Sensor type. The value is fixed at **SensorId.MAGNETIC_FIELD**.             |
 | callback | Callback&lt;[MagneticFieldResponse](#magneticfieldresponse)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
 
+**Error codes**
+
+For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+| 14500101 | Service exception.                                           |
+
 **Example**
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function callback1(data: object) {
   console.info('Succeeded in getting callback1 data: ' + JSON.stringify(data));
@@ -2394,7 +2585,7 @@ try {
   // Unsubscribe from all callbacks of the SensorId.MAGNETIC_FIELD type.
   sensor.off(sensor.SensorId.MAGNETIC_FIELD);
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke off. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -2414,11 +2605,20 @@ Unsubscribes from data of the uncalibrated magnetic field sensor.
 | type     | [SensorId](#sensorid9).MAGNETIC_FIELD_UNCALIBRATED           | Yes  | Sensor type. The value is fixed at **SensorId.MAGNETIC_FIELD_UNCALIBRATED**.|
 | callback | Callback&lt;[MagneticFieldUncalibratedResponse](#magneticfielduncalibratedresponse)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
 
+**Error codes**
+
+For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+| 14500101 | Service exception.                                           |
+
 **Example**
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function callback1(data: object) {
   console.info('Succeeded in getting callback1 data: ' + JSON.stringify(data));
@@ -2436,7 +2636,7 @@ try {
   // Unsubscribe from all callbacks of the SensorId.MAGNETIC_FIELD_UNCALIBRATED type.
   sensor.off(sensor.SensorId.MAGNETIC_FIELD_UNCALIBRATED);
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke off. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -2447,6 +2647,8 @@ off(type: SensorId.ORIENTATION, callback?: Callback&lt;OrientationResponse&gt;):
 
 Unsubscribes from data of the orientation sensor.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Sensors.Sensor
 
 **Parameters**
@@ -2456,11 +2658,20 @@ Unsubscribes from data of the orientation sensor.
 | type     | [SensorId](#sensorid9).ORIENTATION                          | Yes  | Sensor type. The value is fixed at **SensorId.ORIENTATION**.                |
 | callback | Callback&lt;[OrientationResponse](#orientationresponse)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
 
+**Error codes**
+
+For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+| 14500101 | Service exception.                                           |
+
 **Example**
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function callback1(data: object) {
   console.info('Succeeded in getting callback1 data: ' + JSON.stringify(data));
@@ -2478,7 +2689,7 @@ try {
   // Unsubscribe from all callbacks of the SensorId.ORIENTATION type.
   sensor.off(sensor.SensorId.ORIENTATION);
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke off. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -2500,11 +2711,21 @@ Unsubscribes from data of the pedometer sensor.
 | type     | [SensorId](#sensorid9).PEDOMETER                        | Yes  | Sensor type. The value is fixed at **SensorId.PEDOMETER**.                  |
 | callback | Callback&lt;[PedometerResponse](#pedometerresponse)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
 
+**Error codes**
+
+For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission denie.                                            |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+| 14500101 | Service exception.                                           |
+
 **Example**
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function callback1(data: object) {
   console.info('Succeeded in getting callback1 data: ' + JSON.stringify(data));
@@ -2522,7 +2743,7 @@ try {
   // Unsubscribe from all callbacks of the SensorId.ORIENTATION type.
   sensor.off(sensor.SensorId.PEDOMETER);
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke off. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -2544,11 +2765,21 @@ Unsubscribes from data of the pedometer detection sensor.
 | type     | [SensorId](#sensorid9).PEDOMETER_DETECTION                   | Yes  | Sensor type. The value is fixed at **SensorId.PEDOMETER_DETECTION**.        |
 | callback | Callback&lt;[PedometerDetectionResponse](#pedometerdetectionresponse)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
 
+**Error codes**
+
+For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission denie.                                            |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+| 14500101 | Service exception.                                           |
+
 **Example**
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function callback1(data: object) {
   console.info('Succeeded in getting callback1 data: ' + JSON.stringify(data));
@@ -2566,7 +2797,7 @@ try {
   // Unsubscribe from all callbacks of the SensorId.PEDOMETER_DETECTION type.
   sensor.off(sensor.SensorId.PEDOMETER_DETECTION);
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke off. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -2586,11 +2817,20 @@ Unsubscribes from data of the proximity sensor.
 | type     | [SensorId](#sensorid9).PROXIMITY                        | Yes  | Sensor type. The value is fixed at **SensorId.PROXIMITY**.                  |
 | callback | Callback&lt;[ProximityResponse](#proximityresponse)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
 
+**Error codes**
+
+For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+| 14500101 | Service exception.                                           |
+
 **Example**
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function callback1(data: object) {
   console.info('Succeeded in getting callback1 data: ' + JSON.stringify(data));
@@ -2608,7 +2848,7 @@ try {
   // Unsubscribe from all callbacks of the SensorId.PROXIMITY type.
   sensor.off(sensor.SensorId.PROXIMITY);
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke off. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -2628,11 +2868,20 @@ Unsubscribes from data of the rotation vector sensor.
 | type     | [SensorId](#sensorid9).ROTATION_VECTOR                       | Yes  | Sensor type. The value is fixed at **SensorId.ROTATION_VECTOR**.            |
 | callback | Callback&lt;[RotationVectorResponse](#rotationvectorresponse)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
 
+**Error codes**
+
+For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+| 14500101 | Service exception.                                           |
+
 **Example**
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function callback1(data: object) {
   console.info('Succeeded in getting callback1 data: ' + JSON.stringify(data));
@@ -2650,7 +2899,7 @@ try {
   // Unsubscribe from all callbacks of the SensorId.ROTATION_VECTOR type.
   sensor.off(sensor.SensorId.ROTATION_VECTOR);
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke off. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -2670,11 +2919,20 @@ Unsubscribes from data of the significant motion sensor.
 | type     | [SensorId](#sensorid9).SIGNIFICANT_MOTION                    | Yes  | Sensor type. The value is fixed at **SensorId.SIGNIFICANT_MOTION**.         |
 | callback | Callback&lt;[SignificantMotionResponse](#significantmotionresponse)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
 
+**Error codes**
+
+For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+| 14500101 | Service exception.                                           |
+
 **Example**
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function callback1(data: object) {
   console.info('Succeeded in getting callback1 data: ' + JSON.stringify(data));
@@ -2692,7 +2950,7 @@ try {
   // Unsubscribe from all callbacks of the SensorId.SIGNIFICANT_MOTION type.
   sensor.off(sensor.SensorId.SIGNIFICANT_MOTION);
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke off. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -2712,11 +2970,20 @@ Unsubscribes from data of the wear detection sensor.
 | type     | [SensorId](#sensorid9).WEAR_DETECTION                        | Yes  | Sensor type. The value is fixed at **SensorId.WEAR_DETECTION**.             |
 | callback | Callback&lt;[WearDetectionResponse](#weardetectionresponse)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
 
+**Error codes**
+
+For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+| 14500101 | Service exception.                                           |
+
 **Example**
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function callback1(data: object) {
   console.info('Succeeded in getting callback1 data: ' + JSON.stringify(data));
@@ -2734,7 +3001,7 @@ try {
   // Unsubscribe from all callbacks of the SensorId.WEAR_DETECTION type.
   sensor.off(sensor.SensorId.WEAR_DETECTION);
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to invoke off. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -2759,19 +3026,20 @@ Obtains the geomagnetic field of a geographic location at a certain time. This A
 
 For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
-| ID| Error Message          |
-| -------- | ------------------ |
-| 14500101 | Service exception. |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+| 14500101 | Service exception.                                           |
 
 **Example**
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   sensor.getGeomagneticInfo({ latitude: 80, longitude: 0, altitude: 0 }, 1580486400000,
-      (err: BusinessError.BusinessError, data: sensor.GeomagneticResponse) => {
+      (err: BusinessError, data: sensor.GeomagneticResponse) => {
     if (err) {
       console.error(`Failed to get geomagneticInfo. Code: ${err.code}, message: ${err.message}`);
       return;
@@ -2785,7 +3053,7 @@ try {
     console.info("Succeeded in getting geomagneticInfo totalIntensity" + data.totalIntensity);
   });
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to get geomagneticInfo. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -2815,15 +3083,16 @@ Obtains the geomagnetic field of a geographic location at a certain time. This A
 
 For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
-| ID| Error Message          |
-| -------- | ------------------ |
-| 14500101 | Service exception. |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+| 14500101 | Service exception.                                           |
 
 **Example**
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   const promise = sensor.getGeomagneticInfo({ latitude: 80, longitude: 0, altitude: 0 }, 1580486400000);
@@ -2835,11 +3104,11 @@ try {
     console.info("Succeeded in getting geomagneticInfo deflectionAngle" + data.deflectionAngle);
     console.info("Succeeded in getting geomagneticInfo levelIntensity" + data.levelIntensity);
     console.info("Succeeded in getting geomagneticInfo totalIntensity" + data.totalIntensity);
-  }, (err: BusinessError.BusinessError) => {
+  }, (err: BusinessError) => {
     console.error(`Failed to get geomagneticInfo. Code: ${err.code}, message: ${err.message}`);
   });
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to get geomagneticInfo. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -2864,20 +3133,21 @@ Obtains the altitude based on the atmospheric pressure. This API uses an asynchr
 
 For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
-| ID| Error Message          |
-| -------- | ------------------ |
-| 14500101 | Service exception. |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+| 14500101 | Service exception.                                           |
 
 **Example**
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let seaPressure = 1013.2;
   let currentPressure = 1500.0;
-  sensor.getDeviceAltitude(seaPressure, currentPressure, (err: BusinessError.BusinessError, data: number) => {
+  sensor.getDeviceAltitude(seaPressure, currentPressure, (err: BusinessError, data: number) => {
     if (err) {
       console.error(`Failed to get altitude. Code: ${err.code}, message: ${err.message}`);
       return;
@@ -2885,7 +3155,7 @@ try {
     console.info('Succeeded in getting altitude: ' + data);
   });
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to get altitude. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -2915,15 +3185,16 @@ Obtains the altitude based on the atmospheric pressure. This API uses a promise 
 
 For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
-| ID| Error Message          |
-| -------- | ------------------ |
-| 14500101 | Service exception. |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+| 14500101 | Service exception.                                           |
 
 **Example**
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let seaPressure = 1013.2;
@@ -2931,11 +3202,11 @@ try {
   const promise = sensor.getDeviceAltitude(seaPressure, currentPressure);
   promise.then((data: number) => {
     console.info('Succeeded in getting sensor_getDeviceAltitude_Promise', data);
-  }, (err: BusinessError.BusinessError) => {
+  }, (err: BusinessError) => {
     console.error(`Failed to get altitude. Code: ${err.code}, message: ${err.message}`);
   });
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to get altitude. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -2959,15 +3230,16 @@ Obtains the magnetic dip based on the inclination matrix. This API uses an async
 
 For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
-| ID| Error Message          |
-| -------- | ------------------ |
-| 14500101 | Service exception. |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+| 14500101 | Service exception.                                           |
 
 **Example**
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   // inclinationMatrix can be 3*3 or 4*4.
@@ -2976,7 +3248,7 @@ try {
     0, 1, 0,
     0, 0, 1
   ]
-  sensor.getInclination(inclinationMatrix, (err: BusinessError.BusinessError, data: number) => {
+  sensor.getInclination(inclinationMatrix, (err: BusinessError, data: number) => {
     if (err) {
       console.error(`Failed to get inclination. Code: ${err.code}, message: ${err.message}`);
       return;
@@ -2984,7 +3256,7 @@ try {
     console.info('Succeeded in getting inclination: ' + data);
   })
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to get inclination. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -3013,15 +3285,16 @@ Obtains the magnetic dip based on the inclination matrix. This API uses a promis
 
 For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
-| ID| Error Message          |
-| -------- | ------------------ |
-| 14500101 | Service exception. |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+| 14500101 | Service exception.                                           |
 
 **Example**
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   // inclinationMatrix can be 3*3 or 4*4.
@@ -3033,11 +3306,11 @@ try {
   const promise = sensor.getInclination(inclinationMatrix);
   promise.then((data: number) => {
     console.info('Succeeded in getting inclination: ' + data);
-  }, (err: BusinessError.BusinessError) => {
+  }, (err: BusinessError) => {
     console.error(`Failed to get inclination. Code: ${err.code}, message: ${err.message}`);
   });
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to get inclination. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -3063,15 +3336,16 @@ Obtains the angle change between two rotation matrices. This API uses an asynchr
 
 For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
-| ID| Error Message          |
-| -------- | ------------------ |
-| 14500101 | Service exception. |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+| 14500101 | Service exception.                                           |
 
 **Example**
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   // The rotation matrix can be 3*3 or 4*4.
@@ -3085,7 +3359,7 @@ try {
     0, 0.87, -0.50,
     0, 0.50, 0.87
   ];
-  sensor.getAngleVariation(currentRotationMatrix, preRotationMatrix, (err: BusinessError.BusinessError, data: Array<number>) => {
+  sensor.getAngleVariation(currentRotationMatrix, preRotationMatrix, (err: BusinessError, data: Array<number>) => {
     if (err) {
       console.error(`Failed to get angle variation. Code: ${err.code}, message: ${err.message}`);
       return;
@@ -3098,7 +3372,7 @@ try {
     console.info("Y  : " + data[2]);
   })
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to get angle variation. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -3128,15 +3402,16 @@ Obtains the angle change between two rotation matrices. This API uses a promise 
 
 For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
-| ID| Error Message          |
-| -------- | ------------------ |
-| 14500101 | Service exception. |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+| 14500101 | Service exception.                                           |
 
 **Example**
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   // The rotation matrix can be 3*3 or 4*4.
@@ -3158,11 +3433,11 @@ try {
     console.info("Z: " + data[0]);
     console.info("X: " + data[1]);
     console.info("Y  : " + data[2]);
-  }, (err: BusinessError.BusinessError) => {
+  }, (err: BusinessError) => {
     console.error(`Failed to get angle variation. Code: ${err.code}, message: ${err.message}`);
   });
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to get angle variation. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -3186,19 +3461,20 @@ Obtains the rotation matrix from a rotation vector. This API uses an asynchronou
 
 For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
-| ID| Error Message          |
-| -------- | ------------------ |
-| 14500101 | Service exception. |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+| 14500101 | Service exception.                                           |
 
 **Example**
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let rotationVector = [0.20046076, 0.21907, 0.73978853, 0.60376877];
-  sensor.getRotationMatrix(rotationVector, (err: BusinessError.BusinessError, data: Array<number>) => {
+  sensor.getRotationMatrix(rotationVector, (err: BusinessError, data: Array<number>) => {
     if (err) {
       console.error(`Failed to get rotationMatrix. Code: ${err.code}, message: ${err.message}`);
       return;
@@ -3208,7 +3484,7 @@ try {
     }
   })
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to get rotationMatrix. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -3237,15 +3513,16 @@ Obtains the rotation matrix from a rotation vector. This API uses a promise to r
 
 For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
-| ID| Error Message          |
-| -------- | ------------------ |
-| 14500101 | Service exception. |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+| 14500101 | Service exception.                                           |
 
 **Example**
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let rotationVector = [0.20046076, 0.21907, 0.73978853, 0.60376877];
@@ -3254,11 +3531,11 @@ try {
     for (let i = 0; i < data.length; i++) {
       console.info('Succeeded in getting data[' + i + ']: ' + data[i]);
     }
-  }, (err: BusinessError.BusinessError) => {
+  }, (err: BusinessError) => {
     console.error(`Failed to get rotationMatrix. Code: ${err.code}, message: ${err.message}`);
   });
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to get rotationMatrix. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -3284,15 +3561,16 @@ Transforms a rotation vector based on the coordinate system. This API uses an as
 
 For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
-| ID| Error Message          |
-| -------- | ------------------ |
-| 14500101 | Service exception. |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+| 14500101 | Service exception.                                           |
 
 **Example**
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let rotationMatrix = [
@@ -3300,7 +3578,7 @@ try {
     0, 0.87, -0.50,
     0, 0.50, 0.87
   ];
-  sensor.transformRotationMatrix(rotationMatrix, { x: 1, y: 3 }, (err: BusinessError.BusinessError, data: Array<number>) => {
+  sensor.transformRotationMatrix(rotationMatrix, { x: 1, y: 3 }, (err: BusinessError, data: Array<number>) => {
     if (err) {
       console.error(`Failed to transform rotationMatrix. Code: ${err.code}, message: ${err.message}`);
       return;
@@ -3310,7 +3588,7 @@ try {
     }
   })
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to transform rotationMatrix. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -3340,15 +3618,16 @@ Transforms a rotation vector based on the coordinate system. This API uses a pro
 
 For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
-| ID| Error Message          |
-| -------- | ------------------ |
-| 14500101 | Service exception. |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+| 14500101 | Service exception.                                           |
 
 **Example**
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let rotationMatrix = [
@@ -3361,11 +3640,11 @@ try {
     for (let i = 0; i < data.length; i++) {
       console.info('Succeeded in getting data[' + i + ']: ' + data[i]);
     }
-  }, (err: BusinessError.BusinessError) => {
+  }, (err: BusinessError) => {
     console.error(`Failed to transform rotationMatrix. Code: ${err.code}, message: ${err.message}`);
   });
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to transform rotationMatrix. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -3389,19 +3668,20 @@ Obtains the quaternion from a rotation vector. This API uses an asynchronous cal
 
 For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
-| ID| Error Message          |
-| -------- | ------------------ |
-| 14500101 | Service exception. |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+| 14500101 | Service exception.                                           |
 
 **Example**
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let rotationVector = [0.20046076, 0.21907, 0.73978853, 0.60376877];
-  sensor.getQuaternion(rotationVector, (err: BusinessError.BusinessError, data: Array<number>) => {
+  sensor.getQuaternion(rotationVector, (err: BusinessError, data: Array<number>) => {
     if (err) {
       console.error(`Failed to get quaternion. Code: ${err.code}, message: ${err.message}`);
       return;
@@ -3411,7 +3691,7 @@ try {
     }
   })
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to get quaternion. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -3440,15 +3720,16 @@ Obtains the quaternion from a rotation vector. This API uses a promise to return
 
 For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
-| ID| Error Message          |
-| -------- | ------------------ |
-| 14500101 | Service exception. |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+| 14500101 | Service exception.                                           |
 
 **Example**
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     let rotationVector = [0.20046076, 0.21907, 0.73978853, 0.60376877];
@@ -3457,11 +3738,11 @@ try {
         for (let i = 0; i < data.length; i++) {
             console.info('Succeeded in getting data[' + i + ']: ' + data[i]);
         }
-    }, (err: BusinessError.BusinessError) => {
+    }, (err: BusinessError) => {
         console.error(`Failed to get quaternion. Code: ${err.code}, message: ${err.message}`);
     });
 } catch (error) {
-    let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+    let e: BusinessError = error as BusinessError;
     console.error(`Failed to get quaternion. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -3485,15 +3766,16 @@ Obtains the device direction based on the rotation matrix. This API uses an asyn
 
 For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
-| ID| Error Message          |
-| -------- | ------------------ |
-| 14500101 | Service exception. |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+| 14500101 | Service exception.                                           |
 
 **Example**
 
 ```ts
-import sensor from "@ohos.sensor";
-import BusinessError from "@ohos.base";
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let preRotationMatrix = [
@@ -3501,7 +3783,7 @@ try {
     0, 0.87, -0.50,
     0, 0.50, 0.87
   ];
-  sensor.getOrientation(preRotationMatrix, (err: BusinessError.BusinessError, data: Array<number>) => {
+  sensor.getOrientation(preRotationMatrix, (err: BusinessError, data: Array<number>) => {
     if (err) {
       console.error(`Failed to get orientation. Code: ${err.code}, message: ${err.message}`);
       return;
@@ -3514,7 +3796,7 @@ try {
     console.info("Succeeded in getting data. Y: " + data[2]);
   })
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to get orientation. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -3543,15 +3825,16 @@ Obtains the device direction based on the rotation matrix. This API uses a promi
 
 For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
-| ID| Error Message          |
-| -------- | ------------------ |
-| 14500101 | Service exception. |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+| 14500101 | Service exception.                                           |
 
 **Example**
 
 ```ts
-import sensor from '@ohos.sensor';
-import BusinessError from '@ohos.base';
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let preRotationMatrix = [
@@ -3564,11 +3847,11 @@ try {
     for (let i = 0; i < data.length; i++) {
       console.info('Succeeded in getting data[' + i + ']: ' + data[i]);
     }
-  }, (err: BusinessError.BusinessError) => {
+  }, (err: BusinessError) => {
     console.error(`Failed to getOrientatin. Code: ${err.code}, message: ${err.message}`);
   });
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to getOrientatin Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -3593,20 +3876,21 @@ Obtains the rotation matrix based on a gravity vector and geomagnetic vector. Th
 
 For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
-| ID| Error Message          |
-| -------- | ------------------ |
-| 14500101 | Service exception. |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+| 14500101 | Service exception.                                           |
 
 **Example**
 
 ```ts
-import sensor from '@ohos.sensor';
-import BusinessError from '@ohos.base';
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let gravity = [-0.27775216, 0.5351276, 9.788099];
   let geomagnetic = [210.87253, -78.6096, -111.44444];
-  sensor.getRotationMatrix(gravity, geomagnetic, (err: BusinessError.BusinessError, data: sensor.RotationMatrixResponse) => {
+  sensor.getRotationMatrix(gravity, geomagnetic, (err: BusinessError, data: sensor.RotationMatrixResponse) => {
     if (err) {
       console.error(`Failed to get rotationMatrix. Code: ${err.code}, message: ${err.message}`);
       return;
@@ -3614,7 +3898,7 @@ try {
     console.info('Succeeded in getting rotationMatrix' + JSON.stringify(data));
   })
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to get rotationMatrix. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -3644,15 +3928,16 @@ Obtains the rotation matrix based on a gravity vector and geomagnetic vector. Th
 
 For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
-| ID| Error Message          |
-| -------- | ------------------ |
-| 14500101 | Service exception. |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+| 14500101 | Service exception.                                           |
 
 **Example**
 
 ```ts
-import sensor from '@ohos.sensor';
-import BusinessError from '@ohos.base';
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let gravity = [-0.27775216, 0.5351276, 9.788099];
@@ -3660,11 +3945,11 @@ try {
   const promise = sensor.getRotationMatrix(gravity, geomagnetic);
   promise.then((data: sensor.RotationMatrixResponse) => {
     console.info('Succeeded in getting rotationMatrix' + JSON.stringify(data));
-  }, (err: BusinessError.BusinessError) => {
+  }, (err: BusinessError) => {
     console.error(`Failed to get rotationMatrix. Code: ${err.code}, message: ${err.message}`);
   });
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to get rotationMatrix. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -3687,18 +3972,19 @@ Obtains information about all sensors on the device. This API uses an asynchrono
 
 For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
-| ID| Error Message          |
-| -------- | ------------------ |
-| 14500101 | Service exception. |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+| 14500101 | Service exception.                                           |
 
 **Example**
 
 ```ts
-import sensor from '@ohos.sensor';
-import BusinessError from '@ohos.base';
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  sensor.getSensorList((err: BusinessError.BusinessError, data: Array<sensor.Sensor>) => {
+  sensor.getSensorList((err: BusinessError, data: Array<sensor.Sensor>) => {
     if (err) {
       console.error(`Failed to get sensorList. Code: ${err.code}, message: ${err.message}`);
       return;
@@ -3708,7 +3994,7 @@ try {
     }
   });
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to get sensorList. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -3731,6 +4017,49 @@ Obtains information about all sensors on the device. This API uses a promise to 
 
 For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+| 14500101 | Service exception.                                           |
+
+**Example**
+
+```ts
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  sensor.getSensorList().then((data: Array<sensor.Sensor>) => {
+    for (let i = 0; i < data.length; i++) {
+      console.info('Succeeded in getting data[' + i + ']: ' + JSON.stringify(data[i]));
+    }
+  }, (err: BusinessError) => {
+    console.error(`Failed to get sensorList. Code: ${err.code}, message: ${err.message}`);
+  });
+} catch (error) {
+  let e: BusinessError = error as BusinessError;
+  console.error(`Failed to get sensorList. Code: ${e.code}, message: ${e.message}`);
+}
+```
+
+## sensor.getSensorListSync<sup>12+</sup>
+
+getSensorListSync(): Array&lt;Sensor&gt;
+
+Obtains information about all sensors on the device. This API returns the result synchronously.
+
+**System capability**: SystemCapability.Sensors.Sensor
+
+**Return value**
+
+| Type                                   | Mandatory| Description                            |
+| --------------------------------------- | ---- | -------------------------------- |
+| &lt;Array&lt;[Sensor](#sensor9)&gt;&gt; | Yes  | List of sensor attributes.|
+
+**Error codes**
+
+For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+
 | ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
@@ -3738,20 +4067,17 @@ For details about the following error codes, see [Sensor Error Codes](errorcode-
 **Example**
 
 ```ts
-import sensor from '@ohos.sensor';
-import BusinessError from '@ohos.base';
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  sensor.getSensorList().then((data: Array<sensor.Sensor>) => {
-    for (let i = 0; i < data.length; i++) {
-      console.info('Succeeded in getting data[' + i + ']: ' + JSON.stringify(data[i]));
-    }
-  }, (err: BusinessError.BusinessError) => {
-    console.error(`Failed to get sensorList. Code: ${err.code}, message: ${err.message}`);
-  });
-} catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
-  console.error(`Failed to get sensorList. Code: ${e.code}, message: ${e.message}`);
+  let ret = sensor.getSensorListSync()
+  for (let i = 0; i < ret.length; i++) {
+    console.info('Succeeded in getting sensor: ' + JSON.stringify(ret[i]));
+  }
+} catch(error) {
+    let e: BusinessError = error as BusinessError;
+    console.error(`Failed to get singleSensor . Code: ${e.code}, message: ${e.message}`);
 }
 ```
 
@@ -3774,18 +4100,20 @@ Obtains information about the sensor of a specific type. This API uses an asynch
 
 For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
-| ID| Error Message          |
-| -------- | ------------------ |
-| 14500101 | Service exception. |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+| 14500101 | Service exception.                                           |
+| 14500102 | The sensor is not supported by the device.                   |
 
 **Example**
 
 ```ts
-import sensor from '@ohos.sensor';
-import BusinessError from '@ohos.base';
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  sensor.getSingleSensor(sensor.SensorId.ACCELEROMETER, (err: BusinessError.BusinessError, data: sensor.Sensor) => {
+  sensor.getSingleSensor(sensor.SensorId.ACCELEROMETER, (err: BusinessError, data: sensor.Sensor) => {
     if (err) {
       console.error(`Failed to get singleSensor. Code: ${err.code}, message: ${err.message}`);
       return;
@@ -3793,7 +4121,7 @@ try {
     console.info('Succeeded in getting sensor: ' + JSON.stringify(data));
   });
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to get singleSensor. Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -3822,24 +4150,71 @@ Obtains information about the sensor of a specific type. This API uses a promise
 
 For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
 
-| ID| Error Message          |
-| -------- | ------------------ |
-| 14500101 | Service exception. |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+| 14500101 | Service exception.                                           |
+| 14500102 | The sensor is not supported by the device.                   |
 
 **Example**
 
 ```ts
-import sensor from '@ohos.sensor';
-import BusinessError from '@ohos.base';
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   sensor.getSingleSensor(sensor.SensorId.ACCELEROMETER).then((data: sensor.Sensor) => {
     console.info('Succeeded in getting sensor: ' + JSON.stringify(data));
-  }, (err: BusinessError.BusinessError) => {
+  }, (err: BusinessError) => {
     console.error(`Failed to get singleSensor . Code: ${err.code}, message: ${err.message}`);
   });
 } catch (error) {
-  let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
+  let e: BusinessError = error as BusinessError;
+  console.error(`Failed to get singleSensor . Code: ${e.code}, message: ${e.message}`);
+}
+```
+
+## sensor.getSingleSensorSync<sup>12+</sup>
+
+getSingleSensorSync(type: SensorId): Sensor
+
+Obtains information about the sensor of a specific type. This API returns the result synchronously.
+
+**System capability**: SystemCapability.Sensors.Sensor
+
+**Parameters**
+
+| Name| Type                  | Mandatory| Description        |
+| ------ | ---------------------- | ---- | ------------ |
+| type   | [SensorId](#sensorid9) | Yes  | Sensor type.|
+
+**Return value**
+
+| Type  | Mandatory| Description                        |
+| ------ | ---- | ---------------------------- |
+| Sensor | Yes  | Sensor information.|
+
+**Error codes**
+
+For details about the following error codes, see [Sensor Error Codes](errorcode-sensor.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+| 14500101 | Service exception.                                           |
+| 14500102 | The sensor is not supported by the device.                   |
+
+**Example**
+
+```ts
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  let ret = sensor.getSingleSensorSync(sensor.SensorId.ACCELEROMETER);
+  console.info('Succeeded in getting sensor: ' + JSON.stringify(ret));
+} catch (error) {
+  let e: BusinessError = error as BusinessError;
   console.error(`Failed to get singleSensor . Code: ${e.code}, message: ${e.message}`);
 }
 ```
@@ -3850,29 +4225,29 @@ Enumerates the sensor types.
 
 **System capability**: SystemCapability.Sensors.Sensor
 
-| Name                       | Value  | Description                  |
-| --------------------------- | ---- | ---------------------- |
-| ACCELEROMETER               | 1    | Acceleration sensor.        |
-| GYROSCOPE                   | 2    | Gyroscope sensor.        |
-| AMBIENT_LIGHT               | 5    | Ambient light sensor.        |
-| MAGNETIC_FIELD              | 6    | Magnetic field sensor.          |
-| BAROMETER                   | 8    | Barometer sensor.        |
-| HALL                        | 10   | Hall effect sensor.          |
-| PROXIMITY                   | 12   | Proximity sensor.        |
-| HUMIDITY                    | 13   | Humidity sensor.          |
-| ORIENTATION                 | 256  | Orientation sensor.          |
-| GRAVITY                     | 257  | Gravity sensor.          |
-| LINEAR_ACCELEROMETER        | 258  | Linear acceleration sensor.    |
-| ROTATION_VECTOR             | 259  | Rotation vector sensor.      |
-| AMBIENT_TEMPERATURE         | 260  | Ambient temperature sensor.      |
-| MAGNETIC_FIELD_UNCALIBRATED | 261  | Uncalibrated magnetic field sensor.    |
-| GYROSCOPE_UNCALIBRATED      | 263  | Uncalibrated gyroscope sensor.  |
-| SIGNIFICANT_MOTION          | 264  | Significant motion sensor.      |
-| PEDOMETER_DETECTION         | 265  | Pedometer detection sensor.      |
-| PEDOMETER                   | 266  | Pedometer sensor.          |
-| HEART_RATE                  | 278  | Heart rate sensor.          |
-| WEAR_DETECTION              | 280  | Wear detection sensor.      |
-| ACCELEROMETER_UNCALIBRATED  | 281  | Uncalibrated acceleration sensor.|
+| Name                       | Value  | Description                                                        |
+| --------------------------- | ---- | ------------------------------------------------------------ |
+| ACCELEROMETER               | 1    | Acceleration sensor.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| GYROSCOPE                   | 2    | Gyroscope sensor.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| AMBIENT_LIGHT               | 5    | Ambient light sensor.                                              |
+| MAGNETIC_FIELD              | 6    | Magnetic field sensor.                                                |
+| BAROMETER                   | 8    | Barometer sensor.                                              |
+| HALL                        | 10   | Hall effect sensor.                                                |
+| PROXIMITY                   | 12   | Proximity sensor.                                              |
+| HUMIDITY                    | 13   | Humidity sensor.                                                |
+| ORIENTATION                 | 256  | Orientation sensor.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| GRAVITY                     | 257  | Gravity sensor.                                                |
+| LINEAR_ACCELEROMETER        | 258  | Linear acceleration sensor.                                          |
+| ROTATION_VECTOR             | 259  | Rotation vector sensor.                                            |
+| AMBIENT_TEMPERATURE         | 260  | Ambient temperature sensor.                                            |
+| MAGNETIC_FIELD_UNCALIBRATED | 261  | Uncalibrated magnetic field sensor.                                          |
+| GYROSCOPE_UNCALIBRATED      | 263  | Uncalibrated gyroscope sensor.                                        |
+| SIGNIFICANT_MOTION          | 264  | Significant motion sensor.                                            |
+| PEDOMETER_DETECTION         | 265  | Pedometer detection sensor.                                            |
+| PEDOMETER                   | 266  | Pedometer sensor.                                                |
+| HEART_RATE                  | 278  | Heart rate sensor.                                                |
+| WEAR_DETECTION              | 280  | Wear detection sensor.                                            |
+| ACCELEROMETER_UNCALIBRATED  | 281  | Uncalibrated acceleration sensor.                                      |
 
 ## SensorType<sup>(deprecated)</sup>
 
@@ -3909,6 +4284,8 @@ Enumerates the sensor types.
 
 Enumerates the accuracy levels of sensor data.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Sensors.Sensor
 
 | Name   | Value| Description                    |
@@ -3921,6 +4298,8 @@ Enumerates the accuracy levels of sensor data.
 ## Response
 
 Describes the timestamp of the sensor data.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Sensors.Sensor
 
@@ -3951,6 +4330,8 @@ Describes the sensor information.
 ## AccelerometerResponse
 
 Describes the acceleration sensor data. It extends from [Response](#response).
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Sensors.Sensor
 
@@ -4011,6 +4392,8 @@ Describes the gravity sensor data. It extends from [Response](#response).
 
 Describes the orientation sensor data. It extends from [Response](#response).
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Sensors.Sensor
 
 
@@ -4039,6 +4422,8 @@ Describes the rotation vector sensor data. It extends from [Response](#response)
 ## GyroscopeResponse
 
 Describes the gyroscope sensor data. It extends from [Response](#response).
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Sensors.Sensor
 
@@ -4098,9 +4483,11 @@ Describes the ambient light sensor data. It extends from [Response](#response).
 **System capability**: SystemCapability.Sensors.Sensor
 
 
-| Name     | Type  | Readable| Writable| Description                  |
-| --------- | ------ | ---- | ---- | ---------------------- |
-| intensity | number | Yes  | Yes  | Illumination, in lux.|
+| Name                           | Type  | Readable| Writable| Description                                                        |
+| ------------------------------- | ------ | ---- | ---- | ------------------------------------------------------------ |
+| intensity                       | number | Yes  | Yes  | Illumination, in lux.                                      |
+| colorTemperature<sup>12+</sup>  | number | Yes  | Yes  | Color temperature, in Kelvin. This parameter is optional. If this parameter is not supported, **undefined** is returned. If this parameter is supported, a normal value is returned.|
+| infraredLuminance<sup>12+</sup> | number | Yes  | Yes  | IR luminance, in cd/m2. This parameter is optional. If this parameter is not supported, **undefined** is returned. If this parameter is supported, a normal value is returned.|
 
 
 ## HallResponse
@@ -4234,6 +4621,8 @@ Describes the wear detection sensor data. It extends from [Response](#response).
 
 Describes the sensor data reporting frequency.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Sensors.Sensor
 
 | Name    | Type                                                       | Readable| Writable| Description                                                        |
@@ -4243,6 +4632,8 @@ Describes the sensor data reporting frequency.
 ## SensorFrequency<sup>11+</sup>
 
 Defines the reporting frequency mode of the sensor.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Sensors.Sensor
 
@@ -4331,7 +4722,7 @@ Subscribes to data changes of the acceleration sensor. If this API is called mul
 **Example**
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 sensor.on(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER, (data: sensor.AccelerometerResponse) => {
   console.info('Succeeded in invoking on. X-coordinate component: ' + data.x);
@@ -4389,7 +4780,7 @@ Subscribes to data changes of the uncalibrated acceleration sensor. If this API 
 **Example**
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 sensor.on(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED, (data: sensor.AccelerometerUncalibratedResponse) => {
   console.info('Succeeded in invoking on. X-coordinate component: ' + data.x);
@@ -4427,7 +4818,7 @@ Subscribes to data changes of the gravity sensor. If this API is called multiple
 **Example**
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 sensor.on(sensor.SensorType.SENSOR_TYPE_ID_GRAVITY, (data: sensor.GravityResponse) => {
   console.info('Succeeded in invoking on. X-coordinate component: ' + data.x);
@@ -4463,7 +4854,7 @@ Subscribes to data changes of the gyroscope sensor. If this API is called multip
 **Example**
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 sensor.on(sensor.SensorType.SENSOR_TYPE_ID_GYROSCOPE, (data: sensor.GyroscopeResponse) => {
   console.info('Succeeded in invoking on. X-coordinate component: ' + data.x);
@@ -4499,7 +4890,7 @@ Subscribes to data changes of the uncalibrated gyroscope sensor. If this API is 
 **Example**
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 sensor.on(sensor.SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED, (data: sensor.GyroscopeUncalibratedResponse) => {
   console.info('Succeeded in invoking on. X-coordinate component: ' + data.x);
@@ -4536,7 +4927,7 @@ Subscribes to data changes of the significant motion sensor. If this API is call
 **Example**
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 sensor.on(sensor.SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION, (data: sensor.SignificantMotionResponse) => {
   console.info('Succeeded in invoking on. Scalar data: ' + data.scalar);
@@ -4570,7 +4961,7 @@ Subscribes to data changes of the pedometer detection sensor. If this API is cal
 **Example**
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 sensor.on(sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION, (data: sensor.PedometerDetectionResponse) => {
   console.info('Succeeded in invoking on. Scalar data: ' + data.scalar);
@@ -4604,7 +4995,7 @@ Subscribes to data changes of the pedometer sensor. If this API is called multip
 **Example**
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 sensor.on(sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER, (data: sensor.PedometerResponse) => {
   console.info('Succeeded in invoking on. Steps: ' + data.steps);
@@ -4636,7 +5027,7 @@ Subscribes to data changes of the ambient temperature sensor. If this API is cal
 **Example**
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 sensor.on(sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE, (data: sensor.AmbientTemperatureResponse) => {
   console.info('Succeeded in invoking on. Temperature: ' + data.temperature);
@@ -4668,7 +5059,7 @@ Subscribes to data changes of the magnetic field sensor. If this API is called m
 **Example**
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 sensor.on(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, (data: sensor.MagneticFieldResponse) => {
   console.info('Succeeded in invoking on. X-coordinate component: ' + data.x);
@@ -4702,7 +5093,7 @@ Subscribes to data changes of the uncalibrated magnetic field sensor. If this AP
 **Example**
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 sensor.on(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED, (data: sensor.MagneticFieldUncalibratedResponse) => {
   console.info('Succeeded in invoking on. X-coordinate component: ' + data.x);
@@ -4739,7 +5130,7 @@ Subscribes to data changes of the proximity sensor. If this API is called multip
 **Example**
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 sensor.on(sensor.SensorType.SENSOR_TYPE_ID_PROXIMITY, (data: sensor.ProximityResponse) => {
   console.info('Succeeded in invoking on. Distance: ' + data.distance);
@@ -4771,7 +5162,7 @@ Subscribes to data changes of the humidity sensor. If this API is called multipl
 **Example**
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 sensor.on(sensor.SensorType.SENSOR_TYPE_ID_HUMIDITY, (data: sensor.HumidityResponse) => {
   console.info('Succeeded in invoking on. Humidity: ' + data.humidity);
@@ -4803,7 +5194,7 @@ Subscribes to data changes of the barometer sensor. If this API is called multip
 **Example**
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 sensor.on(sensor.SensorType.SENSOR_TYPE_ID_BAROMETER, (data: sensor.BarometerResponse) => {
   console.info('Succeeded in invoking on. Atmospheric pressure: ' + data.pressure);
@@ -4835,7 +5226,7 @@ Subscribes to data changes of the Hall effect sensor. If this API is called mult
 **Example**
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 sensor.on(sensor.SensorType.SENSOR_TYPE_ID_HALL, (data: sensor.HallResponse) => {
   console.info('Succeeded in invoking on. Status: ' + data.status);
@@ -4867,7 +5258,7 @@ Subscribes to data changes of the ambient light sensor. If this API is called mu
 **Example**
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 sensor.on(sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT, (data: sensor.LightResponse) => {
   console.info('Succeeded in invoking on. Illumination: ' + data.intensity);
@@ -4899,7 +5290,7 @@ Subscribes to data changes of the orientation sensor. If this API is called mult
 **Example**
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 sensor.on(sensor.SensorType.SENSOR_TYPE_ID_ORIENTATION, (data: sensor.OrientationResponse) => {
   console.info('Succeeded in the device rotating at an angle around the X axis: ' + data.beta);
@@ -4955,7 +5346,7 @@ Subscribes to data changes of the rotation vector sensor. If this API is called 
 **Example**
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 sensor.on(sensor.SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR, (data: sensor.RotationVectorResponse) => {
   console.info('Succeeded in invoking on. X-coordinate component: ' + data.x);
@@ -4990,7 +5381,7 @@ Subscribes to data changes of the wear detection sensor. If this API is called m
 **Example**
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 sensor.on(sensor.SensorType.SENSOR_TYPE_ID_WEAR_DETECTION, (data: sensor.WearDetectionResponse) => {
   console.info('Succeeded in invoking on. Wear status: ' + data.value);
@@ -5025,7 +5416,7 @@ Subscribes to only one data change of the acceleration sensor.
 **Example**
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 sensor.once(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER, (data: sensor.AccelerometerResponse) => {
   console.info('Succeeded in invoking once. X-coordinate component: ' + data.x);
@@ -5079,7 +5470,7 @@ Subscribes to only one data change of the uncalibrated acceleration sensor.
 **Example**
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 sensor.once(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED, (data: sensor.AccelerometerUncalibratedResponse) => {
   console.info('Succeeded in invoking once. X-coordinate component: ' + data.x);
@@ -5113,7 +5504,7 @@ Subscribes to only one data change of the gravity sensor.
 **Example**
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 sensor.once(sensor.SensorType.SENSOR_TYPE_ID_GRAVITY, (data: sensor.GravityResponse) => {
   console.info('Succeeded in invoking once. X-coordinate component: ' + data.x);
@@ -5146,7 +5537,7 @@ Subscribes to only one data change of the gyroscope sensor.
 **Example**
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 sensor.once(sensor.SensorType.SENSOR_TYPE_ID_GYROSCOPE, (data: sensor.GyroscopeResponse) => {
   console.info('Succeeded in invoking once. X-coordinate component: ' + data.x);
@@ -5180,7 +5571,7 @@ Subscribes to only one data change of the uncalibrated gyroscope sensor.
 
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 sensor.once(sensor.SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED, (data: sensor.GyroscopeUncalibratedResponse) => {
     console.info('Succeeded in invoking once. X-coordinate component: ' + data.x);
@@ -5214,7 +5605,7 @@ Subscribes to only one data change of the significant motion sensor.
 **Example**
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 sensor.once(sensor.SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION, (data: sensor.SignificantMotionResponse) => {
   console.info('Succeeded in invoking once. Scalar data: ' + data.scalar);
@@ -5245,7 +5636,7 @@ Subscribes to only one data change of the pedometer detection sensor.
 **Example**
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 sensor.once(sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION, (data: sensor.PedometerDetectionResponse) => {
   console.info('Succeeded in invoking once. Scalar data: ' + data.scalar);
@@ -5276,7 +5667,7 @@ Subscribes to only one data change of the pedometer sensor.
 **Example**
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 sensor.once(sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER, (data: sensor.PedometerResponse) => {
   console.info('Succeeded in invoking once. Steps: ' + data.steps);
@@ -5305,7 +5696,7 @@ Subscribes to only one data change of the ambient temperature sensor.
 **Example**
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 sensor.once(sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE, (data: sensor.AmbientTemperatureResponse) => {
   console.info('Succeeded in invoking once. Temperature: ' + data.temperature);
@@ -5334,7 +5725,7 @@ Subscribes to only one data change of the magnetic field sensor.
 **Example**
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 sensor.once(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, (data: sensor.MagneticFieldResponse) => {
   console.info('Succeeded in invoking once. X-coordinate component: ' + data.x);
@@ -5365,7 +5756,7 @@ Subscribes to only one data change of the uncalibrated magnetic field sensor.
 **Example**
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 sensor.once(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED, (data: sensor.MagneticFieldUncalibratedResponse) => {
   console.info('Succeeded in invoking once. X-coordinate component: ' + data.x);
@@ -5399,7 +5790,7 @@ Subscribes to only one data change of the proximity sensor.
 **Example**
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 sensor.once(sensor.SensorType.SENSOR_TYPE_ID_PROXIMITY, (data: sensor.ProximityResponse) => {
   console.info('Succeeded in invoking once. Distance: ' + data.distance);
@@ -5429,7 +5820,7 @@ Subscribes to only one data change of the humidity sensor.
 **Example**
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 sensor.once(sensor.SensorType.SENSOR_TYPE_ID_HUMIDITY, (data: sensor.HumidityResponse) => {
   console.info('Succeeded in invoking once. Humidity: ' + data.humidity);
@@ -5458,7 +5849,7 @@ Subscribes to only one data change of the barometer sensor.
 **Example**
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 sensor.once(sensor.SensorType.SENSOR_TYPE_ID_BAROMETER, (data: sensor.BarometerResponse) => {
   console.info('Succeeded in invoking once. Atmospheric pressure: ' + data.pressure);
@@ -5487,7 +5878,7 @@ Subscribes to only one data change of the Hall effect sensor.
 **Example**
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 sensor.once(sensor.SensorType.SENSOR_TYPE_ID_HALL, (data: sensor.HallResponse) => {
   console.info('Succeeded in invoking once. Status: ' + data.status);
@@ -5516,7 +5907,7 @@ Subscribes to only one data change of the ambient light sensor.
 **Example**
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 sensor.once(sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT, (data: sensor.LightResponse) => {
   console.info('Succeeded in invoking once. invoking once. Illumination: ' + data.intensity);
@@ -5545,7 +5936,7 @@ Subscribes to only one data change of the orientation sensor.
 **Example**
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 sensor.once(sensor.SensorType.SENSOR_TYPE_ID_ORIENTATION, (data: sensor.OrientationResponse) => {
   console.info('Succeeded in invoking the device rotateing at an angle around the X axis: ' + data.beta);
@@ -5576,7 +5967,7 @@ Subscribes to only one data change of the rotation vector sensor.
 **Example**
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 sensor.once(sensor.SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR, (data: sensor.RotationVectorResponse) => {
   console.info('Succeeded in invoking once. X-coordinate component: ' + data.x);
@@ -5607,6 +5998,17 @@ Subscribes to only one data change of the heart rate sensor.
 | type     | [SensorType](#sensortypedeprecated).SENSOR_TYPE_ID_HEART_RATE | Yes  | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_HEART_RATE**.                 |
 | callback | Callback&lt;[HeartRateResponse](#heartrateresponse)&gt;      | Yes  | One-shot callback used to return the heart rate sensor data. The reported data type in the callback is **HeartRateResponse**.|
 
+**Example**
+
+
+```ts
+import { sensor } from '@kit.SensorServiceKit';
+
+sensor.once(sensor.SensorType.SENSOR_TYPE_ID_HEART_RATE, (data: sensor.HeartRateResponse) => {
+  console.info("Succeeded in invoking once. Heart rate: " + data.heartRate);
+});
+```
+
 ### WEAR_DETECTION<sup>(deprecated)</sup>
 
 once(type: SensorType.SENSOR_TYPE_ID_WEAR_DETECTION, callback: Callback&lt;WearDetectionResponse&gt;): void
@@ -5630,7 +6032,7 @@ Subscribes to only one data change of the wear detection sensor.
 
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 sensor.once(sensor.SensorType.SENSOR_TYPE_ID_WEAR_DETECTION, (data: sensor.WearDetectionResponse) => {
   console.info("Succeeded in invoking once. Wear status: " + data.value);
@@ -5663,7 +6065,7 @@ Unsubscribes from sensor data changes.
 **Example**
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 function callback(data: sensor.AccelerometerResponse) {
   console.info('Succeeded in invoking off. X-coordinate component: ' + data.x);
@@ -5698,7 +6100,7 @@ Unsubscribes from sensor data changes.
 **Example**
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 function callback(data: sensor.AccelerometerUncalibratedResponse) {
   console.info('Succeeded in invoking off. X-coordinate component: ' + data.x);
@@ -5734,7 +6136,7 @@ Unsubscribes from sensor data changes.
 **Example**
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 function callback(data: sensor.LightResponse) {
   console.info('Succeeded in invoking off. Illumination: ' + data.intensity);
@@ -5765,7 +6167,7 @@ Unsubscribes from sensor data changes.
 **Example**
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 function callback(data: sensor.AmbientTemperatureResponse) {
   console.info('Succeeded in invoking off. Temperature: ' + data.temperature);
@@ -5796,7 +6198,7 @@ Unsubscribes from sensor data changes.
 **Example**
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 function callback(data: sensor.BarometerResponse) {
   console.info('Succeeded in invoking off. Atmospheric pressure: ' + data.pressure);
@@ -5827,7 +6229,7 @@ Unsubscribes from sensor data changes.
 **Example**
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 function callback(data: sensor.GravityResponse) {
   console.info('Succeeded in invoking off. X-coordinate component: ' + data.x);
@@ -5862,7 +6264,7 @@ Unsubscribes from sensor data changes.
 **Example**
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 function callback(data: sensor.GyroscopeResponse) {
   console.info('Succeeded in invoking off. X-coordinate component: ' + data.x);
@@ -5897,7 +6299,7 @@ Unsubscribes from sensor data changes.
 **Example**
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 function callback(data: sensor.GyroscopeUncalibratedResponse) {
   console.info('Succeeded in invoking off. X-coordinate component: ' + data.x);
@@ -5930,7 +6332,7 @@ Unsubscribes from sensor data changes.
 **Example**
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 function callback(data: sensor.HallResponse) {
   console.info('Succeeded in invoking off. Status: ' + data.status);
@@ -5963,7 +6365,7 @@ Unsubscribes from sensor data changes.
 **Example**
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 function callback(data: sensor.HeartRateResponse) {
   console.info('Succeeded in invoking off. Humidity: ' + data.heartRate);
@@ -5994,7 +6396,7 @@ Unsubscribes from sensor data changes.
 **Example**
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 function callback(data: sensor.HumidityResponse) {
   console.info('Succeeded in invoking off. Humidity: ' + data.humidity);
@@ -6027,7 +6429,7 @@ Unsubscribes from sensor data changes.
 **Example**
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 function callback(data: sensor.LinearAccelerometerResponse) {
   console.info('Succeeded in invoking off. X-coordinate component: ' + data.x);
@@ -6060,7 +6462,7 @@ Unsubscribes from sensor data changes.
 **Example**
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 function callback(data: sensor.MagneticFieldResponse) {
   console.info('Succeeded in invoking off. X-coordinate component: ' + data.x);
@@ -6093,7 +6495,7 @@ Unsubscribes from sensor data changes.
 **Example**
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 function callback(data: sensor.MagneticFieldUncalibratedResponse) {
   console.info('Succeeded in invoking off. X-coordinate component: ' + data.x);
@@ -6129,7 +6531,7 @@ Unsubscribes from sensor data changes.
 **Example**
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 function callback(data: sensor.OrientationResponse) {
   console.info('Succeeded in invoking off. The device rotates at an angle around the X axis: ' + data.beta);
@@ -6164,7 +6566,7 @@ Unsubscribes from sensor data changes.
 **Example**
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 function callback(data: sensor.PedometerResponse) {
   console.info('Succeeded in invoking off. Steps: ' + data.steps);
@@ -6197,7 +6599,7 @@ Unsubscribes from sensor data changes.
 **Example**
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 function callback(data: sensor.PedometerDetectionResponse) {
   console.info('Succeeded in invoking off. Scalar data: ' + data.scalar);
@@ -6228,7 +6630,7 @@ Unsubscribes from sensor data changes.
 **Example**
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 function callback(data: sensor.ProximityResponse) {
   console.info('Succeeded in invoking off. Distance: ' + data.distance);
@@ -6259,7 +6661,7 @@ Unsubscribes from sensor data changes.
 **Example**
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 function callback(data: sensor.RotationVectorResponse) {
   console.info('Succeeded in invoking off. X-coordinate component: ' + data.x);
@@ -6293,7 +6695,7 @@ Unsubscribes from sensor data changes.
 **Example**
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 function callback(data: sensor.SignificantMotionResponse) {
   console.info('Succeeded in invoking off. Scalar data: ' + data.scalar);
@@ -6324,7 +6726,7 @@ Unsubscribes from sensor data changes.
 **Example**
 
 ```ts
-import sensor from '@ohos.sensor';
+import { sensor } from '@kit.SensorServiceKit';
 
 function accCallback(data: sensor.WearDetectionResponse) {
   console.info('Succeeded in invoking off. Wear status: ' + data.value);
@@ -6356,11 +6758,11 @@ Rotates a rotation vector so that it can represent the coordinate system in diff
 **Example**
 
 ```ts
-import sensor from '@ohos.sensor';
-import BusinessError from '@ohos.base';
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 sensor.transformCoordinateSystem([1, 0, 0, 0, 1, 0, 0, 0, 1], { x: 2, y: 3 }, 
-                                 (err: BusinessError.BusinessError, data: Array<number>) => {
+                                 (err: BusinessError, data: Array<number>) => {
   if (err) {
     console.error(`Failed to operate. Code: ${err.code}, message: ${err.message}`);
     return;
@@ -6399,8 +6801,8 @@ Rotates a rotation vector so that it can represent the coordinate system in diff
 **Example**
 
 ```ts
-import sensor from '@ohos.sensor';
-import BusinessError from '@ohos.base';
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const promise = sensor.transformCoordinateSystem([1, 0, 0, 0, 1, 0, 0, 0, 1], { x: 2, y: 3 });
 promise.then((data: Array<number>) => {
@@ -6408,7 +6810,7 @@ promise.then((data: Array<number>) => {
   for (let i = 0; i < data.length; i++) {
     console.info("Succeeded in getting transformCoordinateSystem data[ " + i + "] = " + data[i]);
   }
-}).catch((err: BusinessError.BusinessError) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to operate.`);
 })
 ```
@@ -6436,11 +6838,11 @@ Obtains the geomagnetic field of a geographic location. This API uses an asynchr
 **Example**
 
 ```ts
-import sensor from '@ohos.sensor';
-import BusinessError from '@ohos.base';
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 sensor.getGeomagneticField({ latitude: 80, longitude: 0, altitude: 0 }, 1580486400000, 
-                           (err: BusinessError.BusinessError, data: sensor.GeomagneticResponse) => {
+                           (err: BusinessError, data: sensor.GeomagneticResponse) => {
   if (err) {
     console.error(`Failed to operate. Code: ${err.code}, message: ${err.message}`);
     return;
@@ -6477,15 +6879,15 @@ Obtains the geomagnetic field of a geographic location. This API uses a promise 
 **Example**
 
 ```ts
-import sensor from '@ohos.sensor';
-import BusinessError from '@ohos.base';
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const promise = sensor.getGeomagneticField({ latitude: 80, longitude: 0, altitude: 0 }, 1580486400000);
 promise.then((data: sensor.GeomagneticResponse) => {
   console.info('Succeeded in getting sensor_getGeomagneticField_promise x: ' + data.x + ',y: ' + data.y + ',z: ' +
   data.z + ',geomagneticDip: ' + data.geomagneticDip + ',deflectionAngle: ' + data.deflectionAngle +
   ',levelIntensity: ' + data.levelIntensity + ',totalIntensity: ' + data.totalIntensity);
-}).catch((reason: BusinessError.BusinessError) => {
+}).catch((reason: BusinessError) => {
   console.error(`Failed to operate.`);
 })
 ```
@@ -6513,10 +6915,10 @@ Obtains the altitude at which the device is located based on the sea-level atmos
 **Example**
 
 ```ts
-import sensor from '@ohos.sensor';
-import BusinessError from '@ohos.base';
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-sensor.getAltitude(0, 200, (err: BusinessError.BusinessError, data: number) => {
+sensor.getAltitude(0, 200, (err: BusinessError, data: number) => {
   if (err) {
     console.error(`Failed to operate. Code: ${err.code}, message: ${err.message}`);
     return;
@@ -6553,13 +6955,13 @@ Obtains the altitude at which the device is located based on the sea-level atmos
 **Example**
 
 ```ts
-import sensor from '@ohos.sensor';
-import BusinessError from '@ohos.base';
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const promise = sensor.getAltitude(0, 200);
 promise.then((data: number) => {
   console.info('Succeeded in getting sensor_getAltitude_Promise success', data);
-}).catch((err: BusinessError.BusinessError) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to operate.`);
 })
 ```
@@ -6587,10 +6989,10 @@ Obtains the magnetic dip based on the inclination matrix. This API uses an async
 **Example**
 
 ```ts
-import sensor from '@ohos.sensor';
-import BusinessError from '@ohos.base';
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-sensor.getGeomagneticDip([1, 0, 0, 0, 1, 0, 0, 0, 1], (err: BusinessError.BusinessError, data: number) => {
+sensor.getGeomagneticDip([1, 0, 0, 0, 1, 0, 0, 0, 1], (err: BusinessError, data: number) => {
   if (err) {
     console.error(`Failed to register data. Code: ${err.code}, message: ${err.message}`);
     return;
@@ -6626,13 +7028,13 @@ Obtains the magnetic dip based on the inclination matrix. This API uses a promis
 **Example**
 
 ```ts
-import sensor from '@ohos.sensor';
-import BusinessError from '@ohos.base';
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const promise = sensor.getGeomagneticDip([1, 0, 0, 0, 1, 0, 0, 0, 1]);
 promise.then((data: number) => {
   console.info('Succeeded in get GeomagneticDip_promise', data);
-}).catch((err: BusinessError.BusinessError) => {
+}).catch((err: BusinessError) => {
   console.error(`Failed to operate.`);
 })
 ```
@@ -6654,17 +7056,17 @@ Obtains the angle change between two rotation matrices. This API uses an asynchr
 | Name               | Type                                    | Mandatory| Description                                 |
 | --------------------- | ---------------------------------------- | ---- | ------------------------------------- |
 | currentRotationMatrix | Array&lt;number&gt;                      | Yes  | Current rotation matrix.                   |
-| preRotationMatrix     | Array&lt;number&gt;                      | Yes  | The other rotation matrix.                       |
+| preRotationMatrix     | Array&lt;number&gt;                      | Yes  | Peer rotation matrix.                       |
 | callback              | AsyncCallback&lt;Array&lt;number&gt;&gt; | Yes  | Callback used to return the angle change around the z, x, and y axes.|
 
 **Example**
 
 ```ts
-import sensor from '@ohos.sensor';
-import BusinessError from '@ohos.base';
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 sensor.getAngleModify([1, 0, 0, 0, 1, 0, 0, 0, 1], [1, 0, 0, 0, 0.87, -0.50, 0, 0.50, 0.87],
-                      (err: BusinessError.BusinessError, data: Array<number>) => {
+                      (err: BusinessError, data: Array<number>) => {
   if (err) {
     console.error(`Failed to register data. Code: ${err.code}, message: ${err.message}`);
     return;
@@ -6692,7 +7094,7 @@ Obtains the angle change between two rotation matrices. This API uses a promise 
 | Name                  | Type                 | Mandatory  | Description       |
 | --------------------- | ------------------- | ---- | --------- |
 | currentRotationMatrix | Array&lt;number&gt; | Yes   | Current rotation matrix.|
-| preRotationMatrix     | Array&lt;number&gt; | Yes   | The other rotation matrix.  |
+| preRotationMatrix     | Array&lt;number&gt; | Yes   | Peer rotation matrix.  |
 
 **Return value**
 
@@ -6703,8 +7105,8 @@ Obtains the angle change between two rotation matrices. This API uses a promise 
 **Example**
 
 ```ts
-import sensor from '@ohos.sensor';
-import BusinessError from '@ohos.base';
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const promise = sensor.getAngleModify([1, 0, 0, 0, 1, 0, 0, 0, 1], [1, 0, 0, 0, 0.87, -0.50, 0, 0.50, 0.87]);
 promise.then((data: Array<number>) => {
@@ -6712,8 +7114,8 @@ promise.then((data: Array<number>) => {
   for (let i = 0; i < data.length; i++) {
     console.info("Succeeded in getting data[" + i + "]: " + data[i]);
   }
-}).catch((reason: BusinessError.BusinessError) => {
-  let e: BusinessError.BusinessError = reason as BusinessError.BusinessError;
+}).catch((reason: BusinessError) => {
+  let e: BusinessError = reason as BusinessError;
   console.info("Succeeded in getting promise::catch", e);
 })
 ```
@@ -6740,11 +7142,11 @@ Converts a rotation vector into a rotation matrix. This API uses an asynchronous
 **Example**
 
 ```ts
-import sensor from '@ohos.sensor';
-import BusinessError from '@ohos.base';
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 sensor.createRotationMatrix([0.20046076, 0.21907, 0.73978853, 0.60376877],
-                            (err: BusinessError.BusinessError, data: Array<number>) => {
+                            (err: BusinessError, data: Array<number>) => {
   if (err) {
     console.error(`Failed to register data. Code: ${err.code}, message: ${err.message}`);
     return;
@@ -6782,8 +7184,8 @@ Converts a rotation vector into a rotation matrix. This API uses a promise to re
 **Example**
 
  ```ts
-import sensor from '@ohos.sensor';
-import BusinessError from '@ohos.base';
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const promise = sensor.createRotationMatrix([0.20046076, 0.21907, 0.73978853, 0.60376877]);
 promise.then((data: Array<number>) => {
@@ -6791,7 +7193,7 @@ promise.then((data: Array<number>) => {
   for (let i = 0; i < data.length; i++) {
     console.info("data[" + i + "]: " + data[i]);
   }
-}).catch((reason: BusinessError.BusinessError) => {
+}).catch((reason: BusinessError) => {
   console.info("Succeeded in getting promise::catch", reason);
 })
  ```
@@ -6818,11 +7220,11 @@ Converts a rotation vector into a quaternion. This API uses an asynchronous call
 **Example**
 
 ```ts
-import sensor from '@ohos.sensor';
-import BusinessError from '@ohos.base';
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 sensor.createQuaternion([0.20046076, 0.21907, 0.73978853, 0.60376877],
-                        (err: BusinessError.BusinessError, data: Array<number>) => {
+                        (err: BusinessError, data: Array<number>) => {
   if (err) {
     console.error(`Failed to register data. Code: ${err.code}, message: ${err.message}`);
     return;
@@ -6860,8 +7262,8 @@ Converts a rotation vector into a quaternion. This API uses a promise to return 
 **Example**
 
 ```ts
-import sensor from '@ohos.sensor';
-import BusinessError from '@ohos.base';
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const promise = sensor.createQuaternion([0.20046076, 0.21907, 0.73978853, 0.60376877]);
 promise.then((data: Array<number>) => {
@@ -6869,7 +7271,7 @@ promise.then((data: Array<number>) => {
   for (let i = 0; i < data.length; i++) {
     console.info("data[" + i + "]: " + data[i]);
   }
-}).catch((err: BusinessError.BusinessError) => {
+}).catch((err: BusinessError) => {
   console.info(`Failed to get promise.`);
 })
 ```
@@ -6890,16 +7292,16 @@ Obtains the device direction based on the rotation matrix. This API uses an asyn
 
 | Name        | Type                                    | Mandatory| Description                                 |
 | -------------- | ---------------------------------------- | ---- | ------------------------------------- |
-| rotationMatrix | Array&lt;number&gt;                      | Yes  | The other rotation matrix.                       |
+| rotationMatrix | Array&lt;number&gt;                      | Yes  | Rotation matrix.                       |
 | callback       | AsyncCallback&lt;Array&lt;number&gt;&gt; | Yes  | Callback used to return the rotation angle around the z, x, and y axes.|
 
 **Example**
 
 ```ts
-import sensor from '@ohos.sensor';
-import BusinessError from '@ohos.base';
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-sensor.getDirection([1, 0, 0, 0, 1, 0, 0, 0, 1], (err: BusinessError.BusinessError, data: Array<number>) => {
+sensor.getDirection([1, 0, 0, 0, 1, 0, 0, 0, 1], (err: BusinessError, data: Array<number>) => {
   if (err) {
     console.error(`Failed to register data. Code: ${err.code}, message: ${err.message}`);
     return;
@@ -6927,7 +7329,7 @@ Obtains the device direction based on the rotation matrix. This API uses a promi
 
 | Name           | Type                 | Mandatory  | Description     |
 | -------------- | ------------------- | ---- | ------- |
-| rotationMatrix | Array&lt;number&gt; | Yes   | The other rotation matrix.|
+| rotationMatrix | Array&lt;number&gt; | Yes   | Rotation matrix.|
 
 **Return value**
 
@@ -6938,8 +7340,8 @@ Obtains the device direction based on the rotation matrix. This API uses a promi
 **Example**
 
 ```ts
-import sensor from '@ohos.sensor';
-import BusinessError from '@ohos.base';
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const promise = sensor.getDirection([1, 0, 0, 0, 1, 0, 0, 0, 1]);
 promise.then((data: Array<number>) => {
@@ -6947,7 +7349,7 @@ promise.then((data: Array<number>) => {
   for (let i = 1; i < data.length; i++) {
     console.info("Succeeded in getting sensor_getDirection_promise" + data[i]);
   }
-}).catch((err: BusinessError.BusinessError) => {
+}).catch((err: BusinessError) => {
   console.info(`Failed to get promise.`);
 })
 ```
@@ -6975,11 +7377,11 @@ Creates a rotation matrix based on the gravity vector and geomagnetic vector. Th
 **Example**
 
 ```ts
-import sensor from '@ohos.sensor';
-import BusinessError from '@ohos.base';
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 sensor.createRotationMatrix([-0.27775216, 0.5351276, 9.788099], [210.87253, -78.6096, -111.44444], 
-                            (err: BusinessError.BusinessError, data: sensor.RotationMatrixResponse) => {
+                            (err: BusinessError, data: sensor.RotationMatrixResponse) => {
   if (err) {
     console.error(`Failed to get create rotationMatrix. Code: ${err.code}, message: ${err.message}`);
     return;
@@ -7016,13 +7418,13 @@ Creates a rotation matrix based on the gravity vector and geomagnetic vector. Th
 **Example**
 
 ```ts
-import sensor from '@ohos.sensor';
-import BusinessError from '@ohos.base';
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const promise = sensor.createRotationMatrix([-0.27775216, 0.5351276, 9.788099], [210.87253, -78.6096, -111.44444]);
 promise.then((data: sensor.RotationMatrixResponse) => {
   console.info(JSON.stringify(data));
-}).catch((err: BusinessError.BusinessError) => {
+}).catch((err: BusinessError) => {
   console.info(`Failed to get promise.`);
 })
 ```

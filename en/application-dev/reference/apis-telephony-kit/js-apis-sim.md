@@ -1,6 +1,6 @@
 # @ohos.telephony.sim (SIM Management)
 
-The **sim** module provides basic SIM card management functions. You can obtain the name, number, ISO country code, home PLMN ID, service provider name, SIM card status, type, installation status, activation status, and lock status of the SIM card in the specified slot. Besides, you can set the name, number, and lock status of the SIM card, activate or deactivate the SIM card, and change the PIN or unlock the PIN or PUK of the SIM card.
+The **sim** module provides basic SIM card management functions. With the APIs provided by this module, you can obtain the ISO country code, home PLMN ID, service provider name, SIM card status, type, installation status, and activation status of the SIM card in the specified slot.
 
 >**NOTE**
 >
@@ -10,7 +10,7 @@ The **sim** module provides basic SIM card management functions. You can obtain 
 ## Modules to Import
 
 ```ts
-import sim from '@ohos.telephony.sim';
+import { sim } from '@kit.TelephonyKit';
 ```
 
 ## sim.isSimActive<sup>7+</sup>
@@ -31,8 +31,8 @@ Checks whether the SIM card in the specified slot is activated. This API uses an
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.isSimActive(0, (err: BusinessError, data: boolean) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
@@ -63,8 +63,8 @@ Checks whether the SIM card in the specified slot is activated. This API uses a 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.isSimActive(0).then((data: boolean) => {
     console.log(`isSimActive success, promise: data->${JSON.stringify(data)}`);
@@ -96,7 +96,7 @@ Checks whether the SIM card in the specified slot is activated.
 **Example**
 
 ```ts
-import sim from '@ohos.telephony.sim';
+import { sim } from '@kit.TelephonyKit';
 
 let isSimActive: boolean = sim.isSimActiveSync(0);
 console.log(`the sim is active:` + isSimActive);
@@ -120,8 +120,8 @@ Obtains the default slot ID of the SIM card that provides voice services. This A
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.getDefaultVoiceSlotId((err: BusinessError, data: number) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
@@ -145,8 +145,8 @@ Obtains the default slot ID of the SIM card that provides voice services. This A
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.getDefaultVoiceSlotId().then((data: number) => {
     console.log(`getDefaultVoiceSlotId success, promise: data->${JSON.stringify(data)}`);
@@ -185,8 +185,8 @@ For details about the error codes, see[ohos.telephony (Telephony) Error Codes](e
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.hasOperatorPrivileges(0, (err: BusinessError, data: boolean) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
@@ -228,8 +228,8 @@ For details about the error codes, see[ohos.telephony (Telephony) Error Codes](e
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.hasOperatorPrivileges(0).then((data: boolean) => {
     console.log(`hasOperatorPrivileges success, promise: data->${JSON.stringify(data)}`);
@@ -269,8 +269,8 @@ For details about the error codes, see[ohos.telephony (Telephony) Error Codes](e
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.getISOCountryCodeForSim(0, (err: BusinessError, data: string) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
@@ -314,8 +314,8 @@ For details about the error codes, see[ohos.telephony (Telephony) Error Codes](e
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.getISOCountryCodeForSim(0).then((data: string) => {
     console.log(`getISOCountryCodeForSim success, promise: data->${JSON.stringify(data)}`);
@@ -348,7 +348,7 @@ Obtains the ISO country code of the SIM card in the specified slot.
 **Example**
 
 ```ts
-import sim from '@ohos.telephony.sim';
+import { sim } from '@kit.TelephonyKit';
 
 let countryCode: string = sim.getISOCountryCodeForSimSync(0);
 console.log(`the country ISO is:` + countryCode);
@@ -386,8 +386,8 @@ For details about the error codes, see[ohos.telephony (Telephony) Error Codes](e
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.getSimOperatorNumeric(0, (err: BusinessError, data: string) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
@@ -431,8 +431,8 @@ For details about the error codes, see[ohos.telephony (Telephony) Error Codes](e
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.getSimOperatorNumeric(0).then((data: string) => {
     console.log(`getSimOperatorNumeric success, promise: data->${JSON.stringify(data)}`);
@@ -465,7 +465,7 @@ Obtains the home PLMN ID of the SIM card in the specified slot.
 **Example**
 
 ```ts
-import sim from '@ohos.telephony.sim';
+import { sim } from '@kit.TelephonyKit';
 
 let numeric: string = sim.getSimOperatorNumericSync(0);
 console.log(`the sim operator numeric is:` + numeric);
@@ -503,8 +503,8 @@ For details about the error codes, see[ohos.telephony (Telephony) Error Codes](e
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.getSimSpn(0, (err: BusinessError, data: string) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
@@ -548,8 +548,8 @@ For details about the error codes, see[ohos.telephony (Telephony) Error Codes](e
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.getSimSpn(0).then((data: string) => {
     console.log(`getSimSpn success, promise: data->${JSON.stringify(data)}`);
@@ -582,7 +582,7 @@ Obtains the SPN of the SIM card in the specified slot.
 **Example**
 
 ```ts
-import sim from '@ohos.telephony.sim';
+import { sim } from '@kit.TelephonyKit';
 
 let spn: string = sim.getSimSpnSync(0);
 console.log(`the sim card spn is:` + spn);
@@ -619,8 +619,8 @@ For details about the error codes, see[ohos.telephony (Telephony) Error Codes](e
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.getSimState(0, (err: BusinessError, data: sim.SimState) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
@@ -663,8 +663,8 @@ For details about the error codes, see[ohos.telephony (Telephony) Error Codes](e
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.getSimState(0).then((data: sim.SimState) => {
     console.log(`getSimState success, promise: data->${JSON.stringify(data)}`);
@@ -697,7 +697,7 @@ Obtains the state of the SIM card in the specified slot.
 **Example**
 
 ```ts
-import sim from '@ohos.telephony.sim';
+import { sim } from '@kit.TelephonyKit';
 
 let simState: sim.SimState = sim.getSimStateSync(0);
 console.log(`The sim state is:` + simState);
@@ -734,8 +734,8 @@ For details about the error codes, see[ohos.telephony (Telephony) Error Codes](e
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.getCardType(0, (err: BusinessError, data: sim.CardType) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
@@ -779,8 +779,8 @@ For details about the error codes, see[ohos.telephony (Telephony) Error Codes](e
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.getCardType(0).then((data: sim.CardType) => {
     console.log(`getCardType success, promise: data->${JSON.stringify(data)}`);
@@ -813,7 +813,7 @@ Obtains the type of the SIM card in the specified slot.
 **Example**
 
 ```ts
-import sim from '@ohos.telephony.sim';
+import { sim } from '@kit.TelephonyKit';
 
 let cardType: sim.CardType = sim.getCardTypeSync(0);
 console.log(`the card type is:` + cardType);
@@ -850,8 +850,8 @@ For details about the error codes, see[ohos.telephony (Telephony) Error Codes](e
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.hasSimCard(0, (err: BusinessError, data: boolean) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
@@ -894,8 +894,8 @@ For details about the error codes, see[ohos.telephony (Telephony) Error Codes](e
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.hasSimCard(0).then((data: boolean) => {
     console.log(`hasSimCard success, promise: data->${JSON.stringify(data)}`);
@@ -927,7 +927,7 @@ Checks whether the SIM card in the specified slot is installed.
 **Example**
 
 ```ts
-import sim from '@ohos.telephony.sim';
+import { sim } from '@kit.TelephonyKit';
 
 let hasSimCard: boolean = sim.hasSimCardSync(0);
 console.log(`has sim card: ` + hasSimCard);
@@ -971,8 +971,8 @@ For details about the error codes, see[ohos.telephony (Telephony) Error Codes](e
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.getSimAccountInfo(0, (err:BusinessError , data: sim.IccAccountInfo) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
@@ -1023,8 +1023,8 @@ For details about the error codes, see[ohos.telephony (Telephony) Error Codes](e
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.getSimAccountInfo(0).then((data: sim.IccAccountInfo) => {
     console.log(`getSimAccountInfo success, promise: data->${JSON.stringify(data)}`);
@@ -1069,8 +1069,8 @@ For details about the error codes, see[ohos.telephony (Telephony) Error Codes](e
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.getActiveSimAccountInfoList((err: BusinessError, data: Array<sim.IccAccountInfo>) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
@@ -1094,7 +1094,7 @@ Obtains the number of card slots.
 **Example**
 
 ```ts
-import sim from '@ohos.telephony.sim';
+import { sim } from '@kit.TelephonyKit';
 
 console.log("Result: "+ sim.getMaxSimCount());
 ```
@@ -1134,8 +1134,8 @@ For details about the error codes, see[ohos.telephony (Telephony) Error Codes](e
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.getActiveSimAccountInfoList().then((data: Array<sim.IccAccountInfo>) => {
     console.log(`getActiveSimAccountInfoList success, promise: data->${JSON.stringify(data)}`);
@@ -1176,8 +1176,8 @@ For details about the error codes, see[ohos.telephony (Telephony) Error Codes](e
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 try {
     sim.getOpKey(0, (err: BusinessError, data: string) => {
@@ -1229,8 +1229,8 @@ For details about the error codes, see[ohos.telephony (Telephony) Error Codes](e
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.getOpKey(0).then((data: string) => {
     console.log(`getOpKey success, promise: data->${JSON.stringify(data)}`);
@@ -1263,7 +1263,7 @@ Obtains the opkey of the SIM card in the specified slot.
 **Example**
 
 ```ts
-import sim from '@ohos.telephony.sim';
+import { sim } from '@kit.TelephonyKit';
 
 let data: string = sim.getOpKeySync(0);
 console.log(`getOpKey success, promise: data->${JSON.stringify(data)}`);
@@ -1300,8 +1300,8 @@ For details about the error codes, see[ohos.telephony (Telephony) Error Codes](e
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 try {
     sim.getOpName(0, (err: BusinessError, data: string) => {
@@ -1353,8 +1353,8 @@ For details about the error codes, see[ohos.telephony (Telephony) Error Codes](e
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.getOpName(0).then((data: string) => {
     console.log(`getOpName success, promise: data->${JSON.stringify(data)}`);
@@ -1387,7 +1387,7 @@ Obtains the OpName of the SIM card in the specified slot.
 **Example**
 
 ```ts
-import sim from '@ohos.telephony.sim';
+import { sim } from '@kit.TelephonyKit';
 
 let data: string = sim.getOpNameSync(0);
 console.log(`getOpName success, promise: data->${JSON.stringify(data)}`);
@@ -1424,8 +1424,8 @@ For details about the error codes, see[ohos.telephony (Telephony) Error Codes](e
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 sim.getDefaultVoiceSimId((err: BusinessError, data: number) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
@@ -1462,8 +1462,8 @@ For details about the error codes, see[ohos.telephony (Telephony) Error Codes](e
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import sim from '@ohos.telephony.sim';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { sim } from '@kit.TelephonyKit';
 
 let promise = sim.getDefaultVoiceSimId();
 promise.then((data: number) => {

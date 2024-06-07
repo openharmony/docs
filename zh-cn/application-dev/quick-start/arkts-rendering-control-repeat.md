@@ -30,6 +30,7 @@ declare class RepeatAttribute<T> {
 | ------------- | --------------------------------------- | -------- | ------------------------------------------------------------ |
 | each       | itemGenerator: (repeatItem: RepeatItem\<T\>) => void | 是       | 组件生成函数。<br/>**说明：**<br/>- each属性必须有，否则运行时会报错。<br/>- itemGenerator的参数为RepeatItem，该参数将item和index结合到了一起。 |
 | key | keyGenerator: (item: T, index: number) => string | 是       | 键值生成函数。<br/>- 为数组中的每个元素创建对应的键值。<br/>- `item`：`arr`数组中的数据项。<br/>- `index`：`arr`数组中的数据项索引。 |
+
 ### RepeatItem类型
 
 ```ts
@@ -244,9 +245,9 @@ class Wrap1 {
 }
 
 @Entry
-@Component
+@ComponentV2
 struct Parent {
-  @State simpleList: Array<Wrap1> = [new Wrap1('one'), new Wrap1('two'), new Wrap1('three')];
+  @Local simpleList: Array<Wrap1> = [new Wrap1('one'), new Wrap1('two'), new Wrap1('three')];
 
   build() {
     Row() {
@@ -274,9 +275,9 @@ struct Parent {
   }
 }
 
-@Component
+@ComponentV2
 struct ChildItem {
-  @Prop item: string;
+  @Require @Param item: string;
   
   build() {
     Text(this.item)

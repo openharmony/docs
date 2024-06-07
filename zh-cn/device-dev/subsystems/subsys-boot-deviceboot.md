@@ -356,7 +356,7 @@
   | mnt_point             | 在根文件系统中的挂载点                                       |
   | type                  | 文件系统的类型(常见有ext2、vfat、NTFS等)                     |
   | mnt_flags and options | 挂载的参数,详细的如下说明                                    |
-  | fs_mgr_flags          | 文化系统管理的标识(Android10引入)<br />可用值有：{"check","wait,"required","nofail","hvb"} |
+  | fs_mgr_flags          | 文化系统管理的标识<br />可用值有：{"check","wait,"required","nofail","hvb"} |
 
 - mnt_flags and options 参数说明
 

@@ -57,7 +57,7 @@ constructor()
 
 | 错误码ID                     | 错误信息        |
 | ---------------------------- | ---------- |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes:Incorrect parameter types. |
 
 **示例：**
 
@@ -86,18 +86,24 @@ on(event: 'progress', callback: Callback\<DownloadProgress>): void
 
 | 错误码ID                     | 错误信息        |
 | ---------------------------- | ---------- |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001  | IPC error. |
 
 **示例：**
 
   ```ts
+  import { BusinessError } from '@ohos.base';
   let fileCache = new cloudSync.CloudFileCache();
   let callback = (pg: cloudSync.DownloadProgress) => {
     console.info("download state：" + pg.state);
   };
 
-  fileCache.on('progress', callback);
+  try {
+    fileCache.on('progress', callback);
+  } catch (e) {
+    const error = e as BusinessError;
+    console.error(`Error code: ${error.code}, message: ${error.message}`);
+  }
   ```
 
 ### off<sup>11+</sup>
@@ -121,21 +127,26 @@ off(event: 'progress', callback?: Callback\<DownloadProgress>): void
 
 | 错误码ID                     | 错误信息        |
 | ---------------------------- | ---------- |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001  | IPC error. |
 
 **示例：**
 
   ```ts
+  import { BusinessError } from '@ohos.base';
   let fileCache = new cloudSync.CloudFileCache();
 
   let callback = (pg: cloudSync.DownloadProgress) => {
     console.info("download state：" + pg.state);
   }
 
-  fileCache.on('progress', callback);
-
-  fileCache.off('progress', callback);
+  try {
+    fileCache.on('progress', callback);
+    fileCache.off('progress', callback);
+  } catch (e) {
+    const error = e as BusinessError;
+    console.error(`Error code: ${error.code}, message: ${error.message}`);
+  }
   ```
 
 ### start<sup>11+</sup>
@@ -167,9 +178,14 @@ start(uri: string): Promise&lt;void&gt;
   let path = "/data/storage/el2/cloud/1.txt";
   let uri = fileUri.getUriFromPath(path);
 
-  fileCache.on('progress', (pg: cloudSync.DownloadProgress) => {
-    console.info("download state:" + pg.state);
-  });
+  try {
+    fileCache.on('progress', (pg: cloudSync.DownloadProgress) => {
+      console.info("download state:" + pg.state);
+    });
+  } catch (e) {
+    const error = e as BusinessError;
+    console.error(`Error code: ${error.code}, message: ${error.message}`);
+  }
 
   fileCache.start(uri).then(() => {
     console.info("start download successfully");
@@ -184,7 +200,7 @@ start(uri: string): Promise&lt;void&gt;
 
 | 错误码ID                     | 错误信息        |
 | ---------------------------- | ---------- |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001  | IPC error. |
 | 13900002 | No such file or directory. |
 | 13900025 | No space left on device. |
@@ -211,7 +227,7 @@ start(uri: string, callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID                     | 错误信息        |
 | ---------------------------- | ---------- |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001  | IPC error. |
 | 13900002 | No such file or directory. |
 | 13900025 | No space left on device. |
@@ -235,7 +251,7 @@ start(uri: string, callback: AsyncCallback&lt;void&gt;): void
   });
   ```
 
-### stop<sup>12+</sup>
+### stop<sup>11+</sup>
 
 stop(uri: string, needClean?: boolean): Promise&lt;void&gt;
 
@@ -250,7 +266,7 @@ stop(uri: string, needClean?: boolean): Promise&lt;void&gt;
 | 参数名     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
 | uri | string | 是   | 待下载文件uri。 |
-| needClean | boolean | 否   | 是否删除已下载的文件，默认删除。 |
+| needClean<sup>12+</sup> | boolean | 否   | 是否删除已下载的文件，默认删除。<br>从API version12开始支持该参数。 |
 
 **返回值：**
 
@@ -264,7 +280,7 @@ stop(uri: string, needClean?: boolean): Promise&lt;void&gt;
 
 | 错误码ID                     | 错误信息        |
 | ---------------------------- | ---------- |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001  | IPC error. |
 | 13900002 | No such file or directory. |
 | 14000002 | Invalid uri. |
@@ -308,7 +324,7 @@ stop(uri: string, callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID                     | 错误信息        |
 | ---------------------------- | ---------- |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001  | IPC error. |
 | 13900002 | No such file or directory. |
 | 14000002 | Invalid uri. |

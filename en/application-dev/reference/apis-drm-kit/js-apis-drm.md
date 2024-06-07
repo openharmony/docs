@@ -8,7 +8,6 @@ The Digital Rights Management (DRM) framework provides APIs for you to develop d
 * DRM decryption: decrypts DRM-protected content.
 
 > **NOTE**
->
 > The initial APIs of this module are supported since API version 11. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
@@ -181,7 +180,7 @@ Describes the media key status.
 
 ## KeysInfo
 
-Describes the media key information.
+Describes the information about media keys.
 
 **System capability**: SystemCapability.Multimedia.Drm.Core
 
@@ -198,8 +197,19 @@ Describes the DRM information of a media source.
 
 | Name     | Type                          | Mandatory| Description        |
 | -------- | ----------------------------- |---- | ------------- |
-| uuid   | string | Yes | ID of the plug-in type.     |
+| uuid   | string | Yes | Unique ID of the DRM plug-in.     |
 | pssh     | Uint8Array                 | Yes | Protection Scheme Specific Header (PSSH) in the DRM information.      |
+
+## MediaKeySystemDescription<sup>12+</sup>
+
+Describes the information about the DRM plug-in supported by the device.
+
+**System capability**: SystemCapability.Multimedia.Drm.Core
+
+| Name     | Type                          | Mandatory| Description        |
+| -------- | ----------------------------- |---- | ------------- |
+| name   | string | Yes | Name of the DRM plug-in.     |
+| uuid   | string | Yes | Unique ID of the DRM plug-in.     |
 
 ## drm.createMediaKeySystem
 
@@ -227,7 +237,7 @@ For details about the error codes, see [DRM Error Codes](errorcode-drm.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
-| 401                |  The parameter check failed               |
+| 401                |  The parameter check failed. Possibly because: 1.Mandatory parameters are left unspecified. 2.Parameter verification failed.               |
 | 24700101                |  All unknown errors                  |
 | 24700103                |  Meet max MediaKeySystem num limit                  |
 | 24700201                |  Service fatal error e.g. service died                  |
@@ -271,7 +281,7 @@ For details about the error codes, see [DRM Error Codes](errorcode-drm.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
-| 401                |  The parameter check failed               |
+| 401                |  The parameter check failed. Possibly because: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.               |
 | 24700101                |  All unknown errors                  |
 | 24700201                |  Service fatal error e.g. service died                  |
 
@@ -317,7 +327,7 @@ For details about the error codes, see [DRM Error Codes](errorcode-drm.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
-| 401                |  The parameter check failed               |
+| 401                |  The parameter check failed. Possibly because: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.                |
 | 24700101                |  All unknown errors                  |
 | 24700201                |  Service fatal error e.g. service died                  |
 
@@ -363,7 +373,7 @@ For details about the error codes, see [DRM Error Codes](errorcode-drm.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
-| 401                |  The parameter check failed               |
+| 401                |  The parameter check failed.  Possibly because: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed, the param name's length is zero or too big(exceeds 4096 Bytes)               |
 | 24700101                |  All unknown errors                  |
 | 24700201                |  Service fatal error e.g. service died                  |
 
@@ -380,6 +390,92 @@ try {
   console.error(`isMediaKeySystemSupported ERROR: ${error}`);
 }
 
+```
+
+## drm.getMediaKeySystemUuid<sup>12+</sup>
+
+getMediaKeySystemUuid(): string
+
+Obtains the names and UUIDs of the DRM plug-ins supported by the device.
+
+**System capability**: SystemCapability.Multimedia.Drm.Core
+
+**Parameters**
+
+| Name    | Type                                            | Mandatory| Description                          |
+| -------- | ----------------------------------------------- | ---- | ---------------------------- |
+| name  | string     | Yes  | Name of the DRM plug-in.                  |
+
+**Return value**
+
+| Type                                            | Description                          |
+| ----------------------------------------------- | ---------------------------- |
+| uuid  | string     | Yes  | Unique ID of the DRM plug-in.                  |
+
+**Error codes**
+
+For details about the error codes, see [DRM Error Codes](errorcode-drm.md).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 401                |  The parameter check failed                |
+| 24700101                |  All unknown errors                  |
+| 24700201                |  Service fatal error e.g. service died                  |
+
+**Example**
+
+```ts
+import drm from '@ohos.multimedia.drm';
+import { BusinessError } from '@ohos.base';
+try {
+  let uuid: string = drm.getMediaKeySystemUuid();
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`getMediaKeySystemUuid ERROR: ${error}`);  
+}
+```
+
+## drm.getMediaKeySystems<sup>12+</sup>
+
+getMediaKeySystems(): MediaKeySystemDescription[]
+
+Obtains the names and UUIDs of the DRM plug-ins supported by the device.
+
+**System capability**: SystemCapability.Multimedia.Drm.Core
+
+**Parameters**
+
+| Name    | Type                                            | Mandatory| Description                          |
+| -------- | ----------------------------------------------- | ---- | ---------------------------- |
+| name  | string     | Yes  | Name of the DRM plug-in.                  |
+| uuid  | string     | Yes  | Unique ID of the DRM plug-in.                  |
+
+**Return value**
+
+| Type                                            | Description                          |
+| ----------------------------------------------- | ---------------------------- |
+| [MediaKeySystemDescription[]](#mediakeysystemdescription12)           | DRM plug-in information, including the plug-in name and UUID.                  |
+
+**Error codes**
+
+For details about the error codes, see [DRM Error Codes](errorcode-drm.md).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 24700101                |  All unknown errors                  |
+| 24700201                |  Service fatal error e.g. service died                  |
+
+**Example**
+
+```ts
+import drm from '@ohos.multimedia.drm';
+import { BusinessError } from '@ohos.base';
+try {
+  let description: drm.MediaKeySystemDescription[] = drm.getMediaKeySystems();
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`getMediaKeySystems ERROR: ${error}`);  
+}
 ```
 
 ## MediaKeySystem
@@ -406,7 +502,7 @@ For details about the error codes, see [DRM Error Codes](errorcode-drm.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
-| 401                |  The parameter check failed               |
+| 401                |  The parameter check failed. Possibly because: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.|
 | 24700101                |  All unknown errors                  |
 | 24700201                |  Service fatal error e.g. service died                  |
 
@@ -452,7 +548,7 @@ For details about the error codes, see [DRM Error Codes](errorcode-drm.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
-| 401                |  The parameter check failed               |
+| 401                |  The parameter check failed. Possibly because: 1.Mandatory parameters are left unspecified. 2.Parameter verification failed, the param's length is zero or too big(exceeds 4096 Bytes).                              |
 | 24700101                |  All unknown errors                  |
 | 24700201                |  Service fatal error e.g. service died                  |
 
@@ -493,7 +589,7 @@ For details about the error codes, see [DRM Error Codes](errorcode-drm.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
-| 401                |  The parameter check failed               |
+| 401                |  The parameter check failed. Possibly because: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.               |
 | 24700101                |  All unknown errors                  |
 | 24700201                |  Service fatal error e.g. service died                  |
 
@@ -540,7 +636,7 @@ For details about the error codes, see [DRM Error Codes](errorcode-drm.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
-| 401                |  The parameter check failed               |
+| 401                |  The parameter check failed. Possibly because: 1.Mandatory parameters are left unspecified. 2.Parameter verification failed.        |
 | 24700101                |  All unknown errors                  |
 | 24700201                |  Service fatal error e.g. service died                  |
 
@@ -580,7 +676,6 @@ For details about the error codes, see [DRM Error Codes](errorcode-drm.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
-| 401                     |  The parameter check failed               |
 | 24700101                |  All unknown errors                  |
 | 24700201                |  Service fatal error e.g. service died                  |
 
@@ -592,7 +687,7 @@ import { BusinessError } from '@ohos.base';
 
 let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
 try {
-  let statisticKeyValue: StatisticKeyValue[] = mediaKeysystem.getStatistics();
+  let statisticKeyValue: drm.StatisticKeyValue[] = mediaKeysystem.getStatistics();
 } catch (err) {
   let error = err as BusinessError;
   console.error(`getConfigurationByteArray ERROR: ${error}`);
@@ -620,7 +715,6 @@ For details about the error codes, see [DRM Error Codes](errorcode-drm.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
-| 401                |  The parameter check failed               |
 | 24700101                |  All unknown errors                  |
 | 24700201                |  Service fatal error e.g. service died                  |
 
@@ -660,7 +754,6 @@ For details about the error codes, see [DRM Error Codes](errorcode-drm.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
-| 401                |  The parameter check failed               |
 | 24700101                |  All unknown errors                  |
 | 24700201                |  Service fatal error e.g. service died                  |
 
@@ -698,7 +791,7 @@ For details about the error codes, see [DRM Error Codes](errorcode-drm.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
-| 401                |  The parameter check failed               |
+| 401                |  he parameter check failed. Possibly because: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.         |
 | 24700101                |  All unknown errors                  |
 | 24700201                |  Service fatal error e.g. service died                  |
 
@@ -737,7 +830,6 @@ For details about the error codes, see [DRM Error Codes](errorcode-drm.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
-| 401                |  The parameter check failed               |
 | 24700101                |  All unknown errors                  |
 | 24700201                |  Service fatal error e.g. service died                  |
 
@@ -778,7 +870,7 @@ For details about the error codes, see [DRM Error Codes](errorcode-drm.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
-| 401                |  The parameter check failed               |
+| 401                |  The parameter check failed. Possibly because: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.               |
 | 24700101                |  All unknown errors                  |
 
 **Example**
@@ -814,7 +906,7 @@ For details about the error codes, see [DRM Error Codes](errorcode-drm.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
-| 401                |  The parameter check failed               |
+| 401                |  The parameter check failed. Possibly because: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.               |
 | 24700101                |  All unknown errors                  |
 
 **Example**
@@ -851,7 +943,7 @@ For details about the error codes, see [DRM Error Codes](errorcode-drm.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
-| 401                |  The parameter check failed               |
+| 401                |  The parameter check failed. Possibly because: 1.Mandatory parameters are left unspecified. 2.The param level exceeds reasonable range, please use value in ContentProtectionLevel.          |
 | 24700101                 |  MAll unknown errors                  |
 | 24700104                 |  Meet max MediaKeySession num limit                  |
 | 24700201                |  Service fatal error e.g. service died                  |
@@ -956,7 +1048,7 @@ try {
 
 getOfflineMediaKeyStatus(mediaKeyId: Uint8Array): OfflineMediaKeyStatus
 
-Obtains the status of offline media keys.
+Obtain the status of the offline media keys.
 
 **System capability**: SystemCapability.Multimedia.Drm.Core
 
@@ -978,7 +1070,7 @@ For details about the error codes, see [DRM Error Codes](errorcode-drm.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
-| 401                |  The parameter check failed               |
+| 401                |  The parameter check failed. Possibly because: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.            |
 | 24700101                |  All unknown errors                  |
 | 24700201                |  Service fatal error e.g. service died                  |
 
@@ -1019,7 +1111,7 @@ For details about the error codes, see [DRM Error Codes](errorcode-drm.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
-| 401                |  The parameter check failed               |
+| 401                |  The parameter check failed.Possibly because: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.           |
 | 24700101                |  All unknown errors                  |
 | 24700201                |  Service fatal error e.g. service died                  |
 
@@ -1105,7 +1197,7 @@ For details about the error codes, see [DRM Error Codes](errorcode-drm.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
-| 401                |  The parameter check failed               |
+| 401                | The parameter check failed. Possibly because: 1.Mandatory parameters are left unspecified or too many parameters. 2.Incorrect parameter types. 3.Parameter verification failed.              |
 | 24700101                |  All unknown errors                  |
 | 24700201                |  Service fatal error e.g. service died                  |
 
@@ -1117,12 +1209,12 @@ import { BusinessError } from '@ohos.base';
 
 let mediaKeysystem: drm.MediaKeySystem = drm.createMediaKeySystem("com.clearplay.drm");
 let mediaKeySession: drm.MediaKeySession = mediaKeysystem.createMediaKeySession();
-let OptionsData = [
-    {name : "optionalsDataNameA", value : "optionalsDataValueA"},
-    {name : "optionalsDataNameB", value : "optionalsDataValueB"},
+let optionsData: drm.OptionsData[]  = [
+    {name : "optionsDataNameA", value : "optionsDataValueA"},
+    {name : "optionsDataNameB", value : "optionsDataValueB"}
 ];
 let uint8pssh = new Uint8Array([0x00, 0x00, 0x00, 0x00]);
-mediaKeySession.generateMediaKeyRequest("video/mp4", uint8pssh, 0, OptionsData).then((mediaKeyRequest: drm.MediaKeyRequest) =>{
+mediaKeySession.generateMediaKeyRequest("video/mp4", uint8pssh, 0, optionsData).then((mediaKeyRequest: drm.MediaKeyRequest) =>{
   console.log('generateMediaKeyRequest' + mediaKeyRequest);
 }).catch((err: BusinessError) => {
   console.error(`generateMediaKeyRequest: ERROR: ${err}`);
@@ -1155,7 +1247,7 @@ For details about the error codes, see [DRM Error Codes](errorcode-drm.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
-| 401                |  The parameter check failed               |
+| 401                |  The parameter check failed. Possibly because: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.            |
 | 24700101                |  All unknown errors                  |
 | 24700201                |  Service fatal error e.g. service died                  |
 
@@ -1275,7 +1367,7 @@ For details about the error codes, see [DRM Error Codes](errorcode-drm.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
-| 401                |  The parameter check failed               |
+| 401                |  The parameter check failed. Possibly because: 1.Mandatory parameters are left unspecified or too many parameters. 2.Incorrect parameter types. 3.Parameter verification failed.         |
 | 24700101                |  All unknown errors                  |
 | 24700201                |  Service fatal error e.g. service died                  |
 
@@ -1322,7 +1414,7 @@ For details about the error codes, see [DRM Error Codes](errorcode-drm.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
-| 401                |  The parameter check failed               |
+| 401                |  The parameter check failed. Possibly because: 1.Mandatory parameters are left unspecified or too many parameters. 2.Incorrect parameter types. 3.Parameter verification failed.            |
 | 24700101                |  All unknown errors                  |
 | 24700201                |  Service fatal error e.g. service died                  |
 
@@ -1370,7 +1462,7 @@ For details about the error codes, see [DRM Error Codes](errorcode-drm.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
-| 401                |  The parameter check failed               |
+| 401                |  The parameter check failed. Possibly because: 1.Mandatory parameters are left unspecified or too many parameters. 2.Incorrect parameter types. 3.Parameter verification failed.              |
 | 24700101                |  All unknown errors                  |
 | 24700201                |  Service fatal error e.g. service died                  |
 
@@ -1462,7 +1554,7 @@ For details about the error codes, see [DRM Error Codes](errorcode-drm.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
-| 401                |  The parameter check failed               |
+| 401                |  The parameter check failed. Possibly because: 1.Mandatory parameters are left unspecified or too many parameters. 2.Incorrect parameter types. 3.Parameter verification failed.      |
 | 24700101                |  All unknown errors                  |
 | 24700201                |  Service fatal error e.g. service died                  |
 
@@ -1504,7 +1596,7 @@ For details about the error codes, see [DRM Error Codes](errorcode-drm.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
-| 401                |  The parameter check failed               |
+| 401                |  The parameter check failed. Possibly because: 1.Mandatory parameters are left unspecified or too many parameters. 2.Incorrect parameter types. 3.Parameter verification failed.         |
 | 24700101                |  All unknown errors                  |
 
 **Example**
@@ -1540,7 +1632,7 @@ For details about the error codes, see [DRM Error Codes](errorcode-drm.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
-| 401                |  The parameter check failed               |
+| 401                |  The parameter check failed. Possibly because: 1.Mandatory parameters are left unspecified or too many parameters. 2.Incorrect parameter types. 3.Parameter verification failed.             |
 | 24700101                |  All unknown errors                  |
 
 **Example**
@@ -1574,7 +1666,7 @@ For details about the error codes, see [DRM Error Codes](errorcode-drm.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
-| 401                |  The parameter check failed               |
+| 401                |  The parameter check failed. Possibly because: 1.Mandatory parameters are left unspecified or too many parameters. 2.Incorrect parameter types. 3.Parameter verification failed.          |
 | 24700101                |  All unknown errors                  |
 
 **Example**
@@ -1610,7 +1702,7 @@ For details about the error codes, see [DRM Error Codes](errorcode-drm.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
-| 401                |  The parameter check failed               |
+| 401                |  The parameter check failed. Possibly because: 1.Mandatory parameters are left unspecified or too many parameters. 2.Incorrect parameter types. 3.Parameter verification failed.            |
 | 24700101                |  All unknown errors                  |
 
 **Example**
@@ -1644,7 +1736,7 @@ For details about the error codes, see [DRM Error Codes](errorcode-drm.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
-| 401                |  The parameter check failed               |
+| 401                |  The parameter check failed. Possibly because: 1.Mandatory parameters are left unspecified or too many parameters. 2.Incorrect parameter types. 3.Parameter verification failed.              |
 | 24700101                |  All unknown errors                  |
 
 **Example**
@@ -1680,7 +1772,7 @@ For details about the error codes, see [DRM Error Codes](errorcode-drm.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
-| 401                |  The parameter check failed               |
+| 401                |  The parameter check failed. Possibly because: 1.Mandatory parameters are left unspecified or too many parameters. 2.Incorrect parameter types. 3.Parameter verification failed.      |
 | 24700101                |  All unknown errors                  |
 
 **Example**
@@ -1714,7 +1806,7 @@ For details about the error codes, see [DRM Error Codes](errorcode-drm.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
-| 401                |  The parameter check failed               |
+| 401                |  The parameter check failed. Possibly because: 1.Mandatory parameters are left unspecified or too many parameters. 2.Incorrect parameter types. 3.Parameter verification failed.        |
 | 24700101                |  All unknown errors                  |
 
 **Example**
@@ -1750,7 +1842,7 @@ For details about the error codes, see [DRM Error Codes](errorcode-drm.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
-| 401                |  The parameter check failed               |
+| 401                |  The parameter check failed. Possibly because: 1.Mandatory parameters are left unspecified or too many parameters. 2.Incorrect parameter types. 3.Parameter verification failed.       |
 | 24700101                |  All unknown errors                  |
 
 **Example**
@@ -1784,7 +1876,7 @@ For details about the error codes, see [DRM Error Codes](errorcode-drm.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
-| 401                |  The parameter check failed               |
+| 401                |  The parameter check failed. Possibly because: 1.Mandatory parameters are left unspecified or too many parameters. 2.Incorrect parameter types. 3.Parameter verification failed.             |
 | 24700101                |  All unknown errors                  |
 
 **Example**
@@ -1793,8 +1885,10 @@ For details about the error codes, see [DRM Error Codes](errorcode-drm.md).
 import drm from '@ohos.multimedia.drm';
 
 function registerkeysChange(mediaKeysession: drm.MediaKeySession): void {
-    mediaKeysession.on('keysChange', (eventInfo: drm.EventInfo) => {
-        console.log('keysChange' + 'extra:' + eventInfo.extraInfo + ' data:' + eventInfo.info);
+    mediaKeysession.on('keysChange', (keyInfo: drm.KeysInfo[], newKeyAvailable: boolean) => {
+        for (let i = 0; i < keyInfo.length; i++) {
+            console.log('keysChange' + 'keyId:' + keyInfo[i].keyId + ' data:' + keyInfo[i].value);
+        }
     });
 }
 ```
@@ -1820,7 +1914,7 @@ For details about the error codes, see [DRM Error Codes](errorcode-drm.md).
 
 | ID        | Error Message       |
 | --------------- | --------------- |
-| 401                |  The parameter check failed               |
+| 401                |  The parameter check failed. Possibly because: 1.Mandatory parameters are left unspecified or too many parameters. 2.Incorrect parameter types. 3.Parameter verification failed.            |
 | 24700101                |  All unknown errors                  |
 
 **Example**

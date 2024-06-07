@@ -18,7 +18,7 @@ Vector和[ArrayList](js-apis-arraylist.md)相似，都是基于数组实现，�
 ## 导入模块
 
 ```ts
-import Vector from '@ohos.util.Vector';
+import { Vector } from '@kit.ArkTS';
 ```
 
 

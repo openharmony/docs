@@ -9,13 +9,13 @@
 1. 导入应用帐号模块。
 
    ```ts
-   import account_appAccount from '@ohos.account.appAccount';
+   import { appAccount, BusinessError } from '@kit.BasicServicesKit';
    ```
 
 2. 获取应用帐号的实例对象。
 
    ```ts
-   const appAccountManager = account_appAccount.createAppAccountManager();
+   const appAccountManager = appAccount.createAppAccountManager();
    ```
 
 ## 创建应用帐号
@@ -28,7 +28,7 @@
 
    ```ts
    let name: string = "ZhangSan";
-   let options: account_appAccount.CreateAccountOptions = {
+   let options: appAccount.CreateAccountOptions = {
      customData: {
        age: '10'
      }
@@ -41,7 +41,7 @@
    try {
      await appAccountManager.createAccount(name, options);
      console.log('createAccount successfully');
-   } catch (err: BusinessError) {
+   } catch (err) {
      console.log('createAccount failed, error: ' + JSON.stringify(err));
    }
    ```
@@ -59,7 +59,7 @@
 2. 调用[getAllAccounts](../../reference/apis-basic-services-kit/js-apis-appAccount.md#getallaccounts9)接口查询帐号列表。
 
    ```ts
-   appAccountManager.getAllAccounts().then((data: account_appAccount.AppAccountInfo[]) => {
+   appAccountManager.getAllAccounts().then((data: appAccount.AppAccountInfo[]) => {
        console.debug('getAllAccounts successfully, data: ' + JSON.stringify(data));
    }).catch((err: BusinessError) => {
        console.debug('getAllAccounts failed, error: ' + JSON.stringify(err));

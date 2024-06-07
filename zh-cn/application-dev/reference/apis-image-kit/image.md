@@ -2667,7 +2667,7 @@ int32_t OH_PixelMap_CreatePixelMap (napi_env env, OhosPixelMapCreateOps info, vo
 
 **描述**
 
-创建**PixelMap**对象。当前只支持输入流为BGRA格式的流。
+创建**PixelMap**对象。当前只支持输入流为BGRA格式的流。该接口传入的buf不支持stride。
 
 **起始版本：** 10
 
@@ -3363,7 +3363,7 @@ int32_t OH_PixelMap_SetDensity (const NativePixelMap * native, int32_t density )
 
 **参见：**
 
-[GetDensity](oh_pixelmap_getdensity)
+[GetDensity](#oh_pixelmap_getdensity)
 
 
 ### OH_PixelMap_SetOpacity()

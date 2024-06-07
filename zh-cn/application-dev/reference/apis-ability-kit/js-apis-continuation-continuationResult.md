@@ -9,6 +9,8 @@
 
 ContinuationManager的[on](js-apis-continuation-continuationManager.md#continuationmanagerondeviceselected9)接口返回此对象表示流转管理入口返回的设备信息。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.DistributedAbilityManager
 
 | 名称 | 类型 | 只读 | 必填 | 说明 |

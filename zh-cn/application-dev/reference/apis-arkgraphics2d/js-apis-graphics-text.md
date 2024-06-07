@@ -19,7 +19,7 @@
 ## 导入模块
 
 ```ts
-import drawing from '@ohos.graphics.text'
+import { drawing } from '@kit.ArkGraphics2D'
 ```
 
 ## TextAlign
@@ -130,6 +130,24 @@ import drawing from '@ohos.graphics.text'
 | W800  | 7 | 800字重。|
 | W900  | 8 | 900字重。|
 
+## FontWidth
+
+字体宽度的枚举。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+| 名称             | 值 | 说明       |
+| ---------------- | - | ---------- |
+| ULTRA_CONDENSED  | 1 | 超窄字宽。  |
+| EXTRA_CONDENSED  | 2 | 特窄字宽。  |
+| CONDENSED        | 3 | 窄的字宽。  |
+| SEMI_CONDENSED   | 4 | 半窄字宽。  |
+| NORMAL           | 5 | 常规字宽。  |
+| SEMI_EXPANDED    | 6 | 半宽字宽。  |
+| EXPANDED         | 7 | 宽的字宽。  |
+| EXTRA_EXPANDED   | 8 | 特宽字宽。  |
+| ULTRA_EXPANDED   | 9 | 超宽的字宽。|
+
 ## FontStyle
 
 字体样式枚举。
@@ -141,6 +159,19 @@ import drawing from '@ohos.graphics.text'
 | NORMAL  | 0 | 常规样式。                                            |
 | ITALIC  | 1 | 斜体，如果当前字体没有可用的斜体版本，会选用倾斜体替代。  |
 | OBLIQUE | 2 | 倾斜体，如果当前字体没有可用的倾斜体版本，会选用斜体替代。|
+
+## TextHeightBehavior
+
+文本高度修饰符模式枚举。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+| 名称                  |  值 | 说明                                                  |
+| --------------------- | --- | ---------------------------------------------------- |
+| ALL                   | 0x0 | 高度修饰符设置为段落中第一行和最后一行都上升。            |
+| DISABLE_FIRST_ASCENT  | 0x1 | 高度修饰符设置为禁止段落中第一行上升。                   |
+| DISABLE_LAST_ASCENT   | 0x2 | 高度修饰符设置为禁止段落中最后一行上升。                 |
+| DISABLE_ALL           | 0x3 | 高度修饰符设置为段落中第一行和最后一行都不上升。          |
 
 ## TextBaseline
 
@@ -165,32 +196,132 @@ import drawing from '@ohos.graphics.text'
 | MIDDLE | 1 | 中间省略号。|
 | END    | 2 | 末尾省略号。|
 
+## TextShadow
+
+字体阴影。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+| 名称          | 类型                                                 | 只读 | 可选 | 说明                               |
+| ------------- | ---------------------------------------------------- | --  | ---  | --------------------------------- |
+| color         | [common2D.Color](js-apis-graphics-common2D.md#color) | 是  |  是   | 字体阴影的颜色，默认为黑色Color(255, 0, 0, 0)。        |
+| point         | [common2D.Point](js-apis-graphics-common2D.md#point) | 是  |  是   | 字体阴影基于当前文本的偏移位置。    |
+| blurRadius    | number                                               | 是  |  是   | 模糊半径，浮点数，默认为0.0。       |
+
+## RectStyle
+
+矩形框样式。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+| 名称               | 类型                                                 | 只读 | 可选 | 说明                                      |
+| -----------------  | ---------------------------------------------------- | --  | ---  | ---------------------------------------- |
+| color              | [common2D.Color](js-apis-graphics-common2D.md#color) | 是  |  否   | 矩形框的颜色。                 |
+| leftTopRadius      | number                                               | 是  |  否   | 矩形框的左上半径。       |
+| rightTopRadius     | number                                               | 是  |  否   | 矩形框的右上半径。       |
+| rightBottomRadius  | number                                               | 是  |  否   | 矩形框的右下半径。       |
+| leftBottomRadius   | number                                               | 是  |  否   | 矩形框的左下半径。       |
+
+## FontFeature
+
+文本字体特征。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+| 名称      | 类型                                                 | 只读 | 可选 | 说明                                       |
+| --------- | ---------------------------------------------------- | --  | ---  | ----------------------------------------- |
+| name      | string                                               | 是  |  否   | 字体特征键值对中关键字所标识的字符串。       |
+| value     | number                                               | 是  |  否   | 字体特征键值对的值。                        |
+
 ## TextStyle
 
 文本样式。
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
-| 名称                      | 类型                                     | 只读 | 必填 | 说明                                                   |
+| 名称                      | 类型                                     | 只读 | 可选 | 说明                                                   |
 | ------------- | ---------------------------------------------------- | -- | -- | --------------------------------------------------------- |
-| decoration    | [Decoration](#decoration)                            | 是 | 否 | 装饰线置，默认初始的Decoration。             |
-| color         | [common2D.Color](js-apis-graphics-common2D.md#color) | 是 | 否 | 字体色，默认为白色。                         |
-| fontWeight    | [FontWeight](#fontweight)                            | 是 | 否 | 字重，默认为W400。                          |
-| baseline      | [TextBaseline](#textbaseline)                        | 是 | 否 | 文本基线型，默认为ALPHABETIC。               |
-| fontFamilies  | Array\<string>                                       | 是 | 否 | 字体类型，默认为系统字体。                    |
-| fontSize      | number                                               | 是 | 否 | 字体大小，浮点数，默认为14.0，单位为逻辑像素。  |
-| letterSpacing | number                                               | 是 | 否 | 字符间距，整数拉开字符距离，若是负数则拉近字符距离，浮点数，默认为0.0，单位为逻辑像素。|
-| wordSpacing   | number                                               | 是 | 否 | 单词间距，浮点数，默认为0.0，单位为逻辑像素。                 |
-| heightScale   | number                                               | 是 | 否 | 行高缩放倍数，浮点数，默认为1.0。              |
-| halfLeading   | boolean                                              | 是 | 否 | true表示将行间距平分至行的顶部与底部，false则不平分，默认为false。|
-| heightOnly    | boolean                                              | 是 | 否 | true表示根据字体大小计算文本框的高度，false表示根据行高和行距，默认为false。|
-| ellipsis      | string                                               | 是 | 否 | 省略号样式，表示省略号生效后使用该字段值替换省略号部分。       |
-| ellipsisMode  | [EllipsisMode](#ellipsismode)                        | 是 | 否 | 省略号类型，默认为END。                        |
-| locale        | string                                               | 是 | 否 | 语言类型，如'en'，具体请参照ISO 639-1规范，默认为空字符串。|
+| decoration    | [Decoration](#decoration)                            | 是 | 是 | 装饰线置，默认初始的Decoration。             |
+| color         | [common2D.Color](js-apis-graphics-common2D.md#color) | 是 | 是 | 字体色，默认为白色。                         |
+| fontWeight    | [FontWeight](#fontweight)                            | 是 | 是 | 字重，默认为W400。                          |
+| fontStyle     | [FontStyle](#fontstyle)                              | 是 | 是 | 字体样式，默认为常规样式。                          |
+| baseline      | [TextBaseline](#textbaseline)                        | 是 | 是 | 文本基线型，默认为ALPHABETIC。               |
+| fontFamilies  | Array\<string>                                       | 是 | 是 | 字体类型，默认为系统字体。                    |
+| fontSize      | number                                               | 是 | 是 | 字体大小，浮点数，默认为14.0，单位为逻辑像素。  |
+| letterSpacing | number                                               | 是 | 是 | 字符间距，正数拉开字符距离，若是负数则拉近字符距离，浮点数，默认为0.0，单位为逻辑像素。|
+| wordSpacing   | number                                               | 是 | 是 | 单词间距，浮点数，默认为0.0，单位为逻辑像素。                 |
+| heightScale   | number                                               | 是 | 是 | 行高缩放倍数，浮点数，默认为1.0。              |
+| halfLeading   | boolean                                              | 是 | 是 | true表示将行间距平分至行的顶部与底部，false则不平分，默认为false。|
+| heightOnly    | boolean                                              | 是 | 是 | true表示根据字体大小计算文本框的高度，false表示根据行高和行距，默认为false。|
+| ellipsis      | string                                               | 是 | 是 | 省略号样式，表示省略号生效后使用该字段值替换省略号部分。       |
+| ellipsisMode  | [EllipsisMode](#ellipsismode)                        | 是 | 是 | 省略号类型，默认为END。                        |
+| locale        | string                                               | 是 | 是 | 语言类型，如'en'，具体请参照ISO 639-1规范，默认为空字符串。|
+| baselineShift | number                                               | 是 | 是 | 文本下划线的偏移距离，浮点数，默认为0.0。                 |
+| fontFeatures  | Array\<[FontFeature](#fontfeature)>                  | 是 | 是 | 文本字体特征数组。|
+| textShadows   | Array\<[TextShadow](#textshadow)>                    | 是 | 是 | 文本字体阴影数组。|
+| backgroundRect| [RectStyle](#rectstyle)                              | 是 | 是 | 文本矩形框样式。|
+
+## StrutStyle
+
+支柱样式，用于控制绘制文本时行之间的间距、基线对齐方式以及其他与行高相关的属性。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+| 名称                      | 类型                                       | 只读 | 可选 | 说明                                                                 |
+| -------------  | ---------------------------------------------------- | ---- | -- | --------------------------------------------------------------------- |
+| fontFamilies   | Array\<string>                                       | 是   | 是 | 字体类型，默认为系统字体。                                               |
+| fontStyle      | [FontStyle](#fontstyle)                              | 是   | 是 | 字体样式，默认为常规样式。                                               |
+| fontWidth      | [FontWidth](#fontwidth)                              | 是   | 是 | 字体宽度，默认为NORMAL。                                                |
+| fontWeight     | [FontWeight](#fontweight)                            | 是   | 是 | 字重，默认为W400。                                                      |
+| fontSize       | number                                               | 是   | 是 | 字体大小，浮点数，默认为14.0，单位为逻辑像素。                             |
+| height         | number                                               | 是   | 是 | 行高缩放倍数，浮点数，默认为1.0。                                         |
+| leading        | number                                               | 是   | 是 | 以自定义行距应用于支柱的行距，浮点数，默认为-1.0。                          |
+| forceHeight    | boolean                                              | 是   | 是 | 是否所有行都将使用支柱的高度，true表示使用，false表示不使用，默认为false。     |
+| enabled        | boolean                                              | 是   | 是 | 是否启用支柱样式，true表示使用，false表示不使用，默认为false。              |
+| heightOverride | boolean                                              | 是   | 是 | 是否覆盖高度，true表示覆盖，false表示不覆盖，默认为false。                  |
+| halfLeading    | boolean                                              | 是   | 是 | true表示将行间距平分至行的顶部与底部，false则不平分，默认为false。           |
 
 ## FontCollection
 
 字体管理器。
+
+### getGlobalInstance
+
+static getGlobalInstance(): FontCollection
+
+获取应用全局FontCollection的实例。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**返回值：**
+
+| 类型   | 说明                |
+| ------ | ------------------ |
+| [FontCollection](#fontcollection) | FontCollection对象。|
+
+**示例：**
+
+```ts
+import { text } from "@kit.ArkGraphics2D"
+
+function Text() {
+  let fontCollection = text.FontCollection.getGlobalInstance();
+  fontCollection.loadFontSync('test', 'File://');
+}
+
+@Entry
+@Component
+struct Index {
+  fun: Function = Text;
+  build() {
+    Column() {
+      Button().onClick(() => {
+        this.fun();
+      })
+    }
+  }
+}
+```
 
 ### loadFontSync
 
@@ -210,7 +341,7 @@ loadFontSync(name: string, path: string | Resource): void
 **示例：**
 
 ```ts
-import text from "@ohos.graphics.text"
+import { text } from "@kit.ArkGraphics2D"
 
 function Text() {
   let fontCollection = new text.FontCollection;
@@ -237,14 +368,17 @@ struct Index {
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
-| 名称          | 类型               | 只读 | 必填 | 说明                                  |
-| ------------- | ----------------- | ---- | ---- | ------------------------------------ |
-| textStyle     | [TextStyle](#textstyle)         | 是   | 否   | 作用于整个段落的文本样式，默认为初始的TextStyle。|
-| textDirection | [TextDirection](#textdirection) | 是   | 否   | 文本方向，默认为LTR。               |
-| align         | [TextAlign](#textalign)         | 是   | 否   | 文本对齐方式，默认为START。           |
-| wordBreak     | [WordBreak](#wordbreak)         | 是   | 否   | 断词类型，默认为BREAK_WORD。               |
-| maxLines      | number                          | 是   | 否   | 最大行数限制，整数，默认为1e9。           |
-| breakStrategy | [BreakStrategy](#breakstrategy) | 是   | 否   | 断行策略，默认为GREEDY。               |
+| 名称                 | 类型                                        | 只读 | 可选 | 说明                                          |
+| -------------------- | ------------------------------------------ | ---- | ---- | -------------------------------------------- |
+| textStyle            | [TextStyle](#textstyle)                    | 是   | 是   | 作用于整个段落的文本样式，默认为初始的TextStyle。|
+| textDirection        | [TextDirection](#textdirection)            | 是   | 是   | 文本方向，默认为LTR。                          |
+| align                | [TextAlign](#textalign)                    | 是   | 是   | 文本对齐方式，默认为START。                     |
+| wordBreak            | [WordBreak](#wordbreak)                    | 是   | 是   | 断词类型，默认为BREAK_WORD。                    |
+| maxLines             | number                                     | 是   | 是   | 最大行数限制，整数，默认为1e9。                  |
+| breakStrategy        | [BreakStrategy](#breakstrategy)            | 是   | 是   | 断行策略，默认为GREEDY。                        |
+| strutStyle           | [StrutStyle](#strutstyle)                  | 是   | 是   | 支柱样式，默认为初始的StrutStyle。               |
+| textHeightBehavior   | [TextHeightBehavior](#textheightbehavior)  | 是   | 是   | 文本高度修饰符模式，默认为ALL。                              |
+
 
 ## PlaceholderAlignment
 
@@ -317,7 +451,7 @@ layoutSync(width: number): void
 **示例：**
 
 ```ts
-import text from "@ohos.graphics.text";
+import { text } from "@kit.ArkGraphics2D";
 
 function Text() {
   paragraph.layoutSync(100);
@@ -356,10 +490,10 @@ paint(canvas: drawing.Canvas, x: number, y: number): void
 **示例：**
 
 ```ts
-import drawing from "@ohos.graphics.drawing"
-import text from "@ohos.graphics.text"
-import common2D from "@ohos.graphics.common2D"
-import image from '@ohos.multimedia.image';
+import { drawing } from '@kit.ArkGraphics2D'
+import { text } from "@kit.ArkGraphics2D"
+import { common2D } from "@kit.ArkGraphics2D"
+import { image } from '@kit.ImageKit';
 
 function Text() {
   const color: ArrayBuffer = new ArrayBuffer(160000);
@@ -400,7 +534,7 @@ getMaxWidth(): number
 **示例：**
 
 ```ts
-import text from "@ohos.graphics.text";
+import { text } from "@kit.ArkGraphics2D"
 
 function Text() {
   let maxWidth = paragraph.getMaxWidth();
@@ -437,7 +571,7 @@ getHeight(): number
 **示例：**
 
 ```ts
-import text from "@ohos.graphics.text";
+import { text } from "@kit.ArkGraphics2D"
 
 function Text() {
   let height = paragraph.getHeight();
@@ -474,7 +608,7 @@ getLongestLine(): number
 **示例：**
 
 ```ts
-import text from "@ohos.graphics.text";
+import { text } from "@kit.ArkGraphics2D"
 
 function Text() {
   let longestLine = paragraph.getLongestLine();
@@ -511,7 +645,7 @@ getMinIntrinsicWidth(): number
 **示例：**
 
 ```ts
-import text from "@ohos.graphics.text";
+import { text } from "@kit.ArkGraphics2D"
 
 function Text() {
   let minIntrinsicWidth = paragraph.getMinIntrinsicWidth();
@@ -548,7 +682,7 @@ getMaxIntrinsicWidth(): number
 **示例：**
 
 ```ts
-import text from "@ohos.graphics.text";
+import { text } from "@kit.ArkGraphics2D";
 
 function Text() {
   let maxIntrinsicWidth = paragraph.getMaxIntrinsicWidth();
@@ -585,7 +719,7 @@ getAlphabeticBaseline(): number
 **示例：**
 
 ```ts
-import text from "@ohos.graphics.text";
+import { text } from "@kit.ArkGraphics2D";
 
 function Text() {
   let alphabeticBaseline = paragraph.getAlphabeticBaseline();
@@ -622,7 +756,7 @@ getIdeographicBaseline(): number
 **示例：**
 
 ```ts
-import text from "@ohos.graphics.text";
+import { text } from "@kit.ArkGraphics2D";
 
 function Text() {
   let ideographicBaseline = paragraph.getIdeographicBaseline();
@@ -667,7 +801,7 @@ getRectsForRange(range: Range, widthStyle: RectWidthStyle, heightStyle: RectHeig
 **示例：**
 
 ```ts
-import text from "@ohos.graphics.text";
+import { text } from "@kit.ArkGraphics2D";
 
 function Text() {
   let range: text.Range = { start: 0, end: 1};
@@ -705,7 +839,7 @@ getRectsForPlaceholders(): Array\<TextBox>
 **示例：**
 
 ```ts
-import text from "@ohos.graphics.text";
+import { text } from "@kit.ArkGraphics2D";
 
 function Text() {
   let placeholderRects = paragraph.getRectsForPlaceholders();
@@ -749,7 +883,7 @@ getGlyphPositionAtCoordinate(x: number, y: number): PositionWithAffinity
 **示例：**
 
 ```ts
-import text from "@ohos.graphics.text";
+import { text } from "@kit.ArkGraphics2D";
 
 function Text() {
   let positionWithAffinity = paragraph.getGlyphPositionAtCoordinate(0, 0);
@@ -792,7 +926,7 @@ getWordBoundary(offset: number): Range
 **示例：**
 
 ```ts
-import text from "@ohos.graphics.text";
+import { text } from "@kit.ArkGraphics2D";
 
 function Text() {
   let wordRange = paragraph.getWordBoundary(0);
@@ -829,7 +963,7 @@ getLineCount(): number
 **示例：**
 
 ```ts
-import text from "@ohos.graphics.text";
+import { text } from "@kit.ArkGraphics2D";
 
 function Text() {
   let lineCount = paragraph.getLineCount();
@@ -872,7 +1006,7 @@ getLineHeight(line: number): number
 **示例：**
 
 ```ts
-import text from "@ohos.graphics.text";
+import { text } from "@kit.ArkGraphics2D";
 
 function Text() {
   let lineHeight = paragraph.getLineHeight(0);
@@ -915,7 +1049,7 @@ getLineWidth(line: number): number
 **示例：**
 
 ```ts
-import text from "@ohos.graphics.text";
+import { text } from "@kit.ArkGraphics2D";
 
 function Text() {
   let lineWidth = paragraph.getLineWidth(0);
@@ -952,7 +1086,7 @@ didExceedMaxLines(): boolean
 **示例：**
 
 ```ts
-import text from "@ohos.graphics.text";
+import { text } from "@kit.ArkGraphics2D";
 
 function Text() {
   let didExceed = paragraph.didExceedMaxLines();
@@ -989,7 +1123,7 @@ getTextLines(): Array\<TextLine>
 **示例：**
 
 ```ts
-import text from "@ohos.graphics.text";
+import { text } from "@kit.ArkGraphics2D";
 
 function Text() {
   let lines = paragraph.getTextLines();
@@ -1008,6 +1142,195 @@ struct Index {
   }
 }
 ```
+
+### getActualTextRange
+
+getActualTextRange(lineNumber: number, includeSpaces: boolean): Range
+
+获取指定行号上的实际可见文本范围，这不包括由于文本溢出而显示的省略号。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明      |
+| ----- | ------ | ---- | --------- |
+| lineNumber  | number | 是   | 要获取文本范围的行号，行号从0开始。|
+| includeSpaces  | boolean | 是   | 指示是否应包含空白字符。true表示包含空白字符，false表示不包含空白字符。|
+
+**返回值：**
+
+| 类型             | 说明                                              |
+| ---------------- | ------------------------------------------------ |
+| [Range](#range)  | 表明了对应行数的实际文本范围。                               |
+
+**示例：**
+
+```ts
+import { text } from "@kit.ArkGraphics2D";
+
+function Text() {
+  let myTextStyle: text.TextStyle = {
+    color: { alpha: 255, red: 255, green: 0, blue: 0 },
+    fontSize: 33,
+  };
+  let myParagraphStyle: text.ParagraphStyle = {
+    textStyle: myTextStyle,
+    align: 3,
+  };
+  let fontCollection = new text.FontCollection();
+  let ParagraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
+  let paragraph = ParagraphGraphBuilder.build();
+  let rang = paragraph.getActualTextRange(0, true);
+}
+
+@Entry
+@Component
+struct Index {
+  @State fun: Function = Text;
+  build() {
+    Column() {
+      Button().onClick(() => {
+        this.fun();
+      })
+    }
+  }
+}
+```
+
+
+### getLineMetrics
+
+getLineMetrics(): Array\<LineMetrics>
+
+获取文本行的行度量数组。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**返回值：**
+
+| 类型                          | 说明          |
+| ----------------------------- | ------------- |
+| Array\<[LineMetrics](#linemetrics)> | 文本行的行度量数组。|
+
+**示例：**
+
+```ts
+import { text } from "@kit.ArkGraphics2D";
+
+function Text() {
+  let myTextStyle: text.TextStyle = {
+    color: { alpha: 255, red: 255, green: 0, blue: 0 },
+    fontSize: 33,
+  };
+  let myParagraphStyle: text.ParagraphStyle = {
+    textStyle: myTextStyle,
+    align: 3,
+  };
+  let fontCollection = new text.FontCollection();
+  let ParagraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
+  let paragraph = ParagraphGraphBuilder.build();
+  let arrLineMetrc =  paragraph.getLineMetrics();
+}
+
+@Entry
+@Component
+struct Index {
+  @State fun: Function = Text;
+  build() {
+    Column() {
+      Button().onClick(() => {
+        this.fun();
+      })
+    }
+  }
+}
+```
+
+### getLineMetrics
+
+getLineMetrics(lineNumber: number): LineMetrics | undefined
+
+获取特定行号的行度量信息。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明      |
+| ----- | ------ | ---- | --------- |
+| lineNumber  | number | 是   | 要查询度量信息的行的编号, 行号从0开始。|
+
+**返回值：**
+
+| 类型             | 说明                                              |
+| ---------------- | ------------------------------------------------ |
+| [LineMetrics](#linemetrics) | 如果指定的行号有效且度量信息存在，则返回一个包含该行度量数据的LineMetrics对象；如果行号无效或无法获取度量信息，则返回undefined。                  |
+
+**示例：**
+
+```ts
+import { text } from "@kit.ArkGraphics2D";
+
+function Text() {
+  let myTextStyle: text.TextStyle = {
+    color: { alpha: 255, red: 255, green: 0, blue: 0 },
+    fontSize: 33,
+  };
+  let myParagraphStyle: text.ParagraphStyle = {
+    textStyle: myTextStyle,
+    align: 3,
+  };
+  let fontCollection = new text.FontCollection();
+  let ParagraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
+  let paragraph = ParagraphGraphBuilder.build();
+  let lineMetrics =  paragraph.getLineMetrics(0);
+}
+
+@Entry
+@Component
+struct Index {
+  @State fun: Function = Text;
+  build() {
+    Column() {
+      Button().onClick(() => {
+        this.fun();
+      })
+    }
+  }
+}
+```
+
+## RunMetrics
+
+描述文本行中连续文本块的布局信息和度量数据。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+| 名称      | 类型                                                | 只读 | 可选 | 说明        |
+| --------- | -------------------------------------------------- | ---- | ---- | ----------- |
+| textStyle | [TextStyle](#textstyle)                             | 是   | 否   | 字体的样式信息。|
+| fontMetrics | [FontMetrics](js-apis-graphics-drawing.md#fontmetrics)| 是   | 否   | 字体度量信息。    |
+
+## LineMetrics
+
+用于描述文本布局中单行文字的度量信息。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+| 名称      | 类型                                                | 只读 | 可选 | 说明        |
+| --------- | -------------------------------------------------- | ---- | ---- | ----------- |
+| startIndex | number                                            | 是   | 否   | 文本缓冲区中该行开始的索引位置。|
+| endIndex   | number                                            | 是   | 否   | 文本缓冲区中该行结束的索引位置。|
+| ascent     | number                                            | 是   | 否   | 文字上升高度，即从基线到字符顶部的距离。|
+| descent    | number                                            | 是   | 否   | 文字下降高度，即从基线到字符底部的距离。|
+| height     | number                                            | 是   | 否   | 当前行的高度，计算方式为 `Math.round(ascent + descent)`|
+| width      | number                                            | 是   | 否   | 行的宽度。                      |
+| left       | number                        | 是   | 否   | 行的左边缘位置。右边缘可通过 `left+width` 计算得出。|
+| baseline   | number                        | 是   | 否   | 该行基线相对于段落顶部的 Y 坐标位置。|
+| lineNumber   | number                        | 是   | 否   | 行号，从0开始计数。|
+| topHeight   | number                        | 是   | 否   | 从顶部到当前行的高度。|
+| runMetrics   | Map<number, [RunMetrics](#runmetrics)>                        | 是   | 否   | 文本索引范围与关联的字体度量信息之间的映射。|
 
 ## TextBox
 
@@ -1051,7 +1374,7 @@ struct Index {
 | 名称                      | 值 | 说明                                           |
 | ------------------------- | - | ---------------------------------------------- |
 | TIGHT                     | 0 | 与字形紧贴。                                    |
-| MAX                       | 1 | 扩展宽度，以匹配所有行上最宽矩形的位置。           |
+| MAX                       | 1 | 扩展高度，以匹配所有行上最高矩形的位置。           |
 | INCLUDE_LINE_SPACE_MIDDLE | 2 | 每个矩形的顶部和底部将覆盖行上方和行下方的一半空间。|
 | INCLUDE_LINE_SPACE_TOP    | 3 | 行间距将被添加到矩形的顶部。                      |
 | INCLUDE_LINE_SPACE_BOTTOM | 4 | 行间距将被添加到矩形的底部。                      |
@@ -1090,7 +1413,7 @@ ParagraphBuilder对象的构造函数。
 **示例：**
 
 ```ts
-import text from "@ohos.graphics.text"
+import { text } from "@kit.ArkGraphics2D";
 
 function Text() {
   let myTextStyle: text.TextStyle = {
@@ -1135,15 +1458,15 @@ struct Index {
 
 | 参数名    | 类型       | 必填 | 说明                                                                                                   |
 | --------- | --------- | ---- | ------------------------------------------------------------------------------------------------------ |
-| textStyle | [TextStyle](textstyle) | 是   | 包含了对文本的各种视觉属性的定义，如字体、字号、颜色、字重、字间距、行距、装饰（如下划线、删除线）、文本阴影等。 |
+| textStyle | [TextStyle](#textstyle) | 是   | 包含了对文本的各种视觉属性的定义，如字体、字号、颜色、字重、字间距、行距、装饰（如下划线、删除线）、文本阴影等。 |
 
 **示例：**
 
 ```ts
-import drawing from "@ohos.graphics.drawing"
-import text from "@ohos.graphics.text"
-import common2D from "@ohos.graphics.common2D"
-import image from '@ohos.multimedia.image';
+import { drawing } from '@kit.ArkGraphics2D'
+import { text } from "@kit.ArkGraphics2D"
+import { common2D } from "@kit.ArkGraphics2D"
+import { image } from '@kit.ImageKit';
 
 function Text() {
   let myTextStyle: text.TextStyle = {
@@ -1184,10 +1507,10 @@ popStyle(): void
 **示例：**
 
 ```ts
-import drawing from "@ohos.graphics.drawing"
-import text from "@ohos.graphics.text"
-import common2D from "@ohos.graphics.common2D"
-import image from '@ohos.multimedia.image';
+import { drawing } from '@kit.ArkGraphics2D'
+import { text } from "@kit.ArkGraphics2D"
+import { common2D } from "@kit.ArkGraphics2D"
+import { image } from '@kit.ImageKit';
 
 function Text() {
   let myTextStyle: text.TextStyle = {
@@ -1235,10 +1558,10 @@ addText(text: string): void
 **示例：**
 
 ```ts
-import drawing from "@ohos.graphics.drawing"
-import text from "@ohos.graphics.text"
-import common2D from "@ohos.graphics.common2D"
-import image from '@ohos.multimedia.image';
+import { drawing } from '@kit.ArkGraphics2D'
+import { text } from "@kit.ArkGraphics2D"
+import { common2D } from "@kit.ArkGraphics2D"
+import { image } from '@kit.ImageKit';
 
 function Text() {
   let myTextStyle: text.TextStyle = {
@@ -1285,10 +1608,10 @@ addPlaceholder(placeholderSpan: PlaceholderSpan): void
 **示例：**
 
 ```ts
-import drawing from "@ohos.graphics.drawing"
-import text from "@ohos.graphics.text"
-import common2D from "@ohos.graphics.common2D"
-import image from '@ohos.multimedia.image';
+import { drawing } from '@kit.ArkGraphics2D'
+import { text } from "@kit.ArkGraphics2D"
+import { common2D } from "@kit.ArkGraphics2D"
+import { image } from '@kit.ImageKit';
 
 function Text() {
   let myParagraphStyle: text.ParagraphStyle = {
@@ -1337,10 +1660,10 @@ build(): Paragraph
 **示例：**
 
 ```ts
-import drawing from "@ohos.graphics.drawing"
-import text from "@ohos.graphics.text"
-import common2D from "@ohos.graphics.common2D"
-import image from '@ohos.multimedia.image';
+import { drawing } from '@kit.ArkGraphics2D'
+import { text } from "@kit.ArkGraphics2D"
+import { common2D } from "@kit.ArkGraphics2D"
+import { image } from '@kit.ImageKit';
 
 function Text() {
   let myParagraphStyle: text.ParagraphStyle = {
@@ -1348,6 +1671,54 @@ function Text() {
   };
   let fontCollection = new text.FontCollection();
   let ParagraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
+  let paragraph = ParagraphGraphBuilder.build();
+}
+
+@Entry
+@Component
+struct Index {
+  @State fun: Function = Text;
+  build() {
+    Column() {
+      Button().onClick(() => {
+        this.fun();
+      })
+    }
+  }
+}
+```
+
+### addSymbol
+
+addSymbol(symbolId: number): void
+
+用于向正在构建的文本段落中插入具体的符号。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名    | 类型    | 必填 | 说明                       |
+| -------- | ------- | ---- | -------------------------- |
+| symbolId | number  | 是   | 要设置的符号，十六进制。|
+
+**示例：**
+
+```ts
+import { text } from "@kit.ArkGraphics2D";
+
+function Text() {
+  let myTextStyle: text.TextStyle = {
+    color: { alpha: 255, red: 255, green: 0, blue: 0 },
+    fontSize: 33,
+  };
+  let myParagraphStyle: text.ParagraphStyle = {
+    textStyle: myTextStyle,
+    align: 3,
+  };
+  let fontCollection = new text.FontCollection();
+  let ParagraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
+  ParagraphGraphBuilder.addSymbol(0xF0000);
   let paragraph = ParagraphGraphBuilder.build();
 }
 
@@ -1388,7 +1759,7 @@ getGlyphCount(): number
 **示例：**
 
 ```ts
-import text from "@ohos.graphics.text";
+import { text } from "@kit.ArkGraphics2D"
 
 function Text() {
   let GlyphCount = lines[0].getGlyphCount();
@@ -1425,7 +1796,7 @@ getTextRange(): Range
 **示例：**
 
 ```ts
-import text from "@ohos.graphics.text";
+import { text } from "@kit.ArkGraphics2D"
 
 function Text() {
   let textRange = lines[0].getTextRange();
@@ -1462,7 +1833,7 @@ getGlyphRuns(): Array\<Run>
 **示例：**
 
 ```ts
-import text from "@ohos.graphics.text";
+import { text } from "@kit.ArkGraphics2D"
 
 function Text() {
   let runs = lines[0].getGlyphRuns();
@@ -1501,10 +1872,10 @@ paint(canvas: drawing.Canvas, x: number, y: number): void
 **示例：**
 
 ```ts
-import drawing from "@ohos.graphics.drawing"
-import text from "@ohos.graphics.text"
-import common2D from "@ohos.graphics.common2D"
-import image from '@ohos.multimedia.image';
+import { drawing } from '@kit.ArkGraphics2D'
+import { text } from "@kit.ArkGraphics2D"
+import { common2D } from "@kit.ArkGraphics2D"
+import { image } from '@kit.ImageKit';
 
 function Text() {
   const color: ArrayBuffer = new ArrayBuffer(160000);
@@ -1551,7 +1922,7 @@ getGlyphCount(): number
 **示例：**
 
 ```ts
-import text from "@ohos.graphics.text";
+import { text } from "@kit.ArkGraphics2D"
 
 function Text() {
   let glyphs = runs[0].getGlyphCount();
@@ -1588,7 +1959,7 @@ getGlyphs(): Array\<number>
 **示例：**
 
 ```ts
-import text from "@ohos.graphics.text";
+import { text } from "@kit.ArkGraphics2D"
 
 function Text() {
   let glyph = runs[0].getGlyphs();
@@ -1625,7 +1996,7 @@ getPositions(): Array<common2D.Point>
 **示例：**
 
 ```ts
-import text from "@ohos.graphics.text";
+import { text } from "@kit.ArkGraphics2D";
 
 function Text() {
   let positions = runs[0].getPositions();
@@ -1662,7 +2033,7 @@ getOffsets(): Array<common2D.Point>
 **示例：**
 
 ```ts
-import text from "@ohos.graphics.text";
+import { text } from "@kit.ArkGraphics2D";
 
 function Text() {
   let offsets = runs[0].getOffsets();
@@ -1699,8 +2070,8 @@ getFont(): drawing.Font
 **示例：**
 
 ```ts
-import drawing from "@ohos.graphics.drawing"
-import text from "@ohos.graphics.text";
+import { drawing } from '@kit.ArkGraphics2D'
+import { text } from "@kit.ArkGraphics2D";
 
 function Text() {
   let font = runs[0].getFont();
@@ -1739,10 +2110,10 @@ paint(canvas: drawing.Canvas, x: number, y: number): void
 **示例：**
 
 ```ts
-import drawing from "@ohos.graphics.drawing"
-import text from "@ohos.graphics.text"
-import common2D from "@ohos.graphics.common2D"
-import image from '@ohos.multimedia.image';
+import { drawing } from '@kit.ArkGraphics2D'
+import { text } from "@kit.ArkGraphics2D"
+import { common2D } from "@kit.ArkGraphics2D"
+import { image } from '@kit.ImageKit';
 
 function Text() {
   const color: ArrayBuffer = new ArrayBuffer(160000);

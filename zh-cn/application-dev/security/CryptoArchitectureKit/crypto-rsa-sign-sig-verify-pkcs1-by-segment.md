@@ -37,8 +37,8 @@
 - 异步方法示例：
 
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
-  import buffer from '@ohos.buffer';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+  import { buffer } from '@kit.ArkTS';
 
   async function signMessageBySegment(priKey: cryptoFramework.PriKey, plainText: Uint8Array) {
     let signAlg = "RSA1024|PKCS1|SHA256";
@@ -97,8 +97,8 @@
 - 同步方法示例：
 
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
-  import buffer from '@ohos.buffer';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+  import { buffer } from '@kit.ArkTS';
 
   function signMessageBySegment(priKey: cryptoFramework.PriKey, plainText: Uint8Array) {
     let signAlg = "RSA1024|PKCS1|SHA256";

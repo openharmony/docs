@@ -6,6 +6,7 @@
 >
 > - 该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 > - 该组件的父组件只能是[List](ts-container-list.md)或者[ListItemGroup](ts-container-listitemgroup.md)。
+> - 当ListItem配合LazyForEach使用时，ListItem子组件在ListItem创建时创建。配合if/else、ForEach使用时，或父组件为List/ListItemGroup时，ListItem子组件在ListItem布局时创建。
 
 ## 子组件
 
@@ -163,7 +164,7 @@ start和end对应的@builder函数中顶层必须是单个组件，不能是if/e
 | start                        | [CustomBuilder](ts-types.md#custombuilder8)&nbsp;\|&nbsp;[SwipeActionItem](#swipeactionitem10对象说明) | 否   | ListItem向右划动时item左边的组件（List垂直布局时）或ListItem向下划动时item上方的组件（List水平布局时）。 <br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 | end                          | [CustomBuilder](ts-types.md#custombuilder8)&nbsp;\|&nbsp;[SwipeActionItem](#swipeactionitem10对象说明) | 否   | ListItem向左划动时item右边的组件（List垂直布局时）或ListItem向上划动时item下方的组件（List水平布局时）。 <br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 | edgeEffect                   | [SwipeEdgeEffect](#swipeedgeeffect9枚举说明)                 | 否   | 滑动效果。 <br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。                                                |
-| onOffsetChange<sup>11+</sup> | (offset: number) => void                                     | 否   | 滑动操作偏移量更改时调用。                                    |
+| onOffsetChange<sup>11+</sup> | (offset: number) => void                                     | 否   | 滑动操作偏移量更改时调用。                                     <br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。|
 
 ## SwipeActionItem<sup>10+</sup>对象说明
 
@@ -177,7 +178,7 @@ List垂直布局，ListItem向右滑动，item左边的长距离滑动删除选�
 | onEnterActionArea | () => void | 否 | 在滑动条目进入删除区域时调用，只触发一次，当再次进入时仍触发。 <br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 | onExitActionArea | () => void | 否 |当滑动条目退出删除区域时调用，只触发一次，当再次退出时仍触发。 <br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 | builder |  [CustomBuilder](ts-types.md#custombuilder8) | 否 |当列表项向左或向右滑动（当列表方向为“垂直”时），向上或向下滑动（当列方向为“水平”时）时显示的操作项。 <br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| onStateChange<sup>11+</sup> | (swipeActionState) => void | 否 |当列表项滑动状态变化时候触发。 |
+| onStateChange<sup>11+</sup> | (swipeActionState) => void | 否 |当列表项滑动状态变化时候触发。 <br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。|
 ## ListItemOptions<sup>10+</sup>对象说明
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
@@ -202,6 +203,8 @@ List垂直布局，ListItem向右滑动，item左边的长距离滑动删除选�
 | CARD | 1 | 显示默认卡片样式。 |
 
 ## SwipeActionState<sup>11+</sup>枚举说明
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 | 名称      | 枚举值     | 描述                                                         |
 | --------- | --------- | ------------------------------------------------------------ |

@@ -40,6 +40,9 @@ shutdown(reason: string): void
 |---------|---------|
 | 4900101 | If connecting to the service failed. |
 | 401     | Parameter error. Possible causes: 1.Incorrect parameter types. |
+| 201     | If the permission is denied.         |
+| 202     | If the system permission is denied.  |
+
 
 **示例：**
 
@@ -77,6 +80,8 @@ reboot(reason: string): void
 |---------|---------|
 | 4900101 | If connecting to the service failed. |
 | 401     | Parameter error. Possible causes: 1.Incorrect parameter types. |
+| 201     | If the permission is denied.  |
+| 202     | If the system permission is denied.  |
 
 **示例：**
 
@@ -112,6 +117,7 @@ wakeup(detail: string): void
 |---------|---------|
 | 4900101 | If connecting to the service failed. |
 | 401     | Parameter error. Possible causes: 1.Incorrect parameter types. |
+| 202     | If the system permission is denied.  |
 
 **示例：**
 
@@ -147,6 +153,7 @@ suspend(isImmediate?: boolean): void
 | 错误码ID   | 错误信息    |
 |---------|---------|
 | 4900101 | If connecting to the service failed. |
+| 202     | If the system permission is denied.  |
 
 **示例：**
 
@@ -185,6 +192,8 @@ setPowerMode(mode: DevicePowerMode, callback: AsyncCallback&lt;void&gt;): void
 |---------|---------|
 | 4900101 | If connecting to the service failed. |
 | 401     | Parameter error. Possible causes: 1.Parameter verification failed. |
+| 201     | If the permission is denied.        |
+| 202     | If the system permission is denied.|
 
 **示例：**
 
@@ -230,6 +239,8 @@ setPowerMode(mode: DevicePowerMode): Promise&lt;void&gt;
 |---------|---------|
 | 4900101 | If connecting to the service failed. |
 | 401     | Parameter error. Possible causes: 1.Parameter verification failed. |
+| 201     | If the permission is denied.         |
+| 202     | If the system permission is denied.  |
 
 **示例：**
 
@@ -268,7 +279,6 @@ setScreenOffTime(timeout: number): void
 | 4900101 | If connecting to the service failed. |
 | 201 | If the permission is denied. |
 | 202 | If the system permission is denied. |
-| 1 | Other unknown reason. |
 
 **示例：**
 
@@ -277,5 +287,40 @@ try {
     power.setScreenOffTime(30000);
 } catch(err) {
     console.error('set screen off time failed, err: ' + err);
+}
+```
+
+## power.hibernate<sup>12+</sup>
+
+hibernate(clearMemory: boolean): void
+
+休眠设备。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.PowerManager.PowerManager.Core
+
+**参数：**
+
+| 参数名    | 类型     | 必填   | 说明    |
+| ------ | ------ | ---- | ----- |
+| clearMemory | boolean | 是    | true 代表在进入休眠之前清理内存，否则为false。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[系统电源管理错误码](errorcode-power.md)。
+
+| 错误码ID   | 错误信息    |
+|---------|---------|
+| 4900101 | If connecting to the service failed. |
+| 202 | If the system permission is denied. |
+
+**示例：**
+
+```js
+try {
+    power.hibernate(true);
+} catch(err) {
+    console.error('hibernate failed, err: ' + err);
 }
 ```

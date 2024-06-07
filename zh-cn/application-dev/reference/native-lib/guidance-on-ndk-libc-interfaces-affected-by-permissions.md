@@ -8,8 +8,8 @@
 
 musl libc接口使用的限制包含如下类型：
 
-1. 受Seccomp机制影响。
-    Seccomp机制可参考[Seccomp策略与开发指导](../../../device-dev/subsystems/subsys-boot-init-seccomp.md)。
+1. 受Seccomp机制影响。<!--Del-->
+   Seccomp机制可参考[Seccomp策略与开发指导](../../../device-dev/subsystems/subsys-boot-init-seccomp.md)。<!--DelEnd-->
 
     因Seccomp机制导致的常见报错有
     - 报错堆栈栈顶在musl的函数中。
@@ -25,12 +25,14 @@ musl libc接口使用的限制包含如下类型：
 
 2. 内核相关接口未对外开放能力导致接口不可用。
 
-3. 受SELinux限制影响。
-    SELinux的说明可参考[SELinux概述](../../../device-dev/subsystems/subsys-security-selinux-overview.md)。
+3. 受SELinux限制影响。<!--Del-->
+   SELinux的说明可参考[SELinux概述](../../../device-dev/subsystems/subsys-security-selinux-overview.md)。<!--DelEnd-->
 
 4. 受沙箱机制影响，访问路径受到限制。沙箱机制可参考[应用沙箱目录](../../file-management/app-sandbox-directory.md)。
 
 5. 空实现或默认失败。
+
+6. 需要特殊权限才能执行的接口
 
 ## musl libc受限接口列表
 
@@ -75,6 +77,7 @@ musl libc接口使用的限制包含如下类型：
 | 受Seccomp机制影响     | grp.h        | init_module |
 | 受Seccomp机制影响     | sched.h      | unshare |
 | 受Seccomp机制影响     | sched.h      | setns |
+| 受Seccomp机制影响     | None         | pivot_root |
 | 内核相关接口未对外开放 | sys/fanotify.h | fanotify_init |
 | 内核相关接口未对外开放 | sys/fanotify.h | fanotify_mark |
 | 内核相关接口未对外开放 | syslog.h       | syslog |
@@ -122,3 +125,4 @@ musl libc接口使用的限制包含如下类型：
 | 空实现或默认失败      | stdio_ext.h    | __fsetlocking |
 | 空实现或默认失败      | netdb.h        | getnetbyaddr |
 | 空实现或默认失败      | netdb.h        | getnetbyname |
+| 需要CAP_SYS_ADMIN权限 | None          | pivot_root |

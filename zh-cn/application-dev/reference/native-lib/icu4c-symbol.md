@@ -304,6 +304,16 @@
 |FUNC|ufieldpositer_close|
 |FUNC|ufieldpositer_next|
 |FUNC|ufieldpositer_open|
+|FUNC|uidna_close|
+|FUNC|uidna_labelToASCII|
+|FUNC|uidna_labelToASCII_UTF8|
+|FUNC|uidna_labelToUnicode|
+|FUNC|uidna_labelToUnicodeUTF8|
+|FUNC|uidna_nameToASCII|
+|FUNC|uidna_nameToASCII_UTF8|
+|FUNC|uidna_nameToUnicode|
+|FUNC|uidna_nameToUnicodeUTF8|
+|FUNC|uidna_openUTS46|
 |FUNC|uloc_acceptLanguage|
 |FUNC|uloc_acceptLanguageFromHTTP|
 |FUNC|uloc_addLikelySubtags|

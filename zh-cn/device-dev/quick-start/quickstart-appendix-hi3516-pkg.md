@@ -264,7 +264,7 @@ OpenHarmony支持hb和build.sh两种编译方式。此处介绍hb方式，build.
    3. 单击浏览在步骤1创建的文件夹中选择烧写配置文件（例如Hi3516DV300-emmc.xml）。
       
        ![quickstart-hi3516-standard-hitool-select](figures/quickstart-hi3516-standard-hitool-select.png)
-   4. 单击烧写后，按住开发板上串口旁的按钮（Update键），并拔插USB线（上下电）。。
+   4. 单击烧写后，按住开发板上串口旁的按钮（Update键），并拔插USB线（上下电）。
        
       烧录开始后，可以在HiTool工具下方的控制台区域观察到烧录过程中的打印信息。
 
@@ -279,7 +279,7 @@ OpenHarmony支持hb和build.sh两种编译方式。此处介绍hb方式，build.
    3. 在串口终端拷贝如下启动参数后，按回车完成配置。
       
        ```
-       setenv bootargs 'mem=640M console=ttyAMA0,115200 mmz=anonymous,0,0xA8000000,384M clk_ignore_unused androidboot.selinux=permissive rootdelay=10 hardware=Hi3516DV300 init=/init root=/dev/ram0 rw blkdevparts=mmcblk0:1M(boot),15M(kernel),20M(updater),2M(misc),3307M(system),256M(vendor),-(userdata)';setenv bootcmd 'mmc read 0x0 0x82000000 0x800 0x4800; bootm 0x82000000'
+       setenv bootargs 'mem=640M console=ttyAMA0,115200 mmz=anonymous,0,0xA8000000,384M clk_ignore_unused rootdelay=10 hardware=Hi3516DV300 init=/init root=/dev/ram0 rw blkdevparts=mmcblk0:1M(boot),15M(kernel),20M(updater),2M(misc),3307M(system),256M(vendor),-(userdata)';setenv bootcmd 'mmc read 0x0 0x82000000 0x800 0x4800; bootm 0x82000000'
        
        saveenv
        

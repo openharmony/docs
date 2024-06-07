@@ -18,7 +18,7 @@ The environment requirements for NNRt are as follows:
 - Development environment: Ubuntu 18.04 or later.
 - Access device: a standard device whose built-in hardware accelerator driver has been connected to NNRt.
 
-The Neural Network Runtime is opened to external systems through OpenHarmony native APIs. Therefore, you need to use the Native development suite of the OpenHarmony to compile Neural Network Runtime applications. You can download the ohos-sdk package of the corresponding version from the daily build in the OpenHarmony community and then decompress the package to obtain the native development suite of the corresponding platform. Take Linux as an example. The package of the native development suite is named `native-linux-{version number}.zip`.
+NNRt is opened to external systems through native APIs. Therefore, you need to use the native development suite to build NNRt applications. You can download the ohos-sdk package of the corresponding version from the daily build in the OpenHarmony community and then decompress the package to obtain the native development suite of the corresponding platform. Take Linux as an example. The package of the native development suite is named `native-linux-{version number}.zip`.
 
 ### Environment Setup
 
@@ -347,7 +347,7 @@ The development process of NNRt consists of three phases: model construction, mo
         returnCode = OH_NNModel_SetTensorType(model, 2, OH_NN_ADD_ACTIVATIONTYPE);
         CHECKNEQ(returnCode, OH_NN_SUCCESS, -1, "Set model tensor type failed.");
 
-        // Set the type of the activation function to OH_NNBACKEND_FUSED_NONE, indicating that no activation function is added to the Add operator.
+        // Set the type of the activation function to OH_NN_FUSED_NONE, indicating that no activation function is added to the operator.
         int8_t activationValue = OH_NN_FUSED_NONE;
         returnCode = OH_NNModel_SetTensorData(model, 2, &activationValue, sizeof(int8_t));
         CHECKNEQ(returnCode, OH_NN_SUCCESS, -1, "Set model tensor data failed.");

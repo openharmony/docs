@@ -8,7 +8,7 @@
 
 **Error Message**
 
-Function is disabled.
+Function disabled.
 
 **Description**
 
@@ -215,7 +215,7 @@ Specify a valid event number.
 
 **Error Message**
 
-Invalid size value.
+Invalid event size.
 
 **Description**
 
@@ -272,7 +272,7 @@ Specify a valid maximum storage quota.
 
 **Error Message**
 
-Invalid size value.
+Invalid event package size.
 
 **Description**
 

@@ -26,8 +26,16 @@
 
 | 名称 | 描述 |
 | -------- | -------- |
-| [OH_NativeVSync](#oh_nativevsync) | 提供OH_NativeVSync结构体声明。 |
-| (\*[OH_NativeVSync_FrameCallback](#oh_nativevsync_framecallback)) (long long timestamp, void \*data) | VSync回调函数类型。 |
+| typedef enum [OHNativeErrorCode](#ohnativeerrorcode)  [OHNativeErrorCode](#ohnativeerrorcode) | 接口错误码说明（仅用于查询）。  | 
+| typedef struct [OH_NativeVSync](#oh_nativevsync)  [OH_NativeVSync](#oh_nativevsync) | 提供OH_NativeVSync结构体声明。  | 
+| typedef void(\* [OH_NativeVSync_FrameCallback](#oh_nativevsync_framecallback)) (long long timestamp, void \*data) | VSync回调函数类型。  | 
+
+
+### 枚举
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| [OHNativeErrorCode](#ohnativeerrorcode) {<br/>NATIVE_ERROR_OK = 0, NATIVE_ERROR_INVALID_ARGUMENTS = 40001000, NATIVE_ERROR_NO_PERMISSION = 40301000, NATIVE_ERROR_NO_BUFFER = 40601000,<br/>NATIVE_ERROR_NO_CONSUMER = 41202000, NATIVE_ERROR_NOT_INIT = 41203000, NATIVE_ERROR_CONSUMER_CONNECTED = 41206000, NATIVE_ERROR_BUFFER_STATE_INVALID = 41207000,<br/>NATIVE_ERROR_BUFFER_IN_CACHE = 41208000, NATIVE_ERROR_BUFFER_QUEUE_FULL = 41209000, NATIVE_ERROR_BUFFER_NOT_IN_CACHE = 41210000, NATIVE_ERROR_UNSUPPORT = 50102000,<br/>NATIVE_ERROR_UNKNOWN = 50002000, NATIVE_ERROR_EGL_STATE_UNKNOWN = 60001000, NATIVE_ERROR_EGL_API_FAILED = 60002000} | 接口错误码说明（仅用于查询）。  | 
 
 
 ### 函数
@@ -75,6 +83,52 @@ VSync回调函数类型。
 | data | 用户自定义数据。 |
 
 
+### OHNativeErrorCode
+
+```
+typedef enum OHNativeErrorCode OHNativeErrorCode
+```
+
+**描述**
+
+接口错误码说明（仅用于查询）。
+
+**起始版本：** 12
+
+
+## 枚举类型说明
+
+
+### OHNativeErrorCode
+
+```
+enum OHNativeErrorCode
+```
+
+**描述**
+
+接口错误码说明（仅用于查询）。
+
+**起始版本：** 12
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| NATIVE_ERROR_OK  | 成功   | 
+| NATIVE_ERROR_INVALID_ARGUMENTS  | 入参无效   | 
+| NATIVE_ERROR_NO_PERMISSION  | 无权限操作   | 
+| NATIVE_ERROR_NO_BUFFER  | 无空闲可用的buffer   | 
+| NATIVE_ERROR_NO_CONSUMER  | 消费端不存在   | 
+| NATIVE_ERROR_NOT_INIT  | 未初始化   | 
+| NATIVE_ERROR_CONSUMER_CONNECTED  | 消费端已经被连接   | 
+| NATIVE_ERROR_BUFFER_STATE_INVALID  | buffer状态不符合预期   | 
+| NATIVE_ERROR_BUFFER_IN_CACHE  | buffer已在缓存队列中   | 
+| NATIVE_ERROR_BUFFER_QUEUE_FULL  | 队列已满   | 
+| NATIVE_ERROR_BUFFER_NOT_IN_CACHE  | buffer不在缓存队列中   | 
+| NATIVE_ERROR_UNSUPPORT  | 当前设备或平台不支持   | 
+| NATIVE_ERROR_UNKNOWN  | 未知错误，请查看日志   | 
+| NATIVE_ERROR_EGL_STATE_UNKNOWN  | egl环境状态异常   | 
+| NATIVE_ERROR_EGL_API_FAILED  | egl接口调用失败   | 
+
 ## 函数说明
 
 ### OH_NativeVSync_GetPeriod()
@@ -99,7 +153,7 @@ int OH_NativeVSync_GetPeriod (OH_NativeVSync * nativeVsync, long long * period )
 
 **返回:**
 
-返回值为0表示执行成功。
+返回值为0表示执行成功，其他返回值可参考[OHNativeErrorCode](#ohnativeerrorcode)。
 
 **起始版本：**
 
@@ -174,4 +228,4 @@ int OH_NativeVSync_RequestFrame (OH_NativeVSync * nativeVsync, OH_NativeVSync_Fr
 
 **返回:**
 
-返回值为0表示执行成功。
+返回值为0表示执行成功，其他返回值可参考[OHNativeErrorCode](#ohnativeerrorcode)。

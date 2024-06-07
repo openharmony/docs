@@ -32,7 +32,7 @@ The DataShareHelper is not initialized successfully.
 
 **错误信息**
 
-The uri is not exist.
+The URI is not exist.
 
 **错误描述**
 

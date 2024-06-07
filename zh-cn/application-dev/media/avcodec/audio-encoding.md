@@ -14,6 +14,7 @@
 | aac      | AAC              |
 | amr      | AMR(amrnb、amrwb)|
 | raw      | G711mu           |
+<!--RP1--><!--RP1End-->
 
 **适用场景**
 

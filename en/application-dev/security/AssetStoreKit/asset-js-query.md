@@ -9,7 +9,7 @@ The following table describes the attributes of **AssetMap** for querying an ass
 >
 >In the following table, the attributes starting with **DATA_LABEL** are custom asset attributes reserved for services. These attributes are not encrypted. Therefore, do not put personal data in these attributes.
 
-| Attribute Name (Tag)       | Value                                            | Mandatory | Description                                                        |
+| Attribute Name (Tag)       | Attribute Content (Value)                   | Mandatory | Description                                                        |
 | --------------------- | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
 | ALIAS                 | Type: Uint8Array<br>Length: 1-256 bytes                           | No    | Asset alias, which uniquely identifies an asset.                      |
 | ACCESSIBILITY         | Type: number<br>Value range: see [Accessibility](../../reference/apis-asset-store-kit/js-apis-asset.md#accessibility)| No    | Access control based on the lock screen status.                               |
@@ -30,13 +30,13 @@ The following table describes the attributes of **AssetMap** for querying an ass
 | DATA_LABEL_NORMAL_LOCAL_3<sup>12+</sup> | Type: Uint8Array<br>Length: 1-2048 bytes| No| Local information about the asset. The value is assigned by the service without integrity protection and will not be synced.|
 | DATA_LABEL_NORMAL_LOCAL_4<sup>12+</sup> | Type: Uint8Array<br>Length: 1-2048 bytes| No| Local information about the asset. The value is assigned by the service without integrity protection and will not be synced.|
 | RETURN_TYPE           | Type: number<br>Value range: see [ReturnType](../../reference/apis-asset-store-kit/js-apis-asset.md#returntype)| No    | Type of the asset query result to return.            |
-| RETURN_LIMIT          | Type: number                                                | No    | Maximum number of asset records returned.                                        |
+| RETURN_LIMIT          | Type: number                                                | No    | Maximum number of asset records to return.                                        |
 | RETURN_OFFSET         | Type: number<br>Value range: 1-65536                             | No    | Offset of the asset query result.<br>**NOTE**: This parameter specifies the starting asset record to return in batch asset query.                                |
 | RETURN_ORDERED_BY     | Type: number<br>Value: asset.Tag.DATA_LABEL_xxx.            | No    | How the query results are sorted. Currently, the results can be sorted only by **DATA_LABEL**.<br>**NOTE**: By default, assets are returned in the order in which they are added.|
 
 ## Constraints
 
-The assets queried are transmitted to the service through the IPC channel. Due to the limitation of the IPC buffer size, the maximum number of assets to be queried at a time cannot exceed 40.
+The assets queried are transmitted to the service through an IPC channel. Due to the limitation of the IPC buffer size, the maximum number of assets to be queried at a time cannot exceed 40.
 
 ## Example
 

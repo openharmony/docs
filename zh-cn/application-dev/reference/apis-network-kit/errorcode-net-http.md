@@ -26,7 +26,7 @@ Unsupported protocol.
 
 **错误信息**
 
-URL using bad/illegal format or missing URL.
+Invalid URL format or missing URL.
 
 **错误描述**
 
@@ -44,7 +44,7 @@ URL格式错误。
 
 **错误信息**
 
-Couldn't resolve proxy name.
+Failed to resolve the proxy name.
 
 **错误描述**
 
@@ -62,7 +62,7 @@ Couldn't resolve proxy name.
 
 **错误信息**
 
-Couldn't resolve host name.
+Failed to resolve the host name.
 
 **错误描述**
 
@@ -84,7 +84,7 @@ Couldn't resolve host name.
 
 **错误信息**
 
-Couldn't connect to server.
+Failed to connect to the server.
 
 **错误描述**
 
@@ -102,7 +102,7 @@ Couldn't connect to server.
 
 **错误信息**
 
-Weird server reply.
+Invalid server response.
 
 **错误描述**
 
@@ -120,7 +120,7 @@ Weird server reply.
 
 **错误信息**
 
-Access denied to remote resource.
+Access to the remote resource denied.
 
 **错误描述**
 
@@ -174,7 +174,7 @@ Transferred a partial file.
 
 **错误信息**
 
-Failed writing received data to disk/application.
+Failed to write the received data to the disk or application.
 
 **错误描述**
 
@@ -210,7 +210,7 @@ Upload failed.
 
 **错误信息**
 
-Failed to open/read local data from file/application.
+Failed to open or read local data from the file or application.
 
 **错误描述**
 
@@ -246,7 +246,7 @@ Out of memory.
 
 **错误信息**
 
-Timeout was reached.
+Operation timeout.
 
 **错误描述**
 
@@ -264,7 +264,7 @@ TCP连接超时或读写超时。
 
 **错误信息**
 
-Number of redirects hit maximum amount.
+The number of redirections reaches the maximum allowed.
 
 **错误描述**
 
@@ -282,7 +282,7 @@ Number of redirects hit maximum amount.
 
 **错误信息**
 
-Server returned nothing (no headers, no data).
+The server returned nothing (no header or data).
 
 **错误描述**
 
@@ -300,7 +300,7 @@ Server returned nothing (no headers, no data).
 
 **错误信息**
 
-Failed sending data to the peer.
+Failed to send data to the peer.
 
 **错误描述**
 
@@ -318,7 +318,7 @@ Failed sending data to the peer.
 
 **错误信息**
 
-Failure when receiving data from the peer.
+Failed to receive data from the peer.
 
 **错误描述**
 
@@ -336,7 +336,7 @@ Failure when receiving data from the peer.
 
 **错误信息**
 
-Problem with the local SSL certificate.
+Local SSL certificate error.
 
 **错误描述**
 
@@ -354,7 +354,7 @@ SSL证书格式有错误。
 
 **错误信息**
 
-Couldn't use specified SSL cipher.
+The specified SSL cipher cannot be used.
 
 **错误描述**
 
@@ -372,7 +372,7 @@ client和sever协商的加密算法系统不支持。
 
 **错误信息**
 
-SSL peer certificate or SSH remote key was not OK.
+Invalid SSL peer certificate or SSH remote key.
 
 **错误描述**
 
@@ -390,7 +390,7 @@ SSL peer certificate or SSH remote key was not OK.
 
 **错误信息**
 
-Unrecognized or bad HTTP Content or Transfer-Encoding.
+Invalid HTTP encoding format.
 
 **错误描述**
 
@@ -426,7 +426,7 @@ Maximum file size exceeded.
 
 **错误信息**
 
-Remote disk full or allocation exceeded.
+Remote disk full.
 
 **错误描述**
 
@@ -462,7 +462,7 @@ Remote file already exists.
 
 **错误信息**
 
-Problem with the SSL CA cert (path? access rights?).
+The SSL CA certificate does not exist or is unaccessible.
 
 **错误描述**
 
@@ -498,7 +498,7 @@ URL请求的文件不存在
 
 **错误信息**
 
-An authentication function returned an error.
+Authentication error.
 
 **错误描述**
 
@@ -516,7 +516,7 @@ An authentication function returned an error.
 
 **错误信息**
 
-Unknown Other Error.
+Unknown error.
 
 **错误描述**
 

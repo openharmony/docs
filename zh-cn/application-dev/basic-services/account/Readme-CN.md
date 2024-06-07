@@ -1,5 +1,5 @@
 # 帐号管理
-
+<!--Del-->
 - [帐号管理概述](account-overview.md)
 - 系统帐号
   - [管理系统帐号（仅对系统应用开放）](manage-os-account.md)
@@ -11,5 +11,6 @@
   - [管理域帐号插件](manage-domain-plugin.md)
 - 分布式帐号（仅对系统应用开放）
   - [管理分布式帐号](manage-distributed-account.md)
+<!--DelEnd-->
 - 应用帐号
   - [管理应用帐号](manage-application-account.md)

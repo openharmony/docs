@@ -11,6 +11,8 @@
 
 TapGesture(value?: { count?: number, fingers?: number })
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名称 | 参数类型 | 必填 | 参数描述 |
@@ -23,7 +25,7 @@ TapGesture(value?: { count?: number, fingers?: number })
 
 | 名称 | 功能描述 |
 | -------- | -------- |
-| onAction(event: (event:&nbsp;[GestureEvent](ts-gesture-settings.md#gestureevent对象说明))&nbsp;=&gt;&nbsp;void) | Tap手势识别成功回调。 |
+| onAction(event: (event:&nbsp;[GestureEvent](ts-gesture-settings.md#gestureevent对象说明))&nbsp;=&gt;&nbsp;void) | Tap手势识别成功回调。 <br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
 
 ## 属性
 

@@ -100,6 +100,7 @@ struct SecondTest {
 @Component
 struct TabContentTest {
   @State @Watch("onMessageUpdated") message: number = 0;
+  private data: number[] = [0, 1]
 
   onMessageUpdated() {
     console.info(`TabContent message callback func ${this.message}`)
@@ -113,13 +114,11 @@ struct TabContentTest {
         })
 
         Tabs() {
-          TabContent() {
-            FreezeChild({ message: this.message })
-          }.tabBar('one')
-
-          TabContent() {
-            FreezeChild({ message: this.message })
-          }.tabBar('two')
+          ForEach(this.data, (item: number) => {
+            TabContent() {
+              FreezeChild({ message: this.message, index: item })
+            }.tabBar(`tab${item}`)
+          }, (item: number) => item.toString())
         }
       }
       .width('100%')
@@ -302,7 +301,7 @@ struct FreezeChild {
 
 在上面的示例中：
 
-1.点击“change message”更改message的值，当前正在显示的ListItem中的子组件@Watch中注册的方法onMessageUpdated被触发。缓存节点@Watch中注册的方法不会被触发。（如果不加组件冻结，当前正在显示的ListItem和cachcount缓存节点@Watch中注册的方法onMessageUpdated都会触发watch回调。）
+1.点击“change message”更改message的值，当前正在显示的ListItem中的子组件@Watch中注册的方法onMessageUpdated被触发。缓存节点@Watch中注册的方法不会被触发。（如果不加组件冻结，当前正在显示的ListItem和cachecount缓存节点@Watch中注册的方法onMessageUpdated都会触发watch回调。）
 
 2.List区域外的ListItem滑动到List区域内，状态由inactive变为active，对应的@Watch中注册的方法onMessageUpdated被触发。
 

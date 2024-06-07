@@ -20,7 +20,6 @@ export default class EntryAbility extends UIAbility {
       // ...
     });
   }
-
   // ...
 }
 ```
@@ -32,7 +31,7 @@ export default class EntryAbility extends UIAbility {
 
 ## Obtaining the Context of UIAbility
 
-The UIAbility class has its own context, which is an instance of the [UIAbilityContext](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) class. The UIAbilityContext class has attributes such as **abilityInfo** and **currentHapModuleInfo**. UIAbilityContext can be used to obtain the UIAbility configuration information, such as the bundle code path, bundle name, ability name, and environment status required by the application. It can also be used to obtain methods to operate the UIAbility instance, such as **startAbility()**, **connectServiceExtensionAbility()**, and **terminateSelf()**.
+The UIAbility class has its own context, which is an instance of the [UIAbilityContext](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) class. The **UIAbilityContext** class has attributes such as **abilityInfo** and **currentHapModuleInfo**. UIAbilityContext can be used to obtain the UIAbility configuration information, such as the bundle code path, bundle name, ability name, and environment status required by the application. It can also be used to obtain methods to operate the UIAbility instance, such as **startAbility()**, **connectServiceExtensionAbility()**, and **terminateSelf()**.
 
 To obtain the context of the current ability on the page, call [getContext](../reference/apis-arkui/js-apis-getContext.md#getcontext) to obtain the UIAbilityContext or ExtensionContext associated with the current page.
 
@@ -47,7 +46,7 @@ To obtain the context of the current ability on the page, call [getContext](../r
     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
       // Obtain the context of the UIAbility instance.
       let context = this.context;
-      ...
+      // ...
     }
   }
   ```
@@ -72,7 +71,7 @@ To obtain the context of the current ability on the page, call [getContext](../r
   
     // Page display.
     build() {
-      ...
+      // ...
     }
   }
   ```
@@ -98,9 +97,7 @@ To obtain the context of the current ability on the page, call [getContext](../r
   
     // Page display.
     build() {
-      ...
+      // ...
     }
   }
   ```
-
- <!--no_check--> 

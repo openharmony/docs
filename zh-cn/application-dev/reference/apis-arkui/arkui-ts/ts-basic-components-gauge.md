@@ -27,6 +27,8 @@ Gauge(options:{value: number, min?: number, max?: number})
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -48,6 +50,8 @@ value(value: number)
 设置量规图的数据值。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -79,6 +83,8 @@ startAngle(angle: number)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -94,6 +100,8 @@ endAngle(angle: number)
 设置终止角度位置。起始角度位置和终止角度位置差过小时，会绘制出异常图像，请取合理的起始角度位置和终止角度位置。建议使用单色环改变Gauge的value参数实现数据值的调节，可通过定时器setTimeout进行数值的延迟加载。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -121,6 +129,8 @@ colors(colors: ResourceColor | LinearGradient | Array<[ResourceColor | LinearGra
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -137,6 +147,8 @@ strokeWidth(length: Length)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -151,6 +163,8 @@ description(value: CustomBuilder)
 
 设置说明内容。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -164,6 +178,8 @@ description(value: CustomBuilder)
 trackShadow(value: GaugeShadowOptions)
 
 设置阴影样式。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -187,17 +203,33 @@ indicator(value: GaugeIndicatorOptions)
 | ------ | --------------------------------------------------------- | ---- | ----------------------------------------------------- |
 | value  | [GaugeIndicatorOptions](#gaugeindicatoroptions11对象说明) | 是   | 指针样式。<br/>**说明：** <br/>设置null则不显示指针。 |
 
+### privacySensitive<sup>12+</sup>
+
+privacySensitive(isPrivacySensitiveMode: Optional\<boolean\>)
+
+设置隐私敏感。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                      | 必填 | 说明                                                  |
+| ------ | --------------------------------------------------------- | ---- | ----------------------------------------------------- |
+| isPrivacySensitiveMode  | [Optional\<boolean\>] | 是   | 设置隐私敏感，隐私模式下Gauge指针指向0位置，最大值最小值文本将被遮罩，量程显示灰色或者底色。<br/>**说明：** <br/>设置null则不敏感。<br/>[需要卡片框架支持。](./ts-universal-attributes-obscured.md) |
+
 ## GaugeShadowOptions<sup>11+</sup>对象说明
-| 名称          | 参数类型 | 必填 | 描述 |
-| ------------- | ------- | ---- | -------- |
-| radius | number \| [Resource](ts-types.md#resource类型) | 否 | 投影模糊半径。 <br/>默认值：20<br/>单位：vp <br/>**说明：** <br/>设置小于等于0的值时，按默认值显示。|
-| offsetX | number \| [Resource](ts-types.md#resource类型) | 否 | X轴的偏移量。 <br/>默认值：5<br/>单位：vp |
-| offsetY | number \| [Resource](ts-types.md#resource类型) | 否 | Y轴的偏移量。 <br/>默认值：5<br/>单位：vp |
+
+GaugeShadowOptions继承自[MultiShadowOptions](ts-types.md#multishadowoptions10)，具有MultiShadowOptions的全部属性。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 ## GaugeIndicatorOptions<sup>11+</sup>对象说明
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 | 名称          | 参数类型 | 必填 | 描述 |
 | ------------- | ------- | ---- | -------- |
-| icon | [Resource](ts-types.md#resource类型) | 否 | 图标资源路径。<br/>**说明：** <br/>不配置则使用默认的三角形样式指针。<br/>支持使用svg格式的图标，若使用其他格式，则使用默认的三角形样式指针。 |
+| icon | [Resource](ts-types.md#resource) | 否 | 图标资源路径。<br/>**说明：** <br/>不配置则使用默认的三角形样式指针。<br/>支持使用svg格式的图标，若使用其他格式，则使用默认的三角形样式指针。 |
 | space | [Dimension](ts-types.md#dimension10) | 否 | 指针距离圆环外边的间距。(不支持百分比) <br/>默认值：8<br/>单位：vp <br/>**说明：** <br/> 对于默认的三角形样式指针，间距为黑色三角形到圆环外边的间距。<br/> 若设置值小于0，则使用默认值。<br/>若设置值大于圆环半径，则使用默认值。|
 
 ## GaugeConfiguration<sup>12+</sup>对象说明
@@ -630,3 +662,48 @@ struct refreshExample {
 }
 ```
 ![gauge](figures/gauge_builder.gif)
+
+
+### 示例9
+
+该示例展示了如何配置隐私隐藏，效果展示需要卡片框架支持
+
+```ts
+@Entry
+@Component
+struct GaugeExample {
+  build() {
+    Scroll() {
+      Column({ space: 15 }) {
+        Row() {
+          Gauge({ value: 50, min: 1, max: 100 }) {
+            Column() {
+              Text('60')
+                .maxFontSize("180sp")
+                .minFontSize("160.0vp")
+                .fontWeight(FontWeight.Medium)
+                .fontColor("#ff182431")
+                .width('40%')
+                .height('30%')
+                .textAlign(TextAlign.Center)
+                .margin({ top: '22.2%' })
+                .textOverflow({ overflow: TextOverflow.Ellipsis })
+                .maxLines(1)
+            }.width('100%').height('100%')
+          }
+          .startAngle(225)
+          .endAngle(135)
+          .colors(Color.Red)
+          .width('80%')
+          .height('80%')
+          .strokeWidth(18)
+          .trackShadow({ radius: 7, offsetX: 7, offsetY: 7 })
+          .padding(18)
+          .privacySensitive(true)
+        }
+      }
+    }
+  }
+}
+```
+![gauge](figures/gauge-privacysensitive.gif)

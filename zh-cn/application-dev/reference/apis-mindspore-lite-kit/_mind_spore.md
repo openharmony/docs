@@ -7,7 +7,6 @@
 
 **起始版本：** 9
 
-
 ## 汇总
 
 
@@ -58,12 +57,12 @@
 | [OH_AI_TensorHandle](#oh_ai_tensorhandle) | 指向张量对象句柄 |
 | [OH_AI_ModelType](#oh_ai_modeltype) | 模型文件的类型 |
 | [OH_AI_DeviceType](#oh_ai_devicetype) | 设备类型信息，包含了目前支持的设备类型。 |
-| [OH_AI_NNRTDeviceType](#oh_ai_nnrtdevicetype) | NNRT管理的硬件设备类型 |
-| [OH_AI_PerformanceMode](#oh_ai_performancemode) | NNRT硬件的工作性能模式 |
-| [OH_AI_Priority](#oh_ai_priority) | NNRT推理任务优先级 |
+| [OH_AI_NNRTDeviceType](#oh_ai_nnrtdevicetype) | NNRt管理的硬件设备类型 |
+| [OH_AI_PerformanceMode](#oh_ai_performancemode) | NNRt硬件的工作性能模式 |
+| [OH_AI_Priority](#oh_ai_priority) | NNRt推理任务优先级 |
 | [OH_AI_OptimizationLevel](#oh_ai_optimizationlevel) | 训练优化等级。 |
 | [OH_AI_QuantizationType](#oh_ai_quantizationtype) | 量化类型信息。 |
-| [NNRTDeviceDesc](#nnrtdevicedesc) | NNRT设备信息描述，包含设备ID，设备名称等信息。 |
+| [NNRTDeviceDesc](#nnrtdevicedesc) | NNRt设备信息描述，包含设备ID，设备名称等信息。 |
 
 
 ### 枚举
@@ -76,9 +75,9 @@
 | [OH_AI_Status](#oh_ai_status) {<br/>OH_AI_STATUS_SUCCESS = 0, OH_AI_STATUS_CORE_FAILED = OH_AI_COMPCODE_CORE \| 0x1, OH_AI_STATUS_LITE_ERROR = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -1), OH_AI_STATUS_LITE_NULLPTR = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -2),<br/>OH_AI_STATUS_LITE_PARAM_INVALID = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -3), OH_AI_STATUS_LITE_NO_CHANGE = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -4), OH_AI_STATUS_LITE_SUCCESS_EXIT = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -5), OH_AI_STATUS_LITE_MEMORY_FAILED = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -6),<br/>OH_AI_STATUS_LITE_NOT_SUPPORT = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -7), OH_AI_STATUS_LITE_THREADPOOL_ERROR = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -8), OH_AI_STATUS_LITE_UNINITIALIZED_OBJ = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -9), OH_AI_STATUS_LITE_OUT_OF_TENSOR_RANGE = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -100),<br/>OH_AI_STATUS_LITE_INPUT_TENSOR_ERROR, OH_AI_STATUS_LITE_REENTRANT_ERROR = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -102), OH_AI_STATUS_LITE_GRAPH_FILE_ERROR = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -200), OH_AI_STATUS_LITE_NOT_FIND_OP = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -300),<br/>OH_AI_STATUS_LITE_INVALID_OP_NAME = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -301), OH_AI_STATUS_LITE_INVALID_OP_ATTR = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -302), OH_AI_STATUS_LITE_OP_EXECUTE_FAILURE, OH_AI_STATUS_LITE_FORMAT_ERROR = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -400),<br/>OH_AI_STATUS_LITE_INFER_ERROR = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -500), OH_AI_STATUS_LITE_INFER_INVALID, OH_AI_STATUS_LITE_INPUT_PARAM_INVALID<br/>} | Minspore的状态码 |
 | [OH_AI_ModelType](#oh_ai_modeltype) { OH_AI_MODELTYPE_MINDIR = 0, OH_AI_MODELTYPE_INVALID = 0xFFFFFFFF } | 模型文件的类型 |
 | [OH_AI_DeviceType](#oh_ai_devicetype) {<br/>OH_AI_DEVICETYPE_CPU = 0, OH_AI_DEVICETYPE_GPU, OH_AI_DEVICETYPE_KIRIN_NPU, OH_AI_DEVICETYPE_NNRT = 60,<br/>OH_AI_DEVICETYPE_INVALID = 100<br/>} | 设备类型信息，包含了目前支持的设备类型。 |
-| [OH_AI_NNRTDeviceType](#oh_ai_nnrtdevicetype) { OH_AI_NNRTDEVICE_OTHERS = 0, OH_AI_NNRTDEVICE_CPU = 1, OH_AI_NNRTDEVICE_GPU = 2, OH_AI_NNRTDEVICE_ACCELERATOR = 3 } | NNRT管理的硬件设备类型 |
-| [OH_AI_PerformanceMode](#oh_ai_performancemode) {<br/>OH_AI_PERFORMANCE_NONE = 0, OH_AI_PERFORMANCE_LOW = 1, OH_AI_PERFORMANCE_MEDIUM = 2, OH_AI_PERFORMANCE_HIGH = 3,<br/>OH_AI_PERFORMANCE_EXTREME = 4<br/>} | NNRT硬件的工作性能模式 |
-| [OH_AI_Priority](#oh_ai_priority) { OH_AI_PRIORITY_NONE = 0, OH_AI_PRIORITY_LOW = 1, OH_AI_PRIORITY_MEDIUM = 2, OH_AI_PRIORITY_HIGH = 3 } | NNRT推理任务优先级 |
+| [OH_AI_NNRTDeviceType](#oh_ai_nnrtdevicetype) { OH_AI_NNRTDEVICE_OTHERS = 0, OH_AI_NNRTDEVICE_CPU = 1, OH_AI_NNRTDEVICE_GPU = 2, OH_AI_NNRTDEVICE_ACCELERATOR = 3 } | NNRt管理的硬件设备类型 |
+| [OH_AI_PerformanceMode](#oh_ai_performancemode) {<br/>OH_AI_PERFORMANCE_NONE = 0, OH_AI_PERFORMANCE_LOW = 1, OH_AI_PERFORMANCE_MEDIUM = 2, OH_AI_PERFORMANCE_HIGH = 3,<br/>OH_AI_PERFORMANCE_EXTREME = 4<br/>} | NNRt硬件的工作性能模式 |
+| [OH_AI_Priority](#oh_ai_priority) { OH_AI_PRIORITY_NONE = 0, OH_AI_PRIORITY_LOW = 1, OH_AI_PRIORITY_MEDIUM = 2, OH_AI_PRIORITY_HIGH = 3 } | NNRt推理任务优先级 |
 | [OH_AI_OptimizationLevel](#oh_ai_optimizationlevel) {<br/>OH_AI_KO0 = 0, OH_AI_KO2 = 2, OH_AI_KO3 = 3, OH_AI_KAUTO = 4,<br/>OH_AI_KOPTIMIZATIONTYPE = 0xFFFFFFFF<br/>} | 训练优化等级。 |
 | [OH_AI_QuantizationType](#oh_ai_quantizationtype) { OH_AI_NO_QUANT = 0, OH_AI_WEIGHT_QUANT = 1, OH_AI_FULL_QUANT = 2, OH_AI_UNKNOWN_QUANT_TYPE = 0xFFFFFFFF } | 量化类型信息。 |
 
@@ -109,21 +108,21 @@
 | [OH_AI_DeviceInfoGetEnableFP16](#oh_ai_deviceinfogetenablefp16) (const [OH_AI_DeviceInfoHandle](#oh_ai_deviceinfohandle) device_info) | 获取是否开启float16推理模式, 仅CPU/GPU设备可用。 |
 | [OH_AI_DeviceInfoSetFrequency](#oh_ai_deviceinfosetfrequency) ([OH_AI_DeviceInfoHandle](#oh_ai_deviceinfohandle) device_info, int frequency) | 设置NPU的频率，仅NPU设备可用。 |
 | [OH_AI_DeviceInfoGetFrequency](#oh_ai_deviceinfogetfrequency) (const [OH_AI_DeviceInfoHandle](#oh_ai_deviceinfohandle) device_info) | 获取NPU的频率类型，仅NPU设备可用。 |
-| [OH_AI_GetAllNNRTDeviceDescs](#oh_ai_getallnnrtdevicedescs) (size_t \*num) | 获取系统中所有NNRT硬件设备的描述信息。 |
-| [OH_AI_GetElementOfNNRTDeviceDescs](#oh_ai_getelementofnnrtdevicedescs) ([NNRTDeviceDesc](#nnrtdevicedesc) \*descs, size_t index) | 获取NNRT设备描述信息数组中的元素指针。 |
-| [OH_AI_DestroyAllNNRTDeviceDescs](#oh_ai_destroyallnnrtdevicedescs) ([NNRTDeviceDesc](#nnrtdevicedesc) \*\*desc) | 销毁从[OH_AI_GetAllNNRTDeviceDescs](#oh_ai_getallnnrtdevicedescs)获取的NNRT描写信息实例数组。 |
-| [OH_AI_GetDeviceIdFromNNRTDeviceDesc](#oh_ai_getdeviceidfromnnrtdevicedesc) (const [NNRTDeviceDesc](#nnrtdevicedesc) \*desc) | 从特定的NNRT设备描述信息实例获取NNRT设备ID。注意，此ID只对NNRT有效。 |
-| [OH_AI_GetNameFromNNRTDeviceDesc](#oh_ai_getnamefromnnrtdevicedesc) (const [NNRTDeviceDesc](#nnrtdevicedesc) \*desc) | 从特定的NNRT设备描述信息实例获取NNRT设备名称。 |
-| [OH_AI_GetTypeFromNNRTDeviceDesc](#oh_ai_gettypefromnnrtdevicedesc) (const [NNRTDeviceDesc](#nnrtdevicedesc) \*desc) | 从特定的NNRT设备描述信息实例获取NNRT设备类型。 |
-| [OH_AI_CreateNNRTDeviceInfoByName](#oh_ai_creatennrtdeviceinfobyname) (const char \*name) | 查找指定名称的NNRT设备，根据找到的第一个设备信息，创建NNRT设备信息。 |
-| [OH_AI_CreateNNRTDeviceInfoByType](#oh_ai_creatennrtdeviceinfobytype) ([OH_AI_NNRTDeviceType](#oh_ai_nnrtdevicetype) type) | 查找指定类型的NNRT设备，根据找到的第一个设备信息，创建NNRT设备信息。 |
-| [OH_AI_DeviceInfoSetDeviceId](#oh_ai_deviceinfosetdeviceid) ([OH_AI_DeviceInfoHandle](#oh_ai_deviceinfohandle) device_info, size_t device_id) | 设置NNRT设备ID，仅NNRT设备可用。 |
-| [OH_AI_DeviceInfoGetDeviceId](#oh_ai_deviceinfogetdeviceid) (const [OH_AI_DeviceInfoHandle](#oh_ai_deviceinfohandle) device_info) | 获取NNRT设备ID，仅NNRT设备可用。 |
-| [OH_AI_DeviceInfoSetPerformanceMode](#oh_ai_deviceinfosetperformancemode) ([OH_AI_DeviceInfoHandle](#oh_ai_deviceinfohandle) device_info, [OH_AI_PerformanceMode](#oh_ai_performancemode) mode) | 设置NNRT性能模式，仅NNRT设备可用。 |
-| [OH_AI_DeviceInfoGetPerformanceMode](#oh_ai_deviceinfogetperformancemode) (const [OH_AI_DeviceInfoHandle](#oh_ai_deviceinfohandle) device_info) | 获取NNRT性能模式，仅NNRT设备可用。 |
-| [OH_AI_DeviceInfoSetPriority](#oh_ai_deviceinfosetpriority) ([OH_AI_DeviceInfoHandle](#oh_ai_deviceinfohandle) device_info, [OH_AI_Priority](#oh_ai_priority) priority) | 设置NNRT任务优先级，仅NNRT设备可用。 |
-| [OH_AI_DeviceInfoGetPriority](#oh_ai_deviceinfogetpriority) (const [OH_AI_DeviceInfoHandle](#oh_ai_deviceinfohandle) device_info) | 获取NNRT任务优先级，仅NNRT设备可用。 |
-| [OH_AI_DeviceInfoAddExtension](#oh_ai_deviceinfoaddextension) ([OH_AI_DeviceInfoHandle](#oh_ai_deviceinfohandle) device_info, const char \*name, const char \*value, size_t value_size) | 向设备信息中添加键/值对形式的扩展配置。只对NNRT设备信息有效。 |
+| [OH_AI_GetAllNNRTDeviceDescs](#oh_ai_getallnnrtdevicedescs) (size_t \*num) | 获取系统中所有NNRt硬件设备的描述信息。 |
+| [OH_AI_GetElementOfNNRTDeviceDescs](#oh_ai_getelementofnnrtdevicedescs) ([NNRTDeviceDesc](#nnrtdevicedesc) \*descs, size_t index) | 获取NNRt设备描述信息数组中的元素指针。 |
+| [OH_AI_DestroyAllNNRTDeviceDescs](#oh_ai_destroyallnnrtdevicedescs) ([NNRTDeviceDesc](#nnrtdevicedesc) \*\*desc) | 销毁从[OH_AI_GetAllNNRTDeviceDescs](#oh_ai_getallnnrtdevicedescs)获取的NNRt描写信息实例数组。 |
+| [OH_AI_GetDeviceIdFromNNRTDeviceDesc](#oh_ai_getdeviceidfromnnrtdevicedesc) (const [NNRtDeviceDesc](#nnrtdevicedesc) \*desc) | 从特定的NNRt设备描述信息实例获取NNRt设备ID。注意，此ID只对NNRt有效。 |
+| [OH_AI_GetNameFromNNRTDeviceDesc](#oh_ai_getnamefromnnrtdevicedesc) (const [NNRTDeviceDesc](#nnrtdevicedesc) \*desc) | 从特定的NNRt设备描述信息实例获取NNRt设备名称。 |
+| [OH_AI_GetTypeFromNNRtDeviceDesc](#oh_ai_gettypefromnnrtdevicedesc) (const [NNRTDeviceDesc](#nnrtdevicedesc) \*desc) | 从特定的NNRt设备描述信息实例获取NNRt设备类型。 |
+| [OH_AI_CreateNNRTDeviceInfoByName](#oh_ai_creatennrtdeviceinfobyname) (const char \*name) | 查找指定名称的NNRt设备，根据找到的第一个设备信息，创建NNRt设备信息。 |
+| [OH_AI_CreateNNRTDeviceInfoByType](#oh_ai_creatennrtdeviceinfobytype) ([OH_AI_NNRTDeviceType](#oh_ai_nnrtdevicetype) type) | 查找指定类型的NNRt设备，根据找到的第一个设备信息，创建NNRt设备信息。 |
+| [OH_AI_DeviceInfoSetDeviceId](#oh_ai_deviceinfosetdeviceid) ([OH_AI_DeviceInfoHandle](#oh_ai_deviceinfohandle) device_info, size_t device_id) | 设置NNRt设备ID，仅NNRt设备可用。 |
+| [OH_AI_DeviceInfoGetDeviceId](#oh_ai_deviceinfogetdeviceid) (const [OH_AI_DeviceInfoHandle](#oh_ai_deviceinfohandle) device_info) | 获取NNRt设备ID，仅NNRt设备可用。 |
+| [OH_AI_DeviceInfoSetPerformanceMode](#oh_ai_deviceinfosetperformancemode) ([OH_AI_DeviceInfoHandle](#oh_ai_deviceinfohandle) device_info, [OH_AI_PerformanceMode](#oh_ai_performancemode) mode) | 设置NNRt性能模式，仅NNRt设备可用。 |
+| [OH_AI_DeviceInfoGetPerformanceMode](#oh_ai_deviceinfogetperformancemode) (const [OH_AI_DeviceInfoHandle](#oh_ai_deviceinfohandle) device_info) | 获取NNRt性能模式，仅NNRt设备可用。 |
+| [OH_AI_DeviceInfoSetPriority](#oh_ai_deviceinfosetpriority) ([OH_AI_DeviceInfoHandle](#oh_ai_deviceinfohandle) device_info, [OH_AI_Priority](#oh_ai_priority) priority) | 设置NNRt任务优先级，仅NNRt设备可用。 |
+| [OH_AI_DeviceInfoGetPriority](#oh_ai_deviceinfogetpriority) (const [OH_AI_DeviceInfoHandle](#oh_ai_deviceinfohandle) device_info) | 获取NNRt任务优先级，仅NNRt设备可用。 |
+| [OH_AI_DeviceInfoAddExtension](#oh_ai_deviceinfoaddextension) ([OH_AI_DeviceInfoHandle](#oh_ai_deviceinfohandle) device_info, const char \*name, const char \*value, size_t value_size) | 向设备信息中添加键/值对形式的扩展配置。只对NNRt设备信息有效。 |
 | [OH_AI_ModelCreate](#oh_ai_modelcreate) () | 创建一个模型对象。 |
 | [OH_AI_ModelDestroy](#oh_ai_modeldestroy) ([OH_AI_ModelHandle](#oh_ai_modelhandle) \*model) | 释放一个模型对象。 |
 | [OH_AI_ModelBuild](#oh_ai_modelbuild) ([OH_AI_ModelHandle](#oh_ai_modelhandle) model, const void \*model_data, size_t data_size, [OH_AI_ModelType](#oh_ai_modeltype) model_type, const [OH_AI_ContextHandle](#oh_ai_contexthandle) model_context) | 从内存缓冲区加载并编译MindSpore模型。 |
@@ -199,7 +198,7 @@ typedef struct NNRTDeviceDesc NNRTDeviceDesc
 
 **描述**
 
-NNRT设备信息描述，包含设备ID，设备名称等信息。
+NNRt设备信息描述，包含设备ID，设备名称等信息。
 
 **起始版本：** 10
 
@@ -207,7 +206,7 @@ NNRT设备信息描述，包含设备ID，设备名称等信息。
 ### OH_AI_CallBackParam
 
 ```
-typedef struct OH_AI_CallBackParamOH_AI_CallBackParam
+typedef struct OH_AI_CallBackParam OH_AI_CallBackParam
 ```
 
 **描述**
@@ -233,7 +232,7 @@ Mindspore的上下文信息的指针，该指针会指向Context。
 ### OH_AI_DataType
 
 ```
-typedef enum OH_AI_DataTypeOH_AI_DataType
+typedef enum OH_AI_DataType OH_AI_DataType
 ```
 
 **描述**
@@ -259,7 +258,7 @@ Mindspore的运行设备信息的指针。
 ### OH_AI_DeviceType
 
 ```
-typedef enum OH_AI_DeviceTypeOH_AI_DeviceType
+typedef enum OH_AI_DeviceType OH_AI_DeviceType
 ```
 
 **描述**
@@ -272,7 +271,7 @@ typedef enum OH_AI_DeviceTypeOH_AI_DeviceType
 ### OH_AI_Format
 
 ```
-typedef enum OH_AI_FormatOH_AI_Format
+typedef enum OH_AI_Format OH_AI_Format
 ```
 
 **描述**
@@ -313,7 +312,7 @@ typedef void* OH_AI_ModelHandle
 ### OH_AI_ModelType
 
 ```
-typedef enum OH_AI_ModelTypeOH_AI_ModelType
+typedef enum OH_AI_ModelType OH_AI_ModelType
 ```
 
 **描述**
@@ -326,12 +325,12 @@ typedef enum OH_AI_ModelTypeOH_AI_ModelType
 ### OH_AI_NNRTDeviceType
 
 ```
-typedef enum OH_AI_NNRTDeviceTypeOH_AI_NNRTDeviceType
+typedef enum OH_AI_NNRTDeviceType OH_AI_NNRTDeviceType
 ```
 
 **描述**
 
-NNRT管理的硬件设备类型
+NNRt管理的硬件设备类型
 
 **起始版本：** 10
 
@@ -339,12 +338,12 @@ NNRT管理的硬件设备类型
 ### OH_AI_PerformanceMode
 
 ```
-typedef enum OH_AI_PerformanceModeOH_AI_PerformanceMode
+typedef enum OH_AI_PerformanceMode OH_AI_PerformanceMode
 ```
 
 **描述**
 
-NNRT硬件的工作性能模式
+NNRt硬件的工作性能模式
 
 **起始版本：** 10
 
@@ -352,12 +351,12 @@ NNRT硬件的工作性能模式
 ### OH_AI_Priority
 
 ```
-typedef enum OH_AI_PriorityOH_AI_Priority
+typedef enum OH_AI_Priority OH_AI_Priority
 ```
 
 **描述**
 
-NNRT推理任务优先级
+NNRt推理任务优先级
 
 **起始版本：** 10
 
@@ -365,7 +364,7 @@ NNRT推理任务优先级
 ### OH_AI_Status
 
 ```
-typedef enum OH_AI_StatusOH_AI_Status
+typedef enum OH_AI_Status OH_AI_Status
 ```
 
 **描述**
@@ -391,7 +390,7 @@ typedef void* OH_AI_TensorHandle
 ### OH_AI_TensorHandleArray
 
 ```
-typedef struct OH_AI_TensorHandleArrayOH_AI_TensorHandleArray
+typedef struct OH_AI_TensorHandleArray OH_AI_TensorHandleArray
 ```
 
 **描述**
@@ -489,9 +488,9 @@ enum OH_AI_DeviceType
 | 枚举值 | 描述 |
 | -------- | -------- |
 | OH_AI_DEVICETYPE_CPU | 设备类型是CPU |
-| OH_AI_DEVICETYPE_GPU | 设备类型是GPU |
-| OH_AI_DEVICETYPE_KIRIN_NPU | 设备类型是麒麟NPU |
-| OH_AI_DEVICETYPE_NNRT | 设备类型是NNRt<br/>OHOS设备范围是[60,80)。 |
+| OH_AI_DEVICETYPE_GPU | 设备类型是GPU<br/>该配置为上游开源社区选项，在OpenHarmony上不支持 |
+| OH_AI_DEVICETYPE_KIRIN_NPU | 设备类型是麒麟NPU<br/>该配置为上游开源社区选项，在OpenHarmony上不支持<br/>如需使用KIRIN_NPU请通过OH_AI_DEVICETYPE_NNRT配置 |
+| OH_AI_DEVICETYPE_NNRT | 设备类型是NNRt（Neural Network Runtime, 神经网络运行时是面向AI领域的跨芯片推理计算运行时）<br/>OHOS设备范围是[60,80)。 |
 | OH_AI_DEVICETYPE_INVALID | 设备类型无效 |
 
 
@@ -554,7 +553,7 @@ enum OH_AI_NNRTDeviceType
 
 **描述**
 
-NNRT管理的硬件设备类型
+NNRt管理的硬件设备类型
 
 **起始版本：** 10
 
@@ -597,7 +596,7 @@ enum OH_AI_PerformanceMode
 
 **描述**
 
-NNRT硬件的工作性能模式
+NNRt硬件的工作性能模式
 
 **起始版本：** 10
 
@@ -618,7 +617,7 @@ enum OH_AI_Priority
 
 **描述**
 
-NNRT推理任务优先级
+NNRt推理任务优先级
 
 **起始版本：** 10
 
@@ -934,7 +933,7 @@ OH_AI_API OH_AI_DeviceInfoHandle OH_AI_CreateNNRTDeviceInfoByName (const char * 
 
 **描述**
 
-查找指定名称的NNRT设备，根据找到的第一个设备信息，创建NNRT设备信息。
+查找指定名称的NNRt设备，根据找到的第一个设备信息，创建NNRt设备信息。
 
 **起始版本：** 10
 
@@ -942,7 +941,7 @@ OH_AI_API OH_AI_DeviceInfoHandle OH_AI_CreateNNRTDeviceInfoByName (const char * 
 
 | 名称 | 描述 |
 | -------- | -------- |
-| name | 目标NNRT设备名。 |
+| name | 目标NNRt设备名。 |
 
 **返回：**
 
@@ -957,7 +956,7 @@ OH_AI_API OH_AI_DeviceInfoHandle OH_AI_CreateNNRTDeviceInfoByType (OH_AI_NNRTDev
 
 **描述**
 
-查找指定类型的NNRT设备，根据找到的第一个设备信息，创建NNRT设备信息。
+查找指定类型的NNRt设备，根据找到的第一个设备信息，创建NNRt设备信息。
 
 **起始版本：** 10
 
@@ -965,7 +964,7 @@ OH_AI_API OH_AI_DeviceInfoHandle OH_AI_CreateNNRTDeviceInfoByType (OH_AI_NNRTDev
 
 | 名称 | 描述 |
 | -------- | -------- |
-| type | [OH_AI_NNRTDeviceType](#oh_ai_nnrtdevicetype) 目标NNRT设备类型。 |
+| type | [OH_AI_NNRTDeviceType](#oh_ai_nnrtdevicetype) 目标NNRt设备类型。 |
 
 **返回：**
 
@@ -980,7 +979,7 @@ OH_AI_API void OH_AI_DestroyAllNNRTDeviceDescs (NNRTDeviceDesc ** desc)
 
 **描述**
 
-销毁从[OH_AI_GetAllNNRTDeviceDescs](#oh_ai_getallnnrtdevicedescs)获取的NNRT描写信息实例数组。
+销毁从[OH_AI_GetAllNNRTDeviceDescs](#oh_ai_getallnnrtdevicedescs)获取的NNRt描写信息实例数组。
 
 **起始版本：** 10
 
@@ -988,7 +987,7 @@ OH_AI_API void OH_AI_DestroyAllNNRTDeviceDescs (NNRTDeviceDesc ** desc)
 
 | 名称 | 描述 |
 | -------- | -------- |
-| desc | 指向NNRT设备描述信息实例数组的二重指针。销毁结束，desc指向内容会被置为NULL。 |
+| desc | 指向NNRt设备描述信息实例数组的二重指针。销毁结束，desc指向内容会被置为NULL。 |
 
 
 ### OH_AI_DeviceInfoAddExtension()
@@ -999,7 +998,7 @@ OH_AI_API OH_AI_Status OH_AI_DeviceInfoAddExtension (OH_AI_DeviceInfoHandle devi
 
 **描述**
 
-向设备信息中添加键/值对形式的扩展配置。只对NNRT设备信息有效。
+向设备信息中添加键/值对形式的扩展配置。只对NNRt设备信息有效。
 
 注意：当前仅支持{"CachePath": "YourCachePath"}，{"CacheVersion": "YouCacheVersion"}， {"QuantParam": "YourQuantConfig"} 三种键值对配置，用户根据使用情况替换具体的值。
 
@@ -1069,7 +1068,7 @@ OH_AI_API size_t OH_AI_DeviceInfoGetDeviceId (const OH_AI_DeviceInfoHandle devic
 
 **描述**
 
-获取NNRT设备ID，仅NNRT设备可用。
+获取NNRt设备ID，仅NNRt设备可用。
 
 **起始版本：** 10
 
@@ -1081,7 +1080,7 @@ OH_AI_API size_t OH_AI_DeviceInfoGetDeviceId (const OH_AI_DeviceInfoHandle devic
 
 **返回：**
 
-NNRT设备ID。
+NNRt设备ID。
 
 
 ### OH_AI_DeviceInfoGetDeviceType()
@@ -1161,7 +1160,7 @@ OH_AI_API OH_AI_PerformanceMode OH_AI_DeviceInfoGetPerformanceMode (const OH_AI_
 
 **描述**
 
-获取NNRT性能模式，仅NNRT设备可用。
+获取NNRt性能模式，仅NNRt设备可用。
 
 **起始版本：** 10
 
@@ -1173,7 +1172,7 @@ OH_AI_API OH_AI_PerformanceMode OH_AI_DeviceInfoGetPerformanceMode (const OH_AI_
 
 **返回：**
 
-[OH_AI_PerformanceMode](#oh_ai_performancemode) NNRT性能模式。
+[OH_AI_PerformanceMode](#oh_ai_performancemode) NNRt性能模式。
 
 
 ### OH_AI_DeviceInfoGetPriority()
@@ -1184,7 +1183,7 @@ OH_AI_API OH_AI_Priority OH_AI_DeviceInfoGetPriority (const OH_AI_DeviceInfoHand
 
 **描述**
 
-获取NNRT任务优先级，仅NNRT设备可用。
+获取NNRt任务优先级，仅NNRt设备可用。
 
 **起始版本：** 10
 
@@ -1196,7 +1195,7 @@ OH_AI_API OH_AI_Priority OH_AI_DeviceInfoGetPriority (const OH_AI_DeviceInfoHand
 
 **返回：**
 
-[OH_AI_Priority](#oh_ai_priority) NNRT任务优先级。
+[OH_AI_Priority](#oh_ai_priority) NNRt任务优先级。
 
 
 ### OH_AI_DeviceInfoGetProvider()
@@ -1253,7 +1252,7 @@ OH_AI_API void OH_AI_DeviceInfoSetDeviceId (OH_AI_DeviceInfoHandle device_info, 
 
 **描述**
 
-设置NNRT设备ID，仅NNRT设备可用。
+设置NNRt设备ID，仅NNRt设备可用。
 
 **起始版本：** 10
 
@@ -1262,7 +1261,7 @@ OH_AI_API void OH_AI_DeviceInfoSetDeviceId (OH_AI_DeviceInfoHandle device_info, 
 | 名称 | 描述 |
 | -------- | -------- |
 | device_info | 指向设备信息实例的[OH_AI_DeviceInfoHandle](#oh_ai_deviceinfohandle)。 |
-| device_id | NNRT设备ID。 |
+| device_id | NNRt设备ID。 |
 
 
 ### OH_AI_DeviceInfoSetEnableFP16()
@@ -1313,7 +1312,7 @@ OH_AI_API void OH_AI_DeviceInfoSetPerformanceMode (OH_AI_DeviceInfoHandle device
 
 **描述**
 
-设置NNRT性能模式，仅NNRT设备可用。
+设置NNRt性能模式，仅NNRt设备可用。
 
 **起始版本：** 10
 
@@ -1322,7 +1321,7 @@ OH_AI_API void OH_AI_DeviceInfoSetPerformanceMode (OH_AI_DeviceInfoHandle device
 | 名称 | 描述 |
 | -------- | -------- |
 | device_info | 指向设备信息实例的[OH_AI_DeviceInfoHandle](#oh_ai_deviceinfohandle)。 |
-| mode | [OH_AI_PerformanceMode](#oh_ai_performancemode) NNRT性能模式。 |
+| mode | [OH_AI_PerformanceMode](#oh_ai_performancemode) NNRt性能模式。 |
 
 
 ### OH_AI_DeviceInfoSetPriority()
@@ -1333,7 +1332,7 @@ OH_AI_API void OH_AI_DeviceInfoSetPriority (OH_AI_DeviceInfoHandle device_info, 
 
 **描述**
 
-设置NNRT任务优先级，仅NNRT设备可用。
+设置NNRt任务优先级，仅NNRt设备可用。
 
 **起始版本：** 10
 
@@ -1342,7 +1341,7 @@ OH_AI_API void OH_AI_DeviceInfoSetPriority (OH_AI_DeviceInfoHandle device_info, 
 | 名称 | 描述 |
 | -------- | -------- |
 | device_info | 指向设备信息实例的[OH_AI_DeviceInfoHandle](#oh_ai_deviceinfohandle)。 |
-| priority | [OH_AI_Priority](#oh_ai_priority) NNRT任务优先级。 |
+| priority | [OH_AI_Priority](#oh_ai_priority) NNRt任务优先级。 |
 
 
 ### OH_AI_DeviceInfoSetProvider()
@@ -1478,7 +1477,7 @@ OH_AI_API NNRTDeviceDesc* OH_AI_GetAllNNRTDeviceDescs (size_t * num)
 
 **描述**
 
-获取系统中所有NNRT硬件设备的描述信息。
+获取系统中所有NNRt硬件设备的描述信息。
 
 **起始版本：** 10
 
@@ -1490,7 +1489,7 @@ OH_AI_API NNRTDeviceDesc* OH_AI_GetAllNNRTDeviceDescs (size_t * num)
 
 **返回：**
 
-指向NNRT设备描述信息实例数组的指针。当获取失败时，返回NULL。
+指向NNRt设备描述信息实例数组的指针。当获取失败时，返回NULL。
 
 
 ### OH_AI_GetDeviceIdFromNNRTDeviceDesc()
@@ -1501,7 +1500,7 @@ OH_AI_API size_t OH_AI_GetDeviceIdFromNNRTDeviceDesc (const NNRTDeviceDesc * des
 
 **描述**
 
-从特定的NNRT设备描述信息实例获取NNRT设备ID。注意，此ID只对NNRT有效。
+从特定的NNRt设备描述信息实例获取NNRt设备ID。注意，此ID只对NNRt有效。
 
 **起始版本：** 10
 
@@ -1509,11 +1508,11 @@ OH_AI_API size_t OH_AI_GetDeviceIdFromNNRTDeviceDesc (const NNRTDeviceDesc * des
 
 | 名称 | 描述 |
 | -------- | -------- |
-| desc | 指向NNRT设备描述信息实例的指针。 |
+| desc | 指向NNRt设备描述信息实例的指针。 |
 
 **返回：**
 
-NNRT设备ID。
+NNRt设备ID。
 
 
 ### OH_AI_GetElementOfNNRTDeviceDescs()
@@ -1524,7 +1523,7 @@ OH_AI_API NNRTDeviceDesc* OH_AI_GetElementOfNNRTDeviceDescs (NNRTDeviceDesc * de
 
 **描述**
 
-获取NNRT设备描述信息数组中的元素指针。
+获取NNRt设备描述信息数组中的元素指针。
 
 **起始版本：** 10
 
@@ -1532,12 +1531,12 @@ OH_AI_API NNRTDeviceDesc* OH_AI_GetElementOfNNRTDeviceDescs (NNRTDeviceDesc * de
 
 | 名称 | 描述 |
 | -------- | -------- |
-| descs | NNRT设备描述信息数组。 |
+| descs | NNRt设备描述信息数组。 |
 | index | 数组元素索引。 |
 
 **返回：**
 
-NNRT设备描述信息类型指针。
+NNRt设备描述信息类型指针。
 
 
 ### OH_AI_GetNameFromNNRTDeviceDesc()
@@ -1548,7 +1547,7 @@ OH_AI_API const char* OH_AI_GetNameFromNNRTDeviceDesc (const NNRTDeviceDesc * de
 
 **描述**
 
-从特定的NNRT设备描述信息实例获取NNRT设备名称。
+从特定的NNRt设备描述信息实例获取NNRt设备名称。
 
 **起始版本：** 10
 
@@ -1556,11 +1555,11 @@ OH_AI_API const char* OH_AI_GetNameFromNNRTDeviceDesc (const NNRTDeviceDesc * de
 
 | 名称 | 描述 |
 | -------- | -------- |
-| desc | 指向NNRT设备描述信息实例的指针。 |
+| desc | 指向NNRt设备描述信息实例的指针。 |
 
 **返回：**
 
-NNRT设备名称，指向一个常量字符串的指针，该常量字符串由desc持有，调用者无需单独释放此指针。
+NNRt设备名称，指向一个常量字符串的指针，该常量字符串由desc持有，调用者无需单独释放此指针。
 
 
 ### OH_AI_GetTypeFromNNRTDeviceDesc()
@@ -1571,7 +1570,7 @@ OH_AI_API OH_AI_NNRTDeviceType OH_AI_GetTypeFromNNRTDeviceDesc (const NNRTDevice
 
 **描述**
 
-从特定的NNRT设备描述信息实例获取NNRT设备类型。
+从特定的NNRt设备描述信息实例获取NNRt设备类型。
 
 **起始版本：** 10
 
@@ -1579,11 +1578,11 @@ OH_AI_API OH_AI_NNRTDeviceType OH_AI_GetTypeFromNNRTDeviceDesc (const NNRTDevice
 
 | 名称 | 描述 |
 | -------- | -------- |
-| desc | 指向NNRT设备描述信息实例的指针。 |
+| desc | 指向NNRt设备描述信息实例的指针。 |
 
 **返回：**
 
-[OH_AI_NNRTDeviceType](#oh_ai_nnrtdevicetype) NNRT设备类型。
+[OH_AI_NNRTDeviceType](#oh_ai_nnrtdevicetype) NNRt设备类型。
 
 
 ### OH_AI_ModelBuild()

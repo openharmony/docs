@@ -50,10 +50,10 @@ addPermissionUsedRecord(tokenID: number, permissionName: Permissions, successCou
 | 201 | Permission denied. Interface caller does not have permission. |
 | 202 | Not System App. Interface caller is not a system app. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 12100001 | The parameter is invalid. The tokenID is 0, permissionName exceeds 256 characters, the count value is invalid, or usedType in AddPermissionUsedRecordOptions is invalid. |
+| 12100001 | Invalid parameter. The tokenID is 0, the permissionName exceeds 256 characters, the count value is invalid, or usedType in AddPermissionUsedRecordOptions is invalid. |
 | 12100002 | The specified tokenID does not exist or refer to an application process. |
 | 12100003 | The specified permission does not exist or is not an user_grant permission. |
-| 12100007 | Service is abnormal. |
+| 12100007 | The service is abnormal. |
 | 12100008 | Out of memory. |
 
 **示例：**
@@ -70,7 +70,7 @@ privacyManager.addPermissionUsedRecord(tokenID, 'ohos.permission.READ_AUDIO', 1,
 });
 // with options param
 let options: privacyManager.AddPermissionUsedRecordOptions = {
-  .usedType = privacyManager.PermissionUsedType.PICKER_TYPE
+  usedType: privacyManager.PermissionUsedType.PICKER_TYPE
 };
 privacyManager.addPermissionUsedRecord(tokenID, 'ohos.permission.READ_AUDIO', 1, 0, options).then(() => {
   console.log('addPermissionUsedRecord success');
@@ -109,10 +109,10 @@ addPermissionUsedRecord(tokenID: number, permissionName: Permissions, successCou
 | 201 | Permission denied. Interface caller does not have permission. |
 | 202 | Not System App. Interface caller is not a system app. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 12100001 | The parameter is invalid. The tokenID is 0, or the string size of permissionName is larger than 256, or the count value is invalid. |
+| 12100001 | Invalid parameter. The tokenID is 0, the permissionName exceeds 256 characters, or the count value is invalid. |
 | 12100002 | The specified tokenID does not exist or refer to an application process. |
 | 12100003 | The specified permission does not exist or is not an user_grant permission. |
-| 12100007 | Service is abnormal. |
+| 12100007 | The service is abnormal. |
 | 12100008 | Out of memory. |
 
 **示例：**
@@ -162,10 +162,10 @@ getPermissionUsedRecord(request: PermissionUsedRequest): Promise&lt;PermissionUs
 | 201 | Permission denied. Interface caller does not have permission. |
 | 202 | Not System App. Interface caller is not a system app. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 12100001 | The parameter is invalid. the value of flag in request is invalid. |
+| 12100001 | Invalid parameter. The value of flag in request is invalid. |
 | 12100002 | The specified tokenID does not exist or refer to an application process. |
 | 12100003 | The specified permission does not exist or is not an user_grant permission. |
-| 12100007 | Service is abnormal. |
+| 12100007 | The service is abnormal. |
 | 12100008 | Out of memory. |
 
 **示例：**
@@ -218,10 +218,10 @@ getPermissionUsedRecord(request: PermissionUsedRequest, callback: AsyncCallback&
 | 201 | Permission denied. Interface caller does not have permission. |
 | 202 | Not System App. Interface caller is not a system app. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 12100001 | The parameter is invalid. the value of flag in request is invalid. |
+| 12100001 | Invalid parameter. The value of flag in request is invalid. |
 | 12100002 | The specified tokenID does not exist or refer to an application process. |
 | 12100003 | The specified permission does not exist or is not an user_grant permission. |
-| 12100007 | Service is abnormal. |
+| 12100007 | The service is abnormal. |
 | 12100008 | Out of memory. |
 
 **示例：**
@@ -282,11 +282,11 @@ startUsingPermission(tokenID: number, permissionName: Permissions): Promise&lt;v
 | 201 | Permission denied. Interface caller does not have permission. |
 | 202 | Not System App. Interface caller is not a system app. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 12100001 | The tokenID is 0, permissionName is longer than 256 bytes, or the count value is invalid. |
+| 12100001 | Invalid parameter. The tokenID is 0, the permissionName exceeds 256 characters, or the count value is invalid. |
 | 12100002 | The specified tokenID does not exist or refer to an application process. |
 | 12100003 | The specified permission does not exist or is not an user_grant permission. |
-| 12100004 | The interface is called repeatedly with the same input. It means the application specified by the tokenID has been using the specified permission. |
-| 12100007 | Service is abnormal. |
+| 12100004 | The API is used repeatedly with the same input. It means the application specified by the tokenID has been using the specified permission. |
+| 12100007 | The service is abnormal. |
 | 12100008 | Out of memory. |
 
 **示例：**
@@ -330,11 +330,11 @@ startUsingPermission(tokenID: number, permissionName: Permissions, callback: Asy
 | 201 | Permission denied. Interface caller does not have permission. |
 | 202 | Not System App. Interface caller is not a system app. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 12100001 | The tokenID is 0, permissionName is longer than 256 bytes, or the count value is invalid. |
+| 12100001 | Invalid parameter. The tokenID is 0, the permissionName exceeds 256 characters, or the count value is invalid. |
 | 12100002 | The specified tokenID does not exist or refer to an application process. |
 | 12100003 | The specified permission does not exist or is not an user_grant permission. |
-| 12100004 | The interface is called repeatedly with the same input. It means the application specified by the tokenID has been using the specified permission. |
-| 12100007 | Service is abnormal. |
+| 12100004 | The API is used repeatedly with the same input. It means the application specified by the tokenID has been using the specified permission. |
+| 12100007 | The service is abnormal. |
 | 12100008 | Out of memory. |
 
 **示例：**
@@ -385,11 +385,11 @@ stopUsingPermission(tokenID: number, permissionName: Permissions): Promise&lt;vo
 | 201 | Permission denied. Interface caller does not have permission. |
 | 202 | Not System App. Interface caller is not a system app. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 12100001 | The tokenID is 0, permissionName is longer than 256 bytes, or the count value is invalid. |
+| 12100001 | Invalid parameter. The tokenID is 0, the permissionName exceeds 256 characters, or the count value is invalid. |
 | 12100002 | The specified tokenID does not exist or refer to an application process. |
 | 12100003 | The specified permission does not exist or is not an user_grant permission. |
-| 12100004 | The interface is not used with |
-| 12100007 | Service is abnormal. |
+| 12100004 | The API is not used in pair with 'startUsingPermission'. |
+| 12100007 | The service is abnormal. |
 | 12100008 | Out of memory. |
 
 **示例：**
@@ -433,11 +433,11 @@ stopUsingPermission(tokenID: number, permissionName: Permissions, callback: Asyn
 | 201 | Permission denied. Interface caller does not have permission. |
 | 202 | Not System App. Interface caller is not a system app. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 12100001 | The tokenID is 0, permissionName is longer than 256 bytes, or the count value is invalid. |
+| 12100001 | Invalid parameter. The tokenID is 0, the permissionName exceeds 256 characters, or the count value is invalid. |
 | 12100002 | The specified tokenID does not exist or refer to an application process. |
 | 12100003 | The specified permission does not exist or is not an user_grant permission. |
-| 12100004 | The interface is not used with |
-| 12100007 | Service is abnormal. |
+| 12100004 | The API is not used in pair with 'startUsingPermission'. |
+| 12100007 | The service is abnormal. |
 | 12100008 | Out of memory. |
 
 **示例：**
@@ -487,10 +487,10 @@ on(type: 'activeStateChange', permissionList: Array&lt;Permissions&gt;, callback
 | 201 | Permission denied. Interface caller does not have permission. |
 | 202 | Not System App. Interface caller is not a system app. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 12100001 | The parameter is invalid. The tokenID is 0, or the string size of permissionName is larger than 256. |
-| 12100004 | The interface is called repeatedly with the same input. |
+| 12100001 | Invalid parameter. The tokenID is 0, or the permissionName exceeds 256 characters. |
+| 12100004 | The API is used repeatedly with the same input. |
 | 12100005 | The registration time has exceeded the limitation. |
-| 12100007 | Service is abnormal. |
+| 12100007 | The service is abnormal. |
 | 12100008 | Out of memory. |
 
 **示例：**
@@ -538,9 +538,9 @@ off(type: 'activeStateChange', permissionList: Array&lt;Permissions&gt;, callbac
 | 201 | Permission denied. Interface caller does not have permission. |
 | 202 | Not System App. Interface caller is not a system app. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 12100001 | The permissionNames in the list are all invalid, or the list size exceeds 1024 bytes. |
-| 12100004 | The interface is not used together with 'on'|
-| 12100007 | Service is abnormal. |
+| 12100001 | Invalid parameter. The permissionNames in the list are all invalid, or the list size exceeds 1024 bytes. |
+| 12100004 | The API is not used in pair with 'on'. |
+| 12100007 | The service is abnormal. |
 | 12100008 | Out of memory. |
 
 **示例：**
@@ -587,8 +587,8 @@ getPermissionUsedTypeInfos(tokenId?: number, permissionName?: Permissions): Prom
 | -------- | -------- |
 | 201 | Permission denied. Interface caller does not have permission. |
 | 202 | Not System App. Interface caller is not a system app. |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 12100001 | The parameter is invalid. PermissionName exceeds 256 characters. |
+| 401 | Parameter error. Possible causes: 1.Incorrect parameter types. |
+| 12100001 | Invalid parameter. PermissionName exceeds 256 characters. |
 | 12100002 | The input tokenId does not exist. |
 | 12100003 | The input permissionName does not exist. |
 

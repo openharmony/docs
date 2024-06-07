@@ -73,11 +73,13 @@ AudioRenderer是音频渲染器，用于播放PCM（Pulse Code Modulation）音�
       length?: number;
     }
 
+    let path = getContext().cacheDir;
+    //确保该路径下存在该资源
+    let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
+    let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
+   
     let writeDataCallback = (buffer: ArrayBuffer) => {
-      let path = getContext().cacheDir;
-      //确保该路径下存在该资源
-      let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
-      let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
+      
       let options: Options = {
         offset: bufferSize,
         length: buffer.byteLength
@@ -164,11 +166,12 @@ let audioRendererOptions: audio.AudioRendererOptions = {
   streamInfo: audioStreamInfo,
   rendererInfo: audioRendererInfo
 }
+let path = getContext().cacheDir;
+//确保该路径下存在该资源
+let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
+let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
+
 let writeDataCallback = (buffer: ArrayBuffer) => {
-  let path = getContext().cacheDir;
-  //确保该路径下存在该资源
-  let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
-  let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
   let options: Options = {
     offset: bufferSize,
     length: buffer.byteLength
@@ -243,6 +246,7 @@ async function stop() {
       if (err) {
         console.error('Renderer stop failed.');
       } else {
+        fs.close(file);
         console.info('Renderer stop success.');
       }
     });

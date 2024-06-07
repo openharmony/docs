@@ -24,8 +24,8 @@
 参考以下示例，设置文件描述符，获取一个视频指定时间的缩略图。
 
 ```ts
-import media from '@ohos.multimedia.media'
-import image from '@ohos.multimedia.image'
+import { media } from '@kit.MediaKit';
+import { image } from '@kit.ImageKit';
 
 const TAG = 'MetadataDemo'
 @Entry

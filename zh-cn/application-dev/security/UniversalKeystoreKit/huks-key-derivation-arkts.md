@@ -10,9 +10,13 @@
 
 1. 指定密钥别名。
 
-2. 初始化密钥属性集，可指定参数TAG(可选)，HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG：
-   - HUKS_STORAGE_ONLY_USED_IN_HUKS：表示由该密钥派生出的密钥存储于HUKS中，由HUKS进行托管。
-   - HUKS_STORAGE_KEY_EXPORT_ALLOWED(默认)：表示由该密钥派生出的密钥直接导出给业务方，HUKS不对其进行托管服务。
+2. 初始化密钥属性集，可指定参数HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG（可选），用于标识基于该密钥派生出的密钥是否由HUKS管理。
+
+    - 当TAG设置为HUKS_STORAGE_ONLY_USED_IN_HUKS时，表示基于该密钥派生出的密钥，由HUKS管理，可保证派生密钥全生命周期不出安全环境。
+
+    - 当TAG设置为HUKS_STORAGE_KEY_EXPORT_ALLOWED时，表示基于该密钥派生出的密钥，返回给调用方管理，由业务自行保证密钥安全。
+
+    - 若业务未设置TAG的具体值，表示基于该密钥派生出的密钥，即可由HUKS管理，也可返回给调用方管理，业务可在后续派生时再选择使用何种方式保护密钥。
 
 3. 调用[generateKeyItem](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksgeneratekeyitem9)生成密钥，具体请参考[密钥生成](huks-key-generation-overview.md)。
 
@@ -21,6 +25,19 @@
 **密钥派生**
 
 1. 获取密钥别名、指定对应的属性参数HuksOptions。
+
+    可指定参数HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG（可选），用于标识派生得到的密钥是否由HUKS管理。
+
+    | 生成 | 派生 | 规格 |
+    | -------- | -------- | -------- |
+    | HUKS_STORAGE_ONLY_USED_IN_HUKS | HUKS_STORAGE_ONLY_USED_IN_HUKS | 密钥由HUKS管理 |
+    | HUKS_STORAGE_KEY_EXPORT_ALLOWED | HUKS_STORAGE_KEY_EXPORT_ALLOWED | 密钥返回给调用方管理 |
+    | 未指定TAG具体值 | HUKS_STORAGE_ONLY_USED_IN_HUKS | 密钥由HUKS管理 |
+    | 未指定TAG具体值 | HUKS_STORAGE_KEY_EXPORT_ALLOWED | 密钥返回给调用方管理 |
+    | 未指定TAG具体值 | 未指定TAG具体值 | 密钥返回给调用方管理 |
+
+    注：派生时指定的TAG值，不可与生成时指定的TAG值冲突。表格中仅列举有效的指定方式。
+
 
 2. 调用[initSession](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksinitsession9)初始化密钥会话，并获取会话的句柄handle。
 
@@ -36,8 +53,7 @@
 /*
  * 以下以HKDF256密钥的Promise操作使用为例
  */
-import huks from '@ohos.security.huks';
-import { BusinessError } from '@ohos.base';
+import { huks } from "@kit.UniversalKeystoreKit";
 /*
  * 确定密钥别名和封装密钥属性参数集
  */
@@ -47,93 +63,78 @@ let handle:number;
 let finishOutData:Uint8Array;
 let HuksKeyDeriveKeySize = 32;
 /* 集成生成密钥参数集 */
-let properties:Array<huks.HuksParam> = new Array();
-properties[0] = {
+let properties:Array<huks.HuksParam> = [
+{
     tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
     value: huks.HuksKeyAlg.HUKS_ALG_AES,
-}
-properties[1] = {
+},{
     tag: huks.HuksTag.HUKS_TAG_PURPOSE,
     value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_DERIVE,
-}
-properties[2] = {
+}, {
     tag: huks.HuksTag.HUKS_TAG_DIGEST,
     value: huks.HuksKeyDigest.HUKS_DIGEST_SHA256,
-}
-properties[3] = {
+}, {
     tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
     value: huks.HuksKeySize.HUKS_AES_KEY_SIZE_128,
-}
-properties[4] = {
+}, {
     tag: huks.HuksTag.HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG,
     value: huks.HuksKeyStorageType.HUKS_STORAGE_ONLY_USED_IN_HUKS,
-}
+}];
+
 let huksOptions:huks.HuksOptions = {
     properties: properties,
     inData: new Uint8Array(new Array())
 }
 /* 集成init时密钥参数集 */
-let initProperties:Array<huks.HuksParam> = new Array();
-initProperties[0] = {
+let initProperties:Array<huks.HuksParam> = [{
     tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
     value: huks.HuksKeyAlg.HUKS_ALG_HKDF,
-}
-initProperties[1] = {
+}, {
     tag: huks.HuksTag.HUKS_TAG_PURPOSE,
     value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_DERIVE,
-}
-initProperties[2] = {
+}, {
     tag: huks.HuksTag.HUKS_TAG_DIGEST,
     value: huks.HuksKeyDigest.HUKS_DIGEST_SHA256,
-}
-initProperties[3] = {
+}, {
     tag: huks.HuksTag.HUKS_TAG_DERIVE_KEY_SIZE,
     value: HuksKeyDeriveKeySize,
-}
+}];
+
 let initOptions:huks.HuksOptions = {
     properties: initProperties,
     inData: new Uint8Array(new Array())
 }
 /* 集成finish时密钥参数集 */
-let finishProperties:Array<huks.HuksParam> = new Array();
-finishProperties[0] = {
+let finishProperties:Array<huks.HuksParam> = [{
     tag: huks.HuksTag.HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG,
     value: huks.HuksKeyStorageType.HUKS_STORAGE_ONLY_USED_IN_HUKS,
-}
-finishProperties[1] = {
+}, {
     tag: huks.HuksTag.HUKS_TAG_IS_KEY_ALIAS,
     value: true,
-}
-finishProperties[2] = {
+}, {
     tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
     value: huks.HuksKeyAlg.HUKS_ALG_AES,
-}
-finishProperties[3] = {
+}, {
     tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
     value: huks.HuksKeySize.HUKS_AES_KEY_SIZE_256,
-}
-finishProperties[4] = {
+}, {
     tag: huks.HuksTag.HUKS_TAG_PURPOSE,
     value:
     huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT |
     huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT,
-}
-finishProperties[5] = {
+}, {
     tag: huks.HuksTag.HUKS_TAG_DIGEST,
     value: huks.HuksKeyDigest.HUKS_DIGEST_NONE,
-}
-finishProperties[6] = {
+}, {
     tag: huks.HuksTag.HUKS_TAG_KEY_ALIAS,
     value: StringToUint8Array(srcKeyAlias),
-}
-finishProperties[7] = {
+}, {
     tag: huks.HuksTag.HUKS_TAG_PADDING,
     value: huks.HuksKeyPadding.HUKS_PADDING_NONE,
-}
-finishProperties[8] = {
+}, {
     tag: huks.HuksTag.HUKS_TAG_BLOCK_MODE,
     value: huks.HuksCipherMode.HUKS_MODE_ECB,
-}
+}];
 let finishOptions:huks.HuksOptions = {
     properties: finishProperties,
     inData: new Uint8Array(new Array())
@@ -172,7 +173,7 @@ async function publicGenKeyFunc(keyAlias:string, huksOptions:huks.HuksOptions) {
         .then((data) => {
             console.info(`promise: generateKeyItem success, data = ${JSON.stringify(data)}`);
         })
-        .catch((error:BusinessError) => {
+        .catch((error) => {
             if (throwObject.isThrow) {
                 throw(error as Error);
             } else {
@@ -208,7 +209,7 @@ async function publicInitFunc(keyAlias:string, huksOptions:huks.HuksOptions) {
             console.info(`promise: doInit success, data = ${JSON.stringify(data)}`);
             handle = data.handle;
         })
-        .catch((error:BusinessError) => {
+        .catch((error) => {
             if (throwObject.isThrow) {
                 throw(error as Error);
             } else {
@@ -243,7 +244,7 @@ async function publicUpdateFunc(handle:number, huksOptions:huks.HuksOptions) {
         .then ((data) => {
             console.info(`promise: doUpdate success, data = ${JSON.stringify(data)}`);
         })
-        .catch((error:BusinessError) => {
+        .catch((error) => {
             if (throwObject.isThrow) {
                 throw(error as Error);
             } else {
@@ -279,7 +280,7 @@ async function publicFinishFunc(handle:number, huksOptions:huks.HuksOptions) {
             finishOutData = data.outData as Uint8Array;
             console.info(`promise: doFinish success, data = ${JSON.stringify(data)}`);
         })
-        .catch((error:BusinessError) => {
+        .catch((error) => {
             if (throwObject.isThrow) {
                 throw(error as Error);
             } else {
@@ -314,7 +315,7 @@ async function publicDeleteKeyFunc(keyAlias:string, huksOptions:huks.HuksOptions
         .then ((data) => {
             console.info(`promise: deleteKeyItem key success, data = ${JSON.stringify(data)}`);
         })
-        .catch((error:BusinessError) => {
+        .catch((error) => {
             if (throwObject.isThrow) {
                 throw(error as Error);
             } else {

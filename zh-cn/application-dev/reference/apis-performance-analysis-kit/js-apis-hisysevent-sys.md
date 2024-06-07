@@ -60,15 +60,16 @@ write(info: SysEventInfo, callback: AsyncCallback&lt;void&gt;): void
 以下错误码的详细介绍请参见[系统事件错误码](errorcode-hisysevent-sys.md)。
 
 | 错误码ID | 错误信息 |
-| ------- | ----------------------------------------------------------------- |
-| 11200001 | Invalid event domain.                                            |
-| 11200002 | Invalid event name.                                              |
-| 11200003 | Abnormal environment.                                            |
-| 11200004 | Length of the event is over limit.                               |
-| 11200051 | Invalid event parameter.                                         |
-| 11200052 | Size of the event parameter of the string type is over limit.    |
-| 11200053 | Count of event parameters is over limit.                         |
-| 11200054 | Count of event parameter of the array type is over limit.        |
+| -------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
+| 11200001 | Invalid event domain.                                                                                                                           |
+| 11200002 | Invalid event name.                                                                                                                             |
+| 11200003 | Abnormal environment.                                                                                                                           |
+| 11200004 | The event length exceeds the limit.                                                                                                             |
+| 11200051 | Invalid event parameter.                                                                                                                        |
+| 11200052 | The size of the event parameter of the string type exceeds the limit.                                                                           |
+| 11200053 | The number of event parameters exceeds the limit.                                                                                               |
+| 11200054 | The number of event parameters of the array type exceeds the limit.                                                                             |
 
 **示例：**
 
@@ -124,15 +125,16 @@ write(info: SysEventInfo): Promise&lt;void&gt;
 以下错误码的详细介绍请参见[系统事件错误码](errorcode-hisysevent-sys.md)。
 
 | 错误码ID | 错误信息 |
-| -------- | ---------------------------------------------------------------- |
-| 11200001 | Invalid event domain.                                            |
-| 11200002 | Invalid event name.                                              |
-| 11200003 | Abnormal environment.                                            |
-| 11200004 | Length of the event is over limit.                               |
-| 11200051 | Invalid event parameter.                                         |
-| 11200052 | Size of the event parameter of the string type is over limit.    |
-| 11200053 | Count of event parameters is over limit.                         |
-| 11200054 | Count of event parameter of the array type is over limit.        |
+| -------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
+| 11200001 | Invalid event domain.                                                                                                                           |
+| 11200002 | Invalid event name.                                                                                                                             |
+| 11200003 | Abnormal environment.                                                                                                                           |
+| 11200004 | The event length exceeds the limit.                                                                                                             |
+| 11200051 | Invalid event parameter.                                                                                                                        |
+| 11200052 | The size of the event parameter of the string type exceeds the limit.                                                                           |
+| 11200053 | The number of event parameters exceeds the limit.                                                                                               |
+| 11200054 | The number of event parameters of the array type exceeds the limit.                                                                             |
 
 **示例：**
 
@@ -226,9 +228,12 @@ addWatcher(watcher: Watcher): void
 以下错误码的详细介绍请参见[系统事件错误码](errorcode-hisysevent-sys.md)。
 
 | 错误码ID | 错误信息 |
-| -------- | ----------------------------------- |
-| 11200101 | Count of watchers is over limit.    |
-| 11200102 | Count of watch rules is over limit. |
+| -------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| 201      | Permission denied. An attempt was made to read system event forbidden by permission: ohos.permission.READ_DFX_SYSEVENT.                         |
+| 202      | System API is not allowed called by Non-system application.                                                                                     |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
+| 11200101 | The number of watchers exceeds the limit.                                                                                                       |
+| 11200102 | The number of watch rules exceeds the limit.                                                                                                    |
 
 **示例：**
 
@@ -279,8 +284,11 @@ removeWatcher(watcher: Watcher): void
 以下错误码的详细介绍请参见[系统事件错误码](errorcode-hisysevent-sys.md)。
 
 | 错误码ID | 错误信息 |
-| -------- | --------------------------- |
-| 11200201 | The watcher does not exist. |
+| -------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| 201      | Permission denied. An attempt was made to read system event forbidden by permission: ohos.permission.READ_DFX_SYSEVENT.                         |
+| 202      | System API is not allowed called by Non-system application.                                                                                     |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
+| 11200201 | The watcher does not exist.                                                                                                                     |
 
 **示例：**
 
@@ -371,11 +379,14 @@ query(queryArg: QueryArg, rules: QueryRule[], querier: Querier): void
 以下错误码的详细介绍请参见[系统事件错误码](errorcode-hisysevent-sys.md)。
 
 | 错误码ID | 错误信息 |
-| -------- | ------------------------------------------- |
-| 11200301 | Count of query rules is over limit.         |
-| 11200302 | Invalid query rule.                         |
-| 11200303 | Count of concurrent queriers is over limit. |
-| 11200304 | Query frequency is over limit.              |
+| -------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| 201      | Permission denied. An attempt was made to read system event forbidden by permission: ohos.permission.READ_DFX_SYSEVENT.                         |
+| 202      | System API is not allowed called by Non-system application.                                                                                     |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
+| 11200301 | The number of query rules exceeds the limit.                                                                                                    |
+| 11200302 | Invalid query rule.                                                                                                                             |
+| 11200303 | The number of concurrent queriers exceeds the limit.                                                                                            |
+| 11200304 | The query frequency exceeds the limit.                                                                                                          |
 
 **示例：**
 
@@ -451,11 +462,14 @@ exportSysEvents(queryArg: QueryArg, rules: QueryRule[]): number
 
 以下错误码的详细介绍请参见[系统事件错误码](errorcode-hisysevent-sys.md)。
 
-| 错误码ID | 错误信息                            |
-| -------- | ----------------------------------- |
-| 11200301 | Count of query rules is over limit. |
-| 11200302 | Invalid query rule.                 |
-| 11200304 | Export frequency is over limit.     |
+| 错误码ID | 错误信息 |
+| -------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| 201      | Permission denied. An attempt was made to read system event forbidden by permission: ohos.permission.READ_DFX_SYSEVENT.                         |
+| 202      | System API is not allowed called by Non-system application.                                                                                     |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
+| 11200301 | The number of query rules exceeds the limit.                                                                                                    |
+| 11200302 | Invalid query rule.                                                                                                                             |
+| 11200304 | The query frequency exceeds the limit.                                                                                                          |
 
 **示例：**
 
@@ -537,10 +551,13 @@ subscribe(rules: QueryRule[]): number
 
 以下错误码的详细介绍请参见[系统事件错误码](errorcode-hisysevent-sys.md)。
 
-| 错误码ID | 错误信息                            |
-| -------- | ----------------------------------- |
-| 11200301 | Count of query rules is over limit. |
-| 11200302 | Invalid query rule.                 |
+| 错误码ID | 错误信息 |
+| -------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| 201      | Permission denied. An attempt was made to read system event forbidden by permission: ohos.permission.READ_DFX_SYSEVENT.                         |
+| 202      | System API is not allowed called by Non-system application.                                                                                     |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
+| 11200301 | The number of query rules exceeds the limit.                                                                                                    |
+| 11200302 | Invalid query rule.                                                                                                                             |
 
 **示例：**
 
@@ -606,9 +623,12 @@ unsubscribe(): void
 
 以下错误码的详细介绍请参见[系统事件错误码](errorcode-hisysevent-sys.md)。
 
-| 错误码ID | 错误信息            |
-| -------- | ------------------- |
-| 11200305 | Unsubscribe failed. |
+| 错误码ID | 错误信息 |
+| -------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| 201      | Permission denied. An attempt was made to read system event forbidden by permission: ohos.permission.READ_DFX_SYSEVENT.                         |
+| 202      | System API is not allowed called by Non-system application.                                                                                     |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
+| 11200305 | Failed to unsubscribe.                                                                                                                          |
 
 **示例：**
 

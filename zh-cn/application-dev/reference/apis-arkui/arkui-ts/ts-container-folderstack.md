@@ -18,6 +18,8 @@ FolderStack(value?: { upperItems?:  Array<string\>})
 
 **卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名       | 参数类型                                    | 必填 | 参数描述                                                                 |
@@ -36,9 +38,11 @@ alignContent(value: Alignment)
 
 设置子组件在容器内的对齐方式。该属性与[通用属性align](ts-universal-attributes-location.md)同时设置时，后设置的属性生效。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：** 
+**参数：**
 
 | 参数名 | 类型                                        | 必填 | 说明                                                    |
 | ------ | ------------------------------------------- | ---- | ------------------------------------------------------- |
@@ -50,9 +54,11 @@ enableAnimation(value: boolean)
 
 设置是否使用默认动效。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：** 
+**参数：**
 
 | 参数名 | 类型                                        | 必填 | 说明                                |
 | ------ | ------------------------------------------- | ---- | ----------------------------------- |
@@ -64,9 +70,11 @@ autoHalfFold(value: boolean)
 
 设置是否开启自动旋转，仅在系统自动旋转关闭时该属性生效。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：** 
+**参数：**
 
 | 参数名 | 类型    | 必填 | 说明                                |
 | ------ | ------- | ---- | ----------------------------------- |
@@ -88,11 +96,29 @@ onFolderStateChange(callback: (event: { foldStatus: FoldStatus }) => void)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：** 
+**参数：**
 
 | 参数名     | 类型                                            | 必填 | 说明                 |
 | ---------- | ----------------------------------------------- | ---- | -------------------- |
 | foldStatus | [FoldStatus](ts-appendix-enums.md#foldstatus11) | 是   | 当前设备的折叠状态。 |
+
+
+### onHoverStatusChange<sup>12+</sup>
+
+onHoverStatusChange(callback: (event: { foldStatus: FoldStatus,isHoverMode:boolean,appRotation:AppRotation,windowMode:WindowMode }) => void)
+
+当悬停状态改变的时候回调
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名              | 类型                                                          | 必填 | 说明         |
+|------------------|-------------------------------------------------------------| --- |------------|
+| foldStatus       | [FoldStatus](ts-appendix-enums.md#foldstatus11)             | 是   | 当前设备的折叠状态。 |
+| isHoverMode      | boolean                                                     | 是   | 当前是否悬停模式。  |
+| appRotation      | [AppRotation](ts-appendix-enums.md#approtation12)           | 是   | 当前应用方向。    |
+| windowMode       | WindowMode         | 是   | 当前屏幕模式。    |
 
 ## 示例
 
@@ -108,12 +134,12 @@ struct Index {
       FolderStack({ upperItems: ["upperitemsId"] }) {
         // 此Column会自动上移到上半屏
         Column() {
-          Text("vedio zone").height("100%").width("100%").textAlign(TextAlign.Center).fontSize(25)
+          Text("video zone").height("100%").width("100%").textAlign(TextAlign.Center).fontSize(25)
         }.backgroundColor(Color.Pink).width("100%").height("100%").id("upperitemsId")
 
         // 下列两个Column堆叠在下半屏区域
         Column() {
-          Text("vedio title")
+          Text("video title")
             .width("100%")
             .height(50)
             .textAlign(TextAlign.Center)
@@ -122,7 +148,7 @@ struct Index {
         }.width("100%").height("100%").justifyContent(FlexAlign.Start)
 
         Column() {
-          Text("vedie bar ")
+          Text("video bar ")
             .width("100%")
             .height(50)
             .textAlign(TextAlign.Center)
@@ -144,6 +170,13 @@ struct Index {
         } else {
           // .............
         }
+      })
+      // hoverStatusChange回调 当悬停状态改变时回调
+      .onHoverStatusChange((msg) => {
+        console.log('this foldStatus:' +msg.foldStatus);
+        console.log('this isHoverMode:' +msg.isHoverMode);
+        console.log('this appRotation:' +msg.appRotation);
+        console.log('this windowMode:' +msg.windowMode);
       })
       // folderStack如果不撑满页面全屏，作为普通Stack使用
       .alignContent(Alignment.Bottom)

@@ -11,7 +11,7 @@ The **mindSporeLite** module provides APIs for the MindSpore Lite inference engi
 
 ## Modules to Import
 ```ts
-import mindSporeLite from '@ohos.ai.mindSporeLite';
+import { mindSporeLite } from '@kit.MindSporeLiteKit';
 ```
 
 ## Context
@@ -182,8 +182,8 @@ Loads the input model from the memory for inference. This API uses an asynchrono
 **Example**
 
 ```ts
-import mindSporeLite from '@ohos.ai.mindSporeLite';
-import common from '@ohos.app.ability.common';
+import { mindSporeLite } from '@kit.MindSporeLiteKit';
+import { common } from '@kit.AbilityKit';
 
 let modelName = '/path/to/xxx.ms';
 getContext(this).resourceManager.getRawFileContent(modelName).then((buffer : Uint8Array) => {
@@ -213,10 +213,10 @@ Loads the input model from the memory for inference. This API uses an asynchrono
 **Example**
 
 ```ts
-import resourceManager from '@ohos.resourceManager'
+import { resourceManager } from '@kit.LocalizationKit';
 import { GlobalContext } from '../GlobalContext';
-import mindSporeLite from '@ohos.ai.mindSporeLite';
-import common from '@ohos.app.ability.common';
+import { mindSporeLite } from '@kit.MindSporeLiteKit';
+import { common } from '@kit.AbilityKit';
 let modelName = '/path/to/xxx.ms';
 export class Test {
   value:number = 0;
@@ -260,10 +260,10 @@ Loads the input model from the memory for inference. This API uses a promise to 
 **Example**
 
 ```ts
-import resourceManager from '@ohos.resourceManager'
+import { resourceManager } from '@kit.LocalizationKit';
 import { GlobalContext } from '../GlobalContext';
-import mindSporeLite from '@ohos.ai.mindSporeLite';
-import common from '@ohos.app.ability.common';
+import { mindSporeLite } from '@kit.MindSporeLiteKit';
+import { common } from '@kit.AbilityKit';
 let modelName = '/path/to/xxx.ms';
 export class Test {
   value:number = 0;
@@ -299,9 +299,9 @@ Loads the input model based on the specified file descriptor for inference. This
 **Example**
 
 ```ts
-import fs from '@ohos.file.fs';
+import { fileIo } from '@kit.CoreFileKit';
 let model_file = '/path/to/xxx.ms';
-let file = fs.openSync(model_file, fs.OpenMode.READ_ONLY);
+let file = fileIo.openSync(model_file, fileIo.OpenMode.READ_ONLY);
 mindSporeLite.loadModelFromFd(file.fd, (result : mindSporeLite.Model) => {
   let modelInputs : mindSporeLite.MSTensor[] = result.getInputs();
   console.log(modelInputs[0].name);
@@ -326,11 +326,11 @@ Loads the input model based on the specified file descriptor for inference. This
 **Example**
 
 ```ts
-import fs from '@ohos.file.fs';
+import { fileIo } from '@kit.CoreFileKit';
 let model_file = '/path/to/xxx.ms';
 let context : mindSporeLite.Context = {};
 context.target = ['cpu'];
-let file = fs.openSync(model_file, fs.OpenMode.READ_ONLY);
+let file = fileIo.openSync(model_file, fileIo.OpenMode.READ_ONLY);
 mindSporeLite.loadModelFromFd(file.fd, context, (result : mindSporeLite.Model) => {
   let modelInputs : mindSporeLite.MSTensor[] = result.getInputs();
   console.log(modelInputs[0].name);
@@ -360,9 +360,9 @@ Loads the input model based on the specified file descriptor for inference. This
 **Example**
 
 ```ts
-import fs from '@ohos.file.fs';
+import { fileIo } from '@kit.CoreFileKit';
 let model_file = '/path/to/xxx.ms';
-let file = fs.openSync(model_file, fs.OpenMode.READ_ONLY);
+let file = fileIo.openSync(model_file, fileIo.OpenMode.READ_ONLY);
 let mindSporeLiteModel : mindSporeLite.Model = await mindSporeLite.loadModelFromFd(file.fd);
 let modelInputs : mindSporeLite.MSTensor[] = mindSporeLiteModel.getInputs();
 console.log(modelInputs[0].name);
@@ -414,10 +414,10 @@ Executes the inference model. This API uses an asynchronous callback to return t
 **Example**
 
 ```ts
-import resourceManager from '@ohos.resourceManager'
+import { resourceManager } from '@kit.LocalizationKit';
 import { GlobalContext } from '../GlobalContext';
-import mindSporeLite from '@ohos.ai.mindSporeLite';
-import common from '@ohos.app.ability.common';
+import { mindSporeLite } from '@kit.MindSporeLiteKit';
+import { common } from '@kit.AbilityKit';
 export class Test {
   value:number = 0;
   foo(): void {
@@ -465,10 +465,10 @@ Executes model inference. This API uses a promise to return the result. Ensure t
 **Example**
 
 ```ts
-import resourceManager from '@ohos.resourceManager'
+import { resourceManager } from '@kit.LocalizationKit';
 import { GlobalContext } from '../GlobalContext';
-import mindSporeLite from '@ohos.ai.mindSporeLite';
-import common from '@ohos.app.ability.common';
+import { mindSporeLite } from '@kit.MindSporeLiteKit';
+import { common } from '@kit.AbilityKit';
 export class Test {
     value:number = 0;
     foo(): void {
@@ -575,10 +575,10 @@ Obtains tensor data.
 **Example**
 
 ```ts
-import resourceManager from '@ohos.resourceManager'
+import { resourceManager } from '@kit.LocalizationKit';
 import { GlobalContext } from '../GlobalContext';
-import mindSporeLite from '@ohos.ai.mindSporeLite';
-import common from '@ohos.app.ability.common';
+import { mindSporeLite } from '@kit.MindSporeLiteKit';
+import { common } from '@kit.AbilityKit';
 export class Test {
   value:number = 0;
   foo(): void {
@@ -619,10 +619,10 @@ Sets the tensor data.
 **Example**
 
 ```ts
-import resourceManager from '@ohos.resourceManager'
+import { resourceManager } from '@kit.LocalizationKit';
 import { GlobalContext } from '../GlobalContext';
-import mindSporeLite from '@ohos.ai.mindSporeLite';
-import common from '@ohos.app.ability.common';
+import { mindSporeLite } from '@kit.MindSporeLiteKit';
+import { common } from '@kit.AbilityKit';
 export class Test {
   value:number = 0;
   foo(): void {

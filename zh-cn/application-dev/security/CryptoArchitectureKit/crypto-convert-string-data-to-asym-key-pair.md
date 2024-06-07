@@ -30,7 +30,7 @@
 - 以使用Promise方式生成RSA密钥对为例：
 
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
   let priKeyPkcs1Str1024: string  =
     "-----BEGIN RSA PRIVATE KEY-----\n"
@@ -74,7 +74,7 @@
 - 同步返回结果（调用方法[convertKeySync](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#convertpemkeysync12)）：
 
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
   let priKeyPkcs1Str1024: string  =
     "-----BEGIN RSA PRIVATE KEY-----\n"

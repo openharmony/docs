@@ -1,7 +1,7 @@
 # Creating a PageAbility
 
 
-When you create a PageAbility on DevEco Studio, DevEco Studio automatically generates the **onCreate()** and **onDestroy()** callbacks in **app.js** and **app.ets**. You need to implement the other lifecycle callbacks in **app.js** and **app.ets**. The following code snippet shows how to create a PageAbility:
+When you create a PageAbility in DevEco Studio, DevEco Studio automatically generates the **onCreate()** and **onDestroy()** callbacks in **app.js** and **app.ets**. You need to implement the other lifecycle callbacks in **app.js** and **app.ets**. The following code snippet shows how to create a PageAbility:
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';

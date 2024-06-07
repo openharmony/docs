@@ -17,10 +17,10 @@
 
 1. 导入[证书算法库框架模块](../../reference/apis-device-certificate-kit/js-apis-cert.md)。
    ```ts
-   import certFramework from '@ohos.security.cert';
+   import { cert } from '@kit.DeviceCertificateKit';
    ```
 
-2. [cryptoCert.createCertChainValidator](../../reference/apis-device-certificate-kit/js-apis-cert.md#cryptocertcreatecertchainvalidator)创建证书链校验器对象。
+2. [cert.createCertChainValidator](../../reference/apis-device-certificate-kit/js-apis-cert.md#certcreatecertchainvalidator)创建证书链校验器对象。
 
 3. 基于已有的证书数据，创建证书链数据对象[CertChainData](../../reference/apis-device-certificate-kit/js-apis-cert.md#certchaindata)。
    
@@ -35,8 +35,8 @@
 4. 调用[CertChainValidator.validate](../../reference/apis-device-certificate-kit/js-apis-cert.md#validate)校验证书链数据。
 
 ```ts
-import certFramework from '@ohos.security.cert';
-import util from '@ohos.util';
+import { cert } from '@kit.DeviceCertificateKit';
+import { util } from '@kit.ArkTS';
 
 // CA数据，这只是一个示例，需要根据具体业务来赋值
 let caCertData = '-----BEGIN CERTIFICATE-----\n' +
@@ -59,7 +59,7 @@ function certChainValidatorSample(): void {
   let algorithm = 'PKIX';
 
   // 创建一个证书链校验器实例
-  let validator = certFramework.createCertChainValidator(algorithm);
+  let validator = cert.createCertChainValidator(algorithm);
 
   // CA证书数据
   let uint8ArrayOfCaCertData = textEncoder.encodeInto(caCertData);
@@ -90,13 +90,13 @@ function certChainValidatorSample(): void {
     uint8ArrayOfCaCertDataLen.length + i] = uint8ArrayOfCaCertData[i];
   }
 
-  let certChainData: certFramework.CertChainData = {
+  let certChainData: cert.CertChainData = {
     // Uint8Array类型：L-V格式（证书数据长度-证书数据）
     data: encodingData,
     // 证书的数量。本例中为2
     count: 2,
     // 证书格式。仅支持 PEM 和 DER。在此示例中，证书为 PEM 格式
-    encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+    encodingFormat: cert.EncodingFormat.FORMAT_PEM
   };
 
   // 验证证书链

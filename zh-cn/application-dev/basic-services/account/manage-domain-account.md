@@ -11,14 +11,13 @@
 2. 导入系统帐号模块。
 
    ```ts
-   import account_osAccount from '@ohos.account.osAccount';
-   import { AsyncCallback, BusinessError } from '@ohos.base';
+   import { osAccount, BusinessError } from '@kit.BasicServicesKit';
    ```
 
 3. 获取获取系统帐号管理对象。
 
    ```ts
-   let osAccountMgr = account_osAccount.getAccountManager();
+   let osAccountMgr = osAccount.getAccountManager();
    ```
 
 ## 判断指定域帐号是否存在
@@ -30,7 +29,7 @@
 1. 定义待判断的域帐号信息。
 
    ```ts
-   let domainAccountInfo: account_osAccount.DomainAccountInfo = {
+   let domainAccountInfo: osAccount.DomainAccountInfo = {
      accountName: 'testAccountName',
      domain: 'testDomain'
    }
@@ -39,7 +38,7 @@
 2. 调用[hasAccount](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#hasaccount10)接口。
 
    ```ts
-   let isAccountExisted: boolean = await account_osAccount.DomainAccountManager.hasAccount(domainAccountInfo);
+   let isAccountExisted: boolean = await osAccount.DomainAccountManager.hasAccount(domainAccountInfo);
    ```
 
 ## 添加域帐号
@@ -51,7 +50,7 @@
 1. 定义域帐号信息，指定域名、帐号名、帐号标识（可选）。
 
    ```ts
-   let domainInfo: account_osAccount.DomainAccountInfo = {
+   let domainInfo: osAccount.DomainAccountInfo = {
      domain: 'testDomain',
      accountName: 'testAccountName'
    };
@@ -61,8 +60,8 @@
 
    ```ts
    try {
-     accountMgr.createOsAccountForDomain(account_osAccount.OsAccountType.NORMAL, domainInfo,
-     (err: BusinessError, osAccountInfo: account_osAccount.OsAccountInfo)=>{
+     osAccountMgr.createOsAccountForDomain(osAccount.OsAccountType.NORMAL, domainInfo,
+     (err: BusinessError, osAccountInfo: osAccount.OsAccountInfo)=>{
        console.log('createOsAccountForDomain err:' + JSON.stringify(err));
        console.log('createOsAccountForDomain osAccountInfo:' + JSON.stringify(osAccountInfo));
    });
@@ -80,13 +79,14 @@
 1. 调用[getOsAccountLocalIdForDomain](../../reference/apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalidfordomain9)方法，根据域帐号信息获取系统帐号ID。
 
    ```ts
-   let domainInfo: account_osAccount.DomainAccountInfo = {
+   let domainInfo: osAccount.DomainAccountInfo = {
        domain: 'testDomain',
        accountName: 'testAccountName'
    };
+   let localId: number = 0;
 
    try {
-     let localId: number = accountMgr.getOsAccountLocalIdForDomain(domainInfo);
+     localId = await osAccountMgr.getOsAccountLocalIdForDomain(domainInfo);
    } catch (err) {
      console.log('getOsAccountLocalIdForDomain exception: ' + JSON.stringify(err));
    }
@@ -96,7 +96,7 @@
 
    ```ts
    try {
-     accountMgr.removeOsAccount(osAccountInfo.localId, (err: BusinessError)=>{
+     osAccountMgr.removeOsAccount(localId, (err: BusinessError)=>{
        if (err) {
            console.log('removeOsAccount failed, error: ' + JSON.stringify(err));
        } else {
@@ -117,7 +117,7 @@
 1. 定义查询选项，可以指定需要查询的域名和帐号名。选项的类型为[GetDomainAccountInfoOptions](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#getdomainaccountinfooptions10)。
 
    ```ts
-   let options: account_osAccount.GetDomainAccountInfoOptions = {
+   let options: osAccount.GetDomainAccountInfoOptions = {
        domain: 'testDomain',
        accountName: 'testAccountName'
    }
@@ -127,8 +127,8 @@
 
    ```ts
    try {
-     account_osAccount.DomainAccountManager.getAccountInfo(domainAccountInfo,
-       (err: BusinessError, result: account_osAccount.DomainAccountInfo) => {
+     osAccount.DomainAccountManager.getAccountInfo(options,
+       (err: BusinessError, result: osAccount.DomainAccountInfo) => {
        if (err) {
            console.log('call getAccountInfo failed, error: ' + JSON.stringify(err));
        } else {

@@ -38,6 +38,14 @@ createBundleContext(bundleName: string): Context
 | -------- | -------- |
 | Context | 安装包的上下文。 |
 
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+
 **示例：**
 
 ```ts
@@ -79,6 +87,14 @@ createModuleContext(bundleName: string, moduleName: string): Context
 | 类型 | 说明 |
 | -------- | -------- |
 | Context | 模块的上下文。 |
+
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 
 **示例：**
 
@@ -124,6 +140,14 @@ createModuleResourceManager(bundleName: string, moduleName: string): resmgr.Reso
 | -------- | -------- |
 | resmgr.ResourceManager | 资源管理对象。 |
 
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+
 **示例：**
 
 ```ts
@@ -139,6 +163,48 @@ export default class EntryAbility extends UIAbility {
     } catch (error) {
       console.error(`createModuleResourceManager failed, error.code: ${error.code}, error.message: ${error.message}`);
     }
+  }
+}
+```
+## Context.createSystemHspModuleResourceManager<sup>12+</sup>
+
+createSystemHspModuleResourceManager(bundleName: string, moduleName: string): resmgr.ResourceManager
+
+创建系统级HSP的某个模块的资源管理对象。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名       | 类型     | 必填   | 说明   |
+| -------- |--------| ---- |------|
+| bundleName | string | 是    | 包名。  |
+| moduleName | string | 是    | 模块名。 |
+
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 16400001 | The specified ability does not exist. |
+
+
+
+**示例：**
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import common from '@ohos.app.ability.common';
+
+export default class EntryAbility extends UIAbility {
+  onCreate() {
+    console.log('MyAbility onCreate');
+    let hspContext: common.Context = this.context;
+    let resourceManager = hspContext.createSystemHspModuleResourceManager("com.example.myapplication", "library");
   }
 }
 ```

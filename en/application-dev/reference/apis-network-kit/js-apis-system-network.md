@@ -111,11 +111,9 @@ Cancels listening to the network connection state of this device.
 **Example**
 
 ```
-export default {    
-  unsubscribe() {        
-    network.unsubscribe();    
-  },
-}
+import network from '@system.network';
+
+network.unsubscribe();
 ```
 
 

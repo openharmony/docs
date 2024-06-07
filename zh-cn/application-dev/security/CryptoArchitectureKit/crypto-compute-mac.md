@@ -49,8 +49,8 @@ HMAC通过指定摘要算法，以通信双方共享密钥与消息作为输入�
 - 以使用await方式一次性传入数据，获取消息认证码计算结果为例：
 
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
-  import buffer from '@ohos.buffer';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+  import { buffer } from '@kit.ArkTS';
 
   async function genSymKeyByData(symKeyData: Uint8Array) {
     let symKeyBlob: cryptoFramework.DataBlob = { data: symKeyData };
@@ -79,8 +79,8 @@ HMAC通过指定摘要算法，以通信双方共享密钥与消息作为输入�
 - 以使用同步方式一次性传入数据，获取消息认证码计算结果为例：
 
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
-  import buffer from '@ohos.buffer';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+  import { buffer } from '@kit.ArkTS';
 
   function genSymKeyByData(symKeyData: Uint8Array) {
     let symKeyBlob: cryptoFramework.DataBlob = { data: symKeyData };
@@ -124,8 +124,8 @@ HMAC通过指定摘要算法，以通信双方共享密钥与消息作为输入�
 - 以使用await方式分段传入数据，获取消息认证码计算结果为例：
 
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
-  import buffer from '@ohos.buffer';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+  import { buffer } from '@kit.ArkTS';
 
   async function genSymKeyByData(symKeyData: Uint8Array) {
     let symKeyBlob: cryptoFramework.DataBlob = { data: symKeyData };
@@ -160,8 +160,8 @@ HMAC通过指定摘要算法，以通信双方共享密钥与消息作为输入�
 - 以使用同步方式分段传入数据，获取消息认证码计算结果为例：
 
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
-  import buffer from '@ohos.buffer';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+  import { buffer } from '@kit.ArkTS';
 
   function genSymKeyByData(symKeyData: Uint8Array) {
     let symKeyBlob: cryptoFramework.DataBlob = { data: symKeyData };

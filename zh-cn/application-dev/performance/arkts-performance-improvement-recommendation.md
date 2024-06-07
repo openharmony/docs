@@ -354,34 +354,9 @@ struct MyComponent {
 
 ![list1](figures/list1.gif)
 
-## 使用条件渲染替代显隐控制
+## 使用显隐控制替代条件渲染
 
-如下所示，开发者在使用visibility通用属性控制组件的显隐状态时，仍存在组件的重新创建过程，造成性能上的损耗。
-
-```ts
-@Entry
-@Component
-struct MyComponent {
-  @State isVisible: Visibility = Visibility.Visible;
-
-  build() {
-    Column() {
-      Button("显隐切换")
-        .onClick(() => {
-          if (this.isVisible == Visibility.Visible) {
-            this.isVisible = Visibility.None
-          } else {
-            this.isVisible = Visibility.Visible
-          }
-        })
-      Row().visibility(this.isVisible)
-        .width(300).height(300).backgroundColor(Color.Pink)
-    }.width('100%')
-  }
-}
-```
-
-要避免这一问题，可使用if条件渲染代替visibility属性变换，如下所示：
+如下所示，开发者在使用if条件渲染时，仍存在组件的重新创建过程，造成性能上的损耗。
 
 ```ts
 @Entry
@@ -399,6 +374,31 @@ struct MyComponent {
         Row()
           .width(300).height(300).backgroundColor(Color.Pink)
       }
+    }.width('100%')
+  }
+}
+```
+
+要避免这一问题，可使用visibility通用属性控制组件的显隐状态时代替if条件渲染，其中Hidden性能最优，其次是None，如下所示：
+
+```ts
+@Entry
+@Component
+struct MyComponent {
+  @State isVisible: Visibility = Visibility.Visible;
+
+  build() {
+    Column() {
+      Button("显隐切换")
+        .onClick(() => {
+          if (this.isVisible == Visibility.Visible) {
+            this.isVisible = Visibility.Hidden
+          } else {
+            this.isVisible = Visibility.Visible
+          }
+        })
+      Row().visibility(this.isVisible)
+        .width(300).height(300).backgroundColor(Color.Pink)
     }.width('100%')
   }
 }

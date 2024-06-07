@@ -771,3 +771,9 @@ Wi-Fi P2P群组信息已更改。
 
 * [COMMON_EVENT_CONNECTIVITY_CHANGE<sup>10+</sup> ](../common_event/commonEvent-netmanager.md#common_event_connectivity_change10)
 提示网络连接状态变化。
+
+* [COMMON_EVENT_MINORSMODE_ON<sup>12+<sup> ](../common_event/commonEvent-accountkit.md#common_event_minorsmode_on12)
+表示未成年人模式开启。
+
+* [COMMON_EVENT_MINORSMODE_OFF<sup>12+<sup> ](../common_event/commonEvent-accountkit.md#common_event_minorsmode_off12)
+表示未成年人模式关闭。

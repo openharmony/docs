@@ -1,7 +1,8 @@
 # 工程管理
 
 
-DevEco Studio的基本使用，请参考[DevEco Studio使用指南](../../quick-start/deveco-studio-user-guide-for-openharmony.md)。本章主要介绍如何使用DevEco Studio进行多设备应用开发。
+<!--Del-->
+DevEco Studio的基本使用，请参考[DevEco Studio使用指南](../../quick-start/deveco-studio-user-guide-for-openharmony.md)。<!--DelEnd-->本章主要介绍如何使用DevEco Studio进行多设备应用开发。
 
 
 > **说明：**
@@ -10,7 +11,8 @@ DevEco Studio的基本使用，请参考[DevEco Studio使用指南](../../quick-
 
 ## 工程创建
 
-参考[创建系统工程](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-create-new-project-0000001053342414)，先创建出最基本的项目工程。可以看到DevEco Studio创建出的默认工程，仅包含一个的entry类型的模块。
+<!--Del-->
+参考[创建系统工程](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-create-new-project-0000001053342414)，先创建出最基本的项目工程。<!--DelEnd-->可以看到DevEco Studio创建出的默认工程，仅包含一个的entry类型的模块。
 
 ![zh-cn_image_0000001267274204](figures/zh-cn_image_0000001267274204.png)
 
@@ -75,10 +77,11 @@ DevEco Studio的基本使用，请参考[DevEco Studio使用指南](../../quick-
 
 通过修改每个模块中的配置文件（module.json5）对模块进行配置，配置文件中各字段含义详见[配置文件说明](../../quick-start/module-configuration-file.md)。
 
-- 将default模块的deviceTypes配置为["default", "tablet"]，同时将其type字段配置为entry。
-  即default模块编译出的HAP在默认设备和平板上安装和运行。
+- <!--RP1-->将default模块的deviceTypes配置为["default", "tablet"]，同时将其type字段配置为entry。
+  即default模块编译出的HAP在默认设备和平板上安装和运行。<!--RP1End-->
 
-  ![zh-cn_image_0000001267914116](figures/zh-cn_image_0000001267914116.png)
+  <!--RP2-->
+  ![zh-cn_image_0000001267914116](figures/zh-cn_image_0000001267914116.png)<!--RP2End-->
 
 - 将wearable模块的deviceTypes配置为["wearable"]，同时将其type字段配置为entry。
   即wearable模块编译出的HAP仅在智能穿戴设备上安装和运行。

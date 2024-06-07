@@ -9,12 +9,14 @@ The **intentionCode** module maps the original events of the keyboard to intenti
 ## Modules to Import
 
 ```js
-import IntentionCode from '@ohos.multimodalInput.intentionCode';
+import { IntentionCode } from '@kit.InputKit';
 ```
 
 ## IntentionCode
 
 Enumerates intention codes.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
 

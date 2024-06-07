@@ -22,6 +22,8 @@ An **AbilityDelegatorArgs** object is obtained by calling [getArguments](js-apis
 
 Describes the ability delegator arguments.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 | Name               | Type                  | Readable| Writable| Description                                                        |

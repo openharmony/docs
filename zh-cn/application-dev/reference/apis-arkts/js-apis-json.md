@@ -56,6 +56,14 @@ parse(text: string, reviver?: Transformer): Object | null
 | -------- | -------- |
 | Object \| null | 返回ArkTS对象或null。当入参是null时，返回null。|
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例：**
 
 ```ts
@@ -87,6 +95,14 @@ stringify(value: Object, replacer?: (number | string)[] | null, space?: string |
 | 类型 | 说明 |
 | -------- | -------- |
 | string | 转换后的JSON字符串。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -122,6 +138,14 @@ stringify(value: Object, replacer?: Transformer, space?: string | number): strin
 | 类型 | 说明 |
 | -------- | -------- |
 | string | 转换后的JSON字符串。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -164,6 +188,14 @@ has(obj: object, property: string): boolean
 | -------- | -------- |
 | boolean | 返回ArkTS对象是否包含某种属性结果，true表示包含，false表示不包含。|
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
 **示例：**
 
 ```ts
@@ -188,6 +220,14 @@ remove(obj: object, property: string): void
 | -------- | -------- | -------- | -------- |
 | obj | object | 是 | ArkTS对象。|
 | property | string | 是 | 属性名。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 

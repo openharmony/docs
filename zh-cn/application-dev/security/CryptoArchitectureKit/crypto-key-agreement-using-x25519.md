@@ -16,7 +16,7 @@
 - 以使用await方式，完成密钥协商为例：
 
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
   async function x25519Await() {
     // 假设此公私钥对数据为外部传入
@@ -45,7 +45,7 @@
 - 同步方法示例：
 
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
   function x25519Await() {
     // 假设此公私钥对数据为外部传入

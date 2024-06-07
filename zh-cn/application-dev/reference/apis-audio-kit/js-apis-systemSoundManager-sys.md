@@ -342,6 +342,8 @@ setRingtoneUri(context: BaseContext, uri: string, type: RingtoneType): Promise&l
 
 | 错误码ID | 错误信息              |
 | ------- | --------------------- |
+| 202 | Caller is not a system application. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 5400103 | I/O error. |
 
 **示例：**
@@ -390,6 +392,8 @@ getRingtoneUri(context: BaseContext, type: RingtoneType): Promise&lt;string&gt;
 
 | 错误码ID | 错误信息              |
 | -------- | --------------------- |
+| 202 | Caller is not a system application. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 5400103  | I/O error. |
 
 **示例：**
@@ -430,6 +434,15 @@ getRingtonePlayer(context: BaseContext, type: RingtoneType): Promise&lt;Ringtone
 | 类型                | 说明                            |
 | ------------------- | ------------------------------- |
 | Promise&lt;[RingtonePlayer](js-apis-inner-multimedia-ringtonePlayer-sys.md#ringtoneplayer)&gt; | Promise回调返回获取的系统铃声播放器。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
+
+| 错误码ID | 错误信息              |
+| -------- | --------------------- |
+| 202 | Caller is not a system application. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
 
@@ -479,6 +492,8 @@ setSystemToneUri(context: BaseContext, uri: string, type: SystemToneType): Promi
 
 | 错误码ID | 错误信息              |
 | ------- | --------------------- |
+| 202 | Caller is not a system application. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 5400103 | I/O error. |
 
 **示例：**
@@ -527,6 +542,8 @@ getSystemToneUri(context: BaseContext, type: SystemToneType): Promise&lt;string&
 
 | 错误码ID | 错误信息              |
 | ------- | --------------------- |
+| 202 | Caller is not a system application. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 5400103 | I/O error. |
 
 **示例：**
@@ -567,6 +584,15 @@ getSystemTonePlayer(context: BaseContext, type: SystemToneType): Promise&lt;Syst
 | 类型                                                                                               | 说明                            |
 |--------------------------------------------------------------------------------------------------| ------------------------------- |
 | Promise&lt;[SystemTonePlayer](js-apis-inner-multimedia-systemTonePlayer-sys.md#systemtoneplayer)&gt; | Promise回调返回获取的系统提示音播放器。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
+
+| 错误码ID | 错误信息              |
+| ------- | --------------------- |
+| 202 | Caller is not a system application. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **示例：**
 

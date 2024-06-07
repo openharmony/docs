@@ -8,7 +8,7 @@
 ## 导入模块
 
 ```ts
-import wifiManager from '@ohos.wifiManager';
+import { wifiManager } from '@kit.ConnectivityKit';
 ```
 
 
@@ -35,13 +35,15 @@ isWifiActive(): boolean
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
+| -------- | -------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
 **示例：**
 
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let isWifiActive = wifiManager.isWifiActive();
@@ -69,13 +71,15 @@ scan(): void
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
+| -------- | -------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
 **示例：**
 
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		wifiManager.scan();
@@ -111,6 +115,8 @@ ohos.permission.GET_WIFI_PEERS_MAC权限仅系统应用可申请。
 
 | **错误码ID** | **错误信息** |
 | -------- | -------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
 ## wifiManager.getScanResults<sup>9+</sup><sup>(deprecated)</sup>
@@ -139,11 +145,13 @@ ohos.permission.GET_WIFI_PEERS_MAC权限仅系统应用可申请。
 
 | **错误码ID** | **错误信息** |
 | -------- | -------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
 **示例：**
 ```ts
-  import wifiManager from '@ohos.wifiManager';
+  import { wifiManager } from '@kit.ConnectivityKit';
   
   wifiManager.getScanResults((err, result) => {
       if (err) {
@@ -210,13 +218,15 @@ ohos.permission.GET_WIFI_PEERS_MAC权限仅系统应用可申请。
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
+| -------- | -------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
 **示例：**
 
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let scanInfoList = wifiManager.getScanResultsSync();
@@ -265,13 +275,15 @@ getScanInfoList(): Array&lt;WifiScanInfo&gt;
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
+| -------- | -------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
 **示例：**
 
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let scanInfoList = wifiManager.getScanInfoList();
@@ -289,6 +301,8 @@ getScanInfoList(): Array&lt;WifiScanInfo&gt;
 				console.info("frequency: " + scanInfoList[i].frequency);
 				console.info("channelWidth: " + scanInfoList[i].channelWidth);
 				console.info("timestamp: " + scanInfoList[i].timestamp);
+				console.info("supportedWifiCategory: " + scanInfoList[i].supportedWifiCategory);
+				console.info("isHiLinkNetwork: " + scanInfoList[i].isHiLinkNetwork);
 			}
 		}	
 	}catch(error){
@@ -319,6 +333,7 @@ WLAN热点信息。
 | centerFrequency1 | number | 是 | 否 | 热点的中心频率。如果热点使用两个不重叠的WLAN信道，则返回两个中心频率，分别用centerFrequency0和centerFrequency1表示。 |
 | infoElems | Array&lt;[WifiInfoElem](#wifiinfoelem9)&gt; | 是 | 否 | 信息元素。 |
 | timestamp | number | 是 | 否 | 时间戳。 |
+| isHiLinkNetwork<sup>12+</sup> | boolean | 是 | 否| 热点是否支持hiLink，true:支持，&nbsp;false:不支持。 |
 
 ## DeviceAddressType<sup>10+</sup>
 
@@ -492,9 +507,6 @@ WLAN配置信息。
 | PHASE2_AKA | 6 | AKA类型。 |
 | PHASE2_AKA_PRIME | 7 | AKA Prime类型。 |
 
-
-
-
 ## wifiManager.addCandidateConfig<sup>9+</sup>
 
 addCandidateConfig(config: WifiDeviceConfig): Promise&lt;number&gt;
@@ -524,12 +536,15 @@ addCandidateConfig(config: WifiDeviceConfig): Promise&lt;number&gt;
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3.Parameter verification failed. |
+|801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
 **示例：**
 `````ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 	
 	try {
 		let config:wifiManager.WifiDeviceConfig = {
@@ -569,12 +584,15 @@ addCandidateConfig(config: WifiDeviceConfig, callback: AsyncCallback&lt;number&g
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3.Parameter verification failed. |
+|801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
 **示例：**
 `````ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let config:wifiManager.WifiDeviceConfig = {
@@ -619,13 +637,16 @@ removeCandidateConfig(networkId: number): Promise&lt;void&gt;
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3.Parameter verification failed. |
+|801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
 **示例：**
 
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let networkId = 0;
@@ -661,12 +682,15 @@ removeCandidateConfig(networkId: number, callback: AsyncCallback&lt;void&gt;): v
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3.Parameter verification failed. |
+|801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
 **示例：**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let networkId = 0;
@@ -705,13 +729,15 @@ API 10起：ohos.permission.GET_WIFI_INFO
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 | 2501000  | Operation failed.| 
 
 **示例：**
 
-`````ts
-	import wifiManager from '@ohos.wifiManager';
+```ts
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let configs = wifiManager.getCandidateConfigs();
@@ -728,7 +754,7 @@ API 10起：ohos.permission.GET_WIFI_INFO
 		console.error("failed:" + JSON.stringify(error));
 	}
 	
-`````
+```
 
 ## wifiManager.connectToCandidateConfig<sup>9+</sup>
 
@@ -753,13 +779,16 @@ connectToCandidateConfig(networkId: number): void
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3.Parameter verification failed. |
+|801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 | 2501001  | Wifi is closed.|
 
 **示例：**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let networkId = 0; // 实际的候选网络ID，在添加候选网络时生成，取自WifiDeviceConfig.netId
@@ -799,12 +828,15 @@ getSignalLevel(rssi: number, band: number): number
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
+| -------- | -------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2.Parameter verification failed. |
+|801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
 **示例：**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let rssi = 0;
@@ -842,7 +874,10 @@ getLinkedInfo(): Promise&lt;WifiLinkedInfo&gt;
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
+| -------- | -------- |
+|201 | Permission denied.                 |
+|202 | System API is not allowed called by Non-system application. |
+|801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 | 2501001  | Wifi is closed.|
 
@@ -869,13 +904,16 @@ getLinkedInfo(callback: AsyncCallback&lt;WifiLinkedInfo&gt;): void
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
+| -------- | -------- |
+|201 | Permission denied.                 |
+|202 | System API is not allowed called by Non-system application. |
+|801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 | 2501001  | Wifi is closed.|
 
 **示例：**
 ```ts
-  import wifiManager from '@ohos.wifiManager';
+  import { wifiManager } from '@kit.ConnectivityKit';
   
   wifiManager.getLinkedInfo((err, data) => {
       if (err) {
@@ -918,6 +956,7 @@ getLinkedInfo(callback: AsyncCallback&lt;WifiLinkedInfo&gt;): void
 | connState | [ConnState](#connstate9) | 是 | 否 | WLAN连接状态。 |
 | channelWidth<sup>10+</sup> | [WifiChannelWidth](#wifichannelwidth9) | 是 | 否 | 当前连接热点的信道带宽。 |
 | wifiStandard<sup>10+</sup> | [WifiStandard](#wifistandard10) | 是 | 否 | 当前连接热点的WiFi标准。 |
+| isHiLinkNetwork<sup>12+</sup> | boolean | 是 | 否| 热点是否支持hilink，true:支持，&nbsp;false:不支持。 |
 
 ## ConnState<sup>9+</sup>
 
@@ -960,12 +999,15 @@ isConnected(): boolean
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
+| -------- | -------- |
+|201 | Permission denied.                 |
+|202 | System API is not allowed called by Non-system application. |
+|801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
 **示例：**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let ret = wifiManager.isConnected();
@@ -1020,11 +1062,14 @@ isFeatureSupported(featureId: number): boolean
 
 | **错误码ID** | **错误信息** |
   | -------- | -------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2.Parameter verification failed. |
+|801 | Capability not supported.          |
 | 2401000  | Operation failed.|
 
 **示例：**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let featureId = 0;
@@ -1058,12 +1103,14 @@ getIpInfo(): IpInfo
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
+| -------- | -------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
 **示例：**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let info = wifiManager.getIpInfo();
@@ -1111,12 +1158,14 @@ getIpv6Info(): Ipv6Info
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
+| -------- | -------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
 **示例：**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let info = wifiManager.getIpv6Info();
@@ -1163,12 +1212,14 @@ getCountryCode(): string
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
+| -------- | -------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 | 2401000  | Operation failed.|
 
 **示例：**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let code = wifiManager.getCountryCode();
@@ -1208,12 +1259,14 @@ isBandTypeSupported(bandType: WifiBandType): boolean
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
+| -------- | -------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
 **示例：**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let type = 0;
@@ -1246,13 +1299,15 @@ isMeteredHotspot(): boolean
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
+| -------- | -------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
 **示例：**
 
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let isMeteredHotspot = wifiManager.isMeteredHotspot();
@@ -1287,7 +1342,9 @@ getP2pLinkedInfo(): Promise&lt;WifiP2pLinkedInfo&gt;
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
+| -------- | -------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 | 2801000  | Operation failed.|
 
 
@@ -1314,12 +1371,14 @@ getP2pLinkedInfo(callback: AsyncCallback&lt;WifiP2pLinkedInfo&gt;): void
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
+| -------- | -------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 | 2801000  | Operation failed.|
 
 **示例：**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	wifiManager.getP2pLinkedInfo((err, data) => {
     if (err) {
@@ -1384,7 +1443,9 @@ API 10起：ohos.permission.GET_WIFI_INFO
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
+| -------- | -------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 | 2801000  | Operation failed.|
 
 ## wifiManager.getCurrentGroup<sup>9+</sup>
@@ -1412,12 +1473,14 @@ API 10起：ohos.permission.GET_WIFI_INFO
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
+| -------- | -------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 | 2801000  | Operation failed.|
 
 **示例：**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 	// p2p已经建组或者连接成功，才能正常获取到当前组信息
 	wifiManager.getCurrentGroup((err, data) => {
     if (err) {
@@ -1457,7 +1520,9 @@ API 10起：ohos.permission.GET_WIFI_INFO
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
+| -------- | -------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 | 2801000  | Operation failed.|
 
 ## wifiManager.getP2pPeerDevices<sup>9+</sup>
@@ -1485,12 +1550,14 @@ API 10起：ohos.permission.GET_WIFI_INFO
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
+| -------- | -------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 | 2801000  | Operation failed.|
 
 **示例：**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 	// p2p发现阶段完成，才能正常获取到对端设备列表信息
 	wifiManager.getP2pPeerDevices((err, data) => {
     if (err) {
@@ -1557,7 +1624,9 @@ getP2pLocalDevice(): Promise&lt;WifiP2pDevice&gt;
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
+| -------- | -------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 | 2801000  | Operation failed.|
 
 ## wifiManager.getP2pLocalDevice<sup>9+</sup>
@@ -1579,12 +1648,14 @@ getP2pLocalDevice(callback: AsyncCallback&lt;WifiP2pDevice&gt;): void
 **错误码：**
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
+| -------- | -------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 | 2801000  | Operation failed.|
 
 **示例：**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 	// p2p已经建组或者连接成功，才能正常获取到本端设备信息
 	wifiManager.getP2pLocalDevice((err, data) => {
     if (err) {
@@ -1620,12 +1691,15 @@ createGroup(config: WifiP2PConfig): void
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
+| -------- | -------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameters. Possible causes: 1. Incorrect parameter types. 2.Parameter verification failed. |
+|801 | Capability not supported.          |
 | 2801000  | Operation failed.|
 
 **示例：**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let config:wifiManager.WifiP2PConfig = {
@@ -1686,12 +1760,14 @@ removeGroup(): void
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
+| -------- | -------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 | 2801000  | Operation failed.|
 
 **示例：**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		wifiManager.removeGroup();	
@@ -1725,12 +1801,15 @@ API 10起：ohos.permission.GET_WIFI_INFO
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
+| -------- | -------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameters. Possible causes: 1. Incorrect parameter types. 2.Parameter verification failed. |
+|801 | Capability not supported.          |
 | 2801000  | Operation failed.|
 
 **示例：**
 ```ts
-  import wifiManager from '@ohos.wifiManager';
+  import { wifiManager } from '@kit.ConnectivityKit';
   
   let recvP2pConnectionChangeFunc = (result:wifiManager.WifiP2pLinkedInfo) => {
       console.info("p2p connection change receive event: " + JSON.stringify(result));
@@ -1810,12 +1889,14 @@ p2pCancelConnect(): void
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
+| -------- | -------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 | 2801000  | Operation failed.|
 
 **示例：**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		wifiManager.p2pCancelConnect();	
@@ -1843,12 +1924,14 @@ API 10起：ohos.permission.GET_WIFI_INFO
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
+| -------- | -------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 | 2801000  | Operation failed.|
 
 **示例：**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		wifiManager.startDiscoverDevices();	
@@ -1872,12 +1955,14 @@ stopDiscoverDevices(): void
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
+| -------- | -------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 | 2801000  | Operation failed.|
 
 **示例：**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		wifiManager.stopDiscoverDevices();	
@@ -1931,7 +2016,10 @@ on(type: "wifiStateChange", callback: Callback&lt;number&gt;): void
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2.Parameter verification failed. |
+|801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
 **状态改变事件的枚举：**
@@ -1968,12 +2056,15 @@ off(type: "wifiStateChange", callback?: Callback&lt;number&gt;): void
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2.Parameter verification failed. |
+|801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
 **示例：**
 ```ts
-  import wifiManager from '@ohos.wifiManager';
+  import { wifiManager } from '@kit.ConnectivityKit';
   
   let recvPowerNotifyFunc = (result:number) => {
       console.info("Receive power state change event: " + result);
@@ -2018,7 +2109,10 @@ on(type: "wifiConnectionChange", callback: Callback&lt;number&gt;): void
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2.Parameter verification failed. |
+|801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
 ## wifiManager.off('wifiConnectionChange')<sup>9+</sup>
@@ -2045,12 +2139,15 @@ off(type: "wifiConnectionChange", callback?: Callback&lt;number&gt;): void
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2.Parameter verification failed. |
+|801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
 **示例：**
 ```ts
-  import wifiManager from '@ohos.wifiManager';
+  import { wifiManager } from '@kit.ConnectivityKit';
   
   let recvWifiConnectionChangeFunc = (result:number) => {
       console.info("Receive wifi connection change event: " + result);
@@ -2094,7 +2191,10 @@ on(type: "wifiScanStateChange", callback: Callback&lt;number&gt;): void
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2.Parameter verification failed. |
+|801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
 ## wifiManager.off('wifiScanStateChange')<sup>9+</sup>
@@ -2121,12 +2221,15 @@ off(type: "wifiScanStateChange", callback?: Callback&lt;number&gt;): void
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2.Parameter verification failed. |
+|801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
 **示例：**
 ```ts
-  import wifiManager from '@ohos.wifiManager';
+  import { wifiManager } from '@kit.ConnectivityKit';
   
   let recvWifiScanStateChangeFunc = (result:number) => {
       console.info("Receive Wifi scan state change event: " + result);
@@ -2161,7 +2264,10 @@ on(type: "wifiRssiChange", callback: Callback&lt;number&gt;): void
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2.Parameter verification failed. |
+|801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
 ## wifiManager.off('wifiRssiChange')<sup>9+</sup>
@@ -2186,12 +2292,15 @@ off(type: "wifiRssiChange", callback?: Callback&lt;number&gt;): void
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2.Parameter verification failed. |
+|801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
 **示例：**
 ```ts
-  import wifiManager from '@ohos.wifiManager';
+  import { wifiManager } from '@kit.ConnectivityKit';
   
   let recvWifiRssiChangeFunc = (result:number) => {
       console.info("Receive wifi rssi change event: " + result);
@@ -2235,7 +2344,11 @@ on(type: "hotspotStateChange", callback: Callback&lt;number&gt;): void
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|202 | System API is not allowed called by Non-system application. |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2.Parameter verification failed. |
+|801 | Capability not supported.          |
 | 2601000  | Operation failed.|
 
 ## wifiManager.off('hotspotStateChange')<sup>9+</sup>
@@ -2260,12 +2373,16 @@ off(type: "hotspotStateChange", callback?: Callback&lt;number&gt;): void
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|202 | System API is not allowed called by Non-system application. |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2.Parameter verification failed. |
+|801 | Capability not supported.          |
 | 2601000  | Operation failed.|
 
 **示例：**
 ```ts
-  import wifiManager from '@ohos.wifiManager';
+  import { wifiManager } from '@kit.ConnectivityKit';
   
   let recvHotspotStateChangeFunc = (result:number) => {
       console.info("Receive hotspot state change event: " + result);
@@ -2311,7 +2428,10 @@ on(type: "p2pStateChange", callback: Callback&lt;number&gt;): void
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2.Parameter verification failed. |
+|801 | Capability not supported.          |
 | 2801000  | Operation failed.|
 
 ## wifiManager.off('p2pStateChange')<sup>9+</sup>
@@ -2336,12 +2456,15 @@ off(type: "p2pStateChange", callback?: Callback&lt;number&gt;): void
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2.Parameter verification failed. |
+|801 | Capability not supported.          |
 | 2801000  | Operation failed.|
 
 **示例：**
 ```ts
-  import wifiManager from '@ohos.wifiManager';
+  import { wifiManager } from '@kit.ConnectivityKit';
   
   let recvP2pStateChangeFunc = (result:number) => {
       console.info("Receive p2p state change event: " + result);
@@ -2376,7 +2499,10 @@ on(type: "p2pConnectionChange", callback: Callback&lt;WifiP2pLinkedInfo&gt;): vo
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2.Parameter verification failed. |
+|801 | Capability not supported.          |
 | 2801000  | Operation failed.|
 
 ## wifiManager.off('p2pConnectionChange')<sup>9+</sup>
@@ -2401,12 +2527,15 @@ off(type: "p2pConnectionChange", callback?: Callback&lt;WifiP2pLinkedInfo&gt;): 
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2.Parameter verification failed. |
+|801 | Capability not supported.          |
 | 2801000  | Operation failed.|
 
 **示例：**
 ```ts
-  import wifiManager from '@ohos.wifiManager';
+  import { wifiManager } from '@kit.ConnectivityKit';
   
   let recvP2pConnectionChangeFunc = (result:wifiManager.WifiP2pLinkedInfo) => {
       console.info("Receive p2p connection change event: " + result);
@@ -2445,7 +2574,10 @@ API 10起：ohos.permission.GET_WIFI_INFO
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+|801 | Capability not supported.          |
 | 2801000  | Operation failed.|
 
 ## wifiManager.off('p2pDeviceChange')<sup>9+</sup>
@@ -2474,12 +2606,15 @@ API 10起：无
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+|801 | Capability not supported.          |
 | 2801000  | Operation failed.|
 
 **示例：**
 ```ts
-  import wifiManager from '@ohos.wifiManager';
+  import { wifiManager } from '@kit.ConnectivityKit';
   
   let recvP2pDeviceChangeFunc = (result:wifiManager.WifiP2pDevice) => {
       console.info("Receive p2p device change event: " + result);
@@ -2518,7 +2653,10 @@ API 10起：ohos.permission.GET_WIFI_INFO
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+|801 | Capability not supported.          |
 | 2801000  | Operation failed.|
 
 ## wifiManager.off('p2pPeerDeviceChange')<sup>9+</sup>
@@ -2547,12 +2685,15 @@ API 10起：无
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+|801 | Capability not supported.          |
 | 2801000  | Operation failed.|
 
 **示例：**
 ```ts
-  import wifiManager from '@ohos.wifiManager';
+  import { wifiManager } from '@kit.ConnectivityKit';
   
   let recvP2pPeerDeviceChangeFunc = (result:wifiManager.WifiP2pDevice[]) => {
       console.info("Receive p2p peer device change event: " + result);
@@ -2587,7 +2728,10 @@ on(type: "p2pPersistentGroupChange", callback: Callback&lt;void&gt;): void
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+|801 | Capability not supported.          |
 | 2801000  | Operation failed.|
 
 ## wifiManager.off('p2pPersistentGroupChange')<sup>9+</sup>
@@ -2612,12 +2756,15 @@ off(type: "p2pPersistentGroupChange", callback?: Callback&lt;void&gt;): void
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+|801 | Capability not supported.          |
 | 2801000  | Operation failed.|
 
 **示例：**
 ```ts
-  import wifiManager from '@ohos.wifiManager';
+  import { wifiManager } from '@kit.ConnectivityKit';
   
   let recvP2pPersistentGroupChangeFunc = (result:void) => {
       console.info("Receive p2p persistent group change event: " + result);
@@ -2659,7 +2806,10 @@ on(type: "p2pDiscoveryChange", callback: Callback&lt;number&gt;): void
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+|801 | Capability not supported.          |
 | 2801000  | Operation failed.|
 
 ## wifiManager.off('p2pDiscoveryChange')<sup>9+</sup>
@@ -2684,12 +2834,15 @@ off(type: "p2pDiscoveryChange", callback?: Callback&lt;number&gt;): void
 以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
-  | -------- | -------- |
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+|801 | Capability not supported.          |
 | 2801000  | Operation failed.|
 
 **示例：**
 ```ts
-  import wifiManager from '@ohos.wifiManager';
+  import { wifiManager } from '@kit.ConnectivityKit';
   
   let recvP2pDiscoveryChangeFunc = (result:number) => {
       console.info("Receive p2p discovery change event: " + result);

@@ -77,9 +77,11 @@ objectFit(value: ImageFit)
 
 ### textBackgroundStyle<sup>11+</sup>
 
-textBackgroundStyle(value: TextBackgroundStyle)
+textBackgroundStyle(style: TextBackgroundStyle)
 
 设置图片的背景样式。作为[ContainerSpan](ts-basic-components-containerspan.md)的子组件时可以继承它的此属性值，优先使用其自身的此属性。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -87,7 +89,7 @@ textBackgroundStyle(value: TextBackgroundStyle)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [TextBackgroundStyle](ts-basic-components-containerspan.md#textbackgroundstyle对象说明) | 是   | 背景样式。<br />默认值:<br /> {<br />  color: Color.Transparent,<br />  radius: 0<br />} |
+| style | [TextBackgroundStyle](ts-basic-components-containerspan.md#textbackgroundstyle对象说明) | 是   | 背景样式。<br />默认值:<br /> {<br />  color: Color.Transparent,<br />  radius: 0<br />} |
 
 ### baselineOffset<sup>12+</sup>
 
@@ -105,11 +107,13 @@ baselineOffset(value: LengthMetrics)
 
 ## ImageSpanAlignment
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称     | 描述                           |
 | -------- | ------------------------------ |
-| TOP      | 图片上边沿与文本上边沿对齐。   |
-| CENTER   | 图片中间与文本中间对齐。       |
-| BOTTOM   | 图片下边沿与文本下边沿对齐。   |
+| TOP      | 图片上边沿与行上边沿对齐。   |
+| CENTER   | 图片中间与行中间对齐。       |
+| BOTTOM   | 图片下边沿与行下边沿对齐。   |
 | BASELINE | 图片下边沿与文本BaseLine对齐。 |
 
 ## 事件

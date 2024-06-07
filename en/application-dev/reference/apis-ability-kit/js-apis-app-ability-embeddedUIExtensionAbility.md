@@ -1,6 +1,6 @@
-# @ohos.app.ability.EmbeddedUIExtensionAbility (ExtensionAbilities for Embeddable UI in Cross-Process Scenarios)
+# @ohos.app.ability.EmbeddedUIExtensionAbility (ExtensionAbilities for Embedded UIs Across Processes)
 
-**EmbeddedUIExtensionAbility**, inherited from [UIExtensionAbility](js-apis-app-ability-uiExtensionAbility.md), provides ExtensionAbilities for the embeddable UI across processes. Currently, the EmbeddedUIExtensionAbility can be started only by the UIAbility of the same application and can be used only in scenarios with multi-process permissions.
+**EmbeddedUIExtensionAbility**, inherited from [UIExtensionAbility](js-apis-app-ability-uiExtensionAbility.md), provides ExtensionAbilities for the embedded UI across processes. Currently, the EmbeddedUIExtensionAbility can be started only by the UIAbility of the same application and can be used only in scenarios with multi-process permissions.
 
 > **NOTE**
 >
@@ -153,6 +153,7 @@ Called when this EmbeddedUIExtensionAbility is switched from the foreground to t
 onDestroy(): void | Promise&lt;void&gt;
 
 Called to clear resources when this EmbeddedUIExtensionAbility is destroyed.
+
 After the **onDestroy()** lifecycle callback is executed, the application may exit. Consequently, the asynchronous function (for example, asynchronously writing data to the database) in **onDestroy()** may fail to be executed. You can use the asynchronous lifecycle to ensure that the subsequent lifecycle continues only after the asynchronous function in **onDestroy()** finishes the execution.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
@@ -161,7 +162,7 @@ After the **onDestroy()** lifecycle callback is executed, the application may ex
 
 | Type             | Description                                                        |
 | ----------------- | ------------------------------------------------------------ |
-| void \| Promise\<void> | No return value or a Promise object that returns no result.      |
+| void \| Promise\<void> | No return value or a Promise object that returns no value.      |
 
 **Example**
 

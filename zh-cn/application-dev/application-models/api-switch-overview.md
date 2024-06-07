@@ -12,34 +12,45 @@ startAbility接口由FA模型切换到Stage模型的示例：
   ```ts
   import featureAbility from '@ohos.ability.featureAbility';
   import Want from '@ohos.app.ability.Want';
-  import Logger from '../../utils/Logger';
+  import hilog from '@ohos.hilog';
   
   const TAG: string = 'PagePageAbilityFirst';
+  const domain: number = 0xFF00;
   
   @Entry
   @Component
-  struct Index {
+  struct PagePageAbilityFirst {
     
     build() {
-      // ...
-      Button() {
-        // ...
+      Column() {
+        List({ initialIndex: 0 }) {
+          ListItem() {
+            Flex({ justifyContent: FlexAlign.SpaceBetween, alignContent: FlexAlign.Center }) {
+              //...
+            }
+            .onClick(() => {
+              (async (): Promise<void> => {
+                try {
+                  hilog.info(domain, TAG, 'Begin to start ability');
+                  let want: Want = {
+                    bundleName: 'com.samples.famodelabilitydevelop',
+                    moduleName: 'entry',
+                    abilityName: 'com.samples.famodelabilitydevelop.PageAbilitySingleton'
+                  };
+                  await featureAbility.startAbility({ want: want });
+                  hilog.info(domain, TAG, `Start ability succeed`);
+                }
+                catch (error) {
+                  hilog.error(domain, TAG, 'Start ability failed with ' + error);
+                }
+              })()
+            })
+          }
+          //...
+        }
+        //...
       }
-      .onClick(async () => {
-        try {
-          Logger.info(TAG, 'Begin to start ability');
-          let want: Want = {
-            bundleName: 'com.samples.famodelabilitydevelop',
-            moduleName: 'entry',
-            abilityName: 'com.samples.famodelabilitydevelop.PageAbilitySingleton'
-          };
-          await featureAbility.startAbility({ want: want });
-          Logger.info(TAG, `Start ability succeed`);
-        }
-        catch (error) {
-          Logger.error(TAG, 'Start ability failed with ' + error);
-        }
-      })
+      //...
     }
   }
 
@@ -48,33 +59,53 @@ startAbility接口由FA模型切换到Stage模型的示例：
 - Stage示例示例
 
   ```ts
+  import hilog from '@ohos.hilog';
   import Want from '@ohos.app.ability.Want';
   import common from '@ohos.app.ability.common';
   import { BusinessError } from '@ohos.base';
+  import { Caller } from '@ohos.app.ability.UIAbility';
+
+  const TAG: string = '[Page_UIAbilityComponentsInteractive]';
+  const DOMAIN_NUMBER: number = 0xFF00;
   
   @Entry
   @Component
-  struct Index {
+  struct Page_UIAbilityComponentsInteractive {
     private context = getContext(this) as common.UIAbilityContext;
-  
+    caller: Caller | undefined = undefined;
     build() {
-      // ...
-      Button() {
-        // ...
+      Column() {
+        //...
+        List({ initialIndex: 0 }) {
+          ListItem() {
+            Row() {
+              //...
+            }
+            .onClick(() => {
+              // context为Ability对象的成员，在非Ability对象内部调用需要
+              // 将Context对象传递过去
+              let wantInfo: Want = {
+                deviceId: '', // deviceId为空表示本设备
+                bundleName: 'com.samples.stagemodelabilitydevelop',
+                moduleName: 'entry', // moduleName非必选
+                abilityName: 'FuncAbilityA',
+                parameters: { // 自定义信息
+                  info: '来自EntryAbility Page_UIAbilityComponentsInteractive页面'
+                },
+              };
+              // context为调用方UIAbility的UIAbilityContext
+              this.context.startAbility(wantInfo).then(() => {
+                hilog.info(DOMAIN_NUMBER, TAG, 'startAbility success.');
+              }).catch((error: BusinessError) => {
+                hilog.error(DOMAIN_NUMBER, TAG, 'startAbility failed.');
+              });
+            })
+          }
+          //...
+        }
+        //...
       }
-      .onClick(() => {
-        // context为Ability对象的成员，在非Ability对象内部调用需要
-        // 将Context对象传递过去
-        let wantInfo: Want = {
-          bundleName: "com.example.myapplication",
-          abilityName: "EntryAbility"
-        };
-        this.context.startAbility(wantInfo).then(() => {
-          console.info('startAbility success.');
-        }).catch((error: BusinessError) => {
-          console.error('startAbility failed.');
-        })
-      })
+      //...
     }
   }
   ```

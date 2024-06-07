@@ -5,9 +5,6 @@ HiAppEvent提供接口用于订阅系统卡死事件。
 - [订阅卡死事件（ArkTS）](hiappevent-watcher-freeze-events-arkts.md)
 - [订阅卡死事件（C/C++）](hiappevent-watcher-freeze-events-ndk.md)
 
-> **说明：**
-> 若应用卡死导致应用退出，需要再次点击设备桌面的“应用图标”运行应用工程，等待一分钟左右获取到卡死事件。
-
 卡死事件信息中params属性的详细描述如下：
 
 **params属性：**
@@ -21,7 +18,7 @@ HiAppEvent提供接口用于订阅系统卡死事件。
 | process_name | string | 应用的进程名称。 |
 | pid | number | 应用的进程id。|
 | uid | number | 应用的用户id。 |
-| uuid | string | 用户标识id。 |
+| uuid | string | 故障id。 |
 | exception | object | 异常信息，详见exception属性。 |
 | hilog | string[] | 日志信息。|
 | event_handler | string[] | 主线程未处理消息。 |

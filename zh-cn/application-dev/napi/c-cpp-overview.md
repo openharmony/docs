@@ -62,3 +62,6 @@ symbol-version是libc在**动态链接-符号重定位**阶段的符号检索机
 
 ### 2.6 全球化支持
 自API12起，newlocale及setlocale接口支持将locale设置C、C.UTF-8、en_US、en_US.UTF-8、zh_CN及zh_CN.UTF-8。新增在zh_CN及zh_CN.UTF-8的locale设置下对strtod_l、wcstod_l和localeconv的支持。注意strtod_l及wcstod_l不支持对十六进制及十六进制小数的转换。
+
+### 2.7 fdsan功能
+[fdsan功能](./fdsan.md)可以帮助检测文件的重复关闭和关闭后使用问题。

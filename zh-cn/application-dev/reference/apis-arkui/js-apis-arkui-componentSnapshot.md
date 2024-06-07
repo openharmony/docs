@@ -38,9 +38,12 @@ get(id: string, callback: AsyncCallback<image.PixelMap>): void
 
 **错误码：** 
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码。
+
 | 错误码ID | 错误信息            |
 | -------- | ------------------- |
-| 100001   | if id is not valid. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 100001   | Invalid ID. |
 
 **示例：**
 
@@ -105,9 +108,12 @@ get(id: string): Promise<image.PixelMap>
 
 **错误码：** 
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码。
+
 | 错误码ID  | 错误信息                |
 | ------ | ------------------- |
-| 100001 | if id is not valid. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 100001 | Invalid ID. |
 
 **示例：**
 
@@ -169,9 +175,12 @@ createFromBuilder(builder: CustomBuilder, callback: AsyncCallback<image.PixelMap
 
 **错误码：** 
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码。
+
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
-| 100001   | if builder is not a valid build function. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 100001   | The builder is not a valid build function. |
 
 **示例：**
 
@@ -261,10 +270,12 @@ createFromBuilder(builder: CustomBuilder): Promise<image.PixelMap>
 | Promise&lt;image.[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | 截图返回的结果。 |
 
 **错误码：** 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码。
 
 | 错误码ID  | 错误信息                                     |
 | ------ | ---------------------------------------- |
-| 100001 | if builder is not a valid build function. |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 100001 | The builder is not a valid build function. |
 
 **示例：**
 

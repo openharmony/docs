@@ -71,7 +71,7 @@ Abnormal environment.
 
 **错误信息**
 
-Length of the event is over limit.
+The event length exceeds the limit.
 
 **错误描述**
 
@@ -111,7 +111,7 @@ Invalid event parameter.
 
 **错误信息**
 
-Size of the event parameter of the string type is over limit.
+The size of the event parameter of the string type exceeds the limit.
 
 **错误描述**
 
@@ -129,7 +129,7 @@ Size of the event parameter of the string type is over limit.
 
 **错误信息**
 
-Count of event parameters is over limit.
+The number of event parameters exceeds the limit.
 
 **错误描述**
 
@@ -147,7 +147,7 @@ Count of event parameters is over limit.
 
 **错误信息**
 
-Count of event parameter of the array type is over limit.
+The number of event parameters of the array type exceeds the limit.
 
 **错误描述**
 
@@ -165,7 +165,7 @@ Count of event parameter of the array type is over limit.
 
 **错误信息**
 
-Count of watchers is over limit.
+The number of watchers exceeds the limit.
 
 **错误描述**
 
@@ -183,7 +183,7 @@ hiview服务已添加30个系统事件监听者，无法添加新的系统事件
 
 **错误信息**
 
-Count of watch rules is over limit.
+The number of watch rules exceeds the limit.
 
 **错误描述**
 
@@ -220,7 +220,7 @@ The watcher does not exist.
 
 **错误信息**
 
-Count of query rules is over limit.
+The number of query rules exceeds the limit.
 
 **错误描述**
 
@@ -260,7 +260,7 @@ Invalid query rule.
 
 **错误信息**
 
-Count of concurrent queriers is over limit.
+The number of concurrent queriers exceeds the limit.
 
 **错误描述**
 
@@ -278,7 +278,7 @@ Count of concurrent queriers is over limit.
 
 **错误信息**
 
-Query frequency is over limit.
+The query frequency exceeds the limit.
 
 **错误描述**
 
@@ -291,3 +291,21 @@ Query frequency is over limit.
 **处理步骤**
 
 检查是否在1秒内进行50次以上的查询。
+
+## 11200305 取消订阅失败
+
+**错误信息**
+
+Unsubscription failed.
+
+**错误描述**
+
+在调用unsubscribe接口失败的时候，返回此错误码。
+
+**可能原因**
+
+hiview服务异常。
+
+**处理步骤**
+
+尝试重新调用unsubscribe接口。

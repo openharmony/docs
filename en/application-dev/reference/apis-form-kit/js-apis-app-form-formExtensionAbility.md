@@ -10,7 +10,7 @@ The **FormExtensionAbility** module provides lifecycle callbacks invoked when a 
 ## Modules to Import
 
 ```ts
-import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
+import { FormExtensionAbility } from '@kit.FormKit';
 ```
 
 ## Attributes
@@ -19,13 +19,15 @@ import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
 
 | Name   | Type                                                        | Readable| Writable| Description                                                        |
 | ------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
-| context | [FormExtensionContext](js-apis-inner-application-formExtensionContext.md) | Yes  | No  | Context of the FormExtensionAbility. This context is inherited from [ExtensionContext](../apis-ability-kit/js-apis-inner-application-extensionContext.md).|
+| context | [FormExtensionContext](js-apis-inner-application-formExtensionContext.md) | Yes  | No  | Context of the FormExtensionAbility. This context is inherited from [ExtensionContext](../apis-ability-kit/js-apis-inner-application-extensionContext.md).<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 
 ## onAddForm
 
 onAddForm(want: Want): formBindingData.FormBindingData
 
 Called to notify the widget provider that a **Form** instance (widget) is being created.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.Form
 
@@ -44,9 +46,8 @@ Called to notify the widget provider that a **Form** instance (widget) is being 
 **Example**
 
 ```ts
-import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
-import formBindingData from '@ohos.app.form.formBindingData';
-import Want from '@ohos.app.ability.Want';
+import { formBindingData, FormExtensionAbility } from '@kit.FormKit';
+import { Want } from '@kit.AbilityKit';
 
 export default class MyFormExtensionAbility extends FormExtensionAbility {
   onAddForm(want: Want) {
@@ -68,6 +69,8 @@ onCastToNormalForm(formId: string): void
 
 Called to notify the widget provider that a temporary widget is being converted to a normal one.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Ability.Form
 
 **Parameters**
@@ -79,7 +82,7 @@ Called to notify the widget provider that a temporary widget is being converted 
 **Example**
 
 ```ts
-import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
+import { FormExtensionAbility } from '@kit.FormKit';
 
 export default class MyFormExtensionAbility extends FormExtensionAbility {
   onCastToNormalForm(formId: string) {
@@ -94,6 +97,8 @@ onUpdateForm(formId: string, wantParams?: Record<string, Object>): void
 
 Called to notify the widget provider that a widget is being updated, with update parameters carried. After obtaining the latest data, your application should call [updateForm](js-apis-app-form-formProvider.md#updateform) of **formProvider** to update the widget data.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Ability.Form
 
 **Parameters**
@@ -106,10 +111,8 @@ Called to notify the widget provider that a widget is being updated, with update
 **Example**
 
 ```ts
-import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
-import formBindingData from '@ohos.app.form.formBindingData';
-import formProvider from '@ohos.app.form.formProvider';
-import Base from '@ohos.base';
+import { formBindingData, FormExtensionAbility, formProvider } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class MyFormExtensionAbility extends FormExtensionAbility {
   onUpdateForm(formId: string, wantParams?: Record<string, Object>) {
@@ -122,7 +125,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
     let obj2: formBindingData.FormBindingData = formBindingData.createFormBindingData(param);
     formProvider.updateForm(formId, obj2).then(() => {
       console.log(`FormExtensionAbility context updateForm`);
-    }).catch((error: Base.BusinessError) => {
+    }).catch((error: BusinessError) => {
       console.error(`FormExtensionAbility context updateForm failed, data: ${error}`);
     });
   }
@@ -134,7 +137,6 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
 onChangeFormVisibility(newStatus: Record\<string, number>): void
 
 Called to notify the widget provider that the widget visibility status is being changed.
-
 This API is valid only for system applications when **formVisibleNotify** is set to **true**.
 
 **System capability**: SystemCapability.Ability.Form
@@ -148,10 +150,8 @@ This API is valid only for system applications when **formVisibleNotify** is set
 **Example**
 
 ```ts
-import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
-import formBindingData from '@ohos.app.form.formBindingData';
-import formProvider from '@ohos.app.form.formProvider';
-import Base from '@ohos.base';
+import { formBindingData, FormExtensionAbility, formProvider } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // According to the ArkTS specification, **Object.keys** and **for..in...** cannot be used in .ets files to obtain the key value of an object. Use the user-defined function **getObjKeys** instead.
 // Extract this function to a .ts file and export it. Import this function to the required e.ts file before using it.
@@ -175,7 +175,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
       console.log(`FormExtensionAbility onChangeFormVisibility, key: ${keys[i]}, value= ${newStatus[keys[i]]}`);
       formProvider.updateForm(keys[i], obj2).then(() => {
         console.log(`FormExtensionAbility context updateForm`);
-      }).catch((error: Base.BusinessError) => {
+      }).catch((error: BusinessError) => {
         console.error(`Operation updateForm failed. Cause: ${JSON.stringify(error)}`);
       });
     }
@@ -187,7 +187,9 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
 
 onFormEvent(formId: string, message: string): void
 
-Called to instruct the widget provider to process the widget event. (This API can be used only in JS widget.)
+Called to instruct the widget provider to process the widget event.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.Form
 
@@ -201,7 +203,7 @@ Called to instruct the widget provider to process the widget event. (This API ca
 **Example**
 
 ```ts
-import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
+import { FormExtensionAbility } from '@kit.FormKit';
 
 export default class MyFormExtensionAbility extends FormExtensionAbility {
   onFormEvent(formId: string, message: string) {
@@ -216,6 +218,8 @@ onRemoveForm(formId: string): void
 
 Called to notify the widget provider that a **Form** instance (widget) is being destroyed.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Ability.Form
 
 **Parameters**
@@ -227,7 +231,7 @@ Called to notify the widget provider that a **Form** instance (widget) is being 
 **Example**
 
 ```ts
-import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
+import { FormExtensionAbility } from '@kit.FormKit';
 
 export default class MyFormExtensionAbility extends FormExtensionAbility {
   onRemoveForm(formId: string) {
@@ -243,6 +247,8 @@ onConfigurationUpdate(newConfig: Configuration): void
 Called when the configuration of the environment where the FormExtensionAbility is running is updated. 
 This lifecycle callback is triggered only when the configuration is updated while the FormExtensionAbility is alive. If no operation is performed within 5 seconds after a **FormExtensionAbility** instance is created, the instance will be deleted.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Ability.Form
 
 **Parameters**
@@ -254,8 +260,8 @@ This lifecycle callback is triggered only when the configuration is updated whil
 **Example**
 
 ```ts
-import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
-import { Configuration } from '@ohos.app.ability.Configuration';
+import { FormExtensionAbility } from '@kit.FormKit';
+import { Configuration } from '@kit.AbilityKit';
 
 export default class MyFormExtensionAbility extends FormExtensionAbility {
   onConfigurationUpdate(newConfig: Configuration) {
@@ -272,6 +278,8 @@ onAcquireFormState?(want: Want): formInfo.FormState
 
 Called to notify the widget provider that the widget host is requesting the widget state. By default, the initial widget state is returned. (You can override this API as required.)
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Ability.Form
 
 **Parameters**
@@ -283,9 +291,8 @@ Called to notify the widget provider that the widget host is requesting the widg
 **Example**
 
 ```ts
-import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
-import formInfo from '@ohos.app.form.formInfo';
-import Want from '@ohos.app.ability.Want';
+import { FormExtensionAbility, formInfo } from '@kit.FormKit';
+import { Want } from '@kit.AbilityKit';
 
 export default class MyFormExtensionAbility extends FormExtensionAbility {
   onAcquireFormState(want: Want) {
@@ -300,13 +307,15 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
 onStop?(): void
 
 Called when the widget process of the widget provider exits.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
   
 **System capability**: SystemCapability.Ability.Form
 
 **Example**
 
 ```ts
-import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
+import { FormExtensionAbility } from '@kit.FormKit';
 
 export default class MyFormExtensionAbility extends FormExtensionAbility {
   onStop() {

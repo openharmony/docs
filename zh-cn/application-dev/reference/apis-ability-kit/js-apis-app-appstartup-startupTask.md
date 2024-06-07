@@ -11,12 +11,12 @@
 ## 导入模块
 
 ```js
-import StartupTask from '@ohos.app.appstartup.StartupTask';
+import { StartupTask } from '@kit.AbilityKit';
 ```
 
 ## StartupTask.onDependencyCompleted
 
-onDependencyCompleted(dependency: string, result: ESObject): void
+onDependencyCompleted?(dependency: string, result: ESObject): void
 
 在特定的依赖组件完成初始化时调用。
 
@@ -32,12 +32,17 @@ onDependencyCompleted(dependency: string, result: ESObject): void
 **示例：**：
 
 ```ts
-import StartupTask from '@ohos.app.appstartup.StartupTask';
+import { StartupTask } from '@kit.AbilityKit';
 
+@Sendable
 export default class Sample_001 extends StartupTask {
-  onDependencyCompleted(dependence: string, result) {
+  constructor() {
+    super();
+  }
+
+  onDependencyCompleted(dependence: string, result: ESObject) {
     console.info("StartupTest Sample_001 onDependencyCompleted dependence=" + dependence);
-    ...
+    // ...
   }
 }
 ```
@@ -66,12 +71,17 @@ init(context: AbilityStageContext): Promise\<ESObject\>
 **示例：**：
 
 ```ts
-import StartupTask from '@ohos.app.appstartup.StartupTask';
+import { StartupTask, common } from '@kit.AbilityKit';
 
+@Sendable
 export default class Sample_001 extends StartupTask {
-  async init(context) {
+  constructor() {
+    super();
+  }
+
+  async init(context: common.AbilityStageContext) {
     console.info("StartupTest Sample_001 init");
-    ...
+    // ...
   }
 }
 ```

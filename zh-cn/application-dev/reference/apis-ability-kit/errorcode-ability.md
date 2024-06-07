@@ -47,7 +47,7 @@ Incorrect Ability type.
 **处理步骤**
 
 1. 检查want中的bundleName、moduleName和abilityName是否正确。
-2. 根据Ability类型调用不同接口，如ServiceExtensionAbility应使用[startServiceExtensionAbility](js-apis-inner-application-uiAbilityContext-sys.md#uiabilitycontextstartserviceextensionability)方法启动或[connectServiceExtensionAbility()](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectserviceextensionability)方法连接。
+2. 根据Ability类型调用不同接口，如ServiceExtensionAbility应使用<!--Del-->[startServiceExtensionAbility](js-apis-inner-application-uiAbilityContext-sys.md#uiabilitycontextstartserviceextensionability)方法启动或<!--DelEnd-->[connectServiceExtensionAbility()](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectserviceextensionability)方法连接。
 
 ## 16000003 指定的ID不存在
 
@@ -238,7 +238,7 @@ The application is controlled by EDM.
 
 **错误描述**
 
-当应用受到企业设备管理[Enterprise Device Manager](../apis-mdm-kit/enterpriseDeviceManagement-overview.md)管控时，方法将返回该错误码。
+当应用受到企业设备管理[Enterprise Device Manager](../../enterprise-device-management/enterpriseDeviceManagement-overview.md)管控时，方法将返回该错误码。
 
 **可能原因**
 
@@ -284,7 +284,7 @@ The previous ability is starting, wait start later.
 
 无需处理，等待启动即可。
 
-## 16000018 限制API11以上版本三方应用跳转
+## 16000018 限制API 11以上版本三方应用跳转
 
 **错误信息**
 
@@ -657,6 +657,65 @@ Ability already running.
 
 当目标Ability的launchType是singleton或者specified时，避免通过指定processMode和startupVisibility的方式重复startAbility。
 
+## 16000071 不支持应用分身模式
+
+**错误信息**
+
+App clone is not supported.
+
+**错误描述**
+
+当应用不支持分身模式时，返回该错误码。
+
+**可能原因**
+
+在不支持应用分身的应用中调用getCurrentAppCloneIndex时，则返回该错误码。
+
+**处理步骤**
+
+在不支持应用分身的应用中，避免调用getCurrentAppCloneIndex。
+
+<!--Del-->
+## 16000072 不支持应用多开
+
+**错误信息**
+
+App clone or multi-instance is not supported.
+
+**错误描述**
+
+当应用不支持多开时，返回该错误码。
+
+**可能原因**
+
+调用getRunningMultiAppInfo查询不支持应用多开的应用多开信息，则返回该错误码。
+
+**处理步骤**
+
+调用getCurrentAppCloneIndex时确保查询的应用支持应用多开。
+<!--DelEnd-->
+
+## 16000073 传入的appCloneIndex是一个无效值
+
+**错误信息**
+
+The app clone index is invalid.
+
+**错误描述**
+
+传入一个无效的appCloneIndex，返回该错误码。
+
+**可能原因**
+
+1.调用startAbility时，使用ohos.extra.param.key.appCloneIndex携带的appCloneIndex是一个无效值，则返回该错误码。
+<!--Del-->
+2.调用isAppRunning是，入参appCloneIndex是一个无效值，则返回该错误码。
+<!--DelEnd-->
+
+**处理步骤**
+
+确认appCloneIndex的约束条件是否满足。
+
 ## 16000100 监听Ability生命周期变化的AbilityMonitor方法执行失败
 
 **错误信息**
@@ -772,6 +831,24 @@ wangAgent object has been canceled.
 **处理步骤**
 
 检查触发的wantAgent对象是否已取消。
+
+## 16000200 应用缓存后快速启动支持状态设置超过1次
+
+**错误信息**
+
+The supported process cache state cannot be set more than once.
+
+**错误描述**
+
+在单个进程实例的生命周期中，应用缓存后快速启动支持状态设置成功1次后，再次设置方法将返回错误码。
+
+**可能原因**
+
+应用缓存后快速启动支持状态设置超过1次。
+
+**处理步骤**
+
+检查应用缓存后快速启动支持状态是否设置超过1次。
 
 ## 16100001 指定Uri的Ability不存在
 
@@ -901,6 +978,24 @@ Method not registered. The method has not registered.
 **处理步骤**
 
 请检查是否未注册该方法。
+
+## 16200006 没有权限设置常驻进程使能状态
+
+**错误信息**
+
+The caller application can only set the resident status of the configured process.
+
+**错误描述**
+
+当调用者没有权限设置常驻进程使能状态时返回。
+
+**可能原因**
+
+调用者没有常驻进程使能配置权限。
+
+**处理步骤**
+
+接口调用时从数据库查询调用者的常驻进程使能配置权限。
 
 ## 16300001 指定的任务不存在
 

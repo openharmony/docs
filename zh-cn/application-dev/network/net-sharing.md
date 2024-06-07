@@ -53,15 +53,15 @@
 
 ## 开启网络共享
 
-1. 从@ohos.net.sharing 中导入 sharing 命名空间。
+1. 从@kit.NetworkKit 中导入 sharing 命名空间。
 2. 注册监听共享状态的改变。
 3. 调用 startSharing 方法，来开启指定类型共享。
 4. 接收到共享状态开启的回调，开启共享成功。
 
 ```ts
-// 从@ohos.net.sharing中导入sharing命名空间
-import sharing from '@ohos.net.sharing';
-import { BusinessError } from '@ohos.base';
+// 从@kit.NetworkKit中导入sharing命名空间
+import { sharing } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // 注册监听共享状态的改变
 sharing.on('sharingStateChange', (data: boolean) => {
@@ -78,15 +78,15 @@ sharing.startSharing(sharing.SharingIfaceType.SHARING_WIFI, (error: BusinessErro
 
 ### 开发步骤
 
-1. 从@ohos.net.sharing 中导入 sharing 命名空间。
+1. 从@kit.NetworkKit 中导入 sharing 命名空间。
 2. 注册监听共享状态的改变。
 3. 调用 stopSharing 方法，来停止指定类型共享。
 4. 接收到共享状态关闭的回调，停止共享成功。
 
 ```ts
-// 从@ohos.net.sharing中导入sharing命名空间
-import sharing from '@ohos.net.sharing';
-import { BusinessError } from '@ohos.base';
+// 从@kit.NetworkKit中导入sharing命名空间
+import { sharing } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // 注册监听共享状态的改变
 sharing.on('sharingStateChange', (data: boolean) => {
@@ -103,15 +103,15 @@ sharing.stopSharing(sharing.SharingIfaceType.SHARING_WIFI, (error: BusinessError
 
 ### 开发步骤
 
-1. 从@ohos.net.sharing 中导入 sharing 命名空间。
+1. 从@kit.NetworkKit 中导入 sharing 命名空间。
 2. 调用 startSharing 方法，来开启指定类型共享。
 3. 调用 getStatsTotalBytes 方法，来获取共享网络数据量。
 4. 调用 stopSharing 方法，来停止指定类型共享，共享网络数据量清零。
 
 ```ts
-// 从@ohos.net.sharing中导入sharing命名空间
-import sharing from '@ohos.net.sharing';
-import { BusinessError } from '@ohos.base';
+// 从@kit.NetworkKit中导入sharing命名空间
+import { sharing } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // 调用startSharing方法，来开启指定类型共享
 sharing.startSharing(sharing.SharingIfaceType.SHARING_WIFI, (error: BusinessError) => {

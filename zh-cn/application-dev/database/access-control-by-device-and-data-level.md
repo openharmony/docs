@@ -21,13 +21,14 @@
 
 
 ### 设备安全等级
-
+<!--RP1-->
 根据设备安全能力，比如是否有TEE、是否有安全存储芯片等，将设备安全等级分为SL1、SL2、SL3、SL4、SL5五个等级。例如，开发板rk3568、hi3516为低安全的SL1设备，平板通常为高安全的SL4设备。
 
 在设备组网时可以通过`hidumper -s 3511`查看设备安全等级，例如，rk3568设备的安全等级查询如下：
-
+<!--RP1End-->
+<!--Del-->
 ![zh-cn_image_0000001542496993](figures/zh-cn_image_0000001542496993.png)
-
+<!--DelEnd-->
 
 ## 跨设备同步访问控制机制
 
@@ -40,9 +41,9 @@
 |SL3|S1~S3|
 |SL4|S1~S4|
 |SL5|S1~S4| 
-
+<!--RP2-->
 例如，对于类似rk3568、hi3516的开发板设备，设备安全等级为SL1。若创建数据安全标签为S1的数据库，则此数据库数据可以在这些设备间同步；若创建的数据库标签为S2-S4，则不能在这些设备间同步。
-
+<!--RP2End-->
 
 ## 场景介绍
 
@@ -58,8 +59,8 @@
 
   
 ```ts
-import distributedKVStore from '@ohos.data.distributedKVStore';
-import { BusinessError } from '@ohos.base';
+import { distributedKVStore } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let kvManager: distributedKVStore.KVManager;
 let kvStore: distributedKVStore.SingleKVStore;
@@ -108,15 +109,16 @@ try {
 
   
 ```ts
-import { BusinessError } from '@ohos.base';
-import relationalStore from '@ohos.data.relationalStore';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { relationalStore } from '@kit.ArkData';
 
 let store: relationalStore.RdbStore;
+let context = getContext(this);
 const STORE_CONFIG: relationalStore.StoreConfig = {
   name: 'RdbTest.db',
   securityLevel: relationalStore.SecurityLevel.S1
 };
-let promise = relationalStore.getRdbStore(this.context, STORE_CONFIG);
+let promise = relationalStore.getRdbStore(context, STORE_CONFIG);
 promise.then(async (rdbStore) => {
   store = rdbStore;
   console.info('Succeeded in getting RdbStore.')

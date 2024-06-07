@@ -16,6 +16,8 @@
 
 ScrollBar(value: ScrollBarOptions)
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名 | 参数类型 | 必填 | 参数描述 |
@@ -23,6 +25,8 @@ ScrollBar(value: ScrollBarOptions)
 | value |  [ScrollBarOptions](#scrollbaroptions对象说明)| 是 | 滚动条组件参数。 |
 
 ## ScrollBarOptions对象说明
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 参数名 | 参数类型 | 必填 | 参数描述 |
 | -------- | -------- | -------- | -------- |
@@ -39,6 +43,8 @@ ScrollBar(value: ScrollBarOptions)
 > 从API version 12开始，ScrollBar组件没有子节点时，支持显示默认样式的滚动条。
 
 ## ScrollBarDirection枚举说明
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称 | 描述 |
 | -------- | -------- |

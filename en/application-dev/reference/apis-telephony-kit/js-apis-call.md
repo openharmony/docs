@@ -11,7 +11,7 @@ To subscribe to call status changes, use [`observer.on('callStateChange')`](js-a
 ## Modules to Import
 
 ```ts
-import call from '@ohos.telephony.call';
+import { call } from '@kit.TelephonyKit';
 ```
 
 
@@ -25,7 +25,7 @@ Initiates a call. This API uses an asynchronous callback to return the result.
 >
 > This API is supported since API version 6 and deprecated since API version 9. The substitute API is available only for system applications.
 
-**Required Permissions**: ohos.permission.PLACE_CALL
+**Required permissions**: ohos.permission.PLACE_CALL (available only for system applications)
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -39,7 +39,7 @@ Initiates a call. This API uses an asynchronous callback to return the result.
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.dial("138xxxxxxxx", (err: BusinessError, data: boolean) => {
     console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
@@ -57,7 +57,7 @@ Initiates a call. You can set call options as needed. This API uses an asynchron
 >
 > This API is supported since API version 6 and deprecated since API version 9. The substitute API is available only for system applications.
 
-**Required Permissions**: ohos.permission.PLACE_CALL
+**Required permissions**: ohos.permission.PLACE_CALL (available only for system applications)
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -72,7 +72,7 @@ Initiates a call. You can set call options as needed. This API uses an asynchron
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let dialOptions: call.DialOptions = {
     extras: false
@@ -92,7 +92,7 @@ Initiates a call. You can set call options as needed. This API uses a promise to
 >
 > This API is supported since API version 6 and deprecated since API version 9. The substitute API is available only for system applications.
 
-**Required Permissions**: ohos.permission.PLACE_CALL
+**Required permissions**: ohos.permission.PLACE_CALL (available only for system applications)
 
 **System capability**: SystemCapability.Telephony.CallManager
 
@@ -112,7 +112,7 @@ Initiates a call. You can set call options as needed. This API uses a promise to
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let dialOptions: call.DialOptions = {
     extras: false
@@ -129,6 +129,8 @@ call.dial("138xxxxxxxx", dialOptions).then((data: boolean) => {
 makeCall\(phoneNumber: string, callback: AsyncCallback\<void\>\): void
 
 Launches the call screen and displays the dialed number. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Applications.Contacts
 
@@ -154,7 +156,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.makeCall("138xxxxxxxx", (err: BusinessError) => {
     if (err) {
@@ -171,6 +173,8 @@ call.makeCall("138xxxxxxxx", (err: BusinessError) => {
 makeCall\(phoneNumber: string\): Promise\<void\>
 
 Launches the call screen and displays the dialed number. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Applications.Contacts
 
@@ -201,7 +205,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.makeCall("138xxxxxxxx").then(() => {
     console.log(`makeCall success`);
@@ -227,7 +231,7 @@ Checks whether a call is in progress. This API uses an asynchronous callback to 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.hasCall((err: BusinessError, data: boolean) => {
     if (err) {
@@ -256,7 +260,7 @@ Checks whether a call is in progress. This API uses a promise to return the resu
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.hasCall().then(() => {
     console.log(`hasCall success`);
@@ -304,7 +308,7 @@ Obtains the call status. This API uses an asynchronous callback to return the re
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.getCallState((err: BusinessError, data: call.CallState) => {
     if (err) {
@@ -333,7 +337,7 @@ Obtains the call status. This API uses a promise to return the result.
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.getCallState().then((data: call.CallState) => {
     console.log(`getCallState success, promise: data->${JSON.stringify(data)}`);
@@ -412,7 +416,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.isEmergencyPhoneNumber("138xxxxxxxx", (err: BusinessError, data: boolean) => {
     if (err) {
@@ -455,7 +459,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let options: call.EmergencyNumberOptions = {slotId: 1}
 call.isEmergencyPhoneNumber("112", options, (err: BusinessError, data: boolean) => {
@@ -504,7 +508,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let options: call.EmergencyNumberOptions = {slotId: 1}
 call.isEmergencyPhoneNumber("138xxxxxxxx", options).then((data: boolean) => {
@@ -546,7 +550,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.formatPhoneNumber("138xxxxxxxx", (err: BusinessError, data: string) => {
     if (err) {
@@ -590,7 +594,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let options: call.NumberFormatOptions = {
     countryCode: "CN"
@@ -643,7 +647,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let options: call.NumberFormatOptions = {
     countryCode: "CN"
@@ -688,7 +692,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.formatPhoneNumberToE164("138xxxxxxxx", "CN", (err: BusinessError, data: string) => {
     if (err) {
@@ -740,7 +744,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.formatPhoneNumberToE164("138xxxxxxxx", "CN").then((data: string) => {
     console.log(`formatPhoneNumberToE164 success, promise: data->${JSON.stringify(data)}`);

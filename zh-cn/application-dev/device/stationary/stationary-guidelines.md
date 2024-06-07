@@ -69,7 +69,7 @@
 1. 订阅绝对静止的进入事件，1秒上报一次。
 
    ```ts
-   import stationary from '@ohos.stationary';
+   import { stationary } from '@kit.MultimodalAwarenessKit';
    import { BusinessError } from '@ohos.base';
    let reportLatencyNs = 1000000000;
    try {
@@ -85,7 +85,7 @@
 2. 查询绝对静止状态的进入事件。
 
    ```ts
-   import stationary from '@ohos.stationary';
+   import { stationary } from '@kit.MultimodalAwarenessKit';
    import { BusinessError } from '@ohos.base';
    try {
       stationary.once('still', (data) => {
@@ -100,7 +100,7 @@
 3. 取消订阅绝对静止状态的进入事件。
 
    ```ts
-   import stationary from '@ohos.stationary';
+   import { stationary } from '@kit.MultimodalAwarenessKit';
    import { BusinessError } from '@ohos.base';
    try {
       stationary.off('still', stationary.ActivityEvent.ENTER, (data) => {

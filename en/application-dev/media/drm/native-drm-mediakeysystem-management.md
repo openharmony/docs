@@ -41,7 +41,21 @@ Read [DRM](../../reference/apis-drm-kit/_drm.md) for the API reference.
     }
    ```
 
-4. Call **OH_MediaKeySystem_Create** in the **MediaKeySystem** class to create a **MediaKeySystem** instance.
+4. Call **OH_MediaKeySystem_GetMediaKeySystems** in the **MediaKeySystem** class to obtain the names and UUIDs of the DRM plug-ins supported by the device.
+
+   ```c++
+    // count indicates the number of DRM plug-ins supported by the device. Set this parameter based on your project requirements.
+    uint32_t count = 1;
+    DRM_MediaKeySystemDescription infos[1];
+    memset(infos, 0, sizeof(infos));
+    Drm_ErrCode ret = OH_MediaKeySystem_GetMediaKeySystems(infos, &count);
+    if (ret != DRM_OK) {
+     OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_GetMediaKeySystems failed.");
+     return ret;
+    }
+   ```
+
+5. Call **OH_MediaKeySystem_Create** in the **MediaKeySystem** class to create a **MediaKeySystem** instance.
 
    ```c++
     MediaKeySystem *keySystem = NULL;
@@ -57,7 +71,7 @@ Read [DRM](../../reference/apis-drm-kit/_drm.md) for the API reference.
     }
    ```
 
-5. Call **OH_MediaKeySystem_SetConfigurationString** and **OH_MediaKeySystem_GetConfigurationString** in the **MediaKeySystem** class to set and obtain the device configuration information, respectively. The configuration information varies according to the DRM scheme and generally contains the following types: device attributes, session attributes, and output protection status attributes.
+6. Call **OH_MediaKeySystem_SetConfigurationString** and **OH_MediaKeySystem_GetConfigurationString** in the **MediaKeySystem** class to set and obtain the device configuration information, respectively. The configuration information varies according to the DRM scheme and generally contains the following types: device attributes, session attributes, and output protection status attributes.
 
    The attribute names include "vendor", "version", "description", "algorithms", "maxSessionNum", "maxHDCPLevel", "currentHDCPLevel", "maxADCPLevel", and "currentADCPLevel".
 
@@ -109,7 +123,7 @@ Read [DRM](../../reference/apis-drm-kit/_drm.md) for the API reference.
     }
    ```
 
-6. Call **OH_MediaKeySystem_GetMaxContentProtectionLevel** in the **MediaKeySystem** class to obtain the maximum content protection level.
+7. Call **OH_MediaKeySystem_GetMaxContentProtectionLevel** in the **MediaKeySystem** class to obtain the maximum content protection level.
 
    ```c++
     MediaKeySystem *keySystem = NULL;
@@ -130,7 +144,7 @@ Read [DRM](../../reference/apis-drm-kit/_drm.md) for the API reference.
     }
    ```
 
-7. Call **OH_MediaKeySystem_SetMediaKeySystemCallback** in the **MediaKeySystem** class to set a callback to listen for the media key system status.
+8. Call **OH_MediaKeySystem_SetMediaKeySystemCallback** in the **MediaKeySystem** class to set a callback to listen for the media key system status.
 
    ```c++
     DRM_ErrCode TestSystemCallBack(DRM_EventType eventType, uint8_t *info,
@@ -160,7 +174,7 @@ Read [DRM](../../reference/apis-drm-kit/_drm.md) for the API reference.
    }
    ```
 
-8. Call **OH_MediaKeySystem_CreateMediaKeySession** in the **MediaKeySystem** class to create a **MediaKeySession** instance.
+9. Call **OH_MediaKeySystem_CreateMediaKeySession** in the **MediaKeySystem** class to create a **MediaKeySession** instance.
 
    ```c++
     MediaKeySystem *keySystem = NULL;
@@ -187,7 +201,7 @@ Read [DRM](../../reference/apis-drm-kit/_drm.md) for the API reference.
     }
    ```
 
-9. Call **OH_MediaKeySystem_GenerateKeySystemRequest** in the **MediaKeySystem** class to generate a media key system request, and call **OH_MediaKeySystem_ProcessKeySystemResponse** in the **MediaKeySystem** class to process a response to the request.
+10. Call **OH_MediaKeySystem_GenerateKeySystemRequest** in the **MediaKeySystem** class to generate a media key system request, and call **OH_MediaKeySystem_ProcessKeySystemResponse** in the **MediaKeySystem** class to process a response to the request.
 
     ```c++
     DRM_ErrCode MediaKeySystem_SetAndProcessMediaKeySystem()
@@ -225,7 +239,7 @@ Read [DRM](../../reference/apis-drm-kit/_drm.md) for the API reference.
     }
     ```
 
-10. Call **OH_MediaKeySystem_GetOfflineMediaKeyIds** in the **MediaKeySystem** class to obtain the IDs of offline media keys.
+11. Call **OH_MediaKeySystem_GetOfflineMediaKeyIds** in the **MediaKeySystem** class to obtain the IDs of offline media keys.
 
     ```c++
     MediaKeySystem *keySystem = NULL;
@@ -244,7 +258,7 @@ Read [DRM](../../reference/apis-drm-kit/_drm.md) for the API reference.
     }
     ```
 
-11. Call **OH_MediaKeySystem_GetOfflineMediaKeyStatus** in the **MediaKeySystem** class to obtain the status of the offline media keys.
+12. Call **OH_MediaKeySystem_GetOfflineMediaKeyStatus** in the **MediaKeySystem** class to obtain the status of the offline media keys.
 
     ```c++
     MediaKeySystem *keySystem = NULL;
@@ -268,7 +282,7 @@ Read [DRM](../../reference/apis-drm-kit/_drm.md) for the API reference.
     }
     ```
 
-12. Call **OH_MediaKeySystem_ClearOfflineMediaKeys** in the **MediaKeySystem** class to clear the offline media keys.
+13. Call **OH_MediaKeySystem_ClearOfflineMediaKeys** in the **MediaKeySystem** class to clear the offline media keys.
 
     ```c++
     MediaKeySystem *keySystem = NULL;
@@ -292,7 +306,7 @@ Read [DRM](../../reference/apis-drm-kit/_drm.md) for the API reference.
     }
     ```
 
-13. Call **OH_MediaKeySystem_GetCertificateStatus** in the **MediaKeySystem** class to obtain the device certificate status.
+14. Call **OH_MediaKeySystem_GetCertificateStatus** in the **MediaKeySystem** class to obtain the device certificate status.
 
     ```c++
     MediaKeySystem *keySystem = NULL;
@@ -316,7 +330,7 @@ Read [DRM](../../reference/apis-drm-kit/_drm.md) for the API reference.
     }
     ```
 
-14. Call **OH_MediaKeySystem_Destroy** in the **MediaKeySystem** class to destroy this **MediaKeySystem** instance.
+15. Call **OH_MediaKeySystem_Destroy** in the **MediaKeySystem** class to destroy this **MediaKeySystem** instance.
 
     ```c++
     MediaKeySystem *keySystem = NULL;

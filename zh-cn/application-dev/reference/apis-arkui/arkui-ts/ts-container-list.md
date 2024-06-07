@@ -91,6 +91,8 @@ List的分割线画在主轴方向两个子组件之间，第一个子组件上�
 
 多列模式下，ListItem与ListItem之间的分割线起始边距从每一列的交叉轴方向起始边开始计算，其他情况从List交叉轴方向起始边开始计算。
 
+ListItem设置[多态样式](ts-universal-attributes-polymorphic-style.md)时，被按压的子组件上下的分割线不绘制。
+
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
@@ -125,7 +127,7 @@ scrollBar(value: BarState)
 
 cachedCount(value: number)
 
-设置列表中ListItem/ListItemGroup的预加载数量，只在[LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md)中生效，其中ListItemGroup将作为一个整体进行计算，ListItemGroup中的所有ListItem会一次性全部加载出来。具体使用可参考[减少应用白块说明](../../../performance/arkts-performance-improvement-recommendation.md#减少应用滑动白块)。
+设置列表中ListItem/ListItemGroup的预加载数量，只在[LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md)中生效，其中ListItemGroup将作为一个整体进行计算，ListItemGroup中的所有ListItem会一次性全部加载出来。<!--Del-->具体使用可参考[减少应用白块说明](../../../performance/arkts-performance-improvement-recommendation.md#减少应用滑动白块)。<!--DelEnd-->
 
 单列模式下，会在List显示的ListItem前后各缓存cachedCount个ListItem。
 
@@ -363,6 +365,8 @@ scrollBarWidth(value: number | string)
 
 设置滚动条的宽度，不支持百分比设置。宽度设置后，滚动条正常状态和按压状态宽度均为滚动条的宽度值。如果滚动条的宽度超过List组件主轴方向的高度，则滚动条的宽度会变为默认值。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -376,6 +380,8 @@ scrollBarWidth(value: number | string)
 scrollBarColor(color: Color | number | string)
 
 设置滚动条的颜色。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -391,6 +397,8 @@ contentStartOffset(value: number)
 
 设置内容区域起始偏移量。列表滚动到起始位置时，列表内容与列表显示区域边界保留指定距离。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -404,6 +412,8 @@ contentStartOffset(value: number)
 contentEndOffset(value: number)
 
 设置内容区末尾偏移量。列表滚动到末尾位置时，列表内容与列表显示区域边界保留指定距离。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -450,6 +460,8 @@ value为false时，不启用List渐隐；value为true时，启用List渐隐。
 childrenMainSize(value: ChildrenMainSize)
 
 设置List组件的子组件在主轴方向的大小信息。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -504,6 +516,8 @@ childrenMainSize(value: ChildrenMainSize)
 ## CloseAllSwipeActions<sup>11+</sup>对象说明
 
 收起[EXPANDED](ts-container-listitem.md#swipeactionstate11枚举说明)状态[ListItem](ts-container-listitem.md)回调事件集合，用于设置收起动画完成后回调事件。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 | 名称     | 类型     | 必填 | 说明                   |
 | :------- | -------- | ---- | ---------------------- |
@@ -771,9 +785,9 @@ onScroll(event: (scrollOffset: number, scrollState: [ScrollState](#scrollstate�
 | scrollState | [ScrollState](ts-container-list.md#scrollstate枚举说明) | 是 | 当前滑动状态。 |
 
 ### onWillScroll<sup>12+</sup>
-onWillScroll(handler: OnScrollCallback)
+onWillScroll(handler: Optional&lt;OnWillScrollCallback&gt;)
 
-列表滑动前触发。返回当前帧将要滑动的偏移量和当前滑动状态。返回的偏移量为计算得到的将要滑动的偏移量值，并非最终实际滑动偏移。
+列表滑动前触发。回调当前帧将要滑动的偏移量，当前滑动状态和滑动操作来源，其中回调的偏移量为计算得到的将要滑动的偏移量值，并非最终实际滑动偏移。可以通过该回调返回值指定列表将要滑动的偏移。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -783,7 +797,7 @@ onWillScroll(handler: OnScrollCallback)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ------ | ------ | ------|
-| handler | [OnScrollCallback](#onscrollcallback对象说明) | 是 | 列表滑动时触发的回调。 |
+| handler | Optional&lt;[OnWillScrollCallback](#onwillscrollcallback12)&gt; | 是 | 列表滑动前触发的回调。 |
 
 > **说明：** 
 > 
@@ -867,6 +881,45 @@ ScrollState枚举变更如下。
 >
 >  - 绑定onDragStart事件，且事件回调中返回浮动UI布局。
 
+## OnWillScrollCallback<sup>12+</sup>
+
+type OnWillScrollCallback = (scrollOffset: number, scrollState: ScrollState, scrollSource: ScrollSource) => void | ScrollResult
+
+列表滑动前触发的回调。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------ | ------ | ------ | ------|
+| scrollOffset | number | 是 | 每帧滑动的偏移量，List的内容向上滚动时偏移量为正，向下滚动时偏移量为负。<br/>单位vp。 |
+| scrollState | [ScrollState](#scrollstate枚举说明) | 是 | 当前滑动状态。 |
+| scrollSource | [ScrollSource](#scrollsource12枚举说明) | 是 | 当前滑动操作的来源。 |
+
+**返回值：** 
+
+| 类型                                                         | 说明                                                         |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| void \| [ScrollResult](#scrollresult12对象说明) |  返回ScrollResult时按照开发者指定的偏移量滑动；不返回时按回调参数scrollOffset滑动。 |
+
+## ScrollSource<sup>12+</sup>枚举说明
+
+| 名称     |  枚举值  | 描述                                       |
+| ------ | ------ | ---------------------------------------- |
+| DRAG   |  0  | 拖拽事件。 |
+| FLING |  1  | 拖拽结束之后的惯性滑动。 |
+| EDGE_EFFECT  |  2  | EdgeEffect.Spring的边缘滚动效果。 |
+| OTHER_USER_INPUT  |  3  | 除拖拽外的其他用户输入，如鼠标滚轮、键盘事件等。 |
+| SCROLL_BAR  |  4  | 滚动条的拖拽事件。 |
+| SCROLL_BAR_FLING  |  5  | 滚动条拖拽结束后的带速度的惯性滑动。 |
+| SCROLLER  |  6  | Scroller的不带动效方法。 |
+| SCROLLER_ANIMATION  |  7  | Scroller的带动效方法。 |
+
+## ScrollResult<sup>12+</sup>对象说明
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------ | ------ | ------ | ------|
+| offsetRemain | number | 是 | 将要滑动偏移量，单位vp。 |
+
 ## ListScroller<sup>11+</sup>
 
 List组件的滚动控制器，通过它控制List组件的滚动，仅支持一对一绑定到List组件。
@@ -875,6 +928,7 @@ List组件的滚动控制器，通过它控制List组件的滚动，仅支持一
 >  **说明：**
 >
 >  ListScroller继承自[Scroller](ts-container-scroll.md#scroller)，具有[Scroller](ts-container-scroll.md#scroller)的全部方法。
+
 
 ### 导入对象
 
@@ -888,6 +942,8 @@ listScroller: ListScroller = new ListScroller()
 getItemRectInGroup(index: number, indexInGroup: number): RectResult
 
 获取[ListItemGroup](ts-container-listitemgroup.md)中的[ListItem](ts-container-listitem.md)的大小和相对于List的位置。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -909,6 +965,15 @@ getItemRectInGroup(index: number, indexInGroup: number): RectResult
 | -------------------  | -------- |
 | [RectResult](ts-types.md#rectresult10) | ListItemGroup中的ListItem的大小和相对于List的位置。<br/>单位：vp。 |
 
+
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+
 ### scrollToItemInGroup<sup>11+</sup>
 
 scrollToItemInGroup(index: number, indexInGroup:number, smooth?: boolean, align?: ScrollAlign): void
@@ -916,6 +981,8 @@ scrollToItemInGroup(index: number, indexInGroup:number, smooth?: boolean, align?
 滑动到指定的ListItemGroup中指定的ListItem。
 
 开启smooth动效时，会对经过的所有item进行加载和布局计算，当大量加载item时会导致性能问题。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -926,17 +993,36 @@ scrollToItemInGroup(index: number, indexInGroup:number, smooth?: boolean, align?
 | smooth                | boolean  | 否   | 设置滑动到列表项在列表中的索引值时是否有动效，true表示有动效，false表示没有动效。<br/>默认值：false。 |
 | align                 | [ScrollAlign](ts-container-scroll.md#scrollalign10枚举说明)  | 否   | 指定滑动到的元素与当前容器的对齐方式。<br/>默认值：ScrollAlign.START。 |
 
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+
 ### closeAllSwipeActions<sup>11+</sup>
 
 closeAllSwipeActions(options?: [CloseSwipeActionOptions](#closeallswipeactions11对象说明)): void
 
 将[EXPANDED](ts-container-listitem.md#swipeactionstate11枚举说明)状态的[ListItem](ts-container-listitem.md)收起，并设置回调事件。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名  | 参数类型                                                   | 必填 | 参数描述                                                     |
 | ------- | ---------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | options | [CloseSwipeActionOptions](#closeallswipeactions11对象说明) | 否   | 收起[EXPANDED](ts-container-listitem.md#swipeactionstate11枚举说明)状态的[ListItem](ts-container-listitem.md)的回调事件集合。 |
+
+
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 
 > **说明：**
 >
@@ -945,12 +1031,16 @@ closeAllSwipeActions(options?: [CloseSwipeActionOptions](#closeallswipeactions11
 ## OnScrollVisibleContentChangeCallback<sup>12+</sup>对象说明
 有子组件划入或划出List显示区域时触发。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ------ | ------ | ------|
 | start | [VisibleListContentInfo](#visiblelistcontentinfo12) | 是 | 当前显示界面第一个ListItem或ListItemGroup的详细信息。 |
 | end | [VisibleListContentInfo](#visiblelistcontentinfo12) | 是 | 当前显示界面最后一个ListItem或ListItemGroup的详细信息。 |
 
 ## VisibleListContentInfo<sup>12+</sup>
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ------ | ------ | ------|
@@ -959,6 +1049,8 @@ closeAllSwipeActions(options?: [CloseSwipeActionOptions](#closeallswipeactions11
 | itemIndexInGroup | number | 否 | 如果当前可视页面的上边或下边在某个Group之中，将会显示Star或End的ListItem在Group中的索引。 |
 
 ## ListItemGroupArea<sup>12+</sup>枚举说明
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 | 名称     |  枚举值  | 描述                                       |
 | ------ | ------ | ---------------------------------------- |
@@ -971,11 +1063,15 @@ closeAllSwipeActions(options?: [CloseSwipeActionOptions](#closeallswipeactions11
 
 维护List组件或ListItemGroup组件的子组件在主轴方向的大小信息，仅支持一对一绑定到List组件或ListItemGroup组件。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 ### constructor<sup>12+</sup>
 
 constructor(childDefaultSize: number): void
 
 ChildrenMainSize有参构造函数。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -983,11 +1079,6 @@ ChildrenMainSize有参构造函数。
 | ---- | ----------------------------- | ---- | -------------------- |
 | childDefaultSize | number | 是    | 子组件在主轴方向的默认大小。<br/>单位：vp<br/>**说明：** <br/>必须是有限的非负数值，否则抛出异常。|
 
-**异常信息：**
-
-| 错误码   | 错误信息 |
-| --------- | ------- |
-|   401    | The parameter check failed. |
 
 ### childDefaultSize<sup>12+</sup>
 
@@ -995,11 +1086,21 @@ set childDefaultSize(value: number): void
 
 修改子组件在主轴方向的默认大小。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 名称   | 类型                            | 必填   | 描述                   |
 | ---- | ----------------------------- | ---- | -------------------- |
 | value | number | 是    | 子组件在主轴方向的默认大小。<br/>单位：vp<br/>**说明：** <br/>必须是有限的非负数值，否则抛出异常。|
+
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 
 get childDefaultSize(): number
 
@@ -1013,9 +1114,11 @@ get childDefaultSize(): number
 
 ### splice<sup>12+</sup>
 
-splice(start: number, deleteCount?: number, childrenSize?: Array<number>): void
+splice(start: number, deleteCount?: number, childrenSize?: Array\<number>): void
 
 批量增删改子组件在主轴方向的大小信息。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -1023,7 +1126,16 @@ splice(start: number, deleteCount?: number, childrenSize?: Array<number>): void
 | ---- | ----------------------------- | ---- | -------------------- |
 | start | number | 是    | 从0开始计算的索引值，表示要开始修改子组件在主轴方向大小信息的位置。<br/>**说明：** <br/>1. 必须是有限的非负数值，否则抛出异常。<br/>2. 非整数会被截断为整数。<br/>3. 超过最大索引值不生效。 |
 | deleteCount | number | 否    | 从start开始删除的大小信息的数量。<br/>**说明：** <br/>1.  必须是有限的非负数值，否则处理为0。<br/>2. 非整数会被截断为整数。<br/>3. start + deleteCount - 1可以超过最大索引值，会删除索引值start开始之后的所有子组件的大小信息。 |
-| childrenSize | Array< number > | 否    | 要在start位置插入的所有子组件的主轴方向的大小。<br/>Array中各个数值单位：vp <br/>**说明：** <br/>1.数组中数值如果是有限的非负值，则认为是指定的大小，后续不随默认大小的变化而变化。<br/>2. 数组中数值如果不是有限的非负值，会被处理成默认大小，后续会随默认大小的变化而变化。  |
+| childrenSize | Array\<number > | 否    | 要在start位置插入的所有子组件的主轴方向的大小。<br/>Array中各个数值单位：vp <br/>**说明：** <br/>1.数组中数值如果是有限的非负值，则认为是指定的大小，后续不随默认大小的变化而变化。<br/>2. 数组中数值如果不是有限的非负值，会被处理成默认大小，后续会随默认大小的变化而变化。  |
+
+
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 
 
 > **说明：**
@@ -1039,12 +1151,22 @@ update(index: number, childSize: number): void
 
 修改指定索引值对应的子组件的主轴方向的大小信息。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 名称   | 类型                            | 必填   | 描述                   |
 | ---- | ----------------------------- | ---- | -------------------- |
 | start | number | 是    | 从0开始计算的索引值，表示要开始修改子组件在主轴方向大小信息的位置。<br/>**说明：** <br/>1. 必须是有限的非负数值，否则抛出异常。<br/>2. 非整数会被截断为整数。<br/>3. 超过最大索引值不生效。 |
 | childSize | number | 是    | 要更新成的大小。<br/>单位：vp <br/>**说明：** <br/>1.数值如果是有限的非负值，则认为是指定的大小，后续不随默认大小的变化而变化。<br/>2. 数值如果不是有限的非负值，会被处理成默认大小，后续会随默认大小的变化而变化。  |
+
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 
 ## 示例
 
@@ -1086,7 +1208,7 @@ struct ListExample {
                     ' end item group area: ' + end.itemGroupArea +
                     ' end index in group: ' + end.itemIndexInGroup)
       })
-      .onScroll((scrollOffset: number, scrollState: ScrollState) => {
+      .onDidScroll((scrollOffset: number, scrollState: ScrollState) => {
         console.info(`onScroll scrollState = ScrollState` + scrollState + `, scrollOffset = ` + scrollOffset)
       })
       .width('90%')

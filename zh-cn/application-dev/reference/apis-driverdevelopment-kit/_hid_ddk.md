@@ -18,8 +18,8 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [hid_ddk_api.h](hid__ddk__api_8h.md) | 声明主机侧访问输入设备的HID DDK接口。  | 
-| [hid_ddk_types.h](hid__ddk__types_8h.md) | 提供HID DDK中的枚举变量与结构体定义。  | 
+| [hid_ddk_api.h](hid__ddk__api_8h.md) | 声明主机侧访问输入设备的HID DDK接口。<br/>引用文件：&lt;hid/hid_ddk_api.h&gt; <br/>库： libhid.z.so | 
+| [hid_ddk_types.h](hid__ddk__types_8h.md) | 提供HID DDK中的枚举变量与结构体定义。<br/>引用文件：&lt;hid/hid_ddk_types.h&gt; <br/>库： libhid.z.so  | 
 
 
 ### 结构体

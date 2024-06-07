@@ -153,6 +153,58 @@ audio.createAudioRenderer(audioRendererOptions).then((data) => {
 });
 ```
 
+### setSilentModeAndMixWithOthers<sup>12+</sup>
+
+setSilentModeAndMixWithOthers(on: bool): void
+
+设置静音并发播放模式。
+
+当设置为true，打开静音并发播放模式，系统将让此音频流静音播放，并且不会打断其它音频流。设置为false，将关闭静音并发播放，音频流可根据系统焦点策略抢占焦点。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
+
+**参数：**
+
+| 参数名 | 类型                                     | 必填 | 说明                   |
+| ------ | ---------------------------------------- | ---- |----------------------|
+| on | bool | 是   | 打开/关闭静音并发播放模式，true打开，false关闭。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
+| 6800103 | Operation not permit at current state. |
+
+**示例：**
+
+```ts
+audioRenderer.setSilentModeAndMixWithOthers(true);
+```
+
+### getSilentModeAndMixWithOthers<sup>12+</sup>
+
+getSilentModeAndMixWithOthers(): bool
+
+获取静音并发播放模式。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
+
+**返回值：**
+
+| 类型                                              | 说明        |
+| ------------------------------------------------- |-----------|
+| bool | 返回静音并发播放模式状态，true打开，false关闭。 |
+
+**示例：**
+
+```ts
+let on = audioRenderer.getSilentModeAndMixWithOthers();
+```
+
 ## audio.createAudioCapturer<sup>8+</sup>
 
 createAudioCapturer(options: AudioCapturerOptions, callback: AsyncCallback<AudioCapturer\>): void
@@ -279,6 +331,8 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 
 枚举，焦点模型。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Audio.Interrupt
 
 | 名称                         | 值      | 说明       |
@@ -302,6 +356,8 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 
 枚举，设备角色。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
 | 名称          |  值    | 说明           |
@@ -312,6 +368,8 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 ## DeviceType
 
 枚举，设备类型。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
@@ -327,6 +385,7 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 | MIC                  | 15     | 麦克风。                                                  |
 | USB_HEADSET          | 22     | USB耳机，带麦克风。                                       |
 | DISPLAY_PORT<sup>12+</sup>        | 23     | DisplayPort（显示接口，简称DP），用于外接扩展设备。           |
+| REMOTE_CAST<sup>12+</sup>        | 24     | 音频被系统应用投送到其他远程的设备。           |
 | DEFAULT<sup>9+</sup> | 1000   | 默认设备类型。                                            |
 
 ## CommunicationDeviceType<sup>9+</sup>
@@ -430,6 +489,8 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 ## AudioEncodingType<sup>8+</sup>
 
 枚举，音频编码类型。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Core
 
@@ -559,6 +620,8 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 
 枚举，音效模式。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
 | 名称               | 值     | 说明       |
@@ -582,6 +645,8 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 
 枚举，中断类型。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
 | 名称                 |  值     | 说明                   |
@@ -593,6 +658,8 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 
 枚举，强制打断类型。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
 | 名称            |  值    | 说明                                 |
@@ -603,6 +670,8 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 ## InterruptHint
 
 枚举，中断提示。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -627,7 +696,7 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 | channels     | [AudioChannel](#audiochannel8)                    | 是   | 音频文件的通道数。 |
 | sampleFormat | [AudioSampleFormat](#audiosampleformat8)          | 是   | 音频采样格式。     |
 | encodingType | [AudioEncodingType](#audioencodingtype8)          | 是   | 音频编码格式。     |
-| channelLayout<sup>11+</sup> | [AudioChannelLayout](#audiochannellayout11)  | 否   | 音频声道布局。     |
+| channelLayout<sup>11+</sup> | [AudioChannelLayout](#audiochannellayout11)  | 否   | 音频声道布局，默认值为0x0。 |
 
 ## AudioRendererInfo<sup>8+</sup>
 
@@ -637,9 +706,9 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 
 | 名称          | 类型                        | 必填  | 说明             |
 | ------------- | --------------------------- | ---- | ---------------- |
-| content       | [ContentType](#contenttypedeprecated) | 否   | 音频内容类型。<br>API version 8、9为必填参数，从API version 10开始，变更为可选参数。 |
-| usage         | [StreamUsage](#streamusage) | 是   | 音频流使用类型。 |
-| rendererFlags | number                      | 是   | 音频渲染器标志。<br>0代表普通音频渲染器，1代表低时延音频渲染器。ArkTS接口暂不支持低时延音频渲染器。 |
+| content       | [ContentType](#contenttypedeprecated) | 否   | 音频内容类型。<br>API version 8、9为必填参数，从API version 10开始，变更为可选参数，默认值为0。 |
+| usage         | [StreamUsage](#streamusage) | 是   | 音频流使用类型。 <br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。|
+| rendererFlags | number                      | 是   | 音频渲染器标志。<br>0代表普通音频渲染器，1代表低时延音频渲染器。ArkTS接口暂不支持低时延音频渲染器。 <br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。|
 
 ## AudioRendererOptions<sup>8+</sup>
 
@@ -665,6 +734,8 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 ## InterruptEvent<sup>9+</sup>
 
 播放中断时，应用接收的中断事件。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -724,6 +795,8 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 
 枚举，流设备变更原因。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
 | 名称                                        |  值     | 说明              |
@@ -736,6 +809,8 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 ## AudioStreamDeviceChangeInfo<sup>11+</sup>
 
 流设备变更时，应用接收的事件。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
@@ -763,7 +838,7 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 | ----------------------------------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | streamInfo                          | [AudioStreamInfo](#audiostreaminfo8)                      | 是   | 表示音频流信息。 <br/>**系统能力：** SystemCapability.Multimedia.Audio.Capturer   |
 | capturerInfo                        | [AudioCapturerInfo](#audiocapturerinfo8)                   | 是   | 表示采集器信息。 <br/>**系统能力：** SystemCapability.Multimedia.Audio.Capturer        |
-| playbackCaptureConfig<sup>10+</sup> | [AudioPlaybackCaptureConfig](#audioplaybackcaptureconfig10) | 否   | 音频内录的配置信息。<br/>**系统能力：** SystemCapability.Multimedia.Audio.PlaybackCapture |
+| playbackCaptureConfig<sup>(deprecated)</sup> | [AudioPlaybackCaptureConfig](#audioplaybackcaptureconfigdeprecated) | 否   | 音频内录的配置信息。<br/>**系统能力：** SystemCapability.Multimedia.Audio.PlaybackCapture。<br/> 从API version 10 开始支持，从 API version 12 开始废弃。Audio不再提供内录接口，请通过[录屏接口AVScreenCapture](../apis-media-kit/_a_v_screen_capture.md)进行内录。 |
 
 ## AudioCapturerInfo<sup>8+</sup>
 
@@ -785,23 +860,29 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 | SOURCE_TYPE_INVALID                          | -1     | 无效的音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core  |
 | SOURCE_TYPE_MIC                              | 0      | Mic音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core |
 | SOURCE_TYPE_VOICE_RECOGNITION<sup>9+</sup>   | 1      | 语音识别源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core  |
-| SOURCE_TYPE_PLAYBACK_CAPTURE<sup>10+</sup>   | 2 | 播放音频流（内录）录制音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.PlaybackCapture |
+| SOURCE_TYPE_PLAYBACK_CAPTURE<sup>(deprecated)</sup>   | 2 | 播放音频流（内录）录制音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.PlaybackCapture。<br/> 从API version 10 开始支持，从 API version 12 开始废弃。Audio不再提供内录接口，请通过[录屏接口AVScreenCapture](../apis-media-kit/_a_v_screen_capture.md)进行内录。 |
 | SOURCE_TYPE_VOICE_COMMUNICATION              | 7      | 语音通话场景的音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core |
 | SOURCE_TYPE_VOICE_MESSAGE<sup>12+</sup>      | 10     | 短语音消息的音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core |
 
-## AudioPlaybackCaptureConfig<sup>10+</sup>
+## AudioPlaybackCaptureConfig<sup>(deprecated)</sup>
 
 播放音频流录制（内录）的配置信息。
+
+> **说明：**
+> 从 API version 10 开始支持，从 API version 12 开始废弃。Audio不再提供内录接口，请通过[录屏接口AVScreenCapture](../apis-media-kit/_a_v_screen_capture.md)进行内录。
 
 **系统能力：** SystemCapability.Multimedia.Audio.PlaybackCapture
 
 | 名称          | 类型                                          | 必填 | 说明                             |
 | ------------- | --------------------------------------------- | ---- | -------------------------------- |
-| filterOptions | [CaptureFilterOptions](#capturefilteroptions10) | 是   | 需要录制的播放音频流的筛选信息。 |
+| filterOptions | [CaptureFilterOptions](#capturefilteroptionsdeprecated) | 是   | 需要录制的播放音频流的筛选信息。 |
 
-## CaptureFilterOptions<sup>10+</sup>
+## CaptureFilterOptions<sup>(deprecated)</sup>
 
 待录制的播放音频流的筛选信息。
+
+> **说明：**
+> 从 API version 10 开始支持，从 API version 12 开始废弃。Audio不再提供内录接口，请通过[录屏接口AVScreenCapture](../apis-media-kit/_a_v_screen_capture.md)进行内录。
 
 **需要权限：**
 
@@ -2245,7 +2326,8 @@ getVolumeGroupManagerSync(groupId: number\): AudioVolumeGroupManager
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | invalid parameter error              |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
@@ -2282,7 +2364,8 @@ on(type: 'volumeChange', callback: Callback\<VolumeEvent>): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Invalid parameter error. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
@@ -2291,6 +2374,39 @@ audioVolumeManager.on('volumeChange', (volumeEvent: audio.VolumeEvent) => {
   console.info(`VolumeType of stream: ${volumeEvent.volumeType} `);
   console.info(`Volume level: ${volumeEvent.volume} `);
   console.info(`Whether to updateUI: ${volumeEvent.updateUi} `);
+});
+```
+
+### off('volumeChange')<sup>12+</sup>
+
+off(type: 'volumeChange', callback: Callback\<VolumeEvent>): void
+
+取消监听系统音量变化事件，使用callback方式返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Volume
+
+**参数：**
+
+| 参数名   | 类型                                   | 必填 | 说明                                                         |
+| -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                 | 是   | 事件回调类型，支持的事件为：'volumeChange'。 |
+| callback | Callback<[VolumeEvent](#volumeevent9)> | 是   | 回调函数，返回变化后的音量信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
+
+**示例：**
+
+```ts
+audioVolumeManager.off('volumeChange', (volumeEvent: audio.VolumeEvent) => {
+  console.info('An event to release the audio volumeChange starts.');
+  console.info(`volumeChange release event: ${volumeEvent} `);
 });
 ```
 
@@ -2381,7 +2497,8 @@ getVolumeSync(volumeType: AudioVolumeType): number;
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | invalid parameter error              |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
@@ -2480,7 +2597,8 @@ getMinVolumeSync(volumeType: AudioVolumeType): number;
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | invalid parameter error              |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
@@ -2579,7 +2697,8 @@ getMaxVolumeSync(volumeType: AudioVolumeType): number;
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | invalid parameter error              |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
@@ -2678,7 +2797,8 @@ isMuteSync(volumeType: AudioVolumeType): boolean
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | invalid parameter error              |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
@@ -2793,7 +2913,8 @@ on(type: 'ringerModeChange', callback: Callback\<AudioRingMode>): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Invalid parameter error. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
@@ -2973,7 +3094,8 @@ on(type: 'micStateChange', callback: Callback&lt;MicStateChangeEvent&gt;): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Invalid parameter error. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
@@ -3027,7 +3149,8 @@ getSystemVolumeInDb(volumeType: AudioVolumeType, volumeLevel: number, device: De
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Invalid parameter error. Return by callback.                     |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. Return by callback.                     |
 | 6800301 | System error. Return by callback.                                |
 
 **示例：**
@@ -3071,7 +3194,8 @@ getSystemVolumeInDb(volumeType: AudioVolumeType, volumeLevel: number, device: De
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Invalid parameter error. Return by promise.                     |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. Return by promise.                     |
 | 6800301 | System error. Return by promise.                                |
 
 **示例：**
@@ -3114,7 +3238,8 @@ getSystemVolumeInDbSync(volumeType: AudioVolumeType, volumeLevel: number, device
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | invalid parameter error                     |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
@@ -3134,7 +3259,7 @@ try {
 
 getMaxAmplitudeForInputDevice(inputDevice: AudioDeviceDescriptor): Promise&lt;number&gt;
 
-获取输入设备音频流的最大电平值，大小取值在0-1之间，最小为0。
+获取输入设备音频流的最大电平值，大小取值在0-1之间，最小为0，使用Promise方式异步返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -3156,38 +3281,36 @@ getMaxAmplitudeForInputDevice(inputDevice: AudioDeviceDescriptor): Promise&lt;nu
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | invalid parameter error                     |
-| 6800301 | system error                                |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. Return by promise. |
+| 6800301 | System error. Return by promise. |
 
 **示例：**
 
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let inputDeviceDesc: audio.AudioDeviceDescriptor;
-
-let capturerInfo = {
-  content : audio.ContentType.CONTENT_TYPE_MUSIC,
-  usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
-  capturerFlags : 0 }
-
-audioRoutingManager.getPreferredInputDeviceForCapturerInfo(capturerInfo).then(
-  (desc) => {
-    inputDeviceDesc = desc;
-  }).catch((err) => {
-    console.error("get outputDeviceId error" + JSON.stringify(err));
-    return;
-  });
-audioVolumeGroupManager.getMaxAmplitudeForInputDevice(inputDeviceDesc).then(value: number) {
-  console.info(`mic volatileume amplitude is: ${value}`);
+let capturerInfo: audio.AudioCapturerInfo = {
+  source: audio.SourceType.SOURCE_TYPE_MIC,
+  capturerFlags: 0
 }
+
+audioRoutingManager.getPreferredInputDeviceForCapturerInfo(capturerInfo).then((data) => {
+  audioVolumeGroupManager.getMaxAmplitudeForInputDevice(data[0]).then((value) => {
+    console.info(`mic volatileume amplitude is: ${value}`);
+  }).catch((err: BusinessError) => {
+    console.error("getMaxAmplitudeForInputDevice error" + JSON.stringify(err));
+  })
+}).catch((err: BusinessError) => {
+  console.error("get outputDeviceId error" + JSON.stringify(err));
+})
 ```
 
 ### getMaxAmplitudeForOutputDevice<sup>12+</sup>
 
 getMaxAmplitudeForOutputDevice(outputDevice: AudioDeviceDescriptor): Promise&lt;number&gt;
 
-获取输出设备音频流的最大电平值，大小取值在0-1之间，最小为0。
+获取输出设备音频流的最大电平值，大小取值在0-1之间，最小为0，使用Promise方式异步返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -3209,32 +3332,29 @@ getMaxAmplitudeForOutputDevice(outputDevice: AudioDeviceDescriptor): Promise&lt;
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | invalid parameter error                     |
-| 6800301 | system error                                |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. Return by promise. |
+| 6800301 | System error. Return by promise. |
 
 **示例：**
 
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let outputDeviceDesc: audio.AudioDeviceDescriptor;
-
-let rendererInfo = {
-  content : audio.ContentType.CONTENT_TYPE_MUSIC,
-  usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
-  rendererFlags : 0 }
-
-audioRoutingManager.getPreferredOutputDeviceForRendererInfo(rendererInfo).then(
-  (desc) => {
-    outputDeviceDesc = desc;
-  }).catch((err) => {
-    console.error("get outputDeviceId error" + JSON.stringify(err));
-    return;
-  });
-
-audioVolumeGroupManager.getMaxAmplitudeForOutputDevice(outputDeviceDesc).then(value: number) {
-  console.info(`speaker volatileume amplitude is: ${value}`);
+let rendererInfo: audio.AudioRendererInfo = {
+  usage : audio.StreamUsage.STREAM_USAGE_MUSIC,
+  rendererFlags : 0
 }
+
+audioRoutingManager.getPreferOutputDeviceForRendererInfo(rendererInfo).then((data) => {
+  audioVolumeGroupManager.getMaxAmplitudeForOutputDevice(data[0]).then((value) => {
+    console.info(`mic volatileume amplitude is: ${value}`);
+  }).catch((err: BusinessError) => {
+    console.error("getMaxAmplitudeForOutputDevice error" + JSON.stringify(err));
+  })
+}).catch((err: BusinessError) => {
+  console.error("getPreferOutputDeviceForRendererInfo error" + JSON.stringify(err));
+})
 ```
 
 ## AudioStreamManager<sup>9+</sup>
@@ -3536,7 +3656,8 @@ on(type: 'audioRendererChange', callback: Callback&lt;AudioRendererChangeInfoArr
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Invalid parameter error. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
@@ -3583,7 +3704,8 @@ off(type: 'audioRendererChange'): void
 
 | 错误码ID | 错误信息                     |
 | ------- |--------------------------|
-| 6800101 | Invalid parameter error. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
@@ -3613,7 +3735,8 @@ on(type: 'audioCapturerChange', callback: Callback&lt;AudioCapturerChangeInfoArr
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Invalid parameter error. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
@@ -3658,7 +3781,8 @@ off(type: 'audioCapturerChange'): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Invalid parameter error. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
@@ -3751,7 +3875,8 @@ isActiveSync(volumeType: AudioVolumeType): boolean
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | invalid parameter error              |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
@@ -3788,7 +3913,8 @@ getAudioEffectInfoArray(usage: StreamUsage, callback: AsyncCallback&lt;AudioEffe
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Invalid parameter error. Return by callback.|
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. Return by callback.|
 
 **示例：**
 
@@ -3832,7 +3958,8 @@ getAudioEffectInfoArray(usage: StreamUsage): Promise&lt;AudioEffectInfoArray&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Invalid parameter error. Return by promise. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. Return by promise. |
 
 **示例：**
 
@@ -3873,7 +4000,8 @@ getAudioEffectInfoArraySync(usage: StreamUsage): AudioEffectInfoArray
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Invalid parameter error. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
@@ -3976,7 +4104,8 @@ getDevicesSync(deviceFlag: DeviceFlag): AudioDeviceDescriptors
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | invalid parameter error              |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
@@ -4014,7 +4143,8 @@ on(type: 'deviceChange', deviceFlag: DeviceFlag, callback: Callback<DeviceChange
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Invalid parameter error. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
@@ -4048,7 +4178,8 @@ off(type: 'deviceChange', callback?: Callback<DeviceChangeAction\>): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Invalid parameter error. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
@@ -4202,7 +4333,8 @@ isCommunicationDeviceActiveSync(deviceType: CommunicationDeviceType): boolean
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | invalid parameter error              |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
@@ -4239,7 +4371,8 @@ getPreferOutputDeviceForRendererInfo(rendererInfo: AudioRendererInfo, callback: 
 
 | 错误码ID | 错误信息                                           |
 | ------- |--------------------------------------------------|
-| 6800101 | Input parameter value error. Return by callback. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. Return by callback. |
 | 6800301 | System error. Return by callback.                |
 
 **示例：**
@@ -4288,7 +4421,8 @@ getPreferOutputDeviceForRendererInfo(rendererInfo: AudioRendererInfo): Promise&l
 
 | 错误码ID | 错误信息                                          |
 | ------- |-------------------------------------------------|
-| 6800101 | Input parameter value error. Return by promise. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. Return by promise. |
 | 6800301 | System error. Return by promise.                |
 
 **示例：**
@@ -4336,7 +4470,8 @@ getPreferredOutputDeviceForRendererInfoSync(rendererInfo: AudioRendererInfo): Au
 
 | 错误码ID | 错误信息                     |
 | ------- |--------------------------|
-| 6800101 | Invalid parameter error. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
@@ -4380,7 +4515,8 @@ on(type: 'preferOutputDeviceChangeForRendererInfo', rendererInfo: AudioRendererI
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Input parameter value error. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
@@ -4418,7 +4554,8 @@ off(type: 'preferOutputDeviceChangeForRendererInfo', callback?: Callback<AudioDe
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Input parameter value error. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
@@ -4447,8 +4584,9 @@ getPreferredInputDeviceForCapturerInfo(capturerInfo: AudioCapturerInfo, callback
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Invalid parameter error. Return by callback.|
-| 6800301 | System error. Return by callback.           |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. Return by callback.|
+| 6800301 | System error. Return by callback. |
 
 **示例：**
 ```ts
@@ -4495,8 +4633,9 @@ getPreferredInputDeviceForCapturerInfo(capturerInfo: AudioCapturerInfo): Promise
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Invalid parameter error. Return by promise. |
-| 6800301 | System error. Return by promise.            |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. Return by promise. |
+| 6800301 | System error. Return by promise. |
 
 **示例：**
 
@@ -4542,7 +4681,8 @@ getPreferredInputDeviceForCapturerInfoSync(capturerInfo: AudioCapturerInfo): Aud
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Invalid parameter error. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
@@ -4586,7 +4726,8 @@ on(type: 'preferredInputDeviceChangeForCapturerInfo', capturerInfo: AudioCapture
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Invalid parameter error. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
@@ -4624,7 +4765,8 @@ off(type: 'preferredInputDeviceChangeForCapturerInfo', callback?: Callback<Audio
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Invalid parameter error. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
@@ -4737,9 +4879,13 @@ audioStreamManager.on('audioCapturerChange', (AudioCapturerChangeInfoArray) =>  
 
 设备属性数组类型，为[AudioDeviceDescriptor](#audiodevicedescriptor)的数组，只读。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 ## AudioDeviceDescriptor
 
 描述音频设备。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 | 名称                          | 类型                       | 可读 | 可写 | 说明       |
 | ----------------------------- | -------------------------- | ---- | ---- | ---------- |
@@ -4776,6 +4922,34 @@ audio.getAudioManager().getDevices(1).then((value: audio.AudioDeviceDescriptors)
   }
 });
 ```
+## AudioDataCallbackResult<sup>12+</sup>
+
+枚举，表示音频数据回调的结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
+
+| 名称                 | 值      | 说明         |
+| ---------------------| --------| ----------------- |
+| INVALID  | -1 | 表示该回调数据无效。      |
+| VALID      | 0 | 表示该回调数据有效。     |
+
+## AudioRendererWriteDataCallback<sup>12+</sup>
+
+type AudioRendererWriteDataCallback = (data: ArrayBuffer) => AudioDataCallbackResult | void
+
+回调函数类型，用于音频渲染器的数据写入。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
+
+| 参数名          | 类型      |必填   | 说明         |
+| :--------------| :--------| :----- | :------------ |
+| data           | ArrayBuffer  | 是 | 待写入缓冲区的数据。 |
+
+**返回值：** 
+
+| 类型 | 说明 |
+| ----- | ------- |
+| AudioDataCallbackResult \| void | 如果返回 void 或 AudioRendererWriteDataCallback.VALID ，表示数据有效并将被播放；如果返回 AudioRendererWriteDataCallback.INVALID ，表示数据无效并将不会被播放。|
 
 ## AudioRenderer<sup>8+</sup>
 
@@ -5071,7 +5245,8 @@ setAudioEffectMode(mode: AudioEffectMode, callback: AsyncCallback\<void>): void
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------------------------------|
-| 6800101 | Invalid parameter error. Return by callback.  |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. Return by callback.  |
 
 **示例：**
 
@@ -5113,7 +5288,8 @@ setAudioEffectMode(mode: AudioEffectMode): Promise\<void>
 
 | 错误码ID | 错误信息 |
 | ------- | ---------------------------------------------|
-| 6800101 | Invalid parameter error. Return by promise.  |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. Return by promise. |
 
 **示例：**
 
@@ -5492,7 +5668,7 @@ write(buffer: ArrayBuffer, callback: AsyncCallback\<number>): void
 写入缓冲区。使用callback方式异步返回结果。
 
 > **说明：**
-> 从 API version 8 开始支持，从 API version 11 开始废弃，建议使用AudioRenderer中的[on('writeData')](#onwritedata11)替代。
+> 从 API version 8 开始支持，从 API version 11 开始废弃，建议使用AudioRenderer中的[on('writeData')](#onwritedata12)替代。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -5555,7 +5731,7 @@ write(buffer: ArrayBuffer): Promise\<number>
 写入缓冲区。使用Promise方式异步返回结果。
 
 > **说明：**
-> 从 API version 8 开始支持，从 API version 11 开始废弃，建议使用AudioRenderer中的[on('writeData')](#onwritedata11)替代。
+> 从 API version 8 开始支持，从 API version 11 开始废弃，建议使用AudioRenderer中的[on('writeData')](#onwritedata12)替代。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -5855,7 +6031,7 @@ setSpeed(speed: number): void
 
 | 参数名 | 类型                                     | 必填 | 说明                   |
 | ------ | ---------------------------------------- | ---- |----------------------|
-| speed | number | 是   | 设置播放的倍速值（倍速范围：0.25-4.0）。 |
+| speed | number | 是   | 设置播放的倍速值（倍速范围：0.125-4.0）。 |
 
 **错误码：**
 
@@ -5863,7 +6039,8 @@ setSpeed(speed: number): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Input parameter value error. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
@@ -6059,7 +6236,8 @@ setInterruptModeSync(mode: InterruptMode): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | invalid parameter error              |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
@@ -6532,7 +6710,8 @@ setChannelBlendMode(mode: ChannelBlendMode): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Input parameter value error.              |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 | 6800103 | Operation not permit at current state.    |
 
 **示例：**
@@ -6564,8 +6743,8 @@ setVolumeWithRamp(volume: number, duration: number): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Input parameter value error.              |
-| 401 | Input parameter type or number mismatch.    |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
@@ -6600,7 +6779,8 @@ on(type: 'audioInterrupt', callback: Callback\<InterruptEvent>): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Invalid parameter error. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
@@ -6818,7 +6998,8 @@ on(type: 'outputDeviceChange', callback: Callback\<AudioDeviceDescriptors>): voi
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Invalid parameter error. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
@@ -6851,7 +7032,8 @@ off(type: 'outputDeviceChange', callback?: Callback\<AudioDeviceDescriptors>): v
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Invalid parameter error. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
@@ -6884,7 +7066,8 @@ on(type: 'outputDeviceChangeWithInfo', callback: Callback\<AudioStreamDeviceChan
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | if input parameter value error. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
@@ -6918,7 +7101,8 @@ off(type: 'outputDeviceChangeWithInfo', callback?: Callback\<AudioStreamDeviceCh
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | if input parameter value error. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
@@ -6931,11 +7115,14 @@ audioRenderer.off('outputDeviceChangeWithInfo', (deviceChangeInfo: audio.AudioSt
 });
 ```
 
-### on('writeData')<sup>11+</sup>
+### on('writeData')<sup>(deprecated)</sup>
 
 on(type: 'writeData', callback: Callback\<ArrayBuffer>): void
 
 订阅监听音频数据写入回调，使用callback方式返回结果。
+
+> **说明：**
+> 从 API version 11 开始支持，从 API version 12 开始废弃，建议使用 AudioRenderer 中的 [on('writeData')](#onwritedata12) 替代。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -6952,7 +7139,8 @@ on(type: 'writeData', callback: Callback\<ArrayBuffer>): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Input parameter value error. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
@@ -6980,18 +7168,21 @@ let writeDataCallback = (buffer: ArrayBuffer) => {
 }
 
 audioRenderer.on('writeData', writeDataCallback);
-audioRenderer.start().then(() => {
+audioRenderer.start().then(() =>  {
   console.info('Renderer started');
 }).catch((err: BusinessError) => {
   console.error(`ERROR: ${err}`);
 });
 ```
 
-### off('writeData')<sup>11+</sup>
+### off('writeData')<sup>(deprecated)</sup>
 
 off(type: 'writeData', callback?: Callback\<ArrayBuffer>): void
 
 取消订阅监听音频数据写入回调，使用callback方式返回结果。
+
+> **说明：**
+> 从 API version 11 开始支持，从 API version 12 开始废弃，建议使用 AudioRenderer 中的 [off('writeData')](#offwritedata12) 替代。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -7008,7 +7199,8 @@ off(type: 'writeData', callback?: Callback\<ArrayBuffer>): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Input parameter value error. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
@@ -7016,6 +7208,101 @@ off(type: 'writeData', callback?: Callback\<ArrayBuffer>): void
 audioRenderer.off('writeData', (data: ArrayBuffer) => {
     console.info(`write data: ${data}`);
 });
+```
+
+### on('writeData')<sup>12+</sup>
+
+on(type: 'writeData', callback: AudioRendererWriteDataCallback): void
+
+订阅监听音频数据写入回调，使用 callback 方式返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
+
+**参数：**
+
+| 参数名   | 类型                             | 必填 | 说明                                  |
+| :------- |:--------------------------------| :--- |:--------------------------------------|
+| type     | string                           | 是   | 事件回调类型，支持的事件为：'writeData'。 |
+| callback | [AudioRendererWriteDataCallback](#audiorendererwritedatacallback12)   | 是   | 回调函数，返回待写入的数据缓冲区。          |
+
+**错误码：**
+
+以下错误码的详细介绍请参见 [Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import {fileIo} from '@kit.CoreFileKit';
+
+let bufferSize: number = 0;
+class Options {
+  offset?: number;
+  length?: number;
+}
+
+let writeDataCallback = (buffer: ArrayBuffer): AudioDataCallbackResult => {
+  let path = getContext().cacheDir;
+  // 确保该路径下存在该资源
+  let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
+  let file: fileIo.File = fileIo.openSync(filePath, fileIo.OpenMode.READ_ONLY);
+  let options: Options = {
+    offset: bufferSize,
+    length: buffer.byteLength
+  };
+
+  try {
+    fileIo.readSync(file.fd, buffer, options);
+    bufferSize += buffer.byteLength;
+    return audio.AudioDataCallbackResult.VALID;
+  } catch (error) {
+    console.error('Error reading file:', error);
+    return audio.AudioDataCallbackResult.INVALID;
+  }
+};
+
+audioRenderer.on('writeData', writeDataCallback);
+audioRenderer.start().then(() => {
+  console.info('Renderer started');
+}).catch((err: BusinessError) => {
+  console.error(`ERROR: ${err}`);
+});
+```
+
+### off('writeData')<sup>12+</sup>
+
+off(type: 'writeData', callback?: AudioRendererWriteDataCallback): void
+
+取消订阅监听音频数据写入回调，使用 callback 方式返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
+
+**参数：**
+
+| 参数名   | 类型                             | 必填 | 说明                                  |
+| :------- |:--------------------------------| :--- |:--------------------------------------|
+| type     | string                           | 是   | 事件回调类型，支持的事件为：'writeData'。 |
+| callback | [AudioRendererWriteDataCallback](#audiorendererwritedatacallback12)   | 否   | 回调函数，返回待写入的数据缓冲区。          |
+
+**错误码：**
+
+以下错误码的详细介绍请参见 [Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
+
+**示例：**
+
+```ts
+// 确保writeDataCallback已经被注册
+audioRenderer.off('writeData', writeDataCallback);
 ```
 
 ## AudioCapturer<sup>8+</sup>
@@ -7815,7 +8102,8 @@ on(type: 'audioInterrupt', callback: Callback\<InterruptEvent>): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Invalid parameter error. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
@@ -7890,7 +8178,8 @@ off(type: 'audioInterrupt'): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Invalid parameter error. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
@@ -7919,7 +8208,8 @@ on(type: 'inputDeviceChange', callback: Callback\<AudioDeviceDescriptors>): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Input parameter value error.              |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
@@ -7951,7 +8241,8 @@ off(type: 'inputDeviceChange', callback?: Callback\<AudioDeviceDescriptors>): vo
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Input parameter value error.              |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
@@ -7980,7 +8271,8 @@ on(type: 'audioCapturerChange', callback: Callback\<AudioCapturerChangeInfo>): v
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Input parameter value error.              |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
@@ -8013,7 +8305,8 @@ off(type: 'audioCapturerChange', callback?: Callback\<AudioCapturerChangeInfo>):
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Input parameter value error.              |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
@@ -8162,7 +8455,8 @@ on(type: 'readData', callback: Callback\<ArrayBuffer>): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Input parameter value error. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
@@ -8218,7 +8512,8 @@ off(type: 'readData', callback?: Callback\<ArrayBuffer>): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Input parameter value error. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 

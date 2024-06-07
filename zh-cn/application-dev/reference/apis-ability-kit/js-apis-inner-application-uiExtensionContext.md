@@ -34,8 +34,11 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 401| Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -53,8 +56,7 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
-
-错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
+| 16000073 | The app clone index is invalid. |
 
 **示例：**
 
@@ -113,8 +115,11 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 401| Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000004 | Can not start invisible component. |
 | 16000005 | The specified process does not have the permission. |
@@ -130,8 +135,7 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
-
-错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
+| 16000073 | The app clone index is invalid. |
 
 **示例：**
 
@@ -200,8 +204,11 @@ startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 401| Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -219,8 +226,7 @@ startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
-
-错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
+| 16000073 | The app clone index is invalid. |
 
 **示例：**
 
@@ -285,8 +291,11 @@ startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;):
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 401| Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -304,8 +313,7 @@ startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;):
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
-
-错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
+| 16000073 | The app clone index is invalid. |
 
 **示例：**
 
@@ -369,8 +377,11 @@ startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 401| Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000004 | Can not start invisible component. |
 | 16000005 | The specified process does not have the permission. |
@@ -386,8 +397,7 @@ startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
-
-错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
+| 16000073 | The app clone index is invalid. |
 
 **示例：**
 
@@ -461,8 +471,11 @@ startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityRes
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 401| Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -480,8 +493,7 @@ startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityRes
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
-
-错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
+| 16000073 | The app clone index is invalid. |
 
 **示例：**
 
@@ -547,8 +559,11 @@ connectServiceExtensionAbility(want: Want, options: ConnectOptions): number
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 401| Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -559,8 +574,6 @@ connectServiceExtensionAbility(want: Want, options: ConnectOptions): number
 | 16000055 | Installation-free timed out. |
 | 16000011 | The context does not exist.        |
 | 16000050 | Internal error. |
-
-错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -627,12 +640,13 @@ disconnectServiceExtensionAbility(connection: number): Promise\<void>
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 401| Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
-
-错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -685,12 +699,13 @@ disconnectServiceExtensionAbility(connection: number, callback: AsyncCallback\<v
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 401| Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
-
-错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -946,12 +961,12 @@ reportDrawnCompleted(callback: AsyncCallback\<void>): void
 
 **错误码：**
 
+以下错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
-
-错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -996,9 +1011,9 @@ openAtomicService(appId: string, options?: AtomicServiceOptions): Promise&lt;Abi
 
 跳出式启动[EmbeddableUIAbility](js-apis-app-ability-embeddableUIAbility.md)，并返回结果。使用Promise异步回调。
 分为以下几种情况：
- - 正常情况下可通过调用[terminateSelfWithResult](js-apis-inner-application-EmbeddableUIAbilityContext.md#embeddableuiabilitycontextterminateselfwithresult-1)接口使之终止并且返回结果给调用方。
+ - 正常情况下可通过调用[terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult)接口使之终止并且返回结果给调用方。
  - 异常情况下比如杀死EmbeddableUIAbility会返回异常信息给调用方，异常信息中resultCode为-1。
- - 如果不同应用多次调用该接口启动同一个EmbeddableUIAbility，当这个EmbeddableUIAbility调用[terminateSelfWithResult](js-apis-inner-application-EmbeddableUIAbilityContext.md#embeddableuiabilitycontextterminateselfwithresult-1)接口使之终止时，只将正常结果返回给最后一个调用方, 其它调用方返回异常信息，异常信息中resultCode为-1。
+ - 如果不同应用多次调用该接口启动同一个EmbeddableUIAbility，当这个EmbeddableUIAbility调用[terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult)接口使之终止时，只将正常结果返回给最后一个调用方, 其它调用方返回异常信息，异常信息中resultCode为-1。
 
 > **说明：**
 >
@@ -1022,8 +1037,11 @@ openAtomicService(appId: string, options?: AtomicServiceOptions): Promise&lt;Abi
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 401| Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000002 | Incorrect ability type. |
 | 16000003 | The appId does not exist. |
 | 16000004 | Can not start invisible component. |
@@ -1032,7 +1050,6 @@ openAtomicService(appId: string, options?: AtomicServiceOptions): Promise&lt;Abi
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released. |
 
-错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -1075,10 +1092,10 @@ openLink(link:string, options?: OpenLinkOptions, callback?: AsyncCallback&lt;Abi
 
 通过AppLinking启动UIAbility，使用Promise异步回调。
 
-通过在link字段中传入标准格式的uri，基于隐式want匹配规则拉起目标UIAbility。目标方必须具备以下过滤器特征，才能处理AppLinking链接：
+通过在link字段中传入标准格式的URL，基于隐式want匹配规则拉起目标UIAbility。目标方必须具备以下过滤器特征，才能处理AppLinking链接：
 - "actions"列表中包含"ohos.want.action.viewData"。
 - "entities"列表中包含"entity.system.browsable"。
-- "uris"列表中包含"scheme"为"https"且"autoVerify"为true的元素。
+- "uris"列表中包含"scheme"为"https"且"domainVerify"为true的元素。
 
 如果希望获取被拉起方终止后的结果，可以设置callback参数，此参数的使用可参照[startAbilityForResult](#uiextensioncontextstartabilityforresult)接口。
 传入的参数不合法时，如未设置必选参数或link字符串不是标准格式的URL，接口会直接抛出异常。参数校验通过，拉起目标方时出现的错误通过promise返回错误信息。
@@ -1105,8 +1122,11 @@ openLink(link:string, options?: OpenLinkOptions, callback?: AsyncCallback&lt;Abi
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 401| Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -1121,46 +1141,46 @@ openLink(link:string, options?: OpenLinkOptions, callback?: AsyncCallback&lt;Abi
 | 16000019 | Can not match any component. |
 | 16200001 | The caller has been released. |
 
-错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
-
 **示例：**
 
 ```ts
+import Want from '@ohos.app.ability.Want';
 import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
+import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
 import OpenLinkOptions from '@ohos.app.ability.OpenLinkOptions';
 import { BusinessError } from '@ohos.base';
 
-function log(info) {
-  console.error("MyUIExtension::" + info)
+function log(info: string) {
+  console.error(`MyUIExtension:: ${JSON.stringify(info)}`);
 }
 
 export default class UIExtAbility extends UIExtensionAbility {
   onCreate() {
-    log(`UIExtAbility onCreate`)
-    globalThis.context = this.context;
+    log(`UIExtAbility onCreate`);
   }
 
   onForeground() {
-    log(`UIExtAbility onForeground`)
+    log(`UIExtAbility onForeground`);
   }
 
   onBackground() {
-    log(`UIExtAbility onBackground`)
+    log(`UIExtAbility onBackground`);
   }
 
   onDestroy() {
-    log(`UIExtAbility onDestroy`)
+    log(`UIExtAbility onDestroy`);
   }
 
-  onSessionCreate(want, session) {
-    log(`UIExtAbility onSessionCreate`)
-    log(`UIExtAbility onSessionCreate, want: ${JSON.stringify(want)}`)
-    let storage: LocalStorage = new LocalStorage({
+  onSessionCreate(want: Want, session: UIExtensionContentSession) {
+    log(`UIExtAbility onSessionCreate`);
+    log(`UIExtAbility onSessionCreate, want: ${JSON.stringify(want)}`);
+    let record: Record<string, UIExtensionContentSession> = {
       'session': session
-    });
-    session.loadContent("pages/UIExtensionIndex", storage);
+    };
+    let storage: LocalStorage = new LocalStorage(record);
+    session.loadContent('pages/UIExtensionIndex', storage);
 
-    let link: string = "https://www.example.com"
+    let link: string = 'https://www.example.com';
     let openLinkOptions: OpenLinkOptions = {
       appLinkingOnly: true
     };
@@ -1169,24 +1189,24 @@ export default class UIExtAbility extends UIExtensionAbility {
         link,
         openLinkOptions,
         (err, result) => {
-          log('openLink callback error.code:' + JSON.stringify(err));
-          log('openLink callback result:' + JSON.stringify(result.resultCode));
-          log('openLink callback result data:' + JSON.stringify(result.want));
+          log(`openLink callback error.code: ${JSON.stringify(err)}`);
+          log(`openLink callback result: ${JSON.stringify(result.resultCode)}`);
+          log(`openLink callback result data: ${JSON.stringify(result.want)}`);
         }
       ).then(() => {
-        log('open link success.');
+        log(`open link success.`);
       }).catch((err: BusinessError) => {
-        log('open link failed, errCode ' + JSON.stringify(err.code));
-      })
+        log(`open link failed, errCode ${JSON.stringify(err.code)}`);
+      });
     }
     catch (e) {
-      log('exception occured, errCode ' + JSON.stringify(e.code));
+      log(`exception occured, errCode ${JSON.stringify(e.code)}`);
     }
 
   }
 
-  onSessionDestroy(session) {
-    log(`UIExtAbility onSessionDestroy`)
+  onSessionDestroy(session: UIExtensionContentSession) {
+    log(`UIExtAbility onSessionDestroy`);
   }
-};
+}
 ```

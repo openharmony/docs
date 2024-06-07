@@ -70,6 +70,21 @@
 设备ID（deviceId）的获取可通过外设查询接口queryDevices()查询。
 具体请查阅[扩展外设管理开发指导](../../device/driver/externaldevice-guidelines.md)。
 
+#### 函数参数deviceId转换指导
+
+通过外设查询接口queryDevices()获取到的deviceId，还需要通过数据转换，才能得到[OH_Usb_GetDeviceDescriptor](#oh_usb_getdevicedescriptor) 等函数的入参deviceId。
+<p>转换原理：提取queryDevices()获取到的deviceId的前32位作为C_API的deviceId。</p>
+<p>以下代码仅供参考：</p>
+
+ ~~~
+uint64_t JsDeviceIdToNative(uint64_t deviceId)
+{
+    uint32_t busNum = (uint32_t)(deviceId >> 48);
+    uint32_t devNum = (uint32_t)((deviceId & 0x0000FFFF00000000) >> 32);
+    return (((static_cast<uint64_t>(busNum)) << 32) | devNum);
+}
+~~~
+
 ## 枚举类型说明
 
 

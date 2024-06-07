@@ -1,6 +1,6 @@
 # @ohos.telephony.data (Cellular Data)
 
-The **data** module provides basic mobile data management functions. You can obtain and set the default slot of the SIM card used for mobile data, and obtain the uplink and downlink connection status of cellular data services and connection status of the packet switched (PS) domain. Besides, you can check whether cellular data services and data roaming are enabled.
+The **data** module provides basic mobile data management functions. You can obtain the default slot of the SIM card used for mobile data, and obtain the uplink and downlink connection status of cellular data services and connection status of the packet switched (PS) domain. Besides, you can check whether cellular data services and data roaming are enabled.
 
 >**NOTE**
 >
@@ -9,7 +9,7 @@ The **data** module provides basic mobile data management functions. You can obt
 ## Modules to Import
 
 ```ts
-import data from '@ohos.telephony.data';
+import { data } from '@kit.TelephonyKit';
 ```
 
 ## data.getDefaultCellularDataSlotId
@@ -29,8 +29,8 @@ Obtains the default slot of the SIM card used for mobile data. This API uses an 
 **Example**
 
 ```ts
-import data from '@ohos.telephony.data';
-import { BusinessError } from '@ohos.base';
+import { data } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 data.getDefaultCellularDataSlotId((err: BusinessError, data: number) => {
     if(err){
@@ -58,8 +58,8 @@ Obtains the default slot of the SIM card used for mobile data. This API uses a p
 **Example**
 
 ```ts
-import data from '@ohos.telephony.data';
-import { BusinessError } from '@ohos.base';
+import { data } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 data.getDefaultCellularDataSlotId().then((data: number) => {
     console.log(`getDefaultCellularDataSlotId success, promise: data->${JSON.stringify(data)}`);
@@ -85,7 +85,7 @@ Obtains the default SIM card used for mobile data synchronously.
 **Example**
 
 ```ts
-import data from '@ohos.telephony.data';
+import { data } from '@kit.TelephonyKit';
 
 console.log("Result: "+ data.getDefaultCellularDataSlotIdSync())
 ```
@@ -108,8 +108,8 @@ Obtains the cellular data flow type, which can be uplink or downlink. This API u
 **Example**
 
 ```ts
-import data from '@ohos.telephony.data';
-import { BusinessError } from '@ohos.base';
+import { data } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 data.getCellularDataFlowType((err: BusinessError, data: data.DataFlowType) => {
     if(err){
@@ -137,8 +137,8 @@ Obtains the cellular data flow type, which can be uplink or downlink. This API u
 **Example**
 
 ```ts
-import data from '@ohos.telephony.data';
-import { BusinessError } from '@ohos.base';
+import { data } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 data.getCellularDataFlowType().then((data: data.DataFlowType) => {
     console.log(`getCellularDataFlowType success, promise: data->${JSON.stringify(data)}`);
@@ -164,8 +164,8 @@ Obtains the connection status of the packet switched (PS) domain. This API uses 
 **Example**
 
 ```ts
-import data from '@ohos.telephony.data';
-import { BusinessError } from '@ohos.base';
+import { data } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 data.getCellularDataState((err: BusinessError, data: data.DataConnectState) => {
     if(err){
@@ -193,8 +193,8 @@ Obtains the connection status of the PS domain. This API uses a promise to retur
 **Example**
 
 ```ts
-import data from '@ohos.telephony.data';
-import { BusinessError } from '@ohos.base';
+import { data } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 data.getCellularDataState().then((data: data.DataConnectState) => {
     console.log(`getCellularDataState success, promise: data->${JSON.stringify(data)}`);
@@ -235,8 +235,8 @@ For details about the error codes, see[ohos.telephony (Telephony) Error Codes](e
 **Example**
 
 ```ts
-import data from '@ohos.telephony.data';
-import { BusinessError } from '@ohos.base';
+import { data } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 data.isCellularDataEnabled((err: BusinessError, data: boolean) => {
     if(err){
@@ -277,8 +277,8 @@ For details about the error codes, see[ohos.telephony (Telephony) Error Codes](e
 **Example**
 
 ```ts
-import data from '@ohos.telephony.data';
-import { BusinessError } from '@ohos.base';
+import { data } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 data.isCellularDataEnabled().then((data: boolean) => {
     console.log(`isCellularDataEnabled success, promise: data->${JSON.stringify(data)}`);
@@ -320,8 +320,8 @@ For details about the error codes, see[ohos.telephony (Telephony) Error Codes](e
 **Example**
 
 ```ts
-import data from '@ohos.telephony.data';
-import { BusinessError } from '@ohos.base';
+import { data } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 data.isCellularDataRoamingEnabled(0, (err: BusinessError, data: boolean) => {
     if(err){
@@ -370,8 +370,8 @@ For details about the error codes, see[ohos.telephony (Telephony) Error Codes](e
 **Example**
 
 ```ts
-import data from '@ohos.telephony.data';
-import { BusinessError } from '@ohos.base';
+import { data } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 data.isCellularDataRoamingEnabled(0).then((data: boolean) => {
     console.log(`isCellularDataRoamingEnabled success, promise: data->${JSON.stringify(data)}`);
@@ -398,7 +398,7 @@ Obtains the default ID of the SIM card used for mobile data.
 **Example**
 
 ```ts
-import data from '@ohos.telephony.data';
+import { data } from '@kit.TelephonyKit';
 
 console.log("Result: "+ data.getDefaultCellularDataSimId());
 ```

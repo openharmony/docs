@@ -1,6 +1,6 @@
 # AbilityDelegator
 
-AbilityDelegator提供添加用于监视指定ability的生命周期状态更改的[AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md#abilitymonitor-1)对象的能力，包括对AbilityMonitor实例的添加、删除、等待ability到达OnCreate生命周期、设置等待时间等、获取指定ability的生命周期状态、获取当前应用顶部ability、启动指定ability等。
+AbilityDelegator提供添加用于监视指定Ability的生命周期状态更改的[AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md#abilitymonitor-1)对象的能力，包括对AbilityMonitor实例的添加、删除、等待Ability到达OnCreate生命周期、设置等待时间等、获取指定Ability的生命周期状态、获取当前应用顶部Ability、启动指定Ability等。
 
 > **说明：**
 > 
@@ -27,7 +27,7 @@ import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry
 
 addAbilityMonitor(monitor: AbilityMonitor, callback: AsyncCallback\<void>): void
 
-添加AbilityMonitor实例（callback形式）。不支持多线程并发调用。
+添加AbilityMonitor实例。使用callback异步回调。不支持多线程并发调用。
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
@@ -38,15 +38,16 @@ addAbilityMonitor(monitor: AbilityMonitor, callback: AsyncCallback\<void>): void
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
 | monitor  | [AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md#abilitymonitor-1) | 是       | [AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md#abilitymonitor-1)实例。 |
-| callback | AsyncCallback\<void>                                         | 是       | 表示指定的回调方法。                                           |
+| callback | AsyncCallback\<void>                                         | 是       | 回调函数。当添加AbilityMonitor实例成功，err为undefined，否则为错误对象。   |
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000100 | AddAbilityMonitor failed. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
 **示例：**
 
@@ -75,7 +76,7 @@ abilityDelegator.addAbilityMonitor(monitor, (error: BusinessError) => {
 
 addAbilityMonitor(monitor: AbilityMonitor): Promise\<void>
 
-添加AbilityMonitor实例（promise形式）。不支持多线程并发调用。
+添加AbilityMonitor实例。使用Promise异步回调。不支持多线程并发调用。
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
@@ -91,15 +92,16 @@ addAbilityMonitor(monitor: AbilityMonitor): Promise\<void>
 
 | 类型           | 说明                |
 | -------------- | ------------------- |
-| Promise\<void> | 以Promise形式返回。 |
+| Promise\<void> |Promise对象。无返回结果的Promise对象。 |
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000100 | AddAbilityMonitor failed. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
 **示例：**
 
@@ -141,11 +143,12 @@ addAbilityMonitorSync(monitor: AbilityMonitor): void
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000100 | AddAbilityMonitorSync failed. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
 **示例：**
 
@@ -171,7 +174,7 @@ abilityDelegator.addAbilityMonitorSync(monitor);
 
 removeAbilityMonitor(monitor: AbilityMonitor, callback: AsyncCallback\<void>): void
 
-删除已经添加的AbilityMonitor实例（callback形式）。
+删除已经添加的AbilityMonitor实例。使用callback异步回调。
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
@@ -182,15 +185,16 @@ removeAbilityMonitor(monitor: AbilityMonitor, callback: AsyncCallback\<void>): v
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | monitor  | [AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md#abilitymonitor-1) | 是   | [AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md#abilitymonitor-1)实例。 |
-| callback | AsyncCallback\<void>                                         | 是   | 表示指定的回调方法。                                           |
+| callback | AsyncCallback\<void>                                         | 是   | 回调函数。当删除已经添加的AbilityMonitor实例成功，err为undefined，否则为错误对象。  |
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000100 | RemoveAbilityMonitor failed. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
 **示例：**
 
@@ -220,7 +224,7 @@ abilityDelegator.removeAbilityMonitor(monitor, (error: BusinessError) => {
 
 removeAbilityMonitor(monitor: AbilityMonitor): Promise\<void>
 
-删除已经添加的AbilityMonitor实例（promise形式）。不支持多线程并发调用。
+删除已经添加的AbilityMonitor实例。使用Promise异步回调。不支持多线程并发调用。
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
@@ -236,15 +240,16 @@ removeAbilityMonitor(monitor: AbilityMonitor): Promise\<void>
 
 | 类型           | 说明                |
 | -------------- | ------------------- |
-| Promise\<void> | 以Promise形式返回。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000100 | RemoveAbilityMonitor failed. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
 - 示例
 
@@ -287,11 +292,12 @@ removeAbilityMonitorSync(monitor: AbilityMonitor): void
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000100 | RemoveAbilityMonitorSync failed. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
 **示例：**
 
@@ -318,7 +324,7 @@ abilityDelegator.removeAbilityMonitorSync(monitor);
 
 waitAbilityMonitor(monitor: AbilityMonitor, callback: AsyncCallback\<UIAbility>): void
 
-等待与AbilityMonitor实例匹配的ability到达OnCreate生命周期，并返回ability实例（callback形式）。不支持多线程并发调用。
+等待与AbilityMonitor实例匹配的Ability到达OnCreate生命周期，并返回Ability实例。使用callback异步回调。不支持多线程并发调用。
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
@@ -329,15 +335,16 @@ waitAbilityMonitor(monitor: AbilityMonitor, callback: AsyncCallback\<UIAbility>)
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | monitor  | [AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md#abilitymonitor-1) | 是   | [AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md#abilitymonitor-1)实例。 |
-| callback | AsyncCallback\<[UIAbility](../apis-ability-kit/js-apis-app-ability-uiAbility.md)> | 是   | 表示指定的回调方法。                                           |
+| callback | AsyncCallback\<[UIAbility](../apis-ability-kit/js-apis-app-ability-uiAbility.md)> | 是   | 回调函数。当等待与AbilityMonitor实例匹配的Ability到达OnCreate生命周期成功，err为undefined，data为获取到的Ability实例，否则为错误对象。   |
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000100 | WaitAbilityMonitor failed. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
 **示例：**
 
@@ -371,7 +378,7 @@ abilityDelegator.waitAbilityMonitor(monitor, (error : BusinessError, data : UIAb
 
 waitAbilityMonitor(monitor: AbilityMonitor, timeout: number, callback: AsyncCallback\<UIAbility>): void
 
-设置等待时间，等待与AbilityMonitor实例匹配的ability到达OnCreate生命周期，并返回ability实例（callback形式）。不支持多线程并发调用。
+设置等待时间，等待与AbilityMonitor实例匹配的Ability到达OnCreate生命周期，并返回Ability实例。使用callback异步回调。不支持多线程并发调用。
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
@@ -387,11 +394,12 @@ waitAbilityMonitor(monitor: AbilityMonitor, timeout: number, callback: AsyncCall
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000100 | WaitAbilityMonitor failed. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
 **示例：**
 
@@ -428,7 +436,7 @@ abilityDelegator.waitAbilityMonitor(monitor, timeout, (error : BusinessError, da
 
 waitAbilityMonitor(monitor: AbilityMonitor, timeout?: number): Promise\<UIAbility>
 
-设置等待时间，等待与AbilityMonitor实例匹配的ability到达OnCreate生命周期，并返回ability实例（promise形式）。不支持多线程并发调用。
+设置等待时间，等待与AbilityMonitor实例匹配的Ability到达OnCreate生命周期，并返回Ability实例。使用Promise异步回调。不支持多线程并发调用。
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
@@ -445,15 +453,16 @@ waitAbilityMonitor(monitor: AbilityMonitor, timeout?: number): Promise\<UIAbilit
 
 | 类型                                                        | 说明                       |
 | ----------------------------------------------------------- | -------------------------- |
-| Promise\<[UIAbility](../apis-ability-kit/js-apis-app-ability-uiAbility.md)> | 以Promise形式返回Ability。 |
+| Promise\<[UIAbility](../apis-ability-kit/js-apis-app-ability-uiAbility.md)> | Promise对象，返回Ability实例。 |
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000100 | WaitAbilityMonitor failed. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
 **示例：**
 
@@ -550,7 +559,7 @@ abilityDelegator.getCurrentTopAbility((err : BusinessError, data : UIAbility) =>
 
 getCurrentTopAbility(callback: AsyncCallback\<UIAbility>): void
 
-获取当前应用顶部ability（callback形式）。
+获取当前应用顶部Ability。使用callback异步回调。不支持Worker线程调用。
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
@@ -560,15 +569,16 @@ getCurrentTopAbility(callback: AsyncCallback\<UIAbility>): void
 
 | 参数名   | 类型                                                         | 必填 | 说明               |
 | -------- | ------------------------------------------------------------ | ---- | ------------------ |
-| callback | AsyncCallback\<[UIAbility](../apis-ability-kit/js-apis-app-ability-uiAbility.md)> | 是   | 表示指定的回调方法。 |
+| callback | AsyncCallback\<[UIAbility](../apis-ability-kit/js-apis-app-ability-uiAbility.md)> | 是   | 回调函数。当获取当前应用顶部Ability成功，err为undefined，data为获取到的Ability实例；否则为错误对象。 |
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000100 | GetCurrentTopAbility failed. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
 **示例：**
 
@@ -591,7 +601,7 @@ abilityDelegator.getCurrentTopAbility((err : BusinessError, data : UIAbility) =>
 
 getCurrentTopAbility(): Promise\<UIAbility>
 
-获取当前应用顶部ability（promise形式）。
+获取当前应用顶部Ability。使用Promise异步回调。不支持Worker线程调用。
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
@@ -601,15 +611,16 @@ getCurrentTopAbility(): Promise\<UIAbility>
 
 | 类型                                                        | 说明                                   |
 | ----------------------------------------------------------- | -------------------------------------- |
-| Promise\<[UIAbility](../apis-ability-kit/js-apis-app-ability-uiAbility.md)> | 以Promise形式返回当前应用顶部ability。 |
+| Promise\<[UIAbility](../apis-ability-kit/js-apis-app-ability-uiAbility.md)> | Promise对象，返回前应用顶部Ability。 |
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000100 | GetCurrentTopAbility failed. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
 **示例：**
 
@@ -631,7 +642,7 @@ abilityDelegator.getCurrentTopAbility().then((data : UIAbility) => {
 
 startAbility(want: Want, callback: AsyncCallback\<void>): void
 
-启动指定ability（callback形式）。
+启动指定Ability。使用callback异步回调。
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
@@ -642,12 +653,15 @@ startAbility(want: Want, callback: AsyncCallback\<void>): void
 | 参数名   | 类型                                   | 必填 | 说明               |
 | -------- | -------------------------------------- | ---- | ------------------ |
 | want     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 启动Ability参数。    |
-| callback | AsyncCallback\<void>                   | 是   | 表示指定的回调方法。 |
+| callback | AsyncCallback\<void>                   | 是   | 回调函数。当启动指定Ability成功，err为undefined，否则为错误对象。 |
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -663,8 +677,6 @@ startAbility(want: Want, callback: AsyncCallback\<void>): void
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
 **示例：**
 
@@ -689,7 +701,7 @@ abilityDelegator.startAbility(want, (err : BusinessError, data : void) => {
 
 startAbility(want: Want): Promise\<void>
 
-启动指定ability（promise形式）。
+启动指定Ability。使用Promise异步回调。
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
@@ -705,12 +717,15 @@ startAbility(want: Want): Promise\<void>
 
 | 类型           | 说明                |
 | -------------- | ------------------- |
-| Promise\<void> | 以Promise形式返回。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
 | 16000004 | Can not start invisible component. |
@@ -726,8 +741,6 @@ startAbility(want: Want): Promise\<void>
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
 **示例：**
 
@@ -752,7 +765,7 @@ abilityDelegator.startAbility(want).then((data: void) => {
 
 doAbilityForeground(ability: UIAbility, callback: AsyncCallback\<void>): void
 
-调度指定ability生命周期状态到Foreground状态（callback形式）。
+调度指定Ability生命周期状态到Foreground状态。使用callback异步回调。
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
@@ -763,15 +776,16 @@ doAbilityForeground(ability: UIAbility, callback: AsyncCallback\<void>): void
 | 参数名   | 类型                    | 必填 | 说明                                                    |
 | -------- | ----------------------- | ---- | ------------------------------------------------------- |
 | ability  | UIAbility               | 是   | 指定Ability对象。                                         |
-| callback | AsyncCallback\<void>    | 是   | 表示指定的回调方法。                                       |
+| callback | AsyncCallback\<void>    | 是   | 回调函数。当调度指定Ability生命周期状态到Foreground状态成功，err为undefined，否则为错误对象。  |
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000100 | DoAbilityForeground failed. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
 **示例：**
 
@@ -797,7 +811,7 @@ abilityDelegator.getCurrentTopAbility((err : BusinessError, data : UIAbility) =>
 
 doAbilityForeground(ability: UIAbility): Promise\<void>
 
-调度指定ability生命周期状态到Foreground状态（promise形式）。
+调度指定Ability生命周期状态到Foreground状态。使用Promise异步回调。
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
@@ -813,15 +827,16 @@ doAbilityForeground(ability: UIAbility): Promise\<void>
 
 | 类型              | 说明                                                         |
 | ----------------- | ------------------------------------------------------------ |
-| Promise\<void> | 以Promise形式返回执行结果。                                    |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。         |
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000100 | DoAbilityForeground failed. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
 **示例：**
 
@@ -847,7 +862,7 @@ abilityDelegator.getCurrentTopAbility((err : BusinessError, data : UIAbility) =>
 
 doAbilityBackground(ability: UIAbility, callback: AsyncCallback\<void>): void
 
-调度指定ability生命周期状态到Background状态（callback形式）。
+调度指定Ability生命周期状态到Background状态。使用callback异步回调。
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
@@ -858,15 +873,16 @@ doAbilityBackground(ability: UIAbility, callback: AsyncCallback\<void>): void
 | 参数名   | 类型                    | 必填 | 说明                                                    |
 | -------- | ----------------------- | ---- | ------------------------------------------------------- |
 | ability  | UIAbility                 | 是   | 指定Ability对象。                                         |
-| callback | AsyncCallback\<void> | 是   | 回调函数。当调度指定ability生命周期状态到Background状态成功，err为undefined，否则为错误对象。  |
+| callback | AsyncCallback\<void> | 是   | 回调函数。当调度指定Ability生命周期状态到Background状态成功，err为undefined，否则为错误对象。  |
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000100 | DoAbilityBackground failed. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
 **示例：**
 
@@ -892,7 +908,7 @@ abilityDelegator.getCurrentTopAbility((err : BusinessError, data : UIAbility) =>
 
 doAbilityBackground(ability: UIAbility): Promise\<void>
 
-调度指定ability生命周期状态到Background状态（promise形式）。
+调度指定Ability生命周期状态到Background状态。使用Promise异步回调。
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
@@ -912,11 +928,12 @@ doAbilityBackground(ability: UIAbility): Promise\<void>
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000100 | DoAbilityBackground failed. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
 **示例：**
 
@@ -970,7 +987,7 @@ abilityDelegator.printSync(msg);
 
 print(msg: string, callback: AsyncCallback\<void>): void
 
-打印日志信息到单元测试终端控制台（callback形式）。
+打印日志信息到单元测试终端控制台。使用callback异步回调。
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
@@ -981,7 +998,7 @@ print(msg: string, callback: AsyncCallback\<void>): void
 | 参数名   | 类型                 | 必填 | 说明               |
 | -------- | -------------------- | ---- | ------------------ |
 | msg      | string               | 是   | 日志字符串。         |
-| callback | AsyncCallback\<void> | 是   | 表示指定的回调方法。 |
+| callback | AsyncCallback\<void> | 是   | 回调函数。当打印日志信息到单元测试终端控制台成功，err为undefined，否则为错误对象。 |
 
 **示例：**
 
@@ -1002,7 +1019,7 @@ abilityDelegator.print(msg, (err : BusinessError) => {
 
 print(msg: string): Promise\<void>
 
-打印日志信息到单元测试终端控制台（promise形式）。
+打印日志信息到单元测试终端控制台。使用Promise异步回调。
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
@@ -1018,7 +1035,7 @@ print(msg: string): Promise\<void>
 
 | 类型           | 说明                |
 | -------------- | ------------------- |
-| Promise\<void> | 以Promise形式返回。 |
+| Promise\<void> |Promise对象。无返回结果的Promise对象。 |
 
 **示例：**
 
@@ -1038,7 +1055,7 @@ abilityDelegator.print(msg).then(() => {
 
 executeShellCommand(cmd: string, callback: AsyncCallback\<ShellCmdResult>): void
 
-执行指定的shell命令（callback形式）。
+执行指定的shell命令。使用callback异步回调。
 
 仅支持如下shell命令：aa, bm, cp, mkdir, rm, uinput, hilog, ppwd, echo, uitest, acm, hidumper, wukong, pkill, ps, pidof
 
@@ -1051,7 +1068,7 @@ executeShellCommand(cmd: string, callback: AsyncCallback\<ShellCmdResult>): void
 | 参数名   | 类型                                                         | 必填 | 说明               |
 | -------- | ------------------------------------------------------------ | ---- | ------------------ |
 | cmd      | string                                                       | 是   | shell命令字符串。    |
-| callback | AsyncCallback\<[ShellCmdResult](js-apis-inner-application-shellCmdResult.md#shellcmdresult)> | 是   | 表示指定的回调方法 |
+| callback | AsyncCallback\<[ShellCmdResult](js-apis-inner-application-shellCmdResult.md#shellcmdresult)> | 是   | 回调函数。当执行指定的shell命令成功，err为undefined，data为获取到的执行结果；否则为错误对象。 |
 
 **示例：**
 
@@ -1072,7 +1089,7 @@ abilityDelegator.executeShellCommand(cmd, (err : BusinessError, data: AbilityDel
 
 executeShellCommand(cmd: string, timeoutSecs: number, callback: AsyncCallback\<ShellCmdResult>): void
 
-指定超时时间，并执行指定的shell命令（callback形式）。
+指定超时时间，并执行指定的shell命令。使用callback异步回调。
 
 仅支持如下shell命令：aa, bm, cp, mkdir, rm, uinput, hilog, ppwd, echo, uitest, acm, hidumper, wukong, pkill, ps, pidof
 
@@ -1086,7 +1103,7 @@ executeShellCommand(cmd: string, timeoutSecs: number, callback: AsyncCallback\<S
 | ----------- | ------------------------------------------------------------ | ---- | ----------------------------- |
 | cmd         | string                                                       | 是   | shell命令字符串。               |
 | timeoutSecs | number                                                       | 是   | 设定命令超时时间，单位秒（s）。 |
-| callback    | AsyncCallback\<[ShellCmdResult](js-apis-inner-application-shellCmdResult.md#shellcmdresult)> | 是   | 表示指定的回调方法。            |
+| callback    | AsyncCallback\<[ShellCmdResult](js-apis-inner-application-shellCmdResult.md#shellcmdresult)> | 是   | 回调函数。当执行指定的shell命令成功，err为undefined，data为获取到的执行结果；否则为错误对象。   |
 
 **示例：**
 
@@ -1108,7 +1125,7 @@ abilityDelegator.executeShellCommand(cmd, timeout, (err : BusinessError, data: A
 
 executeShellCommand(cmd: string, timeoutSecs?: number): Promise\<ShellCmdResult>
 
-指定超时时间，并执行指定的shell命令（promise形式）。
+指定超时时间，并执行指定的shell命令。使用Promise异步回调。
 
 仅支持如下shell命令：aa, bm, cp, mkdir, rm, uinput, hilog, ppwd, echo, uitest, acm, hidumper, wukong, pkill, ps, pidof
 
@@ -1127,7 +1144,7 @@ executeShellCommand(cmd: string, timeoutSecs?: number): Promise\<ShellCmdResult>
 
 | 类型                                                         | 说明                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| Promise\<[ShellCmdResult](js-apis-inner-application-shellCmdResult.md#shellcmdresult)> | 以Promise形式返回Shell命令执行结果[ShellCmdResult](js-apis-inner-application-shellCmdResult.md#shellcmdresult)对象。 |
+| Promise\<[ShellCmdResult](js-apis-inner-application-shellCmdResult.md#shellcmdresult)> | Promise对象，返回Shell命令执行结果[ShellCmdResult](js-apis-inner-application-shellCmdResult.md#shellcmdresult)对象。 |
 
 **示例：**
 
@@ -1148,7 +1165,7 @@ abilityDelegator.executeShellCommand(cmd, timeout).then((data) => {
 
 finishTest(msg: string, code: number, callback: AsyncCallback\<void>): void
 
-结束测试并打印日志信息到单元测试终端控制台（callback形式）。
+结束测试并打印日志信息到单元测试终端控制台。使用callback异步回调。
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
@@ -1160,15 +1177,16 @@ finishTest(msg: string, code: number, callback: AsyncCallback\<void>): void
 | -------- | -------------------- | ---- | ------------------ |
 | msg      | string               | 是   | 日志字符串。         |
 | code     | number               | 是   | 日志码。             |
-| callback | AsyncCallback\<void> | 是   | 表示指定的回调方法。 |
+| callback | AsyncCallback\<void> | 是   | 回调函数。当结束测试并打印日志信息到单元测试终端控制台成功，err为undefined，否则为错误对象。 |
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000100 | FinishTest failed. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
 **示例：**
 
@@ -1189,7 +1207,7 @@ abilityDelegator.finishTest(msg, 0, (err : BusinessError) => {
 
 finishTest(msg: string, code: number): Promise\<void>
 
-结束测试并打印日志信息到单元测试终端控制台（promise形式）。
+结束测试并打印日志信息到单元测试终端控制台。使用Promise异步回调。
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
@@ -1206,15 +1224,16 @@ finishTest(msg: string, code: number): Promise\<void>
 
 | 类型           | 说明                |
 | -------------- | ------------------- |
-| Promise\<void> | 以Promise形式返回。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000100 | FinishTest failed. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
 **示例：**
 
@@ -1234,7 +1253,7 @@ abilityDelegator.finishTest(msg, 0).then(() => {
 
 addAbilityStageMonitor(monitor: AbilityStageMonitor, callback: AsyncCallback\<void>): void
 
-添加一个AbilityStageMonitor对象，用于监视指定abilityStage的生命周期状态更改（callback形式）。
+添加一个AbilityStageMonitor对象，用于监视指定AbilityStage的生命周期状态更改。使用callback异步回调。
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
@@ -1245,15 +1264,16 @@ addAbilityStageMonitor(monitor: AbilityStageMonitor, callback: AsyncCallback\<vo
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
 | monitor  | [AbilityStageMonitor](../apis-ability-kit/js-apis-inner-application-abilityStageMonitor.md) | 是       | [AbilityStageMonitor](../apis-ability-kit/js-apis-inner-application-abilityStageMonitor.md) 实例。 |
-| callback | AsyncCallback\<void>                                         | 是       | 表示指定的回调方法。                                           |
+| callback | AsyncCallback\<void>                                         | 是       | 回调函数。当添加一个用于监视指定AbilityStage的生命周期状态更改的AbilityStageMonitor对象成功，err为undefined，否则为错误对象。     |
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000100 | AddAbilityStageMonitor failed. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
 **示例：**
 
@@ -1276,7 +1296,7 @@ abilityDelegator.addAbilityStageMonitor({
 
 addAbilityStageMonitor(monitor: AbilityStageMonitor): Promise\<void>
 
-添加一个AbilityStageMonitor对象，用于监视指定abilityStage的生命周期状态更改（promise形式）。
+添加一个AbilityStageMonitor对象，用于监视指定AbilityStage的生命周期状态更改。使用Promise异步回调。
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
@@ -1292,15 +1312,16 @@ addAbilityStageMonitor(monitor: AbilityStageMonitor): Promise\<void>
 
 | 类型           | 说明                |
 | -------------- | ------------------- |
-| Promise\<void> | 以Promise形式返回。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000100 | AddAbilityStageMonitor failed. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
 **示例：**
 
@@ -1322,7 +1343,7 @@ abilityDelegator.addAbilityStageMonitor({
 
 addAbilityStageMonitorSync(monitor: AbilityStageMonitor): void
 
-同步添加一个AbilityStageMonitor对象，用于监视指定abilityStage的生命周期状态更改。
+同步添加一个AbilityStageMonitor对象，用于监视指定AbilityStage的生命周期状态更改。
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
@@ -1336,11 +1357,12 @@ addAbilityStageMonitorSync(monitor: AbilityStageMonitor): void
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000100 | AddAbilityStageMonitorSync failed. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
 **示例：**
 
@@ -1360,7 +1382,7 @@ abilityDelegator.addAbilityStageMonitorSync({
 
 removeAbilityStageMonitor(monitor: AbilityStageMonitor, callback: AsyncCallback\<void>): void
 
-从应用程序内存中删除指定的AbilityStageMonitor对象（callback形式）。
+从应用程序内存中删除指定的AbilityStageMonitor对象。使用callback异步回调。
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
@@ -1371,15 +1393,16 @@ removeAbilityStageMonitor(monitor: AbilityStageMonitor, callback: AsyncCallback\
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
 | monitor  | [AbilityStageMonitor](../apis-ability-kit/js-apis-inner-application-abilityStageMonitor.md) | 是       | [AbilityStageMonitor](../apis-ability-kit/js-apis-inner-application-abilityStageMonitor.md) 实例。 |
-| callback | AsyncCallback\<void>                                         | 是       | 表示指定的回调方法。                                           |
+| callback | AsyncCallback\<void>                                         | 是       | 回调函数。当从应用程序内存中删除指定的AbilityStageMonitor对象成功，err为undefined，否则为错误对象。 |
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000100 | RemoveAbilityStageMonitor failed. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
 **示例：**
 
@@ -1402,7 +1425,7 @@ abilityDelegator.removeAbilityStageMonitor({
 
 removeAbilityStageMonitor(monitor: AbilityStageMonitor): Promise\<void>
 
-从应用程序内存中删除指定的AbilityStageMonitor对象（promise形式）。
+从应用程序内存中删除指定的AbilityStageMonitor对象。使用Promise异步回调。
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
@@ -1418,15 +1441,16 @@ removeAbilityStageMonitor(monitor: AbilityStageMonitor): Promise\<void>
 
 | 类型           | 说明                |
 | -------------- | ------------------- |
-| Promise\<void> | 以Promise形式返回。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000100 | RemoveAbilityStageMonitor failed. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
 **示例：**
 
@@ -1462,11 +1486,13 @@ removeAbilityStageMonitorSync(monitor: AbilityStageMonitor): void
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000100 | removeAbilityStageMonitorSync failed. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
 **示例：**
 
@@ -1486,7 +1512,7 @@ abilityDelegator.removeAbilityStageMonitorSync({
 
 waitAbilityStageMonitor(monitor: AbilityStageMonitor, callback: AsyncCallback\<AbilityStage>): void
 
-等待并返回与给定AbilityStageMonitor中设置的条件匹配的AbilityStage对象（callback形式）。
+等待并返回与给定AbilityStageMonitor中设置的条件匹配的AbilityStage对象。使用callback异步回调。
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
@@ -1497,15 +1523,16 @@ waitAbilityStageMonitor(monitor: AbilityStageMonitor, callback: AsyncCallback\<A
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
 | monitor  | [AbilityStageMonitor](../apis-ability-kit/js-apis-inner-application-abilityStageMonitor.md) | 是       | [AbilityStageMonitor](../apis-ability-kit/js-apis-inner-application-abilityStageMonitor.md) 实例。 |
-| callback | AsyncCallback\<AbilityStage>                                         | 是       | 成功返回AbilityStage对象，失败返回空。             |
+| callback | AsyncCallback\<AbilityStage>                                         | 是       | 回调函数。当等待并返回与给定AbilityStageMonitor中设置的条件匹配的AbilityStage对象的操作成功，err为undefined，data为获取到的[AbilityStage](../apis-ability-kit/js-apis-app-ability-abilityStage.md)对象；否则为错误对象。    |
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000100 | WaitAbilityStageMonitor failed. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
 **示例：**
 
@@ -1529,7 +1556,7 @@ abilityDelegator.waitAbilityStageMonitor({
 
 waitAbilityStageMonitor(monitor: AbilityStageMonitor, timeout?: number): Promise\<AbilityStage>
 
-等待并返回与给定AbilityStageMonitor中设置的条件匹配的AbilityStage对象（promise形式）。
+等待并返回与给定AbilityStageMonitor中设置的条件匹配的AbilityStage对象。使用Promise异步回调。
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
@@ -1546,15 +1573,16 @@ waitAbilityStageMonitor(monitor: AbilityStageMonitor, timeout?: number): Promise
 
 | 类型           | 说明                |
 | -------------- | ------------------- |
-| Promise\<AbilityStage> | 成功返回AbilityStage对象，失败返回空。 |
+| Promise\<AbilityStage> | Promise对象，返回[AbilityStage](../apis-ability-kit/js-apis-app-ability-abilityStage.md)对象。 |
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000100 | WaitAbilityStageMonitor failed. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
 **示例：**
 
@@ -1577,7 +1605,7 @@ abilityDelegator.waitAbilityStageMonitor({
 
 waitAbilityStageMonitor(monitor: AbilityStageMonitor, timeout: number, callback: AsyncCallback\<AbilityStage>): void
 
-等待并返回与给定AbilityStageMonitor中设置的条件匹配的AbilityStage对象（callback形式）。
+等待并返回与给定AbilityStageMonitor中设置的条件匹配的AbilityStage对象。使用callback异步回调。
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
@@ -1589,15 +1617,16 @@ waitAbilityStageMonitor(monitor: AbilityStageMonitor, timeout: number, callback:
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | monitor | [AbilityStageMonitor](../apis-ability-kit/js-apis-inner-application-abilityStageMonitor.md) | 是   | [AbilityStageMonitor](../apis-ability-kit/js-apis-inner-application-abilityStageMonitor.md) 实例。 |
 | timeout | number | 是   | 超时最大等待时间，以毫秒为单位。 |
-| callback | AsyncCallback\<AbilityStage>                                         | 是       | 成功返回AbilityStage对象，失败返回空。                     |
+| callback | AsyncCallback\<AbilityStage>                                         | 是       | 回调函数。当等待并返回与给定AbilityStageMonitor中设置的条件匹配的AbilityStage对象的操作成功，err为undefined，data为获取到的[AbilityStage](../apis-ability-kit/js-apis-app-ability-abilityStage.md)对象；否则为错误对象。   |
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000100 | WaitAbilityStageMonitor failed. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
 **示例：**
 
@@ -1636,11 +1665,12 @@ setMockList(mockList: Record\<string, string>): void
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息        |
 | -------- | --------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000050 | Internal error. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
 **示例：**
 

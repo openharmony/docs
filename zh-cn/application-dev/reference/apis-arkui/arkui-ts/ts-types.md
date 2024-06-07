@@ -219,7 +219,7 @@
 | 类型                                | 说明                                                         |
 | ----------------------------------- | ------------------------------------------------------------ |
 | [Color](ts-appendix-enums.md#color) | 颜色枚举值。                                                 |
-| number                              | HEX格式颜色，支持rgb或者argb。示例：0xffffff，0xffff0000。   |
+| number                              | HEX格式颜色，支持rgb或者argb。示例：0xffffff，0xffff0000。number无法识别传入位数，格式选择依据值的大小，例如0x00ffffff作rgb格式解析 |
 | string                              | rgb或者argb格式颜色。示例：'#ffffff', '#ff000000', 'rgb(255, 100, 255)', 'rgba(255, 100, 255, 0.5)'。 |
 | [Resource](#resource)               | 使用引入资源的方式，引入系统资源或者应用资源中的颜色。       |
 
@@ -229,9 +229,9 @@
 
 | 名称     | 描述              |
 | ------ | --------------- |
-| INVERT | 设置前景色为控件背景色的反色。 |
-| AVERAGE<sup>11+</sup> | 设置控件背景阴影色为控件背景阴影区域的平均色。 |
-| PRIMARY<sup>11+</sup> | 设置控件背景阴影色为控件背景阴影区域的主色。 |
+| INVERT | 设置前景色为控件背景色的反色。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| AVERAGE<sup>11+</sup> | 设置控件背景阴影色为控件背景阴影区域的平均色。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| PRIMARY<sup>11+</sup> | 设置控件背景阴影色为控件背景阴影区域的主色。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
 
 ## LengthConstrain
 
@@ -376,6 +376,8 @@
 
 像素扩展属性集合,用于描述像素扩展的信息。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称     | 类型                | 必填   | 说明             |
 | ------ | ----------------- | ---- | -------------- |
 | left   | [Length](#length) | 否    | 组件图像左边沿像素扩展距离。 |
@@ -386,6 +388,8 @@
 ## ModalTransition<sup>10+</sup>
 
 全屏模态转场方式枚举类型，用于设置全屏模态转场类型。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称      | 描述           |
 | ------- | ------------ |
@@ -468,6 +472,18 @@
 | --------------------- | -------------------------------------- |
 | {number}deg               | 需要指定以deg像素单位，如'10deg'。 |
 
+## MultiShadowOptions<sup>10+</sup>
+
+投影样式。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+| 名称          | 参数类型 | 必填 | 描述 |
+| ------------- | ------- | ---- | -------- |
+| radius | number \| [Resource](#resource) | 否 | 投影模糊半径。 <br/>API version 10及以前，默认值：5<br/>API version 11及以后，默认值：20<br/>单位：vp <br/>**说明：** <br/>设置小于等于0的值时，按默认值显示。|
+| offsetX | number \| [Resource](#resource) | 否 | X轴的偏移量。 <br/>默认值：5<br/>单位：vp |
+| offsetY | number \| [Resource](#resource) | 否 | Y轴的偏移量。 <br/>默认值：5<br/>单位：vp |
+
 ## SwiperAnimationEvent<sup>10+</sup>
 
 Swiper组件动画相关信息集合。
@@ -496,6 +512,8 @@ Tabs组件动画相关信息集合。
 
 扩展安全区域的枚举类型。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称     | 描述                                       |
 | -------- | ------------------------------------------ |
 | SYSTEM   | 系统默认非安全区域，包括状态栏、导航栏。   |
@@ -505,6 +523,8 @@ Tabs组件动画相关信息集合。
 ## SafeAreaEdge<sup>10+</sup>
 
 扩展安全区域的方向。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 | 名称   | 描述       |
 | ------ | ---------- |
@@ -585,9 +605,28 @@ hover事件的回调类型。
 
 HoverCallback = (isHover: boolean, event: [HoverEvent](./ts-universal-mouse-key.md#hoverevent10对象说明)) => void
 
-| 名称            | 类型定义                   | 描述                                       |
+| 名称            | 类型                  | 描述                                       |
 | ------------- | ---------------------- | ---------------------------------------- |
 | HoverCallback | (isHover: boolean, event: [HoverEvent](./ts-universal-mouse-key.md#hoverevent10对象说明)) => void | hover事件的回调。 |
+
+## VisibleAreaEventOptions<sup>12+</sup>
+
+关于区域变化相关的参数。
+
+| 参数名 | 类型                                                | 必填 | 说明                                                         |
+| ------ | --------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| ratios | Array&lt;number&gt;                                 | 是   | 阈值数组。其中，每个阈值代表组件可见面积（即组件在屏幕显示区的面积，只计算父组件内的面积，超出父组件部分不会计算）与组件自身面积的比值。每个阈值的取值范围为[0.0, 1.0]，如果开发者设置的阈值超出该范围，则会实际取值0.0或1.0。 |
+| expectedUpdateInterval | number | 否 | 预期更新间隔，单位为ms。定义了开发者期望的更新间隔。默认值：1000。|
+
+## VisibleAreaChangeCallback<sup>12+</sup>
+
+组件可见区域变化事件的回调类型。
+
+VisibleAreaChangeCallback = (isVisible: boolean, currentRatio: number) => void
+
+| 名称            | 类型                   | 描述                                       |
+| ------------- | ---------------------- | ---------------------------------------- |
+| VisibleAreaChangeCallback | (isVisible: boolean, currentRatio: number) => void | 组件可见区域变化事件的回调。<br/>-isVisible：表示组件的可见面积与自身面积的比值与上一次变化相比的情况，比值变大为true，比值变小为false。<br/>-currentRatio：触发回调时，组件可见面积与自身面积的比值。 |
 
 ## StyledStringValue<sup>12+</sup>
 
@@ -599,9 +638,12 @@ HoverCallback = (isHover: boolean, event: [HoverEvent](./ts-universal-mouse-key.
 | DecorationStyle | 文本装饰线样式。 |
 | BaselineOffsetStyle | 文本基线偏移量样式。 |
 | LetterSpacingStyle | 文本字符间距样式。 |
+| LineHeightStyle | 文本行高样式。 |
 | TextShadowStyle | 文本阴影样式。 |
 | GestureStyle | 事件手势样式。 |
+| ParagraphStyle | 文本段落样式。 |
 | ImageAttachment | 图片样式。 |
+| CustomSpan | 自定义绘制Span样式。 |
 
 ## SubmitEvent<sup>11+</sup>
 
@@ -652,3 +694,16 @@ HoverCallback = (isHover: boolean, event: [HoverEvent](./ts-universal-mouse-key.
 | [FP](#fp10) | 2 | 长度类型，用于描述以fp像素单位为单位的长度。 |
 | [PERCENT](#percentage10) | 3 | 长度类型，用于描述以%像素单位为单位的长度。 |
 | [LPX](#lpx10) | 4 | 长度类型，用于描述以lpx像素单位为单位的长度。 |
+
+## DividerStyleOptions<sup>12+</sup>
+
+分割线样式属性集合, 用于描述分割线相关信息。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称     | 类型                                      | 必填 | 说明              |
+| ------ | --------------------------------------- |---|-----------------|
+| strokeWidth  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup>  | 否 | 分割线的线宽。         |
+| color  | [ResourceColor](#resourcecolor) | 否  | 分割线的颜色。         |
+| startMargin | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | 否  | 分割线与菜单侧边起始端的距离。 |
+| endMargin  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup>| 否  | 分割线与菜单侧边结束端的距离。 |

@@ -29,3 +29,4 @@
   - [XML Generation](xml-generation.md)
   - [XML Parsing](xml-parsing.md)
   - [XML Conversion](xml-conversion.md)
+- [Source Obfuscation]((source-obfuscation.md))

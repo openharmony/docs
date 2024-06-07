@@ -2,7 +2,7 @@
 
 使用AVPlayer可以实现端到端播放原始媒体资源，本开发指导将以完整地播放一首音乐作为示例，向开发者讲解AVPlayer音频播放相关功能。
 
-以下指导仅介绍如何实现媒体资源播放，如果要实现后台播放或熄屏播放，需要使用[AVSession（媒体会话）](../avsession/avsession-overview.md)和[申请长时任务](../../task-management/continuous-task.md)，避免播放被系统强制中断。
+以下指导仅介绍如何实现媒体资源播放，如果要实现后台播放或熄屏播放，需要使用[AVSession（媒体会话）](../avsession/avsession-overview.md)和[申请长时任务](../../task-management/continuous-task.md)，避免播放被系统强制中断。同时，应用可参考[多音频并发](../audio/audio-playback-concurrency.md)处理音频焦点。应用应主动监听音频打断事件，根据其内容提示，做出相应的处理，避免出现应用状态与预期效果不一致的问题。
 
 
 播放的全流程包含：创建AVPlayer，设置播放资源，设置播放参数（音量/倍速/焦点模式），播放控制（播放/暂停/跳转/停止），重置，销毁资源。
@@ -61,10 +61,10 @@
 参考以下示例，完整地播放一首音乐。
 
 ```ts
-import media from '@ohos.multimedia.media';
-import fs from '@ohos.file.fs';
-import common from '@ohos.app.ability.common';
-import { BusinessError } from '@ohos.base';
+import { media } from '@kit.MediaKit';
+import { fileIo } from '@kit.CoreFileKit';
+import { common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export class AVPlayerDemo {
   private count: number = 0;
@@ -146,7 +146,7 @@ export class AVPlayerDemo {
     let pathDir = context.filesDir;
     let path = pathDir + '/01.mp3';
     // 打开相应的资源文件地址获取fd，并为url赋值触发initialized状态机上报
-    let file = await fs.open(path);
+    let file = await fileIo.open(path);
     fdPath = fdPath + '' + file.fd;
     this.isSeek = true; // 支持seek操作
     avPlayer.url = fdPath;
@@ -183,7 +183,7 @@ export class AVPlayerDemo {
         if (buf == undefined || length == undefined || pos == undefined) {
           return -1;
         }
-        num = fs.readSync(this.fd, buf, { offset: pos, length: length });
+        num = fileIo.readSync(this.fd, buf, { offset: pos, length: length });
         if (num > 0 && (this.fileSize >= pos)) {
           return num;
         }
@@ -194,11 +194,11 @@ export class AVPlayerDemo {
     // 通过UIAbilityContext获取沙箱地址filesDir，以Stage模型为例
     let pathDir = context.filesDir;
     let path = pathDir  + '/01.mp3';
-    await fs.open(path).then((file: fs.File) => {
+    await fileIo.open(path).then((file: fileIo.File) => {
       this.fd = file.fd;
     })
     // 获取播放文件的大小
-    this.fileSize = fs.statSync(path).size;
+    this.fileSize = fileIo.statSync(path).size;
     src.fileSize = this.fileSize;
     this.isSeek = true; // 支持seek操作
     avPlayer.dataSrc = src;
@@ -218,7 +218,7 @@ export class AVPlayerDemo {
         if (buf == undefined || length == undefined) {
           return -1;
         }
-        num = fs.readSync(this.fd, buf);
+        num = fileIo.readSync(this.fd, buf);
         if (num > 0) {
           return num;
         }
@@ -228,7 +228,7 @@ export class AVPlayerDemo {
     // 通过UIAbilityContext获取沙箱地址filesDir，以Stage模型为例
     let pathDir = context.filesDir;
     let path = pathDir  + '/01.mp3';
-    await fs.open(path).then((file: fs.File) => {
+    await fileIo.open(path).then((file: fileIo.File) => {
       this.fd = file.fd;
     })
     this.isSeek = false; // 不支持seek操作

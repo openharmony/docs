@@ -44,8 +44,9 @@ DRM系统管理（MediaKeySystem）支持MediaKeySystem实例管理、设备证�
 4. 调用MediaKeySystem类中的OH_MediaKeySystem_GetMediaKeySystems方法获取设备支持对应的插件类型的name和uuid。
 
    ```c++
-    uint32_t count = 10;
-    DRM_MediaKeySystemDescription infos[10];
+    // count 是当前设备实际支持的DRM插件的个数，用户根据实际情况设置
+    uint32_t count = 1;
+    DRM_MediaKeySystemDescription infos[1];
     memset(infos, 0, sizeof(infos));
     Drm_ErrCode ret = OH_MediaKeySystem_GetMediaKeySystems(infos, &count);
     if (ret != DRM_OK) {
@@ -342,6 +343,36 @@ DRM系统管理（MediaKeySystem）支持MediaKeySystem实例管理、设备证�
     ret = OH_MediaKeySystem_Destroy(keySystem);
     if (ret != DRM_OK) {
       OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_Destroy failed.");
+      return ret;
+    }
+    ```
+
+16. 调用MediaKeySystem类中的OH_MediaKeySystem_SetCallback方法设置MediaKeySystem监听回调。
+
+    ```c++
+      DRM_ErrCode TestSystemCallBackWithObj(MediaKeySystem *mediaKeySystem, DRM_EventType eventType,
+      uint8_t *info, int32_t infoLen, char *extra)
+      {
+          OH_LOG_INFO(LOG_APP, "TestSystemCallBackWithObj");
+      }
+      DRM_ErrCode MediaKeySystem_SetMediaKeySystemCallbackWithObj()
+      {
+      MediaKeySystem *keySystem = NULL;
+      const char *name = "com.wiseplay.drm";
+      ret = OH_MediaKeySystem_Create(name, &keySystem);
+      if (ret != DRM_OK) {
+          OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_Create failed.");
+      }
+      ret = OH_MediaKeySystem_SetCallback(keySystem,
+          TestSystemCallBackWithObj);
+      if (ret != DRM_OK) {
+          OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_SetCallback failed.");
+      }
+      ret = OH_MediaKeySystem_Destroy(keySystem);
+      if (ret != DRM_OK) {
+      OH_LOG_ERROR(LOG_APP, "OH_MediaKeySystem_Destroy failed.");
+      return ret;
+      }
       return ret;
     }
     ```

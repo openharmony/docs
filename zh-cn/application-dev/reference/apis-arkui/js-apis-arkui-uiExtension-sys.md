@@ -42,32 +42,42 @@ hideNonSecureWindows(shouldHide: boolean): Promise\<void>
 | ------------------- | ------------------------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
+**错误码：** 
+
+| 错误码ID | 错误信息                          |
+| -------- | --------------------------------- |
+| 401      | Parameter error. Possible causes: |
+
 **示例**
 
 ```ts
+// ExtensionProvider.ts
+
+import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
 import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
-import uiExtension from '@ohos.arkui.uiExtension';
-import window from '@ohos.window';
+import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
 
-// 在执行到EmbeddedUIExtensionAbility的'onSessionCreate'时，会将UIExtensionContentSession实例存储到storage中
-session: UIExtensionContentSession | undefined = storage.get<UIExtensionContentSession>('session');
-// 从session上获取当前EmbeddedUIExtensionAbility的WindowProxy实例
-extensionWindow: uiExtension.WindowProxy | undefined = this.session?.getUIExtensionWindowProxy();
-// 隐藏非安全窗口
-let promise = this.extensionWindow?.hideNonSecureWindows(true);
-promise?.then(()=> {
-  console.log(`Succeeded in hiding the non-secure windows.`);
-}).catch((err: BusinessError)=> {
-  console.log(`Failed to hide the non-secure windows. Cause:${JSON.stringify(err)}`);
-})
-// 取消隐藏非安全窗口
-let promise = this.extensionWindow?.hideNonSecureWindows(false);
-promise?.then(()=> {
-  console.log(`Succeeded in showing the non-secure windows.`);
-}).catch((err: BusinessError)=> {
-  console.log(`Failed to show the non-secure windows. Cause:${JSON.stringify(err)}`);
-})
+export default class EntryAbility extends UIExtensionAbility {
+  onSessionCreate(want: Want, session: UIExtensionContentSession) {
+    const extensionHostWindow = session.getUIExtensionHostWindowProxy();
+    // 隐藏非安全窗口
+    extensionHostWindow.hideNonSecureWindows(true).then(()=> {
+      console.log(`Succeeded in hiding the non-secure windows.`);
+    }).catch((err: BusinessError)=> {
+      console.log(`Failed to hide the non-secure windows. Cause:${JSON.stringify(err)}`);
+    })
+  }
+  onSessionDestroy(session: UIExtensionContentSession) {
+    const extensionHostWindow = session.getUIExtensionHostWindowProxy();
+    // 取消隐藏非安全窗口
+    extensionHostWindow.hideNonSecureWindows(false).then(()=> {
+      console.log(`Succeeded in showing the non-secure windows.`);
+    }).catch((err: BusinessError)=> {
+      console.log(`Failed to show the non-secure windows. Cause:${JSON.stringify(err)}`);
+    })
+  }
+}
 ```
 
 ### setWaterMarkFlag
@@ -89,7 +99,7 @@ setWaterMarkFlag(enable: boolean): Promise&lt;void&gt;
 | ------ | ------- | --- | ------------------------------------------------ |
 | enable | boolean | 是   | 是否对窗口添加标志位。true表示添加，false表示删除。 |
 
-**返回值：**
+**返回值：** 
 
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
@@ -101,31 +111,35 @@ setWaterMarkFlag(enable: boolean): Promise&lt;void&gt;
 | ------- | ---------------------------------------------- |
 | 1300002 | This window state is abnormal.                 |
 | 1300003 | This window manager service works abnormally.  |
+| 1300008 | The operation is on invalid display. |
 
-**示例**
+**示例** 
 
 ```ts
+// ExtensionProvider.ts
+import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
 import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
-import uiExtension from '@ohos.arkui.uiExtension';
-import window from '@ohos.window';
+import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
 
-// 在执行到EmbeddedUIExtensionAbility的'onSessionCreate'时，会将UIExtensionContentSession实例存储到storage中
-session: UIExtensionContentSession | undefined = storage.get<UIExtensionContentSession>('session');
-// 从session上获取当前EmbeddedUIExtensionAbility的WindowProxy实例
-extensionWindow: uiExtension.WindowProxy | undefined = this.session?.getUIExtensionWindowProxy();
-// 添加安全水印标志
-let promise = this.extensionWindow?.setWaterMarkFlag(true);
-promise?.then(() => {
-  console.log(`Succeeded in setting water mark flag of window.`);
-}).catch((err: BusinessError) => {
-  console.log(`Failed to setting water mark flag of window. Cause:${JSON.stringify(err)}`);
-})
-// 删除安全水印标志
-let promise = this.extensionWindow?.setWaterMarkFlag(false);
-promise?.then(() => {
-  console.log(`Succeeded in deleting water mark flag of window.`);
-}).catch((err: BusinessError) => {
-  console.log(`Failed to deleting water mark flag of window. Cause:${JSON.stringify(err)}`);
-})
+export default class EntryAbility extends UIExtensionAbility {
+  onSessionCreate(want: Want, session: UIExtensionContentSession) {
+    const extensionHostWindow = session.getUIExtensionHostWindowProxy();
+    // 添加安全水印标志
+    extensionHostWindow.setWaterMarkFlag(true).then(() => {
+      console.log(`Succeeded in setting water mark flag of window.`);
+    }).catch((err: BusinessError) => {
+      console.log(`Failed to setting water mark flag of window. Cause:${JSON.stringify(err)}`);
+    })
+  }
+  onSessionDestroy(session: UIExtensionContentSession) {
+    const extensionHostWindow = session.getUIExtensionHostWindowProxy();
+    // 删除安全水印标志
+    extensionHostWindow.setWaterMarkFlag(false).then(() => {
+      console.log(`Succeeded in deleting water mark flag of window.`);
+    }).catch((err: BusinessError) => {
+      console.log(`Failed to deleting water mark flag of window. Cause:${JSON.stringify(err)}`);
+    })
+  }
+}
 ```

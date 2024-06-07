@@ -117,6 +117,9 @@ async function setListener() {
 }
 ```
 
+<!--RP1-->
+<!--RP1End-->
+
 ### 媒体资源金标
 
 对于长音频，播控中心提供了媒体资源金标的展示，媒体资源金标又可称为应用媒体音频音源的标识，目前暂时只支持展示AudioVivid标识。
@@ -330,7 +333,7 @@ async function unregisterSessionListener() {
     assetId: '0', // 由应用指定，用于标识应用媒体库里的媒体
     title: 'TITLE',
     mediaImage: 'IMAGE',
-    skipIntervals: SkipIntervals.SECONDS_10,
+    skipIntervals: AVSessionManager.SkipIntervals.SECONDS_10,
   };
   session.setAVMetadata(metadata).then(() => {
     console.info(`SetAVMetadata successfully`);

@@ -1,17 +1,18 @@
 # @ohos.telephony.sms (SMS) (System API)
 
-The **sms** module provides basic SMS management functions. You can create and send SMS messages, and obtain and set the default SIM card for sending and receiving SMS messages. Besides, you can obtain and set the SMSC address, and check whether the current device can send and receive SMS messages.
+The **sms** module provides basic SMS management functions. With the APIs provided by this module, you can create and send SMS messages, obtain the ID of the default SIM card used to send and receive SMS messages, and obtain and set the SMSC address.
 
 >**NOTE**
 >
 >The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-> This topic describes only system APIs provided by the module. For details about its public APIs, see [@ohos.telephony.sms (SMS)](js-apis-sms.md).
+>
+>This topic describes only system APIs provided by the module. For details about its public APIs, see [@ohos.telephony.sms (SMS)](js-apis-sms.md).
 
 
 ## Modules to Import
 
 ```ts
-import sms from '@ohos.telephony.sms';
+import { sms } from '@kit.TelephonyKit';
 ```
 
 
@@ -54,12 +55,11 @@ For details about the error codes, see [Telephony Error Codes](errorcode-telepho
 FA model:
 
 ```ts
-import sms from '@ohos.telephony.sms';
-import { BusinessError } from '@ohos.base';
-import common from '@ohos.app.ability.common';
+import { sms } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common, featureAbility } from '@kit.AbilityKit';
 
 // Obtain the context.
-import featureAbility from '@ohos.ability.featureAbility';
 let context: common.BaseContext = featureAbility.getContext();
 
 // Configure the path for storing PDUs of MMS messages. Such PDUs are sent from the encoding API.
@@ -90,10 +90,10 @@ sms.sendMms(context, mmsPars, async(err: BusinessError) =>{
 Stage model:
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import sms from '@ohos.telephony.sms';
-import { BusinessError } from '@ohos.base';
-import window from '@ohos.window';
+import { UIAbility } from '@kit.AbilityKit';
+import { sms } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { window } from '@kit.ArkUI';
 
 // Configure the path for storing PDUs of MMS messages. Such PDUs are sent from the encoding API.
 const sandBoxPath = '/data/storage/el2/base/files/';
@@ -170,11 +170,11 @@ For details about the error codes, see [Telephony Error Codes](errorcode-telepho
 FA model:
 
 ```ts
-import sms from '@ohos.telephony.sms';
-import { BusinessError } from '@ohos.base';
-import common from '@ohos.app.ability.common';
+import { sms } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common, featureAbility } from '@kit.AbilityKit';
+
 // Obtain the context.
-import featureAbility from '@ohos.ability.featureAbility';
 let context: common.BaseContext = featureAbility.getContext();
 
 // Configure the path for storing PDUs of MMS messages. Such PDUs are sent from the encoding API.
@@ -204,10 +204,10 @@ promise.then(() => {
 Stage model:
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import sms from '@ohos.telephony.sms';
-import { BusinessError } from '@ohos.base';
-import window from '@ohos.window';
+import { UIAbility } from '@kit.AbilityKit';
+import { sms } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { window } from '@kit.ArkUI';
 
 // Configure the path for storing PDUs of MMS messages. Such PDUs are sent from the encoding API.
 const sandBoxPath = '/data/storage/el2/base/files/';
@@ -278,11 +278,11 @@ For details about the error codes, see [Telephony Error Codes](errorcode-telepho
 FA model:
 
 ```ts
-import sms from '@ohos.telephony.sms';
-import { BusinessError } from '@ohos.base';
-import common from '@ohos.app.ability.common';
+import { sms } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common, featureAbility } from '@kit.AbilityKit';
+
 // Obtain the context.
-import featureAbility from '@ohos.ability.featureAbility';
 let context: common.BaseContext = featureAbility.getContext();
 
 // Configure the path for storing the PDU of the MMS message.
@@ -316,10 +316,10 @@ sms.downloadMms(context, mmsPars, async(err: BusinessError) =>{
 Stage model:
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import mms from '@ohos.telephony.sms';
-import { BusinessError } from '@ohos.base';
-import window from '@ohos.window';
+import { UIAbility } from '@kit.AbilityKit';
+import { sms } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { window } from '@kit.ArkUI';
 
 // Configure the path for storing the PDU of the MMS message.
 const sandBoxPath = '/data/storage/el2/base/files/';
@@ -329,13 +329,13 @@ let filePath  = sandBoxPath + 'RetrieveConf.mms';
 let wapPushUrl  = 'URL';
 
 // Configure the MMS user agent and profile. The default values are ua and uaprof, respectively. The configuration is subject to the carrier's requirements. 
-let mmsConf: mms.MmsConfig = {
+let mmsConf: sms.MmsConfig = {
   userAgent:'ua',
   userAgentProfile: 'uaprof'
 };
 
 // Configure the parameters (including the callback) for downloading MMS messages.
-let mmsPars: mms.MmsParams = {
+let mmsPars: sms.MmsParams = {
   slotId : 0,
   mmsc: wapPushUrl,
   data: filePath,
@@ -399,11 +399,11 @@ For details about the error codes, see [Telephony Error Codes](errorcode-telepho
 FA model:
 
 ```ts
-import sms from '@ohos.telephony.sms';
-import { BusinessError } from '@ohos.base';
-import common from '@ohos.app.ability.common';
+import { sms } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common, featureAbility } from '@kit.AbilityKit';
+
 // Obtain the context.
-import featureAbility from '@ohos.ability.featureAbility';
 let context: common.BaseContext = featureAbility.getContext();
 
 // Configure the path for storing the PDU of the MMS message.
@@ -436,10 +436,10 @@ promise.then(() => {
 Stage model:
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import sms from '@ohos.telephony.sms';
-import { BusinessError } from '@ohos.base';
-import window from '@ohos.window';
+import { UIAbility } from '@kit.AbilityKit';
+import { sms } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { window } from '@kit.ArkUI';
 
 // Configure the path for storing the PDU of the MMS message.
 const sandBoxPath = '/data/storage/el2/base/files/';
@@ -512,8 +512,8 @@ For details about the error codes, see [Telephony Error Codes](errorcode-telepho
 **Example**
 
 ```ts
-import sms from '@ohos.telephony.sms';
-import { BusinessError } from '@ohos.base';
+import { sms } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 sms.setDefaultSmsSlotId(0, (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}.`);
@@ -563,8 +563,8 @@ For details about the error codes, see [Telephony Error Codes](errorcode-telepho
 **Example**
 
 ```ts
-import sms from '@ohos.telephony.sms';
-import { BusinessError } from '@ohos.base';
+import { sms } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 sms.setDefaultSmsSlotId(0).then(() => {
     console.log(`setDefaultSmsSlotId success.`);
@@ -610,8 +610,8 @@ For details about the error codes, see [Telephony Error Codes](errorcode-telepho
 **Example**
 
 ```ts
-import sms from '@ohos.telephony.sms';
-import { BusinessError } from '@ohos.base';
+import { sms } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotId: number = 0;
 let smscAddr: string = '+861xxxxxxxxxx';
@@ -663,8 +663,8 @@ For details about the error codes, see [Telephony Error Codes](errorcode-telepho
 **Example**
 
 ```ts
-import sms from '@ohos.telephony.sms';
-import { BusinessError } from '@ohos.base';
+import { sms } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotId: number = 0;
 let smscAddr: string = '+861xxxxxxxxxx';
@@ -712,8 +712,8 @@ For details about the error codes, see [Telephony Error Codes](errorcode-telepho
 **Example**
 
 ```ts
-import sms from '@ohos.telephony.sms';
-import { BusinessError } from '@ohos.base';
+import { sms } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotId: number = 0;
 sms.getSmscAddr(slotId, (err: BusinessError, data: string) => {
@@ -763,8 +763,8 @@ For details about the error codes, see [Telephony Error Codes](errorcode-telepho
 **Example**
 
 ```ts
-import sms from '@ohos.telephony.sms';
-import { BusinessError } from '@ohos.base';
+import { sms } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotId: number = 0;
 sms.getSmscAddr(slotId).then((data: string) => {
@@ -811,8 +811,8 @@ For details about the error codes, see [Telephony Error Codes](errorcode-telepho
 **Example**
 
 ```ts
-import sms from '@ohos.telephony.sms';
-import { BusinessError } from '@ohos.base';
+import { sms } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let content: string = "long message";
 sms.splitMessage(content, (err: BusinessError, data: string[]) => {
@@ -862,8 +862,8 @@ For details about the error codes, see [Telephony Error Codes](errorcode-telepho
 **Example**
 
 ```ts
-import sms from '@ohos.telephony.sms';
-import { BusinessError } from '@ohos.base';
+import { sms } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let content: string = "long message";
 let promise = sms.splitMessage(content);
@@ -910,8 +910,8 @@ For details about the error codes, see [Telephony Error Codes](errorcode-telepho
 **Example**
 
 ```ts
-import sms from '@ohos.telephony.sms';
-import { BusinessError } from '@ohos.base';
+import { sms } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let simMessageOptions: sms.SimMessageOptions = {
     slotId: 0,
@@ -966,8 +966,8 @@ For details about the error codes, see [Telephony Error Codes](errorcode-telepho
 **Example**
 
 ```ts
-import sms from '@ohos.telephony.sms';
-import { BusinessError } from '@ohos.base';
+import { sms } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let simMessageOptions: sms.SimMessageOptions = {
     slotId: 0,
@@ -1019,8 +1019,8 @@ For details about the error codes, see [Telephony Error Codes](errorcode-telepho
 **Example**
 
 ```ts
-import sms from '@ohos.telephony.sms';
-import { BusinessError } from '@ohos.base';
+import { sms } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotId: number = 0;
 let msgIndex: number = 1;
@@ -1072,8 +1072,8 @@ For details about the error codes, see [Telephony Error Codes](errorcode-telepho
 **Example**
 
 ```ts
-import sms from '@ohos.telephony.sms';
-import { BusinessError } from '@ohos.base';
+import { sms } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotId: number = 0;
 let msgIndex: number = 1;
@@ -1121,8 +1121,8 @@ For details about the error codes, see [Telephony Error Codes](errorcode-telepho
 **Example**
 
 ```ts
-import sms from '@ohos.telephony.sms';
-import { BusinessError } from '@ohos.base';
+import { sms } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let updateSimMessageOptions: sms.UpdateSimMessageOptions = {
     slotId: 0,
@@ -1178,8 +1178,8 @@ For details about the error codes, see [Telephony Error Codes](errorcode-telepho
 **Example**
 
 ```ts
-import sms from '@ohos.telephony.sms';
-import { BusinessError } from '@ohos.base';
+import { sms } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let updateSimMessageOptions: sms.UpdateSimMessageOptions = {
     slotId: 0,
@@ -1232,8 +1232,8 @@ For details about the error codes, see [Telephony Error Codes](errorcode-telepho
 **Example**
 
 ```ts
-import sms from '@ohos.telephony.sms';
-import { BusinessError } from '@ohos.base';
+import { sms } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotId: number = 0;
 sms.getAllSimMessages(slotId, (err: BusinessError, data: sms.SimShortMessage[]) => {
@@ -1283,8 +1283,8 @@ For details about the error codes, see [Telephony Error Codes](errorcode-telepho
 **Example**
 
 ```ts
-import sms from '@ohos.telephony.sms';
-import { BusinessError } from '@ohos.base';
+import { sms } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotId: number = 0;
 let promise = sms.getAllSimMessages(slotId);
@@ -1331,8 +1331,8 @@ For details about the error codes, see [Telephony Error Codes](errorcode-telepho
 **Example**
 
 ```ts
-import sms from '@ohos.telephony.sms';
-import { BusinessError } from '@ohos.base';
+import { sms } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let cbConfigOptions: sms.CBConfigOptions = {
     slotId: 0,
@@ -1388,8 +1388,8 @@ For details about the error codes, see [Telephony Error Codes](errorcode-telepho
 **Example**
 
 ```ts
-import sms from '@ohos.telephony.sms';
-import { BusinessError } from '@ohos.base';
+import { sms } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let cbConfigOptions: sms.CBConfigOptions = {
     slotId: 0,
@@ -1441,8 +1441,8 @@ For details about the error codes, see [Telephony Error Codes](errorcode-telepho
 **Example**
 
 ```ts
-import sms from '@ohos.telephony.sms';
-import { BusinessError } from '@ohos.base';
+import { sms } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotId: number = 0;
 sms.getSmsSegmentsInfo(slotId, "message", false, (err: BusinessError, data: sms.SmsSegmentsInfo) => {
@@ -1491,8 +1491,8 @@ For details about the error codes, see [Telephony Error Codes](errorcode-telepho
 **Example**
 
 ```ts
-import sms from '@ohos.telephony.sms';
-import { BusinessError } from '@ohos.base';
+import { sms } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotId: number = 0;
 let promise = sms.getSmsSegmentsInfo(slotId, "message", false);
@@ -1536,8 +1536,8 @@ For details about the error codes, see [Telephony Error Codes](errorcode-telepho
 **Example**
 
 ```ts
-import sms from '@ohos.telephony.sms';
-import { BusinessError } from '@ohos.base';
+import { sms } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotId: number = 0;
 sms.isImsSmsSupported(slotId, (err: BusinessError, data: boolean) => {
@@ -1584,8 +1584,8 @@ For details about the error codes, see [Telephony Error Codes](errorcode-telepho
 **Example**
 
 ```ts
-import sms from '@ohos.telephony.sms';
-import { BusinessError } from '@ohos.base';
+import { sms } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotId: number = 0;
 let promise = sms.isImsSmsSupported(slotId);
@@ -1628,8 +1628,8 @@ For details about the error codes, see [Telephony Error Codes](errorcode-telepho
 **Example**
 
 ```ts
-import sms from '@ohos.telephony.sms';
-import { BusinessError } from '@ohos.base';
+import { sms } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 sms.getImsShortMessageFormat((err: BusinessError, data: string) => {
       console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
@@ -1667,8 +1667,8 @@ For details about the error codes, see [Telephony Error Codes](errorcode-telepho
 **Example**
 
 ```ts
-import sms from '@ohos.telephony.sms';
-import { BusinessError } from '@ohos.base';
+import { sms } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 sms.getImsShortMessageFormat().then((data: string) => {
     console.log(`getImsShortMessageFormat success, promise: data->${JSON.stringify(data)}`);
@@ -1710,8 +1710,8 @@ For details about the error codes, see [Telephony Error Codes](errorcode-telepho
 **Example**
 
 ```ts
-import sms from '@ohos.telephony.sms';
-import { BusinessError } from '@ohos.base';
+import { sms } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let mmsFilePathName: string = "filename";
 sms.decodeMms(mmsFilePathName, (err: BusinessError, data: sms.MmsInformation) => {
@@ -1763,8 +1763,8 @@ For details about the error codes, see [Telephony Error Codes](errorcode-telepho
 **Example**
 
 ```ts
-import sms from '@ohos.telephony.sms';
-import { BusinessError } from '@ohos.base';
+import { sms } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let mmsFilePathName: string = "filename";
 let promise = sms.decodeMms(mmsFilePathName);
@@ -1816,8 +1816,8 @@ For details about the error codes, see [Telephony Error Codes](errorcode-telepho
 **Example**
 
 ```ts
-import sms from '@ohos.telephony.sms';
-import { BusinessError } from '@ohos.base';
+import { sms } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let mmsAcknowledgeInd: sms.MmsAcknowledgeInd = {
     transactionId: "100",
@@ -1872,8 +1872,8 @@ For details about the error codes, see [Telephony Error Codes](errorcode-telepho
 **Example**
 
 ```ts
-import sms from '@ohos.telephony.sms';
-import { BusinessError } from '@ohos.base';
+import { sms } from '@kit.TelephonyKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let mmsAcknowledgeInd: sms.MmsAcknowledgeInd = {
     transactionId: "100",
@@ -2356,5 +2356,3 @@ Defines the SMS message segment information.
 | encodeCount          | number                                   | Yes  | Encoding count.    |
 | encodeCountRemaining | number                                   | Yes  | Remaining encoding count.|
 | scheme               | [SmsEncodingScheme](#smsencodingscheme8) | Yes  | Encoding scheme.|
-
-<!--no_check-->

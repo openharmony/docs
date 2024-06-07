@@ -47,7 +47,7 @@
 
 - 通过await返回异步结果：
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
   
   async function doRand() {
     let rand = cryptoFramework.createRandom();
@@ -61,8 +61,8 @@
 
 - 同步返回结果：
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
-  import { BusinessError } from '@ohos.base';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   function doRandBySync() {
     let rand = cryptoFramework.createRandom();

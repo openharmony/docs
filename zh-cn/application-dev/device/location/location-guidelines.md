@@ -37,7 +37,7 @@ Location Kit接口对权限的要求参见：[Location Kit](../../reference/apis
 
 （1）应用如需使用ohos.permission.LOCATION_IN_BACKGROUND权限，需要在设置界面由用户手动授予，具体授权方式可参考[ohos.permission.LOCATION_IN_BACKGROUND权限说明](../../security/AccessToken/permissions-for-all.md#ohospermissionlocation_in_background)。
 
-（2）长时任务申请可参考：[长时任务介绍](../../task-management/continuous-task.md)，[长时任务开发示例](../../performance/reasonable-running-backgroundTask.md#长时任务)。
+（2）长时任务申请可参考：[长时任务介绍](../../task-management/continuous-task.md)<!--Del-->，[长时任务开发示例](../../performance/reasonable-running-backgroundTask.md#长时任务)<!--DelEnd-->。
 
 
 
@@ -45,7 +45,7 @@ Location Kit接口对权限的要求参见：[Location Kit](../../reference/apis
 
 ### 场景概述
 
-开发者可以调用OpenHarmony位置相关接口，获取设备实时位置，或者最近的历史位置。
+开发者可以调用OpenHarmony位置相关接口，获取设备实时位置，或者最近的历史位置，以及监听设备的位置变化。
 
 对于位置敏感的应用业务，建议获取设备实时位置信息。如果不需要设备实时位置信息，并且希望尽可能的节省耗电，开发者可以考虑获取最近的历史位置。
 
@@ -70,19 +70,19 @@ Location Kit接口对权限的要求参见：[Location Kit](../../reference/apis
 2. 导入geoLocationManager模块，所有与基础定位能力相关的功能API，都是通过该模块提供的。
    
    ```ts
-   import geoLocationManager from '@ohos.geoLocationManager';
+   import { geoLocationManager } from '@kit.LocationKit';
    ```
 3. 获取历史定位结果。
 
    如果应用使用场景不需要实时的设备位置，可以获取系统缓存的最近一次历史定位结果。
 
    ```ts
-   import geoLocationManager from '@ohos.geoLocationManager';
-   import BusinessError from "@ohos.base";
+   import { geoLocationManager } from '@kit.LocationKit';
+   import { BusinessError } from '@kit.BasicServicesKit'
    try {
        let location = geoLocationManager.getLastLocation();
    } catch (err) {
-       console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
+       console.error("errCode:" + JSON.stringify(err));
    }
    ```
    
@@ -90,82 +90,77 @@ Location Kit接口对权限的要求参见：[Location Kit](../../reference/apis
 
    LocationRequest中定义了2个变量scenario（方式一）和priority（方式二）用于指定定位服务类型。<br/>scenario（方式一）从用户活动场景角度进行定义，priority（方式二）从定位精度、定位速度和功耗等角度进行定义。<br/>如果开发者能明确用户的活动场景，可以选择方式一；如果开发者开发者需对定位精度、定位速度、功耗等有要求可以选择方式二。
 
-   <details>
-   <summary>方式一：</summary>
+    - 方式一：
 
-   为了面向开发者提供贴近其使用场景的API使用方式，系统定义了几种常见的位置能力使用场景，并针对使用场景做了适当的优化处理。系统当前支持场景如下表所示。
+        为了面向开发者提供贴近其使用场景的API使用方式，系统定义了几种常见的位置能力使用场景，并针对使用场景做了适当的优化处理。系统当前支持场景如下表所示。
 
-   ***定位场景类型说明***
-   
-   - 导航场景：NAVIGATION<br/>
-   适用于在户外获取设备实时位置的场景，如车载、步行导航。主要使用GNSS定位技术提供定位服务，功耗较高。
-   
-   - 轨迹跟踪场景：TRAJECTORY_TRACKING<br/>
-   适用于记录用户位置轨迹的场景，如运动类应用记录轨迹功能。主要使用GNSS定位技术提供定位服务，功耗较高。
-   
-   - 出行约车场景：CAR_HAILING<br/>
-   适用于用户出行打车时定位当前位置的场景，如网约车类应用。主要使用GNSS定位技术提供定位服务，功耗较高。
-   
-   当使用NAVIGATION/TRAJECTORY_TRACKING/CAR_HAILING场景时，如果用户在室内或车库等环境，我们会在GNSS提供稳定位置结果之前，使用网络定位技术（蜂窝基站、WLAN、蓝牙定位技术）向应用提供定位服务。
-   
-   - 生活服务场景：DAILY_LIFE_SERVICE<br/>
-   适用于不需要定位用户精确位置的使用场景，如新闻资讯、网购、点餐类应用。该场景仅使用网络定位技术提供定位服务，功耗较低。
-   
-   - 无功耗场景：NO_POWER<br/>
-   适用于不需要主动启动定位的业务。系统在响应其他应用启动定位并上报位置时，会同时向请求此场景的应用程序上报定位结果，当前的应用程序不产生定位功耗。
-
-
-   ```ts
-       export enum LocationRequestScenario {
-            UNSET = 0x300,//默认值
-            NAVIGATION,//导航场景
-            TRAJECTORY_TRACKING,//轨迹跟踪场景
-            CAR_HAILING,//出行约车场景
-            DAILY_LIFE_SERVICE,//生活服务场景
-            NO_POWER,//无功耗场景
-        }
-   ```
+        ***定位场景类型说明***
+        
+        - 导航场景：NAVIGATION<br/>
+        适用于在户外获取设备实时位置的场景，如车载、步行导航。主要使用GNSS定位技术提供定位服务，功耗较高。
+        
+        - 轨迹跟踪场景：TRAJECTORY_TRACKING<br/>
+        适用于记录用户位置轨迹的场景，如运动类应用记录轨迹功能。主要使用GNSS定位技术提供定位服务，功耗较高。
+        
+        - 出行约车场景：CAR_HAILING<br/>
+        适用于用户出行打车时定位当前位置的场景，如网约车类应用。主要使用GNSS定位技术提供定位服务，功耗较高。
+        
+        当使用NAVIGATION/TRAJECTORY_TRACKING/CAR_HAILING场景时，如果用户在室内或车库等环境，我们会在GNSS提供稳定位置结果之前，使用网络定位技术（蜂窝基站、WLAN、蓝牙定位技术）向应用提供定位服务。
+        
+        - 生活服务场景：DAILY_LIFE_SERVICE<br/>
+        适用于不需要定位用户精确位置的使用场景，如新闻资讯、网购、点餐类应用。该场景仅使用网络定位技术提供定位服务，功耗较低。
+        
+        - 无功耗场景：NO_POWER<br/>
+        适用于不需要主动启动定位的业务。系统在响应其他应用启动定位并上报位置时，会同时向请求此场景的应用程序上报定位结果，当前的应用程序不产生定位功耗。
 
 
-   以导航场景为例，实例化方式如下：
+        ```ts
+            export enum LocationRequestScenario {
+                    UNSET = 0x300, // 默认值 
+                    NAVIGATION, // 导航场景
+                    TRAJECTORY_TRACKING, // 轨迹跟踪场景
+                    CAR_HAILING, // 出行约车场景
+                    DAILY_LIFE_SERVICE, // 生活服务场景
+                    NO_POWER, // 无功耗场景
+                }
+        ```
 
-   ```ts
-   let requestInfo:geoLocationManager.LocationRequest = {'scenario': geoLocationManager.LocationRequestScenario.NAVIGATION, 'timeInterval': 1, 'distanceInterval': 0, 'maxAccuracy': 0};
-   ```
 
-   </details>
+        以导航场景为例，实例化方式如下：
 
-   <details>
-   <summary>方式二：</summary>
+        ```ts
+        let requestInfo:geoLocationManager.LocationRequest = {'scenario': geoLocationManager.LocationRequestScenario.NAVIGATION, 'timeInterval': 1, 'distanceInterval': 0, 'maxAccuracy': 0};
+        ```
 
-   如果定义的现有场景类型不能满足所需的开发场景，系统提供了基本的定位优先级策略类型。
+    - 方式二： 
 
-   ***定位优先级策略类型说明***
+        如果定义的现有场景类型不能满足所需的开发场景，系统提供了基本的定位优先级策略类型。
 
-   - 定位精度优先策略：ACCURACY<br/>
-      定位精度优先策略主要以GNSS定位技术为主，仅在长时间无法获取GNSS定位结果时使用网络定位技术。对设备的硬件资源消耗较大，功耗较大。
+        ***定位优先级策略类型说明***
 
-   - 低功耗定位优先策略：LOW_POWER<br/>
-      低功耗定位优先策略主要使用网络定位技术，在室内和户外场景均可提供定位服务，因为其依赖周边基站、可见WLAN、蓝牙设备的分布情况，定位结果的精度波动范围较大，推荐在对定位结果精度要求不高的场景下使用该策略，可以有效节省设备功耗。
+        - 定位精度优先策略：ACCURACY<br/>
+            定位精度优先策略主要以GNSS定位技术为主，仅在长时间无法获取GNSS定位结果时使用网络定位技术。对设备的硬件资源消耗较大，功耗较大。
 
-   - 快速定位优先策略：FIRST_FIX<br/>
-      快速定位优先策略会同时使用GNSS定位和网络定位技术，以便在室内和户外场景下均可以快速获取到位置结果；当各种定位技术都有提供位置结果时，系统会选择其中精度较好的结果返回给应用。因为对各种定位技术同时使用，对设备的硬件资源消耗较大，功耗也较大。
-      
-   ```ts
-       export enum LocationRequestPriority {
-            UNSET = 0x200,//默认值
-            ACCURACY,//定位精度优先策略
-            LOW_POWER,//低功耗定位优先策略
-            FIRST_FIX,//快速定位优先策略
-        }
-   ```
+        - 低功耗定位优先策略：LOW_POWER<br/>
+            低功耗定位优先策略主要使用网络定位技术，在室内和户外场景均可提供定位服务，因为其依赖周边基站、可见WLAN、蓝牙设备的分布情况，定位结果的精度波动范围较大，推荐在对定位结果精度要求不高的场景下使用该策略，可以有效节省设备功耗。
 
-   以定位精度优先策略为例，实例化方式如下：
+        - 快速定位优先策略：FIRST_FIX<br/>
+            快速定位优先策略会同时使用GNSS定位和网络定位技术，以便在室内和户外场景下均可以快速获取到位置结果；当各种定位技术都有提供位置结果时，系统会选择其中精度较好的结果返回给应用。因为对各种定位技术同时使用，对设备的硬件资源消耗较大，功耗也较大。
+            
+        ```ts
+            export enum LocationRequestPriority {
+                    UNSET = 0x200, // 默认值
+                    ACCURACY, // 定位精度优先策略
+                    LOW_POWER, // 低功耗定位优先策略
+                    FIRST_FIX, // 快速定位优先策略
+                }
+        ```
 
-   ```ts
-   let requestInfo:geoLocationManager.LocationRequest = {'priority': geoLocationManager.LocationRequestPriority.ACCURACY, 'timeInterval': 1, 'distanceInterval': 0, 'maxAccuracy': 0};
-   ```
-   </details>
+        以定位精度优先策略为例，实例化方式如下：
+
+        ```ts
+        let requestInfo:geoLocationManager.LocationRequest = {'priority': geoLocationManager.LocationRequestPriority.ACCURACY, 'timeInterval': 1, 'distanceInterval': 0, 'maxAccuracy': 0};
+        ```
 
 5. 实例化Callback对象，用于向系统提供位置上报的途径。
      应用需要自行实现系统定义好的回调接口，并将其实例化。系统在定位成功确定设备的实时位置结果时，会通过该接口上报给应用。应用程序可以在接口的实现中完成自己的业务逻辑。
@@ -197,19 +192,19 @@ Location Kit接口对权限的要求参见：[Location Kit](../../reference/apis
    [CurrentLocationRequest](../../reference/apis-location-kit/js-apis-geoLocationManager.md#currentlocationrequest)的实例化可以参考步骤4。
 
    ```ts
-   import geoLocationManager from '@ohos.geoLocationManager';
-   import BusinessError from "@ohos.base";
-   //实例化CurrentLocationRequest对象，指定快速定位优先策略，指定定位超时时间为5秒。
+   import { geoLocationManager } from '@kit.LocationKit';
+   import { BusinessError } from '@kit.BasicServicesKit'
+   // 实例化CurrentLocationRequest对象，指定快速定位优先策略，指定定位超时时间为5秒。
    let requestInfo:geoLocationManager.CurrentLocationRequest = {'priority': geoLocationManager.LocationRequestPriority.FIRST_FIX, 'scenario': geoLocationManager.LocationRequestScenario.UNSET, 'timeoutMs': 5000};
    try {
-       geoLocationManager.getCurrentLocation(requestInfo).then((result) => {//调用getCurrentLocation获取当前设备位置，通过promise接收上报的位置
+       geoLocationManager.getCurrentLocation(requestInfo).then((result) => { // 调用getCurrentLocation获取当前设备位置，通过promise接收上报的位置
            console.log('current location: ' + JSON.stringify(result));
        })  
-       .catch((error:BusinessError.BusinessError) => {//接收上报的错误码
+       .catch((error:BusinessError.BusinessError) => { // 接收上报的错误码
            console.error('promise, getCurrentLocation: error=' + JSON.stringify(error));
        });
    } catch (err) {
-       console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
+       console.error("errCode:" + JSON.stringify(err));
    }
    ```
 
@@ -246,19 +241,19 @@ Location Kit接口对权限的要求参见：[Location Kit](../../reference/apis
 1. 导入geoLocationManager模块，所有与地理编码转化&逆地理编码转化能力相关的功能API，都是通过该模块提供的。
    
    ```ts
-   import geoLocationManager from '@ohos.geoLocationManager';
+   import { geoLocationManager } from '@kit.LocationKit';
    ```
 
 2. 查询地理编码与逆地理编码服务是否可用。
    - 调用isGeoServiceAvailable查询地理编码与逆地理编码服务是否可用，如果服务可用再继续进行步骤3。如果服务不可用，说明该设备不具备地理编码与逆地理编码能力，请勿使用相关接口。
      
       ```ts
-      import geoLocationManager from '@ohos.geoLocationManager';
-      import BusinessError from "@ohos.base";
+      import { geoLocationManager } from '@kit.LocationKit';
+      import { BusinessError } from '@kit.BasicServicesKit'
       try {
           let isAvailable = geoLocationManager.isGeocoderAvailable();
       } catch (err) {
-          console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
+          console.error("errCode:" + JSON.stringify(err));
       }
       ```
 
@@ -276,7 +271,7 @@ Location Kit接口对权限的要求参见：[Location Kit](../../reference/apis
               }
           });
       } catch (err) {
-          console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
+          console.error("errCode:" + JSON.stringify(err));
       }
       ```
 
@@ -293,7 +288,7 @@ Location Kit接口对权限的要求参见：[Location Kit](../../reference/apis
               }
           });
       } catch (err) {
-          console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
+          console.error("errCode:" + JSON.stringify(err));
       }
       ```
 
@@ -330,9 +325,9 @@ Location Kit接口对权限的要求参见：[Location Kit](../../reference/apis
 2. 导入geoLocationManager模块、wantAgent模块和BusinessError模块。
    
    ```ts
-   import geoLocationManager from '@ohos.geoLocationManager';
-   import wantAgent, {WantAgent as _wantAgent} from '@ohos.app.ability.wantAgent';
-   import BusinessError from "@ohos.base";
+   import { geoLocationManager } from '@kit.LocationKit';
+   import { wantAgent } from '@kit.AbilityKit';
+   import { BusinessError } from '@kit.BasicServicesKit'
    ```
 
 3. 创建WantAgentInfo信息。
@@ -397,7 +392,7 @@ Location Kit接口对权限的要求参见：[Location Kit](../../reference/apis
        try {
            geoLocationManager.on('gnssFenceStatusChange', requestInfo, wantAgentObj);
        } catch (err) {
-           console.error("errCode:" + (err as BusinessError.BusinessError).code + ",errMessage:" + (err as BusinessError.BusinessError).message);
+           console.error("errCode:" + JSON.stringify(err));
        }
    });
    ```

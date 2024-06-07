@@ -68,7 +68,7 @@
    export default class EntryAbility extends UIAbility {
      onWindowStageCreate(windowStage: window.WindowStage) {
        // 获取文件沙箱路径
-       let filePath = this.context.filesDir + '/test.txt';
+       let filePath = this.context.filesDir + '/test1.txt';
        // 将沙箱路径转换为uri
        let uri = fileUri.getUriFromPath(filePath);
        let want: Want  = {

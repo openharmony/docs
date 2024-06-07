@@ -22,6 +22,7 @@
    ```ts
    import common from '@ohos.app.ability.common';
    import EnvironmentCallback from '@ohos.app.ability.EnvironmentCallback';
+   import { BusinessError } from '@ohos.base';
    import hilog from '@ohos.hilog';
    import { Configuration } from '@ohos.app.ability.Configuration';
    
@@ -53,7 +54,13 @@
            hilog.info(DOMAIN_NUMBER, TAG, `onMemoryLevel level: ${level}`);
          }
        }
-       this.callbackId = applicationContext.on('environment', environmentCallback);
+       try {
+         this.callbackId = applicationContext.on('environment', environmentCallback);
+       } catch (err) {
+         let code = (err as BusinessError).code;
+         let message = (err as BusinessError).message;
+         hilog.error(DOMAIN_NUMBER, TAG, `Failed to register applicationContext. Code is ${code}, message is ${message}`);
+       };
      }
    
      // 页面展示
@@ -67,6 +74,11 @@
 
    ```ts
    import common from '@ohos.app.ability.common';
+   import { BusinessError } from '@ohos.base';
+   import hilog from '@ohos.hilog';
+
+   const TAG: string = '[CollaborateAbility]';
+   const DOMAIN_NUMBER: number = 0xFF00;
    
    @Entry
    @Component
@@ -76,7 +88,14 @@
    
      unsubscribeConfigurationUpdate() {
        let applicationContext = this.context.getApplicationContext();
-       applicationContext.off('environment', this.callbackId);
+       try {
+          applicationContext.off('environment', this.callbackId);
+       } catch (err) {
+          let code = (err as BusinessError).code;
+          let message = (err as BusinessError).message;
+          hilog.error(DOMAIN_NUMBER, TAG, `Failed to unregister applicationContext. Code is ${code}, message is ${message}`);
+       };
+
      }
    
      // 页面展示
@@ -162,7 +181,6 @@ export default class EntryAbility extends UIAbility {
       systemLanguage = newConfig.language; // 将变化之后的系统语言保存，作为下一次变化前的系统语言
     }
   }
-
   // ...
 }
 ```
@@ -180,10 +198,14 @@ ExtensionAbility组件提供了`onConfigurationUpdate()`回调方法用于订阅
 ```ts
 import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
 import { Configuration } from '@ohos.app.ability.Configuration';
+import hilog from '@ohos.hilog';
+
+const TAG: string = '[EntryAbility]';
+const DOMAIN_NUMBER: number = 0xFF00;
 
 export default class EntryFormAbility extends FormExtensionAbility {
-  onConfigurationUpdate(newConfig: Configuration) {
-    console.info(`newConfig is ${JSON.stringify(newConfig)}`);
+  onConfigurationUpdate(config: Configuration) {
+    hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onConfigurationUpdate:' + JSON.stringify(config));
   }
 
   // ...

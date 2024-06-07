@@ -13,7 +13,7 @@ To subscribe to call status changes, use [`observer.on('callStateChange')`](js-a
 ## Modules to Import
 
 ```ts
-import call from '@ohos.telephony.call';
+import { call } from '@kit.TelephonyKit';
 ```
 
 ## call.dialCall<sup>9+</sup>
@@ -54,7 +54,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.dialCall("138xxxxxxxx", (err: BusinessError) => {
     if (err) {
@@ -105,7 +105,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let dialCallOptions: call.DialCallOptions = {
     accountId: 0,
@@ -167,7 +167,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let dialCallOptions: call.DialCallOptions = {
     accountId: 0,
@@ -218,7 +218,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.muteRinger((err: BusinessError) => {
     if (err) {
@@ -263,7 +263,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.muteRinger().then(() => {
     console.log(`muteRinger success.`);
@@ -309,7 +309,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.answerCall(1, (err: BusinessError) => {
     if (err) {
@@ -362,7 +362,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.answerCall(1).then(() => {
     console.log(`answerCall success.`);
@@ -407,7 +407,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.answerCall((err: BusinessError) => {
     if (err) {
@@ -455,7 +455,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.hangUpCall(1, (err: BusinessError) => {
     if (err) {
@@ -508,7 +508,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.hangUpCall(1).then(() => {
     console.log(`hangUpCall success.`);
@@ -554,7 +554,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.hangUpCall((err: BusinessError) => {
     if (err) {
@@ -603,7 +603,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.rejectCall(1, (err: BusinessError) => {
     if (err) {
@@ -652,7 +652,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let rejectMessageOptions : call.RejectMessageOptions = {
     messageContent: "Unknown number blocked"
@@ -709,7 +709,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let rejectMessageOptions: call.RejectMessageOptions = {
     messageContent: "Unknown number blocked"
@@ -757,7 +757,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.rejectCall((err: BusinessError) => {
     if (err) {
@@ -805,7 +805,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let rejectMessageOptions: call.RejectMessageOptions = {
     messageContent: "Unknown number blocked"
@@ -856,7 +856,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.holdCall(1, (err: BusinessError) => {
     if (err) {
@@ -909,7 +909,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.holdCall(1).then(() => {
     console.log(`holdCall success.`);
@@ -954,7 +954,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.unHoldCall(1, (err: BusinessError) => {
     if (err) {
@@ -1007,7 +1007,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.unHoldCall(1).then(() => {
     console.log(`unHoldCall success.`);
@@ -1052,7 +1052,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.switchCall(1, (err: BusinessError) => {
     if (err) {
@@ -1105,7 +1105,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.switchCall(1).then(() => {
     console.log(`switchCall success.`);
@@ -1148,7 +1148,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.combineConference(1, (err: BusinessError) => {
     if (err) {
@@ -1199,7 +1199,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.combineConference(1).then(() => {
     console.log(`combineConference success.`);
@@ -1244,7 +1244,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.kickOutFromConference(1, (err: BusinessError) => {
     if (err) {
@@ -1296,7 +1296,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.kickOutFromConference(1).then(() => {
     console.log(`kickOutFromConference success.`);
@@ -1339,7 +1339,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.getMainCallId(1, (err: BusinessError, data: number) => {
     if (err) {
@@ -1390,7 +1390,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.getMainCallId(1).then((data: number) => {
     console.log(`getMainCallId success, promise: data->${JSON.stringify(data)}`);
@@ -1432,7 +1432,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.getSubCallIdList(1, (err: BusinessError, data: Array<string>) => {
     if (err) {
@@ -1482,7 +1482,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.getSubCallIdList(1).then((data: Array<string>) => {
     console.log(`getSubCallIdList success, promise: data->${JSON.stringify(data)}`);
@@ -1524,7 +1524,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.getCallIdListForConference(1, (err: BusinessError, data: Array<string>) => {
     if (err) {
@@ -1574,7 +1574,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.getCallIdListForConference(1).then((data: Array<string>) => {
     console.log(`getCallIdListForConference success, promise: data->${JSON.stringify(data)}`);
@@ -1619,7 +1619,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.getCallWaitingStatus(0, (err: BusinessError, data: call.CallWaitingStatus) => {
     if (err) {
@@ -1672,7 +1672,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.getCallWaitingStatus(0).then((data: call.CallWaitingStatus) => {
     console.log(`getCallWaitingStatus success, promise: data->${JSON.stringify(data)}`);
@@ -1718,7 +1718,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.setCallWaiting(0, true, (err: BusinessError) => {
     if (err) {
@@ -1772,7 +1772,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.setCallWaiting(0, true).then(() => {
     console.log(`setCallWaiting success.`);
@@ -1815,7 +1815,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.startDTMF(1, "0", (err: BusinessError) => {
     if (err) {
@@ -1866,7 +1866,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.startDTMF(1, "0").then(() => {
     console.log(`startDTMF success.`);
@@ -1908,7 +1908,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.stopDTMF(1, (err: BusinessError) => {
     if (err) {
@@ -1958,7 +1958,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.stopDTMF(1).then(() => {
     console.log(`stopDTMF success.`);
@@ -2007,7 +2007,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.postDialProceed(1, true, (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
@@ -2060,7 +2060,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.postDialProceed(1, true).then(() => {
     console.log(`postDialProceed success.`);
@@ -2104,7 +2104,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.isInEmergencyCall((err: BusinessError, data: boolean) => {
     if (err) {
@@ -2149,7 +2149,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.isInEmergencyCall().then((data: boolean) => {
     console.log(`isInEmergencyCall success, promise: data->${JSON.stringify(data)}`);
@@ -2684,7 +2684,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.isNewCallAllowed((err: BusinessError, data: boolean) => {
     if (err) {
@@ -2726,7 +2726,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.isNewCallAllowed().then((data: boolean) => {
     console.log(`isNewCallAllowed success, promise: data->${JSON.stringify(data)}`);
@@ -2769,7 +2769,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.separateConference(1, (err: BusinessError) => {
     if (err) {
@@ -2820,7 +2820,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.separateConference(1).then(() => {
     console.log(`separateConference success.`);
@@ -2866,7 +2866,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.getCallRestrictionStatus(0, 1, (err: BusinessError, data: call.RestrictionStatus) => {
     if (err) {
@@ -2920,7 +2920,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.getCallRestrictionStatus(0, 1).then((data: call.RestrictionStatus) => {
     console.log(`getCallRestrictionStatus success, promise: data->${JSON.stringify(data)}`);
@@ -2966,7 +2966,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let callRestrictionInfo: call.CallRestrictionInfo = {
     type: call.CallRestrictionType.RESTRICTION_TYPE_ALL_OUTGOING,
@@ -3025,7 +3025,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let callRestrictionInfo: call.CallRestrictionInfo = {
     type: call.CallRestrictionType.RESTRICTION_TYPE_ALL_INCOMING,
@@ -3077,7 +3077,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.setCallRestrictionPassword(0, "123456", "654321", (err: BusinessError) => {
     if (err) {
@@ -3131,7 +3131,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.setCallRestrictionPassword(0, "123456", "654321").then(() => {
     console.log(`setCallRestrictionPassword success.`);
@@ -3177,7 +3177,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.getCallTransferInfo(0, call.CallTransferType.TRANSFER_TYPE_BUSY, (err: BusinessError, data: call.CallTransferResult) => {
     if (err) {
@@ -3231,7 +3231,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.getCallTransferInfo(0, call.CallTransferType.TRANSFER_TYPE_BUSY).then((data: call.CallTransferResult) => {
     console.log(`getCallTransferInfo success, promise: data->${JSON.stringify(data)}`);
@@ -3277,7 +3277,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let callTransferInfo: call.CallTransferInfo = {
     transferNum: "111",
@@ -3336,7 +3336,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let callTransferInfo: call.CallTransferInfo = {
     transferNum: "111",
@@ -3385,7 +3385,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.isRinging((err: BusinessError, data: boolean) => {
     if (err) {
@@ -3430,7 +3430,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.isRinging().then((data: boolean) => {
     console.log(`isRinging success, promise: data->${JSON.stringify(data)}`);
@@ -3471,7 +3471,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.setMuted((err: BusinessError) => {
     if (err) {
@@ -3513,7 +3513,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.setMuted().then(() => {
     console.log(`setMuted success.`);
@@ -3554,7 +3554,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.cancelMuted((err: BusinessError) => {
     if (err) {
@@ -3596,7 +3596,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.cancelMuted().then(() => {
     console.log(`cancelMuted success.`);
@@ -3641,7 +3641,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let audioDevice: call.AudioDevice = {
     deviceType: call.AudioDeviceType.DEVICE_EARPIECE
@@ -3696,7 +3696,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let audioDevice: call.AudioDevice = {
     deviceType: call.AudioDeviceType.DEVICE_EARPIECE
@@ -3742,7 +3742,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let callNumberList: Array<string> = [
     "138XXXXXXXX"
@@ -3795,7 +3795,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let callNumberList: Array<string> = [
     "138XXXXXXXX"
@@ -3841,7 +3841,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.updateImsCallMode(1, 1, (err: BusinessError) => {
     if (err) {
@@ -3891,7 +3891,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.updateImsCallMode(1, 1).then(() => {
     console.log(`updateImsCallMode success.`);
@@ -3936,7 +3936,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.enableImsSwitch(0, (err: BusinessError) => {
     if (err) {
@@ -3988,7 +3988,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.enableImsSwitch(0).then(() => {
     console.log(`enableImsSwitch success.`);
@@ -4033,7 +4033,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.disableImsSwitch(0, (err: BusinessError) => {
     if (err) {
@@ -4085,7 +4085,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.disableImsSwitch(0).then(() => {
     console.log(`disableImsSwitch success.`);
@@ -4127,7 +4127,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.isImsSwitchEnabled(0, (err: BusinessError, data: boolean) => {
     if (err) {
@@ -4176,7 +4176,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.isImsSwitchEnabled(0).then((data: boolean) => {
     console.log(`isImsSwitchEnabled success, promise: data->${JSON.stringify(data)}`);
@@ -4222,7 +4222,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotId: number = 0;
 call.closeUnfinishedUssd(slotId, (err: BusinessError) => {
@@ -4275,7 +4275,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotId: number = 0;
 call.closeUnfinishedUssd(slotId).then(() => {
@@ -4323,7 +4323,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotId: number = 0;
 let state: call.VoNRState = call.VoNRState.VONR_STATE_ON;
@@ -4379,7 +4379,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotId: number = 0;
 let state: call.VoNRState = call.VoNRState.VONR_STATE_ON;
@@ -4427,7 +4427,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotId: number = 0;
 call.getVoNRState(slotId, (err: BusinessError, data: call.VoNRState) => {
@@ -4481,7 +4481,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotId: number = 0;
 call.getVoNRState(slotId).then((data: call.VoNRState) => {
@@ -4528,7 +4528,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotId: number = 0;
 call.canSetCallTransferTime(slotId, (err: BusinessError, data: boolean) => {
@@ -4582,7 +4582,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotId: number = 0;
 call.canSetCallTransferTime(slotId).then((data: boolean) => {
@@ -4628,7 +4628,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.inputDialerSpecialCode('2846579', (err: BusinessError) => {
     if (err) {
@@ -4679,7 +4679,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     call.inputDialerSpecialCode('2846579');
@@ -4724,7 +4724,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.removeMissedIncomingCallNotification((err: BusinessError) => {
     if (err) {
@@ -4769,7 +4769,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.removeMissedIncomingCallNotification().then(() => {
     console.log(`removeMissedIncomingCallNotification success`);
@@ -5380,7 +5380,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.answerCall(0, 1).then(() => {
     console.log(`answerCall success.`);
@@ -5430,7 +5430,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.cancelCallUpgrade(1).then(() => {
     console.log(`cancelCallUpgrade success.`);
@@ -5481,7 +5481,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.controlCamera(1, "1").then(() => {
     console.log(`controlCamera success.`);
@@ -5532,7 +5532,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.setPreviewSurface(1, "surfaceId1").then(() => {
     console.log(`setPreviewSurface success.`);
@@ -5583,7 +5583,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.setDisplaySurface(1, "surfaceId1").then(() => {
     console.log(`setDisplaySurface success.`);
@@ -5634,7 +5634,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.setDeviceDirection(1, 0).then(() => {
     console.log(`setDeviceDirection success.`);
@@ -5679,7 +5679,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.on('imsCallModeChange', (data: call.ImsCallModeInfo) => {
     console.log(`callback: data->${JSON.stringify(data)}`);
@@ -5722,7 +5722,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.off('imsCallModeChange', (data: call.ImsCallModeInfo) => {
     console.log(`callback: data->${JSON.stringify(data)}`);
@@ -5765,7 +5765,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.on('callSessionEvent', (data: call.CallSessionEvent) => {
     console.log(`callback: data->${JSON.stringify(data)}`);
@@ -5808,7 +5808,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.off('callSessionEvent', (data: call.CallSessionEvent) => {
     console.log(`callback: data->${JSON.stringify(data)}`);
@@ -5851,7 +5851,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.on('peerDimensionsChange', (data: call.PeerDimensionsDetail) => {
     console.log(`callback: data->${JSON.stringify(data)}`);
@@ -5894,7 +5894,7 @@ For details about the error codes, see [ohos.telephony (Telephony) Error Codes](
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 call.off('peerDimensionsChange', (data: call.PeerDimensionsDetail) => {
     console.log(`callback: data->${JSON.stringify(data)}`);

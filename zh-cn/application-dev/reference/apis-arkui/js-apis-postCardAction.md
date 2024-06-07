@@ -35,7 +35,9 @@ action参数说明：
 >
 >"action"为"call"&nbsp;类型时，"params"需填入参数'method'，且类型需为string类型，用于触发UIAbility中对应的方法。
 
-**示例：**
+**示例：** 
+
+<!--code_no_check-->
 
 ```ts
 Button('跳转')

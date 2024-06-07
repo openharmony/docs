@@ -6,6 +6,10 @@ Immersive window: a window display mode where the system windows (generally the 
 
 The immersive window feature is applicable only to the main window of an application in full-screen mode. It does not apply to a main window in any other mode or a subwindow (for example, a dialog box or a floating window).
 
+> **NOTE**
+>
+> Currently, immersive UI development supports window-level configuration, but not page-level configuration. If page redirection is required, you can set the immersive mode at the beginning of the page lifecycle, for example, in the **onPageShow** callback, and then restore the default settings when the page exits, for example, in the **onPageHide** callback.
+
 ## When to Use
 
 In the FA model, you can perform the following operations during application window development:

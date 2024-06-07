@@ -14,29 +14,29 @@
 
 1. 导入模块。
    ```ts
-   import I18n from '@ohos.i18n';
-   import { BusinessError } from '@ohos.base';
+   import { i18n } from '@kit.LocalizationKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    ```
 
 2. 获取系统语言、系统地区、系统区域。
    ```ts
    // 获取系统语言
    try {
-     let systemLanguage = I18n.System.getSystemLanguage();  // systemLanguage为当前系统语言
+     let systemLanguage = i18n.System.getSystemLanguage();  // systemLanguage为当前系统语言
    } catch(error) {
      console.error(`call System.getSystemLanguage failed, error code: ${error.code}, message: ${error.message}.`);
    }
    
    // 获取系统地区
    try {
-     let systemRegion = I18n.System.getSystemRegion();  // systemRegion为当前系统地区
+     let systemRegion = i18n.System.getSystemRegion();  // systemRegion为当前系统地区
    } catch(error) {
      console.error(`call System.getSystemRegion failed, error code: ${error.code}, message: ${error.message}.`);
    }
    
    // 获取系统区域
    try {
-     let systemLocale = I18n.System.getSystemLocale();  // systemLocale为当前系统区域
+     let systemLocale = i18n.System.getSystemLocale();  // systemLocale为当前系统区域
    } catch(error) {
      console.error(`call System.getSystemLocale failed, error code: ${error.code}, message: ${error.message}.`);
    }
@@ -46,7 +46,7 @@
    ```ts
    // 设置系统当前语言为 "zh"
    try {
-     I18n.System.setSystemLanguage('zh'); 
+     i18n.System.setSystemLanguage('zh'); 
    } catch(error) {
      let err: BusinessError = error as BusinessError;
      console.error(`call System.setSystemLanguage failed, error code: ${err.code}, message: ${err.message}.`);
@@ -54,7 +54,7 @@
    
    // 设置系统当前地区为 "CN"
    try {
-     I18n.System.setSystemRegion('CN'); 
+     i18n.System.setSystemRegion('CN'); 
    } catch(error) {
      let err: BusinessError = error as BusinessError;
      console.error(`call System.setSystemRegion failed, error code: ${err.code}, message: ${err.message}.`);
@@ -62,7 +62,7 @@
    
    // 设置系统当前区域为 "zh-Hans-CN"
    try {
-     I18n.System.setSystemLocale('zh-Hans-CN'); 
+     i18n.System.setSystemLocale('zh-Hans-CN'); 
    } catch(error) {
      let err: BusinessError = error as BusinessError;
      console.error(`call System.setSystemLocale failed, error code: ${err.code}, message: ${err.message}.`);

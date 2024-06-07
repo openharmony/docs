@@ -5,9 +5,6 @@ HiAppEvent提供接口用于订阅系统崩溃事件。
 - [订阅崩溃事件（ArkTS）](hiappevent-watcher-crash-events-arkts.md)
 - [订阅崩溃事件（C/C++）](hiappevent-watcher-crash-events-ndk.md)
 
-> **说明：**
-> 若应用崩溃导致应用退出，需要再次点击设备桌面的“应用图标”运行应用工程，等待一分钟左右获取到崩溃事件。
-
 崩溃事件信息中params属性的详细描述如下：
 
 **params属性：**
@@ -21,7 +18,7 @@ HiAppEvent提供接口用于订阅系统崩溃事件。
 | bundle_name | string | 应用名称。 |
 | pid | number | 应用的进程id。|
 | uid | number | 应用的用户id。 |
-| uuid | string | 用户标识id。 |
+| uuid | string | 故障id。 |
 | exception | object | 异常信息，详见exception属性。NativeCrash类型的崩溃事件详见exception属性（NativeCrash类型）。 |
 | hilog | string[] | 日志信息。|
 | threads | object[] | 全量线程调用栈，详见thread属性。仅NativeCrash类型的崩溃事件提供。 |

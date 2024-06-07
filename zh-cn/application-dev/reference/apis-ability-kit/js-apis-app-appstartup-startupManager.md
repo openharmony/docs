@@ -1,6 +1,6 @@
 # @ohos.app.appstartup.startupManager
 
-本模块提供应用启动框架管理待初始化组件的能力。
+本模块提供应用启动框架管理待初始化组件的能力，只能在主线程调用。
 
 > **说明：**
 >
@@ -11,7 +11,7 @@
 ## 导入模块
 
 ```ts
-import startupManager  from '@ohos.app.appstartup.startupManager';
+import { startupManager }  from '@kit.AbilityKit';
 ```
 
 ## startupManager.run
@@ -32,48 +32,44 @@ run(startupTasks: Array\<string\>, config?: StartupConfig): Promise\<void\>
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise<void> | Promise对象。无返回结果的Promise对象。 |
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
   | 错误码ID | 错误信息 |
   | ------- | -------------------------------- |
-  | 401 | If the input parameter is not valid parameter. |
+  | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
   | 16000050 | Internal error. |
   | 28800001 | Startup task or its dependency not found. |
   | 28800002  | The startup tasks have circular dependencies. |
   | 28800003 | An error occurred while running the startup tasks. |
   | 28800004 | Running startup tasks timeout. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
-
 **示例：**：
 
 ```ts
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import startupManager from '@ohos.app.appstartup.startupManager';
-import StartupConfig from '@ohos.app.appstartup.StartupConfig';
-import StartupListener from '@ohos.app.appstartup.StartupListener';
+import { AbilityConstant, UIAbility, Want, startupManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-    let startup = startupManager;
     let startParams = 'Sample_001';
     try {
-        startup.run(startParams).then(() => {
+      startupManager.run([startParams]).then(() => {
         console.log('StartupTest startupManager run then, startParams = ')
-        }).catch(error => {
+      }).catch((error: BusinessError) => {
         console.info("StartupTest promise catch error, error = " + JSON.stringify(error));
         console.info("StartupTest promise catch error, startParams = "
-            + JSON.stringify(startParams));
-        })
+          + JSON.stringify(startParams));
+      })
     } catch (error) {
-        let errmsg = JSON.stringify(error)
-        let errCode = error.code
-        console.log('Startup catch error , errCode= ' + errCode);
-        console.log('Startup catch error ,error= ' + errmsg);
+      let errMsg = JSON.stringify((error as BusinessError).message);
+      let errCode = (error as BusinessError).code;
+      console.log('Startup catch error , errCode= ' + errCode);
+      console.log('Startup catch error ,error= ' + errMsg);
+    }
   }
 }
 ```
@@ -89,12 +85,9 @@ removeAllStartupTaskResults(): void
 **示例：**：
 
 ```ts
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import hilog from '@ohos.hilog';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import window from '@ohos.window';
-import startupManager from '@ohos.app.appstartup.startupManager';
+import { AbilityConstant, UIAbility, Want, startupManager } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
@@ -106,8 +99,8 @@ export default class EntryAbility extends UIAbility {
 
   onWindowStageCreate(windowStage: window.WindowStage) {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
-    let result = removeAllStartupTaskResults.removeAllStartupTaskResults();
-    
+    startupManager.removeAllStartupTaskResults();
+
     windowStage.loadContent('pages/Index', (err, data) => {
       if (err.code) {
         hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
@@ -142,19 +135,18 @@ getStartupTaskResult(startupTask: string): Object
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
   | 错误码ID | 错误信息 |
   | ------- | -------------------------------- |
-  | 401 | If the input parameter is not valid parameter. |
+  | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**：
 
 ```ts
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import hilog from '@ohos.hilog';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import window from '@ohos.window';
-import startupManager from '@ohos.app.appstartup.startupManager';
+import { AbilityConstant, UIAbility, Want, startupManager } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
@@ -202,19 +194,18 @@ isStartupTaskInitialized(startupTask: string): boolean
 
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
   | 错误码ID | 错误信息 |
   | ------- | -------------------------------- |
-  | 401 | If the input parameter is not valid parameter. |
+  | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**：
 
 ```ts
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import hilog from '@ohos.hilog';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import window from '@ohos.window';
-import startupManager from '@ohos.app.appstartup.startupManager';
+import { AbilityConstant, UIAbility, Want, startupManager } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
@@ -232,7 +223,7 @@ export default class EntryAbility extends UIAbility {
     } else {
       console.info("Sample_001 uninitialized");
     }
-    
+
     windowStage.loadContent('pages/Index', (err, data) => {
       if (err.code) {
         hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
@@ -260,19 +251,18 @@ removeStartupTaskResult(startupTask: string): void
   
 **错误码：**
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
   | 错误码ID | 错误信息 |
   | ------- | -------------------------------- |
-  | 401 | If the input parameter is not valid parameter. |
+  | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**：
 
 ```ts
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import hilog from '@ohos.hilog';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import window from '@ohos.window';
-import startupManager from '@ohos.app.appstartup.startupManager';
+import { AbilityConstant, UIAbility, Want, startupManager } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
@@ -285,7 +275,7 @@ export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
     startupManager.removeStartupTaskResult('Sample_001');
-    
+
     windowStage.loadContent('pages/Index', (err, data) => {
       if (err.code) {
         hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');

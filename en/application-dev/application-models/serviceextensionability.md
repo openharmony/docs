@@ -527,7 +527,7 @@ When a ServiceExtensionAbility is used to provide sensitive services, the client
       let callerTokenId = rpc.IPCSkeleton.getCallingTokenId();
       let accessManger = abilityAccessCtrl.createAtManager();
       /* The permission to be verified varies depending on the service requirements.
-       * ohos.permission.SET_WALLPAPER is only an example.
+       * ohos.permission.GET_BUNDLE_INFO_PRIVILEGED is only an example.
        */
       let grantStatus = accessManger.verifyAccessTokenSync(callerTokenId, 'ohos.permission.GET_BUNDLE_INFO_PRIVILEGED');
       if (grantStatus === abilityAccessCtrl.GrantStatus.PERMISSION_DENIED) {
@@ -547,4 +547,3 @@ When a ServiceExtensionAbility is used to provide sensitive services, the client
   }
   ```
 
- <!--no_check--> 

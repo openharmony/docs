@@ -76,6 +76,7 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
+| 16000073 | The app clone index is invalid. |
 
 **示例：**
 
@@ -156,6 +157,7 @@ startAbility(want: Want, options?: StartOptions): Promise\<void>;
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
+| 16000073 | The app clone index is invalid. |
 
 **示例：**
 
@@ -235,6 +237,7 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
+| 16000073 | The app clone index is invalid. |
 
 **示例：**
 
@@ -322,6 +325,7 @@ startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
+| 16000073 | The app clone index is invalid. |
 
 **示例：**
 
@@ -407,6 +411,7 @@ startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, ca
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
+| 16000073 | The app clone index is invalid. |
 
 **示例：**
 
@@ -502,6 +507,7 @@ startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): 
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
+| 16000073 | The app clone index is invalid. |
 
 **示例：**
 
@@ -576,6 +582,7 @@ startServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void;
 | 16000011 | The context does not exist.        |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
+| 16000019 | Can not match any component. |
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released. |
 
@@ -652,6 +659,7 @@ startServiceExtensionAbility(want: Want): Promise\<void>;
 | 16000011 | The context does not exist.        |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
+| 16000019 | Can not match any component. |
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released. |
 
@@ -730,6 +738,7 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback:
 | 16000011 | The context does not exist.        |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
+| 16000019 | Can not match any component. |
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released. |
 
@@ -814,6 +823,7 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\
 | 16000011 | The context does not exist.        |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
+| 16000019 | Can not match any component. |
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released. |
 
@@ -896,6 +906,7 @@ startAbilityAsCaller(want: Want, callback: AsyncCallback\<void>): void;
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
+| 16000073 | The app clone index is invalid. |
 
 **示例：**
 
@@ -968,6 +979,7 @@ startAbilityAsCaller(want: Want, options: StartOptions, callback: AsyncCallback\
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
+| 16000073 | The app clone index is invalid. |
 
 **示例：**
 
@@ -1052,6 +1064,7 @@ startAbilityAsCaller(want: Want, options?: StartOptions): Promise\<void>;
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
+| 16000073 | The app clone index is invalid. |
 
 **示例：**
 
@@ -2237,11 +2250,11 @@ requestModalUIExtension(pickerWant: Want): Promise\<void>
 
 请求在指定的前台应用上拉起对应类型的UIExtensionAbility。其中，前台应用通过want.parameters中bundleName来指定，如果未指定前台应用、bundleName指定的应用未在前台或指定的前台应用的bundleName不正确，则在系统界面上直接拉起UIExtensionAbility；被拉起的UIExtensionAbility通过want中bundleName、abilityName、moduleName字段共同确定，同时需要通过want.parameters中的ability.want.params.uiExtensionType字段配置UIExtensionAbility的类型。使用promise形式异步回调。
 
+在前台应用上拉起UIExtensionAility之前，必须确保该应用已完成页面初始化，否则将导致拉起失败、并出现"uiContent is nullptr"的报错信息。应用可通过监听页面加载状态来判断拉起UIExtensionAbility的时机，页面初始化成功后会出现关键日志信息"UIContentImpl: focus again"。
+
 > **说明：**
 >
 > 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。 
-> 跨应用场景下，目标Ability的exported属性若配置为false，指定的前台应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限，若为系统界面上直接拉起UIExtensionAbility的情况，则需要接口调用方申请`ohos.permission.START_INVISIBLE_ABILITY`权限。
-
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -2315,11 +2328,12 @@ requestModalUIExtension(pickerWant: Want, callback: AsyncCallback\<void>): void
 
 请求在指定的前台应用上拉起对应类型的UIExtensionAbility。其中，前台应用通过want.parameters中bundleName来指定，如果未指定前台应用、bundleName指定的应用未在前台或指定的前台应用的bundleName不正确，则在系统界面上直接拉起UIExtensionAbility；被拉起的UIExtensionAbility通过want中bundleName、abilityName、moduleName字段共同确定，同时需要通过want.parameters中的ability.want.params.uiExtensionType字段配置UIExtensionAbility的类型。使用callback形式异步回调。
 
+在前台应用上拉起UIExtensionAility之前，必须确保该应用已完成页面初始化，否则将导致拉起失败、并出现"uiContent is nullptr"的报错信息。应用可通过监听页面加载状态来判断拉起UIExtensionAbility的时机，页面初始化成功后会出现关键日志信息"UIContentImpl: focus again"。
+
 > **说明：**
 >
 > 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
-> 跨应用场景下，目标Ability的exported属性若配置为false，指定的前台应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限，若为系统界面上直接拉起UIExtensionAbility的情况，则需要接口调用方申请`ohos.permission.START_INVISIBLE_ABILITY`权限。
- 
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **系统接口**：此接口为系统接口。
@@ -2386,12 +2400,12 @@ openLink(link:string, options?: OpenLinkOptions): Promise&lt;void&gt;
 
 通过AppLinking启动UIAbility，使用Promise异步回调。
 
-通过在link字段中传入标准格式的uri，基于隐式want匹配规则拉起目标UIAbility。目标方必须具备以下过滤器特征，才能处理AppLinking链接：
+通过在link字段中传入标准格式的URL，基于隐式want匹配规则拉起目标UIAbility。目标方必须具备以下过滤器特征，才能处理AppLinking链接：
 - "actions"列表中包含"ohos.want.action.viewData"。
 - "entities"列表中包含"entity.system.browsable"。
-- "uris"列表中包含"scheme"为"https"且"autoVerify"为true的元素。
+- "uris"列表中包含"scheme"为"https"且"domainVerify"为true的元素。
 
-传入的参数不合法时，如link字段未设置或取值不是标准格式的uri，接口会直接抛出异常。参数校验通过，拉起目标方时出现错误，则通过promise返回错误信息。
+传入的参数不合法时，如未设置必选参数或link字符串不是标准格式的URL，接口会直接抛出异常。参数校验通过，拉起目标方时出现的错误通过promise返回错误信息。
 
 > **说明：**
 >
@@ -2446,17 +2460,17 @@ import OpenLinkOptions from '@ohos.app.ability.OpenLinkOptions';
 import { BusinessError } from '@ohos.base';
 
 function log(info: string) {
-  console.error("[ServiceExtApp]:: ", info);
+  console.error(`[ServiceExtApp]:: ${JSON.stringify(info)}`);
 }
 
 export default class ServiceExtAbility extends ServiceExtensionAbility {
   onCreate(want: Want) {
-    log("ServiceExtAbility OnCreate");
+    log(`ServiceExtAbility OnCreate`);
   }
 
-  onRequest(want: Want, startId) {
-    log("ServiceExtAbility onRequest");
-    let link: string = "https://www.example.com"
+  onRequest(want: Want, startId: number) {
+    log(`ServiceExtAbility onRequest`);
+    let link: string = 'https://www.example.com';
     let openLinkOptions: OpenLinkOptions = {
       appLinkingOnly: false
     };
@@ -2464,19 +2478,19 @@ export default class ServiceExtAbility extends ServiceExtensionAbility {
       this.context.openLink(
         link,
         openLinkOptions
-      ).then(()=>{
-        log('open link success.');
-      }).catch((err: BusinessError)=>{
-        log('open link failed, errCode ' + JSON.stringify(err.code));
-      })
+      ).then(() => {
+        log(`open link success.`);
+      }).catch((err: BusinessError) => {
+        log(`open link failed, errCode ${JSON.stringify(err.code)}`);
+      });
     }
     catch (e) {
-      log('exception occured, errCode ' + JSON.stringify(e.code));
+      log(`exception occured, errCode ${JSON.stringify(e.code)}`);
     }
   }
 
   onDestroy() {
-    log("ServiceExtAbility onDestroy");
+    log(`ServiceExtAbility onDestroy`);
   }
 }
 ```

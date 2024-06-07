@@ -8,7 +8,7 @@
 
 **错误信息**
 
-Parameter invalid, message is ${messageInfo}.
+Invalid Parameter. Error message: ${messageInfo}.
 
 **可能原因**
 
@@ -60,7 +60,7 @@ Permission does not exist.
 
 **错误信息**
 
-The interface is not used together.
+The API is not used in pair with others.
 
 **可能原因**
 
@@ -110,7 +110,7 @@ The specified application does not support the permissions granted or ungranted 
 
 **错误信息**
 
-Service is abnormal.
+The service is abnormal.
 
 **可能原因**
 

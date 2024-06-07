@@ -44,13 +44,14 @@ pushUrl(options: RouterOptions): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.router(页面路由)](errorcode-router.md)错误码。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 100001    | if UI execution context not found. |
-| 100002    | if the uri is not exist. |
-| 100003    | if the pages are pushed too much. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 100001    | Internal error. |
+| 100002    | Uri error. The URI of the page to redirect is incorrect or does not exist. |
+| 100003    | Page stack error. Too many pages are pushed. |
 
 **示例：**
 
@@ -104,13 +105,14 @@ pushUrl(options: RouterOptions, callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.router(页面路由)](errorcode-router.md)错误码。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 100001    | if UI execution context not found. |
-| 100002    | if the uri is not exist. |
-| 100003    | if the pages are pushed too much. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 100001    | Internal error. |
+| 100002    | Uri error. The URI of the page to redirect is incorrect or does not exist. |
+| 100003    | Page stack error. Too many pages are pushed. |
 
 **示例：**
 
@@ -169,13 +171,14 @@ pushUrl(options: RouterOptions, mode: RouterMode): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.router(页面路由)](errorcode-router.md)错误码。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 100001    | if UI execution context not found. |
-| 100002    | if the uri is not exist. |
-| 100003    | if the pages are pushed too much. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 100001    | Internal error. |
+| 100002    | Uri error. The URI of the page to redirect is incorrect or does not exist. |
+| 100003    | Page stack error. Too many pages are pushed. |
 
 **示例：**
 
@@ -230,13 +233,14 @@ pushUrl(options: RouterOptions, mode: RouterMode, callback: AsyncCallback&lt;voi
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.router(页面路由)](errorcode-router.md)错误码。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 100001    | if UI execution context not found. |
-| 100002    | if the uri is not exist. |
-| 100003    | if the pages are pushed too much. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 100001    | Internal error. |
+| 100002    | Uri error. The URI of the page to redirect is incorrect or does not exist. |
+| 100003    | Page stack error. Too many pages are pushed. |
 
 **示例：**
 
@@ -295,12 +299,13 @@ replaceUrl(options: RouterOptions): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.router(页面路由)](errorcode-router.md)错误码。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 100001    | if UI execution context not found, only throw in standard system. |
-| 200002    | if the uri is not exist. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 100001    | The UI execution context is not found. This error code is thrown only in the standard system. |
+| 200002    | Uri error. The URI of the page to be used for replacement is incorrect or does not exist. |
 
 **示例：**
 
@@ -344,12 +349,13 @@ replaceUrl(options: RouterOptions, callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.router(页面路由)](errorcode-router.md)错误码。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 100001    | if UI execution context not found, only throw in standard system. |
-| 200002    | if the uri is not exist. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 100001    | The UI execution context is not found. This error code is thrown only in the standard system. |
+| 200002    | Uri error. The URI of the page to be used for replacement is incorrect or does not exist. |
 
 **示例：**
 
@@ -400,12 +406,13 @@ replaceUrl(options: RouterOptions, mode: RouterMode): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.router(页面路由)](errorcode-router.md)错误码。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 | 100001    | if can not get the delegate, only throw in standard system. |
-| 200002    | if the uri is not exist. |
+| 200002    | Uri error. The URI of the page to be used for replacement is incorrect or does not exist. |
 
 **示例：**
 
@@ -450,12 +457,13 @@ replaceUrl(options: RouterOptions, mode: RouterMode, callback: AsyncCallback&lt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.router(页面路由)](errorcode-router.md)错误码。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 100001    | if UI execution context not found, only throw in standard system. |
-| 200002    | if the uri is not exist. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 100001    | The UI execution context is not found. This error code is thrown only in the standard system. |
+| 200002    | Uri error. The URI of the page to be used for replacement is incorrect or does not exist. |
 
 **示例：**
 
@@ -505,13 +513,14 @@ pushNamedRoute(options: NamedRouterOptions): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.router(页面路由)](errorcode-router.md)错误码。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 100001    | if UI execution context not found. |
-| 100003    | if the pages are pushed too much. |
-| 100004    | if the named route is not exist. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 100001    | Internal error. |
+| 100003    | Page stack error. Too many pages are pushed. |
+| 100004    | Named route error. The named route does not exist. |
 
 **示例：** 
 
@@ -567,13 +576,14 @@ pushNamedRoute(options: NamedRouterOptions, callback: AsyncCallback&lt;void&gt;)
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.router(页面路由)](errorcode-router.md)错误码。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 100001    | if UI execution context not found. |
-| 100003    | if the pages are pushed too much. |
-| 100004    | if the named route is not exist. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 100001    | Internal error. |
+| 100003    | Page stack error. Too many pages are pushed. |
+| 100004    | Named route error. The named route does not exist. |
 
 **示例：**
 
@@ -632,13 +642,14 @@ pushNamedRoute(options: NamedRouterOptions, mode: RouterMode): Promise&lt;void&g
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.router(页面路由)](errorcode-router.md)错误码。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 100001    | if UI execution context not found. |
-| 100003    | if the pages are pushed too much. |
-| 100004    | if the named route is not exist. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 100001    | Internal error. |
+| 100003    | Page stack error. Too many pages are pushed. |
+| 100004    | Named route error. The named route does not exist. |
 
 **示例：**
 
@@ -693,13 +704,14 @@ pushNamedRoute(options: NamedRouterOptions, mode: RouterMode, callback: AsyncCal
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.router(页面路由)](errorcode-router.md)错误码。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 100001    | if UI execution context not found. |
-| 100003    | if the pages are pushed too much. |
-| 100004    | if the named route is not exist. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 100001    | Internal error. |
+| 100003    | Page stack error. Too many pages are pushed. |
+| 100004    | Named route error. The named route does not exist. |
 
 **示例：**
 
@@ -758,12 +770,13 @@ replaceNamedRoute(options: NamedRouterOptions): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.router(页面路由)](errorcode-router.md)错误码。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 100001    | if UI execution context not found, only throw in standard system. |
-| 100004    | if the named route is not exist. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 100001    | The UI execution context is not found. This error code is thrown only in the standard system. |
+| 100004    | Named route error. The named route does not exist. |
 
 **示例：**
 
@@ -807,12 +820,13 @@ replaceNamedRoute(options: NamedRouterOptions, callback: AsyncCallback&lt;void&g
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.router(页面路由)](errorcode-router.md)错误码。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 100001    | if UI execution context not found, only throw in standard system. |
-| 100004    | if the named route is not exist. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 100001    | The UI execution context is not found. This error code is thrown only in the standard system. |
+| 100004    | Named route error. The named route does not exist. |
 
 **示例：**
 
@@ -863,12 +877,13 @@ replaceNamedRoute(options: NamedRouterOptions, mode: RouterMode): Promise&lt;voi
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.router(页面路由)](errorcode-router.md)错误码。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 | 100001    | if can not get the delegate, only throw in standard system. |
-| 100004    | if the named route is not exist. |
+| 100004    | Named route error. The named route does not exist. |
 
 **示例：**
 
@@ -913,12 +928,13 @@ replaceNamedRoute(options: NamedRouterOptions, mode: RouterMode, callback: Async
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.router(页面路由)](errorcode-router.md)错误码。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 100001    | if UI execution context not found, only throw in standard system. |
-| 100004    | if the named route is not exist. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 100001    | The UI execution context is not found. This error code is thrown only in the standard system. |
+| 100004    | Named route error. The named route does not exist. |
 
 **示例：**
 
@@ -1122,15 +1138,13 @@ for (let i: number = 0; i < options.length; i++) {
 
 页面状态信息。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full。
 
 | 名称  | 类型   | 必填 | 说明                                                         |
 | ----- | ------ | ---- | ------------------------------------------------------------ |
-| index | number | 是   | 表示当前页面在页面栈中的索引。从栈底到栈顶，index从1开始递增。 |
-| name  | string | 否   | 表示当前页面的名称，即对应文件名。                           |
-| path  | string | 是   | 表示当前页面的路径。                                         |
+| index | number | 是   | 表示当前页面在页面栈中的索引。从栈底到栈顶，index从1开始递增。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| name  | string | 否   | 表示当前页面的名称，即对应文件名。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| path  | string | 是   | 表示当前页面的路径。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 | params<sup>12+</sup>  | Object |  否  | 表示当前页面携带的参数。                                         |
 
 ## router.showAlertBeforeBackPage<sup>9+</sup>
@@ -1151,11 +1165,12 @@ showAlertBeforeBackPage(options: EnableAlertOptions): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.router(页面路由)](errorcode-router.md)错误码。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 100001    | if UI execution context not found. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 100001    | Internal error. |
 
 **示例：**
 
@@ -1247,7 +1262,7 @@ router.getParams();
 
 | 名称     | 说明                                                         |
 | -------- | ------------------------------------------------------------ |
-| Standard | 多实例模式，也是默认情况下的跳转模式。 <br/>目标页面会被添加到页面栈顶，无论栈中是否存在相同url的页面。<br/>**说明：** 不使用路由跳转模式时，则按照默认的多实例模式进行跳转。 |
+| Standard | 多实例模式，也是默认情况下的跳转模式。 <br/>目标页面会被添加到页面栈顶，无论栈中是否存在相同url的页面。<br/>**说明：**  <br/>不使用路由跳转模式时，则按照默认的多实例模式进行跳转。 |
 | Single   | 单实例模式。<br/>如果目标页面的url已经存在于页面栈中，则该url页面移动到栈顶。<br />如果目标页面的url在页面栈中不存在同url页面，则按照默认的多实例模式进行跳转。 |
 
 ## NamedRouterOptions<sup>10+</sup>
@@ -1268,6 +1283,9 @@ router.getParams();
 ### 基于JS扩展的类Web开发范式
 
 以下代码仅适用于javascript文件，不适用于ArkTS文件
+
+<!--code_no_check-->
+
 ```js
 // 在当前页面中
 export default {
@@ -1281,6 +1299,8 @@ export default {
   }
 }
 ```
+<!--code_no_check-->
+
 ```js
 // 在detail页面中
 export default {

@@ -9,7 +9,7 @@ The **ethernet** module provides wired network capabilities, which allow users t
 ## Modules to Import
 
 ```ts
-import ethernet from '@ohos.net.ethernet'
+import { ethernet } from '@kit.NetworkKit';
 ```
 
 ## ethernet.setIfaceConfig<sup>9+</sup>
@@ -40,7 +40,7 @@ Sets the network interface configuration. This API uses an asynchronous callback
 | 202     | Non-system applications use system APIs.                      |
 | 401     | Parameter error.                        |
 | 2200001 | Invalid parameter value.                |
-| 2200002 | Operation failed. Cannot connect to service.|
+| 2200002 | Failed to connect to the service.       |
 | 2200003 | System internal error.                  |
 | 2201004 | Invalid Ethernet profile.  |
 | 2201005 | Device information does not exist.  |
@@ -50,8 +50,8 @@ Sets the network interface configuration. This API uses an asynchronous callback
 **Example**
 
 ```ts
-import ethernet from '@ohos.net.ethernet'
-import { BusinessError } from '@ohos.base'
+import { ethernet } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let config: ethernet.InterfaceConfiguration = {
   mode: 0,
@@ -104,7 +104,7 @@ Sets the network interface configuration. This API uses a promise to return the 
 | 202     | Non-system applications use system APIs.                      |
 | 401     | Parameter error.                        |
 | 2200001 | Invalid parameter value.                |
-| 2200002 | Operation failed. Cannot connect to service.|
+| 2200002 |Failed to connect to the service. |
 | 2200003 | System internal error.                  |
 | 2201004 | Invalid Ethernet profile.  |
 | 2201005 | Device information does not exist.  |
@@ -114,8 +114,8 @@ Sets the network interface configuration. This API uses a promise to return the 
 **Example**
 
 ```ts
-import ethernet from '@ohos.net.ethernet'
-import { BusinessError } from '@ohos.base'
+import { ethernet } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let config: ethernet.InterfaceConfiguration = {
   mode: 0,
@@ -162,15 +162,15 @@ Obtains the configuration of a network interface. This API uses an asynchronous 
 | 202     | Non-system applications use system APIs.                      |
 | 401     | Parameter error.                        |
 | 2200001 | Invalid parameter value.                |
-| 2200002 | Operation failed. Cannot connect to service.|
+| 2200002 | Failed to connect to the service.       |
 | 2200003 | System internal error.                  |
 | 2201005 | Device information does not exist.  |
 
 **Example**
 
 ```ts
-import ethernet from '@ohos.net.ethernet'
-import { BusinessError } from '@ohos.base'
+import { ethernet } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 ethernet.getIfaceConfig("eth0", (error: BusinessError, value: ethernet.InterfaceConfiguration) => {
   if (error) {
@@ -218,15 +218,15 @@ Obtains the configuration of a network interface. This API uses a promise to ret
 | 202     | Non-system applications use system APIs.                      |
 | 401     | Parameter error.                        |
 | 2200001 | Invalid parameter value.                |
-| 2200002 | Operation failed. Cannot connect to service.|
+| 2200002 | Failed to connect to the service.       |
 | 2200003 | System internal error.                  |
 | 2201005 | Device information does not exist.  |
 
 **Example**
 
 ```ts
-import ethernet from '@ohos.net.ethernet'
-import { BusinessError } from '@ohos.base'
+import { ethernet } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 ethernet.getIfaceConfig("eth0").then((data: ethernet.InterfaceConfiguration) => {
   console.log("getIfaceConfig promise mode = " + JSON.stringify(data.mode));
@@ -267,15 +267,15 @@ Checks whether a network interface is active. This API uses an asynchronous call
 | 202     | Non-system applications use system APIs.                      |
 | 401     | Parameter error.                        |
 | 2200001 | Invalid parameter value.                |
-| 2200002 | Operation failed. Cannot connect to service.|
+| 2200002 | Failed to connect to the service.       |
 | 2200003 | System internal error.                  |
 | 2201005 | Device information does not exist.  |
 
 **Example**
 
 ```ts
-import ethernet from '@ohos.net.ethernet'
-import { BusinessError } from '@ohos.base'
+import { ethernet } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 ethernet.isIfaceActive("eth0", (error: BusinessError, value: number) => {
   if (error) {
@@ -318,15 +318,15 @@ Checks whether a network interface is active. This API uses a promise to return 
 | 202     | Non-system applications use system APIs.                      |
 | 401     | Parameter error.                        |
 | 2200001 | Invalid parameter value.                |
-| 2200002 | Operation failed. Cannot connect to service.|
+| 2200002 | Failed to connect to the service.       |
 | 2200003 | System internal error.                  |
 | 2201005 | Device information does not exist.  |
 
 **Example**
 
 ```ts
-import ethernet from '@ohos.net.ethernet'
-import { BusinessError } from '@ohos.base'
+import { ethernet } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 ethernet.isIfaceActive("eth0").then((data: number) => {
   console.log("isIfaceActive promise = " + JSON.stringify(data));
@@ -359,14 +359,14 @@ Obtains the list of all active network interfaces. This API uses an asynchronous
 | ------- | ----------------------------------------|
 | 201     | Permission denied.                      |
 | 202     | Non-system applications use system APIs.                      |
-| 2200002 | Operation failed. Cannot connect to service.|
+| 2200002 | Failed to connect to the service.       |
 | 2200003 | System internal error.                  |
 
 **Example**
 
 ```ts
-import ethernet from '@ohos.net.ethernet'
-import { BusinessError } from '@ohos.base'
+import { ethernet } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 ethernet.getAllActiveIfaces((error: BusinessError, value: string[]) => {
   if (error) {
@@ -404,14 +404,14 @@ Obtains the list of all active network interfaces. This API uses a promise to re
 | ------- | ----------------------------------------|
 | 201     | Permission denied.                      |
 | 202     | Non-system applications use system APIs.                      |
-| 2200002 | Operation failed. Cannot connect to service.|
+| 2200002 | Failed to connect to the service.       |
 | 2200003 | System internal error.                  |
 
 **Example**
 
 ```ts
-import ethernet from '@ohos.net.ethernet'
-import { BusinessError } from '@ohos.base'
+import { ethernet } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 ethernet.getAllActiveIfaces().then((data: string[]) => {
   console.log("getAllActiveIfaces promise data.length = " + JSON.stringify(data.length));
@@ -453,7 +453,7 @@ Registers an observer for NIC hot swap events. This API uses an asynchronous cal
 **Example**
 
 ```ts
-import ethernet from '@ohos.net.ethernet'
+import { ethernet } from '@kit.NetworkKit';
 
 ethernet.on('interfaceStateChange', (data: object) => {
   console.log('on interfaceSharingStateChange: ' + JSON.stringify(data));
@@ -490,7 +490,7 @@ Unregisters the observer for NIC hot swap events. This API uses an asynchronous 
 **Example**
 
 ```ts
-import ethernet from '@ohos.net.ethernet'
+import { ethernet } from '@kit.NetworkKit';
 
 ethernet.off('interfaceStateChange');
 ```

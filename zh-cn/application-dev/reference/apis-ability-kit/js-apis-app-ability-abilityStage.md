@@ -13,7 +13,7 @@ AbilityStage类提供在HAP加载的时候，通知开发者，可以在此进�
 ## 导入模块
 
 ```ts
-import AbilityStage from '@ohos.app.ability.AbilityStage';
+import { AbilityStage } from '@kit.AbilityKit';
 ```
 
 ## AbilityStage.onCreate
@@ -29,12 +29,12 @@ onCreate(): void
 **示例：**
     
 ```ts
-import AbilityStage from '@ohos.app.ability.AbilityStage';
+import { AbilityStage } from '@kit.AbilityKit';
 
 class MyAbilityStage extends AbilityStage {
-    onCreate() {
-        console.log('MyAbilityStage.onCreate is called');
-    }
+  onCreate() {
+    console.log('MyAbilityStage.onCreate is called');
+  }
 }
 ```
 
@@ -64,14 +64,13 @@ onAcceptWant(want: Want): string
 **示例：**
     
 ```ts
-import AbilityStage from '@ohos.app.ability.AbilityStage';
-import Want from '@ohos.app.ability.Want';
+import { AbilityStage, Want } from '@kit.AbilityKit';
 
 class MyAbilityStage extends AbilityStage {
-    onAcceptWant(want: Want) {
-        console.log('MyAbilityStage.onAcceptWant called');
-        return 'com.example.test';
-    }
+  onAcceptWant(want: Want) {
+    console.log('MyAbilityStage.onAcceptWant called');
+    return 'com.example.test';
+  }
 }
 ```
 
@@ -98,14 +97,13 @@ onNewProcessRequest(want: Want): string
 **示例：**
     
 ```ts
-import AbilityStage from '@ohos.app.ability.AbilityStage';
-import Want from '@ohos.app.ability.Want';
+import { AbilityStage, Want } from '@kit.AbilityKit';
 
 class MyAbilityStage extends AbilityStage {
-    onNewProcessRequest(want: Want) {
-        console.log('MyAbilityStage.onNewProcessRequest called');
-        return 'com.example.test';
-    }
+  onNewProcessRequest(want: Want) {
+    console.log('MyAbilityStage.onNewProcessRequest called');
+    return 'com.example.test';
+  }
 }
 ```
 
@@ -129,13 +127,12 @@ onConfigurationUpdate(newConfig: Configuration): void
 **示例：**
     
 ```ts
-import AbilityStage from '@ohos.app.ability.AbilityStage';
-import { Configuration } from '@ohos.app.ability.Configuration';
+import { AbilityStage, Configuration } from '@kit.AbilityKit';
 
 class MyAbilityStage extends AbilityStage {
-    onConfigurationUpdate(config: Configuration) {
-        console.log(`onConfigurationUpdate, language: ${config.language}`);
-    }
+  onConfigurationUpdate(config: Configuration) {
+    console.log(`onConfigurationUpdate, language: ${config.language}`);
+  }
 }
 ```
 
@@ -158,13 +155,12 @@ onMemoryLevel(level: AbilityConstant.MemoryLevel): void
 **示例：**
     
 ```ts
-import AbilityStage from '@ohos.app.ability.AbilityStage';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import { AbilityStage, AbilityConstant } from '@kit.AbilityKit';
 
 class MyAbilityStage extends AbilityStage {
-    onMemoryLevel(level: AbilityConstant.MemoryLevel) {
-        console.log(`onMemoryLevel, level: ${JSON.stringify(level)}`);
-    } 
+  onMemoryLevel(level: AbilityConstant.MemoryLevel) {
+    console.log(`onMemoryLevel, level: ${JSON.stringify(level)}`);
+  }
 }
 ```
 
@@ -185,13 +181,12 @@ context: AbilityStageContext
 **示例：**
     
 ```ts
-import AbilityStage from '@ohos.app.ability.AbilityStage';
+import { AbilityStage } from '@kit.AbilityKit';
 
 export default class MyAbilityStage extends AbilityStage {
   onCreate() {
     let abilityStageContext = this.context;
   }
-  // ...
 }
 ```
 
@@ -208,11 +203,11 @@ onDestroy(): void
 **示例：**
 
 ```ts
-import AbilityStage from '@ohos.app.ability.AbilityStage';
+import { AbilityStage } from '@kit.AbilityKit';
 
 class MyAbilityStage extends AbilityStage {
-    onDestroy() {
-        console.log('MyAbilityStage.onDestroy is called');
-    }
+  onDestroy() {
+    console.log('MyAbilityStage.onDestroy is called');
+  }
 }
 ```

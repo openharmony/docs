@@ -141,7 +141,7 @@ socket fd可能被关闭了，所以发生参数无效的错误。
 
 **错误信息**
 
-Resource temporarily unavailable try again.
+Resource temporarily unavailable. Try again.
 
 **错误描述**
 
@@ -177,7 +177,7 @@ Not a socket.
 
 **错误信息**
 
-Protocol wrong type for socket.
+Incorrect socket protocol type.
 
 **错误描述**
 
@@ -268,7 +268,7 @@ SSL is null.
 
 **错误信息**
 
-Error in tls reading.
+An error occurred when reading data on the TLS socket.
 
 **错误描述**
 
@@ -286,7 +286,7 @@ Error in tls reading.
 
 **错误信息**
 
-Error in tls writing.
+An error occurred when writing data on the TLS socket.
 
 **错误描述**
 
@@ -304,7 +304,7 @@ Error in tls writing.
 
 **错误信息**
 
-Error looking up x509.
+An error occurred when verifying the X.509 certificate.
 
 **错误描述**
 
@@ -322,7 +322,7 @@ Error looking up x509.
 
 **错误信息**
 
-Error occurred in the tls system call.
+An error occurred in the TLS system call.
 
 **错误描述**
 
@@ -340,7 +340,7 @@ Error occurred in the tls system call.
 
 **错误信息**
 
-Error clearing tls connection.
+Failed to close the TLS connection.
 
 **错误描述**
 

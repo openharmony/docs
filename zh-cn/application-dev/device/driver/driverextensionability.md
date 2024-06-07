@@ -22,7 +22,7 @@
 3. 打开DriverExtAbility.ets文件，导入[RPC通信模块](../../reference/apis-ipc-kit/js-apis-rpc.md)，重载onRemoteMessageRequest()方法，接收应用传递过来的消息，并将处理的结果返回给应用。REQUEST_VALUE用于校验应用发送的服务请求码。
    
    ```ts
-   import rpc from '@ohos.rpc';
+   import { rpc } from '@kit.IPCKit';
    
    const REQUEST_CODE = 99;
    
@@ -52,9 +52,9 @@
 4. 在DriverExtAbility.ets文件中，增加导入[DriverExtensionAbility](../../reference/apis-driverdevelopment-kit/js-apis-app-ability-driverExtensionAbility.md)的依赖包，该包提供了onInit()、onRelease()、onConnect()和onDisconnect()生命周期回调，自定义类继承[DriverExtensionAbility](../../reference/apis-driverdevelopment-kit/js-apis-app-ability-driverExtensionAbility.md)并根据需要重写需要的生命周期回调。
    
    ```ts
-   import DriverExtensionAbility from '@ohos.app.ability.DriverExtensionAbility';
-   import Want from '@ohos.app.ability.Want';
-   import rpc from '@ohos.rpc';
+   import { DriverExtensionAbility } from '@kit.DriverDevelopmentKit';
+   import { Want } from '@kit.AbilityKit';
+   import { rpc } from '@kit.IPCKit';
    
    const TAG: string = '[Example].[Entry].[DriverExtAbility]';
    const REQUEST_CODE = 99;

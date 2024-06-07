@@ -18,7 +18,9 @@ USB子系统面向应用发布如下系统公共事件，应用如需订阅系�
 
 当USB的端口状态发生变化，将会触发事件通知服务发布该系统公共事件。
 
+<!--Del-->
 与这个公共事件相关的接口：具体可见[setPortRoles](../js-apis-usbManager-sys.md#usbsetportroles)中的dataRole参数。
+<!--DelEnd-->
 
 ## COMMON_EVENT_USB_DEVICE_ATTACHED
 

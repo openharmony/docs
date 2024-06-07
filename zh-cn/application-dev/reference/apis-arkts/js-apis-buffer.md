@@ -11,7 +11,7 @@ Buffer对象用于表示固定长度的字节序列，是专门存放二进制�
 ## 导入模块
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 ```
 
 ## BufferEncoding
@@ -60,10 +60,18 @@ alloc(size: number, fill?: string | Buffer | number, encoding?: BufferEncoding):
 | -------- | -------- |
 | Buffer | 返回一个Buffer对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf1 = buffer.alloc(5);
 let buf2 = buffer.alloc(5, 'a');
@@ -93,10 +101,18 @@ allocUninitializedFromPool(size: number): Buffer
 | -------- | -------- |
 | Buffer | 未初始化的Buffer实例。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(10);
 buf.fill(0);
@@ -125,10 +141,18 @@ allocUninitialized(size: number): Buffer
 | -------- | -------- |
 | Buffer | 未初始化的Buffer实例。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitialized(10);
 buf.fill(0);
@@ -157,10 +181,18 @@ byteLength(string: string | Buffer | TypedArray | DataView | ArrayBuffer | Share
 | -------- | -------- |
 | number | 返回指定字符串的字节数。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let str = '\u00bd + \u00bc = \u00be';
 console.log(`${str}: ${str.length} characters, ${buffer.byteLength(str, 'utf-8')} bytes`);
@@ -190,10 +222,18 @@ compare(buf1: Buffer | Uint8Array, buf2: Buffer | Uint8Array): -1 | 0 | 1
 | -------- | -------- |
 | -1&nbsp;\|&nbsp;0&nbsp;\|&nbsp;1 | 如果buf1与buf2相同，则返回0。<br/>如果排序时buf1位于buf2之后，则返回1。<br/>如果排序时buf1位于buf2之前，则返回-1。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf1 = buffer.from('1234');
 let buf2 = buffer.from('0123');
@@ -227,16 +267,17 @@ concat(list: Buffer[] | Uint8Array[], totalLength?: number): Buffer
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200001 | The value of "length" is out of range. It must be >= 0 and <= uint32 max. Received value is: [length] |
 
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf1 = buffer.from("1234");
 let buf2 = buffer.from("abcd");
@@ -266,10 +307,18 @@ from(array: number[]): Buffer;
 | -------- | -------- |
 | Buffer | 新的Buffer对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from([0x62, 0x75, 0x66, 0x66, 0x65, 0x72]);
 console.log(buf.toString('hex')); // 627566666572
@@ -301,16 +350,17 @@ from(arrayBuffer: ArrayBuffer | SharedArrayBuffer, byteOffset?: number, length?:
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200001 | The value of "[byteOffset/length]" is out of range. |
 
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let ab = new ArrayBuffer(10);
 let buf = buffer.from(ab, 0, 2);
@@ -338,10 +388,18 @@ from(buffer: Buffer | Uint8Array): Buffer
 | -------- | -------- |
 | Buffer | 新的Buffer对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf1 = buffer.from('buffer');
 let buf2 = buffer.from(buf1);
@@ -371,10 +429,18 @@ from(object: Object, offsetOrEncoding: number | string, length: number): Buffer
 | -------- | -------- |
 | Buffer | 返回新的Buffer对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from(new String('this is a test'), 'utf8', 14);
 ```
@@ -402,10 +468,18 @@ from(string: String, encoding?: BufferEncoding): Buffer
 | -------- | -------- |
 | Buffer | 返回新的Buffer对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf1 = buffer.from('this is a test');
 let buf2 = buffer.from('7468697320697320612074c3a97374', 'hex');
@@ -440,7 +514,7 @@ isBuffer(obj: Object): boolean
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let result = buffer.isBuffer(buffer.alloc(10)); // true
 let result1 = buffer.isBuffer(buffer.from('foo')); // true
@@ -474,7 +548,7 @@ isEncoding(encoding: string): boolean
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 console.log(buffer.isEncoding('utf-8').toString());	// 打印: true
 console.log(buffer.isEncoding('hex').toString());	// 打印: true
@@ -506,10 +580,18 @@ transcode(source: Buffer | Uint8Array, fromEnc: string, toEnc: string): Buffer
 | -------- | -------- |
 | Buffer | 根据当前编码转换成目标编码，并返回一个新的buffer实例。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let newBuf = buffer.transcode(buffer.from('€'), 'utf-8', 'ascii');
 console.log(newBuf.toString('ascii'));
@@ -540,7 +622,7 @@ console.log(newBuf.toString('ascii'));
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from("1236");
 console.log(JSON.stringify(buf.length));
@@ -577,16 +659,17 @@ compare(target: Buffer | Uint8Array, targetStart?: number, targetEnd?: number, s
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200001 | The value of "[targetStart/targetEnd/sourceStart/sourceEnd]" is out of range. |
 
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf1 = buffer.from([1, 2, 3, 4, 5, 6, 7, 8, 9]);
 let buf2 = buffer.from([5, 6, 7, 8, 9, 1, 2, 3, 4]);
@@ -623,16 +706,17 @@ copy(target: Buffer| Uint8Array, targetStart?: number, sourceStart?: number, sou
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200001 | The value of "[targetStart/sourceStart/sourceEnd]" is out of range. |
 
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf1 = buffer.allocUninitializedFromPool(26);
 let buf2 = buffer.allocUninitializedFromPool(26).fill('!');
@@ -665,7 +749,7 @@ entries(): IterableIterator&lt;[number,&nbsp;number]&gt;
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from('buffer');
 let pair = buf.entries();
@@ -698,10 +782,18 @@ equals(otherBuffer: Uint8Array | Buffer): boolean
 | -------- | -------- |
 | boolean | 相等则返回true，否则返回false。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf1 = buffer.from('ABC');
 let buf2 = buffer.from('414243', 'hex');
@@ -738,16 +830,17 @@ fill(value: string | Buffer | Uint8Array | number, offset?: number, end?: number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200001 | The value of "[offset/end]" is out of range. |
 
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let b = buffer.allocUninitializedFromPool(50).fill('h');
 console.log(b.toString());
@@ -778,10 +871,18 @@ includes(value: string | number | Buffer | Uint8Array, byteOffset?: number, enco
 | -------- | -------- |
 | boolean | 存在为true，否则为false。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from('this is a buffer');
 console.log(buf.includes('this').toString());	// 打印: true
@@ -812,10 +913,18 @@ indexOf(value: string | number | Buffer | Uint8Array, byteOffset?: number, encod
 | -------- | -------- |
 | number | 第一次出现位置。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from('this is a buffer');
 console.log(buf.indexOf('this').toString());	// 打印: 0
@@ -841,7 +950,7 @@ keys(): IterableIterator&lt;number&gt;
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from('buffer');
 let numbers = Array.from(buf.values());
@@ -874,10 +983,18 @@ lastIndexOf(value: string | number | Buffer | Uint8Array, byteOffset?: number, e
 | -------- | -------- |
 | number | 最后一次出现`value`值的索引。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from('this buffer is a buffer');
 console.log(buf.lastIndexOf('this').toString());	// 打印: 0
@@ -909,18 +1026,19 @@ readBigInt64BE(offset?: number): bigint
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1.Incorrect parameter types. |
 | 10200001 | The value of "offset" is out of range. It must be >= 0 and <= buf.length - 8. Received value is: [offset]. |
 
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
-let buf = buffer.from([0x63, 0x64, 0x65, 0x66, 0x67, 0x68, 0x69, 0x70, 
+let buf = buffer.from([0x63, 0x64, 0x65, 0x66, 0x67, 0x68, 0x69, 0x70,
         0x71, 0x72, 0x73, 0x74, 0x75, 0x76, 0x77, 0x78]);
 console.log(buf.readBigInt64BE(0).toString());
 
@@ -952,18 +1070,19 @@ readBigInt64LE(offset?: number): bigint
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1.Incorrect parameter types. |
 | 10200001 | The value of "offset" is out of range. It must be >= 0 and <= buf.length - 8. Received value is: [offset]. |
 
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
-let buf = buffer.from([0x63, 0x64, 0x65, 0x66, 0x67, 0x68, 0x69, 0x70, 
+let buf = buffer.from([0x63, 0x64, 0x65, 0x66, 0x67, 0x68, 0x69, 0x70,
         0x71, 0x72, 0x73, 0x74, 0x75, 0x76, 0x77, 0x78]);
 console.log(buf.readBigInt64LE(0).toString());
 
@@ -995,18 +1114,19 @@ readBigUInt64BE(offset?: number): bigint
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1.Incorrect parameter types. |
 | 10200001 | The value of "offset" is out of range. It must be >= 0 and <= buf.length - 8. Received value is: [offset]. |
 
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
-let buf = buffer.from([0x63, 0x64, 0x65, 0x66, 0x67, 0x68, 0x69, 0x70, 
+let buf = buffer.from([0x63, 0x64, 0x65, 0x66, 0x67, 0x68, 0x69, 0x70,
         0x71, 0x72, 0x73, 0x74, 0x75, 0x76, 0x77, 0x78]);
 console.log(buf.readBigUInt64BE(0).toString());
 
@@ -1038,18 +1158,19 @@ readBigUInt64LE(offset?: number): bigint
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1.Incorrect parameter types. |
 | 10200001 | The value of "offset" is out of range. It must be >= 0 and <= buf.length - 8. Received value is: [offset]. |
 
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
-let buf = buffer.from([0x63, 0x64, 0x65, 0x66, 0x67, 0x68, 0x69, 0x70, 
+let buf = buffer.from([0x63, 0x64, 0x65, 0x66, 0x67, 0x68, 0x69, 0x70,
         0x71, 0x72, 0x73, 0x74, 0x75, 0x76, 0x77, 0x78]);
 console.log(buf.readBigUInt64LE(0).toString());
 
@@ -1081,16 +1202,17 @@ readDoubleBE(offset?: number): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1.Incorrect parameter types. |
 | 10200001 | The value of "offset" is out of range. It must be >= 0 and <= buf.length - 8. Received value is: [offset]. |
 
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from([1, 2, 3, 4, 5, 6, 7, 8]);
 console.log(buf.readDoubleBE(0).toString());
@@ -1123,16 +1245,17 @@ readDoubleLE(offset?: number): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1.Incorrect parameter types. |
 | 10200001 | The value of "offset" is out of range. It must be >= 0 and <= buf.length - 8. Received value is: [offset]. |
 
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from([1, 2, 3, 4, 5, 6, 7, 8]);
 console.log(buf.readDoubleLE(0).toString());
@@ -1165,16 +1288,17 @@ readFloatBE(offset?: number): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1.Incorrect parameter types. |
 | 10200001 | The value of "offset" is out of range. It must be >= 0 and <= buf.length - 4. Received value is: [offset]. |
 
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from([1, 2, 3, 4, 5, 6, 7, 8]);
 console.log(buf.readFloatBE(0).toString());
@@ -1207,16 +1331,17 @@ readFloatLE(offset?: number): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1.Incorrect parameter types. |
 | 10200001 | The value of "offset" is out of range. It must be >= 0 and <= buf.length - 4. Received value is: [offset]. |
 
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from([1, 2, 3, 4, 5, 6, 7, 8]);
 console.log(buf.readFloatLE(0).toString());
@@ -1249,16 +1374,17 @@ readInt8(offset?: number): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1.Incorrect parameter types. |
 | 10200001 | The value of "offset" is out of range. It must be >= 0 and <= buf.length - 1. Received value is: [offset]. |
 
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from([-1, 5]);
 console.log(buf.readInt8(0).toString());	// 打印: 0
@@ -1292,16 +1418,17 @@ readInt16BE(offset?: number): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1.Incorrect parameter types. |
 | 10200001 | The value of "offset" is out of range. It must be >= 0 and <= buf.length - 2. Received value is: [offset]. |
 
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from([0, 5]);
 console.log(buf.readInt16BE(0).toString());	// 打印: 5
@@ -1334,16 +1461,17 @@ readInt16LE(offset?: number): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1.Incorrect parameter types. |
 | 10200001 | The value of "offset" is out of range. It must be >= 0 and <= buf.length - 2. Received value is: [offset]. |
 
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from([0, 5]);
 console.log(buf.readInt16LE(0).toString());	// 打印: 1280
@@ -1376,16 +1504,17 @@ readInt32BE(offset?: number): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1.Incorrect parameter types. |
 | 10200001 | The value of "offset" is out of range. It must be >= 0 and <= buf.length - 4. Received value is: [offset]. |
 
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from([0, 0, 0, 5]);
 console.log(buf.readInt32BE(0).toString());	// 打印: 5
@@ -1418,16 +1547,17 @@ readInt32LE(offset?: number): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1.Incorrect parameter types. |
 | 10200001 |  The value of "offset" is out of range. It must be >= 0 and <= buf.length - 4. Received value is: [offset]. |
 
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from([0, 0, 0, 5]);
 console.log(buf.readInt32LE(0).toString());	// 打印: 83886080
@@ -1462,16 +1592,17 @@ readIntBE(offset: number, byteLength: number): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200001 | The value of "[param]" is out of range. It must be >= [left range] and <= [right range]. Received value is: [param] |
 
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from("ab");
 let num = buf.readIntBE(0, 1);
@@ -1508,16 +1639,17 @@ readIntLE(offset: number, byteLength: number): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200001 | The value of "[param]" is out of range. It must be >= [left range] and <= [right range]. Received value is: [param] |
 
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from([0x12, 0x34, 0x56, 0x78, 0x90, 0xab]);
 console.log(buf.readIntLE(0, 6).toString(16));
@@ -1551,16 +1683,17 @@ readUInt8(offset?: number): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Incorrect parameter types. |
 | 10200001 | The value of "offset" is out of range. It must be >= 0 and <= buf.length - 1. Received value is: [offset]. |
 
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from([1, -2]);
 console.log(buf.readUInt8(0).toString());
@@ -1595,16 +1728,17 @@ readUInt16BE(offset?: number): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Incorrect parameter types. |
 | 10200001 | The value of "offset" is out of range. It must be >= 0 and <= buf.length - 2. Received value is: [offset]. |
 
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from([0x12, 0x34, 0x56]);
 console.log(buf.readUInt16BE(0).toString(16));
@@ -1639,16 +1773,17 @@ readUInt16LE(offset?: number): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Incorrect parameter types. |
 | 10200001 | The value of "offset" is out of range. It must be >= 0 and <= buf.length - 2. Received value is: [offset]. |
 
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from([0x12, 0x34, 0x56]);
 console.log(buf.readUInt16LE(0).toString(16));
@@ -1683,16 +1818,17 @@ readUInt32BE(offset?: number): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Incorrect parameter types. |
 | 10200001 | The value of "offset" is out of range. It must be >= 0 and <= buf.length - 4. Received value is: [offset]. |
 
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from([0x12, 0x34, 0x56, 0x78]);
 console.log(buf.readUInt32BE(0).toString(16));
@@ -1726,16 +1862,17 @@ readUInt32LE(offset?: number): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Incorrect parameter types. |
 | 10200001 | The value of "offset" is out of range. It must be >= 0 and <= buf.length - 4. Received value is: [offset]. |
 
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from([0x12, 0x34, 0x56, 0x78]);
 console.log(buf.readUInt32LE(0).toString(16));
@@ -1770,16 +1907,17 @@ readUIntBE(offset: number, byteLength: number): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200001 | The value of "[param]" is out of range. It must be >= [left range] and <= [right range]. Received value is: [param] |
 
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from([0x12, 0x34, 0x56, 0x78, 0x90, 0xab]);
 console.log(buf.readUIntBE(0, 6).toString(16));
@@ -1814,16 +1952,17 @@ readUIntLE(offset: number, byteLength: number): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200001 | The value of "[param]" is out of range. It must be >= [left range] and <= [right range]. Received value is: [param] |
 
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.from([0x12, 0x34, 0x56, 0x78, 0x90, 0xab]);
 console.log(buf.readUIntLE(0, 6).toString(16));
@@ -1858,7 +1997,7 @@ subarray(start?: number, end?: number): Buffer
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf1 = buffer.allocUninitializedFromPool(26);
 
@@ -1898,7 +2037,7 @@ swap16(): Buffer
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf1 = buffer.from([0x1, 0x2, 0x3, 0x4, 0x5, 0x6, 0x7, 0x8]);
 console.log(buf1.toString('hex'));	// 打印: 0102030405060708
@@ -1935,7 +2074,7 @@ swap32(): Buffer
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf1 = buffer.from([0x1, 0x2, 0x3, 0x4, 0x5, 0x6, 0x7, 0x8]);
 console.log(buf1.toString('hex'));	// 打印: 0102030405060708
@@ -1972,7 +2111,7 @@ swap64(): Buffer
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf1 = buffer.from([0x1, 0x2, 0x3, 0x4, 0x5, 0x6, 0x7, 0x8]);
 console.log(buf1.toString('hex'));	// 打印: 0102030405060708
@@ -2000,7 +2139,7 @@ toJSON(): Object
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf1 = buffer.from([0x1, 0x2, 0x3, 0x4, 0x5]);
 let obj = buf1.toJSON();
@@ -2032,10 +2171,18 @@ toString(encoding?: string, start?: number, end?: number): string
 | -------- | -------- |
 | string | 字符串。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Incorrect parameter types. |
+
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf1 = buffer.allocUninitializedFromPool(26);
 for (let i = 0; i < 26; i++) {
@@ -2064,7 +2211,7 @@ values(): IterableIterator&lt;number&gt;
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf1 = buffer.from('buffer');
 let pair = buf1.values()
@@ -2103,16 +2250,17 @@ write(str: string, offset?: number, length?: number, encoding?: string): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200001 | The value of "[offset/length]" is out of range. It must be >= 0 and <= buf.length. Received value is: [offset/length]. |
 
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.alloc(256);
 let len = buf.write('\u00bd + \u00bc = \u00be', 0);
@@ -2149,16 +2297,17 @@ writeBigInt64BE(value: bigint, offset?: number): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200001 | The value of "[param]" is out of range. It must be >= [left range] and <= [right range]. Received value is: [param] |
 
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(8);
 let result = buf.writeBigInt64BE(BigInt(0x0102030405060708), 0);
@@ -2190,16 +2339,17 @@ writeBigInt64LE(value: bigint, offset?: number): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200001 | The value of "[param]" is out of range. It must be >= [left range] and <= [right range]. Received value is: [param] |
 
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(8);
 let result = buf.writeBigInt64LE(BigInt(0x0102030405060708), 0);
@@ -2231,16 +2381,17 @@ writeBigUInt64BE(value: bigint, offset?: number): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200001 | The value of "[param]" is out of range. It must be >= [left range] and <= [right range]. Received value is: [param] |
 
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(8);
 let result = buf.writeBigUInt64BE(BigInt(0xdecafafecacefade), 0);
@@ -2272,16 +2423,17 @@ writeBigUInt64LE(value: bigint, offset?: number): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200001 | The value of "[param]" is out of range. It must be >= [left range] and <= [right range]. Received value is: [param] |
 
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(8);
 let result = buf.writeBigUInt64LE(BigInt(0xdecafafecacefade), 0);
@@ -2313,16 +2465,17 @@ writeDoubleBE(value: number, offset?: number): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200001 | The value of "offset" is out of range. It must be >= 0 and <= buf.length - 8. Received value is: [offset] |
 
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(8);
 let result = buf.writeDoubleBE(123.456, 0);
@@ -2354,16 +2507,17 @@ writeDoubleLE(value: number, offset?: number): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200001 | The value of "offset" is out of range. It must be >= 0 and <= buf.length - 8. Received value is: [offset] |
 
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(8);
 let result = buf.writeDoubleLE(123.456, 0);
@@ -2395,16 +2549,17 @@ writeFloatBE(value: number, offset?: number): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200001 | The value of "offset" is out of range. It must be >= 0 and <= buf.length - 4. Received value is: [offset] |
 
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(8);
 let result = buf.writeFloatBE(0xcafebabe, 0);
@@ -2437,16 +2592,17 @@ writeFloatLE(value: number, offset?: number): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200001 | The value of "offset" is out of range. It must be >= 0 and <= buf.length - 4. Received value is: [offset] |
 
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(8);
 let result = buf.writeFloatLE(0xcafebabe, 0);
@@ -2478,16 +2634,17 @@ writeInt8(value: number, offset?: number): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200001 | The value of "[param]" is out of range. It must be >= [left range] and <= [right range]. Received value is: [param] |
 
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(2);
 let result = buf.writeInt8(2, 0);
@@ -2521,16 +2678,17 @@ writeInt16BE(value: number, offset?: number): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200001 | The value of "[param]" is out of range. It must be >= [left range] and <= [right range]. Received value is: [param] |
 
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(2);
 let result = buf.writeInt16BE(0x0102, 0);
@@ -2563,16 +2721,17 @@ writeInt16LE(value: number, offset?: number): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200001 | The value of "[param]" is out of range. It must be >= [left range] and <= [right range]. Received value is: [param] |
 
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(2);
 let result = buf.writeInt16LE(0x0304, 0);
@@ -2604,16 +2763,17 @@ writeInt32BE(value: number, offset?: number): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200001 | The value of "[param]" is out of range. It must be >= [left range] and <= [right range]. Received value is: [param] |
 
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(4);
 let result = buf.writeInt32BE(0x01020304, 0);
@@ -2646,16 +2806,17 @@ writeInt32LE(value: number, offset?: number): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200001 | The value of "[param]" is out of range. It must be >= [left range] and <= [right range]. Received value is: [param] |
 
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(4);
 let result = buf.writeInt32LE(0x05060708, 0);
@@ -2688,16 +2849,17 @@ writeIntBE(value: number, offset: number, byteLength: number): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200001 | The value of "[param]" is out of range. It must be >= [left range] and <= [right range]. Received value is: [param] |
 
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(6);
 let result = buf.writeIntBE(0x1234567890ab, 0, 6);
@@ -2731,16 +2893,17 @@ writeIntLE(value: number, offset: number, byteLength: number): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200001 | The value of "[param]" is out of range. It must be >= [left range] and <= [right range]. Received value is: [param] |
 
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(6);
 let result = buf.writeIntLE(0x1234567890ab, 0, 6);
@@ -2772,16 +2935,17 @@ writeUInt8(value: number, offset?: number): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200001 | The value of "[param]" is out of range. It must be >= [left range] and <= [right range]. Received value is: [param] |
 
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(4);
 let result = buf.writeUInt8(0x3, 0);
@@ -2816,16 +2980,17 @@ writeUInt16BE(value: number, offset?: number): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200001 | The value of "[param]" is out of range. It must be >= [left range] and <= [right range]. Received value is: [param] |
 
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(4);
 let result = buf.writeUInt16BE(0xdead, 0);
@@ -2858,16 +3023,17 @@ writeUInt16LE(value: number, offset?: number): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200001 | The value of "[param]" is out of range. It must be >= [left range] and <= [right range]. Received value is: [param] |
 
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(4);
 let result = buf.writeUInt16LE(0xdead, 0);
@@ -2900,16 +3066,17 @@ writeUInt32BE(value: number, offset?: number): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200001 | The value of "[param]" is out of range. It must be >= [left range] and <= [right range]. Received value is: [param] |
 
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(4);
 let result = buf.writeUInt32BE(0xfeedface, 0);
@@ -2941,16 +3108,17 @@ writeUInt32LE(value: number, offset?: number): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200001 | The value of "[param]" is out of range. It must be >= [left range] and <= [right range]. Received value is: [param] |
 
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(4);
 let result = buf.writeUInt32LE(0xfeedface, 0);
@@ -2983,16 +3151,17 @@ writeUIntBE(value: number, offset: number, byteLength: number): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200001 | The value of "[param]" is out of range. It must be >= [left range] and <= [right range]. Received value is: [param] |
 
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(6);
 let result = buf.writeUIntBE(0x1234567890ab, 0, 6);
@@ -3025,16 +3194,17 @@ writeUIntLE(value: number, offset: number, byteLength: number): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200001 | The value of "[param]" is out of range. It must be >= [left range] and <= [right range]. Received value is: [param] |
 
 **示例：**
 
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let buf = buffer.allocUninitializedFromPool(6);
 let result = buf.writeUIntLE(0x1234567890ab, 0, 6);
@@ -3070,10 +3240,17 @@ Blob的构造函数。
 | sources | string[]&nbsp;\|&nbsp;ArrayBuffer[]&nbsp;\|&nbsp;TypedArray[]&nbsp;\|&nbsp;DataView[]&nbsp;\|&nbsp;Blob[] | 是 | Blob实例的数据源。 |
 | options | Object | 否 | options:<br/>- endings:含义为结束符'\n'的字符串如何被输出，为'transparent'或'native'。native代表行结束符会跟随系统。'transparent'代表会保持Blob中保存的结束符不变。此参数非必填，默认值为'transparent'。<br/>- type:Blob内容类型。其目的是让类型传达数据的MIME媒体类型，但是不执行类型格式的验证。此参数非必填，默认参数为''。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let blob: buffer.Blob  = new buffer.Blob(['a', 'b', 'c']);
 
@@ -3102,7 +3279,7 @@ arrayBuffer(): Promise&lt;ArrayBuffer&gt;
 
 **示例：**
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let blob: buffer.Blob = new buffer.Blob(['a', 'b', 'c']);
 let pro = blob.arrayBuffer();
@@ -3136,7 +3313,7 @@ slice(start?: number, end?: number, type?: string): Blob
 
 **示例：**
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let blob: buffer.Blob = new buffer.Blob(['a', 'b', 'c']);
 let blob2 = blob.slice(0, 2);
@@ -3160,7 +3337,7 @@ text(): Promise&lt;string&gt;
 
 **示例：**
 ```ts
-import buffer from '@ohos.buffer';
+import { buffer } from '@kit.ArkTS';
 
 let blob: buffer.Blob = new buffer.Blob(['a', 'b', 'c']);
 let pro = blob.text();

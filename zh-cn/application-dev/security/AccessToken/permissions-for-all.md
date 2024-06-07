@@ -409,6 +409,12 @@
 2. 当用户点击弹窗授予前台位置权限后，应用通过弹窗、提示窗等形式告知用户前往设置界面授予后台位置权限。
 3. 用户在设置界面中的选择“始终允许”应用访问位置信息权限，完成手动授予。
 
+   设置路径：
+   <!--RP1-->
+   - 路径一：设置 > 隐私 > 权限管理 > 位置信息 > *具体应用*
+   - 路径二：设置 > 隐私 > 权限管理 > 应用 > *具体应用* > 位置信息
+   <!--RP1End-->
+
 **权限级别**：normal
 
 **授权方式**：user_grant
@@ -419,7 +425,7 @@
 
 允许应用获取设备位置信息。
 
-**申请条件**：需要先申请模糊位置权限[ohos.permission.APPROXIMATELY_LOCATION](#ohospermissionapproximately_location)，才可申请此权限。
+**申请条件**：需要与模糊位置权限[ohos.permission.APPROXIMATELY_LOCATION](#ohospermissionapproximately_location)一起，才可申请此权限。
 
 **权限级别**：normal
 

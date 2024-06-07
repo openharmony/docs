@@ -4,7 +4,16 @@
 
 > **说明：**
 >
-> 从API Version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 从API Version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。<br />
+> 默认摄像头挖孔区域不为非安全区域，页面不避让挖孔。<br />
+> 从API Version 12开始，可在module.json5中添加配置项, 摄像头挖孔区域视为非安全区，实现页面默认避让挖孔：<br />
+  "metadata": [<br />
+    &nbsp;&nbsp;{<br />
+    &nbsp;&nbsp;&nbsp;&nbsp;"name": "avoid_cutout",<br />
+    &nbsp;&nbsp;&nbsp;&nbsp;"value": "true",<br />
+    &nbsp;&nbsp;}<br />
+  ],<br />
+  
 
 ## expandSafeArea
 
@@ -20,16 +29,24 @@ expandSafeArea(types?: Array&lt;SafeAreaType&gt;, edges?: Array&lt;SafeAreaEdge&
 
 | 参数名 | 类型                                               | 必填 | 说明                                                         |
 | ------ | -------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| types  | Array <[SafeAreaType](ts-types.md#safeareatype10)> | 否   | 非必填，配置扩展安全区域的类型。<br />默认值: <br />[SafeAreaType.SYSTEM, SafeAreaType.CUTOUT, SafeAreaType.KEYBOARD] |
+| types  | Array <[SafeAreaType](ts-types.md#safeareatype10)> | 否   | 非必填，配置扩展安全区域的类型。未添加metadata配置项时，页面不避让挖孔, CUTOUT类型不生效。<br />默认值: <br />[SafeAreaType.SYSTEM, SafeAreaType.CUTOUT, SafeAreaType.KEYBOARD] |
 | edges  | Array <[SafeAreaEdge](ts-types.md#safeareaedge10)> | 否   | 非必填，配置扩展安全区域的方向。<br /> [SafeAreaEdge.TOP, SafeAreaEdge.BOTTOM, SafeAreaEdge.START, SafeAreaEdge.END]<br />扩展至所有非安全区域。 |
 
 >  **说明：**
 >
->设置expandSafeArea属性进行组件绘制扩展时，组件不能设置固定宽高尺寸（百分比除外）。
+>  设置expandSafeArea属性进行组件绘制扩展时，组件不能设置固定宽高尺寸（百分比除外）。
 >
->安全区域不会限制内部组件的布局和大小，不会裁剪内部组件。
+>  安全区域不会限制内部组件的布局和大小，不会裁剪内部组件。
 >
->当父容器是滚动容器时，设置expandSafeArea属性不生效。
+>  当父容器是滚动容器时，设置expandSafeArea属性不生效。
+>
+>  设置expandSafeArea()时，不传参，走默认值处理；设置expandSafeArea([],[])时，相当于入参是空数组，此时设置expandSafeArea属性不生效。
+>   
+>  组件设置expandSafeArea之后生效的条件为：  
+>  1.type为SafeAreaType.KEYBOARD时默认生效，组件不避让键盘。  
+>  2.设置其他type，组件的边界与安全区域重合时组件能够延伸到安全区域下。例如：设备顶部状态栏高度100，那么组件在屏幕中的绝对位置需要为0 <= y <= 100。  
+>   
+>  组件延伸到安全区域下，在安全区域处的事件，如点击事件等可能会被系统拦截，优先给状态栏等系统组件响应。
 
 ## setKeyboardAvoidMode<sup>11+</sup>
 
@@ -44,6 +61,11 @@ setKeyboardAvoidMode(value: KeyboardAvoidMode): void
 | 参数名 | 类型                                                 | 必填 | 说明                                                         |
 | ------ | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | value  | [KeyboardAvoidMode](ts-types.md#keyboardavoidmode11) | 是   | 控制虚拟键盘抬起时页面的避让模式。<br />默认值: KeyboardAvoidMode.OFFSET <br />键盘抬起时默认页面避让模式为上抬模式。<br />必填，配置虚拟键盘避让时的页面避让模式。 |
+
+>  **说明：**
+>  KeyboardAvoidMode.RESIZE是压缩Page的大小，Page下设置百分比宽高的组件会跟随Page压缩，直接设置宽高的组件会按设置的固定大小布局。
+>
+>  设置KeyboardAvoidMode.RESIZE时，expandSafeArea([SafeAreaType.KEYBOARD],[SafeAreaEdge.BOTTOM])不生效。
 
 ## getKeyboardAvoidMode
 

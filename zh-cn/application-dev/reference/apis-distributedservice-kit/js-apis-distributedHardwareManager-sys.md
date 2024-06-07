@@ -76,10 +76,13 @@ pauseDistributedHardware(description: HardwareDescriptor): Promise&lt;void&gt;
 
 **错误码：**
 
-| 错误码ID | 错误信息                                           |
-| -------- | -------------------------------------------------- |
-| 24200101 | The specified distributed hardware is not started. |
-| 24200102 | The specified source device is not connected.      |
+| 错误码ID | 错误信息                                             |
+| -------- | ---------------------------------------------------- |
+| 201      | Permission verification failed.                      |
+| 202      | Permission denied, non-system app called system api. |
+| 401      | Input parameter error.                               |
+| 24200101 | The specified distributed hardware is not started.   |
+| 24200102 | The specified source device is not connected.        |
 
 **示例：**
 
@@ -127,10 +130,13 @@ resumeDistributedHardware(description: HardwareDescriptor): Promise&lt;void&gt;
 
 **错误码：**
 
-| 错误码ID | 错误信息                                           |
-| -------- | -------------------------------------------------- |
-| 24200101 | The specified distributed hardware is not started. |
-| 24200102 | The specified source device is not connected.      |
+| 错误码ID | 错误信息                                             |
+| -------- | ---------------------------------------------------- |
+| 201      | Permission verification failed.                      |
+| 202      | Permission denied, non-system app called system api. |
+| 401      | Input parameter error.                               |
+| 24200101 | The specified distributed hardware is not started.   |
+| 24200102 | The specified source device is not connected.        |
 
 **示例：**
 
@@ -180,10 +186,13 @@ stopDistributedHardware(description: HardwareDescriptor): Promise&lt;void&gt;
 
 **错误码：**
 
-| 错误码ID | 错误信息                                           |
-| -------- | -------------------------------------------------- |
-| 24200101 | The specified distributed hardware is not started. |
-| 24200102 | The specified source device is not connected.      |
+| 错误码ID | 错误信息                                             |
+| -------- | ---------------------------------------------------- |
+| 201      | Permission verification failed.                      |
+| 202      | Permission denied, non-system app called system api. |
+| 401      | Input parameter error.                               |
+| 24200101 | The specified distributed hardware is not started.   |
+| 24200102 | The specified source device is not connected.        |
 
 **示例：**
 

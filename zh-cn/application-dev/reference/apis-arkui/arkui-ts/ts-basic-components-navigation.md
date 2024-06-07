@@ -78,6 +78,11 @@ subTitle(value: string)
 
 menus(value: Array&lt;NavigationMenuItem&gt; | CustomBuilder)
 
+> **说明：**
+>
+> 不支持通过SymbolGlyphModifier对象的fontSize属性修改图标大小、effectStrategy属性修改动效、symbolEffect属性修改动效类型。
+
+
 设置页面右上角菜单。不设置时不显示菜单项。使用Array<[NavigationMenuItem](#navigationmenuitem类型说明)&gt; 写法时，竖屏最多支持显示3个图标，横屏最多支持显示5个图标，多余的图标会被放入自动生成的更多图标。
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
@@ -125,6 +130,11 @@ toolBar(value: object | CustomBuilder)
 ### toolbarConfiguration<sup>10+</sup>
 
 toolbarConfiguration(value: Array&lt;ToolbarItem&gt; | CustomBuilder, options?: NavigationToolbarOptions)
+
+> **说明：**
+>
+> 不支持通过SymbolGlyphModifier对象的fontSize属性修改图标大小、effectStrategy属性修改动效、symbolEffect属性修改动效类型。
+
 
 设置工具栏内容。不设置时不显示工具栏。
 
@@ -203,7 +213,7 @@ navBarWidth(value: Length)
 
 | 参数名 | 类型                         | 必填 | 说明                                      |
 | ------ | ---------------------------- | ---- | ----------------------------------------- |
-| value  | [Length](ts-types.md#length) | 是   | 导航栏宽度。<br/>默认值：240<br/>单位：vp |
+| value  | [Length](ts-types.md#length) | 是   | 导航栏宽度。<br/>默认值：240<br/>单位：vp<br/>undefined：行为不做处理，导航栏宽度与默认值保持一致。 |
 
 ### navBarPosition<sup>9+</sup>
 
@@ -239,7 +249,12 @@ mode(value: NavigationMode)
 
 ### backButtonIcon<sup>9+</sup>
 
-backButtonIcon(value: string | PixelMap | Resource)
+backButtonIcon(value: string | PixelMap | Resource | SymbolGlyphModifier)
+
+> **说明：**
+>
+> 不支持通过SymbolGlyphModifier对象的fontSize属性修改图标大小、effectStrategy属性修改动效、symbolEffect属性修改动效类型。
+
 
 设置标题栏中返回键图标。
 
@@ -251,7 +266,7 @@ backButtonIcon(value: string | PixelMap | Resource)
 
 | 参数名 | 类型                                                         | 必填 | 说明                 |
 | ------ | ------------------------------------------------------------ | ---- | -------------------- |
-| value  | string&nbsp;\|&nbsp;[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 标题栏中返回键图标。 |
+| value  | string&nbsp;\|&nbsp;[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)&nbsp;\|&nbsp;[Resource](ts-types.md#resource)&nbsp;\|&nbsp;[SymbolGlyphModifier<sup>12+</sup>](ts-universal-attributes-attribute-modifier.md)    | 是   | 标题栏中返回键图标。 |
 
 ### hideNavBar<sup>9+</sup>
 
@@ -321,7 +336,7 @@ minContentWidth(value: Dimension)
 
 | 参数名  | 类型                                 | 必填 | 说明                                                         |
 | ------- | ------------------------------------ | ---- | ------------------------------------------------------------ |
-| builder | [Dimension](ts-types.md#dimension10) | 是   | 导航栏内容区最小宽度。<br/>默认值：360<br/>单位：vp<br/>Auto模式断点计算：默认600vp，minNavBarWidth(240vp) + minContentWidth (360vp) |
+| builder | [Dimension](ts-types.md#dimension10) | 是   | 导航栏内容区最小宽度。<br/>默认值：360<br/>单位：vp<br/>undefined：行为不做处理，导航栏内容区最小宽度与默认值保持一致。<br/>Auto模式断点计算：默认600vp，minNavBarWidth(240vp) + minContentWidth (360vp) |
 
 >  **说明：**
 >
@@ -387,6 +402,8 @@ customNavContentTransition(delegate(from: NavContentInfo, to: NavContentInfo, op
 
 自定义转场动画回调。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -405,7 +422,7 @@ customNavContentTransition(delegate(from: NavContentInfo, to: NavContentInfo, op
 
 ## NavPathStack<sup>10+</sup>
 
-Navigation路由栈。
+Navigation路由栈，允许被继承<sup>12+</sup>。开发者可以在派生类中新增属性方法，也可以重写基类NavPathStack的方法。派生类对象可以替代基类NavPathStack对象使用。使用示例参见[示例10](#示例10)。
 
 ### pushPath<sup>10+</sup>
 
@@ -444,6 +461,8 @@ pushPathByName(name: string, param: Object, onPop: import('../api/@ohos.base').C
 
 将name指定的NavDestination页面信息入栈，传递的数据为param，添加onPop回调接收入栈页面出栈时的返回结果，并进行处理。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 名称 | 类型 | 必填 | 描述 |
@@ -458,6 +477,8 @@ pushPathByName(name: string, param: Object, onPop: import('../api/@ohos.base').C
 pushDestination(info: NavPathInfo, animated?: boolean): Promise&lt;void&gt;
 
 将info指定的NavDestination页面信息入栈，使用Promise异步回调返回接口调用结果。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -474,20 +495,22 @@ pushDestination(info: NavPathInfo, animated?: boolean): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](../errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../../errorcode-universal.md)和[ohos.router(页面路由)](../errorcode-router.md)错误码。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-|   401    | 参数错误。 |
-| 100001    | 系统内部错误。|
-| 100005    | 创建NavDestination组件的builder函数未注册。 |
-| 100006    | 目标页面中不存在NavDestination组件。|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 100001    | Internal error.|
+| 100005    | Builder function not registered. |
+| 100006    | NavDestination not found.|
 
 ### pushDestinationByName<sup>11+</sup>
 
 pushDestinationByName(name: string, param: Object, animated?: boolean): Promise&lt;void&gt;
 
 将name指定的NavDestination页面信息入栈，传递的数据为param，使用Promise异步回调返回接口调用结果。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -505,20 +528,22 @@ pushDestinationByName(name: string, param: Object, animated?: boolean): Promise&
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](../errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../../errorcode-universal.md)和[ohos.router(页面路由)](../errorcode-router.md)错误码。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-|   401    | 参数错误。 |
-| 100001    | 系统内部错误。|
-| 100005    | 创建NavDestination组件的builder函数未注册。 |
-| 100006    | 目标页面中不存在NavDestination组件。|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 100001    | Internal error.|
+| 100005    | Builder function not registered. |
+| 100006    | NavDestination not found.|
 
 ### pushDestinationByName<sup>11+</sup>
 
 pushDestinationByName(name: string, param: Object, onPop: import('../api/@ohos.base').Callback\<PopInfo>, animated?: boolean): Promise&lt;void&gt;
 
 将name指定的NavDestination页面信息入栈，传递的数据为param，并且添加用于页面出栈时处理返回结果的OnPop回调，使用Promise异步回调返回接口调用结果。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -537,20 +562,22 @@ pushDestinationByName(name: string, param: Object, onPop: import('../api/@ohos.b
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.router(页面路由)](../errorcode-router.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../../errorcode-universal.md)和[ohos.router(页面路由)](../errorcode-router.md)错误码。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-|   401    | 参数错误。 |
-| 100001    | 系统内部错误。|
-| 100005    | 创建NavDestination组件的builder函数未注册。 |
-| 100006    | 目标页面中不存在NavDestination组件。|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 100001    | Internal error.|
+| 100005    | Builder function not registered. |
+| 100006    | NavDestination not found.|
 
 ### replacePath<sup>11+</sup>
 
 replacePath(info: NavPathInfo, animated?: boolean): void
 
 将当前页面栈栈顶退出，将info指定的NavDestination页面信息入栈。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -565,6 +592,8 @@ replacePathByName(name: string, param: Object, animated?: boolean): void
 
 将当前页面栈栈顶退出，将name指定的页面入栈。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 名称    | 类型      | 必填   | 描述                    |
@@ -578,6 +607,8 @@ replacePathByName(name: string, param: Object, animated?: boolean): void
 removeByIndexes(indexes: Array<number\>): number
 
 将页面栈内索引值在indexes中的NavDestination页面删除。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -596,6 +627,8 @@ removeByIndexes(indexes: Array<number\>): number
 removeByName(name: string): number
 
 将页面栈内指定name的NavDestination页面删除。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -635,6 +668,8 @@ pop(animated?: boolean): NavPathInfo | undefined
 pop(result: Object, animated?: boolean): NavPathInfo | undefined
 
 弹出路由栈栈顶元素，并触发onPop回调传入页面处理结果。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -676,6 +711,8 @@ popToName(name: string, animated?: boolean): number
 popToName(name: string, result: Object, animated?: boolean): number
 
 回退路由栈到由栈底开始第一个名为name的NavDestination页面，并触发onPop回调传入页面处理结果。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -867,6 +904,8 @@ disableAnimation(value: boolean): void
 
 关闭（true）或打开（false）当前Navigation中所有转场动画。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 名称    | 类型     | 必填   | 描述                     |
@@ -893,6 +932,8 @@ setInterception(interception: NavigationInterception): void
 
 设置Navigation页面跳转拦截回调。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 名称    | 类型     | 必填   | 描述                     |
@@ -914,12 +955,14 @@ constructor(name: string, param: unknown)
 | 名称    | 类型      | 必填   | 描述                    |
 | ----- | ------- | ---- | --------------------- |
 | name  | string  | 是    | NavDestination页面名称。   |
-| param | unknown | 是    | NavDestination页面详细参数。 |
+| param | unknown | 否    | NavDestination页面详细参数。 |
 | onPop<sup>11+</sup> | import('../api/@ohos.base').Callback\<[PopInfo](#popinfo11)> | 否 | NavDestination页面触发pop时返回的回调。 |
 
 ## PopInfo<sup>11+</sup>
 
 下一个页面返回的回调信息载体。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -931,6 +974,8 @@ constructor(name: string, param: unknown)
 ## NavContentInfo<sup>11+</sup>
 
 跳转Destination信息。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -944,6 +989,8 @@ constructor(name: string, param: unknown)
 
 自定义转场动画协议，开发者需实现该协议来定义Navigation路由跳转的跳转动画。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **参数：**
 | 名称 | 类型 | 必填 | 描述 |
 |------|-----|-----|------|
@@ -954,6 +1001,8 @@ constructor(name: string, param: unknown)
 ## NavigationTransitionProxy <sup>11+</sup>
 
 自定义转场动画代理对象。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -966,15 +1015,48 @@ constructor(name: string, param: unknown)
 
 结束本次自定义转场动画，开发者需要主动触发该方法来结束本次转场，否则系统会在timeout的时间后结束本次转场。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 ## NavigationInterception<sup>12+</sup>
 
 Navigation跳转拦截对象。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 | 名称    | 类型     | 必填 | 描述    |
 | ---- | ----- | ----- | ----   |
-| willShow | (from: [NavDestinationContext](ts-basic-components-navdestination.md#navdestinationcontext11类型说明)\\|"navBar",<br> to: [NavDestinationContext](ts-basic-components-navdestination.md#navdestinationcontext11类型说明)\\|"navBar",<br> operation: [NavigationOperation](#navigationoperation11枚举说明),<br> isAnimated: boolean) =&gt;void | 否 | 页面跳转前拦截，允许操作栈，在当前跳转中生效。<br> from: 页面跳转之前的栈顶页面信息。参数值为navBar，则表示跳转前的页面为Navigation首页。<br> to: 页面跳转之后的栈顶页面信息。参数值为navBar，则标题跳转的目标页面为Navigation首页。<br> operation: 当前页面跳转类型。<br> isAnimated: 页面跳转是否有动画。 |
-| didShow | (from: [NavDestinationContext](ts-basic-components-navdestination.md#navdestinationcontext11类型说明)\\|"navBar",<br> to: [NavDestinationContext](ts-basic-components-navdestination.md#navdestinationcontext11类型说明)\\|"navBar",<br> operation: [NavigationOperation](#navigationoperation11枚举说明),<br> isAnimated: boolean) =&gt;void | 否 | 页面跳转后回调。在该回调中操作栈在下一次跳转中刷新。<br> from: 页面跳转之前的栈顶页面信息。参数值为navBar，则表示跳转前页面为Navigation首页。<br> to: 页面跳转之后的栈顶页面信息。参数值为NavBar，则表示跳转目标页为Navigation首页。<br> operation: 当前页面跳转类型。<br> isAnimated: 页面跳转是否有动画。 | 否 | 发生页面跳转后回调。|
-| modeChange | (mode: [NavigationMode](#navigationmode9枚举说明)) =&gt;void | 否 | Navigation单双栏显示状态发生变更时触发该回调。|
+| willShow | [InterceptionShowCallback](#interceptionshowcallback12) | 否 | 页面跳转前拦截，允许操作栈，在当前跳转中生效。|
+| didShow | [InterceptionShowCallback](#interceptionshowcallback12) | 否 | 页面跳转后回调。在该回调中操作栈在下一次跳转中刷新。|
+| modeChange | [InterceptionModeCallback](#interceptionmodecallback12) | 否 | Navigation单双栏显示状态发生变更时触发该回调。|
+
+### InterceptionShowCallback<sup>12+</sup>
+
+type InterceptionShowCallback = (from: NavDestinationContext|NavBar, to: NavDestinationContext|NavBar, operation: NavigationOperation, isAnimated: boolean) => void
+
+navigation页面跳转前和页面跳转后的拦截回调。
+
+| 参数名  | 类型    | 必填 | 说明              |
+| ------ | ------ | ---- | ---------------- |
+| from | [NavDestinationContext](ts-basic-components-navdestination.md#navdestinationcontext11类型说明) \|[NavBar](#navbar12) | 是 |  页面跳转之前的栈顶页面信息。参数值为navBar，则表示跳转前的页面为Navigation首页。 |
+| to | [NavDestinationContext](ts-basic-components-navdestination.md#navdestinationcontext11类型说明) \|[NavBar](#navbar12) | 是 | 页面跳转之后的栈顶页面信息。参数值为navBar，则表示跳转的目标页面为Navigation首页。 |
+| operation | [NavigationOperation](#navigationoperation11枚举说明) | 是 | 当前页面跳转类型。 |
+| isAnimated | boolean | 是 | 页面跳转是否有动画。 |
+
+### InterceptionModeCallback<sup>12+</sup>
+
+type InterceptionModeCallback = (mode: NavigationMode) => void
+
+navigation单双栏显示状态发生变更时的拦截回调。
+
+| 参数名  | 类型    | 必填 | 说明              |
+| ------ | ------ | ---- | ---------------- |
+| mode | [NavigationMode](#navigationmode9枚举说明) | 是 |  导航栏的显示模式。 |
+
+### NavBar<sup>12+</sup>
+
+| 名称       | 描述                                       |
+| -------- | ---------------------------------------- |
+| "navBar"   | Navigation首页。 |
 
 ## NavigationMenuItem类型说明
 
@@ -982,8 +1064,9 @@ Navigation跳转拦截对象。
 | ------ | ------------- | ---- | --------------- |
 | value  | string        | 是    | API Version 9: 显示菜单栏单个选项的文本。<br> API Version 10: 不显示菜单栏单个选项的文本。  <br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 | icon   | string        | 否    | 菜单栏单个选项的图标资源路径。 <br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| isEnabled<sup>12+</sup>   | boolean        | 否    | 使能状态，默认使能（false未使能，true使能）。 |
+| isEnabled<sup>12+</sup>   | boolean        | 否    | 使能状态，默认使能（false未使能，true使能）。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
 | action | () =&gt; void | 否    | 当前选项被选中的事件回调。   <br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| symbolIcon<sup>12+</sup> |  [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md)  | 否    |菜单栏单个选项的symbol资源（优先级高于icon）。 |
 
 ## object类型说明
 
@@ -1004,6 +1087,8 @@ Navigation跳转拦截对象。
 | action     | () =&gt; void                            | 否    | 当前选项被选中的事件回调。                            |
 | status     | [ToolbarItemStatus](#toolbaritemstatus10枚举说明) | 否    | 工具栏单个选项的状态。<br/>默认值：ToolbarItemStatus.NORMAL |
 | activeIcon | ResourceStr                              | 否    | 工具栏单个选项处于ACTIVE态时的图标资源路径。                |
+| symbolIcon<sup>12+</sup> | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md)        | 否    | 工具栏单个选项的symbol资源（优先级高于icon）。               |
+| activeSymbolIcon<sup>12+</sup> | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md)              | 否    | 工具栏单个选项处于ACTIVE态时的symbol资源（优先级高于activeIcon）。                |
 
 ## ToolbarItemStatus<sup>10+</sup>枚举说明
 
@@ -1021,9 +1106,9 @@ Navigation跳转拦截对象。
 
 | 名称   | 描述                                       |
 | ---- | ---------------------------------------- |
-| Free | 当内容为满一屏的可滚动组件时，标题随着内容向上滚动而缩小（子标题的大小不变、淡出）。向下滚动内容到顶时则恢复原样。<br/>**说明：** <br/>标题随着内容滚动大小联动的动效在title设置为ResourceStr和NavigationCommonTitle时生效，设置成其余自定义节点类型时字体样式无法变化，下拉时只影响标题栏偏移。<br/>可滚动组件不满一屏时，如果想使用联动效果，就要使用滚动组件提供的[edgeEffect](ts-container-list.md#属性)接口将options参数设置为true。 |
-| Mini | 固定为小标题模式。                                |
-| Full | 固定为大标题模式。                                |
+| Free | 当内容为满一屏的可滚动组件时，标题随着内容向上滚动而缩小（子标题的大小不变、淡出）。向下滚动内容到顶时则恢复原样。<br/>**说明：** <br/>标题随着内容滚动大小联动的动效在title设置为ResourceStr和NavigationCommonTitle时生效，设置成其余自定义节点类型时字体样式无法变化，下拉时只影响标题栏偏移。<br/>可滚动组件不满一屏时，如果想使用联动效果，就要使用滚动组件提供的[edgeEffect](ts-container-list.md#属性)接口将options参数设置为true。未滚动状态，标题栏高度与Full模式一致；滚动时，标题栏的最小高度与Mini模式一致。 |
+| Mini | 固定为小标题模式。<br/>默认值：API version 12之前，只有主标题时，标题栏高度为56vp；同时有主标题和副标题时，标题栏高度为82vp。从API version 12开始，该模式下标题栏高度为56vp。                                |
+| Full | 固定为大标题模式。<br/>默认值：只有主标题时，标题栏高度为112vp；同时有主标题和副标题时，标题栏高度为138vp。                                |
 
 ## NavigationCommonTitle<sup>9+</sup>类型说明
 
@@ -1064,17 +1149,31 @@ Navigation跳转拦截对象。
 
 ## TitleHeight<sup>9+</sup>枚举说明
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称          | 描述                         |
 | ----------- | -------------------------- |
 | MainOnly    | 只有主标题时标题栏的推荐高度（56vp）。      |
 | MainWithSub | 同时有主标题和副标题时标题栏的推荐高度（82vp）。 |
 
 ## NavigationOperation<sup>11+</sup>枚举说明
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 | 名称    | 描述  |
 |---------|------|
 |PUSH | 本次转场为页面进场。|
 |POP | 本次转场为页面退场。|
 | REPLACE | 本次转场为页面替换。|
+
+## BarStyle<sup>12+</sup>枚举说明
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+| 名称    | 描述  |
+|---------|------|
+|STANDARD | 标题栏与内容区采用上下布局。|
+|STACK | 标题栏与内容区采用层叠布局，标题栏布局在内容区上层。|
 
 ## NavigationTitleOptions<sup>11+</sup>类型说明
 
@@ -1084,6 +1183,7 @@ Navigation跳转拦截对象。
 | ------ | ------------- | ---- | --------------- |
 | backgroundColor | [ResourceColor](ts-types.md#resourcecolor)  | 否    | 标题栏背景颜色，不设置时为系统默认颜色。 |
 | backgroundBlurStyle   | [BlurStyle](ts-appendix-enums.md#blurstyle9)        | 否    | 标题栏背景模糊样式，不设置时关闭背景模糊效果。 |
+| barStyle<sup>12+</sup>   | [BarStyle](#barstyle12枚举说明)        | 否    | 标题栏布局方式设置。<br/>默认值：BarStyle.STANDARD<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
 
 ## NavigationToolbarOptions<sup>11+</sup>类型说明
 
@@ -1588,8 +1688,8 @@ export function PageTwoBuilder(name: string, param: Object) {
 }
 
 @Component
-export struct PageTwoTemp {
-  pathInfo: NavPathStack = new NavPathStack()
+export struct PageTwo {
+  pageInfos: NavPathStack = new NavPathStack()
   @State x: number = 300
   pageId: number = 0
 
@@ -1662,7 +1762,7 @@ export class CustomTransition {
   // timeout：转场结束的超时时间
   registerNavParam(name: number, startCallback: (operation: boolean, isExit: boolean) => void,
                    endCallback:(operation: boolean, isExit: boolean) => void,
-                   onFinish: (opeation: boolean, isExit: boolean) => void, timeout: number): void {
+                   onFinish: (operation: boolean, isExit: boolean) => void, timeout: number): void {
 
     if (customTransitionMap.has(name)) {
       let param = customTransitionMap.get(name);
@@ -1901,7 +2001,7 @@ class resultClass {
 }
 
 @Builder
-export function PageTwoBuilder(name: string, pram: Object) {
+export function PageTwoBuilder() {
   PageTwo()
 }
 
@@ -1996,73 +2096,146 @@ export struct PageTwo {
 ### 示例5
 
 ```ts
-// 该示例主要演示设置Navigation的标题栏和工具栏的背景颜色和背景模糊效果。
-@Entry
-@Component
-struct NavigationExample {
-  @State pathStack: NavPathStack = new NavPathStack();
-  @State switchColor: boolean = false;
-  @State switchBlur: boolean = false;
+// 该示例主要演示设置Navigation主页的标题栏、工具栏和
+// NavDestination页面的标题栏的背景颜色和背景模糊效果。
+let COLOR1: string = "#80004AAF";
+let COLOR2: string = "#802787D9";
+let BLUR_STYLE_1: BlurStyle = BlurStyle.BACKGROUND_THIN;
+let BLUR_STYLE_2: BlurStyle = BlurStyle.BACKGROUND_THICK;
 
-  @Builder
-  BackgroundBuilder() {
+@Component
+struct BackComponent {
+  build() {
     Row() {
       Column() {}
-      .layoutWeight(1)
       .height('100%')
-      .backgroundColor(Color.Red)
+      .backgroundColor("#3D9DB4")
+      .layoutWeight(9)
       Column() {}
-      .layoutWeight(1)
       .height('100%')
-      .backgroundColor(Color.Green)
+      .backgroundColor("17A98D")
+      .layoutWeight(9)
       Column() {}
-      .layoutWeight(1)
       .height('100%')
-      .backgroundColor(Color.Blue)
+      .backgroundColor("FFC000")
+      .layoutWeight(9)
     }
     .height('100%')
+    .width('100%')
   }
+}
+
+@Component
+struct ColorAndBlur {
+  @State useColor1: boolean = true;
+  @State useBlur1: boolean = true;
 
   build() {
-    Navigation(this.pathStack) {
-      Column() {
-        Button('switch color', { stateEffect: true, type: ButtonType.Capsule })
-          .width('80%')
-          .height(40)
-          .margin(20)
-          .onClick(() => {
-            console.log(`testTag switchColor`)
-            this.switchColor = !this.switchColor;
-          })
-        Button('switch blur', { stateEffect: true, type: ButtonType.Capsule })
-          .width('80%')
-          .height(40)
-          .margin(20)
-          .onClick(() => {
-            console.log(`testTag switchBlur`)
-            this.switchBlur = !this.switchBlur;
-          })
-      }
-      .width('100%')
+    NavDestination() {
+      Stack({alignContent: Alignment.Center}) {
+        BackComponent()
+          .width('100%')
+          .height('100%')
+        Column() {
+          Stack({alignContent: Alignment.Center}) {
+            Button("switch color")
+              .onClick(() => {
+                this.useColor1 = !this.useColor1;
+              })
+          }
+          .width('100%')
+          .layoutWeight(1)
+          Stack({alignContent: Alignment.Center}) {
+            Button("switch blur")
+              .onClick(() => {
+                this.useBlur1 = !this.useBlur1;
+              })
+          }
+          .width('100%')
+          .layoutWeight(1)
+        }
+        .width('100%')
+        .height('100%')
+      }.width('100%')
       .height('100%')
     }
-    // 使用定制化的背景能够凸显背景模糊的效果
-    .background(this.BackgroundBuilder)
     .width('100%')
     .height('100%')
     // 开发者可以设置标题栏的背景颜色和背景模糊效果
+    .title("switch titlebar color and blur", {
+      backgroundColor: this.useColor1 ? COLOR1 : COLOR2,
+      backgroundBlurStyle: this.useBlur1 ? BLUR_STYLE_1 : BLUR_STYLE_2,
+      barStyle: BarStyle.STACK
+    })
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  private stack: NavPathStack = new NavPathStack();
+  @State useColor1: boolean = true;
+  @State useBlur1: boolean = true;
+
+  @Builder
+  PageBuilder(name: string) {
+    ColorAndBlur()
+  }
+
+  build() {
+    Navigation(this.stack) {
+      Stack({alignContent: Alignment.Center}) {
+        BackComponent()
+          .width('100%')
+          .height('100%')
+        Column() {
+          Stack({alignContent: Alignment.Center}) {
+            Button("switch color")
+              .onClick(() => {
+                this.useColor1 = !this.useColor1;
+              })
+          }
+          .width('100%')
+          .layoutWeight(1)
+          Stack({alignContent: Alignment.Center}) {
+            Button("switch blur")
+              .onClick(() => {
+                this.useBlur1 = !this.useBlur1;
+              })
+          }
+          .width('100%')
+          .layoutWeight(1)
+          Stack({alignContent: Alignment.Center}) {
+            Button("push page")
+              .onClick(() => {
+                this.stack.pushPath({name: "page"})
+              })
+          }
+          .width('100%')
+          .layoutWeight(1)
+        }
+        .width('100%')
+        .height('80%')
+      }.width('100%')
+      .height('100%')
+    }
+    .width('100%')
+    .height('100%')
+    .navDestination(this.PageBuilder)
+    // 开发者可以设置标题栏的背景颜色和背景模糊效果
     .title("NavTitle", {
-      backgroundColor: this.switchColor ? "#90D1D2D3" : "#90121314",
-      backgroundBlurStyle: this.switchBlur ? BlurStyle.BACKGROUND_THICK : BlurStyle.BACKGROUND_THIN
+      backgroundColor: this.useColor1 ? COLOR1 : COLOR2,
+      backgroundBlurStyle: this.useBlur1 ? BLUR_STYLE_1 : BLUR_STYLE_2,
+      barStyle: BarStyle.STACK
     })
     // 开发者可以设置工具栏的背景颜色和背景模糊效果
     .toolbarConfiguration([
-      {value: 'a'},
-      {value: 'b'},
-      {value: 'c'},
+      {value: "a"},
+      {value: "b"},
+      {value: "c"}
     ], {
-      backgroundColor: this.switchColor ? "#90D1D2D3" : "#90121314",
-      backgroundBlurStyle: this.switchBlur ? BlurStyle.BACKGROUND_THICK : BlurStyle.BACKGROUND_THIN
+      backgroundColor: this.useColor1 ? COLOR1 : COLOR2,
+      backgroundBlurStyle: this.useBlur1 ? BLUR_STYLE_1 : BLUR_STYLE_2
     })
   }
 }
@@ -2286,6 +2459,10 @@ struct PageOneComponent {
     .onDisAppear(() => { this.eventStr += "<onDisAppear>"; })
     .onShown(() => { this.eventStr += "<onShown>"; })
     .onHidden(() => { this.eventStr += "<onHidden>"; })
+    .onWillAppear(() => { this.eventStr += "<onWillAppear>"; })
+    .onWillDisappear(() => { this.eventStr += "<onWillDisappear>"; })
+    .onWillShow(() => { this.eventStr += "<onWillShow>"; })
+    .onWillHide(() => { this.eventStr += "<onWillHide>"; })
     // onReady会在onAppear之前调用
     .onReady((ctx: NavDestinationContext) => {
       try {
@@ -2340,3 +2517,299 @@ struct NavigationExample3 {
 }
 ```
 ![navigationOnReady2.gif](figures/navigationOnReady2.gif)
+
+
+### 示例9
+
+```ts
+// 该示例演示Navigation标题栏STACK布局效果。
+@Entry
+@Component
+struct NavigationExample {
+  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
+  private scrollerForScroll: Scroller = new Scroller();
+  @State barStyle: BarStyle = BarStyle.STANDARD;
+
+  build() {
+    Column() {
+      Navigation() {
+        Column() {
+          Scroll(this.scrollerForScroll) {
+            Column() {
+              Image($r('app.media.image_1'))
+                // 设置与标题栏高度一致，以便观察STACK效果
+                .height(138)
+                .width('100%')
+              Button('BarStyle.STANDARD')
+                .height('50vp')
+                .onClick(() => {
+                  this.barStyle = BarStyle.STANDARD;
+                })
+              Button('BarStyle.STACK')
+                .height('50vp')
+                .margin({ top: 12 })
+                .onClick(() => {
+                  this.barStyle = BarStyle.STACK;
+                })
+
+              ForEach(this.arr, (item: number) => {
+                ListItem() {
+                  Text('' + item)
+                    .width('100%')
+                    .height(100)
+                    .fontSize(16)
+                    .textAlign(TextAlign.Center)
+                    .borderRadius(10)
+                    .backgroundColor(Color.Orange)
+                    .margin({ top: 12 })
+                }
+              }, (item: string) => item)
+            }
+          }
+        }
+        .width('100%')
+        .height('100%')
+        .backgroundColor(0xDCDCDC)
+      }
+      .title(
+        {
+          main: 'NavTitle',
+          sub: 'subtitle'
+        },
+        {
+          backgroundBlurStyle: BlurStyle.COMPONENT_THICK,
+          barStyle: this.barStyle,
+        }
+      )
+      .titleMode(NavigationTitleMode.Free)
+      .hideTitleBar(false)
+    }.width('100%').height('100%').backgroundColor('#F1F3F5')
+  }
+}
+```
+![titlebar_stack.gif](figures/titlebar_stack.gif)
+
+
+### 示例10
+
+```ts
+// 该示例主要演示如下两点功能
+// 1. 如何定义NavPathStack的派生类
+// 2. 派生类在Navigation中的基本用法
+class DerivedNavPathStack extends NavPathStack {
+  // usr defined property 'id'
+  id: string = "__default__"
+
+  // new function in derived class
+  setId(id: string) {
+    this.id = id;
+  }
+
+  // new function in derived class
+  getInfo(): string {
+    return "this page used Derived NavPathStack, id: " + this.id
+  }
+
+  // overwrite function of NavPathStack
+  pushPath(info: NavPathInfo, animated?: boolean): void {
+    console.log('[derive-test] reached DerivedNavPathStack\'s pushPath');
+    super.pushPath(info, animated);
+  }
+
+  // overwrite and overload function of NavPathStack
+  pop(animated?: boolean | undefined): NavPathInfo | undefined
+  pop(result: Object, animated?: boolean | undefined): NavPathInfo | undefined
+  pop(result?: Object, animated?: boolean | undefined): NavPathInfo | undefined {
+    console.log('[derive-test] reached DerivedNavPathStack\'s pop');
+    return super.pop(result, animated);
+  }
+
+  // other function of base class...
+}
+
+class param {
+  info: string = "__default_param__";
+  constructor(info: string) { this.info = info }
+}
+
+@Entry
+@Component
+struct Index {
+  derivedStack: DerivedNavPathStack = new DerivedNavPathStack();
+
+  aboutToAppear(): void {
+    this.derivedStack.setId('origin stack');
+  }
+
+  @Builder
+  pageMap(name: string) {
+    PageOne()
+  }
+
+  build() {
+    Navigation(this.derivedStack) {
+      Button('to Page One').margin(20).onClick(() => {
+        this.derivedStack.pushPath({
+          name: 'pageOne',
+          param: new param('push pageOne in homePage')
+        });
+      })
+    }.navDestination(this.pageMap)
+    .title('Home Page')
+  }
+}
+
+@Component
+struct PageOne {
+  derivedStack: DerivedNavPathStack = new DerivedNavPathStack();
+  curStringifyParam: string = "NA";
+
+  build() {
+    NavDestination() {
+      Column() {
+        Text(this.derivedStack.getInfo())
+          .margin(10)
+          .fontSize(25)
+          .fontWeight(FontWeight.Bold)
+          .textAlign(TextAlign.Start)
+        Text('current page param info:')
+          .margin(10)
+          .fontSize(25)
+          .fontWeight(FontWeight.Bold)
+          .textAlign(TextAlign.Start)
+        Text(this.curStringifyParam)
+          .margin(20)
+          .fontSize(20)
+          .textAlign(TextAlign.Start)
+      }.backgroundColor(Color.Pink)
+      Button('push Page One').margin(20).onClick(() => {
+        this.derivedStack.pushPath({
+          name: 'pageOne',
+          param: new param('push pageOne in pageOne when stack size: ' + this.derivedStack.size())
+        });
+      })
+    }.onReady((context: NavDestinationContext) => {
+      console.log('[derive-test] reached PageOne\'s onReady');
+      // get derived stack from navdestinationContext
+      this.derivedStack = context.pathStack as DerivedNavPathStack;
+      console.log('[derive-test] -- got derivedStack: ' + this.derivedStack.id);
+      this.curStringifyParam = JSON.stringify(context.pathInfo.param);
+      console.log('[derive-test] -- got param: ' + this.curStringifyParam);
+    })
+  }
+}
+```
+![derive_stack.gif](figures/derive_stack.gif)
+
+### 示例11
+```ts
+// 该示例主要演示Navigation和NavDestination如何使用Symbol组件
+
+@Entry
+@Component
+struct NavigationExample {
+  @Provide('navPathStack') navPathStack:NavPathStack = new NavPathStack();
+  @State menuItems:Array<NavigationMenuItem> = [
+    {
+      value:'menuItem1',
+      icon:'resources/base/media/ic_public_ok.svg'
+    },
+    {
+      value:'menuItem2',
+      icon:'resources/base/media/ic_public_ok.svg',
+      symbolIcon: new SymbolGlyphModifier($r('sys.symbol.ohos_folder_badge_plus')).fontColor([Color.Red,Color.Green]).renderingStrategy(SymbolRenderingStrategy.MULTIPLE_COLOR),
+    },
+    {
+      value:'menuItem3',
+      symbolIcon: new SymbolGlyphModifier($r('sys.symbol.ohos_lungs')),
+    },
+  ]
+
+  @State toolItems:Array<ToolbarItem>= [
+    {
+      value:'toolItem1',
+      icon:'resources/base/media/ic_public_ok.svg',
+      symbolIcon:new SymbolGlyphModifier($r('sys.symbol.ohos_lungs')),
+      status:ToolbarItemStatus.ACTIVE,
+      activeSymbolIcon: new SymbolGlyphModifier($r('sys.symbol.ohos_folder_badge_plus')).fontColor([Color.Red,Color.Green]).renderingStrategy(SymbolRenderingStrategy.MULTIPLE_COLOR),
+      action:()=>{}
+    },
+    {
+      value:'toolItem2',
+      symbolIcon:new SymbolGlyphModifier($r('sys.symbol.ohos_star')),
+      status:ToolbarItemStatus.ACTIVE,
+      activeIcon: 'resources/base/media/ic_public_more.svg',
+      action:()=>{}
+    },
+    {
+      value:'toolItem3',
+      symbolIcon:new SymbolGlyphModifier($r('sys.symbol.ohos_star')),
+      status:ToolbarItemStatus.ACTIVE,
+      activeSymbolIcon: new SymbolGlyphModifier($r('sys.symbol.ohos_lungs')),
+      action:()=>{}
+    }
+  ]
+
+  @Builder
+  myRouter(name:string,param?:Object) {
+    if(name === 'NavigationMenu') {
+      NavigationMenu();
+    }
+  }
+
+  build() {
+    Navigation(this.navPathStack) {
+      Column() {
+        Button('跳转').onClick(()=> {
+          this.navPathStack.pushPathByName('NavigationMenu', null);
+        })
+      }
+    }
+    .backButtonIcon(new SymbolGlyphModifier($r('sys.symbol.ohos_wifi')))
+    .titleMode(NavigationTitleMode.Mini)
+    .menus(this.menuItems)
+    .toolbarConfiguration(this.toolItems)
+    .title('一级页面')
+    .navDestination(this.myRouter)
+  }
+}
+
+@Component
+export struct NavigationMenu{
+  @Consume('navPathStack') navPathStack:NavPathStack;
+  @State menuItems:Array<NavigationMenuItem> = [
+    {
+      value:'menuItem1',
+      icon:'resources/base/media/ic_public_ok.svg',
+      action:()=>{}
+    },
+    {
+      value:'menuItem2',
+      symbolIcon: new SymbolGlyphModifier($r('sys.symbol.ohos_folder_badge_plus')).fontColor([Color.Red,Color.Green]).renderingStrategy(SymbolRenderingStrategy.MULTIPLE_COLOR),
+      action:()=>{}
+    },
+    {
+      value:'menuItem3',
+      symbolIcon: new SymbolGlyphModifier($r('sys.symbol.repeat_1')),
+      action:()=>{}
+    },
+  ]
+
+  build() {
+    NavDestination(){
+      Row() {
+        Column(){
+        }
+        .width('100%')
+      }
+      .height('100%')
+    }
+    .hideTitleBar(false)
+    .title('NavDestination title')
+    .backgroundColor($r('sys.color.ohos_id_color_titlebar_sub_bg'))
+    .backButtonIcon(new SymbolGlyphModifier($r('sys.symbol.ohos_star')).fontColor([Color.Blue]))
+    .menus(this.menuItems)
+  }
+}
+```
+![navigation_symbol.gif](figures/navigation_symbol.gif)

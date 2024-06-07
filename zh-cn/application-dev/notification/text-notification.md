@@ -27,6 +27,10 @@
    ```ts
    import notificationManager from '@ohos.notificationManager';
    import Base from '@ohos.base';
+   import hilog from '@ohos.hilog';
+   
+   const TAG: string = '[PublishOperation]';
+   const DOMAIN_NUMBER: number = 0xFF00;
    ```
 
 2. 构造NotificationRequest对象，并发布通知。
@@ -46,10 +50,10 @@
       };
       notificationManager.publish(notificationRequest, (err:Base.BusinessError) => {
         if (err) {
-          console.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
+          hilog.error(DOMAIN_NUMBER, TAG, `Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
           return;
         }
-        console.info('Succeeded in publishing notification.');
+        hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in publishing notification.');
       });
       ```
 
@@ -73,9 +77,20 @@
       // 发布通知
       notificationManager.publish(notificationRequest, (err:Base.BusinessError) => {
         if (err) {
-          console.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
+          hilog.error(DOMAIN_NUMBER, TAG, `Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
           return;
         }
-        console.info('Succeeded in publishing notification.');
+        hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in publishing notification.');
       });
       ```
+3. 删除通知。
+
+   ```ts
+    notificationManager.cancel(1, (err:Base.BusinessError) => {
+      if (err) {
+        hilog.error(DOMAIN_NUMBER, TAG, `Failed to cancel notification. Code is ${err.code}, message is ${err.message}`);
+        return;
+      }
+      hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in cancel notification.');
+    });
+   ```

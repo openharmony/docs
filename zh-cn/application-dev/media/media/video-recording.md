@@ -23,8 +23,8 @@ AVRecorder详细的API说明请参考[AVRecorder API参考](../../reference/apis
 1. 创建AVRecorder实例，实例创建完成进入idle状态。
      
    ```ts
-   import media from '@ohos.multimedia.media';
-   import { BusinessError } from '@ohos.base';
+   import { media } from '@kit.MediaKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    
    let avRecorder: media.AVRecorder;
    media.createAVRecorder().then((recorder: media.AVRecorder) => {
@@ -41,8 +41,8 @@ AVRecorder详细的API说明请参考[AVRecorder API参考](../../reference/apis
    | error | 必要事件，监听播放器的错误信息 | 
 
    ```ts
-   import media from '@ohos.multimedia.media';
-   import { BusinessError } from '@ohos.base';
+   import { media } from '@kit.MediaKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    
    // 状态上报回调函数
    avRecorder.on('stateChange', (state: media.AVRecorderState, reason: media.StateChangeReason) => {
@@ -67,8 +67,8 @@ AVRecorder详细的API说明请参考[AVRecorder API参考](../../reference/apis
    > - 录制输出的url地址（即示例里avConfig中的url），形式为fd://xx (fd number)。需要调用基础文件操作接口（[ohos.file.fs](../../reference/apis-core-file-kit/js-apis-file-fs.md)）实现应用文件访问能力，获取方式参考[应用文件访问与管理](../../file-management/app-file-access.md)。
 
    ```ts
-   import media from '@ohos.multimedia.media';
-   import { BusinessError } from '@ohos.base';
+   import { media } from '@kit.MediaKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    
    let avProfile: media.AVRecorderProfile = {
      fileFormat : media.ContainerFormatType.CFT_MPEG_4, // 视频文件封装格式，只支持MP4
@@ -97,7 +97,7 @@ AVRecorder详细的API说明请参考[AVRecorder API参考](../../reference/apis
      输入源模块通过SurfaceID可以获取到Surface，通过Surface可以将视频数据流传递给AVRecorder，由AVRecorder再进行视频数据的处理。
      
    ```ts
-   import { BusinessError } from '@ohos.base';
+   import { BusinessError } from '@kit.BasicServicesKit';
    
    avRecorder.getInputSurface().then((surfaceId: string) => {
      console.info('avRecorder getInputSurface success');
@@ -127,8 +127,8 @@ AVRecorder详细的API说明请参考[AVRecorder API参考](../../reference/apis
 
   
 ```ts
-import media from '@ohos.multimedia.media';
-import { BusinessError } from '@ohos.base';
+import { media } from '@kit.MediaKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const TAG = 'VideoRecorderDemo:';
 export class VideoRecorderDemo {

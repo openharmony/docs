@@ -3,7 +3,9 @@
 - ArkTS API
   - [@ohos.sensor(传感器)](js-apis-sensor.md)
   - [@ohos.vibrator(振动)](js-apis-vibrator.md)
+  <!--Del-->
   - [@ohos.sensor(传感器)(系统接口)](js-apis-sensor-sys.md)
+  <!--DelEnd-->
   - [@ohos.sensor(传感器)(已废弃接口)](js-apis-system-sensor.md)
   - [@ohos.vibrator(振动)(已废弃接口)](js-apis-system-vibrate.md)
 - C API

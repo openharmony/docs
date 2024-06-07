@@ -17,7 +17,7 @@
 ## 导入模块
 
 ```ts
-import distributedKVStore from '@ohos.data.distributedKVStore';
+import { distributedKVStore } from '@kit.ArkData';
 ```
 
 ## KVManagerConfig
@@ -319,8 +319,8 @@ createKVManager(config: KVManagerConfig): KVManager
 Stage模型下的示例：
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import { BusinessError } from '@ohos.base';
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let kvManager: distributedKVStore.KVManager;
 
@@ -339,15 +339,21 @@ export default class EntryAbility extends UIAbility {
       let error = e as BusinessError;
       console.error(`Failed to create KVManager.code is ${error.code},message is ${error.message}`);
     }
+    if (kvManager !== undefined) {
+      kvManager = kvManager as distributedKVStore.KVManager;
+      // 进行后续创建数据库等相关操作
+      // ...
+    }
   }
 }
 ```
 
 FA模型下的示例：
 
+<!--code_no_check_fa-->
 ```ts
-import featureAbility from '@ohos.ability.featureAbility';
-import { BusinessError } from '@ohos.base';
+import { featureAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let kvManager: distributedKVStore.KVManager;
 let context = featureAbility.getContext()
@@ -362,6 +368,11 @@ try {
   let error = e as BusinessError;
   console.error(`Failed to create KVManager.code is ${error.code},message is ${error.message}`);
 }
+if (kvManager !== undefined) {
+  kvManager = kvManager as distributedKVStore.KVManager;
+  // 进行后续创建数据库等相关操作
+  // ...
+}
 ```
 
 ## KVManager
@@ -372,7 +383,7 @@ try {
 
 getKVStore&lt;T&gt;(storeId: string, options: Options, callback: AsyncCallback&lt;T&gt;): void
 
-通过指定Options和storeId，创建并获取分布式键值数据库，使用callback异步回调。
+通过指定options和storeId，创建并获取分布式键值数据库，使用callback异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -397,7 +408,7 @@ getKVStore&lt;T&gt;(storeId: string, options: Options, callback: AsyncCallback&l
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let kvStore: distributedKVStore.SingleKVStore | null;
 try {
@@ -421,13 +432,18 @@ try {
   let error = e as BusinessError;
   console.error(`An unexpected error occurred.code is ${error.code},message is ${error.message}`);
 }
+if (kvStore !== undefined) {
+     kvStore = kvStore as distributedKVStore.SingleKVStore;
+       // 进行后续相关数据操作，包括数据的增、删、改、查、订阅数据变化等操作
+       // ...
+}
 ```
 
 ### getKVStore
 
 getKVStore&lt;T&gt;(storeId: string, options: Options): Promise&lt;T&gt;
 
-通过指定Options和storeId，创建并获取分布式键值数据库，使用Promise异步回调。
+通过指定options和storeId，创建并获取分布式键值数据库，使用Promise异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -457,7 +473,7 @@ getKVStore&lt;T&gt;(storeId: string, options: Options): Promise&lt;T&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let kvStore: distributedKVStore.SingleKVStore | null;
 try {
@@ -508,7 +524,7 @@ closeKVStore(appId: string, storeId: string, callback: AsyncCallback&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let kvStore: distributedKVStore.SingleKVStore | null;
 const options: distributedKVStore.Options = {
@@ -576,7 +592,7 @@ closeKVStore(appId: string, storeId: string): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let kvStore: distributedKVStore.SingleKVStore | null;
 
@@ -637,7 +653,7 @@ deleteKVStore(appId: string, storeId: string, callback: AsyncCallback&lt;void&gt
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let kvStore: distributedKVStore.SingleKVStore | null;
 
@@ -707,7 +723,7 @@ deleteKVStore(appId: string, storeId: string): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let kvStore: distributedKVStore.SingleKVStore | null;
 
@@ -766,7 +782,7 @@ getAllKVStoreId(appId: string, callback: AsyncCallback&lt;string[]&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   kvManager.getAllKVStoreId('appId', (err: BusinessError, data: string[]) => {
@@ -814,7 +830,7 @@ getAllKVStoreId(appId: string): Promise&lt;string[]&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   console.info('GetAllKVStoreId');
@@ -856,7 +872,7 @@ on(event: 'distributedDataServiceDie', deathCallback: Callback&lt;void&gt;): voi
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   console.info('KVManagerOn');
@@ -896,7 +912,7 @@ off(event: 'distributedDataServiceDie', deathCallback?: Callback&lt;void&gt;): v
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   console.info('KVManagerOff');
@@ -933,7 +949,7 @@ getCount(): number
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
@@ -968,7 +984,7 @@ getPosition(): number
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
@@ -1003,7 +1019,7 @@ moveToFirst(): boolean
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
@@ -1038,7 +1054,7 @@ moveToLast(): boolean
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
@@ -1073,7 +1089,7 @@ moveToNext(): boolean
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
@@ -1110,7 +1126,7 @@ moveToPrevious(): boolean
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
@@ -1160,7 +1176,7 @@ move(offset: number): boolean
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
@@ -1210,7 +1226,7 @@ moveToPosition(position: number): boolean
 **示例**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
@@ -1246,7 +1262,7 @@ isFirst(): boolean
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
@@ -1281,7 +1297,7 @@ isLast(): boolean
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
@@ -1316,7 +1332,7 @@ isBeforeFirst(): boolean
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
@@ -1350,7 +1366,7 @@ isAfterLast(): boolean
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
@@ -1384,7 +1400,7 @@ getEntry(): Entry
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
@@ -1432,7 +1448,7 @@ reset(): Query
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let query: distributedKVStore.Query | null = new distributedKVStore.Query();
@@ -1469,7 +1485,7 @@ equalTo(field: string, value: number|string|boolean): Query
 
 **错误码：**
 
-以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | **错误码ID** | **错误信息** |
 | ------------ | ------------ |
@@ -1478,7 +1494,7 @@ equalTo(field: string, value: number|string|boolean): Query
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let query: distributedKVStore.Query | null = new distributedKVStore.Query();
@@ -1523,7 +1539,7 @@ notEqualTo(field: string, value: number|string|boolean): Query
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let query: distributedKVStore.Query | null = new distributedKVStore.Query();
@@ -1567,7 +1583,7 @@ greaterThan(field: string, value: number|string|boolean): Query
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     let query: distributedKVStore.Query | null = new distributedKVStore.Query();
@@ -1613,7 +1629,7 @@ lessThan(field: string, value: number|string): Query
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     let query: distributedKVStore.Query | null = new distributedKVStore.Query();
@@ -1659,7 +1675,7 @@ greaterThanOrEqualTo(field: string, value: number|string): Query
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     let query: distributedKVStore.Query | null = new distributedKVStore.Query();
@@ -1705,7 +1721,7 @@ lessThanOrEqualTo(field: string, value: number|string): Query
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     let query: distributedKVStore.Query | null = new distributedKVStore.Query();
@@ -1749,7 +1765,7 @@ isNull(field: string): Query
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     let query: distributedKVStore.Query | null = new distributedKVStore.Query();
@@ -1794,7 +1810,7 @@ inNumber(field: string, valueList: number[]): Query
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     let query: distributedKVStore.Query | null = new distributedKVStore.Query();
@@ -1839,7 +1855,7 @@ inString(field: string, valueList: string[]): Query
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     let query: distributedKVStore.Query | null = new distributedKVStore.Query();
@@ -1884,7 +1900,7 @@ notInNumber(field: string, valueList: number[]): Query
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     let query: distributedKVStore.Query | null = new distributedKVStore.Query();
@@ -1929,7 +1945,7 @@ notInString(field: string, valueList: string[]): Query
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     let query: distributedKVStore.Query | null = new distributedKVStore.Query();
@@ -1974,7 +1990,7 @@ like(field: string, value: string): Query
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     let query: distributedKVStore.Query | null = new distributedKVStore.Query();
@@ -2019,7 +2035,7 @@ unlike(field: string, value: string): Query
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     let query: distributedKVStore.Query | null = new distributedKVStore.Query();
@@ -2049,7 +2065,7 @@ and(): Query
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     let query: distributedKVStore.Query | null = new distributedKVStore.Query();
@@ -2080,7 +2096,7 @@ or(): Query
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     let query: distributedKVStore.Query | null = new distributedKVStore.Query();
@@ -2125,7 +2141,7 @@ orderByAsc(field: string): Query
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     let query: distributedKVStore.Query | null = new distributedKVStore.Query();
@@ -2170,7 +2186,7 @@ orderByDesc(field: string): Query
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     let query: distributedKVStore.Query | null = new distributedKVStore.Query();
@@ -2216,7 +2232,7 @@ limit(total: number, offset: number): Query
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let total = 10;
 let offset = 1;
@@ -2263,7 +2279,7 @@ isNotNull(field: string): Query
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let query: distributedKVStore.Query | null = new distributedKVStore.Query();
@@ -2293,7 +2309,7 @@ beginGroup(): Query
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     let query: distributedKVStore.Query | null = new distributedKVStore.Query();
@@ -2324,7 +2340,7 @@ endGroup(): Query
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     let query: distributedKVStore.Query | null = new distributedKVStore.Query();
@@ -2369,7 +2385,7 @@ prefixKey(prefix: string): Query
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     let query: distributedKVStore.Query | null = new distributedKVStore.Query();
@@ -2414,7 +2430,7 @@ setSuggestIndex(index: string): Query
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     let query: distributedKVStore.Query | null = new distributedKVStore.Query();
@@ -2463,7 +2479,7 @@ deviceId(deviceId:string):Query
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     let query: distributedKVStore.Query | null = new distributedKVStore.Query();
@@ -2492,7 +2508,7 @@ getSqlLike():string
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     let query: distributedKVStore.Query | null = new distributedKVStore.Query();
@@ -2544,7 +2560,7 @@ put(key: string, value: Uint8Array | string | number | boolean, callback: AsyncC
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const KEY_TEST_STRING_ELEMENT = 'key_test_string';
 const VALUE_TEST_STRING_ELEMENT = 'value-test-string';
@@ -2602,7 +2618,7 @@ put(key: string, value: Uint8Array | string | number | boolean): Promise&lt;void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const KEY_TEST_STRING_ELEMENT = 'key_test_string';
 const VALUE_TEST_STRING_ELEMENT = 'value-test-string';
@@ -2630,7 +2646,7 @@ putBatch(entries: Entry[], callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名   | 类型                 | 必填 | 说明                     |
 | -------- | ------------------------ | ---- | ------------------------ |
-| entries  | [Entry](#entry)[]        | 是   | 表示要批量插入的键值对。一个entries对象中允许的最大条目个数为128个。 |
+| entries  | [Entry](#entry)[]        | 是   | 表示要批量插入的键值对。一个entries对象中允许的最大数据量为512M。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。数据批量插入成功，err为undefined，否则为错误对象。   |
 
 **错误码：**
@@ -2652,7 +2668,7 @@ putBatch(entries: Entry[], callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let entries: distributedKVStore.Entry[] = [];
@@ -2705,7 +2721,7 @@ putBatch(entries: Entry[]): Promise&lt;void&gt;
 
 | 参数名  | 类型          | 必填 | 说明                     |
 | ------- | ----------------- | ---- | ------------------------ |
-| entries | [Entry](#entry)[] | 是   | 表示要批量插入的键值对。一个entries对象中允许的最大条目个数为128个。 |
+| entries | [Entry](#entry)[] | 是   | 表示要批量插入的键值对。一个entries对象中允许的最大数据量为512M。 |
 
 **返回值：**
 
@@ -2732,7 +2748,7 @@ putBatch(entries: Entry[]): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let entries: distributedKVStore.Entry[] = [];
@@ -2764,127 +2780,6 @@ try {
 } catch (e) {
   let error = e as BusinessError;
   console.error(`An unexpected error occurred.code is ${error.code},message is ${error.message} `);
-}
-```
-
-### putBatch
-
-putBatch(value: Array<ValuesBucket>, callback: AsyncCallback&lt;void&gt;): void
-
-批量插入ValuesBucket到SingleKVStore数据库中，使用callback异步回调。
-
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
-
-**参数：**
-
-| 参数名   | 类型                 | 必填 | 说明                     |
-| -------- | ------------------------ | ---- | ------------------------ |
-| entries  | [ValuesBucket](js-apis-data-valuesBucket.md)[]        | 是   | 表示要批量插入的ValuesBucket数组。 |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。数据批量插入成功，err为undefined，否则为错误对象。   |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)和[通用错误码](../errorcode-universal.md)。
-
-| **错误码ID** | **错误信息**                             |
-| ------------ | ---------------------------------------- |
-| 202          | Permission verification failed, application which is not a system application uses system API. |
-| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
-| 15100003     | Database corrupted.                      |
-| 15100005     | Database or result set already closed.   |
-
-以下错误码的详细介绍请参见[关系型数据库错误码](errorcode-data-rdb.md)。
-
-| **错误码ID** | **错误信息**                                 |
-| ------------ | -------------------------------------------- |
-| 14800047     | The WAL file size exceeds the default limit. |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@ohos.base';
-import { ValuesBucket } from '@ohos.data.ValuesBucket';
-
-try {
-    let values = [];
-    let arr1 = new Uint8Array([4, 5, 6, 7]);
-    let arr2 = new Uint8Array([4, 5, 6, 7, 8]);
-    let vb1 = {key: "name_1", value: arr1};
-    let vb2 = {key: "name_2", value: arr2};
-    values.push(vb1);
-    values.push(vb2);
-    kvStore.putBatch(values, function (err: BusinessError) {
-        if (err == undefined) {
-            console.error('putBatch success');
-        } else {
-            console.error('putBatch fail');
-        }
-    });
-  } catch (e) {
-      let error = e as BusinessError;
-      console.error(`An unexpected error occurred`);
-  }
-```
-
-### putBatch
-
-putBatch(value: Array<ValuesBucket>): Promise&lt;void&gt;
-
-批量插入ValuesBucket到SingleKVStore数据库中，使用Promise异步回调。
-
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
-
-**参数：**
-
-| 参数名  | 类型          | 必填 | 说明                     |
-| ------- | ----------------- | ---- | ------------------------ |
-| value | [ValuesBucket](js-apis-data-valuesBucket.md)[] | 是   | 表示要批量插入的ValuesBucket数组。|
-
-**返回值：**
-
-| 类型                | 说明                      |
-| ------------------- | ------------------------- |
-| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)和[通用错误码](../errorcode-universal.md)。
-
-| **错误码ID** | **错误信息**                             |
-| ------------ | ---------------------------------------- |
-| 202          | Permission verification failed, application which is not a system application uses system API. |
-| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
-| 15100003     | Database corrupted.                      |
-| 15100005     | Database or result set already closed.   |
-
-以下错误码的详细介绍请参见[关系型数据库错误码](errorcode-data-rdb.md)。
-
-| **错误码ID** | **错误信息**                                 |
-| ------------ | -------------------------------------------- |
-| 14800047     | The WAL file size exceeds the default limit. |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@ohos.base';
-import { ValuesBucket } from '@ohos.data.ValuesBucket';
-
-try {
-    let values = [];
-    let arr1 = new Uint8Array([4, 5, 6, 7]);
-    let arr2 = new Uint8Array([4, 5, 6, 7, 8]);
-    let vb1 = {key: "name_1", value: arr1};
-    let vb2 = {key: "name_2", value: arr2};
-    values.push(vb1);
-    values.push(vb2);
-    await kvStore.putBatch(values).then(async () => {
-        console.error('putBatch success');
-    }).catch((err: BusinessError) => {
-        console.error('putBatch fail');
-    });
-  } catch (e) {
-      let error = e as BusinessError;
-      console.error(`An unexpected error occurred`);
 }
 ```
 
@@ -2922,7 +2817,7 @@ delete(key: string, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const KEY_TEST_STRING_ELEMENT = 'key_test_string';
 const VALUE_TEST_STRING_ELEMENT = 'value-test-string';
@@ -2988,7 +2883,7 @@ delete(key: string): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const KEY_TEST_STRING_ELEMENT = 'key_test_string';
 const VALUE_TEST_STRING_ELEMENT = 'value-test-string';
@@ -3008,112 +2903,6 @@ try {
 } catch (e) {
   let error = e as BusinessError;
   console.error(`An unexpected error occurred.code is ${error.code},message is ${error.message}`);
-}
-```
-### delete
-
-delete(predicates: dataSharePredicates.DataSharePredicates, callback: AsyncCallback&lt;void&gt;): void
-
-从数据库中按指定查询条件删除数据，使用callback异步回调。
-
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
-
-**参数：**
-
-| 参数名   | 类型                  | 必填 | 说明                                                         |
-| -------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| predicates  | dataSharePredicates.DataSharePredicates;  | 是   | 要删除数据的查询条件(js-apis-data-dataSharePredicates.md)。 |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。删除指定的数据成功，err为undefined，否则为错误对象。         |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)和[通用错误码](../errorcode-universal.md)。
-
-| **错误码ID** | **错误信息**                           |
-| ------------ | -------------------------------------- |
-| 202          | Permission verification failed, application which is not a system application uses system API. |
-| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
-| 15100003     | Database corrupted.                    |
-| 15100005    | Database or result set already closed. |
-
-以下错误码的详细介绍请参见[关系型数据库错误码](errorcode-data-rdb.md)。
-
-| **错误码ID** | **错误信息**                                 |
-| ------------ | -------------------------------------------- |
-| 14800047     | The WAL file size exceeds the default limit. |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@ohos.base';
-import dataShare from './@ohos.data.dataSharePredicates';
-
-try {
-    let predicates = new dataShare.DataSharePredicates();
-    let arr = ["name"];
-    predicates.inKeys(arr);
-    kvStore.delete(predicates, function (err: BusinessError) {
-      if (err == undefined) {
-          console.error('delete success');
-      } else {
-          console.error('delete fail');
-      }
-        });
-} catch (e) {
-  let error = e as BusinessError;
-  console.error(`An unexpected error occurred`);
-}
-```
-
-### delete
-
-delete(predicates: dataSharePredicates.DataSharePredicates): Promise&lt;void&gt;
-
-从数据库中按指定查询条件删除数据，使用Promise异步回调。
-
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
-
-**参数：**
-
-| 参数名   | 类型                  | 必填 | 说明                                                         |
-| -------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| predicates  | dataSharePredicates.DataSharePredicates;  | 是   | 要删除数据的[predicates](js-apis-data-dataSharePredicates.md)。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)和[通用错误码](../errorcode-universal.md)。
-
-| **错误码ID** | **错误信息**                           |
-| ------------ | -------------------------------------- |
-| 202          | Permission verification failed, application which is not a system application uses system API. |
-| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
-| 15100003     | Database corrupted.                    |
-| 15100005    | Database or result set already closed. |
-
-以下错误码的详细介绍请参见[关系型数据库错误码](errorcode-data-rdb.md)。
-
-| **错误码ID** | **错误信息**                                 |
-| ------------ | -------------------------------------------- |
-| 14800047     | The WAL file size exceeds the default limit. |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@ohos.base';
-import dataShare from './@ohos.data.dataSharePredicates';
-
-try {
-    let predicates = new dataShare.DataSharePredicates();
-    let arr = ["name"];
-    predicates.inKeys(arr);
-    await kvStore.delete(predicates).then((data) => {
-        console.error('delete success');
-    }).catch((err: BusinessError) => {
-        console.error('delete fail');
-    });
-} catch (e) {
-  let error = e as BusinessError;
-  console.error(`An unexpected error occurred`);
 }
 ```
 
@@ -3151,7 +2940,7 @@ deleteBatch(keys: string[], callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let entries: distributedKVStore.Entry[] = [];
@@ -3230,7 +3019,7 @@ deleteBatch(keys: string[]): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let entries: distributedKVStore.Entry[] = [];
@@ -3297,7 +3086,7 @@ removeDeviceData(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const KEY_TEST_STRING_ELEMENT = 'key_test_string_2';
 const VALUE_TEST_STRING_ELEMENT = 'value-string-002';
@@ -3362,7 +3151,7 @@ removeDeviceData(deviceId: string): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const KEY_TEST_STRING_ELEMENT = 'key_test_string_2';
 const VALUE_TEST_STRING_ELEMENT = 'value-string-001';
@@ -3418,7 +3207,7 @@ get(key: string, callback: AsyncCallback&lt;boolean | string | number | Uint8Arr
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 
 const KEY_TEST_STRING_ELEMENT = 'key_test_string';
@@ -3480,7 +3269,7 @@ get(key: string): Promise&lt;boolean | string | number | Uint8Array&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 
 const KEY_TEST_STRING_ELEMENT = 'key_test_string';
@@ -3516,7 +3305,7 @@ getEntries(keyPrefix: string, callback: AsyncCallback&lt;Entry[]&gt;): void
 
 | 参数名    | 类型                               | 必填 | 说明                                     |
 | --------- | -------------------------------------- | ---- | ---------------------------------------- |
-| keyPrefix | string                                 | 是   | 表示要匹配的键前缀。                     |
+| keyPrefix | string                                 | 是   | 表示要匹配的键前缀。不能包含'^',包含'^'的话将导致谓词失效，查询结果会返回数据库中的所有数据。 |
 | callback  | AsyncCallback&lt;[Entry](#entry)[]&gt; | 是   | 回调函数。返回匹配指定前缀的键值对列表。 |
 
 **错误码：**
@@ -3532,7 +3321,7 @@ getEntries(keyPrefix: string, callback: AsyncCallback&lt;Entry[]&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let entries: distributedKVStore.Entry[] = [];
@@ -3584,7 +3373,7 @@ getEntries(keyPrefix: string): Promise&lt;Entry[]&gt;
 
 | 参数名    | 类型 | 必填 | 说明                 |
 | --------- | -------- | ---- | -------------------- |
-| keyPrefix | string   | 是   | 表示要匹配的键前缀。 |
+| keyPrefix | string   | 是   | 表示要匹配的键前缀。不能包含'^',包含'^'的话将导致谓词失效，查询结果会返回数据库中的所有数据。 |
 
 **返回值：**
 
@@ -3605,7 +3394,7 @@ getEntries(keyPrefix: string): Promise&lt;Entry[]&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 
 try {
@@ -3669,7 +3458,7 @@ getEntries(query: Query, callback: AsyncCallback&lt;Entry[]&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let arr = new Uint8Array([21, 31]);
@@ -3741,7 +3530,7 @@ getEntries(query: Query): Promise&lt;Entry[]&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let arr = new Uint8Array([21, 31]);
@@ -3791,7 +3580,7 @@ getResultSet(keyPrefix: string, callback: AsyncCallback&lt;KVStoreResultSet&gt;)
 
 | 参数名    | 类型                                                   | 必填 | 说明                                 |
 | --------- | ---------------------------------------------------------- | ---- | ------------------------------------ |
-| keyPrefix | string                                                     | 是   | 表示要匹配的键前缀。                 |
+| keyPrefix | string                                                     | 是   | 表示要匹配的键前缀。不能包含'^',包含'^'的话将导致谓词失效，查询结果会返回数据库中的所有数据。                 |
 | callback  | AsyncCallback&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | 是   | 回调函数。返回具有指定前缀的结果集。 |
 
 **错误码：**
@@ -3809,7 +3598,7 @@ getResultSet(keyPrefix: string, callback: AsyncCallback&lt;KVStoreResultSet&gt;)
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
@@ -3869,7 +3658,7 @@ getResultSet(keyPrefix: string): Promise&lt;KVStoreResultSet&gt;
 
 | 参数名    | 类型 | 必填 | 说明                 |
 | --------- | -------- | ---- | -------------------- |
-| keyPrefix | string   | 是   | 表示要匹配的键前缀。 |
+| keyPrefix | string   | 是   | 表示要匹配的键前缀。不能包含'^',包含'^'的话将导致谓词失效，查询结果会返回数据库中的所有数据。 |
 
 **返回值：**
 
@@ -3891,7 +3680,7 @@ getResultSet(keyPrefix: string): Promise&lt;KVStoreResultSet&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
@@ -3960,7 +3749,7 @@ getResultSet(query: Query, callback: AsyncCallback&lt;KVStoreResultSet&gt;): voi
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
@@ -4034,7 +3823,7 @@ getResultSet(query: Query): Promise&lt;KVStoreResultSet&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
@@ -4068,128 +3857,6 @@ try {
   console.error(`An unexpected error occurred.code is ${error.code},message is ${error.code}`);
 }
 ```
-### getResultSet
-
-getResultSet(predicates: dataSharePredicates.DataSharePredicates, AsyncCallback&lt;KVStoreResultSet&gt;): void;
-
-获取与指定谓词对象匹配的KVStoreResultSet对象，使用Callback异步回调。
-
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
-
-**参数：**
-
-| 参数名 | 类型       | 必填 | 说明           |
-| ------ | -------------- | ---- | -------------- |
-| predicates  | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md) | 是   | 表示谓词对象。 |
-| callback | AsyncCallback&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | 是   | 回调函数，获取与指定谓词对象匹配的KVStoreResultSet对象。 |
-
-**返回值：**
-
-| 类型                                                 | 说明                                                         |
-| ---------------------------------------------------- | ------------------------------------------------------------ |
-| Promise&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | Promise对象。获取与指定谓词对象匹配的KVStoreResultSet对象。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)和[通用错误码](../errorcode-universal.md)。
-
-| **错误码ID** | **错误信息**                           |
-| ------------ | -------------------------------------- |
-| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
-| 202     | Permission verification failed, application which is not a system application uses system API.                 |
-| 15100001     | Over max  limits.                      |
-| 15100003     | Database corrupted.                    |
-| 15100005     | Database or result set already closed. |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@ohos.base';
-import dataSharePredicates from './@ohos.data.dataSharePredicates';
-
-try {
-    let predicates = new dataShare.DataSharePredicates();
-    let arr = ["name"];
-    predicates.inKeys(arr);
-    kvStore.getResultSet(predicates, function (err, result) {
-        if (err == undefined) {
-            console.error('getResultSet success');
-        } else {
-            console.error('getResultSet fail');
-        }
-    });
-} catch (e) {
-    console.info('catch fail');
-}
-```
-
-### getResultSet
-
-getResultSet(predicates: dataSharePredicates.DataSharePredicates): Promise&lt;KVStoreResultSet&gt;
-
-获取与指定Query对象匹配的KVStoreResultSet对象，使用Promise异步回调。
-
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
-
-**参数：**
-
-| 参数名 | 类型       | 必填 | 说明           |
-| ------ | -------------- | ---- | -------------- |
-| predicates  | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md) | 是   | 表示谓词对象。 |
-
-**返回值：**
-
-| 类型                                                 | 说明                                                         |
-| ---------------------------------------------------- | ------------------------------------------------------------ |
-| Promise&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | Promise对象。获取与指定谓词对象匹配的KVStoreResultSet对象。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)和[通用错误码](../errorcode-universal.md)。
-
-| **错误码ID** | **错误信息**                           |
-| ------------ | -------------------------------------- |
-| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
-| 202     | Permission verification failed, application which is not a system application uses system API.                 |
-| 15100001     | Over max  limits.                      |
-| 15100003     | Database corrupted.                    |
-| 15100005     | Database or result set already closed. |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@ohos.base';
-import dataSharePredicates from './@ohos.data.dataSharePredicates';
-
-try {
-    let entries: distributedKVStore.Entry[] = [];
-    let resultSet;
-    for (let i = 0; i < 10; i++) {
-        let key = 'name_';
-        let value = 'Bob_'
-        let entry: distributedKVStore.Entry = {
-            key: key + i,
-            value: {
-                type: factory.ValueType.STRING,
-                value: value + i
-            }
-        }
-        entries.push(entry);
-    }
-    await kvStore.putBatch(entries).then(async () => {
-    }).catch((err: BusinessError) => {
-    });
-    let predicates = new dataShare.DataSharePredicates();
-    predicates.prefixKey("name_");
-    await kvStore.getResultSet(predicates).then((result: distributedKVStore.KVStoreResultSet) => {
-        console.error('getResultSet success');
-    }).catch((err: BusinessError) => {
-        console.error(`Failed to get resultset.code is ${err.code},message is ${err.message}`);
-    });
-} catch (e: BusinessError) {
-  console.info('catch fail');
-}
-```
 
 ### closeResultSet
 
@@ -4217,7 +3884,7 @@ closeResultSet(resultSet: KVStoreResultSet, callback: AsyncCallback&lt;void&gt;)
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let resultSet: distributedKVStore.KVStoreResultSet;
 try {
@@ -4276,7 +3943,7 @@ closeResultSet(resultSet: KVStoreResultSet): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let resultSet: distributedKVStore.KVStoreResultSet;
 try {
@@ -4328,7 +3995,7 @@ getResultSize(query: Query, callback: AsyncCallback&lt;number&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let entries: distributedKVStore.Entry[] = [];
@@ -4396,7 +4063,7 @@ getResultSize(query: Query): Promise&lt;number&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let entries: distributedKVStore.Entry[] = [];
@@ -4456,11 +4123,11 @@ backup(file:string, callback: AsyncCallback&lt;void&gt;):void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let file = "BK001";
+let backupFile = "BK001";
 try {
-  kvStore.backup(file, (err: BusinessError) => {
+  kvStore.backup(backupFile, (err: BusinessError) => {
     if (err) {
       console.error(`Failed to backup.code is ${err.code},message is ${err.message} `);
     } else {
@@ -4505,11 +4172,11 @@ backup(file:string): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let file = "BK001";
+let backupFile = "BK001";
 try {
-  kvStore.backup(file).then(() => {
+  kvStore.backup(backupFile).then(() => {
     console.info(`Succeeded in backupping data`);
   }).catch((err: BusinessError) => {
     console.error(`Failed to backup.code is ${err.code},message is ${err.message}`);
@@ -4547,11 +4214,11 @@ restore(file:string, callback: AsyncCallback&lt;void&gt;):void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let file = "BK001";
+let backupFile = "BK001";
 try {
-  kvStore.restore(file, (err: BusinessError) => {
+  kvStore.restore(backupFile, (err: BusinessError) => {
     if (err) {
       console.error(`Failed to restore.code is ${err.code},message is ${err.message}`);
     } else {
@@ -4596,11 +4263,11 @@ restore(file:string): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let file = "BK001";
+let backupFile = "BK001";
 try {
-  kvStore.restore(file).then(() => {
+  kvStore.restore(backupFile).then(() => {
     console.info(`Succeeded in restoring data`);
   }).catch((err: BusinessError) => {
     console.error(`Failed to restore.code is ${err.code},message is ${err.message}`);
@@ -4637,7 +4304,7 @@ deleteBackup(files:Array&lt;string&gt;, callback: AsyncCallback&lt;Array&lt;[str
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let files = ["BK001", "BK002"];
 try {
@@ -4685,7 +4352,7 @@ deleteBackup(files:Array&lt;string&gt;): Promise&lt;Array&lt;[string, number]&gt
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let files = ["BK001", "BK002"];
 try {
@@ -4731,7 +4398,7 @@ startTransaction(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function putBatchString(len: number, prefix: string) {
   let entries: distributedKVStore.Entry[] = [];
@@ -4809,7 +4476,7 @@ startTransaction(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let count = 0;
@@ -4853,7 +4520,7 @@ commit(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   kvStore.commit((err: BusinessError) => {
@@ -4894,7 +4561,7 @@ commit(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   kvStore.commit().then(async () => {
@@ -4933,7 +4600,7 @@ rollback(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   kvStore.rollback((err: BusinessError) => {
@@ -4974,7 +4641,7 @@ rollback(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   kvStore.rollback().then(async () => {
@@ -5014,7 +4681,7 @@ enableSync(enabled: boolean, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   kvStore.enableSync(true, (err: BusinessError) => {
@@ -5061,7 +4728,7 @@ enableSync(enabled: boolean): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   kvStore.enableSync(true).then(() => {
@@ -5102,7 +4769,7 @@ setSyncRange(localLabels: string[], remoteSupportLabels: string[], callback: Asy
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   const localLabels = ['A', 'B'];
@@ -5152,7 +4819,7 @@ setSyncRange(localLabels: string[], remoteSupportLabels: string[]): Promise&lt;v
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   const localLabels = ['A', 'B'];
@@ -5194,7 +4861,7 @@ setSyncParam(defaultAllowedDelayMs: number, callback: AsyncCallback&lt;void&gt;)
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   const defaultAllowedDelayMs = 500;
@@ -5242,7 +4909,7 @@ setSyncParam(defaultAllowedDelayMs: number): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   const defaultAllowedDelayMs = 500;
@@ -5291,11 +4958,11 @@ sync(deviceIds: string[], mode: SyncMode, delayMs?: number): void
 **示例：**
 
 ```ts
-import deviceManager from '@ohos.distributedDeviceManager';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import { BusinessError } from '@ohos.base';
+import { distributedDeviceManager } from '@kit.DistributedServiceKit';
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let devManager: deviceManager.DeviceManager;
+let devManager: distributedDeviceManager.DeviceManager;
 const KEY_TEST_SYNC_ELEMENT = 'key_test_sync';
 const VALUE_TEST_SYNC_ELEMENT = 'value-string-001';
 // create deviceManager
@@ -5303,7 +4970,7 @@ export default class EntryAbility extends UIAbility {
   onCreate() {
     let context = this.context;
     try {
-      devManager = deviceManager.createDeviceManager(context.applicationInfo.name);
+      devManager = distributedDeviceManager.createDeviceManager(context.applicationInfo.name);
       let deviceIds: string[] = [];
       if (devManager != null) {
         let devices = devManager.getAvailableDeviceListSync();
@@ -5378,11 +5045,11 @@ sync(deviceIds: string[], query: Query, mode: SyncMode, delayMs?: number): void
 **示例：**
 
 ```ts
-import deviceManager from '@ohos.distributedDeviceManager';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import { BusinessError } from '@ohos.base';
+import { distributedDeviceManager } from '@kit.DistributedServiceKit';
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let devManager: deviceManager.DeviceManager;
+let devManager: distributedDeviceManager.DeviceManager;
 const KEY_TEST_SYNC_ELEMENT = 'key_test_sync';
 const VALUE_TEST_SYNC_ELEMENT = 'value-string-001';
 // create deviceManager
@@ -5390,7 +5057,7 @@ export default class EntryAbility extends UIAbility {
   onCreate() {
     let context = this.context;
     try {
-      let devManager = deviceManager.createDeviceManager(context.applicationInfo.name);
+      let devManager = distributedDeviceManager.createDeviceManager(context.applicationInfo.name);
       let deviceIds: string[] = [];
       if (devManager != null) {
         let devices = devManager.getAvailableDeviceListSync();
@@ -5462,7 +5129,7 @@ on(event: 'dataChange', type: SubscribeType, listener: Callback&lt;ChangeNotific
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   kvStore.on('dataChange', distributedKVStore.SubscribeType.SUBSCRIBE_TYPE_LOCAL, (data: distributedKVStore.ChangeNotification) => {
@@ -5500,7 +5167,7 @@ on(event: 'syncComplete', syncCallback: Callback&lt;Array&lt;[string, number]&gt
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 
 const KEY_TEST_FLOAT_ELEMENT = 'key_test_float';
@@ -5547,7 +5214,7 @@ off(event:'dataChange', listener?: Callback&lt;ChangeNotification&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class KvstoreModel {
   call(data: distributedKVStore.ChangeNotification) {
@@ -5604,7 +5271,7 @@ off(event: 'syncComplete', syncCallback?: Callback&lt;Array&lt;[string, number]&
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class KvstoreModel {
   call(data: [string, number][]) {
@@ -5660,7 +5327,7 @@ getSecurityLevel(callback: AsyncCallback&lt;SecurityLevel&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   kvStore.getSecurityLevel((err: BusinessError, data: distributedKVStore.SecurityLevel) => {
@@ -5701,7 +5368,7 @@ getSecurityLevel(): Promise&lt;SecurityLevel&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   kvStore.getSecurityLevel().then((data: distributedKVStore.SecurityLevel) => {
@@ -5754,7 +5421,7 @@ get(key: string, callback: AsyncCallback&lt;boolean | string | number | Uint8Arr
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const KEY_TEST_STRING_ELEMENT = 'key_test_string';
 const VALUE_TEST_STRING_ELEMENT = 'value-test-string';
@@ -5815,7 +5482,7 @@ get(key: string): Promise&lt;boolean | string | number | Uint8Array&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const KEY_TEST_STRING_ELEMENT = 'key_test_string';
 const VALUE_TEST_STRING_ELEMENT = 'value-test-string';
@@ -5872,7 +5539,7 @@ get(deviceId: string, key: string, callback: AsyncCallback&lt;boolean | string |
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const KEY_TEST_STRING_ELEMENT = 'key_test_string_2';
 const VALUE_TEST_STRING_ELEMENT = 'value-string-002';
@@ -5938,7 +5605,7 @@ get(deviceId: string, key: string): Promise&lt;boolean | string | number | Uint8
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const KEY_TEST_STRING_ELEMENT = 'key_test_string_2';
 const VALUE_TEST_STRING_ELEMENT = 'value-string-002';
@@ -5973,7 +5640,7 @@ getEntries(keyPrefix: string, callback: AsyncCallback&lt;Entry[]&gt;): void
 
 | 参数名    | 类型                                   | 必填 | 说明                                     |
 | --------- | -------------------------------------- | ---- | ---------------------------------------- |
-| keyPrefix | string                                 | 是   | 表示要匹配的键前缀。                     |
+| keyPrefix | string                                 | 是   | 表示要匹配的键前缀。不能包含'^',包含'^'的话将导致谓词失效，查询结果会返回数据库中的所有数据。 |
 | callback  | AsyncCallback&lt;[Entry](#entry)[]&gt; | 是   | 回调函数。返回匹配指定前缀的键值对列表。 |
 
 **错误码：**
@@ -5989,7 +5656,7 @@ getEntries(keyPrefix: string, callback: AsyncCallback&lt;Entry[]&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let entries: distributedKVStore.Entry[] = [];
@@ -6041,7 +5708,7 @@ getEntries(keyPrefix: string): Promise&lt;Entry[]&gt;
 
 | 参数名    | 类型   | 必填 | 说明                 |
 | --------- | ------ | ---- | -------------------- |
-| keyPrefix | string | 是   | 表示要匹配的键前缀。 |
+| keyPrefix | string | 是   | 表示要匹配的键前缀。不能包含'^',包含'^'的话将导致谓词失效，查询结果会返回数据库中的所有数据。 |
 
 **返回值：**
 
@@ -6062,7 +5729,7 @@ getEntries(keyPrefix: string): Promise&lt;Entry[]&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let entries: distributedKVStore.Entry[] = [];
@@ -6114,7 +5781,7 @@ getEntries(deviceId: string, keyPrefix: string, callback: AsyncCallback&lt;Entry
 | 参数名    | 类型                               | 必填 | 说明                                           |
 | --------- | -------------------------------------- | ---- | ---------------------------------------------- |
 | deviceId  | string                                 | 是   | 标识要查询其数据的设备。                       |
-| keyPrefix | string                                 | 是   | 表示要匹配的键前缀。                           |
+| keyPrefix | string                                 | 是   | 表示要匹配的键前缀。不能包含'^',包含'^'的话将导致谓词失效，查询结果会返回数据库中的所有数据。 |
 | callback  | AsyncCallback&lt;[Entry](#entry)[]&gt; | 是   | 回调函数，返回满足给定条件的所有键值对的列表。 |
 
 **错误码：**
@@ -6130,7 +5797,7 @@ getEntries(deviceId: string, keyPrefix: string, callback: AsyncCallback&lt;Entry
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let entries: distributedKVStore.Entry[] = [];
@@ -6187,7 +5854,7 @@ getEntries(deviceId: string, keyPrefix: string): Promise&lt;Entry[]&gt;
 | 参数名    | 类型 | 必填 | 说明                     |
 | --------- | -------- | ---- | ------------------------ |
 | deviceId  | string   | 是   | 标识要查询其数据的设备。 |
-| keyPrefix | string   | 是   | 表示要匹配的键前缀。     |
+| keyPrefix | string   | 是   | 表示要匹配的键前缀。不能包含'^',包含'^'的话将导致谓词失效，查询结果会返回数据库中的所有数据。|
 
 **返回值：**
 
@@ -6208,7 +5875,7 @@ getEntries(deviceId: string, keyPrefix: string): Promise&lt;Entry[]&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let entries: distributedKVStore.Entry[] = [];
@@ -6274,7 +5941,7 @@ getEntries(query: Query, callback: AsyncCallback&lt;Entry[]&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let arr = new Uint8Array([21, 31]);
@@ -6346,7 +6013,7 @@ getEntries(query: Query): Promise&lt;Entry[]&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let arr = new Uint8Array([21, 31]);
@@ -6417,7 +6084,7 @@ getEntries(deviceId: string, query: Query, callback: AsyncCallback&lt;Entry[]&gt
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let arr = new Uint8Array([21, 31]);
@@ -6500,7 +6167,7 @@ getEntries(deviceId: string, query: Query): Promise&lt;Entry[]&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let arr = new Uint8Array([21, 31]);
@@ -6551,7 +6218,7 @@ getResultSet(keyPrefix: string, callback: AsyncCallback&lt;KVStoreResultSet&gt;)
 
 | 参数名    | 类型                                                       | 必填 | 说明                                 |
 | --------- | ---------------------------------------------------------- | ---- | ------------------------------------ |
-| keyPrefix | string                                                     | 是   | 表示要匹配的键前缀。                 |
+| keyPrefix | string                                                     | 是   | 表示要匹配的键前缀。不能包含'^',包含'^'的话将导致谓词失效，查询结果会返回数据库中的所有数据。 |
 | callback  | AsyncCallback&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | 是   | 回调函数。返回具有指定前缀的结果集。 |
 
 **错误码：**
@@ -6568,7 +6235,7 @@ getResultSet(keyPrefix: string, callback: AsyncCallback&lt;KVStoreResultSet&gt;)
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
@@ -6628,7 +6295,7 @@ getResultSet(keyPrefix: string): Promise&lt;KVStoreResultSet&gt;
 
 | 参数名    | 类型   | 必填 | 说明                 |
 | --------- | ------ | ---- | -------------------- |
-| keyPrefix | string | 是   | 表示要匹配的键前缀。 |
+| keyPrefix | string | 是   | 表示要匹配的键前缀。不能包含'^',包含'^'的话将导致谓词失效，查询结果会返回数据库中的所有数据。 |
 
 **返回值：**
 
@@ -6650,7 +6317,7 @@ getResultSet(keyPrefix: string): Promise&lt;KVStoreResultSet&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
@@ -6707,7 +6374,7 @@ getResultSet(deviceId: string, keyPrefix: string, callback: AsyncCallback&lt;KVS
 | 参数名    | 类型                                                     | 必填 | 说明                                                         |
 | --------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | deviceId  | string                                                       | 是   | 标识要查询其数据的设备。                                     |
-| keyPrefix | string                                                       | 是   | 表示要匹配的键前缀。                                         |
+| keyPrefix | string                                                       | 是   | 表示要匹配的键前缀。不能包含'^',包含'^'的话将导致谓词失效，查询结果会返回数据库中的所有数据。 |
 | callback  | AsyncCallback&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | 是   | 回调函数。返回与指定设备ID和key前缀匹配的KVStoreResultSet对象。 |
 
 **错误码：**
@@ -6724,7 +6391,7 @@ getResultSet(deviceId: string, keyPrefix: string, callback: AsyncCallback&lt;KVS
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
@@ -6768,7 +6435,7 @@ getResultSet(deviceId: string, keyPrefix: string): Promise&lt;KVStoreResultSet&g
 | 参数名    | 类型 | 必填 | 说明                     |
 | --------- | -------- | ---- | ------------------------ |
 | deviceId  | string   | 是   | 标识要查询其数据的设备。 |
-| keyPrefix | string   | 是   | 表示要匹配的键前缀。     |
+| keyPrefix | string   | 是   | 表示要匹配的键前缀。不能包含'^',包含'^'的话将导致谓词失效，查询结果会返回数据库中的所有数据。 |
 
 **返回值：**
 
@@ -6790,7 +6457,7 @@ getResultSet(deviceId: string, keyPrefix: string): Promise&lt;KVStoreResultSet&g
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
@@ -6847,7 +6514,7 @@ getResultSet(deviceId: string, query: Query, callback: AsyncCallback&lt;KVStoreR
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
@@ -6936,7 +6603,7 @@ getResultSet(deviceId: string, query: Query): Promise&lt;KVStoreResultSet&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
@@ -7017,7 +6684,7 @@ getResultSet(query: Query): Promise&lt;KVStoreResultSet&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
@@ -7086,7 +6753,7 @@ getResultSet(query: Query, callback:AsyncCallback&lt;KVStoreResultSet&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
@@ -7136,256 +6803,6 @@ try {
 }
 ```
 
-### getResultSet
-
-getResultSet(predicates: dataSharePredicates.DataSharePredicates, AsyncCallback&lt;KVStoreResultSet&gt;): void;
-
-获取与指定谓词对象匹配的KVStoreResultSet对象，使用Callback异步回调。
-
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
-
-**参数：**
-
-| 参数名 | 类型       | 必填 | 说明           |
-| ------ | -------------- | ---- | -------------- |
-| predicates  | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md) | 是   | 表示谓词对象。 |
-| callback | AsyncCallback&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | 是   | 回调函数，获取与指定谓词对象匹配的KVStoreResultSet对象。 |
-
-**返回值：**
-
-| 类型                                                 | 说明                                                         |
-| ---------------------------------------------------- | ------------------------------------------------------------ |
-| Promise&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | Promise对象。获取与指定谓词对象匹配的KVStoreResultSet对象。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)和[通用错误码](../errorcode-universal.md)。
-
-| **错误码ID** | **错误信息**                           |
-| ------------ | -------------------------------------- |
-| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
-| 202     | Permission verification failed, application which is not a system application uses system API.                 |
-| 15100001     | Over max  limits.                      |
-| 15100003     | Database corrupted.                    |
-| 15100005     | Database or result set already closed. |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@ohos.base';
-import dataShare from './@ohos.data.dataSharePredicates';
-
-try {
-    let predicates = new dataShare.DataSharePredicates();
-    let arr = ["name"];
-    predicates.inKeys(arr);
-    kvStore.getResultSet(predicates, function (err: BusinessError, result: distributedKVStore.KVStoreResultSet) {
-        if (err == undefined) {
-            console.error('getResultSet success');
-        } else {
-            console.error('getResultSet fail');
-        }
-    });
-} catch (e: BusinessError) {
-    console.info('catch fail');
-}
-```
-
-### getResultSet
-
-getResultSet(predicates: dataSharePredicates.DataSharePredicates): Promise&lt;KVStoreResultSet&gt;
-
-获取与指定Query对象匹配的KVStoreResultSet对象，使用Promise异步回调。
-
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
-
-**参数：**
-
-| 参数名 | 类型       | 必填 | 说明           |
-| ------ | -------------- | ---- | -------------- |
-| predicates  | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md) | 是   | 表示谓词对象。 |
-
-**返回值：**
-
-| 类型                                                 | 说明                                                         |
-| ---------------------------------------------------- | ------------------------------------------------------------ |
-| Promise&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | Promise对象。获取与指定谓词对象匹配的KVStoreResultSet对象。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)和[通用错误码](../errorcode-universal.md)。
-
-| **错误码ID** | **错误信息**                           |
-| ------------ | -------------------------------------- |
-| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
-| 202     | Permission verification failed, application which is not a system application uses system API.                 |
-| 15100001     | Over max  limits.                      |
-| 15100003     | Database corrupted.                    |
-| 15100005     | Database or result set already closed. |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@ohos.base';
-import dataShare from './@ohos.data.dataSharePredicates';
-
-try {
-    let entries: distributedKVStore.Entry[] = [];
-    let resultSet;
-    for (let i = 0; i < 10; i++) {
-        let key = 'name_';
-        let value = 'Bob_'
-        let entry: distributedKVStore.Entry= {
-            key: key + i,
-            value: {
-                type: factory.ValueType.STRING,
-                value: value + i
-            }
-        }
-        entries.push(entry);
-    }
-    await kvStore.putBatch(entries).then(async () => {
-    }).catch((err: BusinessError) => {
-      console.info('catch fail');
-    });
-    let predicates = new dataShare.DataSharePredicates();
-    predicates.prefixKey("name_");
-    await kvStore.getResultSet(predicates).then((result: distributedKVStore.KVStoreResultSet) => {
-        console.error('getResultSet success');
-    }).catch((err: BusinessError) => {
-        console.error('getResultSet fail');
-    });
-} catch (e: BusinessError) {
-  console.info('catch fail');
-}
-```
-
-### getResultSet
-
-getResultSet(deviceId: string, predicates: dataSharePredicates.DataSharePredicates, AsyncCallback&lt;KVStoreResultSet&gt;): void;
-
-获取与指定设备和谓词对象匹配的KVStoreResultSet对象，使用Callback异步回调。
-
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
-
-**参数：**
-
-| 参数名 | 类型       | 必填 | 说明           |
-| ------ | -------------- | ---- | -------------- |
-| deviceId | string         | 是   | KVStoreResultSet对象所属的设备ID。 |
-| predicates  | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md) | 是   | 表示谓词对象。 |
-| callback | AsyncCallback&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | 是   | 回调函数，获取与指定谓词对象匹配的KVStoreResultSet对象。 |
-
-**返回值：**
-
-| 类型                                                 | 说明                                                         |
-| ---------------------------------------------------- | ------------------------------------------------------------ |
-| Promise&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | Promise对象。获取与指定谓词对象匹配的KVStoreResultSet对象。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)和[通用错误码](../errorcode-universal.md)。
-
-| **错误码ID** | **错误信息**                           |
-| ------------ | -------------------------------------- |
-| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
-| 202     | Permission verification failed, application which is not a system application uses system API.                 |
-| 15100001     | Over max  limits.                      |
-| 15100003     | Database corrupted.                    |
-| 15100005     | Database or result set already closed. |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@ohos.base';
-import dataShare from './@ohos.data.dataSharePredicates';
-
-try {
-    let predicates = new dataShare.DataSharePredicates();
-    let arr = ["name"];
-    predicates.inKeys(arr);
-    kvStore.getResultSet(predicates, function (err: BusinessError, result: distributedKVStore.KVStoreResultSet) {
-        if (err == undefined) {
-            console.error('getResultSet success');
-        } else {
-            console.error('getResultSet fail');
-        }
-    });
-} catch (e: BusinessError) {
-    console.info('catch fail');
-}
-```
-
-### getResultSet
-
-getResultSet(deviceId: string, predicates: dataSharePredicates.DataSharePredicates): Promise&lt;KVStoreResultSet&gt;
-
-获取与指定设备和谓词对象匹配的KVStoreResultSet对象，使用Promise异步回调。
-
-**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
-
-**参数：**
-
-| 参数名 | 类型       | 必填 | 说明           |
-| ------ | -------------- | ---- | -------------- |
-| deviceId | string         | 是   | KVStoreResultSet对象所属的设备ID。 |
-| predicates  | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md) | 是   | 表示谓词对象。 |
-
-**返回值：**
-
-| 类型                                                 | 说明                                                         |
-| ---------------------------------------------------- | ------------------------------------------------------------ |
-| Promise&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | Promise对象。获取与指定谓词对象匹配的KVStoreResultSet对象。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[分布式键值数据库错误码](errorcode-distributedKVStore.md)和[通用错误码](../errorcode-universal.md)。
-
-| **错误码ID** | **错误信息**                           |
-| ------------ | -------------------------------------- |
-| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.|
-| 202     | Permission verification failed, application which is not a system application uses system API.                 |
-| 15100001     | Over max  limits.                      |
-| 15100003     | Database corrupted.                    |
-| 15100005     | Database or result set already closed. |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@ohos.base';
-import dataShare from './@ohos.data.dataSharePredicates';
-
-try {
-    let entries: distributedKVStore.Entry[] = [];
-    for (let i = 0; i < 10; i++) {
-        let key = 'name_';
-        let value = 'Bob_'
-        let entry = {
-            key: key + i,
-            value: {
-                type: factory.ValueType.STRING,
-                value: value + i
-            }
-        }
-        entries.push(entry);
-    }
-    await kvStore.putBatch(entries).then(async () => {
-        console.error('putBatch success');
-    }).catch((err: BusinessError) => {
-        console.error('putBatch failed');
-    });
-    let predicates = new dataShare.DataSharePredicates();
-    predicates.prefixKey("name_");
-    await kvStore.getResultSet('localDeviceId', predicates).then((result) => {
-        console.error('getResultSet success');
-    }).catch((err: BusinessError) => {
-        console.error('getResultSet fail');
-    });
-} catch (e) {
-    console.info('An unexpected error occurred');
-}
-```
-
 ### getResultSize
 
 getResultSize(query: Query, callback: AsyncCallback&lt;number&gt;): void
@@ -7414,7 +6831,7 @@ getResultSize(query: Query, callback: AsyncCallback&lt;number&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let entries: distributedKVStore.Entry[] = [];
@@ -7482,7 +6899,7 @@ getResultSize(query: Query): Promise&lt;number&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let entries: distributedKVStore.Entry[] = [];
@@ -7548,7 +6965,7 @@ getResultSize(deviceId: string, query: Query, callback: AsyncCallback&lt;number&
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let entries: distributedKVStore.Entry[] = [];
@@ -7625,7 +7042,7 @@ getResultSize(deviceId: string, query: Query): Promise&lt;number&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let entries: distributedKVStore.Entry[] = [];

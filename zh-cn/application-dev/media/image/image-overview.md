@@ -6,7 +6,7 @@
 
 - 图片解码
   
-  指将所支持格式的存档图片解码成统一的PixelMap，以便在应用或系统中进行图片显示或图片处理。当前支持的存档图片格式包括JPEG、PNG、GIF、RAW、WebP、BMP、SVG、ICO。
+  指将所支持格式的存档图片解码成统一的PixelMap，以便在应用或系统中进行图片显示或图片处理。当前支持的存档图片格式包括JPEG、PNG、GIF、WebP、BMP、SVG、ICO、DNG。
 
 - PixelMap
   
@@ -22,7 +22,8 @@
 
 图片开发的主要流程如下图所示。
 
-**图1** 图片开发流程示意图  
+**图1** 图片开发流程示意图
+
 ![Image development process](figures/image-development-process.png)
 
 1. 获取图片：通过应用沙箱等方式获取原始图片。

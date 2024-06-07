@@ -5,7 +5,7 @@ request部件主要给应用提供上传下载文件、后台传输代理的基�
 > **说明：**
 >
 > 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-> 当前界面仅包含本模块的系统接口，其他公开接口参见[@ohos.request](./js-apis-request.md)。
+> 当前界面仅包含本模块的系统接口，其他公开接口参见[@ohos.request](js-apis-request.md)。
 
 
 ## 导入模块
@@ -65,7 +65,10 @@ query(id: string, callback: AsyncCallback&lt;TaskInfo&gt;): void
 以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)。
 
 | 错误码ID | 错误信息 |
-  | -------- | -------- |
+| -------- | -------- |
+| 201 | permission denied. |
+| 202 | permission verification failed, application which is not a system application uses system API. |
+| 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type |
 | 13400003 | task service ability error. |
 | 21900006 | task not found error. |
 
@@ -110,7 +113,10 @@ query(id: string): Promise&lt;TaskInfo&gt;
 以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)。
 
 | 错误码ID | 错误信息 |
-  | -------- | -------- |
+| -------- | -------- |
+| 201 | permission denied. |
+| 202 | permission verification failed, application which is not a system application uses system API. |
+| 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type |
 | 13400003 | task service ability error. |
 | 21900006 | task not found error. |
 

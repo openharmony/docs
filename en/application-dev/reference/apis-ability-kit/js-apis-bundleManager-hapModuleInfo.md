@@ -8,6 +8,8 @@ The **HapModuleInfo** module defines the HAP module information. A third-party a
 
 ## HapModuleInfo
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
 | Name                             | Type                                                        | Readable| Writable| Description                |

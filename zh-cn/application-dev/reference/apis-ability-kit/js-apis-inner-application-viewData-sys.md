@@ -20,3 +20,5 @@
 | pageUrl    | string              | 是   | 页面的url。                               |
 | pageNodeInfos    | Array&lt;[PageNodeInfo](js-apis-inner-application-pageNodeInfo-sys.md)&gt;     | 是   | 页面节点的信息。                |
 | pageRect<sup>12+</sup>    | [AutoFillRect](js-apis-inner-application-autoFillRect-sys.md)     | 是   | 页面的坐标和宽高信息。                |
+| isUserSelected<sup>12+</sup> | boolean | 是 | 是否是用户选择的填充内容。 |
+| isOtherAccount<sup>12+</sup> | boolean | 是 | 是否拉起密码箱中其它账号信息供用户选择。 |

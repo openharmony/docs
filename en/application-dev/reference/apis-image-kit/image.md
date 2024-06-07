@@ -1995,7 +1995,7 @@ int32_t OH_ImageSource_GetDelayTime (const ImageSourceNative * native, struct Oh
 
 **Description**
 
-Obtains the delay time list from an **ImageSourceNative** object (such as GIF image source).
+Obtains the delay time list from an **ImageSource** object (such as GIF or WEBP image source).
 
 **Since**: 10
 

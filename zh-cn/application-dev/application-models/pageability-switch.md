@@ -42,20 +42,25 @@ FA模型中PageAbility对应Stage模型中的UIAbility，PageAbility切换为UIA
 
 
    ```ts
-    import Window from '@ohos.window'；
-    import UIAbility from '@ohos.app.ability.UIAbility';
-
-    export default class EntryAbility extends UIAbility {
-      onWindowStageCreate(windowStage: Window.WindowStage) {
-        // Main window is created, set main page for this ability
-        windowStage.loadContent('pages/Index', (err, data) => {
-          if (err.code) {
-            console.error("loadContent failed")
-            return;
-          }
-        });
-      }
-    }
+   import UIAbility from '@ohos.app.ability.UIAbility';
+   import hilog from '@ohos.hilog';
+   import window from '@ohos.window';
+   
+   export default class TestAbility extends UIAbility {
+     // ...
+     onWindowStageCreate(windowStage: window.WindowStage) {
+       hilog.info(0x0000, 'testTag', '%{public}s', 'TestAbility onWindowStageCreate');
+       windowStage.loadContent('testability/pages/Index', (err, data) => {
+         if (err.code) {
+           hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
+           return;
+         }
+         hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s',
+           JSON.stringify(data) ?? '');
+       });
+     }
+     // ...
+   }
    ```
   2、在resources/base/profile/main_pages.json中配置页面，以"pages/Index"为例:
   ```json

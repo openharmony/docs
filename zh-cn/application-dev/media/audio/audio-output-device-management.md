@@ -59,6 +59,7 @@ audioRoutingManager.on('deviceChange', audio.DeviceFlag.OUTPUT_DEVICES_FLAG, (de
 audioRoutingManager.off('deviceChange');
 ```
 
+<!--Del-->
 ## 选择音频输出设备（仅对系统应用开放）
 
 选择音频输出设备，当前只能选择一个输出设备，以设备ID作为唯一标识。AudioDeviceDescriptors的具体信息可以参考[AudioDeviceDescriptors](../../reference/apis-audio-kit/js-apis-audio.md#audiodevicedescriptors)。
@@ -94,6 +95,7 @@ async function selectOutputDevice() {
   });
 }
 ```
+<!--DelEnd-->
 
 ## 获取最高优先级输出设备信息
 

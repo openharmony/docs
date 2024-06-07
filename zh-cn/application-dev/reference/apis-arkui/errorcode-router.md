@@ -26,7 +26,7 @@ NA
 
 **错误信息**
 
-Uri error. The uri of router is not exist.
+Uri error. The URI of the page to redirect is incorrect or does not exist
 
 **错误描述**
 
@@ -44,7 +44,7 @@ Uri error. The uri of router is not exist.
 
 **错误信息**
 
-Page stack error. The pages are pushed too much.
+Page stack error. Too many pages are pushed.
 
 **错误描述**
 
@@ -62,7 +62,7 @@ Page stack error. The pages are pushed too much.
 
 **错误信息**
 
-Named route error. The named route is not exist.
+Named route error. The named route does not exist.
 
 **错误描述**
 
@@ -112,7 +112,7 @@ Navigation跳转时，目标页面不存在NavDestination组件。
 
 **错误信息**
 
-Uri error. The uri of router is not exist.
+Uri error. The URI of the page to be used for replacement is incorrect or does not exist.
 
 **错误描述**
 

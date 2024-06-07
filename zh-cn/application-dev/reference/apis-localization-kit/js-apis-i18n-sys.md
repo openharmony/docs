@@ -13,7 +13,7 @@
 ## 导入模块
 
 ```ts
-import I18n from '@ohos.i18n';
+import { i18n } from '@kit.LocalizationKit';
 ```
 
 ## System<sup>9+</sup>
@@ -40,22 +40,21 @@ static setSystemLanguage(language: string): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)。
+以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
-| 201 | Permission verification failed, usually the result returned by VerifyAccessToken. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 890001 | param value not valid. Possible causes: Parameter verification failed. |
+| 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import CommonEventManager from '@ohos.commonEventManager';
+  import { BusinessError, CommonEventManager } from '@kit.BasicServicesKit';
 
   // 设置系统语言
   try {
-    I18n.System.setSystemLanguage('zh'); // 设置系统当前语言为 "zh"
+    i18n.System.setSystemLanguage('zh'); // 设置系统当前语言为 "zh"
   } catch(error) {
     let err: BusinessError = error as BusinessError;
     console.error(`call System.setSystemLanguage failed, error code: ${err.code}, message: ${err.message}.`);
@@ -101,20 +100,20 @@ static setSystemRegion(region: string): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)。
+以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
-| 201 | Permission verification failed, usually the result returned by VerifyAccessToken. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 890001 | param value not valid. Possible causes: Parameter verification failed. |
+| 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    I18n.System.setSystemRegion('CN');  // 设置系统当前地区为 "CN"
+    i18n.System.setSystemRegion('CN');  // 设置系统当前地区为 "CN"
   } catch(error) {
     let err: BusinessError = error as BusinessError;
     console.error(`call System.setSystemRegion failed, error code: ${err.code}, message: ${err.message}.`);
@@ -143,20 +142,20 @@ static setSystemLocale(locale: string): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)。
+以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
-| 201 | Permission verification failed, usually the result returned by VerifyAccessToken. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 890001 | param value not valid. Possible causes: Parameter verification failed. |
+| 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    I18n.System.setSystemLocale('zh-CN');  // 设置系统当前Locale为 "zh-CN"
+    i18n.System.setSystemLocale('zh-CN');  // 设置系统当前Locale为 "zh-CN"
   } catch(error) {
     let err: BusinessError = error as BusinessError;
     console.error(`call System.setSystemLocale failed, error code: ${err.code}, message: ${err.message}.`);
@@ -184,21 +183,21 @@ static set24HourClock(option: boolean): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)。
+以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
-| 201 | Permission verification failed, usually the result returned by VerifyAccessToken. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 890001 | param value not valid. Possible causes: Parameter verification failed. |
+| 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   // 将系统时间设置为24小时制
   try {
-    I18n.System.set24HourClock(true);
+    i18n.System.set24HourClock(true);
   } catch(error) {
     let err: BusinessError = error as BusinessError;
     console.error(`call System.set24HourClock failed, error code: ${err.code}, message: ${err.message}.`);
@@ -226,23 +225,23 @@ static addPreferredLanguage(language: string, index?: number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)。
+以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
-| 201 | Permission verification failed, usually the result returned by VerifyAccessToken. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 890001 | param value not valid. Possible causes: Parameter verification failed. |
+| 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   // 将语言zh-CN添加到系统偏好语言列表中
   let language = 'zh-CN';
   let index = 0;
   try {
-    I18n.System.addPreferredLanguage(language, index); // 将zh-CN添加到系统偏好语言列表的第1位
+    i18n.System.addPreferredLanguage(language, index); // 将zh-CN添加到系统偏好语言列表的第1位
   } catch(error) {
     let err: BusinessError = error as BusinessError;
     console.error(`call System.addPreferredLanguage failed, error code: ${err.code}, message: ${err.message}.`);
@@ -269,22 +268,22 @@ static removePreferredLanguage(index: number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)。
+以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
-| 201 | Permission verification failed, usually the result returned by VerifyAccessToken. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 890001 | param value not valid. Possible causes: Parameter verification failed. |
+| 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   // 删除系统偏好语言列表中的第一个偏好语言
   let index: number = 0;
   try {
-    I18n.System.removePreferredLanguage(index);
+    i18n.System.removePreferredLanguage(index);
   } catch(error) {
     let err: BusinessError = error as BusinessError;
     console.error(`call System.removePreferredLanguage failed, error code: ${err.code}, message: ${err.message}.`);
@@ -311,20 +310,20 @@ static setUsingLocalDigit(flag: boolean): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)。
+以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
-| 201 | Permission verification failed, usually the result returned by VerifyAccessToken. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 890001 | param value not valid. Possible causes: Parameter verification failed. |
+| 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    I18n.System.setUsingLocalDigit(true); // 打开本地化数字开关
+    i18n.System.setUsingLocalDigit(true); // 打开本地化数字开关
   } catch(error) {
     let err: BusinessError = error as BusinessError;
     console.error(`call System.setUsingLocalDigit failed, error code: ${err.code}, message: ${err.message}.`);
@@ -345,7 +344,7 @@ constructor()
 
 **示例：**
   ```ts
-  let systemLocaleManager: I18n.SystemLocaleManager = new I18n.SystemLocaleManager();
+  let systemLocaleManager: i18n.SystemLocaleManager = new i18n.SystemLocaleManager();
   ```
 
 
@@ -374,24 +373,24 @@ getLanguageInfoArray(languages: Array&lt;string&gt;, options?: SortOptions): Arr
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)。
+以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 890001 | param value not valid. Possible causes: Parameter verification failed. |
+| 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   // 当系统语言为zh-Hans，系统地区为CN，系统Locale为zh-Hans-CN时
-  let systemLocaleManager: I18n.SystemLocaleManager = new I18n.SystemLocaleManager();
+  let systemLocaleManager: i18n.SystemLocaleManager = new i18n.SystemLocaleManager();
   let languages: string[] = ["zh-Hans", "en-US", "pt", "ar"];
-  let sortOptions: I18n.SortOptions = {locale: "zh-Hans-CN", isUseLocalName: true, isSuggestedFirst: true};
+  let sortOptions: i18n.SortOptions = {locale: "zh-Hans-CN", isUseLocalName: true, isSuggestedFirst: true};
   try {
       // 排序后的语言顺序为: [zh-Hans, en-US, pt, ar]
-      let sortedLanguages: Array<I18n.LocaleItem> = systemLocaleManager.getLanguageInfoArray(languages, sortOptions);
+      let sortedLanguages: Array<i18n.LocaleItem> = systemLocaleManager.getLanguageInfoArray(languages, sortOptions);
   } catch(error) {
       let err: BusinessError = error as BusinessError;
       console.error(`call systemLocaleManager.getLanguageInfoArray failed, error code: ${err.code}, message: ${err.message}.`);
@@ -424,24 +423,24 @@ getRegionInfoArray(regions: Array&lt;string&gt;, options?: SortOptions): Array&l
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)。
+以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
-| 890001 | param value not valid. Possible causes: Parameter verification failed. |
+| 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   // 当系统语言为zh-Hans，系统地区为CN，系统Locale为zh-Hans-CN时
-  let systemLocaleManager: I18n.SystemLocaleManager = new I18n.SystemLocaleManager();
+  let systemLocaleManager: i18n.SystemLocaleManager = new i18n.SystemLocaleManager();
   let regions: string[] = ["CN", "US", "PT", "EG"];
-  let sortOptions: I18n.SortOptions = {locale: "zh-Hans-CN", isUseLocalName: false, isSuggestedFirst: true};
+  let sortOptions: i18n.SortOptions = {locale: "zh-Hans-CN", isUseLocalName: false, isSuggestedFirst: true};
   try {
       // 排序后的地区顺序为: [CN, EG, US, PT]
-      let sortedRegions: Array<I18n.LocaleItem> = systemLocaleManager.getRegionInfoArray(regions, sortOptions);
+      let sortedRegions: Array<i18n.LocaleItem> = systemLocaleManager.getRegionInfoArray(regions, sortOptions);
   } catch(error) {
       let err: BusinessError = error as BusinessError;
       console.error(`call systemLocaleManager.getRegionInfoArray failed, error code: ${err.code}, message: ${err.message}.`);
@@ -466,10 +465,10 @@ static getTimeZoneCityItemArray(): Array&lt;TimeZoneCityItem&gt;
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    let timeZoneCityItemArray: Array<I18n.TimeZoneCityItem> = I18n.SystemLocaleManager.getTimeZoneCityItemArray();
+    let timeZoneCityItemArray: Array<i18n.TimeZoneCityItem> = i18n.SystemLocaleManager.getTimeZoneCityItemArray();
     for (let i = 0; i < timeZoneCityItemArray.length; i++) {
         console.log(timeZoneCityItemArray[i].zoneId + ", " + timeZoneCityItemArray[i].cityId + ", " + timeZoneCityItemArray[i].cityDisplayName +
             ", " + timeZoneCityItemArray[i].offset + "\r\n");

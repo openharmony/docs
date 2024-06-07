@@ -45,7 +45,7 @@ let screenClass: screen.Screen | null = null;
 screen.getAllScreens((err: BusinessError, data: Array<screen.Screen>) => {
   const errCode: number = err.code;
   if (errCode) {
-    console.error('Failed to get all screens. Cause:  ' + JSON.stringify(err));
+    console.error(`Failed to get all screens. Code:${err.code},message is ${err.message}`);
     return;
   }
   console.info('Succeeded in getting all screens. Data:' + JSON.stringify(data));
@@ -105,17 +105,21 @@ Subscribes to events related to the screen state.
 | eventType | string                 | Yes  | Event type.<br>- **connect**: an event indicating that the screen is connected.<br>- **disconnect**: an event indicating that the screen is disconnected.<br>- **change**: an event indicating that the screen state changes.|
 | callback  | Callback&lt;number&gt; | Yes  | Callback used to return the screen ID, which is an integer.                                   |
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | ----------------------- |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
+
 **Example**
 
 ```ts
-try {
-  let callback: Callback<number> = (data: number) => {
-    console.info('Succeeded in registering the callback for screen changes. Data: ' + JSON.stringify(data))
-  };
-  screen.on('connect', callback);
-} catch (exception) {
-  console.error('Failed to register the callback for screen changes. Code: ' + JSON.stringify(exception));
+let callback: Callback<number> = (data: number) => {
+  console.info('Succeeded in registering the callback for screen changes. Data: ' + JSON.stringify(data))
 };
+screen.on('connect', callback);
 ```
 
 ## screen.off('connect' | 'disconnect' | 'change')
@@ -133,17 +137,22 @@ Unsubscribes from events related to the screen state.
 | eventType | string                 | Yes  | Event type.<br>- **connect**: an event indicating that the screen is connected.<br>- **disconnect**: an event indicating that the screen is disconnected.<br>- **change**: an event indicating that the screen state changes.|
 | callback  | Callback&lt;number&gt; | No  | Callback used to return the screen ID, which is an integer.                                    |
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | ----------------------- |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
+
 **Example**
 
 ```ts
-try {
-  let callback: Callback<number> = (data: number) => {
-    console.info('Succeeded in unregistering the callback for screen changes. Data: ' + JSON.stringify(data))
-  };
-  screen.off('connect', callback);
-} catch (exception) {
-  console.error('Failed to register the callback for screen changes. Code: ' + JSON.stringify(exception));
+let callback: Callback<number> = (data: number) => {
+  console.info('Succeeded in unregistering the callback for screen changes. Data: ' + JSON.stringify(data))
 };
+screen.off('connect', callback);
+screen.off('connect');
 ```
 
 ## screen.makeExpand
@@ -163,10 +172,11 @@ Sets the screen to the expanded mode. This API uses an asynchronous callback to 
 
 **Error codes**
 
-For details about the error codes, see [Display Error Codes](errorcode-display.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Display Error Codes](errorcode-display.md).
 
 | ID| Error Message|
 | ------- | ----------------------- |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
 | 1400001 | Invalid display or screen. |
 
 **Example**
@@ -174,28 +184,24 @@ For details about the error codes, see [Display Error Codes](errorcode-display.m
 ```ts
 import { BusinessError } from '@ohos.base';
 
-try {
-  let groupId: number | null = null;
-  class ExpandOption {
-    screenId: number = 0;
-    startX: number = 0;
-    startY: number = 0;
+let groupId: number | null = null;
+class ExpandOption {
+  screenId: number = 0;
+  startX: number = 0;
+  startY: number = 0;
+}
+let mainScreenOption: ExpandOption = { screenId: 0, startX: 0, startY: 0 };
+let otherScreenOption: ExpandOption = { screenId: 1, startX: 1080, startY: 0 };
+let expandOptionArray : ExpandOption[] = [ mainScreenOption, otherScreenOption ];
+screen.makeExpand(expandOptionArray, (err: BusinessError, data: number) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error(`Failed to expand the screen. Code:${err.code},message is ${err.message}`);
+    return;
   }
-  let mainScreenOption: ExpandOption = { screenId: 0, startX: 0, startY: 0 };
-  let otherScreenOption: ExpandOption = { screenId: 1, startX: 1080, startY: 0 };
-  let expandOptionArray : ExpandOption[] = [ mainScreenOption, otherScreenOption ];
-  screen.makeExpand(expandOptionArray, (err: BusinessError, data: number) => {
-    const errCode: number = err.code;
-    if (errCode) {
-      console.error('Failed to expand the screen. Code:' + JSON.stringify(err));
-      return;
-    }
-    groupId = data;
-    console.info('Succeeded in expanding the screen. Data: ' + JSON.stringify(data));
-  });
-} catch (exception) {
-  console.error('Failed to expand the screen. Code: ' + JSON.stringify(exception));
-};
+  groupId = data;
+  console.info('Succeeded in expanding the screen. Data: ' + JSON.stringify(data));
+});
 ```
 
 ## screen.makeExpand
@@ -220,10 +226,11 @@ Sets the screen to the expanded mode. This API uses a promise to return the resu
 
 **Error codes**
 
-For details about the error codes, see [Display Error Codes](errorcode-display.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Display Error Codes](errorcode-display.md).
 
 | ID| Error Message|
 | ------- | ----------------------- |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
 | 1400001 | Invalid display or screen. |
 
 **Example**
@@ -231,24 +238,20 @@ For details about the error codes, see [Display Error Codes](errorcode-display.m
 ```ts
 import { BusinessError } from '@ohos.base';
 
-try {
-  class ExpandOption {
-    screenId: number = 0;
-    startX: number = 0;
-    startY: number = 0;
-  }
-  let mainScreenOption: ExpandOption = { screenId: 0, startX: 0, startY: 0 };
-  let otherScreenOption: ExpandOption = { screenId: 1, startX: 1080, startY: 0 };
-  let expandOptionArray : ExpandOption[] = [ mainScreenOption, otherScreenOption ];
-  screen.makeExpand(expandOptionArray).then((
-    data: number) => {
-    console.info('Succeeded in expanding the screen. Data: ' + JSON.stringify(data));
-  }).catch((err: BusinessError) => {
-    console.error('Failed to expand the screen. Code:' + JSON.stringify(err));
-  });
-} catch (exception) {
-  console.error('Failed to expand the screen. Code: ' + JSON.stringify(exception));
-};
+class ExpandOption {
+  screenId: number = 0;
+  startX: number = 0;
+  startY: number = 0;
+}
+let mainScreenOption: ExpandOption = { screenId: 0, startX: 0, startY: 0 };
+let otherScreenOption: ExpandOption = { screenId: 1, startX: 1080, startY: 0 };
+let expandOptionArray : ExpandOption[] = [ mainScreenOption, otherScreenOption ];
+screen.makeExpand(expandOptionArray).then((
+  data: number) => {
+  console.info('Succeeded in expanding the screen. Data: ' + JSON.stringify(data));
+}).catch((err: BusinessError) => {
+  console.error(`Failed to expand the screen. Code:${err.code},message is ${err.message}`);
+});
 ```
 
 ## screen.stopExpand<sup>10+</sup>
@@ -263,15 +266,16 @@ Stops the expanded mode. This API uses an asynchronous callback to return the re
 
 | Name| Type| Mandatory| Description                                     |
 | ------------ | --------------------------- | --- |-----------------------------------------|
-| expandScreen | Array&lt;number&gt;         | Yes  |  IDs of the expanded screens. Each ID must be an integer.                     |
+| expandScreen | Array&lt;number&gt;         | Yes  |  IDs of the expanded screens. Each ID must be an integer. The size of the expandScreen array cannot exceed 1000. |
 | callback     | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the expanded mode is stopped, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
-For details about the error codes, see [Display Error Codes](errorcode-display.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Display Error Codes](errorcode-display.md).
 
 | ID| Error Message|
 | ------- | ----------------------- |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.|
 | 1400001 | Invalid display or screen. |
 
 **Example**
@@ -279,19 +283,15 @@ For details about the error codes, see [Display Error Codes](errorcode-display.m
 ```ts
 import { BusinessError } from '@ohos.base';
 
-try {
-  let expandScreenIds: Array<number> = [1, 2, 3];
-  screen.stopExpand(expandScreenIds, (err: BusinessError) => {
-    const errCode: number = err.code;
-    if (errCode) {
-      console.error('Failed to stop expand screens. Code:' + JSON.stringify(err));
-      return;
-    }
-    console.info('Succeeded in stopping expand screens.');
-  });
-} catch (exception) {
-  console.error('Failed to stop expand screens. Code: ' + JSON.stringify(exception));
-};
+let expandScreenIds: Array<number> = [1, 2, 3];
+screen.stopExpand(expandScreenIds, (err: BusinessError) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error(`Failed to stop expand screens. Code:${err.code},message is ${err.message}`);
+    return;
+  }
+  console.info('Succeeded in stopping expand screens.');
+});
 ```
 
 ## screen.stopExpand<sup>10+</sup>
@@ -306,7 +306,7 @@ Stops the expanded mode. This API uses a promise to return the result.
 
 | Name| Type| Mandatory| Description                |
 | ------------ | ------------------- | --- |--------------------|
-| expandScreen | Array&lt;number&gt; | Yes  |  IDs of the expanded screens. Each ID must be an integer.|
+| expandScreen | Array&lt;number&gt; | Yes  |  IDs of the expanded screens. Each ID must be an integer. The size of the expandScreen array cannot exceed 1000.|
 
 **Return value**
 
@@ -316,10 +316,11 @@ Stops the expanded mode. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Display Error Codes](errorcode-display.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Display Error Codes](errorcode-display.md).
 
 | ID| Error Message|
 | ------- | ----------------------- |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.|
 | 1400001 | Invalid display or screen. |
 
 **Example**
@@ -327,16 +328,12 @@ For details about the error codes, see [Display Error Codes](errorcode-display.m
 ```ts
 import { BusinessError } from '@ohos.base';
 
-try {
-  let expandScreenIds: Array<number> = [1, 2, 3];
-  screen.stopExpand(expandScreenIds).then(() => {
-    console.info('Succeeded in stopping expand screens.');
-  }).catch((err: BusinessError) => {
-    console.error('Failed to stop expand screens. Code:' + JSON.stringify(err));
-  });
-} catch (exception) {
-  console.error('Failed to stop expand screens. Code:' + JSON.stringify(exception));
-};
+let expandScreenIds: Array<number> = [1, 2, 3];
+screen.stopExpand(expandScreenIds).then(() => {
+  console.info('Succeeded in stopping expand screens.');
+}).catch((err: BusinessError) => {
+  console.error(`Failed to stop expand screens. Code:${err.code},message is ${err.message}`);
+});
 ```
 
 ## screen.makeMirror
@@ -357,10 +354,11 @@ Sets screen mirroring. This API uses an asynchronous callback to return the resu
 
 **Error codes**
 
-For details about the error codes, see [Display Error Codes](errorcode-display.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Display Error Codes](errorcode-display.md).
 
 | ID| Error Message|
 | ------- | ----------------------- |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
 | 1400001 | Invalid display or screen. |
 
 **Example**
@@ -370,18 +368,14 @@ import { BusinessError } from '@ohos.base';
 
 let mainScreenId: number = 0;
 let mirrorScreenIds: Array<number> = [1, 2, 3];
-try {
-  screen.makeMirror(mainScreenId, mirrorScreenIds, (err: BusinessError, data: number) => {
-    const errCode: number = err.code;
-    if (errCode) {
-      console.error('Failed to set screen mirroring. Code: ' + JSON.stringify(err));
-      return;
-    }
-    console.info('Succeeded in setting screen mirroring. Data: ' + JSON.stringify(data));
-  });
-} catch (exception) {
-  console.error('Failed to set screen mirroring. Code: ' + JSON.stringify(exception));
-};
+screen.makeMirror(mainScreenId, mirrorScreenIds, (err: BusinessError, data: number) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error(`Failed to set screen mirroring. Code:${err.code},message is ${err.message}`);
+    return;
+  }
+  console.info('Succeeded in setting screen mirroring. Data: ' + JSON.stringify(data));
+});
 ```
 
 ## screen.makeMirror
@@ -407,10 +401,11 @@ Sets screen mirroring. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Display Error Codes](errorcode-display.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Display Error Codes](errorcode-display.md).
 
 | ID| Error Message|
 | ------- | ----------------------- |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
 | 1400001 | Invalid display or screen. |
 
 **Example**
@@ -420,15 +415,11 @@ import { BusinessError } from '@ohos.base';
 
 let mainScreenId: number = 0;
 let mirrorScreenIds: Array<number> = [1, 2, 3];
-try {
-  screen.makeMirror(mainScreenId, mirrorScreenIds).then((data: number) => {
-    console.info('Succeeded in setting screen mirroring. Data: ' + JSON.stringify(data));
-  }).catch((err: BusinessError) => {
-    console.error('Failed to set screen mirroring. Code: ' + JSON.stringify(err));
-  });
-} catch (exception) {
-  console.error('Failed to set screen mirroring. Code: ' + JSON.stringify(exception));
-};
+screen.makeMirror(mainScreenId, mirrorScreenIds).then((data: number) => {
+  console.info('Succeeded in setting screen mirroring. Data: ' + JSON.stringify(data));
+}).catch((err: BusinessError) => {
+  console.error(`Failed to set screen mirroring. Code:${err.code},message is ${err.message}`);
+});
 ```
 
 ## screen.stopMirror<sup>10+</sup>
@@ -443,15 +434,16 @@ Stops screen mirroring. This API uses an asynchronous callback to return the res
 
 | Name| Type| Mandatory| Description                                     |
 | ------------ | --------------------------- | --- |-----------------------------------------|
-| mirrorScreen | Array&lt;number&gt;         | Yes  |  IDs of secondary screens. Each ID must be an integer.                     |
+| mirrorScreen | Array&lt;number&gt;         | Yes  |  IDs of secondary screens. Each ID must be an integer. The size of the mirrorScreen array cannot exceed 1000.|
 | callback     | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If screen mirroring is stopped, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
-For details about the error codes, see [Display Error Codes](errorcode-display.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Display Error Codes](errorcode-display.md).
 
 | ID| Error Message|
 | ------- | ----------------------- |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.|
 | 1400001 | Invalid display or screen. |
 
 **Example**
@@ -459,19 +451,15 @@ For details about the error codes, see [Display Error Codes](errorcode-display.m
 ```ts
 import { BusinessError } from '@ohos.base';
 
-try {
-  let mirrorScreenIds: Array<number> = [1, 2, 3];
-  screen.stopMirror(mirrorScreenIds, (err: BusinessError) => {
-    const errCode: number = err.code;
-    if (errCode) {
-      console.error('Failed to stop mirror screens. Code:' + JSON.stringify(err));
-      return;
-    }
-    console.info('Succeeded in stopping mirror screens.');
-  });
-} catch (exception) {
-  console.error('Failed to stop mirror screens. Code: ' + JSON.stringify(exception));
-};
+let mirrorScreenIds: Array<number> = [1, 2, 3];
+screen.stopMirror(mirrorScreenIds, (err: BusinessError) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error(`Failed to stop mirror screens. Code:${err.code},message is ${err.message}`);
+    return;
+  }
+  console.info('Succeeded in stopping mirror screens.');
+});
 ```
 
 ## screen.stopMirror<sup>10+</sup>
@@ -486,7 +474,7 @@ Stops screen mirroring. This API uses a promise to return the result.
 
 | Name| Type| Mandatory| Description                |
 | ------------ | ------------------- | --- |--------------------|
-| mirrorScreen | Array&lt;number&gt; | Yes  |  IDs of secondary screens. Each ID must be an integer.|
+| mirrorScreen | Array&lt;number&gt; | Yes  |  IDs of secondary screens. Each ID must be an integer. The size of the mirrorScreen array cannot exceed 1000.|
 
 **Return value**
 
@@ -496,10 +484,11 @@ Stops screen mirroring. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Display Error Codes](errorcode-display.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Display Error Codes](errorcode-display.md).
 
 | ID| Error Message|
 | ------- | ----------------------- |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.|
 | 1400001 | Invalid display or screen. |
 
 **Example**
@@ -507,16 +496,12 @@ For details about the error codes, see [Display Error Codes](errorcode-display.m
 ```ts
 import { BusinessError } from '@ohos.base';
 
-try {
-  let mirrorScreenIds: Array<number> = [1, 2, 3];
-  screen.stopMirror(mirrorScreenIds).then(() => {
-    console.info('Succeeded in stopping mirror screens.');
-  }).catch((err: BusinessError) => {
-    console.error('Failed to stop mirror screens. Code:' + JSON.stringify(err));
-  });
-} catch (exception) {
-  console.error('Failed to stop mirror screens. Code:' + JSON.stringify(exception));
-};
+let mirrorScreenIds: Array<number> = [1, 2, 3];
+screen.stopMirror(mirrorScreenIds).then(() => {
+  console.info('Succeeded in stopping mirror screens.');
+}).catch((err: BusinessError) => {
+  console.error(`Failed to stop mirror screens.Code:${err.code},message is ${err.message}`);
+});
 ```
 
 ## screen.createVirtualScreen
@@ -538,10 +523,12 @@ Creates a virtual screen. This API uses an asynchronous callback to return the r
 
 **Error codes**
 
-For details about the error codes, see [Display Error Codes](errorcode-display.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Display Error Codes](errorcode-display.md).
 
 | ID| Error Message|
 | ------- | ----------------------- |
+| 201 | Permission verification failed. |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
 | 1400001 | Invalid display or screen. |
 
 **Example**
@@ -550,34 +537,30 @@ For details about the error codes, see [Display Error Codes](errorcode-display.m
 import { BusinessError } from '@ohos.base';
 
 let screenClass: screen.Screen | null = null;
-try {
-  class VirtualScreenOption {
-    name : string = '';
-    width : number =  0;
-    height : number = 0;
-    density : number = 0;
-    surfaceId : string = '';
-  }
+class VirtualScreenOption {
+  name : string = '';
+  width : number =  0;
+  height : number = 0;
+  density : number = 0;
+  surfaceId : string = '';
+}
 
-  let option : VirtualScreenOption = { 
-    name: 'screen01',
-    width: 1080,
-    height: 2340,
-    density: 2,
-    surfaceId: ''
-  };
-  screen.createVirtualScreen(option, (err: BusinessError, data: screen.Screen) => {
-    const errCode: number = err.code;
-    if (errCode) {
-      console.error('Failed to create the virtual screen. Code: ' + JSON.stringify(err));
-      return;
-    }
-    screenClass = data;
-    console.info('Succeeded in creating the virtual screen. Data: ' + JSON.stringify(data));
-  });
-} catch (exception) {
-  console.error('Failed to create the virtual screen. Code: ' + JSON.stringify(exception));
+let option : VirtualScreenOption = { 
+  name: 'screen01',
+  width: 1080,
+  height: 2340,
+  density: 2,
+  surfaceId: ''
 };
+screen.createVirtualScreen(option, (err: BusinessError, data: screen.Screen) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error(`Failed to create the virtual screen. Code:${err.code},message is ${err.message}`);
+    return;
+  }
+  screenClass = data;
+  console.info('Succeeded in creating the virtual screen. Data: ' + JSON.stringify(data));
+});
 ```
 
 ## screen.createVirtualScreen
@@ -604,10 +587,12 @@ Creates a virtual screen. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Display Error Codes](errorcode-display.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Display Error Codes](errorcode-display.md).
 
 | ID| Error Message|
 | ------- | ----------------------- |
+| 201 | Permission verification failed. |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
 | 1400001 | Invalid display or screen. |
 
 **Example**
@@ -616,32 +601,28 @@ For details about the error codes, see [Display Error Codes](errorcode-display.m
 import { BusinessError } from '@ohos.base';
 
 let screenClass: screen.Screen | null = null;
-try {
-  class VirtualScreenOption {
-    name : string = '';
-    width : number =  0;
-    height : number = 0;
-    density : number = 0;
-    surfaceId : string = '';
-  }
+class VirtualScreenOption {
+  name : string = '';
+  width : number =  0;
+  height : number = 0;
+  density : number = 0;
+  surfaceId : string = '';
+}
 
-  let option : VirtualScreenOption = { 
-    name: 'screen01',
-    width: 1080,
-    height: 2340,
-    density: 2,
-    surfaceId: ''
-  };
-
-  screen.createVirtualScreen(option).then((data: screen.Screen) => {
-    screenClass = data;
-    console.info('Succeeded in creating the virtual screen. Data: ' + JSON.stringify(data));
-  }).catch((err: BusinessError) => {
-    console.error('Failed to create the virtual screen. Code: ' + JSON.stringify(err));
-  });
-} catch (exception) {
-  console.error('Failed to create the virtual screen. Code: ' + JSON.stringify(exception));
+let option : VirtualScreenOption = { 
+  name: 'screen01',
+  width: 1080,
+  height: 2340,
+  density: 2,
+  surfaceId: ''
 };
+
+screen.createVirtualScreen(option).then((data: screen.Screen) => {
+  screenClass = data;
+  console.info('Succeeded in creating the virtual screen. Data: ' + JSON.stringify(data));
+}).catch((err: BusinessError) => {
+  console.error(`Failed to create the virtual screen. Code:${err.code},message is ${err.message}`);
+});
 ```
 
 ## screen.destroyVirtualScreen
@@ -661,10 +642,11 @@ Destroys a virtual screen. This API uses an asynchronous callback to return the 
 
 **Error codes**
 
-For details about the error codes, see [Display Error Codes](errorcode-display.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Display Error Codes](errorcode-display.md).
 
 | ID| Error Message|
 | ------- | ----------------------------- |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
 | 1400002 | Unauthorized operation. |
 
 **Example**
@@ -673,18 +655,14 @@ For details about the error codes, see [Display Error Codes](errorcode-display.m
 import { BusinessError } from '@ohos.base';
 
 let screenId: number = 1;
-try {
-  screen.destroyVirtualScreen(screenId, (err: BusinessError) => {
-    const errCode: number = err.code;
-    if (errCode) {
-      console.error('Failed to destroy the virtual screen. Code: ' + JSON.stringify(err));
-      return;
-    }
-    console.info('Succeeded in destroying the virtual screen.');
-  });
-} catch (exception) {
-  console.error('Failed to destroy the virtual screen. Code: ' + JSON.stringify(exception));
-};
+screen.destroyVirtualScreen(screenId, (err: BusinessError) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error(`Failed to destroy the virtual screen. Code:${err.code},message is ${err.message}`);
+    return;
+  }
+  console.info('Succeeded in destroying the virtual screen.');
+});
 ```
 
 ## screen.destroyVirtualScreen
@@ -709,10 +687,11 @@ Destroys a virtual screen. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Display Error Codes](errorcode-display.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Display Error Codes](errorcode-display.md).
 
 | ID| Error Message|
 | ------- | ----------------------------- |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
 | 1400002 | Unauthorized operation. |
 
 **Example**
@@ -721,15 +700,11 @@ For details about the error codes, see [Display Error Codes](errorcode-display.m
 import { BusinessError } from '@ohos.base';
 
 let screenId: number = 1;
-try {
-  screen.destroyVirtualScreen(screenId).then(() => {
-    console.info('Succeeded in destroying the virtual screen.');
-  }).catch((err: BusinessError) => {
-    console.error('Failed to destroy the virtual screen. Code: ' + JSON.stringify(err));
-  });
-} catch (exception) {
-  console.error('Failed to destroy the virtual screen. Code: ' + JSON.stringify(exception));
-};
+screen.destroyVirtualScreen(screenId).then(() => {
+  console.info('Succeeded in destroying the virtual screen.');
+}).catch((err: BusinessError) => {
+  console.error(`Failed to destroy the virtual screen.Code:${err.code},message is ${err.message}`);
+});
 ```
 
 ## screen.setVirtualScreenSurface
@@ -747,15 +722,17 @@ Sets the surface for a virtual screen. This API uses an asynchronous callback to
 | Name   | Type                     | Mandatory| Description                                                        |
 | --------- | ------------------------- | ---- | ------------------------------------------------------------ |
 | screenId  | number                    | Yes  | Screen ID. The value must be an integer.                                                  |
-| surfaceId | string                    | Yes  | Surface ID.                                               |
+| surfaceId | string                    | Yes  | Surface ID of the virtual screen. The value can be customized.                                               |
 | callback  | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the virtual screen surface is successfully set, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
-For details about the error codes, see [Display Error Codes](errorcode-display.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Display Error Codes](errorcode-display.md).
 
 | ID| Error Message|
 | ------- | ----------------------- |
+| 201 | Permission verification failed. |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
 | 1400001 | Invalid display or screen. |
 
 **Example**
@@ -765,18 +742,14 @@ import { BusinessError } from '@ohos.base';
 
 let screenId: number = 1;
 let surfaceId: string = '2048';
-try {
-  screen.setVirtualScreenSurface(screenId, surfaceId, (err: BusinessError) => {
-    const errCode: number = err.code;
-    if (errCode) {
-      console.error('Failed to set the surface for the virtual screen. Code: ' + JSON.stringify(err));
-      return;
-    }
-    console.info('Succeeded in setting the surface for the virtual screen.');
-  });
-} catch (exception) {
-  console.error('Failed to set the surface for the virtual screen. Code: ' + JSON.stringify(exception));
-};
+screen.setVirtualScreenSurface(screenId, surfaceId, (err: BusinessError) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error(`Failed to set the surface for the virtual screen. Code:${err.code},message is ${err.message}`);
+    return;
+  }
+  console.info('Succeeded in setting the surface for the virtual screen.');
+});
 ```
 
 ## screen.setVirtualScreenSurface
@@ -794,7 +767,7 @@ Sets the surface for a virtual screen. This API uses a promise to return the res
 | Name   | Type  | Mandatory| Description         |
 | --------- | ------ | ---- | ------------- |
 | screenId  | number | Yes  | Screen ID. The value must be an integer.   |
-| surfaceId | string | Yes  | Surface ID.|
+| surfaceId | string | Yes  | Surface ID of the virtual screen. The value can be customized.|
 
 **Return value**
 
@@ -804,10 +777,12 @@ Sets the surface for a virtual screen. This API uses a promise to return the res
 
 **Error codes**
 
-For details about the error codes, see [Display Error Codes](errorcode-display.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Display Error Codes](errorcode-display.md).
 
 | ID| Error Message|
 | ------- | ----------------------- |
+| 201 | Permission verification failed. |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
 | 1400001 | Invalid display or screen. |
 
 **Example**
@@ -817,15 +792,11 @@ import { BusinessError } from '@ohos.base';
 
 let screenId: number = 1;
 let surfaceId: string = '2048';
-try {
-  screen.setVirtualScreenSurface(screenId, surfaceId).then(() => {
-    console.info('Succeeded in setting the surface for the virtual screen.');
-  }).catch((err: BusinessError) => {
-    console.error('Failed to set the surface for the virtual screen. Code: ' + JSON.stringify(err));
-  });
-} catch (exception) {
-  console.error('Failed to set the surface for the virtual screen. Code: ' + JSON.stringify(exception));
-};
+screen.setVirtualScreenSurface(screenId, surfaceId).then(() => {
+  console.info('Succeeded in setting the surface for the virtual screen.');
+}).catch((err: BusinessError) => {
+  console.error(`Failed to set the surface for the virtual screen. Code:${err.code},message is ${err.message}`);
+});
 ```
 
 ## screen.isScreenRotationLocked
@@ -850,7 +821,7 @@ import { BusinessError } from '@ohos.base';
 screen.isScreenRotationLocked().then((isLocked: boolean) => {
   console.info('Succeeded in getting the screen rotation lock status. isLocked:' + JSON.stringify(isLocked));
 }).catch((err: BusinessError) => {
-  console.error('Failed to get the screen rotation lock status. Cause:' + JSON.stringify(err));
+  console.error(`Failed to get the screen rotation lock status. Code:${err.code},message is ${err.message}`);
 });
 ```
 
@@ -874,12 +845,12 @@ Checks whether auto rotate is locked. This API uses an asynchronous callback to 
 import { BusinessError } from '@ohos.base';
 
 screen.isScreenRotationLocked((err: BusinessError, isLocked: boolean) => {
-  const errCode: number = err.code;
-  if (errCode) {
-    console.error('Failed to get the screen rotation lock status. Cause:' + JSON.stringify(err));
-    return;
-  }
-  console.info('Succeeded in getting the screen rotation lock status. isLocked:' + JSON.stringify(isLocked));
+const errCode: number = err.code;
+if (errCode) {
+  console.error(`Failed to get the screen rotation lock status. Code:${err.code},message is ${err.message}`);
+  return;
+}
+console.info('Succeeded in getting the screen rotation lock status. isLocked:' + JSON.stringify(isLocked));
 });
 ```
 
@@ -903,21 +874,25 @@ Sets whether to lock auto rotate. This API uses a promise to return the result.
 | ------------------- | ------------------------- |
 | Promise&lt;void&gt; | Promise that returns no value.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | ----------------------- |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
+
 **Example**
 
 ```ts
 import { BusinessError } from '@ohos.base';
 
 let isLocked: boolean = false;
-try {
-  screen.setScreenRotationLocked(isLocked).then(() => {
-    console.info('Succeeded in unlocking auto rotate');
-  }).catch((err: BusinessError) => {
-    console.error('Failed to unlock auto rotate. Code: ' + JSON.stringify(err));
-  });
-} catch (exception) {
-  console.error('Failed to unlock auto rotate. Code: ' + JSON.stringify(exception));
-};
+screen.setScreenRotationLocked(isLocked).then(() => {
+  console.info('Succeeded in unlocking auto rotate');
+}).catch((err: BusinessError) => {
+  console.error(`Failed to unlock auto rotate. Code:${err.code},message is ${err.message}`);
+});
 ```
 
 ## screen.setScreenRotationLocked
@@ -935,24 +910,28 @@ Sets whether to lock auto rotate. This API uses an asynchronous callback to retu
 | isLocked  | boolean                   | Yes  | Whether to lock auto rotate. The value **true** means to lock auto rotate, and **false** means the opposite.                |
 | callback  | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | ----------------------- |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
+
 **Example**
 
 ```ts
 import { BusinessError } from '@ohos.base';
 
 let isLocked: boolean = false;
-try {
-  screen.setScreenRotationLocked(isLocked, (err: BusinessError) => {
-    const errCode: number = err.code;
-    if (errCode) {
-      console.error('Failed to unlock auto rotate. Cause:' + JSON.stringify(err));
-      return;
-    }
-    console.info('Succeeded in unlocking auto rotate.');
-  });
-} catch (exception) {
-  console.error('Failed to unlock auto rotate. Code: ' + JSON.stringify(exception));
-};
+screen.setScreenRotationLocked(isLocked, (err: BusinessError) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error(`Failed to unlock auto rotate. Code:${err.code},message is ${err.message}`);
+    return;
+  }
+  console.info('Succeeded in unlocking auto rotate.');
+});
 ```
 
 ## ExpandOption
@@ -1010,15 +989,16 @@ Sets the screen orientation. This API uses an asynchronous callback to return th
 
 | Name     | Type                       | Mandatory| Description                                                        |
 | ----------- | --------------------------- | ---- | ------------------------------------------------------------ |
-| orientation | [Orientation](#orientation) | Yes  | Screen orientation.                                                  |
+| orientation | [Orientation](#orientation) | Yes  | Screen orientation. The value must be an enumerated value of **Orientation**.               |
 | callback    | AsyncCallback&lt;void&gt;   | Yes  | Callback used to return the result. If the screen orientation is successfully set, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
-For details about the error codes, see [Display Error Codes](errorcode-display.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Display Error Codes](errorcode-display.md).
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.|
 | 1400003 | This display manager service works abnormally. |
 
 **Example**
@@ -1026,40 +1006,36 @@ For details about the error codes, see [Display Error Codes](errorcode-display.m
 ```ts
 import { BusinessError } from '@ohos.base';
 
-  try {
-    class VirtualScreenOption {
-      name : string = '';
-      width : number =  0;
-      height : number = 0;
-      density : number = 0;
-      surfaceId : string = '';
+class VirtualScreenOption {
+  name : string = '';
+  width : number =  0;
+  height : number = 0;
+  density : number = 0;
+  surfaceId : string = '';
+}
+
+let option : VirtualScreenOption = {
+  name: 'screen01',
+  width: 1080,
+  height: 2340,
+  density: 2,
+  surfaceId: ''
+};
+
+screen.createVirtualScreen(option).then((data: screen.Screen) => {
+  let screenClass: screen.Screen = data;
+  console.info('Succeeded in creating the virtual screen. Data: ' + JSON.stringify(data));
+  screenClass.setOrientation(screen.Orientation.VERTICAL, (err: BusinessError) => {
+    const errCode: number = err.code;
+    if (errCode) {
+      console.error(`Failed to set the vertical orientation. Code:${err.code},message is ${err.message}`);
+      return;
     }
-
-    let option : VirtualScreenOption = {
-      name: 'screen01',
-      width: 1080,
-      height: 2340,
-      density: 2,
-      surfaceId: ''
-    };
-
-    screen.createVirtualScreen(option).then((data: screen.Screen) => {
-      let screenClass: screen.Screen = data;
-      console.info('Succeeded in creating the virtual screen. Data: ' + JSON.stringify(data));
-      screenClass.setOrientation(screen.Orientation.VERTICAL, (err: BusinessError) => {
-        const errCode: number = err.code;
-        if (errCode) {
-          console.error('Failed to set the vertical orientation. Code: ' + JSON.stringify(err));
-          return;
-        }
-        console.info('Succeeded in setting the vertical orientation.');
-      });
-    }).catch((err: BusinessError) => {
-      console.error('Failed to create the virtual screen. Code: ' + JSON.stringify(err));
-    });
-  } catch (exception) {
-    console.error('Failed to set the vertical orientation. Code: ' + JSON.stringify(exception));
-  };
+    console.info('Succeeded in setting the vertical orientation.');
+  });
+}).catch((err: BusinessError) => {
+  console.error(`Failed to create the virtual screen. Code:${err.code},message is ${err.message}`);
+});
 ```
 
 ### setOrientation
@@ -1072,7 +1048,7 @@ Sets the screen orientation. This API uses a promise to return the result.
 
 | Name     | Type                       | Mandatory| Description      |
 | ----------- | --------------------------- | ---- | ---------- |
-| orientation | [Orientation](#orientation) | Yes  | Screen orientation.|
+| orientation | [Orientation](#orientation) | Yes  | Screen orientation. The value must be an enumerated value of **Orientation**.|
 
 **Return value**
 
@@ -1082,10 +1058,11 @@ Sets the screen orientation. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Display Error Codes](errorcode-display.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Display Error Codes](errorcode-display.md).
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.|
 | 1400003 | This display manager service works abnormally. |
 
 **Example**
@@ -1093,38 +1070,34 @@ For details about the error codes, see [Display Error Codes](errorcode-display.m
 ```ts
 import { BusinessError } from '@ohos.base';
 
-  try {
-    class VirtualScreenOption {
-      name : string = '';
-      width : number =  0;
-      height : number = 0;
-      density : number = 0;
-      surfaceId : string = '';
-    }
+class VirtualScreenOption {
+  name : string = '';
+  width : number =  0;
+  height : number = 0;
+  density : number = 0;
+  surfaceId : string = '';
+}
 
-    let option : VirtualScreenOption = {
-      name: 'screen01',
-      width: 1080,
-      height: 2340,
-      density: 2,
-      surfaceId: ''
-    };
+let option : VirtualScreenOption = {
+  name: 'screen01',
+  width: 1080,
+  height: 2340,
+  density: 2,
+  surfaceId: ''
+};
 
-    screen.createVirtualScreen(option).then((data: screen.Screen) => {
-      let screenClass: screen.Screen = data;
-      console.info('Succeeded in creating the virtual screen. Data: ' + JSON.stringify(data));
-      let promise: Promise<void> = screenClass.setOrientation(screen.Orientation.VERTICAL);
-      promise.then(() => {
-        console.info('Succeeded in setting the vertical orientation.');
-      }).catch((err: BusinessError) => {
-        console.error('Failed to set the vertical orientation. Cause: ' + JSON.stringify(err));
-      });
-    }).catch((err: BusinessError) => {
-      console.error('Failed to create the virtual screen. Code: ' + JSON.stringify(err));
-    });
-  } catch (exception) {
-    console.error('Failed to set the vertical orientation. Code: ' + JSON.stringify(exception));
-  };
+screen.createVirtualScreen(option).then((data: screen.Screen) => {
+  let screenClass: screen.Screen = data;
+  console.info('Succeeded in creating the virtual screen. Data: ' + JSON.stringify(data));
+  let promise: Promise<void> = screenClass.setOrientation(screen.Orientation.VERTICAL);
+  promise.then(() => {
+    console.info('Succeeded in setting the vertical orientation.');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to set the vertical orientation. Code:${err.code},message is ${err.message}`);
+  });
+}).catch((err: BusinessError) => {
+  console.error(`Failed to create the virtual screen. Code:${err.code},message is ${err.message}`);
+});
 ```
 
 ### setScreenActiveMode
@@ -1142,10 +1115,11 @@ Sets the active mode of the screen. This API uses an asynchronous callback to re
 
 **Error codes**
 
-For details about the error codes, see [Display Error Codes](errorcode-display.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Display Error Codes](errorcode-display.md).
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
 | 1400003 | This display manager service works abnormally. |
 
 **Example**
@@ -1153,41 +1127,37 @@ For details about the error codes, see [Display Error Codes](errorcode-display.m
 ```ts
 import { BusinessError } from '@ohos.base';
 
-try {
-  class VirtualScreenOption {
-    name : string = '';
-    width : number =  0;
-    height : number = 0;
-    density : number = 0;
-    surfaceId : string = '';
-  }
+class VirtualScreenOption {
+  name : string = '';
+  width : number =  0;
+  height : number = 0;
+  density : number = 0;
+  surfaceId : string = '';
+}
 
-  let option : VirtualScreenOption = {
-    name: 'screen01',
-    width: 1080,
-    height: 2340,
-    density: 2,
-    surfaceId: ''
-  };
-
-  screen.createVirtualScreen(option).then((data: screen.Screen) => {
-    let screenClass: screen.Screen = data;
-    console.info('Succeeded in creating the virtual screen. Data: ' + JSON.stringify(data));
-    let modeIndex: number = 0;
-    screenClass.setScreenActiveMode(modeIndex, (err: BusinessError) => {
-      const errCode: number = err.code;
-      if (errCode) {
-        console.error('Failed to set screen active mode 0. Code: ' + JSON.stringify(err));
-        return;
-      }
-      console.info('Succeeded in setting the vertical orientation.');
-    });
-  }).catch((err: BusinessError) => {
-    console.error('Failed to create the virtual screen. Code: ' + JSON.stringify(err));
-  });
-} catch (exception) {
-  console.error('Failed to set the vertical orientation. Code: ' + JSON.stringify(exception));
+let option : VirtualScreenOption = {
+  name: 'screen01',
+  width: 1080,
+  height: 2340,
+  density: 2,
+  surfaceId: ''
 };
+
+screen.createVirtualScreen(option).then((data: screen.Screen) => {
+  let screenClass: screen.Screen = data;
+  console.info('Succeeded in creating the virtual screen. Data: ' + JSON.stringify(data));
+  let modeIndex: number = 0;
+  screenClass.setScreenActiveMode(modeIndex, (err: BusinessError) => {
+    const errCode: number = err.code;
+    if (errCode) {
+      console.error(`Failed to set screen active mode 0. Code:${err.code},message is ${err.message}`);
+      return;
+    }
+    console.info('Succeeded in setting the vertical orientation.');
+  });
+}).catch((err: BusinessError) => {
+  console.error(`Failed to create the virtual screen. Code:${err.code},message is ${err.message}`);
+});
 ```
 
 ### setScreenActiveMode
@@ -1210,10 +1180,11 @@ Sets the active mode of the screen. This API uses a promise to return the result
 
 **Error codes**
 
-For details about the error codes, see [Display Error Codes](errorcode-display.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Display Error Codes](errorcode-display.md).
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
 | 1400003 | This display manager service works abnormally. |
 
 **Example**
@@ -1221,39 +1192,35 @@ For details about the error codes, see [Display Error Codes](errorcode-display.m
 ```ts
 import { BusinessError } from '@ohos.base';
 
-try {
-  class VirtualScreenOption {
-    name : string = '';
-    width : number =  0;
-    height : number = 0;
-    density : number = 0;
-    surfaceId : string = '';
-  }
+class VirtualScreenOption {
+  name : string = '';
+  width : number =  0;
+  height : number = 0;
+  density : number = 0;
+  surfaceId : string = '';
+}
 
-  let option : VirtualScreenOption = {
-    name: 'screen01',
-    width: 1080,
-    height: 2340,
-    density: 2,
-    surfaceId: ''
-  };
-
-  screen.createVirtualScreen(option).then((data: screen.Screen) => {
-    let screenClass: screen.Screen = data;
-    console.info('Succeeded in creating the virtual screen. Data: ' + JSON.stringify(data));
-    let modeIndex: number = 0;
-    let promise: Promise<void> = screenClass.setScreenActiveMode(modeIndex);
-    promise.then(() => {
-      console.info('Succeeded in setting screen active mode 0.');
-    }).catch((err: BusinessError) => {
-      console.error('Failed to set screen active mode 0. Code: ' + JSON.stringify(err));
-    });
-  }).catch((err: BusinessError) => {
-    console.error('Failed to create the virtual screen. Code: ' + JSON.stringify(err));
-  });
-} catch (exception) {
-  console.error('Failed to set the vertical orientation. Code: ' + JSON.stringify(exception));
+let option : VirtualScreenOption = {
+  name: 'screen01',
+  width: 1080,
+  height: 2340,
+  density: 2,
+  surfaceId: ''
 };
+
+screen.createVirtualScreen(option).then((data: screen.Screen) => {
+  let screenClass: screen.Screen = data;
+  console.info('Succeeded in creating the virtual screen. Data: ' + JSON.stringify(data));
+  let modeIndex: number = 0;
+  let promise: Promise<void> = screenClass.setScreenActiveMode(modeIndex);
+  promise.then(() => {
+    console.info('Succeeded in setting screen active mode 0.');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to set screen active mode 0.Code:${err.code},message is ${err.message}`);
+  });
+}).catch((err: BusinessError) => {
+  console.error(`Failed to create the virtual screen. Code:${err.code},message is ${err.message}`);
+});
 ```
 
 ### setDensityDpi
@@ -1271,10 +1238,11 @@ Sets the pixel density of the screen. This API uses an asynchronous callback to 
 
 **Error codes**
 
-For details about the error codes, see [Display Error Codes](errorcode-display.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Display Error Codes](errorcode-display.md).
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
 | 1400003 | This display manager service works abnormally. |
 
 **Example**
@@ -1283,40 +1251,36 @@ For details about the error codes, see [Display Error Codes](errorcode-display.m
 import { BusinessError } from '@ohos.base';
 
 let densityDpi: number = 320;
-try {
-  class VirtualScreenOption {
-    name : string = '';
-    width : number =  0;
-    height : number = 0;
-    density : number = 0;
-    surfaceId : string = '';
-  }
+class VirtualScreenOption {
+  name : string = '';
+  width : number =  0;
+  height : number = 0;
+  density : number = 0;
+  surfaceId : string = '';
+}
 
-  let option : VirtualScreenOption = {
-    name: 'screen01',
-    width: 1080,
-    height: 2340,
-    density: 2,
-    surfaceId: ''
-  };
-
-  screen.createVirtualScreen(option).then((data: screen.Screen) => {
-    let screenClass: screen.Screen = data;
-    console.info('Succeeded in creating the virtual screen. Data: ' + JSON.stringify(data));
-    screenClass.setDensityDpi(densityDpi, (err: BusinessError) => {
-      const errCode: number = err.code;
-      if (errCode) {
-        console.error('Failed to set the pixel density of the screen to 320. Code: ' + JSON.stringify(err));
-        return;
-      }
-      console.info('Succeeded in setting the vertical orientation.');
-    });
-  }).catch((err: BusinessError) => {
-    console.error('Failed to create the virtual screen. Code: ' + JSON.stringify(err));
-  });
-} catch (exception) {
-  console.error('Failed to set the vertical orientation. Code: ' + JSON.stringify(exception));
+let option : VirtualScreenOption = {
+  name: 'screen01',
+  width: 1080,
+  height: 2340,
+  density: 2,
+  surfaceId: ''
 };
+
+screen.createVirtualScreen(option).then((data: screen.Screen) => {
+  let screenClass: screen.Screen = data;
+  console.info('Succeeded in creating the virtual screen. Data: ' + JSON.stringify(data));
+  screenClass.setDensityDpi(densityDpi, (err: BusinessError) => {
+    const errCode: number = err.code;
+    if (errCode) {
+      console.error(`Failed to set the pixel density of the screen to 320. Code:${err.code},message is ${err.message}`);
+      return;
+    }
+    console.info('Succeeded in setting the vertical orientation.');
+  });
+}).catch((err: BusinessError) => {
+  console.error(`Failed to create the virtual screen. Code:${err.code},message is ${err.message}`);
+});
 ```
 
 ### setDensityDpi
@@ -1339,10 +1303,11 @@ Sets the pixel density of the screen. This API uses a promise to return the resu
 
 **Error codes**
 
-For details about the error codes, see [Display Error Codes](errorcode-display.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Display Error Codes](errorcode-display.md).
 
 | ID| Error Message|
 | ------- | -------------------------------------------- |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
 | 1400003 | This display manager service works abnormally. |
 
 **Example**
@@ -1351,37 +1316,33 @@ For details about the error codes, see [Display Error Codes](errorcode-display.m
 import { BusinessError } from '@ohos.base';
 
 let densityDpi: number = 320;
-try {
-  class VirtualScreenOption {
-    name : string = '';
-    width : number =  0;
-    height : number = 0;
-    density : number = 0;
-    surfaceId : string = '';
-  }
+class VirtualScreenOption {
+  name : string = '';
+  width : number =  0;
+  height : number = 0;
+  density : number = 0;
+  surfaceId : string = '';
+}
 
-  let option : VirtualScreenOption = {
-    name: 'screen01',
-    width: 1080,
-    height: 2340,
-    density: 2,
-    surfaceId: ''
-  };
-
-  screen.createVirtualScreen(option).then((data: screen.Screen) => {
-    let screenClass: screen.Screen = data;
-    let promise: Promise<void> = screenClass.setDensityDpi(densityDpi);
-    promise.then(() => {
-      console.info('Succeeded in setting the pixel density of the screen to 320.');
-    }).catch((err: BusinessError) => {
-      console.error('Failed to set the pixel density of the screen to 320. Code: ' + JSON.stringify(err));
-    });
-  }).catch((err: BusinessError) => {
-    console.error('Failed to create the virtual screen. Code: ' + JSON.stringify(err));
-  });
-} catch (exception) {
-  console.error('Failed to set the vertical orientation. Code: ' + JSON.stringify(exception));
+let option : VirtualScreenOption = {
+  name: 'screen01',
+  width: 1080,
+  height: 2340,
+  density: 2,
+  surfaceId: ''
 };
+
+screen.createVirtualScreen(option).then((data: screen.Screen) => {
+  let screenClass: screen.Screen = data;
+  let promise: Promise<void> = screenClass.setDensityDpi(densityDpi);
+  promise.then(() => {
+    console.info('Succeeded in setting the pixel density of the screen to 320.');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to set the pixel density of the screen to 320. Code:${err.code},message is ${err.message}`);
+  });
+}).catch((err: BusinessError) => {
+  console.error(`Failed to create the virtual screen. Code:${err.code},message is ${err.message}`);
+});
 ```
 
 ## Orientation

@@ -22,7 +22,7 @@ import bundleMonitor from '@ohos.bundle.bundleMonitor';
 
 权限等级参考[权限等级说明](../../security/AccessToken/app-permission-mgmt-overview.md#权限apl等级)。
 
-## BundleChangeInfo
+## BundleChangedInfo
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
@@ -71,7 +71,7 @@ on(type: BundleChangedEvent, callback: Callback\<BundleChangedInfo>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | --------------------------------------|
@@ -117,7 +117,7 @@ off(type: BundleChangedEvent, callback?: Callback\<BundleChangedInfo>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | --------------------------------------|

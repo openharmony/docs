@@ -18,6 +18,8 @@ Rating(options?: { rating: number, indicator?: boolean })
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名    | 参数类型 | 必填 | 参数描述                                                     |
@@ -35,6 +37,8 @@ stars(value: number)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -50,6 +54,8 @@ stepSize(value: number)
 设置操作评级的步长。设置为小于0.1的值时，按默认值显示。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -71,13 +77,15 @@ starStyle(value: { backgroundUri: string, foregroundUri: string, secondaryUri?: 
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | {<br/>backgroundUri:&nbsp;string,<br/>foregroundUri:&nbsp;string,<br/>secondaryUri?:&nbsp;string<br/>} | 是   | backgroundUri：未选中的星级的图片链接，可由用户自定义或使用系统默认图片。<br/>foregroundUri：选中的星级的图片路径，可由用户自定义或使用系统默认图片。<br/>secondaryUri：部分选中的星级的图片路径，可由用户自定义或使用系统默认图片。<br/>**说明：** <br/>backgroundUri或者foregroundUri设置为undefined或者空字符串时，rating会选择加载系统默认星型图源。<br/>secondaryUri不设置或者设置的值为undefined或者空字符串时，优先设置为backgroundUri，效果上等同于只设置了foregroundUri、backgroundUri。 |
+| value  | {<br/>backgroundUri:&nbsp;string,<br/>foregroundUri:&nbsp;string,<br/>secondaryUri?:&nbsp;string<br/>} | 是   | backgroundUri：未选中的星级的图片链接，可由用户自定义或使用系统默认图片。<br/>foregroundUri：选中的星级的图片路径，可由用户自定义或使用系统默认图片。<br/>secondaryUri：部分选中的星级的图片路径，可由用户自定义或使用系统默认图片。<br/>**说明：** <br/>backgroundUri或者foregroundUri或者secondaryUri设置的图片路径错误时，图片不显示。<br/>backgroundUri或者foregroundUri设置为undefined或者空字符串时，rating会选择加载系统默认星型图源。<br/>secondaryUri不设置或者设置的值为undefined或者空字符串时，优先设置为backgroundUri，效果上等同于只设置了foregroundUri、backgroundUri。 |
 
 >  **说明：**
 >
@@ -109,6 +117,8 @@ onChange(callback:(value:&nbsp;number)&nbsp;=&gt;&nbsp;void)
 操作评分条的评星发生改变时触发该回调。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

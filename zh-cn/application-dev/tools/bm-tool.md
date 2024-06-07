@@ -5,7 +5,7 @@ Bundle Manager（包管理工具，简称bm）是实现应用安装、卸载、�
 
 > **说明：**
 >
-> 在使用本工具前，开发者需要先获取[hdc工具](../../device-dev/subsystems/subsys-toolchain-hdc-guide.md)，执行hdc shell。
+> 在使用本工具前，开发者需要先获取<!--Del-->[<!--DelEnd-->hdc工具<!--Del-->](../../device-dev/subsystems/subsys-toolchain-hdc-guide.md)<!--DelEnd-->，执行hdc shell。
 
 
   **表1** bm工具命令列表
@@ -253,7 +253,7 @@ udid of current device is :
 ## 快速修复
 
 ```bash
-bm quickfix [-h] [-a -f filePath] [-q -b bundleName]
+bm quickfix [-h] [-a -f filePath [-t targetPath] [-d]] [-q -b bundleName] [-r -b bundleName] 
 ```
 
 
@@ -263,7 +263,10 @@ bm quickfix [-h] [-a -f filePath] [-q -b bundleName]
 | -------- | -------- |
 | -h | 显示quickfix支持的命令信息 |
 | -a&nbsp;-f | 执行快速修复补丁安装命令，file-path对应hqf文件，支持传递1个或多个hqf文件，或传递hqf文件所在的目录。 |
-| -q&nbsp;-b | 根据包名查询补丁信息，bundle-name对应包名。 |
+| -t | 指定快速修复补丁的安装目录名称，安装后补丁不使能。名称只允许指定一层目录，不可包含`..`、`/`等字符，实际安装目录为patch下指定的目录名称。例如指定-t mydir，实际安装目录为patch/mydir。 |
+| -d | 选择debug模式执行补丁安装命令。 |
+| -q&nbsp;-b | 根据包名查询补丁信息，bundleName对应包名。 |
+| -r&nbsp;-b | 根据包名卸载补丁，bundleName对应包名，只能卸载通过-t指定安装目录名称且不使能的补丁。 |
 
 
 示例：
@@ -284,8 +287,12 @@ bm quickfix -q -b com.ohos.app
 //  type:                            
 # 快速修复补丁安装
 bm quickfix -a -f /data/app/
-//执行结果
+// 执行结果
 apply quickfix succeed.
+# 快速修复补丁卸载
+bm quickfix -r -b com.ohos.app
+// 执行结果
+delete quick fix successfully
 ```
 
 ## 共享库查询命令
@@ -327,7 +334,7 @@ bm dump-dependencies -n com.ohos.app -m entry
 **解决措施**
 
 该问题是由于安装未签名的HAP导致，需要开发者对开发的HAP进行签名之后再安装。
-1. 使用[自动签名](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/signing-0000001587684945-V3#section18815157237)。在连接设备后，重新为应用进行签名。
+1. 使用<!--RP3-->[自动签名](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/signing-0000001587684945-V3#section18815157237)<!--RP3End-->。在连接设备后，重新为应用进行签名。
 1. 如果使用的是手动签名，对于OpenHarmony应用，请参考[OpenHarmony应用手动签名](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/hapsigntool-guidelines.md)
 
 ### 安装HAP时提示“code:9568347 error: install parse native so failed”错误
@@ -349,7 +356,7 @@ bm dump-dependencies -n com.ohos.app -m entry
     hdc shell
     param get const.product.cpu.abilist
     ```
-4. 根据查询返回结果，检查[模块级build-profile.json5](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/build_config-0000001052902431-V3#section6887184182020)文件中的“abiFilters”参数中的配置，规则如下：
+4. 根据查询返回结果，检查<!--RP4-->[模块级build-profile.json5](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/build_config-0000001052902431-V3#section6887184182020)<!--RP4End-->文件中的“abiFilters”参数中的配置，规则如下：
     * 若返回结果为default，请执行如下命令，查询是否存在lib64文件夹。
       ```
       cd /system/
@@ -452,7 +459,7 @@ bm dump-dependencies -n com.ohos.app -m entry
 
 出现该问题的原因是配置文件app.json5和module.json5中必填字段缺失。
 
-* 方法1：请参考[app.json5配置文件](../../application-dev/quick-start/app-configuration-file.md)和[module.json5配置文件](../../application-dev/quick-start/module-configuration-file.md)查看并补充必填字段。
+* 方法1：请参考[app.json5配置文件](../quick-start/app-configuration-file.md)和[module.json5配置文件](../quick-start/module-configuration-file.md)<!--RP2End-->查看并补充必填字段。
 * 方法2：通过hilog日志判断缺失字段。
 
     开启落盘命令：
@@ -486,7 +493,7 @@ bm dump-dependencies -n com.ohos.app -m entry
 
 该问题是由于签名中未包含该调试设备的UDID，请通过如下步骤进行解决。
 
-* 使用[自动签名](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/signing-0000001587684945-V3#section18815157237)。在连接设备后，重新为应用进行签名。
+* 使用<!--RP5-->[自动签名](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/signing-0000001587684945-V3#section18815157237)<!--RP5End-->。在连接设备后，重新为应用进行签名。
 * 如果使用的是手动签名，对于OpenHarmony应用，请参考[OpenHarmony应用手动签名](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/hapsigntool-guidelines.md)，在UnsgnedDebugProfileTemplate.json文件中添加该调试设备的**UDID**
 ```
 //UDID获取命令

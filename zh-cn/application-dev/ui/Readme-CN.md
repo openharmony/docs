@@ -14,6 +14,7 @@
       - [创建列表 (List)](arkts-layout-development-create-list.md)
       - [创建网格 (Grid/GridItem)](arkts-layout-development-create-grid.md)
       - [创建轮播 (Swiper)](arkts-layout-development-create-looping.md)
+      - [选项卡 (Tabs)](arkts-navigation-tabs.md)
   - 添加组件
     - 添加常用组件
       - [按钮 (Button)](arkts-common-components-button.md)
@@ -25,15 +26,16 @@
       - [显示图片 (Image)](arkts-graphics-display.md)
       - [自定义弹窗 (CustomDialog)](arkts-common-components-custom-dialog.md)
       - [视频播放 (Video)](arkts-common-components-video-player.md)
+      - [图标小符号 (SymbolGlyph/SymbolSpan)](arkts-common-components-symbol.md)
       - [自定义绘制 (XComponent)](arkts-common-components-xcomponent.md)
       - [Native XComponent](napi-xcomponent-guidelines.md)
     - 添加气泡和菜单
       - [气泡提示 (Popup)](arkts-popup-and-menu-components-popup.md)
       - [菜单 (Menu)](arkts-popup-and-menu-components-menu.md)
-  - 设置页面路由和组件导航
-    - 组件导航
-      - [Navigation](arkts-navigation-navigation.md)
-      - [Tabs](arkts-navigation-tabs.md)
+    - 使用文本
+      - [属性字符串 (StyledString/MutableStyledString)](arkts-styled-string.md)
+  - 设置组件导航和页面路由
+    - [组件导航 (Navigation)](arkts-navigation-navigation.md)
     - [页面路由 (@ohos.router)](arkts-routing.md)
   - 显示图形
     - [绘制几何图形 (Shape)](arkts-geometric-shape-drawing.md)
@@ -50,7 +52,9 @@
       - [导航转场](arkts-navigation-transition.md)
       - [模态转场](arkts-modal-transition.md)
       - [共享元素转场](arkts-shared-element-transition.md)
+      - [旋转屏动画增强](arkts-rotation-transition-animation.md)    
       - [页面转场动画 (不推荐)](arkts-page-transition-animation.md)
+    - [粒子动画](arkts-particle-animation.md)
     - [组件动画](arkts-component-animation.md)
     - 动画曲线
       - [动画曲线概述](arkts-curve-overview.md)
@@ -64,14 +68,26 @@
   - 支持交互事件
     - [交互事件概述](arkts-event-overview.md)
     - 使用通用事件
+      - [事件分发](arkts-common-events-distribute.md)
       - [触屏事件](arkts-common-events-touch-screen-event.md)
       - [键鼠事件](arkts-common-events-device-input-event.md)
       - [焦点事件](arkts-common-events-focus-event.md)
+      - [拖拽事件](arkts-common-events-drag-event.md)
     - 使用手势事件
       - [绑定手势方法](arkts-gesture-events-binding.md)
       - [单一手势](arkts-gesture-events-single-gesture.md)
       - [组合手势](arkts-gesture-events-combined-gestures.md)
       - [多层级手势事件](arkts-gesture-events-multi-level-gesture.md)
+  - 使用自定义能力
+    - [自定义能力概述](arkts-user-defined.md)
+    - 自定义节点
+      - [自定义节点概述](arkts-user-defined-node.md)
+      - [自定义占位节点](arkts-user-defined-place-hoder.md)
+      - [FrameNode](arkts-user-defined-arktsNode-frameNode.md)
+      - [RenderNode](arkts-user-defined-arktsNode-renderNode.md)
+      - [BuilderNode](arkts-user-defined-arktsNode-builderNode.md)
+  - 主题设置
+    - [设置主题换肤](theme_skinning.md)
 - UI开发 (兼容JS的类Web开发范式)
   - [UI开发 (兼容JS的类Web开发范式)概述](ui-js-overview.md)
   - 框架说明
@@ -144,4 +160,5 @@
         - [动画动效](ui-js-animate-dynamic-effects.md)
         - [动画帧](ui-js-animate-frame.md)
   - [自定义组件](ui-js-custom-components.md)
+  - [WebGL](../webgl/Readme-CN.md)
 - [窗口管理](../windowmanager/Readme-CN.md)

@@ -415,6 +415,7 @@ Node-API接口在Node.js提供的原生模块基础上扩展，目前支持部�
 | napi_is_exception_pending | 判断是否出现了异常。 |
 | napi_fatal_error | 引发致命错误以立即终止进程。 |
 | napi_get_last_error_info | 获取napi_extended_error_info结构体，其中包含最近一次出现的error信息。 |
+| napi_fatal_exception | 抛出一个致命异常并终止进程, 同时产生相应的crash日志。 |
 
 ### 属性相关
 
@@ -472,6 +473,8 @@ Node-API接口在Node.js提供的原生模块基础上扩展，目前支持部�
 
 ### 扩展能力
 
+[组件扩展的符号列表](../reference/native-lib/napi.md)
+
 | 接口 | 功能说明 |
 | -------- | -------- |
 | napi_queue_async_work_with_qos | 将异步工作对象加到队列，由底层根据传入的qos优先级去调度执行。 |
@@ -487,6 +490,8 @@ Node-API接口在Node.js提供的原生模块基础上扩展，目前支持部�
 | napi_deserialize | 将native数据转为ArkTS对象。|
 | napi_delete_serialization_data | 删除序列化数据。|
 | napi_call_threadsafe_function_with_priority|将指定优先级和入队方式的任务投递到ArkTS线程。|
+| napi_is_sendable|判断给定JS value是否是Sendable的。|
+| napi_define_sendable_class|创建一个sendable类。|
 
 #### napi_queue_async_work_with_qos
 
@@ -585,6 +590,27 @@ napi_status napi_call_threadsafe_function_with_priority(napi_threadsafe_function
                                                         void *data,
                                                         napi_task_priority priority,
                                                         bool isTail);
+```
+
+#### napi_is_sendable
+
+```c
+napi_status napi_is_sendable(napi_env env, napi_value value, bool* result);
+```
+
+#### napi_define_sendable_class
+
+```c
+napi_status napi_define_sendable_class(napi_env env,
+                                       const char* utf8name,
+                                       size_t length,
+                                       napi_callback constructor,
+                                       void* data,
+                                       size_t property_count,
+                                       const napi_property_descriptor* properties,
+                                       napi_value parent,
+                                       napi_value* result);
+
 ```
 
 ### 环境生命周期

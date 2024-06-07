@@ -18,17 +18,19 @@ ArkTS侧支持的基本数据类型：number、string、二进制类型数据、
 ## 导入模块
 
 ```ts
-import relationalStore from '@ohos.data.relationalStore';
+import { relationalStore } from '@kit.ArkData';
 ```
 
 ## StoreConfig
 
-管理关系数据库配置。
+管理数据库配置。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 | 名称        | 类型          | 必填 | 说明                                                      |
 | ------------- | ------------- | ---- | --------------------------------------------------------- |
-| isSearchable<sup>11+</sup> | boolean | 否 | 指定数据库是否支持搜索，true表示支持搜索，false表示不支持搜索，默认不支持搜索。<br/>**系统接口：** 此接口为系统接口。<br/>从API version 11开始，支持此可选参数。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
-| vector<sup>12+</sup> | boolean | 否 | 指定数据库是否是向量数据库，true表示向量数据库，false表示关系型数据库，默认为false。<br/>向量数据库适用于存储和处理高维向量数据，关系型数据库适用于存储和处理结构化数据。<br/>**系统接口：** 此接口为系统接口。<br/>从API version 12开始，支持此可选参数。向量数据库目前支持[execute](js-apis-data-relationalStore.md#execute12-1)，[querySql](js-apis-data-relationalStore.md#querysql-1)，[beginTrans](js-apis-data-relationalStore.md#begintrans12)，[commit](js-apis-data-relationalStore.md#commit12)，[rollback](js-apis-data-relationalStore.md#rollback12)以及[ResultSet](js-apis-data-relationalStore.md#resultset)类型操作接口。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
+| isSearchable<sup>11+</sup> | boolean | 否 | 指定数据库是否支持搜索，true表示支持搜索，false表示不支持搜索，默认不支持搜索。<br/>**系统接口：** 此接口为系统接口。<br/>从API version 11开始，支持此可选参数。<br/> |
+| vector<sup>12+</sup> | boolean | 否 | 指定数据库是否是向量数据库，true表示向量数据库，false表示关系型数据库，默认为false。<br/>向量数据库适用于存储和处理高维向量数据，关系型数据库适用于存储和处理结构化数据。<br/>**系统接口：** 此接口为系统接口。<br/>从API version 12开始，支持此可选参数。向量数据库目前支持[execute](js-apis-data-relationalStore.md#execute12-1)，[querySql](js-apis-data-relationalStore.md#querysql-1)，[beginTrans](js-apis-data-relationalStore.md#begintrans12)，[commit](js-apis-data-relationalStore.md#commit12)，[rollback](js-apis-data-relationalStore.md#rollback12)以及[ResultSet](js-apis-data-relationalStore.md#resultset)类型操作接口。|
 
 ## Reference<sup>11+</sup>
 
@@ -40,8 +42,8 @@ import relationalStore from '@ohos.data.relationalStore';
 
 | 名称       | 类型   | 必填 | 说明                                     |
 | ---------- | ------ | ---- | ---------------------------------------- |
-| sourceTable | string | 是   | 关联的子表。   |
-| targetTable | string | 是   | 关联的父表。   |
+| sourceTable | string | 是   | 关联的子表名称。   |
+| targetTable | string | 是   | 关联的父表名称。   |
 | refFields   | Record<string, string> | 是   | 表示关联表的关联字段。键值数据中键为子表字段，值为父表字段。       |
 
 ## DistributedConfig<sup>10+</sup>
@@ -82,18 +84,37 @@ update(table: string, values: ValuesBucket, predicates: dataSharePredicates.Data
 
 **错误码：**
 
-以下错误码的详细介绍请参见[关系型数据库错误码](errorcode-data-rdb.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[关系型数据库错误码](errorcode-data-rdb.md)。
 
-| **错误码ID** | **错误信息**                                 |
-| ------------ | -------------------------------------------- |
-| 14800047     | The WAL file size exceeds the default limit. |
-| 14800000     | Inner error.                                 |
+| **错误码ID** | **错误信息**                                                 |
+|-----------| ------------------------------------------------------------ |
+| 202       | Permission verification failed, application which is not a system application uses system API. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 14800000  | Inner error. |
+| 14800011  | Database corrupted. |
+| 14800014  | Already closed. |
+| 14800015  | The database does not respond. |
+| 14800021  | SQLite: Generic error. |
+| 14800022  | SQLite: Callback routine requested an abort. |
+| 14800023  | SQLite: Access permission denied. |
+| 14800024  | SQLite: The database file is locked. |
+| 14800025  | SQLite: A table in the database is locked. |
+| 14800026  | SQLite: The database is out of memory. |
+| 14800027  | SQLite: Attempt to write a readonly database. |
+| 14800028  | SQLite: Some kind of disk I/O error occurred. |
+| 14800029  | SQLite: The database is full. |
+| 14800030  | SQLite: Unable to open the database file. |
+| 14800031  | SQLite: TEXT or BLOB exceeds size limit. |
+| 14800032  | SQLite: Abort due to constraint violation. |
+| 14800033  | SQLite: Data type mismatch. |
+| 14800034  | SQLite: Library used incorrectly. |
+| 14800047  | The WAL file size exceeds the default limit. |
 
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates'
-import { ValuesBucket } from '@ohos.data.ValuesBucket';
+import { dataSharePredicates } from '@kit.ArkData';
+import { ValuesBucket } from '@kit.ArkData';
 
 let value1 = "Rose";
 let value2 = 22;
@@ -161,19 +182,38 @@ update(table: string, values: ValuesBucket, predicates: dataSharePredicates.Data
 
 **错误码：**
 
-以下错误码的详细介绍请参见[关系型数据库错误码](errorcode-data-rdb.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[关系型数据库错误码](errorcode-data-rdb.md)。
 
-| **错误码ID** | **错误信息**                                 |
-| ------------ | -------------------------------------------- |
-| 14800047     | The WAL file size exceeds the default limit. |
-| 14800000     | Inner error.                                 |
+| **错误码ID** | **错误信息**                                                 |
+|-----------| ------------------------------------------------------------ |
+| 202       | Permission verification failed, application which is not a system application uses system API. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 14800000  | Inner error. |
+| 14800011  | Database corrupted. |
+| 14800014  | Already closed. |
+| 14800015  | The database does not respond. |
+| 14800021  | SQLite: Generic error. |
+| 14800022  | SQLite: Callback routine requested an abort. |
+| 14800023  | SQLite: Access permission denied. |
+| 14800024  | SQLite: The database file is locked. |
+| 14800025  | SQLite: A table in the database is locked. |
+| 14800026  | SQLite: The database is out of memory. |
+| 14800027  | SQLite: Attempt to write a readonly database. |
+| 14800028  | SQLite: Some kind of disk I/O error occurred. |
+| 14800029  | SQLite: The database is full. |
+| 14800030  | SQLite: Unable to open the database file. |
+| 14800031  | SQLite: TEXT or BLOB exceeds size limit. |
+| 14800032  | SQLite: Abort due to constraint violation. |
+| 14800033  | SQLite: Data type mismatch. |
+| 14800034  | SQLite: Library used incorrectly. |
+| 14800047  | The WAL file size exceeds the default limit. |
 
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import { ValuesBucket } from '@ohos.data.ValuesBucket';
-import { BusinessError } from "@ohos.base";
+import { dataSharePredicates } from '@kit.ArkData';
+import { ValuesBucket } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let value1 = "Rose";
 let value2 = 22;
@@ -233,17 +273,36 @@ delete(table: string, predicates: dataSharePredicates.DataSharePredicates, callb
 
 **错误码：**
 
-以下错误码的详细介绍请参见[关系型数据库错误码](errorcode-data-rdb.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[关系型数据库错误码](errorcode-data-rdb.md)。
 
-| **错误码ID** | **错误信息**                                 |
-| ------------ | -------------------------------------------- |
-| 14800047     | The WAL file size exceeds the default limit. |
-| 14800000     | Inner error.                                 |
+| **错误码ID** | **错误信息**                                                 |
+|-----------| ------------------------------------------------------------ |
+| 202       | Permission verification failed, application which is not a system application uses system API. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 14800000  | Inner error. |
+| 14800011  | Database corrupted. |
+| 14800014  | Already closed. |
+| 14800015  | The database does not respond. |
+| 14800021  | SQLite: Generic error. |
+| 14800022  | SQLite: Callback routine requested an abort. |
+| 14800023  | SQLite: Access permission denied. |
+| 14800024  | SQLite: The database file is locked. |
+| 14800025  | SQLite: A table in the database is locked. |
+| 14800026  | SQLite: The database is out of memory. |
+| 14800027  | SQLite: Attempt to write a readonly database. |
+| 14800028  | SQLite: Some kind of disk I/O error occurred. |
+| 14800029  | SQLite: The database is full. |
+| 14800030  | SQLite: Unable to open the database file. |
+| 14800031  | SQLite: TEXT or BLOB exceeds size limit. |
+| 14800032  | SQLite: Abort due to constraint violation. |
+| 14800033  | SQLite: Data type mismatch. |
+| 14800034  | SQLite: Library used incorrectly. |
+| 14800047  | The WAL file size exceeds the default limit. |
 
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 let predicates = new dataSharePredicates.DataSharePredicates();
 predicates.equalTo("NAME", "Lisa");
@@ -285,18 +344,37 @@ delete(table: string, predicates: dataSharePredicates.DataSharePredicates):Promi
 
 **错误码：**
 
-以下错误码的详细介绍请参见[关系型数据库错误码](errorcode-data-rdb.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[关系型数据库错误码](errorcode-data-rdb.md)。
 
-| **错误码ID** | **错误信息**                                 |
-| ------------ | -------------------------------------------- |
-| 14800047     | The WAL file size exceeds the default limit. |
-| 14800000     | Inner error.                                 |
+| **错误码ID** | **错误信息**      |
+|-----------| --------------------- |
+| 202       | Permission verification failed, application which is not a system application uses system API. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 14800000  | Inner error. |
+| 14800011  | Database corrupted. |
+| 14800014  | Already closed. |
+| 14800015  | The database does not respond. |
+| 14800021  | SQLite: Generic error. |
+| 14800022  | SQLite: Callback routine requested an abort. |
+| 14800023  | SQLite: Access permission denied. |
+| 14800024  | SQLite: The database file is locked. |
+| 14800025  | SQLite: A table in the database is locked. |
+| 14800026  | SQLite: The database is out of memory. |
+| 14800027  | SQLite: Attempt to write a readonly database. |
+| 14800028  | SQLite: Some kind of disk I/O error occurred. |
+| 14800029  | SQLite: The database is full. |
+| 14800030  | SQLite: Unable to open the database file. |
+| 14800031  | SQLite: TEXT or BLOB exceeds size limit. |
+| 14800032  | SQLite: Abort due to constraint violation. |
+| 14800033  | SQLite: Data type mismatch. |
+| 14800034  | SQLite: Library used incorrectly. |
+| 14800047  | The WAL file size exceeds the default limit. |
 
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import { BusinessError } from "@ohos.base";
+import { dataSharePredicates } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let predicates = new dataSharePredicates.DataSharePredicates();
 predicates.equalTo("NAME", "Lisa");
@@ -331,16 +409,20 @@ query(table: string, predicates: dataSharePredicates.DataSharePredicates, callba
 
 **错误码：**
 
-以下错误码的详细介绍请参见[关系型数据库错误码](errorcode-data-rdb.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[关系型数据库错误码](errorcode-data-rdb.md)。
 
-| **错误码ID** | **错误信息**                 |
-| ------------ | ---------------------------- |
-| 14800000     | Inner error.                 |
+| **错误码ID** | **错误信息**           |
+|-----------| ------------------ |
+| 202       | Permission verification failed, application which is not a system application uses system API. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 14800000  | Inner error. |
+| 14800014  | Already closed. |
+| 14800015  | The database does not respond. |
 
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 let predicates = new dataSharePredicates.DataSharePredicates();
 predicates.equalTo("NAME", "Rose");
@@ -388,16 +470,20 @@ query(table: string, predicates: dataSharePredicates.DataSharePredicates, column
 
 **错误码：**
 
-以下错误码的详细介绍请参见[关系型数据库错误码](errorcode-data-rdb.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[关系型数据库错误码](errorcode-data-rdb.md)。
 
-| **错误码ID** | **错误信息**                 |
-| ------------ | ---------------------------- |
-| 14800000     | Inner error.                 |
+| **错误码ID** | **错误信息**      |
+|-----------| --------------- |
+| 202       | Permission verification failed, application which is not a system application uses system API. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 14800000  | Inner error. |
+| 14800014  | Already closed. |
+| 14800015  | The database does not respond. |
 
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 let predicates = new dataSharePredicates.DataSharePredicates();
 predicates.equalTo("NAME", "Rose");
@@ -450,17 +536,21 @@ query(table: string, predicates: dataSharePredicates.DataSharePredicates, column
 
 **错误码：**
 
-以下错误码的详细介绍请参见[关系型数据库错误码](errorcode-data-rdb.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[关系型数据库错误码](errorcode-data-rdb.md)。
 
-| **错误码ID** | **错误信息**                 |
-| ------------ | ---------------------------- |
-| 14800000     | Inner error.                 |
+| **错误码ID** | **错误信息**         |
+|-----------| ----------- |
+| 202       | Permission verification failed, application which is not a system application uses system API. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 14800000  | Inner error. |
+| 14800014  | Already closed. |
+| 14800015  | The database does not respond. |
 
 **示例：**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import { BusinessError } from "@ohos.base";
+import { dataSharePredicates } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let predicates = new dataSharePredicates.DataSharePredicates();
 predicates.equalTo("NAME", "Rose");
@@ -499,8 +589,19 @@ cloudSync(mode: SyncMode, predicates: RdbPredicates, progress: Callback&lt;Progr
 |-------------|--------------------------------| ---- |-------------------------------|
 | mode        | [SyncMode](js-apis-data-relationalStore.md#syncmode)          | 是   | 表示数据库的同步模式。                   |
 | predicates  | [RdbPredicates](js-apis-data-relationalStore.md#rdbpredicates)                  | 是   | 表示同步数据的谓词条件。                  |
-| progress    | Callback&lt;[ProgressDetails](js-apis-data-relationalStore.md#details10)&gt; | 是   | 用来处理数据库同步详细信息的回调函数。           |
+| progress    | Callback&lt;[ProgressDetails](js-apis-data-relationalStore.md#progressdetails10)&gt; | 是   | 用来处理数据库同步详细信息的回调函数。           |
 | callback    | AsyncCallback&lt;void&gt;      | 是   | 指定的callback回调函数，用于向调用者发送同步结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[关系型数据库错误码](errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**     |
+|-----------|--------------|
+| 202       | if permission verification failed, application which is not a system application uses system API. |
+| 401       | Parameter error. Possible causes: 1. Need 2 - 4  parameter(s). 2. The RdbStore must be not nullptr. 3. The mode must be a SyncMode of cloud. 4. The tablesNames must be not empty. 5. The progress must be a callback type. |
+| 801       | Capability not supported.  |
+| 14800014  | Already closed.      |
 
 **示例：**
 
@@ -545,10 +646,21 @@ cloudSync(mode: SyncMode, predicates: RdbPredicates, progress: Callback&lt;Progr
 | ------------------- | --------------------------------------- |
 | Promise&lt;void&gt; | Promise对象，用于向调用者发送同步结果。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[关系型数据库错误码](errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**            |
+|-----------|---------------------------|
+| 202       | if permission verification failed, application which is not a system application uses system API.  |
+| 401       | Parameter error. Possible causes: 1. Need 2 - 4  parameter(s). 2. The RdbStore must be not nullptr. 3. The mode must be a SyncMode of cloud. 4. The tablesNames must be not empty. 5. The progress must be a callback type. |
+| 801       | Capability not supported.       |
+| 14800014  | Already closed.      |
+
 **示例：**
 
 ```ts
-import {BusinessError} from "@ohos.base";
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.in("id", ["id1", "id2"]);
@@ -589,16 +701,35 @@ querySharingResource(predicates: RdbPredicates, columns?: Array&lt;string&gt;): 
 
 **错误码：**
 
-以下错误码的详细介绍请参见[关系型数据库错误码](errorcode-data-rdb.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[关系型数据库错误码](errorcode-data-rdb.md)。
 
-| **错误码ID** | **错误信息**                           |
-| ------------ | -------------------------------------- |
-| 14800000     | Inner error.                           |
+| **错误码ID** | **错误信息**           |
+|-----------|-------------|
+| 401       | Parameter error. Possible causes: 1. Need 1 - 3  parameter(s)! 2. The RdbStore must be not nullptr. 3. The predicates must be an RdbPredicates. 4. The columns must be a string array. |
+| 801       | Capability not supported.       |
+| 14800000  | Inner error.                      |
+| 14800011  | Database corrupted.           |
+| 14800014  | Already closed.                        |
+| 14800015  | The database does not respond.          |
+| 14800021  | SQLite: Generic error.             |
+| 14800022  | SQLite: Callback routine requested an abort.          |
+| 14800023  | SQLite: Access permission denied.         |
+| 14800024  | SQLite: The database file is locked.         |
+| 14800025  | SQLite: A table in the database is locked.           |
+| 14800026  | SQLite: The database is out of memory.            |
+| 14800027  | SQLite: Attempt to write a readonly database.         |
+| 14800028  | SQLite: Some kind of disk I/O error occurred.             |
+| 14800029  | SQLite: The database is full.           |
+| 14800030  | SQLite: Unable to open the database file.        |
+| 14800031  | SQLite: TEXT or BLOB exceeds size limit.           |
+| 14800032  | SQLite: Abort due to constraint violation.        |
+| 14800033  | SQLite: Data type mismatch.             |
+| 14800034  | SQLite: Library used incorrectly.          |
 
 **示例：**
 
 ```ts
-import { BusinessError } from "@ohos.base";
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let sharingResource: string;
 let predicates = new relationalStore.RdbPredicates('test_table');
@@ -638,11 +769,31 @@ querySharingResource(predicates: RdbPredicates, callback: AsyncCallback&lt;Resul
 
 **错误码：**
 
-以下错误码的详细介绍请参见[关系型数据库错误码](errorcode-data-rdb.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[关系型数据库错误码](errorcode-data-rdb.md)。
 
-| **错误码ID** | **错误信息**                           |
-| ------------ | -------------------------------------- |
-| 14800000     | Inner error.                           |
+| **错误码ID** | **错误信息**      |
+|-----------|------|
+| 401       | Parameter error. Possible causes: 1. Need 1 - 3  parameter(s)! 2. The RdbStore must be not nullptr. 3. The predicates must be an RdbPredicates. 4. The columns must be a string array. |
+| 801       | Capability not supported.                 |
+| 14800000  | Inner error.          |
+| 14800011  | Database corrupted.       |
+| 14800014  | Already closed.      |
+| 14800015  | The database does not respond.        |
+| 14800021  | SQLite: Generic error.        |
+| 14800022  | SQLite: Callback routine requested an abort.         |
+| 14800023  | SQLite: Access permission denied.                    |
+| 14800024  | SQLite: The database file is locked.            |
+| 14800025  | SQLite: A table in the database is locked.           |
+| 14800026  | SQLite: The database is out of memory.           |
+| 14800027  | SQLite: Attempt to write a readonly database.            |
+| 14800028  | SQLite: Some kind of disk I/O error occurred.         |
+| 14800029  | SQLite: The database is full.       |
+| 14800030  | SQLite: Unable to open the database file.       |
+| 14800031  | SQLite: TEXT or BLOB exceeds size limit.         |
+| 14800032  | SQLite: Abort due to constraint violation.      |
+| 14800033  | SQLite: Data type mismatch.         |
+| 14800034  | SQLite: Library used incorrectly.     |
+
 
 **示例：**
 
@@ -688,11 +839,31 @@ querySharingResource(predicates: RdbPredicates, columns: Array&lt;string&gt;, ca
 
 **错误码：**
 
-以下错误码的详细介绍请参见[关系型数据库错误码](errorcode-data-rdb.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[关系型数据库错误码](errorcode-data-rdb.md)。
 
-| **错误码ID** | **错误信息**                           |
-| ------------ | -------------------------------------- |
-| 14800000     | Inner error.                           |
+| **错误码ID** | **错误信息**       |
+|-----------|--------------|
+| 401       | Parameter error. Possible causes: 1. Need 1 - 3  parameter(s)! 2. The RdbStore must be not nullptr. 3. The predicates must be an RdbPredicates. 4. The columns must be a string array. |
+| 801       | Capability not supported.       |
+| 14800000  | Inner error.            |
+| 14800011  | Database corrupted.         |
+| 14800014  | Already closed.          |
+| 14800015  | The database does not respond.          |
+| 14800021  | SQLite: Generic error.           |
+| 14800022  | SQLite: Callback routine requested an abort.    |
+| 14800023  | SQLite: Access permission denied.     |
+| 14800024  | SQLite: The database file is locked.     |
+| 14800025  | SQLite: A table in the database is locked.       |
+| 14800026  | SQLite: The database is out of memory.      |
+| 14800027  | SQLite: Attempt to write a readonly database.    |
+| 14800028  | SQLite: Some kind of disk I/O error occurred.       |
+| 14800029  | SQLite: The database is full.       |
+| 14800030  | SQLite: Unable to open the database file.       |
+| 14800031  | SQLite: TEXT or BLOB exceeds size limit.      |
+| 14800032  | SQLite: Abort due to constraint violation.       |
+| 14800033  | SQLite: Data type mismatch.        |
+| 14800034  | SQLite: Library used incorrectly.          |
+
 
 **示例：**
 
@@ -744,12 +915,29 @@ getFloat32Array(columnIndex: number): Float32Array
 
 **错误码：**
 
-以下错误码的详细介绍请参见[关系型数据库错误码](errorcode-data-rdb.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[关系型数据库错误码](errorcode-data-rdb.md)。
 
-| **错误码ID** | **错误信息**                                                 |
-| ------------ | ------------------------------------------------------------ |
-| 14800011     | Failed to open database by database corrupted. |
-| 14800013     | The column value is null or the column type is incompatible. |
+| **错误码ID** | **错误信息**          |
+|-----------| ------------ |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 801       | The capability is not supported because the database is not a vector DB. |
+| 14800011  | Database corrupted. |
+| 14800013  | Column out of bounds. |
+| 14800014  | Already closed. |
+| 14800021  | SQLite: Generic error. |
+| 14800022  | SQLite: Callback routine requested an abort. |
+| 14800023  | SQLite: Access permission denied. |
+| 14800024  | SQLite: The database file is locked. |
+| 14800025  | SQLite: A table in the database is locked. |
+| 14800026  | SQLite: The database is out of memory. |
+| 14800027  | SQLite: Attempt to write a readonly database. |
+| 14800028  | SQLite: Some kind of disk I/O error occurred. |
+| 14800029  | SQLite: The database is full. |
+| 14800030  | SQLite: Unable to open the database file. |
+| 14800031  | SQLite: TEXT or BLOB exceeds size limit. |
+| 14800032  | SQLite: Abort due to constraint violation. |
+| 14800033  | SQLite: Data type mismatch. |
+| 14800034  | SQLite: Library used incorrectly. |
 
 **示例：**
 

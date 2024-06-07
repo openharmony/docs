@@ -52,6 +52,14 @@ Subscribes to an event.
 | event | string | Yes| Event name.|
 | callback | Function | Yes| Callback invoked when the event is triggered.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. 3. Parameter verification failed. |
+
 **Example**
 
 ```ts
@@ -100,6 +108,14 @@ Unsubscribes from an event.
 | event | string | Yes| Event name.|
 | callback | Function | No| Callback for the event. If **callback** is unspecified, the given event with all callbacks is unsubscribed.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. 3. Parameter verification failed. |
+
 **Example**
 
 ```ts
@@ -140,6 +156,14 @@ Triggers an event.
 | -------- | -------- | -------- | -------- |
 | event | string | Yes| Event name.|
 | ...args | Object[] | No| Variable parameters, which are passed to the callback when the event is triggered.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. 3. Parameter verification failed. |
 
 **Example**
 

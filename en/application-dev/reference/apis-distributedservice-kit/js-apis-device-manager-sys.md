@@ -1,8 +1,8 @@
 # @ohos.distributedHardware.deviceManager (Device Management) (System API)
 
-The APIs of this module are deprecated. Use [@ohos.distributedDeviceManager](js-apis-distributedDeviceManager.md) instead.
+The APIs of this module are deprecated. You are advised to use [@ohos.distributedDeviceManager](js-apis-distributedDeviceManager.md).
 
-The **distributedHardware.deviceManager** module provides APIs for distributed device management.
+The **deviceManager** module provides APIs for distributed device management.
 
 System applications can call the APIs to do the following:
 
@@ -32,16 +32,25 @@ createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager
 
 Creates a **DeviceManager** instance.
 
-> **NOTE**<br>This API is deprecated since API version 11. Use [deviceManager.createDeviceManager](js-apis-distributedDeviceManager.md#devicemanagercreatedevicemanager).
+> **NOTE**<br>This API is deprecated since API version 11. Use [deviceManager.createDeviceManager](js-apis-distributedDeviceManager.md#devicemanagercreatedevicemanager) instead.
 
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                       |
+| -------- | --------------------------------------------------------------- |
+| 202 | The caller is not a system application. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Parameters**
 
 | Name    | Type                                                | Mandatory| Description                                                       |
 | ---------- | ---------------------------------------------------- | ---- | ----------------------------------------------------------- |
 | bundleName | string                                               | Yes  | Bundle name of the application.                                 |
-| callback   | AsyncCallback&lt;[DeviceManager](#devicemanager)&gt; | Yes  | Callback invoked to return the **DeviceManager** instance created.|
+| callback   | AsyncCallback&lt;[DeviceManager](#devicemanager)&gt; | Yes  | Callback used to return the **DeviceManager** instance created.|
 
 **Example**
 
@@ -268,10 +277,12 @@ Releases this **DeviceManager** instance when it is no longer used.
 
 **Error codes**
 
-For details about the error codes, see [Device Management Error Codes](errorcode-device-manager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Device Management Error Codes](errorcode-device-manager.md).
 
 | ID| Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
+| 201 | Permission verify failed.                                            |
+| 202 | The caller is not a system application.                              |
 | 11600101 | Failed to execute the function.                                 |
 
 **Example**
@@ -308,10 +319,12 @@ Obtains all trusted devices synchronously.
 
 **Error codes**
 
-For details about the error codes, see [Device Management Error Codes](errorcode-device-manager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Device Management Error Codes](errorcode-device-manager.md).
 
 | ID| Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
+| 201 | Permission verify failed.                                            |
+| 202 | The caller is not a system application.                              |
 | 11600101 | Failed to execute the function.                                 |
 
 **Example**
@@ -355,10 +368,12 @@ Enables the DSoftBus heartbeat mode to quickly bring offline trusted devices onl
 
 **Error codes**
 
-For details about the error codes, see [Device Management Error Codes](errorcode-device-manager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Device Management Error Codes](errorcode-device-manager.md).
 
 | ID| Error Message                                                        |
 | -------- | --------------------------------------------------------------- |
+| 201 | Permission verify failed.                                            |
+| 202 | The caller is not a system application.                              |
 | 11600101 | Failed to execute the function.                                 |
 
 **Example**
@@ -392,7 +407,16 @@ Obtains all trusted devices. This API uses an asynchronous callback to return th
 
   | Name      | Type                                    | Mandatory  | Description                   |
   | -------- | ---------------------------------------- | ---- | --------------------- |
-  | callback | AsyncCallback&lt;Array&lt;[DeviceInfo](#deviceinfo)&gt;&gt; | Yes   | Callback invoked to return the list of trusted devices.|
+  | callback | AsyncCallback&lt;Array&lt;[DeviceInfo](#deviceinfo)&gt;&gt; | Yes   | Callback used to return the list of trusted devices.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                        |
+| -------- | --------------------------------------------------------------- |
+| 202 | The caller is not a system application.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. |
 
 **Example**
 
@@ -433,6 +457,15 @@ Obtains all trusted devices. This API uses a promise to return the result.
   | ---------------------------------------- | --------------------- |
   | Promise&lt;Array&lt;[DeviceInfo](#deviceinfo)&gt;&gt; | Promise used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                        |
+| -------- | --------------------------------------------------------------- |
+| 202 | The caller is not a system application.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. |
+
 **Example**
 
 For details about how to initialize **dmInstance** in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
@@ -467,10 +500,12 @@ Obtains local device information synchronously.
 
 **Error codes**
 
-For details about the error codes, see [Device Management Error Codes](errorcode-device-manager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Device Management Error Codes](errorcode-device-manager.md).
 
 | ID| Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
+| 201 | Permission verify failed.                                            |
+| 202 | The caller is not a system application.                              |
 | 11600101 | Failed to execute the function.                                 |
 
 **Example**
@@ -504,7 +539,16 @@ Obtains local device information. This API uses an asynchronous callback to retu
 
   | Name      | Type                                    | Mandatory  | Description       |
   | -------- | ---------------------------------------- | ---- | --------- |
-  | callback | AsyncCallback&lt;[DeviceInfo](#deviceinfo)&gt; | Yes   | Callback invoked to return the local device information.|
+  | callback | AsyncCallback&lt;[DeviceInfo](#deviceinfo)&gt; | Yes   | Callback used to return the local device information.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                        |
+| -------- | --------------------------------------------------------------- |
+| 202 | The caller is not a system application.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. |
 
 **Example**
 
@@ -546,6 +590,14 @@ Obtains local device information. This API uses a promise to return the result.
   | ---------------------------------------- | --------------------- |
   | Promise&lt;[DeviceInfo](#deviceinfo)&gt; | Promise used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                        |
+| -------- | --------------------------------------------------------------- |
+| 202 | The caller is not a system application.                              |
+
 **Example**
 
 For details about how to initialize **dmInstance** in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
@@ -577,7 +629,16 @@ Obtains the information about a specific device based on the network ID. This AP
   | Name      | Type                                    | Mandatory  | Description       |
   | -------- | ---------------------------------------- | ---- | --------- |
   | networkId| string                                   | Yes  | Network ID of the device.|
-  | callback | AsyncCallback&lt;[DeviceInfo](#deviceinfo)&gt; | Yes   | Callback invoked to return the information about the specified device.|
+  | callback | AsyncCallback&lt;[DeviceInfo](#deviceinfo)&gt; | Yes   | Callback used to return the information about the specified device.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                        |
+| -------- | --------------------------------------------------------------- |
+| 202 | The caller is not a system application.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified networkId is greater than 255. |
 
 **Example**
 
@@ -626,6 +687,15 @@ Obtains the information about a specific device based on the network ID. This AP
   | ---------------------------------------- | --------------------- |
   | Promise&lt;[DeviceInfo](#deviceinfo)&gt; | Promise used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                        |
+| -------- | --------------------------------------------------------------- |
+| 202 | The caller is not a system application.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified networkId is greater than 255. |
+
 **Example**
 
 For details about how to initialize **dmInstance** in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
@@ -662,10 +732,13 @@ Starts to discover peripheral devices. The discovery process lasts 2 minutes. A 
 
 **Error codes**
 
-For details about the error codes, see [Device Management Error Codes](errorcode-device-manager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Device Management Error Codes](errorcode-device-manager.md).
 
 | ID| Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
+| 201 | Permission verify failed.                                            |
+| 202 | The caller is not a system application.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified networkId is greater than 255. |
 | 11600101 | Failed to execute the function.                                 |
 | 11600104 | Discovery invalid.                                              |
 
@@ -721,14 +794,17 @@ Starts to discover peripheral devices and filters discovered devices. The discov
   | Name           | Type                      | Mandatory  | Description   |
   | ------------- | ------------------------------- | ---- | -----  |
   | subscribeInfo | [SubscribeInfo](#subscribeinfo) | Yes  | Subscription information.|
-| filterOptions | string                          | No  | Options for filtering discovered devices. The default value is **undefined**, which indicates discovery of offline devices.|
+  | filterOptions | string                          | No  | Options for filtering discovered devices. The default value is **undefined**, which indicates discovery of offline devices.|
 
 **Error codes**
 
-For details about the error codes, see [Device Management Error Codes](errorcode-device-manager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Device Management Error Codes](errorcode-device-manager.md).
 
 | ID| Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
+| 201 | Permission verify failed.                                            |
+| 202 | The caller is not a system application.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified networkId is greater than 255. |
 | 11600101 | Failed to execute the function.                                 |
 | 11600104 | Discovery invalid.                                              |
 
@@ -809,10 +885,13 @@ Stops device discovery.
 
 **Error codes**
 
-For details about the error codes, see [Device Management Error Codes](errorcode-device-manager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Device Management Error Codes](errorcode-device-manager.md).
 
 | ID| Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
+| 201 | Permission verify failed.                                            |
+| 202 | The caller is not a system application.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified networkId is greater than 255. |
 | 11600101 | Failed to execute the function.                                 |
 
 **Example**
@@ -851,10 +930,13 @@ Publishes device information for discovery purposes. The publish process lasts 2
 
 **Error codes**
 
-For details about the error codes, see [Device Management Error Codes](errorcode-device-manager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Device Management Error Codes](errorcode-device-manager.md).
 
 | ID| Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
+| 201 | Permission verify failed.                                            |
+| 202 | The caller is not a system application.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. |
 | 11600101 | Failed to execute the function.                                 |
 | 11600105 | Publish invalid.                                                |
 
@@ -908,10 +990,13 @@ Stops publishing device information.
 
 **Error codes**
 
-For details about the error codes, see [Device Management Error Codes](errorcode-device-manager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Device Management Error Codes](errorcode-device-manager.md).
 
 | ID| Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
+| 201 | Permission verify failed.                                            |
+| 202 | The caller is not a system application.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. |
 | 11600101 | Failed to execute the function.                                 |
 
 **Example**
@@ -948,7 +1033,16 @@ Authenticates a device.
   | ---------- | ---------------------------------------- | ---- | ------- |
   | deviceInfo | [DeviceInfo](#deviceinfo)                | Yes   | Device information.  |
   | authParam  | [AuthParam](#authparam)                  | Yes   | Authentication parameter.  |
-  | callback   | AsyncCallback&lt;{deviceId:&nbsp;string,&nbsp;pinToken&nbsp;?:&nbsp;number}&gt; | Yes   | Callback invoked to return the authentication result.|
+  | callback   | AsyncCallback&lt;{deviceId:&nbsp;string,&nbsp;pinToken&nbsp;?:&nbsp;number}&gt; | Yes   | Callback used to return the authentication result.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                       |
+| -------- | --------------------------------------------------------------- |
+| 202 | The caller is not a system application.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. |
 
 **Example**
 
@@ -1036,10 +1130,13 @@ Deauthenticates a device.
 
 **Error codes**
 
-For details about the error codes, see [Device Management Error Codes](errorcode-device-manager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Device Management Error Codes](errorcode-device-manager.md).
 
 | ID| Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
+| 201 | Permission verify failed.                                            |
+| 202 | The caller is not a system application.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. |
 | 11600101 | Failed to execute the function.                                 |
 
 **Example**
@@ -1089,7 +1186,16 @@ Verifies authentication information.
   | Name      | Type                                    | Mandatory  | Description     |
   | -------- | ---------------------------------------- | ---- | ------- |
   | authInfo | [AuthInfo](#authinfo)                    | Yes   | Authentication information.  |
-  | callback | AsyncCallback&lt;{deviceId:&nbsp;string,&nbsp;level:&nbsp;number}&gt; | Yes   | Callback invoked to return the verification result.|
+  | callback | AsyncCallback&lt;{deviceId:&nbsp;string,&nbsp;level:&nbsp;number}&gt; | Yes   | Callback used to return the verification result.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                       |
+| -------- | --------------------------------------------------------------- |
+| 202 | The caller is not a system application.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. |
 
 **Example**
 
@@ -1156,6 +1262,16 @@ Sets a user operation.
   | operateAction | number          | Yes   | User operation.      |
   | params        | string          | Yes   | Input parameters of the user.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                       |
+| -------- | --------------------------------------------------------------- |
+| 201 | Permission verify failed.                                            |
+| 202 | The caller is not a system application.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified params is greater than 255.    |
+
 **Example**
 
 For details about how to initialize **dmInstance** in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
@@ -1196,7 +1312,16 @@ Obtains the registration information of the credential.
   | Name      | Type           | Mandatory | Description               |
   | ------------- | --------------- | ---- | ------------------- |
   | requestInfo   | string          | Yes   | Request credential information.      |
-  | callback      | AsyncCallback<{registerInfo: string}>         | Yes   | Callback invoked to return the credential registration information.|
+  | callback      | AsyncCallback<{registerInfo: string}>         | Yes   | Callback used to return the credential registration information.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                       |
+| -------- | --------------------------------------------------------------- |
+| 202 | The caller is not a system application.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified params is greater than 255.    |
 
 **Example**
 
@@ -1249,7 +1374,16 @@ Imports credential information.
   | Name      | Type           | Mandatory | Description               |
   | ------------- | --------------- | ---- | ------------------- |
   | credentialInfo| string          | Yes   | Credential information to import.      |
-  | callback      | AsyncCallback<{resultInfo: string}>           | Yes   | Callback invoked to return the result.|
+  | callback      | AsyncCallback<{resultInfo: string}>           | Yes   | Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                       |
+| -------- | --------------------------------------------------------------- |
+| 202 | The caller is not a system application.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified credentialInfo is greater than 5999. |
 
 **Example**
 
@@ -1334,7 +1468,16 @@ Deletes credential information.
   | Name      | Type           | Mandatory | Description               |
   | ------------- | --------------- | ---- | ------------------- |
   | queryInfo     | string          | Yes   | Credential information to delete.      |
-  | callback      | AsyncCallback<{resultInfo: string}>           | Yes   | Callback invoked to return the result.|
+  | callback      | AsyncCallback<{resultInfo: string}>           | Yes   | Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                       |
+| -------- | --------------------------------------------------------------- |
+| 202 | The caller is not a system application.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified credentialInfo is greater than 5999. |
 
 **Example**
 
@@ -1390,7 +1533,16 @@ Subscribes to UI state changes.
   | Name     | Type                            | Mandatory| Description                           |
   | -------- | ------------------------------------ | ---- | ------------------------------ |
 | type     | string                                | Yes | Event type. The value is **'uiStateChange'**, which indicates UI status changes.|
-| callback | Callback&lt;{&nbsp;param:&nbsp;string}&gt; | Yes | Callback invoked to return the UI status change.       |
+  | callback | Callback&lt;{&nbsp;param:&nbsp;string}&gt; | Yes | Callback used to return the UI status change.       |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                       |
+| -------- | --------------------------------------------------------------- |
+| 202 | The caller is not a system application.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified eventType is greater than 255. |
 
 **Example**
 
@@ -1436,7 +1588,16 @@ Unsubscribes from UI state changes.
   | Name     | Type                             | Mandatory| Description                           |
   | -------- | ------------------------------------- | ---- | ------------------------------ |
 | type     | string                                | Yes  | Event type. The value is **'uiStateChange'**, which indicates UI status changes.|
-| callback | Callback&lt;{&nbsp;param:&nbsp;string}&gt; | No  | Callback to unregister. |
+  | callback | Callback&lt;{&nbsp;param:&nbsp;string}&gt; | No  | Callback to unregister.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                       |
+| -------- | --------------------------------------------------------------- |
+| 202 | The caller is not a system application.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified eventType is greater than 255. |
 
 **Example**
 
@@ -1468,8 +1629,17 @@ Subscribes to device state changes.
 
   | Name      | Type                                    | Mandatory  | Description                            |
   | -------- | ---------------------------------------- | ---- | ------------------------------ |
-| type     | string                                   | Yes   | Event type. The value is **deviceStateChange**, which indicates device state changes.|
-| callback | Callback&lt;{&nbsp;action:&nbsp;[DeviceStateChangeAction](#devicestatechangeaction),&nbsp;device:&nbsp;[DeviceInfo](#deviceinfo)&nbsp;}&gt; | Yes   | Callback invoked to return the device state change.     |
+  | type     | string                                   | Yes   | Event type. The value is **deviceStateChange**, which indicates the device state change.|
+  | callback | Callback&lt;{&nbsp;action:&nbsp;[DeviceStateChangeAction](#devicestatechangeaction),&nbsp;device:&nbsp;[DeviceInfo](#deviceinfo)&nbsp;}&gt; | Yes   | Callback used to return the device information and state.     |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                       |
+| -------- | --------------------------------------------------------------- |
+| 202 | The caller is not a system application.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified eventType is greater than 255. |
 
 **Example**
 
@@ -1517,7 +1687,16 @@ Unsubscribes from device state changes.
   | Name      | Type                                    | Mandatory  | Description                         |
   | -------- | ---------------------------------------- | ---- | --------------------------- |
 | type     | string                                   | Yes   | Event type. The value is **'deviceStateChange'**, which indicates device state changes.       |
-| callback | Callback&lt;{&nbsp;action:&nbsp;[DeviceStateChangeAction](#devicestatechangeaction),&nbsp;device:&nbsp;[DeviceInfo](#deviceinfo)&nbsp;}&gt; | No   | Callback to unregister. |
+  | callback | Callback&lt;{&nbsp;action:&nbsp;[DeviceStateChangeAction](#devicestatechangeaction),&nbsp;device:&nbsp;[DeviceInfo](#deviceinfo)&nbsp;}&gt; | No   | Callback to unregister.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                       |
+| -------- | --------------------------------------------------------------- |
+| 202 | The caller is not a system application.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified eventType is greater than 255. |
 
 **Example**
 
@@ -1565,7 +1744,16 @@ Subscribes to device discovery events.
   | Name      | Type                                    | Mandatory  | Description                        |
   | -------- | ---------------------------------------- | ---- | -------------------------- |
 | type     | string                                   | Yes   | Event type. The value is **'deviceFound'**, which indicates discovery of a device.|
-| callback | Callback&lt;{&nbsp;subscribeId:&nbsp;number,&nbsp;device:&nbsp;[DeviceInfo](#deviceinfo)&nbsp;}&gt; | Yes   | Callback invoked to return the discovery of a device.              |
+  | callback | Callback&lt;{&nbsp;subscribeId:&nbsp;number,&nbsp;device:&nbsp;[DeviceInfo](#deviceinfo)&nbsp;}&gt; | Yes   | Callback used for device discovery.              |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                       |
+| -------- | --------------------------------------------------------------- |
+| 202 | The caller is not a system application.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified eventType is greater than 255. |
 
 **Example**
 
@@ -1615,6 +1803,15 @@ Unsubscribes from device discovery events.
 | type     | string                                   | Yes   | Event type. The value is **'deviceFound'**, which indicates discovery of a device.                |
 | callback | Callback&lt;{&nbsp;subscribeId:&nbsp;number,&nbsp;device:&nbsp;[DeviceInfo](#deviceinfo)&nbsp;}&gt; | No   | Callback to unregister. |
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                       |
+| -------- | --------------------------------------------------------------- |
+| 202 | The caller is not a system application.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified eventType is greater than 255. |
+
 **Example**
 
 For details about how to initialize **dmInstance** in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
@@ -1661,7 +1858,16 @@ Subscribes to device discovery failures.
   | Name      | Type                                    | Mandatory  | Description                            |
   | -------- | ---------------------------------------- | ---- | ------------------------------ |
 | type     | string                                   | Yes   | Event type. The value is **'discoverFail'**, which indicates a failure in discovering devices.|
-| callback | Callback&lt;{&nbsp;subscribeId:&nbsp;number,&nbsp;reason:&nbsp;number&nbsp;}&gt; | Yes   | Callback invoked to return a device discovery failure.                |
+  | callback | Callback&lt;{&nbsp;subscribeId:&nbsp;number,&nbsp;reason:&nbsp;number&nbsp;}&gt; | Yes   | Callback used to return a device discovery failure.                |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                       |
+| -------- | --------------------------------------------------------------- |
+| 202 | The caller is not a system application.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified eventType is greater than 255. |
 
 **Example**
 
@@ -1701,7 +1907,16 @@ Unsubscribes from device discovery failures.
   | Name      | Type                                    | Mandatory  | Description               |
   | -------- | ---------------------------------------- | ---- | ----------------- |
 | type     | string                                   | Yes   | Event type. The value is **'discoverFail'**, which indicates a failure in discovering devices.    |
-| callback | Callback&lt;{&nbsp;subscribeId:&nbsp;number,&nbsp;reason:&nbsp;number&nbsp;}&gt; | No   | Callback to unregister. |
+  | callback | Callback&lt;{&nbsp;subscribeId:&nbsp;number,&nbsp;reason:&nbsp;number&nbsp;}&gt; | No   | Callback to unregister.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                       |
+| -------- | --------------------------------------------------------------- |
+| 202 | The caller is not a system application.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified eventType is greater than 255. |
 
 **Example**
 
@@ -1741,8 +1956,16 @@ Subscribes to the **'publishSuccess'** event. The application will be notified w
   | Name    | Type                                | Mandatory| Description                      |
   | -------- | ---------------------------------------- | ---- | -------------------------- |
 | type     | string                                   | Yes  | Event type. The value is **'publishSuccess'**, which indicates an event of the success in publishing device information.|
-  | callback | Callback&lt;{&nbsp;publishId:&nbsp;number&nbsp;}&gt;    | Yes  | Callback invoked to return the publish ID.              |
+  | callback | Callback&lt;{&nbsp;publishId:&nbsp;number&nbsp;}&gt;    | Yes  | Callback used to return the publish ID.              |
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                       |
+| -------- | --------------------------------------------------------------- |
+| 202 | The caller is not a system application.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified eventType is greater than 255. |
 
 **Example**
 
@@ -1781,7 +2004,16 @@ Unsubscribes from device information publication success events.
   | Name    | Type                                | Mandatory| Description                         |
   | -------- | ---------------------------------------- | ---- | --------------------------- |
 | type     | string                                   | Yes  | Event type. The value is **'publishSuccess'**, which indicates an event of the success in publishing device information.                |
-| callback | Callback&lt;{&nbsp;publishId:&nbsp;number&nbsp;}&gt;    | No  | Callback to unregister. |
+  | callback | Callback&lt;{&nbsp;publishId:&nbsp;number&nbsp;}&gt;    | No  | Callback to unregister.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                       |
+| -------- | --------------------------------------------------------------- |
+| 202 | The caller is not a system application.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified eventType is greater than 255. |
 
 **Example**
 
@@ -1820,7 +2052,16 @@ Subscribes to device information publication failures.
   | Name    | Type                                             | Mandatory| Description                            |
   | -------- | ----------------------------------------------------- | ---- | ------------------------------ |
 | type     | string                                                | Yes  | Event type. The value is **'publishFail'**, which indicates a failure in publishing device information.|
-| callback | Callback&lt;{&nbsp;publishId:&nbsp;number,&nbsp;reason:&nbsp;number&nbsp;}&gt; | Yes  | Callback invoked to return a failure in publishing device information.                |
+  | callback | Callback&lt;{&nbsp;publishId:&nbsp;number,&nbsp;reason:&nbsp;number&nbsp;}&gt; | Yes  | Callback used to return a failure in publishing device information.                |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                       |
+| -------- | --------------------------------------------------------------- |
+| 202 | The caller is not a system application.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified eventType is greater than 255. |
 
 **Example**
 
@@ -1860,7 +2101,16 @@ Unsubscribes from the **'publishFail'** event.
   | Name    | Type                                             | Mandatory| Description               |
   | -------- | ----------------------------------------------------- | ---- | ----------------- |
 | type     | string                                                | Yes  | Event type. The value is **'publishFail'**, which indicates a failure in publishing device information.    |
-| callback | Callback&lt;{&nbsp;publishId:&nbsp;number,&nbsp;reason:&nbsp;number&nbsp;}&gt; | No  | Callback to unregister. |
+  | callback | Callback&lt;{&nbsp;publishId:&nbsp;number,&nbsp;reason:&nbsp;number&nbsp;}&gt; | No  | Callback to unregister.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                       |
+| -------- | --------------------------------------------------------------- |
+| 202 | The caller is not a system application.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified eventType is greater than 255. |
 
 **Example**
 
@@ -1900,7 +2150,16 @@ Subscribes to dead events of the **DeviceManager** service. The application will
   | Name      | Type                   | Mandatory  | Description                                      |
   | -------- | ----------------------- | ---- | ---------------------------------------- |
 | type     | string                  | Yes   | Event type. The value is **'serviceDie'**, which indicates unexpected termination of the **DeviceManager** service.|
-| callback | ()&nbsp;=&gt;&nbsp;void | Yes   | Callback invoked when the **DeviceManager** service is unexpectedly terminated. |
+  | callback | ()&nbsp;=&gt;&nbsp;void | Yes   | Callback invoked when the **DeviceManager** service is unexpectedly terminated.                      |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                       |
+| -------- | --------------------------------------------------------------- |
+| 202 | The caller is not a system application.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified eventType is greater than 255. |
 
 **Example**
 
@@ -1935,7 +2194,16 @@ Unsubscribes from dead events of the **DeviceManager** service.
   | Name      | Type                   | Mandatory  | Description                                      |
   | -------- | ----------------------- | ---- | ---------------------------------------- |
 | type     | string                  | Yes   | Event type. The value is **'serviceDie'**, which indicates unexpected termination of the **DeviceManager** service.|
-| callback | ()&nbsp;=&gt;&nbsp;void | No   | Callback to unregister.     |
+  | callback | ()&nbsp;=&gt;&nbsp;void | No   | Callback to unregister.                    |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                       |
+| -------- | --------------------------------------------------------------- |
+| 202 | The caller is not a system application.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified eventType is greater than 255. |
 
 **Example**
 

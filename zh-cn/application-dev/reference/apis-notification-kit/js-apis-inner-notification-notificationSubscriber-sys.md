@@ -16,7 +16,7 @@ import notificationSubscribe from '@ohos.notificationSubscribe';
 
 ## onConsume
 
-onConsume?: (data: [SubscribeCallbackData](js-apis-notification-sys.md#subscribecallbackdata)) => void
+onConsume?: (data: [SubscribeCallbackData](#subscribecallbackdata)) => void
 
 接收到新通知的回调函数。
 
@@ -28,7 +28,7 @@ onConsume?: (data: [SubscribeCallbackData](js-apis-notification-sys.md#subscribe
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------------ | ------------------------ | ---- | -------------------------- |
-| onConsume | (data: [SubscribeCallbackData](js-apis-notification-sys.md#subscribecallbackdata)) => void | 是 | 新接收到的通知信息。 |
+| onConsume | (data: [SubscribeCallbackData](#subscribecallbackdata)) => void | 是 | 新接收到的通知信息。 |
 
 **示例：**
 
@@ -58,7 +58,7 @@ notificationSubscribe.subscribe(subscriber, subscribeCallback);
 
 ## onCancel
 
-onCancel?:(data: [SubscribeCallbackData](js-apis-notification-sys.md#subscribecallbackdata)) => void
+onCancel?:(data: [SubscribeCallbackData](#subscribecallbackdata)) => void
 
 取消通知的回调函数。
 
@@ -70,7 +70,7 @@ onCancel?:(data: [SubscribeCallbackData](js-apis-notification-sys.md#subscribeca
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------------ | ------------------------ | ---- | -------------------------- |
-| onCancel | (data: [SubscribeCallbackData](js-apis-notification-sys.md#subscribecallbackdata)) => void | 是 | 需要取消的通知信息。 |
+| onCancel | (data: [SubscribeCallbackData](#subscribecallbackdata)) => void | 是 | 需要取消的通知信息。 |
 
 **示例：**
 
@@ -245,6 +245,7 @@ onDestroy?:() => void
 | 参数名 | 类型 | 必填 | 说明 |
 | ------------ | ------------------------ | ---- | -------------------------- |
 | onDestroy | () => void | 是 | 服务失联的回调。 |
+
 **示例：**
 
 ```ts
@@ -479,7 +480,7 @@ notificationSubscribe.subscribe(subscriber, subscribeCallback);
 
 ## onBatchCancel<sup>11+</sup>
 
- onBatchCancel?:(data: Array<[SubscribeCallbackData](js-apis-notification-sys.md#subscribecallbackdata)>) => void
+ onBatchCancel?:(data: Array<[SubscribeCallbackData](#subscribecallbackdata)>) => void
 
 批量删除的回调函数。
 
@@ -491,7 +492,7 @@ notificationSubscribe.subscribe(subscriber, subscribeCallback);
 
 | 参数名   | 类型                                                         | 必填 | 说明                       |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------- |
-| onBatchCancel | (data: Array<[SubscribeCallbackData](js-apis-notification-sys.md#subscribecallbackdata)>) => void | 是   | 批量删除的通知信息。 |
+| onBatchCancel | (data: Array<[SubscribeCallbackData](#subscribecallbackdata)>) => void | 是   | 批量删除的通知信息。 |
 
 **示例：**
 
@@ -557,6 +558,7 @@ notificationSubscribe.subscribe(subscriber, subscribeCallback);
 | bundle      | string | 是   | 否   | 应用的包名。 |
 | uid         | number | 是   | 否   | 应用的uid。  |
 | badgeNumber | number | 是   | 否   | 角标个数。   |
+| instanceKey  | number | 是   | 否   | 应用实例键值。   |
 
 
 ## BadgeEnabledChangedCallback<sup>12+</sup>
