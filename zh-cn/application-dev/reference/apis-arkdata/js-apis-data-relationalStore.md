@@ -3568,7 +3568,7 @@ if(store != undefined) {
 
 querySync(predicates: RdbPredicates, columns?: Array&lt;string&gt;):ResultSet
 
-根据指定条件查询数据库中的数据。由于共享内存大小限制为2Mb，因此单条数据的大小需小于2Mb，否则会查询失败。
+根据指定条件查询数据库中的数据。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -7441,7 +7441,7 @@ if(resultSet != undefined) {
 
 getValue(columnIndex: number): ValueType
 
-获取当前指定列的值，值类型可以是ValueType指定的任意类型。
+获取当前指定列的值，值类型如果是ValueType指定的任意类型，则会以对应类型返回指定类的值，否则返回14800000。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -7496,7 +7496,8 @@ if(resultSet != undefined) {
 
 getBlob(columnIndex: number): Uint8Array
 
-以字节数组的形式获取当前行中指定列的值。
+
+以字节数组的形式获取当前行中指定列的值，如果当前列的数据类型为INTEGER、DOUBLE、TEXT、BLOB类型，会转成字节数组类型返回指定值，如果该列内容为空时，会返回空字节数组，其他类型则返回14800000。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -7551,7 +7552,7 @@ if(resultSet != undefined) {
 
 getString(columnIndex: number): string
 
-以字符串形式获取当前行中指定列的值。
+以字符串形式获取当前行中指定列的值，如果当前列中的值为INTEGER、DOUBLE、TEXT、BLOB类型，会以字符串形式返回指定值，如果是当前列中的值为INTEGER，并且为空，则会返回空字符串""，其他类型则返回14800000,。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -7606,7 +7607,7 @@ if(resultSet != undefined) {
 
 getLong(columnIndex: number): number
 
-以Long形式获取当前行中指定列的值。
+以Long形式获取当前行中指定列的值，如果当前列的数据类型为INTEGER、DOUBLE、TEXT、BLOB类型，会转成Long类型返回指定值，如果该列内容为空时，会返回0，其他类型则返回14800000。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -7661,7 +7662,7 @@ if(resultSet != undefined) {
 
 getDouble(columnIndex: number): number
 
-以double形式获取当前行中指定列的值。
+以double形式获取当前行中指定列的值，如果当前列的数据类型为INTEGER、DOUBLE、TEXT、BLOB类型，会转成double类型返回指定值，如果该列内容为空时，会返回0.0，其他类型则返回14800000。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -7716,7 +7717,7 @@ if(resultSet != undefined) {
 
 getAsset(columnIndex: number): Asset
 
-以[Asset](#asset10)形式获取当前行中指定列的值。
+以[Asset](#asset10)形式获取当前行中指定列的值，如果当前列中的值为null时，会返回null，如果为其他类型时，则会返回14800000。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -7771,7 +7772,7 @@ if(resultSet != undefined) {
 
 getAssets(columnIndex: number): Assets
 
-以[Assets](#assets10)形式获取当前行中指定列的值。
+以[Assets](#assets10)形式获取当前行中指定列的值，如果当前列中的值为null时，会返回null，如果为其他类型时，则会返回14800000。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
