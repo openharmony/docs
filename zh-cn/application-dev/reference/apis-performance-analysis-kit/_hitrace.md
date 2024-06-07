@@ -40,7 +40,7 @@ hitraceChain为开发者提供跨线程、跨进程的分布式跟踪能力。 H
 | typedef enum [HiTrace_Flag](#hitrace_flag) [HiTrace_Flag](#hitrace_flag) | HiTrace标志位 | 
 | typedef enum [HiTrace_Tracepoint_Type](#hitrace_tracepoint_type) [HiTrace_Tracepoint_Type](#hitrace_tracepoint_type) | HiTrace打点类型 | 
 | typedef enum [HiTrace_Communication_Mode](#hitrace_communication_mode) [HiTrace_Communication_Mode](#hitrace_communication_mode) | HiTrace通信模式枚举 | 
-| typedef struct [HiTraceId](_hi_trace_id.md)**HiTraceId** | HiTraceId定义 | 
+| typedef struct [HiTraceId](_hi_trace_id.md) HiTraceId | HiTraceId定义 | 
 
 
 ### 枚举
@@ -104,7 +104,7 @@ hitraceChain为开发者提供跨线程、跨进程的分布式跟踪能力。 H
 ### HiTrace_Communication_Mode
 
 ```
-typedef enum HiTrace_Communication_ModeHiTrace_Communication_Mode
+typedef enum HiTrace_Communication_Mode HiTrace_Communication_Mode
 ```
 
 **描述**
@@ -119,7 +119,7 @@ HiTrace通信模式枚举
 ### HiTrace_Flag
 
 ```
-typedef enum HiTrace_FlagHiTrace_Flag
+typedef enum HiTrace_FlagHi Trace_Flag
 ```
 
 **描述**
@@ -134,7 +134,7 @@ HiTrace标志位
 ### HiTrace_Tracepoint_Type
 
 ```
-typedef enum HiTrace_Tracepoint_TypeHiTrace_Tracepoint_Type
+typedef enum HiTrace_Tracepoint_Type HiTrace_Tracepoint_Type
 ```
 
 **描述**
@@ -149,7 +149,7 @@ HiTrace打点类型
 ### HiTrace_Version
 
 ```
-typedef enum HiTrace_VersionHiTrace_Version
+typedef enum HiTrace_Version HiTrace_Version
 ```
 
 **描述**
@@ -164,7 +164,7 @@ HiTrace版本号
 ### HiTraceId_Valid
 
 ```
-typedef enum HiTraceId_ValidHiTraceId_Valid
+typedef enum HiTraceId_Valid HiTraceId_Valid
 ```
 
 **描述**
@@ -195,10 +195,10 @@ HiTrace通信模式枚举
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| HITRACE_CM_DEFAULT | 未指明<br/>SysCap:<br/>SystemCapability.HiviewDFX.HiTrace<br/>自从<br/>12 | 
-| HITRACE_CM_THREAD | 线程间通信<br/>SysCap:<br/>SystemCapability.HiviewDFX.HiTrace<br/>自从<br/>12 | 
-| HITRACE_CM_PROCESS | 进程间通信<br/>SysCap:<br/>SystemCapability.HiviewDFX.HiTrace<br/>自从<br/>12 | 
-| HITRACE_CM_DEVICE | 设备间通信<br/>SysCap:<br/>SystemCapability.HiviewDFX.HiTrace<br/>自从<br/>12 | 
+| HITRACE_CM_DEFAULT | 未指明<br/>SysCap:<br/>SystemCapability.HiviewDFX.HiTrace | 
+| HITRACE_CM_THREAD | 线程间通信<br/>SysCap:<br/>SystemCapability.HiviewDFX.HiTrace | 
+| HITRACE_CM_PROCESS | 进程间通信<br/>SysCap:<br/>SystemCapability.HiviewDFX.HiTrace | 
+| HITRACE_CM_DEVICE | 设备间通信<br/>SysCap:<br/>SystemCapability.HiviewDFX.HiTrace | 
 
 
 ### HiTrace_Flag
@@ -217,14 +217,14 @@ HiTrace标志位
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| HITRACE_FLAG_DEFAULT | 默认值<br/>SysCap:<br/>SystemCapability.HiviewDFX.HiTrace<br/>自从<br/>12 | 
-| HITRACE_FLAG_INCLUDE_ASYNC | 跟踪同步和异步调用。默认：仅跟踪同步调用。<br/>SysCap:<br/>SystemCapability.HiviewDFX.HiTrace<br/>自从<br/>12 | 
-| HITRACE_FLAG_DONOT_CREATE_SPAN | 不创建child span。默认创建。<br/>SysCap:<br/>SystemCapability.HiviewDFX.HiTrace<br/>自从<br/>12 | 
-| HITRACE_FLAG_TP_INFO | 在span中输出跟踪点信息，默认不输出跟踪点信息。<br/>SysCap:<br/>SystemCapability.HiviewDFX.HiTrace<br/>自从<br/>12 | 
-| HITRACE_FLAG_NO_BE_INFO | 不输出开始和结束信息，默认输出开始和结束信息。<br/>SysCap:<br/>SystemCapability.HiviewDFX.HiTrace<br/>自从<br/>12 | 
-| HITRACE_FLAG_DONOT_ENABLE_LOG | 不添加id到日志中，默认添加id到日志中。<br/>SysCap:<br/>SystemCapability.HiviewDFX.HiTrace<br/>自从<br/>12 | 
-| HITRACE_FLAG_FAULT_TRIGGER | 跟踪是由故障触发的。<br/>SysCap:<br/>SystemCapability.HiviewDFX.HiTrace<br/>自从<br/>12 | 
-| HITRACE_FLAG_D2D_TP_INFO | 仅输出span中的设备到设备跟踪点信息。默认值：不输出设备到设备跟踪点信息。<br/>SysCap:<br/>SystemCapability.HiviewDFX.HiTrace<br/>自从<br/>12 | 
+| HITRACE_FLAG_DEFAULT | 默认值<br/>SysCap:<br/>SystemCapability.HiviewDFX.HiTrace | 
+| HITRACE_FLAG_INCLUDE_ASYNC | 跟踪同步和异步调用。默认：仅跟踪同步调用。<br/>SysCap:<br/>SystemCapability.HiviewDFX.HiTrace | 
+| HITRACE_FLAG_DONOT_CREATE_SPAN | 不创建child span。默认创建。<br/>SysCap:<br/>SystemCapability.HiviewDFX.HiTrace | 
+| HITRACE_FLAG_TP_INFO | 在span中输出跟踪点信息，默认不输出跟踪点信息。<br/>SysCap:<br/>SystemCapability.HiviewDFX.HiTrace | 
+| HITRACE_FLAG_NO_BE_INFO | 不输出开始和结束信息，默认输出开始和结束信息。<br/>SysCap:<br/>SystemCapability.HiviewDFX.HiTrace | 
+| HITRACE_FLAG_DONOT_ENABLE_LOG | 不添加id到日志中，默认添加id到日志中。<br/>SysCap:<br/>SystemCapability.HiviewDFX.HiTrace | 
+| HITRACE_FLAG_FAULT_TRIGGER | 跟踪是由故障触发的。<br/>SysCap:<br/>SystemCapability.HiviewDFX.HiTrace | 
+| HITRACE_FLAG_D2D_TP_INFO | 仅输出span中的设备到设备跟踪点信息。默认值：不输出设备到设备跟踪点信息。<br/>SysCap:<br/>SystemCapability.HiviewDFX.HiTrace | 
 
 
 ### HiTrace_Tracepoint_Type
@@ -243,11 +243,11 @@ HiTrace打点类型
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| HITRACE_TP_CS | 客户端发送<br/>SysCap:<br/>SystemCapability.HiviewDFX.HiTrace<br/>自从<br/>12 | 
-| HITRACE_TP_CR | 客户端接收<br/>SysCap:<br/>SystemCapability.HiviewDFX.HiTrace<br/>自从<br/>12 | 
-| HITRACE_TP_SS | 服务端发送<br/>SysCap:<br/>SystemCapability.HiviewDFX.HiTrace<br/>自从<br/>12 | 
-| HITRACE_TP_SR | 服务端接收<br/>SysCap:<br/>SystemCapability.HiviewDFX.HiTrace<br/>自从<br/>12 | 
-| HITRACE_TP_GENERAL | 整体信息<br/>SysCap:<br/>SystemCapability.HiviewDFX.HiTrace<br/>自从<br/>12 | 
+| HITRACE_TP_CS | 客户端发送<br/>SysCap:<br/>SystemCapability.HiviewDFX.HiTrace | 
+| HITRACE_TP_CR | 客户端接收<br/>SysCap:<br/>SystemCapability.HiviewDFX.HiTrace | 
+| HITRACE_TP_SS | 服务端发送<br/>SysCap:<br/>SystemCapability.HiviewDFX.HiTrace | 
+| HITRACE_TP_SR | 服务端接收<br/>SysCap:<br/>SystemCapability.HiviewDFX.HiTrace | 
+| HITRACE_TP_GENERAL | 整体信息<br/>SysCap:<br/>SystemCapability.HiviewDFX.HiTrace | 
 
 
 ### HiTrace_Version
@@ -266,7 +266,7 @@ HiTrace版本号
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| HITRACE_VER_1 | 版本1<br/>SysCap:<br/>SystemCapability.HiviewDFX.HiTrace<br/>自从<br/>12 | 
+| HITRACE_VER_1 | 版本1<br/>SysCap:<br/>SystemCapability.HiviewDFX.HiTrace | 
 
 
 ### HiTraceId_Valid
@@ -285,8 +285,8 @@ HiTraceId是否有效标志
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| HITRACE_ID_INVALID | 无效HiTraceId<br/>SysCap:<br/>SystemCapability.HiviewDFX.HiTrace<br/>自从<br/>12 | 
-| HITRACE_ID_VALID | 有效HiTraceId<br/>SysCap:<br/>SystemCapability.HiviewDFX.HiTrace<br/>自从<br/>12 | 
+| HITRACE_ID_INVALID | 无效HiTraceId<br/>SysCap:<br/>SystemCapability.HiviewDFX.HiTrace | 
+| HITRACE_ID_VALID | 有效HiTraceId<br/>SysCap:<br/>SystemCapability.HiviewDFX.HiTrace | 
 
 
 ## 函数说明
