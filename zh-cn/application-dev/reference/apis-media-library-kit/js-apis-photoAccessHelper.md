@@ -62,6 +62,8 @@ getAssets(options: FetchOptions, callback: AsyncCallback&lt;FetchResult&lt;Photo
 
 **需要权限**：ohos.permission.READ_IMAGEVIDEO
 
+对于未申请'ohos.permission.READ_IMAGEVIDEO'权限的应用，可以通过picker临时授权的方式调用该接口来查询指定uri对应的图片或视频资源，详情请参考[开发指南](../../media/medialibrary/photoAccessHelper-photoviewpicker.md)。
+
 **参数：**
 
 | 参数名   | 类型                     | 必填 | 说明                      |
@@ -116,6 +118,8 @@ getAssets(options: FetchOptions): Promise&lt;FetchResult&lt;PhotoAsset&gt;&gt;
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 **需要权限**：ohos.permission.READ_IMAGEVIDEO
+
+对于未申请'ohos.permission.READ_IMAGEVIDEO'权限的应用，可以通过picker临时授权的方式调用该接口来查询指定uri对应的图片或视频资源，详情请参考[开发指南](../../media/medialibrary/photoAccessHelper-photoviewpicker.md)。
 
 **参数：**
 
@@ -760,6 +764,8 @@ applyChanges(mediaChangeRequest: MediaChangeRequest): Promise&lt;void&gt;
 提交媒体变更请求，使用Promise方式返回结果。
 
 **需要权限**：ohos.permission.WRITE_IMAGEVIDEO
+
+在提交创建资产的变更请求时，对于未申请'ohos.permission.WRITE_IMAGEVIDEO'权限的应用，可以用安全控件的方式调用该接口来创建媒体资源，详情请参考[开发指南](../../media/medialibrary/photoAccessHelper-savebutton.md)。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
