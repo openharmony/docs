@@ -268,9 +268,7 @@ struct Index {
 | [PERCENT](arkui-ts/ts-types.md#percentage10) | 3 | 长度类型，用于描述以%像素单位为单位的长度。 |
 | [LPX](arkui-ts/ts-types.md#lpx10) | 4 | 长度类型，用于描述以lpx像素单位为单位的长度。 |
 
-## SizeT<sup>12+</sup>
-
-SizeT\<T>
+## SizeT\<T><sup>12+</sup>
 
 用于设置宽高的属性。
 

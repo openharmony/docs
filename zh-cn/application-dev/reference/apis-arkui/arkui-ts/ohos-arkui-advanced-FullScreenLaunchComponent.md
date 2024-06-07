@@ -41,7 +41,7 @@ FullScreenLaunchComponent({ content: Callback\<void>, appId: string, options?: A
 | -------- | -------- | -------- | -------- | -------- |
 | content | Callback\<void> | 是 | \@BuilderParam | 组件显示内容。 |
 | appId | string | 是 | - | 元服务appId。 |
-| options | AtomicServiceOptions | 是 | - | 拉起元服务参数。 |
+| options | [AtomicServiceOptions](../../apis-ability-kit/js-apis-app-ability-atomicServiceOptions.md) | 否 | - | 拉起元服务参数。 |
 
 ## 事件
 不支持[通用事件](ts-universal-events-click.md)
