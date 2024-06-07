@@ -10,6 +10,7 @@
   - [@ohos.graphics.hdrCapability (HDR能力)](js-apis-hdrCapability.md)
   - [@ohos.graphics.text (文本模块)](js-apis-graphics-text.md)
   - [@ohos.graphics.uiEffect (效果级联)](js-apis-uiEffect.md)
+  - [@ohos.graphics.uiEffect (效果级联)(系统接口)](js-apis-uiEffect-sys.md)
 - C API
   - 模块
     - [Drawing](_drawing.md)
