@@ -13,6 +13,19 @@
 import systemSoundManager from '@ohos.multimedia.systemSoundManager';
 ```
 
+## 常量
+
+**系统接口：** 该接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.SystemSound.Core
+
+| 名称                                      | 值   | 说明      |
+|------------------------------------------|-----|---------|
+| TONE_CATEGORY_RINGTONE<sup>12+</sup>     | 1   | 铃声类别。   |
+| TONE_CATEGORY_TEXT_MESSAGE<sup>12+</sup> | 2   | 短信铃声类别。 |
+| TONE_CATEGORY_NOTIFICATION<sup>12+</sup> | 4   | 通知铃声类别。 |
+| TONE_CATEGORY_ALARM<sup>12+</sup>        | 8   | 闹钟铃声类别。 |
+
 ## RingtoneType
 
 枚举，铃声类型。
@@ -38,9 +51,303 @@ import systemSoundManager from '@ohos.multimedia.systemSoundManager';
 
 | 名称                            | 值   | 说明         |
 | ------------------------------- |-----|------------|
-| SYSTEM_TONE_TYPE_SIM_CARD_0           | 0   | sim卡1的短信提示音。 |
-| SYSTEM_TONE_TYPE_SIM_CARD_1            | 1   | sim卡2的短信提示音。 |
-| SYSTEM_TONE_TYPE_NOTIFICATION          | 32  | 通知提示音。     |
+| SYSTEM_TONE_TYPE_SIM_CARD_0     | 0   | sim卡1的短信提示音。 |
+| SYSTEM_TONE_TYPE_SIM_CARD_1     | 1   | sim卡2的短信提示音。 |
+| SYSTEM_TONE_TYPE_NOTIFICATION   | 32  | 通知提示音。     |
+
+
+## ToneCustomizedType<sup>12+</sup>
+
+枚举，铃声自定义类型。
+
+**系统接口：** 该接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.SystemSound.Core
+
+| 名称                         | 值   | 说明         |
+| ----------------------------|-----|------------|
+| PRE_INSTALLED<sup>12+</sup> | 0   | 预安装铃声类型。 |
+| CUSTOMIZED<sup>12+</sup>    | 1   | 自定义铃声类型。 |
+
+## ToneAttrs<sup>12+</sup>
+
+管理铃声属性。在调用ToneAttrs<sup>12+</sup>的接口前，需要先通过[createCustomizedToneAttrs](#systemsoundmanagercreatecustomizedtoneattrs12)创建实例。
+
+### getTitle<sup>12+</sup>
+
+getTitle(): string
+
+获取铃声标题。
+
+**系统接口：** 该接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.SystemSound.Core
+
+**返回值：**
+
+| 类型    | 说明  |
+|--------|-----|
+| string | 标题。 |
+
+**错误码：**
+
+| 错误码ID   | 错误信息              |
+|---------| -------------------- |
+| 202     | Caller is not a system application. |
+
+**示例：**
+
+```ts
+toneAttrs.getTitle();
+```
+
+### setTitle<sup>12+</sup>
+
+setTitle(title: string): void
+
+设置铃声标题。
+
+**系统接口：** 该接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.SystemSound.Core
+
+**参数：**
+
+| 参数名  | 类型    | 必填 | 说明          |
+| -------| -------| ---- | ------------|
+| title  | string | 是   | 铃声的标题。   |
+
+**错误码：**
+
+| 错误码ID | 错误信息              |
+|-------| -------------------- |
+| 202   | Caller is not a system application. |
+| 401   | The parameters check failed. |
+
+**示例：**
+
+```ts
+let toneAttrs = systemSoundManager.createCustomizedToneAttrs();
+let title = 'text';
+toneAttrs.setTitle(title);
+```
+
+### getFileName<sup>12+</sup>
+
+getFileName(): string
+
+获取铃声文件名。
+
+**系统接口：** 该接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.SystemSound.Core
+
+**返回值：**
+
+| 类型    | 说明   |
+|--------|------|
+| string | 文件名。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息              |
+|---------| -------------------- |
+| 202     | Caller is not a system application. |
+
+
+**示例：**
+
+```ts
+toneAttrs.getFileName();
+```
+
+### setFileName<sup>12+</sup>
+
+setFileName(name: string): void
+
+设置铃声文件名。
+
+**系统接口：** 该接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.SystemSound.Core
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明         |
+| ------| -------|-----| ------------|
+| name  | string | 是   | 铃声的文件名。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息              |
+|-------| -------------------- |
+| 202   | Caller is not a system application. |
+| 401   | The parameters check failed. |
+
+**示例：**
+
+```ts
+let toneAttrs = systemSoundManager.createCustomizedToneAttrs();
+let fileName = 'textFileName'; 
+toneAttrs.setFileName(fileName);
+```
+
+### getUri<sup>12+</sup>
+
+getUri(): string
+
+获取铃声资源路径。
+
+**系统接口：** 该接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.SystemSound.Core
+
+**返回值：**
+
+| 类型    | 说明                                                      |
+|--------|---------------------------------------------------------|
+| string | uri（如：'/data/storage/el2/base/RingTone/alarms/test.ogg'）。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息              |
+|---------| -------------------- |
+| 202     | Caller is not a system application. |
+
+**示例：**
+
+```ts
+toneAttrs.getUri();
+```
+
+### getCustomizedType<sup>12+</sup>
+
+getCustomizedType(): string
+
+获取铃声自定义类型。
+
+**系统接口：** 该接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.SystemSound.Core
+
+**返回值：**
+
+| 类型                                         | 说明      |
+|--------------------------------------------|---------|
+| [ToneCustomizedType](#tonecustomizedtype12) | 定制铃音类型。 |
+
+**错误码：**
+
+| 错误码ID   | 错误信息              |
+|---------| -------------------- |
+| 202     | Caller is not a system application. |
+
+**示例：**
+
+```ts
+toneAttrs.getCustomizedType();
+```
+
+### setCategory<sup>12+</sup>
+
+setCategory(category: number): void
+
+设置铃声类别。
+
+**系统接口：** 该接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.SystemSound.Core
+
+**参数：**
+
+| 参数名      | 类型      | 必填 | 说明       |
+|----------| ---------| ---- |----------|
+| category | number   | 是   | 铃声类别，取值参考[铃声类别的常量](#常量)。  |
+
+**错误码：**
+
+| 错误码ID | 错误信息              |
+|-------| -------------------- |
+| 202   | Caller is not a system application. |
+| 401   | The parameters check failed. |
+
+**示例：**
+
+```ts
+let toneAttrs = systemSoundManager.createCustomizedToneAttrs();
+let categoryValue = systemSoundManager.TONE_CATEGORY_ALARM; // 需更改为实际所需类型常量
+toneAttrs.setCategory(categoryValue);
+```
+
+### getCategory<sup>12+</sup>
+
+getCategory(): string
+
+获取铃声类别。
+
+**系统接口：** 该接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.SystemSound.Core
+
+**返回值：**
+
+| 类型    | 说明     |
+|--------|--------|
+| number | 铃声类别，取值参考[铃声类别的常量](#常量)。 |
+
+**错误码：**
+
+| 错误码ID   | 错误信息              |
+|---------| -------------------- |
+| 202     | Caller is not a system application. |
+
+
+**示例：**
+
+```ts
+toneAttrs.getCategory();
+```
+
+## ToneAttrsArray<sup>12+</sup>
+
+type ToneAttrsArray = Array&lt;[ToneAttrs](#toneattrs12)&gt;
+
+铃音属性数组。
+
+**系统能力：** SystemCapability.Multimedia.SystemSound.Core
+
+| 类型                                    | 说明      |
+|---------------------------------------|---------|
+| Array&lt;[ToneAttrs](#toneattrs12)&gt | 铃音属性数组。 |
+
+## systemSoundManager.createCustomizedToneAttrs<sup>12+</sup>
+
+createCustomizedToneAttrs(): ToneAttrs
+
+创建自定义铃声属性。
+
+**系统接口：** 该接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.SystemSound.Core
+
+**返回值：**
+
+| 类型                        | 说明         |
+|---------------------------| ------------ |
+| [ToneAttrs](#toneattrs12) | 铃声属性类。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
+
+| 错误码ID   | 错误信息              |
+|---------| -------------------- |
+| 202     | Caller is not a system application. |
+
+**示例：**
+```ts
+let toneAttrsInstance: systemSoundManager.ToneAttrs = systemSoundManager.createCustomizedToneAttrs();
+```
 
 ## systemSoundManager.getSystemSoundManager
 
@@ -48,7 +355,7 @@ getSystemSoundManager(): SystemSoundManager
 
 获取系统声音管理器。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.SystemSound.Core
 
@@ -76,7 +383,7 @@ setSystemRingtoneUri(context: Context, uri: string, type: RingtoneType, callback
 > **说明：**
 > 从 API version 10 开始支持，从 API version 11 开始废弃，建议使用[setRingtoneUri](#setringtoneuri11)替代。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.SystemSound.Core
 
@@ -84,7 +391,7 @@ setSystemRingtoneUri(context: Context, uri: string, type: RingtoneType, callback
 
 | 参数名   | 类型                                      | 必填 | 说明                     |
 | -------- | ---------------------------------------- | ---- | ------------------------ |
-| context  | Context                                  | 是   | 当前应用的上下文。           |
+| context  | [Context](../apis-ability-kit/js-apis-inner-application-context.md)   | 是   | 当前应用的上下文。           |
 | uri      | string                                   | 是   | 被设置的系统铃声的uri，资源支持可参考[media.AVPlayer](../apis-media-kit/js-apis-media.md#avplayer9)。 |
 | type     | [RingtoneType](#ringtonetype)            | 是   | 被设置的系统铃声的类型。     |
 | callback | AsyncCallback&lt;void&gt;                | 是   | 回调返回设置成功或失败。     |
@@ -93,6 +400,7 @@ setSystemRingtoneUri(context: Context, uri: string, type: RingtoneType, callback
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import common from '@ohos.app.ability.common';
 
 let context: Context = getContext(this);
 let uri = 'file://data/test.wav'; // 需更改为目标铃声文件的uri
@@ -116,7 +424,7 @@ setSystemRingtoneUri(context: Context, uri: string, type: RingtoneType): Promise
 > **说明：**
 > 从 API version 10 开始支持，从 API version 11 开始废弃，建议使用[setRingtoneUri](#setringtoneuri11)替代。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.SystemSound.Core
 
@@ -124,7 +432,7 @@ setSystemRingtoneUri(context: Context, uri: string, type: RingtoneType): Promise
 
 | 参数名   | 类型                                      | 必填 | 说明                     |
 | -------- | ---------------------------------------- | ---- | ------------------------ |
-| context  | Context                                  | 是   | 当前应用的上下文。         |
+| context  | [Context](../apis-ability-kit/js-apis-inner-application-context.md)  | 是   | 当前应用的上下文。         |
 | uri      | string                                   | 是   | 被设置的系统铃声的uri，资源支持可参考[media.AVPlayer](../apis-media-kit/js-apis-media.md#avplayer9)。 |
 | type     | [RingtoneType](#ringtonetype)            | 是   | 被设置的系统铃声的类型。   |
 
@@ -138,6 +446,7 @@ setSystemRingtoneUri(context: Context, uri: string, type: RingtoneType): Promise
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import common from '@ohos.app.ability.common';
 
 let context: Context = getContext(this);
 let uri = 'file://data/test.wav'; // 需更改为目标铃声文件的uri
@@ -159,22 +468,23 @@ getSystemRingtoneUri(context: Context, type: RingtoneType, callback: AsyncCallba
 > **说明：**
 > 从 API version 10 开始支持，从 API version 11 开始废弃，建议使用[getRingtoneUri](#getringtoneuri11)替代。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.SystemSound.Core
 
 **参数：**
 
-| 参数名   | 类型                                      | 必填 | 说明                     |
-| -------- | ---------------------------------------- | ---- | ------------------------ |
-| context  | Context                                  | 是   | 当前应用的上下文。         |
-| type     | [RingtoneType](#ringtonetype)            | 是   | 待获取的系统铃声的类型。    |
-| callback | AsyncCallback&lt;string&gt;              | 是   | 回调返回获取的系统铃声uri。 |
+| 参数名   | 类型                                                                    | 必填 | 说明                     |
+| -------- |-----------------------------------------------------------------------| ---- | ------------------------ |
+| context  | [Context](../apis-ability-kit/js-apis-inner-application-context.md)   | 是   | 当前应用的上下文。         |
+| type     | [RingtoneType](#ringtonetype)                                         | 是   | 待获取的系统铃声的类型。    |
+| callback | AsyncCallback&lt;string&gt;                                           | 是   | 回调返回获取的系统铃声uri。 |
 
 **示例：**
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import common from '@ohos.app.ability.common';
 
 let context: Context = getContext(this);
 let type: systemSoundManager.RingtoneType = systemSoundManager.RingtoneType.RINGTONE_TYPE_DEFAULT;
@@ -197,16 +507,16 @@ getSystemRingtoneUri(context: Context, type: RingtoneType): Promise&lt;string&gt
 > **说明：**
 > 从 API version 10 开始支持，从 API version 11 开始废弃，建议使用[getRingtoneUri](#getringtoneuri11)替代。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.SystemSound.Core
 
 **参数：**
 
-| 参数名   | 类型                                      | 必填 | 说明                     |
-| -------- | ---------------------------------------- | ---- | ------------------------ |
-| context  | Context                                  | 是   | 当前应用的上下文。         |
-| type     | [RingtoneType](#ringtonetype)            | 是   | 被设置的系统铃声的类型。   |
+| 参数名   | 类型                                                                   | 必填 | 说明                     |
+| -------- |----------------------------------------------------------------------| ---- | ------------------------ |
+| context  | [Context](../apis-ability-kit/js-apis-inner-application-context.md)  | 是   | 当前应用的上下文。         |
+| type     | [RingtoneType](#ringtonetype)                                        | 是   | 被设置的系统铃声的类型。   |
 
 **返回值：**
 
@@ -218,6 +528,7 @@ getSystemRingtoneUri(context: Context, type: RingtoneType): Promise&lt;string&gt
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import common from '@ohos.app.ability.common';
 
 let context: Context = getContext(this);
 let type: systemSoundManager.RingtoneType = systemSoundManager.RingtoneType.RINGTONE_TYPE_DEFAULT;
@@ -238,7 +549,7 @@ getSystemRingtonePlayer(context: Context, type: RingtoneType, callback: AsyncCal
 > **说明：**
 > 从 API version 10 开始支持，从 API version 11 开始废弃，建议使用[getRingtonePlayer](#getringtoneplayer11)替代。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.SystemSound.Core
 
@@ -246,7 +557,7 @@ getSystemRingtonePlayer(context: Context, type: RingtoneType, callback: AsyncCal
 
 | 参数名   | 类型                                      | 必填 | 说明                         |
 | -------- | -----------------------------------------| ---- | --------------------------- |
-| context  | Context                                  | 是   | 当前应用的上下文。            |
+| context  | [Context](../apis-ability-kit/js-apis-inner-application-context.md)  | 是   | 当前应用的上下文。            |
 | type     | [RingtoneType](#ringtonetype)            | 是   | 待获取播放器的系统铃声的类型。 |
 | callback | AsyncCallback&lt;[RingtonePlayer](js-apis-inner-multimedia-ringtonePlayer-sys.md#ringtoneplayer)&gt; | 是 | 回调返回获取的系统铃声播放器。 |
 
@@ -254,6 +565,7 @@ getSystemRingtonePlayer(context: Context, type: RingtoneType, callback: AsyncCal
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import common from '@ohos.app.ability.common';
 
 let context: Context = getContext(this);
 let type: systemSoundManager.RingtoneType = systemSoundManager.RingtoneType.RINGTONE_TYPE_DEFAULT;
@@ -278,16 +590,16 @@ getSystemRingtonePlayer(context: Context, type: RingtoneType): Promise&lt;Ringto
 > **说明：**
 > 从 API version 10 开始支持，从 API version 11 开始废弃，建议使用[getRingtonePlayer](#getringtoneplayer11)替代。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.SystemSound.Core
 
 **参数：**
 
-| 参数名   | 类型                                      | 必填 | 说明                         |
-| -------- | -----------------------------------------| ---- | --------------------------- |
-| context  | Context                                  | 是   | 当前应用的上下文。            |
-| type     | [RingtoneType](#ringtonetype)            | 是   | 待获取播放器的系统铃声的类型。 |
+| 参数名   | 类型                                                                  | 必填 | 说明                         |
+| -------- |---------------------------------------------------------------------| ---- | --------------------------- |
+| context  | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | 是   | 当前应用的上下文。            |
+| type     | [RingtoneType](#ringtonetype)                                       | 是   | 待获取播放器的系统铃声的类型。 |
 
 **返回值：**
 
@@ -299,6 +611,7 @@ getSystemRingtonePlayer(context: Context, type: RingtoneType): Promise&lt;Ringto
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import common from '@ohos.app.ability.common';
 
 let context: Context = getContext(this);
 let type: systemSoundManager.RingtoneType = systemSoundManager.RingtoneType.RINGTONE_TYPE_DEFAULT;
@@ -318,17 +631,17 @@ setRingtoneUri(context: BaseContext, uri: string, type: RingtoneType): Promise&l
 
 设置系统铃声uri，使用Promise方式异步返回结果。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.SystemSound.Core
 
 **参数：**
 
-| 参数名   | 类型                                      | 必填 | 说明                     |
-| -------- | ---------------------------------------- | ---- | ------------------------ |
-| context  | BaseContext                                  | 是   | 当前应用的上下文。         |
-| uri      | string                                   | 是   | 被设置的系统铃声的uri，资源支持可参考[media.AVPlayer](../apis-media-kit/js-apis-media.md#avplayer9)。 |
-| type     | [RingtoneType](#ringtonetype)            | 是   | 被设置的系统铃声的类型。   |
+| 参数名   | 类型                            | 必填 | 说明                     |
+| -------- |-------------------------------| ---- | ------------------------ |
+| context  | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md)            | 是   | 当前应用的上下文。         |
+| uri      | string                        | 是   | 被设置的系统铃声的uri，资源支持可参考[media.AVPlayer](../apis-media-kit/js-apis-media.md#avplayer9)。 |
+| type     | [RingtoneType](#ringtonetype) | 是   | 被设置的系统铃声的类型。   |
 
 **返回值：**
 
@@ -369,16 +682,16 @@ getRingtoneUri(context: BaseContext, type: RingtoneType): Promise&lt;string&gt;
 
 获取系统铃声uri，使用Promise方式异步返回结果。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.SystemSound.Core
 
 **参数：**
 
-| 参数名   | 类型                                      | 必填 | 说明                     |
-| -------- | ---------------------------------------- | ---- | ------------------------ |
-| context  | BaseContext                                  | 是   | 当前应用的上下文。         |
-| type     | [RingtoneType](#ringtonetype)            | 是   | 被设置的系统铃声的类型。   |
+| 参数名   | 类型                             | 必填 | 说明                     |
+| -------- | -------------------------------| ---- | ------------------------ |
+| context  | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md)| 是   | 当前应用的上下文。         |
+| type     | [RingtoneType](#ringtonetype)  | 是   | 被设置的系统铃声的类型。   |
 
 **返回值：**
 
@@ -418,16 +731,16 @@ getRingtonePlayer(context: BaseContext, type: RingtoneType): Promise&lt;Ringtone
 
 获取系统铃声播放器，使用Promise方式异步返回结果。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.SystemSound.Core
 
 **参数：**
 
-| 参数名   | 类型                                      | 必填 | 说明                         |
-| -------- | -----------------------------------------| ---- | --------------------------- |
-| context  | BaseContext                                  | 是   | 当前应用的上下文。            |
-| type     | [RingtoneType](#ringtonetype)            | 是   | 待获取播放器的系统铃声的类型。 |
+| 参数名   | 类型                              | 必填 | 说明                         |
+| -------- | --------------------------------| ---- | --------------------------- |
+| context  | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | 是   | 当前应用的上下文。            |
+| type     | [RingtoneType](#ringtonetype)   | 是   | 待获取播放器的系统铃声的类型。 |
 
 **返回值：**
 
@@ -468,7 +781,7 @@ setSystemToneUri(context: BaseContext, uri: string, type: SystemToneType): Promi
 
 设置系统提示音uri，使用Promise方式异步返回结果。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.SystemSound.Core
 
@@ -476,7 +789,7 @@ setSystemToneUri(context: BaseContext, uri: string, type: SystemToneType): Promi
 
 | 参数名   | 类型                                  | 必填 | 说明                     |
 | -------- |-------------------------------------| ---- | ------------------------ |
-| context  | BaseContext                         | 是   | 当前应用的上下文。         |
+| context  | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | 是   | 当前应用的上下文。         |
 | uri      | string                              | 是   | 被设置的系统提示音的uri，资源支持可参考[media.AVPlayer](../apis-media-kit/js-apis-media.md#avplayer9)。 |
 | type     | [SystemToneType](#systemtonetype11) | 是   | 被设置的系统提示音的类型。   |
 
@@ -519,7 +832,7 @@ getSystemToneUri(context: BaseContext, type: SystemToneType): Promise&lt;string&
 
 获取系统提示音uri，使用Promise方式异步返回结果。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.SystemSound.Core
 
@@ -527,7 +840,7 @@ getSystemToneUri(context: BaseContext, type: SystemToneType): Promise&lt;string&
 
 | 参数名   | 类型                                  | 必填 | 说明                     |
 | -------- |-------------------------------------| ---- | ------------------------ |
-| context  | BaseContext                         | 是   | 当前应用的上下文。         |
+| context  | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | 是   | 当前应用的上下文。         |
 | type     | [SystemToneType](#systemtonetype11) | 是   | 被设置的系统提示音的类型。   |
 
 **返回值：**
@@ -568,7 +881,7 @@ getSystemTonePlayer(context: BaseContext, type: SystemToneType): Promise&lt;Syst
 
 获取系统提示音播放器，使用Promise方式异步返回结果。
 
-**系统接口：** 该接口为系统接口
+**系统接口：** 该接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.SystemSound.Core
 
@@ -576,7 +889,7 @@ getSystemTonePlayer(context: BaseContext, type: SystemToneType): Promise&lt;Syst
 
 | 参数名   | 类型                                  | 必填 | 说明                         |
 | -------- |-------------------------------------| ---- | --------------------------- |
-| context  | BaseContext                         | 是   | 当前应用的上下文。            |
+| context  | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | 是   | 当前应用的上下文。            |
 | type     | [SystemToneType](#systemtonetype11) | 是   | 待获取播放器的系统提示音的类型。 |
 
 **返回值：**
@@ -611,3 +924,693 @@ systemSoundManagerInstance.getSystemTonePlayer(context, type).then((value: syste
   console.error(`Failed to get the system tone player ${err}`);
 });
 ```
+
+### getDefaultRingtoneAttrs<sup>12+</sup>
+
+getDefaultRingtoneAttrs(context: BaseContext, type: RingtoneType): Promise&lt;ToneAttrs&gt;
+
+获取系统铃声的属性，使用Promise方式异步返回结果。
+
+**系统接口：** 该接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.SystemSound.Core
+
+**参数：**
+
+| 参数名   | 类型                                  | 必填 | 说明                         |
+| -------- |-------------------------------------| ---- | --------------------------- |
+| context  |[BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | 是   | 当前应用的上下文。            |
+| type     |[RingtoneType](#ringtonetype)        | 是   | 被设置的系统铃声的类型。  |
+
+**返回值：**
+
+| 类型                                       | 说明                  |
+|------------------------------------------|---------------------|
+| Promise&lt;[ToneAttrs](#toneattrs12)&gt; | Promise回调返回系统铃声的属性。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
+
+| 错误码ID | 错误信息              |
+| ------- | --------------------- |
+| 202 | Caller is not a system application. |
+| 401 | The parameters check failed. |
+| 5400103 | I/O error. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+import common from '@ohos.app.ability.common';
+
+let context: common.BaseContext = getContext(this);
+let type: systemSoundManager.RingtoneType = systemSoundManager.RingtoneType.RINGTONE_TYPE_SIM_CARD_0;
+
+systemSoundManagerInstance.getDefaultRingtoneAttrs(context, type).then((value: systemSoundManager.ToneAttrs) => {
+  console.info(`Promise returned to indicate that the value of the attributes of the default ringtone is obtained.`);
+}).catch ((err: BusinessError) => {
+  console.error(`Failed to get the default ring tone attrs ${err}`);
+});
+```
+
+### getRingtoneAttrList<sup>12+</sup>
+
+getRingtoneAttrList(context: BaseContext, type: RingtoneType): Promise&lt;ToneAttrsArray&gt;
+
+获取系统铃声的属性列表，使用Promise方式异步返回结果。
+
+**系统接口：** 该接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.SystemSound.Core
+
+**参数：**
+
+| 参数名   | 类型                                  | 必填 | 说明                         |
+| -------- |-------------------------------------| ---- | --------------------------- |
+| context  |[BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | 是   | 当前应用的上下文。            |
+| type     |[RingtoneType](#ringtonetype)        | 是   | 被设置的系统铃声的类型。  |
+
+**返回值：**
+
+| 类型                                                 | 说明                    |
+|----------------------------------------------------|-----------------------|
+| Promise&lt;[ToneAttrsArray](#toneattrsarray12)&gt; | Promise回调返回系统铃声的属性列表。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
+
+| 错误码ID | 错误信息              |
+| ------- | --------------------- |
+| 202 | Caller is not a system application. |
+| 401 | The parameters check failed. |
+| 5400103 | I/O error. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+import common from '@ohos.app.ability.common';
+
+let context: common.BaseContext = getContext(this);
+let type: systemSoundManager.RingtoneType = systemSoundManager.RingtoneType.RINGTONE_TYPE_SIM_CARD_0;
+
+systemSoundManagerInstance.getRingtoneAttrList(context, type).then((value: systemSoundManager.ToneAttrsArray) => {
+  console.info(`Promise returned to indicate that the value of the attribute list of ringtone is obtained.`);
+}).catch ((err: BusinessError) => {
+  console.error(`Failed to get the attribute list of ringtone ${err}`);
+});
+```
+
+### getDefaultSystemToneAttrs<sup>12+</sup>
+
+getDefaultSystemToneAttrs(context: BaseContext, type: SystemToneType): Promise&lt;ToneAttrs&gt;
+
+获取系统提示音的属性，使用Promise方式异步返回结果。
+
+**系统接口：** 该接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.SystemSound.Core
+
+**参数：**
+
+| 参数名   | 类型                                                                          | 必填 | 说明                         |
+| -------- |-----------------------------------------------------------------------------| ---- | --------------------------- |
+| context  | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | 是   | 当前应用的上下文。            |
+| type     | [SystemToneType](#systemtonetype11)                                         | 是   | 待获取播放器的系统提示音的类型。 |
+
+**返回值：**
+
+| 类型                                      | 说明                   |
+|-----------------------------------------|----------------------|
+| Promise&lt;[ToneAttrs](#toneattrs12)&gt; | Promise回调返回系统提示音的属性。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
+
+| 错误码ID | 错误信息              |
+| ------- | --------------------- |
+| 202 | Caller is not a system application. |
+| 401 | The parameters check failed. |
+| 5400103 | I/O error. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+import common from '@ohos.app.ability.common';
+
+let context: common.BaseContext = getContext(this);
+let type: systemSoundManager.SystemToneType = systemSoundManager.SystemToneType.SYSTEM_TONE_TYPE_SIM_CARD_0;
+
+systemSoundManagerInstance.getDefaultSystemToneAttrs(context, type).then((value: systemSoundManager.ToneAttrs) => {
+  console.info(`Promise returned to indicate that the value of the attributes of the system ringtone is obtained.`);
+}).catch ((err: BusinessError) => {
+  console.error(`Failed to get the system tone attrs ${err}`);
+});
+```
+
+### getSystemToneAttrList<sup>12+</sup>
+
+getSystemToneAttrList(context: BaseContext, type: SystemToneType): Promise&lt;ToneAttrsArray&gt;
+
+获取系统提示音的属性列表，使用Promise方式异步返回结果。
+
+**系统接口：** 该接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.SystemSound.Core
+
+**参数：**
+
+| 参数名   | 类型                                                                          | 必填 | 说明                         |
+| -------- |-----------------------------------------------------------------------------| ---- | --------------------------- |
+| context  | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | 是   | 当前应用的上下文。            |
+| type     | [SystemToneType](#systemtonetype11)                                         | 是   | 待获取播放器的系统提示音的类型。  |
+
+**返回值：**
+
+| 类型                                                | 说明                     |
+|---------------------------------------------------|------------------------|
+| Promise&lt;[ToneAttrsArray](#toneattrsarray12)&gt; | Promise回调返回系统提示音的属性列表。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
+
+| 错误码ID | 错误信息              |
+| ------- | --------------------- |
+| 202 | Caller is not a system application. |
+| 401 | The parameters check failed. |
+| 5400103 | I/O error. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+import common from '@ohos.app.ability.common';
+
+let context: common.BaseContext = getContext(this);
+let type: systemSoundManager.SystemToneType = systemSoundManager.SystemToneType.SYSTEM_TONE_TYPE_SIM_CARD_0;
+
+systemSoundManagerInstance.getSystemToneAttrList(context, type).then((value: systemSoundManager.ToneAttrsArray) => {
+  console.info(`Promise returned to indicate that the value of the attribute list of system tone is obtained.`);
+}).catch ((err: BusinessError) => {
+  console.error(`Failed to get the attribute list of system tone ${err}`);
+});
+```
+
+### getDefaultAlarmToneAttrs<sup>12+</sup>
+
+getDefaultAlarmToneAttrs(context: BaseContext): Promise&lt;ToneAttrs&gt;
+
+获取系统闹铃的属性，使用Promise方式异步返回结果。
+
+**系统接口：** 该接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.SystemSound.Core
+
+**参数：**
+
+| 参数名   | 类型         | 必填 | 说明        |
+| --------|------------| ---- |-----------|
+| context | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | 是   | 当前应用的上下文。 |
+
+**返回值：**
+
+| 类型                                      | 说明                  |
+|-----------------------------------------|---------------------|
+| Promise&lt;[ToneAttrs](#toneattrs12)&gt; | Promise回调返回系统闹铃的属性。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
+
+| 错误码ID | 错误信息              |
+| ------- | --------------------- |
+| 202 | Caller is not a system application. |
+| 401 | The parameters check failed. |
+| 5400103 | I/O error. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+import common from '@ohos.app.ability.common';
+
+let context: common.BaseContext = getContext(this);
+
+systemSoundManagerInstance.getDefaultAlarmToneAttrs(context).then((value: systemSoundManager.ToneAttrs) => {
+  console.info(`Promise returned to indicate that the value of the attributes of the default alarm tone is obtained.`);
+}).catch ((err: BusinessError) => {
+  console.error(`Failed to get the default alarm tone attrs ${err}`);
+});
+```
+
+### setAlarmToneUri<sup>12+</sup>
+
+setAlarmToneUri(context: Context, uri: string): Promise&lt;void&gt;
+
+设置系统闹铃uri，使用Promise方式异步返回结果。
+
+**系统接口：** 该接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.SystemSound.Core
+
+**参数：**
+
+| 参数名   | 类型        | 必填 | 说明   |
+| -------- | --------- | ---- |--------------------------|
+| context  | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | 是   | 当前应用的上下文。                                                                           |
+| uri      | string    | 是   | 被设置的系统闹铃的uri，资源支持可参考[media.AVPlayer](../apis-media-kit/js-apis-media.md#avplayer9)。 |
+
+**返回值：**
+
+| 类型                | 说明                   |
+| ------------------- |----------------------|
+| Promise&lt;void&gt; | Promise回调返回设置成功或失败。  |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+import common from '@ohos.app.ability.common';
+
+let context: Context = getContext(this);
+let uri = 'file://data/test.wav'; // 需更改为目标铃声文件的uri
+
+systemSoundManagerInstance.setAlarmToneUri(context, uri).then(() => {
+  console.info(`Promise returned to indicate a successful setting of the alarm tone uri.`);
+}).catch ((err: BusinessError) => {
+  console.error(`Failed to set the alarm tone uri ${err}`);
+});
+```
+
+### getAlarmToneUri<sup>12+</sup>
+
+getAlarmToneUri(context: Context): Promise&lt;string&gt;
+
+获取系统当前闹铃uri，使用Promise方式异步返回结果。
+
+**系统接口：** 该接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.SystemSound.Core
+
+**参数：**
+
+| 参数名   | 类型      | 必填 | 说明              |
+| -------- | --------| ---- |-----------------|
+| context  | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | 是   | 当前应用的上下文。  |
+
+**返回值：**
+
+| 类型                    | 说明                    |
+|-----------------------|-----------------------|
+| Promise&lt;string&gt; | Promise回调返回系统当前闹铃uri。 |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+import common from '@ohos.app.ability.common';
+
+let context: Context = getContext(this);
+
+systemSoundManagerInstance.getAlarmToneUri(context).then((value: string) => {
+  console.info(`Promise returned to indicate that the value of alarm tone uri.`);
+}).catch ((err: BusinessError) => {
+  console.error(`Failed to get the alarm tone uri ${err}`);
+});
+```
+
+### getAlarmToneAttrList<sup>12+</sup>
+
+getAlarmToneAttrList(context: BaseContext): Promise&lt;ToneAttrsArray&gt;
+
+获取全部闹铃属性列表，使用Promise方式异步返回结果。
+
+**系统接口：** 该接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.SystemSound.Core
+
+**参数：**
+
+| 参数名   | 类型            | 必填 | 说明                         |
+| -------- |--------------| ---- | --------------------------- |
+| context  | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md)  | 是   | 当前应用的上下文。            |
+
+**返回值：**
+
+| 类型                                                 | 说明                   |
+|----------------------------------------------------|----------------------|
+| Promise&lt;[ToneAttrsArray](#toneattrsarray12)&gt; | Promise回调返回全部闹铃属性列表。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
+
+| 错误码ID | 错误信息              |
+| ------- | --------------------- |
+| 202 | Caller is not a system application. |
+| 401 | The parameters check failed. |
+| 5400103 | I/O error. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+import common from '@ohos.app.ability.common';
+
+let context: common.BaseContext = getContext(this);
+let type: systemSoundManager.SystemToneType = systemSoundManager.SystemToneType.SYSTEM_TONE_TYPE_SIM_CARD_0;
+
+systemSoundManagerInstance.getSystemToneAttrList(context, type).then((value: systemSoundManager.ToneAttrsArray) => {
+  console.info(`Promise returned to indicate that the value of the attribute list of system tone is obtained.`);
+}).catch ((err: BusinessError) => {
+  console.error(`Failed to get the attribute list of system tone ${err}`);
+});
+```
+
+### openAlarmTone<sup>12+</sup>
+
+openAlarmTone(context: Context, uri: string): Promise&lt;number&gt;
+
+打开闹铃文件，使用Promise方式异步返回结果。
+
+**系统接口：** 该接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.SystemSound.Core
+
+**参数：**
+
+| 参数名   | 类型       | 必填 | 说明                                                                                  |
+| -------- | ---------| ---- |-------------------------------------------------------------------------------------|
+| context  | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | 是   | 当前应用的上下文。                                                                           |
+| uri      | string   | 是   | 被设置的系统闹铃的uri，资源支持可参考[media.AVPlayer](../apis-media-kit/js-apis-media.md#avplayer9)。 |
+
+**返回值：**
+
+| 类型                    | 说明             |
+|-----------------------|----------------|
+| Promise&lt;number&gt; | Promise回调返回fd。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
+
+| 错误码ID | 错误信息              |
+| ------- | --------------------- |
+| 202 | Caller is not a system application. |
+| 401 | The parameters check failed. |
+| 5400103 | I/O error. |
+| 20700001 | Tone type mismatch, e.g. tone of uri is notification instead of alarm. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+import common from '@ohos.app.ability.common';
+
+let context: Context = getContext(this);
+let uri = 'file://data/test.wav'; // 需更改为目标铃声文件的uri
+
+systemSoundManagerInstance.openAlarmTone(context, uri).then((value: number) => {
+  console.info(`Promise returned to indicate the value of fd.`);
+}).catch ((err: BusinessError) => {
+  console.error(`Failed to open alarm tone ${err}`);
+});
+```
+
+### close<sup>12+</sup>
+
+close(fd: number): Promise&lt;void&gt;
+
+关闭闹铃文件，使用Promise方式异步返回结果。
+
+**系统接口：** 该接口为系统接口
+
+**系统能力：** SystemCapability.Multimedia.SystemSound.Core
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明          |
+|-----| --------| ---- |-------------|
+| fd  | number  | 是   | 文件描述符。   |
+
+**返回值：**
+
+| 类型                  | 说明             |
+|---------------------|----------------|
+| Promise&lt;void&gt; | Promise回调返回设置成功或失败。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
+
+| 错误码ID | 错误信息              |
+| ------- | --------------------- |
+| 202 | Caller is not a system application. |
+| 401 | The parameters check failed. |
+| 5400103 | I/O error. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+import common from '@ohos.app.ability.common';
+
+let context: Context = getContext(this);
+let fd = 50; // 需更改为目标铃声的fd
+
+systemSoundManagerInstance.close(fd).then(() => {
+  console.info(`Promise returned to indicate that the fd has been close.`);
+}).catch ((err: BusinessError) => {
+  console.error(`Failed to close fd ${err}`);
+});
+```
+
+### addCustomizedTone<sup>12+</sup>
+
+addCustomizedTone(context: BaseContext, toneAttr: ToneAttrs, externalUri: string): Promise&lt;string&gt;
+
+通过铃音uri将自定义铃音添加到铃音库，使用Promise方式异步返回结果。
+
+**系统接口：** 该接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.SystemSound.Core
+
+**参数：**
+
+| 参数名 | 类型        | 必填 | 说明            |
+|-----|-----------| ---- |---------------|
+| context  | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | 是   | 当前应用的上下文。     |
+| toneAttr  | ToneAttrs | 是   | 铃音属性。         |
+| externalUri  | string    | 是   | 外部存储器中的铃音uri。 |
+
+**返回值：**
+
+| 类型                    | 说明                      |
+|-----------------------|-------------------------|
+| Promise&lt;string&gt; | Promise回调返回铃音在铃音库中的uri。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
+
+| 错误码ID   | 错误信息              |
+|---------| -------------------- |
+| 201     | Permission denied. |
+| 202     | Caller is not a system application. |
+| 401     | The parameters check failed. |
+| 5400102     | Operation is not allowed, e.g. ringtone to add is not customized. |
+| 5400103 | I/O error. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+import common from '@ohos.app.ability.common';
+
+let context: Context = getContext(this);
+let title = 'test'; // 需更改为实际名称
+let fileName = 'displayName_test'; // 需更改为实际文件名
+let categoryValue = systemSoundManager.TONE_CATEGORY_ALARM;
+
+let toneAttrs = systemSoundManager.createCustomizedToneAttrs();
+toneAttrs.setTitle(title);
+toneAttrs.setFileName(fileName);
+toneAttrs.setCategory(categoryValue);
+
+let path = 'file://data/test.ogg'; // 需更改为实际铃音uri
+systemSoundManagerInstance.addCustomizedTone(context, toneAttrs, path).then((value: string) => {
+  console.info(`Promise returned to indicate that the value of tone uri in ringtone library.`);
+}).catch ((err: BusinessError) => {
+  console.error(`Failed to add customized tone ${err}`);
+});
+```
+
+### addCustomizedTone<sup>12+</sup>
+
+addCustomizedTone(context: BaseContext, toneAttr: ToneAttrs, fd: number, offset?: number, length?: number): Promise&lt;string&gt;
+
+通过文件描述符fd将自定义铃音添加到铃音库，使用Promise方式异步返回结果。
+
+**系统接口：** 该接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.SystemSound.Core
+
+**参数：**
+
+| 参数名 | 类型        | 必填 | 说明                                     |
+|-----|-----------|----|----------------------------------------|
+| context  | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | 是  | 当前应用的上下文。                              |
+| toneAttr  | ToneAttrs | 是  | 铃音属性。                                  |
+| fd  | number    | 是  | 文件描述符。                                 |
+| offset  | number    | 否  | 读取数据的偏移量（以字节为单位）。默认情况下为0。              |
+| length  | number    | 否  | 读取的数据的长度（以字节为单位）。默认情况下，长度为偏移后的剩余全部字节数。 |
+
+**返回值：**
+
+| 类型                    | 说明                      |
+|-----------------------|-------------------------|
+| Promise&lt;string&gt; | Promise回调返回铃音在铃音库中的uri。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
+
+| 错误码ID   | 错误信息              |
+|---------| -------------------- |
+| 201     | Permission denied. |
+| 202     | Caller is not a system application. |
+| 401     | The parameters check failed. |
+| 5400102     | Operation is not allowed, e.g. ringtone to add is not customized. |
+| 5400103 | I/O error. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+import common from '@ohos.app.ability.common';
+
+let context: Context = getContext(this);
+let title = 'test'; // 需更改为实际名称
+let fileName = 'displayName_test'; // 需更改为实际文件名
+let categoryValue = systemSoundManager.TONE_CATEGORY_ALARM;
+
+let toneAttrs = systemSoundManager.createCustomizedToneAttrs();
+toneAttrs.setTitle(title);
+toneAttrs.setFileName(fileName);
+toneAttrs.setCategory(categoryValue);
+
+let fd = 10; // 需更改为实际铃音fd
+let offset = 0; // 需更改为实际所需偏移量
+let length = 50; // 需更改为实际所需数据长度
+systemSoundManagerInstance.addCustomizedTone(context, toneAttrs, fd, offset, length).then((value: string) => {
+  console.info(`Promise returned to indicate that the value of tone uri in ringtone library.`);
+}).catch ((err: BusinessError) => {
+  console.error(`Failed to add customized tone ${err}`);
+});
+```
+
+### removeCustomizedTone<sup>12+</sup>
+
+removeCustomizedTone(context: BaseContext, uri: string): Promise&lt;void&gt;
+
+从铃音库中删除自定义铃音，使用Promise方式异步返回结果。
+
+**系统接口：** 该接口为系统接口。
+
+**系统能力：** SystemCapability.Multimedia.SystemSound.Core
+
+**参数：**
+
+| 参数名 | 类型        | 必填 | 说明     |
+|-----|-----------| ---- |--------|
+| context  | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | 是   | 当前应用的上下文。 |
+| uri  | string    | 是   | 铃音uri。 |
+
+**返回值：**
+
+| 类型                  | 说明                    |
+|---------------------|-----------------------|
+| Promise&lt;void&gt; | Promise回调返回设置成功或失败。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
+
+| 错误码ID   | 错误信息              |
+|---------| -------------------- |
+| 201     | Permission denied. |
+| 202     | Caller is not a system application. |
+| 401     | The parameters check failed. |
+| 5400102     | Operation is not allowed, e.g. ringtone to add is not customized. |
+| 5400103 | I/O error. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+import common from '@ohos.app.ability.common';
+
+let context: Context = getContext(this);
+let uri = 'file://data/test.wav'; // 需更改为目标铃声文件的uri
+systemSoundManagerInstance.removeCustomizedTone(context, uri).then(() => {
+  console.info(`Promise returned to indicate that the customized tone has been deleted.`);
+}).catch ((err: BusinessError) => {
+  console.error(`Failed to delete customized tone ${err}`);
+});
+```
+
+## RingtonePlayer<sup>10+</sup>
+
+type RingtonePlayer = _RingtonePlayer;
+
+系统铃音播放器对象。
+
+**系统能力：** SystemCapability.Multimedia.SystemSound.Core
+
+| 类型              |说明     |
+|-----------------|-------|
+| _RingtonePlayer | 系统铃音播放器。 |
+
+## SystemTonePlayer<sup>11+</sup>
+
+type SystemTonePlayer = _SystemTonePlayer;
+
+系统提示音播放器对象。
+
+**系统能力：** SystemCapability.Multimedia.SystemSound.Core
+
+| 类型              | 说明        |
+|-----------------|-----------|
+| _SystemTonePlayer | 系统提示音播放器。 |
+
+## RingtoneOptions<sup>10+</sup>
+
+type RingtoneOptions = _RingtoneOptions;
+
+系统铃音播放器配置项。
+
+**系统能力：** SystemCapability.Multimedia.SystemSound.Core
+
+| 类型              | 说明          |
+|-----------------|-------------|
+| _RingtoneOptions | 系统铃音播放器配置项。 |
+
+## SystemToneOptions<sup>11+</sup>
+
+type SystemToneOptions = _SystemToneOptions;
+
+系统提示音播放器配置项。
+
+**系统能力：** SystemCapability.Multimedia.SystemSound.Core
+
+| 类型              | 说明            |
+|-----------------|---------------|
+| _SystemToneOptions | 系统提示音音播放器配置项。 |
+
+
+
