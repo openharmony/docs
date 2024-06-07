@@ -661,7 +661,7 @@ on(type: 'error', callback: ErrorCallback): void
 | 5400103  | I/O error             |
 | 5400104  | Time out              |
 | 5400105  | Service Died.         |
-| 5400106  | Unsupport Format.     |
+| 5400106  | Unsupported Format.     |
 
 **示例：**
 
@@ -763,7 +763,7 @@ prepare(callback: AsyncCallback\<void>): void
 | 错误码ID | 错误信息                                   |
 | -------- | ------------------------------------------ |
 | 5400102  | Operation not allowed. Return by callback. |
-| 5400106  | Unsupport format. Return by callback.      |
+| 5400106  | Unsupported format. Return by callback.      |
 
 **示例：**
 
@@ -802,7 +802,7 @@ prepare(): Promise\<void>
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
 | 5400102  | Operation not allowed. Return by promise. |
-| 5400106  | Unsupport format. Return by promise.      |
+| 5400106  | Unsupported format. Return by promise.      |
 
 **示例：**
 
@@ -3512,7 +3512,7 @@ on(type: 'error', callback: ErrorCallback): void
 | 5400103  | I/O error. Return by callback.             |
 | 5400104  | Time out. Return by callback.              |
 | 5400105  | Service died. Return by callback.          |
-| 5400106  | Unsupport format. Return by callback.      |
+| 5400106  | Unsupported format. Return by callback.      |
 | 5400107  | Audio interrupted. Return by callback.     |
 
 **示例：**
