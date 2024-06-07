@@ -1071,7 +1071,9 @@
             - [踩内存事件介绍](dfx/hiappevent-watcher-address-sanitizer-events.md)
             - [订阅踩内存事件（ArkTS）](dfx/hiappevent-watcher-address-sanitizer-events-arkts.md)
             - [订阅踩内存事件（C/C++）](dfx/hiappevent-watcher-address-sanitizer-events-ndk.md)
+      <!--Del-->
       - [事件上报](dfx/hiappevent-event-reporting.md)
+      <!--DelEnd-->
     - HiTraceMeter使用指导
       - [使用HiTraceMeter跟踪性能（ArkTS/JS）](dfx/hitracemeter-guidelines-arkts.md)
       - [使用HiTraceMeter跟踪性能（C/C++）](dfx/hitracemeter-guidelines-ndk.md)
@@ -1274,7 +1276,6 @@
     - 调试和性能分析
       - [调试和性能分析概述](napi/debug-performance-profiling-overview.md)
       - [通过DevEco Studio调试](napi/debug-ide.md)
-      - [LLDB高性能调试器](napi/debug-lldb.md)
       - [C/C++内存错误检测](napi/debug-asan.md)
     - 硬件兼容性
       - [硬件兼容性简介](napi/hw-guide.md)
@@ -2759,6 +2760,7 @@
       - [@ohos.file.statvfs (文件系统空间统计)](reference/apis-core-file-kit/js-apis-file-statvfs.md)
       - [@ohos.file.storageStatistics (应用空间统计)](reference/apis-core-file-kit/js-apis-file-storage-statistics.md)
       - [@ohos.fileshare (文件分享)](reference/apis-core-file-kit/js-apis-fileShare.md)
+      - [@ohos.file.BackupExtensionContext (备份恢复扩展能力)](reference/apis-core-file-kit/js-apis-file-backupextensioncontext.md)
       <!--Del-->
       - [@ohos.file.backup (备份恢复)(系统接口)](reference/apis-core-file-kit/js-apis-file-backup-sys.md)
       - [@ohos.file.cloudSync (端云同步能力)(系统接口)](reference/apis-core-file-kit/js-apis-file-cloudsync-sys.md)
