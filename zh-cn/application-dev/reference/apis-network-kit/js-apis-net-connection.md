@@ -73,7 +73,6 @@ getDefaultNet(callback: AsyncCallback\<NetHandle>): void
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
-| 401     | Parameter error.             |
 | 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error.         |
 
@@ -152,7 +151,6 @@ getDefaultNetSync(): NetHandle
 | 错误码ID | 错误信息                         |
 | ------- | -------------------------------- |
 | 201     | Permission denied.               |
-| 401     | Parameter error.                 |
 | 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.           |
 
@@ -418,7 +416,6 @@ getAppNet(callback: AsyncCallback\<NetHandle>): void
 
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
-| 401 | Parameter error.|
 | 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
@@ -612,7 +609,6 @@ getAllNets(callback: AsyncCallback&lt;Array&lt;NetHandle&gt;&gt;): void
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
-| 401     | Parameter error.             |
 | 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
@@ -982,7 +978,6 @@ isDefaultNetMetered(callback: AsyncCallback\<boolean>): void
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
-| 401     | Parameter error.               |
 | 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
@@ -1085,7 +1080,6 @@ hasDefaultNet(callback: AsyncCallback\<boolean>): void
 | 错误码ID | 错误信息                          |
 | ------- | --------------------------------- |
 | 201     | Permission denied.                |
-| 401     | Parameter error.                  |
 | 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error.            |
 
@@ -1615,7 +1609,6 @@ clearCustomDnsRules(callback: AsyncCallback\<void\>): void
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
-| 401     | Parameter error.               |
 | 2100001 | Invalid parameter value.                |
 | 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error.         |
@@ -1745,7 +1738,6 @@ unregister(callback: AsyncCallback\<void>): void
 | 错误码ID | 错误信息                          |
 | ------- | --------------------------------- |
 | 201     | Permission denied.                |
-| 401     | Parameter error.                  |
 | 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error.            |
 | 2101007 | The callback does not exist.      |
