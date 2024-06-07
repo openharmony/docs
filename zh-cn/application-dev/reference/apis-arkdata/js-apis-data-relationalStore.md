@@ -6671,11 +6671,11 @@ if(store != undefined) {
 
 ### detach<sup>12+</sup>
 
+detach(attachName: string, waitTime?: number) : Promise&lt;number&gt;
+
 将附加的数据库从当前数据库中分离。
 
 当所有的附加的数据库被分离后，数据库会重新切换为WAL模式。
-
-detach(attachName: string, waitTime?: number) : Promise&lt;number&gt;
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
