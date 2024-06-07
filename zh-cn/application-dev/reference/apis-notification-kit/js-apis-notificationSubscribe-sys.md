@@ -42,7 +42,7 @@ subscribe(subscriber: NotificationSubscriber, info: NotificationSubscribeInfo, c
 | -------- | ----------------------------------- |
 | 201      | The application dose not have permission to call the interface.     |  
 | 202      | not system app.                                      |  
-| 401      | parameter error.                                     |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -101,7 +101,7 @@ subscribe(subscriber: NotificationSubscriber, callback: AsyncCallback\<void\>): 
 | -------- | ----------------------------------- |
 | 201      | The application dose not have permission to call the interface.     |  
 | 202      | not system app.                                      |  
-| 401      | parameter error.                                     |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -163,7 +163,7 @@ subscribe(subscriber: NotificationSubscriber, info?: NotificationSubscribeInfo):
 | -------- | ----------------------------------- |
 | 201      | The application dose not have permission to call the interface.     |  
 | 202      | not system app.                                      |  
-| 401      | parameter error.                                     |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -218,7 +218,7 @@ subscribeSelf(subscriber: NotificationSubscriber): Promise\<void\>
 | -------- | ----------------------------------- |
 | 201      | The application dose not have permission to call the interface.     |  
 | 202      | not system app.                                      |  
-| 401      | parameter error.                                     |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -271,7 +271,7 @@ unsubscribe(subscriber: NotificationSubscriber, callback: AsyncCallback\<void\>)
 | -------- | ----------------------------------- |
 | 201      | The application dose not have permission to call the interface.     |  
 | 202      | not system app.                                      |  
-| 401      | parameter error.                                     |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -329,7 +329,7 @@ unsubscribe(subscriber: NotificationSubscriber): Promise\<void\>
 | -------- | ----------------------------------- |
 | 201      | The application dose not have permission to call the interface.     |  
 | 202      | not system app.                                      |  
-| 401      | parameter error.                                     |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -381,7 +381,7 @@ remove(bundle: BundleOption, notificationKey: NotificationKey, reason: RemoveRea
 | -------- | ---------------------------------------- |
 | 201      | The application dose not have permission to call the interface.     |  
 | 202      | not system app.                                      |  
-| 401      | parameter error.                                     |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
@@ -448,7 +448,7 @@ remove(bundle: BundleOption, notificationKey: NotificationKey, reason: RemoveRea
 | -------- | ---------------------------------------- |
 | 201      | The application dose not have permission to call the interface.     |  
 | 202      | not system app.                                      |  
-| 401      | parameter error.                                     |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
@@ -504,7 +504,7 @@ remove(hashCode: string, reason: RemoveReason, callback: AsyncCallback\<void\>):
 | -------- | ----------------------------------- |
 | 201      | The application dose not have permission to call the interface.     |  
 | 202      | not system app.                                      |  
-| 401      | parameter error.                                     |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -560,7 +560,7 @@ remove(hashCode: string, reason: RemoveReason): Promise\<void\>
 | -------- | ----------------------------------- |
 | 201      | The application dose not have permission to call the interface.     |  
 | 202      | not system app.                                      |  
-| 401      | parameter error.                                     |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -608,7 +608,7 @@ remove(hashCodes: Array\<String\>, reason: RemoveReason, callback: AsyncCallback
 | -------- | ----------------------------------- |
 | 201      | The application dose not have permission to call the interface.     |  
 | 202      | not system app.                                      |  
-| 401      | parameter error.                                     |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -663,7 +663,7 @@ remove(hashCodes: Array\<String\>, reason: RemoveReason): Promise\<void\>
 | -------- | ----------------------------------- |
 | 201      | The application dose not have permission to call the interface.     |  
 | 202      | not system app.                                      |  
-| 401      | parameter error.                                     |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -709,7 +709,7 @@ removeAll(bundle: BundleOption, callback: AsyncCallback\<void\>): void
 | -------- | ---------------------------------------- |
 | 201      | The application dose not have permission to call the interface.     |  
 | 202      | not system app.                                      |  
-| 401      | parameter error.                                     |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
@@ -759,7 +759,7 @@ removeAll(callback: AsyncCallback\<void\>): void
 | -------- | ----------------------------------- |
 | 201      | The application dose not have permission to call the interface.     |  
 | 202      | not system app.                                      |  
-| 401      | parameter error.                                     |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -811,7 +811,7 @@ removeAll(bundle?: BundleOption): Promise\<void\>
 | -------- | ---------------------------------------- |
 | 201      | The application dose not have permission to call the interface.     |  
 | 202      | not system app.                                      |  
-| 401      | parameter error.                                     |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
@@ -857,7 +857,7 @@ removeAll(userId: number, callback: AsyncCallback\<void>): void
 | -------- | ----------------------------------- |
 | 201      | The application dose not have permission to call the interface.     |  
 | 202      | not system app.                                      |  
-| 401      | parameter error.                                     |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -905,7 +905,7 @@ removeAll(userId: number): Promise\<void>
 | -------- | ----------------------------------- |
 | 201      | The application dose not have permission to call the interface.     |  
 | 202      | not system app.                                      |  
-| 401      | parameter error.                                     |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
