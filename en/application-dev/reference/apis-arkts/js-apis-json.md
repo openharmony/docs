@@ -56,6 +56,14 @@ Parses a JSON string into an ArkTS object or null.
 | -------- | -------- |
 | Object \| null | ArkTS object or null (if null is passed in).|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```ts
@@ -87,6 +95,14 @@ Converts an ArkTS object or array into a JSON string.
 | Type| Description|
 | -------- | -------- |
 | string | JSON string after conversion.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -122,6 +138,14 @@ Converts an ArkTS object or array into a JSON string.
 | Type| Description|
 | -------- | -------- |
 | string | JSON string after conversion.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -164,6 +188,14 @@ Checks whether an ArkTS object contains a key. This API can be used for related 
 | -------- | -------- |
 | boolean | **true**: The ArkTS object contains the key.<br>**false**: The ArkTS object does not contain the key.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
 **Example**
 
 ```ts
@@ -188,6 +220,14 @@ Removes a key from an ArkTS object. This API can be used for related operations 
 | -------- | -------- | -------- | -------- |
 | obj | object | Yes| ArkTS object.|
 | property | string | Yes| Key to remove.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **Example**
 
