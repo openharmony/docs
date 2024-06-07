@@ -30,6 +30,8 @@ AVCastPicker()
 
 除支持[通用属性](../apis-arkui/arkui-ts/ts-universal-attributes-size.md)外，还支持以下属性：
 
+| 名称 | 参数类型 | 必填 | 装饰器修饰类型 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
 | normalColor<sup>11+</sup> | Color &#124; number &#124; string | 否 | @Prop | 指正常状态下投播组件的颜色。 |
 | activeColor<sup>11+</sup> | Color &#124; number &#124; string | 否 | @Prop | 指设备切换成功状态下投播组件的颜色。 |
 | pickerStyle<sup>12+</sup> | [AVCastPickerStyle](js-apis-avCastPickerParam.md#avcastpickerstyle12) | 否 | @Prop | 投播样式。 |
