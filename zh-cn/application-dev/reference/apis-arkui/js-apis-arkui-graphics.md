@@ -245,6 +245,8 @@ struct Index {
 
 用于设置边框的属性。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称   | 类型 | 可读 | 可写 | 说明             |
@@ -257,6 +259,8 @@ struct Index {
 ## LengthUnit<sup>12+</sup>
 
 长度属性单位枚举。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -273,6 +277,8 @@ struct Index {
 SizeT\<T>
 
 用于设置宽高的属性。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -296,6 +302,8 @@ SizeT\<T>
 
 用于设置长度属性，当长度单位为[PERCENT](arkui-ts/ts-types.md#percentage10)时，值为1表示100%。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **属性：**
@@ -311,6 +319,8 @@ constructor(value: number, unit?: LengthUnit)
 
 LengthMetrics的构造函数。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -325,6 +335,8 @@ LengthMetrics的构造函数。
 px(value: number): LengthMetrics
 
 用于生成单位为PX的长度属性。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -346,6 +358,8 @@ vp(value: number): LengthMetrics
 
 用于生成单位为VP的长度属性。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -365,6 +379,8 @@ vp(value: number): LengthMetrics
 fp(value: number): LengthMetrics
 
 用于生成单位为FP的长度属性。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -386,6 +402,8 @@ percent(value: number): LengthMetrics
 
 用于生成单位为PERCENT的长度属性。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -406,6 +424,8 @@ lpx(value: number): LengthMetrics
 
 用于生成单位为LPX的长度属性。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -425,6 +445,8 @@ lpx(value: number): LengthMetrics
 resource(value: Resource): LengthMetrics
 
 用于生成Resource类型资源的长度属性。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

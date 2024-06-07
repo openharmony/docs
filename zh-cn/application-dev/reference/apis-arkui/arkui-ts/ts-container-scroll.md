@@ -710,6 +710,8 @@ getItemRect(index: number): RectResult
 
 ## ScrollPageOptions<sup>12+</sup>对象说明
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 | 参数名    | 参数类型 | 必填 | 参数描述                                                     |
 | --------- | -------- | ---- | ------------------------------------------------------------ |
 | next      | boolean  | 是   | 是否向下翻页。true表示向下翻页，false表示向上翻页。          |
