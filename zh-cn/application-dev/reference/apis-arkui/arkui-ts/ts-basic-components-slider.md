@@ -263,7 +263,7 @@ trackBorderRadius(value: Length)
 
 ### selectedBorderRadius<sup>12+</sup>
 
-selectedBorderRadius(value: Length)
+selectedBorderRadius(value: Dimension)
 
 设置已滑动部分（高亮）圆角半径。
 

@@ -388,7 +388,7 @@ privacySensitive(supported: boolean)
 
 ### enhancedImageQuality<sup>12+</sup>
 
-enhancedImageQuality(value: ResolutionQuality)
+enhancedImageQuality(imageQuality: ResolutionQuality)
 
 设置图像解码时图像解码分辨率选项。
 
@@ -400,7 +400,7 @@ enhancedImageQuality(value: ResolutionQuality)
 
 | 参数名 | 类型                                    | 必填 | 说明                             |
 | ------ | --------------------------------------- | ---- | -------------------------------- |
-| value  | [ResolutionQuality](#resolutionquality12) | 是   | 图像解码分辨率质量。 |
+| imageQuality | [ResolutionQuality](#resolutionquality12) | 是   | 图像解码分辨率质量。 |
 
 ### dynamicRangeMode<sup>12+</sup>
 
