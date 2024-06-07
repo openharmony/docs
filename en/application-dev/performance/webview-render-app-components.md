@@ -11,7 +11,7 @@ Currently, there are two solutions to use native components on the web:
 Solution 1: Directly stack components on HTML5 pages. 
 Solution 2: Use rendering at the same layer and use the web and native component interaction mode to replace some components in the web, improving interaction experience and performance.
 
-## What Is Same-Layer Rendering?
+## What Is Same-Layer Rendering
 
 Same-layer rendering is an optimization technology used to improve the rendering performance of web pages. In same-layer rendering, elements at the same layer are rendered together to reduce the number of redrawing and rearrangement times and improve the page rendering efficiency.
 
