@@ -1643,6 +1643,8 @@ getDisplayName(locale?: string, isDST?: boolean): string
 
 获取时区对象的本地化表示。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.I18n
 
 **参数：**

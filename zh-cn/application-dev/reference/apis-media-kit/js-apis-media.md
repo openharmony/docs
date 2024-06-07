@@ -6244,6 +6244,8 @@ setMimeType(mimeType: AVMimeTypes): void
 
 设置媒体MIME类型，以帮助播放器处理扩展的媒体源。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名   | 类型     | 必填 | 说明                 |
@@ -6253,6 +6255,8 @@ setMimeType(mimeType: AVMimeTypes): void
 ## AVMimeTypes<sup>12+</sup>
 
 媒体MIME类型，通过[setMimeType](#setmimetype12)设置。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Media.Core
 
