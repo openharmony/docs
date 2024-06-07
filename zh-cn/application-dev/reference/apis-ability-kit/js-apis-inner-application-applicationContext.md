@@ -45,6 +45,7 @@ on(type: 'abilityLifecycle', callback: AbilityLifecycleCallback): number
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
 import AbilityLifecycleCallback from '@ohos.app.ability.AbilityLifecycleCallback';
+import { BusinessError } from '@ohos.base';
 
 let lifecycleId: number;
 
@@ -86,8 +87,12 @@ export default class EntryAbility extends UIAbility {
         }
         // 1.通过context属性获取applicationContext
         let applicationContext = this.context.getApplicationContext();
-        // 2.通过applicationContext注册监听应用内生命周期
-        lifecycleId = applicationContext.on('abilityLifecycle', AbilityLifecycleCallback);
+        try {
+            // 2.通过applicationContext注册监听应用内生命周期
+            lifecycleId = applicationContext.on('abilityLifecycle', AbilityLifecycleCallback);
+        } catch (paramError) {
+            console.error(`error: ${(paramError as BusinessError).code}, ${(paramError as BusinessError).message}`);
+        }
         console.log(`registerAbilityLifecycleCallback lifecycleId: ${lifecycleId}`);
     }
 }
@@ -115,6 +120,7 @@ off(type: 'abilityLifecycle', callbackId: number,  callback: AsyncCallback\<void
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@ohos.base';
 
 let lifecycleId: number;
 
@@ -122,13 +128,17 @@ export default class EntryAbility extends UIAbility {
     onDestroy() {
         let applicationContext = this.context.getApplicationContext();
         console.log(`stage applicationContext: ${applicationContext}`);
-        applicationContext.off('abilityLifecycle', lifecycleId, (error, data) => {
-            if (error) {
-                console.error(`unregisterAbilityLifecycleCallback fail, err: ${JSON.stringify(error)}`);    
-            } else {
-                console.log(`unregisterAbilityLifecycleCallback success, data: ${JSON.stringify(data)}`);
-            }
-        });
+        try {
+            applicationContext.off('abilityLifecycle', lifecycleId, (error, data) => {
+                if (error) {
+                    console.error(`unregisterAbilityLifecycleCallback fail, err: ${JSON.stringify(error)}`);    
+                } else {
+                    console.log(`unregisterAbilityLifecycleCallback success, data: ${JSON.stringify(data)}`);
+                }
+            });
+        } catch (paramError) {
+            console.error(`error: ${(paramError as BusinessError).code}, ${(paramError as BusinessError).message}`);
+        }
     }
 }
 ```
@@ -160,6 +170,7 @@ off(type: 'abilityLifecycle', callbackId: number): Promise\<void>
 
 ```ts
 import Ability from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@ohos.base';
 
 let lifecycleId: number;
 
@@ -167,7 +178,11 @@ export default class MyAbility extends Ability {
     onDestroy() {
         let applicationContext = this.context.getApplicationContext();
         console.log(`stage applicationContext: ${applicationContext}`);
-        applicationContext.off('abilityLifecycle', lifecycleId);
+        try {
+            applicationContext.off('abilityLifecycle', lifecycleId);
+        } catch (paramError) {
+            console.error(`error: ${(paramError as BusinessError).code}, ${(paramError as BusinessError).message}`);
+        }
     }
 }
 ```
@@ -200,6 +215,7 @@ on(type: 'environment', callback: EnvironmentCallback): number
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
 import EnvironmentCallback from '@ohos.app.ability.EnvironmentCallback';
+import { BusinessError } from '@ohos.base';
 
 let callbackId: number;
 
@@ -216,8 +232,12 @@ export default class EntryAbility extends UIAbility {
         };
         // 1.获取applicationContext
         let applicationContext = this.context.getApplicationContext();
-        // 2.通过applicationContext注册监听系统环境变化
-        callbackId = applicationContext.on('environment', environmentCallback);
+        try {
+            // 2.通过applicationContext注册监听系统环境变化
+            callbackId = applicationContext.on('environment', environmentCallback);
+        } catch (paramError) {
+            console.error(`error: ${(paramError as BusinessError).code}, ${(paramError as BusinessError).message}`);
+        }
         console.log(`registerEnvironmentCallback callbackId: ${callbackId}`);
     }
 }
@@ -245,19 +265,24 @@ off(type: 'environment', callbackId: number,  callback: AsyncCallback\<void>): v
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@ohos.base';
 
 let callbackId: number;
 
 export default class EntryAbility extends UIAbility {
     onDestroy() {
         let applicationContext = this.context.getApplicationContext();
-        applicationContext.off('environment', callbackId, (error, data) => {
-            if (error) {
-                console.error(`unregisterEnvironmentCallback fail, err: ${JSON.stringify(error)}`);
-            } else {
-                console.log(`unregisterEnvironmentCallback success, data: ${JSON.stringify(data)}`);
-            }
-        });
+        try {
+            applicationContext.off('environment', callbackId, (error, data) => {
+                if (error) {
+                    console.error(`unregisterEnvironmentCallback fail, err: ${JSON.stringify(error)}`);
+                } else {
+                    console.log(`unregisterEnvironmentCallback success, data: ${JSON.stringify(data)}`);
+                }
+            });
+        } catch (paramError) {
+            console.error(`error: ${(paramError as BusinessError).code}, ${(paramError as BusinessError).message}`);
+        }
     }
 }
 ```
@@ -289,13 +314,18 @@ off(type: 'environment', callbackId: number): Promise\<void\>
 
 ```ts
 import Ability from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@ohos.base';
 
 let callbackId: number;
 
 export default class MyAbility extends Ability {
     onDestroy() {
         let applicationContext = this.context.getApplicationContext();
-        applicationContext.off('environment', callbackId);
+        try {
+            applicationContext.off('environment', callbackId);
+        } catch (paramError) {
+            console.error(`error: ${(paramError as BusinessError).code}, ${(paramError as BusinessError).message}`);
+        }
     }
 }
 ```
@@ -322,6 +352,7 @@ on(type: 'applicationStateChange', callback: ApplicationStateChangeCallback): vo
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
 import ApplicationStateChangeCallback from '@ohos.app.ability.ApplicationStateChangeCallback';
+import { BusinessError } from '@ohos.base';
 
 export default class MyAbility extends UIAbility {
     onCreate() {
@@ -337,8 +368,12 @@ export default class MyAbility extends UIAbility {
 
         // 1.获取applicationContext
         let applicationContext = this.context.getApplicationContext();
-        // 2.通过applicationContext注册应用前后台状态监听
-        applicationContext.on('applicationStateChange', applicationStateChangeCallback);
+        try {
+            // 2.通过applicationContext注册应用前后台状态监听
+            applicationContext.on('applicationStateChange', applicationStateChangeCallback);
+        } catch (paramError) {
+            console.error(`error: ${(paramError as BusinessError).code}, ${(paramError as BusinessError).message}`);
+        }
         console.log('Resgiter applicationStateChangeCallback');
     }
 }
@@ -365,11 +400,16 @@ off(type: 'applicationStateChange', callback?: ApplicationStateChangeCallback): 
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@ohos.base';
 
 export default class MyAbility extends UIAbility {
     onDestroy() {
         let applicationContext = this.context.getApplicationContext();
-        applicationContext.off('applicationStateChange');
+        try {
+            applicationContext.off('applicationStateChange');
+        } catch (paramError) {
+            console.error(`error: ${(paramError as BusinessError).code}, ${(paramError as BusinessError).message}`);
+        }
     }
 }
 ```

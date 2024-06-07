@@ -63,6 +63,7 @@ onMemoryLevel(level: AbilityConstant.MemoryLevel): void
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
 import EnvironmentCallback from '@ohos.app.ability.EnvironmentCallback';
+import { BusinessError } from '@ohos.base';
 
 let callbackId: number;
 
@@ -80,20 +81,28 @@ export default class MyAbility extends UIAbility {
         };
         // 1.获取applicationContext
         let applicationContext = this.context.getApplicationContext();
-        // 2.通过applicationContext注册监听应用内生命周期
-        callbackId = applicationContext.on('environment', environmentCallback);
+        try {
+            // 2.通过applicationContext注册监听应用内生命周期
+            callbackId = applicationContext.on('environment', environmentCallback);
+        } catch (paramError) {
+            console.error(`error: ${(paramError as BusinessError).code}, ${(paramError as BusinessError).message}`);
+        }
         console.log(`registerEnvironmentCallback number: ${JSON.stringify(callbackId)}`);
     }
 
     onDestroy() {
         let applicationContext = this.context.getApplicationContext();
-        applicationContext.off('environment', callbackId, (error, data) => {
-            if (error && error.code !== 0) {
-                console.error(`unregisterEnvironmentCallback fail, error: ${JSON.stringify(error)}`);
-            } else {
-                console.log(`unregisterEnvironmentCallback success, data: ${JSON.stringify(data)}`);
-            }
-        });
+        try {
+            applicationContext.off('environment', callbackId, (error, data) => {
+                if (error && error.code !== 0) {
+                    console.error(`unregisterEnvironmentCallback fail, error: ${JSON.stringify(error)}`);
+                } else {
+                    console.log(`unregisterEnvironmentCallback success, data: ${JSON.stringify(data)}`);
+                }
+            });
+        } catch (paramError) {
+            console.error(`error: ${(paramError as BusinessError).code}, ${(paramError as BusinessError).message}`);
+        }
     }
 }
 ```
