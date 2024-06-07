@@ -5448,6 +5448,46 @@ close(): void
 
 关闭自定义键盘。
 
+### onAdsBlocked<sup>12+</sup>
+
+onAdsBlocked(callback: OnAdsBlockedCallback)
+
+一个页面发生广告过滤后，通过此回调接口通知过滤的详细信息。由于页面可能随时发生变化并不断产生网络请求，为了减少通知频次、降低对页面加载过程的影响，仅在页面加载完成时进行首次通知，此后发生的过滤将间隔1秒钟上报，无广告过滤则无通知。
+
+**参数：**
+
+| 参数名          | 类型                                                                         | 说明                    |
+| -------------- | --------------------------------------------------------------------------- | ---------------------- |
+| callback       | [OnAdsBlockedCallback](#onadsblockedcallback12) | onAdsBlocked的回调。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
+  @Entry
+  @Component
+  struct WebComponent {
+    @State totalAdsBlockCounts: number = 0;
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+
+    build() {
+      Column() {
+        Web({ src: 'https://www.example.com', controller: this.controller })
+        .onAdsBlocked((details: AdsBlockedDetails) => {
+          if (details) {
+            console.log(' Blocked ' + details.adsBlocked.length + ' in ' + details.url)
+            let adList: Array<string> = Array.from(new Set(details.adsBlocked))
+            this.totalAdsBlockCounts += adList.length;
+            console.log('Total blocked counts :' + this.totalAdsBlockCounts)
+          }
+        })
+      }
+    }
+  }
+  ```
+
 ## ConsoleMessage
 
 Web组件获取控制台信息对象。示例代码参考[onConsole事件](#onconsole)。
@@ -7949,3 +7989,23 @@ type OnViewportFitChangedCallback = (viewportFit: ViewportFit) => void
 | methodList | Array\<string\>                          | 是    | 参与注册的应用侧JavaScript对象的同步方法。                 |
 | controller | [WebviewController<sup>9+</sup>](js-apis-webview.md#webviewcontroller) \| [WebController](#webcontroller) | 是    | -    | 控制器。从API Version 9开始，WebController不再维护，建议使用WebviewController替代。 |
 | asyncMethodList<sup>12+</sup>  | Array\<string\>      | 否    | 参与注册的应用侧JavaScript对象的异步方法。异步方法无法获取返回值。   |
+
+## AdsBlockedDetails<sup>12+</sup>
+
+发生广告拦截时，广告资源信息。
+
+| 名称 | 类型                                                                          | 描述                    |
+| ------- | -------------------------------------------------------------------------------- | ------------------------- |
+| url | string  | 发生广告过滤的页面url。 |
+| adsBlocked | Array\<string\>  | 被过滤的资源的url或dompath标识，被过滤的多个对象url相同则可能出现重复元素。 |
+
+## OnAdsBlockedCallback<sup>12+</sup>
+
+type OnAdsBlockedCallback = (details: AdsBlockedDetails) => void
+
+当页面发生广告过滤时触发此回调。
+**参数：**
+
+| 参数名               | 参数类型                                        | 参数描述                         |
+| -------------------- | ----------------------------------------------- | -------------------------------- |
+| details | [AdsBlockedDetails](#adsblockeddetails12) | 发生广告拦截时，广告资源信息。 |
