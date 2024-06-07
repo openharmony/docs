@@ -246,6 +246,7 @@ EGL初始化成功之后，需要确定可用渲染表面的类型和配置，�
 
 - 也可以使用eglGetConfigs查询支持的所有配置，并使用eglGetConfigAttrib筛选需要的配置。
   以下提供使用此种方法得到满足需求的配置，具体可见示例：
+
   ```cpp
   #include <EGL/egl.h>
   #include <iostream>
@@ -289,39 +290,36 @@ EGL初始化成功之后，需要确定可用渲染表面的类型和配置，�
                            EGLint config_size, // configs的数组大小
                            EGLint *num_config);// 得到的EGL所有可用配置数量
   ```
-eglGetConfigs接口有以下两种用法：
-
-  - 当我们传递configs为nullptr时，接口会返回EGL_TRUE，并将得到的EGL所有可用配置数量保存在num_config中，这时即可根据得到的数量初始化configs来保存这些配置了，具体见如上代码。
-
-  - 当传递configs数组接受所有配置时，将得到所有配置并保存在configs，这样即可得到所有的可用配置，接下来可以根据具体需求筛选一组config保存下来。
-
-
-    ```cpp
-    // 选择合适的配置
-    EGLConfig chosenConfig = nullptr;
-        for (const auto& config : configs) {
-            EGLint redSize, greenSize, blueSize;
-            eglGetConfigAttrib(display, config, EGL_RED_SIZE, &redSize);
-            eglGetConfigAttrib(display, config, EGL_GREEN_SIZE, &greenSize);
-            eglGetConfigAttrib(display, config, EGL_BLUE_SIZE, &blueSize);
-            if (redSize == 8 && greenSize == 8 && blueSize == 6) {
-                chosenConfig = config;
-                break;
-            }
-        }
-    ```
-
-
-    如上所示遍历configs每个配置 ，使用eglGetConfigAttrib查询该配置下特定属性的值，将该值保存在第4个参数中，并判断值是否是自己需要的，如果需要则保存该配置，以待使用。调用成功则返EGL_TRUE，调用失败则返回EGL_FALSE。 如果返回EGL_FALSE，可以使用eglGetError查询失败的原因，如果返回EGL_BAD ATTRIBUTE则attribute不是有效的属性。
-
-    ```cpp
-    EGLBoolean eglGetConfigAttrib(EGLDisplay display, //EGL 显示连接句柄，标识了要进行配置选择的显示连接
-                                    EGLConfig config,  //EGLConfig 对象，表示要查询的 EGL 配置
-                                    EGLint attribute,  //EGLint 类型的属性标识符，表示要查询的属性
-                                    EGLint *value);    //指向 EGLint 类型变量的指针，用于存储查询到的属性值。
-    ```
-
   
+   eglGetConfigs接口有以下两种用法：
+  
+  - 当我们传递configs为nullptr时，接口会返回EGL_TRUE，并将得到的EGL所有可用配置数量保存在num_config中，这时即可根据得到的数量初始化configs来保存这些配置了，具体见如上代码。
+  - 当传递configs数组接受所有配置时，将得到所有配置并保存在configs，这样即可得到所有的可用配置，接下来可以根据具体需求筛选一组config保存下来。
+  
+  ```cpp
+  // 选择合适的配置
+     EGLConfig chosenConfig = nullptr;
+         for (const auto& config : configs) {
+             EGLint redSize, greenSize, blueSize;
+             eglGetConfigAttrib(display, config, EGL_RED_SIZE, &redSize);
+             eglGetConfigAttrib(display, config, EGL_GREEN_SIZE, &greenSize);
+             eglGetConfigAttrib(display, config, EGL_BLUE_SIZE, &blueSize);
+             if (redSize == 8 && greenSize == 8 && blueSize == 6) {
+                 chosenConfig = config;
+                 break;
+             }
+         }
+  ```
+  
+  如上所示遍历configs每个配置 ，使用eglGetConfigAttrib查询该配置下特定属性的值，将该值保存在第4个参数中，并判断值是否是自己需要的，如果需要则保存该配置，以待使用。调用成功则返EGL_TRUE，调用失败则返回EGL_FALSE。 如果返回EGL_FALSE，可以使用eglGetError查询失败的原因，如果返回EGL_BAD ATTRIBUTE则attribute不是有效的属性。
+  
+  ```cpp
+  EGLBoolean eglGetConfigAttrib(EGLDisplay display, //EGL 显示连接句柄，标识了要进行配置选择的显示连接
+                                     EGLConfig config,  //EGLConfig 对象，表示要查询的 EGL 配置
+                                     EGLint attribute,  //EGLint 类型的属性标识符，表示要查询的属性
+                                     EGLint *value);    //指向 EGLint 类型变量的指针，用于存储查询到的属性值。
+  ```
+
 
 ### 使用eglCreateWindowSurface创建窗口表面
 
@@ -429,7 +427,7 @@ glClear函数用于清除指定的缓冲区。参数mask指定需要清除的缓
 - GL_DEPTH_BUFFER_BIT：清除深度缓冲区。
 - GL_STENCIL_BUFFER_BIT：清除模板缓冲区。
 
-当调用glClear(GL_COLOR_BUFFER_BIT),清除了颜色缓冲区，并用之前glClearColor设置的颜色填充整个缓冲区。清除颜色缓冲区是在开始绘制新帧之前的一个常见操作，这可以确保屏幕上的每个像素都被初始化为指定的颜色值，以便绘制新的图像。也是绘制新帧的准备工作，类似于在画布上涂上底色，以便开始新的绘画。
+可调用glClear(GL_COLOR_BUFFER_BIT)清除颜色缓冲区，并用之前glClearColor设置的颜色填充整个缓冲区。清除颜色缓冲区是在开始绘制新帧之前的一个常见操作，这可以确保屏幕上的每个像素都被初始化为指定的颜色值，以便绘制新的图像。也是绘制新帧的准备工作，类似于在画布上涂上底色，以便开始新的绘画。
 
 ### 定义顶点数据
 ```cpp
@@ -507,28 +505,42 @@ const char* fragmentShaderSource = R"(
 ```
 在 OpenGL ES渲染管线中，以下步骤描述了从顶点数据到最终像素输出的整个过程：
 1. 顶点着色器处理。
-首先，将缓冲区中的顶点数据传入顶点着色器程序。在顶点着色器中进行以下操作：
+
+   首先，将缓冲区中的顶点数据传入顶点着色器程序。在顶点着色器中进行以下操作：
+   
    - 矩阵转换：使用用模型视图矩阵（MV矩阵）和投影矩阵（透视矩阵）对顶点位置进行变换。
    - 照明计算：根据光照公式计算顶点的颜色或其他属性。
+   
 2. 图元装配。
-顶点着色器处理后的顶点数据被送入图元装配阶段：在这个阶段，将顶点数据组装成几何图元，例如点、线段或三角形。
+
+   顶点着色器处理后的顶点数据被送入图元装配阶段：在这个阶段，将顶点数据组装成几何图元，例如点、线段或三角形。
+
 3. 光栅化。
-接下来，进行光栅化，将几何图元（例如三角形）转换为屏幕上的像素集合。这个过程包括插值：如果顶点设置了颜色或其他属性，光栅化阶段会对这些属性进行线性插值，生成片段（像素）数据。
+
+   接下来，进行光栅化，将几何图元（例如三角形）转换为屏幕上的像素集合。这个过程包括插值：如果顶点设置了颜色或其他属性，光栅化阶段会对这些属性进行线性插值，生成片段（像素）数据。
+
 4. 片段着色器处理。 
-光栅化输出的片段数据作为片段着色器的输入变量。在片段着色器中进行以下操作：
+
+   光栅化输出的片段数据作为片段着色器的输入变量。在片段着色器中进行以下操作：
+
    - 光照计算：计算片段的光照效果。
-   - 纹理采样：从纹理中获取颜色数据。
-   - 颜色混合：结合光照和纹理数据生成新的颜色、深度和屏幕坐标位置等。
+     - 纹理采样：从纹理中获取颜色数据。
+     - 颜色混合：结合光照和纹理数据生成新的颜色、深度和屏幕坐标位置等。
+
 5. 逐片段操作。
-片段着色器的输出被送入逐片段操作阶段，包括：
+
+   片段着色器的输出被送入逐片段操作阶段，包括：
+
    - 像素归属测试：确定片段是否属于当前绘制的像素区域。
-   - 剪裁测试：确定片段是否在可视区域内。
-   - 模板测试：使用模板缓冲区进行测试。
-   - 深度测试：比较片段的深度值，以确定其是否可见。
-   - 混合：将新计算的颜色与帧缓冲区中已有的颜色进行混合。
-   - 抖动：减少颜色量化误差，在原始图像上添加小的、随机或有序的噪声，使得颜色的量化误差在空间上被分散，而不是集中在某些特定的区域。
-6. 写入帧缓冲区  
-经过上述所有测试和处理后，最终的片段数据被写入帧缓冲区，形成最终显示在屏幕上的图像。
+     - 剪裁测试：确定片段是否在可视区域内。
+     - 模板测试：使用模板缓冲区进行测试。
+     - 深度测试：比较片段的深度值，以确定其是否可见。
+     - 混合：将新计算的颜色与帧缓冲区中已有的颜色进行混合。
+     - 抖动：减少颜色量化误差，在原始图像上添加小的、随机或有序的噪声，使得颜色的量化误差在空间上被分散，而不是集中在某些特定的区域。
+
+6. 写入帧缓冲区。
+
+  经过上述所有测试和处理后，最终的片段数据被写入帧缓冲区，形成最终显示在屏幕上的图像。
 ### 创建着色器程序，使用着色器程序
 ```cpp
    GLuint vertexShader, fragmentShader, shaderProgram;
