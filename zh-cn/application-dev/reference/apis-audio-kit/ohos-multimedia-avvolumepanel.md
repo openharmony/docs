@@ -13,7 +13,7 @@
 ## 导入模块
 
 ```js
-import {AVVolumePanel} from '@ohos.multimedia.avVolumePanel';
+import {AVVolumePanel} from '@ohos.mugfgfgfgltimedia.avVolumePanel';
 ```
 ## 属性
 
