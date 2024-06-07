@@ -15,6 +15,8 @@ import systemSoundManager from '@ohos.multimedia.systemSoundManager';
 
 ## 常量
 
+**系统接口：** 该接口为系统接口。
+
 **系统能力：** SystemCapability.Multimedia.SystemSound.Core
 
 | 名称                                      | 值   | 说明      |
@@ -69,7 +71,7 @@ import systemSoundManager from '@ohos.multimedia.systemSoundManager';
 
 ## ToneAttrs<sup>12+</sup>
 
-管理铃声属性。在调用ToneAttrs<sup>12+</sup>的接口前，需要先通过[createCustomizedToneAttrs](#systemsoundmanagercreatecustomizedtoneattrs-sup-12-sup)创建实例。
+管理铃声属性。在调用ToneAttrs<sup>12+</sup>的接口前，需要先通过[createCustomizedToneAttrs](#systemsoundmanagercreatecustomizedtoneattrs12)创建实例。
 
 ### getTitle<sup>12+</sup>
 
@@ -125,6 +127,7 @@ setTitle(title: string): void
 **示例：**
 
 ```ts
+let toneAttrs = systemSoundManager.createCustomizedToneAttrs();
 let title = 'text';
 toneAttrs.setTitle(title);
 ```
@@ -184,6 +187,7 @@ setFileName(name: string): void
 **示例：**
 
 ```ts
+let toneAttrs = systemSoundManager.createCustomizedToneAttrs();
 let fileName = 'textFileName'; 
 toneAttrs.setFileName(fileName);
 ```
@@ -228,9 +232,9 @@ getCustomizedType(): string
 
 **返回值：**
 
-| 类型                                                   | 说明      |
-|------------------------------------------------------|---------|
-| [ToneCustomizedType](#tonecustomizedtype-sup-12-sup) | 定制铃音类型。 |
+| 类型                                         | 说明      |
+|--------------------------------------------|---------|
+| [ToneCustomizedType](#tonecustomizedtype12) | 定制铃音类型。 |
 
 **错误码：**
 
@@ -258,7 +262,7 @@ setCategory(category: number): void
 
 | 参数名      | 类型      | 必填 | 说明       |
 |----------| ---------| ---- |----------|
-| category | number   | 是   | 铃声的类型常量。 |
+| category | number   | 是   | 铃声类别，取值参考[铃声类别的常量](#常量)。  |
 
 **错误码：**
 
@@ -270,6 +274,7 @@ setCategory(category: number): void
 **示例：**
 
 ```ts
+let toneAttrs = systemSoundManager.createCustomizedToneAttrs();
 let categoryValue = systemSoundManager.TONE_CATEGORY_ALARM; // 需更改为实际所需类型常量
 toneAttrs.setCategory(categoryValue);
 ```
@@ -288,7 +293,7 @@ getCategory(): string
 
 | 类型    | 说明     |
 |--------|--------|
-| number | 铃声的类别。 |
+| number | 铃声类别，取值参考[铃声类别的常量](#常量)。 |
 
 **错误码：**
 
@@ -305,15 +310,15 @@ toneAttrs.getCategory();
 
 ## ToneAttrsArray<sup>12+</sup>
 
-type ToneAttrsArray = Array&lt;[ToneAttrs](#toneattrs-sup-12-sup)&gt;
+type ToneAttrsArray = Array&lt;[ToneAttrs](#toneattrs12)&gt;
 
 铃音属性数组。
 
 **系统能力：** SystemCapability.Multimedia.SystemSound.Core
 
-| 类型             | 说明      |
-|----------------|---------|
-| Array&lt;[ToneAttrs](#toneattrs-sup-12-sup)&gt | 铃音属性数组。 |
+| 类型                                    | 说明      |
+|---------------------------------------|---------|
+| Array&lt;[ToneAttrs](#toneattrs12)&gt | 铃音属性数组。 |
 
 ## systemSoundManager.createCustomizedToneAttrs<sup>12+</sup>
 
@@ -327,9 +332,9 @@ createCustomizedToneAttrs(): ToneAttrs
 
 **返回值：**
 
-| 类型                      | 说明         |
-|-------------------------| ------------ |
-| [ToneAttrs](#toneattrs-sup-12-sup) | 铃声属性类。 |
+| 类型                        | 说明         |
+|---------------------------| ------------ |
+| [ToneAttrs](#toneattrs12) | 铃声属性类。 |
 
 **错误码：**
 
@@ -395,6 +400,7 @@ setSystemRingtoneUri(context: Context, uri: string, type: RingtoneType, callback
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import common from '@ohos.app.ability.common';
 
 let context: Context = getContext(this);
 let uri = 'file://data/test.wav'; // 需更改为目标铃声文件的uri
@@ -440,6 +446,7 @@ setSystemRingtoneUri(context: Context, uri: string, type: RingtoneType): Promise
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import common from '@ohos.app.ability.common';
 
 let context: Context = getContext(this);
 let uri = 'file://data/test.wav'; // 需更改为目标铃声文件的uri
@@ -477,6 +484,7 @@ getSystemRingtoneUri(context: Context, type: RingtoneType, callback: AsyncCallba
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import common from '@ohos.app.ability.common';
 
 let context: Context = getContext(this);
 let type: systemSoundManager.RingtoneType = systemSoundManager.RingtoneType.RINGTONE_TYPE_DEFAULT;
@@ -520,6 +528,7 @@ getSystemRingtoneUri(context: Context, type: RingtoneType): Promise&lt;string&gt
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import common from '@ohos.app.ability.common';
 
 let context: Context = getContext(this);
 let type: systemSoundManager.RingtoneType = systemSoundManager.RingtoneType.RINGTONE_TYPE_DEFAULT;
@@ -556,6 +565,7 @@ getSystemRingtonePlayer(context: Context, type: RingtoneType, callback: AsyncCal
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import common from '@ohos.app.ability.common';
 
 let context: Context = getContext(this);
 let type: systemSoundManager.RingtoneType = systemSoundManager.RingtoneType.RINGTONE_TYPE_DEFAULT;
@@ -601,6 +611,7 @@ getSystemRingtonePlayer(context: Context, type: RingtoneType): Promise&lt;Ringto
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import common from '@ohos.app.ability.common';
 
 let context: Context = getContext(this);
 let type: systemSoundManager.RingtoneType = systemSoundManager.RingtoneType.RINGTONE_TYPE_DEFAULT;
@@ -933,9 +944,9 @@ getDefaultRingtoneAttrs(context: BaseContext, type: RingtoneType): Promise&lt;To
 
 **返回值：**
 
-| 类型                                                | 说明                  |
-|---------------------------------------------------|---------------------|
-| Promise&lt;[ToneAttrs](#toneattrs-sup-12-sup)&gt; | Promise回调返回系统铃声的属性。 |
+| 类型                                       | 说明                  |
+|------------------------------------------|---------------------|
+| Promise&lt;[ToneAttrs](#toneattrs12)&gt; | Promise回调返回系统铃声的属性。 |
 
 **错误码：**
 
@@ -982,9 +993,9 @@ getRingtoneAttrList(context: BaseContext, type: RingtoneType): Promise&lt;ToneAt
 
 **返回值：**
 
-| 类型                                               | 说明                    |
-|--------------------------------------------------|-----------------------|
-| Promise&lt;[ToneAttrsArray](#toneattrsarray-sup-12-sup)&gt; | Promise回调返回系统铃声的属性列表。 |
+| 类型                                                 | 说明                    |
+|----------------------------------------------------|-----------------------|
+| Promise&lt;[ToneAttrsArray](#toneattrsarray12)&gt; | Promise回调返回系统铃声的属性列表。 |
 
 **错误码：**
 
@@ -1024,16 +1035,16 @@ getDefaultSystemToneAttrs(context: BaseContext, type: SystemToneType): Promise&l
 
 **参数：**
 
-| 参数名   | 类型                                           | 必填 | 说明                         |
-| -------- |----------------------------------------------| ---- | --------------------------- |
+| 参数名   | 类型                                                                          | 必填 | 说明                         |
+| -------- |-----------------------------------------------------------------------------| ---- | --------------------------- |
 | context  | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | 是   | 当前应用的上下文。            |
-| type     | [SystemToneType](#systemtonetype-sup-11-sup) | 是   | 待获取播放器的系统提示音的类型。 |
+| type     | [SystemToneType](#systemtonetype11)                                         | 是   | 待获取播放器的系统提示音的类型。 |
 
 **返回值：**
 
-| 类型                                                | 说明                   |
-|---------------------------------------------------|----------------------|
-| Promise&lt;[ToneAttrs](#toneattrs-sup-12-sup)&gt; | Promise回调返回系统提示音的属性。 |
+| 类型                                      | 说明                   |
+|-----------------------------------------|----------------------|
+| Promise&lt;[ToneAttrs](#toneattrs12)&gt; | Promise回调返回系统提示音的属性。 |
 
 **错误码：**
 
@@ -1073,16 +1084,16 @@ getSystemToneAttrList(context: BaseContext, type: SystemToneType): Promise&lt;To
 
 **参数：**
 
-| 参数名   | 类型                                  | 必填 | 说明                         |
-| -------- |-------------------------------------| ---- | --------------------------- |
+| 参数名   | 类型                                                                          | 必填 | 说明                         |
+| -------- |-----------------------------------------------------------------------------| ---- | --------------------------- |
 | context  | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | 是   | 当前应用的上下文。            |
-| type     | [SystemToneType](#systemtonetype-sup-11-sup) | 是   | 待获取播放器的系统提示音的类型。  |
+| type     | [SystemToneType](#systemtonetype11)                                         | 是   | 待获取播放器的系统提示音的类型。  |
 
 **返回值：**
 
-| 类型                                                          | 说明                     |
-|-------------------------------------------------------------|------------------------|
-| Promise&lt;[ToneAttrsArray](#toneattrsarray-sup-12-sup)&gt; | Promise回调返回系统提示音的属性列表。 |
+| 类型                                                | 说明                     |
+|---------------------------------------------------|------------------------|
+| Promise&lt;[ToneAttrsArray](#toneattrsarray12)&gt; | Promise回调返回系统提示音的属性列表。 |
 
 **错误码：**
 
@@ -1128,9 +1139,9 @@ getDefaultAlarmToneAttrs(context: BaseContext): Promise&lt;ToneAttrs&gt;
 
 **返回值：**
 
-| 类型                                                | 说明                  |
-|---------------------------------------------------|---------------------|
-| Promise&lt;[ToneAttrs](#toneattrs-sup-12-sup)&gt; | Promise回调返回系统闹铃的属性。 |
+| 类型                                      | 说明                  |
+|-----------------------------------------|---------------------|
+| Promise&lt;[ToneAttrs](#toneattrs12)&gt; | Promise回调返回系统闹铃的属性。 |
 
 **错误码：**
 
@@ -1184,6 +1195,7 @@ setAlarmToneUri(context: Context, uri: string): Promise&lt;void&gt;
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import common from '@ohos.app.ability.common';
 
 let context: Context = getContext(this);
 let uri = 'file://data/test.wav'; // 需更改为目标铃声文件的uri
@@ -1221,6 +1233,7 @@ getAlarmToneUri(context: Context): Promise&lt;string&gt;
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import common from '@ohos.app.ability.common';
 
 let context: Context = getContext(this);
 
@@ -1249,9 +1262,9 @@ getAlarmToneAttrList(context: BaseContext): Promise&lt;ToneAttrsArray&gt;
 
 **返回值：**
 
-| 类型                                                          | 说明                   |
-|-------------------------------------------------------------|----------------------|
-| Promise&lt;[ToneAttrsArray](#toneattrsarray-sup-12-sup)&gt; | Promise回调返回全部闹铃属性列表。 |
+| 类型                                                 | 说明                   |
+|----------------------------------------------------|----------------------|
+| Promise&lt;[ToneAttrsArray](#toneattrsarray12)&gt; | Promise回调返回全部闹铃属性列表。 |
 
 **错误码：**
 
@@ -1317,6 +1330,7 @@ openAlarmTone(context: Context, uri: string): Promise&lt;number&gt;
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import common from '@ohos.app.ability.common';
 
 let context: Context = getContext(this);
 let uri = 'file://data/test.wav'; // 需更改为目标铃声文件的uri
@@ -1364,6 +1378,7 @@ close(fd: number): Promise&lt;void&gt;
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import common from '@ohos.app.ability.common';
 
 let context: Context = getContext(this);
 let fd = 50; // 需更改为目标铃声的fd
@@ -1415,6 +1430,7 @@ addCustomizedTone(context: BaseContext, toneAttr: ToneAttrs, externalUri: string
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import common from '@ohos.app.ability.common';
 
 let context: Context = getContext(this);
 let title = 'test'; // 需更改为实际名称
@@ -1476,6 +1492,7 @@ addCustomizedTone(context: BaseContext, toneAttr: ToneAttrs, fd: number, offset?
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import common from '@ohos.app.ability.common';
 
 let context: Context = getContext(this);
 let title = 'test'; // 需更改为实际名称
@@ -1536,6 +1553,7 @@ removeCustomizedTone(context: BaseContext, uri: string): Promise&lt;void&gt;
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import common from '@ohos.app.ability.common';
 
 let context: Context = getContext(this);
 let uri = 'file://data/test.wav'; // 需更改为目标铃声文件的uri
