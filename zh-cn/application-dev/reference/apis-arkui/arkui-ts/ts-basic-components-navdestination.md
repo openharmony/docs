@@ -83,6 +83,11 @@ mode(value: NavDestinationMode)
 
 backButtonIcon(value: ResourceStr | PixelMap | SymbolGlyphModifier)
 
+> **说明：**
+>
+> 不支持通过SymbolGlyphModifier对象的fontSize属性修改图标大小、effectStrategy属性修改动效、symbolEffect属性修改动效类型。
+
+
 设置标题栏返回键图标。
 
 **元服务API：** 从API version 12开始，该接口支持在元服务中使用。
@@ -98,6 +103,11 @@ backButtonIcon(value: ResourceStr | PixelMap | SymbolGlyphModifier)
 ### menus<sup>12+</sup>
 
 menus(value: Array&lt;NavigationMenuItem&gt; | CustomBuilder)
+
+> **说明：**
+>
+> 不支持通过SymbolGlyphModifier对象的fontSize属性修改图标大小、effectStrategy属性修改动效、symbolEffect属性修改动效类型。
+
 
 设置页面右上角菜单。不设置时不显示菜单项。使用Array<[NavigationMenuItem](ts-basic-components-navigation.md#navigationmenuitem类型说明)&gt; 写法时，竖屏最多支持显示3个图标，横屏最多支持显示5个图标，多余的图标会被放入自动生成的更多图标。
 
