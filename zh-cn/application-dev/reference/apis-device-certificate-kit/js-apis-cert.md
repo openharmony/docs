@@ -174,7 +174,7 @@ buffer数组的列表。
 
 **系统能力：** SystemCapability.Security.Cert
 
-| 参数名           | 类型                              | 必填 | 说明               |
+| 名称           | 类型                              | 必填 | 说明               |
 | -------------- | --------------------------------- | ---- | ------------------ |
 | type | [GeneralNameType](#generalname12)    | 是 |  指定具体的证书主体类型。  |
 | name | Uint8Array    | 是  |  指定具体的证书主体DER格式内容。  |
@@ -187,7 +187,7 @@ buffer数组的列表。
 
 **系统能力：** SystemCapability.Security.Cert
 
-| 参数名           | 类型                              | 必填 | 说明               |
+| 名称           | 类型                              | 必填 | 说明               |
 | -------------- | --------------------------------- | ---- | ------------------ |
 | x509Cert | [X509Cert](#x509cert)    | 否 |  指定具体的证书对象。  |
 | validDate | string    | 否  |  指定证书有效期。  |
@@ -215,7 +215,7 @@ buffer数组的列表。
 
 **系统能力：** SystemCapability.Security.Cert
 
-| 参数名           | 类型                              | 必填 | 说明               |
+| 名称           | 类型                              | 必填 | 说明               |
 | -------------- | --------------------------------- | ---- | ------------------ |
 | issuer | Array\<Uint8Array> | 否  | 指定颁发者作为过滤条件, 至少要匹配到其中一个issuer。 |
 | x509Cert | [X509Cert](#x509cert) | 否  | 指定具体的证书对象作为过滤条件, 判断该证书是否在CRL列表中。 |
@@ -231,7 +231,7 @@ buffer数组的列表。
 
 **系统能力：** SystemCapability.Security.Cert
 
-| 参数名           | 类型                              | 必填 | 说明               |
+| 名称           | 类型                              | 必填 | 说明               |
 | -------------- | --------------------------------- | ---- | ------------------ |
 | certMatchParameters | [X509CertMatchParameters](#x509certmatchparameters11) | 是  | 指定过滤条件。 |
 | maxLength | number | 否  | 指定最终证书链中CA证书的最大长度。 |
@@ -245,7 +245,7 @@ buffer数组的列表。
 
 **系统能力：** SystemCapability.Security.Cert
 
-| 参数名           | 类型                              | 必填 | 说明               |
+| 名称           | 类型                              | 必填 | 说明               |
 | -------------- | --------------------------------- | ---- | ------------------ |
 | certChain | [X509CertChain](#x509certchain11) | 是  | 生成的证书链对象。 |
 | validationResult | [CertChainValidationResult](#certchainvalidationresult11) | 是  | 指定最终证书链的最大长度。 |
@@ -320,7 +320,7 @@ buffer数组的列表。
 
 **系统能力：** SystemCapability.Security.Cert
 
-| 参数名         | 类型                                              | 必填 | 说明                                   |
+| 名称         | 类型                                              | 必填 | 说明                                   |
 | ------------ | ------------------------------------------------- | ---- | -------------------------------------- |
 | ocspRequestExtension | Array\<Uint8Array> | 否   | 表示发送OCSP请求的扩展字段。|
 | ocspResponderURI | string | 否   | 表示用于OCSP请求的备选服务器URL地址，支持HTTP/HTTPS，具体配置由与服务器协商决定。 |
@@ -338,7 +338,7 @@ buffer数组的列表。
 
 **系统能力：** SystemCapability.Security.Cert
 
-| 参数名         | 类型                                              | 必填 | 说明                                   |
+| 名称         | 类型                                              | 必填 | 说明                                   |
 | ------------ | ------------------------------------------------- | ---- | -------------------------------------- |
 | date         | string                                            | 否   | 表示需要校验证书的有效期。             |
 | trustAnchors | Array\<[X509TrustAnchor](#x509trustanchor11)>     | 是   | 表示信任锚列表。                       |
