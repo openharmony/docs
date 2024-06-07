@@ -1003,12 +1003,15 @@
       - [获取视频缩略图](media/media/avimagegenerator.md)
   - Media Library Kit（媒体文件管理服务）
     - [Media Library Kit 简介](media/medialibrary/photoAccessHelper-overview.md)
-    - [开发准备](media/medialibrary/photoAccessHelper-preparation.md)
-    - [媒体资源使用指导](media/medialibrary/photoAccessHelper-resource-guidelines.md)
-    - [用户相册资源使用指导](media/medialibrary/photoAccessHelper-userAlbum-guidelines.md)
-    - [系统相册资源使用指导](media/medialibrary/photoAccessHelper-systemAlbum-guidelines.md)
-    - [媒体资源变更通知相关指导](media/medialibrary/photoAccessHelper-notify-guidelines.md)
-    - [使用MediaAssetManager请求图片资源(C/C++)](media/medialibrary/using-ndk-mediaassetmanager-for-request-resource.md)
+    - [使用Picker选择媒体库资源](media/medialibrary/photoAccessHelper-photoviewpicker.md)
+    - [使用安全控件保存媒体库资源](media/medialibrary/photoAccessHelper-savebutton.md)
+    - 受限开放能力
+      - [开发准备](media/medialibrary/photoAccessHelper-preparation.md)
+      - [媒体资源使用指导](media/medialibrary/photoAccessHelper-resource-guidelines.md)
+      - [用户相册资源使用指导](media/medialibrary/photoAccessHelper-userAlbum-guidelines.md)
+      - [系统相册资源使用指导](media/medialibrary/photoAccessHelper-systemAlbum-guidelines.md)
+      - [媒体资源变更通知相关指导](media/medialibrary/photoAccessHelper-notify-guidelines.md)
+      - [使用MediaAssetManager请求图片资源(C/C++)](media/medialibrary/using-ndk-mediaassetmanager-for-request-resource.md)
   - MindSpore Lite Kit（昇思推理框架服务）
     - [MindSpore Lite Kit简介](ai/mindspore/MindSpore-Lite-Kit-Introduction.md)
     - [使用MindSpore Lite开发AI应用](ai/mindspore/mindspore-guidelines-based-js.md)

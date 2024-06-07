@@ -38,9 +38,9 @@ Picker由系统独立进程实现，应用可以通过拉起Picker组件，用�
 
 使用照片Picker（PhotoViewPicker）可访问、保存公共目录的图片或视频文件。
 
-- 在应用需要申请权限**ohos.permission.READ_IMAGEVIDEO**以访问用户公共目录的图片或视频文件时，可以使用PhotoViewPicker替代，使用方式请参考：[选择媒体库资源](../../media/medialibrary/photoAccessHelper-resource-guidelines.md#使用picker选择媒体库资源)。
+- 在应用需要申请权限**ohos.permission.READ_IMAGEVIDEO**以访问用户公共目录的图片或视频文件时，可以使用PhotoViewPicker替代，使用方式请参考：[使用Picker选择媒体库资源](../../media/medialibrary/photoAccessHelper-photoviewpicker.md)。
 
-- 在应用需要申请权限**ohos.permission.WRITE_IMAGEVIDEO**以修改用户公共目录的图片或视频文件时，可以使用FilePicker中的PhotoViewPicker替代，使用方式请参考：[保存图片或视频类文件](../../file-management/save-user-file.md#保存图片或视频类文件)。
+- 在应用需要申请权限**ohos.permission.WRITE_IMAGEVIDEO**以保存用户公共目录的图片或视频文件时，可以使用安全控件替代，使用方式请参考：[使用安全控件创建媒体资源](../../media/medialibrary/photoAccessHelper-savebutton.md)。
 
 ## 联系人Picker
 
@@ -52,7 +52,7 @@ Picker由系统独立进程实现，应用可以通过拉起Picker组件，用�
 
 使用相机Picker （Camera Picker）可实现拍照、录制。
 
-在应用需要申请权限**ohos.permission.CAMERA**以使用相机时，可以使用Camera Picker替代，使用方式请参考：[cameraPicker.pick](../../reference/apis-camera-kit/js-apis-cameraPicker.md#pick)。
+在应用需要申请权限**ohos.permission.CAMERA**以使用相机时，可以使用Camera Picker替代，使用方式请参考：[cameraPicker.pick](../../reference/apis-camera-kit/js-apis-cameraPicker.md)。
 
 <!--RP2-->
 <!--RP2End-->
