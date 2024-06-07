@@ -119,7 +119,7 @@ HiTrace通信模式枚举
 ### HiTrace_Flag
 
 ```
-typedef enum HiTrace_FlagHi Trace_Flag
+typedef enum HiTrace_Flag HiTrace_Flag
 ```
 
 **描述**
