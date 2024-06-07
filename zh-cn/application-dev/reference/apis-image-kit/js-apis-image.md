@@ -3187,13 +3187,14 @@ getImageProperties(key: Array&#60;PropertyKey&#62;): Promise<Record<PropertyKey,
 
 ```ts
 import image from "@ohos.multimedia.image";
+import { BusinessError } from '@ohos.base';
 
 let key = [image.PropertyKey.IMAGE_WIDTH, image.PropertyKey.IMAGE_LENGTH];
 imageSourceApi.getImageProperties(key).then((data) => {
     console.info(JSON.stringify(data));
     })
-    .catch((error) => {
-        console.error(error);
+    .catch((err: BusinessError) => {
+        console.error(JSON.stringify(err));
     });
 ```
 
@@ -3357,19 +3358,19 @@ modifyImageProperties(records: Record<PropertyKey, string|null>): Promise\<void>
 
 ```ts
 import image from "@ohos.multimedia.image";
+import { BusinessError } from '@ohos.base';
 
-let key = {image.PropertyKey.IMAGE_WIDTH:"1024", image.PropertyKey.IMAGE_LENGTH:"2048"};
+let key: Record<PropertyKey, string|null> = {'ImageWidth':"1024", 'ImageLength':"2048"};
 let checkKey = [image.PropertyKey.IMAGE_WIDTH, image.PropertyKey.IMAGE_LENGTH];
 imageSourceApi.modifyImageProperties(key).then(() => {
     imageSourceApi.getImageProperties(checkKey).then((data) => {
         console.info(JSON.stringify(data));
-        })
-        .catch((err) => {
-            console.error(err);});
-        })
-    .catch((err) => {
-        console.error(err);
-    });
+        }).catch((err: BusinessError) => {
+            console.error(JSON.stringify(err));
+            });
+        }).catch((err: BusinessError) => {
+           console.error(JSON.stringify(err));
+        });
 ```
 
 ### updateData<sup>9+</sup>
