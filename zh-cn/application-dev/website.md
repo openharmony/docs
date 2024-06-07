@@ -387,7 +387,9 @@
           - [导航转场](ui/arkts-navigation-transition.md)
           - [模态转场](ui/arkts-modal-transition.md)
           - [共享元素转场](ui/arkts-shared-element-transition.md)
+          - [旋转屏动画增强](ui/arkts-rotation-transition-animation.md)
           - [页面转场动画 (不推荐)](ui/arkts-page-transition-animation.md)
+        - [粒子动画](ui/arkts-particle-animation.md)
         - [组件动画](ui/arkts-component-animation.md)
         - 动画曲线
           - [动画曲线概述](ui/arkts-curve-overview.md)
@@ -411,6 +413,14 @@
           - [单一手势](ui/arkts-gesture-events-single-gesture.md)
           - [组合手势](ui/arkts-gesture-events-combined-gestures.md)
           - [多层级手势事件](ui/arkts-gesture-events-multi-level-gesture.md)
+      - 使用自定义能力
+        - [自定义能力概述](ui/arkts-user-defined.md)
+        - 自定义节点
+          - [自定义节点概述](ui/arkts-user-defined-node.md)
+          - [自定义占位节点](ui/arkts-user-defined-place-hoder.md)
+          - [FrameNode](ui/arkts-user-defined-arktsNode-frameNode.md)
+          - [RenderNode](ui/arkts-user-defined-arktsNode-renderNode.md)
+          - [BuilderNode](ui/arkts-user-defined-arktsNode-builderNode.md)
       - 主题设置
         - [设置主题换肤](ui/theme_skinning.md)
     - UI开发 (兼容JS的类Web开发范式)
