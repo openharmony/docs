@@ -126,6 +126,8 @@ let modePosition:componentUtils.ComponentInfo = componentUtils.getRectangleById(
 
 ### Matrix4Result
 
+type Matrix4Result = [number,number,number,number,number,number,number,number,number,number,number,number,number,number,number,number]
+
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
