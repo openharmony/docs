@@ -685,9 +685,9 @@ onScroll(event: (scrollOffset: number, scrollState: [ScrollState](ts-container-l
 | scrollState | [ScrollState](ts-container-list.md#scrollstate枚举说明) | 是 | 当前滑动状态。 |
 
 ### onWillScroll<sup>12+</sup> 
-onWillScroll(handler: OnScrollCallback)
+onWillScroll(handler: Optional&lt;OnWillScrollCallback&gt;)
 
-网格滑动前触发，返回当前帧将要滑动的偏移量和当前滑动状态。返回的偏移量为计算得到的将要滑动的偏移量值，并非最终实际滑动偏移。
+网格滑动前触发，回调当前帧将要滑动的偏移量，当前滑动状态和滑动操作来源。其中回调的偏移量为计算得到的将要滑动的偏移量值，并非最终实际滑动偏移。可以通过该回调返回值指定网格将要滑动的偏移。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -695,7 +695,7 @@ onWillScroll(handler: OnScrollCallback)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ------ | ------ | ------|
-| handler | [OnScrollCallback](ts-container-list.md#onscrollcallback对象说明) | 是 | 网格滑动时触发的回调。 |
+| handler | Optional&lt;[OnWillScrollCallback](ts-container-list.md#onwillscrollcallback12)&gt; | 是 | 网格滑动前触发的回调。 |
 
 > **说明：** 
 > 

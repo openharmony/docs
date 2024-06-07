@@ -785,9 +785,9 @@ onScroll(event: (scrollOffset: number, scrollState: [ScrollState](#scrollstate�
 | scrollState | [ScrollState](ts-container-list.md#scrollstate枚举说明) | 是 | 当前滑动状态。 |
 
 ### onWillScroll<sup>12+</sup>
-onWillScroll(handler: OnScrollCallback)
+onWillScroll(handler: Optional&lt;OnWillScrollCallback&gt;)
 
-列表滑动前触发。返回当前帧将要滑动的偏移量和当前滑动状态。返回的偏移量为计算得到的将要滑动的偏移量值，并非最终实际滑动偏移。
+列表滑动前触发。回调当前帧将要滑动的偏移量，当前滑动状态和滑动操作来源，其中回调的偏移量为计算得到的将要滑动的偏移量值，并非最终实际滑动偏移。可以通过该回调返回值指定列表将要滑动的偏移。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -797,7 +797,7 @@ onWillScroll(handler: OnScrollCallback)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ------ | ------ | ------|
-| handler | [OnScrollCallback](#onscrollcallback对象说明) | 是 | 列表滑动时触发的回调。 |
+| handler | Optional&lt;[OnWillScrollCallback](#onwillscrollcallback12)&gt; | 是 | 列表滑动前触发的回调。 |
 
 > **说明：** 
 > 
@@ -880,6 +880,45 @@ ScrollState枚举变更如下。
 >  - editMode属性设置为true（从API9开始无需设置editMode属性）。
 >
 >  - 绑定onDragStart事件，且事件回调中返回浮动UI布局。
+
+## OnWillScrollCallback<sup>12+</sup>
+
+type OnWillScrollCallback = (scrollOffset: number, scrollState: ScrollState, scrollSource: ScrollSource) => void | ScrollResult
+
+列表滑动前触发的回调。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------ | ------ | ------ | ------|
+| scrollOffset | number | 是 | 每帧滑动的偏移量，List的内容向上滚动时偏移量为正，向下滚动时偏移量为负。<br/>单位vp。 |
+| scrollState | [ScrollState](#scrollstate枚举说明) | 是 | 当前滑动状态。 |
+| scrollSource | [ScrollSource](#scrollsource12枚举说明) | 是 | 当前滑动操作的来源。 |
+
+**返回值：** 
+
+| 类型                                                         | 说明                                                         |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| void \| [ScrollResult](#scrollresult12对象说明) |  返回ScrollResult时按照开发者指定的偏移量滑动；不返回时按回调参数scrollOffset滑动。 |
+
+## ScrollSource<sup>12+</sup>枚举说明
+
+| 名称     |  枚举值  | 描述                                       |
+| ------ | ------ | ---------------------------------------- |
+| DRAG   |  0  | 拖拽事件。 |
+| FLING |  1  | 拖拽结束之后的惯性滑动。 |
+| EDGE_EFFECT  |  2  | EdgeEffect.Spring的边缘滚动效果。 |
+| OTHER_USER_INPUT  |  3  | 除拖拽外的其他用户输入，如鼠标滚轮、键盘事件等。 |
+| SCROLL_BAR  |  4  | 滚动条的拖拽事件。 |
+| SCROLL_BAR_FLING  |  5  | 滚动条拖拽结束后的带速度的惯性滑动。 |
+| SCROLLER  |  6  | Scroller的不带动效方法。 |
+| SCROLLER_ANIMATION  |  7  | Scroller的带动效方法。 |
+
+## ScrollResult<sup>12+</sup>对象说明
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------ | ------ | ------ | ------|
+| offsetRemain | number | 是 | 将要滑动偏移量，单位vp。 |
 
 ## ListScroller<sup>11+</sup>
 
