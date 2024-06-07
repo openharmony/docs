@@ -43,6 +43,7 @@ onApplicationBackground(): void
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
 import ApplicationStateChangeCallback from '@ohos.app.ability.ApplicationStateChangeCallback';
+import { BusinessError } from '@ohos.base';
 
 let applicationStateChangeCallback: ApplicationStateChangeCallback = {
     onApplicationForeground() {
@@ -58,17 +59,25 @@ export default class MyAbility extends UIAbility {
         console.log('MyAbility onCreate');
         // 1.获取applicationContext
         let applicationContext = this.context.getApplicationContext();
-        // 2.通过applicationContext注册应用前后台状态监听
-        if (applicationContext != undefined) {
-            applicationContext.on('applicationStateChange', applicationStateChangeCallback);
+        try {
+            // 2.通过applicationContext注册应用前后台状态监听
+            if (applicationContext != undefined) {
+                applicationContext.on('applicationStateChange', applicationStateChangeCallback);
+            }
+        } catch (paramError) {
+            console.error(`error: ${(paramError as BusinessError).code}, ${(paramError as BusinessError).message}`);
         }
         console.log('Resgiter applicationStateChangeCallback');
     }
     onDestroy() {
         let applicationContext = this.context.getApplicationContext();
-        // 1.通过applicationContext解除注册应用前后台状态监听
-        if (applicationContext != undefined) {
-            applicationContext.off('applicationStateChange', applicationStateChangeCallback);
+        try {
+            // 1.通过applicationContext解除注册应用前后台状态监听
+            if (applicationContext != undefined) {
+                applicationContext.off('applicationStateChange', applicationStateChangeCallback);
+            }
+        } catch (paramError) {
+            console.error(`error: ${(paramError as BusinessError).code}, ${(paramError as BusinessError).message}`);
         }
     }
 }

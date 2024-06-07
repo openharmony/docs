@@ -22,6 +22,7 @@
    ```ts
    import common from '@ohos.app.ability.common';
    import EnvironmentCallback from '@ohos.app.ability.EnvironmentCallback';
+   import { BusinessError } from '@ohos.base';
    import hilog from '@ohos.hilog';
    import { Configuration } from '@ohos.app.ability.Configuration';
    
@@ -53,7 +54,13 @@
            hilog.info(DOMAIN_NUMBER, TAG, `onMemoryLevel level: ${level}`);
          }
        }
-       this.callbackId = applicationContext.on('environment', environmentCallback);
+       try {
+         this.callbackId = applicationContext.on('environment', environmentCallback);
+       } catch (err) {
+         let code = (err as BusinessError).code;
+         let message = (err as BusinessError).message;
+         hilog.error(DOMAIN_NUMBER, TAG, `Failed to register applicationContext. Code is ${code}, message is ${message}`);
+       };
      }
    
      // 页面展示
@@ -67,6 +74,11 @@
 
    ```ts
    import common from '@ohos.app.ability.common';
+   import { BusinessError } from '@ohos.base';
+   import hilog from '@ohos.hilog';
+
+   const TAG: string = '[CollaborateAbility]';
+   const DOMAIN_NUMBER: number = 0xFF00;
    
    @Entry
    @Component
@@ -76,7 +88,14 @@
    
      unsubscribeConfigurationUpdate() {
        let applicationContext = this.context.getApplicationContext();
-       applicationContext.off('environment', this.callbackId);
+       try {
+          applicationContext.off('environment', this.callbackId);
+       } catch (err) {
+          let code = (err as BusinessError).code;
+          let message = (err as BusinessError).message;
+          hilog.error(DOMAIN_NUMBER, TAG, `Failed to unregister applicationContext. Code is ${code}, message is ${message}`);
+       };
+
      }
    
      // 页面展示
