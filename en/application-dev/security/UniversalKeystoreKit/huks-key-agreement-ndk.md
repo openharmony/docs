@@ -3,6 +3,10 @@
 
 This topic walks you through on how to agree on an ECDH key that is used only in HUKS. For details about the scenarios and supported algorithms, see [Supported Algorithms](huks-key-generation-overview.md#supported-algorithms).
 
+## Add the dynamic library in the CMake script.
+```txt
+   target_link_libraries(entry PUBLIC libhuks_ndk.z.so)
+```
 
 ## How to Develop
 
@@ -10,11 +14,13 @@ This topic walks you through on how to agree on an ECDH key that is used only in
 
 Generate an asymmetric key for device A and device B each. For details, see [Key Generation](huks-key-generation-overview.md) or [Key Import](huks-key-import-overview.md).
 
-The optional parameter **OH_HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG** specifies how a derived key or a key generated after key agreement is stored.
+When generating a key, you can set **OH_HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG** (optional) to specify how the shared secrete key generated from this key through key agreement is managed.
 
-- **OH_HUKS_STORAGE_ONLY_USED_IN_HUKS**: The key is stored and managed by HUKS.
+- If this tag is set to **OH_HUKS_STORAGE_ONLY_USED_IN_HUKS**, the shared secrete key is managed by HUKS. That is, the shared secrete key is always in a secure environment throughout its lifecycle.
 
-- **OH_HUKS_STORAGE_KEY_EXPORT_ALLOWED** (default): The key is directly exported to the service and not managed by HUKS.
+- If this tag is set to **OH_HUKS_STORAGE_KEY_EXPORT_ALLOWED**, the shared secrete key generated will be returned to the caller for management. That is, the service side ensures the key security.
+
+- If this tag is not set, the shared secrete key generated can be either managed by HUKS or returned to the caller for management. The key protection mode can be set in the subsequent key agreement on the service side.
 
 **Key Export**
 
@@ -23,6 +29,18 @@ Export the public key of the asymmetric key pair of device A and device B. For d
 **Key Agreement**
 
 Perform key agreement using the public key of the peer device and private key of the local device (that is, public key of device B and private key of device A for device A, and public key of device A and private key of device B for device B) to produce a shared secrete key.
+
+During key agreement, you can set **OH_HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG** (optional) to specify how the shared secrete key generated is managed.
+
+| Key Generation| Key Agreement| Specifications|
+| -------- | -------- | -------- |
+| OH_HUKS_STORAGE_ONLY_USED_IN_HUKS | OH_HUKS_STORAGE_ONLY_USED_IN_HUKS | The key is managed by HUKS.|
+| OH_HUKS_STORAGE_KEY_EXPORT_ALLOWED | OH_HUKS_STORAGE_KEY_EXPORT_ALLOWED | The key is returned to the caller for management.|
+| The tag is not set.| OH_HUKS_STORAGE_ONLY_USED_IN_HUKS | The key is managed by HUKS.|
+| The tag is not set.| OH_HUKS_STORAGE_KEY_EXPORT_ALLOWED | The key is returned to the caller for management.|
+| The tag is not set.| The tag is not set.| The key is returned to the caller for management.|
+
+>**NOTE**<br>The tag value set in key agreement should not conflict with the tag value set in key generation. The above table lists only valid settings.
 
 **Key Deletion**
 
