@@ -2494,7 +2494,7 @@ on(event: 'progress', callback: (progress: Progress) =&gt; void): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+  | 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
   | 21900005 | task mode error. |
 
 **示例：**
@@ -2570,7 +2570,7 @@ on(event: 'completed', callback: (progress: Progress) =&gt; void): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+  | 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
   | 21900005 | task mode error. |
 
 **示例：**
@@ -2646,7 +2646,7 @@ on(event: 'failed', callback: (progress: Progress) =&gt; void): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+  | 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
   | 21900005 | task mode error. |
 
 **示例：**
@@ -2720,7 +2720,7 @@ on(event: 'pause', callback: (progress: Progress) =&gt; void): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+  | 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
 
 **示例：**
 
@@ -2792,7 +2792,7 @@ on(event: 'resume', callback: (progress: Progress) =&gt; void): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+  | 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
 
 **示例：**
 
@@ -2864,7 +2864,7 @@ on(event: 'remove', callback: (progress: Progress) =&gt; void): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+  | 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
 
 **示例：**
 
@@ -2936,7 +2936,7 @@ on(event: 'response', callback: Callback&lt;HttpResponse&gt;): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+  | 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
 
 **示例：**
 
@@ -3010,7 +3010,7 @@ off(event: 'progress', callback?: (progress: Progress) =&gt; void): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+  | 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
   | 21900005 | task mode error. |
 
 **示例：**
@@ -3094,7 +3094,7 @@ off(event: 'completed', callback?: (progress: Progress) =&gt; void): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+  | 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
   | 21900005 | task mode error. |
 
 **示例：**
@@ -3178,7 +3178,7 @@ off(event: 'failed', callback?: (progress: Progress) =&gt; void): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+  | 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
   | 21900005 | task mode error. |
 
 **示例：**
@@ -3260,7 +3260,7 @@ off(event: 'pause', callback?: (progress: Progress) =&gt; void): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+  | 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
 
 **示例：**
 
@@ -3340,7 +3340,7 @@ off(event: 'resume', callback?: (progress: Progress) =&gt; void): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+  | 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
 
 **示例：**
 
@@ -3420,7 +3420,7 @@ off(event: 'remove', callback?: (progress: Progress) =&gt; void): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+  | 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
 
 **示例：**
 
@@ -3500,7 +3500,7 @@ off(event: 'response', callback?: Callback&lt;HttpResponse&gt;): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+  | 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
 
 **示例：**
 
@@ -4146,10 +4146,10 @@ create(context: BaseContext, config: Config, callback: AsyncCallback&lt;Task&gt;
   | 错误码ID | 错误信息 |
   | -------- | -------- |
   | 201 | the permissions check fails |
-  | 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+  | 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
   | 13400001 | file operation error. |
   | 13400003 | task service ability error. |
-  | 21900004 | application task queue full error. |
+  | 21900004 | the application task queue is full. |
   | 21900005 | task mode error. |
 
 **示例：**
@@ -4232,10 +4232,10 @@ create(context: BaseContext, config: Config): Promise&lt;Task&gt;
   | 错误码ID | 错误信息 |
   | -------- | -------- |
   | 201 | the permissions check fails |
-  | 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+  | 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
   | 13400001 | file operation error. |
   | 13400003 | task service ability error. |
-  | 21900004 | application task queue full error. |
+  | 21900004 | the application task queue is full. |
   | 21900005 | task mode error. |
 
 **示例：**
@@ -4311,9 +4311,9 @@ getTask(context: BaseContext, id: string, token?: string): Promise&lt;Task&gt;
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+  | 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
   | 13400003 | task service ability error. |
-  | 21900006 | task not found error. |
+  | 21900006 | task not found. |
 
 **示例：**
 
@@ -4348,9 +4348,9 @@ remove(id: string, callback: AsyncCallback&lt;void&gt;): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type |
+  | 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type |
   | 13400003 | task service ability error. |
-  | 21900006 | task not found error. |
+  | 21900006 | task not found. |
 
 **示例：**
 
@@ -4393,9 +4393,9 @@ remove(id: string): Promise&lt;void&gt;
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type |
+  | 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type |
   | 13400003 | task service ability error. |
-  | 21900006 | task not found error. |
+  | 21900006 | task not found. |
 
 **示例：**
 
@@ -4428,9 +4428,9 @@ show(id: string, callback: AsyncCallback&lt;TaskInfo&gt;): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type |
+  | 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type |
   | 13400003 | task service ability error. |
-  | 21900006 | task not found error. |
+  | 21900006 | task not found. |
 
 **示例：**
 
@@ -4470,9 +4470,9 @@ show(id: string): Promise&lt;TaskInfo&gt;
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type |
+  | 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type |
   | 13400003 | task service ability error. |
-  | 21900006 | task not found error. |
+  | 21900006 | task not found. |
 
 **示例：**
 
@@ -4506,9 +4506,9 @@ touch(id: string, token: string, callback: AsyncCallback&lt;TaskInfo&gt;): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+  | 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
   | 13400003 | task service ability error. |
-  | 21900006 | task not found error. |
+  | 21900006 | task not found. |
 
 **示例：**
 
@@ -4549,9 +4549,9 @@ touch(id: string, token: string): Promise&lt;TaskInfo&gt;
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | the parameters check fails.Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+  | 401 | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
   | 13400003 | task service ability error. |
-  | 21900006 | task not found error. |
+  | 21900006 | task not found. |
 
 **示例：**
 
@@ -4582,7 +4582,7 @@ search(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | the parameters check fails.Possible causes: 1. Incorrect parameter type 2. Parameter verification failed |
+  | 401 | parameter error. Possible causes: 1. Incorrect parameter type 2. Parameter verification failed |
   | 13400003 | task service ability error. |
 
 **示例：**
@@ -4617,7 +4617,7 @@ search(filter: Filter, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | the parameters check fails.Possible causes: 1. Incorrect parameter type 2. Parameter verification failed |
+  | 401 | parameter error. Possible causes: 1. Incorrect parameter type 2. Parameter verification failed |
   | 13400003 | task service ability error. |
 
 **示例：**
@@ -4663,7 +4663,7 @@ search(filter?: Filter): Promise&lt;Array&lt;string&gt;&gt;
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401 | the parameters check fails.Possible causes: 1. Incorrect parameter type 2. Parameter verification failed |
+  | 401 | parameter error. Possible causes: 1. Incorrect parameter type 2. Parameter verification failed |
   | 13400003 | task service ability error. |
 
 **示例：**
