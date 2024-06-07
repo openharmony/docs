@@ -162,7 +162,6 @@ export default class EntryAbility extends UIAbility {
       systemLanguage = newConfig.language; // Save the new system language as the system language in use, which will be used for comparison.
     }
   }
-
   // ...
 }
 ```
@@ -180,10 +179,14 @@ The code snippet below uses FormExtensionAbility as an example to describe how t
 ```ts
 import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
 import { Configuration } from '@ohos.app.ability.Configuration';
+import hilog from '@ohos.hilog';
+
+const TAG: string = '[EntryAbility]';
+const DOMAIN_NUMBER: number = 0xFF00;
 
 export default class EntryFormAbility extends FormExtensionAbility {
-  onConfigurationUpdate(newConfig: Configuration) {
-    console.info(`newConfig is ${JSON.stringify(newConfig)}`);
+  onConfigurationUpdate(config: Configuration) {
+    hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onConfigurationUpdate:' + JSON.stringify(config));
   }
 
   // ...
