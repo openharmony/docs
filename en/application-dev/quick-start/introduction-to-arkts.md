@@ -712,10 +712,9 @@ let sum2 = (x: number, y: number) => x + y
 
 ### Closure
 
-An arrow function is usually defined inside another function. As an inner function, it can access all variables and functions defined in the outer functions.
+A closure is the combination of a function and the lexical environment within which that function was declared. This environment consists of any local variables that were in-scope at the time the closure was created.
 
-To capture the context, an inner function forms a closure of its environment.
-The closure allows accessing such an inner function outside its own environment.
+In the following example, **z** is a reference to the instance of the function **g** that is created when **f** is executed. The instance of **g** maintains a reference to its lexical environment, within which the variable **count** exists. For this reason, when **z** is invoked, the variable **count** remains available for use.
 
 ```typescript
 function f(): () => number {
@@ -810,9 +809,9 @@ class Person {
 }
 
 let p1 = new Person('Alice', 25);
-console.log(p1.name);
+p1.name;
 let p2 = new Person('Bob', 28);
-console.log(p2.getName());
+p2.getName();
 ```
 
 #### Static Fields
@@ -857,7 +856,7 @@ class Person {
   }
 }
 
-let jack = new Person()
+let jack = new Person();
 // Let's assume that the developer forgets to call setName:
 // jack.setName('Jack')
 jack.getName().length; // runtime exception: name is undefined
@@ -1337,7 +1336,7 @@ class RectangleSize implements AreaSize {
     console.log('someMethod called');
   }
   calculateAreaSize(): number {
-    this.someMethod() // calls another method and returns result
+    this.someMethod(); // calls another method and returns result
     return this.width * this.height;
   }
 }
@@ -1412,7 +1411,7 @@ A class and an interface can be defined as generics, adding parameters to the ty
 
 ```typescript
 class CustomStack<Element> {
-  public push(e: Element): void {
+  public push(e: Element):void {
     // ...
   }
 }
@@ -1430,8 +1429,7 @@ See below:
 
 ```typescript
 let s = new CustomStack<string>();
-s.push(55); /* That will be a compile-time error as 55 is not compatible
-  with type string */
+s.push(55); // That will be a compile-time error as 55 is not compatible with type string.
 ```
 
 ### Generic Constraints
@@ -1755,22 +1753,22 @@ class A {
 
 Constraints:
 
-* Type Notation Using `this` Is Not Supported
-* Using `this` Inside Stand-Alone Functions Is Not Supported
+* Type notation using `this` is not supported.
+* Using `this` inside standalone functions is not supported.
 
 **Example**
 
 ```typescript
 class A {
   n: number = 0
-  f1(arg1: this) {} // Compile-time error, type notation using this is not supported
+  f1(arg1: this) {} // Compile-time error. Type notation using this is not supported.
   static f2(arg1: number) {
-    this.n = arg1;  // Compile-time error, using this inside stand-alone functions is not supported
+    this.n = arg1;  // Compile-time error. Using this inside standalone functions is not supported.
   }
 }
 
 function foo(arg1: number) {
-  this.n = i;       // Compile-time error, using this inside stand-alone functions is not supported
+  this.n = i;       // Compile-time error. Using this inside standalone functions is not supported.
 }
 ```
 
@@ -1779,7 +1777,7 @@ The keyword `this` used as a primary expression denotes a value that is a refere
 * Object for which the instance method is called; or
 * Object being constructed.
 
-The value denoted by this in a lambda body and in the surrounding context is the same.
+The value denoted by `this` in a lambda body and in the surrounding context is the same.
 
 ## Support for ArkUI
 
