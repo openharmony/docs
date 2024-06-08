@@ -173,29 +173,29 @@
   @Entry
   @Component
   struct DatePickerExample {
-    @State selectedDate: Date = new Date('2021-08-08')
+    @State selectedDate: Date = new Date('2021-08-08');
   
     build() {
       Column() {
         Button('set selectedDate to 2023-07-08')
           .margin(10)
           .onClick(() => {
-            this.selectedDate = new Date('2023-07-08')
+            this.selectedDate = new Date('2023-07-08');
           })
         Button('increase the year by 1')
           .margin(10)
           .onClick(() => {
-            this.selectedDate.setFullYear(this.selectedDate.getFullYear() + 1)
+            this.selectedDate.setFullYear(this.selectedDate.getFullYear() + 1);
           })
         Button('increase the month by 1')
           .margin(10)
           .onClick(() => {
-            this.selectedDate.setMonth(this.selectedDate.getMonth() + 1)
+            this.selectedDate.setMonth(this.selectedDate.getMonth() + 1);
           })
         Button('increase the day by 1')
           .margin(10)
           .onClick(() => {
-            this.selectedDate.setDate(this.selectedDate.getDate() + 1)
+            this.selectedDate.setDate(this.selectedDate.getDate() + 1);
           })
         DatePicker({
           start: new Date('1970-1-1'),
@@ -331,7 +331,7 @@ struct MyComponent {
         this.increaseBy = increaseBy;
      }
    }
-   let obj = new C1(1, 2)
+   let obj = new C1(1, 2);
    MyComponent(obj)
    ```
 
@@ -348,7 +348,7 @@ struct MyComponent {
 @Entry
 @Component
 struct MapSample {
-  @State message: Map<number, string> = new Map([[0, "a"], [1, "b"], [3, "c"]])
+  @State message: Map<number, string> = new Map([[0, "a"], [1, "b"], [3, "c"]]);
 
   build() {
     Row() {
@@ -359,19 +359,19 @@ struct MapSample {
           Divider()
         })
         Button('init map').onClick(() => {
-          this.message = new Map([[0, "a"], [1, "b"], [3, "c"]])
+          this.message = new Map([[0, "a"], [1, "b"], [3, "c"]]);
         })
         Button('set new one').onClick(() => {
-          this.message.set(4, "d")
+          this.message.set(4, "d");
         })
         Button('clear').onClick(() => {
-          this.message.clear()
+          this.message.clear();
         })
         Button('replace the first one').onClick(() => {
-          this.message.set(0, "aa")
+          this.message.set(0, "aa");
         })
         Button('delete the first one').onClick(() => {
-          this.message.delete(0)
+          this.message.delete(0);
         })
       }
       .width('100%')
@@ -393,7 +393,7 @@ struct MapSample {
 @Entry
 @Component
 struct SetSample {
-  @State message: Set<number> = new Set([0, 1, 2, 3, 4])
+  @State message: Set<number> = new Set([0, 1, 2, 3, 4]);
 
   build() {
     Row() {
@@ -403,16 +403,16 @@ struct SetSample {
           Divider()
         })
         Button('init set').onClick(() => {
-          this.message = new Set([0, 1, 2, 3, 4])
+          this.message = new Set([0, 1, 2, 3, 4]);
         })
         Button('set new one').onClick(() => {
-          this.message.add(5)
+          this.message.add(5);
         })
         Button('clear').onClick(() => {
-          this.message.clear()
+          this.message.clear();
         })
         Button('delete the first one').onClick(() => {
-          this.message.delete(0)
+          this.message.delete(0);
         })
       }
       .width('100%')
@@ -468,7 +468,7 @@ export default class PlayDetailViewModel {
   coverUrl: string = '#00ff00'
 
   changeCoverUrl= ()=> {
-    this.coverUrl = '#00F5FF'
+    this.coverUrl = '#00F5FF';
   }
 
 }
@@ -480,7 +480,7 @@ import PlayDetailViewModel from './PlayDetailViewModel'
 @Entry
 @Component
 struct PlayDetailPage {
-  @State vm: PlayDetailViewModel = new PlayDetailViewModel()
+  @State vm: PlayDetailViewModel = new PlayDetailViewModel();
 
   build() {
     Stack() {
@@ -488,7 +488,7 @@ struct PlayDetailPage {
       Row() {
         Button('点击改变颜色')
           .onClick(() => {
-            this.vm.changeCoverUrl()
+            this.vm.changeCoverUrl();
           })
       }
     }
@@ -521,7 +521,7 @@ import PlayDetailViewModel from './PlayDetailViewModel'
 @Entry
 @Component
 struct PlayDetailPage {
-  @State vm: PlayDetailViewModel = new PlayDetailViewModel()
+  @State vm: PlayDetailViewModel = new PlayDetailViewModel();
 
   build() {
     Stack() {
@@ -529,8 +529,8 @@ struct PlayDetailPage {
       Row() {
         Button('点击改变颜色')
           .onClick(() => {
-            let self = this.vm
-            this.vm.changeCoverUrl(self)
+            let self = this.vm;
+            this.vm.changeCoverUrl(self);
           })
       }
     }
@@ -543,7 +543,11 @@ struct PlayDetailPage {
 
 ### 状态变量的修改放在构造函数内未生效
 
-在状态管理中，类会被一层“代理”进行包装。当在组件中改变该类的成员变量时，会被该代理进行拦截，在更改数据源中值的同时，也会将变化通知给绑定的组件，从而实现观测变化与触发刷新。当开发者把状态变量的修改放在构造函数里时，此修改不会经过代理（因为是直接对数据源中的值进行修改），即使修改成功执行，也无法观测UI的刷新。
+在状态管理中，类会被一层“代理”进行包装。当在组件中改变该类的成员变量时，会被该代理进行拦截，在更改数据源中值的同时，也会将变化通知给绑定的组件，从而实现观测变化与触发刷新。
+
+当开发者把修改success的箭头函数放在构造函数中初始化时，此时this指向原本TestModel，还未被代理封装，所以后续触发query事件无法响应变化。
+
+当开发者把修改success的箭头函数放在query中时，此时已完成对象初始化和代理封装，此时this指向代理对象，触发query事件可以响应变化。
 
 【反例】
 
@@ -560,7 +564,7 @@ struct Index {
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
           .onClick(() => {
-            this.viewModel.query()
+            this.viewModel.query();
           })
       }.width('100%')
     }.height('100%')
@@ -568,18 +572,18 @@ struct Index {
 }
 
 export class TestModel {
-  isSuccess: boolean = false
+  isSuccess: boolean = false;
   model: Model
 
   constructor() {
     this.model = new Model(() => {
-      this.isSuccess = true
-      console.log(`this.isSuccess: ${this.isSuccess}`)
+      this.isSuccess = true;
+      console.log(`this.isSuccess: ${this.isSuccess}`);
     })
   }
 
   query() {
-    this.model.query()
+    this.model.query();
   }
 }
 
@@ -587,11 +591,11 @@ export class Model {
   callback: () => void
 
   constructor(cb: () => void) {
-    this.callback = cb
+    this.callback = cb;
   }
 
   query() {
-    this.callback()
+    this.callback();
   }
 }
 ```
@@ -613,7 +617,7 @@ struct Index {
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
           .onClick(() => {
-            this.viewModel.query()
+            this.viewModel.query();
           })
       }.width('100%')
     }.height('100%')
@@ -621,15 +625,15 @@ struct Index {
 }
 
 export class TestModel {
-  isSuccess: boolean = false
+  isSuccess: boolean = false;
   model: Model = new Model(() => {
   })
 
   query() {
-    this.model = new Model(() => {
-      this.isSuccess = true
-    })
-    this.model.query()
+    this.model.callback = () => {
+      this.isSuccess = true;
+    }
+    this.model.query();
   }
 }
 
@@ -637,11 +641,11 @@ export class Model {
   callback: () => void
 
   constructor(cb: () => void) {
-    this.callback = cb
+    this.callback = cb;
   }
 
   query() {
-    this.callback()
+    this.callback();
   }
 }
 ```
