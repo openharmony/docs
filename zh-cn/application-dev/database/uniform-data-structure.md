@@ -51,8 +51,7 @@ UDMF提供了统一数据对象UnifiedData，用于封装一组数据记录Unifi
 1. 导入`@ohos.data.unifiedDataChannel`和`@ohos.data.uniformTypeDescriptor`模块。
 
    ```ts
-   import unifiedDataChannel from '@ohos.data.unifiedDataChannel';
-   import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
+   import { unifiedDataChannel, uniformTypeDescriptor } from '@kit.ArkData';
    ```
 2. 创建图片数据记录，并初始化得到带有该数据记录的UnifiedData对象。
 
