@@ -540,7 +540,7 @@ addEvent(event: Event): Promise\<number>
 
 创建日程，入参Event不填日程id，使用Promise异步回调。
 
-
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**： SystemCapability.Applications.CalendarData
 
