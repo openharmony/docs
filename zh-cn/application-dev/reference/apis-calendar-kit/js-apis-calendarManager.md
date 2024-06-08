@@ -1724,20 +1724,7 @@ calendarMgr?.getCalendar(async (err: BusinessError, data:calendarManager.Calenda
 |-------|-------------------------------| ---- |-----|---------|
 | name  | string                        | 否   | 是   | 参与者的姓名。 |
 | email | string                        | 否   | 是   | 参与者的邮箱。 |
-| role  | [AttendeeRole](#attendeeRole) | 否   | 否   | 参与者的角色。 |
-
-## AttendeeRole
-
-与会人角色类型枚举。
-
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
-
-**系统能力**：SystemCapability.Applications.CalendarData
-
-| 名称           | 值             | 说明     |
-|--------------|---------------|--------|
-| ORGANIZER    | 'organizer'   | 会议组织者。 |
-| PARTICIPANT  | 'participant' | 会议参与者。 |
+| role  | [AttendeeRole](#attendeerole) | 否   | 否   | 参与者的角色。 |
 
 ## EventService
 
@@ -1772,3 +1759,16 @@ calendarMgr?.getCalendar(async (err: BusinessError, data:calendarManager.Calenda
 | CLASS           | 'Class'          | 一键上课。   |
 | SPORTS_EVENTS   | 'SportsEvents'   | 一键看赛事。 |
 | SPORTS_EXERCISE | 'SportsExercise' | 一键运动。   |
+
+## AttendeeRole
+
+与会人角色类型枚举。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力**：SystemCapability.Applications.CalendarData
+
+| 名称           | 值             | 说明     |
+|--------------|---------------|--------|
+| ORGANIZER    | 'organizer'   | 会议组织者。 |
+| PARTICIPANT  | 'participant' | 会议参与者。 |
