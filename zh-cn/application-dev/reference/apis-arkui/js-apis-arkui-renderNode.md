@@ -2264,3 +2264,85 @@ struct Index {
   }
 }
 ```
+
+### markNodeGroup<sup>12+</sup>
+
+set markNodeGroup(isNodeGroup: boolean)
+
+标记是否优先绘制节点及其子节点。若设置为true，则透明度等属性将在节点绘制完毕后再进行合成。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名    | 类型                                               | 必填 | 说明               |
+| --------- | -------------------------------------------------- | ---- | ------------------ |
+| isNodeGroup | boolean | 是   | 设置是否优先绘制节点及其子节点。 |
+
+get markNodeGroup(): boolean
+
+获取当前节点是否标记了优先绘制。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型    | 说明                                        |
+| ------- | ------------------------------------------- |
+| boolean | 当前节点是否标记了优先绘制，默认值为false。 |
+
+**示例：**
+
+```ts
+import { RenderNode, FrameNode, NodeController, DrawContext } from "@ohos.arkui.node"
+import drawing from '@ohos.graphics.drawing';
+
+class MyRenderNode extends RenderNode {
+  draw(context: DrawContext) {
+    const canvas = context.canvas;
+    const brush = new drawing.Brush();
+    brush.setColor({ alpha: 255, red: 255, green: 0, blue: 0 });
+    canvas.attachBrush(brush);
+    canvas.drawRect({ left: 0, right: 200, top: 0, bottom: 200 });
+    canvas.detachBrush();
+
+    brush.setColor({ alpha: 255, red: 0, green: 255, blue: 0 });
+    canvas.attachBrush(brush);
+    canvas.drawRect({ left: 100, right: 300, top: 100, bottom: 300 });
+    canvas.detachBrush();
+  }
+}
+
+const renderNode = new MyRenderNode();
+renderNode.frame = { x: 100, y: 100, width: 200, height: 200 };
+renderNode.backgroundColor = 0xff0000ff;
+renderNode.markNodeGroup = true;
+renderNode.opacity = 0.5;
+
+class MyNodeController extends NodeController {
+  private rootNode: FrameNode | null = null;
+
+  makeNode(uiContext: UIContext): FrameNode | null {
+    this.rootNode = new FrameNode(uiContext);
+
+    const rootRenderNode = this.rootNode.getRenderNode();
+    if (rootRenderNode !== null) {
+      rootRenderNode.appendChild(renderNode);
+    }
+
+    return this.rootNode;
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  private myNodeController: MyNodeController = new MyNodeController();
+
+  build() {
+    Row() {
+      NodeContainer(this.myNodeController)
+    }
+  }
+}
+```
