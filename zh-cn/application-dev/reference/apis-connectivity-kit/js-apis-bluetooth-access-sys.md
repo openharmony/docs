@@ -147,3 +147,47 @@ try {
 ```
 
 
+## access.restrictBluetooth<sup>12+</sup><a name="restrictBluetooth"></a>
+
+restrictBluetooth(): Promise&lt;void&gt;
+
+约束当前蓝牙设备的BR/EDR能力。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.ACCESS_BLUETOOTH 和 ohos.permission.MANAGE_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+**返回值：**
+
+| 类型                              | 说明              |
+| --------------------------------- | ---------------- |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+
+|错误码ID   | 错误信息           |
+| -------- | ------------------ |
+|201 | Permission denied.                 |
+|202 | Non-system applications are not allowed to use system APIs. |
+|801 | Capability not supported.          |
+|2900001   | Service stopped.   |
+|2900099   | Operation failed.  |
+
+**示例：**
+
+```js
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
+try {
+    access.restrictBluetooth().then(() => {
+        console.info("restrictBluetooth");
+    });
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```
+
+
