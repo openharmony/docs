@@ -111,7 +111,7 @@ try {
 
 isAbsoluteVolumeSupported(deviceId: string, callback: AsyncCallback&lt;boolean&gt;): void
 
-获取设备是否支持绝对音量能力。
+获取设备是否支持绝对音量能力。使用Callback异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -159,7 +159,7 @@ try {
 
 isAbsoluteVolumeSupported(deviceId: string): Promise&lt;boolean&gt;
 
-获取设备是否支持绝对音量能力。
+获取设备是否支持绝对音量能力。使用Promise异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -211,7 +211,7 @@ try {
 
 isAbsoluteVolumeEnabled(deviceId: string, callback: AsyncCallback&lt;boolean&gt;): void
 
-获取设备绝对音量能力是否开启。需要在设备支持绝对音量的情况下（参考[isAbsoluteVolumeSupported](#isabsolutevolumesupported11)），再获取设备绝对音量能力是否开启。
+获取设备绝对音量能力是否开启。需要在设备支持绝对音量的情况下（参考[isAbsoluteVolumeSupported](#isabsolutevolumesupported11)），再获取设备绝对音量能力是否开启。使用Callback异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -259,7 +259,7 @@ try {
 
 isAbsoluteVolumeEnabled(deviceId: string): Promise&lt;boolean&gt;
 
-获取设备绝对音量能力是否开启。需要在设备支持绝对音量的情况下（参考[isAbsoluteVolumeSupported](#isabsolutevolumesupported11)），再获取设备绝对音量能力是否开启。
+获取设备绝对音量能力是否开启。需要在设备支持绝对音量的情况下（参考[isAbsoluteVolumeSupported](#isabsolutevolumesupported11)），再获取设备绝对音量能力是否开启。使用Promise异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -311,7 +311,7 @@ try {
 
 enableAbsoluteVolume(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
 
-开启设备绝对音量能力。需要在设备支持绝对音量的情况下（参考[isAbsoluteVolumeSupported](#isabsolutevolumesupported11)），再开启设备绝对音量能力。
+开启设备绝对音量能力。需要在设备支持绝对音量的情况下（参考[isAbsoluteVolumeSupported](#isabsolutevolumesupported11)），再开启设备绝对音量能力。使用Callback异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -361,7 +361,7 @@ try {
 
 enableAbsoluteVolume(deviceId: string): Promise&lt;void&gt;
 
-开启设备绝对音量能力。需要在设备支持绝对音量的情况下（参考[isAbsoluteVolumeSupported](#isabsolutevolumesupported11)），再开启设备绝对音量能力。
+开启设备绝对音量能力。需要在设备支持绝对音量的情况下（参考[isAbsoluteVolumeSupported](#isabsolutevolumesupported11)），再开启设备绝对音量能力。使用Promise异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -414,7 +414,7 @@ try {
 
 disableAbsoluteVolume(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
 
-关闭设备绝对音量能力。需要在设备支持绝对音量的情况下（参考[isAbsoluteVolumeSupported](#isabsolutevolumesupported11)），再关闭设备绝对音量能力。
+关闭设备绝对音量能力。需要在设备支持绝对音量的情况下（参考[isAbsoluteVolumeSupported](#isabsolutevolumesupported11)），再关闭设备绝对音量能力。使用Callback异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -464,7 +464,7 @@ try {
 
 disableAbsoluteVolume(deviceId: string): Promise&lt;void&gt;
 
-关闭设备绝对音量能力。需要在设备支持绝对音量的情况下（参考[isAbsoluteVolumeSupported](#isabsolutevolumesupported11)），再关闭设备绝对音量能力。
+关闭设备绝对音量能力。需要在设备支持绝对音量的情况下（参考[isAbsoluteVolumeSupported](#isabsolutevolumesupported11)），再关闭设备绝对音量能力。使用Promise异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -593,7 +593,7 @@ setCurrentCodecInfo(deviceId: string, codecInfo: CodecInfo): void
 |801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth switch is off.                 |
-|2900099 | Operation failed.                        |
+|2900099 | Operation failed.                        |   
 
 **示例：**
 
@@ -605,7 +605,7 @@ try {
         codecType: 0,
         codecBitsPerSample: 1,
         codecChannelMode: 2,
-        codecSampleRate: 1,
+        codecSampleRate: 1
     }
     a2dpSrc.setCurrentCodecInfo('XX:XX:XX:XX:XX:XX', codecInfo);
 } catch (err) {
@@ -618,7 +618,7 @@ try {
 
 disableAutoPlay(deviceId: string, duration: number): Promise&lt;void&gt;
 
-限制设备在连接成功的若干毫秒内播放音乐。
+限制设备在连接成功的若干毫秒内播放音乐。使用Promise异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -673,7 +673,7 @@ try {
 
 enableAutoPlay(deviceId: string): Promise&lt;void&gt;
 
-允许设备在连接成功后自动播放音乐。
+允许设备在连接成功后自动播放音乐。使用Promise异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -726,7 +726,7 @@ try {
 
 getAutoPlayDisabledDuration(deviceId: string): Promise&lt;number&gt;
 
-获取拦截时长或自动播放开关。
+获取拦截时长或自动播放开关。使用Promise异步回调。
 
 **系统接口**：此接口为系统接口。
 
