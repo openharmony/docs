@@ -19,7 +19,7 @@ import { access } from '@kit.ConnectivityKit';
 
 factoryReset(callback: AsyncCallback&lt;void&gt;): void
 
-恢复蓝牙出厂设置。
+恢复蓝牙出厂设置。使用Callback异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -66,7 +66,7 @@ try {
 
 factoryReset(): Promise&lt;void&gt;
 
-恢复蓝牙出厂设置。
+恢复蓝牙出厂设置。使用Promise异步回调。
 
 **系统接口**：此接口为系统接口。
 
