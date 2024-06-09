@@ -889,6 +889,18 @@
 
 **起始版本**：9
 
+### ohos.permission.MICROPHONE_CONTROL
+
+允许应用进行持久化全局麦克风静音等操作。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
 ### ohos.permission.START_DLP_CRED
 
 允许系统应用或者系统服务拉起DLP凭据管理应用。
