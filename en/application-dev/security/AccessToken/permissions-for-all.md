@@ -396,7 +396,7 @@ For security purposes, this permission cannot be granted to applications in a di
 
 Allows an application to obtain the device location.
 
-**Prerequisites**: You need to request the [ohos.permission.APPROXIMATELY_LOCATION](#ohospermissionapproximately_location) permission before requesting this permission.
+**Prerequisites**: This permission must be requested with [ohos.permission.APPROXIMATELY_LOCATION](#ohospermissionapproximately_location) together.
 
 **Permission level**: normal
 
