@@ -104,7 +104,10 @@ function readWriteFile(): void {
   let readLen = fs.readSync(srcFile.fd, buf, option);
   while (readLen > 0) {
     readSize += readLen;
-    fs.writeSync(destFile.fd, buf);
+    let writeOptions = {
+      length: readLen
+    };
+    fs.writeSync(destFile.fd, buf, writeOptions);
     option.offset = readSize;
     readLen = fs.readSync(srcFile.fd, buf, option);
   }
@@ -186,7 +189,7 @@ function getListFile(): void {
   }
   let option = new ListFileOption();
   option.filter.suffix = ['.png', '.jpg', '.txt'];          // The file name extension can be '.png', '.jpg', or '.txt'.
-  option.filter.displayName = ['test%'];                    // The file name starts with 'test'.
+  option.filter.displayName = ['test*'];                    // The file name starts with 'test'.
   option.filter.fileSizeOver = 0;                           // The file size is greater than or equal to 0.
   option.filter.lastModifiedAfter = new Date(0).getTime();  // The latest modification time of the file is later than January 1, 1970.
   let files = fs.listFileSync(filesDir, option);

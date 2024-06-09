@@ -25,7 +25,7 @@ The unified data object (**UnifiedData**) is uniquely identified by a URI in the
 
 Currently, the UDMF provides the public data channel for cross-application data sharing.
 
-**Public data channel**: allows applications to write and read data. The corresponding **intention** is **DATA_HUB**.
+The public data channel is a data channel shared by applications. All applications can write data to the channel. The data provider can update, delete, and query data based on the unique identifier generated when the data is written. The data consumer can read only the full data in the public data channel. The intention type of the public data channel is DATA_HUB.
 
 ## Available APIs
 
@@ -41,7 +41,7 @@ The following table lists the UDMF APIs. All of them are executed asynchronously
 
 ## How to Develop
 
-The following example describes how to implement many-to-many data sharing. The data provider writes data to the UMDF public data channel, and updates and deletes the data. The data consumer obtains the data shared by the data provider.
+The following example describes how to implement many-to-many data sharing. The data provider calls insertData() provided by the UMDF to write data to the public data channel. The return value (unique identifier of the data written) can be used to update or delete the data. The data consumer uses the query() APIs provided by the UDMF to obtain full data in the public data channel.
 
 ### Data Provider
 
@@ -142,7 +142,7 @@ The following example describes how to implement many-to-many data sharing. The 
    import unifiedDataChannel from '@ohos.data.unifiedDataChannel';
    import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
    ```
-2. Query the **UnifiedData** object in the UDMF public data channel.
+2. Query the full data in the UDMF public data channel.
 
    ```ts
    import { BusinessError } from '@ohos.base';
