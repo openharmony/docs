@@ -581,6 +581,8 @@ setAppResourceLimit(type: string, value: number, enableDebugLog: boolean) : void
 设置应用的fd数量、线程数量、js内存或者native内存资源限制。
 **注意：** 当设置的开发者选项开关打开时,此功能有效。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
 **参数：**
