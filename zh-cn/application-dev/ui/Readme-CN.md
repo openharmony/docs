@@ -86,6 +86,7 @@
       - [FrameNode](arkts-user-defined-arktsNode-frameNode.md)
       - [RenderNode](arkts-user-defined-arktsNode-renderNode.md)
       - [BuilderNode](arkts-user-defined-arktsNode-builderNode.md)
+  - [跨进程应用能力扩展（UIExtension，仅对系统应用开放）](arkts-ui-extension-components.md)
   - 主题设置
     - [设置主题换肤](theme_skinning.md)
 - UI开发 (兼容JS的类Web开发范式)
