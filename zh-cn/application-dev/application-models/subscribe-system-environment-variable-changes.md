@@ -19,72 +19,70 @@
 
 1. 使用`ApplicationContext.on(type: 'environment', callback: EnvironmentCallback)`方法，应用程序可以通过在非应用组件模块中订阅系统环境变量的变化来动态响应这些变化。例如，使用该方法在页面中监测系统语言的变化。
 
-   ```ts
-   import common from '@ohos.app.ability.common';
-   import EnvironmentCallback from '@ohos.app.ability.EnvironmentCallback';
-   import hilog from '@ohos.hilog';
-   import { Configuration } from '@ohos.app.ability.Configuration';
-   
-   const TAG: string = '[CollaborateAbility]';
-   const DOMAIN_NUMBER: number = 0xFF00;
-   
-   @Entry
-   @Component
-   struct Index {
-     private context = getContext(this) as common.UIAbilityContext;
-     private callbackId: number = 0; // 注册订阅系统环境变化的ID
-   
-     subscribeConfigurationUpdate(): void {
-       let systemLanguage: string | undefined = this.context.config.language; // 获取系统当前语言
-   
-       // 1.获取ApplicationContext
-       let applicationContext = this.context.getApplicationContext();
-   
-       // 2.通过applicationContext订阅环境变量变化
-       let environmentCallback: EnvironmentCallback = {
-         onConfigurationUpdated(newConfig: Configuration) {
-           hilog.info(DOMAIN_NUMBER, TAG, `onConfigurationUpdated systemLanguage is ${systemLanguage}, newConfig: ${JSON.stringify(newConfig)}`);
-           if (this.systemLanguage !== newConfig.language) {
-             hilog.info(DOMAIN_NUMBER, TAG, `systemLanguage from ${systemLanguage} changed to ${newConfig.language}`);
-             systemLanguage = newConfig.language; // 将变化之后的系统语言保存，作为下一次变化前的系统语言
-           }
-         },
-         onMemoryLevel(level) {
-           hilog.info(DOMAIN_NUMBER, TAG, `onMemoryLevel level: ${level}`);
-         }
-       }
-       this.callbackId = applicationContext.on('environment', environmentCallback);
-     }
-   
-     // 页面展示
-     build() {
-       //...
-     }
-   }
-   ```
+  ```ts
+  import { common, EnvironmentCallback, Configuration } from '@kit.AbilityKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+
+  const TAG: string = '[CollaborateAbility]';
+  const DOMAIN_NUMBER: number = 0xFF00;
+
+  @Entry
+  @Component
+  struct Index {
+    private context = getContext(this) as common.UIAbilityContext;
+    private callbackId: number = 0; // 注册订阅系统环境变化的ID
+
+    subscribeConfigurationUpdate(): void {
+      let systemLanguage: string | undefined = this.context.config.language; // 获取系统当前语言
+
+      // 1.获取ApplicationContext
+      let applicationContext = this.context.getApplicationContext();
+
+      // 2.通过applicationContext订阅环境变量变化
+      let environmentCallback: EnvironmentCallback = {
+        onConfigurationUpdated(newConfig: Configuration) {
+          hilog.info(DOMAIN_NUMBER, TAG, `onConfigurationUpdated systemLanguage is ${systemLanguage}, newConfig: ${JSON.stringify(newConfig)}`);
+          if (this.systemLanguage !== newConfig.language) {
+            hilog.info(DOMAIN_NUMBER, TAG, `systemLanguage from ${systemLanguage} changed to ${newConfig.language}`);
+            systemLanguage = newConfig.language; // 将变化之后的系统语言保存，作为下一次变化前的系统语言
+          }
+        },
+        onMemoryLevel(level) {
+          hilog.info(DOMAIN_NUMBER, TAG, `onMemoryLevel level: ${level}`);
+        }
+      }
+      this.callbackId = applicationContext.on('environment', environmentCallback);
+    }
+
+    // 页面展示
+    build() {
+      //...
+    }
+  }
+  ```
 
 2. 在资源使用完成之后，可以通过调用`ApplicationContext.off(type: 'environment', callbackId: number)`方法释放相关资源。
 
-   ```ts
-   import common from '@ohos.app.ability.common';
-   
-   @Entry
-   @Component
-   struct Index {
-     private context = getContext(this) as common.UIAbilityContext;
-     private callbackId: number = 0; // 注册订阅系统环境变化的ID
-   
-     unsubscribeConfigurationUpdate() {
-       let applicationContext = this.context.getApplicationContext();
-       applicationContext.off('environment', this.callbackId);
-     }
-   
-     // 页面展示
-     build() {
-       //...
-     }
-   }
-   ```
+  ```ts
+  import { common } from '@kit.AbilityKit';
+
+  @Entry
+  @Component
+  struct Index {
+    private context = getContext(this) as common.UIAbilityContext;
+    private callbackId: number = 0; // 注册订阅系统环境变化的ID
+
+    unsubscribeConfigurationUpdate() {
+      let applicationContext = this.context.getApplicationContext();
+      applicationContext.off('environment', this.callbackId);
+    }
+
+    // 页面展示
+    build() {
+      //...
+    }
+  }
+  ```
 
 ## 在AbilityStage组件容器中订阅回调
 
@@ -98,9 +96,8 @@
 例如，在[AbilityStage.onConfigurationUpdate()](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#abilitystageonconfigurationupdate)回调方法中实现监测系统语言的变化。
 
 ```ts
-import AbilityStage from '@ohos.app.ability.AbilityStage';
-import hilog from '@ohos.hilog';
-import type { Configuration } from '@ohos.app.ability.Configuration';
+import { AbilityStage, Configuration } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const TAG: string = '[MyAbilityStage]';
 const DOMAIN_NUMBER: number = 0xFF00;
@@ -137,11 +134,8 @@ UIAbility组件提供了`UIAbility.onConfigurationUpdate()`回调方法用于订
 例如，在`onConfigurationUpdate()`回调方法中实现监测系统语言的变化。
 
 ```ts
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import hilog from '@ohos.hilog';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import { Configuration } from '@ohos.app.ability.Configuration';
+import { AbilityConstant, Configuration, UIAbility, Want } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const TAG: string = '[EntryAbility]';
 const DOMAIN_NUMBER: number = 0xFF00;
@@ -178,14 +172,17 @@ ExtensionAbility组件提供了`onConfigurationUpdate()`回调方法用于订阅
 以FormExtensionAbility为例说明。例如，在`onConfigurationUpdate()`回调方法中实现系统环境变量的变化。
 
 ```ts
-import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
-import { Configuration } from '@ohos.app.ability.Configuration';
+import { FormExtensionAbility } from '@kit.FormKit';
+import { Configuration } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+const TAG: string = '[EntryAbility]';
+const DOMAIN_NUMBER: number = 0xFF00;
 
 export default class EntryFormAbility extends FormExtensionAbility {
-  onConfigurationUpdate(newConfig: Configuration) {
-    console.info(`newConfig is ${JSON.stringify(newConfig)}`);
+  onConfigurationUpdate(config: Configuration) {
+    hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onConfigurationUpdate:' + JSON.stringify(config));
   }
-
   // ...
 }
 ```

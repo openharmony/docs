@@ -12,7 +12,7 @@ FA模型下，可以通过[startAbilityForResult](js-apis-ability-featureAbility
 
 Stage模型下：
 ```ts
-import common from '@ohos.app.ability.common';
+import { common } from '@kit.AbilityKit';
 ```
 
 FA模型下：

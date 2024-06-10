@@ -15,143 +15,92 @@
 
 1. 在UIAbility中调用[`eventHub.on()`](../reference/apis-ability-kit/js-apis-inner-application-eventHub.md#eventhubon)方法注册一个自定义事件“event1”，[`eventHub.on()`](../reference/apis-ability-kit/js-apis-inner-application-eventHub.md#eventhubon)有如下两种调用方式，使用其中一种即可。
 
-   ```ts
-   import hilog from '@ohos.hilog';
-   import UIAbility from '@ohos.app.ability.UIAbility';
-   import type window from '@ohos.window';
-   import type { Context } from '@ohos.abilityAccessCtrl';
-   import Want from '@ohos.app.ability.Want'
-   import type AbilityConstant from '@ohos.app.ability.AbilityConstant';
-   
-   const DOMAIN_NUMBER: number = 0xFF00;
-   const TAG: string = '[EventAbility]';
-   
-   export default class EntryAbility extends UIAbility {
-     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
-       // 获取UIAbility实例的上下文
-       let context = this.context;
-       // 获取eventHub
-       let eventhub = this.context.eventHub;
-       // 执行订阅操作
-       eventhub.on('event1', this.eventFunc);
-       eventhub.on('event1', (data: string) => {
-         // 触发事件，完成相应的业务操作
-       });
-       hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', 'Ability onCreate');
-     }
-     // ... 
-     eventFunc(argOne: Context, argTwo: Context): void {
-       hilog.info(DOMAIN_NUMBER, TAG, '1. ' + `${argOne}, ${argTwo}`);
-       return;
-     }
-   }
-   ```
+  ```ts
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { UIAbility, Context, Want, AbilityConstant } from '@kit.AbilityKit';
+
+  const DOMAIN_NUMBER: number = 0xFF00;
+  const TAG: string = '[EventAbility]';
+
+  export default class EntryAbility extends UIAbility {
+    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+      // 获取UIAbility实例的上下文
+      let context = this.context;
+      // 获取eventHub
+      let eventhub = this.context.eventHub;
+      // 执行订阅操作
+      eventhub.on('event1', this.eventFunc);
+      eventhub.on('event1', (data: string) => {
+        // 触发事件，完成相应的业务操作
+      });
+      hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', 'Ability onCreate');
+    }
+
+    // ...
+    eventFunc(argOne: Context, argTwo: Context): void {
+      hilog.info(DOMAIN_NUMBER, TAG, '1. ' + `${argOne}, ${argTwo}`);
+      return;
+    }
+  }
+  ```
 
 2. 在UI中通过[eventHub.emit()](../reference/apis-ability-kit/js-apis-inner-application-eventHub.md#eventhubemit)方法触发该事件，在触发事件的同时，根据需要传入参数信息。
 
-   ```ts
-    import common from '@ohos.app.ability.common';
-    import promptAction from '@ohos.promptAction';
+  ```ts
+  import { common } from '@kit.AbilityKit';
+  import { promptAction } from '@kit.ArkUI';
 
-    @Entry
-    @Component
-    struct Page_EventHub {
+  @Entry
+  @Component
+  struct Page_EventHub {
+    private context = getContext(this) as common.UIAbilityContext;
 
-      private context = getContext(this) as common.UIAbilityContext;
-
-      eventHubFunc() : void {
-        // 不带参数触发自定义“event1”事件
-        this.context.eventHub.emit('event1');
-        // 带1个参数触发自定义“event1”事件
-        this.context.eventHub.emit('event1', 1);
-        // 带2个参数触发自定义“event1”事件
-        this.context.eventHub.emit('event1', 2, 'test');
-        // 开发者可以根据实际的业务场景设计事件传递的参数
-      }
-
-      build() {
-        Column() {
-          Row() {
-            Flex({ justifyContent: FlexAlign.Start, alignContent: FlexAlign.Center }) {
-              Text('DataSynchronization')
-                .fontSize(24)
-                .fontWeight(700)
-                .textAlign(TextAlign.Start)
-                .margin({ top: 12 , bottom: 11 , right: 24 , left: 24})
-            }
-          }
-          .width('100%')
-          .height(56)
-          .justifyContent(FlexAlign.Start)
-          .backgroundColor(Color.Gray)
-
-          List({ initialIndex: 0 }) {
-            ListItem() {
-              Row() {
-                Row(){
-                  Text('EventHubFuncA')
-                    .textAlign(TextAlign.Start)
-                    .fontWeight(500)
-                    .margin({ top: 13, bottom: 13, left: 0, right: 8 })
-                    .fontSize(16)
-                    .width(232)
-                    .height(22)
-                    .fontColor(Color.Black)
-                }
-                .height(48)
-                .width('100%')
-                .borderRadius(24)
-                .margin({ top: 4, bottom: 4, left: 12, right: 12 })
-              }
-              .onClick(() => {
-                this.eventHubFunc();
-                promptAction.showToast({
-                  message: 'EventHubFuncA'
-                });
-              })
-            }
-            .height(56)
-            .backgroundColor(Color.White)
-            .borderRadius(24)
-            .margin({ top: 8, right: 12, left: 12 })
-
-            ListItem() {
-              Row() {
-                Row(){
-                  Text('EventHubFuncB')
-                    .textAlign(TextAlign.Start)
-                    .fontWeight(500)
-                    .margin({ top: 13, bottom: 13, left: 0, right: 8 })
-                    .fontSize(16)
-                    .width(232)
-                    .height(22)
-                    .fontColor(Color.Black)
-                }
-                .height(48)
-                .width('100%')
-                .borderRadius(24)
-                .margin({ top: 4, bottom: 4, left: 12, right: 12 })
-              }
-              .onClick(() => {
-                this.context.eventHub.off('event1');
-                promptAction.showToast({
-                  message: 'EventHubFuncB'
-                });
-              })
-            }
-            .height(56)
-            .backgroundColor(Color.White)
-            .borderRadius(24)
-            .margin({ top: 12, right: 12, left: 12 })
-          }
-          .height('100%')
-          .backgroundColor(Color.Gray)
-        }
-        .width('100%')
-        .margin({ top: 8 })
-      }
+    eventHubFunc(): void {
+      // 不带参数触发自定义“event1”事件
+      this.context.eventHub.emit('event1');
+      // 带1个参数触发自定义“event1”事件
+      this.context.eventHub.emit('event1', 1);
+      // 带2个参数触发自定义“event1”事件
+      this.context.eventHub.emit('event1', 2, 'test');
+      // 开发者可以根据实际的业务场景设计事件传递的参数
     }
-   ```
+
+    build() {
+      Column() {
+        // ...
+        List({ initialIndex: 0 }) {
+          ListItem() {
+            Row() {
+              // ...
+            }
+            .onClick(() => {
+              this.eventHubFunc();
+              promptAction.showToast({
+                message: $r('app.string.EventHubFuncA')
+              });
+            })
+          }
+
+          // ...
+          ListItem() {
+            Row() {
+              // ...
+            }
+            .onClick(() => {
+              this.context.eventHub.off('event1');
+              promptAction.showToast({
+                message: $r('app.string.EventHubFuncB')
+              });
+            })
+          }
+          // ...
+        }
+        // ...
+      }
+      // ...
+    }
+  }
+  ```
 
 3. 在UIAbility的注册事件回调中可以得到对应的触发事件结果，运行日志结果如下所示。
 

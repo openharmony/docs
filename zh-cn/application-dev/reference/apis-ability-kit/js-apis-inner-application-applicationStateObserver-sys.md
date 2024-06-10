@@ -1,6 +1,6 @@
 # ApplicationStateObserver (系统接口)
 
-定义应用状态监听，可以作为[registerApplicationStateObserver](js-apis-application-appManager-sys.md#appmanagerregisterapplicationstateobserver)的入参监听当前应用的生命周期变化。
+定义应用状态监听，可以作为[on](js-apis-app-ability-appManager-sys.md#appmanageron11)的入参监听当前应用的生命周期变化。
 
 > **说明：**
 > 
@@ -50,10 +50,10 @@ let applicationStateObserver: appManager.ApplicationStateObserver = {
     console.log(`onProcessStateChanged onProcessStateChanged: ${JSON.stringify(processData)}`);
   },
   onAppStarted(appStateData) {
-    console.log(`onAppStarted onAppStarted: ${JSON.stringify(appStateData)}`);
+    console.log(`onAppStarted appStateData: ${JSON.stringify(appStateData)}`);
   },
   onAppStopped(appStateData) {
-    console.log(`onAppStopped onAppStopped: ${JSON.stringify(appStateData)}`);
+    console.log(`onAppStopped appStateData: ${JSON.stringify(appStateData)}`);
   }
 };
 let observerCode = appManager.on('applicationState', applicationStateObserver);

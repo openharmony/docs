@@ -104,15 +104,15 @@
 所有待加载组件均要实现[StartupTask](../reference/apis-ability-kit/js-apis-app-appstartup-startupTask.md)接口，文件放置在工程的`ets`目录下的`startup`文件夹下，StartupTask必须添加[Sendable](../arkts-utils/arkts-sendable.md)注解。
 
 ```ts
-import StartupTask from '@ohos.app.appstartup.StartupTask';
-import common from '@ohos.app.ability.common';
-import hilog from '@ohos.hilog';
+import { StartupTask, common } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 @Sendable
 export default class StartupTask_001 extends StartupTask {
   constructor() {
     super();
   }
+
   async init(context: common.AbilityStageContext) {
     hilog.info(0x0000, 'testTag', 'StartupTask_001 init.');
     return 'StartupTask_001';
@@ -130,11 +130,9 @@ export default class StartupTask_001 extends StartupTask {
 应用需要在工程的`ets`目录下的`startup`文件夹下添加启动框架配置,开发者可以在该文件中配置超时时间以及组件初始化的监听器，启动框架配置需要在[StartupConfigEntry](../reference/apis-ability-kit/js-apis-app-appstartup-startupConfigEntry.md)中设置[StartupConfig](../reference/apis-ability-kit/js-apis-app-appstartup-startupConfig.md)与[StartupListener](../reference/apis-ability-kit/js-apis-app-appstartup-startupListener.md)。
 
 ```ts
-import StartupConfig from '@ohos.app.appstartup.StartupConfig';
-import StartupConfigEntry from '@ohos.app.appstartup.StartupConfigEntry';
-import StartupListener from '@ohos.app.appstartup.StartupListener';
-import hilog from '@ohos.hilog';
-import { BusinessError } from '@ohos.base';
+import { StartupConfig, StartupConfigEntry, StartupListener } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class MyStartupConfigEntry extends StartupConfigEntry {
   onConfig() {
@@ -146,14 +144,14 @@ export default class MyStartupConfigEntry extends StartupConfigEntry {
       } else {
         hilog.info(0x0000, 'testTag', `onCompletedCallback: success.`);
       }
-    }
+    };
     let startupListener: StartupListener = {
       'onCompleted': onCompletedCallback
-    }
+    };
     let config: StartupConfig = {
       'timeoutMs': 10000,
       'startupListener': startupListener
-    }
+    };
     return config;
   }
 }
@@ -168,10 +166,9 @@ export default class MyStartupConfigEntry extends StartupConfigEntry {
 手动模式需要应用开发者手动调用[StartupManager](../reference/apis-ability-kit/js-apis-app-appstartup-startupManager.md)中的[run](../reference/apis-ability-kit/js-apis-app-appstartup-startupManager.md#startupmanagerrun)方法来手动启动组件的初始化。
 
 ```ts
-import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { AbilityConstant, UIAbility, Want, startupManager } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-import { BusinessError } from '@ohos.base';
-import startupManager from '@ohos.app.appstartup.startupManager';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
@@ -192,7 +189,8 @@ export default class EntryAbility extends UIAbility {
       console.log('Startup catch error ,error= ' + errMsg);
     }
   }
-  ...
+
+  // ...
 }
 ```
 
