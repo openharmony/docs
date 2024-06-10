@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```ts
-import wantAgent from '@ohos.app.ability.wantAgent';
+import { wantAgent } from '@kit.AbilityKit';
 ```
 
 ## 属性

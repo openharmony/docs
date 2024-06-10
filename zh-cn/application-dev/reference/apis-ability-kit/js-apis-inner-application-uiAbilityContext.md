@@ -11,7 +11,7 @@ UIAbilityContext是需要保存状态的[UIAbility](js-apis-app-ability-uiAbilit
 ## 导入模块
 
 ```ts
-import common from '@ohos.app.ability.common';
+import { common } from '@kit.AbilityKit';
 ```
 
 ## 属性
@@ -77,9 +77,8 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { UIAbility, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   onForeground() {
@@ -158,10 +157,8 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import StartOptions from '@ohos.app.ability.StartOptions';
-import { BusinessError } from '@ohos.base';
+import { UIAbility, Want, StartOptions } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   onForeground() {
@@ -251,10 +248,8 @@ startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import StartOptions from '@ohos.app.ability.StartOptions';
-import { BusinessError } from '@ohos.base';
+import { UIAbility, Want, StartOptions } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   onForeground() {
@@ -337,10 +332,8 @@ startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;):
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import common from '@ohos.app.ability.common';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { UIAbility, Want, common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   onForeground() {
@@ -352,15 +345,15 @@ export default class EntryAbility extends UIAbility {
 
     try {
       this.context.startAbilityForResult(want, (err: BusinessError, result: common.AbilityResult) => {
-        if (err.code) { 
+        if (err.code) {
           // 处理业务逻辑错误
           console.error(`startAbilityForResult failed, code is ${err.code}, message is ${err.message}`);
           return;
-        } 
+        }
         // 执行正常业务
         console.info('startAbilityForResult succeed');
       });
-    } catch (err) { 
+    } catch (err) {
       // 处理入参错误异常
       let code = (err as BusinessError).code;
       let message = (err as BusinessError).message;
@@ -421,11 +414,8 @@ startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import common from '@ohos.app.ability.common';
-import Want from '@ohos.app.ability.Want';
-import StartOptions from '@ohos.app.ability.StartOptions';
-import { BusinessError } from '@ohos.base';
+import { UIAbility, Want, common, StartOptions } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   onForeground() {
@@ -517,11 +507,8 @@ startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityRes
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import common from '@ohos.app.ability.common';
-import Want from '@ohos.app.ability.Want';
-import StartOptions from '@ohos.app.ability.StartOptions';
-import { BusinessError } from '@ohos.base';
+import { UIAbility, Want, common, StartOptions } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   onForeground() {
@@ -586,8 +573,8 @@ terminateSelf(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import { BusinessError } from '@ohos.base';
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   onForeground() {
@@ -645,8 +632,8 @@ terminateSelf(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import { BusinessError } from '@ohos.base';
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   onForeground() {
@@ -705,10 +692,8 @@ terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback&lt;voi
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import common from '@ohos.app.ability.common';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { UIAbility, Want, common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   onForeground() {
@@ -783,10 +768,8 @@ terminateSelfWithResult(parameter: AbilityResult): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import common from '@ohos.app.ability.common';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { UIAbility, Want, common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   onForeground() {
@@ -862,11 +845,9 @@ connectServiceExtensionAbility(want: Want, options: ConnectOptions): number
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import common from '@ohos.app.ability.common';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
-import rpc from '@ohos.rpc';
+import { UIAbility, Want, common } from '@kit.AbilityKit';
+import { rpc } from '@kit.IPCKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   onForeground() {
@@ -934,9 +915,9 @@ disconnectServiceExtensionAbility(connection: number): Promise\<void>
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import { BusinessError } from '@ohos.base';
-import rpc from '@ohos.rpc';
+import { UIAbility } from '@kit.AbilityKit';
+import { rpc } from '@kit.IPCKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   onForeground() {
@@ -991,9 +972,9 @@ disconnectServiceExtensionAbility(connection: number, callback: AsyncCallback\<v
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import { BusinessError } from '@ohos.base';
-import rpc from '@ohos.rpc';
+import { UIAbility } from '@kit.AbilityKit';
+import { rpc } from '@kit.IPCKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   onForeground() {
@@ -1075,10 +1056,8 @@ startAbilityByCall(want: Want): Promise&lt;Caller&gt;
 后台启动：
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import { Caller } from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { UIAbility, Caller, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   onForeground() {
@@ -1114,10 +1093,8 @@ export default class EntryAbility extends UIAbility {
 前台启动：
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import { Caller } from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { UIAbility, Caller, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   onForeground() {
@@ -1182,10 +1159,8 @@ setMissionLabel(label: string, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import { BusinessError } from '@ohos.base';
+import { UIAbility, AbilityConstant, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
@@ -1229,11 +1204,9 @@ setMissionLabel(label: string): Promise&lt;void&gt;
 
 **示例：**
 
-  ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import { BusinessError } from '@ohos.base';
+```ts
+import { UIAbility, AbilityConstant, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
@@ -1246,7 +1219,7 @@ export default class EntryAbility extends UIAbility {
     });
   }
 }
-  ```
+```
 
 ## UIAbilityContext.setMissionContinueState<sup>10+</sup>
 
@@ -1278,9 +1251,8 @@ setMissionContinueState(state: AbilityConstant.ContinueState, callback: AsyncCal
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import { BusinessError } from '@ohos.base';
+import { UIAbility, AbilityConstant } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   onForeground() {
@@ -1326,9 +1298,8 @@ setMissionContinueState(state: AbilityConstant.ContinueState): Promise&lt;void&g
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import { BusinessError } from '@ohos.base';
+import { UIAbility, AbilityConstant } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   onForeground() {
@@ -1369,7 +1340,7 @@ restoreWindowStage(localStorage: LocalStorage): void
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
+import { UIAbility } from '@kit.AbilityKit';
 
 export default class EntryAbility extends UIAbility {
   onForeground() {
@@ -1406,7 +1377,7 @@ isTerminating(): boolean
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
+import { UIAbility } from '@kit.AbilityKit';
 
 export default class EntryAbility extends UIAbility {
   onForeground() {
@@ -1460,10 +1431,8 @@ requestDialogService(want: Want, result: AsyncCallback&lt;dialogRequest.RequestR
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import dialogRequest from '@ohos.app.ability.dialogRequest';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { UIAbility, Want, dialogRequest } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   onForeground() {
@@ -1543,10 +1512,8 @@ requestDialogService(want: Want): Promise&lt;dialogRequest.RequestResult&gt;
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import dialogRequest from '@ohos.app.ability.dialogRequest';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { UIAbility, Want, dialogRequest } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   onForeground() {
@@ -1602,10 +1569,10 @@ reportDrawnCompleted(callback: AsyncCallback\<void>): void
 
 **示例：**
 
-  ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import window from '@ohos.window';
-import { BusinessError } from '@ohos.base';
+```ts
+import { UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
@@ -1613,6 +1580,7 @@ export default class EntryAbility extends UIAbility {
       if (err.code) {
         return;
       }
+      
       try {
         this.context.reportDrawnCompleted((err) => {
           if (err.code) {
@@ -1633,7 +1601,7 @@ export default class EntryAbility extends UIAbility {
     console.log("MainAbility onWindowStageCreate");
   }
 };
-  ```
+```
 
 ## UIAbilityContext.startAbilityByType<sup>11+</sup>
 
@@ -1665,34 +1633,33 @@ startAbilityByType(type: string, wantParam: Record<string, Object>,
 
 **示例：**
 
-  ```ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  import common from '@ohos.app.ability.common';
+```ts
+import { UIAbility, common } from '@kit.AbilityKit';
 
-  export default class EntryAbility extends UIAbility {
-    onForeground() {
-      let wantParam: Record<string, Object> = {
-        'time': '2023-10-23 20:45'
-      };
-      let abilityStartCallback: common.AbilityStartCallback = {
-        onError: (code: number, name: string, message: string) => {
-          console.log(`code:` + code + `name:` + name + `message:` + message);
-        },
-        onResult: (abilityResult: common.AbilityResult) => {
-          console.log(`resultCode:` + abilityResult.resultCode + `bundleName:` + abilityResult.want?.bundleName);
-        }
-      };
-      
-      this.context.startAbilityByType("photoEditor", wantParam, abilityStartCallback, (err) => {
-        if (err) {
-          console.error(`startAbilityByType fail, err: ${JSON.stringify(err)}`);
-        } else {
-          console.log(`success`);
-        }
-      });
-    }
+export default class EntryAbility extends UIAbility {
+  onForeground() {
+    let wantParam: Record<string, Object> = {
+      'time': '2023-10-23 20:45'
+    };
+    let abilityStartCallback: common.AbilityStartCallback = {
+      onError: (code: number, name: string, message: string) => {
+        console.log(`code:` + code + `name:` + name + `message:` + message);
+      },
+      onResult: (abilityResult: common.AbilityResult) => {
+        console.log(`resultCode:` + abilityResult.resultCode + `bundleName:` + abilityResult.want?.bundleName);
+      }
+    };
+
+    this.context.startAbilityByType("photoEditor", wantParam, abilityStartCallback, (err) => {
+      if (err) {
+        console.error(`startAbilityByType fail, err: ${JSON.stringify(err)}`);
+      } else {
+        console.log(`success`);
+      }
+    });
   }
-  ```
+}
+```
 
 ## UIAbilityContext.startAbilityByType<sup>11+</sup>
 
@@ -1729,33 +1696,32 @@ startAbilityByType(type: string, wantParam: Record<string, Object>,
 
 **示例：**
 
-  ```ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  import common from '@ohos.app.ability.common';
-  import { BusinessError } from '@ohos.base';
+```ts
+import { UIAbility, common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-  export default class EntryAbility extends UIAbility {
-    onForeground() {
-      let wantParam: Record<string, Object> = {
-        'time': '2023-10-23 20:45'
-      };
-      let abilityStartCallback: common.AbilityStartCallback = {
-        onError: (code: number, name: string, message: string) => {
-          console.log(`code:` + code + `name:` + name + `message:` + message);
-        },
-        onResult: (abilityResult: common.AbilityResult) => {
-          console.log(`resultCode:` + abilityResult.resultCode + `bundleName:` + abilityResult.want?.bundleName);
-        }
-      };
+export default class EntryAbility extends UIAbility {
+  onForeground() {
+    let wantParam: Record<string, Object> = {
+      'time': '2023-10-23 20:45'
+    };
+    let abilityStartCallback: common.AbilityStartCallback = {
+      onError: (code: number, name: string, message: string) => {
+        console.log(`code:` + code + `name:` + name + `message:` + message);
+      },
+      onResult: (abilityResult: common.AbilityResult) => {
+        console.log(`resultCode:` + abilityResult.resultCode + `bundleName:` + abilityResult.want?.bundleName);
+      }
+    };
 
-      this.context.startAbilityByType("photoEditor", wantParam, abilityStartCallback).then(() => {
-        console.log(`startAbilityByType success`);
-      }).catch((err: BusinessError) => {
-        console.error(`startAbilityByType fail, err: ${JSON.stringify(err)}`);
-      });
-    }
+    this.context.startAbilityByType("photoEditor", wantParam, abilityStartCallback).then(() => {
+      console.log(`startAbilityByType success`);
+    }).catch((err: BusinessError) => {
+      console.error(`startAbilityByType fail, err: ${JSON.stringify(err)}`);
+    });
   }
-  ```
+}
+```
 
 ## UIAbilityContext.showAbility<sup>12+</sup>
 
@@ -1784,77 +1750,74 @@ showAbility(): Promise\<void>
 
 **示例：**
 
-  ```ts
-  // Index.ets
-  import common from '@ohos.app.ability.common';
-  import { BusinessError } from '@ohos.base';
+```ts
+// Index.ets
+import { common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-  @Entry
-  @Component
-  struct Index {
-    @State showAbility: string = 'showAbility'
+@Entry
+@Component
+struct Index {
+  @State showAbility: string = 'showAbility'
 
-    build() {
-      Row() {
-        Column() {
-          Text(this.showAbility)
-            .fontSize(30)
-            .fontWeight(FontWeight.Bold)
-            .onClick(() => {
-              let context = getContext(this) as common.UIAbilityContext;
+  build() {
+    Row() {
+      Column() {
+        Text(this.showAbility)
+          .fontSize(30)
+          .fontWeight(FontWeight.Bold)
+          .onClick(() => {
+            let context = getContext(this) as common.UIAbilityContext;
 
-              context.showAbility().then(() => {
-                console.log(`showAbility success`);
-              }).catch((err: BusinessError) => {
-                console.error(`showAbility fail, err: ${JSON.stringify(err)}`);
-              });
+            context.showAbility().then(() => {
+              console.log(`showAbility success`);
+            }).catch((err: BusinessError) => {
+              console.error(`showAbility fail, err: ${JSON.stringify(err)}`);
             });
+          });
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+```ts
+// EntryAbility.ts
+import { UIAbility, Want, StartOptions, contextConstant } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class EntryAbility extends UIAbility {
+  onForeground() {
+    let want: Want = {
+      deviceId: '',
+      bundleName: 'com.example.myapplication',
+      abilityName: 'EntryAbility'
+    };
+    let options: StartOptions = {
+      displayId: 0,
+      processMode: contextConstant.ProcessMode.NEW_PROCESS_ATTACH_TO_STATUS_BAR_ITEM
+    };
+
+    try {
+      this.context.startAbility(want, options, (err: BusinessError) => {
+        if (err.code) {
+          // 处理业务逻辑错误
+          console.error(`startAbility failed, code is ${err.code}, message is ${err.message}`);
+          return;
         }
-        .width('100%')
-      }
-      .height('100%')
+        // 执行正常业务
+        console.info('startAbility succeed');
+      });
+    } catch (err) {
+      // 处理入参错误异常
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`startAbility failed, code is ${code}, message is ${message}`);
     }
   }
-  ```
-  ```ts
-  // EntryAbility.ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  import Want from '@ohos.app.ability.Want';
-  import StartOptions from '@ohos.app.ability.StartOptions';
-  import contextConstant from '@ohos.app.ability.contextConstant';
-  import { BusinessError } from '@ohos.base';
-
-  export default class EntryAbility extends UIAbility {
-    onForeground() {
-      let want: Want = {
-        deviceId: '',
-        bundleName: 'com.example.myapplication',
-        abilityName: 'EntryAbility'
-      };
-      let options: StartOptions = {
-        displayId: 0,
-        processMode: contextConstant.ProcessMode.NEW_PROCESS_ATTACH_TO_STATUS_BAR_ITEM
-      };
-
-      try {
-        this.context.startAbility(want, options, (err: BusinessError) => {
-          if (err.code) {
-            // 处理业务逻辑错误
-            console.error(`startAbility failed, code is ${err.code}, message is ${err.message}`);
-            return;
-          }
-          // 执行正常业务
-          console.info('startAbility succeed');
-        });
-      } catch (err) {
-        // 处理入参错误异常
-        let code = (err as BusinessError).code;
-        let message = (err as BusinessError).message;
-        console.error(`startAbility failed, code is ${code}, message is ${message}`);
-      }
-    }
-  }
-  ```
+}
+```
 
 ## UIAbilityContext.hideAbility<sup>12+</sup>
 
@@ -1883,77 +1846,74 @@ hideAbility(): Promise\<void>
 
 **示例：**
 
-  ```ts
-    // Index.ets
-  import common from '@ohos.app.ability.common';
-  import { BusinessError } from '@ohos.base';
+```ts
+// Index.ets
+import { common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-  @Entry
-  @Component
-  struct Index {
-    @State hideAbility: string = 'hideAbility'
+@Entry
+@Component
+struct Index {
+  @State hideAbility: string = 'hideAbility'
 
-    build() {
-      Row() {
-        Column() {
-          Text(this.hideAbility)
-            .fontSize(30)
-            .fontWeight(FontWeight.Bold)
-            .onClick(() => {
-              let context = getContext(this) as common.UIAbilityContext;
+  build() {
+    Row() {
+      Column() {
+        Text(this.hideAbility)
+          .fontSize(30)
+          .fontWeight(FontWeight.Bold)
+          .onClick(() => {
+            let context = getContext(this) as common.UIAbilityContext;
 
-              context.hideAbility().then(() => {
-                console.log(`hideAbility success`);
-              }).catch((err: BusinessError) => {
-                console.error(`hideAbility fail, err: ${JSON.stringify(err)}`);
-              });
+            context.hideAbility().then(() => {
+              console.log(`hideAbility success`);
+            }).catch((err: BusinessError) => {
+              console.error(`hideAbility fail, err: ${JSON.stringify(err)}`);
             });
+          });
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+```ts
+// EntryAbility.ts
+import { UIAbility, Want, StartOptions, contextConstant } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class EntryAbility extends UIAbility {
+  onForeground() {
+    let want: Want = {
+      deviceId: '',
+      bundleName: 'com.example.myapplication',
+      abilityName: 'EntryAbility'
+    };
+    let options: StartOptions = {
+      displayId: 0,
+      processMode: contextConstant.ProcessMode.NEW_PROCESS_ATTACH_TO_STATUS_BAR_ITEM
+    };
+
+    try {
+      this.context.startAbility(want, options, (err: BusinessError) => {
+        if (err.code) {
+          // 处理业务逻辑错误
+          console.error(`startAbility failed, code is ${err.code}, message is ${err.message}`);
+          return;
         }
-        .width('100%')
-      }
-      .height('100%')
+        // 执行正常业务
+        console.info('startAbility succeed');
+      });
+    } catch (err) {
+      // 处理入参错误异常
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`startAbility failed, code is ${code}, message is ${message}`);
     }
   }
-  ```
-  ```ts
-  // EntryAbility.ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  import Want from '@ohos.app.ability.Want';
-  import StartOptions from '@ohos.app.ability.StartOptions';
-  import contextConstant from '@ohos.app.ability.contextConstant';
-  import { BusinessError } from '@ohos.base';
-
-  export default class EntryAbility extends UIAbility {
-    onForeground() {
-      let want: Want = {
-        deviceId: '',
-        bundleName: 'com.example.myapplication',
-        abilityName: 'EntryAbility'
-      };
-      let options: StartOptions = {
-        displayId: 0,
-        processMode: contextConstant.ProcessMode.NEW_PROCESS_ATTACH_TO_STATUS_BAR_ITEM
-      };
-
-      try {
-        this.context.startAbility(want, options, (err: BusinessError) => {
-          if (err.code) {
-            // 处理业务逻辑错误
-            console.error(`startAbility failed, code is ${err.code}, message is ${err.message}`);
-            return;
-          }
-          // 执行正常业务
-          console.info('startAbility succeed');
-        });
-      } catch (err) {
-        // 处理入参错误异常
-        let code = (err as BusinessError).code;
-        let message = (err as BusinessError).message;
-        console.error(`startAbility failed, code is ${code}, message is ${message}`);
-      }
-    }
-  }
-  ```
+}
+```
 
 ## UIAbilityContext.moveAbilityToBackground<sup>12+<sup>
 moveAbilityToBackground(): Promise\<void>
@@ -1985,8 +1945,8 @@ moveAbilityToBackground(): Promise\<void>
 **示例：**
 
 ```ts
-import common from '@ohos.app.ability.common';
-import { BusinessError } from '@ohos.base';
+import { common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
@@ -2066,10 +2026,9 @@ openAtomicService(appId: string, options?: AtomicServiceOptions): Promise&lt;Abi
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
+import { UIAbility, common } from '@kit.AbilityKit';
 import AtomicServiceOptions from '@ohos.app.ability.AtomicServiceOptions';
-import common from '@ohos.app.ability.common';
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   onForeground() {
@@ -2157,10 +2116,10 @@ openLink(link: string, options?: OpenLinkOptions, callback?: AsyncCallback&lt;Ab
 **示例：**
 
 ```ts
-import common from '@ohos.app.ability.common';
-import hilog from '@ohos.hilog';
+import { common } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import OpenLinkOptions from '@ohos.app.ability.OpenLinkOptions';
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const DOMAIN = 0xeeee;
 const TAG: string = '[openLinkDemo]';

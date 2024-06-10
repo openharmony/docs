@@ -10,7 +10,7 @@ ApplicationContext模块继承自[Context](js-apis-inner-application-context.md)
 ## 导入模块
 
 ```ts
-import common from '@ohos.app.ability.common';
+import { common } from '@kit.AbilityKit';
 ```
 
 ## 使用说明
@@ -53,12 +53,10 @@ preloadUIExtensionAbility(want: Want): Promise\<void\>
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { UIAbility, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
-
   onCreate() {
     let want: Want = {
       bundleName: 'com.ohos.uiextensionprovider',
@@ -70,8 +68,8 @@ export default class EntryAbility extends UIAbility {
       }
     };
     try {
-        let applicationContext = this.context.getApplicationConext();
-        applicationContext.preloadUIExtensionAbility(want)
+      let applicationContext = this.context.getApplicationContext();
+      applicationContext.preloadUIExtensionAbility(want)
         .then(() => {
           // 执行正常业务
           console.info('preloadUIExtensionAbility succeed');
@@ -84,7 +82,7 @@ export default class EntryAbility extends UIAbility {
       // 处理入参错误异常
       let code = (err as BusinessError).code;
       let message = (err as BusinessError).message;
-      console.error('preloadUIExtensionAbility failed');
+      console.error(`preloadUIExtensionAbility failed. code: ${code}, msg: ${message}`);
     }
   }
 }
@@ -129,9 +127,8 @@ setSupportedProcessCache(isSupported : boolean): void
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import type AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import type Want from '@ohos.app.ability.Want';
+import { UIAbility, Want, AbilityConstant } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class MyAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
@@ -139,7 +136,10 @@ export default class MyAbility extends UIAbility {
     try {
       applicationContext.setSupportedProcessCache(false);
     } catch (error) {
-      console.error(`setSupportedProcessCache fail, error: ${JSON.stringify(error)}`);
+      // 处理入参错误异常
+      let code = (error as BusinessError).code;
+      let message = (error as BusinessError).message;
+      console.error(`setSupportedProcessCache fail, code: ${code}, msg: ${message}`);
     }
   }
 }

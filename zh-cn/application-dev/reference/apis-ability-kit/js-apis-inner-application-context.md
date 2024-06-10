@@ -10,7 +10,7 @@ Context模块继承自[BaseContext](js-apis-inner-application-baseContext.md)，
 ## 导入模块
 
 ```ts
-import common from '@ohos.app.ability.common';
+import { common } from '@kit.AbilityKit';
 ```
 
 ## 属性
@@ -60,8 +60,8 @@ createModuleContext(moduleName: string): Context
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import common from '@ohos.app.ability.common';
+import { common, UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   onCreate() {
@@ -70,7 +70,7 @@ export default class EntryAbility extends UIAbility {
     try {
       moduleContext = this.context.createModuleContext('entry');
     } catch (error) {
-      console.error(`createModuleContext failed, error.code: ${error.code}, error.message: ${error.message}`);
+      console.error(`createModuleContext failed, error.code: ${(error as BusinessError).code}, error.message: ${(error as BusinessError).message}`);
     }
   }
 }
@@ -97,8 +97,8 @@ getApplicationContext(): ApplicationContext
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import common from '@ohos.app.ability.common';
+import { common, UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   onCreate() {
@@ -107,7 +107,7 @@ export default class EntryAbility extends UIAbility {
     try {
       applicationContext = this.context.getApplicationContext();
     } catch (error) {
-      console.error(`getApplicationContext failed, error.code: ${error.code}, error.message: ${error.message}`);
+      console.error(`getApplicationContext failed, error.code: ${(error as BusinessError).code}, error.message: ${(error as BusinessError).message}`);
     }
   }
 }
@@ -146,8 +146,8 @@ getGroupDir(dataGroupID: string): Promise\<string>
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import common from '@ohos.app.ability.common';
+import { common, UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   onCreate() {
@@ -159,7 +159,7 @@ export default class EntryAbility extends UIAbility {
         console.log("getGroupDir result:" + data);
       })
     } catch (error) {
-      console.error(`getGroupDirContext failed, error.code: ${error.code}, error.message: ${error.message}`);
+      console.error(`getGroupDirContext failed, error.code: ${(error as BusinessError).code}, error.message: ${(error as BusinessError).message}`);
     }
   }
 }
@@ -193,15 +193,15 @@ getGroupDir(dataGroupID: string, callback: AsyncCallback\<string>): void
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import common from '@ohos.app.ability.common';
+import { common, UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   onCreate() {
     console.log('MyAbility onCreate');
     let getGroupDirContext: common.Context = this.context;
 
-    getGroupDirContext.getGroupDir("1", (err, data) => {
+    getGroupDirContext.getGroupDir("1", (err: BusinessError, data) => {
       if (err) {
         console.error(`getGroupDir faile, err: ${JSON.stringify(err)}`);
       } else {
