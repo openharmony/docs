@@ -10,7 +10,7 @@ EventHub模块提供了事件中心，提供订阅、取消订阅、触发事件
 ## 导入模块
 
 ```ts
-import common from '@ohos.app.ability.common';
+import { common } from '@kit.AbilityKit';
 ```
 
 ## 使用说明
@@ -18,16 +18,16 @@ import common from '@ohos.app.ability.common';
 在使用eventHub的功能前，需要通过UIAbility实例的成员变量context获取。
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
+import { UIAbility } from '@kit.AbilityKit';
 
 export default class EntryAbility extends UIAbility {
-    eventFunc(){
-        console.log('eventFunc is called');
-    }
+  eventFunc() {
+    console.log('eventFunc is called');
+  }
 
-    onCreate() {
-        this.context.eventHub.on('myEvent', this.eventFunc);
-    }
+  onCreate() {
+    this.context.eventHub.on('myEvent', this.eventFunc);
+  }
 }
 ```
 EventHub不是全局的事件中心，不同的context对象拥有不同的EventHub对象，事件的订阅、取消订阅、触发都作用在某一个具体的EventHub对象上，因此不能用于虚拟机间或者进程间的事件传递。
@@ -64,10 +64,10 @@ on(event: string, callback: Function): void;
 callback被emit触发时，调用方是EventHub对象。EventHub对象没有value属性，因此结果是undefined。
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
+import { UIAbility } from '@kit.AbilityKit';
 
 export default class EntryAbility extends UIAbility {
-    value: number = 12;
+  value: number = 12;
 
     onCreate() {
         this.context.eventHub.on('myEvent', this.eventFunc);
@@ -90,7 +90,7 @@ export default class EntryAbility extends UIAbility {
 callback使用箭头函数时，调用方是EntryAbility对象。EntryAbility对象里存在value属性，因此结果是12。
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
+import { UIAbility } from '@kit.AbilityKit';
 
 export default class EntryAbility extends UIAbility {
     value: number = 12;
@@ -108,9 +108,9 @@ export default class EntryAbility extends UIAbility {
         this.context.eventHub.emit('myEvent');
     }
 
-    eventFunc() {
-        console.log(`eventFunc is called, value: ${this.value}`);
-    }
+  eventFunc() {
+    console.log(`eventFunc is called, value: ${this.value}`);
+  }
 }
 ```
 
@@ -144,24 +144,24 @@ off(event: string, callback?: Function): void;
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
+import { UIAbility } from '@kit.AbilityKit';
 
 export default class EntryAbility extends UIAbility {
-    onCreate() {
-        this.context.eventHub.on('myEvent', this.eventFunc1);
-        this.context.eventHub.off('myEvent', this.eventFunc1); // 取消eventFunc1对myEvent事件的订阅
-        this.context.eventHub.on('myEvent', this.eventFunc1);
-        this.context.eventHub.on('myEvent', this.eventFunc2);
-        this.context.eventHub.off('myEvent');  // 取消eventFunc1和eventFunc2对myEvent事件的订阅
-    }
+  onCreate() {
+    this.context.eventHub.on('myEvent', this.eventFunc1);
+    this.context.eventHub.off('myEvent', this.eventFunc1); // 取消eventFunc1对myEvent事件的订阅
+    this.context.eventHub.on('myEvent', this.eventFunc1);
+    this.context.eventHub.on('myEvent', this.eventFunc2);
+    this.context.eventHub.off('myEvent'); // 取消eventFunc1和eventFunc2对myEvent事件的订阅
+  }
 
-    eventFunc1() {
-        console.log('eventFunc1 is called');
-    }
+  eventFunc1() {
+    console.log('eventFunc1 is called');
+  }
 
-    eventFunc2() {
-        console.log('eventFunc2 is called');
-    }
+  eventFunc2() {
+    console.log('eventFunc2 is called');
+  }
 }
 ```
 
@@ -193,27 +193,27 @@ emit(event: string, ...args: Object[]): void;
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
+import { UIAbility } from '@kit.AbilityKit';
 
 export default class EntryAbility extends UIAbility {
-    onCreate() {
-        this.context.eventHub.on('myEvent', this.eventFunc);
-    }
+  onCreate() {
+    this.context.eventHub.on('myEvent', this.eventFunc);
+  }
 
-    onDestroy() {
-        // 结果：
-        // eventFunc is called,undefined,undefined
-        this.context.eventHub.emit('myEvent');
-        // 结果：
-        // eventFunc is called,1,undefined
-        this.context.eventHub.emit('myEvent', 1);
-        // 结果：
-        // eventFunc is called,1,2
-        this.context.eventHub.emit('myEvent', 1, 2);
-    }
+  onDestroy() {
+    // 结果：
+    // eventFunc is called,undefined,undefined
+    this.context.eventHub.emit('myEvent');
+    // 结果：
+    // eventFunc is called,1,undefined
+    this.context.eventHub.emit('myEvent', 1);
+    // 结果：
+    // eventFunc is called,1,2
+    this.context.eventHub.emit('myEvent', 1, 2);
+  }
 
-    eventFunc(argOne: number, argTwo: number) {
-        console.log(`eventFunc is called, ${argOne}, ${argTwo}`);
-    }
+  eventFunc(argOne: number, argTwo: number) {
+    console.log(`eventFunc is called, ${argOne}, ${argTwo}`);
+  }
 }
 ```
