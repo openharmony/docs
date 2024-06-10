@@ -1,6 +1,6 @@
 # \@ObservedV2装饰器和\@Trace装饰器：类属性变化观测
 
-为了增强现有状态管理框架对类对象中属性的观测能力，开发者可以使用\@ObservedV2装饰器和\@Trace装饰器装饰类以及类中的属性。
+为了增强状态管理框架对类对象中属性的观测能力，开发者可以使用\@ObservedV2装饰器和\@Trace装饰器装饰类以及类中的属性。
 
 >**说明：**
 >
@@ -15,10 +15,11 @@
 - 在嵌套类中，嵌套类中的属性property被\@Trace装饰且嵌套类被\@ObservedV2装饰时，才具有触发UI刷新的能力。
 - 在继承类中，父类或子类中的属性property被\@Trace装饰且该property所在类被\@ObservedV2装饰时，才具有触发UI刷新的能力。
 - 在\@ObservedV2装饰的类中，只有被\@Trace装饰的属性才可以用在UI中，未被\@Trace装饰的属性不可以用在UI中。
+- \@ObservedV2的类实例目前不支持使用JSON.stringify进行序列化。
 
-## 现有状态管理框架的局限性
+## 状态管理V1版本的局限性
 
-现有状态管理框架无法实现对嵌套类对象属性变化的直接观测。
+现有状态管理V1版本无法实现对嵌套类对象属性变化的直接观测。
 
 ```ts
 @Observed
@@ -61,7 +62,7 @@ struct Index {
 }
 ```
 
-上述代码中，点击Text组件增加age的值时，不会触发UI刷新。因为在现有的状态管理框架下，无法观测到嵌套类中属性age的值变化。现有框架的解决方案是使用[\@ObjectLink装饰器](arkts-observed-and-objectlink.md)与自定义组件的方式实现观测。
+上述代码中，点击Text组件增加age的值时，不会触发UI刷新。因为在现有的状态管理框架下，无法观测到嵌套类中属性age的值变化。V1版本的解决方案是使用[\@ObjectLink装饰器](arkts-observed-and-objectlink.md)与自定义组件的方式实现观测。
 
 ```ts
 @Observed
@@ -143,7 +144,7 @@ class Father {
   son: Son = new Son();
 }
 @Entry
-@Component
+@ComponentV2
 struct Index {
   father: Father = new Father();
 
@@ -170,7 +171,7 @@ class Father {
 class Son extends Father {
 }
 @Entry
-@Component
+@ComponentV2
 struct Index {
   son: Son = new Son();
 
@@ -194,7 +195,7 @@ class Manager {
   @Trace static count: number = 1;
 }
 @Entry
-@Component
+@ComponentV2
 struct Index {
   build() {
     Column() {
@@ -230,7 +231,7 @@ class Person {
   @Trace age: number = 8;
 }
 @Entry
-@Component
+@ComponentV2
 struct Index {
   person: Person = new Person();
 
@@ -257,7 +258,7 @@ class User {
 - \@Trace是class中属性的装饰器，不能用在struct中。
 
 ```ts
-@Component
+@ComponentV2
 struct Comp {
   @Trace message: string = "Hello World"; // 错误用法
 
@@ -321,6 +322,8 @@ struct Index {
 }
 ```
 
+- \@ObservedV2的类实例目前不支持使用JSON.stringify进行序列化。
+
 ## 使用场景
 
 ### 嵌套类场景
@@ -349,7 +352,7 @@ class Son {
 }
 
 @Entry
-@Component
+@ComponentV2
 struct Page {
   son: Son = new Son();
   renderTimes: number = 0;
@@ -417,7 +420,7 @@ class Cousin extends Uncle {
   }
 }
 @Entry
-@Component
+@ComponentV2
 struct Index {
   son: Son = new Son(0);
   cousin: Cousin = new Cousin(0);
@@ -473,7 +476,7 @@ class Arr {
 }
 
 @Entry
-@Component
+@ComponentV2
 struct Index {
   arr: Arr = new Arr();
 
@@ -584,7 +587,7 @@ class Info {
 }
 
 @Entry
-@Component
+@ComponentV2
 struct Index {
   info: Info = new Info();
 
@@ -635,7 +638,7 @@ class Info {
 }
 
 @Entry
-@Component
+@ComponentV2
 struct MapSample {
   info: Info = new Info();
 
@@ -688,7 +691,7 @@ class Info {
 }
 
 @Entry
-@Component
+@ComponentV2
 struct SetSample {
   info: Info = new Info();
 
@@ -736,7 +739,7 @@ class Info {
 }
 
 @Entry
-@Component
+@ComponentV2
 struct DateSample {
   info: Info = new Info()
 

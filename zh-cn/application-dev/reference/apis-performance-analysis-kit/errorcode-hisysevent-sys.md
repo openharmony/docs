@@ -71,7 +71,7 @@ Abnormal environment.
 
 **错误信息**
 
-The event length exceeds the limit
+The event length exceeds the limit.
 
 **错误描述**
 
@@ -291,3 +291,21 @@ The query frequency exceeds the limit.
 **处理步骤**
 
 检查是否在1秒内进行50次以上的查询。
+
+## 11200305 取消订阅失败
+
+**错误信息**
+
+Unsubscription failed.
+
+**错误描述**
+
+在调用unsubscribe接口失败的时候，返回此错误码。
+
+**可能原因**
+
+hiview服务异常。
+
+**处理步骤**
+
+尝试重新调用unsubscribe接口。

@@ -77,9 +77,9 @@
 | tiltX<sup>9+</sup> | number | 手写笔在设备平面上的投影与设备平面X轴的夹角。 |
 | tiltY<sup>9+</sup> | number | 手写笔在设备平面上的投影与设备平面Y轴的夹角。 |
 | sourceTool<sup>9+</sup> | [SourceTool](#sourcetool枚举说明9) | 事件输入源。 |
-| velocityX<sup>10+</sup> | number | 用于[PanGesture](ts-basic-gestures-pangesture.md)手势中，获取当前手势的x轴方向速度。坐标轴原点为屏幕左上角，分正负方向速度，从左往右为正，反之为负。 |
-| velocityY<sup>10+</sup> | number | 用于[PanGesture](ts-basic-gestures-pangesture.md)手势中，获取当前手势的y轴方向速度。坐标轴原点为屏幕左上角，分正负方向速度，从上往下为正，反之为负。 |
-| velocity<sup>10+</sup> | number | 用于[PanGesture](ts-basic-gestures-pangesture.md)手势中，获取当前手势的主方向速度。为xy轴方向速度的平方和的算术平方根。 |
+| velocityX<sup>10+</sup> | number | 用于[PanGesture](ts-basic-gestures-pangesture.md)手势中，获取当前手势的x轴方向速度。坐标轴原点为屏幕左上角，分正负方向速度，从左往右为正，反之为负。单位为vp/s。 |
+| velocityY<sup>10+</sup> | number | 用于[PanGesture](ts-basic-gestures-pangesture.md)手势中，获取当前手势的y轴方向速度。坐标轴原点为屏幕左上角，分正负方向速度，从上往下为正，反之为负。单位为vp/s。 |
+| velocity<sup>10+</sup> | number | 用于[PanGesture](ts-basic-gestures-pangesture.md)手势中，获取当前手势的主方向速度。为xy轴方向速度的平方和的算术平方根。单位为vp/s。 |
 
 ## SourceType枚举说明
 
@@ -98,12 +98,12 @@
 | 名称 | 类型 | 描述 |
 | -------- | -------- | -------- |
 | id | number | 手指的索引编号。 |
-| globalX | number | 相对于应用窗口左上角的x轴坐标。 |
-| globalY | number | 相对于应用窗口左上角的y轴坐标。 |
-| localX | number | 相对于当前组件元素原始区域左上角的x轴坐标。 |
-| localY | number | 相对于当前组件元素原始区域左上角的y轴坐标。 |
-| displayX<sup>12+</sup> | number | 相对于屏幕左上角的x轴坐标。 |
-| displayY<sup>12+</sup> | number | 相对于屏幕左上角的y轴坐标。 |
+| globalX | number | 相对于应用窗口左上角的x轴坐标，单位为vp。 |
+| globalY | number | 相对于应用窗口左上角的y轴坐标，单位为vp。 |
+| localX | number | 相对于当前组件元素原始区域左上角的x轴坐标，单位为vp。 |
+| localY | number | 相对于当前组件元素原始区域左上角的y轴坐标，单位为vp。 |
+| displayX<sup>12+</sup> | number | 相对于屏幕左上角的x轴坐标，单位为vp。 |
+| displayY<sup>12+</sup> | number | 相对于屏幕左上角的y轴坐标，单位为vp。 |
 
 ## SourceTool枚举说明<sup>9+</sup>
 

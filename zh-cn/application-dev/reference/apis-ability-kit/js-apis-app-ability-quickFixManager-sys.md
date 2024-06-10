@@ -10,7 +10,7 @@ quickFixManager模块提供快速修复的能力，快速修复是系统提供�
 ## 导入模块
 
 ```ts
-import quickFixManager from '@ohos.app.ability.quickFixManager';
+import { quickFixManager } from '@kit.AbilityKit';
 ```
 
 ## HapModuleQuickFixInfo
@@ -82,20 +82,20 @@ applyQuickFix(hapModuleQuickFixFiles: Array\<string>, callback: AsyncCallback\<v
 **示例：**
 
 ```ts
-import quickFixManager from '@ohos.app.ability.quickFixManager';
+import { quickFixManager } from '@kit.AbilityKit';
 
-  try {
-    let hapModuleQuickFixFiles = ['/data/storage/el2/base/entry.hqf'];
-    quickFixManager.applyQuickFix(hapModuleQuickFixFiles, (error) => {
-      if (error) {
-          console.error( `applyQuickFix failed with error: ${error}`);
-      } else {
-          console.info( 'applyQuickFix success');
-      }
-    });
-  } catch (paramError) {
-    console.error(`error.code: ${paramError.code}, error.message: ${paramError.message}`);
-  }
+try {
+  let hapModuleQuickFixFiles = ['/data/storage/el2/base/entry.hqf'];
+  quickFixManager.applyQuickFix(hapModuleQuickFixFiles, (error) => {
+    if (error) {
+      console.error( `applyQuickFix failed with error: ${error}`);
+    } else {
+      console.info( 'applyQuickFix success');
+    }
+  });
+} catch (paramError) {
+  console.error(`error.code: ${paramError.code}, error.message: ${paramError.message}`);
+}
 ```
 
 ## quickFixManager.applyQuickFix
@@ -139,19 +139,20 @@ applyQuickFix(hapModuleQuickFixFiles: Array\<string>): Promise\<void>;
 **示例：**
 
 ```ts
-import quickFixManager from '@ohos.app.ability.quickFixManager';
-import { BusinessError } from '@ohos.base';
+import { quickFixManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-  let hapModuleQuickFixFiles = ['/data/storage/el2/base/entry.hqf'];
-  try {
-    quickFixManager.applyQuickFix(hapModuleQuickFixFiles).then(() => {
-      console.info('applyQuickFix success');
-    }).catch((error: BusinessError) => {
-      console.error(`applyQuickFix err: ${error}`);
-    });
-  } catch (paramError) {
-    console.error(`error: ${paramError.code}, ${paramError.message}`);
-  }
+let hapModuleQuickFixFiles = ['/data/storage/el2/base/entry.hqf'];
+
+try {
+  quickFixManager.applyQuickFix(hapModuleQuickFixFiles).then(() => {
+    console.info('applyQuickFix success');
+  }).catch((error: BusinessError) => {
+    console.error(`applyQuickFix err: ${error}`);
+  });
+} catch (paramError) {
+  console.error(`error: ${(paramError as BusinessError).code}, ${(paramError as BusinessError).message}`);
+}
 ```
 
 ## quickFixManager.getApplicationQuickFixInfo
@@ -188,20 +189,21 @@ getApplicationQuickFixInfo(bundleName: string, callback: AsyncCallback\<Applicat
 **示例：**
 
 ```ts
-import quickFixManager from '@ohos.app.ability.quickFixManager';
+import { quickFixManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-  try {
-    let bundleName = 'bundleName';
-    quickFixManager.getApplicationQuickFixInfo(bundleName, (error, data) => {
-      if (error) {
-        console.error(`getApplicationQuickFixInfo error: ${error}`);
-      } else {
-        console.info(`getApplicationQuickFixInfo success: ${data}`);
-      }
-    });
-  } catch (paramError) {
-    console.error(`error: ${paramError.code}, ${paramError.message}`);
-  }
+try {
+  let bundleName = 'bundleName';
+  quickFixManager.getApplicationQuickFixInfo(bundleName, (error, data) => {
+    if (error) {
+      console.error(`getApplicationQuickFixInfo error: ${error}`);
+    } else {
+      console.info(`getApplicationQuickFixInfo success: ${data}`);
+    }
+  });
+} catch (paramError) {
+  console.error(`error: ${(paramError as BusinessError).code}, ${(paramError as BusinessError).message}`);
+}
 ```
 
 ## quickFixManager.getApplicationQuickFixInfo
@@ -242,21 +244,21 @@ getApplicationQuickFixInfo(bundleName: string): Promise\<ApplicationQuickFixInfo
 
 **示例：**
 
-  ```ts
-import quickFixManager from '@ohos.app.ability.quickFixManager';
-import { BusinessError } from '@ohos.base';
+```ts
+import { quickFixManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-  try {
-    let bundleName = 'bundleName';
-    quickFixManager.getApplicationQuickFixInfo(bundleName).then((data) => {
-      console.info(`getApplicationQuickFixInfo success: ${data}`);
-    }).catch((error: BusinessError) => {
-      console.error(`getApplicationQuickFixInfo err: ${error}`);
-    });
-  } catch (paramError) {
-    console.error(`error: ${paramError.code}, ${paramError.message}`);
-  }
-  ```
+try {
+  let bundleName = 'bundleName';
+  quickFixManager.getApplicationQuickFixInfo(bundleName).then((data) => {
+    console.info(`getApplicationQuickFixInfo success: ${data}`);
+  }).catch((error: BusinessError) => {
+    console.error(`getApplicationQuickFixInfo err: ${error}`);
+  });
+} catch (paramError) {
+  console.error(`error: ${(paramError as BusinessError).code}, ${(paramError as BusinessError).message}`);
+}
+```
 
 ## quickFixManager.revokeQuickFix<sup>10+<sup>
 
@@ -294,12 +296,13 @@ revokeQuickFix(bundleName: string, callback: AsyncCallback\<void>): void;
 **示例：**
 
 ```ts
-import quickFixManager from '@ohos.app.ability.quickFixManager';
+import { quickFixManager } from '@kit.AbilityKit';
 
-  let bundleName = "com.example.myapplication";
-  quickFixManager.revokeQuickFix(bundleName, (err) => {
-    console.info("revokeQuickFix " + bundleName + " " + JSON.stringify(err));
-  });
+let bundleName = "com.example.myapplication";
+
+quickFixManager.revokeQuickFix(bundleName, (err) => {
+  console.info("revokeQuickFix " + bundleName + " " + JSON.stringify(err));
+});
 ```
 
 ## quickFixManager.revokeQuickFix<sup>10+<sup>
@@ -343,13 +346,14 @@ revokeQuickFix(bundleName: string): Promise\<void>;
 **示例：**
 
 ```ts
-import quickFixManager from '@ohos.app.ability.quickFixManager';
-import { BusinessError } from '@ohos.base';
+import { quickFixManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-  let bundleName = "com.example.myapplication";
-  quickFixManager.revokeQuickFix(bundleName).then(() => {
-    console.info("revokeQuickFix " + bundleName +" ok");
-  }).catch((err: BusinessError) => {
-    console.info("revokeQuickFix " + bundleName +" failed, error code is ", JSON.stringify((err)));
-  });
+let bundleName = "com.example.myapplication";
+
+quickFixManager.revokeQuickFix(bundleName).then(() => {
+  console.info("revokeQuickFix " + bundleName +" ok");
+}).catch((err: BusinessError) => {
+  console.info("revokeQuickFix " + bundleName +" failed, error code is ", JSON.stringify((err)));
+});
 ```

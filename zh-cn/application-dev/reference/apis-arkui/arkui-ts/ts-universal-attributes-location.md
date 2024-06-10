@@ -114,6 +114,24 @@ alignRules(value: AlignRuleOption)
 | ------ | ------------------------------------------- | ---- | ------------------------ |
 | value  | [AlignRuleOption](#alignruleoption对象说明) | 是   | 指定设置在相对容器中子组件的对齐规则。 |
 
+## alignRules<sup>12+</sup>
+
+alignRules(alignRule: LocalizedAlignRuleOptions)
+
+指定设置在相对容器中子组件的对齐规则，仅当父容器为[RelativeContainer](ts-container-relativecontainer.md)时生效。该方法水平方向上以start和end分别替代原方法的left和right，以便在RTL模式下能镜像显示，建议使用该方法指定设置在相对容器中子组件的对齐规则。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                        | 必填 | 说明                     |
+| ------ | ------------------------------------------- | ---- | ------------------------ |
+| alignRule  | [LocalizedAlignRuleOptions](#localizedalignruleoptions12对象说明) | 是   | 指定设置在相对容器中子组件的对齐规则。 |
+
 ## AlignRuleOption对象说明
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
@@ -127,6 +145,38 @@ alignRules(value: AlignRuleOption)
 | bottom | { anchor: string, align: [VerticalAlign](ts-appendix-enums.md#verticalalign) } | 设置底部对齐的参数。<br/>-&nbsp;anchor：设置作为锚点的组件的id值。<br/>-&nbsp;align：设置相对于锚点组件的对齐方式。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 | center | { anchor: string, align: [VerticalAlign](ts-appendix-enums.md#verticalalign) } | 设置纵向居中对齐方式的参数。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。                                 |
 | bias   | [Bias](#bias对象说明) | 设置组件在锚点约束下的偏移参数，其值为到左/上侧锚点的距离与锚点间总距离的比值。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。|
+
+## LocalizedAlignRuleOptions<sup>12+</sup>对象说明
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+| 名称   | 类型                                                         | 描述                                                         |
+| ------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| start  | [LocalizedHorizontalAlignParam](#localizedhorizontalalignparam12对象说明) | 设置横向对齐方式的参数，LTR模式时为左对齐，RTL模式时为右对齐。 |
+| end    | [LocalizedHorizontalAlignParam](#localizedhorizontalalignparam12对象说明) | 设置横向对齐方式的参数，LTR模式时为右对齐，RTL模式时为左对齐。 |
+| middle | [LocalizedHorizontalAlignParam](#localizedhorizontalalignparam12对象说明) | 设置横向居中对齐方式的参数。|
+| top    | [LocalizedVerticalAlignParam](#localizedverticalalignparam12对象说明) | 设置纵向顶部对齐的参数。 |
+| bottom | [LocalizedVerticalAlignParam](#localizedverticalalignparam12对象说明) | 设置纵向底部对齐的参数。 |
+| center | [LocalizedVerticalAlignParam](#localizedverticalalignparam12对象说明) | 设置纵向居中对齐方式的参数。      |
+| bias   | [Bias](#bias对象说明) | 设置组件在锚点约束下的偏移参数，其值为到左/上侧锚点的距离与锚点间总距离的比值。|
+
+## LocalizedHorizontalAlignParam<sup>12+</sup>对象说明
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+| 名称   | 类型                                                         | 描述                                                         |
+| ------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| anchor  | string  | 设置作为锚点的组件的id值。 |
+| align   | [HorizontalAlign](ts-appendix-enums.md#horizontalalign)  | 设置相对于锚点组件的横向对齐方式。 |
+
+## LocalizedVerticalAlignParam<sup>12+</sup>对象说明
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+| 名称   | 类型                                                         | 描述                                                         |
+| ------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| anchor  | string | 设置作为锚点的组件的id值。 |
+| align   | [VerticalAlign](ts-appendix-enums.md#verticalalign)  | 设置相对于锚点组件的纵向对齐方式。 |
 
 ## Bias对象说明
 

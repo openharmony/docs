@@ -59,6 +59,77 @@ Ability assistant（Ability助手，简称为aa），是实现应用及测试用
   aa start [-d <deviceId>] [-U <URI>] [-t <type>] [-A <action>] [-e <entity>] [-D] [--pi <key> <integer-value>] [--pb <key> <bool-value: true/false/t/f大小写不敏感] [--ps <key> <value>] [--psn <key>]
   ```
 
+  **示例**：
+
+以隐式启动Ability为例。
+  > **说明：**
+  > 
+  > 本例中仅介绍了部分字段的使用。关于Ability匹配的详细规则参考[显式Want与隐式Want匹配规则](../application-models/explicit-implicit-want-mappings.md)**。
+
+
+1. 修改module.json5配置，为目标Ability配置uris。
+      ```json
+      {
+        "name": "TargetAbility",
+        ......
+        "exported": true,
+        "skills": [
+          {
+            "uris":[
+              {
+                "scheme": "https",
+                "host": "www.test.com",
+                "port": "8080",
+                "path": "path",
+                "type": "text/plain"
+              }
+            ]
+          }
+        ]
+      }
+      ```
+2. 隐式启动Ability。
+
+
+    - 直接使用-U命令启动。
+
+        ```bash
+        aa start -U https://www.test.com:8080/path
+        ```
+
+    - 如果需要通过类型进行匹配，则需要使用-t字段。
+  
+        ```bash
+        aa start -U https://www.test.com:8080/path -t text/plain
+        ```
+
+    - 如果启动时需要携带参数，可以使用如下命令。
+
+
+        ```bash
+        aa start -U https://www.test.com:8080/path --pi paramNumber 1 --pb paramBoolean true --ps paramString teststring  --psn paramNullString
+        ```
+
+
+      UIAbility获取传入参数示例如下：
+
+        ```ts
+        import UIAbility from '@ohos.app.ability.UIAbility';
+        import hilog from '@ohos.hilog';
+        import Want from '@ohos.app.ability.Want';
+
+        export default class TargetAbility extends UIAbility {
+          onCreate(want:Want, launchParam) {
+            hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
+            let paramNumber = want.parameters.paramNumber
+            let paramBoolean = want.parameters.paramBoolean
+            let paramString = want.parameters.paramString
+            let paramNullString = want.parameters.paramNullString
+          }
+        }
+        ```
+
+
 ## stop-service
   用于停止ServiceAbility。
 

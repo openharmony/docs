@@ -167,12 +167,12 @@ class B extends A {
 
 **反例：**
 ```ts
+@Sendable
 class A {
   constructor() {
   }
 }
 
-@Sendable
 class B extends A {
   constructor() {
     super()

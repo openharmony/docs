@@ -44,6 +44,7 @@ import { formInfo } from '@kit.FormKit';
 | customizeData    | Record\<string, string>      | 是    | 否     | 卡片用户数据。         |
 | isDynamic<sup>10+</sup>      | boolean               | 是    | 否     | 卡片是否为动态卡片。<br/>仅ArkTS卡片区分动静态卡片，JS卡片均为动态卡片。               |
 | transparencyEnabled<sup>11+</sup>      | boolean               | 是    | 否     | 卡片是否支持设置背景透明度。<br/>ArkTS卡片由用户配置决定是否支持，JS卡片均不支持。               |
+| supportedShapes<sup>12+</sup>    | Array&lt;number&gt;      | 是    | 否     | 卡片支持的形状。具体可选形状参考[FormShape<sup>12+</sup>](#formshape12)   |
 
 ## FormType
 
@@ -123,6 +124,8 @@ import { formInfo } from '@kit.FormKit';
 | FORM_RENDERING_MODE_KEY<sup>11+</sup>    | 'ohos.extra.param.key.form_rendering_mode'   | 卡片渲染模式。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
 | HOST_BG_INVERSE_COLOR_KEY<sup>12+</sup>    | 'ohos.extra.param.key.host_bg_inverse_color'   | 卡片使用方的背景反色颜色值。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。|
 | FORM_LOCATION_KEY<sup>12+</sup>    | 'ohos.extra.param.key.form_location'   | 卡片位置。|
+| FORM_PERMISSION_NAME_KEY<sup>12+</sup> | 'ohos.extra.param.key.permission_name' | 用户授权权限名称。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| FORM_PERMISSION_GRANTED_KEY<sup>12+</sup> | 'ohos.extra.param.key.permission_granted' | 用户是否授权。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
 
 ##  FormDimension
 
@@ -140,6 +143,16 @@ import { formInfo } from '@kit.FormKit';
 | DIMENSION_1_1<sup>11+<sup>      | 6   | 1 x 1 form。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
 | DIMENSION_6_4<sup>12+<sup>      | 7   | 6 x 4 form。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。|
 
+##  FormShape<sup>12+</sup> 
+
+定义卡片形状枚举。
+
+**系统能力：** SystemCapability.Ability.Form
+
+| 名称        | 值   | 说明         |
+| ----------- | ---- | ------------ |
+| RECT        | 1   | 方形 form。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。|
+| CIRCLE      | 2   | 圆形 form。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。|
 
 ## FormInfoFilter
 
@@ -154,6 +167,7 @@ import { formInfo } from '@kit.FormKit';
 | bundleName    | string    |否    | 选填，仅保留含bundleName与提供值相符的卡片信息，<br>未填写时则不通过bundleName进行过滤。   |
 | moduleName    | string    |否    | 选填，仅保留含moduleName与提供值相符的卡片信息，<br>未填写时则不通过moduleName进行过滤。   |
 | supportedDimensions | Array<number> |否    | 选填，仅保留含supportedDimensions提供值相符的卡片信息，<br>未填写时则不通过supportedDimensions进行过滤。   |
+| supportedShapes<sup>12+</sup>  | Array<number> |否    | 选填，仅保留含supportedShapes提供值相符的卡片信息，<br>未填写时则不通过supportedShapes进行过滤。   |
 
 ## VisibilityType
 

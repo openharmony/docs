@@ -721,14 +721,14 @@ removeAllSlots(callback: AsyncCallback\<void\>): void
 ```ts
 import Base from '@ohos.base';
 
-let removeAllCallBack = (err: Base.BusinessError): void => {
+let removeAllSlotsCallback = (err: Base.BusinessError): void => {
     if (err) {
         console.error(`removeAllSlots failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("removeAllSlots success");
     }
 }
-notificationManager.removeAllSlots(removeAllCallBack);
+notificationManager.removeAllSlots(removeAllSlotsCallback);
 ```
 
 ## notificationManager.removeAllSlots
@@ -894,9 +894,9 @@ import Base from '@ohos.base';
 let badgeNumber: number = 10;
 
 notificationManager.setBadgeNumber(badgeNumber).then(() => {
-	console.info("displayBadge success");
+	console.info("setBadgeNumber success");
 }).catch((err: Base.BusinessError) => {
-    console.error(`displayBadge fail: ${JSON.stringify(err)}`);
+    console.error(`setBadgeNumber fail: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -934,12 +934,11 @@ import Base from '@ohos.base';
 
 let setBadgeNumberCallback = (err: Base.BusinessError): void => {
     if (err) {
-        console.info(`displayBadge failed code is ${err.code}, message is ${err.message}`);
+        console.info(`setBadgeNumber failed code is ${err.code}, message is ${err.message}`);
     } else {
-        console.info("displayBadge success");
+        console.info("setBadgeNumber success");
     }
 }
-
 let badgeNumber: number = 10;
 notificationManager.setBadgeNumber(badgeNumber, setBadgeNumberCallback);
 ```
@@ -1056,10 +1055,9 @@ let getActiveNotificationsCallback = (err: Base.BusinessError, data: Array<notif
     if (err) {
         console.error(`getActiveNotifications failed, code is ${err.code}, message is ${err.message}`);
     } else {
-        console.info("getActiveNotifications success");
+        console.info("getActiveNotifications success" + JSON.stringify(data));
     }
 }
-
 notificationManager.getActiveNotifications(getActiveNotificationsCallback);
 ```
 
@@ -1224,10 +1222,9 @@ let isSupportTemplateCallback = (err: Base.BusinessError, data: boolean): void =
     if (err) {
         console.error(`isSupportTemplate failed, code is ${err.code}, message is ${err.message}`);
     } else {
-        console.info("isSupportTemplate success");
+        console.info("isSupportTemplate success, data: " + JSON.stringify(data));
     }
 }
-
 notificationManager.isSupportTemplate(templateName, isSupportTemplateCallback);
 ```
 

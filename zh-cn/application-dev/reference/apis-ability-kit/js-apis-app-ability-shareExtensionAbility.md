@@ -15,7 +15,7 @@ ShareExtensionAbility是为开发者提供分享操作业务模板，继承自[U
 ## 导入模块
 
 ```ts
-import ShareExtensionAbility from '@ohos.app.ability.ShareExtensionAbility';
+import { ShareExtensionAbility } from '@kit.AbilityKit';
 ```
 
 ## 属性
@@ -136,9 +136,7 @@ ShareExtensionAbility生命周期回调，在销毁时回调，执行资源清�
 3. ShareExtAbility.ets文件中，增加导入ShareExtensionAbility的依赖包，自定义类继承ShareExtensionAbility并实现生命周期回调。
 
   ```ts
-  import ShareExtensionAbility from '@ohos.app.ability.ShareExtensionAbility';
-  import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
-  import Want from '@ohos.app.ability.Want';
+  import { ShareExtensionAbility, UIExtensionContentSession, Want } from '@kit.AbilityKit';
 
   const TAG: string = "[ShareExtAbility]";
 

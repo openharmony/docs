@@ -10,7 +10,7 @@ access模块提供了打开和关闭蓝牙、获取蓝牙状态的方法。
 ## 导入模块
 
 ```js
-import access from '@ohos.bluetooth.access';
+import { access } from '@kit.ConnectivityKit';
 ```
 
 
@@ -21,6 +21,8 @@ enableBluetooth(): void
 开启蓝牙。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
+
+**元服务API**：从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -38,7 +40,7 @@ enableBluetooth(): void
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     access.enableBluetooth();
 } catch (err) {
@@ -54,6 +56,8 @@ disableBluetooth(): void
 关闭蓝牙。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
+
+**元服务API**：从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -71,7 +75,7 @@ disableBluetooth(): void
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     access.disableBluetooth();
 } catch (err) {
@@ -88,7 +92,7 @@ getState(): BluetoothState
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
-**元服务API**: 从API version 11开始，该接口支持在元服务中使用。
+**元服务API**：从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -112,7 +116,7 @@ getState(): BluetoothState
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let state = access.getState();
 } catch (err) {
@@ -127,6 +131,8 @@ on(type: "stateChange", callback: Callback&lt;BluetoothState&gt;): void
 订阅蓝牙设备开关状态事件。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
+
+**元服务API**：从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -151,7 +157,7 @@ on(type: "stateChange", callback: Callback&lt;BluetoothState&gt;): void
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 function onReceiveEvent(data: access.BluetoothState) {
     console.info('bluetooth state = '+ JSON.stringify(data));
 }
@@ -170,6 +176,8 @@ off(type: "stateChange", callback?: Callback&lt;BluetoothState&gt;): void
 取消订阅蓝牙设备开关状态事件。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
+
+**元服务API**：从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -194,7 +202,7 @@ off(type: "stateChange", callback?: Callback&lt;BluetoothState&gt;): void
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 function onReceiveEvent(data: access.BluetoothState) {
     console.info('bluetooth state = '+ JSON.stringify(data));
 }

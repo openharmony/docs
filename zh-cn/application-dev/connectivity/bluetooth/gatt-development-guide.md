@@ -66,9 +66,9 @@
 7. 示例代码:
 
 ```ts
-import ble from '@ohos.bluetooth.ble';
-import constant from '@ohos.bluetooth.constant';
-import { BusinessError } from '@ohos.base';
+import { ble } from '@kit.ConnectivityKit';
+import { constant } from '@kit.ConnectivityKit';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 
 const TAG: string = 'GattClientManager';
 
@@ -364,9 +364,9 @@ export default gattClientManager as GattClientManager;
 7. 示例代码:
 
 ```ts
-import ble from '@ohos.bluetooth.ble';
-import constant from '@ohos.bluetooth.constant';
-import { BusinessError } from '@ohos.base';
+import { ble } from '@kit.ConnectivityKit';
+import { constant } from '@kit.ConnectivityKit';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 
 const TAG: string = 'GattServerManager';
 

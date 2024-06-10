@@ -11,7 +11,7 @@ AbilityLifecycleCallback模块提供应用上下文[ApplicationContext](js-apis-
 ## 导入模块
 
 ```ts
-import AbilityLifecycleCallback from '@ohos.app.ability.AbilityLifecycleCallback';
+import { AbilityLifecycleCallback } from '@kit.AbilityKit';
 ```
 
 ## AbilityLifecycleCallback.onAbilityCreate
@@ -230,80 +230,79 @@ export class GlobalContext {
 MyFirstAbility.ts
 应用的第一个Ability
 ```ts
-import AbilityLifecycleCallback from '@ohos.app.ability.AbilityLifecycleCallback';
-import UIAbility from '@ohos.app.ability.UIAbility';
+import { AbilityLifecycleCallback, UIAbility } from '@kit.AbilityKit';
 
 // 导入GlobalContext，以开发者自己声明的路径为准
 import { GlobalContext } from '../GlobalContext'
 
 // 声明ability生命周期回调，需配置所有回调后才可以在applicationContext注册
 let abilityLifecycleCallback: AbilityLifecycleCallback = {
-    onAbilityCreate(ability){
-        console.log('AbilityLifecycleCallback onAbilityCreate.');
-    },
-    onWindowStageCreate(ability, windowStage){
-        console.log('AbilityLifecycleCallback onWindowStageCreate.');
-    },
-    onWindowStageActive(ability, windowStage){
-        console.log('AbilityLifecycleCallback onWindowStageActive.');
-    },
-    onWindowStageInactive(ability, windowStage){
-        console.log('AbilityLifecycleCallback onWindowStageInactive.');
-    },
-    onWindowStageDestroy(ability, windowStage){
-        console.log('AbilityLifecycleCallback onWindowStageDestroy.');
-    },
-    onAbilityDestroy(ability){
-        console.log('AbilityLifecycleCallback onAbilityDestroy.');
-    },
-    onAbilityForeground(ability){
-        console.log('AbilityLifecycleCallback onAbilityForeground.');
-    },
-    onAbilityBackground(ability){
-        console.log('AbilityLifecycleCallback onAbilityBackground.');
-    },
-    onAbilityContinue(ability){
-        console.log('AbilityLifecycleCallback onAbilityContinue.');
-    }
+  onAbilityCreate(ability){
+    console.log('AbilityLifecycleCallback onAbilityCreate.');
+  },
+  onWindowStageCreate(ability, windowStage){
+    console.log('AbilityLifecycleCallback onWindowStageCreate.');
+  },
+  onWindowStageActive(ability, windowStage){
+    console.log('AbilityLifecycleCallback onWindowStageActive.');
+  },
+  onWindowStageInactive(ability, windowStage){
+    console.log('AbilityLifecycleCallback onWindowStageInactive.');
+  },
+  onWindowStageDestroy(ability, windowStage){
+    console.log('AbilityLifecycleCallback onWindowStageDestroy.');
+  },
+  onAbilityDestroy(ability){
+    console.log('AbilityLifecycleCallback onAbilityDestroy.');
+  },
+  onAbilityForeground(ability){
+    console.log('AbilityLifecycleCallback onAbilityForeground.');
+  },
+  onAbilityBackground(ability){
+    console.log('AbilityLifecycleCallback onAbilityBackground.');
+  },
+  onAbilityContinue(ability){
+    console.log('AbilityLifecycleCallback onAbilityContinue.');
+  }
 };
 
 export default class MyFirstAbility extends UIAbility {
-    onCreate() {
-        console.log('MyAbilityStage onCreate');
-        // 1.通过context属性获取applicationContext
-        let applicationContext = this.context.getApplicationContext();
-        // 2.通过applicationContext注册监听应用内生命周期
-        try {
-            let lifecycleId = applicationContext.on('abilityLifecycle', abilityLifecycleCallback);
-            GlobalContext.getContext().setObject("lifecycleId", lifecycleId);
-            console.log(`registerAbilityLifecycleCallback lifecycleId: ${GlobalContext.getContext().getObject('lifecycleId')}`);
-        } catch (paramError) {
-            console.error(`error: ${paramError.code}, ${paramError.message}`);
-        }
+  onCreate() {
+    console.log('MyAbilityStage onCreate');
+    // 1.通过context属性获取applicationContext
+    let applicationContext = this.context.getApplicationContext();
+    // 2.通过applicationContext注册监听应用内生命周期
+    try {
+      let lifecycleId = applicationContext.on('abilityLifecycle', abilityLifecycleCallback);
+      GlobalContext.getContext().setObject("lifecycleId", lifecycleId);
+      console.log(`registerAbilityLifecycleCallback lifecycleId: ${GlobalContext.getContext().getObject('lifecycleId')}`);
+    } catch (paramError) {
+      console.error(`error: ${paramError.code}, ${paramError.message}`);
     }
+  }
 }
 ```
 
 MySecondAbility.ts
 应用的第二个Ability
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
+import { UIAbility } from '@kit.AbilityKit';
 
 // 导入GlobalContext，以开发者自己声明的路径为准
 import { GlobalContext } from '../GlobalContext'
 
 export default class MySecondAbility extends UIAbility {
-    onDestroy() {
-        let applicationContext = this.context.getApplicationContext();
-        let lifecycleId = GlobalContext.getContext().getObject("lifecycleId") as number;
-        // 3.通过applicationContext注销监听应用内生命周期
-        applicationContext.off('abilityLifecycle', lifecycleId, (error) => {
-            if (error && error.code !== 0) {
-                console.error(`unregisterAbilityLifecycleCallback fail, error: ${JSON.stringify(error)}`);
-            } else {
-                console.log('unregisterAbilityLifecycleCallback success.');
-            }
-        });
-    }
+  onDestroy() {
+    let applicationContext = this.context.getApplicationContext();
+    let lifecycleId = GlobalContext.getContext().getObject("lifecycleId") as number;
+    // 3.通过applicationContext注销监听应用内生命周期
+    applicationContext.off('abilityLifecycle', lifecycleId, (error) => {
+      if (error && error.code !== 0) {
+        console.error(`unregisterAbilityLifecycleCallback fail, error: ${JSON.stringify(error)}`);
+      } else {
+        console.log('unregisterAbilityLifecycleCallback success.');
+      }
+    });
+  }
 }
 ```

@@ -41,7 +41,7 @@ LocationButton(option:LocationButtonOptions)
 | -------- | -------- | -------- | -------- |
 | icon | [LocationIconStyle](#locationiconstyle枚举说明) | 否 | 设置位置按钮的图标风格<br/>不传入该参数表示没有图标，icon和text至少存在一个。 |
 | text | [LocationDescription](#locationdescription枚举说明) | 否 | 设置位置按钮的文本描述<br/>不传入该参数表示没有文字描述，icon和text至少存在一个。 |
-| buttonType | [ButtonType](ts-basic-components-button.md#buttontype枚举说明) | 否 | 设置位置按钮的背景样式<br/>不传入该参数表示没有背景。 |
+| buttonType | [ButtonType](ts-basic-components-button.md#buttontype枚举说明) | 否 | 设置位置按钮的背景样式<br/>不传入该参数，系统默认提供Capsule类型按钮。 |
 
 
 ## LocationIconStyle枚举说明
@@ -124,11 +124,12 @@ struct Index {
         LocationButton().onClick((event: ClickEvent, result: LocationButtonOnClickResult)=>{
           console.info("result " + result)
         })
-        // 传入参数即表示元素存在，不传入的参数表示元素不存在，例如：只显示图标
+        // 传入参数即表示元素存在，不传入的参数表示元素不存在，如果不传入buttonType，会默认添加ButtonType.Capsule配置，显示图标+背景。
         LocationButton({icon:LocationIconStyle.LINES})
-        // 只显示图标+背景
+        // 只显示图标+背景，如果设置背景色高八位的α值低于0x1A，则会被系统强制调整为0xFF
         LocationButton({icon:LocationIconStyle.LINES, buttonType:ButtonType.Capsule})
-        // 图标、文字、背景都存在
+          .backgroundColor(0x10007dff)
+        // 图标、文字、背景都存在，如果设置背景色高八位的α值低于0x1A，则会被系统强制调整为0xFF
         LocationButton({icon:LocationIconStyle.LINES, text:LocationDescription.CURRENT_LOCATION, buttonType:ButtonType.Capsule})
       }.width('100%')
     }.height('100%')

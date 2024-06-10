@@ -40,6 +40,14 @@ on(type: 'abilityLifecycle', callback: AbilityLifecycleCallback): number
 | ------ | ------------------------------ |
 | number | 返回的此次注册监听生命周期的ID（每次注册该ID会自增+1，当超过监听上限数量2^63-1时，返回-1）。|
 
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+
 **示例：**
 
 ```ts
@@ -110,6 +118,14 @@ off(type: 'abilityLifecycle', callbackId: number,  callback: AsyncCallback\<void
 | callbackId    | number   | 是   | 注册监听应用内生命周期的ID。 |
 | callback | AsyncCallback\<void> | 是   | 回调方法。当取消监听应用内生命周期成功，err为undefined，否则为错误对象。   |
 
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+
 **示例：**
 
 ```ts
@@ -155,6 +171,14 @@ off(type: 'abilityLifecycle', callbackId: number): Promise\<void>
 | -------- | -------- |
 | Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+
 **示例：**
 
 ```ts
@@ -193,6 +217,14 @@ on(type: 'environment', callback: EnvironmentCallback): number
 | 类型   | 说明                           |
 | ------ | ------------------------------ |
 | number | 返回的此次注册监听系统环境变化的ID（每次注册该ID会自增+1，当超过监听上限数量2^63-1时，返回-1）。|
+
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 
 **示例：**
 
@@ -239,6 +271,14 @@ off(type: 'environment', callbackId: number,  callback: AsyncCallback\<void>): v
 | callbackId    | number   | 是   | 注册监听系统环境变化的ID。   |
 | callback | AsyncCallback\<void> | 是   | 回调方法。当取消对系统环境变化的监听成功，err为undefined，否则为错误对象。   |
 
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+
 **示例：**
 
 ```ts
@@ -283,6 +323,14 @@ off(type: 'environment', callbackId: number): Promise\<void\>
 | -------- | -------- |
 | Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+
 **示例：**
 
 ```ts
@@ -314,6 +362,14 @@ on(type: 'applicationStateChange', callback: ApplicationStateChangeCallback): vo
 | -------- | ------------------------------------------------------------ | ---- | ---------------- |
 | type     | 'applicationStateChange'                                     | 是   | 监听事件类型。 |
 | callback | [ApplicationStateChangeCallback](js-apis-app-ability-applicationStateChangeCallback.md) | 是   | 回调函数。可以对应用从后台切换到前台，以及前台切换到后台分别定义回调。       |
+
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 
 **示例：**
 
@@ -358,6 +414,14 @@ off(type: 'applicationStateChange', callback?: ApplicationStateChangeCallback): 
 | type   | 'applicationStateChange' | 是   | 取消监听事件的类型。 |
 | callback | [ApplicationStateChangeCallback](js-apis-app-ability-applicationStateChangeCallback.md) | 否   | 回调函数。可以对应用从后台切换到前台，以及前台切换到后台分别定义回调。       |
 
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+
 **示例：**
 
 ```ts
@@ -389,12 +453,13 @@ getRunningProcessInformation(): Promise\<Array\<ProcessInformation>>
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -432,12 +497,13 @@ getRunningProcessInformation(callback: AsyncCallback\<Array\<ProcessInformation>
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -476,11 +542,12 @@ killAllProcesses(): Promise\<void\>
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000011 | The context does not exist. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -513,11 +580,12 @@ killAllProcesses(callback: AsyncCallback\<void\>)
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000011 | The context does not exist. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -553,12 +621,12 @@ setColorMode(colorMode: ConfigurationConstant.ColorMode): void
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000011 | The context does not exist. |
-| 401 | If the input parameter is not valid parameter. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -591,12 +659,13 @@ setLanguage(language: string): void
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000011 | The context does not exist. |
-| 401 | If the input parameter is not valid parameter. |
 
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -631,12 +700,12 @@ clearUpApplicationData(): Promise\<void\>
 
 **错误码**：
 
+以下错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -670,12 +739,13 @@ clearUpApplicationData(callback: AsyncCallback\<void\>): void
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -711,13 +781,14 @@ restartApp(want: Want): void
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000050 | Internal error. |
 | 16000063 | The target to restart does not belong to the current app or is not a UIAbility. |
 | 16000064 | Restart too frequently. Try again at least 10s later. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
@@ -736,6 +807,110 @@ export default class MyAbility extends UIAbility {
     } catch (error) {
       console.error(`restartApp fail, error: ${JSON.stringify(error)}`);
     }
+  }
+}
+```
+
+## ApplicationContext.getCurrentAppCloneIndex<sup>12+</sup>
+
+getCurrentAppCloneIndex(): number
+
+获取当前应用的分身索引。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| number | 当前应用的分身索引。 |
+
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000011 | The context does not exist. |
+| 16000071 | App clone is not supported. |
+
+以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
+
+**示例：**
+
+```ts
+import { UIAbility } from '@kit.AbilityKit';
+
+export default class MyAbility extends UIAbility {
+  onBackground() {
+    let applicationContext = this.context.getApplicationContext();
+    try {
+      let appCloneIndex = applicationContext.getCurrentAppCloneIndex();
+    } catch (error) {
+      console.error(`getCurrentAppCloneIndex fail, error: ${JSON.stringify(error)}`);
+    }
+  }
+}
+```
+
+## ApplicationContext.setFont<sup>12+</sup>
+
+setFont(font: string): void
+
+设置应用的字体类型。
+
+> **说明：**
+>
+> 当页面窗口创建完成后，才能调用该接口，即需要在[onWindowStageCreate()](js-apis-app-ability-uiAbility.md#uiabilityonwindowstagecreate)生命周期之后调用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名 | 类型          | 必填 | 说明                 |
+| ------ | ------------- | ---- | -------------------- |
+| font | string | 是   | 设置字体类型，字体可以通过[font.registerFont](../apis-arkui/js-apis-font.md#fontregisterfont)方法进行注册使用。  |
+
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
+
+
+**示例：**
+
+```ts
+import font from '@ohos.font';
+
+@Entry
+@Component
+struct Index {
+  @State message: string = 'Hello World'
+
+  aboutToAppear() {
+    font.registerFont({
+      familyName: 'fontName',
+      familySrc: $rawfile('font/medium.ttf')
+    })
+    
+    getContext().getApplicationContext().setFont("fontName");
+  }
+
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(50)
+          .fontWeight(50)
+      }
+      .width('100%')
+    }
+    .height('100%')
   }
 }
 ```

@@ -12,6 +12,10 @@
 
 <!--RP1--><!--RP1End-->
 
+## 限制约束
+
+av_codec只支持AnnexB，AnnexB不支持多slice。
+
 ## Surface输出与Buffer输出
 
 两者数据的输出方式不同。
@@ -258,7 +262,69 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     }
     ```
 
-10. 调用OH_VideoDecoder_PushInputBuffer()写入解码码流。
+10. （可选）调用OH_AVCencInfo_SetAVBuffer()，设置cencInfo。
+
+    若当前播放的节目是DRM加密节目，且由上层应用做媒体解封装，则须调用OH_AVCencInfo_SetAVBuffer()将cencInfo设置给AVBuffer，以实现AVBuffer中媒体数据的解密。
+
+    添加头文件
+
+    ```c++
+    #include <multimedia/player_framework/native_cencinfo.h>
+    ```
+    在 CMake 脚本中链接动态库
+
+    ``` cmake
+    target_link_libraries(sample PUBLIC libnative_media_avcencinfo.so)
+    ```
+
+    使用示例
+    - buffer：回调函数OnNeedInputBuffer传入的参数，可以通过OH_AVBuffer_GetAddr接口得到共享内存地址的指针；
+    ```c++
+    uint32_t keyIdLen = DRM_KEY_ID_SIZE;
+    uint8_t keyId[] = {
+        0xd4, 0xb2, 0x01, 0xe4, 0x61, 0xc8, 0x98, 0x96,
+        0xcf, 0x05, 0x22, 0x39, 0x8d, 0x09, 0xe6, 0x28};
+    uint32_t ivLen = DRM_KEY_IV_SIZE;
+    uint8_t iv[] = {
+        0xbf, 0x77, 0xed, 0x51, 0x81, 0xde, 0x36, 0x3e,
+        0x52, 0xf7, 0x20, 0x4f, 0x72, 0x14, 0xa3, 0x95};
+    uint32_t encryptedBlockCount = 0;
+    uint32_t skippedBlockCount = 0;
+    uint32_t firstEncryptedOffset = 0;
+    uint32_t subsampleCount = 1;
+    DrmSubsample subsamples[1] = { {0x10, 0x16} };
+    OH_AVCencInfo *cencInfo = OH_AVCencInfo_Create();
+    if (cencInfo == nullptr) {
+        // 异常处理
+    }
+    OH_AVErrCode errNo = OH_AVCencInfo_SetAlgorithm(cencInfo, DRM_ALG_CENC_AES_CTR);
+    if (errNo != AV_ERR_OK) {
+        // 异常处理
+    }
+    errNo = OH_AVCencInfo_SetKeyIdAndIv(cencInfo, keyId, keyIdLen, iv, ivLen);
+    if (errNo != AV_ERR_OK) {
+        // 异常处理
+    }
+    errNo = OH_AVCencInfo_SetSubsampleInfo(cencInfo, encryptedBlockCount, skippedBlockCount, firstEncryptedOffset,
+        subsampleCount, subsamples);
+    if (errNo != AV_ERR_OK) {
+        // 异常处理
+    }
+    errNo = OH_AVCencInfo_SetMode(cencInfo, DRM_CENC_INFO_KEY_IV_SUBSAMPLES_SET);
+    if (errNo != AV_ERR_OK) {
+        // 异常处理
+    }
+    errNo = OH_AVCencInfo_SetAVBuffer(cencInfo, buffer);
+    if (errNo != AV_ERR_OK) {
+        // 异常处理
+    }
+    errNo = OH_AVCencInfo_Destroy(cencInfo);
+    if (errNo != AV_ERR_OK) {
+        // 异常处理
+    }
+    ```
+
+11. 调用OH_VideoDecoder_PushInputBuffer()写入解码码流。
 
     送入输入队列进行解码，以下示例中：
 
@@ -286,7 +352,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     }
     ```
 
-11. 调用OH_VideoDecoder_RenderOutputBuffer()显示并释放解码帧，或调用OH_VideoDecoder_FreeOutputBuffer()释放解码帧。
+12. 调用OH_VideoDecoder_RenderOutputBuffer()显示并释放解码帧，或调用OH_VideoDecoder_FreeOutputBuffer()释放解码帧。
     以下示例中：
 
     - index：回调函数OnNewOutputBuffer传入的参数，数据队列的索引。
@@ -313,12 +379,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     }
     ```
 
-12. （可选）调用OH_VideoDecoder_Flush()刷新解码器。
-
-    > **注意：**
-    >
-    > Flush、Start之后，需要重新传XPS。
-    >
+13. （可选）调用OH_VideoDecoder_Flush()刷新解码器。
 
     调用OH_VideoDecoder_Flush()后，解码器仍处于运行态，但会将当前队列清空，将已解码的数据释放。
 
@@ -336,8 +397,27 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
         // 异常处理
     }
     ```
+    > **注意：**
+    > Flush之后，重新Start时，需要重新传XPS。
+    >
 
-13. （可选）调用OH_VideoDecoder_Reset()重置解码器。
+     ```c++
+    // 配置帧数据XPS信息
+    OH_AVCodecBufferAttr info;
+    info.flags = AVCODEC_BUFFER_FLAG_CODEC_DATA;
+    // info信息写入buffer
+    int32_t ret = OH_AVBuffer_SetBufferAttr(buffer, &info);
+    if (ret != AV_ERR_OK) {
+        // 异常处理
+    }
+    // 将帧数据推送到解码器中，index为对应队列下标
+    ret = OH_VideoDecoder_PushInputBuffer(videoDec, index);
+    if (ret != AV_ERR_OK) {
+        // 异常处理
+    }
+    ```
+
+14. （可选）调用OH_VideoDecoder_Reset()重置解码器。
 
     调用OH_VideoDecoder_Reset()后，解码器回到初始化的状态，需要调用OH_VideoDecoder_Configure()、OH_VideoDecoder_SetSurface()重新配置。
 
@@ -358,8 +438,11 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
         // 异常处理
     }
     ```
+    > **注意：**
+    > Reset之后，重新Start时，需要重新传XPS。具体示例请参考OH_VideoDecoder_Flush()步骤12。
+    >
 
-14. （可选）调用OH_VideoDecoder_Stop()停止解码器。
+15. （可选）调用OH_VideoDecoder_Stop()停止解码器。
 
     ```c++
     // 终止解码器videoDec
@@ -368,8 +451,11 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
         // 异常处理
     }
     ```
+    > **注意：**
+    > Stop之后，重新Start时，需要重新传XPS。具体示例请参考OH_VideoDecoder_Flush()步骤12。
+    >
 
-15. 调用OH_VideoDecoder_Destroy()销毁解码器实例，释放资源。
+16. 调用OH_VideoDecoder_Destroy()销毁解码器实例，释放资源。
 
     > **说明：**
     >
@@ -462,8 +548,8 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
         // 可通过format获取到变化后的视频宽、高、跨距等
         (void)codec;
         (void)userData;
-        OH_AVFormat_GetIntValue(format, OH_MD_KEY_WIDTH, width);
-        OH_AVFormat_GetIntValue(format, OH_MD_KEY_HEIGHT, height);
+        OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_PIC_WIDTH, width);
+        OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_PIC_HEIGHT, height);
         OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_STRIDE, widthStride);
         OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_SLICE_HEIGHT, heightStride);
         // 获取裁剪矩形信息可选
@@ -490,8 +576,8 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
         // 获取视频宽、高、跨距
         if (isFirstFrame) {
             OH_AVFormat *format = OH_VideoDecoder_GetOutputDescription(codec);
-            OH_AVFormat_GetIntValue(format, OH_MD_KEY_WIDTH, width);
-            OH_AVFormat_GetIntValue(format, OH_MD_KEY_HEIGHT, height);
+            OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_PIC_WIDTH, width);
+            OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_PIC_HEIGHT, height);
             OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_STRIDE, widthStride);
             OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_SLICE_HEIGHT, heightStride);
             // 获取裁剪矩形信息可选
@@ -603,7 +689,57 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     }
     ```
 
-8. 调用OH_VideoDecoder_PushInputBuffer()写入解码码流。
+8. （可选）调用OH_AVCencInfo_SetAVBuffer()，设置cencInfo。
+
+    与surface模式相同，此处不再赘述。
+
+    使用示例
+    ```c++
+    uint32_t keyIdLen = DRM_KEY_ID_SIZE;
+    uint8_t keyId[] = {
+        0xd4, 0xb2, 0x01, 0xe4, 0x61, 0xc8, 0x98, 0x96,
+        0xcf, 0x05, 0x22, 0x39, 0x8d, 0x09, 0xe6, 0x28};
+    uint32_t ivLen = DRM_KEY_IV_SIZE;
+    uint8_t iv[] = {
+        0xbf, 0x77, 0xed, 0x51, 0x81, 0xde, 0x36, 0x3e,
+        0x52, 0xf7, 0x20, 0x4f, 0x72, 0x14, 0xa3, 0x95};
+    uint32_t encryptedBlockCount = 0;
+    uint32_t skippedBlockCount = 0;
+    uint32_t firstEncryptedOffset = 0;
+    uint32_t subsampleCount = 1;
+    DrmSubsample subsamples[1] = { {0x10, 0x16} };
+    OH_AVCencInfo *cencInfo = OH_AVCencInfo_Create();
+    if (cencInfo == nullptr) {
+        // 异常处理
+    }
+    OH_AVErrCode errNo = OH_AVCencInfo_SetAlgorithm(cencInfo, DRM_ALG_CENC_AES_CTR);
+    if (errNo != AV_ERR_OK) {
+        // 异常处理
+    }
+    errNo = OH_AVCencInfo_SetKeyIdAndIv(cencInfo, keyId, keyIdLen, iv, ivLen);
+    if (errNo != AV_ERR_OK) {
+        // 异常处理
+    }
+    errNo = OH_AVCencInfo_SetSubsampleInfo(cencInfo, encryptedBlockCount, skippedBlockCount, firstEncryptedOffset,
+        subsampleCount, subsamples);
+    if (errNo != AV_ERR_OK) {
+        // 异常处理
+    }
+    errNo = OH_AVCencInfo_SetMode(cencInfo, DRM_CENC_INFO_KEY_IV_SUBSAMPLES_SET);
+    if (errNo != AV_ERR_OK) {
+        // 异常处理
+    }
+    errNo = OH_AVCencInfo_SetAVBuffer(cencInfo, buffer);
+    if (errNo != AV_ERR_OK) {
+        // 异常处理
+    }
+    errNo = OH_AVCencInfo_Destroy(cencInfo);
+    if (errNo != AV_ERR_OK) {
+        // 异常处理
+    }
+    ```
+
+9. 调用OH_VideoDecoder_PushInputBuffer()写入解码码流。
 
     与surface模式相同，此处不再赘述。
 
@@ -626,7 +762,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     }
     ```
 
-9. 调用OH_VideoDecoder_FreeOutputBuffer()释放解码帧。
+10. 调用OH_VideoDecoder_FreeOutputBuffer()释放解码帧。
 
     以下示例中：
 
@@ -666,4 +802,4 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
         }
         OH_AVFormat_Destory(format);
     ```
-后续流程（包括刷新解码器、重置解码器、停止解码器、销毁解码器）与Surface模式基本一致，请参考[Surface模式](#surface模式)的步骤12-15。
+后续流程（包括刷新解码器、重置解码器、停止解码器、销毁解码器）与Surface模式基本一致，请参考[Surface模式](#surface模式)的步骤13-16。

@@ -20,9 +20,9 @@
 
 - \@Local支持null、undefined以及联合类型。
 
-## 现有装饰器的局限性
+## 状态管理V1版本的局限性
 
-现有状态管理使用[\@State装饰器](arkts-state.md)定义类中的状态变量。但由于\@State装饰器能够从外部初始化，因此\@State无法准确表达组件内部状态不能被外面修改的语义。
+状态管理V1使用[\@State装饰器](arkts-state.md)定义类中的状态变量。但由于\@State装饰器能够从外部初始化，因此\@State无法准确表达组件内部状态不能被外面修改的语义。
 
 ```ts
 class ComponentInfo {

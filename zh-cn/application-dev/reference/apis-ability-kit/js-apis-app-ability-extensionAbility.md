@@ -11,7 +11,7 @@ ExtensionAbility是特定场景扩展能力的基类，继承自[Ability](js-api
 ## 导入模块
 
 ```ts
-import ExtensionAbility from '@ohos.app.ability.ExtensionAbility';
+import { ExtensionAbility } from '@kit.AbilityKit';
 ```
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。

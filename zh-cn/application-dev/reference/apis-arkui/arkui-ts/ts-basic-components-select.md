@@ -108,6 +108,19 @@ menuItemContentModifier(modifier: ContentModifier\<MenuItemConfiguration>)
 | ------ | --------------------------------------------- | ---- | ------------------------------------------------ |
 | modifier  | [ContentModifier\<MenuItemConfiguration>](#menuitemconfiguration12对象说明) | 是   | 在Select组件上，定制下拉菜单项内容区的方法。<br/>modifier: 内容修改器，开发者需要自定义class实现ContentModifier接口。 |
 
+### divider<sup>12+</sup>
+
+divider(value: Optional\<DividerOptions> | null)
+
+设置分割线样式，不设置该属性则按“默认值”展示分割线。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+| 参数名 | 类型    | 必填 | 说明                                                                  |
+| ------ | ------- | ---- | --------------------------------------------------------------------- |
+| divider  | Optional\<[DividerOptions](ts-basic-components-textpicker.md#divideroptions12类型说明)> \| null | 否   | 1.设置DividerOptions，则按设置的样式显示分割线。<br/>默认值：<br/>{<br/>strokeWidth: '1px', , <br/>color: '#33182431'<br/>}<br/>2.设置为null时，不显示分割线。 |
+
 ### font
 
 font(value: Font)
@@ -626,3 +639,85 @@ struct SelectExample {
 }
 ```
 ![](figures/SelectBuilderSymbol.png)
+
+##  示例5
+该示例实现了分割线样式支持自定义。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct SelectExample {
+  @State text: string = "TTTTT"
+  @State index: number = -1
+  @State arrowPosition: ArrowPosition = ArrowPosition.END
+  build() {
+    Column() {
+      Select([{ value: 'aaa', icon: $r("app.media.icon") },
+        { value: 'bbb', icon: $r("app.media.icon") },
+        { value: 'ccc', icon: $r("app.media.icon") },
+        { value: 'ddd', icon: $r("app.media.icon") }])
+        .selected(this.index)
+        .value(this.text)
+        .font({ size: 16, weight: 500 })
+        .fontColor('#182431')
+        .selectedOptionFont({ size: 16, weight: 400 })
+        .optionFont({ size: 16, weight: 400 })
+        .arrowPosition(this.arrowPosition)
+        .menuAlign(MenuAlignType.START, {dx:0, dy:0})
+        .optionWidth(200)
+        .optionHeight(300)
+        .divider( { strokeWidth: 5, color: Color.Blue, startMargin: 10, endMargin: 10 })
+        .onSelect((index:number, text?: string | undefined)=>{
+          console.info('Select:' + index)
+          this.index = index;
+          if(text){
+            this.text = text;
+          }
+        })
+    }.width('100%')
+  }
+}
+```
+![](figures/SelectCustomDivider.png)
+
+##  示例6
+该示例实现了隐藏分割线。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct SelectExample {
+  @State text: string = "TTTTT"
+  @State index: number = -1
+  @State arrowPosition: ArrowPosition = ArrowPosition.END
+  build() {
+    Column() {
+      Select([{ value: 'aaa', icon: $r("app.media.icon") },
+        { value: 'bbb', icon: $r("app.media.icon") },
+        { value: 'ccc', icon: $r("app.media.icon") },
+        { value: 'ddd', icon: $r("app.media.icon") }])
+        .selected(this.index)
+        .value(this.text)
+        .font({ size: 16, weight: 500 })
+        .fontColor('#182431')
+        .selectedOptionFont({ size: 16, weight: 400 })
+        .optionFont({ size: 16, weight: 400 })
+        .arrowPosition(this.arrowPosition)
+        .menuAlign(MenuAlignType.START, {dx:0, dy:0})
+        .optionWidth(200)
+        .optionHeight(300)
+        .divider( null )
+        .onSelect((index:number, text?: string | undefined)=>{
+          console.info('Select:' + index)
+          this.index = index;
+          if(text){
+            this.text = text;
+          }
+        })
+    }.width('100%')
+  }
+}
+```
+![](figures/SelectHideDivider.png)

@@ -10,7 +10,7 @@ a2dp模块提供了访问蓝牙音频接口的方法。
 ## 导入模块
 
 ```js
-import a2dp from '@ohos.bluetooth.a2dp';
+import { a2dp } from '@kit.ConnectivityKit';
 ```
 
 ## a2dp.createA2dpSrcProfile
@@ -40,7 +40,7 @@ createA2dpSrcProfile(): A2dpSourceProfile
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let a2dpProfile = a2dp.createA2dpSrcProfile();
     console.info('a2dp success');
@@ -94,7 +94,7 @@ getPlayingState(deviceId: string): PlayingState
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let a2dpSrc = a2dp.createA2dpSrcProfile();
     let state = a2dpSrc.getPlayingState('XX:XX:XX:XX:XX:XX');

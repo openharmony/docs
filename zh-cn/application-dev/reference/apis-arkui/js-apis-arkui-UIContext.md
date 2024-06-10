@@ -1398,7 +1398,7 @@ struct Index {
 }
 ```
 
-## postDelayedFrameCallback<sup>12+</sup>
+### postDelayedFrameCallback<sup>12+</sup>
 
 注册一个回调，在延迟一段时间后的下一帧进行渲染时执行。
 
@@ -1409,7 +1409,7 @@ struct Index {
 | 参数名 | 类型   | 必填 | 说明                                    |
 | ------ | ------ | ---- | --------------------------------------- |
 | frameCallback | [FrameCallback](#framecallback12) | 是   | 下一帧需要执行的回调。 |
-| delayTime | number | 是   | 延迟的时间，以毫秒为单位。 |
+| delayTime | number | 是   | 延迟的时间，以毫秒为单位。传入null、undefined或小于0的值，会按0处理。 |
 
 **示例：**
 
@@ -1434,7 +1434,7 @@ class MyFrameCallback extends FrameCallback {
 struct Index {
   build() {
     Row() {
-      Button('点击触发postFrameCallback')
+      Button('点击触发postDelayedFrameCallback')
         .onClick(() => {
           this.getUIContext().postDelayedFrameCallback(new MyFrameCallback("delayTask"), 5);
         })
@@ -2350,7 +2350,7 @@ on(type: 'willClick', callback: GestureEventListenerCallback): void
 // 在页面Component中使用
 import { UIContext, UIObserver } from '@ohos.arkui.UIContext';
 // callback是开发者定义的监听回调函数
-let callback = (event: GestureEvent, frameNode: FrameNode) => {};
+let callback = (event: GestureEvent, frameNode?: FrameNode) => {};
 let observer: UIObserver = this.getUIContext().getUIObserver();
 observer.on('willClick', callback);
 ```
@@ -2376,7 +2376,7 @@ off(type: 'willClick', callback?: GestureEventListenerCallback): void
 // 在页面Component中使用
 import { UIContext, UIObserver } from '@ohos.arkui.UIContext';
 // callback是开发者定义的监听回调函数
-let callback = (event: GestureEvent, frameNode: FrameNode) => {};
+let callback = (event: GestureEvent, frameNode?: FrameNode) => {};
 let observer: UIObserver = this.getUIContext().getUIObserver();
 observer.off('willClick', callback);
 ```
@@ -2402,7 +2402,7 @@ on(type: 'didClick', callback: GestureEventListenerCallback): void
 // 在页面Component中使用
 import { UIContext, UIObserver } from '@ohos.arkui.UIContext';
 // callback是开发者定义的监听回调函数
-let callback = (event: GestureEvent, frameNode: FrameNode) => {};
+let callback = (event: GestureEvent, frameNode?: FrameNode) => {};
 let observer: UIObserver = this.getUIContext().getUIObserver();
 observer.on('didClick', callback);
 ```
@@ -2428,7 +2428,7 @@ off(type: 'didClick', callback?: GestureEventListenerCallback): void
 // 在页面Component中使用
 import { UIContext, UIObserver } from '@ohos.arkui.UIContext';
 // callback是开发者定义的监听回调函数
-let callback = (event: GestureEvent, frameNode: FrameNode) => {};
+let callback = (event: GestureEvent, frameNode?: FrameNode) => {};
 let observer: UIObserver = this.getUIContext().getUIObserver();
 observer.off('didClick', callback);
 ```
@@ -2454,7 +2454,7 @@ on(type: 'willClick', callback: ClickEventListenerCallback): void
 // 在页面Component中使用
 import { UIContext, UIObserver } from '@ohos.arkui.UIContext';
 // callback是开发者定义的监听回调函数
-let callback = (event: ClickEvent, frameNode: FrameNode) => {};
+let callback = (event: ClickEvent, frameNode?: FrameNode) => {};
 let observer: UIObserver = this.getUIContext().getUIObserver();
 observer.on('willClick', callback);
 ```
@@ -2480,7 +2480,7 @@ off(type: 'willClick', callback?: ClickEventListenerCallback): void
 // 在页面Component中使用
 import { UIContext, UIObserver } from '@ohos.arkui.UIContext';
 // callback是开发者定义的监听回调函数
-let callback = (event: ClickEvent, frameNode: FrameNode) => {};
+let callback = (event: ClickEvent, frameNode?: FrameNode) => {};
 let observer: UIObserver = this.getUIContext().getUIObserver();
 observer.off('willClick', callback);
 ```
@@ -2506,7 +2506,7 @@ on(type: 'didClick', callback: ClickEventListenerCallback): void
 // 在页面Component中使用
 import { UIContext, UIObserver } from '@ohos.arkui.UIContext';
 // callback是开发者定义的监听回调函数
-let callback = (event: ClickEvent, frameNode: FrameNode) => {};
+let callback = (event: ClickEvent, frameNode?: FrameNode) => {};
 let observer: UIObserver = this.getUIContext().getUIObserver();
 observer.on('didClick', callback);
 ```
@@ -2532,7 +2532,7 @@ off(type: 'didClick', callback?: ClickEventListenerCallback): void
 // 在页面Component中使用
 import { UIContext, UIObserver } from '@ohos.arkui.UIContext';
 // callback是开发者定义的监听回调函数
-let callback = (event: ClickEvent, frameNode: FrameNode) => {};
+let callback = (event: ClickEvent, frameNode?: FrameNode) => {};
 let observer: UIObserver = this.getUIContext().getUIObserver();
 observer.off('didClick', callback);
 ```
@@ -5976,15 +5976,19 @@ class MyFrameCallback extends FrameCallback {
 struct Index {
   build() {
     Row() {
-      Button('点击触发postFrameCallback')
-        .onClick(() => {
-          this.getUIContext().postFrameCallback(new MyFrameCallback("normTask"));
-        })
-      Button('点击触发postFrameCallback')
-        .onClick(() => {
-          this.getUIContext().postDelayedFrameCallback(new MyFrameCallback("delayTask"), 5);
-        })
+      Column() {
+        Button('点击触发postFrameCallback')
+          .onClick(() => {
+            this.getUIContext().postFrameCallback(new MyFrameCallback("normTask"));
+          })
+        Button('点击触发postDelayedFrameCallback')
+          .onClick(() => {
+            this.getUIContext().postDelayedFrameCallback(new MyFrameCallback("delayTask"), 5);
+          })
+      }
+      .width('100%')
     }
+    .height('100%')
   }
 }
 ```

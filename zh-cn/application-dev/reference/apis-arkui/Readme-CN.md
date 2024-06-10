@@ -33,6 +33,7 @@
     - [@ohos.uiAppearance (用户界面外观)(系统接口)](js-apis-uiappearance-sys.md)
     - [@ohos.uiExtensionHost (系统接口)](js-apis-uiExtensionHost-sys.md)
     - [@ohos.arkui.UIContext (UIContext)(系统接口)](js-apis-arkui-UIContext-sys.md)
+    - [@ohos.promptAction (弹窗)(系统接口)](js-apis-promptAction-sys.md)
     <!--DelEnd-->
     - arkui
       - [BuilderNode](js-apis-arkui-builderNode.md)
@@ -150,6 +151,7 @@
         - [组合手势](arkui-ts/ts-combined-gestures.md)
         - [自定义手势判定](arkui-ts/ts-gesture-customize-judge.md)
         - [设置组件绑定的手势](arkui-ts/ts-uigestureevent.md)
+        - [手势拦截增强](arkui-ts/ts-gesture-blocking-enhancement.md)
     - 基础组件
       - [AlphabetIndexer](arkui-ts/ts-container-alphabet-indexer.md)
       - [Blank](arkui-ts/ts-basic-components-blank.md)
@@ -281,6 +283,7 @@
       - [@ohos.arkui.advanced.ComposeTitleBar (头像和单双行文本标题栏)](arkui-ts/ohos-arkui-advanced-ComposeTitleBar.md)
       - [@ohos.arkui.advanced.Counter (计数器组件)](arkui-ts/ohos-arkui-advanced-Counter.md)
       - [@ohos.arkui.advanced.Dialog (弹出框)](arkui-ts/ohos-arkui-advanced-Dialog.md)
+      - [@ohos.arkui.advanced.DownloadFileButton (下载文件按钮)](arkui-ts/ohos-arkui-advanced-DownloadFileButton.md)
       - [@ohos.arkui.advanced.EditableTitleBar (编辑页面标题栏)](arkui-ts/ohos-arkui-advanced-EditableTitleBar.md)
       - [@ohos.arkui.advanced.ExceptionPrompt (异常提示)](arkui-ts/ohos-arkui-advanced-ExceptionPrompt.md)
       - [@ohos.arkui.advanced.Filter (多条件筛选)](arkui-ts/ohos-arkui-advanced-Filter.md)

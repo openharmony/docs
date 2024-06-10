@@ -230,8 +230,10 @@
 - C API
   - 模块
     - [Bundle](_bundle.md)
+    - [ChildProcess](c-apis-ability-childprocess.md)
   - 头文件
     - [native_interface_bundle.h](native__interface__bundle.md)
+    - [native_child_process.h](native__child__process_8h.md)
   - 结构体
     - [OH_NativeBundle_ApplicationInfo](_o_h___native_bundle_application_info.md)
 - 错误码

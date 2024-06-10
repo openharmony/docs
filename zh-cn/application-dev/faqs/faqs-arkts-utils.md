@@ -756,3 +756,27 @@ module.json5部分参数示例如下:
 **参考链接**
 
 [编译生成TS文件](../quick-start/har-package.md#编译生成ts文件)
+
+## hdc属性开关
+
+1. 默认：hdc shell param set persist.ark.properties 0x105c
+2. 关闭多线程检测并打印异常栈帧：hdc shell param set persist.ark.properties -1
+3. GC状态打印：hdc shell param set persist.ark.properties 0x105e
+4. 多线程检测：hdc shell param set persist.ark.properties 0x107c
+5. 同时开启多线程检测并打印异常栈：hdc shell param set persist.ark.properties 0x127c
+6. 全局对象内存泄露检查：hdc shell param set persist.ark.properties 0x145c
+7. 全局原始值内存泄露检查：hdc shell param set persist.ark.properties 0x185C
+8. 打开GC共享堆信息：hdc shell param set persist.ark.properties 0x905c
+9. 微任务打点，包含入队及执行过程：hdc shell param set persist.ark.properties 0x8105c
+10. 增加ArkProperties控制是否启用旧的socket调试器：hdc shell param set persist.ark.properties 0x10105C
+11. 使用 DISABLE 适应测试脚本中现有的 ArkProperties：hdc shell param set persist.ark.properties 0x40105C
+12. 模块加载so异常报错信息增强：hdc shell param set persist.ark.properties 0x80105C
+13. 模块化打点：hdc shell param set persist.ark.properties 100105C
+14. 日志打印执行的模块：hdc shell param set persist.ark.properties 200105C
+### CPU Profiler性能数据采集
+1. 仅采集主线程冷启动：hdc shell param set persist.ark.properties 0x705c
+2. 仅采集worker线程冷启动：hdc shell param set persist.ark.properties 0x1505c
+3. 同时采集主线程及worker线程冷启动：hdc shell param set persist.ark.properties 0x1705c
+4. 仅采集主线程任意阶段：hdc shell param set persist.ark.properties 0x2505c
+5. 仅采集worker线程任意阶段：hdc shell param set persist.ark.properties 0x4505c
+6. 同时采集主线程及worker线程任意阶段：hdc shell param set persist.ark.properties 0x6505c

@@ -29,29 +29,38 @@ Defines a custom dialog box.
 
 | Name                          | Type                                    | Mandatory  | Description                                    |
 | ----------------------------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| builder                       | [CustomDialog](../../../ui/arkts-common-components-custom-dialog.md) | Yes   | Builder of the custom dialog box content.<br>**NOTE**<br>If the builder uses a callback as the input parameter, as in **build: custombuilder({ callback: ()=> {...}})**, pay attention to the binding of **this**.|
-| cancel                        | () =&gt; void                  | No   | Callback invoked when the dialog box is closed after the Back button or mask is touched or the Esc key is pressed.|
-| autoCancel                    | boolean                                  | No   | Whether to close the dialog box when the overlay is clicked. The value **true** means to close the dialog box when the overlay is clicked, and **false** means the opposite.<br>Default value: **true**|
-| alignment                     | [DialogAlignment](ts-methods-alert-dialog-box.md#dialogalignment) | No   | Alignment mode of the dialog box in the vertical direction.<br>Default value: **DialogAlignment.Default**|
-| offset                        | [Offset](ts-types.md#offset)             | No   | Offset of the dialog box relative to the alignment position.                  |
-| customStyle                   | boolean                                  | No   | Whether to use a custom style for the dialog box.<br>**false** (default): The dialog box automatically adapts its width to the grid system and its height to the child components; the maximum height is 90% of the container height; the rounded corner is 24 vp.<br>**true**: The dialog box automatically adapts its width to the child components; the rounded corner is 0; the background color is transparent.|
-| gridCount<sup>8+</sup>        | number                                   | No   | Number of [grid columns](../../../ui/arkts-layout-development-grid-layout.md) occupied by the dialog box.<br>The default value is subject to the window size, and the maximum value is the maximum number of columns supported by the system. If this parameter is set to an invalid value, the default value is used.|
-| maskColor<sup>10+</sup>       | [ResourceColor](ts-types.md#resourcecolor) | No   | Custom mask color.<br>Default value: **0x33000000**             |
-| maskRect<sup>10+</sup>        | [Rectangle](ts-methods-alert-dialog-box.md#rectangle8) | No    | Mask area of the dialog box. Events outside the mask area are transparently transmitted, and events within the mask area are not.<br>Default value: **{ x: 0, y: 0, width: '100%', height: '100%' }**|
-| openAnimation<sup>10+</sup>   | [AnimateParam](ts-explicit-animation.md#animateparam) | No   | Parameters for defining the open animation of the dialog box.<br>**NOTE**<br>**iterations**: The default value is **1**, indicating that the animation is played once; any other value evaluates to the default value.<br>**playMode**: The default value is **PlayMode.Normal**; any other value evaluates to the default value.|
-| closeAnimation<sup>10+</sup>  | [AnimateParam](ts-explicit-animation.md#animateparam) | No   | Parameters for defining the close animation of the dialog box.<br>**NOTE**<br>**iterations**: The default value is **1**, indicating that the animation is played once; any other value evaluates to the default value.<br>**playMode**: The default value is **PlayMode.Normal**; any other value evaluates to the default value.<br>For page transition, you are advised to use the default close animation.                   |
-| showInSubWindow<sup>10+</sup> | boolean                                  | No   | Whether to show the dialog box in a sub-window when the dialog box needs to be displayed outside the main window.<br>Default value: **false**<br>**NOTE**<br>A dialog box whose **showInSubWindow** attribute is **true** cannot trigger the display of another dialog box whose **showInSubWindow** attribute is also **true**.|
-| backgroundColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor)      | No  | Background color of the dialog box.<br>**NOTE**<br>If the content builder also has the background color set, the background color set here will be overridden by the background color of the content builder.|
-| cornerRadius<sup>10+</sup>    | [BorderRadiuses](ts-types.md#borderradiuses9) \| [Dimension](ts-types.md#dimension10) | No  | Radius of the rounded corners of the background.<br>You can set separate radiuses for the four rounded corners.<br>Default value: **{ topLeft: '24vp', topRight: '24vp', bottomLeft: '24vp', bottomRight: '24vp' }**<br>**NOTE**<br>This attribute must be used together with the [borderRadius](ts-universal-attributes-border.md#borderradius) attribute.|
+| builder                       | [CustomDialog](../../../ui/arkts-common-components-custom-dialog.md) | Yes   | Builder of the custom dialog box content.<br>**NOTE**<br>If the builder uses a callback as the input parameter, as in **build: custombuilder({ callback: ()=> {...}})**, pay attention to the binding of **this**.<br>To listen for data changes in the builder, use the @Link decorator; other decorators, such as @Prop and @ObjectLink, do not apply.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| cancel                        | () =&gt; void                  | No   | Callback invoked when the dialog box is closed after the Back button or mask is touched or the Esc key is pressed.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| autoCancel                    | boolean                                  | No   | Whether to close the dialog box when the mask is touched. The value **true** means to close the dialog box when the mask is touched, and **false** means the opposite.<br>Default value: **true**<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| alignment                     | [DialogAlignment](ts-methods-alert-dialog-box.md#dialogalignment) | No   | Alignment mode of the dialog box in the vertical direction.<br>Default value: **DialogAlignment.Default**<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| offset                        | [Offset](ts-types.md#offset)             | No   | Offset of the dialog box relative to the alignment position.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                  |
+| customStyle                   | boolean                                  | No   | Whether to use a custom style for the dialog box.<br>When this parameter is set to **false** (default value):<br>1. The rounded corner radius is 32 vp.<br>2. If the width and height of the dialog box are not set, the dialog box automatically adapts its width to the grid system and its height to the child components<br>3. The set width of the dialog box cannot exceed the maximum width in the default style (100% width for a custom node), and the set height cannot exceed the maximum height (100% height for a custom node).<br>When this parameter is set to **true**:<br>1. The rounded corner radius is 0, and the background color is transparent.<br>2. The width, height, border width, border style, border color, and shadow width cannot be set for the dialog box.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| gridCount<sup>8+</sup>        | number                                   | No   | Number of [grid columns](../../../ui/arkts-layout-development-grid-layout.md) occupied by the dialog box.<br>The default value is subject to the window size, and the maximum value is the maximum number of columns supported by the system. If this parameter is set to an invalid value, the default value is used.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| maskColor<sup>10+</sup>       | [ResourceColor](ts-types.md#resourcecolor) | No   | Custom mask color.<br>Default value: **0x33000000**<br>**Atomic service API**: This API can be used in atomic services since API version 11.             |
+| maskRect<sup>10+</sup>        | [Rectangle](ts-methods-alert-dialog-box.md#rectangle8) | No    | Mask area of the dialog box. Events outside the mask area are transparently transmitted, and events within the mask area are not.<br>Default value: **{ x: 0, y: 0, width: '100%', height: '100%' }**<br>**NOTE**<br>**maskRect** does not take effect when **showInSubWindow** is set to **true**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| openAnimation<sup>10+</sup>   | [AnimateParam](ts-explicit-animation.md#animateparam) | No   | Parameters for defining the open animation of the dialog box.<br>**NOTE**<br>**tempo**: The default value is **1**; any other value is handled as the default value.<br>**iterations**: The default value is **1**, indicating that the animation is played once; any other value is handled as the default value.<br>**playMode**: The default value is **PlayMode.Normal**; any other value is handled as the default value.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| closeAnimation<sup>10+</sup>  | [AnimateParam](ts-explicit-animation.md#animateparam) | No   | Parameters for defining the close animation of the dialog box.<br>**NOTE**<br>**tempo**: The default value is **1**; any other value is handled as the default value.<br>**iterations**: The default value is **1**, indicating that the animation is played once; any other value is handled as the default value.<br>**playMode**: The default value is **PlayMode.Normal**; any other value is handled as the default value.<br>For page transition, you are advised to use the default close animation.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| showInSubWindow<sup>10+</sup> | boolean                                  | No   | Whether to show the dialog box in a sub-window when the dialog box needs to be displayed outside the main window.<br>Default value: **false**<br>**NOTE**<br>A dialog box whose **showInSubWindow** attribute is **true** cannot trigger the display of another dialog box whose **showInSubWindow** attribute is also **true**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| backgroundColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor)      | No  | Background color of the dialog box.<br>**NOTE**<br>If the content builder also has the background color set, the background color set here will be overridden by the background color of the content builder.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| cornerRadius<sup>10+</sup>    | [BorderRadiuses](ts-types.md#borderradiuses9) \| [Dimension](ts-types.md#dimension10) | No  | Radius of the rounded corners of the background.<br>You can set separate radiuses for the four rounded corners.<br>Default value: **{ topLeft: '32vp', topRight: '32vp', bottomLeft: '32vp', bottomRight: '32vp' }**<br>**NOTE**<br>This attribute must be used together with the [borderRadius](ts-universal-attributes-border.md#borderradius) attribute.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | isModal<sup>11+</sup> | boolean | No| Whether the dialog box is a modal. A modal dialog box has a mask applied, while a non-modal dialog box does not.<br>Default value: **true**|
-| onWillDismiss<sup>12+</sup> | (dismissDialog:[DismissDialog](ts-methods-alert-dialog-box.md#dismissdialog12)) => void | No| Callback for interactive closure of the dialog box.<br>**NOTE**<br>1. If this callback is registered, the dialog box will not be closed immediately after the user touches the mask or the Back button, presses the Esc key, or swipes left or right on the screen. The **reason** parameter in the callback is used to determine whether the dialog box can be closed. The reason returned by the component does not support the value **CLOSE_BUTTON**.<br>2. In the **onWillDismiss** callback, another **onWillDismiss** callback is not allowed.|
+| onWillDismiss<sup>12+</sup> | Callback<[DismissDialogAction](ts-methods-alert-dialog-box.md#dismissdialogaction12)> | No| Callback for interactive closure of the dialog box.<br>**NOTE**<br>1. If this callback is registered, the dialog box will not be closed immediately after the user touches the mask or the Back button, presses the Esc key, or swipes left or right on the screen. The **reason** parameter in the callback is used to determine whether the dialog box can be closed. The reason returned by the component does not support the value **CLOSE_BUTTON**.<br>2. In the **onWillDismiss** callback, another **onWillDismiss** callback is not allowed.|
+| borderWidth<sup>12+</sup> | [Dimension](ts-types.md#dimension10) \| [EdgeWidths](ts-types.md#edgewidths9)  | No| Border width of the dialog box.<br>You can set the width for all four sides or set separate widths for individual sides.<br>Default value: **0**<br> When set to a percentage, the value defines the border width as a percentage of the parent dialog box's width.<br>If the left and right borders are greater than its width, or the top and bottom borders are greater than its height, the dialog box may not display as expected.|
+| borderColor<sup>12+</sup> | [ResourceColor](ts-types.md#resourcecolor) \| [EdgeColors](ts-types.md#edgecolors9)  | No| Border color of the dialog box.<br>Default value: **Color.Black**<br> **borderColor** must be used with **borderWidth** in pairs.|
+| borderStyle<sup>12+</sup> | [BorderStyle](ts-appendix-enums.md#borderstyle) \| [EdgeStyles](ts-types.md#edgestyles9)  | No| Border style of the dialog box.<br>Default value: **BorderStyle.Solid**<br> **borderStyle** must be used with **borderWidth** in pairs.|
+| width<sup>12+</sup> | [Dimension](ts-types.md#dimension10) | No  | Width of the dialog box.<br>**NOTE**<br>- Default maximum width of the dialog box: 400 vp<br>- When this parameter is set to a percentage, the reference width of the dialog box is the width of the window where the dialog box is located. You can decrease or increase the width as needed.|
+| height<sup>12+</sup> | [Dimension](ts-types.md#dimension10)   | No| Height of the dialog box.<br>**NOTE**<br>- Default maximum height of the dialog box: 0.9 x (Window height – Safe area)<br>- When this parameter is set to a percentage, the reference height of the dialog box is the height of the window where the dialog box is located minus the safe area. You can decrease or increase the height as needed.|
+| shadow<sup>12+</sup> | [ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions) \| [ShadowStyle](ts-universal-attributes-image-effect.md#shadowstyle10)   | No| Shadow of the dialog box.<br> Default value on 2-in-1 devices: **ShadowStyle.OUTER_FLOATING_MD** when the dialog box is focused and **ShadowStyle.OUTER_FLOATING_SM** otherwise|
+| backgroundBlurStyle<sup>12+</sup> | [BlurStyle](ts-appendix-enums.md#blurstyle9)                 | No  | Background blur style of the dialog box.<br>Default value: **BlurStyle.COMPONENT_ULTRA_THICK**|
 
 > **NOTE**
 >
 > - Pressing the Back or ESC key closes the dialog box.
-> - Use the custom dialog box to contain simple information only. Do not use it as a page. If the dialog box's height is too large, it may be partly blocked by the soft keyboard (if any), which is automatically raised when displayed.
+> - Use the custom dialog box to contain simple information only. Do not use it as a page. If the dialog box's height is too large, it may be partly blocked by the soft keyboard (if any), which is automatically raised when displayed. When the dialog box avoids the soft keyboard, there is a 16 vp safe spacing between the two.
 
 ## CustomDialogController
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 ### Objects to Import
 
@@ -106,14 +115,14 @@ struct CustomDialogExample {
   dialogControllerTwo: CustomDialogController | null = new CustomDialogController({
     builder: CustomDialogExampleTwo(),
     alignment: DialogAlignment.Bottom,
-    onWillDismiss:(dismissDialog: DismissDialog)=> {
-      console.info("reason=" + JSON.stringify(dismissDialog.reason))
+    onWillDismiss:(dismissDialogAction: DismissDialogAction)=> {
+      console.info("reason=" + JSON.stringify(dismissDialogAction.reason))
       console.log("dialog onWillDismiss")
-      if (dismissDialog.reason == DismissReason.PRESS_BACK) {
-        dismissDialog.dismiss()
+      if (dismissDialogAction.reason == DismissReason.PRESS_BACK) {
+        dismissDialogAction.dismiss()
       }
-      if (dismissDialog.reason == DismissReason.TOUCH_OUTSIDE) {
-        dismissDialog.dismiss()
+      if (dismissDialogAction.reason == DismissReason.TOUCH_OUTSIDE) {
+        dismissDialogAction.dismiss()
       }
     },
     offset: { dx: 0, dy: -25 } })
@@ -131,7 +140,7 @@ struct CustomDialogExample {
         .onChange((value: string) => {
           this.textValue = value
         })
-      Text('Are you sure you want to change text?').fontSize(16).margin({ bottom: 10 })
+      Text('Are you sure you want to change the text?').fontSize(16).margin({ bottom: 10 })
       Flex({ justifyContent: FlexAlign.SpaceAround }) {
         Button('No')
           .onClick(() => {
@@ -175,14 +184,14 @@ struct CustomDialogUser {
     }),
     cancel: this.exitApp,
     autoCancel: true,
-    onWillDismiss:(dismissDialog: DismissDialog)=> {
-      console.info("reason=" + JSON.stringify(dismissDialog.reason))
+    onWillDismiss:(dismissDialogAction: DismissDialogAction)=> {
+      console.info("reason=" + JSON.stringify(dismissDialogAction.reason))
       console.log("dialog onWillDismiss")
-      if (dismissDialog.reason == DismissReason.PRESS_BACK) {
-        dismissDialog.dismiss()
+      if (dismissDialogAction.reason == DismissReason.PRESS_BACK) {
+        dismissDialogAction.dismiss()
       }
-      if (dismissDialog.reason == DismissReason.TOUCH_OUTSIDE) {
-        dismissDialog.dismiss()
+      if (dismissDialogAction.reason == DismissReason.TOUCH_OUTSIDE) {
+        dismissDialogAction.dismiss()
       }
     },
     alignment: DialogAlignment.Bottom,
@@ -259,14 +268,14 @@ struct CustomDialogUser {
     }),
     cancel: this.existApp,
     autoCancel: true,
-    onWillDismiss:(dismissDialog: DismissDialog)=> {
-      console.info("reason=" + JSON.stringify(dismissDialog.reason))
+    onWillDismiss:(dismissDialogAction: DismissDialogAction)=> {
+      console.info("reason=" + JSON.stringify(dismissDialogAction.reason))
       console.log("dialog onWillDismiss")
-      if (dismissDialog.reason == DismissReason.PRESS_BACK) {
-        dismissDialog.dismiss()
+      if (dismissDialogAction.reason == DismissReason.PRESS_BACK) {
+        dismissDialogAction.dismiss()
       }
-      if (dismissDialog.reason == DismissReason.TOUCH_OUTSIDE) {
-        dismissDialog.dismiss()
+      if (dismissDialogAction.reason == DismissReason.TOUCH_OUTSIDE) {
+        dismissDialogAction.dismiss()
       }
     },
     alignment: DialogAlignment.Center,
