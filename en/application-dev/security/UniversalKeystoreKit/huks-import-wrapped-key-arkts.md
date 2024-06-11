@@ -30,9 +30,7 @@ For details about the scenarios and supported algorithm specifications, see [Sup
 10. Delete the intermediate keys (keys used for encrypting the key to import) from devices A and B.
 
 ```ts
-import { expect } from '@ohos/hypium';
-import huks from '@ohos.security.huks';
-import { BusinessError } from '@ohos.base';
+import { huks } from "@kit.UniversalKeystoreKit";
 let IV = '0000000000000000';
 let AAD = "abababababababab";
 let NONCE = "hahahahahaha";
@@ -273,13 +271,11 @@ async function publicGenerateItemFunc(keyAlias: string, huksOptions: huks.HuksOp
         .then(data => {
             console.info(`promise: generateKeyItem success, data = ${JSON.stringify(data)}`);
         })
-        .catch((err: BusinessError) => {
+        .catch((err) => {
             console.error(`promise: generateKeyItem failed` + err);
-            expect(null).assertFail();
         })
     } catch (err) {
         console.error(`promise: generateKeyItem invalid` + err);
-        expect(null).assertFail();
     }
 }
 async function publicImportKeyItemFunc(keyAlias: string, HuksOptions: huks.HuksOptions) {
@@ -288,13 +284,11 @@ async function publicImportKeyItemFunc(keyAlias: string, HuksOptions: huks.HuksO
         await huks.importKeyItem(keyAlias, HuksOptions)
         .then(data => {
             console.info(`promise: importKeyItem success, data = ${JSON.stringify(data)}`);
-        }).catch((err: BusinessError) => {
+        }).catch((err) => {
             console.error(`promise: importKeyItem failed` + err);
-            expect(null).assertFail();
         })
     } catch (err) {
         console.error(`promise: importKeyItem input arg invalid` + err);
-        expect(null).assertFail();
     }
 }
 async function publicDeleteKeyItemFunc(KeyAlias: string, HuksOptions: huks.HuksOptions) {
@@ -304,13 +298,11 @@ async function publicDeleteKeyItemFunc(KeyAlias: string, HuksOptions: huks.HuksO
         .then(data => {
             console.info(`promise: deleteKeyItem key success, data = ${JSON.stringify(data)}`);
         })
-        .catch((err: BusinessError) => {
+        .catch((err) => {
             console.error(`promise: deleteKeyItem failed` + err);
-            expect(null).assertFail();
         })
     } catch (err) {
         console.error(`promise: deleteKeyItem input arg invalid` + err);
-        expect(null).assertFail();
     }
 }
 function importWrappedKeyItem(keyAlias: string, wrappingKeyAlias: string, huksOptions: huks.HuksOptions) {
@@ -324,7 +316,6 @@ function importWrappedKeyItem(keyAlias: string, wrappingKeyAlias: string, huksOp
                 }
             });
         } catch (error) {
-            expect(null).assertFail();
         }
     });
 }
@@ -338,13 +329,11 @@ async function publicImportWrappedKeyFunc(keyAlias: string, wrappingKeyAlias: st
         .then((data) => {
             console.info(`promise: importWrappedKeyItem success, data = ${JSON.stringify(data)}`);
         })
-        .catch((error: BusinessError) => {
+        .catch((error) => {
             console.error(`promise: importWrappedKeyItem failed` + error);
-            expect(null).assertFail();
         });
     } catch (error) {
         console.error(`promise: importWrappedKeyItem input arg invalid` + error);
-        expect(null).assertFail();
     }
 }
 async function publicImportWrappedKeyPromise(keyAlias: string, wrappingKeyAlias: string, huksOptions: huks.HuksOptions) {
@@ -354,13 +343,11 @@ async function publicImportWrappedKeyPromise(keyAlias: string, wrappingKeyAlias:
         .then((data) => {
             console.info(`promise: importWrappedKeyItem success, data = ${JSON.stringify(data)}`);
         })
-        .catch((error: BusinessError) => {
+        .catch((error) => {
             console.error(`promise: importWrappedKeyItem failed` + error);
-            expect(null).assertFail();
         });
     } catch (error) {
         console.error(`promise: importWrappedKeyItem input arg invalid` + error);
-        expect(null).assertFail();
     }
 }
 async function publicInitFunc(srcKeyAlias: string, HuksOptions: huks.HuksOptions) {
@@ -372,13 +359,11 @@ async function publicInitFunc(srcKeyAlias: string, HuksOptions: huks.HuksOptions
             console.info(`promise: doInit success, data = ${JSON.stringify(data)}`);
             handle = data.handle;
         })
-        .catch((error: BusinessError) => {
+        .catch((error) => {
             console.error(`promise: doInit key failed` + error);
-            expect(null).assertFail();
         });
     } catch (error) {
         console.error(`promise: doInit input arg invalid` + error);
-        expect(null).assertFail();
     }
     return handle;
 }
@@ -390,7 +375,7 @@ async function publicUpdateSessionFunction(handle: number, HuksOptions: huks.Huk
     let inDataSegPosition = 0;
     let isFinished = false;
     let outData: number[] = [];
-    
+
     while (inDataSegPosition <= lastInDataPosition) {
         if (inDataSegPosition + maxUpdateSize > lastInDataPosition) {
             isFinished = true;
@@ -408,19 +393,16 @@ async function publicUpdateSessionFunction(handle: number, HuksOptions: huks.Huk
                 console.error(`promise: doUpdate success, data = ${JSON.stringify(data)}`);
                 outData = outData.concat(Array.from(data.outData!));
             })
-            .catch((error: BusinessError) => {
+            .catch((error) => {
                 console.error(`promise: doUpdate failed` + error);
-                expect(null).assertFail();
             });
         } catch (error) {
             console.error(`promise: doUpdate input arg invalid` + error);
-            expect(null).assertFail();
         }
         if ((!isFinished) && (inDataSegPosition + maxUpdateSize > lastInDataPosition)) {
             console.log(`update size invalid isFinished = ${isFinished}`);
             console.log(`inDataSegPosition = ${inDataSegPosition}`);
             console.log(`lastInDataPosition = ${lastInDataPosition}`);
-            expect(null).assertFail();
             return;
         }
         inDataSegPosition += maxUpdateSize;
@@ -436,13 +418,11 @@ async function publicFinishSession(handle: number, HuksOptions: huks.HuksOptions
             console.info(`promise: doFinish success, data = ${JSON.stringify(data)}`);
             outData = inData.concat(Array.from(data.outData!));
         })
-        .catch((error: BusinessError) => {
+        .catch((error) => {
             console.error(`promise: doFinish key failed` + error);
-            expect(null).assertFail();
         });
     } catch (error) {
         console.error(`promise: doFinish input arg invalid` + error);
-        expect(null).assertFail();
     }
     return new Uint8Array(outData);
 }
@@ -462,13 +442,11 @@ async function agreeFunction(keyAlias: string, HuksOptions: huks.HuksOptions, hu
         .then((data) => {
             console.error(`promise: doUpdate success, data = ${JSON.stringify(data)}`);
         })
-        .catch((error: BusinessError) => {
+        .catch((error) => {
             console.error(`promise: doUpdate failed` + error);
-            expect(null).assertFail();
         });
     } catch (error) {
         console.error(`promise: doUpdate input arg invalid` + error);
-        expect(null).assertFail();
     }
     console.info(`enter promise doInit`);
     try {
@@ -477,13 +455,11 @@ async function agreeFunction(keyAlias: string, HuksOptions: huks.HuksOptions, hu
             console.info(`promise: doInit success, data = ${JSON.stringify(data)}`);
             outSharedKey = data.outData as Uint8Array;
         })
-        .catch((error: BusinessError) => {
+        .catch((error) => {
             console.error(`promise: doInit key failed` + error);
-            expect(null).assertFail();
         });
     } catch (error) {
         console.error(`promise: doInit input arg invalid` + error);
-        expect(null).assertFail();
     }
     return outSharedKey;
 }
@@ -505,13 +481,11 @@ async function generateAndExportPublicKey(keyAlias: string, HuksOptions: huks.Hu
                 huksPubKey = data.outData as Uint8Array;
             }
         })
-        .catch((error: BusinessError) => {
+        .catch((error) => {
             console.error(`promise: exportKeyItem failed` + error);
-            expect(null).assertFail();
         });
     } catch (error) {
         console.error(`promise: generate pubKey failed` + error);
-        expect(null).assertFail();
     }
 }
 async function EncryptImportedPlainKeyAndKek(keyAlias: string) {
@@ -572,8 +546,8 @@ async function ImportWrappedKey() {
      */
 
     /* 2. Generate an asymmetric key pair Wrapping_Key (public key Wrapping_Pk and private key Wrapping_Sk) with the purpose of HUKS_KEY_PURPOSE_UNWRAP for device B, export the public key Wrapping_Pk of Wrapping_Key, and save it to huksPubKey. */
-    const srcKeyAliesWrap = 'HUKS_Basic_Capability_Import_0200';
-    await generateAndExportPublicKey(srcKeyAliesWrap, genWrappingKeyParams, false);
+    const srcKeyAliasWrap = 'HUKS_Basic_Capability_Import_0200';
+    await generateAndExportPublicKey(srcKeyAliasWrap, genWrappingKeyParams, false);
 
     /* 3. Use the same algorithm to generate an asymmetric key pair Caller_Key (public key Caller_Pk and private key Caller_Sk) with the purpose of HUKS_KEY_PURPOSE_UNWRAP for device A, export the public key Caller_Pk of Caller_Key, save it to callerSelfPublicKey. */
     await generateAndExportPublicKey(callerKeyAlias, genCallerEcdhParams, true);
@@ -583,22 +557,22 @@ async function ImportWrappedKey() {
      * 5. Perform key agreement with the private key Caller_Sk in Caller_Key of device A and the public key Wrapping_Pk in Wrapping_Key of device B to yield a Shared_Key.
      */
     await ImportKekAndAgreeSharedSecret(callerKekAliasAes256, importParamsCallerKek, callerKeyAlias, huksPubKey, callerAgreeParams);
-    
+
     /**
      * 6. Use Caller_Kek to encrypt To_Import_Key of device A and generate To_Import_Key_Enc.
      * 7. Use Shared_Key to encrypt Caller_Kek of device A and generate Caller_Kek_Enc.
      */
     await EncryptImportedPlainKeyAndKek(importedAes192PlainKey);
-   
+
     /* 8. Encapsulate the key material Caller_Pk, To_Import_Key_Enc, and Caller_Kek_Enc of device A, and sends it to device B. In this example, Caller_Pk is placed in callerSelfPublicKey, To_Import_Key_Enc in PlainKeyEncData, and Caller_Kek_Enc in KekEncData. */
     let wrappedData = await BuildWrappedDataAndImportWrappedKey(importedAes192PlainKey);
     importWrappedAes192Params.inData = wrappedData;
-    
+
     /* 9. Import the encapsulated key material to device B. */
-    await publicImportWrappedKeyFunc(importedKeyAliasAes192, srcKeyAliesWrap, importWrappedAes192Params);
-    
+    await publicImportWrappedKeyFunc(importedKeyAliasAes192, srcKeyAliasWrap, importWrappedAes192Params);
+
     /* 10. Delete the intermediate keys (keys used for encrypting the key to import) from devices A and B. */
-    await publicDeleteKeyItemFunc(srcKeyAliesWrap, genWrappingKeyParams);
+    await publicDeleteKeyItemFunc(srcKeyAliasWrap, genWrappingKeyParams);
     await publicDeleteKeyItemFunc(callerKeyAlias, genCallerEcdhParams);
     await publicDeleteKeyItemFunc(importedKeyAliasAes192, importWrappedAes192Params);
     await publicDeleteKeyItemFunc(callerKekAliasAes256, callerAgreeParams);
@@ -611,17 +585,16 @@ async function ImportWrappedKey() {
 Use [huks.isKeyItemExist](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksiskeyitemexist9) to check whether the key exists. If the key exists, the key is successfully imported.
 
 ```ts
-import huks from '@ohos.security.huks';
+import { huks } from "@kit.UniversalKeystoreKit";
 /*
  * Set the key alias and encapsulate the key property set.
  */
 let keyAlias = 'test_import_key_ecdh_aes192';
 let isKeyExist:Boolean;
-let keyProperties: Array<huks.HuksParam> = new Array();
-keyProperties[0] = {
+let keyProperties: Array<huks.HuksParam> = [{
     tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
     value: huks.HuksKeyAlg.HUKS_ALG_AES,
-}
+}];
 let huksOptions:huks.HuksOptions = {
     properties: keyProperties, // It cannot be empty.
     inData: new Uint8Array(new Array()) // It cannot be empty.
