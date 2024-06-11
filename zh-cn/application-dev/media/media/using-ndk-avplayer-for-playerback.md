@@ -20,7 +20,7 @@
 
 - 如果要实现后台播放或熄屏播放，需要接入[AVSession（媒体会话）](../avsession/avsession-access-scene.md)和[申请长时任务](../../task-management/continuous-task.md)，避免播放被系统强制中断。此功能仅提供ArkTS API。
 - 应用在播放过程中，若播放的媒体数据涉及音频，根据系统音频管理策略（参考[多音频并发](../audio/audio-playback-concurrency.md)），可能会被其他应用打断，建议应用通过[OH_AVPlayer_SetPlayerCallback()](../../reference/apis-media-kit/_a_v_player.md#oh_avplayer_setplayercallback)主动监听音频打断事件[AV_INFO_TYPE_INTERRUPT_EVENT](../../reference/apis-media-kit/_a_v_player.md#avplayeroninfotype-1)，根据其内容提示，做出相应的处理，避免出现应用状态与预期效果不一致的问题。
-- 面对设备同时连接多个音频输出设备的情况，应用可以通过[on('audioOutputDeviceChangeWithInfo')](../../reference/apis-media-kit/js-apis-media.md#onaudiooutputdevicechangewithinfo-11)监听音频输出设备的变化，从而做出相应处理。
+- 面对设备同时连接多个音频输出设备的情况，应用可以通过[OH_AVPlayer_SetPlayerCallback()](../../reference/apis-media-kit/_a_v_player.md#oh_avplayer_setplayercallback)主动监听音频输出设备改变事件[AV_INFO_TYPE_AUDIO_OUTPUT_DEVICE_CHANGE](../../reference/apis-media-kit/_a_v_player.md#avplayeroninfotype-1)，从而做出相应处理。
 
 ## 开发步骤及注意事项
 在 CMake 脚本中链接动态库
