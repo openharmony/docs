@@ -23,13 +23,13 @@ Register a listener for a **PhotoAsset** instance. When the observed **PhotoAsse
 - A **PhotoAccessHelper** instance is obtained.
 - The application has the ohos.permission.READ_IMAGEVIDEO and ohos.permission.WRITE_IMAGEVIDEO permissions.
 
-Example: Listen for changes of an image. When the image is favorited, the registered callback will be invoked.
+Example: Listen for changes of an image. When the image is deleted, the registered callback will be invoked.
 
 **How to Develop**
 
 1. [Obtain the target media asset](photoAccessHelper-resource-guidelines.md#obtaining-media-assets).
 2. Register a listener for a **PhotoAsset**.
-3. Add the **PhotoAsset** to **Favorites**.
+3. Delete the **PhotoAsset**.
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
@@ -52,7 +52,7 @@ async function example() {
       console.info('onCallback successfully, changData: ' + JSON.stringify(changeData));
     }
     phAccessHelper.registerChange(photoAsset.uri, false, onCallback);
-    await photoAsset.setFavorite(true);
+    await photoAccessHelper.MediaAssetChangeRequest.deleteAssets(context, [photoAsset]);
     fetchResult.close();
   } catch (err) {
     console.error('onCallback failed with err: ' + err);
@@ -124,13 +124,13 @@ Register a listener for all **PhotoAssets**. When a **PhotoAsset** object change
 - A **PhotoAccessHelper** instance is obtained.
 - The application has the ohos.permission.READ_IMAGEVIDEO and ohos.permission.WRITE_IMAGEVIDEO permissions.
 
-Example: Register a listener for all **PhotoAssets**. When a **PhotoAsset** is favorited, the registered callback will be invoked.
+Example: Register a listener for all **PhotoAssets**. When a **PhotoAsset** is deleted, the registered callback will be invoked.
 
 **How to Develop**
 
 1. Register a listener for all **PhotoAssets**.
 2. [Obtain a media asset](photoAccessHelper-resource-guidelines.md#obtaining-media-assets).
-3. Add the **PhotoAsset** to **Favorites**.
+3. Delete the media asset.
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
@@ -152,7 +152,7 @@ async function example() {
     let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
     let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
     console.info('getAssets photoAsset.uri : ' + photoAsset.uri);
-    await photoAsset.setFavorite(true);
+    await photoAccessHelper.MediaAssetChangeRequest.deleteAssets(context, [photoAsset]);
     fetchResult.close();
   } catch (err) {
     console.error('onCallback failed with err: ' + err);
@@ -169,13 +169,13 @@ Use [unRegisterChange](../../reference/apis-media-library-kit/js-apis-photoAcces
 - A **PhotoAccessHelper** instance is obtained.
 - The application has the ohos.permission.READ_IMAGEVIDEO and ohos.permission.WRITE_IMAGEVIDEO permissions.
 
-Example: Unregister listening for an image. The unregistered listener callback will not be invoked when the image favorite status is changed.
+Example: Unregister listening for an image. The unregistered listener callback will not be invoked when the image is deleted.
 
 **How to Develop**
 
 1. [Obtain a media asset](photoAccessHelper-resource-guidelines.md#obtaining-media-assets).
 2. Unregister the listener for the URI of the media asset obtained.
-3. Add the **PhotoAsset** to **Favorites**.
+3. Delete the media asset.
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
@@ -203,7 +203,7 @@ async function example() {
     phAccessHelper.registerChange(photoAsset.uri, false, onCallback1);
     phAccessHelper.registerChange(photoAsset.uri, false, onCallback2);
     phAccessHelper.unRegisterChange(photoAsset.uri, onCallback1);
-    await photoAsset.setFavorite(true);
+    await photoAccessHelper.MediaAssetChangeRequest.deleteAssets(context, [photoAsset]);
     fetchResult.close();
   } catch (err) {
     console.error('onCallback failed with err: ' + err);
