@@ -124,7 +124,7 @@ Defines a continuous location request.
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
 | interval | number | Yes| Yes| Time interval at which location information is reported, in seconds. The specified value must be greater than or equal to **0**. The default value is **1**. If this parameter is set to **0**, there is no restriction on the location reporting interval.|
-| locationScenario | [UserActivityScenario](#useractivityscenario12) &#124; [PowerConsumptionScenario](#powerconsumptionscenario12) | Yes| Yes| Location scenario. For details, see [UserActivityScenario](#useractivity scenario12) and [PowerConsumptionScenario](#powerconsumption scenario12).|
+| locationScenario | [UserActivityScenario](#useractivityscenario12) &#124; [PowerConsumptionScenario](#powerconsumptionscenario12) | Yes| Yes| Location scenario. For details, see [UserActivityScenario](#useractivityscenario12) and [PowerConsumptionScenario](#powerconsumptionscenario12).|
 
 
 ## SingleLocationRequest<sup>12+</sup>
