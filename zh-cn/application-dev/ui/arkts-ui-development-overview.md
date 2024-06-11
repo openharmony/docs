@@ -88,6 +88,20 @@
 | 使用动画        | 介绍了组件和页面使用动画的典型场景。                  | - [属性动画](arkts-attribute-animation-overview.md)<br>- [转场动画](arkts-transition-overview.md)<br>- [组件动画](arkts-component-animation.md)<br>- [动画曲线](arkts-traditional-curve.md)<br>- [动画衔接](arkts-animation-smoothing.md)<br>- [动画效果](arkts-blur-effect.md) |
 | 绑定事件        | 介绍了事件的基本概念和如何使用通用事件和手势事件。           | -&nbsp;[通用事件](arkts-common-events-touch-screen-event.md)<br/>-&nbsp;[手势事件](arkts-gesture-events-binding.md) |
 
+## 通用规则
+
+- **默认单位**
+
+  表示长度的入参单位默认为vp，即入参为number类型、以及[Length](../reference/apis-arkui/arkui-ts/ts-types.md#length)和[Dimension](../reference/apis-arkui/arkui-ts/ts-types.md#dimension10)类型中的number单位为vp。
+
+- **异常值处理**
+
+  输入的参数为异常（undefined，null或无效值）时，处理规则如下：
+
+  （1）对应参数有默认值，按默认值处理；
+
+  （2）对应参数无默认值，该参数对应的属性或接口不生效。
+
 ## 相关实例
 
 基于ArkTS的声明式开发范式，可参考以下实例：
@@ -97,16 +111,4 @@
 - [像素转换（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/PixelConversion)
 
 - [购物应用（ArkTS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/ShoppingEts)
-## 通用规则
-- **默认单位**
-
-  表示长度的入参单位默认为vp，即入参为number类型、以及[Length](https://gitee.com/taiyipei/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-types.md#length)和[Dimension](https://gitee.com/taiyipei/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-types.md#dimension10)类型中的number单位为vp。
-
-- **异常值处理**
-
-  开发者输入的参数为异常（undefined，null或无效值）时，处理规则如下：
-
-  1）对应参数有默认值，按默认值处理；
-
-  2）对应参数无默认值，该参数对应的属性或API不生效。
 
