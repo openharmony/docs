@@ -1,4 +1,4 @@
-# JSVM-API开发规范
+# JSVM-API使用规范
 
 ## 生命周期管理
 
@@ -6,28 +6,47 @@
 
 每个JSVM_Value属于特定的HandleScope，HandleScope通过OH_JSVM_OpenHandleScope和OH_JSVM_CloseHandleScope来建立和关闭，HandleScope关闭后，所属的JSVM_Value就会自动释放。
 
-**正确示例**：
+**建议**：申明一个类，类的构造函数和析构函数中打开和关闭scope，可以提高编码效率，并且可以避免忘记关闭scope的问题
 
 ```c++
-// 在for循环中频繁调用JSVM接口创建js对象时，要加handle_scope及时释放不再使用的资源。 
+class HandleScopeWrapper {
+ public:
+  HandleScopeWrapper(JSVM_Env env) : env(env) {
+    OH_JSVM_OpenHandleScope(env, &handleScope);
+  }
+
+  ~HandleScopeWrapper() {
+    OH_JSVM_CloseHandleScope(env, handleScope);
+  }
+
+  HandleScopeWrapper(const HandleScopeWrapper&) = delete;
+  HandleScopeWrapper& operator=(const HandleScopeWrapper&) = delete;
+  HandleScopeWrapper(HandleScopeWrapper&&) = delete;
+  void* operator new(size_t) = delete;
+  void* operator new[](size_t) = delete;
+
+ protected:
+  JSVM_Env env;
+  JSVM_HandleScope handleScope;
+};
+
+// 在for循环中频繁调用JSVM接口创建js对象时，要加handle_scope及时释放不再使用的资源。
 // 下面例子中，每次循环结束局部变量res的生命周期已结束，因此加scope及时释放其持有的js对象，防止内存泄漏
+// 每次for循环结束后，触发HandleScopeWrapper的析构函数，释放scope持有的js对象
 for (int i = 0; i < 100000; i++)
-{ 
-    JSVM_HandleScope scope = nullptr;
-    OH_JSVM_OpenHandleScope(env, &scope);
-    if (scope == nullptr)
-    { 
-        return;
-    } 
+{
+    HandleScopeWrapper scope(env);
     JSVM_Value res;
     OH_JSVM_CreateObject(env, &res);
-    OH_JSVM_CloseHandleScope(env, scope);
+    if (i == 100) {
+        break;
+    }
 }
 ```
 
-## 上下文敏感
+## 多引擎实例上下文敏感
 
-**【规则】** 多引擎实例场景下，禁止通过JSVM-API跨引擎实例访问JS对象。
+**【规则】** 多引擎实例（VM）场景下，禁止通过JSVM-API跨引擎实例访问JS对象。
 
 引擎实例是一个独立运行环境，JS对象创建访问等操作必须在同一个引擎实例中进行。若在不同引擎实例中操作同一个对象，可能会引发程序崩溃。引擎实例在接口中体现为JSVM_Env。
 
@@ -39,82 +58,75 @@ OH_JSVM_CreateStringUtf8(env1, "value1", JSVM_AUTO_LENGTH , &string);
 // 线程2执行，在env2创建object对象，并将上述的string对象设置到object对象中
 JSVM_Status status = OH_JSVM_CreateObject(env2, &object);
 if (status != JSVM_OK)
-{ 
-    OH_JSVM_ThrowError(env, ...);
+{
     return;
-} 
+}
 
 status = OH_JSVM_SetNamedProperty(env2, object, "string1", string);
 if (status != JSVM_OK)
-{ 
-    OH_JSVM_ThrowError(env, ...);
+{
     return;
 }
 ```
 
 所有的JS对象都隶属于具体的某一JSVM_Env，不可将env1的对象，设置到env2中的对象中。在env2中一旦访问到env1的对象，程序可能会发生崩溃。
 
-## 异常处理
+## 获取JS传入参数及其数量
 
-**【建议】** JSVM-API接口调用发生异常需要及时处理，不能遗漏异常到后续逻辑，否则程序可能发生不可预期行为。
+**【规则】** 当传入OH_JSVM_GetCbInfo的argv不为nullptr时，argv的长度必须大于等于传入argc声明的大小。
 
-**正确示例**：
+当argv不为nullptr时，OH_JSVM_GetCbInfo会根据argc声明的数量将JS实际传入的参数写入argv。如果argc小于等于实际JS传入参数的数量，该接口仅会将声明的argc数量的参数写入argv；而当argc大于实际参数数量时，该接口会在argv的尾部填充undefined。
 
-```c++
-// 1.创建对象
-JSVM_Status status = OH_JSVM_CreateObject(env, &object);
-if (status != JSVM_OK)
-{ 
-    OH_JSVM_ThrowError(env, ...);
-    return;
-} 
-// 2.创建属性值 
-status = OH_JSVM_CreateStringUtf8(env, "bar", JSVM_AUTO_LENGTH, &string);
-if (status != JSVM_OK)
-{ 
-    OH_JSVM_ThrowError(env, ...);
-    return;
-} 
-// 3.将步骤2的结果设置为对象object属性foo的值
-status = OH_JSVM_SetNamedProperty(env, object, "foo", string);
-if (status != JSVM_OK)
-{ 
-    OH_JSVM_ThrowError(env, ...);
-    return;
+**错误示例**
+
+```cpp
+static JSVM_Value IncorrectDemo1(JSVM_Env env, JSVM_CallbackInfo info) {
+    // argc 未正确的初始化，其值为不确定的随机值，导致 argv 的长度可能小于 argc 声明的数量，数据越界。
+    size_t argc;
+    JSVM_Value argv[10] = {nullptr};
+    OH_JSVM_GetCbInfo(env, info, &argc, argv, nullptr, nullptr);
+    return nullptr;
+}
+
+static JSVM_Value IncorrectDemo2(JSVM_Env env, JSVM_CallbackInfo info) {
+    // argc 声明的数量大于 argv 实际初始化的长度，导致 OH_JSVM_GetCbInfo 接口在写入 argv 时数据越界。
+    size_t argc = 5;
+    JSVM_Value argv[3] = {nullptr};
+    OH_JSVM_GetCbInfo(env, info, &argc, argv, nullptr, nullptr);
+    return nullptr;
 }
 ```
 
-如上示例中，步骤1或者步骤2出现异常时，步骤3都不会正常进行。只有当方法的返回值是JSVM_OK时，才能保持继续正常运行；否则后续流程可能会出现不可预期的行为。
+**正确示例**
 
-## 对象绑定
+```cpp
+static JSVM_Value GetArgvDemo1(napi_env env, JSVM_CallbackInfo info) {
+    size_t argc = 0;
+    // argv 传入 nullptr 来获取传入参数真实数量
+    OH_JSVM_GetCbInfo(env, info, &argc, nullptr, nullptr, nullptr);
+    // JS 传入参数为0，不执行后续逻辑
+    if (argc == 0) {
+        return nullptr;
+    }
+    // 创建数组用以获取JS传入的参数
+    JSVM_Value* argv = new JSVM_Value[argc];
+    OH_JSVM_GetCbInfo(env, info, &argc, argv, nullptr, nullptr);
+    // 业务代码
+    // ... ...
+    // argv 为 new 创建的对象，在使用完成后手动释放
+    delete argv;
+    return nullptr;
+}
 
-**【规则】** 使用OH_JSVM_Wrap接口，如果最后一个参数result传递不为nullptr，需要开发者在合适的时机调用OH_JSVM_RemoveWrap函数主动删除创建的JSVM_Ref。
-
-OH_JSVM_Wrap接口定义如下：
-
-```c++
-JSVM_EXTERN JSVM_Status OH_JSVM_Wrap(JSVM_Env env,
-                                     JSVM_Value jsObject,
-                                     void* nativeObject,
-                                     JSVM_Finalize finalizeCb,
-                                     void* finalizeHint,
-                                     JSVM_Ref* result);
+static JSVM_Value GetArgvDemo2(napi_env env, JSVM_CallbackInfo info) {
+    size_t argc = 2;
+    JSVM_Value* argv[2] = {nullptr};
+    // OH_JSVM_GetCbInfo 会向 argv 中写入 argc 个 JS 传入参数或 undefined
+    OH_JSVM_GetCbInfo(env, info, &argc, nullptr, nullptr, nullptr);
+    // 业务代码
+    // ... ...
+    return nullptr;
+}
 ```
 
-当最后一个参数result不为空时，框架会创建一个JSVM_Ref对象，指向js_object。此时开发者需要自己管理js_object的生命周期，即需要在合适的时机调用OH_JSVM_RemoveWrap删除JSVM_Ref，这样GC才能正常释放js_object，从而触发绑定C++对象native_object的析构函数finalizeCb。
 
-一般情况下，根据业务情况最后一个参数result可以直接传递为nullptr。
-
-**正确示例**：
-
-```c++
-// 用法1：OH_JSVM_Wrap不需要接收创建的JSVM_Ref，最后一个参数传递nullptr，创建的JSVM_Ref是弱引用，由系统管理，不需要用户手动释放
-OH_JSVM_Wrap(env, jsobject, nativeObject, cb, nullptr, nullptr);
-
-// 用法2：OH_JSVM_Wrap需要接收创建的JSVM_Ref，最后一个参数不为nullptr，返回的JSVM_Ref是强引用，需要用户手动释放，否则会内存泄漏
-JSVM_Ref result;
-OH_JSVM_Wrap(env, jsobject, nativeObject, cb, nullptr, &result);
-// 当js_object和result后续不再使用时，及时调用OH_JSVM_RemoveWrap释放result
-JSVM_Value result1;
-OH_JSVM_RemoveWrap(env, jsobject, result1);
-```
