@@ -6263,7 +6263,7 @@ setMimeType(mimeType: AVMimeTypes): void
 
 | 名称       | 值   | 说明                                                         |
 | ---------- | ---- | ------------------------------------------------------------ |
-| APPLICATION       | application/m3u8    | 表示m3u8本地文件。 |
+| APPLICATION_M3U8       | application/m3u8    | 表示m3u8本地文件。 |
 
 
 ## PlaybackStrategy<sup>12+</sup>
