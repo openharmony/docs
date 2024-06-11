@@ -1120,7 +1120,7 @@ isValidNumber(number: string): boolean
 
 format(number: string): string
 
-对电话号码进行格式化。
+对电话号码进行格式化。从API version 12开始，支持对拨号中的号码进行格式化。
 
 **元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
