@@ -35,7 +35,7 @@ import { baseProfile } from '@kit.ConnectivityKit';
 
 setConnectionStrategy(deviceId: string, strategy: ConnectionStrategy, callback: AsyncCallback&lt;void&gt;): void
 
-设置该设备Profile的连接策略。
+设置该设备Profile的连接策略。使用Callback异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -85,7 +85,7 @@ try {
 
 setConnectionStrategy(deviceId: string, strategy: ConnectionStrategy): Promise&lt;void&gt;
 
-设置该设备Profile的连接策略。
+设置该设备Profile的连接策略。使用Promise异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -142,7 +142,7 @@ try {
 
 getConnectionStrategy(deviceId: string, callback: AsyncCallback&lt;ConnectionStrategy&gt;): void
 
-获取该Profile的连接策略。
+获取该Profile的连接策略。使用Callback异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -191,7 +191,7 @@ try {
 
 getConnectionStrategy(deviceId: string): Promise&lt;ConnectionStrategy&gt;
 
-获取该Profile的连接策略。
+获取该Profile的连接策略。使用Promise异步回调。
 
 **系统接口**：此接口为系统接口。
 
