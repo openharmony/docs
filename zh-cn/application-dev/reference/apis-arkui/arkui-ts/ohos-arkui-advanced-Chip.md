@@ -121,6 +121,11 @@ SymbolOptions定义前缀图标和后缀图标的属性。
 | normal | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 否   | 图标设定事件。 |
 | activated | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 否   | 激活时图标设定事件。 |
 
+> **说明：**
+>
+> 不支持通过symbolEffect修改动效类型和effectStrategy设置动效。
+>
+
 ## LabelOptions
 
 LabelOptions定义文本的属性。

@@ -113,6 +113,11 @@ ChipGroupPaddingOptions 定义了chipGroup上下内边距，以便控制chipGrou
 | -------- | ---------------------- | ---- | ----------------------------------------------|
 | items    | Array<[IconItemOptions](#iconitemoptions) \| [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md)> | 是   | 自定义builder items。|
 
+> **说明：**
+>
+> 传参SymbolGlyphModifier时，不支持通过symbolEffect修改动效类型和effectStrategy设置动效。
+>
+
 ## IconItemOptions
 
 尾部builder接口定义，针对背板大小及颜色设置限制。
