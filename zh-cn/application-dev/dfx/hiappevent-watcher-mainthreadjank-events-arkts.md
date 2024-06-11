@@ -80,8 +80,6 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
 
 4. 运行`hdc shell param set hiviewdfx.ucollection.testapptrace true`，使能主线程超时检测抓取trace的功能。
 
-   运行`service_control stop hiview`停止服务，清除设备缓存`rm -rf /data/log/hiview/unified_collection/trace`，运行`service_control start hiview`启动服务。
-
 5. 点击IDE界面中的运行按钮，运行应用工程，连续点击两次timeOut500按钮，会触发主线程超时事件。同一个应用一天仅会触发一次。
 
 6. 主线程超时事件上报后，系统会回调应用的onReceive函数，可以在Log窗口看到对系统事件数据的处理日志：
