@@ -1,15 +1,15 @@
-# @ohos.graphics.uiEffect (效果级联)
+# @ohos.graphics.uiEffect (效果级联)()
 
 本模块提供组件效果的一些基础能力，包括边缘像素扩展，模糊，提亮等。效果被分为Filter和VisualEffect大类，同类效果可以级联在一个效果大类的实例下。
 
 - [Filter](#filter)：用于添加指定Filter效果到组件上。
-- [VisualEffect](#visualeffect): 用于添加指阿定VisualEffect效果到组件上。
-- [BrightnessBlender](#brightnessblender): 提亮blender，用于将提亮效果添加到指定的控件上。
+- [VisualEffect](#visualeffect)：用于添加指阿定VisualEffect效果到组件上。
+- [BrightnessBlender](#brightnessblender)：提亮blender，用于将提亮效果添加到指定的控件上。
 
 > **说明：**
 > 
 > - 本模块首批接口从API version 12开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-> - 页面仅包含本模块的系统接口，其他公开接口参见[ohos.graphics.uiEffect (效果级联)](js-apis-uiEffect.md)
+> - 页面仅包含本模块的系统接口，其他公开接口参见[ohos.graphics.uiEffect (效果级联)](js-apis-uiEffect.md)。
 
 ## 导入模块
 
@@ -18,7 +18,7 @@ import { uiEffect } from "@kit.ArkGraphics2D";
 ```
 
 ## Filter
-Filter效果类，用于将相应的效果添加到指定的控件上。在调用Filter的方法前，需要先通过[createFilter](#uieffectcreatefilter)创建一个Filter实例。
+Filter效果类，用于将相应的效果添加到指定的控件上。在调用Filter的方法前，需要先通过[createFilter](js-apis-uiEffect.md#uieffectcreatefilter)创建一个Filter实例。
 
 ### pixelStretch
 pixelStretch(stretchSizes: Array\<number\>, tileMode: TileMode): Filter
@@ -47,17 +47,7 @@ pixelStretch(stretchSizes: Array\<number\>, tileMode: TileMode): Filter
 ```ts
 import { uiEffect } from "@kit.ArkGraphics2D";
 
-@Component
-struct Index {
-  @State filterTest: uiEffect.Filter = uiEffect.createFilter()
-
-  aboutToAppear(): void {
-	this.filter.pixelStretch([0.2, 0.2, 0.2, 0.2], uiEffect.TileMode.CLAMP)
-  }
-
-  build() {
-  }
-}
+filter.pixelStretch([0.2, 0.2, 0.2, 0.2], uiEffect.TileMode.CLAMP)
 ```
 
 ## TileMode
@@ -75,7 +65,7 @@ struct Index {
 | DECAL  | 3 | 透明 |
 
 ## VisualEffect
-VisualEffect效果类，用于将相应的效果添加到指定的控件上。在调用VisualEffect的方法前，需要先通过[createEffect](#uieffectcreateeffect)创建一个VisualEffect实例。
+VisualEffect效果类，用于将相应的效果添加到指定的控件上。在调用VisualEffect的方法前，需要先通过[createEffect](js-apis-uiEffect.md#uieffectcreateeffect)创建一个VisualEffect实例。
 
 ### backgroundColorBlender
 backgroundColorBlender(blender: BrightnessBlender): VisualEffect
@@ -102,20 +92,7 @@ backgroundColorBlender(blender: BrightnessBlender): VisualEffect
 ```ts
 import { uiEffect } from "@kit.ArkGraphics2D";
 
-@Component
-struct Index {
-  @State visualEffectTest:uiEffect.VisualEffect = uiEffect.createEffect()
-
-  aboutToAppear(): void {
-    let blender:uiEffect.BrightnessBlender =
-      uiEffect.createBrightnessBlender({cubicRate:1.0, quadraticRate:1.0, linearRate:1.0, degree:1.0,
-        saturation:1.0, positiveCoefficient:[2.3, 4.5, 2], negativeCoefficient:[0.5, 2, 0.5], fraction:0})
-    this.visualEffectTest.backgroundColorBlender(blender)
-}
-
-  build() {
-  }
-}
+visualEffect.backgroundColorBlender(blender)
 ```
 
 ## BrightnessBlender
@@ -163,15 +140,9 @@ createBrightnessBlender(param: BrightnessBlenderParam): BrightnessBlender
 ```ts
 import { uiEffect } from "@kit.ArkGraphics2D";
 
-@Component
-struct Index {
-  @State visualEffectTest:uiEffect.VisualEffect = uiEffect.createEffect()
-
-  aboutToAppear(): void {
-    let blender:uiEffect.BrightnessBlender =
-      uiEffect.createBrightnessBlender({cubicRate:1.0, quadraticRate:1.0, linearRate:1.0, degree:1.0,
-        saturation:1.0, positiveCoefficient:[2.3, 4.5, 2], negativeCoefficient:[0.5, 2, 0.5], fraction:0})
-}
+let blender : uiEffect.BrightnessBlender =
+  uiEffect.createBrightnessBlender({cubicRate:1.0, quadraticRate:1.0, linearRate:1.0, degree:1.0, saturation:1.0,
+    positiveCoefficient:[2.3, 4.5, 2], negativeCoefficient:[0.5, 2, 0.5], fraction:0})
 ```
 
 ## BrightnessBlenderParam
