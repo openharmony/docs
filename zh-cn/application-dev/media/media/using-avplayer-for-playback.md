@@ -2,9 +2,6 @@
 
 使用AVPlayer可以实现端到端播放原始媒体资源，本开发指导将以完整地播放一首音乐作为示例，向开发者讲解AVPlayer音频播放相关功能。
 
-以下指导仅介绍如何实现媒体资源播放，如果要实现后台播放或熄屏播放，需要使用[AVSession（媒体会话）](../avsession/avsession-overview.md)和[申请长时任务](../../task-management/continuous-task.md)，避免播放被系统强制中断。同时，应用可参考[多音频并发](../audio/audio-playback-concurrency.md)处理音频焦点。应用应主动监听音频打断事件，根据其内容提示，做出相应的处理，避免出现应用状态与预期效果不一致的问题。
-
-
 播放的全流程包含：创建AVPlayer，设置播放资源，设置播放参数（音量/倍速/焦点模式），播放控制（播放/暂停/跳转/停止），重置，销毁资源。
 
 
@@ -14,7 +11,15 @@
 **图1** 播放状态变化示意图  
 ![Playback status change](figures/playback-status-change.png)
 
-状态的详细说明请参考[AVPlayerState](../../reference/apis-media-kit/js-apis-media.md#avplayerstate9)。当播放处于prepared / playing / paused / completed状态时，播放引擎处于工作状态，这需要占用系统较多的运行内存。当客户端暂时不使用播放器时，调用reset()或release()回收内存资源，做好资源利用。
+状态的详细说明请参考[AVPlayerState](../../reference/apis-media-kit/js-apis-media.md#avplayerstate9)。当播放处于prepared / playing / paused / completed状态时，播放引擎处于工作状态，这需要占用系统较多的运行内存。当客户端暂时不使用播放器时，调用reset()或release()回收内存资源，做好资源利用。.
+
+## 开发建议
+
+当前指导仅介绍如何实现媒体资源播放，在应用开发过程中可能会涉及后台播放、播放冲突等情况，请根据实际需要参考以下说明。
+
+- 如果要实现后台播放或熄屏播放，需要接入[AVSession（媒体会话）](../avsession/avsession-access-scene.md)和[申请长时任务](../../task-management/continuous-task.md)，避免播放被系统强制中断。
+- 应用在播放过程中，若播放的媒体数据涉及音频，根据系统音频管理策略（参考[多音频并发](../audio/audio-playback-concurrency.md)），可能会被其他应用打断，建议应用主动监听音频打断事件，根据其内容提示，做出相应的处理，避免出现应用状态与预期效果不一致的问题。
+- 面对设备同时连接多个音频输出设备的情况，应用可以通过[on('audioOutputDeviceChangeWithInfo')](../../reference/apis-media-kit/js-apis-media.md#onaudiooutputdevicechangewithinfo-11)监听音频输出设备的变化，从而做出相应处理。
 
 ## 开发步骤及注意事项
 
