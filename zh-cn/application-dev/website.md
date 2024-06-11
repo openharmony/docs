@@ -3049,7 +3049,6 @@
   - Input Kit API参考
     - ArkTS API
       - [@ohos.multimodalInput.inputDevice (输入设备)](reference/apis-input-kit/js-apis-inputdevice.md)
-      - [@ohos.multimodalInput.infraredEmitter (红外管理)](reference/apis-input-kit/js-apis-infraredemitter.md)
       - [@ohos.multimodalInput.inputEvent (输入事件)](reference/apis-input-kit/js-apis-inputevent.md)
       - [@ohos.multimodalInput.intentionCode (意图事件)](reference/apis-input-kit/js-apis-intentioncode.md)
       - [@ohos.multimodalInput.keyCode (键值)](reference/apis-input-kit/js-apis-keycode.md)
@@ -3061,6 +3060,7 @@
       <!--Del-->
       - [@ohos.multimodalInput.pointer (鼠标指针)(系统接口)](reference/apis-input-kit/js-apis-pointer-sys.md)
       - [@ohos.multimodalInput.shortKey(快捷键)(系统接口)](reference/apis-input-kit/js-apis-shortKey-sys.md)
+      - [@ohos.multimodalInput.infraredEmitter (红外管理)(系统接口)](reference/apis-input-kit/js-apis-infraredemitter-sys.md)
       - [@ohos.multimodalInput.inputConsumer (组合按键)(系统接口)](reference/apis-input-kit/js-apis-inputconsumer-sys.md)
       - [@ohos.multimodalInput.inputDevice (输入设备)(系统接口)](reference/apis-input-kit/js-apis-inputdevice-sys.md)
       - [@ohos.multimodalInput.inputEventClient (输入事件注入)(系统接口)](reference/apis-input-kit/js-apis-inputeventclient-sys.md)
