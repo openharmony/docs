@@ -277,7 +277,7 @@ setScreenOffTime(timeout: number): void
 | 错误码ID   | 错误信息    |
 |---------|---------|
 | 4900101 | If connecting to the service failed. |
-| 201 | If the permission is denied. |
+| 401 | Parameter error. Possible causes: 1. Parameter verification failed. |
 | 202 | If the system permission is denied. |
 
 **示例：**

@@ -4325,15 +4325,19 @@ async function example() {
 
 ## MemberType
 
-成员类型。
+type MemberType = number | string | boolean
+
+PhotoAsset的成员类型。
+
+成员类型为下表类型中的并集。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-| 名称  |  类型 |  可读  |  可写  |  说明  |
-| ----- |  ---- |  ---- |  ---- |  ---- |
-| number |  number | 是 | 是 | number类型。 |
-| string |  string | 是 | 是 | string类型。|
-| boolean |  boolean | 是 | 是 | boolean类型。 |
+| 类型 | 说明 |
+| ---- | ---- |
+| number | 表示值类型为数字，可取任意值。 |
+| string | 表示值类型为字符，可取任意值。|
+| boolean | 表示值类型为布尔类型。 |
 
 ## PhotoType
 

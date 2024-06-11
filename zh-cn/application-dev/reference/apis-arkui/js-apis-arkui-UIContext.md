@@ -1485,6 +1485,22 @@ struct Index {
 }
 ```
 
+### requireDynamicSyncScene<sup>12+</sup>
+
+请求组件的动态帧率场景，用于自定义场景相关帧率配置。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                    |
+| ------ | ------ | ---- | --------------------------------------- |
+| id | string | 是    | 节点对应的[组件标识](arkui-ts/ts-universal-attributes-component-id.md)
+
+**示例：**
+```ts
+uiContext.DynamicSyncScene("dynamicSyncScene")
+```
 ## Font
 
 以下API需先使用UIContext中的[getFont()](#getfont)方法获取到Font对象，再通过该对象调用对应方法。
@@ -6058,3 +6074,153 @@ struct Index {
   }
 }
 ```
+
+## DynamicSyncScene<sup>12+</sup>
+
+以下接口需先使用UIContext中的requireDynamicSyncScene()方法获取DynamicSyncScene对象，再通过此实例调用对应方法。
+
+### setFrameRateRange<sup>12+</sup>
+
+setFrameRateRange(range: ExpectedFrameRateRange): void
+
+设置期望帧率范围。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名      | 类型         | 必填   | 说明   |
+| -------- | ---------- | ---- | ---- |
+| ExpectedFrameRateRange | [ExpectedFrameRateRange](../apis-arkui/arkui-ts/ts-explicit-animation.md#expectedframeraterange11)| 是    | 设置期望的帧率范围。<br />默认值:{min:0, max:120, expected: 120} |
+
+**示例：**
+
+```ts
+import { SwiperDynamicSyncSceneType, SwiperDynamicSyncScene } from '@ohos.arkui.UIContext';
+
+@Entry
+@Component
+struct Frame {
+  @State ANIMATION:ExpectedFrameRateRange = {min:0, max:120, expected: 90}
+  @State GESTURE:ExpectedFrameRateRange = {min:0, max:120, expected: 30}
+  private scenes: SwiperDynamicSyncScene[] = []
+
+  build() {
+    Column() {
+      Text("动画"+ JSON.stringify(this.ANIMATION))
+      Text("跟手"+ JSON.stringify(this.GESTURE))
+      Row(){
+        Swiper() {
+          Text("one")
+          Text("two")
+          Text("three")
+        }
+        .width('100%')
+        .height('300vp')
+        .id("dynamicSwiper")
+        .backgroundColor(Color.Blue)
+        .autoPlay(true)
+        .onAppear(()=>{
+          this.scenes = this.getUIContext().requireDynamicSyncScene("dynamicSwiper") as SwiperDynamicSyncScene[]
+        })
+      }
+
+      Button("set frame")
+        .onClick(()=>{
+          this.scenes.forEach((scenes: SwiperDynamicSyncScene) => {
+
+            if (scenes.type == SwiperDynamicSyncSceneType.ANIMATION) {
+              scenes.setFrameRateRange(this.ANIMATION)
+            }
+
+            if (scenes.type == SwiperDynamicSyncSceneType.GESTURE) {
+              scenes.setFrameRateRange(this.GESTURE)
+            }
+          });
+        })
+    }
+  }
+}
+```
+
+### getFrameRateRange<sup>12+</sup>
+
+getFrameRateRange(): ExpectedFrameRateRange
+
+获取期望帧率范围。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型                  | 说明      |
+| ------------------- | ------- |
+| [ExpectedFrameRateRange](../apis-arkui/arkui-ts/ts-explicit-animation.md#expectedframeraterange11) | 期望帧率范围。|
+
+**示例：**
+
+```ts
+import { SwiperDynamicSyncSceneType, SwiperDynamicSyncScene } from '@ohos.arkui.UIContext';
+
+@Entry
+@Component
+struct Frame {
+  @State ANIMATION:ExpectedFrameRateRange = {min:0, max:120, expected: 90}
+  @State GESTURE:ExpectedFrameRateRange = {min:0, max:120, expected: 30}
+  private scenes: SwiperDynamicSyncScene[] = []
+
+  build() {
+    Column() {
+      Text("动画"+ JSON.stringify(this.ANIMATION))
+      Text("跟手"+ JSON.stringify(this.GESTURE))
+      Row(){
+        Swiper() {
+          Text("one")
+          Text("two")
+          Text("three")
+        }
+        .width('100%')
+        .height('300vp')
+        .id("dynamicSwiper")
+        .backgroundColor(Color.Blue)
+        .autoPlay(true)
+        .onAppear(()=>{
+          this.scenes = this.getUIContext().requireDynamicSyncScene("dynamicSwiper") as SwiperDynamicSyncScene[]
+        })
+      }
+
+      Button("set frame")
+        .onClick(()=>{
+          this.scenes.forEach((scenes: SwiperDynamicSyncScene) => {
+
+            if (scenes.type == SwiperDynamicSyncSceneType.ANIMATION) {
+              scenes.setFrameRateRange(this.ANIMATION)
+              scenes.getFrameRateRange()
+            }
+
+            if (scenes.type == SwiperDynamicSyncSceneType.GESTURE) {
+              scenes.setFrameRateRange(this.GESTURE)
+              scenes.getFrameRateRange()
+            }
+          });
+        })
+      }
+  }
+}
+```
+## SwiperDynamicSyncScene<sup>12+</sup>
+
+DynamicSyncScene的子类, 对应Swiper的动态帧率场景。
+
+### SwiperDynamicSyncSceneType<sup>12+</sup>
+
+枚举值，表示动态帧率场景的类型
+
+| 名称     | 值   | 说明                   |
+| -------- | ---- | ---------------------- |
+| GESTURE | 0   | 手势操作场景 |
+| ANIMATION | 1   | 动画过度场景 |

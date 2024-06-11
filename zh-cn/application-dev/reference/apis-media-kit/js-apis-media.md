@@ -3653,7 +3653,7 @@ avRecorder.off('audioCapturerChange');
 | audioSampleRate  | number                                       | 否   | 音频采样率，选择音频录制时必填，支持范围[8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000, 64000, 88200, 96000]。<br> **元服务API：** 从API version 12 开始，该接口支持在元服务中使用。 |
 | fileFormat       | [ContainerFormatType](#containerformattype8) | 是   | 文件的容器格式，必要参数。 <br>**元服务API：** 从API version 12 开始，该接口支持在元服务中使用。|
 | videoBitrate     | number                                       | 否   | 视频编码比特率，选择视频录制时必填，支持范围[10000 - 100000000]。  |
-| videoCodec       | [CodecMimeType](#codecmimetype8)             | 否   | 视频编码格式，选择视频录制时必填。当前支持VIDEO_AVC。<br> **元服务API：** 从API version 12 开始，该接口支持在元服务中使用。|
+| videoCodec       | [CodecMimeType](#codecmimetype8)             | 否   | 视频编码格式，选择视频录制时必填。当前支持VIDEO_AVC。|
 | videoFrameWidth  | number                                       | 否   | 视频帧的宽，选择视频录制时必填，支持范围[176 - 4096]。         |
 | videoFrameHeight | number                                       | 否   | 视频帧的高，选择视频录制时必填，支持范围[144 - 4096]。         |
 | videoFrameRate   | number                                       | 否   | 视频帧率，选择视频录制时必填，支持范围[1 - 60]。             |
@@ -6351,7 +6351,7 @@ setMimeType(mimeType: AVMimeTypes): void
 
 | 名称       | 值   | 说明                                                         |
 | ---------- | ---- | ------------------------------------------------------------ |
-| APPLICATION       | application/m3u8    | 表示m3u8本地文件。 |
+| APPLICATION_M3U8       | application/m3u8    | 表示m3u8本地文件。 |
 
 
 ## PlaybackStrategy<sup>12+</sup>
