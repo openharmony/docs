@@ -1,11 +1,8 @@
 # 向用户申请授权
 
-
 当应用需要访问用户的隐私信息或使用系统能力时，例如获取位置信息、访问日历、使用相机拍摄照片或录制视频等，应该向用户请求授权，这部分权限是user_grant权限。
 
-
 当应用申请user_grant权限时，需要完成以下步骤：
-
 
 1. 在配置文件中，声明应用需要请求的权限。
 
@@ -16,9 +13,7 @@
 
 4. 检查用户的授权结果，确认用户已授权才可以进行下一步操作。
 
-
 本章节会介绍如何完成步骤3和4。
-
 
 ## 约束与限制
 
@@ -27,13 +22,12 @@
   如需检查用户是否已向您的应用授予特定权限，可以使用[checkAccessToken()](../../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#checkaccesstoken9)函数，此方法会返回[PERMISSION_GRANTED](../../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#grantstatus)或[PERMISSION_DENIED](../../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#grantstatus)。具体示例可参考下文。
 
 - 每次访问受目标权限保护的接口之前，都需要使用[requestPermissionsFromUser()](../../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9)接口请求相应的权限。
- 
+
   用户可能在动态授予权限后通过系统设置来取消应用的权限，因此不能将之前授予的授权状态持久化。
 
 - user_grant权限授权要基于用户可知可控的原则，需要应用在运行时主动调用系统动态申请权限的接口，系统弹框由用户授权，用户结合应用运行场景的上下文，识别出应用申请相应敏感权限的合理性，从而做出正确的选择。
 
 - 系统不鼓励频繁弹窗打扰用户，如果用户拒绝授权，将无法再次拉起弹窗，需要应用引导用户在系统应用“设置”的界面中手动授予权限。
-
 
 ## 开发步骤
 
@@ -46,7 +40,7 @@
 1. 申请ohos.permission.MICROPHONE权限，配置方式请参见[声明权限](declare-permissions.md)。
 
 2. 校验当前是否已经授权。
-   
+
    在进行权限申请之前，需要先检查当前应用程序是否已经被授予权限。可以通过调用[checkAccessToken()](../../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#checkaccesstoken9)方法来校验当前是否已经授权。如果已经授权，则可以直接访问目标操作，否则需要进行下一步操作，即向用户申请授权。
 
    ```ts
@@ -93,14 +87,16 @@
    ```
 
 3. 动态向用户申请授权。
-   
+
    动态向用户申请权限是指在应用程序运行时向用户请求授权的过程。可以通过调用[requestPermissionsFromUser()](../../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9)方法来实现。该方法接收一个权限列表参数，例如位置、日历、相机、麦克风等。用户可以选择授予权限或者拒绝授权。
 
    可以在UIAbility的onWindowStageCreate()回调中调用[requestPermissionsFromUser()](../../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9)方法来动态申请权限，也可以根据业务需要在UI中向用户申请授权。
-   <!--RP1-->
 
+   <!--RP1--><!--RP1End-->
+
+   <!--RP2-->
    - 在UIAbility中向用户申请授权。
-      
+
       ```ts
       import { abilityAccessCtrl, common, Permissions, UIAbility } from '@kit.AbilityKit';
       import { window } from '@kit.ArkUI';
@@ -179,10 +175,10 @@
         }
       }
       ```
-   <!--RP1End-->
+   <!--RP2End-->
 
 4. 处理授权结果。
 
-   调用[requestPermissionsFromUser()](../../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9)方法后，应用程序将等待用户授权的结果。如果用户授权，则可以继续访问目标操作。如果用户拒绝授权，则需要提示用户必须授权才能访问当前页面的功能，并引导用户到系统应用“设置”中打开相应的权限。
+   调用[requestPermissionsFromUser()](../../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9)方法后，应用程序将等待用户授权的结果。如果用户授权，则可以继续访问目标操作。如果用户拒绝授权，则需要提示用户必须授权才能访问当前页面的功能，并引导用户到系统应用“设置”中打开相应的权限。<!--RP3-->
 
-   路径：设置 \> 隐私 \> 权限管理 \> 应用 \> 目标应用
+   路径：设置 \> 隐私 \> 权限管理 \> 应用 \> 目标应用<!--RP3End-->

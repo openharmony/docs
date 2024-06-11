@@ -350,7 +350,7 @@ struct ViewB {
 
 ![Observed_ObjectLink_nested_object](figures/Observed_ObjectLink_nested_object.gif)
 
-被@Observed装饰的ClassC类，可以观测到继承基类的属性的变化。
+被@Observed装饰的BookName类，可以观测到继承基类的属性的变化。
 
 
 ViewB中的事件句柄：
@@ -1264,7 +1264,7 @@ incrSubCounter和setSubCounter都是同一个SubCounter的函数。在第一个�
 
 该方法使得\@ObjectLink分别代理了ParentCounter和SubCounter的属性，这样对于这两个类的属性的变化都可以观察到，即都会对UI视图进行刷新。即使删除了上面所说的this.counter[0].incrCounter()，UI也会进行正确的刷新。
 
-该方法可用于实现“两个层级”的观察，即外部对象和内部嵌套对象的观察。但是该方法只能用于\@ObjectLink装饰器，无法作用于\@Prop（\@Prop通过深拷贝传入对象）。详情参考@Prop与@ObjectLink的差异。
+该方法可用于实现“两个层级”的观察，即外部对象和内部嵌套对象的观察。但是该方法只能用于\@ObjectLink装饰器，无法作用于\@Prop（\@Prop通过深拷贝传入对象）。详情参考[@Prop与@ObjectLink的差异](#prop与objectlink的差异)。
 
 
 ```ts

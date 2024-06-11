@@ -47,7 +47,7 @@ struct Index {
 
 @Component
 struct Child {
-  @Builder buildFuction() {
+  @Builder buildFunction() {
     Column() {
       Text('initBuilderParam')
         .fontSize(30)
@@ -57,7 +57,7 @@ struct Child {
   @Require @State state_value: string = "Hello";
   @Require @Provide provide_value: string = "Hello";
   @Require @BuilderParam buildTest: () => void;
-  @Require @BuilderParam initBuildTest: () => void = this.buildFuction;
+  @Require @BuilderParam initBuildTest: () => void = this.buildFunction;
   @Require @Prop initMessage: string = 'Hello';
   @Require @Prop message: string;
 
@@ -102,7 +102,7 @@ struct Index {
 
 @Component
 struct Child {
-  @Builder buildFuction() {
+  @Builder buildFunction() {
     Column() {
       Text('initBuilderParam')
         .fontSize(30)
@@ -112,7 +112,7 @@ struct Child {
   @Require regular_value: string = 'Hello';
   @Require @State state_value: string = "Hello";
   @Require @Provide provide_value: string = "Hello";
-  @Require @BuilderParam initBuildTest: () => void = this.buildFuction;
+  @Require @BuilderParam initBuildTest: () => void = this.buildFunction;
   @Require @Prop initMessage: string = 'Hello';
 
   build() {

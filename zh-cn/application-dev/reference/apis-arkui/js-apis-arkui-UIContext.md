@@ -171,6 +171,8 @@ getOverlayManager(): OverlayManager
 
 获取OverlayManager对象。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：**: SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：**
@@ -270,6 +272,8 @@ getSharedLocalStorage(): LocalStorage | undefined
 
 获取当前stage共享的LocalStorage实例。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **模型约束：** 此接口仅可在Stage模型下使用。
@@ -353,6 +357,8 @@ getHostContext(): Context | undefined
 
 获得当前元能力的Context。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **模型约束：** 此接口仅可在Stage模型下使用。
@@ -391,6 +397,8 @@ getFrameNodeById(id: string): FrameNode | null
 
 提供getFrameNodeById接口通过组件的id获取组件树的实体节点。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -419,6 +427,8 @@ getFrameNodeByUniqueId(id: number): FrameNode | null
 1. 当uniqueId对应的是内置组件时，返回组件所对应的FrameNode；
 2. 当uniqueId对应的是自定义组件时，若其有渲染内容，则返回其FrameNode，类型为__Common__；若其无渲染内容，则返回其第一个子组件的FrameNode。
 3. 当uniqueId无对应的组件时，返回null。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -986,6 +996,8 @@ getFocusController(): FocusController
 
 获取[FocusController](js-apis-arkui-UIContext.md#focuscontroller12)对象，可通过该对象控制焦点。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：**
@@ -1005,6 +1017,8 @@ uiContext.getFocusController();
 getFilteredInspectorTree(filters?: Array\<string\>): string
 
 获取组件树及组件属性。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -1040,6 +1054,8 @@ uiContext.getFilteredInspectorTree(['id', 'src', 'content']);
 getFilteredInspectorTreeById(id: string, depth: number, filters?: Array\<string\>): string
 
 获取指定的组件及其子组件的属性。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -1078,6 +1094,8 @@ getCursorController(): CursorController
 
 获取[CursorController](js-apis-arkui-UIContext.md#cursorcontroller12)对象，可通过该对象控制光标。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：**
@@ -1097,6 +1115,8 @@ uiContext.CursorController();
 getContextMenuController(): ContextMenuController
 
 获取[ContextMenuController](js-apis-arkui-UIContext.md#contextmenucontroller12)对象，可通过该对象控制菜单。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -1118,6 +1138,8 @@ getMeasureUtils(): MeasureUtils
 
 允许用户通过UIContext对象，获取MeasureUtils对象进行文本计算。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：** 
@@ -1138,6 +1160,8 @@ getComponentSnapshot(): ComponentSnapshot
 
 获取ComponentSnapshot对象，可通过该对象获取组件截图的能力。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
 **返回值：**
@@ -1157,6 +1181,8 @@ uiContext.getComponentSnapshot();
 vp2px(value : number) : number
 
 将vp单位的数值转换为以px为单位的数值。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1184,6 +1210,8 @@ px2vp(value : number) : number
 
 将px单位的数值转换为以vp为单位的数值。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -1209,6 +1237,8 @@ uiContext.px2vp(200);
 fp2px(value : number) : number
 
 将fp单位的数值转换为以px为单位的数值。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1236,6 +1266,8 @@ px2fp(value : number) : number
 
 将px单位的数值转换为以fp为单位的数值。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -1261,6 +1293,8 @@ uiContext.px2fp(200);
 lpx2px(value : number) : number
 
 将lpx单位的数值转换为以px为单位的数值。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1288,6 +1322,8 @@ px2lpx(value : number) : number
 
 将px单位的数值转换为以lpx为单位的数值。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -1313,6 +1349,8 @@ uiContext.px2lpx(200);
 getWindowName(): string | undefined
 
 获取当前实例所在窗口的名称。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -2262,7 +2300,7 @@ on(type: 'willClick', callback: GestureEventListenerCallback): void
 // 在页面Component中使用
 import { UIContext, UIObserver } from '@ohos.arkui.UIContext';
 // callback是开发者定义的监听回调函数
-let callback = (event: GestureEvent, frameNode: FrameNode) => {};
+let callback = (event: GestureEvent, frameNode?: FrameNode) => {};
 let observer: UIObserver = this.getUIContext().getUIObserver();
 observer.on('willClick', callback);
 ```
@@ -2288,7 +2326,7 @@ off(type: 'willClick', callback?: GestureEventListenerCallback): void
 // 在页面Component中使用
 import { UIContext, UIObserver } from '@ohos.arkui.UIContext';
 // callback是开发者定义的监听回调函数
-let callback = (event: GestureEvent, frameNode: FrameNode) => {};
+let callback = (event: GestureEvent, frameNode?: FrameNode) => {};
 let observer: UIObserver = this.getUIContext().getUIObserver();
 observer.off('willClick', callback);
 ```
@@ -2314,7 +2352,7 @@ on(type: 'didClick', callback: GestureEventListenerCallback): void
 // 在页面Component中使用
 import { UIContext, UIObserver } from '@ohos.arkui.UIContext';
 // callback是开发者定义的监听回调函数
-let callback = (event: GestureEvent, frameNode: FrameNode) => {};
+let callback = (event: GestureEvent, frameNode?: FrameNode) => {};
 let observer: UIObserver = this.getUIContext().getUIObserver();
 observer.on('didClick', callback);
 ```
@@ -2340,7 +2378,7 @@ off(type: 'didClick', callback?: GestureEventListenerCallback): void
 // 在页面Component中使用
 import { UIContext, UIObserver } from '@ohos.arkui.UIContext';
 // callback是开发者定义的监听回调函数
-let callback = (event: GestureEvent, frameNode: FrameNode) => {};
+let callback = (event: GestureEvent, frameNode?: FrameNode) => {};
 let observer: UIObserver = this.getUIContext().getUIObserver();
 observer.off('didClick', callback);
 ```
@@ -2366,7 +2404,7 @@ on(type: 'willClick', callback: ClickEventListenerCallback): void
 // 在页面Component中使用
 import { UIContext, UIObserver } from '@ohos.arkui.UIContext';
 // callback是开发者定义的监听回调函数
-let callback = (event: ClickEvent, frameNode: FrameNode) => {};
+let callback = (event: ClickEvent, frameNode?: FrameNode) => {};
 let observer: UIObserver = this.getUIContext().getUIObserver();
 observer.on('willClick', callback);
 ```
@@ -2392,7 +2430,7 @@ off(type: 'willClick', callback?: ClickEventListenerCallback): void
 // 在页面Component中使用
 import { UIContext, UIObserver } from '@ohos.arkui.UIContext';
 // callback是开发者定义的监听回调函数
-let callback = (event: ClickEvent, frameNode: FrameNode) => {};
+let callback = (event: ClickEvent, frameNode?: FrameNode) => {};
 let observer: UIObserver = this.getUIContext().getUIObserver();
 observer.off('willClick', callback);
 ```
@@ -2418,7 +2456,7 @@ on(type: 'didClick', callback: ClickEventListenerCallback): void
 // 在页面Component中使用
 import { UIContext, UIObserver } from '@ohos.arkui.UIContext';
 // callback是开发者定义的监听回调函数
-let callback = (event: ClickEvent, frameNode: FrameNode) => {};
+let callback = (event: ClickEvent, frameNode?: FrameNode) => {};
 let observer: UIObserver = this.getUIContext().getUIObserver();
 observer.on('didClick', callback);
 ```
@@ -2444,7 +2482,7 @@ off(type: 'didClick', callback?: ClickEventListenerCallback): void
 // 在页面Component中使用
 import { UIContext, UIObserver } from '@ohos.arkui.UIContext';
 // callback是开发者定义的监听回调函数
-let callback = (event: ClickEvent, frameNode: FrameNode) => {};
+let callback = (event: ClickEvent, frameNode?: FrameNode) => {};
 let observer: UIObserver = this.getUIContext().getUIObserver();
 observer.off('didClick', callback);
 ```
@@ -5175,6 +5213,8 @@ clearFocus(): void
 
 清除焦点，将焦点强制转移到页面根容器节点，焦点链路上其他节点失焦。
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **示例：**
@@ -5229,6 +5269,8 @@ struct ClearFocusExample {
 requestFocus(key: string): void
 
 通过组件的id将焦点转移到组件树对应的实体节点。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -5313,6 +5355,8 @@ restoreDefault(): void
 
 恢复默认的光标样式
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **示例：**
@@ -5350,6 +5394,8 @@ struct CursorControlExample {
 setCursor(value: PointerStyle): void
 
 更改当前的鼠标光标样式
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -5396,6 +5442,8 @@ struct CursorControlExample {
 close(): void
 
 关闭菜单
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -5459,6 +5507,8 @@ measureText(options: MeasureOptions): number
 
 计算指定文本单行布局下的宽度。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -5507,6 +5557,8 @@ struct Index {
 measureTextSize(options: MeasureOptions): SizeOptions
 
 计算指定文本单行布局下的宽度和高度。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -5564,6 +5616,8 @@ get(id: string, callback: AsyncCallback<image.PixelMap>): void
 > **说明：** 
 >
 > 截图会获取最近一帧的绘制内容。如果在组件触发更新的同时调用截图，更新的渲染内容不会被截取到，截图会返回上一帧的绘制内容。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -5624,6 +5678,8 @@ get(id: string): Promise<image.PixelMap>
 > **说明：**
 >
 > 截图会获取最近一帧的绘制内容。如果在组件触发更新的同时调用截图，更新的渲染内容不会被截取到，截图会返回上一帧的绘制内容。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -5692,6 +5748,8 @@ createFromBuilder(builder: CustomBuilder, callback: AsyncCallback<image.PixelMap
 > 由于需要等待组件构建、渲染成功，离屏截图的回调有500ms以内的延迟。
 >
 > 部分执行耗时任务的组件可能无法及时在截图前加载完成，因此会截取不到加载成功后的图像。例如：加载网络图片的[Image](arkui-ts/ts-basic-components-image.md)组件、[Web](../apis-arkweb/ts-basic-components-web.md)组件。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -5774,6 +5832,8 @@ createFromBuilder(builder: CustomBuilder): Promise<image.PixelMap>
 > 由于需要等待组件构建、渲染成功，离屏截图的回调有500ms以内的延迟。
 >
 > 部分执行耗时任务的组件可能无法及时在截图前加载完成，因此会截取不到加载成功后的图像。例如：加载网络图片的[Image](arkui-ts/ts-basic-components-image.md)组件、[Web](../apis-arkweb/ts-basic-components-web.md)组件。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

@@ -204,6 +204,10 @@ bool OH_MediaAssetManager_CancelRequest (OH_MediaAssetManager *manager, const Me
 | manager | 指向OH_MediaAssetManager实例的指针。 | 
 | requestId | 待取消的请求Id。 | 
 
+**需要权限：** 
+
+ohos.permission.READ_IMAGEVIDEO
+
 **返回：**
 
 如果请求成功取消，则返回true；否则返回false。
@@ -248,6 +252,10 @@ MediaLibrary_RequestId OH_MediaAssetManager_RequestImageForPath (OH_MediaAssetMa
 | destPath | 请求资源的目标地址。 | 
 | callback | 媒体资源处理器，当所请求的媒体资源准备完成时会触发回调。 | 
 
+**需要权限：** 
+
+ohos.permission.READ_IMAGEVIDEO
+
 **返回：**
 
 返回请求Id。
@@ -274,6 +282,10 @@ MediaLibrary_RequestId OH_MediaAssetManager_RequestVideoForPath (OH_MediaAssetMa
 | requestOptions | 请求策略模式配置项。 | 
 | destPath | 请求资源的目标地址。 | 
 | callback | 媒体资源处理器，当所请求的媒体资源准备完成时会触发回调。 | 
+
+**需要权限：** 
+
+ohos.permission.READ_IMAGEVIDEO
 
 **返回：**
 

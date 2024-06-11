@@ -22,7 +22,7 @@
 ```ts
 /* 以下以生成DH密钥为例 */
 import { huks } from "@kit.UniversalKeystoreKit";
-import { BusinessError} from "@kit.BasicServicesKit"
+
 class HuksProperties {
     tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM;
     value: huks.HuksKeyAlg | huks.HuksKeySize | huks.HuksKeyPurpose | huks.HuksKeyDigest = huks.HuksKeyAlg.HUKS_ALG_ECC;
@@ -75,7 +75,7 @@ async function publicGenKeyFunc(keyAlias: string, huksOptions: huks.HuksOptions)
         .then((data) => {
             console.info(`promise: generateKeyItem success, data = ${JSON.stringify(data)}`);
         })
-        .catch((error: BusinessError) => {
+        .catch((error) => {
             console.error(`promise: generateKeyItem failed` + error);
         });
     } catch (error) {

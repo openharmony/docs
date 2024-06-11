@@ -123,6 +123,8 @@ import { formInfo } from '@kit.FormKit';
 | FORM_RENDERING_MODE_KEY<sup>11+</sup>    | 'ohos.extra.param.key.form_rendering_mode'   | 卡片渲染模式。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
 | HOST_BG_INVERSE_COLOR_KEY<sup>12+</sup>    | 'ohos.extra.param.key.host_bg_inverse_color'   | 卡片使用方的背景反色颜色值。<br>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。|
 | FORM_LOCATION_KEY<sup>12+</sup>    | 'ohos.extra.param.key.form_location'   | 卡片位置。|
+| FORM_PERMISSION_NAME_KEY<sup>12+</sup> | 'ohos.extra.param.key.permission_name' | 用户授权权限名称。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| FORM_PERMISSION_GRANTED_KEY<sup>12+</sup> | 'ohos.extra.param.key.permission_granted' | 用户是否授权。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
 
 ##  FormDimension
 
@@ -153,7 +155,7 @@ import { formInfo } from '@kit.FormKit';
 | ----------- | ---- | ------------ |------------ |
 | bundleName    | string    |否    | 选填，仅保留含bundleName与提供值相符的卡片信息，<br>未填写时则不通过bundleName进行过滤。   |
 | moduleName    | string    |否    | 选填，仅保留含moduleName与提供值相符的卡片信息，<br>未填写时则不通过moduleName进行过滤。   |
-| supportedDimensions | Array<number> |否    | 选填，仅保留含supportedDimensions提供值相符的卡片信息，<br>未填写时则不通过supportedDimensions进行过滤。   |
+| supportedDimensions | Array\<number> |否    | 选填，仅保留含supportedDimensions提供值相符的卡片信息，<br>未填写时则不通过supportedDimensions进行过滤。   |
 
 ## VisibilityType
 

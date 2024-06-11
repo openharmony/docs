@@ -41,7 +41,7 @@ factoryReset(callback: AsyncCallback&lt;void&gt;): void
 | -------- | ------------------ |
 |201 | Permission denied.                 |
 |202 | Non-system applications are not allowed to use system APIs. |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.           |
 |801 | Capability not supported.          |
 |2900001   | Service stopped.   |
 |2900099   | Operation failed.  |

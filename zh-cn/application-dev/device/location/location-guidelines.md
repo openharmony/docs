@@ -90,82 +90,78 @@ Location Kit接口对权限的要求参见：[Location Kit](../../reference/apis
 
    LocationRequest中定义了2个变量scenario（方式一）和priority（方式二）用于指定定位服务类型。<br/>scenario（方式一）从用户活动场景角度进行定义，priority（方式二）从定位精度、定位速度和功耗等角度进行定义。<br/>如果开发者能明确用户的活动场景，可以选择方式一；如果开发者开发者需对定位精度、定位速度、功耗等有要求可以选择方式二。
 
-   <details>
-   <summary>方式一：</summary>
+    - 方式一：
 
-   为了面向开发者提供贴近其使用场景的API使用方式，系统定义了几种常见的位置能力使用场景，并针对使用场景做了适当的优化处理。系统当前支持场景如下表所示。
+        为了面向开发者提供贴近其使用场景的API使用方式，系统定义了几种常见的位置能力使用场景，并针对使用场景做了适当的优化处理。系统当前支持场景如下表所示。
 
-   ***定位场景类型说明***
-   
-   - 导航场景：NAVIGATION<br/>
-   适用于在户外获取设备实时位置的场景，如车载、步行导航。主要使用GNSS定位技术提供定位服务，功耗较高。
-   
-   - 轨迹跟踪场景：TRAJECTORY_TRACKING<br/>
-   适用于记录用户位置轨迹的场景，如运动类应用记录轨迹功能。主要使用GNSS定位技术提供定位服务，功耗较高。
-   
-   - 出行约车场景：CAR_HAILING<br/>
-   适用于用户出行打车时定位当前位置的场景，如网约车类应用。主要使用GNSS定位技术提供定位服务，功耗较高。
-   
-   当使用NAVIGATION/TRAJECTORY_TRACKING/CAR_HAILING场景时，如果用户在室内或车库等环境，我们会在GNSS提供稳定位置结果之前，使用网络定位技术（蜂窝基站、WLAN、蓝牙定位技术）向应用提供定位服务。
-   
-   - 生活服务场景：DAILY_LIFE_SERVICE<br/>
-   适用于不需要定位用户精确位置的使用场景，如新闻资讯、网购、点餐类应用。该场景仅使用网络定位技术提供定位服务，功耗较低。
-   
-   - 无功耗场景：NO_POWER<br/>
-   适用于不需要主动启动定位的业务。系统在响应其他应用启动定位并上报位置时，会同时向请求此场景的应用程序上报定位结果，当前的应用程序不产生定位功耗。
-
-
-   ```ts
-       export enum LocationRequestScenario {
-            UNSET = 0x300, // 默认值 
-            NAVIGATION, // 导航场景
-            TRAJECTORY_TRACKING, // 轨迹跟踪场景
-            CAR_HAILING, // 出行约车场景
-            DAILY_LIFE_SERVICE, // 生活服务场景
-            NO_POWER, // 无功耗场景
-        }
-   ```
+        ***定位场景类型说明***
+        
+        - 导航场景：NAVIGATION<br/>
+        适用于在户外获取设备实时位置的场景，如车载、步行导航。主要使用GNSS定位技术提供定位服务，功耗较高。
+        
+        - 轨迹跟踪场景：TRAJECTORY_TRACKING<br/>
+        适用于记录用户位置轨迹的场景，如运动类应用记录轨迹功能。主要使用GNSS定位技术提供定位服务，功耗较高。
+        
+        - 出行约车场景：CAR_HAILING<br/>
+        适用于用户出行打车时定位当前位置的场景，如网约车类应用。主要使用GNSS定位技术提供定位服务，功耗较高。
+        
+        当使用NAVIGATION/TRAJECTORY_TRACKING/CAR_HAILING场景时，如果用户在室内或车库等环境，我们会在GNSS提供稳定位置结果之前，使用网络定位技术（蜂窝基站、WLAN、蓝牙定位技术）向应用提供定位服务。
+        
+        - 生活服务场景：DAILY_LIFE_SERVICE<br/>
+        适用于不需要定位用户精确位置的使用场景，如新闻资讯、网购、点餐类应用。该场景仅使用网络定位技术提供定位服务，功耗较低。
+        
+        - 无功耗场景：NO_POWER<br/>
+        适用于不需要主动启动定位的业务。系统在响应其他应用启动定位并上报位置时，会同时向请求此场景的应用程序上报定位结果，当前的应用程序不产生定位功耗。
 
 
-   以导航场景为例，实例化方式如下：
+        ```ts
+            export enum LocationRequestScenario {
+                    UNSET = 0x300, // 默认值 
+                    NAVIGATION, // 导航场景
+                    TRAJECTORY_TRACKING, // 轨迹跟踪场景
+                    CAR_HAILING, // 出行约车场景
+                    DAILY_LIFE_SERVICE, // 生活服务场景
+                    NO_POWER, // 无功耗场景
+                }
+        ```
 
-   ```ts
-   let requestInfo:geoLocationManager.LocationRequest = {'scenario': geoLocationManager.LocationRequestScenario.NAVIGATION, 'timeInterval': 1, 'distanceInterval': 0, 'maxAccuracy': 0};
-   ```
 
-   </details>
+        以导航场景为例，实例化方式如下：
 
-   <details>
-   <summary>方式二：</summary>
+        ```ts
+        let requestInfo:geoLocationManager.LocationRequest = {'scenario': geoLocationManager.LocationRequestScenario.NAVIGATION, 'timeInterval': 1, 'distanceInterval': 0, 'maxAccuracy': 0};
+        ```
 
-   如果定义的现有场景类型不能满足所需的开发场景，系统提供了基本的定位优先级策略类型。
+    - 方式二：
 
-   ***定位优先级策略类型说明***
+        如果定义的现有场景类型不能满足所需的开发场景，系统提供了基本的定位优先级策略类型。
 
-   - 定位精度优先策略：ACCURACY<br/>
-      定位精度优先策略主要以GNSS定位技术为主，仅在长时间无法获取GNSS定位结果时使用网络定位技术。对设备的硬件资源消耗较大，功耗较大。
+        ***定位优先级策略类型说明***
 
-   - 低功耗定位优先策略：LOW_POWER<br/>
-      低功耗定位优先策略主要使用网络定位技术，在室内和户外场景均可提供定位服务，因为其依赖周边基站、可见WLAN、蓝牙设备的分布情况，定位结果的精度波动范围较大，推荐在对定位结果精度要求不高的场景下使用该策略，可以有效节省设备功耗。
+        - 定位精度优先策略：ACCURACY<br/>
+            定位精度优先策略主要以GNSS定位技术为主，仅在长时间无法获取GNSS定位结果时使用网络定位技术。对设备的硬件资源消耗较大，功耗较大。
 
-   - 快速定位优先策略：FIRST_FIX<br/>
-      快速定位优先策略会同时使用GNSS定位和网络定位技术，以便在室内和户外场景下均可以快速获取到位置结果；当各种定位技术都有提供位置结果时，系统会选择其中精度较好的结果返回给应用。因为对各种定位技术同时使用，对设备的硬件资源消耗较大，功耗也较大。
-      
-   ```ts
-       export enum LocationRequestPriority {
-            UNSET = 0x200, // 默认值
-            ACCURACY, // 定位精度优先策略
-            LOW_POWER, // 低功耗定位优先策略
-            FIRST_FIX, // 快速定位优先策略
-        }
-   ```
+        - 低功耗定位优先策略：LOW_POWER<br/>
+            低功耗定位优先策略主要使用网络定位技术，在室内和户外场景均可提供定位服务，因为其依赖周边基站、可见WLAN、蓝牙设备的分布情况，定位结果的精度波动范围较大，推荐在对定位结果精度要求不高的场景下使用该策略，可以有效节省设备功耗。
 
-   以定位精度优先策略为例，实例化方式如下：
+        - 快速定位优先策略：FIRST_FIX<br/>
+            快速定位优先策略会同时使用GNSS定位和网络定位技术，以便在室内和户外场景下均可以快速获取到位置结果；当各种定位技术都有提供位置结果时，系统会选择其中精度较好的结果返回给应用。因为对各种定位技术同时使用，对设备的硬件资源消耗较大，功耗也较大。
+            
+        ```ts
+            export enum LocationRequestPriority {
+                    UNSET = 0x200, // 默认值
+                    ACCURACY, // 定位精度优先策略
+                    LOW_POWER, // 低功耗定位优先策略
+                    FIRST_FIX, // 快速定位优先策略
+                }
+        ```
 
-   ```ts
-   let requestInfo:geoLocationManager.LocationRequest = {'priority': geoLocationManager.LocationRequestPriority.ACCURACY, 'timeInterval': 1, 'distanceInterval': 0, 'maxAccuracy': 0};
-   ```
-   </details>
+        以定位精度优先策略为例，实例化方式如下：
+
+        ```ts
+        let requestInfo:geoLocationManager.LocationRequest = {'priority': geoLocationManager.LocationRequestPriority.ACCURACY, 'timeInterval': 1, 'distanceInterval': 0, 'maxAccuracy': 0};
+        ```
+
 
 5. 实例化Callback对象，用于向系统提供位置上报的途径。
      应用需要自行实现系统定义好的回调接口，并将其实例化。系统在定位成功确定设备的实时位置结果时，会通过该接口上报给应用。应用程序可以在接口的实现中完成自己的业务逻辑。

@@ -32,7 +32,7 @@ run(startupTasks: Array\<string\>, config?: StartupConfig): Promise\<void\>
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise<void> | Promise对象。无返回结果的Promise对象。 |
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
