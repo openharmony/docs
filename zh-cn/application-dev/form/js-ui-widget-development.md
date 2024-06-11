@@ -603,7 +603,7 @@ export default class EntryFormAbility extends FormExtensionAbility {
       }
   }
   ```
-  当卡片内容需要更新为07.18日Mr.Li的课程信息时，需要传递待更新的完整数据，不能值传递单个数据项，如只传name或只传course，示例如下。
+  当卡片内容需要更新为07.18日Mr.Li的课程信息时，需要传递待更新的完整数据，不能只传递单个数据项，如只传name或只传course，示例如下。
   ```ts
   "teacher": {
       "name": "Mr.Li",
