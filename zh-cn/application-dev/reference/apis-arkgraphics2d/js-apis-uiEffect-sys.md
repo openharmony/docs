@@ -1,10 +1,9 @@
-# @ohos.graphics.uiEffect (效果级联)()
+# @ohos.graphics.uiEffect (效果级联)(系统接口)
 
-本模块提供组件效果的一些基础能力，包括边缘像素扩展，模糊，提亮等。效果被分为Filter和VisualEffect大类，同类效果可以级联在一个效果大类的实例下。
+本模块提供组件效果的一些基础能力，包括模糊，边缘像素扩展，提亮等。效果被分为Filter和VisualEffect大类，同类效果可以级联在一个效果大类的实例下。
 
 - [Filter](#filter)：用于添加指定Filter效果到组件上。
-- [VisualEffect](#visualeffect)：用于添加指阿定VisualEffect效果到组件上。
-- [BrightnessBlender](#brightnessblender)：提亮blender，用于将提亮效果添加到指定的控件上。
+- [VisualEffect](#visualeffect)：用于添加指定VisualEffect效果到组件上。
 
 > **说明：**
 > 
@@ -59,10 +58,10 @@ filter.pixelStretch([0.2, 0.2, 0.2, 0.2], uiEffect.TileMode.CLAMP)
 
 | 名称   | 值 | 说明 |
 | ------ | - | ---- |
-| CLAMP  | 0 | 截断 |
-| REPEAT | 1 | 重复 |
-| MIRROR | 2 | 镜像 |
-| DECAL  | 3 | 透明 |
+| CLAMP  | 0 | 截断。 |
+| REPEAT | 1 | 重复。 |
+| MIRROR | 2 | 镜像。 |
+| DECAL  | 3 | 透明。 |
 
 ## VisualEffect
 VisualEffect效果类，用于将相应的效果添加到指定的控件上。在调用VisualEffect的方法前，需要先通过[createEffect](js-apis-uiEffect.md#uieffectcreateeffect)创建一个VisualEffect实例。
@@ -97,8 +96,6 @@ visualEffect.backgroundColorBlender(blender)
 
 ## BrightnessBlender
 提亮混合器，用于将提亮效果添加到指定的控件上。在调用BrightnessBlender前，需要先通过[createBrightnessBlender](#uieffectcreatebrightnessblender)创建一个BrightnessBlender实例。
-
-### 属性
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
@@ -142,7 +139,7 @@ import { uiEffect } from "@kit.ArkGraphics2D";
 
 let blender : uiEffect.BrightnessBlender =
   uiEffect.createBrightnessBlender({cubicRate:1.0, quadraticRate:1.0, linearRate:1.0, degree:1.0, saturation:1.0,
-    positiveCoefficient:[2.3, 4.5, 2], negativeCoefficient:[0.5, 2, 0.5], fraction:0})
+    positiveCoefficient:[2.3, 4.5, 2.0], negativeCoefficient:[0.5, 2.0, 0.5], fraction:0.0})
 ```
 
 ## BrightnessBlenderParam
