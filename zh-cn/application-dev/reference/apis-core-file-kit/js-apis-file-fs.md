@@ -2214,7 +2214,7 @@ renameSync(oldPath: string, newPath: string): void
 
 fsync(fd: number): Promise&lt;void&gt;
 
-同步文件数据，使用Promise异步返回。
+以异步方法将文件系统缓存数据写入磁盘，使用Promise异步返回。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -2253,7 +2253,7 @@ fsync(fd: number): Promise&lt;void&gt;
 
 fsync(fd: number, callback: AsyncCallback&lt;void&gt;): void
 
-同步文件数据，使用callback异步回调。
+以异步方法将文件系统缓存数据写入磁盘，使用callback异步回调。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -2289,7 +2289,7 @@ fsync(fd: number, callback: AsyncCallback&lt;void&gt;): void
 
 fsyncSync(fd: number): void
 
-以同步方法同步文件数据。
+以同步方法将文件系统缓存数据写入磁盘。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
