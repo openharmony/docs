@@ -13,9 +13,6 @@
 
 <!--RP1--><!--RP1End-->
 
-## 支持的能力
-
-
 ## Surface输入与Buffer输入
 
 两者的数据来源不同。
@@ -97,6 +94,9 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     - 运行过程中产生了新的输出数据，即编码完成。
 
     ```c++
+
+    int32_t qpAverage = 20;
+    bool mseValue = 0.0;
     // 设置 OnError 回调函数
     static void OnError(OH_AVCodec *codec, int32_t errorCode, void *userData)
     {
@@ -130,13 +130,10 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
         // 完成帧buffer对应的index，送入outIndexQueue队列
         // 完成帧的数据buffer送入outBufferQueue队列
         // 获取视频帧的平均量化参数,平方误差
-        if (isFirstFrame) {
-            OH_AVFormat *format = OH_VideoEncoder_GetOutputDescription(codec);
-            OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_ENCODER_QP_AVERAGE, 20);
-            OH_AVFormat_GetDoubleValue(format, OH_MD_KEY_VIDEO_ENCODER_MSE, 0.0);
-            OH_AVFormat_Destroy(format);
-            isFirstFrame = false;
-        }
+        OH_AVFormat *format = OH_AVBuffer_GetParameter(buffer);
+        OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_ENCODER_QP_AVERAGE, qpAverage);
+        OH_AVFormat_GetDoubleValue(format, OH_MD_KEY_VIDEO_ENCODER_MSE, mseValue);
+        OH_AVFormat_Destroy(format);
         // 数据处理，请参考:
         // - 释放编码帧
     }
@@ -467,6 +464,8 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     int32_t widthStride = 0;
     int32_t heightStride = 0;
     bool isFirstFrame = true;
+    int32_t qpAverage = 20;
+    bool mseValue = 0.0;
     // 编码异常回调OH_AVCodecOnError实现
     static void OnError(OH_AVCodec *codec, int32_t errorCode, void *userData)
     {
@@ -509,13 +508,10 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
         // 完成帧buffer对应的index，送入outIndexQueue队列
         // 完成帧的数据buffer送入outBufferQueue队列
         // 获取视频帧的平均量化参数,平方误差
-        if (isFirstFrame) {
-            OH_AVFormat *format = OH_VideoEncoder_GetOutputDescription(codec);
-            OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_ENCODER_QP_AVERAGE, 20);
-            OH_AVFormat_GetDoubleValue(format, OH_MD_KEY_VIDEO_ENCODER_MSE, 0.0);
-            OH_AVFormat_Destroy(format);
-            isFirstFrame = false;
-        }
+        OH_AVFormat *format = OH_AVBuffer_GetParameter(buffer);
+        OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_ENCODER_QP_AVERAGE, qpAverage);
+        OH_AVFormat_GetDoubleValue(format, OH_MD_KEY_VIDEO_ENCODER_MSE, mseValue);
+        OH_AVFormat_Destroy(format);
         // 数据处理，请参考:
         // - 释放编码帧
     }
