@@ -439,6 +439,19 @@ pushPath(info: NavPathInfo, animated?: boolean): void
 | info | [NavPathInfo](#navpathinfo10) | 是    | NavDestination页面的信息。 |
 | animated<sup>11+</sup> | boolean | 否    | 是否支持转场动画，默认值：true。 |
 
+### pushPath<sup>12+</sup>
+
+pushPath(info: NavPathInfo, options?: NavigationOptions): void
+
+将info指定的NavDestination页面信息入栈，具体根据options中指定不同的[LaunchMode](#launchmode12枚举说明)，有不同的行为。
+
+**参数：**
+
+| 名称   | 类型                            | 必填   | 描述                   |
+| ---- | ----------------------------- | ---- | -------------------- |
+| info | [NavPathInfo](#navpathinfo10) | 是    | NavDestination页面的信息。 |
+| options | [NavigationOptions](#navigationoptions12类型说明) | 否    | 页面栈操作选项。 |
+
 ### pushPathByName<sup>10+</sup>
 
 pushPathByName(name: string, param: unknown, animated?: boolean): void
@@ -486,6 +499,36 @@ pushDestination(info: NavPathInfo, animated?: boolean): Promise&lt;void&gt;
 | ---- | ----------------------------- | ---- | -------------------- |
 | info | [NavPathInfo](#navpathinfo10) | 是    | NavDestination页面的信息。 |
 | animated | boolean | 否    | 是否支持转场动画，默认值：true。 |
+
+**返回值：**
+
+| 类型                | 说明        |
+| ------------------- | --------- |
+| Promise&lt;void&gt; | 异常返回结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../../errorcode-universal.md)和[ohos.router(页面路由)](../errorcode-router.md)错误码。
+
+| 错误码ID   | 错误信息 |
+| --------- | ------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 100001    | Internal error.|
+| 100005    | Builder function not registered. |
+| 100006    | NavDestination not found.|
+
+### pushDestination<sup>12+</sup>
+
+pushDestination(info: NavPathInfo, options?: NavigationOptions): Promise&lt;void&gt;
+
+将info指定的NavDestination页面信息入栈，使用Promise异步回调返回接口调用结果，具体根据options中指定不同的[LaunchMode](#launchmode12枚举说明)，有不同的行为。
+
+**参数：**
+
+| 名称   | 类型                            | 必填   | 描述                   |
+| ---- | ----------------------------- | ---- | -------------------- |
+| info | [NavPathInfo](#navpathinfo10) | 是    | NavDestination页面的信息。 |
+| options | [NavigationOptions](#navigationoptions12类型说明) | 否    | 页面栈操作选项。 |
 
 **返回值：**
 
@@ -585,6 +628,19 @@ replacePath(info: NavPathInfo, animated?: boolean): void
 | ---- | ----------------------------- | ---- | -------------------- |
 | info | [NavPathInfo](#navpathinfo10) | 是    | 新栈顶页面参数信息 |
 | animated<sup>11+</sup> | boolean | 否    | 是否支持转场动画，默认值：true。 |
+
+### replacePath<sup>12+</sup>
+
+replacePath(info: NavPathInfo, options?: NavigationOptions): void
+
+替换页面栈操作，具体根据options中指定不同的[LaunchMode](#launchmode12枚举说明)，有不同的行为。
+
+**参数：**
+
+| 名称   | 类型                            | 必填   | 描述                   |
+| ---- | ----------------------------- | ---- | -------------------- |
+| info | [NavPathInfo](#navpathinfo10) | 是    | 新栈顶页面参数信息。 |
+| options | [NavigationOptions](#navigationoptions12类型说明) | 否    | 页面栈操作选项。 |
 
 ### replacePathByName<sup>11+</sup>
 
@@ -1193,6 +1249,21 @@ navigation单双栏显示状态发生变更时的拦截回调。
 | ------ | ------------- | ---- | --------------- |
 | backgroundColor | [ResourceColor](ts-types.md#resourcecolor)  | 否    | 工具栏背景颜色，不设置时为系统默认颜色。 |
 | backgroundBlurStyle   | [BlurStyle](ts-appendix-enums.md#blurstyle9)        | 否    | 工具栏背景模糊样式，不设置时关闭背景模糊效果。 |
+
+## LaunchMode<sup>12+</sup>枚举说明
+
+| 名称    | 描述  |
+| --------- | ------ |
+| STANDARD | 系统默认的栈操作模式。<br/>push操作会将指定的NavDestination入栈；replace操作会将当前栈顶NavDestination替换。 |
+| MOVE_TO_TOP_SINGLETON | 从栈底向栈顶查找，如果指定的名称已经存在，则将对应的NavDestination页面移到栈顶（replace操作会将最后的栈顶替换成指定的NavDestination），否则行为和STANDARD一致。 |
+| POP_TO_SINGLETON | 从栈底向栈顶查找，如果指定的名称已经存在，则将其上方的NavDestination页面全部移除（replace操作会将最后的栈顶替换成指定的NavDestination），否则行为和STANDARD一致。|
+
+## NavigationOptions<sup>12+</sup>类型说明
+
+| 名称     | 类型            | 必填   | 描述              |
+| ------ | ------------- | ---- | --------------- |
+| launchMode | [LaunchMode](#launchmode12枚举说明)  | 否    | 页面栈的操作模式。<br/>默认值：LaunchMode.STANDARD |
+| animated   | boolean  | 否    | 是否支持转场动画。<br/>默认值：true。 |
 
 ## 示例
 
