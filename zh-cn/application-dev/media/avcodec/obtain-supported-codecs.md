@@ -72,7 +72,7 @@ if (capability != nullptr) {
 
 | 接口     | 功能描述                         |
 | -------- | -------------------------------- |
-| OH_AVCapability_IsHardware  | 确认能力实例对应编解码器是否是硬件的 |
+| OH_AVCapability_IsHardware  | 确认能力实例对应的编解码器是否是硬件的 |
 
 视频编码，软硬件差异化配置帧率示例：
 
