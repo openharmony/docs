@@ -76,10 +76,8 @@ void OnInfo(OH_AVPlayer *player, AVPlayerOnInfoType type, int32_t extra)
                     // 处理异常
                     }
                     break;
-                case AV_PREPARED:  
-//                    // 设置音频音效模式
-//                    OH_AudioStream_AudioEffectMode effectMode = OH_AudioStream_AudioEffectMode::EFFECT_NONE;
-//                    ret = OH_AVPlayer_SetAudioEffectMode(player, effectMode);
+                case AV_PREPARED:                
+//                    ret = OH_AVPlayer_SetAudioEffectMode(player, EFFECT_NONE); // 设置音频音效模式
 //                    if (ret != AV_ERR_OK) {
 //                    //处理异常    
 //                    }
