@@ -141,7 +141,7 @@ access(path: string, mode?: AccessModeType): Promise&lt;boolean&gt;
 
 检查文件是否存在，使用Promise异步返回。
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**元服务API**：从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -150,7 +150,7 @@ access(path: string, mode?: AccessModeType): Promise&lt;boolean&gt;
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | path   | string | 是   | 文件应用沙箱路径。                                   |
-| mode   | [AccessModeType](#accessmodetype12) | 否   | 文件校验的权限。                                   |
+| mode<sup>12+</sup>   | [AccessModeType](#accessmodetype12) | 否   | 文件校验的权限。                                   |
 
 **返回值：**
 
@@ -223,7 +223,7 @@ accessSync(path: string, mode?: AccessModeType): boolean
 
 以同步方法检查文件是否存在。
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**元服务API**：从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -232,7 +232,7 @@ accessSync(path: string, mode?: AccessModeType): boolean
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | path   | string | 是   | 文件应用沙箱路径。                                   |
-| mode   | [AccessModeType](#accessmodetype12) | 否   | 文件校验的权限。                                   |
+| mode<sup>12+</sup>   | [AccessModeType](#accessmodetype12) | 否   | 文件校验的权限。                                   |
 
 **返回值：**
 
@@ -5096,6 +5096,8 @@ open接口flags参数常量。文件打开标签。
 ## AccessModeType<sup>12+</sup>
 
 枚举，表示需要校验的具体权限，若不填，默认校验文件是否存在。
+
+**元服务API**：从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
