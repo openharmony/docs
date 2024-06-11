@@ -29,6 +29,8 @@ import { pasteboard } from '@kit.BasicServicesKit';
 
 ## ValueType<sup>9+</sup>
 
+type ValueType = string | image.PixelMap | Want | ArrayBuffer
+
 用于表示允许的数据字段类型。
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
