@@ -1164,7 +1164,7 @@ getLocationName(number: string, locale: string): string
 
 **元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
-**系统能力：** SystemCapability.Global.I18n
+**系统能力**：SystemCapability.Global.I18n
 
 **参数：**
 
@@ -1331,7 +1331,7 @@ getLineInstance(locale: string): BreakIterator
 
 **元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
-**系统能力：** SystemCapability.Global.I18n
+**系统能力**：SystemCapability.Global.I18n
 
 **参数：**
 
