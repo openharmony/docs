@@ -78,7 +78,6 @@ UDMF针对多对多跨应用数据共享的不同业务场景提供了标准化�
 3. 更新上一步骤插入的统一数据对象。
 
    ```ts
-   import { BusinessError } from '@kit.BasicServicesKit';
    let plainText = new unifiedDataChannel.PlainText();
    plainText.textContent = 'How are you!';
    let unifiedData = new unifiedDataChannel.UnifiedData(plainText);
@@ -104,7 +103,6 @@ UDMF针对多对多跨应用数据共享的不同业务场景提供了标准化�
 4. 删除存储在UDMF公共数据通路中的统一数据对象。
 
    ```ts
-   import { BusinessError } from '@kit.BasicServicesKit';
    // 指定要删除数据的数据通路枚举类型
    let options: unifiedDataChannel.Options = {
      intention: unifiedDataChannel.Intention.DATA_HUB
