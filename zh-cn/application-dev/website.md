@@ -1311,8 +1311,8 @@
   - [系统能力SystemCapability使用指南](reference/syscap.md)
   - [系统能力SystemCapability列表](reference/syscap-list.md)
   - [通用错误码](reference/errorcode-universal.md)
-  - Ability Kit API参考
-    - ArkTS API
+  - Ability Kit API参考<!--ability-api-->
+    - ArkTS API<!--ability-arkts-->
       - Stage模型能力的接口
         - [@ohos.app.ability.Ability (Ability基类)](reference/apis-ability-kit/js-apis-app-ability-ability.md)
         - [@ohos.app.ability.AbilityConstant (AbilityConstant)](reference/apis-ability-kit/js-apis-app-ability-abilityConstant.md)
@@ -1539,20 +1539,20 @@
           - [remoteAbilityInfo(系统接口)](reference/apis-ability-kit/js-apis-bundle-remoteAbilityInfo-sys.md)
           - [shortcutInfo(系统接口)](reference/apis-ability-kit/js-apis-bundle-ShortcutInfo-sys.md)
           <!--DelEnd-->
-    - C API
-      - 模块
+    - C API<!--ability-c-->
+      - 模块<!--ability-module-->
         - [Bundle](reference/apis-ability-kit/_bundle.md)
-      - 头文件
+      - 头文件<!--ability-headerfile-->
         - [native_interface_bundle.h](reference/apis-ability-kit/native__interface__bundle.md)
-      - 结构体
+      - 结构体<!--ability-struct-->
         - [OH_NativeBundle_ApplicationInfo](reference/apis-ability-kit/_o_h___native_bundle_application_info.md)
-    - 错误码
+    - 错误码<!--ability-arkts-errcode-->
       - [元能力子系统错误码](reference/apis-ability-kit/errorcode-ability.md)
       - [DistributedSchedule错误码](reference/apis-ability-kit/errorcode-DistributedSchedule.md)
       - [包管理子系统通用错误码](reference/apis-ability-kit/errorcode-bundle.md)
       - [访问控制错误码](reference/apis-ability-kit/errorcode-access-token.md)
-  - Accessibility Kit API参考
-    - ArkTS API
+  - Accessibility Kit API参考<!--accessibility-api-->
+    - ArkTS API<!--accessibility-arkts-->
       - [@ohos.accessibility (辅助功能)](reference/apis-accessibility-kit/js-apis-accessibility.md)
       - [@ohos.accessibility.GesturePath (手势路径)](reference/apis-accessibility-kit/js-apis-accessibility-GesturePath.md)
       - [@ohos.accessibility.GesturePoint (手势触摸点)](reference/apis-accessibility-kit/js-apis-accessibility-GesturePoint.md)
@@ -1561,24 +1561,24 @@
       <!--Del-->
       - [@ohos.accessibility.config (系统辅助功能配置)(系统接口)](reference/apis-accessibility-kit/js-apis-accessibility-config-sys.md)
       <!--DelEnd-->
-    - 错误码
+    - 错误码<!--accessibility-arkts-errcode-->
       - [无障碍子系统错误码](reference/apis-accessibility-kit/errorcode-accessibility.md)
   <!--Del-->
-  - Ads Kit API参考
-    - ArkTS API
+  - Ads Kit API参考<!--ads-api-->
+    - ArkTS API<!--ads-arkts-->
       - [@ohos.advertising (广告服务框架)](reference/apis-ads-kit/js-apis-advertising.md)
       - [@ohos.identifier.oaid (广告标识服务)](reference/apis-ads-kit/js-apis-oaid.md)
       - [@ohos.advertising.AdsServiceExtensionAbility (广告扩展服务)(系统接口)](reference/apis-ads-kit/js-apis-adsserviceextensionability-sys.md)
       - [@ohos.identifier.oaid (广告标识服务)(系统接口)](reference/apis-ads-kit/js-apis-oaid-sys.md)
-    - ArkTS组件
+    - ArkTS组件<!--ads-comp-->
       - [@ohos.advertising.AdComponent (非全屏广告展示组件)](reference/apis-ads-kit/js-apis-adcomponent.md)
       - [@ohos.advertising.AutoAdComponent (轮播广告展示组件)](reference/apis-ads-kit/js-apis-autoadcomponent.md)
-    - 错误码
+    - 错误码ads<!--ads-arkts-errcode-->
       - [广告服务框架错误码](reference/apis-ads-kit/errorcode-ads.md)
       - [广告标识服务错误码](reference/apis-ads-kit/errorcode-oaid.md)
   <!--DelEnd-->
-  - ArkData API参考
-    - ArkTS API 
+  - ArkData API参考<!--arkdata-api-->
+    - ArkTS API<!--arkdata-arkts-->
       - [@ohos.data.commonType (数据通用类型)](reference/apis-arkdata/js-apis-data-commonType.md)
       - [@ohos.data.dataAbility (DataAbility谓词)](reference/apis-arkdata/js-apis-data-ability.md)
       - [@ohos.data.dataSharePredicates (数据共享谓词)](reference/apis-arkdata/js-apis-data-dataSharePredicates.md)
@@ -1604,18 +1604,18 @@
       - [@ohos.data.distributedKVStore (分布式键值数据库)(系统接口)](reference/apis-arkdata/js-apis-distributedKVStore-sys.md)
       - [@ohos.data.relationalStore (关系型数据库)(系统接口)](reference/apis-arkdata/js-apis-data-relationalStore-sys.md)
       <!--DelEnd-->
-      - 已停止维护的接口
+      - 已停止维护的接口<!--arkdata-arkts-dep-->
         - [@ohos.data.distributedData (分布式数据管理)](reference/apis-arkdata/js-apis-distributed-data.md)
         - [@ohos.data.rdb (关系型数据库)](reference/apis-arkdata/js-apis-data-rdb.md)
         - [@ohos.data.storage (轻量级存储)](reference/apis-arkdata/js-apis-data-storage.md)
         - [@system.storage数据存储](reference/apis-arkdata/js-apis-system-storage.md)
         - data/rdb
           - [resultSet结果集](reference/apis-arkdata/js-apis-data-resultset.md)
-    - C API
-      - 模块
+    - C API<!--arkdata-c-->
+      - 模块<!--arkdata-module-->
         - [Data](reference/apis-arkdata/_data.md)
         - [RDB](reference/apis-arkdata/_r_d_b.md)
-      - 头文件
+      - 头文件<!--arkdata-headerfile-->
         - [data_asset.h](reference/apis-arkdata/data__asset_8h.md)
         - [oh_cursor.h](reference/apis-arkdata/oh__cursor_8h.md)
         - [oh_predicates.h](reference/apis-arkdata/oh__predicates_8h.md)
@@ -1623,7 +1623,7 @@
         - [oh_values_bucket.h](reference/apis-arkdata/oh__values__bucket_8h.md)
         - [relational_store_error_code.h](reference/apis-arkdata/relational__store__error__code_8h.md)
         - [relational_store.h](reference/apis-arkdata/relational__store_8h.md)
-      - 结构体
+      - 结构体<!--arkdata-struct-->
         - [OH_Cursor](reference/apis-arkdata/_o_h___cursor.md)
         - [OH_Predicates](reference/apis-arkdata/_o_h___predicates.md)
         - [OH_Rdb_Config](reference/apis-arkdata/_o_h___rdb___config.md)
@@ -1640,14 +1640,14 @@
         - [Rdb_Statistic](reference/apis-arkdata/_rdb___statistic.md)
         - [Rdb_SubscribeCallback](reference/apis-arkdata/union_rdb___subscribe_callback.md)
         - [Rdb_TableDetails](reference/apis-arkdata/_rdb___table_details.md)
-    - 错误码
+    - 错误码<!--arkdata-arkts-errcode-->
       - [关系型数据库错误码](reference/apis-arkdata/errorcode-data-rdb.md)
       - [数据共享错误码](reference/apis-arkdata/errorcode-datashare.md)
       - [分布式数据对象错误码](reference/apis-arkdata/errorcode-distributed-dataObject.md)
       - [分布式键值数据库错误码](reference/apis-arkdata/errorcode-distributedKVStore.md)
       - [用户首选项错误码](reference/apis-arkdata/errorcode-preferences.md)
-  - ArkGraphics 2D API参考
-    - ArkTS API 
+  - ArkGraphics 2D API参考<!--arkgraphics-api-->
+    - ArkTS API<!--arkgraphics-arkts-->
       - [@ohos.effectKit (图像效果)](reference/apis-arkgraphics2d/js-apis-effectKit.md)
       - [@ohos.graphics.colorSpaceManager (色彩管理)](reference/apis-arkgraphics2d/js-apis-colorSpaceManager.md)
       - [@ohos.graphics.sendableColorSpaceManager (可共享的色彩管理)](reference/apis-arkgraphics2d/js-apis-sendableColorSpaceManager.md)
@@ -1656,15 +1656,15 @@
       - [@ohos.graphics.drawing (绘制模块)](reference/apis-arkgraphics2d/js-apis-graphics-drawing.md)
       - [@ohos.graphics.hdrCapability (HDR能力)](reference/apis-arkgraphics2d/js-apis-hdrCapability.md)
       - [@ohos.graphics.text (文本模块)](reference/apis-arkgraphics2d/js-apis-graphics-text.md)
-    - C API
-      - 模块
+    - C API<!--arkgraphics-c-->
+      - 模块<!--arkgraphics-module-->
         - [Drawing](reference/apis-arkgraphics2d/_drawing.md)
         - [EffectKit](reference/apis-arkgraphics2d/effect_kit.md)
         - [NativeVsync](reference/apis-arkgraphics2d/_native_vsync.md)
         - [NativeWindow](reference/apis-arkgraphics2d/_native_window.md)
         - [OH_NativeBuffer](reference/apis-arkgraphics2d/_o_h___native_buffer.md)
         - [OH_NativeImage](reference/apis-arkgraphics2d/_o_h___native_image.md)
-      - 头文件
+      - 头文件<!--arkgraphics-headerfile-->
         - [drawing_bitmap.h](reference/apis-arkgraphics2d/drawing__bitmap_8h.md)
         - [drawing_brush.h](reference/apis-arkgraphics2d/drawing__brush_8h.md)
         - [drawing_canvas.h](reference/apis-arkgraphics2d/drawing__canvas_8h.md)
@@ -1706,7 +1706,7 @@
         - [native_buffer.h](reference/apis-arkgraphics2d/native__buffer_8h.md)
         - [native_image.h](reference/apis-arkgraphics2d/native__image_8h.md)
         - [native_vsync.h](reference/apis-arkgraphics2d/native__vsync_8h.md)
-      - 结构体
+      - 结构体<!--arkgraphics-struct-->
         - [OH_Drawing_BitmapFormat](reference/apis-arkgraphics2d/_o_h___drawing___bitmap_format.md)
         - [OH_Drawing_Font_Metrics](reference/apis-arkgraphics2d/_o_h___drawing___font___metrics.md)
         - [OH_Drawing_FontAdjustInfo](reference/apis-arkgraphics2d/_o_h___drawing___font_adjust_info.md)
@@ -1737,7 +1737,7 @@
         - [OHHDRMetaData](reference/apis-arkgraphics2d/_o_h_h_d_r_meta_data.md)
         - [Region](reference/apis-arkgraphics2d/_region.md)
         - [Rect](reference/apis-arkgraphics2d/_rect.md)
-    - 错误码
+    - 错误码<!--arkgraphics-arkts-errcode-->
       - [色彩管理错误码](reference/apis-arkgraphics2d/errorcode-colorspace-manager.md)
   - ArkGraphics 3D API参考
     - ArkTS API
