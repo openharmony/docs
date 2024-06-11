@@ -37,6 +37,7 @@ AVCastPicker()
 | pickerStyle<sup>12+</sup> | [AVCastPickerStyle](js-apis-avCastPickerParam.md#avcastpickerstyle12) | 否 | @Prop | 投播样式。 |
 | colorMode<sup>12+</sup> | [AVCastPickerColorMode](js-apis-avCastPickerParam.md#avcastpickercolormode12) | 否 |  @Prop | 显示模式。 |
 | sessionType<sup>12+</sup> | string | 否| @Prop | 会话类型，默认值为'audio'，其余取值可参考[AVSessionType](js-apis-avsession.md#avsessiontype10)。|
+| customPicker<sup>12+</sup> | [CustomBuilder](../apis-arkui/arkui-ts/ts-types.md#custombuilder8) | 否 | @Prop | 自定义样式。 |
 | onStateChange<sup>11+</sup> | (state: [AVCastPickerState](js-apis-avCastPickerParam.md)) => void | 否 | @Prop | 投播状态更改回调。 |
 
 ## 事件
