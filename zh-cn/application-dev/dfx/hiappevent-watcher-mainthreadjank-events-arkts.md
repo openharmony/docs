@@ -78,7 +78,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
      })
    ```
 
-4. 运行`hdc shell param set hiviewdfx.ucollection.testapptrace true`，使能主线程超时采集trace测试，主线程。
+4. 运行`hdc shell param set hiviewdfx.ucollection.testapptrace true`，使能主线程超时检测抓取trace的功能。
 
    运行`service_control stop hiview`停止服务，清除设备缓存`rm -rf /data/log/hiview/unified_collection/trace`，运行`service_control start hiview`启动服务。
 
