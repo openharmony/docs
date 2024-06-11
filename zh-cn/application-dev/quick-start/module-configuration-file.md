@@ -145,6 +145,7 @@ module.json5配置文件包含以下标签。
 | 车机 | car | - |
 | 默认设备 | default | 能够使用全部系统能力的设备。 |
 <!--RP2End-->
+
 deviceTypes示例：
 
 
