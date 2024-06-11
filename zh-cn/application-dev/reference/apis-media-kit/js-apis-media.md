@@ -2265,6 +2265,8 @@ avPlayer.off('audioOutputDeviceChangeWithInfo');
 
 视频播放的倍速枚举，可通过setSpeed方法作为参数传递下去。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
 
 | 名称                 | 值   | 说明                           |
