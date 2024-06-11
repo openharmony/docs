@@ -73,10 +73,10 @@ let locationName4 = phoneNumberFormat4.getLocationName('158****2312', 'en-GB') /
 
 // 拨号中的电话号码格式化
 let phoneNumberFmt = new i18n.PhoneNumberFormat('CN', {type: 'TYPING'});
-let number : string = "0755453";
+let phoneNumber : string = "0755453";
 let formatResult : string = "";
-for (let i = 0; i < number.length; i++) {
-  formatResult += number.charAt(i);
+for (let i = 0; i < phoneNumber.length; i++) {
+  formatResult += phoneNumber.charAt(i);
   formatResult = phoneNumberFmt.format(formatResult);
 }
 console.log(formatResult); // formatResult: 0755 453
