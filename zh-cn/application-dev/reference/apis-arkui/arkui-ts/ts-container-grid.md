@@ -353,7 +353,7 @@ multiSelectable(value: boolean)
 
 supportAnimation(value: boolean)
 
-设置是否支持动画。当前支持GridItem拖拽动画。仅在滚动模式下（只设置rowsTemplate、columnsTemplate其中一个）支持动画。
+设置是否支持动画。当前支持GridItem拖拽动画。仅在滚动模式下（只设置rowsTemplate、columnsTemplate其中一个）支持动画。<br/>仅在大小规则的Grid中支持拖拽动画，跨行或跨列场景不支持。
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
