@@ -1332,7 +1332,7 @@ ape音频解码器的MIME类型。
 const char* OH_AVCODEC_MIMETYPE_AUDIO_LBVC
 ```
 **描述**
-音频低码率音频编解码器的MIME类型。<!--Del-->（目前本规格未开放）<!--DelEnd-->
+音频低码率音频编解码器的MIME类型。（目前本规格未开放）
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
