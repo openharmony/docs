@@ -836,3 +836,53 @@ struct ImageExample {
   }
 }
 ```
+### 示例7
+
+该示例实现了给图像设置颜色滤镜效果
+
+```ts
+import { drawing, common2D } from '@kit.ArkGraphics2D';
+
+@Entry
+@Component
+struct ImageExample3 {
+  private imageOne: Resource = $r('app.media.1');
+  private imageTwo: Resource = $r('app.media.2');
+  @State src: Resource = this.imageOne
+  @State src2: Resource = this.imageTwo
+  private ColorFilterMatrix: number[] = [1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0]
+  private color: common2D.Color = { alpha: 255, red: 255, green: 0, blue: 0 };
+  @State DrawingColorFilterFirst: ColorFilter | undefined = undefined
+  @State DrawingColorFilterSecond: ColorFilter | undefined = undefined
+  @State DrawingColorFilterThird: ColorFilter | undefined = undefined
+
+  build() {
+    Column() {
+      Image(this.src)
+        .width(100)
+        .height(100)
+        .colorFilter(this.DrawingColorFilterFirst)
+        .onClick(()=>{
+          this.DrawingColorFilterFirst = drawing.ColorFilter.createBlendModeColorFilter(this.color, drawing.BlendMode.SRC_IN);
+        })
+
+      Image(this.src2)
+        .width(100)
+        .height(100)
+        .colorFilter(this.DrawingColorFilterSecond)
+        .onClick(()=>{
+          this.DrawingColorFilterSecond = new ColorFilter(this.ColorFilterMatrix);
+        })
+
+      //当加载图片为SVG格式时
+      Image($r('app.media.test_self'))
+        .width(110).height(110).margin(15)
+        .colorFilter(this.DrawingColorFilterThird)
+        .onClick(()=>{
+          this.DrawingColorFilterThird = drawing.ColorFilter.createBlendModeColorFilter(this.color, drawing.BlendMode.SRC_IN);
+        })
+    }
+  }
+}
+```
+![imageSetColorFilter](figures/imageSetColorFilter.gif)
