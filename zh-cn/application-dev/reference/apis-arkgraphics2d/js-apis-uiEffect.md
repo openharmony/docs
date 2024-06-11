@@ -3,7 +3,7 @@
 本模块提供组件效果的一些基础能力，包括边缘像素扩展，模糊，提亮等。效果被分为Filter和VisualEffect大类，同类效果可以级联在一个效果大类的实例下。
 
 - [Filter](#filter)：用于添加指定Filter效果到组件上。
-- [VisualEffect](#visualeffect): 用于添加指定VisualEffect效果到组件上。
+- [VisualEffect](#visualeffect)：用于添加指定VisualEffect效果到组件上。
 
 > **说明：**
 > 
@@ -41,17 +41,7 @@ blur(blurRadius: number): Filter
 ```ts
 import { uiEffect } from "@kit.ArkGraphics2D";
 
-@Component
-struct Index {
-  @State filterTest: uiEffect.Filter = uiEffect.createFilter()
-
-  aboutToAppear(): void {
-    this.filter.blur(20)
-  }
-
-  build() {
-  }
-}
+filter.blur(20)
 ```
 
 ## VisualEffect
@@ -75,10 +65,7 @@ createFilter(): Filter
 ```ts
 import { uiEffect } from "@kit.ArkGraphics2D";
 
-@Component
-struct Index {
-  @State filterTest: uiEffect.Filter = uiEffect.createFilter()
-}
+let filter : uiEffect.Filter = uiEffect.createFilter()
 ```
 
 ## uiEffect.createEffect
@@ -99,8 +86,5 @@ createEffect(): VisualEffect
 ```ts
 import { uiEffect } from "@kit.ArkGraphics2D";
 
-@Component
-struct Index {
-  @State visualEffectTest: uiEffect.VisualEffect = uiEffect.createEffect()
-}
+let visualEffect : uiEffect.VisualEffect = uiEffect.createEffect()
 ```
