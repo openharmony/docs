@@ -2049,7 +2049,7 @@ off(type: 'audioInterrupt'): void
 avPlayer.off('audioInterrupt')
 ```
 
-### on('audioOutputDeviceChangeWithInfo') <sup>11+</sup>
+### on('audioOutputDeviceChangeWithInfo')<sup>11+</sup>
 
 on(type: 'audioOutputDeviceChangeWithInfo', callback: Callback\<audio.AudioStreamDeviceChangeInfo>): void
 
@@ -2082,7 +2082,7 @@ avPlayer.on('audioOutputDeviceChangeWithInfo', (data: audio.AudioStreamDeviceCha
 });
 ```
 
-### off('audioOutputDeviceChangeWithInfo') <sup>11+</sup>
+### off('audioOutputDeviceChangeWithInfo')<sup>11+</sup>
 
 off(type: 'audioOutputDeviceChangeWithInfo', callback?: Callback\<audio.AudioStreamDeviceChangeInfo>): void
 
