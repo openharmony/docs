@@ -9,6 +9,11 @@
 >
 > 示例效果请以真机运行为准，当前IDE预览器不支持。
 
+## 导入模块
+
+```ts
+import { CircleShape, EllipseShape, PathShape, RectShape } from "@ohos.arkui.shape";
+```
 
 ## CircleShape
 
@@ -67,6 +72,8 @@ constructor(options?: PathShapeOptions)
 ### commands
 
 commands(commands: string): PathShape
+
+设置路径的绘制指令。
 
 | 参数名         | 类型                                               | 必填 | 说明                                         |
 | ----------- | -------------------------------------------------- | ---- | -------------------------------------------- |

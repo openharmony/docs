@@ -1260,134 +1260,6 @@ avPlayer.getTrackDescription().then((arrList: Array<media.MediaDescription>) => 
 });
 ```
 
-### selectTrack<sup>12+</sup>
-
-selectTrack(index: number): Promise\<void>
-
-使用AVPlayer播放多音轨视频时选择指定音轨播放，通过Promise获取返回值。
-
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
-
-**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
-
-**参数：**
-
-| 参数名   | 类型     | 必填 | 说明                 |
-| -------- | -------- | ---- | -------------------- |
-| index | number | 是   | 多音轨轨道索引，来自[MediaDescription](#mediadescription8)。 |
-
-**返回值：**
-
-| 类型           | 说明                      |
-| -------------- | ------------------------- |
-| Promise\<void> | 选择曲目完成的Promise返回值。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)。
-
-| 错误码ID | 错误信息                                  |
-| -------- | ----------------------------------------- |
-| 401      | Parameter error. Return by callback.       |
-| 5400102  | Operation not allowed. Return by callback. |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-import { media } from '@kit.MediaKit';
-
-let avPlayer: media.AVPlayer | undefined = undefined;
-media.createAVPlayer((err: BusinessError, player: media.AVPlayer) => {
-  if(player != null) {
-    avPlayer = player;
-    console.info(`createAVPlayer success`);
-    avPlayer.getTrackDescription((error: BusinessError, arrList: Array<media.MediaDescription>) => {
-      if (arrList != null) {
-        for (let i = 0; i < arrList.length; i++) {
-          if (i != 0) {
-            // 获取音频轨道列表
-            let audioTrackIndex: Object = arrList[i][media.MediaDescriptionKey.MD_KEY_TRACK_INDEX];
-          }
-        }
-      } else {
-        console.error(`audio getTrackDescription fail, error:${error}`);
-      }
-    });
-  } else {
-    console.error(`createAVPlayer fail, error message:${err.message}`);
-  }
-});
-
-// 选择其中一个音频轨道
-avPlayer.selectTrack(parseInt(audioTrackIndex.toString()));
-```
-
-### deselectTrack<sup>12+</sup>
-
-deselectTrack(index: number): Promise\<void>
-
-使用AVPlayer播放多音轨视频时取消指定音轨播放，通过Promise获取返回值。
-
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
-
-**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
-
-**参数：**
-
-| 参数名   | 类型     | 必填 | 说明                 |
-| -------- | -------- | ---- | -------------------- |
-| index | number | 是   | 多音轨轨道索引，来自[MediaDescription](#mediadescription8)。 |
-
-**返回值：**
-
-| 类型           | 说明                      |
-| -------------- | ------------------------- |
-| Promise\<void> | 取消选择曲目完成的Promise返回值。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)。
-
-| 错误码ID | 错误信息                                  |
-| -------- | ----------------------------------------- |
-| 401      | Parameter error. Return by callback.       |
-| 5400102  | Operation not allowed. Return by callback. |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-import { media } from '@kit.MediaKit';
-
-let avPlayer: media.AVPlayer | undefined = undefined;
-media.createAVPlayer((err: BusinessError, player: media.AVPlayer) => {
-  if(player != null) {
-    avPlayer = player;
-    console.info(`createAVPlayer success`);
-    avPlayer.getTrackDescription((error: BusinessError, arrList: Array<media.MediaDescription>) => {
-      if (arrList != null) {
-        for (let i = 0; i < arrList.length; i++) {
-          if (i != 0) {
-            // 获取音频轨道列表
-            let audioTrackIndex: Object = arrList[i][media.MediaDescriptionKey.MD_KEY_TRACK_INDEX];
-          }
-        }
-      } else {
-        console.error(`audio getTrackDescription fail, error:${error}`);
-      }
-    });
-  } else {
-    console.error(`createAVPlayer fail, error message:${err.message}`);
-  }
-});
-
-// 选择其中一个音频轨道
-avPlayer.selectTrack(parseInt(audioTrackIndex.toString()));
-// 取消选择上次选中的音频轨道，并恢复到默认音频轨道。
-avPlayer.deselectTrack(parseInt(audioTrackIndex.toString()));
-```
-
 ### setDecryptionConfig<sup>11+</sup>
 
 setDecryptionConfig(mediaKeySession: drm.MediaKeySession, secureVideoPath: boolean): void
@@ -2303,6 +2175,8 @@ avPlayer.off('audioOutputDeviceChangeWithInfo');
 
 视频播放的倍速枚举，可通过setSpeed方法作为参数传递下去。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
 
 | 名称                 | 值   | 说明                           |
@@ -2314,6 +2188,7 @@ avPlayer.off('audioOutputDeviceChangeWithInfo');
 | SPEED_FORWARD_2_00_X | 4    | 表示视频播放正常播速的2.00倍。 |
 | SPEED_FORWARD_0_50_X<sup>12+</sup> | 5    | 表示视频播放正常播速的0.50倍。 |
 | SPEED_FORWARD_1_50_X<sup>12+</sup> | 6    | 表示视频播放正常播速的1.50倍。 |
+<!--RP1--><!--RP1End-->
 
 ## VideoScaleType<sup>9+</sup>
 
@@ -3412,12 +3287,12 @@ getAVRecorderConfig(callback: AsyncCallback\<AVRecorderConfig>): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let AVRecorderConfig: AVRecorderConfig;
+let avConfig: AVRecorderConfig;
 
 avRecorder.getAVRecorderConfig((err: BusinessError, config: AVRecorderConfig) => {
   if (err == null) {
     console.info('getAVRecorderConfig success');
-    AVRecorderConfig = config;
+    avConfig = config;
   } else {
     console.error('getAVRecorderConfig failed and error is ' + err.message);
   }
@@ -3455,11 +3330,11 @@ getAVRecorderConfig(): Promise\<AVRecorderConfig>;
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let AVRecorderConfig: AVRecorderConfig;
+let avConfig: AVRecorderConfig;
 
 avRecorder.getAVRecorderConfig().then((config: AVRecorderConfig) => {
   console.info('getAVRecorderConfig success');
-  AVRecorderConfig = config;
+  avConfig = config;
 }).catch((err: BusinessError) => {
   console.error('getAVRecorderConfig failed and catch error is ' + err.message);
 });
@@ -3693,7 +3568,7 @@ avRecorder.off('audioCapturerChange');
 | audioSampleRate  | number                                       | 否   | 音频采样率，选择音频录制时必填，支持范围[8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000, 64000, 88200, 96000]。<br> **元服务API：** 从API version 12 开始，该接口支持在元服务中使用。 |
 | fileFormat       | [ContainerFormatType](#containerformattype8) | 是   | 文件的容器格式，必要参数。 <br>**元服务API：** 从API version 12 开始，该接口支持在元服务中使用。|
 | videoBitrate     | number                                       | 否   | 视频编码比特率，选择视频录制时必填，支持范围[10000 - 100000000]。  |
-| videoCodec       | [CodecMimeType](#codecmimetype8)             | 否   | 视频编码格式，选择视频录制时必填。当前支持VIDEO_AVC。<br> **元服务API：** 从API version 12 开始，该接口支持在元服务中使用。|
+| videoCodec       | [CodecMimeType](#codecmimetype8)             | 否   | 视频编码格式，选择视频录制时必填。当前支持VIDEO_AVC。 |
 | videoFrameWidth  | number                                       | 否   | 视频帧的宽，选择视频录制时必填，支持范围[176 - 4096]。         |
 | videoFrameHeight | number                                       | 否   | 视频帧的高，选择视频录制时必填，支持范围[144 - 4096]。         |
 | videoFrameRate   | number                                       | 否   | 视频帧率，选择视频录制时必填，支持范围[1 - 60]。             |
@@ -6372,6 +6247,8 @@ setMimeType(mimeType: AVMimeTypes): void
 
 设置媒体MIME类型，以帮助播放器处理扩展的媒体源。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名   | 类型     | 必填 | 说明                 |
@@ -6382,12 +6259,14 @@ setMimeType(mimeType: AVMimeTypes): void
 
 媒体MIME类型，通过[setMimeType](#setmimetype12)设置。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Media.Core
 
 
 | 名称       | 值   | 说明                                                         |
 | ---------- | ---- | ------------------------------------------------------------ |
-| APPLICATION       | application/m3u8    | 表示m3u8本地文件。 |
+| APPLICATION_M3U8       | application/m3u8    | 表示m3u8本地文件。 |
 
 
 ## PlaybackStrategy<sup>12+</sup>

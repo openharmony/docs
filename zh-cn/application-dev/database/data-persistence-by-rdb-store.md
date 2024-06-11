@@ -58,10 +58,10 @@
    Stage模型示例：
      
    ```ts
-   import relationalStore from '@ohos.data.relationalStore'; // 导入模块 
-   import UIAbility from '@ohos.app.ability.UIAbility';
-   import { BusinessError } from '@ohos.base';
-   import window from '@ohos.window';
+   import { relationalStore } from '@kit.ArkData'; // 导入模块
+   import { UIAbility } from '@kit.AbilityKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
+   import { window } from '@kit.ArkUI';
 
    // 此处示例在Ability中实现，使用者也可以在其他合理场景中使用
    class EntryAbility extends UIAbility {
@@ -121,10 +121,10 @@
 
      
    ```ts
-   import relationalStore from '@ohos.data.relationalStore'; // 导入模块
-   import featureAbility from '@ohos.ability.featureAbility';
+   import { relationalStore } from '@kit.ArkData'; // 导入模块
+   import { featureAbility } from '@kit.AbilityKit';
    
-   let context = featureAbility.getContext()
+   let context = featureAbility.getContext();
 
    const STORE_CONFIG :relationalStore.StoreConfig = {
      name: 'RdbTest.db', // 数据库文件名
@@ -324,7 +324,7 @@
 
      
    ```ts
-   import UIAbility from '@ohos.app.ability.UIAbility';
+   import { UIAbility } from '@kit.AbilityKit';
 
    class EntryAbility extends UIAbility {
      onWindowStageCreate(windowStage: window.WindowStage) {
@@ -343,9 +343,9 @@
 
      
    ```ts
-   import featureAbility from '@ohos.ability.featureAbility';
+   import { featureAbility } from '@kit.AbilityKit';
    
-   let context = getContext(this);
+   let context = featureAbility.getContext(); 
 
    relationalStore.deleteRdbStore(context, 'RdbTest.db', (err: BusinessError) => {
      if (err) {

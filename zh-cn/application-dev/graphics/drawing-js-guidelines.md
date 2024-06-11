@@ -41,11 +41,8 @@ libnative_drawing.so
 
 **依赖文件**
 ```js
-import { NodeController, FrameNode, RenderNode, DrawContext } from "@ohos.arkui.node"
-import { UIContext } from '@ohos.arkui.UIContext'
-import drawing from "@ohos.graphics.drawing"
-import image from '@ohos.multimedia.image'
-import common2D from '@ohos.graphics.common2D'
+import { FrameNode, NodeController, RenderNode } from '@kit.ArkUI'
+import { common2D, drawing } from '@kit.ArkGraphics2D'
 ```
 
 接下来介绍如何使用Drawing接口进行内容绘制。
