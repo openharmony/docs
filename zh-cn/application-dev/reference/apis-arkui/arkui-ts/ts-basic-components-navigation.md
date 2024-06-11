@@ -2704,6 +2704,7 @@ struct PageOne {
 ### 示例11
 ```ts
 // 该示例主要演示Navigation和NavDestination如何使用Symbol组件
+import { SymbolGlyphModifier } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -2712,11 +2713,11 @@ struct NavigationExample {
   @State menuItems:Array<NavigationMenuItem> = [
     {
       value:'menuItem1',
-      icon:'resources/base/media/ic_public_ok.svg'
+      icon:'resources/base/media/ic_public_ok.svg' // 图标资源路径
     },
     {
       value:'menuItem2',
-      icon:'resources/base/media/ic_public_ok.svg',
+      icon:'resources/base/media/ic_public_ok.svg', // 图标资源路径
       symbolIcon: new SymbolGlyphModifier($r('sys.symbol.ohos_folder_badge_plus')).fontColor([Color.Red,Color.Green]).renderingStrategy(SymbolRenderingStrategy.MULTIPLE_COLOR),
     },
     {
@@ -2728,7 +2729,7 @@ struct NavigationExample {
   @State toolItems:Array<ToolbarItem>= [
     {
       value:'toolItem1',
-      icon:'resources/base/media/ic_public_ok.svg',
+      icon:'resources/base/media/ic_public_ok.svg', // 图标资源路径
       symbolIcon:new SymbolGlyphModifier($r('sys.symbol.ohos_lungs')),
       status:ToolbarItemStatus.ACTIVE,
       activeSymbolIcon: new SymbolGlyphModifier($r('sys.symbol.ohos_folder_badge_plus')).fontColor([Color.Red,Color.Green]).renderingStrategy(SymbolRenderingStrategy.MULTIPLE_COLOR),
@@ -2738,7 +2739,7 @@ struct NavigationExample {
       value:'toolItem2',
       symbolIcon:new SymbolGlyphModifier($r('sys.symbol.ohos_star')),
       status:ToolbarItemStatus.ACTIVE,
-      activeIcon: 'resources/base/media/ic_public_more.svg',
+      activeIcon: 'resources/base/media/ic_public_more.svg', // 图标资源路径
       action:()=>{}
     },
     {
@@ -2780,7 +2781,7 @@ export struct NavigationMenu{
   @State menuItems:Array<NavigationMenuItem> = [
     {
       value:'menuItem1',
-      icon:'resources/base/media/ic_public_ok.svg',
+      icon:'resources/base/media/ic_public_ok.svg', // 图标资源路径
       action:()=>{}
     },
     {
