@@ -8,8 +8,8 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
 
 | 接口名                                                       | 描述                                         |
 | ------------------------------------------------------------ | -------------------------------------------- |
-| int OH_HiAppEvent_AddWatcher(HiAppEvent_Watcher \*watcher)   | 添加应用事件观察者，以添加对应用事件的订阅。 |
-| int OH_HiAppEvent_RemoveWatcher(HiAppEvent_Watcher *watcer） | 移除应用事件观察者，以移除对应用事件的订阅。 |
+| int OH_HiAppEvent_AddWatcher(HiAppEvent_Watcher *watcher)   | 添加应用事件观察者，以添加对应用事件的订阅。 |
+| int OH_HiAppEvent_RemoveWatcher(HiAppEvent_Watcher *watcher） | 移除应用事件观察者，以移除对应用事件的订阅。 |
 
 ## 开发步骤
 
