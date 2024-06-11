@@ -1163,13 +1163,14 @@ getLocationName(number: string, locale: string): string
 获取电话号码归属地。
 
 **元服务API：** 从API version 12开始，该接口支持在元服务中使用。
-**系统能力**：SystemCapability.Global.I18n
+
+**系统能力：** SystemCapability.Global.I18n
 
 **参数：**
 
 | 参数名    | 类型     | 必填   | 说明   |
 | ------ | ------ | ---- | ---- |
-| number | string | 是    | 电话号码 |
+| number | string | 是    | 电话号码。获取其他地区号码的归属地，需要在号码前加00+国际区号。 |
 | locale | string | 是    | 区域ID |
 
 **返回值：**
@@ -1182,6 +1183,7 @@ getLocationName(number: string, locale: string): string
   ```ts
   let phonenumberfmt: i18n.PhoneNumberFormat = new i18n.PhoneNumberFormat("CN");
   let locationName: string = phonenumberfmt.getLocationName("158****2345", "zh-CN"); // locationName = "广东省湛江市"
+  let locName: string = phonenumberfmt.getLocationName("0039312****789", "zh-CN"); // locName = "意大利"
   ```
 
 
@@ -1329,7 +1331,7 @@ getLineInstance(locale: string): BreakIterator
 
 **元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
-**系统能力**：SystemCapability.Global.I18n
+**系统能力：** SystemCapability.Global.I18n
 
 **参数：**
 
