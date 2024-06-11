@@ -18,6 +18,8 @@
 
 ## 接口
 
+### Video
+
 Video(value: VideoOptions)
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
@@ -27,6 +29,19 @@ Video(value: VideoOptions)
 | 参数名 | 参数类型 | 必填 | 参数描述 |
 | -------- | -------- | -------- | -------- |
 | value | [VideoOptions](#videooptions对象说明) | 是 | 视频信息。 |
+
+### Video<sup>12+</sup>
+
+Video(value: VideoOptions, imageAIOptions: ImageAIOptions)
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 参数类型 | 必填 | 参数描述 |
+| -------- | -------- | -------- | -------- |
+| value | [VideoOptions](#videooptions对象说明) | 是 | 视频信息。 |
+| imageAIOptions  | [ImageAIOptions](ts-image-common.md#imageaioptions12) | 是   | 给组件设置一个AI分析选项，通过此项可配置分析类型或绑定一个分析控制器。 |
 
 ##  VideoOptions对象说明
 
@@ -547,6 +562,11 @@ struct ImageAnalyzerExample {
   config: ImageAnalyzerConfig = {
     types: [ImageAnalyzerType.SUBJECT, ImageAnalyzerType.TEXT]
   }
+  private aiController: ImageAnalyzerController = new ImageAnalyzerController()
+  private options: ImageAIOptions = {
+    types: [ImageAnalyzerType.SUBJECT, ImageAnalyzerType.TEXT],
+    aiController: this.aiController
+  }
 
   build() {
     Column() {
@@ -554,7 +574,7 @@ struct ImageAnalyzerExample {
         src: this.videoSrc,
         previewUri: this.previewUri,
         controller: this.controller
-      })
+      }, this.options)
         .width('100%')
         .height(600)
         .controls(false)
@@ -573,6 +593,9 @@ struct ImageAnalyzerExample {
         }).margin(5)
         Button('pause').onClick(() => {
           this.controller.pause() // 暂停播放
+        }).margin(5)
+        Button('getTypes').onClick(() => {
+            this.aiController.getImageAnalyzerSupportTypes()
         }).margin(5)
       }
     }

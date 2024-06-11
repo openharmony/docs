@@ -3298,6 +3298,11 @@ struct ImageAnalyzerExample {
     types: [ImageAnalyzerType.SUBJECT, ImageAnalyzerType.TEXT]
   }
   private img = new ImageBitmap('page/common/test.jpg')
+  private aiController: ImageAnalyzerController = new ImageAnalyzerController()
+  private options: ImageAIOptions = {
+    types: [ImageAnalyzerType.SUBJECT, ImageAnalyzerType.TEXT],
+    aiController: this.aiController
+  }
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -3318,6 +3323,12 @@ struct ImageAnalyzerExample {
         .height(80)
         .onClick(() => {
           this.context.stopImageAnalyzer()
+        })
+      Button('getTypes')
+        .width(80)
+        .height(80)
+        .onClick(() => {
+          this.aiController.getImageAnalyzerSupportTypes()
         })
       Canvas(this.context)
         .width(200)
