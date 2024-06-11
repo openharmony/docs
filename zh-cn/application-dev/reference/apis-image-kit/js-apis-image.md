@@ -5696,7 +5696,7 @@ PixelMap的初始化选项。
 
 | 名称          | 值       | 说明         |
 | ------------- | ----------| ------------ |
-| AUTO          | 0    | 自适应，根据[pixelmap](#pixelmap7)内容处理。即如果pixelmap本身为HDR，则会按照HDR内容进行编码；反之按照SDR内容解码。  |
+| AUTO          | 0    | 自适应，根据[pixelmap](#pixelmap7)内容处理。即如果pixelmap本身为HDR，则会按照HDR内容进行编码；反之按照SDR内容编码。  |
 | SDR           | 1    | 按照标准动态范围处理图片。   |
 
 ## 补充说明
