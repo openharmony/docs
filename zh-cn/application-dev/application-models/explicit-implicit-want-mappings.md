@@ -45,7 +45,7 @@
 - 待匹配应用组件的skills配置，声明其具备的能力（[module.json5配置文件](../quick-start/module-configuration-file.md)中的[skills标签](../quick-start/module-configuration-file.md#skills标签)参数）。
 
 
-系统将调用方传入的want参数（包含action、entities、uri、type和parameters属性）与已安装待匹配应用组件的skills配置（包含actions、entities、uris和type属性）依次进行匹配。当want参数五个属性匹配均未配置，隐式匹配失败。
+系统将调用方传入的want参数（包含action、entities、uri、type和parameters属性）与已安装待匹配应用组件的skills配置（包含actions、entities、uris和type属性）进行匹配。当want参数五个属性匹配均未配置，隐式匹配失败。
 - 当parameters中的linkFeature未配置或其对应的字符串为空时，只有当action、entities、uri和type四个属性均匹配通过时，此应用才会被应用选择器展示给用户进行选择。
 - 当配置了parameters中的linkFeature且其对应的字符串不为空时，系统将优先进行linkFeature匹配。如果linkFeature匹配成功，还需要匹配uri和type属性，均匹配成功则隐式匹配成功；否则，不进行后续属性匹配，匹配失败。
 
