@@ -165,7 +165,7 @@ Defines the schema of a KV store. You can create a **Schema** object and place i
 | Name   | Type                   | Readable| Writable| Description                      |
 | ------- | ----------------------- | ---- | ---- | -------------------------- |
 | root    | [FieldNode](#fieldnode) | Yes  | Yes  | Fields in **Value**.|
-| indexes | Array\<string>          | Yes  | Yes  | Indexes of the fields in **Value**. Indexes are created only for **FieldNode** with this parameter specified. If no index needs to be created, this parameter can be left empty. <br>Format: '$.field1', '$.field2'|
+| indexes | Array\<string>          | Yes  | Yes  | Indexes of the fields in **Value**. Indexes are created only for **FieldNode** with this parameter specified. If no index needs to be created, this parameter can be left empty. <br>Format: `'$.field1'`, `'$.field2'` |
 | mode    | number                  | Yes  | Yes  | Schema mode, which can be **0** (strict mode) or **1** (compatible mode).|
 | skip    | number                  | Yes  | Yes  | Number of bytes that can be skipped during the value check. The value range is [0, 4M-2].|
 
