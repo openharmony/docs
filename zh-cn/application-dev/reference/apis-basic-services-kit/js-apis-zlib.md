@@ -898,7 +898,7 @@ checksum.getCrc64Table().then((data) => {
 })
 ```
 
-## zlib.createZip12+
+## zlib.createZip<sup>12+</sup>
 
 createZip(): Promise&lt;Zip&gt;
 
@@ -928,7 +928,7 @@ zlib.createZip().then(data => {
 })
 ```
 
-## zlib.createZipSync12+
+## zlib.createZipSync<sup>12+</sup>
 
 createZipSync(): Zip
 
@@ -3875,7 +3875,7 @@ async function demo() {
 
 createGZip(): Promise&lt;GZip&gt;
 
-创建GZip对象，使用Promise异步返回。成功时返回GZip对象实例。
+创建GZip对象，使用Promise异步返回。成功时返回Gzip对象实例。
 
 **元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
