@@ -758,6 +758,13 @@ Nullable\<T> {
 | HIGH_QUALITY | 在BALANCED的基础上，尽可能填满行，在最后一行的权重上比较低，可能会出现最后一行留白比较多。 |
 | BALANCED     | 尽可能保证在不拆词的情况下，使一个段落中每一行的宽度相同。   |
 
+## TextSelectableMode<sup>12+</sup>
+| 名称         | 描述                                                         |
+| ------------ | ------------------------------------------------------------ |
+| SELECTABLE_UNFOCUSABLE  | 文本可选择，但不可获焦，设置属性selection、bindSelectionMenu、copyOption不影响当前行为。 |
+| SELECTABLE_FOCUSABLE | 文本可选择，可获焦并Touch后获得焦点。 |
+| UNSELECTABLE     | 文本不可选择，不可获焦，设置属性selection、bindSelectionMenu、copyOption都不生效。  |
+
 ## GestureJudgeResult<sup>11+</sup>
 
 **元服务API：** 从API version 12开始，该接口支持在元服务中使用。

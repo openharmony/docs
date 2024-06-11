@@ -661,7 +661,7 @@ on(type: 'error', callback: ErrorCallback): void
 | 5400103  | I/O error             |
 | 5400104  | Time out              |
 | 5400105  | Service Died.         |
-| 5400106  | Unsupport Format.     |
+| 5400106  | Unsupported Format.     |
 
 **示例：**
 
@@ -763,7 +763,7 @@ prepare(callback: AsyncCallback\<void>): void
 | 错误码ID | 错误信息                                   |
 | -------- | ------------------------------------------ |
 | 5400102  | Operation not allowed. Return by callback. |
-| 5400106  | Unsupport format. Return by callback.      |
+| 5400106  | Unsupported format. Return by callback.      |
 
 **示例：**
 
@@ -802,7 +802,7 @@ prepare(): Promise\<void>
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
 | 5400102  | Operation not allowed. Return by promise. |
-| 5400106  | Unsupport format. Return by promise.      |
+| 5400106  | Unsupported format. Return by promise.      |
 
 **示例：**
 
@@ -2276,6 +2276,8 @@ avPlayer.off('audioOutputDeviceChangeWithInfo');
 | SPEED_FORWARD_2_00_X | 4    | 表示视频播放正常播速的2.00倍。 |
 | SPEED_FORWARD_0_50_X<sup>12+</sup> | 5    | 表示视频播放正常播速的0.50倍。 |
 | SPEED_FORWARD_1_50_X<sup>12+</sup> | 6    | 表示视频播放正常播速的1.50倍。 |
+| SPEED_FORWARD_0_25_X<sup>12+</sup> | 8    | 表示视频播放正常播速的0.20倍。 |
+| SPEED_FORWARD_0_125_X<sup>12+</sup> | 9    | 表示视频播放正常播速的0.125倍。 |
 
 ## VideoScaleType<sup>9+</sup>
 
@@ -3512,7 +3514,7 @@ on(type: 'error', callback: ErrorCallback): void
 | 5400103  | I/O error. Return by callback.             |
 | 5400104  | Time out. Return by callback.              |
 | 5400105  | Service died. Return by callback.          |
-| 5400106  | Unsupport format. Return by callback.      |
+| 5400106  | Unsupported format. Return by callback.      |
 | 5400107  | Audio interrupted. Return by callback.     |
 
 **示例：**
@@ -6330,6 +6332,8 @@ setMimeType(mimeType: AVMimeTypes): void
 
 设置媒体MIME类型，以帮助播放器处理扩展的媒体源。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名   | 类型     | 必填 | 说明                 |
@@ -6339,6 +6343,8 @@ setMimeType(mimeType: AVMimeTypes): void
 ## AVMimeTypes<sup>12+</sup>
 
 媒体MIME类型，通过[setMimeType](#setmimetype12)设置。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Media.Core
 

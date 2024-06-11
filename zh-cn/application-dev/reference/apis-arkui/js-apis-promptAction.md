@@ -70,11 +70,11 @@ struct toastExample {
   }
 }
 ```
-API version 11及之前Toast样式
+API version 11及之前Toast样式。
 
 ![zh-cn_image_0001](figures/toast-api11.gif)
 
-API version 12及之后Toast样式
+API version 12及之后Toast样式。
 
 ![zh-cn_image_0001](figures/toast-api12.gif)
 
@@ -206,7 +206,7 @@ try {
 
 ![zh-cn_image_0002](figures/zh-cn_image_0002.gif)
 
-当弹窗的showInSubWindow属性为true时，弹窗可显示在窗口外
+当弹窗的showInSubWindow属性为true时，弹窗可显示在窗口外。
 
 ```ts
 import promptAction from '@ohos.promptAction';
@@ -463,7 +463,7 @@ struct Index {
   }
 }
 ```
-该示例定义了弹窗样式，如宽度、高度、背景色、阴影等等
+该示例定义了弹窗样式，如宽度、高度、背景色、阴影等等。
 ```ts
 import promptAction from '@ohos.promptAction'
 @Builder
@@ -666,10 +666,10 @@ closeCustomDialog(dialogId: number): void
 |  autoCancel<sup>12+</sup> |       boolean                                   | 否   | 点击遮障层时，是否关闭弹窗，true表示关闭弹窗。false表示不关闭弹窗。<br/>默认值：true |
 |  maskColor<sup>12+</sup> |        [ResourceColor](arkui-ts/ts-types.md#resourcecolor) | 否    | 自定义蒙层颜色。<br>默认值: 0x33000000              |
 | transition<sup>12+</sup>          | [TransitionEffect](arkui-ts/ts-transition-animation-component.md#transitioneffect10) | 否   | 设置弹窗显示和退出的过渡效果。<br/>**说明：**<br/> 1.如果不设置，则使用默认的显示/退出动效。<br/> 2.显示动效中按back键，打断显示动效，执行退出动效，动画效果为显示动效与退出动效的曲线叠加后的效果。<br/> 3.退出动效中按back键，不会打断退出动效，退出动效继续执行，继续按back键退出应用。                               |
-| onDidAppear<sup>12+</sup> | () => void | 否 | 弹窗弹出时的事件回调。<br />**说明：**<br />1.正常时序依次为：OnWillAppear>>onDidAppear>>(onDateAccept/onCancel/onDateChange)>>OnWillDisappear>>OnDidDisappear。<br />2.在onDidAppear内设置改变弹窗显示效果的回调事件，二次弹出生效。<br />3.快速点击弹出，消失弹窗时，存在OnWillDisappear在onDidAppear前生效。<br />4. 当弹窗入场动效未完成时关闭弹窗，该回调不会触发。  |
-| OnDidDisappear<sup>12+</sup> | () => void | 否 | 弹窗消失时的事件回调。<br />**说明：**<br />正常时序依次为：OnWillAppear>>onDidAppear>>(onDateAccept/onCancel/onDateChange)>>OnWillDisappear>>OnDidDisappear。 |
-| OnWillAppear<sup>12+</sup> | () => void | 否 | 弹窗显示动效前的事件回调。<br />**说明：**<br />1.正常时序依次为：OnWillAppear>>onDidAppear>>(onDateAccept/onCancel/onDateChange)>>OnWillDisappear>>OnDidDisappear。<br />2.在OnWillAppear内设置改变弹窗显示效果的回调事件，二次弹出生效。 |
-| OnWillDisappear<sup>12+</sup> | () => void | 否 | 弹窗退出动效前的事件回调。<br />**说明：**<br />1.正常时序依次为：OnWillAppear>>onDidAppear>>(onDateAccept/onCancel/onDateChange)>>OnWillDisappear>>OnDidDisappear。<br />2.快速点击弹出，消失弹窗时，存在OnWillDisappear在onDidAppear前生效。 |
+| onDidAppear<sup>12+</sup> | () => void | 否 | 弹窗弹出时的事件回调。<br />**说明：**<br />1.正常时序依次为：onWillAppear>>onDidAppear>>(onDateAccept/onCancel/onDateChange)>>onWillDisappear>>onDidDisappear。<br />2.在onDidAppear内设置改变弹窗显示效果的回调事件，二次弹出生效。<br />3.快速点击弹出，消失弹窗时，存在onWillDisappear在onDidAppear前生效。<br />4. 当弹窗入场动效未完成时关闭弹窗，该回调不会触发。 |
+| onDidDisappear<sup>12+</sup> | () => void | 否 | 弹窗消失时的事件回调。<br />**说明：**<br />正常时序依次为：onWillAppear>>onDidAppear>>(onDateAccept/onCancel/onDateChange)>>onWillDisappear>>onDidDisappear。 |
+| onWillAppear<sup>12+</sup> | () => void | 否 | 弹窗显示动效前的事件回调。<br />**说明：**<br />1.正常时序依次为：onWillAppear>>onDidAppear>>(onDateAccept/onCancel/onDateChange)>>onWillDisappear>>onDidDisappear。<br />2.在onWillAppear内设置改变弹窗显示效果的回调事件，二次弹出生效。 |
+| onWillDisappear<sup>12+</sup> | () => void | 否 | 弹窗退出动效前的事件回调。<br />**说明：**<br />1.正常时序依次为：onWillAppear>>onDidAppear>>(onDateAccept/onCancel/onDateChange)>>onWillDisappear>>onDidDisappear。<br />2.快速点击弹出，消失弹窗时，存在onWillDisappear在onDidAppear前生效。 |
 
 ## DismissDialogAction<sup>12+</sup>类型说明
 

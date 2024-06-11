@@ -888,23 +888,23 @@ type AssetMap = Map\<Tag, Value>
 
 | 名称                       | 值    | 说明 |
 | -------------------------- | ----- | ---- |
-| PERMISSION_DENIED | 201     |The caller doesn't have the permission.|
-| NOT_SYSTEM_APPLICATION | 202     |The caller is not a system application.|
-| INVALID_ARGUMENT | 401    |The argument is invalid.|
-| SERVICE_UNAVAILABLE | 24000001    |The ASSET service is unavailable.|
-| NOT_FOUND | 24000002    |The asset is not found.|
-| DUPLICATED | 24000003    |The asset already exists.|
-| ACCESS_DENIED | 24000004    |Access to the asset is denied.|
-| STATUS_MISMATCH | 24000005    |The screen lock status does not match.|
-| OUT_OF_MEMORY | 24000006    |Insufficient memory.|
-| DATA_CORRUPTED | 24000007    |The asset is corrupted.|
-| DATABASE_ERROR | 24000008   |The database operation failed.|
-| CRYPTO_ERROR | 24000009   |The cryptography operation failed.|
-| IPC_ERROR | 24000010   |IPC failed.|
-| BMS_ERROR | 24000011   |Calling the Bundle Manager service failed.|
-| ACCOUNT_ERROR | 24000012   |Calling the OS Account service failed.|
-| ACCESS_TOKEN_ERROR | 24000013   |Calling the Access Token service failed.|
-| FILE_OPERATION_ERROR | 24000014   |The file operation failed.|
-| GET_SYSTEM_TIME_ERROR | 24000015   |Getting the system time failed.|
-| LIMIT_EXCEEDED | 24000016   |The cache exceeds the limit.|
-| UNSUPPORTED | 24000017   |The capability is not supported.|
+| PERMISSION_DENIED | 201     |调用方无权限。|
+| NOT_SYSTEM_APPLICATION<sup>12+</sup> | 202     |调用方不是一个系统应用。|
+| INVALID_ARGUMENT | 401    |参数错误。|
+| SERVICE_UNAVAILABLE | 24000001    |关键资产服务不可用。|
+| NOT_FOUND | 24000002    |未找到关键资产。|
+| DUPLICATED | 24000003    |关键资产已存在。|
+| ACCESS_DENIED | 24000004    |拒绝访问关键资产。|
+| STATUS_MISMATCH | 24000005    |锁屏状态不匹配。|
+| OUT_OF_MEMORY | 24000006    |系统内存不足。|
+| DATA_CORRUPTED | 24000007    |关键资产损坏。|
+| DATABASE_ERROR | 24000008   |数据库操作失败。|
+| CRYPTO_ERROR | 24000009   |算法库操作失败。|
+| IPC_ERROR | 24000010   |进程通信错误。|
+| BMS_ERROR | 24000011   |包管理服务异常。|
+| ACCOUNT_ERROR | 24000012   |账号系统异常。|
+| ACCESS_TOKEN_ERROR | 24000013   |访问控制服务异常。|
+| FILE_OPERATION_ERROR | 24000014   |文件操作失败。|
+| GET_SYSTEM_TIME_ERROR | 24000015   |获取系统时间失败。|
+| LIMIT_EXCEEDED | 24000016   |缓存数量超限。|
+| UNSUPPORTED | 24000017   |该子功能不支持。|

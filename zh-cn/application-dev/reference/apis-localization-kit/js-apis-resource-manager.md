@@ -228,7 +228,7 @@ import { BusinessError } from '@ohos.base';
 | DEVICE_TYPE_CAR      | 0x02 | 汽车。   |
 | DEVICE_TYPE_TV       | 0x04 | 电视。  |
 | DEVICE_TYPE_WEARABLE | 0x06 | 穿戴。   |
-| DEVICE_TYPE_2IN1     | 0x07 | 2in1。   |
+| DEVICE_TYPE_2IN1<sup>11+</sup>     | 0x07 | 2in1。   |
 <!--RP1End-->
 
 ## ScreenDensity

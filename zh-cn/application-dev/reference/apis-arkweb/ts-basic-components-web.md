@@ -684,6 +684,10 @@ multiWindowAccess(multiWindow: boolean)
 horizontalScrollBarAccess(horizontalScrollBar: boolean)
 
 设置是否显示横向滚动条，包括系统默认滚动条和用户自定义滚动条。默认显示。
+> **说明：**
+>
+> - 通过@State变量控制横向滚动条的隐藏/显示后，需要调用controller.refresh()生效。
+> - 通过@State变量频繁动态改变时，建议切换开关变量和Web组件一一对应。
 
 **参数：**
 
@@ -701,10 +705,22 @@ horizontalScrollBarAccess(horizontalScrollBar: boolean)
   @Component
   struct WebComponent {
     controller: web_webview.WebviewController = new web_webview.WebviewController()
+    @State isShow: boolean = false
     build() {
       Column() {
+        //通过@State变量改变横向滚动条的隐藏/显示后，需调用this.controller.refresh()后生效
+        Button('refresh')
+        .onClick(() => {
+          this.isShow = true;
+          try {
+            this.controller.refresh();
+          } catch (error) {
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
         Web({ src: $rawfile('index.html'), controller: this.controller })
-        .horizontalScrollBarAccess(true)
+        .horizontalScrollBarAccess(this.isShow)
       }
     }
   }
@@ -739,6 +755,11 @@ verticalScrollBarAccess(verticalScrollBar: boolean)
 
 设置是否显示纵向滚动条，包括系统默认滚动条和用户自定义滚动条。默认显示。
 
+> **说明：**
+>
+> - 通过@State变量控制纵向滚动条的隐藏/显示后，需要调用controller.refresh()生效。
+> - 通过@State变量频繁动态改变时，建议切换开关变量和Web组件一一对应。
+
 **参数：**
 
 | 参数名               | 参数类型    | 必填   | 默认值  | 参数描述         |
@@ -755,10 +776,22 @@ verticalScrollBarAccess(verticalScrollBar: boolean)
   @Component
   struct WebComponent {
     controller: web_webview.WebviewController = new web_webview.WebviewController()
+    @State isShow: boolean = false
     build() {
       Column() {
+        //通过@State变量改变纵向滚动条的隐藏/显示后，需调用this.controller.refresh()后生效
+        Button('refresh')
+        .onClick(() => {
+          this.isShow = true;
+          try {
+            this.controller.refresh();
+          } catch (error) {
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
         Web({ src: $rawfile('index.html'), controller: this.controller })
-        .verticalScrollBarAccess(true)
+        .verticalScrollBarAccess(this.isShow)
       }
     }
   }
@@ -2900,7 +2933,7 @@ onShowFileSelector(callback: Callback\<OnShowFileSelectorEvent, boolean\>)
    @Component
    struct WebComponent {
      controller: webview.WebviewController = new webview.WebviewController()
- 
+
      build() {
        Column() {
          Web({ src: $rawfile('index.html'), controller: this.controller })
@@ -5354,7 +5387,7 @@ type WebKeyboardCallback = (keyboardCallbackInfo: WebKeyboardCallbackInfo) => We
 | 名称             | 类型      | 可读   | 可写   | 必填   | 说明                                       |
 | -------------- | ------- | ---- | ---- | ---- | ---------------------------------------- |
 | useSystemKeyboard | boolean  | 是    | 是    | 是    | 是否使用系统默认软键盘。 |
-| enterKeyType | [enterKeyType](../apis-ime-kit/js-apis-inputmethod.md#enterkeytype10) | 是    | 是    | 否    | 指定系统软键盘enter键的类型，取值范围见输入框架的定义[enterKeyType](../apis-ime-kit/js-apis-inputmethod.md#enterkeytype10)，该参数为可选参数，当useSystemKeyboard为true，并且设置了有效的enterKeyType时候，才有效。|
+| enterKeyType | number | 是    | 是    | 否    | 指定系统软键盘enter键的类型，取值范围见输入框架的定义[EnterKeyType](../apis-ime-kit/js-apis-inputmethod.md#enterkeytype10)，该参数为可选参数，当useSystemKeyboard为true，并且设置了有效的enterKeyType时候，才有效。|
 | customKeyboard | [CustomBuilder](../apis-arkui/arkui-ts/ts-types.md#custombuilder8) | 是    | 是    | 否    | 指定自定义键盘组件builder，可选参数，当useSystemKeyboard为false时，需要设置该参数，然后web组件会拉起该自定义键盘。
 
 ## WebKeyboardController<sup>12+</sup>
@@ -5401,7 +5434,7 @@ deleteBackward(length: number): void
 
 sendFunctionKey(key: number): void
 
-插入功能按键，目前仅支持enter键类型，取值见[enterKeyType](../apis-ime-kit/js-apis-inputmethod.md#enterkeytype10)。
+插入功能按键，目前仅支持enter键类型，取值见[EnterKeyType](../apis-ime-kit/js-apis-inputmethod.md#enterkeytype10)。
 
 **参数：**
 
@@ -5414,6 +5447,46 @@ sendFunctionKey(key: number): void
 close(): void
 
 关闭自定义键盘。
+
+### onAdsBlocked<sup>12+</sup>
+
+onAdsBlocked(callback: OnAdsBlockedCallback)
+
+一个页面发生广告过滤后，通过此回调接口通知过滤的详细信息。由于页面可能随时发生变化并不断产生网络请求，为了减少通知频次、降低对页面加载过程的影响，仅在页面加载完成时进行首次通知，此后发生的过滤将间隔1秒钟上报，无广告过滤则无通知。
+
+**参数：**
+
+| 参数名          | 类型                                                                         | 说明                    |
+| -------------- | --------------------------------------------------------------------------- | ---------------------- |
+| callback       | [OnAdsBlockedCallback](#onadsblockedcallback12) | onAdsBlocked的回调。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
+  @Entry
+  @Component
+  struct WebComponent {
+    @State totalAdsBlockCounts: number = 0;
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+
+    build() {
+      Column() {
+        Web({ src: 'https://www.example.com', controller: this.controller })
+        .onAdsBlocked((details: AdsBlockedDetails) => {
+          if (details) {
+            console.log(' Blocked ' + details.adsBlocked.length + ' in ' + details.url)
+            let adList: Array<string> = Array.from(new Set(details.adsBlocked))
+            this.totalAdsBlockCounts += adList.length;
+            console.log('Total blocked counts :' + this.totalAdsBlockCounts)
+          }
+        })
+      }
+    }
+  }
+  ```
 
 ## ConsoleMessage
 
@@ -7916,3 +7989,23 @@ type OnViewportFitChangedCallback = (viewportFit: ViewportFit) => void
 | methodList | Array\<string\>                          | 是    | 参与注册的应用侧JavaScript对象的同步方法。                 |
 | controller | [WebviewController<sup>9+</sup>](js-apis-webview.md#webviewcontroller) \| [WebController](#webcontroller) | 是    | -    | 控制器。从API Version 9开始，WebController不再维护，建议使用WebviewController替代。 |
 | asyncMethodList<sup>12+</sup>  | Array\<string\>      | 否    | 参与注册的应用侧JavaScript对象的异步方法。异步方法无法获取返回值。   |
+
+## AdsBlockedDetails<sup>12+</sup>
+
+发生广告拦截时，广告资源信息。
+
+| 名称 | 类型                                                                          | 描述                    |
+| ------- | -------------------------------------------------------------------------------- | ------------------------- |
+| url | string  | 发生广告过滤的页面url。 |
+| adsBlocked | Array\<string\>  | 被过滤的资源的url或dompath标识，被过滤的多个对象url相同则可能出现重复元素。 |
+
+## OnAdsBlockedCallback<sup>12+</sup>
+
+type OnAdsBlockedCallback = (details: AdsBlockedDetails) => void
+
+当页面发生广告过滤时触发此回调。
+**参数：**
+
+| 参数名               | 参数类型                                        | 参数描述                         |
+| -------------------- | ----------------------------------------------- | -------------------------------- |
+| details | [AdsBlockedDetails](#adsblockeddetails12) | 发生广告拦截时，广告资源信息。 |

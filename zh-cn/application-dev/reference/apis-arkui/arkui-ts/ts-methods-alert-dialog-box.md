@@ -52,6 +52,7 @@ static show(value: AlertDialogParamWithConfirm | AlertDialogParamWithButtons | A
 | borderColor<sup>12+</sup>         | [ResourceColor](ts-types.md#resourcecolor)&nbsp;\|&nbsp;[EdgeColors](ts-types.md#edgecolors9)&nbsp;\|&nbsp;[LocalizedEdgeColors](ts-types.md#LocalizedEdgeColors12) | 否   | 设置弹窗背板的边框颜色。<br/>默认值：Color.Black<br/> 如果使用borderColor属性，需要和borderWidth属性一起使用。**说明：**<br/>当borderColor属性类型为LocalizedEdgeColors时，支持随语言习惯改变布局顺序。|
 | borderStyle<sup>12+</sup>         | [BorderStyle](ts-appendix-enums.md#borderstyle)&nbsp;\|&nbsp;[EdgeStyles](ts-types.md#edgestyles9) | 否   | 设置弹窗背板的边框样式。<br/>默认值：BorderStyle。<br/> 如果使用borderStyle属性，需要和borderWidth属性一起使用。 |
 | shadow<sup>12+</sup>              | [ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明)&nbsp;\|&nbsp;[ShadowStyle](ts-universal-attributes-image-effect.md#shadowstyle10枚举说明) | 否   | 设置弹窗背板的阴影。 <br /> 当设备为2in1时，默认场景下获焦阴影值为ShadowStyle.OUTER_FLOATING_MD，失焦为ShadowStyle.OUTER_FLOATING_SM|
+| textStyle<sup>12+</sup>              | [TextStyle](#textstyle12类型说明) | 否   | 设置弹窗message内容的文本样式。 |
 
 ## AlertDialogParamWithConfirm对象说明
 
@@ -189,6 +190,12 @@ Rectangle是各种Dialog中maskRect参数的类型。
 | PRESS_BACK      | 点击三键back、左滑/右滑、键盘ESC。  |
 | TOUCH_OUTSIDE   | 点击遮障层时。                     |
 | CLOSE_BUTTON    | 点击关闭按钮。                     |
+
+## TextStyle<sup>12+</sup>类型说明
+
+| 名称     | 类型                           | 必填 | 描述                                |
+|--------|------------------------------|----|-----------------------------------|
+| wordBreak      | [WordBreak](ts-appendix-enums.md#wordbreak11) | 否  | 弹窗message内容的文本截断方式。<br/>默认值：WordBreak.BREAK_ALL |
 
 ## 示例
 

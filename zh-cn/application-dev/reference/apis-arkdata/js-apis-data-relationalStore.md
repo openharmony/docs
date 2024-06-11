@@ -16,7 +16,7 @@
 ## 导入模块
 
 ```ts
-import relationalStore from '@ohos.data.relationalStore';
+import { relationalStore } from '@kit.ArkData';
 ```
 
 ## relationalStore.getRdbStore
@@ -63,8 +63,8 @@ getRdbStore(context: Context, config: StoreConfig, callback: AsyncCallback&lt;Rd
 FA模型示例：
 
 ```js
-import featureAbility from '@ohos.ability.featureAbility';
-import { BusinessError } from "@ohos.base";
+import { featureAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let store: relationalStore.RdbStore | undefined = undefined;
 let context = featureAbility.getContext(); 
@@ -87,9 +87,9 @@ relationalStore.getRdbStore(context, STORE_CONFIG, (err: BusinessError, rdbStore
 Stage模型示例：
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import window from '@ohos.window';
-import { BusinessError } from "@ohos.base";
+import { UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let store: relationalStore.RdbStore | undefined = undefined;
 
@@ -159,8 +159,8 @@ getRdbStore(context: Context, config: StoreConfig): Promise&lt;RdbStore&gt;
 FA模型示例：
 
 ```js
-import featureAbility from '@ohos.ability.featureAbility';
-import { BusinessError } from "@ohos.base";
+import { featureAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let store: relationalStore.RdbStore | undefined = undefined;
 let context = featureAbility.getContext(); 
@@ -181,9 +181,9 @@ relationalStore.getRdbStore(context, STORE_CONFIG).then(async (rdbStore: relatio
 Stage模型示例：
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import window from '@ohos.window';
-import { BusinessError } from "@ohos.base";
+import { UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let store: relationalStore.RdbStore | undefined = undefined;
 
@@ -237,8 +237,8 @@ deleteRdbStore(context: Context, name: string, callback: AsyncCallback&lt;void&g
 FA模型示例：
 
 ```js
-import featureAbility from '@ohos.ability.featureAbility';
-import { BusinessError } from "@ohos.base";
+import { featureAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let store: relationalStore.RdbStore | undefined = undefined;
 let context = featureAbility.getContext(); 
@@ -256,9 +256,9 @@ relationalStore.deleteRdbStore(context, "RdbTest.db", (err: BusinessError) => {
 Stage模型示例：
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import window from '@ohos.window';
-import { BusinessError } from "@ohos.base";
+import { UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let store: relationalStore.RdbStore | undefined = undefined;
 
@@ -314,8 +314,8 @@ deleteRdbStore(context: Context, name: string): Promise&lt;void&gt;
 FA模型示例：
 
 ```js
-import featureAbility from '@ohos.ability.featureAbility';
-import { BusinessError } from "@ohos.base";
+import { featureAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let store: relationalStore.RdbStore | undefined = undefined;
 let context = featureAbility.getContext(); 
@@ -331,9 +331,9 @@ relationalStore.deleteRdbStore(context, "RdbTest.db").then(()=>{
 Stage模型示例：
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import window from '@ohos.window';
-import { BusinessError } from "@ohos.base";
+import { UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let store: relationalStore.RdbStore | undefined = undefined;
 
@@ -384,8 +384,8 @@ deleteRdbStore(context: Context, config: StoreConfig, callback: AsyncCallback\<v
 FA模型示例：
 
 ```js
-import featureAbility from '@ohos.ability.featureAbility';
-import { BusinessError } from "@ohos.base";
+import { featureAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let store: relationalStore.RdbStore | undefined = undefined;
 let context = featureAbility.getContext(); 
@@ -408,9 +408,9 @@ relationalStore.deleteRdbStore(context, STORE_CONFIG, (err: BusinessError) => {
 Stage模型示例：
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import window from '@ohos.window';
-import { BusinessError } from "@ohos.base";
+import { UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let store: relationalStore.RdbStore | undefined = undefined;
 
@@ -475,8 +475,8 @@ deleteRdbStore(context: Context, config: StoreConfig): Promise\<void>
 FA模型示例：
 
 ```js
-import featureAbility from '@ohos.ability.featureAbility';
-import { BusinessError } from "@ohos.base";
+import { featureAbility } from "@kit.AbilityKit";
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let store: relationalStore.RdbStore | undefined = undefined;
 let context = featureAbility.getContext(); 
@@ -497,9 +497,9 @@ relationalStore.deleteRdbStore(context, STORE_CONFIG).then(()=>{
 Stage模型示例：
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import window from '@ohos.window';
-import { BusinessError } from "@ohos.base";
+import { UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let store: relationalStore.RdbStore | undefined = undefined;
 
@@ -532,6 +532,7 @@ class EntryAbility extends UIAbility {
 | customDir<sup>11+</sup> | string | 否 | 数据库自定义路径。<br/>**使用约束：** 数据库路径大小限制为128字节，如果超过该大小会开库失败，返回错误。<br/>从API version 11开始，支持此可选参数。数据库将在如下的目录结构中被创建：context.databaseDir + "/rdb/" + customDir，其中context.databaseDir是应用沙箱对应的路径，"/rdb/"表示创建的是关系型数据库，customDir表示自定义的路径。当此参数不填时，默认在本应用沙箱目录下创建RdbStore实例。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
 | autoCleanDirtyData<sup>11+<sup> | boolean | 否 | 指定是否自动清理云端删除后同步到本地的数据，true表示自动清理，false表示手动清理，默认自动清理。<br/>对于端云协同的数据库，当云端删除的数据同步到设备端时，可通过该参数设置设备端是否自动清理。手动清理可以通过[cleanDirtyData<sup>11+</sup>](#cleandirtydata11)接口清理。<br/>从API version 11开始，支持此可选参数。<br/>**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client |
 | allowRebuild<sup>12+<sup> | boolean | 否 | 指定数据库是否支持损坏时自动重建，默认不重建。<br/>true:自动重建。<br/>false:不自动重建。<br/>从API version 12开始，支持此可选参数。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
+| isReadOnly<sup>12+<sup> | boolean | 否 | 指定数据库是否只读，默认为数据库可读写。<br/>true:只允许从数据库读取数据，不允许对数据库进行写操作。<br/>false:允许对数据库进行读写操作。<br/>从API version 12开始，支持此可选参数。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
 
 ## SecurityLevel
 
@@ -611,14 +612,16 @@ class EntryAbility extends UIAbility {
 
 ## ValuesBucket
 
+type ValuesBucket = Record<string, ValueType>
+
 用于存储键值对的类型。不支持Sendable跨线程传递。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
-| 键类型 | 值类型                   |
-| ------ | ----------------------- |
-| number | 主键的类型可以是number。 |
-| string | 主键的类型可以是string。 |
+| 类型              | 说明                           |
+| ---------------- | ---------------------------- |
+| string | 表示键的类型为string。 |
+| ValueType | 表示值的类型为[ValueType](#valuetype)。 |
 
 ## PRIKeyType<sup>10+</sup> 
 
@@ -911,14 +914,14 @@ inDevices(devices: Array&lt;string&gt;): RdbPredicates
 **示例：**
 
 ```ts
-import deviceManager from '@ohos.distributedDeviceManager';
+import { distributedDeviceManager } from '@kit.DistributedServiceKit';
 
-let dmInstance: deviceManager.DeviceManager;
+let dmInstance: distributedDeviceManager.DeviceManager;
 let deviceIds: Array<string> = [];
 
 try {
-  dmInstance = deviceManager.createDeviceManager("com.example.appdatamgrverify");
-  let devices: Array<deviceManager.DeviceBasicInfo> = dmInstance.getAvailableDeviceListSync();
+  dmInstance = distributedDeviceManager.createDeviceManager("com.example.appdatamgrverify");
+  let devices: Array<distributedDeviceManager.DeviceBasicInfo> = dmInstance.getAvailableDeviceListSync();
   for (let i = 0; i < devices.length; i++) {
     deviceIds[i] = devices[i].networkId!;
   }
@@ -2090,7 +2093,7 @@ insert(table: string, values: ValuesBucket, callback: AsyncCallback&lt;number&gt
 **示例：**
 
 ```ts
-import { ValuesBucket } from '@ohos.data.ValuesBucket';
+import { ValuesBucket } from '@kit.ArkData';
 
 let value1 = "Lisa";
 let value2 = 18;
@@ -2175,7 +2178,7 @@ insert(table: string, values: ValuesBucket,  conflict: ConflictResolution, callb
 **示例：**
 
 ```ts
-import { ValuesBucket } from '@ohos.data.ValuesBucket';
+import { ValuesBucket } from '@kit.ArkData';
 
 let value1 = "Lisa";
 let value2 = 18;
@@ -2265,8 +2268,8 @@ insert(table: string, values: ValuesBucket):Promise&lt;number&gt;
 **示例：**
 
 ```ts
-import { ValuesBucket } from '@ohos.data.ValuesBucket';
-import { BusinessError } from "@ohos.base";
+import { ValuesBucket } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let value1 = "Lisa";
 let value2 = 18;
@@ -2354,8 +2357,8 @@ insert(table: string, values: ValuesBucket,  conflict: ConflictResolution):Promi
 **示例：**
 
 ```ts
-import { ValuesBucket } from '@ohos.data.ValuesBucket';
-import { BusinessError } from "@ohos.base";
+import { ValuesBucket } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let value1 = "Lisa";
 let value2 = 18;
@@ -2443,8 +2446,8 @@ insertSync(table: string, values: ValuesBucket,  conflict?: ConflictResolution):
 **示例：**
 
 ```ts
-import { ValuesBucket } from '@ohos.data.ValuesBucket';
-import { BusinessError } from "@ohos.base";
+import { ValuesBucket } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let value1 = "Lisa";
 let value2 = 18;
@@ -2527,7 +2530,7 @@ batchInsert(table: string, values: Array&lt;ValuesBucket&gt;, callback: AsyncCal
 **示例：**
 
 ```ts
-import { ValuesBucket } from '@ohos.data.ValuesBucket';
+import { ValuesBucket } from '@kit.ArkData';
 
 let value1 = "Lisa";
 let value2 = 18;
@@ -2624,8 +2627,8 @@ batchInsert(table: string, values: Array&lt;ValuesBucket&gt;):Promise&lt;number&
 **示例：**
 
 ```ts
-import { ValuesBucket } from '@ohos.data.ValuesBucket';
-import { BusinessError } from "@ohos.base";
+import { ValuesBucket } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let value1 = "Lisa";
 let value2 = 18;
@@ -2720,8 +2723,8 @@ batchInsertSync(table: string, values: Array&lt;ValuesBucket&gt;):number
 **示例：**
 
 ```ts
-import { ValuesBucket } from '@ohos.data.ValuesBucket';
-import { BusinessError } from "@ohos.base";
+import { ValuesBucket } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let value1 = "Lisa";
 let value2 = 18;
@@ -2813,7 +2816,7 @@ update(values: ValuesBucket, predicates: RdbPredicates, callback: AsyncCallback&
 **示例：**
 
 ```ts
-import { ValuesBucket } from '@ohos.data.ValuesBucket';
+import { ValuesBucket } from '@kit.ArkData';
 
 let value1 = "Rose";
 let value2 = 22;
@@ -2900,7 +2903,7 @@ update(values: ValuesBucket, predicates: RdbPredicates, conflict: ConflictResolu
 **示例：**
 
 ```ts
-import { ValuesBucket } from '@ohos.data.ValuesBucket';
+import { ValuesBucket } from '@kit.ArkData';
 
 let value1 = "Rose";
 let value2 = 22;
@@ -2991,8 +2994,8 @@ update(values: ValuesBucket, predicates: RdbPredicates):Promise&lt;number&gt;
 **示例：**
 
 ```ts
-import { ValuesBucket } from '@ohos.data.ValuesBucket';
-import { BusinessError } from "@ohos.base";
+import { ValuesBucket } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let value1 = "Rose";
 let value2 = 22;
@@ -3082,8 +3085,8 @@ update(values: ValuesBucket, predicates: RdbPredicates, conflict: ConflictResolu
 **示例：**
 
 ```ts
-import { ValuesBucket } from '@ohos.data.ValuesBucket';
-import { BusinessError } from "@ohos.base";
+import { ValuesBucket } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let value1 = "Rose";
 let value2 = 22;
@@ -3173,8 +3176,8 @@ updateSync(values: ValuesBucket, predicates: RdbPredicates, conflict?: ConflictR
 **示例：**
 
 ```ts
-import { ValuesBucket } from '@ohos.data.ValuesBucket';
-import { BusinessError } from "@ohos.base";
+import { ValuesBucket } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let value1 = "Rose";
 let value2 = 22;
@@ -3321,7 +3324,7 @@ delete(predicates: RdbPredicates):Promise&lt;number&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from "@ohos.base";
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Lisa");
@@ -3384,7 +3387,7 @@ deleteSync(predicates: RdbPredicates):number
 **示例：**
 
 ```ts
-import { BusinessError } from "@ohos.base";
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Lisa");
@@ -3538,7 +3541,7 @@ query(predicates: RdbPredicates, columns?: Array&lt;string&gt;):Promise&lt;Resul
 **示例：**
 
 ```ts
-import { BusinessError } from "@ohos.base";
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Rose");
@@ -3565,7 +3568,7 @@ if(store != undefined) {
 
 querySync(predicates: RdbPredicates, columns?: Array&lt;string&gt;):ResultSet
 
-根据指定条件查询数据库中的数据。由于共享内存大小限制为2Mb，因此单条数据的大小需小于2Mb，否则会查询失败。
+根据指定条件查询数据库中的数据。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -3596,7 +3599,7 @@ querySync(predicates: RdbPredicates, columns?: Array&lt;string&gt;):ResultSet
 **示例：**
 
 ```ts
-import { BusinessError } from "@ohos.base";
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Rose");
@@ -3656,14 +3659,14 @@ remoteQuery(device: string, table: string, predicates: RdbPredicates, columns: A
 **示例：**
 
 ```ts
-import deviceManager from '@ohos.distributedDeviceManager';
-import { BusinessError } from "@ohos.base";
+import { distributedDeviceManager } from '@kit.DistributedServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let dmInstance: deviceManager.DeviceManager;
+let dmInstance: distributedDeviceManager.DeviceManager;
 let deviceId: string | undefined = undefined;
 
 try {
-  dmInstance = deviceManager.createDeviceManager("com.example.appdatamgrverify");
+  dmInstance = distributedDeviceManager.createDeviceManager("com.example.appdatamgrverify");
   let devices = dmInstance.getAvailableDeviceListSync();
   if(deviceId != undefined) {
     deviceId = devices[0].networkId;
@@ -3736,15 +3739,15 @@ remoteQuery(device: string, table: string, predicates: RdbPredicates, columns: A
 **示例：**
 
 ```ts
-import deviceManager from '@ohos.distributedDeviceManager';
-import { BusinessError } from "@ohos.base";
+import { distributedDeviceManager } from '@kit.DistributedServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let dmInstance: deviceManager.DeviceManager;
 let deviceId: string | undefined = undefined;
 
 try {
-  dmInstance = deviceManager.createDeviceManager("com.example.appdatamgrverify");
-  let devices: Array<deviceManager.DeviceBasicInfo> = dmInstance.getAvailableDeviceListSync();
+  dmInstance = distributedDeviceManager.createDeviceManager("com.example.appdatamgrverify");
+  let devices: Array<distributedDeviceManager.DeviceBasicInfo> = dmInstance.getAvailableDeviceListSync();
   if(devices != undefined) {
     deviceId = devices[0].networkId;
   }
@@ -3911,7 +3914,7 @@ querySql(sql: string, bindArgs?: Array&lt;ValueType&gt;):Promise&lt;ResultSet&gt
 **示例：**
 
 ```ts
-import { BusinessError } from "@ohos.base";
+import { BusinessError } from '@kit.BasicServicesKit';
 
 if(store != undefined) {
   (store as relationalStore.RdbStore).querySql("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = 'sanguo'").then((resultSet: relationalStore.ResultSet) => {
@@ -3967,7 +3970,7 @@ querySqlSync(sql: string, bindArgs?: Array&lt;ValueType&gt;):ResultSet
 **示例：**
 
 ```ts
-import { BusinessError } from "@ohos.base";
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Rose");
@@ -4166,7 +4169,7 @@ executeSql(sql: string, bindArgs?: Array&lt;ValueType&gt;):Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from "@ohos.base";
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const SQL_DELETE_TABLE = "DELETE FROM test WHERE name = 'zhangsan'"
 if(store != undefined) {
@@ -4234,7 +4237,7 @@ execute(sql: string, args?: Array&lt;ValueType&gt;):Promise&lt;ValueType&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from "@ohos.base";
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // 校验数据库完整性
 if(store != undefined) {
@@ -4325,7 +4328,7 @@ execute(sql: string, txId: number, args?: Array&lt;ValueType&gt;): Promise&lt;Va
 **示例：**
 
 ```ts
-import { BusinessError } from "@ohos.base";
+import { BusinessError } from '@kit.BasicServicesKit';
 if(store != null) {
   let txId : number;
   (store as relationalStore.RdbStore).beginTrans().then((txId : number) => {
@@ -4397,7 +4400,7 @@ executeSync(sql: string, args?: Array&lt;ValueType&gt;): ValueType
 **示例：**
 
 ```ts
-import { BusinessError } from "@ohos.base";
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // 校验数据库完整性
 if(store != undefined) {
@@ -4544,7 +4547,7 @@ getModifyTime(table: string, columnName: string, primaryKeys: PRIKeyType[]): Pro
 **示例：**
 
 ```ts
-import { BusinessError } from "@ohos.base";
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let PRIKey = [1, 2, 3];
 if(store != undefined) {
@@ -4597,8 +4600,7 @@ beginTransaction():void
 **示例：**
 
 ```ts
-import featureAbility from '@ohos.ability.featureAbility'
-import { ValuesBucket } from '@ohos.data.ValuesBucket';
+import { ValuesBucket } from '@kit.ArkData';
 
 let value1 = "Lisa";
 let value2 = 18;
@@ -4668,7 +4670,7 @@ beginTrans(): Promise&lt;number&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from "@ohos.base";
+import { BusinessError } from '@kit.BasicServicesKit';
 if(store != null) {
   let txId : number;
   (store as relationalStore.RdbStore).beginTrans().then((txId : number) => {
@@ -4722,7 +4724,7 @@ commit():void
 **示例：**
 
 ```ts
-import { ValuesBucket } from '@ohos.data.ValuesBucket';
+import { ValuesBucket } from '@kit.ArkData';
 
 let value1 = "Lisa";
 let value2 = 18;
@@ -4794,7 +4796,7 @@ commit(txId : number):Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from "@ohos.base";
+import { BusinessError } from '@kit.BasicServicesKit';
 if(store != null) {
   let txId : number;
   (store as relationalStore.RdbStore).beginTrans().then((txId : number) => {
@@ -4848,7 +4850,7 @@ rollBack():void
 **示例：**
 
 ```ts
-import { ValuesBucket } from '@ohos.data.ValuesBucket';
+import { ValuesBucket } from '@kit.ArkData';
 
 let value1 = "Lisa";
 let value2 = 18;
@@ -4927,7 +4929,7 @@ rollback(txId : number):Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from "@ohos.base";
+import { BusinessError } from '@kit.BasicServicesKit';
 if(store != null) {
   let txId : number;
   (store as relationalStore.RdbStore).beginTrans().then((txId : number) => {
@@ -5048,7 +5050,7 @@ backup(destName:string): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from "@ohos.base";
+import { BusinessError } from '@kit.BasicServicesKit';
 
 if(store != undefined) {
   let promiseBackup = (store as relationalStore.RdbStore).backup("dbBackup.db");
@@ -5164,7 +5166,7 @@ restore(srcName:string): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from "@ohos.base";
+import { BusinessError } from '@kit.BasicServicesKit';
 
 if(store != undefined) {
   let promiseRestore = (store as relationalStore.RdbStore).restore("dbBackup.db");
@@ -5254,7 +5256,7 @@ if(store != undefined) {
 **示例：**
 
 ```ts
-import { BusinessError } from "@ohos.base";
+import { BusinessError } from '@kit.BasicServicesKit';
 
 if(store != undefined) {
   (store as relationalStore.RdbStore).setDistributedTables(["EMPLOYEE"]).then(() => {
@@ -5395,7 +5397,7 @@ if(store != undefined) {
 **示例：**
 
 ```ts
-import { BusinessError } from "@ohos.base";
+import { BusinessError } from '@kit.BasicServicesKit';
 
 if(store != undefined) {
   (store as relationalStore.RdbStore).setDistributedTables(["EMPLOYEE"], relationalStore.DistributedType.DISTRIBUTED_CLOUD, {
@@ -5444,13 +5446,13 @@ obtainDistributedTableName(device: string, table: string, callback: AsyncCallbac
 **示例：**
 
 ```ts
-import deviceManager from '@ohos.distributedDeviceManager';
+import { distributedDeviceManager } from '@kit.DistributedServiceKit';
 
-let dmInstance: deviceManager.DeviceManager;
+let dmInstance: distributedDeviceManager.DeviceManager;
 let deviceId: string | undefined = undefined;
 
 try {
-  dmInstance = deviceManager.createDeviceManager("com.example.appdatamgrverify");
+  dmInstance = distributedDeviceManager.createDeviceManager("com.example.appdatamgrverify");
   let devices = dmInstance.getAvailableDeviceListSync();
   deviceId = devices[0].networkId;
 } catch (err) {
@@ -5511,14 +5513,14 @@ if(store != undefined && deviceId != undefined) {
 **示例：**
 
 ```ts
-import deviceManager from '@ohos.distributedDeviceManager';
-import { BusinessError } from "@ohos.base";
+import { distributedDeviceManager } from '@kit.DistributedServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let dmInstance: deviceManager.DeviceManager;
+let dmInstance: distributedDeviceManager.DeviceManager;
 let deviceId: string | undefined = undefined;
 
 try {
-  dmInstance = deviceManager.createDeviceManager("com.example.appdatamgrverify");
+  dmInstance = distributedDeviceManager.createDeviceManager("com.example.appdatamgrverify");
   let devices = dmInstance.getAvailableDeviceListSync();
   deviceId = devices[0].networkId;
 } catch (err) {
@@ -5568,14 +5570,14 @@ sync(mode: SyncMode, predicates: RdbPredicates, callback: AsyncCallback&lt;Array
 **示例：**
 
 ```ts
-import deviceManager from '@ohos.distributedDeviceManager';
+import { distributedDeviceManager } from '@kit.DistributedServiceKit';
 
-let dmInstance: deviceManager.DeviceManager;
+let dmInstance: distributedDeviceManager.DeviceManager;
 let deviceIds: Array<string> = [];
 
 try {
-  dmInstance = deviceManager.createDeviceManager("com.example.appdatamgrverify");
-  let devices: Array<deviceManager.DeviceBasicInfo> = dmInstance.getAvailableDeviceListSync();
+  dmInstance = distributedDeviceManager.createDeviceManager("com.example.appdatamgrverify");
+  let devices: Array<distributedDeviceManager.DeviceBasicInfo> = dmInstance.getAvailableDeviceListSync();
   for (let i = 0; i < devices.length; i++) {
     deviceIds[i] = devices[i].networkId!;
   }
@@ -5638,15 +5640,15 @@ if(store != undefined) {
 **示例：**
 
 ```ts
-import deviceManager from '@ohos.distributedDeviceManager';
-import { BusinessError } from "@ohos.base";
+import { distributedDeviceManager } from '@kit.DistributedServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let dmInstance: deviceManager.DeviceManager;
+let dmInstance: distributedDeviceManager.DeviceManager;
 let deviceIds: Array<string> = [];
 
 try {
-  dmInstance = deviceManager.createDeviceManager("com.example.appdatamgrverify");
-  let devices: Array<deviceManager.DeviceBasicInfo> = dmInstance.getAvailableDeviceListSync();
+  dmInstance = distributedDeviceManager.createDeviceManager("com.example.appdatamgrverify");
+  let devices: Array<distributedDeviceManager.DeviceBasicInfo> = dmInstance.getAvailableDeviceListSync();
   for (let i = 0; i < devices.length; i++) {
     deviceIds[i] = devices[i].networkId!;
   }
@@ -5752,7 +5754,7 @@ cloudSync(mode: SyncMode, progress: Callback&lt;ProgressDetails&gt;): Promise&lt
 **示例：**
 
 ```ts
-import { BusinessError } from "@ohos.base";
+import { BusinessError } from '@kit.BasicServicesKit';
 
 if(store != undefined) {
   (store as relationalStore.RdbStore).cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, (progressDetail: relationalStore.ProgressDetails) => {
@@ -5851,7 +5853,7 @@ cloudSync(mode: SyncMode, tables: string[], progress: Callback&lt;ProgressDetail
 **示例：**
 
 ```ts
-import { BusinessError } from "@ohos.base";
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const tables = ["table1", "table2"];
 
@@ -5895,7 +5897,7 @@ on(event: 'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;stri
 **示例：**
 
 ```ts
-import deviceManager from '@ohos.distributedHardware.deviceManager';
+import { distributedDeviceManager } from '@kit.DistributedServiceKit';
 
 let devices: string | undefined = undefined;
 
@@ -5946,7 +5948,7 @@ on(event: 'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;stri
 **示例1：type为SUBSCRIBE_TYPE_REMOTE**
 
 ```ts
-import deviceManager from '@ohos.distributedHardware.deviceManager';
+import { distributedDeviceManager } from '@kit.DistributedServiceKit';
 
 let devices: string | undefined = undefined;
 
@@ -6079,7 +6081,7 @@ on(event: 'autoSyncProgress', progress: Callback&lt;ProgressDetails&gt;): void
 **示例：**
 
 ```ts
-import {BusinessError} from "@ohos.base";
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   if(store != undefined) {
@@ -6172,7 +6174,7 @@ off(event:'dataChange', type: SubscribeType, observer?: Callback&lt;Array&lt;str
 **示例：**
 
 ```ts
-import deviceManager from '@ohos.distributedHardware.deviceManager';
+import { distributedDeviceManager } from '@kit.DistributedServiceKit';
 
 let devices: string | undefined = undefined;
 
@@ -6265,7 +6267,7 @@ off(event: 'autoSyncProgress', progress?: Callback&lt;ProgressDetails&gt;): void
 **示例：**
 
 ```ts
-import {BusinessError} from "@ohos.base";
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   if(store != undefined) {
@@ -6478,7 +6480,7 @@ cleanDirtyData(table: string, cursor?: number): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from "@ohos.base";
+import { BusinessError } from '@kit.BasicServicesKit';
 
 if(store != undefined) {
     (store as relationalStore.RdbStore).cleanDirtyData('test_table', 100).then(() => {
@@ -6546,7 +6548,7 @@ attach(fullPath: string, attachName: string, waitTime?: number) : Promise&lt;num
 
 ```ts
 // 非加密数据库附加非加密数据库。
-import { BusinessError } from "@ohos.base";
+import { BusinessError } from '@kit.BasicServicesKit';
 
 if(store != undefined) {
     (store as relationalStore.RdbStore).attach("/path/rdbstore1.db", "attachDB").then((number: number) => {
@@ -6616,7 +6618,7 @@ attach(context: Context, config: StoreConfig, attachName: string, waitTime?: num
 **示例1：非加密数据库附加非加密数据库**
 
 ```ts
-import { BusinessError } from "@ohos.base";
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let attachStore: relationalStore.RdbStore | undefined = undefined;
 
@@ -6644,7 +6646,7 @@ if(store != undefined) {
 **示例2：非加密数据库附加加密数据库**
 
 ```ts
-import { BusinessError } from "@ohos.base";
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let attachStore: relationalStore.RdbStore | undefined = undefined;
 
@@ -6673,11 +6675,11 @@ if(store != undefined) {
 
 ### detach<sup>12+</sup>
 
+detach(attachName: string, waitTime?: number) : Promise&lt;number&gt;
+
 将附加的数据库从当前数据库中分离。
 
 当所有的附加的数据库被分离后，数据库会重新切换为WAL模式。
-
-detach(attachName: string, waitTime?: number) : Promise&lt;number&gt;
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -6723,7 +6725,7 @@ detach(attachName: string, waitTime?: number) : Promise&lt;number&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from "@ohos.base";
+import { BusinessError } from '@kit.BasicServicesKit';
 
 if(store != undefined) {
     (store as relationalStore.RdbStore).detach("attachDB").then((number: number) => {
@@ -6788,7 +6790,7 @@ lockRow(predicates: RdbPredicates):Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from "@ohos.base";
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Lisa");
@@ -6855,7 +6857,7 @@ unlockRow(predicates: RdbPredicates):Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from "@ohos.base";
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Lisa");
@@ -6919,7 +6921,7 @@ queryLockedRow(predicates: RdbPredicates, columns?: Array&lt;string&gt;):Promise
 **示例：**
 
 ```ts
-import { BusinessError } from "@ohos.base";
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Rose");
@@ -6967,7 +6969,7 @@ close(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from "@ohos.base";
+import { BusinessError } from '@kit.BasicServicesKit';
 
 if(store != undefined) {
     (store as relationalStore.RdbStore).close().then(() => {
@@ -7439,7 +7441,7 @@ if(resultSet != undefined) {
 
 getValue(columnIndex: number): ValueType
 
-获取当前指定列的值，值类型可以是ValueType指定的任意类型。
+获取当前指定列的值，值类型如果是ValueType指定的任意类型，则会以对应类型返回指定类的值，否则返回14800000。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -7494,7 +7496,8 @@ if(resultSet != undefined) {
 
 getBlob(columnIndex: number): Uint8Array
 
-以字节数组的形式获取当前行中指定列的值。
+
+以字节数组的形式获取当前行中指定列的值，如果当前列的数据类型为INTEGER、DOUBLE、TEXT、BLOB类型，会转成字节数组类型返回指定值，如果该列内容为空时，会返回空字节数组，其他类型则返回14800000。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -7549,7 +7552,7 @@ if(resultSet != undefined) {
 
 getString(columnIndex: number): string
 
-以字符串形式获取当前行中指定列的值。
+以字符串形式获取当前行中指定列的值，如果当前列中的值为INTEGER、DOUBLE、TEXT、BLOB类型，会以字符串形式返回指定值，如果是当前列中的值为INTEGER，并且为空，则会返回空字符串""，其他类型则返回14800000,。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -7604,7 +7607,7 @@ if(resultSet != undefined) {
 
 getLong(columnIndex: number): number
 
-以Long形式获取当前行中指定列的值。
+以Long形式获取当前行中指定列的值，如果当前列的数据类型为INTEGER、DOUBLE、TEXT、BLOB类型，会转成Long类型返回指定值，如果该列内容为空时，会返回0，其他类型则返回14800000。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -7659,7 +7662,7 @@ if(resultSet != undefined) {
 
 getDouble(columnIndex: number): number
 
-以double形式获取当前行中指定列的值。
+以double形式获取当前行中指定列的值，如果当前列的数据类型为INTEGER、DOUBLE、TEXT、BLOB类型，会转成double类型返回指定值，如果该列内容为空时，会返回0.0，其他类型则返回14800000。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -7714,7 +7717,7 @@ if(resultSet != undefined) {
 
 getAsset(columnIndex: number): Asset
 
-以[Asset](#asset10)形式获取当前行中指定列的值。
+以[Asset](#asset10)形式获取当前行中指定列的值，如果当前列中的值为null时，会返回null，如果为其他类型时，则会返回14800000。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -7769,7 +7772,7 @@ if(resultSet != undefined) {
 
 getAssets(columnIndex: number): Assets
 
-以[Assets](#assets10)形式获取当前行中指定列的值。
+以[Assets](#assets10)形式获取当前行中指定列的值，如果当前列中的值为null时，会返回null，如果为其他类型时，则会返回14800000。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 

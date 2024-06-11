@@ -9,8 +9,7 @@
 ## 导入模块
 
 ```ts
-import {image} from '@kit.ImageKit';
-import {sendableImage} from '@kit.ImageKit';
+import { sendableImage } from '@kit.ImageKit';
 ```
 
 ## sendableImage.createPixelMap
@@ -37,6 +36,7 @@ createPixelMap(colors: ArrayBuffer, options: image.InitializationOptions): Promi
 **示例：**
 
 ```ts
+import { image } from '@kit.ImageKit';
 import { BusinessError } from '@ohos.base';
 
 async function Demo() {
@@ -89,7 +89,8 @@ createPixelMapFromParcel(sequence: rpc.MessageSequence): PixelMap
 **示例：**
 
 ```ts
-import sendableImage from '@ohos.multimedia.sendableImage';
+import { sendableImage }from '@ohos.multimedia.sendableImage';
+import { image } from '@kit.ImageKit';
 import rpc from '@ohos.rpc';
 import { BusinessError } from '@ohos.base';
 
@@ -178,6 +179,7 @@ createPixelMapFromSurface(surfaceId: string, region: image.Region): Promise\<Pix
 **示例：**
 
 ```ts
+import { image } from '@kit.ImageKit';
 import { BusinessError } from '@ohos.base';
 
 async function Demo(surfaceId: string) {
@@ -221,6 +223,7 @@ createPixelMapSync(colors: ArrayBuffer, options: image.InitializationOptions): P
 **示例：**
 
 ```ts
+import { image } from '@kit.ImageKit';
 import { BusinessError } from '@ohos.base';
 
 async function Demo() {
@@ -261,6 +264,7 @@ convertFromPixelMap(pixelMap: image.PixelMap): PixelMap
 **示例：**
 
 ```ts
+import { image } from '@kit.ImageKit';
 import { BusinessError } from '@ohos.base';
 
 async function Demo() {
@@ -302,6 +306,7 @@ convertToPixelMap(pixelMap: PixelMap): image.PixelMap
 **示例：**
 
 ```ts
+import { image } from '@kit.ImageKit';
 import { BusinessError } from '@ohos.base';
 
 async function Demo() {
@@ -432,6 +437,7 @@ readPixels(area: image.PositionArea): Promise\<void>
 **示例：**
 
 ```ts
+import { image } from '@kit.ImageKit';
 import { BusinessError } from '@ohos.base';
 
 async function Demo() {
@@ -479,6 +485,7 @@ readPixelsSync(area: image.PositionArea): void
 **示例：**
 
 ```ts
+import { image } from '@kit.ImageKit';
 import { BusinessError } from '@ohos.base';
 
 async function Demo() {
@@ -519,6 +526,7 @@ writePixels(area: image.PositionArea): Promise\<void>
 **示例：**
 
 ```ts
+import { image } from '@kit.ImageKit';
 import { BusinessError } from '@ohos.base';
 
 async function Demo() {
@@ -570,6 +578,7 @@ writePixelsSync(area: image.PositionArea): void
 **示例：**
 
 ```ts
+import { image } from '@kit.ImageKit';
 import { BusinessError } from '@ohos.base';
 
 async function Demo() {
@@ -693,6 +702,7 @@ getImageInfo(): Promise\<image.ImageInfo>
 **示例：**
 
 ```ts
+import { image } from '@kit.ImageKit';
 import { BusinessError } from '@ohos.base';
 
 async function Demo() {
@@ -735,6 +745,7 @@ getImageInfoSync(): image.ImageInfo
 **示例：**
  
 ```ts
+import { image } from '@kit.ImageKit';
 import { BusinessError } from '@ohos.base';
 
 async function Demo() {
@@ -951,8 +962,8 @@ createAlphaPixelmapSync(): PixelMap
 import { BusinessError } from '@ohos.base';
 
 async function Demo() {
-    let pixelmap : image.PixelMap = pixelMap.createAlphaPixelmapSync();
-    return pixelmap;
+    let pixelMap : sendableImage.PixelMap = pixelMap.createAlphaPixelmapSync();
+    return pixelMap;
 }
 ```
 
@@ -1303,6 +1314,7 @@ crop(region: image.Region): Promise\<void>
 **示例：**
 
 ```ts
+import { image } from '@kit.ImageKit';
 import { BusinessError } from '@ohos.base';
 
 async function Demo() {
@@ -1346,6 +1358,7 @@ cropSync(region: image.Region): void
 **示例：**
 
 ```ts
+import { image } from '@kit.ImageKit';
 import { BusinessError } from '@ohos.base';
 
 async function Demo() {
@@ -1499,7 +1512,8 @@ marshalling(sequence: rpc.MessageSequence): void
 
 **示例：**
 ```ts
-import sendableImage from '@ohos.multimedia.sendableImage';
+import { sendableImage } from '@ohos.multimedia.sendableImage';
+import { image } from '@kit.ImageKit';
 import rpc from '@ohos.rpc';
 
 class MySequence implements rpc.Parcelable {
@@ -1588,6 +1602,7 @@ unmarshalling(sequence: rpc.MessageSequence): Promise\<PixelMap>
 
 ```ts
 import sendableImage from '@ohos.multimedia.sendableImage';
+import { image } from '@kit.ImageKit';
 import rpc from '@ohos.rpc';
 
 class MySequence implements rpc.Parcelable {
