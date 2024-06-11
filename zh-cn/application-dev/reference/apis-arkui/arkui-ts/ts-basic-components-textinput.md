@@ -767,6 +767,22 @@ lineBreakStrategy(value: LineBreakStrategy)
 | ------ | --------------------------------------------- | ---- | --------------------------------------------- |
 | value  | [LineBreakStrategy](ts-appendix-enums.md#linebreakstrategy12) | 否   | 文本的折行规则。 <br />默认值：LineBreakStrategy.GREEDY <br/>**说明：**<br/> 非Inline模式该属性不生效 |
 
+### selectionMenuOptions<sup>12+</sup>
+
+selectionMenuOptions(expandedMenuOptions: Array\<ExpandedMenuItemOptions>)
+
+设置自定义菜单扩展项，允许用户设置扩展项的文本内容、图标、回调方法。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                          | 必填 | 说明                                          |
+| ------ | --------------------------------------------- | ---- | --------------------------------------------- |
+| expandedMenuOptions  | Array\<[ExpandedMenuItemOptions](ts-text-common.md#expandedmenuitemoptions12)> | 否   | 扩展菜单选项。 |
+
 >  **说明：**    
 >  默认情况下，通用属性[padding](ts-universal-attributes-size.md#padding)的默认值为：<br>{<br>&nbsp;top: '8vp',<br>&nbsp;right: '16vp',<br>&nbsp;bottom: '8vp',<br>&nbsp;left: '16vp'<br> } 
 >  
@@ -1945,3 +1961,52 @@ struct TextInputExample {
 ```
 
 ![TextInputInsertAndDelete](figures/TextInputInsertAndDelete.PNG)
+
+### 示例15
+
+selectionMenuOptions使用示例，展示设置自定义菜单扩展项的文本内容、图标、回调方法。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct TextInputExample {
+  @State text: string = 'This is ss01 on : 0123456789'
+  @State menuOptionArray: Array<ExpandedMenuItemOptions> = [
+    {
+      content: 'TextInput扩展1', startIcon: $r('app.media.startIcon'), action: (value: TextRange) => {
+      console.log("action start:" + value.start + "; end:" + value.end)
+    }
+    },
+    {
+      content: 'TextInput扩展2', startIcon: $r('app.media.startIcon'), action: (value: TextRange) => {
+      console.log("action start:" + value.start + "; end:" + value.end)
+    }
+    },
+    {
+      content: 'TextInput扩展3', startIcon: $r('app.media.startIcon'), action: (value: TextRange) => {
+      console.log("action start:" + value.start + "; end:" + value.end)
+    }
+    },
+    {
+      content: 'TextInput扩展4', startIcon: $r('app.media.startIcon'), action: (value: TextRange) => {
+      console.log("action start:" + value.start + "; end:" + value.end)
+    }
+    }
+  ]
+
+  build() {
+    Column() {
+      TextInput({ text: this.text })
+        .width('95%')
+        .height(50)
+        .selectionMenuOptions(this.menuOptionArray)
+    }
+    .backgroundColor(Color.White)
+    .width("90%")
+    .margin("5%")
+  }
+}
+```
+
+![textInputSelectionMenuOptions](figures/textInputSelectionMenuOptions.png)

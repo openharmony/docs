@@ -598,6 +598,22 @@ lineBreakStrategy(value: LineBreakStrategy)
 | ------ | --------------------------------------------- | ---- | --------------------------------------------- |
 | value  | [LineBreakStrategy](ts-appendix-enums.md#linebreakstrategy12) | 否   | 文本的折行规则。 <br />默认值：LineBreakStrategy.GREEDY |
 
+### selectionMenuOptions<sup>12+</sup>
+
+selectionMenuOptions(expandedMenuOptions: Array\<ExpandedMenuItemOptions>)
+
+设置自定义菜单扩展项，允许用户设置扩展项的文本内容、图标、回调方法。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                          | 必填 | 说明                                          |
+| ------ | --------------------------------------------- | ---- | --------------------------------------------- |
+| expandedMenuOptions  | Array\<[ExpandedMenuItemOptions](ts-text-common.md#expandedmenuitemoptions12)> | 否   | 扩展菜单选项。 |
+
 >  **说明：**
 >
 >  [通用属性padding](ts-universal-attributes-size.md#padding)的默认值为：<br>{<br>&nbsp;top: '8vp',<br>&nbsp;right: '16vp',<br>&nbsp;bottom: '8vp',<br>&nbsp;left: '16vp'<br> }
@@ -1534,7 +1550,6 @@ struct TextExample1 {
 
 ```ts
 // xxx.ets
-// xxx.ets
 @Entry
 @Component
 struct TextAreaExample {
@@ -1584,3 +1599,57 @@ struct TextAreaExample {
 ```
 
 ![TextAreaInsertAndDelete](figures/TextAreaInsertAndDelete.PNG)
+
+### 示例15
+
+selectionMenuOptions使用示例，展示设置自定义菜单扩展项的文本内容、图标、回调方法。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct TextAreaExample {
+  @State text: string = 'This is ss01 on : 0123456789'
+  textAreaController: TextAreaController = new TextAreaController()
+  @State menuOptionArray: Array<ExpandedMenuItemOptions> = [
+    {
+      content: 'TextArea扩展1', startIcon: $r('app.media.startIcon'), action: (value: TextRange) => {
+      console.log("action start:" + value.start + "; end:" + value.end)
+    }
+    },
+    {
+      content: 'TextArea扩展2', startIcon: $r('app.media.startIcon'), action: (value: TextRange) => {
+      console.log("action start:" + value.start + "; end:" + value.end)
+    }
+    },
+    {
+      content: 'TextArea扩展3', startIcon: $r('app.media.startIcon'), action: (value: TextRange) => {
+      console.log("action start:" + value.start + "; end:" + value.end)
+    }
+    },
+    {
+      content: 'TextArea扩展4', startIcon: $r('app.media.startIcon'), action: (value: TextRange) => {
+      console.log("action start:" + value.start + "; end:" + value.end)
+    }
+    }
+  ]
+
+  build() {
+    Column() {
+      TextArea({
+        text: this.text,
+        placeholder: 'The text area can hold an unlimited amount of text. input your word...',
+        controller: this.textAreaController
+      })
+        .placeholderFont({ size: 16, weight: 400 })
+        .width(336)
+        .height(56)
+        .selectionMenuOptions(this.menuOptionArray)
+    }
+    .width("90%")
+    .margin("5%")
+  }
+}
+```
+
+![textAreaSelectionMenuOptions](figures/textAreaSelectionMenuOptions.png)
