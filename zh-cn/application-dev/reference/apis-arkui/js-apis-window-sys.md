@@ -3350,6 +3350,16 @@ promise.then(() => {
 });
 ```
 
+## SubWindowOptions<sup>11+</sup>
+
+子窗口创建参数。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+| 名称      | 类型  | 只读 | 可选 | 说明         |
+| ---------- | ---- | ---- | ---- | ----------- |
+| isTopmost<sup>12+</sup>  | boolean | 否 | 是 | 子窗口是否启用置顶属性。true表示子窗口置顶，false表示子窗口不置顶。不设置，则默认为false。       |
+
 ## WindowStage<sup>9+</sup>
 
 窗口管理器。管理各个基本窗口单元，即[Window](#window)实例。
