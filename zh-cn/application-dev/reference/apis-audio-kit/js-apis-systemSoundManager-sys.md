@@ -316,9 +316,9 @@ type ToneAttrsArray = Array&lt;[ToneAttrs](#toneattrs12)&gt;
 
 **系统能力：** SystemCapability.Multimedia.SystemSound.Core
 
-| 类型                                    | 说明      |
-|---------------------------------------|---------|
-| Array&lt;[ToneAttrs](#toneattrs12)&gt | 铃音属性数组。 |
+| 类型                                     | 说明      |
+|----------------------------------------|---------|
+| Array&lt;[ToneAttrs](#toneattrs12)&gt; | 铃音属性数组。 |
 
 ## systemSoundManager.createCustomizedToneAttrs<sup>12+</sup>
 
@@ -1466,7 +1466,7 @@ addCustomizedTone(context: BaseContext, toneAttr: ToneAttrs, fd: number, offset?
 |-----|-----------|----|----------------------------------------|
 | context  | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | 是  | 当前应用的上下文。                              |
 | toneAttr  | ToneAttrs | 是  | 铃音属性。                                  |
-| fd  | number    | 是  | 文件描述符。                                 |
+| [fd](../apis-core-file-kit/js-apis-file-fs.md#fsopen)  | number    | 是  | 文件描述符。                                 |
 | offset  | number    | 否  | 读取数据的偏移量（以字节为单位）。默认情况下为0。              |
 | length  | number    | 否  | 读取的数据的长度（以字节为单位）。默认情况下，长度为偏移后的剩余全部字节数。 |
 
@@ -1504,7 +1504,7 @@ toneAttrs.setTitle(title);
 toneAttrs.setFileName(fileName);
 toneAttrs.setCategory(categoryValue);
 
-let fd = 10; // 需更改为实际铃音fd
+let fd = 10; // 需更改为实际铃音fd,
 let offset = 0; // 需更改为实际所需偏移量
 let length = 50; // 需更改为实际所需数据长度
 systemSoundManagerInstance.addCustomizedTone(context, toneAttrs, fd, offset, length).then((value: string) => {
