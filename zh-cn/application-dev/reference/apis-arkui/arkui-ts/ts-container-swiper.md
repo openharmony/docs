@@ -146,6 +146,10 @@ duration(value: number)
 
 设置子组件切换的动画时长。
 
+duration需要和[curve](#curve8)一起使用。
+
+curve默认曲线为弹簧曲线，此时动画时长只受曲线自身参数影响，不再受duration的控制，如果希望动画时长受到duration控制，需要给curve属性设置合理的曲线。
+
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
