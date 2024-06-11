@@ -96,7 +96,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     ```c++
 
     int32_t qpAverage = 20;
-    bool mseValue = 0.0;
+    double mseValue = 0.0;
     // 设置 OnError 回调函数
     static void OnError(OH_AVCodec *codec, int32_t errorCode, void *userData)
     {
@@ -465,7 +465,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     int32_t heightStride = 0;
     bool isFirstFrame = true;
     int32_t qpAverage = 20;
-    bool mseValue = 0.0;
+    double mseValue = 0.0;
     // 编码异常回调OH_AVCodecOnError实现
     static void OnError(OH_AVCodec *codec, int32_t errorCode, void *userData)
     {
