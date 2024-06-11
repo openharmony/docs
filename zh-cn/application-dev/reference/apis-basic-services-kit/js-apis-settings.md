@@ -273,7 +273,7 @@ settings.setValue(context, settings.display.SCREEN_BRIGHTNESS_STATUS, '100').the
 
 ## setting.setValue<sup>11+</sup>
 
-setValue(context: Context, name: string, domainName: string): Promise\<boolean>
+setValue(context: Context, name: string, value: string, domainName: string): Promise\<boolean>
 
 将数据项名称及数据项的值保存到数据库中。使用 Promise异步回调。
 
@@ -520,7 +520,7 @@ let ret = settings.setValueSync(context, settings.display.SCREEN_BRIGHTNESS_STAT
 
 ## settings.setValueSync<sup>11+</sup>
 
-setValueSync(context: Context, name: string, value: string): boolean
+setValueSync(context: Context, name: string, value: string, domainName: string): boolean
 
 设置数据项的值。此方法相较setValue为同步方法。
 
