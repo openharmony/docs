@@ -2213,15 +2213,15 @@ Defines the network quota policy.
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
-| Name             | Type                         | Mandatory| Description                                                                                    |
-| ----------------- | ----------------------------- | ---- | ---------------------------------------------------------------------------------------- |
+| Name             | Type                           | Mandatory| Description                                                 |
+| ----------------- |-------------------------------| ---- |-----------------------------------------------------|
 | periodDuration    | string                        | Yes  | Metering period for the quota limit. **D1**, **M1**, and **Y1** indicate one day, one month, and one year, respectively. If the specified metering period is exceeded, the quota is not limited.|
-| warningBytes      | number                        | Yes  | Data volume threshold for generating an alarm.                                                                    |
-| limitBytes        | number                        | Yes  | Data volume quota.                                                                        |
-| metered           | string                        | Yes  | Whether the network is a metered network.                                                                        |
-| limitAction       | [LimitAction](#limitaction10) | Yes  | Action to take when the data volume quota is reached.                                                                  |
-| lastWarningRemind | string                        | No  | Last time when an alarm was generated.                                                                |
-| lastLimitRemind   | string                        | No  | Last time when the quota was exhausted.                                                                |
+| warningBytes      | number                        | Yes  | Data volume threshold for generating an alarm.                                         |
+| limitBytes        | number                        | Yes  | Data volume quota.                                           |
+| metered           | boolean                       | Yes  | Whether the network is a metered network.                                           |
+| limitAction       | [LimitAction](#limitaction10) | Yes  | Action to take when the data volume quota is reached.                                        |
+| lastWarningRemind | number                        | No  | Last time when an alarm was generated. Default value: **-1**                                 |
+| lastLimitRemind   | number                        | No  | Last time when the quota was exhausted. Default value: **-1**                                       |
 
 ## LimitAction<sup>10+</sup>
 
