@@ -172,7 +172,7 @@ constructor(record: UnifiedRecord)
 
 | 参数名 | 类型                            | 必填 | 说明                                      |
 | ------ | ------------------------------- | ---- |-----------------------------------------|
-| record | [UnifiedRecord](#unifiedrecord) | 是   | 要添加到统一数据对象中的数据记录，该记录为UnifiedRecord子类对象。 |
+| record | [UnifiedRecord](#unifiedrecord) | 是   | 要添加到统一数据对象中的数据记录，该记录为UnifiedRecord或其子类对象。 |
 
 **错误码：**
 
@@ -359,8 +359,6 @@ let types = unifiedData.getTypes();
 ## UnifiedRecord
 
 对UDMF支持的数据内容的抽象定义，称为数据记录。一个统一数据对象内包含一条或多条数据记录，例如一条文本记录、一条图片记录、一条HTML记录等。
-
-UnifiedRecord是一个抽象父类，无法保存具体数据内容，应用在使用时，不能将其添加到统一数据对象中，而应该创建带有数据内容的具体子类，如Text、Image等。
 
 ### constructor<sup>12+</sup>
 
