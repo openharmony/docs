@@ -3873,9 +3873,9 @@ async function demo() {
 
 ## zlib.createGZip<sup>12+</sup>
 
-createGZip(): Promise&lt;Gzip&gt;
+createGZip(): Promise&lt;GZip&gt;
 
-创建GZip对象，使用Promise异步返回。成功时返回Gzip对象实例。
+创建GZip对象，使用Promise异步返回。成功时返回GZip对象实例。
 
 **元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
@@ -3923,7 +3923,7 @@ let gzip = zlib.createGZipSync();
 
 ## GZip<sup>12+</sup>
 
-Gzip相关接口。
+GZip相关接口。
 
 ### gzdopen<sup>12+</sup>
 
