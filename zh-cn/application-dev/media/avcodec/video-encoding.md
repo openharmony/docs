@@ -13,6 +13,9 @@
 
 <!--RP1--><!--RP1End-->
 
+## 支持的能力
+
+
 ## Surface输入与Buffer输入
 
 两者的数据来源不同。
@@ -126,6 +129,14 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     {
         // 完成帧buffer对应的index，送入outIndexQueue队列
         // 完成帧的数据buffer送入outBufferQueue队列
+        // 获取视频帧的平均量化参数,平方误差
+        if (isFirstFrame) {
+            OH_AVFormat *format = OH_VideoEncoder_GetOutputDescription(codec);
+            OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_ENCODER_QP_AVERAGE, 20);
+            OH_AVFormat_GetDoubleValue(format, OH_MD_KEY_VIDEO_ENCODER_MSE, 0.0);
+            OH_AVFormat_Destroy(format);
+            isFirstFrame = false;
+        }
         // 数据处理，请参考:
         // - 释放编码帧
     }
@@ -265,7 +276,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     }
     ```
 
-9. （可选）OH_VideoDecoder_SetParameter()在运行过程中动态配置编码器参数。
+9. （可选）OH_VideoEncoder_SetParameter()在运行过程中动态配置编码器参数。
     详细可配置选项的说明请参考[视频专有键值对](../../reference/apis-avcodec-kit/_codec_base.md#媒体数据键值对)。
 
    ```c++
@@ -278,6 +289,9 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     // 支持动态重置视频帧速率
     double frameRate = 60.0;
     OH_AVFormat_SetDoubleValue(format, OH_MD_KEY_FRAME_RATE, frameRate);
+    // 配置OH_MD_KEY_VIDEO_ENCODER_QP_MAX 的值应大于等于OH_MD_KEY_VIDEO_ENCODER_QP_MIN
+    OH_AVFormat_SetIntValue(parameter, OH_MD_KEY_VIDEO_ENCODER_QP_MAX, 30);
+    OH_AVFormat_SetIntValue(parameter, OH_MD_KEY_VIDEO_ENCODER_QP_MIN, 20);
 
     int32_t ret = OH_VideoEncoder_SetParameter(videoEnc, format);
     if (ret != AV_ERR_OK) {
@@ -492,6 +506,14 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     {
         // 完成帧buffer对应的index，送入outIndexQueue队列
         // 完成帧的数据buffer送入outBufferQueue队列
+        // 获取视频帧的平均量化参数,平方误差
+        if (isFirstFrame) {
+            OH_AVFormat *format = OH_VideoEncoder_GetOutputDescription(codec);
+            OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_ENCODER_QP_AVERAGE, 20);
+            OH_AVFormat_GetDoubleValue(format, OH_MD_KEY_VIDEO_ENCODER_MSE, 0.0);
+            OH_AVFormat_Destroy(format);
+            isFirstFrame = false;
+        }
         // 数据处理，请参考:
         // - 释放编码帧
     }
