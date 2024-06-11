@@ -98,7 +98,7 @@ Defines the content of a data change notification, including inserted data, upda
 
 ## SyncMode
 
-Enumerates the synchronization modes.
+Enumerates the sync modes.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -127,7 +127,7 @@ Enumerates the distributed KV store types.
 | Name                | Description                                                        |
 | -------------------- | ------------------------------------------------------------ |
 | DEVICE_COLLABORATION | Device KV store.<br>The device KV store manages data by device, which eliminates conflicts. Data can be queried by device.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore|
-| SINGLE_VERSION       | Single KV store.<br>The single KV store does not differentiate data by device. If entries with the same key are modified on different devices, the value will be overwritten.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core |
+| SINGLE_VERSION       | Single KV store.<br>The single KV store does not differentiate data by device. If entries with the same key are modified on different devices, the value will be overwritten.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core|
 
 ## SecurityLevel
 
@@ -154,7 +154,7 @@ Provides KV store configuration.
 | autoSync        | boolean                         | No  | Whether to automatically synchronize database files. The default value is **false**, which means the database files are manually synchronized.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core<br>**Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC|
 | kvStoreType     | [KVStoreType](#kvstoretype)     | No  | Type of the KV store to create. The default value is **DEVICE_COLLABORATION**, which indicates a device KV store.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core|
 | securityLevel   | [SecurityLevel](#securitylevel) | Yes  | Security level of the KV store.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core|
-| schema          | [Schema](#schema)               | No  | Schema used to define the values stored in the KV store. The default value is **undefined**, which means no schema is used.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore|
+| schema          | [Schema](#schema)               | No  | Schema that defines the values stored in the KV store. The default value is **undefined**, which means no schema is used.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore|
 
 ## Schema
 
@@ -164,10 +164,14 @@ Defines the schema of a KV store. You can create a **Schema** object and place i
 
 | Name   | Type                   | Readable| Writable| Description                      |
 | ------- | ----------------------- | ---- | ---- | -------------------------- |
-| root    | [FieldNode](#fieldnode) | Yes  | Yes  | JSON root object.          |
-| indexes | Array\<string>          | Yes  | Yes  | String array in JSON format.|
-| mode    | number                  | Yes  | Yes  | Schema mode.        |
-| skip    | number                  | Yes  | Yes  | Size of a skip of the schema.        |
+| root    | [FieldNode](#fieldnode) | Yes  | Yes  | Fields in **Value**.|
+| indexes | Array\<string>          | Yes  | Yes  | Indexes of the fields in **Value**. Indexes are created only for **FieldNode** with this parameter specified. If no index needs to be created, this parameter can be left empty. <br>Format: `'$.field1'`, `'$.field2'` |
+| mode    | number                  | Yes  | Yes  | Schema mode, which can be **0** (strict mode) or **1** (compatible mode).|
+| skip    | number                  | Yes  | Yes  | Number of bytes that can be skipped during the value check. The value range is [0, 4M-2].|
+
+**Strict** mode: In this mode, the format of the value inserted must strictly match the schema definition, and the number of fields cannot be more or less than that defined in the schema. Otherwise, an error will be returned in the value check.
+
+**Compatible** mode: In this mode, the value check is successful as long as the value has the characteristics defined in the schema. Extra fields are allowed. For example, if **id** and **name** are defined, more fields such as **id**, **name**, and **age** can be inserted.
 
 ### constructor
 
@@ -177,17 +181,38 @@ A constructor used to create a **Schema** instance.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
+**Example**
+
+```ts
+
+let child1 = new distributedKVStore.FieldNode('id');
+child1.type = distributedKVStore.ValueType.INTEGER;
+child1.nullable = false;
+child1.default = '1';
+let child2 = new distributedKVStore.FieldNode('name');
+child2.type = distributedKVStore.ValueType.STRING;
+child2.nullable = false;
+child2.default = 'zhangsan';
+
+let schema = new distributedKVStore.Schema();
+schema.root.appendChild(child1);
+schema.root.appendChild(child2);
+schema.indexes = ['$.id', '$.name'];
+schema.mode = 1;
+schema.skip = 0;
+```
+
 ## FieldNode
 
-Represents a **Schema** instance, which provides the methods for defining the values stored in a KV store.
+Represents a node of a **Schema** instance. It defines the values stored in a KV store.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
 | Name    | Type   | Readable| Writable| Description                          |
 | -------- | ------- | ---- | ---- | ------------------------------ |
-| nullable | boolean | Yes  | Yes  | Whether the database field can be null.  |
-| default  | string  | Yes  | Yes  | Default value of a **FieldNode**.       |
-| type     | number  | Yes  | Yes  | Value of the data type corresponding to the specified node.|
+| nullable | boolean | Yes  | Yes  | Whether the node fields can be null. The value **true** means the node fields can be null; the value **false** means the opposite.|
+| default  | string  | Yes  | Yes  | Default value of **FieldNode**.       |
+| type     | number  | Yes  | Yes  | Data type of the node. The value is an enumerated value of [ValueType](#valuetype). Currently, **BYTE_ARRAY** is not supported. Using this type may cause a failure in calling [getKVStore](#getkvstore).|
 
 ### constructor
 
@@ -333,7 +358,7 @@ Creates and obtains a distributed KV store. This API uses an asynchronous callba
 | -------- | ---------------------- | ---- | ------------------------------------------------------------ |
 | storeId  | string                 | Yes  | Unique identifier of the KV store. The length cannot exceed [MAX_STORE_ID_LENGTH](#constants).|
 | options  | [Options](#options)    | Yes  | Configuration of the KV store to create.                              |
-| callback | AsyncCallback&lt;T&gt; | Yes  | Callback invoked to return the **SingleKVStore** or **DeviceKVStore** instance created.|
+| callback | AsyncCallback&lt;T&gt; | Yes  | Callback used to return the **SingleKVStore** or **DeviceKVStore** instance created.|
 
 **Error codes**
 
@@ -359,7 +384,7 @@ try {
     kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
     securityLevel: distributedKVStore.SecurityLevel.S2,
   };
-  kvManager.getKVStore('storeId', options, (err, store: distributedKVStore.SingleKVStore) => {
+  kvManager.getKVStore('storeId', options, (err: BusinessError, store: distributedKVStore.SingleKVStore) => {
     if (err) {
       console.error(`Failed to get KVStore.code is ${err.code},message is ${err.message}`);
       return;
@@ -444,7 +469,7 @@ Closes a distributed KV store. This API uses an asynchronous callback to return 
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
 | appId    | string                    | Yes  | Bundle name of the app that invokes the KV store.                                      |
 | storeId  | string                    | Yes  | Unique identifier of the KV store to close. The length cannot exceed [MAX_STORE_ID_LENGTH](#constants).|
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.                                                  |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                                                  |
 
 **Example**
 
@@ -462,7 +487,7 @@ const options: distributedKVStore.Options = {
   securityLevel: distributedKVStore.SecurityLevel.S2,
 }
 try {
-  kvManager.getKVStore('storeId', options, async (err, store: distributedKVStore.SingleKVStore | null) => {
+  kvManager.getKVStore('storeId', options, async (err: BusinessError, store: distributedKVStore.SingleKVStore | null) => {
     if (err != undefined) {
       console.error(`Failed to get KVStore.code is ${err.code},message is ${err.message}`);
       return;
@@ -471,7 +496,7 @@ try {
     kvStore = store;
     kvStore = null;
     store = null;
-    kvManager.closeKVStore('appId', 'storeId', (err)=> {
+    kvManager.closeKVStore('appId', 'storeId', (err: BusinessError)=> {
       if (err != undefined) {
         console.error(`Failed to close KVStore.code is ${err.code},message is ${err.message}`);
         return;
@@ -556,7 +581,7 @@ Deletes a distributed KV store. This API uses an asynchronous callback to return
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
 | appId    | string                    | Yes  | Bundle name of the app that invokes the KV store.                                      |
 | storeId  | string                    | Yes  | Unique identifier of the KV store to delete. The length cannot exceed [MAX_STORE_ID_LENGTH](#constants).|
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.                                                  |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                                                  |
 
 **Error codes**
 
@@ -583,7 +608,7 @@ const options: distributedKVStore.Options = {
   securityLevel: distributedKVStore.SecurityLevel.S2,
 }
 try {
-  kvManager.getKVStore('store', options, async (err, store: distributedKVStore.SingleKVStore | null) => {
+  kvManager.getKVStore('store', options, async (err: BusinessError, store: distributedKVStore.SingleKVStore | null) => {
     if (err != undefined) {
       console.error(`Failed to get KVStore.code is ${err.code},message is ${err.message}`);
       return;
@@ -592,7 +617,7 @@ try {
     kvStore = store;
     kvStore = null;
     store = null;
-    kvManager.deleteKVStore('appId', 'storeId', (err) => {
+    kvManager.deleteKVStore('appId', 'storeId', (err: BusinessError) => {
       if (err != undefined) {
         console.error(`Failed to delete KVStore.code is ${err.code},message is ${err.message}`);
         return;
@@ -684,7 +709,7 @@ Obtains the IDs of all distributed KV stores that are created by [getKVStore](#g
 | Name  | Type                     | Mandatory| Description                                               |
 | -------- | ----------------------------- | ---- | --------------------------------------------------- |
 | appId    | string                        | Yes  | Bundle name of the app that invokes the KV store.                             |
-| callback | AsyncCallback&lt;string[]&gt; | Yes  | Callback invoked to return the IDs of all the distributed KV stores created.|
+| callback | AsyncCallback&lt;string[]&gt; | Yes  | Callback used to return the IDs of all the distributed KV stores created.|
 
 **Example**
 
@@ -692,7 +717,7 @@ Obtains the IDs of all distributed KV stores that are created by [getKVStore](#g
 import { BusinessError } from '@ohos.base';
 
 try {
-  kvManager.getAllKVStoreId('appId', (err, data) => {
+  kvManager.getAllKVStoreId('appId', (err: BusinessError, data: string[]) => {
     if (err != undefined) {
       console.error(`Failed to get AllKVStoreId.code is ${err.code},message is ${err.message}`);
       return;
@@ -749,7 +774,7 @@ try {
 
 on(event: 'distributedDataServiceDie', deathCallback: Callback&lt;void&gt;): void
 
-Subscribes to service status changes. If the service is terminated, you need to register the callbacks for data change notifications and synchronization complete notifications again. In addition, an error will be returned for a synchronization operation.
+Subscribes to the termination (death) of the distributed data service. If the service is terminated, you need to register the callbacks for data change notifications and sync complete notifications again. In addition, an error will be returned for a sync operation.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
@@ -757,8 +782,8 @@ Subscribes to service status changes. If the service is terminated, you need to 
 
 | Name       | Type            | Mandatory| Description                                                        |
 | ------------- | -------------------- | ---- | ------------------------------------------------------------ |
-| event         | string               | Yes  | Event type. The value is **distributedDataServiceDie**, which indicates service status changes.|
-| deathCallback | Callback&lt;void&gt; | Yes  | Callback invoked to return service status changes.                                                  |
+| event         | string               | Yes  | Event type. The value is **distributedDataServiceDie**, which indicates the termination of the distributed data service.|
+| deathCallback | Callback&lt;void&gt; | Yes  | Callback used to return the death of the distributed data service.                               |
 
 **Example**
 
@@ -781,7 +806,7 @@ try {
 
 off(event: 'distributedDataServiceDie', deathCallback?: Callback&lt;void&gt;): void
 
-Unsubscribes from service status changes. The **deathCallback** parameter must be a callback registered for subscribing to service status changes. Otherwise, the unsubscription will fail.
+Unsubscribes from the termination (death) of the distributed data service. The **deathCallback** parameter must be a callback registered for subscribing to the termination of the distributed data service. Otherwise, the unsubscription will fail.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
@@ -789,8 +814,8 @@ Unsubscribes from service status changes. The **deathCallback** parameter must b
 
 | Name       | Type            | Mandatory| Description                                                        |
 | ------------- | -------------------- | ---- | ------------------------------------------------------------ |
-| event         | string               | Yes  | Event type. The value is **distributedDataServiceDie**, which indicates service status changes.|
-| deathCallback | Callback&lt;void&gt; | No  | Callback for the service status changes. If this parameter is not specified, all subscriptions to the service status changes will be canceled.                                         |
+| event         | string               | Yes  | Event type. The value is **distributedDataServiceDie**, which indicates the termination of the distributed data service.|
+| deathCallback | Callback&lt;void&gt; | No  | Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for the **distributedDataServiceDie** event.                                         |
 
 **Example**
 
@@ -837,7 +862,7 @@ import { BusinessError } from '@ohos.base';
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
   let count: number;
-  kvStore.getResultSet('batch_test_string_key').then((result) => {
+  kvStore.getResultSet('batch_test_string_key').then((result: distributedKVStore.KVStoreResultSet) => {
     console.info('getResultSet succeed.');
     resultSet = result;
     count = resultSet.getCount();
@@ -872,7 +897,7 @@ import { BusinessError } from '@ohos.base';
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
   let position: number;
-  kvStore.getResultSet('batch_test_string_key').then((result) => {
+  kvStore.getResultSet('batch_test_string_key').then((result: distributedKVStore.KVStoreResultSet) => {
     console.info('getResultSet succeeded.');
     resultSet = result;
     position = resultSet.getPosition();
@@ -907,7 +932,7 @@ import { BusinessError } from '@ohos.base';
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
   let moved: boolean;
-  kvStore.getResultSet('batch_test_string_key').then((result) => {
+  kvStore.getResultSet('batch_test_string_key').then((result: distributedKVStore.KVStoreResultSet) => {
     console.info('getResultSet succeed.');
     resultSet = result;
     moved = resultSet.moveToFirst();
@@ -942,7 +967,7 @@ import { BusinessError } from '@ohos.base';
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
   let moved: boolean;
-  kvStore.getResultSet('batch_test_string_key').then((result) => {
+  kvStore.getResultSet('batch_test_string_key').then((result: distributedKVStore.KVStoreResultSet) => {
     console.info('getResultSet succeed.');
     resultSet = result;
     moved = resultSet.moveToLast();
@@ -977,7 +1002,7 @@ import { BusinessError } from '@ohos.base';
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
   let moved: boolean;
-  kvStore.getResultSet('batch_test_string_key').then((result) => {
+  kvStore.getResultSet('batch_test_string_key').then((result: distributedKVStore.KVStoreResultSet) => {
     console.info('getResultSet succeed.');
     resultSet = result;
     do {
@@ -1014,7 +1039,7 @@ import { BusinessError } from '@ohos.base';
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
   let moved: boolean;
-  kvStore.getResultSet('batch_test_string_key').then((result) => {
+  kvStore.getResultSet('batch_test_string_key').then((result: distributedKVStore.KVStoreResultSet) => {
     console.info('getResultSet succeed.');
     resultSet = result;
     moved = resultSet.moveToLast();
@@ -1056,7 +1081,7 @@ import { BusinessError } from '@ohos.base';
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
   let moved: boolean;
-  kvStore.getResultSet('batch_test_string_key').then((result) => {
+  kvStore.getResultSet('batch_test_string_key').then((result: distributedKVStore.KVStoreResultSet) => {
     console.info('Succeeded in getting resultSet');
     resultSet = result;
     moved = resultSet.move(2); // If the current position is 0, move the read position forward by two rows, that is, move to row 3.
@@ -1098,7 +1123,7 @@ import { BusinessError } from '@ohos.base';
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
   let moved: boolean;
-  kvStore.getResultSet('batch_test_string_key').then((result) => {
+  kvStore.getResultSet('batch_test_string_key').then((result: distributedKVStore.KVStoreResultSet) => {
     console.info('Succeeded in getting resultSet');
     resultSet = result;
     moved = resultSet.moveToPosition(1);
@@ -1134,7 +1159,7 @@ import { BusinessError } from '@ohos.base';
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
   let isfirst: boolean;
-  kvStore.getResultSet('batch_test_string_key').then((result) => {
+  kvStore.getResultSet('batch_test_string_key').then((result: distributedKVStore.KVStoreResultSet) => {
     console.info('getResultSet succeed.');
     resultSet = result;
     isfirst = resultSet.isFirst();
@@ -1169,7 +1194,7 @@ import { BusinessError } from '@ohos.base';
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
   let islast: boolean;
-  kvStore.getResultSet('batch_test_string_key').then((result) => {
+  kvStore.getResultSet('batch_test_string_key').then((result: distributedKVStore.KVStoreResultSet) => {
     console.info('getResultSet succeed.');
     resultSet = result;
     islast = resultSet.isLast();
@@ -1203,7 +1228,7 @@ import { BusinessError } from '@ohos.base';
 
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
-  kvStore.getResultSet('batch_test_string_key').then((result) => {
+  kvStore.getResultSet('batch_test_string_key').then((result: distributedKVStore.KVStoreResultSet) => {
     console.info('getResultSet succeed.');
     resultSet = result;
     let isbeforefirst = resultSet.isBeforeFirst();
@@ -1237,7 +1262,7 @@ import { BusinessError } from '@ohos.base';
 
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
-  kvStore.getResultSet('batch_test_string_key').then((result) => {
+  kvStore.getResultSet('batch_test_string_key').then((result: distributedKVStore.KVStoreResultSet) => {
     console.info('getResultSet succeed.');
     resultSet = result;
     let isafterlast = resultSet.isAfterLast();
@@ -1271,7 +1296,7 @@ import { BusinessError } from '@ohos.base';
 
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
-  kvStore.getResultSet('batch_test_string_key').then((result) => {
+  kvStore.getResultSet('batch_test_string_key').then((result: distributedKVStore.KVStoreResultSet) => {
     console.info('getResultSet succeed.');
     resultSet = result;
     let entry = resultSet.getEntry();
@@ -1294,7 +1319,7 @@ Provides methods to create a **Query** object, which defines different data quer
 
 constructor()
 
-A constructor used to create a **Schema** instance.
+A constructor used to create a **Query** instance.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -1341,7 +1366,7 @@ Creates a **Query** object to match the specified field whose value is equal to 
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | Yes   |Field to match. It cannot contain '^'. |
+| fieId  | string  | Yes   |Field to match. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned.|
 | value  | number\|string\|boolean  | Yes   | Value specified.|
 
 **Return value**
@@ -1378,7 +1403,7 @@ Creates a **Query** object to match the specified field whose value is not equal
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | Yes   |Field to match. It cannot contain '^'. |
+| fieId  | string  | Yes   |Field to match. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned. |
 | value  | number\|string\|boolean  | Yes   | Value specified.|
 
 **Return value**
@@ -1414,7 +1439,7 @@ Creates a **Query** object to match the specified field whose value is greater t
 **Parameters**
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | Yes   |Field to match. It cannot contain '^'. |
+| fieId  | string  | Yes   |Field to match. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned. |
 | value  | number\|string\|boolean  | Yes   | Value specified.|
 
 **Return value**
@@ -1452,7 +1477,7 @@ Creates a **Query** object to match the specified field whose value is less than
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | Yes   |Field to match. It cannot contain '^'. |
+| fieId  | string  | Yes   |Field to match. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned. |
 | value  | number\|string  | Yes   | Value specified.|
 
 **Return value**
@@ -1490,7 +1515,7 @@ Creates a **Query** object to match the specified field whose value is greater t
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | Yes   |Field to match. It cannot contain '^'. |
+| fieId  | string  | Yes   |Field to match. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned. |
 | value  | number\|string  | Yes   | Value specified.|
 
 **Return value**
@@ -1528,7 +1553,7 @@ Creates a **Query** object to match the specified field whose value is less than
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| fieId  | string  | Yes   |Field to match. It cannot contain '^'. |
+| fieId  | string  | Yes   |Field to match. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned. |
 | value  | number\|string  | Yes   | Value specified.|
 
 **Return value**
@@ -1565,7 +1590,7 @@ Creates a **Query** object to match the specified field whose value is **null**.
 
 | Name| Type| Mandatory| Description                         |
 | ------ | -------- | ---- | ----------------------------- |
-| fieId  | string   | Yes  | Field to match. It cannot contain '^'.|
+| fieId  | string   | Yes  | Field to match. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned.|
 
 **Return value**
 
@@ -1601,7 +1626,7 @@ Creates a **Query** object to match the specified field whose value is within th
 
 | Name   | Type| Mandatory| Description                         |
 | --------- | -------- | ---- | ----------------------------- |
-| fieId     | string   | Yes  | Field to match. It cannot contain '^'.|
+| fieId     | string   | Yes  | Field to match. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned.|
 | valueList | number[] | Yes  | List of numbers.           |
 
 **Return value**
@@ -1638,7 +1663,7 @@ Creates a **Query** object to match the specified field whose value is within th
 
 | Name   | Type| Mandatory| Description                         |
 | --------- | -------- | ---- | ----------------------------- |
-| fieId     | string   | Yes  | Field to match. It cannot contain '^'.|
+| fieId     | string   | Yes  | Field to match. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned.|
 | valueList | string[] | Yes  | List of strings.     |
 
 **Return value**
@@ -1675,7 +1700,7 @@ Creates a **Query** object to match the specified field whose value is not withi
 
 | Name   | Type| Mandatory| Description                         |
 | --------- | -------- | ---- | ----------------------------- |
-| fieId     | string   | Yes  | Field to match. It cannot contain '^'.|
+| fieId     | string   | Yes  | Field to match. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned.|
 | valueList | number[] | Yes  | List of numbers.           |
 
 **Return value**
@@ -1712,7 +1737,7 @@ Creates a **Query** object to match the specified field whose value is not withi
 
 | Name   | Type| Mandatory| Description                         |
 | --------- | -------- | ---- | ----------------------------- |
-| fieId     | string   | Yes  | Field to match. It cannot contain '^'.|
+| fieId     | string   | Yes  | Field to match. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned.|
 | valueList | string[] | Yes  | List of strings.     |
 
 **Return value**
@@ -1749,7 +1774,7 @@ Creates a **Query** object to match the specified field whose value is similar t
 
 | Name| Type| Mandatory| Description                         |
 | ------ | -------- | ---- | ----------------------------- |
-| fieId  | string   | Yes  | Field to match. It cannot contain '^'.|
+| fieId  | string   | Yes  | Field to match. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned.|
 | value  | string   | Yes  | String specified.         |
 
 **Return value**
@@ -1786,7 +1811,7 @@ Creates a **Query** object to match the specified field whose value is not simil
 
 | Name| Type| Mandatory| Description                         |
 | ------ | -------- | ---- | ----------------------------- |
-| fieId  | string   | Yes  | Field to match. It cannot contain '^'.|
+| fieId  | string   | Yes  | Field to match. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned.|
 | value  | string   | Yes  | String specified.         |
 
 **Return value**
@@ -1885,7 +1910,7 @@ Creates a **Query** object to sort the query results in ascending order.
 
 | Name| Type| Mandatory| Description                         |
 | ------ | -------- | ---- | ----------------------------- |
-| fieId  | string   | Yes  | Field to match. It cannot contain '^'.|
+| fieId  | string   | Yes  | Field to match. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned.|
 
 **Return value**
 
@@ -1922,7 +1947,7 @@ Creates a **Query** object to sort the query results in descending order.
 
 | Name| Type| Mandatory| Description                         |
 | ------ | -------- | ---- | ----------------------------- |
-| fieId  | string   | Yes  | Field to match. It cannot contain '^'.|
+| fieId  | string   | Yes  | Field to match. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned.|
 
 **Return value**
 
@@ -1999,7 +2024,7 @@ Creates a **Query** object to match the specified field whose value is not **nul
 
 | Name| Type| Mandatory| Description                         |
 | ------ | -------- | ---- | ----------------------------- |
-| fieId  | string   | Yes  | Field to match. It cannot contain '^'.|
+| fieId  | string   | Yes  | Field to match. It cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned.|
 
 **Return value**
 
@@ -2097,7 +2122,7 @@ Creates a **Query** object with a specified key prefix.
 
 | Name| Type| Mandatory| Description              |
 | ------ | -------- | ---- | ------------------ |
-| prefix | string   | Yes  | Key prefix.|
+| prefix | string   | Yes  | Key prefix, which cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned.|
 
 **Return value**
 
@@ -2134,7 +2159,7 @@ Creates a **Query** object with an index preferentially used for query.
 
 | Name| Type| Mandatory| Description              |
 | ------ | -------- | ---- | ------------------ |
-| index  | string   | Yes  | Index preferentially used for query.|
+| index  | string   | Yes  | Index to set, which cannot contain '^'. If the value contains '^', the predicate becomes invalid and all data in the KV store will be returned.|
 
 **Return value**
 
@@ -2228,7 +2253,7 @@ try {
 
 ## SingleKVStore
 
-Implements data management in a single KV store, such as adding data, deleting data, and subscribing to data changes or data synchronization completion.
+Implements data management in a single KV store, such as adding data, deleting data, and subscribing to data changes or data sync completion.
 
 Before calling any method in **SingleKVStore**, you must use [getKVStore](#getkvstore) to obtain a **SingleKVStore** instance.
 
@@ -2246,7 +2271,7 @@ Adds a KV pair of the specified type to this KV store. This API uses an asynchro
 | -----  | ------  | ----  | ----------------------- |
 | key    | string  | Yes   |Key of the KV pair to add. It cannot be empty, and the length cannot exceed [MAX_KEY_LENGTH](#constants).  |
 | value  | Uint8Array \| string \| number \| boolean | Yes   |Value of the KV pair to add. The value type can be Uint8Array, number, string, or boolean. A value of the Uint8Array or string type cannot exceed [MAX_VALUE_LENGTH](#constants).  |
-| callback | AsyncCallback&lt;void&gt; | Yes   |Callback invoked to return the result.  |
+| callback | AsyncCallback&lt;void&gt; | Yes   |Callback used to return the result.  |
 
 **Error codes**
 
@@ -2271,7 +2296,7 @@ import { BusinessError } from '@ohos.base';
 const KEY_TEST_STRING_ELEMENT = 'key_test_string';
 const VALUE_TEST_STRING_ELEMENT = 'value-test-string';
 try {
-  kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, (err) => {
+  kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, (err: BusinessError) => {
     if (err != undefined) {
       console.error(`Failed to put.code is ${err.code},message is ${err.message}`);
       return;
@@ -2352,7 +2377,7 @@ Batch inserts KV pairs to this single KV store. This API uses an asynchronous ca
 | Name  | Type                | Mandatory| Description                    |
 | -------- | ------------------------ | ---- | ------------------------ |
 | entries  | [Entry](#entry)[]        | Yes  | KV pairs to insert in batches. An **entries** object allows a maximum of 128 entries.|
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.              |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.              |
 
 **Error codes**
 
@@ -2388,14 +2413,14 @@ try {
     entries.push(entry);
   }
   console.info(`entries: ${entries}`);
-  kvStore.putBatch(entries, async (err) => {
+  kvStore.putBatch(entries, async (err: BusinessError) => {
     if (err != undefined) {
       console.error(`Failed to put Batch.code is ${err.code},message is ${err.message}`);
       return;
     }
     console.info('Succeeded in putting Batch');
     if (kvStore != null) {
-      kvStore.getEntries('batch_test_string_key', (err, entries) => {
+      kvStore.getEntries('batch_test_string_key', (err: BusinessError, entries: distributedKVStore.Entry[]) => {
         if (err != undefined) {
           console.error(`Failed to get Entries.code is ${err.code},message is ${err.message}`);
         }
@@ -2470,7 +2495,7 @@ try {
   kvStore.putBatch(entries).then(async () => {
     console.info('Succeeded in putting Batch');
     if (kvStore != null) {
-      kvStore.getEntries('batch_test_string_key').then((entries) => {
+      kvStore.getEntries('batch_test_string_key').then((entries: distributedKVStore.Entry[]) => {
         console.info('Succeeded in getting Entries');
         console.info(`PutBatch ${entries}`);
       }).catch((err: BusinessError) => {
@@ -2491,7 +2516,7 @@ try {
 
 putBatch(value: Array&lt;ValuesBucket&gt;, callback: AsyncCallback&lt;void&gt;): void
 
-Writes data to this single KV store. This API uses an asynchronous callback to return the result.
+Writes batch data to this single KV store. This API uses an asynchronous callback to return the result.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -2504,7 +2529,7 @@ Writes data to this single KV store. This API uses an asynchronous callback to r
 | Name  | Type                                                    | Mandatory| Description              |
 | -------- | ------------------------------------------------------------ | ---- | ------------------ |
 | value    | Array&lt;[ValuesBucket](js-apis-data-valuesBucket.md#valuesbucket)&gt; | Yes  | Data to write.|
-| callback | AsyncCallback&lt;void&gt;                                     | Yes  | Callback invoked to return the result.        |
+| callback | AsyncCallback&lt;void&gt;                                     | Yes  | Callback used to return the result.        |
 
 **Error codes**
 
@@ -2536,7 +2561,7 @@ try {
   v8Arr.push(vb1);
   v8Arr.push(vb2);
   v8Arr.push(vb3);
-  kvStore.putBatch(v8Arr, async (err) => {
+  kvStore.putBatch(v8Arr, async (err: BusinessError) => {
     if (err != undefined) {
       console.error(`Failed to put batch.code is ${err.code},message is ${err.message}`);
       return;
@@ -2553,7 +2578,7 @@ try {
 
 putBatch(value: Array&lt;ValuesBucket&gt;): Promise&lt;void&gt;
 
-Write data to this KV store. This API uses a promise to return the result.
+Writes batch data to this single KV store. This API uses a promise to return the result.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -2565,7 +2590,7 @@ Write data to this KV store. This API uses a promise to return the result.
 
 | Name| Type                                                    | Mandatory| Description              |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
-| value  | Array&lt;[ValuesBucket](js-apis-data-valuesBucket.md#valuesbucket)&gt; | Yes  | Data to write. |
+| value  | Array&lt;[ValuesBucket](js-apis-data-valuesBucket.md#valuesbucket)&gt; | Yes  | Data to write.|
 
 **Return value**
 
@@ -2627,7 +2652,7 @@ Deletes a KV pair from this KV store. This API uses an asynchronous callback to 
 | Name  | Type                 | Mandatory| Description                                                        |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
 | key      | string                    | Yes  | Key of the KV pair to delete. It cannot be empty, and the length cannot exceed [MAX_KEY_LENGTH](#constants).|
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.                                                  |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                                                  |
 
 **Error codes**
 
@@ -2652,14 +2677,14 @@ import { BusinessError } from '@ohos.base';
 const KEY_TEST_STRING_ELEMENT = 'key_test_string';
 const VALUE_TEST_STRING_ELEMENT = 'value-test-string';
 try {
-  kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, (err) => {
+  kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, (err: BusinessError) => {
     if (err != undefined) {
       console.error(`Failed to put.code is ${err.code},message is ${err.message}`);
       return;
     }
     console.info('Succeeded in putting');
     if (kvStore != null) {
-      kvStore.delete(KEY_TEST_STRING_ELEMENT, (err) => {
+      kvStore.delete(KEY_TEST_STRING_ELEMENT, (err: BusinessError) => {
         if (err != undefined) {
           console.error(`Failed to delete.code is ${err.code},message is ${err.message}`);
           return;
@@ -2752,7 +2777,7 @@ Deletes KV pairs from this KV store. This API uses an asynchronous callback to r
 | Name    | Type                                                    | Mandatory| Description                                           |
 | ---------- | ------------------------------------------------------------ | ---- | ----------------------------------------------- |
 | predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | **DataSharePredicates** object that specifies the KV pairs to delete. If this parameter is **null**, define the processing logic.|
-| callback   | AsyncCallback&lt;void&gt;                                    | Yes  | Callback invoked to return the result.                                     |
+| callback   | AsyncCallback&lt;void&gt;                                    | Yes  | Callback used to return the result.                                     |
 
 **Error codes**
 
@@ -2779,14 +2804,14 @@ try {
   let predicates = new dataSharePredicates.DataSharePredicates();
   let arr = ["name"];
   predicates.inKeys(arr);
-  kvStore.put("name", "bob", (err) => {
+  kvStore.put("name", "bob", (err: BusinessError) => {
     if (err != undefined) {
       console.error(`Failed to put.code is ${err.code},message is ${err.message}`);
       return;
     }
     console.info("Succeeded in putting");
     if (kvStore != null) {
-      kvStore.delete(predicates, (err) => {
+      kvStore.delete(predicates, (err: BusinessError) => {
         if (err == undefined) {
           console.info('Succeeded in deleting');
         } else {
@@ -2881,7 +2906,7 @@ Batch deletes KV pairs from this single KV store. This API uses an asynchronous 
 | Name  | Type                 | Mandatory| Description                    |
 | -------- | ------------------------- | ---- | ------------------------ |
 | keys     | string[]                  | Yes  | KV pairs to delete in batches.|
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.              |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.              |
 
 **Error codes**
 
@@ -2919,14 +2944,14 @@ try {
     keys.push(key + i);
   }
   console.info(`entries: ${entries}`);
-  kvStore.putBatch(entries, async (err) => {
+  kvStore.putBatch(entries, async (err: BusinessError) => {
     if (err != undefined) {
       console.error(`Failed to put Batch.code is ${err.code},message is ${err.message}`);
       return;
     }
     console.info('Succeeded in putting Batch');
     if (kvStore != null) {
-      kvStore.deleteBatch(keys, async (err) => {
+      kvStore.deleteBatch(keys, async (err: BusinessError) => {
         if (err != undefined) {
           console.error(`Failed to delete Batch.code is ${err.code},message is ${err.message}`);
           return;
@@ -3032,7 +3057,7 @@ Deletes data of a device. This API uses an asynchronous callback to return the r
 | Name  | Type                 | Mandatory| Description                  |
 | -------- | ------------------------- | ---- | ---------------------- |
 | deviceId | string                    | Yes  | ID of the target device.|
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.            |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.            |
 
 **Error codes**
 
@@ -3050,17 +3075,17 @@ import { BusinessError } from '@ohos.base';
 const KEY_TEST_STRING_ELEMENT = 'key_test_string_2';
 const VALUE_TEST_STRING_ELEMENT = 'value-string-002';
 try {
-  kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, async (err) => {
+  kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, async (err: BusinessError) => {
     console.info('Succeeded in putting data');
     const deviceid = 'no_exist_device_id';
     if (kvStore != null) {
-      kvStore.removeDeviceData(deviceid, async (err) => {
+      kvStore.removeDeviceData(deviceid, async (err: BusinessError) => {
         if (err == undefined) {
           console.info('succeeded in removing device data');
         } else {
           console.error(`Failed to remove device data.code is ${err.code},message is ${err.message} `);
           if (kvStore != null) {
-            kvStore.get(KEY_TEST_STRING_ELEMENT, async (err, data) => {
+            kvStore.get(KEY_TEST_STRING_ELEMENT, async (err: BusinessError, data: boolean | string | number | Uint8Array) => {
               console.info('Succeeded in getting data');
             });
           }
@@ -3125,7 +3150,7 @@ try {
   }).catch((err: BusinessError) => {
     console.error(`Failed to remove device data.code is ${err.code},message is ${err.message} `);
   });
-  kvStore.get(KEY_TEST_STRING_ELEMENT).then((data) => {
+  kvStore.get(KEY_TEST_STRING_ELEMENT).then((data: boolean | string | number | Uint8Array) => {
     console.info('Succeeded in getting data');
   }).catch((err: BusinessError) => {
     console.error(`Failed to get data.code is ${err.code},message is ${err.message} `);
@@ -3149,7 +3174,7 @@ Obtains the value of the specified key. This API uses an asynchronous callback t
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | key    |string   | Yes   |Key of the value to obtain. It cannot be empty, and the length cannot exceed [MAX_KEY_LENGTH](#constants). |
-| callback  |AsyncCallback&lt;boolean \| string \| number \| Uint8Array&gt; | Yes   |Callback invoked to return the value obtained. |
+| callback  |AsyncCallback&lt;boolean \| string \| number \| Uint8Array&gt; | Yes   |Callback used to return the value obtained. |
 
 **Error codes**
 
@@ -3170,14 +3195,14 @@ import { BusinessError } from '@ohos.base';
 const KEY_TEST_STRING_ELEMENT = 'key_test_string';
 const VALUE_TEST_STRING_ELEMENT = 'value-test-string';
 try {
-  kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, (err) => {
+  kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, (err: BusinessError) => {
     if (err != undefined) {
       console.error(`Failed to put.code is ${err.code},message is ${err.message}`);
       return;
     }
     console.info("Succeeded in putting");
     if (kvStore != null) {
-      kvStore.get(KEY_TEST_STRING_ELEMENT, (err, data) => {
+      kvStore.get(KEY_TEST_STRING_ELEMENT, (err: BusinessError, data: boolean | string | number | Uint8Array) => {
         if (err != undefined) {
           console.error(`Failed to get.code is ${err.code},message is ${err.message}`);
           return;
@@ -3234,7 +3259,7 @@ try {
   kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT).then(() => {
     console.info(`Succeeded in putting data`);
     if (kvStore != null) {
-      kvStore.get(KEY_TEST_STRING_ELEMENT).then((data) => {
+      kvStore.get(KEY_TEST_STRING_ELEMENT).then((data: boolean | string | number | Uint8Array) => {
         console.info(`Succeeded in getting data.data=${data}`);
       }).catch((err: BusinessError) => {
         console.error(`Failed to get.code is ${err.code},message is ${err.message}`);
@@ -3262,7 +3287,7 @@ Obtains all KV pairs that match the specified key prefix. This API uses an async
 | Name   | Type                              | Mandatory| Description                                    |
 | --------- | -------------------------------------- | ---- | ---------------------------------------- |
 | keyPrefix | string                                 | Yes  | Key prefix to match.                    |
-| callback  | AsyncCallback&lt;[Entry](#entry)[]&gt; | Yes  | Callback invoked to return the KV pairs that match the specified prefix.|
+| callback  | AsyncCallback&lt;[Entry](#entry)[]&gt; | Yes  | Callback used to return the KV pairs that match the specified prefix.|
 
 **Error codes**
 
@@ -3292,14 +3317,14 @@ try {
     entries.push(entry);
   }
   console.info(`entries: ${entries}`);
-  kvStore.putBatch(entries, async (err) => {
+  kvStore.putBatch(entries, async (err: BusinessError) => {
     if (err != undefined) {
       console.error(`Failed to put Batch.code is ${err.code},message is ${err.message}`);
       return;
     }
     console.info('Succeeded in putting Batch');
     if (kvStore != null) {
-      kvStore.getEntries('batch_test_string_key', (err, entries) => {
+      kvStore.getEntries('batch_test_string_key', (err: BusinessError, entries: distributedKVStore.Entry[]) => {
         if (err != undefined) {
           console.error(`Failed to get Entries.code is ${err.code},message is ${err.message}`);
           return;
@@ -3368,7 +3393,7 @@ try {
   kvStore.putBatch(entries).then(async () => {
     console.info('Succeeded in putting Batch');
     if (kvStore != null) {
-      kvStore.getEntries('batch_test_string_key').then((entries) => {
+      kvStore.getEntries('batch_test_string_key').then((entries: distributedKVStore.Entry[]) => {
         console.info('Succeeded in getting Entries');
         console.info(`PutBatch ${entries}`);
       }).catch((err: BusinessError) => {
@@ -3397,7 +3422,7 @@ Obtains the KV pairs that match the specified **Query** object. This API uses an
 | Name  | Type                              | Mandatory| Description                                           |
 | -------- | -------------------------------------- | ---- | ----------------------------------------------- |
 | query    | [Query](#query)                         | Yes  | Key prefix to match.                           |
-| callback | AsyncCallback&lt;[Entry](#entry)[]&gt; | Yes  | Callback invoked to return the KV pairs that match the specified **Query** object.|
+| callback | AsyncCallback&lt;[Entry](#entry)[]&gt; | Yes  | Callback used to return the KV pairs that match the specified **Query** object.|
 
 **Error codes**
 
@@ -3428,12 +3453,12 @@ try {
     entries.push(entry);
   }
   console.info(`entries: {entries}`);
-  kvStore.putBatch(entries, async (err) => {
+  kvStore.putBatch(entries, async (err: BusinessError) => {
     console.info('Succeeded in putting Batch');
     const query = new distributedKVStore.Query();
     query.prefixKey("batch_test");
     if (kvStore != null) {
-      kvStore.getEntries(query, (err, entries) => {
+      kvStore.getEntries(query, (err: BusinessError, entries: distributedKVStore.Entry[]) => {
         if (err != undefined) {
           console.error(`Failed to get Entries.code is ${err.code},message is ${err.message}`);
           return;
@@ -3504,7 +3529,7 @@ try {
     const query = new distributedKVStore.Query();
     query.prefixKey("batch_test");
     if (kvStore != null) {
-      kvStore.getEntries(query).then((entries) => {
+      kvStore.getEntries(query).then((entries: distributedKVStore.Entry[]) => {
         console.info('Succeeded in getting Entries');
       }).catch((err: BusinessError) => {
         console.error(`Failed to get Entries.code is ${err.code},message is ${err.message}`);
@@ -3533,7 +3558,7 @@ Obtains a result set with the specified prefix from this single KV store. This A
 | Name   | Type                                                  | Mandatory| Description                                |
 | --------- | ---------------------------------------------------------- | ---- | ------------------------------------ |
 | keyPrefix | string                                                     | Yes  | Key prefix to match.                |
-| callback  | AsyncCallback&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | Yes  | Callback invoked to return the result set with the specified prefix.|
+| callback  | AsyncCallback&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | Yes  | Callback used to return the result set with the specified prefix.|
 
 **Error codes**
 
@@ -3565,14 +3590,14 @@ try {
     }
     entries.push(entry);
   }
-  kvStore.putBatch(entries, async (err) => {
+  kvStore.putBatch(entries, async (err: BusinessError) => {
     if (err != undefined) {
       console.error(`Failed to put batch.code is ${err.code},message is ${err.message}`);
       return;
     }
     console.info('Succeeded in putting batch');
     if (kvStore != null) {
-      kvStore.getResultSet('batch_test_string_key', async (err, result) => {
+      kvStore.getResultSet('batch_test_string_key', async (err: BusinessError, result: distributedKVStore.KVStoreResultSet) => {
         if (err != undefined) {
           console.error(`Failed to get resultset.code is ${err.code},message is ${err.message}`);
           return;
@@ -3580,7 +3605,7 @@ try {
         console.info('Succeeded in getting result set');
         resultSet = result;
         if (kvStore != null) {
-          kvStore.closeResultSet(resultSet, (err) => {
+          kvStore.closeResultSet(resultSet, (err: BusinessError) => {
             if (err != undefined) {
               console.error(`Failed to close resultset.code is ${err.code},message is ${err.message}`);
               return;
@@ -3651,7 +3676,7 @@ try {
   }).catch((err: BusinessError) => {
     console.error(`Failed to put batch.code is ${err.code},message is ${err.message}`);
   });
-  kvStore.getResultSet('batch_test_string_key').then((result) => {
+  kvStore.getResultSet('batch_test_string_key').then((result: distributedKVStore.KVStoreResultSet) => {
     console.info('Succeeded in getting result set');
     resultSet = result;
     if (kvStore != null) {
@@ -3683,7 +3708,7 @@ Obtains a **KVStoreResultSet** object that matches the specified **Query** objec
 | Name  | Type                                                  | Mandatory| Description                                                     |
 | -------- | ---------------------------------------------------------- | ---- | --------------------------------------------------------- |
 | query    | Query                                                      | Yes  | **Query** object to match.                                           |
-| callback | AsyncCallback&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | Yes  | Callback invoked to return the **KVStoreResultSet** object obtained.|
+| callback | AsyncCallback&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | Yes  | Callback used to return the **KVStoreResultSet** object obtained.|
 
 **Error codes**
 
@@ -3714,7 +3739,7 @@ try {
     }
     entries.push(entry);
   }
-  kvStore.putBatch(entries, async (err) => {
+  kvStore.putBatch(entries, async (err: BusinessError) => {
     if (err != undefined) {
       console.error(`Failed to put batch.code is ${err.code},message is ${err.message}`);
       return;
@@ -3723,7 +3748,7 @@ try {
     const query = new distributedKVStore.Query();
     query.prefixKey("batch_test");
     if (kvStore != null) {
-      kvStore.getResultSet(query, async (err, result) => {
+      kvStore.getResultSet(query, async (err: BusinessError, result: distributedKVStore.KVStoreResultSet) => {
         if (err != undefined) {
           console.error(`Failed to get resultset.code is ${err.code},message is ${err.message}`);
           return;
@@ -3794,7 +3819,7 @@ try {
   });
   const query = new distributedKVStore.Query();
   query.prefixKey("batch_test");
-  kvStore.getResultSet(query).then((result) => {
+  kvStore.getResultSet(query).then((result: distributedKVStore.KVStoreResultSet) => {
     console.info('Succeeded in getting result set');
     resultSet = result;
   }).catch((err: BusinessError) => {
@@ -3823,7 +3848,7 @@ Obtains a **KVStoreResultSet** object that matches the specified predicate objec
 | Name    | Type                                                    | Mandatory| Description                                                        |
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | **DataSharePredicates** object that specifies the **KVStoreResultSet** object to obtain. If this parameter is **null**, define the processing logic.             |
-| callback   | AsyncCallback&lt;[KVStoreResultSet](#kvstoreresultset)&gt;   | Yes  | Callback invoked to return the **KVStoreResultSet** object obtained.|
+| callback   | AsyncCallback&lt;[KVStoreResultSet](#kvstoreresultset)&gt;   | Yes  | Callback used to return the **KVStoreResultSet** object obtained.|
 
 **Error codes**
 
@@ -3845,7 +3870,7 @@ try {
   let resultSet: distributedKVStore.KVStoreResultSet;
   let predicates = new dataSharePredicates.DataSharePredicates();
   predicates.prefixKey("batch_test_string_key");
-  kvStore.getResultSet(predicates, async (err, result) => {
+  kvStore.getResultSet(predicates, async (err: BusinessError, result: distributedKVStore.KVStoreResultSet) => {
     if (err != undefined) {
       console.error(`Failed to get resultset.code is ${err.code},message is ${err.message}`);
       return;
@@ -3853,7 +3878,7 @@ try {
     console.info('Succeeded in getting result set');
     resultSet = result;
     if (kvStore != null) {
-      kvStore.closeResultSet(resultSet, (err) => {
+      kvStore.closeResultSet(resultSet, (err: BusinessError) => {
         if (err != undefined) {
           console.error(`Failed to close resultset.code is ${err.code},message is ${err.message}`);
           return;
@@ -3884,7 +3909,7 @@ Obtains a **KVStoreResultSet** object that matches the specified predicate objec
 
 | Name    | Type                                                    | Mandatory| Description                                           |
 | ---------- | ------------------------------------------------------------ | ---- | ----------------------------------------------- |
-| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | **DataSharePredicates** object that specifies the **KVStoreResultSet** object to obtain. If this parameter is **null**, define the processing logic.|
+| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | **DataSharePredicates** object that specifies the KV pairs to delete. If this parameter is **null**, define the processing logic.|
 
 **Return value**
 
@@ -3912,7 +3937,7 @@ try {
   let resultSet: distributedKVStore.KVStoreResultSet;
   let predicates = new dataSharePredicates.DataSharePredicates();
   predicates.prefixKey("batch_test_string_key");
-  kvStore.getResultSet(predicates).then((result) => {
+  kvStore.getResultSet(predicates).then((result: distributedKVStore.KVStoreResultSet) => {
     console.info('Succeeded in getting result set');
     resultSet = result;
     if (kvStore != null) {
@@ -3945,7 +3970,7 @@ Closes the **KVStoreResultSet** object returned by [SingleKvStore.getResultSet](
 | Name   | Type                             | Mandatory| Description                              |
 | --------- | ------------------------------------- | ---- | ---------------------------------- |
 | resultSet | [KVStoreResultSet](#kvstoreresultset) | Yes  | **KVStoreResultSet** object to close.|
-| callback  | AsyncCallback&lt;void&gt;             | Yes  | Callback invoked to return the result.                        |
+| callback  | AsyncCallback&lt;void&gt;             | Yes  | Callback used to return the result.                        |
 
 **Example**
 
@@ -3954,7 +3979,7 @@ import { BusinessError } from '@ohos.base';
 
 let resultSet: distributedKVStore.KVStoreResultSet;
 try {
-  kvStore.getResultSet('batch_test_string_key', async (err, result) => {
+  kvStore.getResultSet('batch_test_string_key', async (err: BusinessError, result: distributedKVStore.KVStoreResultSet) => {
     if (err != undefined) {
       console.error(`Failed to get resultset.code is ${err.code},message is ${err.message}`);
       return;
@@ -3962,7 +3987,7 @@ try {
     console.info('Succeeded in getting result set');
     resultSet = result;
     if (kvStore != null) {
-      kvStore.closeResultSet(resultSet, (err) => {
+      kvStore.closeResultSet(resultSet, (err: BusinessError) => {
         if (err != undefined) {
           console.error(`Failed to close resultset.code is ${err.code},message is ${err.message}`);
           return;
@@ -4005,7 +4030,7 @@ import { BusinessError } from '@ohos.base';
 
 let resultSet: distributedKVStore.KVStoreResultSet;
 try {
-  kvStore.getResultSet('batch_test_string_key').then((result) => {
+  kvStore.getResultSet('batch_test_string_key').then((result: distributedKVStore.KVStoreResultSet) => {
     console.info('Succeeded in getting result set');
     resultSet = result;
     if (kvStore != null) {
@@ -4038,7 +4063,7 @@ Obtains the number of results that matches the specified **Query** object. This 
 | Name  | Type                   | Mandatory| Description                                       |
 | -------- | --------------------------- | ---- | ------------------------------------------- |
 | query    | [Query](#query)              | Yes  | **Query** object to match.                             |
-| callback | AsyncCallback&lt;number&gt; | Yes  | Callback invoked to return the number of results obtained.|
+| callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the number of results obtained.|
 
 **Error codes**
 
@@ -4067,12 +4092,12 @@ try {
     }
     entries.push(entry);
   }
-  kvStore.putBatch(entries, async (err) => {
+  kvStore.putBatch(entries, async (err: BusinessError) => {
     console.info('Succeeded in putting batch');
     const query = new distributedKVStore.Query();
     query.prefixKey("batch_test");
     if (kvStore != null) {
-      kvStore.getResultSize(query, async (err, resultSize) => {
+      kvStore.getResultSize(query, async (err: BusinessError, resultSize: number) => {
         if (err != undefined) {
           console.error(`Failed to get result size.code is ${err.code},message is ${err.message}`);
           return;
@@ -4141,7 +4166,7 @@ try {
   });
   const query = new distributedKVStore.Query();
   query.prefixKey("batch_test");
-  kvStore.getResultSize(query).then((resultSize) => {
+  kvStore.getResultSize(query).then((resultSize: number) => {
     console.info('Succeeded in getting result set size');
   }).catch((err: BusinessError) => {
     console.error(`Failed to get result size.code is ${err.code},message is ${err.message}`);
@@ -4165,7 +4190,7 @@ Backs up a distributed KV store. This API uses an asynchronous callback to retur
 | Name  | Type                 | Mandatory| Description                                                        |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
 | file     | string                    | Yes  | Name of the KV store. The value cannot be empty or exceed [MAX_KEY_LENGTH](#constants).|
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -4180,9 +4205,9 @@ For details about the error codes, see [Distributed KV Store Error Codes](../err
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let file = "BK001";
+let backupFile = "BK001";
 try {
-  kvStore.backup(file, (err) => {
+  kvStore.backup(backupFile, (err: BusinessError) => {
     if (err) {
       console.error(`Failed to backup.code is ${err.code},message is ${err.message} `);
     } else {
@@ -4228,9 +4253,9 @@ For details about the error codes, see [Distributed KV Store Error Codes](../err
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let file = "BK001";
+let backupFile = "BK001";
 try {
-  kvStore.backup(file).then(() => {
+  kvStore.backup(backupFile).then(() => {
     console.info(`Succeeded in backupping data`);
   }).catch((err: BusinessError) => {
     console.error(`Failed to backup.code is ${err.code},message is ${err.message}`);
@@ -4254,7 +4279,7 @@ Restores a distributed KV store from a database file. This API uses an asynchron
 | Name  | Type                 | Mandatory| Description                                                        |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
 | file     | string                    | Yes  | Name of the database file. The value cannot be empty or exceed [MAX_KEY_LENGTH](#constants).|
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -4269,9 +4294,9 @@ For details about the error codes, see [Distributed KV Store Error Codes](../err
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let file = "BK001";
+let backupFile = "BK001";
 try {
-  kvStore.restore(file, (err) => {
+  kvStore.restore(backupFile, (err: BusinessError) => {
     if (err) {
       console.error(`Failed to restore.code is ${err.code},message is ${err.message}`);
     } else {
@@ -4317,9 +4342,9 @@ For details about the error codes, see [Distributed KV Store Error Codes](../err
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let file = "BK001";
+let backupFile = "BK001";
 try {
-  kvStore.restore(file).then(() => {
+  kvStore.restore(backupFile).then(() => {
     console.info(`Succeeded in restoring data`);
   }).catch((err: BusinessError) => {
     console.error(`Failed to restore.code is ${err.code},message is ${err.message}`);
@@ -4343,7 +4368,7 @@ Deletes a backup file. This API uses an asynchronous callback to return the resu
 | Name  | Type                                          | Mandatory| Description                                                        |
 | -------- | -------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | files    | Array&lt;string&gt;                                | Yes  | Name of the backup file to delete. The value cannot be empty or exceed [MAX_KEY_LENGTH](#constants).|
-| callback | AsyncCallback&lt;Array&lt;[string, number]&gt;&gt; | Yes  | Callback invoked to return the name of the backup file deleted and the operation result.                |
+| callback | AsyncCallback&lt;Array&lt;[string, number]&gt;&gt; | Yes  | Callback used to return the name of the backup file deleted and the operation result.                |
 
 **Example**
 
@@ -4352,7 +4377,7 @@ import { BusinessError } from '@ohos.base';
 
 let files = ["BK001", "BK002"];
 try {
-  kvStore.deleteBackup(files, (err, data) => {
+  kvStore.deleteBackup(files, (err: BusinessError, data: [string, number][]) => {
     if (err) {
       console.error(`Failed to delete Backup.code is ${err.code},message is ${err.message}`);
     } else {
@@ -4392,7 +4417,7 @@ import { BusinessError } from '@ohos.base';
 
 let files = ["BK001", "BK002"];
 try {
-  kvStore.deleteBackup(files).then((data) => {
+  kvStore.deleteBackup(files).then((data: [string, number][]) => {
     console.info(`Succeed in deleting Backup.data=${data}`);
   }).catch((err: BusinessError) => {
     console.error(`Failed to delete Backup.code is ${err.code},message is ${err.message}`);
@@ -4415,7 +4440,7 @@ Starts the transaction in this single KV store. This API uses an asynchronous ca
 
 | Name  | Type                 | Mandatory| Description      |
 | -------- | ------------------------- | ---- | ---------- |
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
 
 **Error codes**
 
@@ -4453,11 +4478,11 @@ function putBatchString(len: number, prefix: string) {
 
 try {
   let count = 0;
-  kvStore.on('dataChange', 0, (data) => {
+  kvStore.on('dataChange', 0, (data: distributedKVStore.ChangeNotification) => {
     console.info(`startTransaction 0 ${data}`);
     count++;
   });
-  kvStore.startTransaction(async (err) => {
+  kvStore.startTransaction(async (err: BusinessError) => {
     if (err != undefined) {
       console.error(`Failed to start Transaction.code is ${err.code},message is ${err.message}`);
       return;
@@ -4466,7 +4491,7 @@ try {
     let entries = putBatchString(10, 'batch_test_string_key');
     console.info(`entries: ${entries}`);
     if (kvStore != null) {
-      kvStore.putBatch(entries, async (err) => {
+      kvStore.putBatch(entries, async (err: BusinessError) => {
         if (err != undefined) {
           console.error(`Failed to put batch.code is ${err.code},message is ${err.message}`);
           return;
@@ -4516,7 +4541,7 @@ import { BusinessError } from '@ohos.base';
 
 try {
   let count = 0;
-  kvStore.on('dataChange', distributedKVStore.SubscribeType.SUBSCRIBE_TYPE_ALL, (data) => {
+  kvStore.on('dataChange', distributedKVStore.SubscribeType.SUBSCRIBE_TYPE_ALL, (data: distributedKVStore.ChangeNotification) => {
     console.info(`startTransaction 0 ${data}`);
     count++;
   });
@@ -4543,7 +4568,7 @@ Commits the transaction in this single KV store. This API uses an asynchronous c
 
 | Name  | Type                 | Mandatory| Description      |
 | -------- | ------------------------- | ---- | ---------- |
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
 
 **Error codes**
 
@@ -4559,7 +4584,7 @@ For details about the error codes, see [Distributed KV Store Error Codes](../err
 import { BusinessError } from '@ohos.base';
 
 try {
-  kvStore.commit((err) => {
+  kvStore.commit((err: BusinessError) => {
     if (err == undefined) {
       console.info('Succeeded in committing');
     } else {
@@ -4623,7 +4648,7 @@ Rolls back the transaction in this single KV store. This API uses an asynchronou
 
 | Name  | Type                 | Mandatory| Description      |
 | -------- | ------------------------- | ---- | ---------- |
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.|
 
 **Error codes**
 
@@ -4639,7 +4664,7 @@ For details about the error codes, see [Distributed KV Store Error Codes](../err
 import { BusinessError } from '@ohos.base';
 
 try {
-  kvStore.rollback((err) => {
+  kvStore.rollback((err: BusinessError) => {
     if (err == undefined) {
       console.info('Succeeded in rolling back');
     } else {
@@ -4695,7 +4720,7 @@ try {
 
 enableSync(enabled: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-Sets data synchronization, which can be enabled or disabled. This API uses an asynchronous callback to return the result.
+Sets data sync, which can be enabled or disabled. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -4703,8 +4728,8 @@ Sets data synchronization, which can be enabled or disabled. This API uses an as
 
 | Name  | Type                 | Mandatory| Description                                                     |
 | -------- | ------------------------- | ---- | --------------------------------------------------------- |
-| enabled  | boolean                   | Yes  | Whether to enable data synchronization. The value **true** means to enable data synchronization, and **false** means the opposite.|
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.                                               |
+| enabled  | boolean                   | Yes  | Whether to enable data sync. The value **true** means to enable data sync, and **false** means the opposite.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                                               |
 
 **Example**
 
@@ -4712,7 +4737,7 @@ Sets data synchronization, which can be enabled or disabled. This API uses an as
 import { BusinessError } from '@ohos.base';
 
 try {
-  kvStore.enableSync(true, (err) => {
+  kvStore.enableSync(true, (err: BusinessError) => {
     if (err == undefined) {
       console.info('Succeeded in enabling sync');
     } else {
@@ -4729,7 +4754,7 @@ try {
 
 enableSync(enabled: boolean): Promise&lt;void&gt;
 
-Sets data synchronization, which can be enabled or disabled. This API uses a promise to return the result.
+Sets data sync, which can be enabled or disabled. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -4737,7 +4762,7 @@ Sets data synchronization, which can be enabled or disabled. This API uses a pro
 
 | Name | Type| Mandatory| Description                                                     |
 | ------- | -------- | ---- | --------------------------------------------------------- |
-| enabled | boolean  | Yes  | Whether to enable data synchronization. The value **true** means to enable data synchronization, and **false** means the opposite.|
+| enabled | boolean  | Yes  | Whether to enable data sync. The value **true** means to enable data sync, and **false** means the opposite.|
 
 **Return value**
 
@@ -4766,7 +4791,7 @@ try {
 
 setSyncRange(localLabels: string[], remoteSupportLabels: string[], callback: AsyncCallback&lt;void&gt;): void
 
-Sets the data synchronization range. This API uses an asynchronous callback to return the result.
+Sets the data sync range. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -4774,9 +4799,9 @@ Sets the data synchronization range. This API uses an asynchronous callback to r
 
 | Name             | Type                 | Mandatory| Description                            |
 | ------------------- | ------------------------- | ---- | -------------------------------- |
-| localLabels         | string[]                  | Yes  | Synchronization labels set for the local device.        |
-| remoteSupportLabels | string[]                  | Yes  | Synchronization labels set for remote devices.|
-| callback            | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.                      |
+| localLabels         | string[]                  | Yes  | Sync labels set for the local device.        |
+| remoteSupportLabels | string[]                  | Yes  | Sync labels set for remote devices.|
+| callback            | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                      |
 
 **Example**
 
@@ -4786,7 +4811,7 @@ import { BusinessError } from '@ohos.base';
 try {
   const localLabels = ['A', 'B'];
   const remoteSupportLabels = ['C', 'D'];
-  kvStore.setSyncRange(localLabels, remoteSupportLabels, (err) => {
+  kvStore.setSyncRange(localLabels, remoteSupportLabels, (err: BusinessError) => {
     if (err != undefined) {
       console.error(`Failed to set syncRange.code is ${err.code},message is ${err.message}`);
       return;
@@ -4803,7 +4828,7 @@ try {
 
 setSyncRange(localLabels: string[], remoteSupportLabels: string[]): Promise&lt;void&gt;
 
-Sets the data synchronization range. This API uses a promise to return the result.
+Sets the data sync range. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -4811,8 +4836,8 @@ Sets the data synchronization range. This API uses a promise to return the resul
 
 | Name             | Type| Mandatory| Description                            |
 | ------------------- | -------- | ---- | -------------------------------- |
-| localLabels         | string[] | Yes  | Synchronization labels set for the local device.        |
-| remoteSupportLabels | string[] | Yes  | Synchronization labels set for remote devices.|
+| localLabels         | string[] | Yes  | Sync labels set for the local device.        |
+| remoteSupportLabels | string[] | Yes  | Sync labels set for remote devices.|
 
 **Return value**
 
@@ -4843,7 +4868,7 @@ try {
 
 setSyncParam(defaultAllowedDelayMs: number, callback: AsyncCallback&lt;void&gt;): void
 
-Sets the default delay allowed for KV store synchronization. This API uses an asynchronous callback to return the result.
+Sets the default delay allowed for KV store sync. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -4851,8 +4876,8 @@ Sets the default delay allowed for KV store synchronization. This API uses an as
 
 | Name               | Type                 | Mandatory| Description                                        |
 | --------------------- | ------------------------- | ---- | -------------------------------------------- |
-| defaultAllowedDelayMs | number                    | Yes  | Default delay allowed for database synchronization, in ms.|
-| callback              | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.                                  |
+| defaultAllowedDelayMs | number                    | Yes  | Default delay allowed for database sync, in ms.|
+| callback              | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                                  |
 
 **Example**
 
@@ -4861,7 +4886,7 @@ import { BusinessError } from '@ohos.base';
 
 try {
   const defaultAllowedDelayMs = 500;
-  kvStore.setSyncParam(defaultAllowedDelayMs, (err) => {
+  kvStore.setSyncParam(defaultAllowedDelayMs, (err: BusinessError) => {
     if (err != undefined) {
       console.error(`Failed to set syncParam.code is ${err.code},message is ${err.message}`);
       return;
@@ -4878,7 +4903,7 @@ try {
 
 setSyncParam(defaultAllowedDelayMs: number): Promise&lt;void&gt;
 
-Sets the default delay allowed for KV store synchronization. This API uses a promise to return the result.
+Sets the default delay allowed for KV store sync. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -4886,7 +4911,7 @@ Sets the default delay allowed for KV store synchronization. This API uses a pro
 
 | Name               | Type| Mandatory| Description                                        |
 | --------------------- | -------- | ---- | -------------------------------------------- |
-| defaultAllowedDelayMs | number   | Yes  | Default delay allowed for database synchronization, in ms.|
+| defaultAllowedDelayMs | number   | Yes  | Default delay allowed for database sync, in ms.|
 
 **Return value**
 
@@ -4916,7 +4941,7 @@ try {
 
 sync(deviceIds: string[], mode: SyncMode, delayMs?: number): void
 
-Synchronizes the KV store manually. For details about the synchronization modes of KV stores, see [Cross-Device Synchronization of KV Stores](../../database/data-sync-of-kv-store.md).
+Synchronizes the KV store manually. For details about the sync modes of KV stores, see [Cross-Device Synchronization of KV Stores](../../database/data-sync-of-kv-store.md).
 > **NOTE**
 >
 > **deviceIds** is **networkId** in [DeviceBasicInfo](js-apis-distributedDeviceManager.md#devicebasicinfo), which can be obtained by [deviceManager.getAvailableDeviceListSync](js-apis-distributedDeviceManager.md#getavailabledevicelistsync).
@@ -4930,8 +4955,8 @@ Synchronizes the KV store manually. For details about the synchronization modes 
 | Name   | Type             | Mandatory| Description                                          |
 | --------- | --------------------- | ---- | ---------------------------------------------- |
 | deviceIds | string[]              | Yes  | List of **networkId**s of the devices in the same networking environment to be synchronized.|
-| mode      | [SyncMode](#syncmode) | Yes  | Synchronization mode.                                    |
-| delayMs   | number                | No  | Allowed synchronization delay time, in ms. The default value is **0**.    |
+| mode      | [SyncMode](#syncmode) | Yes  | Sync mode.                                    |
+| delayMs   | number                | No  | Delay time allowed, in ms. The default value is **0**.    |
 
 **Error codes**
 
@@ -4967,11 +4992,11 @@ export default class EntryAbility extends UIAbility {
       }
       try {
         if (kvStore != null) {
-          kvStore.on('syncComplete', (data) => {
+          kvStore.on('syncComplete', (data: [string, number][]) => {
             console.info('Sync dataChange');
           });
           if (kvStore != null) {
-            kvStore.put(KEY_TEST_SYNC_ELEMENT + 'testSync101', VALUE_TEST_SYNC_ELEMENT, (err) => {
+            kvStore.put(KEY_TEST_SYNC_ELEMENT + 'testSync101', VALUE_TEST_SYNC_ELEMENT, (err: BusinessError) => {
               if (err != undefined) {
                 console.error(`Failed to sync.code is ${err.code},message is ${err.message}`);
                 return;
@@ -5001,7 +5026,7 @@ export default class EntryAbility extends UIAbility {
 
 sync(deviceIds: string[], query: Query, mode: SyncMode, delayMs?: number): void
 
-Synchronizes the KV store manually. This API returns the result synchronously. For details about the synchronization modes of KV stores, see [Cross-Device Synchronization of KV Stores](../../database/data-sync-of-kv-store.md).
+Synchronizes the KV store manually. This API returns the result synchronously. For details about the sync modes of KV stores, see [Cross-Device Synchronization of KV Stores](../../database/data-sync-of-kv-store.md).
 > **NOTE**
 >
 > **deviceIds** is **networkId** in [DeviceBasicInfo](js-apis-distributedDeviceManager.md#devicebasicinfo), which can be obtained by [deviceManager.getAvailableDeviceListSync](js-apis-distributedDeviceManager.md#getavailabledevicelistsync).
@@ -5015,9 +5040,9 @@ Synchronizes the KV store manually. This API returns the result synchronously. F
 | Name   | Type             | Mandatory| Description                                          |
 | --------- | --------------------- | ---- | ---------------------------------------------- |
 | deviceIds | string[]              | Yes  | List of **networkId**s of the devices in the same networking environment to be synchronized.|
-| mode      | [SyncMode](#syncmode) | Yes  | Synchronization mode.                                    |
+| mode      | [SyncMode](#syncmode) | Yes  | Sync mode.                                    |
 | query     | [Query](#query)        | Yes  | **Query** object to match.                      |
-| delayMs   | number                | No  | Allowed synchronization delay time, in ms. The default value is **0**.|
+| delayMs   | number                | No  | Delay time allowed, in ms. The default value is **0**.    |
 
 **Error codes**
 
@@ -5053,11 +5078,11 @@ export default class EntryAbility extends UIAbility {
       }
       try {
         if (kvStore != null) {
-          kvStore.on('syncComplete', (data) => {
+          kvStore.on('syncComplete', (data: [string, number][]) => {
             console.info('Sync dataChange');
           });
           if (kvStore != null) {
-            kvStore.put(KEY_TEST_SYNC_ELEMENT + 'testSync101', VALUE_TEST_SYNC_ELEMENT, (err) => {
+            kvStore.put(KEY_TEST_SYNC_ELEMENT + 'testSync101', VALUE_TEST_SYNC_ELEMENT, (err: BusinessError) => {
               if (err != undefined) {
                 console.error(`Failed to sync.code is ${err.code},message is ${err.message}`);
                 return;
@@ -5098,9 +5123,9 @@ Subscribes to data changes of the specified type.
 
 | Name  | Type                                                 | Mandatory| Description                                                |
 | -------- | --------------------------------------------------------- | ---- | ---------------------------------------------------- |
-| event    | string                                                    | Yes  | Event type. The value is **dataChange**, which indicates data changes. |
+| event    | string                                                    | Yes  | Event type. The value is **dataChange**, which indicates a data change event.|
 | type     | [SubscribeType](#subscribetype)                           | Yes  | Type of data change.                                    |
-| listener | Callback&lt;[ChangeNotification](#changenotification)&gt; | Yes  | Callback invoked to return the data change.                        |
+| listener | Callback&lt;[ChangeNotification](#changenotification)&gt; | Yes  | Callback used to return the data change.                        |
 
 **Error codes**
 
@@ -5117,7 +5142,7 @@ For details about the error codes, see [Distributed KV Store Error Codes](../err
 import { BusinessError } from '@ohos.base';
 
 try {
-  kvStore.on('dataChange', distributedKVStore.SubscribeType.SUBSCRIBE_TYPE_LOCAL, (data) => {
+  kvStore.on('dataChange', distributedKVStore.SubscribeType.SUBSCRIBE_TYPE_LOCAL, (data: distributedKVStore.ChangeNotification) => {
     console.info(`dataChange callback call data: ${data}`);
   });
 } catch (e) {
@@ -5130,7 +5155,7 @@ try {
 
 on(event: 'syncComplete', syncCallback: Callback&lt;Array&lt;[string, number]&gt;&gt;): void
 
-Subscribes to synchronization complete events.
+Subscribes to sync complete events.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -5138,8 +5163,8 @@ Subscribes to synchronization complete events.
 
 | Name      | Type                                     | Mandatory| Description                                                  |
 | ------------ | --------------------------------------------- | ---- | ------------------------------------------------------ |
-| event        | string                                        | Yes  | Event type. The value is **syncComplete**, which indicates a synchronization complete event.|
-| syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | Yes  | Callback invoked to return the synchronization complete event.            |
+| event        | string                                        | Yes  | Event type. The value is **syncComplete**, which indicates a sync complete event.|
+| syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | Yes  | Callback used to return the sync complete event.            |
 
 **Example**
 
@@ -5150,7 +5175,7 @@ import { BusinessError } from '@ohos.base';
 const KEY_TEST_FLOAT_ELEMENT = 'key_test_float';
 const VALUE_TEST_FLOAT_ELEMENT = 321.12;
 try {
-  kvStore.on('syncComplete', (data) => {
+  kvStore.on('syncComplete', (data: [string, number][]) => {
     console.info(`syncComplete ${data}`);
   });
   kvStore.put(KEY_TEST_FLOAT_ELEMENT, VALUE_TEST_FLOAT_ELEMENT).then(() => {
@@ -5176,8 +5201,8 @@ Unsubscribes from data changes.
 
 | Name  | Type                                                 | Mandatory| Description                                                    |
 | -------- | --------------------------------------------------------- | ---- | -------------------------------------------------------- |
-| event    | string                                                    | Yes  | Event type. The value is **dataChange**, which indicates data changes. |
-| listener | Callback&lt;[ChangeNotification](#changenotification)&gt; | No  | Callback for the data change. If the callback is not specified, all callbacks for **dataChange** will be unregistered. |
+| event    | string                                                    | Yes  | Event type. The value is **dataChange**, which indicates data changes.|
+| listener | Callback&lt;[ChangeNotification](#changenotification)&gt; | No  | Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for data changes.|
 
 **Error codes**
 
@@ -5225,7 +5250,7 @@ class KvstoreModel {
 
 off(event: 'syncComplete', syncCallback?: Callback&lt;Array&lt;[string, number]&gt;&gt;): void
 
-Unsubscribes from synchronization complete events.
+Unsubscribes from sync complete events.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -5233,8 +5258,8 @@ Unsubscribes from synchronization complete events.
 
 | Name      | Type                                     | Mandatory| Description                                                      |
 | ------------ | --------------------------------------------- | ---- | ---------------------------------------------------------- |
-| event        | string                                        | Yes  | Event type. The value is **syncComplete**, which indicates a synchronization complete event.|
-| syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | No  | Callback for the synchronization complete event. If the callback is not specified, all callbacks for **syncComplete** will be unregistered. |
+| event        | string                                        | Yes  | Event type. The value is **syncComplete**, which indicates a sync complete event.|
+| syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | No  | Callback to unregister. If this parameter is not specified, this API unregisters all the callbacks for the sync complete event. |
 
 **Example**
 
@@ -5282,7 +5307,7 @@ Obtains the security level of this KV store. This API uses an asynchronous callb
 
 | Name  | Type                                            | Mandatory| Description                            |
 | -------- | ---------------------------------------------------- | ---- | -------------------------------- |
-| callback | AsyncCallback&lt;[SecurityLevel](#securitylevel)&gt; | Yes  | Callback invoked to return the security level obtained.|
+| callback | AsyncCallback&lt;[SecurityLevel](#securitylevel)&gt; | Yes  | Callback used to return the security level of the KV store.|
 
 **Error codes**
 
@@ -5298,7 +5323,7 @@ For details about the error codes, see [Distributed KV Store Error Codes](../err
 import { BusinessError } from '@ohos.base';
 
 try {
-  kvStore.getSecurityLevel((err, data) => {
+  kvStore.getSecurityLevel((err: BusinessError, data: distributedKVStore.SecurityLevel) => {
     if (err != undefined) {
       console.error(`Failed to get SecurityLevel.code is ${err.code},message is ${err.message}`);
       return;
@@ -5339,7 +5364,7 @@ For details about the error codes, see [Distributed KV Store Error Codes](../err
 import { BusinessError } from '@ohos.base';
 
 try {
-  kvStore.getSecurityLevel().then((data) => {
+  kvStore.getSecurityLevel().then((data: distributedKVStore.SecurityLevel) => {
     console.info('Succeeded in getting securityLevel');
   }).catch((err: BusinessError) => {
     console.error(`Failed to get SecurityLevel.code is ${err.code},message is ${err.message}`);
@@ -5373,7 +5398,7 @@ Obtains the value of the specified key for this device. This API uses an asynchr
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | key      | string                                                       | Yes  | Key of the value to obtain. It cannot be empty, and the length cannot exceed [MAX_KEY_LENGTH](#constants).|
-| callback | AsyncCallback&lt;boolean \| string \| number \| Uint8Array&gt; | Yes  | Callback invoked to return the value obtained.                                |
+| callback | AsyncCallback&lt;boolean \| string \| number \| Uint8Array&gt; | Yes  | Callback used to return the value obtained.                                |
 
 **Error codes**
 
@@ -5393,14 +5418,14 @@ import { BusinessError } from '@ohos.base';
 const KEY_TEST_STRING_ELEMENT = 'key_test_string';
 const VALUE_TEST_STRING_ELEMENT = 'value-test-string';
 try {
-  kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, (err) => {
+  kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, (err: BusinessError) => {
     if (err != undefined) {
       console.error(`Failed to put.code is ${err.code},message is ${err.message}`);
       return;
     }
     console.info("Succeeded in putting");
     if (kvStore != null) {
-      kvStore.get(KEY_TEST_STRING_ELEMENT, (err, data) => {
+      kvStore.get(KEY_TEST_STRING_ELEMENT, (err: BusinessError, data: boolean | string | number | Uint8Array) => {
         if (err != undefined) {
           console.error(`Failed to get.code is ${err.code},message is ${err.message}`);
           return;
@@ -5456,7 +5481,7 @@ try {
   kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT).then(() => {
     console.info(`Succeeded in putting data`);
     if (kvStore != null) {
-      kvStore.get(KEY_TEST_STRING_ELEMENT).then((data) => {
+      kvStore.get(KEY_TEST_STRING_ELEMENT).then((data: boolean | string | number | Uint8Array) => {
         console.info(`Succeeded in getting data.data=${data}`);
       }).catch((err: BusinessError) => {
         console.error(`Failed to get.code is ${err.code},message is ${err.message}`);
@@ -5489,7 +5514,7 @@ Obtains a string value that matches the specified device ID and key. This API us
 | -----  | ------   | ----  | ----------------------- |
 | deviceId  |string  | Yes   |ID of the target device.   |
 | key       |string  | Yes   |Key to match.   |
-| callback  |AsyncCallback&lt;boolean\|string\|number\|Uint8Array&gt;  | Yes   |Callback invoked to return the value obtained.   |
+| callback  |AsyncCallback&lt;boolean\|string\|number\|Uint8Array&gt;  | Yes   |Callback used to return the value obtained.   |
 
 **Error codes**
 
@@ -5509,14 +5534,14 @@ import { BusinessError } from '@ohos.base';
 const KEY_TEST_STRING_ELEMENT = 'key_test_string_2';
 const VALUE_TEST_STRING_ELEMENT = 'value-string-002';
 try {
-  kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, async (err) => {
+  kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, async (err: BusinessError) => {
     if (err != undefined) {
       console.error(`Failed to put.code is ${err.code},message is ${err.message}`);
       return;
     }
     console.info('Succeeded in putting');
     if (kvStore != null) {
-      kvStore.get('localDeviceId', KEY_TEST_STRING_ELEMENT, (err, data) => {
+      kvStore.get('localDeviceId', KEY_TEST_STRING_ELEMENT, (err: BusinessError, data: boolean | string | number | Uint8Array) => {
         if (err != undefined) {
           console.error(`Failed to get.code is ${err.code},message is ${err.message}`);
           return;
@@ -5577,7 +5602,7 @@ try {
   kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT).then(async () => {
     console.info('Succeeded in putting');
     if (kvStore != null) {
-      kvStore.get('localDeviceId', KEY_TEST_STRING_ELEMENT).then((data) => {
+      kvStore.get('localDeviceId', KEY_TEST_STRING_ELEMENT).then((data: boolean | string | number | Uint8Array) => {
         console.info('Succeeded in getting');
       }).catch((err: BusinessError) => {
         console.error(`Failed to get.code is ${err.code},message is ${err.message}`);
@@ -5605,7 +5630,7 @@ Obtains all KV pairs that match the specified key prefix for this device. This A
 | Name   | Type                                  | Mandatory| Description                                    |
 | --------- | -------------------------------------- | ---- | ---------------------------------------- |
 | keyPrefix | string                                 | Yes  | Key prefix to match.                    |
-| callback  | AsyncCallback&lt;[Entry](#entry)[]&gt; | Yes  | Callback invoked to return the KV pairs that match the specified prefix.|
+| callback  | AsyncCallback&lt;[Entry](#entry)[]&gt; | Yes  | Callback used to return the KV pairs that match the specified prefix.|
 
 **Error codes**
 
@@ -5635,14 +5660,14 @@ try {
     entries.push(entry);
   }
   console.info(`entries: ${entries}`);
-  kvStore.putBatch(entries, async (err) => {
+  kvStore.putBatch(entries, async (err: BusinessError) => {
     if (err != undefined) {
       console.error(`Failed to put Batch.code is ${err.code},message is ${err.message}`);
       return;
     }
     console.info('Succeeded in putting Batch');
     if (kvStore != null) {
-      kvStore.getEntries('batch_test_string_key', (err, entries) => {
+      kvStore.getEntries('batch_test_string_key', (err: BusinessError, entries: distributedKVStore.Entry[]) => {
         if (err != undefined) {
           console.error(`Failed to get Entries.code is ${err.code},message is ${err.message}`);
           return;
@@ -5710,7 +5735,7 @@ try {
   kvStore.putBatch(entries).then(async () => {
     console.info('Succeeded in putting Batch');
     if (kvStore != null) {
-      kvStore.getEntries('batch_test_string_key').then((entries) => {
+      kvStore.getEntries('batch_test_string_key').then((entries: distributedKVStore.Entry[]) => {
         console.info('Succeeded in getting Entries');
         console.info(`PutBatch ${entries}`);
       }).catch((err: BusinessError) => {
@@ -5744,7 +5769,7 @@ Obtains all KV pairs that match the specified device ID and key prefix. This API
 | --------- | -------------------------------------- | ---- | ---------------------------------------------- |
 | deviceId  | string                                 | Yes  | ID of the target device.                      |
 | keyPrefix | string                                 | Yes  | Key prefix to match.                          |
-| callback  | AsyncCallback&lt;[Entry](#entry)[]&gt; | Yes  | Callback invoked to return the KV pairs obtained.|
+| callback  | AsyncCallback&lt;[Entry](#entry)[]&gt; | Yes  | Callback used to return the KV pairs obtained.|
 
 **Error codes**
 
@@ -5774,14 +5799,14 @@ try {
     entries.push(entry);
   }
   console.info(`entries : ${entries}`);
-  kvStore.putBatch(entries, async (err) => {
+  kvStore.putBatch(entries, async (err: BusinessError) => {
     if (err != undefined) {
       console.error(`Failed to put batch.code is ${err.code},message is ${err.message}`);
       return;
     }
     console.info('Succeeded in putting batch');
     if (kvStore != null) {
-      kvStore.getEntries('localDeviceId', 'batch_test_string_key', (err, entries) => {
+      kvStore.getEntries('localDeviceId', 'batch_test_string_key', (err: BusinessError, entries: distributedKVStore.Entry[]) => {
         if (err != undefined) {
           console.error(`Failed to get entries.code is ${err.code},message is ${err.message}`);
           return;
@@ -5854,7 +5879,7 @@ try {
   kvStore.putBatch(entries).then(async () => {
     console.info('Succeeded in putting batch');
     if (kvStore != null) {
-      kvStore.getEntries('localDeviceId', 'batch_test_string_key').then((entries) => {
+      kvStore.getEntries('localDeviceId', 'batch_test_string_key').then((entries: distributedKVStore.Entry[]) => {
         console.info('Succeeded in getting entries');
         console.info(`entries.length: ${entries.length}`);
         console.info(`entries[0]: ${entries[0]}`);
@@ -5886,7 +5911,7 @@ Obtains all KV pairs that match the specified **Query** object for this device. 
 | Name  | Type                                  | Mandatory| Description                                                 |
 | -------- | -------------------------------------- | ---- | ----------------------------------------------------- |
 | query    | [Query](#query)                         | Yes  | Key prefix to match.                                 |
-| callback | AsyncCallback&lt;[Entry](#entry)[]&gt; | Yes  | Callback invoked to return the KV pairs that match the specified **Query** object on the local device.|
+| callback | AsyncCallback&lt;[Entry](#entry)[]&gt; | Yes  | Callback used to return the KV pairs that match the specified **Query** object on the local device.|
 
 **Error codes**
 
@@ -5917,12 +5942,12 @@ try {
     entries.push(entry);
   }
   console.info(`entries: {entries}`);
-  kvStore.putBatch(entries, async (err) => {
+  kvStore.putBatch(entries, async (err: BusinessError) => {
     console.info('Succeeded in putting Batch');
     const query = new distributedKVStore.Query();
     query.prefixKey("batch_test");
     if (kvStore != null) {
-      kvStore.getEntries(query, (err, entries) => {
+      kvStore.getEntries(query, (err: BusinessError, entries: distributedKVStore.Entry[]) => {
         if (err != undefined) {
           console.error(`Failed to get Entries.code is ${err.code},message is ${err.message}`);
           return;
@@ -5993,7 +6018,7 @@ try {
     const query = new distributedKVStore.Query();
     query.prefixKey("batch_test");
     if (kvStore != null) {
-      kvStore.getEntries(query).then((entries) => {
+      kvStore.getEntries(query).then((entries: distributedKVStore.Entry[]) => {
         console.info('Succeeded in getting Entries');
       }).catch((err: BusinessError) => {
         console.error(`Failed to get Entries.code is ${err.code},message is ${err.message}`);
@@ -6027,7 +6052,7 @@ Obtains the KV pairs that match the specified device ID and **Query** object. Th
 | -------- | -------------------------------------- | ---- | ------------------------------------------------------- |
 | deviceId | string                                 | Yes  | ID of the target device.                                   |
 | query    | [Query](#query)                         | Yes  | **Query** object to match.                                         |
-| callback | AsyncCallback&lt;[Entry](#entry)[]&gt; | Yes  | Callback invoked to return the KV pairs that match the specified device ID and **Query** object.|
+| callback | AsyncCallback&lt;[Entry](#entry)[]&gt; | Yes  | Callback used to return the KV pairs that match the specified device ID and **Query** object.|
 
 **Error codes**
 
@@ -6058,7 +6083,7 @@ try {
     entries.push(entry);
   }
   console.info(`entries: ${entries}`);
-  kvStore.putBatch(entries, async (err) => {
+  kvStore.putBatch(entries, async (err: BusinessError) => {
     if (err != undefined) {
       console.error(`Failed to put batch.code is ${err.code},message is ${err.message}`);
       return;
@@ -6068,7 +6093,7 @@ try {
     query.deviceId('localDeviceId');
     query.prefixKey("batch_test");
     if (kvStore != null) {
-      kvStore.getEntries('localDeviceId', query, (err, entries) => {
+      kvStore.getEntries('localDeviceId', query, (err: BusinessError, entries: distributedKVStore.Entry[]) => {
         if (err != undefined) {
           console.error(`Failed to get entries.code is ${err.code},message is ${err.message}`);
           return;
@@ -6146,7 +6171,7 @@ try {
     query.deviceId('localDeviceId');
     query.prefixKey("batch_test");
     if (kvStore != null) {
-      kvStore.getEntries('localDeviceId', query).then((entries) => {
+      kvStore.getEntries('localDeviceId', query).then((entries: distributedKVStore.Entry[]) => {
         console.info('Succeeded in getting entries');
       }).catch((err: BusinessError) => {
         console.error(`Failed to get entries.code is ${err.code},message is ${err.message}`);
@@ -6175,7 +6200,7 @@ Obtains a result set with the specified prefix for this device. This API uses an
 | Name   | Type                                                      | Mandatory| Description                                |
 | --------- | ---------------------------------------------------------- | ---- | ------------------------------------ |
 | keyPrefix | string                                                     | Yes  | Key prefix to match.                |
-| callback  | AsyncCallback&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | Yes  | Callback invoked to return the result set with the specified prefix.|
+| callback  | AsyncCallback&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | Yes  | Callback used to return the result set with the specified prefix.|
 
 **Error codes**
 
@@ -6206,14 +6231,14 @@ try {
     }
     entries.push(entry);
   }
-  kvStore.putBatch(entries, async (err) => {
+  kvStore.putBatch(entries, async (err: BusinessError) => {
     if (err != undefined) {
       console.error(`Failed to put batch.code is ${err.code},message is ${err.message}`);
       return;
     }
     console.info('Succeeded in putting batch');
     if (kvStore != null) {
-      kvStore.getResultSet('batch_test_string_key', async (err, result) => {
+      kvStore.getResultSet('batch_test_string_key', async (err: BusinessError, result: distributedKVStore.KVStoreResultSet) => {
         if (err != undefined) {
           console.error(`Failed to get resultset.code is ${err.code},message is ${err.message}`);
           return;
@@ -6221,7 +6246,7 @@ try {
         console.info('Succeeded in getting result set');
         resultSet = result;
         if (kvStore != null) {
-          kvStore.closeResultSet(resultSet, (err) => {
+          kvStore.closeResultSet(resultSet, (err: BusinessError) => {
             if (err != undefined) {
               console.error(`Failed to close resultset.code is ${err.code},message is ${err.message}`);
               return;
@@ -6292,7 +6317,7 @@ try {
   }).catch((err: BusinessError) => {
     console.error(`Failed to put batch.code is ${err.code},message is ${err.message}`);
   });
-  kvStore.getResultSet('batch_test_string_key').then((result) => {
+  kvStore.getResultSet('batch_test_string_key').then((result: distributedKVStore.KVStoreResultSet) => {
     console.info('Succeeded in getting result set');
     resultSet = result;
     if (kvStore != null) {
@@ -6329,7 +6354,7 @@ Obtains a **KVStoreResultSet** object that matches the specified device ID and k
 | --------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | deviceId  | string                                                       | Yes  | ID of the target device.                                    |
 | keyPrefix | string                                                       | Yes  | Key prefix to match.                                        |
-| callback  | AsyncCallback&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | Yes  | Callback invoked to return the **KVStoreResultSet** object that matches the specified device ID and key prefix.|
+| callback  | AsyncCallback&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | Yes  | Callback used to return the **KVStoreResultSet** object that matches the specified device ID and key prefix.|
 
 **Error codes**
 
@@ -6348,7 +6373,7 @@ import { BusinessError } from '@ohos.base';
 
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
-  kvStore.getResultSet('localDeviceId', 'batch_test_string_key', async (err, result) => {
+  kvStore.getResultSet('localDeviceId', 'batch_test_string_key', async (err: BusinessError, result: distributedKVStore.KVStoreResultSet) => {
     if (err != undefined) {
       console.error(`Failed to get resultSet.code is ${err.code},message is ${err.message}`);
       return;
@@ -6356,7 +6381,7 @@ try {
     console.info('Succeeded in getting resultSet');
     resultSet = result;
     if (kvStore != null) {
-      kvStore.closeResultSet(resultSet, (err) => {
+      kvStore.closeResultSet(resultSet, (err: BusinessError) => {
         if (err != undefined) {
           console.error(`Failed to close resultSet.code is ${err.code},message is ${err.message}`);
           return;
@@ -6413,7 +6438,7 @@ import { BusinessError } from '@ohos.base';
 
 try {
   let resultSet: distributedKVStore.KVStoreResultSet;
-  kvStore.getResultSet('localDeviceId', 'batch_test_string_key').then((result) => {
+  kvStore.getResultSet('localDeviceId', 'batch_test_string_key').then((result: distributedKVStore.KVStoreResultSet) => {
     console.info('Succeeded in getting resultSet');
     resultSet = result;
     if (kvStore != null) {
@@ -6450,7 +6475,7 @@ Obtains a **KVStoreResultSet** object that matches the specified device ID and *
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | deviceId | string                                                       | Yes  | ID of the device to which the **KVStoreResultSet** object belongs.                          |
 | query    | [Query](#query)                                               | Yes  | **Query** object to match.                                              |
-| callback | AsyncCallback&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | Yes  | Callback invoked to return the **KVStoreResultSet** object that matches the specified device ID and **Query** object.|
+| callback | AsyncCallback&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | Yes  | Callback used to return the **KVStoreResultSet** object that matches the specified device ID and **Query** object.|
 
 **Error codes**
 
@@ -6481,7 +6506,7 @@ try {
     }
     entries.push(entry);
   }
-  kvStore.putBatch(entries, async (err) => {
+  kvStore.putBatch(entries, async (err: BusinessError) => {
     if (err != undefined) {
       console.error(`Failed to put batch.code is ${err.code},message is ${err.message}`);
       return;
@@ -6490,7 +6515,7 @@ try {
     const query = new distributedKVStore.Query();
     query.prefixKey("batch_test");
     if (kvStore != null) {
-      kvStore.getResultSet('localDeviceId', query, async (err, result) => {
+      kvStore.getResultSet('localDeviceId', query, async (err: BusinessError, result: distributedKVStore.KVStoreResultSet) => {
         if (err != undefined) {
           console.error(`Failed to get resultSet.code is ${err.code},message is ${err.message}`);
           return;
@@ -6498,7 +6523,7 @@ try {
         console.info('Succeeded in getting resultSet');
         resultSet = result;
         if (kvStore != null) {
-          kvStore.closeResultSet(resultSet, (err) => {
+          kvStore.closeResultSet(resultSet, (err: BusinessError) => {
             if (err != undefined) {
               console.error(`Failed to close resultSet.code is ${err.code},message is ${err.message}`);
               return;
@@ -6577,7 +6602,7 @@ try {
   const query = new distributedKVStore.Query();
   query.prefixKey("batch_test");
   if (kvStore != null) {
-    kvStore.getResultSet('localDeviceId', query).then((result) => {
+    kvStore.getResultSet('localDeviceId', query).then((result: distributedKVStore.KVStoreResultSet) => {
       console.info('Succeeded in getting resultSet');
       resultSet = result;
       if (kvStore != null) {
@@ -6656,7 +6681,7 @@ try {
   });
   const query = new distributedKVStore.Query();
   query.prefixKey("batch_test");
-  kvStore.getResultSet(query).then((result) => {
+  kvStore.getResultSet(query).then((result: distributedKVStore.KVStoreResultSet) => {
     console.info('Succeeded in getting result set');
     resultSet = result;
   }).catch((err: BusinessError) => {
@@ -6685,7 +6710,7 @@ Obtains a **KVStoreResultSet** object that matches the specified **Query** objec
 | Name  | Type          | Mandatory| Description                              |
 | -------- | -------------- | ---- | ---------------------------------- |
 | query    | [Query](#query) | Yes  | **Query** object to match.                    |
-| callback    | AsyncCallback&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | Yes  | Callback invoked to return the **KVStoreResultSet** object obtained.        |
+| callback    | AsyncCallback&lt;[KVStoreResultSet](#kvstoreresultset)&gt; | Yes  | Callback used to return the **KVStoreResultSet** object obtained.        |
 
 
 **Error codes**
@@ -6717,7 +6742,7 @@ try {
     }
     entries.push(entry);
   }
-  kvStore.putBatch(entries, async (err) => {
+  kvStore.putBatch(entries, async (err: BusinessError) => {
     if (err != undefined) {
       console.error(`Failed to put batch.code is ${err.code},message is ${err.message}`);
       return;
@@ -6726,7 +6751,7 @@ try {
     const query = new distributedKVStore.Query();
     query.prefixKey("batch_test");
     if (kvStore != null) {
-      kvStore.getResultSet(query, async (err, result) => {
+      kvStore.getResultSet(query, async (err: BusinessError, result: distributedKVStore.KVStoreResultSet) => {
         if (err != undefined) {
           console.error(`Failed to get resultSet.code is ${err.code},message is ${err.message}`);
           return;
@@ -6734,7 +6759,7 @@ try {
         console.info('Succeeded in getting resultSet');
         resultSet = result;
         if (kvStore != null) {
-          kvStore.closeResultSet(resultSet, (err) => {
+          kvStore.closeResultSet(resultSet, (err: BusinessError) => {
             if (err != undefined) {
               console.error(`Failed to close resultSet.code is ${err.code},message is ${err.message}`);
               return;
@@ -6755,7 +6780,7 @@ try {
 
 getResultSet(predicates: dataSharePredicates.DataSharePredicates, callback: AsyncCallback&lt;KVStoreResultSet&gt;): void
 
-Obtains a **KVStoreResultSet** object that matches the specified predicate object for this device. This API uses an asynchronous callback to return the result.
+Obtains a **KVStoreResultSet** object that matches the specified conditions for this device. This API uses an asynchronous callback to return the result.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -6768,7 +6793,7 @@ Obtains a **KVStoreResultSet** object that matches the specified predicate objec
 | Name    | Type                                                        | Mandatory| Description                                                        |
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | **DataSharePredicates** object that specifies the **KVStoreResultSet** object to obtain. If this parameter is **null**, define the processing logic.             |
-| callback   | AsyncCallback&lt;[KVStoreResultSet](#kvstoreresultset)&gt;   | Yes  | Callback invoked to return the **KVStoreResultSet** object obtained.|
+| callback   | AsyncCallback&lt;[KVStoreResultSet](#kvstoreresultset)&gt;   | Yes  | Callback used to return the **KVStoreResultSet** object obtained.|
 
 **Error codes**
 
@@ -6790,7 +6815,7 @@ try {
   let resultSet: distributedKVStore.KVStoreResultSet;
   let predicates = new dataSharePredicates.DataSharePredicates();
   predicates.prefixKey("batch_test_string_key");
-  kvStore.getResultSet(predicates, async (err, result) => {
+  kvStore.getResultSet(predicates, async (err: BusinessError, result: distributedKVStore.KVStoreResultSet) => {
     if (err != undefined) {
       console.error(`Failed to get resultset.code is ${err.code},message is ${err.message}`);
       return;
@@ -6798,7 +6823,7 @@ try {
     console.info('Succeeded in getting result set');
     resultSet = result;
     if (kvStore != null) {
-      kvStore.closeResultSet(resultSet, (err) => {
+      kvStore.closeResultSet(resultSet, (err: BusinessError) => {
         if (err != undefined) {
           console.error(`Failed to close resultset.code is ${err.code},message is ${err.message}`);
           return;
@@ -6817,7 +6842,7 @@ try {
 
 getResultSet(predicates: dataSharePredicates.DataSharePredicates): Promise&lt;KVStoreResultSet&gt;
 
-Obtains a **KVStoreResultSet** object that matches the specified predicate object for this device. This API uses a promise to return the result.
+Obtains a **KVStoreResultSet** object that matches the specified conditions for this device. This API uses a promise to return the result.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -6857,7 +6882,7 @@ try {
   let resultSet: distributedKVStore.KVStoreResultSet;
   let predicates = new dataSharePredicates.DataSharePredicates();
   predicates.prefixKey("batch_test_string_key");
-  kvStore.getResultSet(predicates).then((result) => {
+  kvStore.getResultSet(predicates).then((result: distributedKVStore.KVStoreResultSet) => {
     console.info('Succeeded in getting result set');
     resultSet = result;
     if (kvStore != null) {
@@ -6898,7 +6923,7 @@ Obtains a **KVStoreResultSet** object that matches the specified predicate objec
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | deviceId  | string                                                       | Yes  | ID of the target device.                                    |
 | predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | **DataSharePredicates** object that specifies the **KVStoreResultSet** object to obtain. If this parameter is **null**, define the processing logic.             |
-| callback   | AsyncCallback&lt;[KVStoreResultSet](#kvstoreresultset)&gt;   | Yes  | Callback invoked to return the **KVStoreResultSet** object obtained.|
+| callback   | AsyncCallback&lt;[KVStoreResultSet](#kvstoreresultset)&gt;   | Yes  | Callback used to return the **KVStoreResultSet** object obtained.|
 
 **Error codes**
 
@@ -6920,7 +6945,7 @@ try {
   let resultSet: distributedKVStore.KVStoreResultSet;
   let predicates = new dataSharePredicates.DataSharePredicates();
   predicates.prefixKey("batch_test_string_key");
-  kvStore.getResultSet('localDeviceId', predicates, async (err, result) => {
+  kvStore.getResultSet('localDeviceId', predicates, async (err: BusinessError, result: distributedKVStore.KVStoreResultSet) => {
     if (err != undefined) {
       console.error(`Failed to get resultset.code is ${err.code},message is ${err.message}`);
       return;
@@ -6928,7 +6953,7 @@ try {
     console.info('Succeeded in getting result set');
     resultSet = result;
     if (kvStore != null) {
-      kvStore.closeResultSet(resultSet, (err) => {
+      kvStore.closeResultSet(resultSet, (err: BusinessError) => {
         if (err != undefined) {
           console.error(`Failed to close resultset.code is ${err.code},message is ${err.message}`);
           return;
@@ -6992,7 +7017,7 @@ try {
   let resultSet: distributedKVStore.KVStoreResultSet;
   let predicates = new dataSharePredicates.DataSharePredicates();
   predicates.prefixKey("batch_test_string_key");
-  kvStore.getResultSet('localDeviceId', predicates).then((result) => {
+  kvStore.getResultSet('localDeviceId', predicates).then((result: distributedKVStore.KVStoreResultSet) => {
     console.info('Succeeded in getting result set');
     resultSet = result;
     if (kvStore != null) {
@@ -7024,7 +7049,7 @@ Obtains the number of results that match the specified **Query** object for this
 | Name  | Type                       | Mandatory| Description                                             |
 | -------- | --------------------------- | ---- | ------------------------------------------------- |
 | query    | [Query](#query)              | Yes  | **Query** object to match.                                   |
-| callback | AsyncCallback&lt;number&gt; | Yes  | Callback invoked to return the number of results obtained.|
+| callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the number of results obtained.|
 
 **Error codes**
 
@@ -7053,12 +7078,12 @@ try {
     }
     entries.push(entry);
   }
-  kvStore.putBatch(entries, async (err) => {
+  kvStore.putBatch(entries, async (err: BusinessError) => {
     console.info('Succeeded in putting batch');
     const query = new distributedKVStore.Query();
     query.prefixKey("batch_test");
     if (kvStore != null) {
-      kvStore.getResultSize(query, async (err, resultSize) => {
+      kvStore.getResultSize(query, async (err: BusinessError, resultSize: number) => {
         if (err != undefined) {
           console.error(`Failed to get result size.code is ${err.code},message is ${err.message}`);
           return;
@@ -7127,7 +7152,7 @@ try {
   });
   const query = new distributedKVStore.Query();
   query.prefixKey("batch_test");
-  kvStore.getResultSize(query).then((resultSize) => {
+  kvStore.getResultSize(query).then((resultSize: number) => {
     console.info('Succeeded in getting result set size');
   }).catch((err: BusinessError) => {
     console.error(`Failed to get result size.code is ${err.code},message is ${err.message}`);
@@ -7156,7 +7181,7 @@ Obtains the number of results that matches the specified device ID and **Query**
 | -------- | --------------------------- | ---- | --------------------------------------------------- |
 | deviceId | string                      | Yes  | ID of the device to which the **KVStoreResultSet** object belongs.                 |
 | query    | [Query](#query)              | Yes  | **Query** object to match.                                     |
-| callback | AsyncCallback&lt;number&gt; | Yes  | Callback invoked to return the number of results obtained. |
+| callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the number of results obtained.|
 
 **Error codes**
 
@@ -7185,7 +7210,7 @@ try {
     }
     entries.push(entry);
   }
-  kvStore.putBatch(entries, async (err) => {
+  kvStore.putBatch(entries, async (err: BusinessError) => {
     if (err != undefined) {
       console.error(`Failed to put batch.code is ${err.code},message is ${err.message}`);
       return;
@@ -7194,7 +7219,7 @@ try {
     const query = new distributedKVStore.Query();
     query.prefixKey("batch_test");
     if (kvStore != null) {
-      kvStore.getResultSize('localDeviceId', query, async (err, resultSize) => {
+      kvStore.getResultSize('localDeviceId', query, async (err: BusinessError, resultSize: number) => {
         if (err != undefined) {
           console.error(`Failed to get resultSize.code is ${err.code},message is ${err.message}`);
           return;
@@ -7268,7 +7293,7 @@ try {
   });
   let query = new distributedKVStore.Query();
   query.prefixKey("batch_test");
-  kvStore.getResultSize('localDeviceId', query).then((resultSize) => {
+  kvStore.getResultSize('localDeviceId', query).then((resultSize: number) => {
     console.info('Succeeded in getting resultSize');
   }).catch((err: BusinessError) => {
     console.error(`Failed to get resultSize.code is ${err.code},message is ${err.message}`);

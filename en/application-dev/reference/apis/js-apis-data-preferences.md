@@ -1439,6 +1439,9 @@ put(key: string, value: ValueType, callback: AsyncCallback&lt;void&gt;): void
 
 Writes data to this **Preferences** instance. This API uses an asynchronous callback to return the result. You can use [flush](#flush) to persist the **Preferences** instance.
 
+   > **NOTE**
+   >
+   > If the specified key already exists, the **put()** API overwrites the value. You can use **hasSync()** to check whether the KV pair exists.
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
 **Parameters**
@@ -1476,6 +1479,9 @@ put(key: string, value: ValueType): Promise&lt;void&gt;
 
 Writes data to this **Preferences** instance. This API uses a promise to return the result. You can use [flush](#flush) to persist the **Preferences** instance.
 
+   > **NOTE**
+   >
+   > If the specified key already exists, the **put()** API overwrites the value. You can use **hasSync()** to check whether the KV pair exists.
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
 **Parameters**
@@ -1517,6 +1523,9 @@ putSync(key: string, value: ValueType): void
 
 Writes data to this **Preferences** instance. This API returns the result synchronously. You can use [flush](#flush) to persist the **Preferences** instance.
 
+   > **NOTE**
+   >
+   > If the specified key already exists, the **putSync()** API overwrites the value. You can use **hasSync()** to check whether the KV pair exists.
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
 **Parameters**

@@ -167,14 +167,32 @@ The following uses a single KV store as an example to describe how to implement 
    ```ts
    let kvStore: distributedKVStore.SingleKVStore | undefined = undefined;
    try {
+     let child1 = new distributedKVStore.FieldNode('id');
+     child1.type = distributedKVStore.ValueType.INTEGER;
+     child1.nullable = false;
+     child1.default = '1';
+     let child2 = new distributedKVStore.FieldNode('name');
+     child2.type = distributedKVStore.ValueType.STRING;
+     child2.nullable = false;
+     child2.default = 'zhangsan';
+     let schema = new distributedKVStore.Schema();
+     schema.root.appendChild(child1);
+     schema.root.appendChild(child2);
+     schema.indexes = ['$.id', '$.name'];
+     // 0 indicates the strict mode, and 1 indicates the compatible mode.
+     schema.mode = 1;
+     // Set the number of bytes to be skipped during the value check. The value range is [0,4M-2].
+     schema.skip = 0;
      const options: distributedKVStore.Options = {
        createIfMissing: true,
        encrypt: false,
        backup: false,
        autoSync: false,
        // If kvStoreType is left empty, a device KV store is created by default.
+       // To create a device KV store, set kvStoreType to distributedKVStore.KVStoreType.DEVICE_COLLABORATION.
        kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
-       // Device KV store: kvStoreType: distributedKVStore.KVStoreType.DEVICE_COLLABORATION,
+       // schema can be left unspecified. Set this parameter when schema is used, for example, when predicates are used to query data.
+       schema: schema,
        securityLevel: distributedKVStore.SecurityLevel.S1
      };
      kvManager.getKVStore<distributedKVStore.SingleKVStore>('storeId', options, (err, store: distributedKVStore.SingleKVStore) => {
@@ -219,7 +237,8 @@ The following uses a single KV store as an example to describe how to implement 
 
    ```ts
    const KEY_TEST_STRING_ELEMENT = 'key_test_string';
-   const VALUE_TEST_STRING_ELEMENT = 'value_test_string';
+   // If Schema is not specified, pass in a value that meets requirements.
+   const VALUE_TEST_STRING_ELEMENT = '{"id":0, "name":"lisi"}';
    try {
      kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, (err) => {
        if (err !== undefined) {
@@ -243,7 +262,8 @@ The following uses a single KV store as an example to describe how to implement 
 
    ```ts
    const KEY_TEST_STRING_ELEMENT = 'key_test_string';
-   const VALUE_TEST_STRING_ELEMENT = 'value_test_string';
+   // If Schema is not specified, pass in a value that meets requirements.
+   const VALUE_TEST_STRING_ELEMENT = '{"id":0, "name":"lisi"}';
    try {
      kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, (err) => {
        if (err !== undefined) {

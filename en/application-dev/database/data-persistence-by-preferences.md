@@ -104,7 +104,7 @@ The following table lists the APIs used for persisting user preference data. For
 
    > **NOTE**
    >
-   > If the specified key already exists, the **putSync()** method changes the value. You can use **hasSync()** to check whether the KV pair exists.
+   > If the specified key already exists, the **putSync()** API overwrites the value. You can use **hasSync()** to check whether the KV pair exists.
 
    Example:
 
