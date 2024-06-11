@@ -18,7 +18,7 @@ Table 1 Native IPC APIs
 
 ## How to Develop
 
-### **Using Native APIs**
+### Using Native APIs
 
 1. Add dependencies.
 
@@ -166,16 +166,24 @@ Table 1 Native IPC APIs
    sptr<ISystemAbilityManager> samgr = SystemAbilityManagerClient::GetInstance().GetSystemAbilityManager();
    sptr<IRemoteObject> remoteObject = samgr->GetSystemAbility(saId);
    sptr<ITestAbility> testAbility = iface_cast<ITestAbility>(remoteObject); // Use the iface_cast macro to convert the proxy to a specific type.
-   
+
    // Obtain the proxy of the SA registered with any other devices.
    sptr<ISystemAbilityManager> samgr = SystemAbilityManagerClient::GetInstance().GetSystemAbilityManager();
-   
+
    // networkId is the device identifier and can be obtained through GetLocalNodeDeviceInfo.
    sptr<IRemoteObject> remoteObject = samgr->GetSystemAbility(saId, networkId);
    sptr<TestAbilityProxy> proxy(new TestAbilityProxy(remoteObject)); // Construct a proxy.
    ```
 
-### **Using ArkTS APIs**
+### Using ArkTS APIs
+
+> **NOTE**
+>
+> - The sample code in this topic implements communication between system applications across processes.
+>
+> - Currently, third-party applications cannot implement ServiceExtensionAbility. The UIAbility components of a third-party application can connect to the ServiceExtensionAbility provided by the system via **Context**.
+>
+> - The development applies only to the scenario, in which the client is a third-party application and the server is a system application.
 
 1. Add dependencies.
 
