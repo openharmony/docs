@@ -52,5 +52,6 @@ This problem is caused by a failure in parsing the HSP. Generally, a loading fai
 | -------- | -------- | -------- |
 | realHapPath is empty | Failed to obtain information about the installation package. | Reinstall the application. |
 | transform real path error: ERROR, pathName: PATH | Failed to parse the path using **realpath()** function.**ERROR** indicates the error information, and **PATH** indicates the path of the HSP. | Reinstall the application. |
-| CreateFileMapper, mmap failed, errno ERROR. fileName: FILENAME | Failed to map the secure memory by using **mmap()** function. **ERROR** indicates the error information, and **FILENAME** indicates the file name. | The system memory is insufficient or the file is not signed. |
+| CreateFileMapper, mmap failed, errno ERROR. fileName: FILENAME | Failed to map the secure memory by using **mmap()** function. **ERROR** indicates the error information, and **FILENAME** indicates the file name.<br/>The system memory is insufficient or the file is not signed. | Take measures based on the cause of the problem. |
+
 
