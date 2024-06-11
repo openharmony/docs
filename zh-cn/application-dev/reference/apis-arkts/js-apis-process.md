@@ -29,14 +29,19 @@ import { process } from '@kit.ArkTS';
 
 ## EventListener
 
+type EventListener = (evt: Object) => void
+
+用户存储的事件
+
 **元服务API：** 从API version 11 开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
-| 名称                                                         | 说明             |
-| ------------------------------------------------------------ | ---------------- |
-| EventListener&nbsp;=&nbsp;(evt: &nbsp;Object)&nbsp;=&gt;&nbsp;void | 用户存储的事件。 |
+**参数：**
 
+| 参数名 | 类型   | 必填 | 说明            |
+| ------ | ------ | ---- | --------------- |
+| evt   | Object | 是 | 用户事件。|
 
 ## process.isIsolatedProcess<sup>8+</sup>
 
