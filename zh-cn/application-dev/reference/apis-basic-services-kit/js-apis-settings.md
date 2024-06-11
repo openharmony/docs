@@ -277,6 +277,8 @@ setValue(context: Context, name: string, value: string, domainName: string): Pro
 
 将数据项名称及数据项的值保存到数据库中。使用 Promise异步回调。
 
+**模型约束**：此接口仅可在Stage模型下使用。
+
 **系统能力**：SystemCapability.Applications.Settings.Core
 
 **需要权限**： ohos.permission.MANAGE_SECURE_SETTINGS，仅系统应用可用。
