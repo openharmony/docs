@@ -1,6 +1,6 @@
 # @ohos.graphics.uiEffect (效果级联)
 
-本模块提供组件效果的一些基础能力，包括模糊，边缘像素扩展，提亮等。效果被分为Filter和VisualEffect大类，同类效果可以级联在一个效果大类的实例下。
+本模块提供组件效果的一些基础能力，包括模糊、边缘像素扩展、提亮等。效果被分为Filter和VisualEffect大类，同类效果可以级联在一个效果大类的实例下。在实际开发中，模糊可用于背景虚化，提亮可用于亮屏显示等。
 
 - [Filter](#filter)：用于添加指定Filter效果到组件上。
 - [VisualEffect](#visualeffect)：用于添加指定VisualEffect效果到组件上。
@@ -14,38 +14,6 @@
 ```ts
 import { uiEffect } from "@kit.ArkGraphics2D";
 ```
-
-## Filter
-Filter效果类，用于将相应的效果添加到指定的控件上。在调用Filter的方法前，需要先通过[createFilter](#uieffectcreatefilter)创建一个Filter实例。
-
-### blur
-blur(blurRadius: number): Filter
-
-将模糊效果添加至组件上。
-
-**系统能力：** SystemCapability.Graphics.Drawing
-
-**参数：**
-| 参数名       | 类型   | 必填 | 说明       |
-| ----------- | -------| ---- | --------- |
-| blurRadius  | number | 是   | 模糊半径。 |
-
-**返回值：**
-
-| 类型               | 说明                       |
-| ----------------- | -------------------------- |
-| [Filter](#filter) | 返回挂载了模糊效果的Filter。 |
-
-**示例：**
-
-```ts
-import { uiEffect } from "@kit.ArkGraphics2D";
-
-filter.blur(20)
-```
-
-## VisualEffect
-VisualEffect效果类，用于将相应的效果添加到指定的控件上。在调用VisualEffect的方法前，需要先通过[createEffect](#uieffectcreateeffect)创建一个VisualEffect实例。
 
 ## uiEffect.createFilter
 createFilter(): Filter
@@ -63,8 +31,6 @@ createFilter(): Filter
 **示例：**
 
 ```ts
-import { uiEffect } from "@kit.ArkGraphics2D";
-
 let filter : uiEffect.Filter = uiEffect.createFilter()
 ```
 
@@ -84,7 +50,35 @@ createEffect(): VisualEffect
 **示例：**
 
 ```ts
-import { uiEffect } from "@kit.ArkGraphics2D";
-
 let visualEffect : uiEffect.VisualEffect = uiEffect.createEffect()
 ```
+
+## Filter
+Filter效果类，用于将相应的效果添加到指定的组件上。在调用Filter的方法前，需要先通过[createFilter](#uieffectcreatefilter)创建一个Filter实例。
+
+### blur
+blur(blurRadius: number): Filter
+
+将模糊效果添加至组件上。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+| 参数名       | 类型   | 必填 | 说明       |
+| ----------- | -------| ---- | --------- |
+| blurRadius  | number | 是   | 模糊半径。<br/>取值需大于0，模糊半径越大，模糊效果越强。 |
+
+**返回值：**
+
+| 类型               | 说明                       |
+| ----------------- | -------------------------- |
+| [Filter](#filter) | 返回挂载了模糊效果的Filter。 |
+
+**示例：**
+
+```ts
+filter.blur(20)
+```
+
+## VisualEffect
+VisualEffect效果类，用于将相应的效果添加到指定的组件上。在调用VisualEffect的方法前，需要先通过[createEffect](#uieffectcreateeffect)创建一个VisualEffect实例。
