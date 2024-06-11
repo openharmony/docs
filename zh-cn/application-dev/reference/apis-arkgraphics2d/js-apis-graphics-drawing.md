@@ -275,6 +275,10 @@ path.reset();
 
 承载绘制内容与绘制状态的载体。
 
+> **说明：**
+>
+> 画布自带一个黑色，开启反走样，不具备其他任何样式效果的默认画刷，当且仅当画布中主动设置的画刷和画笔都不存在时生效。
+
 ### constructor
 
 constructor(pixelmap: image.PixelMap)
@@ -350,7 +354,7 @@ class DrawingRenderNode extends RenderNode {
     pen.setStrokeWidth(5);
     pen.setColor({alpha: 255, red: 255, green: 0, blue: 0});
     canvas.attachPen(pen);
-    canvas.drawRect({ left : 0, right : 0, top : 10, bottom : 10 });
+    canvas.drawRect({ left : 0, right : 10, top : 0, bottom : 10 });
     canvas.detachPen();
   }
 }
@@ -870,7 +874,7 @@ class DrawingRenderNode extends RenderNode {
     pen.setStrokeWidth(5);
     pen.setColor({alpha: 255, red: 255, green: 0, blue: 0});
     canvas.attachPen(pen);
-    canvas.drawRect({ left : 0, right : 0, top : 10, bottom : 10 });
+    canvas.drawRect({ left : 0, right : 10, top : 0, bottom : 10 });
     canvas.detachPen();
   }
 }
@@ -913,7 +917,7 @@ class DrawingRenderNode extends RenderNode {
     const brush = new drawing.Brush();
     brush.setColor({alpha: 255, red: 255, green: 0, blue: 0});
     canvas.attachBrush(brush);
-    canvas.drawRect({ left : 0, right : 0, top : 10, bottom : 10 });
+    canvas.drawRect({ left : 0, right : 10, top : 0, bottom : 10 });
     canvas.detachBrush();
   }
 }
@@ -939,7 +943,7 @@ class DrawingRenderNode extends RenderNode {
     pen.setStrokeWidth(5);
     pen.setColor({alpha: 255, red: 255, green: 0, blue: 0});
     canvas.attachPen(pen);
-    canvas.drawRect({ left : 0, right : 0, top : 10, bottom : 10 });
+    canvas.drawRect({ left : 0, right : 10, top : 0, bottom : 10 });
     canvas.detachPen();
   }
 }
@@ -964,7 +968,7 @@ class DrawingRenderNode extends RenderNode {
     const brush = new drawing.Brush();
     brush.setColor({alpha: 255, red: 255, green: 0, blue: 0});
     canvas.attachBrush(brush);
-    canvas.drawRect({ left : 0, right : 0, top : 10, bottom : 10 });
+    canvas.drawRect({ left : 0, right : 10, top : 0, bottom : 10 });
     canvas.detachBrush();
   }
 }
@@ -1675,7 +1679,7 @@ font.enableLinearMetrics(true);
 
 setSize(textSize: number): void
 
-设置字体大小，如果字体大小小于等于零，则无效。
+设置字体大小。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -1683,7 +1687,7 @@ setSize(textSize: number): void
 
 | 参数名   | 类型   | 必填 | 说明             |
 | -------- | ------ | ---- | ---------------- |
-| textSize | number | 是   | 字体大小，该参数为大于0的浮点数。 |
+| textSize | number | 是   | 字体大小，该参数为浮点数，为负数时字体大小会被置为0。字体大小为0时，绘制的文字不会显示。|
 
 **错误码：**
 
