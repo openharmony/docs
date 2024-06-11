@@ -48,13 +48,12 @@ UDMF针对多对多跨应用数据共享的不同业务场景提供了标准化�
 1. 导入`@ohos.data.unifiedDataChannel`和`@ohos.data.uniformTypeDescriptor`模块。
 
    ```ts
-   import unifiedDataChannel from '@ohos.data.unifiedDataChannel';
-   import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
+   import { unifiedDataChannel, uniformTypeDescriptor } from '@kit.ArkData';
    ```
 2. 创建一个统一数据对象并插入到UDMF的公共数据通路中。
 
    ```ts
-   import { BusinessError } from '@ohos.base';
+   import { BusinessError } from '@kit.BasicServicesKit';
    let plainText = new unifiedDataChannel.PlainText();
    plainText.textContent = 'hello world!';
    let unifiedData = new unifiedDataChannel.UnifiedData(plainText);
@@ -79,7 +78,6 @@ UDMF针对多对多跨应用数据共享的不同业务场景提供了标准化�
 3. 更新上一步骤插入的统一数据对象。
 
    ```ts
-   import { BusinessError } from '@ohos.base';
    let plainText = new unifiedDataChannel.PlainText();
    plainText.textContent = 'How are you!';
    let unifiedData = new unifiedDataChannel.UnifiedData(plainText);
@@ -105,7 +103,6 @@ UDMF针对多对多跨应用数据共享的不同业务场景提供了标准化�
 4. 删除存储在UDMF公共数据通路中的统一数据对象。
 
    ```ts
-   import { BusinessError } from '@ohos.base';
    // 指定要删除数据的数据通路枚举类型
    let options: unifiedDataChannel.Options = {
      intention: unifiedDataChannel.Intention.DATA_HUB
@@ -139,13 +136,12 @@ UDMF针对多对多跨应用数据共享的不同业务场景提供了标准化�
 1. 导入`@ohos.data.unifiedDataChannel`和`@ohos.data.uniformTypeDescriptor`模块。
 
    ```ts
-   import unifiedDataChannel from '@ohos.data.unifiedDataChannel';
-   import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
+   import { unifiedDataChannel, uniformTypeDescriptor } from '@kit.ArkData';
    ```
 2. 查询存储在UDMF公共数据通路中的全量统一数据对象。
 
    ```ts
-   import { BusinessError } from '@ohos.base';
+   import { BusinessError } from '@kit.BasicServicesKit';
    // 指定要查询数据的数据通路枚举类型
    let options: unifiedDataChannel.Options = {
      intention: unifiedDataChannel.Intention.DATA_HUB
