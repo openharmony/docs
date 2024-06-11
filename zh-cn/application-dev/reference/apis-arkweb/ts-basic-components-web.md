@@ -6111,7 +6111,7 @@ getOrigin(): string
 
 grant(config: ScreenCaptureConfig): void
 
-**需要权限：** ohos.permission.MICROPHONE，ohos.permission.CAPTURE_SCREEN（仅系统应用可申请此权限）
+**需要权限：** ohos.permission.MICROPHONE
 
 对网页访问的屏幕捕获操作进行授权。
 
