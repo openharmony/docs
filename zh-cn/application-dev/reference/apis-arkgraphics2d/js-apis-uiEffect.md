@@ -1,6 +1,6 @@
 # @ohos.graphics.uiEffect (效果级联)
 
-本模块提供组件效果的一些基础能力，包括边缘像素扩展，模糊，提亮等。效果被分为Filter和VisualEffect大类，同类效果可以级联在一个效果大类的实例下。
+本模块提供组件效果的一些基础能力，包括模糊，边缘像素扩展，提亮等。效果被分为Filter和VisualEffect大类，同类效果可以级联在一个效果大类的实例下。
 
 - [Filter](#filter)：用于添加指定Filter效果到组件上。
 - [VisualEffect](#visualeffect)：用于添加指定VisualEffect效果到组件上。
@@ -21,7 +21,7 @@ Filter效果类，用于将相应的效果添加到指定的控件上。在调�
 ### blur
 blur(blurRadius: number): Filter
 
-将模糊效果添加至组件上
+将模糊效果添加至组件上。
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
