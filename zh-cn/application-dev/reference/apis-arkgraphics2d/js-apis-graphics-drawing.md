@@ -275,10 +275,6 @@ path.reset();
 
 承载绘制内容与绘制状态的载体。
 
-> **说明：**
->
-> 画布自带一个黑色，开启反走样，不具备其他任何样式效果的默认画刷，当且仅当画布中主动设置的画刷和画笔都不存在时生效。
-
 ### constructor
 
 constructor(pixelmap: image.PixelMap)
