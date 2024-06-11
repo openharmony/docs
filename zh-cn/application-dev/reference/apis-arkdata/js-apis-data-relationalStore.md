@@ -584,6 +584,8 @@ class EntryAbility extends UIAbility {
 
 ## Assets<sup>10+</sup>
 
+type Assets = Asset[]
+
 表示[Asset](#asset10)类型的数组。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
@@ -593,6 +595,8 @@ class EntryAbility extends UIAbility {
 | [Asset](#asset10)[] | 表示Asset类型的数组。   |
 
 ## ValueType
+
+type ValueType = null | number | string | boolean | Uint8Array | Asset | Assets | Float32Array | bigint
 
 用于表示允许的数据字段类型，接口参数具体类型根据其功能而定。
 
@@ -625,6 +629,8 @@ type ValuesBucket = Record<string, ValueType>
 
 ## PRIKeyType<sup>10+</sup> 
 
+type PRIKeyType = number | string
+
 用于表示数据库表某一行主键的数据类型。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
@@ -636,6 +642,8 @@ type ValuesBucket = Record<string, ValueType>
 
 ## UTCTime<sup>10+</sup>
 
+type UTCTime = Date
+
 用于表示UTC类型时间的数据类型。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
@@ -645,6 +653,8 @@ type ValuesBucket = Record<string, ValueType>
 | Date | UTC类型的时间。 |
 
 ## ModifyTime<sup>10+</sup> 
+
+type ModifyTime = Map<PRIKeyType, UTCTime>
 
 用于存储数据库表的主键和修改时间的数据类型。
 
@@ -6945,9 +6955,9 @@ if(store != undefined) {
 ```
 ### close<sup>12+</sup>
 
-关闭数据库，使用Promise异步回调。
+close(): Promise<void>
 
-close(): Promise&lt;void&gt;
+关闭数据库，使用Promise异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 

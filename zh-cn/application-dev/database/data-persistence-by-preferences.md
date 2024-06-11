@@ -48,7 +48,7 @@
 1. 导入`@kit.ArkData`模块。
    
    ```ts
-   import { dataPreferences } from '@kit.ArkData';
+   import { preferences } from '@kit.ArkData';
    ```
 
 2. 获取Preferences实例。
@@ -61,12 +61,12 @@
    import { BusinessError } from '@kit.BasicServicesKit';
    import { window } from '@kit.ArkUI';
 
-   let preferences: dataPreferences.Preferences | null = null;
+   let dataPreferences: preferences.Preferences | null = null;
 
    class EntryAbility extends UIAbility {
      onWindowStageCreate(windowStage: window.WindowStage) {
-       let options: dataPreferences.Options = { name: 'myStore' };
-       preferences = dataPreferences.getPreferencesSync(this.context, options);
+       let options: preferences.Options = { name: 'myStore' };
+       dataPreferences = preferences.getPreferencesSync(this.context, options);
      }
    }
    ```
@@ -80,8 +80,8 @@
    import { BusinessError } from '@kit.BasicServicesKit';
    
    let context = featureAbility.getContext();
-   let options: dataPreferences.Options =  { name: 'myStore' };
-   let preferences: dataPreferences.Preferences = dataPreferences.getPreferencesSync(context, options);
+   let options: preferences.Options =  { name: 'myStore' };
+   let dataPreferences: preferences.Preferences = preferences.getPreferencesSync(context, options);
    ```
 
 3. 写入数据。
@@ -96,15 +96,15 @@
 
    ```ts
    import { util } from '@kit.ArkTS';
-   if (preferences.hasSync('startup')) {
+   if (dataPreferences.hasSync('startup')) {
      console.info("The key 'startup' is contained.");
    } else {
      console.info("The key 'startup' does not contain.");
      // 此处以此键值对不存在时写入数据为例
-     preferences.putSync('startup', 'auto');
+     dataPreferences.putSync('startup', 'auto');
      // 当字符串有特殊字符时，需要将字符串转为Uint8Array类型再存储
-     let uInt8Array = new util.TextEncoder().encodeInto("~！@#￥%……&*（）——+？");
-     preferences.putSync('uInt8', uInt8Array);
+     let uInt8Array1 = new util.TextEncoder().encodeInto("~！@#￥%……&*（）——+？");
+     dataPreferences.putSync('uInt8', uInt8Array1);
    }
    ```
 
@@ -115,13 +115,12 @@
    示例代码如下所示：
 
    ```ts
-   import { util } from '@kit.ArkTS';
-   let val = preferences.getSync('startup', 'default');
+   let val = dataPreferences.getSync('startup', 'default');
    console.info("The 'startup' value is " + val);
    // 当获取的值为带有特殊字符的字符串时，需要将获取到的Uint8Array转换为字符串
-   let uInt8Array : dataPreferences.ValueType = preferences.getSync('uInt8', new Uint8Array(0));
+   let uInt8Array2 : preferences.ValueType = dataPreferences.getSync('uInt8', new Uint8Array(0));
    let textDecoder = util.TextDecoder.create('utf-8');
-   val = textDecoder.decodeWithStream(uInt8Array as Uint8Array);
+   val = textDecoder.decodeWithStream(uInt8Array2 as Uint8Array);
    console.info("The 'uInt8' value is " + val);
    ```
 
@@ -131,7 +130,7 @@
 
 
    ```ts
-   preferences.deleteSync('startup');
+   dataPreferences.deleteSync('startup');
    ```
 
 5. 数据持久化。
@@ -139,7 +138,7 @@
    应用存入数据到Preferences实例后，可以使用flush()方法实现数据持久化。示例代码如下所示：
 
    ```ts
-   preferences.flush((err: BusinessError) => {
+   dataPreferences.flush((err: BusinessError) => {
      if (err) {
        console.error(`Failed to flush. Code:${err.code}, message:${err.message}`);
        return;
@@ -156,16 +155,16 @@
    let observer = (key: string) => {
      console.info('The key' + key + 'changed.');
    }
-   preferences.on('change', observer);
+   dataPreferences.on('change', observer);
    // 数据产生变更，由'auto'变为'manual'
-   preferences.put('startup', 'manual', (err: BusinessError) => {
+   dataPreferences.put('startup', 'manual', (err: BusinessError) => {
      if (err) {
        console.error(`Failed to put the value of 'startup'. Code:${err.code},message:${err.message}`);
        return;
      }
      console.info("Succeeded in putting the value of 'startup'.");
-     if (preferences !== null) {
-       preferences.flush((err: BusinessError) => {
+     if (dataPreferences !== null) {
+       dataPreferences.flush((err: BusinessError) => {
          if (err) {
            console.error(`Failed to flush. Code:${err.code}, message:${err.message}`);
            return;
@@ -190,8 +189,8 @@
 
 
    ```ts
-   let options: dataPreferences.Options = { name: 'myStore' };
-     dataPreferences.deletePreferences(this.context, options, (err: BusinessError) => {
+   let options: preferences.Options = { name: 'myStore' };
+     preferences.deletePreferences(this.context, options, (err: BusinessError) => {
        if (err) {
          console.error(`Failed to delete preferences. Code:${err.code}, message:${err.message}`);
            return;

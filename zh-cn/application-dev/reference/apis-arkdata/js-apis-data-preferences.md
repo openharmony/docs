@@ -13,7 +13,7 @@
 ## 导入模块
 
 ```ts
-import { dataPreferences } from '@kit.ArkData';
+import { preferences } from '@kit.ArkData';
 ```
 
 ## 常量
@@ -28,7 +28,7 @@ import { dataPreferences } from '@kit.ArkData';
 | MAX_VALUE_LENGTH | number   | 是   | 否   | Value的最大长度限制为16 * 1024 * 1024个字节。 |
 
 
-## dataPreferences.getPreferences
+## preferences.getPreferences
 
 getPreferences(context: Context, name: string, callback: AsyncCallback&lt;Preferences&gt;): void
 
@@ -65,14 +65,14 @@ import { featureAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let context = featureAbility.getContext();
-let preferences: dataPreferences.Preferences | null = null;
+let dataPreferences: preferences.Preferences | null = null;
 
-dataPreferences.getPreferences(context, 'myStore', (err: BusinessError, val: dataPreferences.Preferences) => {
+preferences.getPreferences(context, 'myStore', (err: BusinessError, val: preferences.Preferences) => {
   if (err) {
     console.error("Failed to get preferences. code =" + err.code + ", message =" + err.message);
     return;
   }
-  preferences = val;
+  dataPreferences = val;
   console.info("Succeeded in getting preferences.");
 })
 ```
@@ -84,23 +84,23 @@ import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { window } from '@kit.ArkUI';
 
-let preferences: dataPreferences.Preferences | null = null;
+let dataPreferences: preferences.Preferences | null = null;
 
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
-    dataPreferences.getPreferences(this.context, 'myStore', (err: BusinessError, val: dataPreferences.Preferences) => {
+    preferences.getPreferences(this.context, 'myStore', (err: BusinessError, val: preferences.Preferences) => {
       if (err) {
         console.error("Failed to get preferences. code =" + err.code + ", message =" + err.message);
         return;
       }
-      preferences = val;
+      dataPreferences = val;
       console.info("Succeeded in getting preferences.");
     })
   }
 }
 ```
 
-## dataPreferences.getPreferences
+## preferences.getPreferences
 
 getPreferences(context: Context, name: string): Promise&lt;Preferences&gt;
 
@@ -144,10 +144,10 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let context = featureAbility.getContext();
 
-let preferences: dataPreferences.Preferences | null = null;
-let promise = dataPreferences.getPreferences(context, 'myStore');
-promise.then((object: dataPreferences.Preferences) => {
-  preferences = object;
+let dataPreferences: preferences.Preferences | null = null;
+let promise = preferences.getPreferences(context, 'myStore');
+promise.then((object: preferences.Preferences) => {
+  dataPreferences = object;
   console.info("Succeeded in getting preferences.");
 }).catch((err: BusinessError) => {
   console.error("Failed to get preferences. code =" + err.code + ", message =" + err.message);
@@ -161,13 +161,13 @@ import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { window } from '@kit.ArkUI';
 
-let preferences: dataPreferences.Preferences | null = null;
+let dataPreferences: preferences.Preferences | null = null;
 
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
-    let promise = dataPreferences.getPreferences(this.context, 'myStore');
-    promise.then((object: dataPreferences.Preferences) => {
-      preferences = object;
+    let promise = preferences.getPreferences(this.context, 'myStore');
+    promise.then((object: preferences.Preferences) => {
+      dataPreferences = object;
       console.info("Succeeded in getting preferences.");
     }).catch((err: BusinessError) => {
       console.error("Failed to get preferences. code =" + err.code + ", message =" + err.message);
@@ -176,7 +176,7 @@ class EntryAbility extends UIAbility {
 }
 ```
 
-## dataPreferences.getPreferences<sup>10+</sup>
+## preferences.getPreferences<sup>10+</sup>
 
 getPreferences(context: Context, options: Options, callback: AsyncCallback&lt;Preferences&gt;): void
 
@@ -217,15 +217,15 @@ import { featureAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let context = featureAbility.getContext();
-let preferences: dataPreferences.Preferences | null = null;
+let dataPreferences: preferences.Preferences | null = null;
 
-let options: dataPreferences.Options = { name: 'myStore' };
-dataPreferences.getPreferences(context, options, (err: BusinessError, val: dataPreferences.Preferences) => {
+let options: preferences.Options = { name: 'myStore' };
+preferences.getPreferences(context, options, (err: BusinessError, val: preferences.Preferences) => {
   if (err) {
     console.error("Failed to get preferences. code =" + err.code + ", message =" + err.message);
     return;
   }
-  preferences = val;
+  dataPreferences = val;
   console.info("Succeeded in getting preferences.");
 })
 ```
@@ -238,24 +238,24 @@ import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { window } from '@kit.ArkUI';
 
-let preferences: dataPreferences.Preferences | null = null;
+let dataPreferences: preferences.Preferences | null = null;
 
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
-    let options: dataPreferences.Options = { name: 'myStore', dataGroupId: 'myId' };
-    dataPreferences.getPreferences(this.context, options, (err: BusinessError, val: dataPreferences.Preferences) => {
+    let options: preferences.Options = { name: 'myStore', dataGroupId: 'myId' };
+    preferences.getPreferences(this.context, options, (err: BusinessError, val: preferences.Preferences) => {
       if (err) {
         console.error("Failed to get preferences. code =" + err.code + ", message =" + err.message);
         return;
       }
-      preferences = val;
+      dataPreferences = val;
       console.info("Succeeded in getting preferences.");
     })
   }
 }
 ```
 
-## dataPreferences.getPreferences<sup>10+</sup>
+## preferences.getPreferences<sup>10+</sup>
 
 getPreferences(context: Context, options: Options): Promise&lt;Preferences&gt;
 
@@ -302,11 +302,11 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let context = featureAbility.getContext();
 
-let preferences: dataPreferences.Preferences | null = null;
-let options: dataPreferences.Options = { name: 'myStore' };
-let promise = dataPreferences.getPreferences(context, options);
-promise.then((object: dataPreferences.Preferences) => {
-  preferences = object;
+let dataPreferences: preferences.Preferences | null = null;
+let options: preferences.Options = { name: 'myStore' };
+let promise = preferences.getPreferences(context, options);
+promise.then((object: preferences.Preferences) => {
+  dataPreferences = object;
   console.info("Succeeded in getting preferences.");
 }).catch((err: BusinessError) => {
   console.error("Failed to get preferences. code =" + err.code + ", message =" + err.message);
@@ -320,14 +320,14 @@ import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { window } from '@kit.ArkUI';
 
-let preferences: dataPreferences.Preferences | null = null;
+let dataPreferences: preferences.Preferences | null = null;
 
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
-    let options: dataPreferences.Options = { name: 'myStore', dataGroupId: 'myId' };
-    let promise = dataPreferences.getPreferences(this.context, options);
-    promise.then((object: dataPreferences.Preferences) => {
-      preferences = object;
+    let options: preferences.Options = { name: 'myStore', dataGroupId: 'myId' };
+    let promise = preferences.getPreferences(this.context, options);
+    promise.then((object: preferences.Preferences) => {
+      dataPreferences = object;
       console.info("Succeeded in getting preferences.");
     }).catch((err: BusinessError) => {
       console.error("Failed to get preferences. code =" + err.code + ", message =" + err.message);
@@ -336,7 +336,7 @@ class EntryAbility extends UIAbility {
 }
 ```
 
-## dataPreferences.getPreferencesSync<sup>10+</sup>
+## preferences.getPreferencesSync<sup>10+</sup>
 
 getPreferencesSync(context: Context, options: Options): Preferences
 
@@ -381,10 +381,10 @@ FA模型示例：
 import { featureAbility } from '@kit.AbilityKit';
 
 let context = featureAbility.getContext();
-let preferences: dataPreferences.Preferences | null = null;
+let dataPreferences: preferences.Preferences | null = null;
 
-let options: dataPreferences.Options = { name: 'myStore' };
-preferences = dataPreferences.getPreferencesSync(context, options);
+let options: preferences.Options = { name: 'myStore' };
+dataPreferences = preferences.getPreferencesSync(context, options);
 ```
 
 Stage模型示例：
@@ -393,17 +393,17 @@ Stage模型示例：
 import { UIAbility } from '@kit.AbilityKit';
 import { window } from '@kit.ArkUI';
 
-let preferences: dataPreferences.Preferences | null = null;
+let dataPreferences: preferences.Preferences | null = null;
 
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
-    let options: dataPreferences.Options = { name: 'myStore', dataGroupId: 'myId' };
-    preferences = dataPreferences.getPreferencesSync(this.context, options);
+    let options: preferences.Options = { name: 'myStore', dataGroupId: 'myId' };
+    dataPreferences = preferences.getPreferencesSync(this.context, options);
   }
 }
 ```
 
-## dataPreferences.deletePreferences
+## preferences.deletePreferences
 
 deletePreferences(context: Context, name: string, callback: AsyncCallback&lt;void&gt;): void
 
@@ -445,7 +445,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let context = featureAbility.getContext();
 
-dataPreferences.deletePreferences(context, 'myStore', (err: BusinessError) => {
+preferences.deletePreferences(context, 'myStore', (err: BusinessError) => {
   if (err) {
     console.error("Failed to delete preferences. code =" + err.code + ", message =" + err.message);
     return;
@@ -463,7 +463,7 @@ import { window } from '@kit.ArkUI';
 
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
-    dataPreferences.deletePreferences(this.context, 'myStore', (err: BusinessError) => {
+    preferences.deletePreferences(this.context, 'myStore', (err: BusinessError) => {
       if (err) {
         console.error("Failed to delete preferences. code =" + err.code + ", message =" + err.message);
         return;
@@ -474,7 +474,7 @@ class EntryAbility extends UIAbility {
 }
 ```
 
-## dataPreferences.deletePreferences
+## preferences.deletePreferences
 
 deletePreferences(context: Context, name: string): Promise&lt;void&gt;
 
@@ -521,7 +521,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let context = featureAbility.getContext();
 
-let promise = dataPreferences.deletePreferences(context, 'myStore');
+let promise = preferences.deletePreferences(context, 'myStore');
 promise.then(() => {
   console.info("Succeeded in deleting preferences.");
 }).catch((err: BusinessError) => {
@@ -538,7 +538,7 @@ import { window } from '@kit.ArkUI';
 
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
-    let promise = dataPreferences.deletePreferences(this.context, 'myStore');
+    let promise = preferences.deletePreferences(this.context, 'myStore');
     promise.then(() => {
       console.info("Succeeded in deleting preferences.");
     }).catch((err: BusinessError) => {
@@ -548,7 +548,7 @@ class EntryAbility extends UIAbility {
 }
 ```
 
-## dataPreferences.deletePreferences<sup>10+</sup>
+## preferences.deletePreferences<sup>10+</sup>
 
 deletePreferences(context: Context, options: Options, callback: AsyncCallback&lt;void&gt;): void
 
@@ -593,8 +593,8 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let context = featureAbility.getContext();
 
-let options: dataPreferences.Options = { name: 'myStore' };
-dataPreferences.deletePreferences(context, options, (err: BusinessError) => {
+let options: preferences.Options = { name: 'myStore' };
+preferences.deletePreferences(context, options, (err: BusinessError) => {
   if (err) {
     console.error("Failed to delete preferences. code =" + err.code + ", message =" + err.message);
     return;
@@ -612,8 +612,8 @@ import { window } from '@kit.ArkUI';
 
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
-    let options: dataPreferences.Options = { name: 'myStore', dataGroupId: 'myId' };
-    dataPreferences.deletePreferences(this.context, options, (err: BusinessError) => {
+    let options: preferences.Options = { name: 'myStore', dataGroupId: 'myId' };
+    preferences.deletePreferences(this.context, options, (err: BusinessError) => {
       if (err) {
         console.error("Failed to delete preferences. code =" + err.code + ", message =" + err.message);
         return;
@@ -625,7 +625,7 @@ class EntryAbility extends UIAbility {
 ```
 
 
-## dataPreferences.deletePreferences<sup>10+</sup>
+## preferences.deletePreferences<sup>10+</sup>
 
 deletePreferences(context: Context, options: Options): Promise&lt;void&gt;
 
@@ -675,8 +675,8 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let context = featureAbility.getContext();
 
-let options: dataPreferences.Options = { name: 'myStore' };
-let promise = dataPreferences.deletePreferences(context, options);
+let options: preferences.Options = { name: 'myStore' };
+let promise = preferences.deletePreferences(context, options);
 promise.then(() => {
   console.info("Succeeded in deleting preferences.");
 }).catch((err: BusinessError) => {
@@ -693,8 +693,8 @@ import { window } from '@kit.ArkUI';
 
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
-    let options: dataPreferences.Options = { name: 'myStore', dataGroupId: 'myId' };
-    let promise = dataPreferences.deletePreferences(this.context, options);
+    let options: preferences.Options = { name: 'myStore', dataGroupId: 'myId' };
+    let promise = preferences.deletePreferences(this.context, options);
     promise.then(() => {
       console.info("Succeeded in deleting preferences.");
     }).catch((err: BusinessError) => {
@@ -705,13 +705,13 @@ class EntryAbility extends UIAbility {
 ```
 
 
-## dataPreferences.removePreferencesFromCache
+## preferences.removePreferencesFromCache
 
 removePreferencesFromCache(context: Context, name: string, callback: AsyncCallback&lt;void&gt;): void
 
 从缓存中移出指定的Preferences实例，使用callback异步回调。
 
-应用首次调用[getPreferences](#datapreferencesgetpreferences)接口获取某个Preferences实例后，该实例会被会被缓存起来，后续再次[getPreferences](#datapreferencesgetpreferences)时不会再次从持久化文件中读取，直接从缓存中获取Preferences实例。调用此接口移出缓存中的实例之后，再次getPreferences将会重新读取持久化文件，生成新的Preferences实例。
+应用首次调用[getPreferences](#preferencesgetpreferences)接口获取某个Preferences实例后，该实例会被会被缓存起来，后续再次[getPreferences](#preferencesgetpreferences)时不会再次从持久化文件中读取，直接从缓存中获取Preferences实例。调用此接口移出缓存中的实例之后，再次getPreferences将会重新读取持久化文件，生成新的Preferences实例。
 
 调用该接口后，不建议再使用旧的Preferences实例进行数据操作，否则会出现数据一致性问题，应将Preferences实例置为null，系统将会统一回收。
 
@@ -747,7 +747,7 @@ import { featureAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let context = featureAbility.getContext();
-dataPreferences.removePreferencesFromCache(context, 'myStore', (err: BusinessError) => {
+preferences.removePreferencesFromCache(context, 'myStore', (err: BusinessError) => {
   if (err) {
     console.error("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
     return;
@@ -765,7 +765,7 @@ import { window } from '@kit.ArkUI';
 
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
-    dataPreferences.removePreferencesFromCache(this.context, 'myStore', (err: BusinessError) => {
+    preferences.removePreferencesFromCache(this.context, 'myStore', (err: BusinessError) => {
       if (err) {
         console.error("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
         return;
@@ -776,13 +776,13 @@ class EntryAbility extends UIAbility {
 }
 ```
 
-## dataPreferences.removePreferencesFromCache
+## preferences.removePreferencesFromCache
 
 removePreferencesFromCache(context: Context, name: string): Promise&lt;void&gt;
 
 从缓存中移出指定的Preferences实例，使用Promise异步回调。
 
-应用首次调用[getPreferences](#datapreferencesgetpreferences)接口获取某个Preferences实例后，该实例会被会被缓存起来，后续再次[getPreferences](#datapreferencesgetpreferences)时不会再次从持久化文件中读取，直接从缓存中获取Preferences实例。调用此接口移出缓存中的实例之后，再次getPreferences将会重新读取持久化文件，生成新的Preferences实例。
+应用首次调用[getPreferences](#preferencesgetpreferences)接口获取某个Preferences实例后，该实例会被会被缓存起来，后续再次[getPreferences](#preferencesgetpreferences)时不会再次从持久化文件中读取，直接从缓存中获取Preferences实例。调用此接口移出缓存中的实例之后，再次getPreferences将会重新读取持久化文件，生成新的Preferences实例。
 
 调用该接口后，不建议再使用旧的Preferences实例进行数据操作，否则会出现数据一致性问题，应将Preferences实例置为null，系统将会统一回收。
 
@@ -823,7 +823,7 @@ import { featureAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let context = featureAbility.getContext();
-let promise = dataPreferences.removePreferencesFromCache(context, 'myStore');
+let promise = preferences.removePreferencesFromCache(context, 'myStore');
 promise.then(() => {
   console.info("Succeeded in removing preferences.");
 }).catch((err: BusinessError) => {
@@ -840,7 +840,7 @@ import { window } from '@kit.ArkUI';
 
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
-    let promise = dataPreferences.removePreferencesFromCache(this.context, 'myStore');
+    let promise = preferences.removePreferencesFromCache(this.context, 'myStore');
     promise.then(() => {
       console.info("Succeeded in removing preferences.");
     }).catch((err: BusinessError) => {
@@ -850,13 +850,13 @@ class EntryAbility extends UIAbility {
 }
 ```
 
-## dataPreferences.removePreferencesFromCacheSync<sup>10+</sup>
+## preferences.removePreferencesFromCacheSync<sup>10+</sup>
 
 removePreferencesFromCacheSync(context: Context, name: string): void
 
 从缓存中移出指定的Preferences实例，此为同步接口。
 
-应用首次调用[getPreferences](#datapreferencesgetpreferences)接口获取某个Preferences实例后，该实例会被会被缓存起来，后续再次[getPreferences](#datapreferencesgetpreferences)时不会再次从持久化文件中读取，直接从缓存中获取Preferences实例。调用此接口移出缓存中的实例之后，再次getPreferences将会重新读取持久化文件，生成新的Preferences实例。
+应用首次调用[getPreferences](#preferencesgetpreferences)接口获取某个Preferences实例后，该实例会被会被缓存起来，后续再次[getPreferences](#preferencesgetpreferences)时不会再次从持久化文件中读取，直接从缓存中获取Preferences实例。调用此接口移出缓存中的实例之后，再次getPreferences将会重新读取持久化文件，生成新的Preferences实例。
 
 调用该接口后，不建议再使用旧的Preferences实例进行数据操作，否则会出现数据一致性问题，应将Preferences实例置为null，系统将会统一回收。
 
@@ -889,7 +889,7 @@ FA模型示例：
 // 获取context
 import { featureAbility } from '@kit.AbilityKit';
 let context = featureAbility.getContext();
-dataPreferences.removePreferencesFromCacheSync(context, 'myStore');
+preferences.removePreferencesFromCacheSync(context, 'myStore');
 ```
 
 Stage模型示例：
@@ -900,18 +900,18 @@ import { window } from '@kit.ArkUI';
 
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
-    dataPreferences.removePreferencesFromCacheSync(this.context, 'myStore');
+    preferences.removePreferencesFromCacheSync(this.context, 'myStore');
   }
 }
 ```
 
-## dataPreferences.removePreferencesFromCache<sup>10+</sup>
+## preferences.removePreferencesFromCache<sup>10+</sup>
 
 removePreferencesFromCache(context: Context, options: Options, callback: AsyncCallback&lt;void&gt;): void
 
 从缓存中移出指定的Preferences实例，使用callback异步回调。
 
-应用首次调用[getPreferences](#datapreferencesgetpreferences)接口获取某个Preferences实例后，该实例会被会被缓存起来，后续再次[getPreferences](#datapreferencesgetpreferences)时不会再次从持久化文件中读取，直接从缓存中获取Preferences实例。调用此接口移出缓存中的实例之后，再次getPreferences将会重新读取持久化文件，生成新的Preferences实例。
+应用首次调用[getPreferences](#preferencesgetpreferences)接口获取某个Preferences实例后，该实例会被会被缓存起来，后续再次[getPreferences](#preferencesgetpreferences)时不会再次从持久化文件中读取，直接从缓存中获取Preferences实例。调用此接口移出缓存中的实例之后，再次getPreferences将会重新读取持久化文件，生成新的Preferences实例。
 
 调用该接口后，不建议再使用旧的Preferences实例进行数据操作，否则会出现数据一致性问题，应将Preferences实例置为null，系统将会统一回收。
 
@@ -950,8 +950,8 @@ import { featureAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let context = featureAbility.getContext();
-let options: dataPreferences.Options = { name: 'myStore' };
-dataPreferences.removePreferencesFromCache(context, options, (err: BusinessError) => {
+let options: preferences.Options = { name: 'myStore' };
+preferences.removePreferencesFromCache(context, options, (err: BusinessError) => {
   if (err) {
     console.error("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
     return;
@@ -969,8 +969,8 @@ import { window } from '@kit.ArkUI';
 
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
-    let options: dataPreferences.Options = { name: 'myStore', dataGroupId: 'myId' };
-    dataPreferences.removePreferencesFromCache(this.context, options, (err: BusinessError) => {
+    let options: preferences.Options = { name: 'myStore', dataGroupId: 'myId' };
+    preferences.removePreferencesFromCache(this.context, options, (err: BusinessError) => {
       if (err) {
         console.error("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
         return;
@@ -981,13 +981,13 @@ class EntryAbility extends UIAbility {
 }
 ```
 
-## dataPreferences.removePreferencesFromCache<sup>10+</sup>
+## preferences.removePreferencesFromCache<sup>10+</sup>
 
 removePreferencesFromCache(context: Context, options: Options): Promise&lt;void&gt;
 
 从缓存中移出指定的Preferences实例，使用Promise异步回调。
 
-应用首次调用[getPreferences](#datapreferencesgetpreferences)接口获取某个Preferences实例后，该实例会被会被缓存起来，后续再次[getPreferences](#datapreferencesgetpreferences)时不会再次从持久化文件中读取，直接从缓存中获取Preferences实例。调用此接口移出缓存中的实例之后，再次getPreferences将会重新读取持久化文件，生成新的Preferences实例。
+应用首次调用[getPreferences](#preferencesgetpreferences)接口获取某个Preferences实例后，该实例会被会被缓存起来，后续再次[getPreferences](#preferencesgetpreferences)时不会再次从持久化文件中读取，直接从缓存中获取Preferences实例。调用此接口移出缓存中的实例之后，再次getPreferences将会重新读取持久化文件，生成新的Preferences实例。
 
 调用该接口后，不建议再使用旧的Preferences实例进行数据操作，否则会出现数据一致性问题，应将Preferences实例置为null，系统将会统一回收。
 
@@ -1031,8 +1031,8 @@ import { featureAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let context = featureAbility.getContext();
-let options: dataPreferences.Options = { name: 'myStore' };
-let promise = dataPreferences.removePreferencesFromCache(context, options);
+let options: preferences.Options = { name: 'myStore' };
+let promise = preferences.removePreferencesFromCache(context, options);
 promise.then(() => {
   console.info("Succeeded in removing preferences.");
 }).catch((err: BusinessError) => {
@@ -1049,8 +1049,8 @@ import { window } from '@kit.ArkUI';
 
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
-    let options: dataPreferences.Options = { name: 'myStore', dataGroupId: 'myId' };
-    let promise = dataPreferences.removePreferencesFromCache(this.context, options);
+    let options: preferences.Options = { name: 'myStore', dataGroupId: 'myId' };
+    let promise = preferences.removePreferencesFromCache(this.context, options);
     promise.then(() => {
       console.info("Succeeded in removing preferences.");
     }).catch((err: BusinessError) => {
@@ -1060,13 +1060,13 @@ class EntryAbility extends UIAbility {
 }
 ```
 
-## dataPreferences.removePreferencesFromCacheSync<sup>10+</sup>
+## preferences.removePreferencesFromCacheSync<sup>10+</sup>
 
 removePreferencesFromCacheSync(context: Context, options: Options):void
 
 从缓存中移出指定的Preferences实例，此为同步接口。
 
-应用首次调用[getPreferences](#datapreferencesgetpreferences)接口获取某个Preferences实例后，该实例会被会被缓存起来，后续再次[getPreferences](#datapreferencesgetpreferences)时不会再次从持久化文件中读取，直接从缓存中获取Preferences实例。调用此接口移出缓存中的实例之后，再次getPreferences将会重新读取持久化文件，生成新的Preferences实例。
+应用首次调用[getPreferences](#preferencesgetpreferences)接口获取某个Preferences实例后，该实例会被会被缓存起来，后续再次[getPreferences](#preferencesgetpreferences)时不会再次从持久化文件中读取，直接从缓存中获取Preferences实例。调用此接口移出缓存中的实例之后，再次getPreferences将会重新读取持久化文件，生成新的Preferences实例。
 
 调用该接口后，不建议再使用旧的Preferences实例进行数据操作，否则会出现数据一致性问题，应将Preferences实例置为null，系统将会统一回收。
 
@@ -1102,8 +1102,8 @@ FA模型示例：
 // 获取context
 import { featureAbility } from '@kit.AbilityKit';
 let context = featureAbility.getContext();
-let options: dataPreferences.Options = { name: 'myStore' };
-dataPreferences.removePreferencesFromCacheSync(context, options);
+let options: preferences.Options = { name: 'myStore' };
+preferences.removePreferencesFromCacheSync(context, options);
 ```
 
 Stage模型示例：
@@ -1114,8 +1114,8 @@ import { window } from '@kit.ArkUI';
 
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
-    let options: dataPreferences.Options = { name: 'myStore', dataGroupId: 'myId' };
-    dataPreferences.removePreferencesFromCacheSync(this.context, options);
+    let options: preferences.Options = { name: 'myStore', dataGroupId: 'myId' };
+    preferences.removePreferencesFromCacheSync(this.context, options);
   }
 }
 ```
@@ -1138,7 +1138,7 @@ Preferences实例配置选项。
 
 首选项实例，提供获取和修改存储数据的接口。
 
-下列接口都需先使用[dataPreferences.getPreferences](#datapreferencesgetpreferences)获取到Preferences实例，再通过此实例调用对应接口。
+下列接口都需先使用[preferences.getPreferences](#preferencesgetpreferences)获取到Preferences实例，再通过此实例调用对应接口。
 
 
 ### get
@@ -1173,7 +1173,7 @@ get(key: string, defValue: ValueType, callback: AsyncCallback&lt;ValueType&gt;):
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-preferences.get('startup', 'default', (err: BusinessError, val: dataPreferences.ValueType) => {
+dataPreferences.get('startup', 'default', (err: BusinessError, val: preferences.ValueType) => {
   if (err) {
     console.error("Failed to get value of 'startup'. code =" + err.code + ", message =" + err.message);
     return;
@@ -1219,8 +1219,8 @@ get(key: string, defValue: ValueType): Promise&lt;ValueType&gt;
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let promise = preferences.get('startup', 'default');
-promise.then((data: dataPreferences.ValueType) => {
+let promise = dataPreferences.get('startup', 'default');
+promise.then((data: preferences.ValueType) => {
   console.info("Succeeded in getting value of 'startup'. Data: " + data);
 }).catch((err: BusinessError) => {
   console.error("Failed to get value of 'startup'. code =" + err.code + ", message =" + err.message);
@@ -1262,7 +1262,7 @@ getSync(key: string, defValue: ValueType): ValueType
 **示例：**
 
 ```ts
-let value: dataPreferences.ValueType = preferences.getSync('startup', 'default');
+let value: preferences.ValueType = dataPreferences.getSync('startup', 'default');
 ```
 
 ### getAll
@@ -1302,7 +1302,7 @@ function getObjKeys(obj: Object): string[] {
   return keys;
 }
 
-preferences.getAll((err: BusinessError, value: Object) => {
+dataPreferences.getAll((err: BusinessError, value: Object) => {
   if (err) {
     console.error("Failed to get all key-values. code =" + err.code + ", message =" + err.message);
     return;
@@ -1350,7 +1350,7 @@ function getObjKeys(obj: Object): string[] {
   return keys;
 }
 
-let promise = preferences.getAll();
+let promise = dataPreferences.getAll();
 promise.then((value: Object) => {
   let allKeys = getObjKeys(value);
   console.info('getAll keys = ' + allKeys);
@@ -1394,7 +1394,7 @@ function getObjKeys(obj: Object): string[] {
   return keys;
 }
 
-let value = preferences.getAllSync();
+let value = dataPreferences.getAllSync();
 let allKeys = getObjKeys(value);
 console.info('getAll keys = ' + allKeys);
 console.info("getAll object = " + JSON.stringify(value));
@@ -1436,7 +1436,7 @@ put(key: string, value: ValueType, callback: AsyncCallback&lt;void&gt;): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-preferences.put('startup', 'auto', (err: BusinessError) => {
+dataPreferences.put('startup', 'auto', (err: BusinessError) => {
   if (err) {
     console.error("Failed to put value of 'startup'. code =" + err.code + ", message =" + err.message);
     return;
@@ -1487,7 +1487,7 @@ put(key: string, value: ValueType): Promise&lt;void&gt;
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let promise = preferences.put('startup', 'auto');
+let promise = dataPreferences.put('startup', 'auto');
 promise.then(() => {
   console.info("Succeeded in putting value of 'startup'.");
 }).catch((err: BusinessError) => {
@@ -1529,7 +1529,7 @@ putSync(key: string, value: ValueType): void
 **示例：**
 
 ```ts
-preferences.putSync('startup', 'auto');
+dataPreferences.putSync('startup', 'auto');
 ```
 
 
@@ -1564,7 +1564,7 @@ has(key: string, callback: AsyncCallback&lt;boolean&gt;): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-preferences.has('startup', (err: BusinessError, val: boolean) => {
+dataPreferences.has('startup', (err: BusinessError, val: boolean) => {
   if (err) {
     console.error("Failed to check the key 'startup'. code =" + err.code + ", message =" + err.message);
     return;
@@ -1614,7 +1614,7 @@ has(key: string): Promise&lt;boolean&gt;
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let promise = preferences.has('startup');
+let promise = dataPreferences.has('startup');
 promise.then((val: boolean) => {
   if (val) {
     console.info("The key 'startup' is contained.");
@@ -1661,7 +1661,7 @@ hasSync(key: string): boolean
 **示例：**
 
 ```ts
-let isExist: boolean = preferences.hasSync('startup');
+let isExist: boolean = dataPreferences.hasSync('startup');
 if (isExist) {
   console.info("The key 'startup' is contained.");
 } else {
@@ -1701,7 +1701,7 @@ delete(key: string, callback: AsyncCallback&lt;void&gt;): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-preferences.delete('startup', (err: BusinessError) => {
+dataPreferences.delete('startup', (err: BusinessError) => {
   if (err) {
     console.error("Failed to delete the key 'startup'. code =" + err.code + ", message =" + err.message);
     return;
@@ -1747,7 +1747,7 @@ delete(key: string): Promise&lt;void&gt;
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let promise = preferences.delete('startup');
+let promise = dataPreferences.delete('startup');
 promise.then(() => {
   console.info("Succeeded in deleting the key 'startup'.");
 }).catch((err: BusinessError) => {
@@ -1784,7 +1784,7 @@ deleteSync(key: string): void
 **示例：**
 
 ```ts
-preferences.deleteSync('startup');
+dataPreferences.deleteSync('startup');
 ```
 
 
@@ -1818,7 +1818,7 @@ flush(callback: AsyncCallback&lt;void&gt;): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-preferences.flush((err: BusinessError) => {
+dataPreferences.flush((err: BusinessError) => {
   if (err) {
     console.error("Failed to flush. code =" + err.code + ", message =" + err.message);
     return;
@@ -1857,7 +1857,7 @@ flush(): Promise&lt;void&gt;
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let promise = preferences.flush();
+let promise = dataPreferences.flush();
 promise.then(() => {
   console.info("Succeeded in flushing.");
 }).catch((err: BusinessError) => {
@@ -1896,7 +1896,7 @@ clear(callback: AsyncCallback&lt;void&gt;): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-preferences.clear((err: BusinessError) =>{
+dataPreferences.clear((err: BusinessError) =>{
   if (err) {
     console.error("Failed to clear. code =" + err.code + ", message =" + err.message);
     return;
@@ -1935,7 +1935,7 @@ clear(): Promise&lt;void&gt;
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let promise = preferences.clear();
+let promise = dataPreferences.clear();
 promise.then(() => {
   console.info("Succeeded in clearing.");
 }).catch((err: BusinessError) => {
@@ -1957,7 +1957,7 @@ clearSync(): void
 **示例：**
 
 ```ts
-preferences.clearSync();
+dataPreferences.clearSync();
 ```
 
 
@@ -1995,9 +1995,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let observer = (key: string) => {
   console.info("The key " + key + " changed.");
 }
-preferences.on('change', observer);
-preferences.putSync('startup', 'manual');
-preferences.flush((err: BusinessError) => {
+dataPreferences.on('change', observer);
+dataPreferences.putSync('startup', 'manual');
+dataPreferences.flush((err: BusinessError) => {
   if (err) {
     console.error("Failed to flush. Cause: " + err);
     return;
@@ -2041,9 +2041,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let observer = (key: string) => {
   console.info("The key " + key + " changed.");
 }
-preferences.on('multiProcessChange', observer);
-preferences.putSync('startup', 'manual');
-preferences.flush((err: BusinessError) => {
+dataPreferences.on('multiProcessChange', observer);
+dataPreferences.putSync('startup', 'manual');
+dataPreferences.flush((err: BusinessError) => {
   if (err) {
     console.error("Failed to flush. Cause: " + err);
     return;
@@ -2084,17 +2084,17 @@ on(type: 'dataChange', keys: Array&lt;string&gt;,  callback: Callback&lt;Record&
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let observer = (data: Record<string, dataPreferences.ValueType>) => {
+let observer = (data: Record<string, preferences.ValueType>) => {
   for (const keyValue of Object.entries(data)) {
     console.info(`observer : ${keyValue}`)
   }
   console.info("The observer called.")
 }
 let keys = ['name', 'age']
-preferences.on('dataChange', keys, observer);
-preferences.putSync('name', 'xiaohong');
-preferences.putSync('weight', 125);
-preferences.flush((err: BusinessError) => {
+dataPreferences.on('dataChange', keys, observer);
+dataPreferences.putSync('name', 'xiaohong');
+dataPreferences.putSync('weight', 125);
+dataPreferences.flush((err: BusinessError) => {
   if (err) {
     console.error("Failed to flush. Cause: " + err);
     return;
@@ -2137,16 +2137,16 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let observer = (key: string) => {
   console.info("The key " + key + " changed.");
 }
-preferences.on('change', observer);
-preferences.putSync('startup', 'auto');
-preferences.flush((err: BusinessError) => {
+dataPreferences.on('change', observer);
+dataPreferences.putSync('startup', 'auto');
+dataPreferences.flush((err: BusinessError) => {
   if (err) {
     console.error("Failed to flush. Cause: " + err);
     return;
   }
   console.info("Succeeded in flushing.");
 })
-preferences.off('change', observer);
+dataPreferences.off('change', observer);
 ```
 
 ### off('multiProcessChange')<sup>10+</sup>
@@ -2183,16 +2183,16 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let observer = (key: string) => {
   console.info("The key " + key + " changed.");
 }
-preferences.on('multiProcessChange', observer);
-preferences.putSync('startup', 'auto');
-preferences.flush((err: BusinessError) => {
+dataPreferences.on('multiProcessChange', observer);
+dataPreferences.putSync('startup', 'auto');
+dataPreferences.flush((err: BusinessError) => {
   if (err) {
     console.error("Failed to flush. Cause: " + err);
     return;
   }
   console.info("Succeeded in flushing.");
 })
-preferences.off('multiProcessChange', observer);
+dataPreferences.off('multiProcessChange', observer);
 ```
 ### off('dataChange')<sup>12+</sup>
 
@@ -2226,27 +2226,29 @@ off(type: 'dataChange', keys: Array&lt;string&gt;,  callback?: Callback&lt;Recor
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let observer = (data: Record<string, dataPreferences.ValueType>) => {
+let observer = (data: Record<string, preferences.ValueType>) => {
   for (const keyValue of Object.entries(data)) {
     console.info(`observer : ${keyValue}`)
   }
   console.info("The observer called.")
 }
 let keys = ['name', 'age']
-preferences.on('dataChange', keys, observer);
-preferences.putSync('name', 'xiaohong');
-preferences.putSync('weight', 125);
-preferences.flush((err: BusinessError) => {
+dataPreferences.on('dataChange', keys, observer);
+dataPreferences.putSync('name', 'xiaohong');
+dataPreferences.putSync('weight', 125);
+dataPreferences.flush((err: BusinessError) => {
   if (err) {
     console.error("Failed to flush. Cause: " + err);
     return;
   }
   console.info("Succeeded in flushing.");
 })
-preferences.off('dataChange', keys, observer);
+dataPreferences.off('dataChange', keys, observer);
 ```
 
 ## ValueType
+
+type ValueType = number | string | boolean | Array<number> | Array<string> | Array<boolean> | Uint8Array | object | bigint
 
 用于表示允许的数据字段类型。
 
