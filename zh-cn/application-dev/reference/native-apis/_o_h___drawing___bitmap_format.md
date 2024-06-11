@@ -21,8 +21,8 @@
 
   | 成员变量名称 | 描述 | 
 | -------- | -------- |
-| [colorFormat](#colorformat) | 描述位图像素的透明度分量 | 
-| [alphaFormat](#alphaformat) | 描述位图像素的存储格式 | 
+| [colorFormat](#colorformat) | 描述位图像素的存储格式 | 
+| [alphaFormat](#alphaformat) | 描述位图像素的透明度分量 | 
 
 
 ## 结构体成员变量说明
