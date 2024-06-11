@@ -1,6 +1,6 @@
 # @ohos.graphics.uiEffect (效果级联)(系统接口)
 
-本模块提供组件效果的一些基础能力，包括模糊，边缘像素扩展，提亮等。效果被分为Filter和VisualEffect大类，同类效果可以级联在一个效果大类的实例下。
+本模块提供组件效果的一些基础能力，包括模糊、边缘像素扩展、提亮等。效果被分为Filter和VisualEffect大类，同类效果可以级联在一个效果大类的实例下。在实际开发中，模糊可用于背景虚化，提亮可用于亮屏显示等。
 
 - [Filter](#filter)：用于添加指定Filter效果到组件上。
 - [VisualEffect](#visualeffect)：用于添加指定VisualEffect效果到组件上。
@@ -15,9 +15,36 @@
 ```ts
 import { uiEffect } from "@kit.ArkGraphics2D";
 ```
+## uiEffect.createBrightnessBlender
+createBrightnessBlender(param: BrightnessBlenderParam): BrightnessBlender
+
+创建BrightnessBlender实例用于给组件添加提亮效果。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**系统接口：** 此接口为系统接口。
+
+**参数：**
+| 参数名  | 类型                                              | 必填 | 说明                        |
+| ------ | ------------------------------------------------- | ---- | --------------------------- |
+| param  | [BrightnessBlenderParam](#brightnessblenderparam) | 是   | 实现提亮效果的参数。 |
+
+**返回值：**
+
+| 类型                                     | 说明                     |
+| ---------------------------------------- | ----------------------- |
+| [BrightnessBlender ](#brightnessblender) | 返回设置了提亮效果参数的BrightnessBlender。 |
+
+**示例：**
+
+```ts
+let blender : uiEffect.BrightnessBlender =
+  uiEffect.createBrightnessBlender({cubicRate:1.0, quadraticRate:1.0, linearRate:1.0, degree:1.0, saturation:1.0,
+    positiveCoefficient:[2.3, 4.5, 2.0], negativeCoefficient:[0.5, 2.0, 0.5], fraction:0.0})
+```
 
 ## Filter
-Filter效果类，用于将相应的效果添加到指定的控件上。在调用Filter的方法前，需要先通过[createFilter](js-apis-uiEffect.md#uieffectcreatefilter)创建一个Filter实例。
+Filter效果类，用于将相应的效果添加到指定的组件上。在调用Filter的方法前，需要先通过[createFilter](js-apis-uiEffect.md#uieffectcreatefilter)创建一个Filter实例。
 
 ### pixelStretch
 pixelStretch(stretchSizes: Array\<number\>, tileMode: TileMode): Filter
@@ -44,8 +71,6 @@ pixelStretch(stretchSizes: Array\<number\>, tileMode: TileMode): Filter
 **示例：**
 
 ```ts
-import { uiEffect } from "@kit.ArkGraphics2D";
-
 filter.pixelStretch([0.2, 0.2, 0.2, 0.2], uiEffect.TileMode.CLAMP)
 ```
 
@@ -64,12 +89,12 @@ filter.pixelStretch([0.2, 0.2, 0.2, 0.2], uiEffect.TileMode.CLAMP)
 | DECAL  | 3 | 透明。 |
 
 ## VisualEffect
-VisualEffect效果类，用于将相应的效果添加到指定的控件上。在调用VisualEffect的方法前，需要先通过[createEffect](js-apis-uiEffect.md#uieffectcreateeffect)创建一个VisualEffect实例。
+VisualEffect效果类，用于将相应的效果添加到指定的组件上。在调用VisualEffect的方法前，需要先通过[createEffect](js-apis-uiEffect.md#uieffectcreateeffect)创建一个VisualEffect实例。
 
 ### backgroundColorBlender
 backgroundColorBlender(blender: BrightnessBlender): VisualEffect
 
-将背景颜色更改效果添加至组件上。
+将混合器添加至组件上以改变组件背景颜色，具体的更改效果由输入决定，目前仅支持提亮混合器。
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
@@ -89,13 +114,11 @@ backgroundColorBlender(blender: BrightnessBlender): VisualEffect
 **示例：**
 
 ```ts
-import { uiEffect } from "@kit.ArkGraphics2D";
-
 visualEffect.backgroundColorBlender(blender)
 ```
 
 ## BrightnessBlender
-提亮混合器，用于将提亮效果添加到指定的控件上。在调用BrightnessBlender前，需要先通过[createBrightnessBlender](#uieffectcreatebrightnessblender)创建一个BrightnessBlender实例。
+提亮混合器，用于将提亮效果添加到指定的组件上。在调用BrightnessBlender前，需要先通过[createBrightnessBlender](#uieffectcreatebrightnessblender)创建一个BrightnessBlender实例。
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
@@ -111,36 +134,6 @@ visualEffect.backgroundColorBlender(blender)
 | positiveCoefficient | [number, number, number]   | 否   | 否   | 基于基准饱和度的RGB正向调整参数。<br/>每个number的取值范围[-20, 20]。 |
 | negativeCoefficient | [number, number, number]   | 否   | 否   | 基于基准饱和度的RGB负向调整参数。<br/>每个number的取值范围[-20, 20]。 |
 | fraction            | number                     | 否   | 否   | 提亮效果的混合比例。<br/>取值范围[0, 1]，超出边界会在实现时自动截断。  |
-
-## uiEffect.createBrightnessBlender
-createBrightnessBlender(param: BrightnessBlenderParam): BrightnessBlender
-
-创建BrightnessBlender实例用于给组件添加提亮效果。
-
-**系统能力：** SystemCapability.Graphics.Drawing
-
-**系统接口：** 此接口为系统接口。
-
-**参数：**
-| 参数名  | 类型                                              | 必填 | 说明                        |
-| ------ | ------------------------------------------------- | ---- | --------------------------- |
-| param  | [BrightnessBlenderParam](#brightnessblenderparam) | 是   | 实现提亮效果的参数。 |
-
-**返回值：**
-
-| 类型                                     | 说明                     |
-| ---------------------------------------- | ----------------------- |
-| [BrightnessBlender ](#brightnessblender) | 返回设置了提亮效果参数的BrightnessBlender。 |
-
-**示例：**
-
-```ts
-import { uiEffect } from "@kit.ArkGraphics2D";
-
-let blender : uiEffect.BrightnessBlender =
-  uiEffect.createBrightnessBlender({cubicRate:1.0, quadraticRate:1.0, linearRate:1.0, degree:1.0, saturation:1.0,
-    positiveCoefficient:[2.3, 4.5, 2.0], negativeCoefficient:[0.5, 2.0, 0.5], fraction:0.0})
-```
 
 ## BrightnessBlenderParam
 BrightnessBlender参数列表。
