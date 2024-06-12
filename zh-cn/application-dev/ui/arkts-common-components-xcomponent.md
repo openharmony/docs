@@ -1,7 +1,7 @@
-# 自定义绘制 (XComponent)
+# 自定义渲染 (XComponent)
 
 
-[XComponent](../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)组件作为一种绘制组件，通常用于满足开发者较为复杂的自定义绘制需求，例如相机预览流的显示和游戏画面的绘制。
+[XComponent](../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)组件作为一种渲染组件，通常用于满足开发者较为复杂的自定义渲染需求，例如相机预览流的显示和游戏画面的渲染。
 
 
 其可通过指定其type字段来实现不同的功能，主要有两个“surface”和“component”字段可供选择。
