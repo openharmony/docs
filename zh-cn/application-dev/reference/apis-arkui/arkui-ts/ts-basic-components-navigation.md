@@ -125,7 +125,16 @@ toolBar(value: object | CustomBuilder)
 
 | 参数名 | 类型                                                         | 必填 | 说明         |
 | ------ | ------------------------------------------------------------ | ---- | ------------ |
-| value  | [object](#object类型说明)&nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8) | 是   | 工具栏内容。 |
+| value  | object&nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8) | 是   | 工具栏内容。 |
+
+> **说明：**
+>
+> object类型说明
+>| 名称     | 类型            | 必填   | 描述              |
+>| ------ | ------------- | ---- | --------------- |
+>| value  | string        | 是    | 工具栏单个选项的显示文本。   |
+>| icon   | string        | 否    | 工具栏单个选项的图标资源路径。 |
+>| action | () =&gt; void | 否    | 当前选项被选中的事件回调。   |
 
 ### toolbarConfiguration<sup>10+</sup>
 
@@ -318,7 +327,7 @@ navBarWidthRange(value: [Dimension, Dimension])
 
 | 参数名  | 类型                                                         | 必填 | 说明                                                         |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| builder | [[Dimension](ts-types.md#dimension10), [Dimension](ts-types.md#dimension10)] | 是   | 导航栏最小和最大宽度。<br/>默认值：最小默认值 240，最大默认值为组件宽度的40% ，且不大于 432，如果只设置一个值，则未设置的值按照默认值计算。<br/>单位：vp |
+| value | [[Dimension](ts-types.md#dimension10), [Dimension](ts-types.md#dimension10)] | 是   | 导航栏最小和最大宽度。<br/>默认值：最小默认值 240，最大默认值为组件宽度的40% ，且不大于 432，如果只设置一个值，则未设置的值按照默认值计算。<br/>单位：vp |
 
 ### minContentWidth<sup>10+</sup>
 
@@ -336,7 +345,7 @@ minContentWidth(value: Dimension)
 
 | 参数名  | 类型                                 | 必填 | 说明                                                         |
 | ------- | ------------------------------------ | ---- | ------------------------------------------------------------ |
-| builder | [Dimension](ts-types.md#dimension10) | 是   | 导航栏内容区最小宽度。<br/>默认值：360<br/>单位：vp<br/>undefined：行为不做处理，导航栏内容区最小宽度与默认值保持一致。<br/>Auto模式断点计算：默认600vp，minNavBarWidth(240vp) + minContentWidth (360vp) |
+| value | [Dimension](ts-types.md#dimension10) | 是   | 导航栏内容区最小宽度。<br/>默认值：360<br/>单位：vp<br/>undefined：行为不做处理，导航栏内容区最小宽度与默认值保持一致。<br/>Auto模式断点计算：默认600vp，minNavBarWidth(240vp) + minContentWidth (360vp) |
 
 >  **说明：**
 >
@@ -457,7 +466,7 @@ pushPathByName(name: string, param: unknown, animated?: boolean): void
 
 ### pushPathByName<sup>11+</sup>
 
-pushPathByName(name: string, param: Object, onPop: import('../api/@ohos.base').Callback\<PopInfo>, animated?: boolean): void
+pushPathByName(name: string, param: Object, onPop: Callback\<PopInfo>, animated?: boolean): void
 
 将name指定的NavDestination页面信息入栈，传递的数据为param，添加onPop回调接收入栈页面出栈时的返回结果，并进行处理。
 
@@ -469,7 +478,7 @@ pushPathByName(name: string, param: Object, onPop: import('../api/@ohos.base').C
 |------|------|------|------|
 | name  | string  | 是    | NavDestination页面名称。   |
 | param | Object | 是    | NavDestination页面详细参数。 |
-| onPop | import('../api/@ohos.base').Callback\<[PopInfo](#popinfo11)> | 是 | Callback回调，用于页面出栈时触发该回调处理返回结果。 |
+| onPop | Callback\<[PopInfo](#popinfo11)> | 是 | Callback回调，用于页面出栈时触发该回调处理返回结果。 |
 | animated | boolean | 否    | 是否支持转场动画，默认值：true。 |
 
 ### pushDestination<sup>11+</sup>
@@ -539,7 +548,7 @@ pushDestinationByName(name: string, param: Object, animated?: boolean): Promise&
 
 ### pushDestinationByName<sup>11+</sup>
 
-pushDestinationByName(name: string, param: Object, onPop: import('../api/@ohos.base').Callback\<PopInfo>, animated?: boolean): Promise&lt;void&gt;
+pushDestinationByName(name: string, param: Object, onPop: Callback\<PopInfo>, animated?: boolean): Promise&lt;void&gt;
 
 将name指定的NavDestination页面信息入栈，传递的数据为param，并且添加用于页面出栈时处理返回结果的OnPop回调，使用Promise异步回调返回接口调用结果。
 
@@ -551,7 +560,7 @@ pushDestinationByName(name: string, param: Object, onPop: import('../api/@ohos.b
 | ----- | ------- | ---- | --------------------- |
 | name  | string  | 是    | NavDestination页面名称。   |
 | param | Object | 是    | NavDestination页面详细参数。 |
-| onPop | import('../api/@ohos.base').Callback\<[PopInfo](#popinfo11)> | 是    | Callback回调，用于页面出栈时处理返回结果。 |
+| onPop | Callback\<[PopInfo](#popinfo11)> | 是    | Callback回调，用于页面出栈时处理返回结果。 |
 | animated | boolean | 否    | 是否支持转场动画，默认值：true。 |
 
 **返回值：**
@@ -946,7 +955,7 @@ setInterception(interception: NavigationInterception): void
 
 ### constructor
 
-constructor(name: string, param: unknown)
+constructor(name: string, param: unknown, onPop?: Callback\<PopInfo>)
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
@@ -956,7 +965,7 @@ constructor(name: string, param: unknown)
 | ----- | ------- | ---- | --------------------- |
 | name  | string  | 是    | NavDestination页面名称。   |
 | param | unknown | 否    | NavDestination页面详细参数。 |
-| onPop<sup>11+</sup> | import('../api/@ohos.base').Callback\<[PopInfo](#popinfo11)> | 否 | NavDestination页面触发pop时返回的回调。 |
+| onPop<sup>11+</sup> | Callback\<[PopInfo](#popinfo11)> | 否 | NavDestination页面触发pop时返回的回调。 |
 
 ## PopInfo<sup>11+</sup>
 
@@ -995,7 +1004,7 @@ constructor(name: string, param: unknown)
 | 名称 | 类型 | 必填 | 描述 |
 |------|-----|-----|------|
 | timeout | number | 否 | 动画超时结束时间。<br> 单位：ms。<br> 默认值：1000ms。|
-| transition | (transitionProxy : [NavigationTransitionProxy](#navigationtransitionproxy-11)): void | 是 | 自定义转场动画执行回调。<br> transitionProxy: 自定义转场动画代理对象。|
+| transition | (transitionProxy : [NavigationTransitionProxy](#navigationtransitionproxy-11)) =&gt; void | 是 | 自定义转场动画执行回调。<br> transitionProxy: 自定义转场动画代理对象。|
 | onTransitionEnd | (success: boolean):void | 否 | 转场完成回调。<br> success: 转场是否成功。 |
 
 ## NavigationTransitionProxy <sup>11+</sup>
@@ -1067,14 +1076,6 @@ navigation单双栏显示状态发生变更时的拦截回调。
 | isEnabled<sup>12+</sup>   | boolean        | 否    | 使能状态，默认使能（false未使能，true使能）。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
 | action | () =&gt; void | 否    | 当前选项被选中的事件回调。   <br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 | symbolIcon<sup>12+</sup> |  [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md)  | 否    |菜单栏单个选项的symbol资源（优先级高于icon）。 |
-
-## object类型说明
-
-| 名称     | 类型            | 必填   | 描述              |
-| ------ | ------------- | ---- | --------------- |
-| value  | string        | 是    | 工具栏单个选项的显示文本。   |
-| icon   | string        | 否    | 工具栏单个选项的图标资源路径。 |
-| action | () =&gt; void | 否    | 当前选项被选中的事件回调。   |
 
 ## ToolbarItem<sup>10+</sup>类型说明
 
