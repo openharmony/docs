@@ -37,6 +37,7 @@
 
 > **说明：**
 >
+> 该特性中的参数types优先级高于[ImageAnalyzerConfig](#imageanalyzerconfig12)中的参数types，两者同时设置时以该特性设置的值为准。
 > 该特性依赖设备能力，且需要和对应组件的enableAnalyzer接口（例如[Image组件](ts-basic-components-image.md#enableanalyzer11)）搭配使用。
 
 ## ImageAnalyzerController<sup>12+</sup>
