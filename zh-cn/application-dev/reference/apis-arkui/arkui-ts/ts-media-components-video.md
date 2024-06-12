@@ -30,19 +30,6 @@ Video(value: VideoOptions)
 | -------- | -------- | -------- | -------- |
 | value | [VideoOptions](#videooptions对象说明) | 是 | 视频信息。 |
 
-### Video<sup>12+</sup>
-
-Video(value: VideoOptions, imageAIOptions: ImageAIOptions)
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名 | 参数类型 | 必填 | 参数描述 |
-| -------- | -------- | -------- | -------- |
-| value | [VideoOptions](#videooptions对象说明) | 是 | 视频信息。 |
-| imageAIOptions  | [ImageAIOptions](ts-image-common.md#imageaioptions12) | 是   | 给组件设置一个AI分析选项，通过此项可配置分析类型或绑定一个分析控制器。 |
-
 ##  VideoOptions对象说明
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
@@ -53,7 +40,7 @@ Video(value: VideoOptions, imageAIOptions: ImageAIOptions)
 | currentProgressRate | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[PlaybackSpeed<sup>8+</sup>](#playbackspeed8枚举说明) | 否   | 视频播放倍速。<br/>**说明：**<br/>number取值仅支持：0.75，1.0，1.25，1.75，2.0。<br/>默认值：1.0 \| PlaybackSpeed.Speed_Forward_1_00_X |
 | previewUri          | string&nbsp;\| [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)&nbsp;\|&nbsp;[Resource](ts-types.md)  | 否   | 视频未播放时的预览图片路径，默认不显示图片。                 |
 | controller          | [VideoController](#videocontroller)                          | 否   | 设置视频控制器，可以控制视频的播放状态。                     |
-
+| imageAIOptions  | [ImageAIOptions](ts-image-common.md#imageaioptions12) | 否   | 设置图像AI分析选项，可配置分析类型或绑定一个分析控制器。 |
 
 ## PlaybackSpeed<sup>8+</sup>枚举说明
 
