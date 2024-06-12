@@ -37,7 +37,7 @@ type ValuesBucket = Record<string, ValueType | Uint8Array | null>
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
-| 类型          | 说明类型                                      |
+| 类型          | 说明                                      |
 | ------------- | --------------------------------------------- |
 | string | 表示键的类型为string。 |
 | [ValueType](#valuetype)\| Uint8Array \| null | 表示值的类型为[ValueType](#valuetype)\| Uint8Array \| null。 |
