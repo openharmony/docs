@@ -554,7 +554,7 @@ registerForegroundDispatch(elementName: [ElementName](../apis-ability-kit/js-api
 | 201  | Permission denied. |
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 801  | Capability not supported. |
-| 3100201  | Tag running state is abnormal in service. |
+| 3100202  | The element state is invalid. |
 
 **示例：**
 
