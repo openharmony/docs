@@ -24,46 +24,69 @@ import rpc from '@ohos.rpc';
 import hilog from '@ohos.hilog';
 ```
 ```ts
-const LOG_TAG: string = '[Sample_FAModelAbilityDevelop]';
-const LOG_DOMAIN: number = 0xFF00;
-let option: common.ConnectOptions = {
-  onConnect: (element, proxy) => {
-    hilog.info(LOG_DOMAIN, LOG_TAG, 'onConnectLocalService onConnectDone element:' + JSON.stringify(element));
-    if (proxy === null) {
-      promptAction.showToast({
-        message: 'connect service failed'
-      });
-      return;
-    }
-    let data = rpc.MessageParcel.create();
-    let reply = rpc.MessageParcel.create();
-    let option = new rpc.MessageOption();
-    data.writeInterfaceToken('connect.test.token');
-    proxy.sendRequest(0, data, reply, option);
-    promptAction.showToast({
-      message: 'connect service success'
-    });
-  },
-  onDisconnect: (element) => {
-    hilog.info(LOG_DOMAIN, LOG_TAG, `onConnectLocalService onDisconnectDone element:${element}`);
-    promptAction.showToast({
-      message: 'disconnect service success'
-    });
-  },
-  onFailed: (code) => {
-    hilog.info(LOG_DOMAIN, LOG_TAG, `onConnectLocalService onFailed errCode:${code}`);
-    promptAction.showToast({
-      message: 'connect service failed'
-    });
-  }
-};
+const TAG: string = 'PageServiceAbility';
+const domain: number = 0xFF00;
 
-let request: Want = {
-  bundleName: 'com.samples.famodelabilitydevelop',
-  abilityName: 'com.samples.famodelabilitydevelop.ServiceAbility',
-};
-let connId = featureAbility.connectAbility(request, option);
-hilog.info(LOG_DOMAIN, LOG_TAG, `connectAbility id:${connId}`);
+@Entry
+@Component
+struct PageServiceAbility {
+  //...
+  build() {
+    Column() {
+      //...
+      List({ initialIndex: 0 }) {
+        ListItem() {
+          Row() {
+            //...
+          }
+          .onClick(() => {
+            let option: common.ConnectOptions = {
+              onConnect: (element, proxy) => {
+                hilog.info(domain, TAG, `onConnectLocalService onConnectDone element:` + JSON.stringify(element));
+                if (proxy === null) {
+                  promptAction.showToast({
+                    message: $r('app.string.connect_service_failed_toast')
+                  });
+                  return;
+                }
+                let data = rpc.MessageParcel.create();
+                let reply = rpc.MessageParcel.create();
+                let option = new rpc.MessageOption();
+                data.writeInterfaceToken('connect.test.token');
+                proxy.sendRequest(0, data, reply, option);
+                promptAction.showToast({
+                  message: $r('app.string.connect_service_success_toast')
+                });
+              },
+              onDisconnect: (element) => {
+                hilog.info(domain, TAG, `onConnectLocalService onDisconnectDone element:${element}`);
+                promptAction.showToast({
+                  message: $r('app.string.disconnect_service_success_toast')
+                });
+              },
+              onFailed: (code) => {
+                hilog.info(domain, TAG, `onConnectLocalService onFailed errCode:${code}`);
+                promptAction.showToast({
+                  message: $r('app.string.connect_service_failed_toast')
+                });
+              }
+            };
+
+            let request: Want = {
+              bundleName: 'com.samples.famodelabilitydevelop',
+              abilityName: 'com.samples.famodelabilitydevelop.ServiceAbility',
+            };
+            let connId = featureAbility.connectAbility(request, option);
+            hilog.info(domain, TAG, `onConnectLocalService onFailed errCode:${connId}`);
+          })
+        }
+        //...
+      }
+      //...
+    }
+    //...
+  }
+}
 ```
 
 

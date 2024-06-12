@@ -190,7 +190,8 @@ In the following example, there are two UIAbility components: EntryAbility and S
            return `SpecifiedAbilityInstance_${want.parameters.instanceKey}`;
          }
        }
-       return '';
+        // ...
+       return 'MyAbilityStage';
      }
    }
    ```
