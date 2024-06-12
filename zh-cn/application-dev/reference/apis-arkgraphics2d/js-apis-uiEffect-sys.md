@@ -114,6 +114,9 @@ backgroundColorBlender(blender: BrightnessBlender): VisualEffect
 **示例：**
 
 ```ts
+let blender : uiEffect.BrightnessBlender =
+  uiEffect.createBrightnessBlender({cubicRate:1.0, quadraticRate:1.0, linearRate:1.0, degree:1.0, saturation:1.0,
+    positiveCoefficient:[2.3, 4.5, 2.0], negativeCoefficient:[0.5, 2.0, 0.5], fraction:0.0})
 visualEffect.backgroundColorBlender(blender)
 ```
 
