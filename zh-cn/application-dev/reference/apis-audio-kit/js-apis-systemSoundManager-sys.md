@@ -1374,9 +1374,9 @@ close(fd: number): Promise&lt;void&gt;
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 说明                                            |
-|-----| --------| ---- |-----------------------------------------------|
-| fd  | number  | 是   | 文件描述符, 通过[openAlarmTone](#openalarmtone12)获取。 |
+| 参数名 | 类型   | 必填 | 说明                                           |
+|-----| --------| ---- |----------------------------------------------|
+| fd  | number  | 是   | 文件描述符，通过[openAlarmTone](#openalarmtone12)获取。 |
 
 **返回值：**
 
@@ -1551,10 +1551,10 @@ removeCustomizedTone(context: BaseContext, uri: string): Promise&lt;void&gt;
 
 **参数：**
 
-| 参数名 | 类型        | 必填 | 说明                                                                                                       |
-|-----|-----------| ---- |----------------------------------------------------------------------------------------------------------|
-| context  | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | 是   | 当前应用的上下文。                                                                                                |
-| uri  | string    | 是   | 铃音uri, 可通过[addCustomizedTone](#addcustomizedtone12)或[getAlarmToneAttrList](#getalarmtoneattrlist12)等方法获取 |
+| 参数名 | 类型        | 必填 | 说明                                                                                                      |
+|-----|-----------| ---- |---------------------------------------------------------------------------------------------------------|
+| context  | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | 是   | 当前应用的上下文。                                                                                               |
+| uri  | string    | 是   | 铃音uri，可通过[addCustomizedTone](#addcustomizedtone12)或[getAlarmToneAttrList](#getalarmtoneattrlist12)等方法获取 |
 
 **返回值：**
 
