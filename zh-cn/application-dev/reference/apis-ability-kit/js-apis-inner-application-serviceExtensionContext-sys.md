@@ -2253,7 +2253,7 @@ class ServiceExtension extends ServiceExtensionAbility {
   onCreate() {
     let pickerWant: Want = {
       bundleName: 'com.example.myapplication',
-      abilityName: 'com.example.myapplication.UIExtAbility',
+      abilityName: 'UIExtAbility',
       moduleName: 'entry_test',
       parameters: {
         'bundleName': 'com.example.myapplication',
