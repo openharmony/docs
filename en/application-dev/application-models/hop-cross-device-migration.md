@@ -435,7 +435,7 @@ export default class MigrationAbility extends UIAbility {
 
 ### Using Distributed Data Objects for Data Migration
 
-If the size of the data to migrate is greater than 100 KB or the data to migrate is stored in files, you can use a [distributed data object](../../application-dev/reference/apis-arkdata/js-apis-data-distributedobject.md) to implement data migration. Files can be migrated in the form of [assets] (../../application-dev/reference/apis-arkdata/js-apis-data-commonType.md#asset) provided by the distributed object.
+If the size of the data to migrate is greater than 100 KB or the data to migrate is stored in files, you can use a [distributed data object](../../application-dev/reference/apis-arkdata/js-apis-data-distributedobject.md) to implement data migration. Files can be migrated in the form of [assets](../../application-dev/reference/apis-arkdata/js-apis-data-commonType.md#asset) provided by the distributed object.
 
 1. First, create a distributed [data object](../../application-dev/reference/apis-arkdata/js-apis-data-distributedobject.md#dataobject) in the **onContinue()** callback for the application on the source device, fill the data to migrate into this object, and send the generated session ID to the peer through **want**.
 2. During data restoration initiated by **onCreate()** or **onNewWant()**, the peer reads the session ID from **want** and restore data through the distributed object.

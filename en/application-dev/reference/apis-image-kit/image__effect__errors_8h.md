@@ -11,7 +11,7 @@ The **image_effect_errors.h** file declares the error codes used by the image ef
 
 **Since**: 12
 
-**Related module**: [ImageEffect] (_image_effect.md)
+**Related module**: [ImageEffect](_image_effect.md)
 
 
 ## Summary
