@@ -6203,12 +6203,12 @@ this.fileDescriptor = await this.mgr.getRawFd("xxx.m3u8");
 let fd:string = this.fileDescriptor.fd.toString();
 let offset:string = this.fileDescriptor.offset.toString();
 let length:string = this.fileDescriptor.length.toString();
-let fdUrl:string = "fd://" + "?offset=" + offset + "&size=" + length;
+let fdUrl:string = "fd://" + fd + "?offset=" + offset + "&size=" + length;
 
 let header: Record<string, string> = {"User-Agent" : "User-Agent-Value"};
 let mediaSource : media.MediaSource = media.createMediaSourceWithUrl(fdUrl,  header);
 
-let mimeType = media.AVMimeTypes = media.AVMimeTypes.APPLICATION_M3U8;
+let mimeType : media.AVMimeTypes = media.AVMimeTypes.APPLICATION_M3U8;
 mediaSource.setMimeType(mimeType);
 
 ```
