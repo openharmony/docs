@@ -12,6 +12,11 @@
 
 <!--RP1--><!--RP1End-->
 
+## 支持的能力
+1. 改变分辨率。请详见[调用oh_videoencoder_registercallback()](#3-调用oh_videodecoder_registercallback设置回调函数)
+2. 动态surface。请详见[设置Surface](#6-设置surface)
+
+
 ## 限制约束
 
 av_codec只支持AnnexB，AnnexB不支持多slice。
@@ -216,7 +221,8 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     OH_AVFormat_Destroy(format);
     ```
 
-6. 设置Surface。本例中的nativeWindow，需要从XComponent组件获取，获取方式请参考 [XComponent](../../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)。
+#### 6. 设置Surface。
+    本例中的nativeWindow，需要从XComponent组件获取，获取方式请参考 [XComponent](../../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)。
 
     Surface模式，开发者可以在解码过程中执行该步骤，即动态切换Surface。
 
@@ -507,7 +513,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     OH_AVCodec *videoDec = OH_VideoDecoder_CreateByMime(OH_AVCODEC_MIMETYPE_VIDEO_HEVC);
     ```
 
-3. 调用OH_VideoDecoder_RegisterCallback()设置回调函数。
+#### 3. 调用OH_VideoDecoder_RegisterCallback()设置回调函数。
 
     > **说明：**
     >
