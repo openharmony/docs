@@ -30,10 +30,10 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | [OH_AVCODEC_MIMETYPE_AUDIO_AMR_WB](#oh_avcodec_mimetype_audio_amr_wb) | AMR_WB音频解码器的MIME类型。                           |
 | [OH_AVCODEC_MIMETYPE_AUDIO_OPUS](#oh_avcodec_mimetype_audio_opus) | OPUS音频编解码器的MIME类型。<!--Del-->（此规格暂未开放）<!--DelEnd-->        |
 | [OH_AVCODEC_MIMETYPE_AUDIO_G711MU](#oh_avcodec_mimetype_audio_g711mu) | G711MU音频编解码器的MIME类型。                         |
-| [OH_AVCODEC_MIMETYPE_VIDEO_VVC](#oh_avcodec_mimetype_video_vvc) | vvc视频编解码器的MIME类型。     |
+| [OH_AVCODEC_MIMETYPE_VIDEO_VVC](#oh_avcodec_mimetype_video_vvc) | 音频和视频编解码器的MIME类型。     |
 | [OH_AVCODEC_MIMETYPE_AUDIO_LBVC](#oh_avcodec_mimetype_audio_lbvc) | 音频低码率音频编解码器的MIME类型。<!--Del-->（此规格暂未开放）<!--DelEnd--> |
-| [OH_AVCODEC_MIMETYPE_AUDIO_APE](#oh_avcodec_mimetype_audio_ape) |ape音频解码器的MIME类型。                         |
-| [OH_AVCODEC_MIMETYPE_SUBTITLE_SRT](#oh_avcodec_mimetype_subtitle_srt) |str字幕解封装器的MIME类型。                         |
+| [OH_AVCODEC_MIMETYPE_AUDIO_APE](#oh_avcodec_mimetype_audio_ape) |APE音频解码器的MIME类型。                         |
+| [OH_AVCODEC_MIMETYPE_SUBTITLE_SRT](#oh_avcodec_mimetype_subtitle_srt) |SRT字幕解封装器的MIME类型。                         |
 
 
 ### 媒体数据键值对
@@ -237,10 +237,10 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | const char \* [OH_AVCODEC_MIMETYPE_AUDIO_AMR_WB](#oh_avcodec_mimetype_audio_amr_wb) | AMR_WB音频解码器的MIME类型。 |
 | const char \* [OH_AVCODEC_MIMETYPE_AUDIO_OPUS](#oh_avcodec_mimetype_audio_opus) | OPUS音频编解码器的MIME类型。<!--Del-->（此规格暂未开放）<!--DelEnd-->  |
 | const char \* [OH_AVCODEC_MIMETYPE_AUDIO_G711MU](#oh_avcodec_mimetype_audio_g711mu) | G711MU音频编解码器的MIME类型。 |
-| const char \* [OH_AVCODEC_MIMETYPE_VIDEO_VVC](#oh_avcodec_mimetype_video_vvc) | vvc视频编解码器的MIME类型。     |
+| const char \* [OH_AVCODEC_MIMETYPE_VIDEO_VVC](#oh_avcodec_mimetype_video_vvc) | 音频和视频编解码器的MIME类型。     |
 | const char \* [OH_AVCODEC_MIMETYPE_AUDIO_LBVC](#oh_avcodec_mimetype_audio_lbvc) |音频低码率音频编解码器的MIME类型。<!--Del-->（此规格暂未开放）<!--DelEnd--> |
-| const char \* [OH_AVCODEC_MIMETYPE_AUDIO_APE](#oh_avcodec_mimetype_audio_ape) |ape音频解码器的MIME类型。                         |
-| const char \* [OH_AVCODEC_MIMETYPE_SUBTITLE_SRT](#oh_avcodec_mimetype_subtitle_srt) |str字幕解封装器的MIME类型。                         |
+| const char \* [OH_AVCODEC_MIMETYPE_AUDIO_APE](#oh_avcodec_mimetype_audio_ape) |APE音频解码器的MIME类型。                         |
+| const char \* [OH_AVCODEC_MIMETYPE_SUBTITLE_SRT](#oh_avcodec_mimetype_subtitle_srt) |SRT字幕解封装器的MIME类型。                         |
 | const char \* [OH_ED_KEY_TIME_STAMP](#oh_ed_key_time_stamp) | 表面的额外数据中时间戳的键，值类型为int64。 |
 | const char \* [OH_ED_KEY_EOS](#oh_ed_key_eos) | 表面的额外数据中流结束符的键，值类型为bool。 |
 | const char \* [OH_MD_KEY_TRACK_TYPE](#oh_md_key_track_type) | 曲目类型的键，值类型为uint8_t，请参见[OH_MediaType](#oh_mediatype)。 |
@@ -571,13 +571,6 @@ typedef struct OH_AVDataSource OH_AVDataSource
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
 **起始版本：** 12
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| size | 数据源的大小。  |
-| readAt | 数据源的数据回调。  |
 
 
 ### OH_AVDataSourceReadAt
@@ -982,8 +975,8 @@ enum OH_AVOutputFormat
 | AV_OUTPUT_FORMAT_DEFAULT  | 输出文件格式默认值，默认为MP4格式。   | 
 | AV_OUTPUT_FORMAT_MPEG_4  | 输出文件格式为MP4格式。   | 
 | AV_OUTPUT_FORMAT_M4A  | 输出文件格式为M4A格式。   | 
-| AV_OUTPUT_FORMAT_AMR  | 输出文件格式为AMR格式。   | 
-| AV_OUTPUT_FORMAT_MP3  | 输出文件格式为MP3格式。   | 
+| AV_OUTPUT_FORMAT_AMR  | 输出文件格式为AMR格式。<br>**起始版本：** 12    | 
+| AV_OUTPUT_FORMAT_MP3  | 输出文件格式为MP3格式。<br>**起始版本：** 12   | 
 
 ### OH_AVSeekMode
 
@@ -1234,7 +1227,7 @@ enum OH_TransferCharacteristic
 const char* OH_AVCODEC_MIMETYPE_SUBTITLE_SRT
 ```
 **描述**
-str字幕解封装器的MIME类型。
+SRT字幕解封装器的MIME类型。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
@@ -1247,7 +1240,7 @@ str字幕解封装器的MIME类型。
 const char* OH_AVCODEC_MIMETYPE_AUDIO_APE
 ```
 **描述**
-ape音频解码器的MIME类型。
+APE音频解码器的MIME类型。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
@@ -1273,7 +1266,7 @@ const char* OH_AVCODEC_MIMETYPE_AUDIO_LBVC
 const char* OH_AVCODEC_MIMETYPE_VIDEO_VVC
 ```
 **描述**
-vvc视频编解码器的MIME类型。
+音频和视频编解码器的MIME类型。
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
