@@ -1374,9 +1374,9 @@ close(fd: number): Promise&lt;void&gt;
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 说明                                                    |
-|-----| --------| ---- |-------------------------------------------------------|
-| fd  | number  | 是   | 文件描述符,通过[openAlarmTone](#openalarmtone12)获取。 |
+| 参数名 | 类型   | 必填 | 说明                                            |
+|-----| --------| ---- |-----------------------------------------------|
+| fd  | number  | 是   | 文件描述符, 通过[openAlarmTone](#openalarmtone12)获取。 |
 
 **返回值：**
 
@@ -1488,7 +1488,7 @@ addCustomizedTone(context: BaseContext, toneAttr: ToneAttrs, fd: number, offset?
 | 参数名 | 类型        | 必填 | 说明                                                                     |
 |-----|-----------|----|------------------------------------------------------------------------|
 | context | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | 是  | 当前应用的上下文。                                                              |
-| toneAttr | ToneAttrs | 是  | 铃音属性。                                                                  |
+| toneAttr | [ToneAttrs](#toneattrs12) | 是  | 铃音属性。                                                                  |
 | fd  | number    | 是  | 文件描述符，可通过[fs.open](../apis-core-file-kit/js-apis-file-fs.md#fsopen)获取。 |
 | offset | number    | 否  | 读取数据的偏移量（以字节为单位）。默认情况下为0。                                              |
 | length | number    | 否  | 读取的数据的长度（以字节为单位）。默认情况下，长度为偏移后的剩余全部字节数。                                 |
@@ -1551,10 +1551,10 @@ removeCustomizedTone(context: BaseContext, uri: string): Promise&lt;void&gt;
 
 **参数：**
 
-| 参数名 | 类型        | 必填 | 说明                                                                                                      |
-|-----|-----------| ---- |---------------------------------------------------------------------------------------------------------|
-| context  | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | 是   | 当前应用的上下文。                                                                                               |
-| uri  | string    | 是   | 铃音uri,可通过[addCustomizedTone](#addcustomizedtone12)或[getAlarmToneAttrList](#getalarmtoneattrlist12)等方法获取 |
+| 参数名 | 类型        | 必填 | 说明                                                                                                       |
+|-----|-----------| ---- |----------------------------------------------------------------------------------------------------------|
+| context  | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | 是   | 当前应用的上下文。                                                                                                |
+| uri  | string    | 是   | 铃音uri, 可通过[addCustomizedTone](#addcustomizedtone12)或[getAlarmToneAttrList](#getalarmtoneattrlist12)等方法获取 |
 
 **返回值：**
 
