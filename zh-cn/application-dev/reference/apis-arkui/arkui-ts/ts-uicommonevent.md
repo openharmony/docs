@@ -5,7 +5,7 @@
 >本模块首批接口从API version 12开始支持，后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## UICommonEvent
-用于设置基础事件回调。方法入参为undefied的时候，重置对应的事件回调。
+用于设置基础事件回调。方法入参为undefined的时候，重置对应的事件回调。
 ### setOnClick
 
 setOnClick(callback: Callback\<ClickEvent> | undefined): void

@@ -287,9 +287,9 @@ blockSize(value: SizeOptions)
 
 **参数：** 
 
-| 参数名 | 类型                                   | 必填 | 说明       |
-| ------ | -------------------------------------- | ---- | ---------- |
-| value  | [SizeOptions](ts-types.md#sizeoptions) | 是   | 滑块大小。<br/>默认值：当参数style的值设置为[SliderStyle](#sliderstyle枚举说明).OutSet时为{width: 16, height: 16}，当参数style的值设置为[SliderStyle](#sliderstyle枚举说明).InSet时为{width: 12, height: 12}。<br/>当设置的bolckSize的宽高值不相等时，取较小值的尺寸，当设置的宽高值中有一个或两个都小于等于0的时候，取默认值。 |
+| 参数名 | 类型                                   | 必填 | 说明                                                         |
+| ------ | -------------------------------------- | ---- | ------------------------------------------------------------ |
+| value  | [SizeOptions](ts-types.md#sizeoptions) | 是   | 滑块大小。<br/>默认值：当参数style的值设置为[SliderStyle](#sliderstyle枚举说明).OutSet时为{width: 16, height: 16}，当参数style的值设置为[SliderStyle](#sliderstyle枚举说明).InSet时为{width: 12, height: 12}。<br/>当设置的blockSize的宽高值不相等时，取较小值的尺寸，当设置的宽高值中有一个或两个都小于等于0的时候，取默认值。 |
 
 ### blockStyle<sup>10+</sup>
 
@@ -329,7 +329,7 @@ minLabel(value: string)
 
 设置最小值。
 
-从APIversion9开始废弃，使用min替代。
+从API Version 9开始废弃，使用min替代。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -345,7 +345,7 @@ maxLabel(value: string)
 
 设置最大值。
 
-从APIversion9开始废弃，使用max替代。
+从API Version 9开始废弃，使用max替代。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

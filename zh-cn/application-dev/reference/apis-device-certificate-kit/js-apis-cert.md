@@ -114,6 +114,18 @@ buffer数组的列表。
 | EXTENSION_ENTRY_TYPE_ENTRY_CRITICAL | 1    | 表示获取对象的critical属性。 |
 | EXTENSION_ENTRY_TYPE_ENTRY_VALUE    | 2    | 表示获取对象的数据。         |
 
+## EncodingType<sup>12+</sup>
+
+ 表示获取X509证书主体名称编码格式的枚举。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+ **系统能力：** SystemCapability.Security.Cert
+
+| 名称       | 值 |  说明      |
+| ---------- | ------ | --------- |
+| ENCODING_UTF8 | 0      | UTF8编码格式。 |
+
 ## EncodingBlob
 
 带编码格式的证书二进制数组。
@@ -174,7 +186,7 @@ buffer数组的列表。
 
 **系统能力：** SystemCapability.Security.Cert
 
-| 名称           | 类型                              | 必填 | 说明               |
+| 参数名           | 类型                              | 必填 | 说明               |
 | -------------- | --------------------------------- | ---- | ------------------ |
 | type | [GeneralNameType](#generalname12)    | 是 |  指定具体的证书主体类型。  |
 | name | Uint8Array    | 是  |  指定具体的证书主体DER格式内容。  |
@@ -187,7 +199,7 @@ buffer数组的列表。
 
 **系统能力：** SystemCapability.Security.Cert
 
-| 名称           | 类型                              | 必填 | 说明               |
+| 参数名           | 类型                              | 必填 | 说明               |
 | -------------- | --------------------------------- | ---- | ------------------ |
 | x509Cert | [X509Cert](#x509cert)    | 否 |  指定具体的证书对象。  |
 | validDate | string    | 否  |  指定证书有效期。  |
@@ -198,7 +210,7 @@ buffer数组的列表。
 | publicKey | [DataBlob](#datablob) | 否  | 指定证书公钥，DER编码格式。 |
 | publicKeyAlgID | string | 否  | 指定证书公钥的算法。 |
 | subjectAlternativeNames<sup>12+</sup> | Array\<[GeneralName](#generalname12)> | 否  | 指定证书主体名称。 |
-| matchAllSubjectAltNames<sup>12+</sup> | bool | 否  | 指定是否需要匹配证书主体名称。 |
+| matchAllSubjectAltNames<sup>12+</sup> | boolean | 否  | 指定是否需要匹配证书主体名称。 |
 | authorityKeyIdentifier<sup>12+</sup> | Uint8Array | 否  | 指定证书颁发机构秘钥。 |
 | minPathLenConstraint<sup>12+</sup> | number | 否  | 指定证书CA路径长度。 |
 | extendedKeyUsage<sup>12+</sup> | Array\<string> | 否  | 指定证书扩展用途。 |
@@ -215,7 +227,7 @@ buffer数组的列表。
 
 **系统能力：** SystemCapability.Security.Cert
 
-| 名称           | 类型                              | 必填 | 说明               |
+| 参数名           | 类型                              | 必填 | 说明               |
 | -------------- | --------------------------------- | ---- | ------------------ |
 | issuer | Array\<Uint8Array> | 否  | 指定颁发者作为过滤条件, 至少要匹配到其中一个issuer。 |
 | x509Cert | [X509Cert](#x509cert) | 否  | 指定具体的证书对象作为过滤条件, 判断该证书是否在CRL列表中。 |
@@ -231,24 +243,11 @@ buffer数组的列表。
 
 **系统能力：** SystemCapability.Security.Cert
 
-| 名称           | 类型                              | 必填 | 说明               |
+| 参数名           | 类型                              | 必填 | 说明               |
 | -------------- | --------------------------------- | ---- | ------------------ |
 | certMatchParameters | [X509CertMatchParameters](#x509certmatchparameters11) | 是  | 指定过滤条件。 |
 | maxLength | number | 否  | 指定最终证书链中CA证书的最大长度。 |
-| validationParameters | [CertChainValidateParameters](#certchainvalidationparameters11) | 是  | 指定验证条件。 |
-
-## CertChainValidateResult<sup>11+</sup>
-
-用于指定证书链验证结果。
-
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
-
-**系统能力：** SystemCapability.Security.Cert
-
-| 名称           | 类型                              | 必填 | 说明               |
-| -------------- | --------------------------------- | ---- | ------------------ |
-| trustAnchor | [X509TrustAnchor](#x509trustanchor11) | 是  | 信任锚点。 |
-| entityCert | [X509Cert](#x509cert) | 是  | 实体证书。 |
+| validationParameters | [CertChainValidationParameters](#certchainvalidationparameters11) | 是  | 指定验证条件。 |
 
 ## CertChainBuildResult<sup>12+</sup>
 
@@ -258,24 +257,10 @@ buffer数组的列表。
 
 **系统能力：** SystemCapability.Security.Cert
 
-| 名称           | 类型                              | 必填 | 说明               |
+| 参数名           | 类型                              | 必填 | 说明               |
 | -------------- | --------------------------------- | ---- | ------------------ |
 | certChain | [X509CertChain](#x509certchain11) | 是  | 生成的证书链对象。 |
-| validationResult | [CertChainValidateResult](#certchainvalidateresult11) | 是  | 指定最终证书链的最大长度。 |
-
-## CertChainValidateParameters<sup>11+</sup>
-
-用于指定证书链验证参数。
-
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
-
-**系统能力：** SystemCapability.Security.Cert
-
-| 名称           | 类型                              | 必填 | 说明               |
-| -------------- | --------------------------------- | ---- | ------------------ |
-| date | string | 是  | 证书链有效期的日期时间。 |
-| trustAnchors | Array\<[X509TrustAnchor](#x509trustanchor11)> | 是  | 信任的证书颁发机构CA。 |
-| certCRLs | Array\<[CertCRLCollection](#certcrlcollection11)> | 是  | 用于验证证书链吊销状态的CRL列表。 |
+| validationResult | [CertChainValidationResult](#certchainvalidationresult11) | 是  | 指定最终证书链的最大长度。 |
 
 ## X509TrustAnchor<sup>11+</sup>
 
@@ -290,8 +275,9 @@ buffer数组的列表。
 | CACert    | [X509Cert](#x509cert) | 是   | 是   | 信任的CA证书。              |
 | CAPubKey  | Uint8Array            | 是   | 是   | 信任的CA证书公钥, DER格式。 |
 | CASubject | Uint8Array            | 是   | 是   | 信任的CA证书主题, DER格式。 |
+| nameConstraints | Uint8Array      | 是   | 是   | 名称约束, DER格式。 |
 
-## RevocationCheckOption<sup>12+</sup>
+## RevocationCheckOptions<sup>12+</sup>
 
  表示证书链在线校验证书吊销状态选项的枚举。
 
@@ -346,14 +332,15 @@ buffer数组的列表。
 
 **系统能力：** SystemCapability.Security.Cert
 
-| 名称         | 类型                                              | 必填 | 说明                                   |
+| 参数名         | 类型                                              | 必填 | 说明                                   |
 | ------------ | ------------------------------------------------- | ---- | -------------------------------------- |
 | ocspRequestExtension | Array\<Uint8Array> | 否   | 表示发送OCSP请求的扩展字段。|
 | ocspResponderURI | string | 否   | 表示用于OCSP请求的备选服务器URL地址，支持HTTP/HTTPS，具体配置由与服务器协商决定。 |
-| ocspResponderCert | X509Cert | 否   | 表示用于OCSP响应的签名校验的签名证书。 |
+| ocspResponderCert | [X509Cert](#x509cert)  | 否   | 表示用于OCSP响应的签名校验的签名证书。 |
 | ocspResponses | Uint8Array | 否   | 表示用于OCSP服务器响应的备选数据。 |
 | crlDownloadURI | string | 否   | 表示用于CRL请求的备选下载地址。 |
-| options | Array\<[RevocationCheckOption](#revocationcheckoption12)> | 否   | 表示证书吊销状态查询的策略组合。 |
+| options | Array\<[RevocationCheckOptions](#revocationcheckoptions12)> | 否   | 表示证书吊销状态查询的策略组合。 |
+| ocspDigest | string | 否   | 表示OCSP通信时创建证书ID使用的哈希算法。默认为SHA256，支持可配置MD5、SHA1、SHA224、SHA256、SHA384、SHA512算法。 |
 
 ## CertChainValidationParameters<sup>11+</sup>
 
@@ -363,7 +350,7 @@ buffer数组的列表。
 
 **系统能力：** SystemCapability.Security.Cert
 
-| 名称         | 类型                                              | 必填 | 说明                                   |
+| 参数名         | 类型                                              | 必填 | 说明                                   |
 | ------------ | ------------------------------------------------- | ---- | -------------------------------------- |
 | date         | string                                            | 否   | 表示需要校验证书的有效期。             |
 | trustAnchors | Array\<[X509TrustAnchor](#x509trustanchor11)>     | 是   | 表示信任锚列表。                       |
@@ -445,7 +432,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509Cert(encodingBlob, (error, x509Cert) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Cert success');
@@ -587,7 +574,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509Cert(encodingBlob, (error, x509Cert) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Cert success');
@@ -598,10 +585,10 @@ cert.createX509Cert(encodingBlob, (error, x509Cert) => {
 
       // 验证证书签名
       x509Cert.verify(pubKey, (err, data) => {
-        if (err == null) {
-          console.log('verify success');
-        } else {
+        if (err) {
           console.error('verify failed, errCode: ' + err.code + ', errMsg: ' + err.message);
+        } else {
+          console.log('verify success');
         }
       });
     } catch (error) {
@@ -753,12 +740,12 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509Cert(encodingBlob, (error, x509Cert) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Cert success');
     x509Cert.getEncoded((error, data) => {
-      if (error != null) {
+      if (error) {
         console.error('getEncoded failed, errCode: ' + error.code + ', errMsg: ' + error.message);
       } else {
         console.log('getEncoded success');
@@ -897,7 +884,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509Cert(encodingBlob, (error, x509Cert) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Cert success');
@@ -972,7 +959,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509Cert(encodingBlob, (error, x509Cert) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Cert success');
@@ -1036,7 +1023,7 @@ let encodingBlob: cert.EncodingBlob = {
   encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 cert.createX509Cert(encodingBlob, (error, x509Cert) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Cert success');
@@ -1095,7 +1082,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509Cert(encodingBlob, (error, x509Cert) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Cert success');
@@ -1161,7 +1148,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509Cert(encodingBlob, (error, x509Cert) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Cert success');
@@ -1234,7 +1221,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509Cert(encodingBlob, (error, x509Cert) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Cert success');
@@ -1250,13 +1237,19 @@ cert.createX509Cert(encodingBlob, (error, x509Cert) => {
 
 ### getSubjectName
 
-getSubjectName() : DataBlob
+getSubjectName(encodingType?: EncodingType) : DataBlob
 
 表示获取X509证书主体名称。
 
 **元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Security.Cert
+
+**参数**：
+
+| 参数名   | 类型                                  | 必填 | 说明                           |
+| -------- | ------------------------------------- | ---- | ------------------------------ |
+| encodingType<sup>12+</sup> | [EncodingType](#encodingtype12)     | 否   |  编码类型。设置参数表示获取UTF8格式编码；不设置默认获取ASCII格式编码。<br>API 12后支持设置此参数。  |
 
 **返回值**：
 
@@ -1270,6 +1263,7 @@ getSubjectName() : DataBlob
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
+| 401 | invalid parameters.  Possible causes: <br>1. Incorrect parameter types;<br>2. Parameter verification failed.           |
 | 19020001 | memory error.                                     |
 | 19020002 | runtime error.                                    |
 | 19030001 | crypto operation error.|
@@ -1307,7 +1301,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509Cert(encodingBlob, (error, x509Cert) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Cert success');
@@ -1316,6 +1310,12 @@ cert.createX509Cert(encodingBlob, (error, x509Cert) => {
     } catch (err) {
       let e: BusinessError = err as BusinessError;
       console.error('getSubjectName failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+    }
+    try {
+      let subjectNameutf8 = x509Cert.getSubjectName(cert.EncodingType.ENCODING_UTF8);
+    } catch (err) {
+      let e: BusinessError = err as BusinessError;
+      console.error('getSubjectNameUtf8 failed, errCode: ' + e.code + ', errMsg: ' + e.message);
     }
   }
 });
@@ -1380,7 +1380,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509Cert(encodingBlob, (error, x509Cert) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Cert success');
@@ -1454,7 +1454,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509Cert(encodingBlob, (error, x509Cert) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Cert success');
@@ -1528,7 +1528,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509Cert(encodingBlob, (error, x509Cert) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Cert success');
@@ -1602,7 +1602,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509Cert(encodingBlob, (error, x509Cert) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Cert success');
@@ -1675,7 +1675,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509Cert(encodingBlob, (error, x509Cert) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Cert success');
@@ -1749,7 +1749,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509Cert(encodingBlob, (error, x509Cert) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Cert success');
@@ -1821,7 +1821,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509Cert(encodingBlob, (error, x509Cert) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Cert success');
@@ -1894,7 +1894,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509Cert(encodingBlob, (error, x509Cert) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Cert success');
@@ -1956,7 +1956,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509Cert(encodingBlob, (error, x509Cert) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Cert success');
@@ -2024,7 +2024,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509Cert(encodingBlob, (error, x509Cert) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Cert success');
@@ -2097,7 +2097,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509Cert(encodingBlob, (error, x509Cert) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Cert success');
@@ -2171,7 +2171,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509Cert(encodingBlob, (error, x509Cert) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Cert success');
@@ -2339,10 +2339,10 @@ let certData = "-----BEGIN CERTIFICATE-----\n" +
   "-----END CERTIFICATE-----\n";
 
   // 证书二进制数据，需业务自行赋值
-let encodingBlob: certFramework.EncodingBlob = {
+let encodingBlob: cert.EncodingBlob = {
   data: stringToUint8Array(certData),
   // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
-  encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  encodingFormat: cert.EncodingFormat.FORMAT_PEM
 };
 
 async function certGetCRLDistributionPoint() {
@@ -2835,7 +2835,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createCertExtension(encodingBlob, (error, certExt) => {
-  if (error != null) {
+  if (error) {
     console.error('createCertExtension failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createCertExtension success');
@@ -2963,7 +2963,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createCertExtension(encodingBlob, (error, certExt) => {
-  if (error != null) {
+  if (error) {
     console.error('createCertExtension failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createCertExtension success');
@@ -3036,7 +3036,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createCertExtension(encodingBlob, (error, certExt) => {
-  if (error != null) {
+  if (error) {
     console.error('createCertExtension failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createCertExtension success');
@@ -3110,7 +3110,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createCertExtension(encodingBlob, (error, certExt) => {
-  if (error != null) {
+  if (error) {
     console.error('createCertExtension failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createCertExtension success');
@@ -3180,7 +3180,7 @@ let encodingBlob: cert.EncodingBlob = {
   encodingFormat: cert.EncodingFormat.FORMAT_DER
 };
 cert.createCertExtension(encodingBlob, (error, certExt) => {
-  if (error != null) {
+  if (error) {
     console.error('createCertExtension failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createCertExtension success');
@@ -3304,7 +3304,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509Crl(encodingBlob, (error, x509Crl) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Crl success');
@@ -3442,7 +3442,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509CRL(encodingBlob, (error, X509CRL) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509CRL success');
@@ -3608,13 +3608,15 @@ let certEncodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509Crl(encodingBlob, (error, x509Crl) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Crl success');
     // Create an X509Cert instance.
     cert.createX509Cert(certEncodingBlob, (error, x509Cert) => {
-      if (error == null) {
+      if (error) {
+        console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+      } else {
         try {
           let revokedFlag = x509Crl.isRevoked(x509Cert);
         } catch (error) {
@@ -3676,7 +3678,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509Crl(encodingBlob, (error, x509Crl) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Crl success');
@@ -3745,12 +3747,12 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509Crl(encodingBlob, (error, x509Crl) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Crl success');
     x509Crl.getEncoded((error, data) => {
-      if (error != null) {
+      if (error) {
         console.error('getEncoded failed, errCode: ' + error.code + ', errMsg: ' + error.message);
       } else {
         console.log('getEncoded success');
@@ -3950,7 +3952,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509Crl(encodingBlob, (error, x509Crl) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Crl success');
@@ -3965,17 +3967,17 @@ cert.createX509Crl(encodingBlob, (error, x509Crl) => {
         data: pubKeyData,
       };
       keyGenerator.convertKey(pubEncodingBlob, priEncodingBlob, (e, keyPair) => {
-        if (e == null) {
+        if (e) {
+          console.error('convert key failed, message: ' + e.message + 'code: ' + e.code);
+        } else {
           console.log('convert key success');
           x509Crl.verify(keyPair.pubKey, (err, data) => {
-            if (err == null) {
-              console.log('verify success');
-            } else {
+            if (err) {
               console.error('verify failed, errCode: ' + err.code + ', errMsg: ' + err.message);
+            } else  {
+              console.log('verify success');
             }
           });
-        } else {
-          console.error('convert key failed, message: ' + e.message + 'code: ' + e.code);
         }
       })
     } catch (error) {
@@ -4189,7 +4191,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509Crl(encodingBlob, (error, x509Crl) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Crl success');
@@ -4258,7 +4260,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509Crl(encodingBlob, (error, x509Crl) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Crl success');
@@ -4332,7 +4334,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509Crl(encodingBlob, (error, x509Crl) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Crl success');
@@ -4406,7 +4408,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509Crl(encodingBlob, (error, x509Crl) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Crl success');
@@ -4486,7 +4488,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509Crl(encodingBlob, (error, x509Crl) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Crl success');
@@ -4584,7 +4586,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509Crl(encodingBlob, (error, x509Crl) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Crl success');
@@ -4663,12 +4665,12 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509Crl(encodingBlob, (error, x509Crl) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Crl success');
     x509Crl.getRevokedCerts((error, array) => {
-      if (error != null) {
+      if (error) {
         console.error('getRevokedCerts failed, errCode: ' + error.code + ', errMsg: ' + error.message);
       } else {
         console.log('getRevokedCerts success');
@@ -4809,7 +4811,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509Crl(encodingBlob, (error, x509Crl) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Crl success');
@@ -4883,7 +4885,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509Crl(encodingBlob, (error, x509Crl) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Crl success');
@@ -4957,7 +4959,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509Crl(encodingBlob, (error, x509Crl) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Crl success');
@@ -5031,7 +5033,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509Crl(encodingBlob, (error, x509Crl) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Crl success');
@@ -5106,7 +5108,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509Crl(encodingBlob, (error, x509Crl) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Crl success');
@@ -5201,13 +5203,15 @@ let certEncodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509CRL(encodingBlob, (error, x509CRL) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509CRL success');
     // Create an X509Cert instance.
     cert.createX509Cert(certEncodingBlob, (error, x509Cert) => {
-      if (error == null) {
+      if (error) {
+        console.error('createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+      } else {
         try {
           let revokedFlag = x509CRL.isRevoked(x509Cert);
         } catch (error) {
@@ -5267,7 +5271,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509CRL(encodingBlob, (error, x509CRL) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509CRL success');
@@ -5334,12 +5338,12 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509CRL(encodingBlob, (error, x509CRL) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509CRL success');
     x509CRL.getEncoded((error, data) => {
-      if (error != null) {
+      if (error) {
         console.error('getEncoded failed, errCode: ' + error.code + ', errMsg: ' + error.message);
       } else {
         console.log('getEncoded success');
@@ -5489,7 +5493,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509CRL(encodingBlob, (error, x509CRL) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509Crl failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509Crl success');
@@ -5504,17 +5508,17 @@ cert.createX509CRL(encodingBlob, (error, x509CRL) => {
         data: pubKeyData,
       };
       keyGenerator.convertKey(pubEncodingBlob, priEncodingBlob, (e, keyPair) => {
-        if (e == null) {
+        if (e) {
+          console.error('convert key failed, message: ' + e.message + 'code: ' + e.code);
+        } else {
           console.log('convert key success');
           x509CRL.verify(keyPair.pubKey, (err, data) => {
-            if (err == null) {
-              console.log('verify success');
-            } else {
+            if (err) {
               console.error('verify failed, errCode: ' + err.code + ', errMsg: ' + err.message);
+            } else {
+              console.log('verify success');
             }
           });
-        } else {
-          console.error('convert key failed, message: ' + e.message + 'code: ' + e.code);
         }
       })
     } catch (error) {
@@ -5679,7 +5683,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509CRL(encodingBlob, (error, x509CRL) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509CRL success');
@@ -5746,7 +5750,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509CRL(encodingBlob, (error, x509CRL) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509CRL success');
@@ -5818,7 +5822,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509CRL(encodingBlob, (error, x509CRL) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509CRL success');
@@ -5890,7 +5894,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509CRL(encodingBlob, (error, x509CRL) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509CRL success');
@@ -5968,7 +5972,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509CRL(encodingBlob, (error, x509CRL) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509CRL success');
@@ -6064,7 +6068,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509CRL(encodingBlob, (error, x509CRL) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509CRL success');
@@ -6141,12 +6145,12 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509CRL(encodingBlob, (error, x509CRL) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509CRL success');
     x509CRL.getRevokedCerts((error, array) => {
-      if (error != null) {
+      if (error) {
         console.error('getRevokedCerts failed, errCode: ' + error.code + ', errMsg: ' + error.message);
       } else {
         console.log('getRevokedCerts success');
@@ -6283,7 +6287,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509CRL(encodingBlob, (error, x509CRL) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509CRL success');
@@ -6355,7 +6359,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509CRL(encodingBlob, (error, x509CRL) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509CRL success');
@@ -6427,7 +6431,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509CRL(encodingBlob, (error, x509CRL) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509CRL success');
@@ -6500,7 +6504,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509CRL(encodingBlob, (error, x509CRL) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509CRL success');
@@ -6572,7 +6576,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509CRL(encodingBlob, (error, x509CRL) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509CRL success');
@@ -6644,7 +6648,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509CRL(encodingBlob, (error, x509CRL) => {
-  if (error != null) {
+  if (error) {
     console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
   } else {
     console.log('createX509CRL success');
@@ -6754,7 +6758,7 @@ async function crlMatch() {
   }
 
   cert.createX509CRL(crlEncodingBlob, (error, x509CRL) => {
-    if (error != null) {
+    if (error) {
       console.error('createX509CRL failed, errCode: ' + error.code + ', errMsg: ' + error.message);
     } else {
       console.log('createX509CRL success');
@@ -7177,7 +7181,7 @@ let certChainData: cert.CertChainData = {
 try {
   let validator = cert.createCertChainValidator('PKIX');
   validator.validate(certChainData, (error, data) => {
-    if (error != null) {
+    if (error) {
       console.error('validate failed, errCode: ' + error.code + ', errMsg: ' + error.message);
     } else {
       console.log('validate success');
@@ -7259,37 +7263,6 @@ try {
 }
 ```
 
-### algorithm
-
-algorithm : string
-
-表示X509证书链校验器算法名称。
-
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
-
-**系统能力：** SystemCapability.Security.Cert
-
-**返回值**：
-
-| 类型   | 说明                     |
-| ------ | ------------------------ |
-| string | 表示证书链校验器算法名称 |
-
-**示例：**
-
-```ts
-import { cert } from '@kit.DeviceCertificateKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-try {
-  let validator = cert.createCertChainValidator('PKIX');
-  let algorithm = validator.algorithm;
-} catch (error) {
-  let e: BusinessError = error as BusinessError;
-  console.error('createCertChainValidator failed, errCode: ' + e.code + ', errMsg: ' + e.message);
-}
-```
-
 ## X509CrlEntry<sup>(deprecated)</sup>
 
 被吊销证书对象。
@@ -7358,7 +7331,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509Crl(encodingBlob, (err, x509Crl) => {
-  if (err != null) {
+  if (err) {
     console.error('createX509Crl failed, errCode: ' + err.code + ', errMsg: ' + err.message);
   } else {
     console.log('create x509 crl success');
@@ -7367,7 +7340,7 @@ cert.createX509Crl(encodingBlob, (err, x509Crl) => {
       let serialNumber = 1000;
       let crlEntry = x509Crl.getRevokedCert(serialNumber);
       crlEntry.getEncoded((error, data) => {
-        if (error != null) {
+        if (error) {
           console.error('getEncoded failed, errCode: ' + error.code + ', errMsg: ' + error.message);
         } else {
           console.log('getEncoded success');
@@ -7441,7 +7414,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509Crl(encodingBlob, (err, x509Crl) => {
-  if (err != null) {
+  if (err) {
     console.error('createX509Crl failed, errCode: ' + err.code + ', errMsg: ' + err.message);
   } else {
     console.log('create x509 crl success');
@@ -7511,7 +7484,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509Crl(encodingBlob, (err, x509Crl) => {
-  if (err != null) {
+  if (err) {
     console.error('createX509Crl failed, errCode: ' + err.code + ', errMsg: ' + err.message);
   } else {
     console.log('create x509 crl success');
@@ -7587,7 +7560,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509Crl(encodingBlob, (err, x509Crl) => {
-  if (err != null) {
+  if (err) {
     console.error('createX509Crl failed, errCode: ' + err.code + ', errMsg: ' + err.message);
   } else {
     console.log('create x509 crl success');
@@ -7663,7 +7636,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509Crl(encodingBlob, (err, x509Crl) => {
-  if (err != null) {
+  if (err) {
     console.error('createX509Crl failed, errCode: ' + err.code + ', errMsg: ' + err.message);
   } else {
     console.log('create x509 crl success');
@@ -7742,7 +7715,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509CRL(encodingBlob, (err, x509CRL) => {
-  if (err != null) {
+  if (err) {
     console.error('createX509CRL failed, errCode: ' + err.code + ', errMsg: ' + err.message);
   } else {
     console.log('create x509 CRL success');
@@ -7751,7 +7724,7 @@ cert.createX509CRL(encodingBlob, (err, x509CRL) => {
       let serialNumber = BigInt(1000);
       let crlEntry = x509CRL.getRevokedCert(serialNumber);
       crlEntry.getEncoded((error, data) => {
-        if (error != null) {
+        if (error) {
           console.error('getEncoded failed, errCode: ' + error.code + ', errMsg: ' + error.message);
         } else {
           console.log('getEncoded success');
@@ -7823,7 +7796,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509CRL(encodingBlob, (err, x509CRL) => {
-  if (err != null) {
+  if (err) {
     console.error('createX509CRL failed, errCode: ' + err.code + ', errMsg: ' + err.message);
   } else {
     console.log('create x509 CRL success');
@@ -7901,7 +7874,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509CRL(encodingBlob, (err, x509CRL) => {
-  if (err != null) {
+  if (err) {
     console.error('createX509Crl failed, errCode: ' + err.code + ', errMsg: ' + err.message);
   } else {
     console.log('create x509 crl success');
@@ -7976,7 +7949,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509CRL(encodingBlob, (err, x509CRL) => {
-  if (err != null) {
+  if (err) {
     console.error('createX509CRL failed, errCode: ' + err.code + ', errMsg: ' + err.message);
   } else {
     console.log('create x509 CRL success');
@@ -8050,7 +8023,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509CRL(encodingBlob, (err, x509CRL) => {
-  if (err != null) {
+  if (err) {
     console.error('createX509CRL failed, errCode: ' + err.code + ', errMsg: ' + err.message);
   } else {
     console.log('create x509 CRL success');
@@ -8124,7 +8097,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509CRL(encodingBlob, (err, x509CRL) => {
-  if (err != null) {
+  if (err) {
     console.error('createX509CRL failed, errCode: ' + err.code + ', errMsg: ' + err.message);
   } else {
     console.log('create x509 CRL success');
@@ -8198,7 +8171,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509CRL(encodingBlob, (err, x509CRL) => {
-  if (err != null) {
+  if (err) {
     console.error('createX509CRL failed, errCode: ' + err.code + ', errMsg: ' + err.message);
   } else {
     console.log('create x509 CRL success');
@@ -8859,7 +8832,7 @@ async function selectCerts() {
     publicKeyAlgID: '1.2.840.113549.1.1.1'
   };
   collection.selectCerts(param, (err, certs) => {
-    if (err != null) {
+    if (err) {
       console.error('selectCerts failed, errCode: ' + err.code + ', errMsg: ' + err.message);
     } else {
       console.log('selectCerts success');
@@ -9105,7 +9078,7 @@ async function selectCRLs() {
     x509Cert: x509Cert
   }
   collection.selectCRLs(param, (err, crls) => {
-    if (err != null) {
+    if (err) {
       console.error('selectCRLs failed, errCode: ' + err.code + ', errMsg: ' + err.message);
     } else {
       console.log('selectCRLs success');
@@ -9340,7 +9313,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509CertChain(encodingBlob, (err, certChain) => {
-  if (err != null) {
+  if (err) {
     console.error('createX509CertChain failed, errCode: ' + err.code + ', errMsg: ' + err.message);
   } else {
     console.log('createX509CertChain success');
@@ -9709,7 +9682,7 @@ let encodingBlob: cert.EncodingBlob = {
 };
 
 cert.createX509CertChain(encodingBlob, (err, certChain) => {
-  if (err != null) {
+  if (err) {
     console.error('createX509CertChain failed, errCode: ' + err.code + ', errMsg: ' + err.message);
   } else {
     console.log('createX509CertChain success');
@@ -9992,12 +9965,12 @@ let param: cert.CertChainValidationParameters = {
 };
 
 cert.createX509CertChain(encodingBlob, (err, certChain) => {
-  if (err != null) {
+  if (err) {
     console.error('createX509CertChain failed, errCode: ' + err.code + ', errMsg: ' + err.message);
   } else {
     console.log('createX509CertChain success');
     certChain.validate(param, (error, validationRes) => {
-      if (error != null) {
+      if (error) {
         console.error('X509CertChain validate failed, errCode: ' + error.code + ', errMsg: ' + error.message);
       } else {
         console.log('X509CertChain validate success');
@@ -10275,7 +10248,7 @@ createX500DistinguishedName(nameStr: string): Promise\<X500DistinguishedName>
 
 | 参数名   | 类型                          | 必填 | 说明                 |
 | -------- | ----------------------------- | ---- | -------------------- |
-| nameStr | string | X509定义的Name类型的字符串格式数据。|
+| nameStr | string | 是 |X509定义的string类型的Name字符串格式数据。|
 
 **返回值：**
 
@@ -10289,7 +10262,7 @@ createX500DistinguishedName(nameStr: string): Promise\<X500DistinguishedName>
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 401 | invalid parameters. |
+| 401 | invalid parameters.  Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19020001 | memory error. |
 | 19020002 | runtime error. |
 | 19030001 | crypto operation error. |
@@ -10346,7 +10319,7 @@ createX500DistinguishedName(nameDer: Uint8Array): Promise\<X500DistinguishedName
 
 | 参数名   | 类型                          | 必填 | 说明                 |
 | -------- | ----------------------------- | ---- | -------------------- |
-| nameDer | Uint8Array | X509定义的Name类型的DER格式数据。|
+| nameDer | Uint8Array | 是 |X509定义的Uint8Array类型的DER格式数据。|
 
 **返回值：**
 
@@ -10360,7 +10333,7 @@ createX500DistinguishedName(nameDer: Uint8Array): Promise\<X500DistinguishedName
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 401 | invalid parameters. |
+| 401 | invalid parameters.  Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19020001 | memory error. |
 | 19020002 | runtime error. |
 | 19030001 | crypto operation error. |
@@ -10495,6 +10468,7 @@ getName(type: string): Array\<string>
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
+| 401 | invalid parameters.  Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
 | 19020001 | memory error. |
 | 19020002 | runtime error. |
 | 19030001 | crypto operation error. |

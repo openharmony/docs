@@ -27,20 +27,19 @@ The following procedure implements the following: After **Paste** is tapped, the
 1. Import the dependency **pasteboard**.
    
    ```ts
-   import pasteboard from '@ohos.pasteboard';
+   import { pasteboard } from '@kit.BasicServicesKit';
    ```
 
 2. Add the text boxes and \<**PasteButton**> component.
    
    The \<**PasteButton**> component is a button-like component consisting of an icon, text, and background. Either the icon or text is mandatory, and the background is optional. The icon and text cannot be customized. You can only select from the existing options.<br>
 
-   When declaring the API for creating a security component, you can determine whether to pass in parameters. If parameters are passed in, the component is created based on the specified parameters. If no parameter is passed in, a component with default icon, text, and background is created. The following example uses the default parameters. For details, see [PasteButton](../../reference/apis-arkui/arkui-ts/ts-security-components-pastebutton.md). 
+   When declaring the API for creating a security component, you can determine whether to pass in parameters. If parameters are passed in, the component is created based on the specified parameters. If no parameter is passed in, a component with default icon, text, and background is created.
 
-   In addition, all security components inherit the [Security Component Universal Attributes](../../reference/apis-arkui/arkui-ts/ts-securitycomponent-attributes.md), which can be used to customize styles.
+   The following example uses the default parameters. For details, see [PasteButton](../../reference/apis-arkui/arkui-ts/ts-security-components-pastebutton.md). In addition, all security components inherit the [Security Component Universal Attributes](../../reference/apis-arkui/arkui-ts/ts-securitycomponent-attributes.md), which can be used to customize styles.
    
    ```ts
-   import pasteboard from '@ohos.pasteboard';
-   import { BusinessError } from '@ohos.base';
+   import { pasteboard, BusinessError } from '@kit.BasicServicesKit';
    
    @Entry
    @Component

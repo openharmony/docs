@@ -136,6 +136,28 @@ autoReset(value: boolean)
 | ------ | ------- | ---- | ------------------------------------------------------------ |
 | value  | boolean | 是   | 在完成密码输入后再次在组件区域按下时是否重置组件状态。<br/>为true时，完成密码输入后再次在组件区域按下时会重置组件状态（即清除之前输入的密码）；为false时，不会重置组件状态。<br/>默认值：true |
 
+### activateCircleStyle<sup>12+</sup>
+
+activateCircleStyle(options: Optional\<CircleStyleOptions\>)
+
+设置宫格圆点在“激活”状态的背景圆环样式。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型    | 必填 | 说明                                                         |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| options  | [CircleStyleOptions](#circlestyleoptions12对象说明) | 是   | 宫格圆点在“激活”状态的背景圆环样式。|
+
+## CircleStyleOptions<sup>12+</sup>对象说明
+
+| 名称          | 参数类型 | 必填 | 描述 |
+| ------------- | ------- | ---- | -------- |
+| color | [ResourceColor](ts-types.md#resourcecolor) | 否 | 背景圆环颜色。 <br/>默认值：与pathColor值相同 |
+| radius  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否 | 背景圆环的半径。<br/>默认值：circleRadius的11/6 |
+| enableWaveEffect | boolean | 否 | 波浪效果开关。<br/>默认值：true |
+
 ## 事件
 
 除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
@@ -201,6 +223,8 @@ setChallengeResult(result: PatternLockChallengeResult): void
 
 ```ts
 // xxx.ets
+import {LengthMetrics} from '@ohos.arkui.node'
+
 @Entry
 @Component
 struct PatternLockExample {
@@ -220,6 +244,11 @@ struct PatternLockExample {
         .pathColor('#90EE90')
         .backgroundColor('#F5F5F5')
         .autoReset(true)
+        .activateCircleStyle({
+          color: '#90EE90',
+          radius: { value: 16, unit: LengthUnit.VP },
+          enableWaveEffect: true
+        })
         .onDotConnect((index: number) => {
           console.log("onDotConnect index: " + index)
         })

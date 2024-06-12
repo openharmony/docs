@@ -1,7 +1,7 @@
 # @ohos.data.relationalStore (关系型数据库)
 
-关系型数据库（Relational Database，RDB）是一种基于关系模型来管理数据的数据库。关系型数据库基于SQLite组件提供了一套完整的对本地数据库进行管理的机制，对外提供了一系列的增、删、改、查等接口，也可以直接运行用户输入的SQL语句来满足复杂的场景需要。不支持Worker线程。
-ArkTS侧支持的基本数据类型：number、string、二进制类型数据、boolean。为保证插入并读取数据成功，建议一条数据不要超过2M。超出该大小，插入成功，读取失败。
+关系型数据库（Relational Database，RDB）是一种基于关系模型来管理数据的数据库。关系型数据库基于SQLite组件提供了一套完整的对本地数据库进行管理的机制，对外提供了一系列的增、删、改、查等接口，也可以直接运行用户输入的SQL语句来满足复杂的场景需要。不支持Sendable跨线程传递。
+为保证插入并读取数据成功，建议一条数据不要超过2M。超出该大小，插入成功，读取失败。
 
 该模块提供以下关系型数据库相关的常用功能：
 
@@ -67,7 +67,7 @@ import featureAbility from '@ohos.ability.featureAbility';
 import { BusinessError } from "@ohos.base";
 
 let store: relationalStore.RdbStore | undefined = undefined;
-let context = getContext(this);
+let context = featureAbility.getContext(); 
 
 const STORE_CONFIG: relationalStore.StoreConfig = {
   name: "RdbTest.db",
@@ -163,7 +163,7 @@ import featureAbility from '@ohos.ability.featureAbility';
 import { BusinessError } from "@ohos.base";
 
 let store: relationalStore.RdbStore | undefined = undefined;
-let context = getContext(this);
+let context = featureAbility.getContext(); 
 
 const STORE_CONFIG: relationalStore.StoreConfig = {
   name: "RdbTest.db",
@@ -241,7 +241,7 @@ import featureAbility from '@ohos.ability.featureAbility';
 import { BusinessError } from "@ohos.base";
 
 let store: relationalStore.RdbStore | undefined = undefined;
-let context = getContext(this);
+let context = featureAbility.getContext(); 
 
 relationalStore.deleteRdbStore(context, "RdbTest.db", (err: BusinessError) => {
   if (err) {
@@ -318,7 +318,7 @@ import featureAbility from '@ohos.ability.featureAbility';
 import { BusinessError } from "@ohos.base";
 
 let store: relationalStore.RdbStore | undefined = undefined;
-let context = getContext(this);
+let context = featureAbility.getContext(); 
 
 relationalStore.deleteRdbStore(context, "RdbTest.db").then(()=>{
   store = undefined;
@@ -388,7 +388,7 @@ import featureAbility from '@ohos.ability.featureAbility';
 import { BusinessError } from "@ohos.base";
 
 let store: relationalStore.RdbStore | undefined = undefined;
-let context = getContext(this);
+let context = featureAbility.getContext(); 
 
 const STORE_CONFIG: relationalStore.StoreConfig = {
   name: "RdbTest.db",
@@ -479,7 +479,7 @@ import featureAbility from '@ohos.ability.featureAbility';
 import { BusinessError } from "@ohos.base";
 
 let store: relationalStore.RdbStore | undefined = undefined;
-let context = getContext(this);
+let context = featureAbility.getContext(); 
 
 const STORE_CONFIG: relationalStore.StoreConfig = {
   name: "RdbTest.db",
@@ -532,6 +532,7 @@ class EntryAbility extends UIAbility {
 | customDir<sup>11+</sup> | string | 否 | 数据库自定义路径。<br/>**使用约束：** 数据库路径大小限制为128字节，如果超过该大小会开库失败，返回错误。<br/>从API version 11开始，支持此可选参数。数据库将在如下的目录结构中被创建：context.databaseDir + "/rdb/" + customDir，其中context.databaseDir是应用沙箱对应的路径，"/rdb/"表示创建的是关系型数据库，customDir表示自定义的路径。当此参数不填时，默认在本应用沙箱目录下创建RdbStore实例。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
 | autoCleanDirtyData<sup>11+<sup> | boolean | 否 | 指定是否自动清理云端删除后同步到本地的数据，true表示自动清理，false表示手动清理，默认自动清理。<br/>对于端云协同的数据库，当云端删除的数据同步到设备端时，可通过该参数设置设备端是否自动清理。手动清理可以通过[cleanDirtyData<sup>11+</sup>](#cleandirtydata11)接口清理。<br/>从API version 11开始，支持此可选参数。<br/>**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client |
 | allowRebuild<sup>12+<sup> | boolean | 否 | 指定数据库是否支持损坏时自动重建，默认不重建。<br/>true:自动重建。<br/>false:不自动重建。<br/>从API version 12开始，支持此可选参数。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
+| isReadOnly<sup>12+<sup> | boolean | 否 | 指定数据库是否只读，默认为数据库可读写。<br/>true:只允许从数据库读取数据，不允许对数据库进行写操作。<br/>false:允许对数据库进行读写操作。<br/>从API version 12开始，支持此可选参数。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
 
 ## SecurityLevel
 
@@ -611,7 +612,7 @@ class EntryAbility extends UIAbility {
 
 ## ValuesBucket
 
-用于存储键值对的类型。该类型不是多线程安全的，如果应用中存在多线程同时操作该类派生出的实例，注意加锁保护。
+用于存储键值对的类型。不支持Sendable跨线程传递。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -686,9 +687,9 @@ class EntryAbility extends UIAbility {
 | CURSOR_FIELD        | '#_cursor'     | 用于cursor查找的字段名。|
 | ORIGIN_FIELD        | '#_origin'     | 用于cursor查找时指定数据来源的字段名。    |
 | DELETED_FLAG_FIELD  | '#_deleted_flag' | 用于cursor查找的结果集返回时填充的字段，表示云端删除的数据同步到本地后数据是否清理。<br>返回的结果集中，该字段对应的value为false表示数据未清理，true表示数据已清理。|
-| OWNER_FIELD  | '#_cloud_owner' | 用于共享表中查找owner时返回的结果集中填充的字段，表示当前共享记录的共享发起者。|
-| PRIVILEGE_FIELD  | '#_cloud_privilege' | 用于共享表中查找共享数据权限时返回的结果集中填充的字段，表示当前共享记录的允许的操作权限。|
-| SHARING_RESOURCE_FIELD   | '#_sharing_resource_field' | 用于数据共享时查找共享数据的共享资源时返回的结果集中填充的字段，表示共享数据的共享资源标识。|
+| OWNER_FIELD  | '#_cloud_owner' | 用于共享表中查找owner时，返回的结果集中填充的字段，表示当前共享记录的共享发起者。|
+| PRIVILEGE_FIELD  | '#_cloud_privilege' | 用于共享表中查找共享数据权限时，返回的结果集中填充的字段，表示当前共享记录的允许的操作权限。|
+| SHARING_RESOURCE_FIELD   | '#_sharing_resource_field' | 用于数据共享查找共享数据的共享资源时，返回的结果集中填充的字段，表示共享数据的共享资源标识。|
 
 ## SubscribeType
 
@@ -703,7 +704,7 @@ class EntryAbility extends UIAbility {
 | SUBSCRIBE_TYPE_CLOUD_DETAILS<sup>10+</sup> | 2  | 订阅云端数据更改详情。<br>**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client |
 | SUBSCRIBE_TYPE_LOCAL_DETAILS<sup>12+</sup> | 3  | 订阅本地数据更改详情。<br>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
 
-## RebuldType<sup>12+</sup>
+## RebuildType<sup>12+</sup>
 
 描述数据库重建类型的枚举。请使用枚举名称而非枚举值。
 
@@ -713,6 +714,7 @@ class EntryAbility extends UIAbility {
 | ------- | ---- | ---------------------------------------- |
 | NONE    | 0    | 表示数据库未进行重建。                   |
 | REBUILT | 1    | 表示数据库进行了重建并且生成了空数据库。 |
+| REPAIRED | 2    | 表示数据库进行了修复，恢复了未损坏的数据，当前只有[向量数据库](js-apis-data-relationalStore-sys.md#storeconfig)具备该能力。|
 
 ## ChangeType<sup>10+</sup>
 
@@ -764,7 +766,7 @@ class EntryAbility extends UIAbility {
 
 ## ConflictResolution<sup>10+</sup>
 
-插入和修改接口的冲突解决方式。请使用枚举名称而非枚举值。
+插入和修改接口的冲突解决模式。请使用枚举名称而非枚举值。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -844,7 +846,7 @@ class EntryAbility extends UIAbility {
 
 ## RdbPredicates
 
-表示关系型数据库（RDB）的谓词。该类确定RDB中条件表达式的值是true还是false。该类型不是多线程安全的，如果应用中存在多线程同时操作该类派生出的实例，注意加锁保护。
+表示关系型数据库（RDB）的谓词。该类确定RDB中条件表达式的值是true还是false。不支持Sendable跨线程传递。 
 
 ### constructor
 
@@ -2000,14 +2002,14 @@ predicates.notLike("NAME", "os");
 
 在使用以下相关接口前，请使用[executeSql](#executesql)接口初始化数据库表结构和相关数据。
 
-### 属性<sup>10+</sup>
+### 属性
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 | 名称         | 类型            | 只读       | 必填 | 说明                             |
 | ------------ | ----------- | ---- | -------------------------------- | -------------------------------- |
 | version<sup>10+</sup>  | number | 否 | 是   | 设置和获取数据库版本，值为大于0的正整数。       |
-| rebuilt<sup>12+</sup> | [RebuildType](#rebuldtype12) | 是 | 是 | 用于获取数据库是否进行过重建。 |
+| rebuilt<sup>12+</sup> | [RebuildType](#rebuildtype12) | 是 | 是 | 用于获取数据库是否进行过重建或修复。 |
 
 **错误码：**
 
@@ -2141,7 +2143,7 @@ insert(table: string, values: ValuesBucket,  conflict: ConflictResolution, callb
 | -------- | ------------------------------------------- | ---- | ---------------------------------------------------------- |
 | table    | string                                      | 是   | 指定的目标表名。                                           |
 | values   | [ValuesBucket](#valuesbucket)               | 是   | 表示要插入到表中的数据行。                                 |
-| conflict | [ConflictResolution](#conflictresolution10) | 是   | 指定冲突解决方式。                                         |
+| conflict | [ConflictResolution](#conflictresolution10) | 是   | 指定冲突解决模式。                                         |
 | callback | AsyncCallback&lt;number&gt;                 | 是   | 指定callback回调函数。如果操作成功，返回行ID；否则返回-1。 |
 
 **错误码：**
@@ -2315,7 +2317,7 @@ insert(table: string, values: ValuesBucket,  conflict: ConflictResolution):Promi
 | -------- | ------------------------------------------- | ---- | -------------------------- |
 | table    | string                                      | 是   | 指定的目标表名。           |
 | values   | [ValuesBucket](#valuesbucket)               | 是   | 表示要插入到表中的数据行。 |
-| conflict | [ConflictResolution](#conflictresolution10) | 是   | 指定冲突解决方式。         |
+| conflict | [ConflictResolution](#conflictresolution10) | 是   | 指定冲突解决模式。         |
 
 **返回值**：
 
@@ -2404,7 +2406,7 @@ insertSync(table: string, values: ValuesBucket,  conflict?: ConflictResolution):
 | -------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
 | table    | string                                      | 是   | 指定的目标表名。                                             |
 | values   | [ValuesBucket](#valuesbucket)               | 是   | 表示要插入到表中的数据行。                                   |
-| conflict | [ConflictResolution](#conflictresolution10) | 否   | 指定冲突解决方式。默认值是relationalStore.ConflictResolution.ON_CONFLICT_NONE。 |
+| conflict | [ConflictResolution](#conflictresolution10) | 否   | 指定冲突解决模式。默认值是relationalStore.ConflictResolution.ON_CONFLICT_NONE。 |
 
 **返回值**：
 
@@ -2866,7 +2868,7 @@ update(values: ValuesBucket, predicates: RdbPredicates, conflict: ConflictResolu
 | ---------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
 | values     | [ValuesBucket](#valuesbucket)               | 是   | values指示数据库中要更新的数据行。键值对与数据库表的列名相关联。 |
 | predicates | [RdbPredicates](#rdbpredicates)            | 是   | RdbPredicates的实例对象指定的更新条件。                      |
-| conflict   | [ConflictResolution](#conflictresolution10) | 是   | 指定冲突解决方式。                                           |
+| conflict   | [ConflictResolution](#conflictresolution10) | 是   | 指定冲突解决模式。                                           |
 | callback   | AsyncCallback&lt;number&gt;                 | 是   | 指定的callback回调方法。返回受影响的行数。                   |
 
 **错误码：**
@@ -3043,7 +3045,7 @@ update(values: ValuesBucket, predicates: RdbPredicates, conflict: ConflictResolu
 | ---------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
 | values     | [ValuesBucket](#valuesbucket)               | 是   | values指示数据库中要更新的数据行。键值对与数据库表的列名相关联。 |
 | predicates | [RdbPredicates](#rdbpredicates)            | 是   | RdbPredicates的实例对象指定的更新条件。                      |
-| conflict   | [ConflictResolution](#conflictresolution10) | 是   | 指定冲突解决方式。                                           |
+| conflict   | [ConflictResolution](#conflictresolution10) | 是   | 指定冲突解决模式。                                           |
 
 **返回值**：
 
@@ -3134,7 +3136,7 @@ updateSync(values: ValuesBucket, predicates: RdbPredicates, conflict?: ConflictR
 | ---------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
 | values     | [ValuesBucket](#valuesbucket)               | 是   | values指示数据库中要更新的数据行。键值对与数据库表的列名相关联。 |
 | predicates | [RdbPredicates](#rdbpredicates)             | 是   | RdbPredicates的实例对象指定的更新条件。                      |
-| conflict   | [ConflictResolution](#conflictresolution10) | 否   | 指定冲突解决方式。默认值是relationalStore.ConflictResolution.ON_CONFLICT_NONE。 |
+| conflict   | [ConflictResolution](#conflictresolution10) | 否   | 指定冲突解决模式。默认值是relationalStore.ConflictResolution.ON_CONFLICT_NONE。 |
 
 **返回值**：
 
@@ -4404,7 +4406,7 @@ if(store != undefined) {
   try {
     let data = (store as relationalStore.RdbStore).executeSync(SQL_CHECK_INTEGRITY)
     console.info(`check result: ${data}`);
-  } catch (err: BusinessError) {
+  } catch (err) {
     console.error(`check failed, code is ${err.code}, message is ${err.message}`);
   }
 }
@@ -4415,7 +4417,7 @@ if(store != undefined) {
   try {
     let data = (store as relationalStore.RdbStore).executeSync(SQL_DELETE_TABLE)
     console.info(`delete result: ${data}`);
-  } catch (err: BusinessError) {
+  } catch (err) {
     console.error(`delete failed, code is ${err.code}, message is ${err.message}`);
   }
 }
@@ -4604,15 +4606,17 @@ let value2 = 18;
 let value3 = 100.5;
 let value4 = new Uint8Array([1, 2, 3]);
 
-store.beginTransaction();
-const valueBucket: ValuesBucket = {
-  'NAME': value1,
-  'AGE': value2,
-  'SALARY': value3,
-  'CODES': value4,
-};
-store.insert("test", valueBucket);
-store.commit();
+if(store != undefined) {
+  store.beginTransaction();
+  const valueBucket: ValuesBucket = {
+    'NAME': value1,
+    'AGE': value2,
+    'SALARY': value3,
+    'CODES': value4,
+  };
+  store.insert("test", valueBucket);
+  store.commit();
+}
 ```
 
 ### beginTrans<sup>12+</sup>
@@ -4630,7 +4634,6 @@ beginTrans(): Promise&lt;number&gt;
 
 **返回值**：
 
-beginTrans
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
 | Promise&lt;number&gt; | Promise对象，返回事务ID。 |
@@ -4727,15 +4730,17 @@ let value2 = 18;
 let value3 = 100.5;
 let value4 = new Uint8Array([1, 2, 3]);
 
-store.beginTransaction();
-const valueBucket: ValuesBucket = {
-  'NAME': value1,
-  'AGE': value2,
-  'SALARY': value3,
-  'CODES': value4,
-};
-store.insert("test", valueBucket);
-store.commit();
+if(store != undefined) {
+  store.beginTransaction();
+  const valueBucket: ValuesBucket = {
+    'NAME': value1,
+    'AGE': value2,
+    'SALARY': value3,
+    'CODES': value4,
+  };
+  store.insert("test", valueBucket);
+  store.commit();
+}
 ```
 
 ### commit<sup>12+</sup>
@@ -4851,21 +4856,23 @@ let value2 = 18;
 let value3 = 100.5;
 let value4 = new Uint8Array([1, 2, 3]);
 
-try {
-  store.beginTransaction()
-  const valueBucket: ValuesBucket = {
-    'NAME': value1,
-    'AGE': value2,
-    'SALARY': value3,
-    'CODES': value4,
-  };
-  store.insert("test", valueBucket);
-  store.commit();
-} catch (err) {
-  let code = (err as BusinessError).code;
-  let message = (err as BusinessError).message
-  console.error(`Transaction failed, code is ${code},message is ${message}`);
-  store.rollBack();
+if(store != undefined) {
+  try {
+    store.beginTransaction()
+    const valueBucket: ValuesBucket = {
+      'NAME': value1,
+      'AGE': value2,
+      'SALARY': value3,
+      'CODES': value4,
+    };
+    store.insert("test", valueBucket);
+    store.commit();
+  } catch (err) {
+    let code = (err as BusinessError).code;
+    let message = (err as BusinessError).message
+    console.error(`Transaction failed, code is ${code},message is ${message}`);
+    store.rollBack();
+  }
 }
 ```
 
@@ -5850,7 +5857,7 @@ import { BusinessError } from "@ohos.base";
 const tables = ["table1", "table2"];
 
 if(store != undefined) {
-  (store as relationalStore.RdbStore).cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, (progressDetail: relationalStore.ProgressDetails) => {
+  (store as relationalStore.RdbStore).cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, tables, (progressDetail: relationalStore.ProgressDetails) => {
     console.info(`progress: ${progressDetail}`);
   }).then(() => {
     console.info('Cloud sync succeeded');
@@ -5956,7 +5963,7 @@ try {
   }
 } catch (err) {
   let code = (err as BusinessError).code;
-  let message = (err as BusinessError).message
+  let message = (err as BusinessError).message;
   console.error(`Register observer failed, code is ${code},message is ${message}`);
 }
 ```
@@ -5966,32 +5973,38 @@ try {
 ```ts
 try {
   if(store != undefined) {
-    store.on('dataChange', relationalStore.SubscribeType.SUBSCRIBE_TYPE_LOCAL_DETAILS, (ChangeInfos) => {
+    (store as relationalStore.RdbStore).on('dataChange', relationalStore.SubscribeType.SUBSCRIBE_TYPE_LOCAL_DETAILS, (ChangeInfos) => {
       for (let i = 0; i < ChangeInfos.length; i++) {
-        console.info(TAG + `table = ${ChangeInfos[i].table}`);
-        console.info(TAG + `type = ${ChangeInfos[i].type}`);
-        console.info(TAG + `inserted = ${ChangeInfos[i].inserted[0]}`);
-        console.info(TAG + `updated = ${ChangeInfos[i].updated[0]}`);
-        console.info(TAG + `deleted = ${ChangeInfos[i].updated[0]}`);
+        console.info(`ChangeInfos = ${ChangeInfos[i]}`);
       }
     });
   }
 } catch (err) {
-  console.error(TAG + `on dataChange fail, code:${err.code}, message: ${err.message}`);
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message;
+  console.error(`on dataChange fail, code is ${code},message is ${message}`);
 }
 
+let value1 = "Lisa";
+let value2 = 18;
+let value3 = 100.5;
+let value4 = new Uint8Array([1, 2, 3]);
+
 try {
-  const valueBucket1 = {
-    'name': 'zhangsan',
-    'age': 18,
-    'salary': 25000,
-    'blobType': new Uint8Array([1, 2, 3]),
+  const valueBucket: ValuesBucket = {
+    'name': value1,
+    'age': value2,
+    'salary': value3,
+    'blobType': value4,
   };
 
-  let rowId = await store.insert('test', valueBucket1);
-  await store.delete('test');
+  if(store != undefined) {
+    (store as relationalStore.RdbStore).insert('test', valueBucket);
+  }
 } catch (err) {
-  console.error(TAG + `insert fail, code:${err.code}, message: ${err.message}`);
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message;
+  console.error(`insert fail, code is ${code},message is ${message}`);
 }
 ```
 
@@ -6613,7 +6626,7 @@ const STORE_CONFIG1: relationalStore.StoreConfig = {
     securityLevel: relationalStore.SecurityLevel.S1,
 }
 
-relationalStore.getRdbStore(context, STORE_CONFIG1).then(async (rdbStore: relationalStore.RdbStore) => {
+relationalStore.getRdbStore(this.context, STORE_CONFIG1).then(async (rdbStore: relationalStore.RdbStore) => {
     attachStore = rdbStore;
     console.info('Get RdbStore successfully.')
 }).catch((err: BusinessError) => {
@@ -6621,7 +6634,7 @@ relationalStore.getRdbStore(context, STORE_CONFIG1).then(async (rdbStore: relati
 })
 
 if(store != undefined) {
-    (store as relationalStore.RdbStore).attach(context, STORE_CONFIG1, "attachDB").then((number: number) => {
+    (store as relationalStore.RdbStore).attach(this.context, STORE_CONFIG1, "attachDB").then((number: number) => {
         console.info(`attach succeeded, number is ${number}`);
     }).catch ((err: BusinessError) => {
         console.error(`attach failed, code is ${err.code},message is ${err.message}`);
@@ -6643,7 +6656,7 @@ const STORE_CONFIG2: relationalStore.StoreConfig = {
     securityLevel: relationalStore.SecurityLevel.S1,
 }
 
-relationalStore.getRdbStore(context, STORE_CONFIG2).then(async (rdbStore: relationalStore.RdbStore) => {
+relationalStore.getRdbStore(this.context, STORE_CONFIG2).then(async (rdbStore: relationalStore.RdbStore) => {
     attachStore = rdbStore;
     console.info('Get RdbStore successfully.')
 }).catch((err: BusinessError) => {
@@ -6651,7 +6664,7 @@ relationalStore.getRdbStore(context, STORE_CONFIG2).then(async (rdbStore: relati
 })
 
 if(store != undefined) {
-    (store as relationalStore.RdbStore).attach(context, STORE_CONFIG2, "attachDB2", 10).then((number: number) => {
+    (store as relationalStore.RdbStore).attach(this.context, STORE_CONFIG2, "attachDB2", 10).then((number: number) => {
         console.info(`attach succeeded, number is ${number}`);
     }).catch ((err: BusinessError) => {
         console.error(`attach failed, code is ${err.code},message is ${err.message}`);

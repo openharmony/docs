@@ -30,7 +30,7 @@ publish(request: NotificationRequest, userId: number, callback: AsyncCallback\<v
 
 | 参数名     | 类型                                        | 必填 | 说明                                        |
 | -------- | ----------------------------------------- | ---- | ------------------------------------------- |
-| request  | [NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest) | 是   | 用于设置要发布通知的内容和相关配置信息。 |
+| request  | [NotificationRequest](js-apis-inner-notification-notificationRequest-sys.md#notificationrequest) | 是   | 用于设置要发布通知的内容和相关配置信息。 |
 | userId   | number                                      | 是   | 用户ID。                           |
 | callback | AsyncCallback\<void\>                       | 是   | 被指定的回调方法。                           |
 
@@ -103,7 +103,7 @@ publish(request: NotificationRequest, userId: number): Promise\<void\>
 
 | 参数名     |  类型                                        | 必填 | 说明                                        |
 | -------- | ----------------------------------------- | ---- | ------------------------------------------- |
-| request  | [NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest) | 是   | 用于设置要发布通知的内容和相关配置信息。 |
+| request  | [NotificationRequest](js-apis-inner-notification-notificationRequest-sys.md#notificationrequest) | 是   | 用于设置要发布通知的内容和相关配置信息。 |
 | userId   | number                                      | 是   | 用户ID。                           |
 
 **返回值：**
@@ -379,7 +379,7 @@ notificationSlotArray[0] = notificationSlot;
 notificationManager.addSlots(notificationSlotArray).then(() => {
 	console.info("addSlots success");
 }).catch((err: Base.BusinessError) => {
-    console.error(`addSlot fail: ${JSON.stringify(err)}`);
+    console.error(`addSlots fail: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -425,9 +425,9 @@ import Base from '@ohos.base';
 
 let setNotificationEnableCallback = (err: Base.BusinessError): void => {
     if (err) {
-        console.error(`setNotificationEnableCallback failed, code is ${err.code}, message is ${err.message}`);
+        console.error(`setNotificationEnable failed, code is ${err.code}, message is ${err.message}`);
     } else {
-        console.info("setNotificationEnableCallback success");
+        console.info("setNotificationEnable success");
     }
 }
 let bundle: notificationManager.BundleOption = {
@@ -501,6 +501,12 @@ getAllNotificationEnabledBundles(): Promise<Array<BundleOption\>>;
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
 
 **系统接口**: 此接口为系统接口。
+
+**返回值：**
+
+| 类型      | 说明        | 
+|---------|-----------|
+| Promise<Array<BundleOption\>> | 返回允许通知的应用程序列表。 | 
 
 **错误码：**
 
@@ -1403,7 +1409,7 @@ getAllActiveNotifications(callback: AsyncCallback\<Array\<NotificationRequest>>)
 
 | 参数名     | 类型                                                         | 必填 | 说明                 |
 | -------- | ------------------------------------------------------------ | ---- | -------------------- |
-| callback | AsyncCallback\<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest)>> | 是   | 获取活动通知回调函数。 |
+| callback | AsyncCallback\<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest-sys.md#notificationrequest)>> | 是   | 获取活动通知回调函数。 |
 
 **错误码：**
 
@@ -1436,7 +1442,7 @@ notificationManager.getAllActiveNotifications(getAllActiveNotificationsCallback)
 
 ## notificationManager.getAllActiveNotifications
 
-getAllActiveNotifications(): Promise\<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest)\>\>
+getAllActiveNotifications(): Promise\<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest-sys.md#notificationrequest)\>\>
 
 获取当前未删除的所有通知。使用Promise异步回调。
 
@@ -1450,7 +1456,7 @@ getAllActiveNotifications(): Promise\<Array\<[NotificationRequest](js-apis-inner
 
 | 类型                                                        | 说明                                                         |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest)\>\> | 以Promise形式返回获取活动通知。 |
+| Promise\<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest-sys.md#notificationrequest)\>\> | 以Promise形式返回获取活动通知。 |
 
 **错误码：**
 
@@ -1495,7 +1501,7 @@ getActiveNotificationByFilter(filter: NotificationFilter, callback: AsyncCallbac
 | 参数名     | 类型                                                         | 必填 | 说明                           |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------ |
 | filter   | [NotificationFilter](js-apis-inner-notification-notificationRequest-sys.md#notificationfilter11) | 是   | 查询普通实况窗的过滤条件。 |
-| callback | AsyncCallback\<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest)>> | 是   | 获取满足条件的普通实况通知信息的回调函数。 |
+| callback | AsyncCallback\<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest-sys.md#notificationrequest)>> | 是   | 获取满足条件的普通实况通知信息的回调函数。 |
 
 **错误码：**
 
@@ -1558,7 +1564,7 @@ getActiveNotificationByFilter(filter: NotificationFilter): Promise\<Notification
 
 | 类型                                                         | 说明                                    |
 | ------------------------------------------------------------ | --------------------------------------- |
-| Promise\<[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest)\> | 以Promise形式返回获取的满足条件的普通实况通知信息。 |
+| Promise\<[NotificationRequest](js-apis-inner-notification-notificationRequest-sys.md#notificationrequest)\> | 以Promise形式返回获取的满足条件的普通实况通知信息。 |
 
 **错误码：**
 
@@ -2173,7 +2179,7 @@ let isSupportDoNotDisturbModeCallback = (err: Base.BusinessError, data: boolean)
     if (err) {
         console.error(`isSupportDoNotDisturbMode failed, code is ${err.code}, message is ${err.message}`);
     } else {
-        console.info("isSupportDoNotDisturbMode success");
+        console.info("isSupportDoNotDisturbMode success, data: " + JSON.stringify(data));
     }
 }
 
@@ -2217,9 +2223,9 @@ isSupportDoNotDisturbMode(): Promise\<boolean\>
 import Base from '@ohos.base';
 
 notificationManager.isSupportDoNotDisturbMode().then((data: boolean) => {
-	console.info("supportDoNotDisturbMode success, data: " + JSON.stringify(data));
+	console.info("isSupportDoNotDisturbMode success, data: " + JSON.stringify(data));
 }).catch((err: Base.BusinessError) => {
-    console.error(`supportDoNotDisturbMode fail: ${JSON.stringify(err)}`);
+    console.error(`isSupportDoNotDisturbMode fail: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -2367,7 +2373,7 @@ let setDistributedEnableByBundleCallback = (err: Base.BusinessError): void => {
     if (err) {
         console.error(`setDistributedEnableByBundle failed, code is ${err.code}, message is ${err.message}`);
     } else {
-        console.info("enableDistributedByBundle success");
+        console.info("setDistributedEnableByBundle success");
     }
 };
 let bundle: notificationManager.BundleOption = {
@@ -2648,7 +2654,7 @@ publishAsBundle(request: NotificationRequest, representativeBundle: string, user
 
 | 参数名               | 类型                                        | 必填 | 说明                                     |
 | -------------------- | ------------------------------------------- | ---- | ---------------------------------------- |
-| request              | [NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest) | 是   | 用于设置要发布通知的内容和相关配置信息。 |
+| request              | [NotificationRequest](js-apis-inner-notification-notificationRequest-sys.md#notificationrequest) | 是   | 用于设置要发布通知的内容和相关配置信息。 |
 | representativeBundle | string                                      | 是   | 被代理应用的包名。                       |
 | userId               | number                                      | 是   | 用户ID。                                 |
 | callback             | AsyncCallback\<void\>                        | 是   | 发布代理通知的回调方法。                 |
@@ -2720,7 +2726,7 @@ publishAsBundle(request: NotificationRequest, representativeBundle: string, user
 
 | 参数名               | 类型                                        | 必填 | 说明                                          |
 | -------------------- | ------------------------------------------- | ---- | --------------------------------------------- |
-| request              | [NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest) | 是   | 用于设置要发布通知的内容和相关配置信息。 |
+| request              | [NotificationRequest](js-apis-inner-notification-notificationRequest-sys.md#notificationrequest) | 是   | 用于设置要发布通知的内容和相关配置信息。 |
 | representativeBundle | string                                      | 是   | 被代理应用的包名。                            |
 | userId               | number                                      | 是   | 用户ID。                            |
 
@@ -2794,7 +2800,7 @@ publishAsBundle(representativeBundle: BundleOption, request: NotificationRequest
 | 参数名               | 类型                                        | 必填 | 说明                                          |
 |----------------------|--------------------------------------------|------|-----------------------------------------------|
 | representativeBundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)  | 是   | 被代理应用的包信息。                            |
-| request              | [NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest) | 是   | 用于设置要发布通知的内容和相关配置信息。 |
+| request              | [NotificationRequest](js-apis-inner-notification-notificationRequest-sys.md#notificationrequest) | 是   | 用于设置要发布通知的内容和相关配置信息。 |
 
 **返回值：**
 
@@ -3279,8 +3285,8 @@ isNotificationSlotEnabled(bundle: BundleOption, type: SlotType, callback: AsyncC
 ```ts
 import Base from '@ohos.base';
 
-// isNotificationSlotEnabled
-let getEnableSlotCallback = (err: Base.BusinessError, data: boolean): void => {
+// isNotificationSlotEnabledCallback
+let isNotificationSlotEnabledCallback = (err: Base.BusinessError, data: boolean): void => {
     if (err) {
         console.error(`isNotificationSlotEnabled failed, code is ${err.code}, message is ${err.message}`);
     } else {
@@ -3291,7 +3297,7 @@ let getEnableSlotCallback = (err: Base.BusinessError, data: boolean): void => {
 notificationManager.isNotificationSlotEnabled(
     { bundle: "ohos.samples.notification", },
     notificationManager.SlotType.SOCIAL_COMMUNICATION,
-    getEnableSlotCallback);
+    isNotificationSlotEnabledCallback);
 ```
 
 ## notificationManager.isNotificationSlotEnabled
@@ -3389,14 +3395,14 @@ import Base from '@ohos.base';
 
 let userId: number = 100;
 let enable: boolean = true;
-let callback = (err: Base.BusinessError): void => {
+let setSyncNotificationEnabledWithoutAppCallback = (err: Base.BusinessError): void => {
     if (err) {
         console.error(`setSyncNotificationEnabledWithoutApp failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("setSyncNotificationEnabledWithoutApp success");
     }
 }
-notificationManager.setSyncNotificationEnabledWithoutApp(userId, enable, callback);
+notificationManager.setSyncNotificationEnabledWithoutApp(userId, enable, setSyncNotificationEnabledWithoutAppCallback);
 ```
 
 
@@ -3495,9 +3501,9 @@ import Base from '@ohos.base';
 let userId: number = 100;
 let getSyncNotificationEnabledWithoutAppCallback = (err: Base.BusinessError, data: boolean): void => {
     if (err) {
-        console.info('getSyncNotificationEnabledWithoutAppCallback, err:' + err);
+        console.info(`getSyncNotificationEnabledWithoutAppCallback failed, code is ${err.code}, message is ${err.message}`);
     } else {
-        console.info('getSyncNotificationEnabledWithoutAppCallback, data:' + data);
+        console.info("getSyncNotificationEnabledWithoutAppCallback success, data: " + JSON.stringify(data));
     }
 }
 notificationManager.getSyncNotificationEnabledWithoutApp(userId, getSyncNotificationEnabledWithoutAppCallback);
@@ -3549,7 +3555,7 @@ import Base from '@ohos.base';
 
 let userId: number = 100;
 notificationManager.getSyncNotificationEnabledWithoutApp(userId).then((data: boolean) => {
-  console.info('getSyncNotificationEnabledWithoutApp, data:' + data);
+  console.info('getSyncNotificationEnabledWithoutApp, data: ' + JSON.stringify(data));
 }).catch((err: Base.BusinessError) => {
     console.error(`getSyncNotificationEnabledWithoutApp fail: ${JSON.stringify(err)}`);
 });
@@ -3804,7 +3810,7 @@ subscribeSystemLiveView(subscriber: SystemLiveViewSubscriber): Promise\<void>;
 import Base from '@ohos.base';
 
 let onResponseCallback = (id:number, option:notificationManager.ButtonOptions) => {
-    console.info("response callback: " + JSON.stringify(option) + "notificationId" + id);
+    console.info("onResponseCallback: " + JSON.stringify(option) + "notificationId" + id);
 }
 let subscriber: notificationManager.SystemLiveViewSubscriber  = {
     onResponse: onResponseCallback,
@@ -3926,7 +3932,7 @@ let bundle: notificationManager.BundleOption = {
 };
 let deviceType: string = "phone";
 notificationManager.isDistributedEnabledByBundle(bundle, deviceType).then((data: boolean) => {
-    console.info("isDistributedEnabledByBundle success, data:" + data);
+    console.info("isDistributedEnabledByBundle success, data: " + JSON.stringify(data));
 }).catch((err: Base.BusinessError) => {
     console.error(`isDistributedEnabledByBundle fail: ${JSON.stringify(err)}`);
 });
@@ -4352,9 +4358,9 @@ let templates: Array<notificationManager.DoNotDisturbProfile> = [
 ]
 
 notificationManager.addDoNotDisturbProfile(templates).then(() => {
-  console.info("Add do not disturb templates success.");
+  console.info("addDoNotDisturbProfile success.");
 }).catch((error: Base.BusinessError) => {
-  console.error(`Add do not disturb templates fail: ${JSON.stringify(error)}`);
+  console.error(`addDoNotDisturbProfile fail: ${JSON.stringify(error)}`);
 });
 ```
 
@@ -4408,9 +4414,9 @@ let templates: Array<notificationManager.DoNotDisturbProfile> = [
   }
 ]
 notificationManager.removeDoNotDisturbProfile(templates).then(() => {
-  console.info("Remove do not disturb templates success.");
+  console.info("removeDoNotDisturbProfile success.");
 }).catch((error: Base.BusinessError) => {
-  console.error(`Remove do not disturb templates fail: ${JSON.stringify(error)}`);
+  console.error(`removeDoNotDisturbProfile fail: ${JSON.stringify(error)}`);
 });
 ```
 
@@ -4442,7 +4448,7 @@ setAdditionalConfig(key: string, value: string): Promise\<number\>
 
 | 参数名   | 类型             | 必填 | 说明           |
 | ------ | ---------------- | ---- | -------------- |
-| key   | string | 是  | 附加配置键。目前仅支持`RING_TRUSTLIST_PKG`，表示应用支持使用[自定义铃声](./js-apis-inner-notification-notificationRequest.md#notificationrequest-1)。 |
+| key   | string | 是  | 附加配置键。目前仅支持`RING_TRUSTLIST_PKG`，表示应用支持使用[自定义铃声](./js-apis-inner-notification-notificationRequest-sys.md#notificationrequest-1)。 |
 | value   | string | 是  | 附加配置值。参数示例：[bundleName1,bundleName2]。 |
 
 **返回值：**
@@ -4466,9 +4472,9 @@ setAdditionalConfig(key: string, value: string): Promise\<number\>
 ```ts
 import Base from '@ohos.base';
 
-notificationManager.setAdditionalConfig('RING_TRUSTLIST_PKG','[bundleName1,bundleName2]').then((num: number) => {
-  console.info("Set Additional Config success.");
+notificationManager.setAdditionalConfig('RING_TRUSTLIST_PKG','[bundleName1,bundleName2]').then((data: number) => {
+  console.info("setAdditionalConfig success, data: " + JSON.stringify(data));
 }).catch((error: Base.BusinessError) => {
-  console.error(`Set Additional Config fail: ${JSON.stringify(error)}`);
+  console.error(`setAdditionalConfig fail: ${JSON.stringify(error)}`);
 });
 ```

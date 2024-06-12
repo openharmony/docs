@@ -509,7 +509,7 @@ const callback = (systemBarTintState: window.SystemBarTintState) => {
 try {
   window.on('systemBarTintChange', callback);
 } catch (exception) {
-  console.error('Failed to enable the listener for systemBarTint changes. Cause: ' + JSON.stringify(exception));
+  console.error(`Failed to enable the listener for systemBarTint changes. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 try {
   window.off('systemBarTintChange', callback);
@@ -595,7 +595,7 @@ const callback = (bool: boolean) => {
 try {
   window.on('gestureNavigationEnabledChange', callback);
 } catch (exception) {
-  console.error('Failed to enable the listener for gesture navigation status changes. Cause: ' + JSON.stringify(exception));
+  console.error(`Failed to enable the listener for gesture navigation status changes. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 try {
   window.off('gestureNavigationEnabledChange', callback);
@@ -681,7 +681,7 @@ const callback = (bool: boolean) => {
 try {
   window.on('waterMarkFlagChange', callback);
 } catch (exception) {
-  console.error('Failed to enable the listener for watermark flag changes. Cause: ' + JSON.stringify(exception));
+  console.error(`Failed to enable the listener for watermark flag changes. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 try {
   window.off('waterMarkFlagChange', callback);
@@ -1204,7 +1204,7 @@ promise.then(() => {
 
 setWindowMode(mode: WindowMode, callback: AsyncCallback&lt;void&gt;): void
 
-设置窗口模式，使用callback异步回调。
+设置主窗口模式，使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1230,20 +1230,37 @@ setWindowMode(mode: WindowMode, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let mode = window.WindowMode.FULLSCREEN;
-try {
-  windowClass.setWindowMode(mode, (err: BusinessError) => {
-    const errCode: number = err.code;
-    if (errCode) {
-      console.error(`Failed to set the window mode. Cause code: ${err.code}, message: ${err.message}`);
-      return;
-    }
-    console.info('Succeeded in setting the window mode.');
-  });
-} catch (exception) {
-  console.error(`Failed to set the window mode. Cause code: ${exception.code}, message: ${exception.message}`);
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      windowClass = data;
+      let mode = window.WindowMode.FULLSCREEN;
+      try {
+        windowClass.setWindowMode(mode, (err: BusinessError) => {
+          const errCode: number = err.code;
+          if (errCode) {
+            console.error(`Failed to set the window mode. Cause code: ${err.code}, message: ${err.message}`);
+            return;
+          }
+          console.info('Succeeded in setting the window mode.');
+        });
+      } catch (exception) {
+        console.error(`Failed to set the window mode. Cause code: ${exception.code}, message: ${exception.message}`);
+      }
+    });
+  }
 }
 ```
 
@@ -1251,7 +1268,7 @@ try {
 
 setWindowMode(mode: WindowMode): Promise&lt;void&gt;
 
-设置窗口类型，使用Promise异步回调。
+设置主窗口模式，使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1282,18 +1299,35 @@ setWindowMode(mode: WindowMode): Promise&lt;void&gt;
 **示例：**
 
 ```ts
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let mode = window.WindowMode.FULLSCREEN;
-try {
-  let promise = windowClass.setWindowMode(mode);
-  promise.then(() => {
-    console.info('Succeeded in setting the window mode.');
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to set the window mode. Cause code: ${err.code}, message: ${err.message}`);
-  });
-} catch (exception) {
-  console.error(`Failed to set the window mode. Cause code: ${exception.code}, message: ${exception.message}`);
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      windowClass = data;
+      let mode = window.WindowMode.FULLSCREEN;
+      try {
+        let promise = windowClass.setWindowMode(mode);
+        promise.then(() => {
+          console.info('Succeeded in setting the window mode.');
+        }).catch((err: BusinessError) => {
+          console.error(`Failed to set the window mode. Cause code: ${err.code}, message: ${err.message}`);
+        });
+      } catch (exception) {
+        console.error(`Failed to set the window mode. Cause code: ${exception.code}, message: ${exception.message}`);
+      }
+    });
+  }
 }
 ```
 
@@ -1687,7 +1721,7 @@ try {
 
 setForbidSplitMove(isForbidSplitMove: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-设置窗口在分屏模式下是否被禁止移动，使用callback异步回调。
+设置主窗口在分屏模式下是否被禁止移动，使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1713,20 +1747,37 @@ setForbidSplitMove(isForbidSplitMove: boolean, callback: AsyncCallback&lt;void&g
 **示例：**
 
 ```ts
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let isForbidSplitMove: boolean = true;
-try {
-  windowClass.setForbidSplitMove(isForbidSplitMove, (err: BusinessError) => {
-    const errCode: number = err.code;
-    if (errCode) {
-      console.error(`Failed to forbid window moving in split screen mode. Cause code: ${err.code}, message: ${err.message}`);
-      return;
-    }
-    console.info('Succeeded in forbidding window moving in split screen mode.');
-  });
-} catch (exception) {
-  console.error(`Failed to forbid window moving in split screen mode. Cause code: ${exception.code}, message: ${exception.message}`);
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      windowClass = data;
+      let isForbidSplitMove: boolean = true;
+      try {
+        windowClass.setForbidSplitMove(isForbidSplitMove, (err: BusinessError) => {
+          const errCode: number = err.code;
+          if (errCode) {
+            console.error(`Failed to forbid window moving in split screen mode. Cause code: ${err.code}, message: ${err.message}`);
+            return;
+          }
+          console.info('Succeeded in forbidding window moving in split screen mode.');
+        });
+      } catch (exception) {
+        console.error(`Failed to forbid window moving in split screen mode. Cause code: ${exception.code}, message: ${exception.message}`);
+      }
+    });
+  }
 }
 ```
 
@@ -1734,7 +1785,7 @@ try {
 
 setForbidSplitMove(isForbidSplitMove: boolean): Promise&lt;void&gt;
 
-设置窗口在分屏模式下是否被禁止移动，使用Promise异步回调。
+设置主窗口在分屏模式下是否被禁止移动，使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1765,18 +1816,35 @@ setForbidSplitMove(isForbidSplitMove: boolean): Promise&lt;void&gt;
 **示例：**
 
 ```ts
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let isForbidSplitMove: boolean = true;
-try {
-  let promise = windowClass.setForbidSplitMove(isForbidSplitMove);
-  promise.then(() => {
-    console.info('Succeeded in forbidding window moving in split screen mode.');
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to forbid window moving in split screen mode. Cause code: ${err.code}, message: ${err.message}`);
-  });
-} catch (exception) {
-  console.error(`Failed to forbid window moving in split screen mode. Cause code: ${exception.code}, message: ${exception.message}`);
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      windowClass = data;
+      let isForbidSplitMove: boolean = true;
+      try {
+        let promise = windowClass.setForbidSplitMove(isForbidSplitMove);
+        promise.then(() => {
+          console.info('Succeeded in forbidding window moving in split screen mode.');
+        }).catch((err: BusinessError) => {
+          console.error(`Failed to forbid window moving in split screen mode. Cause code: ${err.code}, message: ${err.message}`);
+        });
+      } catch (exception) {
+        console.error(`Failed to forbid window moving in split screen mode. Cause code: ${exception.code}, message: ${exception.message}`);
+      }
+    });
+  }
 }
 ```
 
@@ -2464,17 +2532,41 @@ raiseAboveTarget(windowId: number, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-// windowClass的获取需放在targetWindow之上
-let targetWindow: window.Window = windowClass;
-let properties = targetWindow.getWindowProperties();
-let targetId = properties.id;
-windowClass.raiseAboveTarget(targetId, (err) => {
-    if (err.code) {
-        console.error(`Failed to raise the subWindow to target subWindow top. Cause code: ${err.code}, message: ${err.message}`);
-        return;
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    // 创建子窗
+    try {
+      let subWindow = windowStage.createSubWindow("testSubWindow");
+      subWindow.then((data) => {
+        if (data == null) {
+          console.error("Failed to create the subWindow. Cause: The data is empty");
+          return;
+        }
+        windowClass = data;
+        // windowClass的获取需放在targetWindow之上
+        let targetWindow: window.Window = windowClass;
+        let properties = targetWindow.getWindowProperties();
+        let targetId = properties.id;
+        windowClass.raiseAboveTarget(targetId, (err) => {
+          if (err.code) {
+            console.error(`Failed to raise the subWindow to target subWindow top. Cause code: ${err.code}, message: ${err.message}`);
+            return;
+          }
+          console.info('Succeeded in raising the subWindow to target subWindow top.');
+        });
+      });
+    } catch (exception) {
+      console.error(`Failed to create the subWindow. Cause code: ${exception.code}, message: ${exception.message}`);
     }
-    console.info('Succeeded in raising the subWindow to target subWindow top.');
-});
+  }
+}
 ```
 
 ### raiseAboveTarget<sup>10+</sup>
@@ -2516,17 +2608,42 @@ raiseAboveTarget(windowId: number): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-// windowClass的获取需放在targetWindow之上
-let targetWindow: window.Window = windowClass;
-let properties = targetWindow.getWindowProperties();
-let targetId = properties.id;
-let promise = windowClass.raiseAboveTarget(targetId);
-promise.then(()=> {
-    console.info('Succeeded in raising the subWindow to target subWindow top.');
-}).catch((err)=>{
-    console.error(`Failed to raise the subWindow to target subWindow top. Cause code: ${err.code}, message: ${err.message}`);
-});
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    // 创建子窗
+    try {
+      let subWindow = windowStage.createSubWindow("testSubWindow");
+      subWindow.then((data) => {
+        if (data == null) {
+          console.error("Failed to create the subWindow. Cause: The data is empty");
+          return;
+        }
+        windowClass = data;
+        // windowClass的获取需放在targetWindow之上
+        let targetWindow: window.Window = windowClass;
+        let properties = targetWindow.getWindowProperties();
+        let targetId = properties.id;
+        let promise = windowClass.raiseAboveTarget(targetId);
+        promise.then(()=> {
+          console.info('Succeeded in raising the subWindow to target subWindow top.');
+        }).catch((err: BusinessError)=>{
+          console.error(`Failed to raise the subWindow to target subWindow top. Cause code: ${err.code}, message: ${err.message}`);
+        });
+      });
+    } catch (exception) {
+      console.error(`Failed to create the subWindow. Cause code: ${exception.code}, message: ${exception.message}`);
+    }
+  }
+}
 ```
+
 ### setRaiseByClickEnabled<sup>10+</sup>
 
 setRaiseByClickEnabled(enable: boolean, callback: AsyncCallback&lt;void&gt;): void
@@ -2563,14 +2680,38 @@ setRaiseByClickEnabled(enable: boolean, callback: AsyncCallback&lt;void&gt;): vo
 **示例：**
 
 ```ts
-let enabled = false;
-windowClass.setRaiseByClickEnabled(enabled, (err) => {
-    if (err.code) {
-        console.error(`Failed to disable the raise-by-click function. Cause code: ${err.code}, message: ${err.message}`);
-        return;
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    // 创建子窗
+    try {
+      let subWindow = windowStage.createSubWindow("testSubWindow");
+      subWindow.then((data) => {
+        if (data == null) {
+          console.error("Failed to create the subWindow. Cause: The data is empty");
+          return;
+        }
+        windowClass = data;
+        let enabled = false;
+        windowClass.setRaiseByClickEnabled(enabled, (err) => {
+          if (err.code) {
+            console.error(`Failed to disable the raise-by-click function. Cause code: ${err.code}, message: ${err.message}`);
+            return;
+          }
+          console.info('Succeeded in disabling the raise-by-click function.');
+        });
+      });
+    } catch (exception) {
+      console.error(`Failed to create the subWindow. Cause code: ${exception.code}, message: ${exception.message}`);
     }
-    console.info('Succeeded in disabling the raise-by-click function.');
-});
+  }
+}
 ```
 
 ### setRaiseByClickEnabled<sup>10+</sup>
@@ -2614,13 +2755,37 @@ setRaiseByClickEnabled(enable: boolean): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-let enabled = false;
-let promise = windowClass.setRaiseByClickEnabled(enabled);
-promise.then(()=> {
-    console.info('Succeeded in disabling the raise-by-click function.');
-}).catch((err)=>{
-    console.error(`Failed to disable the raise-by-click function. Cause code: ${err.code}, message: ${err.message}`);
-});
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    // 创建子窗
+    try {
+      let subWindow = windowStage.createSubWindow("testSubWindow");
+      subWindow.then((data) => {
+        if (data == null) {
+          console.error("Failed to create the subWindow. Cause: The data is empty");
+          return;
+        }
+        windowClass = data;
+        let enabled = false;
+        let promise = windowClass.setRaiseByClickEnabled(enabled);
+        promise.then(()=> {
+          console.info('Succeeded in disabling the raise-by-click function.');
+        }).catch((err: BusinessError)=>{
+          console.error(`Failed to disable the raise-by-click function. Cause code: ${err.code}, message: ${err.message}`);
+        });
+      });
+    } catch (exception) {
+      console.error(`Failed to create the subWindow. Cause code: ${exception.code}, message: ${exception.message}`);
+    }
+  }
+}
 ```
 
 ### setResizeByDragEnabled<sup>10+</sup>
@@ -2688,7 +2853,7 @@ export default class EntryAbility extends UIAbility {
                 }
                 console.info('Succeeded in setting the function of disabling the resize by dragg window.');
             });
-        })
+        });
     }
 };
 ```
@@ -2732,6 +2897,7 @@ setResizeByDragEnabled(enable: boolean): Promise&lt;void&gt;
 ```ts
 // EntryAbility.ets
 import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
@@ -2759,10 +2925,10 @@ export default class EntryAbility extends UIAbility {
             let promise = mainWindow.setResizeByDragEnabled(enabled);
             promise.then(()=> {
                 console.info('Succeeded in setting the function of disabling the resize by dragg window.');
-            }).catch((err)=>{
+            }).catch((err: BusinessError)=>{
                 console.error(`Failed to set the function of disabling the resize by dragg window. Cause code: ${err.code}, message: ${err.message}`);
             });
-        })
+        });
     }
 };
 ```
@@ -2835,7 +3001,7 @@ export default class EntryAbility extends UIAbility {
         }
         console.info('Succeeded in hiding the non-system floating windows.');
       });
-    })
+    });
   }
 }
 ```
@@ -2882,6 +3048,7 @@ hideNonSystemFloatingWindows(shouldHide: boolean): Promise&lt;void&gt;
 ```ts
 // EntryAbility.ets
 import { UIAbility, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
@@ -2909,10 +3076,10 @@ export default class EntryAbility extends UIAbility {
       let promise = mainWindow.hideNonSystemFloatingWindows(shouldHide);
       promise.then(()=> {
         console.info('Succeeded in hiding the non-system floating windows.');
-      }).catch((err)=>{
+      }).catch((err: BusinessError)=>{
         console.error(`Failed to hide the non-system floating windows. Cause code: ${err.code}, message: ${err.message}`);
       });
-    })
+    });
   }
 }
 ```
@@ -3416,7 +3583,7 @@ export class AnimationConfig {
     };
     windowClass.showWithAnimation(()=>{
       console.info('Show with animation success');
-    })
+    });
   }
 }
 ```
@@ -3498,7 +3665,7 @@ export class AnimationConfig {
     };
     windowClass.hideWithAnimation(()=>{
       console.info('hide with animation success');
-    })
+    });
   }
 }
 ```

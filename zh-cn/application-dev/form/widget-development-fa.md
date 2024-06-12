@@ -107,7 +107,7 @@ FA卡片开发，即基于[FA模型](../application-models/fa-model-development-
 
 ### 实现卡片生命周期接口
 
-创建FA模型的卡片，需实现卡片的生命周期接口。先参考[IDE开发服务卡片指南](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ohos-development-service-widget-0000001263280425)生成服务卡片模板。
+创建FA模型的卡片，需实现卡片的生命周期接口。先参考<!--RP1-->[IDE开发服务卡片指南](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ohos-development-service-widget-0000001263280425)<!--RP1End-->生成服务卡片模板。
 
 1. 在form.ts中，导入相关模块
    
@@ -151,10 +151,10 @@ let deleteFormInfo = async (formId: string, context: featureAbility.Context) => 
     const storage = await dataPreferences.getPreferences(context, DATA_STORAGE_PATH);
     // del form info
     await storage.delete(formId);
-    console.info(`deleteFormInfo, del form info successfully, formId: ${formId}`);
+    hilog.info(domain, TAG, `deleteFormInfo, del form info successfully, formId: ${formId}`);
     await storage.flush();
   } catch (err) {
-    console.error(`failed to deleteFormInfo, err: ${JSON.stringify(err)}`);
+    hilog.error(domain, TAG, `failed to deleteFormInfo, err: ${JSON.stringify(err)}`);
   }
 }
 
@@ -381,10 +381,10 @@ let deleteFormInfo = async (formId: string, context: featureAbility.Context) => 
     const storage = await dataPreferences.getPreferences(context, DATA_STORAGE_PATH);
     // del form info
     await storage.delete(formId);
-    console.info(`deleteFormInfo, del form info successfully, formId: ${formId}`);
+    hilog.info(domain, TAG, `deleteFormInfo, del form info successfully, formId: ${formId}`);
     await storage.flush();
   } catch (err) {
-    console.error(`failed to deleteFormInfo, err: ${JSON.stringify(err)}`);
+    hilog.error(domain, TAG, `failed to deleteFormInfo, err: ${JSON.stringify(err)}`);
   }
 }
 

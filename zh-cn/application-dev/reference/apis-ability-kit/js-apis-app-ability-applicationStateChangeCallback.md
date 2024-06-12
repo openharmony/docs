@@ -11,7 +11,7 @@ ApplicationStateChangeCallback模块提供应用上下文ApplicationContext对�
 ## 导入模块
 
 ```ts
-import ApplicationStateChangeCallback from '@ohos.app.ability.ApplicationStateChangeCallback';
+import { ApplicationStateChangeCallback } from '@kit.AbilityKit';
 ```
 
 ## ApplicationStateChangeCallback.onApplicationForeground
@@ -41,35 +41,34 @@ onApplicationBackground(): void
 **示例：**
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import ApplicationStateChangeCallback from '@ohos.app.ability.ApplicationStateChangeCallback';
+import { UIAbility, ApplicationStateChangeCallback } from '@kit.AbilityKit';
 
 let applicationStateChangeCallback: ApplicationStateChangeCallback = {
-    onApplicationForeground() {
-        console.info('applicationStateChangeCallback onApplicationForeground');
-    },
-    onApplicationBackground() {
-        console.info('applicationStateChangeCallback onApplicationBackground');
-    }
-}
+  onApplicationForeground() {
+    console.info('applicationStateChangeCallback onApplicationForeground');
+  },
+  onApplicationBackground() {
+    console.info('applicationStateChangeCallback onApplicationBackground');
+  }
+};
 
 export default class MyAbility extends UIAbility {
-    onCreate() {
-        console.log('MyAbility onCreate');
-        // 1.获取applicationContext
-        let applicationContext = this.context.getApplicationContext();
-        // 2.通过applicationContext注册应用前后台状态监听
-        if (applicationContext != undefined) {
-            applicationContext.on('applicationStateChange', applicationStateChangeCallback);
-        }
-        console.log('Resgiter applicationStateChangeCallback');
+  onCreate() {
+    console.log('MyAbility onCreate');
+    // 1.获取applicationContext
+    let applicationContext = this.context.getApplicationContext();
+    // 2.通过applicationContext注册应用前后台状态监听
+    if (applicationContext != undefined) {
+      applicationContext.on('applicationStateChange', applicationStateChangeCallback);
     }
-    onDestroy() {
-        let applicationContext = this.context.getApplicationContext();
-        // 1.通过applicationContext解除注册应用前后台状态监听
-        if (applicationContext != undefined) {
-            applicationContext.off('applicationStateChange', applicationStateChangeCallback);
-        }
+    console.log('Resgiter applicationStateChangeCallback');
+  }
+  onDestroy() {
+    let applicationContext = this.context.getApplicationContext();
+    // 1.通过applicationContext解除注册应用前后台状态监听
+    if (applicationContext != undefined) {
+      applicationContext.off('applicationStateChange', applicationStateChangeCallback);
     }
+  }
 }
 ```

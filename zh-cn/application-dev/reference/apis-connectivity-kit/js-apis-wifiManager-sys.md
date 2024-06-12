@@ -30,7 +30,7 @@ enableWifi(): void
 | **错误码ID** | **错误信息** |
 | -------- | -------- |
 |201 | Permission denied.                 |
-|202 | Non-system applications are not allowed to use system APIs. |
+|202 | System API is not allowed called by Non-system application. |
 |801 | Capability not supported.          | 
 | 2501000  | Operation failed.|
 | 2501003  | Failed for wifi is closing.|
@@ -66,7 +66,7 @@ disableWifi(): void
 | **错误码ID** | **错误信息** |
 | -------- | -------- |
 |201 | Permission denied.                 |
-|202 | Non-system applications are not allowed to use system APIs. |
+|202 | System API is not allowed called by Non-system application. |
 |801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 | 2501004  | Failed for wifi is opening.|
@@ -102,7 +102,7 @@ startScan(): void
 | **错误码ID** | **错误信息** |
 | -------- | -------- |
 |201 | Permission denied.                 |
-|202 | Non-system applications are not allowed to use system APIs. |
+|202 | System API is not allowed called by Non-system application. |
 |801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
@@ -134,10 +134,6 @@ setScanAlwaysAllowed(isScanAlwaysAllowed: boolean): void
 
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-|201 | Permission denied.                 |
-|202 | Non-system applications are not allowed to use system APIs. |
-|401 | Invalid parameter.                 |
-|801 | Capability not supported.          |
 | isScanAlwaysAllowed | boolean | 是 | 是否始终允许扫描。 |
 
 **错误码：**
@@ -146,6 +142,10 @@ setScanAlwaysAllowed(isScanAlwaysAllowed: boolean): void
 
 | **错误码ID** | **错误信息** |
   | -------- | -------- |
+|201 | Permission denied.                 |
+|202 | System API is not allowed called by Non-system application. |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+|801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
 ```ts
@@ -184,8 +184,7 @@ getScanAlwaysAllowed(): boolean
 | **错误码ID** | **错误信息** |
 | -------- | -------- |
 |201 | Permission denied.                 |
-|202 | Non-system applications are not allowed to use system APIs. |
-|401 | Invalid parameter.                 |
+|202 | System API is not allowed called by Non-system application. |
 |801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
@@ -233,8 +232,8 @@ addDeviceConfig(config: WifiDeviceConfig): Promise&lt;number&gt;
 | **错误码ID** | **错误信息** |
 | -------- | -------- |
 |201 | Permission denied.                 |
-|202 | Non-system applications are not allowed to use system APIs. |
-|401 | Invalid parameter.                 |
+|202 | System API is not allowed called by Non-system application. |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3.Parameter verification failed. |
 |801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
@@ -366,8 +365,8 @@ addDeviceConfig(config: WifiDeviceConfig, callback: AsyncCallback&lt;number&gt;)
 | **错误码ID** | **错误信息** |
 | -------- | -------- |
 |201 | Permission denied.                 |
-|202 | Non-system applications are not allowed to use system APIs. |
-|401 | Invalid parameter.                 |
+|202 | System API is not allowed called by Non-system application. |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3.Parameter verification failed. |
 |801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
@@ -416,8 +415,8 @@ connectToNetwork(networkId: number): void
 | **错误码ID** | **错误信息** |
 | -------- | -------- |
 |201 | Permission denied.                 |
-|202 | Non-system applications are not allowed to use system APIs. |
-|401 | Invalid parameter.                 |
+|202 | System API is not allowed called by Non-system application. |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3.Parameter verification failed. |
 |801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 | 2501001  | Wifi is closed.|
@@ -461,8 +460,8 @@ connectToDevice(config: WifiDeviceConfig): void
 | **错误码ID** | **错误信息** |
 | -------- | -------- |
 |201 | Permission denied.                 |
-|202 | Non-system applications are not allowed to use system APIs. |
-|401 | Invalid parameter.                 |
+|202 | System API is not allowed called by Non-system application. |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3.Parameter verification failed. |
 |801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 | 2501001  | Wifi is closed.|
@@ -504,7 +503,7 @@ disconnect(): void
 | **错误码ID** | **错误信息** |
 | -------- | -------- |
 |201 | Permission denied.                 |
-|202 | Non-system applications are not allowed to use system APIs. |
+|202 | System API is not allowed called by Non-system application. |
 |801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
@@ -599,7 +598,7 @@ getSupportedFeatures(): number
 | **错误码ID** | **错误信息** |
 | -------- | -------- |
 |201 | Permission denied.                 |
-|202 | Non-system applications are not allowed to use system APIs. |
+|202 | System API is not allowed called by Non-system application. |
 |801 | Capability not supported.          |
 | 2401000  | Operation failed.|
 
@@ -642,7 +641,7 @@ getDeviceMacAddress(): string[]
 | **错误码ID** | **错误信息** |
 | -------- | -------- |
 |201 | Permission denied.                 |
-|202 | Non-system applications are not allowed to use system APIs. |
+|202 | System API is not allowed called by Non-system application. |
 |801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 | 2501001  | wifi is closed.|
@@ -679,7 +678,7 @@ reassociate(): void
 | **错误码ID** | **错误信息** |
 | -------- | -------- |
 |201 | Permission denied.                 |
-|202 | Non-system applications are not allowed to use system APIs. |
+|202 | System API is not allowed called by Non-system application. |
 |801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 | 2501001  | Wifi is closed.|
@@ -714,7 +713,7 @@ reconnect(): void
 | **错误码ID** | **错误信息** |
 | -------- | -------- |
 |201 | Permission denied.                 |
-|202 | Non-system applications are not allowed to use system APIs. |
+|202 | System API is not allowed called by Non-system application. |
 |801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 | 2501001  | Wifi is closed.|
@@ -759,7 +758,7 @@ API 10起：ohos.permission.GET_WIFI_INFO 和 ohos.permission.GET_WIFI_CONFIG
 | **错误码ID** | **错误信息** |
 | -------- | -------- |
 |201 | Permission denied.                 |
-|202 | Non-system applications are not allowed to use system APIs. |
+|202 | System API is not allowed called by Non-system application. |
 |801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
@@ -806,8 +805,8 @@ updateNetwork(config: WifiDeviceConfig): number
 | **错误码ID** | **错误信息** |
 | -------- | -------- |
 |201 | Permission denied.                 |
-|202 | Non-system applications are not allowed to use system APIs. |
-|401 | Invalid parameter.                 |
+|202 | System API is not allowed called by Non-system application. |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3.Parameter verification failed. |
 |801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
@@ -853,8 +852,8 @@ disableNetwork(netId: number): void
 | **错误码ID** | **错误信息** |
 | -------- | -------- |
 |201 | Permission denied.                 |
-|202 | Non-system applications are not allowed to use system APIs. |
-|401 | Invalid parameter.                 |
+|202 | System API is not allowed called by Non-system application. |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3.Parameter verification failed. |
 |801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
@@ -889,7 +888,7 @@ removeAllNetwork(): void
 | **错误码ID** | **错误信息** |
 | -------- | -------- |
 |201 | Permission denied.                 |
-|202 | Non-system applications are not allowed to use system APIs. |
+|202 | System API is not allowed called by Non-system application. |
 |801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
@@ -929,8 +928,8 @@ removeDevice(id: number): void
 | **错误码ID** | **错误信息** |
 | -------- | -------- |
 |201 | Permission denied.                 |
-|202 | Non-system applications are not allowed to use system APIs. |
-|401 | Invalid parameter.                 |
+|202 | System API is not allowed called by Non-system application. |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3.Parameter verification failed. |
 |801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
@@ -971,7 +970,7 @@ get5GChannelList(): Array&lt;number&gt;
 | **错误码ID** | **错误信息** |
 | -------- | -------- |
 |201 | Permission denied.                 |
-|202 | Non-system applications are not allowed to use system APIs. |
+|202 | System API is not allowed called by Non-system application. |
 |801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
@@ -1040,6 +1039,18 @@ getDisconnectedReason(): DisconnectedReason
 | DISC_REASON_WRONG_PWD  | 1 | 密码错误。 |
 | DISC_REASON_CONNECTION_FULL  | 2 | 路由器的连接数已达到最大数量限制。 |
 
+## WifiCategory<sup>12+</sup>
+
+表示热点支持的最高wifi类别。
+
+**系统能力：** SystemCapability.Communication.WiFi.STA
+
+| 名称 | 值 | 说明 |
+| -------- | -------- | -------- |
+| DEFAULT | 1 | Default。Wifi6以下的wifi类别。 |
+| WIFI6 | 2 | Wifi6。 |
+| WIFI6_PLUS | 3 | Wifi6+。 |
+
 ## wifiManager.startPortalCertification<sup>11+</sup>
 
 startPortalCertification(): void
@@ -1059,7 +1070,7 @@ startPortalCertification(): void
 | **错误码ID** | **错误信息** |
 | -------- | -------- |
 |201 | Permission denied.                 |
-|202 | Non-system applications are not allowed to use system APIs. |
+|202 | System API is not allowed called by Non-system application. |
 |801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
@@ -1101,6 +1112,9 @@ enableHiLinkHandshake(isHiLinkEnable: boolean, bssid: string, config: WifiDevice
 
 | **错误码ID** | **错误信息** |
   | -------- | -------- |
+|201 | Permission denied.                 |
+|202 | System API is not allowed called by Non-system application. |
+|801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
 **示例：**
@@ -1142,7 +1156,7 @@ factoryReset(): void
 | **错误码ID** | **错误信息** |
 | -------- | -------- |
 |201 | Permission denied.                 |
-|202 | Non-system applications are not allowed to use system APIs. |
+|202 | System API is not allowed called by Non-system application. |
 |801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
@@ -1176,7 +1190,7 @@ enableHotspot(): void
 | **错误码ID** | **错误信息** |
 | -------- | -------- |
 |201 | Permission denied.                 |
-|202 | Non-system applications are not allowed to use system APIs. |
+|202 | System API is not allowed called by Non-system application. |
 |801 | Capability not supported.          |
 | 2601000  | Operation failed.|
 
@@ -1210,7 +1224,7 @@ disableHotspot(): void
 | **错误码ID** | **错误信息** |
 | -------- | -------- |
 |201 | Permission denied.                 |
-|202 | Non-system applications are not allowed to use system APIs. |
+|202 | System API is not allowed called by Non-system application. |
 |801 | Capability not supported.          |
 | 2601000  | Operation failed.|
 
@@ -1250,7 +1264,7 @@ isHotspotDualBandSupported(): boolean
 | **错误码ID** | **错误信息** |
 | -------- | -------- |
 |201 | Permission denied.                 |
-|202 | Non-system applications are not allowed to use system APIs. |
+|202 | System API is not allowed called by Non-system application. |
 |801 | Capability not supported.          |
 | 2601000  | Operation failed.|
 
@@ -1291,7 +1305,7 @@ isHotspotActive(): boolean
 | **错误码ID** | **错误信息** |
 | -------- | -------- |
 |201 | Permission denied.                 |
-|202 | Non-system applications are not allowed to use system APIs. |
+|202 | System API is not allowed called by Non-system application. |
 |801 | Capability not supported.          |
 | 2601000  | Operation failed.|
 
@@ -1332,8 +1346,8 @@ setHotspotConfig(config: HotspotConfig): void
 | **错误码ID** | **错误信息** |
 | -------- | -------- |
 |201 | Permission denied.                 |
-|202 | Non-system applications are not allowed to use system APIs. |
-|401 | Invalid parameter.                 |
+|202 | System API is not allowed called by Non-system application. |
+|401 | Invalid parameters. Possible causes: 1. Incorrect parameter types. 2.Parameter verification failed. |
 |801 | Capability not supported.          |
 | 2601000  | Operation failed.|
 
@@ -1399,7 +1413,7 @@ getHotspotConfig(): HotspotConfig
 | **错误码ID** | **错误信息** |
 | -------- | -------- |
 |201 | Permission denied.                 |
-|202 | Non-system applications are not allowed to use system APIs. |
+|202 | System API is not allowed called by Non-system application. |
 |801 | Capability not supported.          |
 | 2601000  | Operation failed.|
 
@@ -1444,7 +1458,7 @@ API 10起：ohos.permission.GET_WIFI_INFO 和 ohos.permission.MANAGE_WIFI_HOTSPO
 | **错误码ID** | **错误信息** |
 | -------- | -------- |
 |201 | Permission denied.                 |
-|202 | Non-system applications are not allowed to use system APIs. |
+|202 | System API is not allowed called by Non-system application. |
 |801 | Capability not supported.          |
 | 2601000  | Operation failed.|
 
@@ -1500,8 +1514,8 @@ addHotspotBlockList(stationInfo: StationInfo)
 | **错误码ID** | **错误信息** |
 | -------- | -------- |
 |201 | Permission denied.                 |
-|202 | Non-system applications are not allowed to use system APIs. |
-|401 | Invalid parameter.                 |
+|202 | System API is not allowed called by Non-system application. |
+|401 | Invalid parameters. Possible causes: 1. Incorrect parameter types. 2.Parameter verification failed. |
 |801 | Capability not supported.          |
 | 2601000  | Operation failed.|
 
@@ -1548,8 +1562,8 @@ delHotspotBlockList(stationInfo: StationInfo)
 | **错误码ID** | **错误信息** |
 | -------- | -------- |
 |201 | Permission denied.                 |
-|202 | Non-system applications are not allowed to use system APIs. |
-|401 | Invalid parameter.                 |
+|202 | System API is not allowed called by Non-system application. |
+|401 | Invalid parameters. Possible causes: 1. Incorrect parameter types. 2.Parameter verification failed. |
 |801 | Capability not supported.          |
 | 2601000  | Operation failed.|
 
@@ -1594,6 +1608,10 @@ getHotspotBlockList(): Array&lt;StationInfo&gt;
 
 | **错误码ID** | **错误信息** |
   | -------- | -------- |
+|201 | Permission denied.                 |
+|202 | System API is not allowed called by Non-system application. |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. |
+|801 | Capability not supported.          |
 | 2601000  | Operation failed.|
 
 **示例：**
@@ -1635,8 +1653,8 @@ deletePersistentGroup(netId: number): void
 | **错误码ID** | **错误信息** |
 | -------- | -------- |
 |201 | Permission denied.                 |
-|202 | Non-system applications are not allowed to use system APIs. |
-|401 | Invalid parameter.                 |
+|202 | System API is not allowed called by Non-system application. |
+|401 | Invalid parameters. Possible causes: 1. Incorrect parameter types. |
 |801 | Capability not supported.          |
 | 2801000  | Operation failed.|
 
@@ -1681,7 +1699,7 @@ API 10起：ohos.permission.GET_WIFI_INFO
 | **错误码ID** | **错误信息** |
 | -------- | -------- |
 |201 | Permission denied.                 |
-|202 | Non-system applications are not allowed to use system APIs. |
+|202 | System API is not allowed called by Non-system application. |
 |801 | Capability not supported.          |
 | 2801000  | Operation failed.|
 
@@ -1733,7 +1751,7 @@ API 10起：ohos.permission.GET_WIFI_INFO
 | **错误码ID** | **错误信息** |
 | -------- | -------- |
 |201 | Permission denied.                 |
-|202 | Non-system applications are not allowed to use system APIs. |
+|202 | System API is not allowed called by Non-system application. |
 |801 | Capability not supported.          |
 | 2801000  | Operation failed.|
 
@@ -1762,8 +1780,8 @@ setDeviceName(devName: string): void
 | **错误码ID** | **错误信息** |
 | -------- | -------- |
 |201 | Permission denied.                 |
-|202 | Non-system applications are not allowed to use system APIs. |
-|401 | Invalid parameter.                 |
+|202 | System API is not allowed called by Non-system application. |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3.Parameter verification failed. |
 |801 | Capability not supported.          |
 | 2801000  | Operation failed.|
 
@@ -1806,8 +1824,8 @@ on(type: "streamChange", callback: Callback&lt;number&gt;): void
 | **错误码ID** | **错误信息** |
 | -------- | -------- |
 |201 | Permission denied.                 |
-|202 | Non-system applications are not allowed to use system APIs. |
-|401 | Invalid parameter.                 |
+|202 | System API is not allowed called by Non-system application. |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 |801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
@@ -1837,8 +1855,8 @@ off(type: "streamChange", callback?: Callback&lt;number&gt;): void
 | **错误码ID** | **错误信息** |
 | -------- | -------- |
 |201 | Permission denied.                 |
-|202 | Non-system applications are not allowed to use system APIs. |
-|401 | Invalid parameter.                 |
+|202 | System API is not allowed called by Non-system application. |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 |801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
@@ -1883,8 +1901,8 @@ on(type: "deviceConfigChange", callback: Callback&lt;number&gt;): void
 | **错误码ID** | **错误信息** |
 | -------- | -------- |
 |201 | Permission denied.                 |
-|202 | Non-system applications are not allowed to use system APIs. |
-|401 | Invalid parameter.                 |
+|202 | System API is not allowed called by Non-system application. |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 |801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
@@ -1914,8 +1932,8 @@ off(type: "deviceConfigChange", callback?: Callback&lt;number&gt;): void
 | **错误码ID** | **错误信息** |
 | -------- | -------- |
 |201 | Permission denied.                 |
-|202 | Non-system applications are not allowed to use system APIs. |
-|401 | Invalid parameter.                 |
+|202 | System API is not allowed called by Non-system application. |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 |801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
@@ -1961,8 +1979,8 @@ on(type: "hotspotStaJoin", callback: Callback&lt;StationInfo&gt;): void
 | **错误码ID** | **错误信息** |
 | -------- | -------- |
 |201 | Permission denied.                 |
-|202 | Non-system applications are not allowed to use system APIs. |
-|401 | Invalid parameter.                 |
+|202 | System API is not allowed called by Non-system application. |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 |801 | Capability not supported.          |
 | 2601000  | Operation failed.|
 
@@ -1992,8 +2010,8 @@ off(type: "hotspotStaJoin", callback?: Callback&lt;StationInfo&gt;): void
 | **错误码ID** | **错误信息** |
 | -------- | -------- |
 |201 | Permission denied.                 |
-|202 | Non-system applications are not allowed to use system APIs. |
-|401 | Invalid parameter.                 |
+|202 | System API is not allowed called by Non-system application. |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 |801 | Capability not supported.          |
 | 2601000  | Operation failed.|
 
@@ -2039,8 +2057,8 @@ on(type: "hotspotStaLeave", callback: Callback&lt;StationInfo&gt;): void
 | **错误码ID** | **错误信息** |
 | -------- | -------- |
 |201 | Permission denied.                 |
-|202 | Non-system applications are not allowed to use system APIs. |
-|401 | Invalid parameter.                 |
+|202 | System API is not allowed called by Non-system application. |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 |801 | Capability not supported.          |
 | 2601000  | Operation failed.|
 
@@ -2070,8 +2088,8 @@ off(type: "hotspotStaLeave", callback?: Callback&lt;StationInfo&gt;): void
 | **错误码ID** | **错误信息** |
 | -------- | -------- |
 |201 | Permission denied.                 |
-|202 | Non-system applications are not allowed to use system APIs. |
-|401 | Invalid parameter.                 |
+|202 | System API is not allowed called by Non-system application. |
+|401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 |801 | Capability not supported.          |
 | 2601000  | Operation failed.|
 

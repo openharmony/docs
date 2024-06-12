@@ -14,6 +14,8 @@ Rotates the component.
 
 **Widget capability**: Since API version 9, this feature is supported in ArkTS widgets.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -46,6 +48,8 @@ Scales the component.
 
 **Widget capability**: Since API version 9, this feature is supported in ArkTS widgets.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -60,6 +64,8 @@ transform(value: Matrix4Transit)
 
 Sets the transformation matrix of the component.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -71,6 +77,8 @@ Sets the transformation matrix of the component.
 ## RotateOptions
 
 **Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 | Name                     | Type                      | Mandatory| Description                                                        |
 | ------------------------- | -------------------------- | ---- | ------------------------------------------------------------ |
@@ -87,6 +95,8 @@ Sets the transformation matrix of the component.
 
 **Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 | Name| Type                      | Mandatory| Description           |
 | ---- | -------------------------- | ---- | --------------- |
 | x    | number \| string | No  | Translation distance along the x-axis.|
@@ -96,6 +106,8 @@ Sets the transformation matrix of the component.
 ## ScaleOptions
 
 **Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 | Name   | Type                      | Mandatory| Description                                                        |
 | ------- | -------------------------- | ---- | ------------------------------------------------------------ |

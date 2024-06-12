@@ -479,13 +479,16 @@ parse(text: string): ISendable | null
 **示例：**
 
 ```ts
+import { lang } from '@kit.ArkTS';
+
+type ISendable = lang.ISendable;
 let jsonText = '{"name": "John", "age": 30, "city": "ChongQing"}';
-let obj = ArkTSUtils.ASON.parse(jsonText);
-console.info(obj.name);
+let obj = ArkTSUtils.ASON.parse(jsonText) as ISendable;
+console.info((obj as object)?.["name"]);
 // 期望输出: 'John'
-console.info(obj.age);
+console.info((obj as object)?.["age"]);
 // 期望输出: 30
-console.info(obj.city);
+console.info((obj as object)?.["city"]);
 // 期望输出: 'ChongQing'
 ```
 

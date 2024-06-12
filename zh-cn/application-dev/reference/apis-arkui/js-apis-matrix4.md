@@ -402,9 +402,13 @@ struct Test {
   build() {
     Column() { 
       Image($r("app.media.bg1")).transform(this.matrix1)
-        .width("40%")
         .height(100)
+        .margin({
+          top: 300
+        })
     }
+    .width("100%")
+    .height("100%")
   }
 }
 ```

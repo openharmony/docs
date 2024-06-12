@@ -180,6 +180,7 @@ import { CustomTheme, CustomColors, Theme, ThemeControl } from '@ohos.arkui.them
 class BlueColors implements CustomColors {
   fontPrimary = Color.White;
   backgroundPrimary = Color.Blue;
+  brand = Color.Blue; //品牌色
 }
 
 class PageCustomTheme implements CustomTheme {

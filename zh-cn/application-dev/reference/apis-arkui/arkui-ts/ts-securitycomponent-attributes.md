@@ -295,7 +295,7 @@ textIconSpace(value: Dimension)
 
 | 参数名 | 类型                   | 必填 | 说明                   |
 |------------|------|-------|---------|
-| valule | [Dimension](ts-types.md#dimension10) |否 |安全控件中图标和文字的间距。<br/>默认值：4vp|
+| value | [Dimension](ts-types.md#dimension10) |否 |安全控件中图标和文字的间距。<br/>默认值：4vp|
 
 ## width<sup>11+</sup>
 

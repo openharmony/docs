@@ -9,7 +9,7 @@
 ## **导入模块**
 
 ```js
-import tag from '@ohos.nfc.tag';
+import { tag } from '@kit.ConnectivityKit';
 ```
 
 ## tagSession
@@ -42,7 +42,7 @@ getTagInfo(): tag.TagInfo
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
+import { tag } from '@kit.ConnectivityKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', tagInfo is an Object given by nfc service when tag is dispatched.
 // the following getXXX, can be one of getIsoDep, getNdef, getMifareClassic, ...
@@ -73,7 +73,7 @@ connectTag(): boolean;
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
+import { tag } from '@kit.ConnectivityKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', tagInfo is an Object given by nfc service when tag is dispatched.
 // the following getXXX, can be one of getIsoDep, getNdef, getMifareClassic, ...
@@ -107,7 +107,7 @@ connect(): void;
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
+import { tag } from '@kit.ConnectivityKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', tagInfo is an Object given by nfc service when tag is dispatched.
 // the following getXXX, can be one of getIsoDep, getNdef, getMifareClassic, ...
@@ -115,8 +115,8 @@ import tag from '@ohos.nfc.tag';
 try {
     tag.getIsoDep(tagInfo).connect(); 
     console.log("tag connect success");
-} catch (busiError) {
-    console.log("tag connect busiError: " + busiError);
+} catch (businessError) {
+    console.log("tag connect businessError: " + businessError);
 }
 ```
 
@@ -136,7 +136,7 @@ reset(): void
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
+import { tag } from '@kit.ConnectivityKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', tagInfo is an Object given by nfc service when tag is dispatched.
 // the following getXXX, can be one of getIsoDep, getNdef, getMifareClassic, ...
@@ -169,7 +169,7 @@ resetConnection(): void
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
+import { tag } from '@kit.ConnectivityKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', tagInfo is an Object given by nfc service when tag is dispatched.
 // the following getXXX, can be one of getIsoDep, getNdef, getMifareClassic, ...
@@ -177,8 +177,8 @@ import tag from '@ohos.nfc.tag';
 try {
     tag.getIsoDep(tagInfo).resetConnection(); 
     console.log("tag resetConnection success");
-} catch (busiError) {
-    console.log("tag resetConnection busiError: " + busiError);
+} catch (businessError) {
+    console.log("tag resetConnection businessError: " + businessError);
 }
 ```
 
@@ -202,7 +202,7 @@ isTagConnected(): boolean
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
+import { tag } from '@kit.ConnectivityKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', tagInfo is an Object given by nfc service when tag is dispatched.
 // the following getXXX, can be one of getIsoDep, getNdef, getMifareClassic, ...
@@ -239,7 +239,7 @@ isConnected(): boolean
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
+import { tag } from '@kit.ConnectivityKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', tagInfo is an Object given by nfc service when tag is dispatched.
 // the following getXXX, can be one of getIsoDep, getNdef, getMifareClassic, ...
@@ -247,8 +247,8 @@ import tag from '@ohos.nfc.tag';
 try {
     let isConnected = tag.getIsoDep(tagInfo).isConnected(); 
     console.log("tag isConnected = " + isConnected);
-} catch (busiError) {
-    console.log("tag isConnected busiError: " + busiError);
+} catch (businessError) {
+    console.log("tag isConnected businessError: " + businessError);
 }
 ```
 
@@ -273,7 +273,7 @@ getMaxSendLength(): number
 
 **示例：**
 ```js
-import tag from '@ohos.nfc.tag';
+import { tag } from '@kit.ConnectivityKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', tagInfo is an Object given by nfc service when tag is dispatched.
 // the following getXXX, can be one of getIsoDep, getNdef, getMifareClassic, ...
@@ -310,7 +310,7 @@ getMaxTransmitSize(): number
 
 **示例：**
 ```js
-import tag from '@ohos.nfc.tag';
+import { tag } from '@kit.ConnectivityKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', tagInfo is an Object given by nfc service when tag is dispatched.
 // the following getXXX, can be one of getIsoDep, getNdef, getMifareClassic, ...
@@ -318,8 +318,8 @@ import tag from '@ohos.nfc.tag';
 try {
     let maxTransmitSize = tag.getIsoDep(tagInfo).getMaxTransmitSize(); 
     console.log("tag maxTransmitSize = " + maxTransmitSize);
-} catch (busiError) {
-    console.log("tag getMaxTransmitSize busiError: " + busiError);
+} catch (businessError) {
+    console.log("tag getMaxTransmitSize businessError: " + businessError);
 }
 ```
 
@@ -345,7 +345,7 @@ getSendDataTimeout(): number
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
+import { tag } from '@kit.ConnectivityKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', tagInfo is an Object given by nfc service when tag is dispatched.
 // the following getXXX, can be one of getIsoDep, getNdef, getMifareClassic, ...
@@ -385,7 +385,7 @@ getTimeout(): number
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
+import { tag } from '@kit.ConnectivityKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', tagInfo is an Object given by nfc service when tag is dispatched.
 // the following getXXX, can be one of getIsoDep, getNdef, getMifareClassic, ...
@@ -393,8 +393,8 @@ import tag from '@ohos.nfc.tag';
 try {
     let timeout = tag.getIsoDep(tagInfo).getTimeout(); 
     console.log("tag timeout = " + timeout);
-} catch (busiError) {
-    console.log("tag getTimeout busiError: " + busiError);
+} catch (businessError) {
+    console.log("tag getTimeout businessError: " + businessError);
 }
 ```
 
@@ -426,7 +426,7 @@ setSendDataTimeout(timeout: number): boolean
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
+import { tag } from '@kit.ConnectivityKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', tagInfo is an Object given by nfc service when tag is dispatched.
 // the following getXXX, can be one of getIsoDep, getNdef, getMifareClassic, ...
@@ -468,7 +468,7 @@ setTimeout(timeout: number): void
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
+import { tag } from '@kit.ConnectivityKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', tagInfo is an Object given by nfc service when tag is dispatched.
 // the following getXXX, can be one of getIsoDep, getNdef, getMifareClassic, ...
@@ -477,8 +477,8 @@ let timeoutMs = 700;  // change it to be correct.
 try {
     tag.getIsoDep(tagInfo).setTimeout(timeoutMs); 
     console.log("tag setTimeout success");
-} catch (busiError) {
-    console.log("tag setTimeout busiError: " + busiError);
+} catch (businessError) {
+    console.log("tag setTimeout businessError: " + businessError);
 }
 ```
 
@@ -510,7 +510,7 @@ sendData(data: number[]): Promise<number[]>
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
+import tag from '@kit.ConnectivityKit';
 import { BusinessError } from '@ohos.base';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', tagInfo is an Object given by nfc service when tag is dispatched.
@@ -557,7 +557,7 @@ sendData(data: number[], callback: AsyncCallback<number[]>): void
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
+import { tag } from '@kit.ConnectivityKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', tagInfo is an Object given by nfc service when tag is dispatched.
 // the following getXXX, can be one of getIsoDep, getNdef, getMifareClassic, ...
@@ -621,8 +621,8 @@ transmit(data: number[]): Promise<number[]>
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
-import { BusinessError } from '@ohos.base';
+import { tag } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', tagInfo is an Object given by nfc service when tag is dispatched.
 // the following getXXX, can be one of getIsoDep, getNdef, getMifareClassic, ...
@@ -633,8 +633,8 @@ function tagSessionDemo() {
         if (!tag.getIsoDep(tagInfo).isConnected()) {
             tag.getIsoDep(tagInfo).connect();
         }
-    } catch (busiError) {
-        console.log("tag connect busiError: " + busiError);
+    } catch (businessError) {
+        console.log("tag connect businessError: " + businessError);
         return;
     }
 
@@ -645,8 +645,8 @@ function tagSessionDemo() {
     }).catch((err : BusinessError)=> {
         console.log("tagSession transmit Promise err: " + err);
     });
-    } catch (busiError) {
-        console.log("tag transmit busiError: " + busiError);
+    } catch (businessError) {
+        console.log("tag transmit businessError: " + businessError);
         return;
     }
 }
@@ -686,7 +686,7 @@ transmit(data: number[], callback: AsyncCallback<number[]>): void
 **示例：**
 
 ```js
-import tag from '@ohos.nfc.tag';
+import { tag } from '@kit.ConnectivityKit';
 
 // see 'tag.TagInfo' at 'js-apis-nfcTag.md', tagInfo is an Object given by nfc service when tag is dispatched.
 // the following getXXX, can be one of getIsoDep, getNdef, getMifareClassic, ...
@@ -697,8 +697,8 @@ function tagSessionDemo() {
         if (!tag.getIsoDep(tagInfo).isConnected()) {
             tag.getIsoDep(tagInfo).connect();
         }
-    } catch (busiError) {
-        console.log("tag connect busiError: " + busiError);
+    } catch (businessError) {
+        console.log("tag connect businessError: " + businessError);
         return;
     }
 
@@ -711,8 +711,8 @@ function tagSessionDemo() {
                 console.log("tagSession transmit AsyncCallback response: " + response);
             }
         });
-    } catch (busiError) {
-        console.log("tag transmit busiError: " + busiError);
+    } catch (businessError) {
+        console.log("tag transmit businessError: " + businessError);
         return;
     }
 }

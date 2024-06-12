@@ -81,17 +81,17 @@ BackupExtensionAbility，是[Stage模型](../application-models/stage-model-deve
 
     ```ts
     import BackupExtensionAbility, {BundleVersion} from '@ohos.application.BackupExtensionAbility';
-    import {hilog} from '@Kit.PerformanceAnalysisKit';
+    import {hilog} from '@kit.PerformanceAnalysisKit';
     
     const TAG = `FileBackupExtensionAbility`;
     export default class BackupExtension extends  BackupExtensionAbility {
       async onBackup ()   {
-        hilog.info(TAG, `onBackup ok`);
+        hilog.info(0x0000, TAG, `onBackup ok`);
       }
 
       async onRestore (bundleVersion : BundleVersion) {
-        hilog.info(TAG, `onRestore ok ${JSON.stringify(bundleVersion)}`);
-        hilog.info(TAG, `onRestore end`);
+        hilog.info(0x0000, TAG, `onRestore ok ${JSON.stringify(bundleVersion)}`);
+        hilog.info(0x0000, TAG, `onRestore end`);
       }
     }
     ```

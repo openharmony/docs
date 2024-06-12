@@ -1691,7 +1691,7 @@ function unregisterPreviewOutputError(previewOutput: camera.PreviewOutput): void
 
 ### getSupportedFrameRates<sup>12+</sup>
 
- getSupportedFrameRates(): Array<FrameRateRange>
+ getSupportedFrameRates(): Array\<FrameRateRange>
 
 查询支持的帧率范围。
 
@@ -2505,7 +2505,7 @@ function unregisterPhotoOutputFrameShutterEnd(photoOutput: camera.PhotoOutput): 
 
 ### on('captureReady')<sup>12+</sup>
 
-on(type: 'captureReady', callback: AsyncCallback\<void\>): void;
+on(type: 'captureReady', callback: AsyncCallback\<void\>): void
 
 监听可拍下一张，通过注册回调函数获取结果。
 
@@ -2534,7 +2534,7 @@ function registerPhotoOutputcaptureReady(photoOutput: camera.PhotoOutput): void 
 
 ### off('captureReady')<sup>12+</sup>
 
-off(type: 'captureReady', callback?: AsyncCallback<void>): void;
+off(type: 'captureReady', callback?: AsyncCallback\<void>): void
 
 注销监听监听可拍下一张。
 
@@ -2557,7 +2557,7 @@ function unregisterPhotoOutputcaptureReady(photoOutput: camera.PhotoOutput): voi
 
 ### on('estimatedCaptureDuration')<sup>12+</sup>
 
-on(type: 'estimatedCaptureDuration', callback: AsyncCallback\<number\>): void;
+on(type: 'estimatedCaptureDuration', callback: AsyncCallback\<number\>): void
 
 监听预估的拍照时间，通过注册回调函数获取结果。
 
@@ -2567,7 +2567,7 @@ on(type: 'estimatedCaptureDuration', callback: AsyncCallback\<number\>): void;
 
 | 参数名   | 类型                   | 必填 | 说明                                                         |
 | -------- | ---------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                 | 是   | 监听事件，固定为'captureReady'，photoOutput创建成功后可监听。拍照完全结束可触发该事件发生并返回相应信息。 |
+| type     | string                 | 是   | 监听事件，固定为'estimatedCaptureDuration'，photoOutput创建成功后可监听。拍照完全结束可触发该事件发生并返回相应信息。 |
 | callback | AsyncCallback\<number> | 是   | 回调函数，用于获取相关信息。                                 |
 
 **示例：**
@@ -2586,7 +2586,7 @@ function registerPhotoOutputEstimatedCaptureDuration(photoOutput: camera.PhotoOu
 
 ### off('estimatedCaptureDuration')<sup>12+</sup>
 
-off(type: 'estimatedCaptureDuration', callback?: AsyncCallback\<number\>): void;
+off(type: 'estimatedCaptureDuration', callback?: AsyncCallback\<number\>): void
 
 注销监听预估的拍照时间。
 

@@ -40,6 +40,8 @@ Badge(value: BadgeParamWithString)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+从API version 12开始，该组件显隐时支持scale动效。
+
 **参数：**
 
 | 参数名 | 参数类型                                              | 必填 | 参数描述             |
@@ -116,6 +118,8 @@ BadgeParamWithString继承自[BadgeParam](#badgeparam对象说明)，具有Badge
 支持[通用事件](ts-universal-events-click.md)。
 
 ## 示例
+
+### 示例1
 
 ```ts
 // xxx.ets
@@ -261,3 +265,38 @@ struct BadgeExample {
 ```
 
 ![badge](figures/badge.png)
+
+### 示例2
+
+```ts
+// 该示例实现了Badge组件显隐时缩放
+@Entry
+@Component
+struct Index {
+  @State badgeCount: number = 1
+
+  build() {
+    Column({ space: 40 }) {
+      Badge({
+        count: this.badgeCount,
+        style: {},
+        position: BadgePosition.RightTop,
+      }) {
+        Image($r("app.media.icon"))
+        .width(50)
+        .height(50)
+      }
+      .width(55)
+      Button('count 0').onClick(() => {
+        this.badgeCount = 0
+      })
+      Button('count 1').onClick(() => {
+        this.badgeCount = 1
+      })
+    }
+    .margin({top: 20})
+  }
+}
+```
+
+![badgeScale](figures/badgeScale.gif)

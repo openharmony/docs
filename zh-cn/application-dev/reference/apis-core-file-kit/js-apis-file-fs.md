@@ -1791,7 +1791,7 @@ truncateSync(file: string | number, len?: number): void
 
 readLines(filePath: string, options?: Options): Promise&lt;ReaderIterator&gt;
 
-逐行读取文件文本内容，使用Promise异步返回。
+逐行读取文件文本内容，使用Promise异步返回，只支持读取utf-8格式文件。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -1834,7 +1834,7 @@ readLines(filePath: string, options?: Options): Promise&lt;ReaderIterator&gt;
 
 readLines(filePath: string, options?: Options, callback: AsyncCallback&lt;ReaderIterator&gt;): void
 
-逐行读取文件文本内容，使用callback异步回调。
+逐行读取文件文本内容，使用callback异步回调，只支持读取utf-8格式文件。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 

@@ -49,6 +49,12 @@ SubHeader({icon?: ResourceStr, iconSymbolOptions?: SymbolOptions, primaryTitle?:
 | operationType | [OperationType](#operationtype) | 否 | \@Prop | 操作区(右侧)元素样式。<br/>默认值：OperationType.BUTTON<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 | operationItem | Array&lt;[OperationOption](#operationoption)&gt; | 否 | - | 操作区（右侧）的设置项。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 | operationSymbolOptions<sup>12+</sup> | Array&lt;[SymbolOptions](#symboloptions12)&gt; | 否 | - | operationType为OperationType.ICON_GROUP，<br/>operationItem设置多个图标，图标为[Symbol资源](ts-basic-components-symbolGlyph.md)时的设置项。 |
+| primaryTitleModifier<sup>12+</sup> | [TextModifier](ts-universal-attributes-attribute-modifier.md) | 否 | - | 设置标题文本属性，如设置标题颜色、字体大小、字重等。 |
+| secondaryTitleModifier<sup>12+</sup> | [TextModifier](ts-universal-attributes-attribute-modifier.md) | 否 | - | 设置副标题文本属性，如设置标题颜色、字体大小、字重等。 |
+| titleBuilder<sup>12+</sup> | () => void | 否 | @BuildParam | 自定义标题区内容 |
+| contentMargin<sup>12+</sup> | [LocalizedMargin](ts-types.md#localizedmargin12) | 否 | @Prop | 子标题外边距，不支持设置负数。<br />默认值：<br />页面断点<600vp:<br /> {start: LengthMetrics.vp(16), end: LengthMetrics.vp(16)};<br />600vp<=页面断点<840vp:<br /> {start: LengthMetrics.vp(24), end: LengthMetrics.vp(24)};<br />页面断点>=840vp:<br /> {start: LengthMetrics.vp(32), end: LengthMetrics.vp(32)}。 |
+| contentPadding<sup>12+</sup> | [LocalizedPadding](ts-types.md#localizedpadding12) | 否 | @Prop | 子标题内边距。<br />默认值：<br />左侧为副标题或副标题加图标时：<br /> {start: LengthMetircs.vp(12), end: LengthMetrics.vp(12)}。|
+
 
 ## OperationType
 
@@ -283,3 +289,82 @@ struct SubHeaderExample {
 ```
 
 ![子标题5](figures/zh-cn_image_subheader_example05.png)
+
+### 示例6
+
+```ts
+// 该示例主要演示SubHeader设置titleBuilder自定义标题内容的效果。
+import { promptAction, OperationType, SubHeader } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct SubHeaderExample {
+  @Builder
+  TitleBuilder(): void {
+    Text('自定义标题')
+      .fontSize(24)
+      .fontColor(Color.Red)
+      .fontWeight(FontWeight.Bold)
+  }
+
+  build() {
+    Column() {
+      SubHeader({
+        titleBuilder: () => {
+          this.TitleBuilder();
+        },
+        primaryTitle: '一级标题',
+        secondaryTitle: '二级标题',
+        icon: $r('sys.symbol.ohos_star'),
+        operationType: OperationType.TEXT_ARROW,
+        operationItem: [{
+          value: '更多信息',
+          action: () => {
+            promptAction.showToast({ message: 'demo'})
+          }
+        }]
+      })
+    }
+  }
+}
+```
+
+![子标题6](figures/zh-cn_image_subheader_example06.png)
+
+### 示例7
+
+```ts
+// 该示例主要演示SubHeader设置标题和副标题字体样式以及标题内外边距的效果。
+import { promptAction, OperationType, SubHeader } from '@kit.ArkUI';
+import { TextModifier } from '@ohos.arkui.modifier';
+import { LengthMetrics } from '@ohos.arkui.node';
+
+@Entry
+@Component
+struct SubHeaderExample {
+  @State primaryModifier: TextModifier = new TextModifier().fontColor(Color.Red);
+  @State secondaryModifier: TextModifier = new TextModifier().fontColor(Color.Red);
+
+  build() {
+    Column() {
+      SubHeader({
+        primaryTitle: 'primaryTitle',
+        secondaryTitle: 'secondaryTitle',
+        primaryTitleModifier: this.primaryModifier,
+        secondaryTitleModifier: this.secondaryModifier,
+        operationType: OperationType.TEXT_ARROW,
+        operationItem: [{
+          value: '更多信息',
+          action: () => {
+            promptAction.showToast({ message: 'demo'})
+          }
+        }],
+        contentMargin: { start: LengthMetrics.vp(20), end: LengthMetrics.vp(20) },
+        contentPadding: { start: LengthMetrics.vp(20), end: LengthMetrics.vp(20) }
+      })
+    }
+  }
+}
+```
+
+![子标题7](figures/zh-cn_image_subheader_example07.png)

@@ -23,8 +23,8 @@
 - \@Param支持null、undefined以及联合类型。
 
 
-## 现有状态管理框架的局限性
-现有状态管理框架存在多种可接受外部传入的装饰器，常用的有\@State、\@Prop、\@Link、\@ObjectLink。这些装饰器使用各有限制，不易区分，当使用不当时，还会导致性能问题。
+## 状态管理V1版本的局限性
+状态管理V1存在多种可接受外部传入的装饰器，常用的有\@State、\@Prop、\@Link、\@ObjectLink。这些装饰器使用各有限制，不易区分，当使用不当时，还会导致性能问题。
 
 ```ts
 @Observed
@@ -244,8 +244,8 @@ struct Child {
   }
   @ComponentV2
   struct Child {
-    @Param numArr: number[];
-    @Param dimensionTwo: number[][];
+    @Require @Param numArr: number[];
+    @Require @Param dimensionTwo: number[][];
     
     build() {
       Column() {
@@ -481,9 +481,9 @@ struct Index {
       })
       Button("change")
         .onClick(() => {
-          this.info[0] = new Info("Atom", 40, 27, 90);
-          this.info[1].name = "Bob";
-          this.info[2].region = new Region(7, 9);
+          this.infoList[0] = new Info("Atom", 40, 27, 90);
+          this.infoList[1].name = "Bob";
+          this.infoList[2].region = new Region(7, 9);
         })
     }
   }

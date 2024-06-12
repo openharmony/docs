@@ -674,3 +674,43 @@ doTransform接口未实现。
 **处理步骤**
 
 在继承类中实现doTransform接口函数。
+
+## 10200060 超出精度限制
+
+**错误信息**
+
+Precision limit exceeded.
+
+**错误描述**
+
+Decimal函数使用错误。
+
+**可能原因**
+
+使用Decimal提供的函数超出精度限制。有以下函数会抛出这个错误码：[pow](js-apis-arkts-decimal.md#pow)、[exp](js-apis-arkts-decimal.md#exp)、[log](js-apis-arkts-decimal.md#log)、[ln](js-apis-arkts-decimal.md#ln)、[acos](js-apis-arkts-decimal.md#acos)、[asin](js-apis-arkts-decimal.md#asin)、[atan](js-apis-arkts-decimal.md#atan)、[acosh](js-apis-arkts-decimal.md#acosh)、[asinh](js-apis-arkts-decimal.md#asinh)、[atanh](js-apis-arkts-decimal.md#atanh)、[log2](js-apis-arkts-decimal.md#log2)、[log10](js-apis-arkts-decimal.md#log10)、[atan2](js-apis-arkts-decimal.md#atan2)。
+
+**处理步骤**
+
+使用[Decimal.set](js-apis-arkts-decimal.md#set)函数来设置有效精度。
+
+如：Decimal.set({ precision: 10 }), 设置有效精度。
+
+## 10200061 加密方法不可用
+
+**错误信息**
+
+crypto unavailable.
+
+**错误描述**
+
+Decimal函数使用错误。
+
+**可能原因**
+
+在Decimal中设置[crypto](js-apis-arkts-decimal.md#decimalconfig)或使用[Decimal.random](js-apis-arkts-decimal.md#random)函数时，使用加密方法失败。
+
+**处理步骤**
+
+使用[Decimal.set](js-apis-arkts-decimal.md#set)函数来取消加密算法。
+
+如：Decimal.set({ crypto: false}), 取消加密算法。

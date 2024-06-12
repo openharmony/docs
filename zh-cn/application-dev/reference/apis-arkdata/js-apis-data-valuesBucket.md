@@ -12,8 +12,7 @@
 ## 导入模块
 
 ```ts
-import { ValueType } from '@ohos.data.ValuesBucket';
-import { ValuesBucket } from '@ohos.data.ValuesBucket';
+import { ValueType, ValuesBucket } from '@kit.ArkData';
 ```
 
 ## ValueType

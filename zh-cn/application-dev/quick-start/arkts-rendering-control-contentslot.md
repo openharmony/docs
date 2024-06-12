@@ -1,4 +1,4 @@
-# ContentSlot: 混合开发
+# ContentSlot：混合开发
 
 用于渲染并管理Native层使用C-API创建的组件。
 

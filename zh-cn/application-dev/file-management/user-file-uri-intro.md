@@ -209,7 +209,7 @@ try {
     // 配置查询条件，使用PhotoViewPicker选择图片返回的uri进行查询
     predicates.equalTo('uri', uris[0]);
     let fetchOption: photoAccessHelper.FetchOptions = {
-      fetchColumns: [],
+      fetchColumns: [photoAccessHelper.PhotoKeys.WIDTH, photoAccessHelper.PhotoKeys.HEIGHT, photoAccessHelper.PhotoKeys.TITLE, photoAccessHelper.PhotoKeys.DURATION],
       predicates: predicates
     };
     let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);

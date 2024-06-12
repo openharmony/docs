@@ -23,6 +23,7 @@
      onAddForm(want: Want): formBindingData.FormBindingData {
        // 假设在当前卡片应用的tmp目录下有一个本地图片：head.PNG
        let tempDir = this.context.getApplicationContext().tempDir;
+       hilog.info(DOMAIN_NUMBER, TAG, `tempDir: ${tempDir}`);
        let imgBear: Record<string, number>;
        try {
         // 打开本地图片并获取其打开后的fd
@@ -46,7 +47,7 @@
        // 将fd封装在formData中并返回至卡片页面
        return formBindingData.createFormBindingData(formData);
      }
-     ...
+     //...
    }
    ```
 
@@ -123,7 +124,7 @@
          httpRequest.destroy();
        })
      }
-     ...
+     //...
    }
    ```
 

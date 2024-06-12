@@ -459,6 +459,8 @@ childrenMainSize(value: ChildrenMainSize)
 
 设置List组件的子组件在主轴方向的大小信息。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -988,12 +990,16 @@ closeAllSwipeActions(options?: [CloseSwipeActionOptions](#closeallswipeactions11
 ## OnScrollVisibleContentChangeCallback<sup>12+</sup>对象说明
 有子组件划入或划出List显示区域时触发。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ------ | ------ | ------|
 | start | [VisibleListContentInfo](#visiblelistcontentinfo12) | 是 | 当前显示界面第一个ListItem或ListItemGroup的详细信息。 |
 | end | [VisibleListContentInfo](#visiblelistcontentinfo12) | 是 | 当前显示界面最后一个ListItem或ListItemGroup的详细信息。 |
 
 ## VisibleListContentInfo<sup>12+</sup>
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ------ | ------ | ------|
@@ -1002,6 +1008,8 @@ closeAllSwipeActions(options?: [CloseSwipeActionOptions](#closeallswipeactions11
 | itemIndexInGroup | number | 否 | 如果当前可视页面的上边或下边在某个Group之中，将会显示Star或End的ListItem在Group中的索引。 |
 
 ## ListItemGroupArea<sup>12+</sup>枚举说明
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 | 名称     |  枚举值  | 描述                                       |
 | ------ | ------ | ---------------------------------------- |
@@ -1014,11 +1022,15 @@ closeAllSwipeActions(options?: [CloseSwipeActionOptions](#closeallswipeactions11
 
 维护List组件或ListItemGroup组件的子组件在主轴方向的大小信息，仅支持一对一绑定到List组件或ListItemGroup组件。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 ### constructor<sup>12+</sup>
 
 constructor(childDefaultSize: number): void
 
 ChildrenMainSize有参构造函数。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -1032,6 +1044,8 @@ ChildrenMainSize有参构造函数。
 set childDefaultSize(value: number): void
 
 修改子组件在主轴方向的默认大小。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -1063,6 +1077,8 @@ splice(start: number, deleteCount?: number, childrenSize?: Array\<number>): void
 
 批量增删改子组件在主轴方向的大小信息。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 名称   | 类型                            | 必填   | 描述                   |
@@ -1093,6 +1109,8 @@ splice(start: number, deleteCount?: number, childrenSize?: Array\<number>): void
 update(index: number, childSize: number): void
 
 修改指定索引值对应的子组件的主轴方向的大小信息。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **参数：**
 

@@ -132,10 +132,11 @@ constructor是URI的构造函数。
 
 **错误码：**
 
-以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200002 | Invalid uri string. |
 
 **示例：**
@@ -193,6 +194,14 @@ equalsTo(other: URI): boolean
 | 类型 | 说明 |
 | -------- | -------- |
 | boolean | 返回true表示相等，否则返回false。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -342,6 +351,14 @@ getQueryValue(key:string): string
 | ------ | ----------------------------- |
 | string | 返回第一个此URI查询参数的值。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | The input parameters are invalid. |
+
 **示例：**
 
 ```ts
@@ -369,6 +386,14 @@ addQueryValue(key:string, value:string): URI
 | 类型 | 说明                             |
 | ---- | -------------------------------- |
 | [URI](#uri)  | 返回添加查询部分后的URI对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | The input parameters are invalid. |
 
 **示例：**
 
@@ -398,6 +423,14 @@ addSegment(pathSegment:string): URI
 | ---- | -------------------------------- |
 | [URI](#uri)  | 返回已追加字段的URI对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | The input parameters are invalid. |
+
 **示例：**
 
 ```ts
@@ -425,6 +458,14 @@ addEncodedSegment(pathSegment:string): URI
 | 类型 | 说明                             |
 | ---- | -------------------------------- |
 | [URI](#uri)  | 返回已追加字段的URI对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | The input parameters are invalid. |
 
 **示例：**
 
@@ -476,6 +517,14 @@ getQueryValues(key:string): string[]
 | -------- | ----------------------------------- |
 | string[] | 返回此URI中查询参数的所有值。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | The input parameters are invalid. |
+
 **示例：**
 
 ```ts
@@ -503,6 +552,14 @@ getBooleanQueryValue(key:string,defaultValue:boolean): boolean
 | 类型    | 说明                                                                   |
 | ------- | ---------------------------------------------------------------------- |
 | boolean | 如果指定的查询参数不存在，则返回默认值；查询参数对应第一个值为“false”或者“0”返回false，否则返回true。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | The input parameters are invalid. |
 
 **示例：**
 
@@ -601,6 +658,14 @@ createFromParts(scheme: string, ssp: string, fragment: string): URI
 | 类型 | 说明                                              |
 | ---- | ------------------------------------------------- |
 | [URI](#uri)  | 返回创建的URI对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | The input parameters are invalid. |
 
 **示例：**
 

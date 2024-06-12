@@ -46,8 +46,8 @@ onClick(event: (event: ClickEvent) => void): T
 | windowY<sup>10+</sup> | number                             | 点击位置相对于应用窗口左上角的Y坐标。<br/>单位：vp<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 | displayX<sup>10+</sup> | number                            | 点击位置相对于应用屏幕左上角的X坐标。<br/>单位：vp<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 | displayY<sup>10+</sup> | number                            | 点击位置相对于应用屏幕左上角的Y坐标。<br/>单位：vp<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| screenX<sup>(deprecated)</sup> | number                    | 点击位置相对于应用窗口左上角的X坐标。<br>从API verdion 10开始不再维护，建议使用windowX代替。  |
-| screenY<sup>(deprecated)</sup> | number                    | 点击位置相对于应用窗口左上角的Y坐标。<br>从API verdion 10开始不再维护，建议使用windowY代替。  |
+| screenX<sup>(deprecated)</sup> | number                    | 点击位置相对于应用窗口左上角的X坐标。<br>从API Version 10开始不再维护，建议使用windowX代替。 |
+| screenY<sup>(deprecated)</sup> | number                    | 点击位置相对于应用窗口左上角的Y坐标。<br>从API Version 10开始不再维护，建议使用windowY代替。 |
 | preventDefault<sup>12+</sup>      | () => void | 阻止默认事件。 |
 
 ## EventTarget<sup>8+</sup>对象说明

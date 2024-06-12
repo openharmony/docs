@@ -23,6 +23,8 @@ static getDisplayCountry(country: string, locale: string, sentenceCase?: boolean
 
 获取指定国家的本地化显示文本。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.I18n
 
 **参数：**
@@ -113,6 +115,8 @@ static getSystemLanguages(): Array&lt;string&gt;
 
 从API version 11开始，该类型支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.I18n
 
 **返回值：**
@@ -138,6 +142,8 @@ static getSystemLanguages(): Array&lt;string&gt;
 static getSystemCountries(language: string): Array&lt;string&gt;
 
 获取针对输入语言系统支持的国家或地区列表。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -179,6 +185,8 @@ static getSystemCountries(language: string): Array&lt;string&gt;
 static isSuggested(language: string, region?: string): boolean
 
 判断当前语言和地区是否匹配。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -252,6 +260,8 @@ static getSystemRegion(): string
 
 获取系统地区。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.I18n
 
 **返回值：**
@@ -308,6 +318,8 @@ static is24HourClock(): boolean
 
 **卡片能力**：从API version 11开始，该接口支持在ArkTS卡片中使用。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.I18n
 
 **返回值：**
@@ -335,6 +347,8 @@ static getPreferredLanguageList(): Array&lt;string&gt;
 
 获取系统偏好语言列表。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.I18n
 
 **返回值：**
@@ -361,6 +375,8 @@ static getFirstPreferredLanguage(): string
 
 获取系统偏好语言列表中的第一个偏好语言。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.I18n
 
 **返回值：**
@@ -386,6 +402,8 @@ static getFirstPreferredLanguage(): string
 static setAppPreferredLanguage(language: string): void
 
 设置应用的偏好语言。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -422,6 +440,8 @@ static getAppPreferredLanguage(): string
 
 获取应用的偏好语言。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.I18n
 
 **返回值：**
@@ -448,6 +468,8 @@ static getAppPreferredLanguage(): string
 static getUsingLocalDigit(): boolean
 
 判断系统是否使用本地数字。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -476,6 +498,8 @@ isRTL(locale: string): boolean
 
 获取该区域是否为从右至左显示语言。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.I18n
 
 **参数：**
@@ -503,6 +527,8 @@ getCalendar(locale: string, type? : string): Calendar
 
 获取日历对象。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.I18n
 
 **参数：**
@@ -525,11 +551,15 @@ getCalendar(locale: string, type? : string): Calendar
 
 ## EntityRecognizer<sup>11+</sup>
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 ### constructor<sup>11+</sup>
 
 constructor(locale?: string)
 
 创建实体识别对象。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -558,6 +588,8 @@ constructor(locale?: string)
 findEntityInfo(text: string): Array&lt;EntityInfoItem&gt;
 
 识别文本中的实体信息。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -594,6 +626,8 @@ findEntityInfo(text: string): Array&lt;EntityInfoItem&gt;
 
 实体信息对象。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.I18n
 
 | 名称  | 类型   | 可读   | 可写   | 说明                |
@@ -604,12 +638,15 @@ findEntityInfo(text: string): Array&lt;EntityInfoItem&gt;
 
 ## Calendar<sup>8+</sup>
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 ### setTime<sup>8+</sup>
 
 setTime(date: Date): void
 
 设置日历对象内部的时间日期。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -633,6 +670,8 @@ setTime(time: number): void
 
 设置日历对象内部的时间日期, time为从1970.1.1 00:00:00 GMT逝去的毫秒数。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.I18n
 
 **参数：**
@@ -653,6 +692,8 @@ setTime(time: number): void
 set(year: number, month: number, date:number, hour?: number, minute?: number, second?: number): void
 
 设置日历对象的年、月、日、时、分、秒。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -680,6 +721,8 @@ setTimeZone(timezone: string): void
 
 设置日历对象的时区。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.I18n
 
 **参数：**
@@ -700,6 +743,8 @@ setTimeZone(timezone: string): void
 getTimeZone(): string
 
 获取日历对象的时区。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -723,6 +768,8 @@ getFirstDayOfWeek(): number
 
 获取日历对象的一周起始日。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.I18n
 
 **返回值：**
@@ -743,6 +790,8 @@ getFirstDayOfWeek(): number
 setFirstDayOfWeek(value: number): void
 
 设置每一周的起始日。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -766,6 +815,8 @@ getMinimalDaysInFirstWeek(): number
 
 获取一年中第一周的最小天数。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.I18n
 
 **返回值：**
@@ -786,6 +837,8 @@ getMinimalDaysInFirstWeek(): number
 setMinimalDaysInFirstWeek(value: number): void
 
 设置一年中第一周的最小天数。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -808,6 +861,8 @@ setMinimalDaysInFirstWeek(value: number): void
 get(field: string): number
 
 获取日历对象中与field相关联的值。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -837,6 +892,8 @@ getDisplayName(locale: string): string
 
 获取日历对象在该区域的名字。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.I18n
 
 **参数：**
@@ -863,6 +920,8 @@ getDisplayName(locale: string): string
 isWeekend(date?: Date): boolean
 
 判断指定的日期在日历中是否为周末。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -893,6 +952,8 @@ isWeekend(date?: Date): boolean
 add(field: string, amount: number): void
 
 在日历的给定字段进行加减操作。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -934,6 +995,8 @@ getTimeInMillis(): number
 
 获取当前日历的UTC毫秒数。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.I18n
 
 **返回值：**
@@ -955,6 +1018,8 @@ getTimeInMillis(): number
 compareDays(date: Date): number
 
 比较日历和指定日期相差的天数（按毫秒级的精度，不足一天将按一天进行计算）。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -996,12 +1061,15 @@ compareDays(date: Date): number
 
 ## PhoneNumberFormat<sup>8+</sup>
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 ### constructor<sup>8+</sup>
 
 constructor(country: string, options?: PhoneNumberFormatOptions)
 
 创建电话号码格式化对象。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -1024,6 +1092,8 @@ constructor(country: string, options?: PhoneNumberFormatOptions)
 isValidNumber(number: string): boolean
 
 判断传入的电话号码格式是否正确。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -1052,6 +1122,8 @@ format(number: string): string
 
 对电话号码进行格式化。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.I18n
 
 **参数：**
@@ -1079,6 +1151,7 @@ getLocationName(number: string, locale: string): string
 
 获取电话号码归属地。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 **系统能力**：SystemCapability.Global.I18n
 
 **参数：**
@@ -1105,6 +1178,8 @@ getLocationName(number: string, locale: string): string
 
 表示电话号码格式化对象可设置的属性。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.I18n
 
 | 名称   | 类型     | 可读   | 可写   | 说明                                       |
@@ -1115,6 +1190,8 @@ getLocationName(number: string, locale: string): string
 ## UnitInfo<sup>8+</sup>
 
 度量衡单位信息。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -1129,6 +1206,8 @@ getLocationName(number: string, locale: string): string
 getInstance(locale?:string): IndexUtil
 
 创建并返回IndexUtil对象。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -1152,12 +1231,15 @@ getInstance(locale?:string): IndexUtil
 
 ## IndexUtil<sup>8+</sup>
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 ### getIndexList<sup>8+</sup>
 
 getIndexList(): Array&lt;string&gt;
 
 获取当前区域对应的索引列表。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -1182,6 +1264,8 @@ addLocale(locale: string): void
 
 在当前索引列表中添加新的区域。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.I18n
 
 **参数：**
@@ -1202,6 +1286,8 @@ addLocale(locale: string): void
 getIndex(text: string): string
 
 获取text对应的索引。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -1230,6 +1316,8 @@ getLineInstance(locale: string): BreakIterator
 
 获取一个用于断句的[BreakIterator](#breakiterator8)对象。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.I18n
 
 **参数：**
@@ -1252,12 +1340,15 @@ getLineInstance(locale: string): BreakIterator
 
 ## BreakIterator<sup>8+</sup>
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 ### setLineBreakText<sup>8+</sup>
 
 setLineBreakText(text: string): void
 
 设置BreakIterator要处理的文本。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -1279,6 +1370,8 @@ setLineBreakText(text: string): void
 getLineBreakText(): string
 
 获取BreakIterator当前处理的文本。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -1302,6 +1395,8 @@ current(): number
 
 获取BreakIterator对象在当前处理的文本中的位置。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.I18n
 
 **返回值：**
@@ -1323,6 +1418,8 @@ current(): number
 first(): number
 
 将BreakIterator对象设置到第一个可断句的分割点。第一个分割点总是被处理的文本的起始位置。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -1346,6 +1443,8 @@ last(): number
 
 将BreakIterator对象的位置设置到最后一个可断句的分割点。最后一个分割点总是被处理文本末尾的下一个位置。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.I18n
 
 **返回值：**
@@ -1367,6 +1466,8 @@ last(): number
 next(index?: number): number
 
 将BreakIterator向后移动相应个分割点。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -1398,6 +1499,8 @@ previous(): number
 
 将BreakIterator向前移动一个分割点。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.I18n
 
 **返回值：**
@@ -1421,6 +1524,8 @@ previous(): number
 following(offset: number): number
 
 将BreakIterator设置到指定位置的后面一个分割点。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -1452,6 +1557,8 @@ isBoundary(offset: number): boolean
 
 判断文本指定位置是否为分割点。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.I18n
 
 **参数：**
@@ -1481,6 +1588,8 @@ getTimeZone(zoneID?: string): TimeZone
 
 获取时区ID对应的时区对象。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.I18n
 
 **参数：**
@@ -1503,12 +1612,15 @@ getTimeZone(zoneID?: string): TimeZone
 
 ## TimeZone
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 ### getID
 
 getID(): string
 
 获取时区对象的ID。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -1559,6 +1671,8 @@ getRawOffset(): number
 
 获取时区对象表示的时区与UTC时区的偏差。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.I18n
 
 **返回值：**
@@ -1579,6 +1693,8 @@ getRawOffset(): number
 getOffset(date?: number): number
 
 获取某一时刻时区对象表示的时区与UTC时区的偏差。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -1607,6 +1723,8 @@ static getAvailableIDs(): Array&lt;string&gt;
 
 获取系统支持的时区ID。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.I18n
 
 **返回值：**
@@ -1628,6 +1746,8 @@ static getAvailableZoneCityIDs(): Array&lt;string&gt;
 
 获取系统支持的时区城市ID。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.I18n
 
 **返回值：**
@@ -1648,6 +1768,8 @@ static getAvailableZoneCityIDs(): Array&lt;string&gt;
 static getCityDisplayName(cityID: string, locale: string): string
 
 获取某时区城市在该区域的本地化显示。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -1676,6 +1798,8 @@ static getTimezoneFromCity(cityID: string): TimeZone
 
 创建某时区城市对应的时区对象。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.I18n
 
 **参数：**
@@ -1700,6 +1824,8 @@ static getTimezoneFromCity(cityID: string): TimeZone
 static getTimezonesByLocation(longitude: number, latitude: number): Array&lt;TimeZone&gt;
 
 创建某经纬度对应的时区对象数组。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -1736,12 +1862,15 @@ static getTimezonesByLocation(longitude: number, latitude: number): Array&lt;Tim
 
 ## Transliterator<sup>9+</sup>
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 ### getAvailableIDs<sup>9+</sup>
 
 static getAvailableIDs(): string[]
 
 获取音译支持的ID列表。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -1764,6 +1893,8 @@ static getAvailableIDs(): string[]
 static getInstance(id: string): Transliterator
 
 创建音译对象。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -1791,6 +1922,8 @@ transform(text: string): string
 
 将输入字符串从源格式转换为目标格式。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.I18n
 
 **参数：**
@@ -1814,12 +1947,15 @@ transform(text: string): string
 
 ## Unicode<sup>9+</sup>
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 ### isDigit<sup>9+</sup>
 
 static isDigit(char: string): boolean
 
 判断字符串char是否是数字。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -1847,6 +1983,8 @@ static isSpaceChar(char: string): boolean
 
 判断字符串char是否是空格符。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.I18n
 
 **参数：**
@@ -1872,6 +2010,8 @@ static isSpaceChar(char: string): boolean
 static isWhitespace(char: string): boolean
 
 判断字符串char是否是空白符。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -1899,6 +2039,8 @@ static isRTL(char: string): boolean
 
 判断字符串char是否是从右到左语言的字符。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.I18n
 
 **参数：**
@@ -1924,6 +2066,8 @@ static isRTL(char: string): boolean
 static isIdeograph(char: string): boolean
 
 判断字符串char是否是表意文字。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -1951,6 +2095,8 @@ static isLetter(char: string): boolean
 
 判断字符串char是否是字母。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.I18n
 
 **参数：**
@@ -1976,6 +2122,8 @@ static isLetter(char: string): boolean
 static isLowerCase(char: string): boolean
 
 判断字符串char是否是小写字母。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -2003,6 +2151,8 @@ static isUpperCase(char: string): boolean
 
 判断字符串char是否是大写字母。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.I18n
 
 **参数：**
@@ -2028,6 +2178,8 @@ static isUpperCase(char: string): boolean
 static getType(char: string): string
 
 获取输入字符串的一般类别值。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -2086,12 +2238,15 @@ static getType(char: string): string
 
 ## I18NUtil<sup>9+</sup>
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 ### unitConvert<sup>9+</sup>
 
 static unitConvert(fromUnit: UnitInfo, toUnit: UnitInfo, value: number, locale: string, style?: string): string
 
 将fromUnit的单位转换为toUnit的单位，并根据区域与风格进行格式化。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -2125,6 +2280,8 @@ static getDateOrder(locale: string): string
 
 获取该区域日期中年、月、日的排列顺序。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.I18n
 
 **参数：**
@@ -2150,6 +2307,8 @@ static getDateOrder(locale: string): string
 static getTimePeriodName(hour:number, locale?: string): string
 
 获取该区域指定时间的本地化表达。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -2192,6 +2351,8 @@ static getTimePeriodName(hour:number, locale?: string): string
 static getBestMatchLocale(locale: string, localeList: string[]): string
 
 在指定区域列表中获取与某个区域最佳匹配的区域。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -2236,6 +2397,8 @@ static getThreeLetterLanguage(locale: string): string
 
 将语言代码由二字母转换为三字母。例如，中文的二字母语言代码是zh，对应的三字母语言代码是zho，更多详细信息可参考[ISO 639](https://www.iso.org/iso-639-language-code)。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.I18n
 
 **参数：**
@@ -2269,6 +2432,8 @@ static getThreeLetterRegion(locale: string): string
 
 将地区的二字母代码转换为三字母。例如，中国的二字母地区代码是CN, 三字母是CHN，更多详细信息可参考[ISO 3166](https://www.iso.org/iso-3166-country-codes.html)。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.I18n
 
 **参数：**
@@ -2298,11 +2463,15 @@ static getThreeLetterRegion(locale: string): string
 
 ## Normalizer<sup>10+</sup>
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 ### getInstance<sup>10+</sup>
 
 static getInstance(mode: NormalizerMode): Normalizer
 
 获取文本正则化对象。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -2338,6 +2507,8 @@ normalize(text: string): string
 
 对字符串进行正则化。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.I18n
 
 **参数：**
@@ -2371,6 +2542,8 @@ normalize(text: string): string
 
 表示文本正则化范式的枚举。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** ：SystemCapability.Global.I18n
 
 | 名称 | 值 | 说明 |
@@ -2383,11 +2556,15 @@ normalize(text: string): string
 
 ## HolidayManager<sup>11+</sup>
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 ### constructor<sup>11+</sup>
 
 constructor(icsPath: String)
 
 创建HolidayManager对象。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -2416,6 +2593,8 @@ constructor(icsPath: String)
 isHoliday(date?: Date): boolean
 
 判断指定的日期是否是节假日。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -2462,6 +2641,8 @@ getHolidayInfoItemArray(year?: number): Array&lt;[HolidayInfoItem](#holidayinfoi
 
 获取指定某年的节假日信息列表。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.I18n
 
 **参数：**
@@ -2505,6 +2686,8 @@ getHolidayInfoItemArray(year?: number): Array&lt;[HolidayInfoItem](#holidayinfoi
 
 节假日信息。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.I18n
 
 | 名称            | 类型             |  必填   |  说明                                   |
@@ -2518,6 +2701,8 @@ getHolidayInfoItemArray(year?: number): Array&lt;[HolidayInfoItem](#holidayinfoi
 ## HolidayLocalName<sup>11+</sup>
 
 节假日本地名称。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 

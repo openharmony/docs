@@ -11,7 +11,7 @@ hfp模块提供了访问蓝牙呼叫接口的方法。
 ## 导入模块
 
 ```js
-import hfp from '@ohos.bluetooth.hfp';
+import { hfp } from '@kit.ConnectivityKit';
 ```
 
 
@@ -47,7 +47,7 @@ createHfpAgProfile(): HandsFreeAudioGatewayProfile
 **示例：**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let hfpAgProfile = hfp.createHfpAgProfile();
     console.info('hfpAg success');

@@ -111,7 +111,7 @@ reportAVScreenCaptureUserChoice(sessionId: number, choice: string): Promise\<voi
 
 **参数：**
 
-| 名称      | 类型   | 必填 | 说明                                                         |
+| 参数名    | 类型   | 必填 | 说明                                                          |
 | --------- | ------ | ---- | ------------------------------------------------------------ |
 | sessionId | number | 是   | AVScreenCapture服务会话Id，会由AVScreenCapture拉起隐私弹窗时传给应用。 |
 | choice    | string | 是   | 用户的选择内容，“取消”为“false”，“确定”为“true“。            |

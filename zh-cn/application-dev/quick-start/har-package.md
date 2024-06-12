@@ -14,7 +14,7 @@ HAR（Harmony Archive）是静态共享包，可以包含代码、C++库、资�
 - HAR可以依赖其他HAR，但不支持循环依赖，也不支持依赖传递。
 
 ## 创建
-通过DevEco Studio创建一个HAR模块，详见[创建库模块](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/creating_har_api9-0000001518082393-V3#section143510369612)。
+通过DevEco Studio创建一个HAR模块，详见<!--RP1-->[创建库模块](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/creating_har_api9-0000001518082393-V3#section143510369612)<!--RP1End-->。
 
 
 ## 开发
@@ -111,7 +111,7 @@ export { nativeAdd } from './src/main/ets/utils/nativeTest';
 ```
 
 ### 资源
-HAR模块编译打包时会把资源打包到HAR中。在编译构建HAP时，DevEco Studio会从HAP模块及依赖的模块中收集资源文件，如果不同模块下的资源文件出现重名冲突时，DevEco Studio会按照以下优先级进行覆盖（优先级由高到低）：
+在编译构建HAP时，DevEco Studio会从HAP模块及依赖的模块中收集资源文件，如果不同模块下的资源文件出现重名冲突时，DevEco Studio会按照以下优先级进行覆盖（优先级由高到低）：
 - AppScope（仅API9的Stage模型支持）。
 - HAP包自身模块。
 - 依赖的HAR模块，如果依赖的多个HAR之间有资源冲突，会按照工程oh-package.json5中dependencies下的依赖顺序进行覆盖，依赖顺序在前的优先级较高。例如下方示例中dayjs和lottie中包含同名文件时，会优先使用dayjs中的资源。
@@ -132,7 +132,7 @@ HAR模块编译打包时会把资源打包到HAR中。在编译构建HAP时，De
 
 介绍如何配置HAR依赖，并引用HAR的ArkUI组件、接口、资源。
 
-引用HAR前，需要先配置对HAR的依赖，详见[引用HAR文件和资源](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/creating_har_api9-0000001518082393-V3#section611662614153)。
+引用HAR前，需要先配置对HAR的依赖，详见<!--RP2-->[引用HAR文件和资源](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/creating_har_api9-0000001518082393-V3#section611662614153)<!--RP2End-->。
 
 ### 引用HAR的ArkUI组件
 
@@ -361,7 +361,7 @@ har模块中arkts文件编译后，默认产物为js文件，想要将产物修�
 
 ## 发布
 
-详见[发布HAR](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/creating_har_api9-0000001518082393-V3#section1213451811512)。
+详见<!--RP3-->[发布HAR](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/creating_har_api9-0000001518082393-V3#section1213451811512)<!--RP3End-->。
 
 ## 相关实例
 

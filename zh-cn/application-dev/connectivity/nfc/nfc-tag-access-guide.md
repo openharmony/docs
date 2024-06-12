@@ -85,10 +85,10 @@ NFC标签读写完整的JS API说明以及实例代码请参考：[NFC标签接�
 ```
 
 ```ts
-import tag from '@ohos.nfc.tag';
-import { BusinessError } from '@ohos.base';
-import bundleManager from '@ohos.bundle.bundleManager'
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import { tag } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { AbilityConstant, UIAbility, Want, bundleManager } from '@kit.AbilityKit';
 
 let nfcTagElementName: bundleManager.ElementName;
 let foregroundRegister: boolean;
@@ -97,15 +97,15 @@ async function readerModeCb(error : BusinessError, tagInfo : tag.TagInfo) {
   if (!error) {
     // 获取特定技术类型的NFC标签对象
     if (tagInfo == null || tagInfo == undefined) {
-      hilog.error(0x0000, 'testTag', 'readerModeCb tagInfo is invaid');
+      hilog.error(0x0000, 'testTag', 'readerModeCb tagInfo is invalid');
       return;
     }
     if (tagInfo.uid == null || tagInfo.uid == undefined) {
-      hilog.error(0x0000, 'testTag', 'readerModeCb uid is invaid');
+      hilog.error(0x0000, 'testTag', 'readerModeCb uid is invalid');
       return;
     }
     if (tagInfo.technology == null || tagInfo.technology == undefined || tagInfo.technology.length == 0) {
-      hilog.error(0x0000, 'testTag', 'readerModeCb technology is invaid');
+      hilog.error(0x0000, 'testTag', 'readerModeCb technology is invalid');
       return;
     }
 
@@ -124,7 +124,7 @@ async function readerModeCb(error : BusinessError, tagInfo : tag.TagInfo) {
       // use other technology to access this nfc tag if neccessary.
     }
     if (isoDep == undefined) {
-      hilog.error(0x0000, 'testTag', 'readerModeCb getIsoDep is invaid');
+      hilog.error(0x0000, 'testTag', 'readerModeCb getIsoDep is invalid');
       return;
     }
 
@@ -149,8 +149,8 @@ async function readerModeCb(error : BusinessError, tagInfo : tag.TagInfo) {
         hilog.error(0x0000, 'testTag', 'readerModeCb isoDep.transmit() err = %{public}s.', JSON.stringify(err));
         return;
       });
-    } catch (busiError) {
-      hilog.error(0x0000, 'testTag', 'readerModeCb isoDep.transmit() busiError = %{public}s.', JSON.stringify(busiError));
+    } catch (businessError) {
+      hilog.error(0x0000, 'testTag', 'readerModeCb isoDep.transmit() businessError = %{public}s.', JSON.stringify(businessError));
       return;
     }
   } else {
@@ -258,8 +258,10 @@ export default class EntryAbility extends UIAbility {
 ```
 
 ```ts
-import tag from '@ohos.nfc.tag';
-import { BusinessError } from '@ohos.base';
+import { tag } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
@@ -275,15 +277,15 @@ export default class EntryAbility extends UIAbility {
     }
 
     if (tagInfo == null || tagInfo == undefined) {
-      hilog.error(0x0000, 'testTag', 'tagInfo is invaid');
+      hilog.error(0x0000, 'testTag', 'tagInfo is invalid');
       return;
     }
     if (tagInfo.uid == null || tagInfo.uid == undefined) {
-      hilog.error(0x0000, 'testTag', 'uid is invaid');
+      hilog.error(0x0000, 'testTag', 'uid is invalid');
       return;
     }
     if (tagInfo.technology == null || tagInfo.technology == undefined || tagInfo.technology.length == 0) {
-      hilog.error(0x0000, 'testTag', 'technology is invaid');
+      hilog.error(0x0000, 'testTag', 'technology is invalid');
       return;
     }
 
@@ -302,7 +304,7 @@ export default class EntryAbility extends UIAbility {
       // use other technology to access this nfc tag if neccessary.
     }
     if (isoDep == undefined) {
-      hilog.error(0x0000, 'testTag', 'getIsoDep is invaid');
+      hilog.error(0x0000, 'testTag', 'getIsoDep is invalid');
       return;
     }
 
@@ -327,8 +329,8 @@ export default class EntryAbility extends UIAbility {
         hilog.error(0x0000, 'testTag', 'isoDep.transmit() err = %{public}s.', JSON.stringify(err));
         return;
       });
-    } catch (busiError) {
-      hilog.error(0x0000, 'testTag', 'isoDep.transmit() busiError = %{public}s.', JSON.stringify(busiError));
+    } catch (businessError) {
+      hilog.error(0x0000, 'testTag', 'isoDep.transmit() businessError = %{public}s.', JSON.stringify(businessError));
       return;
     }
   }

@@ -12,7 +12,7 @@
 ## 导入模块
 
 ```js
-import wearDetection from '@ohos.bluetooth.wearDetection';
+import { wearDetection } from '@kit.ConnectivityKit';
 ```
 
 

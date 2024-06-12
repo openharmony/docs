@@ -16,6 +16,7 @@
     - [ExtensionAbility组件](extensionability-overview.md)
       <!--Del-->
       - [ServiceExtensionAbility（仅对系统应用开放）](serviceextensionability.md)
+      - [UIExtensionAbility（仅对系统应用开放）](uiextensionability.md)
       <!--DelEnd-->
       - [EmbeddedUIExtensionAbility](embeddeduiextensionability.md)
     - [AbilityStage组件容器](abilitystage.md)
@@ -131,3 +132,4 @@
     - [Storage接口切换](storage-switch.md)
 <!--DelEnd-->
 - [程序访问控制](../security/AccessToken/Readme-CN.md)
+- [Native子进程开发指导（C/C++)](capi_nativechildprocess_development_guideline.md)

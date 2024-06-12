@@ -28,6 +28,8 @@ enableHotspot(): void;
 
 | **错误码ID** | **错误信息** |
   | -------- | -------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 | 2701000  | Operation failed.|
 
 **示例：**
@@ -58,6 +60,8 @@ disableHotspot(): void;
 
 | **错误码ID** | **错误信息** |
   | -------- | -------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 | 2701000  | Operation failed.|
 
 **示例：**
@@ -94,6 +98,8 @@ getSupportedPowerMode(): Promise&lt;Array&lt;PowerMode&gt;&gt;
 
 | **错误码ID** | **错误信息** |
   | -------- | -------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 | 2701000  | Operation failed.|
 
 ## PowerMode<sup>9+</sup>
@@ -131,6 +137,8 @@ getSupportedPowerMode(callback: AsyncCallback&lt;Array&lt;PowerMode&gt;&gt;): vo
 
 | **错误码ID** | **错误信息** |
   | -------- | -------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 | 2701000  | Operation failed.|
 
 **示例：**
@@ -175,6 +183,8 @@ getPowerMode(): Promise&lt;PowerMode&gt;
 
 | **错误码ID** | **错误信息** |
   | -------- | -------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 | 2701000  | Operation failed.|
 
 **示例：**
@@ -212,6 +222,8 @@ getPowerMode(callback: AsyncCallback&lt;PowerMode&gt;): void
 
 | **错误码ID** | **错误信息** |
   | -------- | -------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 | 2701000  | Operation failed.|
 
 **示例：**
@@ -256,6 +268,8 @@ setPowerMode(mode: PowerMode) : void;
 
 | **错误码ID** | **错误信息** |
   | -------- | -------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
 | 2701000  | Operation failed.|
 
 **示例：**
