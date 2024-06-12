@@ -118,7 +118,7 @@ struct Index {
 }
 ```
 
-### reuse<sup>12+</sup>
+### reuse
 
 reuse(param?: Object): void
 
@@ -132,7 +132,7 @@ reuse(param?: Object): void
 | ------ | ------ | ---- | ------------------------------------------------------------------------ |
 | param  | Object | 否   | 用于复用WrappedBuilder对象封装的builder函数参数，与constructor传入的参数类型保持一致。 |
 
-### recycle<sup>12+</sup>
+### recycle
 
 recycle(): void
 

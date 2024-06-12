@@ -8,7 +8,13 @@
 
 getContext(component?: Object):Context
 
-**参数：**
+获取与页面上下文组件关联的Context对象。
+
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
 
 | 参数名 | 类型          | 必填 | 说明                             |
 | ------ | ----------- | ---- | ------------------------------- |
