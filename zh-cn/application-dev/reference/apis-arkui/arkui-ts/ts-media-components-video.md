@@ -40,7 +40,7 @@ Video(value: VideoOptions)
 | currentProgressRate | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[PlaybackSpeed<sup>8+</sup>](#playbackspeed8枚举说明) | 否   | 视频播放倍速。<br/>**说明：**<br/>number取值仅支持：0.75，1.0，1.25，1.75，2.0。<br/>默认值：1.0 \| PlaybackSpeed.Speed_Forward_1_00_X |
 | previewUri          | string&nbsp;\| [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)&nbsp;\|&nbsp;[Resource](ts-types.md)  | 否   | 视频未播放时的预览图片路径，默认不显示图片。                 |
 | controller          | [VideoController](#videocontroller)                          | 否   | 设置视频控制器，可以控制视频的播放状态。                     |
-| imageAIOptions  | [ImageAIOptions](ts-image-common.md#imageaioptions12) | 否   | 设置图像AI分析选项，可配置分析类型或绑定一个分析控制器。 |
+| imageAIOptions<sup>12+</sup>  | [ImageAIOptions](ts-image-common.md#imageaioptions12) | 否   | 设置图像AI分析选项，可配置分析类型或绑定一个分析控制器。 |
 
 ## PlaybackSpeed<sup>8+</sup>枚举说明
 
