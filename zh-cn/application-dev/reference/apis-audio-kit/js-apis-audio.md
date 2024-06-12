@@ -562,7 +562,7 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 枚举，音频内容类型。
 
 > **说明：**
-> 从 API version 7 开始支持，从 API version 10 开始废弃。建议使用[StreamUsage](#streamusage)替代。
+> 从 API version 7 开始支持，从 API version 10 开始废弃。建议使用[StreamUsage](#streamusage)声明音频流使用类型即可。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Core
 
@@ -716,7 +716,7 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 
 | 名称          | 类型                        | 必填  | 说明             |
 | ------------- | --------------------------- | ---- | ---------------- |
-| content       | [ContentType](#contenttypedeprecated) | 否   | 音频内容类型。<br>API version 8、9为必填参数，从API version 10开始，变更为可选参数，默认值为0。 |
+| content       | [ContentType](#contenttypedeprecated) | 否   | 音频内容类型。<br>API version 8、9为必填参数，从API version 10开始，变更为可选参数，默认值为CONTENT_TYPE_UNKNOWN。同时，[ContentType](#contenttypedeprecated)废弃，建议直接使用[StreamUsage](#streamusage)声明音频流使用类型即可。 |
 | usage         | [StreamUsage](#streamusage) | 是   | 音频流使用类型。 <br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。|
 | rendererFlags | number                      | 是   | 音频渲染器标志。<br>0代表普通音频渲染器，1代表低时延音频渲染器。ArkTS接口暂不支持低时延音频渲染器。 <br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。|
 
