@@ -211,7 +211,6 @@ generateKeyItem(keyAlias: string, options: HuksOptions) : Promise\<void>
 ```ts
 /* 以生成ECC256密钥为例 */
 import { huks } from '@kit.UniversalKeystoreKit';
-import { BusinessError } from '@kit.BasicServicesKit';
 class HuksProperties {
     tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM
     value: huks.HuksKeyAlg | huks.HuksKeySize | huks.HuksKeyPurpose | huks.HuksKeyDigest = huks.HuksKeyAlg.HUKS_ALG_ECC
@@ -245,7 +244,7 @@ try {
         .then((data) => {
             console.info(`promise: generateKeyItem success`);
         })
-        .catch((error: BusinessError) => {
+        .catch((error) => {
             console.error(`promise: generateKeyItem failed`);
         });
 } catch (error) {
@@ -348,7 +347,6 @@ deleteKeyItem(keyAlias: string, options: HuksOptions) : Promise\<void>
 
 ```ts
 import { huks } from '@kit.UniversalKeystoreKit';
-import { BusinessError } from '@kit.BasicServicesKit';
 /* 此处options选择emptyOptions传空 */
 let keyAlias = 'keyAlias';
 let emptyOptions: huks.HuksOptions = {
@@ -359,7 +357,7 @@ try {
         .then ((data) => {
             console.info(`promise: deleteKeyItem key success`);
         })
-        .catch((error: BusinessError) => {
+        .catch((error) => {
             console.error(`promise: deleteKeyItem failed`);
         });
 } catch (error) {
@@ -511,7 +509,6 @@ importKeyItem(keyAlias: string, options: HuksOptions) : Promise\<void>
 
 ```ts
 import { huks } from '@kit.UniversalKeystoreKit';
-import { BusinessError } from '@kit.BasicServicesKit';
 /* 以导入AES128为例 */
 class HuksProperties {
     tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM
@@ -559,7 +556,7 @@ try {
         .then((data) => {
             console.info(`promise: importKeyItem success`);
         })
-        .catch((error: BusinessError) => {
+        .catch((error) => {
             console.error(`promise: importKeyItem failed`);
         });
 } catch (error) {
@@ -755,7 +752,6 @@ attestKeyItem(keyAlias: string, options: HuksOptions) : Promise\<HuksReturnResul
 
 ```ts
 import { huks } from '@kit.UniversalKeystoreKit';
-import { BusinessError } from '@kit.BasicServicesKit';
 class HuksProperties {
     tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM
     value: huks.HuksKeyAlg | huks.HuksKeySize | huks.HuksKeyPurpose | huks.HuksKeyDigest |
@@ -813,7 +809,7 @@ async function generateKey(alias: string) {
             .then((data) => {
                 console.info(`promise: generateKeyItem success`);
             })
-            .catch((error: BusinessError) => {
+            .catch((error) => {
                 console.error(`promise: generateKeyItem failed`);
             });
     } catch (error) {
@@ -850,7 +846,7 @@ async function attestKey() {
             .then((data) => {
                 console.info(`promise: attestKeyItem success`);
             })
-            .catch((error: BusinessError) => {
+            .catch((error) => {
                 console.error(`promise: attestKeyItem failed`);
             });
     } catch (error) {
@@ -1183,7 +1179,6 @@ importWrappedKeyItem(keyAlias: string, wrappingKeyAlias: string, options: HuksOp
 
 ```ts
 import { huks } from '@kit.UniversalKeystoreKit';
-import { BusinessError } from '@kit.BasicServicesKit';
 class HuksProperties {
     tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM
     value: huks.HuksKeyAlg | huks.HuksKeySize | huks.HuksKeyPurpose |
@@ -1198,7 +1193,7 @@ async function TestGenFunc(alias: string, options: huks.HuksOptions) {
             .then((data) => {
                 console.info(`callback: generateKeyItem success`);
             })
-            .catch((error: BusinessError) => {
+            .catch((error) => {
                 console.error(`callback: generateKeyItem failed`);
             });
     } catch (error) {
@@ -1226,7 +1221,7 @@ async function TestExportFunc(alias: string, options: huks.HuksOptions) {
             .then((data) => {
                 console.info(`callback: exportKeyItem success, data = ${JSON.stringify(data)}`);
             })
-            .catch((error: BusinessError) => {
+            .catch((error) => {
                 console.error(`callback: exportKeyItem failed`);
             });
     } catch (error) {
@@ -1254,7 +1249,7 @@ async function TestImportWrappedFunc(alias: string, wrappingAlias: string, optio
             .then((data) => {
                 console.info(`callback: importWrappedKeyItem success`);
             })
-            .catch((error: BusinessError) => {
+            .catch((error) => {
                 console.error(`callback: importWrappedKeyItem failed`);
             });
     } catch (error) {
@@ -1423,7 +1418,6 @@ importWrappedKeyItem(keyAlias: string, wrappingKeyAlias: string, options: HuksOp
 
 ```ts
 import { huks } from '@kit.UniversalKeystoreKit';
-import { BusinessError } from '@kit.BasicServicesKit';
 /* 处理流程与callback类似，主要差异点为如下函数： */
 /* 该处为示例代码，实际运行过程中，应使用实际导入密钥数据。数据构造方式由上注释可见说明 */
 async function TestImportWrappedFunc(alias: string, wrappingAlias: string, options: huks.HuksOptions) {
@@ -1432,7 +1426,7 @@ async function TestImportWrappedFunc(alias: string, wrappingAlias: string, optio
             .then ((data) => {
                 console.info(`promise: importWrappedKeyItem success`);
             })
-            .catch((error: BusinessError) => {
+            .catch((error) => {
                 console.error(`promise: importWrappedKeyItem failed`);
             });
     } catch (error) {
@@ -1544,7 +1538,6 @@ exportKeyItem(keyAlias: string, options: HuksOptions) : Promise\<HuksReturnResul
 
 ```ts
 import { huks } from '@kit.UniversalKeystoreKit';
-import { BusinessError } from '@kit.BasicServicesKit';
 /* 此处options选择emptyOptions来传空 */
 let keyAlias = 'keyAlias';
 let emptyOptions: huks.HuksOptions = {
@@ -1555,7 +1548,7 @@ try {
         .then ((data) => {
             console.info(`promise: exportKeyItem success, data = ${JSON.stringify(data)}`);
         })
-        .catch((error: BusinessError) => {
+        .catch((error) => {
             console.error(`promise: exportKeyItem failed`);
         });
 } catch (error) {
@@ -1666,7 +1659,6 @@ getKeyItemProperties(keyAlias: string, options: HuksOptions) : Promise\<HuksRetu
 
 ```ts
 import { huks } from '@kit.UniversalKeystoreKit';
-import { BusinessError } from '@kit.BasicServicesKit';
 /* 此处options选择emptyOptions来传空 */
 let keyAlias = 'keyAlias';
 let emptyOptions: huks.HuksOptions = {
@@ -1677,7 +1669,7 @@ try {
         .then ((data) => {
             console.info(`promise: getKeyItemProperties success, data = ${JSON.stringify(data)}`);
         })
-        .catch((error: BusinessError) => {
+        .catch((error) => {
             console.error(`promise: getKeyItemProperties failed`);
         });
 } catch (error) {
@@ -1785,7 +1777,6 @@ isKeyItemExist(keyAlias: string, options: HuksOptions) : Promise\<boolean>
 
 ```ts
 import { huks } from '@kit.UniversalKeystoreKit';
-import { BusinessError } from '@kit.BasicServicesKit';
 import { promptAction } from '@kit.ArkUI';
 
 /* 此处options选择emptyOptions来传空 */
@@ -1798,7 +1789,7 @@ huks.isKeyItemExist(keyAlias, emptyOptions).then((data) => {
         message: "keyAlias: " + keyAlias +"is existed！",
         duration: 500,
     })
-}).catch((error: BusinessError)=>{
+}).catch((error)=>{
     promptAction.showToast({
         message: "find key failed",
         duration: 6500,
@@ -1913,7 +1904,6 @@ hasKeyItem(keyAlias: string, options: HuksOptions) : Promise\<boolean>
 
 ```ts
 import { huks } from '@kit.UniversalKeystoreKit';
-import { BusinessError } from '@kit.BasicServicesKit';
 import { promptAction } from '@kit.ArkUI';
 
 /* 此处options选择emptyOptions来传空 */
@@ -1933,7 +1923,7 @@ huks.hasKeyItem(keyAlias, emptyOptions).then((data) => {
             duration: 2500,
         })
     }
-}).catch((error: BusinessError)=>{
+}).catch((error)=>{
     promptAction.showToast({
         message: "find key failed",
         duration: 6500,
@@ -2418,7 +2408,6 @@ abortSession操作密钥接口，使用Promise方式异步返回结果。
 
 ```ts
 import { huks } from '@kit.UniversalKeystoreKit';
-import { BusinessError } from '@kit.BasicServicesKit';
 /* huks.initSession, huks.updateSession, huks.finishSession为三段式接口，需要一起使用，当
  * huks.initSession和huks.updateSession
  * 以及huks.finishSession操作中的任一阶段发生错误时，
@@ -2481,7 +2470,7 @@ async function generateKey() {
             .then((data) => {
                 console.info(`promise: generateKeyItem success`);
             })
-            .catch((error: BusinessError) => {
+            .catch((error) => {
                 console.error(`promise: generateKeyItem failed`);
             });
     } catch (error) {
@@ -2497,7 +2486,7 @@ async function huksInit() {
                 console.info(`promise: initSession success, data = ${JSON.stringify(data)}`);
                 handle = data.handle;
             })
-            .catch((error: BusinessError) => {
+            .catch((error) => {
                 console.error(`promise: initSession key failed`);
             });
     } catch (error) {
@@ -2513,7 +2502,7 @@ async function huksUpdate() {
             .then((data) => {
                 console.info(`promise: updateSession success, data = ${JSON.stringify(data)}`);
             })
-            .catch((error: BusinessError) => {
+            .catch((error) => {
                 console.error(`promise: updateSession failed`);
             });
     } catch (error) {
@@ -2529,7 +2518,7 @@ async function huksFinish() {
             .then((data) => {
                 console.info(`promise: finishSession success, data = ${JSON.stringify(data)}`);
             })
-            .catch((error: BusinessError) => {
+            .catch((error) => {
                 console.error(`promise: finishSession failed`);
             });
     } catch (error) {
@@ -2544,7 +2533,7 @@ async function huksAbort() {
             .then((data) => {
                 console.info(`promise: abortSession success`);
             })
-            .catch((error: BusinessError) => {
+            .catch((error) => {
                 console.error(`promise: abortSession failed`);
             });
     } catch (error) {
@@ -2598,7 +2587,6 @@ listAliases(options: HuksOptions): Promise\<HuksListAliasesReturnResult>;
 
 ```ts
 import { huks } from '@kit.UniversalKeystoreKit'
-import { BusinessError } from '@kit.BasicServicesKit';
 
 class HuksProperties {
   tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_AUTH_STORAGE_LEVEL
@@ -2619,7 +2607,7 @@ async function testListAliases() {
   try {
     let result: huks.HuksListAliasesReturnResult = await huks.listAliases(queryOptions);
     console.info(`promise: listAliases success`);
-  } catch (error: BusinessError) {
+  } catch (error) {
     console.error(`promise: listAliases fail , code: ` + error.code + `, msg: ` + error.message);
   }
 }
@@ -3814,7 +3802,6 @@ abort操作密钥接口，使用Callback回调异步返回结果。
 
 ```ts
 import { huks } from '@kit.UniversalKeystoreKit';
-import { BusinessError } from '@kit.BasicServicesKit';
 /* huks.init, huks.update, huks.finish为三段式接口，需要一起使用，当huks.init和huks.update
  * 以及huks.finish操作中的任一阶段发生错误时，都需要调用huks.abort来终止密钥的使用。
  *
@@ -3868,7 +3855,7 @@ async function huksInit() {
     await huks.init(keyAlias, options).then((data) => {
         console.log(`test init data: ${JSON.stringify(data)}`);
         handle = data.handle;
-    }).catch((err: BusinessError) => {
+    }).catch((err) => {
         console.log("test init err information: " + JSON.stringify(err))
     })
 }
@@ -3891,7 +3878,7 @@ function huksFinish() {
         } else {
             resultMessage = "finish fail errorCode: " + data.errorCode;
         }
-    }).catch((err: BusinessError) => {
+    }).catch((err) => {
         resultMessage = "finish fail， catch errorMessage:" + JSON.stringify(err)
     });
     console.log(resultMessage);
@@ -3935,7 +3922,6 @@ abort操作密钥接口，使用Promise方式异步返回结果。
 
 ```ts
 import { huks } from '@kit.UniversalKeystoreKit';
-import { BusinessError } from '@kit.BasicServicesKit';
 /* huks.init, huks.update, huks.finish为三段式接口，需要一起使用，当huks.init和huks.update
  * 以及huks.finish操作中的任一阶段发生错误时，都需要调用huks.abort来终止密钥的使用。
  *
@@ -4037,7 +4023,7 @@ function huksAbort() {
         } else {
             resultMessage = "abort fail errorCode: " + data.errorCode;
         }
-    }).catch((err: BusinessError) => {
+    }).catch((err) => {
         resultMessage = "abort fail， catch errorMessage:" + JSON.stringify(err)
     });
     console.log(resultMessage);
