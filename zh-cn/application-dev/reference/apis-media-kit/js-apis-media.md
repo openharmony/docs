@@ -6482,6 +6482,8 @@ setMimeType(mimeType: AVMimeTypes): void
 
 **元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
+**系统能力：** SystemCapability.Multimedia.Media.Core
+
 **参数：**
 
 | 参数名   | 类型     | 必填 | 说明                 |
