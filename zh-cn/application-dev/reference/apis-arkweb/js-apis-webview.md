@@ -15492,7 +15492,7 @@ struct WebComponent {
   }
 }
 ```
-## SnapshotInfo
+## SnapshotInfo<sup>12+</sup>
 
 获取全量绘制结果入参。
 
@@ -15503,7 +15503,7 @@ struct WebComponent {
 | id | string | 是 | snapshot的id。|
 | size | [SizeOptions](../apis-arkui/arkui-ts/ts-types.md#sizeoptions)  | 是 | web绘制的尺寸，最多支持16000px * 16000px, 长度单位支持px、vp、%，需保持不同参数传入长度单位一致, 默认单位vp，超过规格时返回最大规格。（示例：width:'100px', height:'200px'。或者 width:'20%', height'30%'。只写数字时单位为vp。）|
 
-## SnapshotResult
+## SnapshotResult<sup>12+</sup>
 
 全量绘制回调结果。
 
