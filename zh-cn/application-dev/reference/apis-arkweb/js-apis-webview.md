@@ -15439,7 +15439,7 @@ struct WebComponent {
 
 webPageSnapshot(info: SnapshotInfo, callback: AsyncCallback\<SnapshotResult>): void
 
-获取网页全量绘制结果。
+获取网页全量绘制结果。（本地资源网页暂不支持）
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
