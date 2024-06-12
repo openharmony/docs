@@ -48,9 +48,12 @@ onMouse(event: (event: MouseEvent) => void)
 
 
 ## MouseEvent对象说明
+
 继承于[BaseEvent](ts-gesture-customize-judge.md#baseevent对象说明)。
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称                     | 属性类型                                     | 描述                           |
 | ---------------------- | ---------------------------------------- | ---------------------------- |
@@ -70,9 +73,12 @@ onMouse(event: (event: MouseEvent) => void)
 | screenY<sup>(deprecated)</sup> | number                 | 鼠标位置相对于应用窗口左上角的y轴坐标。<br>从API Version 10开始不再维护，建议使用windowY代替。 |
 
 ## HoverEvent<sup>10+</sup>对象说明
+
 继承于[BaseEvent](ts-gesture-customize-judge.md#baseevent对象说明)。
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称              | 属性类型       | 描述      |
 | --------------- | ---------- | ------- |

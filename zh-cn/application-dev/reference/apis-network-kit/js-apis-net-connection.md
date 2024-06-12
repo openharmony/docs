@@ -73,7 +73,6 @@ getDefaultNet(callback: AsyncCallback\<NetHandle>): void
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
-| 401     | Parameter error.             |
 | 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error.         |
 
@@ -152,7 +151,6 @@ getDefaultNetSync(): NetHandle
 | 错误码ID | 错误信息                         |
 | ------- | -------------------------------- |
 | 201     | Permission denied.               |
-| 401     | Parameter error.                 |
 | 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.           |
 
@@ -230,23 +228,25 @@ cat server.pem \
 ```json
 {
   "network-security-config": {	
-	  "domain-config": {
-		  "domains": [
-        {
-          "include-subdomains": true,
-          "name": "server.com"
-        }
-      ],
-      "pin-set": {
-        "expiration": "2024-11-08",
-        "pin": [
+	  "domain-config": [
+      {
+        "domains": [
           {
-            "digest-algorithm": "sha256",
-            "digest": "FEDCBA987654321"
+            "include-subdomains": true,
+            "name": "server.com"
           }
-        ]
+        ],
+        "pin-set": {
+          "expiration": "2024-11-08",
+          "pin": [
+            {
+              "digest-algorithm": "sha256",
+              "digest": "FEDCBA987654321"
+            }
+          ]
+        }
       }
-    }
+    ]
   }
 }
 ```
@@ -260,17 +260,19 @@ cat server.pem \
         {"certificates": "/etc/security/certificates"}
       ]
     },
-    "domain-config": {
-      "domains": [
-        {
-          "include-subdomains": true,
-          "name": "example.com"
-        }
-      ],
-      "trust-anchors": [
-        {"certificates": "/data/storage/el1/bundle/entry/resources/resfile"}
-      ]
-    }
+    "domain-config": [
+      {
+        "domains": [
+          {
+            "include-subdomains": true,
+            "name": "example.com"
+          }
+        ],
+        "trust-anchors": [
+          {"certificates": "/data/storage/el1/bundle/entry/resources/resfile"}
+        ]
+      }
+    ]
   }
 }
 
@@ -418,7 +420,6 @@ getAppNet(callback: AsyncCallback\<NetHandle>): void
 
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
-| 401 | Parameter error.|
 | 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
@@ -612,7 +613,6 @@ getAllNets(callback: AsyncCallback&lt;Array&lt;NetHandle&gt;&gt;): void
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
-| 401     | Parameter error.             |
 | 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
@@ -982,7 +982,6 @@ isDefaultNetMetered(callback: AsyncCallback\<boolean>): void
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
-| 401     | Parameter error.               |
 | 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
@@ -1085,7 +1084,6 @@ hasDefaultNet(callback: AsyncCallback\<boolean>): void
 | 错误码ID | 错误信息                          |
 | ------- | --------------------------------- |
 | 201     | Permission denied.                |
-| 401     | Parameter error.                  |
 | 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error.            |
 
@@ -1615,7 +1613,6 @@ clearCustomDnsRules(callback: AsyncCallback\<void\>): void
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
-| 401     | Parameter error.               |
 | 2100001 | Invalid parameter value.                |
 | 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error.         |
@@ -1745,7 +1742,6 @@ unregister(callback: AsyncCallback\<void>): void
 | 错误码ID | 错误信息                          |
 | ------- | --------------------------------- |
 | 201     | Permission denied.                |
-| 401     | Parameter error.                  |
 | 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error.            |
 | 2101007 | The callback does not exist.      |

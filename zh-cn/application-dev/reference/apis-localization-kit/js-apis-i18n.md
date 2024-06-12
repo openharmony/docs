@@ -1120,7 +1120,7 @@ isValidNumber(number: string): boolean
 
 format(number: string): string
 
-对电话号码进行格式化。
+对电话号码进行格式化。从API version 12开始，支持对拨号中的号码进行格式化。
 
 **元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
@@ -1142,6 +1142,17 @@ format(number: string): string
   ```ts
   let phonenumberfmt: i18n.PhoneNumberFormat = new i18n.PhoneNumberFormat("CN");
   let formattedPhoneNumber: string = phonenumberfmt.format("158****2312"); // formattedPhoneNumber = "158 **** 2312"
+
+  // 拨号中的号码格式化
+  let option: i18n.PhoneNumberFormatOptions = {type: "TYPING"};
+  let phoneNumberFmt: i18n.PhoneNumberFormat = new i18n.PhoneNumberFormat("CN", option);
+  let phoneNumber : string = "130493";
+  let formatResult : string = "";
+  for (let i = 0; i < phoneNumber.length; i++) {
+    formatResult += phoneNumber.charAt(i);
+    formatResult = phoneNumberFmt.format(formatResult);
+  }
+  console.log(formatResult); // formatResult: 130 493
   ```
 
 
@@ -1152,13 +1163,14 @@ getLocationName(number: string, locale: string): string
 获取电话号码归属地。
 
 **元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力**：SystemCapability.Global.I18n
 
 **参数：**
 
 | 参数名    | 类型     | 必填   | 说明   |
 | ------ | ------ | ---- | ---- |
-| number | string | 是    | 电话号码 |
+| number | string | 是    | 电话号码。获取其他地区号码的归属地，需要在号码前加00+国际区号。 |
 | locale | string | 是    | 区域ID |
 
 **返回值：**
@@ -1171,6 +1183,7 @@ getLocationName(number: string, locale: string): string
   ```ts
   let phonenumberfmt: i18n.PhoneNumberFormat = new i18n.PhoneNumberFormat("CN");
   let locationName: string = phonenumberfmt.getLocationName("158****2345", "zh-CN"); // locationName = "广东省湛江市"
+  let locName: string = phonenumberfmt.getLocationName("0039312****789", "zh-CN"); // locName = "意大利"
   ```
 
 
@@ -1184,7 +1197,7 @@ getLocationName(number: string, locale: string): string
 
 | 名称   | 类型     | 可读   | 可写   | 说明                                       |
 | ---- | ------ | ---- | ---- | ---------------------------------------- |
-| type | string | 是    | 是    | 表示对电话号码格式化的类型，取值范围："E164",&nbsp;"INTERNATIONAL",&nbsp;"NATIONAL",&nbsp;"RFC3966"。<br>-在API version 8版本，type为必填项。 <br>-API version 9版本开始，type为选填项。|
+| type | string | 是    | 是    | 表示对电话号码格式化的类型，取值范围：<br>"E164",&nbsp;"INTERNATIONAL",&nbsp;"NATIONAL",&nbsp;"RFC3966",&nbsp;"TYPING"。<br>-在API version 8版本，type为必填项。 <br>-API version 9版本开始，type为选填项。<br>-API version 12版本开始支持TYPING，表示对拨号中的号码格式化。|
 
 
 ## UnitInfo<sup>8+</sup>
@@ -1642,6 +1655,8 @@ getID(): string
 getDisplayName(locale?: string, isDST?: boolean): string
 
 获取时区对象的本地化表示。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 

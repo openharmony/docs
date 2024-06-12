@@ -742,7 +742,7 @@ addBuilderSpan(value: CustomBuilder, options?: RichEditorBuilderSpanOptions): nu
 >
 > - RichEditor组件添加占位Span，占位Span调用系统的measure方法计算真实的长宽和位置。
 > - 可通过[RichEditorBuilderSpanOptions](#richeditorbuilderspanoptions11)设置此builder在RichEditor中的index（一个文字为一个单位）。
-> - 此占位Span不可获焦，不支持拖拽（与可拖拽Span如文本或图片Span一起拖拽时，此Span对应的位置内容不会显示但会占相同大小的区域），支持部分通用属性，占位、删除等能力等同于ImageSpan，长度视为一个文字。
+> - 此占位Span不可获焦，支持拖拽，支持部分通用属性，占位、删除等能力等同于ImageSpan，长度视为一个文字。
 > - 不支持通过[bindSelectionMenu](#属性)设置自定义菜单。
 > - 不支持通过[getSpans](#getspans)，[getSelection](#getselection11)，[onSelect](#事件)，[aboutToDelete](#事件)获取builderSpan信息。
 > - 不支持通过[updateSpanStyle](#updatespanstyle)，[updateParagraphStyle](#updateparagraphstyle11)等方式更新builder。
@@ -1103,6 +1103,18 @@ isEditing(): boolean
 stopEditing(): void
 
 退出编辑态。
+
+### getLayoutManager<sup>12+</sup>
+
+getLayoutManager(): LayoutManager
+
+获取布局管理器对象。
+
+**返回值：**
+
+| 类型                                       | 说明      |
+| ---------------------------------------- | ------- |
+| [LayoutManager](ts-text-common.md#LayoutManager12) | 布局管理器对象。 |
 
 ### setStyledString<sup>12+</sup>
 
@@ -4040,3 +4052,73 @@ struct Index {
 ```
 
 ![StyledString](figures/richEditorStyledString.gif)
+
+### 示例21
+LayoutManager使用示例
+
+```ts
+@Entry
+@Component
+export struct Index {
+  @State lineCount: string = ""
+  @State glyphPositionAtCoordinate: string = ""
+  @State lineMetrics: string = ""
+  controller: RichEditorController = new RichEditorController();
+  @State textStr: string =
+    'Hello World! 你好，世界！'
+
+  build() {
+    Scroll() {
+      Column() {
+        Text('RichEditor组件getLayoutManager接口获取相对于组件的布局信息')
+          .fontSize(9)
+          .fontColor(0xCCCCCC)
+          .width('90%')
+          .padding(10)
+        RichEditor({ controller: this.controller })
+          .borderColor(Color.Red)
+          .borderWidth(1)
+          .onReady(() => {
+            this.controller.addTextSpan(this.textStr)
+          })
+          .onAreaChange(() => {
+            let layoutManager = this.controller.getLayoutManager();
+            this.lineCount = "LineCount: " + layoutManager.getLineCount()
+          })
+
+        Text('LineCount').fontSize(9).fontColor(0xCCCCCC).width('90%').padding(10)
+        Text(this.lineCount)
+
+        Text('GlyphPositionAtCoordinate').fontSize(9).fontColor(0xCCCCCC).width('90%').padding(10)
+        Button("相对组件坐标[150,50]字形信息")
+          .onClick(() => {
+            let layoutManager: LayoutManager = this.controller.getLayoutManager()
+            let position = layoutManager.getGlyphPositionAtCoordinate(150, 50)
+            this.glyphPositionAtCoordinate =
+            "相对组件坐标[150,50] glyphPositionAtCoordinate position: " + position.position + " affinity: " +
+            position.affinity
+          })
+          .margin({ bottom: 20, top: 10 })
+        Text(this.glyphPositionAtCoordinate)
+
+        Text('LineMetrics').fontSize(9).fontColor(0xCCCCCC).width('90%').padding(10)
+        Button("首行行信息、文本样式信息、以及字体属性信息")
+          .onClick(() => {
+            let layoutManager: LayoutManager = this.controller.getLayoutManager()
+            let lineMetrics = layoutManager.getLineMetrics(0)
+            this.lineMetrics = "lineMetrics is " + JSON.stringify(lineMetrics) + '\n\n'
+            let runMetrics = lineMetrics.runMetrics
+            runMetrics.forEach((value, key) => {
+              this.lineMetrics += "runMetrics key is " + key + " " + JSON.stringify(value) + "\n\n"
+            });
+          })
+          .margin({ bottom: 20, top: 10 })
+        Text(this.lineMetrics)
+      }
+      .margin({ top: 100, left: 8, right: 8 })
+    }
+  }
+}
+```
+
+![LayoutManager](figures/getLayoutManager.gif)

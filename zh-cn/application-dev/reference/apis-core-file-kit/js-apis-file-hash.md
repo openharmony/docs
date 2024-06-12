@@ -114,3 +114,103 @@ hash(path: string, algorithm: string, callback: AsyncCallback&lt;string&gt;): vo
     }
   });
   ```
+## Hash.createHash<sup>12+</sup>
+
+createHash(algorithm: string): HashStream;
+
+创建并返回 HashStream 对象，该对象可用于使用给定的 algorithm 生成哈希摘要。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| algorithm | string | 是  | 哈希计算采用的算法。可选 "md5"、"sha1" 或 "sha256"。建议采用安全强度更高的 "sha256"。 |
+
+**返回值：**
+
+  | 类型            | 说明         |
+  | ------------- | ---------- |
+  | [HashStream](#hashstream12) | HashStream 类的实例 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](errorcode-filemanagement.md#基础文件io错误码)。
+
+**示例：**
+
+  ```ts
+  // pages/xxx.ets
+  import fs from '@ohos.file.fs';
+
+  function hashFileWithStream() {
+    const filePath = pathDir + "/test.txt";
+    // 创建文件可读流
+    const rs = fs.createReadStream(filePath);
+    // 创建哈希流
+    const hs = Hash.createHash('sha256');
+    rs.on('data', (emitData) => {
+      const data = emitData?.data;
+      hs.update(new Uint8Array(data?.split('').map((x: string) => x.charCodeAt(0))).buffer);
+    });
+    rs.on('close', async () => {
+      const hashResult = hs.digest();
+      const fileHash = await hash.hash(filePath, 'sha256');
+      console.info(`hashResult: ${hashResult}, fileHash: ${fileHash}`);
+    });
+  }
+  ```
+
+
+## HashStream<sup>12+</sup>
+
+HashStream 类是用于创建数据的哈希摘要的实用工具。由 [createHash](#hashcreatehash12) 接口获得。
+
+### update<sup>12+</sup>
+
+update(data: ArrayBuffer): void
+
+使用给定的 data 更新哈希内容，可多次调用。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](errorcode-filemanagement.md#基础文件io错误码)。
+
+**示例：**
+
+  ```ts
+  // 创建哈希流
+  const hs = Hash.createHash('sha256');
+  hs.update(new Uint8Array('1234567890'?.split('').map((x: string) => x.charCodeAt(0))).buffer);
+  hs.update(new Uint8Array('abcdefg'?.split('').map((x: string) => x.charCodeAt(0))).buffer);
+  const hashResult = hs.digest();
+  // 88A00F46836CD629D0B79DE98532AFDE3AEAD79A5C53E4848102F433046D0106
+  console.info(`hashResult: ${hashResult}`);
+  ```
+
+### digest<sup>12+</sup>
+
+digest(): string
+
+计算传给被哈希的所有数据的摘要。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](errorcode-filemanagement.md#基础文件io错误码)。
+
+**示例：**
+
+  ```ts
+  // 创建哈希流
+  const hs = Hash.createHash('sha256');
+  hs.update(new Uint8Array('1234567890'?.split('').map((x: string) => x.charCodeAt(0))).buffer);
+  hs.update(new Uint8Array('abcdefg'?.split('').map((x: string) => x.charCodeAt(0))).buffer);
+  const hashResult = hs.digest();
+  // 88A00F46836CD629D0B79DE98532AFDE3AEAD79A5C53E4848102F433046D0106
+  console.info(`hashResult: ${hashResult}`);
+  ```

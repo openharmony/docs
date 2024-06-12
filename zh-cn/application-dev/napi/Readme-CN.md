@@ -52,7 +52,6 @@
 - 调试和性能分析
   - [调试和性能分析概述](debug-performance-profiling-overview.md)
   - [通过DevEco Studio调试](debug-ide.md)
-  - [LLDB高性能调试器](debug-lldb.md)
   - [C/C++内存错误检测](debug-asan.md)
 - 硬件兼容性
   - [硬件兼容性简介](hw-guide.md)

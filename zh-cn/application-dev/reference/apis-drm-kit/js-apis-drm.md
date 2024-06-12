@@ -289,7 +289,7 @@ isMediaKeySystemSupported(name: string): boolean
 
 | 类型                                             | 说明                           |
 | ----------------------------------------------- | ---------------------------- |
-| [boolean]          | 返回设备是否支持指定DRM类型的DRM方案。                   |
+| boolean          | 返回设备是否支持指定DRM类型的DRM方案。                   |
 
 **错误码：**
 
@@ -335,7 +335,7 @@ isMediaKeySystemSupported(name: string, mimeType: string): boolean
 
 | 类型                                             | 说明                           |
 | ----------------------------------------------- | ---------------------------- |
-| [boolean]          | 返回设备是否支持指定DRM类型、媒体类型的DRM方案。                   |
+| boolean          | 返回设备是否支持指定DRM类型、媒体类型的DRM方案。                   |
 
 **错误码：**
 
@@ -381,7 +381,7 @@ isMediaKeySystemSupported(name: string, mimeType: string, level: ContentProtecti
 
 | 类型                                             | 说明                           |
 | ----------------------------------------------- | ---------------------------- |
-| [boolean]          | 返回设备是否支持指定DRM类型、媒体类型和内容保护级别的DRM方案。                   |
+| boolean          | 返回设备是否支持指定DRM类型、媒体类型和内容保护级别的DRM方案。                   |
 
 **错误码：**
 
@@ -410,7 +410,7 @@ try {
 
 ## drm.getMediaKeySystemUuid<sup>12+</sup>
 
-getMediaKeySystemUuid(): string
+getMediaKeySystemUuid(name: string): string;
 
 获取设备支持的DRM插件的名称和uuid。
 
@@ -434,7 +434,7 @@ getMediaKeySystemUuid(): string
 
 | 错误码ID         | 错误信息        |
 | --------------- | --------------- |
-| 401                |  The parameter check failed                |
+| 401                |  The parameter check failed.Possibly because: 1.Mandatory parameters are left unspecified. 2.Parameter verification failed.                |
 | 24700101                |  All unknown errors                  |
 | 24700201                |  Service fatal error e.g. service died                  |
 
@@ -444,7 +444,8 @@ getMediaKeySystemUuid(): string
 import drm from '@ohos.multimedia.drm';
 import { BusinessError } from '@ohos.base';
 try {
-  let uuid: string = drm.getMediaKeySystemUuid();
+  let uuid: String = drm.getMediaKeySystemUuid("com.clearplay.drm");
+  console.log("getMediaKeySystemUuid: ", uuid);
 } catch (err) {
   let error = err as BusinessError;
   console.error(`getMediaKeySystemUuid ERROR: ${error}`);  
@@ -762,7 +763,7 @@ generateKeySystemRequest(): Promise<ProvisionRequest\>
 
 | 类型                                             | 说明                           |
 | ----------------------------------------------- | ---------------------------- |
-| [ProvisionRequest](#provisionrequest)          | 获取mediaKeySystem设备证书的请求。                   |
+| Promise<[ProvisionRequest](#provisionrequest)\>          | Promise对象，返回获取mediaKeySystem设备证书的请求。                   |
 
 **错误码：**
 
@@ -800,6 +801,12 @@ processKeySystemResponse(response: Uint8Array): Promise<void\>
 | 参数名     | 类型                                             | 必填 | 说明                           |
 | -------- | ----------------------------------------------- | ---- | ---------------------------- |
 | response  | Uint8Array     | 是   | 设备证书响应。                   |
+
+**返回值：**
+
+| 类型                                             | 说明                           |
+| ----------------------------------------------- | ---------------------------- |
+| Promise<void\>          | Promise对象。无返回结果的Promise对象。                   |
 
 **错误码：**
 
@@ -878,7 +885,7 @@ on(type: 'keySystemRequired', callback: (eventInfo: EventInfo) => void): void
 | 参数名      | 类型                  | 必填 | 说明                                  |
 | -------- | -------------------- | ---- | ------------------------------------- |
 | type     | string               | 是   | 监听事件，固定为'keySystemRequired'，MediaKeySystem实例创建成功可监听。设备证书请求时触发该事件并返回。 |
-| callback | Callback\<[EventInfo](#eventinfo)\> | 是   | 回调函数，用于获取结果，只要有该事件返回就证明需要请求设备证书。                 |
+| callback | Callback\<[EventInfo](#eventinfo)\> | 是   | 回调函数，返回事件信息。只要有该事件返回就证明需请求设备证书。                 |
 
 **错误码：**
 
@@ -914,7 +921,7 @@ off(type: 'keySystemRequired', callback?: (eventInfo: EventInfo) => void): void
 | 参数名      | 类型                  | 必填 | 说明                                  |
 | -------- | -------------------- | ---- | ------------------------------------- |
 | type     | string               | 是   | 监听事件，固定为'keySystemRequired'，MediaKeySystem实例创建成功可监听。 |
-| callback | Callback\<[EventInfo](#eventinfo)\> | 否   | 回调函数，可选。                |
+| callback | Callback\<[EventInfo](#eventinfo)\> | 否   | 回调函数，返回事件信息。可选。                |
 
 **错误码：**
 
@@ -1207,7 +1214,7 @@ generateMediaKeyRequest(mimeType: string, initData: Uint8Array, mediaKeyType: nu
 
 | 类型                                             | 说明                           |
 | ----------------------------------------------- | ---------------------------- |
-| [MediaKeyRequest](#mediakeyrequest)          | 返回许可证请求。                   |
+| Promise<[MediaKeyRequest](#mediakeyrequest)\>          | Promise对象，返回许可证请求。                   |
 
 **错误码：**
 
@@ -1259,7 +1266,7 @@ processMediaKeyResponse(response: Uint8Array): Promise<Uint8Array\>
 
 | 类型                                             | 说明                           |
 | ----------------------------------------------- | ---------------------------- |
-| [Uint8Array]          | 返回许可证Id。                   |
+| Promise<Uint8Array\>          | Promise对象，返回许可证Id。                   |
 
 **错误码：**
 
@@ -1385,7 +1392,7 @@ generateOfflineReleaseRequest(mediaKeyId: Uint8Array): Promise<Uint8Array\>
 
 | 类型                                             | 说明                           |
 | ----------------------------------------------- | ---------------------------- |
-| [Uint8Array]          | 返回离线许可证释放的请求。                   |
+| Promise<Uint8Array\>          | Promise对象，返回离线许可证释放的请求。                   |
 
 **错误码：**
 
@@ -1436,6 +1443,12 @@ processOfflineReleaseResponse(mediaKeyId: Uint8Array, response: Uint8Array): Pro
 | mediaKeyId  | Uint8Array     | 是   | 离线许可证Id。                   |
 | response  | Uint8Array     | 是   | 离线许可证释放响应。                   |
 
+**返回值：**
+
+| 类型                                             | 说明                           |
+| ----------------------------------------------- | ---------------------------- |
+| Promise<void\>          | Promise对象。无返回结果的Promise对象。                   |
+
 **错误码：**
 
 以下错误码的详细介绍请参见[DRM错误码](errorcode-drm.md)。
@@ -1485,6 +1498,11 @@ restoreOfflineMediaKeys(mediaKeyId: Uint8Array): Promise<void\>
 | -------- | ----------------------------------------------- | ---- | ---------------------------- |
 | mediaKeyId  | Uint8Array     | 是   | 离线许可证Id。                   |
 
+**返回值：**
+
+| 类型                                             | 说明                           |
+| ----------------------------------------------- | ---------------------------- |
+| Promise<void\>          | Promise对象。无返回结果的Promise对象。                   |
 
 **错误码：**
 
@@ -1580,7 +1598,7 @@ requireSecureDecoderModule(mimeType: string): boolean
 
 | 类型                                             | 说明                           |
 | ----------------------------------------------- | ---------------------------- |
-| [boolean]          | 请求安全解码模块状态，true表示安全解码模块就绪，false表示安全解码模块未就绪。                   |
+| boolean          | 请求安全解码模块状态，true表示安全解码模块就绪，false表示安全解码模块未就绪。                   |
 
 **错误码：**
 
@@ -1624,7 +1642,7 @@ on(type: 'keyRequired', callback: (eventInfo: EventInfo) => void): void
 | 参数名      | 类型                  | 必填 | 说明                                  |
 | -------- | -------------------- | ---- | ------------------------------------- |
 | type     | string               | 是   | 监听事件，固定为'keyRequired'，MediaKeySystem实例创建成功可监听。key请求时触发该事件并返回。 |
-| callback | Callback\<[EventInfo](#eventinfo)\> | 是   | 回调函数，用于获取结果。只要有该事件返回就证明在进行key请求。                 |
+| callback | Callback\<[EventInfo](#eventinfo)\> | 是   | 回调函数，返回事件信息。只要有该事件返回就证明在进行key请求。                 |
 
 **错误码：**
 
@@ -1662,7 +1680,7 @@ off(type: 'keyRequired', callback?: (eventInfo: EventInfo) => void): void
 | 参数名      | 类型                  | 必填 | 说明                                  |
 | -------- | -------------------- | ---- | ------------------------------------- |
 | type     | string               | 是   | 监听事件，固定为'keyRequired'，MediaKeySystem实例创建成功可监听。 |
-| callback | Callback\<[EventInfo](#eventinfo)\> | 否   | 回调函数，可选                |
+| callback | Callback\<[EventInfo](#eventinfo)\> | 否   | 回调函数，返回事件信息。可选。                |
 
 **错误码：**
 
@@ -1698,7 +1716,7 @@ on(type: 'keyExpired', callback: (eventInfo: EventInfo) => void): void
 | 参数名      | 类型                  | 必填 | 说明                                  |
 | -------- | -------------------- | ---- | ------------------------------------- |
 | type     | string               | 是   | 监听事件，固定为'keyExpired'，MediaKeySystem实例创建成功可监听。密钥过期时触发该事件并返回。 |
-| callback | Callback\<[EventInfo](#eventinfo)\> | 是   | 回调函数，用于获取结果。只要有该事件返回就证明会话丢失。                 |
+| callback | Callback\<[EventInfo](#eventinfo)\> | 是   | 回调函数，返回事件信息。只要有该事件返回就证明密钥过期。                 |
 
 **错误码：**
 
@@ -1736,7 +1754,7 @@ off(type: 'keyExpired', callback?: (eventInfo: EventInfo) => void): void
 | 参数名      | 类型                  | 必填 | 说明                                  |
 | -------- | -------------------- | ---- | ------------------------------------- |
 | type     | string               | 是   | 监听事件，固定为'keyExpired'，MediaKeySystem实例创建成功可监听。 |
-| callback | Callback\<[EventInfo](#eventinfo)\> | 否   | 回调函数，可选                |
+| callback | Callback\<[EventInfo](#eventinfo)\> | 否   | 回调函数，返回事件信息。可选。                |
 
 **错误码：**
 
@@ -1772,7 +1790,7 @@ on(type: 'vendorDefined', callback: (eventInfo: EventInfo) => void): void
 | 参数名      | 类型                  | 必填 | 说明                                  |
 | -------- | -------------------- | ---- | ------------------------------------- |
 | type     | string               | 是   | 监听事件，固定为'vendorDefined'，MediaKeySystem实例创建成功可监听。第三方定义事件发生时触发该事件并返回。 |
-| callback | Callback\<[EventInfo](#eventinfo)\> | 是   | 回调函数，用于获取结果。只要有该事件返回就证明会话丢失。                 |
+| callback | Callback\<[EventInfo](#eventinfo)\> | 是   | 回调函数，返回事件信息。                 |
 
 **错误码：**
 
@@ -1810,7 +1828,7 @@ off(type: 'vendorDefined', callback?: (eventInfo: EventInfo) => void): void
 | 参数名      | 类型                  | 必填 | 说明                                  |
 | -------- | -------------------- | ---- | ------------------------------------- |
 | type     | string               | 是   | 监听事件，固定为'vendorDefined'，MediaKeySystem实例创建成功可监听。 |
-| callback | Callback\<[EventInfo](#eventinfo)\> | 否   | 回调函数，可选                |
+| callback | Callback\<[EventInfo](#eventinfo)\> | 否   | 回调函数，返回事件信息。可选。                |
 
 **错误码：**
 
@@ -1846,7 +1864,7 @@ on(type: 'expirationUpdate', callback: (eventInfo: EventInfo) => void): void
 | 参数名      | 类型                  | 必填 | 说明                                  |
 | -------- | -------------------- | ---- | ------------------------------------- |
 | type     | string               | 是   | 监听事件，固定为'expirationUpdate'，MediaKeySystem实例创建成功可监听。密钥过期更新时触发该事件并返回。 |
-| callback | Callback\<[EventInfo](#eventinfo)\> | 是   | 回调函数，用于获取结果。只要有该事件返回就证明会话丢失。                 |
+| callback | Callback\<[EventInfo](#eventinfo)\> | 是   | 回调函数，返回事件信息。只要有该事件返回就密钥有效期已更新。                 |
 
 **错误码：**
 
@@ -1884,7 +1902,7 @@ off(type: 'expirationUpdate', callback?: (eventInfo: EventInfo) => void): void
 | 参数名      | 类型                  | 必填 | 说明                                  |
 | -------- | -------------------- | ---- | ------------------------------------- |
 | type     | string               | 是   | 监听事件，固定为'expirationUpdate'，MediaKeySystem实例创建成功可监听。 |
-| callback | Callback\<[EventInfo](#eventinfo)\> | 否   | 回调函数，可选                |
+| callback | Callback\<[EventInfo](#eventinfo)\> | 否   | 回调函数，返回事件信息。可选。                |
 
 **错误码：**
 
@@ -1920,7 +1938,7 @@ on(type: 'keysChange', callback: (keyInfo: KeysInfo[], newKeyAvailable: boolean)
 | 参数名      | 类型                  | 必填 | 说明                                  |
 | -------- | -------------------- | ---- | ------------------------------------- |
 | type     | string               | 是   | 监听事件，固定为'keysChange'，MediaKeySystem实例创建成功可监听。密钥变化时触发该事件并返回。 |
-| callback | Callback\<[EventInfo](#eventinfo)\> | 是   | 回调函数，用于获取结果。只要有该事件返回就证明会话丢失。                 |
+| callback | Callback\<[EventInfo](#eventinfo)\> | 是   | 回调函数，返回事件信息。只要有该事件返回就证明密钥变化了。                 |
 
 **错误码：**
 
@@ -1960,7 +1978,7 @@ off(type: 'keysChange', callback?: (keyInfo: KeysInfo[], newKeyAvailable: boolea
 | 参数名      | 类型                  | 必填 | 说明                                  |
 | -------- | -------------------- | ---- | ------------------------------------- |
 | type     | string               | 是   | 监听事件，固定为'keysChange'，MediaKeySystem实例创建成功可监听。 |
-| callback | Callback\<[EventInfo](#eventinfo)\> | 否   | 回调函数，可选                |
+| callback | Callback\<[EventInfo](#eventinfo)\> | 否   | 回调函数，返回事件信息。可选。                |
 
 **错误码：**
 

@@ -4038,7 +4038,7 @@ import { BusinessError } from '@ohos.base';
 imageSourceApi.release().then(() => {
     console.info('Succeeded in releasing the image source instance.');
 }).catch((error: BusinessError) => {
-    console.error('Failed to release the image source instance.');
+    console.error(`Failed to release the image source instance.code ${error.code},message is ${error.message}`);
 })
 ```
 
@@ -4176,10 +4176,14 @@ let opts: image.InitializationOptions = { editable: true, pixelFormat: 3, size: 
 image.createPixelMap(color, opts).then((pixelMap: image.PixelMap) => {
     let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 }
     imagePackerApi.packing(pixelMap, packOpts, (err: BusinessError, data: ArrayBuffer) => { 
-        console.info('Succeeded in packing the image.');
+        if (err) {
+            console.error(`Failed to pack the image.code ${err.code},message is ${err.message}`);
+        } else {
+            console.info('Succeeded in packing the image.');
+        }
     })
 }).catch((error: BusinessError) => {
-	console.error('createPixelMap failed.');
+	console.error(`Failed to create the PixelMap.code ${error.code},message is ${error.message}`);
 })
 ```
 
@@ -4249,7 +4253,7 @@ import { BusinessError } from '@ohos.base';
 
 imagePackerApi.release((err: BusinessError)=>{ 
     if (err) {
-        console.error('Failed to release image packaging.'); 
+        console.error(`Failed to release image packaging.code ${err.code},message is ${err.message}`);
     } else {
         console.info('Succeeded in releasing image packaging.');
     }
@@ -4280,7 +4284,7 @@ import { BusinessError } from '@ohos.base';
 imagePackerApi.release().then(() => {
     console.info('Succeeded in releasing image packaging.');
 }).catch((error: BusinessError) => { 
-    console.error('Failed to release image packaging.'); 
+    console.error(`Failed to release image packaging.code ${error.code},message is ${error.message}`);
 })
 ```
 
@@ -4361,7 +4365,7 @@ const imagePackerApi: image.ImagePacker = image.createImagePacker();
 imagePackerApi.packToFile(imageSourceApi, file.fd, packOpts).then(() => {
     console.info('Succeeded in packing the image to file.');
 }).catch((error: BusinessError) => { 
-    console.error(`Failed to pack the image to file.code ${err.code},message is ${err.message}`);
+    console.error(`Failed to pack the image to file.code ${error.code},message is ${error.message}`);
 }) 
 ```
 
@@ -5386,7 +5390,7 @@ PixelMap的初始化选项。
 | desiredPixelFormat | [PixelMapFormat](#pixelmapformat7) | 否   | 是   | 解码的像素格式。默认值为RGBA_8888。仅支持设置：RGBA_8888、BGRA_8888和RGB_565。有透明通道图片格式不支持设置RGB_565，如PNG、GIF、ICO和WEBP。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。 |
 | index              | number                             | 否   | 是   | 解码图片序号。默认值为0。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。   |
 | fitDensity<sup>9+</sup> | number                        | 否   | 是   | 图像像素密度，单位为ppi。默认值为0。<br>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 <br>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。   |
-| desiredColorSpace<sup>11+</sup> | [colorSpaceManager.ColorSpaceManager](../apis-arkgraphics2d/js-apis-colorSpaceManager.md#colorspacemanager) | 否   | 是   | 目标色彩空间。 |
+| desiredColorSpace<sup>11+</sup> | [colorSpaceManager.ColorSpaceManager](../apis-arkgraphics2d/js-apis-colorSpaceManager.md#colorspacemanager) | 否   | 是   | 目标色彩空间。默认值为UNKNOWN。 |
 | desiredDynamicRange<sup>12+</sup> | [DecodingDynamicRange](#decodingdynamicrange12) | 否   | 是   | 目标动态范围。通过[CreateIncrementalSource](#imagecreateincrementalsource9)创建的imagesource不支持该操作，默认解码为SDR内容。默认值为SDR。 |
 
 ## Region<sup>7+</sup>
@@ -5684,7 +5688,7 @@ PixelMap的初始化选项。
 
 | 名称          | 值       | 说明         |
 | ------------- | ----------| ------------ |
-| AUTO          | 0    | 自适应，根据[pixelmap](#pixelmap7)内容处理。即如果pixelmap本身为HDR，则会按照HDR内容进行编码；反之按照SDR内容解码。  |
+| AUTO          | 0    | 自适应，根据[pixelmap](#pixelmap7)内容处理。即如果pixelmap本身为HDR，则会按照HDR内容进行编码；反之按照SDR内容编码。  |
 | SDR           | 1    | 按照标准动态范围处理图片。   |
 
 ## 补充说明

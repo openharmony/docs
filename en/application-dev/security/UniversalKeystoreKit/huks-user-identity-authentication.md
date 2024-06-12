@@ -10,48 +10,43 @@ For details about scenarios and related concepts, see [HUKS Access Control Overv
    When a key is generated or imported, set [HuksUserAuthType](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksuserauthtype9), [HuksAuthAccessType](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksauthaccesstype9), and [HuksChallengeType](../../reference/apis-universal-keystore-kit/js-apis-huks.md#hukschallengetype9).
 
    ```ts
-   import huks from '@ohos.security.huks';
-   import { BusinessError } from '@ohos.base';
+   import { huks } from "@kit.UniversalKeystoreKit";
    /*
     * Set the key alias and encapsulate the key property set.
     */
    let keyAlias = 'test_sm4_key_alias';
-   let properties: Array<huks.HuksParam> = new Array();
-   properties[0] = {
+   let properties: Array<huks.HuksParam> = [{
        tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
-       value: huks.HuksKeyAlg.HUKS_ALG_SM4,
-   }
-   properties[1] = {
+       value: huks.HuksKeyAlg.HUKS_ALG_SM4
+   }, {
        tag: huks.HuksTag.HUKS_TAG_PURPOSE,
-       value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT | huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT,
-   }
-   properties[2] = {
+       value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT | huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT
+   }, {
        tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
        value: huks.HuksKeySize.HUKS_SM4_KEY_SIZE_128,
-   }
-   properties[3] = {
+   }, {
        tag: huks.HuksTag.HUKS_TAG_BLOCK_MODE,
        value: huks.HuksCipherMode.HUKS_MODE_CBC,
-   }
-   properties[4] = {
+   }, {
        tag: huks.HuksTag.HUKS_TAG_PADDING,
        value: huks.HuksKeyPadding.HUKS_PADDING_NONE,
-   }
+   },
    // Set HuksUserAuthType to fingerprint authentication.
-   properties[5] = {
+   {
        tag: huks.HuksTag.HUKS_TAG_USER_AUTH_TYPE,
        value: huks.HuksUserAuthType.HUKS_USER_AUTH_TYPE_FINGERPRINT
-   }
+   },
    // Set HuksAuthAccessType to HUKS_AUTH_ACCESS_INVALID_NEW_BIO_ENROLL, which invalidates the key when a new biometric feature (fingerprint) is enrolled.
-   properties[6] = {
+   {
        tag: huks.HuksTag.HUKS_TAG_KEY_AUTH_ACCESS_TYPE,
        value: huks.HuksAuthAccessType.HUKS_AUTH_ACCESS_INVALID_NEW_BIO_ENROLL
-   }
+   },
    // Use the default challenge type.
-   properties[7] = {
+   {
        tag: huks.HuksTag.HUKS_TAG_CHALLENGE_TYPE,
        value: huks.HuksChallengeType.HUKS_CHALLENGE_TYPE_NORMAL
-   }
+   }];
+
    let huksOptions : huks.HuksOptions = {
        properties: properties,
        inData: new Uint8Array(new Array())
@@ -86,7 +81,7 @@ For details about scenarios and related concepts, see [HUKS Access Control Overv
            .then((data) => {
                console.info(`promise: generateKeyItem success, data = ${JSON.stringify(data)}`);
            })
-           .catch((error : BusinessError) => {
+           .catch((error) => {
                if (throwObject.isThrow) {
                    throw(error as Error);
                } else {
@@ -105,9 +100,8 @@ For details about scenarios and related concepts, see [HUKS Access Control Overv
 2. Initialize a key session to initiate fingerprint authentication. If the authentication is successful, an authentication token (**AuthToken**) is returned.
    
    ```ts
-   import huks from '@ohos.security.huks';
+   import { huks } from "@kit.UniversalKeystoreKit";
    import userIAM_userAuth from '@ohos.userIAM.userAuth';
-   import { BusinessError } from '@ohos.base';
    /*
     * Set the key alias and encapsulate the key property set.
     */
@@ -118,31 +112,26 @@ For details about scenarios and related concepts, see [HUKS Access Control Overv
    let authType = userIAM_userAuth.UserAuthType.FINGERPRINT;
    let authTrustLevel = userIAM_userAuth.AuthTrustLevel.ATL1;
    /* Set the key generation parameter set and key encryption parameter set. */
-   let properties : Array<huks.HuksParam> = new Array();
-   properties[0] = {
+   let properties : Array<huks.HuksParam> = [{
        tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
        value: huks.HuksKeyAlg.HUKS_ALG_SM4,
-   }
-   properties[1] = {
+   }, {
        tag: huks.HuksTag.HUKS_TAG_PURPOSE,
        value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT,
-   }
-   properties[2] = {
+   }, {
        tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
        value: huks.HuksKeySize.HUKS_SM4_KEY_SIZE_128,
-   }
-   properties[3] = {
+   }, {
        tag: huks.HuksTag.HUKS_TAG_BLOCK_MODE,
        value: huks.HuksCipherMode.HUKS_MODE_CBC,
-   }
-   properties[4] = {
+   }, {
        tag: huks.HuksTag.HUKS_TAG_PADDING,
        value: huks.HuksKeyPadding.HUKS_PADDING_NONE,
-   }
-   properties[5] = {
+   }, {
        tag: huks.HuksTag.HUKS_TAG_IV,
-       value: StringToUint8Arry(IV),
-   }
+       value: StringToUint8Array(IV),
+   }];
+
    let huksOptions : huks.HuksOptions = {
        properties: properties,
        inData: new Uint8Array(new Array())
@@ -176,7 +165,7 @@ For details about scenarios and related concepts, see [HUKS Access Control Overv
                handle = data.handle;
                challenge = data.challenge as Uint8Array;
            })
-           .catch((error : BusinessError) => {
+           .catch((error) => {
                if (throwObject.isThrow) {
                    throw(error as Error);
                } else {
@@ -189,8 +178,7 @@ For details about scenarios and related concepts, see [HUKS Access Control Overv
    }
    function userIAMAuthFinger(huksChallenge:Uint8Array) {
        // Obtain an authentication object.
-       let authTypeList:userIAM_userAuth.UserAuthType[]= new Array();
-       authTypeList[0] = authType;
+       let authTypeList:userIAM_userAuth.UserAuthType[]= [ authType ];
        const authParam:userIAM_userAuth.AuthParam = {
          challenge: huksChallenge,
          authType: authTypeList,
@@ -241,8 +229,7 @@ For details about scenarios and related concepts, see [HUKS Access Control Overv
    /*
    * The following uses a 128-bit SM4 key as an example.
    */
-   import huks from '@ohos.security.huks';
-   import { BusinessError } from '@ohos.base';
+   import { huks } from "@kit.UniversalKeystoreKit";
    /*
    * Determine the key property set to be encapsulated.
    */
@@ -321,7 +308,7 @@ For details about scenarios and related concepts, see [HUKS Access Control Overv
            .then ((data) => {
                console.info(`promise: doUpdate success, data = ${JSON.stringify(data)}`);
            })
-           .catch((error: BusinessError) => {
+           .catch((error) => {
                if (throwObject.isThrow) {
                    throw(error as Error);
                } else {
@@ -357,7 +344,7 @@ For details about scenarios and related concepts, see [HUKS Access Control Overv
                finishOutData = data.outData as Uint8Array;
                console.info(`promise: doFinish success, data = ${JSON.stringify(data)}`);
            })
-           .catch((error: BusinessError) => {
+           .catch((error) => {
                if (throwObject.isThrow) {
                    throw(error as Error);
                } else {
