@@ -3330,7 +3330,7 @@ struct ImageAnalyzerExample {
         .onClick(() => {
           this.aiController.getImageAnalyzerSupportTypes()
         })
-      Canvas(this.context)
+      Canvas(this.context, this.options)
         .width(200)
         .height(200)
         .enableAnalyzer(true)
