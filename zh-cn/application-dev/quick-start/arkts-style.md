@@ -29,7 +29,9 @@
 - \@Styles可以定义在组件内或全局，在全局定义时需在方法名前面添加function关键字，组件内定义时则不需要添加function关键字。
 
 > **说明：**
-> 只能在当前文件内使用，不支持export
+>
+> 只能在当前文件内使用，不支持export。
+>
 
   ```ts
   // 全局
@@ -40,6 +42,47 @@
   struct FancyUse {
     @Styles fancy() {
       .height(100)
+    }
+  }
+  ```
+
+如果要实现跨文件操作的功能，可以参考使用[动态属性设置](../reference/apis-arkui/arkui-ts/ts-universal-attributes-attribute-modifier.md)。
+
+  ```ts
+  // index.ets
+  import { MyButtonModifier } from './setAttribute'
+
+  @Entry
+  @Component
+  struct attributeDemo {
+    @State modifier: MyButtonModifier = new MyButtonModifier()
+
+    build() {
+      Row() {
+        Column() {
+          Button("Button")
+            .attributeModifier(this.modifier)
+            .onClick(() => {
+              this.modifier.isDark = !this.modifier.isDark
+            })
+        }
+        .width('100%')
+      }
+      .height('100%')
+    }
+  }
+  ```
+
+  ```ts
+  // setAttribute.ets
+  export class MyButtonModifier implements AttributeModifier<ButtonAttribute> {
+    isDark: boolean = false
+    applyNormalAttribute(instance: ButtonAttribute): void {
+      if (this.isDark) {
+        instance.backgroundColor(Color.Black)
+      } else {
+        instance.backgroundColor(Color.Red)
+      }
     }
   }
   ```
