@@ -15404,10 +15404,6 @@ static enableWholeWebPageDrawing(): void
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-**错误码：**
-
-错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
-
 **示例：**
 
 ```ts
@@ -15449,10 +15445,6 @@ webPageSnapshot(info: SnapshotInfo, callback: AsyncCallback\<SnapshotResult>): v
 | ----------- | ------------- | ---- | ------------------------ |
 | info        | [SnapshotInfo](#snapshotinfo)| 是   | 全量绘制结果入参。 |
 | callback        | [SnapshotResult](#snapshotresult)| 是   | 全量绘制回调结果。 
-
-**错误码：**
-
-错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
 
 **示例：**
 
