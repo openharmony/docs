@@ -15501,7 +15501,7 @@ struct WebComponent {
 | 名称 | 类型 |  必填 | 说明 |
 |------|------|------|------|
 | id | string | 是 | snapshot的id。|
-| size | SizeOptions | 是 | web绘制的尺寸，最多支持16000px * 16000px, 长度单位支持px、vp、%，需保持不同参数传入长度单位一致。|
+| size | SizeOptions | 是 | web绘制的尺寸，最多支持16000px * 16000px, 长度单位支持px、vp、%，需保持不同参数传入长度单位一致, 默认单位vp，超过规格时返回最大规格。|
 
 ## SnapshotResult
 
@@ -15512,6 +15512,6 @@ struct WebComponent {
 | 名称 | 类型 |  说明 |
 |------|------|---------|
 | id | string | snapshot的id。|
-| status | boolean |  snapshot的状态。|
-| size | SizeOptions  | web绘制的尺寸。|
+| status | boolean |  snapshot的状态，正常为true，失败为false，获取全量绘制结果失败，返回size为0，map为空。|
+| size | SizeOptions  | web绘制的真实尺寸，number类型，单位vp。|
 | imagePixelMap | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 全量绘制结果image.pixelMap格式。|
