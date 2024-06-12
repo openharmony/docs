@@ -182,6 +182,62 @@
     
     }
   ```
+  
+注：如果setDefaultTheme的参数为undefined时，默认token值对应的色值如下：
+
+| 场景类别          | 语义Token                       | Light模式色值 | Dark模式色值  |
+|---------------|-------------------------------|-----------|-----------|
+| 文本            | fontEmphasize                 | #000000   | #FFFFFF   |
+| 文本反色          | fontOn                        | #FFFFFF   | #FFFFFF   |
+| 图标            | icon                          | #000000   | #FFFFFF   |
+| 图标反色          | iconOn                        | #FFFFFF   | #FFFFFF   |
+| 一级文本          | fontPrimary                   | #E5000000 | #E5FFFFFF |
+| 二级文本          | fontSecondary                 | #99000000 | #99FFFFFF | 
+| 三级文本          | fontTertiary                  | #66000000 | #66FFFFFF |
+| 四级文本          | fontFourth                    | #33000000 | #33FFFFFF | 
+| 高亮文本          | fontEmphasize                 | #0A59F7   | #5291FF   |
+| 一级文本反色        | fontOnPrimary                 | #FFFFFF   | #FFFFFF   |
+| 二级文本反色        | fontOnSecondary               | #99FFFFFF | #99FFFFFF | 
+| 三级文本反色        | fontOnTertiary                | #66FFFFFF | #66FFFFFF |
+| 四级文本反色        | fontOnFourth                  | #33FFFFFF | #33FFFFFF |
+| 一级图标          | iconPrimary                   | #E5000000 | #E5FFFFFF |
+| 二级图标          | iconSecondary                 | #99000000 | #99FFFFFF | 
+| 三级图标          | iconTertiary                  | #66000000 | #66FFFFFF |
+| 四级图标          | iconFourth                    | #33000000 | #33FFFFFF | 
+| 高亮图标          | iconEmphasize                 | #0A59F7   | #5291FF   |
+| 高亮辅助图标        | iconSubEmphasize              | #660A59F7 | #665291FF |
+| 一级图标反色        | iconOnPrimary                 | #FFFFFF   | #FFFFFF   |
+| 二级图标反色        | iconOnSecondary               | #99FFFFFF | #99FFFFFF | 
+| 三级图标反色        | iconOnTertiary                | #66FFFFFF | #66FFFFFF |
+| 四级图标反色        | iconOnFourth                  | #33FFFFFF | #33FFFFFF |
+| 一级背景（实色/不透明色） | backgroundPrimary             | #19000000 | #19000000 |
+| 二级背景（实色/不透明色） | backgroundSecondary           | #F1F3F5   | #000000   |
+| 三级背景（实色/不透明色） | backgroundTertiary            | #E5E5EA   | #202224   |
+| 四级背景（实色/不透明色） | backgroundFourth              | #D1D1D6   | #2E3033   |
+| 高亮背景（实色/不透明色） | backgroundEmphasize           | #0A59F7   | #19000000 |
+| 前背景           | compForegroundPrimary         | #000000   | #E5E5E5   |
+| 白色背景          | compBackgroundPrimary         | #FFFFFF   | #202224   |
+| 白色透明背景        | compBackgroundPrimaryTrans    | #FFFFFF   | #33FFFFFF |
+| 常亮背景          | compBackgroundPrimaryContrary | #FFFFFF   | #E5E5E5   |
+| 灰色背景          | compBackgroundPrimaryGray     | #F1F3F5   | #000000   |
+| 二级背景          | compBackgroundSecondary            | #19000000 | #19FFFFFF |
+| 三级背景          | compBackgroundTertiary       | #0C000000 | #0CFFFFFF |
+| 高亮背景          | compBackgroundEmphasize | #0A59F7   | #317AF7   |
+| 黑色中性高亮背景      | compBackgroundNeutral | #000000   | #FFFFFF   |
+| 20%高亮背景       | compEmphasizeSecondary | #330A59F7 | #33317AF7 |
+| 10%高亮背景       | compEmphasizeTertiary | #190A59F7 | #19317AF7 |
+| 分割线颜色         | compDivider | #33000000 | #33FFFFFF |
+| 通用反色          | compCommonContrary | #FFFFFF   | #000000   |
+| 获焦态背景色        | compBackgroundFocus | #F1F3F5   | #F1F3F5   |
+| 获焦态一级反色       | compFocusedPrimary | #E5000000 | #E5FFFFFF |
+| 获焦态二级反色       | compFocusedSecondary | #99000000 | #99FFFFFF |
+| 获焦态三级反色       | compFocusedTertiary | #66000000 | #66FFFFFF |
+| 通用悬停交互式颜色 | interactiveHover | #0C000000 | #0CFFFFFF |
+| 通用按压交互式颜色 | interactivePressed | #19000000 | #19FFFFFF |
+| 通用获焦交互式颜色 | interactiveFocus | #0A59F7   | #317AF7   |
+| 通用激活交互式颜色 | interactiveActive | #0A59F7   | #317AF7   |
+| 通用选择交互式颜色 | interactiveSelect | #33000000 | #33FFFFFF |
+| 通用点击交互式颜色 | interactiveClick | #19000000 | #19FFFFFF |
 
 ![systemTheme](figures/systemTheme.png)
 
