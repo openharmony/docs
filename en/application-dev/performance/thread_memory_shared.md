@@ -301,4 +301,4 @@ The **usedLock.txt** file contains 1000 lines without garbled characters, as sho
 ## Summary
 ArkTS supports inter-thread communication through shared memory, although it uses the actor model based on message communication. When SharedArrayBuffer is used to implement shared memory, atomic operations and locks can be used to solve the problem of synchronization and mutual exclusion between threads. Proper use of multithreaded shared memory can improve application performance while ensuring thread security.
 
- <!--no_check--> 
+   

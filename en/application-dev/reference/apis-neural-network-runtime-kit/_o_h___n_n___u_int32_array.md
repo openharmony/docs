@@ -45,4 +45,4 @@ uint32_t OH_NN_UInt32Array::size
 
 Array length.
 
-<!--no_check-->
+ 

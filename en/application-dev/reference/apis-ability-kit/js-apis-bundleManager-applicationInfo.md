@@ -49,4 +49,4 @@ Describes the metadata of a module.
 | moduleName<sup>10+</sup>| string         | Yes  | No  | Module name.  |
 | metadata<sup>10+</sup>  | Array\<[Metadata](js-apis-bundleManager-metadata.md)>      | Yes  | No  | Metadata list of the module.|
 
- <!--no_check--> 
+   

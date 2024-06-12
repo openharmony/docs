@@ -49,7 +49,7 @@ Text(content?: string | Resource, value?: TextOptions)
 | font<sup>10+</sup> | [Font](ts-types.md#font) | 设置文本样式。包括字体大小、字体粗细、字体族和字体风格。 |
 | wordBreak<sup>11+</sup> | [WordBreak](ts-appendix-enums.md#wordbreak11) | 设置断行规则。 <br />默认值：WordBreak.BREAK_WORD <br/>**说明：** <br/>从API version 11开始，该接口支持在ArkTS卡片中使用。<br/>WordBreak.BREAK_ALL与{overflow:&nbsp;TextOverflow.Ellipsis}，`maxLines`组合使用可实现英文单词按字母截断，超出部分以省略号显示|
 | selection<sup>11+</sup> |(selectionStart:&nbsp;number, selectionEnd:&nbsp;number)| 设置选中区域。选中区域高亮且显示手柄和文本选择菜单。 <br />默认值：（-1，-1） <br/>**说明：** <br/>从API version 11开始，该接口支持在ArkTS卡片中使用。<br/>当`copyOption`设置为CopyOptions.None时，设置`selection`属性不生效。<br/>当`overflow`设置为TextOverflow.MARQUEE时，设置`selection`属性不生效。<br/>当`selectionStart`大于等于`selectionEnd`时不选中。可选范围为[0, textSize],textSize为文本内容最大字符数，入参小于0处理为0，大于textSize处理为textSize。<br/>当`selectionStart`或`selectionEnd`在截断不可见区域时不选中。截断为false时超出父组件的文本选中区域生效。|
-| ellipsisMode<sup>11+</sup> |[EllipsisMode](ts-appendix-enums.md#ellipsismode11)| 设置省略位置。 <br />默认值：EllipsisMode.END <br/>**说明：** <br/>从API version 11开始，该接口支持在ArkTS卡片中使用。<br/>`ellipsisMode`属性需要配合`overflow`设置为TextOverflow.Ellipsis以及maxLines使用，单独设置`ellipsisMode`属性不生效。<br/>EllipsisMode.START和EllipsisMode.CENTER仅在单行超长文本生效。|
+| ellipsisMode<sup>11+</sup> |[EllipsisMode](ts-appendix-enums.md#ellipsismode11)| 设置省略位置。 <br />默认值：EllipsisMode.END <br/>**说明：** <br/>从API version 11开始，该接口支持在ArkTS卡片中使用。<br/>该接口在API version 11版本不生效。<br/>`ellipsisMode`属性需要配合`overflow`设置为TextOverflow.Ellipsis以及maxLines使用，单独设置`ellipsisMode`属性不生效。<br/>EllipsisMode.START和EllipsisMode.CENTER仅在单行超长文本生效。|
 | enableDataDetector<sup>11+</sup> |boolean| 使能文本识别。<br/>默认值： false<br/>**说明：**<br/>所识别实体的`fontColor`和`decoration`会被更改为如下样式：<br/>fontColor：Color.Blue<br/>decoration:&nbsp;{<br/>type:&nbsp;TextDecorationType.Underline,<br/>color:&nbsp;Color.Blue<br/>}<br/>该接口依赖设备底层应具有文本识别能力，否则设置不会生效。<br/>当`enableDataDetector`设置为true，同时不设置`dataDetectorConfig`属性时，默认识别所有类型的实体。<br/>当`copyOption`设置为CopyOptions.None时，该功能不会生效。 |
 | dataDetectorConfig<sup>11+</sup> | [TextDataDetectorConfig](#textdatadetectorconfig11对象说明) | 文本识别配置。 <br/>默认值：{<br/>types:&nbsp;[ ],<br/>onDetectResultUpdate:&nbsp;null<br/>} <br />**说明：**<br/>需配合`enableDataDetector`一起使用，设置`enableDataDetector`为true时，`dataDetectorConfig`的配置才能生效。<br/>当有两个实体A、B重叠时，按以下规则保留实体：<br/>1.&nbsp;若A&nbsp;⊂&nbsp;B，则保留B，反之则保留A。<br/>2.&nbsp;当A&nbsp;⊄&nbsp;B且B&nbsp;⊄&nbsp;A时，若A.start&nbsp;<&nbsp;B.start，则保留A，反之则保留B。|
 | bindSelectionMenu<sup>11+</sup> | {<br/>spantype:&nbsp;[TextSpanType](ts-appendix-enums.md#textspantype11),<br/>content:&nbsp;[CustomBuilder](ts-types.md#custombuilder8),<br/>responseType:&nbsp;[TextResponseType](ts-appendix-enums.md#textresponsetype11)&nbsp;\,<br/>options?:&nbsp;[SelectionMenuOptions](ts-appendix-enums.md#selectionmenuoptions11)<br/>} | 设置自定义选择菜单。<br/> 默认值：{<br/>  spanType:&nbsp;TextSpanType.TEXT<br/>content：空<br/>responseType:&nbsp;TextResponseType.LONG_PRESS <br/>}<br />**说明：**<br/>`bindSelectionMenu`长按响应时长为600ms，`bindContextMenu`长按响应时长为800ms，同时绑定且触发方式均为长按时，优先响应`bindSelectionMenu`。<br/>自定义菜单超长时，建议内部嵌套[Scroll](./ts-container-scroll.md)组件使用，避免键盘被遮挡。 |
@@ -446,43 +446,6 @@ struct TextExample5 {
 ![](figures/textExample5.jpeg)
 
 ### 示例6
-ellipsisMode使用示例
-
-```ts
-@Entry
-@Component
-struct TextExample6 {
-  @State text: string = 'This is set ellipsisMode to EllipsisMode text content This is set ellipsisMode to EllipsisMode text content.'
-  @State ellipsisModeIndex: number = 0;
-  @State ellipsisMode: EllipsisMode[] = [EllipsisMode.START, EllipsisMode.CENTER, EllipsisMode.END]
-  @State ellipsisModeStr: string[] = ['START', 'CENTER', 'END']
-  build() {
-    Column() {
-      Text(this.text)
-        .fontSize(16)
-        .border({ width: 1 })
-        .lineHeight(20)
-        .maxLines(1)
-        .textOverflow({overflow:TextOverflow.Ellipsis})
-        .ellipsisMode(this.ellipsisMode[this.ellipsisModeIndex])
-        .width(300)
-        .margin({ left: 20, top: 20 })
-
-      Row() {
-        Button('更改省略号位置：' + this.ellipsisModeStr[this.ellipsisModeIndex]).onClick(() => {
-          this.ellipsisModeIndex++
-          if(this.ellipsisModeIndex > (this.ellipsisModeStr.length - 1)) {
-            this.ellipsisModeIndex = 0
-          }
-        })
-      }.margin({ top: 10 })
-    }
-  }
-}
-```
-![](figures/textExample6.gif)
-
-### 示例7
 enableDataDetector和dataDetectorConfig使用示例
 
 ```ts
@@ -523,7 +486,7 @@ struct TextExample7 {
 
 ![](figures/text7.png)
 
-### 示例8
+### 示例7
 bindSelectionMenu，onTextSelectionChange及closeSelectionMenu使用示例
 
 ```ts

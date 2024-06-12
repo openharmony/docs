@@ -341,7 +341,7 @@ struct Son {
   }
   ```
 
-- 不允许使用switch语法，如果需要使用条件判断，请使用if。反例如下。
+- 不允许使用switch语法，如果需要使用条件判断，请使用if。示例如下。
 
   ```ts
   build() {
@@ -357,6 +357,14 @@ struct Son {
         default:
           Text('...')
           break;
+      }
+      // 正例：使用if
+      if(expression == 1) {
+        Text('...')
+      } else if(expression == 2) {
+        Image('...')
+      } else() {
+        Text('...')
       }
     }
   }

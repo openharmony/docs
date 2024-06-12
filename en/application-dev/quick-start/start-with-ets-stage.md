@@ -311,4 +311,4 @@ To deliver better transition effects, use [Navigation](../ui/arkts-navigation-na
    ![en-us_image_0000001364254729](figures/en-us_image_0000001364254729.png)
 
 Congratulations! You have finished developing your OpenHarmony application in ArkTS in the stage model. To learn more about OpenHarmony application development, see [Application Development Overview](../application-dev-guide.md).
-<!--no_check-->
+ 

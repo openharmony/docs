@@ -27,7 +27,7 @@ getSync(key: string, def?: string): string
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| key | string | 是 | 待查询的系统参数Key。 |
+| key | string | 是 | 待查询的系统参数Key。最大长度128字节，只允许字母数字加"."，"-"，"@"，":"或"_"，不允许".."。 |
 | def | string | 否 | def为所要获取的系统参数的默认值 <br> def为可选参数，仅当系统参数不存在时生效 <br> def可以传undefined或自定义的任意值 |
 
 **返回值：**
@@ -40,9 +40,10 @@ getSync(key: string, def?: string): string
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 14700101 | if key is not found                                          |
-| 14700103 | if permission denied                                         |
-| 14700104 | if system internal error                                     |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.incorrect parameter types; 3.parameter verification failed. |
+| 14700101 | System parameter not found.                                          |
+| 14700103 | The operation on the system permission is denied.                    |
+| 14700104 | System internal error such as out memory or deadlock.                |
 
 以上错误码详细介绍请参考[系统参数错误码](errorcode-system-parameterV9.md)。
 
@@ -69,16 +70,17 @@ get(key: string, callback: AsyncCallback&lt;string&gt;): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| key | string | 是 | 待查询的系统参数Key。 |
+| key | string | 是 | 待查询的系统参数Key。最大长度128字节，只允许字母数字加"."，"-"，"@"，":"或"_"，不允许".."。 |
 | callback | AsyncCallback&lt;string&gt; | 是 | 回调函数。 |
 
 **错误码**：
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 14700101 | if key is not found                                          |
-| 14700103 | if permission denied                                         |
-| 14700104 | if system internal error                                     |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.incorrect parameter types; 3.parameter verification failed. |
+| 14700101 | System parameter not found.                                          |
+| 14700103 | The operation on the system permission is denied.                    |
+| 14700104 | System internal error such as out memory or deadlock.                |
 
 以上错误码详细介绍请参考[系统参数错误码](errorcode-system-parameterV9.md)。
 
@@ -111,7 +113,7 @@ get(key: string, def: string, callback: AsyncCallback&lt;string&gt;): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| key | string | 是 | 待查询的系统参数Key。 |
+| key | string | 是 | 待查询的系统参数Key。最大长度128字节，只允许字母数字加"."，"-"，"@"，":"或"_"，不允许".."。 |
 | def | string | 是 | 默认值。 |
 | callback | AsyncCallback&lt;string&gt; | 是 | 回调函数。 |
 
@@ -119,9 +121,10 @@ get(key: string, def: string, callback: AsyncCallback&lt;string&gt;): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 14700101 | if key is not found                                          |
-| 14700103 | if permission denied                                         |
-| 14700104 | if system internal error                                     |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.incorrect parameter types; 3.parameter verification failed. |
+| 14700101 | System parameter not found.                                          |
+| 14700103 | The operation on the system permission is denied.                    |
+| 14700104 | System internal error such as out memory or deadlock.                |
 
 以上错误码详细介绍请参考[系统参数错误码](errorcode-system-parameterV9.md)。
 
@@ -155,7 +158,7 @@ get(key: string, def?: string): Promise&lt;string&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| key | string | 是 | 待查询的系统参数Key。 |
+| key | string | 是 | 待查询的系统参数Key。最大长度128字节，只允许字母数字加"."，"-"，"@"，":"或"_"，不允许".."。 |
 | def | string | 否 | def为所要获取的系统参数的默认值 <br> def为可选参数，仅当系统参数不存在时生效 <br> def可以传undefined或自定义的任意值 |
 
 **返回值：**
@@ -168,9 +171,10 @@ get(key: string, def?: string): Promise&lt;string&gt;
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 14700101 | if key is not found                                          |
-| 14700103 | if permission denied                                         |
-| 14700104 | if system internal error                                     |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.incorrect parameter types; 3.parameter verification failed. |
+| 14700101 | System parameter not found.                                          |
+| 14700103 | The operation on the system permission is denied.                    |
+| 14700104 | System internal error such as out memory or deadlock.                |
 
 以上错误码详细介绍请参考[系统参数错误码](errorcode-system-parameterV9.md)。
 
@@ -203,16 +207,17 @@ setSync(key: string, value: string): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| key | string | 是 | 待设置的系统参数Key。 |
-| value | string | 是 | 待设置的系统参数值。 |
+| key | string | 是 | 待设置的系统参数Key。最大长度128字节，只允许字母数字加"."，"-"，"@"，":"或"_"，不允许".."。 |
+| value | string | 是 | 待设置的系统参数值。最大长度96字节（包括结束符） |
 
 **错误码**：
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 14700102 | if value is invalid                                          |
-| 14700103 | if permission denied                                         |
-| 14700104 | if system internal error                                     |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.incorrect parameter types; 3.parameter verification failed. |
+| 14700102 | Invalid system parameter value.                                          |
+| 14700103 | The operation on the system permission is denied.                        |
+| 14700104 | System internal error such as out memory or deadlock.                    |
 
 以上错误码详细介绍请参考[系统参数错误码](errorcode-system-parameterV9.md)。
 
@@ -240,17 +245,18 @@ set(key: string, value: string, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| key | string | 是 | 待设置的系统参数Key。 |
-| value | string | 是 | 待设置的系统参数值。 |
+| key | string | 是 | 待设置的系统参数Key。最大长度128字节，只允许字母数字加"."，"-"，"@"，":"或"_"，不允许".."。 |
+| value | string | 是 | 待设置的系统参数值。最大长度96字节（包括结束符） |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。 |
 
 **错误码**：
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 14700102 | if value is invalid                                          |
-| 14700103 | if permission denied                                         |
-| 14700104 | if system internal error                                     |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.incorrect parameter types; 3.parameter verification failed. |
+| 14700102 | Invalid system parameter value.                                          |
+| 14700103 | The operation on the system permission is denied.                        |
+| 14700104 | System internal error such as out memory or deadlock.                    |
 
 以上错误码详细介绍请参考[系统参数错误码](errorcode-system-parameterV9.md)。
 
@@ -283,8 +289,8 @@ set(key: string, value: string): Promise&lt;void&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| key | string | 是 | 待设置的系统参数Key。 |
-| value| string | 是 | 待设置的系统参数值。 |
+| key | string | 是 | 待设置的系统参数Key。最大长度128字节，只允许字母数字加"."，"-"，"@"，":"或"_"，不允许".."。 |
+| value| string | 是 | 待设置的系统参数值。最大长度96字节（包括结束符） |
 
 **返回值：**
 
@@ -296,9 +302,10 @@ set(key: string, value: string): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 14700102 | if value is invalid                                          |
-| 14700103 | if permission denied                                         |
-| 14700104 | if system internal error                                     |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.incorrect parameter types; 3.parameter verification failed. |
+| 14700102 | Invalid system parameter value.                                          |
+| 14700103 | The operation on the system permission is denied.                        |
+| 14700104 | System internal error such as out memory or deadlock.                    |
 
 以上错误码详细介绍请参考[系统参数错误码](errorcode-system-parameterV9.md)。
 

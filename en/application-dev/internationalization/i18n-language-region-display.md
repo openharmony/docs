@@ -8,7 +8,7 @@ Language and locale name localization means to localize language and locale name
 
 ## How to Develop
 
-For details about the APIs, see [getDisplayCountry](../reference/apis/js-apis-i18n.md#getdisplaycountry9) and [getDisplayLanguage](../reference/apis/js-apis-i18n.md#getdisplaylanguage9).
+For details about the APIs, see [getDisplayCountry](../reference/apis-localization-kit/js-apis-i18n.md#getdisplaycountry9) and [getDisplayLanguage](../reference/apis-localization-kit/js-apis-i18n.md#getdisplaylanguage9).
 
 1. Import the **i18n** module.
    ```ts
@@ -34,4 +34,4 @@ For details about the APIs, see [getDisplayCountry](../reference/apis/js-apis-i1
    // sentenceCase: whether the first letter of the country/region name needs to be capitalized. The default value is true.
    ```
 
- <!--no_check--> 
+    <!--no_check--> 

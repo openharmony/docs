@@ -34,7 +34,7 @@ Sensors are an abstraction of underlying sensor hardware. Your application can a
 
 The following modules work cooperatively to implement sensors: Sensor API, Sensor Framework, Sensor Service, and HDF layer.
 
-**Figure 1** How the sensor works
+  **Figure 1** How the sensor works
 
 ![fad1a124-a90e-460f-84fc-e87d6caebb21](figures/fad1a124-a90e-460f-84fc-e87d6caebb21.png)
 
@@ -49,7 +49,7 @@ The following modules work cooperatively to implement sensors: Sensor API, Senso
 
 ## Constraints
 
-To obtain data of the following sensors, you must request the required permissions.
+1. To obtain data of the following sensors, you must request the required permissions.
 
     | Sensor                                            | Permission                          | Sensitivity    | Permission Description                                                    |
     | -------------------------------------------------- | -------------------------------- | ------------ | ------------------------------------------------------------ |
@@ -58,4 +58,4 @@ To obtain data of the following sensors, you must request the required permissio
     | Pedometer sensor                                            | ohos.permission.ACTIVITY_MOTION  | user_grant   | The permission allows an application to read an end user's motion status, for example, to determine whether the user is in motion or to record the number of steps that the user has walked. |
     | Heart rate sensor                                            | ohos.permission.READ_HEALTH_DATA | user_grant   | The permission allows an application to obtain an end user's health data, such as heart rate data.          |
     
-The APIs for subscribing to and unsubscribing from sensor data work in pairs. If you do not need sensor data, call the unsubscription API to stop sensor data reporting.
+2. The APIs for subscribing to and unsubscribing from sensor data work in pairs. If you do not need sensor data, call the unsubscription API to stop sensor data reporting.

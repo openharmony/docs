@@ -518,4 +518,4 @@ Enumerates the continuous task modes.
 | MULTI_DEVICE_CONNECTION | 6    | Multi-device connection.                |
 | TASK_KEEPING            | 9    | Computing task (for specific devices only).       |
 
- <!--no_check--> 
+   

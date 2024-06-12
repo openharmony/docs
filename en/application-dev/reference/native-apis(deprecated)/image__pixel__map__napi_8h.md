@@ -41,4 +41,4 @@ The **image_pixel_map_napi.h** file declares the APIs used to lock, access, and 
 | [OHOS::Media::OH_AccessPixels](image.md#oh_accesspixels) (napi_env env, napi_value value, void \*\*addrPtr) | Obtains the memory address of a **PixelMap** object and locks the memory.|
 | [OHOS::Media::OH_UnAccessPixels](image.md#oh_unaccesspixels) (napi_env env, napi_value value) | Unlocks the memory of a **PixelMap** object. This function is used with **OH_AccessPixels** in pairs.|
 
- <!--no_check--> 
+   

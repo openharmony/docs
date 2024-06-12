@@ -27,19 +27,11 @@
 使用Drawing进行图形绘制与显示时，需要使用@ohos.graphics.drawing模块的画布画笔绘制基本的2D图形和文字，调用绘制和显示的逻辑，最终在应用上显示图形和文字。
 
 本文以实现2D图形和文字的绘制与显示为例，给出具体的开发指导。
+
 ### 添加开发依赖
 
-**添加动态链接库**
-
-CMakeLists.txt中添加以下lib。
-
-```txt
-libace_ndk.z.so
-libnative_window.so
-libnative_drawing.so
-```
-
 **依赖文件**
+
 ```js
 import { NodeController, FrameNode, RenderNode } from "@ohos.arkui.node"
 import drawing from "@ohos.graphics.drawing"

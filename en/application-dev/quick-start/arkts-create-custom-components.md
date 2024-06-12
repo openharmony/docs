@@ -462,4 +462,4 @@ struct MyComponent {
 >
 > When ArkUI sets styles for custom components, an invisible container component is set for **MyComponent2**. These styles are set on the container component instead of the **\<Button>** component of **MyComponent2**. As seen from the rendering result, the red background color is not directly applied to the button. Instead, it is applied to the container component that is invisible to users where the button is located.
 
-<!--no_check-->
+ 

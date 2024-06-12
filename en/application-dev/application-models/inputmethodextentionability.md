@@ -405,6 +405,6 @@ To protect the InputMethodExtensionAbility against abuse, the invoking of APIs i
 - [nfctech (Standard NFC Technologies)](../reference/apis-connectivity-kit/js-apis-nfctech.md)
 - [tagSession (Standard NFC Tag Session)](../reference/apis-connectivity-kit/js-apis-tagSession.md)
 
-<!--no_check-->
+ 
 
   

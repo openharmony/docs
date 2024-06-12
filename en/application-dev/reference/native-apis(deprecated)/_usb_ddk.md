@@ -1,16 +1,15 @@
-# UsbDDK
+# USB DDK
 
 
 ## Overview
 
 Provides USB DDK APIs to open and close USB interfaces, perform non-isochronous and isochronous data transfer over USB pipes, and implement control transfer and interrupt transfer, etc.
 
-\@syscap SystemCapability.Driver.USB.Extension
+**System capability**: SystemCapability.Driver.USB.Extension
 
 **Since**
 
 10
-
 
 ## Summary
 
@@ -68,7 +67,22 @@ Provides USB DDK APIs to open and close USB interfaces, perform non-isochronous 
 #### Description of deviceId
 
 You can call **queryDevices()** to obtain the device ID, that is, **deviceId**.
-For details, see [Peripheral Management Development](../../device/externaldevice-guidelines.md).
+For details, see [Peripheral Management Development](../../device/driver/externaldevice-guidelines.md).
+
+#### deviceId Conversion
+
+The **deviceId** obtained through **queryDevices()** cannot be directly used as the input parameter for functions such as [OH_Usb_GetDeviceDescriptor](#oh_usb_getdevicedescriptor).
+<p>Specifically, you need to extract its first 32 bits as the input parameter **deviceId** for C APIs.</p>
+<p>The following code is for reference only: </p>
+
+ ~~~
+uint64_t JsDeviceIdToNative(uint64_t deviceId)
+{
+    uint32_t busNum = (uint32_t)(deviceId >> 48);
+    uint32_t devNum = (uint32_t)((deviceId & 0x0000FFFF00000000) >> 32);
+    return (((static_cast<uint64_t>(busNum)) << 32) | devNum);
+}
+~~~
 
 ## Enum Description
 

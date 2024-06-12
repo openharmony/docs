@@ -6,7 +6,7 @@ You can use the Native APIs provided by [MindSpore Lite](../../reference/apis-mi
 
 ## Basic Concepts
 
-- [N-API](../reference/native-lib/third_party_napi/napi.md): a set of Native APIs used to build JavaScript components. N-APIs can be used to encapsulate C/C++ libraries into JavaScript modules.
+- N-API: a set of Native APIs used to build JavaScript components. N-APIs can be used to encapsulate C/C++ libraries into JavaScript modules.
 
 ## Setting Up the Environment
 
@@ -298,4 +298,3 @@ On DevEco Studio, connect to the device and click **Run entry**. The following l
 08-08 16:55:33.826 1513-1529/com.mslite.native_demo I A00000/[MSLiteNapi]: Exit runDemo()
 08-08 16:55:33.827 1513-1529/com.mslite.native_demo I A00000/MSLiteNativeDemo: *** Finished MSLite Demo ***
 ```
-<!--no_check-->

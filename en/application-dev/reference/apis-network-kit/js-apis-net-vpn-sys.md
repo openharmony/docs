@@ -1,6 +1,7 @@
 # @ohos.net.vpn (VPN Management) (System API)
 
 The **vpn** module implements virtual private network (VPN) management, such as starting and stopping a VPN.
+This module is the built-in VPN function provided by the OS. It allows users to set up VPN connections through the network settings of the OS. Generally, this module provides only limited functions and is subject to strict restrictions.
 
 > **NOTE**
 > The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
@@ -482,5 +483,3 @@ Defines the VPN configuration.
 | isBlocking          | boolean                                                        | No  | Whether the blocking mode is used. The default value is **false**.      |
 | trustedApplications | Array\<string\>                                                | No  | List of trusted applications, which are represented by bundle names of the string type. |
 | blockedApplications | Array\<string\>                                                | No  | List of blocked applications, which are represented by bundle names of the string type. |
-
-<!--no_check-->

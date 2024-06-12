@@ -52,7 +52,8 @@ on(event: string, callback: Function): void;
 | event | string | 是 | 事件名称。 |
 | callback | Function | 是 | 事件回调，事件触发后调用。 |
 
-**示例：**
+**示例1：**
+callback被emit触发时，调用方是EventHub对象。EventHub对象没有value属性，因此结果是undefined。
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
@@ -62,6 +63,31 @@ export default class EntryAbility extends UIAbility {
 
     onCreate() {
         this.context.eventHub.on('myEvent', this.eventFunc);
+    }
+
+    onForeground() {
+        // 结果：
+        // eventFunc is called, value: undefined
+
+        this.context.eventHub.emit('myEvent');
+    }
+
+    eventFunc() {
+        console.log(`eventFunc is called, value: ${this.value}`);
+    }
+}
+```
+
+**示例2：**
+callback使用箭头函数时，调用方是EntryAbility对象。EntryAbility对象里存在value属性，因此结果是12。
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+export default class EntryAbility extends UIAbility {
+    value: number = 12;
+
+    onCreate() {
         // 支持使用匿名函数订阅事件
         this.context.eventHub.on('myEvent', () => {
             console.log(`anonymous eventFunc is called, value: ${this.value}`);
@@ -70,7 +96,6 @@ export default class EntryAbility extends UIAbility {
 
     onForeground() {
         // 结果：
-        // eventFunc is called, value: undefined
         // anonymous eventFunc is called, value: 12
         this.context.eventHub.emit('myEvent');
     }

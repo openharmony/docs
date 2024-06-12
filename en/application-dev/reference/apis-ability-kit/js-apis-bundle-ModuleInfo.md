@@ -15,4 +15,4 @@ The **ModuleInfo** module provides module information of an application.
 | moduleName      | string | Yes  | No  | Module name.|
 | moduleSourceDir | string | Yes  | No  | Installation directory. Do not access resource files using concatenated paths. Use [@ohos.resourceManager](../apis-localization-kit/js-apis-resource-manager.md) instead.|
 
- <!--no_check--> 
+   

@@ -34,4 +34,4 @@ ArkTS provides standard built-in objects, such as Array, Map, TypedArray, and Ma
 
 - [Obtaining process information and operating processes](../reference/apis-arkts/js-apis-process.md)
 
- <!--no_check--> 
+   

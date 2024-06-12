@@ -77,8 +77,7 @@ Declares the APIs for accessing **NativeXComponent**.
 | [OH_NativeXComponent_SetExpectedFrameRateRange](_o_h___native_x_component.md#oh_nativexcomponent_setexpectedframeraterange) ([OH_NativeXComponent](_o_h___native_x_component.md#oh_nativexcomponent) \*component, [OH_NativeXComponent_ExpectedRateRange](_o_h___native_x_component___expected_rate_range.md) \*range) | Sets the expected frame rate range. |
 | [OH_NativeXComponent_RegisterOnFrameCallback](_o_h___native_x_component.md#oh_nativexcomponent_registeronframecallback) ([OH_NativeXComponent](_o_h___native_x_component.md#oh_nativexcomponent) \*component, void(\*callback)([OH_NativeXComponent](_o_h___native_x_component.md#oh_nativexcomponent) \*component, uint64_t timestamp, uint64_t targetTimestamp)) | Registers the display update callback for this **OH_NativeXComponent** instance and enables the callback for each frame. |
 | [OH_NativeXComponent_UnregisterOnFrameCallback](_o_h___native_x_component.md#oh_nativexcomponent_unregisteronframecallback) ([OH_NativeXComponent](_o_h___native_x_component.md#oh_nativexcomponent) \*component) | Deregisters the display update callback for this **OH_NativeXComponent** instance and disables the callback for each frame. |
-| int32_t [OH_NativeXComponent_AttachNativeRootNode](_o_h___native_x_component.md#oh_nativexcomponent_attachnativerootnode) ([OH_NativeXComponent](_o_h___native_x_component.md#oh_nativexcomponent) \*component, [ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) root) | Attaches the UI component created through the native API of ArkUI to this **OH_NativeXComponent** instance. |
-| int32_t [OH_NativeXComponent_DetachNativeRootNode](_o_h___native_x_component.md#oh_nativexcomponent_detachnativerootnode) ([OH_NativeXComponent](_o_h___native_x_component.md#oh_nativexcomponent) \*component, [ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) root) | Detaches the native component of ArkUI from this **OH_NativeXComponent** instance. |
+
 
 ### Variables
 
@@ -86,4 +85,4 @@ Declares the APIs for accessing **NativeXComponent**.
 | ---------------------------------------- | ------------------------- |
 | **OH_XCOMPONENT_ID_LEN_MAX**&nbsp;=&nbsp;128 | Maximum length of the ArkUI XComponent ID.|
 | **OH_MAX_TOUCH_POINTS_NUMBER**&nbsp;=&nbsp;10 | Maximum number of identifiable touch points in a touch event.      |
-<!--no_check-->
+ 
