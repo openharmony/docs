@@ -149,6 +149,7 @@ borderRadius(value: Length | BorderRadiuses | LocalizedBorderRadiuses)
 ## LocalizedEdgeColors<sup>12+</sup>对象说明
 
 边框颜色，用于描述组件边框四条边的颜色。
+
 引入该对象时，至少传入一个参数。
 
 | 名称     | 参数类型                                     | 必填   | 描述      |
@@ -174,14 +175,15 @@ borderRadius(value: Length | BorderRadiuses | LocalizedBorderRadiuses)
 ## LocalizedBorderRadiuses<sup>12+</sup>对象说明
 
 圆角类型，用于描述组件边框圆角半径。
+
 引用该对象时，至少传入一个参数。
 
 | 名称          | 参数类型                         | 必填   | 描述       |
 | ----------- | ---------------------------- | ---- | -------- |
-| topStart     | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | 否    | 左上角圆角半径。<br />从右至左显示语言模式下为右上角圆角半径。 |
-| topEnd       | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | 否    | 右上角圆角半径。<br />从右至左显示语言模式下为左上角圆角半径。 |
-| bottomStart  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | 否    | 左下角圆角半径。<br />从右至左显示语言模式下为右下角圆角半径。 |
-| bottomEnd    | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | 否    | 右下角圆角半径。<br />从右至左显示语言模式下为左下角圆角半径。 |
+| topStart     | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否    | 左上角圆角半径。<br />从右至左显示语言模式下为右上角圆角半径。 |
+| topEnd       | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否    | 右上角圆角半径。<br />从右至左显示语言模式下为左上角圆角半径。 |
+| bottomStart  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否    | 左下角圆角半径。<br />从右至左显示语言模式下为右下角圆角半径。 |
+| bottomEnd    | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否    | 右下角圆角半径。<br />从右至左显示语言模式下为左下角圆角半径。 |
 
 ## EdgeStyles<sup>9+</sup>对象说明
 
