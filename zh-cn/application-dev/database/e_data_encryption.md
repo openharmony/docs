@@ -48,7 +48,7 @@ ECStoreManager类：用于管理应用的E类数据库和C类数据库。
 
 提供数据库数据迁移接口，在锁屏开启后若C类数据库中有数据，使用该接口将数据迁移到E类数据库。
 
-```
+```ts
 import { distributedKVStore } from '@kit.ArkData';
 
 export class Mover {
@@ -186,7 +186,7 @@ export class Store {
 
 该类提供了获取当前密钥状态的接口，在密钥销毁后，关闭E类数据库。
 
-```
+```ts
 import { ECStoreManager } from './ECStoreManager'
 
 enum SecretStatus {
@@ -233,7 +233,7 @@ import { Mover } from './Mover'
 import { BusinessError } from '@kit.BasicServicesKit';
 import { StoreInfo, Store } from './Store'
 
-let storeOption = new Store();
+let store = new Store();
 
 export class ECStoreManager {
   Config(cInfo: StoreInfo, other: StoreInfo): void {
@@ -248,7 +248,7 @@ export class ECStoreManager {
   async GetCurrentStore(screanStatus: number): Promise<distributedKVStore.SingleKVStore> {
     console.info(`ECDB_Encry GetCurrentStore start screanStatus: ${screanStatus}`);
     if (screanStatus) {
-      this.eStore = await storeOption.GetECStore(this.eInfo);
+      this.eStore = await store.GetECStore(this.eInfo);
       //解锁状态 获取e类库
       if (this.needMove) {
         if (this.eStore != undefined && this.cStore != undefined) {
@@ -262,7 +262,7 @@ export class ECStoreManager {
     } else {
       //加锁状态 获取c类库
       this.needMove = true;
-      this.cStore = await storeOption.GetECStore(this.cInfo);
+      this.cStore = await store.GetECStore(this.cInfo);
       return this.cStore;
     }
   }
@@ -310,7 +310,7 @@ export class ECStoreManager {
 
 在EntryAbility类的中模拟在应用启动时，注册对COMMON_EVENT_SCREEN_LOCK_FILE_ACCESS_STATE_CHANGED公共事件的监听，并配置相应的数据库信息，密钥状态信息等。
 
-```
+```ts
 import { AbilityConstant, contextConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
@@ -450,9 +450,9 @@ export default class EntryAbility extends UIAbility {
 
 ### index按键事件
 
-提供案件 模拟应用操作数据库，如插入数据，删除数据，更新数据和获取数据数量的操作等。
+提供按键 模拟应用操作数据库，如插入数据，删除数据，更新数据和获取数据数量的操作等。
 
-```
+```ts
 import { storeManager, secretKeyObserve } from "../entryability/EntryAbility"
 import { distributedKVStore } from '@kit.ArkData';
 import { Store } from '../entryability/Store';
@@ -477,7 +477,7 @@ struct Index {
             secretKeyObserve.OnUnLock();
             lockStatus = 1;
           }
-            lockStatus ? this.message = "解锁" : this.message = "加锁";
+          lockStatus ? this.message = "解锁" : this.message = "加锁";
         }).margin("5");
         Button('store type').onClick(async (event: ClickEvent) => {
           secretKeyObserve.GetCurrentStatus() ? this.message = "estroe" : this.message = "cstore";
@@ -515,4 +515,417 @@ struct Index {
 ```
 
 ## 关系型数据库E类加密
+### Mover
 
+提供数据库数据迁移接口，在锁屏开启后若C类数据库中有数据，使用该接口将数据迁移到E类数据库。
+
+```ts
+import { relationalStore } from '@kit.ArkData';
+
+export class Mover {
+  async Move(eStore: relationalStore.RdbStore, cStore: relationalStore.RdbStore) {
+    if (eStore != null && cStore != null) {
+      let predicates = new relationalStore.RdbPredicates('test');
+      let resultSet = await cStore.query(predicates);
+      while (resultSet.goToNextRow()) {
+        let bucket = resultSet.getRow();
+        await eStore.insert('test', bucket);
+      }
+    }
+  }
+}
+```
+
+### Store
+
+提供了在数据库中插入数据，删除数据，更新数据，获取当前数据条数的接口。其中StoreInfo类是一个用于存储获取数据库相关信息。
+
+```ts
+import { relationalStore } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export class StoreInfo {
+  context: Context;
+  config: relationalStore.StoreConfig;
+  storeId: string;
+}
+
+const SQL_CREATE_TABLE = 'CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB, IDENTITY UNLIMITED INT)'; // 建表Sql语句，IDENTITY为bigint类型，sql中指定类型为UNLIMITED INT
+
+
+export class Store {
+  async GetECStore(storeInfo: StoreInfo): Promise<relationalStore.RdbStore> {
+    let rdbStore: relationalStore.RdbStore | null;
+    try {
+      rdbStore = await relationalStore.getRdbStore(storeInfo.context, storeInfo.config);
+      if (rdbStore.version == 0) {
+        await rdbStore.execute(SQL_CREATE_TABLE);
+        rdbStore.version = 1;
+      }
+    } catch (e) {
+      let error = e as BusinessError;
+      console.error(`An unexpected error occurred.code is ${error.code},message is ${error.message}`);
+    }
+    return rdbStore;
+  }
+
+  async PutOnedata(rdbStore: relationalStore.RdbStore) {
+    if (rdbStore != undefined) {
+      const valueBucket: relationalStore.ValuesBucket = {
+        NAME: 'Lisa',
+        AGE: 18,
+        SALARY: 100.5,
+        CODES: new Uint8Array([1, 2, 3, 4, 5]),
+        IDENTITY: BigInt('15822401018187971961171'),
+      };
+      try {
+        await rdbStore.insert("EMPLOYEE", valueBucket);
+      } catch (e) {
+        let error = e as BusinessError;
+        console.error(`An unexpected error occurred. Code:${error.code},message:${error.message}`);
+      }
+    }
+  }
+
+  GetDataNum(rdbStore: relationalStore.RdbStore) {
+    if (rdbStore != undefined) {
+      try {
+        let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
+        let resultSet = await rdbStore.query(predicates);
+        let count = resultSet.rowCount;
+      } catch (e) {
+        let error = e as BusinessError;
+        console.error(`An unexpected error occurred. Code:${error.code},message:${error.message}`);
+      }
+    }
+  }
+
+  async DeleteOnedata(rdbStore: relationalStore.RdbStore) {
+    if (rdbStore != undefined) {
+      try {
+        let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
+        predicates.equalTo('NAME', 'Lisa');
+        await rdbStore.delete(predicates)
+      } catch (e) {
+        let error = e as BusinessError;
+        console.error(`An unexpected error occurred. Code:${error.code},message:${error.message}`);
+      }
+    }
+  }
+
+  async UpdataOnedata(rdbStore: relationalStore.SinglerdbStore) {
+    if (rdbStore != undefined) {
+      try {
+        let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
+        predicates.equalTo('NAME', 'Lisa');
+        const valueBucket: relationalStore.ValuesBucket = {
+          NAME: 'Anna',
+          AGE: 30,
+          SALARY: 100.5,
+          CODES: new Uint8Array([1, 2, 3, 4, 5]),
+          IDENTITY: BigInt('158224000000000971961171'),
+        };
+        await rdbStore.update(valueBucket, predicates);
+      } catch (e) {
+        let error = e as BusinessError;
+        console.error(`An unexpected error occurred. Code:${error.code},message:${error.message}`);
+      }
+    }
+  }
+}
+```
+
+### SecretKeyObserve
+
+该类提供了获取当前密钥状态的接口，在密钥销毁后，关闭E类数据库。
+
+```ts
+import { ECStoreManager } from './ECStoreManager'
+
+enum SecretStatus {
+  Lock,
+  UnLock
+}
+
+export class SecretKeyObserve {
+  OnLock(): void {
+    this.lockStatuas = SecretStatus.Lock;
+    this.storeManager.CloseEStore();
+  }
+
+  OnUnLock(): void {
+    this.lockStatuas = SecretStatus.UnLock;
+  }
+
+  GetCurrentStatus(): number {
+    return this.lockStatuas;
+  }
+
+  Initialize(storeManager: ECStoreManager): void {
+    this.storeManager = storeManager;
+  }
+
+  UpdatalockStatus(code: number) {
+    this.lockStatuas = code;
+  }
+
+  private lockStatuas: number = SecretStatus.UnLock;
+  private storeManager: ECStoreManager;
+}
+
+export let lockObserve = new SecretKeyObserve();
+```
+
+### ECStoreManager
+
+ECStoreManager类用于管理应用的E类数据库和C类数据库。提供配置数据库信息，配置迁移函数的信息，根据密钥状态为应用提供相应的数据库句柄，提供E类数据关库接口和在数据迁移完成后销毁C类数据库的接口。
+
+```ts
+import { relationalStore } from '@kit.ArkData';
+import { Mover } from './Mover'
+import { BusinessError } from '@kit.BasicServicesKit';
+import { StoreInfo, Store } from './Store'
+
+let store = new Store();
+
+export class ECStoreManager {
+  Config(cInfo: StoreInfo, other: StoreInfo): void {
+    this.cInfo = cInfo;
+    this.eInfo = other;
+  }
+
+  ConfigDataMover(mover: Mover): void {
+    this.mover = mover;
+  }
+
+  async GetCurrentStore(screanStatus: number): Promise<relationalStore.RdbStore> {
+    if (screanStatus) {
+      this.eStore = await store.GetECStore(this.eInfo);
+      //解锁状态 获取e类库
+      if (this.needMove) {
+        if (this.eStore != undefined && this.cStore != undefined) {
+          await this.mover.Move(this.eStore, this.cStore);
+        }
+        this.DeleteCStore();
+        this.needMove = false;
+      }
+      return this.eStore;
+    } else {
+      //加锁状态 获取c类库
+      this.needMove = true;
+      this.cStore = await store.GetECStore(this.cInfo);
+      return this.cStore;
+    }
+  }
+
+  CloseEStore(): void {
+    this.eStore = undefined;
+  }
+
+  async DeleteCStore() {
+    try {
+      await relationalStore.deleteRdbStore(this.cInfo.context, this.cInfo.storeId)
+    } catch (e) {
+      let error = e as BusinessError;
+      console.error(`Failed to create KVManager.code is ${error.code},message is ${error.message}`);
+    }
+  }
+
+  private eStore: relationalStore.RdbStore = null;
+  private cStore: relationalStore.RdbStore = null;
+  private cInfo: StoreInfo | null = null;
+  private eInfo: StoreInfo | null = null;
+  private needMove: boolean = false;
+  private mover: Mover | null = null;
+}
+```
+
+### EntryAbility
+
+在EntryAbility类的中模拟在应用启动时，注册对COMMON_EVENT_SCREEN_LOCK_FILE_ACCESS_STATE_CHANGED公共事件的监听，并配置相应的数据库信息，密钥状态信息等。
+
+```ts
+import { AbilityConstant, contextConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { window } from '@kit.ArkUI';
+import { relationalStore } from '@kit.ArkData';
+import { ECStoreManager } from './ECStoreManager'
+import { StoreInfo } from './store'
+import { Mover } from './Mover'
+import { SecretKeyObserve } from './secretKeyObserve'
+import CommonEventManager from '@ohos.commonEventManager';
+import Base from '@ohos.base';
+
+
+export let storeManager = new ECStoreManager();
+
+export let secretKeyObserve = new SecretKeyObserve();
+
+let mover = new Mover();
+
+let subscriber: CommonEventManager.CommonEventSubscriber;
+
+export function createCB(err: Base.BusinessError, commonEventSubscriber: CommonEventManager.CommonEventSubscriber) {
+  if (!err) {
+    console.info('ECDB_Encry createSubscriber');
+    subscriber = commonEventSubscriber;
+    try {
+      CommonEventManager.subscribe(subscriber, (err: Base.BusinessError, data: CommonEventManager.CommonEventData) => {
+        if (err) {
+          console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
+        } else {
+          console.info(`ECDB_Encry SubscribeCB ${data.code}`);
+          secretKeyObserve.UpdatalockStatus(data.code);
+        }
+      });
+    } catch (error) {
+      const err: Base.BusinessError = error as Base.BusinessError;
+      console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
+    }
+  } else {
+    console.error(`createSubscriber failed, code is ${err.code}, message is ${err.message}`);
+  }
+}
+
+let cInfo: StoreInfo | null = null;
+let eInfo: StoreInfo | null = null;
+
+export default class EntryAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
+    let cContext = this.context;
+    cInfo = {
+      context: cContext;
+      config: {
+        name: 'cstore.db', 
+        securityLevel: relationalStore.SecurityLevel.S1,
+      },
+      storeId: "cstore.db",
+      isEStore: false,
+    }
+    let eContext = this.context.createModuleContext("entry");
+    eContext.area = contextConstant.AreaMode.EL5;
+    cInfo = {
+      context: cContext;
+      config: {
+        name: 'estore.db', 
+        securityLevel: relationalStore.SecurityLevel.S1,
+      },
+      storeId: "estore.db",
+      isEStore: false,
+    }
+    //监听COMMON_EVENT_SCREEN_LOCK_FILE_ACCESS_STATE_CHANGED事件 code == 1解锁状态，code==0加锁状态
+    console.info(`ECDB_Encry store area : estore:${eContext.area},cstore${cContext.area}`)
+    try {
+      CommonEventManager.createSubscriber({
+        events: ['COMMON_EVENT_SCREEN_LOCK_FILE_ACCESS_STATE_CHANGED']
+      }, createCB);
+      console.info(`ECDB_Encry success subscribe`);
+    } catch (error) {
+      const err: Base.BusinessError = error as Base.BusinessError;
+      console.error(`createSubscriber failed, code is ${err.code}, message is ${err.message}`);
+    }
+    storeManager.Config(cInfo, eInfo);
+    storeManager.ConfigDataMover(mover);
+    secretKeyObserve.Initialize(storeManager);
+  }
+
+  onDestroy(): void {
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onDestroy');
+  }
+
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    // Main window is created, set main page for this ability
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
+
+    windowStage.loadContent('pages/Index', (err) => {
+      if (err.code) {
+        hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
+        return;
+      }
+      hilog.info(0x0000, 'testTag', 'Succeeded in loading the content.');
+    });
+  }
+
+  onWindowStageDestroy(): void {
+    // Main window is destroyed, release UI related resources
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageDestroy');
+  }
+
+  onForeground(): void {
+    // Ability has brought to foreground
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onForeground');
+  }
+
+  onBackground(): void {
+    // Ability has back to background
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onBackground');
+  }
+}
+```
+
+### index按键事件
+
+提供按键 模拟应用操作数据库，如插入数据，删除数据，更新数据和获取数据数量的操作等。
+
+```ts
+import { storeManager, secretKeyObserve } from "../entryability/EntryAbility"
+import { relationalStore } from '@kit.ArkData';
+import { Store } from '../entryability/Store';
+
+let storeOption = new Store();
+
+let lockStatus: number = 1;
+
+@Entry
+@Component
+struct Index {
+  @State message: string = 'Hello World';
+
+  build() {
+    Row() {
+      Column() {
+        Button('加锁/解锁').onClick((event: ClickEvent) => {
+          if (lockStatus) {
+            secretKeyObserve.OnLock();
+            lockStatus = 0;
+          } else {
+            secretKeyObserve.OnUnLock();
+            lockStatus = 1;
+          }
+          lockStatus ? this.message = "解锁" : this.message = "加锁";
+        }).margin("5");
+        Button('store type').onClick(async (event: ClickEvent) => {
+          secretKeyObserve.GetCurrentStatus() ? this.message = "estroe" : this.message = "cstore";
+        }).margin("5");
+
+        Button("put").onClick(async (event: ClickEvent) => {
+          let store: relationalStore.RdbStore = await storeManager.GetCurrentStore(secretKeyObserve.GetCurrentStatus());
+          storeOption.PutOnedata(store);
+        }).margin(5)
+
+        Button("Get").onClick(async (event: ClickEvent) => {
+          let store: relationalStore.RdbStore = await storeManager.GetCurrentStore(secretKeyObserve.GetCurrentStatus());
+          storeOption.GetDataNum(store);
+        }).margin(5)
+
+        Button("delete").onClick(async (event: ClickEvent) => {
+          let store: relationalStore.RdbStore = await storeManager.GetCurrentStore(secretKeyObserve.GetCurrentStatus());
+          storeOption.DeleteOnedata(store);
+        }).margin(5)
+
+        Button("updata").onClick(async (event: ClickEvent) => {
+          let store: relationalStore.RdbStore = await storeManager.GetCurrentStore(secretKeyObserve.GetCurrentStatus());
+          storeOption.UpdataOnedata(store);
+        }).margin(5)
+
+        Text(this.message)
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
