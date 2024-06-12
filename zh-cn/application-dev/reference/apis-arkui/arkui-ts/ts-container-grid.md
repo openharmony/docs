@@ -65,13 +65,18 @@ Grid(scroller?: Scroller, layoutOptions?: GridLayoutOptions)
 
 columnsTemplate(value: string)
 
-设置当前网格布局列的数量或最小列宽值，不设置时默认1列。
+设置当前网格布局列的数量、固定列宽或最小列宽值，不设置时默认1列。
 
 例如,&nbsp;'1fr&nbsp;1fr&nbsp;2fr'&nbsp;是将父组件分3列，将父组件允许的宽分为4等份，第一列占1份，第二列占1份，第三列占2份。
 
 columnsTemplate('repeat(auto-fit, track-size)')是设置最小列宽值为track-size，自动计算列数和实际列宽。
 
-columnsTemplate('repeat(auto-fill, track-size)')是设置固定列宽值为track-size，自动计算列数。其中repeat、auto-fit、auto-fill为关键字。track-size为列宽，支持的单位包括px、vp、%或有效数字，默认单位为vp，track-size至少包括一个有效列宽。
+columnsTemplate('repeat(auto-fill, track-size)')是设置固定列宽值为track-size，自动计算列数。
+
+columnsTemplate('repeat(auto-stretch, track-size)')是设置固定列宽值为track-size，使用columnsGap为最小列间距，自动计算列数和实际列间距。
+
+其中repeat、auto-fit、auto-fill、auto-stretch为关键字。track-size为列宽，支持的单位包括px、vp、%或有效数字，默认单位为vp，track-size至少包括一个有效列宽。<br/>
+auto-stretch模式只支持track-size为一个有效列宽值，并且track-size只支持px、vp和有效数字，不支持%。
 
 设置为'0fr'时，该列的列宽为0，不显示GridItem。设置为其他非法值时，GridItem显示为固定1列。
 
@@ -89,13 +94,18 @@ columnsTemplate('repeat(auto-fill, track-size)')是设置固定列宽值为track
 
 rowsTemplate(value: string)
 
-设置当前网格布局行的数量或最小行高值，不设置时默认1行。
+设置当前网格布局行的数量、固定行高或最小行高值，不设置时默认1行。
 
 例如,&nbsp;'1fr&nbsp;1fr&nbsp;2fr'是将父组件分3行，将父组件允许的高分为4等份，第一行占1份，第二行占一份，第三行占2份。
 
 rowsTemplate('repeat(auto-fit, track-size)')是设置最小行高值为track-size，自动计算行数和实际行高。
 
-rowsTemplate('repeat(auto-fill, track-size)')是设置固定行高值为track-size，自动计算行数。其中repeat、auto-fit、auto-fill为关键字。track-size为行高，支持的单位包括px、vp、%或有效数字，默认单位为vp，track-size至少包括一个有效行高。
+rowsTemplate('repeat(auto-fill, track-size)')是设置固定行高值为track-size，自动计算行数。
+
+rowsTemplate('repeat(auto-stretch, track-size)')是设置固定行高值为track-size，使用rowsGap为最小行间距，自动计算行数和实际行间距。
+
+其中repeat、auto-fit、auto-fill、auto-stretch为关键字。track-size为行高，支持的单位包括px、vp、%或有效数字，默认单位为vp，track-size至少包括一个有效行高。<br/>
+auto-stretch模式只支持track-size为一个有效行高值，并且track-size只支持px、vp和有效数字，不支持%。
 
 设置为'0fr'，则这一行的行宽为0，这一行GridItem不显示。设置为其他非法值，按固定1行处理。
 
