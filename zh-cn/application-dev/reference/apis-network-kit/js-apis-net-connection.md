@@ -227,8 +227,8 @@ cat server.pem \
 证书锁定的配置例子如下:
 ```json
 {
-  "network-security-config": {	
-	  "domain-config": [
+  "network-security-config": {
+    "domain-config": [
       {
         "domains": [
           {
@@ -252,12 +252,13 @@ cat server.pem \
 ```
 
 应用级证书的配置例子如下:
-```json
 {
   "network-security-config": {
-    "base-config": {  
-      "trust-anchors": [                         
-        {"certificates": "/etc/security/certificates"}
+    "base-config": {
+      "trust-anchors": [
+        {
+          "certificates": "/etc/security/certificates"
+        }
       ]
     },
     "domain-config": [
@@ -269,7 +270,9 @@ cat server.pem \
           }
         ],
         "trust-anchors": [
-          {"certificates": "/data/storage/el1/bundle/entry/resources/resfile"}
+          {
+            "certificates": "/data/storage/el1/bundle/entry/resources/resfile"
+          }
         ]
       }
     ]
