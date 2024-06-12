@@ -287,7 +287,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     // 支持动态重置视频帧速率
     double frameRate = 60.0;
     OH_AVFormat_SetDoubleValue(format, OH_MD_KEY_FRAME_RATE, frameRate);
-    // 支持动态重置QP参数
+    // 支持动态设置QP值
     // 配置OH_MD_KEY_VIDEO_ENCODER_QP_MAX 的值应大于等于OH_MD_KEY_VIDEO_ENCODER_QP_MIN
     OH_AVFormat_SetIntValue(parameter, OH_MD_KEY_VIDEO_ENCODER_QP_MAX, 30);
     OH_AVFormat_SetIntValue(parameter, OH_MD_KEY_VIDEO_ENCODER_QP_MIN, 20);
