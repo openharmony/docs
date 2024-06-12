@@ -128,10 +128,10 @@ borderRadius(value: Length | BorderRadiuses | LocalizedBorderRadiuses)
 
 | 名称     | 参数类型                         | 必填   | 描述      |
 | ------ | ---------------------------- | ---- | ------- |
-| start   | [LocalizedEdgeWidths](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | 否    | 左侧边框宽度。<br />从右至左显示语言模式下为右侧边框宽度。 |
-| end     | [LocalizedEdgeWidths](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | 否    | 右侧边框宽度。<br />从右至左显示语言模式下为左侧边框宽度。 |
-| top     | [LocalizedEdgeWidths](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | 否    | 上侧边框宽度。 |
-| bottom  | [LocalizedEdgeWidths](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | 否    | 下侧边框宽度。 |
+| start   | [LocalizedEdgeWidths](../js-apis-arkui-graphics.md#lengthmetrics12) | 否    | 左侧边框宽度。<br />从右至左显示语言模式下为右侧边框宽度。 |
+| end     | [LocalizedEdgeWidths](../js-apis-arkui-graphics.md#lengthmetrics12) | 否    | 右侧边框宽度。<br />从右至左显示语言模式下为左侧边框宽度。 |
+| top     | [LocalizedEdgeWidths](../js-apis-arkui-graphics.md#lengthmetrics12) | 否    | 上侧边框宽度。 |
+| bottom  | [LocalizedEdgeWidths](../js-apis-arkui-graphics.md#lengthmetrics12) | 否    | 下侧边框宽度。 |
 
 ## EdgeColors<sup>9+</sup>对象说明
 
@@ -149,6 +149,7 @@ borderRadius(value: Length | BorderRadiuses | LocalizedBorderRadiuses)
 ## LocalizedEdgeColors<sup>12+</sup>对象说明
 
 边框颜色，用于描述组件边框四条边的颜色。
+
 引入该对象时，至少传入一个参数。
 
 | 名称     | 参数类型                                     | 必填   | 描述      |
@@ -174,6 +175,7 @@ borderRadius(value: Length | BorderRadiuses | LocalizedBorderRadiuses)
 ## LocalizedBorderRadiuses<sup>12+</sup>对象说明
 
 圆角类型，用于描述组件边框圆角半径。
+
 引用该对象时，至少传入一个参数。
 
 | 名称          | 参数类型                         | 必填   | 描述       |

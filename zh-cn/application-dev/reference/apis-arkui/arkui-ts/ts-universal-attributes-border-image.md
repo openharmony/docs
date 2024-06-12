@@ -26,7 +26,7 @@ borderImage(value: BorderImageOption)
 
 ## BorderImageOption对象说明
 
-该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 | 名称   | 类型                                                         | 必填| 描述                                                         |
 | ------ | ------------------------------------------------------------ | ---- |  ------------------------------------------------------------ |
@@ -39,7 +39,7 @@ borderImage(value: BorderImageOption)
 
 ## RepeatMode枚举说明
 
-该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
