@@ -33,7 +33,7 @@
 | 名称     | 类型                | 必填   | 说明                   |
 | ------ | ----------------- | ---- | -------------------- |
 | types | [ImageAnalyzerType[]](#imageanalyzertype12) | 否 | 图像AI分析类型。 |
-| aiController | [ImageAnalyzerController](#ImageAnalyzerController12) | 否 | 图像AI分析控制器。 |
+| aiController | [ImageAnalyzerController](#imageanalyzercontroller12) | 否 | 图像AI分析控制器。 |
 
 > **说明：**
 >
