@@ -29,7 +29,7 @@ executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: DragInfo, callback: 
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------- |
 | custom   | [CustomBuilder](arkui-ts/ts-types.md#custombuilder8) \| [DragItemInfo](arkui-ts/ts-universal-events-drag-drop.md#dragiteminfo说明) | 是   | 拖拽发起后跟手效果所拖拽的对象。<br/>**说明：** <br/>不支持全局builder。如果builder中使用了[Image](arkui-ts/ts-basic-components-image.md)组件，应尽量开启同步加载，即配置Image的[syncLoad](arkui-ts/ts-basic-components-image.md#syncload8)为true。该builder只用于生成当次拖拽中显示的图片，builder的修改不会同步到当前正在拖拽的图片，对builder的修改需要在下一次拖拽时生效。 |
 | dragInfo | [DragInfo](#draginfo)                                        | 是   | 拖拽信息。                       |
-| callback | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;{event: [DragEvent](arkui-ts/ts-universal-events-drag-drop.md#dragevent说明), extraParams: string}&gt; | 是   | 拖拽结束返回结果的回调<br/>- event：拖拽事件信息，仅包括拖拽结果。<br/>- extraParams：拖拽事件额外信息。          |
+| callback | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;{event: [DragEvent](arkui-ts/ts-universal-events-drag-drop.md#dragevent), extraParams: string}&gt; | 是   | 拖拽结束返回结果的回调<br/>- event：拖拽事件信息，仅包括拖拽结果。<br/>- extraParams：拖拽事件额外信息。          |
 
 **错误码：**
 
@@ -134,7 +134,7 @@ executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: DragInfo): Promise&l
 
 | 类型                                                   | 说明               |
 | ------------------------------------------------------ | ------------------ |
-| Promise&lt;{event: [DragEvent](arkui-ts/ts-universal-events-drag-drop.md#dragevent说明), extraParams: string}&gt; | 拖拽结束返回结果的回调<br/>- event：拖拽事件信息，仅包括拖拽结果。<br/>- extraParams：拖拽事件额外信息。 |
+| Promise&lt;{event: [DragEvent](arkui-ts/ts-universal-events-drag-drop.md#dragevent), extraParams: string}&gt; | 拖拽结束返回结果的回调<br/>- event：拖拽事件信息，仅包括拖拽结果。<br/>- extraParams：拖拽事件额外信息。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码。
@@ -571,7 +571,7 @@ struct DragControllerPage {
 | 名称          | 类型                                                   | 必填 | 说明                                     |
 | -----------   | ------------------------------------------------------ | ---- | ---------------------------------------- |
 | status       | [DragStatus](#dragstatus11)                                                 | 是   | 当前拖拽状态（启动和结束）。         |
-| event        | [DragEvent](arkui-ts/ts-universal-events-drag-drop.md#dragevent说明) | 否   | 当前状态所对应的拖拽事件。               |
+| event        | [DragEvent](arkui-ts/ts-universal-events-drag-drop.md#dragevent) | 否   | 当前状态所对应的拖拽事件。               |
 | extraParams| string                                                 | 否   | 设置拖拽事件额外信息，具体功能暂未实现。 |
 
 ## DragStatus<sup>11+</sup>
