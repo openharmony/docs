@@ -50,67 +50,13 @@ ECStoreManager类：用于管理应用的E类数据库和C类数据库。
 
 ```
 import { distributedKVStore } from '@kit.ArkData';
-import { BusinessError } from '@kit.BasicServicesKit';
-import { StoreInfo } from './store'
 
 export class Mover {
-  e_kvManager: distributedKVStore.KVManager;
-  c_kvManager: distributedKVStore.KVManager;
-  e_kvStore: distributedKVStore.SingleKVStore | undefined = undefined;
-  c_kvStore: distributedKVStore.SingleKVStore | undefined = undefined;
-
-  Move(eInfo: StoreInfo, cInfo: StoreInfo) {
-    try {
-      this.e_kvManager = distributedKVStore.createKVManager(eInfo.kvManagerConfig);
-      this.c_kvManager = distributedKVStore.createKVManager(cInfo.kvManagerConfig);
-      console.info("ljy Succeeded in creating e_kvManager and c_kvManager");
-    } catch (e) {
-      let error = e as BusinessError;
-      console.error(`Failed to create KVManager.code is ${error.code},message is ${error.message}`);
-    }
-    if (this.e_kvManager !== undefined && this.c_kvManager != undefined) {
-      try {
-        this.e_kvManager.getKVStore<distributedKVStore.SingleKVStore>(eInfo.storeId, eInfo.option, (err, store: distributedKVStore.SingleKVStore) => {
-          if (err) {
-            console.error(`Failed to get KVStore: Code:${err.code},message:${err.message}`);
-            return;
-          }
-          this.e_kvStore = store;
-          try {
-            this.c_kvManager.getKVStore<distributedKVStore.SingleKVStore>(cInfo.storeId, cInfo.option, (err, store: distributedKVStore.SingleKVStore) => {
-              if (err) {
-                console.error(`Failed to get KVStore: Code:${err.code},message:${err.message}`);
-                return;
-              }
-              this.c_kvStore = store;
-              // 请确保获取到键值数据库实例后，再进行相关数据操作
-              let entries: distributedKVStore.Entry[] = [];
-              if (this.e_kvStore !== undefined && this.c_kvStore !== undefined) {
-                console.info("ljy Succeeded in creating e_kvStore and c_kvStore");
-                if (this.c_kvStore != null) {
-                  this.c_kvStore.getEntries('^').then((entries: distributedKVStore.Entry[]) => {
-                    console.info(`ljy Succeeded cstore entries success entries.length: ${entries.length}`);
-                    this.e_kvStore.putBatch(entries).then(async () => {
-                      console.info('ljy estore putBatch Succeeded');
-                    }).catch((err: BusinessError) => {
-                      console.error(`Failed to put Batch.code is ${err.code},message is ${err.message}`);
-                    });
-                  }).catch((err: BusinessError) => {
-                    console.error(`Failed to get Entries.code is ${err.code},message is ${err.message}`);
-                  });
-                }
-              }
-            });
-          } catch (e) {
-            let error = e as BusinessError;
-            console.error(`An unexpected error occurred. Code:${error.code},message:${error.message}`);
-          }
-          // 请确保获取到键值数据库实例后，再进行相关数据操作
-        });
-      } catch (e) {
-        let error = e as BusinessError;
-        console.error(`An unexpected error occurred. Code:${error.code},message:${error.message}`);
-      }
+  async Move(eStore: distributedKVStore.SingleKVStore, cStore: distributedKVStore.SingleKVStore) {
+    if (eStore != null && cStore != null) {
+      let entries: distributedKVStore.Entry[] = await cStore.getEntries('key_test_string');
+      await eStore.putBatch(entries);
+      console.info(`ECDB_Encry move success`);
     }
   }
 }
@@ -133,227 +79,129 @@ export class StoreInfo {
   isEstore: boolean;
 }
 
-export function putdata(storeInfo: StoreInfo) {
-  try {
-    kvManager = distributedKVStore.createKVManager(storeInfo.kvManagerConfig);
-    console.info("Succeeded in creating KVManager");
-  } catch (e) {
-    let error = e as BusinessError;
-    console.error(`Failed to create KVManager.code is ${error.code},message is ${error.message}`);
-  }
-  if (kvManager !== undefined) {
-    kvManager = kvManager as distributedKVStore.KVManager;
-    let kvStore: distributedKVStore.SingleKVStore | null;
+export class Store {
+  async GetECStore(storeInfo: StoreInfo): Promise<distributedKVStore.SingleKVStore> {
     try {
-      kvManager.getKVStore<distributedKVStore.SingleKVStore>(storeInfo.storeId, storeInfo.option).then((store: distributedKVStore.SingleKVStore) => {
-        console.info("Succeeded in getting KVStore");
-        kvStore = store;
-        if (kvStore != undefined) {
-          // console.info(`ljy ${Date.now()}`)
-          const KEY_TEST_STRING_ELEMENT = 'key_test_string' + String(Date.now());
-          const VALUE_TEST_STRING_ELEMENT = 'value_test_string' + String(Date.now());
-          try {
-            kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, (err) => {
-              if (err !== undefined) {
-                console.error(`Failed to put data. Code:${err.code},message:${err.message}`);
-                return;
-              }
-              console.info(`ljy Succeeded in putting data.${KEY_TEST_STRING_ELEMENT}`);
-            });
-          } catch (e) {
-            let error = e as BusinessError;
-            console.error(`An unexpected error occurred. Code:${error.code},message:${error.message}`);
-          }
-        }
-
-      }).catch((err: BusinessError) => {
-        console.error(`Failed to get KVStore.code is ${err.code},message is ${err.message}`);
-      });
+      kvManager = distributedKVStore.createKVManager(storeInfo.kvManagerConfig);
+      console.info("Succeeded in creating KVManager");
     } catch (e) {
       let error = e as BusinessError;
-      console.error(`An unexpected error occurred.code is ${error.code},message is ${error.message}`);
+      console.error(`Failed to create KVManager.code is ${error.code},message is ${error.message}`);
     }
-  }
-  kvManager.closeKVStore('appId', 'storeId', (err: BusinessError) => {
-    if (err != undefined) {
-      console.error(`Failed to close KVStore.code is ${err.code},message is ${err.message}`);
-      return;
-    }
-    console.info('Succeeded in closing KVStore');
-  });
-}
-
-export function GetDataNum(storeInfo: StoreInfo) {
-  try {
-    kvManager = distributedKVStore.createKVManager(storeInfo.kvManagerConfig);
-    console.info("Succeeded in creating KVManager");
-  } catch (e) {
-    let error = e as BusinessError;
-    console.error(`Failed to create KVManager.code is ${error.code},message is ${error.message}`);
-  }
-  if (kvManager !== undefined) {
-    kvManager = kvManager as distributedKVStore.KVManager;
-    let kvStore: distributedKVStore.SingleKVStore | null;
-    let resultSet: distributedKVStore.KVStoreResultSet;
-    try {
-      kvManager.getKVStore<distributedKVStore.SingleKVStore>(storeInfo.storeId, storeInfo.option).then((store: distributedKVStore.SingleKVStore) => {
-        console.info("Succeeded in getting KVStore");
-        kvStore = store;
+    if (kvManager !== undefined) {
+      kvManager = kvManager as distributedKVStore.KVManager;
+      let kvStore: distributedKVStore.SingleKVStore | null;
+      try {
+        kvStore = await kvManager.getKVStore<distributedKVStore.SingleKVStore>(storeInfo.storeId, storeInfo.option);
         if (kvStore != undefined) {
-          kvStore.getResultSet("^").then((result: distributedKVStore.KVStoreResultSet) => {
-            console.info(`ljy Succeeded in getting result set num ${result.getCount()}`);
-            resultSet = result;
-            if (kvStore != null) {
-              kvStore.closeResultSet(resultSet).then(() => {
-                console.info('Succeeded in closing result set');
-              }).catch((err: BusinessError) => {
-                console.error(`Failed to close resultset.code is ${err.code},message is ${err.message}`);
-              });
-            }
-          }).catch((err: BusinessError) => {
-            console.error(`Failed to get resultset.code is ${err.code},message is ${err.message}`);
-          });
+          return kvStore;
         }
-      }).catch((err: BusinessError) => {
-        console.error(`Failed to get KVStore.code is ${err.code},message is ${err.message}`);
-      });
-    } catch (e) {
-      let error = e as BusinessError;
-      console.error(`An unexpected error occurred.code is ${error.code},message is ${error.message}`);
-    }
-    kvManager.closeKVStore('appId', 'storeId', (err: BusinessError) => {
-      if (err != undefined) {
-        console.error(`Failed to close KVStore.code is ${err.code},message is ${err.message}`);
-        return;
+      } catch (e) {
+        let error = e as BusinessError;
+        console.error(`An unexpected error occurred.code is ${error.code},message is ${error.message}`);
       }
-      console.info('Succeeded in closing KVStore');
-    });
+    }
   }
-}
 
-export function deleteOnedata(storeInfo: StoreInfo) {
-  try {
-    kvManager = distributedKVStore.createKVManager(storeInfo.kvManagerConfig);
-    console.info("Succeeded in creating KVManager");
-  } catch (e) {
-    let error = e as BusinessError;
-    console.error(`Failed to create KVManager.code is ${error.code},message is ${error.message}`);
+  PutOnedata(kvStore: distributedKVStore.SingleKVStore) {
+    if (kvStore != undefined) {
+      const KEY_TEST_STRING_ELEMENT = 'key_test_string' + String(Date.now());
+      const VALUE_TEST_STRING_ELEMENT = 'value_test_string' + String(Date.now());
+      try {
+        kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, (err) => {
+          if (err !== undefined) {
+            console.error(`Failed to put data. Code:${err.code},message:${err.message}`);
+            return;
+          }
+          console.info(`ECDB_Encry Succeeded in putting data.${KEY_TEST_STRING_ELEMENT}`);
+        });
+      } catch (e) {
+        let error = e as BusinessError;
+        console.error(`An unexpected error occurred. Code:${error.code},message:${error.message}`);
+      }
+    }
   }
-  if (kvManager !== undefined) {
-    kvManager = kvManager as distributedKVStore.KVManager;
-    let kvStore: distributedKVStore.SingleKVStore | null;
-    try {
-      kvManager.getKVStore<distributedKVStore.SingleKVStore>(storeInfo.storeId, storeInfo.option).then((store: distributedKVStore.SingleKVStore) => {
-        console.info("Succeeded in getting KVStore");
-        kvStore = store;
-        if (kvStore != undefined) {
-          kvStore.getEntries('key_test_string', (err: BusinessError, entries: distributedKVStore.Entry[]) => {
-            if (err != undefined) {
-              console.error(`Failed to get Entries.code is ${err.code},message is ${err.message}`);
-              return;
-            }
-            console.info('Succeeded in getting Entries');
-            console.info(`entries.length: ${entries.length}`);
-            console.info(`ljy entries[0]: ${entries[0]}`);
-            if (kvStore != null && entries.length != 0) {
-              kvStore.delete(entries[0].key, (err: BusinessError) => {
-                if (err != undefined) {
-                  console.error(`Failed to delete.code is ${err.code},message is ${err.message}`);
-                  return;
-                }
-                console.info('ljy Succeeded in deleting');
-              });
-            }
+
+  GetDataNum(kvStore: distributedKVStore.SingleKVStore) {
+    if (kvStore != undefined) {
+      let resultSet: distributedKVStore.KVStoreResultSet;
+      kvStore.getResultSet("key_test_string").then((result: distributedKVStore.KVStoreResultSet) => {
+        console.info(`ECDB_Encry Succeeded in getting result set num ${result.getCount()}`);
+        resultSet = result;
+        if (kvStore != null) {
+          kvStore.closeResultSet(resultSet).then(() => {
+            console.info('Succeeded in closing result set');
+          }).catch((err: BusinessError) => {
+            console.error(`Failed to close resultset.code is ${err.code},message is ${err.message}`);
           });
-
         }
       }).catch((err: BusinessError) => {
-        console.error(`Failed to get KVStore.code is ${err.code},message is ${err.message}`);
+        console.error(`Failed to get resultset.code is ${err.code},message is ${err.message}`);
       });
-    } catch (e) {
-      let error = e as BusinessError;
-      console.error(`An unexpected error occurred.code is ${error.code},message is ${error.message}`);
     }
   }
-  kvManager.closeKVStore('appId', 'storeId', (err: BusinessError) => {
-    if (err != undefined) {
-      console.error(`Failed to close KVStore.code is ${err.code},message is ${err.message}`);
-      return;
-    }
-    console.info('Succeeded in closing KVStore');
-  });
-}
 
-export function updataOnedata(storeInfo: StoreInfo) {
-  try {
-    kvManager = distributedKVStore.createKVManager(storeInfo.kvManagerConfig);
-    console.info("Succeeded in creating KVManager");
-  } catch (e) {
-    let error = e as BusinessError;
-    console.error(`Failed to create KVManager.code is ${error.code},message is ${error.message}`);
-  }
-  if (kvManager !== undefined) {
-    kvManager = kvManager as distributedKVStore.KVManager;
-    let kvStore: distributedKVStore.SingleKVStore | null;
-    try {
-      kvManager.getKVStore<distributedKVStore.SingleKVStore>(storeInfo.storeId, storeInfo.option).then((store: distributedKVStore.SingleKVStore) => {
-        console.info("Succeeded in getting KVStore");
-        kvStore = store;
-        if (kvStore != undefined) {
-          kvStore.getEntries('key_test_string', (err: BusinessError, entries: distributedKVStore.Entry[]) => {
+  DeleteOnedata(kvStore: distributedKVStore.SingleKVStore) {
+    if (kvStore != undefined) {
+      kvStore.getEntries('key_test_string', (err: BusinessError, entries: distributedKVStore.Entry[]) => {
+        if (err != undefined) {
+          console.error(`Failed to get Entries.code is ${err.code},message is ${err.message}`);
+          return;
+        }
+        if (kvStore != null && entries.length != 0) {
+          kvStore.delete(entries[0].key, (err: BusinessError) => {
             if (err != undefined) {
-              console.error(`Failed to get Entries.code is ${err.code},message is ${err.message}`);
+              console.error(`Failed to delete.code is ${err.code},message is ${err.message}`);
               return;
             }
-            console.info(`ljy old data:${entries[0].key},value :${entries[0].value.value.toString()}`)
-            if (kvStore != null && entries.length != 0) {
-              kvStore.put(entries[0].key, "new value_test_string " + String(Date.now())).then(() => {
-                console.info(`ljy new data:${entries[0].key},value :${entries[0].value.value.toString()}`)
-              }).catch((err: BusinessError) => {
-                console.error(`Failed to put.code is ${err.code},message is ${err.message}`);
-              });
-            }
+            console.info('ECDB_Encry Succeeded in deleting');
           });
-
         }
-      }).catch((err: BusinessError) => {
-        console.error(`Failed to get KVStore.code is ${err.code},message is ${err.message}`);
       });
-    } catch (e) {
-      let error = e as BusinessError;
-      console.error(`An unexpected error occurred.code is ${error.code},message is ${error.message}`);
     }
   }
-  kvManager.closeKVStore('appId', 'storeId', (err: BusinessError) => {
-    if (err != undefined) {
-      console.error(`Failed to close KVStore.code is ${err.code},message is ${err.message}`);
-      return;
+
+  UpdataOnedata(kvStore: distributedKVStore.SingleKVStore) {
+    if (kvStore != undefined) {
+      kvStore.getEntries('key_test_string', async (err: BusinessError, entries: distributedKVStore.Entry[]) => {
+        if (err != undefined) {
+          console.error(`Failed to get Entries.code is ${err.code},message is ${err.message}`);
+          return;
+        }
+        if (kvStore != null && entries.length != 0) {
+          console.info(`ECDB_Encry old data:${entries[0].key},value :${entries[0].value.value.toString()}`)
+          await kvStore.put(entries[0].key, "new value_test_string" + String(Date.now()) + 'new').then(() => {
+          }).catch((err: BusinessError) => {
+            console.error(`Failed to put.code is ${err.code},message is ${err.message}`);
+          });
+        }
+        console.info(`ECDB_Encry updata success`)
+      });
     }
-    console.info('Succeeded in closing KVStore');
-  });
+  }
 }
 ```
 
-### secretKeyObserve
+### SecretKeyObserve
 
 该类提供了获取当前密钥状态的接口，在密钥销毁后，关闭E类数据库。
 
 ```
 import { ECStoreManager } from './ECStoreManager'
 
-enum secretStatus {
+enum SecretStatus {
   Lock,
   UnLock
 }
 
-export class secretKeyObserve {
+export class SecretKeyObserve {
   OnLock(): void {
-    this.lockStatuas = secretStatus.Lock;
+    this.lockStatuas = SecretStatus.Lock;
     this.storeManager.CloseEStore();
   }
 
   OnUnLock(): void {
-    this.lockStatuas = secretStatus.UnLock;
+    this.lockStatuas = SecretStatus.UnLock;
   }
 
   GetCurrentStatus(): number {
@@ -368,11 +216,11 @@ export class secretKeyObserve {
     this.lockStatuas = code;
   }
 
-  private lockStatuas: number = secretStatus.UnLock;
+  private lockStatuas: number = SecretStatus.UnLock;
   private storeManager: ECStoreManager;
 }
 
-export let lockObserve = new secretKeyObserve();
+export let lockObserve = new SecretKeyObserve();
 ```
 
 ### ECStoreManager
@@ -383,7 +231,9 @@ ECStoreManager类用于管理应用的E类数据库和C类数据库。提供配�
 import distributedKVStore from '@ohos.data.distributedKVStore';
 import { Mover } from './Mover'
 import { BusinessError } from '@kit.BasicServicesKit';
-import { StoreInfo } from './store'
+import { StoreInfo, Store } from './Store'
+
+let storeOption = new Store();
 
 export class ECStoreManager {
   Config(cInfo: StoreInfo, other: StoreInfo): void {
@@ -395,22 +245,25 @@ export class ECStoreManager {
     this.mover = mover;
   }
 
-  GetCurrentStore(screanStatus: number): StoreInfo {
-    console.info(`ljy GetCurrentStore start screanStatus: ${screanStatus}`);
+  async GetCurrentStore(screanStatus: number): Promise<distributedKVStore.SingleKVStore> {
+    console.info(`ECDB_Encry GetCurrentStore start screanStatus: ${screanStatus}`);
     if (screanStatus) {
+      this.eStore = await storeOption.GetECStore(this.eInfo);
       //解锁状态 获取e类库
       if (this.needMove) {
-        console.info(`ljy need Moving`);
-        this.mover.Move(this.eInfo, this.cInfo);
-        this.deleteCStore();
-        console.info(`ljy Data migration is complete. Destroy cstore`);
+        if (this.eStore != undefined && this.cStore != undefined) {
+          await this.mover.Move(this.eStore, this.cStore);
+        }
+        this.DeleteCStore();
+        console.info(`ECDB_Encry Data migration is complete. Destroy cstore`);
         this.needMove = false;
       }
-      return this.eInfo;
+      return this.eStore;
     } else {
       //加锁状态 获取c类库
       this.needMove = true;
-      return this.cInfo;
+      this.cStore = await storeOption.GetECStore(this.cInfo);
+      return this.cStore;
     }
   }
 
@@ -420,7 +273,8 @@ export class ECStoreManager {
       console.info("Succeeded in creating KVManager");
       if (kvManager != undefined) {
         kvManager.closeKVStore(this.eInfo.kvManagerConfig.bundleName, this.eInfo.storeId);
-        console.info(`ljy close EStore success`)
+        this.eStore = null;
+        console.info(`ECDB_Encry close EStore success`)
       }
     } catch (e) {
       let error = e as BusinessError;
@@ -428,13 +282,14 @@ export class ECStoreManager {
     }
   }
 
-  deleteCStore() {
+  DeleteCStore() {
     try {
       let kvManager = distributedKVStore.createKVManager(this.cInfo.kvManagerConfig);
       console.info("Succeeded in creating KVManager");
       if (kvManager != undefined) {
         kvManager.deleteKVStore(this.cInfo.kvManagerConfig.bundleName, this.cInfo.storeId);
-        console.info("ljy delete cStore success");
+        this.cStore = null;
+        console.info("ECDB_Encry delete cStore success");
       }
     } catch (e) {
       let error = e as BusinessError;
@@ -442,12 +297,13 @@ export class ECStoreManager {
     }
   }
 
+  private eStore: distributedKVStore.SingleKVStore = null;
+  private cStore: distributedKVStore.SingleKVStore = null;
   private cInfo: StoreInfo | null = null;
   private eInfo: StoreInfo | null = null;
   private needMove: boolean = false;
   private mover: Mover | null = null;
 }
-
 ```
 ### EntryAbility
 
@@ -461,14 +317,14 @@ import { distributedKVStore } from '@kit.ArkData';
 import { ECStoreManager } from './ECStoreManager'
 import { StoreInfo } from './store'
 import { Mover } from './Mover'
-import { secretKeyObserve } from './secretKeyObserve'
+import { SecretKeyObserve } from './secretKeyObserve'
 import CommonEventManager from '@ohos.commonEventManager';
 import Base from '@ohos.base';
 
 
 export let storeManager = new ECStoreManager();
 
-export let screenObserver = new secretKeyObserve();
+export let secretKeyObserve = new SecretKeyObserve();
 
 let mover = new Mover();
 
@@ -555,7 +411,7 @@ export default class EntryAbility extends UIAbility {
     }
     storeManager.Config(cInfo, eInfo);
     storeManager.ConfigDataMover(mover);
-    screenObserver.Initialize(storeManager);
+    secretKeyObserve.Initialize(storeManager);
   }
 
   onDestroy(): void {
@@ -590,17 +446,19 @@ export default class EntryAbility extends UIAbility {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onBackground');
   }
 }
-
 ```
 ### index按键事件
 
 提供案件 模拟应用操作数据库，如插入数据，删除数据，更新数据和获取数据数量的操作等。
 
 ```
-import { storeManager, screenObserver } from "../entryability/EntryAbility"
-import { putdata, GetDataNum, deleteOnedata, updataOnedata } from "../entryability/store"
+import { storeManager, secretKeyObserve } from "../entryability/EntryAbility"
+import { distributedKVStore } from '@kit.ArkData';
+import { Store } from '../entryability/Store';
 
-let screenStatus = 1;
+let storeOption = new Store();
+
+let lockStatus: number = 1;
 
 @Entry
 @Component
@@ -611,40 +469,38 @@ struct Index {
     Row() {
       Column() {
         Button('加锁/解锁').onClick((event: ClickEvent) => {
-          if (screenStatus) {
-            screenObserver.OnLock();
-            screenStatus = 0;
+          if (lockStatus) {
+            secretKeyObserve.OnLock();
+            lockStatus = 0;
           } else {
-            screenObserver.OnUnLock();
-            screenStatus = 1;
+            secretKeyObserve.OnUnLock();
+            lockStatus = 1;
           }
-          screenStatus ? this.message = "解锁" : this.message = "加锁";
+            lockStatus ? this.message = "解锁" : this.message = "加锁";
         }).margin("5");
-        Button('获取当前数据库').onClick((event: ClickEvent) => {
-          let str: string = storeManager.GetCurrentStore(screenObserver.GetCurrentStatus())
-            .isEstore ? "当前数据库为estore" : "当前为ctsore";
-          this.message = str;
+        Button('store type').onClick(async (event: ClickEvent) => {
+          secretKeyObserve.GetCurrentStatus() ? this.message = "estroe" : this.message = "cstore";
         }).margin("5");
 
-        Button('插入数据').onClick((event: ClickEvent) => {
-          putdata(storeManager.GetCurrentStore(screenObserver.GetCurrentStatus()));
-          this.message = "插入一条数据";
-        }).margin("5");
+        Button("put").onClick(async (event: ClickEvent) => {
+          let store: distributedKVStore.SingleKVStore = await storeManager.GetCurrentStore(screenObserver.GetCurrentStatus());
+          storeOption.PutOnedata(store);
+        }).margin(5)
 
-        Button('获取数据数量').onClick((event: ClickEvent) => {
-          GetDataNum(storeManager.GetCurrentStore(screenObserver.GetCurrentStatus()));
-          this.message = "当前数据库的数据总量";
-        }).margin("5");
+        Button("Get").onClick(async (event: ClickEvent) => {
+          let store: distributedKVStore.SingleKVStore = await storeManager.GetCurrentStore(screenObserver.GetCurrentStatus());
+          storeOption.GetDataNum(store);
+        }).margin(5)
 
-        Button('删除数据').onClick((event: ClickEvent) => {
-          deleteOnedata(storeManager.GetCurrentStore(screenObserver.GetCurrentStatus()));
-          this.message = "删除一条数据"
-        }).margin("5");
+        Button("delete").onClick(async (event: ClickEvent) => {
+          let store: distributedKVStore.SingleKVStore = await storeManager.GetCurrentStore(screenObserver.GetCurrentStatus());
+          storeOption.DeleteOnedata(store);
+        }).margin(5)
 
-        Button('更新数据').onClick((event: ClickEvent) => {
-          updataOnedata(storeManager.GetCurrentStore(screenObserver.GetCurrentStatus()));
-          this.message = "更新一条数据"
-        }).margin("5");
+        Button("updata").onClick(async (event: ClickEvent) => {
+          let store: distributedKVStore.SingleKVStore = await storeManager.GetCurrentStore(screenObserver.GetCurrentStatus());
+          storeOption.UpdataOnedata(store);
+        }).margin(5)
 
         Text(this.message)
           .fontSize(50)
