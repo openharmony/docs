@@ -16,7 +16,7 @@
 
 AlphabetIndexer(value: {arrayValue: Array&lt;string&gt;, selected: number})
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -230,7 +230,7 @@ popupPosition(value: Position)
 
 设置弹出窗口相对于索引器条上边框中点的位置。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -330,6 +330,8 @@ popupItemBorderRadius(value: number)
 
 设置提示弹窗索引项背板圆角半径。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -343,6 +345,8 @@ popupItemBorderRadius(value: number)
 itemBorderRadius(value: number)
 
 设置索引项背板圆角半径。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -358,6 +362,8 @@ popupBackgroundBlurStyle(value: BlurStyle)
 
 设置提示弹窗的背景模糊材质。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -371,6 +377,8 @@ popupBackgroundBlurStyle(value: BlurStyle)
 popupTitleBackground(value: ResourceColor)
 
 设置提示弹窗首个索引项背板颜色。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -410,8 +418,6 @@ onSelected(callback:&nbsp;(index:&nbsp;number)&nbsp;=&gt;&nbsp;void)
 索引条选中回调，返回值为当前选中索引。 
 
 从API Version 8开始废弃，建议使用[onSelect](#onselect8)代替。
-
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
