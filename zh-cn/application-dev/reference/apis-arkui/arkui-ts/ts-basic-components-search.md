@@ -455,6 +455,22 @@ maxFontSize(value: number | string | Resource)
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
 | value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 文本最大显示字号。 |
 
+### selectionMenuOptions<sup>12+</sup>
+
+selectionMenuOptions(expandedMenuOptions: Array\<ExpandedMenuItemOptions>)
+
+设置自定义菜单扩展项，允许用户设置扩展项的文本内容、图标、回调方法。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                          | 必填 | 说明                                          |
+| ------ | --------------------------------------------- | ---- | --------------------------------------------- |
+| expandedMenuOptions  | Array\<[ExpandedMenuItemOptions](ts-text-common.md#expandedmenuitemoptions12)> | 否   | 扩展菜单选项。 |
+
 ## IconOptions<sup>10+</sup>对象说明
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
@@ -1179,7 +1195,6 @@ struct SearchExample {
 
 ```ts
 // xxx.ets
-// xxx.ets
 @Entry
 @Component
 struct SearchExample {
@@ -1227,3 +1242,58 @@ struct SearchExample {
 ```
 
 ![SearchInsertAndDelete](figures/SearchInsertAndDelete.PNG)
+
+### 示例10
+
+selectionMenuOptions使用示例，展示设置自定义菜单扩展项的文本内容、图标、回调方法。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct Index {
+  @State text: string = 'This is ss01 on : 0123456789'
+  searchController: SearchController = new SearchController()
+  @State menuOptionArray: Array<ExpandedMenuItemOptions> = [
+    {
+      content: 'Search扩展1', startIcon: $r('app.media.startIcon'), action: (value: TextRange) => {
+      console.log("action start:" + value.start + "; end:" + value.end)
+    }
+    },
+    {
+      content: 'Search扩展2', startIcon: $r('app.media.startIcon'), action: (value: TextRange) => {
+      console.log("action start:" + value.start + "; end:" + value.end)
+    }
+    },
+    {
+      content: 'Search扩展3', startIcon: $r('app.media.startIcon'), action: (value: TextRange) => {
+      console.log("action start:" + value.start + "; end:" + value.end)
+    }
+    },
+    {
+      content: 'Search扩展4', startIcon: $r('app.media.startIcon'), action: (value: TextRange) => {
+      console.log("action start:" + value.start + "; end:" + value.end)
+    }
+    }
+  ]
+
+  build() {
+    Column() {
+      Search({ value: this.text, placeholder: 'Type to search...', controller: this.searchController })
+        .searchButton('SEARCH')
+        .width('95%')
+        .height(40)
+        .backgroundColor('#F5F5F5')
+        .placeholderColor(Color.Grey)
+        .placeholderFont({ size: 14, weight: 400 })
+        .textFont({ size: 14, weight: 400 })
+        .margin(20)
+        .selectionMenuOptions(this.menuOptionArray)
+    }
+    .width("90%")
+    .margin("5%")
+  }
+}
+```
+
+![searchSelectionMenuOptions](figures/searchSelectionMenuOptions.png)
