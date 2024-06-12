@@ -31,7 +31,10 @@ onTouch(event: (event: TouchEvent) => void): T
 | T | 返回当前组件。 |
 
 ## TouchEvent对象说明
+
 继承于[BaseEvent](ts-gesture-customize-judge.md#baseevent对象说明)。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称                | 类型                                       | 描述           |
 | ------------------- | ---------------------------------------- | ------------ |
@@ -53,6 +56,8 @@ getHistoricalPoints(): Array&lt;HistoricalPoint&gt;
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **返回值:**
 
 | 类型     | 描述                      |
@@ -61,6 +66,8 @@ getHistoricalPoints(): Array&lt;HistoricalPoint&gt;
 
 
 ## TouchObject对象说明
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称    | 类型                                        | 描述                                  |
 | ------- | ------------------------------------------- | ------------------------------------- |
@@ -78,6 +85,8 @@ getHistoricalPoints(): Array&lt;HistoricalPoint&gt;
 ## HistoricalPoint<sup>10+</sup>对象说明
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称         | 类型                                 | 描述                                                                         |
 | ----------- | ----------------------------------- | ----------------------------------------------------------------------------- |
