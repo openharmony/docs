@@ -573,8 +573,8 @@ struct ImageAnalyzerExample {
       Video({
         src: this.videoSrc,
         previewUri: this.previewUri,
-        controller: this.Controller,
-        imageAIOptions: this.Options
+        controller: this.controller,
+        imageAIOptions: this.options
       })
         .width('100%')
         .height(600)
