@@ -19,7 +19,7 @@ This topic uses the following to identify the use of generics:
 ## Modules to Import
 
 ```ts
-import LinkedList from '@ohos.util.LinkedList';
+import { LinkedList } from '@kit.ArkTS';
 ```
 
 ## LinkedList
@@ -158,12 +158,13 @@ Inserts an element at the specified position in this container.
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 10200011 | The insert method cannot be bound. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200001 | The value of index is out of range. |
+| 10200011 | The insert method cannot be bound. |
 
 **Example**
 
@@ -232,10 +233,11 @@ Obtains an element at the specified position in this container.
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200011 | The get method cannot be bound. |
 
 **Example**
@@ -358,12 +360,13 @@ Searches for an element based on its index and then removes it.
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 10200011 | The removeByIndex method cannot be bound. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200001 | The value of index is out of range. |
+| 10200011 | The removeByIndex method cannot be bound. |
 
 **Example**
 
@@ -397,8 +400,8 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 10200011 | The removeFirst method cannot be bound. |
 | 10200010 | Container is empty. |
+| 10200011 | The removeFirst method cannot be bound. |
 
 **Example**
 
@@ -432,8 +435,8 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 10200011 | The removeLast method cannot be bound. |
 | 10200010 | Container is empty. |
+| 10200011 | The removeLast method cannot be bound. |
 
 **Example**
 
@@ -512,8 +515,8 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 10200011 | The removeFirstFound method cannot be bound. |
 | 10200010 | Container is empty. |
+| 10200011 | The removeFirstFound method cannot be bound. |
 | 10200017 | The element does not exist in this container. |
 
 **Example**
@@ -553,8 +556,8 @@ For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 10200011 | The removeLastFound method cannot be bound. |
 | 10200010 | Container is empty. |
+| 10200011 | The removeLastFound method cannot be bound. |
 | 10200017 | The element does not exist in this container. |
 
 **Example**
@@ -627,10 +630,11 @@ callbackFn
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200011 | The forEach method cannot be bound. |
 
 **Example**
@@ -696,12 +700,13 @@ Replaces an element at the specified position in this container with a given ele
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 10200011 | The set method cannot be bound. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200001 | The value of index is out of range. |
+| 10200011 | The set method cannot be bound. |
 
 **Example**
 
@@ -849,9 +854,9 @@ linkedList.add(4);
 
 // Method 1:
 let items = Array.from(linkedList)
-for (let item of items) { 
-  console.log("value:" + item); 
-} 
+for (let item of items) {
+  console.log("value:" + item);
+}
 
 // Method 2:
 let iter = linkedList[Symbol.iterator]();
