@@ -11,21 +11,21 @@
 
 ### 类图
 
-Mover类:提供数据库数据迁移接口，在锁屏开启后若C类数据库中有数据，使用该接口将数据迁移到E类数据库。
+Mover类：提供数据库数据迁移接口，在锁屏开启后若C类数据库中有数据，使用该接口将数据迁移到E类数据库。
 
-Store:提供访问操作数据库的公共函数。
+Store：提供访问操作数据库的公共函数。
 
 secretKeyObserve类：提供了获取当前密钥状态的接口，在密钥销毁后，关闭E类数据库。
 
 ECStoreManager类：用于管理应用的E类数据库和C类数据库。
 
-** 图1** EC数据库管理类图
+**图1** EC数据库管理类图
 
 ![ECStoreManagerClassDiagram.png](figures/ECStoreManagerClassDiagram.png)
 
 ### 时序图
 
-** 图2** EC数据库管理时许图
+**图2** EC数据库管理时序图
 
 ![ECStoreManager_timingdiagram](figures/ECStoreManager_timingdiagram.png)
 
@@ -34,7 +34,7 @@ ECStoreManager类：用于管理应用的E类数据库和C类数据库。
 在model.json5中配置ohos.permission.PROTECT_SCREEN_LOCK_DATA权限。
 
 ```
-//未配置权限会报错：create dir /data/storage/el5/database/entry failed, errno is 13.）
+//未配置权限会报错：（create dir /data/storage/el5/database/entry failed, errno is 13.）
 "requestPermissions": [
       {
         "name": "ohos.permission.PROTECT_SCREEN_LOCK_DATA"
@@ -76,7 +76,6 @@ export class StoreInfo {
   kvManagerConfig: distributedKVStore.KVManagerConfig;
   storeId: string;
   option: distributedKVStore.Options;
-  isEstore: boolean;
 }
 
 export class Store {
@@ -375,8 +374,7 @@ export default class EntryAbility extends UIAbility {
         kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
         // 多设备协同数据库：kvStoreType: distributedKVStore.KVStoreType.DEVICE_COLLABORATION,
         securityLevel: distributedKVStore.SecurityLevel.S1
-      },
-      "isEstore": false,
+      }
     }
     let eContext = this.context.createModuleContext("entry");
     eContext.area = contextConstant.AreaMode.EL5;
@@ -395,11 +393,10 @@ export default class EntryAbility extends UIAbility {
         kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
         // 多设备协同数据库：kvStoreType: distributedKVStore.KVStoreType.DEVICE_COLLABORATION,
         securityLevel: distributedKVStore.SecurityLevel.S1
-      },
-      "isEstore": true,
+      }
     }
+    console.info(`ECDB_Encry store area : estore:${eContext.area},cstore${cContext.area}`);
     //监听COMMON_EVENT_SCREEN_LOCK_FILE_ACCESS_STATE_CHANGED事件 code == 1解锁状态，code==0加锁状态
-    console.info(`ECDB_Encry store area : estore:${eContext.area},cstore${cContext.area}`)
     try {
       CommonEventManager.createSubscriber({
         events: ['COMMON_EVENT_SCREEN_LOCK_FILE_ACCESS_STATE_CHANGED']
@@ -800,8 +797,7 @@ export default class EntryAbility extends UIAbility {
         name: 'cstore.db', 
         securityLevel: relationalStore.SecurityLevel.S1,
       },
-      storeId: "cstore.db",
-      isEStore: false,
+      storeId: "cstore.db"
     }
     let eContext = this.context.createModuleContext("entry");
     eContext.area = contextConstant.AreaMode.EL5;
@@ -812,7 +808,6 @@ export default class EntryAbility extends UIAbility {
         securityLevel: relationalStore.SecurityLevel.S1,
       },
       storeId: "estore.db",
-      isEStore: false,
     }
     //监听COMMON_EVENT_SCREEN_LOCK_FILE_ACCESS_STATE_CHANGED事件 code == 1解锁状态，code==0加锁状态
     console.info(`ECDB_Encry store area : estore:${eContext.area},cstore${cContext.area}`)
