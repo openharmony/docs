@@ -11,7 +11,7 @@
 
 
 ## 自定义品牌色
-[CustomTheme](../reference/apis-arkui/js-apis-arkui-theme.md#customtheme)用于自定义主题，属性可选，只需要复写修改的部分，未修改内容继承于系统。请参考：
+[CustomTheme](../reference/apis-arkui/js-apis-arkui-theme.md#customtheme)用于自定义主题，属性可选，只需要复写修改的部分，未修改内容继承于系统，参考[系统缺省token色值](#系统缺省token色值)。请参考：
 
   ```ts
     import { CustomColors, CustomTheme } from '@ohos.arkui.theme'
@@ -185,7 +185,7 @@
 
 ![systemTheme](figures/systemTheme.png)
 
-注：如果setDefaultTheme的参数为undefined时，默认token值对应的色值参考[系统缺省token色值](#系统缺省token色值)：
+注：如果setDefaultTheme的参数为undefined时，默认token值对应的色值参考[系统缺省token色值](#系统缺省token色值)。
 
 ## 设置应用局部页面自定义主题风格
 将自定义Theme的配色通过设置[WithTheme](../reference/apis-arkui/arkui-ts/ts-container-with-theme.md#withetheme)作用于内组件缺省样式，WithTheme作用域内组件配色跟随Theme的配色生效。
