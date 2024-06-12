@@ -302,7 +302,6 @@
 | theme.colors.warning                       | 一级警示色 |#ffe84026| ![](figures/ffe84026.png "#ffe84026") |#ffd94838|![](figures/ffd94838.png "#ffd94838")|
 | theme.colors.alert                         | 二级警示色 |#ffed6f21| ![](figures/ffed6f21.png "#ffed6f21") |#ffdb6b42|![](figures/ffdb6b42.png "#ffdb6b42")|
 | theme.colors.confirm                       | 确认色 |#ff64bb5c| ![](figures/ff64bb5c.png "#ff64bb5c") |#ff5ba854|![](figures/ff5ba854.png "#ff5ba854")|
-| **Font**                                   |||||
 | theme.colors.fontPrimary                   | 一级文本 | #e5000000 | ![](figures/e5000000.png "#e5000000") |#e5ffffff|![](figures/e5ffffff.png "#e5ffffff")|
 | theme.colors.fontSecondary                 | 二级文本 | #99000000 | ![](figures/99000000.png "#99000000") |#99ffffff|![](figures/99ffffff.png "#99ffffff")|
 | theme.colors.fontTertiary                  | 三级文本 | #66000000 | ![](figures/66000000.png "#66000000") |#66ffffff|![](figures/66ffffff.png "#66ffffff")|
@@ -312,7 +311,6 @@
 | theme.colors.fontOnSecondary               | 二级文本反色 | #99ffffff | ![](figures/99ffffff.png "#99ffffff") |#99000000|![](figures/99000000.png "#99000000")|
 | theme.colors.fontOnTertiary                | 三级文本反色 | #66ffffff | ![](figures/66ffffff.png "#66ffffff") |#66000000|![](figures/66000000.png "#66000000")|
 | theme.colors.fontOnFourth                  | 四级文本反色 | #33ffffff | ![](figures/33ffffff.png "#33ffffff") |#33000000|![](figures/33000000.png "#33000000")|
-| **Icon**                                   |||||
 | theme.colors.iconPrimary                   | 一级图标 | #e5000000 | ![](figures/e5000000.png "#e5000000") |#e5ffffff|![](figures/e5ffffff.png "#e5ffffff")|
 | theme.colors.iconSecondary                 | 二级图标 | #99000000 | ![](figures/99000000.png "#99000000") |#99ffffff|![](figures/99ffffff.png "#99ffffff")|
 | theme.colors.iconTertiary                  | 三级图标 | #66000000 | ![](figures/66000000.png "#66000000") |#66ffffff|![](figures/66ffffff.png "#66ffffff")|
@@ -323,13 +321,11 @@
 | theme.colors.iconOnSecondary               | 二级图标反色 | #99ffffff | ![](figures/99ffffff.png "#99ffffff") |#99000000|![](figures/99000000.png "#99000000")|
 | theme.colors.iconOnTertiary                | 三级图标反色 | #66ffffff | ![](figures/66ffffff.png "#66ffffff") |#66000000|![](figures/66000000.png "#66000000")|
 | theme.colors.iconOnFourth                  | 四级图标反色 | #33ffffff | ![](figures/33ffffff.png "#33ffffff") |#33000000|![](figures/33000000.png "#33000000")|
-| **Background**                             |||||
 | theme.colors.backgroundPrimary             | 一级背景（实色/不透明色） | #ffffffff | ![](figures/ffffffff.png "#ffffffff") |#ffe5e5e5|![](figures/ffe5e5e5.png "#ffe5e5e5")|
 | theme.colors.backgroundSecondary           | 二级背景（实色/不透明色） | #fff1f3f5 | ![](figures/fff1f3f5.png "#fff1f3f5") |#ff191a1c|![](figures/ff191a1c.png "#ff191a1c")|
 | theme.colors.backgroundTertiary            | 三级背景（实色/不透明色） | #ffe5e5ea | ![](figures/ffe5e5ea.png "#ffe5e5ea") |#ff202224|![](figures/ff202224.png "#ff202224")|
 | theme.colors.backgroundFourth              | 四级背景（实色/不透明色） | #ffd1d1d6 | ![](figures/ffd1d1d6.png "#ffd1d1d6") |#ff2e3033|![](figures/ff2e3033.png "#ff2e3033")|
 | theme.colors.backgroundEmphasize           | 高亮背景（实色/不透明色） | #ff0a59f7 | ![](figures/ff0a59f7.png "#ff0a59f7") |#ff317af7|![](figures/ff317af7.png "#ff317af7")|
-| **CompBackground**                         |||||
 | theme.colors.compForegroundPrimary         | 前背景 | #ff000000 | ![](figures/ff000000.png "#ff000000") | #ffe5e5e5 |![](figures/ffe5e5e5.png "#ffe5e5e5")|
 | theme.colors.compBackgroundPrimary         | 白色背景 | #ffffffff |![](figures/ffffffff.png "#ffffffff")| #ffffffff |![](figures/ffffffff.png "#ffffffff")|
 | theme.colors.compBackgroundPrimaryTran     | 白色透明背景 | #ffffffff |![](figures/ffffffff.png "#ffffffff")| #33ffffff |![](figures/33ffffff.png "#33ffffff")|
@@ -347,7 +343,6 @@
 | theme.colors.compFocusedPrimary            | 获焦态一级反色 | #e5000000 |![](figures/e5000000.png "#e5000000")| #e5ffffff |![](figures/e5ffffff.png "#e5ffffff")|
 | theme.colors.compFocusedSecondary          | 获焦态二级反色 | #99000000 |![](figures/99000000.png "#99000000")| #99ffffff |![](figures/99ffffff.png "#99ffffff")|
 | theme.colors.compFocusedTertiary           | 获焦态三级反色 | #66000000 |![](figures/66000000.png "#66000000")| #66ffffff |![](figures/66ffffff.png "#66ffffff")|
-| **Interactive**                            |||||
 | theme.colors.interactiveHover              | 通用悬停交互式颜色 | #0c000000 |![](figures/0c000000.png "#0c000000")| #0cffffff |![](figures/0cffffff.png "#0cffffff")|
 | theme.colors.interactivePressed            | 通用按压交互式颜色 | #19000000 |![](figures/19000000.png "#19000000")| #19ffffff |![](figures/19ffffff.png "#19ffffff")|
 | theme.colors.interactiveFocus              | 通用获焦交互式颜色 | #ff0a59f7 |![](figures/ff0a59f7.png "#ff0a59f7")| #ff317af7 |![](figures/ff317af7.png "#ff317af7")|
