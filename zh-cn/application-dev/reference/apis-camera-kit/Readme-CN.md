@@ -11,6 +11,7 @@
     - [OH_Camera](_o_h___camera.md)
   - 头文件
     - [camera.h](camera_8h.md)
+    - [camera_device.h](camera__device_8h.md)
     - [camera_input.h](camera__input_8h.md)
     - [camera_manager.h](camera__manager_8h.md)
     - [capture_session.h](capture__session_8h.md)
