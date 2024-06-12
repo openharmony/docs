@@ -332,15 +332,15 @@ let subscriber: CommonEventManager.CommonEventSubscriber;
 
 export function createCB(err: Base.BusinessError, commonEventSubscriber: CommonEventManager.CommonEventSubscriber) {
   if (!err) {
-    console.info('ljy createSubscriber');
+    console.info('ECDB_Encry createSubscriber');
     subscriber = commonEventSubscriber;
     try {
       CommonEventManager.subscribe(subscriber, (err: Base.BusinessError, data: CommonEventManager.CommonEventData) => {
         if (err) {
           console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
         } else {
-          console.info(`ljy SubscribeCB ${data.code}`);
-          screenObserver.UpdatalockStatus(data.code);
+          console.info(`ECDB_Encry SubscribeCB ${data.code}`);
+          secretKeyObserve.UpdatalockStatus(data.code);
         }
       });
     } catch (error) {
@@ -397,14 +397,13 @@ export default class EntryAbility extends UIAbility {
       },
       "isEstore": true,
     }
-    console.info(`ljy store area : estore:${eContext.area}, cstore${cContext.area}`)
     //监听COMMON_EVENT_SCREEN_LOCK_FILE_ACCESS_STATE_CHANGED事件 code == 1解锁状态，code==0加锁状态
-    console.info(`ljy store area : estore:${eContext.area},cstore${cContext.area}`)
+    console.info(`ECDB_Encry store area : estore:${eContext.area},cstore${cContext.area}`)
     try {
       CommonEventManager.createSubscriber({
         events: ['COMMON_EVENT_SCREEN_LOCK_FILE_ACCESS_STATE_CHANGED']
       }, createCB);
-      console.info(`ljy success subscribe`);
+      console.info(`ECDB_Encry success subscribe`);
     } catch (error) {
       const err: Base.BusinessError = error as Base.BusinessError;
       console.error(`createSubscriber failed, code is ${err.code}, message is ${err.message}`);
@@ -483,22 +482,22 @@ struct Index {
         }).margin("5");
 
         Button("put").onClick(async (event: ClickEvent) => {
-          let store: distributedKVStore.SingleKVStore = await storeManager.GetCurrentStore(screenObserver.GetCurrentStatus());
+          let store: distributedKVStore.SingleKVStore = await storeManager.GetCurrentStore(secretKeyObserve.GetCurrentStatus());
           storeOption.PutOnedata(store);
         }).margin(5)
 
         Button("Get").onClick(async (event: ClickEvent) => {
-          let store: distributedKVStore.SingleKVStore = await storeManager.GetCurrentStore(screenObserver.GetCurrentStatus());
+          let store: distributedKVStore.SingleKVStore = await storeManager.GetCurrentStore(secretKeyObserve.GetCurrentStatus());
           storeOption.GetDataNum(store);
         }).margin(5)
 
         Button("delete").onClick(async (event: ClickEvent) => {
-          let store: distributedKVStore.SingleKVStore = await storeManager.GetCurrentStore(screenObserver.GetCurrentStatus());
+          let store: distributedKVStore.SingleKVStore = await storeManager.GetCurrentStore(secretKeyObserve.GetCurrentStatus());
           storeOption.DeleteOnedata(store);
         }).margin(5)
 
         Button("updata").onClick(async (event: ClickEvent) => {
-          let store: distributedKVStore.SingleKVStore = await storeManager.GetCurrentStore(screenObserver.GetCurrentStatus());
+          let store: distributedKVStore.SingleKVStore = await storeManager.GetCurrentStore(secretKeyObserve.GetCurrentStatus());
           storeOption.UpdataOnedata(store);
         }).margin(5)
 
