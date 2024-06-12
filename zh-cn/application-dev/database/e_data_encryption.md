@@ -33,7 +33,7 @@ ECStoreManager类：用于管理应用的E类数据库和C类数据库。
 
 在model.json5中配置ohos.permission.PROTECT_SCREEN_LOCK_DATA权限。
 
-```
+```ts
 //未配置权限会报错：（create dir /data/storage/el5/database/entry failed, errno is 13.）
 "requestPermissions": [
       {
