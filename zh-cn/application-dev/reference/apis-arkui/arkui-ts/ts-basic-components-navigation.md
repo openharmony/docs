@@ -6,7 +6,7 @@ Navigation组件是路由导航的根视图容器，一般作为Page页面的根
 >
 > 该组件从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
-> 该组件从API Version 11开始默认支持安全区避让特性(默认值为：expandSafeArea([SafeAreaType.SYSTEM], [SafeAreaEdge.TOP, SafeAreaEdge.BOTTOM]))，开发者可以重写该属性覆盖默认行为，API Version 11之前的版本需配合[expandSafeArea](ts-universal-attributes-expand-safe-area.md)属性实现安全区避让。
+> 该组件从API Version 11开始默认支持安全区避让特性(默认值为：expandSafeArea([SafeAreaType.SYSTEM, SafeAreaType.KEYBOARD, SafeAreaType.CUTOUT], [SafeAreaEdge.TOP, SafeAreaEdge.BOTTOM]))，开发者可以重写该属性覆盖默认行为，API Version 11之前的版本需配合[expandSafeArea](ts-universal-attributes-expand-safe-area.md)属性实现安全区避让。
 
 
 ## 子组件
@@ -78,6 +78,11 @@ subTitle(value: string)
 
 menus(value: Array&lt;NavigationMenuItem&gt; | CustomBuilder)
 
+> **说明：**
+>
+> 不支持通过SymbolGlyphModifier对象的fontSize属性修改图标大小、effectStrategy属性修改动效、symbolEffect属性修改动效类型。
+
+
 设置页面右上角菜单。不设置时不显示菜单项。使用Array<[NavigationMenuItem](#navigationmenuitem类型说明)&gt; 写法时，竖屏最多支持显示3个图标，横屏最多支持显示5个图标，多余的图标会被放入自动生成的更多图标。
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
@@ -125,6 +130,11 @@ toolBar(value: object | CustomBuilder)
 ### toolbarConfiguration<sup>10+</sup>
 
 toolbarConfiguration(value: Array&lt;ToolbarItem&gt; | CustomBuilder, options?: NavigationToolbarOptions)
+
+> **说明：**
+>
+> 不支持通过SymbolGlyphModifier对象的fontSize属性修改图标大小、effectStrategy属性修改动效、symbolEffect属性修改动效类型。
+
 
 设置工具栏内容。不设置时不显示工具栏。
 
@@ -240,6 +250,11 @@ mode(value: NavigationMode)
 ### backButtonIcon<sup>9+</sup>
 
 backButtonIcon(value: string | PixelMap | Resource | SymbolGlyphModifier)
+
+> **说明：**
+>
+> 不支持通过SymbolGlyphModifier对象的fontSize属性修改图标大小、effectStrategy属性修改动效、symbolEffect属性修改动效类型。
+
 
 设置标题栏中返回键图标。
 
@@ -2685,3 +2700,116 @@ struct PageOne {
 }
 ```
 ![derive_stack.gif](figures/derive_stack.gif)
+
+### 示例11
+```ts
+// 该示例主要演示Navigation和NavDestination如何使用Symbol组件
+
+@Entry
+@Component
+struct NavigationExample {
+  @Provide('navPathStack') navPathStack:NavPathStack = new NavPathStack();
+  @State menuItems:Array<NavigationMenuItem> = [
+    {
+      value:'menuItem1',
+      icon:'resources/base/media/ic_public_ok.svg'
+    },
+    {
+      value:'menuItem2',
+      icon:'resources/base/media/ic_public_ok.svg',
+      symbolIcon: new SymbolGlyphModifier($r('sys.symbol.ohos_folder_badge_plus')).fontColor([Color.Red,Color.Green]).renderingStrategy(SymbolRenderingStrategy.MULTIPLE_COLOR),
+    },
+    {
+      value:'menuItem3',
+      symbolIcon: new SymbolGlyphModifier($r('sys.symbol.ohos_lungs')),
+    },
+  ]
+
+  @State toolItems:Array<ToolbarItem>= [
+    {
+      value:'toolItem1',
+      icon:'resources/base/media/ic_public_ok.svg',
+      symbolIcon:new SymbolGlyphModifier($r('sys.symbol.ohos_lungs')),
+      status:ToolbarItemStatus.ACTIVE,
+      activeSymbolIcon: new SymbolGlyphModifier($r('sys.symbol.ohos_folder_badge_plus')).fontColor([Color.Red,Color.Green]).renderingStrategy(SymbolRenderingStrategy.MULTIPLE_COLOR),
+      action:()=>{}
+    },
+    {
+      value:'toolItem2',
+      symbolIcon:new SymbolGlyphModifier($r('sys.symbol.ohos_star')),
+      status:ToolbarItemStatus.ACTIVE,
+      activeIcon: 'resources/base/media/ic_public_more.svg',
+      action:()=>{}
+    },
+    {
+      value:'toolItem3',
+      symbolIcon:new SymbolGlyphModifier($r('sys.symbol.ohos_star')),
+      status:ToolbarItemStatus.ACTIVE,
+      activeSymbolIcon: new SymbolGlyphModifier($r('sys.symbol.ohos_lungs')),
+      action:()=>{}
+    }
+  ]
+
+  @Builder
+  myRouter(name:string,param?:Object) {
+    if(name === 'NavigationMenu') {
+      NavigationMenu();
+    }
+  }
+
+  build() {
+    Navigation(this.navPathStack) {
+      Column() {
+        Button('跳转').onClick(()=> {
+          this.navPathStack.pushPathByName('NavigationMenu', null);
+        })
+      }
+    }
+    .backButtonIcon(new SymbolGlyphModifier($r('sys.symbol.ohos_wifi')))
+    .titleMode(NavigationTitleMode.Mini)
+    .menus(this.menuItems)
+    .toolbarConfiguration(this.toolItems)
+    .title('一级页面')
+    .navDestination(this.myRouter)
+  }
+}
+
+@Component
+export struct NavigationMenu{
+  @Consume('navPathStack') navPathStack:NavPathStack;
+  @State menuItems:Array<NavigationMenuItem> = [
+    {
+      value:'menuItem1',
+      icon:'resources/base/media/ic_public_ok.svg',
+      action:()=>{}
+    },
+    {
+      value:'menuItem2',
+      symbolIcon: new SymbolGlyphModifier($r('sys.symbol.ohos_folder_badge_plus')).fontColor([Color.Red,Color.Green]).renderingStrategy(SymbolRenderingStrategy.MULTIPLE_COLOR),
+      action:()=>{}
+    },
+    {
+      value:'menuItem3',
+      symbolIcon: new SymbolGlyphModifier($r('sys.symbol.repeat_1')),
+      action:()=>{}
+    },
+  ]
+
+  build() {
+    NavDestination(){
+      Row() {
+        Column(){
+        }
+        .width('100%')
+      }
+      .height('100%')
+    }
+    .hideTitleBar(false)
+    .title('NavDestination title')
+    .backgroundColor($r('sys.color.ohos_id_color_titlebar_sub_bg'))
+    .backButtonIcon(new SymbolGlyphModifier($r('sys.symbol.ohos_star')).fontColor([Color.Blue]))
+    .menus(this.menuItems)
+  }
+}
+```
+![navigation_symbol.gif](figures/navigation_symbol.gif)

@@ -11,8 +11,7 @@ To implement this feature, you only need to set **HuksTag** to **HUKS_TAG_KEY_AU
 1. Generate a key, set HuksUserAuthType to fingerprint authentication, and set other parameters including **HUKS_TAG_KEY_AUTH_PURPOSE**.
    
    ```ts
-   import huks from '@ohos.security.huks';
-   import { BusinessError } from '@ohos.base';
+   import { huks } from "@kit.UniversalKeystoreKit";
    /*
     * Set the key alias and encapsulate the key property set.
     */
@@ -20,12 +19,8 @@ To implement this feature, you only need to set **HuksTag** to **HUKS_TAG_KEY_AU
    class throwObject {
        isThrow: boolean = false;
    }
-   class propertyType {
-       tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM;
-       value: huks.HuksKeyAlg | huks.HuksKeyPurpose | huks.HuksKeySize | huks.HuksCipherMode | huks.HuksKeyPadding
-           | huks.HuksUserAuthType | huks.HuksAuthAccessType | huks.HuksChallengeType = huks.HuksKeyAlg.HUKS_ALG_SM4
-   }
-   let properties: propertyType[] = [
+
+   let properties: Array<huks.HuksParam> = [
        {
            tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
            value: huks.HuksKeyAlg.HUKS_ALG_SM4,
@@ -62,7 +57,8 @@ To implement this feature, you only need to set **HuksTag** to **HUKS_TAG_KEY_AU
            tag: huks.HuksTag.HUKS_TAG_KEY_AUTH_PURPOSE,
            value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT
        }
-   ]
+   ];
+
    let huksOptions: huks.HuksOptions = {
        properties: properties,
        inData: new Uint8Array(new Array())
@@ -94,7 +90,7 @@ To implement this feature, you only need to set **HuksTag** to **HUKS_TAG_KEY_AU
            .then((data) => {
                console.info(`promise: generateKeyItem success, data = ${JSON.stringify(data)}`);
            })
-           .catch((error: BusinessError) => {
+           .catch((error) => {
                if (throwObject.isThrow) {
                    throw(error as Error);
                } else {
@@ -113,8 +109,7 @@ To implement this feature, you only need to set **HuksTag** to **HUKS_TAG_KEY_AU
 2. Use the key. User identity authentication is not required when the key is used for encryption.
    
    ```ts
-   import huks from '@ohos.security.huks';
-   import { BusinessError } from '@ohos.base';
+   import { huks } from "@kit.UniversalKeystoreKit";
    class HuksProperties {
        tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM;
        value: huks.HuksKeyAlg | huks.HuksKeySize | huks.HuksKeyPurpose | huks.HuksKeyPadding | huks.HuksCipherMode 
@@ -123,7 +118,6 @@ To implement this feature, you only need to set **HuksTag** to **HUKS_TAG_KEY_AU
    /*
     * Set the key alias and encapsulate the key property set.
     */
-   let srcKeyAlias = 'sm4_key_fingerprint_access';
    let cipherInData = 'Hks_SM4_Cipher_Test_101010101010101010110_string'; // Plaintext
    let IV = '1234567890123456';
    let handle = 0;
@@ -194,7 +188,7 @@ To implement this feature, you only need to set **HuksTag** to **HUKS_TAG_KEY_AU
                console.info(`promise: doInit success, data = ${JSON.stringify(data)}`);
                handle = data.handle as number;
            })
-           .catch((error: BusinessError) => {
+           .catch((error) => {
                if (throwObject.isThrow) {
                    throw (error as Error);
                } else {
@@ -230,7 +224,7 @@ To implement this feature, you only need to set **HuksTag** to **HUKS_TAG_KEY_AU
                cipherText = data.outData as Uint8Array;
                console.info(`promise: doFinish success, data = ${JSON.stringify(data)}`);
            })
-           .catch((error: BusinessError) => {
+           .catch((error) => {
                if (throwObject.isThrow) {
                    throw (error as Error);
                } else {
@@ -243,7 +237,7 @@ To implement this feature, you only need to set **HuksTag** to **HUKS_TAG_KEY_AU
    }
    async function testSm4Cipher() {
        /* Initialize the key session to obtain a challenge. */
-       await publicInitFunc(srcKeyAlias, encryptOptions);
+       await publicInitFunc(keyAlias, encryptOptions);
        /** Encryption */
        encryptOptions.inData = StringToUint8Array(cipherInData);
        await publicFinishFunc(handle, encryptOptions);
@@ -253,16 +247,11 @@ To implement this feature, you only need to set **HuksTag** to **HUKS_TAG_KEY_AU
 3. Use the key. User identity authentication is required when the key is used for decryption.
    
    ```ts
-   import huks from '@ohos.security.huks';
+   import { huks } from "@kit.UniversalKeystoreKit";
    import userIAM_userAuth from '@ohos.userIAM.userAuth';
-   import { BusinessError } from '@ohos.base';
    /*
-    * Set the key alias and encapsulate the key property set.
+    * Determine the key property set to be encapsulated.
     */
-   let srcKeyAlias = 'sm4_key_fingerprint_access';
-   let cipherText = 'r56ywtTJUQC6JFJ2VV2kZw=='; // Ciphertext obtained, which may vary in actual situation.
-   let IV = '1234567890123456';
-   let handle: number;
    let finishOutData: Uint8Array; // Plaintext after decryption.
    let fingerAuthToken: Uint8Array;
    let challenge: Uint8Array;
@@ -340,7 +329,7 @@ To implement this feature, you only need to set **HuksTag** to **HUKS_TAG_KEY_AU
                handle = data.handle;
                challenge = data.challenge as Uint8Array;
            })
-           .catch((error: BusinessError) => {
+           .catch((error) => {
                if (throwObject.isThrow) {
                    throw(error as Error);
                } else {
@@ -353,8 +342,7 @@ To implement this feature, you only need to set **HuksTag** to **HUKS_TAG_KEY_AU
    }
    function userIAMAuthFinger(huksChallenge: Uint8Array) {
        // Obtain an authentication object.
-       let authTypeList:userIAM_userAuth.UserAuthType[]= new Array();
-       authTypeList[0] = authType;
+       let authTypeList:userIAM_userAuth.UserAuthType[]= [ authType ];
        const authParam:userIAM_userAuth.AuthParam = {
          challenge: huksChallenge,
          authType: authTypeList,
@@ -416,7 +404,7 @@ To implement this feature, you only need to set **HuksTag** to **HUKS_TAG_KEY_AU
                finishOutData = data.outData as Uint8Array;
                console.info(`promise: doFinish success, data = ${JSON.stringify(data)}`);
            })
-           .catch((error: BusinessError) => {
+           .catch((error) => {
                if (throwObject.isThrow) {
                    throw(error as Error);
                } else {
@@ -429,7 +417,7 @@ To implement this feature, you only need to set **HuksTag** to **HUKS_TAG_KEY_AU
    }
    async function testSm4Cipher() {
        /* Initialize the key session to obtain a challenge. */
-       await publicInitFunc(srcKeyAlias, decryptOptions);
+       await publicInitFunc(keyAlias, decryptOptions);
        /* Invoke userIAM to perform user identity authentication. */
        userIAMAuthFinger(challenge);
        /* Perform decryption after the authentication is successful. The **authToken** value returned after the authentication needs to be passed in. */

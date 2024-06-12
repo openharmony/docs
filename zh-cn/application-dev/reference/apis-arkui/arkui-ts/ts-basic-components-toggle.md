@@ -91,7 +91,7 @@ switchStyle(value: SwitchStyle)
 
 | 参数名 | 类型                                                | 必填 | 说明             |
 | ------ | --------------------------------------------------- | ---- | ---------------- |
-| value  | [SwitchStyle<sup>12+</sup>](#switchstyle12对象说明) | 否   | Switch样式风格。 |
+| value  | [SwitchStyle<sup>12+</sup>](#switchstyle12对象说明) | 是  | Switch样式风格。 |
 
 ### contentModifier<sup>12+</sup>
 

@@ -30,7 +30,6 @@ Cross-device migration supports the following features:
   >
   > You only need to develop an application with the migration capabilities. System applications will trigger cross-device migration.
 
-
 ## Working Principles
 
 ![hop-cross-device-migration](figures/hop-cross-device-migration.png)
@@ -44,8 +43,6 @@ Cross-device migration supports the following features:
 The following figure shows the cross-device migration process when a migration request is initiated from the migration entry of the peer device.
 
 ![hop-cross-device-migration](figures/hop-cross-device-migration7.png)
-
-
 
 ## Constraints
 
@@ -89,37 +86,36 @@ The following figure shows the cross-device migration process when a migration r
    
    const TAG: string = '[MigrationAbility]';
    const DOMAIN_NUMBER: number = 0xFF00;
-   
+
    export default class MigrationAbility extends UIAbility {
      onContinue(wantParam: Record<string, Object>):AbilityConstant.OnContinueResult {
        let version = wantParam.version;
        let targetDevice = wantParam.targetDevice;
        hilog.info(DOMAIN_NUMBER, TAG, `onContinue version = ${version}, targetDevice: ${targetDevice}`); // Prepare data to migrate.
-   
+
        // Obtain the application version on the source device.
        let versionSrc: number = -1; // Enter the version number obtained.
-   
+
        // Compatibility verification
        if (version !== versionSrc) {
          // Return MISMATCH when the compatibility check fails.
          return AbilityConstant.OnContinueResult.MISMATCH;
        }
-   
+
        // Save the data to migrate in the custom field (for example, data) of wantParam.
        const continueInput = 'Data to migrate';
        wantParam['data'] = continueInput;
-   
+
        return AbilityConstant.OnContinueResult.AGREE;
      }
    }
    ```
 
 3. On the source device, call APIs to restore data and load the UI. The APIs vary according to the cold or hot start mode in use. For the UIAbility on the target device, implement [onCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncreate) or [onNewWant()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonnewwant) to restore the data.
-   
 
-In the stage model, applications with different launch types can call different APIs to restore data and load the UI, as shown below.
+   In the stage model, applications with different launch types can call different APIs to restore data and load the UI, as shown below.
 
-![hop-cross-device-migration](figures/hop-cross-device-migration8.png)
+   ![hop-cross-device-migration](figures/hop-cross-device-migration8.png)
 
    - The **launchReason** parameter in the [onCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncreate) or [onNewWant()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonnewwant) callback specifies whether the launch is triggered by migration.
    - You can obtain the saved data from the **want** parameter.
@@ -133,10 +129,10 @@ In the stage model, applications with different launch types can call different 
    
    const TAG: string = '[MigrationAbility]';
    const DOMAIN_NUMBER: number = 0xFF00;
-   
+
    export default class MigrationAbility extends UIAbility {
      storage : LocalStorage = new LocalStorage();
-   
+
      onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
        hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', 'Ability onCreate');
        if (launchParam.launchReason === AbilityConstant.LaunchReason.CONTINUATION) {
@@ -144,13 +140,13 @@ In the stage model, applications with different launch types can call different 
          let continueInput = '';
          if (want.parameters !== undefined) {
            continueInput = JSON.stringify(want.parameters.data);
-           hilog.info(DOMAIN_NUMBER, TAG, `continue input ${continueInput}`);
+           hilog.info(DOMAIN_NUMBER, TAG, `continue input ${JSON.stringify(continueInput)}`);
          }
          // Trigger page restoration.
          this.context.restoreWindowStage(this.storage);
        }
      }
-   
+
      onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void {
         hilog.info(DOMAIN_NUMBER, TAG, 'onNewWant');
         if (launchParam.launchReason === AbilityConstant.LaunchReason.CONTINUATION) {
@@ -158,9 +154,9 @@ In the stage model, applications with different launch types can call different 
           let continueInput = '';
           if (want.parameters !== undefined) {
             continueInput = JSON.stringify(want.parameters.data);
-            hilog.info(DOMAIN_NUMBER, TAG, `continue input ${continueInput}`);
+            hilog.info(DOMAIN_NUMBER, TAG, `continue input ${JSON.stringify(continueInput)}`);
           }
-          // Trigger page restoration. 
+          // Trigger page restoration.
           this.context.restoreWindowStage(this.storage);
         }
       }
@@ -193,7 +189,7 @@ export default class MigrationAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     // ...
     this.context.setMissionContinueState(AbilityConstant.ContinueState.INACTIVE, (result) => {
-      hilog.info(DOMAIN_NUMBER, TAG, `setMissionContinueState: ${JSON.stringify(result)}`);
+      hilog.info(DOMAIN_NUMBER, TAG, `setMissionContinueState INACTIVE result: ${JSON.stringify(result)}`);
     });
     // ...
   }
@@ -235,7 +231,8 @@ Set the migration state in the event of a component.
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import common from '@ohos.app.ability.common';
 import hilog from '@ohos.hilog';
-import promptAction from '@ohos.promptAction';
+import promptAction from '@ohos.promptAction'
+import router from '@ohos.router';
 
 const TAG: string = '[MigrationAbility]';
 const DOMAIN_NUMBER: number = 0xFF00;
@@ -245,16 +242,28 @@ const DOMAIN_NUMBER: number = 0xFF00;
 struct Page_MigrationAbilityFirst {
   private context = getContext(this) as common.UIAbilityContext;
   build() {
-    // ...
-    Button() {
-      // ...
+    Column() {
+      //...
+      List({ initialIndex: 0 }) {
+        ListItem() {
+          Row() {
+            //...
+          }
+          .onClick(() => {
+            // When the button is clicked, set the migration state to ACTIVE.
+            this.context.setMissionContinueState(AbilityConstant.ContinueState.ACTIVE, (result) => {
+              hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', `setMissionContinueState ACTIVE result: ${JSON.stringify(result)}`);
+              promptAction.showToast({
+                message: $r('app.string.Success')
+              });
+            });
+          })
+        }
+        //...
+      }
+      //...
     }
-    .onClick(()=>{
-      // When the button is clicked, set the migration state to ACTIVE.
-      this.context.setMissionContinueState(AbilityConstant.ContinueState.ACTIVE, (result) => {
-        hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', `setMissionContinueState ACTIVE result: ${JSON.stringify(result)}`);
-      });
-    })
+    //...
   }
 }
 ```
@@ -266,8 +275,8 @@ During UI page loading, the application on the target device may have executed t
 ```ts
 // MigrationAbility.ets
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import hilog from '@ohos.hilog';
 import UIAbility from '@ohos.app.ability.UIAbility';
+import hilog from '@ohos.hilog';
 import type Want from '@ohos.app.ability.Want';
 
 const TAG: string = '[MigrationAbility]';
@@ -277,18 +286,19 @@ export default class MigrationAbility extends UIAbility {
   // ...
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     // ...
-    // Set the migration state to ACTIVE when the launch is caused by migration. This setting copes with cold start.
-    if (launchParam.launchReason == AbilityConstant.LaunchReason.CONTINUATION) {
-      this.context.setMissionContinueState(AbilityConstant.ContinueState.ACTIVE, (result) => {
-        hilog.info(`setMissionContinueState ACTIVE result: ${JSON.stringify(result)}`);
-      });
+    if (launchParam.launchReason === AbilityConstant.LaunchReason.CONTINUATION) {
+      // ...
     }
+    // Set the migration state to ACTIVE when the launch is caused by migration. This setting copes with cold start.
+    this.context.setMissionContinueState(AbilityConstant.ContinueState.ACTIVE, (result) => {
+      hilog.info(DOMAIN_NUMBER, TAG, `setMissionContinueState ACTIVE result: ${JSON.stringify(result)}`);
+    });
   }
-  
+
   onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     // ...
     // Set the migration state to ACTIVE when the launch is caused by migration. This setting copes with hot start.
-    if (launchParam.launchReason == AbilityConstant.LaunchReason.CONTINUATION) {
+    if (launchParam.launchReason === AbilityConstant.LaunchReason.CONTINUATION) {
       this.context.setMissionContinueState(AbilityConstant.ContinueState.ACTIVE, (result) => {
         hilog.info(DOMAIN_NUMBER, TAG, `setMissionContinueState ACTIVE result: ${JSON.stringify(result)}`);
       });
@@ -309,9 +319,9 @@ Example: A UIAbility does not want automatically restored page stack information
 ```ts
 // MigrationAbility.ets
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import hilog from '@ohos.hilog';
 import UIAbility from '@ohos.app.ability.UIAbility';
 import wantConstant from '@ohos.app.ability.wantConstant';
+import hilog from '@ohos.hilog';
 import type window from '@ohos.window';
 
 const TAG: string = '[MigrationAbility]';
@@ -345,9 +355,9 @@ Example: A UIAbility on the source device does not exit after a successful migra
 
 ```ts
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import hilog from '@ohos.hilog';
 import UIAbility from '@ohos.app.ability.UIAbility';
 import wantConstant from '@ohos.app.ability.wantConstant';
+import hilog from '@ohos.hilog';
 
 const TAG: string = '[MigrationAbility]';
 const DOMAIN_NUMBER: number = 0xFF00;
@@ -363,13 +373,16 @@ export default class MigrationAbility extends UIAbility {
 ```
 
 ## Cross-Device Data Migration
-Three data migration modes are provided. You can select them as required.
+
+Two data migration modes are provided. You can select them as required.
   > **NOTE**
   >
   > Through the configuration of **restoreId**, certain ArkUI components can be restored to a given state on the target device after migration. For details, see [restoreId](../../application-dev/reference/apis-arkui/arkui-ts/ts-universal-attributes-restoreId.md).
   >
-  > If distributed objects and files need to be migrated, you must
+  > If distributed objects need to be migrated, you must
+  >
   > 1. Declare the **ohos.permission.DISTRIBUTED_DATASYNC** permission. For details, see [Declaring Permissions](../security/AccessToken/declare-permissions.md).
+  >
   > 2. Display a dialog box to ask for authorization from the user when the application is started for the first time. For details, see [Requesting User Authorization](../security/AccessToken/request-user-authorization.md).
 
 ### Using wantParam for Data Migration
@@ -377,10 +390,9 @@ Three data migration modes are provided. You can select them as required.
 If the size of the data to migrate is less than 100 KB, you can add fields to **wantParam** for data migration. An example is as follows:
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import Want from '@ohos.app.ability.Want';
-
+import UIAbility from '@ohos.app.ability.UIAbility';
+import type Want from '@ohos.app.ability.Want';
 const TAG: string = '[MigrationAbility]';
 const DOMAIN_NUMBER: number = 0xFF00;
 
@@ -420,19 +432,19 @@ export default class MigrationAbility extends UIAbility {
   }
 }
 ```
+
 ### Using Distributed Data Objects for Data Migration
 
-If the size of the data to migrate is greater than 100 KB, you can use a [distributed data object](../../application-dev/reference/apis-arkdata/js-apis-data-distributedobject.md) for data migration.
+If the size of the data to migrate is greater than 100 KB or the data to migrate is stored in files, you can use a [distributed data object](../../application-dev/reference/apis-arkdata/js-apis-data-distributedobject.md) to implement data migration. Files can be migrated in the form of [assets] (../../application-dev/reference/apis-arkdata/js-apis-data-commonType.md#asset) provided by the distributed object.
 
 1. First, create a distributed [data object](../../application-dev/reference/apis-arkdata/js-apis-data-distributedobject.md#dataobject) in the **onContinue()** callback for the application on the source device, fill the data to migrate into this object, and send the generated session ID to the peer through **want**.
 2. During data restoration initiated by **onCreate()** or **onNewWant()**, the peer reads the session ID from **want** and restore data through the distributed object.
 
 For details, see [Cross-Device Synchronization of Distributed Data Objects](../../application-dev/database/data-sync-of-distributed-data-object.md).
 
-### Using Distributed Files For Data Migration
-If the size of the data to migrate is greater than 100 KB, you can also use a distributed file for data migration. Compared with distributed data objects, distributed files are more suitable when files are to be transmitted. After data is written to the distributed file path on the source device, the application started on the target device can access the file in this path after the migration.
-
-For details, see [Accessing Files Across Devices](../../application-dev/file-management/file-access-across-devices.md).
+  > **NOTE**
+  >
+  > Since API version 12, to ensure a higher success rate, you are advised not to use [cross-device file access](../../application-dev/file-management/file-access-across-devices.md) to migrate files. Instead, use distributed objects to carry assets. File migration implemented through cross-device file access can still be used.
 
 ## Verification Guide
 
@@ -493,4 +505,3 @@ Download the mission center demo from [Sample Code](https://gitee.com/openharmon
 3. Drag the application to the name of device A. The application on device A is started, and the application on device B exits.
 
    ![hop-cross-device-migration](figures/hop-cross-device-migration6.png)
-

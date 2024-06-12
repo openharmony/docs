@@ -188,7 +188,7 @@ UTD中定义的标准化数据类型在设计原则上按物理和逻辑分为�
 
 ```ts
 // 1.导入模块
-import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
+import { uniformTypeDescriptor } from '@kit.ArkData';
 
 try {
   // 2.可根据 “.mp3” 文件后缀查询对应UTD数据类型，并查询对应UTD数据类型的具体属性
@@ -243,7 +243,7 @@ try {
 
 ```ts
 // 1.导入模块
-import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
+import { uniformTypeDescriptor } from '@kit.ArkData';
 try {
   // 2.可根据 “.mp3” 文件后缀查询对应UTD数据类型。
   let fileExtention = '.mp3';
@@ -266,7 +266,7 @@ try {
 
 ```ts
 // 1.导入模块
-import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
+import { uniformTypeDescriptor } from '@kit.ArkData';
 try {
   // 2.可根据 “audio/mp3” MIMEType查询对应UTD数据类型。
   let mineType = 'audio/mp3';

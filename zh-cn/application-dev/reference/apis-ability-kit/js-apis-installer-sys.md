@@ -210,8 +210,8 @@ install(hapFilePaths: Array&lt;string&gt;, installParam: InstallParam, callback:
 | 17700050 | Failed to install the HAP because an enterprise normal/MDM bundle cannot be installed on non-enterprise devices. |
 | 17700052 | Failed to install the HAP because a debug bundle can be installed only in developer mode. |
 | 17700054 | Failed to install the HAP because the HAP requests wrong permissions.|
+| 17700066 | Failed to install the HAP because installing the native package failed. |
 | 17700068 | Failed to install the HAP because the maximum count of clone app cannot be reduced. |
-| 17700066 | Failed to install the HAP because installing the native **package** failed. |
 
 **示例：**
 
@@ -298,8 +298,8 @@ install(hapFilePaths: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;):
 | 17700050 | Failed to install the HAP because an enterprise normal/MDM bundle cannot be installed on non-enterprise devices. |
 | 17700052 | Failed to install the HAP because a debug bundle can be installed only in developer mode. |
 | 17700054 | Failed to install the HAP because the HAP requests wrong permissions.|
+| 17700066 | Failed to install the HAP because installing the native package failed. |
 | 17700068 | Failed to install the HAP because the maximum count of clone app cannot be reduced. |
-| 17700066 | Failed to install the HAP because installing the native **package** failed. |
 
 **示例：**
 
@@ -390,8 +390,8 @@ install(hapFilePaths: Array\<string\>, installParam?: InstallParam) : Promise\<v
 | 17700050 | Failed to install the HAP because an enterprise normal/MDM bundle cannot be installed on non-enterprise devices. |
 | 17700052 | Failed to install the HAP because a debug bundle can be installed only in developer mode. |
 | 17700054 | Failed to install the HAP because the HAP requests wrong permissions.|
+| 17700066 | Failed to install the HAP because installing the native package failed. |
 | 17700068 | Failed to install the HAP because the maximum count of clone app cannot be reduced. |
-| 17700066 | Failed to install the HAP because installing the native **package** failed. |
 
 **示例：**
 
@@ -1393,7 +1393,8 @@ createAppClone(bundleName: string, createAppCloneParam?: CreateAppCloneParam): P
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundleName cannot be found or the bundle is not installed by the specified user. |
 | 17700004 | The userId is invalid. |
-| 17700061 | The appIndex is invalid. |
+| 17700061 | The appIndex is not in valid range or already exists. |
+| 17700069 | The app does not support the creation of an appClone instance. |
 
 **示例：**
 ```ts

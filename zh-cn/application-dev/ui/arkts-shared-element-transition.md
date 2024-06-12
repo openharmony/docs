@@ -235,7 +235,7 @@ export default struct  Post {
 
 ## 使用transition和属性动画实现一镜到底效果
 
-除了使用geometryTransition实现一镜到底动效外，也可以通过使用transition搭配属性动画实现一镜到底效果。
+除了使用geometryTransition实现一镜到底动效外，也可以通过使用[transition](../reference/apis-arkui/arkui-ts/ts-transition-animation-component.md)搭配[属性动画](./arkts-attribute-animation-apis.md)实现一镜到底效果。
 
 对于同一个容器展开，容器内兄弟组件消失或者出现的场景，可通过对同一个容器展开前后进行宽高位置变化并配置属性动画，对兄弟组件配置出现消失转场动画实现一镜到底效果。基本步骤为：
 

@@ -253,6 +253,8 @@ import { window } from '@kit.ArkUI';
 
 窗口尺寸限制参数。可以通过[setWindowLimits](#setwindowlimits11)设置窗口尺寸限制，并且可以通过[getWindowLimits](#getwindowlimits11)获得当前的窗口尺寸限制。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Window.SessionManager
 
 | 名称      | 类型   | 可读 | 可写 | 说明                                                         |
@@ -280,6 +282,8 @@ import { window } from '@kit.ArkUI';
 ## TitleButtonRect<sup>11+</sup>
 
 标题栏上的最小化、最大化、关闭按钮矩形区域，该区域位置坐标相对窗口右上角。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：**  SystemCapability.Window.SessionManager
 
@@ -450,6 +454,8 @@ getLastWindow(ctx: BaseContext, callback: AsyncCallback&lt;Window&gt;): void
 
 获取当前应用内最上层的子窗口，若无应用子窗口，则返回应用主窗口，使用callback异步回调。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
@@ -503,6 +509,8 @@ export default class EntryAbility extends UIAbility {
 getLastWindow(ctx: BaseContext): Promise&lt;Window&gt;
 
 获取当前应用内最上层的子窗口，若无应用子窗口，则返回应用主窗口，使用Promise异步回调。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -3857,6 +3865,8 @@ setWindowGrayScale(grayScale: number): Promise&lt;void&gt;
 
 设置窗口灰阶，使用Promise异步回调。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Window.SessionManager
 
 **参数：**
@@ -3907,6 +3917,8 @@ try {
 on(type: 'windowTitleButtonRectChange', callback: Callback&lt;TitleButtonRect&gt;): void
 
 开启主窗口标题栏上的最小化、最大化、关闭按钮矩形区域变化的监听，仅2in1设备可用。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -3963,6 +3975,8 @@ export default class EntryAbility extends UIAbility {
 off(type: 'windowTitleButtonRectChange', callback?: Callback&lt;TitleButtonRect&gt;): void
 
 关闭主窗口标题栏上的最小化、最大化、关闭按钮矩形区域变化的监听，仅2in1设备可用。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -4104,6 +4118,8 @@ isWindowSupportWideGamut(callback: AsyncCallback&lt;boolean&gt;): void
 
 判断当前窗口是否支持广色域模式，使用callback异步回调。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
@@ -4141,6 +4157,8 @@ isWindowSupportWideGamut(): Promise&lt;boolean&gt;
 
 判断当前窗口是否支持广色域模式，使用Promise异步回调。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 **返回值：**
@@ -4175,6 +4193,8 @@ promise.then((data) => {
 setWindowColorSpace(colorSpace:ColorSpace, callback: AsyncCallback&lt;void&gt;): void
 
 设置当前窗口为广色域模式或默认色域模式，使用callback异步回调。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -4218,6 +4238,8 @@ try {
 setWindowColorSpace(colorSpace:ColorSpace): Promise&lt;void&gt;
 
 设置当前窗口为广色域模式或默认色域模式，使用Promise异步回调。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -4264,6 +4286,8 @@ try {
 getWindowColorSpace(): ColorSpace
 
 获取当前窗口色域模式。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -4441,6 +4465,8 @@ setWindowFocusable(isFocusable: boolean, callback: AsyncCallback&lt;void&gt;): v
 
 设置使用点击或其他方式使该窗口获焦的场景时，该窗口是否支持从点击前的获焦窗口切换到该窗口，使用callback异步回调。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
@@ -4485,6 +4511,8 @@ try {
 setWindowFocusable(isFocusable: boolean): Promise&lt;void&gt;
 
 设置使用点击或其他方式使该窗口获焦的场景时，该窗口是否支持从点击前的获焦窗口切换到该窗口，使用Promise异步回调。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -4732,6 +4760,8 @@ setWindowTouchable(isTouchable: boolean, callback: AsyncCallback&lt;void&gt;): v
 
 设置窗口是否为可触状态，使用callback异步回调。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
@@ -4776,6 +4806,8 @@ try {
 setWindowTouchable(isTouchable: boolean): Promise&lt;void&gt;
 
 设置窗口是否为可触状态，使用Promise异步回调。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -4825,6 +4857,8 @@ snapshot(callback: AsyncCallback&lt;image.PixelMap&gt;): void
 
 获取窗口截图，使用callback异步回调。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
@@ -4864,6 +4898,8 @@ snapshot(): Promise&lt;image.PixelMap&gt;
 
 获取窗口截图，使用Promise异步回调。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 **返回值：**
@@ -4902,6 +4938,8 @@ setAspectRatio(ratio: number): Promise&lt;void&gt;
 设置窗口内容布局的比例，使用Promise异步回调。
 
 仅应用主窗口支持此接口功能，比例参数将持久化保存，关闭应用或重启设备设置的比例仍然生效。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -4966,6 +5004,8 @@ setAspectRatio(ratio: number, callback: AsyncCallback&lt;void&gt;): void
 
 仅应用主窗口支持此接口功能，比例参数将持久化保存，关闭应用或重启设备设置的比例仍然生效。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
@@ -5027,6 +5067,8 @@ resetAspectRatio(): Promise&lt;void&gt;
 
 仅应用主窗口支持此接口功能，调用后将清除持久化储存的比例信息。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 **返回值：**
@@ -5081,6 +5123,8 @@ resetAspectRatio(callback: AsyncCallback&lt;void&gt;): void
 取消设置窗口内容布局的比例，使用callback异步回调。
 
 仅应用主窗口支持此接口功能，调用后将清除持久化储存的比例信息。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -5143,6 +5187,8 @@ minimize(callback: AsyncCallback&lt;void&gt;): void
 
 使用callback异步回调。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Window.SessionManager
 
 **参数：**
@@ -5188,6 +5234,8 @@ minimize(): Promise&lt;void&gt;
 
 使用Promise异步回调。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Window.SessionManager
 
 **返回值：**
@@ -5224,6 +5272,8 @@ promise.then(() => {
 maximize(): Promise&lt;void&gt;
 
 主窗口调用，实现最大化功能，进入沉浸式全屏，使用Promise异步回调。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -5281,6 +5331,8 @@ recover(): Promise&lt;void&gt;
 
 将主窗口从全屏、最大化、分屏模式下还原为浮动窗口，并恢复到进入该模式之前的大小和位置，已经是浮动窗口模式不可再还原。使用Promise异步回调。此接口仅在多窗层叠布局效果下生效。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Window.SessionManager
 
 **返回值：**
@@ -5335,6 +5387,8 @@ getWindowLimits(): WindowLimits
 
 获取当前应用窗口的尺寸限制。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Window.SessionManager
 
 **返回值：**
@@ -5367,6 +5421,8 @@ try {
 setWindowLimits(windowLimits: WindowLimits): Promise&lt;WindowLimits&gt;
 
 设置当前应用窗口的尺寸限制，使用Promise异步回调。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -5422,6 +5478,8 @@ setWindowMask(windowMask: Array&lt;Array&lt;number&gt;&gt;): Promise&lt;void&gt;
 
 设置异形窗口的掩码，使用Promise异步回调。异形窗口为非常规形状的窗口，掩码用于描述异形窗口的形状。此接口仅限子窗和全局悬浮窗可用，仅2in1设备可用。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Window.SessionManager
 
 **参数：**
@@ -5475,6 +5533,8 @@ keepKeyboardOnFocus(keepKeyboardFlag: boolean): void
 
 窗口获焦时保留由其他窗口创建的软键盘，仅支持系统窗口与应用子窗口。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Window.SessionManager
 
 **参数：**
@@ -5509,6 +5569,8 @@ try {
 setWindowDecorVisible(isVisible: boolean): void
 
 主窗口设置标题栏是否可见。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -5579,6 +5641,8 @@ setSubWindowModal(isModal: boolean): Promise&lt;void&gt;
 
 子窗口之外的窗口调用该接口时，会报错。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Window.SessionManager
 
 **参数：**
@@ -5646,6 +5710,8 @@ setWindowDecorHeight(height: number): void
 
 设置主窗口标题栏高度。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Window.SessionManager
 
 **参数：**
@@ -5700,6 +5766,8 @@ getWindowDecorHeight(): number
 
 获取主窗口标题栏高度。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Window.SessionManager
 
 **返回值：**
@@ -5751,6 +5819,8 @@ export default class EntryAbility extends UIAbility {
 getTitleButtonRect(): TitleButtonRect
 
 获取主窗口标题栏上的最小化、最大化、关闭按钮矩形区域。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -5807,6 +5877,8 @@ enableLandscapeMultiWindow(): Promise&lt;void&gt;
 
 此接口只有在module.json5配置文件中[abilities](../../quick-start/module-configuration-file.md#abilities标签)标签中的preferMultiWindowOrientation属性为landscape_auto时才生效。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Window.SessionManager
 
 **返回值：**
@@ -5844,6 +5916,8 @@ disableLandscapeMultiWindow(): Promise&lt;void&gt;
 在开启多窗动态布局下，配置支持竖向悬浮窗。
 
 此接口只有在module.json5配置文件中[abilities](../../quick-start/module-configuration-file.md#abilities标签)标签中的preferMultiWindowOrientation属性为landscape_auto时才生效。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
 

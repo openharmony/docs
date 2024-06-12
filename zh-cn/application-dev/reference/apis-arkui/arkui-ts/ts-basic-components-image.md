@@ -48,7 +48,7 @@ Image组件默认按照居中裁剪，例如组件宽高设置相同，原图长
 
 ### alt
 
-alt(value:&nbsp;string&nbsp;|&nbsp;Resource &nbsp;|PixelMap)
+alt(value:&nbsp;string&nbsp;|&nbsp;Resource &nbsp;|&nbsp;PixelMap)
 
 设置图片加载时显示的占位图。
 
@@ -64,7 +64,7 @@ alt(value:&nbsp;string&nbsp;|&nbsp;Resource &nbsp;|PixelMap)
 
 | 参数名 | 类型                                                     | 必填 | 说明                                                         |
 | ------ | -------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource)\|&nbsp;[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)<sup>12+</sup> | 是   | 加载时显示的占位图，支持本地图片（png、jpg、bmp、svg、gif和heif类型）,支持[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)类型图片，不支持网络图片。<br/>默认值：null |
+| value  | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource)&nbsp;\|&nbsp;[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)<sup>12+</sup> | 是   | 加载时显示的占位图，支持本地图片（png、jpg、bmp、svg、gif和heif类型）,支持[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)类型图片，不支持网络图片。<br/>默认值：null |
 
 ### objectFit
 
@@ -388,7 +388,7 @@ privacySensitive(supported: boolean)
 
 ### enhancedImageQuality<sup>12+</sup>
 
-enhancedImageQuality(value: ResolutionQuality)
+enhancedImageQuality(imageQuality: ResolutionQuality)
 
 设置图像解码时图像解码分辨率选项。
 
@@ -400,7 +400,7 @@ enhancedImageQuality(value: ResolutionQuality)
 
 | 参数名 | 类型                                    | 必填 | 说明                             |
 | ------ | --------------------------------------- | ---- | -------------------------------- |
-| value  | [ResolutionQuality](#resolutionquality12) | 是   | 图像解码分辨率质量。 |
+| imageQuality | [ResolutionQuality](#resolutionquality12) | 是   | 图像解码分辨率质量。 |
 
 ### dynamicRangeMode<sup>12+</sup>
 
@@ -416,7 +416,7 @@ dynamicRangeMode(value: DynamicRangeMode)
 
 | 参数名 | 类型                                    | 必填 | 说明                             |
 | ------ | --------------------------------------- | ---- | -------------------------------- |
-| value  | [DynamicRangeMode](#dynamicrangemode12) | 是   | 图像显示的动态范围。 |
+| value  | [DynamicRangeMode](#dynamicrangemode12-1) | 是   | 图像显示的动态范围。 |
 
 ## ImageInterpolation
 

@@ -45,3 +45,100 @@ struct Parent {
     }
 }
 ```
+
+### addFrameNode<sup>12+</sup>
+
+addFrameNode(node: FrameNode): void
+
+根据参数将FrameNode添加到NodeContent中。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                                                   | 必填 | 说明             |
+| ------- | ------------------------------------------------------ | ---- | ---------------- |
+| node | [FrameNode](./js-apis-arkui-frameNode.md#framenode) | 是   | 需要添加的FrameNode。 |
+
+### removeFrameNode<sup>12+</sup>
+
+removeFrameNode(node: FrameNode): void
+
+根据参数将FrameNode从NodeContent中删除。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                                                   | 必填 | 说明             |
+| ------- | ------------------------------------------------------ | ---- | ---------------- |
+| node | [FrameNode](./js-apis-arkui-frameNode.md#framenode) | 是   | 需要删除的FrameNode。 |
+
+**示例：**
+
+```ts
+import { NodeContent, typeNode } from '@ohos.arkui.node';
+
+class NodeContentCtrl {
+  content: NodeContent
+  textNode: Array<typeNode.Text> = new Array();
+  uiContext: UIContext
+  width: number
+
+  constructor(uiContext: UIContext) {
+    this.content = new NodeContent()
+    this.uiContext = uiContext
+    this.width = Infinity
+  }
+
+  AddNode() {
+    let node = typeNode.createNode(this.uiContext, "Text")
+    node.initialize("ContentText:" + this.textNode.length).fontSize(20)
+    this.textNode.push(node)
+    this.content.addFrameNode(node)
+  }
+
+  RemoveNode() {
+    let node = this.textNode.pop()
+    this.content.removeFrameNode(node)
+  }
+
+  RemoveFront() {
+    let node = this.textNode.shift()
+    this.content.removeFrameNode(node)
+  }
+
+  GetContent(): NodeContent {
+    return this.content
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  @State message: string = 'Hello World';
+  controller = new NodeContentCtrl(this.getUIContext());
+
+  build() {
+    Row() {
+      Column() {
+        ContentSlot(this.controller.GetContent())
+        Button("AddToSlot")
+          .onClick(() => {
+            this.controller.AddNode()
+          })
+        Button("RemoveBack")
+          .onClick(() => {
+            this.controller.RemoveNode()
+          })
+        Button("RemoveFront")
+          .onClick(() => {
+            this.controller.RemoveFront()
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```

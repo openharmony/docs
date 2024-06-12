@@ -22,6 +22,8 @@ import picker from '@ohos.file.picker';
 
 constructor(context: Context)
 
+**系统能力**：SystemCapability.FileManagement.UserFileService
+
 创建PhotoViewPicker对象，推荐使用该构造函数，获取context参考[getContext](../apis-arkui/js-apis-getContext.md)
 
 **示例：**
@@ -55,6 +57,8 @@ struct Index {
 ### constructor<sup>12+</sup>
 
 constructor()
+
+**系统能力**：SystemCapability.FileManagement.UserFileService
 
 创建PhotoViewPicker对象，不推荐使用该构造函数，会出现概率性失败问题
 
@@ -334,6 +338,8 @@ async function example06(context: common.Context) { // 需确保 context 由 UIA
 
 constructor(context: Context)
 
+**系统能力**：SystemCapability.FileManagement.UserFileService
+
 创建DocumentViewPicker对象，推荐使用该构造函数，获取context参考[getContext](../apis-arkui/js-apis-getContext.md)
 
 **示例：**
@@ -367,6 +373,8 @@ struct Index {
 ### constructor<sup>12+</sup>
 
 constructor()
+
+**系统能力**：SystemCapability.FileManagement.UserFileService
 
 创建DocumentViewPicker对象，不推荐使用该构造函数，会出现概率性失败问题
 
@@ -648,6 +656,8 @@ async function example12(context: common.Context) { // 需确保 context 由 UIA
 
 constructor(context: Context)
 
+**系统能力**：SystemCapability.FileManagement.UserFileService
+
 创建AudioViewPicker对象，推荐使用该构造函数，获取context参考[getContext](../apis-arkui/js-apis-getContext.md)
 
 **示例：**
@@ -680,6 +690,8 @@ struct Index {
 ### constructor<sup>12+</sup>
 
 constructor()
+
+**系统能力**：SystemCapability.FileManagement.UserFileService
 
 创建AudioViewPicker对象，不推荐使用该构造函数，会出现概率性失败问题
 
@@ -1023,7 +1035,7 @@ async function example18(context: common.Context) { // 需确保 context 由 UIA
 
 枚举，picker选择的文档类型。
 
-**系统能力：** SystemCapability.FileManagement.UserFileService.FolderSelection
+**系统能力：** SystemCapability.FileManagement.UserFileService
 
 | 名称  |  值 |  说明 |
 | ----- |  ---- | ---- |
@@ -1041,7 +1053,7 @@ async function example18(context: common.Context) { // 需确保 context 由 UIA
 | newFileNames            | Array&lt;string&gt;    | 否   | 拉起documentPicker进行保存的文件名，若无此参数，则默认需要用户自行输入 <br>**元服务API:** 从API version 12开始，该接口支持在元服务中使用。 |
 | defaultFilePathUri<sup>10+</sup>    | string  | 否   | 指定保存的文件或者目录路径 <br>**元服务API:** 从API version 12开始，该接口支持在元服务中使用。 |
 | fileSuffixChoices<sup>10+</sup>     | Array&lt;string&gt; | 否   | 保存文件的后缀类型 <br>**元服务API:** 从API version 12开始，该接口支持在元服务中使用。 |
-| pickerMode     | [DocumentPickerMode](#documentpickermode12) | 否   | 拉起picker的类型, 默认为DEFAULT。当pickerMode设置为DOWNLOAD时，用户配置的参数newFileNames、defaultFilePathUri和fileSuffixChoices将不会生效 |
+| pickerMode<sup>12+</sup>     | [DocumentPickerMode](#documentpickermode12) | 否   | 拉起picker的类型, 默认为DEFAULT。当pickerMode设置为DOWNLOAD时，用户配置的参数newFileNames、defaultFilePathUri和fileSuffixChoices将不会生效 |
 
 ## AudioSelectOptions
 
@@ -1050,7 +1062,7 @@ async function example18(context: common.Context) { // 需确保 context 由 UIA
 **系统能力：** SystemCapability.FileManagement.UserFileService
 | 名称                    | 类型                                          | 必填 | 说明                                       |
 | :---------------------- |---------------------------------------------| ---- |------------------------------------------|
-| maxSelectNumber       | number                                      | 否   | 选择文件最大个数，默认值为1，上限500，有效值范围1-500 |
+| maxSelectNumber<sup>12+</sup>       | number                                      | 否   | 选择文件最大个数，默认值为1，上限500，有效值范围1-500 |
 
 ## AudioSaveOptions
 

@@ -1766,7 +1766,7 @@ isAppRunning(bundleName: string, appCloneIndex?: number): Promise\<boolean>
 | 202 | Not system application. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 | 16000050 | Internal error. |
-| 16000073 | The app clone index does not exist. |
+| 16000073 | The app clone index is invalid. |
 
 **示例：**
 

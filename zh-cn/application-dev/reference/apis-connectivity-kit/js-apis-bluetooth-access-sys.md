@@ -19,7 +19,7 @@ import { access } from '@kit.ConnectivityKit';
 
 factoryReset(callback: AsyncCallback&lt;void&gt;): void
 
-恢复蓝牙出厂设置。
+恢复蓝牙出厂设置。使用Callback异步回调。
 
 **系统接口**：此接口为系统接口。
 
@@ -41,7 +41,7 @@ factoryReset(callback: AsyncCallback&lt;void&gt;): void
 | -------- | ------------------ |
 |201 | Permission denied.                 |
 |202 | Non-system applications are not allowed to use system APIs. |
-|401 | Invalid parameter.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.           |
 |801 | Capability not supported.          |
 |2900001   | Service stopped.   |
 |2900099   | Operation failed.  |
@@ -66,7 +66,7 @@ try {
 
 factoryReset(): Promise&lt;void&gt;
 
-恢复蓝牙出厂设置。
+恢复蓝牙出厂设置。使用Promise异步回调。
 
 **系统接口**：此接口为系统接口。
 

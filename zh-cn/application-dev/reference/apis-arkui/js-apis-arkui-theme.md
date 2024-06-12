@@ -100,7 +100,13 @@ import { Theme, ThemeControl, CustomColors, Colors, CustomTheme } from '@ohos.ar
 
 ## CustomColors
 
+type CustomColors = Partial\<Colors>
+
 自定义主题颜色资源类型。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 类型  | 说明           |
 |-----|--------------|

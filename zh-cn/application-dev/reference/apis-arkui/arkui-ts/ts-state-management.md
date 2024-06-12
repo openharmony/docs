@@ -1313,7 +1313,7 @@ size(): number
 
 | 类型   | 描述                         |
 | ------ | ---------------------------- |
-| number | LocalStorage中属性的的数量。 |
+| number | LocalStorage中属性的数量。 |
 
 **示例：**
 ```ts
