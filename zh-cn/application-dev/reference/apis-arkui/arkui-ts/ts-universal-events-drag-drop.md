@@ -146,6 +146,8 @@ onPreDrag(event: (preDragStatus: PreDragStatus) => void)
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称      | 类型                                     | 必填   | 描述                                |
 | --------- | ---------------------------------------- | ---- | --------------------------------- |
 | pixelMap  | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) | 否    | 设置拖拽过程中显示的图片。 |
@@ -164,11 +166,15 @@ onPreDrag(event: (preDragStatus: PreDragStatus) => void)
 | selectedIndex | number | 当拖拽事件设在父容器的子元素时，selectedIndex表示当前被拖拽子元素是父容器第selectedIndex个子元素，selectedIndex从0开始。<br/>仅在ListItem组件的拖拽事件中生效。 |
 | insertIndex   | number | 当前拖拽元素在List组件中放下时，insertIndex表示被拖拽元素插入该组件的第insertIndex个位置，insertIndex从0开始。<br/>仅在List组件的拖拽事件中生效。 |
 
-## DragEvent说明
+## DragEvent
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ### 属性
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称     | 类型  | 描述             |
 | ------ | ------ | ---------------- |
@@ -178,6 +184,8 @@ onPreDrag(event: (preDragStatus: PreDragStatus) => void)
 ### 方法
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称     | 返回值类型                            | 描述                           |
 | ----------- | ------------------------------- | ------------------------------ |
@@ -211,6 +219,8 @@ onPreDrag(event: (preDragStatus: PreDragStatus) => void)
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称 | 描述 |
 | ----- | ----------------- |
 | DRAG_SUCCESSFUL | 拖拽成功，在onDrop中使用。 |
@@ -225,12 +235,16 @@ onPreDrag(event: (preDragStatus: PreDragStatus) => void)
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称 | 描述 |
 | ----- | ----------------- |
 | COPY | 复制模式角标。 |
 | MOVE| 剪贴模式角标。 |
 
 ## PreDragStatus<sup>12+</sup>枚举说明
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称 | 值 | 描述 |
 | ---- | - | ----------------- |
