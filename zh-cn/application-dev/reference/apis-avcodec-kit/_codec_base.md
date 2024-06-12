@@ -953,7 +953,7 @@ AVC档次。
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| AVC_PROFILE_BASELINE  | AVC编码档次为基本档次。   | 
+| AVC_PROFILE_BASELINE  | AVC编码档次为基本档次。   |
 | AVC_PROFILE_HIGH  | AVC编码档次为高档次。   |
 | AVC_PROFILE_MAIN  | AVC编码档次为主档次。   |
 
