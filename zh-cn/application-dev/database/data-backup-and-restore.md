@@ -184,7 +184,7 @@
      'SALARY': 100.5,
      'CODES': new Uint8Array([1, 2, 3, 4, 5])
    };
-   store.insert('EMPLOYEE', valueBucket, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE, (err, rowId) => {
+   store.insert('EMPLOYEE', valueBucket, (err, rowId) => {
      if (err) {
        console.error(`Failed to insert data. Code:${err.code},message:${err.message}`);
        return;
