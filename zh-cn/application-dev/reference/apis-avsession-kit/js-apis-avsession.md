@@ -131,18 +131,22 @@ avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSe
 
 ## AVSessionType<sup>10+<sup>
 
+type AVSessionType = 'audio' | 'video' | 'voice_call' | 'video_call'
+
 当前会话支持的会话类型。
+
+该类型可取的值为下表字符串。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
 **元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
-| 取值范围  | 说明 |
+| 类型  | 说明 |
 | -----  | ---- |
-| audio | 音频 |
-| video | 视频 |
-| voice_call<sup>11+<sup> | 音频通话 |
-| video_call<sup>12+<sup> | 视频通话 |
+| 'audio' | 音频 |
+| 'video' | 视频 |
+| 'voice_call'<sup>11+<sup> | 音频通话 |
+| 'video_call'<sup>12+<sup> | 视频通话 |
 
 ## AVSession<sup>10+</sup>
 
@@ -7265,23 +7269,28 @@ try {
 
 ## AVControlCommandType<sup>10+</sup>
 
+type AVControlCommandType = 'play' | 'pause' | 'stop' | 'playNext' | 'playPrevious' | 'fastForward' | 'rewind' |
+  'seek' | 'setSpeed' | 'setLoopMode' | 'toggleFavorite' | 'playFromAssetId' | 'answer' | 'hangUp' | 'toggleCallMute'
+
 会话可传递的命令。
+
+该类型可取的值为下表字符串的并集。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
-| 名称           | 类型   | 说明         |
-| -------------- | ------ | ------------ |
-| play           | string | 播放         |
-| pause          | string | 暂停         |
-| stop           | string | 停止         |
-| playNext       | string | 下一首       |
-| playPrevious   | string | 上一首       |
-| fastForward    | string | 快进         |
-| rewind         | string | 快退         |
-| seek           | string | 跳转某一节点 |
-| setSpeed       | string | 设置播放倍速 |
-| setLoopMode    | string | 设置循环模式 |
-| toggleFavorite | string | 是否收藏     |
+| 类型             | 说明         |
+| ---------------- | ------------ |
+| 'play'           | 播放         |
+| 'pause'          | 暂停         |
+| 'stop'           | 停止         |
+| 'playNext'       | 下一首       |
+| 'playPrevious'   | 上一首       |
+| 'fastForward'    | 快进         |
+| 'rewind'         | 快退         |
+| 'seek'           | 跳转某一节点 |
+| 'setSpeed'       | 设置播放倍速 |
+| 'setLoopMode'    | 设置循环模式 |
+| 'toggleFavorite' | 是否收藏     |
 
 ## AVControlCommand<sup>10+</sup>
 
