@@ -12,12 +12,12 @@ The @ohos.app.appstartup.StartupListener module provides the API to listen for c
 ## Modules to Import
 
 ```ts
-import StartupListener from '@ohos.app.appstartup.StartupListener';
+import { StartupListener } from '@kit.AbilityKit';
 ```
 
 ## StartupListener.onCompleted
 
-onCompleted(error: BusinessError\<void\>): void
+onCompleted?(error: BusinessError\<void\>): void
 
 Called when all the components are initialized.
 
@@ -32,17 +32,16 @@ Called when all the components are initialized.
 **Example**
 
 ```ts
-import StartupConfig from '@ohos.app.appstartup.StartupConfig';
-import StartupConfigEntry from '@ohos.app.appstartup.StartupConfigEntry';
-import StartupListener from '@ohos.app.appstartup.StartupListener';
+import { StartupConfigEntry, StartupConfig, StartupListener } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class MyStartupConfigEntry extends StartupConfigEntry {
   onConfig() {
     console.info('StartupTest MyStartupConfigEntry onConfig');
-    let onCompletedCallback = (error) => {
+    let onCompletedCallback = (error: BusinessError) => {
       console.info('StartupTest MyStartupConfigEntry callback, error=' + JSON.stringify(error));
       if (error) {
-        console.error('onCompletedCallback: %{public}d, mssage: %{public}s', error.code, error.mssage);
+        console.error('onCompletedCallback: %{public}d, message: %{public}s', error.code, error.message);
       } else {
         console.info('onCompletedCallback: success');
       }

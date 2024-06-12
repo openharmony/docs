@@ -9,7 +9,7 @@ The **appManager** module implements application management. You can use the API
 ## Modules to Import
 
 ```ts
-import appManager from '@ohos.app.ability.appManager';
+import { appManager } from '@kit.AbilityKit';
 ```
 
 ## ProcessState<sup>10+</sup>
@@ -56,15 +56,15 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import appManager from '@ohos.app.ability.appManager';
+import { appManager } from '@kit.AbilityKit';
 
 appManager.isRunningInStabilityTest((err, flag) => {
-    if (err) {
-        console.error(`isRunningInStabilityTest fail, err: ${JSON.stringify(err)}`);
-    } else {
-        console.log(`The result of isRunningInStabilityTest is: ${JSON.stringify(flag)}`);
-    }
-});  
+  if (err) {
+    console.error(`isRunningInStabilityTest fail, err: ${JSON.stringify(err)}`);
+  } else {
+    console.log(`The result of isRunningInStabilityTest is: ${JSON.stringify(flag)}`);
+  }
+});
 ```
 
 
@@ -95,13 +95,13 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
 **Example**
 
 ```ts
-import appManager from '@ohos.app.ability.appManager';
-import { BusinessError } from '@ohos.base';
+import { appManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 appManager.isRunningInStabilityTest().then((flag) => {
-    console.log(`The result of isRunningInStabilityTest is: ${JSON.stringify(flag)}`);
+  console.log(`The result of isRunningInStabilityTest is: ${JSON.stringify(flag)}`);
 }).catch((error: BusinessError) => {
-    console.error(`error: ${JSON.stringify(error)}`);
+  console.error(`error: ${JSON.stringify(error)}`);
 });
 ```
 
@@ -133,13 +133,13 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
 **Example**
 
 ```ts
-import appManager from '@ohos.app.ability.appManager';
-import { BusinessError } from '@ohos.base';
+import { appManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 appManager.isRamConstrainedDevice().then((data) => {
-    console.log(`The result of isRamConstrainedDevice is: ${JSON.stringify(data)}`);
+  console.log(`The result of isRamConstrainedDevice is: ${JSON.stringify(data)}`);
 }).catch((error: BusinessError) => {
-    console.error(`error: ${JSON.stringify(error)}`);
+  console.error(`error: ${JSON.stringify(error)}`);
 });
 ```
 
@@ -171,14 +171,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import appManager from '@ohos.app.ability.appManager';
+import { appManager } from '@kit.AbilityKit';
 
 appManager.isRamConstrainedDevice((err, data) => {
-    if (err) {
-        console.error(`isRamConstrainedDevice fail, err: ${JSON.stringify(err)}`);
-    } else {
-        console.log(`The result of isRamConstrainedDevice is: ${JSON.stringify(data)}`);
-    }
+  if (err) {
+    console.error(`isRamConstrainedDevice fail, err: ${JSON.stringify(err)}`);
+  } else {
+    console.log(`The result of isRamConstrainedDevice is: ${JSON.stringify(data)}`);
+  }
 });
 ```
 
@@ -209,13 +209,13 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
 **Example**
 
 ```ts
-import appManager from '@ohos.app.ability.appManager';
-import { BusinessError } from '@ohos.base';
+import { appManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 appManager.getAppMemorySize().then((data) => {
-    console.log(`The size of app memory is: ${JSON.stringify(data)}`);
+  console.log(`The size of app memory is: ${JSON.stringify(data)}`);
 }).catch((error: BusinessError) => {
-    console.error(`error: ${JSON.stringify(error)}`);
+  console.error(`error: ${JSON.stringify(error)}`);
 });
 ```
 
@@ -247,14 +247,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import appManager from '@ohos.app.ability.appManager';
+import { appManager } from '@kit.AbilityKit';
 
 appManager.getAppMemorySize((err, data) => {
-    if (err) {
-        console.error(`getAppMemorySize fail, err: ${JSON.stringify(err)}`);
-    } else {
-        console.log(`The size of app memory is: ${JSON.stringify(data)}`);
-    }
+  if (err) {
+    console.error(`getAppMemorySize fail, err: ${JSON.stringify(err)}`);
+  } else {
+    console.log(`The size of app memory is: ${JSON.stringify(data)}`);
+  }
 });
 ```
 
@@ -289,13 +289,13 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
 **Example**
 
 ```ts
-import appManager from '@ohos.app.ability.appManager';
-import { BusinessError } from '@ohos.base';
+import { appManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 appManager.getRunningProcessInformation().then((data) => {
-    console.log(`The running process information is: ${JSON.stringify(data)}`);
+  console.log(`The running process information is: ${JSON.stringify(data)}`);
 }).catch((error: BusinessError) => {
-    console.error(`error: ${JSON.stringify(error)}`);
+  console.error(`error: ${JSON.stringify(error)}`);
 });
 ```
 
@@ -331,13 +331,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import appManager from '@ohos.app.ability.appManager';
+import { appManager } from '@kit.AbilityKit';
 
 appManager.getRunningProcessInformation((err, data) => {
-    if (err) {
-        console.error(`getRunningProcessInformation fail, err: ${JSON.stringify(err)}`);
-    } else {
-        console.log(`The running process information is: ${JSON.stringify(data)}`);
-    }
+  if (err) {
+    console.error(`getRunningProcessInformation fail, err: ${JSON.stringify(err)}`);
+  } else {
+    console.log(`The running process information is: ${JSON.stringify(data)}`);
+  }
 });
 ```

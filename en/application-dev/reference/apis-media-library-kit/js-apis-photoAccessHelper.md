@@ -3958,7 +3958,7 @@ Defines information about the images or videos selected.
 
 | Name                   | Type               | Readable| Writable| Description                          |
 | ----------------------- | ------------------- | ---- | ---- | ------------------------------ |
-| photoUris        | Array&lt;string&gt;    | Yes  | Yes  | URIs of the images or videos selected. The URI array can be used only by calling [photoAccessHelper.getAssets](#getassets) with temporary authorization. For details about how to use the media file URI, see [Using a Media File URI] (../../file-management/user-file-uri-intro.md#using-a-media-file-uri).|
+| photoUris        | Array&lt;string&gt;    | Yes  | Yes  | URIs of the images or videos selected. The URI array can be used only by calling [photoAccessHelper.getAssets](#getassets) with temporary authorization. For details about how to use the media file URI, see [Using a Media File URI](../../file-management/user-file-uri-intro.md#using-a-media-file-uri).|
 | isOriginalPhoto        | boolean    | Yes  | Yes  | Whether the selected media asset is the original image.|
 
 
