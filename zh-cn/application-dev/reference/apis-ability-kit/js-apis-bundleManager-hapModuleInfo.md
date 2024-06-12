@@ -55,9 +55,9 @@ HAP信息，三方应用可以通过[getBundleInfoForSelf](js-apis-bundleManager
 
 | 名称        | 类型   | 可读 | 可写 | 说明                   |
 | ----------- | ------ | ---- | ---- | ---------------------- |
-| bundleName  | string | 是   | 否   | 标识当前模块依赖的共享包包名。       |
+| bundleName<sup>10+</sup>  | string | 是   | 否   | 标识当前模块依赖的共享包包名。       |
 | moduleName  | string | 是   | 否   | 标识当前模块依赖的共享包模块名。 |
-| versionCode | number | 是   | 否   | 标识当前共享包的版本号。   |
+| versionCode<sup>10+</sup> | number | 是   | 否   | 标识当前共享包的版本号。   |
 
 ## RouterItem<sup>12+</sup>
 

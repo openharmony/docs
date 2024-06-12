@@ -188,17 +188,6 @@ import bundleManager from '@ohos.bundle.bundleManager';
 | APP            | 0    | 该Bundle是应用。    |
 | ATOMIC_SERVICE | 1    | 该Bundle是元服务。 |
 
-### MultiAppModeType<sup>12+</sup>
-标识应用多开的模式类型。
-
- **系统能力：** SystemCapability.BundleManager.BundleFramework.Core。
-
-| 名称 | 值 | 说明 |
-|:----------------:|:---:|:---:|
-| UNSPECIFIED|  0 | 未指定类型。 |
-| MULTI_INSTANCE |  1  | 多实例模式。  |
-| APP_CLONE |  2  |  分身模式。  |
-
 ## 接口
 
 ### bundleManager.getBundleInfoForSelf

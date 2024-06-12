@@ -37,35 +37,6 @@
 | debug<sup>10+</sup>       | boolean                                | 是   | 否   | 标识应用是否处于调试模式，默认为false。 |
 | dataUnclearable<sup>11+</sup>       | boolean                      | 是   | 否   | 标识应用数据是否可被删除。true表示不可删除，false表示可以删除。默认为false。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
 | nativeLibraryPath<sup>12+</sup> | string                                                                     | 是   | 否   | 应用程序的本地库文件路径。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。                                                  |
-| multiAppMode<sup>12+</sup> | [MultiAppMode](#multiappmode12)    | 是   | 否   | 应用多开模式。|
-
-## MultiAppMode<sup>12+</sup>
-表示应用多开模式。
-
- **参数：**
-
-| 名称      | 类型           | 可读 | 可写 | 说明                        |
-| --------- | -------------- | ---- | ---- | --------------------------- |
-| multiAppModeType<sup>12+</sup> | [MultiAppModeType](js-apis-bundleManager.md#multiappmodetype12)  | 是 | 否 |  应用多开模式的类型。  |
-| maxCount<sup>12+</sup> | number  | 是 | 否 |  应用多开的最大个数。  |
-
-
-## PreinstalledApplicationInfo<sup>12+<sup>
-
-描述预置应用部分信息。
-
- **系统能力：** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core。
-
- **系统接口：**  此接口为系统接口。
-
- **参数：**
-
-| 名称      | 类型           | 可读 | 可写 | 说明                        |
-| --------- | -------------- | ---- | ---- | --------------------------- |
-| bundleName     | string         | 是   | 否   | 应用包的名称。                 |
-| moduleName | string         | 是   | 否   | 应用包的模块名，返回entry模块的moduleName，若不存在entry模块则返回feature模块的moduleName。            |
-| iconId | number         | 是   | 否   | 应用图标Id。            |
-| labelId | number         | 是   | 否   | 应用标签Id。            |
 
 ## ModuleMetadata<sup>10+</sup>
 
