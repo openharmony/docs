@@ -181,15 +181,7 @@ Rectangle是各种Dialog中maskRect参数的类型。
 | 名称     | 类型                                 | 必填 | 描述                                                           |
 |----------|-------------------------------------|------|----------------------------------------------------------------|
 | dismiss  | Callback&lt;void&gt;                            |  是  | Dialog关闭回调函数。开发者需要退出时调用，不需要退出时无需调用。    |
-| reason   | [DismissReason](#dismissreason12枚举说明) |  是  | Dialog无法关闭原因。根据开发者需要选择不同操作下，Dialog是否需要关闭。 |
-
-## DismissReason<sup>12+</sup>枚举说明
-
-| 名称             | 描述                             |
-| --------------- | -------------------------------- |
-| PRESS_BACK      | 点击三键back、左滑/右滑、键盘ESC。  |
-| TOUCH_OUTSIDE   | 点击遮障层时。                     |
-| CLOSE_BUTTON    | 点击关闭按钮。                     |
+| reason   | [DismissReason](ts-appendix-enums.md#dismissreason12) |  是  | Dialog无法关闭原因。根据开发者需要选择不同操作下，Dialog是否需要关闭。 |
 
 ## TextStyle<sup>12+</sup>类型说明
 
