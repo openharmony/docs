@@ -19,15 +19,15 @@ secretKeyObserve类：提供了获取当前密钥状态的接口，在密钥销�
 
 ECStoreManager类：用于管理应用的E类数据库和C类数据库。
 
-![image-20240611214951850](C:\Users\ljy\AppData\Roaming\Typora\typora-user-images\image-20240611214951850.png)
+** 图1** EC数据库管理类图
+
+![ECStoreManagerClassDiagram.png](figures/ECStoreManagerClassDiagram.png)
 
 ### 时序图
 
-![image-20240611215607990](C:\Users\ljy\AppData\Roaming\Typora\typora-user-images\image-20240611215607990.png)
+** 图2** EC数据库管理时许图
 
-![image-20240611215604295](C:\Users\ljy\AppData\Roaming\Typora\typora-user-images\image-20240611215604295.png)
-
-![image-20240611215624748](C:\Users\ljy\AppData\Roaming\Typora\typora-user-images\image-20240611215624748.png)
+![ECStoreManager_timingdiagram](figures/ECStoreManager_timingdiagram.png)
 
 ## 配置权限
 
@@ -52,7 +52,7 @@ ECStoreManager类：用于管理应用的E类数据库和C类数据库。
 import { distributedKVStore } from '@kit.ArkData';
 
 export class Mover {
-  async Move(eStore: distributedKVStore.SingleKVStore, cStore: distributedKVStore.SingleKVStore) {
+  async Move(eStore: distributedKVStore.SingleKVStore, cStore: distributedKVStore.SingleKVStore): Promise<void> {
     if (eStore != null && cStore != null) {
       let entries: distributedKVStore.Entry[] = await cStore.getEntries('key_test_string');
       await eStore.putBatch(entries);
@@ -103,7 +103,7 @@ export class Store {
     }
   }
 
-  PutOnedata(kvStore: distributedKVStore.SingleKVStore) {
+  PutOnedata(kvStore: distributedKVStore.SingleKVStore): void {
     if (kvStore != undefined) {
       const KEY_TEST_STRING_ELEMENT = 'key_test_string' + String(Date.now());
       const VALUE_TEST_STRING_ELEMENT = 'value_test_string' + String(Date.now());
@@ -122,7 +122,7 @@ export class Store {
     }
   }
 
-  GetDataNum(kvStore: distributedKVStore.SingleKVStore) {
+  GetDataNum(kvStore: distributedKVStore.SingleKVStore): void {
     if (kvStore != undefined) {
       let resultSet: distributedKVStore.KVStoreResultSet;
       kvStore.getResultSet("key_test_string").then((result: distributedKVStore.KVStoreResultSet) => {
@@ -141,7 +141,7 @@ export class Store {
     }
   }
 
-  DeleteOnedata(kvStore: distributedKVStore.SingleKVStore) {
+  DeleteOnedata(kvStore: distributedKVStore.SingleKVStore): void {
     if (kvStore != undefined) {
       kvStore.getEntries('key_test_string', (err: BusinessError, entries: distributedKVStore.Entry[]) => {
         if (err != undefined) {
@@ -161,7 +161,7 @@ export class Store {
     }
   }
 
-  UpdataOnedata(kvStore: distributedKVStore.SingleKVStore) {
+  UpdataOnedata(kvStore: distributedKVStore.SingleKVStore): void {
     if (kvStore != undefined) {
       kvStore.getEntries('key_test_string', async (err: BusinessError, entries: distributedKVStore.Entry[]) => {
         if (err != undefined) {
@@ -282,7 +282,7 @@ export class ECStoreManager {
     }
   }
 
-  DeleteCStore() {
+  DeleteCStore(): void {
     try {
       let kvManager = distributedKVStore.createKVManager(this.cInfo.kvManagerConfig);
       console.info("Succeeded in creating KVManager");
@@ -305,6 +305,7 @@ export class ECStoreManager {
   private mover: Mover | null = null;
 }
 ```
+
 ### EntryAbility
 
 在EntryAbility类的中模拟在应用启动时，注册对COMMON_EVENT_SCREEN_LOCK_FILE_ACCESS_STATE_CHANGED公共事件的监听，并配置相应的数据库信息，密钥状态信息等。
@@ -446,6 +447,7 @@ export default class EntryAbility extends UIAbility {
   }
 }
 ```
+
 ### index按键事件
 
 提供案件 模拟应用操作数据库，如插入数据，删除数据，更新数据和获取数据数量的操作等。
