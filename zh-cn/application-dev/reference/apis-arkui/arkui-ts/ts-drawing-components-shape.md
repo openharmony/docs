@@ -26,9 +26,9 @@ Shape(value?: PixelMap)
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 |
-| -------- | -------- | -------- | -------- | -------- |
-| value | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) | 否 | - | 绘制目标，可将图形绘制在指定的PixelMap对象中，若未设置，则在当前绘制目标中进行绘制。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| value | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) | 否 | 绘制目标，可将图形绘制在指定的PixelMap对象中，若未设置，则在当前绘制目标中进行绘制。 |
 
 
 ## 属性
