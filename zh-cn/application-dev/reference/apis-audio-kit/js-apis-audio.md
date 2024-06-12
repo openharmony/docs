@@ -656,7 +656,11 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 
 ## InterruptForceType<sup>9+</sup>
 
-枚举，强制打断类型。
+枚举，音频打断类型。
+
+当用户监听到音频中断（即收到[InterruptEvent](#interruptevent9)事件）时，将获取此信息。
+
+此类型表示本次音频打断的操作是否已由系统强制执行，具体操作信息（如音频暂停、停止等）可通过[InterruptHint](#interrupthint)获取。关于音频打断策略的详细说明可参考[多音频播放的并发策略](../../media/audio/audio-playback-concurrency.md)。
 
 **元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
@@ -664,12 +668,18 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 
 | 名称            |  值    | 说明                                 |
 | --------------- | ------ | ------------------------------------ |
-| INTERRUPT_FORCE | 0      | 由系统进行操作，强制打断音频播放。   |
-| INTERRUPT_SHARE | 1      | 由应用进行操作，可以选择打断或忽略。 |
+| INTERRUPT_FORCE | 0      | 强制打断类型，即具体操作已由系统强制执行。   |
+| INTERRUPT_SHARE | 1      | 共享打断类型，即系统不执行具体操作，通过[InterruptHint](#interrupthint)提示并建议应用操作，应用可自行决策下一步处理方式。 |
 
 ## InterruptHint
 
 枚举，中断提示。
+
+当用户监听到音频中断（即收到[InterruptEvent](#interruptevent9)事件）时，将获取此信息。
+
+此类型表示根据焦点策略，当前需要对音频流的具体操作（如暂停、调整音量等）。
+
+可以结合InterruptEvent中的[InterruptForceType](#interruptforcetype9)信息，判断该操作是否已由系统强制执行。关于音频打断策略的详细说明可参考[多音频播放的并发策略](../../media/audio/audio-playback-concurrency.md)。
 
 **元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
@@ -677,12 +687,12 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 
 | 名称                               |  值     | 说明                                         |
 | ---------------------------------- | ------ | -------------------------------------------- |
-| INTERRUPT_HINT_NONE<sup>8+</sup>   | 0      | 无提示。                                     |
-| INTERRUPT_HINT_RESUME              | 1      | 提示音频恢复。                               |
-| INTERRUPT_HINT_PAUSE               | 2      | 提示音频暂停。                               |
-| INTERRUPT_HINT_STOP                | 3      | 提示音频停止。                               |
-| INTERRUPT_HINT_DUCK                | 4      | 提示音频躲避。（躲避：音量减弱，而不会停止） |
-| INTERRUPT_HINT_UNDUCK<sup>8+</sup> | 5      | 提示音量恢复。                               |
+| INTERRUPT_HINT_NONE<sup>8+</sup>   | 0      | 无提示。                                      |
+| INTERRUPT_HINT_RESUME              | 1      | 提示音频恢复，应用可主动触发开始渲染或开始采集的相关操作。<br>此操作无法由系统强制执行，其对应的[InterruptForceType](#interruptforcetype9)一定为INTERRUPT_SHARE类型。 |
+| INTERRUPT_HINT_PAUSE               | 2      | 提示音频暂停，暂时失去音频焦点。<br>后续待焦点可用时，会出现INTERRUPT_HINT_RESUME事件。  |
+| INTERRUPT_HINT_STOP                | 3      | 提示音频停止，彻底失去音频焦点。                |
+| INTERRUPT_HINT_DUCK                | 4      | 提示音频躲避开始，音频降低音量播放，而不会停止。 |
+| INTERRUPT_HINT_UNDUCK<sup>8+</sup> | 5      | 提示音量躲避结束，音频恢复正常音量。            |
 
 ## AudioStreamInfo<sup>8+</sup>
 
@@ -6760,9 +6770,11 @@ console.info(`setVolumeWithRamp: ${volume}`);
 
 on(type: 'audioInterrupt', callback: Callback\<InterruptEvent>): void
 
-监听音频中断事件，使用callback方式返回结果。
+监听音频中断事件（焦点变化），使用callback方式返回结果。
 
-与[on('interrupt')](#oninterruptdeprecated)一致，均用于监听焦点变化。AudioRenderer对象在start事件发生时会主动获取焦点，在pause、stop等事件发生时会主动释放焦点，不需要开发者主动发起获取焦点或释放焦点的申请。
+AudioRenderer对象在start事件发生时会主动获取焦点，在pause、stop等事件发生时会主动释放焦点，不需要开发者主动发起获取焦点或释放焦点的申请。
+
+调用此方法，在AudioRenderer对象获取焦点失败或发生中断事件（如被其他音频打断等）时，会收到[InterruptEvent](#interruptevent9)。建议应用可根据InterruptEvent的信息完成进一步处理，更多信息可参考[多音频播放的并发策略](../../media/audio/audio-playback-concurrency.md)。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Interrupt
 
@@ -6793,8 +6805,12 @@ onAudioInterrupt();
 
 async function onAudioInterrupt(){
   audioRenderer.on('audioInterrupt', (interruptEvent: audio.InterruptEvent) => {
+    // 在发生音频打断事件时，audioRenderer收到interruptEvent回调，此处根据其内容做相应处理。
+    // 1、可选：读取interruptEvent.forceType的类型，判断系统是否已强制执行相应操作。
+    // 注：默认焦点策略下，INTERRUPT_HINT_RESUME为INTERRUPT_SHARE类型，其余hintType均为INTERRUPT_FORCE类型。因此对forceType可不做判断。
+    // 2、必选：读取interruptEvent.hintType的类型，做出相应的处理。
     if (interruptEvent.forceType == audio.InterruptForceType.INTERRUPT_FORCE) {
-      // 由系统进行操作，强制打断音频渲染，应用需更新自身状态及显示内容等
+      // 音频焦点事件已由系统强制执行，应用需更新自身状态及显示内容等
       switch (interruptEvent.hintType) {
         case audio.InterruptHint.INTERRUPT_HINT_PAUSE:
           // 音频流已被暂停，临时失去焦点，待可重获焦点时会收到resume对应的interruptEvent
@@ -6821,34 +6837,16 @@ async function onAudioInterrupt(){
           break;
       }
     } else if (interruptEvent.forceType == audio.InterruptForceType.INTERRUPT_SHARE) {
-      // 由应用进行操作，应用可以自主选择打断或忽略
+      // 音频焦点事件需由应用进行操作，应用可以自主选择如何处理该事件，建议应用遵从InterruptHint提示处理
       switch (interruptEvent.hintType) {
         case audio.InterruptHint.INTERRUPT_HINT_RESUME:
           // 建议应用继续渲染（说明音频流此前被强制暂停，临时失去焦点，现在可以恢复渲染）
+          // 由于INTERRUPT_HINT_RESUME操作需要应用主动执行，系统无法强制，故INTERRUPT_HINT_RESUME事件一定为INTERRUPT_SHARE类型
           console.info('Resume force paused renderer or ignore');
           // 若选择继续渲染，需在此处主动执行开始渲染的若干操作
           break;
-        case audio.InterruptHint.INTERRUPT_HINT_PAUSE:
-          // 建议应用暂停渲染
-          console.info('Choose to pause or ignore');
-          // 若选择暂停渲染，需在此处主动执行暂停渲染的若干操作
-          break;
-        case audio.InterruptHint.INTERRUPT_HINT_STOP:
-          // 建议应用停止渲染
-          console.info('Choose to stop or ignore');
-          // 若选择停止渲染，需在此处主动执行停止渲染的若干操作
-          break;
-        case audio.InterruptHint.INTERRUPT_HINT_DUCK:
-          // 建议应用降低音量渲染
-          console.info('Choose to duck or ignore');
-          // 若选择降低音量渲染，需在此处主动执行降低音量渲染的若干操作
-          break;
-        case audio.InterruptHint.INTERRUPT_HINT_UNDUCK:
-          // 建议应用恢复正常音量渲染
-          console.info('Choose to unduck or ignore');
-          // 若选择恢复正常音量渲染，需在此处主动执行恢复正常音量渲染的若干操作
-          break;
         default:
+          console.info('Invalid interruptEvent');
           break;
       }
     }
@@ -8083,9 +8081,11 @@ if (info.deviceDescriptors[0].encodingTypes) {
 
 on(type: 'audioInterrupt', callback: Callback\<InterruptEvent>): void
 
-监听音频中断事件，使用callback方式返回结果。
+监听音频中断事件（焦点变化），使用callback方式返回结果。
 
-与[on('interrupt')](#oninterruptdeprecated)一致，均用于监听焦点变化。AudioCapturer对象在start事件发生时会主动获取焦点，在pause、stop等事件发生时会主动释放焦点，不需要开发者主动发起获取焦点或释放焦点的申请。
+AudioCapturer对象在start事件发生时会主动获取焦点，在pause、stop等事件发生时会主动释放焦点，不需要开发者主动发起获取焦点或释放焦点的申请。
+
+调用此方法，在AudioCapturer对象获取焦点失败或发生中断事件（如被其他音频打断等）时，会收到[InterruptEvent](#interruptevent9)。建议应用可根据InterruptEvent的信息完成进一步处理，更多信息可参考[多音频播放的并发策略](../../media/audio/audio-playback-concurrency.md)。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Interrupt
 
@@ -8115,8 +8115,12 @@ onAudioInterrupt();
 
 async function onAudioInterrupt(){
   audioCapturer.on('audioInterrupt', (interruptEvent: audio.InterruptEvent) => {
+    // 在发生音频打断事件时，audioCapturer收到interruptEvent回调，此处根据其内容做相应处理。
+    // 1、可选：读取interruptEvent.forceType的类型，判断系统是否已强制执行相应操作。
+    // 注：默认焦点策略下，INTERRUPT_HINT_RESUME为INTERRUPT_SHARE类型，其余hintType均为INTERRUPT_FORCE类型。因此对forceType可不做判断。
+    // 2、必选：读取interruptEvent.hintType的类型，做出相应的处理。
     if (interruptEvent.forceType == audio.InterruptForceType.INTERRUPT_FORCE) {
-      // 由系统进行操作，强制打断音频采集，应用需更新自身状态及显示内容等
+      // 音频焦点事件已由系统强制执行，应用需更新自身状态及显示内容等
       switch (interruptEvent.hintType) {
         case audio.InterruptHint.INTERRUPT_HINT_PAUSE:
           // 音频流已被暂停，临时失去焦点，待可重获焦点时会收到resume对应的interruptEvent
@@ -8133,24 +8137,16 @@ async function onAudioInterrupt(){
           break;
       }
     } else if (interruptEvent.forceType == audio.InterruptForceType.INTERRUPT_SHARE) {
-      // 由应用进行操作，应用可以自主选择打断或忽略
+      // 音频焦点事件需由应用进行操作，应用可以自主选择如何处理该事件，建议应用遵从InterruptHint提示处理
       switch (interruptEvent.hintType) {
         case audio.InterruptHint.INTERRUPT_HINT_RESUME:
           // 建议应用继续采集（说明音频流此前被强制暂停，临时失去焦点，现在可以恢复采集）
+          // 由于INTERRUPT_HINT_RESUME操作需要应用主动执行，系统无法强制，故INTERRUPT_HINT_RESUME事件一定为INTERRUPT_SHARE类型
           console.info('Resume force paused renderer or ignore');
           // 若选择继续采集，需在此处主动执行开始采集的若干操作
           break;
-        case audio.InterruptHint.INTERRUPT_HINT_PAUSE:
-          // 建议应用暂停采集
-          console.info('Choose to pause or ignore');
-          // 若选择暂停采集，需在此处主动执行暂停采集的若干操作
-          break;
-        case audio.InterruptHint.INTERRUPT_HINT_STOP:
-          // 建议应用停止采集
-          console.info('Choose to stop or ignore');
-          // 若选择停止采集，需在此处主动执行停止采集的若干操作
-          break;
         default:
+          console.info('Invalid interruptEvent');
           break;
       }
     }

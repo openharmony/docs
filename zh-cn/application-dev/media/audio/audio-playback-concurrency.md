@@ -67,8 +67,9 @@ async function onAudioInterrupt(): Promise<void> {
   // 此处以使用AudioRenderer开发音频播放功能举例，变量audioRenderer即为播放时创建的AudioRenderer实例。
   audioRenderer.on('audioInterrupt', async(interruptEvent: audio.InterruptEvent) => {
     // 在发生音频打断事件时，audioRenderer收到interruptEvent回调，此处根据其内容做相应处理
-    // 先读取interruptEvent.forceType的类型，判断系统是否已强制执行相应操作
-    // 再读取interruptEvent.hintType的类型，做出相应的处理
+    // 1. 可选：读取interruptEvent.forceType的类型，判断系统是否已强制执行相应操作。
+    // 注：默认焦点策略下，INTERRUPT_HINT_RESUME为INTERRUPT_SHARE类型，其余hintType均为INTERRUPT_FORCE类型。因此对forceType可不做判断。
+    // 2. 必选：读取interruptEvent.hintType的类型，做出相应的处理。
     if (interruptEvent.forceType === audio.InterruptForceType.INTERRUPT_FORCE) {
       // 强制打断类型（INTERRUPT_FORCE）：音频相关处理已由系统执行，应用需更新自身状态，做相应调整
        switch (interruptEvent.hintType) {
