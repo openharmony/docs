@@ -411,9 +411,9 @@ let avScreenCaptureRecorder: media.AVScreenCaptureRecorder;
 media.createAVScreenCaptureRecorder().then((captureRecorder: media.AVScreenCaptureRecorder) => {
   if (captureRecorder != null) {
     avScreenCaptureRecorder = captureRecorder;
-    console.info('createAVScreenCaptureRecorder success');
+    console.info('Succeeded in createAVScreenCaptureRecorder');
   } else {
-    console.error('createAVScreenCaptureRecorder fail');
+    console.error('Failed to createAVScreenCaptureRecorder');
   }
 }).catch((error: BusinessError) => {
   console.error(`createAVScreenCaptureRecorder catchCallback, error message:${error.message}`);
@@ -6568,7 +6568,7 @@ setMimeType(mimeType: AVMimeTypes): void
 
 ## AVScreenCaptureRecorder<sup>12+</sup>
 
-屏幕录制管理类，用于进行屏幕录制。在调用AVScreenCaptureRecorder的方法前，需要先通过createAVScreenCaptureRecorder()创建一个AVScreenCaptureRecorder实例。
+屏幕录制管理类，用于进行屏幕录制。在调用AVScreenCaptureRecorder的方法前，需要先通过[createAVScreenCaptureRecorder()](#mediacreateavscreencapturerecorder12)创建一个AVScreenCaptureRecorder实例。
 
 ### init<sup>12+</sup>
 
@@ -6601,6 +6601,8 @@ init(config: AVScreenCaptureRecordConfig): Promise\<void>
 **示例：**
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let avCaptureConfig: media.AVScreenCaptureRecordConfig = {
     fd: 0, // 文件需要先有调用者创建，赋予写权限，将文件fd传给此参数
     frameWidth: 640,
@@ -6609,9 +6611,9 @@ let avCaptureConfig: media.AVScreenCaptureRecordConfig = {
 }
 
 avScreenCaptureRecorder.init(avCaptureConfig).then(() => {
-    console.info('avScreenCaptureRecorder init success');
+    console.info('Succeeded in initing avScreenCaptureRecorder');
 }).catch((err: BusinessError) => {
-    console.info('avScreenCaptureRecorder init failed, error: ' + err.message);
+    console.info('Failed to init avScreenCaptureRecorder, error: ' + err.message);
 })
 ```
 
@@ -6639,10 +6641,12 @@ startRecording(): Promise\<void>
 **示例：**
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
 avScreenCaptureRecorder.startRecording().then(() => {
-    console.info('avScreenCaptureRecorder start success');
+    console.info('Succeeded in starting avScreenCaptureRecorder');
 }).catch((err: BusinessError) => {
-    console.info('avScreenCaptureRecorder start failed, error: ' + err.message);
+    console.info('Failed to start avScreenCaptureRecorder, error: ' + err.message);
 })
 ```
 
@@ -6670,10 +6674,12 @@ stopRecording(): Promise\<void>
 **示例：**
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
 avScreenCaptureRecorder.stopRecording().then(() => {
-    console.info('avScreenCaptureRecorder stop success');
+    console.info('Succeeded in stopping avScreenCaptureRecorder');
 }).catch((err: BusinessError) => {
-    console.info('avScreenCaptureRecorder stop failed, error: ' + err.message);
+    console.info('Failed to stop avScreenCaptureRecorder, error: ' + err.message);
 })
 ```
 
@@ -6707,10 +6713,12 @@ setMicEnabled(enable: boolean): Promise\<void>
 **示例：**
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
 avScreenCaptureRecorder.setMicEnabled(true).then(() => {
-    console.info('avScreenCaptureRecorder setMicEnabled success');
+    console.info('Succeeded in setMicEnabled avScreenCaptureRecorder');
 }).catch((err: BusinessError) => {
-    console.info('avScreenCaptureRecorder setMicEnabled failed, error: ' + err.message);
+    console.info('Failed to setMicEnabled avScreenCaptureRecorder, error: ' + err.message);
 })
 ```
 
@@ -6738,10 +6746,12 @@ release(): Promise\<void>
 **示例：**
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
 avScreenCaptureRecorder.release().then(() => {
-    console.info('avScreenCaptureRecorder release success');
+    console.info('Succeeded in releasing avScreenCaptureRecorder');
 }).catch((err: BusinessError) => {
-    console.info('avScreenCaptureRecorder release failed, error: ' + err.message);
+    console.info('Faile to release avScreenCaptureRecorder, error: ' + err.message);
 })
 ```
 
@@ -6758,7 +6768,7 @@ on(type: 'stateChange', callback: Callback\<AVScreenCaptureStateCode>): void
 | 参数名   | 类型     | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string   | 是   | 状态切换事件回调类型，支持的事件：'stateChange'。            |
-| callback | function | 是   | 状态切换事件回调方法，AVScreenCaptureStateCode表示切换到的状态。 |
+| callback | function | 是   | 状态切换事件回调方法，[AVScreenCaptureStateCode](#avscreencapturestatecode12)表示切换到的状态。 |
 
 **示例：**
 
@@ -6781,7 +6791,7 @@ on(type: 'error', callback: ErrorCallback): void
 | 参数名   | 类型          | 必填 | 说明                                    |
 | -------- | ------------- | ---- | --------------------------------------- |
 | type     | string        | 是   | 错误事件回调类型，支持的事件：'error'。 |
-| callback | ErrorCallback | 是   | 录屏错误事件回调方法。                  |
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | 是   | 录屏错误事件回调方法。                  |
 
 **错误码：**
 
@@ -6811,7 +6821,7 @@ avScreenCaptureRecorder.on('error', (err: BusinessError) => {
 | 参数名   | 类型     | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string   | 是   | 状态切换事件回调类型，支持的事件：'stateChange'。            |
-| callback | function | 否   | 状态切换事件回调方法，AVScreenCaptureStateCode表示切换到的状态，不填此参数则会取消最后一次订阅事件。 |
+| callback | function | 否   | 状态切换事件回调方法，[AVScreenCaptureStateCode](#avscreencapturestatecode12)表示切换到的状态，不填此参数则会取消最后一次订阅事件。 |
 
 **示例：**
 
@@ -6832,7 +6842,7 @@ off(type: 'error', callback?: ErrorCallback): void
 | 参数名   | 类型     | 必填 | 说明                                                       |
 | -------- | -------- | ---- | ---------------------------------------------------------- |
 | type     | string   | 是   | 状态切换事件回调类型，支持的事件：'error'。                |
-| callback | function | 否   | 录屏错误事件回调方法，不填此参数则会取消最后一次订阅事件。 |
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | 否   | 录屏错误事件回调方法，不填此参数则会取消最后一次订阅事件。 |
 
 **示例：**
 
