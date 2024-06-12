@@ -673,7 +673,7 @@
 | ----------- | ------------------------ |
 | PLACEHOLDER | 显示的数据为通用占位符。 |
 
-## TransitionEdge<sup>10+<sup>
+## TransitionEdge<sup>10+</sup>
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -684,7 +684,7 @@
 | START  | 窗口的左边缘 |
 | END    | 窗口的右边缘 |
 
-## ClickEffectLevel<sup>10+<sup>
+## ClickEffectLevel<sup>10+</sup>
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -792,7 +792,7 @@ Nullable\<T> {
 | REMOVED   | 当整个动画结束并立即删除时，将触发回调。                         |
 | LOGICALLY | 当动画在逻辑上处于下降状态，但可能仍处于其长尾状态时，将触发回调。 |
 
-## BlurOptions<sup>11+<sup>
+## BlurOptions<sup>11+</sup>
 灰阶模糊参数。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
@@ -801,13 +801,13 @@ Nullable\<T> {
 | ----        |  ----   |   ---- | --------------------------  |
 | grayscale   |  [number, number]   |   是   |  灰阶模糊参数，两参数取值范围均为[0,127] 。对图像中的黑白色进行色阶调整，使其趋于灰色更为柔和美观，对图像中的彩色调整没有效果。参数一表示对黑色的提亮程度，参数二表示对白色的压暗程度，参数值越大调整效果越明显（黑白色变得越灰），有效值范围0-127。例如：设置参数为（20,20），图片中的黑色像素RGB:[0, 0, 0]会调整为[20,20,20]，白色像素RGB:[255,255,25]会调整为[235,235,235]（255-20），图像中的彩色像素维持不变。 |
 
-## ForegroundEffectOptions<sup>12+<sup>
+## ForegroundEffectOptions<sup>12+</sup>
 前景效果参数。
 | 名称        |   类型         |   必填 |  说明                        |
 | ----         |  ----         |   ---- | --------------------------  |
 | radius       | number        |   是   |   模糊半径，取值范围：[0, +∞)，默认为0。<br/> 仅在组件范围内生效，与其他接口连用时超出组件范围的效果无法生效。     |
 
-## BackgroundEffectOptions<sup>11+<sup>
+## BackgroundEffectOptions<sup>11+</sup>
 背景效果参数。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
@@ -916,6 +916,15 @@ Nullable\<T> {
 | ---------------| ---------------------------------------------------------------- |
 | FAST           |   在目标图像上按顺序混合视图的内容。                        |
 | OFFSCREEN      |   将此组件和子组件内容绘制到离屏画布上，然后整体进行混合。    |
+
+## DismissReason<sup>12+</sup>
+
+| 名称          | 值   | 描述                                                         |
+| ------------- | ---- | ------------------------------------------------------------ |
+| PRESS_BACK    | 0    | 点击三键back、左滑/右滑、键盘ESC。                           |
+| TOUCH_OUTSIDE | 1    | 点击遮障层时。                                               |
+| CLOSE_BUTTON  | 2    | 点击关闭按钮。                                               |
+| SLIDE_DOWN    | 3    | 下拉关闭。<br/>**说明：** <br/>该接口仅支持在[半模态转场](ts-universal-attributes-sheet-transition.md)中使用。 |
 
 ## ChainStyle<sup>12+</sup>
 

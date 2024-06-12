@@ -65,6 +65,8 @@ ChipSize是chip可指定的尺寸类型，如普通型Chip。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称   | 值       | 描述               |
 | ------ | -------- | ------------------ |
 | NORMAL | "NORMAL" | normal尺寸操作块。 |
@@ -73,6 +75,8 @@ ChipSize是chip可指定的尺寸类型，如普通型Chip。
 ## IconCommonOptions
 
 IconCommonOptions定义图标的共通属性。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称      | 类型                                       | 必填 | 说明                                                         |
 | --------- | ------------------------------------------ | ---- | ------------------------------------------------------------ |
@@ -94,6 +98,8 @@ PrefixIconOptions定义前缀图标的属性。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 ## SuffixIconOptions
 
 SuffixIconOptions定义后缀图标的属性。
@@ -102,6 +108,8 @@ SuffixIconOptions定义后缀图标的属性。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称   | 类型       | 必填 | 说明               |
 | ------ | ---------- | ---- | ------------------ |
 | action | () => void | 否   | 后缀图标设定事件。 |
@@ -109,6 +117,8 @@ SuffixIconOptions定义后缀图标的属性。
 ## LabelOptions
 
 LabelOptions定义文本的属性。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称        | 类型                                       | 必填 | 说明                                                         |
 | ----------- | ------------------------------------------ | ---- | ------------------------------------------------------------ |
@@ -125,6 +135,8 @@ LabelMarginOptions定义文本与左右侧图标之间间距。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称  | 类型                                 | 必填 | 说明                                                     |
 | ----- | ------------------------------------ | ---- | -------------------------------------------------------- |
 | left  | [Dimension](ts-types.md#dimension10) | 否   | 文本与左侧图标之间间距，不支持百分比。<br/>默认值：6vp。 |
@@ -134,6 +146,8 @@ LabelMarginOptions定义文本与左右侧图标之间间距。
 ## 示例
 
 ### 示例1
+
+自定义删除图标的操作快。
 
 ```ts
 import { Chip, ChipSize } from '@ohos.arkui.advanced.Chip';
@@ -147,19 +161,19 @@ struct Index {
         prefixIcon: {
           src: $r('app.media.chips'),
           size: { width: 16, height: 16 },
-          fillColor: Color.Red,
+          fillColor: Color.Red
         },
         label: {
           text: "操作块",
           fontSize: 12,
           fontColor: Color.Blue,
           fontFamily: "HarmonyOS Sans",
-          labelMargin: { left: 20, right: 30 },
+          labelMargin: { left: 20, right: 30 }
         },
         suffixIcon: {
           src: $r('app.media.close'),
           size: { width: 16, height: 16 },
-          fillColor: Color.Red,
+          fillColor: Color.Red
         },
         size: ChipSize.NORMAL,
         allowClose: false,
@@ -177,6 +191,8 @@ struct Index {
 
 ### 示例2
 
+使用默认删除图标的操作快。
+
 ```ts
 import { Chip, ChipSize } from '@ohos.arkui.advanced.Chip';
 
@@ -189,14 +205,14 @@ struct Index {
         prefixIcon: {
           src: $r('app.media.chips'),
           size: { width: 16, height: 16 },
-          fillColor: Color.Blue,
+          fillColor: Color.Blue
         },
         label: {
           text: "操作块",
           fontSize: 12,
           fontColor: Color.Blue,
           fontFamily: "HarmonyOS Sans",
-          labelMargin: { left: 20, right: 30 },
+          labelMargin: { left: 20, right: 30 }
         },
         size: ChipSize.NORMAL,
         allowClose: true,
@@ -214,6 +230,8 @@ struct Index {
 
 ### 示例3
 
+不显示删除图标的操作快。
+
 ```ts
 import { Chip, ChipSize } from '@ohos.arkui.advanced.Chip';
 
@@ -226,14 +244,14 @@ struct Index {
         prefixIcon: {
           src: $r('app.media.chips'),
           size: { width: 16, height: 16 },
-          fillColor: Color.Blue,
+          fillColor: Color.Blue
         },
         label: {
           text: "操作块",
           fontSize: 12,
           fontColor: Color.Blue,
           fontFamily: "HarmonyOS Sans",
-          labelMargin: { left: 20, right: 30 },
+          labelMargin: { left: 20, right: 30 }
         },
         size: ChipSize.SMALL,
         allowClose: false,
@@ -253,6 +271,8 @@ struct Index {
 ![](figures/chip3.png)
 
 ### 示例4
+
+激活态操作快。
 
 ```ts
 import { Chip, ChipSize } from '@ohos.arkui.advanced.Chip';
@@ -277,7 +297,7 @@ struct Index {
           fontColor: Color.Blue,
           activatedFontColor: $r('sys.color.ohos_id_color_text_primary_contrary'),
           fontFamily: "HarmonyOS Sans",
-          labelMargin: { left: 20, right: 30 },
+          labelMargin: { left: 20, right: 30 }
         },
         size: ChipSize.NORMAL,
         allowClose: true,
