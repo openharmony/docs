@@ -483,7 +483,7 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 
 ## tag.getTagInfo<sup>9+</sup>
 
-getTagInfo(want: [Want](../apis-ability-kit/js-apis-app-ability-want.md#Want)): [TagInfo](#taginfo)
+getTagInfo(want: [Want](../apis-ability-kit/js-apis-app-ability-want.md)): [TagInfo](#taginfo)
 
 Obtains **TagInfo** from **Want**, which is initialized by the NFC service and contains the attributes required by **TagInfo**.
 
@@ -495,7 +495,7 @@ Obtains **TagInfo** from **Want**, which is initialized by the NFC service and c
 
 | Name| Type                                    | Mandatory| Description                                               |
 | ------ | ---------------------------------------- | ---- | --------------------------------------------------- |
-| want   | [Want](../apis-ability-kit/js-apis-app-ability-want.md#Want) | Yes  | Data obtained from the parameters of the **onCreate** entry function when an ability is dispatched.|
+| want   | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | Data obtained from the parameters of the **onCreate** entry function when an ability is dispatched.|
 
 **Return value**
 
@@ -1134,4 +1134,4 @@ Enumerates the MIFARE Ultralight tag types.
 | TYPE_UNKNOWN      | 0      | Unknown type.     |
 | TYPE_ULTRALIGHT   | 1      | MIFARE Ultralight.  |
 | TYPE_ULTRALIGHT_C | 2      | MIFARE Ultralight C.|
-<!--no_check-->
+

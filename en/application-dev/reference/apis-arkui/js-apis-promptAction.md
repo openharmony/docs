@@ -555,4 +555,4 @@ Describes the menu item button in the action menu.
 | ----- | ---------------------------------------- | ---- | ------- |
 | text  | string\| [Resource](arkui-ts/ts-types.md#resource)<sup>9+</sup>| Yes   | Button text.|
 | color | string\| [Resource](arkui-ts/ts-types.md#resource)<sup>9+</sup>| Yes   | Text color of the button.|
-<!--no_check-->
+ 

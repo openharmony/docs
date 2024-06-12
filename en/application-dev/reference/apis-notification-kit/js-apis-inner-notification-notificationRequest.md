@@ -59,4 +59,4 @@ Describes distributed notification options.
 | isDistributed<sup>8+<sup>          | boolean        | No  | Whether the notification is a distributed notification.                  |
 | supportDisplayDevices<sup>8+<sup>  | Array\<string> | No  | List of the devices to which the notification can be synchronized.           |
 | supportOperateDevices<sup>8+<sup>  | Array\<string> | No  | List of the devices on which the notification can be opened.             |
-<!--no_check-->
+ 

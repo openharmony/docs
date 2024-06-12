@@ -93,4 +93,4 @@ The table below lists the available **hilog** command line options.
 | nsec | Displays the time in nanoseconds.| 
 | year | Displays the time with the year portion.| 
 | zone | Displays the time with the local time zone.| 
-<!--no_check-->
+ 

@@ -16,4 +16,4 @@ The **NotificationActionButton** module provides APIs for defining the button di
 | wantAgent | [WantAgent](../apis-ability-kit/js-apis-wantAgent.md)   | No | Yes | **WantAgent** of the button.|
 | extras    | { [key: string]: any }                          | No | No | Extra information of the button.             |
 | userInput<sup>8+</sup> | [NotificationUserInput](js-apis-inner-notification-notificationUserInput.md) | No | No | User input object.         |
-<!--no_check-->
+ 

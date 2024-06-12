@@ -597,4 +597,4 @@ let options: AnimatorOptions = { // The explicit type AnimatorOptions does not n
 };
 this.animator = animator.createAnimator(options);
 ```
-<!--no_check-->
+ 

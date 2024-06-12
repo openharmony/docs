@@ -61,4 +61,4 @@ To develop the Emitter mode, perform the following steps:
    emitter.emit(event, eventData);
    ```
 
- <!--no_check--> 
+   

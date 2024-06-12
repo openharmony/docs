@@ -44,4 +44,4 @@ Indicates that the user cleared the application package cache.
 When the cache of an application package installed on the device is cleared, the event notification service is triggered to publish this event.
 
 APIs related to this event: **cleanBundleCacheFiles**. For details, see [API Reference](../../apis-ability-kit/Readme-EN.md).
-<!--no_check-->
+ 

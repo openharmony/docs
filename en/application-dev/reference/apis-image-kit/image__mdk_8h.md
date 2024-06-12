@@ -46,4 +46,4 @@ Declares the APIs used to access the image rectangle, size, format, and componen
 | [OH_Image_Format](image.md#oh_image_format) (const [ImageNative](image.md#imagenative) \*native, int32_t \*format) | Obtains the image format of an **ImageNative** object.| 
 | [OH_Image_GetComponent](image.md#oh_image_getcomponent) (const [ImageNative](image.md#imagenative) \*native, int32_t componentType, struct [OhosImageComponent](_o_h_o_s_1_1_media_1_1_ohos_image_component.md) \*componentNative) | Obtains [OhosImageComponent](_o_h_o_s_1_1_media_1_1_ohos_image_component.md) of an **ImageNative** object.| 
 | [OH_Image_Release](image.md#oh_image_release) ([ImageNative](image.md#imagenative) \*native) | Releases an **ImageNative** object.| 
-<!--no_check-->
+ 

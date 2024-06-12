@@ -19,4 +19,4 @@
 | [call(uri: string, method: string, arg: string, extras: PacMap, callback: AsyncCallback&lt;PacMap&gt;): void;](../reference/apis-ability-kit/js-apis-inner-ability-dataAbilityHelper.md#dataabilityhelpercall)<br>[call(uri: string, method: string, arg: string, extras: PacMap): Promise&lt;PacMap&gt;;](../reference/apis-ability-kit/js-apis-inner-ability-dataAbilityHelper.md#dataabilityhelpercall-1) | There is no corresponding API in the stage model.| No corresponding API is provided.|
 | [executeBatch(uri: string, operations: Array&lt;DataAbilityOperation&gt;, callback: AsyncCallback&lt;Array&lt;DataAbilityResult&gt;&gt;): void;](../reference/apis-ability-kit/js-apis-inner-ability-dataAbilityHelper.md#dataabilityhelperexecutebatch)<br>[executeBatch(uri: string, operations: Array&lt;DataAbilityOperation&gt;): Promise&lt;Array&lt;DataAbilityResult&gt;&gt;;](../reference/apis-ability-kit/js-apis-inner-ability-dataAbilityHelper.md#dataabilityhelperexecutebatch-1) | There is no corresponding API in the stage model.| No corresponding API is provided.|
 
- <!--no_check--> 
+   

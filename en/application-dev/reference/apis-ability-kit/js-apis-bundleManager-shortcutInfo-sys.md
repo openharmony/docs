@@ -40,4 +40,4 @@ The **ShortcutInfo** module defines shortcut information configured in the confi
 | labelId    | number                                     | Yes  | No  | ID of the shortcut label.          |
 | wants                   | Array\<[ShortcutWant](#shortcutwant)> | Yes  | No  | Want information required for the shortcut.       |
 
-<!--no_check-->
+ 

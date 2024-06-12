@@ -114,4 +114,4 @@ The lower the FAR, the higher the FRR. In other words, the more secure the authe
 
 When a third-party application needs to use the local authentication capability of the system, the built-in user authentication widget must be used.
 
-<!--no_check-->
+ 
