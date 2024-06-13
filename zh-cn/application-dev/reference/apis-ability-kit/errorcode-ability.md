@@ -657,6 +657,44 @@ Ability already running.
 
 当目标Ability的launchType是singleton或者specified时，避免通过指定processMode和startupVisibility的方式重复startAbility。
 
+## 16000069 严格模式下不允许该类型Extension启动三方应用
+
+**错误信息**
+
+The extension cannot start the third party application.
+
+**错误描述**
+
+严格模式下，不允许该类型Extension启动三方应用。
+
+**可能原因**
+
+当前Extension处于严格模式，且对应的Extension类型不允许严格模式下启动其他三方应用。
+
+**处理步骤**
+
+1. 查看[对应Extension类型](../../application-models/extensionability-overview.md)严格模式开启条件。
+2. 以非严格模式启动当前Extension。
+
+## 16000070 严格模式下不允许该类型Extension启动指定ServiceExtensionAbility
+
+**错误信息**
+
+The extension cannot start the service.
+
+**错误描述**
+
+严格模式下，不允许该类型Extension启动指定ServiceExtensionAbility。
+
+**可能原因**
+
+当前Extension处于严格模式，且对应的Extension类型不允许严格模式下启动指定ServiceExtensionAbility。
+
+**处理步骤**
+
+1. 查看[对应Extension类型](../../application-models/extensionability-overview.md)严格模式开启条件。
+2. 以非严格模式启动当前Extension。
+
 ## 16000071 不支持应用分身模式
 
 **错误信息**
