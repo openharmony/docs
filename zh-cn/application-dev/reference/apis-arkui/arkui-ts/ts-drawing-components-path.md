@@ -21,11 +21,11 @@ Path(value?: { width?: number | string; height?: number | string; commands?: str
 
 **参数:**
 
-| 参数名                                             | 参数类型         | 必填 | 参数描述                                                     |
+| 参数名                                             | 类型         | 必填 | 说明                                                     |
 | -------------------------------------------------- | ---------------- | ---- | ------------------------------------------------------------ |
-| width                                              | number \| string | 否   | 路径所在矩形的宽度<br/>**说明：**<br/>值为异常值或缺省时按照自身内容需要的宽度处理。 |
-| height                                             | number \| string | 否   | 路径所在矩形的高度<br/>**说明：**<br/>值为异常值或缺省时按照自身内容需要的高度处理。 |
-| [commands](ts-drawing-components-path.md#commands) | string           | 否   | 路径绘制的命令字符串<br/>默认值：''<br/>**说明：**<br/>异常值按照默认值处理。 |
+| width                                              | number \| string | 否   | 路径所在矩形的宽度<br/>值为异常值或缺省时按照自身内容需要的宽度处理。 |
+| height                                             | number \| string | 否   | 路径所在矩形的高度<br/>值为异常值或缺省时按照自身内容需要的高度处理。 |
+| [commands](ts-drawing-components-path.md#commands) | string           | 否   | 路径绘制的命令字符串<br/>默认值：''<br/>异常值按照默认值处理。 |
 
 ## 属性
 
