@@ -59,6 +59,6 @@ Application resources can be accessed via an absolute or relative path. In this 
 
 ## Configuration Files
 
-If you are developing a widget in the FA model, configure the **config.json** file. For details, see [Configuring the Widget Configuration File in FA Model](../../../application-models/widget-development-fa.md#configuring-the-widget-configuration-file).
+If you are developing a widget in the FA model, configure the **config.json** file. For details, see [Overview of Application Configuration Files in FA Model](../../../quick-start/application-configuration-file-overview-fa.md).
 
-If you are developing a widget in the stage model, configure **ExtensionAbility** under **extensionAbilities** in the **module.json5** file. For details, see [Configuring the Widget Configuration File in Stage Model](../../../application-models/arkts-ui-widget-configuration.md).
+If you are developing a widget in the stage model, configure **ExtensionAbility** under **extensionAbilities** in the **module.json5** file. For details, see [Overview of Application Configuration Files in Stage Model](../../../quick-start/application-configuration-file-overview-stage.md).

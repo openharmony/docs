@@ -13,10 +13,10 @@ Before developing an application related to HCE, you must declare NFC-related at
 ```json
 {
   "module": {
-    // Other declared attributes.
+    // other declared attributes.
     "abilities": [
       {
-        // Other declared attributes.
+        // other declared attributes.
         "skills": [
           {
             "actions": [
@@ -78,10 +78,12 @@ Enumerates the types of services used by the card emulation application.
 
 **System capability**: SystemCapability.Communication.NFC.CardEmulation
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 | Name     | Value        | Description               |
 | ------- | --------- | ----------------- |
-| PAYMENT | "payment" | Payment service. |
-| OTHER   | "other"   | Other services. |
+| PAYMENT | "payment" | Payment service.|
+| OTHER   | "other"   | Other services.|
 
 ## isSupported<sup>(deprecated)</sup>
 
@@ -129,12 +131,12 @@ Checks whether the device supports HCE.
 ```js
 import cardEmulation from '@ohos.nfc.cardEmulation';
 
-let isHceSupported = cardEmulation.isSupported(cardEmulation.FeatureType.HCE);
+let isHceSupported: boolean = cardEmulation.isSupported(cardEmulation.FeatureType.HCE);
 if (!isHceSupported) {
     console.log('this device is not supported for HCE, ignore it.');
 }
 
-let hasHceCap = cardEmulation.hasHceCapability();
+let hasHceCap: boolean = cardEmulation.hasHceCapability();
 if (!hasHceCap) {
     console.log('this device hasHceCapability false, ignore it.');
 }
@@ -169,12 +171,21 @@ Checks whether an application is the default application of the specified servic
 ```js
 import cardEmulation from '@ohos.nfc.cardEmulation';
 import bundleManager from '@ohos.bundle.bundleManager';
-
-let elementName : bundleManager.ElementName;
+import Want from '@ohos.app.ability.Want';
 
 // Initialize elementName here. bundleName and abilityName are required.
+let want: Want = {
+  bundleName: "com.example.myapplication",
+  moduleName: "entry",
+  abilityName: "EntryAbility"
+};
+let elementName: bundleManager.ElementName = {
+  bundleName: "com.example.myapplication",
+  moduleName: "entry",
+  abilityName: "EntryAbility"
+};
 
-let isDefaultService = cardEmulation.isDefaultService(elementName, cardEmulation.CardType.PAYMENT);
+let isDefaultService: boolean = cardEmulation.isDefaultService(elementName, cardEmulation.CardType.PAYMENT);
 // Do something according to the isDefaultService value.
 ```
 
@@ -301,7 +312,7 @@ Registers a callback to receive APDUs from the peer card reader. The application
 | Name  | Type                   | Mandatory| Description                                        |
 | -------- | ----------------------- | ---- | -------------------------------------------- |
 | type     | string                  | Yes  | Callback type to register. It has a fixed value of **hceCmd**.                        |
-| callback | AsyncCallback\<number[]> | Yes  | Callback invoked to return the APDU, which consists of hexadecimal numbers ranging from **0x00** to **0xFF**.|
+| callback | AsyncCallback\<number[]> | Yes  | Callback used to return the APDU, which consists of hexadecimal numbers ranging from **0x00** to **0xFF**.|
 
 **Example**
 ```js
@@ -310,16 +321,18 @@ import hilog from '@ohos.hilog';
 import cardEmulation from '@ohos.nfc.cardEmulation';
 import { AsyncCallback } from '@ohos.base';
 import { ElementName } from './bundleManager/ElementName'
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import Want from '@ohos.app.ability.Want';
 
 let hceService: cardEmulation.HceService = new cardEmulation.HceService();
 let element: ElementName;
 
 export default class EntryAbility extends UIAbility {
-  onCreate(want, launchParam) {
+  onCreate(want: Want, param: AbilityConstant.LaunchParam) {
     hilog.info(0x0000, 'testHce', '%{public}s', 'Ability onCreate');
     element = {
-      bundleName: want.bundleName,
-      abilityName: want.abilityName,
+      bundleName: want.bundleName = '',
+      abilityName: want.abilityName = '',
       moduleName: want.moduleName
     }
     const apduCallback: AsyncCallback<number[]> = (err, data) => {
@@ -422,7 +435,7 @@ Transmits an APDU to the peer card reader. This API uses an asynchronous callbac
 | Name | Type    | Mandatory| Description                   |
 | ------- | -------- | ---- | ----------------------- |
 | response | number[] | Yes  | Response APDU sent to the peer card reader. The value consists of hexadecimal numbers ranging from **0x00** to **0xFF**.|
-| callback | AsyncCallback\<void> | Yes  | Callback invoked to return the result.|
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
 
 **Error codes**
 
@@ -445,13 +458,13 @@ try {
 
   hceService.transmit(responseData, (err : BusinessError)=> {
     if (err) {
-      console.error("transmit AsyncCallback err Code: ${err.code}, message: ${err.message}");
+      console.error(`transmit AsyncCallback err Code: ${err.code}, message: ${err.message}`);
     } else {
       console.log("transmit AsyncCallback success.");
     }
   });
-} catch (busiError) {
-  console.error("transmit AsyncCallback catch Code: ${(busiError as Businsess).code}, " +
-    "message: ${(busiError as Businsess).message}");
+} catch (error) {
+  console.error(`transmit AsyncCallback catch Code: ${(error as BusinessError).code}, ` +
+    `message: ${(error as BusinessError).message}`);
 }
 ```
