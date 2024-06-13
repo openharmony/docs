@@ -235,7 +235,9 @@ getBundleInfoForSelf(bundleFlags: number): Promise\<BundleInfo>
 import bundleManager from '@ohos.bundle.bundleManager';
 import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
+
 let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_APPLICATION | bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_METADATA;
+
 try {
   bundleManager.getBundleInfoForSelf(bundleFlags).then((data) => {
     hilog.info(0x0000, 'testTag', 'getBundleInfoForSelf successfully. Data: %{public}s', JSON.stringify(data));
@@ -280,6 +282,7 @@ getBundleInfoForSelf(bundleFlags: number, callback: AsyncCallback\<BundleInfo>):
 import bundleManager from '@ohos.bundle.bundleManager';
 import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
+
 let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_HAP_MODULE | bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_ABILITY | bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_REQUESTED_PERMISSION;
 
 try {
@@ -336,6 +339,7 @@ getProfileByAbility(moduleName: string, abilityName: string, metadataName: strin
 import bundleManager from '@ohos.bundle.bundleManager';
 import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
+
 let moduleName = 'entry';
 let abilityName = 'EntryAbility';
 let metadataName = 'ability_metadata';
@@ -399,6 +403,7 @@ getProfileByAbility(moduleName: string, abilityName: string, metadataName?: stri
 import bundleManager from '@ohos.bundle.bundleManager';
 import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
+
 let moduleName = 'entry';
 let abilityName = 'EntryAbility';
 
@@ -418,9 +423,11 @@ try {
 import bundleManager from '@ohos.bundle.bundleManager';
 import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
+
 let moduleName = 'entry';
 let abilityName = 'EntryAbility';
 let metadataName = 'ability_metadata';
+
 try {
   bundleManager.getProfileByAbility(moduleName, abilityName, metadataName).then((data) => {
     hilog.info(0x0000, 'testTag', 'getProfileByAbility successfully. Data: %{public}s', JSON.stringify(data));
@@ -478,6 +485,7 @@ getProfileByAbilitySync(moduleName: string, abilityName: string, metadataName?: 
 import bundleManager from '@ohos.bundle.bundleManager';
 import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
+
 let moduleName = 'entry';
 let abilityName = 'EntryAbility';
 
@@ -494,9 +502,11 @@ try {
 import bundleManager from '@ohos.bundle.bundleManager';
 import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
+
 let moduleName: string = 'entry';
 let abilityName: string = 'EntryAbility';
 let metadataName: string = 'ability_metadata';
+
 try {
   let data = bundleManager.getProfileByAbilitySync(moduleName, abilityName, metadataName);
   hilog.info(0x0000, 'testTag', 'getProfileByAbilitySync successfully. Data: %{public}s', JSON.stringify(data));
@@ -545,6 +555,7 @@ getProfileByExtensionAbility(moduleName: string, extensionAbilityName: string, m
 import bundleManager from '@ohos.bundle.bundleManager';
 import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
+
 let moduleName = 'entry';
 let extensionAbilityName = 'com.example.myapplication.extension';
 let metadataName = 'ability_metadata';
@@ -607,6 +618,7 @@ getProfileByExtensionAbility(moduleName: string, extensionAbilityName: string, m
 import bundleManager from '@ohos.bundle.bundleManager';
 import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
+
 let moduleName = 'entry';
 let extensionAbilityName = 'com.example.myapplication.extension';
 let metadataName = 'ability_metadata';
@@ -678,6 +690,7 @@ getProfileByExtensionAbilitySync(moduleName: string, extensionAbilityName: strin
 import bundleManager from '@ohos.bundle.bundleManager';
 import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
+
 let moduleName = 'entry';
 let extensionAbilityName = 'com.example.myapplication.extension';
 let metadataName = 'ability_metadata';
@@ -735,7 +748,9 @@ getBundleInfoForSelfSync(bundleFlags: number): BundleInfo
 import bundleManager from '@ohos.bundle.bundleManager';
 import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
+
 let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_REQUESTED_PERMISSION;
+
 try {
   let data = bundleManager.getBundleInfoForSelfSync(bundleFlags);
   hilog.info(0x0000, 'testTag', 'getBundleInfoForSelfSync successfully: %{public}s', JSON.stringify(data));
@@ -779,6 +794,7 @@ verifyAbc(abcPaths: Array\<string>, deleteOriginalFiles: boolean, callback: Asyn
 import bundleManager from '@ohos.bundle.bundleManager';
 import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
+
 let abcPaths: Array<string> = ['/data/storage/el2/base/a.abc'];
 
 try {
@@ -834,6 +850,7 @@ verifyAbc(abcPaths: Array\<string>, deleteOriginalFiles: boolean): Promise\<void
 import bundleManager from '@ohos.bundle.bundleManager';
 import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
+
 let abcPaths: Array<string> = ['/data/storage/el2/base/a.abc'];
 
 try {
@@ -886,6 +903,7 @@ deleteAbc(abcPath: string): Promise\<void>
 import bundleManager from '@ohos.bundle.bundleManager';
 import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
+
 let abcPath: string = '/data/storage/el2/base/a.abc';
 
 try {
@@ -938,6 +956,7 @@ canOpenLink(link: string): boolean
 import bundleManager from '@ohos.bundle.bundleManager';
 import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
+
 try {
   let link = 'welink://';
   let data = bundleManager.canOpenLink(link);
