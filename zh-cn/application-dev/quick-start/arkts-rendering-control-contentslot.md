@@ -112,7 +112,7 @@ napi_value Manager::CreateNativeNode(napi_env, napi_callback_info info) {
     if (nodeAPI != nullptr) {
         if (nodeAPI->createNode != nullptr && nodeAPI->addChild != nullptr) {
             ArkUINodeHandle component;
-            // 创建C侧组件，具体请查看ArkUI api文档的Capi章节(https://gitee.com/openharmony/docs/tree/master/zh-cn/application-dev/reference/apis-arkui)
+            // 创建C侧组件，具体请查看ArkUI api文档的[Capi章节](../reference/apis-arkui/_ark_u_i___native_module.md)
             component = CreateNodeHandle();
             // 将组件添加到nodeContent管理器中
             OH_ArkUI_NodeContent_AddNode(nodeContentHandle_, component);
