@@ -337,12 +337,12 @@ import { AbilityConstant, contextConstant, UIAbility, Want } from '@kit.AbilityK
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
 import { distributedKVStore } from '@kit.ArkData';
-import { ECStoreManager } from './ECStoreManager'
-import { StoreInfo } from './Store'
-import { Mover } from './Mover'
-import { SecretKeyObserver } from './secretKeyObserver'
-import CommonEventManager from '@ohos.commonEventManager';
-import Base from '@ohos.base';
+import { ECStoreManager } from './ECStoreManager';
+import { StoreInfo } from './Store';
+import { Mover } from './Mover';
+import { SecretKeyObserver } from './SecretKeyObserver';
+import { commonEventManager } from '@kit.BasicServicesKit';
+import Base from '@kit.BasicServicesKit';
 
 
 export let storeManager = new ECStoreManager();
@@ -351,14 +351,14 @@ export let secretKeyObserver = new SecretKeyObserver();
 
 let mover = new Mover();
 
-let subscriber: CommonEventManager.CommonEventSubscriber;
+let subscriber: commonEventManager.CommonEventSubscriber;
 
-export function createCB(err: Base.BusinessError, commonEventSubscriber: CommonEventManager.CommonEventSubscriber) {
+export function createCB(err: Base.BusinessError, commonEventSubscriber: commonEventManager.CommonEventSubscriber) {
   if (!err) {
     console.info('ECDB_Encry createSubscriber');
     subscriber = commonEventSubscriber;
     try {
-      CommonEventManager.subscribe(subscriber, (err: Base.BusinessError, data: CommonEventManager.CommonEventData) => {
+      commonEventManager.subscribe(subscriber, (err: Base.BusinessError, data: commonEventManager.CommonEventData) => {
         if (err) {
           console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
         } else {
@@ -421,7 +421,7 @@ export default class EntryAbility extends UIAbility {
     console.info(`ECDB_Encry store area : estore:${eContext.area},cstore${cContext.area}`);
     //监听COMMON_EVENT_SCREEN_LOCK_FILE_ACCESS_STATE_CHANGED事件 code == 1解锁状态，code==0加锁状态
     try {
-      CommonEventManager.createSubscriber({
+      commonEventManager.createSubscriber({
         events: ['COMMON_EVENT_SCREEN_LOCK_FILE_ACCESS_STATE_CHANGED']
       }, createCB);
       console.info(`ECDB_Encry success subscribe`);
