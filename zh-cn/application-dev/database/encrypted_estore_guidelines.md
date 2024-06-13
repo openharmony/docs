@@ -515,7 +515,7 @@ struct Index {
 
 ## 关系型数据库E类加密
 
-本章节提供键值型数据库的E类加密库使用方式，提供[Mover](#mover-1)类，[Store](#store-1)类，[SecretKeyObserver](#secretKeyobserver-1)类和[ECStoreManager](#esctoremanager-1)类的具体实现，并在[EntryAbility](#entryability-1)和[index按键事件](#index按键事件-1)中展示这几个类的使用方式。
+本章节提供键值型数据库的E类加密库使用方式，提供[Mover](#mover-1)类，[Store](#store-1)类，[SecretKeyObserver](#secretkeyobserver-1)类和[ECStoreManager](#ecstoremanager-1)类的具体实现，并在[EntryAbility](#entryability-1)和[index按键事件](#index按键事件-1)中展示这几个类的使用方式。
 
 ### Mover
 
