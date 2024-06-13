@@ -22,7 +22,7 @@
 
 ListItemGroup(options?: ListItemGroupOptions)
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -32,7 +32,7 @@ ListItemGroup(options?: ListItemGroupOptions)
 
 ## ListItemGroupOptions对象说明
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 参数名              | 参数类型                                            | 必填 | 参数描述                                                     |
 | ------------------- | --------------------------------------------------- | ---- | ------------------------------------------------------------ |
@@ -60,7 +60,7 @@ strokeWidth, startMargin和endMargin不支持设置百分比。
 
 ListItem设置[多态样式](ts-universal-attributes-polymorphic-style.md)时，被按压的子组件上下的分割线不绘制。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -86,7 +86,7 @@ childrenMainSize(value: ChildrenMainSize)
 
 ## ListItemGroupStyle<sup>10+</sup>枚举说明
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称 | 枚举值  | 描述               |
 | ---- | ---- | ------------------ |
