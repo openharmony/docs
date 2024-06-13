@@ -21,6 +21,9 @@ HarmonyOS NEXT Developer Preview0及以上版本的设备
 | originLongitude      | 起点经度（路线规划场景有效）                                   | number   | 可缺省   |
 | vehicleType          | 交通出行工具：0：驾车 1：步行 2：骑行 3：公交（路线规划场景有效） | number   | 可缺省，缺省时由应用自行处理   |
 
+**文档中的经纬度均为GCJ-02坐标系统**
+
+
 ## 接入步骤
 ### 调用方接入步骤
 
@@ -30,7 +33,7 @@ HarmonyOS NEXT Developer Preview0及以上版本的设备
     ```
 2. 构造接口参数并调用startAbilityByType接口。
 
-    ~~~typescript
+    ```ts
     import common from '@ohos.app.ability.common';
     let context = getContext(this) as common.UIAbilityContext;
     let wantParam: Record<string, Object> = {
@@ -56,7 +59,7 @@ HarmonyOS NEXT Developer Preview0及以上版本的设备
         }
     });
     
-    ~~~
+    ```
 效果示例图：
 
 ![效果示例图](./figures/start-navigation-panel.png)
@@ -64,9 +67,9 @@ HarmonyOS NEXT Developer Preview0及以上版本的设备
 ### 目标方接入步骤
 
 1. 导入ohos.app.ability.UIAbility模块。
-    ~~~typescript
+    ```ts
     import UIAbility from '@ohos.app.ability.UIAbility';
-    ~~~
+    ```
 2. 在module.json5中新增[linkFeature](../quick-start/module-configuration-file.md#skills标签)属性并设置声明当前应用支持的特性功能，从而系统可以从设备已安装应用中找到当前支持该特性的应用。
 
     配置示例：
@@ -106,9 +109,9 @@ HarmonyOS NEXT Developer Preview0及以上版本的设备
 
 3. 解析参数并做对应处理。
 
-    ~~~typescript
+    ```ts
     UIAbility::onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void
-    ~~~
+    ```
 
     在参数**want.parameters**中会携带Caller方传入的参数（与调用方传入的有些差异），如下表所示：
 
@@ -126,7 +129,7 @@ HarmonyOS NEXT Developer Preview0及以上版本的设备
 
 **示例：**
 
-```
+```ts
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import hilog from '@ohos.hilog';
 import UIAbility from '@ohos.app.ability.UIAbility';
