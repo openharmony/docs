@@ -17,7 +17,7 @@ TextClock(options?: { timeZoneOffset?: number, controller?: TextClockController 
 
 **卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：** 
 
@@ -50,7 +50,7 @@ y：年（yyyy表示完整年份，yy表示年份后两位）<br />M：月（若
 
 **卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -102,7 +102,7 @@ textShadow(value: ShadowOptions | Array&lt;ShadowOptions&gt;)
 
 **卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -128,7 +128,7 @@ fontFeature(value: string)
 
 **卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -170,7 +170,7 @@ onDateChange(event: (value: number) => void)
 
 **卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -186,7 +186,7 @@ TextClock容器组件的控制器，可以将该控制器绑定到TextClock组�
 
 **卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 ### 导入对象
 
@@ -202,7 +202,7 @@ start()
 
 **卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 ### stop
 
@@ -212,7 +212,7 @@ stop()
 
 **卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 ## TextClockConfiguration<sup>12+</sup>对象说明
 
