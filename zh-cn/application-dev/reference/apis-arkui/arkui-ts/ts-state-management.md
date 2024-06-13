@@ -365,7 +365,7 @@ static keys(): IterableIterator&lt;string&gt;
 
 返回AppStorage中所有的属性名。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -837,7 +837,7 @@ let res: number = AppStorage.Size(); // 1
 
 LocalStorage具体UI使用说明，详见[LocalStorage(页面级UI状态存储)](../../../quick-start/arkts-localstorage.md)
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 ### constructor<sup>9+</sup>
 
@@ -847,7 +847,7 @@ constructor(initializingProperties?: Object)
 
 > **说明：**<br/>
 > 从API version 9开始，该接口支持在ArkTS卡片中使用。
-> 从API version 11开始，该接口支持在元服务中使用。
+> 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -895,7 +895,7 @@ has(propName: string): boolean
 
 > **说明：**<br/>
 > 从API version 9开始，该接口支持在ArkTS卡片中使用。
-> 从API version 11开始，该接口支持在元服务中使用。
+> 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -927,7 +927,7 @@ get&lt;T&gt;(propName: string): T | undefined
 
 > **说明：**<br/>
 > 从API version 9开始，该接口支持在ArkTS卡片中使用。
-> 从API version 11开始，该接口支持在元服务中使用。
+> 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -960,7 +960,7 @@ set&lt;T&gt;(propName: string, newValue: T): boolean
 > **说明：**<br/>
 > 从API version 9开始，该接口支持在ArkTS卡片中使用。
 > 从API version 12开始，LocalStorage支持Map、Set、Date类型，支持null、undefined以及联合类型。
-> 从API version 11开始，该接口支持在元服务中使用。
+> 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -997,7 +997,7 @@ setOrCreate&lt;T&gt;(propName: string, newValue: T): boolean
 > **说明：**<br/>
 > 从API version 9开始，该接口支持在ArkTS卡片中使用。
 > 从API version 12开始，LocalStorage支持Map、Set、Date类型，支持null、undefined以及联合类型。
-> 从API version 11开始，该接口支持在元服务中使用。
+> 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1103,7 +1103,7 @@ link&lt;T&gt;(propName: string): SubscribedAbstractProperty&lt;T&gt;
 
 > **说明：**<br/>
 > 从API version 9开始，该接口支持在ArkTS卡片中使用。
-> 从API version 11开始，该接口支持在元服务中使用。
+> 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1138,7 +1138,7 @@ setAndLink&lt;T&gt;(propName: string, defaultValue: T): SubscribedAbstractProper
 > **说明：**<br/>
 > 从API version 9开始，该接口支持在ArkTS卡片中使用。
 > 从API version 12开始，LocalStorage支持Map、Set、Date类型，支持null、undefined以及联合类型。
-> 从API version 11开始，该接口支持在元服务中使用。
+> 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1172,7 +1172,7 @@ prop&lt;S&gt;(propName: string): SubscribedAbstractProperty&lt;S&gt;
 
 > **说明：**<br/>
 > 从API version 9开始，该接口支持在ArkTS卡片中使用。
-> 从API version 11开始，该接口支持在元服务中使用。
+> 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1207,7 +1207,7 @@ setAndProp&lt;S&gt;(propName: string, defaultValue: S): SubscribedAbstractProper
 > **说明：**<br/>
 > 从API version 9开始，该接口支持在ArkTS卡片中使用。
 > 从API version 12开始，LocalStorage支持Map、Set、Date类型，支持null、undefined以及联合类型。
-> 从API version 11开始，该接口支持在元服务中使用。
+> 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1243,7 +1243,7 @@ delete(propName: string): boolean
 
 > **说明：**<br/>
 > 从API version 9开始，该接口支持在ArkTS卡片中使用。
-> 从API version 11开始，该接口支持在元服务中使用。
+> 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1279,7 +1279,7 @@ keys(): IterableIterator&lt;string&gt;
 
 > **说明：**<br/>
 > 从API version 9开始，该接口支持在ArkTS卡片中使用。
-> 从API version 11开始，该接口支持在元服务中使用。
+> 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1305,7 +1305,7 @@ size(): number
 
 > **说明：**<br/>
 > 从API version 9开始，该接口支持在ArkTS卡片中使用。
-> 从API version 11开始，该接口支持在元服务中使用。
+> 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1333,7 +1333,7 @@ clear(): boolean
 
 > **说明：**<br/>
 > 从API version 9开始，该接口支持在ArkTS卡片中使用。
-> 从API version 11开始，该接口支持在元服务中使用。
+> 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1465,7 +1465,7 @@ abstract get(): T
 
 > **说明：**<br/>
 > 从API version 9开始，该接口支持在ArkTS卡片中使用。
-> 从API version 11开始，该接口支持在元服务中使用。
+> 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1493,7 +1493,7 @@ abstract set(newValue: T): void
 > 从API version 9开始，该接口支持在ArkTS卡片中使用。
 >
 > 从API version 12开始，AppStorage/LocalStorage支持Map、Set、Date类型，支持null、undefined以及联合类型。
-> 从API version 11开始，该接口支持在元服务中使用。
+> 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1519,7 +1519,7 @@ abstract aboutToBeDeleted(): void
 
 取消SubscribedAbstractProperty实例对AppStorage/LocalStorage的单/双向同步关系，并无效化SubscribedAbstractProperty实例，即当调用aboutToBeDelted方法之后不能再使用SubscribedAbstractProperty实例调用set或get方法。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1540,7 +1540,7 @@ PersistentStorage具体UI使用说明，详见[PersistentStorage(持久化存储
 
 ### PersistPropsOptions
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1630,7 +1630,7 @@ static keys(): Array&lt;string&gt;
 
 返回所有持久化属性的属性名的数组。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1762,7 +1762,7 @@ Environment具体使用说明，详见[Environment(设备环境查询)](../../..
 
 ### EnvPropsOptions
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1834,7 +1834,7 @@ static keys(): Array&lt;string&gt;
 
 返回环境变量的属性key的数组。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

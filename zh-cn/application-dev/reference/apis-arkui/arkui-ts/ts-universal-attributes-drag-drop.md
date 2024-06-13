@@ -22,7 +22,7 @@ allowDrop(value: Array&lt;UniformDataType&gt; | null)
 
 设置该组件上允许落入的数据类型。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -38,7 +38,7 @@ draggable(value: boolean)
 
 设置该组件是否允许进行拖拽。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -54,7 +54,7 @@ dragPreview(value: CustomBuilder | DragItemInfo | string)
 
 设置组件拖拽过程中的预览图。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -70,7 +70,7 @@ dragPreviewOptions(value: DragPreviewOptions, options?: DragInteractionOptions)
 
 设置拖拽过程中背板图处理模式及数量角标的显示。不支持onItemDragStart拖拽方式。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -83,7 +83,7 @@ dragPreviewOptions(value: DragPreviewOptions, options?: DragInteractionOptions)
 
 ## DragPreviewOptions<sup>11+</sup>
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 名称 | 类型 | 必填 | 描述 |
 | -------- | -------- | -------- | -------- |
@@ -93,7 +93,7 @@ dragPreviewOptions(value: DragPreviewOptions, options?: DragInteractionOptions)
 
 ## DragPreviewMode<sup>11+</sup>枚举说明
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 名称 | 枚举值 | 描述 |
 | -------- | ------- | -------- |
