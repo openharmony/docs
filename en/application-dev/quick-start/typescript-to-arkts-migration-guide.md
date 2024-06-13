@@ -1359,32 +1359,6 @@ let f = (s: string) => {
 }
 ```
 
-### Recipe: Use Generic Functions Instead of Generic Arrow Functions
-
-**Rule:** `arkts-no-generic-lambdas`
-
-**Severity: error**
-
-ArkTS does not support generic arrow functions. Use normal generic functions instead.
-
-**TypeScript**
-
-```typescript
-let generic_arrow_func = <T extends String> (x: T) => { return x }
-
-generic_arrow_func('string')
-```
-
-**ArkTS**
-
-```typescript
-function generic_func<T extends String>(x: T): T {
-  return x
-}
-
-generic_func<String>('string')
-```
-
 ### Recipe: Class Literals Are Not Supported
 
 **Rule:** `arkts-no-class-literals`
@@ -2764,26 +2738,6 @@ namespace A {
 
 // Initialization function should be called to execute statements.
 A.init()
-```
-
-### Recipe: `import default as ...` Is Not Supported
-
-**Rule:** `arkts-no-import-default-as`
-
-**Severity: error**
-
-ArkTS does not support the `import default as ...` syntax. Use explicit `import ... from ...` instead.
-
-**TypeScript**
-
-```typescript
-import { default as d } from 'mod'
-```
-
-**ArkTS**
-
-```typescript
-import d from 'mod'
 ```
 
 ### Recipe: `require` and `import` Assignment Are Not Supported
