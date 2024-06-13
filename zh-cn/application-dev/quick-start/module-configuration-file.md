@@ -931,12 +931,12 @@ routerMap配置文件描述模块的路由表信息，routerMap标签值为数�
       "routerMap": [
         {
           "name": "DynamicPage1",
-          "pageSourceFile": "entry/src/index",
+          "pageSourceFile": "src/main/ets/pages/pageOne.ets",
           "buildFunction": "myFunction"
         },
         {
           "name": "DynamicPage2",
-          "pageSourceFile": "entry/src/index",
+          "pageSourceFile": "src/main/ets/pages/pageTwo.ets",
           "buildFunction": "myBuilder",
           "data": {
             "key1": "data1",
@@ -961,7 +961,7 @@ data标签示例：
   "routerMap": [
     {
       "name": "DynamicPage",
-      "pageSourceFile": "entry/src/index",
+      "pageSourceFile": "src/main/ets/pages/pageOne.ets",
       "buildFunction": "myBuilder",
       "data": {
         "stringKey": "data1",
