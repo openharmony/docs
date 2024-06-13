@@ -405,7 +405,7 @@ EllipsisMode.START和EllipsisMode.CENTER仅在单行超长文本生效。
 
 **卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -437,7 +437,7 @@ fontColor：Color.Blue<br/>decoration:&nbsp;{<br/>type:&nbsp;TextDecorationType.
 
 | 参数名 | 类型    | 必填 | 说明                              |
 | ------ | ------- | ---- | --------------------------------- |
-| value  | boolean | 是   | 使能文本识别。<br/>默认值： false |
+| enable  | boolean | 是   | 使能文本识别。<br/>默认值： false |
 
 ### dataDetectorConfig<sup>11+</sup>
 
@@ -609,8 +609,8 @@ selectionMenuOptions(expandedMenuOptions: Array\<ExpandedMenuItemOptions>)
 
 | 参数名 | 类型  | 必填 | 说明  |
 | ------ | -------- | ---- | ------------------------------------------- |
-| types   | [TextDataDetectorType](ts-appendix-enums.md#textdatadetectortype11) | 是   | 设置文本识别的实体类型。设置types为null或者[]时，识别所有类型的实体，否则只识别指定类型的实体。 |
-| onDetectResultUpdate   | (callback:(result: string) => void) | 是   | 文本识别成功后，触发onDetectResultUpdate回调。<br/>-&nbsp;result：文本识别的结果，Json格式。 |
+| types   | [TextDataDetectorType[]](ts-appendix-enums.md#textdatadetectortype11) | 是   | 设置文本识别的实体类型。设置types为null或者[]时，识别所有类型的实体，否则只识别指定类型的实体。 |
+| onDetectResultUpdate   | (result: string) => void | 否   | 文本识别成功后，触发onDetectResultUpdate回调。<br/>-&nbsp;result：文本识别的结果，Json格式。 |
 
 ## 事件
 
@@ -702,8 +702,6 @@ closeSelectionMenu(): void
 setStyledString(value: StyledString): void
 
 触发绑定或更新属性字符串。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
