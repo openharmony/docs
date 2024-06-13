@@ -39,7 +39,7 @@ zipFile(inFile: string, outFile: string, options: Options): Promise&lt;void&gt;
 
 **示例：**
 
-```typescript
+```ts
 // 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/haps,也可以通过context获取。
 import zlib from '@ohos.zlib';
 import { BusinessError } from '@ohos.base';
@@ -53,9 +53,9 @@ let options: zlib.Options = {
 };
 
 zlib.zipFile(inFile, outFile, options).then((data: void) => {
-    console.info('zipFile result is ' + JSON.stringify(data));
+  console.info('zipFile result is ' + JSON.stringify(data));
 }).catch((err: BusinessError) => {
-    console.error('error is ' + JSON.stringify(err));
+  console.error('error is ' + JSON.stringify(err));
 });
 ```
 
@@ -87,23 +87,23 @@ unzipFile(inFile:string, outFile:string, options: Options): Promise&lt;void&gt;
 
 **示例：**
 
-```typescript
+```ts
 // 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/haps,也可以通过context获取。
 import zlib from '@ohos.zlib';
 import { BusinessError } from '@ohos.base';
 
 let inFile = '/xx/xxx.zip';
 let outFile = '/xxx';
-
 let options: zlib.Options = {
   level: zlib.CompressLevel.COMPRESS_LEVEL_DEFAULT_COMPRESSION,
   memLevel: zlib.MemLevel.MEM_LEVEL_DEFAULT,
   strategy: zlib.CompressStrategy.COMPRESS_STRATEGY_DEFAULT_STRATEGY
 };
+
 zlib.unzipFile(inFile, outFile, options).then((data: void) => {
-    console.info('unzipFile result is ' + JSON.stringify(data));
-}).catch((err: BusinessError)=>{
-    console.error('error is ' + JSON.stringify(err));
+  console.info('unzipFile result is ' + JSON.stringify(data));
+}).catch((err: BusinessError) => {
+  console.error('error is ' + JSON.stringify(err));
 })
 ```
 
@@ -138,7 +138,7 @@ compressFile(inFile: string, outFile: string, options: Options, callback: AsyncC
 
 **示例：**
 
-```typescript
+```ts
 // 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/haps,也可以通过context获取。
 import zlib from '@ohos.zlib';
 import { BusinessError } from '@ohos.base';
@@ -152,15 +152,15 @@ let options: zlib.Options = {
 };
 
 try {
-    zlib.compressFile(inFile, outFile, options, (errData: BusinessError) => {
-        if (errData !== null) {
-            console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-        }
-    })
-} catch(errData) {
-    let code = (errData as BusinessError).code;
-    let message = (errData as BusinessError).message;
-    console.error(`errData is errCode:${code}  message:${message}`);
+  zlib.compressFile(inFile, outFile, options, (errData: BusinessError) => {
+    if (errData !== null) {
+      console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+    }
+  })
+} catch (errData) {
+  let code = (errData as BusinessError).code;
+  let message = (errData as BusinessError).message;
+  console.error(`errData is errCode:${code}  message:${message}`);
 }
 ```
 
@@ -200,7 +200,7 @@ compressFile(inFile: string, outFile: string, options: Options): Promise\<void>
 
 **示例：**
 
-```typescript
+```ts
 // 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/haps,也可以通过context获取。
 import zlib from '@ohos.zlib';
 import { BusinessError } from '@ohos.base';
@@ -214,15 +214,15 @@ let options: zlib.Options = {
 };
 
 try {
-    zlib.compressFile(inFile, outFile, options).then((data: void) => {
-        console.info('compressFile success. data: ' + JSON.stringify(data));
-    }).catch((errData: BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
-} catch(errData) {
-    let code = (errData as BusinessError).code;
-    let message = (errData as BusinessError).message;
-    console.error(`errData is errCode:${code}  message:${message}`);
+  zlib.compressFile(inFile, outFile, options).then((data: void) => {
+    console.info('compressFile success. data: ' + JSON.stringify(data));
+  }).catch((errData: BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
+} catch (errData) {
+  let code = (errData as BusinessError).code;
+  let message = (errData as BusinessError).message;
+  console.error(`errData is errCode:${code}  message:${message}`);
 }
 ```
 
@@ -258,7 +258,7 @@ decompressFile(inFile: string, outFile: string, options: Options, callback: Asyn
 
 **示例：**
 
-```typescript
+```ts
 // 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/haps,也可以通过context获取。
 import zlib from '@ohos.zlib';
 import { BusinessError } from '@ohos.base';
@@ -270,15 +270,15 @@ let options: zlib.Options = {
 };
 
 try {
-    zlib.decompressFile(inFile, outFileDir, options, (errData: BusinessError) => {
-        if (errData !== null) {
-            console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-        }
-    })
-} catch(errData) {
-    let code = (errData as BusinessError).code;
-    let message = (errData as BusinessError).message;
-    console.error(`errData is errCode:${code}  message:${message}`);
+  zlib.decompressFile(inFile, outFileDir, options, (errData: BusinessError) => {
+    if (errData !== null) {
+      console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+    }
+  })
+} catch (errData) {
+  let code = (errData as BusinessError).code;
+  let message = (errData as BusinessError).message;
+  console.error(`errData is errCode:${code}  message:${message}`);
 }
 ```
 
@@ -319,7 +319,7 @@ decompressFile(inFile: string, outFile: string, options?: Options): Promise\<voi
 
 **示例：**
 
-```typescript
+```ts
 // 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/haps,也可以通过context获取。
 import zlib from '@ohos.zlib';
 import { BusinessError } from '@ohos.base';
@@ -331,15 +331,15 @@ let options: zlib.Options = {
 };
 
 try {
-    zlib.decompressFile(inFile, outFileDir, options).then((data: void) => {
-        console.info('decompressFile success. data: ' + JSON.stringify(data));
-    }).catch((errData: BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
-} catch(errData) {
-    let code = (errData as BusinessError).code;
-    let message = (errData as BusinessError).message;
-    console.error(`errData is errCode:${code}  message:${message}`);
+  zlib.decompressFile(inFile, outFileDir, options).then((data: void) => {
+    console.info('decompressFile success. data: ' + JSON.stringify(data));
+  }).catch((errData: BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
+} catch (errData) {
+  let code = (errData as BusinessError).code;
+  let message = (errData as BusinessError).message;
+  console.error(`errData is errCode:${code}  message:${message}`);
 }
 ```
 
@@ -374,23 +374,24 @@ decompressFile(inFile: string, outFile: string, callback: AsyncCallback\<void\>)
 
 **示例：**
 
-```typescript
+```ts
 // 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/haps,也可以通过context获取。
 import zlib from '@ohos.zlib';
 import { BusinessError } from '@ohos.base';
+
 let inFile = '/xx/xxx.zip';
 let outFileDir = '/xxx';
 
 try {
-    zlib.decompressFile(inFile, outFileDir, (errData: BusinessError) => {
-        if (errData !== null) {
-            console.error(`decompressFile failed. code is ${errData.code}, message is ${errData.message}`);
-        }
-    })
-} catch(errData) {
-    let code = (errData as BusinessError).code;
-    let message = (errData as BusinessError).message;
-    console.error(`decompressFile failed. code is ${code}, message is ${message}`);
+  zlib.decompressFile(inFile, outFileDir, (errData: BusinessError) => {
+    if (errData !== null) {
+      console.error(`decompressFile failed. code is ${errData.code}, message is ${errData.message}`);
+    }
+  })
+} catch (errData) {
+  let code = (errData as BusinessError).code;
+  let message = (errData as BusinessError).message;
+  console.error(`decompressFile failed. code is ${code}, message is ${message}`);
 }
 ```
 
@@ -426,7 +427,7 @@ getOriginalSize(compressedFile: string): Promise\<number>
 
 **示例：**
 
-```typescript
+```ts
 // 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/temp，也可以通过context获取。
 import zlib from '@ohos.zlib';
 import { BusinessError } from '@ohos.base';
@@ -434,15 +435,15 @@ import { BusinessError } from '@ohos.base';
 let compressedFile = '/data/storage/el2/base/temp/test.zip';
 
 try {
-    zlib.getOriginalSize(compressedFile).then((data: number) => {
-        console.info(`getOriginalSize success. getOriginalSize: ${data}`);
-    }).catch((errData: BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
-} catch(errData) {
-    let code = (errData as BusinessError).code;
-    let message = (errData as BusinessError).message;
-    console.error(`errData is errCode:${code}  message:${message}`);
+  zlib.getOriginalSize(compressedFile).then((data: number) => {
+    console.info(`getOriginalSize success. getOriginalSize: ${data}`);
+  }).catch((errData: BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
+} catch (errData) {
+  let code = (errData as BusinessError).code;
+  let message = (errData as BusinessError).message;
+  console.error(`errData is errCode:${code}  message:${message}`);
 }
 ```
 
@@ -493,16 +494,17 @@ let options: zlib.Options = {
   memLevel: zlib.MemLevel.MEM_LEVEL_DEFAULT,
   strategy: zlib.CompressStrategy.COMPRESS_STRATEGY_DEFAULT_STRATEGY
 };
+
 try {
-    zlib.compressFiles([inFile, pathDir, pathDir], outFile, options).then((data: void) => {
-        console.info('compressFiles success. data: ' + JSON.stringify(data));
-    }).catch((errData: BusinessError) => {
-        console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
-} catch(errData) {
-    let code = (errData as BusinessError).code;
-    let message = (errData as BusinessError).message;
-    console.error(`errData is errCode:${code}  message:${message}`);
+  zlib.compressFiles([inFile, pathDir, pathDir], outFile, options).then((data: void) => {
+    console.info('compressFiles success. data: ' + JSON.stringify(data));
+  }).catch((errData: BusinessError) => {
+    console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
+  })
+} catch (errData) {
+  let code = (errData as BusinessError).code;
+  let message = (errData as BusinessError).message;
+  console.error(`errData is errCode:${code}  message:${message}`);
 }
 ```
 
@@ -599,10 +601,13 @@ import zlib from '@ohos.zlib';
 let str = 'hello world!';
 let arrayBufferIn = new ArrayBuffer(12);
 let data = new Uint8Array(arrayBufferIn);
+
 for (let i = 0, j = str.length; i < j; i++) {
   data[i] = str.charCodeAt(i);
 }
+
 let checksum = zlib.createChecksumSync()
+
 checksum.adler32(0, arrayBufferIn).then(data => {
   console.info('adler32 success', data);
 })
@@ -712,10 +717,13 @@ import base from '@ohos.base';
 let str = 'hello world!';
 let arrayBufferIn = new ArrayBuffer(12);
 let data = new Uint8Array(arrayBufferIn);
+
 for (let i = 0, j = str.length; i < j; i++) {
   data[i] = str.charCodeAt(i);
 }
+
 let checksum = zlib.createChecksumSync()
+
 checksum.crc32(0, arrayBufferIn).then((data) => {
   console.info('crc32 success', data);
 }).catch((errData: base.BusinessError) => {
@@ -827,10 +835,13 @@ import base from '@ohos.base';
 let str = 'hello world!';
 let arrayBufferIn = new ArrayBuffer(12);
 let data = new Uint8Array(arrayBufferIn);
+
 for (let i = 0, j = str.length; i < j; i++) {
   data[i] = str.charCodeAt(i);
 }
+
 let checksum = zlib.createChecksumSync()
+
 checksum.crc64(0, arrayBufferIn).then((data) => {
   console.info('crc64 success', data);
 }).catch((errData: base.BusinessError) => {
@@ -861,6 +872,7 @@ import zlib from '@ohos.zlib';
 import base from '@ohos.base';
 
 let checksum = zlib.createChecksumSync()
+
 checksum.getCrcTable().then((data) => {
   console.info('getCrcTable success');
 }).catch((errData: base.BusinessError) => {
@@ -891,6 +903,7 @@ import zlib from '@ohos.zlib';
 import base from '@ohos.base';
 
 let checksum = zlib.createChecksumSync()
+
 checksum.getCrc64Table().then((data) => {
   console.info('getCrc64Table success');
 }).catch((errData: base.BusinessError) => {
@@ -921,6 +934,7 @@ import zlib from '@ohos.zlib';
 import base from '@ohos.base';
 
 let zip = zlib.createZipSync();
+
 zlib.createZip().then(data => {
   console.info('createZip success');
 }).catch((errData: base.BusinessError) => {
@@ -978,6 +992,7 @@ getZStream(): Promise&lt;ZStream&gt;
 import zlib from '@ohos.zlib';
 
 let zip = zlib.createZipSync();
+
 zip.getZStream().then(data => {
   console.info('getZStream success');
 })
@@ -1005,6 +1020,7 @@ zlibVersion(): Promise&lt;string&gt;
 import zlib from '@ohos.zlib';
 
 let zip = zlib.createZipSync();
+
 zip.zlibVersion().then((data) => {
   console.info('zlibVersion success')
 })
@@ -1032,6 +1048,7 @@ zlibCompileFlags(): Promise&lt;number&gt;
 import zlib from '@ohos.zlib';
 
 let zip = zlib.createZipSync();
+
 zip.zlibCompileFlags().then((data) => {
   console.info('zlibCompileFlags success')
 })
@@ -1079,11 +1096,14 @@ import base from '@ohos.base';
 let str = 'hello world!';
 let arrayBufferIn = new ArrayBuffer(str.length);
 let byteArray = new Uint8Array(arrayBufferIn);
+
 for (let i = 0, j = str.length; i < j; i++) {
   byteArray[i] = str.charCodeAt(i)
 }
+
 let arrayBufferOut = new ArrayBuffer(100);
 let zip = zlib.createZipSync();
+
 zip.compress(arrayBufferOut, arrayBufferOut, 20).then((data) => {
   console.info('compress success:');
 }).catch((errData: base.BusinessError) => {
@@ -1135,11 +1155,14 @@ import base from '@ohos.base';
 let str = 'hello world!';
 let arrayBufferIn = new ArrayBuffer(str.length);
 let byteArray = new Uint8Array(arrayBufferIn);
+
 for (let i = 0, j = str.length; i < j; i++) {
   byteArray[i] = str.charCodeAt(i)
 }
+
 let arrayBufferOut = new ArrayBuffer(100);
 let zip = zlib.createZipSync();
+
 zip.compress2(arrayBufferOut, arrayBufferIn, zlib.CompressLevel.COMPRESS_LEVEL_BEST_SPEED).then((data) => {
   console.info('compress2 success');
 }).catch((errData: base.BusinessError) => {
@@ -1310,10 +1333,13 @@ import base from '@ohos.base';
 let str = 'hello world!';
 let arrayBufferIn = new ArrayBuffer(str.length);
 let byteArray = new Uint8Array(arrayBufferIn);
+
 for (let i = 0, j = str.length; i < j; i++) {
   byteArray[i] = str.charCodeAt(i)
 }
+
 let zip = zlib.createZipSync();
+
 zip.compressBound(str.length).then((data) => {
   console.info('compressBound success')
 }).catch((errData: base.BusinessError) => {
@@ -1977,11 +2003,14 @@ import base from '@ohos.base';
 let str = 'hello world!';
 let arrayBufferIn = new ArrayBuffer(str.length);
 let byteArray = new Uint8Array(arrayBufferIn);
+
 for (let i = 0, j = str.length; i < j; i++) {
   byteArray[i] = str.charCodeAt(i)
 }
+
 let arrayBufferOut = new ArrayBuffer(100);
 let zip = zlib.createZipSync();
+
 zip.inflateInit2({ nextIn: arrayBufferIn, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }, 28
 ).then(data => {
   console.info('inflateInit2 success');
@@ -2029,11 +2058,14 @@ import base from '@ohos.base';
 let str = 'hello world!';
 let arrayBufferIn = new ArrayBuffer(str.length);
 let byteArray = new Uint8Array(arrayBufferIn);
+
 for (let i = 0, j = str.length; i < j; i++) {
   byteArray[i] = str.charCodeAt(i)
 }
+
 let arrayBufferOut = new ArrayBuffer(100);
 let zip = zlib.createZipSync();
+
 zip.inflateInit({ nextIn: arrayBufferOut, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }
 ).then(data => {
   console.info('inflateInit success');
