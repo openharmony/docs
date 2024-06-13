@@ -1,13 +1,13 @@
 # CSS
 
-Cascading Style Sheets (CSS) is a language used to describe the HML page structure. All HML components have default styles. You can customize styles for these components using CSS to design various pages. For details, see [Universal Styles](../reference/arkui-js/js-components-common-styles.md).
+Cascading Style Sheets (CSS) is a language used to describe the HML page structure. All HML components have default styles. You can customize styles for these components using CSS to design various pages. For details, see [Universal Styles](../reference/apis-arkui/arkui-js/js-components-common-styles.md).
 
 ## Size Unit
 
 - Logical px set by **\<length>**:
 
-   - The default logical screen width is 720 px (for details, see the **"window"** section in **[config.json](js-framework-js-tag.md)**). Your page will be scaled to fit the actual width of the screen. For example, on a screen with the actual width of 1440 physical px, 100 px is displayed on 200 physical px, with all sizes doubled from 720 px to 1440 px.
-   - If you set **autoDesignWidth** to **true** (for details, see the **"window"** section in **[config.json](js-framework-js-tag.md)**), the logical px are scaled based on the screen density. For example, if the screen density is 3x, 100 px will be rendered on 300 physical px. This approach is recommended when your application needs to adapt to multiple devices.
+   - The default logical screen width is 720 px (for details, see the **"window"** section in [config.json](js-framework-js-tag.md)). Your page will be scaled to fit the actual width of the screen. For example, on a screen with the actual width of 1440 physical px, 100 px is displayed on 200 physical px, with all sizes doubled from 720 px to 1440 px.
+   - If you set **autoDesignWidth** to **true** (for details, see the **"window"** section in [config.json](js-framework-js-tag.md)), the logical px are scaled based on the screen density. For example, if the screen density is 3x, 100 px will be rendered on 300 physical px. This approach is recommended when your application needs to adapt to multiple devices.
 
 - Percentage set by **\<percentage>**: The component size is represented by its percentage of the parent component size. For example, if the width **\<percentage>** of a component is set to **50%**, the width of the component is half of its parent component's width.
 

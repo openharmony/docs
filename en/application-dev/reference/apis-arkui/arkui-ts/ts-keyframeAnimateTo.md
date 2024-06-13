@@ -33,7 +33,7 @@ Sets the keyframe animation.
 | Name      | Type                             | Mandatory| Description                                      |
 | ---------- | ------------------------------------ | ------- | ---------------------------------------- |
 | duration   | number                               | Yes     | Duration of the keyframe animation, in ms.<br>Value range: [0, +∞)<br>**NOTE**<br>- If this parameter is set to a value less than 0, the value **0** is used.<br>- Floating-point values will be rounded down to integers. For example, if the value set is 1.2, **1** will be used.|
-| curve      | [Curve](ts-appendix-enums.md#curve)\| string \| [ICurve](../js-apis-curve.md#icurve) | No | Animation curve used by the keyframe.<br>Default value: **Curve.EaseInOut**<br>**NOTE**<br>Because the[springMotion](../js-apis-curve.md#curvesspringmotion9), [responsiveSpringMotion](../js-apis-curve.md#curvesresponsivespringmotion9), and [interpolatingSpring](../js-apis-curve.md#curvesinterpolatingspring10) curves do not have effective duration settings, they are not supported.|
+| curve      | [Curve](ts-appendix-enums.md#curve)\| string \| [ICurve](../js-apis-curve.md#icurve) | No | Animation curve used by the keyframe.<br>Default value: **Curve.EaseInOut**<br>**NOTE**<br>Because the [springMotion](../js-apis-curve.md#curvesspringmotion9), [responsiveSpringMotion](../js-apis-curve.md#curvesresponsivespringmotion9), and [interpolatingSpring](../js-apis-curve.md#curvesinterpolatingspring10) curves do not have effective duration settings, they are not supported.|
 | event      | () => void                           | Yes     | Closure function of the state at the time of the keyframe, that is, the state to be reached at the time of the keyframe.|
 
 ## Example

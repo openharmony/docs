@@ -1,6 +1,6 @@
 # PluginComponent (System API)
 
-The **\<PluginComponent>** allows the UI provided by an external application to be displayed in the application. To implement the update through inter-process communication (IPC), see [@ohos.pluginComponent](../apis/js-apis-plugincomponent.md).
+The **\<PluginComponent>** allows the UI provided by an external application to be displayed in the application. To implement the update through inter-process communication (IPC), see [@ohos.pluginComponent](../js-apis-plugincomponent.md).
 
 
 >  **NOTE**
@@ -23,7 +23,7 @@ Creates a **PluginComponent** to display the UI provided by an external applicat
 
 | Name| Type                                                                                                                                                       | Mandatory| Description                                                                                                 |
 | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---- | --------------------------------------------------------------------------------------------------------- |
-| value  | {<br>template:  [PluginComponentTemplate](#plugincomponenttemplate),<br>data: [KVObject](../apis/js-apis-plugincomponent.md#kvobject)<br>} | Yes  | **template**: template of the **PluginComponent**, which is bound to the component defined by the provider.<br>**data**: data passed to the **PluginComponent** provider.|
+| value  | {<br>template:  [PluginComponentTemplate](#plugincomponenttemplate),<br>data: [KVObject](../js-apis-plugincomponent.md#kvobject)<br>} | Yes  | **template**: template of the **PluginComponent**, which is bound to the component defined by the provider.<br>**data**: data passed to the **PluginComponent** provider.|
 
 ## PluginComponentTemplate
 

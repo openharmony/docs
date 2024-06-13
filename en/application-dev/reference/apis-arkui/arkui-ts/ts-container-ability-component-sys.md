@@ -18,7 +18,7 @@
 
 Only width and height can be set for **\<AbilityComponent>**. These attributes are mandatory and cannot be dynamically updated.
 
-The ability to be started must inherit [WindowExtension](../apis/js-apis-application-windowExtensionAbility.md).
+The ability to be started must inherit [WindowExtension](../../apis-mdm-kit/js-apis-EnterpriseAdminExtensionAbility-sys.md).
 
 ## Child Components
 
@@ -33,7 +33,7 @@ AbilityComponent(want: Want)
 
 | Name | Type                                    | Mandatory  | Description           |
 | ---- | ---------------------------------------- | ---- | --------------- |
-| want | [Want](../apis/js-apis-app-ability-want.md) | Yes   | Description of the default ability to load.|
+| want | [Want](../../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | Description of the default ability to load.|
 
 
 ## Events

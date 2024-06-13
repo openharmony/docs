@@ -13,7 +13,7 @@ Supported
 
 >  **NOTE**
 >
->  Built-in components and custom components are allowed, with support for ([if/else](../../quick-start/arkts-rendering-control-ifelse.md), [ForEach](../../quick-start/arkts-rendering-control-foreach.md), and [LazyForEach](../../quick-start/arkts-rendering-control-lazyforeach.md)) rendering control.
+>  Built-in components and custom components are allowed, with support for ([if/else](../../../quick-start/arkts-rendering-control-ifelse.md), [ForEach](../../../quick-start/arkts-rendering-control-foreach.md), and [LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md)) rendering control.
 
 
 ## APIs
@@ -33,7 +33,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | Name| Type| Description|
 | -------- | -------- | -------- |
 | type | [PanelType](#paneltype)| Type of the panel.<br>Default value: **PanelType.Foldable**|
-| mode | [PanelMode](#panelmode) | Initial status of the panel.<br>Default value for the Minibar type: **PanelMode.Mini**<br/>Default value for other types: **PanelMode.Half**<br>Since API version 10, this attribute supports [$$](../../quick-start/arkts-two-way-sync.md) for two-way binding of variables.|
+| mode | [PanelMode](#panelmode) | Initial status of the panel.<br>Default value for the Minibar type: **PanelMode.Mini**<br/>Default value for other types: **PanelMode.Half**<br>Since API version 10, this attribute supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md).|
 | dragBar | boolean | Whether to enable a drag bar. The value **true** means that the drag bar will be displayed, and **false** means the opposite.<br>Default value: **true**|
 | customHeight<sup>10+</sup> | [Dimension](ts-types.md#dimension10) \| [PanelHeight](#panelheight10) | Height of the panel in the **PanelType.CUSTOM** type.<br>Default value: **0**<br>**NOTE**<br>This attribute cannot be set in percentage.|
 | fullHeight | string \| number | Height of the panel in **PanelMode.Full** mode.<br>Default value: main axis height of the panel minus 8 vp<br>**NOTE**<br>This attribute cannot be set in percentage.|

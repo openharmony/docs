@@ -41,7 +41,7 @@ When ArkUI receives the mouse event, it checks whether the mouse event concerns 
 
 
 ```ts
-onHover(event: (isHover?: boolean) => void)
+onHover(event: (isHover: boolean) => void)
 ```
 
 
@@ -71,7 +71,7 @@ struct MouseExample {
       Button(this.hoverText)
         .width(200).height(100)
         .backgroundColor(this.Color)
-        .onHover((isHover?: boolean) => { // Use the onHover API to listen for whether the mouse pointer is hovered over the button.
+        .onHover((isHover?: boolean) => { // Use the onHover API to listen for whether the mouse cursor is hovered over the button.
           if (isHover) {
             this.hoverText = 'Hovered!';
             this.Color = Color.Green;
@@ -87,7 +87,7 @@ struct MouseExample {
 ```
 
 
-In this example, a **\<Button component>** is created, with the initial background color of gray and the content of **Not Hover**. The component is bound to the **onHover** callback. In the callback, **this.isHovered** is set to the callback parameter **isHover**.
+In this example, a **\<Button>** component is created, with the initial background color of gray and the content of **Not Hover**. The component is bound to the **onHover** callback. In the callback, **this.isHovered** is set to the callback parameter **isHover**.
 
 
 When the mouse pointer moves from outside the button to inside the button, the callback is invoked, the value of **isHover** changes to **true**, the value of **isHovered** changes to **true**, the background color of the component changes to **Color.Green**, and the content changes to **Hovered!**.

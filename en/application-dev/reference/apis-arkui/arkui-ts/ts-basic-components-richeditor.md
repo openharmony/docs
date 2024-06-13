@@ -49,9 +49,9 @@ In addition to the [universal events](ts-universal-events-click.md), the followi
 | ---------------------------------------- | ---------------------------------------- |
 | onReady(callback: () =&gt; void) | Triggered when initialization of the component is completed.                       |
 | onSelect(callback: (value: [RichEditorSelection](#richeditorselection)) =&gt; void) | Triggered when content is selected.<br>If a mouse device is used for selection, this event is triggered when the mouse button is released. If a finger is used for selection, this event is triggered when the finger is released.<br>- **value**: information about all selected spans.|
-| aboutToIMEInput(callback: (value: [RichEditorInsertValue](#richeditorinsertvalue)) =&gt; boolean) | Triggered when content is about to be entered in the input method.<br>- **value**: content to be entered in the input method.|
+| aboutToIMEInput(callback: (value: [RichEditorInsertValue](#richeditorinsertvalue)) =&gt; boolean) | Triggered when content is about to be entered in the input method.<br>- **value**: content to be entered in the input method.<br>- **boolean**: whether the component has content entered. |
 | onIMEInputComplete(callback: (value: [RichEditorTextSpanResult](#richeditortextspanresult)) =&gt; void) | Triggered when text input in the input method is complete.<br>- **value**: text span information after text input is completed.|
-| aboutToDelete(callback: (value: [RichEditorDeleteValue](#richeditordeletevalue)) =&gt; boolean) | Triggered when content is about to be deleted in the input method.<br>- **value**: information about the text span where the content to be deleted is located.|
+| aboutToDelete(callback: (value: [RichEditorDeleteValue](#richeditordeletevalue)) =&gt; boolean) | Triggered when content is about to be deleted in the input method.<br>- **value**: information about the text or image span where the content to be deleted is located.<br>- **boolean**: whether the component has content deleted.|
 | onDeleteComplete(callback: () =&gt; void) | Triggered when deletion in the input method is completed.                          |
 | onPaste<sup>11+</sup>(callback: (event?: [PasteEvent](#pasteevent11)) => void) | Triggered when the paste is about to be completed.<br>**NOTE**<br>The default system paste and drag behaviors are available for text only.<br>You can use this API to overwrite the default system behaviors so that both images and text can be pasted.|
 
@@ -186,7 +186,7 @@ Provides the image span style information returned by the backend.
 
 | Name           | Type                                      | Mandatory  | Description       |
 | ------------- | ---------------------------------------- | ---- | --------- |
-| size          | [number, number]                         | Yes   | Width and height of the image.|
+| size          | [number, number]                         | Yes   | Width and height of the image.<br>Default value: varies by the value of **objectFit**. If the value of **objectFit** is **Cover**, the image height is the component height minus the top and bottom paddings, and the image width is the component width minus the left and right paddings.|
 | verticalAlign | [ImageSpanAlignment](ts-basic-components-imagespan.md#imagespanalignment) | Yes   | Vertical alignment mode of the image.|
 | objectFit     | [ImageFit](ts-appendix-enums.md#imagefit) | Yes   | Scale mode of the image.  |
 
@@ -618,8 +618,8 @@ Provides the image span style information.
 | ------------------------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | size                      | [[Dimension](ts-types.md#dimension10), [Dimension](ts-types.md#dimension10)] | No   | Width and height of the image.                                |
 | verticalAlign             | [ImageSpanAlignment](ts-basic-components-imagespan.md#imagespanalignment) | No   | Vertical alignment mode of the image.<br>Default value: **ImageSpanAlignment.BASELINE**|
-| objectFit                 | [ImageFit](ts-appendix-enums.md#imagefit) | No   | Scale mode of the image.<br> Default value: **ImageFit.Cover**        |
-| layoutStyle<sup>11+</sup> | [RichEditorLayoutStyle](#richeditorlayoutstyle11) | No   | Image layout style.<br>                            |
+| objectFit                 | [ImageFit](ts-appendix-enums.md#imagefit) | No   | Scale mode of the image.<br>Default value: **ImageFit.Cover**        |
+| layoutStyle<sup>11+</sup> | [RichEditorLayoutStyle](#richeditorlayoutstyle11) | No   | Image layout style.<br>Default value: {"broderRadius":"","margin":""}                            |
 
 ## RichEditorLayoutStyle<sup>11+</sup> 
 |Name|Type|Mandatory|	Description|
@@ -862,15 +862,6 @@ struct Index {
           })
           .onDeleteComplete(() => {
             console.log("---------------------- onDeleteComplete ------------------------")
-          })
-          .placeholder("input...", {
-            fontColor: Color.Gray,
-            font: {
-              size: 16,
-              weight: FontWeight.Normal,
-              family: "HarmonyOS Sans",
-              style: FontStyle.Normal
-            }
           })
           .borderWidth(1)
           .borderColor(Color.Green)
@@ -1806,7 +1797,7 @@ struct Index {
         .draggable(false)
 
       Column({ space: 5 }) {
-        Button ("Align left").onClick () => {
+        Button ("Align left").onClick(() => {
           this.controller.updateParagraphStyle({ start: -1, end: -1,
             style: {
               textAlign: TextAlign.Start,
@@ -1822,7 +1813,7 @@ struct Index {
           })
         })
 
-        Button ("Center").onClick ((). => {
+        Button ("Center").onClick (() => {
           this.controller.updateParagraphStyle({ start: -1, end: -1,
             style: {
               textAlign: TextAlign.Center,

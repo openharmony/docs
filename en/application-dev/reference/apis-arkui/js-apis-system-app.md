@@ -68,6 +68,8 @@ static setImageCacheCount(value: number): void
 
 Sets the maximum number of decoded images that can be cached in the memory to speed up the loading of images from the same sources. If the input parameter is not set, the default value **0** is used, indicating that images are not cached. The built-in Least Recently Used (LRU) policy is used for caching. If the maximum number is exceeded, the images that have not been updated for the longest time will be removed. You are advised to set the parameter based on the application memory requirements. If the number of images is too large, the memory usage may be too high.
 
+**setImageCacheCount** takes effect only when used in [onPageShow](../apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#onpageshow) or [aboutToAppear](../apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#abouttoappear) on the page decorated by @Entry.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -85,7 +87,6 @@ import app, { AppResponse } from '@system.app'
 @Entry
 @Component
 struct Index {
-  // The app.setImageCacheCount API works only when it is called in onPageShow or aboutToAppear on the @Entry decorated page.
   onPageShow() {
     // Set the maximum number of decoded images that can be cached in the memory to 100.
     app.setImageCacheCount(100) 
@@ -112,6 +113,8 @@ static setImageRawDataCacheSize(value: number): void
 
 Sets the maximum size (in bytes) of the image data cached in the memory before decoding to speed up the loading of images from the same sources. If the input parameter is not set, the default value **0** is used, indicating that images are not cached. The LRU policy is used for caching. If the maximum size is exceeded, the images that have not been updated for the longest time will be removed. You are advised to set the parameter based on the application memory requirements. If the image cache is too large, the memory usage may be too high.
 
+**setImageRawDataCacheSize** takes effect only when used in [onPageShow](../apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#onpageshow) or [aboutToAppear](../apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#abouttoappear) on the page decorated by @Entry.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -129,7 +132,6 @@ import app, { AppResponse } from '@system.app'
 @Entry
 @Component
 struct Index {
-  // The app.setImageRawDataCacheSize API works only when it is called in onPageShow or aboutToAppear on the @Entry decorated page.
   onPageShow() {
     // Set the upper limit of the memory for caching image data before decoding to 100 MB. (100 x 1024 x 1024 B =104857600 B = 100 MB).
     app.setImageRawDataCacheSize(104857600) 

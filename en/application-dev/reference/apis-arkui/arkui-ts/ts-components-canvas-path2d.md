@@ -6,7 +6,25 @@
 >
 >  The APIs of this module are supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
+## APIs
 
+Path2D()
+
+Constructs an empty **Path2D** object.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+Path2D(description: string)
+
+Constructs a **Path2D** object using a path that complies with the SVG path specifications.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Parameters**
+
+| Name| Type| Mandatory| Default Value| Description|
+| ------ | -------- | ---- | ------ | ----- |
+| description | string | Yes| - | Path that complies with the SVG path specifications.|
 
 ## addPath
 

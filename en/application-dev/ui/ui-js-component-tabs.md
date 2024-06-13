@@ -1,7 +1,7 @@
 # &lt;tabs&gt; Development
 
 
-The **&lt;tabs&gt;** component is a common UI component for navigation. It allows quick access to different functions of an app. For details, see [tabs](../reference/arkui-js/js-components-container-tabs.md).
+The **&lt;tabs&gt;** component is a common UI component for navigation. It allows quick access to different functions of an app. For details, see [tabs](../reference/apis-arkui/arkui-js/js-components-container-tabs.md).
 
 
 ## Creating Tabs
@@ -146,7 +146,7 @@ export default {
 
 > **NOTE**
 >
-> A **&lt;tabs&gt;** can wrap at most one [**&lt;tab-bar&gt;**](../reference/arkui-js/js-components-container-tab-bar.md)  and at most one [**&lt;tab-content&gt;**](../reference/arkui-js/js-components-container-tab-content.md).
+> A **&lt;tabs&gt;** can wrap at most one [**&lt;tab-bar&gt;**](../reference/apis-arkui/arkui-js/js-components-container-tab-bar.md)  and at most one [**&lt;tab-content&gt;**](../reference/apis-arkui/arkui-js/js-components-container-tab-content.md).
 
 
 ## Example Scenario

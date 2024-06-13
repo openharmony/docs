@@ -353,7 +353,7 @@ struct TextAreaExample {
 // xxx.ets
 @Entry
 @Component
-struct TextInputExample {
+struct TextAreaExample {
   @State Text: string = ''
   @State enterTypes: Array<EnterKeyType> = [EnterKeyType.Go, EnterKeyType.Search, EnterKeyType.Send, EnterKeyType.Done, EnterKeyType.Next, EnterKeyType.PREVIOUS, EnterKeyType.NEW_LINE]
   @State index: number = 0
