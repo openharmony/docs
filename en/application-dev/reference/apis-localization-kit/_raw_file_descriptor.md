@@ -9,7 +9,7 @@ Defines the file descriptor of a rawfile.
 
 **Since**: 8
 
-**Related module**: [Rawfile] (rawfile.md)
+**Related module**: [Rawfile](rawfile.md)
 
 
 ## Summary

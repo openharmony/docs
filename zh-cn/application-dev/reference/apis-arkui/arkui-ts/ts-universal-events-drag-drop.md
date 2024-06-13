@@ -30,7 +30,7 @@ onDragStart(event: (event: DragEvent, extraParams?: string) => CustomBuilder | D
 
 文本类组件[Text](ts-basic-components-text.md)、[Search](ts-basic-components-search.md)、[TextInput](ts-basic-components-textinput.md)、[TextArea](ts-basic-components-textarea.md)、[RichEditor](ts-basic-components-richeditor.md)对选中的文本内容进行拖拽时，不支持背板图的自定义。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **事件优先级：** 长按触发时间 < 500ms，长按事件优先拖拽事件响应，长按触发时间 >= 500ms，拖拽事件优先长按事件响应。
 
@@ -54,7 +54,7 @@ onDragEnter(event: (event: DragEvent, extraParams?: string) => void)
 
 拖拽进入组件范围内时，触发回调，当监听了[onDrop](#ondrop)事件时，此事件才有效。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -70,7 +70,7 @@ onDragMove(event: (event: DragEvent, extraParams?: string) => void)
 
 拖拽在组件范围内移动时，触发回调，当监听了[onDrop](#ondrop)事件时，此事件才有效。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -86,7 +86,7 @@ onDragLeave(event: (event: DragEvent, extraParams?: string) => void)
 
 拖拽离开组件范围内时，触发回调，当监听了[onDrop](#ondrop)事件时，此事件才有效。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -102,7 +102,7 @@ onDrop(event: (event: DragEvent, extraParams?: string) => void)
 
 绑定此事件的组件可作为拖拽释放目标，当在本组件范围内停止拖拽行为时，触发回调。如果没有显式使用event.setResult()，则默认result为DRAG_SUCCESSFUL。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -118,7 +118,7 @@ onDragEnd(event: (event: DragEvent, extraParams?: string) => void)
 
 绑定此事件的组件触发的拖拽结束后，触发回调。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -144,7 +144,9 @@ onPreDrag(event: (preDragStatus: PreDragStatus) => void)
 
 ## DragItemInfo说明
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称      | 类型                                     | 必填   | 描述                                |
 | --------- | ---------------------------------------- | ---- | --------------------------------- |
@@ -164,11 +166,15 @@ onPreDrag(event: (preDragStatus: PreDragStatus) => void)
 | selectedIndex | number | 当拖拽事件设在父容器的子元素时，selectedIndex表示当前被拖拽子元素是父容器第selectedIndex个子元素，selectedIndex从0开始。<br/>仅在ListItem组件的拖拽事件中生效。 |
 | insertIndex   | number | 当前拖拽元素在List组件中放下时，insertIndex表示被拖拽元素插入该组件的第insertIndex个位置，insertIndex从0开始。<br/>仅在List组件的拖拽事件中生效。 |
 
-## DragEvent说明
+## DragEvent
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ### 属性
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称     | 类型  | 描述             |
 | ------ | ------ | ---------------- |
@@ -177,7 +183,9 @@ onPreDrag(event: (preDragStatus: PreDragStatus) => void)
 
 ### 方法
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称     | 返回值类型                            | 描述                           |
 | ----------- | ------------------------------- | ------------------------------ |
@@ -209,7 +217,9 @@ onPreDrag(event: (preDragStatus: PreDragStatus) => void)
 
 ## DragResult<sup>10+</sup>枚举说明
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称 | 描述 |
 | ----- | ----------------- |
@@ -223,7 +233,9 @@ onPreDrag(event: (preDragStatus: PreDragStatus) => void)
 
 需要设置[DragResult](#dragresult10枚举说明)为DROP_ENABLED，并实现[onDrop](#ondrop)回调时才能够生效。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称 | 描述 |
 | ----- | ----------------- |
@@ -231,6 +243,8 @@ onPreDrag(event: (preDragStatus: PreDragStatus) => void)
 | MOVE| 剪贴模式角标。 |
 
 ## PreDragStatus<sup>12+</sup>枚举说明
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称 | 值 | 描述 |
 | ---- | - | ----------------- |

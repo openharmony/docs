@@ -19,7 +19,7 @@
 
 XComponent(value: {id: string, type: string, libraryname?: string, controller?: XComponentController})
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数:** 
 
@@ -34,7 +34,7 @@ XComponent(value: {id: string, type: string, libraryname?: string, controller?: 
 
 XComponent(value: {id: string, type: XComponentType, libraryname?: string, controller?: XComponentController})
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数:** 
 
@@ -45,9 +45,25 @@ XComponent(value: {id: string, type: XComponentType, libraryname?: string, contr
 | libraryname | string                                        | 否   | 用Native层编译输出动态库名称，仅类型为SURFACE或TEXTURE时有效。 |
 | controller  | [XComponentcontroller](#xcomponentcontroller) | 否   | 给组件绑定一个控制器，通过控制器调用组件方法，仅类型为SURFACE或TEXTURE时有效。 |
 
+### XComponent<sup>12+</sup>
+
+XComponent(value: {id: string, type: XComponentType, imageAIOptions: ImageAIOptions, libraryname?: string, controller?: XComponentController})
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数:**
+
+| 参数名      | 参数类型                                      | 必填 | 描述                                                         |
+| ----------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
+| id          | string                                        | 是   | 组件的唯一标识，支持最大的字符串长度128。                    |
+| type        | [XComponentType](#xcomponenttype10枚举说明)   | 是   | 用于指定XComponent组件类型。                                 |
+| imageAIOptions  | [ImageAIOptions](ts-image-common.md#imageaioptions12) | 是   | 给组件设置一个AI分析选项，通过此项可配置分析类型或绑定一个分析控制器。 |
+| libraryname | string                                        | 否   | 用Native层编译输出动态库名称，仅类型为SURFACE或TEXTURE时有效。 |
+| controller  | [XComponentcontroller](#xcomponentcontroller) | 否   | 给组件绑定一个控制器，通过控制器调用组件方法，仅类型为SURFACE或TEXTURE时有效。 |
+
 ## XComponentType<sup>10+</sup>枚举说明
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称      | 描述                                                         |
 | --------- | ------------------------------------------------------------ |
@@ -90,7 +106,7 @@ enableAnalyzer(enable: boolean)
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -114,7 +130,7 @@ enableAnalyzer(enable: boolean)
 
 仅type为SURFACE("surface")或TEXTURE时以下事件有效。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 ### onLoad
 
@@ -122,7 +138,7 @@ onLoad(callback: (event?: object) => void )
 
 插件加载完成时回调事件。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数:**
 
@@ -136,13 +152,13 @@ onDestroy(event: () => void )
 
 插件卸载完成时回调事件。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 ## XComponentController
 
 xcomponent 组件的控制器，可以将此对象绑定至XComponent组件，然后通过控制器来调用组件方法。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 ### 创建对象
 
@@ -150,7 +166,7 @@ xcomponent 组件的控制器，可以将此对象绑定至XComponent组件，�
 xcomponentController: XComponentController = new XComponentController()
 ```
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 ### getXComponentSurfaceId
 
@@ -158,7 +174,7 @@ getXComponentSurfaceId(): string
 
 获取XComponent对应Surface的ID，供@ohos接口使用，使用方式可参考[相机管理](../../apis-camera-kit/js-apis-camera.md)，仅XComponent类型为SURFACE("surface")或TEXTURE时有效。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **返回值:**
 
@@ -189,7 +205,7 @@ getXComponentContext(): Object
 
 获取XComponent实例对象的context，仅XComponent类型为SURFACE("surface")或TEXTURE时有效。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **返回值:**
 
@@ -203,7 +219,7 @@ setXComponentSurfaceRect(rect: SurfaceRect): void
 
 设置XComponent持有Surface的显示区域，仅XComponent类型为SURFACE("surface")或TEXTURE时有效。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数:**
 
@@ -225,7 +241,7 @@ getXComponentSurfaceRect(): SurfaceRect
 
 获取XComponent持有Surface的显示区域，仅XComponent类型为SURFACE("surface")或TEXTURE时有效。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **返回值:**
 
@@ -239,7 +255,7 @@ onSurfaceCreated(surfaceId: string): void
 
 当XComponent持有的Surface创建后进行该回调，仅XComponent类型为SURFACE("surface")或TEXTURE时有效。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数:**
 
@@ -257,7 +273,7 @@ onSurfaceChanged(surfaceId: string, rect: SurfaceRect): void
 
 当XComponent持有的Surface大小改变后（包括首次创建时的大小改变）进行该回调，仅XComponent类型为SURFACE("surface")或TEXTURE时有效。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数:**
 
@@ -276,7 +292,7 @@ onSurfaceDestroyed(surfaceId: string): void
 
 当XComponent持有的Surface销毁后进行该回调，仅XComponent类型为SURFACE("surface")或TEXTURE时有效。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数:**
 
@@ -292,7 +308,7 @@ onSurfaceDestroyed(surfaceId: string): void
 
 用于描述XComponent持有Surface的显示区域。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 名称          | 类型   | 必填 | 说明                                                         |
 | ------------- | ------ | ---- | ------------------------------------------------------------ |
@@ -312,7 +328,7 @@ startImageAnalyzer(config: ImageAnalyzerConfig): Promise\<void>
 > 分析类型不支持动态修改。
 > 该特性依赖设备能力，不支持该能力的情况下，将返回错误码。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -349,7 +365,7 @@ stopImageAnalyzer(): void
 > 在startImageAnalyzer方法未返回结果时调用本方法，会触发其错误回调。
 > 该特性依赖设备能力。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -359,7 +375,7 @@ setXComponentSurfaceRotation(rotationOptions: SurfaceRotationOptions): void
 
 设置XComponent持有Surface在屏幕旋转时是否锁定方向，仅XComponent类型为SURFACE("surface")时有效。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数:**
 
@@ -381,7 +397,7 @@ getXComponentSurfaceRotation(): Required\<SurfaceRotationOptions>
 
 获取XComponent持有Surface在屏幕旋转时是否锁定方向的设置，仅XComponent类型为SURFACE("surface")时有效。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **返回值:**
 
@@ -393,7 +409,7 @@ getXComponentSurfaceRotation(): Required\<SurfaceRotationOptions>
 
 用于描述XComponent持有Surface在屏幕旋转时是否锁定方向的设置。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 名称          | 类型   | 必填 | 说明                                                         |
 | ------------- | ------ | ---- | ------------------------------------------------------------ |
@@ -499,6 +515,11 @@ struct ImageAnalyzerExample {
   private config: ImageAnalyzerConfig = {
     types: [ImageAnalyzerType.SUBJECT, ImageAnalyzerType.TEXT]
   }
+  private aiController: ImageAnalyzerController = new ImageAnalyzerController()
+  private options: ImageAIOptions = {
+    types: [ImageAnalyzerType.SUBJECT, ImageAnalyzerType.TEXT],
+    aiController: this.aiController
+  }
 
   build() {
     Column() {
@@ -520,9 +541,16 @@ struct ImageAnalyzerExample {
         .onClick(() => {
           this.xComponentController.stopImageAnalyzer()
         })
+      Button('getTypes')
+        .width(80)
+        .height(80)
+        .onClick(() => {
+          this.aiController.getImageAnalyzerSupportTypes()
+        })
       XComponent({
         id: 'xcomponent',
         type: XComponentType.SURFACE,
+        imageAIOptions: this.options,
         controller: this.xComponentController
       })
         .enableAnalyzer(true)

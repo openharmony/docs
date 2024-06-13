@@ -84,7 +84,7 @@ import { geoLocationManager } from '@kit.LocationKit';
 
 位置信息请求参数。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Location.Location.Core
 
@@ -101,7 +101,7 @@ import { geoLocationManager } from '@kit.LocationKit';
 
 当前位置信息请求参数。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Location.Location.Core
 
@@ -117,7 +117,7 @@ import { geoLocationManager } from '@kit.LocationKit';
 
 持续定位的请求参数。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Location.Location.Core
 
@@ -131,7 +131,7 @@ import { geoLocationManager } from '@kit.LocationKit';
 
 单次定位的请求参数。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Location.Location.Core
 
@@ -214,7 +214,7 @@ GNSS围栏的配置参数。目前只支持圆形围栏。
 
 位置信息。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Location.Location.Core
 
@@ -280,7 +280,7 @@ GNSS地理围栏请求参数。
 
 位置请求中位置信息优先级类型。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Location.Location.Core
 
@@ -296,7 +296,7 @@ GNSS地理围栏请求参数。
 
 位置请求中定位场景类型。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Location.Location.Core
 
@@ -390,7 +390,7 @@ GNSS地理围栏请求参数。
 
 位置请求中的功耗场景类型。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Location.Location.Core
 
@@ -405,7 +405,7 @@ GNSS地理围栏请求参数。
 
 位置请求中的用户活动场景类型。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Location.Location.Core
 
@@ -425,7 +425,7 @@ GNSS地理围栏请求参数。
 
 单次位置请求中的优先级类型。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Location.Location.Core
 
@@ -439,7 +439,7 @@ GNSS地理围栏请求参数。
 
 持续定位过程中的错误信息。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Location.Location.Core
 
@@ -456,7 +456,7 @@ GNSS地理围栏请求参数。
 
 定位结果的来源。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Location.Location.Core
 
@@ -474,7 +474,7 @@ on(type: 'locationChange', request: LocationRequest | ContinuousLocationRequest,
 
 开启位置变化订阅，并发起定位请求。使用callback异步回调。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **需要权限**：ohos.permission.APPROXIMATELY_LOCATION
 
@@ -536,7 +536,7 @@ off(type: 'locationChange', callback?: Callback&lt;Location&gt;): void
 
 关闭位置变化订阅，并删除对应的定位请求。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **需要权限**：ohos.permission.APPROXIMATELY_LOCATION
 
@@ -586,7 +586,7 @@ on(type: 'locationError', callback: Callback&lt;LocationError&gt;): void;
 
 订阅持续定位过程中的错误码。使用callback异步回调。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **需要权限**：ohos.permission.APPROXIMATELY_LOCATION
 
@@ -643,7 +643,7 @@ off(type: 'locationError', callback?: Callback&lt;LocationError&gt;): void
 
 取消订阅持续定位过程中的错误码。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **需要权限**：ohos.permission.APPROXIMATELY_LOCATION
 
@@ -1270,7 +1270,7 @@ getCurrentLocation(request: CurrentLocationRequest | SingleLocationRequest, call
 
 获取当前位置，使用callback异步回调。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **需要权限**：ohos.permission.APPROXIMATELY_LOCATION
 
@@ -1342,7 +1342,7 @@ getCurrentLocation(callback: AsyncCallback&lt;Location&gt;): void;
 
 获取当前位置，使用callback异步回调。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **需要权限**：ohos.permission.APPROXIMATELY_LOCATION
 
@@ -1394,7 +1394,7 @@ getCurrentLocation(request?: CurrentLocationRequest | SingleLocationRequest): Pr
 
 获取当前位置，使用Promise异步回调。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **需要权限**：ohos.permission.APPROXIMATELY_LOCATION
 
@@ -1465,7 +1465,7 @@ getLastLocation(): Location
 
 获取上一次位置。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **需要权限**：ohos.permission.APPROXIMATELY_LOCATION
 
@@ -1507,7 +1507,7 @@ isLocationEnabled(): boolean
 
 判断位置服务是否已经使能。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Location.Location.Core
 

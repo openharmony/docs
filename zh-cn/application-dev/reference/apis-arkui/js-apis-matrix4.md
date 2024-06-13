@@ -20,7 +20,7 @@ init(options: [number,number,number,number,number,number,number,number,number,nu
 
 Matrix的构造函数，可以通过传入的参数创建一个四阶矩阵，矩阵为列优先。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -41,17 +41,17 @@ Matrix的构造函数，可以通过传入的参数创建一个四阶矩阵，�
 | 参数名  | 类型     | 必填   | 说明                   |
 | ---- | ------ | ---- | -------------------- |
 | m00  | number | 是    | x轴缩放值，单位矩阵默认为1。      |
-| m01  | number | 是    | 第2个值，xyz轴旋转会影响这个值。   |
+| m01  | number | 是    | 第2个值，xyz轴旋转或倾斜会影响这个值。   |
 | m02  | number | 是    | 第3个值，xyz轴旋转会影响这个值。   |
-| m03  | number | 是    | 无实际意义。               |
-| m10  | number | 是    | 第5个值，xyz轴旋转会影响这个值。   |
+| m03  | number | 是    | 第4个值，透视投影会影响这个值。               |
+| m10  | number | 是    | 第5个值，xyz轴旋转或倾斜会影响这个值。   |
 | m11  | number | 是    | y轴缩放值，单位矩阵默认为1。      |
 | m12  | number | 是    | 第7个值，xyz轴旋转会影响这个值。   |
-| m13  | number | 是    | 无实际意义。               |
+| m13  | number | 是    | 第8个值，透视投影会影响这个值。               |
 | m20  | number | 是    | 第9个值，xyz轴旋转会影响这个值。   |
 | m21  | number | 是    | 第10个值，xyz轴旋转会影响这个值。  |
 | m22  | number | 是    | z轴缩放值，单位矩阵默认为1。      |
-| m23  | number | 是    | 无实际意义。               |
+| m23  | number | 是    | 第12个值，透视投影会影响这个值。               |
 | m30  | number | 是    | x轴平移值，单位px，单位矩阵默认为0。 |
 | m31  | number | 是    | y轴平移值，单位px，单位矩阵默认为0。 |
 | m32  | number | 是    | z轴平移值，单位px，单位矩阵默认为0。 |
@@ -87,7 +87,7 @@ identity(): Matrix4Transit
 
 Matrix的初始化函数，可以返回一个单位矩阵对象。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -134,7 +134,7 @@ copy(): Matrix4Transit
 
 Matrix的拷贝函数，可以拷贝一份当前的矩阵对象。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -183,7 +183,7 @@ combine(options: Matrix4Transit): Matrix4Transit
 
 Matrix的叠加函数，可以将两个矩阵的效果叠加起来生成一个新的矩阵对象。会改变调用该函数的原始矩阵。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -238,7 +238,7 @@ invert(): Matrix4Transit
 
 Matrix的逆函数，可以返回一个当前矩阵对象的逆矩阵，即效果正好相反。会改变调用该函数的原始矩阵。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -283,7 +283,7 @@ translate(options: TranslateOption): Matrix4Transit
 
 Matrix的平移函数，可以为当前矩阵增加x轴/y轴/z轴平移效果。会改变调用该函数的原始矩阵。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -329,7 +329,7 @@ scale(options: ScaleOption): Matrix4Transit
 
 Matrix的缩放函数，可以为当前矩阵增加x轴/y轴/z轴缩放效果。会改变调用该函数的原始矩阵。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -422,7 +422,7 @@ rotate(options: RotateOption): Matrix4Transit
 
 Matrix的旋转函数，可以为当前矩阵增加x轴/y轴/z轴旋转效果。会改变调用该函数的原始矩阵。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -468,7 +468,7 @@ transformPoint(options: [number, number]): [number, number]
 
 Matrix的坐标点转换函数，可以将当前的变换效果作用到一个坐标点上。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -565,7 +565,7 @@ struct Index {
 ![zh-cn_image_0000001174422898](figures/setPolyTopoly.png)
 ## TranslateOption
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -577,7 +577,7 @@ struct Index {
 
 ## ScaleOption
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -591,7 +591,7 @@ struct Index {
 
 ## RotateOption
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -606,7 +606,7 @@ struct Index {
 
 ## PolyToPolyOptions<sup>12+</sup>
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -620,7 +620,7 @@ struct Index {
 
 ## Point<sup>12+</sup>
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

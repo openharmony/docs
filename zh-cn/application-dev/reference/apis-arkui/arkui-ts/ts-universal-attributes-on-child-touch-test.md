@@ -3,7 +3,9 @@
 ArkUI在处理触屏事件时，会在触屏事件触发前进行按压点和组件区域的触摸测试，来收集需要响应触屏事件的组件，再基于触摸测试结果分发相应的触屏事件。在父节点，开发者可以通过onChildTouchTest决定如何让子节点去做触摸测试，影响子组件的触摸测试，最终影响后续的触屏事件分发，具体影响参考[TouchTestStrategy](#touchteststrategy枚举说明)枚举说明。
 
 >  **说明：**
+>
 >  - 从API Version 11开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>
 >  - onClick以及旋转、捏合手势经过自定义事件分发之后可能会因为触摸热区没有命中导致事件不响应。
 
 ## onChildTouchTest
@@ -12,7 +14,7 @@ onChildTouchTest(event: (value: Array&lt;TouchTestInfo&gt;) => TouchResult): T
 
 当前组件可通过设置回调来自定义子节点如何去做触摸测试。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -20,7 +22,7 @@ onChildTouchTest(event: (value: Array&lt;TouchTestInfo&gt;) => TouchResult): T
 
 | 参数名 | 类型                                       | 必填 | 说明                   |
 | ------ | ------------------------------------------ | ---- | ---------------------- |
-| value  | Array<[TouchTestInfo>](#touchtestinfo说明) | 是   | 包含子节点信息的数组。 |
+| value  | Array<[TouchTestInfo>](#touchtestinfo) | 是   | 包含子节点信息的数组。 |
 
 **返回值：** 
 
@@ -29,12 +31,15 @@ onChildTouchTest(event: (value: Array&lt;TouchTestInfo&gt;) => TouchResult): T
 | T | 返回当前组件。 |
 
 >**说明：**
+>
 >子节点信息数组中只包含命名节点的信息，即开发者通过id属性设置了id的节点。
 
 
-## TouchTestInfo说明
+## TouchTestInfo
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称          | 类型   | 描述                                       |
 | ------------- | ------ | ---------------------------------------- |
@@ -47,9 +52,11 @@ onChildTouchTest(event: (value: Array&lt;TouchTestInfo&gt;) => TouchResult): T
 | rect   | [RectResult](ts-types.md#rectresult10) |子组件的大小。  |
 | [id](ts-universal-attributes-component-id.md)   | string | 通过id属性设置的组件id。 |
 
-## TouchResult说明
+## TouchResult
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称      | 类型                                     | 必填   | 描述                                |
 | --------- | --------- | ---- |--------------------------------------- |
@@ -58,7 +65,9 @@ onChildTouchTest(event: (value: Array&lt;TouchTestInfo&gt;) => TouchResult): T
 
 ## TouchTestStrategy枚举说明
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称          | 描述                                       |
 | ------------| ----------------------------------------- |

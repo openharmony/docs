@@ -7,7 +7,7 @@ Provides functions related to rawfiles, including searching for, reading, and cl
 
 **Since**: 8
 
-**Related module**: [Rawfile] (rawfile.md)
+**Related module**: [Rawfile](rawfile.md)
 
 
 ## Summary

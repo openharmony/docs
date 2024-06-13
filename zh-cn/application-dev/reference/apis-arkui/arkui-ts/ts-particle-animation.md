@@ -43,7 +43,7 @@ interface ParticleInterface {
 }
 ```
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -113,7 +113,7 @@ interface ParticleOptions<
 }
 ```
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 参数名 | 类型 | 必填 | 描述 |
 | -------- | -------- | -------- | -------- |
@@ -145,7 +145,7 @@ interface EmitterOptions<PARTICLE extends ParticleType> {
 }
 ```
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 参数名 | 类型 | 必填 | 描述 |
 | -------- | -------- | -------- | -------- |
@@ -164,7 +164,7 @@ interface ParticleConfigs {
 }
 ```
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 参数名称   | 类型   | 必填 | 描述 |
 | -------- | -------------- | -------- | -------- |
@@ -178,7 +178,7 @@ interface PointParticleParameters {
 }
 ```
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 参数名称   | 类型   | 必填 | 描述 |
 | -------- | -------------- | -------- | -------- |
@@ -193,7 +193,7 @@ interface ImageParticleParameters {
 }
 ```
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 参数名称   | 类型   | 必填 | 描述 |
 | -------- | -------------- | -------- | -------- |
@@ -215,9 +215,9 @@ interface ParticleColorPropertyOptions<UPDATER extends ParticleUpdater> {
 ```
 | 参数名 | 类型 | 必填 | 描述 |
 | -------- | -------- | -------- | -------- |
-| range | \[[ResourceColor](ts-types.md#resourcecolor), [ResourceColor](ts-types.md#resourcecolor)\] | 是 | 粒子初始颜色区间，粒子发射器生成粒子的初始颜色在range区间随机取值。<br>默认值：range:[Color.White,Color.White] <br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+| range | \[[ResourceColor](ts-types.md#resourcecolor), [ResourceColor](ts-types.md#resourcecolor)\] | 是 | 粒子初始颜色区间，粒子发射器生成粒子的初始颜色在range区间随机取值。<br>默认值：range:[Color.White,Color.White] <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 | distributionType<sup>12+<sup> | [DistributionType](#distributiontype12) | 否 | 粒子初始颜色随机值分布，允许用户选择颜色随机值生成的分布类型，支持均匀分布或正态（高斯）分布。<br>默认值：DistributionType.UNIFORM
-| updater | {<br>type: [UPDATER](#particleupdater);<br>config: [ParticleColorPropertyUpdaterConfigs](#particlecolorpropertyupdaterconfigs)[UPDATER];<br>} | 否 | 颜色属性变化配置。颜色属性变化类型type有三类：<br>1、当type为ParticleUpdater.NONE，表示无变化，则config类型为[ParticleColorPropertyUpdaterConfigs](#particlecolorpropertyupdaterconfigs)[ParticleUpdater.NONE]。 <br>2、type为ParticleUpdater.RANDOM，表示随机变化，则config类型为[ParticleColorPropertyUpdaterConfigs](#particlecolorpropertyupdaterconfigs)[ParticleUpdater.RANDOM]。 <br>3、type为ParticleUpdater.CURVE,表示按动画曲线变化，则config类型为[ParticleColorPropertyUpdaterConfigs](#particlecolorpropertyupdaterconfigs)[ParticleUpdater.CURVE]。<br>默认值：type默认为 ParticleUpdater.NONE。 <br>**说明**：<br>当type为ParticleUpdater.RANDOM或者ParticleUpdater.CURVE时，updater中颜色配置的优先级高于range中的颜色配置。在updater配置的动画时间周期内，以updater中的颜色配置来变化；在updater配置的动画时间周期外，以range中的颜色配置来变化。 <br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
+| updater | {<br>type: [UPDATER](#particleupdater);<br>config: [ParticleColorPropertyUpdaterConfigs](#particlecolorpropertyupdaterconfigs)[UPDATER];<br>} | 否 | 颜色属性变化配置。颜色属性变化类型type有三类：<br>1、当type为ParticleUpdater.NONE，表示无变化，则config类型为[ParticleColorPropertyUpdaterConfigs](#particlecolorpropertyupdaterconfigs)[ParticleUpdater.NONE]。 <br>2、type为ParticleUpdater.RANDOM，表示随机变化，则config类型为[ParticleColorPropertyUpdaterConfigs](#particlecolorpropertyupdaterconfigs)[ParticleUpdater.RANDOM]。 <br>3、type为ParticleUpdater.CURVE,表示按动画曲线变化，则config类型为[ParticleColorPropertyUpdaterConfigs](#particlecolorpropertyupdaterconfigs)[ParticleUpdater.CURVE]。<br>默认值：type默认为 ParticleUpdater.NONE。 <br>**说明**：<br>当type为ParticleUpdater.RANDOM或者ParticleUpdater.CURVE时，updater中颜色配置的优先级高于range中的颜色配置。在updater配置的动画时间周期内，以updater中的颜色配置来变化；在updater配置的动画时间周期外，以range中的颜色配置来变化。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 
 
 ## ParticleColorPropertyUpdaterConfigs
@@ -234,7 +234,7 @@ interface ParticleColorPropertyUpdaterConfigs {
 }
 ```
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 参数名 | 类型 | 必填 | 描述 |
 | -------- | -------- | -------- | -------- |
@@ -253,7 +253,7 @@ interface ParticlePropertyOptions<TYPE, UPDATER extends ParticleUpdater> {
 }
 ```
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 参数名 | 类型 | 必填 | 描述 |
 | -------- | -------- | -------- | -------- |
@@ -270,7 +270,7 @@ interface ParticlePropertyUpdaterConfigs<T> {
 }
 ```
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 参数名 | 类型 | 必填 | 描述 |
 | -------- | -------- | -------- | -------- |
@@ -291,7 +291,7 @@ interface ParticlePropertyAnimation<T> {
 }
 ```
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 参数名 | 类型 | 必填 | 描述 |
 | -------- | -------- | -------- | -------- |
@@ -309,7 +309,7 @@ enum ParticleType {
   IMAGE = 'image',
 }
 ```
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称  | 描述 |
 | -------- |  -------- | 
@@ -327,7 +327,7 @@ enum ParticleEmitterShape {
 }
 ```
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称  | 描述 |
 | -------- |  -------- | 
@@ -356,7 +356,7 @@ enum ParticleUpdater {
 }
 ```
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称  | 描述 |
 | -------- |  -------- | 

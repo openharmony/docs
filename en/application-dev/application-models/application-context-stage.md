@@ -35,8 +35,8 @@
     
      ```ts
      import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
-     import Want from '@ohos.app.ability.Want';
-     export default class MyService extends ServiceExtensionAbility {
+     import type Want from '@ohos.app.ability.Want';
+     export default class ServiceExtAbility extends ServiceExtensionAbility {
        onCreate(want: Want) {
          let serviceExtensionContext = this.context;
          //...
@@ -111,31 +111,40 @@ The application file paths obtained by the preceding contexts are different.
   @Entry
   @Component
   struct Page_Context {
-  
     private context = getContext(this) as common.UIAbilityContext;
   
     build() {
-      //...
-      Button()
-        .onClick(() => {
-          let applicationContext = this.context.getApplicationContext();
-          let cacheDir = applicationContext.cacheDir;
-          let tempDir = applicationContext.tempDir;
-          let filesDir = applicationContext.filesDir;
-          let databaseDir = applicationContext.databaseDir;
-          let bundleCodeDir = applicationContext.bundleCodeDir;
-          let distributedFilesDir = applicationContext.distributedFilesDir;
-          let preferencesDir = applicationContext.preferencesDir;
-          let cloudFileDir = applicationContext.cloudFileDir;
-          // Obtain the application file path.
-          let filePath = tempDir + 'test.txt';
-          hilog.info(DOMAIN_NUMBER, TAG, `filePath: ${filePath}`);
-          if (filePath !== null) {
-            promptAction.showToast({
-            message: filePath
-            });
+      Column() {
+        //...
+        List({ initialIndex: 0 }) {
+          ListItem() {
+            Row() {
+              //...
+            }
+            .onClick(() => {
+              let applicationContext = this.context.getApplicationContext();
+              let cacheDir = applicationContext.cacheDir;
+              let tempDir = applicationContext.tempDir;
+              let filesDir = applicationContext.filesDir;
+              let databaseDir = applicationContext.databaseDir;
+              let bundleCodeDir = applicationContext.bundleCodeDir;
+              let distributedFilesDir = applicationContext.distributedFilesDir;
+              let preferencesDir = applicationContext.preferencesDir;
+              // Obtain the application file path.
+              let filePath = tempDir + 'test.txt';
+              hilog.info(DOMAIN_NUMBER, TAG, `filePath: ${filePath}`);
+              if (filePath !== null) {
+                promptAction.showToast({
+                  message: filePath
+                });
+              }
+            })
           }
-        })
+          //...
+        }
+        //...
+      }
+      //...
     }
   }
   ```
@@ -165,30 +174,39 @@ The application file paths obtained by the preceding contexts are different.
   @Entry
   @Component
   struct Page_Context {
-  
     private context = getContext(this) as common.UIAbilityContext;
   
     build() {
-      //...
-      Button()
-        .onClick(() => {
-          let cacheDir = this.context.cacheDir;
-          let tempDir = this.context.tempDir;
-          let filesDir = this.context.filesDir;
-          let databaseDir = this.context.databaseDir;
-          let bundleCodeDir = this.context.bundleCodeDir;
-          let distributedFilesDir = this.context.distributedFilesDir;
-          let preferencesDir = this.context.preferencesDir;
-          let cloudFileDir = this.context.cloudFileDir;
-          // Obtain the application file path.
-          let filePath = tempDir + 'test.txt';
-          hilog.info(DOMAIN_NUMBER, TAG, `filePath: ${filePath}`);
-          if (filePath !== null) {
-            promptAction.showToast({
-              message: filePath
-            });
+      Column() {
+        //...
+        List({ initialIndex: 0 }) {
+          ListItem() {
+            Row() {
+              //...
+            }
+            .onClick(() => {
+              let cacheDir = this.context.cacheDir;
+              let tempDir = this.context.tempDir;
+              let filesDir = this.context.filesDir;
+              let databaseDir = this.context.databaseDir;
+              let bundleCodeDir = this.context.bundleCodeDir;
+              let distributedFilesDir = this.context.distributedFilesDir;
+              let preferencesDir = this.context.preferencesDir;
+              // Obtain the application file path.
+              let filePath = tempDir + 'test.txt';
+              hilog.info(DOMAIN_NUMBER, TAG, `filePath: ${filePath}`);
+              if (filePath !== null) {
+                promptAction.showToast({
+                  message: filePath
+                });
+              }
+            })
           }
-        })
+          //...
+        }
+        //...
+      }
+      //...
     }
   }
   ```
@@ -242,37 +260,48 @@ import promptAction from '@ohos.promptAction';
 @Entry
 @Component
 struct Page_Context {
-
   private context = getContext(this) as common.UIAbilityContext;
 
   build() {
-    //...
-    Button()
-      .onClick(() => {
-        // Before storing common information, switch the encryption level to EL1.
-        if (this.context.area === contextConstant.AreaMode.EL2) { // Obtain the area.
-          this.context.area = contextConstant.AreaMode.EL1; // Modify the area.
-          promptAction.showToast({
-            message: 'SwitchToEL1'
-          });
+    Column() {
+      //...
+      List({ initialIndex: 0 }) {
+        //...
+        ListItem() {
+          Row() {
+            //...
+          }
+          .onClick(() => {
+            // Before storing common information, switch the encryption level to EL1.
+            if (this.context.area === contextConstant.AreaMode.EL2) { // Obtain the area.
+              this.context.area = contextConstant.AreaMode.EL1; // Modify the area.
+              promptAction.showToast({
+                message: $r('app.string.SwitchToEL1')
+              });
+            }
+            // Store common information.
+          })
         }
-        // Store common information.
-      })
-    
-    //...
-
-    Button()
-      .onClick(() => {
-        // Before storing sensitive information, switch the encryption level to EL2.
-        if (this.context.area === contextConstant.AreaMode.EL1) { // Obtain the area.
-          this.context.area = contextConstant.AreaMode.EL2; // Modify the area.
-          promptAction.showToast({
-            message: 'SwitchToEL2'
-          });
+        //...
+        ListItem() {
+          Row() {
+            //...
+          }
+          .onClick(() => {
+            // Before storing sensitive information, switch the encryption level to EL2.
+            if (this.context.area === contextConstant.AreaMode.EL1) { // Obtain the area.
+              this.context.area = contextConstant.AreaMode.EL2; // Modify the area.
+              promptAction.showToast({
+                message: $r('app.string.SwitchToEL2')
+              });
+            }
+            // Store sensitive information.
+          })
         }
-        // Store sensitive information.
-      })
-    
+        //...
+      }
+      //...
+    }
     //...
   }
 }
@@ -291,19 +320,32 @@ Call **createModuleContext(moduleName:string)** to obtain the context of another
   
   @Entry(storageEventCall)
   @Component
-  struct Page_ContextAbility {
+  struct Page_Context {
     private context = getContext(this) as common.UIAbilityContext;
+
     build() {
-      Button()
-        .onClick(() => {
-          let moduleName2: string = 'entry';
-          let moduleContext: Context = this.context.createModuleContext(moduleName2);
-          if (moduleContext !== null) {
-            promptAction.showToast({
-              message: ('Context obtained.')
-            });
+      Column() {
+        //...
+        List({ initialIndex: 0 }) {
+          ListItem() {
+            Row() {
+              //...
+            }
+            .onClick(() => {
+              let moduleName2: string = 'entry';
+              let moduleContext: Context = this.context.createModuleContext(moduleName2);
+              if (moduleContext !== null) {
+                promptAction.showToast({
+                  message: ('Context obtained.')
+                });
+              }
+            })
           }
-        })
+          //...
+        }
+        //...
+      }
+      //...
     }
   }
   ```
