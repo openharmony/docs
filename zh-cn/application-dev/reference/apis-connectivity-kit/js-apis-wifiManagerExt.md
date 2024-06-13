@@ -12,7 +12,7 @@
 import { wifiManagerExt } from '@kit.ConnectivityKit';
 ```
 
-## wifimanagerext.enableHotspot<sup>9+</sup>
+## wifiManagerExt.enableHotspot<sup>9+</sup>
 
 enableHotspot(): void;
 
@@ -44,7 +44,7 @@ enableHotspot(): void;
         }
 ```
 
-## wifimanagerext.disableHotspot<sup>9+</sup>
+## wifiManagerExt.disableHotspot<sup>9+</sup>
 
 disableHotspot(): void;
 
@@ -76,7 +76,7 @@ disableHotspot(): void;
         }
 ```
 
-## wifimanagerext.getSupportedPowerMode<sup>9+</sup>
+## wifiManagerExt.getSupportedPowerMode<sup>9+</sup>
 
 getSupportedPowerMode(): Promise&lt;Array&lt;PowerMode&gt;&gt;
 
@@ -115,7 +115,7 @@ getSupportedPowerMode(): Promise&lt;Array&lt;PowerMode&gt;&gt;
 | THROUGH_WALL | 2 | 穿墙模式。 |
 
 
-## wifimanagerext.getSupportedPowerMode<sup>9+</sup>
+## wifiManagerExt.getSupportedPowerMode<sup>9+</sup>
 
 getSupportedPowerMode(callback: AsyncCallback&lt;Array&lt;PowerMode&gt;&gt;): void
 
@@ -161,7 +161,7 @@ getSupportedPowerMode(callback: AsyncCallback&lt;Array&lt;PowerMode&gt;&gt;): vo
         });
 ```
 
-## wifimanagerext.getPowerMode<sup>9+</sup>
+## wifiManagerExt.getPowerMode<sup>9+</sup>
 
 getPowerMode(): Promise&lt;PowerMode&gt;
 
@@ -200,7 +200,7 @@ getPowerMode(): Promise&lt;PowerMode&gt;
         }
 ```
 
-## wifimanagerext.getPowerMode<sup>9+</sup>
+## wifiManagerExt.getPowerMode<sup>9+</sup>
 
 getPowerMode(callback: AsyncCallback&lt;PowerMode&gt;): void
 
@@ -246,7 +246,7 @@ getPowerMode(callback: AsyncCallback&lt;PowerMode&gt;): void
         });
 ```
 
-## wifimanagerext.setPowerMode<sup>9+</sup>
+## wifiManagerExt.setPowerMode<sup>9+</sup>
 
 setPowerMode(mode: PowerMode) : void;
 
