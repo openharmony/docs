@@ -86,7 +86,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     OH_AVCodec *videoEnc = OH_VideoEncoder_CreateByMime(OH_AVCODEC_MIMETYPE_VIDEO_AVC);
     ```
 
-#### 3. 调用OH_VideoEncoder_RegisterCallback()设置回调函数。
+#### 3. 调用OH_VideoEncoder_RegisterCallback()设置回调函数
 
     > **说明：**
     >
@@ -280,7 +280,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     }
     ```
 
-#### 9. （可选）OH_VideoEncoder_SetParameter()在运行过程中动态配置编码器参数。
+#### 9. （可选）OH_VideoEncoder_SetParameter()在运行过程中动态配置编码器参数
     详细可配置选项的说明请参考[视频专有键值对](../../reference/apis-avcodec-kit/_codec_base.md#媒体数据键值对)。
 
    ```c++

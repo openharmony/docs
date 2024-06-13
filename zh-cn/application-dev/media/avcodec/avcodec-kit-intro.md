@@ -29,7 +29,7 @@ AVCodec kit（Audio & Video Codec Kit，音视频编解码，封装解封装原�
 ## 使用方式
 - 视频编解码
 
-  视频编码的输入和视频解码的输出支持Surface模式。请详见[视频解码Surface模式](video-decoding.md/#surface模式)、[视频编码Surface模式](video-encoding.md/#surface模式)。
+  视频编码的输入和视频解码的输出支持Surface模式。请详见[视频解码Surface模式](video-decoding.md#surface模式)、[视频编码Surface模式](video-encoding.md#surface模式)。
 
   在编码和解码过程中，通过回调函数通知应用数据处理的情况；如编码过程通过回调通知应用，完成一帧编码，输出编码结果AVBuffer；在解码过程通过回调通知应用输入一帧码流到解码器解码，当解码完成也会通过回调通知应用解码完成，应用可以对数据做后续处理。
 
