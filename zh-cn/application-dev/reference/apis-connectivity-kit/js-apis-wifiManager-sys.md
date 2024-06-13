@@ -1039,18 +1039,6 @@ getDisconnectedReason(): DisconnectedReason
 | DISC_REASON_WRONG_PWD  | 1 | 密码错误。 |
 | DISC_REASON_CONNECTION_FULL  | 2 | 路由器的连接数已达到最大数量限制。 |
 
-## WifiCategory<sup>12+</sup>
-
-表示热点支持的最高wifi类别。
-
-**系统能力：** SystemCapability.Communication.WiFi.STA
-
-| 名称 | 值 | 说明 |
-| -------- | -------- | -------- |
-| DEFAULT | 1 | Default。Wifi6以下的wifi类别。 |
-| WIFI6 | 2 | Wifi6。 |
-| WIFI6_PLUS | 3 | Wifi6+。 |
-
 ## wifiManager.startPortalCertification<sup>11+</sup>
 
 startPortalCertification(): void
