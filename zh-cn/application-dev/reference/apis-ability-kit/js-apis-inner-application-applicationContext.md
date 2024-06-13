@@ -23,7 +23,7 @@ on(type: 'abilityLifecycle', callback: AbilityLifecycleCallback): number
 
 注册监听应用内生命周期。使用callback异步回调。不支持多线程并发调用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -112,7 +112,7 @@ off(type: 'abilityLifecycle', callbackId: number,  callback: AsyncCallback\<void
 
 取消监听应用内生命周期。使用callback异步回调。不支持多线程并发调用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -165,7 +165,7 @@ off(type: 'abilityLifecycle', callbackId: number): Promise\<void>
 
 取消监听应用内生命周期。使用Promise异步回调。不支持多线程并发调用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -217,7 +217,7 @@ on(type: 'environment', callback: EnvironmentCallback): number
 
 注册对系统环境变化的监听。使用callback异步回调。不支持多线程并发调用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -281,7 +281,7 @@ off(type: 'environment', callbackId: number,  callback: AsyncCallback\<void>): v
 
 取消对系统环境变化的监听。使用callback异步回调。不支持多线程并发调用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -333,7 +333,7 @@ off(type: 'environment', callbackId: number): Promise\<void\>
 
 取消对系统环境变化的监听。使用Promise异步回调。不支持多线程并发调用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -384,7 +384,7 @@ on(type: 'applicationStateChange', callback: ApplicationStateChangeCallback): vo
 
 注册对当前应用前后台变化的监听。使用callback异步回调。不支持多线程并发调用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -441,7 +441,7 @@ off(type: 'applicationStateChange', callback?: ApplicationStateChangeCallback): 
 
 取消当前应用注册的前后台变化的全部监听。使用callback异步回调。不支持多线程并发调用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -484,7 +484,7 @@ getRunningProcessInformation(): Promise\<Array\<ProcessInformation>>
 
 获取有关运行进程的信息。使用Promise异步回调。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -528,7 +528,7 @@ getRunningProcessInformation(callback: AsyncCallback\<Array\<ProcessInformation>
 
 获取有关运行进程的信息。使用callback异步回调。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -573,7 +573,7 @@ killAllProcesses(): Promise\<void\>
 
 杀死应用所在的进程。使用Promise异步回调。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -611,7 +611,7 @@ killAllProcesses(callback: AsyncCallback\<void\>)
 
 杀死应用所在的进程。使用callback异步回调。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -652,7 +652,7 @@ setColorMode(colorMode: ConfigurationConstant.ColorMode): void
 
 设置应用的颜色模式。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -691,7 +691,7 @@ setLanguage(language: string): void
 
 设置应用的语言。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -813,7 +813,7 @@ restartApp(want: Want): void
 
 应用重启并拉起自身指定UIAbility。重启时不会收到onDestroy回调。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 

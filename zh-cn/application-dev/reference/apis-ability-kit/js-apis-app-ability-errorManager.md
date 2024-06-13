@@ -17,7 +17,7 @@ on(type: 'error', observer: ErrorObserver): number
 
 注册错误观测器。注册后可以捕获到应用产生的js crash，应用崩溃时进程不会退出。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -78,7 +78,7 @@ off(type: 'error', observerId: number,  callback: AsyncCallback\<void>): void
 
 注销错误观测器。使用callback异步返回。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -128,7 +128,7 @@ off(type: 'error', observerId: number): Promise\<void>
 
 注销错误观测器。使用Promise异步返回。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -183,7 +183,7 @@ on(type: 'loopObserver', timeout: number, observer: LoopObserver): void
 
 注册主线程消息处理耗时监听器。注册后可以捕获到应用主线程处理消息的具体执行时间。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -223,7 +223,7 @@ on(type: 'unhandledRejection', observer: UnhandledRejectionObserver): void
 
 注册主线程被拒绝promise监听器。注册后可以捕获到应用主线程中未被捕获到的promise rejection。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -272,7 +272,7 @@ off(type: 'loopObserver', observer?: LoopObserver): void
 
 注销主线程消息处理监听器。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -305,7 +305,7 @@ off(type: 'unhandledRejection', observer?: UnhandledRejectionObserver): void
 
 注销主线程被拒绝promise监听器。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -382,7 +382,7 @@ type UnhandledRejectionObserver = (reason: Error | any, promise: Promise\<any>) 
 
 将在js运行时应用主线程中用户未捕获到的rejection。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
