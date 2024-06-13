@@ -1,21 +1,23 @@
-# E类加密库使用指南
+# E类加密数据库的使用
 
 
 ## 场景介绍
 
-为了满足数据库的安全特性，存有敏感信息的应用会在El5（加密路径切换请参考[获取和修改加密分区](../application-models/application-context-stage.md#获取和修改加密分区)EL1-EL4路径切换）路径下创建了一个E类数据库。在锁屏的情况下，满足一定条件时，会触发密钥的销毁。此时E类数据库不可操作。当锁屏解锁后，密钥会恢复，E类数据库恢复正常读写操作。这样的设计可以有效防止用户数据的泄露。
+为了满足数据库的安全特性，存有敏感信息的应用会在[EL5](../reference/apis-ability-kit/js-apis-app-ability-contextConstant.md#contextconstantareamode)（加密路径切换请参考[获取和修改加密分区](../reference/apis-ability-kit/js-apis-app-ability-contextConstant.md#contextconstantareamode)EL1-EL4路径切换）路径下创建了一个E类数据库。在锁屏的情况下，满足一定条件时，会触发密钥的销毁。此时E类数据库不可操作。当锁屏解锁后，密钥会恢复，E类数据库恢复正常读写操作。这样的设计可以有效防止用户数据的泄露。
 
 然而，在锁屏的过程中，应用程序仍然可以继续写入数据，由于此时E类数据库不可读写，可能会导致数据丢失。为了解决这个问题，当前提供了一种方案：在锁屏的状态下，将数据存储在[EL2](../application-models/application-context-stage.md#获取和修改加密分区)路径下的C类数据库中。当解锁后，再将数据迁移到E类数据库中。这样可以确保数据在锁屏期间的安全性和一致性。
 
+键值型数据库和关系型数据库均支持数据库加密操作。
+
 ## 实现机制
 
-提供类图和时序图展示如何通过封装[Mover](#mover)类、[Store](#store)类、[SecretKeyObserver](#secretkeyobserver)类和[ECStoreManager](#ecstoremanager)类实现应用数据库密钥加锁和解锁状态下E类数据库和C类数据库的切换和操作。
+通过封装Mover类、Store类、SecretKeyObserver类和ECStoreManager类实现应用数据库密钥加锁和解锁状态下E类数据库和C类数据库的切换和操作。
 
 Mover类：提供数据库数据迁移接口，在锁屏解锁后，若C类数据库中有数据，使用该接口将数据迁移到E类数据库。
 
 Store类：提供访问当前可操作数据库，对数据库进行相关操作的接口。
 
-secretKeyObserver类：提供了获取当前密钥状态的接口，在密钥销毁后，关闭E类数据库。
+SecretKeyObserver类：提供了获取当前密钥状态的接口，在密钥销毁后，关闭E类数据库。
 
 ECStoreManager类：用于管理应用的E类数据库和C类数据库。
 
@@ -24,6 +26,7 @@ ECStoreManager类：用于管理应用的E类数据库和C类数据库。
 使用EL5路径下的数据库，需要配置ohos.permission.PROTECT_SCREEN_LOCK_DATA权限。
 
 ```ts
+// module.json5
 "requestPermissions": [
       {
         "name": "ohos.permission.PROTECT_SCREEN_LOCK_DATA"
@@ -33,13 +36,14 @@ ECStoreManager类：用于管理应用的E类数据库和C类数据库。
 
 ## 键值型数据库E类加密
 
-本章节提供键值型数据库的E类加密库使用方式，提供[Mover](#mover)类、[Store](#store)类、[SecretKeyObserver](#secretkeyobserver)类和[ECStoreManager](#ecstoremanager)类的具体实现，并在[EntryAbility](#entryability)和[index按键事件](#index按键事件)中展示这几个类的使用方式。
+本章节提供键值型数据库的E类加密数据库使用方式，提供[Mover](#mover)类、[Store](#store)类、[SecretKeyObserver](#secretkeyobserver)类和[ECStoreManager](#ecstoremanager)类的具体实现，并在[EntryAbility](#entryability)和[index按键事件](#index按键事件)中展示这几个类的使用方式。
 
 ### Mover
 
 提供数据库数据迁移接口，在锁屏解锁后，若C类数据库中存在数据，使用该接口将数据迁移到E类数据库。
 
 ```ts
+// Mover.ts
 import { distributedKVStore } from '@kit.ArkData';
 
 export class Mover {
@@ -58,6 +62,7 @@ export class Mover {
 提供了获取数据库，在数据库中插入数据、删除数据、更新数据和获取当前数据数量的接口。
 
 ```ts
+// Store.ts
 import { distributedKVStore } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -177,6 +182,7 @@ export class Store {
 该类提供了获取当前密钥状态的接口，在密钥销毁后，关闭E类数据库。
 
 ```ts
+// SecretKeyObserver.ts
 import { ECStoreManager } from './ECStoreManager'
 
 export enum SecretStatus {
@@ -210,7 +216,7 @@ export class SecretKeyObserver {
     }
   }
 
-  //初始获取锁屏状态
+  // 初始获取锁屏状态
   private lockStatuas: number = SecretStatus.UnLock;
   private storeManager: ECStoreManager;
 }
@@ -223,6 +229,7 @@ export let lockObserve = new SecretKeyObserver();
 ECStoreManager类用于管理应用的E类数据库和C类数据库。提供配置数据库信息、配置迁移函数的信息，根据密钥状态为应用提供相应的数据库句柄、提供E类数据关库接口和在数据迁移完成后销毁C类数据库的接口。
 
 ```ts
+// ECStoreManager.ts
 import distributedKVStore from '@ohos.data.distributedKVStore';
 import { Mover } from './Mover'
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -251,7 +258,7 @@ export class ECStoreManager {
         let error = e as BusinessError;
         console.error(`Failed to GetECStore.code is ${error.code},message is ${error.message}`);
       }
-      //解锁状态 获取e类库
+      // 解锁状态 获取e类库
       if (this.needMove) {
         if (this.eStore != undefined && this.cStore != undefined) {
           await this.mover.move(this.eStore, this.cStore);
@@ -262,7 +269,7 @@ export class ECStoreManager {
       }
       return this.eStore;
     } else {
-      //加锁状态 获取c类库
+      // 加锁状态 获取c类库
       this.needMove = true;
       try {
         this.cStore = await store.getECStore(this.cInfo);
@@ -319,6 +326,7 @@ export class ECStoreManager {
 模拟应用启动期间，注册对COMMON_EVENT_SCREEN_LOCK_FILE_ACCESS_STATE_CHANGED公共事件的监听，并配置相应的数据库信息、密钥状态信息等。
 
 ```ts
+// EntryAbility.ets
 import { AbilityConstant, contextConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
@@ -405,7 +413,7 @@ export default class EntryAbility extends UIAbility {
       }
     }
     console.info(`ECDB_Encry store area : estore:${eContext.area},cstore${cContext.area}`);
-    //监听COMMON_EVENT_SCREEN_LOCK_FILE_ACCESS_STATE_CHANGED事件 code == 1解锁状态，code==0加锁状态
+    // 监听COMMON_EVENT_SCREEN_LOCK_FILE_ACCESS_STATE_CHANGED事件 code == 1解锁状态，code==0加锁状态
     try {
       commonEventManager.createSubscriber({
         events: ['COMMON_EVENT_SCREEN_LOCK_FILE_ACCESS_STATE_CHANGED']
@@ -459,6 +467,7 @@ export default class EntryAbility extends UIAbility {
 使用Button按钮，通过点击按钮来模拟应用操作数据库，如插入数据、删除数据、更新数据和获取数据数量的操作等，展示数据库基本的增删改查能力。
 
 ```ts
+// index.ets
 import { storeManager, e_secretKeyObserver } from "../entryability/EntryAbility"
 import { distributedKVStore } from '@kit.ArkData';
 import { Store } from '../entryability/Store';
@@ -522,13 +531,14 @@ struct Index {
 
 ## 关系型数据库E类加密
 
-本章节提供关系型数据库的E类加密库使用方式，提供[Mover](#mover-1)类，[Store](#store-1)类，[SecretKeyObserver](#secretkeyobserver-1)类和[ECStoreManager](#ecstoremanager-1)类的具体实现，并在[EntryAbility](#entryability-1)和[index按键事件](#index按键事件-1)中展示这几个类的使用方式。
+本章节提供关系型数据库的E类加密数据库使用方式，提供[Mover](#mover-1)类，[Store](#store-1)类，[SecretKeyObserver](#secretkeyobserver-1)类和[ECStoreManager](#ecstoremanager-1)类的具体实现，并在[EntryAbility](#entryability-1)和[index按键事件](#index按键事件-1)中展示这几个类的使用方式。
 
 ### Mover
 
 提供数据库数据迁移接口，在锁屏解锁后，若C类数据库中有数据，使用该接口将数据迁移到E类数据库。
 
 ```ts
+// Mover.ts
 import { relationalStore } from '@kit.ArkData';
 
 export class Mover {
@@ -550,6 +560,7 @@ export class Mover {
 提供了获取数据库，在数据库中插入数据、删除数据、更新数据和获取当前数据数量的接口。其中StoreInfo类用于存储获取数据库相关信息。
 
 ```ts
+// Store.ts
 import { relationalStore } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { Context } from '@kit.AbilityKit';
@@ -648,6 +659,7 @@ export class Store {
 该类提供了获取当前密钥状态的接口，在密钥销毁后，关闭E类数据库。
 
 ```ts
+// SecretKeyObserver.ts
 import { ECStoreManager } from './ECStoreManager'
 
 export enum SecretStatus {
@@ -693,6 +705,7 @@ export let lockObserve = new SecretKeyObserver();
 ECStoreManager类用于管理应用的E类数据库和C类数据库。提供配置数据库信息、配置迁移函数的信息，根据密钥状态为应用提供相应的数据库句柄、提供E类数据关库接口和在数据迁移完成后销毁C类数据库的接口。
 
 ```ts
+// ECStoreManager.ts
 import { relationalStore } from '@kit.ArkData';
 import { Mover } from './Mover'
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -720,7 +733,7 @@ export class ECStoreManager {
         let error = e as BusinessError;
         console.error(`Failed to GetECStore.code is ${error.code},message is ${error.message}`);
       }
-      //解锁状态 获取e类库
+      // 解锁状态 获取e类库
       if (this.needMove) {
         if (this.eStore != undefined && this.cStore != undefined) {
           await this.mover.move(this.eStore, this.cStore);
@@ -730,7 +743,7 @@ export class ECStoreManager {
       }
       return this.eStore;
     } else {
-      //加锁状态 获取c类库
+      // 加锁状态 获取c类库
       this.needMove = true;
       try {
         this.cStore = await store.getECStore(this.cInfo);
@@ -770,6 +783,7 @@ export class ECStoreManager {
 模拟在应用启动期间，注册对COMMON_EVENT_SCREEN_LOCK_FILE_ACCESS_STATE_CHANGED公共事件的监听，并配置相应的数据库信息、密钥状态信息等。
 
 ```ts
+// EntryAbility.ets
 import { AbilityConstant, contextConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
@@ -837,7 +851,7 @@ export default class EntryAbility extends UIAbility {
       },
       storeId: "estore.db",
     }
-    //监听COMMON_EVENT_SCREEN_LOCK_FILE_ACCESS_STATE_CHANGED事件 code == 1解锁状态，code==0加锁状态
+    // 监听COMMON_EVENT_SCREEN_LOCK_FILE_ACCESS_STATE_CHANGED事件 code == 1解锁状态，code==0加锁状态
     console.info(`ECDB_Encry store area : estore:${eContext.area},cstore${cContext.area}`)
     try {
       commonEventManager.createSubscriber({
@@ -892,6 +906,7 @@ export default class EntryAbility extends UIAbility {
 使用Button按钮，通过点击按钮来模拟应用操作数据库，如插入数据、删除数据、更新数据和获取数据数量的操作等，展示数据库基本的增删改查能力。
 
 ```ts
+// index.ets
 import { storeManager, e_secretKeyObserver } from "../entryability/EntryAbility"
 import { relationalStore } from '@kit.ArkData';
 import { Store } from '../entryability/Store';
