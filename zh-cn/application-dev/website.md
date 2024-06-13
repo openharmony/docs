@@ -340,7 +340,7 @@
       - [XML转换](arkts-utils/xml-conversion.md)
     - [代码混淆](arkts-utils/source-obfuscation.md)
     - 内存管理
-      - [GC介绍](gc-introduction.md)
+      - [GC介绍](arkts-utils/gc-introduction.md)
   - ArkUI（方舟UI框架）
     - [ArkUI简介](ui/arkui-overview.md)
     - UI开发 (ArkTS声明式开发范式)
@@ -369,7 +369,7 @@
           - [显示图片 (Image)](ui/arkts-graphics-display.md)
           - [自定义弹窗 (CustomDialog)](ui/arkts-common-components-custom-dialog.md)
           - [视频播放 (Video)](ui/arkts-common-components-video-player.md)
-          - [图标小符号 (SymbolGlyph/SymbolSpan)](arkts-common-components-symbol.md)
+          - [图标小符号 (SymbolGlyph/SymbolSpan)](ui/arkts-common-components-symbol.md)
           - [自定义绘制 (XComponent)](ui/arkts-common-components-xcomponent.md)
           - [Native XComponent](ui/napi-xcomponent-guidelines.md)
         - 添加气泡和菜单
@@ -530,7 +530,7 @@
       - [应用侧调用前端页面函数](web/web-in-app-frontend-page-function-invoking.md)
       - [前端页面调用应用侧函数](web/web-in-page-app-function-invoking.md)
       - [建立应用侧与前端页面数据通道](web/web-app-page-data-channel.md)
-    - [应用侧与前端页面的相互调用(C/C++)](arkweb-ndk-jsbridge.md)
+    - [应用侧与前端页面的相互调用(C/C++)](web/arkweb-ndk-jsbridge.md)
     - [管理页面跳转及浏览记录导航](web/web-redirection-and-browsing-history-mgmt.md)
     - [管理Cookie及数据存储](web/web-cookie-and-data-storage-mgmt.md)
     - [自定义页面请求响应](web/web-resource-interception-request-mgmt.md)
@@ -546,7 +546,7 @@
     - [应用接管网页中的媒体播放](web/app-takeovers-web-media.md)
     - [使用Devtools工具调试前端页面](web/web-debugging-with-devtools.md)
     - [使用crashpad收集Web组件崩溃信息](web/web-crashpad.md)
-    - [使用Web组件的广告过滤功能](web-adsblock.md)
+    - [使用Web组件的广告过滤功能](web/web-adsblock.md)
   - Asset Store Kit（关键资产存储服务）
     - [Asset Store Kit简介](security/AssetStoreKit/asset-store-kit-overview.md)
     - 常见场景
@@ -2707,6 +2707,7 @@
         - [OH_Camera](reference/apis-camera-kit/_o_h___camera.md)
       - 头文件<!--camera-headerfile-->
         - [camera.h](reference/apis-camera-kit/camera_8h.md)
+        - [camera_device.h](reference/apis-camera-kit/camera__device_8h.md)
         - [camera_input.h](reference/apis-camera-kit/camera__input_8h.md)
         - [camera_manager.h](reference/apis-camera-kit/camera__manager_8h.md)
         - [capture_session.h](reference/apis-camera-kit/capture__session_8h.md)
@@ -3116,20 +3117,20 @@
       - [@ohos.rpc (RPC通信)](reference/apis-ipc-kit/js-apis-rpc.md)
     - C API<!--ipc-c-->
     - 模块<!--ipc-moudle-->
-        - [OHIPCParcel](_o_h_i_p_c_parcel.md)
-        - [OHIPCRemoteObject](_o_h_i_p_c_remote_object.md)
-        - [OHIPCSkeleton](_o_h_i_p_c_skeleton.md)
-        - [OHIPCErrorCode](_o_h_i_p_c_error_code.md)
-        - [IPCKit](_i_p_c_kit.md)
+        - [OHIPCParcel](reference/apis-ipc-kit/_o_h_i_p_c_parcel.md)
+        - [OHIPCRemoteObject](reference/apis-ipc-kit/_o_h_i_p_c_remote_object.md)
+        - [OHIPCSkeleton](reference/apis-ipc-kit/_o_h_i_p_c_skeleton.md)
+        - [OHIPCErrorCode](reference/apis-ipc-kit/_o_h_i_p_c_error_code.md)
+        - [IPCKit](reference/apis-ipc-kit/_i_p_c_kit.md)
     - 头文件和结构体<!--ipc-headerfile-struct-->
         - 头文件<!--ipc-headerfile-->
-            - [ipc_cparcel.h](ipc__cparcel_8h.md)
-            - [ipc_cremote_object.h](ipc__cremote__object_8h.md)
-            - [ipc_cskeleton.h](ipc__cskeleton_8h.md)
-            - [ipc_error_code.h](ipc__error__code_8h.md)
-            - [ipc_kit.h](ipc__kit_8h.md)
+            - [ipc_cparcel.h](reference/apis-ipc-kit/ipc__cparcel_8h.md)
+            - [ipc_cremote_object.h](reference/apis-ipc-kit/ipc__cremote__object_8h.md)
+            - [ipc_cskeleton.h](reference/apis-ipc-kit/ipc__cskeleton_8h.md)
+            - [ipc_error_code.h](reference/apis-ipc-kit/ipc__error__code_8h.md)
+            - [ipc_kit.h](reference/apis-ipc-kit/ipc__kit_8h.md)
         - 结构体<!--ipc-struct-->
-            - [OH_IPC_MessageOption](_o_h___i_p_c___message_option.md)
+            - [OH_IPC_MessageOption](reference/apis-ipc-kit/_o_h___i_p_c___message_option.md)
     - 错误码<!--ipc-arkts-errcode-->
       - [RPC错误码](reference/apis-ipc-kit/errorcode-rpc.md)
   - Localization Kit API参考<!--localization-api-->
