@@ -4,8 +4,8 @@ AVCodec kit（Audio & Video Codec Kit，音视频编解码，封装解封装原�
 ## 能力范围
 - 媒体数据输入：媒体应用可以传入文件fd、或者流媒体url，进行后续的媒体信息解析等处理。
 - 媒体基础能力（Media Foundation）：提供媒体数据处理的公共基础类型，包括
-[AVBuffer](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-avcodec-kit/native__avbuffer_8h.md/#avBuffer)、
-[AVFormat](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-avcodec-kit/native__avformat_8h.md/#avFormat)等。
+[AVBuffer](../../reference/apis-avcodec-kit/native__avbuffer_8h.md#avBuffer)、
+[AVFormat](../../reference/apis-avcodec-kit/native__avformat_8h.md#avFormat)等。
 - 音频编码：音频类应用（比如音频通话、音频录制等）可以将未压缩的音频数据送到音频编码器进行编码，应用可以设置编码要用到的编码格式、码率、采样率等参数，控制编码的输出，达到压缩音频文件的目的。
 - 视频编码：视频类应用（比如视频通话、视频录制等）可以将未压缩的视频数据送到视频编码器进行编码，应用可以设置编码要用到的编码格式、码率、帧率等参数，控制编码的输出，达到压缩视频文件的目的。
 - 音频解码：音频类应用（比如音频通话、音频播放器等）将音频码流通过音频解码器解码，解码后的数据可以送到音频设备播放。
@@ -29,7 +29,7 @@ AVCodec kit（Audio & Video Codec Kit，音视频编解码，封装解封装原�
 ## 使用方式
 - 视频编解码
 
-  视频编码的输入和视频解码的输出支持Surface模式。请详见[视频解码Surface模式](video-decoding.md#surface模式)、[视频编码Surface模式](video-encoding.md#surface模式)。
+  视频编码的输入和视频解码的输出支持Surface模式。
 
   在编码和解码过程中，通过回调函数通知应用数据处理的情况；如编码过程通过回调通知应用，完成一帧编码，输出编码结果AVBuffer；在解码过程通过回调通知应用输入一帧码流到解码器解码，当解码完成也会通过回调通知应用解码完成，应用可以对数据做后续处理。
 
@@ -37,7 +37,9 @@ AVCodec kit（Audio & Video Codec Kit，音视频编解码，封装解封装原�
   
   ![](figures/avcodec-vcodec-logic.png)
 
-- 音频编解码。请详见[音频解码](audio-decoding.md)、[音频编码](audio-encoding.md)。
+  具体开发指导请参考[视频解码Surface模式](video-decoding.md#surface模式)、[视频编码Surface模式](video-encoding.md#surface模式)。
+
+- 音频编解码
 
   音频编码的输入和音频解码的输出为PCM格式。
 
@@ -47,14 +49,16 @@ AVCodec kit（Audio & Video Codec Kit，音视频编解码，封装解封装原�
 
   ![](figures/avcodec-acodec-logic.png)
 
+  具体开发指导请参考[音频解码](audio-decoding.md)、[音频编码](audio-encoding.md)。
+
 
 - 文件解析封装
 
   在文件封装环节，应用将AVBuffer送入Codec对应的接口，执行数据封装，AVBuffer可以是由上述编码输出的AVBuffer，也可以是应用创建的AVBuffer，AVBuffer中要携带有效的码流数据和相关的时间描述等信息；
   在文件解析环节，应用从Codec对应的接口获得携带有码流数据的AVBuffer，该AVBuffer可以送入上述视频和音频编解码对应接口。
 
-  文件封装解封装请详见[音视频解封装](audio-video-demuxer.md)、[音视频封装](audio-video-muxer.md)。
-
   文件封装解封装逻辑如图所示。
 
   ![](figures/avcodec-muxer-demuxer-logic.png)
+
+  具体开发指导请参考[音视频解封装](audio-video-demuxer.md)、[音视频封装](audio-video-muxer.md)。
