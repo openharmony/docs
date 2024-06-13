@@ -120,6 +120,7 @@ import { Want, ServiceExtensionAbility } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { rpc } from '@kit.IPCKit';
+import ServiceExtImpl from '../IdlServiceExt/idl_service_ext_impl';
 
 const TAG: string = '[ServiceExtAbility]';
 const DOMAIN_NUMBER: number = 0xFF00;
