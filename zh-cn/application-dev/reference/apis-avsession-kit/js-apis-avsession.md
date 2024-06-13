@@ -24,9 +24,9 @@ createAVSession(context: Context, tag: string, type: AVSessionType): Promise\<AV
 
 创建会话对象，一个Ability只能存在一个会话，重复创建会失败，结果通过Promise异步回调方式返回。
 
-**系统能力：** SystemCapability.Multimedia.AVSession.Core
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.Core
 
 **参数：**
 
@@ -117,7 +117,7 @@ avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSe
 });
 ```
 
-## ProtocolType<sup>10+</sup>
+## ProtocolType<sup>11+</sup>
 
 远端设备支持的协议类型的枚举。
 
@@ -138,9 +138,9 @@ type AVSessionType = 'audio' | 'video' | 'voice_call' | 'video_call'
 
 该类型可取的值为下表字符串。
 
-**系统能力：** SystemCapability.Multimedia.AVSession.Core
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.Core
 
 | 类型  | 说明 |
 | -----  | ---- |
@@ -155,9 +155,9 @@ type AVSessionType = 'audio' | 'video' | 'voice_call' | 'video_call'
 
 ### 属性
 
-**系统能力：** SystemCapability.Multimedia.AVSession.Core
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.Core
 
 | 名称      | 类型   | 可读 | 可写 | 说明                          |
 | :-------- | :----- | :--- | :--- | :---------------------------- |
@@ -177,9 +177,9 @@ setAVMetadata(data: AVMetadata): Promise\<void>
 
 设置会话元数据。结果通过Promise异步回调方式返回。
 
-**系统能力：** SystemCapability.Multimedia.AVSession.Core
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.Core
 
 **参数：**
 
@@ -222,7 +222,7 @@ let metadata: avSession.AVMetadata = {
   description: "Rap",
   lyric: "https://www.example.com/example.lrc",
   previousAssetId: "121277",
-  nextAssetId: "121279",
+  nextAssetId: "121279"
 };
 currentAVSession.setAVMetadata(metadata).then(() => {
   console.info(`SetAVMetadata successfully`);
@@ -275,7 +275,7 @@ let metadata: avSession.AVMetadata = {
   description: "Rap",
   lyric: "https://www.example.com/example.lrc",
   previousAssetId: "121277",
-  nextAssetId: "121279",
+  nextAssetId: "121279"
 };
 currentAVSession.setAVMetadata(metadata, (err: BusinessError) => {
   if (err) {
@@ -324,7 +324,7 @@ import { BusinessError } from '@ohos.base';
 let calldata: avSession.CallMetadata = {
   name: "xiaoming",
   phoneNumber: "111xxxxxxxx",
-  avatar: "xxx.jpg",
+  avatar: "xxx.jpg"
 };
 currentAVSession.setCallMetadata(calldata).then(() => {
   console.info(`setCallMetadata successfully`);
@@ -372,7 +372,7 @@ async function setCallMetadata() {
   let calldata: avSession.CallMetadata = {
     name: "xiaoming",
     phoneNumber: "111xxxxxxxx",
-    avatar: imagePixel,
+    avatar: imagePixel
   };
   currentAVSession.setCallMetadata(calldata, (err: BusinessError) => {
     if (err) {
@@ -479,9 +479,9 @@ setAVPlaybackState(state: AVPlaybackState): Promise\<void>
 
 设置会话播放状态。结果通过Promise异步回调方式返回。
 
-**系统能力：** SystemCapability.Multimedia.AVSession.Core
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.Core
 
 **参数：**
 
@@ -516,7 +516,7 @@ let playbackState: avSession.AVPlaybackState = {
   position:{elapsedTime:10, updateTime:(new Date()).getTime()},
   bufferedTime:1000,
   loopMode:avSession.LoopMode.LOOP_MODE_SINGLE,
-  isFavorite:true,
+  isFavorite:true
 };
 currentAVSession.setAVPlaybackState(playbackState).then(() => {
   console.info(`SetAVPlaybackState successfully`);
@@ -561,7 +561,7 @@ let PlaybackState: avSession.AVPlaybackState = {
   position:{elapsedTime:10, updateTime:(new Date()).getTime()},
   bufferedTime:1000,
   loopMode:avSession.LoopMode.LOOP_MODE_SINGLE,
-  isFavorite:true,
+  isFavorite:true
 };
 currentAVSession.setAVPlaybackState(PlaybackState, (err: BusinessError) => {
   if (err) {
@@ -627,7 +627,7 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
           mykey3: "ssssssssssssssssssssssssss",
           mykey4: [false, true, false],
           mykey5: ["qqqqq", "wwwwww", "aaaaaaaaaaaaaaaaa"],
-          mykey6: true,
+          mykey6: true
         }
     }
   ],
@@ -695,7 +695,7 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
           mykey3: "ssssssssssssssssssssssssss",
           mykey4: [false, true, false],
           mykey5: ["qqqqq", "wwwwww", "aaaaaaaaaaaaaaaaa"],
-          mykey6: true,
+          mykey6: true
         }
     }
   ],
@@ -1291,9 +1291,9 @@ getAVCastController(): Promise\<AVCastController>
 
 设备建立连接后，获取投播控制器。结果通过callback异步回调方式返回。如果 avsession 未处于投播状态，则控制器将返回 null。
 
-**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
 **返回值：**
 
@@ -1332,9 +1332,9 @@ getOutputDevice(): Promise\<OutputDeviceInfo>
 
 通过会话获取播放设备信息。结果通过Promise异步回调方式返回。
 
-**系统能力：** SystemCapability.Multimedia.AVSession.Core
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.Core
 
 **返回值：**
 
@@ -1406,9 +1406,9 @@ activate(): Promise\<void>
 
 激活会话，激活后可正常使用会话。结果通过Promise异步回调方式返回。
 
-**系统能力：** SystemCapability.Multimedia.AVSession.Core
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.Core
 
 **返回值：**
 
@@ -1480,9 +1480,9 @@ deactivate(): Promise\<void>
 
 禁用当前会话的功能，可通过[activate](#activate10)恢复。结果通过Promise异步回调方式返回。
 
-**系统能力：** SystemCapability.Multimedia.AVSession.Core
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.Core
 
 **返回值：**
 
@@ -1556,9 +1556,9 @@ destroy(): Promise\<void>
 
 销毁当前会话，使当前会话完全失效。结果通过Promise异步回调方式返回。
 
-**系统能力：** SystemCapability.Multimedia.AVSession.Core
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.Core
 
 **返回值：**
 
@@ -2138,9 +2138,9 @@ on(type: 'outputDeviceChange', callback: (state: ConnectionState, device: Output
 
 设置播放设备变化的监听事件。
 
-**系统能力：** SystemCapability.Multimedia.AVSession.Core
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.Core
 
 **参数：**
 
@@ -2636,9 +2636,9 @@ off(type: 'outputDeviceChange', callback?: (state: ConnectionState, device: Outp
 
 取消监听播放设备变化的事件。
 
-**系统能力：** SystemCapability.Multimedia.AVSession.Core
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.Core
 
 **参数：**
 
@@ -2998,9 +2998,9 @@ stopCasting(): Promise\<void>
 
 结束投播。结果通过Promise异步回调方式返回。
 
-**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
 **返回值：**
 
@@ -3109,9 +3109,9 @@ currentAVSession.getAllCastDisplays()
 
 投播控制器可传递的命令。
 
-**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
 | 名称           | 类型   | 说明         |
 | -------------- | ------ | ------------ |
@@ -3132,9 +3132,9 @@ currentAVSession.getAllCastDisplays()
 
 投播控制器接受的命令的对象描述。
 
-**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
 | 名称      | 类型                                              | 必填 | 说明           |
 | --------- | ------------------------------------------------- | ---- | -------------- |
@@ -3187,9 +3187,9 @@ getAVPlaybackState(): Promise\<AVPlaybackState>
 
 获取当前的远端播放状态。结果通过Promise异步回调方式返回。
 
-**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
 **返回值：**
 
@@ -3224,9 +3224,9 @@ sendControlCommand(command: AVCastControlCommand): Promise\<void>
 通过控制器发送命令到其对应的会话。结果通过Promise异步回调方式返回。
 
 
-**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
 **参数：**
 
@@ -3371,9 +3371,9 @@ prepare(item: AVQueueItem): Promise\<void>
 准备播放媒体资源，即进行播放资源的加载和缓冲。结果通过Promise异步回调方式返回。
 
 
-**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
 **参数：**
 
@@ -3493,9 +3493,9 @@ start(item: AVQueueItem): Promise\<void>
 启动播放某个媒体资源。结果通过Promise异步回调方式返回。
 
 
-**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
 **参数：**
 
@@ -3592,9 +3592,9 @@ getCurrentItem(): Promise\<AVQueueItem>
 
 获取当前投播的资源信息。结果通过Promise异步回调方式返回。
 
-**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
 **返回值：**
 
@@ -3673,7 +3673,7 @@ private keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string
            'Accept-Encoding': 'gzip, deflate',
         },
         extraData: licenseRequestStr,
-        expectDataType: http.HttpDataType.STRING,
+        expectDataType: http.HttpDataType.STRING
       });
       if (response?.responseCode == http.ResponseCode.OK) {
         if (typeof response.result == 'string') {
@@ -3739,9 +3739,9 @@ release(): Promise\<void>
 
 销毁当前controller。结果通过Promise异步回调方式返回。
 
-**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
 **返回值：**
 
@@ -3776,9 +3776,9 @@ on(type: 'playbackStateChange', filter: Array\<keyof AVPlaybackState> | 'all', c
 
 设置播放状态变化的监听事件。
 
-**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
 **参数：**
 
@@ -3816,9 +3816,9 @@ off(type: 'playbackStateChange', callback?: (state: AVPlaybackState) => void): v
 
 媒体控制器取消监听播放状态变化的事件。
 
-**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
 **参数：**
 
@@ -3848,9 +3848,9 @@ on(type: 'mediaItemChange', callback: Callback\<AVQueueItem>): void
 
 设置投播当前播放媒体内容的监听事件。
 
-**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
 **参数：**
 
@@ -3882,9 +3882,9 @@ off(type: 'mediaItemChange'): void
 
 取消设置投播当前播放媒体内容的监听事件。
 
-**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
 **参数：**
 
@@ -3913,9 +3913,9 @@ on(type: 'playNext', callback: Callback\<void>): void
 
 设置播放下一首资源的监听事件。
 
-**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
 **参数：**
 
@@ -3947,9 +3947,9 @@ off(type: 'playNext'): void
 
 取消设置播放下一首资源的监听事件。
 
-**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
 **参数：**
 
@@ -3978,9 +3978,9 @@ on(type: 'playPrevious', callback: Callback\<void>): void
 
 设置播放上一首资源的监听事件。
 
-**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
 **参数：**
 
@@ -4012,9 +4012,9 @@ off(type: 'playPrevious'): void
 
 取消设置播放上一首资源的监听事件。
 
-**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
 **参数：**
 
@@ -4167,9 +4167,9 @@ on(type: 'seekDone', callback: Callback\<number>): void
 
 设置seek结束的监听事件。
 
-**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
 **参数：**
 
@@ -4201,9 +4201,9 @@ off(type: 'seekDone'): void
 
 取消设置seek结束的监听事件。
 
-**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
 **参数：**
 
@@ -4297,9 +4297,9 @@ on(type: 'error', callback: ErrorCallback): void
 
 监听远端播放器的错误事件，该事件仅用于错误提示，不需要用户停止播控动作。
 
-**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
 **参数：**
 
@@ -4340,9 +4340,9 @@ off(type: 'error'): void
 
 取消监听播放的错误事件。
 
-**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
 **参数：**
 
@@ -4377,9 +4377,9 @@ on(type: 'keyRequest', callback: KeyRequestCallback): void
 
 在线DRM资源投播时，设置许可证请求的事件监听。
 
-**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
 **参数：**
 
@@ -4413,9 +4413,9 @@ off(type: 'keyRequest', callback?: KeyRequestCallback): void
 
 取消监听许可证请求的事件。
 
-**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
 **参数：**
 
@@ -4443,9 +4443,9 @@ type KeyRequestCallback = (assetId: string, requestData: Uint8Array) => void
 
 许可证请求事件的回调函数。
 
-**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
 **参数：**
 
@@ -4493,9 +4493,9 @@ private keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string
 
 连接状态枚举。
 
-**系统能力：** SystemCapability.Multimedia.AVSession.Core
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.Core
 
 | 名称                        | 值   | 说明         |
 | --------------------------- | ---- | ----------- |
@@ -4508,8 +4508,6 @@ private keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string
 媒体元数据的相关属性。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 名称            | 类型                      | 必填 | 说明                                                                  |
 | --------------- |-------------------------| ---- |---------------------------------------------------------------------|
@@ -4525,14 +4523,14 @@ private keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string
 | composer        | string                  | 否   | 作曲者。                                                                |
 | duration        | number                  | 否   | 媒体时长，单位毫秒（ms）。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                  |
 | mediaImage      | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) &#124; string | 否   | 图片的像素数据或者图片路径地址(本地路径或网络路径)。<br>应用通过setAVMetadata设置图片数据，当设置的数据类型为PixelMap时，通过getAVMetadata获取的将为PixelMap。设置为url图片路径，获取的亦为url图片路径  <br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                             |
-| publishDate     | Date                    | 否   | 发行日期。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                               |
+| publishDate     | Date                    | 否   | 发行日期。                                                               |
 | subtitle        | string                  | 否   | 子标题。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                |
 | description     | string                  | 否   | 媒体描述。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                               |
 | lyric           | string                  | 否   | 歌词文件路径地址(本地路径或网络路径) |
 | previousAssetId | string                  | 否   | 上一首媒体ID。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                            |
 | nextAssetId     | string                  | 否   | 下一首媒体ID。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                            |
 | filter<sup>11+</sup>        | number         | 否   | 当前session支持的协议，默认为TYPE_CAST_PLUS_STREAM。具体取值参考[ProtocolType](#protocoltype10)。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                   |
-| drmSchemes<sup>12+</sup>        | Array\<string>         | 否   | 当前session支持的DRM方案，取值为DRM方案uuid。 <br> **系统能力：** SystemCapability.Multimedia.AVSession.Core|
+| drmSchemes<sup>12+</sup>        | Array\<string>         | 否   | 当前session支持的DRM方案，取值为DRM方案uuid。|
 | skipIntervals<sup>11+</sup>  | [SkipIntervals](#skipintervals11)        | 否   | 快进快退支持的时间间隔，默认为SECONDS_15，即15秒。                            |
 |displayTags<sup>11+</sup>     | [DisplayTag](#displaytag11)                           | 否   | 媒体资源的金标类型。                                                          |
 
@@ -4541,8 +4539,6 @@ private keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string
 播放列表媒体元数据的相关属性。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 名称         | 类型                    | 必填  | 说明                     |
 | ------------ | ----------------------- | ---- | ----------------------- |
@@ -4562,19 +4558,20 @@ private keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string
 | artist     | string                  | 否   | 播放列表媒体专辑作者。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
 | fdSrc     | media.AVFileDescriptor        | 否   | 播放列表媒体本地文件的句柄。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
 | dataSrc<sup>12+</sup>     | media.AVDataSrcDescriptor        | 否   | 播放列表数据源描述。         |
-| drmScheme<sup>12+</sup>     | string        | 否   | 播放列表媒体支持的DRM方案，由uuid表示。 <br> **系统能力：** SystemCapability.Multimedia.AVSession.Core         |
+| drmScheme<sup>12+</sup>     | string        | 否   | 播放列表媒体支持的DRM方案，由uuid表示。       |
 | duration     | number                  | 否   | 播放列表媒体播放时长。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
 | startPosition     | number                  | 否   | 播放列表媒体起始播放位置。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
 | creditsPosition     | number                  | 否   | 播放列表媒体的片尾播放位置。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
 | appName     | string                  | 否   | 播放列表提供的应用的名字。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。         |
+|displayTags<sup>12+</sup>     | [DisplayTag](#displaytag11)                           | 否   | 媒体资源的金标类型。        |
 
 ## AVQueueItem<sup>10+</sup>
 
 播放列表中单项的相关属性。
 
-**系统能力：** SystemCapability.Multimedia.AVSession.Core
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.Core
 
 | 名称         | 类型                                        | 必填 | 说明                        |
 | ------------ | ------------------------------------------ | ---- | --------------------------- |
@@ -4586,8 +4583,6 @@ private keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string
 媒体播放状态的相关属性。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 名称         | 类型                                  | 必填 | 说明     |
 | ------------ | ------------------------------------- | ---- | ------- |
@@ -4610,9 +4605,9 @@ private keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string
 
 媒体播放位置的相关属性。
 
-**系统能力：** SystemCapability.Multimedia.AVSession.Core
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.Core
 
 | 名称        | 类型   | 必填 | 说明               |
 | ----------- | ------ | ---- | ------------------ |
@@ -4672,9 +4667,9 @@ private keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string
 
 投播的类别枚举。
 
-**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
 | 名称                        | 值   | 说明         |
 | --------------------------- | ---- | ----------- |
@@ -4685,9 +4680,9 @@ private keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string
 
 播放设备的类型枚举。
 
-**系统能力：** SystemCapability.Multimedia.AVSession.Core
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.Core
 
 | 名称                        | 值   | 说明         |
 | --------------------------- | ---- | ----------- |
@@ -4700,9 +4695,9 @@ private keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string
 
 播放设备的相关信息。
 
-**系统能力：** SystemCapability.Multimedia.AVSession.Core
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.Core
 
 | 名称       | 类型           | 必填 | 说明                   |
 | ---------- | -------------- | ---- | ---------------------- |
@@ -4717,9 +4712,9 @@ private keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string
 
 播放设备的相关信息。
 
-**系统能力：** SystemCapability.Multimedia.AVSession.Core
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.Core
 
 | 名称       | 类型           | 必填 | 说明                   |
 | ---------- | -------------- | ---- | ---------------------- |
@@ -4729,9 +4724,9 @@ private keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string
 
 表示媒体播放循环模式的枚举。
 
-**系统能力：** SystemCapability.Multimedia.AVSession.Core
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.Core
 
 | 名称               | 值   | 说明     |
 | ------------------ | ---- | -------- |
@@ -4745,9 +4740,9 @@ private keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string
 
 表示媒体播放状态的枚举。
 
-**系统能力：** SystemCapability.Multimedia.AVSession.Core
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.Core
 
 | 名称                        | 值   | 说明         |
 | --------------------------- | ---- | ----------- |
@@ -7308,9 +7303,9 @@ type AVControlCommandType = 'play' | 'pause' | 'stop' | 'playNext' | 'playPrevio
 
 会话发生错误时的错误码。
 
-**系统能力：** SystemCapability.Multimedia.AVSession.Core
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.Core
 
 | 名称                                   | 值      | 说明                             |
 | -------------------------------------- | ------- | ------------------------------- |
