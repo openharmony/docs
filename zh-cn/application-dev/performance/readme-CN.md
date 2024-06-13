@@ -37,7 +37,8 @@
     - [合理运行后台任务](reasonable-running-backgroundTask.md)
     - [Web组件开发性能提升指导](performance-web-import.md)
     - [使用同层渲染在Webview上渲染原生组件](webview-render-app-components.md)
-  - [减小应用包大小](reduce-package-size.md)
+    - [减小应用包大小](reduce-package-size.md)
+    - [全局自定义组件复用实现](node_custom_component_reusable_pool.md)
   - 性能工具
     - [性能分析工具CPU Profiler](application-performance-analysis.md)
     - [性能优化工具HiDumper](performance-optimization-using-hidumper.md)
