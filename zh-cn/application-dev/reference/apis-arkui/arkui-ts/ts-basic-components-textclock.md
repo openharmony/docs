@@ -19,6 +19,8 @@ TextClock(options?: { timeZoneOffset?: number, controller?: TextClockController 
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：** 
 
 | 参数名            | 参数类型      | 必填     | 参数描述                                                     |
@@ -188,6 +190,8 @@ TextClock容器组件的控制器，可以将该控制器绑定到TextClock组�
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 ### 导入对象
 
 ```ts
@@ -204,6 +208,8 @@ start()
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 ### stop
 
 stop()
@@ -214,9 +220,13 @@ stop()
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 ## TextClockConfiguration<sup>12+</sup>对象说明
 
 开发者需要自定义class实现ContentModifier接口。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 参数名  | 类型    |    默认值      |  说明              |
 | ------ | ------ | ------ |-------------------------------- |
