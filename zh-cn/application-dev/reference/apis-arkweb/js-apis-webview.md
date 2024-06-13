@@ -5783,8 +5783,8 @@ struct WebComponent {
       Button('configCookieSync')
         .onClick(() => {
           try {
-            // 设置多个cookie值时用','隔开，设置单个cookie值时不需要。
-            web_webview.WebCookieManager.configCookieSync('https://www.example.com', 'a=b,c=d,e=f');
+            // 仅支持设置单个cookie值。
+            web_webview.WebCookieManager.configCookieSync('https://www.example.com', 'a=b');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -7739,6 +7739,8 @@ Web组件返回的请求/响应头对象。
 | extra | string        | 是 | 是 |点击区域的附加参数信息。若被点击区域为图片或链接，则附加参数信息为其url地址。 |
 
 ## WebMessage
+
+type WebMessage = ArrayBuffer | string
 
 用于描述[WebMessagePort](#webmessageport)所支持的数据类型。
 
