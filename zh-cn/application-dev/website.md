@@ -1,4 +1,5 @@
 # OpenHarmony应用开发文档
+
 - 入门
   - 快速入门
     - [开发准备](quick-start/start-overview.md)
@@ -2361,7 +2362,7 @@
         - [拖拽事件错误码](reference/apis-arkui/errorcode-drag-event.md)
         - [图像AI分析错误码](reference/apis-arkui/errorcode-image-analyzer.md)
         - [焦点错误码](reference/apis-arkui/errorcode-focus.md)
-        - [系统资源错误码](reference/apis-arkui/errorcode-system-resource.md)    
+        - [系统资源错误码](reference/apis-arkui/errorcode-system-resource.md)
       - 图形图像
         - [屏幕错误码](reference/apis-arkui/errorcode-display.md)
         - [窗口错误码](reference/apis-arkui/errorcode-window.md)
@@ -2677,6 +2678,7 @@
         - [OH_Camera](reference/apis-camera-kit/_o_h___camera.md)
       - 头文件<!--camera-headerfile-->
         - [camera.h](reference/apis-camera-kit/camera_8h.md)
+        - [camera_device.h](reference/apis-camera-kit/camera__device_8h.md)
         - [camera_input.h](reference/apis-camera-kit/camera__input_8h.md)
         - [camera_manager.h](reference/apis-camera-kit/camera__manager_8h.md)
         - [capture_session.h](reference/apis-camera-kit/capture__session_8h.md)
