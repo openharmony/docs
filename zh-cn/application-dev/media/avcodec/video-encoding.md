@@ -13,12 +13,21 @@
 
 <!--RP1--><!--RP1End-->
 
-## 支持的能力
-1. 重置帧率，码率。请详见[调用OH_VideoEncoder_SetParameter()](#9-可选oh_videoencoder_setparameter在运行过程中动态配置编码器参数)。
-2. 重置最大，最小量化参数。请详见[调用OH_VideoEncoder_SetParameter()](#9-可选oh_videoencoder_setparameter在运行过程中动态配置编码器参数)。
-3. 随帧设置最大，最小量化参数。请详见[调用OH_VideoEncoder_RegisterParameterCallback()](#4-可选调用oh_videoencoder_registerparametercallback在配置之前注册随帧通路回调)。
-4. 分层编码，LTR设置。请详见[时域可分层视频编码](video-encoding-temporal-scalability.md)。
-5. 获取编码每帧平均量化参数，平方误差。请详见[调用OH_VideoEncoder_RegisterCallback()](#3-调用oh_videoencoder_registercallback设置回调函数)。
+通过视频编码，应用可以实现以下重点能力，包括：
+1. 通过调用OH_VideoEncoder_SetParameter()在运行过程中动态配置编码器参数，重置帧率，码率。
+
+   具体可参考下文中：Surface模式的步骤9-OH_VideoEncoder_SetParameter()在运行过程中动态配置编码器参数。
+2. 通过调用OH_VideoEncoder_SetParameter()在运行过程中动态配置编码器参数，重置最大，最小量化参数。
+
+   具体可参考下文中：Surface模式的步骤9-OH_VideoEncoder_SetParameter()在运行过程中动态配置编码器参数。
+3. 通过调用OH_VideoEncoder_RegisterParameterCallback（）在配置之前注册随帧通路回调，随帧设置最大，最小量化参数。
+
+   具体可参考下文中：Surface模式的步骤4-OH_VideoEncoder_RegisterParameterCallback（）在配置之前注册随帧通路回调。
+4. 分层编码，LTR设置。具体可参考：[时域可分层视频编码](video-encoding-temporal-scalability.md)
+5. 通过调用OH_VideoEncoder_RegisterCallback()设置回调函数，获取编码每帧平均量化参数，平方误差。
+
+   具体可参考下文中：Surface模式或Buffer模式的步骤3-调用OH_VideoEncoder_RegisterCallback()设置回调函数。
+
 
 ## Surface输入与Buffer输入
 
@@ -86,7 +95,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     OH_AVCodec *videoEnc = OH_VideoEncoder_CreateByMime(OH_AVCODEC_MIMETYPE_VIDEO_AVC);
     ```
 
-#### 3. 调用OH_VideoEncoder_RegisterCallback()设置回调函数
+3. 调用OH_VideoEncoder_RegisterCallback()设置回调函数
 
     > **说明：**
     >
@@ -151,7 +160,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
         // 异常处理
     }
     ```
-#### 4. （可选）调用OH_VideoEncoder_RegisterParameterCallback（）在配置之前注册随帧通路回调
+4. （可选）调用OH_VideoEncoder_RegisterParameterCallback（）在配置之前注册随帧通路回调
 
     ```c++
     // 4.1 编码输入参数回调OH_VideoEncoder_OnNeedInputParameter实现
@@ -280,7 +289,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     }
     ```
 
-#### 9. （可选）OH_VideoEncoder_SetParameter()在运行过程中动态配置编码器参数
+9. （可选）OH_VideoEncoder_SetParameter()在运行过程中动态配置编码器参数
     详细可配置选项的说明请参考[视频专有键值对](../../reference/apis-avcodec-kit/_codec_base.md#媒体数据键值对)。
 
    ```c++
