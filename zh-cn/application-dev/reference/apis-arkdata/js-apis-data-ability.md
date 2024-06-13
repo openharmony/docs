@@ -838,6 +838,8 @@ notIn(field: string, value: Array&lt;ValueType&gt;): DataAbilityPredicates
 
 ## ValueType
 
+type ValueType = number | string | boolean
+
 用于表示允许的数据字段类型。
 
 **系统能力：** SystemCapability.DistributedDataManager.DataShare.Core。
