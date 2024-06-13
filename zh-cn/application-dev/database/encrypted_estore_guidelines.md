@@ -190,12 +190,12 @@ export class Store {
 ```ts
 import { ECStoreManager } from './ECStoreManager'
 
-enum SecretStatus {
+export enum SecretStatus {
   Lock,
   UnLock
 }
 
-export class SecretKeyObserver {
+export class SecretKeyObserve {
   OnLock(): void {
     this.lockStatuas = SecretStatus.Lock;
     this.storeManager.CloseEStore();
@@ -215,13 +215,17 @@ export class SecretKeyObserver {
 
   UpdatalockStatus(code: number) {
     this.lockStatuas = code;
+    if (this.lockStatuas === SecretStatus.Lock) {
+      this.OnLock();
+    }
+
   }
 
   private lockStatuas: number = SecretStatus.UnLock;
   private storeManager: ECStoreManager;
 }
 
-export let lockObserver = new SecretKeyObserver();
+export let lockObserve = new SecretKeyObserve();
 ```
 
 ### ECStoreManager
@@ -233,6 +237,7 @@ import distributedKVStore from '@ohos.data.distributedKVStore';
 import { Mover } from './Mover'
 import { BusinessError } from '@kit.BasicServicesKit';
 import { StoreInfo, Store } from './Store'
+import { SecretStatus } from './SecretKeyObserver'
 
 let store = new Store();
 
@@ -248,8 +253,14 @@ export class ECStoreManager {
 
   async GetCurrentStore(screanStatus: number): Promise<distributedKVStore.SingleKVStore> {
     console.info(`ECDB_Encry GetCurrentStore start screanStatus: ${screanStatus}`);
-    if (screanStatus) {
-      this.eStore = await store.GetECStore(this.eInfo);
+    if (screanStatus === SecretStatus.UnLock) {
+      try {
+        this.eStore = await store.GetECStore(this.eInfo);
+        console.info("Succeeded in getting Store ：estore");
+      } catch (e) {
+        let error = e as BusinessError;
+        console.error(`Failed to GetECStore.code is ${error.code},message is ${error.message}`);
+      }
       //解锁状态 获取e类库
       if (this.needMove) {
         if (this.eStore != undefined && this.cStore != undefined) {
@@ -263,7 +274,13 @@ export class ECStoreManager {
     } else {
       //加锁状态 获取c类库
       this.needMove = true;
-      this.cStore = await store.GetECStore(this.cInfo);
+      try {
+        this.cStore = await store.GetECStore(this.cInfo);
+        console.info("Succeeded in getting Store ：cstore");
+      } catch (e) {
+        let error = e as BusinessError;
+        console.error(`Failed to GetECStore.code is ${error.code},message is ${error.message}`);
+      }
       return this.cStore;
     }
   }
