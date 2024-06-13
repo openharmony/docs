@@ -532,7 +532,7 @@ struct Index {
 import { relationalStore } from '@kit.ArkData';
 
 export class Mover {
-  async Move(eStore: relationalStore.RdbStore, cStore: relationalStore.RdbStore) {
+  async move(eStore: relationalStore.RdbStore, cStore: relationalStore.RdbStore) {
     if (eStore != null && cStore != null) {
       let predicates = new relationalStore.RdbPredicates('test');
       let resultSet = await cStore.query(predicates);
@@ -564,7 +564,7 @@ const SQL_CREATE_TABLE = 'CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMAR
 
 
 export class Store {
-  async GetECStore(storeInfo: StoreInfo): Promise<relationalStore.RdbStore> {
+  async getECStore(storeInfo: StoreInfo): Promise<relationalStore.RdbStore> {
     let rdbStore: relationalStore.RdbStore | null;
     try {
       rdbStore = await relationalStore.getRdbStore(storeInfo.context, storeInfo.config);
@@ -579,7 +579,7 @@ export class Store {
     return rdbStore;
   }
 
-  async PutOnedata(rdbStore: relationalStore.RdbStore) {
+  async putOnedata(rdbStore: relationalStore.RdbStore) {
     if (rdbStore != undefined) {
       const valueBucket: relationalStore.ValuesBucket = {
         NAME: 'Lisa',
@@ -596,7 +596,7 @@ export class Store {
     }
   }
 
-  async GetDataNum(rdbStore: relationalStore.RdbStore) {
+  async getDataNum(rdbStore: relationalStore.RdbStore) {
     if (rdbStore != undefined) {
       try {
         let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
@@ -609,7 +609,7 @@ export class Store {
     }
   }
 
-  async DeleteOnedata(rdbStore: relationalStore.RdbStore) {
+  async deleteOnedata(rdbStore: relationalStore.RdbStore) {
     if (rdbStore != undefined) {
       try {
         let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
@@ -622,7 +622,7 @@ export class Store {
     }
   }
 
-  async UpdataOnedata(rdbStore: relationalStore.RdbStore) {
+  async updataOnedata(rdbStore: relationalStore.RdbStore) {
     if (rdbStore != undefined) {
       try {
         let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
@@ -656,26 +656,26 @@ export enum SecretStatus {
 }
 
 export class SecretKeyObserver {
-  OnLock(): void {
+  onLock(): void {
     this.lockStatuas = SecretStatus.Lock;
-    this.storeManager.CloseEStore();
+    this.storeManager.closeEStore();
   }
 
-  OnUnLock(): void {
+  onUnLock(): void {
     this.lockStatuas = SecretStatus.UnLock;
   }
 
-  GetCurrentStatus(): number {
+  getCurrentStatus(): number {
     return this.lockStatuas;
   }
 
-  Initialize(storeManager: ECStoreManager): void {
+  initialize(storeManager: ECStoreManager): void {
     this.storeManager = storeManager;
   }
 
-  UpdatalockStatus(code: number) {
+  updatalockStatus(code: number) {
     if (this.lockStatuas === SecretStatus.Lock) {
-      this.OnLock();
+      this.onLock();
     } else {
       this.lockStatuas = code;
     }
@@ -702,20 +702,20 @@ import { SecretStatus } from './SecretKeyObserver'
 let store = new Store();
 
 export class ECStoreManager {
-  Config(cInfo: StoreInfo, other: StoreInfo): void {
+  config(cInfo: StoreInfo, other: StoreInfo): void {
     this.cInfo = cInfo;
     this.eInfo = other;
   }
 
-  ConfigDataMover(mover: Mover): void {
+  configDataMover(mover: Mover): void {
     this.mover = mover;
   }
 
-  async GetCurrentStore(screanStatus: number): Promise<relationalStore.RdbStore> {
+  async getCurrentStore(screanStatus: number): Promise<relationalStore.RdbStore> {
     if (screanStatus === SecretStatus.UnLock) {
       try {
-        this.eStore = await store.GetECStore(this.eInfo);
-        console.info("Succeeded in getting Store ：estore");
+        this.eStore = await store.getECStore(this.eInfo);
+        console.info("ECDB_Encry Succeeded in getting Store ：estore");
       } catch (e) {
         let error = e as BusinessError;
         console.error(`Failed to GetECStore.code is ${error.code},message is ${error.message}`);
@@ -723,9 +723,9 @@ export class ECStoreManager {
       //解锁状态 获取e类库
       if (this.needMove) {
         if (this.eStore != undefined && this.cStore != undefined) {
-          await this.mover.Move(this.eStore, this.cStore);
+          await this.mover.move(this.eStore, this.cStore);
         }
-        this.DeleteCStore();
+        this.deleteCStore();
         this.needMove = false;
       }
       return this.eStore;
@@ -733,8 +733,8 @@ export class ECStoreManager {
       //加锁状态 获取c类库
       this.needMove = true;
       try {
-        this.cStore = await store.GetECStore(this.cInfo);
-        console.info("Succeeded in getting Store ：cstore");
+        this.cStore = await store.getECStore(this.cInfo);
+        console.info("ECDB_Encry Succeeded in getting Store ：cstore");
       } catch (e) {
         let error = e as BusinessError;
         console.error(`Failed to GetECStore.code is ${error.code},message is ${error.message}`);
@@ -743,11 +743,11 @@ export class ECStoreManager {
     }
   }
 
-  CloseEStore(): void {
+  closeEStore(): void {
     this.eStore = undefined;
   }
 
-  async DeleteCStore() {
+  async deleteCStore() {
     try {
       await relationalStore.deleteRdbStore(this.cInfo.context, this.cInfo.storeId)
     } catch (e) {
@@ -778,13 +778,13 @@ import { ECStoreManager } from './ECStoreManager'
 import { StoreInfo } from './Store'
 import { Mover } from './Mover'
 import { SecretKeyObserver } from './SecretKeyObserver'
-import { commonEventManager } from '@kit.BasicServicesKit';
-import Base from '@kit.BasicServicesKit';
+import { commonEventManager } from '@kit.BasicServicesKit'
+import Base from '@ohos.base';
 
 
 export let storeManager = new ECStoreManager();
 
-export let secretKeyObserver = new SecretKeyObserver();
+export let e_secretKeyObserver = new SecretKeyObserver();
 
 let mover = new Mover();
 
@@ -800,7 +800,7 @@ export function createCB(err: Base.BusinessError, commonEventSubscriber: commonE
           console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
         } else {
           console.info(`ECDB_Encry SubscribeCB ${data.code}`);
-          secretKeyObserver.UpdatalockStatus(data.code);
+          e_secretKeyObserver.updatalockStatus(data.code);
         }
       });
     } catch (error) {
@@ -848,9 +848,9 @@ export default class EntryAbility extends UIAbility {
       const err: Base.BusinessError = error as Base.BusinessError;
       console.error(`createSubscriber failed, code is ${err.code}, message is ${err.message}`);
     }
-    storeManager.Config(cInfo, eInfo);
-    storeManager.ConfigDataMover(mover);
-    secretKeyObserver.Initialize(storeManager);
+    storeManager.config(cInfo, eInfo);
+    storeManager.configDataMover(mover);
+    e_secretKeyObserver.initialize(storeManager);
   }
 
   onDestroy(): void {
@@ -892,7 +892,7 @@ export default class EntryAbility extends UIAbility {
 使用Button按钮，通过点击按钮来模拟应用操作数据库，如插入数据、删除数据、更新数据和获取数据数量的操作等，展示数据库基本的增删改查能力。
 
 ```ts
-import { storeManager, secretKeyObserver } from "../entryability/EntryAbility"
+import { storeManager, e_secretKeyObserver } from "../entryability/EntryAbility"
 import { relationalStore } from '@kit.ArkData';
 import { Store } from '../entryability/Store';
 
@@ -910,36 +910,36 @@ struct Index {
       Column() {
         Button('加锁/解锁').onClick((event: ClickEvent) => {
           if (lockStatus) {
-            secretKeyObserver.OnLock();
+            e_secretKeyObserver.onLock();
             lockStatus = 0;
           } else {
-            secretKeyObserver.OnUnLock();
+            e_secretKeyObserver.onUnLock();
             lockStatus = 1;
           }
           lockStatus ? this.message = "解锁" : this.message = "加锁";
         }).margin("5");
         Button('store type').onClick(async (event: ClickEvent) => {
-          secretKeyObserver.GetCurrentStatus() ? this.message = "estroe" : this.message = "cstore";
+          e_secretKeyObserver.getCurrentStatus() ? this.message = "estroe" : this.message = "cstore";
         }).margin("5");
 
         Button("put").onClick(async (event: ClickEvent) => {
-          let store: relationalStore.RdbStore = await storeManager.GetCurrentStore(secretKeyObserver.GetCurrentStatus());
-          storeOption.PutOnedata(store);
+          let store: relationalStore.RdbStore = await storeManager.getCurrentStore(e_secretKeyObserver.getCurrentStatus());
+          storeOption.putOnedata(store);
         }).margin(5)
 
         Button("Get").onClick(async (event: ClickEvent) => {
-          let store: relationalStore.RdbStore = await storeManager.GetCurrentStore(secretKeyObserver.GetCurrentStatus());
-          storeOption.GetDataNum(store);
+          let store: relationalStore.RdbStore = await storeManager.getCurrentStore(e_secretKeyObserver.getCurrentStatus());
+          storeOption.getDataNum(store);
         }).margin(5)
 
         Button("delete").onClick(async (event: ClickEvent) => {
-          let store: relationalStore.RdbStore = await storeManager.GetCurrentStore(secretKeyObserver.GetCurrentStatus());
-          storeOption.DeleteOnedata(store);
+          let store: relationalStore.RdbStore = await storeManager.getCurrentStore(e_secretKeyObserver.getCurrentStatus());
+          storeOption.deleteOnedata(store);
         }).margin(5)
 
         Button("updata").onClick(async (event: ClickEvent) => {
-          let store: relationalStore.RdbStore = await storeManager.GetCurrentStore(secretKeyObserver.GetCurrentStatus());
-          storeOption.UpdataOnedata(store);
+          let store: relationalStore.RdbStore = await storeManager.getCurrentStore(e_secretKeyObserver.getCurrentStatus());
+          storeOption.updataOnedata(store);
         }).margin(5)
 
         Text(this.message)
