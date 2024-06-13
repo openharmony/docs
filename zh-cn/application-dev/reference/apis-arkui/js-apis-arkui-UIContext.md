@@ -305,7 +305,7 @@ struct SharedLocalStorage {
           })
         Button("Get Local Storage")
           .onClick(() => {
-            console.log(`localStorage: ${this.localStorage?.get("propA")}`)
+            console.info(`localStorage: ${this.localStorage?.get("propA")}`)
           })
         Button("To Page")
           .onClick(() => {
@@ -337,7 +337,7 @@ struct GetSharedLocalStorage {
           })
         Button("Get Local Storage")
           .onClick(() => {
-            console.log(`localStorage: ${this.localStorage?.get("propA")}`)
+            console.info(`localStorage: ${this.localStorage?.get("propA")}`)
           })
 
         Button("Back Index")
@@ -533,11 +533,11 @@ uiContext.showActionSheet({
   confirm: {
     value: 'Confirm button',
     action: () => {
-      console.log('Get Alert Dialog handled')
+      console.info('Get Alert Dialog handled')
     }
   },
   cancel: () => {
-    console.log('actionSheet canceled')
+    console.info('actionSheet canceled')
   },
   alignment: DialogAlignment.Bottom,
   offset: { dx: 0, dy: -10 },
@@ -545,19 +545,19 @@ uiContext.showActionSheet({
     {
       title: 'apples',
       action: () => {
-        console.log('apples')
+        console.info('apples')
       }
     },
     {
       title: 'bananas',
       action: () => {
-        console.log('bananas')
+        console.info('bananas')
       }
     },
     {
       title: 'pears',
       action: () => {
-        console.log('pears')
+        console.info('pears')
       }
     }
   ]
@@ -813,7 +813,7 @@ runScopedTask(callback: () => void): void
 ```ts
 uiContext.runScopedTask(
   () => {
-    console.log('Succeeded in runScopedTask');
+    console.info('Succeeded in runScopedTask');
   }
 );
 ```
@@ -881,7 +881,7 @@ onWindowStageCreate(windowStage: window.WindowStage) {
     windowStage.loadContent('pages/Index', (err, data) => {
       let uiContext :UIContext = windowStage.getMainWindowSync().getUIContext();
       let KeyboardAvoidMode = uiContext.getKeyboardAvoidMode();
-      console.log("KeyboardAvoidMode:", JSON.stringify(KeyboardAvoidMode));
+      console.info("KeyboardAvoidMode:", JSON.stringify(KeyboardAvoidMode));
       if (err.code) {
         hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
         return;
@@ -1970,7 +1970,7 @@ import observer from '@ohos.arkui.observer';
 @Component
 struct Index {
   willDrawCallback = () => {
-    console.log("willDraw指令下发");
+    console.info("willDraw指令下发");
   }
   build() {
     Column() {
@@ -2005,7 +2005,7 @@ import observer from '@ohos.arkui.observer';
 @Component
 struct Index {
   willDrawCallback = () => {
-    console.log("willDraw指令下发")
+    console.info("willDraw指令下发")
   }
 
   build() {
@@ -2045,7 +2045,7 @@ import observer from '@ohos.arkui.observer';
 @Component
 struct Index {
   didLayoutCallback = () => {
-    console.log("layout布局完成");
+    console.info("layout布局完成");
   }
   build() {
     Column() {
@@ -2080,7 +2080,7 @@ import observer from '@ohos.arkui.observer';
 @Component
 struct Index {
   didLayoutCallback = () => {
-    console.log("layout布局完成")
+    console.info("layout布局完成")
   }
 
   build() {
@@ -2130,7 +2130,7 @@ struct PageOne {
 }
 
 function callBackFunc(info: observer.NavDestinationSwitchInfo) {
-  console.log(`testTag navDestinationSwitch from: ${JSON.stringify(info.from)} to: ${JSON.stringify(info.to)}`)
+  console.info(`testTag navDestinationSwitch from: ${JSON.stringify(info.from)} to: ${JSON.stringify(info.to)}`)
 }
 
 @Entry
@@ -2220,7 +2220,7 @@ struct PageOne {
 }
 
 function callBackFunc(info: observer.NavDestinationSwitchInfo) {
-  console.log(`testTag navDestinationSwitch from: ${JSON.stringify(info.from)} to: ${JSON.stringify(info.to)}`)
+  console.info(`testTag navDestinationSwitch from: ${JSON.stringify(info.from)} to: ${JSON.stringify(info.to)}`)
 }
 
 @Entry
@@ -3542,7 +3542,7 @@ import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } f
 import { BusinessError } from '@ohos.base';
 let router: Router = uiContext.getRouter();
 let size = router.getLength();        
-console.log('pages stack size = ' + size);    
+console.info('pages stack size = ' + size);    
 ```
 
 ### getState
@@ -3568,9 +3568,9 @@ import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } f
 import { BusinessError } from '@ohos.base';
 let router: Router = uiContext.getRouter();
 let page = router.getState();
-console.log('current index = ' + page.index);
-console.log('current name = ' + page.name);
-console.log('current path = ' + page.path);
+console.info('current index = ' + page.index);
+console.info('current name = ' + page.name);
+console.info('current path = ' + page.path);
 ```
 
 ### getStateByIndex<sup>12+</sup>
@@ -3601,10 +3601,10 @@ import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } f
 import { BusinessError } from '@ohos.base';
 let router: Router = uiContext.getRouter();
 let options:router.RouterState = router.getStateByIndex(1);
-console.log('index = ' + options.index);
-console.log('name = ' + options.name);
-console.log('path = ' + options.path);
-console.log('params = ' + options.params);
+console.info('index = ' + options.index);
+console.info('name = ' + options.name);
+console.info('path = ' + options.path);
+console.info('params = ' + options.params);
 ```
 ### getStateByUrl<sup>12+</sup>
 
@@ -3634,10 +3634,10 @@ import { BusinessError } from '@ohos.base';
 let router: Router = uiContext.getRouter();
 let options:Array<router.RouterState> = router.getStateByUrl('pages/index');
 for (let i: number = 0; i < options.length; i++) {
-  console.log('index = ' + options[i].index);
-  console.log('name = ' + options[i].name);
-  console.log('path = ' + options[i].path);
-  console.log('params = ' + options[i].params);
+  console.info('index = ' + options[i].index);
+  console.info('name = ' + options[i].name);
+  console.info('path = ' + options[i].path);
+  console.info('params = ' + options[i].params);
 }
 ```
 
@@ -4624,7 +4624,7 @@ export default class EntryAbility extends UIAbility {
       windowStage.getMainWindow((err, data) =>
       {
         if (err.code) {
-          console.log('Failed to abtain the main window. Cause:' + err.message);
+          console.info('Failed to abtain the main window. Cause:' + err.message);
           return;
         }
         let windowClass: window.Window = data;
@@ -4689,7 +4689,7 @@ struct DragControllerPage {
       Button('多对象dragAction customBuilder拖拽').onTouch((event?:TouchEvent) => {
         if(event){
           if (event.type == TouchType.Down) {
-            console.log("muti drag Down by listener");
+            console.info("muti drag Down by listener");
             this.customBuilders.push(()=>{this.DraggingBuilder()});
             this.customBuilders.push(()=>{this.DraggingBuilder()});
             this.customBuilders.push(()=>{this.DraggingBuilder()});
@@ -4704,14 +4704,14 @@ struct DragControllerPage {
               let uiContext: UIContext = storages.get<UIContext>('uiContext') as UIContext;
               this.dragAction = uiContext.getDragController().createDragAction(this.customBuilders, dragInfo)
               if(!this.dragAction){
-                console.log("listener dragAction is null");
+                console.info("listener dragAction is null");
                 return
               }
               this.dragAction.on('statusChange', (dragAndDropInfo)=>{
                 if (dragAndDropInfo.status == dragController.DragStatus.STARTED) {
-                  console.log("drag has start");
+                  console.info("drag has start");
                 } else if (dragAndDropInfo.status == dragController.DragStatus.ENDED){
-                  console.log("drag has end");
+                  console.info("drag has end");
                   if (!this.dragAction) {
                     return
                   }
@@ -4720,10 +4720,10 @@ struct DragControllerPage {
                 }
               })
               this.dragAction.startDrag().then(()=>{}).catch((err:Error)=>{
-                console.log("start drag Error:" + err.message);
+                console.info("start drag Error:" + err.message);
               })
             } catch(err) {
-              console.log("create dragAction Error:" + err.message);
+              console.info("create dragAction Error:" + err.message);
             }
           }
         }
@@ -4860,7 +4860,7 @@ struct OverlayExample {
           let componentContent = this.contentArray.splice(this.arrayIndex, 1)
           this.overlayNode.removeComponentContent(componentContent.pop())
         } else {
-          console.log("arrayIndex有误")
+          console.info("arrayIndex有误")
         }
       })
       Button("显示ComponentContent" + this.arrayIndex).onClick(()=>{
@@ -4868,7 +4868,7 @@ struct OverlayExample {
           let componentContent = this.contentArray[this.arrayIndex]
           this.overlayNode.showComponentContent(componentContent)
         } else {
-          console.log("arrayIndex有误")
+          console.info("arrayIndex有误")
         }
       })
       Button("隐藏ComponentContent" + this.arrayIndex).onClick(()=>{
@@ -4876,7 +4876,7 @@ struct OverlayExample {
           let componentContent = this.contentArray[this.arrayIndex]
           this.overlayNode.hideComponentContent(componentContent)
         } else {
-          console.log("arrayIndex有误")
+          console.info("arrayIndex有误")
         }
       })
       Button("显示所有ComponentContent").onClick(()=>{
@@ -5378,7 +5378,7 @@ struct CursorControlExample {
           if (flag) {
             this.cursorCustom.setCursor(pointer.PointerStyle.EAST)
           } else {
-            console.log("restoreDefault");
+            console.info("restoreDefault");
             this.cursorCustom.restoreDefault();
           }
         })
@@ -5654,7 +5654,7 @@ struct SnapshotExample {
         .onClick(() => {
           this.uiContext.getComponentSnapshot().get("root", (error: Error, pixmap: image.PixelMap) => {
             if (error) {
-              console.log("error: " + JSON.stringify(error))
+              console.info("error: " + JSON.stringify(error))
               return;
             }
             this.pixmap = pixmap
@@ -5726,7 +5726,7 @@ struct SnapshotExample {
               this.pixmap = pixmap
             })
             .catch((err: Error) => {
-              console.log("error: " + err)
+              console.info("error: " + err)
             })
         }).margin(10)
     }
@@ -5804,7 +5804,7 @@ struct ComponentSnapshotExample {
           },
             (error: Error, pixmap: image.PixelMap) => {
               if (error) {
-                console.log("error: " + JSON.stringify(error))
+                console.info("error: " + JSON.stringify(error))
                 return;
               }
               this.pixmap = pixmap
@@ -5895,7 +5895,7 @@ struct ComponentSnapshotExample {
               this.pixmap = pixmap
             })
             .catch((err: Error) => {
-              console.log("error: " + err)
+              console.info("error: " + err)
             })
         })
       Image(this.pixmap)
