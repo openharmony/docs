@@ -15,7 +15,7 @@ Mover类：提供数据库数据迁移接口，在锁屏解锁后若C类数据�
 
 Store类：提供访问当前可操作数据库，对数据库进行相关操作的接口。
 
-secretKeyObserve类：提供了获取当前密钥状态的接口，在密钥销毁后，关闭E类数据库。
+secretKeyObserver类：提供了获取当前密钥状态的接口，在密钥销毁后，关闭E类数据库。
 
 ECStoreManager类：用于管理应用的E类数据库和C类数据库。
 
@@ -43,6 +43,8 @@ ECStoreManager类：用于管理应用的E类数据库和C类数据库。
 ```
 
 ## 键值型数据库E类加密
+
+本章节提供键值型数据库的E类加密库使用方式，提供Mover类，secretKeyObserver类，ECStoreManager类和store类的使用方式。
 
 ### Mover
 
@@ -181,7 +183,7 @@ export class Store {
 }
 ```
 
-### SecretKeyObserve
+### SecretKeyObserver
 
 该类提供了获取当前密钥状态的接口，在密钥销毁后，关闭E类数据库。
 
@@ -193,7 +195,7 @@ enum SecretStatus {
   UnLock
 }
 
-export class SecretKeyObserve {
+export class SecretKeyObserver {
   OnLock(): void {
     this.lockStatuas = SecretStatus.Lock;
     this.storeManager.CloseEStore();
@@ -219,7 +221,7 @@ export class SecretKeyObserve {
   private storeManager: ECStoreManager;
 }
 
-export let lockObserve = new SecretKeyObserve();
+export let lockObserver = new SecretKeyObserver();
 ```
 
 ### ECStoreManager
@@ -315,16 +317,16 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
 import { distributedKVStore } from '@kit.ArkData';
 import { ECStoreManager } from './ECStoreManager'
-import { StoreInfo } from './store'
+import { StoreInfo } from './Store'
 import { Mover } from './Mover'
-import { SecretKeyObserve } from './secretKeyObserve'
+import { SecretKeyObserver } from './secretKeyObserver'
 import CommonEventManager from '@ohos.commonEventManager';
 import Base from '@ohos.base';
 
 
 export let storeManager = new ECStoreManager();
 
-export let secretKeyObserve = new SecretKeyObserve();
+export let secretKeyObserver = new SecretKeyObserver();
 
 let mover = new Mover();
 
@@ -340,7 +342,7 @@ export function createCB(err: Base.BusinessError, commonEventSubscriber: CommonE
           console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
         } else {
           console.info(`ECDB_Encry SubscribeCB ${data.code}`);
-          secretKeyObserve.UpdatalockStatus(data.code);
+          secretKeyObserver.UpdatalockStatus(data.code);
         }
       });
     } catch (error) {
@@ -408,7 +410,7 @@ export default class EntryAbility extends UIAbility {
     }
     storeManager.Config(cInfo, eInfo);
     storeManager.ConfigDataMover(mover);
-    secretKeyObserve.Initialize(storeManager);
+    secretKeyObserver.Initialize(storeManager);
   }
 
   onDestroy(): void {
@@ -450,7 +452,7 @@ export default class EntryAbility extends UIAbility {
 模拟应用操作数据库，如插入数据，删除数据，更新数据和获取数据数量的操作等。
 
 ```ts
-import { storeManager, secretKeyObserve } from "../entryability/EntryAbility"
+import { storeManager, secretKeyObserver } from "../entryability/EntryAbility"
 import { distributedKVStore } from '@kit.ArkData';
 import { Store } from '../entryability/Store';
 
@@ -468,35 +470,35 @@ struct Index {
       Column() {
         Button('加锁/解锁').onClick((event: ClickEvent) => {
           if (lockStatus) {
-            secretKeyObserve.OnLock();
+            secretKeyObserver.OnLock();
             lockStatus = 0;
           } else {
-            secretKeyObserve.OnUnLock();
+            secretKeyObserver.OnUnLock();
             lockStatus = 1;
           }
           lockStatus ? this.message = "解锁" : this.message = "加锁";
         }).margin("5");
         Button('store type').onClick(async (event: ClickEvent) => {
-          secretKeyObserve.GetCurrentStatus() ? this.message = "estroe" : this.message = "cstore";
+          secretKeyObserver.GetCurrentStatus() ? this.message = "estroe" : this.message = "cstore";
         }).margin("5");
 
         Button("put").onClick(async (event: ClickEvent) => {
-          let store: distributedKVStore.SingleKVStore = await storeManager.GetCurrentStore(secretKeyObserve.GetCurrentStatus());
+          let store: distributedKVStore.SingleKVStore = await storeManager.GetCurrentStore(secretKeyObserver.GetCurrentStatus());
           storeOption.PutOnedata(store);
         }).margin(5)
 
         Button("Get").onClick(async (event: ClickEvent) => {
-          let store: distributedKVStore.SingleKVStore = await storeManager.GetCurrentStore(secretKeyObserve.GetCurrentStatus());
+          let store: distributedKVStore.SingleKVStore = await storeManager.GetCurrentStore(secretKeyObserver.GetCurrentStatus());
           storeOption.GetDataNum(store);
         }).margin(5)
 
         Button("delete").onClick(async (event: ClickEvent) => {
-          let store: distributedKVStore.SingleKVStore = await storeManager.GetCurrentStore(secretKeyObserve.GetCurrentStatus());
+          let store: distributedKVStore.SingleKVStore = await storeManager.GetCurrentStore(secretKeyObserver.GetCurrentStatus());
           storeOption.DeleteOnedata(store);
         }).margin(5)
 
         Button("updata").onClick(async (event: ClickEvent) => {
-          let store: distributedKVStore.SingleKVStore = await storeManager.GetCurrentStore(secretKeyObserve.GetCurrentStatus());
+          let store: distributedKVStore.SingleKVStore = await storeManager.GetCurrentStore(secretKeyObserver.GetCurrentStatus());
           storeOption.UpdataOnedata(store);
         }).margin(5)
 
@@ -512,6 +514,9 @@ struct Index {
 ```
 
 ## 关系型数据库E类加密
+
+本章节提供关系型数据库的E类加密库使用方式，提供Mover类，secretKeyObserver类，ECStoreManager类和store类的使用方式。
+
 ### Mover
 
 提供数据库数据迁移接口，在锁屏解锁后若C类数据库中有数据，使用该接口将数据迁移到E类数据库。
@@ -632,7 +637,7 @@ export class Store {
 }
 ```
 
-### SecretKeyObserve
+### SecretKeyObserver
 
 该类提供了获取当前密钥状态的接口，在密钥销毁后，关闭E类数据库。
 
@@ -644,7 +649,7 @@ enum SecretStatus {
   UnLock
 }
 
-export class SecretKeyObserve {
+export class SecretKeyObserver {
   OnLock(): void {
     this.lockStatuas = SecretStatus.Lock;
     this.storeManager.CloseEStore();
@@ -670,7 +675,7 @@ export class SecretKeyObserve {
   private storeManager: ECStoreManager;
 }
 
-export let lockObserve = new SecretKeyObserve();
+export let lockObserve = new SecretKeyObserver();
 ```
 
 ### ECStoreManager
@@ -747,16 +752,16 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
 import { relationalStore } from '@kit.ArkData';
 import { ECStoreManager } from './ECStoreManager'
-import { StoreInfo } from './store'
+import { StoreInfo } from './Store'
 import { Mover } from './Mover'
-import { SecretKeyObserve } from './secretKeyObserve'
+import { SecretKeyObserver } from './secretKeyObserver'
 import CommonEventManager from '@ohos.commonEventManager';
 import Base from '@ohos.base';
 
 
 export let storeManager = new ECStoreManager();
 
-export let secretKeyObserve = new SecretKeyObserve();
+export let secretKeyObserver = new SecretKeyObserver();
 
 let mover = new Mover();
 
@@ -772,7 +777,7 @@ export function createCB(err: Base.BusinessError, commonEventSubscriber: CommonE
           console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
         } else {
           console.info(`ECDB_Encry SubscribeCB ${data.code}`);
-          secretKeyObserve.UpdatalockStatus(data.code);
+          secretKeyObserver.UpdatalockStatus(data.code);
         }
       });
     } catch (error) {
@@ -864,7 +869,7 @@ export default class EntryAbility extends UIAbility {
 模拟应用操作数据库，如插入数据，删除数据，更新数据和获取数据数量的操作等。
 
 ```ts
-import { storeManager, secretKeyObserve } from "../entryability/EntryAbility"
+import { storeManager, secretKeyObserver } from "../entryability/EntryAbility"
 import { relationalStore } from '@kit.ArkData';
 import { Store } from '../entryability/Store';
 
@@ -882,35 +887,35 @@ struct Index {
       Column() {
         Button('加锁/解锁').onClick((event: ClickEvent) => {
           if (lockStatus) {
-            secretKeyObserve.OnLock();
+            secretKeyObserver.OnLock();
             lockStatus = 0;
           } else {
-            secretKeyObserve.OnUnLock();
+            secretKeyObserver.OnUnLock();
             lockStatus = 1;
           }
           lockStatus ? this.message = "解锁" : this.message = "加锁";
         }).margin("5");
         Button('store type').onClick(async (event: ClickEvent) => {
-          secretKeyObserve.GetCurrentStatus() ? this.message = "estroe" : this.message = "cstore";
+          secretKeyObserver.GetCurrentStatus() ? this.message = "estroe" : this.message = "cstore";
         }).margin("5");
 
         Button("put").onClick(async (event: ClickEvent) => {
-          let store: relationalStore.RdbStore = await storeManager.GetCurrentStore(secretKeyObserve.GetCurrentStatus());
+          let store: relationalStore.RdbStore = await storeManager.GetCurrentStore(secretKeyObserver.GetCurrentStatus());
           storeOption.PutOnedata(store);
         }).margin(5)
 
         Button("Get").onClick(async (event: ClickEvent) => {
-          let store: relationalStore.RdbStore = await storeManager.GetCurrentStore(secretKeyObserve.GetCurrentStatus());
+          let store: relationalStore.RdbStore = await storeManager.GetCurrentStore(secretKeyObserver.GetCurrentStatus());
           storeOption.GetDataNum(store);
         }).margin(5)
 
         Button("delete").onClick(async (event: ClickEvent) => {
-          let store: relationalStore.RdbStore = await storeManager.GetCurrentStore(secretKeyObserve.GetCurrentStatus());
+          let store: relationalStore.RdbStore = await storeManager.GetCurrentStore(secretKeyObserver.GetCurrentStatus());
           storeOption.DeleteOnedata(store);
         }).margin(5)
 
         Button("updata").onClick(async (event: ClickEvent) => {
-          let store: relationalStore.RdbStore = await storeManager.GetCurrentStore(secretKeyObserve.GetCurrentStatus());
+          let store: relationalStore.RdbStore = await storeManager.GetCurrentStore(secretKeyObserver.GetCurrentStatus());
           storeOption.UpdataOnedata(store);
         }).margin(5)
 
