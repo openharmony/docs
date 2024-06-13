@@ -3630,6 +3630,8 @@ processMediaKeyResponse(assetId: string, response: Uint8Array): Promise\<void>
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **参数：**
 
 | 参数名   | 类型                                  | 必填 | 说明                                  |
