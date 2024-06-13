@@ -92,7 +92,7 @@ async function foo(a: A) {
 
 constructor()
 
-默认构造函数。创建一个匿名锁。
+默认构造函数。创建一个异步锁。
 
 **元服务API**：从API version 12 开始，该接口支持在元服务中使用。
 
@@ -102,7 +102,7 @@ constructor()
 
 | 类型                    | 说明               |
 | ----------------------- | ------------------ |
-| [AsyncLock](#asynclock) | 创建的匿名锁实例。 |
+| [AsyncLock](#asynclock) | 创建的异步锁实例。 |
 
 **示例：**
 
@@ -290,7 +290,7 @@ let p1 = lock.lockAsync<void>(() => {
 
 lockAsync\<T, U>(callback: AsyncLockCallback\<T>, mode: AsyncLockMode, options: AsyncLockOptions\<U>): Promise\<T | U>
 
-在获取的锁下执行操作。该方法首先获取锁，然后调用回调，最后释放锁。回调在调用 lockAsync 的同一线程中以异步方式执行。在[AsyncLockOptions](#asynclockoptions)中可以提供一个可选的超时值。在这种情况下，如果超时前未能获取锁，lockAsync将拒绝返回的Promise并带上一个BusinessError实例。这种情况下，错误信息将包含持有的锁和等待的锁的信息以及可能的死锁警告。
+在获取的锁下执行操作。该方法首先获取锁，然后调用回调，最后释放锁。回调在调用[lockAsync](#lockasync)的同一线程中以异步方式执行。在[AsyncLockOptions](#asynclockoptions)中可以提供一个可选的超时值。在这种情况下，如果超时前未能获取锁，lockAsync将拒绝返回的Promise并带上一个BusinessError实例。这种情况下，错误信息将包含持有的锁和等待的锁的信息以及可能的死锁警告。
 
 **元服务API**：从API version 12 开始，该接口支持在元服务中使用。
 
@@ -458,7 +458,7 @@ ISendable是所有Sendable类型（除`null`和`undefined`）的父类型。自�
 
 parse(text: string): ISendable | null
 
-用于解析JSON字符串生成Isendable数据或null。
+用于解析JSON字符串生成ISendable数据或null。
 
 **元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
@@ -474,7 +474,7 @@ parse(text: string): ISendable | null
 
 | 类型 | 说明 |
 | -------- | -------- |
-| [ISendable](#isendable) \| null | 返回Isendable数据或null。当入参是null时，返回null。|
+| [ISendable](#isendable) \| null | 返回ISendable数据或null。当入参是null时，返回null。|
 
 **示例：**
 
