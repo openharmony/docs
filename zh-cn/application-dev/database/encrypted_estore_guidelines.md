@@ -11,8 +11,6 @@
 
 提供类图和时序图展示如何通过封装[Mover](#mover)类、[Store](#store)类、[SecretKeyObserver](#secretkeyobserver)类和[ECStoreManager](#ecstoremanager)类实现应用数据库密钥加锁和解锁状态下E类数据库和C类数据库的切换和操作。
 
-### 类图
-
 Mover类：提供数据库数据迁移接口，在锁屏解锁后，若C类数据库中有数据，使用该接口将数据迁移到E类数据库。
 
 Store类：提供访问当前可操作数据库，对数据库进行相关操作的接口。
@@ -21,24 +19,11 @@ secretKeyObserver类：提供了获取当前密钥状态的接口，在密钥销
 
 ECStoreManager类：用于管理应用的E类数据库和C类数据库。
 
-**图1** EC数据库管理类图
-
-![ECStoreManagerClassDiagram.png](figures/ECStoreManagerClassDiagram.png)
-
-### 时序图
-
-使用时序图展示应用配置数据库和密钥状态信息、C类数据向E类数据迁移的全过程。
-
-**图2** EC数据库管理时序图
-
-![ECStoreManager_timingdiagram](figures/ECStoreManager_timingdiagram.png)
-
 ## 配置权限
 
 使用EL5路径下的数据库，需要配置ohos.permission.PROTECT_SCREEN_LOCK_DATA权限。
 
 ```ts
-//未配置权限会报错：（create dir /data/storage/el5/database/entry failed, errno is 13.）
 "requestPermissions": [
       {
         "name": "ohos.permission.PROTECT_SCREEN_LOCK_DATA"
@@ -58,7 +43,7 @@ ECStoreManager类：用于管理应用的E类数据库和C类数据库。
 import { distributedKVStore } from '@kit.ArkData';
 
 export class Mover {
-  async Move(eStore: distributedKVStore.SingleKVStore, cStore: distributedKVStore.SingleKVStore): Promise<void> {
+  async move(eStore: distributedKVStore.SingleKVStore, cStore: distributedKVStore.SingleKVStore): Promise<void> {
     if (eStore != null && cStore != null) {
       let entries: distributedKVStore.Entry[] = await cStore.getEntries('key_test_string');
       await eStore.putBatch(entries);
@@ -85,7 +70,7 @@ export class StoreInfo {
 }
 
 export class Store {
-  async GetECStore(storeInfo: StoreInfo): Promise<distributedKVStore.SingleKVStore> {
+  async getECStore(storeInfo: StoreInfo): Promise<distributedKVStore.SingleKVStore> {
     try {
       kvManager = distributedKVStore.createKVManager(storeInfo.kvManagerConfig);
       console.info("Succeeded in creating KVManager");
@@ -108,7 +93,7 @@ export class Store {
     }
   }
 
-  PutOnedata(kvStore: distributedKVStore.SingleKVStore): void {
+  putOnedata(kvStore: distributedKVStore.SingleKVStore): void {
     if (kvStore != undefined) {
       const KEY_TEST_STRING_ELEMENT = 'key_test_string' + String(Date.now());
       const VALUE_TEST_STRING_ELEMENT = 'value_test_string' + String(Date.now());
@@ -127,7 +112,7 @@ export class Store {
     }
   }
 
-  GetDataNum(kvStore: distributedKVStore.SingleKVStore): void {
+  getDataNum(kvStore: distributedKVStore.SingleKVStore): void {
     if (kvStore != undefined) {
       let resultSet: distributedKVStore.KVStoreResultSet;
       kvStore.getResultSet("key_test_string").then((result: distributedKVStore.KVStoreResultSet) => {
@@ -146,7 +131,7 @@ export class Store {
     }
   }
 
-  DeleteOnedata(kvStore: distributedKVStore.SingleKVStore): void {
+  deleteOnedata(kvStore: distributedKVStore.SingleKVStore): void {
     if (kvStore != undefined) {
       kvStore.getEntries('key_test_string', (err: BusinessError, entries: distributedKVStore.Entry[]) => {
         if (err != undefined) {
@@ -166,7 +151,7 @@ export class Store {
     }
   }
 
-  UpdataOnedata(kvStore: distributedKVStore.SingleKVStore): void {
+  updataOnedata(kvStore: distributedKVStore.SingleKVStore): void {
     if (kvStore != undefined) {
       kvStore.getEntries('key_test_string', async (err: BusinessError, entries: distributedKVStore.Entry[]) => {
         if (err != undefined) {
@@ -199,37 +184,38 @@ export enum SecretStatus {
   UnLock
 }
 
-export class SecretKeyObserve {
-  OnLock(): void {
+export class SecretKeyObserver {
+  onLock(): void {
     this.lockStatuas = SecretStatus.Lock;
-    this.storeManager.CloseEStore();
+    this.storeManager.closeEStore();
   }
 
-  OnUnLock(): void {
+  onUnLock(): void {
     this.lockStatuas = SecretStatus.UnLock;
   }
 
-  GetCurrentStatus(): number {
+  getCurrentStatus(): number {
     return this.lockStatuas;
   }
 
-  Initialize(storeManager: ECStoreManager): void {
+  initialize(storeManager: ECStoreManager): void {
     this.storeManager = storeManager;
   }
 
-  UpdatalockStatus(code: number) {
+  updatalockStatus(code: number) {
     if (code === SecretStatus.Lock) {
-      this.OnLock();
+      this.onLock();
     } else {
-    this.lockStatuas = code;
+      this.lockStatuas = code;
     }
   }
 
+  //初始获取锁屏状态
   private lockStatuas: number = SecretStatus.UnLock;
   private storeManager: ECStoreManager;
 }
 
-export let lockObserve = new SecretKeyObserve();
+export let lockObserve = new SecretKeyObserver();
 ```
 
 ### ECStoreManager
@@ -246,20 +232,20 @@ import { SecretStatus } from './SecretKeyObserver'
 let store = new Store();
 
 export class ECStoreManager {
-  Config(cInfo: StoreInfo, other: StoreInfo): void {
+  config(cInfo: StoreInfo, other: StoreInfo): void {
     this.cInfo = cInfo;
     this.eInfo = other;
   }
 
-  ConfigDataMover(mover: Mover): void {
+  configDataMover(mover: Mover): void {
     this.mover = mover;
   }
 
-  async GetCurrentStore(screanStatus: number): Promise<distributedKVStore.SingleKVStore> {
+  async getCurrentStore(screanStatus: number): Promise<distributedKVStore.SingleKVStore> {
     console.info(`ECDB_Encry GetCurrentStore start screanStatus: ${screanStatus}`);
     if (screanStatus === SecretStatus.UnLock) {
       try {
-        this.eStore = await store.GetECStore(this.eInfo);
+        this.eStore = await store.getECStore(this.eInfo);
         console.info("Succeeded in getting Store ：estore");
       } catch (e) {
         let error = e as BusinessError;
@@ -268,9 +254,9 @@ export class ECStoreManager {
       //解锁状态 获取e类库
       if (this.needMove) {
         if (this.eStore != undefined && this.cStore != undefined) {
-          await this.mover.Move(this.eStore, this.cStore);
+          await this.mover.move(this.eStore, this.cStore);
         }
-        this.DeleteCStore();
+        this.deleteCStore();
         console.info(`ECDB_Encry Data migration is complete. Destroy cstore`);
         this.needMove = false;
       }
@@ -279,7 +265,7 @@ export class ECStoreManager {
       //加锁状态 获取c类库
       this.needMove = true;
       try {
-        this.cStore = await store.GetECStore(this.cInfo);
+        this.cStore = await store.getECStore(this.cInfo);
         console.info("Succeeded in getting Store ：cstore");
       } catch (e) {
         let error = e as BusinessError;
@@ -289,7 +275,7 @@ export class ECStoreManager {
     }
   }
 
-  CloseEStore(): void {
+  closeEStore(): void {
     try {
       let kvManager = distributedKVStore.createKVManager(this.eInfo.kvManagerConfig);
       console.info("Succeeded in creating KVManager");
@@ -304,7 +290,7 @@ export class ECStoreManager {
     }
   }
 
-  DeleteCStore(): void {
+  deleteCStore(): void {
     try {
       let kvManager = distributedKVStore.createKVManager(this.cInfo.kvManagerConfig);
       console.info("Succeeded in creating KVManager");
@@ -337,17 +323,17 @@ import { AbilityConstant, contextConstant, UIAbility, Want } from '@kit.AbilityK
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
 import { distributedKVStore } from '@kit.ArkData';
-import { ECStoreManager } from './ECStoreManager';
-import { StoreInfo } from './Store';
-import { Mover } from './Mover';
-import { SecretKeyObserver } from './SecretKeyObserver';
-import { commonEventManager } from '@kit.BasicServicesKit';
-import Base from '@kit.BasicServicesKit';
+import { ECStoreManager } from './ECStoreManager'
+import { StoreInfo } from './Store'
+import { Mover } from './Mover'
+import { SecretKeyObserver } from './SecretKeyObserver'
+import { commonEventManager } from '@kit.BasicServicesKit'
+import Base from '@ohos.base';
 
 
 export let storeManager = new ECStoreManager();
 
-export let secretKeyObserver = new SecretKeyObserver();
+export let e_secretKeyObserver = new SecretKeyObserver();
 
 let mover = new Mover();
 
@@ -363,7 +349,7 @@ export function createCB(err: Base.BusinessError, commonEventSubscriber: commonE
           console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
         } else {
           console.info(`ECDB_Encry SubscribeCB ${data.code}`);
-          secretKeyObserver.UpdatalockStatus(data.code);
+          e_secretKeyObserver.updatalockStatus(data.code);
         }
       });
     } catch (error) {
@@ -429,9 +415,9 @@ export default class EntryAbility extends UIAbility {
       const err: Base.BusinessError = error as Base.BusinessError;
       console.error(`createSubscriber failed, code is ${err.code}, message is ${err.message}`);
     }
-    storeManager.Config(cInfo, eInfo);
-    storeManager.ConfigDataMover(mover);
-    secretKeyObserver.Initialize(storeManager);
+    storeManager.config(cInfo, eInfo);
+    storeManager.configDataMover(mover);
+    e_secretKeyObserver.initialize(storeManager);
   }
 
   onDestroy(): void {
@@ -473,7 +459,7 @@ export default class EntryAbility extends UIAbility {
 使用Button按钮，通过点击按钮来模拟应用操作数据库，如插入数据、删除数据、更新数据和获取数据数量的操作等，展示数据库基本的增删改查能力。
 
 ```ts
-import { storeManager, secretKeyObserver } from "../entryability/EntryAbility"
+import { storeManager, e_secretKeyObserver } from "../entryability/EntryAbility"
 import { distributedKVStore } from '@kit.ArkData';
 import { Store } from '../entryability/Store';
 
@@ -491,36 +477,36 @@ struct Index {
       Column() {
         Button('加锁/解锁').onClick((event: ClickEvent) => {
           if (lockStatus) {
-            secretKeyObserver.OnLock();
+            e_secretKeyObserver.onLock();
             lockStatus = 0;
           } else {
-            secretKeyObserver.OnUnLock();
+            e_secretKeyObserver.onUnLock();
             lockStatus = 1;
           }
           lockStatus ? this.message = "解锁" : this.message = "加锁";
         }).margin("5");
         Button('store type').onClick(async (event: ClickEvent) => {
-          secretKeyObserver.GetCurrentStatus() ? this.message = "estroe" : this.message = "cstore";
+          e_secretKeyObserver.getCurrentStatus() ? this.message = "estroe" : this.message = "cstore";
         }).margin("5");
 
         Button("put").onClick(async (event: ClickEvent) => {
-          let store: distributedKVStore.SingleKVStore = await storeManager.GetCurrentStore(secretKeyObserver.GetCurrentStatus());
-          storeOption.PutOnedata(store);
+          let store: distributedKVStore.SingleKVStore = await storeManager.getCurrentStore(e_secretKeyObserver.getCurrentStatus());
+          storeOption.putOnedata(store);
         }).margin(5)
 
         Button("Get").onClick(async (event: ClickEvent) => {
-          let store: distributedKVStore.SingleKVStore = await storeManager.GetCurrentStore(secretKeyObserver.GetCurrentStatus());
-          storeOption.GetDataNum(store);
+          let store: distributedKVStore.SingleKVStore = await storeManager.getCurrentStore(e_secretKeyObserver.getCurrentStatus());
+          storeOption.getDataNum(store);
         }).margin(5)
 
         Button("delete").onClick(async (event: ClickEvent) => {
-          let store: distributedKVStore.SingleKVStore = await storeManager.GetCurrentStore(secretKeyObserver.GetCurrentStatus());
-          storeOption.DeleteOnedata(store);
+          let store: distributedKVStore.SingleKVStore = await storeManager.getCurrentStore(e_secretKeyObserver.getCurrentStatus());
+          storeOption.deleteOnedata(store);
         }).margin(5)
 
         Button("updata").onClick(async (event: ClickEvent) => {
-          let store: distributedKVStore.SingleKVStore = await storeManager.GetCurrentStore(secretKeyObserver.GetCurrentStatus());
-          storeOption.UpdataOnedata(store);
+          let store: distributedKVStore.SingleKVStore = await storeManager.getCurrentStore(e_secretKeyObserver.getCurrentStatus());
+          storeOption.updataOnedata(store);
         }).margin(5)
 
         Text(this.message)
