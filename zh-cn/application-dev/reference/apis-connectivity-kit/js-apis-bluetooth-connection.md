@@ -23,7 +23,7 @@ pairDevice(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -68,7 +68,7 @@ pairDevice(deviceId: string): Promise&lt;void&gt;
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -118,7 +118,7 @@ getRemoteDeviceName(deviceId: string): string
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -253,7 +253,7 @@ getPairedDevices(): Array&lt;string&gt;
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -295,7 +295,7 @@ getPairState(deviceId: string): BondState
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -665,7 +665,7 @@ startBluetoothDiscovery(): void
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -705,7 +705,7 @@ stopBluetoothDiscovery(): void
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -964,7 +964,7 @@ on(type: 'bluetoothDeviceFind', callback: Callback&lt;Array&lt;string&gt;&gt;): 
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -1009,7 +1009,7 @@ off(type: 'bluetoothDeviceFind', callback?: Callback&lt;Array&lt;string&gt;&gt;)
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -1308,7 +1308,7 @@ try {
 
 枚举，配对状态。
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
