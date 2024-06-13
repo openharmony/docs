@@ -117,7 +117,7 @@ avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSe
 });
 ```
 
-## ProtocolType<sup>11+</sup>
+## ProtocolType<sup>10+</sup>
 
 远端设备支持的协议类型的枚举。
 
