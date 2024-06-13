@@ -46,6 +46,7 @@
     - [@ohos.app.ability.insightIntentDriver (执行意图调用)(系统接口)](js-apis-app-ability-insightIntentDriver-sys.md)
     - [@ohos.app.ability.ServiceExtensionAbility (ServiceExtensionAbility)(系统接口)](js-apis-app-ability-serviceExtensionAbility-sys.md)
     - [@ohos.app.ability.StartOptions (StartOptions)(系统接口)](js-apis-app-ability-startOptions-sys.md)
+    - [@ohos.app.ability.UIServiceExtensionAbility (UIServiceExtensionAbility)(系统接口)](js-apis-app-ability-uiServiceExtensionAbility-sys.md)
     - [@ohos.app.ability.UIExtensionContentSession (带界面扩展能力界面操作类)(系统接口)](js-apis-app-ability-uiExtensionContentSession-sys.md)
     <!--DelEnd-->
   - FA模型能力的接口
@@ -126,6 +127,8 @@
       - [ProcessRunningInfo](js-apis-inner-application-processRunningInfo.md)
       - [UIAbilityContext](js-apis-inner-application-uiAbilityContext.md)
       - [UIExtensionContext](js-apis-inner-application-uiExtensionContext.md)
+      - [UIServiceExtensionConnectCallback](js-apis-inner-application-uiServiceExtensionconnectcallback.md)
+      - [UIServiceProxy](js-apis-inner-application-uiserviceproxy.md)
       - [PhotoEditorExtensionContext](js-apis-app-ability-photoEditorExtensionContext.md)
       - [SendableContext](js-apis-inner-application-sendableContext.md)
       <!--Del-->
@@ -160,6 +163,8 @@
       - [PageNodeInfo(系统接口)](js-apis-inner-application-pageNodeInfo-sys.md)
       - [ProcessData(系统接口)](js-apis-inner-application-processData-sys.md)
       - [ServiceExtensionContext(系统接口)](js-apis-inner-application-serviceExtensionContext-sys.md)
+      - [UIServiceExtensionContext(系统接口)](js-apis-inner-application-uiserviceExtensionContext-sys.md)
+      - [UIServiceHostProxy(系统接口)](js-apis-inner-application-uiservicehostproxy-sys.md)
       - [UIAbilityContext(系统接口)](js-apis-inner-application-uiAbilityContext-sys.md)
       - [UIExtensionContext(系统接口)](js-apis-inner-application-uiExtensionContext-sys.md)
       - [ViewData(系统接口)](js-apis-inner-application-viewData-sys.md)
