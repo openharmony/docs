@@ -48,9 +48,9 @@ Web组件的状态主要包括：Controller绑定到Web组件、网页加载开�
   @Component
   struct WebComponent {
     controller: web_webview.WebviewController = new web_webview.WebviewController()
-    responseweb: WebResourceResponse = new WebResourceResponse()
+    responseWeb: WebResourceResponse = new WebResourceResponse()
     heads:Header[] = new Array()
-    @State webdata: string = "<!DOCTYPE html>\n" +
+    @State webData: string = "<!DOCTYPE html>\n" +
     "<html>\n" +
     "<head>\n" +
     "<title>intercept test</title>\n" +
@@ -107,14 +107,14 @@ Web组件的状态主要包括：Controller绑定到Web组件、网页加载开�
             }
             let length = this.heads.push(head1)
             length = this.heads.push(head2)
-            this.responseweb.setResponseHeader(this.heads)
-            this.responseweb.setResponseData(this.webdata)
-            this.responseweb.setResponseEncoding('utf-8')
-            this.responseweb.setResponseMimeType('text/html')
-            this.responseweb.setResponseCode(200)
-            this.responseweb.setReasonMessage('OK')
+            this.responseWeb.setResponseHeader(this.heads)
+            this.responseWeb.setResponseData(this.webData)
+            this.responseWeb.setResponseEncoding('utf-8')
+            this.responseWeb.setResponseMimeType('text/html')
+            this.responseWeb.setResponseCode(200)
+            this.responseWeb.setReasonMessage('OK')
             // 返回响应数据则按照响应数据加载，无响应数据则返回null表示按照原来的方式加载
-            return this.responseweb
+            return this.responseWeb
           })
           .onPageBegin((event) => {
             if (event) {
