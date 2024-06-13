@@ -1,6 +1,6 @@
 # Freezing a Custom Component
 
-When a custom component is inactive, it can be frozen so that its state variable does not respond to updates. That is, the @Watch decorated method is not called, and the node associated with the state variable is not re-rendered. You can use the **freezeWhenInactive** attribute to specify whether to freeze a custom component. If no parameter is passed in, the feature is disabled. This feature works in following scenarios: page routing, **\<TabContent>**, and **LazyforEach**.
+When a custom component is inactive, it can be frozen so that its state variable does not respond to updates. That is, the @Watch decorated method is not called, and the node associated with the state variable is not re-rendered. You can use the **freezeWhenInactive** attribute to specify whether to freeze a custom component. If no parameter is passed in, the feature is disabled. This feature works in following scenarios: page routing, **\<TabContent>**, **LazyforEach**, and **\<Navigation>**.
 
 
 > **NOTE**
@@ -148,7 +148,7 @@ In the preceding example:
 
 1. When **change message** is clicked, the value of **message** changes, and the @Watch decorated **onMessageUpdated** method of the **\<TabContent>** component being displayed is called.
 
-2. When you switch to another **\<TabContent>** component, it switches from inactive to active, and the corresponding @Watch decorated **onMessageUpdated** method is called.
+2. When you click **two** to switch to another **\<TabContent>** component, it switches from inactive to active, and the corresponding @Watch decorated **onMessageUpdated** method is called.
 
 3. When **change message** is clicked again, the value of **message** changes, and only the @Watch decorated **onMessageUpdated** method of the **\<TabContent>** component being displayed is called.
 
@@ -265,8 +265,7 @@ struct LforEachTest {
       List({ space: 3 }) {
         LazyForEach(this.data, (item: string) => {
           ListItem() {
-            FreezeChild({ message: this.message,
-              index: item })
+            FreezeChild({ message: this.message, index: item })
           }
         }, (item: string) => item)
       }.cachedCount(5).height(500)
@@ -309,3 +308,213 @@ In the preceding example:
 3. When **change message** is clicked again, the value of **message** changes, and only the @Watch decorated **onMessageUpdated** method of the list items being displayed is called.
 
 ![FrezzeLazyforEach.gif](figures/FrezzeLazyforEach.gif)
+
+### Navigation
+
+- Freezing an invisible page does not trigger component update. When the page is returned, the @Watch callback is triggered to refresh the page.
+
+```ts
+@Entry
+@Component
+struct MyNavigationTestStack {
+  @Provide('pageInfo') pageInfo: NavPathStack = new NavPathStack();
+  @State @Watch("info") message: number = 0;
+  @State logNumber: number = 0;
+
+  info() {
+    console.info(`freeze-test MyNavigation message callback ${this.message}`);
+  }
+
+  @Builder
+  PageMap(name: string) {
+    if (name === 'pageOne') {
+      pageOneStack({ message: this.message, logNumber: this.logNumber })
+    } else if (name === 'pageTwo') {
+      pageTwoStack({ message: this.message, logNumber: this.logNumber })
+    } else if (name === 'pageThree') {
+      pageThreeStack({ message: this.message, logNumber: this.logNumber })
+    }
+  }
+
+  build() {
+    Column() {
+      Button('change message')
+        .onClick(() => {
+          this.message++;
+        })
+      Navigation(this.pageInfo) {
+        Column() {
+          Button('Next Page', { stateEffect: true, type: ButtonType.Capsule })
+            .width('80%')
+            .height(40)
+            .margin(20)
+            .onClick(() => {
+              this.pageInfo.pushPath({ name: 'pageOne' }); // Push the navigation destination page specified by name to the navigation stack.
+            })
+        }
+      }.title('NavIndex')
+      .navDestination(this.PageMap)
+      .mode(NavigationMode.Stack)
+    }
+  }
+}
+
+@Component
+struct pageOneStack {
+  @Consume('pageInfo') pageInfo: NavPathStack;
+  @State index: number = 1;
+  @Link message: number;
+  @Link logNumber: number;
+
+  build() {
+    NavDestination() {
+      Column() {
+        NavigationContentMsgStack({ message: this.message, index: this.index, logNumber: this.logNumber })
+        Text("cur stack size:" + `${this.pageInfo.size()}`)
+          .fontSize(30)
+          .fontWeight(FontWeight.Bold)
+        Button('Next Page', { stateEffect: true, type: ButtonType.Capsule })
+          .width('80%')
+          .height(40)
+          .margin(20)
+          .onClick(() => {
+            this.pageInfo.pushPathByName('pageTwo', null);
+          })
+        Button('Back Page', { stateEffect: true, type: ButtonType.Capsule })
+          .width('80%')
+          .height(40)
+          .margin(20)
+          .onClick(() => {
+            this.pageInfo.pop();
+          })
+      }.width('100%').height('100%')
+    }.title('pageOne')
+    .onBackPressed(() => {
+      this.pageInfo.pop();
+      return true;
+    })
+  }
+}
+
+@Component
+struct pageTwoStack {
+  @Consume('pageInfo') pageInfo: NavPathStack;
+  @State index: number = 2;
+  @Link message: number;
+  @Link logNumber: number;
+
+  build() {
+    NavDestination() {
+      Column() {
+        NavigationContentMsgStack({ message: this.message, index: this.index, logNumber: this.logNumber })
+        Text("cur stack size:" + `${this.pageInfo.size()}`)
+          .fontSize(30)
+          .fontWeight(FontWeight.Bold)
+        Button('Next Page', { stateEffect: true, type: ButtonType.Capsule })
+          .width('80%')
+          .height(40)
+          .margin(20)
+          .onClick(() => {
+            this.pageInfo.pushPathByName('pageThree', null);
+          })
+        Button('Back Page', { stateEffect: true, type: ButtonType.Capsule })
+          .width('80%')
+          .height(40)
+          .margin(20)
+          .onClick(() => {
+            this.pageInfo.pop();
+          })
+      }.width('100%').height('100%')
+    }.title('pageTwo')
+    .onBackPressed(() => {
+      this.pageInfo.pop();
+      return true;
+    })
+  }
+}
+
+@Component
+struct pageThreeStack {
+  @Consume('pageInfo') pageInfo: NavPathStack;
+  @State index: number = 3;
+  @Link message: number;
+  @Link logNumber: number;
+
+  build() {
+    NavDestination() {
+      Column() {
+        NavigationContentMsgStack({ message: this.message, index: this.index, logNumber: this.logNumber })
+        Text("cur stack size:" + `${this.pageInfo.size()}`)
+          .fontSize(30)
+          .fontWeight(FontWeight.Bold)
+        Button('Next Page', { stateEffect: true, type: ButtonType.Capsule })
+          .width('80%')
+          .height(40)
+          .margin(20)
+          .onClick(() => {
+            this.pageInfo.pushPathByName('pageOne', null);
+          })
+        Button('Back Page', { stateEffect: true, type: ButtonType.Capsule })
+          .width('80%')
+          .height(40)
+          .margin(20)
+          .onClick(() => {
+            this.pageInfo.pop();
+          })
+      }.width('100%').height('100%')
+    }.title('pageThree')
+    .onBackPressed(() => {
+      this.pageInfo.pop();
+      return true;
+    })
+  }
+}
+
+@Component({ freezeWhenInactive: true })
+struct NavigationContentMsgStack {
+  @Link @Watch("info") message: number;
+  @Link index: number;
+  @Link logNumber: number;
+
+  info() {
+    console.info(`freeze-test NavigationContent message callback ${this.message}`);
+    console.info(`freeze-test ---- called by content ${this.index}`);
+    this.logNumber++;
+  }
+
+  build() {
+    Column() {
+      Text("msg:" + `${this.message}`)
+        .fontSize(30)
+        .fontWeight(FontWeight.Bold)
+      Text("log number:" + `${this.logNumber}`)
+        .fontSize(30)
+        .fontWeight(FontWeight.Bold)
+    }
+  }
+}
+```
+
+In the preceding example:
+
+1. When **change message** is clicked, the value of **message** changes, and the @Watch decorated **info** method of the **MyNavigationTestStack** component being displayed is called.
+
+2. When **Next Page** is clicked, **PageOne** is displayed, and the **PageOneStack** node is created.
+
+3. When **change message** is clicked again, the value of **message** changes, and only the @Watch decorated **info** method of the **NavigationContentMsgStack** child component in **pageOneStack** is called.
+
+4. When **Next Page** is clicked again, **PageTwo** is displayed, and the **pageTwoStack** node is created.
+
+5. When **change message** is clicked again, the value of **message** changes, and only the @Watch decorated **info** method of the **NavigationContentMsgStack** child component in **pageTwoStack** is called.
+
+6. When **Next Page** is clicked again, **PageThree** is displayed, and the **pageThreeStack** node is created.
+
+7. When **change message** is clicked again, the value of **message** changes, and only the @Watch decorated **info** method of the **NavigationContentMsgStack** child component in **pageThreeStack** is called.
+
+8. When **Back Page** is clicked, **PageTwo** is displayed, and only the @Watch decorated **info** method of the **NavigationContentMsgStack** child component in **pageTwoStack** is called.
+
+9. When **Back Page** is clicked again, **PageOne** is displayed, and only the @Watch decorated **info** method of the **NavigationContentMsgStack** child component in **PageOne** is called.
+
+10. When **Back Page** is clicked again, the initial page is displayed, and no method is called.
+
+![navigation-freeze.gif](figures/navigation-freeze.gif)

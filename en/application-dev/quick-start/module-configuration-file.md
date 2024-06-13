@@ -96,26 +96,27 @@ As shown above, the **module.json5** file contains several tags.
 | process | Process name of the module. The value is a string with a maximum of 31 bytes. If **process** is configured under **HAP**, all UIAbilities, DataShareExtensionAbilities, and ServiceExtensionAbilities of the application will run in the specified process.<br>**NOTE**<br>This tag applies only to system applications and does not take effect for third-party applications.| String| Yes (initial value: value of **bundleName** under **app** in the **app.json5** file)|
 | mainElement | Name of the entry UIAbility or ExtensionAbility of the module. The value is a string with a maximum of 255 bytes.| String| Yes (initial value: left empty)|
 | [deviceTypes](#devicetypes) | Types of the devices on which the module can run.| String array| No|
-| deliveryWithInstall | Whether the HAP of the module is installed together with the application. This tag only applies to atomic services.<br>- **true**: The HAP of the module is installed together with the application.<br>- **false**: The HAP of the module is not installed together with the application.| Boolean| No|
+| deliveryWithInstall | Whether the HAP of the module is installed together with the application.<br>- **true**: The HAP of the module is installed together with the application.<br>- **false**: The HAP of the module is not installed together with the application.| Boolean| No|
 | installationFree | Whether the module supports the installation-free feature.<br>- **true**: The module supports the installation-free feature and meets installation-free constraints.<br>- **false**: The module does not support the installation-free feature.<br>**NOTE**<br>If [bundleType](./app-configuration-file.md#tags-in-the-configuration-file) is set to **atomicService**, set this tag to **true**. Otherwise, set this tag to <b class="+ topic/ph hi-d/b " id="b1842016483597">false</b>.| Boolean| No|
 | virtualMachine | Type of the target virtual machine (VM) where the module can run. It is used for cloud distribution, such as distribution by the application market and distribution center. If the target VM type is ArkTS engine, the value is **ark**+*version number*.| String| Yes (initial value: automatically inserted when DevEco Studio builds the HAP file)|
 | [pages](#pages)| Profile that represents information about each page in the module. The value is a string with a maximum of 255 bytes.| String| No in the UIAbility scenario|
 | [metadata](#metadata)| Custom metadata of the module. You can configure [distributionFilter](#distributionfilter) and [shortcuts](#shortcuts) by referencing resources. The setting is effective only for the current module, UIAbility, and ExtensionAbility.| Object array| Yes (initial value: left empty)|
 | [abilities](#abilities) | UIAbility configuration of the module. The setting is effective only for the current UIAbility.| Object array| Yes (initial value: left empty)|
 | [extensionAbilities](#extensionabilities) | ExtensionAbility configuration of the module. The setting is effective only for the current ExtensionAbility.| Object array| Yes (initial value: left empty)|
-| [requestPermissions](#requestpermissions) | A set of permissions that the application needs to request from the system for running correctly.| Object| Yes (initial value: left empty)|
+| [definePermissions](#definepermissions) | Permissions defined for the system resource HAP. Custom permissions are not supported.| Object array| Yes (initial value: left empty)|
+| [requestPermissions](#requestpermissions) | A set of permissions that the application needs to request from the system for running correctly.| Object array| Yes (initial value: left empty)|
 | [testRunner](#testrunner) | Test runner of the module.| Object| Yes (initial value: left empty)|
 | [atomicService](#atomicservice)| Atomic service configuration.| Object| Yes (initial value: left empty) |
 | [dependencies](#dependencies)| List of shared libraries on which the module depends during running.| Object array| Yes (initial value: left empty) |
-| targetModuleName | Target module name of the bundle. This name must be unique in the entire application. The value is a string with a maximum of 31 bytes. The module that has this tag set provides the overlay feature.|String|Yes (initial value: left empty)|
-| targetPriority | Priority of the module. The value ranges from 1 to 100. This tag is required only when **targetModuleName** is set.|Integer|Yes (initial value: **1**)|
+| targetModuleName | Target module name of the bundle. This name must be unique in the entire application. The value is a string with a maximum of 31 bytes. The module that has this tag set provides the overlay feature. This tag is applicable only to HSPs.|String|Yes (initial value: left empty)|
+| targetPriority | Priority of the module. The value ranges from 1 to 100. This tag is required only when **targetModuleName** is set. This tag is applicable only to HSPs.|Integer|Yes (initial value: **1**)|
 | [proxyData](#proxydata) | List of data proxies provided by the module.| Object array| Yes (initial value: left empty)|
 | isolationMode | Multi-process configuration of the module. The options are as follows:<br>- **nonisolationFirst**: The module preferentially runs in a non-independent process.<br>- **isolationFirst**: The module preferentially runs in an independent process.<br>- **isolationOnly**: The module runs only in an independent process.<br>- **nonisolationOnly**: The module runs only in a non-independent process.|String|Yes (initial value: **nonisolationFirst**)|
 | generateBuildHash |Whether the hash value of the HAP or HSP is generated by the packing tool. The hash value (if any) is used to determine whether the application needs to be updated when the system is updated in OTA mode but the **versionCode** value of the application remains unchanged.<br>This tag is enabled only when the **generateBuildHash** tag in the [app.json5](./app-configuration-file.md) file is **false**.**<br>NOTE**<br>This tag applies only to system applications.|Boolean|Yes (initial value: **false**)|
 | compressNativeLibs | Whether the **libs** libraries are packaged in the HAP file after being compressed.<br>- **true**: The **libs** libraries are packaged in the HAP file after being compressed.<br>- **false**: The **libs** libraries are stored without being compressed.| Boolean| Yes (initial value: **false**)|
 | libIsolation | Whether to save the .so files of the current HAP to a separate folder. This is intended to avoid .so file conflicts between HAPs.<br>- **true**: The .so files of the current HAP are stored in a separate folder (named after the module) in the **libs** directory.<br>- **false**: The .so files of the current HAP are directly stored in the **libs** directory.| Boolean| Yes (initial value: **false**)|
-| fileContextMenu | Context menu of the current HAP.| String| Yes (initial value: left empty)|
-| querySchemes | URL schemes that the current application can query for redirection. This tag is only available for entry modules. A maximum of 50 URL schemes can be configured.| String array| Yes (initial value: left empty)|
+| fileContextMenu | Context menu of the current HAP. The value is a string with a maximum of 255 bytes.| String| Yes (initial value: left empty)|
+| querySchemes | URL schemes that the current application can query for redirection. This tag is only available for entry modules. A maximum of 50 URL schemes can be configured, with each containing a maximum of 128 bytes.| String array| Yes (initial value: left empty)|
 
 ## deviceTypes
 
@@ -258,7 +259,7 @@ The **abilities** tag represents the UIAbility configuration of the module, whic
 | [launchType](../application-models/uiability-launch-type.md) | Launch type of the UIAbility. The options are as follows:<br>- **multiton**: A UIAbility instance is created each time the UIAbility is started.<br>- **singleton**: A UIAbility instance is created only when the UIAbility is started for the first time.<br>- **specified**: You can determine whether to create a UIAbility instance when the application is running.| String| Yes (initial value: **"singleton"**)|
 | description | Description of the UIAbility. The value is a string with a maximum of 255 bytes. It must be a resource index to support multiple languages.| String| Yes (initial value: left empty)|
 | icon | Icon of the UIAbility. The value is the index of the icon resource file.| String| Yes (initial value: left empty)<br>If **UIAbility** is set to **MainElement**, this attribute is mandatory.|
-| label | Name of the UIAbility displayed to users. The value must be a resource index to support multiple languages.| String| Yes (initial value: left empty)<br>If **UIAbility** is set to **MainElement**, this attribute is mandatory.|
+| label | Name of the UIAbility displayed to users. The value must be a resource index to support multiple languages. The value is a string with a maximum of 255 bytes.| String| Yes (initial value: left empty)<br>If **UIAbility** is set to **MainElement**, this attribute is mandatory.|
 | permissions | Permissions required for another application to access the UIAbility.<br>The value is generally in the reverse domain name notation and contains a maximum of 255 bytes. It is an array of predefined permission names.| String array| Yes (initial value: left empty)|
 | [metadata](#metadata)| Metadata information of the UIAbility component.| Object array| Yes (initial value: left empty)|
 | exported | Whether the UIAbility can be called by other applications.<br>- **true**: The UIAbility can be called by other applications.<br>- **false**: The UIAbility cannot be called by other applications, not even by aa commands.| Boolean| Yes (initial value: **false**)|
@@ -268,7 +269,7 @@ The **abilities** tag represents the UIAbility configuration of the module, whic
 | startWindowIcon | Index to the icon file of the UIAbility startup page. The value is a string with a maximum of 255 bytes.| String| No|
 | startWindowBackground | Index to the background color resource file of the UIAbility startup page. The value is a string with a maximum of 255 bytes.<br>Example: **$color:red**.| String| No|
 | removeMissionAfterTerminate | Whether to remove the relevant mission from the mission list after the UIAbility is destroyed.<br>- **true**: Remove the relevant mission from the mission list after the UIAbility is destroyed.<br>- **false**: Do not remove the relevant mission from the task mission list after the UIAbility is destroyed.| Boolean| Yes (initial value: **false**)|
-| orientation | Orientation of the UIAbility when it is started. The options are as follows:<br>- **unspecified**: automatically determined by the system.<br>- **landscape**: landscape mode.<br>- **portrait**: portrait mode.<br>- **landscape_inverted**: inverted landscape mode.<br>- **portrait_inverted**: inverted portrait mode.<br>- **auto_rotation**: determined by the sensor.<br>- **auto_rotation_landscape**: determined by the sensor in the horizontal direction, including landscape and inverted landscape modes.<br>- **auto_rotation_portrait**: determined by the sensor in the vertical direction, including portrait and inverted portrait modes.<br>- **auto_rotation_restricted**: determined by the sensor when the sensor switch is enabled.<br>- **auto_rotation_landscape_restricted**: determined by the sensor in the horizontal direction, including landscape and inverted landscape modes, when the sensor switch is enabled.<br>- **auto_rotation_portrait_restricted**: determined by the sensor in the vertical direction, including portrait and inverted portrait modes, when the sensor switch is enabled.<br>- **locked**: auto rotation disabled.| String| Yes (initial value: **"unspecified"**)|
+| orientation | Orientation of the UIAbility when it is started. The options are as follows:<br>- **unspecified**: automatically determined by the system.<br>- **landscape**: landscape mode.<br>- **portrait**: portrait mode.<br>- **landscape_inverted**: inverted landscape mode.<br>- **portrait_inverted**: inverted portrait mode.<br>- **auto_rotation**: determined by the sensor.<br>- **auto_rotation_landscape**: determined by the sensor in the horizontal direction, including landscape and inverted landscape modes.<br>- **auto_rotation_portrait**: determined by the sensor in the vertical direction, including portrait and inverted portrait modes.<br>- **auto_rotation_restricted**: determined by the sensor when the sensor switch is enabled.<br>- **auto_rotation_landscape_restricted**: determined by the sensor in the horizontal direction, including landscape and inverted landscape modes, when the sensor switch is enabled.<br>- **auto_rotation_portrait_restricted**: determined by the sensor in the vertical direction, including portrait and inverted portrait modes, when the sensor switch is enabled.<br>- **locked**: auto rotation disabled.<br>- **auto_rotation_unspecified**: auto rotation controlled by the switch and determined by the system.<br>- **follow_desktop**: following the orientation of the home screen. | String| Yes (initial value: **"unspecified"**)|
 | supportWindowMode | Window mode supported by the UIAbility. The options are as follows:<br>- **fullscreen**: full-screen mode.<br>- **split**: split-screen mode.<br>- **floating**: floating window mode.| String array| Yes (initial value:<br>["fullscreen", "split", "floating"])|
 | priority | Priority of the UIAbility component. In the case of [implicit query](../application-models/explicit-implicit-want-mappings.md), UIAbility components with a higher priority are at the higher place of the returned list. The value ranges from 0 to 10. The greater the value, the higher the priority.<br>**NOTE**<br>This tag applies only to system applications and does not take effect for third-party applications.| Integer| Yes (initial value: **0**)|
 | maxWindowRatio | Maximum aspect ratio supported by the UIAbility component. The minimum value is 0.| Number| Yes (initial value: maximum aspect ratio supported by the platform)|
@@ -401,8 +402,8 @@ The **extensionAbilities** tag represents the configuration of ExtensionAbilitie
 | srcEntry | Code path of the ExtensionAbility. The value is a string with a maximum of 127 bytes.| String| No|
 | description | Description of the ExtensionAbility. The value is a string with a maximum of 255 bytes. It can be a resource index to support multiple languages.| String| Yes (initial value: left empty)|
 | icon | Icon of the ExtensionAbility. The value is the index of the icon resource file. If **ExtensionAbility** is set to **MainElement** of the current module, this field is mandatory.| String| Yes (initial value: left empty)|
-| label | Name of the ExtensionAbility displayed to users. The value must be a resource index to support multiple languages. If **ExtensionAbility** is set to **MainElement** of the current module, this field is mandatory and its value must be unique in the application.| String| Yes (initial value: left empty)|
-| type | Type of the ExtensionAbility. The options are as follows:<br>- **form**: ExtensionAbility of a widget.<br>- **workScheduler**: ExtensionAbility of a deferred task.<br>- **inputMethod**: ExtensionAbility of an input method.<br>- **service**: service component running in the background.<br>- **accessibility**: ExtensionAbility of an accessibility feature.<br>- **fileAccess**: ExtensionAbility for public data access, allowing files and folders to be provided for file management applications to display.<br>- **dataShare**: ExtensionAbility for data sharing.<br>- **staticSubscriber**: ExtensionAbility for static broadcast.<br>- **wallpaper**: ExtensionAbility of the wallpaper.<br>- **backup**: ExtensionAbility for data backup.<br>- **window**: ExtensionAbility of a window. This type of ExtensionAbility creates a window during startup for which you can develop the GUI. The GUI you develop is combined with the windows of other applications through the **UIExtensionComponent**.<br>- **thumbnail**: ExtensionAbility for obtaining file thumbnails. You can provide thumbnails for files of customized file types.<br>- **preview**: ExtensionAbility for preview. This type of ExtensionAbility can parse the file and display it in a window. You can combine the window with other application windows.<br>- **print**: ExtensionAbility for the print framework.<br>- **push**: ExtensionAbility for the push service.<br>- **driver**: ExtensionAbility for the driver framework.<br>- **remoteNotification**: ExtensionAbility for remote notifications.<br>- **remoteLocation**: ExtensionAbility for remote location.<br>- **voip**: ExtensionAbility for VoIP calls.<br>**NOTE**<br>The **service**, **fileAccess**, and **dataShare** types apply only to system applications and do not take effect for third-party applications.| String| No|
+| label | Name of the ExtensionAbility displayed to users. The value must be a resource index to support multiple languages. It contains a maximum of 255 bytes. If **ExtensionAbility** is set to **MainElement** of the current module, this field is mandatory and its value must be unique in the application.| String| Yes (initial value: left empty)|
+| type | Type of the ExtensionAbility. The options are as follows:<br>- **form**: ExtensionAbility of a widget.<br>- **workScheduler**: ExtensionAbility of a deferred task.<br>- **inputMethod**: ExtensionAbility of an input method.<br>- **service**: service component running in the background.<br>- **accessibility**: ExtensionAbility of an accessibility feature.<br>- **fileAccess**: ExtensionAbility for public data access, allowing files and folders to be provided for file management applications to display.<br>- **dataShare**: ExtensionAbility for data sharing.<br>- **staticSubscriber**: ExtensionAbility for static broadcast.<br>- **wallpaper**: ExtensionAbility of the wallpaper.<br>- **backup**: ExtensionAbility for data backup.<br>- **window**: ExtensionAbility of a window. This type of ExtensionAbility creates a window during startup for which you can develop the GUI. The GUI you develop is combined with the windows of other applications through the **UIExtensionComponent**.<br>- **thumbnail**: ExtensionAbility for obtaining file thumbnails. You can provide thumbnails for files of customized file types.<br>- **preview**: ExtensionAbility for preview. This type of ExtensionAbility can parse the file and display it in a window. You can combine the window with other application windows.<br>- **print**: ExtensionAbility for the print framework.<br>- **push**: ExtensionAbility for the push service.<br>- **driver**: ExtensionAbility for the driver framework.<br>- **remoteNotification**: ExtensionAbility for remote notifications.<br>- **remoteLocation**: ExtensionAbility for remote location.<br>- **voip**: ExtensionAbility for VoIP calls.<br>- **action**: ExtensionAbility for custom service operations, which provides custom service operation templates based on UIExtension.<br>- **adsService**: ExtensionAbility for the ad service, which provides the ad service framework.<br>- **ads**: ExtensionAbility for the ad service, which is used with the AdComponent to display the ad page in other applications. This option is only available for device manufacturers.<br>- **appAccountAuthorization**: ExtensionAbility for application account authorization extension, which is used to process account authorization requests, for example, account login authorization.<br>- **autoFill/password**: ExtensionAbility for automatically filling in usernames and passwords.<br>- **hms/account**: ExtensionAbility for application account management.<br>- **sysDialog/atomicServicePanel**: ExtensionAbility that provides the basic capability of constructing the atomic service panel, which is implemented based on UIExtensionAbility.<br>- **sysDialog/userAuth**: ExtensionAbility for local user authentication.<br>- **sysDialog/common**: ExtensionAbility for common dialog boxes.<br>- **sysDialog/power**: ExtensionAbility for the shutdown and restart dialog boxes.<br>- **sysDialog/print**: ExtensionAbility for the print modals.<br>- **sysDialog/meetimeCall**: ExtensionAbility for MeeTime calls.<br>- **sysDialog/meetimeContact**: ExtensionAbility for MeeTime contacts.<br>- **sysPicker/meetimeMessage**: ExtensionAbility for MeeTime messages.<br>- **sysPicker/meetimeContact**: ExtensionAbility for the MeeTime contact list.<br>- **sysPicker/meetimeCallLog**: ExtensionAbility for the MeeTime call history.<br>- **sysPicker/share**: ExtensionAbility for sharing.<br>- **sysPicker/mediaControl**: ExtensionAbility for media control.<br>- **sys/commonUI**: non-common ExtensionAbility, which provides embedded display or dialog boxes closely related to service attributes.|
 | permissions | Permissions required for another application to access the ExtensionAbility.<br>The value is generally in the reverse domain name notation and contains a maximum of 255 bytes. It is an array of [predefined permission names](../security/AccessToken/permissions-for-all.md).| String array| Yes (initial value: left empty)|
 | readPermission | Permission required for reading data in the ExtensionAbility. The value is a string with a maximum of 255 bytes. This field is available only when the type of the ExtensionAbility is set to **dataShare**.| String| Yes (initial value: left empty)|
 | writePermission | Permission required for writing data to the ExtensionAbility. The value is a string with a maximum of 255 bytes. This field is available only when the type of the ExtensionAbility is set to **dataShare**.| String| Yes (initial value: left empty)|
@@ -456,6 +457,7 @@ The **requestPermissions** tag represents a set of permissions that the applicat
 >
 > - The permission settings configured in the **requestPermissions** tag apply to the entire application.
 > - If your application needs to subscribe to an event published by itself and the permissions required for accessing the application are set in the **permissions** tag under **extensionAbilities**, then the application must register the related permissions in the **requestPermissions** tag to receive the event.
+> - In ecosystem governance, **usedScene** is verified for restricted permissions. Yet, as it (together with **ability**) is not included in the HAR/HSP, it is not verified so that the HAR/HSP build can be successful.
 
 **Table 10** requestPermissions
 
@@ -760,7 +762,7 @@ The **atomicService** tag represents the atomic service configuration. It is ava
 
 | Name| Description| Data Type| Initial Value Allowed|
 | -------- | -------- | -------- | -------- |
-| moduleName | Name of the module to be preloaded when the current module is loaded in the atomic service.| String| No|
+| moduleName | Name of the module to be preloaded when the current module is loaded in the atomic service. The value must match an existing module other than the current one. It contains a maximum of 31 bytes.| String| No|
 
 
 Example of the **atomicService** structure:
@@ -787,9 +789,9 @@ The **dependencies** tag identifies the list of shared libraries that the module
 
 | Name   | Description                          | Data Type| Initial Value Allowed|
 | ----------- | ------------------------------ | -------- | ---------- |
-| bundleName  | Name of the shared bundle on which the current module depends. | String  | Yes (initial value: left empty)|
-| moduleName  | Module name of the shared bundle on which the current module depends.| String  | No|
-| versionCode | Version number of the shared bundle.      | Number    | Yes (initial value: left empty)|
+| bundleName  | Name of the shared bundle on which the current module depends. The value is a string of 7 to 128 bytes.| String  | Yes (initial value: left empty)|
+| moduleName  | Module name of the shared bundle on which the current module depends. The value is a string with a maximum of 31 bytes.| String  | No|
+| versionCode | Version number of the shared bundle. The value ranges from 0 to 2147483647.| Number    | Yes (initial value: left empty)|
 
 Example of the **dependencies** structure:
 
@@ -814,9 +816,9 @@ The **proxyDatas** tag provides the list of data proxies provided by the module.
 **Table 21** proxyData
 | Name   | Description                          | Data Type| Initial Value Allowed|
 | ----------- | ------------------------------ | -------- | ---------- |
-| uri | URI of the data proxy. The URIs configured for different data proxies must be unique and must be in the *datashareproxy://Current application bundle name/xxx* format. | String  | No|
-| requiredReadPermission  | Permission required for reading data from the data proxy. If it is not specified, other applications will not be able to use the data proxy. For non-system applications, the level of the set permission must be **system_basic** or **system_core**. For system applications, the permission level is not limited. For details about the permission levels, see [Permissions for All Applications](../security/AccessToken/permissions-for-all.md).| String  | Yes (initial value: left empty)|
-| requiredWritePermission | Permission required for writing data to the data proxy. If it is not specified, other applications will not be able to use the data proxy. For non-system applications, the level of the set permission must be **system_basic** or **system_core**. For system applications, the permission level is not limited. For details about the permission levels, see [Permissions for All Applications](../security/AccessToken/permissions-for-all.md).| String  | Yes (initial value: left empty)|
+| uri | URI of the data proxy. The URIs configured for different data proxies must be unique and must be in the *datashareproxy://Current application bundle name/xxx* format. The value is a string with a maximum of 255 bytes.| String  | No|
+| requiredReadPermission  | Permission required for reading data from the data proxy. If it is not specified, other applications will not be able to use the data proxy. For non-system applications, the level of the set permission must be **system_basic** or **system_core**. For system applications, the permission level is not limited. For details about the permission levels, see [Permissions for All Applications](../security/AccessToken/permissions-for-all.md). The value is a string with a maximum of 255 bytes.| String  | Yes (initial value: left empty)|
+| requiredWritePermission | Permission required for writing data to the data proxy. If it is not specified, other applications will not be able to use the data proxy. For non-system applications, the level of the set permission must be **system_basic** or **system_core**. For system applications, the permission level is not limited. For details about the permission levels, see [Permissions for All Applications](../security/AccessToken/permissions-for-all.md). The value is a string with a maximum of 255 bytes.| String  | Yes (initial value: left empty)|
 | [metadata](#metadata)| Metadata of the data proxy. Only the **name** and **resource** fields can be configured.| Object| Yes (initial value: left empty)|
 
 Example of the **proxyData** structure:
@@ -832,6 +834,43 @@ Example of the **proxyData** structure:
         "metadata": {
           "name": "datashare_metadata",
           "resource": "$profile:datashare"
+        }
+      }
+    ]
+  }
+}
+```
+
+## definePermissions
+
+The **definePermissions** tag represents a set of permissions defined for the system resource HAP, which cannot be custom permissions. For details, see the definition of system resource permissions in the [config.json](https://gitee.com/openharmony/utils_system_resources/blob/master/systemres/main/config.json) file.
+
+**Table 24** definePermissions
+
+| Name| Description| Data Type| Initial Value Allowed|
+| -------- | -------- | -------- | -------- |
+| name | Name of a permission. The value can contain a maximum of 255 bytes.| String| No|
+| grantMode | Permission grant mode. The options are as follows:<br>- **system_grant**: The permission is automatically granted by the system after the application is installed.<br>- **user_grant**: The permission is dynamically requested when needed and must be granted by the user.| String| Yes (initial value: **"system_grant"**)|
+| availableLevel | Permission type. The options are as follows:<br>- **system_core**: system core permission.<br>- **system_basic**: basic system permission.<br>- **normal**: normal permission, which can be requested by all applications.| String| Yes (initial value: **"normal"**)|
+| provisionEnable | Whether the permission can be requested in provision mode, including high-level permissions. The value **true** means that the permission can be requested in provision mode.| Boolean| Yes (initial value: **true**)|
+| distributedSceneEnabled | Whether the permission can be used in distributed scenarios.| Boolean| Yes (initial value: **false**)|
+| label | Brief description of the permission. The value is a resource index to the description.| String| Yes (initial value: left empty)|
+| description | Detailed description of the permission. The value is a string or a resource index to the description.| String| Yes (initial value: left empty)|
+
+Example of the **definePermissions** structure:
+
+```json
+{
+  "module" : {
+    "definePermissions": [
+    {
+      {
+        "name": "ohos.abilitydemo.permission.PROVIDER",
+        "grantMode": "system_grant",
+        "availableLevel": "system_core",
+        "provisionEnable": true,
+        "distributedSceneEnable": false,
+        "label": "$string:EntryAbility_label"
         }
       }
     ]

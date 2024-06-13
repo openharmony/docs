@@ -1,12 +1,12 @@
 # \@BuilderParam Decorator: @Builder Function Reference
 
 
-In certain circumstances, you may need to add a specific feature, such as a click-to-jump action, to a custom component. However, embedding an event method directly in a component will add the feature to all places where the component is imported. This is where the \@BuilderParam decorator comes into the picture. \@BuilderParam is used to decorate a custom component variable of type Reference to an \@Builder method. When initializing a custom component, you can add the specific feature to it by assigning a value to the variable. This decorator can be used to declare an element of any UI description, similar to a slot placeholder.
+In certain circumstances, you may need to add a specific feature, such as a click-to-jump action, to a custom component. However, embedding an event method directly in a component will add the feature to all places where the component is imported. This is where the \@BuilderParam decorator comes into the picture. \@BuilderParam is used to decorate a custom component variable of type Reference to an \@Builder method (@BuilderParam is used to undertake the @Builder function). When initializing a custom component, you can add the specific feature to it by assigning a value to the variable. This decorator can be used to declare an element of any UI description, similar to a slot placeholder.
 
 
 > **NOTE**
 >
-> Since API version 9, this decorator is supported in ArkTS widgets.
+> This decorator can be used in ArkTS widgets since API version 9.
 
 
 ## Rules of Use
@@ -70,7 +70,7 @@ An \@BuilderParam decorated method can be initialized only by an \@Builder funct
 
 - **this** in the function body must point to the correct object.
 
-  In the following example, when the **Parent** component calls **this.componentBuilder()**, **this** points to the owning component, that is, **Parent**. With **\@BuilderParam customChangeThisBuilderParam** passed to the **Child** component from **\@Builder componentBuilder()**, when the **Child** component calls **this.customChangeThisBuilderParam()**, **this** points to the label of the child component, that is, **Child**.
+  In the following example, when the **Parent** component calls **this.componentBuilder()**, **this** points to the owning component, that is, **Parent**. **@Builder componentBuilder()** is passed to **@BuilderParam customBuilderParam** in the **Child** component through **this.componentBuilder**. As such, **this** points to the label of **Child**, that is, **Child**. **@Builder componentBuilder()** is passed to **@BuilderParam customChangeThisBuilderParam** in the **Child** component through **():void=>{this.componentBuilder()}**. Because **this** of the arrow function points to the owner object, the value of **label** is **Parent**.
 
 
   ```ts

@@ -10,8 +10,8 @@
 ```ts
 LazyForEach(
     dataSource: IDataSource,             // Data source to iterate over.
-    itemGenerator: (item: any, index?: number) => void,  // Child component generation function.
-    keyGenerator?: (item: any, index?: number) => string // Key generation function.
+    itemGenerator: (item: any, index: number) => void,  // Child component generation function.
+    keyGenerator?: (item: any, index: number) => string // Key generation function.
 ): void
 ```
 
@@ -21,8 +21,8 @@ LazyForEach(
 | Name       | Type                                              | Mandatory| Description                                                    |
 | ------------- | ------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | dataSource    | [IDataSource](#idatasource)                    | Yes  | **LazyForEach** data source. You need to implement related APIs.                 |
-| itemGenerator | (item: any, index?:number) =&gt; void | Yes  | Child component generation function, which generates a child component for each data item in the array.<br>**NOTE**<br>**item** indicates the current data item, and **index** indicates the index of the data item.<br>The function body of **itemGenerator** must be included in braces {...}. **itemGenerator** can and must generate only one child component for each iteration. The **if** statement is allowed in **itemGenerator**, but you must ensure that each branch of the **if** statement creates a child component of the same type. **ForEach** and **LazyForEach** statements are not allowed in **itemGenerator**.|
-| keyGenerator  | (item: any, index?:number) =&gt; string | No  | ID generation function, which generates a unique and fixed ID for each data item in the data source. This ID must remain unchanged for the data item even when the item is relocated in the array. When the item is replaced by a new item, the ID of the new item must be different from that of the replaced item. This ID generation function is optional. However, for performance reasons, it is strongly recommended that the ID generation function be provided, so that the framework can better identify array changes. For example, if no ID generation function is provided, a reverse of an array will result in rebuilding of all nodes in **LazyForEach**.<br>**NOTE**<br>**item** indicates the current data item, and **index** indicates the index of the data item.<br>The ID generated for each data item in the data source must be unique.|
+| itemGenerator | (item: any, index:number) =&gt; void  | Yes  | Child component generation function, which generates a child component for each data item in the array.<br>**NOTE**<br>**item** indicates the current data item, and **index** indicates the index of the data item.<br>The function body of **itemGenerator** must be included in braces {...}. **itemGenerator** can and must generate only one child component for each iteration. The **if** statement is allowed in **itemGenerator**, but you must ensure that each branch of the **if** statement creates a child component of the same type. **ForEach** and **LazyForEach** statements are not allowed in **itemGenerator**.|
+| keyGenerator  | (item: any, index:number) =&gt; string | No  | ID generation function, which generates a unique and fixed ID for each data item in the data source. This ID must remain unchanged for the data item even when the item is relocated in the array. When the item is replaced by a new item, the ID of the new item must be different from that of the replaced item. This ID generation function is optional. However, for performance reasons, it is strongly recommended that the ID generation function be provided, so that the framework can better identify array changes. For example, if no ID generation function is provided, a reverse of an array will result in rebuilding of all nodes in **LazyForEach**.<br>**NOTE**<br>**item** indicates the current data item, and **index** indicates the index of the data item.<br>The ID generated for each data item in the data source must be unique.|
 
 ## IDataSource
 
@@ -77,7 +77,7 @@ interface DataChangeListener {
 - **LazyForEach** must create one and only one child component in each iteration.
 - The generated child components must be allowed in the parent container component of **LazyForEach**.
 - **LazyForEach** can be included in an **if/else** statement, and can also contain such a statement.
-- The ID generation function must generate a unique value for each piece of data. If the IDs are the same, the framework ignores the UI components with the same key value. As a result, these UI components cannot be displayed in the parent container.
+- The ID generation function must generate a unique value for each piece of data. Rendering issues will arise with components assigned duplicate IDs.
 - **LazyForEach** must be updated using a **DataChangeListener** object. When the first parameter **dataSource** uses a state variable, a state variable change does not trigger the UI update of **LazyForEach**.
 - For better rendering performance, when the **onDataChange** API of the **DataChangeListener** object is used to update the UI, an ID different from the original one needs to be generated to trigger component re-rendering.
 
@@ -334,7 +334,7 @@ struct MyComponent {
 }
  ```
 
-The figure below shows the effect. You can see that **Hello 0** is incorrectly rendered as **Hello 13** during the swiping.
+The figure below shows the effect.
 
 **Figure 2** LazyForEach rendering when keys are the same 
 ![LazyForEach-Render-SameKey](./figures/LazyForEach-Render-SameKey.gif)
@@ -1797,7 +1797,7 @@ When the child component of **LazyForEach** is clicked, **item.message** is chan
           .onClick(() => {
             item.message.message += '0';
           })
-        }, (item: StringData, index: number) => item.toString() + index.toString())
+        }, (item: StringData, index: number) => JSON.stringify(item) + index.toString())
       }.cachedCount(5)
     }
   }
@@ -1941,7 +1941,7 @@ When the child component of **LazyForEach** is clicked, **item.message** is chan
           .onClick(() => {
             item.message = new NestedString(item.message.message + '0');
           })
-        }, (item: StringData, index: number) => item.toString() + index.toString())
+        }, (item: StringData, index: number) => JSON.stringify(item) + index.toString())
       }.cachedCount(5)
     }
   }

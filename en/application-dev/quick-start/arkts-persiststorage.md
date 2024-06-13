@@ -31,12 +31,23 @@ Data persistence is an operation that takes time. Applications should avoid the 
 
 - Persistence of variables that change frequently
 
-It is recommended that the persistent variables of PersistentStorage be less than 2 KB. As PersistentStorage flushes data synchronously, a large amount of persistent data may result in time-consuming local data read and write operations in the UI thread, affecting UI rendering performance. If you need to store a large amount of data, consider using the database API.
+It is recommended that the persistent variables of PersistentStorage be less than 2 KB. As PersistentStorage flushes data synchronously, a large amount of persistent data may result in simultaneous time-consuming read and write operations in the UI thread, affecting UI rendering performance. If you need to store a large amount of data, consider using the database API.
 
-PersistentStorage can be called to persist data only when the [UIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md#uicontext), which can be obtained through [runScopedTask](../reference/apis-arkui/js-apis-arkui-UIContext.md#runscopedtask), is specified.  
+PersistentStorage is associated with UI instances. Data persistence can succeed only when a UI instance has been initialized (that is, when the callback passed in by [loadContent](../reference/apis-arkui/js-apis-window.md#loadcontent9-2) is called).
 
-## Application Scenarios
+```ts
+// EntryAbility.ets
+onWindowStageCreate(windowStage: window.WindowStage): void {
+  windowStage.loadContent('pages/Index', (err) => {
+    if (err.code) {
+      return;
+    }
+    PersistentStorage.persistProp('aProp', 47);
+  });
+}
+```
 
+## Use Scenarios
 
 ### Accessing PersistentStorage Initialized Attribute from AppStorage
 
