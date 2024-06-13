@@ -462,12 +462,12 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-### index按键事件
+### Index按键事件
 
 使用Button按钮，通过点击按钮来模拟应用操作数据库，如插入数据、删除数据、更新数据和获取数据数量的操作等，展示数据库基本的增删改查能力。
 
 ```ts
-// index.ets
+// Index.ets
 import { storeManager, e_secretKeyObserver } from "../entryability/EntryAbility"
 import { distributedKVStore } from '@kit.ArkData';
 import { Store } from '../entryability/Store';
@@ -901,12 +901,12 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-### index按键事件
+### Index按键事件
 
 使用Button按钮，通过点击按钮来模拟应用操作数据库，如插入数据、删除数据、更新数据和获取数据数量的操作等，展示数据库基本的增删改查能力。
 
 ```ts
-// index.ets
+// Index.ets
 import { storeManager, e_secretKeyObserver } from "../entryability/EntryAbility"
 import { relationalStore } from '@kit.ArkData';
 import { Store } from '../entryability/Store';
