@@ -21,7 +21,8 @@ As shown in Figure 1, in addition to native APIs, NNRt logically consists of the
 7. **Offline model inference**: Directly use model files (offline models for short) dedicated to the AI hardware for inference. Specifically, use the model converter provided by the AI hardware vendor to convert the original training model into the offline model file corresponding to the AI hardware, deploy the offline model file in the application, and pass the model file to the NNRt offline model build API for inference. Offline models can be used only for build and inference on the corresponding AI hardware. That is, inference across AI hardware is not supported. The offline models are specific to the AI hardware and therefore, the build speed is usually fast.
 
 ** Figure 1** NNRt architecture
-!["NNRt architecture"](figures/zh-cn_neural_network_runtime_intro.jpg)
+
+!["NNRt architecture"](figures/neural_network_runtime_intro.jpg)
 
 ## Features
 

@@ -43,7 +43,7 @@ DevEco Studio collects process crash logs from `/data/log/faultlog/faultlogger/`
 
 ### Collecting Logs by Using faultLogger APIs
 
-The FaultLogger module provides APIs to query various fault information. For details, see [@ohos.faultLogger](../reference/apis/js-apis-faultLogger.md).
+The FaultLogger module provides APIs to query various fault information. For details, see [@ohos.faultLogger](../reference/apis-performance-analysis-kit/js-apis-faultLogger.md).
 
 ## Process Crash Log Analysis
 

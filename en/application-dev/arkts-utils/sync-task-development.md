@@ -38,7 +38,15 @@ export default class Handle {
     console.info("taskpool: this is 1st print!");
     // Simulate synchronization step 2.
     console.info("taskpool: this is 2nd print!");
-    return num++;
+    return ++num;
+  }
+
+  static syncSet2(num: number): number {
+    // Simulate synchronization step 1.
+    console.info("taskpool: this is syncSet2 1st print!");
+    // Simulate synchronization step 2.
+    console.info("taskpool: this is syncSet2 2nd print!");
+    return ++num;
   }
 }
 ```
@@ -54,20 +62,24 @@ import Handle from './Handle'; // Return a static handle.
 
 // Step 1: Define a concurrency function that internally calls the synchronous methods.
 @Concurrent
-function func(num: number): boolean {
+function func(num: number): number {
   // Call the synchronous wait implemented in a static class object.
-  Handle.syncSet(num);
-  return true;
+  // Call syncSet and use its result as an input parameter of syncSet2 to simulate the synchronous call logic.
+  let tmpNum: number = Handle.syncSet(num);
+  return Handle.syncSet2(tmpNum);
 }
 
 // Step 2: Create and execute a task.
 async function asyncGet(): Promise<void> {
-  // Create a task and pass in the function func.
+  // Create task and task2 and pass in the function func.
   let task: taskpool.Task = new taskpool.Task(func, 1);
-  // Execute the task.
-  let res: boolean = await taskpool.execute(task) as boolean;
+  let task2: taskpool.Task = new taskpool.Task(func, 2);
+  // Execute task and task2 synchronously by using await.
+  let res: number = await taskpool.execute(task) as number;
+  let res2: number = await taskpool.execute(task2) as number;
   // Print the task result.
   console.info("taskpool: task res is: " + res);
+  console.info("taskpool: task res2 is: " + res2);
 }
 
 @Entry

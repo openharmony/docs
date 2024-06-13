@@ -151,7 +151,8 @@ The matching rules are as follows:
 > - **Full path expression**: `scheme://host:port/path`
 > - **Prefix expression**: `scheme://host:port/pathStartWith`
 > - **Regular expression**: `scheme://host:port/pathRegex`
-
+>
+> For system applications, **scheme** of their URIs starts with **ohos**, for example, **ohosclock://**. The URI of a third-party application cannot be the same as that of a system application. Otherwise, the third-party application cannot be started using the URI.
 
 ### Matching Rules of type
 
