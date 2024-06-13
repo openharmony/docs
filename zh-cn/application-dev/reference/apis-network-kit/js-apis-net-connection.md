@@ -245,6 +245,7 @@ cat server.pem \
 ```
 
 应用级证书的配置例子如下:
+```json
 {
   "network-security-config": {
     "base-config": {
