@@ -14,6 +14,7 @@ Currently, the following encoding capabilities are supported:
 | aac      | AAC              |
 | amr      | AMR (AMR-NB and AMR-WB)|
 | raw      | G711mu           |
+<!--RP1--><!--RP1End-->
 
 **Usage Scenario**
 

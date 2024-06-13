@@ -3,11 +3,12 @@
 You can call the native APIs provided by the **AVMuxer** module to mux audio and video streams, that is, to store encoded audio and video data to a file in a certain format.
 
 Currently, the following muxer capabilities are supported:
-
+<!--RP1-->
 | Muxing Format| Video Codec Type       | Audio Codec Type  | Cover Type      |
 | -------- | --------------------- | ---------------- | -------------- |
 | mp4      | AVC (H.264)          | AAC, MPEG (MP3)| jpeg, png, bmp|
-| m4a      |                       | AAC              | jpeg, png, bmp|
+| m4a      | -                     | AAC              | jpeg, png, bmp|
+<!--RP1End-->
 
 **Usage Scenario**
 

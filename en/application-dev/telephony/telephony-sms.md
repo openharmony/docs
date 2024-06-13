@@ -37,8 +37,8 @@ The Short Messaging Service (SMS) module provides basic SMS management functions
 | setSmscAddr(slotId: number, smscAddr: string, callback: AsyncCallback\<void\>): void | Sets the SMSC address based on the specified slot ID.               |
 | getSmscAddr(slotId: number, callback: AsyncCallback\<string>): void | Obtains the SMSC address based on the specified slot ID.                                 |
 
-
-## How to Develop
+<!--Del-->
+## How to Develop (for System Applications Only)
 
 1. Declare the required permission:
    - To send SMS messages, call the **sendShortMessage** API and declare the **ohos.permission.SEND\_MESSAGES** permission. The permission is of the **system\_basic** level.
@@ -46,17 +46,14 @@ The Short Messaging Service (SMS) module provides basic SMS management functions
    - To obtain the SMSC address, call the** getSmscAddr** API and declare the **ohos.permission.GET\_TELEPHONY\_STATE** permission. The permission is of the **system\_basic** level.
    Before requesting the permission, ensure that the [basic principles for using permissions](../security/AccessToken/app-permission-mgmt-overview.md#basic-principles-for-using-permissions) are met. Then, declare the requried permission by referring to [Requesting Application Permissions](../security/AccessToken/determine-application-mode.md#requesting-permissions-for-system_basic-applications).
 
-2. (Optional) Implement the function of jumping to the SMS message editing page. Generally, a third-party application cannot obtain the preceding permissions. If you need to implement the function of jumping to the SMS message editing page with the edited content and recipient number, call the **startAbility** API to specify the recipient number and jump to the SMS message sending page. For details, see sample code 2.
+2. Import the required modules.
 
-3. Import the required modules.
-
-4. Send an SMS message.
+3. Send an SMS message.
 
 ```ts
-// Sample code 1
-import sms from '@ohos.telephony.sms';
-import { AsyncCallback } from '@ohos.base';
-import { BusinessError } from '@ohos.base';
+// Sample code
+import { sms } from '@kit.TelephonyKit';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 
 let sendCallback: AsyncCallback<sms.ISendShortMessageCallback> = (err: BusinessError, data: sms.ISendShortMessageCallback) => {
     console.log(`sendCallback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`); 
@@ -74,10 +71,16 @@ sms.sendShortMessage(options, (err: BusinessError) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 
+```
+<!--DelEnd-->
 
-// Sample code 2
-import common from '@ohos.app.ability.common';
-import Want from '@ohos.app.ability.Want';
+## How to Develop
+
+If you need to implement the function of jumping to the SMS message editing page with the edited content and recipient number, call the **startAbility** API to specify the recipient number and jump to the SMS message sending page.
+
+```ts
+// Sample code
+import { common, Want } from '@kit.AbilityKit';
 
 const MMS_BUNDLE_NAME = "com.ohos.mms";
 const MMS_ABILITY_NAME = "com.ohos.mms.MainAbility";
@@ -133,5 +136,5 @@ struct JumpMessage {
         .height('100%')
     }
 }
-```
 
+```
