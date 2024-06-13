@@ -12,13 +12,13 @@ HarmonyOS NEXT Developer Preview0及以上版本的设备
 
 | 属性名称             | 含义                                                         | 数据类型 | 是否缺省 |
 | -------------------- | ------------------------------------------------------------ | -------- | -------- |
-| destinationLatitude  | 终点纬度<sup>GCJ-02</sup>                                                     | number   | sceneType=1或2时不可缺省 |
-| destinationLongitude | 终点经度<sup>GCJ-02</sup>                                                     | number   | sceneType=1或2时不可缺省 |
+| destinationLatitude  | 终点纬度                                                    | number   | sceneType=1或2时不可缺省 |
+| destinationLongitude | 终点经度                                                     | number   | sceneType=1或2时不可缺省 |
 | sceneType            | 意图取值 ：1：路线规划 2：导航 3： 地点搜索                                | number   | 可缺省，缺省时默认为1   |
 | destinationName      | 终点名称                                                     | string   | sceneType=3时不可缺省   |
 | originName           | 起点名称（路线规划场景有效）                                   | string   | 可缺省   |
-| originLatitude       | 起点纬度<sup>GCJ-02</sup>（路线规划场景有效）                                   | number   | 可缺省   |
-| originLongitude      | 起点经度<sup>GCJ-02</sup>（路线规划场景有效）                                   | number   | 可缺省   |
+| originLatitude       | 起点纬度（路线规划场景有效）                                   | number   | 可缺省   |
+| originLongitude      | 起点经度（路线规划场景有效）                                   | number   | 可缺省   |
 | vehicleType          | 交通出行工具：0：驾车 1：步行 2：骑行 3：公交（路线规划场景有效） | number   | 可缺省，缺省时由应用自行处理   |
 
 ## 接入步骤
@@ -30,34 +30,33 @@ HarmonyOS NEXT Developer Preview0及以上版本的设备
     ```
 2. 构造接口参数并调用startAbilityByType接口。
 
-**示例**
-  ~~~typescript
-  import common from '@ohos.app.ability.common';
-  let context = getContext(this) as common.UIAbilityContext;
-  let wantParam: Record<string, Object> = {
-      'sceneType':1,
-      'destinationLatitude':32.060844,
-      'destinationLongitude':118.78315,
-      'destinationName':'xx市xx路xx号',
-      'originName':'xx市xx公园',
-      'originLatitude':31.060844,
-      'originLongitude':120.78315,
-      'vehicleType':0
-  };
-  let abilityStartCallback: common.AbilityStartCallback = {
-    onError: (code: number, name: string, message: string) => {
-      console.log(`code:` + code + `name:` + name + `message:` + message);
+    ~~~typescript
+    import common from '@ohos.app.ability.common';
+    let context = getContext(this) as common.UIAbilityContext;
+    let wantParam: Record<string, Object> = {
+        'sceneType':1,
+        'destinationLatitude':32.060844,
+        'destinationLongitude':118.78315,
+        'destinationName':'xx市xx路xx号',
+        'originName':'xx市xx公园',
+        'originLatitude':31.060844,
+        'originLongitude':120.78315,
+        'vehicleType':0
+    };
+    let abilityStartCallback: common.AbilityStartCallback = {
+        onError: (code: number, name: string, message: string) => {
+        console.log(`code:` + code + `name:` + name + `message:` + message);
+        }
     }
-  }
-  context.startAbilityByType("navigation", wantParam, abilityStartCallback, (err) => {
-    if (err) {
-      console.error(`startAbilityByType fail, err: ${JSON.stringify(err)}`);
-    } else {
-      console.log(`success`);
-    }
-  });
-  
-  ~~~
+    context.startAbilityByType("navigation", wantParam, abilityStartCallback, (err) => {
+        if (err) {
+        console.error(`startAbilityByType fail, err: ${JSON.stringify(err)}`);
+        } else {
+        console.log(`success`);
+        }
+    });
+    
+    ~~~
 效果示例图：
 
 ![效果示例图](./figures/start-navigation-panel.png)
@@ -83,19 +82,19 @@ HarmonyOS NEXT Developer Preview0及以上版本的设备
                 "scheme": "maps", // 这里仅示意，应用需确保这里声明的的uri能被外部正常拉起
                 "host": "navigation",
                 "path": "",
-                "linkFeature": "navigation" // 声明应用支持导航功能
+                "linkFeature": "Navigation" // 声明应用支持导航功能
                 },
                 {
                 "scheme": "maps", // 这里仅示意，应用需确保这里声明的的uri能被外部正常拉起
                 "host": "routePlan",
                 "path": "",
-                "linkFeature": "routePlan" // 声明应用支持路线规划功能
+                "linkFeature": "RoutePlan" // 声明应用支持路线规划功能
                 },
                 {
                 "scheme": "maps", // 这里仅示意，应用需确保这里声明的的uri能被外部正常拉起
                 "host": "search",
                 "path": "",
-                "linkFeature": "textSearch" // 声明应用支持位置搜索功能
+                "linkFeature": "TextSearch" // 声明应用支持位置搜索功能
                 }
             ]
             }
@@ -115,12 +114,12 @@ HarmonyOS NEXT Developer Preview0及以上版本的设备
 
     | 属性名称             | 含义                                                         | 数据类型 | 是否缺省 |
     | -------------------- | ------------------------------------------------------------ | -------- | -------- |
-    | destinationLatitude  | 终点纬度<sup>GCJ-02</sup>                                                     | number   | sceneType=1或2时不可缺省 |
-    | destinationLongitude | 终点经度<sup>GCJ-02</sup>                                                     | number   | sceneType=1或2时不可缺省 |
+    | destinationLatitude  | 终点纬度                                                     | number   | sceneType=1或2时不可缺省 |
+    | destinationLongitude | 终点经度                                                     | number   | sceneType=1或2时不可缺省 |
     | destinationName      | 终点名称                                                     | string   | sceneType=3时不可缺省   |
     | originName           | 起点名称                                   | string   | 可缺省，存在时可用于展示路线规划页面   |
-    | originLatitude       | 起点纬度<sup>GCJ-02</sup>                                 | number   | 可缺省，存在时可用于展示路线规划页面   |
-    | originLongitude      | 起点经度<sup>GCJ-02</sup>                                  | number   | 可缺省，存在时可用于展示路线规划页面   |
+    | originLatitude       | 起点纬度                                 | number   | 可缺省，存在时可用于展示路线规划页面   |
+    | originLongitude      | 起点经度                                  | number   | 可缺省，存在时可用于展示路线规划页面   |
     | vehicleType          | 交通出行工具：0：驾车 1：步行 2：骑行 3：公交（路线规划场景有效） | number   | 可缺省，缺省时由应用自行处理   |
 
     应用可根据[linkFeature](../quick-start/module-configuration-file.md#skills标签)中定义的特性功能，比如路线规划和导航结合接收到的参数开发不同的样式页面。
