@@ -3,9 +3,9 @@
 
 ## 场景介绍
 
-为了满足数据库的安全特性，存有敏感信息的应用会在[el5](../application-models/application-context-stage.md#获取和修改加密分区)路径下创建了一个E类数据库。在锁屏的情况下，满足一定条件时，会触发密钥的销毁。此时，E类数据库不可操作。当锁屏解锁后，密钥会恢复，E类数据库恢复正常读写操作。这样的设计可以有效防止用户数据的泄露。
+为了满足数据库的安全特性，存有敏感信息的应用会在El5（加密路径切换请参考[获取和修改加密分区](../application-models/application-context-stage.md#获取和修改加密分区)EL1-EL4路径切换）路径下创建了一个E类数据库。在锁屏的情况下，满足一定条件时，会触发密钥的销毁。此时，E类数据库不可操作。当锁屏解锁后，密钥会恢复，E类数据库恢复正常读写操作。这样的设计可以有效防止用户数据的泄露。
 
-然而，在锁屏的过程中，应用程序仍然可以继续写入数据，由于此时E类数据库不可读写，可能会导致数据丢失。为了解决这个问题，当前提供了一种方案：在锁屏的状态下，将数据存储在[el2](../application-models/application-context-stage.md#获取和修改加密分区)路径下的C类数据库中。当解锁后，再将数据迁移到E类数据库中。这样可以确保数据在锁屏期间的安全性和一致性。
+然而，在锁屏的过程中，应用程序仍然可以继续写入数据，由于此时E类数据库不可读写，可能会导致数据丢失。为了解决这个问题，当前提供了一种方案：在锁屏的状态下，将数据存储在[EL2](../application-models/application-context-stage.md#获取和修改加密分区)路径下的C类数据库中。当解锁后，再将数据迁移到E类数据库中。这样可以确保数据在锁屏期间的安全性和一致性。
 
 ## 设计实现
 
@@ -44,7 +44,7 @@ ECStoreManager类：用于管理应用的E类数据库和C类数据库。
 
 ## 键值型数据库E类加密
 
-本章节提供键值型数据库的E类加密库使用方式，提供Mover类，secretKeyObserver类，ECStoreManager类和store类的使用方式。
+本章节提供键值型数据库的E类加密库使用方式，提供[Mover](#Mover)类，[Store](#Store)类，[SecretKeyObserver](#SecretKeyObserver)类和[ECStoreManager](#ECStoreManager)类的具体实现，并在[EntryAbility](#EntryAbility)和[index按键事件](#index按键事件)中展示这几个类的使用方式。
 
 ### Mover
 
@@ -515,7 +515,7 @@ struct Index {
 
 ## 关系型数据库E类加密
 
-本章节提供关系型数据库的E类加密库使用方式，提供Mover类，secretKeyObserver类，ECStoreManager类和store类的使用方式。
+本章节提供键值型数据库的E类加密库使用方式，提供[Mover](#Mover-1)类，[Store](#Store-1)类，[SecretKeyObserver](#SecretKeyObserver-1)类和[ECStoreManager](#ECStoreManager-1)类的具体实现，并在[EntryAbility](#EntryAbility-1)和[index按键事件](#index按键事件-1)中展示这几个类的使用方式。
 
 ### Mover
 
