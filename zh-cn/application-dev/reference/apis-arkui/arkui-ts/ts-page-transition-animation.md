@@ -14,7 +14,7 @@ pageTransition?(): void
 
 进入此页面或移动到其他页面时实现动画。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -24,7 +24,7 @@ PageTransitionEnter(value: PageTransitionOptions)
 
 设置当前页面的自定义入场动效。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -40,7 +40,7 @@ PageTransitionExit(value: PageTransitionOptions)
 
 设置当前页面的自定义退场动效。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -52,7 +52,7 @@ PageTransitionExit(value: PageTransitionOptions)
 
 ## PageTransitionOptions对象说明
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称     | 类型                                                         | 必填 | 描述                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
@@ -64,7 +64,7 @@ PageTransitionExit(value: PageTransitionOptions)
 
 ## 属性
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 参数名称  | 参数类型                                                     | 必填 | 参数描述                                                     |
 | --------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
@@ -83,7 +83,7 @@ PageTransitionExit(value: PageTransitionOptions)
 
 ## RouteType枚举说明
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称 | 描述                                                         |
 | ---- | ------------------------------------------------------------ |
@@ -93,7 +93,7 @@ PageTransitionExit(value: PageTransitionOptions)
 
 ## SlideEffect枚举说明
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称   | 描述                                               |
 | ------ | -------------------------------------------------- |
