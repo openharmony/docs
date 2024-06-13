@@ -277,7 +277,7 @@ context.startAbility(want).then(() => {
 ```
 
 
-## 元服务是否可以全程使用js实现(API 9)
+## 原子化服务是否可以全程使用js实现(API 9)
 
 **解决措施**
 
