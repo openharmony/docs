@@ -28,7 +28,7 @@ Canvas(context?: CanvasRenderingContext2D | DrawingRenderingContext)
 
 ### Canvas<sup>12+</sup>
 
-Canvas(context?: CanvasRenderingContext2D | DrawingRenderingContext, imageAIOptions: ImageAIOptions)
+Canvas(context: CanvasRenderingContext2D | DrawingRenderingContext, imageAIOptions: ImageAIOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
