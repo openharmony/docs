@@ -822,6 +822,7 @@ enum OH_AudioStream_Usage
 | AUDIOSTREAM_USAGE_GAME  | 游戏。   | 
 | AUDIOSTREAM_USAGE_AUDIOBOOK  | 有声读物。   | 
 | AUDIOSTREAM_USAGE_NAVIGATION  | 导航。   | 
+| AUDIOSTREAM_USAGE_VIDEO_COMMUNICATION | 视频通话。<br>**起始版本：** 12 | 
 
 
 ## 函数说明
