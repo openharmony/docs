@@ -345,7 +345,7 @@ struct DragControllerPage {
       Button('多对象dragAction customBuilder拖拽').onTouch((event?:TouchEvent) => {
         if(event){
           if (event.type == TouchType.Down) {
-            console.log("muti drag Down by listener");
+            console.info("muti drag Down by listener");
             this.customBuilders.splice(0, this.customBuilders.length);
             this.customBuilders.push(()=>{this.DraggingBuilder()});
             this.customBuilders.push(()=>{this.DraggingBuilder()});
@@ -361,14 +361,14 @@ struct DragControllerPage {
             try{
               this.dragAction = dragController.createDragAction(this.customBuilders, dragInfo)
               if(!this.dragAction){
-                console.log("listener dragAction is null");
+                console.info("listener dragAction is null");
                 return
               }
               this.dragAction.on('statusChange', (dragAndDropInfo: dragController.DragAndDropInfo)=>{
                 if (dragAndDropInfo.status == dragController.DragStatus.STARTED) {
-                  console.log("drag has start");
+                  console.info("drag has start");
                 } else if (dragAndDropInfo.status == dragController.DragStatus.ENDED){
-                  console.log("drag has end");
+                  console.info("drag has end");
                   if (!this.dragAction) {
                     return
                   }
@@ -376,10 +376,10 @@ struct DragControllerPage {
                 }
               })
               this.dragAction.startDrag().then(()=>{}).catch((err:Error)=>{
-                console.log("start drag Error:" + err.message);
+                console.info("start drag Error:" + err.message);
               })
             } catch(err) {
-              console.log("create dragAction Error:" + err.message);
+              console.info("create dragAction Error:" + err.message);
             }
           }
         }
@@ -436,14 +436,14 @@ struct DragControllerPage {
           try {
             let dragAction: dragController.DragAction | null = dragController.createDragAction(customBuilders, dragInfo);
             if(!dragAction){
-              console.log("listener dragAction is null");
+              console.info("listener dragAction is null");
               return
             }
             dragAction.startDrag().then(()=>{}).catch((err:Error)=>{
-              console.log("start drag Error:" + err.message);
+              console.info("start drag Error:" + err.message);
             })
           } catch (err) {
-            console.log("create dragAction Error:" + err.message);
+            console.info("create dragAction Error:" + err.message);
           }
         })
     }
@@ -491,14 +491,14 @@ struct DragControllerPage {
           try{
             let dragAction: dragController.DragAction | null = dragController.createDragAction(customBuilders, dragInfo);
             if(!dragAction){
-              console.log("listener dragAction is null");
+              console.info("listener dragAction is null");
               return
             }
             dragAction.on('statusChange', (dragAndDropInfo: dragController.DragAndDropInfo)=>{
               console.info("Register to listen on drag status", JSON.stringify(dragAndDropInfo));
             })
           }catch(err) {
-            console.log("create dragAction Error:" + err.message);
+            console.info("create dragAction Error:" + err.message);
           }
         })
     }
@@ -545,14 +545,14 @@ struct DragControllerPage {
           try{
             let dragAction: dragController.DragAction | null = dragController.createDragAction(customBuilders, dragInfo);
             if(!dragAction){
-              console.log("listener dragAction is null");
+              console.info("listener dragAction is null");
               return
             }
             dragAction.off('statusChange', (dragAndDropInfo: dragController.DragAndDropInfo)=>{
               console.info("Cancel listening on drag status", JSON.stringify(dragAndDropInfo));
             })
           }catch(err) {
-            console.log("create dragAction Error:" + err.message);
+            console.info("create dragAction Error:" + err.message);
           }
         })
     }
@@ -571,7 +571,7 @@ struct DragControllerPage {
 | 名称          | 类型                                                   | 必填 | 说明                                     |
 | -----------   | ------------------------------------------------------ | ---- | ---------------------------------------- |
 | status       | [DragStatus](#dragstatus11)                                                 | 是   | 当前拖拽状态（启动和结束）。         |
-| event        | [DragEvent](arkui-ts/ts-universal-events-drag-drop.md#dragevent) | 否   | 当前状态所对应的拖拽事件。               |
+| event        | [DragEvent](arkui-ts/ts-universal-events-drag-drop.md#dragevent) | 是   | 当前状态所对应的拖拽事件。               |
 | extraParams| string                                                 | 否   | 设置拖拽事件额外信息，具体功能暂未实现。 |
 
 ## DragStatus<sup>11+</sup>
@@ -614,7 +614,7 @@ getDragPreview(): DragPreview
 
 | 类型        | 说明                                            |
 | ------------| ------------------------------------------------|
-| DragPreview | 一个代表拖拽背板的对象，提供背板样式设置的接口，在OnDrop和OnDragEnd回调中使用不生效。 |
+| [DragPreview](#dragpreview11) | 一个代表拖拽背板的对象，提供背板样式设置的接口，在OnDrop和OnDragEnd回调中使用不生效。 |
 
 **示例：**
 
