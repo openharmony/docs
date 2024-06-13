@@ -6,9 +6,13 @@
 
 - 使用前请在module.json5中添加网络权限，添加方法请参考[在配置文件中声明权限](../security/AccessToken/declare-permissions.md)。
   
-  ```ts
-  "ohos.permission.INTERNET"
-  ```
+   ```
+   "requestPermissions":[
+      {
+        "name" : "ohos.permission.INTERNET"
+      }
+    ]
+   ```
 
 ## 绘制XComponent+AVPlayer和Button组件
 
