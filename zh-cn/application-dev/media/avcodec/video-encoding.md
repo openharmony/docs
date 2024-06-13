@@ -14,8 +14,8 @@
 <!--RP1--><!--RP1End-->
 
 ## 支持的能力
-1. 重置帧率，码率。请详见[调用OH_VideoDecoder_SetParameter()](#9-可选oh_videodecoder_setparameter在运行过程中动态配置编码器参数)。
-2. 重置最大，最小量化参数。请详见[调用OH_VideoDecoder_SetParameter()](#9-可选oh_videodecoder_setparameter在运行过程中动态配置编码器参数)。
+1. 重置帧率，码率。请详见[调用OH_VideoDecoder_SetParameter()](#9-可选oh_videoencoder_setparameter在运行过程中动态配置编码器参数)。
+2. 重置最大，最小量化参数。请详见[调用OH_VideoDecoder_SetParameter()](#9-可选oh_videoencoder_setparameter在运行过程中动态配置编码器参数)。
 3. 随帧设置最大，最小量化参数。请详见[调用OH_VideoEncoder_RegisterParameterCallback()](#4-可选调用oh_videoencoder_registerparametercallback在配置之前注册随帧通路回调)。
 4. 分层编码，LTR设置。请详见[时域可分层视频编码](video-encoding-temporal-scalability.md)。
 5. 获取编码每帧平均量化参数，平方误差。请详见[调用OH_VideoEncoder_RegisterCallback()设置回调函数](#3-调用oh_videoencoder_registercallback设置回调函数)。
