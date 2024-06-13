@@ -97,7 +97,7 @@ The application file paths obtained by the preceding contexts are different.
   | tempDir | \<Path prefix>/\<Encryption level>/base/temp|
   | databaseDir | \<Path prefix>/\<Encryption level>/database|
   | distributedFilesDir | \<Path prefix>/el2/distributedFiles|
-  | cloudFileDir<sup>12+</sup> | <Path prefix>/el2/hmdfs/cloud/data|
+  | cloudFileDir<sup>12+</sup> | <Path prefix>/el2/cloud|
 
   The sample code is as follows:
 
@@ -151,7 +151,7 @@ The application file paths obtained by the preceding contexts are different.
   | tempDir | \<Path prefix>/\<Encryption level>/base/**haps/\<module-name>**/temp|
   | databaseDir | \<Path prefix>/\<Encryption level>/database/**\<module-name>**|
   | distributedFilesDir | \<Path prefix>/el2/distributedFiles/**\<module-name>**|
-  | cloudFileDir<sup>12+</sup> | <Path prefix>/el2/hmdfs/cloud/data/**\<module-name>**|
+  | cloudFileDir<sup>12+</sup> | <Path prefix>/el2/cloud/**\<module-name>**|
 
   The sample code is as follows:
 
