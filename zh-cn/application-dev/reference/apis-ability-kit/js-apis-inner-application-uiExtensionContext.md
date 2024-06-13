@@ -55,6 +55,8 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
+| 16000069 | The extension cannot start the third party application. |
+| 16000070 | The extension cannot start the service. |
 | 16200001 | The caller has been released. |
 | 16000073 | The app clone index is invalid. |
 
@@ -134,6 +136,8 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
+| 16000069 | The extension cannot start the third party application. |
+| 16000070 | The extension cannot start the service. |
 | 16200001 | The caller has been released. |
 | 16000073 | The app clone index is invalid. |
 
@@ -225,6 +229,8 @@ startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
+| 16000069 | The extension cannot start the third party application. |
+| 16000070 | The extension cannot start the service. |
 | 16200001 | The caller has been released. |
 | 16000073 | The app clone index is invalid. |
 
@@ -312,6 +318,8 @@ startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;):
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
+| 16000069 | The extension cannot start the third party application. |
+| 16000070 | The extension cannot start the service. |
 | 16200001 | The caller has been released. |
 | 16000073 | The app clone index is invalid. |
 
@@ -396,6 +404,8 @@ startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
+| 16000069 | The extension cannot start the third party application. |
+| 16000070 | The extension cannot start the service. |
 | 16200001 | The caller has been released. |
 | 16000073 | The app clone index is invalid. |
 
@@ -492,6 +502,8 @@ startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityRes
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
+| 16000069 | The extension cannot start the third party application. |
+| 16000070 | The extension cannot start the service. |
 | 16200001 | The caller has been released. |
 | 16000073 | The app clone index is invalid. |
 
@@ -570,10 +582,11 @@ connectServiceExtensionAbility(want: Want, options: ConnectOptions): number
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
-| 16000053 | The ability is not on the top of the UI. |
-| 16000055 | Installation-free timed out. |
 | 16000011 | The context does not exist.        |
 | 16000050 | Internal error. |
+| 16000053 | The ability is not on the top of the UI. |
+| 16000055 | Installation-free timed out. |
+| 16000070 | The extension cannot start the service. |
 
 **示例：**
 
@@ -1048,6 +1061,7 @@ openAtomicService(appId: string, options?: AtomicServiceOptions): Promise&lt;Abi
 | 16000011 | The context does not exist. |
 | 16000012 | The application is controlled.        |
 | 16000050 | Internal error. |
+| 16000069 | The extension cannot start the third party application. |
 | 16200001 | The caller has been released. |
 
 
@@ -1139,6 +1153,7 @@ openLink(link:string, options?: OpenLinkOptions, callback?: AsyncCallback&lt;Abi
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
 | 16000019 | Can not match any component. |
+| 16000069 | The extension cannot start the third party application. |
 | 16200001 | The caller has been released. |
 
 **示例：**
