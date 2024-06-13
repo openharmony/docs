@@ -27,7 +27,7 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController, 
 
 | 参数名        | 参数类型                                     | 必填   | 参数描述                                     |
 | ---------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| src        | [ResourceStr](../apis-arkui/arkui-ts/ts-types.md#resourcestr)   | 是    | 网页资源地址。如果访问本地资源文件，请使用$rawfile或者resource协议。如果加载应用包外沙箱路径的本地资源文件，请使用file://沙箱文件路径。<br>src不能通过状态变量（例如：@State）动态更改地址，如需更改，请通过[loadUrl()](js-apis-webview.md#loadurl)重新加载。 |
+| src        | [ResourceStr](../apis-arkui/arkui-ts/ts-types.md#resourcestr)   | 是    | 网页资源地址。如果访问本地资源文件，请使用$rawfile或者resource协议。如果加载应用包外沙箱路径的本地资源文件(文件支持html和txt类型)，请使用file://沙箱文件路径。<br>src不能通过状态变量（例如：@State）动态更改地址，如需更改，请通过[loadUrl()](js-apis-webview.md#loadurl)重新加载。 |
 | controller | [WebviewController<sup>9+</sup>](js-apis-webview.md#webviewcontroller) \| [WebController](#webcontroller) | 是    | 控制器。从API Version 9开始，WebController不再维护，建议使用WebviewController替代。 |
 | renderMode<sup>12+</sup> | [RenderMode](#rendermode12枚举说明)| 否   | 表示当前Web组件的渲染方式，RenderMode.ASYNC_RENDER表示Web组件自渲染，RenderMode.SYNC_RENDER表示支持Web组件统一渲染能力，默认值RenderMode.ASYNC_RENDER, 该模式不支持动态调整。 |
 | incognitoMode<sup>11+</sup> | boolean | 否 | 表示当前创建的webview是否是隐私模式。true表示创建隐私模式的webview, false表示创建正常模式的webview。<br> 默认值：false |
@@ -1972,6 +1972,9 @@ struct WebComponent {
 </html>
 ```
 ### textAutosizing<sup>12+</sup>
+
+textAutosizing(textAutosizing: boolean)
+
 设置使能文本自动调整大小。
 
 **参数：**
@@ -7471,4 +7474,4 @@ type OnViewportFitChangedCallback = (viewportFit: ViewportFit) => void
 | ---------- | -----------------------------------------------------| ------ | ---------------- |
 | content   | [ResourceStr](../apis-arkui/arkui-ts/ts-types.md#resourcestr)  | 是     | 显示内容。     |
 | startIcon | [ResourceStr](../apis-arkui/arkui-ts/ts-types.md#resourcestr)  | 否     | 显示图标。     |
-| action    | string                                                         | 是     | 选中的文本信息。|
+| action    | (selectedText: {plainText: string}) => void                                                      | 是     | 选中的文本信息。|
