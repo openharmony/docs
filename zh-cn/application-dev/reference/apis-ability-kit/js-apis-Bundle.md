@@ -62,6 +62,7 @@ import { BusinessError } from '@ohos.base';
 let bundleName: string = "com.example.myapplication";
 let bundleFlags: number = 0;
 let userId: number = 100;
+
 bundle.getApplicationInfo(bundleName, bundleFlags, userId)
   .then((data) => {
     console.info('Operation successful. Data: ' + JSON.stringify(data));
@@ -105,6 +106,7 @@ import bundle from '@ohos.bundle';
 let bundleName: string = "com.example.myapplication";
 let bundleFlags: number = 0;
 let userId: number = 100;
+
 bundle.getApplicationInfo(bundleName, bundleFlags, userId, (err, data) => {
   if (err) {
     console.error('Operation failed. Cause: ' + JSON.stringify(err));
@@ -148,6 +150,7 @@ import bundle from '@ohos.bundle';
 
 let bundleName: string = "com.example.myapplication";
 let bundleFlags: number = 0;
+
 bundle.getApplicationInfo(bundleName, bundleFlags, (err, data) => {
   if (err) {
     console.error('Operation failed. Cause: ' + JSON.stringify(err));
@@ -234,6 +237,7 @@ SystemCapability.BundleManager.BundleFramework
 import bundle from '@ohos.bundle';
 
 let bundleFlag: number = 0;
+
 bundle.getAllBundleInfo(bundleFlag, (err, data) => {
   if (err) {
     console.error('Operation failed. Cause: ' + JSON.stringify(err));
@@ -276,6 +280,7 @@ import bundle from '@ohos.bundle';
 
 let bundleFlag: number = 0;
 let userId: number = 100;
+
 bundle.getAllBundleInfo(bundleFlag, userId, (err, data) => {
   if (err) {
     console.error('Operation failed. Cause: ' + JSON.stringify(err));
@@ -329,6 +334,7 @@ let bundleFlags: number = 1;
 let options: bundle.BundleOptions = {
   "userId": 100
 };
+
 bundle.getBundleInfo(bundleName, bundleFlags, options)
   .then((data) => {
     console.info('Operation successful. Data: ' + JSON.stringify(data));
@@ -370,6 +376,7 @@ import bundle from '@ohos.bundle';
 
 let bundleName: string = "com.example.myapplication";
 let bundleFlags: number = 1;
+
 bundle.getBundleInfo(bundleName, bundleFlags, (err, data) => {
   if (err) {
     console.error('Operation failed. Cause: ' + JSON.stringify(err));
@@ -416,6 +423,7 @@ let bundleFlags: number = 1;
 let options: bundle.BundleOptions = {
   "userId": 100
 };
+
 bundle.getBundleInfo(bundleName, bundleFlags, options, (err, data) => {
   if (err) {
     console.error('Operation failed. Cause: ' + JSON.stringify(err));
@@ -462,6 +470,7 @@ import { BusinessError } from '@ohos.base';
 
 let bundleFlags: number = 8;
 let userId: number = 100;
+
 bundle.getAllApplicationInfo(bundleFlags, userId)
   .then((data) => {
     console.info('Operation successful. Data: ' + JSON.stringify(data));
@@ -501,6 +510,7 @@ import bundle from '@ohos.bundle';
 
 let bundleFlags: number = bundle.BundleFlag.GET_APPLICATION_INFO_WITH_PERMISSION;
 let userId: number = 100;
+
 bundle.getAllApplicationInfo(bundleFlags, userId, (err, data) => {
   if (err) {
     console.error('Operation failed. Cause: ' + JSON.stringify(err));
@@ -540,6 +550,7 @@ SystemCapability.BundleManager.BundleFramework
 import bundle from '@ohos.bundle';
 
 let bundleFlags: number = bundle.BundleFlag.GET_APPLICATION_INFO_WITH_PERMISSION;
+
 bundle.getAllApplicationInfo(bundleFlags, (err, data) => {
   if (err) {
     console.error('Operation failed. Cause: ' + JSON.stringify(err));
@@ -581,6 +592,7 @@ import { BusinessError } from '@ohos.base';
 
 let hapFilePath: string = "/data/storage/el2/base/test.hap";
 let bundleFlags: number = 0;
+
 bundle.getBundleArchiveInfo(hapFilePath, bundleFlags)
   .then((data) => {
     console.info('Operation successful. Data: ' + JSON.stringify(data));
@@ -616,6 +628,7 @@ import bundle from '@ohos.bundle';
 
 let hapFilePath: string = "/data/storage/el2/base/test.hap";
 let bundleFlags: number = 0;
+
 bundle.getBundleArchiveInfo(hapFilePath, bundleFlags, (err, data) => {
   if (err) {
     console.error('Operation failed. Cause: ' + JSON.stringify(err));
@@ -664,6 +677,7 @@ import { BusinessError } from '@ohos.base';
 
 let bundleName: string = "com.example.myapplication";
 let abilityName: string = "EntryAbility";
+
 bundle.getAbilityInfo(bundleName, abilityName)
   .then((data) => {
     console.info('Operation successful. Data: ' + JSON.stringify(data));
@@ -705,6 +719,7 @@ import bundle from '@ohos.bundle';
 
 let bundleName: string = "com.example.myapplication";
 let abilityName: string = "EntryAbility";
+
 bundle.getAbilityInfo(bundleName, abilityName, (err, data) => {
   if (err) {
     console.error('Operation failed. Cause: ' + JSON.stringify(err));
@@ -753,6 +768,7 @@ import { BusinessError } from '@ohos.base';
 
 let bundleName: string = "com.example.myapplication";
 let abilityName: string = "EntryAbility";
+
 bundle.getAbilityLabel(bundleName, abilityName)
   .then((data) => {
     console.info('Operation successful. Data: ' + JSON.stringify(data));
@@ -794,6 +810,7 @@ import bundle from '@ohos.bundle';
 
 let bundleName: string = "com.example.myapplication";
 let abilityName: string = "EntryAbility";
+
 bundle.getAbilityLabel(bundleName, abilityName, (err, data) => {
   if (err) {
     console.error('Operation failed. Cause: ' + JSON.stringify(err));
@@ -835,6 +852,7 @@ import { BusinessError } from '@ohos.base';
 
 let bundleName: string = "com.example.myapplication";
 let abilityName: string = "EntryAbility";
+
 bundle.getAbilityInfo(bundleName, abilityName).then((abilityInfo) => {
   bundle.isAbilityEnabled(abilityInfo).then((data) => {
     console.info('Operation successful. Data: ' + JSON.stringify(data));
@@ -870,6 +888,7 @@ import bundle from '@ohos.bundle';
 
 let bundleName: string = "com.example.myapplication";
 let abilityName: string = "EntryAbility";
+
 bundle.getAbilityInfo(bundleName, abilityName).then((abilityInfo) => {
   bundle.isAbilityEnabled(abilityInfo, (err, data) => {
     if (err) {
@@ -912,6 +931,7 @@ import bundle from '@ohos.bundle';
 import { BusinessError } from '@ohos.base';
 
 let bundleName: string = "com.example.myapplication";
+
 bundle.isApplicationEnabled(bundleName)
   .then((data) => {
     console.info('Operation successful. Data: ' + JSON.stringify(data));
@@ -945,6 +965,7 @@ SystemCapability.BundleManager.BundleFramework
 import bundle from '@ohos.bundle';
 
 let bundleName: string = "com.example.myapplication";
+
 bundle.isApplicationEnabled(bundleName, (err, data) => {
   if (err) {
     console.error('Operation failed. Cause: ' + JSON.stringify(err));
@@ -999,6 +1020,7 @@ let want: Want = {
   bundleName: "com.example.myapplication",
   abilityName: "EntryAbility"
 };
+
 bundle.queryAbilityByWant(want, bundleFlags, userId)
   .then((data) => {
     console.info('Operation successful. Data: ' + JSON.stringify(data));
@@ -1048,6 +1070,7 @@ let want: Want = {
   bundleName: "com.example.myapplication",
   abilityName: "EntryAbility"
 };
+
 bundle.queryAbilityByWant(want, bundleFlags, userId, (err, data) => {
   if (err) {
     console.error('Operation failed. Cause: ' + JSON.stringify(err));
@@ -1094,6 +1117,7 @@ let want: Want = {
   bundleName: "com.example.myapplication",
   abilityName: "EntryAbility"
 };
+
 bundle.queryAbilityByWant(want, bundleFlags, (err, data) => {
   if (err) {
     console.error('Operation failed. Cause: ' + JSON.stringify(err));
@@ -1139,6 +1163,7 @@ import bundle from '@ohos.bundle';
 import { BusinessError } from '@ohos.base';
 
 let bundleName: string = "com.example.myapplication";
+
 bundle.getLaunchWantForBundle(bundleName)
   .then((data) => {
     console.info('Operation successful. Data: ' + JSON.stringify(data));
@@ -1176,6 +1201,7 @@ SystemCapability.BundleManager.BundleFramework
 import bundle from '@ohos.bundle';
 
 let bundleName: string = "com.example.myapplication";
+
 bundle.getLaunchWantForBundle(bundleName, (err, data) => {
   if (err) {
     console.error('Operation failed. Cause: ' + JSON.stringify(err));
@@ -1216,6 +1242,7 @@ import bundle from '@ohos.bundle';
 import { BusinessError } from '@ohos.base';
 
 let uid: number = 20010005;
+
 bundle.getNameForUid(uid)
   .then((data) => {
     console.info('Operation successful. Data: ' + JSON.stringify(data));
@@ -1249,6 +1276,7 @@ SystemCapability.BundleManager.BundleFramework
 import bundle from '@ohos.bundle';
 
 let uid: number = 20010005;
+
 bundle.getNameForUid(uid, (err, data) => {
   if (err) {
     console.error('Operation failed. Cause: ' + JSON.stringify(err));
@@ -1297,6 +1325,7 @@ import { BusinessError } from '@ohos.base';
 
 let bundleName: string = "com.example.myapplication";
 let abilityName: string = "EntryAbility";
+
 bundle.getAbilityIcon(bundleName, abilityName)
   .then((data) => {
     console.info('Operation successful. Data: ' + JSON.stringify(data));
@@ -1339,6 +1368,7 @@ import bundle from '@ohos.bundle';
 
 let bundleName: string = "com.example.myapplication";
 let abilityName: string = "EntryAbility";
+
 bundle.getAbilityIcon(bundleName, abilityName, (err, data) => {
   if (err) {
     console.error('Operation failed. Cause: ' + JSON.stringify(err));

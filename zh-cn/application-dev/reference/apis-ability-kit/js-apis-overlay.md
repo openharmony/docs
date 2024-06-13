@@ -47,6 +47,7 @@ setOverlayEnabled(moduleName:string, isEnabled: boolean): Promise\<void>
 ```ts
 import overlay from '@ohos.bundle.overlay';
 import { BusinessError } from '@ohos.base';
+
 let moduleName = "feature";
 let isEnabled = false;
 
@@ -94,6 +95,7 @@ setOverlayEnabled(moduleName:string, isEnabled: boolean, callback: AsyncCallback
 ```ts
 import overlay from '@ohos.bundle.overlay';
 import { BusinessError } from '@ohos.base';
+
 let moduleName = "feature";
 let isEnabled = false;
 
@@ -147,6 +149,7 @@ getOverlayModuleInfo(moduleName: string): Promise\<OverlayModuleInfo>
 ```ts
 import overlay from '@ohos.bundle.overlay';
 import { BusinessError } from '@ohos.base';
+
 let moduleName = "feature";
 
 (async () => {
@@ -191,7 +194,9 @@ getOverlayModuleInfo(moduleName: string, callback: AsyncCallback\<OverlayModuleI
 ```ts
 import overlay from '@ohos.bundle.overlay';
 import { BusinessError } from '@ohos.base';
+
 let moduleName = "feature";
+
 try {
   overlay.getOverlayModuleInfo(moduleName, (err, data) => {
     if (err) {
@@ -241,6 +246,7 @@ getTargetOverlayModuleInfos(targetModuleName: string): Promise\<Array\<OverlayMo
 ```ts
 import overlay from '@ohos.bundle.overlay';
 import { BusinessError } from '@ohos.base';
+
 let targetModuleName = "feature";
 
 (async () => {
@@ -284,7 +290,9 @@ getTargetOverlayModuleInfos(targetModuleName: string, callback: AsyncCallback\<A
 ```ts
 import overlay from '@ohos.bundle.overlay';
 import { BusinessError } from '@ohos.base';
+
 let targetModuleName = "feature";
+
 try {
   overlay.getTargetOverlayModuleInfos(targetModuleName, (err, data) => {
     if (err) {

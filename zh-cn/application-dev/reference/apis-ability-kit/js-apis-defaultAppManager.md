@@ -60,8 +60,8 @@ defaultAppMgr.isDefaultApplication(defaultAppMgr.ApplicationType.BROWSER)
   .then((data) => {
     console.info('Operation successful. IsDefaultApplication ? ' + JSON.stringify(data));
   }).catch((error: BusinessError) => {
-  console.error('Operation failed. Cause: ' + JSON.stringify(error));
-});
+    console.error('Operation failed. Cause: ' + JSON.stringify(error));
+  });
 ```
 
 ## defaultAppMgr.isDefaultApplication
@@ -119,6 +119,7 @@ isDefaultApplicationSync(type: string): boolean
 
 ```ts
 import defaultAppMgr from '@ohos.bundle.defaultAppManager';
+
 try {
   let data = defaultAppMgr.isDefaultApplicationSync(defaultAppMgr.ApplicationType.BROWSER)
   console.info('Operation successful. IsDefaultApplicationSync ? ' + JSON.stringify(data));
