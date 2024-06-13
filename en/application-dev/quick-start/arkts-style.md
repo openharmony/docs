@@ -9,7 +9,7 @@ If the style of each component needs to be set separately, this will result in a
 
 > **NOTE**
 >
-> Since API version 9, this decorator is supported in ArkTS widgets.
+> This decorator can be used in ArkTS widgets since API version 9.
 
 
 ## Rules of Use
@@ -28,6 +28,7 @@ If the style of each component needs to be set separately, this will result in a
 - \@Styles can be defined inside or outside a component declaration. When it is defined outside a component declaration, the method name must be preceded by the keyword **function**.
 
 > **NOTE**
+>
 > This decorator can be used only in the current file and cannot be exported.
 
   ```ts
@@ -39,6 +40,47 @@ If the style of each component needs to be set separately, this will result in a
   struct FancyUse {
     @Styles fancy() {
       .height(100)
+    }
+  }
+  ```
+
+To allow for cross-file operations, use the [attribute modifier](../reference/apis-arkui/arkui-ts/ts-universal-attributes-attribute-modifier.md).
+
+  ```ts
+  // index.ets
+  import { MyButtonModifier } from './setAttribute'
+
+  @Entry
+  @Component
+  struct attributeDemo {
+    @State modifier: MyButtonModifier = new MyButtonModifier()
+
+    build() {
+      Row() {
+        Column() {
+          Button("Button")
+            .attributeModifier(this.modifier)
+            .onClick(() => {
+              this.modifier.isDark = !this.modifier.isDark
+            })
+        }
+        .width('100%')
+      }
+      .height('100%')
+    }
+  }
+  ```
+
+  ```ts
+  // setAttribute.ets
+  export class MyButtonModifier implements AttributeModifier<ButtonAttribute> {
+    isDark: boolean = false
+    applyNormalAttribute(instance: ButtonAttribute): void {
+      if (this.isDark) {
+        instance.backgroundColor(Color.Black)
+      } else {
+        instance.backgroundColor(Color.Red)
+      }
     }
   }
   ```

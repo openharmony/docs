@@ -46,7 +46,7 @@ Encapsulate **javaScriptProxy** and **runJavaScript** to implement the JSBridge 
   }
   ```
 
-- In the **initJSBridge** method, use **webviewControll.runJavaScript()** to inject the JSBridge initialization script into the HTML5 page for execution. When HTML5 is called, the **window.callID** is generated to identify the callback function, and then the callID and request parameters are transferred to the native side using **JSBridgeHandle.call**. Use **JSBridgeCallback** to receive the execution result from the native side, find the callback based on the ID and execute it, and then release the memory.
+- In the **initJSBridge** method, use **webviewControll.runJavaScript()** to inject the JSBridge initialization script into the HTML5 page for execution. When HTML5 is called, the **window.callID** is generated to identify the callback function, and then the callID and request parameters are transferred to the native side using **JSBridgeHandle.call**. Use **JSBridgeCallback** to receive the execution result from the native side, find the callback based on the ID and execute it, and then free the memory.
   ```
   // bridgeKey and bridgeMethod dynamically generate the entry for invoking on the HTML5 side.
   bridgeKey: string = 'JSBridge'
@@ -106,7 +106,7 @@ The operation that follows **onUrlLoadIntercept** is subject to its return resul
 
 **Reference**
 
-[onUrlloadIntercept](../reference/arkui-ts/ts-basic-components-web.md#onurlloadinterceptdeprecated)
+[onUrlloadIntercept](../reference/apis-arkweb/ts-basic-components-web.md#onurlloadinterceptdeprecated)
 
 
 ## What should I do if the onKeyEvent event of the \<Web> component is not triggered as expected? (API version 9)
@@ -121,7 +121,7 @@ Currently, the **\<Web>** component does not support the **onKeyEvent** event. T
 
 **Reference**
 
-[onInterceptKeyEvent](../reference/arkui-ts/ts-basic-components-web.md#oninterceptkeyevent9)
+[onInterceptKeyEvent](../reference/apis-arkweb/ts-basic-components-web.md#oninterceptkeyevent9)
 
 
 ## What should I do if page loading fails when onInterceptRequest is called? (API version 9)
@@ -158,7 +158,7 @@ Web({ src: 'www.example.com', controller: this.controller })
 
 **Reference**
 
-[WebResourceResponse](../reference/arkui-ts/ts-basic-components-web.md#webresourceresponse)
+[WebResourceResponse](../reference/apis-arkweb/ts-basic-components-web.md#webresourceresponse)
 
 
 ## How do I execute JS functions in HTML in ArkTS code? (API version 9)
@@ -168,11 +168,11 @@ Web({ src: 'www.example.com', controller: this.controller })
 Use the **runJavaScript** API in **WebviewController** to asynchronously execute JavaScript scripts and obtain the execution result in a callback.
 
 > **NOTE**
-> **runJavaScript** can be invoked only after l**oadUrl** is executed. For example, it can be invoked in **onPageEnd**.
+> **runJavaScript** can be invoked only after **loadUrl** is executed. For example, it can be invoked in **onPageEnd**.
 
 **Reference**
 
-[runJavaScript](../reference/apis/js-apis-webview.md#runjavascript)
+[runJavaScript](../reference/apis-arkweb/js-apis-webview.md#runjavascript)
 
 
 ## How do I invoke an ArkTS method on a local web page? (API version 9)
@@ -247,7 +247,7 @@ Use the **runJavaScript** API in **WebviewController** to asynchronously execute
 
 **Reference**
 
-[javaScriptProxy](../reference/arkui-ts/ts-basic-components-web.md#javascriptproxy)
+[javaScriptProxy](../reference/apis-arkweb/ts-basic-components-web.md#javascriptproxy)
 
 
 ## How do I set the domStorageAccess attribute of the \<Web> component? (API version 9)
@@ -258,7 +258,7 @@ The **domStorageAccess** attribute sets whether to enable the DOM Storage API. B
 
 **Reference**
 
-[domStorageAccess](../reference/arkui-ts/ts-basic-components-web.md#domstorageaccess)
+[domStorageAccess](../reference/apis-arkweb/ts-basic-components-web.md#domstorageaccess)
 
 
 ## What should I do if the network status fails to be detected on the loaded HTML page? (API version 9)
@@ -273,7 +273,7 @@ Configure the permission for the application to obtain network information: ohos
 
 **Reference**
 
-[GET\_NETWORK\_INFO](../security/permission-list.md#ohospermissionget_network_info)
+[GET\_NETWORK\_INFO](../security/AccessToken/permissions-for-all.md#ohospermissionget_network_info)
 
 
 ## How do I set the UserAgent parameter through string concatenation? (API version 9)
@@ -316,7 +316,7 @@ struct Index {
 
 **Reference**
 
-[userAgent](../reference/arkui-ts/ts-basic-components-web.md#useragentdeprecated), [getUserAgent](../reference/apis/js-apis-webview.md#getuseragent)
+[userAgent](../reference/apis-arkweb/ts-basic-components-web.md#useragentdeprecated), [getUserAgent](../reference/apis-arkweb/js-apis-webview.md#getuseragent)
 
 
 ## How do I enable the \<Web> component to return to the previous web page following a swipe gesture? (API version 9)
@@ -354,4 +354,109 @@ struct Index {
 
 **Reference**
 
-[accessStep](../reference/apis/js-apis-webview.md#accessstep)
+[accessStep](../reference/apis-arkweb/js-apis-webview.md#accessstep)
+
+
+## Does WebView support same-layer rendering (API version 10)?
+
+**Solution**
+
+1. **WebView**, **Video**, **Map**, **Camera**, **Canvas**, and **WebGL** all support same-layer rendering.
+2. The **id**, **type**, **src**, **width**, **height**, and **url** attributes of web embedded tags can be transferred to native components.
+
+
+## What debugging tools does WebView provide? How do I use them? (API version 10)
+
+**Solution**
+
+The **\<Web>** component supports debugging of web frontend pages by using DevTools, a web frontend development and debugging tool that allows you to debug an application's frontend pages on a PC. Before you do this, use **setWebDebuggingAccess()** to enable frontend page debugging for the **\<Web>** component and make sure the test device connected to the 2-in-1 device runs 4.1.0 or a later version.
+
+**Reference**
+
+[Debugging Frontend Pages by Using DevTools](../web/web-debugging-with-devtools.md)
+
+
+## How do I use WebView to implement request interception? (API version 10)
+
+**Solution**
+
+You can call **onInterceptRequest()** to customize web page responses, file resource responses, and more. When a resource loading request is initiated on a web page, the application layer will receive the request. The application layer then constructs a local resource response and sends it to the web kernel. On receiving the response, the web kernel parses the response and loads page resources accordingly.
+
+**Reference**
+
+[Customizing Page Request Responses](../web/web-resource-interception-request-mgmt.md)
+
+
+## How does WebView communicate with the native side? (API version 10)
+
+**Solution**
+
+1. For communication from the native side to the HTML5 side, use the **runJavaScript** API. For communication from the HTML5 side to the native side, use the **registerJavaScriptProy** API. Register the native method with the HTML5 side, and then from the HTML5 side call the frontend method to communicate with the native side.
+2. Both **runJavaScript** and **registerJavaScriptProy** are exposed in the C API on the NDK side.
+3. The **onInterceptrequest** API is used to intercept requests from the HTML5 side and return native data as a response to the HTML5 side. In this way, the implement communication between the native side and HTML5 side is implemented.
+
+**Reference**
+
+[runJavaScript](../reference/apis-arkweb/js-apis-webview.md#runjavascriptext10), [registerJavaScriptProxy](../reference/apis-arkweb/js-apis-webview.md#registerjavascriptproxy), [javaScriptProxy](../reference/apis-arkweb/ts-basic-components-web.md#javascriptproxy), [onInterceptRequest](../reference/apis-arkweb/ts-basic-components-web.md#oninterceptrequest9)
+
+
+## What are the WebView process model and rendering mechanism? (API version 11)
+
+**Solution**
+
+1. Process model: one main process and multiple render processes
+2. Rendering mechanism: web self-rendering
+
+
+## Does the system support WebRTC? What WebRTC features are provided?
+
+**Solution**
+
+1. WebView provides the peer-to-peer (P2P) and audio and video streaming features in WebRTC.
+2. When WebView is not used, the system provides technical support for adaptation, but not direct support for WebRTC. For example, the following are provided to work with WebRTC (RR-30030985):
+   * GN + Ninja cross compilation mode in the SDK
+   * Compilation samples
+
+
+## How do I set the mixed content policy in WebView to load HTTP and HTTPS mixed content?
+
+**Solution**
+
+WebView provides the **mixedMode(mixedMode: MixedMode)** API for specifying whether to enable loading of HTTP and HTTPS mixed content. By default, loading of mixed content is disabled.
+
+**Reference**
+
+[mixedmode](../reference/apis-arkweb/ts-basic-components-web.md#mixedmode)
+
+
+## In addition to setting the cache, is there any other way to speed up rendering in WebView?
+
+**Solution**
+
+You can use the **prepareForPageLoad** API to preconnect to a URL.
+
+**Reference**
+
+[prepareforpageload](../reference/apis-arkweb/js-apis-webview.md#prepareforpageload10)
+
+
+## How do I create a \<Web> component? How do I reuse one?
+
+**Solution**
+
+**\<Web>** components can be pre-created, reclaimed, and reused through dynamic component tree mount and unmount capability provided by ArkUI.
+
+**Reference**
+
+[Dynamically Creating Web Components](../web/web-page-loading-with-web-components.md#dynamically-creating-web-components)
+
+
+## Does OpenHarmony provide JavaScript engine capabilities as other systems?
+
+**Solution**
+
+Yes. For details, see the reference.
+
+**Reference**
+
+[JSVM](../reference/common/_j_s_v_m.md)

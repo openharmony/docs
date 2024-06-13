@@ -37,8 +37,8 @@ GridObjectSortComponent({options: GridObjectSortComponentOptions, dataList: Arra
 | Name    | Type                            | Decorator| Mandatory| Description        |
 | -------- | -------------------------------- | ---------- | ---- | ------------ |
 | options  | [GridObjectSortComponentOptions](#gridobjectsortcomponentoptions) | @Prop      | Yes  | Component configuration.|
-| dataList | Array<[GridObjectSortComponentItem](#gridobjectsortcomponentitem)> | -     | Yes  | Data to pass. The maximum data length is 50 characters. If it is exceeded, only the first 50 characters are used.|
-| onSave | (select: Array<[GridObjectSortComponentItem](#gridobjectsortcomponentitem)>, unselect: Array<[GridObjectSortComponentItem](#gridobjectsortcomponentitem)>)  => void | - | Yes| Callback invoked when changes are saved. The data after the changes is returned.|
+| dataList | Array\<[GridObjectSortComponentItem](#gridobjectsortcomponentitem)> | -     | Yes  | Data to pass. The maximum data length is 50 characters. If it is exceeded, only the first 50 characters are used.|
+| onSave | (select: Array\<[GridObjectSortComponentItem](#gridobjectsortcomponentitem)>, unselect: Array\<[GridObjectSortComponentItem](#gridobjectsortcomponentitem)>)  => void | - | Yes| Callback invoked when changes are saved. The data after the changes is returned.|
 | onCancel | () => void | - | Yes| Callback invoked when changes are canceled.|
 | build() | void | - | Yes| Build function.|
 
@@ -63,6 +63,7 @@ GridObjectSortComponent({options: GridObjectSortComponentOptions, dataList: Arra
 | -------- | ------ | ------------ | -------------- |
 | IMAGE_TEXT | string | 'image_text' | Text and imagery.|
 | TEXT     | string | 'text'       | Text only.    |
+
 
 ## GridObjectSortComponentItem
 

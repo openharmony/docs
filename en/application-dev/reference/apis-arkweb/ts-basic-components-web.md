@@ -408,7 +408,7 @@ Sets the overscroll mode, which is disabled by default. When the overscroll mode
 
 mixedMode(mixedMode: MixedMode)
 
-Sets whether to enable loading of HTTP and HTTPS hybrid content can be loaded. By default, this feature is disabled.
+Sets whether to enable loading of HTTP and HTTPS mixed content. By default, this feature is disabled.
 
 **Parameters**
 
