@@ -9,8 +9,8 @@ EmbeddedUIExtensionAbility需要和[EmbeddedComponent](../reference/apis-arkui/a
 > **说明：**
 >
 > 1. 当前EmbeddedUIExtensionAbility和EmbeddedComponent仅支持在拥有多进程配置的设备上使用。
-> 2. EmbeddedComponent只能在UIAbility中使用，且被拉起的EmbeddedUIExtensionAbility需与UIAbility属于同一应用。
-<!--Del-->> 3. 支持多实例场景，UIExtensionAbility的多实例介绍可参见[UIExtensionAbility](uiextensionability.md)。<!--DelEnd-->
+> 2. EmbeddedComponent只能在UIAbility中使用，且被拉起的EmbeddedUIExtensionAbility需与UIAbility属于同一应用。<!--Del-->
+> 3. 支持多实例场景，UIExtensionAbility的多实例介绍可参见[UIExtensionAbility](uiextensionability.md)。<!--DelEnd-->
 
 EmbeddedUIExtensionAbility通过[UIExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-uiExtensionContext.md)和[UIExtensionContentSession](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionContentSession.md)提供相关能力。本文描述中称被启动的EmbeddedUIExtensionAbility为提供方，称启动EmbeddedUIExtensionAbility的EmbeddedComponent组件为使用方。
 
