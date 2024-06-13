@@ -18,7 +18,7 @@ onUnhandledException(errMsg: string): void;
 
 将在js运行时引发用户未捕获的异常时调用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -52,7 +52,7 @@ onException?(errObject: Error): void;
 
 将在js运行时引发用户未捕获的异常时调用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 

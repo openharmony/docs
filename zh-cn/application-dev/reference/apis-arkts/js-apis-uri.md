@@ -21,7 +21,7 @@ import { uri } from '@kit.ArkTS';
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**元服务API：** 从API version 11 开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11 开始，该接口支持在原子化服务中使用。
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -120,7 +120,7 @@ constructor(uri: string)
 
 constructor是URI的构造函数。
 
-**元服务API：** 从API version 11 开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -158,7 +158,7 @@ toString(): string
 
 返回适用于URI中的查询字符串。
 
-**元服务API：** 从API version 11 开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11 开始，该接口支持在原子化服务中使用。
 
 **返回值：**
 
@@ -179,7 +179,7 @@ equalsTo(other: URI): boolean
 
 判断此URI是否与其他URI对象相等。
 
-**元服务API：** 从API version 11 开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -217,7 +217,7 @@ checkIsAbsolute(): boolean
 
 判断此URI是否为绝对URI（是否定义了scheme组件）。
 
-**元服务API：** 从API version 11 开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -243,7 +243,7 @@ normalize(): URI
 
 规范化此URI的路径。
 
-**元服务API：** 从API version 11 开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -268,7 +268,7 @@ checkRelative(): boolean
 
 判断此URI是否为相对URI，相对URI指的是不包括协议部分的URI。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -293,7 +293,7 @@ checkOpaque(): boolean
 
 判断此URI的方案特定部分是否以“/”开头，不以“/”开头的URI为不透明的URI。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -318,7 +318,7 @@ checkHierarchical(): boolean
 
 判断此URI的方案特定部分是否以“/”开头，以“/”开头的URI为分层的URI。相对URI也是分层的。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -343,7 +343,7 @@ getQueryValue(key:string): string
 
 根据给定的查询关键词，从URI查询参数部分中提取出该关键词对应的第一个值。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -380,7 +380,7 @@ addQueryValue(key:string, value:string): URI
 
 在当前URI的基础上添加查询参数，并创建一个新的URI，同时保持原有URI对象不变。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -419,7 +419,7 @@ addSegment(pathSegment:string): URI
 
 对给定的字段进行编码并将其追加到当前URI，并创建一个新的URI，同时保持原有URI对象不变。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -457,7 +457,7 @@ addEncodedSegment(pathSegment:string): URI
 
 通过将已编码的字段追加到当前URI，并创建一个新的URI，同时保持原有URI对象不变。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -495,7 +495,7 @@ getQueryNames(): string[]
 
 获取URI查询部分中所有不重复的键。查询参数是出现在问号“?”之后的部分，它们由键值对组成，键和值之间用等号“=”连接，不同的参数之间使用与号“&”分隔。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -519,7 +519,7 @@ getQueryValues(key:string): string[]
 
 获取此URI中查询参数的所有值。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -556,7 +556,7 @@ getBooleanQueryValue(key:string,defaultValue:boolean): boolean
 
 从URI查询参数中获取布尔类型的参数值。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -600,7 +600,7 @@ clearQuery(): URI
 
 清除URI路径查询部分，并创建一个新的URI，同时保持原有URI对象不变。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -623,7 +623,7 @@ getLastSegment(): string
 
 获取此URI路径的最后一个段。每个段代表路径中的一个部分，通常通过“/”来进行分隔。对于以斜杠结尾的或者没有路径的不代表段。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -646,7 +646,7 @@ getSegment(): string[]
 
 获取此URI路径中的所有段。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -669,7 +669,7 @@ createFromParts(scheme: string, ssp: string, fragment: string): URI
 
 根据提供的协议、方案特定部分以及片段部分创建一个新的URI。
 
-**元服务API**：从API version 12 开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
