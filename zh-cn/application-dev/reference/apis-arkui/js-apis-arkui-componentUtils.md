@@ -21,7 +21,7 @@ getRectangleById(id: string): ComponentInfo
 
 根据组件ID获取组件实例对象, 通过组件实例对象将获取的坐标位置和大小同步返回给开发者。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -46,7 +46,7 @@ let modePosition:componentUtils.ComponentInfo = componentUtils.getRectangleById(
 
 ## ComponentInfo
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -63,7 +63,7 @@ let modePosition:componentUtils.ComponentInfo = componentUtils.getRectangleById(
 
 ### Size 
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -74,7 +74,7 @@ let modePosition:componentUtils.ComponentInfo = componentUtils.getRectangleById(
 
 ### Offset
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -85,7 +85,7 @@ let modePosition:componentUtils.ComponentInfo = componentUtils.getRectangleById(
 
 ### TranslateResult
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -97,7 +97,7 @@ let modePosition:componentUtils.ComponentInfo = componentUtils.getRectangleById(
 
 ### ScaleResult
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -111,7 +111,7 @@ let modePosition:componentUtils.ComponentInfo = componentUtils.getRectangleById(
 
 ### RotateResult
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -128,7 +128,7 @@ let modePosition:componentUtils.ComponentInfo = componentUtils.getRectangleById(
 
 type Matrix4Result = [number,number,number,number,number,number,number,number,number,number,number,number,number,number,number,number]
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

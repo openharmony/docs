@@ -16,7 +16,7 @@ Chip({options:ChipOptions})
 
 **装饰器类型：**@Builder
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -34,17 +34,17 @@ ChipOptions定义chip的样式及具体式样参数。
 
 | 名称            | 类型                                                         | 必填 | 说明                                                         |
 | --------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| size            | [ChipSize](#chipsize) \| [SizeOptions](ts-types.md#sizeoptions) | 否   | 操作块尺寸。<br/>默认值：ChipSize：ChipSize.NORMAL，<br/>   SizeOptions类型参数不支持百分比设置。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
-| enabled         | boolean                                                      | 否   | 操作块是否可选中。<br>默认值：true<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| size            | [ChipSize](#chipsize) \| [SizeOptions](ts-types.md#sizeoptions) | 否   | 操作块尺寸。<br/>默认值：ChipSize：ChipSize.NORMAL，<br/>   SizeOptions类型参数不支持百分比设置。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| enabled         | boolean                                                      | 否   | 操作块是否可选中。<br>默认值：true<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | activated<sup>12+</sup>       | boolean                                        | 否   | 操作块是否为激活态。<br>默认值：false                      |
-| prefixIcon      | [PrefixIconOptions](#prefixiconoptions)                      | 否   | 前缀图标属性。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
-| label           | [LabelOptions](#labeloptions)                                | 是   | 文本属性。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。   |
-| suffixIcon      | [SuffixIconOptions](#suffixiconoptions)                      | 否   | 后缀图标属性。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
-| backgroundColor | [ResourceColor](ts-types.md#resourcecolor)                   | 否   | 操作块背景颜色。<br/>默认值：$r('sys.color.ohos_id_color_button_normal')<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| prefixIcon      | [PrefixIconOptions](#prefixiconoptions)                      | 否   | 前缀图标属性。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| label           | [LabelOptions](#labeloptions)                                | 是   | 文本属性。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。   |
+| suffixIcon      | [SuffixIconOptions](#suffixiconoptions)                      | 否   | 后缀图标属性。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| backgroundColor | [ResourceColor](ts-types.md#resourcecolor)                   | 否   | 操作块背景颜色。<br/>默认值：$r('sys.color.ohos_id_color_button_normal')<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | activatedBackgroundColor<sup>12+</sup> | [ResourceColor](ts-types.md#resourcecolor)          | 否   | 操作块激活时的背景颜色。<br/>默认值：$r('sys.color.ohos_id_color_emphasize')。 |
-| borderRadius    | [Dimension](ts-types.md#dimension10)                         | 否   | 操作块背景圆角半径大小，不支持百分比。<br/>默认值：$r('sys.float.ohos_id_corner_radius_button')<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
-| allowClose      | boolean                                                      | 否   | 删除图标是否显示。<br/>默认值：true<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
-| onClose         | ()=>void                                                     | 否   | 默认删除图标点击事件。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| borderRadius    | [Dimension](ts-types.md#dimension10)                         | 否   | 操作块背景圆角半径大小，不支持百分比。<br/>默认值：$r('sys.float.ohos_id_corner_radius_button')<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| allowClose      | boolean                                                      | 否   | 删除图标是否显示。<br/>默认值：true<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| onClose         | ()=>void                                                     | 否   | 默认删除图标点击事件。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | onClicked<sup>12+</sup>       | ()=>void                                       | 否   | 操作块点击事件。                                       |
 
 > **说明：**
@@ -63,7 +63,7 @@ ChipOptions定义chip的样式及具体式样参数。
 
 ChipSize是chip可指定的尺寸类型，如普通型Chip。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 名称   | 值       | 描述               |
 | ------ | -------- | ------------------ |
@@ -76,9 +76,9 @@ IconCommonOptions定义图标的共通属性。
 
 | 名称      | 类型                                       | 必填 | 说明                                                         |
 | --------- | ------------------------------------------ | ---- | ------------------------------------------------------------ |
-| src       | [ResourceStr](ts-types.md#resourcestr)     | 是   | 图标图片或图片地址引用。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
-| size      | [SizeOptions](ts-types.md#sizeoptions)     | 否   | 图标大小，不支持百分比。<br/>默认值：{width: 16,height: 16}<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
-| fillColor | [ResourceColor](ts-types.md#resourcecolor) | 否   | 图标填充颜色。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| src       | [ResourceStr](ts-types.md#resourcestr)     | 是   | 图标图片或图片地址引用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| size      | [SizeOptions](ts-types.md#sizeoptions)     | 否   | 图标大小，不支持百分比。<br/>默认值：{width: 16,height: 16}<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| fillColor | [ResourceColor](ts-types.md#resourcecolor) | 否   | 图标填充颜色。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | activatedFillColor<sup>12+</sup> | [ResourceColor](ts-types.md#resourcecolor) | 否   | 操作块激活时图标填充颜色。                            |
 
 > **说明：**
@@ -92,7 +92,7 @@ PrefixIconOptions定义前缀图标的属性。
 
 继承于[IconCommonOptions](#iconcommonoptions)。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 ## SuffixIconOptions
 
@@ -100,7 +100,7 @@ SuffixIconOptions定义后缀图标的属性。
 
 继承于[IconCommonOptions](#iconcommonoptions)。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 名称   | 类型       | 必填 | 说明               |
 | ------ | ---------- | ---- | ------------------ |
@@ -112,18 +112,18 @@ LabelOptions定义文本的属性。
 
 | 名称        | 类型                                       | 必填 | 说明                                                         |
 | ----------- | ------------------------------------------ | ---- | ------------------------------------------------------------ |
-| text        | string                                     | 是   | 文本文字内容。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
-| fontSize    | [Dimension](ts-types.md#dimension10)       | 否   | 文字字号，不支持百分比。<br/>默认值：$r('sys.float.ohos_id_text_size_button2')<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
-| fontColor   | [ResourceColor](ts-types.md#resourcecolor) | 否   | 文字颜色。<br/>默认值：$r('sys.color.ohos_id_color_text_primary')<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| text        | string                                     | 是   | 文本文字内容。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| fontSize    | [Dimension](ts-types.md#dimension10)       | 否   | 文字字号，不支持百分比。<br/>默认值：$r('sys.float.ohos_id_text_size_button2')<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| fontColor   | [ResourceColor](ts-types.md#resourcecolor) | 否   | 文字颜色。<br/>默认值：$r('sys.color.ohos_id_color_text_primary')<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | activatedFontColor<sup>12+</sup>   | [ResourceColor](ts-types.md#resourcecolor) | 否   | 操作块激活时的文字颜色。<br/>默认值：$r('sys.color.ohos_id_color_text_primary_contrary') |
-| fontFamily  | string                                     | 否   | 文字字体。<br/>默认值："HarmonyOS Sans"<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
-| labelMargin | [LabelMarginOptions](#labelmarginoptions)  | 否   | 文本与左右侧图标之间间距。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| fontFamily  | string                                     | 否   | 文字字体。<br/>默认值："HarmonyOS Sans"<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| labelMargin | [LabelMarginOptions](#labelmarginoptions)  | 否   | 文本与左右侧图标之间间距。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 ## LabelMarginOptions
 
 LabelMarginOptions定义文本与左右侧图标之间间距。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 名称  | 类型                                 | 必填 | 说明                                                     |
 | ----- | ------------------------------------ | ---- | -------------------------------------------------------- |
