@@ -13,8 +13,8 @@
 <!--RP1--><!--RP1End-->
 
 ## 支持的能力
-1. 改变分辨率。请详见[调用oh_videoencoder_registercallback()](#3-调用oh_videodecoder_registercallback设置回调函数)
-2. 动态surface。请详见[设置Surface](#6-设置surface)
+1. 改变分辨率。请详见[调用OH_VideoDecoder_RegisterCallback()](#3-调用oh_videodecoder_registercallback设置回调函数)
+2. 动态surface。请详见[设置surface](#6-设置surface)
 
 
 ## 限制约束
