@@ -20,7 +20,7 @@
   - [数据库备份与恢复](data-backup-and-restore.md)
   - [数据库加密](data-encryption.md)
   - [基于设备分类和数据分级的访问控制](access-control-by-device-and-data-level.md)
-  - [E类加密库使用指南](encrypted_estore_guidelines.md)
+  - [E类加密数据库使用参考](encrypted_estore_guidelines.md)
 - 跨应用数据共享
   - [跨应用数据共享概述](data-share-overview.md)
   <!--Del-->
