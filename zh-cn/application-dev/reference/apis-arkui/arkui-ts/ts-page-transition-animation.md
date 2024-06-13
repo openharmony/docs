@@ -14,7 +14,7 @@ pageTransition?(): void
 
 进入此页面或移动到其他页面时实现动画。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -24,7 +24,7 @@ PageTransitionEnter(value: PageTransitionOptions)
 
 设置当前页面的自定义入场动效。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -40,7 +40,7 @@ PageTransitionExit(value: PageTransitionOptions)
 
 设置当前页面的自定义退场动效。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -52,7 +52,7 @@ PageTransitionExit(value: PageTransitionOptions)
 
 ## PageTransitionOptions对象说明
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称     | 类型                                                         | 必填 | 描述                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
@@ -64,7 +64,7 @@ PageTransitionExit(value: PageTransitionOptions)
 
 ## 属性
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 参数名称  | 参数类型                                                     | 必填 | 参数描述                                                     |
 | --------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
@@ -83,7 +83,7 @@ PageTransitionExit(value: PageTransitionOptions)
 
 ## RouteType枚举说明
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称 | 描述                                                         |
 | ---- | ------------------------------------------------------------ |
@@ -95,12 +95,12 @@ PageTransitionExit(value: PageTransitionOptions)
 
 | 名称                | 描述                                                         |
 | ------------------- | ------------------------------------------------------------ |
-| Left                | 设置到入场时表示从左边滑入，出场时表示滑出到左边。<br />**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| Right               | 设置到入场时表示从右边滑入，出场时表示滑出到右边。<br />**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| Top                 | 设置到入场时表示从上边滑入，出场时表示滑出到上边。<br />**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| Bottom              | 设置到入场时表示从下边滑入，出场时表示滑出到下边。<br />**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| START<sup>12+</sup> | 设置LTR入场时表示从左边滑入，出场时表示滑出到左边。RTL入场时表示从右边滑入，出场时表示滑出到右边。<br />**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
-| END<sup>12+</sup>   | 设置LTR入场时表示从右边滑入，出场时表示滑出到右边。RTL入场时表示从左边滑入，出场时表示滑出到左边。<br />**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| Left                | 设置到入场时表示从左边滑入，出场时表示滑出到左边。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| Right               | 设置到入场时表示从右边滑入，出场时表示滑出到右边。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| Top                 | 设置到入场时表示从上边滑入，出场时表示滑出到上边。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| Bottom              | 设置到入场时表示从下边滑入，出场时表示滑出到下边。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| START<sup>12+</sup> | 设置LTR入场时表示从左边滑入，出场时表示滑出到左边。RTL入场时表示从右边滑入，出场时表示滑出到右边。<br />**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| END<sup>12+</sup>   | 设置LTR入场时表示从右边滑入，出场时表示滑出到右边。RTL入场时表示从左边滑入，出场时表示滑出到左边。<br />**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 ## 示例
 

@@ -14,7 +14,7 @@ attributeModifier(modifier:&nbsp;AttributeModifier\<T>)
 
 动态设置组件的属性方法。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -28,35 +28,35 @@ attributeModifier(modifier:&nbsp;AttributeModifier\<T>)
 
 开发者需要自定义class实现AttributeModifier接口。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 ### applyNormalAttribute
 applyNormalAttribute(instance: T) : void
 
 组件普通状态时的样式。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 ### applyPressedAttribute
 applyPressedAttribute(instance: T) : void
 
 组件按压状态的样式。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 ### applyFocusedAttribute
 applyFocusedAttribute(instance: T) : void
 
 组件获焦状态的样式。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 ### applyDisabledAttribute
 applyDisabledAttribute(instance: T) : void
 
 组件禁用状态的样式。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 ### applySelectedAttribute
 applySelectedAttribute(instance: T) : void
@@ -65,7 +65,7 @@ applySelectedAttribute(instance: T) : void
 
 开发者可根据需要自定义实现这些方法，通过传入的参数识别组件类型，对instance设置属性，支持使用if/else语法进行动态设置。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数**：
 
