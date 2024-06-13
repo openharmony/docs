@@ -20,6 +20,8 @@ Checkbox(options?: CheckboxOptions)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -180,10 +182,10 @@ onChange(callback: (value: boolean) => void)
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-| 枚举名称       | 枚举值 | 描述     |
-| -------------- | ------ | -------- |
-| CIRCLE         | 0      | 圆形     |
-| ROUNDED_SQUARE | 1      | 圆角方形 |
+| 名称           | 值   | 说明     |
+| -------------- | ---- | -------- |
+| CIRCLE         | 0    | 圆形     |
+| ROUNDED_SQUARE | 1    | 圆角方形 |
 
 ## CheckBoxConfiguration<sup>12+</sup>对象说明
 

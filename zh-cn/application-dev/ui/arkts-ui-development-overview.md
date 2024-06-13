@@ -96,7 +96,7 @@
 
 - **默认单位** 
 
-  表示长度的入参单位默认为vp，即入参为number类型、以及[Length](https://gitee.com/openharmony/docs/blob/3c1a82bba5602db43b4f4c053b5943e700ddb3e5/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-types.md#length)和[Dimension](https://gitee.com/openharmony/docs/blob/3c1a82bba5602db43b4f4c053b5943e700ddb3e5/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-types.md#dimension10)类型中的number单位为vp。
+  表示长度的入参单位默认为vp，即入参为number类型、以及[Length](../reference/apis-arkui/arkui-ts/ts-types.md#length)和[Dimension](../reference/apis-arkui/arkui-ts/ts-types.md#dimension10)类型中的number单位为vp。
 
 - **异常值处理** 
 

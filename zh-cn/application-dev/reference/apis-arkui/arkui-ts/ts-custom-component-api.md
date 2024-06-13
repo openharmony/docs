@@ -135,6 +135,7 @@ queryNavigationInfo(): NavigationInfo | undefined
 
 ```ts
 // index.ets
+import observer from '@ohos.arkui.observer';
 
 @Entry
 @Component
@@ -148,9 +149,9 @@ struct MainPage {
   }
 }
 
-import observer from '@ohos.arkui.observer';
+
 @Component
-export struct PageOne() {
+export struct PageOne {
   pathStack: NavPathStack = new NavPathStack()
 
   aboutToAppear() {

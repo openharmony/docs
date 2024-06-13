@@ -85,7 +85,7 @@ getUIObserver(): UIObserver
 
 获取UIObserver对象。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -903,7 +903,7 @@ onWindowStageCreate(windowStage: window.WindowStage) {
 
 getAtomicServiceBar(): Nullable\<AtomicServiceBar>
 
-获取AtomicServiceBar对象，通过该对象设置元服务menuBar的属性。
+获取AtomicServiceBar对象，通过该对象设置原子化服务menuBar的属性。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -913,7 +913,7 @@ getAtomicServiceBar(): Nullable\<AtomicServiceBar>
 
 | 类型                                              | 说明                                                         |
 | ------------------------------------------------- | ------------------------------------------------------------ |
-| Nullable<[AtomicServiceBar](#atomicservicebar11)> | 如果是元服务则返回AtomicServerBar类型，否则返回undefined。 |
+| Nullable<[AtomicServiceBar](#atomicservicebar11)> | 如果是原子化服务则返回AtomicServerBar类型，否则返回undefined。 |
 
 **示例：**
 
@@ -5097,16 +5097,16 @@ hideAllComponentContents(): void
 以下接口需要先使用UIContext中的[getAtomicServiceBar](#getatomicservicebar11)方法获取到AtomicServiceBar对象，再通过该对象调用对应方法。
 > **说明：**
 >
-> 从API version 12开始元服务menuBar样式变更，以下接口将失效。
+> 从API version 12开始原子化服务menuBar样式变更，以下接口将失效。
 
 ### setVisible<sup>11+</sup>
 
 setVisible(visible: boolean): void
 
-通过该方法设置元服务menuBar是否可见。
+通过该方法设置原子化服务menuBar是否可见。
 > **说明：**
 >
-> 从API version 12开始元服务menuBar样式变更，menuBar默认隐藏，变为悬浮按钮，通过该接口无法改变menuBar的可见性。
+> 从API version 12开始原子化服务menuBar样式变更，menuBar默认隐藏，变为悬浮按钮，通过该接口无法改变menuBar的可见性。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -5116,7 +5116,7 @@ setVisible(visible: boolean): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------- | ------- | ------- | ------- |
-| visible | boolean | 是 | 元服务menuBar是否可见。|
+| visible | boolean | 是 | 原子化服务menuBar是否可见。|
 
 
 **示例：**
@@ -5146,10 +5146,10 @@ onWindowStageCreate(windowStage: window.WindowStage) {
 
 setBackgroundColor(color:Nullable<Color | number | string>): void
 
-通过该方法设置元服务menuBar的背景颜色。
+通过该方法设置原子化服务menuBar的背景颜色。
 > **说明：**
 >
-> 从API version 12开始元服务menuBar样式变更，menuBar的背景默认隐藏，通过该接口无法改变menuBar的背景颜色。
+> 从API version 12开始原子化服务menuBar样式变更，menuBar的背景默认隐藏，通过该接口无法改变menuBar的背景颜色。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -5159,7 +5159,7 @@ setBackgroundColor(color:Nullable<Color | number | string>): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ------ | ------ | ------ |
-| color | Nullable\<[Color](arkui-ts/ts-appendix-enums.md#color) \| number \| string> | 是 | 通过该方法设置元服务menuBar的背景颜色，undefined代表使用默认颜色。|
+| color | Nullable\<[Color](arkui-ts/ts-appendix-enums.md#color) \| number \| string> | 是 | 通过该方法设置原子化服务menuBar的背景颜色，undefined代表使用默认颜色。|
 
 **示例：**
 
@@ -5187,10 +5187,10 @@ onWindowStageCreate(windowStage: window.WindowStage) {
 
 setTitleContent(content:string): void
 
-通过该方法设置元服务menuBar的标题内容。
+通过该方法设置原子化服务menuBar的标题内容。
 > **说明：**
 >
-> 从API version 12开始元服务menuBar样式变更，menuBar的标题默认隐藏，通过该接口无法改变menuBar的标题内容。
+> 从API version 12开始原子化服务menuBar样式变更，menuBar的标题默认隐藏，通过该接口无法改变menuBar的标题内容。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -5200,7 +5200,7 @@ setTitleContent(content:string): void
 
 |参数名|类型|必填|说明 |
 | ------- | ------- | ------- | ------- |
-| content | string | 是 | 元服务menuBar中的标题内容。|
+| content | string | 是 | 原子化服务menuBar中的标题内容。|
 
 **示例：**
 
@@ -5229,10 +5229,10 @@ onWindowStageCreate(windowStage: window.WindowStage) {
 
 setTitleFontStyle(font:FontStyle):void
 
-通过该方法设置元服务menuBar的字体样式。
+通过该方法设置原子化服务menuBar的字体样式。
 > **说明：**
 >
-> 从API version 12开始元服务menuBar样式变更，menuBar的标题默认隐藏，通过该接口无法改变menuBar的字体样式。
+> 从API version 12开始原子化服务menuBar样式变更，menuBar的标题默认隐藏，通过该接口无法改变menuBar的字体样式。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -5242,7 +5242,7 @@ setTitleFontStyle(font:FontStyle):void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ------ | ------ | ------ |
-| font | [FontStyle](arkui-ts/ts-appendix-enums.md#fontstyle) | 是 | 元服务menuBar中的字体样式。 |
+| font | [FontStyle](arkui-ts/ts-appendix-enums.md#fontstyle) | 是 | 原子化服务menuBar中的字体样式。 |
 
 **示例：**
 
@@ -5271,10 +5271,10 @@ onWindowStageCreate(windowStage: window.WindowStage) {
 
 setIconColor(color:Nullable<Color | number | string>): void
 
-通过该方法设置元服务图标的颜色。
+通过该方法设置原子化服务图标的颜色。
 > **说明：**
 >
-> 从API version 12开始元服务menuBar样式变更，menuBar默认隐藏，悬浮按钮图标不予用户设置，通过该接口无法改变menuBar的图标颜色。
+> 从API version 12开始原子化服务menuBar样式变更，menuBar默认隐藏，悬浮按钮图标不予用户设置，通过该接口无法改变menuBar的图标颜色。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -5284,7 +5284,7 @@ setIconColor(color:Nullable<Color | number | string>): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------- | ------- | ------- | ------- |
-| color | Nullable\<[Color](arkui-ts/ts-appendix-enums.md#color) \| number \| string> | 是 | 元服务图标的颜色，undefined代表使用默认颜色。 |
+| color | Nullable\<[Color](arkui-ts/ts-appendix-enums.md#color) \| number \| string> | 是 | 原子化服务图标的颜色，undefined代表使用默认颜色。 |
 
 
 **示例：**
