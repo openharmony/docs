@@ -28,7 +28,7 @@ NavDestination()
 
 ## 属性
 
-仅支持[backgroundColor](ts-universal-attributes-background.md#backgroundcolor)通用属性。
+支持通用属性(说明：不推荐设置位置、大小等布局相关属性，可能会造成页面显示异常)。
 
 ### title
 
