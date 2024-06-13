@@ -225,10 +225,9 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     OH_AVFormat_Destroy(format);
     ```
 
-6. 设置Surface
-    本例中的nativeWindow，需要从XComponent组件获取，获取方式请参考 [XComponent](../../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)。
+6. 设置Surface。本例中的nativeWindow，需要从XComponent组件获取，获取方式请参考 [XComponent](../../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)。
 
-    Surface模式，开发者可以在解码过程中执行该步骤，即动态切换Surface。
+   Surface模式，开发者可以在解码过程中执行该步骤，即动态切换Surface。
 
     ```c++
     // 配置送显窗口参数
@@ -517,7 +516,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     OH_AVCodec *videoDec = OH_VideoDecoder_CreateByMime(OH_AVCODEC_MIMETYPE_VIDEO_HEVC);
     ```
 
-3. 调用OH_VideoDecoder_RegisterCallback()设置回调函数
+3. 调用OH_VideoDecoder_RegisterCallback()设置回调函数。
 
     > **说明：**
     >
