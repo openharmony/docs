@@ -1656,6 +1656,10 @@
       - [@ohos.graphics.drawing (绘制模块)](reference/apis-arkgraphics2d/js-apis-graphics-drawing.md)
       - [@ohos.graphics.hdrCapability (HDR能力)](reference/apis-arkgraphics2d/js-apis-hdrCapability.md)
       - [@ohos.graphics.text (文本模块)](reference/apis-arkgraphics2d/js-apis-graphics-text.md)
+      - [@ohos.graphics.uiEffect (效果级联)](reference/apis-arkgraphics2d/js-apis-uiEffect.md)
+      <!--Del-->
+      - [@ohos.graphics.uiEffect (效果级联)(系统接口)](reference/apis-arkgraphics2d/js-apis-uiEffect-sys.md)
+      <!--DelEnd-->
     - C API<!--arkgraphics-c-->
       - 模块<!--arkgraphics-module-->
         - [Drawing](reference/apis-arkgraphics2d/_drawing.md)
