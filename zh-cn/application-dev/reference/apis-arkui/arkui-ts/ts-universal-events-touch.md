@@ -12,7 +12,7 @@ onTouch(event: (event: TouchEvent) => void): T
 
 手指触摸动作触发该回调。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -36,14 +36,14 @@ onTouch(event: (event: TouchEvent) => void): T
 
 | 名称                | 类型                                       | 描述           |
 | ------------------- | ---------------------------------------- | ------------ |
-| type                | [TouchType](ts-appendix-enums.md#touchtype)      | 触摸事件的类型。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。     |
-| touches             | Array&lt;[TouchObject](#touchobject对象说明)&gt; | 全部手指信息。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。      |
-| changedTouches      | Array&lt;[TouchObject](#touchobject对象说明)&gt; | 当前发生变化的手指信息。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| stopPropagation      | () => void | 阻塞事件冒泡。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| timestamp<sup>8+</sup> | number | 事件时间戳，触发事件时距离系统启动的时间间隔。<br/>例如，当系统启动时间为2023/10/12 11:33, 在2023/10/12 11:34时触发触摸事件，时间戳返回的值为60,000,000,000ns。<br>单位：ns <br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。|
-| target<sup>8+</sup> | [EventTarget](ts-universal-events-click.md#eventtarget8对象说明) | 触发事件的元素对象显示区域。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| source<sup>8+</sup> | [SourceType](ts-gesture-settings.md#sourcetype枚举说明) | 事件输入设备。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| preventDefault<sup>12+</sup>      | () => void | 阻止默认事件。<br/>**元服务API：** 从API version 12开始，该接口支持在元服务中使用。 |
+| type                | [TouchType](ts-appendix-enums.md#touchtype)      | 触摸事件的类型。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。     |
+| touches             | Array&lt;[TouchObject](#touchobject对象说明)&gt; | 全部手指信息。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。      |
+| changedTouches      | Array&lt;[TouchObject](#touchobject对象说明)&gt; | 当前发生变化的手指信息。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| stopPropagation      | () => void | 阻塞事件冒泡。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| timestamp<sup>8+</sup> | number | 事件时间戳，触发事件时距离系统启动的时间间隔。<br/>例如，当系统启动时间为2023/10/12 11:33, 在2023/10/12 11:34时触发触摸事件，时间戳返回的值为60,000,000,000ns。<br>单位：ns <br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| target<sup>8+</sup> | [EventTarget](ts-universal-events-click.md#eventtarget8对象说明) | 触发事件的元素对象显示区域。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| source<sup>8+</sup> | [SourceType](ts-gesture-settings.md#sourcetype枚举说明) | 事件输入设备。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| preventDefault<sup>12+</sup>      | () => void | 阻止默认事件。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 
 ### getHistoricalPoints<sup>10+</sup>

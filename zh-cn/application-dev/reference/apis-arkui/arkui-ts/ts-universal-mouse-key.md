@@ -55,18 +55,18 @@ onMouse(event: (event: MouseEvent) => void)
 
 | 名称                     | 属性类型                                     | 描述                           |
 | ---------------------- | ---------------------------------------- | ---------------------------- |
-| x                      | number                                   | 鼠标位置相对于当前组件左上角的x轴坐标。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。         |
-| y                      | number                                   | 鼠标位置相对于当前组件左上角的y轴坐标。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。         |
-| button                 | [MouseButton](ts-appendix-enums.md#mousebutton) | 鼠标按键。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。                        |
-| action                 | [MouseAction](ts-appendix-enums.md#mouseaction) | 鼠标动作。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。                        |
-| stopPropagation        | () => void                               | 阻塞事件冒泡。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。                      |
-| timestamp | number                                   | 事件时间戳。触发事件时距离系统启动的时间间隔，单位纳秒。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| target    | [EventTarget](ts-universal-events-click.md#eventtarget8对象说明) | 触发事件的元素对象显示区域。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。               |
-| source    | [SourceType](ts-gesture-settings.md#sourcetype枚举说明) | 事件输入设备。   <br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。                   |
-| windowX<sup>10+</sup> | number                          | 鼠标位置相对于应用窗口左上角的x轴坐标。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| windowY<sup>10+</sup> | number                          | 鼠标位置相对于应用窗口左上角的y轴坐标。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| displayX<sup>10+</sup> | number                         | 鼠标位置相对于应用屏幕左上角的x轴坐标。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| displayY<sup>10+</sup> | number                         | 鼠标位置相对于应用屏幕左上角的y轴坐标。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| x                      | number                                   | 鼠标位置相对于当前组件左上角的x轴坐标。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。         |
+| y                      | number                                   | 鼠标位置相对于当前组件左上角的y轴坐标。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。         |
+| button                 | [MouseButton](ts-appendix-enums.md#mousebutton) | 鼠标按键。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                        |
+| action                 | [MouseAction](ts-appendix-enums.md#mouseaction) | 鼠标动作。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                        |
+| stopPropagation        | () => void                               | 阻塞事件冒泡。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                      |
+| timestamp | number                                   | 事件时间戳。触发事件时距离系统启动的时间间隔，单位纳秒。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| target    | [EventTarget](ts-universal-events-click.md#eventtarget8对象说明) | 触发事件的元素对象显示区域。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。               |
+| source    | [SourceType](ts-gesture-settings.md#sourcetype枚举说明) | 事件输入设备。   <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                   |
+| windowX<sup>10+</sup> | number                          | 鼠标位置相对于应用窗口左上角的x轴坐标。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| windowY<sup>10+</sup> | number                          | 鼠标位置相对于应用窗口左上角的y轴坐标。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| displayX<sup>10+</sup> | number                         | 鼠标位置相对于应用屏幕左上角的x轴坐标。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| displayY<sup>10+</sup> | number                         | 鼠标位置相对于应用屏幕左上角的y轴坐标。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | screenX<sup>(deprecated)</sup> | number                 | 鼠标位置相对于应用窗口左上角的x轴坐标。<br>从API Version 10开始不再维护，建议使用windowX代替。 |
 | screenY<sup>(deprecated)</sup> | number                 | 鼠标位置相对于应用窗口左上角的y轴坐标。<br>从API Version 10开始不再维护，建议使用windowY代替。 |
 

@@ -187,19 +187,19 @@ onPreDrag(event: (preDragStatus: PreDragStatus) => void)
 
 | 名称     | 返回值类型                            | 描述                           |
 | ----------- | ------------------------------- | ------------------------------ |
-| setData(unifiedData: [UnifiedData](../../apis-arkdata/js-apis-data-unifiedDataChannel.md#unifieddata))<sup>10+</sup>       | void   | 向DragEvent中设置拖拽相关数据。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| getData()<sup>10+</sup> | [UnifiedData](../../apis-arkdata/js-apis-data-unifiedDataChannel.md#unifieddata) | 从DragEvent中获取拖拽相关数据。数据获取结果请参考错误码说明。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| getSummary()<sup>10+</sup> | [Summary](../../apis-arkdata/js-apis-data-unifiedDataChannel.md#summary) | 从DragEvent中获取拖拽相关数据的简介。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| setResult(dragRect: [DragResult](#dragresult10枚举说明))<sup>10+</sup> | void | 向DragEvent中设置拖拽结果。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| getResult()<sup>10+</sup> | [DragResult](#dragresult10枚举说明) | 从DragEvent中获取拖拽结果。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| getPreviewRect()<sup>10+</sup> | [Rectangle](ts-universal-attributes-touch-target.md#rectangle对象说明) | 获取预览图所在的Rectangle。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| getVelocityX()<sup>10+</sup> | number | 获取当前拖拽的x轴方向拖动速度。坐标轴原点为屏幕左上角，单位为vp，分正负方向速度，从左往右为正，反之为负。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| setData(unifiedData: [UnifiedData](../../apis-arkdata/js-apis-data-unifiedDataChannel.md#unifieddata))<sup>10+</sup>       | void   | 向DragEvent中设置拖拽相关数据。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| getData()<sup>10+</sup> | [UnifiedData](../../apis-arkdata/js-apis-data-unifiedDataChannel.md#unifieddata) | 从DragEvent中获取拖拽相关数据。数据获取结果请参考错误码说明。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| getSummary()<sup>10+</sup> | [Summary](../../apis-arkdata/js-apis-data-unifiedDataChannel.md#summary) | 从DragEvent中获取拖拽相关数据的简介。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| setResult(dragRect: [DragResult](#dragresult10枚举说明))<sup>10+</sup> | void | 向DragEvent中设置拖拽结果。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| getResult()<sup>10+</sup> | [DragResult](#dragresult10枚举说明) | 从DragEvent中获取拖拽结果。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| getPreviewRect()<sup>10+</sup> | [Rectangle](ts-universal-attributes-touch-target.md#rectangle对象说明) | 获取预览图所在的Rectangle。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| getVelocityX()<sup>10+</sup> | number | 获取当前拖拽的x轴方向拖动速度。坐标轴原点为屏幕左上角，单位为vp，分正负方向速度，从左往右为正，反之为负。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | getVelocityY()<sup>10+</sup> | number | 获取当前拖拽的y轴方向拖动速度。坐标轴原点为屏幕左上角，单位为vp，分正负方向速度，从上往下为正，反之为负。 |
-| getVelocity()<sup>10+</sup> | number | 获取当前拖拽的主方向拖动速度。为xy轴方向速度的平方和的算术平方根。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| getWindowX()<sup>10+</sup> | number | 当前拖拽点相对于窗口左上角的x轴坐标，单位为vp。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| getWindowY()<sup>10+</sup> | number | 当前拖拽点相对于窗口左上角的y轴坐标，单位为vp。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| getDisplayX()<sup>10+</sup> | number | 当前拖拽点相对于屏幕左上角的x轴坐标，单位为vp。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| getDisplayY()<sup>10+</sup> | number | 当前拖拽点相对于屏幕左上角的y轴坐标，单位为vp。<br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| getVelocity()<sup>10+</sup> | number | 获取当前拖拽的主方向拖动速度。为xy轴方向速度的平方和的算术平方根。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| getWindowX()<sup>10+</sup> | number | 当前拖拽点相对于窗口左上角的x轴坐标，单位为vp。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| getWindowY()<sup>10+</sup> | number | 当前拖拽点相对于窗口左上角的y轴坐标，单位为vp。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| getDisplayX()<sup>10+</sup> | number | 当前拖拽点相对于屏幕左上角的x轴坐标，单位为vp。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| getDisplayY()<sup>10+</sup> | number | 当前拖拽点相对于屏幕左上角的y轴坐标，单位为vp。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | getX()<sup>(deprecated)</sup> | number | 当前拖拽点相对于窗口左上角的x轴坐标，单位为vp。<br>从API Version 10开始不再维护，建议使用getWindowX()代替。 |
 | getY()<sup>(deprecated)</sup> | number | 当前拖拽点相对于窗口左上角的y轴坐标，单位为vp。<br>从API Version 10开始不再维护，建议使用getWindowY()代替。 |
 

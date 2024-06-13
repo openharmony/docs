@@ -54,7 +54,7 @@ getInspectorByKey(id: string): string
 
 此接口仅用于对应用的测试。由于耗时长，不建议使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数:**
 
@@ -76,7 +76,7 @@ getInspectorTree(): Object
 
 此接口仅用于对应用的测试。由于耗时长，不建议使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **返回值:**
 
@@ -92,7 +92,7 @@ sendEventByKey(id: string, action: number, params: string): boolean
 
 此接口仅用于对应用的测试。由于耗时长，不建议使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数:**
 
@@ -116,7 +116,7 @@ sendTouchEvent(event: TouchObject): boolean
 
 此接口仅用于对应用的测试。由于耗时长，不建议使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数:**
 
@@ -138,7 +138,7 @@ sendKeyEvent(event: KeyEvent): boolean
 
 此接口仅用于对应用的测试。由于耗时长，不建议使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数:**
 
@@ -160,7 +160,7 @@ sendMouseEvent(event: MouseEvent): boolean
 
 此接口仅用于对应用的测试。由于耗时长，不建议使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
