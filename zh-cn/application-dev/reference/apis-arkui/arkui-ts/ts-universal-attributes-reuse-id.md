@@ -13,8 +13,6 @@ reuseId(id: string)
 
 复用标识，用于划分自定义组件的复用组。
 
-**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
-
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
