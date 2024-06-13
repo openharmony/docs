@@ -566,6 +566,7 @@ export class Mover {
 ```ts
 import { relationalStore } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { Context } from '@kit.AbilityKit';
 
 export class StoreInfo {
   context: Context;
@@ -573,7 +574,7 @@ export class StoreInfo {
   storeId: string;
 }
 
-const SQL_CREATE_TABLE = 'CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB, IDENTITY UNLIMITED INT)'; // 建表Sql语句，IDENTITY为bigint类型，sql中指定类型为UNLIMITED INT
+const SQL_CREATE_TABLE = 'CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)';
 
 
 export class Store {
@@ -582,7 +583,7 @@ export class Store {
     try {
       rdbStore = await relationalStore.getRdbStore(storeInfo.context, storeInfo.config);
       if (rdbStore.version == 0) {
-        await rdbStore.execute(SQL_CREATE_TABLE);
+        await rdbStore.executeSql(SQL_CREATE_TABLE);
         rdbStore.version = 1;
       }
     } catch (e) {
@@ -599,7 +600,6 @@ export class Store {
         AGE: 18,
         SALARY: 100.5,
         CODES: new Uint8Array([1, 2, 3, 4, 5]),
-        IDENTITY: BigInt('15822401018187971961171'),
       };
       try {
         await rdbStore.insert("EMPLOYEE", valueBucket);
@@ -610,7 +610,7 @@ export class Store {
     }
   }
 
-  GetDataNum(rdbStore: relationalStore.RdbStore) {
+  async GetDataNum(rdbStore: relationalStore.RdbStore) {
     if (rdbStore != undefined) {
       try {
         let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
@@ -636,7 +636,7 @@ export class Store {
     }
   }
 
-  async UpdataOnedata(rdbStore: relationalStore.SinglerdbStore) {
+  async UpdataOnedata(rdbStore: relationalStore.RdbStore) {
     if (rdbStore != undefined) {
       try {
         let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
@@ -646,7 +646,6 @@ export class Store {
           AGE: 30,
           SALARY: 100.5,
           CODES: new Uint8Array([1, 2, 3, 4, 5]),
-          IDENTITY: BigInt('158224000000000971961171'),
         };
         await rdbStore.update(valueBucket, predicates);
       } catch (e) {
@@ -665,7 +664,7 @@ export class Store {
 ```ts
 import { ECStoreManager } from './ECStoreManager'
 
-enum SecretStatus {
+export enum SecretStatus {
   Lock,
   UnLock
 }
@@ -689,7 +688,11 @@ export class SecretKeyObserver {
   }
 
   UpdatalockStatus(code: number) {
-    this.lockStatuas = code;
+    if (this.lockStatuas === SecretStatus.Lock) {
+      this.OnLock();
+    } else {
+      this.lockStatuas = code;
+    }
   }
 
   private lockStatuas: number = SecretStatus.UnLock;
@@ -708,6 +711,7 @@ import { relationalStore } from '@kit.ArkData';
 import { Mover } from './Mover'
 import { BusinessError } from '@kit.BasicServicesKit';
 import { StoreInfo, Store } from './Store'
+import { SecretStatus } from './SecretKeyObserver'
 
 let store = new Store();
 
@@ -722,8 +726,14 @@ export class ECStoreManager {
   }
 
   async GetCurrentStore(screanStatus: number): Promise<relationalStore.RdbStore> {
-    if (screanStatus) {
-      this.eStore = await store.GetECStore(this.eInfo);
+    if (screanStatus === SecretStatus.UnLock) {
+      try {
+        this.eStore = await store.GetECStore(this.eInfo);
+        console.info("Succeeded in getting Store ：estore");
+      } catch (e) {
+        let error = e as BusinessError;
+        console.error(`Failed to GetECStore.code is ${error.code},message is ${error.message}`);
+      }
       //解锁状态 获取e类库
       if (this.needMove) {
         if (this.eStore != undefined && this.cStore != undefined) {
@@ -736,7 +746,13 @@ export class ECStoreManager {
     } else {
       //加锁状态 获取c类库
       this.needMove = true;
-      this.cStore = await store.GetECStore(this.cInfo);
+      try {
+        this.cStore = await store.GetECStore(this.cInfo);
+        console.info("Succeeded in getting Store ：cstore");
+      } catch (e) {
+        let error = e as BusinessError;
+        console.error(`Failed to GetECStore.code is ${error.code},message is ${error.message}`);
+      }
       return this.cStore;
     }
   }
@@ -775,9 +791,9 @@ import { relationalStore } from '@kit.ArkData';
 import { ECStoreManager } from './ECStoreManager'
 import { StoreInfo } from './Store'
 import { Mover } from './Mover'
-import { SecretKeyObserver } from './secretKeyObserver'
-import CommonEventManager from '@ohos.commonEventManager';
-import Base from '@ohos.base';
+import { SecretKeyObserver } from './SecretKeyObserver'
+import { commonEventManager } from '@kit.BasicServicesKit';
+import Base from '@kit.BasicServicesKit';
 
 
 export let storeManager = new ECStoreManager();
@@ -786,14 +802,14 @@ export let secretKeyObserver = new SecretKeyObserver();
 
 let mover = new Mover();
 
-let subscriber: CommonEventManager.CommonEventSubscriber;
+let subscriber: commonEventManager.CommonEventSubscriber;
 
-export function createCB(err: Base.BusinessError, commonEventSubscriber: CommonEventManager.CommonEventSubscriber) {
+export function createCB(err: Base.BusinessError, commonEventSubscriber: commonEventManager.CommonEventSubscriber) {
   if (!err) {
     console.info('ECDB_Encry createSubscriber');
     subscriber = commonEventSubscriber;
     try {
-      CommonEventManager.subscribe(subscriber, (err: Base.BusinessError, data: CommonEventManager.CommonEventData) => {
+      commonEventManager.subscribe(subscriber, (err: Base.BusinessError, data: commonEventManager.CommonEventData) => {
         if (err) {
           console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
         } else {
@@ -818,9 +834,9 @@ export default class EntryAbility extends UIAbility {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
     let cContext = this.context;
     cInfo = {
-      context: cContext;
+      context: cContext,
       config: {
-        name: 'cstore.db', 
+        name: 'cstore.db',
         securityLevel: relationalStore.SecurityLevel.S1,
       },
       storeId: "cstore.db"
@@ -828,9 +844,9 @@ export default class EntryAbility extends UIAbility {
     let eContext = this.context.createModuleContext("entry");
     eContext.area = contextConstant.AreaMode.EL5;
     cInfo = {
-      context: cContext;
+      context: cContext,
       config: {
-        name: 'estore.db', 
+        name: 'estore.db',
         securityLevel: relationalStore.SecurityLevel.S1,
       },
       storeId: "estore.db",
@@ -838,7 +854,7 @@ export default class EntryAbility extends UIAbility {
     //监听COMMON_EVENT_SCREEN_LOCK_FILE_ACCESS_STATE_CHANGED事件 code == 1解锁状态，code==0加锁状态
     console.info(`ECDB_Encry store area : estore:${eContext.area},cstore${cContext.area}`)
     try {
-      CommonEventManager.createSubscriber({
+      commonEventManager.createSubscriber({
         events: ['COMMON_EVENT_SCREEN_LOCK_FILE_ACCESS_STATE_CHANGED']
       }, createCB);
       console.info(`ECDB_Encry success subscribe`);
@@ -848,7 +864,7 @@ export default class EntryAbility extends UIAbility {
     }
     storeManager.Config(cInfo, eInfo);
     storeManager.ConfigDataMover(mover);
-    secretKeyObserve.Initialize(storeManager);
+    secretKeyObserver.Initialize(storeManager);
   }
 
   onDestroy(): void {
