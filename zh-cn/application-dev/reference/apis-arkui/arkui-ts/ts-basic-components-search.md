@@ -579,7 +579,7 @@ onCut(callback: (value: string) => void)
 
 ### onPaste
 
-onPaste(callback: (value: string, event: PasteEvent]) => void)
+onPaste(callback: (value: string, event: PasteEvent) => void)
 
 长按搜索框弹出剪切板之后，点击剪切板的粘贴按钮触发该回调。
 
