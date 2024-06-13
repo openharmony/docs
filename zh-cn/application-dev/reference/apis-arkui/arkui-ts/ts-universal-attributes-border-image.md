@@ -22,7 +22,7 @@ borderImage(value: BorderImageOption)
 
 | 参数名      | 类型                                            | 必填 | 描述                             |
 | ----------- | ----------------------------------------------- | ---- | -------------------------------- |
-| borderImage | [BorderImageOption](#borderimageoption对象说明) | 是   | 图片边框或者渐变色边框设置接口。 |
+| value | [BorderImageOption](#borderimageoption对象说明) | 是   | 图片边框或者渐变色边框设置接口。 |
 
 ## BorderImageOption对象说明
 
