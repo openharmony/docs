@@ -12,7 +12,7 @@ foregroundColor(value: ResourceColor | ColoringStrategy)
 
 设置组件的前景色。当组件未设置前景色，默认继承父组件。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
