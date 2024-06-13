@@ -156,6 +156,7 @@
       - [CalendarPicker](arkui-ts/ts-basic-components-calendarpicker.md)
       - [Checkbox](arkui-ts/ts-basic-components-checkbox.md)
       - [CheckboxGroup](arkui-ts/ts-basic-components-checkboxgroup.md)
+      - [Component3D](arkui-ts/ts-basic-components-component3d.md)
       - [ContainerSpan](arkui-ts/ts-basic-components-containerspan.md)
       - [DataPanel](arkui-ts/ts-basic-components-datapanel.md)
       - [DatePicker](arkui-ts/ts-basic-components-datepicker.md)
@@ -200,7 +201,6 @@
       - [XComponent](arkui-ts/ts-basic-components-xcomponent.md)
       - [WithTheme](arkui-ts/ts-container-with-theme.md)
       <!--Del-->
-      - [Component3D (系统接口)](arkui-ts/ts-basic-components-component3d-sys.md)
       - [FormComponent (系统接口)](arkui-ts/ts-basic-components-formcomponent-sys.md)
       - [Image (系统接口)](arkui-ts/ts-basic-components-image-sys.md)
       - [MediaCachedImage (系统接口)](arkui-ts/ts-basic-components-mediacachedimage-sys.md)
@@ -282,6 +282,7 @@
       - [@ohos.arkui.advanced.EditableTitleBar (编辑页面标题栏)](arkui-ts/ohos-arkui-advanced-EditableTitleBar.md)
       - [@ohos.arkui.advanced.ExceptionPrompt (异常提示)](arkui-ts/ohos-arkui-advanced-ExceptionPrompt.md)
       - [@ohos.arkui.advanced.Filter (多条件筛选)](arkui-ts/ohos-arkui-advanced-Filter.md)
+      - [@ohos.arkui.advanced.FormMenu (应用内添加卡片到桌面菜单)](arkui-ts/ohos-arkui-advanced-formmenu.md)
       - [@ohos.arkui.advanced.FullScreenLaunchComponent (全屏启动元服务组件)](arkui-ts/ohos-arkui-advanced-FullScreenLaunchComponent.md)
       - [@ohos.arkui.advanced.GridObjectSortComponent (网格对象的编辑排序)](arkui-ts/ohos-arkui-advanced-GridObjectSortComponent.md)
       - [@ohos.arkui.advanced.ProgressButton (下载按钮)](arkui-ts/ohos-arkui-advanced-ProgressButton.md)
@@ -403,6 +404,7 @@
     - [拖拽事件错误码](errorcode-drag-event.md)
     - [图像AI分析错误码](errorcode-image-analyzer.md)
     - [焦点错误码](errorcode-focus.md)
+    - [系统资源错误码](errorcode-system-resource.md)
   - 图形图像
     - [屏幕错误码](errorcode-display.md)
     - [窗口错误码](errorcode-window.md)

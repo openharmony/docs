@@ -22,6 +22,7 @@
   ```ts
   import { common, EnvironmentCallback, Configuration } from '@kit.AbilityKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   const TAG: string = '[CollaborateAbility]';
   const DOMAIN_NUMBER: number = 0xFF00;
@@ -51,7 +52,13 @@
           hilog.info(DOMAIN_NUMBER, TAG, `onMemoryLevel level: ${level}`);
         }
       }
-      this.callbackId = applicationContext.on('environment', environmentCallback);
+      try {
+        this.callbackId = applicationContext.on('environment', environmentCallback);
+      } catch (err) {
+        let code = (err as BusinessError).code;
+        let message = (err as BusinessError).message;
+        hilog.error(DOMAIN_NUMBER, TAG, `Failed to register applicationContext. Code is ${code}, message is ${message}`);
+      };
     }
 
     // 页面展示

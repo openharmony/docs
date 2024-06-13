@@ -164,24 +164,24 @@
 5. 发布相应的提醒代理。代理发布后，应用即可使用后台代理提醒功能。
    
   ```ts
-  reminderAgentManager.publishReminder(targetReminderAgent).then((res: number) => {
-    console.info('Succeeded in publishing reminder. ');
-    let reminderId: number = res; // 发布的提醒ID
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to publish reminder. Code: ${err.code}, message: ${err.message}`);
-  })
+   reminderAgentManager.publishReminder(targetReminderAgent).then((res: number) => {
+     console.info('Succeeded in publishing reminder. ');
+     let reminderId: number = res; // 发布的提醒ID
+   }).catch((err: BusinessError) => {
+     console.error(`Failed to publish reminder. Code: ${err.code}, message: ${err.message}`);
+   })
   ```
 
 6. 根据需要删除提醒任务。
    
   ```ts
-  let reminderId: number = 1;
-  // reminderId的值从发布提醒代理成功之后的回调中获得
-  reminderAgentManager.cancelReminder(reminderId).then(() => {
-    console.log('Succeeded in canceling reminder.');
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to cancel reminder. Code: ${err.code}, message: ${err.message}`);
-  });
+   let reminderId: number = 1;
+   // reminderId的值从发布提醒代理成功之后的回调中获得
+   reminderAgentManager.cancelReminder(reminderId).then(() => {
+     console.log('Succeeded in canceling reminder.');
+   }).catch((err: BusinessError) => {
+     console.error(`Failed to cancel reminder. Code: ${err.code}, message: ${err.message}`);
+   });
   ```
 
 ## 相关实例

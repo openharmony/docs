@@ -365,7 +365,7 @@ setXComponentSurfaceRotation(rotationOptions: SurfaceRotationOptions): void
 
 | 参数名 | 参数类型                             | 必填 | 描述                              |
 | ------ | ------------------------------------ | ---- | --------------------------------- |
-| rotationOptions   | [SurfaceRotationOptions](#surfacerotationoptions12类型说明) | 否   | 设置XComponent持有Surface在屏幕旋转时是否锁定方向。 |
+| rotationOptions   | [SurfaceRotationOptions](#surfacerotationoptions12类型说明) | 是 | 设置XComponent持有Surface在屏幕旋转时是否锁定方向。 |
 
 > **说明：**
 >
@@ -377,7 +377,7 @@ setXComponentSurfaceRotation(rotationOptions: SurfaceRotationOptions): void
 
 ### getXComponentSurfaceRotation<sup>12+</sup>
 
-getXComponentSurfaceRotation(): Required<SurfaceRotationOptions>
+getXComponentSurfaceRotation(): Required\<SurfaceRotationOptions>
 
 获取XComponent持有Surface在屏幕旋转时是否锁定方向的设置，仅XComponent类型为SURFACE("surface")时有效。
 

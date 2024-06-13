@@ -14,6 +14,14 @@
 
 状态的详细说明请参考[AVPlayerState](../../reference/apis-media-kit/_a_v_player.md#avplayerstate-1)。当播放处于prepared / playing / paused / completed状态时，播放引擎处于工作状态，这需要占用系统较多的运行内存。当客户端暂时不使用播放器时，调用reset()或release()回收内存资源，做好资源利用。
 
+## 开发建议
+
+当前指导仅介绍如何实现媒体资源播放，在应用开发过程中可能会涉及后台播放、播放冲突等情况，请根据实际需要参考以下说明。
+
+- 如果要实现后台播放或熄屏播放，需要接入[AVSession（媒体会话）](../avsession/avsession-access-scene.md)和[申请长时任务](../../task-management/continuous-task.md)，避免播放被系统强制中断。此功能仅提供ArkTS API。
+- 应用在播放过程中，若播放的媒体数据涉及音频，根据系统音频管理策略（参考[多音频并发](../audio/audio-playback-concurrency.md)），可能会被其他应用打断，建议应用通过[OH_AVPlayer_SetPlayerCallback()](../../reference/apis-media-kit/_a_v_player.md#oh_avplayer_setplayercallback)主动监听音频打断事件[AV_INFO_TYPE_INTERRUPT_EVENT](../../reference/apis-media-kit/_a_v_player.md#avplayeroninfotype-1)，根据其内容提示，做出相应的处理，避免出现应用状态与预期效果不一致的问题。
+- 面对设备同时连接多个音频输出设备的情况，应用可以通过[OH_AVPlayer_SetPlayerCallback()](../../reference/apis-media-kit/_a_v_player.md#oh_avplayer_setplayercallback)主动监听音频输出设备改变事件[AV_INFO_TYPE_AUDIO_OUTPUT_DEVICE_CHANGE](../../reference/apis-media-kit/_a_v_player.md#avplayeroninfotype-1)，从而做出相应处理。
+
 ## 开发步骤及注意事项
 在 CMake 脚本中链接动态库
 ```
@@ -33,13 +41,19 @@ target_link_libraries(sample PUBLIC libavplayer.so)
 
 3. 设置资源：调用OH_AVPlayer_SetURLSource(),设置属性url，AVPlayer进入initialized状态。
 
-4. 准备播放：调用OH_AVPlayer_Prepare()，AVPlayer进入prepared状态，此时可以获取时长，设置音量。
+4. （可选）设置音频流类型：调用OH_AVPlayer_SetAudioRendererInfo()，设置AVPlayer音频流类型。
 
-5. 音频播控：播放OH_AVPlayer_Play()，暂停OH_AVPlayer_Pause()，跳转OH_AVPlayer_Seek()，停止OH_AVPlayer_Stop() 等操作。
+5. （可选）设置音频打断模式：调用OH_AVPlayer_SetAudioInterruptMode()，设置AVPlayer音频流打断模式。
 
-6. （可选）更换资源：调用OH_AVPlayer_Reset()重置资源，AVPlayer重新进入idle状态，允许更换资源url。
+6. 准备播放：调用OH_AVPlayer_Prepare()，AVPlayer进入prepared状态，此时可以获取时长，设置音量。
 
-7. 退出播放：调用OH_AVPlayer_Release()销毁实例，AVPlayer进入released状态，退出播放。
+7. （可选）设置音频音效模式：调用OH_AVPlayer_SetAudioEffectMode()，设置AVPlayer音频音效模式。
+
+8. 音频播控：播放OH_AVPlayer_Play()，暂停OH_AVPlayer_Pause()，跳转OH_AVPlayer_Seek()，停止OH_AVPlayer_Stop() 等操作。
+
+9. （可选）更换资源：调用OH_AVPlayer_Reset()重置资源，AVPlayer重新进入idle状态，允许更换资源url。
+
+10. 退出播放：调用OH_AVPlayer_Release()销毁实例，AVPlayer进入released状态，退出播放。
 
 ## 完整示例
 
@@ -70,7 +84,11 @@ void OnInfo(OH_AVPlayer *player, AVPlayerOnInfoType type, int32_t extra)
                     // 处理异常
                     }
                     break;
-                case AV_PREPARED:  
+                case AV_PREPARED:                
+//                    ret = OH_AVPlayer_SetAudioEffectMode(player, EFFECT_NONE); // 设置音频音效模式
+//                    if (ret != AV_ERR_OK) {
+//                    //处理异常    
+//                    }
                     ret = OH_AVPlayer_Play(player); // 调用播放接口开始播放
                     if (ret != AV_ERR_OK) {
                     // 处理异常
@@ -176,6 +194,18 @@ static napi_value Play(napi_env env, napi_callback_info info)
     ret = OH_AVPlayer_SetURLSource(player, url); // 设置url
     if (ret != AV_ERR_OK) {
     // 处理异常
+    }
+    // 设置音频流类型
+    OH_AudioStream_Usage streamUsage = OH_AudioStream_Usage::AUDIOSTREAM_USAGE_UNKNOWN;
+    ret = OH_AVPlayer_SetAudioRendererInfo(player, streamUsage);
+    if (ret != AV_ERR_OK) {
+    //处理异常    
+    }
+    // 设置音频流打断模式
+    OH_AudioInterrupt_Mode interruptMode = OH_AudioInterrupt_Mode::AUDIOSTREAM_INTERRUPT_MODE_INDEPENDENT;
+    ret = OH_AVPlayer_SetAudioInterruptMode(player, interruptMode);
+    if (ret != AV_ERR_OK) {
+    //处理异常    
     }
     napi_value value;
     napi_create_int32(env, 0, &value);

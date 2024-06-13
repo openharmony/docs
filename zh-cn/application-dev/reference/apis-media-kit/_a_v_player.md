@@ -84,8 +84,12 @@
 | [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_DeselectTrack](#oh_avplayer_deselecttrack) (OH_AVPlayer \*player, int32_t index) | 取消选择当前音频或字幕轨道。 | 
 | [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_GetCurrentTrack](#oh_avplayer_getcurrenttrack) (OH_AVPlayer \*player, int32_t trackType, int32_t \*index) | 获取当前有效的轨道索引。 | 
 | [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_SetMediaKeySystemInfoCallback](#oh_avplayer_setmediakeysysteminfocallback) (OH_AVPlayer \*player, Player_MediaKeySystemInfoCallback callback) | 设置播放器媒体密钥系统信息回调的方法。 | 
-| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_GetMediaKeySystemInfo](#oh_avplayer_getmediakeysysteminfo) (OH_AVPlayer \*player, DRM_MediaKeySystemInfo \*mediaKeySystemInfo) | 获取媒体密钥系统信息以创建媒体密钥会话。 | 
-| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_SetDecryptionConfig](#oh_avplayer_setdecryptionconfig) (OH_AVPlayer \*player, MediaKeySession \*mediaKeySession, bool secureVideoPath) | 设置解密信息。 | 
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_GetMediaKeySystemInfo](#oh_avplayer_getmediakeysysteminfo) (OH_AVPlayer \*player, [DRM_MediaKeySystemInfo](../apis-drm-kit/_d_r_m___media_key_system_info.md) \*mediaKeySystemInfo) | 获取媒体密钥系统信息以创建媒体密钥会话。 | 
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_SetDecryptionConfig](#oh_avplayer_setdecryptionconfig) (OH_AVPlayer \*player, [MediaKeySession](../apis-drm-kit/_drm.md#mediakeysession) \*mediaKeySession, bool secureVideoPath) | 设置解密信息。 | 
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_SetAudioRendererInfo](#oh_avplayer_setaudiorendererinfo) (OH_AVPlayer \*player, [OH_AudioStream_Usage](../apis-audio-kit/_o_h_audio.md#oh_audiostream_usage) streamUsage) | 设置player音频流类型。  | 
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_SetAudioInterruptMode](#oh_avplayer_setaudiointerruptmode) (OH_AVPlayer \*player, [OH_AudioInterrupt_Mode](../apis-audio-kit/_o_h_audio.md#oh_audiointerrupt_mode) interruptMode) | 设置player音频流的打断模式。  | 
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_SetAudioEffectMode](#oh_avplayer_setaudioeffectmode) (OH_AVPlayer \*player, [OH_AudioStream_AudioEffectMode](../apis-audio-kit/_o_h_audio.md#oh_audiostream_audioeffectmode) effectMode) | 设置player音频流的音效模式。  | 
+
 
 
 ### 变量
@@ -338,11 +342,9 @@ enum AVPlayerState
 ### OH_AVPlayer_Create()
 
 ```
-OH_AVPlayer* OH_AVPlayer_Create (void )
+OH_AVPlayer* OH_AVPlayer_Create (void)
 ```
-
 **描述**
-
 创建播放器。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
@@ -362,11 +364,9 @@ OH_AVPlayer* OH_AVPlayer_Create (void )
 ### OH_AVPlayer_DeselectTrack()
 
 ```
-OH_AVErrCode OH_AVPlayer_DeselectTrack (OH_AVPlayer * player, int32_t index )
+OH_AVErrCode OH_AVPlayer_DeselectTrack (OH_AVPlayer *player, int32_t index)
 ```
-
 **描述**
-
 取消选择当前音频或字幕轨道。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
@@ -378,7 +378,7 @@ OH_AVErrCode OH_AVPlayer_DeselectTrack (OH_AVPlayer * player, int32_t index )
 | 名称 | 描述 | 
 | -------- | -------- |
 | player | 指向OH_AVPlayer实例的指针 | 
-| index | 索引 | 
+| index | 索引  | 
 
 **返回：**
 
@@ -392,11 +392,9 @@ AV_ERR_INVALID_VAL：输入player为空指针、player DeselectTrack执行失败
 ### OH_AVPlayer_GetCurrentTime()
 
 ```
-OH_AVErrCode OH_AVPlayer_GetCurrentTime (OH_AVPlayer * player, int32_t * currentTime )
+OH_AVErrCode OH_AVPlayer_GetCurrentTime (OH_AVPlayer *player, int32_t *currentTime)
 ```
-
 **描述**
-
 获取播放位置，精确到毫秒。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
@@ -422,11 +420,9 @@ AV_ERR_INVALID_VAL：输入player为空指针、player GetCurrentTime执行失�
 ### OH_AVPlayer_GetCurrentTrack()
 
 ```
-OH_AVErrCode OH_AVPlayer_GetCurrentTrack (OH_AVPlayer * player, int32_t trackType, int32_t * index )
+OH_AVErrCode OH_AVPlayer_GetCurrentTrack (OH_AVPlayer *player, int32_t trackType, int32_t *index)
 ```
-
 **描述**
-
 获取当前有效的轨道索引。
 
 请将其设置为准备/正在播放/暂停/完成状态。
@@ -455,11 +451,9 @@ AV_ERR_INVALID_VAL：输入player为空指针、player GetCurrentTrack执行失�
 ### OH_AVPlayer_GetDuration()
 
 ```
-OH_AVErrCode OH_AVPlayer_GetDuration (OH_AVPlayer * player, int32_t * duration )
+OH_AVErrCode OH_AVPlayer_GetDuration (OH_AVPlayer *player, int32_t *duration)
 ```
-
 **描述**
-
 获取媒体文件的总时长，精确到毫秒。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
@@ -485,11 +479,9 @@ AV_ERR_INVALID_VAL：输入player为空指针、player GetDuration执行失败�
 ### OH_AVPlayer_GetMediaKeySystemInfo()
 
 ```
-OH_AVErrCode OH_AVPlayer_GetMediaKeySystemInfo (OH_AVPlayer * player, DRM_MediaKeySystemInfo * mediaKeySystemInfo )
+OH_AVErrCode OH_AVPlayer_GetMediaKeySystemInfo (OH_AVPlayer *player, DRM_MediaKeySystemInfo *mediaKeySystemInfo)
 ```
-
 **描述**
-
 获取媒体密钥系统信息以创建媒体密钥会话。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
@@ -514,11 +506,9 @@ AV_ERR_INVALID_VAL：输入player为空指针、内存不足。
 ### OH_AVPlayer_GetPlaybackSpeed()
 
 ```
-OH_AVErrCode OH_AVPlayer_GetPlaybackSpeed (OH_AVPlayer * player, AVPlaybackSpeed * speed )
+OH_AVErrCode OH_AVPlayer_GetPlaybackSpeed (OH_AVPlayer *player, AVPlaybackSpeed *speed)
 ```
-
 **描述**
-
 获取当前播放器播放速率。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
@@ -544,11 +534,9 @@ AV_ERR_INVALID_VAL：输入player为空指针、player GetPlaybackSpeed执行失
 ### OH_AVPlayer_GetState()
 
 ```
-OH_AVErrCode OH_AVPlayer_GetState (OH_AVPlayer * player, AVPlayerState * state )
+OH_AVErrCode OH_AVPlayer_GetState (OH_AVPlayer *player, AVPlayerState *state)
 ```
-
 **描述**
-
 获取当前播放状态。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
@@ -574,11 +562,9 @@ AV_ERR_INVALID_VAL：输入player为空指针、player GetState执行失败。
 ### OH_AVPlayer_GetVideoHeight()
 
 ```
-OH_AVErrCode OH_AVPlayer_GetVideoHeight (OH_AVPlayer * player, int32_t * videoHeight )
+OH_AVErrCode OH_AVPlayer_GetVideoHeight (OH_AVPlayer *player, int32_t *videoHeight)
 ```
-
 **描述**
-
 获取视频高度。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
@@ -604,11 +590,9 @@ AV_ERR_INVALID_VAL：输入player为空指针。
 ### OH_AVPlayer_GetVideoWidth()
 
 ```
-OH_AVErrCode OH_AVPlayer_GetVideoWidth (OH_AVPlayer * player, int32_t * videoWidth )
+OH_AVErrCode OH_AVPlayer_GetVideoWidth (OH_AVPlayer *player, int32_t *videoWidth)
 ```
-
 **描述**
-
 获取视频宽度。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
@@ -634,11 +618,9 @@ AV_ERR_INVALID_VAL：输入player为空指针。
 ### OH_AVPlayer_IsLooping()
 
 ```
-bool OH_AVPlayer_IsLooping (OH_AVPlayer * player)
+bool OH_AVPlayer_IsLooping (OH_AVPlayer *player)
 ```
-
 **描述**
-
 判断是否循环播放。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
@@ -659,11 +641,9 @@ bool OH_AVPlayer_IsLooping (OH_AVPlayer * player)
 ### OH_AVPlayer_IsPlaying()
 
 ```
-bool OH_AVPlayer_IsPlaying (OH_AVPlayer * player)
+bool OH_AVPlayer_IsPlaying (OH_AVPlayer *player)
 ```
-
 **描述**
-
 判断播放器是否在播放。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
@@ -684,11 +664,9 @@ bool OH_AVPlayer_IsPlaying (OH_AVPlayer * player)
 ### OH_AVPlayer_Pause()
 
 ```
-OH_AVErrCode OH_AVPlayer_Pause (OH_AVPlayer * player)
+OH_AVErrCode OH_AVPlayer_Pause (OH_AVPlayer *player)
 ```
-
 **描述**
-
 暂停播放。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
@@ -713,11 +691,9 @@ AV_ERR_INVALID_VAL：输入player为空指针、player Pause执行失败。
 ### OH_AVPlayer_Play()
 
 ```
-OH_AVErrCode OH_AVPlayer_Play (OH_AVPlayer * player)
+OH_AVErrCode OH_AVPlayer_Play (OH_AVPlayer *player)
 ```
-
 **描述**
-
 开始播放。
 
 此函数必须在**Prepare**之后调用。如果播放器状态为&lt;Prepared&gt;。调用此函数开始播放。
@@ -744,11 +720,9 @@ AV_ERR_INVALID_VAL：输入player为空指针、player Play执行失败。
 ### OH_AVPlayer_Prepare()
 
 ```
-OH_AVErrCode OH_AVPlayer_Prepare (OH_AVPlayer * player)
+OH_AVErrCode OH_AVPlayer_Prepare (OH_AVPlayer *player)
 ```
-
 **描述**
-
 准备播放环境，异步缓存媒体数据。
 
 此函数必须在**SetSource**之后调用。
@@ -775,11 +749,9 @@ AV_ERR_INVALID_VAL：输入player为空指针、player Prepare执行失败。
 ### OH_AVPlayer_Release()
 
 ```
-OH_AVErrCode OH_AVPlayer_Release (OH_AVPlayer * player)
+OH_AVErrCode OH_AVPlayer_Release (OH_AVPlayer *player)
 ```
-
 **描述**
-
 异步释放播放器资源。
 
 异步释放保证性能，但无法保证是否释放了播放画面的surfacebuffer。调用者需要保证播放画面窗口的生命周期安全。
@@ -806,11 +778,9 @@ AV_ERR_INVALID_VAL：输入player为空指针、player Release执行失败。
 ### OH_AVPlayer_ReleaseSync()
 
 ```
-OH_AVErrCode OH_AVPlayer_ReleaseSync (OH_AVPlayer * player)
+OH_AVErrCode OH_AVPlayer_ReleaseSync (OH_AVPlayer *player)
 ```
-
 **描述**
-
 同步释放播放器资源。
 
 同步过程保证了播放画面的显示缓存释放，但这个过程花费时间较长，要求调用者自己设计异步机制。
@@ -836,11 +806,9 @@ AV_ERR_INVALID_VAL：输入player为空指针、player ReleaseSync执行失败�
 ### OH_AVPlayer_Reset()
 
 ```
-OH_AVErrCode OH_AVPlayer_Reset (OH_AVPlayer * player)
+OH_AVErrCode OH_AVPlayer_Reset (OH_AVPlayer *player)
 ```
-
 **描述**
-
 将播放器恢复到初始状态。
 
 函数调用完成后，调用**SetSource**添加播放源。调用**Prepare**后，调用**Play**重新开始播放。
@@ -867,11 +835,9 @@ AV_ERR_INVALID_VAL：输入player为空指针、player Reset执行失败。
 ### OH_AVPlayer_Seek()
 
 ```
-OH_AVErrCode OH_AVPlayer_Seek (OH_AVPlayer * player, int32_t mSeconds, AVPlayerSeekMode mode )
+OH_AVErrCode OH_AVPlayer_Seek (OH_AVPlayer *player, int32_t mSeconds, AVPlayerSeekMode mode)
 ```
-
 **描述**
-
 改变播放位置。
 
 此函数可以在播放或暂停时使用。
@@ -898,11 +864,9 @@ AV_ERR_INVALID_VAL：输入player为空指针、player Seek执行失败。
 ### OH_AVPlayer_SelectBitRate()
 
 ```
-OH_AVErrCode OH_AVPlayer_SelectBitRate (OH_AVPlayer * player, uint32_t bitRate )
+OH_AVErrCode OH_AVPlayer_SelectBitRate (OH_AVPlayer *player, uint32_t bitRate)
 ```
-
 **描述**
-
 设置hls播放器使用的码率。
 
 播放比特率，以比特/秒为单位，以比特/秒为单位。 仅对HLS协议网络流有效。默认情况下， 播放器会根据网络连接情况选择合适的码率和速度。 通过INFO_TYPE_BITRATE_COLLECT上报有效码率链表 设置并选择指定的码率，选择小于和最接近的码率 到指定的码率播放。准备好后，读取它以查询当前选择的比特率。
@@ -932,11 +896,9 @@ AV_ERR_INVALID_VAL：输入player为空指针、player SelectBitRate执行失败
 ### OH_AVPlayer_SelectTrack()
 
 ```
-OH_AVErrCode OH_AVPlayer_SelectTrack (OH_AVPlayer * player, int32_t index )
+OH_AVErrCode OH_AVPlayer_SelectTrack (OH_AVPlayer *player, int32_t index)
 ```
-
 **描述**
-
 选择音频或字幕轨道。
 
 默认播放第一个带数据的音频流，不播放字幕轨迹。 设置生效后，原曲目将失效。请设置字幕 处于准备/播放/暂停/完成状态，并将音轨设置为准备状态。
@@ -960,14 +922,97 @@ AV_ERR_OK：成功选择。
 
 AV_ERR_INVALID_VAL：输入player为空指针、player SelectTrack执行失败。
 
+
+### OH_AVPlayer_SetAudioEffectMode()
+
+```
+OH_AVErrCode OH_AVPlayer_SetAudioEffectMode (OH_AVPlayer *player, OH_AudioStream_AudioEffectMode effectMode)
+```
+**描述**
+设置player音频流的音效模式。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| player | 指向OH_AVPlayer实例的指针。  | 
+| interruptMode | player音频流使用的音效模式[OH_AudioStream_AudioEffectMode](../apis-audio-kit/_o_h_audio.md#oh_audiostream_audioeffectmode)。  | 
+
+**返回：**
+
+函数结果代码[OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)：
+
+AV_ERR_OK：成功设置。
+
+AV_ERR_INVALID_VAL：输入player为空指针或者effectMode值无效。
+
+
+### OH_AVPlayer_SetAudioInterruptMode()
+
+```
+OH_AVErrCode OH_AVPlayer_SetAudioInterruptMode (OH_AVPlayer *player, OH_AudioInterrupt_Mode interruptMode)
+```
+**描述**
+设置player音频流的打断模式。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| player | 指向OH_AVPlayer实例的指针。  | 
+| interruptMode | player音频流使用的打断模式[OH_AudioStream_Usage](../apis-audio-kit/_o_h_audio.md#oh_audiostream_usage)。  | 
+
+**返回：**
+
+函数结果代码[OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)：
+
+AV_ERR_OK：成功设置。
+
+AV_ERR_INVALID_VAL：输入player为空指针或者interruptMode值无效。
+
+
+### OH_AVPlayer_SetAudioRendererInfo()
+
+```
+OH_AVErrCode OH_AVPlayer_SetAudioRendererInfo (OH_AVPlayer *player, OH_AudioStream_Usage streamUsage)
+```
+**描述**
+设置player音频流类型。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| player | 指向OH_AVPlayer实例的指针。  | 
+| streamUsage | player音频流设置的类型[OH_AudioStream_Usage](../apis-audio-kit/_o_h_audio.md#oh_audiostream_usage)。  | 
+
+**返回：**
+
+函数结果代码[OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)：
+
+AV_ERR_OK：成功设置。
+
+AV_ERR_INVALID_VAL：输入player为空指针或者streamUsage值无效。
+
+
 ### OH_AVPlayer_SetDecryptionConfig()
 
 ```
-OH_AVErrCode OH_AVPlayer_SetDecryptionConfig (OH_AVPlayer * player, MediaKeySession * mediaKeySession, bool secureVideoPath )
+OH_AVErrCode OH_AVPlayer_SetDecryptionConfig (OH_AVPlayer *player, MediaKeySession *mediaKeySession, bool secureVideoPath)
 ```
-
 **描述**
-
 设置解密信息。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
@@ -994,11 +1039,9 @@ AV_ERR_INVALID_VAL：输入player为空指针、player SetDecryptionConfig执行
 ### OH_AVPlayer_SetFDSource()
 
 ```
-OH_AVErrCode OH_AVPlayer_SetFDSource (OH_AVPlayer * player, int32_t fd, int64_t offset, int64_t size )
+OH_AVErrCode OH_AVPlayer_SetFDSource (OH_AVPlayer *player, int32_t fd, int64_t offset, int64_t size)
 ```
-
 **描述**
-
 设置播放器的播放媒体文件描述符来源。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
@@ -1026,11 +1069,9 @@ AV_ERR_INVALID_VAL：输入player为空指针、player SetFdSource执行失败�
 ### OH_AVPlayer_SetLooping()
 
 ```
-OH_AVErrCode OH_AVPlayer_SetLooping (OH_AVPlayer * player, bool loop )
+OH_AVErrCode OH_AVPlayer_SetLooping (OH_AVPlayer *player, bool loop)
 ```
-
 **描述**
-
 设置循环播放。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
@@ -1056,11 +1097,9 @@ AV_ERR_INVALID_VAL：输入player为空指针、player SetLooping执行失败。
 ### OH_AVPlayer_SetMediaKeySystemInfoCallback()
 
 ```
-OH_AVErrCode OH_AVPlayer_SetMediaKeySystemInfoCallback (OH_AVPlayer * player, Player_MediaKeySystemInfoCallback callback )
+OH_AVErrCode OH_AVPlayer_SetMediaKeySystemInfoCallback (OH_AVPlayer *player, Player_MediaKeySystemInfoCallback callback)
 ```
-
 **描述**
-
 设置播放器媒体密钥系统信息回调的方法。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
@@ -1086,11 +1125,9 @@ AV_ERR_INVALID_VAL：输入player为空指针、callback为空指针、player Se
 ### OH_AVPlayer_SetPlaybackSpeed()
 
 ```
-OH_AVErrCode OH_AVPlayer_SetPlaybackSpeed (OH_AVPlayer * player, AVPlaybackSpeed speed )
+OH_AVErrCode OH_AVPlayer_SetPlaybackSpeed (OH_AVPlayer *player, AVPlaybackSpeed speed)
 ```
-
 **描述**
-
 设置播放器播放速率。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
@@ -1114,11 +1151,9 @@ AV_ERR_INVALID_VAL：输入player为空指针。
 ### OH_AVPlayer_SetPlayerCallback()
 
 ```
-OH_AVErrCode OH_AVPlayer_SetPlayerCallback (OH_AVPlayer * player, AVPlayerCallback callback )
+OH_AVErrCode OH_AVPlayer_SetPlayerCallback (OH_AVPlayer *player, AVPlayerCallback callback)
 ```
-
 **描述**
-
 设置播放器回调方法。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
@@ -1144,11 +1179,9 @@ AV_ERR_INVALID_VAL：输入player为空指针、callback.onInfo或onError为空�
 ### OH_AVPlayer_SetURLSource()
 
 ```
-OH_AVErrCode OH_AVPlayer_SetURLSource (OH_AVPlayer * player, const char * url )
+OH_AVErrCode OH_AVPlayer_SetURLSource (OH_AVPlayer *player, const char *url)
 ```
-
 **描述**
-
 设置播放器的播放源。对应的源可以是http url。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
@@ -1174,11 +1207,9 @@ AV_ERR_INVALID_VAL：输入player为空指针、url为空、player SetUrlSource�
 ### OH_AVPlayer_SetVideoSurface()
 
 ```
-OH_AVErrCode OH_AVPlayer_SetVideoSurface (OH_AVPlayer * player, OHNativeWindow * window )
+OH_AVErrCode OH_AVPlayer_SetVideoSurface (OH_AVPlayer *player, OHNativeWindow *window)
 ```
-
 **描述**
-
 设置播放画面窗口。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
@@ -1202,11 +1233,9 @@ AV_ERR_INVALID_VAL：输入player为空指针、输入window为空指针、playe
 ### OH_AVPlayer_SetVolume()
 
 ```
-OH_AVErrCode OH_AVPlayer_SetVolume (OH_AVPlayer * player, float leftVolume, float rightVolume )
+OH_AVErrCode OH_AVPlayer_SetVolume (OH_AVPlayer *player, float leftVolume, float rightVolume)
 ```
-
 **描述**
-
 设置播放器的音量。
 
 可以在播放或暂停的过程中使用。&lt;0&gt;表示无声音，&lt;1&gt;为原始值。
@@ -1235,11 +1264,9 @@ AV_ERR_INVALID_VAL：输入player为空指针、player SetVolume执行失败。
 ### OH_AVPlayer_Stop()
 
 ```
-OH_AVErrCode OH_AVPlayer_Stop (OH_AVPlayer * player)
+OH_AVErrCode OH_AVPlayer_Stop (OH_AVPlayer *player)
 ```
-
 **描述**
-
 停止播放。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer

@@ -51,12 +51,12 @@ ChipGroup({
 
 ChipGroupItemOptions定义每个chip的非共通属性。
 
-| 名称       | 类型                           | 必填 | 描述                                 |
-| ---------- | ----------------------------- | ---- | -----------------------------------  |
-| prefixIcon | [IconOptions](#iconoptions)   | 否   | 前缀图标属性。                        |
-| label      | [LabelOptions](#labeloptions) | 是   | 文本属性。                            |
-| suffixIcon | [IconOptions](#iconoptions)   | 否   | 后缀图标属性。                        |
-| allowClose | boolean                       | 否   | 删除图标是否显示。<br/>默认值：true。   |
+| 名称         | 类型                           | 必填 | 描述                                |
+| ----------   | ----------------------------- | ---- | ----------------------------------- |
+| prefixIcon   | [IconOptions](#iconoptions)   | 否   | 前缀Image图标属性。                   |
+| label        | [LabelOptions](#labeloptions) | 是   | 文本属性。                            |
+| suffixIcon   | [IconOptions](#iconoptions) | 否   | 后缀Image图标属性。                   |
+| allowClose   | boolean                       | 否   | 删除图标是否显示。<br/>默认值：false。  |
 
 >**说明：**
 >

@@ -554,7 +554,7 @@ privacySensitive(supported: boolean)
 
 ### lineBreakStrategy<sup>12+</sup>
 
-lineBreakStrategy(value: LineBreakStrategy)
+lineBreakStrategy(strategy: LineBreakStrategy)
 
 设置折行规则。该属性在wordBreak不等于breakAll的时候生效，不支持连词符。
 
@@ -564,9 +564,9 @@ lineBreakStrategy(value: LineBreakStrategy)
 
 **参数：** 
 
-| 参数名 | 类型                                          | 必填 | 说明                                          |
-| ------ | --------------------------------------------- | ---- | --------------------------------------------- |
-| value  | [LineBreakStrategy](ts-appendix-enums.md#linebreakstrategy12) | 否   | 文本的折行规则。 <br />默认值：LineBreakStrategy.GREEDY |
+| 参数名   | 类型                                                         | 必填 | 说明                                                    |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------- |
+| strategy | [LineBreakStrategy](ts-appendix-enums.md#linebreakstrategy12) | 是   | 文本的折行规则。 <br />默认值：LineBreakStrategy.GREEDY |
 
 ## TextDataDetectorConfig<sup>11+</sup>对象说明
 

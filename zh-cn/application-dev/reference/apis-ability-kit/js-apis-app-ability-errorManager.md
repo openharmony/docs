@@ -391,4 +391,4 @@ type UnhandledRejectionObserver = (reason: Error | any, promise: Promise\<any>) 
 | 参数名    | 类型            | 必填 | 说明 |
 |--------|---------------|---| -------- |
 | reason | Error \| any  | 是 | 通常是`Error`类型，表示被拒绝的理由。 |
-| promise | Promise\<any> | 否 | 被拒绝的promise。 |
+| promise | Promise\<any> | 是 | 被拒绝的promise。 |

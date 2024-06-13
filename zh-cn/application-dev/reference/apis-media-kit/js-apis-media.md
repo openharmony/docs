@@ -411,9 +411,9 @@ let avScreenCaptureRecorder: media.AVScreenCaptureRecorder;
 media.createAVScreenCaptureRecorder().then((captureRecorder: media.AVScreenCaptureRecorder) => {
   if (captureRecorder != null) {
     avScreenCaptureRecorder = captureRecorder;
-    console.info('createAVScreenCaptureRecorder success');
+    console.info('Succeeded in createAVScreenCaptureRecorder');
   } else {
-    console.error('createAVScreenCaptureRecorder fail');
+    console.error('Failed to createAVScreenCaptureRecorder');
   }
 }).catch((error: BusinessError) => {
   console.error(`createAVScreenCaptureRecorder catchCallback, error message:${error.message}`);
@@ -1457,8 +1457,6 @@ off(type: 'speedDone'): void
 
 取消监听setSpeed生效的事件。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
-
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
 **参数：**
@@ -1527,8 +1525,6 @@ off(type: 'bitrateDone'): void
 
 取消监听setBitrate生效的事件。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
-
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
 **参数：**
@@ -1573,8 +1569,6 @@ avPlayer.on('availableBitrates', (bitrates: Array<number>) => {
 off(type: 'availableBitrates'): void
 
 取消监听HLS协议流可用的比特率列表，调用[prepare](#prepare9)后，上报此事件。
-
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -1699,8 +1693,6 @@ off(type: 'volumeChange'): void
 
 取消监听setVolume生效的事件。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
-
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
 **参数：**
@@ -1745,8 +1737,6 @@ avPlayer.on('endOfStream', () => {
 off(type: 'endOfStream'): void
 
 取消监听资源播放至结尾的事件。
-
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -1843,8 +1833,6 @@ off(type: 'durationUpdate'): void
 
 取消监听资源播放资源的时长。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
-
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
 **参数：**
@@ -1889,8 +1877,6 @@ avPlayer.on('bufferingUpdate', (infoType: media.BufferingInfoType, value: number
 off(type: 'bufferingUpdate'): void
 
 取消监听音视频缓存更新事件。
-
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -1937,8 +1923,6 @@ off(type: 'startRenderFrame'): void
 
 取消监听视频播放开始首帧渲染的更新事件。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
-
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
 **参数：**
@@ -1983,8 +1967,6 @@ avPlayer.on('videoSizeChange', (width: number, height: number) => {
 off(type: 'videoSizeChange'): void
 
 取消监听视频播放宽高变化事件。
-
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -2033,8 +2015,6 @@ off(type: 'audioInterrupt'): void
 
 取消监听音频焦点变化事件。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
-
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
 **参数：**
@@ -2049,7 +2029,7 @@ off(type: 'audioInterrupt'): void
 avPlayer.off('audioInterrupt')
 ```
 
-### on('audioOutputDeviceChangeWithInfo') <sup>11+</sup>
+### on('audioOutputDeviceChangeWithInfo')<sup>11+</sup>
 
 on(type: 'audioOutputDeviceChangeWithInfo', callback: Callback\<audio.AudioStreamDeviceChangeInfo>): void
 
@@ -2082,7 +2062,7 @@ avPlayer.on('audioOutputDeviceChangeWithInfo', (data: audio.AudioStreamDeviceCha
 });
 ```
 
-### off('audioOutputDeviceChangeWithInfo') <sup>11+</sup>
+### off('audioOutputDeviceChangeWithInfo')<sup>11+</sup>
 
 off(type: 'audioOutputDeviceChangeWithInfo', callback?: Callback\<audio.AudioStreamDeviceChangeInfo>): void
 
@@ -2175,6 +2155,8 @@ avPlayer.off('audioOutputDeviceChangeWithInfo');
 
 视频播放的倍速枚举，可通过setSpeed方法作为参数传递下去。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
 
 | 名称                 | 值   | 说明                           |
@@ -2186,6 +2168,7 @@ avPlayer.off('audioOutputDeviceChangeWithInfo');
 | SPEED_FORWARD_2_00_X | 4    | 表示视频播放正常播速的2.00倍。 |
 | SPEED_FORWARD_0_50_X<sup>12+</sup> | 5    | 表示视频播放正常播速的0.50倍。 |
 | SPEED_FORWARD_1_50_X<sup>12+</sup> | 6    | 表示视频播放正常播速的1.50倍。 |
+<!--RP1--><!--RP1End-->
 
 ## VideoScaleType<sup>9+</sup>
 
@@ -2789,8 +2772,6 @@ stop(callback: AsyncCallback\<void>): void
 
 纯音频录制时，需要重新调用[prepare()](#prepare9-2)接口才能重新录制。纯视频录制，音视频录制时，需要重新调用[prepare()](#prepare9-2)和[getInputSurface()](#getinputsurface9)接口才能重新录制。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
-
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
 **参数：**
@@ -3284,12 +3265,12 @@ getAVRecorderConfig(callback: AsyncCallback\<AVRecorderConfig>): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let AVRecorderConfig: AVRecorderConfig;
+let avConfig: AVRecorderConfig;
 
 avRecorder.getAVRecorderConfig((err: BusinessError, config: AVRecorderConfig) => {
   if (err == null) {
     console.info('getAVRecorderConfig success');
-    AVRecorderConfig = config;
+    avConfig = config;
   } else {
     console.error('getAVRecorderConfig failed and error is ' + err.message);
   }
@@ -3327,11 +3308,11 @@ getAVRecorderConfig(): Promise\<AVRecorderConfig>;
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let AVRecorderConfig: AVRecorderConfig;
+let avConfig: AVRecorderConfig;
 
 avRecorder.getAVRecorderConfig().then((config: AVRecorderConfig) => {
   console.info('getAVRecorderConfig success');
-  AVRecorderConfig = config;
+  avConfig = config;
 }).catch((err: BusinessError) => {
   console.error('getAVRecorderConfig failed and catch error is ' + err.message);
 });
@@ -3565,7 +3546,7 @@ avRecorder.off('audioCapturerChange');
 | audioSampleRate  | number                                       | 否   | 音频采样率，选择音频录制时必填，支持范围[8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000, 64000, 88200, 96000]。<br> **元服务API：** 从API version 12 开始，该接口支持在元服务中使用。 |
 | fileFormat       | [ContainerFormatType](#containerformattype8) | 是   | 文件的容器格式，必要参数。 <br>**元服务API：** 从API version 12 开始，该接口支持在元服务中使用。|
 | videoBitrate     | number                                       | 否   | 视频编码比特率，选择视频录制时必填，支持范围[10000 - 100000000]。  |
-| videoCodec       | [CodecMimeType](#codecmimetype8)             | 否   | 视频编码格式，选择视频录制时必填。当前支持VIDEO_AVC。<br> **元服务API：** 从API version 12 开始，该接口支持在元服务中使用。|
+| videoCodec       | [CodecMimeType](#codecmimetype8)             | 否   | 视频编码格式，选择视频录制时必填。当前支持VIDEO_AVC。 |
 | videoFrameWidth  | number                                       | 否   | 视频帧的宽，选择视频录制时必填，支持范围[176 - 4096]。         |
 | videoFrameHeight | number                                       | 否   | 视频帧的高，选择视频录制时必填，支持范围[144 - 4096]。         |
 | videoFrameRate   | number                                       | 否   | 视频帧率，选择视频录制时必填，支持范围[1 - 60]。             |
@@ -6222,12 +6203,12 @@ this.fileDescriptor = await this.mgr.getRawFd("xxx.m3u8");
 let fd:string = this.fileDescriptor.fd.toString();
 let offset:string = this.fileDescriptor.offset.toString();
 let length:string = this.fileDescriptor.length.toString();
-let fdUrl:string = "fd://" + "?offset=" + offset + "&size=" + length;
+let fdUrl:string = "fd://" + fd + "?offset=" + offset + "&size=" + length;
 
 let header: Record<string, string> = {"User-Agent" : "User-Agent-Value"};
 let mediaSource : media.MediaSource = media.createMediaSourceWithUrl(fdUrl,  header);
 
-let mimeType = media.AVMimeTypes = media.AVMimeTypes.APPLICATION_M3U8;
+let mimeType : media.AVMimeTypes = media.AVMimeTypes.APPLICATION_M3U8;
 mediaSource.setMimeType(mimeType);
 
 ```
@@ -6244,6 +6225,10 @@ setMimeType(mimeType: AVMimeTypes): void
 
 设置媒体MIME类型，以帮助播放器处理扩展的媒体源。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.Core
+
 **参数：**
 
 | 参数名   | 类型     | 必填 | 说明                 |
@@ -6254,12 +6239,14 @@ setMimeType(mimeType: AVMimeTypes): void
 
 媒体MIME类型，通过[setMimeType](#setmimetype12)设置。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Media.Core
 
 
 | 名称       | 值   | 说明                                                         |
 | ---------- | ---- | ------------------------------------------------------------ |
-| APPLICATION       | application/m3u8    | 表示m3u8本地文件。 |
+| APPLICATION_M3U8       | application/m3u8    | 表示m3u8本地文件。 |
 
 
 ## PlaybackStrategy<sup>12+</sup>
@@ -6326,7 +6313,7 @@ setMimeType(mimeType: AVMimeTypes): void
 
 ## AVScreenCaptureRecorder<sup>12+</sup>
 
-屏幕录制管理类，用于进行屏幕录制。在调用AVScreenCaptureRecorder的方法前，需要先通过createAVScreenCaptureRecorder()创建一个AVScreenCaptureRecorder实例。
+屏幕录制管理类，用于进行屏幕录制。在调用AVScreenCaptureRecorder的方法前，需要先通过[createAVScreenCaptureRecorder()](#mediacreateavscreencapturerecorder12)创建一个AVScreenCaptureRecorder实例。
 
 ### init<sup>12+</sup>
 
@@ -6359,6 +6346,8 @@ init(config: AVScreenCaptureRecordConfig): Promise\<void>
 **示例：**
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let avCaptureConfig: media.AVScreenCaptureRecordConfig = {
     fd: 0, // 文件需要先有调用者创建，赋予写权限，将文件fd传给此参数
     frameWidth: 640,
@@ -6367,9 +6356,9 @@ let avCaptureConfig: media.AVScreenCaptureRecordConfig = {
 }
 
 avScreenCaptureRecorder.init(avCaptureConfig).then(() => {
-    console.info('avScreenCaptureRecorder init success');
+    console.info('Succeeded in initing avScreenCaptureRecorder');
 }).catch((err: BusinessError) => {
-    console.info('avScreenCaptureRecorder init failed, error: ' + err.message);
+    console.info('Failed to init avScreenCaptureRecorder, error: ' + err.message);
 })
 ```
 
@@ -6397,10 +6386,12 @@ startRecording(): Promise\<void>
 **示例：**
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
 avScreenCaptureRecorder.startRecording().then(() => {
-    console.info('avScreenCaptureRecorder start success');
+    console.info('Succeeded in starting avScreenCaptureRecorder');
 }).catch((err: BusinessError) => {
-    console.info('avScreenCaptureRecorder start failed, error: ' + err.message);
+    console.info('Failed to start avScreenCaptureRecorder, error: ' + err.message);
 })
 ```
 
@@ -6428,10 +6419,12 @@ stopRecording(): Promise\<void>
 **示例：**
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
 avScreenCaptureRecorder.stopRecording().then(() => {
-    console.info('avScreenCaptureRecorder stop success');
+    console.info('Succeeded in stopping avScreenCaptureRecorder');
 }).catch((err: BusinessError) => {
-    console.info('avScreenCaptureRecorder stop failed, error: ' + err.message);
+    console.info('Failed to stop avScreenCaptureRecorder, error: ' + err.message);
 })
 ```
 
@@ -6465,10 +6458,12 @@ setMicEnabled(enable: boolean): Promise\<void>
 **示例：**
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
 avScreenCaptureRecorder.setMicEnabled(true).then(() => {
-    console.info('avScreenCaptureRecorder setMicEnabled success');
+    console.info('Succeeded in setMicEnabled avScreenCaptureRecorder');
 }).catch((err: BusinessError) => {
-    console.info('avScreenCaptureRecorder setMicEnabled failed, error: ' + err.message);
+    console.info('Failed to setMicEnabled avScreenCaptureRecorder, error: ' + err.message);
 })
 ```
 
@@ -6496,10 +6491,12 @@ release(): Promise\<void>
 **示例：**
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
 avScreenCaptureRecorder.release().then(() => {
-    console.info('avScreenCaptureRecorder release success');
+    console.info('Succeeded in releasing avScreenCaptureRecorder');
 }).catch((err: BusinessError) => {
-    console.info('avScreenCaptureRecorder release failed, error: ' + err.message);
+    console.info('Faile to release avScreenCaptureRecorder, error: ' + err.message);
 })
 ```
 
@@ -6516,7 +6513,7 @@ on(type: 'stateChange', callback: Callback\<AVScreenCaptureStateCode>): void
 | 参数名   | 类型     | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string   | 是   | 状态切换事件回调类型，支持的事件：'stateChange'。            |
-| callback | function | 是   | 状态切换事件回调方法，AVScreenCaptureStateCode表示切换到的状态。 |
+| callback | function | 是   | 状态切换事件回调方法，[AVScreenCaptureStateCode](#avscreencapturestatecode12)表示切换到的状态。 |
 
 **示例：**
 
@@ -6539,7 +6536,7 @@ on(type: 'error', callback: ErrorCallback): void
 | 参数名   | 类型          | 必填 | 说明                                    |
 | -------- | ------------- | ---- | --------------------------------------- |
 | type     | string        | 是   | 错误事件回调类型，支持的事件：'error'。 |
-| callback | ErrorCallback | 是   | 录屏错误事件回调方法。                  |
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | 是   | 录屏错误事件回调方法。                  |
 
 **错误码：**
 
@@ -6569,7 +6566,7 @@ avScreenCaptureRecorder.on('error', (err: BusinessError) => {
 | 参数名   | 类型     | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string   | 是   | 状态切换事件回调类型，支持的事件：'stateChange'。            |
-| callback | function | 否   | 状态切换事件回调方法，AVScreenCaptureStateCode表示切换到的状态，不填此参数则会取消最后一次订阅事件。 |
+| callback | function | 否   | 状态切换事件回调方法，[AVScreenCaptureStateCode](#avscreencapturestatecode12)表示切换到的状态，不填此参数则会取消最后一次订阅事件。 |
 
 **示例：**
 
@@ -6590,7 +6587,7 @@ off(type: 'error', callback?: ErrorCallback): void
 | 参数名   | 类型     | 必填 | 说明                                                       |
 | -------- | -------- | ---- | ---------------------------------------------------------- |
 | type     | string   | 是   | 状态切换事件回调类型，支持的事件：'error'。                |
-| callback | function | 否   | 录屏错误事件回调方法，不填此参数则会取消最后一次订阅事件。 |
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | 否   | 录屏错误事件回调方法，不填此参数则会取消最后一次订阅事件。 |
 
 **示例：**
 

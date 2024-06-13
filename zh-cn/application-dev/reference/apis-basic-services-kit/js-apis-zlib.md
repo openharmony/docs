@@ -898,7 +898,7 @@ checksum.getCrc64Table().then((data) => {
 })
 ```
 
-## zlib.createZip12+
+## zlib.createZip<sup>12+</sup>
 
 createZip(): Promise&lt;Zip&gt;
 
@@ -928,7 +928,7 @@ zlib.createZip().then(data => {
 })
 ```
 
-## zlib.createZipSync12+
+## zlib.createZipSync<sup>12+</sup>
 
 createZipSync(): Zip
 
@@ -1093,7 +1093,7 @@ zip.compress(arrayBufferOut, arrayBufferOut, 20).then((data) => {
 
 ### compress2<sup>12+</sup>
 
-compress2(dest: ArrayBuffer, source: ArrayBuffer, level: CompressLevel, sourceLen?: number,): Promise&lt;ZipOutputInfo&gt;
+compress2(dest: ArrayBuffer, source: ArrayBuffer, level: CompressLevel, sourceLen?: number): Promise&lt;ZipOutputInfo&gt;
 
 将源缓冲区压缩到目标缓冲区，使用Promise异步返回。成功时返回结果状态和目标缓冲区的总大小。
 
@@ -3026,7 +3026,7 @@ async function demo() {
 
 ### deflateSetHeader<sup>12+</sup>
 
-deflateSetHeader(strm: ZStream, header: GzHeader): Promise&lt;ReturnStatus&gt;
+deflateSetHeader(strm: ZStream, head: GzHeader): Promise&lt;ReturnStatus&gt;
 
 当deflateInit2()请求gzip流时，提供gzip标头信息，使用Promise异步返回。成功时返回结果状态。
 
@@ -3039,7 +3039,7 @@ deflateSetHeader(strm: ZStream, header: GzHeader): Promise&lt;ReturnStatus&gt;
 | 参数名 | 类型                    | 必填 | 说明                             |
 | ------ | ----------------------- | ---- | -------------------------------- |
 | strm   | ZStream                 | 是   | 参考[ZStream定义](#zstream12)。  |
-| header | [GzHeader](#gzheader12) | 是   | 从压缩数据流中提取的gzip头信息。 |
+| head   | [GzHeader](#gzheader12) | 是   | 从压缩数据流中提取的gzip头信息。 |
 
 **返回值：**
 
@@ -3093,7 +3093,7 @@ async function demo() {
 
 ### deflateCopy<sup>12+</sup>
 
-eflateCopy(source: Zip): Promise&lt;ReturnStatus&gt;
+deflateCopy(source: Zip): Promise&lt;ReturnStatus&gt;
 
 复制压缩流，使用Promise异步返回。成功时返回结果状态。
 
@@ -3837,7 +3837,8 @@ async function demo() {
 | 名称             | 类型         | 可读 | 可写 | 说明                                                  |
 | ---------------- | ------------ | ---- | ---- | ----------------------------------------------------- |
 | status           | ReturnStatus | 是   | 否   | 参考[zlib.ReturnStatus枚举定义](#zipreturnstatus12)。 |
-| dictionaryLength | number       | 是   | 否   | 字典的长度。                                          |
+| destLength       | number       | 是   | 否   | 目标缓冲区的长度。                                     |
+| sourceLength     | number       | 是   | 否   | 源缓冲区的长度。                                       |
 
 ## DeflatePendingOutputInfo<sup>12+</sup>
 
@@ -3859,7 +3860,7 @@ async function demo() {
 
 | 名称     | 类型        | 可读 | 可写 | 说明                                 |
 | -------- | ----------- | ---- | ---- | ------------------------------------ |
-| text     | boolean     | 是   | 否   | 如果压缩数据被认为是文本，则为True。 |
+| isText   | boolean     | 是   | 否   | 如果压缩数据被认为是文本，则为True。 |
 | os       | number      | 是   | 否   | 操作系统。                           |
 | time     | number      | 是   | 否   | 修改时间。                           |
 | xflags   | number      | 是   | 否   | 额外标志。                           |
@@ -3872,7 +3873,7 @@ async function demo() {
 
 ## zlib.createGZip<sup>12+</sup>
 
-createGZip(): Promise&lt;Gzip&gt;
+createGZip(): Promise&lt;GZip&gt;
 
 创建GZip对象，使用Promise异步返回。成功时返回Gzip对象实例。
 
@@ -3922,7 +3923,7 @@ let gzip = zlib.createGZipSync();
 
 ## GZip<sup>12+</sup>
 
-Gzip相关接口。
+GZip相关接口。
 
 ### gzdopen<sup>12+</sup>
 

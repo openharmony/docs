@@ -16,7 +16,7 @@
 
 AlphabetIndexer(value: {arrayValue: Array&lt;string&gt;, selected: number})
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **参数：**
 
@@ -203,7 +203,7 @@ alignStyle(value: IndexerAlign, offset?: Length)
 
 | 参数名               | 类型                                  | 必填 | 说明                                                         |
 | -------------------- | ------------------------------------- | ---- | ------------------------------------------------------------ |
-| value                | [IndexerAlign](#indexeralign枚举说明) | 是   | 字母索引条弹框的对齐样式，支持弹窗显示在索引条右侧和左侧。<br/>默认值: IndexerAlign.END。 |
+| value                | [IndexerAlign](#indexeralign枚举说明) | 是   | 字母索引条弹框的对齐样式，支持弹窗显示在索引条右侧和左侧。<br/>默认值: IndexerAlign.Right。 |
 | offset<sup>10+</sup> | [Length](ts-types.md#length)          | 否   | 提示弹窗与索引条之间间距，大于等于0为有效值，在不设置或设置为小于0的情况下间距与popupPosition.x相同。与popupPosition同时设置时，水平方向上offset生效，竖直方向上popupPosition.y生效。 |
 
 ### selected<sup>8+</sup>
@@ -230,7 +230,7 @@ popupPosition(value: Position)
 
 设置弹出窗口相对于索引器条上边框中点的位置。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -330,6 +330,8 @@ popupItemBorderRadius(value: number)
 
 设置提示弹窗索引项背板圆角半径。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -343,6 +345,8 @@ popupItemBorderRadius(value: number)
 itemBorderRadius(value: number)
 
 设置索引项背板圆角半径。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -358,6 +362,8 @@ popupBackgroundBlurStyle(value: BlurStyle)
 
 设置提示弹窗的背景模糊材质。
 
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -371,6 +377,8 @@ popupBackgroundBlurStyle(value: BlurStyle)
 popupTitleBackground(value: ResourceColor)
 
 设置提示弹窗首个索引项背板颜色。
+
+**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -388,8 +396,6 @@ popupTitleBackground(value: ResourceColor)
 | -------- | -------- |
 | Left | 弹框显示在索引条右侧。 |
 | Right | 弹框显示在索引条左侧。 |
-| START<sup>12+</sup> | 在LTR场景下，弹框显示在索引条右侧的位置。在RTL场景下，弹框显示在索引条左侧的位置。 |
-| END<sup>12+</sup> | 在LTR场景下，弹框显示在索引条左侧的位置。在RTL场景下，弹框显示在索引条右侧的位置。 |
 
 ## 事件
 
@@ -402,8 +408,6 @@ onSelected(callback:&nbsp;(index:&nbsp;number)&nbsp;=&gt;&nbsp;void)
 索引条选中回调，返回值为当前选中索引。 
 
 从API Version 8开始废弃，建议使用[onSelect](#onselect8)代替。
-
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

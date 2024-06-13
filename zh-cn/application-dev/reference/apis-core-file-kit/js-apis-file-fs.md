@@ -141,7 +141,7 @@ access(path: string, mode?: AccessModeType): Promise&lt;boolean&gt;
 
 检查文件是否存在，使用Promise异步返回。
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**元服务API**：从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -150,7 +150,7 @@ access(path: string, mode?: AccessModeType): Promise&lt;boolean&gt;
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | path   | string | 是   | 文件应用沙箱路径。                                   |
-| mode   | [AccessModeType](#accessmodetype12) | 否   | 文件校验的权限。                                   |
+| mode<sup>12+</sup>   | [AccessModeType](#accessmodetype12) | 否   | 文件校验的权限。                                   |
 
 **返回值：**
 
@@ -223,7 +223,7 @@ accessSync(path: string, mode?: AccessModeType): boolean
 
 以同步方法检查文件是否存在。
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**元服务API**：从API version 11开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -232,7 +232,7 @@ accessSync(path: string, mode?: AccessModeType): boolean
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | path   | string | 是   | 文件应用沙箱路径。                                   |
-| mode   | [AccessModeType](#accessmodetype12) | 否   | 文件校验的权限。                                   |
+| mode<sup>12+</sup>   | [AccessModeType](#accessmodetype12) | 否   | 文件校验的权限。                                   |
 
 **返回值：**
 
@@ -873,6 +873,89 @@ dup(fd: number): File
   fs.closeSync(file2);
   ```
 
+## fs.connectDfs<sup>12+</sup>
+
+connectDfs(networkId: string, listeners: DfsListeners): Promise<void>
+
+业务调用connectDfs接口，触发建链并将对端设备公共文档目录挂载到沙箱路径下，如果对端设备出现异常，业务执行回调DfsListeners内[onStatus](#onstatus12)通知应用。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
+**参数：**
+
+  | 参数名  | 类型     | 必填   | 说明                                       |
+  | ---- | ------ | ---- | ---------------------------------------- |
+  | networkId   | string | 是    | 设备的网络Id。通过[distributedDeviceManager](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md)接口调用[deviceBasicInfo](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#devicebasicinfo)获得。                             |
+  | listeners | [DfsListeners](#fsdfslisteners12) | 是    | 分布式文件系统状态监听器。                |
+
+**返回值：**
+
+  | 类型     | 说明                                       |
+  | ------ | ---------------------------------------- |
+  | Promise<void>| Promise对象。无返回值。                             |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](errorcode-filemanagement.md#基础文件io错误码)。
+
+**示例：**
+
+  ```ts
+  import fs from '@ohos.file.fs';
+  import deviceManager from '@ohos.distributedDeviceManager';
+  let dmInstance = deviceManager.createDeviceManager("com.example.filesync");
+  let deviceInfoList: Array<deviceManager.DeviceBasicInfo> = dmInstance.getAvailableDeviceListSync();
+  let networkId = deviceInfoList[0].networkId;
+  let listeners: fs.DfsListeners = {
+    onStatus(networkId, status) {
+      console.info('onStatus');
+    }
+  }
+  fs.connectDfs(networkId, listeners).then(() => {
+    console.info("Success to connectDfs");
+  }).catch((err) => {
+    console.error('connectDfs failed with error message: ${JSON.stringify(err)}');
+  });
+  ```
+
+## fs.disconnectDfs<sup>12+</sup>
+
+disconnectDfs(networkId: string): Promise<void>
+
+业务调用disconnectDfs接口，传入networkId参数，触发断链并取消公共文档目录挂载。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
+**参数：**
+
+  | 参数名  | 类型     | 必填   | 说明                                       |
+  | ---- | ------ | ---- | ---------------------------------------- |
+  | networkId   | string | 是    | 设备的网络Id。通过[distributedDeviceManager](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md)接口调用[deviceBasicInfo](../apis-distributedservice-kit/js-apis-distributedDeviceManager.md#devicebasicinfo)获得。                            |
+
+**返回值：**
+
+  | 类型     | 说明                                       |
+  | ------ | ---------------------------------------- |
+  | Promise<void>| Promise对象。无返回值。                             |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](errorcode-filemanagement.md#基础文件io错误码)。
+
+**示例：**
+
+  ```ts
+  import fs from '@ohos.file.fs';
+  import deviceManager from '@ohos.distributedDeviceManager';
+  let dmInstance = deviceManager.createDeviceManager("com.example.filesync");
+  let deviceInfoList: Array<deviceManager.DeviceBasicInfo> = dmInstance.getAvailableDeviceListSync();
+  let networkId = deviceInfoList[0].networkId;
+  fs.disconnectDfs(networkId).then(() => {
+    console.info("Success to disconnectDfs");
+  }).catch((err) => {
+    console.error('disconnectDfs failed with error message: ${JSON.stringify(err)}')
+  })
+  ```
 
 ## fs.mkdir
 
@@ -950,6 +1033,7 @@ mkdir(path: string, recursion: boolean): Promise\<void>
     console.error("mkdir failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
+
 
 ## fs.mkdir
 
@@ -2306,7 +2390,7 @@ renameSync(oldPath: string, newPath: string): void
 
 fsync(fd: number): Promise&lt;void&gt;
 
-同步文件数据，使用Promise异步返回。
+将文件系统缓存数据写入磁盘，使用Promise异步返回。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -2345,7 +2429,7 @@ fsync(fd: number): Promise&lt;void&gt;
 
 fsync(fd: number, callback: AsyncCallback&lt;void&gt;): void
 
-同步文件数据，使用callback异步回调。
+将文件系统缓存数据写入磁盘，使用callback异步回调。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -2381,7 +2465,7 @@ fsync(fd: number, callback: AsyncCallback&lt;void&gt;): void
 
 fsyncSync(fd: number): void
 
-以同步方法同步文件数据。
+以同步方法将文件系统缓存数据写入磁盘。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -4530,6 +4614,30 @@ unlock(): void
   fs.closeSync(file);
   ```
 
+  ## fs.DfsListeners<sup>12+</sup>
+
+interface DfsListeners {
+  onStatus(networkId: string, status: number): void;
+}
+
+事件监听类。创建DFSListener对象，用于监听分布式文件系统状态。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
+### onStatus<sup>12+</sup>
+
+onStatus(networkId: string, status: number): void;
+
+事件回调类。参数由[connectDfs](#fsconnectdfs12)传入。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
+**参数：**
+
+  | 参数名  | 类型     | 必填   | 说明                              |
+  | ---- | ------ | ---- | ---------------------------------------- |
+  | networkId   | string | 是    | 设备的网络Id。                             |
+  | status | number | 是    | 分布式文件系统的状态码（以connectDfs回调onStatus的特定错误码作为入参）。触发场景为connectDfs调用过程中出现对端设备异常，对应错误码为：<br/>-&nbsp;[13900046](errorcode-filemanagement.md#13900046)：软件造成连接中断。  |
 
 ## RandomAccessFile
 
@@ -4989,6 +5097,8 @@ open接口flags参数常量。文件打开标签。
 ## AccessModeType<sup>12+</sup>
 
 枚举，表示需要校验的具体权限，若不填，默认校验文件是否存在。
+
+**元服务API**：从API version 12开始，该接口支持在元服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 

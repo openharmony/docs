@@ -60,32 +60,57 @@ on(event: string, callback: Function): void;
 | ------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. 3. Parameter verification failed. |
 
-**示例：**
+**示例1：**
+callback被emit触发时，调用方是EventHub对象。EventHub对象没有value属性，因此结果是undefined。
 
 ```ts
 import { UIAbility } from '@kit.AbilityKit';
 
 export default class EntryAbility extends UIAbility {
-  value: number = 12;
+    value: number = 12;
 
-  onCreate() {
-    this.context.eventHub.on('myEvent', this.eventFunc);
-    // 支持使用匿名函数订阅事件
-    this.context.eventHub.on('myEvent', () => {
-      console.log(`anonymous eventFunc is called, value: ${this.value}`);
-    });
-  }
+    onCreate() {
+        this.context.eventHub.on('myEvent', this.eventFunc);
+    }
 
-  onForeground() {
-    // 结果：
-    // eventFunc is called, value: undefined
-    // anonymous eventFunc is called, value: 12
-    this.context.eventHub.emit('myEvent');
-  }
+    onForeground() {
+        // 结果：
+        // eventFunc is called, value: undefined
 
-  eventFunc() {
-    console.log(`eventFunc is called, value: ${this.value}`);
-  }
+        this.context.eventHub.emit('myEvent');
+    }
+
+    eventFunc() {
+        console.log(`eventFunc is called, value: ${this.value}`);
+    }
+}
+```
+
+**示例2：**
+callback使用箭头函数时，调用方是EntryAbility对象。EntryAbility对象里存在value属性，因此结果是12。
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+export default class EntryAbility extends UIAbility {
+    value: number = 12;
+
+    onCreate() {
+        // 支持使用匿名函数订阅事件
+        this.context.eventHub.on('myEvent', () => {
+            console.log(`anonymous eventFunc is called, value: ${this.value}`);
+        });
+    }
+
+    onForeground() {
+        // 结果：
+        // anonymous eventFunc is called, value: 12
+        this.context.eventHub.emit('myEvent');
+    }
+
+    eventFunc() {
+        console.log(`eventFunc is called, value: ${this.value}`);
+    }
 }
 ```
 

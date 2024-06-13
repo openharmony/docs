@@ -206,6 +206,9 @@ struct Index {
     Column() {
       CustomLayout({ builder: ColumnChildren })
     }
+    .justifyContent(FlexAlign.Center)
+    .width("100%")
+    .height("100%")
   }
 }
 
@@ -290,6 +293,8 @@ struct CustomLayout {
   }
 }
 ```
+
+![custom_layout_demo2.png](figures/custom_layout_demo2.png)
 
 ## onLayout<sup>(deprecated)</sup>
 

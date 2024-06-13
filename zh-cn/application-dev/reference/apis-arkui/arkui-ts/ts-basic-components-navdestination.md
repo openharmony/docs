@@ -196,10 +196,11 @@ onReady(callback:&nbsp;[Callback](../../apis-basic-services-kit/js-apis-base.md#
 
 ## NavDestinationContext<sup>11+</sup>类型说明
 
-| 名称   | 类型     | 描述     |
-| ---- | ------ | ------ |
-| pathInfo | [NavPathInfo](ts-basic-components-navigation.md#navpathinfo10) | 跳转NavDestination时指定的参数。 <br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
-| pathStack  | [NavPathStack](ts-basic-components-navigation.md#navpathstack10) | 当前NavDestination所处的页面栈。 <br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| 名称   | 类型     | 必填   |  描述     |
+| ---- | ------ | ----- | ------ |
+| pathInfo | [NavPathInfo](ts-basic-components-navigation.md#navpathinfo10) | 是 | 跳转NavDestination时指定的参数。 <br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| pathStack  | [NavPathStack](ts-basic-components-navigation.md#navpathstack10) | 是 | 当前NavDestination所处的页面栈。 <br/>**元服务API：** 从API version 11开始，该接口支持在元服务中使用。 |
+| navDestinationId<sup>12+</sup> | string | 否 | 当前NavDestination的唯一ID，由系统自动生成，和组件通用属性id无关。 |
 
 ### getConfigInRouteMap<sup>12+</sup>
 

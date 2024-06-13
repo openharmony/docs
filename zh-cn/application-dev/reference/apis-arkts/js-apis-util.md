@@ -2376,6 +2376,8 @@ class Temperature{
 
 ## ScopeType<sup>8+</sup>
 
+type ScopeType = ScopeComparable | number
+
 用于表示范围中的值的类型。
 
 **系统能力：** SystemCapability.Utils.Lang

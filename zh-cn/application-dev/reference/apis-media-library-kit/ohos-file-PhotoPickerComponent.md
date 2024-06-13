@@ -9,7 +9,7 @@
 
 ## 导入模块
 
-```
+```ts
 import { PhotoPickerComponent, PickerController, PickerOptions, DataType } from '@ohos.file.PhotoPickerComponent'
 ```
 
