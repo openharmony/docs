@@ -35,7 +35,7 @@
 
 如果开发者希望跟主线程事件循环交互，比如插入任务等，应当使用[napi提供的接口](../../napi/napi-data-types-interfaces.md)。
 
-OpenHarmony还将长期通过napi来为开发者提供和主线程交互及扩展js接口的能力，但会屏蔽实现层使用的事件循环。尽管我们在api12中给napi_get_uv_event_loop接口标记了废弃。但napi的主要功能接口将会长期维护，并保证与node的原生行为一致，来保证熟悉nodejs的扩展机制的开发者方便地将自己的已有代码接入到OpnHarmony中来。
+OpenHarmony还将长期通过napi来为开发者提供和主线程交互及扩展js接口的能力，但会屏蔽实现层使用的事件循环。尽管我们在api12中给napi_get_uv_event_loop接口标记了废弃。但napi的主要功能接口将会长期维护，并保证与node的原生行为一致，来保证熟悉nodejs的扩展机制的开发者方便地将自己的已有代码接入到OpenHarmony中来。
 
 当然，libuv 的 ndk 短期内不会下架，如果您对 libuv 非常熟悉，并自信能够处理好所有的内存管理和多线程问题，您仍可以像使用原生 libuv 一样，自己启动线程，并在上面使用 libuv 完成自己的业务。在没有特殊版本要求的情况下，您不需要额外引入 libuv 库到您的应用工程中。
 
