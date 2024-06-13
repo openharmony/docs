@@ -229,14 +229,14 @@ import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
 let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_APPLICATION | bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_METADATA;
 try {
-    bundleManager.getBundleInfoForSelf(bundleFlags).then((data) => {
-        hilog.info(0x0000, 'testTag', 'getBundleInfoForSelf successfully. Data: %{public}s', JSON.stringify(data));
-    }).catch((err: BusinessError) => {
-        hilog.error(0x0000, 'testTag', 'getBundleInfoForSelf failed. Cause: %{public}s', err.message);
-    });
+  bundleManager.getBundleInfoForSelf(bundleFlags).then((data) => {
+    hilog.info(0x0000, 'testTag', 'getBundleInfoForSelf successfully. Data: %{public}s', JSON.stringify(data));
+  }).catch((err: BusinessError) => {
+    hilog.error(0x0000, 'testTag', 'getBundleInfoForSelf failed. Cause: %{public}s', err.message);
+  });
 } catch (err) {
-    let message = (err as BusinessError).message;
-    hilog.error(0x0000, 'testTag', 'getBundleInfoForSelf failed: %{public}s', message);
+  let message = (err as BusinessError).message;
+  hilog.error(0x0000, 'testTag', 'getBundleInfoForSelf failed: %{public}s', message);
 }
 ```
 
@@ -275,16 +275,16 @@ import hilog from '@ohos.hilog';
 let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_HAP_MODULE | bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_ABILITY | bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_REQUESTED_PERMISSION;
 
 try {
-    bundleManager.getBundleInfoForSelf(bundleFlags, (err, data) => {
-        if (err) {
-            hilog.error(0x0000, 'testTag', 'getBundleInfoForSelf failed: %{public}s', err.message);
-        } else {
-            hilog.info(0x0000, 'testTag', 'getBundleInfoForSelf successfully: %{public}s', JSON.stringify(data));
-        }
-    });
+  bundleManager.getBundleInfoForSelf(bundleFlags, (err, data) => {
+    if (err) {
+      hilog.error(0x0000, 'testTag', 'getBundleInfoForSelf failed: %{public}s', err.message);
+    } else {
+      hilog.info(0x0000, 'testTag', 'getBundleInfoForSelf successfully: %{public}s', JSON.stringify(data));
+    }
+  });
 } catch (err) {
-    let message = (err as BusinessError).message;
-    hilog.error(0x0000, 'testTag', 'getBundleInfoForSelf failed: %{public}s', message);
+  let message = (err as BusinessError).message;
+  hilog.error(0x0000, 'testTag', 'getBundleInfoForSelf failed: %{public}s', message);
 }
 ```
 
@@ -333,16 +333,16 @@ let abilityName = 'EntryAbility';
 let metadataName = 'ability_metadata';
 
 try {
-    bundleManager.getProfileByAbility(moduleName, abilityName, metadataName, (err, data) => {
-        if (err) {
-            hilog.error(0x0000, 'testTag', 'getProfileByAbility failed. Cause: %{public}s', err.message);
-        } else {
-            hilog.info(0x0000, 'testTag', 'getProfileByAbility successfully: %{public}s', JSON.stringify(data));
-        }
-    });
+  bundleManager.getProfileByAbility(moduleName, abilityName, metadataName, (err, data) => {
+    if (err) {
+      hilog.error(0x0000, 'testTag', 'getProfileByAbility failed. Cause: %{public}s', err.message);
+    } else {
+      hilog.info(0x0000, 'testTag', 'getProfileByAbility successfully: %{public}s', JSON.stringify(data));
+    }
+  });
 } catch (err) {
-    let message = (err as BusinessError).message;
-    hilog.error(0x0000, 'testTag', 'getProfileByAbility failed. Cause: %{public}s', message);
+  let message = (err as BusinessError).message;
+  hilog.error(0x0000, 'testTag', 'getProfileByAbility failed. Cause: %{public}s', message);
 }
 ```
 
@@ -395,14 +395,14 @@ let moduleName = 'entry';
 let abilityName = 'EntryAbility';
 
 try {
-    bundleManager.getProfileByAbility(moduleName, abilityName).then((data) => {
-        hilog.info(0x0000, 'testTag', 'getProfileByAbility successfully. Data: %{public}s', JSON.stringify(data));
-    }).catch((err: BusinessError) => {
-        hilog.error(0x0000, 'testTag', 'getProfileByAbility failed. Cause: %{public}s', err.message);
-    });
+  bundleManager.getProfileByAbility(moduleName, abilityName).then((data) => {
+    hilog.info(0x0000, 'testTag', 'getProfileByAbility successfully. Data: %{public}s', JSON.stringify(data));
+  }).catch((err: BusinessError) => {
+    hilog.error(0x0000, 'testTag', 'getProfileByAbility failed. Cause: %{public}s', err.message);
+  });
 } catch (err) {
-    let message = (err as BusinessError).message;
-    hilog.error(0x0000, 'testTag', 'getProfileByAbility failed. Cause: %{public}s', message);
+  let message = (err as BusinessError).message;
+  hilog.error(0x0000, 'testTag', 'getProfileByAbility failed. Cause: %{public}s', message);
 }
 ```
 
@@ -414,14 +414,14 @@ let moduleName = 'entry';
 let abilityName = 'EntryAbility';
 let metadataName = 'ability_metadata';
 try {
-    bundleManager.getProfileByAbility(moduleName, abilityName, metadataName).then((data) => {
-        hilog.info(0x0000, 'testTag', 'getProfileByAbility successfully. Data: %{public}s', JSON.stringify(data));
-    }).catch((err: BusinessError) => {
-        hilog.error(0x0000, 'testTag', 'getProfileByAbility failed. Cause: %{public}s', err.message);
-    });
+  bundleManager.getProfileByAbility(moduleName, abilityName, metadataName).then((data) => {
+    hilog.info(0x0000, 'testTag', 'getProfileByAbility successfully. Data: %{public}s', JSON.stringify(data));
+  }).catch((err: BusinessError) => {
+    hilog.error(0x0000, 'testTag', 'getProfileByAbility failed. Cause: %{public}s', err.message);
+  });
 } catch (err) {
-    let message = (err as BusinessError).message;
-    hilog.error(0x0000, 'testTag', 'getProfileByAbility failed. Cause: %{public}s', message);
+  let message = (err as BusinessError).message;
+  hilog.error(0x0000, 'testTag', 'getProfileByAbility failed. Cause: %{public}s', message);
 }
 ```
 
@@ -474,11 +474,11 @@ let moduleName = 'entry';
 let abilityName = 'EntryAbility';
 
 try {
-    let data = bundleManager.getProfileByAbilitySync(moduleName, abilityName);
-    hilog.info(0x0000, 'testTag', 'getProfileByAbilitySync successfully. Data: %{public}s', JSON.stringify(data));
+  let data = bundleManager.getProfileByAbilitySync(moduleName, abilityName);
+  hilog.info(0x0000, 'testTag', 'getProfileByAbilitySync successfully. Data: %{public}s', JSON.stringify(data));
 } catch (err) {
-    let message = (err as BusinessError).message;
-    hilog.error(0x0000, 'testTag', 'getProfileByAbilitySync failed. Cause: %{public}s', message);
+  let message = (err as BusinessError).message;
+  hilog.error(0x0000, 'testTag', 'getProfileByAbilitySync failed. Cause: %{public}s', message);
 }
 ```
 
@@ -490,11 +490,11 @@ let moduleName: string = 'entry';
 let abilityName: string = 'EntryAbility';
 let metadataName: string = 'ability_metadata';
 try {
-    let data = bundleManager.getProfileByAbilitySync(moduleName, abilityName, metadataName);
-    hilog.info(0x0000, 'testTag', 'getProfileByAbilitySync successfully. Data: %{public}s', JSON.stringify(data));
+  let data = bundleManager.getProfileByAbilitySync(moduleName, abilityName, metadataName);
+  hilog.info(0x0000, 'testTag', 'getProfileByAbilitySync successfully. Data: %{public}s', JSON.stringify(data));
 } catch (err) {
-    let message = (err as BusinessError).message;
-    hilog.error(0x0000, 'testTag', 'getProfileByAbilitySync failed. Cause: %{public}s', message);
+  let message = (err as BusinessError).message;
+  hilog.error(0x0000, 'testTag', 'getProfileByAbilitySync failed. Cause: %{public}s', message);
 }
 ```
 
@@ -542,16 +542,16 @@ let extensionAbilityName = 'com.example.myapplication.extension';
 let metadataName = 'ability_metadata';
 
 try {
-    bundleManager.getProfileByExtensionAbility(moduleName, extensionAbilityName, metadataName, (err, data) => {
-        if (err) {
-            hilog.error(0x0000, 'testTag', 'getProfileByExtensionAbility failed: %{public}s', err.message);
-        } else {
-            hilog.info(0x0000, 'testTag', 'getProfileByExtensionAbility successfully: %{public}s', JSON.stringify(data));
-        }
-    });
+  bundleManager.getProfileByExtensionAbility(moduleName, extensionAbilityName, metadataName, (err, data) => {
+    if (err) {
+      hilog.error(0x0000, 'testTag', 'getProfileByExtensionAbility failed: %{public}s', err.message);
+    } else {
+      hilog.info(0x0000, 'testTag', 'getProfileByExtensionAbility successfully: %{public}s', JSON.stringify(data));
+    }
+  });
 } catch (err) {
-    let message = (err as BusinessError).message;
-    hilog.error(0x0000, 'testTag', 'getProfileByExtensionAbility failed: %{public}s', message);
+  let message = (err as BusinessError).message;
+  hilog.error(0x0000, 'testTag', 'getProfileByExtensionAbility failed: %{public}s', message);
 }
 ```
 
@@ -604,25 +604,25 @@ let extensionAbilityName = 'com.example.myapplication.extension';
 let metadataName = 'ability_metadata';
 
 try {
-    bundleManager.getProfileByExtensionAbility(moduleName, extensionAbilityName).then((data) => {
-        hilog.info(0x0000, 'testTag', 'getProfileByExtensionAbility successfully. Data: %{public}s', JSON.stringify(data));
-    }).catch((err: BusinessError) => {
-        hilog.error(0x0000, 'testTag', 'getProfileByExtensionAbility failed. Cause: %{public}s', err.message);
-    });
+  bundleManager.getProfileByExtensionAbility(moduleName, extensionAbilityName).then((data) => {
+    hilog.info(0x0000, 'testTag', 'getProfileByExtensionAbility successfully. Data: %{public}s', JSON.stringify(data));
+  }).catch((err: BusinessError) => {
+    hilog.error(0x0000, 'testTag', 'getProfileByExtensionAbility failed. Cause: %{public}s', err.message);
+  });
 } catch (err) {
-    let message = (err as BusinessError).message;
-    hilog.error(0x0000, 'testTag', 'getProfileByExtensionAbility failed. Cause: %{public}s', message);
+  let message = (err as BusinessError).message;
+  hilog.error(0x0000, 'testTag', 'getProfileByExtensionAbility failed. Cause: %{public}s', message);
 }
 
 try {
-    bundleManager.getProfileByExtensionAbility(moduleName, extensionAbilityName, metadataName).then((data) => {
-        hilog.info(0x0000, 'testTag', 'getProfileByExtensionAbility successfully. Data: %{public}s', JSON.stringify(data));
-    }).catch((err: BusinessError) => {
-        hilog.error(0x0000, 'testTag', 'getProfileByExtensionAbility failed. Cause: %{public}s', err.message);
-    });
+  bundleManager.getProfileByExtensionAbility(moduleName, extensionAbilityName, metadataName).then((data) => {
+    hilog.info(0x0000, 'testTag', 'getProfileByExtensionAbility successfully. Data: %{public}s', JSON.stringify(data));
+  }).catch((err: BusinessError) => {
+    hilog.error(0x0000, 'testTag', 'getProfileByExtensionAbility failed. Cause: %{public}s', err.message);
+  });
 } catch (err) {
-    let message = (err as BusinessError).message;
-    hilog.error(0x0000, 'testTag', 'getProfileByExtensionAbility failed. Cause: %{public}s', message);
+  let message = (err as BusinessError).message;
+  hilog.error(0x0000, 'testTag', 'getProfileByExtensionAbility failed. Cause: %{public}s', message);
 }
 ```
 
@@ -675,19 +675,19 @@ let extensionAbilityName = 'com.example.myapplication.extension';
 let metadataName = 'ability_metadata';
 
 try {
-    let data = bundleManager.getProfileByExtensionAbilitySync(moduleName, extensionAbilityName);
-    hilog.info(0x0000, 'testTag', 'getProfileByExtensionAbilitySync successfully. Data: %{public}s', JSON.stringify(data));
+  let data = bundleManager.getProfileByExtensionAbilitySync(moduleName, extensionAbilityName);
+  hilog.info(0x0000, 'testTag', 'getProfileByExtensionAbilitySync successfully. Data: %{public}s', JSON.stringify(data));
 } catch (err) {
-    let message = (err as BusinessError).message;
-    hilog.error(0x0000, 'testTag', 'getProfileByExtensionAbilitySync failed. Cause: %{public}s', message);
+  let message = (err as BusinessError).message;
+  hilog.error(0x0000, 'testTag', 'getProfileByExtensionAbilitySync failed. Cause: %{public}s', message);
 }
 
 try {
-    let data = bundleManager.getProfileByExtensionAbilitySync(moduleName, extensionAbilityName, metadataName);
-    hilog.info(0x0000, 'testTag', 'getProfileByExtensionAbilitySync successfully. Data: %{public}s', JSON.stringify(data));
+  let data = bundleManager.getProfileByExtensionAbilitySync(moduleName, extensionAbilityName, metadataName);
+  hilog.info(0x0000, 'testTag', 'getProfileByExtensionAbilitySync successfully. Data: %{public}s', JSON.stringify(data));
 } catch (err) {
-    let message = (err as BusinessError).message;
-    hilog.error(0x0000, 'testTag', 'getProfileByExtensionAbilitySync failed. Cause: %{public}s', message);
+  let message = (err as BusinessError).message;
+  hilog.error(0x0000, 'testTag', 'getProfileByExtensionAbilitySync failed. Cause: %{public}s', message);
 }
 ```
 
@@ -729,11 +729,11 @@ import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
 let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_REQUESTED_PERMISSION;
 try {
-    let data = bundleManager.getBundleInfoForSelfSync(bundleFlags);
-    hilog.info(0x0000, 'testTag', 'getBundleInfoForSelfSync successfully: %{public}s', JSON.stringify(data));
+  let data = bundleManager.getBundleInfoForSelfSync(bundleFlags);
+  hilog.info(0x0000, 'testTag', 'getBundleInfoForSelfSync successfully: %{public}s', JSON.stringify(data));
 } catch (err) {
-    let message = (err as BusinessError).message;
-    hilog.error(0x0000, 'testTag', 'getBundleInfoForSelfSync failed: %{public}s', message);
+  let message = (err as BusinessError).message;
+  hilog.error(0x0000, 'testTag', 'getBundleInfoForSelfSync failed: %{public}s', message);
 }
 ```
 
@@ -771,19 +771,19 @@ verifyAbc(abcPaths: Array\<string>, deleteOriginalFiles: boolean, callback: Asyn
 import bundleManager from '@ohos.bundle.bundleManager';
 import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
-let abcPaths : Array<string> = ['/data/storage/el2/base/a.abc'];
+let abcPaths: Array<string> = ['/data/storage/el2/base/a.abc'];
 
 try {
-    bundleManager.verifyAbc(abcPaths, true, (err, data) => {
-        if (err) {
-            hilog.error(0x0000, 'testTag', 'verifyAbc failed: %{public}s', err.message);
-        } else {
-            hilog.info(0x0000, 'testTag', 'verifyAbc successfully');
-        }
-    });
+  bundleManager.verifyAbc(abcPaths, true, (err, data) => {
+    if (err) {
+      hilog.error(0x0000, 'testTag', 'verifyAbc failed: %{public}s', err.message);
+    } else {
+      hilog.info(0x0000, 'testTag', 'verifyAbc successfully');
+    }
+  });
 } catch (err) {
-    let message = (err as BusinessError).message;
-    hilog.error(0x0000, 'testTag', 'verifyAbc failed: %{public}s', message);
+  let message = (err as BusinessError).message;
+  hilog.error(0x0000, 'testTag', 'verifyAbc failed: %{public}s', message);
 }
 ```
 
@@ -826,17 +826,17 @@ verifyAbc(abcPaths: Array\<string>, deleteOriginalFiles: boolean): Promise\<void
 import bundleManager from '@ohos.bundle.bundleManager';
 import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
-let abcPaths : Array<string> = ['/data/storage/el2/base/a.abc'];
+let abcPaths: Array<string> = ['/data/storage/el2/base/a.abc'];
 
 try {
-    bundleManager.verifyAbc(abcPaths, true).then((data) => {
-        hilog.info(0x0000, 'testTag', 'verifyAbc successfully');
-    }).catch((err: BusinessError) => {
-        hilog.error(0x0000, 'testTag', 'verifyAbc failed. Cause: %{public}s', err.message);
-    });
+  bundleManager.verifyAbc(abcPaths, true).then((data) => {
+    hilog.info(0x0000, 'testTag', 'verifyAbc successfully');
+  }).catch((err: BusinessError) => {
+    hilog.error(0x0000, 'testTag', 'verifyAbc failed. Cause: %{public}s', err.message);
+  });
 } catch (err) {
-    let message = (err as BusinessError).message;
-    hilog.error(0x0000, 'testTag', 'verifyAbc failed. Cause: %{public}s', message);
+  let message = (err as BusinessError).message;
+  hilog.error(0x0000, 'testTag', 'verifyAbc failed. Cause: %{public}s', message);
 }
 ```
 
@@ -878,17 +878,17 @@ deleteAbc(abcPath: string): Promise\<void>
 import bundleManager from '@ohos.bundle.bundleManager';
 import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
-let abcPath : string = '/data/storage/el2/base/a.abc';
+let abcPath: string = '/data/storage/el2/base/a.abc';
 
 try {
-    bundleManager.deleteAbc(abcPath).then((data) => {
-        hilog.info(0x0000, 'testTag', 'deleteAbc successfully');
-    }).catch((err: BusinessError) => {
-        hilog.error(0x0000, 'testTag', 'deleteAbc failed. Cause: %{public}s', err.message);
-    });
+  bundleManager.deleteAbc(abcPath).then((data) => {
+    hilog.info(0x0000, 'testTag', 'deleteAbc successfully');
+  }).catch((err: BusinessError) => {
+    hilog.error(0x0000, 'testTag', 'deleteAbc failed. Cause: %{public}s', err.message);
+  });
 } catch (err) {
-    let message = (err as BusinessError).message;
-    hilog.error(0x0000, 'testTag', 'deleteAbc failed. Cause: %{public}s', message);
+  let message = (err as BusinessError).message;
+  hilog.error(0x0000, 'testTag', 'deleteAbc failed. Cause: %{public}s', message);
 }
 ```
 
@@ -931,11 +931,11 @@ import bundleManager from '@ohos.bundle.bundleManager';
 import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
 try {
-    let link = 'welink://';
-    let data = bundleManager.canOpenLink(link);
-    hilog.info(0x0000, 'testTag', 'canOpenLink successfully: %{public}s', JSON.stringify(data));
+  let link = 'welink://';
+  let data = bundleManager.canOpenLink(link);
+  hilog.info(0x0000, 'testTag', 'canOpenLink successfully: %{public}s', JSON.stringify(data));
 } catch (err) {
-    let message = (err as BusinessError).message;
-    hilog.error(0x0000, 'testTag', 'canOpenLink failed: %{public}s', message);
+  let message = (err as BusinessError).message;
+  hilog.error(0x0000, 'testTag', 'canOpenLink failed: %{public}s', message);
 }
 ```
