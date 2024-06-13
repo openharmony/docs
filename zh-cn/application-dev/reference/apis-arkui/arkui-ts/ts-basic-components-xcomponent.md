@@ -45,6 +45,22 @@ XComponent(value: {id: string, type: XComponentType, libraryname?: string, contr
 | libraryname | string                                        | 否   | 用Native层编译输出动态库名称，仅类型为SURFACE或TEXTURE时有效。 |
 | controller  | [XComponentcontroller](#xcomponentcontroller) | 否   | 给组件绑定一个控制器，通过控制器调用组件方法，仅类型为SURFACE或TEXTURE时有效。 |
 
+### XComponent<sup>12+</sup>
+
+XComponent(value: {id: string, type: XComponentType, imageAIOptions: ImageAIOptions, libraryname?: string, controller?: XComponentController})
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数:**
+
+| 参数名      | 参数类型                                      | 必填 | 描述                                                         |
+| ----------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
+| id          | string                                        | 是   | 组件的唯一标识，支持最大的字符串长度128。                    |
+| type        | [XComponentType](#xcomponenttype10枚举说明)   | 是   | 用于指定XComponent组件类型。                                 |
+| imageAIOptions  | [ImageAIOptions](ts-image-common.md#imageaioptions12) | 是   | 给组件设置一个AI分析选项，通过此项可配置分析类型或绑定一个分析控制器。 |
+| libraryname | string                                        | 否   | 用Native层编译输出动态库名称，仅类型为SURFACE或TEXTURE时有效。 |
+| controller  | [XComponentcontroller](#xcomponentcontroller) | 否   | 给组件绑定一个控制器，通过控制器调用组件方法，仅类型为SURFACE或TEXTURE时有效。 |
+
 ## XComponentType<sup>10+</sup>枚举说明
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
@@ -499,6 +515,11 @@ struct ImageAnalyzerExample {
   private config: ImageAnalyzerConfig = {
     types: [ImageAnalyzerType.SUBJECT, ImageAnalyzerType.TEXT]
   }
+  private aiController: ImageAnalyzerController = new ImageAnalyzerController()
+  private options: ImageAIOptions = {
+    types: [ImageAnalyzerType.SUBJECT, ImageAnalyzerType.TEXT],
+    aiController: this.aiController
+  }
 
   build() {
     Column() {
@@ -520,9 +541,16 @@ struct ImageAnalyzerExample {
         .onClick(() => {
           this.xComponentController.stopImageAnalyzer()
         })
+      Button('getTypes')
+        .width(80)
+        .height(80)
+        .onClick(() => {
+          this.aiController.getImageAnalyzerSupportTypes()
+        })
       XComponent({
         id: 'xcomponent',
         type: XComponentType.SURFACE,
+        imageAIOptions: this.options,
         controller: this.xComponentController
       })
         .enableAnalyzer(true)
