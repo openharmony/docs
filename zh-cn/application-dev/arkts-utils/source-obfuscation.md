@@ -175,7 +175,7 @@ DevEco Studio提供代码混淆的能力并默认开启，API 10及以上版本�
 由于系统会在应用运行时加载某些指定的文件，针对这类文件，开发者需要手动在[`-keep-file-name`]选项中配置相应的白名单，防止指定文件被混淆，导致运行失败。
 上述需要手动配置白名单的情况，包括但不限于以下场景：  
 
-* 当模块中包含Ability组件时。用户需要将`scr/main/module.json5`中，'abilities'字段下所有'srcEntry'对应的路径配置到白名单中。  
+* 当模块中包含Ability组件时。用户需要将`src/main/module.json5`中，'abilities'字段下所有'srcEntry'对应的路径配置到白名单中。  
 * 当模块中包含Worker多线程服务时，用户需要将`build-profiles.json5`中，'buildOption'-'sourceOption'-'workers'字段下所有的路径配置到白名单中。
 
 #### -enable-export-obfuscation
