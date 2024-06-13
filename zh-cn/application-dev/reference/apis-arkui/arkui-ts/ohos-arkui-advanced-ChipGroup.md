@@ -196,7 +196,6 @@ struct Index {
         selectedIndexes: this.selected_index,
         multiple: false,
         chipGroupSpace: { itemSpace: 8, endSpace: 0 },
-        chipGroupPadding: { top: 10, bottom: 10 },
         onChange: (activatedChipsIndex:Array<number>) => {
           console.log('chips on clicked, activated index ' + activatedChipsIndex)
         },
@@ -286,7 +285,6 @@ struct Index {
         selectedIndexes: this.selected_index,
         multiple: true,
         chipGroupSpace: { itemSpace: 8, endSpace: 0 },
-        chipGroupPadding: { top: 10, bottom: 10 },
         onChange: (activatedChipsIndex: Array<number>) => {
           console.log('chips on clicked, activated index ' + activatedChipsIndex)
         },
