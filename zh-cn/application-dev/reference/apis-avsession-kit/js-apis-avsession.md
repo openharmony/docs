@@ -4528,7 +4528,7 @@ private keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string
 | lyric           | string                  | 否   | 歌词文件路径地址(本地路径或网络路径) |
 | previousAssetId | string                  | 否   | 上一首媒体ID。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                            |
 | nextAssetId     | string                  | 否   | 下一首媒体ID。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                            |
-| filter<sup>11+</sup>        | number         | 否   | 当前session支持的协议，默认为TYPE_CAST_PLUS_STREAM。具体取值参考[ProtocolType](#protocoltype10)。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                   |
+| filter<sup>11+</sup>        | number         | 否   | 当前session支持的协议，默认为TYPE_CAST_PLUS_STREAM。具体取值参考[ProtocolType](#protocoltype11)。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                   |
 | drmSchemes<sup>12+</sup>        | Array\<string>         | 否   | 当前session支持的DRM方案，取值为DRM方案uuid。|
 | skipIntervals<sup>11+</sup>  | [SkipIntervals](#skipintervals11)        | 否   | 快进快退支持的时间间隔，默认为SECONDS_15，即15秒。                            |
 |displayTags<sup>11+</sup>     | [DisplayTag](#displaytag11)                           | 否   | 媒体资源的金标类型。                                                          |
@@ -4704,7 +4704,7 @@ private keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string
 | deviceId   | string | 是   | 播放设备的ID。  |
 | deviceName | string | 是   | 播放设备的名称。    |
 | deviceType | DeviceType | 是   | 播放设备的类型。    |
-| supportedProtocols<sup>11+</sup> | number | 否   | 播放设备支持的协议。默认为TYPE_LOCAL。具体取值参考[ProtocolType](#protocoltype10)。 <br> **系统能力：** SystemCapability.Multimedia.AVSession.AVCast    |
+| supportedProtocols<sup>11+</sup> | number | 否   | 播放设备支持的协议。默认为TYPE_LOCAL。具体取值参考[ProtocolType](#protocoltype11)。 <br> **系统能力：** SystemCapability.Multimedia.AVSession.AVCast    |
 | supportedDrmCapabilities<sup>12+</sup> | Array\<string> | 否   | 播放设备支持的DRM能力。 <br> **系统能力：** SystemCapability.Multimedia.AVSession.AVCast|
 
 ## OutputDeviceInfo<sup>10+</sup>
