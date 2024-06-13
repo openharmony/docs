@@ -546,7 +546,7 @@ Tabs组件动画相关信息集合。
 
 配置跟手点坐标，不配置时，默认居中。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 名称   | 类型定义 | 描述       |
 | ------ | ----------------------| ---------- |
@@ -589,11 +589,13 @@ Tabs自定义切换动画执行过程中，返回给开发者的proxy对象。�
 
 ## VoidCallback<sup>12+</sup>
 
-函数回调：() => void
+type VoidCallback：() => void;
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 ## Callback<sup>12+</sup>
 
-Callback<T,V = void> = (T) => V;
+Callback<T,V = void> = (data: T) => V;
 
 带参数的函数回调。
 
@@ -603,11 +605,11 @@ Callback<T,V = void> = (T) => V;
 
 hover事件的回调类型。
 
-HoverCallback = (isHover: boolean, event: [HoverEvent](./ts-universal-mouse-key.md#hoverevent10对象说明)) => void
+type HoverCallback = (isHover: boolean, event: HoverEvent) => void;
 
 | 名称            | 类型                  | 描述                                       |
 | ------------- | ---------------------- | ---------------------------------------- |
-| HoverCallback | (isHover: boolean, event: [HoverEvent](./ts-universal-mouse-key.md#hoverevent10对象说明)) => void | hover事件的回调。 |
+| HoverCallback | (isHover: boolean, event: [HoverEvent](./ts-universal-mouse-key.md#hoverevent11对象说明)) => void | hover事件的回调。 |
 
 ## VisibleAreaEventOptions<sup>12+</sup>
 
@@ -624,7 +626,7 @@ HoverCallback = (isHover: boolean, event: [HoverEvent](./ts-universal-mouse-key.
 
 组件可见区域变化事件的回调类型。
 
-VisibleAreaChangeCallback = (isVisible: boolean, currentRatio: number) => void
+type VisibleAreaChangeCallback = (isVisible: boolean, currentRatio: number) => void;
 
 | 名称            | 类型                   | 描述                                       |
 | ------------- | ---------------------- | ---------------------------------------- |

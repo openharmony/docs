@@ -38,9 +38,12 @@ LongPressGesture(value?: { fingers?: number, repeat?: boolean, duration?: number
 
 ## 属性
 
+**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+
 | 名称 | 类型    |描述                                        |
 | ----  | ------  | ---------------------------------------- |
 | tag<sup>11+</sup>   | string  | 设置LongPress手势标志，用于自定义手势判定时区分绑定的手势。|
+
 ## 示例
 
 ```ts
