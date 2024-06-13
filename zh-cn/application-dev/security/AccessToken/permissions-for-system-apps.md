@@ -2647,7 +2647,7 @@
 
 ### ohos.permission.MANAGE_FINDNETWORK
 
-允许应用管理“查找”网络开关，并可以对物品进行配对，解配对。
+允许应用管理“查找”网络开关，并可以对物品进行配对、解配对。
 
 **权限级别**：system_basic
 
