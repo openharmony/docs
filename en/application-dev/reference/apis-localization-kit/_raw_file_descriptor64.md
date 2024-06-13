@@ -9,7 +9,7 @@ Defines the file descriptor of a large rawfile.
 
 **Since**: 11
 
-**Related module**: [Rawfile] (rawfile.md)
+**Related module**: [Rawfile](rawfile.md)
 
 
 ## Summary

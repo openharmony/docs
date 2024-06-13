@@ -18,7 +18,7 @@ import { nfcController } from '@kit.ConnectivityKit';
 
 **系统能力：** SystemCapability.Communication.NFC.Core
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
@@ -131,7 +131,7 @@ isNfcOpen(): boolean
 
 **系统能力：** SystemCapability.Communication.NFC.Core
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **返回值：**
 
@@ -147,7 +147,7 @@ getNfcState(): [NfcState](#nfcstate)
 
 **系统能力：** SystemCapability.Communication.NFC.Core
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **返回值：**
 
@@ -163,7 +163,7 @@ on(type: 'nfcStateChange', callback: Callback&lt;[NfcState](#nfcstate)&gt;): voi
 
 **系统能力：** SystemCapability.Communication.NFC.Core
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数**
   
@@ -180,7 +180,7 @@ off(type: 'nfcStateChange', callback?: Callback&lt;[NfcState](#nfcstate)&gt;): v
 
 **系统能力：** SystemCapability.Communication.NFC.Core
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数**
 

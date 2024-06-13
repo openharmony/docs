@@ -9,7 +9,7 @@ The **ImageEffect_FilterNames** struct describes the filter name information.
 
 **Since**: 12
 
-**Related module**: [ImageEffect] (_image_effect.md)
+**Related module**: [ImageEffect](_image_effect.md)
 
 
 ## Summary

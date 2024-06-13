@@ -21,7 +21,7 @@ createGattServer(): GattServer
 
 创建GattServer实例。
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -45,7 +45,7 @@ createGattClientDevice(deviceId: string): GattClientDevice
 
 创建一个可使用的GattClientDevice实例。
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -130,7 +130,7 @@ startBLEScan(filters: Array&lt;ScanFilter&gt;, options?: ScanOptions): void
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -188,7 +188,7 @@ stopBLEScan(): void
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -224,7 +224,7 @@ startAdvertising(setting: AdvertiseSetting, advData: AdvertiseData, advResponse?
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -306,7 +306,7 @@ stopAdvertising(): void
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -1231,7 +1231,7 @@ on(type: 'BLEDeviceFind', callback: Callback&lt;Array&lt;ScanResult&gt;&gt;): vo
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -1276,7 +1276,7 @@ off(type: 'BLEDeviceFind', callback?: Callback&lt;Array&lt;ScanResult&gt;&gt;): 
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -1328,7 +1328,7 @@ server端添加服务。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -1396,7 +1396,7 @@ removeService(serviceUuid: string): void
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -1442,7 +1442,7 @@ close(): void
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -1479,7 +1479,7 @@ server端特征值发生变化时，主动通知已连接的client设备。使�
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -1538,7 +1538,7 @@ server端特征值发生变化时，主动通知已连接的client设备。使�
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -1598,7 +1598,7 @@ server端回复client端的读写请求。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -1653,7 +1653,7 @@ server端订阅特征值读请求事件。使用Callback异步回调。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -1708,7 +1708,7 @@ server端取消订阅特征值读请求事件。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -1750,7 +1750,7 @@ server端订阅特征值写请求事件。使用Callback异步回调。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -1808,7 +1808,7 @@ server端取消订阅特征值写请求事件。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -1850,7 +1850,7 @@ server端订阅描述符读请求事件。使用Callback异步回调。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -1905,7 +1905,7 @@ server端取消订阅描述符读请求事件。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -1947,7 +1947,7 @@ server端订阅描述符写请求事件。使用Callback异步回调。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -2005,7 +2005,7 @@ server端取消订阅描述符写请求事件。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -2047,7 +2047,7 @@ server端订阅BLE连接状态变化事件。使用Callback异步回调。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -2094,7 +2094,7 @@ server端取消订阅BLE连接状态变化事件。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -2223,7 +2223,7 @@ client端发起连接远端蓝牙低功耗设备。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -2260,7 +2260,7 @@ client端断开与远端蓝牙低功耗设备的连接。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -2297,7 +2297,7 @@ close(): void
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -2334,7 +2334,7 @@ client获取远端蓝牙低功耗设备名。使用Callback异步回调。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -2382,7 +2382,7 @@ client获取远端蓝牙低功耗设备名。使用Promise异步回调。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -2429,7 +2429,7 @@ client端获取蓝牙低功耗设备的所有服务，即服务发现。使用Ca
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -2486,7 +2486,7 @@ client端获取蓝牙低功耗设备的所有服务，即服务发现。使用Pr
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -2533,7 +2533,7 @@ client端读取蓝牙低功耗设备特定服务的特征值。使用Callback异
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -2603,7 +2603,7 @@ client端读取蓝牙低功耗设备特定服务的特征值。使用Promise异�
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -2669,7 +2669,7 @@ client端读取蓝牙低功耗设备特定的特征包含的描述符。使用Ca
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -2732,7 +2732,7 @@ client端读取蓝牙低功耗设备特定的特征包含的描述符。使用Pr
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -2791,7 +2791,7 @@ client端向低功耗蓝牙设备写入特定的特征值。使用Callback异步
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -2858,7 +2858,7 @@ client端向低功耗蓝牙设备写入特定的特征值。使用Promise异步�
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -2924,7 +2924,7 @@ client端向低功耗蓝牙设备特定的描述符写入二进制数据。使�
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -2978,7 +2978,7 @@ client端向低功耗蓝牙设备特定的描述符写入二进制数据。使�
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -3039,7 +3039,7 @@ client获取远端蓝牙低功耗设备的信号强度 (Received Signal Strength
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -3086,7 +3086,7 @@ client获取远端蓝牙低功耗设备的信号强度 (Received Signal Strength
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -3131,7 +3131,7 @@ client协商远端蓝牙低功耗设备的最大传输单元（Maximum Transmiss
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -3174,7 +3174,7 @@ setCharacteristicChangeNotification(characteristic: BLECharacteristic, enable: b
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -3232,7 +3232,7 @@ setCharacteristicChangeNotification(characteristic: BLECharacteristic, enable: b
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -3295,7 +3295,7 @@ setCharacteristicChangeIndication(characteristic: BLECharacteristic, enable: boo
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -3353,7 +3353,7 @@ setCharacteristicChangeIndication(characteristic: BLECharacteristic, enable: boo
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -3416,7 +3416,7 @@ on(type: 'BLECharacteristicChange', callback: Callback&lt;BLECharacteristic&gt;)
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -3463,7 +3463,7 @@ off(type: 'BLECharacteristicChange', callback?: Callback&lt;BLECharacteristic&gt
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -3505,7 +3505,7 @@ client端订阅蓝牙低功耗设备的连接状态变化事件。使用Callback
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -3551,7 +3551,7 @@ off(type: 'BLEConnectionStateChange', callback?: Callback&lt;BLEConnectionChange
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -3593,7 +3593,7 @@ client端订阅MTU状态变化事件。使用Callback异步回调。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -3637,7 +3637,7 @@ client端取消订阅MTU状态变化事件。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -3675,7 +3675,7 @@ try {
 
 描述service的接口参数定义。
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -3691,7 +3691,7 @@ try {
 
 描述characteristic的接口参数定义 。
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -3708,7 +3708,7 @@ try {
 
 描述descriptor的接口参数定义。
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -3724,7 +3724,7 @@ try {
 
 描述server端特征值变化时发送的特征通知参数定义。
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -3740,7 +3740,7 @@ try {
 
 描述server端订阅后收到的特征值读请求事件参数结构。
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -3757,7 +3757,7 @@ try {
 
 描述server端订阅后收到的特征值写请求事件参数结构。
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -3777,7 +3777,7 @@ try {
 
 描述server端订阅后收到的描述符读请求事件参数结构。
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -3795,7 +3795,7 @@ try {
 
 描述server端订阅后收到的描述符写请求事件参数结构。
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -3816,7 +3816,7 @@ try {
 
 描述server端回复client端读/写请求的响应参数结构。
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -3833,7 +3833,7 @@ try {
 
 描述Gatt profile连接状态。
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -3847,7 +3847,7 @@ try {
 
 扫描结果上报数据。
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -3864,7 +3864,7 @@ try {
 
 描述蓝牙低功耗设备发送广播的参数。
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -3879,7 +3879,7 @@ try {
 
 描述BLE广播数据包的内容，广播包数据长度为31个字节。
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -3939,7 +3939,7 @@ try {
 
 描述BLE广播数据包的内容。
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -3953,7 +3953,7 @@ try {
 
 描述广播包中服务数据内容。
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -3967,7 +3967,7 @@ try {
 
 扫描过滤参数。
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -3990,7 +3990,7 @@ try {
 
 扫描的配置参数。
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -4006,7 +4006,7 @@ try {
 
 描述gatt characteristic的属性。
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -4023,7 +4023,7 @@ try {
 
 枚举，表示gatt写入类型。
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -4037,7 +4037,7 @@ try {
 
 枚举，扫描模式。
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -4052,7 +4052,7 @@ try {
 
 枚举，硬件过滤匹配模式。
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -4078,7 +4078,7 @@ try {
 
 枚举，扫描中使用的PHY类型。
 
-**元服务API**：从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
