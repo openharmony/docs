@@ -23,7 +23,7 @@ constructor(uiContext: UIContext, builder: WrappedBuilder<[]>)
 
 ComponentContent的构造函数。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -40,7 +40,7 @@ constructor(uiContext: UIContext, builder: WrappedBuilder<[T]>, args: T)
 
 ComponentContent的构造函数。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -58,7 +58,7 @@ update(args: T): void
 
 用于更新WrappedBuilder对象封装的builder函数参数，与constructor传入的参数类型保持一致。
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
