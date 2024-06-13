@@ -3230,6 +3230,7 @@ struct WebComponent {
       try {
         // 应用侧用法示例，定制UserAgent。
         this.ua = this.controller.getUserAgent() + 'xxx';
+        this.controller.setCustomUserAgent(this.us);
       } catch(error) {
         let e:business_error.BusinessError = error as business_error.BusinessError;
         console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -3240,7 +3241,6 @@ struct WebComponent {
   build() {
     Column() {
       Web({ src: 'www.example.com', controller: this.controller })
-        .userAgent(this.ua)
     }
   }
 }
