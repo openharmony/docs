@@ -24,7 +24,7 @@
 
 **参考链接**
 
-[开发卡片事件](../application-models/arkts-ui-widget-configuration.md)
+[开发卡片事件](../form/arkts-ui-widget-configuration.md)
 
 
 ## 如何在Stage模型中创建后台服务(API 9)
@@ -277,7 +277,7 @@ context.startAbility(want).then(() => {
 ```
 
 
-## 元服务是否可以全程使用js实现(API 9)
+## 原子化服务是否可以全程使用js实现(API 9)
 
 **解决措施**
 
@@ -351,7 +351,7 @@ console.info('onStartRemoteAbility end');
 
 **参考链接**
 
-[FA卡片开发指导](../application-models/widget-development-fa.md)
+[FA卡片开发指导](../form/widget-development-fa.md)
 
 
 ## 如何跳转到设置中应用详情页面(API 9)
@@ -451,7 +451,7 @@ struct AbilityContextTest {
 
 **参考链接**
 
-[服务卡片开发指导](../application-models/widget-development-fa.md)
+[服务卡片开发指导](../form/widget-development-fa.md)
 
 ## 系统是否支持在桌面上创建应用的快捷入口，直接打开指定页面？(API 10)
 
